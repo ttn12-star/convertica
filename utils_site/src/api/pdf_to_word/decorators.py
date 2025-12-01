@@ -1,0 +1,40 @@
+# decorators.py
+from typing import Callable
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+from .serializers import PDFToWordSerializer
+
+
+def pdf_to_word_docs() -> Callable:
+    """Decorator providing Swagger documentation for PDF → DOCX conversion API.
+
+    Returns:
+        Callable: Decorated DRF view method.
+    """
+
+    docx_binary_schema = openapi.Schema(
+        type=openapi.TYPE_STRING,
+        format="binary",
+        description="Binary DOCX file.",
+        example="(binary file stream)",
+    )
+
+    def decorator(func: Callable) -> Callable:
+        return swagger_auto_schema(
+            operation_description="Convert a PDF file into a DOCX document.",
+            request_body=PDFToWordSerializer,
+            responses={
+                200: openapi.Response(
+                    description="Converted DOCX file.",
+                    content={
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": docx_binary_schema
+                    },
+                ),
+                400: "Bad request.",
+                413: "File too large.",
+                500: "Internal server error.",
+            },
+            consumes=["multipart/form-data"],
+        )(func)
+
+    return decorator
