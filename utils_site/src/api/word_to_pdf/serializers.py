@@ -4,6 +4,6 @@ class WordToPDFSerializer(serializers.Serializer):
     """
     Serializer for uploading a DOCX file to convert it to PDF.
     """
-    docx_file = serializers.FileField(
+    word_file = serializers.FileField(
         help_text="DOCX file to be converted into PDF format."
     )

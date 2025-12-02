@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Word to PDF - Convertica" %}{% endblock %}
+{% block description %}{% trans "Upload Word files and download PDF documents instantly." %}{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">{% trans "Word → PDF Converter" %}</h1>
+
+<form id="wordToPdfForm" method="post" enctype="multipart/form-data" class="bg-white p-6 rounded shadow">
+    {% csrf_token %}
+    <input type="file" name="word_file" id="wordFile" accept=".doc,.docx" class="border p-2 mb-4 w-full">
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">{% trans "Convert" %}</button>
+</form>
+
+<div id="wordToPdfResult" class="mt-4"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('wordToPdfForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const fileInput = document.getElementById('wordFile');
+    if (!fileInput.files.length) return alert("{% trans 'Please select a Word file.' %}");
+    
+    const formData = new FormData();
+    formData.append('word_file', fileInput.files[0]);
+
+    const response = await fetch("{% url 'word_to_pdf_api' %}", {
+        method: 'POST',
+        body: formData,
+        headers: { 'X-CSRFToken': '{{ csrf_token }}' }
+    });
+
+    if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileInput.files[0].name.replace(/\.(docx?|DOCX?)$/, '.pdf');
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+    } else {
+        const data = await response.json();
+        alert(data.error || "{% trans 'Conversion failed.' %}");
+    }
+});
+</script>
+{% endblock %}

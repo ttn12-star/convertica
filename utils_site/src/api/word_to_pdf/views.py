@@ -44,11 +44,15 @@ class WordToPDFAPIView(APIView):
         """
         serializer = WordToPDFSerializer(data=request.FILES or request.POST)
         if not serializer.is_valid():
+            logger.warning(
+                "WordToPDFSerializer validation failed",
+                extra={"errors": serializer.errors}
+            )
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        word_file: Optional[UploadedFile] = serializer.validated_data.get("docx_file")
+        word_file: Optional[UploadedFile] = serializer.validated_data.get("word_file")
         if word_file is None:
-            return Response({"error": "docx_file is required"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "word_file is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         if word_file.size > self.MAX_UPLOAD_SIZE:
             return Response({"error": "File too large."}, status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE)
