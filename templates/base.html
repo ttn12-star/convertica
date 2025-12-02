@@ -1,0 +1,43 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Convertica{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% trans "Online PDF and Word conversion tool." %}{% endblock %}">
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'index_page' %}" class="text-xl font-bold">{% trans "Convertica" %}</a>
+            <nav>
+                <a href="{% url 'pdf_to_word_page' %}" class="mr-4">{% trans "PDF → Word" %}</a>
+                <a href="{% url 'word_to_pdf_page' %}" class="mr-4">{% trans "Word → PDF" %}</a>
+                <!-- Language selector -->
+                <form method="get" class="inline">
+                    <select name="lang" onchange="this.form.submit()" class="border rounded px-2 py-1">
+                        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                        <option value="ru" {% if LANGUAGE_CODE == 'ru' %}selected{% endif %}>Русский</option>
+                    </select>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-200 text-center py-4 mt-8">
+        <p>&copy; 2025 Convertica. {% trans "All rights reserved." %}</p>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

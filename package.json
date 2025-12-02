@@ -1,0 +1,40 @@
+{
+  "name": "convertica",
+  "version": "1.0.0",
+  "description": "Building useful developer tools and converters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitakrivd-eng/convertica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikitakrivd-eng/convertica/issues"
+  },
+  "homepage": "https://github.com/nikitakrivd-eng/convertica#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  },
+  "dependencies": {
+    "baseline-browser-mapping": "^2.8.32",
+    "browserslist": "^4.28.0",
+    "caniuse-lite": "^1.0.30001757",
+    "electron-to-chromium": "^1.5.263",
+    "escalade": "^3.2.0",
+    "fraction.js": "^5.3.4",
+    "nanoid": "^3.3.11",
+    "node-releases": "^2.0.27",
+    "normalize-range": "^0.1.2",
+    "picocolors": "^1.1.1",
+    "postcss-value-parser": "^4.2.0",
+    "source-map-js": "^1.2.1",
+    "update-browserslist-db": "^1.1.4"
+  }
+}
