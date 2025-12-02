@@ -38,7 +38,11 @@ class PDFToWordAPIView(APIView):
         """Convert uploaded PDF to DOCX and stream back the result."""
         serializer = PDFToWordSerializer(data=request.data)
         if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            logger.warning(
+                "WordToPDFSerializer validation failed",
+                extra={"errors": serializer.errors}
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         pdf_file: Optional[UploadedFile] = serializer.validated_data.get("pdf_file")
         if pdf_file is None:

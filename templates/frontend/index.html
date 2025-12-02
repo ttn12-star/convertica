@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Home - Convertica" %}{% endblock %}
+{% block description %}{% trans "Convert PDF to Word and Word to PDF online quickly and easily." %}{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">{% trans "Welcome to Convertica!" %}</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">{% trans "PDF → Word" %}</h2>
+        <p class="mb-4">{% trans "Convert your PDF documents to editable Word files." %}</p>
+        <a href="{% url 'pdf_to_word_page' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">{% trans "Go to Converter" %}</a>
+    </div>
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h2 class="text-xl font-semibold mb-2">{% trans "Word → PDF" %}</h2>
+        <p class="mb-4">{% trans "Convert your Word documents to PDF format quickly." %}</p>
+        <a href="{% url 'word_to_pdf_page' %}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">{% trans "Go to Converter" %}</a>
+    </div>
+</div>
+{% endblock %}
