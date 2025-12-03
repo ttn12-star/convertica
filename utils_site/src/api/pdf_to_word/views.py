@@ -42,7 +42,7 @@ class PDFToWordAPIView(APIView):
                 "WordToPDFSerializer validation failed",
                 extra={"errors": serializer.errors}
             )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         pdf_file: Optional[UploadedFile] = serializer.validated_data.get("pdf_file")
         if pdf_file is None:
