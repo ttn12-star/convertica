@@ -17,11 +17,6 @@
     "url": "https://github.com/nikitakrivd-eng/convertica/issues"
   },
   "homepage": "https://github.com/nikitakrivd-eng/convertica#readme",
-  "devDependencies": {
-    "autoprefixer": "^10.4.22",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.17"
-  },
   "dependencies": {
     "baseline-browser-mapping": "^2.8.32",
     "browserslist": "^4.28.0",
@@ -36,5 +31,11 @@
     "postcss-value-parser": "^4.2.0",
     "source-map-js": "^1.2.1",
     "update-browserslist-db": "^1.1.4"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18"
   }
 }

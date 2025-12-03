@@ -1,22 +1,59 @@
-{% extends 'base.html' %}
-{% load i18n %}
+{% extends "base.html" %}
+{% load i18n static %}
 
-{% block title %}{% trans "Home - Convertica" %}{% endblock %}
-{% block description %}{% trans "Convert PDF to Word and Word to PDF online quickly and easily." %}{% endblock %}
+{% block title %}{% trans "Convertica – Online PDF ↔ Word Converter" %}{% endblock %}
+{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter." %}{% endblock %}
 
 {% block content %}
-<h1 class="text-3xl font-bold mb-6">{% trans "Welcome to Convertica!" %}</h1>
+<main class="bg-gray-50 min-h-screen">
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">{% trans "PDF → Word" %}</h2>
-        <p class="mb-4">{% trans "Convert your PDF documents to editable Word files." %}</p>
-        <a href="{% url 'pdf_to_word_page' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">{% trans "Go to Converter" %}</a>
-    </div>
-    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-        <h2 class="text-xl font-semibold mb-2">{% trans "Word → PDF" %}</h2>
-        <p class="mb-4">{% trans "Convert your Word documents to PDF format quickly." %}</p>
-        <a href="{% url 'word_to_pdf_page' %}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">{% trans "Go to Converter" %}</a>
-    </div>
-</div>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">{% trans "Convert PDF to Word and Word to PDF Online" %}</h1>
+            <p class="text-lg md:text-xl mb-8">{% trans "Fast, simple, and secure. No installations required." %}</p>
+            <a href="{% url 'pdf_to_word_page' %}" class="bg-white text-blue-600 font-semibold py-3 px-6 rounded shadow hover:bg-gray-100 transition">{% trans "Start Converting" %}</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">{% trans "Our Features" %}</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Feature Card 1 -->
+                <div class="bg-white rounded shadow-lg p-6 hover:shadow-2xl transition">
+                    <h3 class="text-xl font-semibold mb-2">{% trans "PDF to Word" %}</h3>
+                    <p>{% trans "Convert your PDF documents to editable Word files instantly." %}</p>
+                    <a href="{% url 'pdf_to_word_page' %}" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">{% trans "Try it" %}</a>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="bg-white rounded shadow-lg p-6 hover:shadow-2xl transition">
+                    <h3 class="text-xl font-semibold mb-2">{% trans "Word to PDF" %}</h3>
+                    <p>{% trans "Easily convert Word documents to secure PDF files." %}</p>
+                    <a href="{% url 'word_to_pdf_page' %}" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">{% trans "Try it" %}</a>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="bg-white rounded shadow-lg p-6 hover:shadow-2xl transition">
+                    <h3 class="text-xl font-semibold mb-2">{% trans "No Installation" %}</h3>
+                    <p>{% trans "Fully online tool. Works on any device, no downloads required." %}</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="bg-blue-600 text-white py-16">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-4">{% trans "Ready to start?" %}</h2>
+            <p class="mb-8">{% trans "Convert your files in seconds, for free." %}</p>
+            <a href="{% url 'pdf_to_word_page' %}" class="bg-white text-blue-600 font-semibold py-3 px-6 rounded shadow hover:bg-gray-100 transition">{% trans "Get Started" %}</a>
+        </div>
+    </section>
+
+</main>
 {% endblock %}
