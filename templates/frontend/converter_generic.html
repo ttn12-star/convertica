@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-6">{{ header_text }}</h1>
+
+<form id="converterForm" method="post" enctype="multipart/form-data"
+      class="bg-white p-6 rounded shadow">
+    {% csrf_token %}
+    <input type="file" name="{{ file_input_name }}" id="fileInput"
+           accept="{{ file_accept }}" class="border p-2 mb-4 w-full">
+
+    <button type="submit" class="{{ button_class }}">
+        {{ button_text }}
+    </button>
+</form>
+
+<div id="converterResult" class="mt-4"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.API_URL = "{{ api_url }}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name }}";
+    window.REPLACE_REGEX = "{{ replace_regex }}";
+    window.REPLACE_TO = "{{ replace_to }}";
+</script>
+
+<script src="{% static 'js/converter.js' %}"></script>
+{% endblock %}
