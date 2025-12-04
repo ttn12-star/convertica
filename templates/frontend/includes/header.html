@@ -1,0 +1,124 @@
+{% load i18n static %}
+
+<header class="bg-white shadow-md sticky top-0 z-50" itemscope itemtype="https://schema.org/SiteNavigationElement">
+  <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="{% url 'index_page' %}" class="text-2xl font-bold text-gray-800 hover:text-blue-600 transition-colors" 
+       aria-label="{% trans 'Convertica - Home' %}" itemprop="url">
+      <span itemprop="name">{% trans "Convertica" %}</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-8 items-center text-sm font-medium relative" aria-label="{% trans 'Main navigation' %}" role="navigation">
+
+      <!-- Mega Menu -->
+      <div class="relative" id="mega-menu-parent" aria-haspopup="true" aria-expanded="false">
+        <button id="mega-menu-button" 
+                class="flex items-center hover:text-blue-600 transition-colors font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
+                aria-controls="mega-menu-dropdown"
+                aria-label="{% trans 'Convert PDF tools' %}">
+          {% trans "Convert PDF" %}
+          <svg id="mega-menu-arrow" class="ml-1 w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+
+        <!-- Dropdown -->
+        <div id="mega-menu-dropdown" 
+             class="absolute left-0 top-full mt-2 w-80 bg-white shadow-xl rounded-lg opacity-0 invisible transition-all duration-200 z-50 border border-gray-100"
+             aria-labelledby="mega-menu-button" role="menu">
+          <div class="grid grid-cols-2 gap-6 p-6">
+
+            <!-- Convert to PDF -->
+            <div>
+              <h5 class="font-bold mb-3 text-gray-700">{% trans "Convert to PDF" %}</h5>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a href="{% url 'word_to_pdf_page' %}" class="flex items-center space-x-2 p-1 rounded hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" role="menuitem">
+                    <img src="{% static 'icons/word.svg' %}" alt="" class="w-5 h-5" aria-hidden="true">
+                    <span>{% trans "Word → PDF" %}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'word_to_pdf_page' %}" class="flex items-center space-x-2 p-1 rounded hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" role="menuitem">
+                    <img src="{% static 'icons/excel.svg' %}" alt="" class="w-5 h-5" aria-hidden="true">
+                    <span>{% trans "Excel → PDF" %}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Convert from PDF -->
+            <div>
+              <h5 class="font-bold mb-3 text-gray-700">{% trans "Convert from PDF" %}</h5>
+              <ul class="space-y-2 text-sm">
+                <li>
+                  <a href="{% url 'pdf_to_word_page' %}" class="flex items-center space-x-2 p-1 rounded hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" role="menuitem">
+                    <img src="{% static 'icons/word.svg' %}" alt="" class="w-5 h-5" aria-hidden="true">
+                    <span>{% trans "PDF → Word" %}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'pdf_to_word_page' %}" class="flex items-center space-x-2 p-1 rounded hover:bg-gray-100 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" role="menuitem">
+                    <img src="{% static 'icons/excel.svg' %}" alt="" class="w-5 h-5" aria-hidden="true">
+                    <span>{% trans "PDF → Excel" %}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Links -->
+      <a href="/about/" class="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">{% trans "About" %}</a>
+      <a href="/contact/" class="hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">{% trans "Contact" %}</a>
+
+      <!-- Language Switcher -->
+      <form method="get" class="ml-4">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        <select name="lang" onchange="this.form.submit()" class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          {% for code, name in LANGUAGES %}
+            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </form>
+    </nav>
+
+    <!-- Mobile Hamburger -->
+    <div class="md:hidden">
+      <button id="mobile-menu-btn" aria-controls="mobile-menu" aria-expanded="false" class="p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md animate-slide-down">
+    <nav class="flex flex-col px-4 py-4 space-y-2 text-sm font-medium">
+      <a href="{% url 'word_to_pdf_page' %}" class="hover:text-blue-600 p-2 rounded">{% trans "Word → PDF" %}</a>
+      <a href="{% url 'word_to_pdf_page' %}" class="hover:text-blue-600 p-2 rounded">{% trans "Excel → PDF" %}</a>
+      <a href="{% url 'pdf_to_word_page' %}" class="hover:text-blue-600 p-2 rounded">{% trans "PDF → Word" %}</a>
+      <a href="{% url 'pdf_to_word_page' %}" class="hover:text-blue-600 p-2 rounded">{% trans "PDF → Excel" %}</a>
+      <a href="/about/" class="hover:text-blue-600 p-2 rounded">{% trans "About" %}</a>
+      <a href="/contact/" class="hover:text-blue-600 p-2 rounded">{% trans "Contact" %}</a>
+
+      <!-- Mobile Language -->
+      <form method="get" class="mt-2">
+        <select name="lang" onchange="this.form.submit()" class="border border-gray-300 rounded px-2 py-1 text-sm w-full">
+          {% for code, name in LANGUAGES %}
+            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+          {% endfor %}
+        </select>
+      </form>
+    </nav>
+  </div>
+
+  <script src="{% static 'js/header-navigation.js' %}" defer></script>
+</header>
