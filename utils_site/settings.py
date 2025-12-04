@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'src.frontend.context_processors.hreflang_links',
             ],
         },
     },
@@ -110,7 +111,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
+LANGUAGES = [
+    ('en', 'English'),
+    ('ru', 'Russian'),
+]
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

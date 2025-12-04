@@ -30,7 +30,7 @@ def word_to_pdf_page(request):
         'header_text': 'Word → PDF Converter',
         'file_input_name': 'word_file',
         'file_accept': '.doc,.docx',
-        'button_class': 'bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700',
+        'button_class': 'bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700',
         'button_text': 'Convert to PDF',
         'select_file_message': 'Please select a Word file.',
         'api_url': reverse('word_to_pdf_api'),
