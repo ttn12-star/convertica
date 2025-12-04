@@ -5,20 +5,29 @@
 {% block description %}{{ page_description }}{% endblock %}
 
 {% block content %}
-<h1 class="text-2xl font-bold mb-6">{{ header_text }}</h1>
+<div class="max-w-xl mx-auto my-12 p-4">
+    <h1 class="text-3xl font-bold mb-8 text-gray-800 text-center">{{ header_text }}</h1>
 
-<form id="converterForm" method="post" enctype="multipart/form-data"
-      class="bg-white p-6 rounded shadow">
-    {% csrf_token %}
-    <input type="file" name="{{ file_input_name }}" id="fileInput"
-           accept="{{ file_accept }}" class="border p-2 mb-4 w-full">
+    <form id="converterForm" method="post" enctype="multipart/form-data"
+          class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+        {% csrf_token %}
 
-    <button type="submit" class="{{ button_class }}">
-        {{ button_text }}
-    </button>
-</form>
+        <label for="fileInput" class="block mb-2 font-medium text-gray-700">
+            {% trans "Select file to convert" %}
+        </label>
+        <input type="file" name="{{ file_input_name }}" id="fileInput"
+               accept="{{ file_accept }}"
+               class="border border-gray-300 rounded-lg p-3 w-full text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none mb-6">
 
-<div id="converterResult" class="mt-4"></div>
+        <button type="submit"
+                class="{{ button_class }} w-full py-3 font-semibold text-lg rounded-lg shadow hover:shadow-md transition-all duration-200">
+            {{ button_text }}
+        </button>
+    </form>
+
+    <div id="converterResult" class="mt-6 p-4 bg-gray-50 rounded-lg shadow-inner hidden text-center text-gray-700">
+    </div>
+</div>
 {% endblock %}
 
 {% block extra_js %}
