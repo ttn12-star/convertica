@@ -6,6 +6,14 @@ from django.urls import resolve, reverse, Resolver404
 from django.utils.translation import get_language
 
 
+def hcaptcha_site_key(request):
+    """Add hCaptcha site key and requirement status to template context."""
+    return {
+        'hcaptcha_site_key': getattr(settings, 'HCAPTCHA_SITE_KEY', ''),
+        'captcha_required': request.session.get('captcha_required', False),
+    }
+
+
 def hreflang_links(request):
     """
     Generate hreflang links for SEO.

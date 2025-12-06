@@ -39,9 +39,11 @@ class OrganizePDFAPIView(BaseConversionAPIView):
     ) -> Tuple[str, str]:
         """Organize PDF."""
         operation = kwargs.get('operation', 'reorder')
+        page_order = kwargs.get('page_order')
         pdf_path, output_path = organize_pdf(
             uploaded_file,
             operation=operation,
+            page_order=page_order,
             suffix="_convertica"
         )
         return pdf_path, output_path

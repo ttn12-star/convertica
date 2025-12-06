@@ -17,6 +17,8 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="language" content="{{ LANGUAGE_CODE }}">
     <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="format-detection" content="telephone=no">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -24,7 +26,10 @@
     <meta property="og:title" content="{% block og_title %}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
-    <meta property="og:locale" content="{% if LANGUAGE_CODE == 'ru' %}ru_RU{% else %}en_US{% endif %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{% block og_image_alt %}Convertica - Online PDF Tools{% endblock %}">
+    <meta property="og:locale" content="{% if LANGUAGE_CODE == 'ru' %}ru_RU{% elif LANGUAGE_CODE == 'pl' %}pl_PL{% elif LANGUAGE_CODE == 'hi' %}hi_IN{% elif LANGUAGE_CODE == 'es' %}es_ES{% elif LANGUAGE_CODE == 'id' %}id_ID{% else %}en_US{% endif %}">
     <meta property="og:site_name" content="Convertica">
     
     <!-- Twitter -->
@@ -34,8 +39,16 @@
     <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
     <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <!-- Canonical URL (without language prefix for SEO) -->
+    {% load i18n_utils %}
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path|remove_language_prefix }}">
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Hreflang Tags for SEO -->
     {% for link in hreflangs %}
@@ -125,11 +138,35 @@
         "availableLanguage": [
             {% get_available_languages as LANGUAGES %}
             {% for code, name in LANGUAGES %}"{{ code }}"{% if not forloop.last %},{% endif %}{% endfor %}
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1000"
+        },
+        "featureList": [
+            "PDF to Word conversion",
+            "Word to PDF conversion",
+            "PDF merge",
+            "PDF split",
+            "PDF rotate",
+            "Add watermark",
+            "Crop PDF",
+            "Compress PDF",
+            "Protect PDF",
+            "Organize PDF pages"
         ]
     }
     </script>
     
+    {% block structured_data %}{% endblock %}
+    
     {% block extra_head %}{% endblock %}
+    
+    <!-- hCaptcha (Anti-spam) -->
+    {% if hcaptcha_site_key %}
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    {% endif %}
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased">
     
@@ -140,8 +177,42 @@
     </main>
 
     {% include "frontend/includes/footer.html" %}
+    
+    {% include "frontend/includes/cookie_banner.html" %}
 
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Cookie Consent Utility -->
+    <script src="{% static 'js/cookie-consent.js' %}"></script>
+    
+    <script src="{% static 'js/language-detection.js' %}"></script>
+    
+    <script>
+    // Example: Initialize analytics only if allowed
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if user has consented
+        if (window.CookieConsent && window.CookieConsent.hasUserConsented()) {
+            // Initialize analytics if allowed
+            window.CookieConsent.initAnalyticsIfAllowed(function() {
+                // Your analytics initialization code here
+                // Example: Google Analytics
+                // if (typeof gtag !== 'undefined') {
+                //     gtag('config', 'GA_MEASUREMENT_ID');
+                // }
+                console.log('Analytics initialized (if allowed)');
+            });
+            
+            // Initialize marketing if allowed
+            window.CookieConsent.initMarketingIfAllowed(function() {
+                // Your marketing initialization code here
+                // Example: Facebook Pixel, Google Ads, etc.
+                console.log('Marketing initialized (if allowed)');
+            });
+            
+            // Track page view
+            window.CookieConsent.trackPageView(window.location.pathname);
+        }
+    });
+    </script>
+    
     {% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,39 @@
+version: '3.8'
+
+# Development override for docker-compose.yml
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  web:
+    build:
+      target: builder  # Use builder stage for development
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app  # Mount source code for hot reload
+      - ./staticfiles:/app/staticfiles
+      - ./media:/app/media
+      - ./logs:/app/logs
+    environment:
+      - DEBUG=True
+      - DATABASE_ENGINE=sqlite3  # Use SQLite for development
+    ports:
+      - "8000:8000"
+      - "5678:5678"  # Debug port
+
+  celery:
+    volumes:
+      - .:/app  # Mount source code for hot reload
+    environment:
+      - DEBUG=True
+      - DATABASE_ENGINE=sqlite3
+
+  celery-beat:
+    volumes:
+      - .:/app
+    environment:
+      - DEBUG=True
+      - DATABASE_ENGINE=sqlite3
+

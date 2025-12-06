@@ -1,0 +1,60 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Convertica Admin{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <span style="color: #417690; font-weight: 700;">Convertica</span>
+        <span style="color: #999; font-size: 14px; font-weight: 400;">Admin</span>
+    </a>
+</h1>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/blog_admin.css' %}">
+<style>
+    #header {
+        background: linear-gradient(135deg, #417690 0%, #2c5f7a 100%);
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    #header a:link, #header a:visited {
+        color: #fff;
+    }
+    
+    #branding h1, #branding h1 a:link, #branding h1 a:visited {
+        color: #fff;
+    }
+    
+    .module h2, .module caption, .inline-group h2 {
+        background: linear-gradient(135deg, #417690 0%, #2c5f7a 100%);
+        color: #fff;
+    }
+    
+    .button, input[type=submit], input[type=button], .submit-row input, a.button {
+        background: #417690;
+        border-radius: 4px;
+        transition: all 0.3s;
+    }
+    
+    .button:hover, input[type=submit]:hover, input[type=button]:hover {
+        background: #2c5f7a;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .object-tools a {
+        background: #417690;
+        border-radius: 4px;
+    }
+    
+    .object-tools a:hover {
+        background: #2c5f7a;
+    }
+</style>
+{% endblock %}
+

@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "PrivacyPolicy",
+    "name": "{% trans "Privacy Policy - Convertica" %}",
+    "description": "{{ page_description }}",
+    "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Convertica",
+        "url": "{{ request.scheme }}://{{ request.get_host }}"
+    },
+    "datePublished": "2024-01-01",
+    "dateModified": "{% now "Y-m-d" %}",
+    "inLanguage": "{{ LANGUAGE_CODE }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+    
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-center">
+            <div class="animate-fade-in">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight text-gray-900" itemprop="headline">
+                    {% trans "Privacy Policy" %}
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+                    {% trans "Last updated: January 2025" %}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12 sm:py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            
+            <!-- Introduction -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
+                    {% trans "At Convertica, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our online PDF tools and services." %}
+                </p>
+                <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                    {% trans "By using Convertica, you agree to the collection and use of information in accordance with this policy." %}
+                </p>
+            </div>
+
+            <!-- Information We Collect -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Information We Collect" %}</h2>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "Files You Upload" %}</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            {% trans "When you use our PDF tools, you may upload files for processing. These files are temporarily stored on our servers only for the duration of the conversion or editing process. Files are automatically deleted immediately after processing is complete, typically within minutes." %}
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "Usage Information" %}</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            {% trans "We may collect information about how you access and use our services, including:" %}
+                        </p>
+                        <ul class="list-disc list-inside mt-3 space-y-2 text-gray-700 ml-4">
+                            <li>{% trans "IP address and browser type" %}</li>
+                            <li>{% trans "Device information and operating system" %}</li>
+                            <li>{% trans "Pages visited and time spent on pages" %}</li>
+                            <li>{% trans "Referring website addresses" %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How We Use Information -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "How We Use Your Information" %}</h2>
+                
+                <div class="space-y-4">
+                    <p class="text-gray-700 leading-relaxed">
+                        {% trans "We use the information we collect to:" %}
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>{% trans "Process and convert your files as requested" %}</li>
+                        <li>{% trans "Improve and optimize our services" %}</li>
+                        <li>{% trans "Monitor and analyze usage patterns" %}</li>
+                        <li>{% trans "Ensure the security and functionality of our platform" %}</li>
+                        <li>{% trans "Respond to your inquiries and provide customer support" %}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Data Security -->
+            <div class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-blue-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Data Security" %}</h2>
+                
+                <div class="space-y-4">
+                    <p class="text-gray-700 leading-relaxed">
+                        {% trans "We implement appropriate technical and organizational security measures to protect your information:" %}
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>{% trans "All file transfers are encrypted using SSL/TLS protocols" %}</li>
+                        <li>{% trans "Files are stored temporarily in secure, isolated environments" %}</li>
+                        <li>{% trans "Automatic deletion of files after processing completion" %}</li>
+                        <li>{% trans "Regular security audits and updates" %}</li>
+                        <li>{% trans "Access controls and monitoring systems" %}</li>
+                    </ul>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        {% trans "However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee absolute security." %}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Data Retention -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Data Retention" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "We retain your uploaded files only for the time necessary to complete the requested operation. Files are automatically deleted:" %}
+                </p>
+                <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700 ml-4">
+                    <li>{% trans "Immediately after successful processing" %}</li>
+                    <li>{% trans "Within 1 hour if processing fails" %}</li>
+                    <li>{% trans "We do not store your files permanently" %}</li>
+                    <li>{% trans "We do not create backups of your uploaded files" %}</li>
+                </ul>
+            </div>
+
+            <!-- Third-Party Services -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Third-Party Services" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    {% trans "We may use third-party services to help us operate our platform and analyze how our services are used. These services may have access to limited information, but they are obligated not to disclose or use it for any other purpose." %}
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "We do not sell, trade, or rent your personal information to third parties." %}
+                </p>
+            </div>
+
+            <!-- Cookies -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Cookies and Tracking" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    {% trans "We may use cookies and similar tracking technologies to track activity on our platform and hold certain information. Cookies are files with a small amount of data that may include an anonymous unique identifier." %}
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our service." %}
+                </p>
+            </div>
+
+            <!-- Your Rights -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Your Privacy Rights" %}</h2>
+                
+                <div class="space-y-4">
+                    <p class="text-gray-700 leading-relaxed">
+                        {% trans "You have the right to:" %}
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>{% trans "Access information we hold about you" %}</li>
+                        <li>{% trans "Request correction of inaccurate information" %}</li>
+                        <li>{% trans "Request deletion of your information" %}</li>
+                        <li>{% trans "Object to processing of your information" %}</li>
+                        <li>{% trans "Request restriction of processing" %}</li>
+                    </ul>
+                    <p class="text-gray-700 leading-relaxed mt-4">
+                        {% trans "To exercise these rights, please contact us using the information provided in the Contact section." %}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Children's Privacy -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Children's Privacy" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "Our services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us." %}
+                </p>
+            </div>
+
+            <!-- Changes to Privacy Policy -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Changes to This Privacy Policy" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the \"Last updated\" date. You are advised to review this Privacy Policy periodically for any changes." %}
+                </p>
+            </div>
+
+            <!-- Contact -->
+            <div class="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-2xl shadow-2xl p-8 sm:p-10 md:p-12 text-center text-white">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">{% trans "Questions About Privacy?" %}</h2>
+                <p class="text-lg sm:text-xl mb-6 opacity-90">
+                    {% trans "If you have any questions about this Privacy Policy, please contact us." %}
+                </p>
+                <a href="{% url 'contact_page' %}" 
+                   class="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg">
+                    {% trans "Contact Us" %}
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+{% endblock %}
+

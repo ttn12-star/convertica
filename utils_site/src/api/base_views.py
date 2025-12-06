@@ -31,6 +31,7 @@ from .logging_utils import (
     log_validation_error,
     log_file_validation_error,
 )
+from .spam_protection import validate_spam_protection
 
 logger = get_logger(__name__)
 
@@ -277,20 +278,65 @@ class BaseConversionAPIView(APIView, ABC):
         """Handle POST request for file conversion.
         
         This is the main entry point that orchestrates:
-        1. Serializer validation
-        2. File validation
-        3. Conversion
-        4. Response
-        5. Cleanup
+        1. Spam protection
+        2. Serializer validation
+        3. File validation
+        4. Conversion
+        5. Response
+        6. Cleanup
         
         Note: Swagger documentation decorator should be applied in subclasses
         using @decorator() before this method.
         """
+        # Spam protection check
+        spam_check = validate_spam_protection(request)
+        if spam_check:
+            return spam_check
+        
         serializer_class = self.get_serializer_class()
-        serializer = serializer_class(data=request.FILES or request.POST or request.data)
+        # Combine all data sources: request.data (DRF), request.POST, and request.FILES
+        # This ensures form-data parameters are properly passed to the serializer
+        # DRF serializers can work with QueryDict directly, so we try to preserve it when possible
+        
+        # Check if this is a DRF Request (has .data attribute)
+        # DRF Request wraps Django's HttpRequest and provides request.data
+        if hasattr(request, 'data') and request.data is not None:
+            # DRF Request - request.data may be QueryDict or dict
+            # DRF serializers can handle QueryDict directly, so pass it as-is
+            serializer_data = request.data
+        else:
+            # Django HttpRequest - need to combine POST and FILES manually
+            # Create a new QueryDict-like structure or use a regular dict
+            from django.http import QueryDict
+            # Combine POST and FILES into a single QueryDict
+            # Start with POST data
+            if request.POST:
+                serializer_data = request.POST.copy()
+            else:
+                serializer_data = QueryDict(mutable=True)
+            
+            # Add files from FILES (they should override any string values with same key)
+            if request.FILES:
+                for key in request.FILES:
+                    serializer_data[key] = request.FILES[key]
+        
+        # Log serializer data for debugging (excluding file content)
+        try:
+            data_keys = list(serializer_data.keys())
+            file_keys = [k for k in data_keys if hasattr(serializer_data.get(k), 'read')]
+            logger.debug(f"Serializer data keys: {data_keys}, file keys: {file_keys}", 
+                        extra={"serializer_keys": data_keys, "file_keys": file_keys})
+        except Exception:
+            pass  # Ignore logging errors
+        
+        serializer = serializer_class(data=serializer_data)
         
         if not serializer.is_valid():
             context = build_request_context(request)
+            # Log detailed validation errors
+            error_details = dict(serializer.errors)
+            logger.warning(f"Validation errors: {error_details}", 
+                         extra={**context, "validation_errors": error_details})
             log_validation_error(logger, serializer.errors, context)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         

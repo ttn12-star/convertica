@@ -69,16 +69,46 @@ def protect_pdf(
         except (OSError, IOError) as io_err:
             raise StorageError(f"Failed to write PDF: {io_err}", context=context) from io_err
         
+        # Validate passwords
+        if not password or not password.strip():
+            raise ConversionError("Password cannot be empty", context=context)
+        
+        if len(password.strip()) < 1:
+            raise ConversionError("Password must be at least 1 character long", context=context)
+        
         # Validate PDF
         is_valid, validation_error = validate_pdf_file(pdf_path, context)
         if not is_valid:
-            if "password" in (validation_error or "").lower():
-                raise EncryptedPDFError(validation_error or "PDF is already password-protected", context=context)
+            if "password" in (validation_error or "").lower() or "encrypted" in (validation_error or "").lower():
+                raise EncryptedPDFError(
+                    "PDF is already password-protected. Please unlock it first or use a different PDF.",
+                    context=context
+                )
             raise InvalidPDFError(validation_error or "Invalid PDF file", context=context)
         
+        # Check if PDF is already encrypted (additional check)
+        try:
+            test_reader = PdfReader(pdf_path)
+            if test_reader.is_encrypted:
+                raise EncryptedPDFError(
+                    "PDF is already password-protected. Please unlock it first or use a different PDF.",
+                    context=context
+                )
+        except EncryptedPDFError:
+            raise
+        except Exception as e:
+            # If we can't check encryption, log warning but continue
+            logger.warning("Could not verify encryption status", extra={**context, "error": str(e)})
+        
         # Determine passwords
-        user_pwd = user_password if user_password else password
-        owner_pwd = owner_password if owner_password else password
+        user_pwd = user_password.strip() if user_password and user_password.strip() else password.strip()
+        owner_pwd = owner_password.strip() if owner_password and owner_password.strip() else password.strip()
+        
+        # Validate optional passwords if provided
+        if user_password and len(user_password.strip()) < 1:
+            raise ConversionError("User password must be at least 1 character long", context=context)
+        if owner_password and len(owner_password.strip()) < 1:
+            raise ConversionError("Owner password must be at least 1 character long", context=context)
         
         # Protect PDF
         try:
@@ -91,19 +121,36 @@ def protect_pdf(
             context["total_pages"] = total_pages
             
             # Copy all pages
-            for page in reader.pages:
-                writer.add_page(page)
+            for page_num, page in enumerate(reader.pages, start=1):
+                try:
+                    writer.add_page(page)
+                except Exception as page_error:
+                    logger.warning(
+                        f"Failed to copy page {page_num}",
+                        extra={**context, "page_num": page_num, "error": str(page_error)}
+                    )
+                    # Continue with other pages
+                    continue
             
             # Copy metadata if available
-            if reader.metadata:
-                writer.add_metadata(reader.metadata)
+            try:
+                if reader.metadata:
+                    writer.add_metadata(reader.metadata)
+            except Exception as metadata_error:
+                logger.warning("Could not copy metadata", extra={**context, "error": str(metadata_error)})
+                # Metadata copy failure is not critical
             
-            # Encrypt PDF
-            writer.encrypt(
-                user_password=user_pwd,
-                owner_password=owner_pwd,
-                use_128bit=True,  # Use 128-bit encryption (stronger)
-            )
+            # Encrypt PDF with 128-bit encryption (AES)
+            try:
+                writer.encrypt(
+                    user_password=user_pwd,
+                    owner_password=owner_pwd,
+                    use_128bit=True,  # Use 128-bit AES encryption (stronger than 40-bit RC4)
+                )
+            except Exception as encrypt_error:
+                error_context = {**context, "error_type": type(encrypt_error).__name__, "error_message": str(encrypt_error)}
+                logger.error("PDF encryption failed", extra={**error_context, "event": "encrypt_error"}, exc_info=True)
+                raise ConversionError(f"Failed to encrypt PDF: {encrypt_error}", context=error_context) from encrypt_error
             
             # Write protected PDF
             with open(output_path, "wb") as output_file:

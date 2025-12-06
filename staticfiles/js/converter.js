@@ -68,7 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showDownloadButton(blob, fileInput.files[0].name);
 
         } catch (err) {
-            console.error('Conversion error:', err);
+            if (typeof console !== 'undefined' && console.error) {
+                console.error('Conversion error:', err);
+            }
             hideLoading();
             showError(err.message);
         } finally {

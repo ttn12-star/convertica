@@ -72,6 +72,9 @@ staticfiles/
 # Django translations (compiled)
 locale/*/LC_MESSAGES/*.mo
 
+# Documentation folder (internal docs, not for version control)
+docs/
+
 # Markdown files (except README.md)
 *.md
 !README.md

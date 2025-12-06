@@ -21,13 +21,15 @@ logger = get_logger(__name__)
 def organize_pdf(
     uploaded_file: UploadedFile,
     operation: str = 'reorder',
+    page_order: list = None,
     suffix: str = "_convertica"
 ) -> Tuple[str, str]:
     """General PDF organization function.
     
     Args:
         uploaded_file: PDF file
-        operation: Type of operation (placeholder for future operations)
+        operation: Type of operation ('reorder' or 'sort')
+        page_order: List of page indices in desired order (0-based). If None, keeps original order.
         suffix: Suffix for output filename
         
     Returns:
@@ -40,6 +42,7 @@ def organize_pdf(
         "input_filename": safe_name,
         "input_size": uploaded_file.size,
         "operation": operation,
+        "page_order": page_order,
     }
     
     try:
@@ -72,16 +75,41 @@ def organize_pdf(
                 raise EncryptedPDFError(validation_error or "PDF is password-protected", context=context)
             raise InvalidPDFError(validation_error or "Invalid PDF file", context=context)
         
-        # For now, just copy the PDF (placeholder for future operations)
+        # Organize PDF based on operation
         try:
             logger.info("Organizing PDF", extra={**context, "event": "organize_start"})
             
             reader = PdfReader(pdf_path)
             writer = PdfWriter()
+            total_pages = len(reader.pages)
             
-            # Copy all pages
-            for page in reader.pages:
-                writer.add_page(page)
+            if operation == 'reorder' and page_order:
+                # Validate page_order
+                if len(page_order) != total_pages:
+                    raise ValueError(f"page_order length ({len(page_order)}) doesn't match PDF page count ({total_pages})")
+                
+                if not all(0 <= idx < total_pages for idx in page_order):
+                    raise ValueError("page_order contains invalid page indices")
+                
+                # Check for duplicates
+                if len(set(page_order)) != len(page_order):
+                    raise ValueError("page_order contains duplicate page indices")
+                
+                # Reorder pages according to page_order
+                for page_idx in page_order:
+                    writer.add_page(reader.pages[page_idx])
+                
+                logger.debug(f"Reordered {total_pages} pages", extra={
+                    **context, 
+                    "event": "reorder_pages",
+                    "page_order": page_order
+                })
+            else:
+                # Default: copy all pages in original order
+                for page in reader.pages:
+                    writer.add_page(page)
+                
+                logger.debug("Copied all pages in original order", extra={**context, "event": "copy_pages"})
             
             # Write output
             with open(output_path, "wb") as output_file:

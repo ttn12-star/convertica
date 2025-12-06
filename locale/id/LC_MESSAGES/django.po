@@ -1,0 +1,3844 @@
+# Translations for Indonesian
+# This file is auto-generated. Do not edit manually.
+msgid ""
+msgstr ""
+"Project-Id-Version: Convertica\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-06 23:40+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: Auto Generated\n"
+"Language-Team: Indonesian\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/base.html:14
+#, fuzzy
+#| msgid ""
+#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
+#| "Convert documents instantly, no registration required."
+msgid ""
+"Fast, simple and secure online PDF to Word and Word to PDF converter. No "
+"installations required."
+msgstr ""
+"Konverter online PDF ke Word dan Word ke PDF yang cepat, sederhana, dan "
+"aman. Konversi dokumen secara instan, tanpa registrasi."
+
+#: templates/base.html:15
+#, fuzzy
+#| msgid ""
+#| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
+#| "online PDF converter"
+msgid ""
+"PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
+"free converter"
+msgstr ""
+"PDF ke Word, PDF ke DOCX, konversi PDF, konverter PDF, konverter Word, "
+"konverter PDF online"
+
+#: templates/base.html:129
+#, fuzzy
+#| msgid ""
+#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
+#| "Convert documents instantly, no registration required."
+msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
+msgstr ""
+"Konverter online PDF ke Word dan Word ke PDF yang cepat, sederhana, dan "
+"aman. Konversi dokumen secara instan, tanpa registrasi."
+
+#: templates/blog/article_detail.html:214
+msgid "Categories"
+msgstr "Kategori"
+
+#: templates/blog/article_detail.html:223
+msgid "All"
+msgstr ""
+
+#: templates/blog/article_detail.html:275
+msgid "Related Articles"
+msgstr "Artikel terkait"
+
+#: templates/blog/article_detail.html:318
+msgid "Back to Blog"
+msgstr "Kembali ke blog"
+
+#: templates/blog/article_detail.html:330 templates/frontend/index.html:90
+msgid "Popular Tools"
+msgstr "Alat populer"
+
+#: templates/blog/article_detail.html:340 templates/frontend/all_tools.html:63
+#: templates/frontend/includes/footer.html:102
+#: templates/frontend/includes/header.html:84
+#: templates/frontend/includes/header.html:320
+#: templates/frontend/includes/header.html:651
+#: templates/frontend/includes/header.html:712 templates/frontend/index.html:56
+#: templates/frontend/index.html:110
+msgid "PDF to Word"
+msgstr "PDF ke Word"
+
+#: templates/blog/article_detail.html:349 templates/frontend/all_tools.html:281
+#: templates/frontend/includes/header.html:182
+#: templates/frontend/includes/header.html:500
+#: templates/frontend/includes/header.html:656
+#: templates/frontend/includes/header.html:738 templates/frontend/index.html:65
+#: templates/frontend/index.html:250
+msgid "Merge PDF"
+msgstr "Gabungkan PDF"
+
+#: templates/blog/article_detail.html:358 templates/frontend/all_tools.html:377
+#: templates/frontend/includes/header.html:242
+#: templates/frontend/includes/header.html:536
+#: templates/frontend/includes/header.html:659
+#: templates/frontend/includes/header.html:758 templates/frontend/index.html:74
+#: templates/frontend/index.html:371
+msgid "Compress PDF"
+msgstr "Kompres PDF"
+
+#: templates/blog/article_detail.html:367 templates/frontend/all_tools.html:182
+#: templates/frontend/includes/header.html:127
+#: templates/frontend/includes/header.html:416
+#: templates/frontend/includes/header.html:660
+#: templates/frontend/index.html:135
+msgid "Rotate PDF"
+msgstr "Putar PDF"
+
+#: templates/blog/article_detail.html:373
+#, fuzzy
+#| msgid "All Tools"
+msgid "View All Tools"
+msgstr "Semua alat"
+
+#: templates/blog/article_list.html:7
+msgid "blog, articles, PDF guides, document tips, tutorials"
+msgstr ""
+
+#: templates/blog/article_list.html:20
+#: templates/frontend/includes/footer.html:33
+#: templates/frontend/includes/footer.html:225
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/blog/article_list.html:23
+msgid ""
+"Useful guides, tips, and articles about PDF tools and document management"
+msgstr ""
+"Panduan, tips, dan artikel berguna tentang alat PDF dan manajemen dokumen"
+
+#: templates/blog/article_list.html:41
+msgid "Search articles..."
+msgstr "Cari artikel..."
+
+#: templates/blog/article_list.html:45
+msgid "Search"
+msgstr "Cari"
+
+#: templates/blog/article_list.html:54
+msgid "All Articles"
+msgstr "Semua artikel"
+
+#: templates/blog/article_list.html:101
+msgid "Read"
+msgstr "Baca"
+
+#: templates/blog/article_list.html:116
+msgid "Previous"
+msgstr "Sebelumnya"
+
+#: templates/blog/article_list.html:121
+msgid "Page"
+msgstr "Halaman"
+
+#: templates/blog/article_list.html:121
+msgid "of"
+msgstr "dari"
+
+#: templates/blog/article_list.html:127
+msgid "Next"
+msgstr "Selanjutnya"
+
+#: templates/blog/article_list.html:135
+msgid "No articles found."
+msgstr "Tidak ada artikel yang ditemukan."
+
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:434
+msgid "About Us - Convertica"
+msgstr "Tentang kami - Convertica"
+
+#: templates/frontend/about.html:25
+msgid ""
+"Free online PDF tools platform providing conversion, editing, and "
+"organization services."
+msgstr ""
+"Platforma alat PDF online gratis yang menyediakan layanan konversi, "
+"pengeditan, dan organisasi."
+
+#: templates/frontend/about.html:27
+msgid "Today better than yesterday, tomorrow better than today"
+msgstr "Hari ini lebih baik dari kemarin, besok lebih baik dari hari ini"
+
+#: templates/frontend/about.html:46
+msgid "About Convertica"
+msgstr "Tentang Convertica"
+
+#: templates/frontend/about.html:49
+msgid "Your trusted partner for all PDF document needs"
+msgstr "Mitra terpercaya Anda untuk semua kebutuhan dokumen PDF"
+
+#: templates/frontend/about.html:63
+msgid "Mission icon"
+msgstr "Ikon misi"
+
+#: templates/frontend/about.html:67
+msgid "Our Mission"
+msgstr "Misi kami"
+
+#: templates/frontend/about.html:70
+msgid ""
+"At Convertica, we believe in the power of continuous improvement. Our "
+"mission is to provide you with the most reliable, fast, and user-friendly "
+"PDF tools available online. We understand that your documents are important, "
+"and we're committed to ensuring that every interaction with our platform "
+"exceeds your expectations."
+msgstr ""
+"Di Convertica, kami percaya pada kekuatan perbaikan berkelanjutan. Misi kami "
+"adalah menyediakan alat PDF yang paling andal, cepat, dan ramah pengguna "
+"yang tersedia online. Kami memahami bahwa dokumen Anda penting, dan kami "
+"berkomitmen untuk memastikan bahwa setiap interaksi dengan platform kami "
+"melebihi harapan Anda."
+
+#: templates/frontend/about.html:78
+msgid "Growth icon"
+msgstr "Ikon pertumbuhan"
+
+#: templates/frontend/about.html:82
+msgid "Our Core Principle: Constant Improvement"
+msgstr "Prinsip inti kami: Perbaikan berkelanjutan"
+
+#: templates/frontend/about.html:86
+msgid "We live by a simple yet powerful philosophy:"
+msgstr "Kami hidup dengan filosofi yang sederhana namun kuat:"
+
+#: templates/frontend/about.html:90
+msgid ""
+"Today, we are better than we were yesterday. Tomorrow, we will be even "
+"better than today."
+msgstr ""
+"Hari ini kami lebih baik dari kemarin. Besok kami akan lebih baik lagi dari "
+"hari ini."
+
+#: templates/frontend/about.html:94
+msgid ""
+"This isn't just a slogan—it's our commitment to you. Every day, our team "
+"works tirelessly to enhance our platform, improve our tools, and refine the "
+"user experience. We listen to your feedback, analyze usage patterns, and "
+"implement improvements that make Convertica more powerful, intuitive, and "
+"reliable."
+msgstr ""
+"Ini bukan hanya slogan—ini adalah komitmen kami kepada Anda. Setiap hari, "
+"tim kami bekerja tanpa lelah untuk meningkatkan platform kami, memperbaiki "
+"alat kami, dan menyempurnakan pengalaman pengguna. Kami mendengarkan umpan "
+"balik Anda, menganalisis pola penggunaan, dan mengimplementasikan perbaikan "
+"yang membuat Convertica lebih kuat, intuitif, dan andal."
+
+#: templates/frontend/about.html:97
+msgid ""
+"Whether it's optimizing our conversion algorithms, adding new features, "
+"improving security, or enhancing performance, we never stop striving for "
+"excellence. This dedication to continuous improvement means that when you "
+"use Convertica, you're always getting the best version of our platform—and "
+"we're already working on making it even better."
+msgstr ""
+
+#: templates/frontend/about.html:106
+msgid "Tools icon"
+msgstr "Ikon alat"
+
+#: templates/frontend/about.html:111
+msgid "What We Offer"
+msgstr "Apa yang kami tawarkan"
+
+#: templates/frontend/about.html:115
+msgid "PDF Conversion"
+msgstr "Konversi PDF"
+
+#: templates/frontend/about.html:117
+msgid ""
+"Convert PDFs to Word, Excel, and JPG formats, or create PDFs from various "
+"file types. Fast, accurate, and reliable conversions every time."
+msgstr ""
+"Konversi PDF ke format Word, Excel, dan JPG, atau buat PDF dari berbagai "
+"jenis file. Konversi cepat, akurat, dan andal setiap saat."
+
+#: templates/frontend/about.html:121
+msgid "PDF Editing"
+msgstr "Edit PDF"
+
+#: templates/frontend/about.html:123
+msgid ""
+"Rotate, crop, add watermarks, and insert page numbers. Edit your PDFs with "
+"precision and ease."
+msgstr ""
+"Putar, potong, tambahkan watermark, dan sisipkan nomor halaman. Edit PDF "
+"Anda dengan presisi dan kemudahan."
+
+#: templates/frontend/about.html:127
+msgid "PDF Organization"
+msgstr "Organisasi PDF"
+
+#: templates/frontend/about.html:129
+msgid ""
+"Merge, split, extract, remove, and organize pages. Manage your PDF documents "
+"efficiently."
+msgstr ""
+"Gabungkan, pisahkan, ekstrak, hapus, dan atur halaman. Kelola dokumen PDF "
+"Anda dengan efisien."
+
+#: templates/frontend/about.html:133 templates/frontend/all_tools.html:397
+#: templates/frontend/includes/header.html:250
+#: templates/frontend/includes/header.html:672
+msgid "PDF Security"
+msgstr "Keamanan PDF"
+
+#: templates/frontend/about.html:135
+msgid ""
+"Protect your documents with password encryption or unlock secured PDFs when "
+"needed."
+msgstr ""
+"Lindungi dokumen Anda dengan enkripsi kata sandi atau buka kunci PDF yang "
+"dilindungi saat diperlukan."
+
+#: templates/frontend/about.html:145
+msgid "Star icon"
+msgstr "Ikon bintang"
+
+#: templates/frontend/about.html:149
+msgid "Why Choose Convertica"
+msgstr "Mengapa memilih Convertica"
+
+#: templates/frontend/about.html:154 templates/frontend/about.html:167
+#: templates/frontend/about.html:180 templates/frontend/about.html:193
+msgid "Checkmark icon"
+msgstr "Ikon centang"
+
+#: templates/frontend/about.html:159
+#, fuzzy, python-format
+#| msgid "100% Free"
+msgid "100%% Free"
+msgstr "100% Gratis"
+
+#: templates/frontend/about.html:161
+msgid ""
+"All our tools are completely free to use. No hidden fees, no subscriptions, "
+"no credit card required."
+msgstr ""
+"Semua alat kami sepenuhnya gratis digunakan. Tanpa biaya tersembunyi, tanpa "
+"langganan, tanpa kartu kredit diperlukan."
+
+#: templates/frontend/about.html:172
+msgid "Fast & Secure"
+msgstr "Cepat & Aman"
+
+#: templates/frontend/about.html:174
+msgid ""
+"Process your files in seconds with our optimized algorithms. Your files are "
+"processed securely and deleted automatically after conversion."
+msgstr ""
+"Proses file Anda dalam hitungan detik dengan algoritma yang dioptimalkan. "
+"File Anda diproses dengan aman dan dihapus otomatis setelah konversi."
+
+#: templates/frontend/about.html:185
+msgid "No Registration Required"
+msgstr "Tidak perlu registrasi"
+
+#: templates/frontend/about.html:187
+msgid ""
+"Start using our tools immediately. No sign-up, no email verification, no "
+"hassle."
+msgstr ""
+"Mulai gunakan alat kami segera. Tanpa pendaftaran, tanpa verifikasi email, "
+"tanpa repot."
+
+#: templates/frontend/about.html:198
+msgid "Privacy First"
+msgstr "Privasi diutamakan"
+
+#: templates/frontend/about.html:200
+msgid ""
+"Your privacy matters. We don't store your files permanently, and we never "
+"share your data with third parties."
+msgstr ""
+"Privasi Anda penting. Kami tidak menyimpan file Anda secara permanen, dan "
+"kami tidak pernah membagikan data Anda kepada pihak ketiga."
+
+#: templates/frontend/about.html:209
+msgid "Ready to Get Started?"
+msgstr "Siap untuk memulai?"
+
+#: templates/frontend/about.html:211
+msgid "Experience the power of Convertica's PDF tools today."
+msgstr "Rasakan kekuatan alat PDF Convertica hari ini."
+
+#: templates/frontend/about.html:216
+msgid "Explore All Tools"
+msgstr "Jelajahi semua alat"
+
+#: templates/frontend/about.html:220 templates/frontend/index.html:404
+msgid "Get Started"
+msgstr "Mulai"
+
+#: templates/frontend/add_page_numbers.html:6
+#, fuzzy
+#| msgid "Add Page Numbers"
+msgid "Page Number Settings"
+msgstr "Nomor halaman"
+
+#: templates/frontend/add_page_numbers.html:12
+msgid "Position"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:16
+msgid "Bottom Center"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:17
+msgid "Bottom Left"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:18
+#, fuzzy
+#| msgid "Your Rights"
+msgid "Bottom Right"
+msgstr "Hak Anda"
+
+#: templates/frontend/add_page_numbers.html:19
+msgid "Top Center"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:20
+msgid "Top Left"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:21
+#, fuzzy
+#| msgid "Your Rights"
+msgid "Top Right"
+msgstr "Hak Anda"
+
+#: templates/frontend/add_page_numbers.html:28
+#: templates/frontend/add_watermark.html:295
+msgid "Font Size"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:42
+#, fuzzy
+#| msgid "Add Page Numbers"
+msgid "Starting Page Number"
+msgstr "Nomor halaman"
+
+#: templates/frontend/add_page_numbers.html:55
+msgid "Format"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:64
+#, python-brace-format
+msgid "Use {page} for page number, {total} for total pages"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:71
+#: templates/frontend/add_watermark.html:321
+msgid "Apply to pages"
+msgstr "Terapkan ke halaman"
+
+#: templates/frontend/add_page_numbers.html:81
+#: templates/frontend/add_watermark.html:331
+#: templates/frontend/crop_pdf.html:210 templates/frontend/remove_pages.html:21
+#: templates/frontend/rotate_pdf.html:35
+msgid "All pages"
+msgstr "Semua halaman"
+
+#: templates/frontend/add_page_numbers.html:89
+#: templates/frontend/add_watermark.html:339
+#: templates/frontend/crop_pdf.html:218 templates/frontend/remove_pages.html:29
+#: templates/frontend/rotate_pdf.html:43
+msgid "Current page only"
+msgstr "Hanya halaman saat ini"
+
+#: templates/frontend/add_page_numbers.html:97
+#: templates/frontend/add_watermark.html:347
+#: templates/frontend/crop_pdf.html:226 templates/frontend/remove_pages.html:38
+#: templates/frontend/rotate_pdf.html:51
+msgid "Custom pages:"
+msgstr "Halaman kustom:"
+
+#: templates/frontend/add_page_numbers.html:107
+#: templates/frontend/add_watermark.html:357
+#: templates/frontend/crop_pdf.html:236 templates/frontend/remove_pages.html:48
+#: templates/frontend/rotate_pdf.html:61
+msgid "Enter specific pages like '1,3,5' or '1-5'"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:119
+#, fuzzy
+#| msgid "Select file to convert"
+msgid "Select file to watermark"
+msgstr "Pilih file untuk dikonversi"
+
+#: templates/frontend/add_watermark.html:137
+#: templates/frontend/converter_generic.html:103
+#: templates/frontend/crop_pdf.html:121
+#: templates/frontend/edit_pdf_generic.html:103
+#, fuzzy
+#| msgid "Remove Pages"
+msgid "Remove file"
+msgstr "Hapus halaman"
+
+#: templates/frontend/add_watermark.html:162
+#: templates/frontend/converter_generic.html:128
+#: templates/frontend/crop_pdf.html:146
+#: templates/frontend/edit_pdf_generic.html:128
+msgid "Drag and drop your file here"
+msgstr "Seret file Anda ke sini"
+
+#: templates/frontend/add_watermark.html:165
+#: templates/frontend/converter_generic.html:131
+#: templates/frontend/crop_pdf.html:149
+#: templates/frontend/edit_pdf_generic.html:131
+#: templates/frontend/jpg_to_pdf.html:93
+msgid "Use the button above to browse files"
+msgstr "Gunakan tombol di atas untuk menjelajahi file"
+
+#: templates/frontend/add_watermark.html:168
+#: templates/frontend/converter_generic.html:134
+#: templates/frontend/crop_pdf.html:152
+#: templates/frontend/edit_pdf_generic.html:134
+msgid "file"
+msgstr "file"
+
+#: templates/frontend/add_watermark.html:177
+msgid "Visual Watermark Editor"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:182
+#, fuzzy
+#| msgid "Remove Pages"
+msgid "Select Page"
+msgstr "Hapus halaman"
+
+#: templates/frontend/add_watermark.html:200
+#, fuzzy
+#| msgid "How it works"
+msgid "How to use:"
+msgstr "Cara kerjanya"
+
+#: templates/frontend/add_watermark.html:200
+msgid ""
+"The watermark appears at the bottom of the page by default. Drag it to move, "
+"use the top handle to rotate, and the corner handle to scale. Click anywhere "
+"on the PDF to reposition it."
+msgstr ""
+
+#: templates/frontend/add_watermark.html:209
+msgid "Watermark Settings"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:215
+#, fuzzy
+#| msgid "Add Watermark"
+msgid "Watermark Type"
+msgstr "Watermark"
+
+#: templates/frontend/add_watermark.html:220
+msgid "Text"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:224
+msgid "Image"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:232
+#, fuzzy
+#| msgid "Add Watermark"
+msgid "Watermark Text"
+msgstr "Watermark"
+
+#: templates/frontend/add_watermark.html:245
+#, fuzzy
+#| msgid "Add Watermark"
+msgid "Watermark Image"
+msgstr "Watermark"
+
+#: templates/frontend/add_watermark.html:257
+msgid "Color"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:276
+msgid "Opacity"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:314
+msgid "Interactive controls:"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:314
+msgid ""
+"Drag the watermark to move it. Drag any corner handle to rotate and scale "
+"simultaneously."
+msgstr ""
+
+#: templates/frontend/add_watermark.html:401
+#: templates/frontend/converter_generic.html:180
+#: templates/frontend/crop_pdf.html:323
+#: templates/frontend/edit_pdf_generic.html:173
+#: templates/frontend/jpg_to_pdf.html:132
+msgid "How it works"
+msgstr "Cara kerjanya"
+
+#: templates/frontend/add_watermark.html:404
+#: templates/frontend/crop_pdf.html:326
+msgid "Select your PDF file using the button above"
+msgstr "Pilih file PDF Anda menggunakan tombol di atas"
+
+#: templates/frontend/add_watermark.html:405
+msgid "Enter your watermark text or upload an image"
+msgstr ""
+"Masukkan teks watermark atau unggah gambar - alat online kami mendukung teks "
+"dan gambar"
+
+#: templates/frontend/add_watermark.html:406
+msgid "Choose the color and opacity using the sliders"
+msgstr ""
+"Pilih warna dan opasitas menggunakan slider - sesuaikan watermark sesuai "
+"selera Anda"
+
+#: templates/frontend/add_watermark.html:407
+msgid "Click on the PDF to position the watermark"
+msgstr ""
+"Klik pada PDF untuk memposisikan watermark - editor interaktif kami "
+"memungkinkan penempatan yang tepat"
+
+#: templates/frontend/add_watermark.html:408
+msgid "Click the add watermark button to process your file"
+msgstr ""
+"Klik tombol tambah watermark untuk memproses file Anda - alat cepat kami "
+"akan memprosesnya dalam hitungan detik"
+
+#: templates/frontend/add_watermark.html:409
+msgid "Download your watermarked PDF file"
+msgstr ""
+"Unduh file PDF dengan watermark - tanpa registrasi, sepenuhnya gratis, "
+"perlindungan dokumen"
+
+#: templates/frontend/add_watermark.html:424
+#: templates/frontend/crop_pdf.html:346
+#: templates/frontend/edit_pdf_generic.html:194
+msgid "Processing your file..."
+msgstr "Memproses file Anda..."
+
+#: templates/frontend/add_watermark.html:425
+#: templates/frontend/converter_generic.html:203
+#: templates/frontend/crop_pdf.html:347
+#: templates/frontend/edit_pdf_generic.html:195
+#: templates/frontend/jpg_to_pdf.html:157
+msgid "Please wait, this may take a few moments"
+msgstr "Harap tunggu, ini mungkin memakan waktu beberapa saat"
+
+#: templates/frontend/add_watermark.html:426
+#: templates/frontend/crop_pdf.html:348
+#: templates/frontend/edit_pdf_generic.html:196
+msgid "Editing Complete!"
+msgstr "Pengeditan selesai!"
+
+#: templates/frontend/add_watermark.html:427
+#: templates/frontend/converter_generic.html:205
+#: templates/frontend/crop_pdf.html:349
+#: templates/frontend/edit_pdf_generic.html:197
+msgid "Your file is ready to download"
+msgstr "File Anda siap untuk diunduh"
+
+#: templates/frontend/add_watermark.html:428
+#: templates/frontend/converter_generic.html:206
+#: templates/frontend/crop_pdf.html:350
+#: templates/frontend/edit_pdf_generic.html:198
+msgid "Download File"
+msgstr "Unduh file"
+
+#: templates/frontend/add_watermark.html:429
+#: templates/frontend/crop_pdf.html:351
+#: templates/frontend/edit_pdf_generic.html:199
+msgid "Edit another file"
+msgstr "Edit file lain"
+
+#: templates/frontend/add_watermark.html:430
+#: templates/frontend/converter_generic.html:208
+#: templates/frontend/crop_pdf.html:352
+#: templates/frontend/edit_pdf_generic.html:200
+#: templates/frontend/jpg_to_pdf.html:162
+msgid "Error"
+msgstr "Kesalahan"
+
+#: templates/frontend/all_tools.html:24
+#, fuzzy
+#| msgid "All PDF tools"
+msgid "All PDF Tools"
+msgstr "Semua alat PDF"
+
+#: templates/frontend/all_tools.html:27
+msgid ""
+"Browse all our PDF tools organized by category. Convert, edit, and organize "
+"your PDFs with ease."
+msgstr ""
+"Jelajahi semua alat PDF kami yang diorganisir berdasarkan kategori. "
+"Konversi, edit, dan atur PDF Anda dengan mudah."
+
+#: templates/frontend/all_tools.html:43
+#: templates/frontend/includes/header.html:49
+#: templates/frontend/includes/header.html:295
+#: templates/frontend/includes/header.html:648
+#: templates/frontend/includes/header.html:694
+msgid "Convert PDF"
+msgstr "Konversi PDF"
+
+#: templates/frontend/all_tools.html:46
+msgid "Convert PDFs to other formats or convert other files to PDF"
+msgstr "Konversi PDF ke format lain atau konversi file lain ke PDF"
+
+#: templates/frontend/all_tools.html:66 templates/frontend/index.html:113
+msgid "Convert PDF documents to editable Word files instantly."
+msgstr "Konversi dokumen PDF ke file Word yang dapat diedit secara instan."
+
+#: templates/frontend/all_tools.html:82
+#: templates/frontend/includes/footer.html:111
+#: templates/frontend/includes/header.html:60
+#: templates/frontend/includes/header.html:363
+#: templates/frontend/includes/header.html:649
+#: templates/frontend/includes/header.html:704
+#: templates/frontend/index.html:159
+msgid "Word to PDF"
+msgstr "Word ke PDF"
+
+#: templates/frontend/all_tools.html:85 templates/frontend/index.html:162
+msgid "Convert Word documents to secure PDF files."
+msgstr "Konversi dokumen Word ke file PDF yang aman."
+
+#: templates/frontend/all_tools.html:101
+#: templates/frontend/includes/footer.html:120
+#: templates/frontend/includes/header.html:96
+#: templates/frontend/includes/header.html:332
+#: templates/frontend/includes/header.html:652
+#: templates/frontend/includes/header.html:716
+msgid "PDF to JPG"
+msgstr "PDF ke JPG"
+
+#: templates/frontend/all_tools.html:104
+msgid "Convert PDF pages to high-quality JPG images."
+msgstr "Konversi halaman PDF ke gambar JPG berkualitas tinggi."
+
+#: templates/frontend/all_tools.html:124
+#: templates/frontend/includes/footer.html:129
+#: templates/frontend/includes/header.html:72
+#: templates/frontend/includes/header.html:375
+#: templates/frontend/includes/header.html:650
+#: templates/frontend/includes/header.html:708
+msgid "JPG to PDF"
+msgstr "JPG ke PDF"
+
+#: templates/frontend/all_tools.html:127
+msgid ""
+"Convert JPG images to PDF documents. Combine multiple images into one PDF."
+msgstr ""
+"Konversi gambar JPG ke dokumen PDF. Gabungkan beberapa gambar menjadi satu "
+"PDF."
+
+#: templates/frontend/all_tools.html:142
+#: templates/frontend/includes/header.html:108
+#: templates/frontend/includes/header.html:344
+#: templates/frontend/includes/header.html:653
+#: templates/frontend/includes/header.html:720
+#: templates/frontend/index.html:208
+msgid "PDF to Excel"
+msgstr "PDF ke Excel"
+
+#: templates/frontend/all_tools.html:145 templates/frontend/index.html:211
+msgid "Extract tables from PDF and convert to Excel format."
+msgstr "Ekstrak tabel dari PDF dan konversi ke format Excel."
+
+#: templates/frontend/all_tools.html:162
+#: templates/frontend/includes/header.html:116
+#: templates/frontend/includes/header.html:391
+msgid "Edit PDF"
+msgstr "Edit PDF"
+
+#: templates/frontend/all_tools.html:165
+#, fuzzy
+#| msgid "Organize and manage your PDF documents"
+msgid "Modify and enhance your PDF documents"
+msgstr "Atur dan kelola dokumen PDF Anda"
+
+#: templates/frontend/all_tools.html:185 templates/frontend/index.html:138
+msgid "Rotate PDF pages by 90, 180, or 270 degrees."
+msgstr "Putar halaman PDF sebesar 90, 180, atau 270 derajat."
+
+#: templates/frontend/all_tools.html:201
+#: templates/frontend/includes/header.html:139
+#: templates/frontend/includes/header.html:428
+#: templates/frontend/includes/header.html:661
+msgid "Crop PDF"
+msgstr "Potong PDF"
+
+#: templates/frontend/all_tools.html:204
+msgid "Crop PDF pages by specifying crop box coordinates."
+msgstr "Potong halaman PDF dengan menentukan koordinat kotak potong."
+
+#: templates/frontend/all_tools.html:220
+#: templates/frontend/includes/header.html:151
+#: templates/frontend/includes/header.html:447
+#: templates/frontend/includes/header.html:662
+msgid "Add Page Numbers"
+msgstr "Nomor halaman"
+
+#: templates/frontend/all_tools.html:223
+#, fuzzy
+#| msgid "Add page numbers to your PDF in seconds"
+msgid "Add page numbers to your PDF documents."
+msgstr "Tambahkan nomor halaman ke PDF Anda dalam hitungan detik"
+
+#: templates/frontend/all_tools.html:240
+#: templates/frontend/includes/header.html:163
+#: templates/frontend/includes/header.html:459
+#: templates/frontend/includes/header.html:663
+#: templates/frontend/index.html:184
+msgid "Add Watermark"
+msgstr "Watermark"
+
+#: templates/frontend/all_tools.html:243 templates/frontend/index.html:187
+msgid "Protect your PDFs with text or image watermarks."
+msgstr "Lindungi PDF Anda dengan watermark teks atau gambar."
+
+#: templates/frontend/all_tools.html:260 templates/frontend/all_tools.html:359
+#: templates/frontend/includes/header.html:171
+#: templates/frontend/includes/header.html:230
+#: templates/frontend/includes/header.html:475
+#: templates/frontend/includes/header.html:524
+#: templates/frontend/includes/header.html:655
+#: templates/frontend/includes/header.html:658
+#: templates/frontend/includes/header.html:728
+#: templates/frontend/includes/header.html:754
+#: templates/frontend/index.html:230 templates/frontend/index.html:347
+msgid "Organize PDF"
+msgstr "Atur PDF"
+
+#: templates/frontend/all_tools.html:263
+#, fuzzy
+#| msgid "Manage and organize your PDF documents with powerful tools"
+msgid "Manage and organize your PDF documents"
+msgstr "Kelola dan atur dokumen PDF Anda dengan alat yang powerful"
+
+#: templates/frontend/all_tools.html:284 templates/frontend/index.html:253
+msgid "Combine multiple PDF files into one document."
+msgstr "Gabungkan beberapa file PDF menjadi satu dokumen."
+
+#: templates/frontend/all_tools.html:300
+#: templates/frontend/includes/header.html:194
+#: templates/frontend/includes/header.html:512
+#: templates/frontend/includes/header.html:657
+#: templates/frontend/includes/header.html:742
+#: templates/frontend/index.html:274
+msgid "Split PDF"
+msgstr "Pisahkan PDF"
+
+#: templates/frontend/all_tools.html:303 templates/frontend/index.html:277
+msgid "Split PDF into multiple files by pages or ranges."
+msgstr "Pisahkan PDF menjadi beberapa file berdasarkan halaman atau rentang."
+
+#: templates/frontend/all_tools.html:320
+#: templates/frontend/includes/header.html:206
+#: templates/frontend/includes/header.html:555
+#: templates/frontend/includes/header.html:664
+#: templates/frontend/includes/header.html:746
+#: templates/frontend/index.html:298
+msgid "Remove Pages"
+msgstr "Hapus halaman"
+
+#: templates/frontend/all_tools.html:323 templates/frontend/index.html:301
+msgid "Remove unwanted pages from your PDF document."
+msgstr "Hapus halaman yang tidak diinginkan dari dokumen PDF Anda."
+
+#: templates/frontend/all_tools.html:339
+#: templates/frontend/includes/header.html:218
+#: templates/frontend/includes/header.html:567
+#: templates/frontend/includes/header.html:665
+#: templates/frontend/includes/header.html:750
+#: templates/frontend/index.html:322
+msgid "Extract Pages"
+msgstr "Ekstrak halaman"
+
+#: templates/frontend/all_tools.html:342 templates/frontend/index.html:325
+msgid "Extract specific pages from your PDF into a new file."
+msgstr "Ekstrak halaman tertentu dari PDF Anda ke file baru."
+
+#: templates/frontend/all_tools.html:362 templates/frontend/index.html:350
+msgid "Reorder and organize pages in your PDF document."
+msgstr "Susun ulang dan atur halaman dalam dokumen PDF Anda."
+
+#: templates/frontend/all_tools.html:380 templates/frontend/index.html:374
+#, fuzzy
+#| msgid "Reduce PDF file size without losing quality"
+msgid "Reduce PDF file size without losing quality."
+msgstr "Kurangi ukuran file PDF tanpa kehilangan kualitas"
+
+#: templates/frontend/all_tools.html:400
+#, fuzzy
+#| msgid "Secure and protect your PDF documents"
+msgid "Protect and secure your PDF documents"
+msgstr "Aman dan lindungi dokumen PDF Anda"
+
+#: templates/frontend/all_tools.html:416
+#: templates/frontend/includes/header.html:261
+#: templates/frontend/includes/header.html:682
+msgid "Protect PDF"
+msgstr "Lindungi PDF"
+
+#: templates/frontend/all_tools.html:419
+#, fuzzy
+#| msgid "Add password protection or remove passwords from PDFs."
+msgid "Add password protection to secure your PDF documents."
+msgstr "Tambahkan perlindungan kata sandi atau hapus kata sandi dari PDF."
+
+#: templates/frontend/all_tools.html:434
+#: templates/frontend/includes/header.html:273
+#: templates/frontend/includes/header.html:686
+msgid "Unlock PDF"
+msgstr "Buka kunci PDF"
+
+#: templates/frontend/all_tools.html:437
+#, fuzzy
+#| msgid "Remove password protection from your PDF"
+msgid "Remove password protection from your PDF documents."
+msgstr "Hapus perlindungan kata sandi dari PDF Anda"
+
+#: templates/frontend/compress_pdf.html:6
+msgid "Compression Settings"
+msgstr ""
+
+#: templates/frontend/compress_pdf.html:12
+#, fuzzy
+#| msgid "Compress PDF"
+msgid "Compression Level"
+msgstr "Kompres PDF"
+
+#: templates/frontend/compress_pdf.html:16
+msgid "Low"
+msgstr ""
+
+#: templates/frontend/compress_pdf.html:16
+msgid "Faster, less compression"
+msgstr ""
+
+#: templates/frontend/compress_pdf.html:17
+msgid "Medium"
+msgstr ""
+
+#: templates/frontend/compress_pdf.html:17
+msgid "Balanced"
+msgstr ""
+
+#: templates/frontend/compress_pdf.html:18
+msgid "High"
+msgstr ""
+
+#: templates/frontend/compress_pdf.html:18
+msgid "Slower, more compression"
+msgstr ""
+
+#: templates/frontend/compress_pdf.html:21
+msgid ""
+"Choose compression level based on your needs. Higher compression reduces "
+"file size more but takes longer."
+msgstr ""
+
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:464
+msgid "Contact Us - Convertica"
+msgstr "Hubungi kami - Convertica"
+
+#: templates/frontend/contact.html:44 templates/frontend/faq.html:383
+#: templates/frontend/privacy.html:220 templates/frontend/terms.html:253
+msgid "Contact Us"
+msgstr "Hubungi kami"
+
+#: templates/frontend/contact.html:47
+msgid ""
+"We're here to help! Get in touch with us for support, questions, or feedback."
+msgstr ""
+"Kami di sini untuk membantu! Hubungi kami untuk dukungan, pertanyaan, atau "
+"umpan balik."
+
+#: templates/frontend/contact.html:63
+msgid "Email icon"
+msgstr "Ikon email"
+
+#: templates/frontend/contact.html:67
+#: templates/frontend/includes/footer.html:161
+msgid "Email"
+msgstr "Email"
+
+#: templates/frontend/contact.html:70
+msgid "Send us an email and we'll get back to you as soon as possible."
+msgstr ""
+"Kirimkan email kepada kami dan kami akan menghubungi Anda sesegera mungkin."
+
+#: templates/frontend/contact.html:85
+msgid "Support icon"
+msgstr "Ikon dukungan"
+
+#: templates/frontend/contact.html:89
+msgid "Support"
+msgstr "Dukungan"
+
+#: templates/frontend/contact.html:92
+msgid "Need help with our tools? We're here to assist you."
+msgstr "Butuh bantuan dengan alat kami? Kami di sini untuk membantu Anda."
+
+#: templates/frontend/contact.html:95
+msgid "Response time: Usually within 24-48 hours"
+msgstr "Waktu respons: Biasanya dalam 24-48 jam"
+
+#: templates/frontend/contact.html:104
+msgid "Form icon"
+msgstr "Ikon formulir"
+
+#: templates/frontend/contact.html:108
+msgid "Send Us a Message"
+msgstr "Kirimkan pesan kepada kami"
+
+#: templates/frontend/contact.html:114
+msgid "Your Name"
+msgstr "Nama Anda"
+
+#: templates/frontend/contact.html:125
+msgid "Your Email"
+msgstr "Email Anda"
+
+#: templates/frontend/contact.html:136
+msgid "Subject"
+msgstr "Subjek"
+
+#: templates/frontend/contact.html:147
+msgid "Message"
+msgstr "Pesan"
+
+#: templates/frontend/contact.html:163
+msgid "I agree to the"
+msgstr "Saya setuju dengan"
+
+#: templates/frontend/contact.html:163 templates/frontend/contact.html:231
+#: templates/frontend/includes/cookie_banner.html:17
+#: templates/frontend/includes/footer.html:51
+#: templates/frontend/includes/footer.html:229
+#: templates/frontend/privacy.html:45
+msgid "Privacy Policy"
+msgstr "Kebijakan privasi"
+
+#: templates/frontend/contact.html:163
+msgid "and consent to the processing of my personal data."
+msgstr "dan menyetujui pemrosesan data pribadi saya."
+
+#: templates/frontend/contact.html:169
+msgid "Send Message"
+msgstr "Kirim pesan"
+
+#: templates/frontend/contact.html:178
+msgid "FAQ icon"
+msgstr "Ikon FAQ"
+
+#: templates/frontend/contact.html:182 templates/frontend/faq.html:72
+msgid "Frequently Asked Questions"
+msgstr "Pertanyaan yang sering diajukan"
+
+#: templates/frontend/contact.html:187
+msgid "How long does it take to process files?"
+msgstr "Berapa lama waktu yang dibutuhkan untuk memproses file?"
+
+#: templates/frontend/contact.html:189
+msgid ""
+"Most files are processed within seconds. Larger files or complex operations "
+"may take a few minutes."
+msgstr ""
+"Sebagian besar file diproses dalam hitungan detik. File yang lebih besar "
+"atau operasi kompleks mungkin memakan waktu beberapa menit."
+
+#: templates/frontend/contact.html:194
+msgid "Are my files safe?"
+msgstr "Apakah file saya aman?"
+
+#: templates/frontend/contact.html:196
+msgid ""
+"Yes! Your files are processed securely and automatically deleted immediately "
+"after processing. We never store your files permanently."
+msgstr ""
+"Ya! File Anda diproses dengan aman dan dihapus otomatis segera setelah "
+"pemrosesan. Kami tidak pernah menyimpan file Anda secara permanen."
+
+#: templates/frontend/contact.html:201
+msgid "Is Convertica really free?"
+msgstr "Apakah Convertica benar-benar gratis?"
+
+#: templates/frontend/contact.html:203
+msgid ""
+"Yes, all our tools are completely free to use. No hidden fees, no "
+"subscriptions required."
+msgstr ""
+"Ya, semua alat kami sepenuhnya gratis digunakan. Tanpa biaya tersembunyi, "
+"tanpa langganan diperlukan."
+
+#: templates/frontend/contact.html:208
+msgid "What file formats are supported?"
+msgstr "Format file apa yang didukung?"
+
+#: templates/frontend/contact.html:210
+msgid ""
+"We support PDF, Word (DOC, DOCX), JPG/JPEG, and Excel (XLSX) formats. Check "
+"individual tool pages for specific format requirements."
+msgstr ""
+"Kami mendukung format PDF, Word (DOC, DOCX), JPG/JPEG, dan Excel (XLSX). "
+"Periksa halaman alat individual untuk persyaratan format spesifik."
+
+#: templates/frontend/contact.html:218
+msgid "Additional Resources"
+msgstr "Sumber daya tambahan"
+
+#: templates/frontend/contact.html:223
+#: templates/frontend/includes/footer.html:42
+#, fuzzy
+#| msgid "About"
+msgid "About Us"
+msgstr "Tentang"
+
+#: templates/frontend/contact.html:225
+msgid "Learn more about Convertica and our mission."
+msgstr "Pelajari lebih lanjut tentang Convertica dan misi kami."
+
+#: templates/frontend/contact.html:233
+msgid "Read our privacy policy to understand how we protect your data."
+msgstr ""
+"Baca kebijakan privasi kami untuk memahami bagaimana kami melindungi data "
+"Anda."
+
+#: templates/frontend/contact.html:239
+#: templates/frontend/includes/cookie_banner.html:19
+#: templates/frontend/includes/footer.html:60 templates/frontend/terms.html:45
+msgid "Terms of Service"
+msgstr "Ketentuan layanan"
+
+#: templates/frontend/contact.html:241
+msgid "Review our terms of service and usage policies."
+msgstr "Tinjau ketentuan layanan dan kebijakan penggunaan kami."
+
+#: templates/frontend/converter_generic.html:35
+#: templates/frontend/edit_pdf_generic.html:35
+#: templates/frontend/includes/footer.html:24
+msgid "Home"
+msgstr "Beranda"
+
+#: templates/frontend/converter_generic.html:85
+msgid "Select file to convert"
+msgstr "Pilih file untuk dikonversi"
+
+#: templates/frontend/converter_generic.html:183
+msgid ""
+"Click the button above to select your file, or drag and drop it into the "
+"zone below"
+msgstr ""
+"Unggah file Anda menggunakan tombol di atas atau seret ke zona di bawah - "
+"konverter online gratis kami mendukung semua format"
+
+#: templates/frontend/converter_generic.html:184
+msgid "Click the convert button"
+msgstr ""
+"Klik tombol konversi - konverter PDF cepat kami akan memproses file Anda "
+"secara instan"
+
+#: templates/frontend/converter_generic.html:185
+#: templates/frontend/jpg_to_pdf.html:139
+msgid "Wait for the conversion to complete"
+msgstr ""
+"Tunggu hingga konversi selesai - konverter online aman kami memproses file "
+"dalam hitungan detik"
+
+#: templates/frontend/converter_generic.html:186
+msgid "Download your converted file using the download button"
+msgstr ""
+"Unduh file yang telah dikonversi - tanpa registrasi, sepenuhnya gratis, "
+"tanpa batasan"
+
+#: templates/frontend/converter_generic.html:202
+#, fuzzy
+#| msgid "Processing your file..."
+msgid "Converting your file..."
+msgstr "Memproses file Anda..."
+
+#: templates/frontend/converter_generic.html:204
+#: templates/frontend/jpg_to_pdf.html:158
+#, fuzzy
+#| msgid "Editing Complete!"
+msgid "Conversion Complete!"
+msgstr "Pengeditan selesai!"
+
+#: templates/frontend/converter_generic.html:207
+#: templates/frontend/jpg_to_pdf.html:161
+#, fuzzy
+#| msgid "Edit another file"
+msgid "Convert another file"
+msgstr "Edit file lain"
+
+#: templates/frontend/crop_pdf.html:103
+#, fuzzy
+#| msgid "Select file to convert"
+msgid "Select file to crop"
+msgstr "Pilih file untuk dikonversi"
+
+#: templates/frontend/crop_pdf.html:165
+#, fuzzy
+#| msgid "Crop PDF"
+msgid "Crop Your PDF"
+msgstr "Potong PDF"
+
+#: templates/frontend/crop_pdf.html:167
+msgid ""
+"Click and drag on the PDF to select the crop area. The blue highlighted area "
+"will be kept. You can drag the selection box anywhere to move it, or use the "
+"corner/edge handles to resize it."
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:172
+#, fuzzy
+#| msgid "Page"
+msgid "Page:"
+msgstr "Halaman"
+
+#: templates/frontend/crop_pdf.html:189
+msgid "Crop area is active!"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:192
+msgid ""
+"The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
+"ready."
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:200
+#, fuzzy
+#| msgid "Apply to pages"
+msgid "Apply crop to pages"
+msgstr "Terapkan ke halaman"
+
+#: templates/frontend/crop_pdf.html:273
+msgid "Tips:"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:275
+msgid "A crop area covering most of the page is selected by default"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:276
+msgid ""
+"A crop area covering most of the page is selected by default - adjust it as "
+"needed"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:277
+msgid "Click and drag inside the blue box to move it anywhere on the page"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:278
+msgid "Drag the corner or edge handles to resize the crop area"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:279
+msgid "Click and drag outside the box to create a new selection"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:280
+msgid "The cursor changes to 'move' when hovering over the selection box"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:281
+msgid "When 'all' is selected, crop applies to all pages"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:327
+msgid ""
+"The PDF will be displayed - click and drag to select the area you want to "
+"keep"
+msgstr ""
+"PDF akan ditampilkan - klik dan seret untuk memilih area yang ingin Anda "
+"pertahankan"
+
+#: templates/frontend/crop_pdf.html:328
+msgid "Resize the selection by dragging the corners or edges"
+msgstr ""
+"Ubah ukuran pilihan dengan menyeret sudut atau tepi - alat pemotong PDF kami "
+"memungkinkan penyesuaian yang tepat"
+
+#: templates/frontend/crop_pdf.html:329
+msgid "Choose which pages to apply the crop to"
+msgstr ""
+"Pilih halaman mana yang akan dipotong - alat online kami memungkinkan "
+"pemrosesan halaman individual atau semua"
+
+#: templates/frontend/crop_pdf.html:330
+msgid "Click the crop button to process your file"
+msgstr ""
+"Klik tombol potong untuk memproses file Anda - alat PDF cepat kami akan "
+"memprosesnya secara instan"
+
+#: templates/frontend/crop_pdf.html:331
+msgid "Download your cropped PDF file"
+msgstr ""
+"Unduh file PDF yang telah dipotong - tanpa registrasi, sepenuhnya gratis, "
+"kualitas tinggi"
+
+#: templates/frontend/edit_pdf_generic.html:85
+#, fuzzy
+#| msgid "Select file to convert"
+msgid "Select file to edit"
+msgstr "Pilih file untuk dikonversi"
+
+#: templates/frontend/edit_pdf_generic.html:176
+msgid "Select your PDF file using the button above or drag and drop it"
+msgstr ""
+"Pilih file PDF Anda menggunakan tombol di atas atau seret - editor PDF "
+"gratis kami mendukung semua versi"
+
+#: templates/frontend/edit_pdf_generic.html:177
+msgid "Configure the editing options below"
+msgstr ""
+"Konfigurasi opsi pengeditan di bawah - editor PDF online kami menawarkan "
+"banyak opsi"
+
+#: templates/frontend/edit_pdf_generic.html:178
+msgid "Click the edit button to process your file"
+msgstr ""
+"Klik tombol edit untuk memproses file Anda - editor PDF cepat kami akan "
+"memprosesnya secara instan"
+
+#: templates/frontend/edit_pdf_generic.html:179
+msgid "Download your edited file using the download button"
+msgstr ""
+"Unduh file yang telah diedit - tanpa registrasi, sepenuhnya gratis, aman"
+
+#: templates/frontend/extract_pages.html:6
+#, fuzzy
+#| msgid "Extract Pages"
+msgid "Extract Pages Settings"
+msgstr "Ekstrak halaman"
+
+#: templates/frontend/extract_pages.html:12
+#: templates/frontend/split_pdf.html:49
+msgid "Pages to Extract"
+msgstr ""
+
+#: templates/frontend/extract_pages.html:22
+msgid ""
+"Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
+"(1-5)"
+msgstr ""
+
+#: templates/frontend/faq.html:21 templates/frontend/faq.html:148
+#, fuzzy
+#| msgid "Convert PDF to Word"
+msgid "How do I convert PDF to Word?"
+msgstr "Bagaimana cara mengonversi PDF ke Word?"
+
+#: templates/frontend/faq.html:24 templates/frontend/faq.html:152
+msgid ""
+"To convert PDF to Word, simply upload your PDF file using the upload button "
+"or drag and drop it into the upload zone. Click the convert button and wait "
+"for the conversion to complete. Download your converted Word document using "
+"the download button. The conversion is free and requires no registration."
+msgstr ""
+
+#: templates/frontend/faq.html:29 templates/frontend/faq.html:90
+#, fuzzy
+#| msgid "Is Convertica really free?"
+msgid "Is Convertica free to use?"
+msgstr "Apakah Convertica gratis digunakan?"
+
+#: templates/frontend/faq.html:32 templates/frontend/faq.html:94
+msgid ""
+"Yes, Convertica is completely free to use. All PDF conversion, editing, and "
+"organization tools are available at no cost. There are no hidden fees, no "
+"registration required, and no file size limits on the free plan."
+msgstr ""
+
+#: templates/frontend/faq.html:37 templates/frontend/faq.html:110
+#, fuzzy
+#| msgid "What file formats are supported?"
+msgid "What file formats does Convertica support?"
+msgstr "Format file apa yang didukung Convertica?"
+
+#: templates/frontend/faq.html:40 templates/frontend/faq.html:114
+msgid ""
+"Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
+"can convert between these formats, edit PDFs, organize pages, and protect "
+"your documents with passwords."
+msgstr ""
+
+#: templates/frontend/faq.html:45 templates/frontend/faq.html:216
+msgid "How do I merge multiple PDF files?"
+msgstr "Bagaimana cara menggabungkan beberapa file PDF?"
+
+#: templates/frontend/faq.html:48
+msgid ""
+"To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
+"arrange them in the desired order, and click merge. All selected files will "
+"be combined into a single PDF document."
+msgstr ""
+
+#: templates/frontend/faq.html:53 templates/frontend/faq.html:284
+msgid "Is my data secure?"
+msgstr "Apakah data saya aman?"
+
+#: templates/frontend/faq.html:56 templates/frontend/faq.html:288
+#, fuzzy
+#| msgid ""
+#| "Yes! Your files are processed securely and automatically deleted "
+#| "immediately after processing. We never store your files permanently."
+msgid ""
+"Yes, your data is secure. All files are processed securely and automatically "
+"deleted immediately after conversion. We do not store your files, and your "
+"privacy is our top priority. You can also protect your PDFs with password "
+"encryption."
+msgstr ""
+"Ya! File Anda diproses dengan aman dan dihapus otomatis segera setelah "
+"pemrosesan. Kami tidak pernah menyimpan file Anda secara permanen."
+
+#: templates/frontend/faq.html:75
+msgid "Find answers to common questions about Convertica PDF tools"
+msgstr "Temukan jawaban untuk pertanyaan umum tentang alat PDF Convertica"
+
+#: templates/frontend/faq.html:85
+#, fuzzy
+#| msgid "Frequently Asked Questions"
+msgid "General Questions"
+msgstr "Pertanyaan Umum"
+
+#: templates/frontend/faq.html:100
+msgid "Do I need to create an account?"
+msgstr "Apakah saya perlu membuat akun?"
+
+#: templates/frontend/faq.html:104
+msgid ""
+"No, you don't need to create an account. Convertica works without "
+"registration. Simply upload your file and start converting immediately."
+msgstr ""
+
+#: templates/frontend/faq.html:120
+msgid "Is there a file size limit?"
+msgstr "Apakah ada batasan ukuran file?"
+
+#: templates/frontend/faq.html:124
+msgid ""
+"No, there are no file size limits on Convertica. You can process files of "
+"any size, from small documents to large PDF files."
+msgstr ""
+
+#: templates/frontend/faq.html:133
+#, fuzzy
+#| msgid "Editing Complete!"
+msgid "Conversion Questions"
+msgstr "Pertanyaan tentang Konversi"
+
+#: templates/frontend/faq.html:138
+#, fuzzy
+#| msgid "Convert PDF to Word"
+msgid "How do I convert PDF to Word without losing formatting?"
+msgstr "Bagaimana cara mengonversi PDF ke Word?"
+
+#: templates/frontend/faq.html:142
+msgid ""
+"To convert PDF to Word without losing formatting, use Convertica's PDF to "
+"Word converter. Simply upload your PDF file, and our advanced conversion "
+"engine preserves text formatting, images, tables, and layout. The conversion "
+"maintains fonts, colors, spacing, and structure of your original document. "
+"All conversions are free and require no registration."
+msgstr ""
+
+#: templates/frontend/faq.html:158
+#, fuzzy
+#| msgid "Convert to PDF"
+msgid "How do I convert Word to PDF?"
+msgstr "Bagaimana cara mengonversi Word ke PDF?"
+
+#: templates/frontend/faq.html:162
+msgid ""
+"Upload your Word document (.doc or .docx), click convert, and download your "
+"PDF. The conversion preserves formatting and layout of your original "
+"document."
+msgstr ""
+
+#: templates/frontend/faq.html:168
+#, fuzzy
+#| msgid "Convert PDF to Excel"
+msgid "Can I convert PDF to JPG?"
+msgstr "Bisakah saya mengonversi PDF ke JPG?"
+
+#: templates/frontend/faq.html:172
+msgid ""
+"Yes, you can convert PDF pages to JPG images. Select the page you want to "
+"convert or convert all pages. You can also choose the image quality (DPI) "
+"from 72 to 600."
+msgstr ""
+
+#: templates/frontend/faq.html:178
+msgid "How do I convert images to PDF?"
+msgstr "Bagaimana cara mengonversi gambar ke PDF?"
+
+#: templates/frontend/faq.html:182
+msgid ""
+"Upload one or multiple JPG/JPEG images, arrange them in the desired order, "
+"and click convert. All images will be combined into a single PDF document "
+"with automatic A4 formatting."
+msgstr ""
+
+#: templates/frontend/faq.html:188
+#, fuzzy
+#| msgid "Extract tables from PDF and convert to Excel format"
+msgid "Can I extract tables from PDF to Excel?"
+msgstr "Bisakah saya mengekstrak tabel dari PDF ke Excel?"
+
+#: templates/frontend/faq.html:192
+msgid ""
+"Yes, you can extract tables from PDF files and convert them to Excel format. "
+"Upload your PDF, and Convertica will extract all tables and save them in an "
+"Excel file."
+msgstr ""
+
+#: templates/frontend/faq.html:201
+#, fuzzy
+#| msgid "Organization"
+msgid "Editing & Organization"
+msgstr "Pengeditan dan Organisasi"
+
+#: templates/frontend/faq.html:206
+msgid "How do I merge PDF online free without watermark?"
+msgstr "Bagaimana cara menggabungkan PDF online gratis tanpa watermark?"
+
+#: templates/frontend/faq.html:210
+msgid ""
+"To merge PDF online free without watermark, use Convertica's PDF merger. Go "
+"to the Merge PDF page, select multiple PDF files, arrange them in the "
+"desired order using drag and drop, and click merge. All selected files will "
+"be combined into a single PDF document with no watermark added. The merged "
+"PDF maintains the quality of original files."
+msgstr ""
+
+#: templates/frontend/faq.html:220
+msgid ""
+"To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
+"arrange them in the desired order using drag and drop, and click merge. All "
+"selected files will be combined into a single PDF document."
+msgstr ""
+
+#: templates/frontend/faq.html:226
+#, fuzzy
+#| msgid "Split your PDF into multiple files"
+msgid "Can I split a PDF into separate files?"
+msgstr "Pisahkan PDF Anda menjadi beberapa file"
+
+#: templates/frontend/faq.html:230
+msgid ""
+"Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
+"split it (by page range or every N pages), and download the resulting files."
+msgstr ""
+
+#: templates/frontend/faq.html:236
+#, fuzzy
+#| msgid "Download your cropped PDF file"
+msgid "How do I compress PDF to under 1MB for email?"
+msgstr ""
+"Bagaimana cara mengompres PDF di bawah 1 MB untuk email?Bagaimana cara "
+"mengompres file PDF?Unduh file PDF yang telah dipotong - tanpa registrasi, "
+"sepenuhnya gratis, kualitas tinggi"
+
+#: templates/frontend/faq.html:240
+msgid ""
+"To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
+"Upload your PDF file, select the high compression level, and click compress. "
+"The tool will reduce the file size while maintaining acceptable quality for "
+"email attachments. You can preview the compressed file size before "
+"downloading."
+msgstr ""
+
+#: templates/frontend/faq.html:246
+#, fuzzy
+#| msgid "Download your cropped PDF file"
+msgid "How do I compress a PDF file?"
+msgstr ""
+"Bagaimana cara mengompres file PDF?Unduh file PDF yang telah dipotong - "
+"tanpa registrasi, sepenuhnya gratis, kualitas tinggi"
+
+#: templates/frontend/faq.html:250
+msgid ""
+"Upload your PDF file, select the compression level (low, medium, or high), "
+"and click compress. The file size will be reduced while maintaining "
+"acceptable quality."
+msgstr ""
+
+#: templates/frontend/faq.html:256
+msgid "Can I rotate PDF pages?"
+msgstr "Bisakah saya memutar halaman PDF?"
+
+#: templates/frontend/faq.html:260
+#, fuzzy
+#| msgid ""
+#| "Rotate PDF pages by 90, 180, or 270 degrees. Free online PDF rotation "
+#| "tool."
+msgid ""
+"Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
+"you want to rotate and choose the rotation angle."
+msgstr ""
+"Putar halaman PDF sebesar 90, 180, atau 270 derajat. Alat rotasi PDF online "
+"gratis."
+
+#: templates/frontend/faq.html:266
+#, fuzzy
+#| msgid "Download your watermarked PDF file"
+msgid "How do I add a watermark to PDF?"
+msgstr ""
+"Bagaimana cara menambahkan watermark ke PDF?Unduh file PDF dengan watermark "
+"- tanpa registrasi, sepenuhnya gratis, perlindungan dokumen"
+
+#: templates/frontend/faq.html:270
+msgid ""
+"Upload your PDF, choose between text or image watermark, set the position "
+"and transparency, and apply. The watermark will be added to all pages or "
+"selected pages."
+msgstr ""
+
+#: templates/frontend/faq.html:279
+msgid "Security & Privacy"
+msgstr "Keamanan dan Privasi"
+
+#: templates/frontend/faq.html:294
+msgid "How do I protect a PDF with a password?"
+msgstr "Bagaimana cara melindungi PDF dengan kata sandi?"
+
+#: templates/frontend/faq.html:298
+msgid ""
+"Upload your PDF, enter a password (and optionally an owner password), and "
+"click protect. The PDF will be encrypted and require a password to open."
+msgstr ""
+
+#: templates/frontend/faq.html:304
+#, fuzzy
+#| msgid "Remove password protection from your PDF"
+msgid "Can I remove password protection from a PDF?"
+msgstr "Hapus perlindungan kata sandi dari PDF Anda"
+
+#: templates/frontend/faq.html:308
+msgid ""
+"Yes, if you know the password, you can unlock a protected PDF. Upload the "
+"protected PDF, enter the password, and click unlock. The password protection "
+"will be removed."
+msgstr ""
+
+#: templates/frontend/faq.html:314
+msgid "Are my files stored on your servers?"
+msgstr "Apakah file saya disimpan di server Anda?"
+
+#: templates/frontend/faq.html:318
+#, fuzzy
+#| msgid ""
+#| "Yes! Your files are processed securely and automatically deleted "
+#| "immediately after processing. We never store your files permanently."
+msgid ""
+"No, your files are not stored on our servers. Files are processed "
+"immediately and automatically deleted after conversion. We do not keep "
+"copies of your documents."
+msgstr ""
+"Ya! File Anda diproses dengan aman dan dihapus otomatis segera setelah "
+"pemrosesan. Kami tidak pernah menyimpan file Anda secara permanen."
+
+#: templates/frontend/faq.html:327
+msgid "Technical Questions"
+msgstr "Pertanyaan Teknis"
+
+#: templates/frontend/faq.html:332
+#, fuzzy
+#| msgid "What file formats are supported?"
+msgid "What browsers are supported?"
+msgstr "Format file apa yang didukung?"
+
+#: templates/frontend/faq.html:336
+msgid ""
+"Convertica works on all modern browsers including Chrome, Firefox, Safari, "
+"Edge, and Opera. The website is also mobile-friendly and works on "
+"smartphones and tablets."
+msgstr ""
+
+#: templates/frontend/faq.html:342
+#, fuzzy
+#| msgid "How long does it take to process files?"
+msgid "How long does conversion take?"
+msgstr "Berapa lama waktu yang dibutuhkan untuk memproses file?"
+
+#: templates/frontend/faq.html:346
+msgid ""
+"Conversion time depends on file size and complexity. Most conversions "
+"complete in seconds. Larger files may take a minute or two. The progress is "
+"shown during conversion."
+msgstr ""
+
+#: templates/frontend/faq.html:352
+#, fuzzy
+#| msgid "Wait for the conversion to complete"
+msgid "What if conversion fails?"
+msgstr ""
+"Bagaimana jika konversi gagal?Tunggu hingga konversi selesai - konverter "
+"online aman kami memproses file dalam hitungan detik"
+
+#: templates/frontend/faq.html:356
+msgid ""
+"If conversion fails, please check that your file is not corrupted and is in "
+"a supported format. Try again, and if the problem persists, contact our "
+"support team."
+msgstr ""
+
+#: templates/frontend/faq.html:362
+msgid "Can I use Convertica on mobile devices?"
+msgstr "Bisakah saya menggunakan Convertica di perangkat seluler?"
+
+#: templates/frontend/faq.html:366
+msgid ""
+"Yes, Convertica is fully responsive and works on mobile devices. You can "
+"convert, edit, and organize PDFs directly from your smartphone or tablet."
+msgstr ""
+
+#: templates/frontend/faq.html:377
+msgid "Still have questions?"
+msgstr "Masih ada pertanyaan?"
+
+#: templates/frontend/faq.html:380
+msgid ""
+"If you couldn't find the answer you're looking for, feel free to contact us."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:10
+#: templates/frontend/includes/cookie_banner.html:42
+msgid "Cookie Preferences"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:13
+msgid ""
+"We use cookies and similar technologies to enhance your browsing experience, "
+"security, analytics, and to provide personalized content."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:16
+msgid ""
+"You can accept all cookies, reject non-essential cookies, or customize your "
+"preferences. Essential cookies are required for the website to function and "
+"cannot be disabled."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:18
+msgid "and"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:27
+msgid "Reject All"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:31
+#, fuzzy
+#| msgid "Custom pages:"
+msgid "Customize"
+msgstr "Halaman kustom:"
+
+#: templates/frontend/includes/cookie_banner.html:35
+msgid "Accept All"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:44
+msgid ""
+"Manage your cookie preferences. You can enable or disable different types of "
+"cookies below. Essential cookies cannot be disabled as they are necessary "
+"for the website to function."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:51
+msgid "Essential Cookies"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:53
+msgid ""
+"Required for the website to function properly. These cookies enable core "
+"functionality such as security, network management, and accessibility. They "
+"cannot be disabled."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:56
+msgid "Examples: Session management, CSRF protection, language preferences"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:60
+msgid "Always Active"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:67
+msgid "Analytics Cookies"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:69
+msgid ""
+"Help us understand how visitors interact with our website by collecting and "
+"reporting information anonymously."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:72
+msgid "Examples: Page views, time spent on site, error tracking"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:78
+msgid "Enable Analytics Cookies"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:86
+msgid "Marketing Cookies"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:88
+msgid ""
+"Used to deliver personalized advertisements and track campaign "
+"effectiveness. These cookies may be set by advertising partners."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:91
+msgid "Examples: Ad targeting, conversion tracking, remarketing"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:97
+msgid "Enable Marketing Cookies"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:105
+msgid ""
+"Your preferences will be saved and remembered for future visits. You can "
+"change these settings at any time."
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:110
+msgid "Save Preferences"
+msgstr ""
+
+#: templates/frontend/includes/cookie_banner.html:114
+msgid "Cancel"
+msgstr ""
+
+#: templates/frontend/includes/footer.html:15
+#: templates/frontend/includes/header.html:579
+#: templates/frontend/includes/header.html:764
+msgid "About"
+msgstr "Tentang"
+
+#: templates/frontend/includes/footer.html:69
+msgid "FAQ"
+msgstr ""
+
+#: templates/frontend/includes/footer.html:84
+msgid "Tools"
+msgstr "Alat"
+
+#: templates/frontend/includes/footer.html:93
+#: templates/frontend/includes/footer.html:200
+#: templates/frontend/includes/header.html:35
+#: templates/frontend/includes/header.html:639
+msgid "All Tools"
+msgstr "Semua alat"
+
+#: templates/frontend/includes/footer.html:143
+#: templates/frontend/includes/header.html:583
+#: templates/frontend/includes/header.html:768
+msgid "Contact"
+msgstr "Kontak"
+
+#: templates/frontend/includes/footer.html:152
+msgid "Contact Form"
+msgstr "Formulir kontak"
+
+#: templates/frontend/includes/footer.html:175
+#: templates/frontend/includes/header.html:779
+msgid "Language"
+msgstr "Bahasa"
+
+#: templates/frontend/includes/footer.html:195
+msgid "Resources"
+msgstr "Sumber daya"
+
+#: templates/frontend/includes/footer.html:216
+msgid "All rights reserved."
+msgstr "Hak cipta dilindungi."
+
+#: templates/frontend/includes/footer.html:219
+msgid "Free PDF tools for everyone"
+msgstr "Alat PDF gratis untuk semua orang"
+
+#: templates/frontend/includes/footer.html:233
+msgid "Terms"
+msgstr "Ketentuan"
+
+#: templates/frontend/includes/header.html:12
+msgid "Convertica - Home"
+msgstr "Convertica - Beranda"
+
+#: templates/frontend/includes/header.html:20
+#, fuzzy
+#| msgid "About Convertica"
+msgid "Convertica"
+msgstr "Tentang Convertica"
+
+#: templates/frontend/includes/header.html:30
+msgid "All PDF tools"
+msgstr "Semua alat PDF"
+
+#: templates/frontend/includes/header.html:285
+msgid "Main navigation"
+msgstr ""
+
+#: templates/frontend/includes/header.html:293
+#, fuzzy
+#| msgid "Convert PDF to Word"
+msgid "Convert PDF tools"
+msgstr "Konversi PDF ke Word"
+
+#: templates/frontend/includes/header.html:309
+msgid "Convert from PDF"
+msgstr "Konversi dari PDF"
+
+#: templates/frontend/includes/header.html:352
+msgid "Convert to PDF"
+msgstr "Konversi ke PDF"
+
+#: templates/frontend/includes/header.html:389
+#, fuzzy
+#| msgid "All PDF tools"
+msgid "Edit PDF tools"
+msgstr "Semua alat PDF"
+
+#: templates/frontend/includes/header.html:405
+msgid "Basic Editing"
+msgstr "Pengeditan dasar"
+
+#: templates/frontend/includes/header.html:436
+msgid "Enhancements"
+msgstr "Peningkatan"
+
+#: templates/frontend/includes/header.html:473
+#, fuzzy
+#| msgid "Organize PDF"
+msgid "Organize PDF tools"
+msgstr "Atur PDF"
+
+#: templates/frontend/includes/header.html:489
+msgid "Organization"
+msgstr "Organisasi"
+
+#: templates/frontend/includes/header.html:544
+msgid "Page Management"
+msgstr "Manajemen halaman"
+
+#: templates/frontend/includes/header.html:614
+msgid "Toggle menu"
+msgstr ""
+
+#: templates/frontend/includes/header.html:629
+msgid "Mobile navigation"
+msgstr ""
+
+#: templates/frontend/index.html:4 templates/frontend/index.html:5
+msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
+msgstr "Convertica – Alat PDF Online: Konversi, Edit & Atur PDF"
+
+#: templates/frontend/index.html:6 templates/frontend/index.html:20
+msgid ""
+"Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
+"rotate, add watermark, and more. Fast, secure, no registration required."
+msgstr ""
+"Alat PDF online gratis: Konversi PDF ke Word, Word ke PDF, gabungkan, "
+"pisahkan, putar, tambahkan watermark, dan lainnya. Cepat, aman, tanpa "
+"registrasi."
+
+#: templates/frontend/index.html:7
+msgid ""
+"PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, "
+"PDF editor, PDF tools, online PDF converter, free PDF tools"
+msgstr ""
+"Konverter PDF, PDF ke Word, Word ke PDF, gabungkan PDF, pisahkan PDF, putar "
+"PDF, editor PDF, alat PDF, konverter PDF online, alat PDF gratis"
+
+#: templates/frontend/index.html:8 templates/frontend/index.html:10
+#: utils_site/src/frontend/views.py:27
+msgid "Convertica – Online PDF ↔ Word Converter"
+msgstr "Convertica – Konverter online PDF ↔ Word"
+
+#: templates/frontend/index.html:9 templates/frontend/index.html:11
+#: utils_site/src/frontend/views.py:28
+msgid ""
+"Fast, simple and secure online PDF to Word and Word to PDF converter. "
+"Convert documents instantly, no registration required."
+msgstr ""
+"Konverter online PDF ke Word dan Word ke PDF yang cepat, sederhana, dan "
+"aman. Konversi dokumen secara instan, tanpa registrasi."
+
+#: templates/frontend/index.html:44
+msgid "All-in-One PDF Tools"
+msgstr "Semua alat PDF dalam satu tempat"
+
+#: templates/frontend/index.html:47
+msgid ""
+"Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No "
+"installations required."
+msgstr ""
+"Konversi, edit, gabungkan, pisahkan, dan atur file PDF. Cepat, sederhana, "
+"dan aman. Tidak perlu instalasi."
+
+#: templates/frontend/index.html:93
+msgid "Most requested PDF tools at your fingertips"
+msgstr "Alat PDF paling diminta di ujung jari Anda"
+
+#: templates/frontend/index.html:116 templates/frontend/index.html:141
+#: templates/frontend/index.html:165 templates/frontend/index.html:190
+#: templates/frontend/index.html:214 templates/frontend/index.html:256
+#: templates/frontend/index.html:280 templates/frontend/index.html:304
+#: templates/frontend/index.html:328 templates/frontend/index.html:353
+#: templates/frontend/index.html:377
+msgid "Try it"
+msgstr "Coba"
+
+#: templates/frontend/index.html:233
+msgid "Manage and organize your PDF documents with powerful tools"
+msgstr "Kelola dan atur dokumen PDF Anda dengan alat yang powerful"
+
+#: templates/frontend/index.html:397
+msgid "Ready to start?"
+msgstr "Siap untuk memulai?"
+
+#: templates/frontend/index.html:400
+msgid "Convert your files in seconds, for free."
+msgstr "Konversi file Anda dalam hitungan detik, gratis."
+
+#: templates/frontend/index.html:415
+msgid "Latest Guides & Tips"
+msgstr "Panduan & Tips Terbaru"
+
+#: templates/frontend/index.html:418
+msgid "Learn how to get the most out of PDF tools with our expert guides"
+msgstr "Pelajari cara memaksimalkan alat PDF dengan panduan ahli kami"
+
+#: templates/frontend/index.html:448
+msgid "Read more"
+msgstr "Baca selengkapnya"
+
+#: templates/frontend/index.html:462
+msgid "View All Articles"
+msgstr "Lihat semua artikel"
+
+#: templates/frontend/jpg_to_pdf.html:26
+msgid "You can upload multiple images - they will be combined into one PDF"
+msgstr ""
+
+#: templates/frontend/jpg_to_pdf.html:52
+msgid "Select image(s)"
+msgstr ""
+
+#: templates/frontend/jpg_to_pdf.html:59
+msgid "Selected Images"
+msgstr ""
+
+#: templates/frontend/jpg_to_pdf.html:67
+msgid "+ Add more images"
+msgstr ""
+
+#: templates/frontend/jpg_to_pdf.html:90
+#, fuzzy
+#| msgid "Drag and drop your file here"
+msgid "Drag and drop your images here"
+msgstr "Seret file Anda ke sini"
+
+#: templates/frontend/jpg_to_pdf.html:96
+msgid "files"
+msgstr "file"
+
+#: templates/frontend/jpg_to_pdf.html:96
+#, fuzzy
+#| msgid "What file formats are supported?"
+msgid "multiple files supported"
+msgstr "Format file apa yang didukung?"
+
+#: templates/frontend/jpg_to_pdf.html:135
+msgid ""
+"Click the button above to select one or more images, or drag and drop them "
+"into the zone below"
+msgstr ""
+"Klik tombol di atas untuk memilih satu atau lebih gambar, atau seret ke zona "
+"di bawah - konverter JPG ke PDF kami mendukung semua format gambar"
+
+#: templates/frontend/jpg_to_pdf.html:136
+msgid ""
+"You can add more images by clicking 'Add more images' or by selecting files "
+"again"
+msgstr ""
+"Anda dapat menambahkan lebih banyak gambar dengan mengklik 'Tambah lebih "
+"banyak gambar' atau memilih file lagi - alat kami mendukung unggah ganda"
+
+#: templates/frontend/jpg_to_pdf.html:137
+msgid "Remove unwanted images by clicking the X button"
+msgstr ""
+"Hapus gambar yang tidak diinginkan dengan mengklik tombol X - konverter JPG "
+"ke PDF kami memungkinkan pengelolaan gambar dengan mudah"
+
+#: templates/frontend/jpg_to_pdf.html:138
+msgid "Click the convert button to combine all images into one PDF"
+msgstr ""
+"Klik tombol konversi untuk menggabungkan semua gambar menjadi satu PDF - "
+"konverter cepat kami akan memprosesnya secara instan"
+
+#: templates/frontend/jpg_to_pdf.html:140
+msgid "Download your converted PDF file"
+msgstr ""
+"Unduh file PDF yang telah dikonversi - tanpa registrasi, sepenuhnya gratis, "
+"semua gambar dalam satu file"
+
+#: templates/frontend/jpg_to_pdf.html:156
+#, fuzzy
+#| msgid "Processing your file..."
+msgid "Converting your images..."
+msgstr "Memproses file Anda..."
+
+#: templates/frontend/jpg_to_pdf.html:159
+#, fuzzy
+#| msgid "Your file is ready to download"
+msgid "Your PDF is ready to download"
+msgstr "File Anda siap untuk diunduh"
+
+#: templates/frontend/jpg_to_pdf.html:160
+#, fuzzy
+#| msgid "Download File"
+msgid "Download PDF"
+msgstr "Unduh file"
+
+#: templates/frontend/merge_pdf.html:27
+msgid "Merge Settings"
+msgstr ""
+
+#: templates/frontend/merge_pdf.html:33
+#, fuzzy
+#| msgid "Please select a PDF file."
+msgid "Select PDF Files"
+msgstr "Silakan pilih file PDF."
+
+#: templates/frontend/merge_pdf.html:42
+#, fuzzy
+#| msgid "Please select a PDF file."
+msgid "Select PDF files"
+msgstr "Silakan pilih file PDF."
+
+#: templates/frontend/merge_pdf.html:55
+msgid "+ Add more files"
+msgstr ""
+
+#: templates/frontend/merge_pdf.html:59
+msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
+msgstr ""
+
+#: templates/frontend/merge_pdf.html:67
+#, fuzzy
+#| msgid "Related Articles"
+msgid "Selected Files"
+msgstr "Artikel terkait"
+
+#: templates/frontend/merge_pdf.html:79
+msgid "Preview & Reorder Pages"
+msgstr ""
+
+#: templates/frontend/merge_pdf.html:81
+msgid ""
+"Drag and drop to reorder files. The order shown here will be the merge order."
+msgstr ""
+
+#: templates/frontend/organize_pdf.html:11
+#, fuzzy
+#| msgid "Organization"
+msgid "Organization Settings"
+msgstr "Organisasi"
+
+#: templates/frontend/organize_pdf.html:16
+#, fuzzy
+#| msgid "Termination"
+msgid "Operation"
+msgstr "Pengakhiran"
+
+#: templates/frontend/organize_pdf.html:20
+#: templates/frontend/organize_pdf.html:29
+#, fuzzy
+#| msgid "Remove Pages"
+msgid "Reorder Pages"
+msgstr "Hapus halaman"
+
+#: templates/frontend/organize_pdf.html:21
+#, fuzzy
+#| msgid "Extract Pages"
+msgid "Sort Pages"
+msgstr "Ekstrak halaman"
+
+#: templates/frontend/organize_pdf.html:31
+msgid ""
+"Drag and drop pages to reorder them. The number on each page shows the new "
+"order."
+msgstr ""
+
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:444
+msgid "Privacy Policy - Convertica"
+msgstr "Kebijakan privasi - Convertica"
+
+#: templates/frontend/privacy.html:48 templates/frontend/terms.html:48
+msgid "Last updated: January 2025"
+msgstr "Terakhir diperbarui: Januari 2025"
+
+#: templates/frontend/privacy.html:61
+msgid ""
+"At Convertica, we take your privacy seriously. This Privacy Policy explains "
+"how we collect, use, disclose, and safeguard your information when you use "
+"our online PDF tools and services."
+msgstr ""
+"Di Convertica, kami menganggap privasi Anda dengan serius. Kebijakan Privasi "
+"ini menjelaskan bagaimana kami mengumpulkan, menggunakan, mengungkapkan, dan "
+"melindungi informasi Anda saat Anda menggunakan alat dan layanan PDF online "
+"kami."
+
+#: templates/frontend/privacy.html:64
+msgid ""
+"By using Convertica, you agree to the collection and use of information in "
+"accordance with this policy."
+msgstr ""
+"Dengan menggunakan Convertica, Anda menyetujui pengumpulan dan penggunaan "
+"informasi sesuai dengan kebijakan ini."
+
+#: templates/frontend/privacy.html:70
+msgid "Information We Collect"
+msgstr "Informasi yang kami kumpulkan"
+
+#: templates/frontend/privacy.html:74
+msgid "Files You Upload"
+msgstr "File yang Anda unggah"
+
+#: templates/frontend/privacy.html:76
+msgid ""
+"When you use our PDF tools, you may upload files for processing. These files "
+"are temporarily stored on our servers only for the duration of the "
+"conversion or editing process. Files are automatically deleted immediately "
+"after processing is complete, typically within minutes."
+msgstr ""
+"Saat Anda menggunakan alat PDF kami, Anda dapat mengunggah file untuk "
+"diproses. File ini disimpan sementara di server kami hanya selama proses "
+"konversi atau pengeditan. File dihapus otomatis segera setelah pemrosesan "
+"selesai, biasanya dalam hitungan menit."
+
+#: templates/frontend/privacy.html:81
+msgid "Usage Information"
+msgstr "Informasi penggunaan"
+
+#: templates/frontend/privacy.html:83
+msgid ""
+"We may collect information about how you access and use our services, "
+"including:"
+msgstr ""
+"Kami dapat mengumpulkan informasi tentang bagaimana Anda mengakses dan "
+"menggunakan layanan kami, termasuk:"
+
+#: templates/frontend/privacy.html:86
+msgid "IP address and browser type"
+msgstr "Alamat IP dan jenis browser"
+
+#: templates/frontend/privacy.html:87
+msgid "Device information and operating system"
+msgstr "Informasi perangkat dan sistem operasi"
+
+#: templates/frontend/privacy.html:88
+msgid "Pages visited and time spent on pages"
+msgstr "Halaman yang dikunjungi dan waktu yang dihabiskan di halaman"
+
+#: templates/frontend/privacy.html:89
+msgid "Referring website addresses"
+msgstr "Alamat situs web yang merujuk"
+
+#: templates/frontend/privacy.html:97
+msgid "How We Use Your Information"
+msgstr "Bagaimana kami menggunakan informasi Anda"
+
+#: templates/frontend/privacy.html:101
+msgid "We use the information we collect to:"
+msgstr "Kami menggunakan informasi yang kami kumpulkan untuk:"
+
+#: templates/frontend/privacy.html:104
+msgid "Process and convert your files as requested"
+msgstr "Proses dan konversi file Anda sesuai permintaan"
+
+#: templates/frontend/privacy.html:105
+msgid "Improve and optimize our services"
+msgstr "Tingkatkan dan optimalkan layanan kami"
+
+#: templates/frontend/privacy.html:106
+msgid "Monitor and analyze usage patterns"
+msgstr "Pantau dan analisis pola penggunaan"
+
+#: templates/frontend/privacy.html:107
+msgid "Ensure the security and functionality of our platform"
+msgstr "Memastikan keamanan dan fungsionalitas platform kami"
+
+#: templates/frontend/privacy.html:108
+msgid "Respond to your inquiries and provide customer support"
+msgstr "Menanggapi pertanyaan Anda dan memberikan dukungan pelanggan"
+
+#: templates/frontend/privacy.html:115
+msgid "Data Security"
+msgstr "Keamanan data"
+
+#: templates/frontend/privacy.html:119
+msgid ""
+"We implement appropriate technical and organizational security measures to "
+"protect your information:"
+msgstr ""
+"Kami menerapkan langkah-langkah keamanan teknis dan organisasi yang sesuai "
+"untuk melindungi informasi Anda:"
+
+#: templates/frontend/privacy.html:122
+msgid "All file transfers are encrypted using SSL/TLS protocols"
+msgstr "Semua transfer file dienkripsi menggunakan protokol SSL/TLS"
+
+#: templates/frontend/privacy.html:123
+msgid "Files are stored temporarily in secure, isolated environments"
+msgstr "File disimpan sementara di lingkungan yang aman dan terisolasi"
+
+#: templates/frontend/privacy.html:124
+msgid "Automatic deletion of files after processing completion"
+msgstr "Penghapusan otomatis file setelah pemrosesan selesai"
+
+#: templates/frontend/privacy.html:125
+msgid "Regular security audits and updates"
+msgstr "Audit keamanan dan pembaruan rutin"
+
+#: templates/frontend/privacy.html:126
+msgid "Access controls and monitoring systems"
+msgstr "Kontrol akses dan sistem pemantauan"
+
+#: templates/frontend/privacy.html:129
+#, fuzzy, python-format
+#| msgid ""
+#| "However, no method of transmission over the Internet or electronic "
+#| "storage is 100% secure. While we strive to use commercially acceptable "
+#| "means to protect your information, we cannot guarantee absolute security."
+msgid ""
+"However, no method of transmission over the Internet or electronic storage "
+"is 100%% secure. While we strive to use commercially acceptable means to "
+"protect your information, we cannot guarantee absolute security."
+msgstr ""
+"Namun, tidak ada metode transmisi melalui Internet atau penyimpanan "
+"elektronik yang 100% aman. Meskipun kami berusaha menggunakan cara yang "
+"dapat diterima secara komersial untuk melindungi informasi Anda, kami tidak "
+"dapat menjamin keamanan absolut."
+
+#: templates/frontend/privacy.html:136
+msgid "Data Retention"
+msgstr ""
+
+#: templates/frontend/privacy.html:139
+msgid ""
+"We retain your uploaded files only for the time necessary to complete the "
+"requested operation. Files are automatically deleted:"
+msgstr ""
+
+#: templates/frontend/privacy.html:142
+msgid "Immediately after successful processing"
+msgstr "Segera setelah pemrosesan berhasil"
+
+#: templates/frontend/privacy.html:143
+msgid "Within 1 hour if processing fails"
+msgstr "Dalam 1 jam jika pemrosesan gagal"
+
+#: templates/frontend/privacy.html:144
+msgid "We do not store your files permanently"
+msgstr ""
+
+#: templates/frontend/privacy.html:145
+msgid "We do not create backups of your uploaded files"
+msgstr "Kami tidak membuat cadangan file yang Anda unggah"
+
+#: templates/frontend/privacy.html:151
+msgid "Third-Party Services"
+msgstr ""
+
+#: templates/frontend/privacy.html:154
+msgid ""
+"We may use third-party services to help us operate our platform and analyze "
+"how our services are used. These services may have access to limited "
+"information, but they are obligated not to disclose or use it for any other "
+"purpose."
+msgstr ""
+"Kami dapat menggunakan layanan pihak ketiga untuk membantu kami "
+"mengoperasikan platform kami dan menganalisis bagaimana layanan kami "
+"digunakan. Layanan ini mungkin memiliki akses ke informasi terbatas, tetapi "
+"mereka berkewajiban untuk tidak mengungkapkan atau menggunakannya untuk "
+"tujuan lain."
+
+#: templates/frontend/privacy.html:157
+#, fuzzy
+#| msgid ""
+#| "We do not sell, trade, or rent your personal information to third "
+#| "parties. We may share your information only in the following "
+#| "circumstances:"
+msgid ""
+"We do not sell, trade, or rent your personal information to third parties."
+msgstr ""
+"Kami tidak menjual, memperdagangkan, atau menyewakan informasi pribadi Anda "
+"kepada pihak ketiga. Kami dapat membagikan informasi Anda hanya dalam "
+"keadaan berikut:"
+
+#: templates/frontend/privacy.html:163
+msgid "Cookies and Tracking"
+msgstr "Cookie dan pelacakan"
+
+#: templates/frontend/privacy.html:166
+msgid ""
+"We may use cookies and similar tracking technologies to track activity on "
+"our platform and hold certain information. Cookies are files with a small "
+"amount of data that may include an anonymous unique identifier."
+msgstr ""
+"Kami dapat menggunakan cookie dan teknologi pelacakan serupa untuk melacak "
+"aktivitas di platform kami dan menyimpan informasi tertentu. Cookie adalah "
+"file dengan sejumlah kecil data yang mungkin menyertakan pengenal unik "
+"anonim."
+
+#: templates/frontend/privacy.html:169
+msgid ""
+"You can instruct your browser to refuse all cookies or to indicate when a "
+"cookie is being sent. However, if you do not accept cookies, you may not be "
+"able to use some portions of our service."
+msgstr ""
+"Anda dapat menginstruksikan browser Anda untuk menolak semua cookie atau "
+"menunjukkan kapan cookie dikirim. Namun, jika Anda tidak menerima cookie, "
+"Anda mungkin tidak dapat menggunakan beberapa bagian layanan kami."
+
+#: templates/frontend/privacy.html:175
+msgid "Your Privacy Rights"
+msgstr "Hak privasi Anda"
+
+#: templates/frontend/privacy.html:179
+msgid "You have the right to:"
+msgstr "Anda berhak untuk:"
+
+#: templates/frontend/privacy.html:182
+msgid "Access information we hold about you"
+msgstr "Mengakses informasi yang kami miliki tentang Anda"
+
+#: templates/frontend/privacy.html:183
+msgid "Request correction of inaccurate information"
+msgstr "Meminta koreksi informasi yang tidak akurat"
+
+#: templates/frontend/privacy.html:184
+msgid "Request deletion of your information"
+msgstr "Meminta penghapusan informasi Anda"
+
+#: templates/frontend/privacy.html:185
+msgid "Object to processing of your information"
+msgstr "Keberatan terhadap pemrosesan informasi Anda"
+
+#: templates/frontend/privacy.html:186
+msgid "Request restriction of processing"
+msgstr "Meminta pembatasan pemrosesan"
+
+#: templates/frontend/privacy.html:189
+msgid ""
+"To exercise these rights, please contact us using the information provided "
+"in the Contact section."
+msgstr ""
+"Untuk menggunakan hak-hak ini, silakan hubungi kami menggunakan informasi "
+"yang disediakan di bagian Kontak."
+
+#: templates/frontend/privacy.html:196
+msgid "Children's Privacy"
+msgstr "Privasi anak-anak"
+
+#: templates/frontend/privacy.html:199
+msgid ""
+"Our services are not intended for children under the age of 13. We do not "
+"knowingly collect personal information from children under 13. If you are a "
+"parent or guardian and believe your child has provided us with personal "
+"information, please contact us."
+msgstr ""
+"Layanan kami tidak ditujukan untuk anak-anak di bawah usia 13 tahun. Kami "
+"tidak secara sengaja mengumpulkan informasi pribadi dari anak-anak di bawah "
+"13 tahun. Jika Anda adalah orang tua atau wali dan percaya bahwa anak Anda "
+"telah memberikan informasi pribadi kepada kami, silakan hubungi kami."
+
+#: templates/frontend/privacy.html:205
+msgid "Changes to This Privacy Policy"
+msgstr "Perubahan pada Kebijakan Privasi ini"
+
+#: templates/frontend/privacy.html:208
+#, fuzzy
+#| msgid ""
+#| "We may update our Privacy Policy from time to time. We will notify you of "
+#| "any changes by posting the new Privacy Policy on this page and updating "
+#| "the \"Last updated\" date. You are advised to review this Privacy Policy "
+#| "periodically for any changes."
+msgid ""
+"We may update our Privacy Policy from time to time. We will notify you of "
+"any changes by posting the new Privacy Policy on this page and updating the "
+"\\"
+msgstr ""
+"Kami dapat memperbarui Kebijakan Privasi kami dari waktu ke waktu. Kami akan "
+"memberi tahu Anda tentang perubahan apa pun dengan memposting Kebijakan "
+"Privasi baru di halaman ini dan memperbarui tanggal \"Terakhir diperbarui\". "
+"Anda disarankan untuk meninjau Kebijakan Privasi ini secara berkala untuk "
+"perubahan apa pun."
+
+#: templates/frontend/privacy.html:214
+msgid "Questions About Privacy?"
+msgstr "Pertanyaan tentang privasi?"
+
+#: templates/frontend/privacy.html:216
+msgid "If you have any questions about this Privacy Policy, please contact us."
+msgstr ""
+"Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi "
+"kami."
+
+#: templates/frontend/protect_pdf.html:6
+msgid "Password Protection Settings"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:12
+msgid "Password"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:20
+#, fuzzy
+#| msgid "Remove password protection from your PDF"
+msgid "Enter password to protect PDF"
+msgstr "Hapus perlindungan kata sandi dari PDF Anda"
+
+#: templates/frontend/protect_pdf.html:23
+msgid ""
+"This password will be required to open the PDF. Make sure to remember it!"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:30
+msgid "User Password"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:30
+#: templates/frontend/protect_pdf.html:46
+msgid "Optional"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:36
+msgid "Optional: Different user password"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:39
+msgid ""
+"Optional: Set a different password for users. If not provided, the main "
+"password will be used."
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:46
+msgid "Owner Password"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:52
+msgid "Optional: Different owner password"
+msgstr ""
+
+#: templates/frontend/protect_pdf.html:55
+msgid ""
+"Optional: Set a different password for owner. If not provided, the main "
+"password will be used."
+msgstr ""
+
+#: templates/frontend/remove_pages.html:6
+#, fuzzy
+#| msgid "Remove Pages"
+msgid "Remove Pages Settings"
+msgstr "Hapus halaman"
+
+#: templates/frontend/remove_pages.html:12
+#, fuzzy
+#| msgid "Changes to Terms"
+msgid "Pages to Remove"
+msgstr "Perubahan ketentuan"
+
+#: templates/frontend/rotate_pdf.html:6
+msgid "Rotation Settings"
+msgstr ""
+
+#: templates/frontend/rotate_pdf.html:12
+msgid "Rotation Angle"
+msgstr ""
+
+#: templates/frontend/rotate_pdf.html:16
+msgid "(Clockwise)"
+msgstr ""
+
+#: templates/frontend/rotate_pdf.html:17
+msgid "(Upside down)"
+msgstr ""
+
+#: templates/frontend/rotate_pdf.html:18
+msgid "(Counter-clockwise)"
+msgstr ""
+
+#: templates/frontend/rotate_pdf.html:25
+#, fuzzy
+#| msgid "I agree to the"
+msgid "Pages to Rotate"
+msgstr "Saya setuju dengan"
+
+#: templates/frontend/split_pdf.html:6
+msgid "Split Settings"
+msgstr ""
+
+#: templates/frontend/split_pdf.html:12
+#, fuzzy
+#| msgid "Split PDF"
+msgid "Split Type"
+msgstr "Pisahkan PDF"
+
+#: templates/frontend/split_pdf.html:16
+msgid "By Individual Pages"
+msgstr ""
+
+#: templates/frontend/split_pdf.html:17
+#, fuzzy
+#| msgid "Page Management"
+msgid "By Page Ranges"
+msgstr "Manajemen halaman"
+
+#: templates/frontend/split_pdf.html:18
+#, fuzzy
+#| msgid "Remove Pages"
+msgid "Every N Pages"
+msgstr "Hapus halaman"
+
+#: templates/frontend/split_pdf.html:25
+#, fuzzy
+#| msgid "Page"
+msgid "Pages"
+msgstr "Halaman"
+
+#: templates/frontend/split_pdf.html:33
+msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
+msgstr ""
+
+#: templates/frontend/split_pdf.html:51
+msgid ""
+"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
+"pages"
+msgstr ""
+
+#: templates/frontend/split_pdf.html:53
+#, fuzzy
+#| msgid "Page Management"
+msgid "Page Ranges"
+msgstr "Manajemen halaman"
+
+#: templates/frontend/split_pdf.html:55
+msgid "Enter page ranges like 1-3,5-7 (required)"
+msgstr ""
+
+#: templates/frontend/split_pdf.html:58
+msgid "Pages per File"
+msgstr ""
+
+#: templates/frontend/split_pdf.html:60
+msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
+msgstr ""
+
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:454
+msgid "Terms of Service - Convertica"
+msgstr "Ketentuan layanan - Convertica"
+
+#: templates/frontend/terms.html:61
+msgid "Welcome to Convertica. These Terms of Service (\\"
+msgstr ""
+
+#: templates/frontend/terms.html:64
+msgid ""
+"If you disagree with any part of these Terms, then you may not access or use "
+"our Services."
+msgstr ""
+"Jika Anda tidak setuju dengan bagian mana pun dari Ketentuan ini, maka Anda "
+"tidak dapat mengakses atau menggunakan Layanan kami."
+
+#: templates/frontend/terms.html:70
+msgid "Acceptance of Terms"
+msgstr "Penerimaan ketentuan"
+
+#: templates/frontend/terms.html:73
+msgid ""
+"By accessing or using Convertica's Services, you acknowledge that you have "
+"read, understood, and agree to be bound by these Terms and our Privacy "
+"Policy. If you do not agree to these Terms, you must not use our Services."
+msgstr ""
+"Dengan mengakses atau menggunakan Layanan Convertica, Anda mengakui bahwa "
+"Anda telah membaca, memahami, dan setuju untuk terikat oleh Ketentuan ini "
+"dan Kebijakan Privasi kami. Jika Anda tidak setuju dengan Ketentuan ini, "
+"Anda tidak boleh menggunakan Layanan kami."
+
+#: templates/frontend/terms.html:79
+msgid "Description of Services"
+msgstr "Deskripsi layanan"
+
+#: templates/frontend/terms.html:82
+msgid ""
+"Convertica provides online PDF tools and services, including but not limited "
+"to:"
+msgstr ""
+"Convertica menyediakan alat dan layanan PDF online, termasuk tetapi tidak "
+"terbatas pada:"
+
+#: templates/frontend/terms.html:85
+msgid ""
+"PDF conversion (PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, PDF to "
+"Excel)"
+msgstr ""
+"Konversi PDF (PDF ke Word, Word ke PDF, PDF ke JPG, JPG ke PDF, PDF ke Excel)"
+
+#: templates/frontend/terms.html:86
+msgid "PDF editing (rotate, crop, add watermark, add page numbers)"
+msgstr "Edit PDF (putar, potong, tambahkan watermark, tambahkan nomor halaman)"
+
+#: templates/frontend/terms.html:87
+msgid ""
+"PDF organization (merge, split, extract, remove pages, organize, compress)"
+msgstr ""
+"Organisasi PDF (gabungkan, pisahkan, ekstrak, hapus halaman, atur, kompres)"
+
+#: templates/frontend/terms.html:88
+msgid "PDF security (protect with password, unlock PDF)"
+msgstr "Keamanan PDF (lindungi dengan kata sandi, buka kunci PDF)"
+
+#: templates/frontend/terms.html:91
+msgid ""
+"We reserve the right to modify, suspend, or discontinue any part of our "
+"Services at any time without prior notice."
+msgstr ""
+"Kami berhak untuk memodifikasi, menangguhkan, atau menghentikan bagian mana "
+"pun dari Layanan kami kapan saja tanpa pemberitahuan sebelumnya."
+
+#: templates/frontend/terms.html:97
+msgid "User Responsibilities"
+msgstr "Tanggung jawab pengguna"
+
+#: templates/frontend/terms.html:101
+msgid ""
+"You agree to use our Services only for lawful purposes and in accordance "
+"with these Terms. You agree not to:"
+msgstr ""
+"Anda setuju untuk menggunakan Layanan kami hanya untuk tujuan yang sah dan "
+"sesuai dengan Ketentuan ini. Anda setuju untuk tidak:"
+
+#: templates/frontend/terms.html:104
+msgid "Upload files that contain viruses, malware, or other harmful code"
+msgstr ""
+"Mengunggah file yang berisi virus, malware, atau kode berbahaya lainnya"
+
+#: templates/frontend/terms.html:105
+msgid "Upload files that infringe on intellectual property rights"
+msgstr "Mengunggah file yang melanggar hak kekayaan intelektual"
+
+#: templates/frontend/terms.html:106
+msgid "Upload files that contain illegal, offensive, or inappropriate content"
+msgstr ""
+"Mengunggah file yang berisi konten ilegal, menyinggung, atau tidak pantas"
+
+#: templates/frontend/terms.html:107
+msgid "Attempt to gain unauthorized access to our systems or networks"
+msgstr "Mencoba mendapatkan akses tidak sah ke sistem atau jaringan kami"
+
+#: templates/frontend/terms.html:108
+msgid "Use automated systems or scripts to access our Services excessively"
+msgstr ""
+"Menggunakan sistem otomatis atau skrip untuk mengakses Layanan kami secara "
+"berlebihan"
+
+#: templates/frontend/terms.html:109
+msgid ""
+"Interfere with or disrupt the Services or servers connected to the Services"
+msgstr ""
+"Mengganggu atau mengganggu Layanan atau server yang terhubung ke Layanan"
+
+#: templates/frontend/terms.html:110
+msgid "Reverse engineer, decompile, or disassemble any part of our Services"
+msgstr ""
+"Rekayasa balik, dekompilasi, atau membongkar bagian mana pun dari Layanan "
+"kami"
+
+#: templates/frontend/terms.html:117
+msgid "File Upload and Processing"
+msgstr "Unggah dan pemrosesan file"
+
+#: templates/frontend/terms.html:121
+msgid "File Size and Format Limitations"
+msgstr "Batasan ukuran dan format file"
+
+#: templates/frontend/terms.html:123
+msgid ""
+"You are responsible for ensuring that files you upload comply with our file "
+"size and format requirements. We reserve the right to reject or limit the "
+"processing of files that exceed our size limits or are in unsupported "
+"formats."
+msgstr ""
+"Anda bertanggung jawab untuk memastikan bahwa file yang Anda unggah mematuhi "
+"persyaratan ukuran dan format file kami. Kami berhak menolak atau membatasi "
+"pemrosesan file yang melebihi batas ukuran kami atau dalam format yang tidak "
+"didukung."
+
+#: templates/frontend/terms.html:128
+msgid "File Storage and Deletion"
+msgstr "Penyimpanan dan penghapusan file"
+
+#: templates/frontend/terms.html:130
+msgid ""
+"Files uploaded to our Services are processed temporarily and automatically "
+"deleted after processing is complete. We do not store your files "
+"permanently. However, you are responsible for maintaining backups of your "
+"files."
+msgstr ""
+"File yang diunggah ke Layanan kami diproses sementara dan dihapus otomatis "
+"setelah pemrosesan selesai. Kami tidak menyimpan file Anda secara permanen. "
+"Namun, Anda bertanggung jawab untuk memelihara cadangan file Anda."
+
+#: templates/frontend/terms.html:135
+msgid "Processing Accuracy"
+msgstr "Akurasi pemrosesan"
+
+#: templates/frontend/terms.html:137
+msgid ""
+"While we strive to provide accurate conversions and processing, we cannot "
+"guarantee that all files will be processed correctly or that the output will "
+"meet your specific requirements. You are responsible for verifying the "
+"accuracy of processed files."
+msgstr ""
+"Meskipun kami berusaha memberikan konversi dan pemrosesan yang akurat, kami "
+"tidak dapat menjamin bahwa semua file akan diproses dengan benar atau bahwa "
+"output akan memenuhi persyaratan khusus Anda. Anda bertanggung jawab untuk "
+"memverifikasi keakuratan file yang diproses."
+
+#: templates/frontend/terms.html:145
+#, fuzzy
+#| msgid "Our Intellectual Property"
+msgid "Intellectual Property"
+msgstr "Kekayaan intelektual kami"
+
+#: templates/frontend/terms.html:149
+msgid "Our Intellectual Property"
+msgstr "Kekayaan intelektual kami"
+
+#: templates/frontend/terms.html:151
+msgid ""
+"All content, features, and functionality of our Services, including but not "
+"limited to text, graphics, logos, icons, images, and software, are the "
+"exclusive property of Convertica and are protected by international "
+"copyright, trademark, and other intellectual property laws."
+msgstr ""
+"Semua konten, fitur, dan fungsionalitas Layanan kami, termasuk tetapi tidak "
+"terbatas pada teks, grafik, logo, ikon, gambar, dan perangkat lunak, adalah "
+"milik eksklusif Convertica dan dilindungi oleh undang-undang hak cipta "
+"internasional, merek dagang, dan undang-undang kekayaan intelektual lainnya."
+
+#: templates/frontend/terms.html:156
+msgid "Your Content"
+msgstr "Konten Anda"
+
+#: templates/frontend/terms.html:158
+msgid ""
+"You retain all rights to files you upload. By uploading files, you grant us "
+"a limited, non-exclusive license to process your files solely for the "
+"purpose of providing the requested Services. We do not claim ownership of "
+"your files."
+msgstr ""
+"Anda mempertahankan semua hak atas file yang Anda unggah. Dengan mengunggah "
+"file, Anda memberikan lisensi terbatas dan non-eksklusif kepada kami untuk "
+"memproses file Anda semata-mata untuk tujuan menyediakan Layanan yang "
+"diminta. Kami tidak mengklaim kepemilikan file Anda."
+
+#: templates/frontend/terms.html:166
+msgid "Disclaimer of Warranties"
+msgstr "Penyangkalan jaminan"
+
+#: templates/frontend/terms.html:169
+msgid "Our Services are provided \\"
+msgstr ""
+
+#: templates/frontend/terms.html:172
+msgid "Warranties of merchantability"
+msgstr "Jaminan dapat diperdagangkan"
+
+#: templates/frontend/terms.html:173
+msgid "Fitness for a particular purpose"
+msgstr "Kesesuaian untuk tujuan tertentu"
+
+#: templates/frontend/terms.html:174
+msgid "Non-infringement"
+msgstr "Tidak melanggar"
+
+#: templates/frontend/terms.html:175
+msgid "Accuracy, reliability, or completeness of results"
+msgstr "Akurasi, keandalan, atau kelengkapan hasil"
+
+#: templates/frontend/terms.html:178
+msgid ""
+"We do not warrant that our Services will be uninterrupted, secure, or error-"
+"free, or that defects will be corrected."
+msgstr ""
+"Kami tidak menjamin bahwa Layanan kami akan tidak terputus, aman, atau bebas "
+"kesalahan, atau bahwa cacat akan diperbaiki."
+
+#: templates/frontend/terms.html:184
+msgid "Limitation of Liability"
+msgstr "Pembatasan tanggung jawab"
+
+#: templates/frontend/terms.html:187
+msgid ""
+"To the maximum extent permitted by law, Convertica and its affiliates, "
+"officers, employees, and agents shall not be liable for any indirect, "
+"incidental, special, consequential, or punitive damages, including but not "
+"limited to:"
+msgstr ""
+
+#: templates/frontend/terms.html:190
+msgid "Loss of data or files"
+msgstr "Kehilangan data atau file"
+
+#: templates/frontend/terms.html:191
+msgid "Loss of profits or business opportunities"
+msgstr "Kehilangan keuntungan atau peluang bisnis"
+
+#: templates/frontend/terms.html:192
+msgid "Service interruptions or failures"
+msgstr "Gangguan atau kegagalan layanan"
+
+#: templates/frontend/terms.html:193
+msgid "Errors or inaccuracies in processed files"
+msgstr "Kesalahan atau ketidakakuratan dalam file yang diproses"
+
+#: templates/frontend/terms.html:196
+msgid ""
+"Our total liability for any claims arising from or related to the use of our "
+"Services shall not exceed the amount you paid to us (if any) in the twelve "
+"months preceding the claim, or $100, whichever is greater."
+msgstr ""
+"Total tanggung jawab kami untuk klaim apa pun yang timbul dari atau terkait "
+"dengan penggunaan Layanan kami tidak akan melebihi jumlah yang Anda bayar "
+"kepada kami (jika ada) dalam dua belas bulan sebelum klaim, atau $100, mana "
+"yang lebih besar."
+
+#: templates/frontend/terms.html:202
+msgid "Indemnification"
+msgstr "Ganti rugi"
+
+#: templates/frontend/terms.html:205
+msgid ""
+"You agree to indemnify, defend, and hold harmless Convertica and its "
+"affiliates, officers, employees, and agents from and against any claims, "
+"damages, obligations, losses, liabilities, costs, or debt, and expenses "
+"(including attorney's fees) arising from:"
+msgstr ""
+"Anda setuju untuk mengganti rugi, membela, dan membebaskan Convertica dan "
+"afiliasinya, pejabat, karyawan, dan agen dari dan terhadap klaim, kerusakan, "
+"kewajiban, kerugian, tanggung jawab, biaya atau utang, dan pengeluaran "
+"(termasuk biaya pengacara) yang timbul dari:"
+
+#: templates/frontend/terms.html:208
+msgid "Your use of our Services"
+msgstr "Penggunaan Anda atas Layanan kami"
+
+#: templates/frontend/terms.html:209
+msgid "Your violation of these Terms"
+msgstr "Pelanggaran Anda terhadap Ketentuan ini"
+
+#: templates/frontend/terms.html:210
+msgid "Your violation of any third-party rights"
+msgstr "Pelanggaran Anda terhadap hak pihak ketiga mana pun"
+
+#: templates/frontend/terms.html:211
+msgid "Files you upload or content you provide"
+msgstr "File yang Anda unggah atau konten yang Anda berikan"
+
+#: templates/frontend/terms.html:217
+msgid "Termination"
+msgstr "Pengakhiran"
+
+#: templates/frontend/terms.html:220
+msgid ""
+"We reserve the right to terminate or suspend your access to our Services "
+"immediately, without prior notice or liability, for any reason, including if "
+"you breach these Terms. Upon termination, your right to use the Services "
+"will cease immediately."
+msgstr ""
+"Kami berhak untuk mengakhiri atau menangguhkan akses Anda ke Layanan kami "
+"segera, tanpa pemberitahuan sebelumnya atau tanggung jawab, karena alasan "
+"apa pun, termasuk jika Anda melanggar Ketentuan ini. Setelah pengakhiran, "
+"hak Anda untuk menggunakan Layanan akan berhenti segera."
+
+#: templates/frontend/terms.html:226
+msgid "Changes to Terms"
+msgstr "Perubahan ketentuan"
+
+#: templates/frontend/terms.html:229
+msgid ""
+"We reserve the right to modify or replace these Terms at any time. If a "
+"revision is material, we will provide at least 30 days notice prior to any "
+"new terms taking effect. What constitutes a material change will be "
+"determined at our sole discretion."
+msgstr ""
+"Kami berhak untuk memodifikasi atau mengganti Ketentuan ini kapan saja. Jika "
+"revisi bersifat material, kami akan memberikan pemberitahuan setidaknya 30 "
+"hari sebelum ketentuan baru berlaku. Apa yang constitutes perubahan material "
+"akan ditentukan atas kebijakan kami sendiri."
+
+#: templates/frontend/terms.html:232
+msgid ""
+"By continuing to access or use our Services after any revisions become "
+"effective, you agree to be bound by the revised terms."
+msgstr ""
+"Dengan melanjutkan akses atau menggunakan Layanan kami setelah revisi apa "
+"pun berlaku, Anda setuju untuk terikat oleh ketentuan yang direvisi."
+
+#: templates/frontend/terms.html:238
+msgid "Governing Law"
+msgstr "Hukum yang berlaku"
+
+#: templates/frontend/terms.html:241
+msgid ""
+"These Terms shall be governed by and construed in accordance with applicable "
+"laws, without regard to its conflict of law provisions. Any disputes arising "
+"from these Terms or your use of our Services shall be subject to the "
+"exclusive jurisdiction of the courts in the applicable jurisdiction."
+msgstr ""
+"Ketentuan ini akan diatur dan ditafsirkan sesuai dengan hukum yang berlaku, "
+"tanpa memperhatikan ketentuan konflik hukumnya. Setiap sengketa yang timbul "
+"dari Ketentuan ini atau penggunaan Anda atas Layanan kami akan tunduk pada "
+"yurisdiksi eksklusif pengadilan di yurisdiksi yang berlaku."
+
+#: templates/frontend/terms.html:247
+msgid "Questions About These Terms?"
+msgstr "Pertanyaan tentang Ketentuan ini?"
+
+#: templates/frontend/terms.html:249
+msgid ""
+"If you have any questions about these Terms of Service, please contact us."
+msgstr ""
+"Jika Anda memiliki pertanyaan tentang Ketentuan Layanan ini, silakan hubungi "
+"kami."
+
+#: templates/frontend/unlock_pdf.html:6
+#, fuzzy
+#| msgid "Unlock PDF"
+msgid "Unlock PDF Settings"
+msgstr "Buka kunci PDF"
+
+#: templates/frontend/unlock_pdf.html:12
+#, fuzzy
+#| msgid "PDF to Word"
+msgid "PDF Password"
+msgstr "PDF ke Word"
+
+#: templates/frontend/unlock_pdf.html:20
+msgid "Enter the password to unlock the PDF"
+msgstr ""
+
+#: templates/frontend/unlock_pdf.html:23
+msgid ""
+"Enter the password that was used to protect the PDF. The password will be "
+"removed from the output PDF."
+msgstr ""
+
+#: utils_site/src/blog/admin.py:21 utils_site/src/blog/admin.py:95
+#, fuzzy
+#| msgid "Contact Information"
+msgid "Basic Information"
+msgstr "Informasi kontak"
+
+#: utils_site/src/blog/admin.py:24 utils_site/src/blog/admin.py:72
+#: utils_site/src/blog/admin.py:105 utils_site/src/blog/admin.py:154
+#: utils_site/src/blog/models.py:20 utils_site/src/blog/models.py:98
+#, fuzzy
+#| msgid "Termination"
+msgid "Translations"
+msgstr "Pengakhiran"
+
+#: utils_site/src/blog/admin.py:26
+msgid "Add translations for other languages using the tabs above."
+msgstr ""
+
+#: utils_site/src/blog/admin.py:28
+msgid "Metadata"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:39 utils_site/src/blog/admin.py:136
+msgid "No translations"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:48 utils_site/src/blog/admin.py:142
+msgid "No valid translations"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:68
+msgid "Empty translations"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:77 utils_site/src/blog/models.py:145
+#, fuzzy
+#| msgid "All Articles"
+msgid "Articles"
+msgstr "Semua artikel"
+
+#: utils_site/src/blog/admin.py:98
+msgid "English Content"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:101
+msgid "SEO - English"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:107
+msgid ""
+"Add translations for other languages using the tabs above. Each language has "
+"its own tab with all necessary fields."
+msgstr ""
+
+#: utils_site/src/blog/admin.py:109 utils_site/src/blog/models.py:112
+msgid "AI Metadata"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:112
+msgid ""
+"Additional metadata for AI agents to better understand and index your "
+"content."
+msgstr ""
+
+#: utils_site/src/blog/admin.py:114
+msgid "Media"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:117
+msgid "Statistics"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:130
+msgid "No image"
+msgstr ""
+
+#: utils_site/src/blog/admin.py:131
+#, fuzzy
+#| msgid "Previous"
+msgid "Preview"
+msgstr "Sebelumnya"
+
+#: utils_site/src/blog/models.py:12
+msgid "Name (English)"
+msgstr ""
+
+#: utils_site/src/blog/models.py:13 utils_site/src/blog/models.py:85
+msgid "Slug"
+msgstr ""
+
+#: utils_site/src/blog/models.py:21
+msgid ""
+"Translations for other languages. Format: {\"ru\": {\"name\": \"...\", "
+"\"description\": \"...\"}, ...}"
+msgstr ""
+
+#: utils_site/src/blog/models.py:25
+#, fuzzy
+#| msgid "Description of Services"
+msgid "Description (English)"
+msgstr "Deskripsi layanan"
+
+#: utils_site/src/blog/models.py:31
+msgid "Article Category"
+msgstr ""
+
+#: utils_site/src/blog/models.py:32
+#, fuzzy
+#| msgid "Categories"
+msgid "Article Categories"
+msgstr "Kategori"
+
+#: utils_site/src/blog/models.py:78
+msgid "Draft"
+msgstr ""
+
+#: utils_site/src/blog/models.py:79
+msgid "Published"
+msgstr ""
+
+#: utils_site/src/blog/models.py:80
+msgid "Archived"
+msgstr ""
+
+#: utils_site/src/blog/models.py:84
+msgid "Title (English)"
+msgstr ""
+
+#: utils_site/src/blog/models.py:86
+msgid "Content (English)"
+msgstr ""
+
+#: utils_site/src/blog/models.py:87
+msgid "Excerpt (English)"
+msgstr ""
+
+#: utils_site/src/blog/models.py:99
+msgid ""
+"Translations for other languages. Format: {\"ru\": {\"title\": \"...\", "
+"\"content\": \"...\", ...}, ...}"
+msgstr ""
+
+#: utils_site/src/blog/models.py:103
+msgid "Meta Title (English)"
+msgstr ""
+
+#: utils_site/src/blog/models.py:104
+msgid "Meta Description (English)"
+msgstr ""
+
+#: utils_site/src/blog/models.py:105
+msgid "Meta Keywords (English)"
+msgstr ""
+
+#: utils_site/src/blog/models.py:113
+msgid ""
+"Additional metadata for AI agents: topics, entities, summary, related_terms, "
+"etc."
+msgstr ""
+
+#: utils_site/src/blog/models.py:123
+#, fuzzy
+#| msgid "Categories"
+msgid "Category"
+msgstr "Kategori"
+
+#: utils_site/src/blog/models.py:131
+msgid "Featured Image"
+msgstr ""
+
+#: utils_site/src/blog/models.py:135
+msgid "Status"
+msgstr ""
+
+#: utils_site/src/blog/models.py:136
+msgid "Published At"
+msgstr ""
+
+#: utils_site/src/blog/models.py:137
+#, fuzzy
+#| msgid "Related Articles"
+msgid "Created At"
+msgstr "Artikel terkait"
+
+#: utils_site/src/blog/models.py:138
+msgid "Updated At"
+msgstr ""
+
+#: utils_site/src/blog/models.py:141
+msgid "View Count"
+msgstr ""
+
+#: utils_site/src/blog/models.py:144
+#, fuzzy
+#| msgid "All Articles"
+msgid "Article"
+msgstr "Semua artikel"
+
+#: utils_site/src/frontend/views.py:29
+msgid ""
+"PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
+"free converter, convert PDF, convert Word, free pdf tools online, pdf tools "
+"no registration, best pdf converter online, pdf editor online free, pdf "
+"tools for students, pdf tools for business, smallpdf alternative, ilovepdf "
+"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
+"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
+"watermark tool, high quality pdf converter, pdf converter no quality loss, "
+"pdf converter best quality, pdf converter for mac, pdf converter for "
+"windows, pdf converter for linux, pdf converter mobile"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:94
+msgid "Conversion failed. Please try again."
+msgstr "Konversi gagal. Silakan coba lagi."
+
+#: utils_site/src/frontend/views.py:424
+msgid "All PDF Tools - Convertica"
+msgstr "Semua alat PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:425
+msgid ""
+"Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
+"PDF tools for all your document needs."
+msgstr ""
+"Jelajahi semua alat PDF: Konversi, Edit, Atur, dan Lindungi PDF. Alat PDF "
+"online gratis untuk semua kebutuhan dokumen Anda."
+
+#: utils_site/src/frontend/views.py:426
+msgid ""
+"PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all PDF "
+"tools, online PDF tools, free PDF tools, free pdf tools online, pdf tools no "
+"registration, best pdf converter online, pdf editor online free, pdf tools "
+"for students, pdf tools for business, smallpdf alternative, ilovepdf "
+"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
+"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
+"watermark tool, high quality pdf converter, pdf converter no quality loss, "
+"pdf converter best quality, pdf converter for mac, pdf converter for "
+"windows, pdf converter for linux, pdf converter mobile, convert pdf to word "
+"for resume, merge pdf for thesis, compress pdf for email attachment, split "
+"pdf by chapters"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:435
+msgid ""
+"Learn about Convertica - your trusted online PDF tools platform. We are "
+"committed to constant improvement and providing the best PDF conversion and "
+"editing experience."
+msgstr ""
+"Pelajari Convertica - platform alat PDF online terpercaya Anda. Kami "
+"berkomitmen untuk perbaikan berkelanjutan dan menyediakan pengalaman "
+"konversi dan pengeditan PDF terbaik."
+
+#: utils_site/src/frontend/views.py:436
+msgid ""
+"about Convertica, PDF tools company, online PDF converter, PDF services, "
+"document conversion"
+msgstr ""
+"tentang Convertica, perusahaan alat PDF, konverter PDF online, layanan PDF, "
+"konversi dokumen"
+
+#: utils_site/src/frontend/views.py:445
+msgid ""
+"Read Convertica's Privacy Policy. Learn how we protect your data and handle "
+"your files. Your privacy is our priority."
+msgstr ""
+"Baca Kebijakan Privasi Convertica. Pelajari bagaimana kami melindungi data "
+"Anda dan menangani file Anda. Privasi Anda adalah prioritas kami."
+
+#: utils_site/src/frontend/views.py:446
+msgid ""
+"privacy policy, data protection, file security, privacy, Convertica privacy"
+msgstr ""
+"kebijakan privasi, perlindungan data, keamanan file, privasi, privasi "
+"Convertica"
+
+#: utils_site/src/frontend/views.py:455
+msgid ""
+"Read Convertica's Terms of Service. Understand the terms and conditions for "
+"using our PDF tools and services."
+msgstr ""
+"Baca Ketentuan Layanan Convertica. Pahami syarat dan ketentuan untuk "
+"menggunakan alat PDF dan layanan kami."
+
+#: utils_site/src/frontend/views.py:456
+msgid ""
+"terms of service, terms and conditions, user agreement, Convertica terms"
+msgstr ""
+"ketentuan layanan, syarat dan ketentuan, perjanjian pengguna, ketentuan "
+"Convertica"
+
+#: utils_site/src/frontend/views.py:465
+msgid ""
+"Contact Convertica for support, questions, or feedback. We're here to help "
+"with all your PDF tool needs."
+msgstr ""
+"Hubungi Convertica untuk dukungan, pertanyaan, atau umpan balik. Kami di "
+"sini untuk membantu dengan semua kebutuhan alat PDF Anda."
+
+#: utils_site/src/frontend/views.py:466
+msgid "contact Convertica, support, customer service, help, feedback"
+msgstr "hubungi Convertica, dukungan, layanan pelanggan, bantuan, umpan balik"
+
+#: utils_site/src/frontend/views.py:474
+#, fuzzy
+#| msgid "Frequently Asked Questions"
+msgid "Frequently Asked Questions (FAQ) - Convertica"
+msgstr "Pertanyaan yang sering diajukan"
+
+#: utils_site/src/frontend/views.py:475
+msgid ""
+"Find answers to frequently asked questions about Convertica PDF tools. Learn "
+"how to convert, edit, and organize PDF files online for free."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:476
+msgid ""
+"FAQ, frequently asked questions, PDF converter help, PDF tools FAQ, how to "
+"convert PDF, PDF questions, convert pdf to word online free, pdf to word "
+"without losing formatting, compress pdf online free, merge pdf online free, "
+"split pdf online free, pdf to jpg online free, jpg to pdf online free, pdf "
+"to excel online free, word to pdf online free, rotate pdf online free, add "
+"watermark to pdf online free, crop pdf online free, protect pdf online free, "
+"unlock pdf online free, pdf converter no email, pdf converter no "
+"registration, pdf converter unlimited, pdf converter no watermark, pdf "
+"converter fast, pdf converter safe, pdf converter free, pdf tools help, pdf "
+"conversion questions, pdf editing questions, pdf organization questions, pdf "
+"security questions"
+msgstr ""
+
+#, fuzzy
+#~| msgid ""
+#~| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
+#~| "online PDF converter"
+#~ msgid ""
+#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online "
+#~ "converter, free converter, convert PDF, convert Word"
+#~ msgstr ""
+#~ "PDF ke Word, PDF ke DOCX, konversi PDF, konverter PDF, konverter Word, "
+#~ "konverter PDF online"
+
+#~ msgid ""
+#~ "PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all "
+#~ "PDF tools, online PDF tools, free PDF tools"
+#~ msgstr ""
+#~ "alat PDF, konverter PDF, editor PDF, pengatur PDF, keamanan PDF, semua "
+#~ "alat PDF, alat PDF online, alat PDF gratis"
+
+#~ msgid "Views"
+#~ msgstr "Tayangan"
+
+#~ msgid "Please select a Word file."
+#~ msgstr "Silakan pilih file Word."
+
+#~ msgid "Please select PDF files to merge."
+#~ msgstr "Silakan pilih file PDF untuk digabungkan."
+
+#~ msgid "Please select a JPG/JPEG image file."
+#~ msgstr "Silakan pilih file gambar JPG/JPEG."
+
+#~ msgid "Please select a PDF file with tables."
+#~ msgstr "Silakan pilih file PDF dengan tabel."
+
+#~ msgid "Please select a password-protected PDF file."
+#~ msgstr "Silakan pilih file PDF yang dilindungi kata sandi."
+
+#~ msgid "Merge PDFs"
+#~ msgstr "Gabungkan PDF"
+
+#~ msgid "PDF to Word - Convertica"
+#~ msgstr "PDF ke Word - Convertica"
+
+#~ msgid "Word to PDF - Convertica"
+#~ msgstr "Word ke PDF - Convertica"
+
+#~ msgid "PDF to JPG - Convertica"
+#~ msgstr "PDF ke JPG - Convertica"
+
+#~ msgid "JPG to PDF - Convertica"
+#~ msgstr "JPG ke PDF - Convertica"
+
+#~ msgid "Rotate PDF - Convertica"
+#~ msgstr "Putar PDF - Convertica"
+
+#~ msgid "Add Page Numbers to PDF - Convertica"
+#~ msgstr "Tambahkan nomor halaman ke PDF - Convertica"
+
+#~ msgid "Add Watermark to PDF - Convertica"
+#~ msgstr "Tambahkan watermark ke PDF - Convertica"
+
+#~ msgid "Crop PDF - Convertica"
+#~ msgstr "Potong PDF - Convertica"
+
+#~ msgid "Merge PDF - Convertica"
+#~ msgstr "Gabungkan PDF - Convertica"
+
+#~ msgid "Split PDF - Convertica"
+#~ msgstr "Pisahkan PDF - Convertica"
+
+#~ msgid "Remove Pages from PDF - Convertica"
+#~ msgstr "Hapus halaman dari PDF - Convertica"
+
+#~ msgid "Extract Pages from PDF - Convertica"
+#~ msgstr "Ekstrak halaman dari PDF - Convertica"
+
+#~ msgid "Organize PDF - Convertica"
+#~ msgstr "Atur PDF - Convertica"
+
+#~ msgid "PDF to Excel - Convertica"
+#~ msgstr "PDF ke Excel - Convertica"
+
+#~ msgid "Compress PDF - Convertica"
+#~ msgstr "Kompres PDF - Convertica"
+
+#~ msgid "Protect PDF with Password - Convertica"
+#~ msgstr "Lindungi PDF dengan kata sandi - Convertica"
+
+#~ msgid "Unlock PDF - Remove Password - Convertica"
+#~ msgstr "Buka kunci PDF - Hapus kata sandi - Convertica"
+
+#~ msgid ""
+#~ "Upload PDF files and download Word documents instantly. Free PDF to DOCX "
+#~ "converter online. No registration required."
+#~ msgstr ""
+#~ "Unggah file PDF dan unduh dokumen Word secara instan. Konverter PDF ke "
+#~ "DOCX online gratis. Tidak perlu registrasi."
+
+#~ msgid ""
+#~ "Upload Word files and download PDF documents instantly. Convert DOC/DOCX "
+#~ "to PDF online for free. No registration required."
+#~ msgstr ""
+#~ "Unggah file Word dan unduh dokumen PDF secara instan. Konversi DOC/DOCX "
+#~ "ke PDF online gratis. Tidak perlu registrasi."
+
+#~ msgid ""
+#~ "Convert PDF pages to JPG images instantly. Free PDF to image converter "
+#~ "online. High quality conversion with customizable DPI."
+#~ msgstr ""
+#~ "Konversi halaman PDF ke gambar JPG secara instan. Konverter PDF ke gambar "
+#~ "online gratis. Konversi berkualitas tinggi dengan DPI yang dapat "
+#~ "disesuaikan."
+
+#~ msgid ""
+#~ "Convert JPG images to PDF documents instantly. Free image to PDF "
+#~ "converter online. Multiple images supported."
+#~ msgstr ""
+#~ "Konversi gambar JPG ke dokumen PDF secara instan. Konverter gambar ke PDF "
+#~ "online gratis. Mendukung beberapa gambar."
+
+#~ msgid ""
+#~ "Add page numbers to PDF documents. Customize position, font size, and "
+#~ "format."
+#~ msgstr ""
+#~ "Tambahkan nomor halaman ke dokumen PDF. Sesuaikan posisi, ukuran font, "
+#~ "dan format."
+
+#~ msgid ""
+#~ "Add text or image watermark to PDF documents. Protect your documents with "
+#~ "custom watermarks."
+#~ msgstr ""
+#~ "Tambahkan watermark teks atau gambar ke dokumen PDF. Lindungi dokumen "
+#~ "Anda dengan watermark kustom."
+
+#~ msgid ""
+#~ "Crop PDF pages by specifying crop box coordinates. Free online PDF "
+#~ "cropping tool."
+#~ msgstr ""
+#~ "Potong halaman PDF dengan menentukan koordinat kotak potong. Alat "
+#~ "pemotongan PDF online gratis."
+
+#~ msgid ""
+#~ "Merge multiple PDF files into one document. Combine PDFs online for free. "
+#~ "Fast and secure."
+#~ msgstr ""
+#~ "Gabungkan beberapa file PDF menjadi satu dokumen. Gabungkan PDF online "
+#~ "gratis. Cepat dan aman."
+
+#~ msgid ""
+#~ "Split PDF into multiple files. Extract pages or divide PDF by pages, "
+#~ "ranges, or every N pages."
+#~ msgstr ""
+#~ "Pisahkan PDF menjadi beberapa file. Ekstrak halaman atau bagi PDF "
+#~ "berdasarkan halaman, rentang, atau setiap N halaman."
+
+#~ msgid ""
+#~ "Remove specific pages from PDF documents. Delete unwanted pages quickly "
+#~ "and easily."
+#~ msgstr ""
+#~ "Hapus halaman tertentu dari dokumen PDF. Hapus halaman yang tidak "
+#~ "diinginkan dengan cepat dan mudah."
+
+#~ msgid ""
+#~ "Extract specific pages from PDF documents. Create new PDF with selected "
+#~ "pages only."
+#~ msgstr ""
+#~ "Ekstrak halaman tertentu dari dokumen PDF. Buat PDF baru hanya dengan "
+#~ "halaman yang dipilih."
+
+#~ msgid ""
+#~ "Organize PDF documents. Reorder pages, sort content, and manage your PDF "
+#~ "files."
+#~ msgstr ""
+#~ "Atur dokumen PDF. Susun ulang halaman, urutkan konten, dan kelola file "
+#~ "PDF Anda."
+
+#~ msgid ""
+#~ "Convert PDF tables to Excel spreadsheets. Extract tables from PDF and "
+#~ "convert to XLSX format. Free online PDF to Excel converter."
+#~ msgstr ""
+#~ "Konversi tabel PDF ke spreadsheet Excel. Ekstrak tabel dari PDF dan "
+#~ "konversi ke format XLSX. Konverter PDF ke Excel online gratis."
+
+#~ msgid ""
+#~ "Compress PDF files to reduce file size. Free online PDF compression tool. "
+#~ "Reduce PDF size for email and upload."
+#~ msgstr ""
+#~ "Kompres file PDF untuk mengurangi ukuran file. Alat kompresi PDF online "
+#~ "gratis. Kurangi ukuran PDF untuk email dan unggah."
+
+#~ msgid ""
+#~ "Protect PDF files with password encryption. Secure your PDF documents "
+#~ "with strong password protection."
+#~ msgstr ""
+#~ "Lindungi file PDF dengan enkripsi kata sandi. Amankan dokumen PDF Anda "
+#~ "dengan perlindungan kata sandi yang kuat."
+
+#~ msgid ""
+#~ "Remove password protection from PDF files. Unlock encrypted PDF documents "
+#~ "with the correct password."
+#~ msgstr ""
+#~ "Hapus perlindungan kata sandi dari file PDF. Buka kunci dokumen PDF yang "
+#~ "dienkripsi dengan kata sandi yang benar."
+
+#~ msgid "Convert your PDF documents to editable Word format in seconds"
+#~ msgstr ""
+#~ "Konversi dokumen PDF Anda ke format Word yang dapat diedit dalam hitungan "
+#~ "detik"
+
+#~ msgid "Convert your Word documents to PDF format in seconds"
+#~ msgstr "Konversi dokumen Word Anda ke format PDF dalam hitungan detik"
+
+#~ msgid "Convert PDF pages to high-quality JPG images in seconds"
+#~ msgstr ""
+#~ "Konversi halaman PDF ke gambar JPG berkualitas tinggi dalam hitungan detik"
+
+#~ msgid "Convert your JPG images to PDF format in seconds"
+#~ msgstr "Konversi gambar JPG Anda ke format PDF dalam hitungan detik"
+
+#~ msgid "Rotate your PDF pages in seconds"
+#~ msgstr "Putar halaman PDF Anda dalam hitungan detik"
+
+#~ msgid "Add watermark to your PDF in seconds"
+#~ msgstr "Tambahkan watermark ke PDF Anda dalam hitungan detik"
+
+#~ msgid "Crop your PDF pages in seconds"
+#~ msgstr "Potong halaman PDF Anda dalam hitungan detik"
+
+#~ msgid "Combine multiple PDF files into one document"
+#~ msgstr "Gabungkan beberapa file PDF menjadi satu dokumen"
+
+#~ msgid "Remove unwanted pages from your PDF"
+#~ msgstr "Hapus halaman yang tidak diinginkan dari PDF Anda"
+
+#~ msgid "Extract specific pages from your PDF"
+#~ msgstr "Ekstrak halaman tertentu dari PDF Anda"
+
+#~ msgid "Secure your PDF documents with password protection"
+#~ msgstr "Amankan dokumen PDF Anda dengan perlindungan kata sandi"
+
+#~ msgid "PDF to Word Converter"
+#~ msgstr "Konverter PDF ke Word"
+
+#~ msgid "Word to PDF Converter"
+#~ msgstr "Konverter Word ke PDF"
+
+#~ msgid "PDF to JPG Converter"
+#~ msgstr "Konverter PDF ke JPG"
+
+#~ msgid "JPG to PDF Converter"
+#~ msgstr "Konverter JPG ke PDF"
+
+#~ msgid "PDF to Excel Converter"
+#~ msgstr "Konverter PDF ke Excel"
+
+#~ msgid ""
+#~ "Word to PDF, DOCX to PDF, DOC to PDF, convert Word, Word converter, PDF "
+#~ "converter, online converter"
+#~ msgstr ""
+#~ "Word ke PDF, DOCX ke PDF, DOC ke PDF, konversi Word, konverter Word, "
+#~ "konverter PDF, konverter online"
+
+#~ msgid ""
+#~ "PDF to JPG, PDF to image, convert PDF to JPG, PDF image converter, online "
+#~ "PDF converter"
+#~ msgstr ""
+#~ "PDF ke JPG, PDF ke gambar, konversi PDF ke JPG, konverter gambar PDF, "
+#~ "konverter PDF online"
+
+#~ msgid ""
+#~ "JPG to PDF, image to PDF, convert JPG to PDF, image PDF converter, online "
+#~ "converter"
+#~ msgstr ""
+#~ "JPG ke PDF, gambar ke PDF, konversi JPG ke PDF, konverter gambar ke PDF, "
+#~ "konverter online"
+
+#~ msgid ""
+#~ "rotate PDF, PDF rotation, rotate PDF pages, PDF editor, online PDF tool"
+#~ msgstr ""
+#~ "putar PDF, rotasi PDF, putar halaman PDF, editor PDF, alat PDF online"
+
+#~ msgid "add page numbers PDF, PDF page numbers, number PDF pages, PDF editor"
+#~ msgstr ""
+#~ "tambahkan nomor halaman PDF, nomor halaman PDF, nomor halaman PDF, editor "
+#~ "PDF"
+
+#~ msgid "add watermark PDF, PDF watermark, watermark PDF, PDF protection"
+#~ msgstr ""
+#~ "tambahkan watermark PDF, watermark PDF, watermark di PDF, perlindungan PDF"
+
+#~ msgid "crop PDF, PDF crop, crop PDF pages, PDF editor, online PDF tool"
+#~ msgstr ""
+#~ "potong PDF, potong PDF, potong halaman PDF, editor PDF, alat PDF online"
+
+#~ msgid "merge PDF, combine PDF, join PDF, PDF merger, online PDF tool"
+#~ msgstr ""
+#~ "gabungkan PDF, gabungkan PDF, gabungkan PDF, penggabung PDF, alat PDF "
+#~ "online"
+
+#~ msgid ""
+#~ "split PDF, divide PDF, extract PDF pages, PDF splitter, online PDF tool"
+#~ msgstr ""
+#~ "pisahkan PDF, bagi PDF, ekstrak halaman PDF, pemisah PDF, alat PDF online"
+
+#~ msgid ""
+#~ "remove PDF pages, delete PDF pages, PDF page remover, online PDF tool"
+#~ msgstr ""
+#~ "hapus halaman PDF, hapus halaman PDF, penghapus halaman PDF, alat PDF "
+#~ "online"
+
+#~ msgid ""
+#~ "extract PDF pages, PDF page extractor, select PDF pages, online PDF tool"
+#~ msgstr ""
+#~ "ekstrak halaman PDF, ekstraktor halaman PDF, pilih halaman PDF, alat PDF "
+#~ "online"
+
+#~ msgid ""
+#~ "organize PDF, PDF organizer, reorder PDF pages, PDF management, online "
+#~ "PDF tool"
+#~ msgstr ""
+#~ "atur PDF, pengatur PDF, susun ulang halaman PDF, manajemen PDF, alat PDF "
+#~ "online"
+
+#~ msgid ""
+#~ "PDF to Excel, PDF to XLSX, convert PDF tables, PDF table extractor, Excel "
+#~ "converter, online PDF converter"
+#~ msgstr ""
+#~ "PDF ke Excel, PDF ke XLSX, konversi tabel PDF, ekstraktor tabel PDF, "
+#~ "konverter Excel, konverter PDF online"
+
+#~ msgid ""
+#~ "compress PDF, PDF compression, reduce PDF size, PDF optimizer, online PDF "
+#~ "tool"
+#~ msgstr ""
+#~ "kompres PDF, kompresi PDF, kurangi ukuran PDF, pengoptimal PDF, alat PDF "
+#~ "online"
+
+#~ msgid ""
+#~ "protect PDF, PDF password, encrypt PDF, PDF security, PDF protection, "
+#~ "secure PDF"
+#~ msgstr ""
+#~ "lindungi PDF, kata sandi PDF, enkripsi PDF, keamanan PDF, perlindungan "
+#~ "PDF, PDF aman"
+
+#~ msgid ""
+#~ "unlock PDF, remove PDF password, decrypt PDF, PDF unlock, PDF password "
+#~ "remover"
+#~ msgstr ""
+#~ "buka kunci PDF, hapus kata sandi PDF, dekripsi PDF, buka kunci PDF, "
+#~ "penghapus kata sandi PDF"
+
+#~ msgid "Extract specific pages from your PDF documents."
+#~ msgstr "Ekstrak halaman tertentu dari dokumen PDF Anda."
+
+#~ msgid "Reorder and organize PDF pages with drag and drop."
+#~ msgstr "Susun ulang dan atur halaman PDF dengan drag and drop."
+
+#~ msgid "Compress PDF files to reduce size while maintaining quality."
+#~ msgstr ""
+#~ "Kompres file PDF untuk mengurangi ukuran sambil mempertahankan kualitas."
+
+#~ msgid "Edit and modify your PDF documents"
+#~ msgstr "Edit dan modifikasi dokumen PDF Anda"
+
+#~ msgid "Rotate, crop, add watermarks, and more to your PDFs."
+#~ msgstr "Putar, potong, tambahkan watermark, dan lainnya ke PDF Anda."
+
+#~ msgid "Choose a tool above and start working with your PDFs right away."
+#~ msgstr "Pilih alat di atas dan mulailah bekerja dengan PDF Anda segera."
+
+#~ msgid "Learn from our expert guides and improve your PDF workflow"
+#~ msgstr "Pelajari dari panduan ahli kami dan tingkatkan alur kerja PDF Anda"
+
+#~ msgid "Secure PDF"
+#~ msgstr "Lindungi PDF"
+
+#~ msgid "How We Use Information"
+#~ msgstr "Bagaimana kami menggunakan informasi"
+
+#~ msgid ""
+#~ "Read our terms of service to understand the rules for using our platform."
+#~ msgstr ""
+#~ "Baca ketentuan layanan kami untuk memahami aturan menggunakan platform "
+#~ "kami."
+
+#~ msgid "Data Sharing"
+#~ msgstr "Berbagi data"
+
+#~ msgid "With service providers who assist us in operating our platform"
+#~ msgstr ""
+#~ "Dengan penyedia layanan yang membantu kami mengoperasikan platform kami"
+
+#~ msgid "When required by law or to protect our rights"
+#~ msgstr "Ketika diwajibkan oleh hukum atau untuk melindungi hak kami"
+
+#~ msgid "Access the personal information we hold about you"
+#~ msgstr "Mengakses informasi pribadi yang kami miliki tentang Anda"
+
+#~ msgid "Cookies"
+#~ msgstr "Cookie"
+
+#~ msgid ""
+#~ "We use cookies and similar tracking technologies to track activity on our "
+#~ "platform and hold certain information. You can instruct your browser to "
+#~ "refuse all cookies or to indicate when a cookie is being sent."
+#~ msgstr ""
+#~ "Kami menggunakan cookie dan teknologi pelacakan serupa untuk melacak "
+#~ "aktivitas di platform kami dan menyimpan informasi tertentu. Anda dapat "
+#~ "menginstruksikan browser Anda untuk menolak semua cookie atau menunjukkan "
+#~ "kapan cookie dikirim."
+
+#~ msgid ""
+#~ "Welcome to Convertica. These Terms of Service (\"Terms\") govern your "
+#~ "access to and use of our online PDF tools and services (\"Services\"). By "
+#~ "accessing or using our Services, you agree to be bound by these Terms."
+#~ msgstr ""
+#~ "Selamat datang di Convertica. Ketentuan Layanan ini (\"Ketentuan\") "
+#~ "mengatur akses dan penggunaan Anda terhadap alat dan layanan PDF online "
+#~ "kami (\"Layanan\"). Dengan mengakses atau menggunakan Layanan kami, Anda "
+#~ "setuju untuk terikat oleh Ketentuan ini."
+
+#~ msgid ""
+#~ "Convertica provides its Services \"as is\" and \"as available\" without "
+#~ "warranties of any kind. We do not guarantee that our Services will be "
+#~ "uninterrupted, error-free, or completely secure."
+#~ msgstr ""
+#~ "Convertica menyediakan Layanannya \"sebagaimana adanya\" dan "
+#~ "\"sebagaimana tersedia\" tanpa jaminan apa pun. Kami tidak menjamin bahwa "
+#~ "Layanan kami akan tidak terputus, bebas kesalahan, atau sepenuhnya aman."
+
+#~ msgid ""
+#~ "We reserve the right to modify these Terms at any time. We will notify "
+#~ "users of any material changes by posting the updated Terms on this page. "
+#~ "Your continued use of our Services after such changes constitutes "
+#~ "acceptance of the new Terms."
+#~ msgstr ""
+#~ "Kami berhak untuk memodifikasi Ketentuan ini kapan saja. Kami akan "
+#~ "memberi tahu pengguna tentang perubahan material dengan memposting "
+#~ "Ketentuan yang diperbarui di halaman ini. Penggunaan Layanan kami yang "
+#~ "berkelanjutan setelah perubahan tersebut merupakan penerimaan Ketentuan "
+#~ "baru."
+
+#~ msgid ""
+#~ "If you have any questions about these Terms, please contact us at "
+#~ "info@convertica.com."
+#~ msgstr ""
+#~ "Jika Anda memiliki pertanyaan tentang Ketentuan ini, silakan hubungi kami "
+#~ "di info@convertica.com."
