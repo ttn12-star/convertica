@@ -38,11 +38,52 @@ class CropPDFAPIView(BaseConversionAPIView):
         **kwargs
     ) -> Tuple[str, str]:
         """Crop PDF."""
-        x = kwargs.get('x', 0.0)
-        y = kwargs.get('y', 0.0)
-        width = kwargs.get('width')
-        height = kwargs.get('height')
+        # Get and convert coordinates, handling string inputs
+        # Check if value is in kwargs (not just using default)
+        x_val = kwargs.get('x')
+        if x_val is not None:
+            try:
+                x = float(x_val)
+            except (ValueError, TypeError):
+                x = 0.0
+        else:
+            x = 0.0
+            
+        y_val = kwargs.get('y')
+        if y_val is not None:
+            try:
+                y = float(y_val)
+            except (ValueError, TypeError):
+                y = 0.0
+        else:
+            y = 0.0
+            
+        width_val = kwargs.get('width')
+        if width_val is not None:
+            try:
+                width = float(width_val) if str(width_val).strip() else None
+            except (ValueError, TypeError):
+                width = None
+        else:
+            width = None
+            
+        height_val = kwargs.get('height')
+        if height_val is not None:
+            try:
+                height = float(height_val) if str(height_val).strip() else None
+            except (ValueError, TypeError):
+                height = None
+        else:
+            height = None
+            
         pages = kwargs.get('pages', 'all')
+        
+        # Log all parameters for debugging
+        from ...logging_utils import get_logger
+        logger = get_logger(__name__)
+        logger.info(f"CropPDFAPIView: x={x}, y={y}, width={width}, height={height}, pages='{pages}'", 
+                   extra=context)
+        
         pdf_path, output_path = crop_pdf(
             uploaded_file,
             x=x,

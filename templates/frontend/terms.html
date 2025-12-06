@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "TermsOfService",
+    "name": "{% trans "Terms of Service - Convertica" %}",
+    "description": "{{ page_description }}",
+    "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Convertica",
+        "url": "{{ request.scheme }}://{{ request.get_host }}"
+    },
+    "datePublished": "2024-01-01",
+    "dateModified": "{% now "Y-m-d" %}",
+    "inLanguage": "{{ LANGUAGE_CODE }}"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+    
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-center">
+            <div class="animate-fade-in">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight text-gray-900" itemprop="headline">
+                    {% trans "Terms of Service" %}
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto">
+                    {% trans "Last updated: January 2025" %}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-12 sm:py-16 md:py-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            
+            <!-- Introduction -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
+                    {% trans "Welcome to Convertica. These Terms of Service (\"Terms\") govern your access to and use of our online PDF tools and services (\"Services\"). By accessing or using our Services, you agree to be bound by these Terms." %}
+                </p>
+                <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                    {% trans "If you disagree with any part of these Terms, then you may not access or use our Services." %}
+                </p>
+            </div>
+
+            <!-- Acceptance of Terms -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Acceptance of Terms" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "By accessing or using Convertica's Services, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you must not use our Services." %}
+                </p>
+            </div>
+
+            <!-- Description of Services -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Description of Services" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    {% trans "Convertica provides online PDF tools and services, including but not limited to:" %}
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                    <li>{% trans "PDF conversion (PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, PDF to Excel)" %}</li>
+                    <li>{% trans "PDF editing (rotate, crop, add watermark, add page numbers)" %}</li>
+                    <li>{% trans "PDF organization (merge, split, extract, remove pages, organize, compress)" %}</li>
+                    <li>{% trans "PDF security (protect with password, unlock PDF)" %}</li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed mt-4">
+                    {% trans "We reserve the right to modify, suspend, or discontinue any part of our Services at any time without prior notice." %}
+                </p>
+            </div>
+
+            <!-- User Responsibilities -->
+            <div class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-blue-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "User Responsibilities" %}</h2>
+                
+                <div class="space-y-4">
+                    <p class="text-gray-700 leading-relaxed">
+                        {% trans "You agree to use our Services only for lawful purposes and in accordance with these Terms. You agree not to:" %}
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                        <li>{% trans "Upload files that contain viruses, malware, or other harmful code" %}</li>
+                        <li>{% trans "Upload files that infringe on intellectual property rights" %}</li>
+                        <li>{% trans "Upload files that contain illegal, offensive, or inappropriate content" %}</li>
+                        <li>{% trans "Attempt to gain unauthorized access to our systems or networks" %}</li>
+                        <li>{% trans "Use automated systems or scripts to access our Services excessively" %}</li>
+                        <li>{% trans "Interfere with or disrupt the Services or servers connected to the Services" %}</li>
+                        <li>{% trans "Reverse engineer, decompile, or disassemble any part of our Services" %}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- File Upload and Processing -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "File Upload and Processing" %}</h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "File Size and Format Limitations" %}</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            {% trans "You are responsible for ensuring that files you upload comply with our file size and format requirements. We reserve the right to reject or limit the processing of files that exceed our size limits or are in unsupported formats." %}
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "File Storage and Deletion" %}</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            {% trans "Files uploaded to our Services are processed temporarily and automatically deleted after processing is complete. We do not store your files permanently. However, you are responsible for maintaining backups of your files." %}
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "Processing Accuracy" %}</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            {% trans "While we strive to provide accurate conversions and processing, we cannot guarantee that all files will be processed correctly or that the output will meet your specific requirements. You are responsible for verifying the accuracy of processed files." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intellectual Property -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Intellectual Property" %}</h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "Our Intellectual Property" %}</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            {% trans "All content, features, and functionality of our Services, including but not limited to text, graphics, logos, icons, images, and software, are the exclusive property of Convertica and are protected by international copyright, trademark, and other intellectual property laws." %}
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "Your Content" %}</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            {% trans "You retain all rights to files you upload. By uploading files, you grant us a limited, non-exclusive license to process your files solely for the purpose of providing the requested Services. We do not claim ownership of your files." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer of Warranties -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Disclaimer of Warranties" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    {% trans "Our Services are provided \"as is\" and \"as available\" without warranties of any kind, either express or implied, including but not limited to:" %}
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                    <li>{% trans "Warranties of merchantability" %}</li>
+                    <li>{% trans "Fitness for a particular purpose" %}</li>
+                    <li>{% trans "Non-infringement" %}</li>
+                    <li>{% trans "Accuracy, reliability, or completeness of results" %}</li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed mt-4">
+                    {% trans "We do not warrant that our Services will be uninterrupted, secure, or error-free, or that defects will be corrected." %}
+                </p>
+            </div>
+
+            <!-- Limitation of Liability -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Limitation of Liability" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    {% trans "To the maximum extent permitted by law, Convertica and its affiliates, officers, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:" %}
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                    <li>{% trans "Loss of data or files" %}</li>
+                    <li>{% trans "Loss of profits or business opportunities" %}</li>
+                    <li>{% trans "Service interruptions or failures" %}</li>
+                    <li>{% trans "Errors or inaccuracies in processed files" %}</li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed mt-4">
+                    {% trans "Our total liability for any claims arising from or related to the use of our Services shall not exceed the amount you paid to us (if any) in the twelve months preceding the claim, or $100, whichever is greater." %}
+                </p>
+            </div>
+
+            <!-- Indemnification -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Indemnification" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "You agree to indemnify, defend, and hold harmless Convertica and its affiliates, officers, employees, and agents from and against any claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including attorney's fees) arising from:" %}
+                </p>
+                <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700 ml-4">
+                    <li>{% trans "Your use of our Services" %}</li>
+                    <li>{% trans "Your violation of these Terms" %}</li>
+                    <li>{% trans "Your violation of any third-party rights" %}</li>
+                    <li>{% trans "Files you upload or content you provide" %}</li>
+                </ul>
+            </div>
+
+            <!-- Termination -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Termination" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "We reserve the right to terminate or suspend your access to our Services immediately, without prior notice or liability, for any reason, including if you breach these Terms. Upon termination, your right to use the Services will cease immediately." %}
+                </p>
+            </div>
+
+            <!-- Changes to Terms -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Changes to Terms" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion." %}
+                </p>
+                <p class="text-gray-700 leading-relaxed mt-4">
+                    {% trans "By continuing to access or use our Services after any revisions become effective, you agree to be bound by the revised terms." %}
+                </p>
+            </div>
+
+            <!-- Governing Law -->
+            <div class="bg-white rounded-2xl shadow-xl p-8 sm:p-10 md:p-12 mb-8 sm:mb-10 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">{% trans "Governing Law" %}</h2>
+                
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "These Terms shall be governed by and construed in accordance with applicable laws, without regard to its conflict of law provisions. Any disputes arising from these Terms or your use of our Services shall be subject to the exclusive jurisdiction of the courts in the applicable jurisdiction." %}
+                </p>
+            </div>
+
+            <!-- Contact -->
+            <div class="bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-2xl shadow-2xl p-8 sm:p-10 md:p-12 text-center text-white">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">{% trans "Questions About These Terms?" %}</h2>
+                <p class="text-lg sm:text-xl mb-6 opacity-90">
+                    {% trans "If you have any questions about these Terms of Service, please contact us." %}
+                </p>
+                <a href="{% url 'contact_page' %}" 
+                   class="inline-block bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg">
+                    {% trans "Contact Us" %}
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+{% endblock %}
+

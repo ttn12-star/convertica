@@ -1,0 +1,197 @@
+/* Custom styles for blog admin */
+
+/* Improve overall admin appearance */
+.module {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Translations widget improvements */
+.translations-widget-container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.translations-tabs {
+    display: flex;
+    border-bottom: 2px solid #417690;
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+    padding: 0;
+    margin: 0;
+}
+
+.translation-tab {
+    padding: 12px 24px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    position: relative;
+}
+
+.translation-tab:hover {
+    background: rgba(65, 118, 144, 0.1);
+    color: #417690;
+}
+
+.translation-tab.active {
+    color: #417690;
+    border-bottom-color: #417690;
+    background: #fff;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+}
+
+.translations-content {
+    padding: 25px;
+    background: #fff;
+    min-height: 400px;
+}
+
+.translation-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.translation-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.translation-field {
+    margin-bottom: 20px;
+}
+
+.translation-field label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.translation-field input,
+.translation-field textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.translation-field input:focus,
+.translation-field textarea:focus {
+    outline: none;
+    border-color: #417690;
+    box-shadow: 0 0 0 3px rgba(65, 118, 144, 0.1);
+}
+
+.translation-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* AI Metadata widget */
+.ai-metadata-widget-container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    background: #fff;
+}
+
+.ai-metadata-help {
+    background: linear-gradient(135deg, #e7f3ff 0%, #d1e7ff 100%);
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #417690;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.ai-metadata-help strong {
+    color: #417690;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.ai-metadata-help pre {
+    margin: 10px 0;
+    font-size: 12px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+/* Improve admin list view */
+#result_list {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#result_list thead th {
+    background: linear-gradient(to bottom, #417690, #2c5f7a);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px;
+}
+
+#result_list tbody tr {
+    transition: background-color 0.2s;
+}
+
+#result_list tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Badge improvements */
+.translations-preview span {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* Form improvements */
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Button improvements */
+.submit-row input[type="submit"] {
+    background: linear-gradient(to bottom, #417690, #2c5f7a);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.submit-row input[type="submit"]:hover {
+    background: linear-gradient(to bottom, #2c5f7a, #1a3d4f);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+

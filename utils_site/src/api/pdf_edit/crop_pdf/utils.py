@@ -8,6 +8,10 @@ import tempfile
 from typing import Tuple, List, Optional
 
 from PyPDF2 import PdfReader, PdfWriter
+from PyPDF2.generic import RectangleObject
+from pdf2image import convert_from_path
+from reportlab.pdfgen import canvas
+from PIL import Image
 from django.core.files.uploadedfile import UploadedFile
 
 from src.exceptions import ConversionError, StorageError, InvalidPDFError, EncryptedPDFError
@@ -65,8 +69,8 @@ logger = get_logger(__name__)
 
 def crop_pdf(
     uploaded_file: UploadedFile,
-    x: float = 0.0,
-    y: float = 0.0,
+    x: Optional[float] = None,
+    y: Optional[float] = None,
     width: Optional[float] = None,
     height: Optional[float] = None,
     pages: str = "all",
@@ -135,41 +139,108 @@ def crop_pdf(
             logger.info("Cropping PDF", extra={**context, "event": "crop_start"})
             
             reader = PdfReader(pdf_path)
-            writer = PdfWriter()
-            
             total_pages = len(reader.pages)
             pages_to_crop = parse_pages(pages, total_pages)
             
             context["total_pages"] = total_pages
             context["pages_to_crop"] = len(pages_to_crop)
             
+            # Get crop parameters for first page (assuming same crop for all pages)
+            first_page = reader.pages[0]
+            original_width = float(first_page.mediabox.width)
+            original_height = float(first_page.mediabox.height)
+            
+            # Ensure x, y, width, height are valid numbers
+            crop_x = float(x) if x is not None else 0.0
+            crop_y = float(y) if y is not None else 0.0
+            crop_width = float(width) if width is not None and width > 0 else (original_width - crop_x)
+            crop_height = float(height) if height is not None and height > 0 else (original_height - crop_y)
+            
+            # Ensure crop box is within page bounds
+            crop_x = max(0, min(crop_x, original_width))
+            crop_y = max(0, min(crop_y, original_height))
+            crop_width = max(10, min(crop_width, original_width - crop_x))  # Minimum 10 points
+            crop_height = max(10, min(crop_height, original_height - crop_y))  # Minimum 10 points
+            
+            logger.info(f"Crop parameters: x={crop_x:.2f}, y={crop_y:.2f}, w={crop_width:.2f}, h={crop_height:.2f}, pages={pages_to_crop}", extra=context)
+            
+            # Convert PDF pages to images, crop them, and create new PDF
+            # This is more reliable than just setting mediabox
+            images = convert_from_path(pdf_path, dpi=150)
+            
+            # Create new PDF with cropped pages
+            # Determine initial page size based on whether first page is cropped
+            first_page_img = images[0] if images else None
+            if first_page_img and 0 in pages_to_crop:
+                initial_page_size = (crop_width, crop_height)
+            elif first_page_img:
+                dpi_ratio = 150 / 72
+                initial_page_size = (first_page_img.width / dpi_ratio * 72, first_page_img.height / dpi_ratio * 72)
+            else:
+                initial_page_size = (crop_width, crop_height)
+            
+            can = canvas.Canvas(output_path, pagesize=initial_page_size)
+            dpi_ratio = 150 / 72
+            
             for page_num in range(total_pages):
-                page = reader.pages[page_num]
+                if page_num >= len(images):
+                    continue
+                    
+                img = images[page_num]
+                img_width_px = img.width
+                img_height_px = img.height
                 
                 if page_num in pages_to_crop:
-                    # Get page dimensions
-                    page_width = float(page.mediabox.width)
-                    page_height = float(page.mediabox.height)
+                    # Crop this page
+                    # Convert crop coordinates from PDF points to image pixels
+                    # PDF coordinates: crop_x is left, crop_y is bottom (from bottom-left origin)
+                    # Image coordinates: (0,0) is top-left
+                    crop_left_px = int(crop_x * dpi_ratio)
+                    crop_bottom_px = int(crop_y * dpi_ratio)
+                    crop_width_px = int(crop_width * dpi_ratio)
+                    crop_height_px = int(crop_height * dpi_ratio)
                     
-                    # Calculate crop box
-                    crop_width = width if width is not None else (page_width - x)
-                    crop_height = height if height is not None else (page_height - y)
+                    # Convert PDF bottom-left origin to image top-left origin
+                    crop_top_px = img_height_px - crop_bottom_px - crop_height_px
                     
-                    # Ensure crop box is within page bounds
-                    crop_x = max(0, min(x, page_width))
-                    crop_y = max(0, min(y, page_height))
-                    crop_width = min(crop_width, page_width - crop_x)
-                    crop_height = min(crop_height, page_height - crop_y)
+                    # Ensure crop area is within image bounds
+                    crop_left_px = max(0, min(crop_left_px, img_width_px))
+                    crop_top_px = max(0, min(crop_top_px, img_height_px))
+                    crop_width_px = min(crop_width_px, img_width_px - crop_left_px)
+                    crop_height_px = min(crop_height_px, img_height_px - crop_top_px)
                     
-                    # Set crop box (lower-left, upper-right)
-                    page.mediabox.lower_left = (crop_x, crop_y)
-                    page.mediabox.upper_right = (crop_x + crop_width, crop_y + crop_height)
+                    if crop_width_px > 0 and crop_height_px > 0:
+                        # Crop the image
+                        cropped_img = img.crop((
+                            crop_left_px,
+                            crop_top_px,
+                            crop_left_px + crop_width_px,
+                            crop_top_px + crop_height_px
+                        ))
+                        
+                        # Set page size for cropped page
+                        can.setPageSize((crop_width, crop_height))
+                        
+                        # Save cropped image temporarily
+                        img_path = os.path.join(tmp_dir, f"cropped_page_{page_num}.png")
+                        cropped_img.save(img_path, 'PNG')
+                        can.drawImage(img_path, 0, 0, width=crop_width, height=crop_height)
+                        
+                        logger.debug(f"Cropping page {page_num + 1}: x={crop_x:.2f}, y={crop_y:.2f}, w={crop_width:.2f}, h={crop_height:.2f}", extra=context)
+                else:
+                    # Keep original page (no crop)
+                    page_width = img_width_px / dpi_ratio * 72
+                    page_height = img_height_px / dpi_ratio * 72
+                    can.setPageSize((page_width, page_height))
+                    
+                    # Save original image temporarily
+                    img_path = os.path.join(tmp_dir, f"page_{page_num}.png")
+                    img.save(img_path, 'PNG')
+                    can.drawImage(img_path, 0, 0, width=page_width, height=page_height)
                 
-                writer.add_page(page)
+                can.showPage()
             
-            # Write output
-            with open(output_path, "wb") as output_file:
-                writer.write(output_file)
+            can.save()
             
             logger.debug("Crop completed", extra={**context, "event": "crop_complete"})
             

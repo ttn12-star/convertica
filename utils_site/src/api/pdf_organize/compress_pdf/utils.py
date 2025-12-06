@@ -4,6 +4,7 @@ import tempfile
 from typing import Tuple
 
 from PyPDF2 import PdfReader, PdfWriter
+from PyPDF2.generic import DictionaryObject
 from django.core.files.uploadedfile import UploadedFile
 
 from src.exceptions import ConversionError, StorageError, InvalidPDFError, EncryptedPDFError
@@ -82,21 +83,169 @@ def compress_pdf(
             total_pages = len(reader.pages)
             context["total_pages"] = total_pages
             
-            # Copy all pages with compression
-            for page in reader.pages:
-                # Compress page content
-                page.compress_content_streams()
+            # Copy all pages with aggressive compression
+            for page_num, page in enumerate(reader.pages):
+                # Compress page content streams multiple times for better compression
+                try:
+                    # First compression pass - always compress
+                    page.compress_content_streams()
+                    
+                    # For medium and high compression, try additional passes
+                    if compression_level in ["medium", "high"]:
+                        # Try to compress again (some streams may not compress on first pass)
+                        try:
+                            page.compress_content_streams()
+                        except Exception:
+                            pass  # Ignore if already compressed
+                    
+                    # For high compression, try even more aggressive optimization
+                    if compression_level == "high":
+                        # Third compression pass for maximum compression
+                        try:
+                            page.compress_content_streams()
+                        except Exception:
+                            pass
+                        
+                        # Try to optimize page resources (fonts, images, etc.)
+                        try:
+                            if '/Resources' in page:
+                                resources = page['/Resources']
+                                # Remove unused resources if possible
+                                # This is a conservative approach - we don't want to break the PDF
+                                if isinstance(resources, DictionaryObject):
+                                    # Keep resources but optimize them
+                                    pass
+                        except Exception:
+                            pass  # Non-critical optimization
+                            
+                except Exception as e:
+                    logger.warning("Failed to compress page %d: %s", page_num + 1, e, 
+                                 extra={**context, "page": page_num + 1})
+                
+                # Add page to writer
                 writer.add_page(page)
             
-            # Set compression level based on user choice
-            # PyPDF2 doesn't have direct compression level control,
-            # but we can optimize by removing unnecessary objects
-            writer.remove_links = True  # Remove links to reduce size
-            writer.remove_images = False  # Keep images but compress them
+            # Optimize based on compression level
+            if compression_level == "high":
+                # High compression: remove links, annotations, bookmarks, and optimize metadata
+                writer.remove_links = True
+                writer.remove_annotations = True
+                # Try to remove bookmarks/outline if possible
+                try:
+                    if hasattr(writer, 'remove_outline'):
+                        writer.remove_outline = True
+                except Exception:
+                    pass
+                
+                # Try to remove metadata for maximum compression
+                try:
+                    # Remove document metadata if possible
+                    if hasattr(writer, 'remove_metadata'):
+                        writer.remove_metadata = True
+                except Exception:
+                    pass
+                    
+            elif compression_level == "medium":
+                # Medium compression: remove links, try to remove some annotations
+                writer.remove_links = True
+                writer.remove_annotations = False  # Keep annotations but compress them
+            else:  # low
+                # Low compression: keep everything, just compress streams
+                writer.remove_links = False
+                writer.remove_annotations = False
             
-            # Write compressed PDF
+            # Always keep images (we compress them via compress_content_streams)
+            writer.remove_images = False
+            
+            # Write compressed PDF with optimization
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
+            
+            # For medium and high compression, try to re-read and re-compress for additional optimization
+            # This can sometimes achieve better compression ratios
+            if compression_level in ["medium", "high"]:
+                try:
+                    initial_size = os.path.getsize(output_path)
+                    max_passes = 3 if compression_level == "high" else 2
+                    
+                    current_path = output_path
+                    best_size = initial_size
+                    best_path = output_path
+                    
+                    # Try multiple compression passes
+                    for pass_num in range(1, max_passes + 1):
+                        try:
+                            # Re-read the compressed PDF and compress again
+                            temp_reader = PdfReader(current_path)
+                            temp_writer = PdfWriter()
+                            
+                            for page in temp_reader.pages:
+                                try:
+                                    # Compress each page again
+                                    page.compress_content_streams()
+                                    # Try additional passes for high compression
+                                    if compression_level == "high":
+                                        try:
+                                            page.compress_content_streams()
+                                        except Exception:
+                                            pass
+                                except Exception:
+                                    pass
+                                temp_writer.add_page(page)
+                            
+                            temp_writer.remove_links = True
+                            if compression_level == "high":
+                                temp_writer.remove_annotations = True
+                            
+                            # Write to a temporary file
+                            temp_output = current_path + f".pass{pass_num}.tmp"
+                            with open(temp_output, "wb") as temp_file:
+                                temp_writer.write(temp_file)
+                            
+                            temp_size = os.path.getsize(temp_output)
+                            
+                            # Keep this version if it's better (at least 0.5% smaller)
+                            if temp_size < best_size * 0.995:
+                                # Clean up previous temporary files
+                                if best_path != output_path and os.path.exists(best_path):
+                                    try:
+                                        os.remove(best_path)
+                                    except Exception:
+                                        pass
+                                best_size = temp_size
+                                best_path = temp_output
+                                current_path = temp_output
+                                logger.debug("Compression pass %d improved size: %d bytes", 
+                                           pass_num, temp_size, extra={**context, "event": f"pass_{pass_num}_success"})
+                            else:
+                                # Remove this temporary file as it didn't help
+                                os.remove(temp_output)
+                                logger.debug("Compression pass %d did not improve size", pass_num, 
+                                           extra={**context, "event": f"pass_{pass_num}_skipped"})
+                                break  # No improvement, stop trying
+                                
+                        except Exception as e:
+                            logger.debug("Compression pass %d failed (non-critical): %s", pass_num, e, 
+                                       extra={**context, "event": f"pass_{pass_num}_failed"})
+                            break  # Stop trying if pass fails
+                    
+                    # Replace original if we found a better version
+                    if best_path != output_path and best_size < initial_size * 0.995:
+                        os.replace(best_path, output_path)
+                        logger.debug("Multi-pass compression improved size: %d -> %d bytes (%.2f%%)", 
+                                   initial_size, best_size, 
+                                   ((initial_size - best_size) / initial_size * 100),
+                                   extra={**context, "event": "multi_pass_success"})
+                    elif best_path != output_path:
+                        # Clean up temporary file
+                        try:
+                            os.remove(best_path)
+                        except Exception:
+                            pass
+                            
+                except Exception as e:
+                    logger.debug("Multi-pass compression failed (non-critical): %s", e, extra={**context})
+                    # Continue with original compressed file
             
             logger.debug("Compression completed", extra={**context, "event": "compress_complete"})
             

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 
 from pathlib import Path
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p03zfs4mx09p=oz55doc&#td84i936y$b&8yt7q4^2eh*5_p8v'
+# Load from environment variable, fallback to insecure key for development
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-p03zfs4mx09p=oz55doc&#td84i936y$b&8yt7q4^2eh*5_p8v')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+# Comma-separated list of allowed hosts
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 
 # Application definition
@@ -40,22 +43,47 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
+    # Note: hCaptcha is used via JavaScript widget and direct API calls, not as Django app
     'src.frontend',
-
-
-    
+    'src.blog',
 ]
+
+# Optional apps (graceful degradation if not installed)
+try:
+    import django_ratelimit
+    INSTALLED_APPS.append('django_ratelimit')
+except ImportError:
+    pass
+
+try:
+    import django_prometheus
+    INSTALLED_APPS.append('django_prometheus')
+except ImportError:
+    pass
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'src.frontend.admin_protection.AdminIPWhitelistMiddleware',  # Admin IP protection (must be early)
+    'src.api.middleware.RateLimitMiddleware',  # Rate limiting for API
+    'src.api.middleware.PerformanceMonitoringMiddleware',  # Performance monitoring
+    'django.contrib.sessions.middleware.SessionMiddleware',  # Must be before CaptchaRequirementMiddleware
+    'src.frontend.middleware.CaptchaRequirementMiddleware',  # Track failed attempts for CAPTCHA
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # Automatically detects language from Accept-Language header, session, or cookie
+    # 'src.frontend.middleware.AutoLanguageMiddleware',  # DISABLED - interferes with language switching
 ]
+
+# Add Prometheus middleware if available
+try:
+    import django_prometheus
+    MIDDLEWARE.insert(0, 'django_prometheus.middleware.PrometheusBeforeMiddleware')
+    MIDDLEWARE.append('django_prometheus.middleware.PrometheusAfterMiddleware')
+except ImportError:
+    pass
 
 ROOT_URLCONF = 'utils_site.urls'
 
@@ -70,6 +98,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'src.frontend.context_processors.hreflang_links',
+                'src.frontend.context_processors.hcaptcha_site_key',
             ],
         },
     },
@@ -81,12 +110,30 @@ WSGI_APPLICATION = 'utils_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Support for PostgreSQL in production, SQLite for development
+DATABASE_ENGINE = config('DATABASE_ENGINE', default='sqlite3')
+if DATABASE_ENGINE == 'postgresql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DATABASE_NAME', default='convertica_db'),
+            'USER': config('DATABASE_USER', default='convertica_user'),
+            'PASSWORD': config('DATABASE_PASSWORD', default=''),
+            'HOST': config('DATABASE_HOST', default='localhost'),
+            'PORT': config('DATABASE_PORT', default='5432'),
+            'CONN_MAX_AGE': 600,  # Connection pooling: reuse connections for 10 minutes
+            'OPTIONS': {
+                'connect_timeout': 10,
+            },
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -115,7 +162,18 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = [
     ('en', 'English'),
     ('ru', 'Russian'),
+    ('pl', 'Polish'),
+    ('hi', 'Hindi'),
+    ('es', 'Spanish'),
+    ('id', 'Indonesian'),
 ]
+
+# Language detection settings
+# LocaleMiddleware will automatically detect language from:
+# 1. Session (if user selected language)
+# 2. Cookie (django_language)
+# 3. Accept-Language header from browser
+# 4. Default LANGUAGE_CODE
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -138,6 +196,15 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = 'static/'
+
+# Admin Security Settings
+# IP addresses allowed to access admin panel
+# Load from environment variable (comma-separated), fallback to localhost
+ADMIN_IP_WHITELIST = config('ADMIN_IP_WHITELIST', default='127.0.0.1,::1', cast=Csv())
+
+# Admin URL path - change this to something unique!
+# Load from environment variable, fallback to 'admin' for development
+ADMIN_URL_PATH = config('ADMIN_URL_PATH', default='admin')
 
 # Conversion API settings
 MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB
@@ -184,6 +251,7 @@ LOGGING = {
             'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 5,
             'formatter': 'structured',
+            'encoding': 'utf-8',  # Support UTF-8 encoding for international characters
         },
         'error_file': {
             'level': 'ERROR',
@@ -192,6 +260,7 @@ LOGGING = {
             'maxBytes': 1024 * 1024 * 10,  # 10 MB
             'backupCount': 5,
             'formatter': 'verbose',
+            'encoding': 'utf-8',  # Support UTF-8 encoding for international characters
         },
     },
     'loggers': {
@@ -226,3 +295,88 @@ LOGGING = {
 logs_dir = BASE_DIR / 'logs'
 if not logs_dir.exists():
     os.makedirs(logs_dir, exist_ok=True)
+
+# Security Settings for Production
+# These settings are automatically enabled when DEBUG=False
+# You can also override them via environment variables
+
+# HTTPS Settings (only in production)
+if not DEBUG:
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'  # Protection against clickjacking
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+else:
+    # Development settings
+    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
+    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
+    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
+
+# Cache Configuration
+# Using Redis for caching and session storage
+try:
+    import django_redis
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': config('REDIS_URL', default='redis://127.0.0.1:6379/1'),
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                'SOCKET_CONNECT_TIMEOUT': 5,
+                'SOCKET_TIMEOUT': 5,
+                'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+                'IGNORE_EXCEPTIONS': True,  # Don't fail if Redis is down
+            },
+            'KEY_PREFIX': 'convertica',
+            'TIMEOUT': 300,  # Default timeout: 5 minutes
+        }
+    }
+except ImportError:
+    # Fallback to local memory cache if django-redis is not installed
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'unique-snowflake',
+        }
+    }
+
+# Session backend using Redis (if available)
+try:
+    import django_redis
+    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+    SESSION_CACHE_ALIAS = 'default'
+except ImportError:
+    # Fallback to database sessions if django-redis is not installed
+    SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# Celery Configuration
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://127.0.0.1:6379/0')
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://127.0.0.1:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+CELERY_ENABLE_UTC = True
+
+# Rate Limiting Configuration
+RATELIMIT_ENABLE = config('RATELIMIT_ENABLE', default=True, cast=bool)
+RATELIMIT_USE_CACHE = 'default'  # Use Redis cache for rate limiting
+
+# API Rate Limits (requests per minute)
+API_RATE_LIMIT = {
+    'default': '100/m',  # 100 requests per minute
+    'pdf_conversion': '20/m',  # 20 PDF conversions per minute
+    'file_upload': '30/m',  # 30 file uploads per minute
+}
+
+# Prometheus Monitoring (if available)
+try:
+    import django_prometheus
+    PROMETHEUS_EXPORT_MIGRATIONS = False
+except ImportError:
+    pass

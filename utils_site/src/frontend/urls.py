@@ -25,4 +25,12 @@ urlpatterns = [
     # PDF Security pages
     path('pdf-security/protect/', views.protect_pdf_page, name='protect_pdf_page'),
     path('pdf-security/unlock/', views.unlock_pdf_page, name='unlock_pdf_page'),
+    # Static pages
+    path('about/', views.about_page, name='about_page'),
+    path('privacy/', views.privacy_page, name='privacy_page'),
+    path('terms/', views.terms_page, name='terms_page'),
+    path('contact/', views.contact_page, name='contact_page'),
+    path('faq/', views.faq_page, name='faq_page'),
+    # SEO
+    path('sitemap.xml', views.sitemap_xml, name='sitemap_xml'),
 ]
