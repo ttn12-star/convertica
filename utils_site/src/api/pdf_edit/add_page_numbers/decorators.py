@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import AddPageNumbersSerializer
 
 
 def add_page_numbers_docs() -> Callable:
@@ -19,7 +18,43 @@ def add_page_numbers_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Add page numbers to PDF pages. "
                                  "You can customize position, font size, starting number, and format.",
-            request_body=AddPageNumbersSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to add page numbers to",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'position',
+                    openapi.IN_FORM,
+                    description="Position of page numbers (bottom-center, bottom-left, bottom-right, top-center, top-left, top-right)",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'font_size',
+                    openapi.IN_FORM,
+                    description="Font size for page numbers (8-72)",
+                    type=openapi.TYPE_INTEGER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'start_number',
+                    openapi.IN_FORM,
+                    description="Starting page number",
+                    type=openapi.TYPE_INTEGER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'format_str',
+                    openapi.IN_FORM,
+                    description="Format string for page numbers (use {page} for page number, {total} for total pages)",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="PDF file with page numbers.",

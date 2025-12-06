@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import PDFToJPGSerializer
 
 
 def pdf_to_jpg_docs() -> Callable:
@@ -24,7 +23,29 @@ def pdf_to_jpg_docs() -> Callable:
             operation_description="Convert a PDF page into a JPG image. "
                                  "By default converts the first page. "
                                  "You can specify page number and DPI for quality control.",
-            request_body=PDFToJPGSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to convert",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'page',
+                    openapi.IN_FORM,
+                    description="Page number to convert (default: 1)",
+                    type=openapi.TYPE_INTEGER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'dpi',
+                    openapi.IN_FORM,
+                    description="DPI for image quality (default: 300, range: 72-600)",
+                    type=openapi.TYPE_INTEGER,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Converted JPG image file.",

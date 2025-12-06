@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import UnlockPDFSerializer
 
 
 def unlock_pdf_docs() -> Callable:
@@ -19,7 +18,22 @@ def unlock_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Unlock PDF by removing password protection. "
                                  "Requires the correct password to unlock the PDF.",
-            request_body=UnlockPDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="Password-protected PDF file to unlock",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'password',
+                    openapi.IN_FORM,
+                    description="Password to unlock the PDF",
+                    type=openapi.TYPE_STRING,
+                    required=True,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Unlocked PDF file (no password required).",

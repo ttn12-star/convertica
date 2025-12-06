@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import CompressPDFSerializer
 
 
 def compress_pdf_docs() -> Callable:
@@ -20,7 +19,22 @@ def compress_pdf_docs() -> Callable:
             operation_description="Compress PDF to reduce file size. "
                                  "Choose compression level: low (faster, less compression), "
                                  "medium (balanced), or high (slower, more compression).",
-            request_body=CompressPDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to compress",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'compression_level',
+                    openapi.IN_FORM,
+                    description="Compression level (low, medium, or high)",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Compressed PDF file.",

@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import PDFToExcelSerializer
 
 
 def pdf_to_excel_docs() -> Callable:
@@ -20,7 +19,22 @@ def pdf_to_excel_docs() -> Callable:
             operation_description="Convert PDF to Excel by extracting tables. "
                                  "The PDF must contain tables for this conversion to work. "
                                  "Each table will be placed in a separate sheet.",
-            request_body=PDFToExcelSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file with tables to convert",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'pages',
+                    openapi.IN_FORM,
+                    description="Pages to extract (comma-separated, ranges, or 'all')",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Excel file (.xlsx) with extracted tables.",

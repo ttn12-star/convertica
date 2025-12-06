@@ -66,9 +66,21 @@ logs/
 tmp/
 utils_site/temp/
 
+# Django static files (collected)
+staticfiles/
+
+# Django translations (compiled)
+locale/*/LC_MESSAGES/*.mo
+
 # Markdown files (except README.md)
 *.md
 !README.md
+
+# Node modules
+node_modules/
+
+# Build artifacts
+*.map
 
 # Flask stuff:
 instance/

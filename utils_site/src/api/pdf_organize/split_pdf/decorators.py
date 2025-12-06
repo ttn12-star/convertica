@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import SplitPDFSerializer
 
 
 def split_pdf_docs() -> Callable:
@@ -19,7 +18,29 @@ def split_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Split PDF into multiple files. "
                                  "You can split by individual pages, page ranges, or every N pages.",
-            request_body=SplitPDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to split",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'split_type',
+                    openapi.IN_FORM,
+                    description="Split type: 'page' (one page per file), 'range' (by page ranges), 'every_n' (every N pages)",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'pages',
+                    openapi.IN_FORM,
+                    description="For 'page': comma-separated page numbers. For 'range': ranges like '1-3,5-7'. For 'every_n': number of pages per file",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="ZIP file containing split PDF files.",
