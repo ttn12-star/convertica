@@ -4,7 +4,9 @@
   "description": "Building useful developer tools and converters",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i ./static/css/input.css -o ./static/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./static/css/input.css -o ./static/css/tailwind.css --watch"
   },
   "repository": {
     "type": "git",

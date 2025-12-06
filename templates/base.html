@@ -1,23 +1,141 @@
 {% load static i18n %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
-<html lang="{{ LANGUAGE_CODE }}">
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Convertica{% endblock %}</title>
-    <meta name="description" content="{% block description %}{% trans "Online PDF and Word conversion tool." %}{% endblock %}">
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>{% block title %}Convertica – Online PDF ↔ Word Converter{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}{% endblock %}">
+    <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
+    <meta name="author" content="Convertica">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="{{ LANGUAGE_CODE }}">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:title" content="{% block og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+    <meta property="og:locale" content="{% if LANGUAGE_CODE == 'ru' %}ru_RU{% else %}en_US{% endif %}">
+    <meta property="og:site_name" content="Convertica">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="twitter:title" content="{% block twitter_title %}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
+    <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    
+    <!-- Hreflang Tags for SEO -->
     {% for link in hreflangs %}
         <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
     {% endfor %}
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    
+    <!-- Stylesheets -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    
+    <!-- Custom Animations -->
+    <style>
+        @keyframes progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes ping {
+            75%, 100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .animate-progress {
+            animation: progress 2s linear infinite;
+            background-size: 200% 100%;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .animate-scale-in {
+            animation: scaleIn 0.3s ease-out;
+        }
+        
+        .shadow-3xl {
+            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Force dark text on light backgrounds by default */
+        body {
+            color: #111827; /* gray-900 */
+        }
+        
+        /* Ensure all text elements inherit color properly */
+        p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea {
+            color: inherit;
+        }
+        
+        /* Smooth transitions */
+        * {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+    </style>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Convertica",
+        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "description": "{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter." %}",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "inLanguage": "{{ LANGUAGE_CODE }}",
+        "availableLanguage": [
+            {% get_available_languages as LANGUAGES %}
+            {% for code, name in LANGUAGES %}"{{ code }}"{% if not forloop.last %},{% endif %}{% endfor %}
+        ]
+    }
+    </script>
+    
+    {% block extra_head %}{% endblock %}
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50 text-gray-900 antialiased">
     
     {% include "frontend/includes/header.html" %}
 
-    <main class="container mx-auto py-8">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900">
         {% block content %}{% endblock %}
     </main>
 
