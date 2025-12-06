@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords|default:"PDF editor, PDF tools, online PDF editor" }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
+    <!-- Page Header -->
+    <div class="text-center mb-8 sm:mb-10">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">
+            {{ header_text }}
+        </h1>
+        {% if page_subtitle %}
+        <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+            {{ page_subtitle }}
+        </p>
+        {% endif %}
+    </div>
+
+    <!-- Editor Form -->
+    <form id="editorForm" 
+          method="post" 
+          enctype="multipart/form-data"
+          class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
+        {% csrf_token %}
+
+        <!-- File Selection -->
+        <div class="mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Select PDF File" %}
+            </label>
+            <div class="text-center">
+                <input type="file" 
+                       name="{{ file_input_name }}" 
+                       id="fileInput"
+                       accept="{{ file_accept }}"
+                       class="hidden"
+                       required>
+                <button type="button" 
+                        id="selectFileButton"
+                        class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <span>{% trans "Select file to edit" %}</span>
+                </button>
+                
+                <!-- Selected File Display -->
+                <div id="selectedFile" class="hidden mt-4 p-4 bg-blue-50 rounded-lg border-2 border-blue-200 max-w-md mx-auto">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3 flex-1 min-w-0">
+                            <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-semibold text-gray-900 text-sm sm:text-base truncate" id="fileName"></p>
+                                <p class="text-gray-600 text-xs sm:text-sm" id="fileSize"></p>
+                            </div>
+                        </div>
+                        <button type="button" 
+                                id="removeFile"
+                                class="ml-3 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+                                aria-label="{% trans 'Remove file' %}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drag & Drop Zone -->
+        <div class="mb-6">
+            <div id="dropZone" 
+                 class="relative border-2 border-dashed border-gray-300 rounded-lg p-3 sm:p-4 text-center transition-all duration-300 hover:border-blue-400 hover:bg-blue-50/50 cursor-pointer group bg-gray-50">
+                <input type="file" 
+                       name="{{ file_input_name }}" 
+                       id="fileInputDrop"
+                       accept="{{ file_accept }}"
+                       class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                
+                <div class="pointer-events-none">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <p class="text-gray-600 text-xs sm:text-sm font-medium mb-1">
+                        {% trans "Drag and drop your file here" %}
+                    </p>
+                    <p class="text-gray-500 text-xs">
+                        {% trans "or click to browse" %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Options Section -->
+        <div id="optionsSection" class="mb-6 space-y-4">
+            {% block edit_options %}{% endblock %}
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-8">
+            <button type="submit"
+                    id="editButton"
+                    class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 {{ button_class }} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    disabled>
+                <span class="flex items-center justify-center space-x-3">
+                    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                    <span>{{ button_text }}</span>
+                </span>
+            </button>
+        </div>
+    </form>
+
+    <!-- Loading Container -->
+    <div id="loadingContainer" class="hidden mt-6"></div>
+
+    <!-- Download Container -->
+    <div id="downloadContainer" class="hidden mt-6"></div>
+
+    <!-- Result Message (for errors) -->
+    <div id="editorResult" class="hidden mt-6"></div>
+
+    <!-- Help Section -->
+    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7">
+        <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900">
+            {% trans "How it works" %}
+        </h2>
+        <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700">
+            <li>{% trans "Select your PDF file using the button above or drag and drop it" %}</li>
+            <li>{% trans "Configure the editing options below" %}</li>
+            <li>{% trans "Click the edit button to process your file" %}</li>
+            <li>{% trans "Download your edited file using the download button" %}</li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.API_URL = "{{ api_url }}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name }}";
+    window.REPLACE_REGEX = "{{ replace_regex }}";
+    window.REPLACE_TO = "{{ replace_to }}";
+    window.ERROR_MESSAGE = "{{ error_message|default:'Editing failed. Please try again.' }}";
+    window.LOADING_TITLE = "{% trans 'Processing your file...' %}";
+    window.LOADING_MESSAGE = "{% trans 'Please wait, this may take a few moments' %}";
+    window.SUCCESS_TITLE = "{% trans 'Editing Complete!' %}";
+    window.SUCCESS_MESSAGE = "{% trans 'Your file is ready to download' %}";
+    window.DOWNLOAD_BUTTON_TEXT = "{% trans 'Download File' %}";
+    window.EDIT_ANOTHER_TEXT = "{% trans 'Edit another file' %}";
+    window.ERROR_TITLE = "{% trans 'Error' %}";
+</script>
+<script src="{% static 'js/file-input-handler.js' %}"></script>
+<script src="{% static 'js/pdf-editor.js' %}"></script>
+{% endblock %}
+
