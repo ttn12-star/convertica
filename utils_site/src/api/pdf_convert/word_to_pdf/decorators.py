@@ -1,7 +1,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import WordToPDFSerializer
 
 
 def word_to_pdf_docs() -> Callable:
@@ -20,7 +19,15 @@ def word_to_pdf_docs() -> Callable:
     def decorator(func: Callable) -> Callable:
         return swagger_auto_schema(
             operation_description="Convert a DOCX file into a PDF document.",
-            request_body=WordToPDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'word_file',
+                    openapi.IN_FORM,
+                    description="Word file (.doc or .docx) to convert",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Converted PDF file.",

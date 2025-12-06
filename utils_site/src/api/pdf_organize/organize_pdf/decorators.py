@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import OrganizePDFSerializer
 
 
 def organize_pdf_docs() -> Callable:
@@ -19,7 +18,22 @@ def organize_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="General PDF organization operations. "
                                  "This endpoint can be extended for various organization tasks.",
-            request_body=OrganizePDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to organize",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'operation',
+                    openapi.IN_FORM,
+                    description="Organization operation type (reorder or sort)",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Organized PDF file.",

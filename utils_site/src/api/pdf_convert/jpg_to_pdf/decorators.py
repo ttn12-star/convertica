@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import JPGToPDFSerializer
 
 
 def jpg_to_pdf_docs() -> Callable:
@@ -23,7 +22,15 @@ def jpg_to_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Convert a JPG/JPEG image into a PDF document. "
                                  "Each image will be placed on a separate page.",
-            request_body=JPGToPDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'image_file',
+                    openapi.IN_FORM,
+                    description="JPG/JPEG image file to convert",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Converted PDF file.",

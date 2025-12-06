@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import RotatePDFSerializer
 
 
 def rotate_pdf_docs() -> Callable:
@@ -19,7 +18,29 @@ def rotate_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Rotate PDF pages by 90, 180, or 270 degrees. "
                                  "You can rotate all pages or specific pages.",
-            request_body=RotatePDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to rotate",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'angle',
+                    openapi.IN_FORM,
+                    description="Rotation angle in degrees (90, 180, or 270)",
+                    type=openapi.TYPE_INTEGER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'pages',
+                    openapi.IN_FORM,
+                    description="Pages to rotate ('all' or comma-separated page numbers)",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Rotated PDF file.",
