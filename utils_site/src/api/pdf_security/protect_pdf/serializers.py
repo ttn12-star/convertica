@@ -10,6 +10,7 @@ class ProtectPDFSerializer(serializers.Serializer):
         min_length=1,
         max_length=100,
         write_only=True,
+        trim_whitespace=True,
         help_text="Password to protect the PDF. This will be used for both user and owner password if not specified separately."
     )
     user_password = serializers.CharField(
@@ -17,6 +18,8 @@ class ProtectPDFSerializer(serializers.Serializer):
         min_length=1,
         max_length=100,
         write_only=True,
+        trim_whitespace=True,
+        allow_blank=True,
         help_text="User password (optional). If not provided, 'password' will be used."
     )
     owner_password = serializers.CharField(
@@ -24,6 +27,8 @@ class ProtectPDFSerializer(serializers.Serializer):
         min_length=1,
         max_length=100,
         write_only=True,
+        trim_whitespace=True,
+        allow_blank=True,
         help_text="Owner password (optional). If not provided, 'password' will be used."
     )
 

@@ -12,6 +12,7 @@ from ...file_validation import (
     check_disk_space,
     sanitize_filename,
     validate_output_file,
+    validate_pdf_file,
 )
 
 logger = get_logger(__name__)
@@ -63,26 +64,32 @@ def unlock_pdf(
         except (OSError, IOError) as io_err:
             raise StorageError(f"Failed to write PDF: {io_err}", context=context) from io_err
         
-        # Check if PDF is encrypted
-        try:
-            reader = PdfReader(pdf_path)
-            if not reader.is_encrypted:
-                raise InvalidPDFError("PDF is not password-protected", context=context)
-        except Exception as e:
-            if isinstance(e, InvalidPDFError):
-                raise
-            logger.warning("Could not check encryption status", extra={**context, "error": str(e)})
+        # Validate password
+        if not password or not password.strip():
+            raise EncryptedPDFError("Password cannot be empty", context=context)
         
-        # Unlock PDF
+        # Validate PDF file first
+        is_valid, validation_error = validate_pdf_file(pdf_path, context)
+        if not is_valid:
+            raise InvalidPDFError(validation_error or "Invalid PDF file", context=context)
+        
+        # Check if PDF is encrypted and unlock
         try:
             logger.info("Starting PDF unlock", extra={**context, "event": "unlock_start"})
             
             reader = PdfReader(pdf_path)
             
+            # Check if PDF is encrypted
+            if not reader.is_encrypted:
+                raise InvalidPDFError("PDF is not password-protected. This PDF does not require a password to open.", context=context)
+            
             # Try to decrypt with provided password
-            if reader.is_encrypted:
-                if not reader.decrypt(password):
-                    raise EncryptedPDFError("Incorrect password", context=context)
+            decrypt_result = reader.decrypt(password)
+            if not decrypt_result:
+                raise EncryptedPDFError(
+                    "Incorrect password. Please check the password and try again.",
+                    context=context
+                )
             
             writer = PdfWriter()
             
@@ -90,12 +97,24 @@ def unlock_pdf(
             context["total_pages"] = total_pages
             
             # Copy all pages (now decrypted)
-            for page in reader.pages:
-                writer.add_page(page)
+            for page_num, page in enumerate(reader.pages, start=1):
+                try:
+                    writer.add_page(page)
+                except Exception as page_error:
+                    logger.warning(
+                        f"Failed to copy page {page_num}",
+                        extra={**context, "page_num": page_num, "error": str(page_error)}
+                    )
+                    # Continue with other pages
+                    continue
             
             # Copy metadata if available
-            if reader.metadata:
-                writer.add_metadata(reader.metadata)
+            try:
+                if reader.metadata:
+                    writer.add_metadata(reader.metadata)
+            except Exception as metadata_error:
+                logger.warning("Could not copy metadata", extra={**context, "error": str(metadata_error)})
+                # Metadata copy failure is not critical
             
             # Write unlocked PDF (without encryption)
             with open(output_path, "wb") as output_file:

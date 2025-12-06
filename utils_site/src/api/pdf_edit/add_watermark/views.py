@@ -41,15 +41,82 @@ class AddWatermarkAPIView(BaseConversionAPIView):
         watermark_text = kwargs.get('watermark_text', 'CONFIDENTIAL')
         watermark_file = kwargs.get('watermark_file')
         position = kwargs.get('position', 'diagonal')
-        opacity = kwargs.get('opacity', 0.3)
-        font_size = kwargs.get('font_size', 72)
+        
+        # Convert coordinates, handling string inputs
+        x_str = kwargs.get('x')
+        y_str = kwargs.get('y')
+        try:
+            x = float(x_str) if x_str and str(x_str).strip() else None
+        except (ValueError, TypeError):
+            x = None
+        try:
+            y = float(y_str) if y_str and str(y_str).strip() else None
+        except (ValueError, TypeError):
+            y = None
+        
+        color = kwargs.get('color', '#000000')
+        
+        # Convert opacity, rotation, scale
+        # Check if value is in kwargs (not just using default)
+        opacity_val = kwargs.get('opacity')
+        if opacity_val is not None:
+            try:
+                opacity = float(opacity_val)
+            except (ValueError, TypeError):
+                opacity = 0.3
+        else:
+            opacity = 0.3
+            
+        font_size_val = kwargs.get('font_size')
+        if font_size_val is not None:
+            try:
+                font_size = int(font_size_val)
+            except (ValueError, TypeError):
+                font_size = 72
+        else:
+            font_size = 72
+            
+        rotation_val = kwargs.get('rotation')
+        if rotation_val is not None:
+            try:
+                rotation = float(rotation_val)
+            except (ValueError, TypeError):
+                rotation = 0.0
+        else:
+            rotation = 0.0
+            
+        scale_val = kwargs.get('scale')
+        if scale_val is not None:
+            try:
+                scale = float(scale_val)
+            except (ValueError, TypeError):
+                scale = 1.0
+        else:
+            scale = 1.0
+            
+        pages = kwargs.get('pages', 'all')
+        
+        # Log all parameters for debugging
+        from ...logging_utils import get_logger
+        logger = get_logger(__name__)
+        logger.info(f"AddWatermarkAPIView: watermark_text='{watermark_text}', has_file={watermark_file is not None}, "
+                   f"position='{position}', x={x}, y={y}, color='{color}', opacity={opacity}, "
+                   f"font_size={font_size}, rotation={rotation}, scale={scale}, pages='{pages}'", 
+                   extra=context)
+        
         pdf_path, output_path = add_watermark(
             uploaded_file,
             watermark_text=watermark_text,
             watermark_file=watermark_file,
             position=position,
+            x=x,
+            y=y,
+            color=color,
             opacity=opacity,
             font_size=font_size,
+            rotation=rotation,
+            scale=scale,
+            pages=pages,
             suffix="_convertica"
         )
         return pdf_path, output_path

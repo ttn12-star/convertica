@@ -20,13 +20,14 @@ def jpg_to_pdf_docs() -> Callable:
 
     def decorator(func: Callable) -> Callable:
         return swagger_auto_schema(
-            operation_description="Convert a JPG/JPEG image into a PDF document. "
-                                 "Each image will be placed on a separate page.",
+            operation_description="Convert one or more JPG/JPEG images into a PDF document. "
+                                 "Multiple images will be combined into a single PDF, with each image on a separate page. "
+                                 "To upload multiple files, send multiple 'image_file' parameters.",
             manual_parameters=[
                 openapi.Parameter(
                     'image_file',
                     openapi.IN_FORM,
-                    description="JPG/JPEG image file to convert",
+                    description="JPG/JPEG image file(s) to convert. Can be sent multiple times for multiple files.",
                     type=openapi.TYPE_FILE,
                     required=True,
                 ),

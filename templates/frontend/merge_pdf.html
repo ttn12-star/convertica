@@ -1,5 +1,10 @@
 {% extends "frontend/edit_pdf_generic.html" %}
-{% load i18n %}
+{% load i18n static %}
+
+{% block extra_head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/pdf-preview.css' %}">
+{% endblock %}
 
 {% block edit_options %}
 <!-- Hide generic file inputs for merge (we use our own) -->
@@ -18,70 +23,67 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+<div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200 mb-6">
     <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Merge Settings" %}</h3>
     
     <div class="space-y-4">
-        <!-- Multiple File Upload -->
+        <!-- File Selection -->
         <div>
-            <label for="pdf_files" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
                 {% trans "Select PDF Files" %} (2-10 files)
             </label>
-            <input type="file" 
-                   id="pdf_files" 
-                   name="pdf_files" 
-                   accept=".pdf"
-                   multiple
-                   required
-                   class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button type="button" 
+                        id="selectPdfFilesButton"
+                        class="inline-flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <span>{% trans "Select PDF files" %}</span>
+                </button>
+                <input type="file" 
+                       id="pdf_files_input"
+                       accept=".pdf"
+                       multiple
+                       class="hidden">
+                <button type="button" 
+                        id="addMorePdfFilesButton"
+                        class="hidden inline-flex items-center justify-center space-x-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2.5 px-6 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <span>{% trans "+ Add more files" %}</span>
+                </button>
+            </div>
             <p class="mt-1.5 text-xs text-gray-500">
-                {% trans "Select 2-10 PDF files to merge. Files will be merged in the order you select them." %}
+                {% trans "Select 2-10 PDF files to merge. You can reorder them by dragging." %}
             </p>
         </div>
 
-        <!-- Merge Order -->
-        <div>
-            <label for="order" class="block text-sm font-semibold text-gray-700 mb-2">
-                {% trans "Merge Order" %}
-            </label>
-            <select id="order" name="order" 
-                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
-                <option value="upload">{% trans "As Uploaded" %}</option>
-                <option value="alphabetical">{% trans "Alphabetical" %}</option>
-            </select>
+        <!-- Selected Files List -->
+        <div id="selectedPdfFilesContainer" class="hidden">
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+                <h4 class="text-sm font-semibold text-gray-900 mb-3">
+                    {% trans "Selected Files" %} (<span id="pdfFileCount">0</span>)
+                </h4>
+                <div id="selectedPdfFilesList" class="space-y-2 max-h-64 overflow-y-auto">
+                    <!-- Files will be added here dynamically -->
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const pdfFilesInput = document.getElementById('pdf_files');
-    const selectedFileDiv = document.getElementById('selectedFile');
-    const fileName = document.getElementById('fileName');
-    const fileSize = document.getElementById('fileSize');
-    const editButton = document.getElementById('editButton');
-    
-    function updateFileDisplay(files) {
-        if (files && files.length > 0) {
-            const totalSize = Array.from(files).reduce((sum, file) => sum + file.size, 0);
-            const sizeMB = (totalSize / (1024 * 1024)).toFixed(2);
-            fileName.textContent = `${files.length} {% trans "file(s) selected" %}`;
-            fileSize.textContent = `${sizeMB} MB`;
-            selectedFileDiv.classList.remove('hidden');
-            if (editButton) editButton.disabled = false;
-        } else {
-            selectedFileDiv.classList.add('hidden');
-            if (editButton) editButton.disabled = true;
-        }
-    }
-    
-    pdfFilesInput?.addEventListener('change', (e) => {
-        updateFileDisplay(e.target.files);
-    });
-    
-    // Initially disable button
-    if (editButton) editButton.disabled = true;
-});
-</script>
-{% endblock %}
+<!-- PDF Preview Section -->
+<div id="pdfPreviewSection" class="hidden bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200 mb-6">
+    <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Preview & Reorder Pages" %}</h3>
+    <p class="text-sm text-gray-600 mb-4">
+        {% trans "Drag and drop to reorder files. The order shown here will be the merge order." %}
+    </p>
+    <div id="pdfPreviewContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <!-- PDF previews will be added here -->
+    </div>
+</div>
 
+<script src="{% static 'js/merge-pdf-multi.js' %}"></script>
+{% endblock %}

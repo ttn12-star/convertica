@@ -1,8 +1,8 @@
-{% load i18n static %}
+{% load i18n static i18n_utils %}
 
 <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-300 mt-12 border-t border-gray-700" itemscope itemtype="https://schema.org/WPFooter">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
 
       <!-- About Links -->
       <div class="footer-about">
@@ -22,6 +22,15 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
               <span>{% trans "Home" %}</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'blog:article_list' %}" 
+               class="flex items-center space-x-2 text-gray-400 hover:text-blue-400 hover:translate-x-1 transition-all duration-200 group">
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <span>{% trans "Blog" %}</span>
             </a>
           </li>
           <li>
@@ -51,6 +60,15 @@
               <span>{% trans "Terms of Service" %}</span>
             </a>
           </li>
+          <li>
+            <a href="{% url 'faq_page' %}" 
+               class="flex items-center space-x-2 text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-200 group">
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <span>{% trans "FAQ" %}</span>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -66,6 +84,15 @@
           <h4 class="font-extrabold text-lg text-white">{% trans "Tools" %}</h4>
         </div>
         <ul class="space-y-2.5 text-sm">
+          <li>
+            <a href="{% url 'all_tools_page' %}" 
+               class="flex items-center space-x-2 text-gray-400 hover:text-purple-400 hover:translate-x-1 transition-all duration-200 group">
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <span>{% trans "All Tools" %}</span>
+            </a>
+          </li>
           <li>
             <a href="{% url 'pdf_to_word_page' %}" 
                class="flex items-center space-x-2 text-gray-400 hover:text-blue-400 hover:translate-x-1 transition-all duration-200 group">
@@ -105,7 +132,7 @@
         </ul>
       </div>
 
-      <!-- Contact & Language -->
+      <!-- Contact -->
       <div class="footer-contact">
         <div class="flex items-center space-x-2 mb-4">
           <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg">
@@ -115,11 +142,11 @@
           </div>
           <h4 class="font-extrabold text-lg text-white">{% trans "Contact" %}</h4>
         </div>
-        <ul class="space-y-2.5 text-sm mb-6">
+        <ul class="space-y-2.5 text-sm">
           <li>
             <a href="/contact/" 
-               class="flex items-center space-x-2 text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-200 group">
-              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 hover:translate-x-1 transition-all duration-200 group">
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
               </svg>
               <span>{% trans "Contact Form" %}</span>
@@ -127,33 +154,53 @@
           </li>
           <li>
             <a href="mailto:info@convertica.com" 
-               class="flex items-center space-x-2 text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-200 group">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 hover:translate-x-1 transition-all duration-200 group">
+              <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
               <span>{% trans "Email" %}</span>
             </a>
           </li>
         </ul>
-        
-        <!-- Language Switcher -->
-        <div>
-          <h4 class="font-bold mb-3 text-sm text-gray-400 uppercase tracking-wide">{% trans "Language" %}</h4>
-          <form method="get" action="{% url 'set_language' %}">
-            {% csrf_token %}
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            <input type="hidden" name="next" value="{{ request.path }}">
-            <select name="language" 
-                    onchange="this.form.submit()" 
-                    class="w-full border border-gray-600 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white cursor-pointer hover:border-gray-500 transition-colors shadow-lg">
-              {% for code, name in LANGUAGES %}
-                <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-                  {{ name }}
-                </option>
-              {% endfor %}
-            </select>
-          </form>
+      </div>
+
+      <!-- Language & Resources -->
+      <div class="footer-language">
+        <div class="flex items-center space-x-2 mb-4">
+          <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center shadow-lg">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+            </svg>
+          </div>
+          <h4 class="font-extrabold text-lg text-white">{% trans "Language" %}</h4>
+        </div>
+        <form method="post" action="{% url 'set_language' %}" class="mb-6">
+          {% csrf_token %}
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% with path_without_lang=request.path|remove_language_prefix %}
+            <input type="hidden" name="next" value="{{ path_without_lang }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}">
+          {% endwith %}
+          <select name="language" 
+                  onchange="this.form.submit();" 
+                  class="w-full border border-gray-600 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-800 text-white cursor-pointer hover:border-gray-500 transition-colors shadow-lg">
+            {% for code, name in LANGUAGES %}
+              <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
+                {{ name }}
+              </option>
+            {% endfor %}
+          </select>
+        </form>
+        <div class="pt-4 border-t border-gray-700">
+          <p class="text-xs text-gray-500 mb-2">{% trans "Resources" %}</p>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="{% url 'all_tools_page' %}" 
+                 class="text-gray-400 hover:text-green-400 transition-colors">
+                {% trans "All Tools" %}
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -168,8 +215,15 @@
           <p class="text-gray-500">
             &copy; {% now "Y" %} <span class="font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Convertica</span>. {% trans "All rights reserved." %}
           </p>
+          <p class="text-xs text-gray-600 mt-1">
+            {% trans "Free PDF tools for everyone" %}
+          </p>
         </div>
-        <div class="flex flex-wrap justify-center sm:justify-end gap-6">
+        <div class="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
+          <a href="{% url 'blog:article_list' %}" 
+             class="text-gray-500 hover:text-blue-400 transition-colors duration-200 hover:underline">
+            {% trans "Blog" %}
+          </a>
           <a href="/privacy/" 
              class="text-gray-500 hover:text-white transition-colors duration-200 hover:underline">
             {% trans "Privacy Policy" %}

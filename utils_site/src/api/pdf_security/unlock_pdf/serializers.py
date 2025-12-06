@@ -10,6 +10,7 @@ class UnlockPDFSerializer(serializers.Serializer):
         min_length=1,
         max_length=100,
         write_only=True,
+        trim_whitespace=True,
         help_text="Password to unlock the PDF."
     )
 

@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and API endpoints
+Disallow: /admin/
+Disallow: /api/
+Disallow: /static/admin/
+
+# Allow static files
+Allow: /static/
+Allow: /media/
+
+# Sitemap
+Sitemap: https://convertica.com/sitemap.xml
+
