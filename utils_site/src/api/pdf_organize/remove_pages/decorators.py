@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import RemovePagesSerializer
 
 
 def remove_pages_docs() -> Callable:
@@ -19,7 +18,22 @@ def remove_pages_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Remove specific pages from PDF. "
                                  "Specify pages as comma-separated numbers or ranges.",
-            request_body=RemovePagesSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to remove pages from",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'pages',
+                    openapi.IN_FORM,
+                    description="Pages to remove (comma-separated numbers or ranges like '1-3,5-7')",
+                    type=openapi.TYPE_STRING,
+                    required=True,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="PDF file with pages removed.",

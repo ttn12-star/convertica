@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import CropPDFSerializer
 
 
 def crop_pdf_docs() -> Callable:
@@ -19,7 +18,50 @@ def crop_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Crop PDF pages by specifying crop box coordinates. "
                                  "You can crop all pages or specific pages.",
-            request_body=CropPDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to crop",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'x',
+                    openapi.IN_FORM,
+                    description="X coordinate of crop box (left edge in points)",
+                    type=openapi.TYPE_NUMBER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'y',
+                    openapi.IN_FORM,
+                    description="Y coordinate of crop box (bottom edge in points)",
+                    type=openapi.TYPE_NUMBER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'width',
+                    openapi.IN_FORM,
+                    description="Width of crop box in points",
+                    type=openapi.TYPE_NUMBER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'height',
+                    openapi.IN_FORM,
+                    description="Height of crop box in points",
+                    type=openapi.TYPE_NUMBER,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'pages',
+                    openapi.IN_FORM,
+                    description="Pages to crop ('all' or comma-separated page numbers)",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Cropped PDF file.",

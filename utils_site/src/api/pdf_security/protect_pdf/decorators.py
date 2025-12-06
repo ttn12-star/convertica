@@ -2,7 +2,6 @@
 from typing import Callable
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-from .serializers import ProtectPDFSerializer
 
 
 def protect_pdf_docs() -> Callable:
@@ -19,7 +18,36 @@ def protect_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Protect PDF with password encryption. "
                                  "The PDF will be encrypted and require a password to open.",
-            request_body=ProtectPDFSerializer,
+            manual_parameters=[
+                openapi.Parameter(
+                    'pdf_file',
+                    openapi.IN_FORM,
+                    description="PDF file to protect",
+                    type=openapi.TYPE_FILE,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'password',
+                    openapi.IN_FORM,
+                    description="Password to protect the PDF",
+                    type=openapi.TYPE_STRING,
+                    required=True,
+                ),
+                openapi.Parameter(
+                    'user_password',
+                    openapi.IN_FORM,
+                    description="User password (optional). If not provided, 'password' will be used",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+                openapi.Parameter(
+                    'owner_password',
+                    openapi.IN_FORM,
+                    description="Owner password (optional). If not provided, 'password' will be used",
+                    type=openapi.TYPE_STRING,
+                    required=False,
+                ),
+            ],
             responses={
                 200: openapi.Response(
                     description="Password-protected PDF file.",
