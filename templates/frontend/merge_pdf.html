@@ -1,0 +1,87 @@
+{% extends "frontend/edit_pdf_generic.html" %}
+{% load i18n %}
+
+{% block edit_options %}
+<!-- Hide generic file inputs for merge (we use our own) -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Hide generic file selection button and drop zone for merge
+    const selectFileButton = document.getElementById('selectFileButton');
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const fileInputDrop = document.getElementById('fileInputDrop');
+    
+    if (selectFileButton) selectFileButton.style.display = 'none';
+    if (dropZone) dropZone.style.display = 'none';
+    if (fileInput) fileInput.removeAttribute('required');
+    if (fileInputDrop) fileInputDrop.removeAttribute('required');
+});
+</script>
+
+<div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+    <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Merge Settings" %}</h3>
+    
+    <div class="space-y-4">
+        <!-- Multiple File Upload -->
+        <div>
+            <label for="pdf_files" class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Select PDF Files" %} (2-10 files)
+            </label>
+            <input type="file" 
+                   id="pdf_files" 
+                   name="pdf_files" 
+                   accept=".pdf"
+                   multiple
+                   required
+                   class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+            <p class="mt-1.5 text-xs text-gray-500">
+                {% trans "Select 2-10 PDF files to merge. Files will be merged in the order you select them." %}
+            </p>
+        </div>
+
+        <!-- Merge Order -->
+        <div>
+            <label for="order" class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Merge Order" %}
+            </label>
+            <select id="order" name="order" 
+                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+                <option value="upload">{% trans "As Uploaded" %}</option>
+                <option value="alphabetical">{% trans "Alphabetical" %}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const pdfFilesInput = document.getElementById('pdf_files');
+    const selectedFileDiv = document.getElementById('selectedFile');
+    const fileName = document.getElementById('fileName');
+    const fileSize = document.getElementById('fileSize');
+    const editButton = document.getElementById('editButton');
+    
+    function updateFileDisplay(files) {
+        if (files && files.length > 0) {
+            const totalSize = Array.from(files).reduce((sum, file) => sum + file.size, 0);
+            const sizeMB = (totalSize / (1024 * 1024)).toFixed(2);
+            fileName.textContent = `${files.length} {% trans "file(s) selected" %}`;
+            fileSize.textContent = `${sizeMB} MB`;
+            selectedFileDiv.classList.remove('hidden');
+            if (editButton) editButton.disabled = false;
+        } else {
+            selectedFileDiv.classList.add('hidden');
+            if (editButton) editButton.disabled = true;
+        }
+    }
+    
+    pdfFilesInput?.addEventListener('change', (e) => {
+        updateFileDisplay(e.target.files);
+    });
+    
+    // Initially disable button
+    if (editButton) editButton.disabled = true;
+});
+</script>
+{% endblock %}
+

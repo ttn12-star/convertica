@@ -61,6 +61,15 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
+# Project specific
+logs/
+tmp/
+utils_site/temp/
+
+# Markdown files (except README.md)
+*.md
+!README.md
+
 # Flask stuff:
 instance/
 .webassets-cache
