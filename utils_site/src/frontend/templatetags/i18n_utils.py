@@ -16,6 +16,21 @@ def remove_language_prefix(path):
     if not path:
         return path
     
+    # Ensure path is a string, not bytes
+    if isinstance(path, bytes):
+        try:
+            path = path.decode('utf-8')
+        except (UnicodeDecodeError, AttributeError):
+            # Fallback to latin-1 if utf-8 fails
+            try:
+                path = path.decode('latin-1')
+            except (UnicodeDecodeError, AttributeError):
+                # Ultimate fallback: return as is
+                return path
+    
+    # Convert to string if not already
+    path = str(path)
+    
     # Remove leading slash if present
     path = path.lstrip('/')
     

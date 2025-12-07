@@ -51,10 +51,16 @@ def hreflang_links(request):
                     # Reverse the URL with the language context
                     lang_url = reverse(url_name, kwargs=url_kwargs)
                     # i18n_patterns adds language prefix automatically
+                    # Ensure proper encoding
+                    if isinstance(lang_url, bytes):
+                        lang_url = lang_url.decode('utf-8')
                     url = f"{base_url}{lang_url}"
                 except Exception:
                     # Fallback: construct URL manually
                     current_path = request.path
+                    # Ensure current_path is a string, not bytes
+                    if isinstance(current_path, bytes):
+                        current_path = current_path.decode('utf-8')
                     # Remove current language prefix
                     for lang_code, _ in languages:
                         if current_path.startswith(f'/{lang_code}/'):
@@ -81,6 +87,9 @@ def hreflang_links(request):
             else:
                 # No URL name, construct manually
                 current_path = request.path
+                # Ensure current_path is a string, not bytes
+                if isinstance(current_path, bytes):
+                    current_path = current_path.decode('utf-8')
                 # Remove current language prefix
                 for lang_code, _ in languages:
                     if current_path.startswith(f'/{lang_code}/'):
@@ -119,8 +128,14 @@ def hreflang_links(request):
             
             try:
                 default_url_path = reverse(url_name, kwargs=url_kwargs)
+                # Ensure proper encoding
+                if isinstance(default_url_path, bytes):
+                    default_url_path = default_url_path.decode('utf-8')
             except Exception:
                 default_url_path = request.path
+                # Ensure default_url_path is a string, not bytes
+                if isinstance(default_url_path, bytes):
+                    default_url_path = default_url_path.decode('utf-8')
                 # Remove any language prefix for default language
                 for lang_code, _ in languages:
                     if default_url_path.startswith(f'/{lang_code}/'):
@@ -133,6 +148,9 @@ def hreflang_links(request):
                 activate(old_lang)
         else:
             default_url_path = request.path
+            # Ensure default_url_path is a string, not bytes
+            if isinstance(default_url_path, bytes):
+                default_url_path = default_url_path.decode('utf-8')
             # Remove any language prefix for default language
             for lang_code, _ in languages:
                 if default_url_path.startswith(f'/{lang_code}/'):

@@ -565,4 +565,7 @@ def sitemap_xml(request):
     # Cache for 24 hours
     cache.set(cache_key, sitemap, 86400)
     
-    return HttpResponse(sitemap, content_type='application/xml')
+    # Ensure proper encoding for XML response
+    response = HttpResponse(sitemap, content_type='application/xml; charset=utf-8')
+    response['Content-Type'] = 'application/xml; charset=utf-8'
+    return response
