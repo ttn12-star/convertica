@@ -3816,3 +3816,48 @@ msgstr ""
 #~ msgstr ""
 #~ "Jika Anda memiliki pertanyaan tentang Ketentuan ini, silakan hubungi kami "
 #~ "di info@convertica.com."
+
+#: utils_site/src/frontend/views.py:499
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you "
+"as soon as possible, usually within 24-48 hours."
+msgstr ""
+"Terima kasih! Pesan Anda telah berhasil dikirim. Kami akan menghubungi Anda "
+"sesegera mungkin, biasanya dalam 24-48 jam."
+
+#: utils_site/src/frontend/views.py:581
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"Maaf, terjadi kesalahan saat mengirim pesan Anda. Silakan coba lagi nanti "
+"atau hubungi kami langsung di info@convertica.net"
+
+#: utils_site/src/frontend/views.py:589
+msgid "Please correct the errors in the form below."
+msgstr "Silakan perbaiki kesalahan dalam formulir di bawah ini."
+
+#: templates/frontend/contact.html:123
+msgid "Message Sent Successfully!"
+msgstr "Pesan Berhasil Dikirim!"
+
+#: templates/frontend/contact.html:129
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"Kami telah menerima pesan Anda dan akan menghubungi Anda sesegera mungkin, "
+"biasanya dalam 24-48 jam."
+
+#: templates/frontend/contact.html:163
+msgid "Thank you! Your message has been sent successfully."
+msgstr "Terima kasih! Pesan Anda telah berhasil dikirim."
+
+
+#: templates/frontend/contact.html:179
+msgid "Please correct the errors below:"
+msgstr "Silakan perbaiki kesalahan di bawah ini:"
+
+#: templates/frontend/contact.html:369
+msgid "Sending..."
+msgstr "Mengirim..."

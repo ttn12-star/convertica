@@ -33,9 +33,11 @@ FROM python:3.12-slim AS production
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # PostgreSQL client libraries
     libpq5 \
-    # Image processing dependencies
+    # Image processing dependencies (OpenCV requires libGL)
     libjpeg-dev \
     zlib1g-dev \
+    libgl1 \
+    libglib2.0-0 \
     # PDF processing dependencies
     poppler-utils \
     tesseract-ocr \
@@ -59,12 +61,23 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 # Copy application code
 COPY --chown=appuser:appuser . .
 
+# Copy entrypoint script
+COPY --chown=appuser:appuser ci/entrypoint.sh /app/entrypoint.sh
+
+# Create symlink for src module to make it importable from root
+# This allows Django to find 'src.frontend' and 'src.blog' apps
+RUN ln -s /app/utils_site/src /app/src
+
 # Switch to non-root user
 USER appuser
+
+# Set entrypoint
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONPATH=/app \
     DJANGO_SETTINGS_MODULE=utils_site.settings \
     PORT=8000
 
