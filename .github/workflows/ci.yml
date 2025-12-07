@@ -38,13 +38,11 @@ jobs:
 
       - name: Check code formatting with black
         run: |
-          black --check . || echo "⚠️ Code formatting issues found. Run 'black .' to fix."
-          # Don't fail on formatting for now, just warn
+          black --check . || (echo "⚠️ Code formatting issues found. Run 'black .' to fix." && exit 1)
 
       - name: Check import sorting with isort
         run: |
-          isort --check-only . || echo "⚠️ Import sorting issues found. Run 'isort .' to fix."
-          # Don't fail on import sorting for now, just warn
+          isort --check-only . || (echo "⚠️ Import sorting issues found. Run 'isort .' to fix." && exit 1)
 
   # Security Scanning
   security:
@@ -76,10 +74,29 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
     
+    # Centralized database configuration to ensure consistency
+    env:
+      POSTGRES_DB: convertica_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      DATABASE_ENGINE: postgresql
+      DATABASE_NAME: convertica_test
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: localhost
+      DATABASE_PORT: 5432
+      SECRET_KEY: test-secret-key
+      DEBUG: True
+      REDIS_URL: redis://localhost:6379/1
+      CELERY_BROKER_URL: redis://localhost:6379/0
+      CELERY_RESULT_BACKEND: redis://localhost:6379/0
+    
     services:
       postgres:
         image: postgres:16
         env:
+          # PostgreSQL container uses POSTGRES_* variables
+          # Values must match DATABASE_* variables in job env above
           POSTGRES_DB: convertica_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -115,38 +132,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-django pytest-cov
+          pip install coverage
 
       - name: Run migrations
-        env:
-          DATABASE_ENGINE: postgresql
-          DATABASE_NAME: convertica_test
-          DATABASE_USER: postgres
-          DATABASE_PASSWORD: postgres
-          DATABASE_HOST: localhost
-          DATABASE_PORT: 5432
-          SECRET_KEY: test-secret-key
-          DEBUG: True
+        # DATABASE_* variables are inherited from job-level env
         run: |
           python manage.py migrate
 
-      - name: Install coverage tools
-        run: |
-          pip install coverage
-
       - name: Run tests with coverage
-        env:
-          DATABASE_ENGINE: postgresql
-          DATABASE_NAME: convertica_test
-          DATABASE_USER: postgres
-          DATABASE_PASSWORD: postgres
-          DATABASE_HOST: localhost
-          DATABASE_PORT: 5432
-          SECRET_KEY: test-secret-key
-          DEBUG: True
-          REDIS_URL: redis://localhost:6379/1
-          CELERY_BROKER_URL: redis://localhost:6379/0
-          CELERY_RESULT_BACKEND: redis://localhost:6379/0
+        # DATABASE_* and other env variables are inherited from job-level env
+        # Using Django's manage.py test (not pytest) as it's the project's test runner
         run: |
           coverage run --source='utils_site' manage.py test --verbosity=2
           coverage xml -o coverage.xml --ignore-errors
