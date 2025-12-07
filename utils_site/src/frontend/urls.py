@@ -31,6 +31,4 @@ urlpatterns = [
     path('terms/', views.terms_page, name='terms_page'),
     path('contact/', views.contact_page, name='contact_page'),
     path('faq/', views.faq_page, name='faq_page'),
-    # SEO
-    path('sitemap.xml', views.sitemap_xml, name='sitemap_xml'),
 ]

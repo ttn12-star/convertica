@@ -9,7 +9,7 @@ schema_view = get_schema_view(
         default_version='v1',
         description="API documentation for my project",
         terms_of_service="https://www.example.com/terms/",
-        contact=openapi.Contact(email="contact@example.com"),
+        contact=openapi.Contact(email="info@convertica.net"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,

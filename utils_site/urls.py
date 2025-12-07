@@ -51,6 +51,8 @@ urlpatterns = [
     path('i18n/setlang/', set_language, name='set_language'),
     path('robots.txt', robots_txt, name='robots_txt'),
     path('health/', health_check, name='health_check'),
+    # SEO - sitemap should be accessible without language prefix
+    path('sitemap.xml', include('src.frontend.urls_sitemap')),
 ]
 
 urlpatterns += i18n_patterns(
