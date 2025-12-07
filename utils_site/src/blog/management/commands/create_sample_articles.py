@@ -1,36 +1,39 @@
 """Management command to create sample articles."""
+
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from src.blog.models import Article, ArticleCategory
 
 
 class Command(BaseCommand):
-    help = 'Create sample articles for the blog'
+    help = "Create sample articles for the blog"
 
     def handle(self, *args, **options):
         # Create category if it doesn't exist
         category, created = ArticleCategory.objects.get_or_create(
-            slug='pdf-guides',
+            slug="pdf-guides",
             defaults={
-                'name_en': 'PDF Guides',
-                'name_ru': 'Руководства по PDF',
-                'description_en': 'Comprehensive guides and tutorials for working with PDF files',
-                'description_ru': 'Подробные руководства и учебники по работе с PDF файлами'
-            }
+                "name_en": "PDF Guides",
+                "name_ru": "Руководства по PDF",
+                "description_en": "Comprehensive guides and tutorials for working with PDF files",
+                "description_ru": "Подробные руководства и учебники по работе с PDF файлами",
+            },
         )
-        
+
         if created:
-            self.stdout.write(self.style.SUCCESS(f'Created category: {category.name_en}'))
+            self.stdout.write(
+                self.style.SUCCESS(f"Created category: {category.name_en}")
+            )
         else:
-            self.stdout.write(f'Using existing category: {category.name_en}')
+            self.stdout.write(f"Using existing category: {category.name_en}")
 
         # Article 1: PDF to Word Conversion Guide
         article1, created1 = Article.objects.get_or_create(
-            slug='complete-guide-pdf-to-word-conversion',
+            slug="complete-guide-pdf-to-word-conversion",
             defaults={
-                'title_en': 'Complete Guide to PDF to Word Conversion: Tips, Tricks, and Best Practices',
-                'title_ru': '',
-                'content_en': '''<h2>Introduction to PDF to Word Conversion</h2>
+                "title_en": "Complete Guide to PDF to Word Conversion: Tips, Tricks, and Best Practices",
+                "title_ru": "",
+                "content_en": """<h2>Introduction to PDF to Word Conversion</h2>
 <p>Converting PDF files to Word documents is one of the most common document transformation tasks. Whether you need to edit a PDF that was created from a scanned document, extract text for reuse, or modify content that's locked in PDF format, understanding the conversion process is essential.</p>
 
 <h2>Why Convert PDF to Word?</h2>
@@ -88,34 +91,36 @@ class Command(BaseCommand):
 <h2>Conclusion</h2>
 <p>PDF to Word conversion is a powerful capability that unlocks the content of PDF files for editing and reuse. By following best practices and using reliable conversion tools, you can achieve excellent results that save time and maintain document quality.</p>
 
-<p>Ready to convert your PDF to Word? Try our free online converter at Convertica - no registration required, instant results, and complete privacy protection.</p>''',
-                'content_ru': '',
-                'excerpt_en': 'Learn everything you need to know about converting PDF files to Word documents. Discover best practices, common challenges, and expert tips for successful conversions.',
-                'excerpt_ru': '',
-                'category': category,
-                'meta_title_en': 'PDF to Word Conversion Guide: Complete Tutorial & Best Practices 2025',
-                'meta_title_ru': '',
-                'meta_description_en': 'Master PDF to Word conversion with our comprehensive guide. Learn tips, tricks, and best practices for converting PDF files to editable Word documents. Free online tools included.',
-                'meta_description_ru': '',
-                'meta_keywords_en': 'PDF to Word, convert PDF to Word, PDF conversion guide, PDF to DOCX, edit PDF, PDF converter tutorial, Word document conversion',
-                'meta_keywords_ru': '',
-                'status': 'published',
-                'published_at': timezone.now()
-            }
+<p>Ready to convert your PDF to Word? Try our free online converter at Convertica - no registration required, instant results, and complete privacy protection.</p>""",
+                "content_ru": "",
+                "excerpt_en": "Learn everything you need to know about converting PDF files to Word documents. Discover best practices, common challenges, and expert tips for successful conversions.",
+                "excerpt_ru": "",
+                "category": category,
+                "meta_title_en": "PDF to Word Conversion Guide: Complete Tutorial & Best Practices 2025",
+                "meta_title_ru": "",
+                "meta_description_en": "Master PDF to Word conversion with our comprehensive guide. Learn tips, tricks, and best practices for converting PDF files to editable Word documents. Free online tools included.",
+                "meta_description_ru": "",
+                "meta_keywords_en": "PDF to Word, convert PDF to Word, PDF conversion guide, PDF to DOCX, edit PDF, PDF converter tutorial, Word document conversion",
+                "meta_keywords_ru": "",
+                "status": "published",
+                "published_at": timezone.now(),
+            },
         )
 
         if created1:
-            self.stdout.write(self.style.SUCCESS(f'Created article: {article1.title_en}'))
+            self.stdout.write(
+                self.style.SUCCESS(f"Created article: {article1.title_en}")
+            )
         else:
-            self.stdout.write(f'Article already exists: {article1.title_en}')
+            self.stdout.write(f"Article already exists: {article1.title_en}")
 
         # Article 2: PDF Compression Guide
         article2, created2 = Article.objects.get_or_create(
-            slug='ultimate-guide-pdf-compression-reduce-file-size',
+            slug="ultimate-guide-pdf-compression-reduce-file-size",
             defaults={
-                'title_en': 'Ultimate Guide to PDF Compression: How to Reduce File Size Without Losing Quality',
-                'title_ru': '',
-                'content_en': '''<h2>Understanding PDF Compression</h2>
+                "title_en": "Ultimate Guide to PDF Compression: How to Reduce File Size Without Losing Quality",
+                "title_ru": "",
+                "content_en": """<h2>Understanding PDF Compression</h2>
 <p>PDF compression is the process of reducing file size while maintaining acceptable quality. This is crucial for email attachments, web uploads, storage optimization, and faster document sharing.</p>
 
 <h2>Why Compress PDF Files?</h2>
@@ -194,26 +199,27 @@ class Command(BaseCommand):
 <h2>Conclusion</h2>
 <p>PDF compression is an essential skill for anyone working with digital documents. By understanding compression levels, techniques, and best practices, you can significantly reduce file sizes while maintaining acceptable quality.</p>
 
-<p>Need to compress a PDF? Try Convertica's free PDF compression tool with multiple compression levels, instant processing, and no file size limits. Compress your PDFs in seconds!</p>''',
-                'content_ru': '',
-                'excerpt_en': 'Discover how to compress PDF files effectively. Learn about compression levels, techniques, and best practices to reduce file size while maintaining quality.',
-                'excerpt_ru': '',
-                'category': category,
-                'meta_title_en': 'PDF Compression Guide: Reduce File Size Without Quality Loss 2025',
-                'meta_title_ru': '',
-                'meta_description_en': 'Learn how to compress PDF files effectively. Complete guide to PDF compression levels, techniques, and tools. Reduce file size by up to 70% while maintaining quality.',
-                'meta_description_ru': '',
-                'meta_keywords_en': 'PDF compression, reduce PDF size, compress PDF, PDF file size, PDF optimizer, shrink PDF, PDF compression guide',
-                'meta_keywords_ru': '',
-                'status': 'published',
-                'published_at': timezone.now()
-            }
+<p>Need to compress a PDF? Try Convertica's free PDF compression tool with multiple compression levels, instant processing, and no file size limits. Compress your PDFs in seconds!</p>""",
+                "content_ru": "",
+                "excerpt_en": "Discover how to compress PDF files effectively. Learn about compression levels, techniques, and best practices to reduce file size while maintaining quality.",
+                "excerpt_ru": "",
+                "category": category,
+                "meta_title_en": "PDF Compression Guide: Reduce File Size Without Quality Loss 2025",
+                "meta_title_ru": "",
+                "meta_description_en": "Learn how to compress PDF files effectively. Complete guide to PDF compression levels, techniques, and tools. Reduce file size by up to 70% while maintaining quality.",
+                "meta_description_ru": "",
+                "meta_keywords_en": "PDF compression, reduce PDF size, compress PDF, PDF file size, PDF optimizer, shrink PDF, PDF compression guide",
+                "meta_keywords_ru": "",
+                "status": "published",
+                "published_at": timezone.now(),
+            },
         )
 
         if created2:
-            self.stdout.write(self.style.SUCCESS(f'Created article: {article2.title_en}'))
+            self.stdout.write(
+                self.style.SUCCESS(f"Created article: {article2.title_en}")
+            )
         else:
-            self.stdout.write(f'Article already exists: {article2.title_en}')
+            self.stdout.write(f"Article already exists: {article2.title_en}")
 
-        self.stdout.write(self.style.SUCCESS('Sample articles created successfully!'))
-
+        self.stdout.write(self.style.SUCCESS("Sample articles created successfully!"))

@@ -2,25 +2,30 @@
 Management command to add content translations for all articles.
 This command adds translated content to articles that only have title/excerpt translations.
 """
+
 from django.core.management.base import BaseCommand
 from src.blog.models import Article
 
 
 class Command(BaseCommand):
-    help = 'Add content translations for all articles'
+    help = "Add content translations for all articles"
 
     def handle(self, *args, **options):
         articles = Article.objects.all()
         total = articles.count()
-        
-        self.stdout.write(self.style.SUCCESS(f'\n=== Adding content translations for {total} articles ===\n'))
-        
+
+        self.stdout.write(
+            self.style.SUCCESS(
+                f"\n=== Adding content translations for {total} articles ===\n"
+            )
+        )
+
         # Translations for each article
         # Note: These are SEO-optimized, contextually accurate translations
         translations_data = {
-            'ilovepdf-alternative-free-pdf-tools-2025': {
-                'ru': {
-                    'content': '''<h2>Ищете альтернативу iLovePDF?</h2>
+            "ilovepdf-alternative-free-pdf-tools-2025": {
+                "ru": {
+                    "content": """<h2>Ищете альтернативу iLovePDF?</h2>
 <p>Если вы ищете альтернативы "iLovePDF" или "i love pdf", вы попали по адресу. Хотя iLovePDF - популярный онлайн-инструмент для работы с PDF, существует множество отличных альтернатив, которые предлагают похожие или даже лучшие функции, часто с более щедрыми бесплатными тарифами.</p>
 
 <h2>Почему ищут альтернативы iLovePDF?</h2>
@@ -132,10 +137,10 @@ class Command(BaseCommand):
 <h2>Заключение: Лучшая альтернатива iLovePDF</h2>
 <p>Если вы ищете альтернативу iLovePDF, которая предлагает больше свободы, лучшую конфиденциальность и более быструю обработку, Convertica - отличный выбор. С неограниченными бесплатными конвертациями, без ограничений на размер файла и без необходимости регистрации, это идеальная замена iLovePDF.</p>
 
-<p>Готовы попробовать лучшую альтернативу iLovePDF? Начните использовать Convertica сегодня - это полностью бесплатно, не требует регистрации и обрабатывает ваши файлы мгновенно. Конвертируйте PDF в Word, Word в PDF, PDF в JPG и многое другое без каких-либо ограничений!</p>'''
+<p>Готовы попробовать лучшую альтернативу iLovePDF? Начните использовать Convertica сегодня - это полностью бесплатно, не требует регистрации и обрабатывает ваши файлы мгновенно. Конвертируйте PDF в Word, Word в PDF, PDF в JPG и многое другое без каких-либо ограничений!</p>"""
                 },
-                'pl': {
-                    'content': '''<h2>Szukasz alternatywy dla iLovePDF?</h2>
+                "pl": {
+                    "content": """<h2>Szukasz alternatywy dla iLovePDF?</h2>
 <p>Jeśli szukasz alternatyw dla "iLovePDF" lub "i love pdf", trafiłeś we właściwe miejsce. Chociaż iLovePDF to popularne narzędzie online do pracy z PDF, istnieje wiele doskonałych alternatyw, które oferują podobne lub nawet lepsze funkcje, często z bardziej hojnymi darmowymi planami.</p>
 
 <h2>Dlaczego szukać alternatyw dla iLovePDF?</h2>
@@ -247,10 +252,10 @@ class Command(BaseCommand):
 <h2>Podsumowanie: Najlepsza alternatywa dla iLovePDF</h2>
 <p>Jeśli szukasz alternatywy dla iLovePDF, która oferuje więcej wolności, lepszą prywatność i szybsze przetwarzanie, Convertica to doskonały wybór. Z nieograniczonymi darmowymi konwersjami, bez ograniczeń rozmiaru pliku i bez konieczności rejestracji, to idealna zamiana iLovePDF.</p>
 
-<p>Gotowy wypróbować najlepszą alternatywę dla iLovePDF? Zacznij używać Convertica już dziś - jest całkowicie darmowe, nie wymaga rejestracji i przetwarza twoje pliki natychmiast. Konwertuj PDF do Word, Word do PDF, PDF do JPG i więcej bez żadnych ograniczeń!</p>'''
+<p>Gotowy wypróbować najlepszą alternatywę dla iLovePDF? Zacznij używać Convertica już dziś - jest całkowicie darmowe, nie wymaga rejestracji i przetwarza twoje pliki natychmiast. Konwertuj PDF do Word, Word do PDF, PDF do JPG i więcej bez żadnych ograniczeń!</p>"""
                 },
-                'hi': {
-                    'content': '''<h2>iLovePDF का विकल्प खोज रहे हैं?</h2>
+                "hi": {
+                    "content": """<h2>iLovePDF का विकल्प खोज रहे हैं?</h2>
 <p>यदि आप "iLovePDF" या "i love pdf" विकल्प खोज रहे हैं, तो आप सही जगह पर आए हैं। जबकि iLovePDF एक लोकप्रिय ऑनलाइन PDF उपकरण है, कई उत्कृष्ट विकल्प हैं जो समान या बेहतर सुविधाएं प्रदान करते हैं, अक्सर अधिक उदार मुफ्त स्तरों के साथ।</p>
 
 <h2>iLovePDF विकल्प क्यों खोजें?</h2>
@@ -362,10 +367,10 @@ class Command(BaseCommand):
 <h2>निष्कर्ष: सर्वश्रेष्ठ iLovePDF विकल्प</h2>
 <p>यदि आप एक iLovePDF विकल्प खोज रहे हैं जो अधिक स्वतंत्रता, बेहतर गोपनीयता और तेज़ प्रसंस्करण प्रदान करता है, तो Convertica एक उत्कृष्ट विकल्प है। असीमित मुफ्त रूपांतरण, कोई फ़ाइल आकार सीमा नहीं, और पंजीकरण की आवश्यकता नहीं के साथ, यह iLovePDF का सही प्रतिस्थापन है।</p>
 
-<p>सर्वश्रेष्ठ iLovePDF विकल्प आज़माने के लिए तैयार हैं? आज ही Convertica का उपयोग शुरू करें - यह पूरी तरह से मुफ्त है, पंजीकरण की आवश्यकता नहीं है, और आपकी फ़ाइलों को तुरंत संसाधित करता है। बिना किसी सीमा के PDF से Word, Word से PDF, PDF से JPG और अधिक कनवर्ट करें!</p>'''
+<p>सर्वश्रेष्ठ iLovePDF विकल्प आज़माने के लिए तैयार हैं? आज ही Convertica का उपयोग शुरू करें - यह पूरी तरह से मुफ्त है, पंजीकरण की आवश्यकता नहीं है, और आपकी फ़ाइलों को तुरंत संसाधित करता है। बिना किसी सीमा के PDF से Word, Word से PDF, PDF से JPG और अधिक कनवर्ट करें!</p>"""
                 },
-                'es': {
-                    'content': '''<h2>¿Buscas una alternativa a iLovePDF?</h2>
+                "es": {
+                    "content": """<h2>¿Buscas una alternativa a iLovePDF?</h2>
 <p>Si estás buscando alternativas a "iLovePDF" o "i love pdf", has llegado al lugar correcto. Aunque iLovePDF es una herramienta PDF en línea popular, existen muchas alternativas excelentes que ofrecen funciones similares o incluso mejores, a menudo con planes gratuitos más generosos.</p>
 
 <h2>¿Por qué buscar alternativas a iLovePDF?</h2>
@@ -477,10 +482,10 @@ class Command(BaseCommand):
 <h2>Conclusión: Mejor alternativa a iLovePDF</h2>
 <p>Si buscas una alternativa a iLovePDF que ofrezca más libertad, mejor privacidad y procesamiento más rápido, Convertica es una excelente opción. Con conversiones gratuitas ilimitadas, sin límites de tamaño de archivo y sin necesidad de registro, es el reemplazo perfecto para iLovePDF.</p>
 
-<p>¿Listo para probar la mejor alternativa a iLovePDF? Comienza a usar Convertica hoy: es completamente gratuito, no requiere registro y procesa tus archivos al instante. ¡Convierte PDF a Word, Word a PDF, PDF a JPG y más sin ninguna limitación!</p>'''
+<p>¿Listo para probar la mejor alternativa a iLovePDF? Comienza a usar Convertica hoy: es completamente gratuito, no requiere registro y procesa tus archivos al instante. ¡Convierte PDF a Word, Word a PDF, PDF a JPG y más sin ninguna limitación!</p>"""
                 },
-                'id': {
-                    'content': '''<h2>Mencari Alternatif iLovePDF?</h2>
+                "id": {
+                    "content": """<h2>Mencari Alternatif iLovePDF?</h2>
 <p>Jika Anda mencari alternatif "iLovePDF" atau "i love pdf", Anda berada di tempat yang tepat. Meskipun iLovePDF adalah alat PDF online yang populer, ada banyak alternatif yang sangat baik yang menawarkan fitur serupa atau bahkan lebih baik, seringkali dengan paket gratis yang lebih murah hati.</p>
 
 <h2>Mengapa Mencari Alternatif iLovePDF?</h2>
@@ -592,46 +597,51 @@ class Command(BaseCommand):
 <h2>Kesimpulan: Alternatif iLovePDF Terbaik</h2>
 <p>Jika Anda mencari alternatif iLovePDF yang menawarkan lebih banyak kebebasan, privasi yang lebih baik, dan pemrosesan yang lebih cepat, Convertica adalah pilihan yang sangat baik. Dengan konversi gratis tanpa batas, tidak ada batasan ukuran file, dan tidak perlu registrasi, ini adalah pengganti yang sempurna untuk iLovePDF.</p>
 
-<p>Siap mencoba alternatif iLovePDF terbaik? Mulai gunakan Convertica hari ini - sepenuhnya gratis, tidak memerlukan registrasi, dan memproses file Anda secara instan. Konversi PDF ke Word, Word ke PDF, PDF ke JPG, dan banyak lagi tanpa batasan apa pun!</p>'''
-                }
+<p>Siap mencoba alternatif iLovePDF terbaik? Mulai gunakan Convertica hari ini - sepenuhnya gratis, tidak memerlukan registrasi, dan memproses file Anda secara instan. Konversi PDF ke Word, Word ke PDF, PDF ke JPG, dan banyak lagi tanpa batasan apa pun!</p>"""
+                },
             },
             # Add translations for other articles here
             # Due to size constraints, I'll add a note that translations need to be added
             # For now, the command structure is ready
         }
-        
+
         # Process each article
         updated_count = 0
-        
+
         for article in articles:
-            self.stdout.write(f'\n📄 Processing: {article.slug}')
-            
+            self.stdout.write(f"\n📄 Processing: {article.slug}")
+
             if article.slug not in translations_data:
-                self.stdout.write(self.style.WARNING(f'  ⚠️  No translation data for {article.slug}'))
+                self.stdout.write(
+                    self.style.WARNING(f"  ⚠️  No translation data for {article.slug}")
+                )
                 continue
-            
+
             article_translations = translations_data[article.slug]
-            
+
             # Initialize translations if needed
             if not article.translations:
                 article.translations = {}
-            
+
             # Add content translations for each language
             for lang_code, lang_data in article_translations.items():
                 if lang_code not in article.translations:
                     article.translations[lang_code] = {}
-                
+
                 # Add content if provided
-                if 'content' in lang_data:
-                    article.translations[lang_code]['content'] = lang_data['content']
-                    self.stdout.write(self.style.SUCCESS(f'  ✅ Added {lang_code} content translation'))
+                if "content" in lang_data:
+                    article.translations[lang_code]["content"] = lang_data["content"]
+                    self.stdout.write(
+                        self.style.SUCCESS(
+                            f"  ✅ Added {lang_code} content translation"
+                        )
+                    )
                     updated_count += 1
-            
+
             # Save article
             article.save()
-            self.stdout.write(self.style.SUCCESS(f'  💾 Saved {article.slug}'))
-        
-        self.stdout.write(self.style.SUCCESS(f'\n✅ Completed!'))
-        self.stdout.write(f'   Updated {updated_count} content translations')
-        self.stdout.write(f'   Processed {total} articles')
+            self.stdout.write(self.style.SUCCESS(f"  💾 Saved {article.slug}"))
 
+        self.stdout.write(self.style.SUCCESS(f"\n✅ Completed!"))
+        self.stdout.write(f"   Updated {updated_count} content translations")
+        self.stdout.write(f"   Processed {total} articles")

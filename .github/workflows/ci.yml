@@ -42,7 +42,7 @@ jobs:
 
       - name: Check import sorting with isort
         run: |
-          isort --check-only . || (echo "⚠️ Import sorting issues found. Run 'isort .' to fix." && exit 1)
+          isort --check-only --profile black . || (echo "⚠️ Import sorting issues found. Run 'isort --profile black .' to fix." && exit 1)
 
   # Security Scanning
   security:

@@ -1,47 +1,48 @@
 # decorators.py
 from typing import Callable
-from drf_yasg.utils import swagger_auto_schema
+
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 
 
 def protect_pdf_docs() -> Callable:
     """Decorator providing Swagger documentation for protect PDF API."""
-    
+
     pdf_binary_schema = openapi.Schema(
         type=openapi.TYPE_STRING,
         format="binary",
         description="Password-protected PDF file.",
         example="(binary file stream)",
     )
-    
+
     def decorator(func: Callable) -> Callable:
         return swagger_auto_schema(
             operation_description="Protect PDF with password encryption. "
-                                 "The PDF will be encrypted and require a password to open.",
+            "The PDF will be encrypted and require a password to open.",
             manual_parameters=[
                 openapi.Parameter(
-                    'pdf_file',
+                    "pdf_file",
                     openapi.IN_FORM,
                     description="PDF file to protect",
                     type=openapi.TYPE_FILE,
                     required=True,
                 ),
                 openapi.Parameter(
-                    'password',
+                    "password",
                     openapi.IN_FORM,
                     description="Password to protect the PDF",
                     type=openapi.TYPE_STRING,
                     required=True,
                 ),
                 openapi.Parameter(
-                    'user_password',
+                    "user_password",
                     openapi.IN_FORM,
                     description="User password (optional). If not provided, 'password' will be used",
                     type=openapi.TYPE_STRING,
                     required=False,
                 ),
                 openapi.Parameter(
-                    'owner_password',
+                    "owner_password",
                     openapi.IN_FORM,
                     description="Owner password (optional). If not provided, 'password' will be used",
                     type=openapi.TYPE_STRING,
@@ -59,6 +60,5 @@ def protect_pdf_docs() -> Callable:
             },
             consumes=["multipart/form-data"],
         )(func)
-    
-    return decorator
 
+    return decorator

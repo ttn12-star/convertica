@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import AddPageNumbersSerializer
-from .decorators import add_page_numbers_docs
-from .utils import add_page_numbers
 from ...base_views import BaseConversionAPIView
+from .decorators import add_page_numbers_docs
+from .serializers import AddPageNumbersSerializer
+from .utils import add_page_numbers
 
 
 class AddPageNumbersAPIView(BaseConversionAPIView):
@@ -32,23 +32,19 @@ class AddPageNumbersAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Add page numbers to PDF."""
-        position = kwargs.get('position', 'bottom-center')
-        font_size = kwargs.get('font_size', 12)
-        start_number = kwargs.get('start_number', 1)
-        format_str = kwargs.get('format_str', '{page}')
+        position = kwargs.get("position", "bottom-center")
+        font_size = kwargs.get("font_size", 12)
+        start_number = kwargs.get("start_number", 1)
+        format_str = kwargs.get("format_str", "{page}")
         pdf_path, output_path = add_page_numbers(
             uploaded_file,
             position=position,
             font_size=font_size,
             start_number=start_number,
             format_str=format_str,
-            suffix="_convertica"
+            suffix="_convertica",
         )
         return pdf_path, output_path
-

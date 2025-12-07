@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-import os
 
+import os
 from pathlib import Path
-from decouple import config, Csv
+
+from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,115 +24,121 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Load from environment variable, fallback to insecure key for development
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-p03zfs4mx09p=oz55doc&#td84i936y$b&8yt7q4^2eh*5_p8v')
+SECRET_KEY = config(
+    "SECRET_KEY",
+    default="django-insecure-p03zfs4mx09p=oz55doc&#td84i936y$b&8yt7q4^2eh*5_p8v",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config("DEBUG", default=True, cast=bool)
 
 # Comma-separated list of allowed hosts
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'drf_yasg',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "drf_yasg",
     # Note: hCaptcha is used via JavaScript widget and direct API calls, not as Django app
-    'src.frontend',
-    'src.blog',
+    "src.frontend",
+    "src.blog",
 ]
 
 # Optional apps (graceful degradation if not installed)
 try:
     import django_ratelimit
-    INSTALLED_APPS.append('django_ratelimit')
+
+    INSTALLED_APPS.append("django_ratelimit")
 except ImportError:
     pass
 
 try:
     import django_prometheus
-    INSTALLED_APPS.append('django_prometheus')
+
+    INSTALLED_APPS.append("django_prometheus")
 except ImportError:
     pass
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'src.frontend.admin_protection.AdminIPWhitelistMiddleware',  # Admin IP protection (must be early)
-    'src.api.middleware.RateLimitMiddleware',  # Rate limiting for API
-    'src.api.middleware.PerformanceMonitoringMiddleware',  # Performance monitoring
-    'django.contrib.sessions.middleware.SessionMiddleware',  # Must be before CaptchaRequirementMiddleware
-    'src.frontend.middleware.CaptchaRequirementMiddleware',  # Track failed attempts for CAPTCHA
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  # Automatically detects language from Accept-Language header, session, or cookie
+    "django.middleware.security.SecurityMiddleware",
+    "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
+    "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
+    "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
+    "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware
+    "src.frontend.middleware.CaptchaRequirementMiddleware",  # Track failed attempts for CAPTCHA
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # Automatically detects language from Accept-Language header, session, or cookie
     # 'src.frontend.middleware.AutoLanguageMiddleware',  # DISABLED - interferes with language switching
 ]
 
 # Add Prometheus middleware if available
 try:
     import django_prometheus
-    MIDDLEWARE.insert(0, 'django_prometheus.middleware.PrometheusBeforeMiddleware')
-    MIDDLEWARE.append('django_prometheus.middleware.PrometheusAfterMiddleware')
+
+    MIDDLEWARE.insert(0, "django_prometheus.middleware.PrometheusBeforeMiddleware")
+    MIDDLEWARE.append("django_prometheus.middleware.PrometheusAfterMiddleware")
 except ImportError:
     pass
 
-ROOT_URLCONF = 'utils_site.urls'
+ROOT_URLCONF = "utils_site.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'src.frontend.context_processors.hreflang_links',
-                'src.frontend.context_processors.hcaptcha_site_key',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "src.frontend.context_processors.hreflang_links",
+                "src.frontend.context_processors.hcaptcha_site_key",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'utils_site.wsgi.application'
+WSGI_APPLICATION = "utils_site.wsgi.application"
 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Support for PostgreSQL in production, SQLite for development
-DATABASE_ENGINE = config('DATABASE_ENGINE', default='sqlite3')
-if DATABASE_ENGINE == 'postgresql':
+DATABASE_ENGINE = config("DATABASE_ENGINE", default="sqlite3")
+if DATABASE_ENGINE == "postgresql":
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DATABASE_NAME', default='convertica_db'),
-            'USER': config('DATABASE_USER', default='convertica_user'),
-            'PASSWORD': config('DATABASE_PASSWORD', default=''),
-            'HOST': config('DATABASE_HOST', default='localhost'),
-            'PORT': config('DATABASE_PORT', default='5432'),
-            'CONN_MAX_AGE': 600,  # Connection pooling: reuse connections for 10 minutes
-            'OPTIONS': {
-                'connect_timeout': 10,
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": config("DATABASE_NAME", default="convertica_db"),
+            "USER": config("DATABASE_USER", default="convertica_user"),
+            "PASSWORD": config("DATABASE_PASSWORD", default=""),
+            "HOST": config("DATABASE_HOST", default="localhost"),
+            "PORT": config("DATABASE_PORT", default="5432"),
+            "CONN_MAX_AGE": 600,  # Connection pooling: reuse connections for 10 minutes
+            "OPTIONS": {
+                "connect_timeout": 10,
             },
         }
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 
@@ -141,16 +148,16 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -158,14 +165,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = "en"
 LANGUAGES = [
-    ('en', 'English'),
-    ('ru', 'Russian'),
-    ('pl', 'Polish'),
-    ('hi', 'Hindi'),
-    ('es', 'Spanish'),
-    ('id', 'Indonesian'),
+    ("en", "English"),
+    ("ru", "Russian"),
+    ("pl", "Polish"),
+    ("hi", "Hindi"),
+    ("es", "Spanish"),
+    ("id", "Indonesian"),
 ]
 
 # Language detection settings
@@ -174,7 +181,7 @@ LANGUAGES = [
 # 2. Cookie (django_language)
 # 3. Accept-Language header from browser
 # 4. Default LANGUAGE_CODE
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 USE_L10N = True
@@ -182,7 +189,7 @@ USE_TZ = True
 
 # Locale paths for translations
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',
+    BASE_DIR / "locale",
 ]
 
 
@@ -195,16 +202,16 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 # Admin Security Settings
 # IP addresses allowed to access admin panel
 # Load from environment variable (comma-separated), fallback to localhost
-ADMIN_IP_WHITELIST = config('ADMIN_IP_WHITELIST', default='127.0.0.1,::1', cast=Csv())
+ADMIN_IP_WHITELIST = config("ADMIN_IP_WHITELIST", default="127.0.0.1,::1", cast=Csv())
 
 # Admin URL path - change this to something unique!
 # Load from environment variable, fallback to 'admin' for development
-ADMIN_URL_PATH = config('ADMIN_URL_PATH', default='admin')
+ADMIN_URL_PATH = config("ADMIN_URL_PATH", default="admin")
 
 # Conversion API settings
 MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB
@@ -217,82 +224,82 @@ MIN_DPI = 72  # Minimum DPI for PDF to image conversion
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Logging configuration
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-            'style': '{',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
         },
-        'structured': {
-            'format': '{levelname} {asctime} {name} [{module}] {message}',
-            'style': '{',
-        },
-    },
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
+        "structured": {
+            "format": "{levelname} {asctime} {name} [{module}] {message}",
+            "style": "{",
         },
     },
-    'handlers': {
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'structured',
-        },
-        'file': {
-            'level': 'INFO',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'logs' / 'convertica.log',
-            'maxBytes': 1024 * 1024 * 10,  # 10 MB
-            'backupCount': 5,
-            'formatter': 'structured',
-            'encoding': 'utf-8',  # Support UTF-8 encoding for international characters
-        },
-        'error_file': {
-            'level': 'ERROR',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': BASE_DIR / 'logs' / 'errors.log',
-            'maxBytes': 1024 * 1024 * 10,  # 10 MB
-            'backupCount': 5,
-            'formatter': 'verbose',
-            'encoding': 'utf-8',  # Support UTF-8 encoding for international characters
+    "filters": {
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-            'propagate': False,
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "structured",
         },
-        'django.request': {
-            'handlers': ['error_file', 'console'],
-            'level': 'ERROR',
-            'propagate': False,
+        "file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": BASE_DIR / "logs" / "convertica.log",
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 5,
+            "formatter": "structured",
+            "encoding": "utf-8",  # Support UTF-8 encoding for international characters
         },
-        'src.api': {
-            'handlers': ['console', 'file', 'error_file'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'src': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-            'propagate': False,
+        "error_file": {
+            "level": "ERROR",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": BASE_DIR / "logs" / "errors.log",
+            "maxBytes": 1024 * 1024 * 10,  # 10 MB
+            "backupCount": 5,
+            "formatter": "verbose",
+            "encoding": "utf-8",  # Support UTF-8 encoding for international characters
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': 'WARNING',
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django.request": {
+            "handlers": ["error_file", "console"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+        "src.api": {
+            "handlers": ["console", "file", "error_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "src": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
     },
 }
 
 # Create logs directory if it doesn't exist
-logs_dir = BASE_DIR / 'logs'
+logs_dir = BASE_DIR / "logs"
 if not logs_dir.exists():
     os.makedirs(logs_dir, exist_ok=True)
 
@@ -302,81 +309,86 @@ if not logs_dir.exists():
 
 # HTTPS Settings (only in production)
 if not DEBUG:
-    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
-    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
-    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
+    SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=True, cast=bool)
+    SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", default=True, cast=bool)
+    CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", default=True, cast=bool)
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'  # Protection against clickjacking
+    X_FRAME_OPTIONS = "DENY"  # Protection against clickjacking
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 else:
     # Development settings
-    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
-    SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
-    CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
+    SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=False, cast=bool)
+    SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", default=False, cast=bool)
+    CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", default=False, cast=bool)
 
 # Cache Configuration
 # Using Redis for caching and session storage
 try:
     import django_redis
+
     CACHES = {
-        'default': {
-            'BACKEND': 'django_redis.cache.RedisCache',
-            'LOCATION': config('REDIS_URL', default='redis://127.0.0.1:6379/1'),
-            'OPTIONS': {
-                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-                'SOCKET_CONNECT_TIMEOUT': 5,
-                'SOCKET_TIMEOUT': 5,
-                'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
-                'IGNORE_EXCEPTIONS': True,  # Don't fail if Redis is down
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": config("REDIS_URL", default="redis://127.0.0.1:6379/1"),
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "SOCKET_CONNECT_TIMEOUT": 5,
+                "SOCKET_TIMEOUT": 5,
+                "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+                "IGNORE_EXCEPTIONS": True,  # Don't fail if Redis is down
             },
-            'KEY_PREFIX': 'convertica',
-            'TIMEOUT': 300,  # Default timeout: 5 minutes
+            "KEY_PREFIX": "convertica",
+            "TIMEOUT": 300,  # Default timeout: 5 minutes
         }
     }
 except ImportError:
     # Fallback to local memory cache if django-redis is not installed
     CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'LOCATION': 'unique-snowflake',
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "unique-snowflake",
         }
     }
 
 # Session backend using Redis (if available)
 try:
     import django_redis
-    SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-    SESSION_CACHE_ALIAS = 'default'
+
+    SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+    SESSION_CACHE_ALIAS = "default"
 except ImportError:
     # Fallback to database sessions if django-redis is not installed
-    SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+    SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 # Celery Configuration
-CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://127.0.0.1:6379/0')
-CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://127.0.0.1:6379/0')
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://127.0.0.1:6379/0")
+CELERY_RESULT_BACKEND = config(
+    "CELERY_RESULT_BACKEND", default="redis://127.0.0.1:6379/0"
+)
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
 CELERY_ENABLE_UTC = True
 
 # Rate Limiting Configuration
-RATELIMIT_ENABLE = config('RATELIMIT_ENABLE', default=True, cast=bool)
-RATELIMIT_USE_CACHE = 'default'  # Use Redis cache for rate limiting
+RATELIMIT_ENABLE = config("RATELIMIT_ENABLE", default=True, cast=bool)
+RATELIMIT_USE_CACHE = "default"  # Use Redis cache for rate limiting
 
 # API Rate Limits (requests per minute)
 API_RATE_LIMIT = {
-    'default': '100/m',  # 100 requests per minute
-    'pdf_conversion': '20/m',  # 20 PDF conversions per minute
-    'file_upload': '30/m',  # 30 file uploads per minute
+    "default": "100/m",  # 100 requests per minute
+    "pdf_conversion": "20/m",  # 20 PDF conversions per minute
+    "file_upload": "30/m",  # 30 file uploads per minute
 }
 
 # Prometheus Monitoring (if available)
 try:
     import django_prometheus
+
     PROMETHEUS_EXPORT_MIGRATIONS = False
 except ImportError:
     pass
