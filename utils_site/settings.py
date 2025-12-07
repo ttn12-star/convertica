@@ -215,15 +215,19 @@ if USE_WHITENOISE:
     # Add WhiteNoise middleware (should be after SecurityMiddleware)
     if "whitenoise.middleware.WhiteNoiseMiddleware" not in MIDDLEWARE:
         # Insert after SecurityMiddleware
-        security_index = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware")
-        MIDDLEWARE.insert(security_index + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
-    
+        security_index = MIDDLEWARE.index(
+            "django.middleware.security.SecurityMiddleware"
+        )
+        MIDDLEWARE.insert(
+            security_index + 1, "whitenoise.middleware.WhiteNoiseMiddleware"
+        )
+
     # WhiteNoise settings for optimized static file serving
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    
+
     # Cache static files for 1 year
     WHITENOISE_MAX_AGE = 31536000  # 1 year in seconds
-    
+
     # Enable compression
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = DEBUG  # Auto-refresh in development
@@ -413,7 +417,11 @@ API_RATE_LIMIT = {
 # https://docs.djangoproject.com/en/5.2/topics/email/
 EMAIL_BACKEND = config(
     "EMAIL_BACKEND",
-    default="django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend",
+    default=(
+        "django.core.mail.backends.console.EmailBackend"
+        if DEBUG
+        else "django.core.mail.backends.smtp.EmailBackend"
+    ),
 )
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")
 EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
@@ -425,8 +433,12 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@convertica.ne
 CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 
 # hCaptcha Configuration
-HCAPTCHA_SITE_KEY = os.environ.get("HCAPTCHA_SITE_KEY", config("HCAPTCHA_SITE_KEY", default="", cast=str))
-HCAPTCHA_SECRET_KEY = os.environ.get("HCAPTCHA_SECRET_KEY", config("HCAPTCHA_SECRET_KEY", default="", cast=str))
+HCAPTCHA_SITE_KEY = os.environ.get(
+    "HCAPTCHA_SITE_KEY", config("HCAPTCHA_SITE_KEY", default="", cast=str)
+)
+HCAPTCHA_SECRET_KEY = os.environ.get(
+    "HCAPTCHA_SECRET_KEY", config("HCAPTCHA_SECRET_KEY", default="", cast=str)
+)
 
 # Prometheus Monitoring (if available)
 try:
