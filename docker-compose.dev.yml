@@ -6,6 +6,8 @@ version: '3.8'
 services:
   web:
     build:
+      context: .
+      dockerfile: ci/Dockerfile
       target: builder  # Use builder stage for development
     command: >
       sh -c "python manage.py collectstatic --noinput &&
@@ -19,9 +21,15 @@ services:
     environment:
       - DEBUG=True
       - DATABASE_ENGINE=sqlite3  # Use SQLite for development
+      - USE_WHITENOISE=True  # Use WhiteNoise in development (simpler than Nginx)
     ports:
       - "8000:8000"
       - "5678:5678"  # Debug port
+
+  # Disable Nginx in development (use WhiteNoise instead)
+  nginx:
+    profiles:
+      - production  # Only start with --profile production
 
   celery:
     volumes:

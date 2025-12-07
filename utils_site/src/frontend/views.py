@@ -482,7 +482,79 @@ def terms_page(request):
 
 
 def contact_page(request):
-    """Contact page."""
+    """Contact page with form handling."""
+    from django.contrib import messages
+    from django.core.mail import send_mail
+    from django.conf import settings
+    from .forms import ContactForm
+
+    form = ContactForm()
+    message_sent = False
+
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            email = form.cleaned_data["email"]
+            subject = form.cleaned_data["subject"]
+            message = form.cleaned_data["message"]
+
+            # Get recipient email from settings or use default
+            recipient_email = getattr(settings, "CONTACT_EMAIL", "info@convertica.net")
+
+            # Prepare email content
+            email_subject = f"[Convertica Contact] {subject}"
+            email_body = f"""
+New contact form submission from Convertica website:
+
+Name: {name}
+Email: {email}
+Subject: {subject}
+
+Message:
+{message}
+
+---
+This message was sent from the contact form on {request.build_absolute_uri('/contact/')}
+"""
+
+            try:
+                # Send email
+                send_mail(
+                    subject=email_subject,
+                    message=email_body,
+                    from_email=getattr(
+                        settings,
+                        "DEFAULT_FROM_EMAIL",
+                        f"noreply@{request.get_host()}",
+                    ),
+                    recipient_list=[recipient_email],
+                    fail_silently=False,
+                )
+
+                # Success message
+                messages.success(
+                    request,
+                    _(
+                        "Thank you! Your message has been sent successfully. We'll get back to you soon."
+                    ),
+                )
+                message_sent = True
+                form = ContactForm()  # Reset form after successful submission
+
+            except Exception as e:
+                # Log error and show user-friendly message
+                import logging
+
+                logger = logging.getLogger(__name__)
+                logger.error(f"Failed to send contact form email: {str(e)}")
+                messages.error(
+                    request,
+                    _(
+                        "Sorry, there was an error sending your message. Please try again later or contact us directly at info@convertica.net"
+                    ),
+                )
+
     context = {
         "page_title": _("Contact Us - Convertica"),
         "page_description": _(
@@ -491,6 +563,8 @@ def contact_page(request):
         "page_keywords": _(
             "contact Convertica, support, customer service, help, feedback"
         ),
+        "form": form,
+        "message_sent": message_sent,
     }
     return render(request, "frontend/contact.html", context)
 

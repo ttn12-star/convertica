@@ -69,6 +69,9 @@ except ImportError:
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # WhiteNoise for static files (if enabled via USE_WHITENOISE env var)
+    # Uncomment or use environment variable to enable
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
@@ -203,6 +206,27 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = "static/"
+
+# WhiteNoise configuration (alternative to Nginx for static files)
+# Enable by setting USE_WHITENOISE=True in environment
+USE_WHITENOISE = config("USE_WHITENOISE", default=False, cast=bool)
+
+if USE_WHITENOISE:
+    # Add WhiteNoise middleware (should be after SecurityMiddleware)
+    if "whitenoise.middleware.WhiteNoiseMiddleware" not in MIDDLEWARE:
+        # Insert after SecurityMiddleware
+        security_index = MIDDLEWARE.index("django.middleware.security.SecurityMiddleware")
+        MIDDLEWARE.insert(security_index + 1, "whitenoise.middleware.WhiteNoiseMiddleware")
+    
+    # WhiteNoise settings for optimized static file serving
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    
+    # Cache static files for 1 year
+    WHITENOISE_MAX_AGE = 31536000  # 1 year in seconds
+    
+    # Enable compression
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = DEBUG  # Auto-refresh in development
 
 # Admin Security Settings
 # IP addresses allowed to access admin panel
@@ -384,6 +408,21 @@ API_RATE_LIMIT = {
     "pdf_conversion": "20/m",  # 20 PDF conversions per minute
     "file_upload": "30/m",  # 30 file uploads per minute
 }
+
+# Email Configuration
+# https://docs.djangoproject.com/en/5.2/topics/email/
+EMAIL_BACKEND = config(
+    "EMAIL_BACKEND",
+    default="django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend",
+)
+EMAIL_HOST = config("EMAIL_HOST", default="localhost")
+EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
+EMAIL_USE_SSL = config("EMAIL_USE_SSL", default=False, cast=bool)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@convertica.net")
+CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 
 # Prometheus Monitoring (if available)
 try:

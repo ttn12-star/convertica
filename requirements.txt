@@ -45,5 +45,7 @@ tzdata==2025.2
 wheel==0.45.1
 # Production WSGI server
 gunicorn==21.2.0
+# Static files optimization (alternative to Nginx)
+whitenoise==6.8.2
 # Anti-spam protection
 django-hcaptcha==0.2.0
