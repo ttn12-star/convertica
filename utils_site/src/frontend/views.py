@@ -483,12 +483,14 @@ def terms_page(request):
 
 def contact_page(request):
     """Contact page with form handling."""
+    import logging
+
+    from django.conf import settings
     from django.contrib import messages
     from django.core.mail import send_mail
-    from django.conf import settings
     from django.shortcuts import redirect
+
     from .forms import ContactForm
-    import logging
 
     logger = logging.getLogger(__name__)
 
@@ -506,41 +508,45 @@ def contact_page(request):
 
     if request.method == "POST":
         form = ContactForm(request.POST)
-        
+
         # Verify hCaptcha before form validation
         from utils_site.src.api.spam_protection import verify_hcaptcha
-        
+
         hcaptcha_token = request.POST.get("hcaptcha_token", "")
         # Also check for h-captcha-response (direct from widget)
         if not hcaptcha_token:
             hcaptcha_token = request.POST.get("h-captcha-response", "")
-        
+
         # Get client IP
-        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
         if x_forwarded_for:
-            remote_ip = x_forwarded_for.split(',')[0].strip()
+            remote_ip = x_forwarded_for.split(",")[0].strip()
         else:
-            remote_ip = request.META.get('REMOTE_ADDR', '')
-        
+            remote_ip = request.META.get("REMOTE_ADDR", "")
+
         if not verify_hcaptcha(hcaptcha_token, remote_ip):
             messages.error(
                 request,
                 _("Please complete the CAPTCHA verification."),
             )
-            return render(request, "frontend/contact.html", {
-                "page_title": _("Contact Us - Convertica"),
-                "page_description": _(
-                    "Contact Convertica for support, questions, or feedback. We're here to help with all your PDF tool needs."
-                ),
-                "page_keywords": _(
-                    "contact Convertica, support, customer service, help, feedback"
-                ),
-                "form": form,
-                "message_sent": False,
-            })
-        
+            return render(
+                request,
+                "frontend/contact.html",
+                {
+                    "page_title": _("Contact Us - Convertica"),
+                    "page_description": _(
+                        "Contact Convertica for support, questions, or feedback. We're here to help with all your PDF tool needs."
+                    ),
+                    "page_keywords": _(
+                        "contact Convertica, support, customer service, help, feedback"
+                    ),
+                    "form": form,
+                    "message_sent": False,
+                },
+            )
+
         if form.is_valid():
-            
+
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             subject = form.cleaned_data["subject"]
@@ -584,7 +590,7 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
                 logger.info(
                     "Contact form submitted successfully from %s (IP: %s)",
                     email,
-                    request.META.get('REMOTE_ADDR', 'Unknown'),
+                    request.META.get("REMOTE_ADDR", "Unknown"),
                 )
 
                 # Redirect to prevent form resubmission on refresh

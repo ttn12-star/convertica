@@ -70,4 +70,3 @@ class ContactForm(forms.Form):
         if len(message) > 5000:
             raise ValidationError(_("Message is too long. Maximum 5000 characters."))
         return message
-

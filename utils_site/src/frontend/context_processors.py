@@ -18,7 +18,7 @@ def hcaptcha_site_key(request):
         site_key = getattr(settings, "HCAPTCHA_SITE_KEY", "")
     if not site_key:
         site_key = config("HCAPTCHA_SITE_KEY", default="", cast=str)
-    
+
     return {
         "hcaptcha_site_key": site_key,
         "captcha_required": request.session.get("captcha_required", False),
