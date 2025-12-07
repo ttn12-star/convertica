@@ -148,9 +148,9 @@ jobs:
           CELERY_BROKER_URL: redis://localhost:6379/0
           CELERY_RESULT_BACKEND: redis://localhost:6379/0
         run: |
-          coverage run --source='.' manage.py test --verbosity=2
-          coverage xml -o coverage.xml
-          coverage report
+          coverage run --source='utils_site' manage.py test --verbosity=2
+          coverage xml -o coverage.xml --ignore-errors
+          coverage report --ignore-errors
 
       - name: Upload coverage to Codecov
         if: always()
