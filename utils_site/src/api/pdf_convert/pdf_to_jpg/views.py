@@ -1,17 +1,17 @@
 # views.py
-from typing import Tuple, Optional
+from typing import Optional, Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
-from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.response import Response
 
-from .serializers import PDFToJPGSerializer
-from .decorators import pdf_to_jpg_docs
-from .utils import convert_pdf_to_jpg
 from ...base_views import BaseConversionAPIView
-from ...logging_utils import log_file_validation_error, get_logger
+from ...logging_utils import get_logger, log_file_validation_error
+from .decorators import pdf_to_jpg_docs
+from .serializers import PDFToJPGSerializer
+from .utils import convert_pdf_to_jpg
 
 logger = get_logger(__name__)
 
@@ -37,10 +37,7 @@ class PDFToJPGAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def validate_file_additional(
-        self,
-        file: UploadedFile,
-        context: dict,
-        validated_data: dict
+        self, file: UploadedFile, context: dict, validated_data: dict
     ) -> Optional[Response]:
         """Validate DPI parameter."""
         dpi = validated_data.get("dpi", 300)
@@ -52,24 +49,18 @@ class PDFToJPGAPIView(BaseConversionAPIView):
             )
             return Response(
                 {"error": "DPI must be between 72 and 600."},
-                status=status.HTTP_400_BAD_REQUEST
+                status=status.HTTP_400_BAD_REQUEST,
             )
         return None
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Perform PDF to JPG conversion."""
         page = kwargs.get("page", 1)
         dpi = kwargs.get("dpi", 300)
-        
+
         pdf_path, jpg_path = convert_pdf_to_jpg(
-            uploaded_file,
-            page=page,
-            dpi=dpi,
-            suffix="_convertica"
+            uploaded_file, page=page, dpi=dpi, suffix="_convertica"
         )
         return pdf_path, jpg_path

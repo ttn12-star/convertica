@@ -6,40 +6,40 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0002_add_jsonfield_translations'),
+        ("blog", "0002_add_jsonfield_translations"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='article',
-            name='content_ru',
+            model_name="article",
+            name="content_ru",
         ),
         migrations.RemoveField(
-            model_name='article',
-            name='excerpt_ru',
+            model_name="article",
+            name="excerpt_ru",
         ),
         migrations.RemoveField(
-            model_name='article',
-            name='meta_description_ru',
+            model_name="article",
+            name="meta_description_ru",
         ),
         migrations.RemoveField(
-            model_name='article',
-            name='meta_keywords_ru',
+            model_name="article",
+            name="meta_keywords_ru",
         ),
         migrations.RemoveField(
-            model_name='article',
-            name='meta_title_ru',
+            model_name="article",
+            name="meta_title_ru",
         ),
         migrations.RemoveField(
-            model_name='article',
-            name='title_ru',
+            model_name="article",
+            name="title_ru",
         ),
         migrations.RemoveField(
-            model_name='articlecategory',
-            name='description_ru',
+            model_name="articlecategory",
+            name="description_ru",
         ),
         migrations.RemoveField(
-            model_name='articlecategory',
-            name='name_ru',
+            model_name="articlecategory",
+            name="name_ru",
         ),
     ]

@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import WordToPDFSerializer
-from .decorators import word_to_pdf_docs
-from .utils import convert_word_to_pdf
 from ...base_views import BaseConversionAPIView
+from .decorators import word_to_pdf_docs
+from .serializers import WordToPDFSerializer
+from .utils import convert_word_to_pdf
 
 
 class WordToPDFAPIView(BaseConversionAPIView):
@@ -36,14 +36,8 @@ class WordToPDFAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Perform Word to PDF conversion."""
-        docx_path, pdf_path = convert_word_to_pdf(
-            uploaded_file,
-            suffix="_convertica"
-        )
+        docx_path, pdf_path = convert_word_to_pdf(uploaded_file, suffix="_convertica")
         return docx_path, pdf_path
