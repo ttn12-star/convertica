@@ -120,11 +120,11 @@ jobs:
       - name: Run migrations
         env:
           DATABASE_ENGINE: postgresql
-          POSTGRES_DB: convertica_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+          DATABASE_NAME: convertica_test
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
           SECRET_KEY: test-secret-key
           DEBUG: True
         run: |
@@ -137,11 +137,11 @@ jobs:
       - name: Run tests with coverage
         env:
           DATABASE_ENGINE: postgresql
-          POSTGRES_DB: convertica_test
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
+          DATABASE_NAME: convertica_test
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
           SECRET_KEY: test-secret-key
           DEBUG: True
           REDIS_URL: redis://localhost:6379/1
