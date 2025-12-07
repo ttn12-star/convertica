@@ -18,42 +18,42 @@
     "mainEntity": [
         {
             "@type": "Question",
-            "name": "{% trans 'How do I convert PDF to Word?' %}",
+            "name": "{{ faq_q1|escapejs }}",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "{% trans 'To convert PDF to Word, simply upload your PDF file using the upload button or drag and drop it into the upload zone. Click the convert button and wait for the conversion to complete. Download your converted Word document using the download button. The conversion is free and requires no registration.' %}"
+                "text": "{{ faq_a1|escapejs }}"
             }
         },
         {
             "@type": "Question",
-            "name": "{% trans 'Is Convertica free to use?' %}",
+            "name": "{{ faq_q2|escapejs }}",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "{% trans 'Yes, Convertica is completely free to use. All PDF conversion, editing, and organization tools are available at no cost. There are no hidden fees, no registration required, and no file size limits on the free plan.' %}"
+                "text": "{{ faq_a2|escapejs }}"
             }
         },
         {
             "@type": "Question",
-            "name": "{% trans 'What file formats does Convertica support?' %}",
+            "name": "{{ faq_q3|escapejs }}",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "{% trans 'Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You can convert between these formats, edit PDFs, organize pages, and protect your documents with passwords.' %}"
+                "text": "{{ faq_a3|escapejs }}"
             }
         },
         {
             "@type": "Question",
-            "name": "{% trans 'How do I merge multiple PDF files?' %}",
+            "name": "{{ faq_q4|escapejs }}",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "{% trans 'To merge PDF files, go to the Merge PDF page, select multiple PDF files, arrange them in the desired order, and click merge. All selected files will be combined into a single PDF document.' %}"
+                "text": "{{ faq_a4|escapejs }}"
             }
         },
         {
             "@type": "Question",
-            "name": "{% trans 'Is my data secure?' %}",
+            "name": "{{ faq_q5|escapejs }}",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "{% trans 'Yes, your data is secure. All files are processed securely and automatically deleted immediately after conversion. We do not store your files, and your privacy is our top priority. You can also protect your PDFs with password encryption.' %}"
+                "text": "{{ faq_a5|escapejs }}"
             }
         }
     ],

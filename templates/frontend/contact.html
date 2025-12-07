@@ -21,7 +21,7 @@
     "mainEntity": {
         "@type": "Organization",
         "name": "Convertica",
-        "email": "info@convertica.com",
+        "email": "info@convertica.net",
         "url": "{{ request.scheme }}://{{ request.get_host }}"
     },
     "inLanguage": "{{ LANGUAGE_CODE }}"
@@ -69,9 +69,9 @@
                     <p class="text-gray-700 mb-4 leading-relaxed">
                         {% trans "Send us an email and we'll get back to you as soon as possible." %}
                     </p>
-                    <a href="mailto:info@convertica.com" 
+                    <a href="mailto:info@convertica.net" 
                        class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200">
-                        <span>info@convertica.com</span>
+                        <span>info@convertica.net</span>
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
@@ -108,61 +108,124 @@
                     <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">{% trans "Send Us a Message" %}</h2>
                 </div>
                 
-                <form action="mailto:info@convertica.com" method="post" enctype="text/plain" class="space-y-6">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div id="message-container" class="{% if message.tags == 'success' %}bg-green-50 border-2 border-green-400{% else %}bg-red-50 border-2 border-red-400{% endif %} rounded-xl p-6 mb-6 shadow-lg animate-fade-in">
+                            <div class="flex items-start">
+                                {% if message.tags == 'success' %}
+                                    <div class="flex-shrink-0">
+                                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-lg font-bold text-green-900 mb-2">
+                                            {% trans "Message Sent Successfully!" %}
+                                        </h3>
+                                        <p class="text-green-800 font-semibold mb-2">
+                                            {{ message }}
+                                        </p>
+                                        <p class="text-green-700 text-sm">
+                                            {% trans "We have received your message and will get back to you as soon as possible, usually within 24-48 hours." %}
+                                        </p>
+                                    </div>
+                                {% else %}
+                                    <div class="flex-shrink-0">
+                                        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <h3 class="text-lg font-bold text-red-900 mb-2">
+                                            {% trans "Error" %}
+                                        </h3>
+                                        <p class="text-red-800 font-semibold">
+                                            {{ message }}
+                                        </p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% if form.errors %}
+                    <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p class="text-red-800 font-semibold">{% trans "Please correct the errors below:" %}</p>
+                        </div>
+                        <ul class="list-disc list-inside text-red-700 text-sm">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <li>{{ field|title }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                <form method="post" action="{% url 'contact_page' %}" class="space-y-6" id="contact-form">
+                    {% csrf_token %}
+                    
                     <div>
-                        <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Your Name" %} <span class="text-red-500">*</span>
+                        <label for="{{ form.name.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
+                            {{ form.name.label }} <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" 
-                               id="name" 
-                               name="name" 
-                               required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white text-gray-900">
+                        {{ form.name }}
+                        {% if form.name.errors %}
+                            <p class="text-red-600 text-sm mt-1">{{ form.name.errors.0 }}</p>
+                        {% endif %}
                     </div>
                     
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Your Email" %} <span class="text-red-500">*</span>
+                        <label for="{{ form.email.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
+                            {{ form.email.label }} <span class="text-red-500">*</span>
                         </label>
-                        <input type="email" 
-                               id="email" 
-                               name="email" 
-                               required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white text-gray-900">
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <p class="text-red-600 text-sm mt-1">{{ form.email.errors.0 }}</p>
+                        {% endif %}
                     </div>
                     
                     <div>
-                        <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Subject" %} <span class="text-red-500">*</span>
+                        <label for="{{ form.subject.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
+                            {{ form.subject.label }} <span class="text-red-500">*</span>
                         </label>
-                        <input type="text" 
-                               id="subject" 
-                               name="subject" 
-                               required
-                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white text-gray-900">
+                        {{ form.subject }}
+                        {% if form.subject.errors %}
+                            <p class="text-red-600 text-sm mt-1">{{ form.subject.errors.0 }}</p>
+                        {% endif %}
                     </div>
                     
                     <div>
-                        <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Message" %} <span class="text-red-500">*</span>
+                        <label for="{{ form.message.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
+                            {{ form.message.label }} <span class="text-red-500">*</span>
                         </label>
-                        <textarea id="message" 
-                                  name="message" 
-                                  rows="6" 
-                                  required
-                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white text-gray-900 resize-y"></textarea>
+                        {{ form.message }}
+                        {% if form.message.errors %}
+                            <p class="text-red-600 text-sm mt-1">{{ form.message.errors.0 }}</p>
+                        {% endif %}
                     </div>
                     
                     <div class="flex items-start">
-                        <input type="checkbox" 
-                               id="privacy" 
-                               name="privacy" 
-                               required
-                               class="mt-1 mr-3 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                        <label for="privacy" class="text-sm text-gray-700">
+                        {{ form.privacy }}
+                        <label for="{{ form.privacy.id_for_label }}" class="text-sm text-gray-700 ml-2">
                             {% trans "I agree to the" %} <a href="{% url 'privacy_page' %}" class="text-blue-600 hover:text-blue-700 underline">{% trans "Privacy Policy" %}</a> {% trans "and consent to the processing of my personal data." %}
                         </label>
                     </div>
+                    {% if form.privacy.errors %}
+                        <p class="text-red-600 text-sm">{{ form.privacy.errors.0 }}</p>
+                    {% endif %}
+                    
+                    <!-- hCaptcha (Anti-spam) -->
+                    {% if hcaptcha_site_key %}
+                    <div class="flex justify-center my-6" id="hcaptcha-container">
+                        <div class="h-captcha" data-sitekey="{{ hcaptcha_site_key }}" data-theme="light"></div>
+                    </div>
+                    {% endif %}
                     
                     <button type="submit" 
                             class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl">
@@ -248,5 +311,88 @@
     </section>
 
 </main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-scroll to success/error message when form is submitted
+document.addEventListener('DOMContentLoaded', function() {
+    const messageContainer = document.getElementById('message-container');
+    
+    if (messageContainer) {
+        // Scroll to message with smooth animation
+        setTimeout(() => {
+            messageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        
+        // Add pulse animation for success messages
+        if (messageContainer.classList.contains('bg-green-50')) {
+            messageContainer.classList.add('animate-pulse');
+            setTimeout(() => {
+                messageContainer.classList.remove('animate-pulse');
+            }, 2000);
+        }
+    }
+    
+    // Prevent form double submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        let isSubmitting = false;
+        contactForm.addEventListener('submit', function(e) {
+            if (isSubmitting) {
+                e.preventDefault();
+                return false;
+            }
+            isSubmitting = true;
+            
+            // Get hCaptcha token - check both possible field names
+            let hcaptchaToken = '';
+            const hcaptchaResponse = document.querySelector('[name="h-captcha-response"]');
+            if (hcaptchaResponse && hcaptchaResponse.value) {
+                hcaptchaToken = hcaptchaResponse.value;
+            }
+            
+            // If token found, add it to form
+            if (hcaptchaToken) {
+                // Remove existing token input if any
+                const existingToken = contactForm.querySelector('[name="hcaptcha_token"]');
+                if (existingToken) {
+                    existingToken.remove();
+                }
+                
+                // Create hidden input for hCaptcha token
+                const hcaptchaInput = document.createElement('input');
+                hcaptchaInput.type = 'hidden';
+                hcaptchaInput.name = 'hcaptcha_token';
+                hcaptchaInput.value = hcaptchaToken;
+                contactForm.appendChild(hcaptchaInput);
+            }
+            
+            // Disable submit button
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = '{% trans "Sending..." %}';
+                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        });
+    }
+});
+</script>
+<style>
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+}
+</style>
 {% endblock %}
 

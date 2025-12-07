@@ -1,7 +1,8 @@
 # decorators.py
 from typing import Callable
-from drf_yasg.utils import swagger_auto_schema
+
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 
 
 def pdf_to_word_docs() -> Callable:
@@ -23,7 +24,7 @@ def pdf_to_word_docs() -> Callable:
             operation_description="Convert a PDF file into a DOCX document.",
             manual_parameters=[
                 openapi.Parameter(
-                    'pdf_file',
+                    "pdf_file",
                     openapi.IN_FORM,
                     description="PDF file to convert",
                     type=openapi.TYPE_FILE,

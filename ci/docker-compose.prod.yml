@@ -1,0 +1,103 @@
+# Production Docker Compose configuration
+# Usage: docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d
+
+services:
+  # Django Web Application - Production optimizations
+  web:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-4} --threads ${GUNICORN_THREADS:-2} --timeout 120 --access-logfile - --error-logfile - --log-level info --worker-class gthread utils_site.wsgi:application"
+    environment:
+      - DEBUG=False
+      - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-True}
+      - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-True}
+      - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-True}
+    deploy:
+      resources:
+        limits:
+          cpus: '${WEB_CPU_LIMIT:-2.0}'
+          memory: ${WEB_MEMORY_LIMIT:-1G}
+        reservations:
+          cpus: '${WEB_CPU_RESERVATION:-0.5}'
+          memory: ${WEB_MEMORY_RESERVATION:-512M}
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Celery Worker - Production optimizations
+  celery:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
+    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-4} --max-tasks-per-child=1000
+    deploy:
+      resources:
+        limits:
+          cpus: '${CELERY_CPU_LIMIT:-1.0}'
+          memory: ${CELERY_MEMORY_LIMIT:-512M}
+        reservations:
+          cpus: '${CELERY_CPU_RESERVATION:-0.25}'
+          memory: ${CELERY_MEMORY_RESERVATION:-256M}
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Celery Beat - Production optimizations
+  celery-beat:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
+    command: celery -A utils_site beat --loglevel=info
+    deploy:
+      resources:
+        limits:
+          cpus: '${CELERY_BEAT_CPU_LIMIT:-0.5}'
+          memory: ${CELERY_BEAT_MEMORY_LIMIT:-256M}
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # PostgreSQL - Production optimizations
+  db:
+    deploy:
+      resources:
+        limits:
+          cpus: '${DB_CPU_LIMIT:-1.0}'
+          memory: ${DB_MEMORY_LIMIT:-512M}
+        reservations:
+          cpus: '${DB_CPU_RESERVATION:-0.25}'
+          memory: ${DB_MEMORY_RESERVATION:-256M}
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Redis - Production optimizations
+  redis:
+    deploy:
+      resources:
+        limits:
+          cpus: '${REDIS_CPU_LIMIT:-0.5}'
+          memory: ${REDIS_MEMORY_LIMIT:-256M}
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+

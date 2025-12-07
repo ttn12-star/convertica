@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import UnlockPDFSerializer
-from .decorators import unlock_pdf_docs
-from .utils import unlock_pdf
 from ...base_views import BaseConversionAPIView
+from .decorators import unlock_pdf_docs
+from .serializers import UnlockPDFSerializer
+from .utils import unlock_pdf
 
 
 class UnlockPDFAPIView(BaseConversionAPIView):
@@ -32,17 +32,11 @@ class UnlockPDFAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Unlock PDF by removing password."""
-        password = kwargs.get('password', '')
+        password = kwargs.get("password", "")
         pdf_path, output_path = unlock_pdf(
-            uploaded_file,
-            password=password,
-            suffix="_convertica"
+            uploaded_file, password=password, suffix="_convertica"
         )
         return pdf_path, output_path
-

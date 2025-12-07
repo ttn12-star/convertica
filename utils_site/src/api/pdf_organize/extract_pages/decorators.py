@@ -1,33 +1,34 @@
 # decorators.py
 from typing import Callable
-from drf_yasg.utils import swagger_auto_schema
+
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 
 
 def extract_pages_docs() -> Callable:
     """Decorator providing Swagger documentation for extract pages API."""
-    
+
     pdf_binary_schema = openapi.Schema(
         type=openapi.TYPE_STRING,
         format="binary",
         description="PDF file with extracted pages.",
         example="(binary file stream)",
     )
-    
+
     def decorator(func: Callable) -> Callable:
         return swagger_auto_schema(
             operation_description="Extract specific pages from PDF into a new file. "
-                                 "Specify pages as comma-separated numbers or ranges.",
+            "Specify pages as comma-separated numbers or ranges.",
             manual_parameters=[
                 openapi.Parameter(
-                    'pdf_file',
+                    "pdf_file",
                     openapi.IN_FORM,
                     description="PDF file to extract pages from",
                     type=openapi.TYPE_FILE,
                     required=True,
                 ),
                 openapi.Parameter(
-                    'pages',
+                    "pages",
                     openapi.IN_FORM,
                     description="Pages to extract (comma-separated numbers or ranges like '1-3,5-7')",
                     type=openapi.TYPE_STRING,
@@ -45,6 +46,5 @@ def extract_pages_docs() -> Callable:
             },
             consumes=["multipart/form-data"],
         )(func)
-    
-    return decorator
 
+    return decorator

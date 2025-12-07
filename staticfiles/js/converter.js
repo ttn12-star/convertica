@@ -46,6 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData();
         const fieldName = window.FILE_INPUT_NAME || 'file';
         formData.append(fieldName, selectedFile);
+        
+        // Add hCaptcha token if available
+        const hcaptchaResponse = document.querySelector('[name="h-captcha-response"]');
+        if (hcaptchaResponse && hcaptchaResponse.value) {
+            formData.append('hcaptcha_token', hcaptchaResponse.value);
+        }
 
         try {
             const response = await fetch(window.API_URL, {

@@ -1,59 +1,59 @@
 """
 Unit tests for base API views.
 """
-from django.test import TestCase
-from django.core.files.uploadedfile import SimpleUploadedFile
-from rest_framework.test import APIClient
 
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase
+from rest_framework.test import APIClient
 from src.api.base_views import BaseConversionAPIView
 
 
 class BaseConversionAPIViewTestCase(TestCase):
     """Test cases for BaseConversionAPIView."""
-    
+
     def setUp(self):
         """Set up test fixtures."""
         self.client = APIClient()
-    
+
     def test_base_view_is_abstract(self):
         """Test that base view cannot be instantiated directly."""
         with self.assertRaises(TypeError):
             BaseConversionAPIView()
-    
+
     def test_get_output_content_type(self):
         """Test content type detection."""
+
         # Create a minimal subclass
         class TestView(BaseConversionAPIView):
             def get_serializer_class(self):
                 pass
+
             def get_docs_decorator(self):
                 pass
+
             def perform_conversion(self, file, context, **kwargs):
                 pass
-        
+
         view = TestView()
-        
+
         # Test PDF
         self.assertEqual(
-            view.get_output_content_type("/path/to/file.pdf"),
-            "application/pdf"
+            view.get_output_content_type("/path/to/file.pdf"), "application/pdf"
         )
-        
+
         # Test DOCX
         self.assertEqual(
             view.get_output_content_type("/path/to/file.docx"),
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         )
-        
+
         # Test JPG
         self.assertEqual(
-            view.get_output_content_type("/path/to/file.jpg"),
-            "image/jpeg"
+            view.get_output_content_type("/path/to/file.jpg"), "image/jpeg"
         )
-        
+
         # Test unknown extension
         self.assertEqual(
             view.get_output_content_type("/path/to/file.unknown"),
-            "application/octet-stream"
+            "application/octet-stream",
         )
-
