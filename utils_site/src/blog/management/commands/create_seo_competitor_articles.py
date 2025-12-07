@@ -2,40 +2,45 @@
 Management command to create SEO-optimized articles targeting competitor keywords.
 These articles will help rank for high-volume searches like "ilovepdf", "smallpdf", etc.
 """
+
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from src.blog.models import Article, ArticleCategory
 
 
 class Command(BaseCommand):
-    help = 'Create SEO articles targeting competitor keywords (ilovepdf, smallpdf, etc.)'
+    help = (
+        "Create SEO articles targeting competitor keywords (ilovepdf, smallpdf, etc.)"
+    )
 
     def handle(self, *args, **options):
         # Create or get category
         category, created = ArticleCategory.objects.get_or_create(
-            slug='pdf-tools-comparison',
+            slug="pdf-tools-comparison",
             defaults={
-                'name_en': 'PDF Tools Comparison',
-                'translations': {
-                    'ru': {'name': 'Сравнение PDF инструментов'},
-                    'pl': {'name': 'Porównanie narzędzi PDF'},
-                    'hi': {'name': 'PDF उपकरण तुलना'},
-                    'es': {'name': 'Comparación de herramientas PDF'},
-                    'id': {'name': 'Perbandingan alat PDF'}
-                }
-            }
+                "name_en": "PDF Tools Comparison",
+                "translations": {
+                    "ru": {"name": "Сравнение PDF инструментов"},
+                    "pl": {"name": "Porównanie narzędzi PDF"},
+                    "hi": {"name": "PDF उपकरण तुलना"},
+                    "es": {"name": "Comparación de herramientas PDF"},
+                    "id": {"name": "Perbandingan alat PDF"},
+                },
+            },
         )
-        
+
         if created:
-            self.stdout.write(self.style.SUCCESS(f'Created category: {category.name_en}'))
+            self.stdout.write(
+                self.style.SUCCESS(f"Created category: {category.name_en}")
+            )
         else:
-            self.stdout.write(f'Using existing category: {category.name_en}')
+            self.stdout.write(f"Using existing category: {category.name_en}")
 
         articles_data = [
             {
-                'slug': 'ilovepdf-alternative-free-pdf-tools-2025',
-                'title_en': 'iLovePDF Alternative: Best Free PDF Tools in 2025',
-                'content_en': '''<h2>Looking for an iLovePDF Alternative?</h2>
+                "slug": "ilovepdf-alternative-free-pdf-tools-2025",
+                "title_en": "iLovePDF Alternative: Best Free PDF Tools in 2025",
+                "content_en": """<h2>Looking for an iLovePDF Alternative?</h2>
 <p>If you're searching for "iLovePDF" or "i love pdf" alternatives, you've come to the right place. While iLovePDF is a popular online PDF tool, there are many excellent alternatives that offer similar or even better features, often with more generous free tiers.</p>
 
 <h2>Why Look for iLovePDF Alternatives?</h2>
@@ -147,16 +152,16 @@ class Command(BaseCommand):
 <h2>Conclusion: Best iLovePDF Alternative</h2>
 <p>If you're looking for an iLovePDF alternative that offers more freedom, better privacy, and faster processing, Convertica is an excellent choice. With unlimited free conversions, no file size limits, and no registration required, it's the perfect replacement for iLovePDF.</p>
 
-<p>Ready to try the best iLovePDF alternative? Start using Convertica today - it's completely free, requires no registration, and processes your files instantly. Convert PDF to Word, Word to PDF, PDF to JPG, and more without any limitations!</p>''',
-                'excerpt_en': 'Looking for an iLovePDF alternative? Discover the best free PDF tools that offer unlimited conversions, no file size limits, and better privacy than iLovePDF.',
-                'meta_title_en': 'iLovePDF Alternative: Best Free PDF Tools 2025 | Convertica',
-                'meta_description_en': 'Find the best iLovePDF alternative with unlimited free conversions. Compare iLovePDF vs Convertica and other PDF tools. No registration, no file size limits, faster processing.',
-                'meta_keywords_en': 'ilovepdf, i love pdf, ilovepdf alternative, free pdf converter, pdf to word, word to pdf, pdf tools, online pdf converter, smallpdf alternative'
+<p>Ready to try the best iLovePDF alternative? Start using Convertica today - it's completely free, requires no registration, and processes your files instantly. Convert PDF to Word, Word to PDF, PDF to JPG, and more without any limitations!</p>""",
+                "excerpt_en": "Looking for an iLovePDF alternative? Discover the best free PDF tools that offer unlimited conversions, no file size limits, and better privacy than iLovePDF.",
+                "meta_title_en": "iLovePDF Alternative: Best Free PDF Tools 2025 | Convertica",
+                "meta_description_en": "Find the best iLovePDF alternative with unlimited free conversions. Compare iLovePDF vs Convertica and other PDF tools. No registration, no file size limits, faster processing.",
+                "meta_keywords_en": "ilovepdf, i love pdf, ilovepdf alternative, free pdf converter, pdf to word, word to pdf, pdf tools, online pdf converter, smallpdf alternative",
             },
             {
-                'slug': 'smallpdf-alternative-free-pdf-converter',
-                'title_en': 'SmallPDF Alternative: Free PDF Converter Without Limits',
-                'content_en': '''<h2>Best SmallPDF Alternative in 2025</h2>
+                "slug": "smallpdf-alternative-free-pdf-converter",
+                "title_en": "SmallPDF Alternative: Free PDF Converter Without Limits",
+                "content_en": """<h2>Best SmallPDF Alternative in 2025</h2>
 <p>If you're searching for "SmallPDF" or "small pdf" alternatives, you're not alone. Many users look for SmallPDF alternatives that offer more features, better free tiers, or simply different capabilities. This guide will help you find the perfect SmallPDF replacement.</p>
 
 <h2>Why Look for SmallPDF Alternatives?</h2>
@@ -272,16 +277,16 @@ class Command(BaseCommand):
 <h2>Conclusion: Best SmallPDF Alternative</h2>
 <p>If you're looking for a SmallPDF alternative that removes all limitations, Convertica is your best choice. With unlimited free conversions, no file size limits, and no registration required, it's the perfect replacement for SmallPDF.</p>
 
-<p>Ready to try the best SmallPDF alternative? Start using Convertica today - completely free, unlimited conversions, and instant processing. Convert PDF to Word, Word to PDF, PDF to JPG, and more without any restrictions!</p>''',
-                'excerpt_en': 'Find the best SmallPDF alternative with unlimited free conversions. Compare SmallPDF vs Convertica and discover why Convertica is the perfect SmallPDF replacement.',
-                'meta_title_en': 'SmallPDF Alternative: Free PDF Converter Without Limits 2025',
-                'meta_description_en': 'Best SmallPDF alternative with unlimited free conversions. Compare SmallPDF vs Convertica. No file size limits, no registration, faster processing than SmallPDF.',
-                'meta_keywords_en': 'smallpdf, small pdf, smallpdf alternative, free pdf converter, pdf to word, word to pdf, pdf tools, online pdf converter, ilovepdf alternative'
+<p>Ready to try the best SmallPDF alternative? Start using Convertica today - completely free, unlimited conversions, and instant processing. Convert PDF to Word, Word to PDF, PDF to JPG, and more without any restrictions!</p>""",
+                "excerpt_en": "Find the best SmallPDF alternative with unlimited free conversions. Compare SmallPDF vs Convertica and discover why Convertica is the perfect SmallPDF replacement.",
+                "meta_title_en": "SmallPDF Alternative: Free PDF Converter Without Limits 2025",
+                "meta_description_en": "Best SmallPDF alternative with unlimited free conversions. Compare SmallPDF vs Convertica. No file size limits, no registration, faster processing than SmallPDF.",
+                "meta_keywords_en": "smallpdf, small pdf, smallpdf alternative, free pdf converter, pdf to word, word to pdf, pdf tools, online pdf converter, ilovepdf alternative",
             },
             {
-                'slug': 'word-to-pdf-converter-online-free-2025',
-                'title_en': 'Word to PDF Converter Online Free: Complete Guide 2025',
-                'content_en': '''<h2>Word to PDF Converter: Free Online Tool</h2>
+                "slug": "word-to-pdf-converter-online-free-2025",
+                "title_en": "Word to PDF Converter Online Free: Complete Guide 2025",
+                "content_en": """<h2>Word to PDF Converter: Free Online Tool</h2>
 <p>Converting Word documents to PDF is one of the most common file conversion tasks. Whether you're searching for "word to pdf" or looking for the best Word to PDF converter, this guide will help you understand everything about Word to PDF conversion.</p>
 
 <h2>Why Convert Word to PDF?</h2>
@@ -364,16 +369,16 @@ class Command(BaseCommand):
 <h2>Conclusion: Best Word to PDF Converter</h2>
 <p>For the best Word to PDF conversion experience, Convertica offers unlimited free conversions with no file size limits, no registration required, and instant processing. It's the perfect solution for all your Word to PDF conversion needs.</p>
 
-<p>Ready to convert Word to PDF? Try Convertica's free Word to PDF converter today - it's completely free, requires no registration, and processes your files instantly. Convert your Word documents to professional PDFs in seconds!</p>''',
-                'excerpt_en': 'Convert Word to PDF online for free with Convertica. Unlimited conversions, no file size limits, instant processing. Best Word to PDF converter 2025.',
-                'meta_title_en': 'Word to PDF Converter Online Free: Best Tool 2025 | Convertica',
-                'meta_description_en': 'Convert Word to PDF online free with unlimited conversions. Best Word to PDF converter with no file size limits, no registration, instant processing.',
-                'meta_keywords_en': 'word to pdf, word to pdf converter, convert word to pdf, docx to pdf, word to pdf online, free word to pdf, word to pdf converter online'
+<p>Ready to convert Word to PDF? Try Convertica's free Word to PDF converter today - it's completely free, requires no registration, and processes your files instantly. Convert your Word documents to professional PDFs in seconds!</p>""",
+                "excerpt_en": "Convert Word to PDF online for free with Convertica. Unlimited conversions, no file size limits, instant processing. Best Word to PDF converter 2025.",
+                "meta_title_en": "Word to PDF Converter Online Free: Best Tool 2025 | Convertica",
+                "meta_description_en": "Convert Word to PDF online free with unlimited conversions. Best Word to PDF converter with no file size limits, no registration, instant processing.",
+                "meta_keywords_en": "word to pdf, word to pdf converter, convert word to pdf, docx to pdf, word to pdf online, free word to pdf, word to pdf converter online",
             },
             {
-                'slug': 'pdf-to-jpg-converter-online-free',
-                'title_en': 'PDF to JPG Converter Online Free: Extract Images from PDF',
-                'content_en': '''<h2>PDF to JPG Converter: Free Online Tool</h2>
+                "slug": "pdf-to-jpg-converter-online-free",
+                "title_en": "PDF to JPG Converter Online Free: Extract Images from PDF",
+                "content_en": """<h2>PDF to JPG Converter: Free Online Tool</h2>
 <p>Converting PDF to JPG is essential when you need to extract images from PDF files or convert PDF pages into image format. Whether you're searching for "pdf to jpg" or looking for the best PDF to JPG converter, this guide covers everything you need to know.</p>
 
 <h2>Why Convert PDF to JPG?</h2>
@@ -458,40 +463,43 @@ class Command(BaseCommand):
 <h2>Conclusion: Best PDF to JPG Converter</h2>
 <p>For the best PDF to JPG conversion experience, Convertica offers unlimited free conversions with no file size limits, no registration required, and high-quality image extraction. It's the perfect solution for all your PDF to JPG conversion needs.</p>
 
-<p>Ready to convert PDF to JPG? Try Convertica's free PDF to JPG converter today - completely free, unlimited conversions, and instant processing. Extract images from PDFs or convert PDF pages to JPG in seconds!</p>''',
-                'excerpt_en': 'Convert PDF to JPG online for free with Convertica. Extract images from PDF files or convert PDF pages to JPG. Unlimited conversions, high quality, no limits.',
-                'meta_title_en': 'PDF to JPG Converter Online Free: Extract Images 2025',
-                'meta_description_en': 'Convert PDF to JPG online free with unlimited conversions. Best PDF to JPG converter with high quality image extraction, no file size limits, instant processing.',
-                'meta_keywords_en': 'pdf to jpg, pdf to jpg converter, convert pdf to jpg, pdf to image, extract images from pdf, pdf to jpg online, free pdf to jpg'
-            }
+<p>Ready to convert PDF to JPG? Try Convertica's free PDF to JPG converter today - completely free, unlimited conversions, and instant processing. Extract images from PDFs or convert PDF pages to JPG in seconds!</p>""",
+                "excerpt_en": "Convert PDF to JPG online for free with Convertica. Extract images from PDF files or convert PDF pages to JPG. Unlimited conversions, high quality, no limits.",
+                "meta_title_en": "PDF to JPG Converter Online Free: Extract Images 2025",
+                "meta_description_en": "Convert PDF to JPG online free with unlimited conversions. Best PDF to JPG converter with high quality image extraction, no file size limits, instant processing.",
+                "meta_keywords_en": "pdf to jpg, pdf to jpg converter, convert pdf to jpg, pdf to image, extract images from pdf, pdf to jpg online, free pdf to jpg",
+            },
         ]
 
         for article_data in articles_data:
             article, created = Article.objects.get_or_create(
-                slug=article_data['slug'],
+                slug=article_data["slug"],
                 defaults={
-                    'title_en': article_data['title_en'],
-                    'content_en': article_data['content_en'],
-                    'excerpt_en': article_data['excerpt_en'],
-                    'category': category,
-                    'meta_title_en': article_data['meta_title_en'],
-                    'meta_description_en': article_data['meta_description_en'],
-                    'meta_keywords_en': article_data['meta_keywords_en'],
-                    'status': 'published',
-                    'published_at': timezone.now()
-                }
+                    "title_en": article_data["title_en"],
+                    "content_en": article_data["content_en"],
+                    "excerpt_en": article_data["excerpt_en"],
+                    "category": category,
+                    "meta_title_en": article_data["meta_title_en"],
+                    "meta_description_en": article_data["meta_description_en"],
+                    "meta_keywords_en": article_data["meta_keywords_en"],
+                    "status": "published",
+                    "published_at": timezone.now(),
+                },
             )
-            
+
             if created:
-                self.stdout.write(self.style.SUCCESS(f'Created article: {article.title_en}'))
+                self.stdout.write(
+                    self.style.SUCCESS(f"Created article: {article.title_en}")
+                )
             else:
-                self.stdout.write(f'Article already exists: {article.title_en}')
+                self.stdout.write(f"Article already exists: {article.title_en}")
 
-        self.stdout.write(self.style.SUCCESS('\n✅ SEO competitor articles created successfully!'))
-        self.stdout.write('\nThese articles target high-volume keywords:')
-        self.stdout.write('  - ilovepdf / i love pdf')
-        self.stdout.write('  - smallpdf / small pdf')
-        self.stdout.write('  - word to pdf')
-        self.stdout.write('  - pdf to word')
-        self.stdout.write('  - pdf to jpg')
-
+        self.stdout.write(
+            self.style.SUCCESS("\n✅ SEO competitor articles created successfully!")
+        )
+        self.stdout.write("\nThese articles target high-volume keywords:")
+        self.stdout.write("  - ilovepdf / i love pdf")
+        self.stdout.write("  - smallpdf / small pdf")
+        self.stdout.write("  - word to pdf")
+        self.stdout.write("  - pdf to word")
+        self.stdout.write("  - pdf to jpg")

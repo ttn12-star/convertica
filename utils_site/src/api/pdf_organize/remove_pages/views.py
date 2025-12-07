@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import RemovePagesSerializer
-from .decorators import remove_pages_docs
-from .utils import remove_pages
 from ...base_views import BaseConversionAPIView
+from .decorators import remove_pages_docs
+from .serializers import RemovePagesSerializer
+from .utils import remove_pages
 
 
 class RemovePagesAPIView(BaseConversionAPIView):
@@ -32,17 +32,11 @@ class RemovePagesAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Remove pages from PDF."""
-        pages = kwargs.get('pages', '')
+        pages = kwargs.get("pages", "")
         pdf_path, output_path = remove_pages(
-            uploaded_file,
-            pages=pages,
-            suffix="_convertica"
+            uploaded_file, pages=pages, suffix="_convertica"
         )
         return pdf_path, output_path
-

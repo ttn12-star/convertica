@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import RotatePDFSerializer
-from .decorators import rotate_pdf_docs
-from .utils import rotate_pdf
 from ...base_views import BaseConversionAPIView
+from .decorators import rotate_pdf_docs
+from .serializers import RotatePDFSerializer
+from .utils import rotate_pdf
 
 
 class RotatePDFAPIView(BaseConversionAPIView):
@@ -32,19 +32,12 @@ class RotatePDFAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Perform PDF rotation."""
-        angle = kwargs.get('angle', 90)
-        pages = kwargs.get('pages', 'all')
+        angle = kwargs.get("angle", 90)
+        pages = kwargs.get("pages", "all")
         pdf_path, output_path = rotate_pdf(
-            uploaded_file,
-            angle=angle,
-            pages=pages,
-            suffix="_convertica"
+            uploaded_file, angle=angle, pages=pages, suffix="_convertica"
         )
         return pdf_path, output_path
-
