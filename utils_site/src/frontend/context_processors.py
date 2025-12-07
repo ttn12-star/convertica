@@ -2,6 +2,9 @@
 Context processors for frontend templates.
 """
 
+import os
+
+from decouple import config
 from django.conf import settings
 from django.urls import Resolver404, resolve, reverse
 from django.utils.translation import get_language
@@ -9,8 +12,15 @@ from django.utils.translation import get_language
 
 def hcaptcha_site_key(request):
     """Add hCaptcha site key and requirement status to template context."""
+    # Try to get from environment first, then from settings, then from config
+    site_key = os.environ.get("HCAPTCHA_SITE_KEY", "")
+    if not site_key:
+        site_key = getattr(settings, "HCAPTCHA_SITE_KEY", "")
+    if not site_key:
+        site_key = config("HCAPTCHA_SITE_KEY", default="", cast=str)
+    
     return {
-        "hcaptcha_site_key": getattr(settings, "HCAPTCHA_SITE_KEY", ""),
+        "hcaptcha_site_key": site_key,
         "captcha_required": request.session.get("captcha_required", False),
     }
 

@@ -3840,3 +3840,48 @@ msgstr ""
 #~ msgstr ""
 #~ "Si tienes alguna pregunta sobre estos Términos, por favor contáctanos en "
 #~ "info@convertica.com."
+
+#: utils_site/src/frontend/views.py:499
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you "
+"as soon as possible, usually within 24-48 hours."
+msgstr ""
+"¡Gracias! Su mensaje ha sido enviado exitosamente. Nos pondremos en contacto "
+"con usted lo antes posible, generalmente dentro de 24-48 horas."
+
+#: utils_site/src/frontend/views.py:581
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"Lo sentimos, hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo "
+"más tarde o contáctenos directamente en info@convertica.net"
+
+#: utils_site/src/frontend/views.py:589
+msgid "Please correct the errors in the form below."
+msgstr "Por favor, corrija los errores en el formulario a continuación."
+
+#: templates/frontend/contact.html:123
+msgid "Message Sent Successfully!"
+msgstr "¡Mensaje enviado exitosamente!"
+
+#: templates/frontend/contact.html:129
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"Hemos recibido su mensaje y nos pondremos en contacto con usted lo antes "
+"posible, generalmente dentro de 24-48 horas."
+
+#: templates/frontend/contact.html:163
+msgid "Thank you! Your message has been sent successfully."
+msgstr "¡Gracias! Su mensaje ha sido enviado exitosamente."
+
+
+#: templates/frontend/contact.html:179
+msgid "Please correct the errors below:"
+msgstr "Por favor, corrija los errores a continuación:"
+
+#: templates/frontend/contact.html:369
+msgid "Sending..."
+msgstr "Enviando..."
