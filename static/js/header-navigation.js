@@ -40,10 +40,10 @@ class HeaderNavigation {
     // Mobile menu toggle
     this.mobileBtn?.addEventListener('click', () => this.toggleMobile());
     
-    // Desktop mega menu (hover)
-    if (window.innerWidth >= 768) {
-      this.megaParent?.addEventListener('mouseenter', () => this.showMega());
-      this.megaParent?.addEventListener('mouseleave', () => this.hideMega());
+    // Desktop mega menu (hover) - always attach, check width in methods
+    if (this.megaParent) {
+      this.megaParent.addEventListener('mouseenter', () => this.showMega());
+      this.megaParent.addEventListener('mouseleave', () => this.hideMega());
     }
     
     // Desktop mega menu (click for accessibility)
@@ -57,10 +57,10 @@ class HeaderNavigation {
     // Mobile mega menu toggle
     this.mobileMegaToggle?.addEventListener('click', () => this.toggleMobileMega());
 
-    // Desktop edit PDF menu (hover)
-    if (window.innerWidth >= 768) {
-      this.editPdfParent?.addEventListener('mouseenter', () => this.showEditPdf());
-      this.editPdfParent?.addEventListener('mouseleave', () => this.hideEditPdf());
+    // Desktop edit PDF menu (hover) - always attach, check width in methods
+    if (this.editPdfParent) {
+      this.editPdfParent.addEventListener('mouseenter', () => this.showEditPdf());
+      this.editPdfParent.addEventListener('mouseleave', () => this.hideEditPdf());
     }
     
     // Desktop edit PDF menu (click for accessibility)
@@ -71,10 +71,10 @@ class HeaderNavigation {
       }
     });
 
-    // Desktop organize PDF menu (hover)
-    if (window.innerWidth >= 768) {
-      this.organizePdfParent?.addEventListener('mouseenter', () => this.showOrganizePdf());
-      this.organizePdfParent?.addEventListener('mouseleave', () => this.hideOrganizePdf());
+    // Desktop organize PDF menu (hover) - always attach, check width in methods
+    if (this.organizePdfParent) {
+      this.organizePdfParent.addEventListener('mouseenter', () => this.showOrganizePdf());
+      this.organizePdfParent.addEventListener('mouseleave', () => this.hideOrganizePdf());
     }
     
     // Desktop organize PDF menu (click for accessibility)
@@ -89,14 +89,11 @@ class HeaderNavigation {
     this.mobileOrganizePdfToggle?.addEventListener('click', () => this.toggleMobileOrganizePdf());
     this.mobilePdfSecurityToggle?.addEventListener('click', () => this.toggleMobilePdfSecurity());
 
-    // Desktop all tools menu (hover)
-    if (window.innerWidth >= 768) {
-      this.allToolsParent?.addEventListener('mouseenter', () => this.showAllTools());
-      this.allToolsParent?.addEventListener('mouseleave', () => this.hideAllTools());
+    // Desktop all tools menu (hover) - always attach, check width in methods
+    if (this.allToolsParent) {
+      this.allToolsParent.addEventListener('mouseenter', () => this.showAllTools());
+      this.allToolsParent.addEventListener('mouseleave', () => this.hideAllTools());
     }
-    
-    // Desktop all tools menu - allow click to navigate, but show dropdown on hover
-    // The link will navigate normally, dropdown shows on hover
 
     // Mobile all tools menu toggle
     this.mobileAllToolsToggle?.addEventListener('click', () => this.toggleMobileAllTools());
