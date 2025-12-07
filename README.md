@@ -187,11 +187,11 @@ celery -A utils_site beat -l info
 
 ### Быстрый старт с Docker:
 ```bash
-# Production
-docker-compose up -d
+# Production (с Nginx для статики)
+docker compose up -d
 
 # Development
-docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up
 ```
 
 Или используйте Makefile:
@@ -201,6 +201,15 @@ make build        # Сборка образов
 make up          # Запуск production
 make down        # Остановка
 ```
+
+### ⚡ Оптимизация статических файлов
+
+Проект использует **Nginx контейнер** для быстрой отдачи статики:
+- ⚡ Статика отдается напрямую Nginx (5-10x быстрее)
+- 📦 Gzip сжатие (~70% уменьшение размера)
+- 💾 Кеширование на 1 год
+
+**Альтернатива:** WhiteNoise (проще, но медленнее) - см. `README_STATIC_FILES.md`
 
 ## 🔄 CI/CD
 
@@ -458,13 +467,6 @@ API возвращает понятные сообщения об ошибках
 
 См. файл [LICENSE](LICENSE)
 
-## 🤝 Вклад в проект
-
-1. Fork проекта
-2. Создайте feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit изменения (`git commit -m 'Add some AmazingFeature'`)
-4. Push в branch (`git push origin feature/AmazingFeature`)
-5. Откройте Pull Request
 
 ## 📞 Поддержка
 
