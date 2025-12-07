@@ -1,12 +1,13 @@
 """
 Base exceptions for the application.
 """
-from typing import Optional, Dict, Any
+
+from typing import Any, Dict, Optional
 
 
 class ConversionError(Exception):
     """Base exception for conversion failures."""
-    
+
     def __init__(self, message: str, context: Optional[Dict[str, Any]] = None):
         """
         Args:
@@ -16,16 +17,16 @@ class ConversionError(Exception):
         super().__init__(message)
         self.message = message
         self.context = context or {}
-    
+
     def __str__(self) -> str:
         return self.message
-    
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert exception to dictionary for logging/API responses."""
         return {
             "error": self.__class__.__name__,
             "message": self.message,
-            "context": self.context
+            "context": self.context,
         }
 
 
@@ -39,4 +40,3 @@ class InvalidPDFError(ConversionError):
 
 class StorageError(ConversionError):
     """Raised when file system / storage operations fail."""
-

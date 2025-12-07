@@ -1,7 +1,8 @@
 # decorators.py
 from typing import Callable
-from drf_yasg.utils import swagger_auto_schema
+
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 
 
 def jpg_to_pdf_docs() -> Callable:
@@ -21,11 +22,11 @@ def jpg_to_pdf_docs() -> Callable:
     def decorator(func: Callable) -> Callable:
         return swagger_auto_schema(
             operation_description="Convert one or more JPG/JPEG images into a PDF document. "
-                                 "Multiple images will be combined into a single PDF, with each image on a separate page. "
-                                 "To upload multiple files, send multiple 'image_file' parameters.",
+            "Multiple images will be combined into a single PDF, with each image on a separate page. "
+            "To upload multiple files, send multiple 'image_file' parameters.",
             manual_parameters=[
                 openapi.Parameter(
-                    'image_file',
+                    "image_file",
                     openapi.IN_FORM,
                     description="JPG/JPEG image file(s) to convert. Can be sent multiple times for multiple files.",
                     type=openapi.TYPE_FILE,
@@ -35,9 +36,7 @@ def jpg_to_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Converted PDF file.",
-                    content={
-                        "application/pdf": pdf_binary_schema
-                    },
+                    content={"application/pdf": pdf_binary_schema},
                 ),
                 400: "Bad request (invalid image, unsupported format, etc.).",
                 413: "File too large.",
@@ -47,4 +46,3 @@ def jpg_to_pdf_docs() -> Callable:
         )(func)
 
     return decorator
-

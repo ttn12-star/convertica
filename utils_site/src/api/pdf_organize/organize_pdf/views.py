@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import OrganizePDFSerializer
-from .decorators import organize_pdf_docs
-from .utils import organize_pdf
 from ...base_views import BaseConversionAPIView
+from .decorators import organize_pdf_docs
+from .serializers import OrganizePDFSerializer
+from .utils import organize_pdf
 
 
 class OrganizePDFAPIView(BaseConversionAPIView):
@@ -32,19 +32,15 @@ class OrganizePDFAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Organize PDF."""
-        operation = kwargs.get('operation', 'reorder')
-        page_order = kwargs.get('page_order')
+        operation = kwargs.get("operation", "reorder")
+        page_order = kwargs.get("page_order")
         pdf_path, output_path = organize_pdf(
             uploaded_file,
             operation=operation,
             page_order=page_order,
-            suffix="_convertica"
+            suffix="_convertica",
         )
         return pdf_path, output_path
-

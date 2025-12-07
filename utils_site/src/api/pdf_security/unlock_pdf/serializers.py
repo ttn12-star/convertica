@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 class UnlockPDFSerializer(serializers.Serializer):
     """Serializer for unlocking PDF."""
+
     pdf_file = serializers.FileField(required=True)
     password = serializers.CharField(
         required=True,
@@ -11,6 +12,5 @@ class UnlockPDFSerializer(serializers.Serializer):
         max_length=100,
         write_only=True,
         trim_whitespace=True,
-        help_text="Password to unlock the PDF."
+        help_text="Password to unlock the PDF.",
     )
-

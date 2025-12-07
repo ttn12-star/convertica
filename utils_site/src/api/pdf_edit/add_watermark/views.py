@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import AddWatermarkSerializer
-from .decorators import add_watermark_docs
-from .utils import add_watermark
 from ...base_views import BaseConversionAPIView
+from .decorators import add_watermark_docs
+from .serializers import AddWatermarkSerializer
+from .utils import add_watermark
 
 
 class AddWatermarkAPIView(BaseConversionAPIView):
@@ -32,19 +32,16 @@ class AddWatermarkAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Add watermark to PDF."""
-        watermark_text = kwargs.get('watermark_text', 'CONFIDENTIAL')
-        watermark_file = kwargs.get('watermark_file')
-        position = kwargs.get('position', 'diagonal')
-        
+        watermark_text = kwargs.get("watermark_text", "CONFIDENTIAL")
+        watermark_file = kwargs.get("watermark_file")
+        position = kwargs.get("position", "diagonal")
+
         # Convert coordinates, handling string inputs
-        x_str = kwargs.get('x')
-        y_str = kwargs.get('y')
+        x_str = kwargs.get("x")
+        y_str = kwargs.get("y")
         try:
             x = float(x_str) if x_str and str(x_str).strip() else None
         except (ValueError, TypeError):
@@ -53,12 +50,12 @@ class AddWatermarkAPIView(BaseConversionAPIView):
             y = float(y_str) if y_str and str(y_str).strip() else None
         except (ValueError, TypeError):
             y = None
-        
-        color = kwargs.get('color', '#000000')
-        
+
+        color = kwargs.get("color", "#000000")
+
         # Convert opacity, rotation, scale
         # Check if value is in kwargs (not just using default)
-        opacity_val = kwargs.get('opacity')
+        opacity_val = kwargs.get("opacity")
         if opacity_val is not None:
             try:
                 opacity = float(opacity_val)
@@ -66,8 +63,8 @@ class AddWatermarkAPIView(BaseConversionAPIView):
                 opacity = 0.3
         else:
             opacity = 0.3
-            
-        font_size_val = kwargs.get('font_size')
+
+        font_size_val = kwargs.get("font_size")
         if font_size_val is not None:
             try:
                 font_size = int(font_size_val)
@@ -75,8 +72,8 @@ class AddWatermarkAPIView(BaseConversionAPIView):
                 font_size = 72
         else:
             font_size = 72
-            
-        rotation_val = kwargs.get('rotation')
+
+        rotation_val = kwargs.get("rotation")
         if rotation_val is not None:
             try:
                 rotation = float(rotation_val)
@@ -84,8 +81,8 @@ class AddWatermarkAPIView(BaseConversionAPIView):
                 rotation = 0.0
         else:
             rotation = 0.0
-            
-        scale_val = kwargs.get('scale')
+
+        scale_val = kwargs.get("scale")
         if scale_val is not None:
             try:
                 scale = float(scale_val)
@@ -93,17 +90,20 @@ class AddWatermarkAPIView(BaseConversionAPIView):
                 scale = 1.0
         else:
             scale = 1.0
-            
-        pages = kwargs.get('pages', 'all')
-        
+
+        pages = kwargs.get("pages", "all")
+
         # Log all parameters for debugging
         from ...logging_utils import get_logger
+
         logger = get_logger(__name__)
-        logger.info(f"AddWatermarkAPIView: watermark_text='{watermark_text}', has_file={watermark_file is not None}, "
-                   f"position='{position}', x={x}, y={y}, color='{color}', opacity={opacity}, "
-                   f"font_size={font_size}, rotation={rotation}, scale={scale}, pages='{pages}'", 
-                   extra=context)
-        
+        logger.info(
+            f"AddWatermarkAPIView: watermark_text='{watermark_text}', has_file={watermark_file is not None}, "
+            f"position='{position}', x={x}, y={y}, color='{color}', opacity={opacity}, "
+            f"font_size={font_size}, rotation={rotation}, scale={scale}, pages='{pages}'",
+            extra=context,
+        )
+
         pdf_path, output_path = add_watermark(
             uploaded_file,
             watermark_text=watermark_text,
@@ -117,7 +117,6 @@ class AddWatermarkAPIView(BaseConversionAPIView):
             rotation=rotation,
             scale=scale,
             pages=pages,
-            suffix="_convertica"
+            suffix="_convertica",
         )
         return pdf_path, output_path
-

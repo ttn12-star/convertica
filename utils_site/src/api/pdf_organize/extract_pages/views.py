@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import ExtractPagesSerializer
-from .decorators import extract_pages_docs
-from .utils import extract_pages
 from ...base_views import BaseConversionAPIView
+from .decorators import extract_pages_docs
+from .serializers import ExtractPagesSerializer
+from .utils import extract_pages
 
 
 class ExtractPagesAPIView(BaseConversionAPIView):
@@ -32,17 +32,11 @@ class ExtractPagesAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Extract pages from PDF."""
-        pages = kwargs.get('pages', '')
+        pages = kwargs.get("pages", "")
         pdf_path, output_path = extract_pages(
-            uploaded_file,
-            pages=pages,
-            suffix="_convertica"
+            uploaded_file, pages=pages, suffix="_convertica"
         )
         return pdf_path, output_path
-

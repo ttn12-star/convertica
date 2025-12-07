@@ -1,31 +1,34 @@
 """
 Django management command to add translations to existing articles.
 """
+
 from django.core.management.base import BaseCommand
 from src.blog.models import Article, ArticleCategory
 
 
 class Command(BaseCommand):
-    help = 'Add translations to existing articles for all supported languages'
+    help = "Add translations to existing articles for all supported languages"
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Starting to add translations to articles...'))
-        
+        self.stdout.write(
+            self.style.SUCCESS("Starting to add translations to articles...")
+        )
+
         articles = Article.objects.all()
         total = articles.count()
-        
+
         if total == 0:
-            self.stdout.write(self.style.WARNING('No articles found in database.'))
+            self.stdout.write(self.style.WARNING("No articles found in database."))
             return
-        
-        self.stdout.write(f'Found {total} article(s) to process.')
-        
+
+        self.stdout.write(f"Found {total} article(s) to process.")
+
         # Translation data for articles
         translations_data = {
-            'ultimate-guide-pdf-compression-reduce-file-size': {
-                'ru': {
-                    'title': 'Полное руководство по сжатию PDF: Как уменьшить размер файла без потери качества',
-                    'content': '''<h2>Введение в сжатие PDF</h2>
+            "ultimate-guide-pdf-compression-reduce-file-size": {
+                "ru": {
+                    "title": "Полное руководство по сжатию PDF: Как уменьшить размер файла без потери качества",
+                    "content": """<h2>Введение в сжатие PDF</h2>
 <p>PDF файлы часто занимают много места на диске, особенно если они содержат изображения или графику. Сжатие PDF позволяет уменьшить размер файла, сохраняя при этом качество документа.</p>
 
 <h2>Методы сжатия PDF</h2>
@@ -55,15 +58,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Заключение</h2>
-<p>Сжатие PDF - это простой способ сэкономить место на диске и ускорить отправку файлов по электронной почте. Наш инструмент делает этот процесс быстрым и удобным.</p>''',
-                    'excerpt': 'Узнайте, как уменьшить размер PDF файлов без потери качества. Полное руководство по сжатию PDF с практическими советами и рекомендациями.',
-                    'meta_title': 'Сжатие PDF: Как уменьшить размер файла без потери качества | Convertica',
-                    'meta_description': 'Бесплатный онлайн-инструмент для сжатия PDF. Уменьшите размер файлов быстро и легко. Сохраните качество документа при максимальном сжатии.',
-                    'meta_keywords': 'сжатие PDF, уменьшить размер PDF, оптимизация PDF, сжать PDF онлайн, бесплатно'
+<p>Сжатие PDF - это простой способ сэкономить место на диске и ускорить отправку файлов по электронной почте. Наш инструмент делает этот процесс быстрым и удобным.</p>""",
+                    "excerpt": "Узнайте, как уменьшить размер PDF файлов без потери качества. Полное руководство по сжатию PDF с практическими советами и рекомендациями.",
+                    "meta_title": "Сжатие PDF: Как уменьшить размер файла без потери качества | Convertica",
+                    "meta_description": "Бесплатный онлайн-инструмент для сжатия PDF. Уменьшите размер файлов быстро и легко. Сохраните качество документа при максимальном сжатии.",
+                    "meta_keywords": "сжатие PDF, уменьшить размер PDF, оптимизация PDF, сжать PDF онлайн, бесплатно",
                 },
-                'pl': {
-                    'title': 'Kompletny przewodnik po kompresji PDF: Jak zmniejszyć rozmiar pliku bez utraty jakości',
-                    'content': '''<h2>Wprowadzenie do kompresji PDF</h2>
+                "pl": {
+                    "title": "Kompletny przewodnik po kompresji PDF: Jak zmniejszyć rozmiar pliku bez utraty jakości",
+                    "content": """<h2>Wprowadzenie do kompresji PDF</h2>
 <p>Pliki PDF często zajmują dużo miejsca na dysku, zwłaszcza jeśli zawierają obrazy lub grafikę. Kompresja PDF pozwala zmniejszyć rozmiar pliku, zachowując jakość dokumentu.</p>
 
 <h2>Metody kompresji PDF</h2>
@@ -93,15 +96,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Podsumowanie</h2>
-<p>Kompresja PDF to prosty sposób na oszczędzenie miejsca na dysku i przyspieszenie wysyłania plików e-mailem. Nasze narzędzie czyni ten proces szybkim i wygodnym.</p>''',
-                    'excerpt': 'Dowiedz się, jak zmniejszyć rozmiar plików PDF bez utraty jakości. Kompletny przewodnik po kompresji PDF z praktycznymi wskazówkami i zaleceniami.',
-                    'meta_title': 'Kompresja PDF: Jak zmniejszyć rozmiar pliku bez utraty jakości | Convertica',
-                    'meta_description': 'Darmowe narzędzie online do kompresji PDF. Zmniejsz rozmiar plików szybko i łatwo. Zachowaj jakość dokumentu przy maksymalnej kompresji.',
-                    'meta_keywords': 'kompresja PDF, zmniejszyć rozmiar PDF, optymalizacja PDF, kompresować PDF online, za darmo'
+<p>Kompresja PDF to prosty sposób na oszczędzenie miejsca na dysku i przyspieszenie wysyłania plików e-mailem. Nasze narzędzie czyni ten proces szybkim i wygodnym.</p>""",
+                    "excerpt": "Dowiedz się, jak zmniejszyć rozmiar plików PDF bez utraty jakości. Kompletny przewodnik po kompresji PDF z praktycznymi wskazówkami i zaleceniami.",
+                    "meta_title": "Kompresja PDF: Jak zmniejszyć rozmiar pliku bez utraty jakości | Convertica",
+                    "meta_description": "Darmowe narzędzie online do kompresji PDF. Zmniejsz rozmiar plików szybko i łatwo. Zachowaj jakość dokumentu przy maksymalnej kompresji.",
+                    "meta_keywords": "kompresja PDF, zmniejszyć rozmiar PDF, optymalizacja PDF, kompresować PDF online, za darmo",
                 },
-                'hi': {
-                    'title': 'PDF संपीड़न की पूरी गाइड: गुणवत्ता खोए बिना फ़ाइल आकार कैसे कम करें',
-                    'content': '''<h2>PDF संपीड़न का परिचय</h2>
+                "hi": {
+                    "title": "PDF संपीड़न की पूरी गाइड: गुणवत्ता खोए बिना फ़ाइल आकार कैसे कम करें",
+                    "content": """<h2>PDF संपीड़न का परिचय</h2>
 <p>PDF फ़ाइलें अक्सर डिस्क पर बहुत स्थान लेती हैं, खासकर यदि उनमें छवियां या ग्राफिक्स हैं। PDF संपीड़न फ़ाइल के आकार को कम करने की अनुमति देता है, दस्तावेज़ की गुणवत्ता को बनाए रखते हुए।</p>
 
 <h2>PDF संपीड़न के तरीके</h2>
@@ -131,15 +134,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>निष्कर्ष</h2>
-<p>PDF संपीड़न डिस्क स्थान बचाने और ईमेल द्वारा फ़ाइलें भेजने में तेजी लाने का एक सरल तरीका है। हमारा उपकरण इस प्रक्रिया को तेज़ और सुविधाजनक बनाता है।</p>''',
-                    'excerpt': 'जानें कि गुणवत्ता खोए बिना PDF फ़ाइलों के आकार को कैसे कम करें। व्यावहारिक युक्तियों और सिफारिशों के साथ PDF संपीड़न की पूरी गाइड।',
-                    'meta_title': 'PDF संपीड़न: गुणवत्ता खोए बिना फ़ाइल आकार कैसे कम करें | Convertica',
-                    'meta_description': 'मुफ्त ऑनलाइन PDF संपीड़न उपकरण। फ़ाइल आकार को जल्दी और आसानी से कम करें। अधिकतम संपीड़न पर दस्तावेज़ गुणवत्ता बनाए रखें।',
-                    'meta_keywords': 'PDF संपीड़न, PDF आकार कम करें, PDF अनुकूलन, PDF ऑनलाइन संपीड़ित करें, मुफ्त'
+<p>PDF संपीड़न डिस्क स्थान बचाने और ईमेल द्वारा फ़ाइलें भेजने में तेजी लाने का एक सरल तरीका है। हमारा उपकरण इस प्रक्रिया को तेज़ और सुविधाजनक बनाता है।</p>""",
+                    "excerpt": "जानें कि गुणवत्ता खोए बिना PDF फ़ाइलों के आकार को कैसे कम करें। व्यावहारिक युक्तियों और सिफारिशों के साथ PDF संपीड़न की पूरी गाइड।",
+                    "meta_title": "PDF संपीड़न: गुणवत्ता खोए बिना फ़ाइल आकार कैसे कम करें | Convertica",
+                    "meta_description": "मुफ्त ऑनलाइन PDF संपीड़न उपकरण। फ़ाइल आकार को जल्दी और आसानी से कम करें। अधिकतम संपीड़न पर दस्तावेज़ गुणवत्ता बनाए रखें।",
+                    "meta_keywords": "PDF संपीड़न, PDF आकार कम करें, PDF अनुकूलन, PDF ऑनलाइन संपीड़ित करें, मुफ्त",
                 },
-                'es': {
-                    'title': 'Guía completa de compresión PDF: Cómo reducir el tamaño del archivo sin perder calidad',
-                    'content': '''<h2>Introducción a la compresión PDF</h2>
+                "es": {
+                    "title": "Guía completa de compresión PDF: Cómo reducir el tamaño del archivo sin perder calidad",
+                    "content": """<h2>Introducción a la compresión PDF</h2>
 <p>Los archivos PDF a menudo ocupan mucho espacio en disco, especialmente si contienen imágenes o gráficos. La compresión PDF permite reducir el tamaño del archivo manteniendo la calidad del documento.</p>
 
 <h2>Métodos de compresión PDF</h2>
@@ -169,15 +172,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Conclusión</h2>
-<p>La compresión PDF es una forma sencilla de ahorrar espacio en disco y acelerar el envío de archivos por correo electrónico. Nuestra herramienta hace que este proceso sea rápido y conveniente.</p>''',
-                    'excerpt': 'Aprenda cómo reducir el tamaño de los archivos PDF sin perder calidad. Guía completa de compresión PDF con consejos prácticos y recomendaciones.',
-                    'meta_title': 'Compresión PDF: Cómo reducir el tamaño del archivo sin perder calidad | Convertica',
-                    'meta_description': 'Herramienta gratuita en línea para comprimir PDF. Reduzca el tamaño de archivos rápida y fácilmente. Mantenga la calidad del documento con máxima compresión.',
-                    'meta_keywords': 'comprimir PDF, reducir tamaño PDF, optimización PDF, comprimir PDF en línea, gratis'
+<p>La compresión PDF es una forma sencilla de ahorrar espacio en disco y acelerar el envío de archivos por correo electrónico. Nuestra herramienta hace que este proceso sea rápido y conveniente.</p>""",
+                    "excerpt": "Aprenda cómo reducir el tamaño de los archivos PDF sin perder calidad. Guía completa de compresión PDF con consejos prácticos y recomendaciones.",
+                    "meta_title": "Compresión PDF: Cómo reducir el tamaño del archivo sin perder calidad | Convertica",
+                    "meta_description": "Herramienta gratuita en línea para comprimir PDF. Reduzca el tamaño de archivos rápida y fácilmente. Mantenga la calidad del documento con máxima compresión.",
+                    "meta_keywords": "comprimir PDF, reducir tamaño PDF, optimización PDF, comprimir PDF en línea, gratis",
                 },
-                'id': {
-                    'title': 'Panduan Lengkap Kompresi PDF: Cara Mengurangi Ukuran File Tanpa Kehilangan Kualitas',
-                    'content': '''<h2>Pengenalan Kompresi PDF</h2>
+                "id": {
+                    "title": "Panduan Lengkap Kompresi PDF: Cara Mengurangi Ukuran File Tanpa Kehilangan Kualitas",
+                    "content": """<h2>Pengenalan Kompresi PDF</h2>
 <p>File PDF sering memakan banyak ruang disk, terutama jika berisi gambar atau grafik. Kompresi PDF memungkinkan Anda mengurangi ukuran file sambil mempertahankan kualitas dokumen.</p>
 
 <h2>Metode Kompresi PDF</h2>
@@ -207,17 +210,17 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Kesimpulan</h2>
-<p>Kompresi PDF adalah cara sederhana untuk menghemat ruang disk dan mempercepat pengiriman file melalui email. Alat kami membuat proses ini cepat dan nyaman.</p>''',
-                    'excerpt': 'Pelajari cara mengurangi ukuran file PDF tanpa kehilangan kualitas. Panduan lengkap kompresi PDF dengan tips praktis dan rekomendasi.',
-                    'meta_title': 'Kompresi PDF: Cara Mengurangi Ukuran File Tanpa Kehilangan Kualitas | Convertica',
-                    'meta_description': 'Alat online gratis untuk mengompres PDF. Kurangi ukuran file dengan cepat dan mudah. Pertahankan kualitas dokumen dengan kompresi maksimal.',
-                    'meta_keywords': 'kompres PDF, kurangi ukuran PDF, optimasi PDF, kompres PDF online, gratis'
-                }
+<p>Kompresi PDF adalah cara sederhana untuk menghemat ruang disk dan mempercepat pengiriman file melalui email. Alat kami membuat proses ini cepat dan nyaman.</p>""",
+                    "excerpt": "Pelajari cara mengurangi ukuran file PDF tanpa kehilangan kualitas. Panduan lengkap kompresi PDF dengan tips praktis dan rekomendasi.",
+                    "meta_title": "Kompresi PDF: Cara Mengurangi Ukuran File Tanpa Kehilangan Kualitas | Convertica",
+                    "meta_description": "Alat online gratis untuk mengompres PDF. Kurangi ukuran file dengan cepat dan mudah. Pertahankan kualitas dokumen dengan kompresi maksimal.",
+                    "meta_keywords": "kompres PDF, kurangi ukuran PDF, optimasi PDF, kompres PDF online, gratis",
+                },
             },
-            'complete-guide-pdf-to-word-conversion': {
-                'ru': {
-                    'title': 'Полное руководство по конвертации PDF в Word: Советы, трюки и лучшие практики',
-                    'content': '''<h2>Введение в конвертацию PDF в Word</h2>
+            "complete-guide-pdf-to-word-conversion": {
+                "ru": {
+                    "title": "Полное руководство по конвертации PDF в Word: Советы, трюки и лучшие практики",
+                    "content": """<h2>Введение в конвертацию PDF в Word</h2>
 <p>Конвертация PDF в Word - это процесс преобразования PDF документов в редактируемые файлы Microsoft Word. Это полезно, когда вам нужно внести изменения в документ или извлечь текст.</p>
 
 <h2>Зачем конвертировать PDF в Word?</h2>
@@ -247,15 +250,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Заключение</h2>
-<p>Конвертация PDF в Word открывает множество возможностей для работы с документами. Наш инструмент делает этот процесс быстрым и эффективным.</p>''',
-                    'excerpt': 'Узнайте, как конвертировать PDF в Word быстро и эффективно. Полное руководство с практическими советами и рекомендациями.',
-                    'meta_title': 'PDF в Word: Полное руководство по конвертации | Convertica',
-                    'meta_description': 'Бесплатный онлайн-конвертер PDF в Word. Конвертируйте PDF документы в редактируемые Word файлы быстро и легко.',
-                    'meta_keywords': 'PDF в Word, конвертер PDF, PDF в DOCX, конвертировать PDF, онлайн конвертер'
+<p>Конвертация PDF в Word открывает множество возможностей для работы с документами. Наш инструмент делает этот процесс быстрым и эффективным.</p>""",
+                    "excerpt": "Узнайте, как конвертировать PDF в Word быстро и эффективно. Полное руководство с практическими советами и рекомендациями.",
+                    "meta_title": "PDF в Word: Полное руководство по конвертации | Convertica",
+                    "meta_description": "Бесплатный онлайн-конвертер PDF в Word. Конвертируйте PDF документы в редактируемые Word файлы быстро и легко.",
+                    "meta_keywords": "PDF в Word, конвертер PDF, PDF в DOCX, конвертировать PDF, онлайн конвертер",
                 },
-                'pl': {
-                    'title': 'Kompletny przewodnik konwersji PDF na Word: Wskazówki, triki i najlepsze praktyki',
-                    'content': '''<h2>Wprowadzenie do konwersji PDF na Word</h2>
+                "pl": {
+                    "title": "Kompletny przewodnik konwersji PDF na Word: Wskazówki, triki i najlepsze praktyki",
+                    "content": """<h2>Wprowadzenie do konwersji PDF na Word</h2>
 <p>Konwersja PDF na Word to proces przekształcania dokumentów PDF w edytowalne pliki Microsoft Word. Jest to przydatne, gdy chcesz wprowadzić zmiany w dokumencie lub wyodrębnić tekst.</p>
 
 <h2>Dlaczego konwertować PDF na Word?</h2>
@@ -285,15 +288,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Podsumowanie</h2>
-<p>Konwersja PDF na Word otwiera wiele możliwości pracy z dokumentami. Nasze narzędzie czyni ten proces szybkim i efektywnym.</p>''',
-                    'excerpt': 'Dowiedz się, jak konwertować PDF na Word szybko i efektywnie. Kompletny przewodnik z praktycznymi wskazówkami i zaleceniami.',
-                    'meta_title': 'PDF na Word: Kompletny przewodnik konwersji | Convertica',
-                    'meta_description': 'Darmowy konwerter online PDF na Word. Konwertuj dokumenty PDF na edytowalne pliki Word szybko i łatwo.',
-                    'meta_keywords': 'PDF na Word, konwerter PDF, PDF na DOCX, konwertować PDF, konwerter online'
+<p>Konwersja PDF na Word otwiera wiele możliwości pracy z dokumentami. Nasze narzędzie czyni ten proces szybkim i efektywnym.</p>""",
+                    "excerpt": "Dowiedz się, jak konwertować PDF na Word szybko i efektywnie. Kompletny przewodnik z praktycznymi wskazówkami i zaleceniami.",
+                    "meta_title": "PDF na Word: Kompletny przewodnik konwersji | Convertica",
+                    "meta_description": "Darmowy konwerter online PDF na Word. Konwertuj dokumenty PDF na edytowalne pliki Word szybko i łatwo.",
+                    "meta_keywords": "PDF na Word, konwerter PDF, PDF na DOCX, konwertować PDF, konwerter online",
                 },
-                'hi': {
-                    'title': 'PDF से Word रूपांतरण की पूरी गाइड: युक्तियाँ, ट्रिक्स और सर्वोत्तम प्रथाएं',
-                    'content': '''<h2>PDF से Word रूपांतरण का परिचय</h2>
+                "hi": {
+                    "title": "PDF से Word रूपांतरण की पूरी गाइड: युक्तियाँ, ट्रिक्स और सर्वोत्तम प्रथाएं",
+                    "content": """<h2>PDF से Word रूपांतरण का परिचय</h2>
 <p>PDF से Word रूपांतरण PDF दस्तावेज़ों को संपादन योग्य Microsoft Word फ़ाइलों में बदलने की प्रक्रिया है। यह तब उपयोगी होता है जब आपको दस्तावेज़ में परिवर्तन करने या पाठ निकालने की आवश्यकता होती है।</p>
 
 <h2>PDF को Word में क्यों बदलें?</h2>
@@ -323,15 +326,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>निष्कर्ष</h2>
-<p>PDF से Word रूपांतरण दस्तावेज़ों के साथ काम करने के लिए कई संभावनाएं खोलता है। हमारा उपकरण इस प्रक्रिया को तेज़ और कुशल बनाता है।</p>''',
-                    'excerpt': 'जानें कि PDF को Word में कैसे जल्दी और कुशलता से बदलें। व्यावहारिक युक्तियों और सिफारिशों के साथ पूरी गाइड।',
-                    'meta_title': 'PDF से Word: रूपांतरण की पूरी गाइड | Convertica',
-                    'meta_description': 'मुफ्त ऑनलाइन PDF से Word कनवर्टर। PDF दस्तावेज़ों को संपादन योग्य Word फ़ाइलों में जल्दी और आसानी से बदलें।',
-                    'meta_keywords': 'PDF से Word, PDF कनवर्टर, PDF से DOCX, PDF बदलें, ऑनलाइन कनवर्टर'
+<p>PDF से Word रूपांतरण दस्तावेज़ों के साथ काम करने के लिए कई संभावनाएं खोलता है। हमारा उपकरण इस प्रक्रिया को तेज़ और कुशल बनाता है।</p>""",
+                    "excerpt": "जानें कि PDF को Word में कैसे जल्दी और कुशलता से बदलें। व्यावहारिक युक्तियों और सिफारिशों के साथ पूरी गाइड।",
+                    "meta_title": "PDF से Word: रूपांतरण की पूरी गाइड | Convertica",
+                    "meta_description": "मुफ्त ऑनलाइन PDF से Word कनवर्टर। PDF दस्तावेज़ों को संपादन योग्य Word फ़ाइलों में जल्दी और आसानी से बदलें।",
+                    "meta_keywords": "PDF से Word, PDF कनवर्टर, PDF से DOCX, PDF बदलें, ऑनलाइन कनवर्टर",
                 },
-                'es': {
-                    'title': 'Guía completa de conversión PDF a Word: Consejos, trucos y mejores prácticas',
-                    'content': '''<h2>Introducción a la conversión PDF a Word</h2>
+                "es": {
+                    "title": "Guía completa de conversión PDF a Word: Consejos, trucos y mejores prácticas",
+                    "content": """<h2>Introducción a la conversión PDF a Word</h2>
 <p>La conversión de PDF a Word es el proceso de transformar documentos PDF en archivos editables de Microsoft Word. Es útil cuando necesita hacer cambios en un documento o extraer texto.</p>
 
 <h2>¿Por qué convertir PDF a Word?</h2>
@@ -361,15 +364,15 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Conclusión</h2>
-<p>La conversión de PDF a Word abre muchas posibilidades para trabajar con documentos. Nuestra herramienta hace que este proceso sea rápido y eficiente.</p>''',
-                    'excerpt': 'Aprenda cómo convertir PDF a Word rápida y eficientemente. Guía completa con consejos prácticos y recomendaciones.',
-                    'meta_title': 'PDF a Word: Guía completa de conversión | Convertica',
-                    'meta_description': 'Convertidor gratuito en línea de PDF a Word. Convierta documentos PDF en archivos Word editables rápida y fácilmente.',
-                    'meta_keywords': 'PDF a Word, convertidor PDF, PDF a DOCX, convertir PDF, convertidor en línea'
+<p>La conversión de PDF a Word abre muchas posibilidades para trabajar con documentos. Nuestra herramienta hace que este proceso sea rápido y eficiente.</p>""",
+                    "excerpt": "Aprenda cómo convertir PDF a Word rápida y eficientemente. Guía completa con consejos prácticos y recomendaciones.",
+                    "meta_title": "PDF a Word: Guía completa de conversión | Convertica",
+                    "meta_description": "Convertidor gratuito en línea de PDF a Word. Convierta documentos PDF en archivos Word editables rápida y fácilmente.",
+                    "meta_keywords": "PDF a Word, convertidor PDF, PDF a DOCX, convertir PDF, convertidor en línea",
                 },
-                'id': {
-                    'title': 'Panduan Lengkap Konversi PDF ke Word: Tips, Trik, dan Praktik Terbaik',
-                    'content': '''<h2>Pengenalan Konversi PDF ke Word</h2>
+                "id": {
+                    "title": "Panduan Lengkap Konversi PDF ke Word: Tips, Trik, dan Praktik Terbaik",
+                    "content": """<h2>Pengenalan Konversi PDF ke Word</h2>
 <p>Konversi PDF ke Word adalah proses mengubah dokumen PDF menjadi file Microsoft Word yang dapat diedit. Ini berguna ketika Anda perlu membuat perubahan pada dokumen atau mengekstrak teks.</p>
 
 <h2>Mengapa Mengonversi PDF ke Word?</h2>
@@ -399,39 +402,46 @@ class Command(BaseCommand):
 </ul>
 
 <h2>Kesimpulan</h2>
-<p>Konversi PDF ke Word membuka banyak kemungkinan untuk bekerja dengan dokumen. Alat kami membuat proses ini cepat dan efisien.</p>''',
-                    'excerpt': 'Pelajari cara mengonversi PDF ke Word dengan cepat dan efisien. Panduan lengkap dengan tips praktis dan rekomendasi.',
-                    'meta_title': 'PDF ke Word: Panduan Lengkap Konversi | Convertica',
-                    'meta_description': 'Konverter online gratis PDF ke Word. Konversi dokumen PDF menjadi file Word yang dapat diedit dengan cepat dan mudah.',
-                    'meta_keywords': 'PDF ke Word, konverter PDF, PDF ke DOCX, konversi PDF, konverter online'
-                }
-            }
+<p>Konversi PDF ke Word membuka banyak kemungkinan untuk bekerja dengan dokumen. Alat kami membuat proses ini cepat dan efisien.</p>""",
+                    "excerpt": "Pelajari cara mengonversi PDF ke Word dengan cepat dan efisien. Panduan lengkap dengan tips praktis dan rekomendasi.",
+                    "meta_title": "PDF ke Word: Panduan Lengkap Konversi | Convertica",
+                    "meta_description": "Konverter online gratis PDF ke Word. Konversi dokumen PDF menjadi file Word yang dapat diedit dengan cepat dan mudah.",
+                    "meta_keywords": "PDF ke Word, konverter PDF, PDF ke DOCX, konversi PDF, konverter online",
+                },
+            },
         }
-        
+
         for article in articles:
-            self.stdout.write(f'\nProcessing: {article.slug}')
-            
+            self.stdout.write(f"\nProcessing: {article.slug}")
+
             if article.slug in translations_data:
                 article_translations = translations_data[article.slug]
-                
+
                 # Get or create translations dict
                 if not article.translations:
                     article.translations = {}
-                
+
                 # Add translations for each language
                 for lang_code, lang_data in article_translations.items():
                     if lang_code not in article.translations:
                         article.translations[lang_code] = {}
-                    
+
                     # Update translations
                     article.translations[lang_code].update(lang_data)
-                    self.stdout.write(f'  ✓ Added {lang_code} translation')
-                
+                    self.stdout.write(f"  ✓ Added {lang_code} translation")
+
                 # Save article
                 article.save()
-                self.stdout.write(self.style.SUCCESS(f'  ✓ Saved translations for {article.slug}'))
+                self.stdout.write(
+                    self.style.SUCCESS(f"  ✓ Saved translations for {article.slug}")
+                )
             else:
-                self.stdout.write(self.style.WARNING(f'  ⚠ No translation data found for {article.slug}'))
-        
-        self.stdout.write(self.style.SUCCESS(f'\n✅ Completed! Processed {total} article(s).'))
+                self.stdout.write(
+                    self.style.WARNING(
+                        f"  ⚠ No translation data found for {article.slug}"
+                    )
+                )
 
+        self.stdout.write(
+            self.style.SUCCESS(f"\n✅ Completed! Processed {total} article(s).")
+        )

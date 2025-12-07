@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import PDFToExcelSerializer
-from .decorators import pdf_to_excel_docs
-from .utils import convert_pdf_to_excel
 from ...base_views import BaseConversionAPIView
+from .decorators import pdf_to_excel_docs
+from .serializers import PDFToExcelSerializer
+from .utils import convert_pdf_to_excel
 
 
 class PDFToExcelAPIView(BaseConversionAPIView):
@@ -32,21 +32,15 @@ class PDFToExcelAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Convert PDF to Excel."""
-        pages = kwargs.get('pages', 'all')
+        pages = kwargs.get("pages", "all")
         pdf_path, output_path = convert_pdf_to_excel(
-            uploaded_file,
-            pages=pages,
-            suffix="_convertica"
+            uploaded_file, pages=pages, suffix="_convertica"
         )
         return pdf_path, output_path
 
     def get_output_content_type(self, output_path: str = None) -> str:
         """Return Excel content type."""
         return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-

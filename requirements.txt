@@ -11,7 +11,7 @@ opencv-python==4.10.0.84
 openpyxl==3.1.5
 packaging==25.0
 pandas==2.3.3
-pdf2docx==1.0.0
+pdf2docx==0.5.8
 pdf2image==1.17.0
 pdfplumber==0.11.4
 pillow==12.0.0
@@ -45,5 +45,8 @@ tzdata==2025.2
 wheel==0.45.1
 # Production WSGI server
 gunicorn==21.2.0
+# Static files optimization (alternative to Nginx)
+whitenoise==6.8.2
 # Anti-spam protection
 django-hcaptcha==0.2.0
+requests==2.32.3

@@ -7,13 +7,11 @@ msgstr ""
 "POT-Creation-Date: 2025-12-06 23:40+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
-"Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: templates/base.html:14
 #, fuzzy
 #| msgid ""
@@ -1558,14 +1556,6 @@ msgid ""
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
 
-#: templates/frontend/faq.html:236
-#, fuzzy
-#| msgid "Download your cropped PDF file"
-msgid "How do I compress PDF to under 1MB for email?"
-msgstr ""
-"¿Cómo comprimo PDF a menos de 1 MB para correo electrónico?¿Cómo comprimo un "
-"archivo PDF?Descarga tu archivo PDF recortado - sin registro, completamente "
-"gratis, alta calidad"
 
 #: templates/frontend/faq.html:240
 msgid ""
@@ -3288,10 +3278,6 @@ msgid ""
 "no registration, best pdf converter online, pdf editor online free, pdf "
 "tools for students, pdf tools for business, smallpdf alternative, ilovepdf "
 "alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile"
 msgstr ""
 
 #: utils_site/src/frontend/views.py:94
@@ -3318,12 +3304,6 @@ msgid ""
 "registration, best pdf converter online, pdf editor online free, pdf tools "
 "for students, pdf tools for business, smallpdf alternative, ilovepdf "
 "alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile, convert pdf to word "
-"for resume, merge pdf for thesis, compress pdf for email attachment, split "
-"pdf by chapters"
 msgstr ""
 
 #: utils_site/src/frontend/views.py:435
@@ -3405,12 +3385,6 @@ msgid ""
 "without losing formatting, compress pdf online free, merge pdf online free, "
 "split pdf online free, pdf to jpg online free, jpg to pdf online free, pdf "
 "to excel online free, word to pdf online free, rotate pdf online free, add "
-"watermark to pdf online free, crop pdf online free, protect pdf online free, "
-"unlock pdf online free, pdf converter no email, pdf converter no "
-"registration, pdf converter unlimited, pdf converter no watermark, pdf "
-"converter fast, pdf converter safe, pdf converter free, pdf tools help, pdf "
-"conversion questions, pdf editing questions, pdf organization questions, pdf "
-"security questions"
 msgstr ""
 
 #, fuzzy
@@ -3866,3 +3840,48 @@ msgstr ""
 #~ msgstr ""
 #~ "Si tienes alguna pregunta sobre estos Términos, por favor contáctanos en "
 #~ "info@convertica.com."
+
+#: utils_site/src/frontend/views.py:499
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you "
+"as soon as possible, usually within 24-48 hours."
+msgstr ""
+"¡Gracias! Su mensaje ha sido enviado exitosamente. Nos pondremos en contacto "
+"con usted lo antes posible, generalmente dentro de 24-48 horas."
+
+#: utils_site/src/frontend/views.py:581
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"Lo sentimos, hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo "
+"más tarde o contáctenos directamente en info@convertica.net"
+
+#: utils_site/src/frontend/views.py:589
+msgid "Please correct the errors in the form below."
+msgstr "Por favor, corrija los errores en el formulario a continuación."
+
+#: templates/frontend/contact.html:123
+msgid "Message Sent Successfully!"
+msgstr "¡Mensaje enviado exitosamente!"
+
+#: templates/frontend/contact.html:129
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"Hemos recibido su mensaje y nos pondremos en contacto con usted lo antes "
+"posible, generalmente dentro de 24-48 horas."
+
+#: templates/frontend/contact.html:163
+msgid "Thank you! Your message has been sent successfully."
+msgstr "¡Gracias! Su mensaje ha sido enviado exitosamente."
+
+
+#: templates/frontend/contact.html:179
+msgid "Please correct the errors below:"
+msgstr "Por favor, corrija los errores a continuación:"
+
+#: templates/frontend/contact.html:369
+msgid "Sending..."
+msgstr "Enviando..."

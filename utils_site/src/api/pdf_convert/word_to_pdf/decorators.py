@@ -1,6 +1,7 @@
 from typing import Callable
-from drf_yasg.utils import swagger_auto_schema
+
 from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 
 
 def word_to_pdf_docs() -> Callable:
@@ -21,7 +22,7 @@ def word_to_pdf_docs() -> Callable:
             operation_description="Convert a DOCX file into a PDF document.",
             manual_parameters=[
                 openapi.Parameter(
-                    'word_file',
+                    "word_file",
                     openapi.IN_FORM,
                     description="Word file (.doc or .docx) to convert",
                     type=openapi.TYPE_FILE,

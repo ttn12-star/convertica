@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
-from .serializers import ProtectPDFSerializer
-from .decorators import protect_pdf_docs
-from .utils import protect_pdf
 from ...base_views import BaseConversionAPIView
+from .decorators import protect_pdf_docs
+from .serializers import ProtectPDFSerializer
+from .utils import protect_pdf
 
 
 class ProtectPDFAPIView(BaseConversionAPIView):
@@ -32,21 +32,17 @@ class ProtectPDFAPIView(BaseConversionAPIView):
         return super().post(request)
 
     def perform_conversion(
-        self,
-        uploaded_file: UploadedFile,
-        context: dict,
-        **kwargs
+        self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> Tuple[str, str]:
         """Protect PDF with password."""
-        password = kwargs.get('password', '')
-        user_password = kwargs.get('user_password')
-        owner_password = kwargs.get('owner_password')
+        password = kwargs.get("password", "")
+        user_password = kwargs.get("user_password")
+        owner_password = kwargs.get("owner_password")
         pdf_path, output_path = protect_pdf(
             uploaded_file,
             password=password,
             user_password=user_password,
             owner_password=owner_password,
-            suffix="_convertica"
+            suffix="_convertica",
         )
         return pdf_path, output_path
-
