@@ -17,14 +17,14 @@ def get_client_ip(request: HttpRequest) -> str:
         ip = x_forwarded_for.split(",")[0].strip()
     else:
         ip = request.META.get("REMOTE_ADDR", "")
-    
+
     # Log for debugging
     logger.debug(
         f"Client IP detection - X-Forwarded-For: {x_forwarded_for}, "
         f"REMOTE_ADDR: {request.META.get('REMOTE_ADDR', '')}, "
         f"Final IP: {ip}"
     )
-    
+
     return ip
 
 
@@ -56,7 +56,7 @@ class AdminIPWhitelistMiddleware:
 
             # Get client IP
             client_ip = get_client_ip(request)
-            
+
             # Log access attempt
             logger.info(
                 f"Admin access attempt - IP: {client_ip}, "
@@ -79,7 +79,7 @@ class AdminIPWhitelistMiddleware:
                     f"<p>Whitelist: {', '.join(whitelist)}</p>",
                     content_type="text/html",
                 )
-            
+
             logger.debug(f"Admin access allowed for IP: {client_ip}")
 
         return self.get_response(request)
