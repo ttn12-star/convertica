@@ -10,9 +10,6 @@ from django.views.i18n import set_language
 
 from utils_site.swagger import schema_view
 
-# Get admin URL path from settings (defaults to 'admin' for backward compatibility)
-ADMIN_URL_PATH = getattr(settings, "ADMIN_URL_PATH", "admin")
-
 
 @require_http_methods(["GET"])
 def robots_txt(request):
@@ -63,11 +60,12 @@ urlpatterns = [
     path("health/", health_check, name="health_check"),
     # SEO - sitemap should be accessible without language prefix
     path("sitemap.xml", include("src.frontend.urls_sitemap")),
+    # Admin panel - should be accessible without language prefix
+    # Read ADMIN_URL_PATH dynamically from settings
+    path(f"{getattr(settings, 'ADMIN_URL_PATH', 'admin')}/", admin.site.urls),
 ]
 
 urlpatterns += i18n_patterns(
-    # Admin panel with custom URL path (from settings)
-    path(f"{ADMIN_URL_PATH}/", admin.site.urls),
     path("blog/", include("src.blog.urls")),
     path("", include("src.frontend.urls")),
 )
