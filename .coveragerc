@@ -1,0 +1,72 @@
+[run]
+source = utils_site
+omit = 
+    */migrations/*
+    */tests/*
+    */test_*.py
+    */__pycache__/*
+    */venv/*
+    */env/*
+    */virtualenv/*
+    */site-packages/*
+    manage.py
+    */settings/*
+    */wsgi.py
+    */asgi.py
+    */celery.py
+    */admin.py
+    */apps.py
+    */models.py
+    */urls.py
+    */views.py
+    */forms.py
+    */serializers.py
+    */permissions.py
+    */filters.py
+    */pagination.py
+    */throttles.py
+    */exceptions.py
+    */utils.py
+    */helpers.py
+    */constants.py
+    */validators.py
+    */signals.py
+    */tasks.py
+    */management/*
+    */templatetags/*
+    */context_processors/*
+    */middleware/*
+    */backends/*
+    */mixins/*
+    */decorators/*
+    */managers/*
+    */querysets/*
+    */factories/*
+    */fixtures/*
+    */static/*
+    */templates/*
+    */media/*
+    */logs/*
+    */locale/*
+    */node_modules/*
+    */build/*
+    */dist/*
+    */.git/*
+    */.github/*
+    */docs/*
+    */config*.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @abstractmethod
+    if False:
+    if 0:
+    if None:
+    class .*\bProtocol\):
+    @(abc\.)?abstractmethod
