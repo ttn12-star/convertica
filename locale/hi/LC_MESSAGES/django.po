@@ -3696,3 +3696,48 @@ msgstr ""
 #~ msgstr ""
 #~ "यदि इन शर्तों के बारे में आपके कोई प्रश्न हैं, तो कृपया info@convertica.com पर हमसे "
 #~ "संपर्क करें।"
+
+#: utils_site/src/frontend/views.py:499
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you "
+"as soon as possible, usually within 24-48 hours."
+msgstr ""
+"धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है। हम जल्द से जल्द आपसे संपर्क "
+"करेंगे, आमतौर पर 24-48 घंटों के भीतर।"
+
+#: utils_site/src/frontend/views.py:581
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"क्षमा करें, आपका संदेश भेजने में त्रुटि हुई। कृपया बाद में पुनः प्रयास करें "
+"या सीधे info@convertica.net पर हमसे संपर्क करें"
+
+#: utils_site/src/frontend/views.py:589
+msgid "Please correct the errors in the form below."
+msgstr "कृपया नीचे दिए गए फॉर्म में त्रुटियों को सही करें।"
+
+#: templates/frontend/contact.html:123
+msgid "Message Sent Successfully!"
+msgstr "संदेश सफलतापूर्वक भेजा गया!"
+
+#: templates/frontend/contact.html:129
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"हमने आपका संदेश प्राप्त कर लिया है और जल्द से जल्द आपसे संपर्क करेंगे, "
+"आमतौर पर 24-48 घंटों के भीतर।"
+
+#: templates/frontend/contact.html:163
+msgid "Thank you! Your message has been sent successfully."
+msgstr "धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है।"
+
+
+#: templates/frontend/contact.html:179
+msgid "Please correct the errors below:"
+msgstr "कृपया नीचे दी गई त्रुटियों को सही करें:"
+
+#: templates/frontend/contact.html:369
+msgid "Sending..."
+msgstr "भेज रहे हैं..."

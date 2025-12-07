@@ -486,14 +486,61 @@ def contact_page(request):
     from django.contrib import messages
     from django.core.mail import send_mail
     from django.conf import settings
+    from django.shortcuts import redirect
     from .forms import ContactForm
+    import logging
+
+    logger = logging.getLogger(__name__)
+
+    # If form was successfully submitted, show success message
+    if request.method == "GET" and "sent" in request.GET:
+        messages.success(
+            request,
+            _(
+                "Thank you! Your message has been sent successfully. We'll get back to you as soon as possible, usually within 24-48 hours."
+            ),
+        )
 
     form = ContactForm()
     message_sent = False
 
     if request.method == "POST":
         form = ContactForm(request.POST)
+        
+        # Verify hCaptcha before form validation
+        from utils_site.src.api.spam_protection import verify_hcaptcha
+        
+        hcaptcha_token = request.POST.get("hcaptcha_token", "")
+        # Also check for h-captcha-response (direct from widget)
+        if not hcaptcha_token:
+            hcaptcha_token = request.POST.get("h-captcha-response", "")
+        
+        # Get client IP
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            remote_ip = x_forwarded_for.split(',')[0].strip()
+        else:
+            remote_ip = request.META.get('REMOTE_ADDR', '')
+        
+        if not verify_hcaptcha(hcaptcha_token, remote_ip):
+            messages.error(
+                request,
+                _("Please complete the CAPTCHA verification."),
+            )
+            return render(request, "frontend/contact.html", {
+                "page_title": _("Contact Us - Convertica"),
+                "page_description": _(
+                    "Contact Convertica for support, questions, or feedback. We're here to help with all your PDF tool needs."
+                ),
+                "page_keywords": _(
+                    "contact Convertica, support, customer service, help, feedback"
+                ),
+                "form": form,
+                "message_sent": False,
+            })
+        
         if form.is_valid():
+            
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             subject = form.cleaned_data["subject"]
@@ -504,8 +551,7 @@ def contact_page(request):
 
             # Prepare email content
             email_subject = f"[Convertica Contact] {subject}"
-            email_body = f"""
-New contact form submission from Convertica website:
+            email_body = f"""New contact form submission from Convertica website:
 
 Name: {name}
 Email: {email}
@@ -516,6 +562,8 @@ Message:
 
 ---
 This message was sent from the contact form on {request.build_absolute_uri('/contact/')}
+IP Address: {request.META.get('REMOTE_ADDR', 'Unknown')}
+User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
 """
 
             try:
@@ -532,28 +580,48 @@ This message was sent from the contact form on {request.build_absolute_uri('/con
                     fail_silently=False,
                 )
 
-                # Success message
-                messages.success(
-                    request,
-                    _(
-                        "Thank you! Your message has been sent successfully. We'll get back to you soon."
-                    ),
+                # Log success
+                logger.info(
+                    "Contact form submitted successfully from %s (IP: %s)",
+                    email,
+                    request.META.get('REMOTE_ADDR', 'Unknown'),
                 )
-                message_sent = True
-                form = ContactForm()  # Reset form after successful submission
 
+                # Redirect to prevent form resubmission on refresh
+                return redirect(f"{request.path}?sent=1")
+
+            except (ConnectionError, TimeoutError, OSError) as e:
+                # Log connection errors
+                error_msg = str(e)
+                logger.error(
+                    "Failed to send contact form email from %s: %s",
+                    email,
+                    error_msg,
+                    exc_info=True,
+                )
             except Exception as e:
-                # Log error and show user-friendly message
-                import logging
+                # Log other errors
+                error_msg = str(e)
+                logger.error(
+                    "Unexpected error sending contact form email from %s: %s",
+                    email,
+                    error_msg,
+                    exc_info=True,
+                )
 
-                logger = logging.getLogger(__name__)
-                logger.error(f"Failed to send contact form email: {str(e)}")
+                # Show user-friendly error message
                 messages.error(
                     request,
                     _(
                         "Sorry, there was an error sending your message. Please try again later or contact us directly at info@convertica.net"
                     ),
                 )
+        else:
+            # Form validation errors
+            messages.error(
+                request,
+                _("Please correct the errors in the form below."),
+            )
 
     context = {
         "page_title": _("Contact Us - Convertica"),

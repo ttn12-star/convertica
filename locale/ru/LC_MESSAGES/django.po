@@ -3458,3 +3458,48 @@ msgid ""
 "arrange them in the desired order, and click merge. All selected files will "
 "be combined into a single PDF document."
 msgstr ""
+
+#: utils_site/src/frontend/views.py:499
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you "
+"as soon as possible, usually within 24-48 hours."
+msgstr ""
+"Спасибо! Ваше сообщение успешно отправлено. Мы свяжемся с вами как можно "
+"скорее, обычно в течение 24-48 часов."
+
+#: utils_site/src/frontend/views.py:581
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"Извините, произошла ошибка при отправке вашего сообщения. Пожалуйста, "
+"попробуйте позже или свяжитесь с нами напрямую по адресу info@convertica.net"
+
+#: utils_site/src/frontend/views.py:589
+msgid "Please correct the errors in the form below."
+msgstr "Пожалуйста, исправьте ошибки в форме ниже."
+
+#: templates/frontend/contact.html:123
+msgid "Message Sent Successfully!"
+msgstr "Сообщение успешно отправлено!"
+
+#: templates/frontend/contact.html:129
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"Мы получили ваше сообщение и свяжемся с вами как можно скорее, обычно в "
+"течение 24-48 часов."
+
+#: templates/frontend/contact.html:163
+msgid "Thank you! Your message has been sent successfully."
+msgstr "Спасибо! Ваше сообщение успешно отправлено."
+
+
+#: templates/frontend/contact.html:179
+msgid "Please correct the errors below:"
+msgstr "Пожалуйста, исправьте ошибки ниже:"
+
+#: templates/frontend/contact.html:369
+msgid "Sending..."
+msgstr "Отправка..."

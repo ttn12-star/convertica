@@ -424,6 +424,10 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@convertica.net")
 CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 
+# hCaptcha Configuration
+HCAPTCHA_SITE_KEY = os.environ.get("HCAPTCHA_SITE_KEY", config("HCAPTCHA_SITE_KEY", default="", cast=str))
+HCAPTCHA_SECRET_KEY = os.environ.get("HCAPTCHA_SECRET_KEY", config("HCAPTCHA_SECRET_KEY", default="", cast=str))
+
 # Prometheus Monitoring (if available)
 try:
     import django_prometheus

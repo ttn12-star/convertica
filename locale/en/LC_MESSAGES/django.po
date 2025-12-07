@@ -2560,3 +2560,48 @@ msgstr ""
 #: utils_site/src/frontend/views.py:456
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr ""
+
+#: utils_site/src/frontend/views.py:499
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you "
+"as soon as possible, usually within 24-48 hours."
+msgstr ""
+"Thank you! Your message has been sent successfully. We'll get back to you "
+"as soon as possible, usually within 24-48 hours."
+
+#: utils_site/src/frontend/views.py:581
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+
+#: utils_site/src/frontend/views.py:589
+msgid "Please correct the errors in the form below."
+msgstr "Please correct the errors in the form below."
+
+#: templates/frontend/contact.html:123
+msgid "Message Sent Successfully!"
+msgstr "Message Sent Successfully!"
+
+#: templates/frontend/contact.html:129
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+
+#: templates/frontend/contact.html:163
+msgid "Thank you! Your message has been sent successfully."
+msgstr "Thank you! Your message has been sent successfully."
+
+
+#: templates/frontend/contact.html:179
+msgid "Please correct the errors below:"
+msgstr "Please correct the errors below:"
+
+#: templates/frontend/contact.html:369
+msgid "Sending..."
+msgstr "Sending..."
