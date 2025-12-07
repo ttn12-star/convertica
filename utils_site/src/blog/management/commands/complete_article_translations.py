@@ -2,23 +2,26 @@
 Management command to complete missing article content translations.
 Adds SEO-optimized translations for articles that are missing content translations.
 """
+
 from django.core.management.base import BaseCommand
 from src.blog.models import Article
 
 
 class Command(BaseCommand):
-    help = 'Complete missing article content translations'
+    help = "Complete missing article content translations"
 
     def handle(self, *args, **options):
         articles = Article.objects.all()
-        
-        self.stdout.write(self.style.SUCCESS(f'\n=== Completing article translations ===\n'))
-        
+
+        self.stdout.write(
+            self.style.SUCCESS(f"\n=== Completing article translations ===\n")
+        )
+
         # SEO-optimized translations for missing articles
         translations_data = {
-            'pdf-to-jpg-converter-online-free': {
-                'ru': {
-                    'content': '''<h2>Конвертер PDF в JPG онлайн бесплатно</h2>
+            "pdf-to-jpg-converter-online-free": {
+                "ru": {
+                    "content": """<h2>Конвертер PDF в JPG онлайн бесплатно</h2>
 <p>Преобразуйте страницы PDF в изображения JPG высокого качества быстро и бесплатно. Наш онлайн конвертер PDF в JPG позволяет извлекать изображения из PDF документов или конвертировать целые страницы в формат JPG.</p>
 
 <h2>Как конвертировать PDF в JPG онлайн</h2>
@@ -70,10 +73,10 @@ class Command(BaseCommand):
 <li>✅ Защита конфиденциальности</li>
 </ul>
 
-<p>Начните конвертировать PDF в JPG прямо сейчас - это бесплатно, быстро и безопасно!</p>'''
+<p>Начните конвертировать PDF в JPG прямо сейчас - это бесплатно, быстро и безопасно!</p>"""
                 },
-                'pl': {
-                    'content': '''<h2>Konwerter PDF na JPG online za darmo</h2>
+                "pl": {
+                    "content": """<h2>Konwerter PDF na JPG online za darmo</h2>
 <p>Konwertuj strony PDF na obrazy JPG wysokiej jakości szybko i za darmo. Nasz online konwerter PDF na JPG pozwala wyodrębnić obrazy z dokumentów PDF lub przekonwertować całe strony na format JPG.</p>
 
 <h2>Jak przekonwertować PDF na JPG online</h2>
@@ -125,10 +128,10 @@ class Command(BaseCommand):
 <li>✅ Ochrona prywatności</li>
 </ul>
 
-<p>Zacznij konwertować PDF na JPG już teraz - to darmowe, szybkie i bezpieczne!</p>'''
+<p>Zacznij konwertować PDF na JPG już teraz - to darmowe, szybkie i bezpieczne!</p>"""
                 },
-                'hi': {
-                    'content': '''<h2>PDF से JPG कन्वर्टर ऑनलाइन मुफ्त</h2>
+                "hi": {
+                    "content": """<h2>PDF से JPG कन्वर्टर ऑनलाइन मुफ्त</h2>
 <p>PDF पृष्ठों को उच्च गुणवत्ता वाली JPG छवियों में तेज़ी से और मुफ्त में कन्वर्ट करें। हमारा ऑनलाइन PDF से JPG कन्वर्टर PDF दस्तावेज़ों से छवियां निकालने या पूरे पृष्ठों को JPG प्रारूप में कन्वर्ट करने की अनुमति देता है।</p>
 
 <h2>PDF को JPG में ऑनलाइन कैसे कन्वर्ट करें</h2>
@@ -180,10 +183,10 @@ class Command(BaseCommand):
 <li>✅ गोपनीयता सुरक्षा</li>
 </ul>
 
-<p>अभी PDF को JPG में कन्वर्ट करना शुरू करें - यह मुफ्त, तेज़ और सुरक्षित है!</p>'''
+<p>अभी PDF को JPG में कन्वर्ट करना शुरू करें - यह मुफ्त, तेज़ और सुरक्षित है!</p>"""
                 },
-                'es': {
-                    'content': '''<h2>Convertidor PDF a JPG online gratis</h2>
+                "es": {
+                    "content": """<h2>Convertidor PDF a JPG online gratis</h2>
 <p>Convierta páginas PDF en imágenes JPG de alta calidad de forma rápida y gratuita. Nuestro convertidor online de PDF a JPG permite extraer imágenes de documentos PDF o convertir páginas completas al formato JPG.</p>
 
 <h2>Cómo convertir PDF a JPG online</h2>
@@ -235,10 +238,10 @@ class Command(BaseCommand):
 <li>✅ Protección de privacidad</li>
 </ul>
 
-<p>¡Comience a convertir PDF a JPG ahora mismo - es gratis, rápido y seguro!</p>'''
+<p>¡Comience a convertir PDF a JPG ahora mismo - es gratis, rápido y seguro!</p>"""
                 },
-                'id': {
-                    'content': '''<h2>Konverter PDF ke JPG Online Gratis</h2>
+                "id": {
+                    "content": """<h2>Konverter PDF ke JPG Online Gratis</h2>
 <p>Konversi halaman PDF menjadi gambar JPG berkualitas tinggi dengan cepat dan gratis. Konverter online PDF ke JPG kami memungkinkan Anda mengekstrak gambar dari dokumen PDF atau mengonversi seluruh halaman ke format JPG.</p>
 
 <h2>Cara Mengonversi PDF ke JPG Online</h2>
@@ -290,12 +293,12 @@ class Command(BaseCommand):
 <li>✅ Perlindungan privasi</li>
 </ul>
 
-<p>Mulai konversi PDF ke JPG sekarang - gratis, cepat, dan aman!</p>'''
-                }
+<p>Mulai konversi PDF ke JPG sekarang - gratis, cepat, dan aman!</p>"""
+                },
             },
-            'word-to-pdf-converter-online-free-2025': {
-                'ru': {
-                    'content': '''<h2>Конвертер Word в PDF онлайн бесплатно 2025</h2>
+            "word-to-pdf-converter-online-free-2025": {
+                "ru": {
+                    "content": """<h2>Конвертер Word в PDF онлайн бесплатно 2025</h2>
 <p>Преобразуйте документы Word (.doc, .docx) в профессиональные PDF файлы быстро и бесплатно. Наш онлайн конвертер Word в PDF поддерживает все версии Microsoft Word и сохраняет форматирование документов.</p>
 
 <h2>Как конвертировать Word в PDF онлайн</h2>
@@ -338,10 +341,10 @@ class Command(BaseCommand):
 <li>✅ Защита конфиденциальности</li>
 </ul>
 
-<p>Начните конвертировать Word в PDF прямо сейчас - это бесплатно, быстро и безопасно!</p>'''
+<p>Начните конвертировать Word в PDF прямо сейчас - это бесплатно, быстро и безопасно!</p>"""
                 },
-                'pl': {
-                    'content': '''<h2>Konwerter Word na PDF online za darmo 2025</h2>
+                "pl": {
+                    "content": """<h2>Konwerter Word na PDF online za darmo 2025</h2>
 <p>Konwertuj dokumenty Word (.doc, .docx) na profesjonalne pliki PDF szybko i za darmo. Nasz online konwerter Word na PDF obsługuje wszystkie wersje Microsoft Word i zachowuje formatowanie dokumentów.</p>
 
 <h2>Jak przekonwertować Word na PDF online</h2>
@@ -384,10 +387,10 @@ class Command(BaseCommand):
 <li>✅ Ochrona prywatności</li>
 </ul>
 
-<p>Zacznij konwertować Word na PDF już teraz - to darmowe, szybkie i bezpieczne!</p>'''
+<p>Zacznij konwertować Word na PDF już teraz - to darmowe, szybkie i bezpieczne!</p>"""
                 },
-                'hi': {
-                    'content': '''<h2>Word से PDF कन्वर्टर ऑनलाइन मुफ्त 2025</h2>
+                "hi": {
+                    "content": """<h2>Word से PDF कन्वर्टर ऑनलाइन मुफ्त 2025</h2>
 <p>Word दस्तावेज़ों (.doc, .docx) को पेशेवर PDF फ़ाइलों में तेज़ी से और मुफ्त में कन्वर्ट करें। हमारा ऑनलाइन Word से PDF कन्वर्टर Microsoft Word के सभी संस्करणों का समर्थन करता है और दस्तावेज़ फ़ॉर्मेटिंग को संरक्षित करता है।</p>
 
 <h2>Word को PDF में ऑनलाइन कैसे कन्वर्ट करें</h2>
@@ -430,10 +433,10 @@ class Command(BaseCommand):
 <li>✅ गोपनीयता सुरक्षा</li>
 </ul>
 
-<p>अभी Word को PDF में कन्वर्ट करना शुरू करें - यह मुफ्त, तेज़ और सुरक्षित है!</p>'''
+<p>अभी Word को PDF में कन्वर्ट करना शुरू करें - यह मुफ्त, तेज़ और सुरक्षित है!</p>"""
                 },
-                'es': {
-                    'content': '''<h2>Convertidor Word a PDF online gratis 2025</h2>
+                "es": {
+                    "content": """<h2>Convertidor Word a PDF online gratis 2025</h2>
 <p>Convierta documentos Word (.doc, .docx) en archivos PDF profesionales de forma rápida y gratuita. Nuestro convertidor online de Word a PDF admite todas las versiones de Microsoft Word y preserva el formato de los documentos.</p>
 
 <h2>Cómo convertir Word a PDF online</h2>
@@ -476,10 +479,10 @@ class Command(BaseCommand):
 <li>✅ Protección de privacidad</li>
 </ul>
 
-<p>¡Comience a convertir Word a PDF ahora mismo - es gratis, rápido y seguro!</p>'''
+<p>¡Comience a convertir Word a PDF ahora mismo - es gratis, rápido y seguro!</p>"""
                 },
-                'id': {
-                    'content': '''<h2>Konverter Word ke PDF Online Gratis 2025</h2>
+                "id": {
+                    "content": """<h2>Konverter Word ke PDF Online Gratis 2025</h2>
 <p>Konversi dokumen Word (.doc, .docx) menjadi file PDF profesional dengan cepat dan gratis. Konverter online Word ke PDF kami mendukung semua versi Microsoft Word dan mempertahankan pemformatan dokumen.</p>
 
 <h2>Cara Mengonversi Word ke PDF Online</h2>
@@ -522,12 +525,12 @@ class Command(BaseCommand):
 <li>✅ Perlindungan privasi</li>
 </ul>
 
-<p>Mulai konversi Word ke PDF sekarang - gratis, cepat, dan aman!</p>'''
-                }
+<p>Mulai konversi Word ke PDF sekarang - gratis, cepat, dan aman!</p>"""
+                },
             },
-            'smallpdf-alternative-free-pdf-converter': {
-                'ru': {
-                    'content': '''<h2>Альтернатива SmallPDF: Бесплатный конвертер PDF без ограничений</h2>
+            "smallpdf-alternative-free-pdf-converter": {
+                "ru": {
+                    "content": """<h2>Альтернатива SmallPDF: Бесплатный конвертер PDF без ограничений</h2>
 <p>Ищете альтернативу SmallPDF? Convertica предлагает полный набор инструментов для работы с PDF, которые превосходят SmallPDF по функциональности, скорости и бесплатным возможностям.</p>
 
 <h2>Почему выбирают альтернативу SmallPDF?</h2>
@@ -608,10 +611,10 @@ class Command(BaseCommand):
 </table>
 
 <h2>Начните использовать Convertica сегодня</h2>
-<p>Convertica - лучшая альтернатива SmallPDF для всех ваших потребностей в работе с PDF. Попробуйте прямо сейчас - это бесплатно, быстро и без ограничений!</p>'''
+<p>Convertica - лучшая альтернатива SmallPDF для всех ваших потребностей в работе с PDF. Попробуйте прямо сейчас - это бесплатно, быстро и без ограничений!</p>"""
                 },
-                'pl': {
-                    'content': '''<h2>Alternatywa dla SmallPDF: Darmowy konwerter PDF bez ograniczeń</h2>
+                "pl": {
+                    "content": """<h2>Alternatywa dla SmallPDF: Darmowy konwerter PDF bez ograniczeń</h2>
 <p>Szukasz alternatywy dla SmallPDF? Convertica oferuje kompleksowy zestaw narzędzi do pracy z PDF, które przewyższają SmallPDF pod względem funkcjonalności, szybkości i bezpłatnych możliwości.</p>
 
 <h2>Dlaczego wybierają alternatywę dla SmallPDF?</h2>
@@ -692,10 +695,10 @@ class Command(BaseCommand):
 </table>
 
 <h2>Zacznij używać Convertica już dziś</h2>
-<p>Convertica to najlepsza alternatywa dla SmallPDF dla wszystkich Twoich potrzeb związanych z PDF. Wypróbuj teraz - to darmowe, szybkie i bez ograniczeń!</p>'''
+<p>Convertica to najlepsza alternatywa dla SmallPDF dla wszystkich Twoich potrzeb związanych z PDF. Wypróbuj teraz - to darmowe, szybkie i bez ograniczeń!</p>"""
                 },
-                'hi': {
-                    'content': '''<h2>SmallPDF विकल्प: मुफ्त PDF कन्वर्टर बिना सीमाओं के</h2>
+                "hi": {
+                    "content": """<h2>SmallPDF विकल्प: मुफ्त PDF कन्वर्टर बिना सीमाओं के</h2>
 <p>SmallPDF का विकल्प खोज रहे हैं? Convertica PDF कार्य के लिए उपकरणों का एक व्यापक सेट प्रदान करता है जो कार्यक्षमता, गति और मुफ्त सुविधाओं में SmallPDF से बेहतर है।</p>
 
 <h2>SmallPDF का विकल्प क्यों चुनते हैं?</h2>
@@ -776,10 +779,10 @@ class Command(BaseCommand):
 </table>
 
 <h2>आज ही Convertica का उपयोग शुरू करें</h2>
-<p>Convertica आपकी सभी PDF आवश्यकताओं के लिए SmallPDF का सर्वोत्तम विकल्प है। अभी आज़माएं - यह मुफ्त, तेज़ और बिना सीमाओं के है!</p>'''
+<p>Convertica आपकी सभी PDF आवश्यकताओं के लिए SmallPDF का सर्वोत्तम विकल्प है। अभी आज़माएं - यह मुफ्त, तेज़ और बिना सीमाओं के है!</p>"""
                 },
-                'es': {
-                    'content': '''<h2>Alternativa a SmallPDF: Convertidor PDF gratis sin límites</h2>
+                "es": {
+                    "content": """<h2>Alternativa a SmallPDF: Convertidor PDF gratis sin límites</h2>
 <p>¿Busca una alternativa a SmallPDF? Convertica ofrece un conjunto completo de herramientas para trabajar con PDF que superan a SmallPDF en funcionalidad, velocidad y capacidades gratuitas.</p>
 
 <h2>¿Por qué elegir una alternativa a SmallPDF?</h2>
@@ -860,10 +863,10 @@ class Command(BaseCommand):
 </table>
 
 <h2>Comience a usar Convertica hoy</h2>
-<p>Convertica es la mejor alternativa a SmallPDF para todas sus necesidades de PDF. ¡Pruébelo ahora - es gratis, rápido y sin límites!</p>'''
+<p>Convertica es la mejor alternativa a SmallPDF para todas sus necesidades de PDF. ¡Pruébelo ahora - es gratis, rápido y sin límites!</p>"""
                 },
-                'id': {
-                    'content': '''<h2>Alternatif SmallPDF: Konverter PDF Gratis Tanpa Batasan</h2>
+                "id": {
+                    "content": """<h2>Alternatif SmallPDF: Konverter PDF Gratis Tanpa Batasan</h2>
 <p>Mencari alternatif untuk SmallPDF? Convertica menawarkan rangkaian lengkap alat untuk bekerja dengan PDF yang melampaui SmallPDF dalam hal fungsionalitas, kecepatan, dan kemampuan gratis.</p>
 
 <h2>Mengapa Memilih Alternatif SmallPDF?</h2>
@@ -944,42 +947,45 @@ class Command(BaseCommand):
 </table>
 
 <h2>Mulai Gunakan Convertica Hari Ini</h2>
-<p>Convertica adalah alternatif terbaik untuk SmallPDF untuk semua kebutuhan PDF Anda. Coba sekarang - gratis, cepat, dan tanpa batasan!</p>'''
-                }
-            }
+<p>Convertica adalah alternatif terbaik untuk SmallPDF untuk semua kebutuhan PDF Anda. Coba sekarang - gratis, cepat, dan tanpa batasan!</p>"""
+                },
+            },
         }
-        
+
         # Process each article
         updated_count = 0
-        
+
         for article in articles:
             if article.slug not in translations_data:
                 continue
-            
-            self.stdout.write(f'\n📄 Processing: {article.slug}')
-            
+
+            self.stdout.write(f"\n📄 Processing: {article.slug}")
+
             article_translations = translations_data[article.slug]
-            
+
             # Initialize translations if needed
             if not article.translations:
                 article.translations = {}
-            
+
             # Add content translations for each language
             for lang_code, lang_data in article_translations.items():
                 if lang_code not in article.translations:
                     article.translations[lang_code] = {}
-                
+
                 # Add content if provided
-                if 'content' in lang_data:
-                    article.translations[lang_code]['content'] = lang_data['content']
-                    self.stdout.write(self.style.SUCCESS(f'  ✅ Added {lang_code} content translation'))
+                if "content" in lang_data:
+                    article.translations[lang_code]["content"] = lang_data["content"]
+                    self.stdout.write(
+                        self.style.SUCCESS(
+                            f"  ✅ Added {lang_code} content translation"
+                        )
+                    )
                     updated_count += 1
-            
+
             # Save article
             article.save()
-            self.stdout.write(self.style.SUCCESS(f'  💾 Saved {article.slug}'))
-        
-        self.stdout.write(self.style.SUCCESS(f'\n✅ Completed!'))
-        self.stdout.write(f'   Updated {updated_count} content translations')
-        self.stdout.write(f'   Processed {len(translations_data)} articles')
+            self.stdout.write(self.style.SUCCESS(f"  💾 Saved {article.slug}"))
 
+        self.stdout.write(self.style.SUCCESS(f"\n✅ Completed!"))
+        self.stdout.write(f"   Updated {updated_count} content translations")
+        self.stdout.write(f"   Processed {len(translations_data)} articles")
