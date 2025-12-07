@@ -474,6 +474,17 @@ def faq_page(request):
         'page_title': _('Frequently Asked Questions (FAQ) - Convertica'),
         'page_description': _('Find answers to frequently asked questions about Convertica PDF tools. Learn how to convert, edit, and organize PDF files online for free.'),
         'page_keywords': _('FAQ, frequently asked questions, PDF converter help, PDF tools FAQ, how to convert PDF, PDF questions, convert pdf to word online free, pdf to word without losing formatting, compress pdf online free, merge pdf online free, split pdf online free, pdf to jpg online free, jpg to pdf online free, pdf to excel online free, word to pdf online free, rotate pdf online free, add watermark to pdf online free, crop pdf online free, protect pdf online free, unlock pdf online free, pdf converter no email, pdf converter no registration, pdf converter unlimited, pdf converter no watermark, pdf converter fast, pdf converter safe, pdf converter free, pdf tools help, pdf conversion questions, pdf editing questions, pdf organization questions, pdf security questions'),
+        # FAQ structured data translations
+        'faq_q1': _('How do I convert PDF to Word?'),
+        'faq_a1': _('To convert PDF to Word, simply upload your PDF file using the upload button or drag and drop it into the upload zone. Click the convert button and wait for the conversion to complete. Download your converted Word document using the download button. The conversion is free and requires no registration.'),
+        'faq_q2': _('Is Convertica free to use?'),
+        'faq_a2': _('Yes, Convertica is completely free to use. All PDF conversion, editing, and organization tools are available at no cost. There are no hidden fees, no registration required, and no file size limits on the free plan.'),
+        'faq_q3': _('What file formats does Convertica support?'),
+        'faq_a3': _('Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You can convert between these formats, edit PDFs, organize pages, and protect your documents with passwords.'),
+        'faq_q4': _('How do I merge multiple PDF files?'),
+        'faq_a4': _('To merge PDF files, go to the Merge PDF page, select multiple PDF files, arrange them in the desired order, and click merge. All selected files will be combined into a single PDF document.'),
+        'faq_q5': _('Is my data secure?'),
+        'faq_a5': _('Yes, your data is secure. All files are processed securely and automatically deleted immediately after conversion. We do not store your files, and your privacy is our top priority. You can also protect your PDFs with password encryption.'),
     }
     return render(request, 'frontend/faq.html', context)
 
