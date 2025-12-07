@@ -4,11 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 23:40+0000\n"
-"PO-Revision-Date: 2024-01-01 12:00+0000\n"
-"Last-Translator: Auto Generated\n"
-"Language-Team: Russian\n"
-"Language: ru\n"
+"POT-Creation-Date: 2025-12-07 06:40+0000\n"
+"Language: RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -196,6 +193,12 @@ msgid "Our Mission"
 msgstr "Наша миссия"
 
 #: templates/frontend/about.html:70
+#, fuzzy
+#| msgid ""
+#| "At Convertica, we believe in the power of continuous improvement. Our "
+#| "mission is to provide you with the most reliable, fast, and user-friendly "
+#| "PDF tools available online. We understand that your documents are "
+#| "important, "
 msgid ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
@@ -206,8 +209,6 @@ msgstr ""
 "В Convertica мы верим в силу постоянного совершенствования. Наша миссия - "
 "предоставить вам самые надежные, быстрые и удобные PDF инструменты, "
 "доступные в интернете. Мы понимаем, что ваши документы важны, и мы стремимся "
-"к тому, чтобы каждое взаимодействие с нашей платформой превосходило ваши "
-"ожидания."
 
 #: templates/frontend/about.html:78
 msgid "Growth icon"
@@ -228,6 +229,12 @@ msgid ""
 msgstr "Сегодня мы лучше, чем вчера. Завтра мы будем еще лучше, чем сегодня."
 
 #: templates/frontend/about.html:94
+#, fuzzy
+#| msgid ""
+#| "This isn't just a slogan—it's our commitment to you. Every day, our team "
+#| "works tirelessly to enhance our platform, improve our tools, and refine "
+#| "the user experience. We listen to your feedback, analyze usage patterns, "
+#| "and "
 msgid ""
 "This isn't just a slogan—it's our commitment to you. Every day, our team "
 "works tirelessly to enhance our platform, improve our tools, and refine the "
@@ -238,8 +245,6 @@ msgstr ""
 "Это не просто слоган - это наше обязательство перед вами. Каждый день наша "
 "команда неустанно работает над улучшением платформы, совершенствованием "
 "инструментов и оптимизацией пользовательского опыта. Мы прислушиваемся к "
-"вашим отзывам, анализируем модели использования и внедряем улучшения, "
-"которые делают Convertica более мощной, интуитивной и надежной."
 
 #: templates/frontend/about.html:97
 msgid ""
@@ -1350,84 +1355,28 @@ msgid ""
 "(1-5)"
 msgstr ""
 
-#: templates/frontend/faq.html:21 templates/frontend/faq.html:148
-#, fuzzy
-#| msgid "Convert PDF to Word"
-msgid "How do I convert PDF to Word?"
-msgstr "Как конвертировать PDF в Word?"
-
-#: templates/frontend/faq.html:24 templates/frontend/faq.html:152
-msgid ""
-"To convert PDF to Word, simply upload your PDF file using the upload button "
-"or drag and drop it into the upload zone. Click the convert button and wait "
-"for the conversion to complete. Download your converted Word document using "
-"the download button. The conversion is free and requires no registration."
-msgstr ""
-
-#: templates/frontend/faq.html:29 templates/frontend/faq.html:90
-#, fuzzy
-#| msgid "Is Convertica really free?"
-msgid "Is Convertica free to use?"
-msgstr "Бесплатен ли Convertica?"
-
-#: templates/frontend/faq.html:32 templates/frontend/faq.html:94
-msgid ""
-"Yes, Convertica is completely free to use. All PDF conversion, editing, and "
-"organization tools are available at no cost. There are no hidden fees, no "
-"registration required, and no file size limits on the free plan."
-msgstr ""
-
-#: templates/frontend/faq.html:37 templates/frontend/faq.html:110
-#, fuzzy
-#| msgid "What file formats are supported?"
-msgid "What file formats does Convertica support?"
-msgstr "Какие форматы файлов поддерживает Convertica?"
-
-#: templates/frontend/faq.html:40 templates/frontend/faq.html:114
-msgid ""
-"Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
-"can convert between these formats, edit PDFs, organize pages, and protect "
-"your documents with passwords."
-msgstr ""
-
-#: templates/frontend/faq.html:45 templates/frontend/faq.html:216
-msgid "How do I merge multiple PDF files?"
-msgstr "Как объединить несколько PDF файлов?"
-
-#: templates/frontend/faq.html:48
-msgid ""
-"To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
-"arrange them in the desired order, and click merge. All selected files will "
-"be combined into a single PDF document."
-msgstr ""
-
-#: templates/frontend/faq.html:53 templates/frontend/faq.html:284
-msgid "Is my data secure?"
-msgstr "Безопасны ли мои данные?"
-
-#: templates/frontend/faq.html:56 templates/frontend/faq.html:288
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
-msgid ""
-"Yes, your data is secure. All files are processed securely and automatically "
-"deleted immediately after conversion. We do not store your files, and your "
-"privacy is our top priority. You can also protect your PDFs with password "
-"encryption."
-msgstr ""
-"Да! Ваши файлы обрабатываются безопасно и автоматически удаляются сразу "
-"после обработки. Мы никогда не храним ваши файлы постоянно."
-
 #: templates/frontend/faq.html:75
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr "Найдите ответы на частые вопросы о PDF инструментах Convertica"
 
 #: templates/frontend/faq.html:85
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "General Questions"
 msgstr "Общие вопросы"
+
+#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:480
+msgid "Is Convertica free to use?"
+msgstr "Бесплатен ли Convertica?"
+
+#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:481
+msgid ""
+"Yes, Convertica is completely free to use. All PDF conversion, editing, and "
+"organization tools are available at no cost. There are no hidden fees, no "
+"registration required, and no file size limits on the free plan."
+msgstr ""
+"Да, Convertica полностью бесплатен. Все инструменты для конвертации, "
+"редактирования и организации PDF доступны бесплатно. Нет скрытых платежей, "
+"регистрация не требуется, и нет ограничений на размер файла в бесплатном "
+"плане."
 
 #: templates/frontend/faq.html:100
 msgid "Do I need to create an account?"
@@ -1438,6 +1387,20 @@ msgid ""
 "No, you don't need to create an account. Convertica works without "
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
+
+#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:482
+msgid "What file formats does Convertica support?"
+msgstr "Какие форматы файлов поддерживает Convertica?"
+
+#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:483
+msgid ""
+"Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
+"can convert between these formats, edit PDFs, organize pages, and protect "
+"your documents with passwords."
+msgstr ""
+"Convertica поддерживает форматы PDF, Word (DOC, DOCX), JPG/JPEG и Excel. Вы "
+"можете конвертировать между этими форматами, редактировать PDF, "
+"организовывать страницы и защищать ваши документы паролями."
 
 #: templates/frontend/faq.html:120
 msgid "Is there a file size limit?"
@@ -1450,18 +1413,20 @@ msgid ""
 msgstr ""
 
 #: templates/frontend/faq.html:133
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Questions"
 msgstr "Вопросы о конвертации"
 
 #: templates/frontend/faq.html:138
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word without losing formatting?"
-msgstr "Как конвертировать PDF в Word?"
+msgstr "Как конвертировать PDF в Word без потери форматирования?"
 
 #: templates/frontend/faq.html:142
+#, fuzzy
+#| msgid ""
+#| "To convert PDF to Word without losing formatting, use Convertica's PDF to "
+#| "Word converter. Simply upload your PDF file, and our advanced conversion "
+#| "engine preserves text formatting, images, tables, and layout. The "
+#| "conversion "
 msgid ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
@@ -1469,10 +1434,42 @@ msgid ""
 "maintains fonts, colors, spacing, and structure of your original document. "
 "All conversions are free and require no registration."
 msgstr ""
+"Чтобы конвертировать PDF в Word без потери форматирования, используйте "
+"конвертер Convertica PDF в Word. Просто загрузите ваш PDF файл, и наш "
+"продвинутый движок конвертации сохранит форматирование текста, изображения, "
+"таблицы и макет. Конвертация сохраняет шрифты, цвета, интервалы и структуру "
+"вашего оригинального документа. Все конвертации бесплатны и не требуют "
+"регистрации.конвертер Convertica PDF в Word. Просто загрузите ваш PDF файл, "
+"и наш продвинутый движок конвертации сохранит форматирование текста, "
+"изображения, таблицы и макет. Конвертация "
+
+#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:478
+#, fuzzy
+#| msgid "Convert PDF to Word"
+msgid "How do I convert PDF to Word?"
+msgstr "Как конвертировать PDF в Word?"
+
+#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:479
+#, fuzzy
+#| msgid ""
+#| "To convert PDF to Word, simply upload your PDF file using the upload "
+#| "button or drag and drop it into the upload zone. Click the convert button "
+#| "and wait for the conversion to complete. Download your converted Word "
+#| "document using "
+msgid ""
+"To convert PDF to Word, simply upload your PDF file using the upload button "
+"or drag and drop it into the upload zone. Click the convert button and wait "
+"for the conversion to complete. Download your converted Word document using "
+"the download button. The conversion is free and requires no registration."
+msgstr ""
+"Чтобы конвертировать PDF в Word, просто загрузите ваш PDF файл, используя "
+"кнопку загрузки или перетащив его в зону загрузки. Нажмите кнопку "
+"конвертации и дождитесь завершения конвертации. Скачайте ваш "
+"конвертированный документ Word, используя кнопку скачивания. Конвертация "
+"бесплатна и не требует регистрации.конвертации и дождитесь завершения "
+"конвертации. Скачайте ваш конвертированный документ Word, используя "
 
 #: templates/frontend/faq.html:158
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "How do I convert Word to PDF?"
 msgstr "Как конвертировать Word в PDF?"
 
@@ -1482,10 +1479,11 @@ msgid ""
 "PDF. The conversion preserves formatting and layout of your original "
 "document."
 msgstr ""
+"Загрузите ваш документ Word (.doc или .docx), нажмите конвертировать и "
+"скачайте ваш PDF. Конвертация сохраняет форматирование и макет вашего "
+"оригинального документа."
 
 #: templates/frontend/faq.html:168
-#, fuzzy
-#| msgid "Convert PDF to Excel"
 msgid "Can I convert PDF to JPG?"
 msgstr "Могу ли я конвертировать PDF в JPG?"
 
@@ -1495,6 +1493,9 @@ msgid ""
 "convert or convert all pages. You can also choose the image quality (DPI) "
 "from 72 to 600."
 msgstr ""
+"Да, вы можете конвертировать страницы PDF в изображения JPG. Выберите "
+"страницу, которую хотите конвертировать, или конвертируйте все страницы. Вы "
+"также можете выбрать качество изображения (DPI) от 72 до 600."
 
 #: templates/frontend/faq.html:178
 msgid "How do I convert images to PDF?"
@@ -1506,10 +1507,11 @@ msgid ""
 "and click convert. All images will be combined into a single PDF document "
 "with automatic A4 formatting."
 msgstr ""
+"Загрузите одно или несколько изображений JPG/JPEG, расположите их в нужном "
+"порядке и нажмите конвертировать. Все изображения будут объединены в один "
+"PDF документ с автоматическим форматированием A4."
 
 #: templates/frontend/faq.html:188
-#, fuzzy
-#| msgid "Extract tables from PDF and convert to Excel format"
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "Могу ли я извлечь таблицы из PDF в Excel?"
 
@@ -1519,10 +1521,11 @@ msgid ""
 "Upload your PDF, and Convertica will extract all tables and save them in an "
 "Excel file."
 msgstr ""
+"Да, вы можете извлечь таблицы из PDF файлов и конвертировать их в формат "
+"Excel. Загрузите ваш PDF, и Convertica извлечет все таблицы и сохранит их в "
+"файл Excel."
 
 #: templates/frontend/faq.html:201
-#, fuzzy
-#| msgid "Organization"
 msgid "Editing & Organization"
 msgstr "Редактирование и организация"
 
@@ -1531,6 +1534,11 @@ msgid "How do I merge PDF online free without watermark?"
 msgstr "Как объединить PDF онлайн бесплатно без водяного знака?"
 
 #: templates/frontend/faq.html:210
+#, fuzzy
+#| msgid ""
+#| "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
+#| "arrange them in the desired order using drag and drop, and click merge. "
+#| "All selected files will be combined into a single PDF document."
 msgid ""
 "To merge PDF online free without watermark, use Convertica's PDF merger. Go "
 "to the Merge PDF page, select multiple PDF files, arrange them in the "
@@ -1538,6 +1546,16 @@ msgid ""
 "be combined into a single PDF document with no watermark added. The merged "
 "PDF maintains the quality of original files."
 msgstr ""
+"Чтобы объединить PDF онлайн бесплатно без водяного знака, используйте "
+"объединитель PDF Convertica. Перейдите на страницу Объединить PDF, выберите "
+"несколько PDF файлов, расположите их в нужном порядке с помощью перетаскивания "
+"и нажмите объединить. Все выбранные файлы будут объединены в один PDF документ "
+"без добавления водяного знака. Объединенный PDF сохраняет качество оригинальных файлов."
+"один PDF документ."
+
+#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:484
+msgid "How do I merge multiple PDF files?"
+msgstr "Как объединить несколько PDF файлов?"
 
 #: templates/frontend/faq.html:220
 msgid ""
@@ -1545,10 +1563,12 @@ msgid ""
 "arrange them in the desired order using drag and drop, and click merge. All "
 "selected files will be combined into a single PDF document."
 msgstr ""
+"Чтобы объединить PDF файлы, перейдите на страницу Объединить PDF, выберите "
+"несколько PDF файлов, расположите их в нужном порядке с помощью "
+"перетаскивания и нажмите объединить. Все выбранные файлы будут объединены в "
+"один PDF документ."
 
 #: templates/frontend/faq.html:226
-#, fuzzy
-#| msgid "Split your PDF into multiple files"
 msgid "Can I split a PDF into separate files?"
 msgstr "Разделяйте ваш PDF на несколько файлов"
 
@@ -1557,16 +1577,23 @@ msgid ""
 "Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
+"Да, вы можете разделить PDF на отдельные файлы. Загрузите ваш PDF, выберите, "
+"как разделить его (по диапазону страниц или каждые N страниц), и скачайте "
+"полученные файлы."
 
 #: templates/frontend/faq.html:236
 #, fuzzy
-#| msgid "Download your cropped PDF file"
+#| msgid "How do I compress a PDF file?"
 msgid "How do I compress PDF to under 1MB for email?"
-msgstr ""
-"Как сжать PDF до 1 МБ для email?Как сжать PDF файл?Скачайте обрезанный PDF "
-"файл - без регистрации, полностью бесплатно, высокое качество"
+msgstr "Как сжать PDF файл?"
 
 #: templates/frontend/faq.html:240
+#, fuzzy
+#| msgid ""
+#| "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
+#| "Upload your PDF file, select the high compression level, and click "
+#| "compress. The tool will reduce the file size while maintaining acceptable "
+#| "quality for "
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
 "Upload your PDF file, select the high compression level, and click compress. "
@@ -1574,14 +1601,14 @@ msgid ""
 "email attachments. You can preview the compressed file size before "
 "downloading."
 msgstr ""
+"Чтобы сжать PDF до менее 1 МБ для электронной почты, используйте компрессор "
+"PDF Convertica. Загрузите ваш PDF файл, выберите высокий уровень сжатия и "
+"нажмите сжать. Инструмент уменьшит размер файла, сохраняя приемлемое "
+"качество "
 
 #: templates/frontend/faq.html:246
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress a PDF file?"
-msgstr ""
-"Как сжать PDF файл?Скачайте обрезанный PDF файл - без регистрации, полностью "
-"бесплатно, высокое качество"
+msgstr "Как сжать PDF файл?"
 
 #: templates/frontend/faq.html:250
 msgid ""
@@ -1589,30 +1616,25 @@ msgid ""
 "and click compress. The file size will be reduced while maintaining "
 "acceptable quality."
 msgstr ""
+"Загрузите ваш PDF файл, выберите уровень сжатия (низкий, средний или "
+"высокий) и нажмите сжать. Размер файла будет уменьшен при сохранении "
+"приемлемого качества."
 
 #: templates/frontend/faq.html:256
 msgid "Can I rotate PDF pages?"
 msgstr "Могу ли я повернуть страницы PDF?"
 
 #: templates/frontend/faq.html:260
-#, fuzzy
-#| msgid ""
-#| "Rotate PDF pages by 90, 180, or 270 degrees. Free online PDF rotation "
-#| "tool."
 msgid ""
 "Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
 "you want to rotate and choose the rotation angle."
 msgstr ""
-"Поворачивайте страницы PDF на 90, 180 или 270 градусов. Бесплатный онлайн "
-"инструмент для поворота PDF."
+"Да, вы можете повернуть страницы PDF на 90, 180 или 270 градусов. Выберите "
+"страницы, которые хотите повернуть, и выберите угол поворота."
 
 #: templates/frontend/faq.html:266
-#, fuzzy
-#| msgid "Download your watermarked PDF file"
 msgid "How do I add a watermark to PDF?"
-msgstr ""
-"Как добавить водяной знак в PDF?Скачайте PDF файл с водяным знаком - без "
-"регистрации, полностью бесплатно, защита документов"
+msgstr "Как добавить водяной знак в PDF?"
 
 #: templates/frontend/faq.html:270
 msgid ""
@@ -1620,10 +1642,28 @@ msgid ""
 "and transparency, and apply. The watermark will be added to all pages or "
 "selected pages."
 msgstr ""
+"Загрузите ваш PDF, выберите текстовый или графический водяной знак, "
+"установите позицию и прозрачность и примените. Водяной знак будет добавлен "
+"ко всем страницам или выбранным страницам."
 
 #: templates/frontend/faq.html:279
 msgid "Security & Privacy"
 msgstr "Безопасность и конфиденциальность"
+
+#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:486
+msgid "Is my data secure?"
+msgstr "Безопасны ли мои данные?"
+
+#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:487
+msgid ""
+"Yes, your data is secure. All files are processed securely and automatically "
+"deleted immediately after conversion. We do not store your files, and your "
+"privacy is our top priority. You can also protect your PDFs with password "
+"encryption."
+msgstr ""
+"Да, ваши данные в безопасности. Все файлы обрабатываются безопасно и "
+"автоматически удаляются сразу после конвертации. Мы не храним ваши файлы, и "
+"ваша конфиденциальность - наш главный приоритет. Вы также можете защитить ваши PDF шифрованием паролем."
 
 #: templates/frontend/faq.html:294
 msgid "How do I protect a PDF with a password?"
@@ -1634,12 +1674,12 @@ msgid ""
 "Upload your PDF, enter a password (and optionally an owner password), and "
 "click protect. The PDF will be encrypted and require a password to open."
 msgstr ""
+"Загрузите ваш PDF, введите пароль (и опционально пароль владельца) и нажмите "
+"защитить. PDF будет зашифрован и потребует пароль для открытия."
 
 #: templates/frontend/faq.html:304
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Can I remove password protection from a PDF?"
-msgstr "Удаляйте защиту паролем из вашего PDF"
+msgstr "Могу ли я удалить защиту паролем из PDF?"
 
 #: templates/frontend/faq.html:308
 msgid ""
@@ -1647,33 +1687,31 @@ msgid ""
 "protected PDF, enter the password, and click unlock. The password protection "
 "will be removed."
 msgstr ""
+"Да, если вы знаете пароль, вы можете разблокировать защищенный PDF. "
+"Загрузите защищенный PDF, введите пароль и нажмите разблокировать. Защита "
+"паролем будет удалена."
 
 #: templates/frontend/faq.html:314
 msgid "Are my files stored on your servers?"
 msgstr "Хранятся ли мои файлы на ваших серверах?"
 
 #: templates/frontend/faq.html:318
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
 "copies of your documents."
 msgstr ""
-"Да! Ваши файлы обрабатываются безопасно и автоматически удаляются сразу "
-"после обработки. Мы никогда не храним ваши файлы постоянно."
+"Нет, ваши файлы не хранятся на наших серверах. Файлы обрабатываются "
+"немедленно и автоматически удаляются после конвертации. Мы не храним копии "
+"ваших документов."
 
 #: templates/frontend/faq.html:327
 msgid "Technical Questions"
 msgstr "Технические вопросы"
 
 #: templates/frontend/faq.html:332
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What browsers are supported?"
-msgstr "Какие форматы файлов поддерживаются?"
+msgstr "Какие браузеры поддерживаются?"
 
 #: templates/frontend/faq.html:336
 msgid ""
@@ -1681,12 +1719,13 @@ msgid ""
 "Edge, and Opera. The website is also mobile-friendly and works on "
 "smartphones and tablets."
 msgstr ""
+"Convertica работает во всех современных браузерах, включая Chrome, Firefox, "
+"Safari, Edge и Opera. Сайт также адаптирован для мобильных устройств и "
+"работает на смартфонах и планшетах."
 
 #: templates/frontend/faq.html:342
-#, fuzzy
-#| msgid "How long does it take to process files?"
 msgid "How long does conversion take?"
-msgstr "Сколько времени занимает обработка файлов?"
+msgstr "Сколько времени занимает конвертация?"
 
 #: templates/frontend/faq.html:346
 msgid ""
@@ -1694,14 +1733,13 @@ msgid ""
 "complete in seconds. Larger files may take a minute or two. The progress is "
 "shown during conversion."
 msgstr ""
+"Время конвертации зависит от размера и сложности файла. Большинство "
+"конвертаций завершаются за секунды. Большие файлы могут занять минуту или "
+"две. Прогресс отображается во время конвертации."
 
 #: templates/frontend/faq.html:352
-#, fuzzy
-#| msgid "Wait for the conversion to complete"
 msgid "What if conversion fails?"
-msgstr ""
-"Что делать, если конвертация не удалась?Дождитесь завершения конвертации - "
-"наш безопасный онлайн конвертер обрабатывает файлы за секунды"
+msgstr "Что делать, если конвертация не удалась?"
 
 #: templates/frontend/faq.html:356
 msgid ""
@@ -1709,6 +1747,9 @@ msgid ""
 "a supported format. Try again, and if the problem persists, contact our "
 "support team."
 msgstr ""
+"Если конвертация не удалась, пожалуйста, проверьте, что ваш файл не "
+"поврежден и находится в поддерживаемом формате. Попробуйте снова, и если "
+"проблема сохраняется, свяжитесь с нашей службой поддержки."
 
 #: templates/frontend/faq.html:362
 msgid "Can I use Convertica on mobile devices?"
@@ -1719,6 +1760,9 @@ msgid ""
 "Yes, Convertica is fully responsive and works on mobile devices. You can "
 "convert, edit, and organize PDFs directly from your smartphone or tablet."
 msgstr ""
+"Да, Convertica полностью адаптирован и работает на мобильных устройствах. Вы "
+"можете конвертировать, редактировать и организовывать PDF прямо с вашего "
+"смартфона или планшета."
 
 #: templates/frontend/faq.html:377
 msgid "Still have questions?"
@@ -2227,7 +2271,6 @@ msgstr ""
 "В Convertica мы серьезно относимся к вашей конфиденциальности. Эта Политика "
 "конфиденциальности объясняет, как мы собираем, используем, раскрываем и "
 "защищаем вашу информацию при использовании наших онлайн PDF инструментов и "
-"услуг."
 
 #: templates/frontend/privacy.html:64
 msgid ""
@@ -2246,6 +2289,12 @@ msgid "Files You Upload"
 msgstr "Файлы, которые вы загружаете"
 
 #: templates/frontend/privacy.html:76
+#, fuzzy
+#| msgid ""
+#| "When you use our PDF tools, you may upload files for processing. These "
+#| "files are temporarily stored on our servers only for the duration of the "
+#| "conversion or editing process. Files are automatically deleted "
+#| "immediately "
 msgid ""
 "When you use our PDF tools, you may upload files for processing. These files "
 "are temporarily stored on our servers only for the duration of the "
@@ -2255,7 +2304,6 @@ msgstr ""
 "Когда вы используете наши PDF инструменты, вы можете загружать файлы для "
 "обработки. Эти файлы временно хранятся на наших серверах только на время "
 "процесса конвертации или редактирования. Файлы автоматически удаляются сразу "
-"после завершения обработки, обычно в течение нескольких минут."
 
 #: templates/frontend/privacy.html:81
 msgid "Usage Information"
@@ -2359,7 +2407,6 @@ msgstr ""
 "Однако ни один метод передачи через Интернет или электронное хранилище не "
 "является на 100% безопасным. Хотя мы стремимся использовать коммерчески "
 "приемлемые средства для защиты вашей информации, мы не можем гарантировать "
-"абсолютную безопасность."
 
 #: templates/frontend/privacy.html:136
 msgid "Data Retention"
@@ -2392,6 +2439,12 @@ msgid "Third-Party Services"
 msgstr ""
 
 #: templates/frontend/privacy.html:154
+#, fuzzy
+#| msgid ""
+#| "We may use third-party services to help us operate our platform and "
+#| "analyze how our services are used. These services may have access to "
+#| "limited information, but they are obligated not to disclose or use it for "
+#| "any other "
 msgid ""
 "We may use third-party services to help us operate our platform and analyze "
 "how our services are used. These services may have access to limited "
@@ -2401,7 +2454,6 @@ msgstr ""
 "Мы можем использовать сторонние сервисы, чтобы помочь нам управлять нашей "
 "платформой и анализировать, как используются наши услуги. Эти сервисы могут "
 "иметь доступ к ограниченной информации, но они обязаны не раскрывать или "
-"использовать ее для любых других целей."
 
 #: templates/frontend/privacy.html:157
 #, fuzzy
@@ -2429,7 +2481,6 @@ msgstr ""
 "Мы можем использовать файлы cookie и аналогичные технологии отслеживания для "
 "отслеживания активности на нашей платформе и хранения определенной "
 "информации. Файлы cookie - это файлы с небольшим количеством данных, которые "
-"могут включать анонимный уникальный идентификатор."
 
 #: templates/frontend/privacy.html:169
 msgid ""
@@ -2440,7 +2491,6 @@ msgstr ""
 "Вы можете настроить свой браузер на отказ от всех файлов cookie или "
 "уведомление о том, когда файл cookie отправляется. Однако, если вы не "
 "принимаете файлы cookie, вы можете не иметь возможности использовать "
-"некоторые части нашего сервиса."
 
 #: templates/frontend/privacy.html:175
 msgid "Your Privacy Rights"
@@ -2483,6 +2533,11 @@ msgid "Children's Privacy"
 msgstr "Конфиденциальность детей"
 
 #: templates/frontend/privacy.html:199
+#, fuzzy
+#| msgid ""
+#| "Our services are not intended for children under the age of 13. We do not "
+#| "knowingly collect personal information from children under 13. If you are "
+#| "a parent or guardian and believe your child has provided us with personal "
 msgid ""
 "Our services are not intended for children under the age of 13. We do not "
 "knowingly collect personal information from children under 13. If you are a "
@@ -2492,7 +2547,6 @@ msgstr ""
 "Наши услуги не предназначены для детей младше 13 лет. Мы не собираем "
 "намеренно личную информацию от детей младше 13 лет. Если вы являетесь "
 "родителем или опекуном и считаете, что ваш ребенок предоставил нам личную "
-"информацию, пожалуйста, свяжитесь с нами."
 
 #: templates/frontend/privacy.html:205
 msgid "Changes to This Privacy Policy"
@@ -2513,8 +2567,6 @@ msgstr ""
 "Мы можем время от времени обновлять нашу Политику конфиденциальности. Мы "
 "уведомим вас о любых изменениях, разместив новую Политику конфиденциальности "
 "на этой странице и обновив дату \"Последнее обновление\". Вам рекомендуется "
-"периодически просматривать эту Политику конфиденциальности на предмет "
-"изменений."
 
 #: templates/frontend/privacy.html:214
 msgid "Questions About Privacy?"
@@ -2705,7 +2757,6 @@ msgstr ""
 "Получая доступ или используя Услуги Convertica, вы признаете, что прочитали, "
 "поняли и соглашаетесь соблюдать эти Условия и нашу Политику "
 "конфиденциальности. Если вы не согласны с этими Условиями, вы не должны "
-"использовать наши Услуги."
 
 #: templates/frontend/terms.html:79
 msgid "Description of Services"
@@ -2810,6 +2861,12 @@ msgid "File Size and Format Limitations"
 msgstr "Ограничения размера и формата файлов"
 
 #: templates/frontend/terms.html:123
+#, fuzzy
+#| msgid ""
+#| "You are responsible for ensuring that files you upload comply with our "
+#| "file size and format requirements. We reserve the right to reject or "
+#| "limit the processing of files that exceed our size limits or are in "
+#| "unsupported "
 msgid ""
 "You are responsible for ensuring that files you upload comply with our file "
 "size and format requirements. We reserve the right to reject or limit the "
@@ -2819,13 +2876,18 @@ msgstr ""
 "Вы несете ответственность за обеспечение соответствия загружаемых файлов "
 "нашим требованиям к размеру и формату файлов. Мы оставляем за собой право "
 "отклонять или ограничивать обработку файлов, которые превышают наши "
-"ограничения по размеру или имеют неподдерживаемые форматы."
 
 #: templates/frontend/terms.html:128
 msgid "File Storage and Deletion"
 msgstr "Хранение и удаление файлов"
 
 #: templates/frontend/terms.html:130
+#, fuzzy
+#| msgid ""
+#| "Files uploaded to our Services are processed temporarily and "
+#| "automatically deleted after processing is complete. We do not store your "
+#| "files permanently. However, you are responsible for maintaining backups "
+#| "of your "
 msgid ""
 "Files uploaded to our Services are processed temporarily and automatically "
 "deleted after processing is complete. We do not store your files "
@@ -2841,6 +2903,12 @@ msgid "Processing Accuracy"
 msgstr "Точность обработки"
 
 #: templates/frontend/terms.html:137
+#, fuzzy
+#| msgid ""
+#| "While we strive to provide accurate conversions and processing, we cannot "
+#| "guarantee that all files will be processed correctly or that the output "
+#| "will meet your specific requirements. You are responsible for verifying "
+#| "the "
 msgid ""
 "While we strive to provide accurate conversions and processing, we cannot "
 "guarantee that all files will be processed correctly or that the output will "
@@ -2850,7 +2918,6 @@ msgstr ""
 "Хотя мы стремимся предоставлять точные конвертации и обработку, мы не можем "
 "гарантировать, что все файлы будут обработаны правильно или что результат "
 "будет соответствовать вашим конкретным требованиям. Вы несете "
-"ответственность за проверку точности обработанных файлов."
 
 #: templates/frontend/terms.html:145
 #, fuzzy
@@ -2863,6 +2930,11 @@ msgid "Our Intellectual Property"
 msgstr "Наша интеллектуальная собственность"
 
 #: templates/frontend/terms.html:151
+#, fuzzy
+#| msgid ""
+#| "All content, features, and functionality of our Services, including but "
+#| "not limited to text, graphics, logos, icons, images, and software, are "
+#| "the exclusive property of Convertica and are protected by international "
 msgid ""
 "All content, features, and functionality of our Services, including but not "
 "limited to text, graphics, logos, icons, images, and software, are the "
@@ -2872,14 +2944,17 @@ msgstr ""
 "Весь контент, функции и функциональность наших Услуг, включая, но не "
 "ограничиваясь текстом, графикой, логотипами, иконками, изображениями и "
 "программным обеспечением, являются исключительной собственностью Convertica "
-"и защищены международными законами об авторском праве, товарных знаках и "
-"других законах об интеллектуальной собственности."
 
 #: templates/frontend/terms.html:156
 msgid "Your Content"
 msgstr "Ваш контент"
 
 #: templates/frontend/terms.html:158
+#, fuzzy
+#| msgid ""
+#| "You retain all rights to files you upload. By uploading files, you grant "
+#| "us a limited, non-exclusive license to process your files solely for the "
+#| "purpose of providing the requested Services. We do not claim ownership of "
 msgid ""
 "You retain all rights to files you upload. By uploading files, you grant us "
 "a limited, non-exclusive license to process your files solely for the "
@@ -2889,7 +2964,6 @@ msgstr ""
 "Вы сохраняете все права на файлы, которые вы загружаете. Загружая файлы, вы "
 "предоставляете нам ограниченную, неисключительную лицензию на обработку "
 "ваших файлов исключительно для целей предоставления запрошенных Услуг. Мы не "
-"претендуем на право собственности на ваши файлы."
 
 #: templates/frontend/terms.html:166
 msgid "Disclaimer of Warranties"
@@ -2960,14 +3034,17 @@ msgstr ""
 "Наша общая ответственность за любые претензии, возникающие из или связанные "
 "с использованием наших Услуг, не должна превышать сумму, которую вы "
 "заплатили нам (если таковая имеется) в течение двенадцати месяцев, "
-"предшествующих претензии, или 100 долларов, в зависимости от того, что "
-"больше."
 
 #: templates/frontend/terms.html:202
 msgid "Indemnification"
 msgstr "Возмещение ущерба"
 
 #: templates/frontend/terms.html:205
+#, fuzzy
+#| msgid ""
+#| "You agree to indemnify, defend, and hold harmless Convertica and its "
+#| "affiliates, officers, employees, and agents from and against any claims, "
+#| "damages, obligations, losses, liabilities, costs, or debt, and expenses "
 msgid ""
 "You agree to indemnify, defend, and hold harmless Convertica and its "
 "affiliates, officers, employees, and agents from and against any claims, "
@@ -2977,7 +3054,6 @@ msgstr ""
 "Вы соглашаетесь возмещать ущерб, защищать и ограждать Convertica и ее "
 "аффилированные лица, должностных лиц, сотрудников и агентов от любых "
 "претензий, ущерба, обязательств, потерь, обязательств, расходов или долгов и "
-"расходов (включая гонорары адвокатов), возникающих из:"
 
 #: templates/frontend/terms.html:208
 msgid "Your use of our Services"
@@ -3000,6 +3076,12 @@ msgid "Termination"
 msgstr "Прекращение"
 
 #: templates/frontend/terms.html:220
+#, fuzzy
+#| msgid ""
+#| "We reserve the right to terminate or suspend your access to our Services "
+#| "immediately, without prior notice or liability, for any reason, including "
+#| "if you breach these Terms. Upon termination, your right to use the "
+#| "Services "
 msgid ""
 "We reserve the right to terminate or suspend your access to our Services "
 "immediately, without prior notice or liability, for any reason, including if "
@@ -3009,13 +3091,17 @@ msgstr ""
 "Мы оставляем за собой право немедленно прекратить или приостановить ваш "
 "доступ к нашим Услугам без предварительного уведомления или ответственности "
 "по любой причине, включая нарушение вами этих Условий. При прекращении ваше "
-"право на использование Услуг немедленно прекратится."
 
 #: templates/frontend/terms.html:226
 msgid "Changes to Terms"
 msgstr "Изменения в условиях"
 
 #: templates/frontend/terms.html:229
+#, fuzzy
+#| msgid ""
+#| "We reserve the right to modify or replace these Terms at any time. If a "
+#| "revision is material, we will provide at least 30 days notice prior to "
+#| "any new terms taking effect. What constitutes a material change will be "
 msgid ""
 "We reserve the right to modify or replace these Terms at any time. If a "
 "revision is material, we will provide at least 30 days notice prior to any "
@@ -3025,7 +3111,6 @@ msgstr ""
 "Мы оставляем за собой право изменять или заменять эти Условия в любое время. "
 "Если пересмотр является существенным, мы предоставим уведомление не менее "
 "чем за 30 дней до вступления в силу любых новых условий. Что constitutes "
-"существенное изменение, будет определяться по нашему единоличному усмотрению."
 
 #: templates/frontend/terms.html:232
 msgid ""
@@ -3040,6 +3125,12 @@ msgid "Governing Law"
 msgstr "Применимое право"
 
 #: templates/frontend/terms.html:241
+#, fuzzy
+#| msgid ""
+#| "These Terms shall be governed by and construed in accordance with "
+#| "applicable laws, without regard to its conflict of law provisions. Any "
+#| "disputes arising from these Terms or your use of our Services shall be "
+#| "subject to the "
 msgid ""
 "These Terms shall be governed by and construed in accordance with applicable "
 "laws, without regard to its conflict of law provisions. Any disputes arising "
@@ -3049,7 +3140,6 @@ msgstr ""
 "Эти Условия регулируются и толкуются в соответствии с применимым "
 "законодательством, без учета положений о коллизии законов. Любые споры, "
 "возникающие из этих Условий или вашего использования наших Услуг, подлежат "
-"исключительной юрисдикции судов в применимой юрисдикции."
 
 #: templates/frontend/terms.html:247
 msgid "Questions About These Terms?"
@@ -3416,458 +3506,9 @@ msgid ""
 "security questions"
 msgstr ""
 
-#, fuzzy
-#~| msgid ""
-#~| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
-#~| "online PDF converter"
-#~ msgid ""
-#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online "
-#~ "converter, free converter, convert PDF, convert Word"
-#~ msgstr ""
-#~ "PDF в Word, PDF в DOCX, конвертировать PDF, конвертер PDF, конвертер "
-#~ "Word, онлайн конвертер PDF"
-
-#~ msgid ""
-#~ "PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all "
-#~ "PDF tools, online PDF tools, free PDF tools"
-#~ msgstr ""
-#~ "PDF инструменты, конвертер PDF, редактор PDF, организатор PDF, "
-#~ "безопасность PDF, все PDF инструменты, онлайн PDF инструменты, бесплатные "
-#~ "PDF инструменты"
-
-#~ msgid "Views"
-#~ msgstr "Просмотры"
-
-#~ msgid "Please select a Word file."
-#~ msgstr "Пожалуйста, выберите файл Word."
-
-#~ msgid "Please select PDF files to merge."
-#~ msgstr "Пожалуйста, выберите PDF файлы для объединения."
-
-#~ msgid "Please select a JPG/JPEG image file."
-#~ msgstr "Пожалуйста, выберите файл изображения JPG/JPEG."
-
-#~ msgid "Please select a PDF file with tables."
-#~ msgstr "Пожалуйста, выберите PDF файл с таблицами."
-
-#~ msgid "Please select a password-protected PDF file."
-#~ msgstr "Пожалуйста, выберите защищенный паролем PDF файл."
-
-#~ msgid "Merge PDFs"
-#~ msgstr "Объединить PDF"
-
-#~ msgid "PDF to Word - Convertica"
-#~ msgstr "PDF в Word - Convertica"
-
-#~ msgid "Word to PDF - Convertica"
-#~ msgstr "Word в PDF - Convertica"
-
-#~ msgid "PDF to JPG - Convertica"
-#~ msgstr "PDF в JPG - Convertica"
-
-#~ msgid "JPG to PDF - Convertica"
-#~ msgstr "JPG в PDF - Convertica"
-
-#~ msgid "Rotate PDF - Convertica"
-#~ msgstr "Повернуть PDF - Convertica"
-
-#~ msgid "Add Page Numbers to PDF - Convertica"
-#~ msgstr "Добавить номера страниц в PDF - Convertica"
-
-#~ msgid "Add Watermark to PDF - Convertica"
-#~ msgstr "Добавить водяной знак в PDF - Convertica"
-
-#~ msgid "Crop PDF - Convertica"
-#~ msgstr "Обрезать PDF - Convertica"
-
-#~ msgid "Merge PDF - Convertica"
-#~ msgstr "Объединить PDF - Convertica"
-
-#~ msgid "Split PDF - Convertica"
-#~ msgstr "Разделить PDF - Convertica"
-
-#~ msgid "Remove Pages from PDF - Convertica"
-#~ msgstr "Удалить страницы из PDF - Convertica"
-
-#~ msgid "Extract Pages from PDF - Convertica"
-#~ msgstr "Извлечь страницы из PDF - Convertica"
-
-#~ msgid "Organize PDF - Convertica"
-#~ msgstr "Организовать PDF - Convertica"
-
-#~ msgid "PDF to Excel - Convertica"
-#~ msgstr "PDF в Excel - Convertica"
-
-#~ msgid "Compress PDF - Convertica"
-#~ msgstr "Сжать PDF - Convertica"
-
-#~ msgid "Protect PDF with Password - Convertica"
-#~ msgstr "Защитить PDF паролем - Convertica"
-
-#~ msgid "Unlock PDF - Remove Password - Convertica"
-#~ msgstr "Разблокировать PDF - Удалить пароль - Convertica"
-
-#~ msgid ""
-#~ "Upload PDF files and download Word documents instantly. Free PDF to DOCX "
-#~ "converter online. No registration required."
-#~ msgstr ""
-#~ "Загружайте PDF файлы и мгновенно скачивайте документы Word. Бесплатный "
-#~ "онлайн конвертер PDF в DOCX. Регистрация не требуется."
-
-#~ msgid ""
-#~ "Upload Word files and download PDF documents instantly. Convert DOC/DOCX "
-#~ "to PDF online for free. No registration required."
-#~ msgstr ""
-#~ "Загружайте файлы Word и мгновенно скачивайте PDF документы. Конвертируйте "
-#~ "DOC/DOCX в PDF онлайн бесплатно. Регистрация не требуется."
-
-#~ msgid ""
-#~ "Convert PDF pages to JPG images instantly. Free PDF to image converter "
-#~ "online. High quality conversion with customizable DPI."
-#~ msgstr ""
-#~ "Мгновенно конвертируйте страницы PDF в изображения JPG. Бесплатный онлайн "
-#~ "конвертер PDF в изображения. Высокое качество конвертации с настраиваемым "
-#~ "DPI."
-
-#~ msgid ""
-#~ "Convert JPG images to PDF documents instantly. Free image to PDF "
-#~ "converter online. Multiple images supported."
-#~ msgstr ""
-#~ "Мгновенно конвертируйте изображения JPG в PDF документы. Бесплатный "
-#~ "онлайн конвертер изображений в PDF. Поддержка нескольких изображений."
-
-#~ msgid ""
-#~ "Add page numbers to PDF documents. Customize position, font size, and "
-#~ "format."
-#~ msgstr ""
-#~ "Добавляйте номера страниц в PDF документы. Настраивайте положение, размер "
-#~ "шрифта и формат."
-
-#~ msgid ""
-#~ "Add text or image watermark to PDF documents. Protect your documents with "
-#~ "custom watermarks."
-#~ msgstr ""
-#~ "Добавляйте текстовые или графические водяные знаки в PDF документы. "
-#~ "Защищайте ваши документы с помощью пользовательских водяных знаков."
-
-#~ msgid ""
-#~ "Crop PDF pages by specifying crop box coordinates. Free online PDF "
-#~ "cropping tool."
-#~ msgstr ""
-#~ "Обрезайте страницы PDF, указывая координаты области обрезки. Бесплатный "
-#~ "онлайн инструмент для обрезки PDF."
-
-#~ msgid ""
-#~ "Merge multiple PDF files into one document. Combine PDFs online for free. "
-#~ "Fast and secure."
-#~ msgstr ""
-#~ "Объединяйте несколько PDF файлов в один документ. Объединяйте PDF онлайн "
-#~ "бесплатно. Быстро и безопасно."
-
-#~ msgid ""
-#~ "Split PDF into multiple files. Extract pages or divide PDF by pages, "
-#~ "ranges, or every N pages."
-#~ msgstr ""
-#~ "Разделяйте PDF на несколько файлов. Извлекайте страницы или делите PDF по "
-#~ "страницам, диапазонам или каждые N страниц."
-
-#~ msgid ""
-#~ "Remove specific pages from PDF documents. Delete unwanted pages quickly "
-#~ "and easily."
-#~ msgstr ""
-#~ "Удаляйте определенные страницы из PDF документов. Быстро и легко удаляйте "
-#~ "ненужные страницы."
-
-#~ msgid ""
-#~ "Extract specific pages from PDF documents. Create new PDF with selected "
-#~ "pages only."
-#~ msgstr ""
-#~ "Извлекайте определенные страницы из PDF документов. Создавайте новый PDF "
-#~ "только с выбранными страницами."
-
-#~ msgid ""
-#~ "Organize PDF documents. Reorder pages, sort content, and manage your PDF "
-#~ "files."
-#~ msgstr ""
-#~ "Организуйте PDF документы. Переупорядочивайте страницы, сортируйте "
-#~ "содержимое и управляйте вашими PDF файлами."
-
-#~ msgid ""
-#~ "Convert PDF tables to Excel spreadsheets. Extract tables from PDF and "
-#~ "convert to XLSX format. Free online PDF to Excel converter."
-#~ msgstr ""
-#~ "Конвертируйте таблицы PDF в электронные таблицы Excel. Извлекайте таблицы "
-#~ "из PDF и конвертируйте в формат XLSX. Бесплатный онлайн конвертер PDF в "
-#~ "Excel."
-
-#~ msgid ""
-#~ "Compress PDF files to reduce file size. Free online PDF compression tool. "
-#~ "Reduce PDF size for email and upload."
-#~ msgstr ""
-#~ "Сжимайте PDF файлы для уменьшения размера. Бесплатный онлайн инструмент "
-#~ "для сжатия PDF. Уменьшайте размер PDF для email и загрузки."
-
-#~ msgid ""
-#~ "Protect PDF files with password encryption. Secure your PDF documents "
-#~ "with strong password protection."
-#~ msgstr ""
-#~ "Защищайте PDF файлы с помощью шифрования паролем. Обеспечивайте "
-#~ "безопасность ваших PDF документов с помощью надежной защиты паролем."
-
-#~ msgid ""
-#~ "Remove password protection from PDF files. Unlock encrypted PDF documents "
-#~ "with the correct password."
-#~ msgstr ""
-#~ "Удаляйте защиту паролем из PDF файлов. Разблокируйте зашифрованные PDF "
-#~ "документы с помощью правильного пароля."
-
-#~ msgid "Convert your PDF documents to editable Word format in seconds"
-#~ msgstr ""
-#~ "Конвертируйте ваши PDF документы в редактируемый формат Word за секунды"
-
-#~ msgid "Convert your Word documents to PDF format in seconds"
-#~ msgstr "Конвертируйте ваши документы Word в формат PDF за секунды"
-
-#~ msgid "Convert PDF pages to high-quality JPG images in seconds"
-#~ msgstr ""
-#~ "Конвертируйте страницы PDF в высококачественные изображения JPG за секунды"
-
-#~ msgid "Convert your JPG images to PDF format in seconds"
-#~ msgstr "Конвертируйте ваши изображения JPG в формат PDF за секунды"
-
-#~ msgid "Rotate your PDF pages in seconds"
-#~ msgstr "Поворачивайте ваши страницы PDF за секунды"
-
-#~ msgid "Add watermark to your PDF in seconds"
-#~ msgstr "Добавляйте водяной знак в ваш PDF за секунды"
-
-#~ msgid "Crop your PDF pages in seconds"
-#~ msgstr "Обрезайте ваши страницы PDF за секунды"
-
-#~ msgid "Combine multiple PDF files into one document"
-#~ msgstr "Объединяйте несколько PDF файлов в один документ"
-
-#~ msgid "Remove unwanted pages from your PDF"
-#~ msgstr "Удаляйте ненужные страницы из вашего PDF"
-
-#~ msgid "Extract specific pages from your PDF"
-#~ msgstr "Извлекайте определенные страницы из вашего PDF"
-
-#~ msgid "Secure your PDF documents with password protection"
-#~ msgstr ""
-#~ "Обеспечивайте безопасность ваших PDF документов с помощью защиты паролем"
-
-#~ msgid "PDF to Word Converter"
-#~ msgstr "Конвертер PDF в Word"
-
-#~ msgid "Word to PDF Converter"
-#~ msgstr "Конвертер Word в PDF"
-
-#~ msgid "PDF to JPG Converter"
-#~ msgstr "Конвертер PDF в JPG"
-
-#~ msgid "JPG to PDF Converter"
-#~ msgstr "Конвертер JPG в PDF"
-
-#~ msgid "PDF to Excel Converter"
-#~ msgstr "Конвертер PDF в Excel"
-
-#~ msgid ""
-#~ "Word to PDF, DOCX to PDF, DOC to PDF, convert Word, Word converter, PDF "
-#~ "converter, online converter"
-#~ msgstr ""
-#~ "Word в PDF, DOCX в PDF, DOC в PDF, конвертировать Word, конвертер Word, "
-#~ "конвертер PDF, онлайн конвертер"
-
-#~ msgid ""
-#~ "PDF to JPG, PDF to image, convert PDF to JPG, PDF image converter, online "
-#~ "PDF converter"
-#~ msgstr ""
-#~ "PDF в JPG, PDF в изображение, конвертировать PDF в JPG, конвертер PDF "
-#~ "изображений, онлайн конвертер PDF"
-
-#~ msgid ""
-#~ "JPG to PDF, image to PDF, convert JPG to PDF, image PDF converter, online "
-#~ "converter"
-#~ msgstr ""
-#~ "JPG в PDF, изображение в PDF, конвертировать JPG в PDF, конвертер "
-#~ "изображений в PDF, онлайн конвертер"
-
-#~ msgid ""
-#~ "rotate PDF, PDF rotation, rotate PDF pages, PDF editor, online PDF tool"
-#~ msgstr ""
-#~ "повернуть PDF, поворот PDF, повернуть страницы PDF, редактор PDF, онлайн "
-#~ "инструмент PDF"
-
-#~ msgid "add page numbers PDF, PDF page numbers, number PDF pages, PDF editor"
-#~ msgstr ""
-#~ "добавить номера страниц PDF, номера страниц PDF, нумеровать страницы PDF, "
-#~ "редактор PDF"
-
-#~ msgid "add watermark PDF, PDF watermark, watermark PDF, PDF protection"
-#~ msgstr ""
-#~ "добавить водяной знак PDF, водяной знак PDF, водяной знак в PDF, защита "
-#~ "PDF"
-
-#~ msgid "crop PDF, PDF crop, crop PDF pages, PDF editor, online PDF tool"
-#~ msgstr ""
-#~ "обрезать PDF, обрезка PDF, обрезать страницы PDF, редактор PDF, онлайн "
-#~ "инструмент PDF"
-
-#~ msgid "merge PDF, combine PDF, join PDF, PDF merger, online PDF tool"
-#~ msgstr ""
-#~ "объединить PDF, объединить PDF, соединить PDF, объединитель PDF, онлайн "
-#~ "инструмент PDF"
-
-#~ msgid ""
-#~ "split PDF, divide PDF, extract PDF pages, PDF splitter, online PDF tool"
-#~ msgstr ""
-#~ "разделить PDF, разделить PDF, извлечь страницы PDF, разделитель PDF, "
-#~ "онлайн инструмент PDF"
-
-#~ msgid ""
-#~ "remove PDF pages, delete PDF pages, PDF page remover, online PDF tool"
-#~ msgstr ""
-#~ "удалить страницы PDF, удалить страницы PDF, удалитель страниц PDF, онлайн "
-#~ "инструмент PDF"
-
-#~ msgid ""
-#~ "extract PDF pages, PDF page extractor, select PDF pages, online PDF tool"
-#~ msgstr ""
-#~ "извлечь страницы PDF, извлекатель страниц PDF, выбрать страницы PDF, "
-#~ "онлайн инструмент PDF"
-
-#~ msgid ""
-#~ "organize PDF, PDF organizer, reorder PDF pages, PDF management, online "
-#~ "PDF tool"
-#~ msgstr ""
-#~ "организовать PDF, организатор PDF, переупорядочить страницы PDF, "
-#~ "управление PDF, онлайн инструмент PDF"
-
-#~ msgid ""
-#~ "PDF to Excel, PDF to XLSX, convert PDF tables, PDF table extractor, Excel "
-#~ "converter, online PDF converter"
-#~ msgstr ""
-#~ "PDF в Excel, PDF в XLSX, конвертировать таблицы PDF, извлекатель таблиц "
-#~ "PDF, конвертер Excel, онлайн конвертер PDF"
-
-#~ msgid ""
-#~ "compress PDF, PDF compression, reduce PDF size, PDF optimizer, online PDF "
-#~ "tool"
-#~ msgstr ""
-#~ "сжать PDF, сжатие PDF, уменьшить размер PDF, оптимизатор PDF, онлайн "
-#~ "инструмент PDF"
-
-#~ msgid ""
-#~ "protect PDF, PDF password, encrypt PDF, PDF security, PDF protection, "
-#~ "secure PDF"
-#~ msgstr ""
-#~ "защитить PDF, пароль PDF, зашифровать PDF, безопасность PDF, защита PDF, "
-#~ "безопасный PDF"
-
-#~ msgid ""
-#~ "unlock PDF, remove PDF password, decrypt PDF, PDF unlock, PDF password "
-#~ "remover"
-#~ msgstr ""
-#~ "разблокировать PDF, удалить пароль PDF, расшифровать PDF, разблокировка "
-#~ "PDF, удалитель пароля PDF"
-
-#~ msgid "Extract specific pages from your PDF documents."
-#~ msgstr "Извлекайте определенные страницы из ваших PDF документов."
-
-#~ msgid "Reorder and organize PDF pages with drag and drop."
-#~ msgstr ""
-#~ "Переупорядочивайте и организуйте страницы PDF с помощью перетаскивания."
-
-#~ msgid "Compress PDF files to reduce size while maintaining quality."
-#~ msgstr "Сжимайте PDF файлы для уменьшения размера при сохранении качества."
-
-#~ msgid "Edit and modify your PDF documents"
-#~ msgstr "Редактируйте и изменяйте ваши PDF документы"
-
-#~ msgid "Rotate, crop, add watermarks, and more to your PDFs."
-#~ msgstr ""
-#~ "Поворачивайте, обрезайте, добавляйте водяные знаки и многое другое к "
-#~ "вашим PDF."
-
-#~ msgid "Choose a tool above and start working with your PDFs right away."
-#~ msgstr "Выберите инструмент выше и сразу начните работать с вашими PDF."
-
-#~ msgid "Learn from our expert guides and improve your PDF workflow"
-#~ msgstr ""
-#~ "Учитесь у наших экспертных руководств и улучшайте ваш рабочий процесс с "
-#~ "PDF"
-
-#~ msgid "Secure PDF"
-#~ msgstr "Защитить PDF"
-
-#~ msgid "How We Use Information"
-#~ msgstr "Как мы используем информацию"
-
-#~ msgid ""
-#~ "Read our terms of service to understand the rules for using our platform."
-#~ msgstr ""
-#~ "Прочитайте наши условия использования, чтобы понять правила использования "
-#~ "нашей платформы."
-
-#~ msgid "Data Sharing"
-#~ msgstr "Обмен данными"
-
-#~ msgid "With service providers who assist us in operating our platform"
-#~ msgstr "С поставщиками услуг, которые помогают нам в работе нашей платформы"
-
-#~ msgid "When required by law or to protect our rights"
-#~ msgstr "Когда требуется по закону или для защиты наших прав"
-
-#~ msgid "Access the personal information we hold about you"
-#~ msgstr "Получать доступ к личной информации, которую мы храним о вас"
-
-#~ msgid "Cookies"
-#~ msgstr "Файлы cookie"
-
-#~ msgid ""
-#~ "We use cookies and similar tracking technologies to track activity on our "
-#~ "platform and hold certain information. You can instruct your browser to "
-#~ "refuse all cookies or to indicate when a cookie is being sent."
-#~ msgstr ""
-#~ "Мы используем файлы cookie и аналогичные технологии отслеживания для "
-#~ "отслеживания активности на нашей платформе и хранения определенной "
-#~ "информации. Вы можете настроить свой браузер на отказ от всех файлов "
-#~ "cookie или уведомление о том, когда файл cookie отправляется."
-
-#~ msgid ""
-#~ "Welcome to Convertica. These Terms of Service (\"Terms\") govern your "
-#~ "access to and use of our online PDF tools and services (\"Services\"). By "
-#~ "accessing or using our Services, you agree to be bound by these Terms."
-#~ msgstr ""
-#~ "Добро пожаловать в Convertica. Эти Условия использования (\"Условия\") "
-#~ "регулируют ваш доступ и использование наших онлайн PDF инструментов и "
-#~ "услуг (\"Услуги\"). Получая доступ или используя наши Услуги, вы "
-#~ "соглашаетесь соблюдать эти Условия."
-
-#~ msgid ""
-#~ "Convertica provides its Services \"as is\" and \"as available\" without "
-#~ "warranties of any kind. We do not guarantee that our Services will be "
-#~ "uninterrupted, error-free, or completely secure."
-#~ msgstr ""
-#~ "Convertica предоставляет свои Услуги \"как есть\" и \"как доступно\" без "
-#~ "каких-либо гарантий. Мы не гарантируем, что наши Услуги будут "
-#~ "непрерывными, безошибочными или полностью безопасными."
-
-#~ msgid ""
-#~ "We reserve the right to modify these Terms at any time. We will notify "
-#~ "users of any material changes by posting the updated Terms on this page. "
-#~ "Your continued use of our Services after such changes constitutes "
-#~ "acceptance of the new Terms."
-#~ msgstr ""
-#~ "Мы оставляем за собой право изменять эти Условия в любое время. Мы "
-#~ "уведомим пользователей о любых существенных изменениях, разместив "
-#~ "обновленные Условия на этой странице. Ваше дальнейшее использование наших "
-#~ "Услуг после таких изменений означает принятие новых Условий."
-
-#~ msgid ""
-#~ "If you have any questions about these Terms, please contact us at "
-#~ "info@convertica.com."
-#~ msgstr ""
-#~ "Если у вас есть вопросы об этих Условиях, пожалуйста, свяжитесь с нами по "
-#~ "адресу info@convertica.com."
+#: utils_site/src/frontend/views.py:485
+msgid ""
+"To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
+"arrange them in the desired order, and click merge. All selected files will "
+"be combined into a single PDF document."
+msgstr ""

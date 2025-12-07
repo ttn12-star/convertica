@@ -27,7 +27,7 @@ User = get_user_model()
 
 def create_admin():
     username = 'admin'
-    email = 'admin@convertica.com'
+    email = 'info@convertica.net'
     password = input('Enter password for admin user (or press Enter to generate random): ').strip()
     
     if not password:

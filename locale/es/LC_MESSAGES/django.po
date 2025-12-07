@@ -7,13 +7,6 @@ msgstr ""
 "POT-Creation-Date: 2025-12-06 23:40+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
-"Language-Team: Spanish\n"
-"Language: es\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: templates/base.html:14
 #, fuzzy
 #| msgid ""
@@ -1558,14 +1551,6 @@ msgid ""
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
 
-#: templates/frontend/faq.html:236
-#, fuzzy
-#| msgid "Download your cropped PDF file"
-msgid "How do I compress PDF to under 1MB for email?"
-msgstr ""
-"¿Cómo comprimo PDF a menos de 1 MB para correo electrónico?¿Cómo comprimo un "
-"archivo PDF?Descarga tu archivo PDF recortado - sin registro, completamente "
-"gratis, alta calidad"
 
 #: templates/frontend/faq.html:240
 msgid ""
@@ -3288,10 +3273,6 @@ msgid ""
 "no registration, best pdf converter online, pdf editor online free, pdf "
 "tools for students, pdf tools for business, smallpdf alternative, ilovepdf "
 "alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile"
 msgstr ""
 
 #: utils_site/src/frontend/views.py:94
@@ -3318,12 +3299,6 @@ msgid ""
 "registration, best pdf converter online, pdf editor online free, pdf tools "
 "for students, pdf tools for business, smallpdf alternative, ilovepdf "
 "alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile, convert pdf to word "
-"for resume, merge pdf for thesis, compress pdf for email attachment, split "
-"pdf by chapters"
 msgstr ""
 
 #: utils_site/src/frontend/views.py:435
@@ -3405,12 +3380,6 @@ msgid ""
 "without losing formatting, compress pdf online free, merge pdf online free, "
 "split pdf online free, pdf to jpg online free, jpg to pdf online free, pdf "
 "to excel online free, word to pdf online free, rotate pdf online free, add "
-"watermark to pdf online free, crop pdf online free, protect pdf online free, "
-"unlock pdf online free, pdf converter no email, pdf converter no "
-"registration, pdf converter unlimited, pdf converter no watermark, pdf "
-"converter fast, pdf converter safe, pdf converter free, pdf tools help, pdf "
-"conversion questions, pdf editing questions, pdf organization questions, pdf "
-"security questions"
 msgstr ""
 
 #, fuzzy
