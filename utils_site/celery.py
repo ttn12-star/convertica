@@ -69,7 +69,11 @@ try:
     @app.task(bind=True, ignore_result=True)
     def debug_task(self):
         """Debug task to test Celery setup."""
-        print(f"Request: {self.request!r}")
+        # Log request details for debugging
+        import logging
+
+        logger = logging.getLogger(__name__)
+        logger.debug(f"Request: {self.request!r}")
 
 except ImportError:
     # Celery is not installed, create a dummy app

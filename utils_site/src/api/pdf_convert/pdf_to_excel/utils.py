@@ -238,7 +238,12 @@ def convert_pdf_to_excel(
                                         )
                                     else:
                                         logger.debug(
-                                            f"Empty or insufficient table found on page {page_num + 1} (only {non_empty_cells} non-empty cells)",
+                                            (
+                                                "Empty or insufficient table found on "
+                                                "page %d (only %d non-empty cells)"
+                                            ),
+                                            page_num + 1,
+                                            non_empty_cells,
                                             extra={
                                                 **context,
                                                 "page": page_num + 1,

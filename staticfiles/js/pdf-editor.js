@@ -32,30 +32,39 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        // Check if this is a merge operation handled by merge-pdf-multi.js
+        // If pdf_files_input exists and merge-pdf-multi.js is handling it, skip this handler
+        const pdfFilesInput = document.getElementById('pdf_files_input');
+        const selectedPdfFilesList = document.getElementById('selectedPdfFilesList');
+        if (pdfFilesInput && selectedPdfFilesList) {
+            // This is merge page, let merge-pdf-multi.js handle it
+            return;
+        }
+        
         const formData = new FormData();
         const fieldName = window.FILE_INPUT_NAME || 'pdf_file';
         
-        // Handle multiple files for merge
+        // Handle multiple files for merge (legacy support)
         let selectedFile = null;
         if (fieldName === 'pdf_files') {
-            const pdfFilesInput = document.getElementById('pdf_files');
-            if (!pdfFilesInput || !pdfFilesInput.files || pdfFilesInput.files.length === 0) {
+            const pdfFilesInputLegacy = document.getElementById('pdf_files');
+            if (!pdfFilesInputLegacy || !pdfFilesInputLegacy.files || pdfFilesInputLegacy.files.length === 0) {
                 showError(window.SELECT_FILE_MESSAGE || 'Please select at least 2 PDF files');
                 return;
             }
-            if (pdfFilesInput.files.length < 2) {
+            if (pdfFilesInputLegacy.files.length < 2) {
                 showError('Please select at least 2 PDF files to merge');
                 return;
             }
-            if (pdfFilesInput.files.length > 10) {
+            if (pdfFilesInputLegacy.files.length > 10) {
                 showError('Maximum 10 PDF files allowed');
                 return;
             }
             // Add all files to formData
-            for (let i = 0; i < pdfFilesInput.files.length; i++) {
-                formData.append('pdf_files', pdfFilesInput.files[i]);
+            for (let i = 0; i < pdfFilesInputLegacy.files.length; i++) {
+                formData.append('pdf_files', pdfFilesInputLegacy.files[i]);
             }
-            selectedFile = pdfFilesInput.files[0]; // Use first file for display purposes
+            selectedFile = pdfFilesInputLegacy.files[0]; // Use first file for display purposes
         } else {
             // Get file from either input for single file operations
             selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];

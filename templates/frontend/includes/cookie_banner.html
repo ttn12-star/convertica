@@ -1,78 +1,78 @@
 {% load i18n static %}
 
 <!-- Cookie Consent Banner (GDPR Compliance) -->
-<div id="cookie-banner" class="hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-gray-200 shadow-2xl">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+<div id="cookie-banner" class="hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-gray-200 shadow-2xl max-h-[90vh] overflow-y-auto">
+    <div class="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-6">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
             <!-- Text Content -->
-            <div class="flex-1 text-center md:text-left">
-                <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2">
+            <div class="flex-1 text-center md:text-left min-w-0">
+                <h3 class="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-1.5 sm:mb-2">
                     {% trans "Cookie Preferences" %}
                 </h3>
-                <p class="text-sm sm:text-base text-gray-800 mb-2">
+                <p class="text-xs sm:text-sm md:text-base text-gray-800 mb-1.5 sm:mb-2 leading-relaxed">
                     {% trans "We use cookies and similar technologies to enhance your browsing experience, security, analytics, and to provide personalized content." %}
                 </p>
-                <p class="text-xs text-gray-600">
+                <p class="text-xs text-gray-600 leading-relaxed">
                     {% trans "You can accept all cookies, reject non-essential cookies, or customize your preferences. Essential cookies are required for the website to function and cannot be disabled." %}
-                    <a href="{% url 'privacy_page' %}" class="text-blue-600 hover:text-blue-800 underline">{% trans "Privacy Policy" %}</a>
+                    <a href="{% url 'privacy_page' %}" class="text-blue-600 hover:text-blue-800 underline break-words">{% trans "Privacy Policy" %}</a>
                     {% trans "and" %}
-                    <a href="{% url 'terms_page' %}" class="text-blue-600 hover:text-blue-800 underline">{% trans "Terms of Service" %}</a>.
+                    <a href="{% url 'terms_page' %}" class="text-blue-600 hover:text-blue-800 underline break-words">{% trans "Terms of Service" %}</a>.
                 </p>
             </div>
             
             <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto flex-shrink-0">
                 <button id="cookie-reject" 
-                        class="px-6 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm sm:text-base">
+                        class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap">
                     {% trans "Reject All" %}
                 </button>
                 <button id="cookie-manage" 
-                        class="px-6 py-2.5 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-800 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm sm:text-base">
+                        class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-800 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-xs sm:text-sm md:text-base whitespace-nowrap">
                     {% trans "Customize" %}
                 </button>
                 <button id="cookie-accept" 
-                        class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 text-sm sm:text-base">
+                        class="px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105 active:scale-95 text-xs sm:text-sm md:text-base whitespace-nowrap">
                     {% trans "Accept All" %}
                 </button>
             </div>
         </div>
         
         <!-- Cookie Settings (Hidden by default) -->
-        <div id="cookie-settings" class="hidden mt-6 pt-6 border-t border-gray-300">
-            <h3 class="text-lg font-bold text-gray-900 mb-4">{% trans "Cookie Preferences" %}</h3>
-            <p class="text-sm text-gray-600 mb-4">
+        <div id="cookie-settings" class="hidden mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-300">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">{% trans "Cookie Preferences" %}</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed">
                 {% trans "Manage your cookie preferences. You can enable or disable different types of cookies below. Essential cookies cannot be disabled as they are necessary for the website to function." %}
             </p>
             
-            <div class="space-y-4">
+            <div class="space-y-3 sm:space-y-4">
                 <!-- Essential Cookies (Always on) -->
-                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <div class="flex-1 mr-4">
-                        <h4 class="font-semibold text-gray-900 mb-1">{% trans "Essential Cookies" %}</h4>
-                        <p class="text-sm text-gray-600">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-200 gap-3">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{% trans "Essential Cookies" %}</h4>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
                             {% trans "Required for the website to function properly. These cookies enable core functionality such as security, network management, and accessibility. They cannot be disabled." %}
                         </p>
                         <p class="text-xs text-gray-500 mt-1">
                             {% trans "Examples: Session management, CSRF protection, language preferences" %}
                         </p>
                     </div>
-                    <div class="ml-4 flex-shrink-0">
-                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">{% trans "Always Active" %}</span>
+                    <div class="flex-shrink-0 self-start sm:self-center">
+                        <span class="px-2 sm:px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap">{% trans "Always Active" %}</span>
                     </div>
                 </div>
                 
                 <!-- Analytics Cookies -->
-                <div class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <div class="flex-1 mr-4">
-                        <h4 class="font-semibold text-gray-900 mb-1">{% trans "Analytics Cookies" %}</h4>
-                        <p class="text-sm text-gray-600">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors gap-3">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{% trans "Analytics Cookies" %}</h4>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
                             {% trans "Help us understand how visitors interact with our website by collecting and reporting information anonymously." %}
                         </p>
                         <p class="text-xs text-gray-500 mt-1">
                             {% trans "Examples: Page views, time spent on site, error tracking" %}
                         </p>
                     </div>
-                    <div class="ml-4 flex-shrink-0">
+                    <div class="flex-shrink-0 self-start sm:self-center">
                         <label class="relative inline-flex items-center cursor-pointer" for="cookie-analytics">
                             <input type="checkbox" id="cookie-analytics" class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer" value="1">
                             <span class="ml-2 text-sm text-gray-700 sr-only">{% trans "Enable Analytics Cookies" %}</span>
@@ -81,17 +81,17 @@
                 </div>
                 
                 <!-- Marketing Cookies -->
-                <div class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                    <div class="flex-1 mr-4">
-                        <h4 class="font-semibold text-gray-900 mb-1">{% trans "Marketing Cookies" %}</h4>
-                        <p class="text-sm text-gray-600">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 sm:p-4 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors gap-3">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{% trans "Marketing Cookies" %}</h4>
+                        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
                             {% trans "Used to deliver personalized advertisements and track campaign effectiveness. These cookies may be set by advertising partners." %}
                         </p>
                         <p class="text-xs text-gray-500 mt-1">
                             {% trans "Examples: Ad targeting, conversion tracking, remarketing" %}
                         </p>
                     </div>
-                    <div class="ml-4 flex-shrink-0">
+                    <div class="flex-shrink-0 self-start sm:self-center">
                         <label class="relative inline-flex items-center cursor-pointer" for="cookie-marketing">
                             <input type="checkbox" id="cookie-marketing" class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer" value="1">
                             <span class="ml-2 text-sm text-gray-700 sr-only">{% trans "Enable Marketing Cookies" %}</span>
@@ -100,17 +100,17 @@
                 </div>
             </div>
             
-            <div class="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-gray-500 text-center sm:text-left">
+            <div class="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+                <p class="text-xs text-gray-500 text-center sm:text-left leading-relaxed">
                     {% trans "Your preferences will be saved and remembered for future visits. You can change these settings at any time." %}
                 </p>
-                <div class="flex gap-3">
+                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                     <button id="cookie-save" 
-                            class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+                            class="px-4 sm:px-6 py-2 sm:py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm sm:text-base whitespace-nowrap">
                         {% trans "Save Preferences" %}
                     </button>
                     <button id="cookie-cancel" 
-                            class="px-6 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200">
+                            class="px-4 sm:px-6 py-2 sm:py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm sm:text-base whitespace-nowrap">
                         {% trans "Cancel" %}
                     </button>
                 </div>
@@ -354,12 +354,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+    #cookie-banner {
+        max-height: 85vh;
+    }
+    
     #cookie-banner .container {
-        padding: 1rem;
+        padding: 0.75rem;
     }
     
     #cookie-banner .flex-col {
-        gap: 1rem;
+        gap: 0.75rem;
+    }
+    
+    /* Make buttons full width on very small screens */
+    #cookie-banner button {
+        width: 100%;
+    }
+    
+    /* Better spacing for cookie settings on mobile */
+    #cookie-settings .flex-col {
+        gap: 0.5rem;
     }
 }
 </style>
