@@ -21,7 +21,7 @@ class AddWatermarkAPIView(BaseConversionAPIView):
     FILE_FIELD_NAME = "pdf_file"
 
     # Explicitly set parser classes to avoid auto-detection of request body
-    from rest_framework.parsers import MultiPartParser, FormParser
+    from rest_framework.parsers import FormParser, MultiPartParser
 
     parser_classes = [MultiPartParser, FormParser]
 

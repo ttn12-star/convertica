@@ -12,5 +12,9 @@ class JPGToPDFSerializer(serializers.Serializer):
 
     image_file = serializers.FileField(
         required=True,
-        help_text="JPG/JPEG image file(s) to be converted into PDF format. Multiple files will be combined into one PDF. Send multiple 'image_file' parameters for multiple files.",
+        help_text=(
+            "JPG/JPEG image file(s) to be converted into PDF format. "
+            "Multiple files will be combined into one PDF. "
+            "Send multiple 'image_file' parameters for multiple files."
+        ),
     )
