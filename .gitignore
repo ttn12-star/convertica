@@ -65,6 +65,8 @@ db.sqlite3-journal
 logs/
 tmp/
 utils_site/temp/
+# Ignore src symlink created by Docker (points to /app/utils_site/src)
+src
 
 # Django static files (collected)
 staticfiles/

@@ -1,5 +1,5 @@
 # views.py
-from typing import Optional, Tuple
+from typing import Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile

@@ -5,14 +5,11 @@ Unit tests for file validation utilities.
 import os
 import tempfile
 
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from src.api.file_validation import (
     check_disk_space,
     sanitize_filename,
     validate_output_file,
-    validate_pdf_file,
-    validate_word_file,
 )
 
 
