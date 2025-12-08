@@ -20,6 +20,7 @@ def word_to_pdf_docs() -> Callable:
     def decorator(func: Callable) -> Callable:
         return swagger_auto_schema(
             operation_description="Convert a DOCX file into a PDF document.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "word_file",
@@ -29,6 +30,7 @@ def word_to_pdf_docs() -> Callable:
                     required=True,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Converted PDF file.",

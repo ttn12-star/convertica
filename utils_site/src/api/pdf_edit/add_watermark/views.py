@@ -19,6 +19,10 @@ class AddWatermarkAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".pdf"}
     CONVERSION_TYPE = "ADD_WATERMARK"
     FILE_FIELD_NAME = "pdf_file"
+    
+    # Explicitly set parser classes to avoid auto-detection of request body
+    from rest_framework.parsers import MultiPartParser, FormParser
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_serializer_class(self):
         return AddWatermarkSerializer
@@ -40,8 +44,9 @@ class AddWatermarkAPIView(BaseConversionAPIView):
         position = kwargs.get("position", "diagonal")
 
         # Convert coordinates, handling string inputs
-        x_str = kwargs.get("x")
-        y_str = kwargs.get("y")
+        # Support both 'x'/'y' and 'x_coordinate'/'y_coordinate' field names
+        x_str = kwargs.get("x") or kwargs.get("x_coordinate")
+        y_str = kwargs.get("y") or kwargs.get("y_coordinate")
         try:
             x = float(x_str) if x_str and str(x_str).strip() else None
         except (ValueError, TypeError):
@@ -73,7 +78,8 @@ class AddWatermarkAPIView(BaseConversionAPIView):
         else:
             font_size = 72
 
-        rotation_val = kwargs.get("rotation")
+        # Support both 'rotation' and 'rotation_angle' field names
+        rotation_val = kwargs.get("rotation") or kwargs.get("rotation_angle")
         if rotation_val is not None:
             try:
                 rotation = float(rotation_val)

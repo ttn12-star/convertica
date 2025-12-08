@@ -81,8 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Note: Don't preventDefault to allow other handlers to work
     if (selectFileButton && fileInput) {
         selectFileButton.addEventListener('click', (e) => {
-            // Trigger file input click
-            fileInput.click();
+            e.preventDefault();
+            e.stopPropagation();
+            // Small delay to ensure input is ready (fixes double-click issue)
+            setTimeout(() => {
+                fileInput.click();
+            }, 0);
         });
     }
 

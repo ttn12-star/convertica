@@ -24,6 +24,7 @@ def jpg_to_pdf_docs() -> Callable:
             operation_description="Convert one or more JPG/JPEG images into a PDF document. "
             "Multiple images will be combined into a single PDF, with each image on a separate page. "
             "To upload multiple files, send multiple 'image_file' parameters.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "image_file",
@@ -33,6 +34,7 @@ def jpg_to_pdf_docs() -> Callable:
                     required=True,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Converted PDF file.",

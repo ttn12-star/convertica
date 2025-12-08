@@ -11,6 +11,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
     gcc \
+    # Image processing dependencies (OpenCV requires libGL) - needed for dev mode
+    libjpeg-dev \
+    zlib1g-dev \
+    libgl1 \
+    libglib2.0-0 \
+    # PDF processing dependencies - needed for dev mode
+    poppler-utils \
+    tesseract-ocr \
+    tesseract-ocr-eng \
+    # LibreOffice for Word to PDF conversion - needed for dev mode
+    libreoffice \
+    libreoffice-writer \
+    libreoffice-core \
+    # Django i18n tools (for compilemessages) - needed for dev mode
+    gettext \
+    # System utilities
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -42,9 +59,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     tesseract-ocr \
     tesseract-ocr-eng \
+    # LibreOffice for Word to PDF conversion
+    libreoffice \
+    libreoffice-writer \
+    libreoffice-core \
     # Django i18n tools (for compilemessages)
     gettext \
-    gettext-base \
     # System utilities
     curl \
     && rm -rf /var/lib/apt/lists/*
