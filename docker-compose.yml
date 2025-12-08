@@ -46,8 +46,7 @@ services:
   nginx:
     image: nginx:alpine
     container_name: convertica_nginx
-    profiles:
-      - production  # Only start with --profile production
+    # Profile removed for production - nginx should always run in production
     volumes:
       - ./staticfiles:/app/staticfiles:ro
       - ./media:/app/media:ro
@@ -59,7 +58,7 @@ services:
       - "443:443"
     depends_on:
       web:
-        condition: service_healthy
+        condition: service_started  # Changed from service_healthy to allow nginx to start even if web is still starting
     networks:
       - convertica_network
     restart: unless-stopped
@@ -78,7 +77,7 @@ services:
     command: >
       sh -c "python manage.py collectstatic --noinput &&
              python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 --workers 4 --threads 2 --timeout 120 --access-logfile - --error-logfile - --log-level info utils_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers 1 --threads 1 --timeout 300 --graceful-timeout 30 --max-requests 1000 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info utils_site.wsgi:application"
     volumes:
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
@@ -125,8 +124,8 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 40s
+      retries: 5
+      start_period: 120s  # Increased to 2 minutes to allow Django to fully start
     networks:
       - convertica_network
     restart: unless-stopped
@@ -154,9 +153,10 @@ services:
       - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
       - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
     depends_on:
-      - db
-      - redis
-      - web
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - convertica_network
     restart: unless-stopped
@@ -183,9 +183,10 @@ services:
       - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
       - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
     depends_on:
-      - db
-      - redis
-      - web
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - convertica_network
     restart: unless-stopped
