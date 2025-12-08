@@ -72,6 +72,7 @@ MIDDLEWARE = [
     # WhiteNoise for static files (if enabled via USE_WHITENOISE env var)
     # Uncomment or use environment variable to enable
     # "whitenoise.middleware.WhiteNoiseMiddleware",
+    "src.api.middleware.FilterProxyRequestsMiddleware",  # Filter proxy CONNECT requests (must be early)
     "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring

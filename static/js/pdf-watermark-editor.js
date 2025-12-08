@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontSizeSection = document.getElementById('fontSizeSection');
     const watermarkText = document.getElementById('watermark_text');
     const watermarkFile = document.getElementById('watermark_file');
+    const watermarkFileButton = document.getElementById('watermarkFileButton');
+    const watermarkFileName = document.getElementById('watermarkFileName');
     const watermarkColor = document.getElementById('watermark_color');
     const watermarkColorText = document.getElementById('watermark_color_text');
     const opacitySlider = document.getElementById('opacity');
@@ -76,6 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 textWatermarkSection.classList.remove('hidden');
                 imageWatermarkSection.classList.add('hidden');
                 fontSizeSection.classList.remove('hidden');
+                // Clear file input when switching to text
+                if (watermarkFile) {
+                    watermarkFile.value = '';
+                }
+                if (watermarkFileName) {
+                    watermarkFileName.textContent = '';
+                }
                 updateWatermarkPreview();
             }
         });
@@ -140,10 +149,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Watermark file button - trigger file input click
+    if (watermarkFileButton && watermarkFile) {
+        watermarkFileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            watermarkFile.click();
+        });
+    }
+
     // Watermark image change
     if (watermarkFile) {
         watermarkFile.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
+                const file = e.target.files[0];
+                // Show file name
+                if (watermarkFileName) {
+                    watermarkFileName.textContent = file.name;
+                }
+                // Load image for preview
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     watermarkImage = new Image();
@@ -152,22 +175,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
                     watermarkImage.src = event.target.result;
                 };
-                reader.readAsDataURL(e.target.files[0]);
+                reader.readAsDataURL(file);
             }
         });
     }
 
     // File input handlers
-    if (selectFileButton) {
-        selectFileButton.addEventListener('click', () => {
-            fileInput?.click();
-        });
-    }
+    // Note: file-input-handler.js handles the button click and file selection display
+    // We listen to the 'fileSelected' custom event to load the PDF for preview
+    document.addEventListener('fileSelected', (e) => {
+        const file = e.detail?.file;
+        if (file && file.type === 'application/pdf') {
+            handleFileSelect(file);
+        }
+    });
 
+    // Also listen to direct change events as fallback (in case file-input-handler.js is not loaded)
     if (fileInput) {
         fileInput.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
-                handleFileSelect(e.target.files[0]);
+                const file = e.target.files[0];
+                if (file.type === 'application/pdf') {
+                    handleFileSelect(file);
+                }
             }
         });
     }
@@ -175,13 +205,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fileInputDrop) {
         fileInputDrop.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
-                handleFileSelect(e.target.files[0]);
+                const file = e.target.files[0];
+                if (file.type === 'application/pdf') {
+                    handleFileSelect(file);
+                }
             }
         });
     }
 
     async function handleFileSelect(file) {
         try {
+            // Check if PDF.js is loaded
+            if (typeof pdfjsLib === 'undefined') {
+                showError('PDF.js library is not loaded. Please refresh the page and try again.');
+                console.error('PDF.js library (pdfjsLib) is not available');
+                return;
+            }
+
             // Cleanup previous PDF if exists
             cleanupPreviousPDF();
             
@@ -189,9 +229,41 @@ document.addEventListener('DOMContentLoaded', () => {
             pdfPreviewSection.classList.remove('hidden');
             watermarkSettingsSection.classList.remove('hidden');
 
+            // Validate file type
+            if (!file || !file.type || !file.type.includes('pdf')) {
+                showError('Please select a valid PDF file.');
+                // Hide preview sections on validation error
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                return;
+            }
+
             // Load PDF
             const arrayBuffer = await file.arrayBuffer();
-            pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            
+            // Check if arrayBuffer is valid
+            if (!arrayBuffer || arrayBuffer.byteLength === 0) {
+                showError('Failed to read file. Please try again.');
+                // Hide preview sections on validation error
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                return;
+            }
+
+            // Load PDF document with error handling
+            pdfDoc = await pdfjsLib.getDocument({ 
+                data: arrayBuffer,
+                verbosity: 0 // Suppress warnings
+            }).promise;
+            
+            if (!pdfDoc) {
+                showError('Failed to load PDF document. Please check if the file is a valid PDF.');
+                // Hide preview sections on load error
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                return;
+            }
+
             pageCount = pdfDoc.numPages;
 
             // Populate page selector
@@ -214,9 +286,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
-            showError('Failed to load PDF file. Please try again.');
+            // More detailed error handling
+            let errorMessage = 'Failed to load PDF file. Please try again.';
+            
+            if (error && error.message) {
+                if (error.message.includes('Invalid PDF')) {
+                    errorMessage = 'Invalid PDF file. Please select a valid PDF file.';
+                } else if (error.message.includes('password')) {
+                    errorMessage = 'This PDF is password protected. Please unlock it first.';
+                } else if (error.message.includes('network') || error.message.includes('fetch')) {
+                    errorMessage = 'Network error. Please check your connection and try again.';
+                } else {
+                    errorMessage = `Error: ${error.message}`;
+                }
+            }
+            
+            showError(errorMessage);
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
+                console.error('Error details:', {
+                    name: error?.name,
+                    message: error?.message,
+                    stack: error?.stack
+                });
+            }
+            
+            // Hide preview sections on error
+            if (pdfPreviewSection) {
+                pdfPreviewSection.classList.add('hidden');
+            }
+            if (watermarkSettingsSection) {
+                watermarkSettingsSection.classList.add('hidden');
             }
         }
     }
@@ -248,10 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
         }
         
-        // Clear watermark preview
+        // Clear watermark preview (it's a div, not a canvas)
         if (watermarkPreview) {
-            const ctx = watermarkPreview.getContext('2d');
-            ctx.clearRect(0, 0, watermarkPreview.width, watermarkPreview.height);
+            watermarkPreview.innerHTML = '';
+            watermarkPreview.classList.add('hidden');
         }
     }
 
@@ -262,9 +362,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const page = await pdfDoc.getPage(pageNum);
             const viewport = page.getViewport({ scale: 1.0 });
 
-            // Calculate scale to fit canvas (max width 800px)
-            const maxWidth = 800;
-            scale = Math.min(maxWidth / viewport.width, 1.0);
+            // Calculate scale to fit canvas in viewport (max width 600px, max height 700px)
+            // Account for container padding (p-4 = 16px each side = 32px total)
+            // And some margin for watermark controls
+            const maxWidth = 600;
+            const maxHeight = 700; // Max height to fit in viewport without scrolling
+            const widthScale = maxWidth / viewport.width;
+            const heightScale = maxHeight / viewport.height;
+            scale = Math.min(widthScale, heightScale, 1.0);
             const scaledViewport = page.getViewport({ scale: scale });
 
             // Set canvas dimensions
@@ -272,6 +377,10 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasHeight = scaledViewport.height;
             pdfCanvas.width = canvasWidth;
             pdfCanvas.height = canvasHeight;
+            
+            // Reset any CSS scaling to ensure accurate coordinate calculations
+            pdfCanvas.style.width = '';
+            pdfCanvas.style.height = '';
 
             // Store PDF dimensions in points
             pdfPageWidth = viewport.width;
@@ -440,19 +549,32 @@ document.addEventListener('DOMContentLoaded', () => {
         watermarkPreview.style.top = `${canvasY}px`;
         watermarkPreview.style.color = color;
         watermarkPreview.style.opacity = opacity;
-        watermarkPreview.style.transform = `translate(-50%, -50%) rotate(${watermarkRotation}deg) scale(${watermarkScale})`;
+        // Invert rotation: ReportLab rotates counter-clockwise, CSS rotates clockwise
+        const cssRotation = -watermarkRotation;
+        watermarkPreview.style.transform = `translate(-50%, -50%) rotate(${cssRotation}deg) scale(${watermarkScale})`;
         watermarkPreview.style.transformOrigin = 'center center';
 
         let content = '';
         if (isText) {
+            // Scale font size to match PDF rendering
+            // In PDF, font_size is in points, and we apply scale
+            // In preview, we need to scale by canvas scale factor and watermark scale
             const scaledFontSize = fontSize * scaleFactor * watermarkScale;
-            content = `<span class="watermark-preview-text" style="font-size: ${scaledFontSize}px;">${escapeHtml(text)}</span>`;
+            // Use bold font to match PDF (WatermarkFontBold or Helvetica-Bold)
+            content = `<span class="watermark-preview-text" style="font-size: ${scaledFontSize}px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">${escapeHtml(text)}</span>`;
         } else if (watermarkImage) {
-            // Scale image to reasonable size
-            const maxSize = Math.min(canvasWidth, canvasHeight) * 0.3;
-            const imgScale = Math.min(maxSize / watermarkImage.width, maxSize / watermarkImage.height);
-            const imgWidth = watermarkImage.width * imgScale * scaleFactor * watermarkScale;
-            const imgHeight = watermarkImage.height * imgScale * scaleFactor * watermarkScale;
+            // Scale image to match PDF rendering
+            // In PDF: base_scale = min(page_width / img_width, page_height / img_height) * 0.5
+            // Then: scaled_width = img_width * base_scale * scale
+            // Convert PDF dimensions to canvas dimensions
+            const pdfImgWidth = watermarkImage.width;
+            const pdfImgHeight = watermarkImage.height;
+            const baseScale = Math.min(pdfPageWidth / pdfImgWidth, pdfPageHeight / pdfImgHeight) * 0.5;
+            const scaledPdfWidth = pdfImgWidth * baseScale * watermarkScale;
+            const scaledPdfHeight = pdfImgHeight * baseScale * watermarkScale;
+            // Convert to canvas pixels
+            const imgWidth = scaledPdfWidth * scaleFactor;
+            const imgHeight = scaledPdfHeight * scaleFactor;
             
             content = `<img src="${watermarkImage.src}" style="width: ${imgWidth}px; height: ${imgHeight}px; opacity: ${opacity};" alt="Watermark">`;
         } else {

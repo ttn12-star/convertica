@@ -136,9 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const page = await pdfDoc.getPage(pageNum);
             const viewport = page.getViewport({ scale: 1.0 });
 
-            // Calculate scale to fit canvas (max width 800px)
-            const maxWidth = 800;
-            scale = Math.min(maxWidth / viewport.width, 1.0);
+            // Calculate scale to fit canvas in viewport (max width 600px, max height 700px)
+            const maxWidth = 600;
+            const maxHeight = 700; // Max height to fit in viewport without scrolling
+            const widthScale = maxWidth / viewport.width;
+            const heightScale = maxHeight / viewport.height;
+            scale = Math.min(widthScale, heightScale, 1.0);
             const scaledViewport = page.getViewport({ scale: scale });
 
             // Set canvas dimensions
@@ -146,6 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasHeight = scaledViewport.height;
             pdfCanvas.width = canvasWidth;
             pdfCanvas.height = canvasHeight;
+            
+            // Reset any CSS scaling to ensure accurate coordinate calculations
+            pdfCanvas.style.width = '';
+            pdfCanvas.style.height = '';
 
             // Store PDF dimensions in points
             pdfPageWidth = viewport.width;
@@ -416,27 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // If dragging existing selection - handle this first (priority)
-        if (isDragging && currentSelection) {
-            let newX = x - dragStartX;
-            let newY = y - dragStartY;
-            
-            // Constrain to canvas bounds
-            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
-            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
-            
-            // Update currentSelection immediately for dragging
-            currentSelection.x = newX;
-            currentSelection.y = newY;
-            
-            updateSelection(newX, newY, currentSelection.width, currentSelection.height);
-            updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
-            
-            // Update coordinates in real-time
-            updateCropCoordinates();
-            return;
-        }
-
         // If creating new selection (drag-to-select)
         if (isSelecting && !isDragging) {
             const minX = Math.min(selectionStartX, x);
@@ -462,23 +448,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             updateSelection(selX, selY, selWidth, selHeight);
             updateOverlay(selX, selY, selWidth, selHeight);
-            updateCropCoordinates();
-        }
-            let newX = x - dragStartX;
-            let newY = y - dragStartY;
-            
-            // Constrain to canvas bounds
-            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
-            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
-            
-            // Update currentSelection immediately for dragging
-            currentSelection.x = newX;
-            currentSelection.y = newY;
-            
-            updateSelection(newX, newY, currentSelection.width, currentSelection.height);
-            updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
-            
-            // Update coordinates in real-time
             updateCropCoordinates();
         }
     });

@@ -16,9 +16,14 @@ def merge_pdf_docs() -> Callable:
     )
 
     def decorator(func: Callable) -> Callable:
+        # For multipart/form-data with multiple files, we need to use manual_parameters
+        # but drf-yasg has issues detecting request_body from serializer
+        # Solution: don't define get_serializer_class in the view and use schema=None
+        # Note: don't use method="post" here - it only works for @action or @api_view, not for APIView methods
         return swagger_auto_schema(
             operation_description="Merge multiple PDF files into one. "
             "Upload 2-10 PDF files to merge them in order.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_files",

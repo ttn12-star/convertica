@@ -3,10 +3,8 @@ import atexit
 import os
 import shutil
 import time
-from typing import Tuple
 
 from django.conf import settings
-from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
 from rest_framework import status
 from rest_framework.response import Response
@@ -59,9 +57,10 @@ class SplitPDFAPIView(APIView):
             pages = serializer.validated_data.get("pages")
 
             if pdf_file.size > self.MAX_UPLOAD_SIZE:
+                max_size_mb = int(self.MAX_UPLOAD_SIZE / (1024 * 1024))
                 return Response(
                     {
-                        "error": f"File too large. Maximum size is {self.MAX_UPLOAD_SIZE / (1024 * 1024):.0f} MB."
+                        "error": "File too large. Maximum size is %d MB." % max_size_mb
                     },
                     status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
                 )
