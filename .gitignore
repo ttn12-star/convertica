@@ -68,6 +68,9 @@ utils_site/temp/
 # Ignore src symlink created by Docker (points to /app/utils_site/src)
 src
 
+# Docker development files (copied from ci/entrypoint.sh for volume mount)
+entrypoint.sh
+
 # Django static files (collected)
 staticfiles/
 
