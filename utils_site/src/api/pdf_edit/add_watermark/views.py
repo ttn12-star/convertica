@@ -19,9 +19,10 @@ class AddWatermarkAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".pdf"}
     CONVERSION_TYPE = "ADD_WATERMARK"
     FILE_FIELD_NAME = "pdf_file"
-    
+
     # Explicitly set parser classes to avoid auto-detection of request body
     from rest_framework.parsers import MultiPartParser, FormParser
+
     parser_classes = [MultiPartParser, FormParser]
 
     def get_serializer_class(self):
