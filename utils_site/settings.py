@@ -352,6 +352,14 @@ else:
     SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", default=False, cast=bool)
     CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", default=False, cast=bool)
 
+# CSRF Trusted Origins - required for CSRF to work with HTTPS
+# Django 4.0+ requires explicit list of trusted origins for CSRF
+CSRF_TRUSTED_ORIGINS = config(
+    "CSRF_TRUSTED_ORIGINS",
+    default="https://convertica.net,https://www.convertica.net",
+    cast=Csv(),
+)
+
 # Cache Configuration
 # Using Redis for caching and session storage
 try:
