@@ -9,8 +9,7 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
-from ...file_validation import (check_disk_space, sanitize_filename,
-                                validate_output_file)
+from ...file_validation import check_disk_space, sanitize_filename, validate_output_file
 from ...logging_utils import get_logger
 
 logger = get_logger(__name__)
