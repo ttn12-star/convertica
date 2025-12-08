@@ -48,7 +48,7 @@ msgid "Categories"
 msgstr "Categorías"
 
 msgid "All"
-msgstr ""
+msgstr "Todos"
 
 msgid "Related Articles"
 msgstr "Artículos relacionados"
@@ -304,13 +304,13 @@ msgid "Page Number Settings"
 msgstr "Números de página"
 
 msgid "Position"
-msgstr ""
+msgstr "Posición"
 
 msgid "Bottom Center"
-msgstr ""
+msgstr "Centro inferior"
 
 msgid "Bottom Left"
-msgstr ""
+msgstr "Inferior izquierda"
 
 #, fuzzy
 #| msgid "Your Rights"
@@ -318,10 +318,10 @@ msgid "Bottom Right"
 msgstr "Tus derechos"
 
 msgid "Top Center"
-msgstr ""
+msgstr "Centro superior"
 
 msgid "Top Left"
-msgstr ""
+msgstr "Superior izquierda"
 
 #, fuzzy
 #| msgid "Your Rights"
@@ -329,7 +329,7 @@ msgid "Top Right"
 msgstr "Tus derechos"
 
 msgid "Font Size"
-msgstr ""
+msgstr "Tamaño de fuente"
 
 #, fuzzy
 #| msgid "Add Page Numbers"
@@ -337,11 +337,11 @@ msgid "Starting Page Number"
 msgstr "Números de página"
 
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #, python-brace-format
 msgid "Use {page} for page number, {total} for total pages"
-msgstr ""
+msgstr "Use {page} para número de página, {total} para total de páginas"
 
 msgid "Apply to pages"
 msgstr "Aplicar a páginas"
@@ -356,7 +356,7 @@ msgid "Custom pages:"
 msgstr "Páginas personalizadas:"
 
 msgid "Enter specific pages like '1,3,5' or '1-5'"
-msgstr ""
+msgstr "Ingrese páginas específicas como '1,3,5' o '1-5'"
 
 #, fuzzy
 #| msgid "Select file to convert"
@@ -378,7 +378,7 @@ msgid "file"
 msgstr "archivo"
 
 msgid "Visual Watermark Editor"
-msgstr ""
+msgstr "Editor visual de marca de agua"
 
 #, fuzzy
 #| msgid "Remove Pages"
@@ -397,7 +397,7 @@ msgid ""
 msgstr ""
 
 msgid "Watermark Settings"
-msgstr ""
+msgstr "Configuración de marca de agua"
 
 #, fuzzy
 #| msgid "Add Watermark"
@@ -405,10 +405,10 @@ msgid "Watermark Type"
 msgstr "Marca de agua"
 
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 msgid "Image"
-msgstr ""
+msgstr "Imagen"
 
 #, fuzzy
 #| msgid "Add Watermark"
@@ -421,16 +421,16 @@ msgid "Watermark Image"
 msgstr "Marca de agua"
 
 msgid "Choose Image"
-msgstr ""
+msgstr "Elegir imagen"
 
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 msgid "Opacity"
-msgstr ""
+msgstr "Opacidad"
 
 msgid "Interactive controls:"
-msgstr ""
+msgstr "Controles interactivos:"
 
 msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
@@ -444,27 +444,27 @@ msgid "Select your PDF file using the button above"
 msgstr "Selecciona tu archivo PDF usando el botón de arriba"
 
 msgid "Enter your watermark text or upload an image"
-msgstr ""
+msgstr "Ingrese el texto de la marca de agua o suba una imagen"
 "Ingresa el texto de la marca de agua o sube una imagen - nuestra herramienta "
 "online admite texto e imágenes"
 
 msgid "Choose the color and opacity using the sliders"
-msgstr ""
+msgstr "Elija el color y la opacidad usando los controles deslizantes"
 "Elige el color y la opacidad usando los controles deslizantes - configura la "
 "marca de agua a tu gusto"
 
 msgid "Click on the PDF to position the watermark"
-msgstr ""
+msgstr "Haga clic en el PDF para posicionar la marca de agua"
 "Haz clic en el PDF para posicionar la marca de agua - nuestro editor "
 "interactivo permite un posicionamiento preciso"
 
 msgid "Click the add watermark button to process your file"
-msgstr ""
+msgstr "Haga clic en el botón de agregar marca de agua para procesar su archivo"
 "Haz clic en el botón de agregar marca de agua para procesar tu archivo - "
 "nuestra herramienta rápida lo procesará en segundos"
 
 msgid "Download your watermarked PDF file"
-msgstr ""
+msgstr "Descargue su archivo PDF con marca de agua"
 "Descarga tu archivo PDF con marca de agua - sin registro, completamente "
 "gratis, protección de documentos"
 
@@ -632,7 +632,7 @@ msgid "Remove password protection from your PDF documents."
 msgstr "Elimina la protección con contraseña de tu PDF"
 
 msgid "Compression Settings"
-msgstr ""
+msgstr "Configuración de compresión"
 
 #, fuzzy
 #| msgid "Compress PDF"
@@ -640,22 +640,22 @@ msgid "Compression Level"
 msgstr "Comprimir PDF"
 
 msgid "Low"
-msgstr ""
+msgstr "Bajo"
 
 msgid "Faster, less compression"
-msgstr ""
+msgstr "Más rápido, menos compresión"
 
 msgid "Medium"
-msgstr ""
+msgstr "Medio"
 
 msgid "Balanced"
-msgstr ""
+msgstr "Equilibrado"
 
 msgid "High"
-msgstr ""
+msgstr "Alto"
 
 msgid "Slower, more compression"
-msgstr ""
+msgstr "Más lento, más compresión"
 
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
@@ -813,17 +813,17 @@ msgstr ""
 "nuestro conversor online gratuito admite todos los formatos"
 
 msgid "Click the convert button"
-msgstr ""
+msgstr "Haga clic en el botón de convertir"
 "Haz clic en el botón de conversión - nuestro rápido conversor PDF procesará "
 "tu archivo al instante"
 
 msgid "Wait for the conversion to complete"
-msgstr ""
+msgstr "Espere a que se complete la conversión"
 "Espera a que se complete la conversión - nuestro conversor online seguro "
 "procesa archivos en segundos"
 
 msgid "Download your converted file using the download button"
-msgstr ""
+msgstr "Descargue su archivo convertido usando el botón de descarga"
 "Descarga tu archivo convertido - sin registro, completamente gratis, sin "
 "límites"
 
@@ -864,7 +864,7 @@ msgid "Page:"
 msgstr "Página"
 
 msgid "Crop area is active!"
-msgstr ""
+msgstr "¡Área de recorte activa!"
 
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
@@ -877,10 +877,10 @@ msgid "Apply crop to pages"
 msgstr "Aplicar a páginas"
 
 msgid "Tips:"
-msgstr ""
+msgstr "Consejos:"
 
 msgid "A crop area covering most of the page is selected by default"
-msgstr ""
+msgstr "Por defecto se selecciona un área de recorte que cubre la mayor parte de la página"
 
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
@@ -888,19 +888,19 @@ msgid ""
 msgstr ""
 
 msgid "Click and drag inside the blue box to move it anywhere on the page"
-msgstr ""
+msgstr "Haga clic y arrastre dentro del cuadro azul para moverlo a cualquier lugar de la página"
 
 msgid "Drag the corner or edge handles to resize the crop area"
-msgstr ""
+msgstr "Arrastre las esquinas o bordes para cambiar el tamaño del área de recorte"
 
 msgid "Click and drag outside the box to create a new selection"
-msgstr ""
+msgstr "Haga clic y arrastre fuera del cuadro para crear una nueva selección"
 
 msgid "The cursor changes to 'move' when hovering over the selection box"
-msgstr ""
+msgstr "El cursor cambia a «mover» al pasar sobre el cuadro de selección"
 
 msgid "When 'all' is selected, crop applies to all pages"
-msgstr ""
+msgstr "Cuando se selecciona «todos», el recorte se aplica a todas las páginas"
 
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
@@ -910,12 +910,12 @@ msgstr ""
 "conservar"
 
 msgid "Resize the selection by dragging the corners or edges"
-msgstr ""
+msgstr "Cambie el tamaño de la selección arrastrando las esquinas o bordes"
 "Cambia el tamaño de la selección arrastrando las esquinas o los bordes - "
 "nuestra herramienta de recorte PDF permite un ajuste preciso"
 
 msgid "Choose which pages to apply the crop to"
-msgstr ""
+msgstr "Elija a qué páginas aplicar el recorte"
 "Elige a qué páginas aplicar el recorte - nuestra herramienta online permite "
 "procesar páginas individuales o todas"
 
@@ -935,7 +935,7 @@ msgid ""
 msgstr ""
 
 msgid "Drag to select crop area..."
-msgstr ""
+msgstr "Arrastre para seleccionar área de recorte..."
 
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
@@ -1662,13 +1662,13 @@ msgid ""
 msgstr ""
 
 msgid "is not a PDF file. Skipping."
-msgstr ""
+msgstr "no es un archivo PDF. Omitiendo."
 
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
-msgstr ""
+msgstr "Máximo 10 archivos permitidos. Solo se usarán los primeros 10 archivos."
 
 msgid "Error loading preview"
-msgstr ""
+msgstr "Error al cargar vista previa"
 
 #, fuzzy
 #| msgid "Sending..."
