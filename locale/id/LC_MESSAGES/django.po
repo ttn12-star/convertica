@@ -361,7 +361,7 @@ msgstr "Masukkan halaman tertentu seperti '1,3,5' atau '1-5'"
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to watermark"
-msgstr "Pilih file untuk dikonversi"
+msgstr "Pilih file untuk watermark"
 
 #, fuzzy
 #| msgid "Remove Pages"
@@ -844,7 +844,7 @@ msgstr "Edit file lain"
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to crop"
-msgstr "Pilih file untuk dikonversi"
+msgstr "Pilih file untuk dipotong"
 
 #, fuzzy
 #| msgid "Crop PDF"
@@ -919,12 +919,12 @@ msgstr ""
 "pemrosesan halaman individual atau semua"
 
 msgid "Click the crop button to process your file"
-msgstr ""
+msgstr "Klik tombol crop untuk memproses file Anda"
 "Klik tombol potong untuk memproses file Anda - alat PDF cepat kami akan "
 "memprosesnya secara instan"
 
 msgid "Download your cropped PDF file"
-msgstr ""
+msgstr "Unduh file PDF yang dipotong"
 "Unduh file PDF yang telah dipotong - tanpa registrasi, sepenuhnya gratis, "
 "kualitas tinggi"
 
@@ -954,7 +954,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to edit"
-msgstr "Pilih file untuk dikonversi"
+msgstr "Pilih file untuk diedit"
 
 msgid "Select your PDF file using the button above or drag and drop it"
 msgstr ""
@@ -986,7 +986,7 @@ msgid "Extract Pages Settings"
 msgstr "Ekstrak halaman"
 
 msgid "Pages to Extract"
-msgstr ""
+msgstr "Halaman untuk diekstrak"
 
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
@@ -1308,7 +1308,7 @@ msgid ""
 msgstr ""
 
 msgid "Cookie Preferences"
-msgstr ""
+msgstr "Preferensi Cookie"
 
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
@@ -1322,10 +1322,10 @@ msgid ""
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "dan"
 
 msgid "Reject All"
-msgstr ""
+msgstr "Tolak Semua"
 
 #, fuzzy
 #| msgid "Custom pages:"
@@ -1333,7 +1333,7 @@ msgid "Customize"
 msgstr "Halaman kustom:"
 
 msgid "Accept All"
-msgstr ""
+msgstr "Terima Semua"
 
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
@@ -1390,10 +1390,10 @@ msgid ""
 msgstr ""
 
 msgid "Save Preferences"
-msgstr ""
+msgstr "Simpan Preferensi"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Batal"
 
 msgid "About"
 msgstr "Tentang"

@@ -364,7 +364,7 @@ msgstr "'1,3,5' या '1-5' जैसे विशिष्ट पृष्ठ 
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to watermark"
-msgstr "कन्वर्ट करने के लिए फ़ाइल चुनें"
+msgstr "वॉटरमार्क के लिए फ़ाइल चुनें"
 
 #, fuzzy
 #| msgid "Remove Pages"
@@ -838,7 +838,7 @@ msgstr "दूसरी फ़ाइल संपादित करें"
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to crop"
-msgstr "कन्वर्ट करने के लिए फ़ाइल चुनें"
+msgstr "क्रॉप करने के लिए फ़ाइल चुनें"
 
 #, fuzzy
 #| msgid "Crop PDF"
@@ -913,12 +913,12 @@ msgstr ""
 "को संसाधित करने की अनुमति देता है"
 
 msgid "Click the crop button to process your file"
-msgstr ""
+msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
 "अपनी फ़ाइल को संसाधित करने के लिए क्रॉप बटन पर क्लिक करें - हमारा तेज़ PDF उपकरण इसे "
 "तुरंत संसाधित करेगा"
 
 msgid "Download your cropped PDF file"
-msgstr ""
+msgstr "अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें"
 "अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "उच्च गुणवत्ता"
 
@@ -948,7 +948,7 @@ msgstr ""
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to edit"
-msgstr "कन्वर्ट करने के लिए फ़ाइल चुनें"
+msgstr "संपादन के लिए फ़ाइल चुनें"
 
 msgid "Select your PDF file using the button above or drag and drop it"
 msgstr ""
@@ -978,7 +978,7 @@ msgid "Extract Pages Settings"
 msgstr "पेज निकालें"
 
 msgid "Pages to Extract"
-msgstr ""
+msgstr "निकालने के लिए पृष्ठ"
 
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
@@ -1296,7 +1296,7 @@ msgid ""
 msgstr ""
 
 msgid "Cookie Preferences"
-msgstr ""
+msgstr "कुकी प्राथमिकताएं"
 
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
@@ -1310,10 +1310,10 @@ msgid ""
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "और"
 
 msgid "Reject All"
-msgstr ""
+msgstr "सभी अस्वीकार करें"
 
 #, fuzzy
 #| msgid "Custom pages:"
@@ -1321,7 +1321,7 @@ msgid "Customize"
 msgstr "कस्टम पेज:"
 
 msgid "Accept All"
-msgstr ""
+msgstr "सभी स्वीकार करें"
 
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
@@ -1378,10 +1378,10 @@ msgid ""
 msgstr ""
 
 msgid "Save Preferences"
-msgstr ""
+msgstr "प्राथमिकताएं सहेजें"
 
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करें"
 
 msgid "About"
 msgstr "हमारे बारे में"

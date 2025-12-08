@@ -364,7 +364,7 @@ msgstr "Wprowadź konkretne strony jak '1,3,5' lub '1-5'"
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to watermark"
-msgstr "Wybierz plik do konwersji"
+msgstr "Wybierz plik do znaku wodnego"
 
 #, fuzzy
 #| msgid "Remove Pages"
@@ -847,7 +847,7 @@ msgstr "Edytuj inny plik"
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to crop"
-msgstr "Wybierz plik do konwersji"
+msgstr "Wybierz plik do przycięcia"
 
 #, fuzzy
 #| msgid "Crop PDF"
@@ -922,12 +922,12 @@ msgstr "Wybierz, do których stron zastosować przycinanie"
 "pozwala przetwarzać poszczególne strony lub wszystkie"
 
 msgid "Click the crop button to process your file"
-msgstr ""
+msgstr "Kliknij przycisk przycinania, aby przetworzyć plik"
 "Kliknij przycisk przycinania, aby przetworzyć plik - nasze szybkie narzędzie "
 "PDF przetworzy go natychmiast"
 
 msgid "Download your cropped PDF file"
-msgstr ""
+msgstr "Pobierz przycięty plik PDF"
 "Pobierz przycięty plik PDF - bez rejestracji, całkowicie za darmo, wysoka "
 "jakość"
 
@@ -957,24 +957,24 @@ msgstr ""
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to edit"
-msgstr "Wybierz plik do konwersji"
+msgstr "Wybierz plik do edycji"
 
 msgid "Select your PDF file using the button above or drag and drop it"
-msgstr ""
+msgstr "Wybierz plik PDF używając przycisku powyżej lub przeciągnij i upuść"
 "Wybierz plik PDF za pomocą przycisku powyżej lub przeciągnij go - nasz "
 "darmowy edytor PDF obsługuje wszystkie wersje"
 
 msgid "Configure the editing options below"
-msgstr ""
+msgstr "Skonfiguruj opcje edycji poniżej"
 "Skonfiguruj opcje edycji poniżej - nasz edytor PDF online oferuje wiele opcji"
 
 msgid "Click the edit button to process your file"
-msgstr ""
+msgstr "Kliknij przycisk edycji, aby przetworzyć plik"
 "Kliknij przycisk edycji, aby przetworzyć plik - nasz szybki edytor PDF "
 "przetworzy go natychmiast"
 
 msgid "Download your edited file using the download button"
-msgstr ""
+msgstr "Pobierz edytowany plik używając przycisku pobierania"
 "Pobierz edytowany plik - bez rejestracji, całkowicie za darmo, bezpiecznie"
 
 msgid ""
@@ -988,7 +988,7 @@ msgid "Extract Pages Settings"
 msgstr "Wyodrębnij strony"
 
 msgid "Pages to Extract"
-msgstr ""
+msgstr "Strony do wyodrębnienia"
 
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
@@ -1311,7 +1311,7 @@ msgid ""
 msgstr ""
 
 msgid "Cookie Preferences"
-msgstr ""
+msgstr "Ustawienia plików cookie"
 
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
@@ -1325,10 +1325,10 @@ msgid ""
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "i"
 
 msgid "Reject All"
-msgstr ""
+msgstr "Odrzuć wszystkie"
 
 #, fuzzy
 #| msgid "Custom pages:"
@@ -1336,7 +1336,7 @@ msgid "Customize"
 msgstr "Niestandardowe strony:"
 
 msgid "Accept All"
-msgstr ""
+msgstr "Zaakceptuj wszystkie"
 
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
@@ -1345,7 +1345,7 @@ msgid ""
 msgstr ""
 
 msgid "Essential Cookies"
-msgstr ""
+msgstr "Niezbędne pliki cookie"
 
 msgid ""
 "Required for the website to function properly. These cookies enable core "
@@ -1357,10 +1357,10 @@ msgid "Examples: Session management, CSRF protection, language preferences"
 msgstr ""
 
 msgid "Always Active"
-msgstr ""
+msgstr "Zawsze aktywne"
 
 msgid "Analytics Cookies"
-msgstr ""
+msgstr "Analityczne pliki cookie"
 
 msgid ""
 "Help us understand how visitors interact with our website by collecting and "
@@ -1371,10 +1371,10 @@ msgid "Examples: Page views, time spent on site, error tracking"
 msgstr ""
 
 msgid "Enable Analytics Cookies"
-msgstr ""
+msgstr "Włącz analityczne pliki cookie"
 
 msgid "Marketing Cookies"
-msgstr ""
+msgstr "Marketingowe pliki cookie"
 
 msgid ""
 "Used to deliver personalized advertisements and track campaign "
@@ -1385,7 +1385,7 @@ msgid "Examples: Ad targeting, conversion tracking, remarketing"
 msgstr ""
 
 msgid "Enable Marketing Cookies"
-msgstr ""
+msgstr "Włącz marketingowe pliki cookie"
 
 msgid ""
 "Your preferences will be saved and remembered for future visits. You can "
@@ -1393,10 +1393,10 @@ msgid ""
 msgstr ""
 
 msgid "Save Preferences"
-msgstr ""
+msgstr "Zapisz ustawienia"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 msgid "About"
 msgstr "O nas"
@@ -1448,7 +1448,7 @@ msgid "All PDF tools"
 msgstr "Wszystkie narzędzia PDF"
 
 msgid "Main navigation"
-msgstr ""
+msgstr "Główna nawigacja"
 
 #, fuzzy
 #| msgid "Convert PDF to Word"
@@ -1484,10 +1484,10 @@ msgid "Page Management"
 msgstr "Zarządzanie stronami"
 
 msgid "Toggle menu"
-msgstr ""
+msgstr "Przełącz menu"
 
 msgid "Mobile navigation"
-msgstr ""
+msgstr "Nawigacja mobilna"
 
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
 msgstr "Convertica – Narzędzia PDF online: Konwersja, Edycja i Organizacja"

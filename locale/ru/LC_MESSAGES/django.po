@@ -364,7 +364,7 @@ msgstr "Введите страницы, например '1,3,5' или '1-5'"
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to watermark"
-msgstr "Выберите файл для конвертации"
+msgstr "Выберите файл для добавления водяного знака"
 
 #, fuzzy
 #| msgid "Remove Pages"
@@ -851,7 +851,7 @@ msgstr "Редактировать другой файл"
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to crop"
-msgstr "Выберите файл для конвертации"
+msgstr "Выберите файл для обрезки"
 
 #, fuzzy
 #| msgid "Crop PDF"
@@ -925,12 +925,12 @@ msgstr "Выберите, к каким страницам применить о
 "позволяет обрабатывать отдельные страницы или все"
 
 msgid "Click the crop button to process your file"
-msgstr ""
+msgstr "Нажмите кнопку обрезки для обработки файла"
 "Нажмите кнопку обрезки для обработки файла - наш быстрый PDF инструмент "
 "обработает его мгновенно"
 
 msgid "Download your cropped PDF file"
-msgstr ""
+msgstr "Скачайте обрезанный PDF файл"
 "Скачайте обрезанный PDF файл - без регистрации, полностью бесплатно, высокое "
 "качество"
 
@@ -960,25 +960,25 @@ msgstr ""
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to edit"
-msgstr "Выберите файл для конвертации"
+msgstr "Выберите файл для редактирования"
 
 msgid "Select your PDF file using the button above or drag and drop it"
-msgstr ""
+msgstr "Выберите PDF файл с помощью кнопки выше или перетащите его"
 "Выберите PDF файл через кнопку выше или перетащите его - наш бесплатный "
 "редактор PDF поддерживает все версии"
 
 msgid "Configure the editing options below"
-msgstr ""
+msgstr "Настройте параметры редактирования ниже"
 "Настройте параметры редактирования ниже - наш онлайн редактор PDF предлагает "
 "множество опций"
 
 msgid "Click the edit button to process your file"
-msgstr ""
+msgstr "Нажмите кнопку редактирования для обработки файла"
 "Нажмите кнопку редактирования для обработки файла - наш быстрый PDF редактор "
 "обработает его мгновенно"
 
 msgid "Download your edited file using the download button"
-msgstr ""
+msgstr "Скачайте отредактированный файл с помощью кнопки скачивания"
 "Скачайте отредактированный файл - без регистрации, полностью бесплатно, "
 "безопасно"
 
@@ -993,7 +993,7 @@ msgid "Extract Pages Settings"
 msgstr "Извлечь страницы"
 
 msgid "Pages to Extract"
-msgstr ""
+msgstr "Страницы для извлечения"
 
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
@@ -1359,7 +1359,7 @@ msgid ""
 msgstr ""
 
 msgid "Cookie Preferences"
-msgstr ""
+msgstr "Настройки Cookie"
 
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
@@ -1373,10 +1373,10 @@ msgid ""
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "и"
 
 msgid "Reject All"
-msgstr ""
+msgstr "Отклонить все"
 
 #, fuzzy
 #| msgid "Custom pages:"
@@ -1384,7 +1384,7 @@ msgid "Customize"
 msgstr "Пользовательские страницы:"
 
 msgid "Accept All"
-msgstr ""
+msgstr "Принять все"
 
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
@@ -1393,7 +1393,7 @@ msgid ""
 msgstr ""
 
 msgid "Essential Cookies"
-msgstr ""
+msgstr "Необходимые Cookie"
 
 msgid ""
 "Required for the website to function properly. These cookies enable core "
@@ -1402,13 +1402,13 @@ msgid ""
 msgstr ""
 
 msgid "Examples: Session management, CSRF protection, language preferences"
-msgstr ""
+msgstr "Примеры: управление сессией, защита CSRF, языковые настройки"
 
 msgid "Always Active"
-msgstr ""
+msgstr "Всегда активны"
 
 msgid "Analytics Cookies"
-msgstr ""
+msgstr "Аналитические Cookie"
 
 msgid ""
 "Help us understand how visitors interact with our website by collecting and "
@@ -1416,13 +1416,13 @@ msgid ""
 msgstr ""
 
 msgid "Examples: Page views, time spent on site, error tracking"
-msgstr ""
+msgstr "Примеры: просмотры страниц, время на сайте, отслеживание ошибок"
 
 msgid "Enable Analytics Cookies"
-msgstr ""
+msgstr "Включить аналитические Cookie"
 
 msgid "Marketing Cookies"
-msgstr ""
+msgstr "Маркетинговые Cookie"
 
 msgid ""
 "Used to deliver personalized advertisements and track campaign "
@@ -1430,10 +1430,10 @@ msgid ""
 msgstr ""
 
 msgid "Examples: Ad targeting, conversion tracking, remarketing"
-msgstr ""
+msgstr "Примеры: таргетинг рекламы, отслеживание конверсий, ремаркетинг"
 
 msgid "Enable Marketing Cookies"
-msgstr ""
+msgstr "Включить маркетинговые Cookie"
 
 msgid ""
 "Your preferences will be saved and remembered for future visits. You can "
@@ -1441,10 +1441,10 @@ msgid ""
 msgstr ""
 
 msgid "Save Preferences"
-msgstr ""
+msgstr "Сохранить настройки"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Отмена"
 
 msgid "About"
 msgstr "О нас"
@@ -1496,7 +1496,7 @@ msgid "All PDF tools"
 msgstr "Все PDF инструменты"
 
 msgid "Main navigation"
-msgstr ""
+msgstr "Главная навигация"
 
 #, fuzzy
 #| msgid "Convert PDF to Word"
@@ -1532,10 +1532,10 @@ msgid "Page Management"
 msgstr "Управление страницами"
 
 msgid "Toggle menu"
-msgstr ""
+msgstr "Открыть меню"
 
 msgid "Mobile navigation"
-msgstr ""
+msgstr "Мобильная навигация"
 
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
 msgstr ""
@@ -1585,7 +1585,7 @@ msgid "Try it"
 msgstr "Попробовать"
 
 msgid "Manage and organize your PDF documents with powerful tools"
-msgstr ""
+msgstr "Управляйте и организуйте PDF документы с помощью мощных инструментов"
 "Управляйте и организуйте ваши PDF документы с помощью мощных инструментов"
 
 msgid "Ready to start?"
@@ -1598,7 +1598,7 @@ msgid "Latest Guides & Tips"
 msgstr "Последние руководства и советы"
 
 msgid "Learn how to get the most out of PDF tools with our expert guides"
-msgstr ""
+msgstr "Узнайте, как максимально использовать PDF инструменты с нашими экспертными руководствами"
 "Узнайте, как максимально эффективно использовать PDF инструменты с нашими "
 "экспертными руководствами"
 
