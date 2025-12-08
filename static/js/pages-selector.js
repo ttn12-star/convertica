@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // For remove pages, if custom is selected but empty, don't submit
                 if (radioId.includes('remove')) {
                     e.preventDefault();
-                    alert('Please enter page numbers to remove, or select "All pages" or "Current page only"');
+                    alert(window.ENTER_PAGE_NUMBERS || 'Please enter page numbers to remove, or select "All pages" or "Current page only"');
                     return;
                 }
                 pagesValue = 'all'; // Fallback

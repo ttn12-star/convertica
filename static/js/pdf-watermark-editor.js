@@ -268,10 +268,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Populate page selector
             pageSelector.innerHTML = '';
+            const pageLabel = window.PAGE_LABEL || 'Page';
             for (let i = 1; i <= pageCount; i++) {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = `Page ${i}`;
+                option.textContent = `${pageLabel} ${i}`;
                 pageSelector.appendChild(option);
             }
 

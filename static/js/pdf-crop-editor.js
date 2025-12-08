@@ -79,10 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Populate page selector
             pageSelector.innerHTML = '';
+            const pageLabel = window.PAGE_LABEL || 'Page';
             for (let i = 1; i <= pageCount; i++) {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = `Page ${i}`;
+                option.textContent = `${pageLabel} ${i}`;
                 pageSelector.appendChild(option);
             }
 
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
-            showError('Failed to load PDF file. Please try again.');
+            showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
             }
@@ -212,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Show ready indicator
         if (cropReadyIndicator) {
-            cropReadyIndicator.textContent = 'Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize.';
+            cropReadyIndicator.textContent = window.CROP_AREA_READY || 'Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize.';
             cropReadyIndicator.classList.remove('hidden');
         }
     }
@@ -386,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Show instruction
         if (cropReadyIndicator) {
-            cropReadyIndicator.textContent = 'Drag to select crop area...';
+            cropReadyIndicator.textContent = window.DRAG_TO_SELECT || 'Drag to select crop area...';
             cropReadyIndicator.classList.remove('hidden');
         }
         
@@ -463,13 +464,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Too small - restore to full page or previous selection
                 createInitialSelection();
                 if (cropReadyIndicator) {
-                    cropReadyIndicator.textContent = 'Selection too small. Full page selected. Drag to create a new selection or drag the box to move it.';
+                    cropReadyIndicator.textContent = window.SELECTION_TOO_SMALL || 'Selection too small. Full page selected. Drag to create a new selection or drag the box to move it.';
                 }
             } else if (currentSelection) {
                 // Valid selection - update coordinates and show ready message
                 updateCropCoordinates();
                 if (cropReadyIndicator) {
-                    cropReadyIndicator.textContent = 'Crop area selected! Drag the box to move it or use handles to resize. Click "Crop PDF" when ready.';
+                    cropReadyIndicator.textContent = window.CROP_AREA_SELECTED || 'Crop area selected! Drag the box to move it or use handles to resize. Click "Crop PDF" when ready.';
                 }
             }
         } else if (isDragging) {
@@ -479,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentSelection) {
                 updateCropCoordinates();
                 if (cropReadyIndicator) {
-                    cropReadyIndicator.textContent = 'Crop area moved! Drag again to reposition or use handles to resize. Click "Crop PDF" when ready.';
+                    cropReadyIndicator.textContent = window.CROP_AREA_MOVED || 'Crop area moved! Drag again to reposition or use handles to resize. Click "Crop PDF" when ready.';
                 }
             }
         }

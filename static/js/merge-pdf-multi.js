@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add new files to the list (avoid duplicates by name and size)
         Array.from(files).forEach(file => {
             if (!file.name.toLowerCase().endsWith('.pdf')) {
-                alert(`File "${file.name}" is not a PDF file. Skipping.`);
+                const notPdfMsg = window.FILE_NOT_PDF || 'is not a PDF file. Skipping.';
+                alert(`"${file.name}" ${notPdfMsg}`);
                 return;
             }
             
@@ -79,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Limit to 10 files
         if (selectedFiles.length > 10) {
             selectedFiles = selectedFiles.slice(0, 10);
-            alert('Maximum 10 files allowed. Only the first 10 files will be used.');
+            alert(window.MAX_FILES_EXCEEDED || 'Maximum 10 files allowed. Only the first 10 files will be used.');
         }
         
         updateFileList();
@@ -278,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error loading PDF preview:', error);
             }
             const canvasContainer = previewCard.querySelector('.pdf-preview-canvas-container');
-            canvasContainer.innerHTML = '<p class="text-xs text-red-600">Error loading preview</p>';
+            canvasContainer.innerHTML = `<p class="text-xs text-red-600">${window.ERROR_LOADING_PREVIEW || 'Error loading preview'}</p>`;
             // Cleanup on error
             if (pdf) {
                 try {

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function handleFileSelect(file) {
         if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-            showError('Please select a PDF file.');
+            showError(window.SELECT_PDF_FILE || 'Please select a PDF file.');
             return;
         }
         
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
         } catch (error) {
-            showError('Failed to load PDF file. Please try again.');
+            showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
             }
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         
         if (!pdfFile || !pdfDoc) {
-            showError('Please select a PDF file first.');
+            showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.');
             return;
         }
         
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : pdfFile;
         
         if (!fileToSubmit) {
-            showError('Please select a PDF file first.');
+            showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.');
             return;
         }
         
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
             editButton.disabled = true;
             const buttonText = editButton.querySelector('span span') || editButton;
             const originalText = buttonText.textContent;
-            buttonText.textContent = 'Organizing...';
+            buttonText.textContent = window.ORGANIZING || 'Organizing...';
             buttonText.dataset.originalText = originalText;
         }
         
@@ -360,7 +360,8 @@ document.addEventListener('DOMContentLoaded', () => {
             window.URL.revokeObjectURL(url);
             
         } catch (error) {
-            showError(`Failed to organize PDF: ${error.message || 'Unknown error'}`);
+            const failedMsg = window.FAILED_TO_ORGANIZE || 'Failed to organize PDF';
+            showError(`${failedMsg}: ${error.message || 'Unknown error'}`);
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error organizing PDF:', error);
             }
