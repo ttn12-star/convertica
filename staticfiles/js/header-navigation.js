@@ -270,6 +270,20 @@ class HeaderNavigation {
     this.hideMega();
     this.hideEditPdf();
     this.hideOrganizePdf();
+    
+    // Position menu to expand from button center
+    const buttonRect = this.allToolsButton.getBoundingClientRect();
+    const dropdownWidth = Math.min(1400, window.innerWidth - 32);
+    const leftPosition = buttonRect.left + (buttonRect.width / 2) - (dropdownWidth / 2);
+    const clampedLeft = Math.max(16, Math.min(leftPosition, window.innerWidth - dropdownWidth - 16));
+    const topPosition = buttonRect.bottom + 8; // 8px = mt-2 (0.5rem)
+    
+    this.allToolsDropdown.style.position = 'fixed';
+    this.allToolsDropdown.style.left = `${clampedLeft}px`;
+    this.allToolsDropdown.style.top = `${topPosition}px`;
+    this.allToolsDropdown.style.transform = 'translateX(0)';
+    this.allToolsDropdown.style.width = `${dropdownWidth}px`;
+    
     this.allToolsDropdown.classList.remove('opacity-0', 'invisible');
     this.allToolsDropdown.classList.add('opacity-100', 'visible');
     this.allToolsParent.setAttribute('aria-expanded', 'true');

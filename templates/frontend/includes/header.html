@@ -11,10 +11,8 @@
            class="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 flex-shrink-0" 
            aria-label="{% trans 'Convertica - Home' %}" 
            itemprop="url">
-          <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
+          <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 overflow-hidden">
+            <img src="{% static 'images/logo.png' %}?v=2" alt="{% trans 'Convertica Logo' %}" class="w-full h-full object-contain">
           </div>
           <span itemprop="name" class="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:via-purple-700 group-hover:to-blue-700 transition-all duration-300 tracking-tight whitespace-nowrap">
             {% trans "Convertica" %}
@@ -40,10 +38,11 @@
 
         <!-- All Tools Dropdown -->
         <div id="all-tools-menu-dropdown" 
-             class="absolute left-0 top-full mt-2 w-[1100px] max-w-[95vw] sm:max-w-[90vw] bg-white shadow-2xl rounded-xl opacity-0 invisible transition-all duration-300 z-50 border border-gray-100 text-gray-900 overflow-hidden"
+             class="fixed top-full mt-2 bg-white shadow-2xl rounded-xl opacity-0 invisible transition-all duration-300 z-50 border border-gray-100 text-gray-900 overflow-hidden"
+             style="position: fixed;"
              aria-labelledby="all-tools-menu-button" 
              role="menu">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-br from-white to-gray-50">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-br from-white to-gray-50">
               <!-- Convert PDF -->
               <div class="min-w-0">
                 <h5 class="font-bold mb-3 text-gray-900 text-sm uppercase tracking-wide text-blue-600">{% trans "Convert PDF" %}</h5>
@@ -317,7 +316,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "PDF to Word" %}</span>
+                      <span class="font-medium">{% trans "PDF to Word" %}</span>
                     </a>
                   </li>
                   <li>
@@ -329,7 +328,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "PDF to JPG" %}</span>
+                      <span class="font-medium">{% trans "PDF to JPG" %}</span>
                     </a>
                   </li>
                   <li>
@@ -341,7 +340,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "PDF to Excel" %}</span>
+                      <span class="font-medium">{% trans "PDF to Excel" %}</span>
                     </a>
                   </li>
                 </ul>
@@ -360,7 +359,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Word to PDF" %}</span>
+                      <span class="font-medium">{% trans "Word to PDF" %}</span>
                     </a>
                   </li>
                   <li>
@@ -372,7 +371,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "JPG to PDF" %}</span>
+                      <span class="font-medium">{% trans "JPG to PDF" %}</span>
                     </a>
                   </li>
                 </ul>
@@ -413,7 +412,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Rotate PDF" %}</span>
+                      <span class="font-medium">{% trans "Rotate PDF" %}</span>
                     </a>
                   </li>
                   <li>
@@ -425,7 +424,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Crop PDF" %}</span>
+                      <span class="font-medium">{% trans "Crop PDF" %}</span>
                     </a>
                   </li>
                 </ul>
@@ -444,7 +443,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Add Page Numbers" %}</span>
+                      <span class="font-medium">{% trans "Add Page Numbers" %}</span>
                     </a>
                   </li>
                   <li>
@@ -456,7 +455,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Add Watermark" %}</span>
+                      <span class="font-medium">{% trans "Add Watermark" %}</span>
                     </a>
                   </li>
                 </ul>
@@ -497,7 +496,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Merge PDF" %}</span>
+                      <span class="font-medium">{% trans "Merge PDF" %}</span>
                     </a>
                   </li>
                   <li>
@@ -509,7 +508,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Split PDF" %}</span>
+                      <span class="font-medium">{% trans "Split PDF" %}</span>
                     </a>
                   </li>
                   <li>
@@ -521,7 +520,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Organize PDF" %}</span>
+                      <span class="font-medium">{% trans "Organize PDF" %}</span>
                     </a>
                   </li>
                   <li>
@@ -533,7 +532,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Compress PDF" %}</span>
+                      <span class="font-medium">{% trans "Compress PDF" %}</span>
                     </a>
                   </li>
                 </ul>
@@ -552,7 +551,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Remove Pages" %}</span>
+                      <span class="font-medium">{% trans "Remove Pages" %}</span>
                     </a>
                   </li>
                   <li>
@@ -564,7 +563,7 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
                       </div>
-                      <span class="font-medium whitespace-nowrap text-base">{% trans "Extract Pages" %}</span>
+                      <span class="font-medium">{% trans "Extract Pages" %}</span>
                     </a>
                   </li>
                 </ul>
