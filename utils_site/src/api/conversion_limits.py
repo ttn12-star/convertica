@@ -1,9 +1,8 @@
 # Conversion limits and timeout utilities
-import os
-import signal
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
 from functools import wraps
-from typing import Any, Callable, Optional, Tuple
+from typing import Any
 
 import fitz  # PyMuPDF
 
@@ -38,7 +37,7 @@ HEAVY_OPERATION_TIMEOUT = 180  # 3 minutes
 
 def validate_pdf_pages(
     pdf_path: str, max_pages: int = MAX_PDF_PAGES
-) -> Tuple[bool, Optional[str], int]:
+) -> tuple[bool, str | None, int]:
     """Validate PDF doesn't exceed page limit.
 
     Args:
@@ -179,7 +178,7 @@ def run_with_timeout(
 # ============================================================================
 
 
-def check_available_memory(required_mb: int = 100) -> Tuple[bool, Optional[str]]:
+def check_available_memory(required_mb: int = 100) -> tuple[bool, str | None]:
     """Check if enough memory is available for the operation.
 
     Args:
@@ -197,8 +196,8 @@ def check_available_memory(required_mb: int = 100) -> Tuple[bool, Optional[str]]
         if available_mb < required_mb:
             return (
                 False,
-                f"Server is currently under heavy load. "
-                f"Please try again in a few minutes.",
+                "Server is currently under heavy load. "
+                "Please try again in a few minutes.",
             )
 
         return True, None

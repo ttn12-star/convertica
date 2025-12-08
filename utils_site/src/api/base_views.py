@@ -7,7 +7,8 @@ import os
 import shutil
 import tempfile
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Dict, Optional, Tuple
+from collections.abc import Callable
+from typing import Any
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -16,6 +17,7 @@ from django.utils.text import get_valid_filename
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -83,8 +85,8 @@ class BaseConversionAPIView(APIView, ABC):
 
     @abstractmethod
     def perform_conversion(
-        self, uploaded_file: UploadedFile, context: Dict[str, Any], **kwargs
-    ) -> Tuple[str, str]:
+        self, uploaded_file: UploadedFile, context: dict[str, Any], **kwargs
+    ) -> tuple[str, str]:
         """Perform the actual conversion.
 
         Args:
@@ -114,8 +116,8 @@ class BaseConversionAPIView(APIView, ABC):
         return content_types.get(ext, "application/octet-stream")
 
     def validate_file_basic(
-        self, file: UploadedFile, context: Dict[str, Any]
-    ) -> Optional[Response]:
+        self, file: UploadedFile, context: dict[str, Any]
+    ) -> Response | None:
         """Perform basic file validation.
 
         Returns:
@@ -196,7 +198,7 @@ class BaseConversionAPIView(APIView, ABC):
         return None
 
     def handle_conversion_error(
-        self, error: Exception, context: Dict[str, Any], start_time: Optional[float]
+        self, error: Exception, context: dict[str, Any], start_time: float | None
     ) -> Response:
         """Handle conversion errors with appropriate logging and response."""
         if isinstance(error, EncryptedPDFError):
@@ -270,7 +272,7 @@ class BaseConversionAPIView(APIView, ABC):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-    def cleanup_temp_files(self, tmp_dir: Optional[str], context: Dict[str, Any]):
+    def cleanup_temp_files(self, tmp_dir: str | None, context: dict[str, Any]):
         """Clean up temporary files."""
         if tmp_dir and os.path.isdir(tmp_dir):
             try:
@@ -365,7 +367,7 @@ class BaseConversionAPIView(APIView, ABC):
 
         # Get file from serializer
         file_field_name = self.FILE_FIELD_NAME
-        uploaded_file: Optional[UploadedFile] = serializer.validated_data.get(
+        uploaded_file: UploadedFile | None = serializer.validated_data.get(
             file_field_name
         )
 
@@ -511,9 +513,9 @@ class BaseConversionAPIView(APIView, ABC):
     def validate_file_additional(
         self,
         uploaded_file: UploadedFile,  # noqa: ARG002
-        context: Dict[str, Any],  # noqa: ARG002
-        validated_data: Dict[str, Any],  # noqa: ARG002
-    ) -> Optional[Response]:
+        context: dict[str, Any],  # noqa: ARG002
+        validated_data: dict[str, Any],  # noqa: ARG002
+    ) -> Response | None:
         """Override this method for additional file validation.
 
         Args:
@@ -527,8 +529,8 @@ class BaseConversionAPIView(APIView, ABC):
         return None
 
     def validate_pdf_page_count(
-        self, pdf_path: str, context: Dict[str, Any]
-    ) -> Optional[Response]:
+        self, pdf_path: str, context: dict[str, Any]
+    ) -> Response | None:
         """Validate PDF page count doesn't exceed limit.
 
         Args:
@@ -560,7 +562,7 @@ class BaseConversionAPIView(APIView, ABC):
 
         return None
 
-    def get_conversion_timeout(self, context: Dict[str, Any]) -> int:
+    def get_conversion_timeout(self, context: dict[str, Any]) -> int:
         """Get timeout for this conversion.
 
         Override in subclasses for custom timeout logic.

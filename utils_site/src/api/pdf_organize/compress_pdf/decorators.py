@@ -1,5 +1,5 @@
 # decorators.py
-from typing import Callable
+from collections.abc import Callable
 
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema

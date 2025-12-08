@@ -2,12 +2,12 @@
 import os
 import tempfile
 from io import BytesIO
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -55,7 +55,7 @@ def add_page_numbers(
     start_number: int = 1,
     format_str: str = "{page}",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Add page numbers to PDF.
 
     Args:
@@ -103,7 +103,7 @@ def add_page_numbers(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(
                 f"Failed to write PDF: {err}",
                 context={**context, "error_type": type(err).__name__},

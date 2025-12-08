@@ -11,156 +11,156 @@
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
 {% block structured_data %}
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "{{ page_title }}",
-    "description": "{{ page_description }}",
-    "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Any",
-    "offers": {
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "{{ page_title }}",
+      "description": "{{ page_description }}",
+      "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-    },
-    "inLanguage": "{{ LANGUAGE_CODE }}",
-    "breadcrumb": {
+      },
+      "inLanguage": "{{ LANGUAGE_CODE }}",
+      "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "{% trans 'Home' %}",
-                "item": "{{ request.scheme }}://{{ request.get_host }}/"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "{{ header_text }}",
-                "item": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"
-            }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "{% trans 'Home' %}",
+            "item": "{{ request.scheme }}://{{ request.get_host }}/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ header_text }}",
+            "item": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"
+          }
         ]
+      }
     }
-}
-</script>
+  </script>
 {% endblock %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+  <div class="max-w-3xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900" itemscope itemtype="https://schema.org/WebPage">
     <!-- Page Header -->
     <div class="text-center mb-8 sm:mb-10">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900" itemprop="headline">
-            {{ header_text }}
-        </h1>
-        {% if page_subtitle %}
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900" itemprop="headline">
+        {{ header_text }}
+      </h1>
+      {% if page_subtitle %}
         <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
-            {{ page_subtitle }}
+          {{ page_subtitle }}
         </p>
-        {% endif %}
+      {% endif %}
     </div>
 
     <!-- Converter Form -->
-    <form id="converterForm" 
-          method="post" 
+    <form id="converterForm"
+          method="post"
           enctype="multipart/form-data"
           class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
-        {% csrf_token %}
+      {% csrf_token %}
 
         <!-- File Selection Button (Centered) -->
-        <div class="text-center mb-6">
-            <input type="file" 
-                   name="{{ file_input_name }}" 
-                   id="fileInput"
-                   accept="{{ file_accept }}"
-                   class="hidden"
-                   required>
-            <button type="button" 
-                    id="selectFileButton"
-                    class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                </svg>
-                <span>{% trans "Select file to convert" %}</span>
-            </button>
-            
+      <div class="text-center mb-6">
+        <input type="file"
+               name="{{ file_input_name }}"
+               id="fileInput"
+               accept="{{ file_accept }}"
+               class="hidden"
+               required>
+        <button type="button"
+                id="selectFileButton"
+                class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+          </svg>
+          <span>{% trans "Select file to convert" %}</span>
+        </button>
+
             <!-- Selected File Display -->
-            <div id="selectedFile" class="hidden mt-4 p-4 bg-blue-50 rounded-lg border-2 border-blue-200 max-w-md mx-auto">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-3 flex-1 min-w-0">
-                        <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <div class="flex-1 min-w-0">
-                            <p class="font-semibold text-gray-900 text-sm sm:text-base truncate" id="fileName"></p>
-                            <p class="text-gray-600 text-xs sm:text-sm" id="fileSize"></p>
-                        </div>
-                    </div>
-                    <button type="button" 
-                            id="removeFile"
-                            class="ml-3 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
-                            aria-label="{% trans 'Remove file' %}">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
+        <div id="selectedFile" class="hidden mt-4 p-4 bg-blue-50 rounded-lg border-2 border-blue-200 max-w-md mx-auto">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3 flex-1 min-w-0">
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-gray-900 text-sm sm:text-base truncate" id="fileName"></p>
+                <p class="text-gray-600 text-xs sm:text-sm" id="fileSize"></p>
+              </div>
             </div>
+            <button type="button"
+                    id="removeFile"
+                    class="ml-3 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+                    aria-label="{% trans 'Remove file' %}">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
 
         <!-- Drag & Drop Zone (Below) -->
-        <div class="mb-6">
-            <div id="dropZone" 
-                 class="relative border-2 border-dashed border-gray-300 rounded-lg p-3 sm:p-4 text-center transition-all duration-300 group bg-gray-50">
-                <input type="file" 
-                       name="{{ file_input_name }}" 
-                       id="fileInputDrop"
-                       accept="{{ file_accept }}"
-                       class="hidden">
-                
+      <div class="mb-6">
+        <div id="dropZone"
+             class="relative border-2 border-dashed border-gray-300 rounded-lg p-3 sm:p-4 text-center transition-all duration-300 group bg-gray-50">
+          <input type="file"
+                 name="{{ file_input_name }}"
+                 id="fileInputDrop"
+                 accept="{{ file_accept }}"
+                 class="hidden">
+
                 <!-- Drop Zone Content -->
-                <div class="pointer-events-none relative z-0">
-                    <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                    </svg>
-                    <p class="text-gray-600 text-xs sm:text-sm font-medium mb-1">
-                        {% trans "Drag and drop your file here" %}
-                    </p>
-                    <p class="text-gray-500 text-xs">
-                        {% trans "Use the button above to browse files" %}
-                    </p>
-                    <p class="text-gray-400 text-xs mt-1.5" id="fileInfo">
-                        {{ file_accept|upper }} {% trans "file" %}
-                    </p>
-                </div>
-            </div>
+          <div class="pointer-events-none relative z-0">
+            <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+            </svg>
+            <p class="text-gray-600 text-xs sm:text-sm font-medium mb-1">
+              {% trans "Drag and drop your file here" %}
+            </p>
+            <p class="text-gray-500 text-xs">
+              {% trans "Use the button above to browse files" %}
+            </p>
+            <p class="text-gray-400 text-xs mt-1.5" id="fileInfo">
+              {{ file_accept|upper }} {% trans "file" %}
+            </p>
+          </div>
         </div>
+      </div>
 
         <!-- Honeypot field (hidden from users, filled by bots) -->
-        <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <!-- hCaptcha (Anti-spam) - Only show if required (after failed attempts) -->
-        {% if hcaptcha_site_key and captcha_required %}
+      {% if hcaptcha_site_key and captcha_required %}
         <div class="flex justify-center my-6" id="hcaptcha-container">
-            <div class="h-captcha" data-sitekey="{{ hcaptcha_site_key }}" data-theme="light"></div>
+          <div class="h-captcha" data-sitekey="{{ hcaptcha_site_key }}" data-theme="light"></div>
         </div>
-        {% endif %}
+      {% endif %}
 
         <!-- Submit Button -->
-        <div class="text-center mt-8">
-            <button type="submit"
-                    id="convertButton"
-                    class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 {{ button_class }} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                    disabled>
-                <span class="flex items-center justify-center space-x-3">
-                    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                    </svg>
-                    <span>{{ button_text }}</span>
-                </span>
-            </button>
-        </div>
+      <div class="text-center mt-8">
+        <button type="submit"
+                id="convertButton"
+                class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 {{ button_class }} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                disabled>
+          <span class="flex items-center justify-center space-x-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+            <span>{{ button_text }}</span>
+          </span>
+        </button>
+      </div>
     </form>
 
     <!-- Loading Container -->
@@ -170,28 +170,28 @@
     <div id="downloadContainer" class="hidden mt-6"></div>
 
     <!-- Result Message (for errors) -->
-    <div id="converterResult" 
+    <div id="converterResult"
          class="hidden mt-6">
     </div>
 
     <!-- Help Section -->
     <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
-        <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
-            {% trans "How it works" %}
-        </h2>
-        <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
-            <li>{% trans "Click the button above to select your file, or drag and drop it into the zone below" %}</li>
-            <li>{% trans "Click the convert button" %}</li>
-            <li>{% trans "Wait for the conversion to complete" %}</li>
-            <li>{% trans "Download your converted file using the download button" %}</li>
-        </ol>
+      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+        {% trans "How it works" %}
+      </h2>
+      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+        <li>{% trans "Click the button above to select your file, or drag and drop it into the zone below" %}</li>
+        <li>{% trans "Click the convert button" %}</li>
+        <li>{% trans "Wait for the conversion to complete" %}</li>
+        <li>{% trans "Download your converted file using the download button" %}</li>
+      </ol>
     </div>
-</div>
+  </div>
 {% endblock %}
 
 {% block extra_js %}
 {# Configuration script - must be inline to use Django template variables #}
-<script>
+  <script>
     window.API_URL = "{{ api_url }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message }}";
@@ -206,8 +206,8 @@
     window.DOWNLOAD_BUTTON_TEXT = "{% trans 'Download File' %}";
     window.CONVERT_ANOTHER_TEXT = "{% trans 'Convert another file' %}";
     window.ERROR_TITLE = "{% trans 'Error' %}";
-</script>
+  </script>
 {# External JS files #}
-<script src="{% static 'js/file-input-handler.js' %}"></script>
-<script src="{% static 'js/converter.js' %}"></script>
+  <script src="{% static 'js/file-input-handler.js' %}"></script>
+  <script src="{% static 'js/converter.js' %}"></script>
 {% endblock %}

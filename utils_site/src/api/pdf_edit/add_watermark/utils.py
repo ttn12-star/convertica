@@ -2,7 +2,6 @@
 import os
 import tempfile
 from io import BytesIO
-from typing import List, Optional, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PIL import Image
@@ -10,6 +9,7 @@ from PyPDF2 import PdfReader, PdfWriter
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -77,7 +77,7 @@ def _register_watermark_font():
     _WATERMARK_FONT_REGISTERED = True
 
 
-def parse_pages(pages_str: str, total_pages: int) -> List[int]:
+def parse_pages(pages_str: str, total_pages: int) -> list[int]:
     """Parse page string into list of page indices (0-indexed).
 
     Args:
@@ -119,10 +119,10 @@ def parse_pages(pages_str: str, total_pages: int) -> List[int]:
 def add_watermark(
     uploaded_file: UploadedFile,
     watermark_text: str = "CONFIDENTIAL",
-    watermark_file: Optional[UploadedFile] = None,
+    watermark_file: UploadedFile | None = None,
     position: str = "diagonal",
-    x: Optional[float] = None,
-    y: Optional[float] = None,
+    x: float | None = None,
+    y: float | None = None,
     color: str = "#000000",
     opacity: float = 0.3,
     font_size: int = 72,
@@ -130,7 +130,7 @@ def add_watermark(
     scale: float = 1.0,
     pages: str = "all",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Add watermark to PDF.
 
     Args:
@@ -179,7 +179,7 @@ def add_watermark(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(
                 "Failed to write PDF: %s" % err,
                 context={**context, "error_type": type(err).__name__},

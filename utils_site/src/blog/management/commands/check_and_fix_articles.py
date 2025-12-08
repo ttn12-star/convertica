@@ -3,7 +3,7 @@
 import re
 
 from django.core.management.base import BaseCommand
-from django.utils.translation import activate, get_language
+
 from src.blog.models import Article
 
 
@@ -132,7 +132,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS("   💾 Saved"))
 
         # Summary
-        self.stdout.write(self.style.SUCCESS(f"\n=== Summary ==="))
+        self.stdout.write(self.style.SUCCESS("\n=== Summary ==="))
         self.stdout.write(f"Total articles checked: {total_articles}")
         self.stdout.write(f"Issues found: {issues_found}")
 

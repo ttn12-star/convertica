@@ -12,387 +12,387 @@
 
 {% block extra_head %}
 <!-- PDF.js for rendering PDF pages -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <style>
     .watermark-preview {
-        position: absolute;
-        pointer-events: all;
-        user-select: none;
-        cursor: move;
+      position: absolute;
+      pointer-events: all;
+      user-select: none;
+      cursor: move;
     }
     .watermark-preview-text {
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
     .watermark-handle {
-        position: absolute;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        z-index: 10;
-        transition: transform 0.1s ease, box-shadow 0.1s ease;
+      position: absolute;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 10;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
     .watermark-handle:hover {
-        transform: scale(1.3);
-        box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+      transform: scale(1.3);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.5);
     }
     .watermark-handle:active {
-        transform: scale(1.15);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      transform: scale(1.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
     /* Corner handles - combined rotation and scaling */
     .watermark-handle.corner {
-        width: 18px;
-        height: 18px;
-        background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-        border: 3px solid white;
-        cursor: grab;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+      border: 3px solid white;
+      cursor: grab;
     }
     .watermark-handle.corner:hover {
-        transform: scale(1.3);
-        box-shadow: 0 3px 10px rgba(0,0,0,0.5);
-        background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
+      transform: scale(1.3);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
     }
     .watermark-handle.corner:active {
-        cursor: grabbing;
-        transform: scale(1.15);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      cursor: grabbing;
+      transform: scale(1.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
     .watermark-handle.corner.nw {
-        top: -9px;
-        left: -9px;
-        cursor: nwse-resize;
+      top: -9px;
+      left: -9px;
+      cursor: nwse-resize;
     }
     .watermark-handle.corner.ne {
-        top: -9px;
-        right: -9px;
-        cursor: nesw-resize;
+      top: -9px;
+      right: -9px;
+      cursor: nesw-resize;
     }
     .watermark-handle.corner.sw {
-        bottom: -9px;
-        left: -9px;
-        cursor: nesw-resize;
+      bottom: -9px;
+      left: -9px;
+      cursor: nesw-resize;
     }
     .watermark-handle.corner.se {
-        bottom: -9px;
-        right: -9px;
-        cursor: nwse-resize;
+      bottom: -9px;
+      right: -9px;
+      cursor: nwse-resize;
     }
-</style>
+  </style>
 {% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
+  <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
     <!-- Page Header -->
     <div class="text-center mb-8 sm:mb-10">
-        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">
-            {{ header_text }}
-        </h1>
-        {% if page_subtitle %}
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">
+        {{ header_text }}
+      </h1>
+      {% if page_subtitle %}
         <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
-            {{ page_subtitle }}
+          {{ page_subtitle }}
         </p>
-        {% endif %}
+      {% endif %}
     </div>
 
     <!-- Editor Form -->
-    <form id="editorForm" 
-          method="post" 
+    <form id="editorForm"
+          method="post"
           enctype="multipart/form-data"
           class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
-        {% csrf_token %}
+      {% csrf_token %}
 
         <!-- File Selection Button (Centered) -->
-        <div class="text-center mb-6">
-            <input type="file" 
-                   name="{{ file_input_name }}" 
-                   id="fileInput"
-                   accept="{{ file_accept }}"
-                   class="hidden"
-                   required>
-            <button type="button" 
-                    id="selectFileButton"
-                    class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                </svg>
-                <span>{% trans "Select file to watermark" %}</span>
-            </button>
-            
+      <div class="text-center mb-6">
+        <input type="file"
+               name="{{ file_input_name }}"
+               id="fileInput"
+               accept="{{ file_accept }}"
+               class="hidden"
+               required>
+        <button type="button"
+                id="selectFileButton"
+                class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+          </svg>
+          <span>{% trans "Select file to watermark" %}</span>
+        </button>
+
             <!-- Selected File Display -->
-            <div id="selectedFile" class="hidden mt-4 p-4 bg-blue-50 rounded-lg border-2 border-blue-200 max-w-md mx-auto">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-3 flex-1 min-w-0">
-                        <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                        <div class="flex-1 min-w-0">
-                            <p class="font-semibold text-gray-900 text-sm sm:text-base truncate" id="fileName"></p>
-                            <p class="text-gray-600 text-xs sm:text-sm" id="fileSize"></p>
-                        </div>
-                    </div>
-                    <button type="button" 
-                            id="removeFile"
-                            class="ml-3 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
-                            aria-label="{% trans 'Remove file' %}">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
+        <div id="selectedFile" class="hidden mt-4 p-4 bg-blue-50 rounded-lg border-2 border-blue-200 max-w-md mx-auto">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3 flex-1 min-w-0">
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-gray-900 text-sm sm:text-base truncate" id="fileName"></p>
+                <p class="text-gray-600 text-xs sm:text-sm" id="fileSize"></p>
+              </div>
             </div>
+            <button type="button"
+                    id="removeFile"
+                    class="ml-3 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+                    aria-label="{% trans 'Remove file' %}">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
 
         <!-- Drag & Drop Zone (Below) -->
-        <div class="mb-6">
-            <div id="dropZone" 
-                 class="relative border-2 border-dashed border-gray-300 rounded-lg p-3 sm:p-4 text-center transition-all duration-300 group bg-gray-50">
-                <input type="file" 
-                       name="{{ file_input_name }}" 
-                       id="fileInputDrop"
-                       accept="{{ file_accept }}"
-                       class="hidden">
-                
+      <div class="mb-6">
+        <div id="dropZone"
+             class="relative border-2 border-dashed border-gray-300 rounded-lg p-3 sm:p-4 text-center transition-all duration-300 group bg-gray-50">
+          <input type="file"
+                 name="{{ file_input_name }}"
+                 id="fileInputDrop"
+                 accept="{{ file_accept }}"
+                 class="hidden">
+
                 <!-- Drop Zone Content -->
-                <div class="pointer-events-none relative z-0">
-                    <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                    </svg>
-                    <p class="text-gray-600 text-xs sm:text-sm font-medium mb-1">
-                        {% trans "Drag and drop your file here" %}
-                    </p>
-                    <p class="text-gray-500 text-xs">
-                        {% trans "Use the button above to browse files" %}
-                    </p>
-                    <p class="text-gray-400 text-xs mt-1.5" id="fileInfo">
-                        {{ file_accept|upper }} {% trans "file" %}
-                    </p>
-                </div>
-            </div>
+          <div class="pointer-events-none relative z-0">
+            <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+            </svg>
+            <p class="text-gray-600 text-xs sm:text-sm font-medium mb-1">
+              {% trans "Drag and drop your file here" %}
+            </p>
+            <p class="text-gray-500 text-xs">
+              {% trans "Use the button above to browse files" %}
+            </p>
+            <p class="text-gray-400 text-xs mt-1.5" id="fileInfo">
+              {{ file_accept|upper }} {% trans "file" %}
+            </p>
+          </div>
         </div>
+      </div>
 
         <!-- PDF Preview and Watermark Editor -->
-        <div id="pdfPreviewSection" class="hidden mb-6">
-            <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
-                <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Visual Watermark Editor" %}</h3>
-                
+      <div id="pdfPreviewSection" class="hidden mb-6">
+        <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Visual Watermark Editor" %}</h3>
+
                 <!-- Page Selector -->
-                <div class="mb-4">
-                    <label for="pageSelector" class="block text-sm font-semibold text-gray-700 mb-2">
-                        {% trans "Select Page" %}
-                    </label>
-                    <select id="pageSelector" 
-                            class="w-full sm:w-auto px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
-                    </select>
-                </div>
+          <div class="mb-4">
+            <label for="pageSelector" class="block text-sm font-semibold text-gray-700 mb-2">
+              {% trans "Select Page" %}
+            </label>
+            <select id="pageSelector"
+                    class="w-full sm:w-auto px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+            </select>
+          </div>
 
                 <!-- PDF Canvas Container -->
-                <div class="relative bg-white border-2 border-gray-300 rounded-lg p-4 overflow-hidden flex justify-center items-center" style="max-height: 85vh; min-height: 400px;">
-                    <div id="pdfCanvasContainer" class="relative inline-block" style="max-width: 100%; max-height: 100%;">
-                        <canvas id="pdfCanvas" class="border border-gray-200 shadow-lg cursor-crosshair" style="max-width: 100%; max-height: 100%; display: block;"></canvas>
-                        <div id="watermarkPreview" class="watermark-preview hidden"></div>
-                    </div>
-                </div>
+          <div class="relative bg-white border-2 border-gray-300 rounded-lg p-4 overflow-hidden flex justify-center items-center" style="max-height: 85vh; min-height: 400px;">
+            <div id="pdfCanvasContainer" class="relative inline-block" style="max-width: 100%; max-height: 100%;">
+              <canvas id="pdfCanvas" class="border border-gray-200 shadow-lg cursor-crosshair" style="max-width: 100%; max-height: 100%; display: block;"></canvas>
+              <div id="watermarkPreview" class="watermark-preview hidden"></div>
+            </div>
+          </div>
 
                 <!-- Instructions -->
-                <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
-                    <p class="text-xs text-blue-800">
-                        <strong>{% trans "How to use:" %}</strong> {% trans "The watermark appears at the bottom of the page by default. Drag it to move, use the top handle to rotate, and the corner handle to scale. Click anywhere on the PDF to reposition it." %}
-                    </p>
-                </div>
-            </div>
+          <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <p class="text-xs text-blue-800">
+              <strong>{% trans "How to use:" %}</strong> {% trans "The watermark appears at the bottom of the page by default. Drag it to move, use the top handle to rotate, and the corner handle to scale. Click anywhere on the PDF to reposition it." %}
+            </p>
+          </div>
         </div>
+      </div>
 
         <!-- Watermark Settings -->
-        <div id="watermarkSettingsSection" class="hidden mb-6">
-            <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
-                <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Watermark Settings" %}</h3>
-                
-                <div class="space-y-4">
+      <div id="watermarkSettingsSection" class="hidden mb-6">
+        <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+          <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Watermark Settings" %}</h3>
+
+          <div class="space-y-4">
                     <!-- Watermark Type -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Watermark Type" %}
-                        </label>
-                        <div class="flex space-x-4">
-                            <label class="flex items-center">
-                                <input type="radio" name="watermark_type" value="text" checked class="mr-2" id="watermarkTypeText">
-                                <span>{% trans "Text" %}</span>
-                            </label>
-                            <label class="flex items-center">
-                                <input type="radio" name="watermark_type" value="image" class="mr-2" id="watermarkTypeImage">
-                                <span>{% trans "Image" %}</span>
-                            </label>
-                        </div>
-                    </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Watermark Type" %}
+              </label>
+              <div class="flex space-x-4">
+                <label class="flex items-center">
+                  <input type="radio" name="watermark_type" value="text" checked class="mr-2" id="watermarkTypeText">
+                  <span>{% trans "Text" %}</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" name="watermark_type" value="image" class="mr-2" id="watermarkTypeImage">
+                  <span>{% trans "Image" %}</span>
+                </label>
+              </div>
+            </div>
 
                     <!-- Text Watermark -->
-                    <div id="textWatermarkSection">
-                        <label for="watermark_text" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Watermark Text" %}
-                        </label>
-                        <input type="text" 
-                               id="watermark_text" 
-                               name="watermark_text" 
-                               value="CONFIDENTIAL"
-                               maxlength="100"
-                               class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
-                    </div>
+            <div id="textWatermarkSection">
+              <label for="watermark_text" class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Watermark Text" %}
+              </label>
+              <input type="text"
+                     id="watermark_text"
+                     name="watermark_text"
+                     value="CONFIDENTIAL"
+                     maxlength="100"
+                     class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+            </div>
 
                     <!-- Image Watermark -->
-                    <div id="imageWatermarkSection" class="hidden">
-                        <label for="watermark_file" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Watermark Image" %} (PNG, JPG)
-                        </label>
+            <div id="imageWatermarkSection" class="hidden">
+              <label for="watermark_file" class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Watermark Image" %} (PNG, JPG)
+              </label>
                         <!-- Watermark file input - use button to trigger file selection -->
-                        <div class="flex items-center space-x-3">
-                            <input type="file" 
-                                   id="watermark_file" 
-                                   name="watermark_file" 
-                                   accept=".png,.jpg,.jpeg"
-                                   class="hidden">
-                            <button type="button" 
-                                    id="watermarkFileButton"
-                                    class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm">
-                                {% trans "Choose Image" %}
-                            </button>
-                            <span id="watermarkFileName" class="text-sm text-gray-600"></span>
-                        </div>
-                    </div>
+              <div class="flex items-center space-x-3">
+                <input type="file"
+                       id="watermark_file"
+                       name="watermark_file"
+                       accept=".png,.jpg,.jpeg"
+                       class="hidden">
+                <button type="button"
+                        id="watermarkFileButton"
+                        class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm">
+                  {% trans "Choose Image" %}
+                </button>
+                <span id="watermarkFileName" class="text-sm text-gray-600"></span>
+              </div>
+            </div>
 
                     <!-- Color Picker -->
-                    <div>
-                        <label for="watermark_color" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Color" %}
-                        </label>
-                        <div class="flex items-center space-x-3">
-                            <input type="color" 
-                                   id="watermark_color" 
-                                   name="color"
-                                   value="#000000"
-                                   class="w-16 h-12 border border-gray-300 rounded-lg cursor-pointer">
-                            <input type="text" 
-                                   id="watermark_color_text" 
-                                   value="#000000"
-                                   pattern="^#[0-9A-Fa-f]{6}$"
-                                   class="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 font-mono">
-                        </div>
-                    </div>
+            <div>
+              <label for="watermark_color" class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Color" %}
+              </label>
+              <div class="flex items-center space-x-3">
+                <input type="color"
+                       id="watermark_color"
+                       name="color"
+                       value="#000000"
+                       class="w-16 h-12 border border-gray-300 rounded-lg cursor-pointer">
+                <input type="text"
+                       id="watermark_color_text"
+                       value="#000000"
+                       pattern="^#[0-9A-Fa-f]{6}$"
+                       class="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 font-mono">
+              </div>
+            </div>
 
                     <!-- Opacity Slider -->
-                    <div>
-                        <label for="opacity" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Opacity" %}: <span id="opacityValue">30%</span>
-                        </label>
-                        <input type="range" 
-                               id="opacity" 
-                               name="opacity" 
-                               min="10"
-                               max="100"
-                               value="30"
-                               step="5"
-                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
-                        <div class="flex justify-between text-xs text-gray-500 mt-1">
-                            <span>10%</span>
-                            <span>100%</span>
-                        </div>
-                    </div>
+            <div>
+              <label for="opacity" class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Opacity" %}: <span id="opacityValue">30%</span>
+              </label>
+              <input type="range"
+                     id="opacity"
+                     name="opacity"
+                     min="10"
+                     max="100"
+                     value="30"
+                     step="5"
+                     class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+              <div class="flex justify-between text-xs text-gray-500 mt-1">
+                <span>10%</span>
+                <span>100%</span>
+              </div>
+            </div>
 
                     <!-- Font Size (for text watermark) -->
-                    <div id="fontSizeSection">
-                        <label for="font_size" class="block text-sm font-semibold text-gray-700 mb-2">
-                            {% trans "Font Size" %}: <span id="fontSizeValue">72</span>
-                        </label>
-                        <input type="range" 
-                               id="font_size" 
-                               name="font_size" 
-                               min="12"
-                               max="200"
-                               value="72"
-                               step="4"
-                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
-                        <div class="flex justify-between text-xs text-gray-500 mt-1">
-                            <span>12</span>
-                            <span>200</span>
-                        </div>
-                    </div>
+            <div id="fontSizeSection">
+              <label for="font_size" class="block text-sm font-semibold text-gray-700 mb-2">
+                {% trans "Font Size" %}: <span id="fontSizeValue">72</span>
+              </label>
+              <input type="range"
+                     id="font_size"
+                     name="font_size"
+                     min="12"
+                     max="200"
+                     value="72"
+                     step="4"
+                     class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+              <div class="flex justify-between text-xs text-gray-500 mt-1">
+                <span>12</span>
+                <span>200</span>
+              </div>
+            </div>
 
                     <!-- Rotation and Scale Info -->
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                        <p class="text-xs text-blue-800">
-                            <strong>{% trans "Interactive controls:" %}</strong> {% trans "Drag the watermark to move it. Drag any corner handle to rotate and scale simultaneously." %}
-                        </p>
-                    </div>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p class="text-xs text-blue-800">
+                <strong>{% trans "Interactive controls:" %}</strong> {% trans "Drag the watermark to move it. Drag any corner handle to rotate and scale simultaneously." %}
+              </p>
+            </div>
 
                     <!-- Pages to Watermark -->
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-3">
-                            {% trans "Apply to pages" %}
-                        </label>
-                        <div class="space-y-3">
-                            <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" 
-                                       name="pagesOption" 
-                                       id="watermarkPagesAll"
-                                       value="all"
-                                       checked
-                                       class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="text-sm text-gray-700">{% trans "All pages" %}</span>
-                            </label>
-                            <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" 
-                                       name="pagesOption" 
-                                       id="watermarkPagesCurrent"
-                                       value="current"
-                                       class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="text-sm text-gray-700">{% trans "Current page only" %}</span>
-                            </label>
-                            <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="radio" 
-                                       name="pagesOption" 
-                                       id="watermarkPagesCustom"
-                                       value="custom"
-                                       class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-                                <span class="text-sm text-gray-700">{% trans "Custom pages:" %}</span>
-                            </label>
-                            <input type="text" 
-                                   id="watermarkPagesCustomInput"
-                                   name="pagesCustom" 
-                                   placeholder="1,3,5 or 1-5"
-                                   disabled
-                                   class="ml-6 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
-                                   pattern="^[\d,\- ]+$">
-                            <p class="ml-6 text-xs text-gray-500">
-                                {% trans "Enter specific pages like '1,3,5' or '1-5'" %}
-                            </p>
-                        </div>
-                        <input type="hidden" id="pages" name="pages" value="all">
-                    </div>
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-3">
+                {% trans "Apply to pages" %}
+              </label>
+              <div class="space-y-3">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio"
+                         name="pagesOption"
+                         id="watermarkPagesAll"
+                         value="all"
+                         checked
+                         class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <span class="text-sm text-gray-700">{% trans "All pages" %}</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio"
+                         name="pagesOption"
+                         id="watermarkPagesCurrent"
+                         value="current"
+                         class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <span class="text-sm text-gray-700">{% trans "Current page only" %}</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio"
+                         name="pagesOption"
+                         id="watermarkPagesCustom"
+                         value="custom"
+                         class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <span class="text-sm text-gray-700">{% trans "Custom pages:" %}</span>
+                </label>
+                <input type="text"
+                       id="watermarkPagesCustomInput"
+                       name="pagesCustom"
+                       placeholder="1,3,5 or 1-5"
+                       disabled
+                       class="ml-6 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                       pattern="^[\d,\- ]+$">
+                <p class="ml-6 text-xs text-gray-500">
+                  {% trans "Enter specific pages like '1,3,5' or '1-5'" %}
+                </p>
+              </div>
+              <input type="hidden" id="pages" name="pages" value="all">
+            </div>
 
                     <!-- Position (Hidden - auto-filled from visual editor) -->
-                    <input type="hidden" id="position" name="position" value="custom">
-                    <input type="hidden" id="x" name="x" value="">
-                    <input type="hidden" id="y" name="y" value="">
-                    <input type="hidden" id="rotation" name="rotation" value="0">
-                    <input type="hidden" id="scale" name="scale" value="1.0">
-                </div>
-            </div>
+            <input type="hidden" id="position" name="position" value="custom">
+            <input type="hidden" id="x" name="x" value="">
+            <input type="hidden" id="y" name="y" value="">
+            <input type="hidden" id="rotation" name="rotation" value="0">
+            <input type="hidden" id="scale" name="scale" value="1.0">
+          </div>
         </div>
+      </div>
 
         <!-- Submit Button -->
-        <div class="text-center mt-8">
-            <button type="submit"
-                    id="editButton"
-                    class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 {{ button_class }} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                    disabled>
-                <span class="flex items-center justify-center space-x-3">
-                    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-                    </svg>
-                    <span>{{ button_text }}</span>
-                </span>
-            </button>
-        </div>
+      <div class="text-center mt-8">
+        <button type="submit"
+                id="editButton"
+                class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-3xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 {{ button_class }} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                disabled>
+          <span class="flex items-center justify-center space-x-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            <span>{{ button_text }}</span>
+          </span>
+        </button>
+      </div>
     </form>
 
     <!-- Loading Container -->
@@ -406,23 +406,23 @@
 
     <!-- Help Section -->
     <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
-        <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
-            {% trans "How it works" %}
-        </h2>
-        <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
-            <li>{% trans "Select your PDF file using the button above" %}</li>
-            <li>{% trans "Enter your watermark text or upload an image" %}</li>
-            <li>{% trans "Choose the color and opacity using the sliders" %}</li>
-            <li>{% trans "Click on the PDF to position the watermark" %}</li>
-            <li>{% trans "Click the add watermark button to process your file" %}</li>
-            <li>{% trans "Download your watermarked PDF file" %}</li>
-        </ol>
+      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+        {% trans "How it works" %}
+      </h2>
+      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+        <li>{% trans "Select your PDF file using the button above" %}</li>
+        <li>{% trans "Enter your watermark text or upload an image" %}</li>
+        <li>{% trans "Choose the color and opacity using the sliders" %}</li>
+        <li>{% trans "Click on the PDF to position the watermark" %}</li>
+        <li>{% trans "Click the add watermark button to process your file" %}</li>
+        <li>{% trans "Download your watermarked PDF file" %}</li>
+      </ol>
     </div>
-</div>
+  </div>
 {% endblock %}
 
 {% block extra_js %}
-<script>
+  <script>
     window.API_URL = "{{ api_url }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message }}";
@@ -439,7 +439,7 @@
     window.ERROR_TITLE = "{% trans 'Error' %}";
     window.PAGE_LABEL = "{% trans 'Page' %}";
     window.FAILED_TO_LOAD_PDF = "{% trans 'Failed to load PDF file. Please try again.' %}";
-</script>
-<script src="{% static 'js/file-input-handler.js' %}"></script>
-<script src="{% static 'js/pdf-watermark-editor.js' %}"></script>
+  </script>
+  <script src="{% static 'js/file-input-handler.js' %}"></script>
+  <script src="{% static 'js/pdf-watermark-editor.js' %}"></script>
 {% endblock %}

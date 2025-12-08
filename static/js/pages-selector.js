@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     pagesSelectors.forEach(({ prefix, currentPageVar }) => {
-        const allRadio = document.getElementById(`${prefix}PagesAll`) || 
+        const allRadio = document.getElementById(`${prefix}PagesAll`) ||
                         document.getElementById(`${prefix}All`);
-        const currentRadio = document.getElementById(`${prefix}PagesCurrent`) || 
+        const currentRadio = document.getElementById(`${prefix}PagesCurrent`) ||
                             document.getElementById(`${prefix}Current`);
-        const customRadio = document.getElementById(`${prefix}PagesCustom`) || 
+        const customRadio = document.getElementById(`${prefix}PagesCustom`) ||
                            document.getElementById(`${prefix}Custom`);
-        const customInput = document.getElementById(`${prefix}PagesCustomInput`) || 
+        const customInput = document.getElementById(`${prefix}PagesCustomInput`) ||
                            document.getElementById(`${prefix}CustomInput`);
         const hiddenPagesInput = document.getElementById('pages');
 
@@ -158,4 +158,3 @@ document.addEventListener('DOMContentLoaded', () => {
         hiddenPagesInput.value = pagesValue;
     }, true); // Use capture phase to ensure it runs before other handlers
 });
-

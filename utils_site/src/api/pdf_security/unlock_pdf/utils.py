@@ -1,10 +1,10 @@
 # utils.py
 import os
 import tempfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -19,14 +19,13 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
-from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
 
 def unlock_pdf(
     uploaded_file: UploadedFile, password: str, suffix: str = "_convertica"
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Unlock PDF by removing password protection.
 
     Args:
@@ -65,7 +64,7 @@ def unlock_pdf(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as io_err:
+        except OSError as io_err:
             raise StorageError(
                 "Failed to write PDF: %s" % io_err, context=context
             ) from io_err

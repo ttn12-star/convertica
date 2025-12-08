@@ -1,12 +1,12 @@
 # utils.py
 import os
 import tempfile
-from typing import List, Optional, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_path
 from PyPDF2 import PdfReader
 from reportlab.pdfgen import canvas
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -26,7 +26,7 @@ from ...pdf_utils import repair_pdf
 logger = get_logger(__name__)
 
 
-def parse_pages(pages_str: str, total_pages: int) -> List[int]:
+def parse_pages(pages_str: str, total_pages: int) -> list[int]:
     """Parse page string into list of page indices (0-indexed).
 
     Args:
@@ -70,13 +70,13 @@ logger = get_logger(__name__)
 
 def crop_pdf(
     uploaded_file: UploadedFile,
-    x: Optional[float] = None,
-    y: Optional[float] = None,
-    width: Optional[float] = None,
-    height: Optional[float] = None,
+    x: float | None = None,
+    y: float | None = None,
+    width: float | None = None,
+    height: float | None = None,
     pages: str = "all",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Crop PDF pages.
 
     Args:
@@ -127,7 +127,7 @@ def crop_pdf(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(
                 f"Failed to write PDF: {err}",
                 context={**context, "error_type": type(err).__name__},

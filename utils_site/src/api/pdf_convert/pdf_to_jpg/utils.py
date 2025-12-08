@@ -1,10 +1,10 @@
 import os
 import tempfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_bytes, convert_from_path
 from PIL import Image
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -29,7 +29,7 @@ def convert_pdf_to_jpg(
     page: int = 1,
     dpi: int = 300,
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Convert PDF page to JPG image.
 
     Args:
@@ -101,7 +101,7 @@ def convert_pdf_to_jpg(
                 "File written successfully",
                 extra={**context, "event": "file_write_success"},
             )
-        except (OSError, IOError) as io_err:
+        except OSError as io_err:
             logger.error(
                 "Failed to write uploaded file",
                 extra={**context, "event": "file_write_error", "error": str(io_err)},

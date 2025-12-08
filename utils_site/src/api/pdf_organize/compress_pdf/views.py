@@ -1,7 +1,6 @@
 # views.py
 import os
 import time
-from typing import Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -176,7 +175,7 @@ class CompressPDFAPIView(BaseConversionAPIView):
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
-    ) -> Tuple[str, str]:
+    ) -> tuple[str, str]:
         """Compress PDF."""
         compression_level = kwargs.get("compression_level", "medium")
         pdf_path, output_path = compress_pdf(

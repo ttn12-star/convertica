@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateWatermarkPreview();
             }
         });
-        
+
         // Also update on blur (when user finishes editing)
         watermarkText.addEventListener('blur', () => {
             if (pdfDoc && watermarkX !== null && watermarkY !== null) {
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Cleanup previous PDF if exists
             cleanupPreviousPDF();
-            
+
             // Show preview section
             pdfPreviewSection.classList.remove('hidden');
             watermarkSettingsSection.classList.remove('hidden');
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Load PDF
             const arrayBuffer = await file.arrayBuffer();
-            
+
             // Check if arrayBuffer is valid
             if (!arrayBuffer || arrayBuffer.byteLength === 0) {
                 showError('Failed to read file. Please try again.');
@@ -251,11 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Load PDF document with error handling
-            pdfDoc = await pdfjsLib.getDocument({ 
+            pdfDoc = await pdfjsLib.getDocument({
                 data: arrayBuffer,
                 verbosity: 0 // Suppress warnings
             }).promise;
-            
+
             if (!pdfDoc) {
                 showError('Failed to load PDF document. Please check if the file is a valid PDF.');
                 // Hide preview sections on load error
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             // More detailed error handling
             let errorMessage = 'Failed to load PDF file. Please try again.';
-            
+
             if (error && error.message) {
                 if (error.message.includes('Invalid PDF')) {
                     errorMessage = 'Invalid PDF file. Please select a valid PDF file.';
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     errorMessage = `Error: ${error.message}`;
                 }
             }
-            
+
             showError(errorMessage);
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     stack: error?.stack
                 });
             }
-            
+
             // Hide preview sections on error
             if (pdfPreviewSection) {
                 pdfPreviewSection.classList.add('hidden');
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     function cleanupPreviousPDF() {
         // Cleanup previous PDF document
         if (pdfDoc) {
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             pdfDoc = null;
         }
-        
+
         // Reset state
         currentPage = 1;
         pageCount = 0;
@@ -342,13 +342,13 @@ document.addEventListener('DOMContentLoaded', () => {
         isDraggingWatermark = false;
         isRotating = false;
         isScaling = false;
-        
+
         // Clear canvas
         if (pdfCanvas) {
             const ctx = pdfCanvas.getContext('2d');
             ctx.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
         }
-        
+
         // Clear watermark preview (it's a div, not a canvas)
         if (watermarkPreview) {
             watermarkPreview.innerHTML = '';
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasHeight = scaledViewport.height;
             pdfCanvas.width = canvasWidth;
             pdfCanvas.height = canvasHeight;
-            
+
             // Reset any CSS scaling to ensure accurate coordinate calculations
             pdfCanvas.style.width = '';
             pdfCanvas.style.height = '';
@@ -419,11 +419,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // PDF not ready yet
             return;
         }
-        
+
         // Set watermark at bottom center of page
         watermarkX = pdfPageWidth / 2; // Center horizontally
         watermarkY = 50; // 50 points from bottom
-        
+
         // Initialize rotation and scale if not already set
         if (watermarkRotation === undefined || isNaN(watermarkRotation) || watermarkRotation === null) {
             watermarkRotation = 0.0;
@@ -431,24 +431,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (watermarkScale === undefined || isNaN(watermarkScale) || watermarkScale === null) {
             watermarkScale = 1.0;
         }
-        
+
         // Update hidden inputs
         if (xInput) xInput.value = watermarkX.toFixed(2);
         if (yInput) yInput.value = watermarkY.toFixed(2);
         if (positionInput) positionInput.value = 'custom';
         if (rotationInput) rotationInput.value = (watermarkRotation || 0).toFixed(1);
         if (scaleInput) scaleInput.value = (watermarkScale || 1.0).toFixed(2);
-        
+
         // Update preview
         updateWatermarkPreview();
     }
-    
+
     // Pages option handlers for watermark
     const watermarkPagesAllRadio = document.getElementById('watermarkPagesAll');
     const watermarkPagesCurrentRadio = document.getElementById('watermarkPagesCurrent');
     const watermarkPagesCustomRadio = document.getElementById('watermarkPagesCustom');
     const watermarkPagesCustomInput = document.getElementById('watermarkPagesCustomInput');
-    
+
     if (watermarkPagesAllRadio) {
         watermarkPagesAllRadio.addEventListener('change', () => {
             if (watermarkPagesCustomInput) {
@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     if (watermarkPagesCurrentRadio) {
         watermarkPagesCurrentRadio.addEventListener('change', () => {
             if (watermarkPagesCustomInput) {
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     if (watermarkPagesCustomRadio && watermarkPagesCustomInput) {
         watermarkPagesCustomRadio.addEventListener('change', () => {
             watermarkPagesCustomInput.disabled = false;
@@ -483,13 +483,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Click on canvas to set watermark position (only if not clicking on watermark)
     pdfCanvas.addEventListener('mousedown', (e) => {
         if (!pdfDoc) return;
-        
+
         // Check if clicking on watermark preview or its handles
         const target = e.target;
         if (target.closest('#watermarkPreview')) {
             return; // Let watermark handle its own events
         }
-        
+
         // Click outside watermark - set new position
         const rect = pdfCanvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -497,10 +497,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Convert canvas coordinates to PDF points
         const scaleFactor = pdfPageWidth / canvasWidth;
-        
+
         // X coordinate in points
         watermarkX = x * scaleFactor;
-        
+
         // Y coordinate in points (flip because PDF uses bottom-left origin)
         watermarkY = (canvasHeight - y) * scaleFactor;
 
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
             watermarkPreview.classList.add('hidden');
             return;
         }
-        
+
         // If watermark position not set, create initial one
         if (watermarkX === null || watermarkY === null) {
             createInitialWatermark();
@@ -576,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Convert to canvas pixels
             const imgWidth = scaledPdfWidth * scaleFactor;
             const imgHeight = scaledPdfHeight * scaleFactor;
-            
+
             content = `<img src="${watermarkImage.src}" style="width: ${imgWidth}px; height: ${imgHeight}px; opacity: ${opacity};" alt="Watermark">`;
         } else {
             watermarkPreview.classList.add('hidden');
@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
         content += '<div class="watermark-handle corner ne" data-corner="ne"></div>';
         content += '<div class="watermark-handle corner sw" data-corner="sw"></div>';
         content += '<div class="watermark-handle corner se" data-corner="se"></div>';
-        
+
         watermarkPreview.innerHTML = content;
         watermarkPreview.classList.remove('hidden');
 
@@ -599,14 +599,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function attachWatermarkHandlers() {
         const cornerHandles = watermarkPreview.querySelectorAll('.corner');
-        
+
         // Drag to move
         watermarkPreview.addEventListener('mousedown', (e) => {
             // Check if clicking on any handle
             if (Array.from(cornerHandles).includes(e.target)) {
                 return; // Let handles handle their own events
             }
-            
+
             isDraggingWatermark = true;
             const rect = pdfCanvas.getBoundingClientRect();
             dragStartX = e.clientX - rect.left;
@@ -621,28 +621,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 isRotating = true;
                 isScaling = true;
                 currentScaleCorner = handle.dataset.corner;
-                
+
                 const rect = pdfCanvas.getBoundingClientRect();
                 const scaleFactor = canvasWidth / pdfPageWidth;
                 const centerX = watermarkX * scaleFactor;
                 const centerY = canvasHeight - (watermarkY * scaleFactor);
                 const startX = e.clientX - rect.left;
                 const startY = e.clientY - rect.top;
-                
+
                 // Calculate initial angle for rotation
                 const startAngle = Math.atan2(startY - centerY, startX - centerX) * (180 / Math.PI);
                 dragStartAngle = startAngle;
                 initialRotation = watermarkRotation || 0;
-                
+
                 // Calculate initial distance for scaling
                 initialDistance = Math.sqrt(
                     Math.pow(startX - centerX, 2) + Math.pow(startY - centerY, 2)
                 );
                 initialScale = watermarkScale || 1.0;
-                
+
                 dragStartX = startX;
                 dragStartY = startY;
-                
+
                 e.stopPropagation();
                 e.preventDefault();
             });
@@ -662,17 +662,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const scaleFactor = pdfPageWidth / canvasWidth;
             const deltaX = (x - dragStartX) * scaleFactor;
             const deltaY = -(y - dragStartY) * scaleFactor; // Flip Y
-            
+
             watermarkX += deltaX;
             watermarkY += deltaY;
-            
+
             // Constrain to canvas bounds
             watermarkX = Math.max(0, Math.min(watermarkX, pdfPageWidth));
             watermarkY = Math.max(0, Math.min(watermarkY, pdfPageHeight));
-            
+
             if (xInput) xInput.value = watermarkX.toFixed(2);
             if (yInput) yInput.value = watermarkY.toFixed(2);
-            
+
             dragStartX = x;
             dragStartY = y;
             updateWatermarkPreview();
@@ -681,70 +681,70 @@ document.addEventListener('DOMContentLoaded', () => {
             const scaleFactor = canvasWidth / pdfPageWidth;
             const centerX = watermarkX * scaleFactor;
             const centerY = canvasHeight - (watermarkY * scaleFactor);
-            
+
             // Calculate current angle for rotation
             const currentAngle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
             let deltaAngle = currentAngle - dragStartAngle;
-            
+
             // Handle angle wrap-around smoothly
             if (deltaAngle > 180) deltaAngle -= 360;
             if (deltaAngle < -180) deltaAngle += 360;
-            
+
             watermarkRotation = initialRotation + deltaAngle;
             // Normalize rotation to -360 to 360
             while (watermarkRotation > 360) watermarkRotation -= 360;
             while (watermarkRotation < -360) watermarkRotation += 360;
-            
+
             // Calculate current distance for scaling
             const currentDistance = Math.sqrt(
                 Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
             );
-            
+
             // Scale based on distance change
             const scaleRatio = currentDistance / initialDistance;
             watermarkScale = Math.max(0.1, Math.min(3.0, initialScale * scaleRatio));
-            
+
             // Update hidden inputs
             if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
             if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
-            
+
             updateWatermarkPreview();
         } else if (isRotating) {
             // Rotate only (shouldn't happen with new design, but keep for safety)
             const scaleFactor = canvasWidth / pdfPageWidth;
             const centerX = watermarkX * scaleFactor;
             const centerY = canvasHeight - (watermarkY * scaleFactor);
-            
+
             const currentAngle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
             let deltaAngle = currentAngle - dragStartAngle;
-            
+
             if (deltaAngle > 180) deltaAngle -= 360;
             if (deltaAngle < -180) deltaAngle += 360;
-            
+
             watermarkRotation = initialRotation + deltaAngle;
             while (watermarkRotation > 360) watermarkRotation -= 360;
             while (watermarkRotation < -360) watermarkRotation += 360;
-            
+
             // Update hidden input
             if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
-            
+
             updateWatermarkPreview();
         } else if (isScaling) {
             // Scale only (shouldn't happen with new design, but keep for safety)
             const scaleFactor = canvasWidth / pdfPageWidth;
             const centerX = watermarkX * scaleFactor;
             const centerY = canvasHeight - (watermarkY * scaleFactor);
-            
+
             const currentDistance = Math.sqrt(
                 Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
             );
-            
+
             const scaleRatio = currentDistance / initialDistance;
             watermarkScale = Math.max(0.1, Math.min(3.0, initialScale * scaleRatio));
-            
+
             // Update hidden input
             if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
-            
+
             updateWatermarkPreview();
         }
     });
@@ -770,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (watermarkX === null || watermarkY === null) {
             createInitialWatermark();
         }
-        
+
         if (watermarkX === null || watermarkY === null) {
             showError('Please wait for PDF to load, then adjust the watermark.');
             return;
@@ -787,7 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         formData.append(fieldName, selectedFile);
         formData.append('position', positionInput.value || 'custom');
-        
+
         // Ensure coordinates are valid numbers
         const xValue = parseFloat(xInput.value);
         const yValue = parseFloat(yInput.value);
@@ -795,20 +795,20 @@ document.addEventListener('DOMContentLoaded', () => {
             showError('Invalid watermark position. Please click on the PDF to set the position.');
             return;
         }
-        
+
         formData.append('x', xValue.toFixed(2));
         formData.append('y', yValue.toFixed(2));
         formData.append('color', watermarkColor.value);
         formData.append('opacity', (parseInt(opacitySlider.value) / 100).toFixed(2));
         formData.append('rotation', (watermarkRotation || 0).toFixed(1));
         formData.append('scale', (watermarkScale || 1.0).toFixed(2));
-        
+
         // Get pages value from radio buttons
         const watermarkPagesAllRadio = document.getElementById('watermarkPagesAll');
         const watermarkPagesCurrentRadio = document.getElementById('watermarkPagesCurrent');
         const watermarkPagesCustomRadio = document.getElementById('watermarkPagesCustom');
         const watermarkPagesCustomInput = document.getElementById('watermarkPagesCustomInput');
-        
+
         let pagesValue = 'all';
         if (watermarkPagesCurrentRadio && watermarkPagesCurrentRadio.checked) {
             // Current page only
@@ -826,7 +826,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const textValue = watermarkText?.value || 'CONFIDENTIAL';
         formData.append('watermark_text', textValue);
         formData.append('font_size', fontSizeSlider?.value || 72);
-        
+
         // Append watermark_file if image type is selected and file exists
         if (watermarkTypeImage?.checked && watermarkFile?.files?.[0]) {
             formData.append('watermark_file', watermarkFile.files[0]);
@@ -835,10 +835,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide previous results
         hideResult();
         hideDownload();
-        
+
         // Show loading
         showLoading();
-        
+
         // Disable form
         setFormDisabled(true);
 
@@ -852,7 +852,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const blob = await response.blob();
-            
+
             if (!response.ok) {
                 try {
                     const errorData = await blob.text();
@@ -867,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hideLoading();
             showDownloadButton(selectedFile.name, blob);
             setFormDisabled(false);
-            
+
         } catch (error) {
             hideLoading();
             showError(error.message || window.ERROR_MESSAGE);
@@ -878,7 +878,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoading() {
         const container = document.getElementById('loadingContainer');
         if (!container) return;
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -909,13 +909,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function showDownloadButton(originalFileName, blob) {
         const container = document.getElementById('downloadContainer');
         if (!container) return;
-        
+
         const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$');
         const replaceTo = window.REPLACE_TO || '.pdf';
         const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
-        
+
         const url = URL.createObjectURL(blob);
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -936,7 +936,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <a href="${url}" 
+                        <a href="${url}"
                            download="${outputFileName}"
                            class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -965,7 +965,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showError(message) {
         if (!resultContainer) return;
-        
+
         resultContainer.innerHTML = `
             <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-3">
@@ -1006,4 +1006,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-

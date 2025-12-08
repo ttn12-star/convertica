@@ -1,10 +1,10 @@
 # services/convert.py
 import os
 import tempfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -26,7 +26,7 @@ logger = get_logger(__name__)
 
 def convert_pdf_to_docx(
     uploaded_file: UploadedFile, suffix: str = "_convertica"
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Save uploaded PDF to temp, convert it to DOCX and return (pdf_path, docx_path).
 
     Args:
@@ -94,7 +94,7 @@ def convert_pdf_to_docx(
                 "File written successfully",
                 extra={**context, "event": "file_write_success"},
             )
-        except (OSError, IOError) as io_err:
+        except OSError as io_err:
             logger.error(
                 "Failed to write uploaded file",
                 extra={**context, "event": "file_write_error", "error": str(io_err)},

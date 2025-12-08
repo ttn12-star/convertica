@@ -212,4 +212,3 @@ volumes:
 networks:
   convertica_network:
     driver: bridge
-

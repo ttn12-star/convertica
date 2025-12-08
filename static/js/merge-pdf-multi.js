@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfPreviewSection = document.getElementById('pdfPreviewSection');
     const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
     const editButton = document.getElementById('editButton');
-    
+
     // Store selected files with metadata
     let selectedFiles = [];
     let draggedElement = null;
-    
+
     // Initialize PDF.js worker
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    
+
     // Use event delegation for remove buttons (more reliable)
     if (selectedPdfFilesList) {
         selectedPdfFilesList.addEventListener('click', (e) => {
@@ -37,24 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     // File input handlers
     selectPdfFilesButton?.addEventListener('click', () => {
         pdfFilesInput?.click();
     });
-    
+
     addMorePdfFilesButton?.addEventListener('click', () => {
         pdfFilesInput?.click();
     });
-    
+
     pdfFilesInput?.addEventListener('change', (e) => {
         handleFileSelection(e.target.files);
         e.target.value = ''; // Reset input
     });
-    
+
     function handleFileSelection(files) {
         if (!files || files.length === 0) return;
-        
+
         // Add new files to the list (avoid duplicates by name and size)
         Array.from(files).forEach(file => {
             if (!file.name.toLowerCase().endsWith('.pdf')) {
@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`"${file.name}" ${notPdfMsg}`);
                 return;
             }
-            
+
             // Check if file already exists
-            const exists = selectedFiles.some(f => 
+            const exists = selectedFiles.some(f =>
                 f.name === file.name && f.size === file.size
             );
-            
+
             if (!exists) {
                 selectedFiles.push({
                     file: file,
@@ -76,27 +76,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
-        
+
         // Limit to 10 files
         if (selectedFiles.length > 10) {
             selectedFiles = selectedFiles.slice(0, 10);
             alert(window.MAX_FILES_EXCEEDED || 'Maximum 10 files allowed. Only the first 10 files will be used.');
         }
-        
+
         updateFileList();
         updatePreview();
         updateButtons();
     }
-    
+
     function updateFileList() {
         if (!selectedPdfFilesList) return;
-        
+
         selectedPdfFilesList.innerHTML = '';
-        
+
         selectedFiles.forEach((fileData, index) => {
             const file = fileData.file;
             const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
-            
+
             const fileItem = document.createElement('div');
             fileItem.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200';
             fileItem.dataset.fileId = fileData.id;
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="text-xs text-gray-500">${sizeMB} MB</p>
                     </div>
                 </div>
-                <button type="button" 
+                <button type="button"
                         class="remove-file-btn ml-3 p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors flex-shrink-0"
                         data-file-id="${fileData.id}"
                         aria-label="Remove file">
@@ -119,18 +119,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     </svg>
                 </button>
             `;
-            
+
             selectedPdfFilesList.appendChild(fileItem);
         });
-        
+
         // Remove button handlers are handled via event delegation set up at initialization
         // No need to attach individual handlers here
-        
+
         // Update count
         if (pdfFileCount) {
             pdfFileCount.textContent = selectedFiles.length;
         }
-        
+
         // Show/hide container
         if (selectedPdfFilesContainer) {
             if (selectedFiles.length > 0) {
@@ -140,12 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     function removeFile(fileId) {
         // Convert fileId to number for comparison (data attributes are strings)
         // ID is created as Date.now() + Math.random(), so it's a number
         const fileIdNum = typeof fileId === 'string' ? parseFloat(fileId) : fileId;
-        
+
         // Find and cleanup file data - use loose comparison to handle string/number mismatch
         const fileData = selectedFiles.find(f => {
             // Compare as numbers (with tolerance for floating point)
@@ -156,11 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (f.id === fileIdNum || f.id === fileId) return true;
             return false;
         });
-        
+
         if (!fileData) {
             return;
         }
-        
+
         // Cleanup PDF document if exists
         if (fileData.pdfDoc) {
             try {
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const ctx = fileData.preview.getContext('2d');
             ctx.clearRect(0, 0, fileData.preview.width, fileData.preview.height);
         }
-        
+
         // Remove preview card from DOM - try multiple selectors
         const previewCard = pdfPreviewContainer?.querySelector(`[data-file-id="${fileData.id}"]`) ||
                           pdfPreviewContainer?.querySelector(`[data-file-id="${fileId}"]`) ||
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (previewCard) {
             previewCard.remove();
         }
-        
+
         // Remove from array - use the same comparison logic
         selectedFiles = selectedFiles.filter(f => {
             // Keep files that don't match
@@ -191,45 +191,45 @@ document.addEventListener('DOMContentLoaded', () => {
             if (f.id === fileIdNum || f.id === fileId) return false;
             return true;
         });
-        
+
         updateFileList();
         updatePreview();
         updateButtons();
     }
-    
+
     async function updatePreview() {
         if (!pdfPreviewContainer) return;
-        
+
         pdfPreviewContainer.innerHTML = '';
-        
+
         if (selectedFiles.length === 0) {
             if (pdfPreviewSection) {
                 pdfPreviewSection.classList.add('hidden');
             }
             return;
         }
-        
+
         if (pdfPreviewSection) {
             pdfPreviewSection.classList.remove('hidden');
         }
-        
+
         // Generate previews for each file
         for (let i = 0; i < selectedFiles.length; i++) {
             const fileData = selectedFiles[i];
             await generatePreview(fileData, i);
         }
-        
+
         // Make previews sortable
         makeSortable();
     }
-    
+
     async function generatePreview(fileData, index) {
         const previewCard = document.createElement('div');
         previewCard.className = 'pdf-preview-card bg-white rounded-lg border-2 border-gray-200 p-2 cursor-move hover:border-blue-400 transition-colors';
         previewCard.dataset.fileId = fileData.id;
         previewCard.dataset.index = index;
         previewCard.draggable = true;
-        
+
         previewCard.innerHTML = `
             <div class="relative">
                 <div class="w-full aspect-[3/4] bg-gray-100 rounded border border-gray-200 flex items-center justify-center overflow-hidden">
@@ -247,9 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${escapeHtml(fileData.file.name)}
             </p>
         `;
-        
+
         pdfPreviewContainer.appendChild(previewCard);
-        
+
         // Load PDF and render first page
         let pdf = null;
         try {
@@ -257,21 +257,21 @@ document.addEventListener('DOMContentLoaded', () => {
             pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             const page = await pdf.getPage(1);
             const viewport = page.getViewport({ scale: 0.5 });
-            
+
             const canvas = document.createElement('canvas');
             canvas.width = viewport.width;
             canvas.height = viewport.height;
             const context = canvas.getContext('2d');
-            
+
             await page.render({
                 canvasContext: context,
                 viewport: viewport
             }).promise;
-            
+
             const canvasContainer = previewCard.querySelector('.pdf-preview-canvas-container');
             canvasContainer.innerHTML = '';
             canvasContainer.appendChild(canvas);
-            
+
             fileData.preview = canvas;
             fileData.pdfDoc = pdf; // Store for cleanup
         } catch (error) {
@@ -290,30 +290,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     function makeSortable() {
         const cards = pdfPreviewContainer.querySelectorAll('.pdf-preview-card');
-        
+
         cards.forEach(card => {
             card.addEventListener('dragstart', (e) => {
                 draggedElement = card;
                 card.style.opacity = '0.5';
                 e.dataTransfer.effectAllowed = 'move';
             });
-            
+
             card.addEventListener('dragend', () => {
                 card.style.opacity = '1';
                 draggedElement = null;
             });
-            
+
             card.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 e.dataTransfer.dropEffect = 'move';
-                
+
                 if (draggedElement && draggedElement !== card) {
                     const rect = card.getBoundingClientRect();
                     const midY = rect.top + rect.height / 2;
-                    
+
                     if (e.clientY < midY) {
                         card.parentNode.insertBefore(draggedElement, card);
                     } else {
@@ -321,25 +321,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-            
+
             card.addEventListener('drop', (e) => {
                 e.preventDefault();
                 updateOrderFromPreview();
             });
         });
     }
-    
+
     function updateOrderFromPreview() {
         const cards = Array.from(pdfPreviewContainer.querySelectorAll('.pdf-preview-card'));
         const newOrder = cards.map(card => card.dataset.fileId);
-        
+
         // Reorder selectedFiles array
         selectedFiles.sort((a, b) => {
             const indexA = newOrder.indexOf(a.id.toString());
             const indexB = newOrder.indexOf(b.id.toString());
             return indexA - indexB;
         });
-        
+
         // Update preview with new order numbers
         cards.forEach((card, index) => {
             const numberBadge = card.querySelector('.absolute .bg-blue-600');
@@ -348,14 +348,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             card.dataset.index = index;
         });
-        
+
         // Update file list
         updateFileList();
     }
-    
+
     function updateButtons() {
         const hasFiles = selectedFiles.length >= 2;
-        
+
         if (editButton) {
             editButton.disabled = !hasFiles;
             if (hasFiles) {
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 editButton.classList.add('opacity-50', 'cursor-not-allowed');
             }
         }
-        
+
         if (addMorePdfFilesButton) {
             if (selectedFiles.length > 0 && selectedFiles.length < 10) {
                 addMorePdfFilesButton.classList.remove('hidden');
@@ -373,38 +373,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
+
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
-    
+
     // Form submission - intercept and use API
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         e.stopPropagation(); // Prevent other handlers from running
-        
+
         if (selectedFiles.length < 2) {
             showError('Please select at least 2 PDF files to merge.');
             return;
         }
-        
+
         if (selectedFiles.length > 10) {
             showError('Maximum 10 PDF files allowed.');
             return;
         }
-        
+
         // Get API URL from window.API_URL or form action
         const apiUrl = window.API_URL || form.action || '/api/pdf-organize/merge/';
-        
+
         // Create FormData with files in order
         const formData = new FormData();
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || window.CSRF_TOKEN;
         if (csrfToken) {
             formData.append('csrfmiddlewaretoken', csrfToken);
         }
-        
+
         // Append files in the order they appear in selectedFiles array
         // Use the same field name 'pdf_files' for all files so Django can get them with getlist()
         // Important: FormData.append with the same field name creates an array on the server
@@ -415,24 +415,24 @@ document.addEventListener('DOMContentLoaded', () => {
             // Third parameter (filename) is optional but helps with server-side handling
             formData.append('pdf_files', file, file.name);
         });
-        
+
         // Verify files are in FormData (for debugging)
         if (selectedFiles.length !== Array.from(formData.getAll('pdf_files')).length) {
             console.error('File count mismatch in FormData!');
         }
-        
+
         formData.append('order', 'upload'); // Order is determined by array order
-        
+
         // Hide previous results
         hideResult();
         hideDownload();
-        
+
         // Show loading
         showLoading();
-        
+
         // Disable form
         setFormDisabled(true);
-        
+
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -442,9 +442,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             });
-            
+
             const blob = await response.blob();
-            
+
             if (!response.ok) {
                 try {
                     const errorData = await blob.text();
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(window.ERROR_MESSAGE || 'Failed to merge PDFs. Please try again.');
                 }
             }
-            
+
             // Get filename from Content-Disposition header
             const contentDisposition = response.headers.get('Content-Disposition');
             let filename = 'merged.pdf';
@@ -464,18 +464,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     filename = filenameMatch[1].replace(/['"]/g, '');
                 }
             }
-            
+
             // Use first file name for output filename
             const originalFileName = selectedFiles[0]?.file?.name || 'merged';
             const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$', 'i');
             const replaceTo = window.REPLACE_TO || '_merged.pdf';
             const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
-            
+
             // Hide loading and show download button
             hideLoading();
             showDownloadButton(outputFileName, blob);
             setFormDisabled(false);
-            
+
         } catch (error) {
             console.error('Error merging PDFs:', error);
             hideLoading();
@@ -483,12 +483,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setFormDisabled(false);
         }
     });
-    
+
     // Helper functions for UI
     function showLoading() {
         const container = document.getElementById('loadingContainer');
         if (!container) return;
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -508,20 +508,20 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         container.classList.remove('hidden');
     }
-    
+
     function hideLoading() {
         const container = document.getElementById('loadingContainer');
         if (container) {
             container.classList.add('hidden');
         }
     }
-    
+
     function showDownloadButton(originalFileName, blob) {
         const container = document.getElementById('downloadContainer');
         if (!container) return;
-        
+
         const url = URL.createObjectURL(blob);
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -542,7 +542,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <a href="${url}" 
+                        <a href="${url}"
                            download="${originalFileName}"
                            class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -561,18 +561,18 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         container.classList.remove('hidden');
     }
-    
+
     function hideDownload() {
         const container = document.getElementById('downloadContainer');
         if (container) {
             container.classList.add('hidden');
         }
     }
-    
+
     function showError(message) {
         const container = document.getElementById('editorResult');
         if (!container) return;
-        
+
         container.innerHTML = `
             <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-3">
@@ -594,14 +594,14 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         container.classList.remove('hidden');
     }
-    
+
     function hideResult() {
         const container = document.getElementById('editorResult');
         if (container) {
             container.classList.add('hidden');
         }
     }
-    
+
     function setFormDisabled(disabled) {
         if (editButton) {
             editButton.disabled = disabled;
@@ -613,8 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     // Initialize
     updateButtons();
 });
-

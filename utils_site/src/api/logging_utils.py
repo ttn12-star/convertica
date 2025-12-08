@@ -5,7 +5,7 @@ Structured logging utilities for API views.
 import logging
 import os
 import time
-from typing import Any, Dict, Optional
+from typing import Any
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
@@ -17,8 +17,8 @@ def get_logger(name: str) -> logging.Logger:
 
 
 def build_request_context(
-    request, uploaded_file: Optional[UploadedFile] = None, **additional_context: Any
-) -> Dict[str, Any]:
+    request, uploaded_file: UploadedFile | None = None, **additional_context: Any
+) -> dict[str, Any]:
     """
     Build structured context dictionary for logging.
 
@@ -55,7 +55,7 @@ def build_request_context(
 
 
 def log_conversion_start(
-    logger: logging.Logger, conversion_type: str, context: Dict[str, Any]
+    logger: logging.Logger, conversion_type: str, context: dict[str, Any]
 ) -> float:
     """
     Log the start of a conversion operation.
@@ -83,9 +83,9 @@ def log_conversion_start(
 def log_conversion_success(
     logger: logging.Logger,
     conversion_type: str,
-    context: Dict[str, Any],
+    context: dict[str, Any],
     start_time: float,
-    output_filename: Optional[str] = None,
+    output_filename: str | None = None,
     **additional_info: Any,
 ):
     """
@@ -117,9 +117,9 @@ def log_conversion_success(
 def log_conversion_error(
     logger: logging.Logger,
     conversion_type: str,
-    context: Dict[str, Any],
+    context: dict[str, Any],
     error: Exception,
-    start_time: Optional[float] = None,
+    start_time: float | None = None,
     level: str = "error",
     **additional_info: Any,
 ):
@@ -170,7 +170,7 @@ def log_conversion_error(
 
 
 def log_validation_error(
-    logger: logging.Logger, serializer_errors: Dict[str, Any], context: Dict[str, Any]
+    logger: logging.Logger, serializer_errors: dict[str, Any], context: dict[str, Any]
 ):
     """Log serializer validation errors."""
     logger.warning(
@@ -184,7 +184,7 @@ def log_validation_error(
 
 
 def log_file_validation_error(
-    logger: logging.Logger, reason: str, context: Dict[str, Any], **additional_info: Any
+    logger: logging.Logger, reason: str, context: dict[str, Any], **additional_info: Any
 ):
     """Log file validation errors (size, type, etc.)."""
     logger.warning(

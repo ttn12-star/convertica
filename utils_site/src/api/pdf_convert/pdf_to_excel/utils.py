@@ -1,10 +1,10 @@
 # utils.py
 import os
 import tempfile
-from typing import Tuple
 
 import pandas as pd
 from django.core.files.uploadedfile import UploadedFile
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -26,7 +26,7 @@ logger = get_logger(__name__)
 
 def convert_pdf_to_excel(
     uploaded_file: UploadedFile, pages: str = "all", suffix: str = "_convertica"
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Convert PDF to Excel by extracting tables.
 
     Args:
@@ -66,7 +66,7 @@ def convert_pdf_to_excel(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as io_err:
+        except OSError as io_err:
             raise StorageError(
                 f"Failed to write PDF: {io_err}", context=context
             ) from io_err
