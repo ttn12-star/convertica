@@ -21,6 +21,50 @@ from ...logging_utils import get_logger
 
 logger = get_logger(__name__)
 
+# Register Unicode font for watermark text (supports Cyrillic, etc.)
+_WATERMARK_FONT_REGISTERED = False
+
+
+def _register_watermark_font():
+    """Register Unicode font for watermark text rendering."""
+    global _WATERMARK_FONT_REGISTERED
+    if _WATERMARK_FONT_REGISTERED:
+        return
+
+    # Try to find and register a Unicode font
+    unicode_font_paths = [
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+        "/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf",
+    ]
+
+    font_registered = False
+    for font_path in unicode_font_paths:
+        if os.path.exists(font_path):
+            try:
+                pdfmetrics.registerFont(TTFont("WatermarkFont", font_path))
+                # Try to register bold version
+                bold_path = font_path.replace("Regular", "Bold").replace("-Regular", "-Bold")
+                if os.path.exists(bold_path):
+                    pdfmetrics.registerFont(TTFont("WatermarkFontBold", bold_path))
+                else:
+                    # Use regular font as bold if bold version not found
+                    pdfmetrics.registerFont(TTFont("WatermarkFontBold", font_path))
+                logger.debug(f"Registered Unicode font: {font_path}")
+                font_registered = True
+                break
+            except Exception as e:
+                logger.warning(f"Failed to register font {font_path}: {e}")
+                continue
+
+    if not font_registered:
+        logger.warning("No Unicode font found, using default Helvetica (may not support Cyrillic)")
+
+    _WATERMARK_FONT_REGISTERED = True
+
 
 def parse_pages(pages_str: str, total_pages: int) -> List[int]:
     """Parse page string into list of page indices (0-indexed).
