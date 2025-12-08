@@ -3,6 +3,7 @@ import os
 import tempfile
 from typing import Tuple
 
+import fitz  # PyMuPDF for PDF repair
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
 from src.exceptions import (
@@ -21,6 +22,41 @@ from ...file_validation import (
 from ...logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+
+def repair_pdf(input_path: str, output_path: str) -> bool:
+    """Attempt to repair a potentially corrupted PDF file.
+
+    Uses PyMuPDF to open and re-save the PDF with garbage collection,
+    which can fix issues like broken xref tables and invalid object references.
+
+    Args:
+        input_path: Path to the original PDF file
+        output_path: Path to save the repaired PDF
+
+    Returns:
+        True if repair was successful, False otherwise
+    """
+    try:
+        # Open with repair mode
+        doc = fitz.open(input_path)
+
+        # Re-save with maximum garbage collection and compression
+        # garbage=4 removes unused objects and compacts xref
+        # deflate=True compresses streams
+        doc.save(
+            output_path,
+            garbage=4,
+            deflate=True,
+            clean=True,  # Clean and sanitize content streams
+        )
+        doc.close()
+
+        logger.debug("PDF repair successful: %s -> %s", input_path, output_path)
+        return True
+    except Exception as e:  # noqa: BLE001
+        logger.warning("PDF repair failed: %s", e)
+        return False
 
 
 def convert_pdf_to_docx(
@@ -125,8 +161,24 @@ def convert_pdf_to_docx(
                 extra={**context, "event": "conversion_start"},
             )
 
+            # Try to repair PDF first to handle corrupted files
+            repaired_pdf_path = os.path.join(tmp_dir, f"repaired_{safe_name}")
+            conversion_pdf_path = pdf_path
+
+            if repair_pdf(pdf_path, repaired_pdf_path):
+                logger.debug(
+                    "Using repaired PDF for conversion",
+                    extra={**context, "event": "using_repaired_pdf"},
+                )
+                conversion_pdf_path = repaired_pdf_path
+            else:
+                logger.debug(
+                    "PDF repair not needed or failed, using original",
+                    extra={**context, "event": "using_original_pdf"},
+                )
+
             # Create converter with optimized settings
-            cv = Converter(pdf_path)
+            cv = Converter(conversion_pdf_path)
             try:
                 # Convert with better quality settings
                 # pdf2docx supports pages parameter for selective conversion
@@ -161,6 +213,21 @@ def convert_pdf_to_docx(
                 )
                 raise EncryptedPDFError(
                     "PDF is encrypted/password protected", context=error_context
+                ) from conv_exc
+
+            # Check for corrupted xref/object reference errors
+            if any(
+                keyword in msg
+                for keyword in ["object out of range", "xref", "out of range"]
+            ):
+                logger.warning(
+                    "PDF has corrupted object references",
+                    extra={**error_context, "event": "corrupted_xref_error"},
+                )
+                raise InvalidPDFError(
+                    "PDF file is corrupted (invalid object references). "
+                    "Please try re-saving the PDF from the original application.",
+                    context=error_context,
                 ) from conv_exc
 
             if any(
