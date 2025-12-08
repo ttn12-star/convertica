@@ -48,7 +48,9 @@
     <!-- Google Fonts for better typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- Hreflang Tags for SEO -->
     {% for link in hreflangs %}
@@ -59,9 +61,22 @@
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
 
-    <!-- Stylesheets -->
+    <!-- Critical inline styles for above-the-fold content -->
+    <style>
+      body{margin:0;font-family:Inter,Poppins,system-ui,sans-serif}
+      .fixed{position:fixed}.top-0{top:0}.left-0{left:0}.right-0{right:0}
+      .z-50{z-index:50}.bg-white{background-color:#fff}
+      .hidden{display:none}.flex{display:flex}.items-center{align-items:center}
+      .justify-between{justify-content:space-between}.container{width:100%;margin:0 auto}
+      @media(min-width:640px){.container{max-width:640px}}
+      @media(min-width:768px){.container{max-width:768px}}
+      @media(min-width:1024px){.container{max-width:1024px}}
+      @media(min-width:1280px){.container{max-width:1280px}}
+    </style>
+    <!-- Stylesheets - async load for better performance -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'css/tailwind.css' %}"></noscript>
 
     <!-- Custom Animations -->
     <style>
@@ -206,9 +221,9 @@
     {% include "frontend/includes/cookie_banner.html" %}
 
     <!-- Cookie Consent Utility -->
-    <script src="{% static 'js/cookie-consent.js' %}"></script>
+    <script src="{% static 'js/cookie-consent.js' %}" defer></script>
 
-    <script src="{% static 'js/language-detection.js' %}"></script>
+    <script src="{% static 'js/language-detection.js' %}" defer></script>
 
     <script>
     // Example: Initialize analytics only if allowed

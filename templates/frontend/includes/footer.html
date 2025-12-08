@@ -183,6 +183,7 @@
           {% endwith %}
           <select name="language"
                   onchange="this.form.submit();"
+                  aria-label="{% trans 'Select language' %}"
                   class="w-full border border-gray-600 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-800 text-white cursor-pointer hover:border-gray-500 transition-colors shadow-lg">
             {% for code, name in LANGUAGES %}
               <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
@@ -192,7 +193,7 @@
           </select>
         </form>
         <div class="pt-4 border-t border-gray-700">
-          <p class="text-xs text-gray-500 mb-2">{% trans "Resources" %}</p>
+          <p class="text-xs text-gray-400 mb-2">{% trans "Resources" %}</p>
           <ul class="space-y-2 text-sm">
             <li>
               <a href="{% url 'all_tools_page' %}"
@@ -212,24 +213,24 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="text-center sm:text-left">
-          <p class="text-gray-500">
+          <p class="text-gray-400">
             &copy; {% now "Y" %} <span class="font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Convertica</span>. {% trans "All rights reserved." %}
           </p>
-          <p class="text-xs text-gray-600 mt-1">
+          <p class="text-xs text-gray-400 mt-1">
             {% trans "Free PDF tools for everyone" %}
           </p>
         </div>
         <div class="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
           <a href="{% url 'blog:article_list' %}"
-             class="text-gray-500 hover:text-blue-400 transition-colors duration-200 hover:underline">
+             class="text-gray-400 hover:text-blue-400 transition-colors duration-200 hover:underline">
             {% trans "Blog" %}
           </a>
           <a href="/privacy/"
-             class="text-gray-500 hover:text-white transition-colors duration-200 hover:underline">
+             class="text-gray-400 hover:text-white transition-colors duration-200 hover:underline">
             {% trans "Privacy Policy" %}
           </a>
           <a href="/terms/"
-             class="text-gray-500 hover:text-white transition-colors duration-200 hover:underline">
+             class="text-gray-400 hover:text-white transition-colors duration-200 hover:underline">
             {% trans "Terms" %}
           </a>
         </div>
