@@ -416,27 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // If dragging existing selection - handle this first (priority)
-        if (isDragging && currentSelection) {
-            let newX = x - dragStartX;
-            let newY = y - dragStartY;
-            
-            // Constrain to canvas bounds
-            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
-            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
-            
-            // Update currentSelection immediately for dragging
-            currentSelection.x = newX;
-            currentSelection.y = newY;
-            
-            updateSelection(newX, newY, currentSelection.width, currentSelection.height);
-            updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
-            
-            // Update coordinates in real-time
-            updateCropCoordinates();
-            return;
-        }
-
         // If creating new selection (drag-to-select)
         if (isSelecting && !isDragging) {
             const minX = Math.min(selectionStartX, x);
@@ -462,23 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             updateSelection(selX, selY, selWidth, selHeight);
             updateOverlay(selX, selY, selWidth, selHeight);
-            updateCropCoordinates();
-        }
-            let newX = x - dragStartX;
-            let newY = y - dragStartY;
-            
-            // Constrain to canvas bounds
-            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
-            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
-            
-            // Update currentSelection immediately for dragging
-            currentSelection.x = newX;
-            currentSelection.y = newY;
-            
-            updateSelection(newX, newY, currentSelection.width, currentSelection.height);
-            updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
-            
-            // Update coordinates in real-time
             updateCropCoordinates();
         }
     });
