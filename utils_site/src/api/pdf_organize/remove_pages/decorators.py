@@ -19,6 +19,7 @@ def remove_pages_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Remove specific pages from PDF. "
             "Specify pages as comma-separated numbers or ranges.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -35,6 +36,7 @@ def remove_pages_docs() -> Callable:
                     required=True,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="PDF file with pages removed.",

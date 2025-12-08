@@ -58,7 +58,7 @@ services:
       - "443:443"
     depends_on:
       web:
-        condition: service_started  # Changed from service_healthy to allow nginx to start even if web is still starting
+        condition: service_healthy  # Wait for web to be healthy before starting nginx
     networks:
       - convertica_network
     restart: unless-stopped

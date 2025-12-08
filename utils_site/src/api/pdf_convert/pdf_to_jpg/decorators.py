@@ -24,6 +24,7 @@ def pdf_to_jpg_docs() -> Callable:
             operation_description="Convert a PDF page into a JPG image. "
             "By default converts the first page. "
             "You can specify page number and DPI for quality control.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -47,6 +48,7 @@ def pdf_to_jpg_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Converted JPG image file.",

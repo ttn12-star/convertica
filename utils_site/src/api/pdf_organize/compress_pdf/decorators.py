@@ -20,6 +20,7 @@ def compress_pdf_docs() -> Callable:
             operation_description="Compress PDF to reduce file size. "
             "Choose compression level: low (faster, less compression), "
             "medium (balanced), or high (slower, more compression).",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -36,6 +37,7 @@ def compress_pdf_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Compressed PDF file.",

@@ -95,3 +95,39 @@ class PerformanceMonitoringMiddleware(MiddlewareMixin):
                 logger.warning(f"Slow request: {request.path} took {duration:.3f}s")
 
         return response
+
+
+class FilterProxyRequestsMiddleware(MiddlewareMixin):
+    """
+    Middleware to filter out proxy CONNECT requests and other suspicious requests.
+
+    This prevents DisallowedHost errors from proxy tunneling attempts (e.g., CONNECT ipinfo.io:443).
+    These requests are typically from bots/scanners trying to use the server as a proxy.
+    """
+
+    def process_request(self, request):
+        # Filter CONNECT requests (HTTP proxy tunneling)
+        if request.method == "CONNECT":
+            from django.http import HttpResponseBadRequest
+
+            return HttpResponseBadRequest("Proxy requests are not allowed")
+
+        # Filter requests with suspicious Host headers (common in proxy attacks)
+        # Check HTTP_HOST header directly to avoid DisallowedHost exception
+        host = request.META.get("HTTP_HOST", "")
+
+        # Check if host looks like a proxy target (contains port and is not our domain)
+        if (
+            host
+            and ":" in host
+            and "convertica.net" not in host.lower()
+            and "localhost" not in host.lower()
+            and "127.0.0.1" not in host
+        ):
+            # This is likely a proxy CONNECT request that got through
+            # Return 400 without raising DisallowedHost
+            from django.http import HttpResponseBadRequest
+
+            return HttpResponseBadRequest("Invalid request")
+
+        return None

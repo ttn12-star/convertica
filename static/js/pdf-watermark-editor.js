@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontSizeSection = document.getElementById('fontSizeSection');
     const watermarkText = document.getElementById('watermark_text');
     const watermarkFile = document.getElementById('watermark_file');
+    const watermarkFileButton = document.getElementById('watermarkFileButton');
+    const watermarkFileName = document.getElementById('watermarkFileName');
     const watermarkColor = document.getElementById('watermark_color');
     const watermarkColorText = document.getElementById('watermark_color_text');
     const opacitySlider = document.getElementById('opacity');
@@ -76,6 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 textWatermarkSection.classList.remove('hidden');
                 imageWatermarkSection.classList.add('hidden');
                 fontSizeSection.classList.remove('hidden');
+                // Clear file input when switching to text
+                if (watermarkFile) {
+                    watermarkFile.value = '';
+                }
+                if (watermarkFileName) {
+                    watermarkFileName.textContent = '';
+                }
                 updateWatermarkPreview();
             }
         });
@@ -140,10 +149,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Watermark file button - trigger file input click
+    if (watermarkFileButton && watermarkFile) {
+        watermarkFileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            watermarkFile.click();
+        });
+    }
+
     // Watermark image change
     if (watermarkFile) {
         watermarkFile.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
+                const file = e.target.files[0];
+                // Show file name
+                if (watermarkFileName) {
+                    watermarkFileName.textContent = file.name;
+                }
+                // Load image for preview
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     watermarkImage = new Image();
@@ -152,22 +175,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
                     watermarkImage.src = event.target.result;
                 };
-                reader.readAsDataURL(e.target.files[0]);
+                reader.readAsDataURL(file);
             }
         });
     }
 
     // File input handlers
-    if (selectFileButton) {
-        selectFileButton.addEventListener('click', () => {
-            fileInput?.click();
-        });
-    }
+    // Note: file-input-handler.js handles the button click and file selection display
+    // We listen to the 'fileSelected' custom event to load the PDF for preview
+    document.addEventListener('fileSelected', (e) => {
+        const file = e.detail?.file;
+        if (file && file.type === 'application/pdf') {
+            handleFileSelect(file);
+        }
+    });
 
+    // Also listen to direct change events as fallback (in case file-input-handler.js is not loaded)
     if (fileInput) {
         fileInput.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
-                handleFileSelect(e.target.files[0]);
+                const file = e.target.files[0];
+                if (file.type === 'application/pdf') {
+                    handleFileSelect(file);
+                }
             }
         });
     }
@@ -175,13 +205,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fileInputDrop) {
         fileInputDrop.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
-                handleFileSelect(e.target.files[0]);
+                const file = e.target.files[0];
+                if (file.type === 'application/pdf') {
+                    handleFileSelect(file);
+                }
             }
         });
     }
 
     async function handleFileSelect(file) {
         try {
+            // Check if PDF.js is loaded
+            if (typeof pdfjsLib === 'undefined') {
+                showError('PDF.js library is not loaded. Please refresh the page and try again.');
+                console.error('PDF.js library (pdfjsLib) is not available');
+                return;
+            }
+
             // Cleanup previous PDF if exists
             cleanupPreviousPDF();
             
@@ -189,9 +229,41 @@ document.addEventListener('DOMContentLoaded', () => {
             pdfPreviewSection.classList.remove('hidden');
             watermarkSettingsSection.classList.remove('hidden');
 
+            // Validate file type
+            if (!file || !file.type || !file.type.includes('pdf')) {
+                showError('Please select a valid PDF file.');
+                // Hide preview sections on validation error
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                return;
+            }
+
             // Load PDF
             const arrayBuffer = await file.arrayBuffer();
-            pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            
+            // Check if arrayBuffer is valid
+            if (!arrayBuffer || arrayBuffer.byteLength === 0) {
+                showError('Failed to read file. Please try again.');
+                // Hide preview sections on validation error
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                return;
+            }
+
+            // Load PDF document with error handling
+            pdfDoc = await pdfjsLib.getDocument({ 
+                data: arrayBuffer,
+                verbosity: 0 // Suppress warnings
+            }).promise;
+            
+            if (!pdfDoc) {
+                showError('Failed to load PDF document. Please check if the file is a valid PDF.');
+                // Hide preview sections on load error
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                return;
+            }
+
             pageCount = pdfDoc.numPages;
 
             // Populate page selector
@@ -214,9 +286,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
-            showError('Failed to load PDF file. Please try again.');
+            // More detailed error handling
+            let errorMessage = 'Failed to load PDF file. Please try again.';
+            
+            if (error && error.message) {
+                if (error.message.includes('Invalid PDF')) {
+                    errorMessage = 'Invalid PDF file. Please select a valid PDF file.';
+                } else if (error.message.includes('password')) {
+                    errorMessage = 'This PDF is password protected. Please unlock it first.';
+                } else if (error.message.includes('network') || error.message.includes('fetch')) {
+                    errorMessage = 'Network error. Please check your connection and try again.';
+                } else {
+                    errorMessage = `Error: ${error.message}`;
+                }
+            }
+            
+            showError(errorMessage);
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
+                console.error('Error details:', {
+                    name: error?.name,
+                    message: error?.message,
+                    stack: error?.stack
+                });
+            }
+            
+            // Hide preview sections on error
+            if (pdfPreviewSection) {
+                pdfPreviewSection.classList.add('hidden');
+            }
+            if (watermarkSettingsSection) {
+                watermarkSettingsSection.classList.add('hidden');
             }
         }
     }
@@ -248,10 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
         }
         
-        // Clear watermark preview
+        // Clear watermark preview (it's a div, not a canvas)
         if (watermarkPreview) {
-            const ctx = watermarkPreview.getContext('2d');
-            ctx.clearRect(0, 0, watermarkPreview.width, watermarkPreview.height);
+            watermarkPreview.innerHTML = '';
+            watermarkPreview.classList.add('hidden');
         }
     }
 

@@ -7,16 +7,21 @@ services:
       context: .
       dockerfile: ci/Dockerfile
       target: builder  # Use builder stage for development
+    entrypoint: []  # Override ENTRYPOINT from Dockerfile for dev mode
     command: >
-      sh -c "python manage.py collectstatic --noinput &&
-             python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+      sh -c "
+        # Create symlink for src module if it doesn't exist
+        [ ! -L /app/src ] && [ ! -d /app/src ] && ln -s /app/utils_site/src /app/src || true &&
+        python manage.py collectstatic --noinput &&
+        python manage.py migrate &&
+        python manage.py runserver 0.0.0.0:8000
+      "
     volumes:
       - .:/app  # Mount source code for hot reload
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
       - ./logs:/app/logs
-        environment:
+    environment:
           - DEBUG=True
           - DATABASE_ENGINE=sqlite3  # Use SQLite for development
           - USE_WHITENOISE=True  # Use WhiteNoise in development (simpler than Nginx)

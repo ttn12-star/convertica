@@ -1,5 +1,4 @@
 # utils.py
-import math
 import os
 import tempfile
 from io import BytesIO
@@ -10,20 +9,14 @@ from PIL import Image
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.units import inch
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
-from src.exceptions import (
-    ConversionError,
-    EncryptedPDFError,
-    InvalidPDFError,
-    StorageError,
-)
+from src.exceptions import (ConversionError, EncryptedPDFError,
+                            InvalidPDFError, StorageError)
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_pdf_file,
-)
+from ...file_validation import (check_disk_space, sanitize_filename,
+                                validate_output_file, validate_pdf_file)
 from ...logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -264,12 +257,15 @@ def add_watermark(
                         # Calculate position
                         # For images, coordinates (x, y) represent the center point
                         # Priority: if coordinates are provided, use them regardless of position parameter
+                        # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
+                        # to PDF system (bottom-left origin) before sending, so use them directly
                         if x is not None and y is not None:
-                            # If coordinates are provided, use them regardless of position
+                            # JavaScript sends coordinates already in PDF system (bottom-left origin)
+                            # Use them directly without conversion
                             watermark_center_x = x
                             watermark_center_y = y
                             logger.debug(
-                                f"Page {page_num + 1}: Using provided coordinates ({x:.2f}, {y:.2f}) for image watermark",
+                                f"Page {page_num + 1}: Using provided coordinates (PDF: {watermark_center_x:.2f}, {watermark_center_y:.2f}) for image watermark",
                                 extra=context,
                             )
                         elif position == "center":
@@ -280,6 +276,7 @@ def add_watermark(
                                 extra=context,
                             )
                         else:  # diagonal (default) or custom without coordinates
+                            # Place at center, rotation will be applied if needed
                             watermark_center_x = page_width / 2
                             watermark_center_y = page_height / 2
                             logger.debug(
@@ -352,11 +349,20 @@ def add_watermark(
                             extra=context,
                         )
                         # Fallback to text - use same logic as text watermark below
+                        _register_watermark_font()
                         scaled_font_size = font_size * scale
-                        can.setFont("Helvetica-Bold", scaled_font_size)
+                        # Try to use Unicode font, fallback to Helvetica
+                        try:
+                            can.setFont("WatermarkFontBold", scaled_font_size)
+                        except Exception:
+                            can.setFont("Helvetica-Bold", scaled_font_size)
 
                         # Calculate text position (center point)
+                        # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
+                        # to PDF system (bottom-left origin) before sending, so use them directly
                         if position == "custom" and x is not None and y is not None:
+                            # JavaScript sends coordinates already in PDF system (bottom-left origin)
+                            # Use them directly without conversion
                             watermark_x = x
                             watermark_y = y
                         else:
@@ -403,18 +409,28 @@ def add_watermark(
                             extra=context,
                         )
 
+                    # Register Unicode font if not already registered
+                    _register_watermark_font()
+
                     # Apply scale to font size
                     scaled_font_size = font_size * scale
-                    can.setFont("Helvetica-Bold", scaled_font_size)
+                    # Try to use Unicode font, fallback to Helvetica
+                    try:
+                        can.setFont("WatermarkFontBold", scaled_font_size)
+                    except Exception:
+                        can.setFont("Helvetica-Bold", scaled_font_size)
 
                     # Calculate text position
                     # For text, coordinates (x, y) represent the center point
+                    # IMPORTANT: JavaScript already converts coordinates from Canvas (top-left origin)
+                    # to PDF system (bottom-left origin) before sending, so use them directly
                     if x is not None and y is not None:
-                        # If coordinates are provided, use them regardless of position parameter
+                        # JavaScript sends coordinates already in PDF system (bottom-left origin)
+                        # Use them directly without conversion
                         watermark_x = x
                         watermark_y = y
                         logger.debug(
-                            f"Page {page_num + 1}: Using custom coordinates ({watermark_x:.2f}, {watermark_y:.2f})",
+                            f"Page {page_num + 1}: Using custom coordinates (PDF: {watermark_x:.2f}, {watermark_y:.2f})",
                             extra=context,
                         )
                     elif position == "center":
@@ -425,6 +441,7 @@ def add_watermark(
                             extra=context,
                         )
                     else:  # diagonal (default) or custom without coordinates
+                        # Place at center, rotation will be applied if needed
                         watermark_x = page_width / 2
                         watermark_y = page_height / 2
                         logger.debug(
