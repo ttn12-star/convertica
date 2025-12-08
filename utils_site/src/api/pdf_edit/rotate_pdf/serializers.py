@@ -14,5 +14,8 @@ class RotatePDFSerializer(serializers.Serializer):
     pages = serializers.CharField(
         required=False,
         default="all",
-        help_text="Pages to rotate. Use 'all' for all pages, or comma-separated page numbers (1-indexed), e.g., '1,3,5' or '1-5'.",
+        help_text=(
+            "Pages to rotate. Use 'all' for all pages, or comma-separated "
+            "page numbers (1-indexed), e.g., '1,3,5' or '1-5'."
+        ),
     )

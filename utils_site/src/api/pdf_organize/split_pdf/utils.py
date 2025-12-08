@@ -2,7 +2,7 @@
 import os
 import tempfile
 import zipfile
-from typing import List, Tuple
+from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -16,7 +16,6 @@ from src.exceptions import (
 from ...file_validation import (
     check_disk_space,
     sanitize_filename,
-    validate_output_file,
     validate_pdf_file,
 )
 from ...logging_utils import get_logger

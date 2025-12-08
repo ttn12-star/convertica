@@ -362,9 +362,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const page = await pdfDoc.getPage(pageNum);
             const viewport = page.getViewport({ scale: 1.0 });
 
-            // Calculate scale to fit canvas (max width 800px)
-            const maxWidth = 800;
-            scale = Math.min(maxWidth / viewport.width, 1.0);
+            // Calculate scale to fit canvas in viewport (max width 600px, max height 700px)
+            // Account for container padding (p-4 = 16px each side = 32px total)
+            // And some margin for watermark controls
+            const maxWidth = 600;
+            const maxHeight = 700; // Max height to fit in viewport without scrolling
+            const widthScale = maxWidth / viewport.width;
+            const heightScale = maxHeight / viewport.height;
+            scale = Math.min(widthScale, heightScale, 1.0);
             const scaledViewport = page.getViewport({ scale: scale });
 
             // Set canvas dimensions
@@ -372,6 +377,10 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasHeight = scaledViewport.height;
             pdfCanvas.width = canvasWidth;
             pdfCanvas.height = canvasHeight;
+            
+            // Reset any CSS scaling to ensure accurate coordinate calculations
+            pdfCanvas.style.width = '';
+            pdfCanvas.style.height = '';
 
             // Store PDF dimensions in points
             pdfPageWidth = viewport.width;
@@ -540,19 +549,32 @@ document.addEventListener('DOMContentLoaded', () => {
         watermarkPreview.style.top = `${canvasY}px`;
         watermarkPreview.style.color = color;
         watermarkPreview.style.opacity = opacity;
-        watermarkPreview.style.transform = `translate(-50%, -50%) rotate(${watermarkRotation}deg) scale(${watermarkScale})`;
+        // Invert rotation: ReportLab rotates counter-clockwise, CSS rotates clockwise
+        const cssRotation = -watermarkRotation;
+        watermarkPreview.style.transform = `translate(-50%, -50%) rotate(${cssRotation}deg) scale(${watermarkScale})`;
         watermarkPreview.style.transformOrigin = 'center center';
 
         let content = '';
         if (isText) {
+            // Scale font size to match PDF rendering
+            // In PDF, font_size is in points, and we apply scale
+            // In preview, we need to scale by canvas scale factor and watermark scale
             const scaledFontSize = fontSize * scaleFactor * watermarkScale;
-            content = `<span class="watermark-preview-text" style="font-size: ${scaledFontSize}px;">${escapeHtml(text)}</span>`;
+            // Use bold font to match PDF (WatermarkFontBold or Helvetica-Bold)
+            content = `<span class="watermark-preview-text" style="font-size: ${scaledFontSize}px; font-weight: bold; font-family: Arial, Helvetica, sans-serif;">${escapeHtml(text)}</span>`;
         } else if (watermarkImage) {
-            // Scale image to reasonable size
-            const maxSize = Math.min(canvasWidth, canvasHeight) * 0.3;
-            const imgScale = Math.min(maxSize / watermarkImage.width, maxSize / watermarkImage.height);
-            const imgWidth = watermarkImage.width * imgScale * scaleFactor * watermarkScale;
-            const imgHeight = watermarkImage.height * imgScale * scaleFactor * watermarkScale;
+            // Scale image to match PDF rendering
+            // In PDF: base_scale = min(page_width / img_width, page_height / img_height) * 0.5
+            // Then: scaled_width = img_width * base_scale * scale
+            // Convert PDF dimensions to canvas dimensions
+            const pdfImgWidth = watermarkImage.width;
+            const pdfImgHeight = watermarkImage.height;
+            const baseScale = Math.min(pdfPageWidth / pdfImgWidth, pdfPageHeight / pdfImgHeight) * 0.5;
+            const scaledPdfWidth = pdfImgWidth * baseScale * watermarkScale;
+            const scaledPdfHeight = pdfImgHeight * baseScale * watermarkScale;
+            // Convert to canvas pixels
+            const imgWidth = scaledPdfWidth * scaleFactor;
+            const imgHeight = scaledPdfHeight * scaleFactor;
             
             content = `<img src="${watermarkImage.src}" style="width: ${imgWidth}px; height: ${imgHeight}px; opacity: ${opacity};" alt="Watermark">`;
         } else {

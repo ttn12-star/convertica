@@ -79,7 +79,6 @@ def _get_converter_context(
     # Keywords are kept in English for SEO (users search in English even in other countries)
     # But we can add language-specific keywords if needed
     # current_lang = get_language()  # Not used currently, but may be needed in future
-
     # For now, keywords remain in English for all languages (better for SEO)
     # If needed, we can add language-specific keywords here
     keywords = page_keywords_key
@@ -681,10 +680,10 @@ def faq_page(request):
 @require_http_methods(["GET"])
 def sitemap_xml(request):
     """Generate sitemap.xml for SEO with multilingual support."""
+    from django.conf import settings
     from django.core.cache import cache
     from django.http import HttpResponse
     from django.utils.translation import activate, get_language
-    from django.conf import settings
     from src.blog.models import Article
 
     # Cache sitemap for 24 hours
