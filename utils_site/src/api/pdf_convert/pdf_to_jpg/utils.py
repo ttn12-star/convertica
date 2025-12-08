@@ -4,7 +4,6 @@ import tempfile
 from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_bytes, convert_from_path
 from PIL import Image
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

@@ -5,7 +5,6 @@ import tempfile
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
 from PyPDF2.generic import DictionaryObject
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

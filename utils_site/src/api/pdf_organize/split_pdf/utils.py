@@ -5,7 +5,6 @@ import zipfile
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -13,11 +12,7 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_pdf_file,
-)
+from ...file_validation import check_disk_space, sanitize_filename, validate_pdf_file
 from ...logging_utils import get_logger
 from ...pdf_utils import repair_pdf
 
