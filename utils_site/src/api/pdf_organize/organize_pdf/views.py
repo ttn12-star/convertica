@@ -1,5 +1,4 @@
 # views.py
-from typing import Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -33,7 +32,7 @@ class OrganizePDFAPIView(BaseConversionAPIView):
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
-    ) -> Tuple[str, str]:
+    ) -> tuple[str, str]:
         """Organize PDF."""
         operation = kwargs.get("operation", "reorder")
         page_order = kwargs.get("page_order")

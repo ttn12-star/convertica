@@ -2,7 +2,6 @@
 
 from django import forms
 from django.conf import settings
-from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
 
@@ -157,32 +156,32 @@ class TranslationsWidget(forms.Textarea):
         (function() {
             const container = document.querySelector('.translations-widget-container');
             if (!container) return;
-            
+
             // Tab switching
             container.querySelectorAll('.translation-tab').forEach(tab => {
                 tab.addEventListener('click', function() {
                     const lang = this.dataset.lang;
-                    
+
                     // Update tabs
                     container.querySelectorAll('.translation-tab').forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
-                    
+
                     // Update panels
                     container.querySelectorAll('.translation-panel').forEach(p => {
                         p.style.display = p.dataset.lang === lang ? 'block' : 'none';
                     });
                 });
             });
-            
+
             // Update hidden JSON field on input change
             function updateJSON() {
                 const translations = {};
                 const panels = container.querySelectorAll('.translation-panel');
-                
+
                 panels.forEach(panel => {
                     const lang = panel.dataset.lang;
                     translations[lang] = {};
-                    
+
                     panel.querySelectorAll('input[type="text"], textarea').forEach(input => {
                         const inputName = input.name;
                         // Match pattern: translations_ru_title, translations_pl_content, etc.
@@ -196,7 +195,7 @@ class TranslationsWidget(forms.Textarea):
                         }
                     });
                 });
-                
+
                 const hiddenInput = container.querySelector('input[type="hidden"]');
                 if (hiddenInput) {
                     // Only include languages that have at least one field filled
@@ -209,12 +208,12 @@ class TranslationsWidget(forms.Textarea):
                     hiddenInput.value = JSON.stringify(filtered);
                 }
             }
-            
+
             container.querySelectorAll('input, textarea').forEach(input => {
                 input.addEventListener('input', updateJSON);
                 input.addEventListener('change', updateJSON);
             });
-            
+
             // Initial update
             updateJSON();
         })();

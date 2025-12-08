@@ -2,13 +2,13 @@
 Base exceptions for the application.
 """
 
-from typing import Any, Dict, Optional
+from typing import Any
 
 
 class ConversionError(Exception):
     """Base exception for conversion failures."""
 
-    def __init__(self, message: str, context: Optional[Dict[str, Any]] = None):
+    def __init__(self, message: str, context: dict[str, Any] | None = None):
         """
         Args:
             message: Human-readable error message
@@ -21,7 +21,7 @@ class ConversionError(Exception):
     def __str__(self) -> str:
         return self.message
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """Convert exception to dictionary for logging/API responses."""
         return {
             "error": self.__class__.__name__,

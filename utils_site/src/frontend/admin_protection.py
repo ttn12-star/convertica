@@ -1,8 +1,8 @@
 """Admin protection middleware and decorators."""
 
 import logging
+from collections.abc import Callable
 from functools import wraps
-from typing import Callable
 
 from django.conf import settings
 from django.http import HttpRequest, HttpResponseForbidden

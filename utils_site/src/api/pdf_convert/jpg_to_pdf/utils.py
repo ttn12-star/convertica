@@ -1,12 +1,12 @@
 import os
 import tempfile
-from typing import List, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
+
 from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 from ...file_validation import check_disk_space, sanitize_filename, validate_output_file
@@ -17,7 +17,7 @@ logger = get_logger(__name__)
 
 def convert_jpg_to_pdf(
     uploaded_file: UploadedFile, suffix: str = "_convertica"
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Convert JPG/JPEG image to PDF.
 
     Args:
@@ -82,7 +82,7 @@ def convert_jpg_to_pdf(
                 "File written successfully",
                 extra={**context, "event": "file_write_success"},
             )
-        except (OSError, IOError) as io_err:
+        except OSError as io_err:
             logger.error(
                 "Failed to write uploaded file",
                 extra={**context, "event": "file_write_error", "error": str(io_err)},
@@ -275,8 +275,8 @@ def convert_jpg_to_pdf(
 
 
 def convert_multiple_jpg_to_pdf(
-    uploaded_files: List[UploadedFile], suffix: str = "_convertica"
-) -> Tuple[str, str]:
+    uploaded_files: list[UploadedFile], suffix: str = "_convertica"
+) -> tuple[str, str]:
     """Convert multiple JPG/JPEG images to a single PDF.
 
     Each image will be placed on a separate page in the PDF.
@@ -345,7 +345,7 @@ def convert_multiple_jpg_to_pdf(
                         "file_index": idx + 1,
                     },
                 )
-            except (OSError, IOError) as io_err:
+            except OSError as io_err:
                 logger.error(
                     f"Failed to write uploaded file {idx + 1}",
                     extra={

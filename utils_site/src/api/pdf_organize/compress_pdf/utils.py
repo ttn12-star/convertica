@@ -1,11 +1,11 @@
 # utils.py
 import os
 import tempfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
 from PyPDF2.generic import DictionaryObject
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -29,7 +29,7 @@ def compress_pdf(
     uploaded_file: UploadedFile,
     compression_level: str = "medium",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Compress PDF to reduce file size.
 
     Args:
@@ -69,7 +69,7 @@ def compress_pdf(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(f"Failed to write PDF: {err}", context=context) from err
 
         # Validate PDF

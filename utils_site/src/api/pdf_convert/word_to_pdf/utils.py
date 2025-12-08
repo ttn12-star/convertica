@@ -1,10 +1,10 @@
 import os
 import subprocess
 import tempfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
+
 from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 from ...file_validation import (
@@ -34,7 +34,7 @@ def _check_libreoffice_available() -> bool:
 
 def convert_word_to_pdf(
     uploaded_file: UploadedFile, suffix: str = "_convertica"
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Convert DOC/DOCX → PDF using LibreOffice headless mode.
 
     Args:
@@ -116,7 +116,7 @@ def convert_word_to_pdf(
                 "File written successfully",
                 extra={**context, "event": "file_write_success"},
             )
-        except (OSError, IOError) as err:
+        except OSError as err:
             logger.error(
                 "Failed to write Word file to temp",
                 extra={**context, "event": "file_write_error", "error": str(err)},

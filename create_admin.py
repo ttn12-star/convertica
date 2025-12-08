@@ -5,7 +5,6 @@ Usage: python create_admin.py
 """
 import os
 import sys
-from pathlib import Path
 
 # Setup Django - use the same approach as manage.py
 sys.path.append(os.path.join(os.path.dirname(__file__), "utils_site"))

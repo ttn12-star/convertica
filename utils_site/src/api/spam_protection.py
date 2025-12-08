@@ -3,7 +3,6 @@ Anti-spam protection utilities for API endpoints.
 """
 
 import time
-from typing import Optional
 
 from django.conf import settings
 from django.core.cache import cache
@@ -16,7 +15,7 @@ from .logging_utils import build_request_context, get_logger
 logger = get_logger(__name__)
 
 
-def verify_hcaptcha(token: str, remote_ip: Optional[str] = None) -> bool:
+def verify_hcaptcha(token: str, remote_ip: str | None = None) -> bool:
     """
     Verify hCaptcha token.
 
@@ -96,7 +95,7 @@ def check_rate_limit_by_ip(
     limit: int = 10,
     window: int = 60,
     key_prefix: str = "spam_protection",
-) -> tuple[bool, Optional[str]]:
+) -> tuple[bool, str | None]:
     """
     Check rate limit by IP address.
 
@@ -144,7 +143,7 @@ def check_rate_limit_by_ip(
 
 def check_minimum_time_between_requests(
     request: HttpRequest, min_seconds: int = 2, key_prefix: str = "request_timing"
-) -> tuple[bool, Optional[str]]:
+) -> tuple[bool, str | None]:
     """
     Check minimum time between requests (prevents rapid-fire bot requests).
 
@@ -191,7 +190,7 @@ def check_minimum_time_between_requests(
         return True, None
 
 
-def validate_spam_protection(request: HttpRequest) -> Optional[Response]:
+def validate_spam_protection(request: HttpRequest) -> Response | None:
     """
     Comprehensive spam protection validation.
 

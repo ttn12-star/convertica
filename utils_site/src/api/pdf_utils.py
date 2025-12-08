@@ -1,6 +1,5 @@
 # Shared PDF utilities
 import os
-from typing import Optional
 
 import fitz  # PyMuPDF
 
@@ -9,7 +8,7 @@ from .logging_utils import get_logger
 logger = get_logger(__name__)
 
 
-def repair_pdf(input_path: str, output_path: Optional[str] = None) -> str:
+def repair_pdf(input_path: str, output_path: str | None = None) -> str:
     """Attempt to repair a potentially corrupted PDF file.
 
     Uses PyMuPDF to open and re-save the PDF with garbage collection,

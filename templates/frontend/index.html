@@ -11,460 +11,460 @@
 {% block twitter_description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. Convert documents instantly, no registration required." %}{% endblock %}
 
 {% block structured_data %}
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Convertica",
-    "url": "{{ request.scheme }}://{{ request.get_host }}",
-    "description": "{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}",
-    "potentialAction": {
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Convertica",
+      "url": "{{ request.scheme }}://{{ request.get_host }}",
+      "description": "{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}",
+      "potentialAction": {
         "@type": "SearchAction",
         "target": "{{ request.scheme }}://{{ request.get_host }}/all-tools/",
         "query-input": "required name=search_term_string"
-    },
-    "inLanguage": "{{ LANGUAGE_CODE }}"
-}
-</script>
+      },
+      "inLanguage": "{{ LANGUAGE_CODE }}"
+    }
+  </script>
 {% endblock %}
 
 {% block content %}
-<main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+  <main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen text-gray-900" itemscope itemtype="https://schema.org/WebPage">
 
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200">
         <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+      </div>
+
+      <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-gray-900">
+        <div class="animate-fade-in">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight text-gray-900" itemprop="headline">
+            {% trans "All-in-One PDF Tools" %}
+          </h1>
+          <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-700 max-w-2xl mx-auto leading-relaxed">
+            {% trans "Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No installations required." %}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="{% url 'pdf_to_word_page' %}"
+               class="group relative bg-blue-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center">
+              <span class="relative z-10 flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span>{% trans "PDF to Word" %}</span>
+              </span>
+            </a>
+            <a href="{% url 'merge_pdf_page' %}"
+               class="group relative bg-green-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-green-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center">
+              <span class="relative z-10 flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+                <span>{% trans "Merge PDF" %}</span>
+              </span>
+            </a>
+            <a href="{% url 'compress_pdf_page' %}"
+               class="group relative bg-purple-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center">
+              <span class="relative z-10 flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                </svg>
+                <span>{% trans "Compress PDF" %}</span>
+              </span>
+            </a>
+          </div>
         </div>
-        
-        <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-gray-900">
-            <div class="animate-fade-in">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight text-gray-900" itemprop="headline">
-                    {% trans "All-in-One PDF Tools" %}
-                </h1>
-                <p class="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                    {% trans "Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No installations required." %}
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="{% url 'pdf_to_word_page' %}" 
-                       class="group relative bg-blue-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center">
-                        <span class="relative z-10 flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            <span>{% trans "PDF to Word" %}</span>
-                        </span>
-                    </a>
-                    <a href="{% url 'merge_pdf_page' %}" 
-                       class="group relative bg-green-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-green-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center">
-                        <span class="relative z-10 flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                            </svg>
-                            <span>{% trans "Merge PDF" %}</span>
-                        </span>
-                    </a>
-                    <a href="{% url 'compress_pdf_page' %}" 
-                       class="group relative bg-purple-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base w-full sm:w-auto text-center">
-                        <span class="relative z-10 flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                            </svg>
-                            <span>{% trans "Compress PDF" %}</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
+      </div>
+
         <!-- Decorative Elements -->
-        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent"></div>
     </section>
 
     <!-- Features Section -->
     <section class="py-12 sm:py-16 md:py-20 text-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <div class="text-center mb-10 sm:mb-12 animate-fade-in">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
-                    {% trans "Popular Tools" %}
-                </h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
-                    {% trans "Most requested PDF tools at your fingertips" %}
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="text-center mb-10 sm:mb-12 animate-fade-in">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
+            {% trans "Popular Tools" %}
+          </h2>
+          <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
+            {% trans "Most requested PDF tools at your fingertips" %}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
 
                 <!-- Feature Card 1: PDF to Word (Most Popular) -->
-                <a href="{% url 'pdf_to_word_page' %}" 
-                   class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-blue-200 hover:border-blue-400 animate-fade-in text-gray-900 cursor-pointer block relative z-10">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-blue-600 transition-colors relative z-10">
-                        {% trans "PDF to Word" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Convert PDF documents to editable Word files instantly." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'pdf_to_word_page' %}"
+             class="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-blue-200 hover:border-blue-400 animate-fade-in text-gray-900 cursor-pointer block relative z-10">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-blue-600 transition-colors relative z-10">
+              {% trans "PDF to Word" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Convert PDF documents to editable Word files instantly." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Feature Card 3: Rotate PDF -->
-                <a href="{% url 'rotate_pdf_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-purple-300 hover:border-purple-500 border-t border-b border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-purple-400 to-purple-600 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-purple-600 transition-colors relative z-10">
-                        {% trans "Rotate PDF" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Rotate PDF pages by 90, 180, or 270 degrees." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-purple-600 font-semibold group-hover:text-purple-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'rotate_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-purple-300 hover:border-purple-500 border-t border-b border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-purple-400 to-purple-600 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-purple-600 transition-colors relative z-10">
+              {% trans "Rotate PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Rotate PDF pages by 90, 180, or 270 degrees." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-purple-600 font-semibold group-hover:text-purple-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Feature Card 4: Word to PDF -->
-                <a href="{% url 'word_to_pdf_page' %}" 
-                   class="group relative bg-gradient-to-br from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-gray-100 hover:border-purple-400 animate-fade-in text-gray-900 cursor-pointer block">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-pink-600 transition-colors relative z-10">
-                        {% trans "Word to PDF" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Convert Word documents to secure PDF files." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-pink-600 font-semibold group-hover:text-pink-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'word_to_pdf_page' %}"
+             class="group relative bg-gradient-to-br from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-gray-100 hover:border-purple-400 animate-fade-in text-gray-900 cursor-pointer block">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-pink-600 transition-colors relative z-10">
+              {% trans "Word to PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Convert Word documents to secure PDF files." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-pink-600 font-semibold group-hover:text-pink-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Feature Card 5: Add Watermark -->
-                <a href="{% url 'add_watermark_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-gray-100 hover:border-rose-400 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="absolute bottom-0 right-0 w-0 h-1 bg-pink-500 group-hover:w-full transition-all duration-300"></div>
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-rose-600 transition-colors relative z-10">
-                        {% trans "Add Watermark" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Protect your PDFs with text or image watermarks." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-rose-600 font-semibold group-hover:text-rose-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'add_watermark_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-gray-100 hover:border-rose-400 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="absolute bottom-0 right-0 w-0 h-1 bg-pink-500 group-hover:w-full transition-all duration-300"></div>
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-rose-600 transition-colors relative z-10">
+              {% trans "Add Watermark" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Protect your PDFs with text or image watermarks." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-rose-600 font-semibold group-hover:text-rose-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Feature Card 6: PDF to Excel -->
-                <a href="{% url 'pdf_to_excel_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-green-400 hover:border-green-500 border-t border-b border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-green-600 transition-colors relative z-10">
-                        {% trans "PDF to Excel" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Extract tables from PDF and convert to Excel format." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-green-600 font-semibold group-hover:text-green-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
-
+          <a href="{% url 'pdf_to_excel_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-green-400 hover:border-green-500 border-t border-b border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
             </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-green-600 transition-colors relative z-10">
+              {% trans "PDF to Excel" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Extract tables from PDF and convert to Excel format." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-green-600 font-semibold group-hover:text-green-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
         </div>
+      </div>
     </section>
 
     <!-- Organize PDF Section -->
     <section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50 text-gray-900 border-t border-gray-200">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <div class="text-center mb-10 sm:mb-12 animate-fade-in">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
-                    {% trans "Organize PDF" %}
-                </h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
-                    {% trans "Manage and organize your PDF documents with powerful tools" %}
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="text-center mb-10 sm:mb-12 animate-fade-in">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
+            {% trans "Organize PDF" %}
+          </h2>
+          <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
+            {% trans "Manage and organize your PDF documents with powerful tools" %}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+
                 <!-- Organize Card 1: Merge PDF -->
-                <a href="{% url 'merge_pdf_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-t-4 border-green-300 hover:border-green-500 border-r border-b border-l border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-green-600 transition-colors relative z-10">
-                        {% trans "Merge PDF" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Combine multiple PDF files into one document." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-green-600 font-semibold group-hover:text-green-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'merge_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-t-4 border-green-300 hover:border-green-500 border-r border-b border-l border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-green-600 transition-colors relative z-10">
+              {% trans "Merge PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Combine multiple PDF files into one document." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-green-600 font-semibold group-hover:text-green-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Organize Card 2: Split PDF -->
-                <a href="{% url 'split_pdf_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-300 hover:border-blue-500 border-t border-b border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-indigo-600 transition-colors relative z-10">
-                        {% trans "Split PDF" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Split PDF into multiple files by pages or ranges." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-indigo-600 font-semibold group-hover:text-indigo-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'split_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-300 hover:border-blue-500 border-t border-b border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-indigo-600 transition-colors relative z-10">
+              {% trans "Split PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Split PDF into multiple files by pages or ranges." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-indigo-600 font-semibold group-hover:text-indigo-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Organize Card 3: Remove Pages -->
-                <a href="{% url 'remove_pages_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-b-4 border-red-300 hover:border-red-500 border-t border-l border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-red-600 transition-colors relative z-10">
-                        {% trans "Remove Pages" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Remove unwanted pages from your PDF document." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-red-600 font-semibold group-hover:text-red-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'remove_pages_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-b-4 border-red-300 hover:border-red-500 border-t border-l border-r border-gray-100 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-red-600 transition-colors relative z-10">
+              {% trans "Remove Pages" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Remove unwanted pages from your PDF document." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-red-600 font-semibold group-hover:text-red-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Organize Card 4: Extract Pages -->
-                <a href="{% url 'extract_pages_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-dashed border-yellow-200 hover:border-yellow-400 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
-                        {% trans "Extract Pages" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Extract specific pages from your PDF into a new file." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-orange-600 font-semibold group-hover:text-orange-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'extract_pages_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-dashed border-yellow-200 hover:border-yellow-400 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
+              {% trans "Extract Pages" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Extract specific pages from your PDF into a new file." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-orange-600 font-semibold group-hover:text-orange-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Organize Card 5: Organize PDF -->
-                <a href="{% url 'organize_pdf_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-400 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="absolute inset-0 bg-teal-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-cyan-600 transition-colors relative z-10">
-                        {% trans "Organize PDF" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Reorder and organize pages in your PDF document." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-cyan-600 font-semibold group-hover:text-cyan-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
+          <a href="{% url 'organize_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-gray-100 hover:border-teal-400 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="absolute inset-0 bg-teal-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-cyan-600 transition-colors relative z-10">
+              {% trans "Organize PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Reorder and organize pages in your PDF document." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-cyan-600 font-semibold group-hover:text-cyan-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
 
                 <!-- Organize Card 6: Compress PDF -->
-                <a href="{% url 'compress_pdf_page' %}" 
-                   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-orange-200 hover:border-orange-300 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
-                    <div class="mb-4 relative z-10">
-                        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
-                        {% trans "Compress PDF" %}
-                    </h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
-                        {% trans "Reduce PDF file size without losing quality." %}
-                    </p>
-                    <div class="inline-flex items-center space-x-2 text-orange-600 font-semibold group-hover:text-orange-700 transition-colors text-sm relative z-10">
-                        <span>{% trans "Try it" %}</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </a>
-
+          <a href="{% url 'compress_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-orange-200 hover:border-orange-300 animate-fade-in text-gray-900 cursor-pointer block overflow-hidden">
+            <div class="mb-4 relative z-10">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                </svg>
+              </div>
             </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors relative z-10">
+              {% trans "Compress PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base mb-4 leading-relaxed relative z-10">
+              {% trans "Reduce PDF file size without losing quality." %}
+            </p>
+            <div class="inline-flex items-center space-x-2 text-orange-600 font-semibold group-hover:text-orange-700 transition-colors text-sm relative z-10">
+              <span>{% trans "Try it" %}</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+
         </div>
+      </div>
     </section>
 
     <!-- Call to Action Section -->
     <section class="bg-gradient-to-br from-blue-50 via-purple-50 to-blue-100 py-12 sm:py-16 md:py-20 relative overflow-hidden border-t border-gray-200">
         <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
-        </div>
-        
-        <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-3xl relative z-10 text-gray-900">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 animate-fade-in text-gray-900">
-                {% trans "Ready to start?" %}
-            </h2>
-            <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-700 animate-fade-in">
-                {% trans "Convert your files in seconds, for free." %}
-            </p>
-            <a href="{% url 'all_tools_page' %}" 
-               class="inline-block bg-blue-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base animate-fade-in">
-                {% trans "Get Started" %}
-            </a>
-        </div>
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
+      </div>
+
+      <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-3xl relative z-10 text-gray-900">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 animate-fade-in text-gray-900">
+          {% trans "Ready to start?" %}
+        </h2>
+        <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-700 animate-fade-in">
+          {% trans "Convert your files in seconds, for free." %}
+        </p>
+        <a href="{% url 'all_tools_page' %}"
+           class="inline-block bg-blue-600 text-white font-bold py-3 px-6 sm:px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base animate-fade-in">
+          {% trans "Get Started" %}
+        </a>
+      </div>
     </section>
 
     <!-- Latest Articles Section -->
     {% if latest_articles %}
-    <section class="py-12 sm:py-16 md:py-20 bg-white border-t border-gray-200">
+      <section class="py-12 sm:py-16 md:py-20 bg-white border-t border-gray-200">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-            <div class="text-center mb-10 sm:mb-12">
-                <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
-                    {% trans "Latest Guides & Tips" %}
-                </h2>
-                <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
-                    {% trans "Learn how to get the most out of PDF tools with our expert guides" %}
-                </p>
-            </div>
+          <div class="text-center mb-10 sm:mb-12">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
+              {% trans "Latest Guides & Tips" %}
+            </h2>
+            <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
+              {% trans "Learn how to get the most out of PDF tools with our expert guides" %}
+            </p>
+          </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {% for article in latest_articles %}
-                <article class="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group">
-                    <div class="p-6 sm:p-8">
-                        {% if article.category %}
-                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
-                            {{ article.category.get_name|default:article.category.name_en }}
-                        </span>
-                        {% endif %}
-                        
-                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                            <a href="{{ article.get_absolute_url }}" class="block">
-                                {{ article.get_title }}
-                            </a>
-                        </h3>
-                        
-                        <p class="text-gray-700 mb-4 leading-relaxed line-clamp-3">
-                            {{ article.get_excerpt|truncatewords:25 }}
-                        </p>
-                        
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">
-                                {{ article.published_at|date:"F d, Y" }}
-                            </span>
-                            <a href="{{ article.get_absolute_url }}" 
-                               class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform">
-                                {% trans "Read more" %}
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {% for article in latest_articles %}
+              <article class="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group">
+                <div class="p-6 sm:p-8">
+                  {% if article.category %}
+                    <span class="inline-block px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
+                      {{ article.category.get_name|default:article.category.name_en }}
+                    </span>
+                  {% endif %}
 
-            <div class="text-center mt-10">
-                <a href="{% url 'blog:article_list' %}" 
-                   class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
-                    {% trans "View All Articles" %}
-                </a>
-            </div>
+                  <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    <a href="{{ article.get_absolute_url }}" class="block">
+                      {{ article.get_title }}
+                    </a>
+                  </h3>
+
+                  <p class="text-gray-700 mb-4 leading-relaxed line-clamp-3">
+                    {{ article.get_excerpt|truncatewords:25 }}
+                  </p>
+
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm text-gray-500">
+                      {{ article.published_at|date:"F d, Y" }}
+                    </span>
+                    <a href="{{ article.get_absolute_url }}"
+                       class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                      {% trans "Read more" %}
+                      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+
+          <div class="text-center mt-10">
+            <a href="{% url 'blog:article_list' %}"
+               class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+              {% trans "View All Articles" %}
+            </a>
+          </div>
         </div>
-    </section>
+      </section>
     {% endif %}
 
-</main>
+  </main>
 {% endblock %}

@@ -1,5 +1,4 @@
 # views.py
-from typing import Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -37,7 +36,7 @@ class WordToPDFAPIView(BaseConversionAPIView):
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
-    ) -> Tuple[str, str]:
+    ) -> tuple[str, str]:
         """Perform Word to PDF conversion."""
         docx_path, pdf_path = convert_word_to_pdf(uploaded_file, suffix="_convertica")
         return docx_path, pdf_path

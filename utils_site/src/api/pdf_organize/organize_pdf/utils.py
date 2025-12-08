@@ -1,10 +1,10 @@
 # utils.py
 import os
 import tempfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -29,7 +29,7 @@ def organize_pdf(
     operation: str = "reorder",
     page_order: list = None,
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """General PDF organization function.
 
     Args:
@@ -71,7 +71,7 @@ def organize_pdf(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(f"Failed to write PDF: {err}", context=context) from err
 
         # Validate PDF
