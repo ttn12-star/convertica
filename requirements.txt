@@ -30,7 +30,7 @@ django-redis==5.4.0
 # Rate limiting
 django-ratelimit==4.1.0
 # Database connection pooling (for PostgreSQL)
-psycopg2-binary==2.9.10
+psycopg2-binary==2.9.11
 # Monitoring and metrics
 django-prometheus==2.3.1
 pytesseract==0.3.13
