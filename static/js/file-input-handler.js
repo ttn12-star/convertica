@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const removeFileBtn = document.getElementById('removeFile');
     // Try to find either convertButton (for converter pages) or editButton (for editor pages)
     const convertButton = document.getElementById('convertButton') || document.getElementById('editButton');
-    
+
     // Only proceed if we have the essential elements
     if (!fileInput) return;
     // dropZone is optional (not all pages have it)
@@ -31,14 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show selected file and enable convert button
     function showSelectedFile(file) {
         if (!selectedFileDiv || !fileName || !fileSize) return;
-        
+
         fileName.textContent = file.name;
         fileSize.textContent = formatFileSize(file.size);
         selectedFileDiv.classList.remove('hidden');
         if (fileInfo) {
             fileInfo.classList.add('hidden');
         }
-        
+
         // Enable convert/edit button
         if (convertButton) {
             convertButton.disabled = false;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fileInputDrop) {
             fileInputDrop.value = '';
         }
-        
+
         // Disable convert/edit button
         if (convertButton) {
             convertButton.disabled = true;
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     syncFileInputs(fileInput, fileInputDrop);
                 }
                 showSelectedFile(file);
-                
+
                 // Dispatch custom event for other scripts (like organize-pdf.js)
                 const customEvent = new CustomEvent('fileSelected', {
                     detail: { file: file },
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 0);
                 }
                 showSelectedFile(file);
-                
+
                 // Dispatch custom event for other scripts (like organize-pdf.js)
                 const customEvent = new CustomEvent('fileSelected', {
                     detail: { file: file },
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Drag and drop handlers (only if dropZone exists)
     if (dropZone) {
         let dragCounter = 0; // Track nested drag events
-        
+
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropZone.addEventListener(eventName, preventDefaults, false);
         });
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dragCounter = 0;
             dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
-            
+
             const dt = e.dataTransfer;
             const files = dt.files;
 
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     dataTransfer.items.add(files[0]);
                 }
-                
+
                 // Set files to both inputs
                 if (fileInput) {
                     fileInput.files = dataTransfer.files;
@@ -209,9 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (fileInputDrop) {
                     fileInputDrop.files = dataTransfer.files;
                 }
-                
+
                 showSelectedFile(files[0]);
-                
+
                 // Trigger change event on both inputs to ensure all handlers pick it up
                 if (fileInput) {
                     const event = new Event('change', { bubbles: true });
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const event = new Event('change', { bubbles: true });
                     fileInputDrop.dispatchEvent(event);
                 }
-                
+
                 // Dispatch custom event for other scripts (like organize-pdf.js)
                 const customEvent = new CustomEvent('fileSelected', {
                     detail: { file: files[0] },

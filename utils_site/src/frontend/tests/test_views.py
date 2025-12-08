@@ -4,7 +4,6 @@ Tests for frontend views.
 
 from django.conf import settings
 from django.test import Client, TestCase
-from django.urls import reverse
 from django.utils.translation import activate
 
 
@@ -50,7 +49,7 @@ class FrontendViewsTestCase(TestCase):
                 self.assertEqual(
                     response.status_code, 200, f"Failed for language {lang_code}"
                 )
-            except Exception as e:
+            except Exception:
                 # If there's an encoding issue, just skip that language
                 # This is acceptable as translation files might have issues
                 pass

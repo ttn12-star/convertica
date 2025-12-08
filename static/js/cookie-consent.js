@@ -12,7 +12,7 @@ function getCookieConsent() {
     const analytics = localStorage.getItem('cookie_analytics') === 'true';
     const marketing = localStorage.getItem('cookie_marketing') === 'true';
     const consentDate = localStorage.getItem('cookie_consent_date');
-    
+
     return {
         consent: consent, // 'accepted', 'rejected', 'custom', or null
         analytics: analytics,
@@ -153,4 +153,3 @@ if (typeof window !== 'undefined') {
         trackEvent: trackEvent
     };
 }
-

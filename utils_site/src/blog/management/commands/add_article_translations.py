@@ -3,7 +3,8 @@ Django management command to add translations to existing articles.
 """
 
 from django.core.management.base import BaseCommand
-from src.blog.models import Article, ArticleCategory
+
+from src.blog.models import Article
 
 
 class Command(BaseCommand):

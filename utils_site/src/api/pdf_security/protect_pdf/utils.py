@@ -1,10 +1,10 @@
 # utils.py
 import os
 import tempfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -30,7 +30,7 @@ def protect_pdf(
     user_password: str = None,
     owner_password: str = None,
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Protect PDF with password encryption.
 
     Args:
@@ -72,7 +72,7 @@ def protect_pdf(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as io_err:
+        except OSError as io_err:
             raise StorageError(
                 "Failed to write PDF: %s" % io_err, context=context
             ) from io_err

@@ -1,10 +1,10 @@
 # utils.py
 import os
 import tempfile
-from typing import List, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
+
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -25,10 +25,10 @@ logger = get_logger(__name__)
 
 
 def merge_pdf(
-    uploaded_files: List[UploadedFile],
+    uploaded_files: list[UploadedFile],
     order: str = "upload",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Merge multiple PDF files into one.
 
     Args:
@@ -108,7 +108,7 @@ def merge_pdf(
                     safe_name,
                     extra={**context, "file_index": idx + 1, "pdf_path": pdf_path},
                 )
-            except (OSError, IOError) as err:
+            except OSError as err:
                 raise StorageError(
                     "Failed to write PDF %s: %s" % (safe_name, err), context=context
                 ) from err
@@ -235,7 +235,7 @@ def merge_pdf(
             try:
                 with open(output_path, "wb") as output_file:
                     writer.write(output_file)
-            except (OSError, IOError) as write_err:
+            except OSError as write_err:
                 raise StorageError(
                     "Failed to write merged PDF: %s" % write_err,
                     context=context,

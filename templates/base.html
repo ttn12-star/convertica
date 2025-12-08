@@ -3,11 +3,11 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <!-- Primary Meta Tags -->
     <title>{% block title %}Convertica – Online PDF ↔ Word Converter{% endblock %}</title>
     <meta name="title" content="{% block meta_title %}{% endblock %}">
@@ -19,7 +19,7 @@
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#2563eb">
     <meta name="format-detection" content="telephone=no">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
@@ -31,122 +31,122 @@
     <meta property="og:image:alt" content="{% block og_image_alt %}Convertica - Online PDF Tools{% endblock %}">
     <meta property="og:locale" content="{% if LANGUAGE_CODE == 'ru' %}ru_RU{% elif LANGUAGE_CODE == 'pl' %}pl_PL{% elif LANGUAGE_CODE == 'hi' %}hi_IN{% elif LANGUAGE_CODE == 'es' %}es_ES{% elif LANGUAGE_CODE == 'id' %}id_ID{% else %}en_US{% endif %}">
     <meta property="og:site_name" content="Convertica">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
     <meta property="twitter:title" content="{% block twitter_title %}{% endblock %}">
     <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
     <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
-    
+
     <!-- Canonical URL (without language prefix for SEO) -->
     {% load i18n_utils %}
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path|remove_language_prefix }}">
-    
+
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <!-- Google Fonts for better typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Hreflang Tags for SEO -->
     {% for link in hreflangs %}
-        <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
+      <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
     {% endfor %}
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-    
+
     <!-- Stylesheets -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
-    
+
     <!-- Custom Animations -->
     <style>
-        @keyframes progress {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes ping {
-            75%, 100% { transform: scale(2); opacity: 0; }
-        }
-        
-        .animate-progress {
-            animation: progress 2s linear infinite;
-            background-size: 200% 100%;
-        }
-        
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .animate-scale-in {
-            animation: scaleIn 0.3s ease-out;
-        }
-        
-        .shadow-3xl {
-            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
-        }
-        
+      @keyframes progress {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      @keyframes ping {
+        75%, 100% { transform: scale(2); opacity: 0; }
+      }
+
+      .animate-progress {
+        animation: progress 2s linear infinite;
+        background-size: 200% 100%;
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .animate-scale-in {
+        animation: scaleIn 0.3s ease-out;
+      }
+
+      .shadow-3xl {
+        box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+      }
+
         /* Prevent horizontal scrolling on mobile */
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-            width: 100%;
-        }
-        
+      html, body {
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
+      }
+
         /* Ensure all containers don't overflow */
-        * {
-            box-sizing: border-box;
-        }
-        
+      * {
+        box-sizing: border-box;
+      }
+
         /* Force dark text on light backgrounds by default */
-        body {
-            color: #111827; /* gray-900 */
-        }
-        
+      body {
+        color: #111827; /* gray-900 */
+      }
+
         /* Ensure all text elements inherit color properly */
-        p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea {
-            color: inherit;
-        }
-        
+      p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea {
+        color: inherit;
+      }
+
         /* Smooth transitions */
-        * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-        }
-        
+      * {
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+
         /* Ensure images and media don't overflow */
-        img, video, iframe, embed, object {
-            max-width: 100%;
-            height: auto;
-        }
-        
+      img, video, iframe, embed, object {
+        max-width: 100%;
+        height: auto;
+      }
+
         /* Fix for dropdown menus on mobile */
-        @media (max-width: 640px) {
-            .absolute {
-                max-width: calc(100vw - 1rem);
-            }
+      @media (max-width: 640px) {
+        .absolute {
+          max-width: calc(100vw - 1rem);
         }
+      }
     </style>
-    
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Convertica",
@@ -155,89 +155,89 @@
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
         "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
         },
         "inLanguage": "{{ LANGUAGE_CODE }}",
         "availableLanguage": [
-            {% get_available_languages as LANGUAGES %}
-            {% for code, name in LANGUAGES %}"{{ code }}"{% if not forloop.last %},{% endif %}{% endfor %}
+          {% get_available_languages as LANGUAGES %}
+          {% for code, name in LANGUAGES %}"{{ code }}"{% if not forloop.last %},{% endif %}{% endfor %}
         ],
         "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "ratingCount": "1000"
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1000"
         },
         "featureList": [
-            "PDF to Word conversion",
-            "Word to PDF conversion",
-            "PDF merge",
-            "PDF split",
-            "PDF rotate",
-            "Add watermark",
-            "Crop PDF",
-            "Compress PDF",
-            "Protect PDF",
-            "Organize PDF pages"
+          "PDF to Word conversion",
+          "Word to PDF conversion",
+          "PDF merge",
+          "PDF split",
+          "PDF rotate",
+          "Add watermark",
+          "Crop PDF",
+          "Compress PDF",
+          "Protect PDF",
+          "Organize PDF pages"
         ]
-    }
+      }
     </script>
-    
+
     {% block structured_data %}{% endblock %}
-    
+
     {% block extra_head %}{% endblock %}
-    
+
     <!-- hCaptcha (Anti-spam) -->
     {% if hcaptcha_site_key %}
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+      <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     {% endif %}
-</head>
-<body class="bg-gray-50 text-gray-900 antialiased pt-14 sm:pt-16 md:pt-[72px]">
-    
+  </head>
+  <body class="bg-gray-50 text-gray-900 antialiased pt-14 sm:pt-16 md:pt-[72px]">
+
     {% include "frontend/includes/header.html" %}
 
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900">
-        {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
     </main>
 
     {% include "frontend/includes/footer.html" %}
-    
+
     {% include "frontend/includes/cookie_banner.html" %}
 
     <!-- Cookie Consent Utility -->
     <script src="{% static 'js/cookie-consent.js' %}"></script>
-    
+
     <script src="{% static 'js/language-detection.js' %}"></script>
-    
+
     <script>
     // Example: Initialize analytics only if allowed
-    document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
         // Check if user has consented
         if (window.CookieConsent && window.CookieConsent.hasUserConsented()) {
             // Initialize analytics if allowed
-            window.CookieConsent.initAnalyticsIfAllowed(function() {
+          window.CookieConsent.initAnalyticsIfAllowed(function() {
                 // Your analytics initialization code here
                 // Example: Google Analytics
                 // if (typeof gtag !== 'undefined') {
                 //     gtag('config', 'GA_MEASUREMENT_ID');
                 // }
-                console.log('Analytics initialized (if allowed)');
-            });
-            
+            console.log('Analytics initialized (if allowed)');
+          });
+
             // Initialize marketing if allowed
-            window.CookieConsent.initMarketingIfAllowed(function() {
+          window.CookieConsent.initMarketingIfAllowed(function() {
                 // Your marketing initialization code here
                 // Example: Facebook Pixel, Google Ads, etc.
-                console.log('Marketing initialized (if allowed)');
-            });
-            
+            console.log('Marketing initialized (if allowed)');
+          });
+
             // Track page view
-            window.CookieConsent.trackPageView(window.location.pathname);
+          window.CookieConsent.trackPageView(window.location.pathname);
         }
-    });
+      });
     </script>
-    
+
     {% block extra_js %}{% endblock %}
-</body>
+  </body>
 </html>

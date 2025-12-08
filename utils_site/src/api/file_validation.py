@@ -4,7 +4,6 @@ File validation utilities for conversion APIs.
 
 import os
 import shutil
-from typing import Optional, Tuple
 
 from .logging_utils import get_logger
 
@@ -17,7 +16,7 @@ DOCX_MAGIC = b"PK\x03\x04"  # DOCX is a ZIP file
 DOC_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"  # OLE2 format (old .doc)
 
 
-def validate_pdf_file(file_path: str, context: dict) -> Tuple[bool, Optional[str]]:
+def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
     """
     Validate PDF file structure.
 
@@ -97,7 +96,7 @@ def validate_pdf_file(file_path: str, context: dict) -> Tuple[bool, Optional[str
         return False, f"Error validating PDF: {str(e)}"
 
 
-def validate_word_file(file_path: str, context: dict) -> Tuple[bool, Optional[str]]:
+def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]:
     """
     Validate Word file structure (.doc or .docx).
 
@@ -259,7 +258,7 @@ def validate_word_file(file_path: str, context: dict) -> Tuple[bool, Optional[st
         return False, f"Error validating Word file: {str(e)}"
 
 
-def check_disk_space(path: str, required_mb: int = 100) -> Tuple[bool, Optional[str]]:
+def check_disk_space(path: str, required_mb: int = 100) -> tuple[bool, str | None]:
     """
     Check if there's enough disk space available.
 
@@ -331,7 +330,7 @@ def sanitize_filename(filename: str, max_length: int = 200) -> str:
 
 def validate_output_file(
     file_path: str, min_size: int = 100, context: dict = None
-) -> Tuple[bool, Optional[str]]:
+) -> tuple[bool, str | None]:
     """
     Validate that output file was created successfully.
 

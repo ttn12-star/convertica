@@ -26,7 +26,7 @@ def robots_txt(request):
     admin_path = getattr(settings, "ADMIN_URL_PATH", "admin")
 
     try:
-        with open(robots_path, "r", encoding="utf-8") as f:
+        with open(robots_path, encoding="utf-8") as f:
             content = f.read()
         # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
         content = content.replace(
