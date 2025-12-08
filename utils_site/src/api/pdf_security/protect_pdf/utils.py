@@ -19,6 +19,7 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
@@ -137,6 +138,9 @@ def protect_pdf(
             raise ConversionError(
                 "Owner password must be at least 1 character long", context=context
             )
+
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
 
         # Protect PDF
         try:

@@ -21,6 +21,7 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
@@ -146,6 +147,9 @@ def crop_pdf(
                 validation_error or "Invalid PDF file", context=context
             )
 
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
+
         # Crop PDF
         try:
             logger.info("Cropping PDF", extra={**context, "event": "crop_start"})
@@ -187,10 +191,7 @@ def crop_pdf(
             )  # Minimum 10 points
 
             logger.info(
-                (
-                    "Crop parameters: x=%.2f, y=%.2f, w=%.2f, "
-                    "h=%.2f, pages=%s"
-                ),
+                ("Crop parameters: x=%.2f, y=%.2f, w=%.2f, " "h=%.2f, pages=%s"),
                 crop_x,
                 crop_y,
                 crop_width,
@@ -269,10 +270,7 @@ def crop_pdf(
                         )
 
                         logger.debug(
-                            (
-                                "Cropping page %d: x=%.2f, y=%.2f, "
-                                "w=%.2f, h=%.2f"
-                            ),
+                            ("Cropping page %d: x=%.2f, y=%.2f, " "w=%.2f, h=%.2f"),
                             page_num + 1,
                             crop_x,
                             crop_y,
