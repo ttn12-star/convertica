@@ -38,7 +38,11 @@ def split_pdf_docs() -> Callable:
                 openapi.Parameter(
                     "pages",
                     openapi.IN_FORM,
-                    description="For 'page': comma-separated page numbers. For 'range': ranges like '1-3,5-7'. For 'every_n': number of pages per file",
+                    description=(
+                        "For 'page': comma-separated page numbers. "
+                        "For 'range': ranges like '1-3,5-7'. "
+                        "For 'every_n': number of pages per file"
+                    ),
                     type=openapi.TYPE_STRING,
                     required=False,
                 ),

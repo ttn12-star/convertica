@@ -23,6 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize PDF.js worker
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     
+    // Use event delegation for remove buttons (more reliable)
+    if (selectedPdfFilesList) {
+        selectedPdfFilesList.addEventListener('click', (e) => {
+            const removeBtn = e.target.closest('.remove-file-btn');
+            if (removeBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                const fileId = removeBtn.dataset.fileId || removeBtn.getAttribute('data-file-id');
+                if (fileId) {
+                    removeFile(fileId);
+                }
+            }
+        });
+    }
+    
     // File input handlers
     selectPdfFilesButton?.addEventListener('click', () => {
         pdfFilesInput?.click();
@@ -107,13 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedPdfFilesList.appendChild(fileItem);
         });
         
-        // Add remove button handlers
-        selectedPdfFilesList.querySelectorAll('.remove-file-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const fileId = e.currentTarget.dataset.fileId;
-                removeFile(fileId);
-            });
-        });
+        // Remove button handlers are handled via event delegation set up at initialization
+        // No need to attach individual handlers here
         
         // Update count
         if (pdfFileCount) {
@@ -131,25 +141,56 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function removeFile(fileId) {
-        // Find and cleanup file data
-        const fileData = selectedFiles.find(f => f.id === fileId);
-        if (fileData) {
-            // Cleanup PDF document if exists
-            if (fileData.pdfDoc) {
-                try {
-                    fileData.pdfDoc.destroy();
-                } catch (e) {
-                    // Ignore cleanup errors
-                }
-            }
-            // Cleanup preview canvas
-            if (fileData.preview) {
-                const ctx = fileData.preview.getContext('2d');
-                ctx.clearRect(0, 0, fileData.preview.width, fileData.preview.height);
-            }
+        // Convert fileId to number for comparison (data attributes are strings)
+        // ID is created as Date.now() + Math.random(), so it's a number
+        const fileIdNum = typeof fileId === 'string' ? parseFloat(fileId) : fileId;
+        
+        // Find and cleanup file data - use loose comparison to handle string/number mismatch
+        const fileData = selectedFiles.find(f => {
+            // Compare as numbers (with tolerance for floating point)
+            if (Math.abs(f.id - fileIdNum) < 0.0001) return true;
+            // Compare as strings
+            if (f.id.toString() === fileId.toString()) return true;
+            // Direct comparison
+            if (f.id === fileIdNum || f.id === fileId) return true;
+            return false;
+        });
+        
+        if (!fileData) {
+            return;
         }
         
-        selectedFiles = selectedFiles.filter(f => f.id !== fileId);
+        // Cleanup PDF document if exists
+        if (fileData.pdfDoc) {
+            try {
+                fileData.pdfDoc.destroy();
+            } catch (e) {
+                // Ignore cleanup errors
+            }
+        }
+        // Cleanup preview canvas
+        if (fileData.preview) {
+            const ctx = fileData.preview.getContext('2d');
+            ctx.clearRect(0, 0, fileData.preview.width, fileData.preview.height);
+        }
+        
+        // Remove preview card from DOM - try multiple selectors
+        const previewCard = pdfPreviewContainer?.querySelector(`[data-file-id="${fileData.id}"]`) ||
+                          pdfPreviewContainer?.querySelector(`[data-file-id="${fileId}"]`) ||
+                          pdfPreviewContainer?.querySelector(`[data-file-id="${fileIdNum}"]`);
+        if (previewCard) {
+            previewCard.remove();
+        }
+        
+        // Remove from array - use the same comparison logic
+        selectedFiles = selectedFiles.filter(f => {
+            // Keep files that don't match
+            if (Math.abs(f.id - fileIdNum) < 0.0001) return false;
+            if (f.id.toString() === fileId.toString()) return false;
+            if (f.id === fileIdNum || f.id === fileId) return false;
+            return true;
+        });
+        
         updateFileList();
         updatePreview();
         updateButtons();
@@ -341,14 +382,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form submission - intercept and use API
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        e.stopPropagation(); // Prevent other handlers from running
         
         if (selectedFiles.length < 2) {
-            alert('Please select at least 2 PDF files to merge.');
+            showError('Please select at least 2 PDF files to merge.');
             return;
         }
         
         if (selectedFiles.length > 10) {
-            alert('Maximum 10 PDF files allowed.');
+            showError('Maximum 10 PDF files allowed.');
             return;
         }
         
@@ -357,77 +399,219 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Create FormData with files in order
         const formData = new FormData();
-        formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value || window.CSRF_TOKEN;
+        if (csrfToken) {
+            formData.append('csrfmiddlewaretoken', csrfToken);
+        }
         
-        selectedFiles.forEach((fileData) => {
-            formData.append('pdf_files', fileData.file);
+        // Append files in the order they appear in selectedFiles array
+        // Use the same field name 'pdf_files' for all files so Django can get them with getlist()
+        // Important: FormData.append with the same field name creates an array on the server
+        // The order of append() calls determines the order in getlist()
+        selectedFiles.forEach((fileData, index) => {
+            const file = fileData.file;
+            // Append file with explicit filename to ensure proper upload
+            // Third parameter (filename) is optional but helps with server-side handling
+            formData.append('pdf_files', file, file.name);
         });
+        
+        // Verify files are in FormData (for debugging)
+        if (selectedFiles.length !== Array.from(formData.getAll('pdf_files')).length) {
+            console.error('File count mismatch in FormData!');
+        }
         
         formData.append('order', 'upload'); // Order is determined by array order
         
+        // Hide previous results
+        hideResult();
+        hideDownload();
+        
         // Show loading
-        if (editButton) {
-            editButton.disabled = true;
-            const buttonText = editButton.querySelector('span span');
-            if (buttonText) {
-                const originalText = buttonText.textContent;
-                buttonText.textContent = 'Merging...';
-                buttonText.dataset.originalText = originalText;
-            } else {
-                editButton.textContent = 'Merging...';
-            }
-        }
+        showLoading();
+        
+        // Disable form
+        setFormDisabled(true);
         
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 body: formData,
                 headers: {
+                    'X-CSRFToken': csrfToken,
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             });
             
-            if (response.ok) {
-                // Get filename from Content-Disposition header
-                const contentDisposition = response.headers.get('Content-Disposition');
-                let filename = 'merged.pdf';
-                if (contentDisposition) {
-                    const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
-                    if (filenameMatch) {
-                        filename = filenameMatch[1];
-                    }
+            const blob = await response.blob();
+            
+            if (!response.ok) {
+                try {
+                    const errorData = await blob.text();
+                    const errorJson = JSON.parse(errorData);
+                    throw new Error(errorJson.error || window.ERROR_MESSAGE || 'Failed to merge PDFs. Please try again.');
+                } catch {
+                    throw new Error(window.ERROR_MESSAGE || 'Failed to merge PDFs. Please try again.');
                 }
-                
-                // Download file
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-                
-                // Show success message
-                alert('PDFs merged successfully!');
-            } else {
-                const errorData = await response.json().catch(() => ({}));
-                alert(errorData.error || 'Failed to merge PDFs. Please try again.');
             }
+            
+            // Get filename from Content-Disposition header
+            const contentDisposition = response.headers.get('Content-Disposition');
+            let filename = 'merged.pdf';
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+            
+            // Use first file name for output filename
+            const originalFileName = selectedFiles[0]?.file?.name || 'merged';
+            const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$', 'i');
+            const replaceTo = window.REPLACE_TO || '_merged.pdf';
+            const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
+            
+            // Hide loading and show download button
+            hideLoading();
+            showDownloadButton(outputFileName, blob);
+            setFormDisabled(false);
+            
         } catch (error) {
             console.error('Error merging PDFs:', error);
-            alert('An error occurred while merging PDFs. Please try again.');
-        } finally {
-            if (editButton) {
-                editButton.disabled = false;
-                const buttonText = editButton.querySelector('span span');
-                if (buttonText && buttonText.dataset.originalText) {
-                    buttonText.textContent = buttonText.dataset.originalText;
-                }
-            }
+            hideLoading();
+            showError(error.message || 'An error occurred while merging PDFs. Please try again.');
+            setFormDisabled(false);
         }
     });
+    
+    // Helper functions for UI
+    function showLoading() {
+        const container = document.getElementById('loadingContainer');
+        if (!container) return;
+        
+        container.innerHTML = `
+            <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="relative">
+                        <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                            ${window.LOADING_TITLE || 'Processing your file...'}
+                        </h3>
+                        <p class="text-sm sm:text-base text-gray-600">
+                            ${window.LOADING_MESSAGE || 'Please wait, this may take a few moments'}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.classList.remove('hidden');
+    }
+    
+    function hideLoading() {
+        const container = document.getElementById('loadingContainer');
+        if (container) {
+            container.classList.add('hidden');
+        }
+    }
+    
+    function showDownloadButton(originalFileName, blob) {
+        const container = document.getElementById('downloadContainer');
+        if (!container) return;
+        
+        const url = URL.createObjectURL(blob);
+        
+        container.innerHTML = `
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                            ${window.SUCCESS_TITLE || 'Merging Complete!'}
+                        </h3>
+                        <p class="text-sm sm:text-base text-gray-600 mb-4">
+                            ${window.SUCCESS_MESSAGE || 'Your file is ready to download'}
+                        </p>
+                        <p class="text-xs text-gray-500 font-mono break-all px-2">
+                            ${escapeHtml(originalFileName)}
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+                        <a href="${url}" 
+                           download="${originalFileName}"
+                           class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                            </svg>
+                            <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
+                        </a>
+                        <button type="button"
+                                onclick="location.reload()"
+                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
+                            <span>${window.EDIT_ANOTHER_TEXT || 'Merge another file'}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.classList.remove('hidden');
+    }
+    
+    function hideDownload() {
+        const container = document.getElementById('downloadContainer');
+        if (container) {
+            container.classList.add('hidden');
+        }
+    }
+    
+    function showError(message) {
+        const container = document.getElementById('editorResult');
+        if (!container) return;
+        
+        container.innerHTML = `
+            <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
+                <div class="flex flex-col items-center space-y-3">
+                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-red-900 mb-1">
+                            ${window.ERROR_TITLE || 'Error'}
+                        </h3>
+                        <p class="text-sm text-red-700">
+                            ${escapeHtml(message)}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.classList.remove('hidden');
+    }
+    
+    function hideResult() {
+        const container = document.getElementById('editorResult');
+        if (container) {
+            container.classList.add('hidden');
+        }
+    }
+    
+    function setFormDisabled(disabled) {
+        if (editButton) {
+            editButton.disabled = disabled;
+        }
+        const inputs = form.querySelectorAll('input, select, textarea, button');
+        inputs.forEach(input => {
+            if (input !== editButton) {
+                input.disabled = disabled;
+            }
+        });
+    }
     
     // Initialize
     updateButtons();

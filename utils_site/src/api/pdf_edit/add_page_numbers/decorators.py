@@ -31,7 +31,10 @@ def add_page_numbers_docs() -> Callable:
                 openapi.Parameter(
                     "position",
                     openapi.IN_FORM,
-                    description="Position of page numbers (bottom-center, bottom-left, bottom-right, top-center, top-left, top-right)",
+                    description=(
+                        "Position of page numbers (bottom-center, bottom-left, "
+                        "bottom-right, top-center, top-left, top-right)"
+                    ),
                     type=openapi.TYPE_STRING,
                     required=False,
                 ),

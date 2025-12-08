@@ -14,5 +14,9 @@ class SplitPDFSerializer(serializers.Serializer):
     )
     pages = serializers.CharField(
         required=False,
-        help_text="For 'page': comma-separated page numbers. For 'range': ranges like '1-3,5-7'. For 'every_n': number of pages per file.",
+        help_text=(
+            "For 'page': comma-separated page numbers. "
+            "For 'range': ranges like '1-3,5-7'. "
+            "For 'every_n': number of pages per file."
+        ),
     )

@@ -136,9 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const page = await pdfDoc.getPage(pageNum);
             const viewport = page.getViewport({ scale: 1.0 });
 
-            // Calculate scale to fit canvas (max width 800px)
-            const maxWidth = 800;
-            scale = Math.min(maxWidth / viewport.width, 1.0);
+            // Calculate scale to fit canvas in viewport (max width 600px, max height 700px)
+            const maxWidth = 600;
+            const maxHeight = 700; // Max height to fit in viewport without scrolling
+            const widthScale = maxWidth / viewport.width;
+            const heightScale = maxHeight / viewport.height;
+            scale = Math.min(widthScale, heightScale, 1.0);
             const scaledViewport = page.getViewport({ scale: scale });
 
             // Set canvas dimensions
@@ -146,6 +149,10 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasHeight = scaledViewport.height;
             pdfCanvas.width = canvasWidth;
             pdfCanvas.height = canvasHeight;
+            
+            // Reset any CSS scaling to ensure accurate coordinate calculations
+            pdfCanvas.style.width = '';
+            pdfCanvas.style.height = '';
 
             // Store PDF dimensions in points
             pdfPageWidth = viewport.width;

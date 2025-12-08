@@ -20,6 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Store selected files
     let selectedFiles = [];
     
+    // Use event delegation for remove buttons (more reliable than onclick with index)
+    if (selectedFilesList) {
+        selectedFilesList.addEventListener('click', (e) => {
+            const removeBtn = e.target.closest('button[data-file-index]');
+            if (removeBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                const index = parseInt(removeBtn.dataset.fileIndex, 10);
+                if (!isNaN(index)) {
+                    removeFile(index);
+                }
+            }
+        });
+    }
+    
     // Create loading animation container
     const loadingContainer = document.createElement('div');
     loadingContainer.id = 'loadingContainer';
@@ -103,8 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, false);
     }
 
-    // Remove file from list
+    // Remove file from list by index
     function removeFile(index) {
+        if (index < 0 || index >= selectedFiles.length) {
+            return;
+        }
         selectedFiles.splice(index, 1);
         updateFileList();
         updateConvertButton();
@@ -138,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <button type="button" 
                             class="ml-3 p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100"
+                            data-file-index="${index}"
                             onclick="removeFileAtIndex(${index})"
                             aria-label="Remove file">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

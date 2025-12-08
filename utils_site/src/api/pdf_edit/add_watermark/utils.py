@@ -7,8 +7,6 @@ from typing import List, Optional, Tuple
 from django.core.files.uploadedfile import UploadedFile
 from PIL import Image
 from PyPDF2 import PdfReader, PdfWriter
-from reportlab.lib.pagesizes import A4, letter
-from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
@@ -63,11 +61,11 @@ def _register_watermark_font():
                 else:
                     # Use regular font as bold if bold version not found
                     pdfmetrics.registerFont(TTFont("WatermarkFontBold", font_path))
-                logger.debug(f"Registered Unicode font: {font_path}")
+                logger.debug("Registered Unicode font: %s", font_path)
                 font_registered = True
                 break
             except Exception as e:
-                logger.warning(f"Failed to register font {font_path}: {e}")
+                logger.warning("Failed to register font %s: %s", font_path, e)
                 continue
 
     if not font_registered:
@@ -104,7 +102,7 @@ def parse_pages(pages_str: str, total_pages: int) -> List[int]:
                 end_idx = min(total_pages, int(end.strip()))  # Keep 1-indexed for range
                 page_indices.extend(range(start_idx, end_idx))
             except ValueError:
-                logger.warning(f"Invalid page range: {part}")
+                logger.warning("Invalid page range: %s", part)
         else:
             # Single page number
             try:
@@ -112,7 +110,7 @@ def parse_pages(pages_str: str, total_pages: int) -> List[int]:
                 if 1 <= page_num <= total_pages:
                     page_indices.append(page_num - 1)  # Convert to 0-indexed
             except ValueError:
-                logger.warning(f"Invalid page number: {part}")
+                logger.warning("Invalid page number: %s", part)
 
     return sorted(set(page_indices))  # Remove duplicates and sort
 
@@ -167,7 +165,7 @@ def add_watermark(
 
         pdf_path = os.path.join(tmp_dir, safe_name)
         base = os.path.splitext(safe_name)[0]
-        output_name = f"{base}{suffix}.pdf"
+        output_name = "%s%s.pdf" % (base, suffix)
         output_path = os.path.join(tmp_dir, output_name)
 
         context.update({"pdf_path": pdf_path, "output_path": output_path})
@@ -182,7 +180,7 @@ def add_watermark(
                     f.write(chunk)
         except (OSError, IOError) as err:
             raise StorageError(
-                f"Failed to write PDF: {err}",
+                "Failed to write PDF: %s" % err,
                 context={**context, "error_type": type(err).__name__},
             ) from err
 
@@ -221,9 +219,20 @@ def add_watermark(
                 },
             )
             logger.debug(
-                f"Watermark parameters received: text='{watermark_text}', file={watermark_file is not None}, "
-                f"position='{position}', x={x}, y={y}, color='{color}', opacity={opacity}, "
-                f"font_size={font_size}, rotation={rotation}, scale={scale}, pages='{pages}'",
+                "Watermark parameters received: text='%s', file=%s, "
+                "position='%s', x=%s, y=%s, color='%s', opacity=%s, "
+                "font_size=%s, rotation=%s, scale=%s, pages='%s'",
+                watermark_text,
+                watermark_file is not None,
+                position,
+                x,
+                y,
+                color,
+                opacity,
+                font_size,
+                rotation,
+                scale,
+                pages,
                 extra=context,
             )
 
@@ -261,14 +270,22 @@ def add_watermark(
                     color_b = int(color_hex[4:6], 16) / 255.0
                     can.setFillColorRGB(color_r, color_g, color_b)
                     logger.debug(
-                        f"Page {page_num + 1}: Applied color RGB({color_r:.3f}, {color_g:.3f}, {color_b:.3f}) from {color}, opacity={opacity}",
+                        "Page %d: Applied color RGB(%.3f, %.3f, %.3f) from %s, opacity=%s",
+                        page_num + 1,
+                        color_r,
+                        color_g,
+                        color_b,
+                        color,
+                        opacity,
                         extra=context,
                     )
                 except (ValueError, IndexError):
                     # Default to black if color parsing fails
                     can.setFillColorRGB(0, 0, 0)
                     logger.warning(
-                        f"Page {page_num + 1}: Failed to parse color '{color}', using black",
+                        "Page %d: Failed to parse color '%s', using black",
+                        page_num + 1,
+                        color,
                         extra=context,
                     )
 
@@ -299,7 +316,10 @@ def add_watermark(
 
                         img_width, img_height = img.size
                         logger.debug(
-                            f"Image watermark loaded: {img_width}x{img_height}, mode: {img.mode}",
+                            "Image watermark loaded: %dx%d, mode: %s",
+                            img_width,
+                            img_height,
+                            img.mode,
                             extra=context,
                         )
 
@@ -321,14 +341,18 @@ def add_watermark(
                             watermark_center_x = x
                             watermark_center_y = y
                             logger.debug(
-                                f"Page {page_num + 1}: Using provided coordinates (PDF: {watermark_center_x:.2f}, {watermark_center_y:.2f}) for image watermark",
+                                "Page %d: Using provided coordinates (PDF: %.2f, %.2f) for image watermark",
+                                page_num + 1,
+                                watermark_center_x,
+                                watermark_center_y,
                                 extra=context,
                             )
                         elif position == "center":
                             watermark_center_x = page_width / 2
                             watermark_center_y = page_height / 2
                             logger.debug(
-                                f"Page {page_num + 1}: Using center position for image watermark",
+                                "Page %d: Using center position for image watermark",
+                                page_num + 1,
                                 extra=context,
                             )
                         else:  # diagonal (default) or custom without coordinates
@@ -336,7 +360,8 @@ def add_watermark(
                             watermark_center_x = page_width / 2
                             watermark_center_y = page_height / 2
                             logger.debug(
-                                f"Page {page_num + 1}: Using default center position for image watermark",
+                                "Page %d: Using default center position for image watermark",
+                                page_num + 1,
                                 extra=context,
                             )
 
@@ -345,11 +370,11 @@ def add_watermark(
                         watermark_y = watermark_center_y - scaled_height / 2
 
                         # Save image to temp as PNG (ReportLab can handle PNG)
-                        img_path = os.path.join(tmp_dir, f"watermark_{page_num}.png")
+                        img_path = os.path.join(tmp_dir, "watermark_%d.png" % page_num)
                         # Save as RGB PNG (ReportLab works best with RGB)
                         img.save(img_path, "PNG")
                         logger.debug(
-                            f"Saved watermark image to {img_path}", extra=context
+                            "Saved watermark image to %s", img_path, extra=context
                         )
 
                         # Apply rotation and scale transformations
@@ -401,7 +426,8 @@ def add_watermark(
                             )
                     except Exception as img_err:
                         logger.warning(
-                            f"Failed to use image watermark: {img_err}, using text",
+                            "Failed to use image watermark: %s, using text",
+                            img_err,
                             extra=context,
                         )
                         # Fallback to text - use same logic as text watermark below
@@ -486,14 +512,20 @@ def add_watermark(
                         watermark_x = x
                         watermark_y = y
                         logger.debug(
-                            f"Page {page_num + 1}: Using custom coordinates (PDF: {watermark_x:.2f}, {watermark_y:.2f})",
+                            "Page %d: Using custom coordinates (PDF: %.2f, %.2f)",
+                            page_num + 1,
+                            watermark_x,
+                            watermark_y,
                             extra=context,
                         )
                     elif position == "center":
                         watermark_x = page_width / 2
                         watermark_y = page_height / 2
                         logger.debug(
-                            f"Page {page_num + 1}: Using center position ({watermark_x:.2f}, {watermark_y:.2f})",
+                            "Page %d: Using center position (%.2f, %.2f)",
+                            page_num + 1,
+                            watermark_x,
+                            watermark_y,
                             extra=context,
                         )
                     else:  # diagonal (default) or custom without coordinates
@@ -501,7 +533,10 @@ def add_watermark(
                         watermark_x = page_width / 2
                         watermark_y = page_height / 2
                         logger.debug(
-                            f"Page {page_num + 1}: Using default center position ({watermark_x:.2f}, {watermark_y:.2f})",
+                            "Page %d: Using default center position (%.2f, %.2f)",
+                            page_num + 1,
+                            watermark_x,
+                            watermark_y,
                             extra=context,
                         )
 
@@ -515,11 +550,24 @@ def add_watermark(
                     )
 
                     logger.debug(
-                        f"Page {page_num + 1} text watermark: text='{watermark_text}', "
-                        f"font_size={scaled_font_size}, position='{position}', "
-                        f"x={x}, y={y}, watermark_pos=({watermark_x:.2f}, {watermark_y:.2f}), "
-                        f"rotation={rotation}, scale={scale}, should_apply_diagonal={should_apply_diagonal}, "
-                        f"color={color}, opacity={opacity}",
+                        "Page %d text watermark: text='%s', "
+                        "font_size=%s, position='%s', "
+                        "x=%s, y=%s, watermark_pos=(%.2f, %.2f), "
+                        "rotation=%s, scale=%s, should_apply_diagonal=%s, "
+                        "color=%s, opacity=%s",
+                        page_num + 1,
+                        watermark_text,
+                        scaled_font_size,
+                        position,
+                        x,
+                        y,
+                        watermark_x,
+                        watermark_y,
+                        rotation,
+                        scale,
+                        should_apply_diagonal,
+                        color,
+                        opacity,
                         extra=context,
                     )
 
@@ -533,7 +581,8 @@ def add_watermark(
                         can.drawCentredString(watermark_x, watermark_y, watermark_text)
                         can.restoreState()
                         logger.debug(
-                            f"Applied rotation {rotation} degrees to text watermark",
+                            "Applied rotation %s degrees to text watermark",
+                            rotation,
                             extra=context,
                         )
                     elif should_apply_diagonal:
@@ -552,7 +601,9 @@ def add_watermark(
                         # Center position or custom with no rotation
                         can.drawCentredString(watermark_x, watermark_y, watermark_text)
                         logger.debug(
-                            f"Drew text watermark at ({watermark_x:.2f}, {watermark_y:.2f}) without rotation",
+                            "Drew text watermark at (%.2f, %.2f) without rotation",
+                            watermark_x,
+                            watermark_y,
                             extra=context,
                         )
 
@@ -585,7 +636,7 @@ def add_watermark(
                 exc_info=True,
             )
             raise ConversionError(
-                f"Failed to add watermark: {e}", context=error_context
+                "Failed to add watermark: %s" % e, context=error_context
             ) from e
 
         # Validate output
@@ -622,6 +673,6 @@ def add_watermark(
             },
         )
         raise ConversionError(
-            f"Unexpected error: {e}",
+            "Unexpected error: %s" % e,
             context={**context, "error_type": type(e).__name__},
         ) from e
