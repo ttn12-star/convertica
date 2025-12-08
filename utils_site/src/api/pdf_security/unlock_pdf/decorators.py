@@ -19,6 +19,7 @@ def unlock_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Unlock PDF by removing password protection. "
             "Requires the correct password to unlock the PDF.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -35,6 +36,7 @@ def unlock_pdf_docs() -> Callable:
                     required=True,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Unlocked PDF file (no password required).",

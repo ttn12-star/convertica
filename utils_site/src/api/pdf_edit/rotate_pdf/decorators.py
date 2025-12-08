@@ -19,6 +19,7 @@ def rotate_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Rotate PDF pages by 90, 180, or 270 degrees. "
             "You can rotate all pages or specific pages.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -42,6 +43,7 @@ def rotate_pdf_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Rotated PDF file.",

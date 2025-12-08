@@ -9,13 +9,9 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
-from ...logging_utils import (
-    build_request_context,
-    get_logger,
-    log_conversion_start,
-    log_conversion_success,
-    log_validation_error,
-)
+from ...logging_utils import (build_request_context, get_logger,
+                              log_conversion_start, log_conversion_success,
+                              log_validation_error)
 from .decorators import jpg_to_pdf_docs
 from .serializers import JPGToPDFSerializer
 from .utils import convert_jpg_to_pdf, convert_multiple_jpg_to_pdf
