@@ -49,7 +49,7 @@ msgid "Categories"
 msgstr "Kategorie"
 
 msgid "All"
-msgstr ""
+msgstr "Wszystkie"
 
 msgid "Related Articles"
 msgstr "Powiązane artykuły"
@@ -307,13 +307,13 @@ msgid "Page Number Settings"
 msgstr "Numery stron"
 
 msgid "Position"
-msgstr ""
+msgstr "Pozycja"
 
 msgid "Bottom Center"
-msgstr ""
+msgstr "Na dole na środku"
 
 msgid "Bottom Left"
-msgstr ""
+msgstr "Na dole po lewej"
 
 #, fuzzy
 #| msgid "Your Rights"
@@ -321,10 +321,10 @@ msgid "Bottom Right"
 msgstr "Twoje prawa"
 
 msgid "Top Center"
-msgstr ""
+msgstr "Na górze na środku"
 
 msgid "Top Left"
-msgstr ""
+msgstr "Na górze po lewej"
 
 #, fuzzy
 #| msgid "Your Rights"
@@ -332,7 +332,7 @@ msgid "Top Right"
 msgstr "Twoje prawa"
 
 msgid "Font Size"
-msgstr ""
+msgstr "Rozmiar czcionki"
 
 #, fuzzy
 #| msgid "Add Page Numbers"
@@ -340,11 +340,11 @@ msgid "Starting Page Number"
 msgstr "Numery stron"
 
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #, python-brace-format
 msgid "Use {page} for page number, {total} for total pages"
-msgstr ""
+msgstr "Użyj {page} dla numeru strony, {total} dla całkowitej liczby stron"
 
 msgid "Apply to pages"
 msgstr "Zastosuj do stron"
@@ -359,7 +359,7 @@ msgid "Custom pages:"
 msgstr "Niestandardowe strony:"
 
 msgid "Enter specific pages like '1,3,5' or '1-5'"
-msgstr ""
+msgstr "Wprowadź konkretne strony jak '1,3,5' lub '1-5'"
 
 #, fuzzy
 #| msgid "Select file to convert"
@@ -381,7 +381,7 @@ msgid "file"
 msgstr "plik"
 
 msgid "Visual Watermark Editor"
-msgstr ""
+msgstr "Wizualny edytor znaku wodnego"
 
 #, fuzzy
 #| msgid "Remove Pages"
@@ -400,7 +400,7 @@ msgid ""
 msgstr ""
 
 msgid "Watermark Settings"
-msgstr ""
+msgstr "Ustawienia znaku wodnego"
 
 #, fuzzy
 #| msgid "Add Watermark"
@@ -408,10 +408,10 @@ msgid "Watermark Type"
 msgstr "Znak wodny"
 
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 msgid "Image"
-msgstr ""
+msgstr "Obraz"
 
 #, fuzzy
 #| msgid "Add Watermark"
@@ -424,16 +424,16 @@ msgid "Watermark Image"
 msgstr "Znak wodny"
 
 msgid "Choose Image"
-msgstr ""
+msgstr "Wybierz obraz"
 
 msgid "Color"
-msgstr ""
+msgstr "Kolor"
 
 msgid "Opacity"
-msgstr ""
+msgstr "Przezroczystość"
 
 msgid "Interactive controls:"
-msgstr ""
+msgstr "Interaktywne kontrolki:"
 
 msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
@@ -447,27 +447,27 @@ msgid "Select your PDF file using the button above"
 msgstr "Wybierz plik PDF za pomocą przycisku powyżej"
 
 msgid "Enter your watermark text or upload an image"
-msgstr ""
+msgstr "Wprowadź tekst znaku wodnego lub prześlij obraz"
 "Wprowadź tekst znaku wodnego lub prześlij obraz - nasze narzędzie online "
 "obsługuje tekst i obrazy"
 
 msgid "Choose the color and opacity using the sliders"
-msgstr ""
+msgstr "Wybierz kolor i przezroczystość używając suwaków"
 "Wybierz kolor i przezroczystość za pomocą suwaków - dostosuj znak wodny do "
 "swoich upodobań"
 
 msgid "Click on the PDF to position the watermark"
-msgstr ""
+msgstr "Kliknij na PDF, aby ustawić znak wodny"
 "Kliknij na PDF, aby umieścić znak wodny - nasz interaktywny edytor pozwala "
 "na precyzyjne pozycjonowanie"
 
 msgid "Click the add watermark button to process your file"
-msgstr ""
+msgstr "Kliknij przycisk dodaj znak wodny, aby przetworzyć plik"
 "Kliknij przycisk dodawania znaku wodnego, aby przetworzyć plik - nasze "
 "szybkie narzędzie przetworzy go w kilka sekund"
 
 msgid "Download your watermarked PDF file"
-msgstr ""
+msgstr "Pobierz plik PDF ze znakiem wodnym"
 "Pobierz plik PDF ze znakiem wodnym - bez rejestracji, całkowicie za darmo, "
 "ochrona dokumentów"
 
@@ -634,7 +634,7 @@ msgid "Remove password protection from your PDF documents."
 msgstr "Usuń ochronę hasłem ze swojego PDF"
 
 msgid "Compression Settings"
-msgstr ""
+msgstr "Ustawienia kompresji"
 
 #, fuzzy
 #| msgid "Compress PDF"
@@ -642,22 +642,22 @@ msgid "Compression Level"
 msgstr "Kompresuj PDF"
 
 msgid "Low"
-msgstr ""
+msgstr "Niski"
 
 msgid "Faster, less compression"
-msgstr ""
+msgstr "Szybciej, mniejsza kompresja"
 
 msgid "Medium"
-msgstr ""
+msgstr "Średni"
 
 msgid "Balanced"
-msgstr ""
+msgstr "Zrównoważone"
 
 msgid "High"
-msgstr ""
+msgstr "Wysoki"
 
 msgid "Slower, more compression"
-msgstr ""
+msgstr "Wolniej, większa kompresja"
 
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
@@ -815,17 +815,17 @@ msgstr ""
 "poniżej - nasz darmowy konwerter online obsługuje wszystkie formaty"
 
 msgid "Click the convert button"
-msgstr ""
+msgstr "Kliknij przycisk konwertuj"
 "Kliknij przycisk konwersji - nasz szybki konwerter PDF przetworzy plik "
 "natychmiast"
 
 msgid "Wait for the conversion to complete"
-msgstr ""
+msgstr "Poczekaj na zakończenie konwersji"
 "Poczekaj na zakończenie konwersji - nasz bezpieczny konwerter online "
 "przetwarza pliki w kilka sekund"
 
 msgid "Download your converted file using the download button"
-msgstr ""
+msgstr "Pobierz skonwertowany plik używając przycisku pobierania"
 "Pobierz przekonwertowany plik - bez rejestracji, całkowicie za darmo, bez "
 "ograniczeń"
 
@@ -866,7 +866,7 @@ msgid "Page:"
 msgstr "Strona"
 
 msgid "Crop area is active!"
-msgstr ""
+msgstr "Obszar przycinania jest aktywny!"
 
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
@@ -879,10 +879,10 @@ msgid "Apply crop to pages"
 msgstr "Zastosuj do stron"
 
 msgid "Tips:"
-msgstr ""
+msgstr "Wskazówki:"
 
 msgid "A crop area covering most of the page is selected by default"
-msgstr ""
+msgstr "Domyślnie wybrano obszar przycinania obejmujący większość strony"
 
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
@@ -890,19 +890,19 @@ msgid ""
 msgstr ""
 
 msgid "Click and drag inside the blue box to move it anywhere on the page"
-msgstr ""
+msgstr "Kliknij i przeciągnij wewnątrz niebieskiego pola, aby przenieść go w dowolne miejsce"
 
 msgid "Drag the corner or edge handles to resize the crop area"
-msgstr ""
+msgstr "Przeciągnij rogi lub krawędzie, aby zmienić rozmiar obszaru przycinania"
 
 msgid "Click and drag outside the box to create a new selection"
-msgstr ""
+msgstr "Kliknij i przeciągnij poza polem, aby utworzyć nowy wybór"
 
 msgid "The cursor changes to 'move' when hovering over the selection box"
-msgstr ""
+msgstr "Kursor zmienia się na «przenieś» po najechaniu na pole wyboru"
 
 msgid "When 'all' is selected, crop applies to all pages"
-msgstr ""
+msgstr "Gdy wybrano «wszystkie», przycinanie dotyczy wszystkich stron"
 
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
@@ -912,12 +912,12 @@ msgstr ""
 "chcesz zachować"
 
 msgid "Resize the selection by dragging the corners or edges"
-msgstr ""
+msgstr "Zmień rozmiar wyboru przeciągając rogi lub krawędzie"
 "Zmień rozmiar zaznaczenia, przeciągając rogi lub krawędzie - nasze narzędzie "
 "do przycinania PDF umożliwia precyzyjne dostosowanie"
 
 msgid "Choose which pages to apply the crop to"
-msgstr ""
+msgstr "Wybierz, do których stron zastosować przycinanie"
 "Wybierz, do których stron zastosować przycinanie - nasze narzędzie online "
 "pozwala przetwarzać poszczególne strony lub wszystkie"
 
@@ -937,7 +937,7 @@ msgid ""
 msgstr ""
 
 msgid "Drag to select crop area..."
-msgstr ""
+msgstr "Przeciągnij, aby wybrać obszar przycinania..."
 
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
@@ -1659,13 +1659,13 @@ msgid ""
 msgstr ""
 
 msgid "is not a PDF file. Skipping."
-msgstr ""
+msgstr "nie jest plikiem PDF. Pomijanie."
 
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
-msgstr ""
+msgstr "Maksymalnie 10 plików. Zostaną użyte tylko pierwsze 10 plików."
 
 msgid "Error loading preview"
-msgstr ""
+msgstr "Błąd ładowania podglądu"
 
 #, fuzzy
 #| msgid "Sending..."

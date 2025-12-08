@@ -48,7 +48,7 @@ msgid "Categories"
 msgstr "श्रेणियाँ"
 
 msgid "All"
-msgstr ""
+msgstr "सभी"
 
 msgid "Related Articles"
 msgstr "संबंधित लेख"
@@ -307,13 +307,13 @@ msgid "Page Number Settings"
 msgstr "पेज नंबर"
 
 msgid "Position"
-msgstr ""
+msgstr "स्थिति"
 
 msgid "Bottom Center"
-msgstr ""
+msgstr "नीचे केंद्र"
 
 msgid "Bottom Left"
-msgstr ""
+msgstr "नीचे बाएं"
 
 #, fuzzy
 #| msgid "Your Rights"
@@ -321,10 +321,10 @@ msgid "Bottom Right"
 msgstr "आपके अधिकार"
 
 msgid "Top Center"
-msgstr ""
+msgstr "ऊपर केंद्र"
 
 msgid "Top Left"
-msgstr ""
+msgstr "ऊपर बाएं"
 
 #, fuzzy
 #| msgid "Your Rights"
@@ -332,7 +332,7 @@ msgid "Top Right"
 msgstr "आपके अधिकार"
 
 msgid "Font Size"
-msgstr ""
+msgstr "फ़ॉन्ट आकार"
 
 #, fuzzy
 #| msgid "Add Page Numbers"
@@ -340,11 +340,11 @@ msgid "Starting Page Number"
 msgstr "पेज नंबर"
 
 msgid "Format"
-msgstr ""
+msgstr "प्रारूप"
 
 #, python-brace-format
 msgid "Use {page} for page number, {total} for total pages"
-msgstr ""
+msgstr "पृष्ठ संख्या के लिए {page}, कुल पृष्ठों के लिए {total} का उपयोग करें"
 
 msgid "Apply to pages"
 msgstr "पेजों पर लागू करें"
@@ -359,7 +359,7 @@ msgid "Custom pages:"
 msgstr "कस्टम पेज:"
 
 msgid "Enter specific pages like '1,3,5' or '1-5'"
-msgstr ""
+msgstr "'1,3,5' या '1-5' जैसे विशिष्ट पृष्ठ दर्ज करें"
 
 #, fuzzy
 #| msgid "Select file to convert"
@@ -381,7 +381,7 @@ msgid "file"
 msgstr "फ़ाइल"
 
 msgid "Visual Watermark Editor"
-msgstr ""
+msgstr "विज़ुअल वॉटरमार्क एडिटर"
 
 #, fuzzy
 #| msgid "Remove Pages"
@@ -400,7 +400,7 @@ msgid ""
 msgstr ""
 
 msgid "Watermark Settings"
-msgstr ""
+msgstr "वॉटरमार्क सेटिंग्स"
 
 #, fuzzy
 #| msgid "Add Watermark"
@@ -408,10 +408,10 @@ msgid "Watermark Type"
 msgstr "वॉटरमार्क"
 
 msgid "Text"
-msgstr ""
+msgstr "टेक्स्ट"
 
 msgid "Image"
-msgstr ""
+msgstr "छवि"
 
 #, fuzzy
 #| msgid "Add Watermark"
@@ -424,16 +424,16 @@ msgid "Watermark Image"
 msgstr "वॉटरमार्क"
 
 msgid "Choose Image"
-msgstr ""
+msgstr "छवि चुनें"
 
 msgid "Color"
-msgstr ""
+msgstr "रंग"
 
 msgid "Opacity"
-msgstr ""
+msgstr "अपारदर्शिता"
 
 msgid "Interactive controls:"
-msgstr ""
+msgstr "इंटरैक्टिव नियंत्रण:"
 
 msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
@@ -447,26 +447,26 @@ msgid "Select your PDF file using the button above"
 msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें"
 
 msgid "Enter your watermark text or upload an image"
-msgstr ""
+msgstr "अपना वॉटरमार्क टेक्स्ट दर्ज करें या एक छवि अपलोड करें"
 "अपना वॉटरमार्क टेक्स्ट दर्ज करें या एक छवि अपलोड करें - हमारा ऑनलाइन उपकरण टेक्स्ट और "
 "छवियों का समर्थन करता है"
 
 msgid "Choose the color and opacity using the sliders"
-msgstr ""
+msgstr "स्लाइडर का उपयोग करके रंग और अपारदर्शिता चुनें"
 "स्लाइडर का उपयोग करके रंग और अस्पष्टता चुनें - अपनी पसंद के अनुसार वॉटरमार्क कॉन्फ़िगर करें"
 
 msgid "Click on the PDF to position the watermark"
-msgstr ""
+msgstr "वॉटरमार्क की स्थिति के लिए PDF पर क्लिक करें"
 "वॉटरमार्क को स्थिति देने के लिए PDF पर क्लिक करें - हमारा इंटरैक्टिव संपादक सटीक स्थिति "
 "निर्धारण की अनुमति देता है"
 
 msgid "Click the add watermark button to process your file"
-msgstr ""
+msgstr "अपनी फ़ाइल प्रोसेस करने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें"
 "अपनी फ़ाइल को संसाधित करने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें - हमारा तेज़ उपकरण "
 "इसे सेकंडों में संसाधित करेगा"
 
 msgid "Download your watermarked PDF file"
-msgstr ""
+msgstr "अपनी वॉटरमार्क वाली PDF फ़ाइल डाउनलोड करें"
 "अपनी वॉटरमार्क वाली PDF फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से "
 "मुफ्त, दस्तावेज़ सुरक्षा"
 
@@ -632,7 +632,7 @@ msgid "Remove password protection from your PDF documents."
 msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
 
 msgid "Compression Settings"
-msgstr ""
+msgstr "संपीड़न सेटिंग्स"
 
 #, fuzzy
 #| msgid "Compress PDF"
@@ -640,22 +640,22 @@ msgid "Compression Level"
 msgstr "PDF संपीड़ित करें"
 
 msgid "Low"
-msgstr ""
+msgstr "कम"
 
 msgid "Faster, less compression"
-msgstr ""
+msgstr "तेज़, कम संपीड़न"
 
 msgid "Medium"
-msgstr ""
+msgstr "मध्यम"
 
 msgid "Balanced"
-msgstr ""
+msgstr "संतुलित"
 
 msgid "High"
-msgstr ""
+msgstr "उच्च"
 
 msgid "Slower, more compression"
-msgstr ""
+msgstr "धीमा, अधिक संपीड़न"
 
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
@@ -807,16 +807,16 @@ msgstr ""
 "कनवर्टर सभी प्रारूपों का समर्थन करता है"
 
 msgid "Click the convert button"
-msgstr ""
+msgstr "कन्वर्ट बटन पर क्लिक करें"
 "कन्वर्ट बटन पर क्लिक करें - हमारा तेज़ PDF कनवर्टर आपकी फ़ाइल को तुरंत संसाधित करेगा"
 
 msgid "Wait for the conversion to complete"
-msgstr ""
+msgstr "रूपांतरण पूरा होने की प्रतीक्षा करें"
 "कन्वर्ज़न पूरा होने की प्रतीक्षा करें - हमारा सुरक्षित ऑनलाइन कनवर्टर सेकंडों में फ़ाइलें संसाधित "
 "करता है"
 
 msgid "Download your converted file using the download button"
-msgstr ""
+msgstr "डाउनलोड बटन का उपयोग करके अपनी परिवर्तित फ़ाइल डाउनलोड करें"
 "अपनी कनवर्ट की गई फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "बिना सीमाओं के"
 
@@ -857,7 +857,7 @@ msgid "Page:"
 msgstr "पृष्ठ"
 
 msgid "Crop area is active!"
-msgstr ""
+msgstr "क्रॉप क्षेत्र सक्रिय है!"
 
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
@@ -870,7 +870,7 @@ msgid "Apply crop to pages"
 msgstr "पेजों पर लागू करें"
 
 msgid "Tips:"
-msgstr ""
+msgstr "सुझाव:"
 
 msgid "A crop area covering most of the page is selected by default"
 msgstr ""
@@ -1639,13 +1639,13 @@ msgid ""
 msgstr ""
 
 msgid "is not a PDF file. Skipping."
-msgstr ""
+msgstr "PDF फ़ाइल नहीं है। छोड़ा जा रहा है।"
 
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
-msgstr ""
+msgstr "अधिकतम 10 फ़ाइलें अनुमत। केवल पहली 10 फ़ाइलें उपयोग की जाएंगी।"
 
 msgid "Error loading preview"
-msgstr ""
+msgstr "पूर्वावलोकन लोड करने में त्रुटि"
 
 #, fuzzy
 #| msgid "Sending..."
