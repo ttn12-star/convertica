@@ -10,7 +10,7 @@ services:
     command: >
       sh -c "python manage.py collectstatic --noinput &&
              python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-4} --threads ${GUNICORN_THREADS:-2} --timeout 120 --access-logfile - --error-logfile - --log-level info --worker-class gthread utils_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-2} --threads ${GUNICORN_THREADS:-2} --timeout 120 --access-logfile - --error-logfile - --log-level info --worker-class gthread utils_site.wsgi:application"
     environment:
       - DEBUG=False
       - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-True}
@@ -19,10 +19,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '${WEB_CPU_LIMIT:-2.0}'
+          cpus: '${WEB_CPU_LIMIT:-1.0}'
           memory: ${WEB_MEMORY_LIMIT:-1G}
         reservations:
-          cpus: '${WEB_CPU_RESERVATION:-0.5}'
+          cpus: '${WEB_CPU_RESERVATION:-0.25}'
           memory: ${WEB_MEMORY_RESERVATION:-512M}
     restart: always
     logging:
@@ -36,14 +36,14 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
-    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-4} --max-tasks-per-child=1000
+    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-2} --max-tasks-per-child=1000
     deploy:
       resources:
         limits:
-          cpus: '${CELERY_CPU_LIMIT:-1.0}'
+          cpus: '${CELERY_CPU_LIMIT:-0.5}'
           memory: ${CELERY_MEMORY_LIMIT:-512M}
         reservations:
-          cpus: '${CELERY_CPU_RESERVATION:-0.25}'
+          cpus: '${CELERY_CPU_RESERVATION:-0.1}'
           memory: ${CELERY_MEMORY_RESERVATION:-256M}
     restart: always
     logging:
@@ -61,8 +61,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '${CELERY_BEAT_CPU_LIMIT:-0.5}'
+          cpus: '${CELERY_BEAT_CPU_LIMIT:-0.25}'
           memory: ${CELERY_BEAT_MEMORY_LIMIT:-256M}
+        reservations:
+          cpus: '${CELERY_BEAT_CPU_RESERVATION:-0.1}'
+          memory: ${CELERY_BEAT_MEMORY_RESERVATION:-128M}
     restart: always
     logging:
       driver: "json-file"
@@ -75,10 +78,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '${DB_CPU_LIMIT:-1.0}'
+          cpus: '${DB_CPU_LIMIT:-0.5}'
           memory: ${DB_MEMORY_LIMIT:-512M}
         reservations:
-          cpus: '${DB_CPU_RESERVATION:-0.25}'
+          cpus: '${DB_CPU_RESERVATION:-0.1}'
           memory: ${DB_MEMORY_RESERVATION:-256M}
     restart: always
     logging:
@@ -92,8 +95,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '${REDIS_CPU_LIMIT:-0.5}'
+          cpus: '${REDIS_CPU_LIMIT:-0.25}'
           memory: ${REDIS_MEMORY_LIMIT:-256M}
+        reservations:
+          cpus: '${REDIS_CPU_RESERVATION:-0.05}'
+          memory: ${REDIS_MEMORY_RESERVATION:-128M}
     restart: always
     logging:
       driver: "json-file"
