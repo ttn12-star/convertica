@@ -19,6 +19,7 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
@@ -98,6 +99,8 @@ def merge_pdf(
                         "Invalid PDF: %s" % safe_name, context=context
                     )
 
+                # Repair PDF to handle potentially corrupted files
+                pdf_path = repair_pdf(pdf_path)
                 pdf_paths.append(pdf_path)
                 logger.debug(
                     "File %d saved successfully: %s",
