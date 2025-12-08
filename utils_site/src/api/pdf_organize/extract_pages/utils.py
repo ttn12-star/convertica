@@ -20,6 +20,7 @@ from ...file_validation import (
 )
 from ...logging_utils import get_logger
 from ...pdf_edit.rotate_pdf.utils import parse_pages
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
@@ -79,6 +80,9 @@ def extract_pages(
             raise InvalidPDFError(
                 validation_error or "Invalid PDF file", context=context
             )
+
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
 
         # Extract pages
         try:
