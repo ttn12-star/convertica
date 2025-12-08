@@ -10,7 +10,6 @@ from pathlib import Path
 
 from celery import shared_task
 from django.conf import settings
-
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)

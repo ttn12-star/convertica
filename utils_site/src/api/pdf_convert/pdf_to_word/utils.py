@@ -4,7 +4,6 @@ import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

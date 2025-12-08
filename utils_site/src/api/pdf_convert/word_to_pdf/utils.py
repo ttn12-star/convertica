@@ -4,7 +4,6 @@ import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
-
 from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 from ...file_validation import (

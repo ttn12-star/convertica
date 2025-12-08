@@ -4,7 +4,6 @@ Adds SEO-optimized translations for articles that are missing content translatio
 """
 
 from django.core.management.base import BaseCommand
-
 from src.blog.models import Article
 
 

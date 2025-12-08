@@ -1,6 +1,7 @@
 # Conversion limits and timeout utilities
 from collections.abc import Callable
-from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeoutError
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import TimeoutError as FuturesTimeoutError
 from functools import wraps
 from typing import Any
 

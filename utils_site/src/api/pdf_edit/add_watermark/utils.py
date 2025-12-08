@@ -9,7 +9,6 @@ from PyPDF2 import PdfReader, PdfWriter
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

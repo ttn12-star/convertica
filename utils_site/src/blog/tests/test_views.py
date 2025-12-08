@@ -5,7 +5,6 @@ Tests for blog views.
 from django.conf import settings
 from django.test import Client, TestCase
 from django.utils import timezone
-
 from src.blog.models import Article, ArticleCategory
 
 

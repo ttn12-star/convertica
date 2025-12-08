@@ -12,7 +12,6 @@ from django.views.decorators.http import require_http_methods
 def index_page(request):
     """Home page view."""
     from django.core.cache import cache
-
     from src.blog.models import Article
 
     # Cache latest articles for 1 hour
@@ -683,7 +682,6 @@ def sitemap_xml(request):
     from django.conf import settings
     from django.core.cache import cache
     from django.utils.translation import activate, get_language
-
     from src.blog.models import Article
 
     # Cache sitemap for 24 hours
