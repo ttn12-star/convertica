@@ -285,7 +285,7 @@ jobs:
             
             # Restart containers
             echo "🔄 Restarting containers..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps web celery celery-beat
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps web celery celery-beat nginx
             
             # Wait for services to be healthy
             echo "⏳ Waiting for services to be ready..."
