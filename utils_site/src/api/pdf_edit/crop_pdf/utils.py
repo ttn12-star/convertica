@@ -5,9 +5,7 @@ from typing import List, Optional, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_path
-from PIL import Image
-from PyPDF2 import PdfReader, PdfWriter
-from PyPDF2.generic import RectangleObject
+from PyPDF2 import PdfReader
 from reportlab.pdfgen import canvas
 from src.exceptions import (
     ConversionError,
@@ -189,7 +187,15 @@ def crop_pdf(
             )  # Minimum 10 points
 
             logger.info(
-                f"Crop parameters: x={crop_x:.2f}, y={crop_y:.2f}, w={crop_width:.2f}, h={crop_height:.2f}, pages={pages_to_crop}",
+                (
+                    "Crop parameters: x=%.2f, y=%.2f, w=%.2f, "
+                    "h=%.2f, pages=%s"
+                ),
+                crop_x,
+                crop_y,
+                crop_width,
+                crop_height,
+                pages_to_crop,
                 extra=context,
             )
 
@@ -263,7 +269,15 @@ def crop_pdf(
                         )
 
                         logger.debug(
-                            f"Cropping page {page_num + 1}: x={crop_x:.2f}, y={crop_y:.2f}, w={crop_width:.2f}, h={crop_height:.2f}",
+                            (
+                                "Cropping page %d: x=%.2f, y=%.2f, "
+                                "w=%.2f, h=%.2f"
+                            ),
+                            page_num + 1,
+                            crop_x,
+                            crop_y,
+                            crop_width,
+                            crop_height,
                             extra=context,
                         )
                 else:
