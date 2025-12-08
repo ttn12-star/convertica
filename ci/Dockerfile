@@ -42,6 +42,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     tesseract-ocr \
     tesseract-ocr-eng \
+    # Django i18n tools (for compilemessages)
+    gettext \
+    gettext-base \
     # System utilities
     curl \
     && rm -rf /var/lib/apt/lists/*
