@@ -77,7 +77,7 @@ services:
     command: >
       sh -c "python manage.py collectstatic --noinput &&
              python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 --workers 4 --threads 2 --timeout 120 --access-logfile - --error-logfile - --log-level info utils_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers 1 --threads 1 --timeout 300 --graceful-timeout 30 --max-requests 1000 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info utils_site.wsgi:application"
     volumes:
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
