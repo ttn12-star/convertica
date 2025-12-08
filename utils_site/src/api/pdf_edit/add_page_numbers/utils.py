@@ -11,11 +11,19 @@ from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
-from src.exceptions import (ConversionError, EncryptedPDFError,
-                            InvalidPDFError, StorageError)
+from src.exceptions import (
+    ConversionError,
+    EncryptedPDFError,
+    InvalidPDFError,
+    StorageError,
+)
 
-from ...file_validation import (check_disk_space, sanitize_filename,
-                                validate_output_file, validate_pdf_file)
+from ...file_validation import (
+    check_disk_space,
+    sanitize_filename,
+    validate_output_file,
+    validate_pdf_file,
+)
 from ...logging_utils import get_logger
 
 logger = get_logger(__name__)
