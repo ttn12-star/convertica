@@ -57,13 +57,30 @@ def merge_pdf(
         if order == "alphabetical":
             uploaded_files = sorted(uploaded_files, key=lambda f: f.name)
 
-        # Save all files
+        # Save all files in order
         pdf_paths = []
+        logger.info(
+            "Saving %d files for merge",
+            len(uploaded_files),
+            extra={
+                **context,
+                "file_names": [f.name for f in uploaded_files],
+            },
+        )
+
         for idx, uploaded_file in enumerate(uploaded_files):
             safe_name = sanitize_filename(
-                f"{idx}_{os.path.basename(uploaded_file.name)}"
+                "%d_%s" % (idx, os.path.basename(uploaded_file.name))
             )
             pdf_path = os.path.join(tmp_dir, safe_name)
+
+            logger.debug(
+                "Saving file %d: %s -> %s",
+                idx + 1,
+                uploaded_file.name,
+                safe_name,
+                extra={**context, "file_index": idx + 1},
+            )
 
             try:
                 with open(pdf_path, "wb") as f:
@@ -75,21 +92,38 @@ def merge_pdf(
                 if not is_valid:
                     if "password" in (validation_error or "").lower():
                         raise EncryptedPDFError(
-                            f"PDF {safe_name} is password-protected", context=context
+                            "PDF %s is password-protected" % safe_name, context=context
                         )
-                    raise InvalidPDFError(f"Invalid PDF: {safe_name}", context=context)
+                    raise InvalidPDFError(
+                        "Invalid PDF: %s" % safe_name, context=context
+                    )
 
                 pdf_paths.append(pdf_path)
+                logger.debug(
+                    "File %d saved successfully: %s",
+                    idx + 1,
+                    safe_name,
+                    extra={**context, "file_index": idx + 1, "pdf_path": pdf_path},
+                )
             except (OSError, IOError) as err:
                 raise StorageError(
-                    f"Failed to write PDF {safe_name}: {err}", context=context
+                    "Failed to write PDF %s: %s" % (safe_name, err), context=context
                 ) from err
 
         # Merge PDFs
         try:
-            logger.info("Starting PDF merge", extra={**context, "event": "merge_start"})
+            logger.info(
+                "Starting PDF merge",
+                extra={
+                    **context,
+                    "event": "merge_start",
+                    "num_files": len(pdf_paths),
+                    "file_paths": pdf_paths,
+                },
+            )
 
             writer = PdfWriter()
+            total_pages_added = 0
 
             for idx, pdf_path in enumerate(pdf_paths):
                 try:
@@ -99,24 +133,31 @@ def merge_pdf(
                     # Check if PDF is encrypted
                     if reader.is_encrypted:
                         logger.warning(
-                            f"PDF {idx + 1} is encrypted, attempting to decrypt",
+                            "PDF %d is encrypted, attempting to decrypt",
+                            idx + 1,
                             extra={**context, "pdf_index": idx + 1},
                         )
                         # Try to decrypt with empty password (common case)
                         if not reader.decrypt(""):
                             raise EncryptedPDFError(
-                                f"PDF {idx + 1} is password-protected and cannot be decrypted",
+                                "PDF %d is password-protected and cannot be decrypted"
+                                % (idx + 1),
                                 context=context,
                             )
 
                     # Add all pages from this PDF
-                    num_pages = len(reader.pages)
+                    pages_added_from_this_pdf = 0
                     for page_num, page in enumerate(reader.pages):
                         try:
                             writer.add_page(page)
+                            pages_added_from_this_pdf += 1
+                            total_pages_added += 1
                         except Exception as page_err:
                             logger.warning(
-                                f"Failed to add page {page_num + 1} from PDF {idx + 1}: {page_err}",
+                                "Failed to add page %d from PDF %d: %s",
+                                page_num + 1,
+                                idx + 1,
+                                page_err,
                                 extra={
                                     **context,
                                     "pdf_index": idx + 1,
@@ -127,9 +168,17 @@ def merge_pdf(
                             # Continue with next page instead of failing completely
                             continue
 
-                    logger.debug(
-                        f"Added {num_pages} pages from PDF {idx + 1}",
-                        extra={**context, "pdf_index": idx + 1, "num_pages": num_pages},
+                    logger.info(
+                        "Added %d pages from PDF %d (%s)",
+                        pages_added_from_this_pdf,
+                        idx + 1,
+                        os.path.basename(pdf_path),
+                        extra={
+                            **context,
+                            "pdf_index": idx + 1,
+                            "num_pages": pages_added_from_this_pdf,
+                            "pdf_path": pdf_path,
+                        },
                     )
 
                 except EncryptedPDFError:
@@ -137,7 +186,9 @@ def merge_pdf(
                 except Exception as pdf_err:
                     error_msg = str(pdf_err)
                     logger.error(
-                        f"Failed to read PDF {idx + 1}: {error_msg}",
+                        "Failed to read PDF %d: %s",
+                        idx + 1,
+                        error_msg,
                         extra={
                             **context,
                             "pdf_index": idx + 1,
@@ -148,21 +199,33 @@ def merge_pdf(
                         exc_info=True,
                     )
                     raise InvalidPDFError(
-                        f"Failed to read PDF {idx + 1}: {error_msg}",
+                        "Failed to read PDF %d: %s" % (idx + 1, error_msg),
                         context=context,
                     ) from pdf_err
 
             # Check if any pages were added
-            if len(writer.pages) == 0:
+            total_pages = len(writer.pages)
+            if total_pages == 0:
                 raise ConversionError(
                     "No pages were added to merged PDF. All input PDFs may be invalid or empty.",
                     context=context,
                 )
 
+            logger.info(
+                "Successfully merged %d PDFs into %d pages",
+                len(pdf_paths),
+                total_pages,
+                extra={
+                    **context,
+                    "num_input_files": len(pdf_paths),
+                    "total_pages": total_pages,
+                },
+            )
+
             # Generate output filename
             first_name = sanitize_filename(os.path.basename(uploaded_files[0].name))
             base = os.path.splitext(first_name)[0]
-            output_name = f"{base}_merged{suffix}.pdf"
+            output_name = "%s_merged%s.pdf" % (base, suffix)
             output_path = os.path.join(tmp_dir, output_name)
 
             # Write merged PDF
@@ -171,12 +234,13 @@ def merge_pdf(
                     writer.write(output_file)
             except (OSError, IOError) as write_err:
                 raise StorageError(
-                    f"Failed to write merged PDF: {write_err}",
+                    "Failed to write merged PDF: %s" % write_err,
                     context=context,
                 ) from write_err
 
             logger.debug(
-                f"Merge completed: {len(writer.pages)} pages merged",
+                "Merge completed: %d pages merged",
+                len(writer.pages),
                 extra={
                     **context,
                     "event": "merge_complete",
@@ -196,7 +260,7 @@ def merge_pdf(
                 exc_info=True,
             )
             raise ConversionError(
-                f"Failed to merge PDFs: {merge_exc}", context=error_context
+                "Failed to merge PDFs: %s" % merge_exc, context=error_context
             ) from merge_exc
 
         # Validate output
@@ -233,6 +297,6 @@ def merge_pdf(
             },
         )
         raise ConversionError(
-            f"Unexpected error: {e}",
+            "Unexpected error: %s" % e,
             context={**context, "error_type": type(e).__name__},
         ) from e
