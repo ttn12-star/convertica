@@ -12,7 +12,11 @@
            aria-label="{% trans 'Convertica - Home' %}"
            itemprop="url">
           <div class="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 overflow-hidden">
-            <img src="{% static 'images/logo.png' %}?v=2" alt="{% trans 'Convertica Logo' %}" class="w-full h-full object-contain">
+            <picture>
+              <source srcset="{% static 'images/logo-56.webp' %} 1x, {% static 'images/logo-112.webp' %} 2x" type="image/webp">
+              <source srcset="{% static 'images/logo-56.png' %} 1x, {% static 'images/logo-112.png' %} 2x" type="image/png">
+              <img src="{% static 'images/logo-56.png' %}" alt="{% trans 'Convertica Logo' %}" class="w-full h-full object-contain" width="56" height="56" loading="eager" fetchpriority="high">
+            </picture>
           </div>
           <span itemprop="name" class="text-base sm:text-lg md:text-xl lg:text-2xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-700 group-hover:via-purple-700 group-hover:to-blue-700 transition-all duration-300 tracking-tight whitespace-nowrap">
             {% trans "Convertica" %}
@@ -20,8 +24,10 @@
         </a>
 
         <!-- All Tools Menu - Shows all functions (placed close to logo) -->
-        <div class="relative ml-2 sm:ml-3 md:ml-4 lg:ml-6 mr-2 sm:mr-4 md:mr-8 lg:mr-16 xl:mr-[36rem] flex-shrink-0" id="all-tools-menu-parent" aria-haspopup="true" aria-expanded="false">
+        <div class="relative ml-2 sm:ml-3 md:ml-4 lg:ml-6 mr-2 sm:mr-4 md:mr-8 lg:mr-16 xl:mr-[36rem] flex-shrink-0" id="all-tools-menu-parent">
           <a href="{% url 'all_tools_page' %}"
+             aria-haspopup="menu"
+             aria-expanded="false"
              class="flex items-center space-x-0.5 sm:space-x-1 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg px-1.5 sm:px-2 md:px-3 py-1.5 sm:py-2 text-xs sm:text-sm md:text-base"
              id="all-tools-menu-button"
              aria-controls="all-tools-menu-dropdown"
@@ -285,8 +291,10 @@
                role="navigation">
 
           <!-- Mega Menu - Convert PDF -->
-            <div class="relative" id="mega-menu-parent" aria-haspopup="true" aria-expanded="false">
+            <div class="relative" id="mega-menu-parent">
               <button id="mega-menu-button"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
                       class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="mega-menu-dropdown"
                       aria-label="{% trans 'Convert PDF tools' %}"
@@ -381,8 +389,10 @@
             </div>
 
         <!-- Edit PDF Menu -->
-            <div class="relative" id="edit-pdf-menu-parent" aria-haspopup="true" aria-expanded="false">
+            <div class="relative" id="edit-pdf-menu-parent">
               <button id="edit-pdf-menu-button"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
                       class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-purple-600 hover:bg-purple-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="edit-pdf-menu-dropdown"
                       aria-label="{% trans 'Edit PDF tools' %}"
@@ -465,8 +475,10 @@
             </div>
 
         <!-- Organize PDF Menu -->
-            <div class="relative" id="organize-pdf-menu-parent" aria-haspopup="true" aria-expanded="false">
+            <div class="relative" id="organize-pdf-menu-parent">
               <button id="organize-pdf-menu-button"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
                       class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-green-600 hover:bg-green-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-green-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                       aria-controls="organize-pdf-menu-dropdown"
                       aria-label="{% trans 'Organize PDF tools' %}"
@@ -594,6 +606,7 @@
             {% endwith %}
             <select name="language"
                     onchange="this.form.submit();"
+                    aria-label="{% trans 'Select language' %}"
                     class="w-full border border-gray-300 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 cursor-pointer hover:border-blue-400 transition-colors shadow-sm min-w-[100px] lg:min-w-[120px]">
               {% for code, name in LANGUAGES %}
                 <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
@@ -791,5 +804,5 @@
       </nav>
     </div>
 
-    <script src="{% static 'js/header-navigation.js' %}"></script>
+    <script src="{% static 'js/header-navigation.js' %}" defer></script>
   </header>
