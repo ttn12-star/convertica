@@ -81,6 +81,12 @@ class PerformanceMonitoringMiddleware(MiddlewareMixin):
             duration = time.time() - request._start_time
             response["X-Process-Time"] = f"{duration:.3f}"
 
+            # Skip monitoring for health check and other system endpoints
+            # These endpoints may be slow due to DB/cache checks, which is expected
+            skip_paths = ["/health/", "/robots.txt", "/sitemap.xml"]
+            if any(request.path.startswith(path) for path in skip_paths):
+                return response
+
             # Log slow requests (> 1 second)
             if duration > 1.0:
                 import logging

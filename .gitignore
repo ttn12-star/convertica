@@ -72,6 +72,10 @@ staticfiles/
 # Django translations (compiled)
 locale/*/LC_MESSAGES/*.mo
 
+# Server-specific files (SSL certificates, renewal scripts)
+ssl/
+renew-ssl.sh
+
 # Documentation folder (internal docs, not for version control)
 docs/
 
