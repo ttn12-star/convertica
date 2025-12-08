@@ -15,13 +15,22 @@ from django.utils.text import get_valid_filename
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from src.exceptions import (ConversionError, EncryptedPDFError,
-                            InvalidPDFError, StorageError)
+from src.exceptions import (
+    ConversionError,
+    EncryptedPDFError,
+    InvalidPDFError,
+    StorageError,
+)
 
-from .logging_utils import (build_request_context, get_logger,
-                            log_conversion_error, log_conversion_start,
-                            log_conversion_success, log_file_validation_error,
-                            log_validation_error)
+from .logging_utils import (
+    build_request_context,
+    get_logger,
+    log_conversion_error,
+    log_conversion_start,
+    log_conversion_success,
+    log_file_validation_error,
+    log_validation_error,
+)
 from .spam_protection import validate_spam_protection
 
 logger = get_logger(__name__)
