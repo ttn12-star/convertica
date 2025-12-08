@@ -7,13 +7,17 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 5  # Limit to 5 open PRs at a time (was unlimited)
     labels:
       - "dependencies"
       - "python"
     commit-message:
       prefix: "chore"
       include: "scope"
+    # Ignore major version updates (only patch and minor for safety)
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
 
   # Enable version updates for Docker
   - package-ecosystem: "docker"
@@ -22,6 +26,7 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
+    open-pull-requests-limit: 3  # Limit to 3 open PRs at a time
     labels:
       - "dependencies"
       - "docker"
@@ -33,7 +38,7 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
+    open-pull-requests-limit: 3  # Limit to 3 open PRs at a time (was unlimited)
     labels:
       - "dependencies"
       - "github-actions"
-
