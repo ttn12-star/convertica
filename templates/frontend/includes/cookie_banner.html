@@ -131,6 +131,12 @@
     const cookieAnalytics = document.getElementById('cookie-analytics');
     const cookieMarketing = document.getElementById('cookie-marketing');
 
+    // Early return if essential elements are missing
+    if (!cookieBanner || !cookieAccept || !cookieReject) {
+      console.warn('Cookie banner elements not found');
+      return;
+    }
+
     // Check if user has already made a choice
     const cookieConsent = localStorage.getItem('cookie_consent');
 
@@ -238,13 +244,16 @@
         console.log('Analytics cookies:', this.checked ? 'enabled' : 'disabled');
       });
 
-        // Also handle click on the parent div
-      cookieAnalytics.closest('.flex.items-center').addEventListener('click', function(e) {
-        if (e.target !== cookieAnalytics) {
-          cookieAnalytics.checked = !cookieAnalytics.checked;
-          cookieAnalytics.dispatchEvent(new Event('change'));
-        }
-      });
+        // Also handle click on the parent label
+      const analyticsLabel = cookieAnalytics.closest('label');
+      if (analyticsLabel) {
+        analyticsLabel.addEventListener('click', function(e) {
+          if (e.target !== cookieAnalytics) {
+            cookieAnalytics.checked = !cookieAnalytics.checked;
+            cookieAnalytics.dispatchEvent(new Event('change'));
+          }
+        });
+      }
     }
 
     if (cookieMarketing) {
@@ -252,13 +261,16 @@
         console.log('Marketing cookies:', this.checked ? 'enabled' : 'disabled');
       });
 
-        // Also handle click on the parent div
-      cookieMarketing.closest('.flex.items-center').addEventListener('click', function(e) {
-        if (e.target !== cookieMarketing) {
-          cookieMarketing.checked = !cookieMarketing.checked;
-          cookieMarketing.dispatchEvent(new Event('change'));
-        }
-      });
+        // Also handle click on the parent label
+      const marketingLabel = cookieMarketing.closest('label');
+      if (marketingLabel) {
+        marketingLabel.addEventListener('click', function(e) {
+          if (e.target !== cookieMarketing) {
+            cookieMarketing.checked = !cookieMarketing.checked;
+            cookieMarketing.dispatchEvent(new Event('change'));
+          }
+        });
+      }
     }
 
     // Function to apply cookie preferences
