@@ -14,7 +14,7 @@ services:
       sh -c "python manage.py collectstatic --noinput --clear &&
              python manage.py compilemessages &&
              python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-1} --timeout 300 --graceful-timeout 30 --max-requests 1000 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread utils_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-2} --threads ${GUNICORN_THREADS:-2} --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread utils_site.wsgi:application"
     environment:
       - DEBUG=False
       # Disable redirect to HTTPS for internal healthchecks; enable later when SSL terminates at nginx
