@@ -85,5 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 </div>
 
+<script>
+    // Merge PDF translations
+    window.PAGE_LABEL = "{% trans 'Page' %}";
+    window.FILE_NOT_PDF = "{% trans 'is not a PDF file. Skipping.' %}";
+    window.MAX_FILES_EXCEEDED = "{% trans 'Maximum 10 files allowed. Only the first 10 files will be used.' %}";
+    window.ERROR_LOADING_PREVIEW = "{% trans 'Error loading preview' %}";
+    window.LOADING_PREVIEW = "{% trans 'Loading...' %}";
+    window.FAILED_TO_LOAD_PDF = "{% trans 'Failed to load PDF file. Please try again.' %}";
+    window.MERGING_PDFS = "{% trans 'Merging PDFs...' %}";
+    window.SELECT_AT_LEAST_2_FILES = "{% trans 'Please select at least 2 PDF files to merge.' %}";
+</script>
 <script src="{% static 'js/merge-pdf-multi.js' %}"></script>
 {% endblock %}

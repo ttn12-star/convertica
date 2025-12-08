@@ -39,6 +39,13 @@
 
 <script>
     window.API_URL = "{{ api_url }}";
+    // Organize PDF translations
+    window.PAGE_LABEL = "{% trans 'Page' %}";
+    window.SELECT_PDF_FILE = "{% trans 'Please select a PDF file.' %}";
+    window.SELECT_PDF_FIRST = "{% trans 'Please select a PDF file first.' %}";
+    window.FAILED_TO_LOAD_PDF = "{% trans 'Failed to load PDF file. Please try again.' %}";
+    window.ORGANIZING = "{% trans 'Organizing...' %}";
+    window.FAILED_TO_ORGANIZE = "{% trans 'Failed to organize PDF' %}";
 </script>
 <script src="{% static 'js/organize-pdf.js' %}"></script>
 {% endblock %}
