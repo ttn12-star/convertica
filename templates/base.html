@@ -101,6 +101,18 @@
             box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
         }
         
+        /* Prevent horizontal scrolling on mobile */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        /* Ensure all containers don't overflow */
+        * {
+            box-sizing: border-box;
+        }
+        
         /* Force dark text on light backgrounds by default */
         body {
             color: #111827; /* gray-900 */
@@ -116,6 +128,19 @@
             transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
             transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
             transition-duration: 150ms;
+        }
+        
+        /* Ensure images and media don't overflow */
+        img, video, iframe, embed, object {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Fix for dropdown menus on mobile */
+        @media (max-width: 640px) {
+            .absolute {
+                max-width: calc(100vw - 1rem);
+            }
         }
     </style>
     

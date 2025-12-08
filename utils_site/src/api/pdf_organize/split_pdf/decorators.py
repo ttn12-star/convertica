@@ -19,6 +19,7 @@ def split_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Split PDF into multiple files. "
             "You can split by individual pages, page ranges, or every N pages.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -37,11 +38,16 @@ def split_pdf_docs() -> Callable:
                 openapi.Parameter(
                     "pages",
                     openapi.IN_FORM,
-                    description="For 'page': comma-separated page numbers. For 'range': ranges like '1-3,5-7'. For 'every_n': number of pages per file",
+                    description=(
+                        "For 'page': comma-separated page numbers. "
+                        "For 'range': ranges like '1-3,5-7'. "
+                        "For 'every_n': number of pages per file"
+                    ),
                     type=openapi.TYPE_STRING,
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="ZIP file containing split PDF files.",

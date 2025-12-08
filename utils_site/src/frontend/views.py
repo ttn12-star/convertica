@@ -78,8 +78,7 @@ def _get_converter_context(
 
     # Keywords are kept in English for SEO (users search in English even in other countries)
     # But we can add language-specific keywords if needed
-    current_lang = get_language()
-
+    # current_lang = get_language()  # Not used currently, but may be needed in future
     # For now, keywords remain in English for all languages (better for SEO)
     # If needed, we can add language-specific keywords here
     keywords = page_keywords_key
@@ -680,21 +679,34 @@ def faq_page(request):
 
 @require_http_methods(["GET"])
 def sitemap_xml(request):
-    """Generate sitemap.xml for SEO."""
+    """Generate sitemap.xml for SEO with multilingual support."""
+    from django.conf import settings
     from django.core.cache import cache
     from django.http import HttpResponse
+    from django.utils.translation import activate, get_language
     from src.blog.models import Article
 
     # Cache sitemap for 24 hours
     cache_key = "sitemap_xml"
     cached_sitemap = cache.get(cache_key)
     if cached_sitemap:
-        return HttpResponse(cached_sitemap, content_type="application/xml")
+        return HttpResponse(
+            cached_sitemap, content_type="application/xml; charset=utf-8"
+        )
 
-    base_url = f"{request.scheme}://{request.get_host()}"
+    # Determine scheme: prefer X-Forwarded-Proto (from Nginx), fallback to request.scheme
+    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
+    # Force HTTPS in production (if not DEBUG)
+    if not getattr(settings, "DEBUG", False) and scheme == "http":
+        scheme = "https"
+
+    base_url = f"{scheme}://{request.get_host()}"
     current_date = datetime.now().strftime("%Y-%m-%d")
+    languages = getattr(settings, "LANGUAGES", [("en", "English")])
+    default_language = settings.LANGUAGE_CODE
+    old_lang = get_language()
 
-    # List of all important pages
+    # List of all important pages (without language prefix)
     pages = [
         {"url": "", "priority": "1.0", "changefreq": "daily"},
         {"url": "about/", "priority": "0.8", "changefreq": "monthly"},
@@ -736,36 +748,126 @@ def sitemap_xml(request):
     ]
 
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
 
-    # Add static pages
+    # Add static pages with all language versions
     for page in pages:
-        sitemap += "  <url>\n"
-        sitemap += f'    <loc>{base_url}/{page["url"]}</loc>\n'
-        sitemap += f"    <lastmod>{current_date}</lastmod>\n"
-        sitemap += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
-        sitemap += f'    <priority>{page["priority"]}</priority>\n'
-        sitemap += "  </url>\n"
+        page_url = page["url"]
 
-    # Add blog articles - optimize with only() to load only needed fields
+        # Generate URL for each language
+        for lang_code, _ in languages:
+            # Build URL with language prefix (except for default language at root)
+            if lang_code == default_language and page_url == "":
+                # Default language root - no prefix
+                url = f"{base_url}/"
+            elif lang_code == default_language:
+                # Default language with path - no prefix (Django i18n_patterns behavior)
+                url = f"{base_url}/{page_url}"
+            else:
+                # Other languages - with prefix
+                if page_url == "":
+                    url = f"{base_url}/{lang_code}/"
+                else:
+                    url = f"{base_url}/{lang_code}/{page_url}"
+
+            sitemap += "  <url>\n"
+            sitemap += f"    <loc>{url}</loc>\n"
+            sitemap += f"    <lastmod>{current_date}</lastmod>\n"
+            sitemap += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
+            sitemap += f'    <priority>{page["priority"]}</priority>\n'
+
+            # Add hreflang alternatives
+            for alt_lang_code, _ in languages:
+                if alt_lang_code == default_language and page_url == "":
+                    alt_url = f"{base_url}/"
+                elif alt_lang_code == default_language:
+                    alt_url = f"{base_url}/{page_url}"
+                else:
+                    if page_url == "":
+                        alt_url = f"{base_url}/{alt_lang_code}/"
+                    else:
+                        alt_url = f"{base_url}/{alt_lang_code}/{page_url}"
+
+                sitemap += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>\n'
+
+            # Add x-default
+            if page_url == "":
+                default_url = f"{base_url}/"
+            else:
+                default_url = f"{base_url}/{page_url}"
+            sitemap += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_url}"/>\n'
+
+            sitemap += "  </url>\n"
+
+    # Add blog articles with all language versions
     published_articles = (
         Article.objects.filter(status="published")
         .only("slug", "updated_at")
         .order_by("-published_at")
     )
+
     for article in published_articles:
-        article_url = article.get_absolute_url()
         lastmod = (
             article.updated_at.strftime("%Y-%m-%d")
             if article.updated_at
             else current_date
         )
-        sitemap += "  <url>\n"
-        sitemap += f"    <loc>{base_url}{article_url}</loc>\n"
-        sitemap += f"    <lastmod>{lastmod}</lastmod>\n"
-        sitemap += "    <changefreq>monthly</changefreq>\n"
-        sitemap += "    <priority>0.7</priority>\n"
-        sitemap += "  </url>\n"
+
+        # Generate URL for each language
+        for lang_code, _ in languages:
+            activate(lang_code)
+            try:
+                article_url = article.get_absolute_url()
+                # Ensure proper encoding
+                if isinstance(article_url, bytes):
+                    article_url = article_url.decode("utf-8")
+            except Exception:
+                # Fallback: construct URL manually
+                if lang_code == default_language:
+                    article_url = f"/blog/{article.slug}/"
+                else:
+                    article_url = f"/{lang_code}/blog/{article.slug}/"
+
+            full_url = f"{base_url}{article_url}"
+
+            sitemap += "  <url>\n"
+            sitemap += f"    <loc>{full_url}</loc>\n"
+            sitemap += f"    <lastmod>{lastmod}</lastmod>\n"
+            sitemap += "    <changefreq>monthly</changefreq>\n"
+            sitemap += "    <priority>0.7</priority>\n"
+
+            # Add hreflang alternatives for article
+            for alt_lang_code, _ in languages:
+                activate(alt_lang_code)
+                try:
+                    alt_article_url = article.get_absolute_url()
+                    if isinstance(alt_article_url, bytes):
+                        alt_article_url = alt_article_url.decode("utf-8")
+                except Exception:
+                    if alt_lang_code == default_language:
+                        alt_article_url = f"/blog/{article.slug}/"
+                    else:
+                        alt_article_url = f"/{alt_lang_code}/blog/{article.slug}/"
+
+                alt_full_url = f"{base_url}{alt_article_url}"
+                sitemap += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_full_url}"/>\n'
+
+            # Add x-default for article
+            activate(default_language)
+            try:
+                default_article_url = article.get_absolute_url()
+                if isinstance(default_article_url, bytes):
+                    default_article_url = default_article_url.decode("utf-8")
+            except Exception:
+                default_article_url = f"/blog/{article.slug}/"
+
+            default_full_url = f"{base_url}{default_article_url}"
+            sitemap += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_full_url}"/>\n'
+
+            sitemap += "  </url>\n"
+
+    # Restore original language
+    activate(old_lang)
 
     sitemap += "</urlset>"
 

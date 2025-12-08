@@ -19,6 +19,7 @@ def organize_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="General PDF organization operations. "
             "This endpoint can be extended for various organization tasks.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -35,6 +36,7 @@ def organize_pdf_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Organized PDF file.",

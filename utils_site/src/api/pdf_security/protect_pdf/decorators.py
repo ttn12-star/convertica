@@ -19,6 +19,7 @@ def protect_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Protect PDF with password encryption. "
             "The PDF will be encrypted and require a password to open.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -49,6 +50,7 @@ def protect_pdf_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Password-protected PDF file.",

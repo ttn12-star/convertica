@@ -12,7 +12,10 @@ class ProtectPDFSerializer(serializers.Serializer):
         max_length=100,
         write_only=True,
         trim_whitespace=True,
-        help_text="Password to protect the PDF. This will be used for both user and owner password if not specified separately.",
+        help_text=(
+            "Password to protect the PDF. This will be used for both user "
+            "and owner password if not specified separately."
+        ),
     )
     user_password = serializers.CharField(
         required=False,

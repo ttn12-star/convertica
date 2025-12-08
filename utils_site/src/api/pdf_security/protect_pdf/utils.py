@@ -61,7 +61,7 @@ def protect_pdf(
 
         pdf_path = os.path.join(tmp_dir, safe_name)
         base = os.path.splitext(safe_name)[0]
-        output_name = f"{base}_protected{suffix}.pdf"
+        output_name = "%s_protected%s.pdf" % (base, suffix)
         output_path = os.path.join(tmp_dir, output_name)
 
         context.update({"pdf_path": pdf_path, "output_path": output_path})
@@ -73,7 +73,7 @@ def protect_pdf(
                     f.write(chunk)
         except (OSError, IOError) as io_err:
             raise StorageError(
-                f"Failed to write PDF: {io_err}", context=context
+                "Failed to write PDF: %s" % io_err, context=context
             ) from io_err
 
         # Validate passwords
@@ -156,7 +156,7 @@ def protect_pdf(
                     writer.add_page(page)
                 except Exception as page_error:
                     logger.warning(
-                        f"Failed to copy page {page_num}",
+                        "Failed to copy page %d" % page_num,
                         extra={
                             **context,
                             "page_num": page_num,
@@ -196,7 +196,7 @@ def protect_pdf(
                     exc_info=True,
                 )
                 raise ConversionError(
-                    f"Failed to encrypt PDF: {encrypt_error}", context=error_context
+                    "Failed to encrypt PDF: %s" % encrypt_error, context=error_context
                 ) from encrypt_error
 
             # Write protected PDF
@@ -219,7 +219,7 @@ def protect_pdf(
                 exc_info=True,
             )
             raise ConversionError(
-                f"Failed to protect PDF: {e}", context=error_context
+                "Failed to protect PDF: %s" % e, context=error_context
             ) from e
 
         # Validate output
@@ -256,6 +256,6 @@ def protect_pdf(
             },
         )
         raise ConversionError(
-            f"Unexpected error: {e}",
+            "Unexpected error: %s" % e,
             context={**context, "error_type": type(e).__name__},
         ) from e

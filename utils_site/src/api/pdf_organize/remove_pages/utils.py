@@ -1,7 +1,7 @@
 # utils.py
 import os
 import tempfile
-from typing import List, Tuple
+from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
