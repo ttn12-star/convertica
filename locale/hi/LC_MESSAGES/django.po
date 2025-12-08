@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 23:40+0000\n"
+"POT-Creation-Date: 2025-12-08 21:56+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
 "Language: hi\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: templates/base.html:14
+
 #, fuzzy
 #| msgid ""
 #| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
@@ -24,7 +24,6 @@ msgstr ""
 "तेज़, सरल और सुरक्षित ऑनलाइन PDF से Word और Word से PDF कन्वर्टर। तुरंत दस्तावेज़ कन्वर्ट "
 "करें, पंजीकरण की आवश्यकता नहीं।"
 
-#: templates/base.html:15
 #, fuzzy
 #| msgid ""
 #| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
@@ -36,7 +35,6 @@ msgstr ""
 "PDF से Word, PDF से DOCX, PDF कन्वर्ट करें, PDF कन्वर्टर, Word कन्वर्टर, ऑनलाइन PDF "
 "कन्वर्टर"
 
-#: templates/base.html:129
 #, fuzzy
 #| msgid ""
 #| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
@@ -46,208 +44,164 @@ msgstr ""
 "तेज़, सरल और सुरक्षित ऑनलाइन PDF से Word और Word से PDF कन्वर्टर। तुरंत दस्तावेज़ कन्वर्ट "
 "करें, पंजीकरण की आवश्यकता नहीं।"
 
-#: templates/blog/article_detail.html:214
 msgid "Categories"
 msgstr "श्रेणियाँ"
 
-#: templates/blog/article_detail.html:223
 msgid "All"
 msgstr ""
 
-#: templates/blog/article_detail.html:275
 msgid "Related Articles"
 msgstr "संबंधित लेख"
 
-#: templates/blog/article_detail.html:318
 msgid "Back to Blog"
 msgstr "ब्लॉग पर वापस जाएं"
 
-#: templates/blog/article_detail.html:330 templates/frontend/index.html:90
 msgid "Popular Tools"
 msgstr "लोकप्रिय उपकरण"
 
-#: templates/blog/article_detail.html:340 templates/frontend/all_tools.html:63
-#: templates/frontend/includes/footer.html:102
-#: templates/frontend/includes/header.html:84
-#: templates/frontend/includes/header.html:320
-#: templates/frontend/includes/header.html:651
-#: templates/frontend/includes/header.html:712 templates/frontend/index.html:56
-#: templates/frontend/index.html:110
 msgid "PDF to Word"
 msgstr "PDF से Word"
 
-#: templates/blog/article_detail.html:349 templates/frontend/all_tools.html:281
-#: templates/frontend/includes/header.html:182
-#: templates/frontend/includes/header.html:500
-#: templates/frontend/includes/header.html:656
-#: templates/frontend/includes/header.html:738 templates/frontend/index.html:65
-#: templates/frontend/index.html:250
 msgid "Merge PDF"
 msgstr "PDF मर्ज करें"
 
-#: templates/blog/article_detail.html:358 templates/frontend/all_tools.html:377
-#: templates/frontend/includes/header.html:242
-#: templates/frontend/includes/header.html:536
-#: templates/frontend/includes/header.html:659
-#: templates/frontend/includes/header.html:758 templates/frontend/index.html:74
-#: templates/frontend/index.html:371
 msgid "Compress PDF"
 msgstr "PDF संपीड़ित करें"
 
-#: templates/blog/article_detail.html:367 templates/frontend/all_tools.html:182
-#: templates/frontend/includes/header.html:127
-#: templates/frontend/includes/header.html:416
-#: templates/frontend/includes/header.html:660
-#: templates/frontend/index.html:135
 msgid "Rotate PDF"
 msgstr "PDF घुमाएं"
 
-#: templates/blog/article_detail.html:373
 #, fuzzy
 #| msgid "All Tools"
 msgid "View All Tools"
 msgstr "सभी उपकरण"
 
-#: templates/blog/article_list.html:7
 msgid "blog, articles, PDF guides, document tips, tutorials"
 msgstr ""
 
-#: templates/blog/article_list.html:20
-#: templates/frontend/includes/footer.html:33
-#: templates/frontend/includes/footer.html:225
 msgid "Blog"
 msgstr "ब्लॉग"
 
-#: templates/blog/article_list.html:23
 msgid ""
 "Useful guides, tips, and articles about PDF tools and document management"
 msgstr "PDF उपकरणों और दस्तावेज़ प्रबंधन के बारे में उपयोगी गाइड, युक्तियाँ और लेख"
 
-#: templates/blog/article_list.html:41
 msgid "Search articles..."
 msgstr "लेख खोजें..."
 
-#: templates/blog/article_list.html:45
 msgid "Search"
 msgstr "खोजें"
 
-#: templates/blog/article_list.html:54
 msgid "All Articles"
 msgstr "सभी लेख"
 
-#: templates/blog/article_list.html:101
 msgid "Read"
 msgstr "पढ़ें"
 
-#: templates/blog/article_list.html:116
 msgid "Previous"
 msgstr "पिछला"
 
-#: templates/blog/article_list.html:121
 msgid "Page"
 msgstr "पृष्ठ"
 
-#: templates/blog/article_list.html:121
 msgid "of"
 msgstr "का"
 
-#: templates/blog/article_list.html:127
 msgid "Next"
 msgstr "अगला"
 
-#: templates/blog/article_list.html:135
 msgid "No articles found."
 msgstr "कोई लेख नहीं मिला।"
 
-#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:434
 msgid "About Us - Convertica"
 msgstr "हमारे बारे में - Convertica"
 
-#: templates/frontend/about.html:25
 msgid ""
 "Free online PDF tools platform providing conversion, editing, and "
 "organization services."
 msgstr ""
 "रूपांतरण, संपादन और व्यवस्थापन सेवाएं प्रदान करने वाला मुफ्त ऑनलाइन PDF उपकरण प्लेटफ़ॉर्म।"
 
-#: templates/frontend/about.html:27
 msgid "Today better than yesterday, tomorrow better than today"
 msgstr "आज कल से बेहतर, कल आज से बेहतर"
 
-#: templates/frontend/about.html:46
 msgid "About Convertica"
 msgstr "Convertica के बारे में"
 
-#: templates/frontend/about.html:49
 msgid "Your trusted partner for all PDF document needs"
 msgstr "सभी PDF दस्तावेज़ आवश्यकताओं के लिए आपका विश्वसनीय साथी"
 
-#: templates/frontend/about.html:63
 msgid "Mission icon"
 msgstr "मिशन आइकन"
 
-#: templates/frontend/about.html:67
 msgid "Our Mission"
 msgstr "हमारा मिशन"
 
-#: templates/frontend/about.html:70
+#, fuzzy
+#| msgid ""
+#| "At Convertica, we believe in the power of continuous improvement. Our "
+#| "mission is to provide you with the most reliable, fast, and user-friendly "
+#| "PDF tools available online. We understand that your documents are "
+#| "important, "
 msgid ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
 "PDF tools available online. We understand that your documents are important, "
+"and we're committed to ensuring that every interaction with our platform "
+"exceeds your expectations."
 msgstr ""
 "Convertica में, हम निरंतर सुधार की शक्ति में विश्वास करते हैं। हमारा मिशन आपको ऑनलाइन "
 "उपलब्ध सबसे विश्वसनीय, तेज़ और उपयोगकर्ता-अनुकूल PDF उपकरण प्रदान करना है। हम समझते हैं "
 "कि आपके दस्तावेज़ महत्वपूर्ण हैं, और हम यह सुनिश्चित करने के लिए प्रतिबद्ध हैं कि हमारे "
 
-#: templates/frontend/about.html:78
 msgid "Growth icon"
 msgstr "वृद्धि आइकन"
 
-#: templates/frontend/about.html:82
 msgid "Our Core Principle: Constant Improvement"
 msgstr "हमारा मूल सिद्धांत: निरंतर सुधार"
 
-#: templates/frontend/about.html:86
 msgid "We live by a simple yet powerful philosophy:"
 msgstr "हम एक सरल लेकिन शक्तिशाली दर्शन से जीते हैं:"
 
-#: templates/frontend/about.html:90
 msgid ""
 "Today, we are better than we were yesterday. Tomorrow, we will be even "
 "better than today."
 msgstr "आज हम कल से बेहतर हैं। कल हम आज से भी बेहतर होंगे।"
 
-#: templates/frontend/about.html:94
+#, fuzzy
+#| msgid ""
+#| "This isn't just a slogan—it's our commitment to you. Every day, our team "
+#| "works tirelessly to enhance our platform, improve our tools, and refine "
+#| "the user experience. We listen to your feedback, analyze usage patterns, "
+#| "and "
 msgid ""
 "This isn't just a slogan—it's our commitment to you. Every day, our team "
 "works tirelessly to enhance our platform, improve our tools, and refine the "
 "user experience. We listen to your feedback, analyze usage patterns, and "
+"implement improvements that make Convertica more powerful, intuitive, and "
+"reliable."
 msgstr ""
 "यह सिर्फ एक नारा नहीं है - यह आपके प्रति हमारी प्रतिबद्धता है। हर दिन, हमारी टीम "
 "हमारे प्लेटफ़ॉर्म को बेहतर बनाने, हमारे उपकरणों में सुधार करने और उपयोगकर्ता अनुभव को "
 "परिष्कृत करने के लिए अथक रूप से काम करती है। हम आपकी प्रतिक्रिया सुनते हैं, उपयोग पैटर्न का "
 
-#: templates/frontend/about.html:97
 msgid ""
 "Whether it's optimizing our conversion algorithms, adding new features, "
 "improving security, or enhancing performance, we never stop striving for "
 "excellence. This dedication to continuous improvement means that when you "
+"use Convertica, you're always getting the best version of our platform—and "
+"we're already working on making it even better."
 msgstr ""
 
-#: templates/frontend/about.html:106
 msgid "Tools icon"
 msgstr "उपकरण आइकन"
 
-#: templates/frontend/about.html:111
 msgid "What We Offer"
 msgstr "हम क्या प्रदान करते हैं"
 
-#: templates/frontend/about.html:115
 msgid "PDF Conversion"
 msgstr "PDF रूपांतरण"
 
-#: templates/frontend/about.html:117
 msgid ""
 "Convert PDFs to Word, Excel, and JPG formats, or create PDFs from various "
 "file types. Fast, accurate, and reliable conversions every time."
@@ -255,11 +209,9 @@ msgstr ""
 "PDF को Word, Excel और JPG प्रारूपों में कन्वर्ट करें, या विभिन्न फ़ाइल प्रकारों से PDF "
 "बनाएं। हर बार तेज़, सटीक और विश्वसनीय रूपांतरण।"
 
-#: templates/frontend/about.html:121
 msgid "PDF Editing"
 msgstr "PDF संपादन"
 
-#: templates/frontend/about.html:123
 msgid ""
 "Rotate, crop, add watermarks, and insert page numbers. Edit your PDFs with "
 "precision and ease."
@@ -267,11 +219,9 @@ msgstr ""
 "घुमाएं, क्रॉप करें, वॉटरमार्क जोड़ें और पेज नंबर डालें। सटीकता और आसानी के साथ अपने PDF "
 "संपादित करें।"
 
-#: templates/frontend/about.html:127
 msgid "PDF Organization"
 msgstr "PDF व्यवस्थापन"
 
-#: templates/frontend/about.html:129
 msgid ""
 "Merge, split, extract, remove, and organize pages. Manage your PDF documents "
 "efficiently."
@@ -279,13 +229,9 @@ msgstr ""
 "मर्ज करें, विभाजित करें, निकालें, हटाएं और पेज व्यवस्थित करें। अपने PDF दस्तावेज़ों को "
 "कुशलतापूर्वक प्रबंधित करें।"
 
-#: templates/frontend/about.html:133 templates/frontend/all_tools.html:397
-#: templates/frontend/includes/header.html:250
-#: templates/frontend/includes/header.html:672
 msgid "PDF Security"
 msgstr "PDF सुरक्षा"
 
-#: templates/frontend/about.html:135
 msgid ""
 "Protect your documents with password encryption or unlock secured PDFs when "
 "needed."
@@ -293,26 +239,20 @@ msgstr ""
 "पासवर्ड एन्क्रिप्शन के साथ अपने दस्तावेज़ों की सुरक्षा करें या आवश्यकता पड़ने पर सुरक्षित PDF "
 "अनलॉक करें।"
 
-#: templates/frontend/about.html:145
 msgid "Star icon"
 msgstr "स्टार आइकन"
 
-#: templates/frontend/about.html:149
 msgid "Why Choose Convertica"
 msgstr "Convertica क्यों चुनें"
 
-#: templates/frontend/about.html:154 templates/frontend/about.html:167
-#: templates/frontend/about.html:180 templates/frontend/about.html:193
 msgid "Checkmark icon"
 msgstr "चेकमार्क आइकन"
 
-#: templates/frontend/about.html:159
 #, fuzzy, python-format
 #| msgid "100% Free"
 msgid "100%% Free"
 msgstr "100% मुफ्त"
 
-#: templates/frontend/about.html:161
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
 "no credit card required."
@@ -320,11 +260,9 @@ msgstr ""
 "हमारे सभी उपकरण पूरी तरह से मुफ्त हैं। कोई छुपी हुई फीस, कोई सदस्यता, कोई क्रेडिट कार्ड "
 "की आवश्यकता नहीं।"
 
-#: templates/frontend/about.html:172
 msgid "Fast & Secure"
 msgstr "तेज़ और सुरक्षित"
 
-#: templates/frontend/about.html:174
 msgid ""
 "Process your files in seconds with our optimized algorithms. Your files are "
 "processed securely and deleted automatically after conversion."
@@ -332,22 +270,18 @@ msgstr ""
 "हमारे अनुकूलित एल्गोरिदम के साथ सेकंडों में अपनी फ़ाइलों को प्रोसेस करें। आपकी फ़ाइलें सुरक्षित "
 "रूप से प्रोसेस की जाती हैं और रूपांतरण के बाद स्वचालित रूप से हटा दी जाती हैं।"
 
-#: templates/frontend/about.html:185
 msgid "No Registration Required"
 msgstr "पंजीकरण की आवश्यकता नहीं"
 
-#: templates/frontend/about.html:187
 msgid ""
 "Start using our tools immediately. No sign-up, no email verification, no "
 "hassle."
 msgstr ""
 "तुरंत हमारे उपकरणों का उपयोग शुरू करें। कोई साइन-अप, कोई ईमेल सत्यापन, कोई परेशानी नहीं।"
 
-#: templates/frontend/about.html:198
 msgid "Privacy First"
 msgstr "गोपनीयता पहले"
 
-#: templates/frontend/about.html:200
 msgid ""
 "Your privacy matters. We don't store your files permanently, and we never "
 "share your data with third parties."
@@ -355,318 +289,218 @@ msgstr ""
 "आपकी गोपनीयता मायने रखती है। हम आपकी फ़ाइलों को स्थायी रूप से संग्रहीत नहीं करते हैं, और "
 "हम कभी भी आपके डेटा को तीसरे पक्ष के साथ साझा नहीं करते हैं।"
 
-#: templates/frontend/about.html:209
 msgid "Ready to Get Started?"
 msgstr "शुरू करने के लिए तैयार?"
 
-#: templates/frontend/about.html:211
 msgid "Experience the power of Convertica's PDF tools today."
 msgstr "आज ही Convertica के PDF उपकरणों की शक्ति का अनुभव करें।"
 
-#: templates/frontend/about.html:216
 msgid "Explore All Tools"
 msgstr "सभी उपकरण देखें"
 
-#: templates/frontend/about.html:220 templates/frontend/index.html:404
 msgid "Get Started"
 msgstr "शुरू करें"
 
-#: templates/frontend/add_page_numbers.html:6
 #, fuzzy
 #| msgid "Add Page Numbers"
 msgid "Page Number Settings"
 msgstr "पेज नंबर"
 
-#: templates/frontend/add_page_numbers.html:12
 msgid "Position"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:16
 msgid "Bottom Center"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:17
 msgid "Bottom Left"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:18
 #, fuzzy
 #| msgid "Your Rights"
 msgid "Bottom Right"
 msgstr "आपके अधिकार"
 
-#: templates/frontend/add_page_numbers.html:19
 msgid "Top Center"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:20
 msgid "Top Left"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:21
 #, fuzzy
 #| msgid "Your Rights"
 msgid "Top Right"
 msgstr "आपके अधिकार"
 
-#: templates/frontend/add_page_numbers.html:28
-#: templates/frontend/add_watermark.html:295
 msgid "Font Size"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:42
 #, fuzzy
 #| msgid "Add Page Numbers"
 msgid "Starting Page Number"
 msgstr "पेज नंबर"
 
-#: templates/frontend/add_page_numbers.html:55
 msgid "Format"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:64
 #, python-brace-format
 msgid "Use {page} for page number, {total} for total pages"
 msgstr ""
 
-#: templates/frontend/add_page_numbers.html:71
-#: templates/frontend/add_watermark.html:321
 msgid "Apply to pages"
 msgstr "पेजों पर लागू करें"
 
-#: templates/frontend/add_page_numbers.html:81
-#: templates/frontend/add_watermark.html:331
-#: templates/frontend/crop_pdf.html:210 templates/frontend/remove_pages.html:21
-#: templates/frontend/rotate_pdf.html:35
 msgid "All pages"
 msgstr "सभी पेज"
 
-#: templates/frontend/add_page_numbers.html:89
-#: templates/frontend/add_watermark.html:339
-#: templates/frontend/crop_pdf.html:218 templates/frontend/remove_pages.html:29
-#: templates/frontend/rotate_pdf.html:43
 msgid "Current page only"
 msgstr "केवल वर्तमान पेज"
 
-#: templates/frontend/add_page_numbers.html:97
-#: templates/frontend/add_watermark.html:347
-#: templates/frontend/crop_pdf.html:226 templates/frontend/remove_pages.html:38
-#: templates/frontend/rotate_pdf.html:51
 msgid "Custom pages:"
 msgstr "कस्टम पेज:"
 
-#: templates/frontend/add_page_numbers.html:107
-#: templates/frontend/add_watermark.html:357
-#: templates/frontend/crop_pdf.html:236 templates/frontend/remove_pages.html:48
-#: templates/frontend/rotate_pdf.html:61
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:119
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to watermark"
 msgstr "कन्वर्ट करने के लिए फ़ाइल चुनें"
 
-#: templates/frontend/add_watermark.html:137
-#: templates/frontend/converter_generic.html:103
-#: templates/frontend/crop_pdf.html:121
-#: templates/frontend/edit_pdf_generic.html:103
 #, fuzzy
 #| msgid "Remove Pages"
 msgid "Remove file"
 msgstr "पेज हटाएं"
 
-#: templates/frontend/add_watermark.html:162
-#: templates/frontend/converter_generic.html:128
-#: templates/frontend/crop_pdf.html:146
-#: templates/frontend/edit_pdf_generic.html:128
 msgid "Drag and drop your file here"
 msgstr "अपनी फ़ाइल यहाँ खींचें"
 
-#: templates/frontend/add_watermark.html:165
-#: templates/frontend/converter_generic.html:131
-#: templates/frontend/crop_pdf.html:149
-#: templates/frontend/edit_pdf_generic.html:131
-#: templates/frontend/jpg_to_pdf.html:93
 msgid "Use the button above to browse files"
 msgstr "फ़ाइलें ब्राउज़ करने के लिए ऊपर दिए गए बटन का उपयोग करें"
 
-#: templates/frontend/add_watermark.html:168
-#: templates/frontend/converter_generic.html:134
-#: templates/frontend/crop_pdf.html:152
-#: templates/frontend/edit_pdf_generic.html:134
 msgid "file"
 msgstr "फ़ाइल"
 
-#: templates/frontend/add_watermark.html:177
 msgid "Visual Watermark Editor"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:182
 #, fuzzy
 #| msgid "Remove Pages"
 msgid "Select Page"
 msgstr "पेज हटाएं"
 
-#: templates/frontend/add_watermark.html:200
 #, fuzzy
 #| msgid "How it works"
 msgid "How to use:"
 msgstr "यह कैसे काम करता है"
 
-#: templates/frontend/add_watermark.html:200
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use the top handle to rotate, and the corner handle to scale. Click anywhere "
 "on the PDF to reposition it."
 msgstr ""
 
-#: templates/frontend/add_watermark.html:209
 msgid "Watermark Settings"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:215
 #, fuzzy
 #| msgid "Add Watermark"
 msgid "Watermark Type"
 msgstr "वॉटरमार्क"
 
-#: templates/frontend/add_watermark.html:220
 msgid "Text"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:224
 msgid "Image"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:232
 #, fuzzy
 #| msgid "Add Watermark"
 msgid "Watermark Text"
 msgstr "वॉटरमार्क"
 
-#: templates/frontend/add_watermark.html:245
 #, fuzzy
 #| msgid "Add Watermark"
 msgid "Watermark Image"
 msgstr "वॉटरमार्क"
 
-#: templates/frontend/add_watermark.html:257
+msgid "Choose Image"
+msgstr ""
+
 msgid "Color"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:276
 msgid "Opacity"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:314
 msgid "Interactive controls:"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:314
 msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
 "simultaneously."
 msgstr ""
 
-#: templates/frontend/add_watermark.html:401
-#: templates/frontend/converter_generic.html:180
-#: templates/frontend/crop_pdf.html:323
-#: templates/frontend/edit_pdf_generic.html:173
-#: templates/frontend/jpg_to_pdf.html:132
 msgid "How it works"
 msgstr "यह कैसे काम करता है"
 
-#: templates/frontend/add_watermark.html:404
-#: templates/frontend/crop_pdf.html:326
 msgid "Select your PDF file using the button above"
 msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें"
 
-#: templates/frontend/add_watermark.html:405
 msgid "Enter your watermark text or upload an image"
 msgstr ""
 "अपना वॉटरमार्क टेक्स्ट दर्ज करें या एक छवि अपलोड करें - हमारा ऑनलाइन उपकरण टेक्स्ट और "
 "छवियों का समर्थन करता है"
 
-#: templates/frontend/add_watermark.html:406
 msgid "Choose the color and opacity using the sliders"
 msgstr ""
 "स्लाइडर का उपयोग करके रंग और अस्पष्टता चुनें - अपनी पसंद के अनुसार वॉटरमार्क कॉन्फ़िगर करें"
 
-#: templates/frontend/add_watermark.html:407
 msgid "Click on the PDF to position the watermark"
 msgstr ""
 "वॉटरमार्क को स्थिति देने के लिए PDF पर क्लिक करें - हमारा इंटरैक्टिव संपादक सटीक स्थिति "
 "निर्धारण की अनुमति देता है"
 
-#: templates/frontend/add_watermark.html:408
 msgid "Click the add watermark button to process your file"
 msgstr ""
 "अपनी फ़ाइल को संसाधित करने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें - हमारा तेज़ उपकरण "
 "इसे सेकंडों में संसाधित करेगा"
 
-#: templates/frontend/add_watermark.html:409
 msgid "Download your watermarked PDF file"
 msgstr ""
 "अपनी वॉटरमार्क वाली PDF फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से "
 "मुफ्त, दस्तावेज़ सुरक्षा"
 
-#: templates/frontend/add_watermark.html:424
-#: templates/frontend/crop_pdf.html:346
-#: templates/frontend/edit_pdf_generic.html:194
 msgid "Processing your file..."
 msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
 
-#: templates/frontend/add_watermark.html:425
-#: templates/frontend/converter_generic.html:203
-#: templates/frontend/crop_pdf.html:347
-#: templates/frontend/edit_pdf_generic.html:195
-#: templates/frontend/jpg_to_pdf.html:157
 msgid "Please wait, this may take a few moments"
 msgstr "कृपया प्रतीक्षा करें, इसमें कुछ समय लग सकता है"
 
-#: templates/frontend/add_watermark.html:426
-#: templates/frontend/crop_pdf.html:348
-#: templates/frontend/edit_pdf_generic.html:196
 msgid "Editing Complete!"
 msgstr "संपादन पूर्ण!"
 
-#: templates/frontend/add_watermark.html:427
-#: templates/frontend/converter_generic.html:205
-#: templates/frontend/crop_pdf.html:349
-#: templates/frontend/edit_pdf_generic.html:197
 msgid "Your file is ready to download"
 msgstr "आपकी फ़ाइल डाउनलोड के लिए तैयार है"
 
-#: templates/frontend/add_watermark.html:428
-#: templates/frontend/converter_generic.html:206
-#: templates/frontend/crop_pdf.html:350
-#: templates/frontend/edit_pdf_generic.html:198
 msgid "Download File"
 msgstr "फ़ाइल डाउनलोड करें"
 
-#: templates/frontend/add_watermark.html:429
-#: templates/frontend/crop_pdf.html:351
-#: templates/frontend/edit_pdf_generic.html:199
 msgid "Edit another file"
 msgstr "दूसरी फ़ाइल संपादित करें"
 
-#: templates/frontend/add_watermark.html:430
-#: templates/frontend/converter_generic.html:208
-#: templates/frontend/crop_pdf.html:352
-#: templates/frontend/edit_pdf_generic.html:200
-#: templates/frontend/jpg_to_pdf.html:162
 msgid "Error"
 msgstr "त्रुटि"
 
-#: templates/frontend/all_tools.html:24
+#, fuzzy
+#| msgid "Conversion failed. Please try again."
+msgid "Failed to load PDF file. Please try again."
+msgstr "रूपांतरण विफल रहा। कृपया पुनः प्रयास करें।"
+
 #, fuzzy
 #| msgid "All PDF tools"
 msgid "All PDF Tools"
 msgstr "सभी PDF उपकरण"
 
-#: templates/frontend/all_tools.html:27
 msgid ""
 "Browse all our PDF tools organized by category. Convert, edit, and organize "
 "your PDFs with ease."
@@ -674,370 +508,231 @@ msgstr ""
 "श्रेणी के अनुसार व्यवस्थित हमारे सभी PDF उपकरणों को ब्राउज़ करें। आसानी से अपने PDF को "
 "कन्वर्ट, एडिट और व्यवस्थित करें।"
 
-#: templates/frontend/all_tools.html:43
-#: templates/frontend/includes/header.html:49
-#: templates/frontend/includes/header.html:295
-#: templates/frontend/includes/header.html:648
-#: templates/frontend/includes/header.html:694
 msgid "Convert PDF"
 msgstr "PDF कन्वर्ट करें"
 
-#: templates/frontend/all_tools.html:46
 msgid "Convert PDFs to other formats or convert other files to PDF"
 msgstr "PDF को अन्य प्रारूपों में कन्वर्ट करें या अन्य फ़ाइलों को PDF में कन्वर्ट करें"
 
-#: templates/frontend/all_tools.html:66 templates/frontend/index.html:113
 msgid "Convert PDF documents to editable Word files instantly."
 msgstr "PDF दस्तावेज़ों को तुरंत संपादन योग्य Word फ़ाइलों में कन्वर्ट करें।"
 
-#: templates/frontend/all_tools.html:82
-#: templates/frontend/includes/footer.html:111
-#: templates/frontend/includes/header.html:60
-#: templates/frontend/includes/header.html:363
-#: templates/frontend/includes/header.html:649
-#: templates/frontend/includes/header.html:704
-#: templates/frontend/index.html:159
 msgid "Word to PDF"
 msgstr "Word से PDF"
 
-#: templates/frontend/all_tools.html:85 templates/frontend/index.html:162
 msgid "Convert Word documents to secure PDF files."
 msgstr "Word दस्तावेज़ों को सुरक्षित PDF फ़ाइलों में कन्वर्ट करें।"
 
-#: templates/frontend/all_tools.html:101
-#: templates/frontend/includes/footer.html:120
-#: templates/frontend/includes/header.html:96
-#: templates/frontend/includes/header.html:332
-#: templates/frontend/includes/header.html:652
-#: templates/frontend/includes/header.html:716
 msgid "PDF to JPG"
 msgstr "PDF से JPG"
 
-#: templates/frontend/all_tools.html:104
 msgid "Convert PDF pages to high-quality JPG images."
 msgstr "PDF पेजों को उच्च गुणवत्ता वाली JPG छवियों में कन्वर्ट करें।"
 
-#: templates/frontend/all_tools.html:124
-#: templates/frontend/includes/footer.html:129
-#: templates/frontend/includes/header.html:72
-#: templates/frontend/includes/header.html:375
-#: templates/frontend/includes/header.html:650
-#: templates/frontend/includes/header.html:708
 msgid "JPG to PDF"
 msgstr "JPG से PDF"
 
-#: templates/frontend/all_tools.html:127
 msgid ""
 "Convert JPG images to PDF documents. Combine multiple images into one PDF."
 msgstr "JPG छवियों को PDF दस्तावेज़ों में कन्वर्ट करें। कई छवियों को एक PDF में संयोजित करें।"
 
-#: templates/frontend/all_tools.html:142
-#: templates/frontend/includes/header.html:108
-#: templates/frontend/includes/header.html:344
-#: templates/frontend/includes/header.html:653
-#: templates/frontend/includes/header.html:720
-#: templates/frontend/index.html:208
 msgid "PDF to Excel"
 msgstr "PDF से Excel"
 
-#: templates/frontend/all_tools.html:145 templates/frontend/index.html:211
 msgid "Extract tables from PDF and convert to Excel format."
 msgstr "PDF से तालिकाएं निकालें और Excel प्रारूप में कन्वर्ट करें।"
 
-#: templates/frontend/all_tools.html:162
-#: templates/frontend/includes/header.html:116
-#: templates/frontend/includes/header.html:391
 msgid "Edit PDF"
 msgstr "PDF संपादित करें"
 
-#: templates/frontend/all_tools.html:165
 #, fuzzy
 #| msgid "Organize and manage your PDF documents"
 msgid "Modify and enhance your PDF documents"
 msgstr "अपने PDF दस्तावेज़ों को व्यवस्थित और प्रबंधित करें"
 
-#: templates/frontend/all_tools.html:185 templates/frontend/index.html:138
 msgid "Rotate PDF pages by 90, 180, or 270 degrees."
 msgstr "PDF पेजों को 90, 180, या 270 डिग्री घुमाएं।"
 
-#: templates/frontend/all_tools.html:201
-#: templates/frontend/includes/header.html:139
-#: templates/frontend/includes/header.html:428
-#: templates/frontend/includes/header.html:661
 msgid "Crop PDF"
 msgstr "PDF क्रॉप करें"
 
-#: templates/frontend/all_tools.html:204
 msgid "Crop PDF pages by specifying crop box coordinates."
 msgstr "क्रॉप बॉक्स निर्देशांक निर्दिष्ट करके PDF पेजों को क्रॉप करें।"
 
-#: templates/frontend/all_tools.html:220
-#: templates/frontend/includes/header.html:151
-#: templates/frontend/includes/header.html:447
-#: templates/frontend/includes/header.html:662
 msgid "Add Page Numbers"
 msgstr "पेज नंबर"
 
-#: templates/frontend/all_tools.html:223
 #, fuzzy
 #| msgid "Add page numbers to your PDF in seconds"
 msgid "Add page numbers to your PDF documents."
 msgstr "सेकंड में अपने PDF में पेज नंबर जोड़ें"
 
-#: templates/frontend/all_tools.html:240
-#: templates/frontend/includes/header.html:163
-#: templates/frontend/includes/header.html:459
-#: templates/frontend/includes/header.html:663
-#: templates/frontend/index.html:184
 msgid "Add Watermark"
 msgstr "वॉटरमार्क"
 
-#: templates/frontend/all_tools.html:243 templates/frontend/index.html:187
 msgid "Protect your PDFs with text or image watermarks."
 msgstr "टेक्स्ट या छवि वॉटरमार्क के साथ अपने PDF की सुरक्षा करें।"
 
-#: templates/frontend/all_tools.html:260 templates/frontend/all_tools.html:359
-#: templates/frontend/includes/header.html:171
-#: templates/frontend/includes/header.html:230
-#: templates/frontend/includes/header.html:475
-#: templates/frontend/includes/header.html:524
-#: templates/frontend/includes/header.html:655
-#: templates/frontend/includes/header.html:658
-#: templates/frontend/includes/header.html:728
-#: templates/frontend/includes/header.html:754
-#: templates/frontend/index.html:230 templates/frontend/index.html:347
 msgid "Organize PDF"
 msgstr "PDF व्यवस्थित करें"
 
-#: templates/frontend/all_tools.html:263
 #, fuzzy
 #| msgid "Manage and organize your PDF documents with powerful tools"
 msgid "Manage and organize your PDF documents"
 msgstr "शक्तिशाली उपकरणों के साथ अपने PDF दस्तावेज़ों को प्रबंधित और व्यवस्थित करें"
 
-#: templates/frontend/all_tools.html:284 templates/frontend/index.html:253
 msgid "Combine multiple PDF files into one document."
 msgstr "कई PDF फ़ाइलों को एक दस्तावेज़ में संयोजित करें।"
 
-#: templates/frontend/all_tools.html:300
-#: templates/frontend/includes/header.html:194
-#: templates/frontend/includes/header.html:512
-#: templates/frontend/includes/header.html:657
-#: templates/frontend/includes/header.html:742
-#: templates/frontend/index.html:274
 msgid "Split PDF"
 msgstr "PDF विभाजित करें"
 
-#: templates/frontend/all_tools.html:303 templates/frontend/index.html:277
 msgid "Split PDF into multiple files by pages or ranges."
 msgstr "पेज या रेंज के अनुसार PDF को कई फ़ाइलों में विभाजित करें।"
 
-#: templates/frontend/all_tools.html:320
-#: templates/frontend/includes/header.html:206
-#: templates/frontend/includes/header.html:555
-#: templates/frontend/includes/header.html:664
-#: templates/frontend/includes/header.html:746
-#: templates/frontend/index.html:298
 msgid "Remove Pages"
 msgstr "पेज हटाएं"
 
-#: templates/frontend/all_tools.html:323 templates/frontend/index.html:301
 msgid "Remove unwanted pages from your PDF document."
 msgstr "अपने PDF दस्तावेज़ से अवांछित पेज हटाएं।"
 
-#: templates/frontend/all_tools.html:339
-#: templates/frontend/includes/header.html:218
-#: templates/frontend/includes/header.html:567
-#: templates/frontend/includes/header.html:665
-#: templates/frontend/includes/header.html:750
-#: templates/frontend/index.html:322
 msgid "Extract Pages"
 msgstr "पेज निकालें"
 
-#: templates/frontend/all_tools.html:342 templates/frontend/index.html:325
 msgid "Extract specific pages from your PDF into a new file."
 msgstr "अपने PDF से विशिष्ट पेजों को एक नई फ़ाइल में निकालें।"
 
-#: templates/frontend/all_tools.html:362 templates/frontend/index.html:350
 msgid "Reorder and organize pages in your PDF document."
 msgstr "अपने PDF दस्तावेज़ में पेजों को पुन: व्यवस्थित और व्यवस्थित करें।"
 
-#: templates/frontend/all_tools.html:380 templates/frontend/index.html:374
 #, fuzzy
 #| msgid "Reduce PDF file size without losing quality"
 msgid "Reduce PDF file size without losing quality."
 msgstr "गुणवत्ता खोए बिना PDF फ़ाइल आकार कम करें"
 
-#: templates/frontend/all_tools.html:400
 #, fuzzy
 #| msgid "Secure and protect your PDF documents"
 msgid "Protect and secure your PDF documents"
 msgstr "अपने PDF दस्तावेज़ों को सुरक्षित और सुरक्षित करें"
 
-#: templates/frontend/all_tools.html:416
-#: templates/frontend/includes/header.html:261
-#: templates/frontend/includes/header.html:682
 msgid "Protect PDF"
 msgstr "PDF सुरक्षित करें"
 
-#: templates/frontend/all_tools.html:419
 #, fuzzy
 #| msgid "Add password protection or remove passwords from PDFs."
 msgid "Add password protection to secure your PDF documents."
 msgstr "PDF में पासवर्ड सुरक्षा जोड़ें या पासवर्ड हटाएं।"
 
-#: templates/frontend/all_tools.html:434
-#: templates/frontend/includes/header.html:273
-#: templates/frontend/includes/header.html:686
 msgid "Unlock PDF"
 msgstr "PDF अनलॉक करें"
 
-#: templates/frontend/all_tools.html:437
 #, fuzzy
 #| msgid "Remove password protection from your PDF"
 msgid "Remove password protection from your PDF documents."
 msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
 
-#: templates/frontend/compress_pdf.html:6
 msgid "Compression Settings"
 msgstr ""
 
-#: templates/frontend/compress_pdf.html:12
 #, fuzzy
 #| msgid "Compress PDF"
 msgid "Compression Level"
 msgstr "PDF संपीड़ित करें"
 
-#: templates/frontend/compress_pdf.html:16
 msgid "Low"
 msgstr ""
 
-#: templates/frontend/compress_pdf.html:16
 msgid "Faster, less compression"
 msgstr ""
 
-#: templates/frontend/compress_pdf.html:17
 msgid "Medium"
 msgstr ""
 
-#: templates/frontend/compress_pdf.html:17
 msgid "Balanced"
 msgstr ""
 
-#: templates/frontend/compress_pdf.html:18
 msgid "High"
 msgstr ""
 
-#: templates/frontend/compress_pdf.html:18
 msgid "Slower, more compression"
 msgstr ""
 
-#: templates/frontend/compress_pdf.html:21
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
 msgstr ""
 
-#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:464
 msgid "Contact Us - Convertica"
 msgstr "हमसे संपर्क करें - Convertica"
 
-#: templates/frontend/contact.html:44 templates/frontend/faq.html:383
-#: templates/frontend/privacy.html:220 templates/frontend/terms.html:253
 msgid "Contact Us"
 msgstr "हमसे संपर्क करें"
 
-#: templates/frontend/contact.html:47
 msgid ""
 "We're here to help! Get in touch with us for support, questions, or feedback."
 msgstr "हम मदद के लिए यहाँ हैं! सहायता, प्रश्न या प्रतिक्रिया के लिए हमसे संपर्क करें।"
 
-#: templates/frontend/contact.html:63
 msgid "Email icon"
 msgstr "ईमेल आइकन"
 
-#: templates/frontend/contact.html:67
-#: templates/frontend/includes/footer.html:161
 msgid "Email"
 msgstr "ईमेल"
 
-#: templates/frontend/contact.html:70
 msgid "Send us an email and we'll get back to you as soon as possible."
 msgstr "हमें एक ईमेल भेजें और हम जल्द से जल्द आपसे संपर्क करेंगे।"
 
-#: templates/frontend/contact.html:85
 msgid "Support icon"
 msgstr "सहायता आइकन"
 
-#: templates/frontend/contact.html:89
 msgid "Support"
 msgstr "सहायता"
 
-#: templates/frontend/contact.html:92
 msgid "Need help with our tools? We're here to assist you."
 msgstr "हमारे उपकरणों के साथ मदद चाहिए? हम आपकी सहायता के लिए यहाँ हैं।"
 
-#: templates/frontend/contact.html:95
 msgid "Response time: Usually within 24-48 hours"
 msgstr "प्रतिक्रिया समय: आमतौर पर 24-48 घंटों के भीतर"
 
-#: templates/frontend/contact.html:104
 msgid "Form icon"
 msgstr "फ़ॉर्म आइकन"
 
-#: templates/frontend/contact.html:108
 msgid "Send Us a Message"
 msgstr "हमें एक संदेश भेजें"
 
-#: templates/frontend/contact.html:114
-msgid "Your Name"
-msgstr "आपका नाम"
+msgid "Message Sent Successfully!"
+msgstr "संदेश सफलतापूर्वक भेजा गया!"
 
-#: templates/frontend/contact.html:125
-msgid "Your Email"
-msgstr "आपका ईमेल"
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"हमने आपका संदेश प्राप्त कर लिया है और जल्द से जल्द आपसे संपर्क करेंगे, आमतौर पर 24-48 घंटों के "
+"भीतर।"
 
-#: templates/frontend/contact.html:136
-msgid "Subject"
-msgstr "विषय"
+msgid "Please correct the errors below:"
+msgstr "कृपया नीचे दी गई त्रुटियों को सही करें:"
 
-#: templates/frontend/contact.html:147
-msgid "Message"
-msgstr "संदेश"
-
-#: templates/frontend/contact.html:163
 msgid "I agree to the"
 msgstr "मैं सहमत हूं"
 
-#: templates/frontend/contact.html:163 templates/frontend/contact.html:231
-#: templates/frontend/includes/cookie_banner.html:17
-#: templates/frontend/includes/footer.html:51
-#: templates/frontend/includes/footer.html:229
-#: templates/frontend/privacy.html:45
 msgid "Privacy Policy"
 msgstr "गोपनीयता नीति"
 
-#: templates/frontend/contact.html:163
 msgid "and consent to the processing of my personal data."
 msgstr "और अपने व्यक्तिगत डेटा के प्रसंस्करण के लिए सहमति देता हूं।"
 
-#: templates/frontend/contact.html:169
 msgid "Send Message"
 msgstr "संदेश भेजें"
 
-#: templates/frontend/contact.html:178
 msgid "FAQ icon"
 msgstr "FAQ आइकन"
 
-#: templates/frontend/contact.html:182 templates/frontend/faq.html:72
 msgid "Frequently Asked Questions"
 msgstr "अक्सर पूछे जाने वाले प्रश्न"
 
-#: templates/frontend/contact.html:187
 msgid "How long does it take to process files?"
 msgstr "फ़ाइलों को प्रोसेस करने में कितना समय लगता है?"
 
-#: templates/frontend/contact.html:189
 msgid ""
 "Most files are processed within seconds. Larger files or complex operations "
 "may take a few minutes."
@@ -1045,11 +740,9 @@ msgstr ""
 "अधिकांश फ़ाइलें सेकंडों के भीतर प्रोसेस की जाती हैं। बड़ी फ़ाइलें या जटिल ऑपरेशन में कुछ मिनट लग "
 "सकते हैं।"
 
-#: templates/frontend/contact.html:194
 msgid "Are my files safe?"
 msgstr "क्या मेरी फ़ाइलें सुरक्षित हैं?"
 
-#: templates/frontend/contact.html:196
 msgid ""
 "Yes! Your files are processed securely and automatically deleted immediately "
 "after processing. We never store your files permanently."
@@ -1057,11 +750,9 @@ msgstr ""
 "हाँ! आपकी फ़ाइलें सुरक्षित रूप से प्रोसेस की जाती हैं और प्रसंस्करण के तुरंत बाद स्वचालित रूप से "
 "हटा दी जाती हैं। हम कभी भी आपकी फ़ाइलों को स्थायी रूप से संग्रहीत नहीं करते हैं।"
 
-#: templates/frontend/contact.html:201
 msgid "Is Convertica really free?"
 msgstr "क्या Convertica वास्तव में मुफ्त है?"
 
-#: templates/frontend/contact.html:203
 msgid ""
 "Yes, all our tools are completely free to use. No hidden fees, no "
 "subscriptions required."
@@ -1069,11 +760,9 @@ msgstr ""
 "हाँ, हमारे सभी उपकरण पूरी तरह से मुफ्त हैं। कोई छुपी हुई फीस, कोई सदस्यता की आवश्यकता "
 "नहीं।"
 
-#: templates/frontend/contact.html:208
 msgid "What file formats are supported?"
 msgstr "कौन से फ़ाइल प्रारूप समर्थित हैं?"
 
-#: templates/frontend/contact.html:210
 msgid ""
 "We support PDF, Word (DOC, DOCX), JPG/JPEG, and Excel (XLSX) formats. Check "
 "individual tool pages for specific format requirements."
@@ -1081,46 +770,35 @@ msgstr ""
 "हम PDF, Word (DOC, DOCX), JPG/JPEG और Excel (XLSX) प्रारूपों का समर्थन करते हैं। "
 "विशिष्ट प्रारूप आवश्यकताओं के लिए व्यक्तिगत उपकरण पृष्ठों की जांच करें।"
 
-#: templates/frontend/contact.html:218
 msgid "Additional Resources"
 msgstr "अतिरिक्त संसाधन"
 
-#: templates/frontend/contact.html:223
-#: templates/frontend/includes/footer.html:42
 #, fuzzy
 #| msgid "About"
 msgid "About Us"
 msgstr "हमारे बारे में"
 
-#: templates/frontend/contact.html:225
 msgid "Learn more about Convertica and our mission."
 msgstr "Convertica और हमारे मिशन के बारे में अधिक जानें।"
 
-#: templates/frontend/contact.html:233
 msgid "Read our privacy policy to understand how we protect your data."
 msgstr "हम आपके डेटा की सुरक्षा कैसे करते हैं, यह समझने के लिए हमारी गोपनीयता नीति पढ़ें।"
 
-#: templates/frontend/contact.html:239
-#: templates/frontend/includes/cookie_banner.html:19
-#: templates/frontend/includes/footer.html:60 templates/frontend/terms.html:45
 msgid "Terms of Service"
 msgstr "सेवा की शर्तें"
 
-#: templates/frontend/contact.html:241
 msgid "Review our terms of service and usage policies."
 msgstr "हमारी सेवा की शर्तों और उपयोग नीतियों की समीक्षा करें।"
 
-#: templates/frontend/converter_generic.html:35
-#: templates/frontend/edit_pdf_generic.html:35
-#: templates/frontend/includes/footer.html:24
+msgid "Sending..."
+msgstr "भेज रहे हैं..."
+
 msgid "Home"
 msgstr "होम"
 
-#: templates/frontend/converter_generic.html:85
 msgid "Select file to convert"
 msgstr "कन्वर्ट करने के लिए फ़ाइल चुनें"
 
-#: templates/frontend/converter_generic.html:183
 msgid ""
 "Click the button above to select your file, or drag and drop it into the "
 "zone below"
@@ -1128,120 +806,95 @@ msgstr ""
 "ऊपर दिए गए बटन से अपनी फ़ाइल चुनें या इसे नीचे के क्षेत्र में खींचें - हमारा मुफ्त ऑनलाइन "
 "कनवर्टर सभी प्रारूपों का समर्थन करता है"
 
-#: templates/frontend/converter_generic.html:184
 msgid "Click the convert button"
 msgstr ""
 "कन्वर्ट बटन पर क्लिक करें - हमारा तेज़ PDF कनवर्टर आपकी फ़ाइल को तुरंत संसाधित करेगा"
 
-#: templates/frontend/converter_generic.html:185
-#: templates/frontend/jpg_to_pdf.html:139
 msgid "Wait for the conversion to complete"
 msgstr ""
 "कन्वर्ज़न पूरा होने की प्रतीक्षा करें - हमारा सुरक्षित ऑनलाइन कनवर्टर सेकंडों में फ़ाइलें संसाधित "
 "करता है"
 
-#: templates/frontend/converter_generic.html:186
 msgid "Download your converted file using the download button"
 msgstr ""
 "अपनी कनवर्ट की गई फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "बिना सीमाओं के"
 
-#: templates/frontend/converter_generic.html:202
 #, fuzzy
 #| msgid "Processing your file..."
 msgid "Converting your file..."
 msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
 
-#: templates/frontend/converter_generic.html:204
-#: templates/frontend/jpg_to_pdf.html:158
 #, fuzzy
 #| msgid "Editing Complete!"
 msgid "Conversion Complete!"
 msgstr "संपादन पूर्ण!"
 
-#: templates/frontend/converter_generic.html:207
-#: templates/frontend/jpg_to_pdf.html:161
 #, fuzzy
 #| msgid "Edit another file"
 msgid "Convert another file"
 msgstr "दूसरी फ़ाइल संपादित करें"
 
-#: templates/frontend/crop_pdf.html:103
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to crop"
 msgstr "कन्वर्ट करने के लिए फ़ाइल चुनें"
 
-#: templates/frontend/crop_pdf.html:165
 #, fuzzy
 #| msgid "Crop PDF"
 msgid "Crop Your PDF"
 msgstr "PDF क्रॉप करें"
 
-#: templates/frontend/crop_pdf.html:167
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
 "corner/edge handles to resize it."
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:172
 #, fuzzy
 #| msgid "Page"
 msgid "Page:"
 msgstr "पृष्ठ"
 
-#: templates/frontend/crop_pdf.html:189
 msgid "Crop area is active!"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:192
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
 "ready."
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:200
 #, fuzzy
 #| msgid "Apply to pages"
 msgid "Apply crop to pages"
 msgstr "पेजों पर लागू करें"
 
-#: templates/frontend/crop_pdf.html:273
 msgid "Tips:"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:275
 msgid "A crop area covering most of the page is selected by default"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:276
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:277
 msgid "Click and drag inside the blue box to move it anywhere on the page"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:278
 msgid "Drag the corner or edge handles to resize the crop area"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:279
 msgid "Click and drag outside the box to create a new selection"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:280
 msgid "The cursor changes to 'move' when hovering over the selection box"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:281
 msgid "When 'all' is selected, crop applies to all pages"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:327
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
 "keep"
@@ -1249,289 +902,255 @@ msgstr ""
 "PDF प्रदर्शित किया जाएगा - जिस क्षेत्र को आप रखना चाहते हैं उसे चुनने के लिए क्लिक करें और "
 "खींचें"
 
-#: templates/frontend/crop_pdf.html:328
 msgid "Resize the selection by dragging the corners or edges"
 msgstr ""
 "कोनों या किनारों को खींचकर चयन का आकार बदलें - हमारा PDF क्रॉपिंग उपकरण सटीक "
 "समायोजन की अनुमति देता है"
 
-#: templates/frontend/crop_pdf.html:329
 msgid "Choose which pages to apply the crop to"
 msgstr ""
 "चुनें कि क्रॉप किन पृष्ठों पर लागू करना है - हमारा ऑनलाइन उपकरण व्यक्तिगत पृष्ठों या सभी "
 "को संसाधित करने की अनुमति देता है"
 
-#: templates/frontend/crop_pdf.html:330
 msgid "Click the crop button to process your file"
 msgstr ""
 "अपनी फ़ाइल को संसाधित करने के लिए क्रॉप बटन पर क्लिक करें - हमारा तेज़ PDF उपकरण इसे "
 "तुरंत संसाधित करेगा"
 
-#: templates/frontend/crop_pdf.html:331
 msgid "Download your cropped PDF file"
 msgstr ""
 "अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "उच्च गुणवत्ता"
 
-#: templates/frontend/edit_pdf_generic.html:85
+msgid ""
+"Crop area ready! Drag the box to move it, drag from outside to create a new "
+"selection, or use handles to resize."
+msgstr ""
+
+msgid "Drag to select crop area..."
+msgstr ""
+
+msgid ""
+"Selection too small. Full page selected. Drag to create a new selection or "
+"drag the box to move it."
+msgstr ""
+
+msgid ""
+"Crop area selected! Drag the box to move it or use handles to resize. Click "
+"\\\"Crop PDF\\\" when ready."
+msgstr ""
+
+msgid ""
+"Crop area moved! Drag again to reposition or use handles to resize. Click \\"
+"\"Crop PDF\\\" when ready."
+msgstr ""
+
 #, fuzzy
 #| msgid "Select file to convert"
 msgid "Select file to edit"
 msgstr "कन्वर्ट करने के लिए फ़ाइल चुनें"
 
-#: templates/frontend/edit_pdf_generic.html:176
 msgid "Select your PDF file using the button above or drag and drop it"
 msgstr ""
 "ऊपर दिए गए बटन से अपनी PDF फ़ाइल चुनें या इसे खींचें - हमारा मुफ्त PDF संपादक सभी संस्करणों "
 "का समर्थन करता है"
 
-#: templates/frontend/edit_pdf_generic.html:177
 msgid "Configure the editing options below"
 msgstr ""
 "नीचे संपादन विकल्प कॉन्फ़िगर करें - हमारा ऑनलाइन PDF संपादक कई विकल्प प्रदान करता है"
 
-#: templates/frontend/edit_pdf_generic.html:178
 msgid "Click the edit button to process your file"
 msgstr ""
 "अपनी फ़ाइल को संसाधित करने के लिए संपादन बटन पर क्लिक करें - हमारा तेज़ PDF संपादक इसे "
 "तुरंत संसाधित करेगा"
 
-#: templates/frontend/edit_pdf_generic.html:179
 msgid "Download your edited file using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
 
-#: templates/frontend/extract_pages.html:6
+msgid ""
+"Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
+"\"Current page only\\\""
+msgstr ""
+
 #, fuzzy
 #| msgid "Extract Pages"
 msgid "Extract Pages Settings"
 msgstr "पेज निकालें"
 
-#: templates/frontend/extract_pages.html:12
-#: templates/frontend/split_pdf.html:49
 msgid "Pages to Extract"
 msgstr ""
 
-#: templates/frontend/extract_pages.html:22
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
 "(1-5)"
 msgstr ""
 
-#: templates/frontend/faq.html:21 templates/frontend/faq.html:148
+msgid "Find answers to common questions about Convertica PDF tools"
+msgstr "Convertica PDF उपकरणों के बारे में सामान्य प्रश्नों के उत्तर खोजें"
+
 #, fuzzy
-#| msgid "Convert PDF to Word"
-msgid "How do I convert PDF to Word?"
-msgstr "मैं PDF को Word में कैसे कन्वर्ट करूं?"
+#| msgid "Frequently Asked Questions"
+msgid "General Questions"
+msgstr "सामान्य प्रश्न"
 
-#: templates/frontend/faq.html:24 templates/frontend/faq.html:152
-msgid ""
-"To convert PDF to Word, simply upload your PDF file using the upload button "
-"or drag and drop it into the upload zone. Click the convert button and wait "
-"for the conversion to complete. Download your converted Word document using "
-msgstr ""
-
-#: templates/frontend/faq.html:29 templates/frontend/faq.html:90
 #, fuzzy
 #| msgid "Is Convertica really free?"
 msgid "Is Convertica free to use?"
 msgstr "क्या Convertica मुफ्त है?"
 
-#: templates/frontend/faq.html:32 templates/frontend/faq.html:94
 msgid ""
 "Yes, Convertica is completely free to use. All PDF conversion, editing, and "
 "organization tools are available at no cost. There are no hidden fees, no "
 "registration required, and no file size limits on the free plan."
 msgstr ""
 
-#: templates/frontend/faq.html:37 templates/frontend/faq.html:110
+msgid "Do I need to create an account?"
+msgstr "क्या मुझे खाता बनाने की आवश्यकता है?"
+
+msgid ""
+"No, you don't need to create an account. Convertica works without "
+"registration. Simply upload your file and start converting immediately."
+msgstr ""
+
 #, fuzzy
 #| msgid "What file formats are supported?"
 msgid "What file formats does Convertica support?"
 msgstr "Convertica कौन से फ़ाइल प्रारूपों का समर्थन करता है?"
 
-#: templates/frontend/faq.html:40 templates/frontend/faq.html:114
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
 "can convert between these formats, edit PDFs, organize pages, and protect "
 "your documents with passwords."
 msgstr ""
 
-#: templates/frontend/faq.html:45 templates/frontend/faq.html:216
-msgid "How do I merge multiple PDF files?"
-msgstr "मैं कई PDF फ़ाइलों को कैसे मर्ज करूं?"
-
-#: templates/frontend/faq.html:48
-msgid ""
-"To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
-"arrange them in the desired order, and click merge. All selected files will "
-"be combined into a single PDF document."
-msgstr ""
-
-#: templates/frontend/faq.html:53 templates/frontend/faq.html:284
-msgid "Is my data secure?"
-msgstr "क्या मेरा डेटा सुरक्षित है?"
-
-#: templates/frontend/faq.html:56 templates/frontend/faq.html:288
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
-msgid ""
-"Yes, your data is secure. All files are processed securely and automatically "
-"deleted immediately after conversion. We do not store your files, and your "
-"privacy is our top priority. You can also protect your PDFs with password "
-msgstr ""
-"हाँ! आपकी फ़ाइलें सुरक्षित रूप से प्रोसेस की जाती हैं और प्रसंस्करण के तुरंत बाद स्वचालित रूप से "
-"हटा दी जाती हैं। हम कभी भी आपकी फ़ाइलों को स्थायी रूप से संग्रहीत नहीं करते हैं।"
-
-#: templates/frontend/faq.html:75
-msgid "Find answers to common questions about Convertica PDF tools"
-msgstr "Convertica PDF उपकरणों के बारे में सामान्य प्रश्नों के उत्तर खोजें"
-
-#: templates/frontend/faq.html:85
-#, fuzzy
-#| msgid "Frequently Asked Questions"
-msgid "General Questions"
-msgstr "सामान्य प्रश्न"
-
-#: templates/frontend/faq.html:100
-msgid "Do I need to create an account?"
-msgstr "क्या मुझे खाता बनाने की आवश्यकता है?"
-
-#: templates/frontend/faq.html:104
-msgid ""
-"No, you don't need to create an account. Convertica works without "
-"registration. Simply upload your file and start converting immediately."
-msgstr ""
-
-#: templates/frontend/faq.html:120
 msgid "Is there a file size limit?"
 msgstr "क्या फ़ाइल आकार सीमा है?"
 
-#: templates/frontend/faq.html:124
 msgid ""
 "No, there are no file size limits on Convertica. You can process files of "
 "any size, from small documents to large PDF files."
 msgstr ""
 
-#: templates/frontend/faq.html:133
 #, fuzzy
 #| msgid "Editing Complete!"
 msgid "Conversion Questions"
 msgstr "रूपांतरण प्रश्न"
 
-#: templates/frontend/faq.html:138
 #, fuzzy
 #| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr "मैं PDF को Word में कैसे कन्वर्ट करूं?"
 
-#: templates/frontend/faq.html:142
 msgid ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
 "engine preserves text formatting, images, tables, and layout. The conversion "
+"maintains fonts, colors, spacing, and structure of your original document. "
+"All conversions are free and require no registration."
 msgstr ""
 
-#: templates/frontend/faq.html:158
+#, fuzzy
+#| msgid "Convert PDF to Word"
+msgid "How do I convert PDF to Word?"
+msgstr "मैं PDF को Word में कैसे कन्वर्ट करूं?"
+
+msgid ""
+"To convert PDF to Word, simply upload your PDF file using the upload button "
+"or drag and drop it into the upload zone. Click the convert button and wait "
+"for the conversion to complete. Download your converted Word document using "
+"the download button. The conversion is free and requires no registration."
+msgstr ""
+
 #, fuzzy
 #| msgid "Convert to PDF"
 msgid "How do I convert Word to PDF?"
 msgstr "मैं Word को PDF में कैसे कन्वर्ट करूं?"
 
-#: templates/frontend/faq.html:162
 msgid ""
 "Upload your Word document (.doc or .docx), click convert, and download your "
 "PDF. The conversion preserves formatting and layout of your original "
 "document."
 msgstr ""
 
-#: templates/frontend/faq.html:168
 #, fuzzy
 #| msgid "Convert PDF to Excel"
 msgid "Can I convert PDF to JPG?"
 msgstr "क्या मैं PDF को JPG में कन्वर्ट कर सकता हूं?"
 
-#: templates/frontend/faq.html:172
 msgid ""
 "Yes, you can convert PDF pages to JPG images. Select the page you want to "
 "convert or convert all pages. You can also choose the image quality (DPI) "
 "from 72 to 600."
 msgstr ""
 
-#: templates/frontend/faq.html:178
 msgid "How do I convert images to PDF?"
 msgstr "मैं छवियों को PDF में कैसे कन्वर्ट करूं?"
 
-#: templates/frontend/faq.html:182
 msgid ""
 "Upload one or multiple JPG/JPEG images, arrange them in the desired order, "
 "and click convert. All images will be combined into a single PDF document "
 "with automatic A4 formatting."
 msgstr ""
 
-#: templates/frontend/faq.html:188
 #, fuzzy
 #| msgid "Extract tables from PDF and convert to Excel format"
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "क्या मैं PDF से Excel में तालिकाएं निकाल सकता हूं?"
 
-#: templates/frontend/faq.html:192
 msgid ""
 "Yes, you can extract tables from PDF files and convert them to Excel format. "
 "Upload your PDF, and Convertica will extract all tables and save them in an "
 "Excel file."
 msgstr ""
 
-#: templates/frontend/faq.html:201
 #, fuzzy
 #| msgid "Organization"
 msgid "Editing & Organization"
 msgstr "संपादन और संगठन"
 
-#: templates/frontend/faq.html:206
 msgid "How do I merge PDF online free without watermark?"
 msgstr "मैं बिना वॉटरमार्क के PDF को ऑनलाइन मुफ्त में कैसे मर्ज करूं?"
 
-#: templates/frontend/faq.html:210
 msgid ""
 "To merge PDF online free without watermark, use Convertica's PDF merger. Go "
 "to the Merge PDF page, select multiple PDF files, arrange them in the "
 "desired order using drag and drop, and click merge. All selected files will "
+"be combined into a single PDF document with no watermark added. The merged "
+"PDF maintains the quality of original files."
 msgstr ""
 
-#: templates/frontend/faq.html:220
+msgid "How do I merge multiple PDF files?"
+msgstr "मैं कई PDF फ़ाइलों को कैसे मर्ज करूं?"
+
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order using drag and drop, and click merge. All "
 "selected files will be combined into a single PDF document."
 msgstr ""
 
-#: templates/frontend/faq.html:226
-
-
 msgid "Can I split a PDF into separate files?"
 msgstr "अपने PDF को कई फ़ाइलों में विभाजित करें"
 
-#: templates/frontend/faq.html:230
 msgid ""
 "Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
 
-#: templates/frontend/faq.html:236
+#, fuzzy
+#| msgid "Download your cropped PDF file"
+msgid "How do I compress PDF to under 1MB for email?"
+msgstr ""
+"मैं PDF फ़ाइल को कैसे संपीड़ित करूं?अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की "
+"आवश्यकता नहीं, पूरी तरह से मुफ्त, उच्च गुणवत्ता"
 
-
-
-
-#: templates/frontend/faq.html:240
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
 "Upload your PDF file, select the high compression level, and click compress. "
 "The tool will reduce the file size while maintaining acceptable quality for "
+"email attachments. You can preview the compressed file size before "
+"downloading."
 msgstr ""
 
-#: templates/frontend/faq.html:246
 #, fuzzy
 #| msgid "Download your cropped PDF file"
 msgid "How do I compress a PDF file?"
@@ -1539,18 +1158,15 @@ msgstr ""
 "मैं PDF फ़ाइल को कैसे संपीड़ित करूं?अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की "
 "आवश्यकता नहीं, पूरी तरह से मुफ्त, उच्च गुणवत्ता"
 
-#: templates/frontend/faq.html:250
 msgid ""
 "Upload your PDF file, select the compression level (low, medium, or high), "
 "and click compress. The file size will be reduced while maintaining "
 "acceptable quality."
 msgstr ""
 
-#: templates/frontend/faq.html:256
 msgid "Can I rotate PDF pages?"
 msgstr "क्या मैं PDF पृष्ठों को घुमा सकता हूं?"
 
-#: templates/frontend/faq.html:260
 #, fuzzy
 #| msgid ""
 #| "Rotate PDF pages by 90, 180, or 270 degrees. Free online PDF rotation "
@@ -1560,7 +1176,6 @@ msgid ""
 "you want to rotate and choose the rotation angle."
 msgstr "PDF पेजों को 90, 180, या 270 डिग्री घुमाएं। मुफ्त ऑनलाइन PDF रोटेशन उपकरण।"
 
-#: templates/frontend/faq.html:266
 #, fuzzy
 #| msgid "Download your watermarked PDF file"
 msgid "How do I add a watermark to PDF?"
@@ -1568,45 +1183,53 @@ msgstr ""
 "मैं PDF में वॉटरमार्क कैसे जोड़ूं?अपनी वॉटरमार्क वाली PDF फ़ाइल डाउनलोड करें - पंजीकरण की "
 "आवश्यकता नहीं, पूरी तरह से मुफ्त, दस्तावेज़ सुरक्षा"
 
-#: templates/frontend/faq.html:270
 msgid ""
 "Upload your PDF, choose between text or image watermark, set the position "
 "and transparency, and apply. The watermark will be added to all pages or "
 "selected pages."
 msgstr ""
 
-#: templates/frontend/faq.html:279
 msgid "Security & Privacy"
 msgstr "सुरक्षा और गोपनीयता"
 
-#: templates/frontend/faq.html:294
+msgid "Is my data secure?"
+msgstr "क्या मेरा डेटा सुरक्षित है?"
+
+#, fuzzy
+#| msgid ""
+#| "Yes! Your files are processed securely and automatically deleted "
+#| "immediately after processing. We never store your files permanently."
+msgid ""
+"Yes, your data is secure. All files are processed securely and automatically "
+"deleted immediately after conversion. We do not store your files, and your "
+"privacy is our top priority. You can also protect your PDFs with password "
+"encryption."
+msgstr ""
+"हाँ! आपकी फ़ाइलें सुरक्षित रूप से प्रोसेस की जाती हैं और प्रसंस्करण के तुरंत बाद स्वचालित रूप से "
+"हटा दी जाती हैं। हम कभी भी आपकी फ़ाइलों को स्थायी रूप से संग्रहीत नहीं करते हैं।"
+
 msgid "How do I protect a PDF with a password?"
 msgstr "मैं PDF को पासवर्ड से कैसे सुरक्षित करूं?"
 
-#: templates/frontend/faq.html:298
 msgid ""
 "Upload your PDF, enter a password (and optionally an owner password), and "
 "click protect. The PDF will be encrypted and require a password to open."
 msgstr ""
 
-#: templates/frontend/faq.html:304
 #, fuzzy
 #| msgid "Remove password protection from your PDF"
 msgid "Can I remove password protection from a PDF?"
 msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
 
-#: templates/frontend/faq.html:308
 msgid ""
 "Yes, if you know the password, you can unlock a protected PDF. Upload the "
 "protected PDF, enter the password, and click unlock. The password protection "
 "will be removed."
 msgstr ""
 
-#: templates/frontend/faq.html:314
 msgid "Are my files stored on your servers?"
 msgstr "क्या मेरी फ़ाइलें आपके सर्वर पर संग्रहीत हैं?"
 
-#: templates/frontend/faq.html:318
 #, fuzzy
 #| msgid ""
 #| "Yes! Your files are processed securely and automatically deleted "
@@ -1619,37 +1242,31 @@ msgstr ""
 "हाँ! आपकी फ़ाइलें सुरक्षित रूप से प्रोसेस की जाती हैं और प्रसंस्करण के तुरंत बाद स्वचालित रूप से "
 "हटा दी जाती हैं। हम कभी भी आपकी फ़ाइलों को स्थायी रूप से संग्रहीत नहीं करते हैं।"
 
-#: templates/frontend/faq.html:327
 msgid "Technical Questions"
 msgstr "तकनीकी प्रश्न"
 
-#: templates/frontend/faq.html:332
 #, fuzzy
 #| msgid "What file formats are supported?"
 msgid "What browsers are supported?"
 msgstr "कौन से फ़ाइल प्रारूप समर्थित हैं?"
 
-#: templates/frontend/faq.html:336
 msgid ""
 "Convertica works on all modern browsers including Chrome, Firefox, Safari, "
 "Edge, and Opera. The website is also mobile-friendly and works on "
 "smartphones and tablets."
 msgstr ""
 
-#: templates/frontend/faq.html:342
 #, fuzzy
 #| msgid "How long does it take to process files?"
 msgid "How long does conversion take?"
 msgstr "फ़ाइलों को प्रोसेस करने में कितना समय लगता है?"
 
-#: templates/frontend/faq.html:346
 msgid ""
 "Conversion time depends on file size and complexity. Most conversions "
 "complete in seconds. Larger files may take a minute or two. The progress is "
 "shown during conversion."
 msgstr ""
 
-#: templates/frontend/faq.html:352
 #, fuzzy
 #| msgid "Wait for the conversion to complete"
 msgid "What if conversion fails?"
@@ -1657,269 +1274,209 @@ msgstr ""
 "यदि रूपांतरण विफल हो जाए तो क्या होगा?कन्वर्ज़न पूरा होने की प्रतीक्षा करें - हमारा "
 "सुरक्षित ऑनलाइन कनवर्टर सेकंडों में फ़ाइलें संसाधित करता है"
 
-#: templates/frontend/faq.html:356
 msgid ""
 "If conversion fails, please check that your file is not corrupted and is in "
 "a supported format. Try again, and if the problem persists, contact our "
 "support team."
 msgstr ""
 
-#: templates/frontend/faq.html:362
 msgid "Can I use Convertica on mobile devices?"
 msgstr "क्या मैं मोबाइल उपकरणों पर Convertica का उपयोग कर सकता हूं?"
 
-#: templates/frontend/faq.html:366
 msgid ""
 "Yes, Convertica is fully responsive and works on mobile devices. You can "
 "convert, edit, and organize PDFs directly from your smartphone or tablet."
 msgstr ""
 
-#: templates/frontend/faq.html:377
 msgid "Still have questions?"
 msgstr "अभी भी प्रश्न हैं?"
 
-#: templates/frontend/faq.html:380
 msgid ""
 "If you couldn't find the answer you're looking for, feel free to contact us."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:10
-#: templates/frontend/includes/cookie_banner.html:42
 msgid "Cookie Preferences"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:13
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
 "security, analytics, and to provide personalized content."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:16
 msgid ""
 "You can accept all cookies, reject non-essential cookies, or customize your "
 "preferences. Essential cookies are required for the website to function and "
 "cannot be disabled."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:18
 msgid "and"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:27
 msgid "Reject All"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:31
 #, fuzzy
 #| msgid "Custom pages:"
 msgid "Customize"
 msgstr "कस्टम पेज:"
 
-#: templates/frontend/includes/cookie_banner.html:35
 msgid "Accept All"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:44
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
 "cookies below. Essential cookies cannot be disabled as they are necessary "
 "for the website to function."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:51
 msgid "Essential Cookies"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:53
 msgid ""
 "Required for the website to function properly. These cookies enable core "
 "functionality such as security, network management, and accessibility. They "
 "cannot be disabled."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:56
 msgid "Examples: Session management, CSRF protection, language preferences"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:60
 msgid "Always Active"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:67
 msgid "Analytics Cookies"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:69
 msgid ""
 "Help us understand how visitors interact with our website by collecting and "
 "reporting information anonymously."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:72
 msgid "Examples: Page views, time spent on site, error tracking"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:78
 msgid "Enable Analytics Cookies"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:86
 msgid "Marketing Cookies"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:88
 msgid ""
 "Used to deliver personalized advertisements and track campaign "
 "effectiveness. These cookies may be set by advertising partners."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:91
 msgid "Examples: Ad targeting, conversion tracking, remarketing"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:97
 msgid "Enable Marketing Cookies"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:105
 msgid ""
 "Your preferences will be saved and remembered for future visits. You can "
 "change these settings at any time."
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:110
 msgid "Save Preferences"
 msgstr ""
 
-#: templates/frontend/includes/cookie_banner.html:114
 msgid "Cancel"
 msgstr ""
 
-#: templates/frontend/includes/footer.html:15
-#: templates/frontend/includes/header.html:579
-#: templates/frontend/includes/header.html:764
 msgid "About"
 msgstr "हमारे बारे में"
 
-#: templates/frontend/includes/footer.html:69
 msgid "FAQ"
 msgstr ""
 
-#: templates/frontend/includes/footer.html:84
 msgid "Tools"
 msgstr "उपकरण"
 
-#: templates/frontend/includes/footer.html:93
-#: templates/frontend/includes/footer.html:200
-#: templates/frontend/includes/header.html:35
-#: templates/frontend/includes/header.html:639
 msgid "All Tools"
 msgstr "सभी उपकरण"
 
-#: templates/frontend/includes/footer.html:143
-#: templates/frontend/includes/header.html:583
-#: templates/frontend/includes/header.html:768
 msgid "Contact"
 msgstr "संपर्क"
 
-#: templates/frontend/includes/footer.html:152
 msgid "Contact Form"
 msgstr "संपर्क फ़ॉर्म"
 
-#: templates/frontend/includes/footer.html:175
-#: templates/frontend/includes/header.html:779
 msgid "Language"
 msgstr "भाषा"
 
-#: templates/frontend/includes/footer.html:195
 msgid "Resources"
 msgstr "संसाधन"
 
-#: templates/frontend/includes/footer.html:216
 msgid "All rights reserved."
 msgstr "सभी अधिकार सुरक्षित।"
 
-#: templates/frontend/includes/footer.html:219
 msgid "Free PDF tools for everyone"
 msgstr "सभी के लिए मुफ्त PDF उपकरण"
 
-#: templates/frontend/includes/footer.html:233
 msgid "Terms"
 msgstr "शर्तें"
 
-#: templates/frontend/includes/header.html:12
 msgid "Convertica - Home"
 msgstr "Convertica - होम"
 
-#: templates/frontend/includes/header.html:20
+#, fuzzy
+#| msgid "About Convertica"
+msgid "Convertica Logo"
+msgstr "Convertica के बारे में"
+
 #, fuzzy
 #| msgid "About Convertica"
 msgid "Convertica"
 msgstr "Convertica के बारे में"
 
-#: templates/frontend/includes/header.html:30
 msgid "All PDF tools"
 msgstr "सभी PDF उपकरण"
 
-#: templates/frontend/includes/header.html:285
 msgid "Main navigation"
 msgstr ""
 
-#: templates/frontend/includes/header.html:293
 #, fuzzy
 #| msgid "Convert PDF to Word"
 msgid "Convert PDF tools"
 msgstr "PDF को Word में कन्वर्ट करें"
 
-#: templates/frontend/includes/header.html:309
 msgid "Convert from PDF"
 msgstr "PDF से कन्वर्ट करें"
 
-#: templates/frontend/includes/header.html:352
 msgid "Convert to PDF"
 msgstr "PDF में कन्वर्ट करें"
 
-#: templates/frontend/includes/header.html:389
 #, fuzzy
 #| msgid "All PDF tools"
 msgid "Edit PDF tools"
 msgstr "सभी PDF उपकरण"
 
-#: templates/frontend/includes/header.html:405
 msgid "Basic Editing"
 msgstr "मूल संपादन"
 
-#: templates/frontend/includes/header.html:436
 msgid "Enhancements"
 msgstr "सुधार"
 
-#: templates/frontend/includes/header.html:473
 #, fuzzy
 #| msgid "Organize PDF"
 msgid "Organize PDF tools"
 msgstr "PDF व्यवस्थित करें"
 
-#: templates/frontend/includes/header.html:489
 msgid "Organization"
 msgstr "संगठन"
 
-#: templates/frontend/includes/header.html:544
 msgid "Page Management"
 msgstr "पृष्ठ प्रबंधन"
 
-#: templates/frontend/includes/header.html:614
 msgid "Toggle menu"
 msgstr ""
 
-#: templates/frontend/includes/header.html:629
 msgid "Mobile navigation"
 msgstr ""
 
-#: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
 msgstr "Convertica – ऑनलाइन PDF उपकरण: रूपांतरण, संपादन और व्यवस्थापन"
 
-#: templates/frontend/index.html:6 templates/frontend/index.html:20
 msgid ""
 "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
 "rotate, add watermark, and more. Fast, secure, no registration required."
@@ -1927,7 +1484,6 @@ msgstr ""
 "मुफ्त ऑनलाइन PDF उपकरण: PDF को Word में बदलें, Word को PDF में, मर्ज करें, विभाजित करें, "
 "घुमाएं, वॉटरमार्क जोड़ें और अधिक। तेज़, सुरक्षित, पंजीकरण की आवश्यकता नहीं।"
 
-#: templates/frontend/index.html:7
 msgid ""
 "PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, "
 "PDF editor, PDF tools, online PDF converter, free PDF tools"
@@ -1935,13 +1491,9 @@ msgstr ""
 "PDF कन्वर्टर, PDF से Word, Word से PDF, PDF मर्ज करें, PDF विभाजित करें, PDF घुमाएं, "
 "PDF संपादक, PDF उपकरण, ऑनलाइन PDF कन्वर्टर, मुफ्त PDF उपकरण"
 
-#: templates/frontend/index.html:8 templates/frontend/index.html:10
-#: utils_site/src/frontend/views.py:27
 msgid "Convertica – Online PDF ↔ Word Converter"
 msgstr "Convertica – ऑनलाइन PDF ↔ Word कन्वर्टर"
 
-#: templates/frontend/index.html:9 templates/frontend/index.html:11
-#: utils_site/src/frontend/views.py:28
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. "
 "Convert documents instantly, no registration required."
@@ -1949,11 +1501,9 @@ msgstr ""
 "तेज़, सरल और सुरक्षित ऑनलाइन PDF से Word और Word से PDF कन्वर्टर। तुरंत दस्तावेज़ कन्वर्ट "
 "करें, पंजीकरण की आवश्यकता नहीं।"
 
-#: templates/frontend/index.html:44
 msgid "All-in-One PDF Tools"
 msgstr "सभी PDF उपकरण एक स्थान पर"
 
-#: templates/frontend/index.html:47
 msgid ""
 "Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No "
 "installations required."
@@ -1961,80 +1511,58 @@ msgstr ""
 "PDF को कन्वर्ट, एडिट, मर्ज, स्प्लिट और व्यवस्थित करें। तेज़, सरल और सुरक्षित। इंस्टॉलेशन की "
 "आवश्यकता नहीं।"
 
-#: templates/frontend/index.html:93
 msgid "Most requested PDF tools at your fingertips"
 msgstr "सबसे अधिक मांग वाले PDF उपकरण आपकी उंगलियों पर"
 
-#: templates/frontend/index.html:116 templates/frontend/index.html:141
-#: templates/frontend/index.html:165 templates/frontend/index.html:190
-#: templates/frontend/index.html:214 templates/frontend/index.html:256
-#: templates/frontend/index.html:280 templates/frontend/index.html:304
-#: templates/frontend/index.html:328 templates/frontend/index.html:353
-#: templates/frontend/index.html:377
 msgid "Try it"
 msgstr "आज़माएं"
 
-#: templates/frontend/index.html:233
 msgid "Manage and organize your PDF documents with powerful tools"
 msgstr "शक्तिशाली उपकरणों के साथ अपने PDF दस्तावेज़ों को प्रबंधित और व्यवस्थित करें"
 
-#: templates/frontend/index.html:397
 msgid "Ready to start?"
 msgstr "शुरू करने के लिए तैयार?"
 
-#: templates/frontend/index.html:400
 msgid "Convert your files in seconds, for free."
 msgstr "सेकंडों में अपनी फ़ाइलें कन्वर्ट करें, मुफ्त में।"
 
-#: templates/frontend/index.html:415
 msgid "Latest Guides & Tips"
 msgstr "नवीनतम गाइड और युक्तियाँ"
 
-#: templates/frontend/index.html:418
 msgid "Learn how to get the most out of PDF tools with our expert guides"
 msgstr "हमारे विशेषज्ञ गाइड के साथ PDF उपकरणों का अधिकतम लाभ कैसे उठाएं, जानें"
 
-#: templates/frontend/index.html:448
 msgid "Read more"
 msgstr "अधिक पढ़ें"
 
-#: templates/frontend/index.html:462
 msgid "View All Articles"
 msgstr "सभी लेख देखें"
 
-#: templates/frontend/jpg_to_pdf.html:26
 msgid "You can upload multiple images - they will be combined into one PDF"
 msgstr ""
 
-#: templates/frontend/jpg_to_pdf.html:52
 msgid "Select image(s)"
 msgstr ""
 
-#: templates/frontend/jpg_to_pdf.html:59
 msgid "Selected Images"
 msgstr ""
 
-#: templates/frontend/jpg_to_pdf.html:67
 msgid "+ Add more images"
 msgstr ""
 
-#: templates/frontend/jpg_to_pdf.html:90
 #, fuzzy
 #| msgid "Drag and drop your file here"
 msgid "Drag and drop your images here"
 msgstr "अपनी फ़ाइल यहाँ खींचें"
 
-#: templates/frontend/jpg_to_pdf.html:96
 msgid "files"
 msgstr "फ़ाइलें"
 
-#: templates/frontend/jpg_to_pdf.html:96
 #, fuzzy
 #| msgid "What file formats are supported?"
 msgid "multiple files supported"
 msgstr "कौन से फ़ाइल प्रारूप समर्थित हैं?"
 
-#: templates/frontend/jpg_to_pdf.html:135
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
@@ -2042,7 +1570,6 @@ msgstr ""
 "एक या अधिक छवियों को चुनने के लिए ऊपर दिए गए बटन पर क्लिक करें, या उन्हें नीचे के क्षेत्र में "
 "खींचें - हमारा JPG से PDF कनवर्टर सभी छवि प्रारूपों का समर्थन करता है"
 
-#: templates/frontend/jpg_to_pdf.html:136
 msgid ""
 "You can add more images by clicking 'Add more images' or by selecting files "
 "again"
@@ -2050,121 +1577,142 @@ msgstr ""
 "आप 'अधिक छवियां जोड़ें' पर क्लिक करके या फ़ाइलों को फिर से चुनकर अधिक छवियां जोड़ सकते हैं "
 "- हमारा उपकरण बहु-अपलोड का समर्थन करता है"
 
-#: templates/frontend/jpg_to_pdf.html:137
 msgid "Remove unwanted images by clicking the X button"
 msgstr ""
 "X बटन पर क्लिक करके अवांछित छवियों को हटाएं - हमारा JPG से PDF कनवर्टर आसानी से "
 "छवियों को प्रबंधित करने की अनुमति देता है"
 
-#: templates/frontend/jpg_to_pdf.html:138
 msgid "Click the convert button to combine all images into one PDF"
 msgstr ""
 "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें - हमारा तेज़ "
 "कनवर्टर उन्हें तुरंत संसाधित करेगा"
 
-#: templates/frontend/jpg_to_pdf.html:140
 msgid "Download your converted PDF file"
 msgstr ""
 "अपनी कनवर्ट की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "सभी छवियां एक फ़ाइल में"
 
-#: templates/frontend/jpg_to_pdf.html:156
 #, fuzzy
 #| msgid "Processing your file..."
 msgid "Converting your images..."
 msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
 
-#: templates/frontend/jpg_to_pdf.html:159
 #, fuzzy
 #| msgid "Your file is ready to download"
 msgid "Your PDF is ready to download"
 msgstr "आपकी फ़ाइल डाउनलोड के लिए तैयार है"
 
-#: templates/frontend/jpg_to_pdf.html:160
 #, fuzzy
 #| msgid "Download File"
 msgid "Download PDF"
 msgstr "फ़ाइल डाउनलोड करें"
 
-#: templates/frontend/merge_pdf.html:27
 msgid "Merge Settings"
 msgstr ""
 
-#: templates/frontend/merge_pdf.html:33
 #, fuzzy
 #| msgid "Please select a PDF file."
 msgid "Select PDF Files"
 msgstr "कृपया एक PDF फ़ाइल चुनें।"
 
-#: templates/frontend/merge_pdf.html:42
 #, fuzzy
 #| msgid "Please select a PDF file."
 msgid "Select PDF files"
 msgstr "कृपया एक PDF फ़ाइल चुनें।"
 
-#: templates/frontend/merge_pdf.html:55
 msgid "+ Add more files"
 msgstr ""
 
-#: templates/frontend/merge_pdf.html:59
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 
-#: templates/frontend/merge_pdf.html:67
 #, fuzzy
 #| msgid "Related Articles"
 msgid "Selected Files"
 msgstr "संबंधित लेख"
 
-#: templates/frontend/merge_pdf.html:79
 msgid "Preview & Reorder Pages"
 msgstr ""
 
-#: templates/frontend/merge_pdf.html:81
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 msgstr ""
 
-#: templates/frontend/organize_pdf.html:11
+msgid "is not a PDF file. Skipping."
+msgstr ""
+
+msgid "Maximum 10 files allowed. Only the first 10 files will be used."
+msgstr ""
+
+msgid "Error loading preview"
+msgstr ""
+
+#, fuzzy
+#| msgid "Sending..."
+msgid "Loading..."
+msgstr "भेज रहे हैं..."
+
+#, fuzzy
+#| msgid "Merge PDFs"
+msgid "Merging PDFs..."
+msgstr "PDF मर्ज करें"
+
+#, fuzzy
+#| msgid "Please select PDF files to merge."
+msgid "Please select at least 2 PDF files to merge."
+msgstr "कृपया मर्ज करने के लिए PDF फ़ाइलें चुनें।"
+
 #, fuzzy
 #| msgid "Organization"
 msgid "Organization Settings"
 msgstr "संगठन"
 
-#: templates/frontend/organize_pdf.html:16
 #, fuzzy
 #| msgid "Termination"
 msgid "Operation"
 msgstr "समाप्ति"
 
-#: templates/frontend/organize_pdf.html:20
-#: templates/frontend/organize_pdf.html:29
 #, fuzzy
 #| msgid "Remove Pages"
 msgid "Reorder Pages"
 msgstr "पेज हटाएं"
 
-#: templates/frontend/organize_pdf.html:21
 #, fuzzy
 #| msgid "Extract Pages"
 msgid "Sort Pages"
 msgstr "पेज निकालें"
 
-#: templates/frontend/organize_pdf.html:31
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
 msgstr ""
 
-#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:444
+#, fuzzy
+#| msgid "Please select a Word file."
+msgid "Please select a PDF file."
+msgstr "कृपया एक Word फ़ाइल चुनें।"
+
+#, fuzzy
+#| msgid "Please select a PDF file with tables."
+msgid "Please select a PDF file first."
+msgstr "कृपया तालिकाओं के साथ एक PDF फ़ाइल चुनें।"
+
+#, fuzzy
+#| msgid "Organization"
+msgid "Organizing..."
+msgstr "संगठन"
+
+#, fuzzy
+#| msgid "Organize PDF"
+msgid "Failed to organize PDF"
+msgstr "PDF व्यवस्थित करें"
+
 msgid "Privacy Policy - Convertica"
 msgstr "गोपनीयता नीति - Convertica"
 
-#: templates/frontend/privacy.html:48 templates/frontend/terms.html:48
 msgid "Last updated: January 2025"
 msgstr "अंतिम अपडेट: जनवरी 2025"
 
-#: templates/frontend/privacy.html:61
 msgid ""
 "At Convertica, we take your privacy seriously. This Privacy Policy explains "
 "how we collect, use, disclose, and safeguard your information when you use "
@@ -2174,36 +1722,37 @@ msgstr ""
 "जब आप हमारे ऑनलाइन PDF उपकरणों और सेवाओं का उपयोग करते हैं तो हम आपकी जानकारी कैसे "
 "एकत्र, उपयोग, खुलासा और सुरक्षा करते हैं।"
 
-#: templates/frontend/privacy.html:64
 msgid ""
 "By using Convertica, you agree to the collection and use of information in "
 "accordance with this policy."
 msgstr ""
 "Convertica का उपयोग करके, आप इस नीति के अनुसार जानकारी के संग्रह और उपयोग से सहमत हैं।"
 
-#: templates/frontend/privacy.html:70
 msgid "Information We Collect"
 msgstr "जानकारी जो हम एकत्र करते हैं"
 
-#: templates/frontend/privacy.html:74
 msgid "Files You Upload"
 msgstr "फ़ाइलें जो आप अपलोड करते हैं"
 
-#: templates/frontend/privacy.html:76
+#, fuzzy
+#| msgid ""
+#| "When you use our PDF tools, you may upload files for processing. These "
+#| "files are temporarily stored on our servers only for the duration of the "
+#| "conversion or editing process. Files are automatically deleted "
+#| "immediately "
 msgid ""
 "When you use our PDF tools, you may upload files for processing. These files "
 "are temporarily stored on our servers only for the duration of the "
 "conversion or editing process. Files are automatically deleted immediately "
+"after processing is complete, typically within minutes."
 msgstr ""
 "जब आप हमारे PDF उपकरणों का उपयोग करते हैं, तो आप प्रसंस्करण के लिए फ़ाइलें अपलोड कर सकते "
 "हैं। ये फ़ाइलें हमारे सर्वर पर केवल रूपांतरण या संपादन प्रक्रिया की अवधि के लिए अस्थायी रूप से "
 "संग्रहीत की जाती हैं। प्रसंस्करण पूरा होने के तुरंत बाद फ़ाइलें स्वचालित रूप से हटा दी जाती हैं, "
 
-#: templates/frontend/privacy.html:81
 msgid "Usage Information"
 msgstr "उपयोग की जानकारी"
 
-#: templates/frontend/privacy.html:83
 msgid ""
 "We may collect information about how you access and use our services, "
 "including:"
@@ -2211,55 +1760,42 @@ msgstr ""
 "हम आपके द्वारा हमारी सेवाओं तक कैसे पहुंच और उपयोग किया जाता है, इसके बारे में जानकारी "
 "एकत्र कर सकते हैं, जिसमें शामिल हैं:"
 
-#: templates/frontend/privacy.html:86
 msgid "IP address and browser type"
 msgstr "IP पता और ब्राउज़र प्रकार"
 
-#: templates/frontend/privacy.html:87
 msgid "Device information and operating system"
 msgstr "डिवाइस जानकारी और ऑपरेटिंग सिस्टम"
 
-#: templates/frontend/privacy.html:88
 msgid "Pages visited and time spent on pages"
 msgstr "देखे गए पेज और पेजों पर बिताया गया समय"
 
-#: templates/frontend/privacy.html:89
 msgid "Referring website addresses"
 msgstr "रेफरिंग वेबसाइट पते"
 
-#: templates/frontend/privacy.html:97
 msgid "How We Use Your Information"
 msgstr "हम आपकी जानकारी का उपयोग कैसे करते हैं"
 
-#: templates/frontend/privacy.html:101
 msgid "We use the information we collect to:"
 msgstr "हम एकत्र की गई जानकारी का उपयोग करते हैं:"
 
-#: templates/frontend/privacy.html:104
 msgid "Process and convert your files as requested"
 msgstr "अनुरोध के अनुसार अपनी फ़ाइलों को प्रोसेस और कन्वर्ट करें"
 
-#: templates/frontend/privacy.html:105
 msgid "Improve and optimize our services"
 msgstr "हमारी सेवाओं में सुधार और अनुकूलन करें"
 
-#: templates/frontend/privacy.html:106
 msgid "Monitor and analyze usage patterns"
 msgstr "उपयोग पैटर्न की निगरानी और विश्लेषण करें"
 
-#: templates/frontend/privacy.html:107
 msgid "Ensure the security and functionality of our platform"
 msgstr "हमारे प्लेटफ़ॉर्म की सुरक्षा और कार्यक्षमता सुनिश्चित करें"
 
-#: templates/frontend/privacy.html:108
 msgid "Respond to your inquiries and provide customer support"
 msgstr "आपकी पूछताछ का जवाब दें और ग्राहक सहायता प्रदान करें"
 
-#: templates/frontend/privacy.html:115
 msgid "Data Security"
 msgstr "डेटा सुरक्षा"
 
-#: templates/frontend/privacy.html:119
 msgid ""
 "We implement appropriate technical and organizational security measures to "
 "protect your information:"
@@ -2267,27 +1803,21 @@ msgstr ""
 "हम आपकी जानकारी की सुरक्षा के लिए उपयुक्त तकनीकी और संगठनात्मक सुरक्षा उपायों को लागू "
 "करते हैं:"
 
-#: templates/frontend/privacy.html:122
 msgid "All file transfers are encrypted using SSL/TLS protocols"
 msgstr "सभी फ़ाइल स्थानांतरण SSL/TLS प्रोटोकॉल का उपयोग करके एन्क्रिप्ट किए गए हैं"
 
-#: templates/frontend/privacy.html:123
 msgid "Files are stored temporarily in secure, isolated environments"
 msgstr "फ़ाइलें अस्थायी रूप से सुरक्षित, अलग-थलग वातावरण में संग्रहीत की जाती हैं"
 
-#: templates/frontend/privacy.html:124
 msgid "Automatic deletion of files after processing completion"
 msgstr "प्रसंस्करण पूरा होने के बाद फ़ाइलों का स्वचालित विलोपन"
 
-#: templates/frontend/privacy.html:125
 msgid "Regular security audits and updates"
 msgstr "नियमित सुरक्षा ऑडिट और अपडेट"
 
-#: templates/frontend/privacy.html:126
 msgid "Access controls and monitoring systems"
 msgstr "एक्सेस कंट्रोल और निगरानी प्रणाली"
 
-#: templates/frontend/privacy.html:129
 #, fuzzy, python-format
 #| msgid ""
 #| "However, no method of transmission over the Internet or electronic "
@@ -2302,47 +1832,45 @@ msgstr ""
 "जबकि हम आपकी जानकारी की सुरक्षा के लिए व्यावसायिक रूप से स्वीकार्य साधनों का उपयोग "
 "करने का प्रयास करते हैं, हम पूर्ण सुरक्षा की गारंटी नहीं दे सकते।"
 
-#: templates/frontend/privacy.html:136
 msgid "Data Retention"
 msgstr ""
 
-#: templates/frontend/privacy.html:139
 msgid ""
 "We retain your uploaded files only for the time necessary to complete the "
 "requested operation. Files are automatically deleted:"
 msgstr ""
 
-#: templates/frontend/privacy.html:142
 msgid "Immediately after successful processing"
 msgstr "सफल प्रसंस्करण के तुरंत बाद"
 
-#: templates/frontend/privacy.html:143
 msgid "Within 1 hour if processing fails"
 msgstr "यदि प्रसंस्करण विफल हो जाता है तो 1 घंटे के भीतर"
 
-#: templates/frontend/privacy.html:144
 msgid "We do not store your files permanently"
 msgstr ""
 
-#: templates/frontend/privacy.html:145
 msgid "We do not create backups of your uploaded files"
 msgstr "हम आपकी अपलोड की गई फ़ाइलों का बैकअप नहीं बनाते हैं"
 
-#: templates/frontend/privacy.html:151
 msgid "Third-Party Services"
 msgstr ""
 
-#: templates/frontend/privacy.html:154
+#, fuzzy
+#| msgid ""
+#| "We may use third-party services to help us operate our platform and "
+#| "analyze how our services are used. These services may have access to "
+#| "limited information, but they are obligated not to disclose or use it for "
+#| "any other "
 msgid ""
 "We may use third-party services to help us operate our platform and analyze "
 "how our services are used. These services may have access to limited "
 "information, but they are obligated not to disclose or use it for any other "
+"purpose."
 msgstr ""
 "हम अपने प्लेटफ़ॉर्म को संचालित करने और हमारी सेवाओं के उपयोग का विश्लेषण करने में मदद के लिए "
 "तीसरे पक्ष की सेवाओं का उपयोग कर सकते हैं। इन सेवाओं की सीमित जानकारी तक पहुंच हो सकती "
 "है, लेकिन वे किसी अन्य उद्देश्य के लिए इसे खुलासा या उपयोग नहीं करने के लिए बाध्य हैं।"
 
-#: templates/frontend/privacy.html:157
 #, fuzzy
 #| msgid ""
 #| "We do not sell, trade, or rent your personal information to third "
@@ -2354,11 +1882,9 @@ msgstr ""
 "हम आपकी व्यक्तिगत जानकारी को तीसरे पक्ष को बेचते, व्यापार या किराए पर नहीं देते हैं। हम "
 "आपकी जानकारी को केवल निम्नलिखित परिस्थितियों में साझा कर सकते हैं:"
 
-#: templates/frontend/privacy.html:163
 msgid "Cookies and Tracking"
 msgstr "कुकीज़ और ट्रैकिंग"
 
-#: templates/frontend/privacy.html:166
 msgid ""
 "We may use cookies and similar tracking technologies to track activity on "
 "our platform and hold certain information. Cookies are files with a small "
@@ -2368,7 +1894,6 @@ msgstr ""
 "ट्रैकिंग तकनीकों का उपयोग कर सकते हैं। कुकीज़ छोटी मात्रा में डेटा वाली फ़ाइलें हैं जिनमें एक "
 "गुमनाम अद्वितीय पहचानकर्ता शामिल हो सकता है।"
 
-#: templates/frontend/privacy.html:169
 msgid ""
 "You can instruct your browser to refuse all cookies or to indicate when a "
 "cookie is being sent. However, if you do not accept cookies, you may not be "
@@ -2378,35 +1903,27 @@ msgstr ""
 "लिए निर्देश दे सकते हैं। हालांकि, यदि आप कुकीज़ स्वीकार नहीं करते हैं, तो आप हमारी सेवा के "
 "कुछ हिस्सों का उपयोग नहीं कर पा सकते हैं।"
 
-#: templates/frontend/privacy.html:175
 msgid "Your Privacy Rights"
 msgstr "आपके गोपनीयता अधिकार"
 
-#: templates/frontend/privacy.html:179
 msgid "You have the right to:"
 msgstr "आपको अधिकार है:"
 
-#: templates/frontend/privacy.html:182
 msgid "Access information we hold about you"
 msgstr "हमारे पास आपके बारे में रखी गई जानकारी तक पहुंचें"
 
-#: templates/frontend/privacy.html:183
 msgid "Request correction of inaccurate information"
 msgstr "गलत जानकारी के सुधार का अनुरोध करें"
 
-#: templates/frontend/privacy.html:184
 msgid "Request deletion of your information"
 msgstr "अपनी जानकारी के विलोपन का अनुरोध करें"
 
-#: templates/frontend/privacy.html:185
 msgid "Object to processing of your information"
 msgstr "आपकी जानकारी के प्रसंस्करण पर आपत्ति करें"
 
-#: templates/frontend/privacy.html:186
 msgid "Request restriction of processing"
 msgstr "प्रसंस्करण के प्रतिबंध का अनुरोध करें"
 
-#: templates/frontend/privacy.html:189
 msgid ""
 "To exercise these rights, please contact us using the information provided "
 "in the Contact section."
@@ -2414,25 +1931,27 @@ msgstr ""
 "इन अधिकारों का प्रयोग करने के लिए, कृपया संपर्क अनुभाग में प्रदान की गई जानकारी का "
 "उपयोग करके हमसे संपर्क करें।"
 
-#: templates/frontend/privacy.html:196
 msgid "Children's Privacy"
 msgstr "बच्चों की गोपनीयता"
 
-#: templates/frontend/privacy.html:199
+#, fuzzy
+#| msgid ""
+#| "Our services are not intended for children under the age of 13. We do not "
+#| "knowingly collect personal information from children under 13. If you are "
+#| "a parent or guardian and believe your child has provided us with personal "
 msgid ""
 "Our services are not intended for children under the age of 13. We do not "
 "knowingly collect personal information from children under 13. If you are a "
 "parent or guardian and believe your child has provided us with personal "
+"information, please contact us."
 msgstr ""
 "हमारी सेवाएं 13 वर्ष से कम उम्र के बच्चों के लिए नहीं हैं। हम जानबूझकर 13 वर्ष से कम उम्र के "
 "बच्चों से व्यक्तिगत जानकारी एकत्र नहीं करते हैं। यदि आप माता-पिता या अभिभावक हैं और मानते "
 "हैं कि आपके बच्चे ने हमें व्यक्तिगत जानकारी प्रदान की है, तो कृपया हमसे संपर्क करें।"
 
-#: templates/frontend/privacy.html:205
 msgid "Changes to This Privacy Policy"
 msgstr "इस गोपनीयता नीति में परिवर्तन"
 
-#: templates/frontend/privacy.html:208
 #, fuzzy
 #| msgid ""
 #| "We may update our Privacy Policy from time to time. We will notify you of "
@@ -2448,173 +1967,136 @@ msgstr ""
 "नीति पोस्ट करके और \"अंतिम अपडेट\" तिथि अपडेट करके किसी भी परिवर्तन के बारे में आपको "
 "सूचित करेंगे। आपको किसी भी परिवर्तन के लिए इस गोपनीयता नीति की समय-समय पर समीक्षा "
 
-#: templates/frontend/privacy.html:214
 msgid "Questions About Privacy?"
 msgstr "गोपनीयता के बारे में प्रश्न?"
 
-#: templates/frontend/privacy.html:216
 msgid "If you have any questions about this Privacy Policy, please contact us."
 msgstr "यदि इस गोपनीयता नीति के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें।"
 
-#: templates/frontend/protect_pdf.html:6
 msgid "Password Protection Settings"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:12
 msgid "Password"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:20
 #, fuzzy
 #| msgid "Remove password protection from your PDF"
 msgid "Enter password to protect PDF"
 msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
 
-#: templates/frontend/protect_pdf.html:23
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:30
 msgid "User Password"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:30
-#: templates/frontend/protect_pdf.html:46
 msgid "Optional"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:36
 msgid "Optional: Different user password"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:39
 msgid ""
 "Optional: Set a different password for users. If not provided, the main "
 "password will be used."
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:46
 msgid "Owner Password"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:52
 msgid "Optional: Different owner password"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:55
 msgid ""
 "Optional: Set a different password for owner. If not provided, the main "
 "password will be used."
 msgstr ""
 
-#: templates/frontend/remove_pages.html:6
 #, fuzzy
 #| msgid "Remove Pages"
 msgid "Remove Pages Settings"
 msgstr "पेज हटाएं"
 
-#: templates/frontend/remove_pages.html:12
 #, fuzzy
 #| msgid "Changes to Terms"
 msgid "Pages to Remove"
 msgstr "शर्तों में परिवर्तन"
 
-#: templates/frontend/rotate_pdf.html:6
 msgid "Rotation Settings"
 msgstr ""
 
-#: templates/frontend/rotate_pdf.html:12
 msgid "Rotation Angle"
 msgstr ""
 
-#: templates/frontend/rotate_pdf.html:16
 msgid "(Clockwise)"
 msgstr ""
 
-#: templates/frontend/rotate_pdf.html:17
 msgid "(Upside down)"
 msgstr ""
 
-#: templates/frontend/rotate_pdf.html:18
 msgid "(Counter-clockwise)"
 msgstr ""
 
-#: templates/frontend/rotate_pdf.html:25
 #, fuzzy
 #| msgid "I agree to the"
 msgid "Pages to Rotate"
 msgstr "मैं सहमत हूं"
 
-#: templates/frontend/split_pdf.html:6
 msgid "Split Settings"
 msgstr ""
 
-#: templates/frontend/split_pdf.html:12
 #, fuzzy
 #| msgid "Split PDF"
 msgid "Split Type"
 msgstr "PDF विभाजित करें"
 
-#: templates/frontend/split_pdf.html:16
 msgid "By Individual Pages"
 msgstr ""
 
-#: templates/frontend/split_pdf.html:17
 #, fuzzy
 #| msgid "Page Management"
 msgid "By Page Ranges"
 msgstr "पृष्ठ प्रबंधन"
 
-#: templates/frontend/split_pdf.html:18
 #, fuzzy
 #| msgid "Remove Pages"
 msgid "Every N Pages"
 msgstr "पेज हटाएं"
 
-#: templates/frontend/split_pdf.html:25
 #, fuzzy
 #| msgid "Page"
 msgid "Pages"
 msgstr "पृष्ठ"
 
-#: templates/frontend/split_pdf.html:33
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
 
-#: templates/frontend/split_pdf.html:51
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
 msgstr ""
 
-#: templates/frontend/split_pdf.html:53
 #, fuzzy
 #| msgid "Page Management"
 msgid "Page Ranges"
 msgstr "पृष्ठ प्रबंधन"
 
-#: templates/frontend/split_pdf.html:55
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr ""
 
-#: templates/frontend/split_pdf.html:58
 msgid "Pages per File"
 msgstr ""
 
-#: templates/frontend/split_pdf.html:60
 msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
 msgstr ""
 
-#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:454
 msgid "Terms of Service - Convertica"
 msgstr "सेवा की शर्तें - Convertica"
 
-#: templates/frontend/terms.html:61
 msgid "Welcome to Convertica. These Terms of Service (\\"
 msgstr ""
 
-#: templates/frontend/terms.html:64
 msgid ""
 "If you disagree with any part of these Terms, then you may not access or use "
 "our Services."
@@ -2622,11 +2104,9 @@ msgstr ""
 "यदि आप इन शर्तों के किसी भी भाग से असहमत हैं, तो आप हमारी सेवाओं तक पहुंच या उपयोग नहीं "
 "कर सकते।"
 
-#: templates/frontend/terms.html:70
 msgid "Acceptance of Terms"
 msgstr "शर्तों की स्वीकृति"
 
-#: templates/frontend/terms.html:73
 msgid ""
 "By accessing or using Convertica's Services, you acknowledge that you have "
 "read, understood, and agree to be bound by these Terms and our Privacy "
@@ -2636,11 +2116,9 @@ msgstr ""
 "शर्तों और हमारी गोपनीयता नीति को पढ़ा, समझा है और इनसे बाध्य होने के लिए सहमत हैं। यदि "
 "आप इन शर्तों से सहमत नहीं हैं, तो आपको हमारी सेवाओं का उपयोग नहीं करना चाहिए।"
 
-#: templates/frontend/terms.html:79
 msgid "Description of Services"
 msgstr "सेवाओं का विवरण"
 
-#: templates/frontend/terms.html:82
 msgid ""
 "Convertica provides online PDF tools and services, including but not limited "
 "to:"
@@ -2648,26 +2126,21 @@ msgstr ""
 "Convertica ऑनलाइन PDF उपकरण और सेवाएं प्रदान करता है, जिसमें शामिल हैं लेकिन सीमित "
 "नहीं:"
 
-#: templates/frontend/terms.html:85
 msgid ""
 "PDF conversion (PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, PDF to "
 "Excel)"
 msgstr "PDF रूपांतरण (PDF से Word, Word से PDF, PDF से JPG, JPG से PDF, PDF से Excel)"
 
-#: templates/frontend/terms.html:86
 msgid "PDF editing (rotate, crop, add watermark, add page numbers)"
 msgstr "PDF संपादन (घुमाएं, क्रॉप करें, वॉटरमार्क जोड़ें, पेज नंबर जोड़ें)"
 
-#: templates/frontend/terms.html:87
 msgid ""
 "PDF organization (merge, split, extract, remove pages, organize, compress)"
 msgstr "PDF व्यवस्थापन (मर्ज, विभाजित, निकालें, पेज हटाएं, व्यवस्थित करें, संपीड़ित करें)"
 
-#: templates/frontend/terms.html:88
 msgid "PDF security (protect with password, unlock PDF)"
 msgstr "PDF सुरक्षा (पासवर्ड से सुरक्षित करें, PDF अनलॉक करें)"
 
-#: templates/frontend/terms.html:91
 msgid ""
 "We reserve the right to modify, suspend, or discontinue any part of our "
 "Services at any time without prior notice."
@@ -2675,11 +2148,9 @@ msgstr ""
 "हम बिना पूर्व सूचना के किसी भी समय हमारी सेवाओं के किसी भी भाग को संशोधित, निलंबित या "
 "बंद करने का अधिकार सुरक्षित रखते हैं।"
 
-#: templates/frontend/terms.html:97
 msgid "User Responsibilities"
 msgstr "उपयोगकर्ता जिम्मेदारियां"
 
-#: templates/frontend/terms.html:101
 msgid ""
 "You agree to use our Services only for lawful purposes and in accordance "
 "with these Terms. You agree not to:"
@@ -2687,140 +2158,147 @@ msgstr ""
 "आप सहमत हैं कि हमारी सेवाओं का उपयोग केवल कानूनी उद्देश्यों के लिए और इन शर्तों के अनुसार "
 "करेंगे। आप सहमत हैं कि नहीं करेंगे:"
 
-#: templates/frontend/terms.html:104
 msgid "Upload files that contain viruses, malware, or other harmful code"
 msgstr "वायरस, मैलवेयर या अन्य हानिकारक कोड वाली फ़ाइलें अपलोड करें"
 
-#: templates/frontend/terms.html:105
 msgid "Upload files that infringe on intellectual property rights"
 msgstr "बौद्धिक संपदा अधिकारों का उल्लंघन करने वाली फ़ाइलें अपलोड करें"
 
-#: templates/frontend/terms.html:106
 msgid "Upload files that contain illegal, offensive, or inappropriate content"
 msgstr "अवैध, आपत्तिजनक या अनुचित सामग्री वाली फ़ाइलें अपलोड करें"
 
-#: templates/frontend/terms.html:107
 msgid "Attempt to gain unauthorized access to our systems or networks"
 msgstr "हमारे सिस्टम या नेटवर्क तक अनधिकृत पहुंच प्राप्त करने का प्रयास करें"
 
-#: templates/frontend/terms.html:108
 msgid "Use automated systems or scripts to access our Services excessively"
 msgstr "हमारी सेवाओं तक अत्यधिक पहुंच के लिए स्वचालित सिस्टम या स्क्रिप्ट का उपयोग करें"
 
-#: templates/frontend/terms.html:109
 msgid ""
 "Interfere with or disrupt the Services or servers connected to the Services"
 msgstr "सेवाओं या सेवाओं से जुड़े सर्वर में हस्तक्षेप या व्यवधान डालें"
 
-#: templates/frontend/terms.html:110
 msgid "Reverse engineer, decompile, or disassemble any part of our Services"
 msgstr "हमारी सेवाओं के किसी भी भाग को रिवर्स इंजीनियर, डिकंपाइल या विघटित करें"
 
-#: templates/frontend/terms.html:117
 msgid "File Upload and Processing"
 msgstr "फ़ाइल अपलोड और प्रसंस्करण"
 
-#: templates/frontend/terms.html:121
 msgid "File Size and Format Limitations"
 msgstr "फ़ाइल आकार और प्रारूप सीमाएं"
 
-#: templates/frontend/terms.html:123
+#, fuzzy
+#| msgid ""
+#| "You are responsible for ensuring that files you upload comply with our "
+#| "file size and format requirements. We reserve the right to reject or "
+#| "limit the processing of files that exceed our size limits or are in "
+#| "unsupported "
 msgid ""
 "You are responsible for ensuring that files you upload comply with our file "
 "size and format requirements. We reserve the right to reject or limit the "
 "processing of files that exceed our size limits or are in unsupported "
+"formats."
 msgstr ""
 "आप यह सुनिश्चित करने के लिए जिम्मेदार हैं कि आप जो फ़ाइलें अपलोड करते हैं वे हमारी फ़ाइल "
 "आकार और प्रारूप आवश्यकताओं का अनुपालन करती हैं। हम उन फ़ाइलों के प्रसंस्करण को अस्वीकार या "
 "सीमित करने का अधिकार सुरक्षित रखते हैं जो हमारी आकार सीमाओं से अधिक हैं या असमर्थित "
 
-#: templates/frontend/terms.html:128
 msgid "File Storage and Deletion"
 msgstr "फ़ाइल भंडारण और विलोपन"
 
-#: templates/frontend/terms.html:130
+#, fuzzy
+#| msgid ""
+#| "Files uploaded to our Services are processed temporarily and "
+#| "automatically deleted after processing is complete. We do not store your "
+#| "files permanently. However, you are responsible for maintaining backups "
+#| "of your "
 msgid ""
 "Files uploaded to our Services are processed temporarily and automatically "
 "deleted after processing is complete. We do not store your files "
 "permanently. However, you are responsible for maintaining backups of your "
+"files."
 msgstr ""
 "हमारी सेवाओं में अपलोड की गई फ़ाइलें अस्थायी रूप से प्रोसेस की जाती हैं और प्रसंस्करण पूरा होने "
 "के बाद स्वचालित रूप से हटा दी जाती हैं। हम आपकी फ़ाइलों को स्थायी रूप से संग्रहीत नहीं करते "
 "हैं। हालांकि, आप अपनी फ़ाइलों के बैकअप बनाए रखने के लिए जिम्मेदार हैं।"
 
-#: templates/frontend/terms.html:135
 msgid "Processing Accuracy"
 msgstr "प्रसंस्करण सटीकता"
 
-#: templates/frontend/terms.html:137
+#, fuzzy
+#| msgid ""
+#| "While we strive to provide accurate conversions and processing, we cannot "
+#| "guarantee that all files will be processed correctly or that the output "
+#| "will meet your specific requirements. You are responsible for verifying "
+#| "the "
 msgid ""
 "While we strive to provide accurate conversions and processing, we cannot "
 "guarantee that all files will be processed correctly or that the output will "
 "meet your specific requirements. You are responsible for verifying the "
+"accuracy of processed files."
 msgstr ""
 "जबकि हम सटीक रूपांतरण और प्रसंस्करण प्रदान करने का प्रयास करते हैं, हम गारंटी नहीं दे सकते "
 "कि सभी फ़ाइलें सही ढंग से प्रोसेस की जाएंगी या आउटपुट आपकी विशिष्ट आवश्यकताओं को पूरा "
 "करेगा। आप प्रोसेस की गई फ़ाइलों की सटीकता सत्यापित करने के लिए जिम्मेदार हैं।"
 
-#: templates/frontend/terms.html:145
 #, fuzzy
 #| msgid "Our Intellectual Property"
 msgid "Intellectual Property"
 msgstr "हमारी बौद्धिक संपदा"
 
-#: templates/frontend/terms.html:149
 msgid "Our Intellectual Property"
 msgstr "हमारी बौद्धिक संपदा"
 
-#: templates/frontend/terms.html:151
+#, fuzzy
+#| msgid ""
+#| "All content, features, and functionality of our Services, including but "
+#| "not limited to text, graphics, logos, icons, images, and software, are "
+#| "the exclusive property of Convertica and are protected by international "
 msgid ""
 "All content, features, and functionality of our Services, including but not "
 "limited to text, graphics, logos, icons, images, and software, are the "
 "exclusive property of Convertica and are protected by international "
+"copyright, trademark, and other intellectual property laws."
 msgstr ""
 "हमारी सेवाओं की सभी सामग्री, सुविधाएं और कार्यक्षमता, जिसमें लेकिन टेक्स्ट, ग्राफिक्स, "
 "लोगो, आइकन, छवियों और सॉफ़्टवेयर तक सीमित नहीं है, Convertica की विशेष संपत्ति है और "
 "अंतर्राष्ट्रीय कॉपीराइट, ट्रेडमार्क और अन्य बौद्धिक संपदा कानूनों द्वारा संरक्षित है।"
 
-#: templates/frontend/terms.html:156
 msgid "Your Content"
 msgstr "आपकी सामग्री"
 
-#: templates/frontend/terms.html:158
+#, fuzzy
+#| msgid ""
+#| "You retain all rights to files you upload. By uploading files, you grant "
+#| "us a limited, non-exclusive license to process your files solely for the "
+#| "purpose of providing the requested Services. We do not claim ownership of "
 msgid ""
 "You retain all rights to files you upload. By uploading files, you grant us "
 "a limited, non-exclusive license to process your files solely for the "
 "purpose of providing the requested Services. We do not claim ownership of "
+"your files."
 msgstr ""
 "आप अपनी अपलोड की गई फ़ाइलों के सभी अधिकार बनाए रखते हैं। फ़ाइलें अपलोड करके, आप हमें "
 "अनुरोधित सेवाएं प्रदान करने के एकमात्र उद्देश्य के लिए अपनी फ़ाइलों को प्रोसेस करने के लिए एक "
 "सीमित, गैर-विशेष लाइसेंस प्रदान करते हैं। हम आपकी फ़ाइलों के स्वामित्व का दावा नहीं करते हैं।"
 
-#: templates/frontend/terms.html:166
 msgid "Disclaimer of Warranties"
 msgstr "वारंटी का अस्वीकरण"
 
-#: templates/frontend/terms.html:169
 msgid "Our Services are provided \\"
 msgstr ""
 
-#: templates/frontend/terms.html:172
 msgid "Warranties of merchantability"
 msgstr "व्यापारिकता की वारंटी"
 
-#: templates/frontend/terms.html:173
 msgid "Fitness for a particular purpose"
 msgstr "एक विशेष उद्देश्य के लिए उपयुक्तता"
 
-#: templates/frontend/terms.html:174
 msgid "Non-infringement"
 msgstr "अनुपालन"
 
-#: templates/frontend/terms.html:175
 msgid "Accuracy, reliability, or completeness of results"
 msgstr "परिणामों की सटीकता, विश्वसनीयता या पूर्णता"
 
-#: templates/frontend/terms.html:178
 msgid ""
 "We do not warrant that our Services will be uninterrupted, secure, or error-"
 "free, or that defects will be corrected."
@@ -2828,34 +2306,28 @@ msgstr ""
 "हम गारंटी नहीं देते कि हमारी सेवाएं निर्बाध, सुरक्षित या त्रुटि-मुक्त होंगी, या कि दोषों को "
 "सुधारा जाएगा।"
 
-#: templates/frontend/terms.html:184
 msgid "Limitation of Liability"
 msgstr "दायित्व की सीमा"
 
-#: templates/frontend/terms.html:187
 msgid ""
 "To the maximum extent permitted by law, Convertica and its affiliates, "
 "officers, employees, and agents shall not be liable for any indirect, "
 "incidental, special, consequential, or punitive damages, including but not "
+"limited to:"
 msgstr ""
 
-#: templates/frontend/terms.html:190
 msgid "Loss of data or files"
 msgstr "डेटा या फ़ाइलों की हानि"
 
-#: templates/frontend/terms.html:191
 msgid "Loss of profits or business opportunities"
 msgstr "लाभ या व्यावसायिक अवसरों की हानि"
 
-#: templates/frontend/terms.html:192
 msgid "Service interruptions or failures"
 msgstr "सेवा में रुकावट या विफलताएं"
 
-#: templates/frontend/terms.html:193
 msgid "Errors or inaccuracies in processed files"
 msgstr "प्रोसेस की गई फ़ाइलों में त्रुटियाँ या अशुद्धियाँ"
 
-#: templates/frontend/terms.html:196
 msgid ""
 "Our total liability for any claims arising from or related to the use of our "
 "Services shall not exceed the amount you paid to us (if any) in the twelve "
@@ -2865,65 +2337,73 @@ msgstr ""
 "पहले बारह महीनों में आपने हमें भुगतान की गई राशि (यदि कोई हो) या $100, जो भी अधिक "
 "हो, से अधिक नहीं होनी चाहिए।"
 
-#: templates/frontend/terms.html:202
 msgid "Indemnification"
 msgstr "क्षतिपूर्ति"
 
-#: templates/frontend/terms.html:205
+#, fuzzy
+#| msgid ""
+#| "You agree to indemnify, defend, and hold harmless Convertica and its "
+#| "affiliates, officers, employees, and agents from and against any claims, "
+#| "damages, obligations, losses, liabilities, costs, or debt, and expenses "
 msgid ""
 "You agree to indemnify, defend, and hold harmless Convertica and its "
 "affiliates, officers, employees, and agents from and against any claims, "
 "damages, obligations, losses, liabilities, costs, or debt, and expenses "
+"(including attorney's fees) arising from:"
 msgstr ""
 "आप सहमत हैं कि Convertica और उसके सहयोगी, अधिकारी, कर्मचारी और एजेंट को किसी भी "
 "दावे, नुकसान, दायित्वों, हानियों, देयताओं, लागतों या ऋण और खर्चों (वकील की फीस सहित) से "
 "क्षतिपूर्ति, बचाव और हानिरहित रखेंगे:"
 
-#: templates/frontend/terms.html:208
 msgid "Your use of our Services"
 msgstr "हमारी सेवाओं का आपका उपयोग"
 
-#: templates/frontend/terms.html:209
 msgid "Your violation of these Terms"
 msgstr "इन शर्तों का आपका उल्लंघन"
 
-#: templates/frontend/terms.html:210
 msgid "Your violation of any third-party rights"
 msgstr "किसी भी तीसरे पक्ष के अधिकारों का आपका उल्लंघन"
 
-#: templates/frontend/terms.html:211
 msgid "Files you upload or content you provide"
 msgstr "आप जो फ़ाइलें अपलोड करते हैं या सामग्री प्रदान करते हैं"
 
-#: templates/frontend/terms.html:217
 msgid "Termination"
 msgstr "समाप्ति"
 
-#: templates/frontend/terms.html:220
+#, fuzzy
+#| msgid ""
+#| "We reserve the right to terminate or suspend your access to our Services "
+#| "immediately, without prior notice or liability, for any reason, including "
+#| "if you breach these Terms. Upon termination, your right to use the "
+#| "Services "
 msgid ""
 "We reserve the right to terminate or suspend your access to our Services "
 "immediately, without prior notice or liability, for any reason, including if "
 "you breach these Terms. Upon termination, your right to use the Services "
+"will cease immediately."
 msgstr ""
 "हम किसी भी कारण से, इन शर्तों का उल्लंघन करने सहित, बिना पूर्व सूचना या दायित्व के तुरंत "
 "हमारी सेवाओं तक आपकी पहुंच को समाप्त या निलंबित करने का अधिकार सुरक्षित रखते हैं। समाप्ति "
 "पर, सेवाओं का उपयोग करने का आपका अधिकार तुरंत समाप्त हो जाएगा।"
 
-#: templates/frontend/terms.html:226
 msgid "Changes to Terms"
 msgstr "शर्तों में परिवर्तन"
 
-#: templates/frontend/terms.html:229
+#, fuzzy
+#| msgid ""
+#| "We reserve the right to modify or replace these Terms at any time. If a "
+#| "revision is material, we will provide at least 30 days notice prior to "
+#| "any new terms taking effect. What constitutes a material change will be "
 msgid ""
 "We reserve the right to modify or replace these Terms at any time. If a "
 "revision is material, we will provide at least 30 days notice prior to any "
 "new terms taking effect. What constitutes a material change will be "
+"determined at our sole discretion."
 msgstr ""
 "हम किसी भी समय इन शर्तों को संशोधित या प्रतिस्थापित करने का अधिकार सुरक्षित रखते हैं। "
 "यदि संशोधन महत्वपूर्ण है, तो हम किसी भी नई शर्तों के प्रभावी होने से पहले कम से कम 30 "
 "दिनों का नोटिस प्रदान करेंगे। एक महत्वपूर्ण परिवर्तन क्या constitutes होगा, यह हमारे "
 
-#: templates/frontend/terms.html:232
 msgid ""
 "By continuing to access or use our Services after any revisions become "
 "effective, you agree to be bound by the revised terms."
@@ -2931,265 +2411,261 @@ msgstr ""
 "किसी भी संशोधन के प्रभावी होने के बाद हमारी सेवाओं तक पहुंच या उपयोग जारी रखकर, आप "
 "संशोधित शर्तों से बाध्य होने के लिए सहमत हैं।"
 
-#: templates/frontend/terms.html:238
 msgid "Governing Law"
 msgstr "शासी कानून"
 
-#: templates/frontend/terms.html:241
+#, fuzzy
+#| msgid ""
+#| "These Terms shall be governed by and construed in accordance with "
+#| "applicable laws, without regard to its conflict of law provisions. Any "
+#| "disputes arising from these Terms or your use of our Services shall be "
+#| "subject to the "
 msgid ""
 "These Terms shall be governed by and construed in accordance with applicable "
 "laws, without regard to its conflict of law provisions. Any disputes arising "
 "from these Terms or your use of our Services shall be subject to the "
+"exclusive jurisdiction of the courts in the applicable jurisdiction."
 msgstr ""
 "ये शर्तें लागू कानूनों के अनुसार शासित और निर्मित की जाएंगी, इसके कानून के प्रावधानों के संघर्ष "
 "पर विचार किए बिना। इन शर्तों या हमारी सेवाओं के आपके उपयोग से उत्पन्न कोई भी विवाद "
 "लागू अधिकार क्षेत्र में अदालतों के विशेष अधिकार क्षेत्र के अधीन होगा।"
 
-#: templates/frontend/terms.html:247
 msgid "Questions About These Terms?"
 msgstr "इन शर्तों के बारे में प्रश्न?"
 
-#: templates/frontend/terms.html:249
 msgid ""
 "If you have any questions about these Terms of Service, please contact us."
 msgstr "यदि इन सेवा की शर्तों के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें।"
 
-#: templates/frontend/unlock_pdf.html:6
 #, fuzzy
 #| msgid "Unlock PDF"
 msgid "Unlock PDF Settings"
 msgstr "PDF अनलॉक करें"
 
-#: templates/frontend/unlock_pdf.html:12
 #, fuzzy
 #| msgid "PDF to Word"
 msgid "PDF Password"
 msgstr "PDF से Word"
 
-#: templates/frontend/unlock_pdf.html:20
 msgid "Enter the password to unlock the PDF"
 msgstr ""
 
-#: templates/frontend/unlock_pdf.html:23
 msgid ""
 "Enter the password that was used to protect the PDF. The password will be "
 "removed from the output PDF."
 msgstr ""
 
-#: utils_site/src/blog/admin.py:21 utils_site/src/blog/admin.py:95
 #, fuzzy
 #| msgid "Contact Information"
 msgid "Basic Information"
 msgstr "संपर्क जानकारी"
 
-#: utils_site/src/blog/admin.py:24 utils_site/src/blog/admin.py:72
-#: utils_site/src/blog/admin.py:105 utils_site/src/blog/admin.py:154
-#: utils_site/src/blog/models.py:20 utils_site/src/blog/models.py:98
 #, fuzzy
 #| msgid "Termination"
 msgid "Translations"
 msgstr "समाप्ति"
 
-#: utils_site/src/blog/admin.py:26
 msgid "Add translations for other languages using the tabs above."
 msgstr ""
 
-#: utils_site/src/blog/admin.py:28
 msgid "Metadata"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:39 utils_site/src/blog/admin.py:136
 msgid "No translations"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:48 utils_site/src/blog/admin.py:142
 msgid "No valid translations"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:68
 msgid "Empty translations"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:77 utils_site/src/blog/models.py:145
 #, fuzzy
 #| msgid "All Articles"
 msgid "Articles"
 msgstr "सभी लेख"
 
-#: utils_site/src/blog/admin.py:98
 msgid "English Content"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:101
 msgid "SEO - English"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:107
 msgid ""
 "Add translations for other languages using the tabs above. Each language has "
 "its own tab with all necessary fields."
 msgstr ""
 
-#: utils_site/src/blog/admin.py:109 utils_site/src/blog/models.py:112
 msgid "AI Metadata"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:112
 msgid ""
 "Additional metadata for AI agents to better understand and index your "
 "content."
 msgstr ""
 
-#: utils_site/src/blog/admin.py:114
 msgid "Media"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:117
 msgid "Statistics"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:130
 msgid "No image"
 msgstr ""
 
-#: utils_site/src/blog/admin.py:131
 #, fuzzy
 #| msgid "Previous"
 msgid "Preview"
 msgstr "पिछला"
 
-#: utils_site/src/blog/models.py:12
 msgid "Name (English)"
 msgstr ""
 
-#: utils_site/src/blog/models.py:13 utils_site/src/blog/models.py:85
 msgid "Slug"
 msgstr ""
 
-#: utils_site/src/blog/models.py:21
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"name\": \"...\", "
 "\"description\": \"...\"}, ...}"
 msgstr ""
 
-#: utils_site/src/blog/models.py:25
 #, fuzzy
 #| msgid "Description of Services"
 msgid "Description (English)"
 msgstr "सेवाओं का विवरण"
 
-#: utils_site/src/blog/models.py:31
 msgid "Article Category"
 msgstr ""
 
-#: utils_site/src/blog/models.py:32
 #, fuzzy
 #| msgid "Categories"
 msgid "Article Categories"
 msgstr "श्रेणियाँ"
 
-#: utils_site/src/blog/models.py:78
 msgid "Draft"
 msgstr ""
 
-#: utils_site/src/blog/models.py:79
 msgid "Published"
 msgstr ""
 
-#: utils_site/src/blog/models.py:80
 msgid "Archived"
 msgstr ""
 
-#: utils_site/src/blog/models.py:84
 msgid "Title (English)"
 msgstr ""
 
-#: utils_site/src/blog/models.py:86
 msgid "Content (English)"
 msgstr ""
 
-#: utils_site/src/blog/models.py:87
 msgid "Excerpt (English)"
 msgstr ""
 
-#: utils_site/src/blog/models.py:99
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"title\": \"...\", "
 "\"content\": \"...\", ...}, ...}"
 msgstr ""
 
-#: utils_site/src/blog/models.py:103
 msgid "Meta Title (English)"
 msgstr ""
 
-#: utils_site/src/blog/models.py:104
 msgid "Meta Description (English)"
 msgstr ""
 
-#: utils_site/src/blog/models.py:105
 msgid "Meta Keywords (English)"
 msgstr ""
 
-#: utils_site/src/blog/models.py:113
 msgid ""
 "Additional metadata for AI agents: topics, entities, summary, related_terms, "
 "etc."
 msgstr ""
 
-#: utils_site/src/blog/models.py:123
 #, fuzzy
 #| msgid "Categories"
 msgid "Category"
 msgstr "श्रेणियाँ"
 
-#: utils_site/src/blog/models.py:131
 msgid "Featured Image"
 msgstr ""
 
-#: utils_site/src/blog/models.py:135
 msgid "Status"
 msgstr ""
 
-#: utils_site/src/blog/models.py:136
 msgid "Published At"
 msgstr ""
 
-#: utils_site/src/blog/models.py:137
 #, fuzzy
 #| msgid "Related Articles"
 msgid "Created At"
 msgstr "संबंधित लेख"
 
-#: utils_site/src/blog/models.py:138
 msgid "Updated At"
 msgstr ""
 
-#: utils_site/src/blog/models.py:141
 msgid "View Count"
 msgstr ""
 
-#: utils_site/src/blog/models.py:144
 #, fuzzy
 #| msgid "All Articles"
 msgid "Article"
 msgstr "सभी लेख"
 
-#: utils_site/src/frontend/views.py:29
+msgid "Your Name"
+msgstr "आपका नाम"
+
+msgid "Enter your name"
+msgstr ""
+
+msgid "Your Email"
+msgstr "आपका ईमेल"
+
+msgid "your.email@example.com"
+msgstr ""
+
+msgid "Subject"
+msgstr "विषय"
+
+#, fuzzy
+#| msgid "Subject"
+msgid "Enter subject"
+msgstr "विषय"
+
+msgid "Message"
+msgstr "संदेश"
+
+#, fuzzy
+#| msgid "Processing your file..."
+msgid "Enter your message"
+msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
+
+#, fuzzy
+#| msgid "Changes to This Privacy Policy"
+msgid "I agree to the Privacy Policy"
+msgstr "इस गोपनीयता नीति में परिवर्तन"
+
+msgid "Message must be at least 10 characters long."
+msgstr ""
+
+msgid "Message is too long. Maximum 5000 characters."
+msgstr ""
+
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter, convert PDF, convert Word, free pdf tools online, pdf tools "
 "no registration, best pdf converter online, pdf editor online free, pdf "
+"tools for students, pdf tools for business, smallpdf alternative, ilovepdf "
+"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
+"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
+"watermark tool, high quality pdf converter, pdf converter no quality loss, "
+"pdf converter best quality, pdf converter for mac, pdf converter for "
+"windows, pdf converter for linux, pdf converter mobile"
 msgstr ""
 
-#: utils_site/src/frontend/views.py:94
 msgid "Conversion failed. Please try again."
 msgstr "रूपांतरण विफल रहा। कृपया पुनः प्रयास करें।"
 
-#: utils_site/src/frontend/views.py:424
 msgid "All PDF Tools - Convertica"
 msgstr "सभी PDF उपकरण - Convertica"
 
-#: utils_site/src/frontend/views.py:425
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
@@ -3197,14 +2673,20 @@ msgstr ""
 "सभी PDF उपकरण देखें: कन्वर्ट, एडिट, व्यवस्थित करें और PDF सुरक्षित करें। सभी आपकी दस्तावेज़ "
 "आवश्यकताओं के लिए मुफ्त ऑनलाइन PDF उपकरण।"
 
-#: utils_site/src/frontend/views.py:426
 msgid ""
 "PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all PDF "
 "tools, online PDF tools, free PDF tools, free pdf tools online, pdf tools no "
 "registration, best pdf converter online, pdf editor online free, pdf tools "
+"for students, pdf tools for business, smallpdf alternative, ilovepdf "
+"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
+"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
+"watermark tool, high quality pdf converter, pdf converter no quality loss, "
+"pdf converter best quality, pdf converter for mac, pdf converter for "
+"windows, pdf converter for linux, pdf converter mobile, convert pdf to word "
+"for resume, merge pdf for thesis, compress pdf for email attachment, split "
+"pdf by chapters"
 msgstr ""
 
-#: utils_site/src/frontend/views.py:435
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
@@ -3213,7 +2695,6 @@ msgstr ""
 "Convertica के बारे में जानें - आपका विश्वसनीय ऑनलाइन PDF उपकरण प्लेटफ़ॉर्म। हम निरंतर "
 "सुधार और सर्वश्रेष्ठ PDF रूपांतरण और संपादन अनुभव प्रदान करने के लिए प्रतिबद्ध हैं।"
 
-#: utils_site/src/frontend/views.py:436
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
@@ -3221,7 +2702,6 @@ msgstr ""
 "Convertica के बारे में, PDF उपकरण कंपनी, ऑनलाइन PDF कन्वर्टर, PDF सेवाएं, दस्तावेज़ "
 "रूपांतरण"
 
-#: utils_site/src/frontend/views.py:445
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
@@ -3229,12 +2709,10 @@ msgstr ""
 "Convertica की गोपनीयता नीति पढ़ें। जानें कि हम आपके डेटा की सुरक्षा कैसे करते हैं और आपकी "
 "फ़ाइलों को कैसे संभालते हैं। आपकी गोपनीयता हमारी प्राथमिकता है।"
 
-#: utils_site/src/frontend/views.py:446
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 msgstr "गोपनीयता नीति, डेटा सुरक्षा, फ़ाइल सुरक्षा, गोपनीयता, Convertica गोपनीयता"
 
-#: utils_site/src/frontend/views.py:455
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
@@ -3242,12 +2720,20 @@ msgstr ""
 "Convertica की सेवा की शर्तें पढ़ें। हमारे PDF उपकरणों और सेवाओं का उपयोग करने की शर्तों और "
 "नियमों को समझें।"
 
-#: utils_site/src/frontend/views.py:456
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
 msgstr "सेवा की शर्तें, नियम और शर्तें, उपयोगकर्ता समझौता, Convertica शर्तें"
 
-#: utils_site/src/frontend/views.py:465
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you as "
+"soon as possible, usually within 24-48 hours."
+msgstr ""
+"धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है। हम जल्द से जल्द आपसे संपर्क करेंगे, आमतौर पर "
+"24-48 घंटों के भीतर।"
+
+msgid "Please complete the CAPTCHA verification."
+msgstr ""
+
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
@@ -3255,27 +2741,47 @@ msgstr ""
 "सहायता, प्रश्न या प्रतिक्रिया के लिए Convertica से संपर्क करें। हम आपकी सभी PDF उपकरण "
 "आवश्यकताओं में मदद के लिए यहाँ हैं।"
 
-#: utils_site/src/frontend/views.py:466
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr "Convertica से संपर्क करें, सहायता, ग्राहक सेवा, मदद, प्रतिक्रिया"
 
-#: utils_site/src/frontend/views.py:474
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"क्षमा करें, आपका संदेश भेजने में त्रुटि हुई। कृपया बाद में पुनः प्रयास करें या सीधे "
+"info@convertica.net पर हमसे संपर्क करें"
+
+msgid "Please correct the errors in the form below."
+msgstr "कृपया नीचे दिए गए फॉर्म में त्रुटियों को सही करें।"
+
 #, fuzzy
 #| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "अक्सर पूछे जाने वाले प्रश्न"
 
-#: utils_site/src/frontend/views.py:475
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
 msgstr ""
 
-#: utils_site/src/frontend/views.py:476
 msgid ""
 "FAQ, frequently asked questions, PDF converter help, PDF tools FAQ, how to "
 "convert PDF, PDF questions, convert pdf to word online free, pdf to word "
 "without losing formatting, compress pdf online free, merge pdf online free, "
+"split pdf online free, pdf to jpg online free, jpg to pdf online free, pdf "
+"to excel online free, word to pdf online free, rotate pdf online free, add "
+"watermark to pdf online free, crop pdf online free, protect pdf online free, "
+"unlock pdf online free, pdf converter no email, pdf converter no "
+"registration, pdf converter unlimited, pdf converter no watermark, pdf "
+"converter fast, pdf converter safe, pdf converter free, pdf tools help, pdf "
+"conversion questions, pdf editing questions, pdf organization questions, pdf "
+"security questions"
+msgstr ""
+
+msgid ""
+"To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
+"arrange them in the desired order, and click merge. All selected files will "
+"be combined into a single PDF document."
 msgstr ""
 
 #, fuzzy
@@ -3299,23 +2805,11 @@ msgstr ""
 #~ msgid "Views"
 #~ msgstr "दृश्य"
 
-#~ msgid "Please select a Word file."
-#~ msgstr "कृपया एक Word फ़ाइल चुनें।"
-
-#~ msgid "Please select PDF files to merge."
-#~ msgstr "कृपया मर्ज करने के लिए PDF फ़ाइलें चुनें।"
-
 #~ msgid "Please select a JPG/JPEG image file."
 #~ msgstr "कृपया एक JPG/JPEG छवि फ़ाइल चुनें।"
 
-#~ msgid "Please select a PDF file with tables."
-#~ msgstr "कृपया तालिकाओं के साथ एक PDF फ़ाइल चुनें।"
-
 #~ msgid "Please select a password-protected PDF file."
 #~ msgstr "कृपया पासवर्ड-सुरक्षित PDF फ़ाइल चुनें।"
-
-#~ msgid "Merge PDFs"
-#~ msgstr "PDF मर्ज करें"
 
 #~ msgid "PDF to Word - Convertica"
 #~ msgstr "PDF से Word - Convertica"
@@ -3697,47 +3191,5 @@ msgstr ""
 #~ "यदि इन शर्तों के बारे में आपके कोई प्रश्न हैं, तो कृपया info@convertica.com पर हमसे "
 #~ "संपर्क करें।"
 
-#: utils_site/src/frontend/views.py:499
-msgid ""
-"Thank you! Your message has been sent successfully. We'll get back to you "
-"as soon as possible, usually within 24-48 hours."
-msgstr ""
-"धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है। हम जल्द से जल्द आपसे संपर्क "
-"करेंगे, आमतौर पर 24-48 घंटों के भीतर।"
-
-#: utils_site/src/frontend/views.py:581
-msgid ""
-"Sorry, there was an error sending your message. Please try again later or "
-"contact us directly at info@convertica.net"
-msgstr ""
-"क्षमा करें, आपका संदेश भेजने में त्रुटि हुई। कृपया बाद में पुनः प्रयास करें "
-"या सीधे info@convertica.net पर हमसे संपर्क करें"
-
-#: utils_site/src/frontend/views.py:589
-msgid "Please correct the errors in the form below."
-msgstr "कृपया नीचे दिए गए फॉर्म में त्रुटियों को सही करें।"
-
-#: templates/frontend/contact.html:123
-msgid "Message Sent Successfully!"
-msgstr "संदेश सफलतापूर्वक भेजा गया!"
-
-#: templates/frontend/contact.html:129
-msgid ""
-"We have received your message and will get back to you as soon as possible, "
-"usually within 24-48 hours."
-msgstr ""
-"हमने आपका संदेश प्राप्त कर लिया है और जल्द से जल्द आपसे संपर्क करेंगे, "
-"आमतौर पर 24-48 घंटों के भीतर।"
-
-#: templates/frontend/contact.html:163
-msgid "Thank you! Your message has been sent successfully."
-msgstr "धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है।"
-
-
-#: templates/frontend/contact.html:179
-msgid "Please correct the errors below:"
-msgstr "कृपया नीचे दी गई त्रुटियों को सही करें:"
-
-#: templates/frontend/contact.html:369
-msgid "Sending..."
-msgstr "भेज रहे हैं..."
+#~ msgid "Thank you! Your message has been sent successfully."
+#~ msgstr "धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है।"
