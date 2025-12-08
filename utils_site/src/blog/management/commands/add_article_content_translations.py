@@ -4,7 +4,6 @@ This command adds translated content to articles that only have title/excerpt tr
 """
 
 from django.core.management.base import BaseCommand
-
 from src.blog.models import Article
 
 

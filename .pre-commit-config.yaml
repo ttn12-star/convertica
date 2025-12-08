@@ -3,6 +3,13 @@
 # Run manually: pre-commit run --all-files
 
 repos:
+  # isort - Python import sorter
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ['--profile=black']
+
   # Black - Python code formatter
   - repo: https://github.com/psf/black
     rev: 24.4.2

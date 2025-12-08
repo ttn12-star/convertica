@@ -4,7 +4,6 @@ Unit tests for base API views.
 
 from django.test import TestCase
 from rest_framework.test import APIClient
-
 from src.api.base_views import BaseConversionAPIView
 
 

@@ -6,7 +6,6 @@ from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_path
 from PyPDF2 import PdfReader
 from reportlab.pdfgen import canvas
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

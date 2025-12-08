@@ -4,7 +4,6 @@ import tempfile
 
 import pandas as pd
 from django.core.files.uploadedfile import UploadedFile
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

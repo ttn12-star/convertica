@@ -10,7 +10,6 @@ import os
 from celery import shared_task
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
-
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)

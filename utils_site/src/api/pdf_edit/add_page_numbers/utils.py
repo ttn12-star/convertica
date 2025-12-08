@@ -7,7 +7,6 @@ from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
 from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
-
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
