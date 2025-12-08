@@ -208,6 +208,11 @@ STATICFILES_DIRS = [
 
 STATIC_URL = "static/"
 
+# Use ManifestStaticFilesStorage for versioning (hash in filenames)
+# This allows long-term caching (365 days) while automatically invalidating
+# cache when files change (new hash = new filename)
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
 # WhiteNoise configuration (alternative to Nginx for static files)
 # Enable by setting USE_WHITENOISE=True in environment
 USE_WHITENOISE = config("USE_WHITENOISE", default=False, cast=bool)
@@ -224,6 +229,7 @@ if USE_WHITENOISE:
         )
 
     # WhiteNoise settings for optimized static file serving
+    # Use ManifestStaticFilesStorage for versioning
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
     # Cache static files for 1 year
