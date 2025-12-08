@@ -6,16 +6,16 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
-      target: builder  # Use builder stage for development
-    entrypoint: []  # Override ENTRYPOINT from Dockerfile for dev mode
-    command: >
-      sh -c "
-        # Create symlink for src module if it doesn't exist
-        [ ! -L /app/src ] && [ ! -d /app/src ] && ln -s /app/utils_site/src /app/src || true &&
+      target: production  # Use production stage but override command for dev
+    entrypoint: []  # Override ENTRYPOINT from Dockerfile
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        if [ ! -L /app/src ] && [ ! -d /app/src ]; then ln -s /app/utils_site/src /app/src; fi &&
         python manage.py collectstatic --noinput &&
         python manage.py migrate &&
         python manage.py runserver 0.0.0.0:8000
-      "
     volumes:
       - .:/app  # Mount source code for hot reload
       - ./staticfiles:/app/staticfiles
