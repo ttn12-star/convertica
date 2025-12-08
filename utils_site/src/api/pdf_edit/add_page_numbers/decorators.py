@@ -19,6 +19,7 @@ def add_page_numbers_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Add page numbers to PDF pages. "
             "You can customize position, font size, starting number, and format.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -56,6 +57,7 @@ def add_page_numbers_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="PDF file with page numbers.",

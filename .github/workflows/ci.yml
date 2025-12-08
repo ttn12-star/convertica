@@ -246,8 +246,18 @@ jobs:
             git reset --hard origin/main
             
             # Restore server-specific files (if any were stashed)
+            # Use stash apply instead of pop to keep stash in case of conflicts
             echo "📦 Restoring server-specific files..."
-            git stash pop || true
+            if git stash list | grep -q "Server local changes"; then
+              # Try to apply stash, if conflict - abort and keep server files
+              if ! git stash apply --index 2>/dev/null; then
+                echo "⚠️  Conflict in stash, keeping server files and aborting stash apply"
+                git reset --hard HEAD
+                git stash drop || true
+              else
+                git stash drop || true
+              fi
+            fi
             
             # Pull latest Docker images (if using Docker Hub)
             echo "🐳 Pulling latest Docker images..."

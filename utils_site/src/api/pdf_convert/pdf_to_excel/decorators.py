@@ -20,6 +20,7 @@ def pdf_to_excel_docs() -> Callable:
             operation_description="Convert PDF to Excel by extracting tables. "
             "The PDF must contain tables for this conversion to work. "
             "Each table will be placed in a separate sheet.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -36,6 +37,7 @@ def pdf_to_excel_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Excel file (.xlsx) with extracted tables.",

@@ -15,15 +15,25 @@ from utils_site.swagger import schema_view
 def robots_txt(request):
     """Serve robots.txt file with dynamic sitemap URL and admin path."""
     robots_path = Path(__file__).resolve().parent.parent / "static" / "robots.txt"
-    base_url = f"{request.scheme}://{request.get_host()}"
+
+    # Determine scheme: prefer X-Forwarded-Proto (from Nginx), fallback to request.scheme
+    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
+    # Force HTTPS in production (if not DEBUG)
+    if not getattr(settings, "DEBUG", False) and scheme == "http":
+        scheme = "https"
+
+    base_url = f"{scheme}://{request.get_host()}"
     admin_path = getattr(settings, "ADMIN_URL_PATH", "admin")
 
     try:
         with open(robots_path, "r", encoding="utf-8") as f:
             content = f.read()
-        # Replace hardcoded sitemap URL with dynamic one
+        # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
         content = content.replace(
             "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
+        )
+        content = content.replace(
+            "http://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
         )
         # Replace hardcoded admin path with dynamic one
         content = content.replace("/admin/", f"/{admin_path}/")

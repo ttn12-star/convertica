@@ -19,6 +19,7 @@ def merge_pdf_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Merge multiple PDF files into one. "
             "Upload 2-10 PDF files to merge them in order.",
+            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_files",
@@ -35,6 +36,7 @@ def merge_pdf_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # Explicitly disable request body to avoid conflict with manual_parameters
             responses={
                 200: openapi.Response(
                     description="Merged PDF file.",
