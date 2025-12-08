@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.4
 # Multi-stage build for optimized production image
 # Stage 1: Builder
 FROM python:3.12-slim AS builder
@@ -7,26 +8,38 @@ ARG BUILDPLATFORM=linux/amd64
 ARG TARGETPLATFORM=linux/amd64
 
 # Install system dependencies for building Python packages
+# Split into separate RUN commands for better caching
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
     gcc \
-    # Image processing dependencies (OpenCV requires libGL) - needed for dev mode
+    && rm -rf /var/lib/apt/lists/*
+
+# Install image processing dependencies (cached separately)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev \
     zlib1g-dev \
     libgl1 \
     libglib2.0-0 \
-    # PDF processing dependencies - needed for dev mode
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PDF processing dependencies (cached separately)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     tesseract-ocr \
     tesseract-ocr-eng \
-    # LibreOffice for Word to PDF conversion - needed for dev mode
+    && rm -rf /var/lib/apt/lists/*
+
+# Install LibreOffice (heavy package, cached separately)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libreoffice \
     libreoffice-writer \
     libreoffice-core \
-    # Django i18n tools (for compilemessages) - needed for dev mode
+    && rm -rf /var/lib/apt/lists/*
+
+# Install remaining dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gettext \
-    # System utilities
     curl \
     && rm -rf /var/lib/apt/lists/*
 
@@ -40,32 +53,39 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Install Python dependencies - this layer will be cached if requirements.txt doesn't change
+# Use pip cache mount for GitHub Actions (works with buildx)
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --no-cache-dir -r requirements.txt
 
 # Production stage
 FROM python:3.12-slim AS production
 
-# Install runtime dependencies
+# Install runtime dependencies (split for better caching)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    # PostgreSQL client libraries
     libpq5 \
-    # Image processing dependencies (OpenCV requires libGL)
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev \
     zlib1g-dev \
     libgl1 \
     libglib2.0-0 \
-    # PDF processing dependencies
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     tesseract-ocr \
     tesseract-ocr-eng \
-    # LibreOffice for Word to PDF conversion
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libreoffice \
     libreoffice-writer \
     libreoffice-core \
-    # Django i18n tools (for compilemessages)
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gettext \
-    # System utilities
     curl \
     && rm -rf /var/lib/apt/lists/*
 
