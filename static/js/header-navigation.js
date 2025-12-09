@@ -28,8 +28,7 @@ class HeaderNavigation {
     this.allToolsDropdown = document.getElementById('all-tools-menu-dropdown');
     this.allToolsButton = document.getElementById('all-tools-menu-button');
     this.allToolsArrow = document.getElementById('all-tools-menu-arrow');
-    this.mobileAllToolsToggle = document.getElementById('mobile-all-tools-toggle');
-    this.mobileAllToolsMenu = document.getElementById('mobile-all-tools-menu');
+    // Mobile All Tools is now a simple link, no toggle needed
     this.menuIconOpen = document.getElementById('menu-icon-open');
     this.menuIconClose = document.getElementById('menu-icon-close');
 
@@ -96,7 +95,7 @@ class HeaderNavigation {
     }
 
     // Mobile all tools menu toggle
-    this.mobileAllToolsToggle?.addEventListener('click', () => this.toggleMobileAllTools());
+    // Mobile All Tools is now a simple link, no event listener needed
 
     // Close menus on outside click
     document.addEventListener('click', (e) => this.outsideClick(e));
@@ -311,18 +310,7 @@ class HeaderNavigation {
     isVisible ? this.hideAllTools() : this.showAllTools();
   }
 
-  toggleMobileAllTools() {
-    if (!this.mobileAllToolsToggle || !this.mobileAllToolsMenu) return;
-    const isExpanded = this.mobileAllToolsToggle.getAttribute('aria-expanded') === 'true';
-    this.mobileAllToolsMenu.classList.toggle('hidden', isExpanded);
-    this.mobileAllToolsToggle.setAttribute('aria-expanded', !isExpanded);
-
-    // Rotate arrow icon
-    const arrow = this.mobileAllToolsToggle.querySelector('svg');
-    if (arrow) {
-      arrow.classList.toggle('rotate-180');
-    }
-  }
+  // toggleMobileAllTools removed - mobile All Tools is now a simple link
 
   outsideClick(e) {
     // Close mobile menu
