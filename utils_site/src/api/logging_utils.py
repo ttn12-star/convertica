@@ -100,18 +100,40 @@ def log_conversion_success(
         **additional_info: Additional information to log
     """
     processing_time = time.time() - start_time
-    logger.info(
-        f"{conversion_type} conversion completed successfully",
-        extra={
-            **context,
-            "event": "conversion_success",
-            "conversion_type": conversion_type,
-            "processing_time_seconds": round(processing_time, 3),
-            "processing_time_ms": round(processing_time * 1000, 2),
-            "output_filename": output_filename,
-            **additional_info,
-        },
-    )
+    log_data = {
+        **context,
+        "event": "conversion_success",
+        "conversion_type": conversion_type,
+        "processing_time_seconds": round(processing_time, 3),
+        "processing_time_ms": round(processing_time * 1000, 2),
+        "output_filename": output_filename,
+        **additional_info,
+    }
+    logger.info(f"{conversion_type} conversion completed successfully", extra=log_data)
+
+    # Send metrics to Sentry (non-blocking, async)
+    try:
+        import sentry_sdk
+
+        with sentry_sdk.push_scope() as scope:
+            scope.set_tag("conversion_type", conversion_type)
+            scope.set_tag("event", "conversion_success")
+            scope.set_measurement("processing_time", processing_time, unit="second")
+            if "file_size_mb" in log_data:
+                scope.set_measurement(
+                    "file_size", log_data["file_size_mb"], unit="megabyte"
+                )
+            # Send as event (appears in Sentry as metric)
+            sentry_sdk.capture_message(
+                f"Conversion: {conversion_type}",
+                level="info",
+            )
+    except ImportError:
+        # Sentry not installed, skip
+        pass
+    except Exception:
+        # Don't fail if Sentry is down
+        pass
 
 
 def log_conversion_error(
