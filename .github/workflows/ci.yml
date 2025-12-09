@@ -316,6 +316,38 @@ jobs:
             # Navigate to project directory
             cd /opt/convertica
 
+            # CRITICAL: Check if a newer tag exists before starting deployment
+            # This prevents deploying outdated tags even if the build already started
+            echo "🔍 Checking for newer tags..."
+            CURRENT_TAG="${{ github.ref_name }}"
+            echo "Current deploying tag: $CURRENT_TAG"
+
+            # Fetch all tags from remote
+            git fetch --tags --force origin
+
+            # Get all version tags sorted by version
+            ALL_TAGS=$(git tag -l "v*" | sort -V)
+
+            # Find the latest tag
+            LATEST_TAG=$(echo "$ALL_TAGS" | tail -1)
+            echo "Latest tag in repository: $LATEST_TAG"
+
+            # Compare versions using sort -V (version sort)
+            if [ "$CURRENT_TAG" != "$LATEST_TAG" ]; then
+              # Check if current tag is older than latest using version sort
+              SORTED_TAGS=$(printf '%s\n' "$CURRENT_TAG" "$LATEST_TAG" | sort -V)
+              FIRST_TAG=$(echo "$SORTED_TAGS" | head -1)
+
+              if [ "$FIRST_TAG" != "$CURRENT_TAG" ]; then
+                echo "⚠️  WARNING: Newer tag $LATEST_TAG exists!"
+                echo "🛑 Current tag $CURRENT_TAG is outdated, cancelling deployment"
+                echo "   This prevents deploying an old version when a newer one is available"
+                exit 1
+              fi
+            fi
+
+            echo "✅ Current tag $CURRENT_TAG is the latest, proceeding with deployment"
+
             # Save server-specific files (SSL, staticfiles, etc.) before pull
             echo "💾 Saving server-specific files..."
             git stash push -m "Server local changes: staticfiles, ssl, renew-ssl.sh" || true
