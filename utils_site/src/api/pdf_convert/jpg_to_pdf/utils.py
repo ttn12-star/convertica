@@ -10,6 +10,7 @@ from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 from ...file_validation import check_disk_space, sanitize_filename, validate_output_file
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
@@ -506,6 +507,27 @@ def convert_multiple_jpg_to_pdf(
 
             # Save PDF
             c.save()
+
+            # Repair PDF after reportlab creation to ensure proper structure
+            logger.debug(
+                "Repairing PDF after creation",
+                extra={**context, "event": "pdf_repair_start"},
+            )
+            try:
+                repair_pdf(pdf_path, pdf_path)
+                logger.debug(
+                    "PDF repaired after creation",
+                    extra={**context, "event": "pdf_repair_success"},
+                )
+            except Exception as repair_error:
+                logger.warning(
+                    "PDF repair after creation failed (continuing anyway)",
+                    extra={
+                        **context,
+                        "event": "pdf_repair_warning",
+                        "error": str(repair_error),
+                    },
+                )
 
             logger.debug(
                 "PDF created successfully", extra={**context, "event": "pdf_created"}

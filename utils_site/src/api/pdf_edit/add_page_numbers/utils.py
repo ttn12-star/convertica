@@ -172,6 +172,28 @@ def add_page_numbers(
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
 
+            # Repair PDF after PyPDF2 write to ensure proper structure
+            # (overlay was created via reportlab, so better safe than sorry)
+            logger.debug(
+                "Repairing PDF after adding page numbers",
+                extra={**context, "event": "add_numbers_repair_start"},
+            )
+            try:
+                repair_pdf(output_path, output_path)
+                logger.debug(
+                    "PDF repaired after adding page numbers",
+                    extra={**context, "event": "add_numbers_repair_success"},
+                )
+            except Exception as repair_error:
+                logger.warning(
+                    "PDF repair after adding page numbers failed (continuing anyway)",
+                    extra={
+                        **context,
+                        "event": "add_numbers_repair_warning",
+                        "error": str(repair_error),
+                    },
+                )
+
             logger.debug(
                 "Page numbers added", extra={**context, "event": "add_numbers_complete"}
             )

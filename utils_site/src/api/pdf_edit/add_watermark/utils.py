@@ -623,6 +623,28 @@ def add_watermark(
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
 
+            # Repair PDF after PyPDF2 write to ensure proper structure
+            # (overlay was created via reportlab, so better safe than sorry)
+            logger.debug(
+                "Repairing PDF after adding watermark",
+                extra={**context, "event": "watermark_repair_start"},
+            )
+            try:
+                repair_pdf(output_path, output_path)
+                logger.debug(
+                    "PDF repaired after adding watermark",
+                    extra={**context, "event": "watermark_repair_success"},
+                )
+            except Exception as repair_error:
+                logger.warning(
+                    "PDF repair after adding watermark failed (continuing anyway)",
+                    extra={
+                        **context,
+                        "event": "watermark_repair_warning",
+                        "error": str(repair_error),
+                    },
+                )
+
             logger.debug(
                 "Watermark added", extra={**context, "event": "watermark_complete"}
             )
