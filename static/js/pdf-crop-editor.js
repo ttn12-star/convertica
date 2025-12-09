@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Cleanup previous PDF if exists
             cleanupPreviousPDF();
-            
+
             // Show preview section
             pdfPreviewSection.classList.remove('hidden');
 
@@ -79,10 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Populate page selector
             pageSelector.innerHTML = '';
+            const pageLabel = window.PAGE_LABEL || 'Page';
             for (let i = 1; i <= pageCount; i++) {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = `Page ${i}`;
+                option.textContent = `${pageLabel} ${i}`;
                 pageSelector.appendChild(option);
             }
 
@@ -97,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
-            showError('Failed to load PDF file. Please try again.');
+            showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
             }
         }
     }
-    
+
     function cleanupPreviousPDF() {
         // Cleanup previous PDF document
         if (pdfDoc) {
@@ -114,14 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             pdfDoc = null;
         }
-        
+
         // Reset state
         currentPage = 1;
         pageCount = 0;
         currentSelection = null;
         isSelecting = false;
         isDragging = false;
-        
+
         // Clear canvas
         if (pdfCanvas) {
             const ctx = pdfCanvas.getContext('2d');
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             canvasHeight = scaledViewport.height;
             pdfCanvas.width = canvasWidth;
             pdfCanvas.height = canvasHeight;
-            
+
             // Reset any CSS scaling to ensure accurate coordinate calculations
             pdfCanvas.style.width = '';
             pdfCanvas.style.height = '';
@@ -182,37 +183,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // Use 5% margin on each side for better UX
         const marginX = canvasWidth * 0.05;
         const marginY = canvasHeight * 0.05;
-        
+
         const initialX = marginX;
         const initialY = marginY;
         const initialWidth = canvasWidth - (marginX * 2);
         const initialHeight = canvasHeight - (marginY * 2);
-        
+
         currentSelection = {
             x: initialX,
             y: initialY,
             width: initialWidth,
             height: initialHeight
         };
-        
+
         updateSelection(initialX, initialY, initialWidth, initialHeight);
         cropSelection.classList.remove('hidden');
         updateCropCoordinates();
         updateOverlay(initialX, initialY, initialWidth, initialHeight);
-        
+
         // Reset cursor
         pdfCanvas.style.cursor = 'crosshair';
         isMouseOverSelection = false;
-        
+
         // Enable edit button
         if (editButton) {
             editButton.disabled = false;
             editButton.classList.remove('opacity-50', 'cursor-not-allowed');
         }
-        
+
         // Show ready indicator
         if (cropReadyIndicator) {
-            cropReadyIndicator.textContent = 'Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize.';
+            cropReadyIndicator.textContent = window.CROP_AREA_READY || 'Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize.';
             cropReadyIndicator.classList.remove('hidden');
         }
     }
@@ -222,13 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
         await renderPage(currentPage);
         // Selection will be recreated automatically in renderPage
     });
-    
+
     // Pages option handlers
     const pagesAllRadio = document.getElementById('pagesAll');
     const pagesCurrentRadio = document.getElementById('pagesCurrent');
     const pagesCustomRadio = document.getElementById('pagesCustom');
     const pagesCustomInput = document.getElementById('pagesCustomInput');
-    
+
     if (pagesAllRadio) {
         pagesAllRadio.addEventListener('change', () => {
             if (pagesCustomInput) {
@@ -237,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     if (pagesCurrentRadio) {
         pagesCurrentRadio.addEventListener('change', () => {
             if (pagesCustomInput) {
@@ -246,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     if (pagesCustomRadio && pagesCustomInput) {
         pagesCustomRadio.addEventListener('change', () => {
             pagesCustomInput.disabled = false;
@@ -282,13 +283,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
                 }
             }
-            
+
             // Check if mouse is inside selection
-            const isInside = mouseX >= currentSelection.x && 
+            const isInside = mouseX >= currentSelection.x &&
                            mouseX <= currentSelection.x + currentSelection.width &&
-                           mouseY >= currentSelection.y && 
+                           mouseY >= currentSelection.y &&
                            mouseY <= currentSelection.y + currentSelection.height;
-            
+
             if (isInside && !isOverHandle) {
                 if (!isMouseOverSelection) {
                     pdfCanvas.style.cursor = 'move';
@@ -316,15 +317,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target && e.target.classList.contains('crop-handle')) {
                 return;
             }
-            
+
             if (!pdfDoc || !currentSelection || currentSelection.width <= 0 || currentSelection.height <= 0) {
                 return;
             }
-            
+
             const rect = pdfCanvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             // Start moving selection
             isDragging = true;
             dragStartX = x - currentSelection.x;
@@ -348,14 +349,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Let handle logic handle it
             return;
         }
-        
+
         // Check if clicking inside existing selection - allow moving it
         if (currentSelection && currentSelection.width > 0 && currentSelection.height > 0) {
-            const isInside = x >= currentSelection.x && 
+            const isInside = x >= currentSelection.x &&
                            x <= currentSelection.x + currentSelection.width &&
-                           y >= currentSelection.y && 
+                           y >= currentSelection.y &&
                            y <= currentSelection.y + currentSelection.height;
-            
+
             if (isInside) {
                 // Start moving selection
                 isDragging = true;
@@ -366,13 +367,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
         }
-        
+
         // Start creating new selection (drag-to-select)
         isSelecting = true;
         selectionStartX = x;
         selectionStartY = y;
         pdfCanvas.style.cursor = 'crosshair';
-        
+
         // Create temporary selection
         currentSelection = {
             x: x,
@@ -380,16 +381,16 @@ document.addEventListener('DOMContentLoaded', () => {
             width: 0,
             height: 0
         };
-        
+
         cropSelection.classList.remove('hidden');
         updateSelection(x, y, 0, 0);
-        
+
         // Show instruction
         if (cropReadyIndicator) {
-            cropReadyIndicator.textContent = 'Drag to select crop area...';
+            cropReadyIndicator.textContent = window.DRAG_TO_SELECT || 'Drag to select crop area...';
             cropReadyIndicator.classList.remove('hidden');
         }
-        
+
         e.preventDefault();
     });
 
@@ -406,18 +407,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isDragging && currentSelection) {
             let newX = x - dragStartX;
             let newY = y - dragStartY;
-            
+
             // Constrain to canvas bounds
             newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
             newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
-            
+
             // Update currentSelection immediately for dragging
             currentSelection.x = newX;
             currentSelection.y = newY;
-            
+
             updateSelection(newX, newY, currentSelection.width, currentSelection.height);
             updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
-            
+
             // Update coordinates in real-time
             updateCropCoordinates();
             return;
@@ -429,23 +430,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const maxX = Math.max(selectionStartX, x);
             const minY = Math.min(selectionStartY, y);
             const maxY = Math.max(selectionStartY, y);
-            
+
             const width = maxX - minX;
             const height = maxY - minY;
-            
+
             // Constrain to canvas bounds
             const selX = Math.max(0, Math.min(minX, canvasWidth - width));
             const selY = Math.max(0, Math.min(minY, canvasHeight - height));
             const selWidth = Math.min(width, canvasWidth - selX);
             const selHeight = Math.min(height, canvasHeight - selY);
-            
+
             currentSelection = {
                 x: selX,
                 y: selY,
                 width: selWidth,
                 height: selHeight
             };
-            
+
             updateSelection(selX, selY, selWidth, selHeight);
             updateOverlay(selX, selY, selWidth, selHeight);
             updateCropCoordinates();
@@ -457,19 +458,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Finish creating selection
             isSelecting = false;
             pdfCanvas.style.cursor = 'crosshair';
-            
+
             // Ensure minimum size
             if (currentSelection && (currentSelection.width < 10 || currentSelection.height < 10)) {
                 // Too small - restore to full page or previous selection
                 createInitialSelection();
                 if (cropReadyIndicator) {
-                    cropReadyIndicator.textContent = 'Selection too small. Full page selected. Drag to create a new selection or drag the box to move it.';
+                    cropReadyIndicator.textContent = window.SELECTION_TOO_SMALL || 'Selection too small. Full page selected. Drag to create a new selection or drag the box to move it.';
                 }
             } else if (currentSelection) {
                 // Valid selection - update coordinates and show ready message
                 updateCropCoordinates();
                 if (cropReadyIndicator) {
-                    cropReadyIndicator.textContent = 'Crop area selected! Drag the box to move it or use handles to resize. Click "Crop PDF" when ready.';
+                    cropReadyIndicator.textContent = window.CROP_AREA_SELECTED || 'Crop area selected! Drag the box to move it or use handles to resize. Click "Crop PDF" when ready.';
                 }
             }
         } else if (isDragging) {
@@ -479,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentSelection) {
                 updateCropCoordinates();
                 if (cropReadyIndicator) {
-                    cropReadyIndicator.textContent = 'Crop area moved! Drag again to reposition or use handles to resize. Click "Crop PDF" when ready.';
+                    cropReadyIndicator.textContent = window.CROP_AREA_MOVED || 'Crop area moved! Drag again to reposition or use handles to resize. Click "Crop PDF" when ready.';
                 }
             }
         }
@@ -489,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ensure selection is within canvas bounds
         x = Math.max(0, Math.min(x, canvasWidth));
         y = Math.max(0, Math.min(y, canvasHeight));
-        
+
         if (width < 0) {
             x += width;
             width = Math.abs(width);
@@ -498,7 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
             y += height;
             height = Math.abs(height);
         }
-        
+
         width = Math.min(width, canvasWidth - x);
         height = Math.min(height, canvasHeight - y);
 
@@ -575,16 +576,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Convert canvas coordinates to PDF points
         // PDF coordinate system: (0,0) is bottom-left
         // Canvas coordinate system: (0,0) is top-left
-        
+
         const scaleFactor = pdfPageWidth / canvasWidth;
-        
+
         // X coordinate (left edge) in points
         const x = currentSelection.x * scaleFactor;
-        
+
         // Y coordinate (bottom edge) in points
         // Need to flip Y because PDF uses bottom-left origin
         const y = (canvasHeight - currentSelection.y - currentSelection.height) * scaleFactor;
-        
+
         // Width and height in points
         const width = currentSelection.width * scaleFactor;
         const height = currentSelection.height * scaleFactor;
@@ -594,17 +595,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const yInput = document.getElementById('y');
         const widthInput = document.getElementById('width');
         const heightInput = document.getElementById('height');
-        
+
         if (xInput) xInput.value = x.toFixed(2);
         if (yInput) yInput.value = y.toFixed(2);
         if (widthInput) widthInput.value = width.toFixed(2);
         if (heightInput) heightInput.value = height.toFixed(2);
-        
+
         // Enable button if coordinates are valid
         if (editButton && widthInput && widthInput.value && parseFloat(widthInput.value) > 0) {
             editButton.disabled = false;
             editButton.classList.remove('opacity-50', 'cursor-not-allowed');
-            
+
             // Show ready indicator
             if (cropReadyIndicator) {
                 cropReadyIndicator.classList.remove('hidden');
@@ -628,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
         handle.addEventListener('mousedown', (e) => {
             e.stopPropagation();
             if (!currentSelection) return;
-            
+
             resizeHandle = handle;
             const rect = pdfCanvas.getBoundingClientRect();
             resizeStartX = e.clientX - rect.left;
@@ -652,7 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let newHeight = resizeStartSelection.height;
 
         const handleClass = resizeHandle.className.split(' ').find(c => c !== 'crop-handle');
-        
+
         if (handleClass === 'nw') {
             newX = Math.max(0, resizeStartSelection.x + deltaX);
             newY = Math.max(0, resizeStartSelection.y + deltaY);
@@ -694,10 +695,10 @@ document.addEventListener('DOMContentLoaded', () => {
             width: newWidth,
             height: newHeight
         };
-        
+
         updateSelection(newX, newY, newWidth, newHeight);
         updateOverlay(newX, newY, newWidth, newHeight);
-        
+
         // Update coordinates in real-time during resize
         updateCropCoordinates();
     });
@@ -739,24 +740,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const yValue = document.getElementById('y').value;
         const widthValue = document.getElementById('width').value;
         const heightValue = document.getElementById('height').value;
-        
+
         // Ensure values are valid numbers
         if (!xValue || !yValue || !widthValue || !heightValue) {
             showError('Please adjust the crop area first.');
             return;
         }
-        
+
         formData.append('x', parseFloat(xValue).toFixed(2));
         formData.append('y', parseFloat(yValue).toFixed(2));
         formData.append('width', parseFloat(widthValue).toFixed(2));
         formData.append('height', parseFloat(heightValue).toFixed(2));
-        
+
         // Get pages value from radio buttons
         const pagesAllRadio = document.getElementById('pagesAll');
         const pagesCurrentRadio = document.getElementById('pagesCurrent');
         const pagesCustomRadio = document.getElementById('pagesCustom');
         const pagesCustomInput = document.getElementById('pagesCustomInput');
-        
+
         let pagesValue = 'all';
         if (pagesCurrentRadio && pagesCurrentRadio.checked) {
             // Current page only
@@ -773,10 +774,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide previous results
         hideResult();
         hideDownload();
-        
+
         // Show loading
         showLoading();
-        
+
         // Disable form
         setFormDisabled(true);
 
@@ -790,7 +791,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const blob = await response.blob();
-            
+
             if (!response.ok) {
                 try {
                     const errorData = await blob.text();
@@ -805,7 +806,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hideLoading();
             showDownloadButton(selectedFile.name, blob);
             setFormDisabled(false);
-            
+
         } catch (error) {
             hideLoading();
             showError(error.message || window.ERROR_MESSAGE);
@@ -816,7 +817,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoading() {
         const container = document.getElementById('loadingContainer');
         if (!container) return;
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -847,13 +848,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function showDownloadButton(originalFileName, blob) {
         const container = document.getElementById('downloadContainer');
         if (!container) return;
-        
+
         const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$');
         const replaceTo = window.REPLACE_TO || '.pdf';
         const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
-        
+
         const url = URL.createObjectURL(blob);
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -874,7 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <a href="${url}" 
+                        <a href="${url}"
                            download="${outputFileName}"
                            class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -903,7 +904,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showError(message) {
         if (!resultContainer) return;
-        
+
         resultContainer.innerHTML = `
             <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-3">
@@ -944,4 +945,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-

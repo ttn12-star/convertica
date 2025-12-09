@@ -1,7 +1,6 @@
 # utils.py
 import os
 import tempfile
-from typing import List, Optional, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_path
@@ -21,11 +20,12 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
 
-def parse_pages(pages_str: str, total_pages: int) -> List[int]:
+def parse_pages(pages_str: str, total_pages: int) -> list[int]:
     """Parse page string into list of page indices (0-indexed).
 
     Args:
@@ -69,13 +69,13 @@ logger = get_logger(__name__)
 
 def crop_pdf(
     uploaded_file: UploadedFile,
-    x: Optional[float] = None,
-    y: Optional[float] = None,
-    width: Optional[float] = None,
-    height: Optional[float] = None,
+    x: float | None = None,
+    y: float | None = None,
+    width: float | None = None,
+    height: float | None = None,
     pages: str = "all",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Crop PDF pages.
 
     Args:
@@ -126,7 +126,7 @@ def crop_pdf(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(
                 f"Failed to write PDF: {err}",
                 context={**context, "error_type": type(err).__name__},
@@ -145,6 +145,9 @@ def crop_pdf(
             raise InvalidPDFError(
                 validation_error or "Invalid PDF file", context=context
             )
+
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
 
         # Crop PDF
         try:
@@ -187,10 +190,7 @@ def crop_pdf(
             )  # Minimum 10 points
 
             logger.info(
-                (
-                    "Crop parameters: x=%.2f, y=%.2f, w=%.2f, "
-                    "h=%.2f, pages=%s"
-                ),
+                ("Crop parameters: x=%.2f, y=%.2f, w=%.2f, " "h=%.2f, pages=%s"),
                 crop_x,
                 crop_y,
                 crop_width,
@@ -269,10 +269,7 @@ def crop_pdf(
                         )
 
                         logger.debug(
-                            (
-                                "Cropping page %d: x=%.2f, y=%.2f, "
-                                "w=%.2f, h=%.2f"
-                            ),
+                            ("Cropping page %d: x=%.2f, y=%.2f, " "w=%.2f, h=%.2f"),
                             page_num + 1,
                             crop_x,
                             crop_y,

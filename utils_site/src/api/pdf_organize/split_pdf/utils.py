@@ -2,7 +2,6 @@
 import os
 import tempfile
 import zipfile
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -13,12 +12,9 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_pdf_file,
-)
+from ...file_validation import check_disk_space, sanitize_filename, validate_pdf_file
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
@@ -28,7 +24,7 @@ def split_pdf(
     split_type: str = "page",
     pages: str = None,
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Split PDF into multiple files.
 
     Args:
@@ -65,7 +61,7 @@ def split_pdf(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(f"Failed to write PDF: {err}", context=context) from err
 
         # Validate PDF
@@ -78,6 +74,9 @@ def split_pdf(
             raise InvalidPDFError(
                 validation_error or "Invalid PDF file", context=context
             )
+
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
 
         # Split PDF
         try:

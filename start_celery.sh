@@ -13,4 +13,3 @@ celery -A utils_site beat --loglevel=info &
 echo "Celery worker and beat started"
 echo "Worker PID: $!"
 echo "Beat PID: $!"
-

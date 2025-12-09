@@ -59,9 +59,7 @@ class SplitPDFAPIView(APIView):
             if pdf_file.size > self.MAX_UPLOAD_SIZE:
                 max_size_mb = int(self.MAX_UPLOAD_SIZE / (1024 * 1024))
                 return Response(
-                    {
-                        "error": "File too large. Maximum size is %d MB." % max_size_mb
-                    },
+                    {"error": "File too large. Maximum size is %d MB." % max_size_mb},
                     status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
                 )
 

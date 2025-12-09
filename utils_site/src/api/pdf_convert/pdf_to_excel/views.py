@@ -1,5 +1,4 @@
 # views.py
-from typing import Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -33,7 +32,7 @@ class PDFToExcelAPIView(BaseConversionAPIView):
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
-    ) -> Tuple[str, str]:
+    ) -> tuple[str, str]:
         """Convert PDF to Excel."""
         pages = kwargs.get("pages", "all")
         pdf_path, output_path = convert_pdf_to_excel(

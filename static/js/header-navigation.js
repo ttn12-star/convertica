@@ -39,13 +39,13 @@ class HeaderNavigation {
   init() {
     // Mobile menu toggle
     this.mobileBtn?.addEventListener('click', () => this.toggleMobile());
-    
+
     // Desktop mega menu (hover) - always attach, check width in methods
     if (this.megaParent) {
       this.megaParent.addEventListener('mouseenter', () => this.showMega());
       this.megaParent.addEventListener('mouseleave', () => this.hideMega());
     }
-    
+
     // Desktop mega menu (click for accessibility)
     this.megaButton?.addEventListener('click', (e) => {
       if (window.innerWidth < 768) {
@@ -62,7 +62,7 @@ class HeaderNavigation {
       this.editPdfParent.addEventListener('mouseenter', () => this.showEditPdf());
       this.editPdfParent.addEventListener('mouseleave', () => this.hideEditPdf());
     }
-    
+
     // Desktop edit PDF menu (click for accessibility)
     this.editPdfButton?.addEventListener('click', (e) => {
       if (window.innerWidth < 768) {
@@ -76,7 +76,7 @@ class HeaderNavigation {
       this.organizePdfParent.addEventListener('mouseenter', () => this.showOrganizePdf());
       this.organizePdfParent.addEventListener('mouseleave', () => this.hideOrganizePdf());
     }
-    
+
     // Desktop organize PDF menu (click for accessibility)
     this.organizePdfButton?.addEventListener('click', (e) => {
       if (window.innerWidth < 768) {
@@ -110,7 +110,7 @@ class HeaderNavigation {
     const isOpen = !this.mobileMenu.classList.contains('hidden');
     this.mobileMenu.classList.toggle('hidden', isOpen);
     this.mobileBtn.setAttribute('aria-expanded', !isOpen);
-    
+
     // Toggle menu icon
     if (this.menuIconOpen && this.menuIconClose) {
       if (isOpen) {
@@ -161,7 +161,7 @@ class HeaderNavigation {
     const isExpanded = this.mobileMegaToggle.getAttribute('aria-expanded') === 'true';
     this.mobileMegaMenu.classList.toggle('hidden', isExpanded);
     this.mobileMegaToggle.setAttribute('aria-expanded', !isExpanded);
-    
+
     // Rotate arrow icon
     const arrow = this.mobileMegaToggle.querySelector('svg');
     if (arrow) {
@@ -242,7 +242,7 @@ class HeaderNavigation {
     const isExpanded = this.mobileOrganizePdfToggle.getAttribute('aria-expanded') === 'true';
     this.mobileOrganizePdfMenu.classList.toggle('hidden', isExpanded);
     this.mobileOrganizePdfToggle.setAttribute('aria-expanded', !isExpanded);
-    
+
     // Rotate arrow icon
     const arrow = this.mobileOrganizePdfToggle.querySelector('svg');
     if (arrow) {
@@ -255,7 +255,7 @@ class HeaderNavigation {
     const isExpanded = this.mobilePdfSecurityToggle.getAttribute('aria-expanded') === 'true';
     this.mobilePdfSecurityMenu.classList.toggle('hidden', isExpanded);
     this.mobilePdfSecurityToggle.setAttribute('aria-expanded', !isExpanded);
-    
+
     // Rotate arrow icon
     const arrow = this.mobilePdfSecurityToggle.querySelector('svg');
     if (arrow) {
@@ -270,6 +270,20 @@ class HeaderNavigation {
     this.hideMega();
     this.hideEditPdf();
     this.hideOrganizePdf();
+
+    // Position menu to expand from button center
+    const buttonRect = this.allToolsButton.getBoundingClientRect();
+    const dropdownWidth = Math.min(1400, window.innerWidth - 32);
+    const leftPosition = buttonRect.left + (buttonRect.width / 2) - (dropdownWidth / 2);
+    const clampedLeft = Math.max(16, Math.min(leftPosition, window.innerWidth - dropdownWidth - 16));
+    const topPosition = buttonRect.bottom + 8; // 8px = mt-2 (0.5rem)
+
+    this.allToolsDropdown.style.position = 'fixed';
+    this.allToolsDropdown.style.left = `${clampedLeft}px`;
+    this.allToolsDropdown.style.top = `${topPosition}px`;
+    this.allToolsDropdown.style.transform = 'translateX(0)';
+    this.allToolsDropdown.style.width = `${dropdownWidth}px`;
+
     this.allToolsDropdown.classList.remove('opacity-0', 'invisible');
     this.allToolsDropdown.classList.add('opacity-100', 'visible');
     this.allToolsParent.setAttribute('aria-expanded', 'true');
@@ -302,7 +316,7 @@ class HeaderNavigation {
     const isExpanded = this.mobileAllToolsToggle.getAttribute('aria-expanded') === 'true';
     this.mobileAllToolsMenu.classList.toggle('hidden', isExpanded);
     this.mobileAllToolsToggle.setAttribute('aria-expanded', !isExpanded);
-    
+
     // Rotate arrow icon
     const arrow = this.mobileAllToolsToggle.querySelector('svg');
     if (arrow) {
@@ -312,8 +326,8 @@ class HeaderNavigation {
 
   outsideClick(e) {
     // Close mobile menu
-    if (this.mobileMenu && 
-        !this.mobileMenu.contains(e.target) && 
+    if (this.mobileMenu &&
+        !this.mobileMenu.contains(e.target) &&
         !this.mobileBtn.contains(e.target)) {
       this.mobileMenu.classList.add('hidden');
       this.mobileBtn.setAttribute('aria-expanded', 'false');
@@ -322,31 +336,31 @@ class HeaderNavigation {
         this.menuIconClose.classList.add('hidden');
       }
     }
-    
+
     // Close desktop mega menu
-    if (this.megaDropdown && 
-        !this.megaParent.contains(e.target) && 
+    if (this.megaDropdown &&
+        !this.megaParent.contains(e.target) &&
         window.innerWidth >= 768) {
       this.hideMega();
     }
-    
+
     // Close desktop edit PDF menu
-    if (this.editPdfDropdown && 
-        !this.editPdfParent.contains(e.target) && 
+    if (this.editPdfDropdown &&
+        !this.editPdfParent.contains(e.target) &&
         window.innerWidth >= 768) {
       this.hideEditPdf();
     }
-    
+
     // Close desktop organize PDF menu
-    if (this.organizePdfDropdown && 
-        !this.organizePdfParent.contains(e.target) && 
+    if (this.organizePdfDropdown &&
+        !this.organizePdfParent.contains(e.target) &&
         window.innerWidth >= 768) {
       this.hideOrganizePdf();
     }
-    
+
     // Close desktop all tools menu
-    if (this.allToolsDropdown && 
-        !this.allToolsParent.contains(e.target) && 
+    if (this.allToolsDropdown &&
+        !this.allToolsParent.contains(e.target) &&
         window.innerWidth >= 768) {
       this.hideAllTools();
     }

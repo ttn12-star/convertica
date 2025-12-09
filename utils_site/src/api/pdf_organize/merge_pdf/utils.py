@@ -1,7 +1,6 @@
 # utils.py
 import os
 import tempfile
-from typing import List, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -19,15 +18,16 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
 
 def merge_pdf(
-    uploaded_files: List[UploadedFile],
+    uploaded_files: list[UploadedFile],
     order: str = "upload",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Merge multiple PDF files into one.
 
     Args:
@@ -98,6 +98,8 @@ def merge_pdf(
                         "Invalid PDF: %s" % safe_name, context=context
                     )
 
+                # Repair PDF to handle potentially corrupted files
+                pdf_path = repair_pdf(pdf_path)
                 pdf_paths.append(pdf_path)
                 logger.debug(
                     "File %d saved successfully: %s",
@@ -105,7 +107,7 @@ def merge_pdf(
                     safe_name,
                     extra={**context, "file_index": idx + 1, "pdf_path": pdf_path},
                 )
-            except (OSError, IOError) as err:
+            except OSError as err:
                 raise StorageError(
                     "Failed to write PDF %s: %s" % (safe_name, err), context=context
                 ) from err
@@ -232,7 +234,7 @@ def merge_pdf(
             try:
                 with open(output_path, "wb") as output_file:
                     writer.write(output_file)
-            except (OSError, IOError) as write_err:
+            except OSError as write_err:
                 raise StorageError(
                     "Failed to write merged PDF: %s" % write_err,
                     context=context,

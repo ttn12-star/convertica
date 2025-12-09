@@ -7,7 +7,6 @@ from django.utils.translation import gettext_lazy as _
 
 from .forms import ArticleAdminForm, ArticleCategoryAdminForm
 from .models import Article, ArticleCategory
-from .widgets import AIMetadataWidget, TranslationsWidget
 
 
 @admin.register(ArticleCategory)

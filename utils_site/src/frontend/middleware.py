@@ -5,7 +5,7 @@ Custom middleware for frontend.
 import logging
 
 from django.conf import settings
-from django.utils.translation import activate, get_language
+from django.utils.translation import activate
 
 logger = logging.getLogger(__name__)
 

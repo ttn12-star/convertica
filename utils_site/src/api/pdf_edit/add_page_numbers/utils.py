@@ -2,7 +2,6 @@
 import os
 import tempfile
 from io import BytesIO
-from typing import Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -22,6 +21,7 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
@@ -54,7 +54,7 @@ def add_page_numbers(
     start_number: int = 1,
     format_str: str = "{page}",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Add page numbers to PDF.
 
     Args:
@@ -102,7 +102,7 @@ def add_page_numbers(
             with open(pdf_path, "wb") as f:
                 for chunk in uploaded_file.chunks():
                     f.write(chunk)
-        except (OSError, IOError) as err:
+        except OSError as err:
             raise StorageError(
                 f"Failed to write PDF: {err}",
                 context={**context, "error_type": type(err).__name__},
@@ -121,6 +121,9 @@ def add_page_numbers(
             raise InvalidPDFError(
                 validation_error or "Invalid PDF file", context=context
             )
+
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
 
         # Add page numbers
         try:

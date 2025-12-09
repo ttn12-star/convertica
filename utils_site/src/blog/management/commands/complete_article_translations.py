@@ -14,7 +14,7 @@ class Command(BaseCommand):
         articles = Article.objects.all()
 
         self.stdout.write(
-            self.style.SUCCESS(f"\n=== Completing article translations ===\n")
+            self.style.SUCCESS("\n=== Completing article translations ===\n")
         )
 
         # SEO-optimized translations for missing articles
@@ -986,6 +986,6 @@ class Command(BaseCommand):
             article.save()
             self.stdout.write(self.style.SUCCESS(f"  💾 Saved {article.slug}"))
 
-        self.stdout.write(self.style.SUCCESS(f"\n✅ Completed!"))
+        self.stdout.write(self.style.SUCCESS("\n✅ Completed!"))
         self.stdout.write(f"   Updated {updated_count} content translations")
         self.stdout.write(f"   Processed {len(translations_data)} articles")
