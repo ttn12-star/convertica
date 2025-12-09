@@ -31,10 +31,10 @@ services:
           memory: ${WEB_MEMORY_RESERVATION:-256M}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 60s  # Wait up to 60s for Django to start
+      interval: 5s  # Check more frequently
+      timeout: 3s
+      retries: 5  # More retries before marking unhealthy
+      start_period: 90s  # Wait up to 90s for Django to start (allows time for migrations, compilemessages, collectstatic)
     restart: always
     logging:
       driver: "json-file"
