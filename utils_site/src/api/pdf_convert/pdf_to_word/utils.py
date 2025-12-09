@@ -190,6 +190,30 @@ def convert_pdf_to_docx(
                     context=error_context,
                 ) from conv_exc
 
+            # Check for scanned PDF (no extractable text)
+            if (
+                any(
+                    keyword in msg
+                    for keyword in [
+                        "words count: 0",
+                        "no text",
+                        "scanned",
+                        "image",
+                        "no extractable text",
+                    ]
+                )
+                or "words count" in msg.lower()
+            ):
+                logger.warning(
+                    "Scanned PDF detected (no extractable text)",
+                    extra={**error_context, "event": "scanned_pdf_detected"},
+                )
+                raise InvalidPDFError(
+                    "This PDF appears to be a scanned document (image-based) and does not contain extractable text. "
+                    "PDF to Word conversion requires text-based PDFs. Please use OCR software to extract text from scanned PDFs first.",
+                    context=error_context,
+                ) from conv_exc
+
             if any(
                 keyword in msg
                 for keyword in [
