@@ -75,6 +75,14 @@ urlpatterns = [
     path(f"{getattr(settings, 'ADMIN_URL_PATH', 'admin')}/", admin.site.urls),
 ]
 
+# Prometheus metrics endpoint (only if django-prometheus is installed)
+try:
+    import django_prometheus
+
+    urlpatterns.append(path("metrics/", include("django_prometheus.urls")))
+except ImportError:
+    pass
+
 urlpatterns += i18n_patterns(
     path("blog/", include("src.blog.urls")),
     path("", include("src.frontend.urls")),
