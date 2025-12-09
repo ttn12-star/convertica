@@ -54,8 +54,18 @@ def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
 
         return result.get("success", False)
     except Exception as e:
-        logger.error(f"Turnstile verification error: {str(e)}", exc_info=True)
-        return False
+        # Fail-open to avoid blocking users if Turnstile is down/reachable issues
+        logger.warning(
+            "Turnstile verification error (allowing request)",
+            extra={
+                "error": str(e),
+                "remote_ip": remote_ip,
+                "token_present": bool(token),
+                "event": "turnstile_unavailable",
+            },
+            exc_info=True,
+        )
+        return True
 
 
 def check_honeypot(request: HttpRequest, honeypot_field: str = "website") -> bool:
