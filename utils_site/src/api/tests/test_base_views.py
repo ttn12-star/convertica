@@ -35,24 +35,19 @@ class BaseConversionAPIViewTestCase(TestCase):
 
         view = TestView()
 
-        # Test PDF
-        self.assertEqual(
-            view.get_output_content_type("/path/to/file.pdf"), "application/pdf"
-        )
+        # Test various file types
+        test_cases = [
+            ("/path/to/file.pdf", "application/pdf"),
+            (
+                "/path/to/file.docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            ),
+            ("/path/to/file.jpg", "image/jpeg"),
+            ("/path/to/file.unknown", "application/octet-stream"),
+        ]
 
-        # Test DOCX
-        self.assertEqual(
-            view.get_output_content_type("/path/to/file.docx"),
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        )
-
-        # Test JPG
-        self.assertEqual(
-            view.get_output_content_type("/path/to/file.jpg"), "image/jpeg"
-        )
-
-        # Test unknown extension
-        self.assertEqual(
-            view.get_output_content_type("/path/to/file.unknown"),
-            "application/octet-stream",
-        )
+        for file_path, expected_content_type in test_cases:
+            with self.subTest(file_path=file_path):
+                self.assertEqual(
+                    view.get_output_content_type(file_path), expected_content_type
+                )
