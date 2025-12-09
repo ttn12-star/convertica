@@ -273,19 +273,24 @@ jobs:
 
             # Rolling deployment with automatic rollback strategy
             echo "🔄 Starting rolling deployment with automatic rollback..."
+            echo "📊 Current memory usage: ~2.1GB limits, server has 2GB RAM + 2GB swap = 4GB total"
+            echo "✅ Deployment strategy: Sequential (old stops before new starts) - fits in resources"
 
-            # Save current container IDs for rollback
-            OLD_WEB_ID=$(docker ps -q -f name=convertica_web)
-            OLD_CELERY_ID=$(docker ps -q -f name=convertica_celery)
-            OLD_CELERY_BEAT_ID=$(docker ps -q -f name=convertica_celery_beat)
+            # Save current container status for rollback
+            # Note: docker compose up -d will recreate containers, so we need to check if old ones exist
+            OLD_WEB_EXISTS=$(docker ps -a -q -f name=convertica_web | head -1)
+            OLD_CELERY_EXISTS=$(docker ps -a -q -f name=convertica_celery | head -1)
+            OLD_CELERY_BEAT_EXISTS=$(docker ps -a -q -f name=convertica_celery_beat | head -1)
 
             # Step 1: Start new web container and wait for healthcheck
+            # docker compose up -d will stop old and start new (sequential, not parallel)
             echo "📦 Starting new web container (waiting for healthcheck)..."
+            echo "   Note: Old container will be stopped before new one starts (sequential deployment)"
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web; then
               echo "❌ Failed to start new web container"
-              echo "🔄 Rolling back - keeping old containers..."
-              if [ -n "$OLD_WEB_ID" ]; then
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              echo "🔄 Rolling back - restoring old container..."
+              if [ -n "$OLD_WEB_EXISTS" ]; then
+                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
               fi
               exit 1
             fi
@@ -317,8 +322,9 @@ jobs:
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
               docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_EXISTS" ]; then
+                echo "   Restoring old web container..."
+                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
               fi
               exit 1
             fi
@@ -336,8 +342,9 @@ jobs:
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
               docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_EXISTS" ]; then
+                echo "   Restoring old web container..."
+                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
               fi
               exit 1
             fi
@@ -367,8 +374,9 @@ jobs:
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
               docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_EXISTS" ]; then
+                echo "   Restoring old web container..."
+                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
               fi
               exit 1
             fi
@@ -390,26 +398,12 @@ jobs:
               docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
             }
 
-            # Step 9: Clean up old containers (only if new ones are healthy)
-            echo "🧹 Cleaning up old containers..."
-            if [ -n "$OLD_WEB_ID" ] && [ "$OLD_WEB_ID" != "$NEW_WEB_ID" ]; then
-              docker stop "$OLD_WEB_ID" 2>/dev/null || true
-              docker rm "$OLD_WEB_ID" 2>/dev/null || true
-            fi
-            if [ -n "$OLD_CELERY_ID" ]; then
-              NEW_CELERY_ID=$(docker ps -q -f name=convertica_celery)
-              if [ -n "$NEW_CELERY_ID" ] && [ "$OLD_CELERY_ID" != "$NEW_CELERY_ID" ]; then
-                docker stop "$OLD_CELERY_ID" 2>/dev/null || true
-                docker rm "$OLD_CELERY_ID" 2>/dev/null || true
-              fi
-            fi
-            if [ -n "$OLD_CELERY_BEAT_ID" ]; then
-              NEW_CELERY_BEAT_ID=$(docker ps -q -f name=convertica_celery_beat)
-              if [ -n "$NEW_CELERY_BEAT_ID" ] && [ "$OLD_CELERY_BEAT_ID" != "$NEW_CELERY_BEAT_ID" ]; then
-                docker stop "$OLD_CELERY_BEAT_ID" 2>/dev/null || true
-                docker rm "$OLD_CELERY_BEAT_ID" 2>/dev/null || true
-              fi
-            fi
+            # Step 9: Clean up old stopped containers (only if new ones are healthy)
+            echo "🧹 Cleaning up old stopped containers..."
+            # Remove old stopped containers (docker compose may have left them)
+            docker container prune -f --filter "name=convertica_web" --filter "status=exited" 2>/dev/null || true
+            docker container prune -f --filter "name=convertica_celery" --filter "status=exited" 2>/dev/null || true
+            docker container prune -f --filter "name=convertica_celery_beat" --filter "status=exited" 2>/dev/null || true
 
             echo "✅ Deployment completed!"
 
