@@ -81,6 +81,11 @@ def robots_txt(request):
             content,
             flags=re.MULTILINE | re.DOTALL,
         )
+        # Final pass: remove any line containing Content-signal (case-insensitive)
+        lines = content.split("\n")
+        content = "\n".join(
+            line for line in lines if "content-signal" not in line.lower()
+        )
 
         # Remove duplicate User-agent: * and Allow: / blocks
         # Keep only the last occurrence (our custom rules)
