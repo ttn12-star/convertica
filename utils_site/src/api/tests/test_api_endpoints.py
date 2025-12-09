@@ -77,72 +77,55 @@ startxref
         )
         return SimpleUploadedFile("test.jpg", jpg_content, content_type="image/jpeg")
 
-    def test_pdf_to_word_endpoint_exists(self):
-        """Test that PDF to Word endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-to-word/", {"pdf_file": pdf_file}, format="multipart"
-        )
-        # Should either succeed or return a proper error (not 404)
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_word_to_pdf_endpoint_exists(self):
-        """Test that Word to PDF endpoint exists and responds."""
-        # Create a minimal DOCX file (ZIP structure)
+    def test_conversion_endpoints_exist(self):
+        """Test that all conversion endpoints exist and respond."""
         import io
         import zipfile
 
+        pdf_file = self._create_test_pdf()
+        jpg_file = self._create_test_image()
+
+        # Create minimal DOCX file
         docx_content = io.BytesIO()
         with zipfile.ZipFile(docx_content, "w") as zf:
             zf.writestr("[Content_Types].xml", '<?xml version="1.0"?><Types></Types>')
             zf.writestr(
                 "word/document.xml", '<?xml version="1.0"?><document></document>'
             )
-
         docx_file = SimpleUploadedFile(
             "test.docx",
             docx_content.getvalue(),
             content_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         )
 
-        response = self.client.post(
-            "/api/word-to-pdf/", {"word_file": docx_file}, format="multipart"
-        )
-        # Should either succeed or return a proper error (not 404)
-        # LibreOffice might fail to convert minimal DOCX, so accept 400/500 as valid responses
-        # Also accept 429 (rate limit) as valid - endpoint exists, just rate limited
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-        # Accept 200 (success), 400 (validation error), 429 (rate limit), or 500 (conversion error) as valid endpoint responses
-        self.assertIn(
-            response.status_code,
-            [
-                status.HTTP_200_OK,
-                status.HTTP_400_BAD_REQUEST,
-                status.HTTP_429_TOO_MANY_REQUESTS,
-                status.HTTP_500_INTERNAL_SERVER_ERROR,
-            ],
-            f"Endpoint should exist (not 404), got status {response.status_code}",
-        )
+        endpoints = [
+            ("/api/pdf-to-word/", {"pdf_file": pdf_file}),
+            ("/api/pdf-to-jpg/", {"pdf_file": pdf_file, "page": 1, "dpi": 300}),
+            ("/api/jpg-to-pdf/", {"image_file": jpg_file}),
+            ("/api/word-to-pdf/", {"word_file": docx_file}),
+        ]
 
-    def test_pdf_to_jpg_endpoint_exists(self):
-        """Test that PDF to JPG endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-to-jpg/",
-            {"pdf_file": pdf_file, "page": 1, "dpi": 300},
-            format="multipart",
-        )
-        # Should either succeed or return a proper error (not 404)
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_jpg_to_pdf_endpoint_exists(self):
-        """Test that JPG to PDF endpoint exists and responds."""
-        jpg_file = self._create_test_image()
-        response = self.client.post(
-            "/api/jpg-to-pdf/", {"image_file": jpg_file}, format="multipart"
-        )
-        # Should either succeed or return a proper error (not 404)
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        for endpoint, data in endpoints:
+            with self.subTest(endpoint=endpoint):
+                response = self.client.post(endpoint, data, format="multipart")
+                # Should either succeed or return a proper error (not 404)
+                self.assertNotEqual(
+                    response.status_code,
+                    status.HTTP_404_NOT_FOUND,
+                    f"Endpoint {endpoint} should exist",
+                )
+                # For word-to-pdf, accept more error codes (LibreOffice might fail)
+                if endpoint == "/api/word-to-pdf/":
+                    self.assertIn(
+                        response.status_code,
+                        [
+                            status.HTTP_200_OK,
+                            status.HTTP_400_BAD_REQUEST,
+                            status.HTTP_429_TOO_MANY_REQUESTS,
+                            status.HTTP_500_INTERNAL_SERVER_ERROR,
+                        ],
+                        f"Endpoint {endpoint} should exist (not 404), got {response.status_code}",
+                    )
 
     def test_pdf_to_word_validation_empty_file(self):
         """Test validation of empty file."""
@@ -224,83 +207,45 @@ startxref
         # DPI validation might be handled differently, so we're lenient here
         self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-    def test_rotate_pdf_endpoint_exists(self):
-        """Test that Rotate PDF endpoint exists and responds."""
+    def test_pdf_edit_endpoints_exist(self):
+        """Test that all PDF edit endpoints exist and respond."""
         pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-edit/rotate/",
-            {"pdf_file": pdf_file, "angle": 90, "pages": "all"},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_merge_pdf_endpoint_exists(self):
-        """Test that Merge PDF endpoint exists and responds."""
-        pdf_file1 = self._create_test_pdf()
         pdf_file2 = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-organize/merge/",
-            {"pdf_files": [pdf_file1, pdf_file2], "order": "upload"},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-    def test_split_pdf_endpoint_exists(self):
-        """Test that Split PDF endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-organize/split/",
-            {"pdf_file": pdf_file, "split_type": "page", "pages": "1"},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        endpoints = [
+            (
+                "/api/pdf-edit/rotate/",
+                {"pdf_file": pdf_file, "angle": 90, "pages": "all"},
+            ),
+            (
+                "/api/pdf-edit/add-watermark/",
+                {"pdf_file": pdf_file, "watermark_text": "TEST", "opacity": 0.5},
+            ),
+            (
+                "/api/pdf-edit/add-page-numbers/",
+                {"pdf_file": pdf_file, "position": "bottom-center", "font_size": 12},
+            ),
+            (
+                "/api/pdf-edit/crop/",
+                {"pdf_file": pdf_file, "x": 0, "y": 0, "width": 100, "height": 100},
+            ),
+            (
+                "/api/pdf-organize/merge/",
+                {"pdf_files": [pdf_file, pdf_file2], "order": "upload"},
+            ),
+            (
+                "/api/pdf-organize/split/",
+                {"pdf_file": pdf_file, "split_type": "page", "pages": "1"},
+            ),
+            ("/api/pdf-organize/remove-pages/", {"pdf_file": pdf_file, "pages": "1"}),
+            ("/api/pdf-organize/extract-pages/", {"pdf_file": pdf_file, "pages": "1"}),
+        ]
 
-    def test_remove_pages_endpoint_exists(self):
-        """Test that Remove Pages endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-organize/remove-pages/",
-            {"pdf_file": pdf_file, "pages": "1"},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_extract_pages_endpoint_exists(self):
-        """Test that Extract Pages endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-organize/extract-pages/",
-            {"pdf_file": pdf_file, "pages": "1"},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_add_watermark_endpoint_exists(self):
-        """Test that Add Watermark endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-edit/add-watermark/",
-            {"pdf_file": pdf_file, "watermark_text": "TEST", "opacity": 0.5},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_add_page_numbers_endpoint_exists(self):
-        """Test that Add Page Numbers endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-edit/add-page-numbers/",
-            {"pdf_file": pdf_file, "position": "bottom-center", "font_size": 12},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
-
-    def test_crop_pdf_endpoint_exists(self):
-        """Test that Crop PDF endpoint exists and responds."""
-        pdf_file = self._create_test_pdf()
-        response = self.client.post(
-            "/api/pdf-edit/crop/",
-            {"pdf_file": pdf_file, "x": 0, "y": 0, "width": 100, "height": 100},
-            format="multipart",
-        )
-        self.assertNotEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        for endpoint, data in endpoints:
+            with self.subTest(endpoint=endpoint):
+                response = self.client.post(endpoint, data, format="multipart")
+                self.assertNotEqual(
+                    response.status_code,
+                    status.HTTP_404_NOT_FOUND,
+                    f"Endpoint {endpoint} should exist",
+                )
