@@ -276,11 +276,23 @@ jobs:
             echo "📊 Current memory usage: ~2.1GB limits, server has 2GB RAM + 2GB swap = 4GB total"
             echo "✅ Deployment strategy: Sequential (old stops before new starts) - fits in resources"
 
-            # Save current container status for rollback
-            # Note: docker compose up -d will recreate containers, so we need to check if old ones exist
-            OLD_WEB_EXISTS=$(docker ps -a -q -f name=convertica_web | head -1)
-            OLD_CELERY_EXISTS=$(docker ps -a -q -f name=convertica_celery | head -1)
-            OLD_CELERY_BEAT_EXISTS=$(docker ps -a -q -f name=convertica_celery_beat | head -1)
+            # Save current container IDs for rollback BEFORE starting new ones
+            # Note: docker compose up -d will stop and remove old containers, so we save IDs first
+            # We need to save both running and stopped containers
+            OLD_WEB_ID=$(docker ps -q -f name=convertica_web | head -1)
+            if [ -z "$OLD_WEB_ID" ]; then
+              # If no running container, check for stopped one
+              OLD_WEB_ID=$(docker ps -a -q -f name=convertica_web | head -1)
+            fi
+            OLD_CELERY_ID=$(docker ps -q -f name=convertica_celery | head -1)
+            if [ -z "$OLD_CELERY_ID" ]; then
+              OLD_CELERY_ID=$(docker ps -a -q -f name=convertica_celery | head -1)
+            fi
+            OLD_CELERY_BEAT_ID=$(docker ps -q -f name=convertica_celery_beat | head -1)
+            if [ -z "$OLD_CELERY_BEAT_ID" ]; then
+              OLD_CELERY_BEAT_ID=$(docker ps -a -q -f name=convertica_celery_beat | head -1)
+            fi
+            echo "📋 Saved old container IDs for rollback: web=$OLD_WEB_ID, celery=$OLD_CELERY_ID, beat=$OLD_CELERY_BEAT_ID"
 
             # Step 1: Start new web container and wait for healthcheck
             # docker compose up -d will stop old and start new (sequential, not parallel)
@@ -289,8 +301,11 @@ jobs:
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web; then
               echo "❌ Failed to start new web container"
               echo "🔄 Rolling back - restoring old container..."
-              if [ -n "$OLD_WEB_EXISTS" ]; then
-                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              else
+                echo "   ⚠️ No old container found to restore"
               fi
               exit 1
             fi
@@ -343,17 +358,27 @@ jobs:
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
               docker rm "$NEW_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              else
+                echo "   ⚠️ No old container found to restore"
+              fi
+              exit 1
+            fi
+
+            # Step 3: Compile translations (CRITICAL - must succeed)
+            echo "🌍 Compiling translations..."
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py compilemessages; then
+              echo "❌ Translation compilation failed"
+              echo "🔄 Rolling back - stopping new container, restoring old..."
+              docker stop "$NEW_WEB_ID" 2>/dev/null || true
+              docker rm "$NEW_WEB_ID" 2>/dev/null || true
               if [ -n "$OLD_WEB_EXISTS" ]; then
                 echo "   Restoring old web container..."
                 docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
               fi
               exit 1
-            fi
-
-            # Step 3: Compile translations
-            echo "🌍 Compiling translations..."
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py compilemessages; then
-              echo "⚠️ Translation compilation failed, but continuing..."
             fi
 
             # Step 4: Collect static files (clear old files first)
@@ -363,9 +388,11 @@ jobs:
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
               docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_EXISTS" ]; then
-                echo "   Restoring old web container..."
-                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              else
+                echo "   ⚠️ No old container found to restore"
               fi
               exit 1
             fi
@@ -395,9 +422,11 @@ jobs:
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
               docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_EXISTS" ]; then
-                echo "   Restoring old web container..."
-                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              else
+                echo "   ⚠️ No old container found to restore"
               fi
               exit 1
             fi
