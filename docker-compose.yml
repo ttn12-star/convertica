@@ -99,7 +99,8 @@ services:
       - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-False}
       - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-False}
       - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-False}
-      - USE_WHITENOISE=${USE_WHITENOISE:-True}
+      # WhiteNoise disabled by default (use Nginx in production, enable for dev)
+      - USE_WHITENOISE=${USE_WHITENOISE:-False}
       - EMAIL_BACKEND=${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
       - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
       - EMAIL_PORT=${EMAIL_PORT:-587}
