@@ -87,8 +87,11 @@ class PerformanceMonitoringMiddleware(MiddlewareMixin):
             if any(request.path.startswith(path) for path in skip_paths):
                 return response
 
-            # Log slow requests (> 1 second)
-            if duration > 1.0:
+            # Log slow requests
+            # For API endpoints (conversions), use higher threshold (3 seconds)
+            # For other requests, use 1 second threshold
+            threshold = 3.0 if request.path.startswith("/api/") else 1.0
+            if duration > threshold:
                 import logging
 
                 logger = logging.getLogger(__name__)
