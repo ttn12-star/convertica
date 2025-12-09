@@ -44,6 +44,8 @@
 
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cloudflare-static.com" crossorigin>
     <!-- Google Fonts for better typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,7 +66,8 @@
 
     <!-- Stylesheets -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'css/tailwind.css' %}"></noscript>
 
     <!-- Custom Animations -->
     <style>
