@@ -64,3 +64,17 @@ rebuild: ## Rebuild and restart all services
 	docker compose build --no-cache
 	docker compose up -d
 
+# Development tools
+install-hooks: ## Install pre-commit hooks
+	pip install pre-commit
+	pre-commit install
+
+lint: ## Run pre-commit on all files
+	pre-commit run --all-files
+
+format: ## Format code with black
+	black .
+
+check: ## Run all checks (black, ruff)
+	black --check .
+	ruff check .

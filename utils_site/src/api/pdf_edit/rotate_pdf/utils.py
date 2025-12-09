@@ -1,7 +1,6 @@
 # utils.py
 import os
 import tempfile
-from typing import List, Tuple
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -19,11 +18,12 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
+from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
 
-def parse_pages(pages_str: str, total_pages: int) -> List[int]:
+def parse_pages(pages_str: str, total_pages: int) -> list[int]:
     """Parse page string into list of page indices (0-indexed).
 
     Args:
@@ -67,7 +67,7 @@ def rotate_pdf(
     angle: int = 90,
     pages: str = "all",
     suffix: str = "_convertica",
-) -> Tuple[str, str]:
+) -> tuple[str, str]:
     """Rotate PDF pages by specified angle.
 
     Args:
@@ -132,7 +132,7 @@ def rotate_pdf(
                 "File written successfully",
                 extra={**context, "event": "file_write_success"},
             )
-        except (OSError, IOError) as err:
+        except OSError as err:
             logger.error(
                 "Failed to write PDF file",
                 extra={**context, "event": "file_write_error", "error": str(err)},
@@ -156,6 +156,9 @@ def rotate_pdf(
             raise InvalidPDFError(
                 validation_error or "Invalid PDF file", context=context
             )
+
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
 
         # Rotate PDF
         try:

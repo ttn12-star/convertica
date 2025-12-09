@@ -1,5 +1,4 @@
 # views.py
-from typing import Optional, Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -38,7 +37,7 @@ class PDFToJPGAPIView(BaseConversionAPIView):
 
     def validate_file_additional(
         self, file: UploadedFile, context: dict, validated_data: dict
-    ) -> Optional[Response]:
+    ) -> Response | None:
         """Validate DPI parameter."""
         dpi = validated_data.get("dpi", 300)
         if dpi < 72 or dpi > 600:
@@ -55,7 +54,7 @@ class PDFToJPGAPIView(BaseConversionAPIView):
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
-    ) -> Tuple[str, str]:
+    ) -> tuple[str, str]:
         """Perform PDF to JPG conversion."""
         page = kwargs.get("page", 1)
         dpi = kwargs.get("dpi", 300)

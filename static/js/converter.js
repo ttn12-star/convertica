@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('fileInput');
     const submitButton = form.querySelector('button[type="submit"]');
     const resultContainer = document.getElementById('converterResult');
-    
+
     // Create loading animation container
     const loadingContainer = document.createElement('div');
     loadingContainer.id = 'loadingContainer';
     loadingContainer.className = 'hidden mt-6';
-    
+
     // Create download button container
     const downloadContainer = document.createElement('div');
     downloadContainer.id = 'downloadContainer';
@@ -22,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // Get file from either input
         const fileInput = document.getElementById('fileInput');
         const fileInputDrop = document.getElementById('fileInputDrop');
         const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
-        
+
         if (!selectedFile) {
             showError(window.SELECT_FILE_MESSAGE || 'Please select a file');
             return;
@@ -36,17 +36,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide previous results
         hideResult();
         hideDownload();
-        
+
         // Show loading animation
         showLoading();
-        
+
         // Disable form
         setFormDisabled(true);
 
         const formData = new FormData();
         const fieldName = window.FILE_INPUT_NAME || 'file';
         formData.append(fieldName, selectedFile);
-        
+
         // Add hCaptcha token if available
         const hcaptchaResponse = document.querySelector('[name="h-captcha-response"]');
         if (hcaptchaResponse && hcaptchaResponse.value) {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const blob = await response.blob();
-            
+
             // Hide loading, show download button
             hideLoading();
             showDownloadButton(blob, fileInput.files[0].name);
@@ -88,13 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!loadingContainer.parentNode && form.parentNode) {
             form.parentNode.insertBefore(loadingContainer, form.nextSibling);
         }
-        
+
         // Initialize progress
         let progress = 0;
         const progressInterval = 200; // Update every 200ms
         const progressStep = 1.5; // Increase by 1.5% each time
         const maxProgress = 95; // Don't go to 100% until conversion is done
-        
+
         loadingContainer.innerHTML = `
             <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-12 shadow-lg border-2 border-blue-200">
                 <div class="flex flex-col items-center justify-center space-y-6">
@@ -107,13 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             </svg>
                         </div>
                     </div>
-                    
+
                     <!-- Loading Text -->
                     <div class="text-center">
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">${window.LOADING_TITLE || 'Converting your file...'}</h3>
                         <p class="text-gray-600 text-sm sm:text-base mb-4">${window.LOADING_MESSAGE || 'Please wait, this may take a few moments'}</p>
                     </div>
-                    
+
                     <!-- Progress Bar with Percentage -->
                     <div class="w-full max-w-md">
                         <div class="flex items-center justify-between mb-2">
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span id="progressPercentage" class="text-sm font-bold text-blue-600">0%</span>
                         </div>
                         <div class="h-3 bg-blue-100 rounded-full overflow-hidden shadow-inner">
-                            <div id="progressBar" 
+                            <div id="progressBar"
                                  class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-full transition-all duration-300 ease-out"
                                  style="width: 0%">
                             </div>
@@ -131,14 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-        
+
         loadingContainer.classList.remove('hidden');
         loadingContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
+
         // Animate progress
         const progressBar = document.getElementById('progressBar');
         const progressPercentage = document.getElementById('progressPercentage');
-        
+
         const updateProgress = () => {
             if (progress < maxProgress) {
                 progress += progressStep;
@@ -149,18 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (progress > 85) {
                     progress += progressStep * 0.3;
                 }
-                
+
                 if (progress > maxProgress) {
                     progress = maxProgress;
                 }
-                
+
                 if (progressBar && progressPercentage) {
                     progressBar.style.width = `${progress}%`;
                     progressPercentage.textContent = `${Math.round(progress)}%`;
                 }
             }
         };
-        
+
         // Store interval ID so we can clear it later
         loadingContainer._progressInterval = setInterval(updateProgress, progressInterval);
     }
@@ -171,15 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(loadingContainer._progressInterval);
             loadingContainer._progressInterval = null;
         }
-        
+
         // Animate to 100% before hiding
         const progressBar = document.getElementById('progressBar');
         const progressPercentage = document.getElementById('progressPercentage');
-        
+
         if (progressBar && progressPercentage) {
             progressBar.style.width = '100%';
             progressPercentage.textContent = '100%';
-            
+
             // Wait a moment to show 100%, then hide
             setTimeout(() => {
                 loadingContainer.classList.add('hidden');
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!downloadContainer.parentNode && form.parentNode) {
             form.parentNode.insertBefore(downloadContainer, form.nextSibling);
         }
-        
+
         // Generate download filename
         let downloadName = originalFileName;
         if (window.REPLACE_REGEX && window.REPLACE_TO) {
@@ -204,10 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn('Invalid regex pattern:', window.REPLACE_REGEX);
             }
         }
-        
+
         // Create blob URL
         const blobUrl = URL.createObjectURL(blob);
-        
+
         downloadContainer.innerHTML = `
             <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 sm:p-8 shadow-lg border-2 border-green-200 animate-fade-in">
                 <div class="flex flex-col items-center justify-center space-y-4">
@@ -220,35 +220,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div class="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-75"></div>
                     </div>
-                    
+
                     <!-- Success Message -->
                     <div class="text-center">
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">${window.SUCCESS_TITLE || 'Conversion Complete!'}</h3>
                         <p class="text-gray-600 text-sm sm:text-base mb-4">${window.SUCCESS_MESSAGE || 'Your file is ready to download'}</p>
                         <p class="text-xs text-gray-500 font-mono">${downloadName}</p>
                     </div>
-                    
+
                     <!-- Download Button -->
-                    <button id="downloadButton" 
+                    <button id="downloadButton"
                             class="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-8 sm:px-12 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 active:scale-95 transition-all duration-200 flex items-center space-x-3">
                         <svg class="w-6 h-6 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
                         <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
                     </button>
-                    
+
                     <!-- Convert Another Button -->
-                    <button id="convertAnotherButton" 
+                    <button id="convertAnotherButton"
                             class="text-gray-600 hover:text-blue-600 font-medium text-sm sm:text-base transition-colors">
                         ${window.CONVERT_ANOTHER_TEXT || 'Convert another file'}
                     </button>
                 </div>
             </div>
         `;
-        
+
         downloadContainer.classList.remove('hidden');
         downloadContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
+
         // Download button handler
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
-                
+
                 // Add visual feedback
                 downloadBtn.classList.add('bg-green-600');
                 setTimeout(() => {
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 200);
             });
         }
-        
+
         // Convert another button handler
         const convertAnotherBtn = document.getElementById('convertAnotherButton');
         if (convertAnotherBtn) {
@@ -277,10 +277,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const selectedFileDiv = document.getElementById('selectedFile');
                 const fileInfo = document.getElementById('fileInfo');
                 const convertButton = document.getElementById('convertButton');
-                
+
                 if (fileInput) fileInput.value = '';
                 if (fileInputDrop) fileInputDrop.value = '';
-                
+
                 // Hide selected file display
                 if (selectedFileDiv) {
                     selectedFileDiv.classList.add('hidden');
@@ -288,16 +288,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (fileInfo) {
                     fileInfo.classList.remove('hidden');
                 }
-                
+
                 // Disable convert button
                 if (convertButton) {
                     convertButton.disabled = true;
                 }
-                
+
                 hideDownload();
                 hideResult();
                 setFormDisabled(false);
-                
+
                 // Focus on select button
                 const selectFileButton = document.getElementById('selectFileButton');
                 if (selectFileButton) {
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-        
+
         // Cleanup blob URL after 10 minutes
         setTimeout(() => {
             URL.revokeObjectURL(blobUrl);
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showError(message) {
         if (!resultContainer) return;
-        
+
         resultContainer.innerHTML = `
             <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 shadow-lg animate-fade-in">
                 <div class="flex items-start space-x-3">
@@ -332,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-        
+
         resultContainer.classList.remove('hidden');
         resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }

@@ -1,6 +1,6 @@
 [run]
 source = utils_site
-omit = 
+omit =
     */migrations/*
     */tests/*
     */test_*.py
