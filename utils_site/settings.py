@@ -385,7 +385,7 @@ try:
                 "IGNORE_EXCEPTIONS": True,  # Don't fail if Redis is down
             },
             "KEY_PREFIX": "convertica",
-            "TIMEOUT": 300,  # Default timeout: 5 minutes
+            "TIMEOUT": 3600,  # Default timeout: 1 hour (cache cleared on deploy)
         }
     }
 except ImportError:
