@@ -94,6 +94,16 @@ class HeaderNavigation {
       this.allToolsParent.addEventListener('mouseleave', () => this.hideAllTools());
     }
 
+    // Desktop all tools menu (click for accessibility and to prevent navigation)
+    this.allToolsButton?.addEventListener('click', (e) => {
+      // On desktop, prevent navigation and toggle dropdown instead
+      if (window.innerWidth >= 768) {
+        e.preventDefault();
+        this.toggleAllToolsDesktop();
+      }
+      // On mobile, allow navigation (it's a simple link)
+    });
+
     // Mobile all tools menu toggle
     // Mobile All Tools is now a simple link, no event listener needed
 
