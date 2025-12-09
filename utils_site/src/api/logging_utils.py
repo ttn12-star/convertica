@@ -196,6 +196,19 @@ def log_conversion_error(
     else:
         log_method(f"{conversion_type} conversion failed: {error}", extra=log_data)
 
+    # Explicitly send ERROR logs to Sentry
+    if level in ("error", "exception"):
+        try:
+            import sentry_sdk
+
+            sentry_sdk.logger.error(
+                f"{conversion_type} conversion failed: {error}",
+                exc_info=(level == "exception"),
+                extra=log_data,
+            )
+        except (ImportError, Exception):
+            pass  # Sentry not available
+
     # Send error metrics to Sentry
     try:
         from sentry_sdk import metrics
