@@ -28,6 +28,18 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
     from sentry_sdk.integrations.django import DjangoIntegration
     from sentry_sdk.integrations.redis import RedisIntegration
 
+    # Filter handled errors - don't send InvalidPDFError as unhandled exceptions
+    # These are expected user errors (corrupted files), not bugs
+    def before_send(event, hint):
+        # Don't send InvalidPDFError as exception - it's handled gracefully
+        if "exc_info" in hint and hint["exc_info"][0].__name__ == "InvalidPDFError":
+            # Still log it but as a message, not exception
+            event["level"] = "info"
+            event["tags"] = event.get("tags", {})
+            event["tags"]["error_type"] = "handled"
+            event["tags"]["user_error"] = "true"
+        return event
+
     sentry_sdk.init(
         dsn=SENTRY_DSN,
         integrations=[
@@ -46,8 +58,8 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         environment=config("SENTRY_ENVIRONMENT", default="production"),
         # Release version - update on each release
         release=config("SENTRY_RELEASE", default="convertica@1.0.22"),
-        # Performance optimizations
-        before_send=lambda event, hint: event,  # No filtering for now
+        # Filter handled errors
+        before_send=before_send,
         # Async transport (non-blocking)
         transport=sentry_sdk.transport.HttpTransport,
         # Max breadcrumbs (events leading to error)
