@@ -1,0 +1,2808 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Convertica\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-06 22:14+0000\n"
+"PO-Revision-Date: 2025-12-09 07:50+0000\n"
+"Last-Translator: Convertica Localization Bot <localization@convertica.net>\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0?0:n==1?1:n==2?2:(n%100>=3 and n%100<=10)?3:(n%100>=11 and n%100<=99)?4:5;\n"
+
+#: templates/base.html:14
+msgid ""
+"Fast, simple and secure online PDF to Word and Word to PDF converter. No "
+"installations required."
+msgstr ""
+"محول PDF إلى Word وWord إلى PDF سريع وبسيط وآمن يعمل عبر الإنترنت، ولا يتطلب"
+" أي تثبيت."
+
+#: templates/base.html:15
+msgid ""
+"PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
+"free converter"
+msgstr ""
+"PDF إلى Word، Word إلى PDF، محول PDF، محول DOCX، محول عبر الإنترنت، محول "
+"مجاني"
+
+#: templates/base.html:128
+msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
+msgstr "محول PDF إلى Word وWord إلى PDF سريع وبسيط وآمن يعمل عبر الإنترنت."
+
+#: templates/blog/article_detail.html:214
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: templates/blog/article_detail.html:223
+msgid "All"
+msgstr "الكل"
+
+#: templates/blog/article_detail.html:275
+msgid "Related Articles"
+msgstr "مقالات ذات صلة"
+
+#: templates/blog/article_detail.html:318
+msgid "Back to Blog"
+msgstr "العودة إلى المدونة"
+
+#: templates/blog/article_detail.html:330 templates/frontend/index.html:90
+msgid "Popular Tools"
+msgstr "أدوات شائعة"
+
+#: templates/blog/article_detail.html:340 templates/frontend/all_tools.html:63
+#: templates/frontend/includes/footer.html:93
+#: templates/frontend/includes/header.html:84
+#: templates/frontend/includes/header.html:320
+#: templates/frontend/includes/header.html:651
+#: templates/frontend/includes/header.html:712
+#: templates/frontend/index.html:56 templates/frontend/index.html:110
+msgid "PDF to Word"
+msgstr "PDF إلى Word"
+
+#: templates/blog/article_detail.html:349
+#: templates/frontend/all_tools.html:281
+#: templates/frontend/includes/header.html:182
+#: templates/frontend/includes/header.html:500
+#: templates/frontend/includes/header.html:656
+#: templates/frontend/includes/header.html:738
+#: templates/frontend/index.html:65 templates/frontend/index.html:250
+msgid "Merge PDF"
+msgstr "دمج PDF"
+
+#: templates/blog/article_detail.html:358
+#: templates/frontend/all_tools.html:377
+#: templates/frontend/includes/header.html:242
+#: templates/frontend/includes/header.html:536
+#: templates/frontend/includes/header.html:659
+#: templates/frontend/includes/header.html:758
+#: templates/frontend/index.html:74 templates/frontend/index.html:371
+msgid "Compress PDF"
+msgstr "ضغط PDF"
+
+#: templates/blog/article_detail.html:367
+#: templates/frontend/all_tools.html:182
+#: templates/frontend/includes/header.html:127
+#: templates/frontend/includes/header.html:416
+#: templates/frontend/includes/header.html:660
+#: templates/frontend/index.html:135
+msgid "Rotate PDF"
+msgstr "تدوير PDF"
+
+#: templates/blog/article_detail.html:373
+msgid "View All Tools"
+msgstr "عرض جميع الأدوات"
+
+#: templates/blog/article_list.html:7
+msgid "blog, articles, PDF guides, document tips, tutorials"
+msgstr "مدونة، مقالات، أدلة PDF، نصائح للوثائق، وشروحات"
+
+#: templates/blog/article_list.html:20
+#: templates/frontend/includes/footer.html:33
+#: templates/frontend/includes/footer.html:216
+msgid "Blog"
+msgstr "المدونة"
+
+#: templates/blog/article_list.html:23
+msgid ""
+"Useful guides, tips, and articles about PDF tools and document management"
+msgstr "أدلة ونصائح ومقالات مفيدة عن أدوات PDF وإدارة الوثائق."
+
+#: templates/blog/article_list.html:41
+msgid "Search articles..."
+msgstr "ابحث في المقالات..."
+
+#: templates/blog/article_list.html:45
+msgid "Search"
+msgstr "بحث"
+
+#: templates/blog/article_list.html:54
+msgid "All Articles"
+msgstr "جميع المقالات"
+
+#: templates/blog/article_list.html:101
+msgid "Read"
+msgstr "اقرأ"
+
+#: templates/blog/article_list.html:116
+msgid "Previous"
+msgstr "السابق"
+
+#: templates/blog/article_list.html:121
+msgid "Page"
+msgstr "الصفحة"
+
+#: templates/blog/article_list.html:121
+msgid "of"
+msgstr "من"
+
+#: templates/blog/article_list.html:127
+msgid "Next"
+msgstr "التالي"
+
+#: templates/blog/article_list.html:135
+msgid "No articles found."
+msgstr "لم يتم العثور على مقالات."
+
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:424
+msgid "About Us - Convertica"
+msgstr "من نحن - Convertica"
+
+#: templates/frontend/about.html:25
+msgid ""
+"Free online PDF tools platform providing conversion, editing, and "
+"organization services."
+msgstr ""
+"منصة أدوات PDF المجانية عبر الإنترنت التي توفر خدمات التحويل والتحرير "
+"والتنظيم."
+
+#: templates/frontend/about.html:27
+msgid "Today better than yesterday, tomorrow better than today"
+msgstr "اليوم أفضل من أمس، غدا أفضل من اليوم"
+
+#: templates/frontend/about.html:46
+msgid "About Convertica"
+msgstr "عن Convertica"
+
+#: templates/frontend/about.html:49
+msgid "Your trusted partner for all PDF document needs"
+msgstr "شريكك الموثوق لكل ما يتعلق بوثائق PDF."
+
+#: templates/frontend/about.html:63
+msgid "Mission icon"
+msgstr "أيقونة المهمة"
+
+#: templates/frontend/about.html:67
+msgid "Our Mission"
+msgstr "مهمتنا"
+
+#: templates/frontend/about.html:70
+msgid ""
+"At Convertica, we believe in the power of continuous improvement. Our "
+"mission is to provide you with the most reliable, fast, and user-friendly "
+"PDF tools available online. We understand that your documents are important,"
+" and we're committed to ensuring that every interaction with our platform "
+"exceeds your expectations."
+msgstr ""
+"في Convertica نؤمن بقوة التحسين المستمر. مهمتنا أن نزوّدك بأدوات PDF الأكثر "
+"موثوقية وسرعة وسهولة عبر الإنترنت. ندرك أن مستنداتك مهمة، ونتعهد بأن يتجاوز "
+"كل تفاعل مع منصتنا توقعاتك."
+
+#: templates/frontend/about.html:78
+msgid "Growth icon"
+msgstr "أيقونة النمو"
+
+#: templates/frontend/about.html:82
+msgid "Our Core Principle: Constant Improvement"
+msgstr "مبدأنا الأساسي: التحسن المستمر"
+
+#: templates/frontend/about.html:86
+msgid "We live by a simple yet powerful philosophy:"
+msgstr "نحن نعيش وفلسفة بسيطة ومع ذلك قوية:"
+
+#: templates/frontend/about.html:90
+msgid ""
+"Today, we are better than we were yesterday. Tomorrow, we will be even "
+"better than today."
+msgstr "اليوم نحن أفضل من البارحة غداً سنكون أفضل من اليوم"
+
+#: templates/frontend/about.html:94
+msgid ""
+"This isn't just a slogan—it's our commitment to you. Every day, our team "
+"works tirelessly to enhance our platform, improve our tools, and refine the "
+"user experience. We listen to your feedback, analyze usage patterns, and "
+"implement improvements that make Convertica more powerful, intuitive, and "
+"reliable."
+msgstr ""
+"هذا ليس مجرد شعار، بل عهد من Convertica تجاهك. يعمل فريقنا يومياً بلا كلل "
+"على تطوير منصتنا، وتحسين أدواتنا، وصقل تجربة المستخدم. نصغي لملاحظاتك، ونحلل"
+" أنماط الاستخدام، وننفذ تحسينات تجعل Convertica أكثر قوة ووضوحاً واعتمادية."
+
+#: templates/frontend/about.html:97
+msgid ""
+"Whether it's optimizing our conversion algorithms, adding new features, "
+"improving security, or enhancing performance, we never stop striving for "
+"excellence. This dedication to continuous improvement means that when you "
+"use Convertica, you're always getting the best version of our platform—and "
+"we're already working on making it even better."
+msgstr ""
+"سواء كان ذلك بتحسين خوارزميات التحويل، أو إضافة مزايا جديدة، أو رفع مستوى "
+"الأمان والأداء، فإننا في Convertica لا نتوقف عن السعي نحو التميّز. هذا "
+"الالتزام بالتحسين المستمر يعني أنك كلما استخدمت Convertica حصلت على أفضل "
+"نسخة من منصتنا، بينما نعمل بالفعل على جعلها أفضل."
+
+#: templates/frontend/about.html:106
+msgid "Tools icon"
+msgstr "رمز الأدوات"
+
+#: templates/frontend/about.html:111
+msgid "What We Offer"
+msgstr "ما نقدم"
+
+#: templates/frontend/about.html:115
+msgid "PDF Conversion"
+msgstr "تحويل PDF"
+
+#: templates/frontend/about.html:117
+msgid ""
+"Convert PDFs to Word, Excel, and JPG formats, or create PDFs from various "
+"file types. Fast, accurate, and reliable conversions every time."
+msgstr ""
+"تحويل ملفات PDF إلى تنسيقات Word و Excel و JPG أو إنشاء ملفات PDF من أنواع "
+"ملفات مختلفة. تحويلات سريعة ودقيقة وموثوقة في كل مرة."
+
+#: templates/frontend/about.html:121
+msgid "PDF Editing"
+msgstr "تحرير PDF"
+
+#: templates/frontend/about.html:123
+msgid ""
+"Rotate, crop, add watermarks, and insert page numbers. Edit your PDFs with "
+"precision and ease."
+msgstr ""
+"دوّر الملفات واقصصها وأضف العلامات المائية وأرقام الصفحات لتحرر ملفات PDF "
+"بدقة وسهولة."
+
+#: templates/frontend/about.html:127
+msgid "PDF Organization"
+msgstr "تنظيم PDF"
+
+#: templates/frontend/about.html:129
+msgid ""
+"Merge, split, extract, remove, and organize pages. Manage your PDF documents"
+" efficiently."
+msgstr ""
+"ادمج الصفحات أو قسّمها أو استخرجها أو احذفها ونظّمها لإدارة ملفات PDF "
+"بكفاءة."
+
+#: templates/frontend/about.html:133 templates/frontend/all_tools.html:397
+#: templates/frontend/includes/header.html:250
+#: templates/frontend/includes/header.html:672
+msgid "PDF Security"
+msgstr "أمان PDF"
+
+#: templates/frontend/about.html:135
+msgid ""
+"Protect your documents with password encryption or unlock secured PDFs when "
+"needed."
+msgstr ""
+"حماية مستنداتك بتشفير كلمة المرور أو فتح قفل الملفات المضمونة عندما يكون ذلك"
+" ضروريًا."
+
+#: templates/frontend/about.html:145
+msgid "Star icon"
+msgstr "رمز النجوم"
+
+#: templates/frontend/about.html:149
+msgid "Why Choose Convertica"
+msgstr "لماذا تختار Convertica"
+
+#: templates/frontend/about.html:154 templates/frontend/about.html:167
+#: templates/frontend/about.html:180 templates/frontend/about.html:193
+msgid "Checkmark icon"
+msgstr "رمز علامة التحقق"
+
+#: templates/frontend/about.html:159
+#, python-format
+msgid "100%% Free"
+msgstr "100%% مجاني"
+
+#: templates/frontend/about.html:161
+msgid ""
+"All our tools are completely free to use. No hidden fees, no subscriptions, "
+"no credit card required."
+msgstr ""
+"جميع أدواتنا مجانية تماماً لا تكاليف مخفية، لا اشتراكات، لا بطاقة ائتمان "
+"مطلوبة"
+
+#: templates/frontend/about.html:172
+msgid "Fast & Secure"
+msgstr "سريع و آمن"
+
+#: templates/frontend/about.html:174
+msgid ""
+"Process your files in seconds with our optimized algorithms. Your files are "
+"processed securely and deleted automatically after conversion."
+msgstr ""
+"معالج ملفاتك في ثوان باستخدام خوارزمياتنا المثلى يتم معالجة ملفاتك بأمان و "
+"يتم حذفها تلقائيًا بعد التحويل"
+
+#: templates/frontend/about.html:185
+msgid "No Registration Required"
+msgstr "لا توجد حاجة للتسجيل"
+
+#: templates/frontend/about.html:187
+msgid ""
+"Start using our tools immediately. No sign-up, no email verification, no "
+"hassle."
+msgstr ""
+"ابدأ باستخدام أدواتنا فوراً، لا تسجيل، لا تأكيد البريد الإلكتروني، لا مشاكل."
+
+#: templates/frontend/about.html:198
+msgid "Privacy First"
+msgstr "الخصوصية أولاً"
+
+#: templates/frontend/about.html:200
+msgid ""
+"Your privacy matters. We don't store your files permanently, and we never "
+"share your data with third parties."
+msgstr ""
+"خصوصيتك مهمة نحن لا نحتفظ بملفاتك بشكل دائم، ونحن لا نتشارك بياناتك مع أطراف"
+" ثالثة"
+
+#: templates/frontend/about.html:209
+msgid "Ready to Get Started?"
+msgstr "هل أنت مستعد للبدء؟"
+
+#: templates/frontend/about.html:211
+msgid "Experience the power of Convertica's PDF tools today."
+msgstr "جرّب قوة أدوات Convertica لملفات PDF اليوم."
+
+#: templates/frontend/about.html:216
+msgid "Explore All Tools"
+msgstr "استكشاف جميع الأدوات"
+
+#: templates/frontend/about.html:220 templates/frontend/index.html:404
+msgid "Get Started"
+msgstr "ابدأ"
+
+#: templates/frontend/add_page_numbers.html:6
+msgid "Page Number Settings"
+msgstr "إعدادات رقم الصفحة"
+
+#: templates/frontend/add_page_numbers.html:12
+msgid "Position"
+msgstr "الموقف"
+
+#: templates/frontend/add_page_numbers.html:16
+msgid "Bottom Center"
+msgstr "مركز أسفل"
+
+#: templates/frontend/add_page_numbers.html:17
+msgid "Bottom Left"
+msgstr "أسفل اليسار"
+
+#: templates/frontend/add_page_numbers.html:18
+msgid "Bottom Right"
+msgstr "أسفل اليمين"
+
+#: templates/frontend/add_page_numbers.html:19
+msgid "Top Center"
+msgstr "المركز الأعلى"
+
+#: templates/frontend/add_page_numbers.html:20
+msgid "Top Left"
+msgstr "أعلى يسار"
+
+#: templates/frontend/add_page_numbers.html:21
+msgid "Top Right"
+msgstr "أعلى اليمين"
+
+#: templates/frontend/add_page_numbers.html:28
+#: templates/frontend/add_watermark.html:295
+msgid "Font Size"
+msgstr "حجم الخط"
+
+#: templates/frontend/add_page_numbers.html:42
+msgid "Starting Page Number"
+msgstr "رقم الصفحة الابتدائية"
+
+#: templates/frontend/add_page_numbers.html:55
+msgid "Format"
+msgstr "تنسيق"
+
+#: templates/frontend/add_page_numbers.html:64
+#, python-brace-format
+msgid "Use {page} for page number, {total} for total pages"
+msgstr "استخدم {page} لرقم الصفحة، و{total} لإجمالي الصفحات"
+
+#: templates/frontend/add_page_numbers.html:71
+#: templates/frontend/add_watermark.html:321
+msgid "Apply to pages"
+msgstr "تطبيق على الصفحات"
+
+#: templates/frontend/add_page_numbers.html:81
+#: templates/frontend/add_watermark.html:331
+#: templates/frontend/crop_pdf.html:210
+#: templates/frontend/remove_pages.html:21
+#: templates/frontend/rotate_pdf.html:35
+msgid "All pages"
+msgstr "جميع الصفحات"
+
+#: templates/frontend/add_page_numbers.html:89
+#: templates/frontend/add_watermark.html:339
+#: templates/frontend/crop_pdf.html:218
+#: templates/frontend/remove_pages.html:29
+#: templates/frontend/rotate_pdf.html:43
+msgid "Current page only"
+msgstr "الصفحة الحالية فقط"
+
+#: templates/frontend/add_page_numbers.html:97
+#: templates/frontend/add_watermark.html:347
+#: templates/frontend/crop_pdf.html:226
+#: templates/frontend/remove_pages.html:38
+#: templates/frontend/rotate_pdf.html:51
+msgid "Custom pages:"
+msgstr "صفحات مخصصة:"
+
+#: templates/frontend/add_page_numbers.html:107
+#: templates/frontend/add_watermark.html:357
+#: templates/frontend/crop_pdf.html:236
+#: templates/frontend/remove_pages.html:48
+#: templates/frontend/rotate_pdf.html:61
+msgid "Enter specific pages like '1,3,5' or '1-5'"
+msgstr "إدخال صفحات محددة مثل \"1,3,5\" أو \"1-5\""
+
+#: templates/frontend/add_watermark.html:119
+msgid "Select file to watermark"
+msgstr "إختيار الملف إلى علامة المائية"
+
+#: templates/frontend/add_watermark.html:137
+#: templates/frontend/converter_generic.html:103
+#: templates/frontend/crop_pdf.html:121
+#: templates/frontend/edit_pdf_generic.html:103
+msgid "Remove file"
+msgstr "إزالة الملف"
+
+#: templates/frontend/add_watermark.html:162
+#: templates/frontend/converter_generic.html:128
+#: templates/frontend/crop_pdf.html:146
+#: templates/frontend/edit_pdf_generic.html:128
+msgid "Drag and drop your file here"
+msgstr "سحب و إسقط ملفك هنا"
+
+#: templates/frontend/add_watermark.html:165
+#: templates/frontend/converter_generic.html:131
+#: templates/frontend/crop_pdf.html:149
+#: templates/frontend/edit_pdf_generic.html:131
+#: templates/frontend/jpg_to_pdf.html:93
+msgid "Use the button above to browse files"
+msgstr "استخدم الزر أعلاه لمشاهدة الملفات"
+
+#: templates/frontend/add_watermark.html:168
+#: templates/frontend/converter_generic.html:134
+#: templates/frontend/crop_pdf.html:152
+#: templates/frontend/edit_pdf_generic.html:134
+msgid "file"
+msgstr "الملف"
+
+#: templates/frontend/add_watermark.html:177
+msgid "Visual Watermark Editor"
+msgstr "محرر علامات المياه البصرية"
+
+#: templates/frontend/add_watermark.html:182
+msgid "Select Page"
+msgstr "اختر الصفحة"
+
+#: templates/frontend/add_watermark.html:200
+msgid "How to use:"
+msgstr "كيفية استخدام:"
+
+#: templates/frontend/add_watermark.html:200
+msgid ""
+"The watermark appears at the bottom of the page by default. Drag it to move,"
+" use the top handle to rotate, and the corner handle to scale. Click "
+"anywhere on the PDF to reposition it."
+msgstr ""
+"تظهر العلامة المائية تلقائياً في أسفل الصفحة. اسحبها لتحريكها، واستخدم "
+"المقبض العلوي لتدويرها، ومقابض الزوايا لتغيير حجمها. انقر في أي مكان داخل "
+"ملف PDF لإعادة تموضعها."
+
+#: templates/frontend/add_watermark.html:209
+msgid "Watermark Settings"
+msgstr "إعدادات علامة المياه"
+
+#: templates/frontend/add_watermark.html:215
+msgid "Watermark Type"
+msgstr "نوع علامة المياه"
+
+#: templates/frontend/add_watermark.html:220
+msgid "Text"
+msgstr "النص"
+
+#: templates/frontend/add_watermark.html:224
+msgid "Image"
+msgstr "الصورة"
+
+#: templates/frontend/add_watermark.html:232
+msgid "Watermark Text"
+msgstr "النص المطلوب"
+
+#: templates/frontend/add_watermark.html:245
+msgid "Watermark Image"
+msgstr "صورة علامة المياه"
+
+#: templates/frontend/add_watermark.html:257
+msgid "Color"
+msgstr "اللون"
+
+#: templates/frontend/add_watermark.html:276
+msgid "Opacity"
+msgstr "التفتيش"
+
+#: templates/frontend/add_watermark.html:314
+msgid "Interactive controls:"
+msgstr "التحكمات التفاعلية:"
+
+#: templates/frontend/add_watermark.html:314
+msgid ""
+"Drag the watermark to move it. Drag any corner handle to rotate and scale "
+"simultaneously."
+msgstr ""
+"سحب علامة المياه لنحركها سحب أي مسدس زاوية للدوار والتنمية في نفس الوقت"
+
+#: templates/frontend/add_watermark.html:401
+#: templates/frontend/converter_generic.html:180
+#: templates/frontend/crop_pdf.html:323
+#: templates/frontend/edit_pdf_generic.html:173
+#: templates/frontend/jpg_to_pdf.html:132
+msgid "How it works"
+msgstr "كيف يعمل"
+
+#: templates/frontend/add_watermark.html:404
+#: templates/frontend/crop_pdf.html:326
+msgid "Select your PDF file using the button above"
+msgstr "اختر ملف PDF باستخدام الزر أعلاه"
+
+#: templates/frontend/add_watermark.html:405
+msgid "Enter your watermark text or upload an image"
+msgstr "أدخل نص علامة المياه أو قم بتحميل صورة"
+
+#: templates/frontend/add_watermark.html:406
+msgid "Choose the color and opacity using the sliders"
+msgstr "اختر اللون والظاهرة باستخدام المنزلقات"
+
+#: templates/frontend/add_watermark.html:407
+msgid "Click on the PDF to position the watermark"
+msgstr "انقر داخل ملف PDF لوضع العلامة المائية في مكانها."
+
+#: templates/frontend/add_watermark.html:408
+msgid "Click the add watermark button to process your file"
+msgstr "انقر فوق زر إضافة علامة مياه لمعالجة ملفك"
+
+#: templates/frontend/add_watermark.html:409
+msgid "Download your watermarked PDF file"
+msgstr "نزّل ملف PDF بعد إضافة العلامة المائية."
+
+#: templates/frontend/add_watermark.html:424
+#: templates/frontend/crop_pdf.html:346
+#: templates/frontend/edit_pdf_generic.html:194
+msgid "Processing your file..."
+msgstr "معالجة ملفك..."
+
+#: templates/frontend/add_watermark.html:425
+#: templates/frontend/converter_generic.html:203
+#: templates/frontend/crop_pdf.html:347
+#: templates/frontend/edit_pdf_generic.html:195
+#: templates/frontend/jpg_to_pdf.html:157
+msgid "Please wait, this may take a few moments"
+msgstr "رجاءً انتظر، قد يستغرق الأمر بضع لحظات"
+
+#: templates/frontend/add_watermark.html:426
+#: templates/frontend/crop_pdf.html:348
+#: templates/frontend/edit_pdf_generic.html:196
+msgid "Editing Complete!"
+msgstr "الإصدار كامل"
+
+#: templates/frontend/add_watermark.html:427
+#: templates/frontend/converter_generic.html:205
+#: templates/frontend/crop_pdf.html:349
+#: templates/frontend/edit_pdf_generic.html:197
+msgid "Your file is ready to download"
+msgstr "ملفك جاهز للتحميل"
+
+#: templates/frontend/add_watermark.html:428
+#: templates/frontend/converter_generic.html:206
+#: templates/frontend/crop_pdf.html:350
+#: templates/frontend/edit_pdf_generic.html:198
+msgid "Download File"
+msgstr "تنزيل الملف"
+
+#: templates/frontend/add_watermark.html:429
+#: templates/frontend/crop_pdf.html:351
+#: templates/frontend/edit_pdf_generic.html:199
+msgid "Edit another file"
+msgstr "إصلاح ملف آخر"
+
+#: templates/frontend/add_watermark.html:430
+#: templates/frontend/converter_generic.html:208
+#: templates/frontend/crop_pdf.html:352
+#: templates/frontend/edit_pdf_generic.html:200
+#: templates/frontend/jpg_to_pdf.html:162
+msgid "Error"
+msgstr "خطأ"
+
+#: templates/frontend/all_tools.html:24
+msgid "All PDF Tools"
+msgstr "جميع أدوات PDF"
+
+#: templates/frontend/all_tools.html:27
+msgid ""
+"Browse all our PDF tools organized by category. Convert, edit, and organize "
+"your PDFs with ease."
+msgstr ""
+"تصفح جميع أدوات PDF المصنّفة حسب الفئات، وحوّل ملفاتك وعدّلها ونظمها بسهولة."
+
+#: templates/frontend/all_tools.html:43
+#: templates/frontend/includes/header.html:49
+#: templates/frontend/includes/header.html:295
+#: templates/frontend/includes/header.html:648
+#: templates/frontend/includes/header.html:694
+msgid "Convert PDF"
+msgstr "تحويل PDF"
+
+#: templates/frontend/all_tools.html:46
+msgid "Convert PDFs to other formats or convert other files to PDF"
+msgstr "حوّل ملفات PDF إلى صيغ أخرى أو حوّل الملفات الأخرى إلى PDF."
+
+#: templates/frontend/all_tools.html:66 templates/frontend/index.html:113
+msgid "Convert PDF documents to editable Word files instantly."
+msgstr "حوّل مستندات PDF إلى ملفات Word قابلة للتحرير فوراً."
+
+#: templates/frontend/all_tools.html:82
+#: templates/frontend/includes/footer.html:102
+#: templates/frontend/includes/header.html:60
+#: templates/frontend/includes/header.html:363
+#: templates/frontend/includes/header.html:649
+#: templates/frontend/includes/header.html:704
+#: templates/frontend/index.html:159
+msgid "Word to PDF"
+msgstr "Word إلى PDF"
+
+#: templates/frontend/all_tools.html:85 templates/frontend/index.html:162
+msgid "Convert Word documents to secure PDF files."
+msgstr "حوّل مستندات Word إلى ملفات PDF آمنة."
+
+#: templates/frontend/all_tools.html:101
+#: templates/frontend/includes/footer.html:111
+#: templates/frontend/includes/header.html:96
+#: templates/frontend/includes/header.html:332
+#: templates/frontend/includes/header.html:652
+#: templates/frontend/includes/header.html:716
+msgid "PDF to JPG"
+msgstr "PDF إلى JPG"
+
+#: templates/frontend/all_tools.html:104
+msgid "Convert PDF pages to high-quality JPG images."
+msgstr "حوّل صفحات PDF إلى صور JPG عالية الجودة."
+
+#: templates/frontend/all_tools.html:124
+#: templates/frontend/includes/footer.html:120
+#: templates/frontend/includes/header.html:72
+#: templates/frontend/includes/header.html:375
+#: templates/frontend/includes/header.html:650
+#: templates/frontend/includes/header.html:708
+msgid "JPG to PDF"
+msgstr "JPG إلى PDF"
+
+#: templates/frontend/all_tools.html:127
+msgid ""
+"Convert JPG images to PDF documents. Combine multiple images into one PDF."
+msgstr "حوّل صور JPG إلى مستندات PDF وادمج عدة صور في ملف واحد."
+
+#: templates/frontend/all_tools.html:142
+#: templates/frontend/includes/header.html:108
+#: templates/frontend/includes/header.html:344
+#: templates/frontend/includes/header.html:653
+#: templates/frontend/includes/header.html:720
+#: templates/frontend/index.html:208
+msgid "PDF to Excel"
+msgstr "PDF إلى Excel"
+
+#: templates/frontend/all_tools.html:145 templates/frontend/index.html:211
+msgid "Extract tables from PDF and convert to Excel format."
+msgstr "استخرج الجداول من ملف PDF وحوّلها إلى صيغة Excel."
+
+#: templates/frontend/all_tools.html:162
+#: templates/frontend/includes/header.html:116
+#: templates/frontend/includes/header.html:391
+msgid "Edit PDF"
+msgstr "تحرير PDF"
+
+#: templates/frontend/all_tools.html:165
+msgid "Modify and enhance your PDF documents"
+msgstr "عدّل مستندات PDF وحسّنها."
+
+#: templates/frontend/all_tools.html:185 templates/frontend/index.html:138
+msgid "Rotate PDF pages by 90, 180, or 270 degrees."
+msgstr "دوّر صفحات PDF بزاوية 90 أو 180 أو 270 درجة."
+
+#: templates/frontend/all_tools.html:201
+#: templates/frontend/includes/header.html:139
+#: templates/frontend/includes/header.html:428
+#: templates/frontend/includes/header.html:661
+msgid "Crop PDF"
+msgstr "قص PDF"
+
+#: templates/frontend/all_tools.html:204
+msgid "Crop PDF pages by specifying crop box coordinates."
+msgstr "اقصص صفحات PDF بتحديد أبعاد مربع القص."
+
+#: templates/frontend/all_tools.html:220
+#: templates/frontend/includes/header.html:151
+#: templates/frontend/includes/header.html:447
+#: templates/frontend/includes/header.html:662
+msgid "Add Page Numbers"
+msgstr "إضافة أرقام الصفحات"
+
+#: templates/frontend/all_tools.html:223
+msgid "Add page numbers to your PDF documents."
+msgstr "أضف أرقام الصفحات إلى مستندات PDF."
+
+#: templates/frontend/all_tools.html:240
+#: templates/frontend/includes/header.html:163
+#: templates/frontend/includes/header.html:459
+#: templates/frontend/includes/header.html:663
+#: templates/frontend/index.html:184
+msgid "Add Watermark"
+msgstr "إضافة علامة المياه"
+
+#: templates/frontend/all_tools.html:243 templates/frontend/index.html:187
+msgid "Protect your PDFs with text or image watermarks."
+msgstr "احمِ ملفات PDF بعلامات مائية نصية أو صورية."
+
+#: templates/frontend/all_tools.html:260 templates/frontend/all_tools.html:359
+#: templates/frontend/includes/header.html:171
+#: templates/frontend/includes/header.html:230
+#: templates/frontend/includes/header.html:475
+#: templates/frontend/includes/header.html:524
+#: templates/frontend/includes/header.html:655
+#: templates/frontend/includes/header.html:658
+#: templates/frontend/includes/header.html:728
+#: templates/frontend/includes/header.html:754
+#: templates/frontend/index.html:230 templates/frontend/index.html:347
+msgid "Organize PDF"
+msgstr "تنظيم PDF"
+
+#: templates/frontend/all_tools.html:263
+msgid "Manage and organize your PDF documents"
+msgstr "أدر ملفات PDF ونظّمها."
+
+#: templates/frontend/all_tools.html:284 templates/frontend/index.html:253
+msgid "Combine multiple PDF files into one document."
+msgstr "ادمج عدة ملفات PDF في مستند واحد."
+
+#: templates/frontend/all_tools.html:300
+#: templates/frontend/includes/header.html:194
+#: templates/frontend/includes/header.html:512
+#: templates/frontend/includes/header.html:657
+#: templates/frontend/includes/header.html:742
+#: templates/frontend/index.html:274
+msgid "Split PDF"
+msgstr "تقسيم PDF"
+
+#: templates/frontend/all_tools.html:303 templates/frontend/index.html:277
+msgid "Split PDF into multiple files by pages or ranges."
+msgstr "قسّم ملف PDF إلى عدة ملفات حسب الصفحات أو النطاقات."
+
+#: templates/frontend/all_tools.html:320
+#: templates/frontend/includes/header.html:206
+#: templates/frontend/includes/header.html:555
+#: templates/frontend/includes/header.html:664
+#: templates/frontend/includes/header.html:746
+#: templates/frontend/index.html:298
+msgid "Remove Pages"
+msgstr "إزالة الصفحات"
+
+#: templates/frontend/all_tools.html:323 templates/frontend/index.html:301
+msgid "Remove unwanted pages from your PDF document."
+msgstr "احذف الصفحات غير المرغوب فيها من ملف PDF."
+
+#: templates/frontend/all_tools.html:339
+#: templates/frontend/includes/header.html:218
+#: templates/frontend/includes/header.html:567
+#: templates/frontend/includes/header.html:665
+#: templates/frontend/includes/header.html:750
+#: templates/frontend/index.html:322
+msgid "Extract Pages"
+msgstr "الصفحات المنتشرة"
+
+#: templates/frontend/all_tools.html:342 templates/frontend/index.html:325
+msgid "Extract specific pages from your PDF into a new file."
+msgstr "استخرج صفحات محددة من ملف PDF إلى ملف جديد."
+
+#: templates/frontend/all_tools.html:362 templates/frontend/index.html:350
+msgid "Reorder and organize pages in your PDF document."
+msgstr "أعد ترتيب صفحات ملف PDF ونظمها."
+
+#: templates/frontend/all_tools.html:380 templates/frontend/index.html:374
+msgid "Reduce PDF file size without losing quality."
+msgstr "قلّل حجم ملف PDF دون فقدان الجودة."
+
+#: templates/frontend/all_tools.html:400
+msgid "Protect and secure your PDF documents"
+msgstr "احمِ وثائق PDF وأمّنها."
+
+#: templates/frontend/all_tools.html:416
+#: templates/frontend/includes/header.html:261
+#: templates/frontend/includes/header.html:682
+msgid "Protect PDF"
+msgstr "حماية PDF"
+
+#: templates/frontend/all_tools.html:419
+msgid "Add password protection to secure your PDF documents."
+msgstr "أضف حماية بكلمة مرور لتأمين ملفات PDF."
+
+#: templates/frontend/all_tools.html:434
+#: templates/frontend/includes/header.html:273
+#: templates/frontend/includes/header.html:686
+msgid "Unlock PDF"
+msgstr "إلغاء حماية PDF"
+
+#: templates/frontend/all_tools.html:437
+msgid "Remove password protection from your PDF documents."
+msgstr "أزل حماية كلمة المرور عن ملفات PDF."
+
+#: templates/frontend/compress_pdf.html:6
+msgid "Compression Settings"
+msgstr "إعدادات الضغط"
+
+#: templates/frontend/compress_pdf.html:12
+msgid "Compression Level"
+msgstr "مستوى الضغط"
+
+#: templates/frontend/compress_pdf.html:16
+msgid "Low"
+msgstr "منخفضة"
+
+#: templates/frontend/compress_pdf.html:16
+msgid "Faster, less compression"
+msgstr "أسرع، أقل ضغط"
+
+#: templates/frontend/compress_pdf.html:17
+msgid "Medium"
+msgstr "المتوسط"
+
+#: templates/frontend/compress_pdf.html:17
+msgid "Balanced"
+msgstr "متوازنة"
+
+#: templates/frontend/compress_pdf.html:18
+msgid "High"
+msgstr "عالية"
+
+#: templates/frontend/compress_pdf.html:18
+msgid "Slower, more compression"
+msgstr "بطيئة، أكثر ضغطا"
+
+#: templates/frontend/compress_pdf.html:21
+msgid ""
+"Choose compression level based on your needs. Higher compression reduces "
+"file size more but takes longer."
+msgstr ""
+"اختر مستوى الضغط على أساس احتياجاتك. الضغط الأعلى يقلل من حجم الملف أكثر "
+"ولكن يستغرق وقتًا أطول."
+
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:454
+msgid "Contact Us - Convertica"
+msgstr "اتصل بنا - كونفريتا"
+
+#: templates/frontend/contact.html:44 templates/frontend/privacy.html:220
+#: templates/frontend/terms.html:253
+msgid "Contact Us"
+msgstr "اتصل بنا"
+
+#: templates/frontend/contact.html:47
+msgid ""
+"We're here to help! Get in touch with us for support, questions, or "
+"feedback."
+msgstr "نحن هنا لمساعدتك اتصل بنا للحصول على دعم أو أسئلة أو ردود الفعل"
+
+#: templates/frontend/contact.html:63
+msgid "Email icon"
+msgstr "رمز البريد الإلكتروني"
+
+#: templates/frontend/contact.html:67
+#: templates/frontend/includes/footer.html:152
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: templates/frontend/contact.html:70
+msgid "Send us an email and we'll get back to you as soon as possible."
+msgstr "أرسل لنا بريد إلكتروني وسنعاود الاتصال بك في أقرب وقت ممكن."
+
+#: templates/frontend/contact.html:85
+msgid "Support icon"
+msgstr "رمز الدعم"
+
+#: templates/frontend/contact.html:89
+msgid "Support"
+msgstr "الدعم"
+
+#: templates/frontend/contact.html:92
+msgid "Need help with our tools? We're here to assist you."
+msgstr "هل تحتاجين مساعدة مع أدواتنا؟"
+
+#: templates/frontend/contact.html:95
+msgid "Response time: Usually within 24-48 hours"
+msgstr "وقت الاستجابة: عادةً خلال 24-48 ساعة"
+
+#: templates/frontend/contact.html:104
+msgid "Form icon"
+msgstr "رمز النموذج"
+
+#: templates/frontend/contact.html:108
+msgid "Send Us a Message"
+msgstr "أرسل لنا رسالة"
+
+#: templates/frontend/contact.html:114
+msgid "Your Name"
+msgstr "اسمك"
+
+#: templates/frontend/contact.html:125
+msgid "Your Email"
+msgstr "رسالتك الإلكترونية"
+
+#: templates/frontend/contact.html:136
+msgid "Subject"
+msgstr "الموضوع"
+
+#: templates/frontend/contact.html:147
+msgid "Message"
+msgstr "الرسالة"
+
+#: templates/frontend/contact.html:163
+msgid "I agree to the"
+msgstr "أنا أتفق مع"
+
+#: templates/frontend/contact.html:163 templates/frontend/contact.html:231
+#: templates/frontend/includes/cookie_banner.html:17
+#: templates/frontend/includes/footer.html:51
+#: templates/frontend/includes/footer.html:220
+#: templates/frontend/privacy.html:45
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#: templates/frontend/contact.html:163
+msgid "and consent to the processing of my personal data."
+msgstr "ووافقت على معالجة بياناتي الشخصية."
+
+#: templates/frontend/contact.html:169
+msgid "Send Message"
+msgstr "أرسل رسالة"
+
+#: templates/frontend/contact.html:178
+msgid "FAQ icon"
+msgstr "أيقونة الأسئلة الشائعة"
+
+#: templates/frontend/contact.html:182
+msgid "Frequently Asked Questions"
+msgstr "الأسئلة المتكررة"
+
+#: templates/frontend/contact.html:187
+msgid "How long does it take to process files?"
+msgstr "كم يستغرق الأمر لمعالجة الملفات؟"
+
+#: templates/frontend/contact.html:189
+msgid ""
+"Most files are processed within seconds. Larger files or complex operations "
+"may take a few minutes."
+msgstr ""
+"معظم الملفات يتم معالجتها في غضون ثوانٍ. الملفات الكبيرة أو العمليات المعقدة"
+" قد تستغرق بضع دقائق."
+
+#: templates/frontend/contact.html:194
+msgid "Are my files safe?"
+msgstr "هل ملفاتي آمنة؟"
+
+#: templates/frontend/contact.html:196
+msgid ""
+"Yes! Your files are processed securely and automatically deleted immediately"
+" after processing. We never store your files permanently."
+msgstr ""
+"نعم، يتم معالجة ملفاتك بأمان و يتم حذفها تلقائيًا مباشرة بعد المعالجة. نحن "
+"لا نحتفظ بملفاتك بشكل دائم."
+
+#: templates/frontend/contact.html:201
+msgid "Is Convertica really free?"
+msgstr "هل (كونفريتا) مجانية حقاً؟"
+
+#: templates/frontend/contact.html:203
+msgid ""
+"Yes, all our tools are completely free to use. No hidden fees, no "
+"subscriptions required."
+msgstr "نعم، جميع أدواتنا مجانية تماماً لا تكلفة مخفية، لا اشتراك مطلوب"
+
+#: templates/frontend/contact.html:208
+msgid "What file formats are supported?"
+msgstr "ما هي تنسيقات الملفات التي تدعم؟"
+
+#: templates/frontend/contact.html:210
+msgid ""
+"We support PDF, Word (DOC, DOCX), JPG/JPEG, and Excel (XLSX) formats. Check "
+"individual tool pages for specific format requirements."
+msgstr ""
+"ندعم صيغ PDF وWord ‏(DOC/DOCX) وJPG/JPEG وExcel ‏(XLSX). راجع صفحات الأدوات "
+"لمعرفة متطلبات كل صيغة."
+
+#: templates/frontend/contact.html:218
+msgid "Additional Resources"
+msgstr "الموارد الإضافية"
+
+#: templates/frontend/contact.html:223
+#: templates/frontend/includes/footer.html:42
+msgid "About Us"
+msgstr "عننا"
+
+#: templates/frontend/contact.html:225
+msgid "Learn more about Convertica and our mission."
+msgstr "تعرف على المزيد عن كونفريكتيكا و مهمتنا"
+
+#: templates/frontend/contact.html:233
+msgid "Read our privacy policy to understand how we protect your data."
+msgstr "اقرأ سياسة الخصوصية الخاصة بنا لفهم كيف نحمي بياناتك."
+
+#: templates/frontend/contact.html:239
+#: templates/frontend/includes/cookie_banner.html:19
+#: templates/frontend/includes/footer.html:60 templates/frontend/terms.html:45
+msgid "Terms of Service"
+msgstr "شروط الخدمة"
+
+#: templates/frontend/contact.html:241
+msgid "Review our terms of service and usage policies."
+msgstr "مراجعة شروط الخدمة وسياسات الاستخدام"
+
+#: templates/frontend/converter_generic.html:35
+#: templates/frontend/edit_pdf_generic.html:35
+#: templates/frontend/includes/footer.html:24
+msgid "Home"
+msgstr "المنزل"
+
+#: templates/frontend/converter_generic.html:85
+msgid "Select file to convert"
+msgstr "اختر الملف لتحويل"
+
+#: templates/frontend/converter_generic.html:183
+msgid ""
+"Click the button above to select your file, or drag and drop it into the "
+"zone below"
+msgstr ""
+"انقر على الزر أعلاه لتحديد الملف الخاص بك، أو جرّه و إسقطه في المنطقة أدناه"
+
+#: templates/frontend/converter_generic.html:184
+msgid "Click the convert button"
+msgstr "انقر فوق زر تحويل"
+
+#: templates/frontend/converter_generic.html:185
+#: templates/frontend/jpg_to_pdf.html:139
+msgid "Wait for the conversion to complete"
+msgstr "انتظر الانتهاء من التحويل"
+
+#: templates/frontend/converter_generic.html:186
+msgid "Download your converted file using the download button"
+msgstr "قم بتنزيل الملف المتحول باستخدام زر التنزيل"
+
+#: templates/frontend/converter_generic.html:202
+msgid "Converting your file..."
+msgstr "تحويل ملفك..."
+
+#: templates/frontend/converter_generic.html:204
+#: templates/frontend/jpg_to_pdf.html:158
+msgid "Conversion Complete!"
+msgstr "التحول كامل"
+
+#: templates/frontend/converter_generic.html:207
+#: templates/frontend/jpg_to_pdf.html:161
+msgid "Convert another file"
+msgstr "تحويل ملف آخر"
+
+#: templates/frontend/crop_pdf.html:103
+msgid "Select file to crop"
+msgstr "اختر الملف لتحصيل"
+
+#: templates/frontend/crop_pdf.html:165
+msgid "Crop Your PDF"
+msgstr "قص ملف PDF"
+
+#: templates/frontend/crop_pdf.html:167
+msgid ""
+"Click and drag on the PDF to select the crop area. The blue highlighted area"
+" will be kept. You can drag the selection box anywhere to move it, or use "
+"the corner/edge handles to resize it."
+msgstr ""
+"انقر واسحب داخل ملف PDF لاختيار منطقة القص. سيتم الاحتفاظ بالمنطقة المظللة "
+"باللون الأزرق. يمكنك سحب مربع التحديد إلى أي مكان لتحريكه أو استخدام مقابض "
+"الزوايا لتغيير حجمه."
+
+#: templates/frontend/crop_pdf.html:172
+msgid "Page:"
+msgstr "الصفحة:"
+
+#: templates/frontend/crop_pdf.html:189
+msgid "Crop area is active!"
+msgstr "منطقة المحاصيل نشطة!"
+
+#: templates/frontend/crop_pdf.html:192
+msgid ""
+"The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
+"ready."
+msgstr ""
+"سيتم الاحتفاظ بالمنطقة المبرزة باللون الأزرق. عدّلها وانقر \"قص PDF\" عندما "
+"تكون جاهزاً."
+
+#: templates/frontend/crop_pdf.html:200
+msgid "Apply crop to pages"
+msgstr "تطبيق المحاصيل على الصفحات"
+
+#: templates/frontend/crop_pdf.html:273
+msgid "Tips:"
+msgstr "النصائح:"
+
+#: templates/frontend/crop_pdf.html:275
+msgid "A crop area covering most of the page is selected by default"
+msgstr "يتم اختيار مساحة المحاصيل التي تغطي معظم الصفحة حسب الاختيار"
+
+#: templates/frontend/crop_pdf.html:276
+msgid ""
+"A crop area covering most of the page is selected by default - adjust it as "
+"needed"
+msgstr ""
+"يتم اختيار مساحة المحاصيل التي تغطي معظم الصفحة حسب الاختيار - تعديلها حسب "
+"الحاجة"
+
+#: templates/frontend/crop_pdf.html:277
+msgid "Click and drag inside the blue box to move it anywhere on the page"
+msgstr "انقر وانسحب داخل الصندوق الأزرق لنحركه إلى أي مكان على الصفحة"
+
+#: templates/frontend/crop_pdf.html:278
+msgid "Drag the corner or edge handles to resize the crop area"
+msgstr "سحب الزاوية أو الاحواف الحافة لتغيير حجم مساحة المحاصيل"
+
+#: templates/frontend/crop_pdf.html:279
+msgid "Click and drag outside the box to create a new selection"
+msgstr "انقر واسحب خارج المربع لإنشاء تحديد جديد."
+
+#: templates/frontend/crop_pdf.html:280
+msgid "The cursor changes to 'move' when hovering over the selection box"
+msgstr "يتغير الوسيط إلى \"تحرك\" عند التدفق فوق مربع الاختيار"
+
+#: templates/frontend/crop_pdf.html:281
+msgid "When 'all' is selected, crop applies to all pages"
+msgstr "عندما يتم اختيار \"كل\" ، يتم تطبيق المحاصيل على جميع الصفحات"
+
+#: templates/frontend/crop_pdf.html:327
+msgid ""
+"The PDF will be displayed - click and drag to select the area you want to "
+"keep"
+msgstr "سيظهر ملف PDF؛ انقر واسحب لتحديد الجزء الذي تريد الاحتفاظ به."
+
+#: templates/frontend/crop_pdf.html:328
+msgid "Resize the selection by dragging the corners or edges"
+msgstr "إعادة تحديد حجم الاختيار عن طريق سحب الزوايا أو الحواف"
+
+#: templates/frontend/crop_pdf.html:329
+msgid "Choose which pages to apply the crop to"
+msgstr "اختر الصفحات التي تطبق المحصول على"
+
+#: templates/frontend/crop_pdf.html:330
+msgid "Click the crop button to process your file"
+msgstr "انقر على زر الحصاد لمعالجة ملفك"
+
+#: templates/frontend/crop_pdf.html:331
+msgid "Download your cropped PDF file"
+msgstr "نزّل ملف PDF بعد القص."
+
+#: templates/frontend/edit_pdf_generic.html:85
+msgid "Select file to edit"
+msgstr "حدد الملف الذي تريد تحريره"
+
+#: templates/frontend/edit_pdf_generic.html:176
+msgid "Select your PDF file using the button above or drag and drop it"
+msgstr "اختر ملف PDF باستخدام الزر أعلاه أو اسحبه وأفلته."
+
+#: templates/frontend/edit_pdf_generic.html:177
+msgid "Configure the editing options below"
+msgstr "قم بتهيئة خيارات التحرير أدناه"
+
+#: templates/frontend/edit_pdf_generic.html:178
+msgid "Click the edit button to process your file"
+msgstr "انقر على زر التحرير لمعالجة ملفك"
+
+#: templates/frontend/edit_pdf_generic.html:179
+msgid "Download your edited file using the download button"
+msgstr "قم بتنزيل الملف المحرر باستخدام زر التنزيل"
+
+#: templates/frontend/extract_pages.html:6
+msgid "Extract Pages Settings"
+msgstr "استخراج إعدادات الصفحات"
+
+#: templates/frontend/extract_pages.html:12
+#: templates/frontend/split_pdf.html:49
+msgid "Pages to Extract"
+msgstr "الصفحات التي يجب استخراجها"
+
+#: templates/frontend/extract_pages.html:22
+msgid ""
+"Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges"
+" (1-5)"
+msgstr ""
+"إدخل أرقام الصفحات لاستخراجها. استخدم أرقام منفصلة عن العنصر (1,3,5) أو "
+"النطاقات (1-5)"
+
+#: templates/frontend/includes/cookie_banner.html:10
+#: templates/frontend/includes/cookie_banner.html:42
+msgid "Cookie Preferences"
+msgstr "تفضيلات الكوكيز"
+
+#: templates/frontend/includes/cookie_banner.html:13
+msgid ""
+"We use cookies and similar technologies to enhance your browsing experience,"
+" security, analytics, and to provide personalized content."
+msgstr ""
+"نستخدم الكوكيز والتكنولوجيات المماثلة لتعزيز تجربة التصفح الخاصة بك والأمن "
+"والتحليلات وتوفير المحتوى المخصص."
+
+#: templates/frontend/includes/cookie_banner.html:16
+msgid ""
+"You can accept all cookies, reject non-essential cookies, or customize your "
+"preferences. Essential cookies are required for the website to function and "
+"cannot be disabled."
+msgstr "يمكنك قبول جميع ملفات تعريف الارتباط غير الضرورية أو تخصيص تفضيلاتك."
+
+#: templates/frontend/includes/cookie_banner.html:18
+msgid "and"
+msgstr "و"
+
+#: templates/frontend/includes/cookie_banner.html:27
+msgid "Reject All"
+msgstr "رفض كل شيء"
+
+#: templates/frontend/includes/cookie_banner.html:31
+msgid "Customize"
+msgstr "تخصيص"
+
+#: templates/frontend/includes/cookie_banner.html:35
+msgid "Accept All"
+msgstr "اقبلوا كل شيء"
+
+#: templates/frontend/includes/cookie_banner.html:44
+msgid ""
+"Manage your cookie preferences. You can enable or disable different types of"
+" cookies below. Essential cookies cannot be disabled as they are necessary "
+"for the website to function."
+msgstr ""
+"إدارة تفضيلات الكوكيز الخاصة بك. يمكنك تمكين أو تعطيل أنواع مختلفة من "
+"الكوكيز أدناه. لا يمكن تعطيل الكوكيز الأساسية لأنها ضرورية للعمل على الموقع."
+
+#: templates/frontend/includes/cookie_banner.html:51
+msgid "Essential Cookies"
+msgstr "الكوكيز الأساسية"
+
+#: templates/frontend/includes/cookie_banner.html:53
+msgid ""
+"Required for the website to function properly. These cookies enable core "
+"functionality such as security, network management, and accessibility. They "
+"cannot be disabled."
+msgstr ""
+"مطلوبة للعمل بشكل صحيح على الموقع. هذه الكوكيز تمكن من وظائف أساسية مثل "
+"الأمن وإدارة الشبكة والوصول. لا يمكن تعطيلها."
+
+#: templates/frontend/includes/cookie_banner.html:56
+msgid "Examples: Session management, CSRF protection, language preferences"
+msgstr "أمثلة: إدارة الجلسات، حماية CSRF، تفضيلات اللغة."
+
+#: templates/frontend/includes/cookie_banner.html:60
+msgid "Always Active"
+msgstr "دائماً نشط"
+
+#: templates/frontend/includes/cookie_banner.html:67
+msgid "Analytics Cookies"
+msgstr "ملفات تعريف الارتباط"
+
+#: templates/frontend/includes/cookie_banner.html:69
+msgid ""
+"Help us understand how visitors interact with our website by collecting and "
+"reporting information anonymously."
+msgstr ""
+"ساعدنا على فهم كيفية تفاعل الزوار مع موقعنا الإلكتروني عن طريق جمع المعلومات"
+" وتقديمها بشكل مجهول."
+
+#: templates/frontend/includes/cookie_banner.html:72
+msgid "Examples: Page views, time spent on site, error tracking"
+msgstr "أمثلة: مشاهدات الصفحة، الوقت المخصص في الموقع، تتبع الأخطاء"
+
+#: templates/frontend/includes/cookie_banner.html:86
+msgid "Marketing Cookies"
+msgstr "ملفات تعريف الارتباط التسويقية"
+
+#: templates/frontend/includes/cookie_banner.html:88
+msgid ""
+"Used to deliver personalized advertisements and track campaign "
+"effectiveness. These cookies may be set by advertising partners."
+msgstr ""
+"يستخدم لتقديم إعلانات مخصصة وتتبع فعالية الحملة. قد يضع شركاء الإعلان هذه "
+"الكوكيز."
+
+#: templates/frontend/includes/cookie_banner.html:91
+msgid "Examples: Ad targeting, conversion tracking, remarketing"
+msgstr "أمثلة: توجيه الإعلانات، تتبع التحويلات، إعادة التسويق"
+
+#: templates/frontend/includes/cookie_banner.html:105
+msgid ""
+"Your preferences will be saved and remembered for future visits. You can "
+"change these settings at any time."
+msgstr ""
+"سيتم حفظ وتذكر إفضالاتك للزيارات المستقبلية. يمكنك تغيير هذه الإعدادات في أي"
+" وقت."
+
+#: templates/frontend/includes/cookie_banner.html:110
+msgid "Save Preferences"
+msgstr "حفظ التفضيلات"
+
+#: templates/frontend/includes/cookie_banner.html:114
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: templates/frontend/includes/footer.html:15
+#: templates/frontend/includes/header.html:579
+#: templates/frontend/includes/header.html:764
+msgid "About"
+msgstr "حول"
+
+#: templates/frontend/includes/footer.html:75
+msgid "Tools"
+msgstr "الأدوات"
+
+#: templates/frontend/includes/footer.html:84
+#: templates/frontend/includes/footer.html:191
+#: templates/frontend/includes/header.html:35
+#: templates/frontend/includes/header.html:639
+msgid "All Tools"
+msgstr "جميع الأدوات"
+
+#: templates/frontend/includes/footer.html:134
+#: templates/frontend/includes/header.html:583
+#: templates/frontend/includes/header.html:768
+msgid "Contact"
+msgstr "الاتصال"
+
+#: templates/frontend/includes/footer.html:143
+msgid "Contact Form"
+msgstr "نموذج الاتصال"
+
+#: templates/frontend/includes/footer.html:166
+#: templates/frontend/includes/header.html:779
+msgid "Language"
+msgstr "اللغة"
+
+#: templates/frontend/includes/footer.html:186
+msgid "Resources"
+msgstr "الموارد"
+
+#: templates/frontend/includes/footer.html:207
+msgid "All rights reserved."
+msgstr "جميع الحقوق محمية"
+
+#: templates/frontend/includes/footer.html:210
+msgid "Free PDF tools for everyone"
+msgstr "أدوات PDF مجانية للجميع"
+
+#: templates/frontend/includes/footer.html:224
+msgid "Terms"
+msgstr "الشروط"
+
+#: templates/frontend/includes/header.html:12
+msgid "Convertica - Home"
+msgstr "\"كوربيتيكا\" - المنزل"
+
+#: templates/frontend/includes/header.html:20
+msgid "Convertica"
+msgstr "(كوفيرتيكا)"
+
+#: templates/frontend/includes/header.html:30
+msgid "All PDF tools"
+msgstr "جميع أدوات PDF"
+
+#: templates/frontend/includes/header.html:285
+msgid "Main navigation"
+msgstr "الملاحة الرئيسية"
+
+#: templates/frontend/includes/header.html:293
+msgid "Convert PDF tools"
+msgstr "أدوات تحويل PDF"
+
+#: templates/frontend/includes/header.html:309
+msgid "Convert from PDF"
+msgstr "التحويل من PDF"
+
+#: templates/frontend/includes/header.html:352
+msgid "Convert to PDF"
+msgstr "التحويل إلى PDF"
+
+#: templates/frontend/includes/header.html:389
+msgid "Edit PDF tools"
+msgstr "أدوات تحرير PDF"
+
+#: templates/frontend/includes/header.html:405
+msgid "Basic Editing"
+msgstr "التحرير الأساسي"
+
+#: templates/frontend/includes/header.html:436
+msgid "Enhancements"
+msgstr "التحسينات"
+
+#: templates/frontend/includes/header.html:473
+msgid "Organize PDF tools"
+msgstr "أدوات تنظيم PDF"
+
+#: templates/frontend/includes/header.html:489
+msgid "Organization"
+msgstr "التنظيم"
+
+#: templates/frontend/includes/header.html:544
+msgid "Page Management"
+msgstr "إدارة الصفحة"
+
+#: templates/frontend/includes/header.html:614
+msgid "Toggle menu"
+msgstr "تحويل القائمة"
+
+#: templates/frontend/includes/header.html:629
+msgid "Mobile navigation"
+msgstr "الملاحة المحمولة"
+
+#: templates/frontend/index.html:4 templates/frontend/index.html:5
+msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
+msgstr "Convertica – أدوات PDF عبر الإنترنت للتحويل والتحرير والتنظيم"
+
+#: templates/frontend/index.html:6 templates/frontend/index.html:20
+msgid ""
+"Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
+"rotate, add watermark, and more. Fast, secure, no registration required."
+msgstr ""
+"أدوات PDF مجانية عبر الإنترنت: حوّل PDF إلى Word، وWord إلى PDF، وادمج، "
+"وقسّم، ودوّر، وأضف علامة مائية، وأكثر. كل ذلك بسرعة وأمان ومن دون تسجيل."
+
+#: templates/frontend/index.html:7
+msgid ""
+"PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, "
+"PDF editor, PDF tools, online PDF converter, free PDF tools"
+msgstr ""
+"محول PDF، PDF إلى Word، Word إلى PDF، دمج PDF، تقسيم PDF، تدوير PDF، محرر "
+"PDF، أدوات PDF، محول PDF عبر الإنترنت، أدوات PDF مجانية."
+
+#: templates/frontend/index.html:8 templates/frontend/index.html:10
+#: utils_site/src/frontend/views.py:27
+msgid "Convertica – Online PDF ↔ Word Converter"
+msgstr "Convertica – محول PDF ↔ Word عبر الإنترنت"
+
+#: templates/frontend/index.html:9 templates/frontend/index.html:11
+#: utils_site/src/frontend/views.py:28
+msgid ""
+"Fast, simple and secure online PDF to Word and Word to PDF converter. "
+"Convert documents instantly, no registration required."
+msgstr ""
+"محول PDF إلى Word وWord إلى PDF سريع وبسيط وآمن عبر الإنترنت. حوّل مستنداتك "
+"فوراً دون الحاجة إلى تسجيل."
+
+#: templates/frontend/index.html:44
+msgid "All-in-One PDF Tools"
+msgstr "أدوات PDF كل في واحد"
+
+#: templates/frontend/index.html:47
+msgid ""
+"Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No"
+" installations required."
+msgstr ""
+"حوّل ملفات PDF وعدّلها وادمجها وقسّمها ونظّمها بسرعة وسهولة وأمان ومن دون "
+"تثبيت."
+
+#: templates/frontend/index.html:93
+msgid "Most requested PDF tools at your fingertips"
+msgstr "أدوات PDF الأكثر طلباً في متناول يديك"
+
+#: templates/frontend/index.html:116 templates/frontend/index.html:141
+#: templates/frontend/index.html:165 templates/frontend/index.html:190
+#: templates/frontend/index.html:214 templates/frontend/index.html:256
+#: templates/frontend/index.html:280 templates/frontend/index.html:304
+#: templates/frontend/index.html:328 templates/frontend/index.html:353
+#: templates/frontend/index.html:377
+msgid "Try it"
+msgstr "جربها"
+
+#: templates/frontend/index.html:233
+msgid "Manage and organize your PDF documents with powerful tools"
+msgstr "أدر مستندات PDF ونظمها بأدوات قوية."
+
+#: templates/frontend/index.html:397
+msgid "Ready to start?"
+msgstr "مستعدين للبدء؟"
+
+#: templates/frontend/index.html:400
+msgid "Convert your files in seconds, for free."
+msgstr "تحويل ملفاتك في ثوان، مجانا."
+
+#: templates/frontend/index.html:415
+msgid "Latest Guides & Tips"
+msgstr "أحدث الدليلات والنصائح"
+
+#: templates/frontend/index.html:418
+msgid "Learn how to get the most out of PDF tools with our expert guides"
+msgstr "تعلّم كيفية الاستفادة القصوى من أدوات PDF مع أدلتنا المتخصصة."
+
+#: templates/frontend/index.html:448
+msgid "Read more"
+msgstr "اقرأ المزيد"
+
+#: templates/frontend/index.html:462
+msgid "View All Articles"
+msgstr "انظر جميع المقال"
+
+#: templates/frontend/jpg_to_pdf.html:26
+msgid "You can upload multiple images - they will be combined into one PDF"
+msgstr "يمكنك رفع صور متعددة وستُدمج في ملف PDF واحد."
+
+#: templates/frontend/jpg_to_pdf.html:52
+msgid "Select image(s)"
+msgstr "اختر صورة أو عدة صور"
+
+#: templates/frontend/jpg_to_pdf.html:59
+msgid "Selected Images"
+msgstr "صور مختارة"
+
+#: templates/frontend/jpg_to_pdf.html:67
+msgid "+ Add more images"
+msgstr "+ أضف المزيد من الصور"
+
+#: templates/frontend/jpg_to_pdf.html:90
+msgid "Drag and drop your images here"
+msgstr "سحب و إسقاط صورك هنا"
+
+#: templates/frontend/jpg_to_pdf.html:96
+msgid "files"
+msgstr "الملفات"
+
+#: templates/frontend/jpg_to_pdf.html:96
+msgid "multiple files supported"
+msgstr "ملفات متعددة مدعومة"
+
+#: templates/frontend/jpg_to_pdf.html:135
+msgid ""
+"Click the button above to select one or more images, or drag and drop them "
+"into the zone below"
+msgstr ""
+"انقر على الزر أعلاه لتحديد صورة واحدة أو أكثر، أو جرّها وإسقطتها في المنطقة "
+"أدناه"
+
+#: templates/frontend/jpg_to_pdf.html:136
+msgid ""
+"You can add more images by clicking 'Add more images' or by selecting files "
+"again"
+msgstr ""
+"يمكنك إضافة المزيد من الصور عن طريق النقر على \"إضافة المزيد من الصور\" أو "
+"عن طريق اختيار الملفات مرة أخرى"
+
+#: templates/frontend/jpg_to_pdf.html:137
+msgid "Remove unwanted images by clicking the X button"
+msgstr "احذف الصور غير المرغوب فيها بالنقر على زر ×."
+
+#: templates/frontend/jpg_to_pdf.html:138
+msgid "Click the convert button to combine all images into one PDF"
+msgstr "انقر زر التحويل لدمج جميع الصور في ملف PDF واحد."
+
+#: templates/frontend/jpg_to_pdf.html:140
+msgid "Download your converted PDF file"
+msgstr "نزّل ملف PDF بعد التحويل."
+
+#: templates/frontend/jpg_to_pdf.html:156
+msgid "Converting your images..."
+msgstr "تحويل صورك..."
+
+#: templates/frontend/jpg_to_pdf.html:159
+msgid "Your PDF is ready to download"
+msgstr "ملف PDF جاهز للتنزيل."
+
+#: templates/frontend/jpg_to_pdf.html:160
+msgid "Download PDF"
+msgstr "تنزيل PDF"
+
+#: templates/frontend/merge_pdf.html:27
+msgid "Merge Settings"
+msgstr "إعدادات الاندماج"
+
+#: templates/frontend/merge_pdf.html:33
+msgid "Select PDF Files"
+msgstr "اختر ملفات PDF"
+
+#: templates/frontend/merge_pdf.html:42
+msgid "Select PDF files"
+msgstr "اختر ملفات PDF"
+
+#: templates/frontend/merge_pdf.html:55
+msgid "+ Add more files"
+msgstr "+ إضافة المزيد من الملفات"
+
+#: templates/frontend/merge_pdf.html:59
+msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
+msgstr "اختر من ملفين إلى عشرة ملفات PDF لدمجها، ويمكنك إعادة ترتيبها بالسحب."
+
+#: templates/frontend/merge_pdf.html:67
+msgid "Selected Files"
+msgstr "الملفات المختارة"
+
+#: templates/frontend/merge_pdf.html:79
+msgid "Preview & Reorder Pages"
+msgstr "المشاهدة المسبقة وإعادة ترتيب الصفحات"
+
+#: templates/frontend/merge_pdf.html:81
+msgid ""
+"Drag and drop to reorder files. The order shown here will be the merge "
+"order."
+msgstr ""
+"سحب و إسحب لإعادة ترتيب الملفات. النظام الذي يظهر هنا سيكون النظام المدمج."
+
+#: templates/frontend/organize_pdf.html:11
+msgid "Organization Settings"
+msgstr "إعدادات المنظمة"
+
+#: templates/frontend/organize_pdf.html:16
+msgid "Operation"
+msgstr "العملية"
+
+#: templates/frontend/organize_pdf.html:20
+#: templates/frontend/organize_pdf.html:29
+msgid "Reorder Pages"
+msgstr "إعادة ترتيب الصفحات"
+
+#: templates/frontend/organize_pdf.html:21
+msgid "Sort Pages"
+msgstr "تصنيف الصفحات"
+
+#: templates/frontend/organize_pdf.html:31
+msgid ""
+"Drag and drop pages to reorder them. The number on each page shows the new "
+"order."
+msgstr ""
+"سحب و إسحب الصفحات لإعادة ترتيبها. الرقم على كل صفحة يظهر الترتيب الجديد."
+
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:434
+msgid "Privacy Policy - Convertica"
+msgstr "سياسة الخصوصية - Convertica"
+
+#: templates/frontend/privacy.html:48 templates/frontend/terms.html:48
+msgid "Last updated: January 2025"
+msgstr "آخر تحديث: يناير 2025"
+
+#: templates/frontend/privacy.html:61
+msgid ""
+"At Convertica, we take your privacy seriously. This Privacy Policy explains "
+"how we collect, use, disclose, and safeguard your information when you use "
+"our online PDF tools and services."
+msgstr ""
+"في Convertica نهتم بخصوصيتك. تشرح سياسة الخصوصية هذه كيفية جمع معلوماتك "
+"واستخدامها والإفصاح عنها وحمايتها عند استخدام أدوات وخدمات PDF الخاصة بنا "
+"عبر الإنترنت."
+
+#: templates/frontend/privacy.html:64
+msgid ""
+"By using Convertica, you agree to the collection and use of information in "
+"accordance with this policy."
+msgstr ""
+"باستخدام \" كونفريكتيكا \"، فإنك توافق على جمع المعلومات واستخدامها وفقاً "
+"لهذه السياسة."
+
+#: templates/frontend/privacy.html:70
+msgid "Information We Collect"
+msgstr "المعلومات التي نجمعها"
+
+#: templates/frontend/privacy.html:74
+msgid "Files You Upload"
+msgstr "الملفات التي تقوم بتحملها"
+
+#: templates/frontend/privacy.html:76
+msgid ""
+"When you use our PDF tools, you may upload files for processing. These files"
+" are temporarily stored on our servers only for the duration of the "
+"conversion or editing process. Files are automatically deleted immediately "
+"after processing is complete, typically within minutes."
+msgstr ""
+"عند استخدام أدوات PDF الخاصة بنا يمكنك رفع الملفات لمعالجتها. يتم تخزين هذه "
+"الملفات مؤقتاً على خوادمنا طوال مدة التحويل أو التحرير ثم تُحذف تلقائياً بعد"
+" اكتمال العملية عادةً خلال دقائق."
+
+#: templates/frontend/privacy.html:81
+msgid "Usage Information"
+msgstr "معلومات الاستخدام"
+
+#: templates/frontend/privacy.html:83
+msgid ""
+"We may collect information about how you access and use our services, "
+"including:"
+msgstr ""
+"قد نقوم بجمع المعلومات حول كيفية وصولك إلى خدماتنا واستخدامك، بما في ذلك:"
+
+#: templates/frontend/privacy.html:86
+msgid "IP address and browser type"
+msgstr "عنوان IP ونوع المتصفح"
+
+#: templates/frontend/privacy.html:87
+msgid "Device information and operating system"
+msgstr "معلومات الجهاز ونظام التشغيل"
+
+#: templates/frontend/privacy.html:88
+msgid "Pages visited and time spent on pages"
+msgstr "الصفحات التي زُرت و الوقت الذي قضيته على الصفحات"
+
+#: templates/frontend/privacy.html:89
+msgid "Referring website addresses"
+msgstr "عناوين المواقع الإشارية"
+
+#: templates/frontend/privacy.html:97
+msgid "How We Use Your Information"
+msgstr "كيف نستخدم معلوماتك"
+
+#: templates/frontend/privacy.html:101
+msgid "We use the information we collect to:"
+msgstr "نستخدم المعلومات التي نجمعها ل:"
+
+#: templates/frontend/privacy.html:104
+msgid "Process and convert your files as requested"
+msgstr "معالجة وتحويل الملفات الخاصة بك كما طلبت"
+
+#: templates/frontend/privacy.html:105
+msgid "Improve and optimize our services"
+msgstr "تحسين وتحسين خدماتنا"
+
+#: templates/frontend/privacy.html:106
+msgid "Monitor and analyze usage patterns"
+msgstr "مراقبة وتحليل أنماط الاستخدام"
+
+#: templates/frontend/privacy.html:107
+msgid "Ensure the security and functionality of our platform"
+msgstr "ضمان أمن و وظائف منصتنا"
+
+#: templates/frontend/privacy.html:108
+msgid "Respond to your inquiries and provide customer support"
+msgstr "استجابة لطلباتك وتقديم دعم للعملاء"
+
+#: templates/frontend/privacy.html:115
+msgid "Data Security"
+msgstr "أمن البيانات"
+
+#: templates/frontend/privacy.html:119
+msgid ""
+"We implement appropriate technical and organizational security measures to "
+"protect your information:"
+msgstr "نطبق تدابير أمن تقنية وتنظيمية مناسبة لحماية معلوماتك:"
+
+#: templates/frontend/privacy.html:122
+msgid "All file transfers are encrypted using SSL/TLS protocols"
+msgstr "تُشفَّر جميع عمليات نقل الملفات باستخدام بروتوكولات SSL/TLS."
+
+#: templates/frontend/privacy.html:123
+msgid "Files are stored temporarily in secure, isolated environments"
+msgstr "يتم تخزين الملفات مؤقتاً في بيئات آمنة ومعزولة"
+
+#: templates/frontend/privacy.html:124
+msgid "Automatic deletion of files after processing completion"
+msgstr "الحذف الآلي للملفات بعد الانتهاء من المعالجة"
+
+#: templates/frontend/privacy.html:125
+msgid "Regular security audits and updates"
+msgstr "عمليات تدقيق الأمن المنتظمة وتحديثاتها"
+
+#: templates/frontend/privacy.html:126
+msgid "Access controls and monitoring systems"
+msgstr "نظم مراقبة الوصول"
+
+#: templates/frontend/privacy.html:129
+#, python-format
+msgid ""
+"However, no method of transmission over the Internet or electronic storage "
+"is 100%% secure. While we strive to use commercially acceptable means to "
+"protect your information, we cannot guarantee absolute security."
+msgstr ""
+"ومع ذلك، لا يوجد طريقة لنقلك عبر الإنترنت أو التخزين الإلكتروني آمنة بنسبة "
+"100٪. في حين أننا نسعى جاهدين لاستخدام وسائل مقبولة تجاريا لحماية معلوماتك، "
+"لا يمكننا ضمان الأمن المطلق."
+
+#: templates/frontend/privacy.html:136
+msgid "Data Retention"
+msgstr "احتفاظ البيانات"
+
+#: templates/frontend/privacy.html:139
+msgid ""
+"We retain your uploaded files only for the time necessary to complete the "
+"requested operation. Files are automatically deleted:"
+msgstr ""
+"نحتفظ بملفاتك المتحمّلة فقط لفترة اللازمة لإكمال العملية المطلوبة. يتم حذف "
+"الملفات تلقائيًا:"
+
+#: templates/frontend/privacy.html:142
+msgid "Immediately after successful processing"
+msgstr "مباشرة بعد نجاح المعالجة"
+
+#: templates/frontend/privacy.html:143
+msgid "Within 1 hour if processing fails"
+msgstr "في غضون ساعة واحدة إذا فشلت المعالجة"
+
+#: templates/frontend/privacy.html:144
+msgid "We do not store your files permanently"
+msgstr "نحن لا نحتفظ بملفاتك بشكل دائم"
+
+#: templates/frontend/privacy.html:145
+msgid "We do not create backups of your uploaded files"
+msgstr "نحن لا نخلق نسخ احتياطية من الملفات التي تم تحميلها"
+
+#: templates/frontend/privacy.html:151
+msgid "Third-Party Services"
+msgstr "خدمات الطرف الثالث"
+
+#: templates/frontend/privacy.html:154
+msgid ""
+"We may use third-party services to help us operate our platform and analyze "
+"how our services are used. These services may have access to limited "
+"information, but they are obligated not to disclose or use it for any other "
+"purpose."
+msgstr ""
+"قد نستخدم خدمات الطرف الثالث لمساعدتنا على تشغيل منصتنا وتحليل كيفية استخدام"
+" خدماتنا. قد يكون لهذه الخدمات إمكانية الوصول إلى معلومات محدودة، لكنها "
+"ملزمة بعدم الكشف عنها أو استخدامها لأي غرض آخر."
+
+#: templates/frontend/privacy.html:157
+msgid ""
+"We do not sell, trade, or rent your personal information to third parties."
+msgstr "نحن لا نبيع أو نتداول أو نكرم معلوماتك الشخصية إلى أطراف ثالثة."
+
+#: templates/frontend/privacy.html:163
+msgid "Cookies and Tracking"
+msgstr "الكوكيز والتبعات"
+
+#: templates/frontend/privacy.html:166
+msgid ""
+"We may use cookies and similar tracking technologies to track activity on "
+"our platform and hold certain information. Cookies are files with a small "
+"amount of data that may include an anonymous unique identifier."
+msgstr ""
+"قد نستخدم ملفات تعريف الارتباط وتقنيات تتبع مماثلة لتتبع النشاط على منصتنا "
+"وتحفظ معلومات معينة. الملفات تعريف الارتباط هي ملفات تحتوي على كمية صغيرة من"
+" البيانات التي قد تشمل معرفًا منفردًا مجهولًا."
+
+#: templates/frontend/privacy.html:169
+msgid ""
+"You can instruct your browser to refuse all cookies or to indicate when a "
+"cookie is being sent. However, if you do not accept cookies, you may not be "
+"able to use some portions of our service."
+msgstr ""
+"يمكنك توجيه متصفحك إلى رفض جميع ملفات تعريف الارتباط أو إشارة متى يتم إرسال "
+"ملفات تعريف الارتباط. ومع ذلك، إذا لم تقبل ملفات تعريف الارتباط، فقد لا تكون"
+" قادرًا على استخدام بعض أجزاء خدمةنا."
+
+#: templates/frontend/privacy.html:175
+msgid "Your Privacy Rights"
+msgstr "حقوقك في الخصوصية"
+
+#: templates/frontend/privacy.html:179
+msgid "You have the right to:"
+msgstr "لديك الحق في:"
+
+#: templates/frontend/privacy.html:182
+msgid "Access information we hold about you"
+msgstr "معلومات الوصول التي لدينا عنك"
+
+#: templates/frontend/privacy.html:183
+msgid "Request correction of inaccurate information"
+msgstr "طلب تصحيح المعلومات غير الدقيقة"
+
+#: templates/frontend/privacy.html:184
+msgid "Request deletion of your information"
+msgstr "طلب حذف معلوماتك"
+
+#: templates/frontend/privacy.html:185
+msgid "Object to processing of your information"
+msgstr "يعترض على معالجة معلوماتك"
+
+#: templates/frontend/privacy.html:186
+msgid "Request restriction of processing"
+msgstr "طلب تقييد المعالجة"
+
+#: templates/frontend/privacy.html:189
+msgid ""
+"To exercise these rights, please contact us using the information provided "
+"in the Contact section."
+msgstr ""
+"لممارسة هذه الحقوق، يرجى الاتصال بنا باستخدام المعلومات المقدمة في قسم "
+"الاتصال."
+
+#: templates/frontend/privacy.html:196
+msgid "Children's Privacy"
+msgstr "خصوصية الأطفال"
+
+#: templates/frontend/privacy.html:199
+msgid ""
+"Our services are not intended for children under the age of 13. We do not "
+"knowingly collect personal information from children under 13. If you are a "
+"parent or guardian and believe your child has provided us with personal "
+"information, please contact us."
+msgstr ""
+"خدماتنا ليست موجهة للأطفال دون سن 13 سنة. نحن لا نجمع معلومات شخصية عن "
+"الأطفال دون سن 13 سنة. إذا كنت والداً أو ولي أمور، وتعتقد أن طفلك قد قدم لنا"
+" معلومات شخصية، يرجى الاتصال بنا."
+
+#: templates/frontend/privacy.html:205
+msgid "Changes to This Privacy Policy"
+msgstr "تغييرات في سياسة الخصوصية هذه"
+
+#: templates/frontend/privacy.html:208
+msgid ""
+"We may update our Privacy Policy from time to time. We will notify you of "
+"any changes by posting the new Privacy Policy on this page and updating the "
+"\\"
+msgstr ""
+"قد نقوم بتحديث سياسة الخصوصية الخاصة بنا من وقت لآخر. سنقوم بإخطارك بأي "
+"تغييرات عن طريق نشر سياسة الخصوصية الجديدة على هذه الصفحة وتحديث"
+
+#: templates/frontend/privacy.html:214
+msgid "Questions About Privacy?"
+msgstr "أسئلة حول الخصوصية؟"
+
+#: templates/frontend/privacy.html:216
+msgid ""
+"If you have any questions about this Privacy Policy, please contact us."
+msgstr "إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا."
+
+#: templates/frontend/protect_pdf.html:6
+msgid "Password Protection Settings"
+msgstr "إعدادات حماية كلمة المرور"
+
+#: templates/frontend/protect_pdf.html:12
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: templates/frontend/protect_pdf.html:20
+msgid "Enter password to protect PDF"
+msgstr "أدخل كلمة المرور لحماية ملف PDF"
+
+#: templates/frontend/protect_pdf.html:23
+msgid ""
+"This password will be required to open the PDF. Make sure to remember it!"
+msgstr "ستحتاج إلى هذه الكلمة لفتح ملف PDF، لذا احرص على تذكرها!"
+
+#: templates/frontend/protect_pdf.html:30
+msgid "User Password"
+msgstr "كلمة المرور المستخدم"
+
+#: templates/frontend/protect_pdf.html:30
+#: templates/frontend/protect_pdf.html:46
+msgid "Optional"
+msgstr "اختياري"
+
+#: templates/frontend/protect_pdf.html:36
+msgid "Optional: Different user password"
+msgstr "اختياري: كلمة مرور مستخدم مختلفة"
+
+#: templates/frontend/protect_pdf.html:39
+msgid ""
+"Optional: Set a different password for users. If not provided, the main "
+"password will be used."
+msgstr ""
+"اختياري: حدِّد كلمة مرور مختلفة للمستخدمين، وإن لم تفعل فسيُستخدم نفس كلمة "
+"المرور الأساسية."
+
+#: templates/frontend/protect_pdf.html:46
+msgid "Owner Password"
+msgstr "كلمة المرور المالك"
+
+#: templates/frontend/protect_pdf.html:52
+msgid "Optional: Different owner password"
+msgstr "اختياري: كلمة مرور مختلفة للمالك"
+
+#: templates/frontend/protect_pdf.html:55
+msgid ""
+"Optional: Set a different password for owner. If not provided, the main "
+"password will be used."
+msgstr ""
+"اختياري: حدد كلمة مرور مختلفة للمالك. إذا لم يتم توفيرها، فسيتم استخدام كلمة"
+" المرور الرئيسية."
+
+#: templates/frontend/remove_pages.html:6
+msgid "Remove Pages Settings"
+msgstr "إزالة إعدادات الصفحات"
+
+#: templates/frontend/remove_pages.html:12
+msgid "Pages to Remove"
+msgstr "الصفحات التي يجب إزالتها"
+
+#: templates/frontend/rotate_pdf.html:6
+msgid "Rotation Settings"
+msgstr "إعدادات الدوران"
+
+#: templates/frontend/rotate_pdf.html:12
+msgid "Rotation Angle"
+msgstr "زاوية الدوران"
+
+#: templates/frontend/rotate_pdf.html:16
+msgid "(Clockwise)"
+msgstr "(في اتجاه الساعة)"
+
+#: templates/frontend/rotate_pdf.html:17
+msgid "(Upside down)"
+msgstr "(من أعلى إلى أسفل)"
+
+#: templates/frontend/rotate_pdf.html:18
+msgid "(Counter-clockwise)"
+msgstr "(عكس الاتجاه الساعة)"
+
+#: templates/frontend/rotate_pdf.html:25
+msgid "Pages to Rotate"
+msgstr "الصفحات لتحويل"
+
+#: templates/frontend/split_pdf.html:6
+msgid "Split Settings"
+msgstr "إعدادات التقسيم"
+
+#: templates/frontend/split_pdf.html:12
+msgid "Split Type"
+msgstr "نوع التقسيم"
+
+#: templates/frontend/split_pdf.html:16
+msgid "By Individual Pages"
+msgstr "من الصفحات الفردية"
+
+#: templates/frontend/split_pdf.html:17
+msgid "By Page Ranges"
+msgstr "حسب الصفحات"
+
+#: templates/frontend/split_pdf.html:18
+msgid "Every N Pages"
+msgstr "كل N صفحات"
+
+#: templates/frontend/split_pdf.html:25
+msgid "Pages"
+msgstr "الصفحات"
+
+#: templates/frontend/split_pdf.html:33
+msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
+msgstr "إدخال أرقام الصفحات مثل \"1,3,5\" أو تركها فارغة لجميع الصفحات"
+
+#: templates/frontend/split_pdf.html:51
+msgid ""
+"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all"
+" pages"
+msgstr ""
+"أدخل أرقام الصفحات المنفصلة عن طريق العنصر (مثل 1,3,5) أو اتركها فارغة "
+"لتقسيم جميع الصفحات"
+
+#: templates/frontend/split_pdf.html:53
+msgid "Page Ranges"
+msgstr "مجموعة الصفحات"
+
+#: templates/frontend/split_pdf.html:55
+msgid "Enter page ranges like 1-3,5-7 (required)"
+msgstr "إدخال نطاقات الصفحة مثل 1-3,5-7 (متطلب)"
+
+#: templates/frontend/split_pdf.html:58
+msgid "Pages per File"
+msgstr "الصفحات لكل ملف"
+
+#: templates/frontend/split_pdf.html:60
+msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
+msgstr "إدخال عدد الصفحات لكل ملف (مثل 5 لكل 5 صفحات)"
+
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:444
+msgid "Terms of Service - Convertica"
+msgstr "شروط الخدمة - Convertica"
+
+#: templates/frontend/terms.html:61
+msgid "Welcome to Convertica. These Terms of Service (\\"
+msgstr "مرحباً بكم في شركة \"كوفريتا\""
+
+#: templates/frontend/terms.html:64
+msgid ""
+"If you disagree with any part of these Terms, then you may not access or use"
+" our Services."
+msgstr ""
+"إذا كنت لا توافق على أي جزء من هذه الشروط، فلن تتمكن من الوصول إلى خدماتنا "
+"أو استخدامها."
+
+#: templates/frontend/terms.html:70
+msgid "Acceptance of Terms"
+msgstr "قبول الشروط"
+
+#: templates/frontend/terms.html:73
+msgid ""
+"By accessing or using Convertica's Services, you acknowledge that you have "
+"read, understood, and agree to be bound by these Terms and our Privacy "
+"Policy. If you do not agree to these Terms, you must not use our Services."
+msgstr ""
+"من خلال الوصول إلى خدمات كونفريكتيا أو استخدامها، فإنك تقر بأنك قرأت وفهمت "
+"وتوافق على أن تكون ملزمًا بهذه الشروط وسياسة الخصوصية الخاصة بنا. إذا لم "
+"توافق على هذه الشروط، فلن تستخدم خدماتنا."
+
+#: templates/frontend/terms.html:79
+msgid "Description of Services"
+msgstr "وصف الخدمات"
+
+#: templates/frontend/terms.html:82
+msgid ""
+"Convertica provides online PDF tools and services, including but not limited"
+" to:"
+msgstr ""
+"تقدم شركة كونفيرتيكا أدوات وخدمات PDF عبر الإنترنت، بما في ذلك، ولكن لا "
+"يقتصر على:"
+
+#: templates/frontend/terms.html:85
+msgid ""
+"PDF conversion (PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, PDF to "
+"Excel)"
+msgstr ""
+"تحويل PDF (من PDF إلى Word، ومن Word إلى PDF، ومن PDF إلى JPG، ومن JPG إلى "
+"PDF، ومن PDF إلى Excel)"
+
+#: templates/frontend/terms.html:86
+msgid "PDF editing (rotate, crop, add watermark, add page numbers)"
+msgstr "تحرير PDF (تدوير، قص، إضافة علامة مائية، إضافة أرقام صفحات)"
+
+#: templates/frontend/terms.html:87
+msgid ""
+"PDF organization (merge, split, extract, remove pages, organize, compress)"
+msgstr "تنظيم PDF (دمج، تقسيم، استخراج، حذف صفحات، ترتيب، ضغط)"
+
+#: templates/frontend/terms.html:88
+msgid "PDF security (protect with password, unlock PDF)"
+msgstr "أمان PDF (حماية بكلمة مرور، إلغاء الحماية)"
+
+#: templates/frontend/terms.html:91
+msgid ""
+"We reserve the right to modify, suspend, or discontinue any part of our "
+"Services at any time without prior notice."
+msgstr ""
+"نحتفظ بالحق في تعديل أو تعليق أو إيقاف أي جزء من خدماتنا في أي وقت دون إشعار"
+" مسبق."
+
+#: templates/frontend/terms.html:97
+msgid "User Responsibilities"
+msgstr "مسؤوليات المستخدم"
+
+#: templates/frontend/terms.html:101
+msgid ""
+"You agree to use our Services only for lawful purposes and in accordance "
+"with these Terms. You agree not to:"
+msgstr ""
+"توافق على استخدام خدماتنا لأغراض مشروعة فقط ووفقا لهذه الشروط. توافق على "
+"عدم:"
+
+#: templates/frontend/terms.html:104
+msgid "Upload files that contain viruses, malware, or other harmful code"
+msgstr "قم بتحميل ملفات تحتوي على فيروسات أو برامج ضارة أو كود ضار آخر"
+
+#: templates/frontend/terms.html:105
+msgid "Upload files that infringe on intellectual property rights"
+msgstr "تحميل الملفات التي تنتهك حقوق الملكية الفكرية"
+
+#: templates/frontend/terms.html:106
+msgid "Upload files that contain illegal, offensive, or inappropriate content"
+msgstr ""
+"قم بتحميل الملفات التي تحتوي على محتوى غير قانوني أو إهاني أو غير مناسب"
+
+#: templates/frontend/terms.html:107
+msgid "Attempt to gain unauthorized access to our systems or networks"
+msgstr "محاولة الحصول على الوصول غير المصرح به إلى أنظمتنا أو شبكاتنا"
+
+#: templates/frontend/terms.html:108
+msgid "Use automated systems or scripts to access our Services excessively"
+msgstr "استخدام الأنظمة الآلية أو النصوص للوصول إلى خدماتنا بشكل مفرط"
+
+#: templates/frontend/terms.html:109
+msgid ""
+"Interfere with or disrupt the Services or servers connected to the Services"
+msgstr "التداخل مع الخدمات أو الخوادم المتصلة بالخدمات أو تعطيلها"
+
+#: templates/frontend/terms.html:110
+msgid "Reverse engineer, decompile, or disassemble any part of our Services"
+msgstr "إعادة هندسة، إزالة أو تفكيك أي جزء من خدماتنا"
+
+#: templates/frontend/terms.html:117
+msgid "File Upload and Processing"
+msgstr "تحميل الملفات ومعالجةها"
+
+#: templates/frontend/terms.html:121
+msgid "File Size and Format Limitations"
+msgstr "قيود حجم الملفات ومصيغها"
+
+#: templates/frontend/terms.html:123
+msgid ""
+"You are responsible for ensuring that files you upload comply with our file "
+"size and format requirements. We reserve the right to reject or limit the "
+"processing of files that exceed our size limits or are in unsupported "
+"formats."
+msgstr ""
+"أنت مسؤول عن ضمان أن الملفات التي تقوم بتحميلها تتوافق مع متطلبات حجم "
+"الملفات ومصيغتها. نحتفظ بالحق في رفض أو تقييد معالجة الملفات التي تتجاوز "
+"حدود حجمنا أو تكون في شكل غير مدعوم."
+
+#: templates/frontend/terms.html:128
+msgid "File Storage and Deletion"
+msgstr "تخزين الملفات وحذفها"
+
+#: templates/frontend/terms.html:130
+msgid ""
+"Files uploaded to our Services are processed temporarily and automatically "
+"deleted after processing is complete. We do not store your files "
+"permanently. However, you are responsible for maintaining backups of your "
+"files."
+msgstr ""
+"يتم معالجة الملفات التي يتم تحميلها إلى خدماتنا مؤقتاً وتتم حذفها تلقائياً "
+"بعد اكتمال المعالجة. نحن لا نحتفظ بملفاتك بشكل دائم. ومع ذلك، فإنك مسؤول عن "
+"الحفاظ على نسخ احتياطية لملفاتك."
+
+#: templates/frontend/terms.html:135
+msgid "Processing Accuracy"
+msgstr "دقة المعالجة"
+
+#: templates/frontend/terms.html:137
+msgid ""
+"While we strive to provide accurate conversions and processing, we cannot "
+"guarantee that all files will be processed correctly or that the output will"
+" meet your specific requirements. You are responsible for verifying the "
+"accuracy of processed files."
+msgstr ""
+"في حين أننا نسعى جاهدين لتوفير تحويلات ومعالجة دقيقة، لا يمكننا ضمان أن جميع"
+" الملفات سيتم معالجتها بشكل صحيح أو أن الخروج سوف تلبي متطلباتك المحددة. أنت"
+" مسؤول عن التحقق من دقة الملفات المعالجة."
+
+#: templates/frontend/terms.html:145
+msgid "Intellectual Property"
+msgstr "الملكية الفكرية"
+
+#: templates/frontend/terms.html:149
+msgid "Our Intellectual Property"
+msgstr "ملكيتنا الفكرية"
+
+#: templates/frontend/terms.html:151
+msgid ""
+"All content, features, and functionality of our Services, including but not "
+"limited to text, graphics, logos, icons, images, and software, are the "
+"exclusive property of Convertica and are protected by international "
+"copyright, trademark, and other intellectual property laws."
+msgstr ""
+"جميع المحتوى والميزات والعملات الخاصة بخدماتنا، بما في ذلك ولكن لا يقتصر على"
+" النص والرسومات والشعارات والعلامات والعلامات والصور والبرمجيات، هي ملكية "
+"حصرية لشركة Convertica وحمايتها من قبل حقوق الطبع والنشر الدولية والعلامات "
+"التجارية وغيرها من قوانين الملكية الفكرية."
+
+#: templates/frontend/terms.html:156
+msgid "Your Content"
+msgstr "محتوياتك"
+
+#: templates/frontend/terms.html:158
+msgid ""
+"You retain all rights to files you upload. By uploading files, you grant us "
+"a limited, non-exclusive license to process your files solely for the "
+"purpose of providing the requested Services. We do not claim ownership of "
+"your files."
+msgstr ""
+"تحتفظ بكافة حقوق الملفات التي تقوم بتحملها. عن طريق تحميل الملفات، فإنك تعطي"
+" لنا ترخيصًا محدودًا غير حصريًا لمعالجة ملفاتك لغرض تقديم الخدمات المطلوبة "
+"فقط. نحن لا نطالب بالمالك في ملفاتك."
+
+#: templates/frontend/terms.html:166
+msgid "Disclaimer of Warranties"
+msgstr "التبرير عن الضمانات"
+
+#: templates/frontend/terms.html:169
+msgid "Our Services are provided \\"
+msgstr "خدماتنا تقدم"
+
+#: templates/frontend/terms.html:172
+msgid "Warranties of merchantability"
+msgstr "ضمانات التسويق"
+
+#: templates/frontend/terms.html:173
+msgid "Fitness for a particular purpose"
+msgstr "الملاءمة لأغراض معينة"
+
+#: templates/frontend/terms.html:174
+msgid "Non-infringement"
+msgstr "عدم الانتهاك"
+
+#: templates/frontend/terms.html:175
+msgid "Accuracy, reliability, or completeness of results"
+msgstr "دقة أو موثوقية أو اكتمال النتائج"
+
+#: templates/frontend/terms.html:178
+msgid ""
+"We do not warrant that our Services will be uninterrupted, secure, or error-"
+"free, or that defects will be corrected."
+msgstr ""
+"نحن لا نضمن أن خدماتنا ستكون بلا توقف أو آمنة أو خالية من الأخطاء، أو أن "
+"العيوب ستصلاح."
+
+#: templates/frontend/terms.html:184
+msgid "Limitation of Liability"
+msgstr "الحد من المسؤولية"
+
+#: templates/frontend/terms.html:187
+msgid ""
+"To the maximum extent permitted by law, Convertica and its affiliates, "
+"officers, employees, and agents shall not be liable for any indirect, "
+"incidental, special, consequential, or punitive damages, including but not "
+"limited to:"
+msgstr ""
+"في الحد الأقصى المسموح به القانون، لا تتحمل شركة كونفريكتيكا وشركاتها "
+"التابعة لها ومسؤوليها وموظفيها وموكليها أي أضرار غير مباشرة أو غير متعلقة أو"
+" خاصة أو نتيجة أو عقابية، بما في ذلك دون الحصر:"
+
+#: templates/frontend/terms.html:190
+msgid "Loss of data or files"
+msgstr "فقدان البيانات أو الملفات"
+
+#: templates/frontend/terms.html:191
+msgid "Loss of profits or business opportunities"
+msgstr "خسارة الأرباح أو فرص العمل"
+
+#: templates/frontend/terms.html:192
+msgid "Service interruptions or failures"
+msgstr "انقطاع الخدمة أو فشل"
+
+#: templates/frontend/terms.html:193
+msgid "Errors or inaccuracies in processed files"
+msgstr "الأخطاء أو عدم الدقة في الملفات المعالجة"
+
+#: templates/frontend/terms.html:196
+msgid ""
+"Our total liability for any claims arising from or related to the use of our"
+" Services shall not exceed the amount you paid to us (if any) in the twelve "
+"months preceding the claim, or $100, whichever is greater."
+msgstr ""
+"لا تتجاوز مسؤوليتنا الإجمالية عن أي مطالبات تنشأ عن أو تتعلق باستخدام "
+"خدماتنا المبلغ الذي دفعته لنا (إذا كان موجودًا) في الأشهر الثانية عشرة التي "
+"سبقت المطالبة، أو 100 دولار، أياً كان أكبر."
+
+#: templates/frontend/terms.html:202
+msgid "Indemnification"
+msgstr "التعويضات"
+
+#: templates/frontend/terms.html:205
+msgid ""
+"You agree to indemnify, defend, and hold harmless Convertica and its "
+"affiliates, officers, employees, and agents from and against any claims, "
+"damages, obligations, losses, liabilities, costs, or debt, and expenses "
+"(including attorney's fees) arising from:"
+msgstr ""
+"توافق على تعويض شركة كونفريكتيكا وشركاتها التابعة لها ومسؤوليها وموظفيها "
+"وموكليها، والدفاع عنها، والدفاع عنها، والحفاظ عليها دون ضرر من أي مطالبات، "
+"أو أضرار، أو التزامات، أو خسائر، أو مسؤوليات، أو تكاليف، أو ديون، والنفقات "
+"(بما في ذلك رسوم المحامي) الناتجة عن:"
+
+#: templates/frontend/terms.html:208
+msgid "Your use of our Services"
+msgstr "استخدامك لخدماتنا"
+
+#: templates/frontend/terms.html:209
+msgid "Your violation of these Terms"
+msgstr "انتهاك هذه الشروط"
+
+#: templates/frontend/terms.html:210
+msgid "Your violation of any third-party rights"
+msgstr "انتهاكك لأي حقوق طرف ثالث"
+
+#: templates/frontend/terms.html:211
+msgid "Files you upload or content you provide"
+msgstr "الملفات التي تقوم بتحميلها أو المحتوى الذي تقدمه"
+
+#: templates/frontend/terms.html:217
+msgid "Termination"
+msgstr "الإنهاء"
+
+#: templates/frontend/terms.html:220
+msgid ""
+"We reserve the right to terminate or suspend your access to our Services "
+"immediately, without prior notice or liability, for any reason, including if"
+" you breach these Terms. Upon termination, your right to use the Services "
+"will cease immediately."
+msgstr ""
+"نحتفظ بالحق في إنهاء أو تعليق وصولك إلى خدماتنا على الفور، دون إشعار أو "
+"مسؤولية مسبقة، لأي سبب، بما في ذلك إذا انتهكت هذه الشروط. عند إنهاء، ستنتهي "
+"حقك في استخدام الخدمات على الفور."
+
+#: templates/frontend/terms.html:226
+msgid "Changes to Terms"
+msgstr "تغييرات في الشروط"
+
+#: templates/frontend/terms.html:229
+msgid ""
+"We reserve the right to modify or replace these Terms at any time. If a "
+"revision is material, we will provide at least 30 days notice prior to any "
+"new terms taking effect. What constitutes a material change will be "
+"determined at our sole discretion."
+msgstr ""
+"نحتفظ بالحق في تعديل أو استبدال هذه الشروط في أي وقت. إذا كان التعديل "
+"ملموسًا، فسوف نقدم إشعارًا لمدة 30 يومًا على الأقل قبل حدوث أي شروط جديدة. "
+"ما يشكل تغييرًا ملموسًا سيتم تحديده بمقدورنا الحصري."
+
+#: templates/frontend/terms.html:232
+msgid ""
+"By continuing to access or use our Services after any revisions become "
+"effective, you agree to be bound by the revised terms."
+msgstr ""
+"من خلال الاستمرار في الوصول إلى خدماتنا أو استخدامها بعد أن تنفذ أي مراجعات،"
+" فإنك توافق على أن تكون ملزمًا بالشروط المراجعة."
+
+#: templates/frontend/terms.html:238
+msgid "Governing Law"
+msgstr "القانون الحاكم"
+
+#: templates/frontend/terms.html:241
+msgid ""
+"These Terms shall be governed by and construed in accordance with applicable"
+" laws, without regard to its conflict of law provisions. Any disputes "
+"arising from these Terms or your use of our Services shall be subject to the"
+" exclusive jurisdiction of the courts in the applicable jurisdiction."
+msgstr ""
+"هذه الشروط تحكمها وتفسرها وفقا للقوانين المعمول بها، بغض النظر عن أحكامها "
+"المتضاربة للقانون. أي نزاعات تنشأ عن هذه الشروط أو استخدامك لخدماتنا تخضع "
+"لولاية قضائية حصرية للمحاكم في الولاية القضائية المعمول بها."
+
+#: templates/frontend/terms.html:247
+msgid "Questions About These Terms?"
+msgstr "أسئلة حول هذه الشروط؟"
+
+#: templates/frontend/terms.html:249
+msgid ""
+"If you have any questions about these Terms of Service, please contact us."
+msgstr "إذا كان لديك أي أسئلة حول شروط الخدمة هذه، يرجى الاتصال بنا."
+
+#: templates/frontend/unlock_pdf.html:6
+msgid "Unlock PDF Settings"
+msgstr "إفشاء إعدادات PDF"
+
+#: templates/frontend/unlock_pdf.html:12
+msgid "PDF Password"
+msgstr "كلمة مرور PDF"
+
+#: templates/frontend/unlock_pdf.html:20
+msgid "Enter the password to unlock the PDF"
+msgstr "أدخل كلمة المرور لإلغاء حماية ملف PDF."
+
+#: templates/frontend/unlock_pdf.html:23
+msgid ""
+"Enter the password that was used to protect the PDF. The password will be "
+"removed from the output PDF."
+msgstr ""
+"أدخل كلمة المرور التي استخدمت لحماية PDF. سيتم إزالة كلمة المرور من الناتج "
+"PDF."
+
+#: utils_site/src/blog/admin.py:21 utils_site/src/blog/admin.py:95
+msgid "Basic Information"
+msgstr "المعلومات الأساسية"
+
+#: utils_site/src/blog/admin.py:24 utils_site/src/blog/admin.py:72
+#: utils_site/src/blog/admin.py:105 utils_site/src/blog/admin.py:154
+#: utils_site/src/blog/models.py:20 utils_site/src/blog/models.py:98
+msgid "Translations"
+msgstr "ترجمات"
+
+#: utils_site/src/blog/admin.py:26
+msgid "Add translations for other languages using the tabs above."
+msgstr "إضافة ترجمات لغات أخرى باستخدام علامات التبويب أعلاه."
+
+#: utils_site/src/blog/admin.py:28
+msgid "Metadata"
+msgstr "البيانات المعدنية"
+
+#: utils_site/src/blog/admin.py:39 utils_site/src/blog/admin.py:136
+msgid "No translations"
+msgstr "لا ترجمة"
+
+#: utils_site/src/blog/admin.py:48 utils_site/src/blog/admin.py:142
+msgid "No valid translations"
+msgstr "لا توجد ترجمات صالحة"
+
+#: utils_site/src/blog/admin.py:68
+msgid "Empty translations"
+msgstr "ترجمات فارغة"
+
+#: utils_site/src/blog/admin.py:77 utils_site/src/blog/models.py:145
+msgid "Articles"
+msgstr "المواد"
+
+#: utils_site/src/blog/admin.py:98
+msgid "English Content"
+msgstr "المحتوى الإنجليزي"
+
+#: utils_site/src/blog/admin.py:101
+msgid "SEO - English"
+msgstr "السيو - الإنجليزية"
+
+#: utils_site/src/blog/admin.py:107
+msgid ""
+"Add translations for other languages using the tabs above. Each language has"
+" its own tab with all necessary fields."
+msgstr ""
+"إضافة ترجمات لغات أخرى باستخدام علامات التبويب أعلاه. لكل لغة علامة التبويب "
+"الخاصة بها مع جميع الحقول اللازمة."
+
+#: utils_site/src/blog/admin.py:109 utils_site/src/blog/models.py:112
+msgid "AI Metadata"
+msgstr "بيانات المعلومات"
+
+#: utils_site/src/blog/admin.py:112
+msgid ""
+"Additional metadata for AI agents to better understand and index your "
+"content."
+msgstr ""
+"بيانات متادية إضافية لعاملات الذكاء الاصطناعي لفهم المحتوى الخاص بك وتصنيفه "
+"بشكل أفضل."
+
+#: utils_site/src/blog/admin.py:114
+msgid "Media"
+msgstr "وسائل الإعلام"
+
+#: utils_site/src/blog/admin.py:117
+msgid "Statistics"
+msgstr "الإحصاءات"
+
+#: utils_site/src/blog/admin.py:130
+msgid "No image"
+msgstr "لا صورة"
+
+#: utils_site/src/blog/admin.py:131
+msgid "Preview"
+msgstr "عرض مسبق"
+
+#: utils_site/src/blog/models.py:12
+msgid "Name (English)"
+msgstr "اسم (بالإنجليزية)"
+
+#: utils_site/src/blog/models.py:13 utils_site/src/blog/models.py:85
+msgid "Slug"
+msgstr "السلغ"
+
+#: utils_site/src/blog/models.py:21
+msgid ""
+"Translations for other languages. Format: {\"ru\": {\"name\": \"...\", "
+"\"description\": \"...\"}, ...}"
+msgstr "ترجمات للغات أخرى. البنية: {\"ru\": {\"name\": \"...\", \"description\": \"...\"}, ...}"
+
+#: utils_site/src/blog/models.py:25
+msgid "Description (English)"
+msgstr "وصف (بالإنجليزية)"
+
+#: utils_site/src/blog/models.py:31
+msgid "Article Category"
+msgstr "فئة المادة"
+
+#: utils_site/src/blog/models.py:32
+msgid "Article Categories"
+msgstr "فئات المادة"
+
+#: utils_site/src/blog/models.py:78
+msgid "Draft"
+msgstr "مسودة"
+
+#: utils_site/src/blog/models.py:79
+msgid "Published"
+msgstr "المنشورة"
+
+#: utils_site/src/blog/models.py:80
+msgid "Archived"
+msgstr "المتحفوظات"
+
+#: utils_site/src/blog/models.py:84
+msgid "Title (English)"
+msgstr "عنوان (بالإنجليزية)"
+
+#: utils_site/src/blog/models.py:86
+msgid "Content (English)"
+msgstr "المحتوى (بالإنجليزية)"
+
+#: utils_site/src/blog/models.py:87
+msgid "Excerpt (English)"
+msgstr "اقتباس (بالإنجليزية)"
+
+#: utils_site/src/blog/models.py:99
+msgid ""
+"Translations for other languages. Format: {\"ru\": {\"title\": \"...\", "
+"\"content\": \"...\", ...}, ...}"
+msgstr "ترجمات للغات أخرى. البنية: {\"ru\": {\"title\": \"...\", \"content\": \"...\", ...}, ...}"
+
+#: utils_site/src/blog/models.py:103
+msgid "Meta Title (English)"
+msgstr "عنوان الميكروفي"
+
+#: utils_site/src/blog/models.py:104
+msgid "Meta Description (English)"
+msgstr "وصف الميكروفي"
+
+#: utils_site/src/blog/models.py:105
+msgid "Meta Keywords (English)"
+msgstr "المفاتيح الرئيسية (بالإنجليزية)"
+
+#: utils_site/src/blog/models.py:113
+msgid ""
+"Additional metadata for AI agents: topics, entities, summary, related_terms,"
+" etc."
+msgstr ""
+"البيانات المعدنية الإضافية لعاملات الذكاء الاصطناعي: الموضوعات والكيانات "
+"والملخصات والشروط ذات الصلة، إلخ."
+
+#: utils_site/src/blog/models.py:123
+msgid "Category"
+msgstr "الفئة"
+
+#: utils_site/src/blog/models.py:131
+msgid "Featured Image"
+msgstr "صورة خاصة"
+
+#: utils_site/src/blog/models.py:135
+msgid "Status"
+msgstr "الحالة"
+
+#: utils_site/src/blog/models.py:136
+msgid "Published At"
+msgstr "نشرت في"
+
+#: utils_site/src/blog/models.py:137
+msgid "Created At"
+msgstr "تم إنشاؤه في"
+
+#: utils_site/src/blog/models.py:138
+msgid "Updated At"
+msgstr "تم تحديثها في"
+
+#: utils_site/src/blog/models.py:141
+msgid "View Count"
+msgstr "مشاهدة العدد"
+
+#: utils_site/src/blog/models.py:144
+msgid "Article"
+msgstr "المادة"
+
+#: utils_site/src/frontend/views.py:29
+msgid ""
+"PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
+"free converter, convert PDF, convert Word"
+msgstr ""
+"PDF إلى Word، Word إلى PDF، محول PDF، محول DOCX، محول عبر الإنترنت، محول "
+"مجاني، تحويل PDF، تحويل Word."
+
+#: utils_site/src/frontend/views.py:84
+msgid "Conversion failed. Please try again."
+msgstr "التحول فشل، رجاءً حاول مرة أخرى"
+
+#: utils_site/src/frontend/views.py:414
+msgid "All PDF Tools - Convertica"
+msgstr "جميع أدوات PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:415
+msgid ""
+"Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
+"PDF tools for all your document needs."
+msgstr ""
+"تصفح جميع أدوات PDF: التحويل والتحرير والتنظيم والحماية. أدوات مجانية عبر "
+"الإنترنت تلبي كل احتياجات مستنداتك."
+
+#: utils_site/src/frontend/views.py:416
+msgid ""
+"PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all PDF "
+"tools, online PDF tools, free PDF tools"
+msgstr ""
+"أدوات PDF، محول PDF، محرر PDF، منظم PDF، أمان PDF، جميع أدوات PDF، أدوات PDF"
+" عبر الإنترنت، أدوات PDF مجانية."
+
+#: utils_site/src/frontend/views.py:425
+msgid ""
+"Learn about Convertica - your trusted online PDF tools platform. We are "
+"committed to constant improvement and providing the best PDF conversion and "
+"editing experience."
+msgstr ""
+"تعرّف على Convertica، منصتك الموثوقة لأدوات PDF عبر الإنترنت. نحن ملتزمون "
+"بالتحسين المستمر وتقديم أفضل تجربة للتحويل والتحرير."
+
+#: utils_site/src/frontend/views.py:426
+msgid ""
+"about Convertica, PDF tools company, online PDF converter, PDF services, "
+"document conversion"
+msgstr ""
+"حول Convertica، شركة أدوات PDF، محول PDF عبر الإنترنت، خدمات PDF، تحويل "
+"المستندات."
+
+#: utils_site/src/frontend/views.py:435
+msgid ""
+"Read Convertica's Privacy Policy. Learn how we protect your data and handle "
+"your files. Your privacy is our priority."
+msgstr ""
+"اقرأ سياسة خصوصية كونفريكتيكا. تعلم كيف نحمي بياناتك وتعامل مع ملفاتك. "
+"خصوصيتك هي أولويةنا."
+
+#: utils_site/src/frontend/views.py:436
+msgid ""
+"privacy policy, data protection, file security, privacy, Convertica privacy"
+msgstr ""
+"سياسة الخصوصية، حماية البيانات، أمن الملفات، الخصوصية، خصوصية Convertica"
+
+#: utils_site/src/frontend/views.py:445
+msgid ""
+"Read Convertica's Terms of Service. Understand the terms and conditions for "
+"using our PDF tools and services."
+msgstr ""
+"اطّلع على شروط خدمة Convertica وافهم شروط استخدام أدوات وخدمات PDF الخاصة "
+"بنا."
+
+#: utils_site/src/frontend/views.py:446
+msgid ""
+"terms of service, terms and conditions, user agreement, Convertica terms"
+msgstr "شروط الخدمة، شروط وشروط، اتفاقية المستخدم، شروط كونفيرتيكا"
+
+#: utils_site/src/frontend/views.py:455
+msgid ""
+"Contact Convertica for support, questions, or feedback. We're here to help "
+"with all your PDF tool needs."
+msgstr ""
+"تواصل مع Convertica للحصول على الدعم أو طرح الأسئلة أو مشاركة الملاحظات؛ نحن"
+" هنا لمساعدتك في كل ما يتعلق بأدوات PDF."
+
+#: utils_site/src/frontend/views.py:456
+msgid "contact Convertica, support, customer service, help, feedback"
+msgstr "الاتصال مع شركة كونفريكتيا، الدعم، خدمة العملاء، المساعدة، التعليقات"
+
+#: utils_site/src/frontend/views.py:499
+msgid ""
+"Thank you! Your message has been sent successfully. We'll get back to you as"
+" soon as possible, usually within 24-48 hours."
+msgstr ""
+"شكراً لقد تم إرسال رسالتك بنجاح وسنرد إليك في أقرب وقت ممكن، عادةً خلال 24 "
+"إلى 48 ساعة"
+
+#: utils_site/src/frontend/views.py:581
+msgid ""
+"Sorry, there was an error sending your message. Please try again later or "
+"contact us directly at info@convertica.net"
+msgstr ""
+"عذراً، حدث خطأ أثناء إرسال رسالتك. الرجاء المحاولة لاحقاً أو التواصل معنا "
+"مباشرة عبر info@convertica.net."
+
+#: utils_site/src/frontend/views.py:589
+msgid "Please correct the errors in the form below."
+msgstr "يرجى تصحيح الأخطاء في النموذج أدناه."
+
+#: templates/frontend/contact.html:123
+msgid "Message Sent Successfully!"
+msgstr "رسالة تم إرسالها بنجاح"
+
+#: templates/frontend/contact.html:129
+msgid ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
+msgstr ""
+"لقد تلقينا رسالتك وسوف نعود إليك في أقرب وقت ممكن، عادةً خلال 24-48 ساعة."
+
+#: templates/frontend/contact.html:163
+msgid "Thank you! Your message has been sent successfully."
+msgstr "شكراً لك لقد تم إرسال رسالتك بنجاح"
+
+#: templates/frontend/contact.html:179
+msgid "Please correct the errors below:"
+msgstr "يرجى تصحيح الأخطاء أدناه:"
+
+#: templates/frontend/contact.html:369
+msgid "Sending..."
+msgstr "إرسال..."
