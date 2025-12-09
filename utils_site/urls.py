@@ -31,17 +31,20 @@ def robots_txt(request):
         # Remove any invalid directives (like Content-signal which is not a valid robots.txt directive)
         lines = content.split("\n")
         valid_lines = []
+        invalid_patterns = [
+            "Content-signal:",
+            "content-signal:",
+            "Content-signal",
+            "content-signal",
+            "X-Robots-Tag:",
+            "x-robots-tag:",
+            "X-Robots-Tag",
+            "x-robots-tag",
+        ]
         for line in lines:
-            # Skip lines with invalid directives
-            if any(
-                invalid in line
-                for invalid in [
-                    "Content-signal:",
-                    "content-signal:",
-                    "X-Robots-Tag:",
-                    "x-robots-tag:",
-                ]
-            ):
+            # Skip lines with invalid directives (case-insensitive check)
+            line_lower = line.lower()
+            if any(invalid.lower() in line_lower for invalid in invalid_patterns):
                 continue
             valid_lines.append(line)
         content = "\n".join(valid_lines)
