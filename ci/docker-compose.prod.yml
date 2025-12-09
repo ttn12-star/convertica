@@ -14,7 +14,7 @@ services:
       sh -c "python manage.py collectstatic --noinput --clear &&
              python manage.py compilemessages &&
              python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-4} --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread utils_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-4} --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload utils_site.wsgi:application"
     environment:
       - DEBUG=False
       # Disable redirect to HTTPS for internal healthchecks; enable later when SSL terminates at nginx
@@ -29,6 +29,12 @@ services:
         reservations:
           cpus: '${WEB_CPU_RESERVATION:-0.2}'
           memory: ${WEB_MEMORY_RESERVATION:-256M}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 60s  # Wait up to 60s for Django to start
     restart: always
     logging:
       driver: "json-file"
