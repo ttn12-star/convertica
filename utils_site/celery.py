@@ -38,6 +38,8 @@ try:
         result_backend=os.environ.get(
             "CELERY_RESULT_BACKEND", "redis://localhost:6379/0"
         ),
+        # Broker connection retry on startup (for Celery 6.0+ compatibility)
+        broker_connection_retry_on_startup=True,
         # Task settings
         task_serializer="json",
         accept_content=["json"],
