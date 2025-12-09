@@ -4,6 +4,9 @@
 {% block title %}{% trans "500 - Server Error" %} | {% trans "Convertica" %}{% endblock %}
 {% block meta_title %}{% trans "500 - Server Error" %}{% endblock %}
 {% block description %}{% trans "An internal server error occurred. We're working to fix it." %}{% endblock %}
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
 
 {% block content %}
   <div class="min-h-[60vh] flex items-center justify-center px-4 py-16">

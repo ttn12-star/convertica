@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import include, path
+from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.i18n import set_language
 
@@ -170,27 +171,51 @@ if settings.DEBUG:
     ]
 
 
-# Custom error handlers
+# Custom error handlers with aggressive caching
+# Cache error pages for 1 hour (3600 seconds) to reduce server load
+# Error pages are static and don't change often
+@cache_page(3600, key_prefix="error_400")
 def handler400(request, exception):  # noqa: ARG001
-    """Custom 400 error handler."""
-    return render(request, "400.html", status=400)
+    """Custom 400 error handler with caching."""
+    response = render(request, "400.html", status=400)
+    # Add noindex to prevent search engines from indexing error pages
+    response["X-Robots-Tag"] = "noindex, nofollow"
+    # Aggressive caching headers
+    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
+    return response
 
 
+@cache_page(3600, key_prefix="error_403")
 def handler403(request, exception):  # noqa: ARG001
-    """Custom 403 error handler."""
-    return render(request, "403.html", status=403)
+    """Custom 403 error handler with caching."""
+    response = render(request, "403.html", status=403)
+    response["X-Robots-Tag"] = "noindex, nofollow"
+    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
+    return response
 
 
+@cache_page(3600, key_prefix="error_404")
 def handler404(request, exception):  # noqa: ARG001
-    """Custom 404 error handler."""
-    return render(request, "404.html", status=404)
+    """Custom 404 error handler with caching."""
+    response = render(request, "404.html", status=404)
+    response["X-Robots-Tag"] = "noindex, nofollow"
+    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
+    return response
 
 
+@cache_page(3600, key_prefix="error_500")
 def handler500(request):  # noqa: ARG001
-    """Custom 500 error handler."""
-    return render(request, "500.html", status=500)
+    """Custom 500 error handler with caching."""
+    response = render(request, "500.html", status=500)
+    response["X-Robots-Tag"] = "noindex, nofollow"
+    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
+    return response
 
 
+@cache_page(3600, key_prefix="error_502")
 def handler502(request):  # noqa: ARG001
-    """Custom 502 error handler (for testing or custom cases)."""
-    return render(request, "502.html", status=502)
+    """Custom 502 error handler with caching."""
+    response = render(request, "502.html", status=502)
+    response["X-Robots-Tag"] = "noindex, nofollow"
+    response["Cache-Control"] = "public, max-age=3600, s-maxage=3600"
+    return response

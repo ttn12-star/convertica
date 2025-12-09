@@ -2611,3 +2611,116 @@ msgstr "Please correct the errors below:"
 #: templates/frontend/contact.html:369
 msgid "Sending..."
 msgstr "Sending..."
+
+# Error pages translations
+#: templates/400.html:4
+msgid "400 - Bad Request"
+msgstr "400 - Bad Request"
+
+#: templates/400.html:5
+msgid "Bad Request"
+msgstr "Bad Request"
+
+#: templates/400.html:6
+msgid "The request could not be understood by the server."
+msgstr "The request could not be understood by the server."
+
+#: templates/400.html:34
+msgid "The request you sent could not be understood by the server. Please check your input and try again."
+msgstr "The request you sent could not be understood by the server. Please check your input and try again."
+
+#: templates/400.html:44
+msgid "Go Back"
+msgstr "Go Back"
+
+#: templates/403.html:4
+msgid "403 - Access Forbidden"
+msgstr "403 - Access Forbidden"
+
+#: templates/403.html:5
+msgid "Access Forbidden"
+msgstr "Access Forbidden"
+
+#: templates/403.html:6
+msgid "You don't have permission to access this resource."
+msgstr "You don't have permission to access this resource."
+
+#: templates/403.html:35
+msgid "You don't have permission to access this page. If you believe this is an error, please contact support."
+msgstr "You don't have permission to access this page. If you believe this is an error, please contact support."
+
+#: templates/403.html:53
+msgid "Contact Support"
+msgstr "Contact Support"
+
+#: templates/404.html:4
+msgid "404 - Page Not Found"
+msgstr "404 - Page Not Found"
+
+#: templates/404.html:6
+msgid "The page you are looking for could not be found."
+msgstr "The page you are looking for could not be found."
+
+#: templates/404.html:29
+msgid "Oops! Page Not Found"
+msgstr "Oops! Page Not Found"
+
+#: templates/404.html:33
+msgid "The page you're looking for seems to have wandered off. It might have been moved, deleted, or never existed."
+msgstr "The page you're looking for seems to have wandered off. It might have been moved, deleted, or never existed."
+
+#: templates/404.html:51
+msgid "Browse All Tools"
+msgstr "Browse All Tools"
+
+#: templates/404.html:57
+msgid "Popular pages:"
+msgstr "Popular pages:"
+
+#: templates/500.html:4
+msgid "500 - Server Error"
+msgstr "500 - Server Error"
+
+#: templates/500.html:6
+msgid "An internal server error occurred. We're working to fix it."
+msgstr "An internal server error occurred. We're working to fix it."
+
+#: templates/500.html:30
+msgid "Oops! Something Went Wrong"
+msgstr "Oops! Something Went Wrong"
+
+#: templates/500.html:34
+msgid "We're experiencing some technical difficulties. Our team has been notified and is working to fix the issue. Please try again in a few moments."
+msgstr "We're experiencing some technical difficulties. Our team has been notified and is working to fix the issue. Please try again in a few moments."
+
+#: templates/500.html:44
+msgid "Try Again"
+msgstr "Try Again"
+
+#: templates/500.html:59
+msgid "If the problem persists, please"
+msgstr "If the problem persists, please"
+
+#: templates/500.html:60
+msgid "contact us"
+msgstr "contact us"
+
+#: templates/502.html:4
+msgid "502 - Bad Gateway"
+msgstr "502 - Bad Gateway"
+
+#: templates/502.html:6
+msgid "The server received an invalid response from an upstream server."
+msgstr "The server received an invalid response from an upstream server."
+
+#: templates/502.html:31
+msgid "Bad Gateway"
+msgstr "Bad Gateway"
+
+#: templates/502.html:35
+msgid "The server is temporarily unavailable or overloaded. Please try again in a few moments. We're working to restore service as quickly as possible."
+msgstr "The server is temporarily unavailable or overloaded. Please try again in a few moments. We're working to restore service as quickly as possible."
+
+#: templates/502.html:60
+msgid "This is usually a temporary issue. If it persists, please"
+msgstr "This is usually a temporary issue. If it persists, please"
