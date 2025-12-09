@@ -417,6 +417,15 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "UTC"
 CELERY_ENABLE_UTC = True
 
+# Celery Beat Schedule (periodic tasks)
+CELERY_BEAT_SCHEDULE = {
+    # Clean up temp files every hour (safety net)
+    "cleanup-temp-files-hourly": {
+        "task": "maintenance.cleanup_temp_files",
+        "schedule": 3600,  # Every hour
+    },
+}
+
 # Rate Limiting Configuration
 RATELIMIT_ENABLE = config("RATELIMIT_ENABLE", default=True, cast=bool)
 RATELIMIT_USE_CACHE = "default"  # Use Redis cache for rate limiting
