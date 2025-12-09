@@ -283,6 +283,10 @@ jobs:
             echo "📦 Collecting static files..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py collectstatic --noinput --clear
 
+            # Clear Django cache (Redis) to ensure fresh content after deploy
+            echo "🗑️ Clearing Django cache..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
+
             # Restart containers
             echo "🔄 Restarting containers..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps web celery celery-beat nginx
