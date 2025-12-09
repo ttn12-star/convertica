@@ -12,7 +12,8 @@
 
 {% block extra_head %}
 <!-- PDF.js for rendering PDF pages -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" as="script" crossorigin>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
   <style>
     .crop-selection {
       position: absolute;
