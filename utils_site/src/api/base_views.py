@@ -215,6 +215,18 @@ class BaseConversionAPIView(APIView, ABC):
             )
 
         elif isinstance(error, InvalidPDFError):
+            # Mark as handled error in Sentry (expected user error, not bug)
+            try:
+                import sentry_sdk
+
+                with sentry_sdk.push_scope() as scope:
+                    scope.set_tag("error_type", "handled")
+                    scope.set_tag("user_error", "true")
+                    scope.set_tag("conversion_type", self.CONVERSION_TYPE)
+                    scope.level = "info"  # Lower severity since it's handled
+            except (ImportError, Exception):
+                pass  # Sentry not available or failed
+
             log_conversion_error(
                 logger,
                 self.CONVERSION_TYPE,
