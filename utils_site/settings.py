@@ -35,10 +35,13 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             CeleryIntegration(),
             RedisIntegration(),
         ],
-        # Capture 10% of transactions for performance monitoring (free plan)
-        traces_sample_rate=0.1,
         # Send user info (IP, etc.) for debugging
         send_default_pii=True,
+        # Enable sending logs to Sentry (only ERROR and above to avoid spam)
+        enable_logs=True,
+        # Capture 10% of transactions for performance monitoring (free plan)
+        # Don't use 1.0 - it will exceed free plan limits quickly
+        traces_sample_rate=0.1,
         # Environment tag
         environment=config("SENTRY_ENVIRONMENT", default="production"),
         # Release version - update on each release
@@ -49,6 +52,8 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         transport=sentry_sdk.transport.HttpTransport,
         # Max breadcrumbs (events leading to error)
         max_breadcrumbs=50,
+        # Note: Profiling (profile_session_sample_rate) is a paid feature
+        # Only enable if you upgrade to a paid plan
     )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -362,10 +367,16 @@ LOGGING = {
             "level": "INFO",
             "propagate": False,
         },
+        # Send ERROR and above to Sentry (via root logger)
+        "sentry_sdk": {
+            "level": "WARNING",
+            "handlers": ["console"],
+            "propagate": False,
+        },
     },
     "root": {
         "handlers": ["console"],
-        "level": "WARNING",
+        "level": "WARNING",  # ERROR and above will be sent to Sentry via enable_logs=True
     },
 }
 
