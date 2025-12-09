@@ -235,6 +235,47 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history to compare tags
+
+      - name: Check if newer tag exists
+        id: check_newer_tag
+        run: |
+          CURRENT_TAG="${GITHUB_REF#refs/tags/}"
+          echo "Current tag: $CURRENT_TAG"
+
+          # Fetch all tags
+          git fetch --tags --force
+
+          # Get all version tags sorted by version
+          ALL_TAGS=$(git tag -l "v*" | sort -V)
+
+          # Find the latest tag
+          LATEST_TAG=$(echo "$ALL_TAGS" | tail -1)
+          echo "Latest tag: $LATEST_TAG"
+
+          # Compare versions (simple numeric comparison)
+          if [ "$CURRENT_TAG" != "$LATEST_TAG" ]; then
+            # Check if current tag is older than latest
+            CURRENT_VERSION=$(echo "$CURRENT_TAG" | sed 's/v//' | cut -d. -f1,2,3)
+            LATEST_VERSION=$(echo "$LATEST_TAG" | sed 's/v//' | cut -d. -f1,2,3)
+
+            # Simple version comparison
+            if [ "$(printf '%s\n' "$CURRENT_VERSION" "$LATEST_VERSION" | sort -V | head -1)" != "$CURRENT_VERSION" ] || [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
+              echo "⚠️ Newer tag $LATEST_TAG exists, current tag $CURRENT_TAG is outdated"
+              echo "should_cancel=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          fi
+
+          echo "✅ Current tag $CURRENT_TAG is the latest, proceeding with deployment"
+          echo "should_cancel=false" >> $GITHUB_OUTPUT
+
+      - name: Cancel deployment if newer tag exists
+        if: steps.check_newer_tag.outputs.should_cancel == 'true'
+        run: |
+          echo "🛑 Cancelling deployment - newer tag exists"
+          exit 1
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
