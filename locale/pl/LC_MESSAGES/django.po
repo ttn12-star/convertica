@@ -14,10 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
@@ -25,10 +21,6 @@ msgstr ""
 "Szybki, prosty i bezpieczny konwerter online PDF na Word i Word na PDF. "
 "Konwertuj dokumenty natychmiast, bez rejestracji."
 
-#, fuzzy
-#| msgid ""
-#| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
-#| "online PDF converter"
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
@@ -36,10 +28,6 @@ msgstr ""
 "PDF na Word, PDF na DOCX, konwertuj PDF, konwerter PDF, konwerter Word, "
 "konwerter PDF online"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr ""
 "Szybki, prosty i bezpieczny konwerter online PDF na Word i Word na PDF. "
@@ -72,8 +60,6 @@ msgstr "Kompresuj PDF"
 msgid "Rotate PDF"
 msgstr "Obróć PDF"
 
-#, fuzzy
-#| msgid "All Tools"
 msgid "View All Tools"
 msgstr "Wszystkie narzędzia"
 
@@ -246,10 +232,9 @@ msgstr "Dlaczego wybrać Convertica"
 msgid "Checkmark icon"
 msgstr "Ikona znacznika"
 
-#, fuzzy, python-format
-#| msgid "100% Free"
+#, python-format
 msgid "100%% Free"
-msgstr "100% Darmowe"
+msgstr "100%% Darmowe"
 
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
@@ -301,8 +286,6 @@ msgstr "Poznaj wszystkie narzędzia"
 msgid "Get Started"
 msgstr "Zacznij"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Page Number Settings"
 msgstr "Numery stron"
 
@@ -315,8 +298,6 @@ msgstr "Na dole na środku"
 msgid "Bottom Left"
 msgstr "Na dole po lewej"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Bottom Right"
 msgstr "Twoje prawa"
 
@@ -326,16 +307,12 @@ msgstr "Na górze na środku"
 msgid "Top Left"
 msgstr "Na górze po lewej"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Top Right"
 msgstr "Twoje prawa"
 
 msgid "Font Size"
 msgstr "Rozmiar czcionki"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Starting Page Number"
 msgstr "Numery stron"
 
@@ -361,13 +338,9 @@ msgstr "Niestandardowe strony:"
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "Wprowadź konkretne strony jak '1,3,5' lub '1-5'"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to watermark"
 msgstr "Wybierz plik do znaku wodnego"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove file"
 msgstr "Usuń strony"
 
@@ -383,13 +356,9 @@ msgstr "plik"
 msgid "Visual Watermark Editor"
 msgstr "Wizualny edytor znaku wodnego"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Select Page"
 msgstr "Usuń strony"
 
-#, fuzzy
-#| msgid "How it works"
 msgid "How to use:"
 msgstr "Jak to działa"
 
@@ -402,8 +371,6 @@ msgstr ""
 msgid "Watermark Settings"
 msgstr "Ustawienia znaku wodnego"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Type"
 msgstr "Znak wodny"
 
@@ -413,13 +380,9 @@ msgstr "Tekst"
 msgid "Image"
 msgstr "Obraz"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Text"
 msgstr "Znak wodny"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Image"
 msgstr "Znak wodny"
 
@@ -492,13 +455,9 @@ msgstr "Edytuj inny plik"
 msgid "Error"
 msgstr "Błąd"
 
-#, fuzzy
-#| msgid "Conversion failed. Please try again."
 msgid "Failed to load PDF file. Please try again."
 msgstr "Konwersja nie powiodła się. Proszę spróbować ponownie."
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "All PDF Tools"
 msgstr "Wszystkie narzędzia PDF"
 
@@ -546,8 +505,6 @@ msgstr "Wyodrębnij tabele z PDF i konwertuj na format Excel."
 msgid "Edit PDF"
 msgstr "Edytuj PDF"
 
-#, fuzzy
-#| msgid "Organize and manage your PDF documents"
 msgid "Modify and enhance your PDF documents"
 msgstr "Organizuj i zarządzaj swoimi dokumentami PDF"
 
@@ -563,8 +520,6 @@ msgstr "Przytnij strony PDF, określając współrzędne obszaru przycinania."
 msgid "Add Page Numbers"
 msgstr "Numery stron"
 
-#, fuzzy
-#| msgid "Add page numbers to your PDF in seconds"
 msgid "Add page numbers to your PDF documents."
 msgstr "Dodaj numery stron do swojego PDF w sekundach"
 
@@ -578,8 +533,6 @@ msgstr ""
 msgid "Organize PDF"
 msgstr "Organizuj PDF"
 
-#, fuzzy
-#| msgid "Manage and organize your PDF documents with powerful tools"
 msgid "Manage and organize your PDF documents"
 msgstr "Zarządzaj i organizuj swoje dokumenty PDF za pomocą potężnych narzędzi"
 
@@ -607,37 +560,27 @@ msgstr "Wyodrębnij określone strony ze swojego PDF do nowego pliku."
 msgid "Reorder and organize pages in your PDF document."
 msgstr "Zmień kolejność i organizuj strony w swoim dokumencie PDF."
 
-#, fuzzy
-#| msgid "Reduce PDF file size without losing quality"
 msgid "Reduce PDF file size without losing quality."
 msgstr "Zmniejsz rozmiar pliku PDF bez utraty jakości"
 
-#, fuzzy
-#| msgid "Secure and protect your PDF documents"
 msgid "Protect and secure your PDF documents"
 msgstr "Zabezpiecz i chroń swoje dokumenty PDF"
 
 msgid "Protect PDF"
 msgstr "Chroń PDF"
 
-#, fuzzy
-#| msgid "Add password protection or remove passwords from PDFs."
 msgid "Add password protection to secure your PDF documents."
 msgstr "Dodaj ochronę hasłem lub usuń hasła z plików PDF."
 
 msgid "Unlock PDF"
 msgstr "Odblokuj PDF"
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Remove password protection from your PDF documents."
 msgstr "Usuń ochronę hasłem ze swojego PDF"
 
 msgid "Compression Settings"
 msgstr "Ustawienia kompresji"
 
-#, fuzzy
-#| msgid "Compress PDF"
 msgid "Compression Level"
 msgstr "Kompresuj PDF"
 
@@ -779,8 +722,6 @@ msgstr ""
 msgid "Additional Resources"
 msgstr "Dodatkowe zasoby"
 
-#, fuzzy
-#| msgid "About"
 msgid "About Us"
 msgstr "O nas"
 
@@ -829,28 +770,18 @@ msgstr "Pobierz skonwertowany plik używając przycisku pobierania"
 "Pobierz przekonwertowany plik - bez rejestracji, całkowicie za darmo, bez "
 "ograniczeń"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your file..."
 msgstr "Przetwarzanie pliku..."
 
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Complete!"
 msgstr "Edycja zakończona!"
 
-#, fuzzy
-#| msgid "Edit another file"
 msgid "Convert another file"
 msgstr "Edytuj inny plik"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to crop"
 msgstr "Wybierz plik do przycięcia"
 
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop Your PDF"
 msgstr "Przytnij PDF"
 
@@ -860,8 +791,6 @@ msgid ""
 "corner/edge handles to resize it."
 msgstr ""
 
-#, fuzzy
-#| msgid "Page"
 msgid "Page:"
 msgstr "Strona"
 
@@ -873,8 +802,6 @@ msgid ""
 "ready."
 msgstr ""
 
-#, fuzzy
-#| msgid "Apply to pages"
 msgid "Apply crop to pages"
 msgstr "Zastosuj do stron"
 
@@ -954,8 +881,6 @@ msgid ""
 "\"Crop PDF\\\" when ready."
 msgstr ""
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to edit"
 msgstr "Wybierz plik do edycji"
 
@@ -982,8 +907,6 @@ msgid ""
 "\"Current page only\\\""
 msgstr ""
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Extract Pages Settings"
 msgstr "Wyodrębnij strony"
 
@@ -999,13 +922,9 @@ msgid "Find answers to common questions about Convertica PDF tools"
 msgstr ""
 "Znajdź odpowiedzi na najczęstsze pytania dotyczące narzędzi PDF Convertica"
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "General Questions"
 msgstr "Pytania ogólne"
 
-#, fuzzy
-#| msgid "Is Convertica really free?"
 msgid "Is Convertica free to use?"
 msgstr "Czy Convertica jest darmowe?"
 
@@ -1023,8 +942,6 @@ msgid ""
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What file formats does Convertica support?"
 msgstr "Jakie formaty plików obsługuje Convertica?"
 
@@ -1042,13 +959,9 @@ msgid ""
 "any size, from small documents to large PDF files."
 msgstr ""
 
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Questions"
 msgstr "Pytania dotyczące konwersji"
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr "Jak przekonwertować PDF na Word?"
 
@@ -1060,8 +973,6 @@ msgid ""
 "All conversions are free and require no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word?"
 msgstr "Jak przekonwertować PDF na Word?"
 
@@ -1072,8 +983,6 @@ msgid ""
 "the download button. The conversion is free and requires no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "How do I convert Word to PDF?"
 msgstr "Jak przekonwertować Word na PDF?"
 
@@ -1083,8 +992,6 @@ msgid ""
 "document."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Excel"
 msgid "Can I convert PDF to JPG?"
 msgstr "Czy mogę przekonwertować PDF na JPG?"
 
@@ -1103,8 +1010,6 @@ msgid ""
 "with automatic A4 formatting."
 msgstr ""
 
-#, fuzzy
-#| msgid "Extract tables from PDF and convert to Excel format"
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "Czy mogę wyodrębnić tabele z PDF do Excel?"
 
@@ -1114,8 +1019,6 @@ msgid ""
 "Excel file."
 msgstr ""
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Editing & Organization"
 msgstr "Edycja i organizacja"
 
@@ -1139,8 +1042,6 @@ msgid ""
 "selected files will be combined into a single PDF document."
 msgstr ""
 
-#, fuzzy
-#| msgid "Split your PDF into multiple files"
 msgid "Can I split a PDF into separate files?"
 msgstr "Podziel swój PDF na wiele plików"
 
@@ -1149,10 +1050,8 @@ msgid ""
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress PDF to under 1MB for email?"
-msgstr ""
+msgstr "Jak skompresować PDF do poniżej 1MB dla email?"
 "Jak skompresować plik PDF?Pobierz przycięty plik PDF - bez rejestracji, "
 "całkowicie za darmo, wysoka jakość"
 
@@ -1164,8 +1063,6 @@ msgid ""
 "downloading."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress a PDF file?"
 msgstr ""
 "Jak skompresować plik PDF?Pobierz przycięty plik PDF - bez rejestracji, "
@@ -1180,10 +1077,6 @@ msgstr ""
 msgid "Can I rotate PDF pages?"
 msgstr "Czy mogę obrócić strony PDF?"
 
-#, fuzzy
-#| msgid ""
-#| "Rotate PDF pages by 90, 180, or 270 degrees. Free online PDF rotation "
-#| "tool."
 msgid ""
 "Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
 "you want to rotate and choose the rotation angle."
@@ -1191,8 +1084,6 @@ msgstr ""
 "Obróć strony PDF o 90, 180 lub 270 stopni. Darmowe narzędzie do obracania "
 "PDF online."
 
-#, fuzzy
-#| msgid "Download your watermarked PDF file"
 msgid "How do I add a watermark to PDF?"
 msgstr ""
 "Jak dodać znak wodny do PDF?Pobierz plik PDF ze znakiem wodnym - bez "
@@ -1210,10 +1101,6 @@ msgstr "Bezpieczeństwo i prywatność"
 msgid "Is my data secure?"
 msgstr "Czy moje dane są bezpieczne?"
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -1231,8 +1118,6 @@ msgid ""
 "click protect. The PDF will be encrypted and require a password to open."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Can I remove password protection from a PDF?"
 msgstr "Usuń ochronę hasłem ze swojego PDF"
 
@@ -1245,10 +1130,6 @@ msgstr ""
 msgid "Are my files stored on your servers?"
 msgstr "Czy moje pliki są przechowywane na waszych serwerach?"
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
@@ -1260,8 +1141,6 @@ msgstr ""
 msgid "Technical Questions"
 msgstr "Pytania techniczne"
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What browsers are supported?"
 msgstr "Jakie formaty plików są obsługiwane?"
 
@@ -1271,8 +1150,6 @@ msgid ""
 "smartphones and tablets."
 msgstr ""
 
-#, fuzzy
-#| msgid "How long does it take to process files?"
 msgid "How long does conversion take?"
 msgstr "Ile czasu zajmuje przetwarzanie plików?"
 
@@ -1282,8 +1159,6 @@ msgid ""
 "shown during conversion."
 msgstr ""
 
-#, fuzzy
-#| msgid "Wait for the conversion to complete"
 msgid "What if conversion fails?"
 msgstr ""
 "Co zrobić, jeśli konwersja się nie powiedzie?Poczekaj na zakończenie "
@@ -1330,10 +1205,8 @@ msgstr "i"
 msgid "Reject All"
 msgstr "Odrzuć wszystkie"
 
-#, fuzzy
-#| msgid "Custom pages:"
 msgid "Customize"
-msgstr "Niestandardowe strony:"
+msgstr "Dostosuj"
 
 msgid "Accept All"
 msgstr "Zaakceptuj wszystkie"
@@ -1434,15 +1307,11 @@ msgstr "Warunki"
 msgid "Convertica - Home"
 msgstr "Convertica - Strona główna"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica Logo"
-msgstr "O Convertica"
+msgstr "Logo Convertica"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica"
-msgstr "O Convertica"
+msgstr "Convertica"
 
 msgid "All PDF tools"
 msgstr "Wszystkie narzędzia PDF"
@@ -1450,10 +1319,8 @@ msgstr "Wszystkie narzędzia PDF"
 msgid "Main navigation"
 msgstr "Główna nawigacja"
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "Convert PDF tools"
-msgstr "Konwertuj PDF na Word"
+msgstr "Narzędzia konwersji PDF"
 
 msgid "Convert from PDF"
 msgstr "Konwertuj z PDF"
@@ -1461,10 +1328,8 @@ msgstr "Konwertuj z PDF"
 msgid "Convert to PDF"
 msgstr "Konwertuj na PDF"
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "Edit PDF tools"
-msgstr "Wszystkie narzędzia PDF"
+msgstr "Narzędzia edycji PDF"
 
 msgid "Basic Editing"
 msgstr "Podstawowa edycja"
@@ -1472,10 +1337,8 @@ msgstr "Podstawowa edycja"
 msgid "Enhancements"
 msgstr "Ulepszenia"
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Organize PDF tools"
-msgstr "Organizuj PDF"
+msgstr "Narzędzia organizacji PDF"
 
 msgid "Organization"
 msgstr "Organizacja"
@@ -1569,18 +1432,14 @@ msgstr ""
 msgid "+ Add more images"
 msgstr ""
 
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your images here"
-msgstr "Przeciągnij plik tutaj"
+msgstr "Przeciągnij i upuść swoje zdjęcia tutaj"
 
 msgid "files"
 msgstr "pliki"
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "multiple files supported"
-msgstr "Jakie formaty plików są obsługiwane?"
+msgstr "obsługiwane wiele plików"
 
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
@@ -1612,33 +1471,23 @@ msgstr ""
 "Pobierz przekonwertowany plik PDF - bez rejestracji, całkowicie za darmo, "
 "wszystkie obrazy w jednym pliku"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your images..."
-msgstr "Przetwarzanie pliku..."
+msgstr "Konwertowanie obrazów..."
 
-#, fuzzy
-#| msgid "Your file is ready to download"
 msgid "Your PDF is ready to download"
-msgstr "Twój plik jest gotowy do pobrania"
+msgstr "Twój PDF jest gotowy do pobrania"
 
-#, fuzzy
-#| msgid "Download File"
 msgid "Download PDF"
-msgstr "Pobierz plik"
+msgstr "Pobierz PDF"
 
 msgid "Merge Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF Files"
-msgstr "Proszę wybrać plik PDF."
+msgstr "Wybierz pliki PDF"
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF files"
-msgstr "Proszę wybrać plik PDF."
+msgstr "Wybierz pliki PDF"
 
 msgid "+ Add more files"
 msgstr ""
@@ -1646,10 +1495,8 @@ msgstr ""
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Selected Files"
-msgstr "Powiązane artykuły"
+msgstr "Wybrane pliki"
 
 msgid "Preview & Reorder Pages"
 msgstr ""
@@ -1667,65 +1514,43 @@ msgstr "Maksymalnie 10 plików. Zostaną użyte tylko pierwsze 10 plików."
 msgid "Error loading preview"
 msgstr "Błąd ładowania podglądu"
 
-#, fuzzy
-#| msgid "Sending..."
 msgid "Loading..."
-msgstr "Wysyłanie..."
+msgstr "Ładowanie..."
 
-#, fuzzy
-#| msgid "Merge PDFs"
 msgid "Merging PDFs..."
-msgstr "Połącz PDF"
+msgstr "Łączenie PDF..."
 
-#, fuzzy
-#| msgid "Please select PDF files to merge."
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Proszę wybrać pliki PDF do połączenia."
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organization Settings"
-msgstr "Organizacja"
+msgstr "Ustawienia organizacji"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Operation"
-msgstr "Zakończenie"
+msgstr "Operacja"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Reorder Pages"
-msgstr "Usuń strony"
+msgstr "Zmień kolejność stron"
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Sort Pages"
-msgstr "Wyodrębnij strony"
+msgstr "Sortuj strony"
 
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a Word file."
 msgid "Please select a PDF file."
 msgstr "Proszę wybrać plik Word."
 
-#, fuzzy
-#| msgid "Please select a PDF file with tables."
 msgid "Please select a PDF file first."
-msgstr "Proszę wybrać plik PDF z tabelami."
+msgstr "Najpierw wybierz plik PDF."
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organizing..."
-msgstr "Organizacja"
+msgstr "Organizowanie..."
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Failed to organize PDF"
-msgstr "Organizuj PDF"
+msgstr "Nie udało się zorganizować PDF"
 
 msgid "Privacy Policy - Convertica"
 msgstr "Polityka prywatności - Convertica"
@@ -1836,18 +1661,14 @@ msgstr "Regularne audyty bezpieczeństwa i aktualizacje"
 msgid "Access controls and monitoring systems"
 msgstr "Kontrola dostępu i systemy monitorowania"
 
-#, fuzzy, python-format
-#| msgid ""
-#| "However, no method of transmission over the Internet or electronic "
-#| "storage is 100% secure. While we strive to use commercially acceptable "
-#| "means to protect your information, we cannot guarantee absolute security."
+#, python-format
 msgid ""
 "However, no method of transmission over the Internet or electronic storage "
 "is 100%% secure. While we strive to use commercially acceptable means to "
 "protect your information, we cannot guarantee absolute security."
 msgstr ""
 "Jednak żadna metoda transmisji przez Internet lub przechowywania "
-"elektronicznego nie jest w 100% bezpieczna. Chociaż staramy się używać "
+"elektronicznego nie jest w 100%% bezpieczna. Chociaż staramy się używać "
 "komercyjnie akceptowalnych środków do ochrony Twoich informacji, nie możemy "
 "zagwarantować absolutnego bezpieczeństwa."
 
@@ -1885,11 +1706,6 @@ msgstr ""
 "mieć dostęp do ograniczonych informacji, ale są zobowiązane nie ujawniać ani "
 "nie wykorzystywać ich do żadnych innych celów."
 
-#, fuzzy
-#| msgid ""
-#| "We do not sell, trade, or rent your personal information to third "
-#| "parties. We may share your information only in the following "
-#| "circumstances:"
 msgid ""
 "We do not sell, trade, or rent your personal information to third parties."
 msgstr ""
@@ -1965,12 +1781,6 @@ msgstr ""
 msgid "Changes to This Privacy Policy"
 msgstr "Zmiany w tej Polityce prywatności"
 
-#, fuzzy
-#| msgid ""
-#| "We may update our Privacy Policy from time to time. We will notify you of "
-#| "any changes by posting the new Privacy Policy on this page and updating "
-#| "the \"Last updated\" date. You are advised to review this Privacy Policy "
-#| "periodically for any changes."
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
@@ -1994,10 +1804,8 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Enter password to protect PDF"
-msgstr "Usuń ochronę hasłem ze swojego PDF"
+msgstr "Wprowadź hasło do ochrony PDF"
 
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
@@ -2028,15 +1836,11 @@ msgid ""
 "password will be used."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove Pages Settings"
-msgstr "Usuń strony"
+msgstr "Ustawienia usuwania stron"
 
-#, fuzzy
-#| msgid "Changes to Terms"
 msgid "Pages to Remove"
-msgstr "Zmiany w warunkach"
+msgstr "Strony do usunięcia"
 
 msgid "Rotation Settings"
 msgstr ""
@@ -2053,36 +1857,26 @@ msgstr ""
 msgid "(Counter-clockwise)"
 msgstr ""
 
-#, fuzzy
-#| msgid "I agree to the"
 msgid "Pages to Rotate"
-msgstr "Zgadzam się z"
+msgstr "Strony do obrócenia"
 
 msgid "Split Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Split PDF"
 msgid "Split Type"
-msgstr "Podziel PDF"
+msgstr "Typ podziału"
 
 msgid "By Individual Pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "By Page Ranges"
-msgstr "Zarządzanie stronami"
+msgstr "Według zakresów stron"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Every N Pages"
-msgstr "Usuń strony"
+msgstr "Co N stron"
 
-#, fuzzy
-#| msgid "Page"
 msgid "Pages"
-msgstr "Strona"
+msgstr "Strony"
 
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
@@ -2092,10 +1886,8 @@ msgid ""
 "pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "Page Ranges"
-msgstr "Zarządzanie stronami"
+msgstr "Zakresy stron"
 
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr ""
@@ -2257,8 +2049,6 @@ msgstr ""
 "spełni Twoje konkretne wymagania. Jesteś odpowiedzialny za weryfikację "
 "dokładności przetworzonych plików."
 
-#, fuzzy
-#| msgid "Our Intellectual Property"
 msgid "Intellectual Property"
 msgstr "Nasza własność intelektualna"
 
@@ -2433,15 +2223,11 @@ msgstr ""
 "Jeśli masz pytania dotyczące tych Warunków korzystania, skontaktuj się z "
 "nami."
 
-#, fuzzy
-#| msgid "Unlock PDF"
 msgid "Unlock PDF Settings"
-msgstr "Odblokuj PDF"
+msgstr "Ustawienia odblokowania PDF"
 
-#, fuzzy
-#| msgid "PDF to Word"
 msgid "PDF Password"
-msgstr "PDF na Word"
+msgstr "Hasło PDF"
 
 msgid "Enter the password to unlock the PDF"
 msgstr ""
@@ -2451,15 +2237,11 @@ msgid ""
 "removed from the output PDF."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Information"
 msgid "Basic Information"
-msgstr "Informacje kontaktowe"
+msgstr "Podstawowe informacje"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Translations"
-msgstr "Zakończenie"
+msgstr "Tłumaczenia"
 
 msgid "Add translations for other languages using the tabs above."
 msgstr ""
@@ -2476,10 +2258,8 @@ msgstr ""
 msgid "Empty translations"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Articles"
-msgstr "Wszystkie artykuły"
+msgstr "Artykuły"
 
 msgid "English Content"
 msgstr ""
@@ -2509,10 +2289,8 @@ msgstr ""
 msgid "No image"
 msgstr ""
 
-#, fuzzy
-#| msgid "Previous"
 msgid "Preview"
-msgstr "Poprzednia"
+msgstr "Podgląd"
 
 msgid "Name (English)"
 msgstr ""
@@ -2525,18 +2303,14 @@ msgid ""
 "\"description\": \"...\"}, ...}"
 msgstr ""
 
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Description (English)"
-msgstr "Opis usług"
+msgstr "Opis (angielski)"
 
 msgid "Article Category"
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Article Categories"
-msgstr "Kategorie"
+msgstr "Kategorie artykułów"
 
 msgid "Draft"
 msgstr ""
@@ -2575,10 +2349,8 @@ msgid ""
 "etc."
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Category"
-msgstr "Kategorie"
+msgstr "Kategoria"
 
 msgid "Featured Image"
 msgstr ""
@@ -2589,10 +2361,8 @@ msgstr ""
 msgid "Published At"
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Created At"
-msgstr "Powiązane artykuły"
+msgstr "Data utworzenia"
 
 msgid "Updated At"
 msgstr ""
@@ -2600,10 +2370,8 @@ msgstr ""
 msgid "View Count"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Article"
-msgstr "Wszystkie artykuły"
+msgstr "Artykuł"
 
 msgid "Your Name"
 msgstr "Twoje imię"
@@ -2620,23 +2388,17 @@ msgstr ""
 msgid "Subject"
 msgstr "Temat"
 
-#, fuzzy
-#| msgid "Subject"
 msgid "Enter subject"
-msgstr "Temat"
+msgstr "Wprowadź temat"
 
 msgid "Message"
 msgstr "Wiadomość"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Enter your message"
-msgstr "Przetwarzanie pliku..."
+msgstr "Wprowadź wiadomość"
 
-#, fuzzy
-#| msgid "Changes to This Privacy Policy"
 msgid "I agree to the Privacy Policy"
-msgstr "Zmiany w tej Polityce prywatności"
+msgstr "Zgadzam się z Polityką Prywatności"
 
 msgid "Message must be at least 10 characters long."
 msgstr ""
@@ -2757,10 +2519,8 @@ msgstr ""
 msgid "Please correct the errors in the form below."
 msgstr "Proszę poprawić błędy w formularzu poniżej."
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
-msgstr "Często zadawane pytania"
+msgstr "Często zadawane pytania (FAQ) - Convertica"
 
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
@@ -2787,7 +2547,6 @@ msgid ""
 "be combined into a single PDF document."
 msgstr ""
 
-#, fuzzy
 #~| msgid ""
 #~| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
 #~| "online PDF converter"

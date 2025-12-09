@@ -10,17 +10,16 @@ from django.urls import Resolver404, resolve, reverse
 from django.utils.translation import get_language
 
 
-def hcaptcha_site_key(request):
-    """Add hCaptcha site key and requirement status to template context."""
-    # Try to get from environment first, then from settings, then from config
-    site_key = os.environ.get("HCAPTCHA_SITE_KEY", "")
+def turnstile_site_key(request):
+    """Add Cloudflare Turnstile site key and requirement status to template context."""
+    site_key = os.environ.get("TURNSTILE_SITE_KEY", "")
     if not site_key:
-        site_key = getattr(settings, "HCAPTCHA_SITE_KEY", "")
+        site_key = getattr(settings, "TURNSTILE_SITE_KEY", "")
     if not site_key:
-        site_key = config("HCAPTCHA_SITE_KEY", default="", cast=str)
+        site_key = config("TURNSTILE_SITE_KEY", default="", cast=str)
 
     return {
-        "hcaptcha_site_key": site_key,
+        "turnstile_site_key": site_key,
         "captcha_required": request.session.get("captcha_required", False),
     }
 

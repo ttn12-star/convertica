@@ -6,6 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('converterForm');
     if (!form) return;
 
+    // Turnstile callback to ensure token is present on submit
+    window.onTurnstileSuccess = function(token) {
+        let tokenInput = form.querySelector('[name="turnstile_token"]');
+        if (!tokenInput) {
+            tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = 'turnstile_token';
+            form.appendChild(tokenInput);
+        }
+        tokenInput.value = token;
+    };
+
     const fileInput = document.getElementById('fileInput');
     const submitButton = form.querySelector('button[type="submit"]');
     const resultContainer = document.getElementById('converterResult');
@@ -47,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const fieldName = window.FILE_INPUT_NAME || 'file';
         formData.append(fieldName, selectedFile);
 
-        // Add hCaptcha token if available
-        const hcaptchaResponse = document.querySelector('[name="h-captcha-response"]');
-        if (hcaptchaResponse && hcaptchaResponse.value) {
-            formData.append('hcaptcha_token', hcaptchaResponse.value);
+        // Add Turnstile token if available
+        const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
+        if (turnstileResponse && turnstileResponse.value) {
+            formData.append('turnstile_token', turnstileResponse.value);
         }
 
         try {

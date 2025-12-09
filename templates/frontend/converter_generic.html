@@ -140,10 +140,15 @@
         <!-- Honeypot field (hidden from users, filled by bots) -->
       <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <!-- hCaptcha (Anti-spam) - Only show if required (after failed attempts) -->
-      {% if hcaptcha_site_key and captcha_required %}
-        <div class="flex justify-center my-6" id="hcaptcha-container">
-          <div class="h-captcha" data-sitekey="{{ hcaptcha_site_key }}" data-theme="light"></div>
+        <!-- Cloudflare Turnstile (Anti-spam) - Only show if required (after failed attempts) -->
+      {% if turnstile_site_key and captcha_required %}
+        <div class="flex justify-center my-6" id="turnstile-container">
+          <div class="cf-turnstile"
+               data-sitekey="{{ turnstile_site_key }}"
+               data-theme="light"
+               data-size="normal"
+               data-callback="onTurnstileSuccess">
+          </div>
         </div>
       {% endif %}
 

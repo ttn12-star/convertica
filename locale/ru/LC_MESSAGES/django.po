@@ -11,36 +11,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
 msgstr ""
 "Быстрый, простой и безопасный онлайн конвертер PDF в Word и Word в PDF. "
-"Конвертируйте документы мгновенно, регистрация не требуется."
+"Установка не требуется."
 
-#, fuzzy
-#| msgid ""
-#| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
-#| "online PDF converter"
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
 msgstr ""
-"PDF в Word, PDF в DOCX, конвертировать PDF, конвертер PDF, конвертер Word, "
-"онлайн конвертер PDF"
+"PDF в Word, Word в PDF, конвертер PDF, конвертер DOCX, онлайн конвертер, "
+"бесплатный конвертер"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
-msgstr ""
-"Быстрый, простой и безопасный онлайн конвертер PDF в Word и Word в PDF. "
-"Конвертируйте документы мгновенно, регистрация не требуется."
+msgstr "Быстрый, простой и безопасный онлайн конвертер PDF в Word и Word в PDF."
 
 msgid "Categories"
 msgstr "Категории"
@@ -69,8 +55,6 @@ msgstr "Сжать PDF"
 msgid "Rotate PDF"
 msgstr "Повернуть PDF"
 
-#, fuzzy
-#| msgid "All Tools"
 msgid "View All Tools"
 msgstr "Все инструменты"
 
@@ -301,10 +285,8 @@ msgstr "Изучить все инструменты"
 msgid "Get Started"
 msgstr "Начать"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Page Number Settings"
-msgstr "Номера страниц"
+msgstr "Настройки нумерации страниц"
 
 msgid "Position"
 msgstr "Позиция"
@@ -315,10 +297,8 @@ msgstr "По центру снизу"
 msgid "Bottom Left"
 msgstr "Слева снизу"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Bottom Right"
-msgstr "Ваши права"
+msgstr "Справа снизу"
 
 msgid "Top Center"
 msgstr "По центру сверху"
@@ -326,18 +306,14 @@ msgstr "По центру сверху"
 msgid "Top Left"
 msgstr "Слева сверху"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Top Right"
-msgstr "Ваши права"
+msgstr "Справа сверху"
 
 msgid "Font Size"
 msgstr "Размер шрифта"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Starting Page Number"
-msgstr "Номера страниц"
+msgstr "Начальный номер страницы"
 
 msgid "Format"
 msgstr "Формат"
@@ -361,15 +337,11 @@ msgstr "Пользовательские страницы:"
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "Введите страницы, например '1,3,5' или '1-5'"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to watermark"
 msgstr "Выберите файл для добавления водяного знака"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove file"
-msgstr "Удалить страницы"
+msgstr "Удалить файл"
 
 msgid "Drag and drop your file here"
 msgstr "Перетащите файл сюда"
@@ -383,29 +355,26 @@ msgstr "файл"
 msgid "Visual Watermark Editor"
 msgstr "Визуальный редактор водяных знаков"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Select Page"
-msgstr "Удалить страницы"
+msgstr "Выбрать страницу"
 
-#, fuzzy
-#| msgid "How it works"
 msgid "How to use:"
-msgstr "Как это работает"
+msgstr "Как использовать:"
 
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use the top handle to rotate, and the corner handle to scale. Click anywhere "
 "on the PDF to reposition it."
 msgstr ""
+"Водяной знак появляется внизу страницы по умолчанию. Перетащите его для "
+"перемещения, используйте верхнюю ручку для поворота и угловую ручку для "
+"масштабирования. Нажмите в любом месте PDF для изменения позиции."
 
 msgid "Watermark Settings"
 msgstr "Настройки водяного знака"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Type"
-msgstr "Водяной знак"
+msgstr "Тип водяного знака"
 
 msgid "Text"
 msgstr "Текст"
@@ -413,15 +382,11 @@ msgstr "Текст"
 msgid "Image"
 msgstr "Изображение"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Text"
-msgstr "Водяной знак"
+msgstr "Текст водяного знака"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Image"
-msgstr "Водяной знак"
+msgstr "Изображение водяного знака"
 
 msgid "Choose Image"
 msgstr "Выбрать изображение"
@@ -439,39 +404,29 @@ msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
 "simultaneously."
 msgstr ""
+"Перетащите водяной знак для перемещения. Перетащите любую угловую ручку для "
+"одновременного поворота и масштабирования."
 
 msgid "How it works"
 msgstr "Как это работает"
 
 msgid "Select your PDF file using the button above"
 msgstr "Выберите PDF файл с помощью кнопки выше"
-"Выберите PDF файл через кнопку выше или перетащите его - наш бесплатный "
-"редактор PDF поддерживает все версии"
 
 msgid "Enter your watermark text or upload an image"
 msgstr "Введите текст водяного знака или загрузите изображение"
-"Введите текст водяного знака или загрузите изображение - наш онлайн "
-"инструмент поддерживает текст и изображения"
 
 msgid "Choose the color and opacity using the sliders"
 msgstr "Выберите цвет и прозрачность с помощью ползунков"
-"Выберите цвет и прозрачность с помощью ползунков - настройте водяной знак по "
-"своему вкусу"
 
 msgid "Click on the PDF to position the watermark"
 msgstr "Нажмите на PDF, чтобы расположить водяной знак"
-"Кликните на PDF для размещения водяного знака - наш интерактивный редактор "
-"позволяет точно позиционировать"
 
 msgid "Click the add watermark button to process your file"
 msgstr "Нажмите кнопку добавления водяного знака для обработки файла"
-"Нажмите кнопку добавления водяного знака для обработки файла - наш быстрый "
-"инструмент обработает его за секунды"
 
 msgid "Download your watermarked PDF file"
 msgstr "Скачайте PDF файл с водяным знаком"
-"Скачайте PDF файл с водяным знаком - без регистрации, полностью бесплатно, "
-"защита документов"
 
 msgid "Processing your file..."
 msgstr "Обработка вашего файла..."
@@ -494,13 +449,9 @@ msgstr "Редактировать другой файл"
 msgid "Error"
 msgstr "Ошибка"
 
-#, fuzzy
-#| msgid "Conversion failed. Please try again."
 msgid "Failed to load PDF file. Please try again."
-msgstr "Конвертация не удалась. Пожалуйста, попробуйте снова."
+msgstr "Не удалось загрузить PDF файл. Пожалуйста, попробуйте снова."
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "All PDF Tools"
 msgstr "Все PDF инструменты"
 
@@ -516,7 +467,6 @@ msgstr "Конвертировать PDF"
 
 msgid "Convert PDFs to other formats or convert other files to PDF"
 msgstr "Конвертируйте PDF в другие форматы или другие файлы в PDF"
-"Конвертируйте PDF в другие форматы или конвертируйте другие файлы в PDF"
 
 msgid "Convert PDF documents to editable Word files instantly."
 msgstr "Мгновенно конвертируйте PDF документы в редактируемые файлы Word."
@@ -551,10 +501,8 @@ msgstr "Извлекайте таблицы из PDF и конвертируйт
 msgid "Edit PDF"
 msgstr "Редактировать PDF"
 
-#, fuzzy
-#| msgid "Organize and manage your PDF documents"
 msgid "Modify and enhance your PDF documents"
-msgstr "Организуйте и управляйте вашими PDF документами"
+msgstr "Редактируйте и улучшайте ваши PDF документы"
 
 msgid "Rotate PDF pages by 90, 180, or 270 degrees."
 msgstr "Поворачивайте страницы PDF на 90, 180 или 270 градусов."
@@ -566,15 +514,13 @@ msgid "Crop PDF pages by specifying crop box coordinates."
 msgstr "Обрезайте страницы PDF, указывая координаты области обрезки."
 
 msgid "Add Page Numbers"
-msgstr "Номера страниц"
+msgstr "Добавить номера страниц"
 
-#, fuzzy
-#| msgid "Add page numbers to your PDF in seconds"
 msgid "Add page numbers to your PDF documents."
-msgstr "Добавляйте номера страниц в ваш PDF за секунды"
+msgstr "Добавляйте номера страниц в ваши PDF документы."
 
 msgid "Add Watermark"
-msgstr "Водяной знак"
+msgstr "Добавить водяной знак"
 
 msgid "Protect your PDFs with text or image watermarks."
 msgstr "Защищайте ваши PDF с помощью текстовых или графических водяных знаков."
@@ -582,11 +528,8 @@ msgstr "Защищайте ваши PDF с помощью текстовых и�
 msgid "Organize PDF"
 msgstr "Организовать PDF"
 
-#, fuzzy
-#| msgid "Manage and organize your PDF documents with powerful tools"
 msgid "Manage and organize your PDF documents"
 msgstr "Управляйте и организуйте ваши PDF документы"
-"Управляйте и организуйте ваши PDF документы с помощью мощных инструментов"
 
 msgid "Combine multiple PDF files into one document."
 msgstr "Объединяйте несколько PDF файлов в один документ."
@@ -612,39 +555,29 @@ msgstr "Извлекайте определенные страницы из ва
 msgid "Reorder and organize pages in your PDF document."
 msgstr "Переупорядочивайте и организуйте страницы в вашем PDF документе."
 
-#, fuzzy
-#| msgid "Reduce PDF file size without losing quality"
 msgid "Reduce PDF file size without losing quality."
-msgstr "Уменьшайте размер PDF файла без потери качества"
+msgstr "Уменьшайте размер PDF файла без потери качества."
 
-#, fuzzy
-#| msgid "Secure and protect your PDF documents"
 msgid "Protect and secure your PDF documents"
 msgstr "Защищайте и оберегайте ваши PDF документы"
 
 msgid "Protect PDF"
 msgstr "Защитить PDF"
 
-#, fuzzy
-#| msgid "Add password protection or remove passwords from PDFs."
 msgid "Add password protection to secure your PDF documents."
-msgstr "Добавляйте защиту паролем или удаляйте пароли из PDF."
+msgstr "Добавляйте защиту паролем для защиты ваших PDF документов."
 
 msgid "Unlock PDF"
 msgstr "Разблокировать PDF"
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Remove password protection from your PDF documents."
-msgstr "Удаляйте защиту паролем из вашего PDF"
+msgstr "Удаляйте защиту паролем из ваших PDF документов."
 
 msgid "Compression Settings"
 msgstr "Настройки сжатия"
 
-#, fuzzy
-#| msgid "Compress PDF"
 msgid "Compression Level"
-msgstr "Сжать PDF"
+msgstr "Уровень сжатия"
 
 msgid "Low"
 msgstr "Низкое"
@@ -782,8 +715,6 @@ msgstr ""
 msgid "Additional Resources"
 msgstr "Дополнительные ресурсы"
 
-#, fuzzy
-#| msgid "About"
 msgid "About Us"
 msgstr "О нас"
 
@@ -792,15 +723,12 @@ msgstr "Узнайте больше о Convertica и нашей миссии."
 
 msgid "Read our privacy policy to understand how we protect your data."
 msgstr "Прочитайте нашу политику конфиденциальности, чтобы узнать, как мы защищаем ваши данные."
-"Прочитайте нашу политику конфиденциальности, чтобы понять, как мы защищаем "
-"ваши данные."
 
 msgid "Terms of Service"
 msgstr "Условия использования"
 
 msgid "Review our terms of service and usage policies."
 msgstr "Ознакомьтесь с нашими условиями использования."
-"Ознакомьтесь с нашими условиями использования и политиками использования."
 
 msgid "Sending..."
 msgstr "Отправка..."
@@ -820,54 +748,39 @@ msgstr ""
 
 msgid "Click the convert button"
 msgstr "Нажмите кнопку конвертации"
-"Нажмите кнопку конвертации - наш быстрый PDF конвертер обработает файл "
-"мгновенно"
 
 msgid "Wait for the conversion to complete"
 msgstr "Дождитесь завершения конвертации"
-"Дождитесь завершения конвертации - наш безопасный онлайн конвертер "
-"обрабатывает файлы за секунды"
 
 msgid "Download your converted file using the download button"
 msgstr "Скачайте конвертированный файл с помощью кнопки скачивания"
-"Скачайте конвертированный файл - без регистрации, полностью бесплатно, без "
-"ограничений"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your file..."
-msgstr "Обработка вашего файла..."
+msgstr "Конвертация файла..."
 
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Complete!"
-msgstr "Редактирование завершено!"
+msgstr "Конвертация завершена!"
 
-#, fuzzy
-#| msgid "Edit another file"
 msgid "Convert another file"
-msgstr "Редактировать другой файл"
+msgstr "Конвертировать другой файл"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to crop"
 msgstr "Выберите файл для обрезки"
 
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop Your PDF"
-msgstr "Обрезать PDF"
+msgstr "Обрезать ваш PDF"
 
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
 "corner/edge handles to resize it."
 msgstr ""
+"Нажмите и перетащите на PDF для выбора области обрезки. Выделенная синим "
+"область будет сохранена. Вы можете перетащить рамку выделения куда угодно или "
+"использовать угловые/боковые маркеры для изменения размера."
 
-#, fuzzy
-#| msgid "Page"
 msgid "Page:"
-msgstr "Страница"
+msgstr "Страница:"
 
 msgid "Crop area is active!"
 msgstr "Область обрезки активна!"
@@ -876,11 +789,11 @@ msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
 "ready."
 msgstr ""
+"Выделенная синим область будет сохранена. Настройте её и нажмите 'Обрезать "
+"PDF', когда будете готовы."
 
-#, fuzzy
-#| msgid "Apply to pages"
 msgid "Apply crop to pages"
-msgstr "Применить к страницам"
+msgstr "Применить обрезку к страницам"
 
 msgid "Tips:"
 msgstr "Советы:"
@@ -938,6 +851,8 @@ msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
 msgstr ""
+"Область обрезки готова! Перетащите рамку для перемещения, перетащите извне "
+"для создания нового выделения или используйте маркеры для изменения размера."
 
 msgid "Drag to select crop area..."
 msgstr "Перетащите для выбора области обрезки..."
@@ -946,51 +861,48 @@ msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
 "drag the box to move it."
 msgstr ""
+"Выделение слишком маленькое. Выбрана вся страница. Перетащите для создания "
+"нового выделения или переместите рамку."
 
 msgid ""
 "Crop area selected! Drag the box to move it or use handles to resize. Click "
 "\\\"Crop PDF\\\" when ready."
 msgstr ""
+"Область обрезки выбрана! Перетащите рамку для перемещения или используйте "
+"маркеры для изменения размера. Нажмите \\\"Обрезать PDF\\\", когда будете готовы."
 
 msgid ""
 "Crop area moved! Drag again to reposition or use handles to resize. Click \\"
 "\"Crop PDF\\\" when ready."
 msgstr ""
+"Область обрезки перемещена! Перетащите снова для изменения позиции или "
+"используйте маркеры для изменения размера. Нажмите \\\"Обрезать PDF\\\", "
+"когда будете готовы."
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to edit"
 msgstr "Выберите файл для редактирования"
 
 msgid "Select your PDF file using the button above or drag and drop it"
 msgstr "Выберите PDF файл с помощью кнопки выше или перетащите его"
-"Выберите PDF файл через кнопку выше или перетащите его - наш бесплатный "
-"редактор PDF поддерживает все версии"
 
 msgid "Configure the editing options below"
 msgstr "Настройте параметры редактирования ниже"
-"Настройте параметры редактирования ниже - наш онлайн редактор PDF предлагает "
-"множество опций"
 
 msgid "Click the edit button to process your file"
 msgstr "Нажмите кнопку редактирования для обработки файла"
-"Нажмите кнопку редактирования для обработки файла - наш быстрый PDF редактор "
-"обработает его мгновенно"
 
 msgid "Download your edited file using the download button"
 msgstr "Скачайте отредактированный файл с помощью кнопки скачивания"
-"Скачайте отредактированный файл - без регистрации, полностью бесплатно, "
-"безопасно"
 
 msgid ""
 "Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
 "\"Current page only\\\""
 msgstr ""
+"Пожалуйста, введите номера страниц для удаления или выберите \\\"Все "
+"страницы\\\" или \\\"Только текущую страницу\\\""
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Extract Pages Settings"
-msgstr "Извлечь страницы"
+msgstr "Настройки извлечения страниц"
 
 msgid "Pages to Extract"
 msgstr "Страницы для извлечения"
@@ -999,6 +911,8 @@ msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
 "(1-5)"
 msgstr ""
+"Введите номера страниц для извлечения. Используйте числа через запятую "
+"(1,3,5) или диапазоны (1-5)"
 
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr "Найдите ответы на частые вопросы о PDF инструментах Convertica"
@@ -1026,6 +940,8 @@ msgid ""
 "No, you don't need to create an account. Convertica works without "
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
+"Нет, вам не нужно создавать аккаунт. Convertica работает без регистрации. "
+"Просто загрузите ваш файл и начните конвертировать сразу."
 
 msgid "What file formats does Convertica support?"
 msgstr "Какие форматы файлов поддерживает Convertica?"
@@ -1046,6 +962,8 @@ msgid ""
 "No, there are no file size limits on Convertica. You can process files of "
 "any size, from small documents to large PDF files."
 msgstr ""
+"Нет, на Convertica нет ограничений на размер файла. Вы можете обрабатывать "
+"файлы любого размера, от небольших документов до больших PDF файлов."
 
 msgid "Conversion Questions"
 msgstr "Вопросы о конвертации"
@@ -1053,12 +971,6 @@ msgstr "Вопросы о конвертации"
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr "Как конвертировать PDF в Word без потери форматирования?"
 
-#, fuzzy
-#| msgid ""
-#| "To convert PDF to Word without losing formatting, use Convertica's PDF to "
-#| "Word converter. Simply upload your PDF file, and our advanced conversion "
-#| "engine preserves text formatting, images, tables, and layout. The "
-#| "conversion "
 msgid ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
@@ -1073,17 +985,9 @@ msgstr ""
 "вашего оригинального документа. Все конвертации бесплатны и не требуют "
 "регистрации."
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word?"
 msgstr "Как конвертировать PDF в Word?"
 
-#, fuzzy
-#| msgid ""
-#| "To convert PDF to Word, simply upload your PDF file using the upload "
-#| "button or drag and drop it into the upload zone. Click the convert button "
-#| "and wait for the conversion to complete. Download your converted Word "
-#| "document using "
 msgid ""
 "To convert PDF to Word, simply upload your PDF file using the upload button "
 "or drag and drop it into the upload zone. Click the convert button and wait "
@@ -1150,11 +1054,6 @@ msgstr "Редактирование и организация"
 msgid "How do I merge PDF online free without watermark?"
 msgstr "Как объединить PDF онлайн бесплатно без водяного знака?"
 
-#, fuzzy
-#| msgid ""
-#| "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
-#| "arrange them in the desired order using drag and drop, and click merge. "
-#| "All selected files will be combined into a single PDF document."
 msgid ""
 "To merge PDF online free without watermark, use Convertica's PDF merger. Go "
 "to the Merge PDF page, select multiple PDF files, arrange them in the "
@@ -1167,7 +1066,7 @@ msgstr ""
 "несколько PDF файлов, расположите их в нужном порядке с помощью "
 "перетаскивания и нажмите объединить. Все выбранные файлы будут объединены в "
 "один PDF документ без добавления водяного знака. Объединенный PDF сохраняет "
-"качество оригинальных файлов.один PDF документ."
+"качество оригинальных файлов."
 
 msgid "How do I merge multiple PDF files?"
 msgstr "Как объединить несколько PDF файлов?"
@@ -1193,17 +1092,9 @@ msgstr ""
 "как разделить его (по диапазону страниц или каждые N страниц), и скачайте "
 "полученные файлы."
 
-#, fuzzy
-#| msgid "How do I compress a PDF file?"
 msgid "How do I compress PDF to under 1MB for email?"
-msgstr "Как сжать PDF файл?"
+msgstr "Как сжать PDF до 1МБ для email?"
 
-#, fuzzy
-#| msgid ""
-#| "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
-#| "Upload your PDF file, select the high compression level, and click "
-#| "compress. The tool will reduce the file size while maintaining acceptable "
-#| "quality for "
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
 "Upload your PDF file, select the high compression level, and click compress. "
@@ -1378,10 +1269,8 @@ msgstr "и"
 msgid "Reject All"
 msgstr "Отклонить все"
 
-#, fuzzy
-#| msgid "Custom pages:"
 msgid "Customize"
-msgstr "Пользовательские страницы:"
+msgstr "Настроить"
 
 msgid "Accept All"
 msgstr "Принять все"
@@ -1482,15 +1371,11 @@ msgstr "Условия"
 msgid "Convertica - Home"
 msgstr "Convertica - Главная"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica Logo"
-msgstr "О Convertica"
+msgstr "Логотип Convertica"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica"
-msgstr "О Convertica"
+msgstr "Convertica"
 
 msgid "All PDF tools"
 msgstr "Все PDF инструменты"
@@ -1498,10 +1383,8 @@ msgstr "Все PDF инструменты"
 msgid "Main navigation"
 msgstr "Главная навигация"
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "Convert PDF tools"
-msgstr "Конвертировать PDF в Word"
+msgstr "Инструменты конвертации PDF"
 
 msgid "Convert from PDF"
 msgstr "Конвертировать из PDF"
@@ -1509,10 +1392,8 @@ msgstr "Конвертировать из PDF"
 msgid "Convert to PDF"
 msgstr "Конвертировать в PDF"
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "Edit PDF tools"
-msgstr "Все PDF инструменты"
+msgstr "Инструменты редактирования PDF"
 
 msgid "Basic Editing"
 msgstr "Редактирование"
@@ -1520,10 +1401,8 @@ msgstr "Редактирование"
 msgid "Enhancements"
 msgstr "Улучшения"
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Organize PDF tools"
-msgstr "Организовать PDF"
+msgstr "Инструменты организации PDF"
 
 msgid "Organization"
 msgstr "Организация"
@@ -1620,18 +1499,14 @@ msgstr ""
 msgid "+ Add more images"
 msgstr ""
 
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your images here"
-msgstr "Перетащите файл сюда"
+msgstr "Перетащите изображения сюда"
 
 msgid "files"
 msgstr "файлы"
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "multiple files supported"
-msgstr "Какие форматы файлов поддерживаются?"
+msgstr "поддерживается несколько файлов"
 
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
@@ -1663,33 +1538,23 @@ msgstr ""
 "Скачайте конвертированный PDF файл - без регистрации, полностью бесплатно, "
 "все изображения в одном файле"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your images..."
-msgstr "Обработка вашего файла..."
+msgstr "Конвертация изображений..."
 
-#, fuzzy
-#| msgid "Your file is ready to download"
 msgid "Your PDF is ready to download"
-msgstr "Ваш файл готов к загрузке"
+msgstr "Ваш PDF готов к загрузке"
 
-#, fuzzy
-#| msgid "Download File"
 msgid "Download PDF"
-msgstr "Скачать файл"
+msgstr "Скачать PDF"
 
 msgid "Merge Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF Files"
-msgstr "Пожалуйста, выберите PDF файл."
+msgstr "Выберите PDF файлы"
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF files"
-msgstr "Пожалуйста, выберите PDF файл."
+msgstr "Выберите PDF файлы"
 
 msgid "+ Add more files"
 msgstr ""
@@ -1697,10 +1562,8 @@ msgstr ""
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Selected Files"
-msgstr "Похожие статьи"
+msgstr "Выбранные файлы"
 
 msgid "Preview & Reorder Pages"
 msgstr ""
@@ -1718,63 +1581,43 @@ msgstr "Максимум 10 файлов. Будут использованы т
 msgid "Error loading preview"
 msgstr "Ошибка загрузки предпросмотра"
 
-#, fuzzy
-#| msgid "Sending..."
 msgid "Loading..."
-msgstr "Отправка..."
+msgstr "Загрузка..."
 
-#, fuzzy
-#| msgid "Merge PDF"
 msgid "Merging PDFs..."
-msgstr "Объединить PDF"
+msgstr "Объединение PDF..."
 
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Пожалуйста, выберите как минимум 2 PDF файла для объединения."
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organization Settings"
-msgstr "Организация"
+msgstr "Настройки организации"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Operation"
-msgstr "Прекращение"
+msgstr "Операция"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Reorder Pages"
-msgstr "Удалить страницы"
+msgstr "Изменить порядок страниц"
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Sort Pages"
-msgstr "Извлечь страницы"
+msgstr "Сортировать страницы"
 
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Please select a PDF file."
 msgstr "Пожалуйста, выберите PDF файл."
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Please select a PDF file first."
-msgstr "Пожалуйста, выберите PDF файл."
+msgstr "Сначала выберите PDF файл."
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organizing..."
-msgstr "Организация"
+msgstr "Организация..."
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Failed to organize PDF"
-msgstr "Организовать PDF"
+msgstr "Не удалось организовать PDF"
 
 msgid "Privacy Policy - Convertica"
 msgstr "Политика конфиденциальности - Convertica"
@@ -2005,12 +1848,6 @@ msgstr ""
 msgid "Changes to This Privacy Policy"
 msgstr "Изменения в этой Политике конфиденциальности"
 
-#, fuzzy
-#| msgid ""
-#| "We may update our Privacy Policy from time to time. We will notify you of "
-#| "any changes by posting the new Privacy Policy on this page and updating "
-#| "the \"Last updated\" date. You are advised to review this Privacy Policy "
-#| "periodically for any changes."
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
@@ -2036,10 +1873,8 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Enter password to protect PDF"
-msgstr "Удаляйте защиту паролем из вашего PDF"
+msgstr "Введите пароль для защиты PDF"
 
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
@@ -2070,15 +1905,11 @@ msgid ""
 "password will be used."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove Pages Settings"
-msgstr "Удалить страницы"
+msgstr "Настройки удаления страниц"
 
-#, fuzzy
-#| msgid "Changes to Terms"
 msgid "Pages to Remove"
-msgstr "Изменения в условиях"
+msgstr "Страницы для удаления"
 
 msgid "Rotation Settings"
 msgstr ""
@@ -2095,36 +1926,26 @@ msgstr ""
 msgid "(Counter-clockwise)"
 msgstr ""
 
-#, fuzzy
-#| msgid "I agree to the"
 msgid "Pages to Rotate"
-msgstr "Я согласен с"
+msgstr "Страницы для поворота"
 
 msgid "Split Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Split PDF"
 msgid "Split Type"
-msgstr "Разделить PDF"
+msgstr "Тип разделения"
 
 msgid "By Individual Pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "By Page Ranges"
-msgstr "Управление страницами"
+msgstr "По диапазонам страниц"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Every N Pages"
-msgstr "Удалить страницы"
+msgstr "Каждые N страниц"
 
-#, fuzzy
-#| msgid "Page"
 msgid "Pages"
-msgstr "Страница"
+msgstr "Страницы"
 
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
@@ -2134,10 +1955,8 @@ msgid ""
 "pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "Page Ranges"
-msgstr "Управление страницами"
+msgstr "Диапазоны страниц"
 
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr ""
@@ -2473,15 +2292,11 @@ msgstr ""
 "Если у вас есть вопросы об этих Условиях использования, пожалуйста, "
 "свяжитесь с нами."
 
-#, fuzzy
-#| msgid "Unlock PDF"
 msgid "Unlock PDF Settings"
-msgstr "Разблокировать PDF"
+msgstr "Настройки разблокировки PDF"
 
-#, fuzzy
-#| msgid "PDF to Word"
 msgid "PDF Password"
-msgstr "PDF в Word"
+msgstr "Пароль PDF"
 
 msgid "Enter the password to unlock the PDF"
 msgstr ""
@@ -2491,15 +2306,11 @@ msgid ""
 "removed from the output PDF."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Information"
 msgid "Basic Information"
-msgstr "Контактная информация"
+msgstr "Основная информация"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Translations"
-msgstr "Прекращение"
+msgstr "Переводы"
 
 msgid "Add translations for other languages using the tabs above."
 msgstr ""
@@ -2516,10 +2327,8 @@ msgstr ""
 msgid "Empty translations"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Articles"
-msgstr "Все статьи"
+msgstr "Статьи"
 
 msgid "English Content"
 msgstr ""
@@ -2549,10 +2358,8 @@ msgstr ""
 msgid "No image"
 msgstr ""
 
-#, fuzzy
-#| msgid "Previous"
 msgid "Preview"
-msgstr "Предыдущая"
+msgstr "Предпросмотр"
 
 msgid "Name (English)"
 msgstr ""
@@ -2565,18 +2372,14 @@ msgid ""
 "\"description\": \"...\"}, ...}"
 msgstr ""
 
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Description (English)"
-msgstr "Описание услуг"
+msgstr "Описание (английский)"
 
 msgid "Article Category"
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Article Categories"
-msgstr "Категории"
+msgstr "Категории статей"
 
 msgid "Draft"
 msgstr ""
@@ -2615,10 +2418,8 @@ msgid ""
 "etc."
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Category"
-msgstr "Категории"
+msgstr "Категория"
 
 msgid "Featured Image"
 msgstr ""
@@ -2629,10 +2430,8 @@ msgstr ""
 msgid "Published At"
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Created At"
-msgstr "Похожие статьи"
+msgstr "Дата создания"
 
 msgid "Updated At"
 msgstr ""
@@ -2640,10 +2439,8 @@ msgstr ""
 msgid "View Count"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Article"
-msgstr "Все статьи"
+msgstr "Статья"
 
 msgid "Your Name"
 msgstr "Ваше имя"
@@ -2660,23 +2457,17 @@ msgstr ""
 msgid "Subject"
 msgstr "Тема"
 
-#, fuzzy
-#| msgid "Subject"
 msgid "Enter subject"
-msgstr "Тема"
+msgstr "Введите тему"
 
 msgid "Message"
 msgstr "Сообщение"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Enter your message"
-msgstr "Обработка вашего файла..."
+msgstr "Введите сообщение"
 
-#, fuzzy
-#| msgid "Changes to This Privacy Policy"
 msgid "I agree to the Privacy Policy"
-msgstr "Изменения в этой Политике конфиденциальности"
+msgstr "Я согласен с Политикой конфиденциальности"
 
 msgid "Message must be at least 10 characters long."
 msgstr ""
@@ -2798,10 +2589,8 @@ msgstr ""
 msgid "Please correct the errors in the form below."
 msgstr "Пожалуйста, исправьте ошибки в форме ниже."
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
-msgstr "Часто задаваемые вопросы"
+msgstr "Часто задаваемые вопросы (FAQ) - Convertica"
 
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "

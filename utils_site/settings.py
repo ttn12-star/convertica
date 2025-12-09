@@ -162,7 +162,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "src.frontend.context_processors.hreflang_links",
-                "src.frontend.context_processors.hcaptcha_site_key",
+                "src.frontend.context_processors.turnstile_site_key",
             ],
         },
     },
@@ -239,6 +239,7 @@ LANGUAGES = [
     ("hi", "Hindi"),
     ("es", "Spanish"),
     ("id", "Indonesian"),
+    ("ar", "Arabic"),
 ]
 
 # Language detection settings
@@ -524,12 +525,12 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@convertica.net")
 CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 
-# hCaptcha Configuration
-HCAPTCHA_SITE_KEY = os.environ.get(
-    "HCAPTCHA_SITE_KEY", config("HCAPTCHA_SITE_KEY", default="", cast=str)
+# Cloudflare Turnstile Configuration
+TURNSTILE_SITE_KEY = os.environ.get(
+    "TURNSTILE_SITE_KEY", config("TURNSTILE_SITE_KEY", default="", cast=str)
 )
-HCAPTCHA_SECRET_KEY = os.environ.get(
-    "HCAPTCHA_SECRET_KEY", config("HCAPTCHA_SECRET_KEY", default="", cast=str)
+TURNSTILE_SECRET_KEY = os.environ.get(
+    "TURNSTILE_SECRET_KEY", config("TURNSTILE_SECRET_KEY", default="", cast=str)
 )
 
 # Prometheus Monitoring (if available)
