@@ -31,62 +31,6 @@ def robots_txt(request):
         with open(robots_path, encoding="utf-8") as f:
             content = f.read()
 
-        # Remove Cloudflare Managed content block (includes invalid Content-signal directive)
-        # This block starts with "# BEGIN Cloudflare Managed content" and ends with "# END Cloudflare Managed Content"
-        import re
-
-        # Remove the entire Cloudflare managed block
-        content = re.sub(
-            r"# BEGIN Cloudflare Managed content.*?# END Cloudflare Managed Content",
-            "",
-            content,
-            flags=re.DOTALL | re.IGNORECASE,
-        )
-
-        # Remove any remaining invalid directives (like Content-signal which is not a valid robots.txt directive)
-        # Cloudflare automatically adds Content-signal directives, so we need aggressive filtering
-        lines = content.split("\n")
-        valid_lines = []
-        invalid_patterns = [
-            "content-signal:",
-            "content-signal",
-            "x-robots-tag:",
-            "x-robots-tag",
-        ]
-        for line in lines:
-            line_stripped = line.strip()
-            line_lower = line_stripped.lower()
-
-            # Skip lines with invalid directives (case-insensitive check)
-            if any(pattern in line_lower for pattern in invalid_patterns):
-                continue
-
-            # Skip Cloudflare-related comments and blocks
-            if "cloudflare" in line_lower:
-                if any(
-                    keyword in line_lower
-                    for keyword in ["managed", "content signal", "begin", "end"]
-                ):
-                    continue
-
-            valid_lines.append(line)
-
-        content = "\n".join(valid_lines)
-
-        # Additional cleanup: remove any remaining Content-signal patterns using regex
-        content = re.sub(r"(?i)^\s*Content-signal:.*$", "", content, flags=re.MULTILINE)
-        content = re.sub(
-            r"(?i)^\s*#\s*BEGIN\s+Cloudflare.*?END\s+Cloudflare.*$",
-            "",
-            content,
-            flags=re.MULTILINE | re.DOTALL,
-        )
-        # Final pass: remove any line containing Content-signal (case-insensitive)
-        lines = content.split("\n")
-        content = "\n".join(
-            line for line in lines if "content-signal" not in line.lower()
-        )
-
         # Remove duplicate User-agent: * and Allow: / blocks
         # Keep only the last occurrence (our custom rules)
         lines = content.split("\n")
