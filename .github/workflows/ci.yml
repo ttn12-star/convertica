@@ -287,21 +287,48 @@ jobs:
             echo "🗑️ Clearing Django cache..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
 
-            # Restart containers
-            echo "🔄 Restarting containers..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps web celery celery-beat nginx
+            # Zero-downtime deployment strategy
+            echo "🔄 Starting zero-downtime deployment..."
 
-            # Wait for services to be healthy
-            echo "⏳ Waiting for services to be ready..."
-            sleep 10
+            # Step 1: Restart web container and wait for healthcheck
+            # --wait flag waits for containers to be healthy before returning
+            echo "📦 Restarting web container (waiting for healthcheck)..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web
 
-            # Health check
-            echo "🏥 Running health check..."
-            if curl -f http://localhost:8000/health/ > /dev/null 2>&1; then
-              echo "✅ Deployment successful! Health check passed."
+            # Step 2: Verify health endpoint responds
+            echo "🏥 Verifying health endpoint..."
+            max_attempts=10
+            attempt=0
+            while [ $attempt -lt $max_attempts ]; do
+              if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web curl -f http://localhost:8000/health/ > /dev/null 2>&1; then
+                echo "✅ Health check passed!"
+                break
+              fi
+              attempt=$((attempt + 1))
+              echo "   Retry ${attempt}/${max_attempts}..."
+              sleep 2
+            done
+
+            if [ $attempt -eq $max_attempts ]; then
+              echo "⚠️ Health check failed after ${max_attempts} attempts"
             else
-              echo "⚠️ Health check failed, but deployment completed."
+              # Give web container a moment to fully stabilize
+              echo "⏸️ Waiting 3 seconds for web container to stabilize..."
+              sleep 3
             fi
+
+            # Step 3: Restart other services
+            echo "🔄 Restarting background workers..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat
+
+            # Step 4: Reload nginx gracefully (no downtime)
+            echo "🔄 Reloading nginx (graceful reload)..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T nginx nginx -s reload 2>/dev/null || {
+              echo "   Nginx reload failed, restarting..."
+              docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
+            }
+
+            echo "✅ Deployment completed!"
 
             # Clean up old Docker images
             echo "🧹 Cleaning up old Docker images..."
