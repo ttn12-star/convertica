@@ -4,6 +4,9 @@
 {% block title %}{% trans "400 - Bad Request" %} | {% trans "Convertica" %}{% endblock %}
 {% block meta_title %}{% trans "400 - Bad Request" %}{% endblock %}
 {% block description %}{% trans "The request could not be understood by the server." %}{% endblock %}
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
 
 {% block content %}
   <div class="min-h-[60vh] flex items-center justify-center px-4 py-16">

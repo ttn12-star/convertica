@@ -4,6 +4,9 @@
 {% block title %}{% trans "404 - Page Not Found" %} | {% trans "Convertica" %}{% endblock %}
 {% block meta_title %}{% trans "404 - Page Not Found" %}{% endblock %}
 {% block description %}{% trans "The page you are looking for could not be found." %}{% endblock %}
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
 
 {% block content %}
   <div class="min-h-[60vh] flex items-center justify-center px-4 py-16">
