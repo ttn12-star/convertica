@@ -527,7 +527,7 @@ jobs:
 
             # Step 5: Collect static files (clear old files first)
             echo "📦 Collecting static files..."
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "python /app/clear_staticfiles.py || true && python manage.py collectstatic --noinput"; then
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "python /app/clear_staticfiles.py || true && python manage.py collectstatic --noinput && python /app/create_manifest.py || true"; then
               echo "❌ Static files collection failed"
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
