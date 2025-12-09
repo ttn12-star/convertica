@@ -84,14 +84,11 @@ def hreflang_links(request):
                             break
 
                     # Add new language prefix
-                    if code != default_language:
-                        if current_path == "/":
-                            lang_path = f"/{code}/"
-                        else:
-                            lang_path = f"/{code}{current_path}"
+                    # Django i18n_patterns adds prefix for ALL languages, including default
+                    if current_path == "/":
+                        lang_path = f"/{code}/"
                     else:
-                        # Default language might not have prefix
-                        lang_path = current_path if current_path != "/" else "/"
+                        lang_path = f"/{code}{current_path}"
 
                     url = f"{base_url}{lang_path}"
 
@@ -113,13 +110,11 @@ def hreflang_links(request):
                         break
 
                 # Add new language prefix
-                if code != default_language:
-                    if current_path == "/":
-                        lang_path = f"/{code}/"
-                    else:
-                        lang_path = f"/{code}{current_path}"
+                # Django i18n_patterns adds prefix for ALL languages, including default
+                if current_path == "/":
+                    lang_path = f"/{code}/"
                 else:
-                    lang_path = current_path if current_path != "/" else "/"
+                    lang_path = f"/{code}{current_path}"
 
                 url = f"{base_url}{lang_path}"
 
@@ -147,16 +142,9 @@ def hreflang_links(request):
                 # Ensure default_url_path is a string, not bytes
                 if isinstance(default_url_path, bytes):
                     default_url_path = default_url_path.decode("utf-8")
-                # Remove any language prefix for default language
-                for lang_code, _ in languages:
-                    if default_url_path.startswith(f"/{lang_code}/"):
-                        default_url_path = default_url_path.replace(
-                            f"/{lang_code}/", "/", 1
-                        )
-                        break
-                    elif default_url_path == f"/{lang_code}":
-                        default_url_path = "/"
-                        break
+                # Django i18n_patterns adds prefix for ALL languages, including default
+                # So default language URL should also have prefix (e.g., /en/)
+                # No need to remove prefix for default language
             finally:
                 activate(old_lang)
         else:
@@ -164,16 +152,9 @@ def hreflang_links(request):
             # Ensure default_url_path is a string, not bytes
             if isinstance(default_url_path, bytes):
                 default_url_path = default_url_path.decode("utf-8")
-            # Remove any language prefix for default language
-            for lang_code, _ in languages:
-                if default_url_path.startswith(f"/{lang_code}/"):
-                    default_url_path = default_url_path.replace(
-                        f"/{lang_code}/", "/", 1
-                    )
-                    break
-                elif default_url_path == f"/{lang_code}":
-                    default_url_path = "/"
-                    break
+            # Django i18n_patterns adds prefix for ALL languages, including default
+            # So default language URL should also have prefix (e.g., /en/)
+            # No need to remove prefix for default language
 
         default_url = f"{base_url}{default_url_path}"
     except Exception:
