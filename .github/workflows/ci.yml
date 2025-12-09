@@ -221,10 +221,33 @@ jobs:
     environment:
       name: production
       url: https://convertica.net
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build Tailwind CSS
+        run: npm run build:css
+
+      - name: Check if Tailwind CSS was updated
+        run: |
+          if [ -n "$(git status --porcelain static/css/tailwind.css)" ]; then
+            echo "⚠️ Tailwind CSS file was modified during build!"
+            echo "   Please commit the updated static/css/tailwind.css file before deploying."
+            echo "   Run 'npm run build:css' locally and commit the changes."
+            git diff static/css/tailwind.css || true
+            exit 1
+          else
+            echo "✅ Tailwind CSS is up to date"
+          fi
 
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
