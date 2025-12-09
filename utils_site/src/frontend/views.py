@@ -734,19 +734,12 @@ def sitemap_xml(request):
 
         # Generate URL for each language
         for lang_code, _ in languages:
-            # Build URL with language prefix (except for default language at root)
-            if lang_code == default_language and page_url == "":
-                # Default language root - no prefix
-                url = f"{base_url}/"
-            elif lang_code == default_language:
-                # Default language with path - no prefix (Django i18n_patterns behavior)
-                url = f"{base_url}/{page_url}"
+            # Django i18n_patterns adds prefix for ALL languages, including default
+            # Build URL with language prefix for all languages
+            if page_url == "":
+                url = f"{base_url}/{lang_code}/"
             else:
-                # Other languages - with prefix
-                if page_url == "":
-                    url = f"{base_url}/{lang_code}/"
-                else:
-                    url = f"{base_url}/{lang_code}/{page_url}"
+                url = f"{base_url}/{lang_code}/{page_url}"
 
             sitemap += "  <url>\n"
             sitemap += f"    <loc>{url}</loc>\n"
@@ -755,24 +748,20 @@ def sitemap_xml(request):
             sitemap += f'    <priority>{page["priority"]}</priority>\n'
 
             # Add hreflang alternatives
+            # Django i18n_patterns adds prefix for ALL languages, including default
             for alt_lang_code, _ in languages:
-                if alt_lang_code == default_language and page_url == "":
-                    alt_url = f"{base_url}/"
-                elif alt_lang_code == default_language:
-                    alt_url = f"{base_url}/{page_url}"
+                if page_url == "":
+                    alt_url = f"{base_url}/{alt_lang_code}/"
                 else:
-                    if page_url == "":
-                        alt_url = f"{base_url}/{alt_lang_code}/"
-                    else:
-                        alt_url = f"{base_url}/{alt_lang_code}/{page_url}"
+                    alt_url = f"{base_url}/{alt_lang_code}/{page_url}"
 
                 sitemap += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>\n'
 
-            # Add x-default
+            # Add x-default pointing to default language version (with prefix)
             if page_url == "":
-                default_url = f"{base_url}/"
+                default_url = f"{base_url}/{default_language}/"
             else:
-                default_url = f"{base_url}/{page_url}"
+                default_url = f"{base_url}/{default_language}/{page_url}"
             sitemap += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_url}"/>\n'
 
             sitemap += "  </url>\n"
@@ -801,10 +790,8 @@ def sitemap_xml(request):
                     article_url = article_url.decode("utf-8")
             except Exception:
                 # Fallback: construct URL manually
-                if lang_code == default_language:
-                    article_url = f"/blog/{article.slug}/"
-                else:
-                    article_url = f"/{lang_code}/blog/{article.slug}/"
+                # Django i18n_patterns adds prefix for ALL languages, including default
+                article_url = f"/{lang_code}/blog/{article.slug}/"
 
             full_url = f"{base_url}{article_url}"
 
@@ -822,10 +809,8 @@ def sitemap_xml(request):
                     if isinstance(alt_article_url, bytes):
                         alt_article_url = alt_article_url.decode("utf-8")
                 except Exception:
-                    if alt_lang_code == default_language:
-                        alt_article_url = f"/blog/{article.slug}/"
-                    else:
-                        alt_article_url = f"/{alt_lang_code}/blog/{article.slug}/"
+                    # All languages have prefix, including default
+                    alt_article_url = f"/{alt_lang_code}/blog/{article.slug}/"
 
                 alt_full_url = f"{base_url}{alt_article_url}"
                 sitemap += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_full_url}"/>\n'
@@ -837,7 +822,8 @@ def sitemap_xml(request):
                 if isinstance(default_article_url, bytes):
                     default_article_url = default_article_url.decode("utf-8")
             except Exception:
-                default_article_url = f"/blog/{article.slug}/"
+                # Default language also has prefix
+                default_article_url = f"/{default_language}/blog/{article.slug}/"
 
             default_full_url = f"{base_url}{default_article_url}"
             sitemap += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_full_url}"/>\n'
