@@ -107,6 +107,10 @@ COPY --chown=appuser:appuser . .
 # Copy entrypoint script
 COPY --chown=appuser:appuser ci/entrypoint.sh /app/entrypoint.sh
 
+# Copy staticfiles clearing script
+COPY --chown=appuser:appuser ci/clear_staticfiles.py /app/clear_staticfiles.py
+RUN chmod +x /app/clear_staticfiles.py
+
 # Create symlink for src module to make it importable from root
 # This allows Django to find 'src.frontend' and 'src.blog' apps
 RUN ln -s /app/utils_site/src /app/src
