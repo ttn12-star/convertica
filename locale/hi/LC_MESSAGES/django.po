@@ -591,7 +591,7 @@ msgstr "धीमा, अधिक संपीड़न"
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
-msgstr ""
+msgstr "अपनी आवश्यकताओं के आधार पर संपीड़न स्तर चुनें। उच्च संपीड़न फ़ाइल आकार को अधिक कम करता है लेकिन अधिक समय लेता है।"
 
 msgid "Contact Us - Convertica"
 msgstr "हमसे संपर्क करें - Convertica"
@@ -1404,16 +1404,16 @@ msgid "View All Articles"
 msgstr "सभी लेख देखें"
 
 msgid "You can upload multiple images - they will be combined into one PDF"
-msgstr ""
+msgstr "आप कई छवियां अपलोड कर सकते हैं - वे एक PDF में संयोजित हो जाएंगी"
 
 msgid "Select image(s)"
-msgstr ""
+msgstr "छवि(याँ) चुनें"
 
 msgid "Selected Images"
-msgstr ""
+msgstr "चयनित छवियां"
 
 msgid "+ Add more images"
-msgstr ""
+msgstr "+ अधिक छवियां जोड़ें"
 
 msgid "Drag and drop your images here"
 msgstr "अपनी छवियाँ यहाँ खींचें और छोड़ें"
@@ -1439,17 +1439,17 @@ msgstr ""
 "- हमारा उपकरण बहु-अपलोड का समर्थन करता है"
 
 msgid "Remove unwanted images by clicking the X button"
-msgstr ""
+msgstr "X बटन पर क्लिक करके अवांछित छवियां हटाएं"
 "X बटन पर क्लिक करके अवांछित छवियों को हटाएं - हमारा JPG से PDF कनवर्टर आसानी से "
 "छवियों को प्रबंधित करने की अनुमति देता है"
 
 msgid "Click the convert button to combine all images into one PDF"
-msgstr ""
+msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
 "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें - हमारा तेज़ "
 "कनवर्टर उन्हें तुरंत संसाधित करेगा"
 
 msgid "Download your converted PDF file"
-msgstr ""
+msgstr "अपनी कन्वर्ट की गई PDF फ़ाइल डाउनलोड करें"
 "अपनी कनवर्ट की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "सभी छवियां एक फ़ाइल में"
 
@@ -1463,7 +1463,7 @@ msgid "Download PDF"
 msgstr "PDF डाउनलोड करें"
 
 msgid "Merge Settings"
-msgstr ""
+msgstr "मर्ज सेटिंग्स"
 
 msgid "Select PDF Files"
 msgstr "PDF फ़ाइलें चुनें"
@@ -1472,16 +1472,16 @@ msgid "Select PDF files"
 msgstr "PDF फ़ाइलें चुनें"
 
 msgid "+ Add more files"
-msgstr ""
+msgstr "+ अधिक फ़ाइलें जोड़ें"
 
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
-msgstr ""
+msgstr "मर्ज करने के लिए 2-10 PDF फ़ाइलें चुनें। आप उन्हें खींचकर पुन: क्रमित कर सकते हैं।"
 
 msgid "Selected Files"
 msgstr "चयनित फ़ाइलें"
 
 msgid "Preview & Reorder Pages"
-msgstr ""
+msgstr "पूर्वावलोकन और पृष्ठों को पुन: क्रमित करें"
 
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
@@ -1769,10 +1769,10 @@ msgid "If you have any questions about this Privacy Policy, please contact us."
 msgstr "यदि इस गोपनीयता नीति के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें।"
 
 msgid "Password Protection Settings"
-msgstr ""
+msgstr "पासवर्ड सुरक्षा सेटिंग्स"
 
 msgid "Password"
-msgstr ""
+msgstr "पासवर्ड"
 
 msgid "Enter password to protect PDF"
 msgstr "PDF सुरक्षित करने के लिए पासवर्ड दर्ज करें"
@@ -1782,13 +1782,13 @@ msgid ""
 msgstr ""
 
 msgid "User Password"
-msgstr ""
+msgstr "उपयोगकर्ता पासवर्ड"
 
 msgid "Optional"
-msgstr ""
+msgstr "वैकल्पिक"
 
 msgid "Optional: Different user password"
-msgstr ""
+msgstr "वैकल्पिक: अलग उपयोगकर्ता पासवर्ड"
 
 msgid ""
 "Optional: Set a different password for users. If not provided, the main "
@@ -1796,10 +1796,10 @@ msgid ""
 msgstr ""
 
 msgid "Owner Password"
-msgstr ""
+msgstr "मालिक पासवर्ड"
 
 msgid "Optional: Different owner password"
-msgstr ""
+msgstr "वैकल्पिक: अलग मालिक पासवर्ड"
 
 msgid ""
 "Optional: Set a different password for owner. If not provided, the main "
@@ -1813,31 +1813,31 @@ msgid "Pages to Remove"
 msgstr "हटाने के लिए पृष्ठ"
 
 msgid "Rotation Settings"
-msgstr ""
+msgstr "घुमाव सेटिंग्स"
 
 msgid "Rotation Angle"
-msgstr ""
+msgstr "घुमाव कोण"
 
 msgid "(Clockwise)"
-msgstr ""
+msgstr "(दक्षिणावर्त)"
 
 msgid "(Upside down)"
-msgstr ""
+msgstr "(उल्टा)"
 
 msgid "(Counter-clockwise)"
-msgstr ""
+msgstr "(वामावर्त)"
 
 msgid "Pages to Rotate"
 msgstr "घुमाने के लिए पृष्ठ"
 
 msgid "Split Settings"
-msgstr ""
+msgstr "विभाजन सेटिंग्स"
 
 msgid "Split Type"
 msgstr "विभाजन प्रकार"
 
 msgid "By Individual Pages"
-msgstr ""
+msgstr "व्यक्तिगत पृष्ठों द्वारा"
 
 msgid "By Page Ranges"
 msgstr "पृष्ठ श्रेणियों द्वारा"
@@ -1849,24 +1849,24 @@ msgid "Pages"
 msgstr "पृष्ठ"
 
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
-msgstr ""
+msgstr "पृष्ठ संख्याएं दर्ज करें जैसे '1,3,5' या सभी पृष्ठों के लिए खाली छोड़ें"
 
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
-msgstr ""
+msgstr "अल्पविराम से अलग किए गए पृष्ठ संख्याएं दर्ज करें (उदाहरण: 1,3,5) या सभी पृष्ठों को विभाजित करने के लिए खाली छोड़ें"
 
 msgid "Page Ranges"
 msgstr "पृष्ठ श्रेणियाँ"
 
 msgid "Enter page ranges like 1-3,5-7 (required)"
-msgstr ""
+msgstr "पृष्ठ श्रेणियां दर्ज करें जैसे 1-3,5-7 (आवश्यक)"
 
 msgid "Pages per File"
-msgstr ""
+msgstr "प्रति फ़ाइल पृष्ठ"
 
 msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
-msgstr ""
+msgstr "प्रति फ़ाइल पृष्ठों की संख्या दर्ज करें (उदा., प्रत्येक 5 पृष्ठों के लिए 5)"
 
 msgid "Terms of Service - Convertica"
 msgstr "सेवा की शर्तें - Convertica"
@@ -2169,7 +2169,7 @@ msgid "PDF Password"
 msgstr "PDF पासवर्ड"
 
 msgid "Enter the password to unlock the PDF"
-msgstr ""
+msgstr "PDF को अनलॉक करने के लिए पासवर्ड दर्ज करें"
 
 msgid ""
 "Enter the password that was used to protect the PDF. The password will be "
@@ -2322,7 +2322,7 @@ msgid "Your Email"
 msgstr "आपका ईमेल"
 
 msgid "your.email@example.com"
-msgstr ""
+msgstr "आपका.ईमेल@उदाहरण.com"
 
 msgid "Subject"
 msgstr "विषय"
@@ -2429,7 +2429,7 @@ msgstr ""
 "24-48 घंटों के भीतर।"
 
 msgid "Please complete the CAPTCHA verification."
-msgstr ""
+msgstr "कृपया CAPTCHA सत्यापन पूरा करें।"
 
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
