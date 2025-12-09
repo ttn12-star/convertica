@@ -113,7 +113,7 @@ def article_list(request):
                 articles = articles.filter(base_query)
 
             # Cache search results for 5 minutes
-            cache.set(search_cache_key, articles, 300)
+            cache.set(search_cache_key, articles, 3600)  # Cache for 1 hour
 
     # Pagination - 9 articles per page (3 columns x 3 rows)
     # Paginator works with both QuerySet and list
