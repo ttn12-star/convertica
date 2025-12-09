@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -2596,7 +2595,6 @@ msgstr ""
 #: templates/frontend/contact.html:163
 msgid "Thank you! Your message has been sent successfully."
 msgstr "Thank you! Your message has been sent successfully."
-
 
 #: templates/frontend/contact.html:179
 msgid "Please correct the errors below:"
