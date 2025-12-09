@@ -25,10 +25,10 @@ services:
       resources:
         limits:
           cpus: '${WEB_CPU_LIMIT:-1.0}'
-          memory: ${WEB_MEMORY_LIMIT:-512M}
+          memory: ${WEB_MEMORY_LIMIT:-1024M}
         reservations:
           cpus: '${WEB_CPU_RESERVATION:-0.2}'
-          memory: ${WEB_MEMORY_RESERVATION:-256M}
+          memory: ${WEB_MEMORY_RESERVATION:-512M}
     restart: always
     logging:
       driver: "json-file"
