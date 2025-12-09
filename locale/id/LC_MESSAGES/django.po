@@ -13,10 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
@@ -24,10 +20,6 @@ msgstr ""
 "Konverter online PDF ke Word dan Word ke PDF yang cepat, sederhana, dan "
 "aman. Konversi dokumen secara instan, tanpa registrasi."
 
-#, fuzzy
-#| msgid ""
-#| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
-#| "online PDF converter"
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
@@ -35,10 +27,6 @@ msgstr ""
 "PDF ke Word, PDF ke DOCX, konversi PDF, konverter PDF, konverter Word, "
 "konverter PDF online"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr ""
 "Konverter online PDF ke Word dan Word ke PDF yang cepat, sederhana, dan "
@@ -71,8 +59,6 @@ msgstr "Kompres PDF"
 msgid "Rotate PDF"
 msgstr "Putar PDF"
 
-#, fuzzy
-#| msgid "All Tools"
 msgid "View All Tools"
 msgstr "Semua alat"
 
@@ -244,10 +230,9 @@ msgstr "Mengapa memilih Convertica"
 msgid "Checkmark icon"
 msgstr "Ikon centang"
 
-#, fuzzy, python-format
-#| msgid "100% Free"
+#, python-format
 msgid "100%% Free"
-msgstr "100% Gratis"
+msgstr "100%% Gratis"
 
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
@@ -298,8 +283,6 @@ msgstr "Jelajahi semua alat"
 msgid "Get Started"
 msgstr "Mulai"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Page Number Settings"
 msgstr "Nomor halaman"
 
@@ -312,8 +295,6 @@ msgstr "Bawah Tengah"
 msgid "Bottom Left"
 msgstr "Bawah Kiri"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Bottom Right"
 msgstr "Hak Anda"
 
@@ -323,16 +304,12 @@ msgstr "Atas Tengah"
 msgid "Top Left"
 msgstr "Atas Kiri"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Top Right"
 msgstr "Hak Anda"
 
 msgid "Font Size"
 msgstr "Ukuran Font"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Starting Page Number"
 msgstr "Nomor halaman"
 
@@ -358,13 +335,9 @@ msgstr "Halaman kustom:"
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "Masukkan halaman tertentu seperti '1,3,5' atau '1-5'"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to watermark"
 msgstr "Pilih file untuk watermark"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove file"
 msgstr "Hapus halaman"
 
@@ -380,13 +353,9 @@ msgstr "file"
 msgid "Visual Watermark Editor"
 msgstr "Editor Watermark Visual"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Select Page"
 msgstr "Hapus halaman"
 
-#, fuzzy
-#| msgid "How it works"
 msgid "How to use:"
 msgstr "Cara kerjanya"
 
@@ -399,8 +368,6 @@ msgstr ""
 msgid "Watermark Settings"
 msgstr "Pengaturan Watermark"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Type"
 msgstr "Watermark"
 
@@ -410,13 +377,9 @@ msgstr "Teks"
 msgid "Image"
 msgstr "Gambar"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Text"
 msgstr "Watermark"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Image"
 msgstr "Watermark"
 
@@ -489,13 +452,9 @@ msgstr "Edit file lain"
 msgid "Error"
 msgstr "Kesalahan"
 
-#, fuzzy
-#| msgid "Conversion failed. Please try again."
 msgid "Failed to load PDF file. Please try again."
 msgstr "Konversi gagal. Silakan coba lagi."
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "All PDF Tools"
 msgstr "Semua alat PDF"
 
@@ -545,8 +504,6 @@ msgstr "Ekstrak tabel dari PDF dan konversi ke format Excel."
 msgid "Edit PDF"
 msgstr "Edit PDF"
 
-#, fuzzy
-#| msgid "Organize and manage your PDF documents"
 msgid "Modify and enhance your PDF documents"
 msgstr "Atur dan kelola dokumen PDF Anda"
 
@@ -562,8 +519,6 @@ msgstr "Potong halaman PDF dengan menentukan koordinat kotak potong."
 msgid "Add Page Numbers"
 msgstr "Nomor halaman"
 
-#, fuzzy
-#| msgid "Add page numbers to your PDF in seconds"
 msgid "Add page numbers to your PDF documents."
 msgstr "Tambahkan nomor halaman ke PDF Anda dalam hitungan detik"
 
@@ -576,8 +531,6 @@ msgstr "Lindungi PDF Anda dengan watermark teks atau gambar."
 msgid "Organize PDF"
 msgstr "Atur PDF"
 
-#, fuzzy
-#| msgid "Manage and organize your PDF documents with powerful tools"
 msgid "Manage and organize your PDF documents"
 msgstr "Kelola dan atur dokumen PDF Anda dengan alat yang powerful"
 
@@ -605,37 +558,27 @@ msgstr "Ekstrak halaman tertentu dari PDF Anda ke file baru."
 msgid "Reorder and organize pages in your PDF document."
 msgstr "Susun ulang dan atur halaman dalam dokumen PDF Anda."
 
-#, fuzzy
-#| msgid "Reduce PDF file size without losing quality"
 msgid "Reduce PDF file size without losing quality."
 msgstr "Kurangi ukuran file PDF tanpa kehilangan kualitas"
 
-#, fuzzy
-#| msgid "Secure and protect your PDF documents"
 msgid "Protect and secure your PDF documents"
 msgstr "Aman dan lindungi dokumen PDF Anda"
 
 msgid "Protect PDF"
 msgstr "Lindungi PDF"
 
-#, fuzzy
-#| msgid "Add password protection or remove passwords from PDFs."
 msgid "Add password protection to secure your PDF documents."
 msgstr "Tambahkan perlindungan kata sandi atau hapus kata sandi dari PDF."
 
 msgid "Unlock PDF"
 msgstr "Buka kunci PDF"
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Remove password protection from your PDF documents."
 msgstr "Hapus perlindungan kata sandi dari PDF Anda"
 
 msgid "Compression Settings"
 msgstr "Pengaturan Kompresi"
 
-#, fuzzy
-#| msgid "Compress PDF"
 msgid "Compression Level"
 msgstr "Kompres PDF"
 
@@ -776,8 +719,6 @@ msgstr ""
 msgid "Additional Resources"
 msgstr "Sumber daya tambahan"
 
-#, fuzzy
-#| msgid "About"
 msgid "About Us"
 msgstr "Tentang"
 
@@ -826,28 +767,18 @@ msgstr "Unduh file yang dikonversi menggunakan tombol unduh"
 "Unduh file yang telah dikonversi - tanpa registrasi, sepenuhnya gratis, "
 "tanpa batasan"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your file..."
 msgstr "Memproses file Anda..."
 
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Complete!"
 msgstr "Pengeditan selesai!"
 
-#, fuzzy
-#| msgid "Edit another file"
 msgid "Convert another file"
 msgstr "Edit file lain"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to crop"
 msgstr "Pilih file untuk dipotong"
 
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop Your PDF"
 msgstr "Potong PDF"
 
@@ -857,8 +788,6 @@ msgid ""
 "corner/edge handles to resize it."
 msgstr ""
 
-#, fuzzy
-#| msgid "Page"
 msgid "Page:"
 msgstr "Halaman"
 
@@ -870,8 +799,6 @@ msgid ""
 "ready."
 msgstr ""
 
-#, fuzzy
-#| msgid "Apply to pages"
 msgid "Apply crop to pages"
 msgstr "Terapkan ke halaman"
 
@@ -951,8 +878,6 @@ msgid ""
 "\"Crop PDF\\\" when ready."
 msgstr ""
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to edit"
 msgstr "Pilih file untuk diedit"
 
@@ -980,8 +905,6 @@ msgid ""
 "\"Current page only\\\""
 msgstr ""
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Extract Pages Settings"
 msgstr "Ekstrak halaman"
 
@@ -996,13 +919,9 @@ msgstr ""
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr "Temukan jawaban untuk pertanyaan umum tentang alat PDF Convertica"
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "General Questions"
 msgstr "Pertanyaan Umum"
 
-#, fuzzy
-#| msgid "Is Convertica really free?"
 msgid "Is Convertica free to use?"
 msgstr "Apakah Convertica gratis digunakan?"
 
@@ -1020,8 +939,6 @@ msgid ""
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What file formats does Convertica support?"
 msgstr "Format file apa yang didukung Convertica?"
 
@@ -1039,13 +956,9 @@ msgid ""
 "any size, from small documents to large PDF files."
 msgstr ""
 
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Questions"
 msgstr "Pertanyaan tentang Konversi"
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr "Bagaimana cara mengonversi PDF ke Word?"
 
@@ -1057,8 +970,6 @@ msgid ""
 "All conversions are free and require no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word?"
 msgstr "Bagaimana cara mengonversi PDF ke Word?"
 
@@ -1069,8 +980,6 @@ msgid ""
 "the download button. The conversion is free and requires no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "How do I convert Word to PDF?"
 msgstr "Bagaimana cara mengonversi Word ke PDF?"
 
@@ -1080,8 +989,6 @@ msgid ""
 "document."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Excel"
 msgid "Can I convert PDF to JPG?"
 msgstr "Bisakah saya mengonversi PDF ke JPG?"
 
@@ -1100,8 +1007,6 @@ msgid ""
 "with automatic A4 formatting."
 msgstr ""
 
-#, fuzzy
-#| msgid "Extract tables from PDF and convert to Excel format"
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "Bisakah saya mengekstrak tabel dari PDF ke Excel?"
 
@@ -1111,8 +1016,6 @@ msgid ""
 "Excel file."
 msgstr ""
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Editing & Organization"
 msgstr "Pengeditan dan Organisasi"
 
@@ -1136,8 +1039,6 @@ msgid ""
 "selected files will be combined into a single PDF document."
 msgstr ""
 
-#, fuzzy
-#| msgid "Split your PDF into multiple files"
 msgid "Can I split a PDF into separate files?"
 msgstr "Pisahkan PDF Anda menjadi beberapa file"
 
@@ -1146,8 +1047,6 @@ msgid ""
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress PDF to under 1MB for email?"
 msgstr ""
 "Bagaimana cara mengompres file PDF?Unduh file PDF yang telah dipotong - "
@@ -1161,8 +1060,6 @@ msgid ""
 "downloading."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress a PDF file?"
 msgstr ""
 "Bagaimana cara mengompres file PDF?Unduh file PDF yang telah dipotong - "
@@ -1177,10 +1074,6 @@ msgstr ""
 msgid "Can I rotate PDF pages?"
 msgstr "Bisakah saya memutar halaman PDF?"
 
-#, fuzzy
-#| msgid ""
-#| "Rotate PDF pages by 90, 180, or 270 degrees. Free online PDF rotation "
-#| "tool."
 msgid ""
 "Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
 "you want to rotate and choose the rotation angle."
@@ -1188,8 +1081,6 @@ msgstr ""
 "Putar halaman PDF sebesar 90, 180, atau 270 derajat. Alat rotasi PDF online "
 "gratis."
 
-#, fuzzy
-#| msgid "Download your watermarked PDF file"
 msgid "How do I add a watermark to PDF?"
 msgstr ""
 "Bagaimana cara menambahkan watermark ke PDF?Unduh file PDF dengan watermark "
@@ -1207,10 +1098,6 @@ msgstr "Keamanan dan Privasi"
 msgid "Is my data secure?"
 msgstr "Apakah data saya aman?"
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -1228,8 +1115,6 @@ msgid ""
 "click protect. The PDF will be encrypted and require a password to open."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Can I remove password protection from a PDF?"
 msgstr "Hapus perlindungan kata sandi dari PDF Anda"
 
@@ -1242,10 +1127,6 @@ msgstr ""
 msgid "Are my files stored on your servers?"
 msgstr "Apakah file saya disimpan di server Anda?"
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
@@ -1257,8 +1138,6 @@ msgstr ""
 msgid "Technical Questions"
 msgstr "Pertanyaan Teknis"
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What browsers are supported?"
 msgstr "Format file apa yang didukung?"
 
@@ -1268,8 +1147,6 @@ msgid ""
 "smartphones and tablets."
 msgstr ""
 
-#, fuzzy
-#| msgid "How long does it take to process files?"
 msgid "How long does conversion take?"
 msgstr "Berapa lama waktu yang dibutuhkan untuk memproses file?"
 
@@ -1279,8 +1156,6 @@ msgid ""
 "shown during conversion."
 msgstr ""
 
-#, fuzzy
-#| msgid "Wait for the conversion to complete"
 msgid "What if conversion fails?"
 msgstr ""
 "Bagaimana jika konversi gagal?Tunggu hingga konversi selesai - konverter "
@@ -1327,8 +1202,6 @@ msgstr "dan"
 msgid "Reject All"
 msgstr "Tolak Semua"
 
-#, fuzzy
-#| msgid "Custom pages:"
 msgid "Customize"
 msgstr "Halaman kustom:"
 
@@ -1431,13 +1304,9 @@ msgstr "Ketentuan"
 msgid "Convertica - Home"
 msgstr "Convertica - Beranda"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica Logo"
 msgstr "Tentang Convertica"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica"
 msgstr "Tentang Convertica"
 
@@ -1447,8 +1316,6 @@ msgstr "Semua alat PDF"
 msgid "Main navigation"
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "Convert PDF tools"
 msgstr "Konversi PDF ke Word"
 
@@ -1458,8 +1325,6 @@ msgstr "Konversi dari PDF"
 msgid "Convert to PDF"
 msgstr "Konversi ke PDF"
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "Edit PDF tools"
 msgstr "Semua alat PDF"
 
@@ -1469,8 +1334,6 @@ msgstr "Pengeditan dasar"
 msgid "Enhancements"
 msgstr "Peningkatan"
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Organize PDF tools"
 msgstr "Atur PDF"
 
@@ -1563,16 +1426,12 @@ msgstr ""
 msgid "+ Add more images"
 msgstr ""
 
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your images here"
 msgstr "Seret file Anda ke sini"
 
 msgid "files"
 msgstr "file"
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "multiple files supported"
 msgstr "Format file apa yang didukung?"
 
@@ -1605,31 +1464,21 @@ msgstr ""
 "Unduh file PDF yang telah dikonversi - tanpa registrasi, sepenuhnya gratis, "
 "semua gambar dalam satu file"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your images..."
 msgstr "Memproses file Anda..."
 
-#, fuzzy
-#| msgid "Your file is ready to download"
 msgid "Your PDF is ready to download"
 msgstr "File Anda siap untuk diunduh"
 
-#, fuzzy
-#| msgid "Download File"
 msgid "Download PDF"
 msgstr "Unduh file"
 
 msgid "Merge Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF Files"
 msgstr "Silakan pilih file PDF."
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF files"
 msgstr "Silakan pilih file PDF."
 
@@ -1639,8 +1488,6 @@ msgstr ""
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Selected Files"
 msgstr "Artikel terkait"
 
@@ -1660,38 +1507,24 @@ msgstr "Maksimal 10 file diperbolehkan. Hanya 10 file pertama yang akan digunaka
 msgid "Error loading preview"
 msgstr "Kesalahan memuat pratinjau"
 
-#, fuzzy
-#| msgid "Sending..."
 msgid "Loading..."
 msgstr "Mengirim..."
 
-#, fuzzy
-#| msgid "Merge PDFs"
 msgid "Merging PDFs..."
 msgstr "Gabungkan PDF"
 
-#, fuzzy
-#| msgid "Please select PDF files to merge."
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Silakan pilih file PDF untuk digabungkan."
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organization Settings"
 msgstr "Organisasi"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Operation"
 msgstr "Pengakhiran"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Reorder Pages"
 msgstr "Hapus halaman"
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Sort Pages"
 msgstr "Ekstrak halaman"
 
@@ -1700,23 +1533,15 @@ msgid ""
 "order."
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a Word file."
 msgid "Please select a PDF file."
 msgstr "Silakan pilih file Word."
 
-#, fuzzy
-#| msgid "Please select a PDF file with tables."
 msgid "Please select a PDF file first."
 msgstr "Silakan pilih file PDF dengan tabel."
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organizing..."
 msgstr "Organisasi"
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Failed to organize PDF"
 msgstr "Atur PDF"
 
@@ -1828,18 +1653,14 @@ msgstr "Audit keamanan dan pembaruan rutin"
 msgid "Access controls and monitoring systems"
 msgstr "Kontrol akses dan sistem pemantauan"
 
-#, fuzzy, python-format
-#| msgid ""
-#| "However, no method of transmission over the Internet or electronic "
-#| "storage is 100% secure. While we strive to use commercially acceptable "
-#| "means to protect your information, we cannot guarantee absolute security."
+#, python-format
 msgid ""
 "However, no method of transmission over the Internet or electronic storage "
 "is 100%% secure. While we strive to use commercially acceptable means to "
 "protect your information, we cannot guarantee absolute security."
 msgstr ""
 "Namun, tidak ada metode transmisi melalui Internet atau penyimpanan "
-"elektronik yang 100% aman. Meskipun kami berusaha menggunakan cara yang "
+"elektronik yang 100%% aman. Meskipun kami berusaha menggunakan cara yang "
 "dapat diterima secara komersial untuk melindungi informasi Anda, kami tidak "
 "dapat menjamin keamanan absolut."
 
@@ -1878,11 +1699,6 @@ msgstr ""
 "mereka berkewajiban untuk tidak mengungkapkan atau menggunakannya untuk "
 "tujuan lain."
 
-#, fuzzy
-#| msgid ""
-#| "We do not sell, trade, or rent your personal information to third "
-#| "parties. We may share your information only in the following "
-#| "circumstances:"
 msgid ""
 "We do not sell, trade, or rent your personal information to third parties."
 msgstr ""
@@ -1957,12 +1773,6 @@ msgstr ""
 msgid "Changes to This Privacy Policy"
 msgstr "Perubahan pada Kebijakan Privasi ini"
 
-#, fuzzy
-#| msgid ""
-#| "We may update our Privacy Policy from time to time. We will notify you of "
-#| "any changes by posting the new Privacy Policy on this page and updating "
-#| "the \"Last updated\" date. You are advised to review this Privacy Policy "
-#| "periodically for any changes."
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
@@ -1988,8 +1798,6 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Enter password to protect PDF"
 msgstr "Hapus perlindungan kata sandi dari PDF Anda"
 
@@ -2022,13 +1830,9 @@ msgid ""
 "password will be used."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove Pages Settings"
 msgstr "Hapus halaman"
 
-#, fuzzy
-#| msgid "Changes to Terms"
 msgid "Pages to Remove"
 msgstr "Perubahan ketentuan"
 
@@ -2047,34 +1851,24 @@ msgstr ""
 msgid "(Counter-clockwise)"
 msgstr ""
 
-#, fuzzy
-#| msgid "I agree to the"
 msgid "Pages to Rotate"
 msgstr "Saya setuju dengan"
 
 msgid "Split Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Split PDF"
 msgid "Split Type"
 msgstr "Pisahkan PDF"
 
 msgid "By Individual Pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "By Page Ranges"
 msgstr "Manajemen halaman"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Every N Pages"
 msgstr "Hapus halaman"
 
-#, fuzzy
-#| msgid "Page"
 msgid "Pages"
 msgstr "Halaman"
 
@@ -2086,8 +1880,6 @@ msgid ""
 "pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "Page Ranges"
 msgstr "Manajemen halaman"
 
@@ -2243,8 +2035,6 @@ msgstr ""
 "output akan memenuhi persyaratan khusus Anda. Anda bertanggung jawab untuk "
 "memverifikasi keakuratan file yang diproses."
 
-#, fuzzy
-#| msgid "Our Intellectual Property"
 msgid "Intellectual Property"
 msgstr "Kekayaan intelektual kami"
 
@@ -2417,13 +2207,9 @@ msgstr ""
 "Jika Anda memiliki pertanyaan tentang Ketentuan Layanan ini, silakan hubungi "
 "kami."
 
-#, fuzzy
-#| msgid "Unlock PDF"
 msgid "Unlock PDF Settings"
 msgstr "Buka kunci PDF"
 
-#, fuzzy
-#| msgid "PDF to Word"
 msgid "PDF Password"
 msgstr "PDF ke Word"
 
@@ -2435,13 +2221,9 @@ msgid ""
 "removed from the output PDF."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Information"
 msgid "Basic Information"
 msgstr "Informasi kontak"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Translations"
 msgstr "Pengakhiran"
 
@@ -2460,8 +2242,6 @@ msgstr ""
 msgid "Empty translations"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Articles"
 msgstr "Semua artikel"
 
@@ -2493,8 +2273,6 @@ msgstr ""
 msgid "No image"
 msgstr ""
 
-#, fuzzy
-#| msgid "Previous"
 msgid "Preview"
 msgstr "Sebelumnya"
 
@@ -2509,16 +2287,12 @@ msgid ""
 "\"description\": \"...\"}, ...}"
 msgstr ""
 
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Description (English)"
 msgstr "Deskripsi layanan"
 
 msgid "Article Category"
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Article Categories"
 msgstr "Kategori"
 
@@ -2559,8 +2333,6 @@ msgid ""
 "etc."
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Category"
 msgstr "Kategori"
 
@@ -2573,8 +2345,6 @@ msgstr ""
 msgid "Published At"
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Created At"
 msgstr "Artikel terkait"
 
@@ -2584,8 +2354,6 @@ msgstr ""
 msgid "View Count"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Article"
 msgstr "Semua artikel"
 
@@ -2604,21 +2372,15 @@ msgstr ""
 msgid "Subject"
 msgstr "Subjek"
 
-#, fuzzy
-#| msgid "Subject"
 msgid "Enter subject"
 msgstr "Subjek"
 
 msgid "Message"
 msgstr "Pesan"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Enter your message"
 msgstr "Memproses file Anda..."
 
-#, fuzzy
-#| msgid "Changes to This Privacy Policy"
 msgid "I agree to the Privacy Policy"
 msgstr "Perubahan pada Kebijakan Privasi ini"
 
@@ -2739,8 +2501,6 @@ msgstr ""
 msgid "Please correct the errors in the form below."
 msgstr "Silakan perbaiki kesalahan dalam formulir di bawah ini."
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "Pertanyaan yang sering diajukan"
 
@@ -2769,7 +2529,6 @@ msgid ""
 "be combined into a single PDF document."
 msgstr ""
 
-#, fuzzy
 #~| msgid ""
 #~| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
 #~| "online PDF converter"
