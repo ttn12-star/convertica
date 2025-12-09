@@ -111,22 +111,28 @@ def log_conversion_success(
     }
     logger.info(f"{conversion_type} conversion completed successfully", extra=log_data)
 
-    # Send metrics to Sentry (non-blocking, async)
+    # Send metrics to Sentry using Metrics API (non-blocking, async)
     try:
-        import sentry_sdk
+        from sentry_sdk import metrics
 
-        with sentry_sdk.push_scope() as scope:
-            scope.set_tag("conversion_type", conversion_type)
-            scope.set_tag("event", "conversion_success")
-            scope.set_measurement("processing_time", processing_time, unit="second")
-            if "file_size_mb" in log_data:
-                scope.set_measurement(
-                    "file_size", log_data["file_size_mb"], unit="megabyte"
-                )
-            # Send as event (appears in Sentry as metric)
-            sentry_sdk.capture_message(
-                f"Conversion: {conversion_type}",
-                level="info",
+        # Count successful conversions
+        metrics.count(
+            "conversion.success", 1, tags={"conversion_type": conversion_type}
+        )
+        # Track processing time distribution
+        metrics.distribution(
+            "conversion.processing_time",
+            processing_time,
+            unit="second",
+            tags={"conversion_type": conversion_type},
+        )
+        # Track file size if available
+        if "file_size_mb" in log_data:
+            metrics.distribution(
+                "conversion.file_size",
+                log_data["file_size_mb"],
+                unit="megabyte",
+                tags={"conversion_type": conversion_type},
             )
     except ImportError:
         # Sentry not installed, skip
@@ -189,6 +195,22 @@ def log_conversion_error(
         )
     else:
         log_method(f"{conversion_type} conversion failed: {error}", extra=log_data)
+
+    # Send error metrics to Sentry
+    try:
+        from sentry_sdk import metrics
+
+        metrics.count(
+            "conversion.error",
+            1,
+            tags={
+                "conversion_type": conversion_type,
+                "error_type": error.__class__.__name__,
+            },
+        )
+    except (ImportError, Exception):
+        # Don't fail if Sentry is unavailable
+        pass
 
 
 def log_validation_error(
