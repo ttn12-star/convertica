@@ -454,18 +454,44 @@ class BaseConversionAPIView(APIView, ABC):
                 extra={**context, "timeout_seconds": timeout},
             )
 
+            # Create Sentry transaction for performance tracking
+            try:
+                import sentry_sdk
+
+                transaction = sentry_sdk.start_transaction(
+                    op="conversion",
+                    name=f"{self.CONVERSION_TYPE} conversion",
+                )
+                transaction.set_tag("conversion_type", self.CONVERSION_TYPE)
+                transaction.set_data("file_size_mb", context.get("file_size_mb", 0))
+            except (ImportError, Exception):
+                transaction = None
+
             # Perform conversion WITH TIMEOUT
             try:
-                input_path, output_path = run_with_timeout(
-                    self.perform_conversion,
-                    args=(uploaded_file, context),
-                    kwargs={
-                        k: v
-                        for k, v in serializer.validated_data.items()
-                        if k != file_field_name
-                    },
-                    timeout=timeout,
-                )
+                if transaction:
+                    with transaction:
+                        input_path, output_path = run_with_timeout(
+                            self.perform_conversion,
+                            args=(uploaded_file, context),
+                            kwargs={
+                                k: v
+                                for k, v in serializer.validated_data.items()
+                                if k != file_field_name
+                            },
+                            timeout=timeout,
+                        )
+                else:
+                    input_path, output_path = run_with_timeout(
+                        self.perform_conversion,
+                        args=(uploaded_file, context),
+                        kwargs={
+                            k: v
+                            for k, v in serializer.validated_data.items()
+                            if k != file_field_name
+                        },
+                        timeout=timeout,
+                    )
             except ConversionTimeoutError as timeout_err:
                 log_conversion_error(
                     logger,
