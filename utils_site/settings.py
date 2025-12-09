@@ -177,6 +177,7 @@ LANGUAGES = [
     ("hi", "Hindi"),
     ("es", "Spanish"),
     ("id", "Indonesian"),
+    ("ar", "Arabic"),
 ]
 
 # Language detection settings
