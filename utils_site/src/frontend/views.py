@@ -485,7 +485,6 @@ def contact_page(request):
 
     from django.conf import settings
     from django.contrib import messages
-    from django.core.mail import send_mail
     from django.shortcuts import redirect
 
     from .forms import ContactForm
@@ -543,7 +542,6 @@ def contact_page(request):
             )
 
         if form.is_valid():
-
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             subject = form.cleaned_data["subject"]
@@ -551,6 +549,12 @@ def contact_page(request):
 
             # Get recipient email from settings or use default
             recipient_email = getattr(settings, "CONTACT_EMAIL", "info@convertica.net")
+            from_email = getattr(
+                settings,
+                "DEFAULT_FROM_EMAIL",
+                f"noreply@{request.get_host()}",
+            )
+            user_ip = request.META.get("REMOTE_ADDR", "Unknown")
 
             # Prepare email content
             email_subject = f"[Convertica Contact] {subject}"
@@ -565,60 +569,32 @@ Message:
 
 ---
 This message was sent from the contact form on {request.build_absolute_uri('/contact/')}
-IP Address: {request.META.get('REMOTE_ADDR', 'Unknown')}
+IP Address: {user_ip}
 User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
 """
 
-            try:
-                # Send email
-                send_mail(
-                    subject=email_subject,
-                    message=email_body,
-                    from_email=getattr(
-                        settings,
-                        "DEFAULT_FROM_EMAIL",
-                        f"noreply@{request.get_host()}",
-                    ),
-                    recipient_list=[recipient_email],
-                    fail_silently=False,
-                )
+            # Send email asynchronously via Celery to avoid blocking
+            # This prevents the form from "hanging" if SMTP is slow/blocked
+            from src.tasks.email import send_contact_form_email
 
-                # Log success
-                logger.info(
-                    "Contact form submitted successfully from %s (IP: %s)",
-                    email,
-                    request.META.get("REMOTE_ADDR", "Unknown"),
-                )
+            send_contact_form_email.delay(
+                subject=email_subject,
+                message=email_body,
+                from_email=from_email,
+                recipient_email=recipient_email,
+                user_email=email,
+                user_ip=user_ip,
+            )
 
-                # Redirect to prevent form resubmission on refresh
-                return redirect(f"{request.path}?sent=1")
+            # Log submission (email will be sent in background)
+            logger.info(
+                "Contact form submitted from %s (IP: %s) - email queued",
+                email,
+                user_ip,
+            )
 
-            except (ConnectionError, TimeoutError, OSError) as e:
-                # Log connection errors
-                error_msg = str(e)
-                logger.error(
-                    "Failed to send contact form email from %s: %s",
-                    email,
-                    error_msg,
-                    exc_info=True,
-                )
-            except Exception as e:
-                # Log other errors
-                error_msg = str(e)
-                logger.error(
-                    "Unexpected error sending contact form email from %s: %s",
-                    email,
-                    error_msg,
-                    exc_info=True,
-                )
-
-                # Show user-friendly error message
-                messages.error(
-                    request,
-                    _(
-                        "Sorry, there was an error sending your message. Please try again later or contact us directly at info@convertica.net"
-                    ),
-                )
+            # Redirect immediately - don't wait for email to be sent
+            return redirect(f"{request.path}?sent=1")
         else:
             # Form validation errors
             messages.error(
