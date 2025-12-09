@@ -1,5 +1,4 @@
 # views.py
-from typing import Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -38,7 +37,7 @@ class AddWatermarkAPIView(BaseConversionAPIView):
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
-    ) -> Tuple[str, str]:
+    ) -> tuple[str, str]:
         """Add watermark to PDF."""
         watermark_text = kwargs.get("watermark_text", "CONFIDENTIAL")
         watermark_file = kwargs.get("watermark_file")

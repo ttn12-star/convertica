@@ -1,6 +1,5 @@
 # views.py
 import os
-from typing import List, Tuple
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -55,7 +54,7 @@ class JPGToPDFAPIView(BaseConversionAPIView):
         For multiple files, send multiple 'image_file' parameters in the form.
         """
         # Get all files with the same field name (supports multiple files)
-        uploaded_files: List[UploadedFile] = request.FILES.getlist(self.FILE_FIELD_NAME)
+        uploaded_files: list[UploadedFile] = request.FILES.getlist(self.FILE_FIELD_NAME)
 
         if not uploaded_files:
             context = build_request_context(request)
@@ -144,7 +143,7 @@ class JPGToPDFAPIView(BaseConversionAPIView):
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
-    ) -> Tuple[str, str]:
+    ) -> tuple[str, str]:
         """Perform JPG to PDF conversion.
 
         This method is kept for compatibility but is not used in the new implementation.

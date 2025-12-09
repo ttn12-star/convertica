@@ -50,3 +50,9 @@ whitenoise==6.11.0
 # Anti-spam protection
 django-hcaptcha==0.2.0
 requests==2.32.5
+# System monitoring
+psutil==5.9.8
+# Development tools (pre-commit)
+pre-commit==3.7.1
+ruff==0.4.4
+isort==5.13.2

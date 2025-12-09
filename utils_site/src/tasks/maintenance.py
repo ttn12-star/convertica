@@ -5,13 +5,11 @@ These tasks handle periodic maintenance operations like
 cleaning up temporary files, updating statistics, etc.
 """
 
-import os
 import time
 from pathlib import Path
 
 from celery import shared_task
 from django.conf import settings
-from django.core.files.storage import default_storage
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)

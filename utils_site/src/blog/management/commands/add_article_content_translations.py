@@ -642,6 +642,6 @@ class Command(BaseCommand):
             article.save()
             self.stdout.write(self.style.SUCCESS(f"  💾 Saved {article.slug}"))
 
-        self.stdout.write(self.style.SUCCESS(f"\n✅ Completed!"))
+        self.stdout.write(self.style.SUCCESS("\n✅ Completed!"))
         self.stdout.write(f"   Updated {updated_count} content translations")
         self.stdout.write(f"   Processed {total} articles")

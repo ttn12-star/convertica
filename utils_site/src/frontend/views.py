@@ -74,7 +74,6 @@ def _get_converter_context(
     Returns:
         dict: Context dictionary for the template
     """
-    from django.utils.translation import get_language
 
     # Keywords are kept in English for SEO (users search in English even in other countries)
     # But we can add language-specific keywords if needed
@@ -682,7 +681,6 @@ def sitemap_xml(request):
     """Generate sitemap.xml for SEO with multilingual support."""
     from django.conf import settings
     from django.core.cache import cache
-    from django.http import HttpResponse
     from django.utils.translation import activate, get_language
     from src.blog.models import Article
 

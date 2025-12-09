@@ -5,8 +5,10 @@ Reduces code duplication across conversion APIs.
 
 import os
 import shutil
+import tempfile
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Dict, Optional, Tuple
+from collections.abc import Callable
+from typing import Any
 
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
@@ -22,6 +24,14 @@ from src.exceptions import (
     StorageError,
 )
 
+from .conversion_limits import (
+    CONVERSION_TIMEOUT,
+    MAX_PDF_PAGES,
+    ConversionTimeoutError,
+    get_timeout_for_operation,
+    run_with_timeout,
+    validate_pdf_pages,
+)
 from .logging_utils import (
     build_request_context,
     get_logger,
@@ -41,6 +51,8 @@ class BaseConversionAPIView(APIView, ABC):
 
     Provides common functionality:
     - File validation (size, type, extension)
+    - PDF page limit validation
+    - Conversion timeout protection
     - Error handling
     - Logging
     - Temporary file cleanup
@@ -53,6 +65,15 @@ class BaseConversionAPIView(APIView, ABC):
     CONVERSION_TYPE = ""
     FILE_FIELD_NAME = "file"  # Override in serializer-specific views
 
+    # PDF page limit (override in subclasses if needed)
+    MAX_PDF_PAGES = MAX_PDF_PAGES  # Default from conversion_limits
+
+    # Conversion timeout in seconds (override for heavy operations)
+    CONVERSION_TIMEOUT = CONVERSION_TIMEOUT
+
+    # Whether this operation requires PDF page validation
+    VALIDATE_PDF_PAGES = True  # Set to False for non-PDF operations
+
     def get_serializer_class(self):
         """Get serializer class. Override in subclasses."""
         raise NotImplementedError("Subclasses must implement get_serializer_class()")
@@ -63,8 +84,8 @@ class BaseConversionAPIView(APIView, ABC):
 
     @abstractmethod
     def perform_conversion(
-        self, uploaded_file: UploadedFile, context: Dict[str, Any], **kwargs
-    ) -> Tuple[str, str]:
+        self, uploaded_file: UploadedFile, context: dict[str, Any], **kwargs
+    ) -> tuple[str, str]:
         """Perform the actual conversion.
 
         Args:
@@ -94,8 +115,8 @@ class BaseConversionAPIView(APIView, ABC):
         return content_types.get(ext, "application/octet-stream")
 
     def validate_file_basic(
-        self, file: UploadedFile, context: Dict[str, Any]
-    ) -> Optional[Response]:
+        self, file: UploadedFile, context: dict[str, Any]
+    ) -> Response | None:
         """Perform basic file validation.
 
         Returns:
@@ -176,7 +197,7 @@ class BaseConversionAPIView(APIView, ABC):
         return None
 
     def handle_conversion_error(
-        self, error: Exception, context: Dict[str, Any], start_time: Optional[float]
+        self, error: Exception, context: dict[str, Any], start_time: float | None
     ) -> Response:
         """Handle conversion errors with appropriate logging and response."""
         if isinstance(error, EncryptedPDFError):
@@ -250,7 +271,7 @@ class BaseConversionAPIView(APIView, ABC):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
-    def cleanup_temp_files(self, tmp_dir: Optional[str], context: Dict[str, Any]):
+    def cleanup_temp_files(self, tmp_dir: str | None, context: dict[str, Any]):
         """Clean up temporary files."""
         if tmp_dir and os.path.isdir(tmp_dir):
             try:
@@ -345,7 +366,7 @@ class BaseConversionAPIView(APIView, ABC):
 
         # Get file from serializer
         file_field_name = self.FILE_FIELD_NAME
-        uploaded_file: Optional[UploadedFile] = serializer.validated_data.get(
+        uploaded_file: UploadedFile | None = serializer.validated_data.get(
             file_field_name
         )
 
@@ -381,21 +402,75 @@ class BaseConversionAPIView(APIView, ABC):
 
         tmp_dir = None
         start_time = None
+        validation_tmp_dir = None
 
         try:
+            # For PDF operations, validate page count before conversion
+            if self.VALIDATE_PDF_PAGES and self._is_pdf_file(uploaded_file):
+                # Save file temporarily to validate page count
+                validation_tmp_dir = tempfile.mkdtemp(prefix="pdf_validate_")
+                temp_pdf_path = os.path.join(
+                    validation_tmp_dir,
+                    get_valid_filename(uploaded_file.name),
+                )
+                with open(temp_pdf_path, "wb") as f:
+                    for chunk in uploaded_file.chunks():
+                        f.write(chunk)
+                # Reset file pointer for later use
+                uploaded_file.seek(0)
+
+                # Validate page count
+                page_validation_error = self.validate_pdf_page_count(
+                    temp_pdf_path, context
+                )
+                if page_validation_error is not None:
+                    return page_validation_error
+
+                # Cleanup validation temp dir
+                shutil.rmtree(validation_tmp_dir, ignore_errors=True)
+                validation_tmp_dir = None
+
             # Log conversion start
             start_time = log_conversion_start(logger, self.CONVERSION_TYPE, context)
 
-            # Perform conversion
-            input_path, output_path = self.perform_conversion(
-                uploaded_file,
-                context,
-                **{
-                    k: v
-                    for k, v in serializer.validated_data.items()
-                    if k != file_field_name
-                },
+            # Get timeout for this operation
+            timeout = self.get_conversion_timeout(context)
+            context["conversion_timeout"] = timeout
+
+            logger.debug(
+                "Starting conversion with timeout",
+                extra={**context, "timeout_seconds": timeout},
             )
+
+            # Perform conversion WITH TIMEOUT
+            try:
+                input_path, output_path = run_with_timeout(
+                    self.perform_conversion,
+                    args=(uploaded_file, context),
+                    kwargs={
+                        k: v
+                        for k, v in serializer.validated_data.items()
+                        if k != file_field_name
+                    },
+                    timeout=timeout,
+                )
+            except ConversionTimeoutError as timeout_err:
+                log_conversion_error(
+                    logger,
+                    self.CONVERSION_TYPE,
+                    context,
+                    timeout_err,
+                    start_time,
+                    level="warning",
+                )
+                return Response(
+                    {
+                        "error": str(timeout_err),
+                        "hint": "Try with a smaller file or fewer pages.",
+                    },
+                    status=status.HTTP_408_REQUEST_TIMEOUT,
+                )
+
             tmp_dir = os.path.dirname(input_path)
 
             # Stream file
@@ -425,13 +500,21 @@ class BaseConversionAPIView(APIView, ABC):
 
         finally:
             self.cleanup_temp_files(tmp_dir, context)
+            if validation_tmp_dir:
+                shutil.rmtree(validation_tmp_dir, ignore_errors=True)
+
+    def _is_pdf_file(self, uploaded_file: UploadedFile) -> bool:
+        """Check if the uploaded file is a PDF."""
+        name = getattr(uploaded_file, "name", "") or ""
+        content_type = getattr(uploaded_file, "content_type", "") or ""
+        return name.lower().endswith(".pdf") or "pdf" in content_type.lower()
 
     def validate_file_additional(
         self,
         uploaded_file: UploadedFile,  # noqa: ARG002
-        context: Dict[str, Any],  # noqa: ARG002
-        validated_data: Dict[str, Any],  # noqa: ARG002
-    ) -> Optional[Response]:
+        context: dict[str, Any],  # noqa: ARG002
+        validated_data: dict[str, Any],  # noqa: ARG002
+    ) -> Response | None:
         """Override this method for additional file validation.
 
         Args:
@@ -443,3 +526,57 @@ class BaseConversionAPIView(APIView, ABC):
             Response if validation failed, None if OK
         """
         return None
+
+    def validate_pdf_page_count(
+        self, pdf_path: str, context: dict[str, Any]
+    ) -> Response | None:
+        """Validate PDF page count doesn't exceed limit.
+
+        Args:
+            pdf_path: Path to the PDF file
+            context: Logging context
+
+        Returns:
+            Response if validation failed, None if OK
+        """
+        if not self.VALIDATE_PDF_PAGES:
+            return None
+
+        is_valid, error_message, page_count = validate_pdf_pages(
+            pdf_path, self.MAX_PDF_PAGES
+        )
+
+        context["pdf_page_count"] = page_count
+
+        if not is_valid:
+            log_file_validation_error(
+                logger,
+                f"PDF page limit exceeded: {page_count} > {self.MAX_PDF_PAGES}",
+                context,
+            )
+            return Response(
+                {"error": error_message},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        return None
+
+    def get_conversion_timeout(self, context: dict[str, Any]) -> int:
+        """Get timeout for this conversion.
+
+        Override in subclasses for custom timeout logic.
+
+        Args:
+            context: Logging context (may contain page_count, file_size)
+
+        Returns:
+            Timeout in seconds
+        """
+        page_count = context.get("pdf_page_count", 1)
+        file_size = context.get("file_size", 0)
+
+        return get_timeout_for_operation(
+            self.CONVERSION_TYPE,
+            page_count=page_count,
+            file_size=file_size,
+        )
