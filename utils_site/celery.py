@@ -26,6 +26,11 @@ try:
     # Load task modules from all registered Django apps.
     app.autodiscover_tasks()
 
+    # Explicitly register tasks from src.tasks package
+    # These are not in standard Django app structure so autodiscover won't find them
+    import src.tasks.email  # noqa: F401
+    import src.tasks.maintenance  # noqa: F401
+
     # Celery configuration
     app.conf.update(
         # Broker settings
