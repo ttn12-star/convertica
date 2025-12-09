@@ -545,3 +545,7 @@ try:
     PROMETHEUS_EXPORT_MIGRATIONS = False
 except ImportError:
     pass
+
+# Custom error handlers (defined in utils_site.urls)
+# Django will automatically use handler404, handler500, etc. from ROOT_URLCONF
+# These are defined in utils_site/urls.py
