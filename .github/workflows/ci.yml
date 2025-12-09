@@ -297,9 +297,30 @@ jobs:
 
             NEW_WEB_ID=$(docker ps -q -f name=convertica_web)
 
-            # Wait a bit more to ensure container is fully ready
-            echo "⏳ Waiting for web container to be fully ready..."
-            sleep 5
+            # Wait for container to be fully ready and healthy
+            echo "⏳ Waiting for web container to be fully ready and healthy..."
+            max_health_attempts=30
+            health_attempt=0
+            container_healthy=false
+            while [ $health_attempt -lt $max_health_attempts ]; do
+              # Check if container is healthy (Docker healthcheck)
+              if docker inspect --format='{{.State.Health.Status}}' "$NEW_WEB_ID" 2>/dev/null | grep -q "healthy"; then
+                echo "✅ Container is healthy!"
+                container_healthy=true
+                break
+              fi
+              health_attempt=$((health_attempt + 1))
+              echo "   Waiting for healthcheck... (${health_attempt}/${max_health_attempts})"
+              sleep 2
+            done
+
+            if [ "$container_healthy" = false ]; then
+              echo "⚠️ Container healthcheck not passed, but continuing with additional wait..."
+            fi
+
+            # Additional wait to ensure Django is fully ready to accept requests
+            echo "⏳ Additional wait to ensure Django is fully ready..."
+            sleep 10
 
             # Step 2: Run migrations (container must be running)
             echo "📊 Running migrations..."
