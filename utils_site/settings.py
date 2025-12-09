@@ -175,7 +175,16 @@ WSGI_APPLICATION = "utils_site.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Support for PostgreSQL in production, SQLite for development
+# In production, DATABASE_ENGINE must be explicitly set to "postgresql"
 DATABASE_ENGINE = config("DATABASE_ENGINE", default="sqlite3")
+
+# Security check: prevent SQLite in production
+if not DEBUG and DATABASE_ENGINE == "sqlite3":
+    raise ValueError(
+        "SQLite cannot be used in production! "
+        "Set DATABASE_ENGINE=postgresql in your environment variables."
+    )
+
 if DATABASE_ENGINE == "postgresql":
     DATABASES = {
         "default": {
