@@ -57,8 +57,7 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      web:
-        condition: service_healthy  # Wait for web to be healthy before starting nginx
+      - web  # Start after web, but don't require it to be healthy (nginx will retry)
     networks:
       - convertica_network
     restart: unless-stopped
