@@ -292,6 +292,31 @@ def crop_pdf(
 
             can.save()
 
+            # Repair PDF after reportlab creation to ensure proper structure
+            # reportlab can create PDFs with incomplete xref tables or missing objects
+            # This ensures the PDF is properly structured for subsequent operations
+            logger.debug(
+                "Repairing PDF after crop",
+                extra={**context, "event": "crop_repair_start"},
+            )
+            try:
+                # Repair in-place to fix any structural issues
+                repair_pdf(output_path, output_path)
+                logger.debug(
+                    "PDF repaired after crop",
+                    extra={**context, "event": "crop_repair_success"},
+                )
+            except Exception as repair_error:
+                # If repair fails, log but don't fail - the PDF might still be usable
+                logger.warning(
+                    "PDF repair after crop failed (continuing anyway)",
+                    extra={
+                        **context,
+                        "event": "crop_repair_warning",
+                        "error": str(repair_error),
+                    },
+                )
+
             logger.debug("Crop completed", extra={**context, "event": "crop_complete"})
 
         except Exception as e:
