@@ -62,11 +62,10 @@ try:
         # Task time limits
         task_time_limit=600,  # Hard time limit: 10 minutes
         task_soft_time_limit=540,  # Soft time limit: 9 minutes
-        # Retry settings
-        task_autoretry_for=(Exception,),
-        task_retry_backoff=True,
-        task_retry_backoff_max=600,  # Max retry delay: 10 minutes
-        task_retry_jitter=True,
+        # Retry settings - only for specific recoverable errors, NOT timeouts
+        # Individual tasks define their own retry logic
+        task_default_retry_delay=60,  # 1 minute between retries
+        task_max_retries=3,  # Maximum 3 retries globally
         # Monitoring
         worker_send_task_events=True,
         task_send_sent_event=True,
