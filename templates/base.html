@@ -39,9 +39,8 @@
     <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
     <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
-    <!-- Canonical URL (without language prefix for SEO) -->
-    {% load i18n_utils %}
-    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path|remove_language_prefix }}">
+    <!-- Canonical URL (with language prefix for proper SEO) -->
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
