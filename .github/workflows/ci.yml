@@ -271,13 +271,26 @@ jobs:
             echo "🔨 Rebuilding containers..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build web celery celery-beat
 
-            # Zero-downtime deployment strategy
-            echo "🔄 Starting zero-downtime deployment..."
+            # Rolling deployment with automatic rollback strategy
+            echo "🔄 Starting rolling deployment with automatic rollback..."
 
-            # Step 1: Start web container and wait for it to be ready
-            # --wait flag waits for containers to be healthy before returning
-            echo "📦 Starting web container (waiting for healthcheck)..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web
+            # Save current container IDs for rollback
+            OLD_WEB_ID=$(docker ps -q -f name=convertica_web)
+            OLD_CELERY_ID=$(docker ps -q -f name=convertica_celery)
+            OLD_CELERY_BEAT_ID=$(docker ps -q -f name=convertica_celery_beat)
+
+            # Step 1: Start new web container and wait for healthcheck
+            echo "📦 Starting new web container (waiting for healthcheck)..."
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web; then
+              echo "❌ Failed to start new web container"
+              echo "🔄 Rolling back - keeping old containers..."
+              if [ -n "$OLD_WEB_ID" ]; then
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              fi
+              exit 1
+            fi
+
+            NEW_WEB_ID=$(docker ps -q -f name=convertica_web)
 
             # Wait a bit more to ensure container is fully ready
             echo "⏳ Waiting for web container to be fully ready..."
@@ -287,9 +300,11 @@ jobs:
             echo "📊 Running migrations..."
             max_attempts=5
             attempt=0
+            migration_success=false
             while [ $attempt -lt $max_attempts ]; do
               if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py migrate --noinput; then
                 echo "✅ Migrations completed!"
+                migration_success=true
                 break
               fi
               attempt=$((attempt + 1))
@@ -297,30 +312,49 @@ jobs:
               sleep 3
             done
 
-            if [ $attempt -eq $max_attempts ]; then
+            if [ "$migration_success" = false ]; then
               echo "❌ Migrations failed after ${max_attempts} attempts"
+              echo "🔄 Rolling back - stopping new container, restoring old..."
+              docker stop "$NEW_WEB_ID" 2>/dev/null || true
+              docker rm "$NEW_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              fi
               exit 1
             fi
 
             # Step 3: Compile translations
             echo "🌍 Compiling translations..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py compilemessages || true
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py compilemessages; then
+              echo "⚠️ Translation compilation failed, but continuing..."
+            fi
 
             # Step 4: Collect static files (clear old files first)
             echo "📦 Collecting static files..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py collectstatic --noinput --clear
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py collectstatic --noinput --clear; then
+              echo "❌ Static files collection failed"
+              echo "🔄 Rolling back - stopping new container, restoring old..."
+              docker stop "$NEW_WEB_ID" 2>/dev/null || true
+              docker rm "$NEW_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              fi
+              exit 1
+            fi
 
             # Step 5: Clear Django cache (Redis) to ensure fresh content after deploy
             echo "🗑️ Clearing Django cache..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
 
-            # Step 6: Verify health endpoint responds
-            echo "🏥 Verifying health endpoint..."
+            # Step 6: Verify health endpoint responds (critical check)
+            echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
             attempt=0
+            health_check_passed=false
             while [ $attempt -lt $max_attempts ]; do
               if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web curl -f http://localhost:8000/health/ > /dev/null 2>&1; then
                 echo "✅ Health check passed!"
+                health_check_passed=true
                 break
               fi
               attempt=$((attempt + 1))
@@ -328,17 +362,26 @@ jobs:
               sleep 2
             done
 
-            if [ $attempt -eq $max_attempts ]; then
-              echo "⚠️ Health check failed after ${max_attempts} attempts"
-            else
-              # Give web container a moment to fully stabilize
-              echo "⏸️ Waiting 3 seconds for web container to stabilize..."
-              sleep 3
+            if [ "$health_check_passed" = false ]; then
+              echo "❌ Health check failed after ${max_attempts} attempts"
+              echo "🔄 Rolling back - stopping new container, restoring old..."
+              docker stop "$NEW_WEB_ID" 2>/dev/null || true
+              docker rm "$NEW_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              fi
+              exit 1
             fi
 
-            # Step 7: Restart other services
+            # Give web container a moment to fully stabilize
+            echo "⏸️ Waiting 3 seconds for web container to stabilize..."
+            sleep 3
+
+            # Step 7: Restart other services (with rollback on failure)
             echo "🔄 Restarting background workers..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat; then
+              echo "⚠️ Failed to restart celery services, but web is healthy - continuing..."
+            fi
 
             # Step 8: Reload nginx gracefully (no downtime)
             echo "🔄 Reloading nginx (graceful reload)..."
@@ -346,6 +389,27 @@ jobs:
               echo "   Nginx reload failed, restarting..."
               docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
             }
+
+            # Step 9: Clean up old containers (only if new ones are healthy)
+            echo "🧹 Cleaning up old containers..."
+            if [ -n "$OLD_WEB_ID" ] && [ "$OLD_WEB_ID" != "$NEW_WEB_ID" ]; then
+              docker stop "$OLD_WEB_ID" 2>/dev/null || true
+              docker rm "$OLD_WEB_ID" 2>/dev/null || true
+            fi
+            if [ -n "$OLD_CELERY_ID" ]; then
+              NEW_CELERY_ID=$(docker ps -q -f name=convertica_celery)
+              if [ -n "$NEW_CELERY_ID" ] && [ "$OLD_CELERY_ID" != "$NEW_CELERY_ID" ]; then
+                docker stop "$OLD_CELERY_ID" 2>/dev/null || true
+                docker rm "$OLD_CELERY_ID" 2>/dev/null || true
+              fi
+            fi
+            if [ -n "$OLD_CELERY_BEAT_ID" ]; then
+              NEW_CELERY_BEAT_ID=$(docker ps -q -f name=convertica_celery_beat)
+              if [ -n "$NEW_CELERY_BEAT_ID" ] && [ "$OLD_CELERY_BEAT_ID" != "$NEW_CELERY_BEAT_ID" ]; then
+                docker stop "$OLD_CELERY_BEAT_ID" 2>/dev/null || true
+                docker rm "$OLD_CELERY_BEAT_ID" 2>/dev/null || true
+              fi
+            fi
 
             echo "✅ Deployment completed!"
 
