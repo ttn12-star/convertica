@@ -15,9 +15,14 @@ from pathlib import Path
 
 from decouple import Csv, config
 
-# Sentry Error Tracking (only in production)
-SENTRY_DSN = config("SENTRY_DSN", default="")
-if SENTRY_DSN:
+# Sentry Error Tracking
+# Enabled by default in production (DEBUG=False)
+# Set SENTRY_DSN="" to disable
+SENTRY_DSN = config(
+    "SENTRY_DSN",
+    default="https://b3fdb00de949875598b3a1e9e5a54de0@o4510504663973888.ingest.de.sentry.io/4510504665940048",
+)
+if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
     import sentry_sdk
     from sentry_sdk.integrations.celery import CeleryIntegration
     from sentry_sdk.integrations.django import DjangoIntegration
@@ -32,12 +37,12 @@ if SENTRY_DSN:
         ],
         # Capture 10% of transactions for performance monitoring (free plan)
         traces_sample_rate=0.1,
-        # Send user info (IP, etc.) - disable if privacy concerns
-        send_default_pii=False,
+        # Send user info (IP, etc.) for debugging
+        send_default_pii=True,
         # Environment tag
         environment=config("SENTRY_ENVIRONMENT", default="production"),
-        # Release version
-        release=config("SENTRY_RELEASE", default="convertica@1.0.21"),
+        # Release version - update on each release
+        release=config("SENTRY_RELEASE", default="convertica@1.0.22"),
     )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
