@@ -28,6 +28,23 @@ def robots_txt(request):
     try:
         with open(robots_path, encoding="utf-8") as f:
             content = f.read()
+        # Remove any invalid directives (like Content-signal which is not a valid robots.txt directive)
+        lines = content.split("\n")
+        valid_lines = []
+        for line in lines:
+            # Skip lines with invalid directives
+            if any(
+                invalid in line
+                for invalid in [
+                    "Content-signal:",
+                    "content-signal:",
+                    "X-Robots-Tag:",
+                    "x-robots-tag:",
+                ]
+            ):
+                continue
+            valid_lines.append(line)
+        content = "\n".join(valid_lines)
         # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
         content = content.replace(
             "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
