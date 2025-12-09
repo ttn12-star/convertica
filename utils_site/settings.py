@@ -23,50 +23,55 @@ SENTRY_DSN = config(
     default="https://b3fdb00de949875598b3a1e9e5a54de0@o4510504663973888.ingest.de.sentry.io/4510504665940048",
 )
 if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
-    import sentry_sdk
-    from sentry_sdk.integrations.celery import CeleryIntegration
-    from sentry_sdk.integrations.django import DjangoIntegration
-    from sentry_sdk.integrations.redis import RedisIntegration
+    try:
+        import sentry_sdk
+        from sentry_sdk.integrations.celery import CeleryIntegration
+        from sentry_sdk.integrations.django import DjangoIntegration
+        from sentry_sdk.integrations.redis import RedisIntegration
 
-    # Filter handled errors - don't send InvalidPDFError as unhandled exceptions
-    # These are expected user errors (corrupted files), not bugs
-    def before_send(event, hint):
-        # Don't send InvalidPDFError as exception - it's handled gracefully
-        if "exc_info" in hint and hint["exc_info"][0].__name__ == "InvalidPDFError":
-            # Still log it but as a message, not exception
-            event["level"] = "info"
-            event["tags"] = event.get("tags", {})
-            event["tags"]["error_type"] = "handled"
-            event["tags"]["user_error"] = "true"
-        return event
+        # Filter handled errors - don't send InvalidPDFError as unhandled exceptions
+        # These are expected user errors (corrupted files), not bugs
+        def before_send(event, hint):
+            # Don't send InvalidPDFError as exception - it's handled gracefully
+            if "exc_info" in hint and hint["exc_info"][0].__name__ == "InvalidPDFError":
+                # Still log it but as a message, not exception
+                event["level"] = "info"
+                event["tags"] = event.get("tags", {})
+                event["tags"]["error_type"] = "handled"
+                event["tags"]["user_error"] = "true"
+            return event
 
-    sentry_sdk.init(
-        dsn=SENTRY_DSN,
-        integrations=[
-            DjangoIntegration(),
-            CeleryIntegration(),
-            RedisIntegration(),
-        ],
-        # Send user info (IP, etc.) for debugging
-        send_default_pii=True,
-        # Enable sending logs to Sentry (only ERROR and above to avoid spam)
-        enable_logs=True,
-        # Capture 10% of transactions for performance monitoring (free plan)
-        # Don't use 1.0 - it will exceed free plan limits quickly
-        traces_sample_rate=0.1,
-        # Environment tag
-        environment=config("SENTRY_ENVIRONMENT", default="production"),
-        # Release version - update on each release
-        release=config("SENTRY_RELEASE", default="convertica@1.0.25"),
-        # Filter handled errors
-        before_send=before_send,
-        # Async transport (non-blocking)
-        transport=sentry_sdk.transport.HttpTransport,
-        # Max breadcrumbs (events leading to error)
-        max_breadcrumbs=50,
-        # Note: Profiling (profile_session_sample_rate) is a paid feature
-        # Only enable if you upgrade to a paid plan
-    )
+        sentry_sdk.init(
+            dsn=SENTRY_DSN,
+            integrations=[
+                DjangoIntegration(),
+                CeleryIntegration(),
+                RedisIntegration(),
+            ],
+            # Send user info (IP, etc.) for debugging
+            send_default_pii=True,
+            # Enable sending logs to Sentry (only ERROR and above to avoid spam)
+            enable_logs=True,
+            # Capture 10% of transactions for performance monitoring (free plan)
+            # Don't use 1.0 - it will exceed free plan limits quickly
+            traces_sample_rate=0.1,
+            # Environment tag
+            environment=config("SENTRY_ENVIRONMENT", default="production"),
+            # Release version - update on each release
+            release=config("SENTRY_RELEASE", default="convertica@1.0.25"),
+            # Filter handled errors
+            before_send=before_send,
+            # Async transport (non-blocking)
+            transport=sentry_sdk.transport.HttpTransport,
+            # Max breadcrumbs (events leading to error)
+            max_breadcrumbs=50,
+            # Note: Profiling (profile_session_sample_rate) is a paid feature
+            # Only enable if you upgrade to a paid plan
+        )
+    except ImportError:
+        # sentry-sdk not installed - skip Sentry initialization
+        # This allows the app to run without Sentry in development
+        pass
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
