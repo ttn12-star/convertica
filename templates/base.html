@@ -190,9 +190,9 @@
 
     {% block extra_head %}{% endblock %}
 
-    <!-- hCaptcha (Anti-spam) -->
-    {% if hcaptcha_site_key %}
-      <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    <!-- Cloudflare Turnstile (Anti-spam) -->
+    {% if turnstile_site_key %}
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     {% endif %}
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased pt-14 sm:pt-16 md:pt-[72px]">

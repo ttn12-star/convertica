@@ -220,10 +220,15 @@
               <p class="text-red-600 text-sm">{{ form.privacy.errors.0 }}</p>
             {% endif %}
 
-                    <!-- hCaptcha (Anti-spam) -->
-            {% if hcaptcha_site_key %}
-              <div class="flex justify-center my-6" id="hcaptcha-container">
-                <div class="h-captcha" data-sitekey="{{ hcaptcha_site_key }}" data-theme="light"></div>
+            <!-- Cloudflare Turnstile (Anti-spam) -->
+            {% if turnstile_site_key %}
+              <div class="flex justify-center my-6" id="turnstile-container">
+                <div class="cf-turnstile"
+                     data-sitekey="{{ turnstile_site_key }}"
+                     data-theme="light"
+                     data-size="normal"
+                     data-callback="onTurnstileSuccess">
+                </div>
               </div>
             {% endif %}
 
@@ -325,7 +330,7 @@
           messageContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
 
-        // Add pulse animation for success messages
+      // Add pulse animation for success messages
         if (messageContainer.classList.contains('bg-green-50')) {
           messageContainer.classList.add('animate-pulse');
           setTimeout(() => {
@@ -333,6 +338,20 @@
           }, 2000);
         }
       }
+
+    // Turnstile callback to store token (optional, but useful to ensure presence)
+      window.onTurnstileSuccess = function(token) {
+        const form = document.getElementById('contact-form');
+        if (!form) return;
+        let tokenInput = form.querySelector('[name=\"turnstile_token\"]');
+        if (!tokenInput) {
+          tokenInput = document.createElement('input');
+          tokenInput.type = 'hidden';
+          tokenInput.name = 'turnstile_token';
+          form.appendChild(tokenInput);
+        }
+        tokenInput.value = token;
+      };
 
     // Prevent form double submission
       const contactForm = document.getElementById('contact-form');
@@ -344,29 +363,6 @@
             return false;
           }
           isSubmitting = true;
-
-            // Get hCaptcha token - check both possible field names
-          let hcaptchaToken = '';
-          const hcaptchaResponse = document.querySelector('[name="h-captcha-response"]');
-          if (hcaptchaResponse && hcaptchaResponse.value) {
-            hcaptchaToken = hcaptchaResponse.value;
-          }
-
-            // If token found, add it to form
-          if (hcaptchaToken) {
-                // Remove existing token input if any
-            const existingToken = contactForm.querySelector('[name="hcaptcha_token"]');
-            if (existingToken) {
-              existingToken.remove();
-            }
-
-                // Create hidden input for hCaptcha token
-            const hcaptchaInput = document.createElement('input');
-            hcaptchaInput.type = 'hidden';
-            hcaptchaInput.name = 'hcaptcha_token';
-            hcaptchaInput.value = hcaptchaToken;
-            contactForm.appendChild(hcaptchaInput);
-          }
 
             // Disable submit button
           const submitBtn = contactForm.querySelector('button[type="submit"]');
