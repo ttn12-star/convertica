@@ -1093,7 +1093,7 @@ msgstr ""
 "полученные файлы."
 
 msgid "How do I compress PDF to under 1MB for email?"
-msgstr "Как сжать PDF файл?"
+msgstr "Как сжать PDF до 1МБ для email?"
 
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
@@ -1270,7 +1270,7 @@ msgid "Reject All"
 msgstr "Отклонить все"
 
 msgid "Customize"
-msgstr "Пользовательские страницы:"
+msgstr "Настроить"
 
 msgid "Accept All"
 msgstr "Принять все"
@@ -1372,10 +1372,10 @@ msgid "Convertica - Home"
 msgstr "Convertica - Главная"
 
 msgid "Convertica Logo"
-msgstr "О Convertica"
+msgstr "Логотип Convertica"
 
 msgid "Convertica"
-msgstr "О Convertica"
+msgstr "Convertica"
 
 msgid "All PDF tools"
 msgstr "Все PDF инструменты"
@@ -1384,7 +1384,7 @@ msgid "Main navigation"
 msgstr "Главная навигация"
 
 msgid "Convert PDF tools"
-msgstr "Конвертировать PDF в Word"
+msgstr "Инструменты конвертации PDF"
 
 msgid "Convert from PDF"
 msgstr "Конвертировать из PDF"
@@ -1393,7 +1393,7 @@ msgid "Convert to PDF"
 msgstr "Конвертировать в PDF"
 
 msgid "Edit PDF tools"
-msgstr "Все PDF инструменты"
+msgstr "Инструменты редактирования PDF"
 
 msgid "Basic Editing"
 msgstr "Редактирование"
@@ -1402,7 +1402,7 @@ msgid "Enhancements"
 msgstr "Улучшения"
 
 msgid "Organize PDF tools"
-msgstr "Организовать PDF"
+msgstr "Инструменты организации PDF"
 
 msgid "Organization"
 msgstr "Организация"
@@ -1500,13 +1500,13 @@ msgid "+ Add more images"
 msgstr ""
 
 msgid "Drag and drop your images here"
-msgstr "Перетащите файл сюда"
+msgstr "Перетащите изображения сюда"
 
 msgid "files"
 msgstr "файлы"
 
 msgid "multiple files supported"
-msgstr "Какие форматы файлов поддерживаются?"
+msgstr "поддерживается несколько файлов"
 
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
@@ -1539,22 +1539,22 @@ msgstr ""
 "все изображения в одном файле"
 
 msgid "Converting your images..."
-msgstr "Обработка вашего файла..."
+msgstr "Конвертация изображений..."
 
 msgid "Your PDF is ready to download"
-msgstr "Ваш файл готов к загрузке"
+msgstr "Ваш PDF готов к загрузке"
 
 msgid "Download PDF"
-msgstr "Скачать файл"
+msgstr "Скачать PDF"
 
 msgid "Merge Settings"
 msgstr ""
 
 msgid "Select PDF Files"
-msgstr "Пожалуйста, выберите PDF файл."
+msgstr "Выберите PDF файлы"
 
 msgid "Select PDF files"
-msgstr "Пожалуйста, выберите PDF файл."
+msgstr "Выберите PDF файлы"
 
 msgid "+ Add more files"
 msgstr ""
@@ -1563,7 +1563,7 @@ msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 
 msgid "Selected Files"
-msgstr "Похожие статьи"
+msgstr "Выбранные файлы"
 
 msgid "Preview & Reorder Pages"
 msgstr ""
@@ -1582,25 +1582,25 @@ msgid "Error loading preview"
 msgstr "Ошибка загрузки предпросмотра"
 
 msgid "Loading..."
-msgstr "Отправка..."
+msgstr "Загрузка..."
 
 msgid "Merging PDFs..."
-msgstr "Объединить PDF"
+msgstr "Объединение PDF..."
 
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Пожалуйста, выберите как минимум 2 PDF файла для объединения."
 
 msgid "Organization Settings"
-msgstr "Организация"
+msgstr "Настройки организации"
 
 msgid "Operation"
-msgstr "Прекращение"
+msgstr "Операция"
 
 msgid "Reorder Pages"
-msgstr "Удалить страницы"
+msgstr "Изменить порядок страниц"
 
 msgid "Sort Pages"
-msgstr "Извлечь страницы"
+msgstr "Сортировать страницы"
 
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
@@ -1611,13 +1611,13 @@ msgid "Please select a PDF file."
 msgstr "Пожалуйста, выберите PDF файл."
 
 msgid "Please select a PDF file first."
-msgstr "Пожалуйста, выберите PDF файл."
+msgstr "Сначала выберите PDF файл."
 
 msgid "Organizing..."
-msgstr "Организация"
+msgstr "Организация..."
 
 msgid "Failed to organize PDF"
-msgstr "Организовать PDF"
+msgstr "Не удалось организовать PDF"
 
 msgid "Privacy Policy - Convertica"
 msgstr "Политика конфиденциальности - Convertica"
@@ -1874,7 +1874,7 @@ msgid "Password"
 msgstr ""
 
 msgid "Enter password to protect PDF"
-msgstr "Удаляйте защиту паролем из вашего PDF"
+msgstr "Введите пароль для защиты PDF"
 
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
@@ -1906,10 +1906,10 @@ msgid ""
 msgstr ""
 
 msgid "Remove Pages Settings"
-msgstr "Удалить страницы"
+msgstr "Настройки удаления страниц"
 
 msgid "Pages to Remove"
-msgstr "Изменения в условиях"
+msgstr "Страницы для удаления"
 
 msgid "Rotation Settings"
 msgstr ""
@@ -1927,25 +1927,25 @@ msgid "(Counter-clockwise)"
 msgstr ""
 
 msgid "Pages to Rotate"
-msgstr "Я согласен с"
+msgstr "Страницы для поворота"
 
 msgid "Split Settings"
 msgstr ""
 
 msgid "Split Type"
-msgstr "Разделить PDF"
+msgstr "Тип разделения"
 
 msgid "By Individual Pages"
 msgstr ""
 
 msgid "By Page Ranges"
-msgstr "Управление страницами"
+msgstr "По диапазонам страниц"
 
 msgid "Every N Pages"
-msgstr "Удалить страницы"
+msgstr "Каждые N страниц"
 
 msgid "Pages"
-msgstr "Страница"
+msgstr "Страницы"
 
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
@@ -1956,7 +1956,7 @@ msgid ""
 msgstr ""
 
 msgid "Page Ranges"
-msgstr "Управление страницами"
+msgstr "Диапазоны страниц"
 
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr ""
@@ -2293,10 +2293,10 @@ msgstr ""
 "свяжитесь с нами."
 
 msgid "Unlock PDF Settings"
-msgstr "Разблокировать PDF"
+msgstr "Настройки разблокировки PDF"
 
 msgid "PDF Password"
-msgstr "PDF в Word"
+msgstr "Пароль PDF"
 
 msgid "Enter the password to unlock the PDF"
 msgstr ""
@@ -2307,10 +2307,10 @@ msgid ""
 msgstr ""
 
 msgid "Basic Information"
-msgstr "Контактная информация"
+msgstr "Основная информация"
 
 msgid "Translations"
-msgstr "Прекращение"
+msgstr "Переводы"
 
 msgid "Add translations for other languages using the tabs above."
 msgstr ""
@@ -2328,7 +2328,7 @@ msgid "Empty translations"
 msgstr ""
 
 msgid "Articles"
-msgstr "Все статьи"
+msgstr "Статьи"
 
 msgid "English Content"
 msgstr ""
@@ -2359,7 +2359,7 @@ msgid "No image"
 msgstr ""
 
 msgid "Preview"
-msgstr "Предыдущая"
+msgstr "Предпросмотр"
 
 msgid "Name (English)"
 msgstr ""
@@ -2373,13 +2373,13 @@ msgid ""
 msgstr ""
 
 msgid "Description (English)"
-msgstr "Описание услуг"
+msgstr "Описание (английский)"
 
 msgid "Article Category"
 msgstr ""
 
 msgid "Article Categories"
-msgstr "Категории"
+msgstr "Категории статей"
 
 msgid "Draft"
 msgstr ""
@@ -2419,7 +2419,7 @@ msgid ""
 msgstr ""
 
 msgid "Category"
-msgstr "Категории"
+msgstr "Категория"
 
 msgid "Featured Image"
 msgstr ""
@@ -2431,7 +2431,7 @@ msgid "Published At"
 msgstr ""
 
 msgid "Created At"
-msgstr "Похожие статьи"
+msgstr "Дата создания"
 
 msgid "Updated At"
 msgstr ""
@@ -2440,7 +2440,7 @@ msgid "View Count"
 msgstr ""
 
 msgid "Article"
-msgstr "Все статьи"
+msgstr "Статья"
 
 msgid "Your Name"
 msgstr "Ваше имя"
@@ -2458,16 +2458,16 @@ msgid "Subject"
 msgstr "Тема"
 
 msgid "Enter subject"
-msgstr "Тема"
+msgstr "Введите тему"
 
 msgid "Message"
 msgstr "Сообщение"
 
 msgid "Enter your message"
-msgstr "Обработка вашего файла..."
+msgstr "Введите сообщение"
 
 msgid "I agree to the Privacy Policy"
-msgstr "Изменения в этой Политике конфиденциальности"
+msgstr "Я согласен с Политикой конфиденциальности"
 
 msgid "Message must be at least 10 characters long."
 msgstr ""
@@ -2590,7 +2590,7 @@ msgid "Please correct the errors in the form below."
 msgstr "Пожалуйста, исправьте ошибки в форме ниже."
 
 msgid "Frequently Asked Questions (FAQ) - Convertica"
-msgstr "Часто задаваемые вопросы"
+msgstr "Часто задаваемые вопросы (FAQ) - Convertica"
 
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
