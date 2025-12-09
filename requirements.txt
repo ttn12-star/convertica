@@ -47,8 +47,6 @@ wheel==0.45.1
 gunicorn==21.2.0
 # Static files optimization (alternative to Nginx)
 whitenoise==6.11.0
-# Anti-spam protection
-django-hcaptcha==0.2.0
 requests==2.32.5
 # System monitoring
 psutil==5.9.8
