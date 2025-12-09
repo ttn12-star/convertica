@@ -270,6 +270,24 @@ jobs:
             git fetch origin
             git reset --hard origin/main
 
+            # Build Tailwind CSS on server to ensure latest CSS is available
+            echo "🎨 Building Tailwind CSS on server..."
+            if command -v npm > /dev/null 2>&1 && [ -f package.json ]; then
+              echo "   Installing npm dependencies..."
+              npm ci --silent 2>&1 | grep -v "npm WARN" || npm install --silent 2>&1 | grep -v "npm WARN" || true
+              echo "   Building Tailwind CSS..."
+              npm run build:css 2>&1 || echo "⚠️ Tailwind CSS build failed, but continuing..."
+              if [ -f static/css/tailwind.css ]; then
+                echo "✅ Tailwind CSS built successfully"
+                ls -lh static/css/tailwind.css || true
+              else
+                echo "⚠️ Tailwind CSS file not found after build"
+              fi
+            else
+              echo "⚠️ npm not found or package.json missing, skipping Tailwind CSS build"
+              echo "   CSS should be committed in repository"
+            fi
+
             # Restore server-specific files (if any were stashed)
             # Use stash apply instead of pop to keep stash in case of conflicts
             echo "📦 Restoring server-specific files..."
