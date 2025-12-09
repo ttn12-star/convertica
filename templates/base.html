@@ -43,11 +43,16 @@
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 
     <!-- Preconnect to external domains for performance -->
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://challenges.cloudflare.com">
     <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cloudflare-static.com">
     <link rel="preconnect" href="https://cloudflare-static.com" crossorigin>
     <!-- Google Fonts for better typography -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -66,7 +71,9 @@
 
     <!-- Stylesheets -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <!-- Preload critical CSS early to reduce render blocking -->
+    <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="all">
 
     <!-- Custom Animations -->
     <style>
