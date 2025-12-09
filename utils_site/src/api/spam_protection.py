@@ -15,13 +15,13 @@ from .logging_utils import build_request_context, get_logger
 logger = get_logger(__name__)
 
 
-def verify_hcaptcha(token: str, remote_ip: str | None = None) -> bool:
+def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
     """
-    Verify hCaptcha token.
+    Verify Cloudflare Turnstile token.
 
     Args:
-        token: hCaptcha response token
-        remote_ip: Client IP address (optional, but recommended)
+        token: Turnstile response token
+        remote_ip: Client IP address (optional)
 
     Returns:
         True if verification successful, False otherwise
@@ -29,33 +29,43 @@ def verify_hcaptcha(token: str, remote_ip: str | None = None) -> bool:
     if not token:
         return False
 
-    # Check if hCaptcha is enabled
-    hcaptcha_secret = getattr(settings, "HCAPTCHA_SECRET_KEY", None)
-    if not hcaptcha_secret:
-        # If not configured, skip verification (for development)
-        logger.warning("hCaptcha not configured, skipping verification")
+    secret = getattr(settings, "TURNSTILE_SECRET_KEY", None)
+    if not secret:
+        logger.warning("Turnstile not configured, skipping verification")
         return True
 
     try:
         import requests
 
         data = {
-            "secret": hcaptcha_secret,
+            "secret": secret,
             "response": token,
         }
         if remote_ip:
             data["remoteip"] = remote_ip
 
         response = requests.post(
-            "https://hcaptcha.com/siteverify", data=data, timeout=5
+            "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+            data=data,
+            timeout=5,
         )
         response.raise_for_status()
         result = response.json()
 
         return result.get("success", False)
     except Exception as e:
-        logger.error(f"hCaptcha verification error: {str(e)}", exc_info=True)
-        return False
+        # Fail-open to avoid blocking users if Turnstile is down/reachable issues
+        logger.warning(
+            "Turnstile verification error (allowing request)",
+            extra={
+                "error": str(e),
+                "remote_ip": remote_ip,
+                "token_present": bool(token),
+                "event": "turnstile_unavailable",
+            },
+            exc_info=True,
+        )
+        return True
 
 
 def check_honeypot(request: HttpRequest, honeypot_field: str = "website") -> bool:
@@ -234,15 +244,19 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
     # 4. Check if CAPTCHA is required (after failed attempts)
     captcha_required = request.session.get("captcha_required", False)
 
-    # 5. Verify hCaptcha (if required or token provided)
-    hcaptcha_token = None
+    # 5. Verify Turnstile (if required or token provided)
+    turnstile_token = None
     if hasattr(request, "data"):
-        hcaptcha_token = request.data.get("hcaptcha_token", "")
+        turnstile_token = request.data.get("turnstile_token", "") or request.data.get(
+            "cf-turnstile-response", ""
+        )
     else:
-        hcaptcha_token = request.POST.get("hcaptcha_token", "")
+        turnstile_token = request.POST.get("turnstile_token", "") or request.POST.get(
+            "cf-turnstile-response", ""
+        )
 
     # If CAPTCHA is required but not provided, reject the request
-    if captcha_required and not hcaptcha_token:
+    if captcha_required and not turnstile_token:
         logger.warning(
             "CAPTCHA required but not provided",
             extra={**context, "ip": request.META.get("REMOTE_ADDR")},
@@ -254,17 +268,17 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
             status=status.HTTP_400_BAD_REQUEST,
         )
 
-    if hcaptcha_token:
-        # Get client IP for hCaptcha verification
+    if turnstile_token:
+        # Get client IP for Turnstile verification
         x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
         if x_forwarded_for:
             remote_ip = x_forwarded_for.split(",")[0].strip()
         else:
             remote_ip = request.META.get("REMOTE_ADDR")
 
-        if not verify_hcaptcha(hcaptcha_token, remote_ip):
+        if not verify_turnstile(turnstile_token, remote_ip):
             logger.warning(
-                "hCaptcha verification failed", extra={**context, "ip": remote_ip}
+                "Turnstile verification failed", extra={**context, "ip": remote_ip}
             )
             return Response(
                 {"error": "CAPTCHA verification failed. Please try again."},

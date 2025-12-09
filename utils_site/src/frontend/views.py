@@ -510,13 +510,12 @@ def contact_page(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
 
-        # Verify hCaptcha before form validation
-        from utils_site.src.api.spam_protection import verify_hcaptcha
+        # Verify Turnstile before form validation
+        from utils_site.src.api.spam_protection import verify_turnstile
 
-        hcaptcha_token = request.POST.get("hcaptcha_token", "")
-        # Also check for h-captcha-response (direct from widget)
-        if not hcaptcha_token:
-            hcaptcha_token = request.POST.get("h-captcha-response", "")
+        turnstile_token = request.POST.get("turnstile_token", "") or request.POST.get(
+            "cf-turnstile-response", ""
+        )
 
         # Get client IP
         x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
@@ -525,7 +524,7 @@ def contact_page(request):
         else:
             remote_ip = request.META.get("REMOTE_ADDR", "")
 
-        if not verify_hcaptcha(hcaptcha_token, remote_ip):
+        if not verify_turnstile(turnstile_token, remote_ip):
             messages.error(
                 request,
                 _("Please complete the CAPTCHA verification."),

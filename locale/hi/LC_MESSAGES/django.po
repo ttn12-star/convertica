@@ -13,10 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
@@ -24,10 +20,6 @@ msgstr ""
 "तेज़, सरल और सुरक्षित ऑनलाइन PDF से Word और Word से PDF कन्वर्टर। तुरंत दस्तावेज़ कन्वर्ट "
 "करें, पंजीकरण की आवश्यकता नहीं।"
 
-#, fuzzy
-#| msgid ""
-#| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
-#| "online PDF converter"
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
@@ -35,10 +27,6 @@ msgstr ""
 "PDF से Word, PDF से DOCX, PDF कन्वर्ट करें, PDF कन्वर्टर, Word कन्वर्टर, ऑनलाइन PDF "
 "कन्वर्टर"
 
-#, fuzzy
-#| msgid ""
-#| "Fast, simple and secure online PDF to Word and Word to PDF converter. "
-#| "Convert documents instantly, no registration required."
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr ""
 "तेज़, सरल और सुरक्षित ऑनलाइन PDF से Word और Word से PDF कन्वर्टर। तुरंत दस्तावेज़ कन्वर्ट "
@@ -71,8 +59,6 @@ msgstr "PDF संपीड़ित करें"
 msgid "Rotate PDF"
 msgstr "PDF घुमाएं"
 
-#, fuzzy
-#| msgid "All Tools"
 msgid "View All Tools"
 msgstr "सभी उपकरण"
 
@@ -137,12 +123,6 @@ msgstr "मिशन आइकन"
 msgid "Our Mission"
 msgstr "हमारा मिशन"
 
-#, fuzzy
-#| msgid ""
-#| "At Convertica, we believe in the power of continuous improvement. Our "
-#| "mission is to provide you with the most reliable, fast, and user-friendly "
-#| "PDF tools available online. We understand that your documents are "
-#| "important, "
 msgid ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
@@ -168,12 +148,6 @@ msgid ""
 "better than today."
 msgstr "आज हम कल से बेहतर हैं। कल हम आज से भी बेहतर होंगे।"
 
-#, fuzzy
-#| msgid ""
-#| "This isn't just a slogan—it's our commitment to you. Every day, our team "
-#| "works tirelessly to enhance our platform, improve our tools, and refine "
-#| "the user experience. We listen to your feedback, analyze usage patterns, "
-#| "and "
 msgid ""
 "This isn't just a slogan—it's our commitment to you. Every day, our team "
 "works tirelessly to enhance our platform, improve our tools, and refine the "
@@ -248,10 +222,9 @@ msgstr "Convertica क्यों चुनें"
 msgid "Checkmark icon"
 msgstr "चेकमार्क आइकन"
 
-#, fuzzy, python-format
-#| msgid "100% Free"
+#, python-format
 msgid "100%% Free"
-msgstr "100% मुफ्त"
+msgstr "100%% मुफ्त"
 
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
@@ -301,8 +274,6 @@ msgstr "सभी उपकरण देखें"
 msgid "Get Started"
 msgstr "शुरू करें"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Page Number Settings"
 msgstr "पेज नंबर"
 
@@ -315,8 +286,6 @@ msgstr "नीचे केंद्र"
 msgid "Bottom Left"
 msgstr "नीचे बाएं"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Bottom Right"
 msgstr "आपके अधिकार"
 
@@ -326,16 +295,12 @@ msgstr "ऊपर केंद्र"
 msgid "Top Left"
 msgstr "ऊपर बाएं"
 
-#, fuzzy
-#| msgid "Your Rights"
 msgid "Top Right"
 msgstr "आपके अधिकार"
 
 msgid "Font Size"
 msgstr "फ़ॉन्ट आकार"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Starting Page Number"
 msgstr "पेज नंबर"
 
@@ -361,13 +326,9 @@ msgstr "कस्टम पेज:"
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "'1,3,5' या '1-5' जैसे विशिष्ट पृष्ठ दर्ज करें"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to watermark"
 msgstr "वॉटरमार्क के लिए फ़ाइल चुनें"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove file"
 msgstr "पेज हटाएं"
 
@@ -383,13 +344,9 @@ msgstr "फ़ाइल"
 msgid "Visual Watermark Editor"
 msgstr "विज़ुअल वॉटरमार्क एडिटर"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Select Page"
 msgstr "पेज हटाएं"
 
-#, fuzzy
-#| msgid "How it works"
 msgid "How to use:"
 msgstr "यह कैसे काम करता है"
 
@@ -402,8 +359,6 @@ msgstr ""
 msgid "Watermark Settings"
 msgstr "वॉटरमार्क सेटिंग्स"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Type"
 msgstr "वॉटरमार्क"
 
@@ -413,13 +368,9 @@ msgstr "टेक्स्ट"
 msgid "Image"
 msgstr "छवि"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Text"
 msgstr "वॉटरमार्क"
 
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Watermark Image"
 msgstr "वॉटरमार्क"
 
@@ -491,13 +442,9 @@ msgstr "दूसरी फ़ाइल संपादित करें"
 msgid "Error"
 msgstr "त्रुटि"
 
-#, fuzzy
-#| msgid "Conversion failed. Please try again."
 msgid "Failed to load PDF file. Please try again."
 msgstr "रूपांतरण विफल रहा। कृपया पुनः प्रयास करें।"
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "All PDF Tools"
 msgstr "सभी PDF उपकरण"
 
@@ -545,8 +492,6 @@ msgstr "PDF से तालिकाएं निकालें और Excel �
 msgid "Edit PDF"
 msgstr "PDF संपादित करें"
 
-#, fuzzy
-#| msgid "Organize and manage your PDF documents"
 msgid "Modify and enhance your PDF documents"
 msgstr "अपने PDF दस्तावेज़ों को व्यवस्थित और प्रबंधित करें"
 
@@ -562,8 +507,6 @@ msgstr "क्रॉप बॉक्स निर्देशांक निर
 msgid "Add Page Numbers"
 msgstr "पेज नंबर"
 
-#, fuzzy
-#| msgid "Add page numbers to your PDF in seconds"
 msgid "Add page numbers to your PDF documents."
 msgstr "सेकंड में अपने PDF में पेज नंबर जोड़ें"
 
@@ -576,8 +519,6 @@ msgstr "टेक्स्ट या छवि वॉटरमार्क क�
 msgid "Organize PDF"
 msgstr "PDF व्यवस्थित करें"
 
-#, fuzzy
-#| msgid "Manage and organize your PDF documents with powerful tools"
 msgid "Manage and organize your PDF documents"
 msgstr "शक्तिशाली उपकरणों के साथ अपने PDF दस्तावेज़ों को प्रबंधित और व्यवस्थित करें"
 
@@ -605,37 +546,27 @@ msgstr "अपने PDF से विशिष्ट पेजों को ए
 msgid "Reorder and organize pages in your PDF document."
 msgstr "अपने PDF दस्तावेज़ में पेजों को पुन: व्यवस्थित और व्यवस्थित करें।"
 
-#, fuzzy
-#| msgid "Reduce PDF file size without losing quality"
 msgid "Reduce PDF file size without losing quality."
 msgstr "गुणवत्ता खोए बिना PDF फ़ाइल आकार कम करें"
 
-#, fuzzy
-#| msgid "Secure and protect your PDF documents"
 msgid "Protect and secure your PDF documents"
 msgstr "अपने PDF दस्तावेज़ों को सुरक्षित और सुरक्षित करें"
 
 msgid "Protect PDF"
 msgstr "PDF सुरक्षित करें"
 
-#, fuzzy
-#| msgid "Add password protection or remove passwords from PDFs."
 msgid "Add password protection to secure your PDF documents."
 msgstr "PDF में पासवर्ड सुरक्षा जोड़ें या पासवर्ड हटाएं।"
 
 msgid "Unlock PDF"
 msgstr "PDF अनलॉक करें"
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Remove password protection from your PDF documents."
 msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
 
 msgid "Compression Settings"
 msgstr "संपीड़न सेटिंग्स"
 
-#, fuzzy
-#| msgid "Compress PDF"
 msgid "Compression Level"
 msgstr "PDF संपीड़ित करें"
 
@@ -773,8 +704,6 @@ msgstr ""
 msgid "Additional Resources"
 msgstr "अतिरिक्त संसाधन"
 
-#, fuzzy
-#| msgid "About"
 msgid "About Us"
 msgstr "हमारे बारे में"
 
@@ -820,28 +749,18 @@ msgstr "डाउनलोड बटन का उपयोग करके अ�
 "अपनी कनवर्ट की गई फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "बिना सीमाओं के"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your file..."
 msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
 
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Complete!"
 msgstr "संपादन पूर्ण!"
 
-#, fuzzy
-#| msgid "Edit another file"
 msgid "Convert another file"
 msgstr "दूसरी फ़ाइल संपादित करें"
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to crop"
 msgstr "क्रॉप करने के लिए फ़ाइल चुनें"
 
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop Your PDF"
 msgstr "PDF क्रॉप करें"
 
@@ -851,8 +770,6 @@ msgid ""
 "corner/edge handles to resize it."
 msgstr ""
 
-#, fuzzy
-#| msgid "Page"
 msgid "Page:"
 msgstr "पृष्ठ"
 
@@ -864,8 +781,6 @@ msgid ""
 "ready."
 msgstr ""
 
-#, fuzzy
-#| msgid "Apply to pages"
 msgid "Apply crop to pages"
 msgstr "पेजों पर लागू करें"
 
@@ -945,8 +860,6 @@ msgid ""
 "\"Crop PDF\\\" when ready."
 msgstr ""
 
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select file to edit"
 msgstr "संपादन के लिए फ़ाइल चुनें"
 
@@ -972,8 +885,6 @@ msgid ""
 "\"Current page only\\\""
 msgstr ""
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Extract Pages Settings"
 msgstr "पेज निकालें"
 
@@ -988,13 +899,9 @@ msgstr ""
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr "Convertica PDF उपकरणों के बारे में सामान्य प्रश्नों के उत्तर खोजें"
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "General Questions"
 msgstr "सामान्य प्रश्न"
 
-#, fuzzy
-#| msgid "Is Convertica really free?"
 msgid "Is Convertica free to use?"
 msgstr "क्या Convertica मुफ्त है?"
 
@@ -1012,8 +919,6 @@ msgid ""
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What file formats does Convertica support?"
 msgstr "Convertica कौन से फ़ाइल प्रारूपों का समर्थन करता है?"
 
@@ -1031,13 +936,9 @@ msgid ""
 "any size, from small documents to large PDF files."
 msgstr ""
 
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Conversion Questions"
 msgstr "रूपांतरण प्रश्न"
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr "मैं PDF को Word में कैसे कन्वर्ट करूं?"
 
@@ -1049,8 +950,6 @@ msgid ""
 "All conversions are free and require no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word?"
 msgstr "मैं PDF को Word में कैसे कन्वर्ट करूं?"
 
@@ -1061,8 +960,6 @@ msgid ""
 "the download button. The conversion is free and requires no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "How do I convert Word to PDF?"
 msgstr "मैं Word को PDF में कैसे कन्वर्ट करूं?"
 
@@ -1072,8 +969,6 @@ msgid ""
 "document."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Excel"
 msgid "Can I convert PDF to JPG?"
 msgstr "क्या मैं PDF को JPG में कन्वर्ट कर सकता हूं?"
 
@@ -1092,8 +987,6 @@ msgid ""
 "with automatic A4 formatting."
 msgstr ""
 
-#, fuzzy
-#| msgid "Extract tables from PDF and convert to Excel format"
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "क्या मैं PDF से Excel में तालिकाएं निकाल सकता हूं?"
 
@@ -1103,8 +996,6 @@ msgid ""
 "Excel file."
 msgstr ""
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Editing & Organization"
 msgstr "संपादन और संगठन"
 
@@ -1136,10 +1027,8 @@ msgid ""
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress PDF to under 1MB for email?"
-msgstr ""
+msgstr "ईमेल के लिए PDF को 1MB से कम कैसे संपीड़ित करें?"
 "मैं PDF फ़ाइल को कैसे संपीड़ित करूं?अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की "
 "आवश्यकता नहीं, पूरी तरह से मुफ्त, उच्च गुणवत्ता"
 
@@ -1151,8 +1040,6 @@ msgid ""
 "downloading."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress a PDF file?"
 msgstr ""
 "मैं PDF फ़ाइल को कैसे संपीड़ित करूं?अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की "
@@ -1167,17 +1054,11 @@ msgstr ""
 msgid "Can I rotate PDF pages?"
 msgstr "क्या मैं PDF पृष्ठों को घुमा सकता हूं?"
 
-#, fuzzy
-#| msgid ""
-#| "Rotate PDF pages by 90, 180, or 270 degrees. Free online PDF rotation "
-#| "tool."
 msgid ""
 "Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
 "you want to rotate and choose the rotation angle."
 msgstr "PDF पेजों को 90, 180, या 270 डिग्री घुमाएं। मुफ्त ऑनलाइन PDF रोटेशन उपकरण।"
 
-#, fuzzy
-#| msgid "Download your watermarked PDF file"
 msgid "How do I add a watermark to PDF?"
 msgstr ""
 "मैं PDF में वॉटरमार्क कैसे जोड़ूं?अपनी वॉटरमार्क वाली PDF फ़ाइल डाउनलोड करें - पंजीकरण की "
@@ -1195,10 +1076,6 @@ msgstr "सुरक्षा और गोपनीयता"
 msgid "Is my data secure?"
 msgstr "क्या मेरा डेटा सुरक्षित है?"
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -1216,8 +1093,6 @@ msgid ""
 "click protect. The PDF will be encrypted and require a password to open."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Can I remove password protection from a PDF?"
 msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
 
@@ -1230,10 +1105,6 @@ msgstr ""
 msgid "Are my files stored on your servers?"
 msgstr "क्या मेरी फ़ाइलें आपके सर्वर पर संग्रहीत हैं?"
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
@@ -1245,8 +1116,6 @@ msgstr ""
 msgid "Technical Questions"
 msgstr "तकनीकी प्रश्न"
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What browsers are supported?"
 msgstr "कौन से फ़ाइल प्रारूप समर्थित हैं?"
 
@@ -1256,8 +1125,6 @@ msgid ""
 "smartphones and tablets."
 msgstr ""
 
-#, fuzzy
-#| msgid "How long does it take to process files?"
 msgid "How long does conversion take?"
 msgstr "फ़ाइलों को प्रोसेस करने में कितना समय लगता है?"
 
@@ -1267,8 +1134,6 @@ msgid ""
 "shown during conversion."
 msgstr ""
 
-#, fuzzy
-#| msgid "Wait for the conversion to complete"
 msgid "What if conversion fails?"
 msgstr ""
 "यदि रूपांतरण विफल हो जाए तो क्या होगा?कन्वर्ज़न पूरा होने की प्रतीक्षा करें - हमारा "
@@ -1315,10 +1180,8 @@ msgstr "और"
 msgid "Reject All"
 msgstr "सभी अस्वीकार करें"
 
-#, fuzzy
-#| msgid "Custom pages:"
 msgid "Customize"
-msgstr "कस्टम पेज:"
+msgstr "अनुकूलित करें"
 
 msgid "Accept All"
 msgstr "सभी स्वीकार करें"
@@ -1419,15 +1282,11 @@ msgstr "शर्तें"
 msgid "Convertica - Home"
 msgstr "Convertica - होम"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica Logo"
-msgstr "Convertica के बारे में"
+msgstr "Convertica लोगो"
 
-#, fuzzy
-#| msgid "About Convertica"
 msgid "Convertica"
-msgstr "Convertica के बारे में"
+msgstr "Convertica"
 
 msgid "All PDF tools"
 msgstr "सभी PDF उपकरण"
@@ -1435,10 +1294,8 @@ msgstr "सभी PDF उपकरण"
 msgid "Main navigation"
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "Convert PDF tools"
-msgstr "PDF को Word में कन्वर्ट करें"
+msgstr "PDF रूपांतरण उपकरण"
 
 msgid "Convert from PDF"
 msgstr "PDF से कन्वर्ट करें"
@@ -1446,10 +1303,8 @@ msgstr "PDF से कन्वर्ट करें"
 msgid "Convert to PDF"
 msgstr "PDF में कन्वर्ट करें"
 
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "Edit PDF tools"
-msgstr "सभी PDF उपकरण"
+msgstr "PDF संपादन उपकरण"
 
 msgid "Basic Editing"
 msgstr "मूल संपादन"
@@ -1457,10 +1312,8 @@ msgstr "मूल संपादन"
 msgid "Enhancements"
 msgstr "सुधार"
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Organize PDF tools"
-msgstr "PDF व्यवस्थित करें"
+msgstr "PDF संगठन उपकरण"
 
 msgid "Organization"
 msgstr "संगठन"
@@ -1550,18 +1403,14 @@ msgstr ""
 msgid "+ Add more images"
 msgstr ""
 
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your images here"
-msgstr "अपनी फ़ाइल यहाँ खींचें"
+msgstr "अपनी छवियाँ यहाँ खींचें और छोड़ें"
 
 msgid "files"
 msgstr "फ़ाइलें"
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "multiple files supported"
-msgstr "कौन से फ़ाइल प्रारूप समर्थित हैं?"
+msgstr "कई फ़ाइलें समर्थित"
 
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
@@ -1592,33 +1441,23 @@ msgstr ""
 "अपनी कनवर्ट की गई PDF फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, "
 "सभी छवियां एक फ़ाइल में"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Converting your images..."
-msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
+msgstr "आपकी छवियाँ रूपांतरित हो रही हैं..."
 
-#, fuzzy
-#| msgid "Your file is ready to download"
 msgid "Your PDF is ready to download"
-msgstr "आपकी फ़ाइल डाउनलोड के लिए तैयार है"
+msgstr "आपकी PDF डाउनलोड के लिए तैयार है"
 
-#, fuzzy
-#| msgid "Download File"
 msgid "Download PDF"
-msgstr "फ़ाइल डाउनलोड करें"
+msgstr "PDF डाउनलोड करें"
 
 msgid "Merge Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF Files"
-msgstr "कृपया एक PDF फ़ाइल चुनें।"
+msgstr "PDF फ़ाइलें चुनें"
 
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Select PDF files"
-msgstr "कृपया एक PDF फ़ाइल चुनें।"
+msgstr "PDF फ़ाइलें चुनें"
 
 msgid "+ Add more files"
 msgstr ""
@@ -1626,10 +1465,8 @@ msgstr ""
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Selected Files"
-msgstr "संबंधित लेख"
+msgstr "चयनित फ़ाइलें"
 
 msgid "Preview & Reorder Pages"
 msgstr ""
@@ -1647,65 +1484,43 @@ msgstr "अधिकतम 10 फ़ाइलें अनुमत। केव
 msgid "Error loading preview"
 msgstr "पूर्वावलोकन लोड करने में त्रुटि"
 
-#, fuzzy
-#| msgid "Sending..."
 msgid "Loading..."
-msgstr "भेज रहे हैं..."
+msgstr "लोड हो रहा है..."
 
-#, fuzzy
-#| msgid "Merge PDFs"
 msgid "Merging PDFs..."
-msgstr "PDF मर्ज करें"
+msgstr "PDF मर्ज हो रहे हैं..."
 
-#, fuzzy
-#| msgid "Please select PDF files to merge."
 msgid "Please select at least 2 PDF files to merge."
 msgstr "कृपया मर्ज करने के लिए PDF फ़ाइलें चुनें।"
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organization Settings"
-msgstr "संगठन"
+msgstr "संगठन सेटिंग्स"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Operation"
-msgstr "समाप्ति"
+msgstr "ऑपरेशन"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Reorder Pages"
-msgstr "पेज हटाएं"
+msgstr "पृष्ठों को पुनर्व्यवस्थित करें"
 
-#, fuzzy
-#| msgid "Extract Pages"
 msgid "Sort Pages"
-msgstr "पेज निकालें"
+msgstr "पृष्ठों को क्रमबद्ध करें"
 
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
 msgstr ""
 
-#, fuzzy
-#| msgid "Please select a Word file."
 msgid "Please select a PDF file."
 msgstr "कृपया एक Word फ़ाइल चुनें।"
 
-#, fuzzy
-#| msgid "Please select a PDF file with tables."
 msgid "Please select a PDF file first."
-msgstr "कृपया तालिकाओं के साथ एक PDF फ़ाइल चुनें।"
+msgstr "कृपया पहले एक PDF फ़ाइल चुनें।"
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Organizing..."
-msgstr "संगठन"
+msgstr "व्यवस्थित हो रहा है..."
 
-#, fuzzy
-#| msgid "Organize PDF"
 msgid "Failed to organize PDF"
-msgstr "PDF व्यवस्थित करें"
+msgstr "PDF व्यवस्थित करने में विफल"
 
 msgid "Privacy Policy - Convertica"
 msgstr "गोपनीयता नीति - Convertica"
@@ -1734,12 +1549,6 @@ msgstr "जानकारी जो हम एकत्र करते है�
 msgid "Files You Upload"
 msgstr "फ़ाइलें जो आप अपलोड करते हैं"
 
-#, fuzzy
-#| msgid ""
-#| "When you use our PDF tools, you may upload files for processing. These "
-#| "files are temporarily stored on our servers only for the duration of the "
-#| "conversion or editing process. Files are automatically deleted "
-#| "immediately "
 msgid ""
 "When you use our PDF tools, you may upload files for processing. These files "
 "are temporarily stored on our servers only for the duration of the "
@@ -1818,17 +1627,13 @@ msgstr "नियमित सुरक्षा ऑडिट और अपड�
 msgid "Access controls and monitoring systems"
 msgstr "एक्सेस कंट्रोल और निगरानी प्रणाली"
 
-#, fuzzy, python-format
-#| msgid ""
-#| "However, no method of transmission over the Internet or electronic "
-#| "storage is 100% secure. While we strive to use commercially acceptable "
-#| "means to protect your information, we cannot guarantee absolute security."
+#, python-format
 msgid ""
 "However, no method of transmission over the Internet or electronic storage "
 "is 100%% secure. While we strive to use commercially acceptable means to "
 "protect your information, we cannot guarantee absolute security."
 msgstr ""
-"हालांकि, इंटरनेट पर प्रसारण या इलेक्ट्रॉनिक भंडारण की कोई भी विधि 100% सुरक्षित नहीं है। "
+"हालांकि, इंटरनेट पर प्रसारण या इलेक्ट्रॉनिक भंडारण की कोई भी विधि 100%% सुरक्षित नहीं है। "
 "जबकि हम आपकी जानकारी की सुरक्षा के लिए व्यावसायिक रूप से स्वीकार्य साधनों का उपयोग "
 "करने का प्रयास करते हैं, हम पूर्ण सुरक्षा की गारंटी नहीं दे सकते।"
 
@@ -1855,12 +1660,6 @@ msgstr "हम आपकी अपलोड की गई फ़ाइलों 
 msgid "Third-Party Services"
 msgstr ""
 
-#, fuzzy
-#| msgid ""
-#| "We may use third-party services to help us operate our platform and "
-#| "analyze how our services are used. These services may have access to "
-#| "limited information, but they are obligated not to disclose or use it for "
-#| "any other "
 msgid ""
 "We may use third-party services to help us operate our platform and analyze "
 "how our services are used. These services may have access to limited "
@@ -1871,11 +1670,6 @@ msgstr ""
 "तीसरे पक्ष की सेवाओं का उपयोग कर सकते हैं। इन सेवाओं की सीमित जानकारी तक पहुंच हो सकती "
 "है, लेकिन वे किसी अन्य उद्देश्य के लिए इसे खुलासा या उपयोग नहीं करने के लिए बाध्य हैं।"
 
-#, fuzzy
-#| msgid ""
-#| "We do not sell, trade, or rent your personal information to third "
-#| "parties. We may share your information only in the following "
-#| "circumstances:"
 msgid ""
 "We do not sell, trade, or rent your personal information to third parties."
 msgstr ""
@@ -1934,11 +1728,6 @@ msgstr ""
 msgid "Children's Privacy"
 msgstr "बच्चों की गोपनीयता"
 
-#, fuzzy
-#| msgid ""
-#| "Our services are not intended for children under the age of 13. We do not "
-#| "knowingly collect personal information from children under 13. If you are "
-#| "a parent or guardian and believe your child has provided us with personal "
 msgid ""
 "Our services are not intended for children under the age of 13. We do not "
 "knowingly collect personal information from children under 13. If you are a "
@@ -1952,12 +1741,6 @@ msgstr ""
 msgid "Changes to This Privacy Policy"
 msgstr "इस गोपनीयता नीति में परिवर्तन"
 
-#, fuzzy
-#| msgid ""
-#| "We may update our Privacy Policy from time to time. We will notify you of "
-#| "any changes by posting the new Privacy Policy on this page and updating "
-#| "the \"Last updated\" date. You are advised to review this Privacy Policy "
-#| "periodically for any changes."
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
@@ -1979,10 +1762,8 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF"
 msgid "Enter password to protect PDF"
-msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
+msgstr "PDF सुरक्षित करने के लिए पासवर्ड दर्ज करें"
 
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
@@ -2013,15 +1794,11 @@ msgid ""
 "password will be used."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Remove Pages Settings"
-msgstr "पेज हटाएं"
+msgstr "पृष्ठ हटाने की सेटिंग्स"
 
-#, fuzzy
-#| msgid "Changes to Terms"
 msgid "Pages to Remove"
-msgstr "शर्तों में परिवर्तन"
+msgstr "हटाने के लिए पृष्ठ"
 
 msgid "Rotation Settings"
 msgstr ""
@@ -2038,34 +1815,24 @@ msgstr ""
 msgid "(Counter-clockwise)"
 msgstr ""
 
-#, fuzzy
-#| msgid "I agree to the"
 msgid "Pages to Rotate"
-msgstr "मैं सहमत हूं"
+msgstr "घुमाने के लिए पृष्ठ"
 
 msgid "Split Settings"
 msgstr ""
 
-#, fuzzy
-#| msgid "Split PDF"
 msgid "Split Type"
-msgstr "PDF विभाजित करें"
+msgstr "विभाजन प्रकार"
 
 msgid "By Individual Pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "By Page Ranges"
-msgstr "पृष्ठ प्रबंधन"
+msgstr "पृष्ठ श्रेणियों द्वारा"
 
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Every N Pages"
-msgstr "पेज हटाएं"
+msgstr "हर N पृष्ठ"
 
-#, fuzzy
-#| msgid "Page"
 msgid "Pages"
 msgstr "पृष्ठ"
 
@@ -2077,10 +1844,8 @@ msgid ""
 "pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Page Management"
 msgid "Page Ranges"
-msgstr "पृष्ठ प्रबंधन"
+msgstr "पृष्ठ श्रेणियाँ"
 
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr ""
@@ -2186,12 +1951,6 @@ msgstr "फ़ाइल अपलोड और प्रसंस्करण"
 msgid "File Size and Format Limitations"
 msgstr "फ़ाइल आकार और प्रारूप सीमाएं"
 
-#, fuzzy
-#| msgid ""
-#| "You are responsible for ensuring that files you upload comply with our "
-#| "file size and format requirements. We reserve the right to reject or "
-#| "limit the processing of files that exceed our size limits or are in "
-#| "unsupported "
 msgid ""
 "You are responsible for ensuring that files you upload comply with our file "
 "size and format requirements. We reserve the right to reject or limit the "
@@ -2205,12 +1964,6 @@ msgstr ""
 msgid "File Storage and Deletion"
 msgstr "फ़ाइल भंडारण और विलोपन"
 
-#, fuzzy
-#| msgid ""
-#| "Files uploaded to our Services are processed temporarily and "
-#| "automatically deleted after processing is complete. We do not store your "
-#| "files permanently. However, you are responsible for maintaining backups "
-#| "of your "
 msgid ""
 "Files uploaded to our Services are processed temporarily and automatically "
 "deleted after processing is complete. We do not store your files "
@@ -2224,12 +1977,6 @@ msgstr ""
 msgid "Processing Accuracy"
 msgstr "प्रसंस्करण सटीकता"
 
-#, fuzzy
-#| msgid ""
-#| "While we strive to provide accurate conversions and processing, we cannot "
-#| "guarantee that all files will be processed correctly or that the output "
-#| "will meet your specific requirements. You are responsible for verifying "
-#| "the "
 msgid ""
 "While we strive to provide accurate conversions and processing, we cannot "
 "guarantee that all files will be processed correctly or that the output will "
@@ -2240,19 +1987,12 @@ msgstr ""
 "कि सभी फ़ाइलें सही ढंग से प्रोसेस की जाएंगी या आउटपुट आपकी विशिष्ट आवश्यकताओं को पूरा "
 "करेगा। आप प्रोसेस की गई फ़ाइलों की सटीकता सत्यापित करने के लिए जिम्मेदार हैं।"
 
-#, fuzzy
-#| msgid "Our Intellectual Property"
 msgid "Intellectual Property"
 msgstr "हमारी बौद्धिक संपदा"
 
 msgid "Our Intellectual Property"
 msgstr "हमारी बौद्धिक संपदा"
 
-#, fuzzy
-#| msgid ""
-#| "All content, features, and functionality of our Services, including but "
-#| "not limited to text, graphics, logos, icons, images, and software, are "
-#| "the exclusive property of Convertica and are protected by international "
 msgid ""
 "All content, features, and functionality of our Services, including but not "
 "limited to text, graphics, logos, icons, images, and software, are the "
@@ -2266,11 +2006,6 @@ msgstr ""
 msgid "Your Content"
 msgstr "आपकी सामग्री"
 
-#, fuzzy
-#| msgid ""
-#| "You retain all rights to files you upload. By uploading files, you grant "
-#| "us a limited, non-exclusive license to process your files solely for the "
-#| "purpose of providing the requested Services. We do not claim ownership of "
 msgid ""
 "You retain all rights to files you upload. By uploading files, you grant us "
 "a limited, non-exclusive license to process your files solely for the "
@@ -2340,11 +2075,6 @@ msgstr ""
 msgid "Indemnification"
 msgstr "क्षतिपूर्ति"
 
-#, fuzzy
-#| msgid ""
-#| "You agree to indemnify, defend, and hold harmless Convertica and its "
-#| "affiliates, officers, employees, and agents from and against any claims, "
-#| "damages, obligations, losses, liabilities, costs, or debt, and expenses "
 msgid ""
 "You agree to indemnify, defend, and hold harmless Convertica and its "
 "affiliates, officers, employees, and agents from and against any claims, "
@@ -2370,12 +2100,6 @@ msgstr "आप जो फ़ाइलें अपलोड करते है�
 msgid "Termination"
 msgstr "समाप्ति"
 
-#, fuzzy
-#| msgid ""
-#| "We reserve the right to terminate or suspend your access to our Services "
-#| "immediately, without prior notice or liability, for any reason, including "
-#| "if you breach these Terms. Upon termination, your right to use the "
-#| "Services "
 msgid ""
 "We reserve the right to terminate or suspend your access to our Services "
 "immediately, without prior notice or liability, for any reason, including if "
@@ -2389,11 +2113,6 @@ msgstr ""
 msgid "Changes to Terms"
 msgstr "शर्तों में परिवर्तन"
 
-#, fuzzy
-#| msgid ""
-#| "We reserve the right to modify or replace these Terms at any time. If a "
-#| "revision is material, we will provide at least 30 days notice prior to "
-#| "any new terms taking effect. What constitutes a material change will be "
 msgid ""
 "We reserve the right to modify or replace these Terms at any time. If a "
 "revision is material, we will provide at least 30 days notice prior to any "
@@ -2414,12 +2133,6 @@ msgstr ""
 msgid "Governing Law"
 msgstr "शासी कानून"
 
-#, fuzzy
-#| msgid ""
-#| "These Terms shall be governed by and construed in accordance with "
-#| "applicable laws, without regard to its conflict of law provisions. Any "
-#| "disputes arising from these Terms or your use of our Services shall be "
-#| "subject to the "
 msgid ""
 "These Terms shall be governed by and construed in accordance with applicable "
 "laws, without regard to its conflict of law provisions. Any disputes arising "
@@ -2437,15 +2150,11 @@ msgid ""
 "If you have any questions about these Terms of Service, please contact us."
 msgstr "यदि इन सेवा की शर्तों के बारे में आपके कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें।"
 
-#, fuzzy
-#| msgid "Unlock PDF"
 msgid "Unlock PDF Settings"
-msgstr "PDF अनलॉक करें"
+msgstr "PDF अनलॉक सेटिंग्स"
 
-#, fuzzy
-#| msgid "PDF to Word"
 msgid "PDF Password"
-msgstr "PDF से Word"
+msgstr "PDF पासवर्ड"
 
 msgid "Enter the password to unlock the PDF"
 msgstr ""
@@ -2455,15 +2164,11 @@ msgid ""
 "removed from the output PDF."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Information"
 msgid "Basic Information"
-msgstr "संपर्क जानकारी"
+msgstr "मूल जानकारी"
 
-#, fuzzy
-#| msgid "Termination"
 msgid "Translations"
-msgstr "समाप्ति"
+msgstr "अनुवाद"
 
 msgid "Add translations for other languages using the tabs above."
 msgstr ""
@@ -2480,10 +2185,8 @@ msgstr ""
 msgid "Empty translations"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Articles"
-msgstr "सभी लेख"
+msgstr "लेख"
 
 msgid "English Content"
 msgstr ""
@@ -2513,10 +2216,8 @@ msgstr ""
 msgid "No image"
 msgstr ""
 
-#, fuzzy
-#| msgid "Previous"
 msgid "Preview"
-msgstr "पिछला"
+msgstr "पूर्वावलोकन"
 
 msgid "Name (English)"
 msgstr ""
@@ -2529,18 +2230,14 @@ msgid ""
 "\"description\": \"...\"}, ...}"
 msgstr ""
 
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Description (English)"
-msgstr "सेवाओं का विवरण"
+msgstr "विवरण (अंग्रेज़ी)"
 
 msgid "Article Category"
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Article Categories"
-msgstr "श्रेणियाँ"
+msgstr "लेख श्रेणियाँ"
 
 msgid "Draft"
 msgstr ""
@@ -2579,10 +2276,8 @@ msgid ""
 "etc."
 msgstr ""
 
-#, fuzzy
-#| msgid "Categories"
 msgid "Category"
-msgstr "श्रेणियाँ"
+msgstr "श्रेणी"
 
 msgid "Featured Image"
 msgstr ""
@@ -2593,10 +2288,8 @@ msgstr ""
 msgid "Published At"
 msgstr ""
 
-#, fuzzy
-#| msgid "Related Articles"
 msgid "Created At"
-msgstr "संबंधित लेख"
+msgstr "बनाया गया"
 
 msgid "Updated At"
 msgstr ""
@@ -2604,10 +2297,8 @@ msgstr ""
 msgid "View Count"
 msgstr ""
 
-#, fuzzy
-#| msgid "All Articles"
 msgid "Article"
-msgstr "सभी लेख"
+msgstr "लेख"
 
 msgid "Your Name"
 msgstr "आपका नाम"
@@ -2624,23 +2315,17 @@ msgstr ""
 msgid "Subject"
 msgstr "विषय"
 
-#, fuzzy
-#| msgid "Subject"
 msgid "Enter subject"
-msgstr "विषय"
+msgstr "विषय दर्ज करें"
 
 msgid "Message"
 msgstr "संदेश"
 
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Enter your message"
-msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
+msgstr "अपना संदेश दर्ज करें"
 
-#, fuzzy
-#| msgid "Changes to This Privacy Policy"
 msgid "I agree to the Privacy Policy"
-msgstr "इस गोपनीयता नीति में परिवर्तन"
+msgstr "मैं गोपनीयता नीति से सहमत हूं"
 
 msgid "Message must be at least 10 characters long."
 msgstr ""
@@ -2754,10 +2439,8 @@ msgstr ""
 msgid "Please correct the errors in the form below."
 msgstr "कृपया नीचे दिए गए फॉर्म में त्रुटियों को सही करें।"
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
-msgstr "अक्सर पूछे जाने वाले प्रश्न"
+msgstr "अक्सर पूछे जाने वाले प्रश्न (FAQ) - Convertica"
 
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
@@ -2784,7 +2467,6 @@ msgid ""
 "be combined into a single PDF document."
 msgstr ""
 
-#, fuzzy
 #~| msgid ""
 #~| "PDF to Word, PDF to DOCX, convert PDF, PDF converter, Word converter, "
 #~| "online PDF converter"
