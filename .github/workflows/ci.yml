@@ -413,9 +413,10 @@ jobs:
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T --user root web sh -c "
               if command -v npm > /dev/null 2>&1; then
                 echo '   npm found, building CSS...'
-                cd /app && chown -R appuser:appuser /app/static /app/package.json /app/package-lock.json 2>/dev/null || true
-                su - appuser -c 'cd /app && npm ci --silent 2>&1 | grep -v \"npm WARN\" || npm install --silent 2>&1 | grep -v \"npm WARN\" || true'
-                su - appuser -c 'cd /app && npm run build:css 2>&1' || echo '⚠️ CSS build failed'
+                cd /app
+                chown -R appuser:appuser /app/static /app/package.json /app/package-lock.json 2>/dev/null || true
+                su appuser -s /bin/sh -c 'cd /app && npm ci --silent 2>&1 | grep -v npm\ WARN || npm install --silent 2>&1 | grep -v npm\ WARN || true'
+                su appuser -s /bin/sh -c 'cd /app && npm run build:css 2>&1' || echo '⚠️ CSS build failed'
                 ls -lh /app/static/css/tailwind.css || echo '⚠️ CSS file not found'
               else
                 echo '⚠️ npm not found in container, installing Node.js...'
@@ -425,9 +426,10 @@ jobs:
                 apt-get install -y -qq nodejs > /dev/null 2>&1 || echo '⚠️ Node.js installation failed'
                 if command -v npm > /dev/null 2>&1; then
                   echo '   npm installed, building CSS...'
-                  cd /app && chown -R appuser:appuser /app/static /app/package.json /app/package-lock.json 2>/dev/null || true
-                  su - appuser -c 'cd /app && npm ci --silent 2>&1 | grep -v \"npm WARN\" || npm install --silent 2>&1 | grep -v \"npm WARN\" || true'
-                  su - appuser -c 'cd /app && npm run build:css 2>&1' || echo '⚠️ CSS build failed'
+                  cd /app
+                  chown -R appuser:appuser /app/static /app/package.json /app/package-lock.json 2>/dev/null || true
+                  su appuser -s /bin/sh -c 'cd /app && npm ci --silent 2>&1 | grep -v npm\ WARN || npm install --silent 2>&1 | grep -v npm\ WARN || true'
+                  su appuser -s /bin/sh -c 'cd /app && npm run build:css 2>&1' || echo '⚠️ CSS build failed'
                 else
                   echo '⚠️ npm still not available, CSS should be in repository'
                 fi
