@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 
 
@@ -437,6 +438,7 @@ def all_tools_page(request):
     return render(request, "frontend/all_tools.html", context)
 
 
+@cache_page(60 * 60 * 24 * 7)  # Cache for 7 days (604800 seconds)
 def about_page(request):
     """About Us page."""
     context = {
@@ -451,6 +453,7 @@ def about_page(request):
     return render(request, "frontend/about.html", context)
 
 
+@cache_page(60 * 60 * 24 * 7)  # Cache for 7 days (604800 seconds)
 def privacy_page(request):
     """Privacy Policy page."""
     context = {
@@ -465,6 +468,7 @@ def privacy_page(request):
     return render(request, "frontend/privacy.html", context)
 
 
+@cache_page(60 * 60 * 24 * 7)  # Cache for 7 days (604800 seconds)
 def terms_page(request):
     """Terms of Service page."""
     context = {
@@ -616,6 +620,7 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
     return render(request, "frontend/contact.html", context)
 
 
+@cache_page(60 * 60 * 24)  # Cache for 24 hours (86400 seconds)
 def faq_page(request):
     """FAQ page."""
     context = {
