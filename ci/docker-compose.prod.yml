@@ -11,7 +11,7 @@ services:
       context: .
       dockerfile: ci/Dockerfile
     command: >
-      sh -c "python /app/clear_staticfiles.py &&
+      sh -c "python /app/clear_staticfiles.py || true &&
              python manage.py collectstatic --noinput &&
              python manage.py compilemessages &&
              python manage.py migrate &&
