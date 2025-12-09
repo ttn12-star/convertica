@@ -57,7 +57,7 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         # Environment tag
         environment=config("SENTRY_ENVIRONMENT", default="production"),
         # Release version - update on each release
-        release=config("SENTRY_RELEASE", default="convertica@1.0.23"),
+        release=config("SENTRY_RELEASE", default="convertica@1.0.25"),
         # Filter handled errors
         before_send=before_send,
         # Async transport (non-blocking)
