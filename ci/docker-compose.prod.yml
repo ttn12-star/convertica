@@ -22,6 +22,8 @@ services:
       - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-False}
       - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-True}
       - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-True}
+      # Disable WhiteNoise in production (using Nginx for static files)
+      - USE_WHITENOISE=False
     deploy:
       resources:
         limits:
