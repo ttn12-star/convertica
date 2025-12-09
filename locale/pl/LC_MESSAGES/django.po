@@ -605,7 +605,7 @@ msgstr "Wolniej, większa kompresja"
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
-msgstr ""
+msgstr "Wybierz poziom kompresji w zależności od potrzeb. Wyższa kompresja bardziej zmniejsza rozmiar pliku, ale trwa dłużej."
 
 msgid "Contact Us - Convertica"
 msgstr "Skontaktuj się z nami - Convertica"
@@ -1433,16 +1433,16 @@ msgid "View All Articles"
 msgstr "Zobacz wszystkie artykuły"
 
 msgid "You can upload multiple images - they will be combined into one PDF"
-msgstr ""
+msgstr "Możesz przesłać wiele obrazów - zostaną one połączone w jeden PDF"
 
 msgid "Select image(s)"
-msgstr ""
+msgstr "Wybierz obraz(y)"
 
 msgid "Selected Images"
-msgstr ""
+msgstr "Wybrane obrazy"
 
 msgid "+ Add more images"
-msgstr ""
+msgstr "+ Dodaj więcej obrazów"
 
 msgid "Drag and drop your images here"
 msgstr "Przeciągnij i upuść swoje zdjęcia tutaj"
@@ -1469,17 +1469,17 @@ msgstr ""
 "pliki ponownie - nasze narzędzie obsługuje wiele przesyłania"
 
 msgid "Remove unwanted images by clicking the X button"
-msgstr ""
+msgstr "Usuń niechciane obrazy, klikając przycisk X"
 "Usuń niechciane obrazy, klikając przycisk X - nasz konwerter JPG na PDF "
 "pozwala łatwo zarządzać obrazami"
 
 msgid "Click the convert button to combine all images into one PDF"
-msgstr ""
+msgstr "Kliknij przycisk konwersji, aby połączyć wszystkie obrazy w jeden PDF"
 "Kliknij przycisk konwersji, aby połączyć wszystkie obrazy w jeden PDF - nasz "
 "szybki konwerter przetworzy je natychmiast"
 
 msgid "Download your converted PDF file"
-msgstr ""
+msgstr "Pobierz przekonwertowany plik PDF"
 "Pobierz przekonwertowany plik PDF - bez rejestracji, całkowicie za darmo, "
 "wszystkie obrazy w jednym pliku"
 
@@ -1493,7 +1493,7 @@ msgid "Download PDF"
 msgstr "Pobierz PDF"
 
 msgid "Merge Settings"
-msgstr ""
+msgstr "Ustawienia scalania"
 
 msgid "Select PDF Files"
 msgstr "Wybierz pliki PDF"
@@ -1502,16 +1502,16 @@ msgid "Select PDF files"
 msgstr "Wybierz pliki PDF"
 
 msgid "+ Add more files"
-msgstr ""
+msgstr "+ Dodaj więcej plików"
 
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
-msgstr ""
+msgstr "Wybierz 2-10 plików PDF do scalenia. Możesz zmienić ich kolejność, przeciągając."
 
 msgid "Selected Files"
 msgstr "Wybrane pliki"
 
 msgid "Preview & Reorder Pages"
-msgstr ""
+msgstr "Podgląd i zmiana kolejności stron"
 
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
@@ -1807,14 +1807,14 @@ msgid "Questions About Privacy?"
 msgstr "Pytania dotyczące prywatności?"
 
 msgid "If you have any questions about this Privacy Policy, please contact us."
-msgstr ""
+msgstr "Jeśli masz pytania dotyczące tej Polityki Prywatności, skontaktuj się z nami."
 "Jeśli masz pytania dotyczące tej Polityki prywatności, skontaktuj się z nami."
 
 msgid "Password Protection Settings"
-msgstr ""
+msgstr "Ustawienia ochrony hasłem"
 
 msgid "Password"
-msgstr ""
+msgstr "Hasło"
 
 msgid "Enter password to protect PDF"
 msgstr "Wprowadź hasło do ochrony PDF"
@@ -1824,13 +1824,13 @@ msgid ""
 msgstr ""
 
 msgid "User Password"
-msgstr ""
+msgstr "Hasło użytkownika"
 
 msgid "Optional"
-msgstr ""
+msgstr "Opcjonalne"
 
 msgid "Optional: Different user password"
-msgstr ""
+msgstr "Opcjonalne: Inne hasło użytkownika"
 
 msgid ""
 "Optional: Set a different password for users. If not provided, the main "
@@ -1838,10 +1838,10 @@ msgid ""
 msgstr ""
 
 msgid "Owner Password"
-msgstr ""
+msgstr "Hasło właściciela"
 
 msgid "Optional: Different owner password"
-msgstr ""
+msgstr "Opcjonalne: Inne hasło właściciela"
 
 msgid ""
 "Optional: Set a different password for owner. If not provided, the main "
@@ -1855,31 +1855,31 @@ msgid "Pages to Remove"
 msgstr "Strony do usunięcia"
 
 msgid "Rotation Settings"
-msgstr ""
+msgstr "Ustawienia obrotu"
 
 msgid "Rotation Angle"
-msgstr ""
+msgstr "Kąt obrotu"
 
 msgid "(Clockwise)"
-msgstr ""
+msgstr "(Zgodnie z ruchem wskazówek zegara)"
 
 msgid "(Upside down)"
-msgstr ""
+msgstr "(Do góry nogami)"
 
 msgid "(Counter-clockwise)"
-msgstr ""
+msgstr "(Przeciwnie do ruchu wskazówek zegara)"
 
 msgid "Pages to Rotate"
 msgstr "Strony do obrócenia"
 
 msgid "Split Settings"
-msgstr ""
+msgstr "Ustawienia podziału"
 
 msgid "Split Type"
 msgstr "Typ podziału"
 
 msgid "By Individual Pages"
-msgstr ""
+msgstr "Po poszczególnych stronach"
 
 msgid "By Page Ranges"
 msgstr "Według zakresów stron"
@@ -1891,24 +1891,24 @@ msgid "Pages"
 msgstr "Strony"
 
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
-msgstr ""
+msgstr "Wprowadź numery stron jak '1,3,5' lub pozostaw puste dla wszystkich stron"
 
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
-msgstr ""
+msgstr "Wprowadź numery stron oddzielone przecinkami (np. 1,3,5) lub pozostaw puste, aby podzielić wszystkie strony"
 
 msgid "Page Ranges"
 msgstr "Zakresy stron"
 
 msgid "Enter page ranges like 1-3,5-7 (required)"
-msgstr ""
+msgstr "Wprowadź zakresy stron jak 1-3,5-7 (wymagane)"
 
 msgid "Pages per File"
-msgstr ""
+msgstr "Stron na plik"
 
 msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
-msgstr ""
+msgstr "Wprowadź liczbę stron na plik (np. 5 dla każdej 5 stron)"
 
 msgid "Terms of Service - Convertica"
 msgstr "Warunki korzystania - Convertica"
@@ -1954,7 +1954,7 @@ msgstr ""
 "Excel)"
 
 msgid "PDF editing (rotate, crop, add watermark, add page numbers)"
-msgstr ""
+msgstr "Edycja PDF (obracanie, przycinanie, dodawanie znaku wodnego, dodawanie numerów stron)"
 "Edycja PDF (obracanie, przycinanie, dodawanie znaku wodnego, dodawanie "
 "numerów stron)"
 
@@ -1986,7 +1986,7 @@ msgstr ""
 "zgodnie z tymi Warunkami. Zgadzasz się nie:"
 
 msgid "Upload files that contain viruses, malware, or other harmful code"
-msgstr ""
+msgstr "Przesyłać pliki zawierające wirusy, złośliwe oprogramowanie lub inny szkodliwy kod"
 "Przesyłać pliki zawierające wirusy, złośliwe oprogramowanie lub inny "
 "szkodliwy kod"
 
@@ -1994,14 +1994,14 @@ msgid "Upload files that infringe on intellectual property rights"
 msgstr "Przesyłać pliki naruszające prawa własności intelektualnej"
 
 msgid "Upload files that contain illegal, offensive, or inappropriate content"
-msgstr ""
+msgstr "Przesyłać pliki zawierające nielegalną, obraźliwą lub nieodpowiednią treść"
 "Przesyłać pliki zawierające nielegalną, obraźliwą lub nieodpowiednią treść"
 
 msgid "Attempt to gain unauthorized access to our systems or networks"
 msgstr "Próbować uzyskać nieautoryzowany dostęp do naszych systemów lub sieci"
 
 msgid "Use automated systems or scripts to access our Services excessively"
-msgstr ""
+msgstr "Używać zautomatyzowanych systemów lub skryptów do nadmiernego dostępu do naszych Usług"
 "Używać zautomatyzowanych systemów lub skryptów do nadmiernego dostępu do "
 "naszych Usług"
 
@@ -2012,7 +2012,7 @@ msgstr ""
 "z Usługami"
 
 msgid "Reverse engineer, decompile, or disassemble any part of our Services"
-msgstr ""
+msgstr "Inżynieria wsteczna, dekompilacja lub rozmontowanie jakiejkolwiek części naszych Usług"
 "Odwrotnie inżynierować, dekompilować lub rozbierać jakąkolwiek część naszych "
 "Usług"
 
@@ -2242,7 +2242,7 @@ msgid "PDF Password"
 msgstr "Hasło PDF"
 
 msgid "Enter the password to unlock the PDF"
-msgstr ""
+msgstr "Wprowadź hasło, aby odblokować PDF"
 
 msgid ""
 "Enter the password that was used to protect the PDF. The password will be "
@@ -2395,7 +2395,7 @@ msgid "Your Email"
 msgstr "Twój e-mail"
 
 msgid "your.email@example.com"
-msgstr ""
+msgstr "twoj.email@przyklad.com"
 
 msgid "Subject"
 msgstr "Temat"
@@ -2507,7 +2507,7 @@ msgstr ""
 "Tobą tak szybko, jak to możliwe, zwykle w ciągu 24-48 godzin."
 
 msgid "Please complete the CAPTCHA verification."
-msgstr ""
+msgstr "Proszę ukończyć weryfikację CAPTCHA."
 
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
