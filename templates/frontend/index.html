@@ -444,10 +444,9 @@
                       {{ article.published_at|date:"F d, Y" }}
                     </span>
                     <a href="{{ article.get_absolute_url }}"
-                       class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform"
-                       aria-label="{% blocktrans with title=article.get_title %}Read more about {{ title }}{% endblocktrans %}">
-                      {% trans "Read more" %}
-                      <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                       class="inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                      {{ article.get_title|truncatewords:4 }}
+                      <svg class="w-4 h-4 ml-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                       </svg>
                     </a>
