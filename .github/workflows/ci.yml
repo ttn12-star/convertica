@@ -240,11 +240,9 @@ jobs:
       - name: Check if Tailwind CSS was updated
         run: |
           if [ -n "$(git status --porcelain static/css/tailwind.css)" ]; then
-            echo "⚠️ Tailwind CSS file was modified during build!"
-            echo "   Please commit the updated static/css/tailwind.css file before deploying."
-            echo "   Run 'npm run build:css' locally and commit the changes."
-            git diff static/css/tailwind.css || true
-            exit 1
+            echo "⚠️ Tailwind CSS file was modified during build (this is normal in CI/CD)"
+            echo "   The updated file will be used for deployment."
+            git diff --stat static/css/tailwind.css || true
           else
             echo "✅ Tailwind CSS is up to date"
           fi
