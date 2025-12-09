@@ -43,6 +43,12 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         environment=config("SENTRY_ENVIRONMENT", default="production"),
         # Release version - update on each release
         release=config("SENTRY_RELEASE", default="convertica@1.0.22"),
+        # Performance optimizations
+        before_send=lambda event, hint: event,  # No filtering for now
+        # Async transport (non-blocking)
+        transport=sentry_sdk.transport.HttpTransport,
+        # Max breadcrumbs (events leading to error)
+        max_breadcrumbs=50,
     )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
