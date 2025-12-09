@@ -109,13 +109,13 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Redis - Production optimizations
+  # Redis - Production optimizations (increased for page caching)
   redis:
     deploy:
       resources:
         limits:
           cpus: '${REDIS_CPU_LIMIT:-0.25}'
-          memory: ${REDIS_MEMORY_LIMIT:-256M}
+          memory: ${REDIS_MEMORY_LIMIT:-384M}
         reservations:
           cpus: '${REDIS_CPU_RESERVATION:-0.05}'
           memory: ${REDIS_MEMORY_RESERVATION:-128M}
