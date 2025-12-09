@@ -57,7 +57,7 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         # Environment tag
         environment=config("SENTRY_ENVIRONMENT", default="production"),
         # Release version - update on each release
-        release=config("SENTRY_RELEASE", default="convertica@1.0.22"),
+        release=config("SENTRY_RELEASE", default="convertica@1.0.23"),
         # Filter handled errors
         before_send=before_send,
         # Async transport (non-blocking)
@@ -373,12 +373,12 @@ LOGGING = {
         "src.api": {
             "handlers": ["console", "file", "error_file"],
             "level": "INFO",
-            "propagate": False,
+            "propagate": True,  # Allow ERROR logs to propagate to root for Sentry
         },
         "src": {
             "handlers": ["console", "file"],
             "level": "INFO",
-            "propagate": False,
+            "propagate": True,  # Allow ERROR logs to propagate to root for Sentry
         },
         # Send ERROR and above to Sentry (via root logger)
         "sentry_sdk": {
