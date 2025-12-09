@@ -56,3 +56,4 @@ psutil==5.9.8
 pre-commit==3.7.1
 ruff==0.4.4
 isort==5.13.2
+sentry-sdk[django]
