@@ -44,6 +44,7 @@ try:
             "src.tasks.pdf_conversion.*": {"queue": "pdf_conversion"},
             "src.tasks.pdf_processing.*": {"queue": "pdf_processing"},
             "src.tasks.maintenance.*": {"queue": "maintenance"},
+            "email.*": {"queue": "default"},
         },
         # Worker settings
         worker_prefetch_multiplier=4,  # Prefetch 4 tasks at a time
