@@ -271,31 +271,50 @@ jobs:
             echo "🔨 Rebuilding containers..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build web celery celery-beat
 
-            # Run migrations
-            echo "📊 Running migrations..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py migrate --noinput
-
-            # Compile translations
-            echo "🌍 Compiling translations..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py compilemessages || true
-
-            # Collect static files (clear old files first)
-            echo "📦 Collecting static files..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py collectstatic --noinput --clear
-
-            # Clear Django cache (Redis) to ensure fresh content after deploy
-            echo "🗑️ Clearing Django cache..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
-
             # Zero-downtime deployment strategy
             echo "🔄 Starting zero-downtime deployment..."
 
-            # Step 1: Restart web container and wait for healthcheck
+            # Step 1: Start web container and wait for it to be ready
             # --wait flag waits for containers to be healthy before returning
-            echo "📦 Restarting web container (waiting for healthcheck)..."
+            echo "📦 Starting web container (waiting for healthcheck)..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web
 
-            # Step 2: Verify health endpoint responds
+            # Wait a bit more to ensure container is fully ready
+            echo "⏳ Waiting for web container to be fully ready..."
+            sleep 5
+
+            # Step 2: Run migrations (container must be running)
+            echo "📊 Running migrations..."
+            max_attempts=5
+            attempt=0
+            while [ $attempt -lt $max_attempts ]; do
+              if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py migrate --noinput; then
+                echo "✅ Migrations completed!"
+                break
+              fi
+              attempt=$((attempt + 1))
+              echo "   Retry ${attempt}/${max_attempts}..."
+              sleep 3
+            done
+
+            if [ $attempt -eq $max_attempts ]; then
+              echo "❌ Migrations failed after ${max_attempts} attempts"
+              exit 1
+            fi
+
+            # Step 3: Compile translations
+            echo "🌍 Compiling translations..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py compilemessages || true
+
+            # Step 4: Collect static files (clear old files first)
+            echo "📦 Collecting static files..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py collectstatic --noinput --clear
+
+            # Step 5: Clear Django cache (Redis) to ensure fresh content after deploy
+            echo "🗑️ Clearing Django cache..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
+
+            # Step 6: Verify health endpoint responds
             echo "🏥 Verifying health endpoint..."
             max_attempts=10
             attempt=0
@@ -317,11 +336,11 @@ jobs:
               sleep 3
             fi
 
-            # Step 3: Restart other services
+            # Step 7: Restart other services
             echo "🔄 Restarting background workers..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat
 
-            # Step 4: Reload nginx gracefully (no downtime)
+            # Step 8: Reload nginx gracefully (no downtime)
             echo "🔄 Reloading nginx (graceful reload)..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T nginx nginx -s reload 2>/dev/null || {
               echo "   Nginx reload failed, restarting..."
