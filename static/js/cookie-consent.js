@@ -102,7 +102,6 @@ function trackPageView(page) {
             });
         }
         // Add other analytics tracking here
-        console.log('Page view tracked:', page);
     }
 }
 
@@ -118,24 +117,20 @@ function trackEvent(eventName, eventData) {
             window.gtag('event', eventName, eventData);
         }
         // Add other analytics tracking here
-        console.log('Event tracked:', eventName, eventData);
     }
 }
 
 // Listen for cookie consent changes
 window.addEventListener('cookieConsentAccepted', function(event) {
-    console.log('Cookie consent accepted:', event.detail);
     initAnalyticsIfAllowed();
     initMarketingIfAllowed();
 });
 
 window.addEventListener('cookieConsentRejected', function(event) {
-    console.log('Cookie consent rejected:', event.detail);
     // Analytics and marketing are already disabled
 });
 
 window.addEventListener('cookieConsentUpdated', function(event) {
-    console.log('Cookie consent updated:', event.detail);
     initAnalyticsIfAllowed();
     initMarketingIfAllowed();
 });

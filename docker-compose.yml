@@ -133,7 +133,7 @@ services:
       context: .
       dockerfile: ci/Dockerfile
     container_name: convertica_celery
-    command: celery -A utils_site worker --loglevel=info --concurrency=2
+    command: celery -A utils_site worker --loglevel=info --concurrency=2 -Q celery,default,maintenance
     volumes:
       - ./logs:/app/logs
       - ./media:/app/media
