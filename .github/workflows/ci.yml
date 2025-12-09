@@ -270,23 +270,9 @@ jobs:
             git fetch origin
             git reset --hard origin/main
 
-            # Build Tailwind CSS on server to ensure latest CSS is available
-            echo "🎨 Building Tailwind CSS on server..."
-            if command -v npm > /dev/null 2>&1 && [ -f package.json ]; then
-              echo "   Installing npm dependencies..."
-              npm ci --silent 2>&1 | grep -v "npm WARN" || npm install --silent 2>&1 | grep -v "npm WARN" || true
-              echo "   Building Tailwind CSS..."
-              npm run build:css 2>&1 || echo "⚠️ Tailwind CSS build failed, but continuing..."
-              if [ -f static/css/tailwind.css ]; then
-                echo "✅ Tailwind CSS built successfully"
-                ls -lh static/css/tailwind.css || true
-              else
-                echo "⚠️ Tailwind CSS file not found after build"
-              fi
-            else
-              echo "⚠️ npm not found or package.json missing, skipping Tailwind CSS build"
-              echo "   CSS should be committed in repository"
-            fi
+            # Note: Tailwind CSS will be built INSIDE the container after it starts
+            # This ensures CSS is built with the correct code version and copied to staticfiles
+            echo "ℹ️  Tailwind CSS will be built inside container after startup (before collectstatic)"
 
             # Restore server-specific files (if any were stashed)
             # Use stash apply instead of pop to keep stash in case of conflicts
@@ -420,7 +406,33 @@ jobs:
               exit 1
             fi
 
-            # Step 4: Collect static files (clear old files first)
+            # Step 4: Build Tailwind CSS inside container (before collectstatic)
+            echo "🎨 Building Tailwind CSS inside container..."
+            # Install Node.js and npm in container if not present, then build CSS
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "
+              if command -v npm > /dev/null 2>&1; then
+                echo '   npm found, building CSS...'
+                cd /app && npm ci --silent 2>&1 | grep -v 'npm WARN' || npm install --silent 2>&1 | grep -v 'npm WARN' || true
+                npm run build:css 2>&1 || echo '⚠️ CSS build failed'
+                ls -lh /app/static/css/tailwind.css || echo '⚠️ CSS file not found'
+              else
+                echo '⚠️ npm not found in container, installing Node.js...'
+                apt-get update -qq && apt-get install -y -qq curl > /dev/null 2>&1 || true
+                curl -fsSL https://deb.nodesource.com/setup_20.x | bash - > /dev/null 2>&1 || true
+                apt-get install -y -qq nodejs > /dev/null 2>&1 || echo '⚠️ Node.js installation failed'
+                if command -v npm > /dev/null 2>&1; then
+                  echo '   npm installed, building CSS...'
+                  cd /app && npm ci --silent 2>&1 | grep -v 'npm WARN' || npm install --silent 2>&1 | grep -v 'npm WARN' || true
+                  npm run build:css 2>&1 || echo '⚠️ CSS build failed'
+                else
+                  echo '⚠️ npm still not available, CSS should be in repository'
+                fi
+              fi
+            "; then
+              echo "⚠️ Tailwind CSS build failed, but continuing with collectstatic..."
+            fi
+
+            # Step 5: Collect static files (clear old files first)
             echo "📦 Collecting static files..."
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "python /app/clear_staticfiles.py || true && python manage.py collectstatic --noinput"; then
               echo "❌ Static files collection failed"
@@ -436,11 +448,11 @@ jobs:
               exit 1
             fi
 
-            # Step 5: Clear Django cache (Redis) to ensure fresh content after deploy
+            # Step 6: Clear Django cache (Redis) to ensure fresh content after deploy
             echo "🗑️ Clearing Django cache..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
 
-            # Step 6: Verify health endpoint responds (critical check)
+            # Step 7: Verify health endpoint responds (critical check)
             echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
             attempt=0
