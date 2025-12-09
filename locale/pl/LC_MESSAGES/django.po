@@ -1051,7 +1051,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I compress PDF to under 1MB for email?"
-msgstr ""
+msgstr "Jak skompresować PDF do poniżej 1MB dla email?"
 "Jak skompresować plik PDF?Pobierz przycięty plik PDF - bez rejestracji, "
 "całkowicie za darmo, wysoka jakość"
 
@@ -1206,7 +1206,7 @@ msgid "Reject All"
 msgstr "Odrzuć wszystkie"
 
 msgid "Customize"
-msgstr "Niestandardowe strony:"
+msgstr "Dostosuj"
 
 msgid "Accept All"
 msgstr "Zaakceptuj wszystkie"
@@ -1308,10 +1308,10 @@ msgid "Convertica - Home"
 msgstr "Convertica - Strona główna"
 
 msgid "Convertica Logo"
-msgstr "O Convertica"
+msgstr "Logo Convertica"
 
 msgid "Convertica"
-msgstr "O Convertica"
+msgstr "Convertica"
 
 msgid "All PDF tools"
 msgstr "Wszystkie narzędzia PDF"
@@ -1320,7 +1320,7 @@ msgid "Main navigation"
 msgstr "Główna nawigacja"
 
 msgid "Convert PDF tools"
-msgstr "Konwertuj PDF na Word"
+msgstr "Narzędzia konwersji PDF"
 
 msgid "Convert from PDF"
 msgstr "Konwertuj z PDF"
@@ -1329,7 +1329,7 @@ msgid "Convert to PDF"
 msgstr "Konwertuj na PDF"
 
 msgid "Edit PDF tools"
-msgstr "Wszystkie narzędzia PDF"
+msgstr "Narzędzia edycji PDF"
 
 msgid "Basic Editing"
 msgstr "Podstawowa edycja"
@@ -1338,7 +1338,7 @@ msgid "Enhancements"
 msgstr "Ulepszenia"
 
 msgid "Organize PDF tools"
-msgstr "Organizuj PDF"
+msgstr "Narzędzia organizacji PDF"
 
 msgid "Organization"
 msgstr "Organizacja"
@@ -1433,13 +1433,13 @@ msgid "+ Add more images"
 msgstr ""
 
 msgid "Drag and drop your images here"
-msgstr "Przeciągnij plik tutaj"
+msgstr "Przeciągnij i upuść swoje zdjęcia tutaj"
 
 msgid "files"
 msgstr "pliki"
 
 msgid "multiple files supported"
-msgstr "Jakie formaty plików są obsługiwane?"
+msgstr "obsługiwane wiele plików"
 
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
@@ -1472,22 +1472,22 @@ msgstr ""
 "wszystkie obrazy w jednym pliku"
 
 msgid "Converting your images..."
-msgstr "Przetwarzanie pliku..."
+msgstr "Konwertowanie obrazów..."
 
 msgid "Your PDF is ready to download"
-msgstr "Twój plik jest gotowy do pobrania"
+msgstr "Twój PDF jest gotowy do pobrania"
 
 msgid "Download PDF"
-msgstr "Pobierz plik"
+msgstr "Pobierz PDF"
 
 msgid "Merge Settings"
 msgstr ""
 
 msgid "Select PDF Files"
-msgstr "Proszę wybrać plik PDF."
+msgstr "Wybierz pliki PDF"
 
 msgid "Select PDF files"
-msgstr "Proszę wybrać plik PDF."
+msgstr "Wybierz pliki PDF"
 
 msgid "+ Add more files"
 msgstr ""
@@ -1496,7 +1496,7 @@ msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 
 msgid "Selected Files"
-msgstr "Powiązane artykuły"
+msgstr "Wybrane pliki"
 
 msgid "Preview & Reorder Pages"
 msgstr ""
@@ -1515,25 +1515,25 @@ msgid "Error loading preview"
 msgstr "Błąd ładowania podglądu"
 
 msgid "Loading..."
-msgstr "Wysyłanie..."
+msgstr "Ładowanie..."
 
 msgid "Merging PDFs..."
-msgstr "Połącz PDF"
+msgstr "Łączenie PDF..."
 
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Proszę wybrać pliki PDF do połączenia."
 
 msgid "Organization Settings"
-msgstr "Organizacja"
+msgstr "Ustawienia organizacji"
 
 msgid "Operation"
-msgstr "Zakończenie"
+msgstr "Operacja"
 
 msgid "Reorder Pages"
-msgstr "Usuń strony"
+msgstr "Zmień kolejność stron"
 
 msgid "Sort Pages"
-msgstr "Wyodrębnij strony"
+msgstr "Sortuj strony"
 
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
@@ -1544,13 +1544,13 @@ msgid "Please select a PDF file."
 msgstr "Proszę wybrać plik Word."
 
 msgid "Please select a PDF file first."
-msgstr "Proszę wybrać plik PDF z tabelami."
+msgstr "Najpierw wybierz plik PDF."
 
 msgid "Organizing..."
-msgstr "Organizacja"
+msgstr "Organizowanie..."
 
 msgid "Failed to organize PDF"
-msgstr "Organizuj PDF"
+msgstr "Nie udało się zorganizować PDF"
 
 msgid "Privacy Policy - Convertica"
 msgstr "Polityka prywatności - Convertica"
@@ -1805,7 +1805,7 @@ msgid "Password"
 msgstr ""
 
 msgid "Enter password to protect PDF"
-msgstr "Usuń ochronę hasłem ze swojego PDF"
+msgstr "Wprowadź hasło do ochrony PDF"
 
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
@@ -1837,10 +1837,10 @@ msgid ""
 msgstr ""
 
 msgid "Remove Pages Settings"
-msgstr "Usuń strony"
+msgstr "Ustawienia usuwania stron"
 
 msgid "Pages to Remove"
-msgstr "Zmiany w warunkach"
+msgstr "Strony do usunięcia"
 
 msgid "Rotation Settings"
 msgstr ""
@@ -1858,25 +1858,25 @@ msgid "(Counter-clockwise)"
 msgstr ""
 
 msgid "Pages to Rotate"
-msgstr "Zgadzam się z"
+msgstr "Strony do obrócenia"
 
 msgid "Split Settings"
 msgstr ""
 
 msgid "Split Type"
-msgstr "Podziel PDF"
+msgstr "Typ podziału"
 
 msgid "By Individual Pages"
 msgstr ""
 
 msgid "By Page Ranges"
-msgstr "Zarządzanie stronami"
+msgstr "Według zakresów stron"
 
 msgid "Every N Pages"
-msgstr "Usuń strony"
+msgstr "Co N stron"
 
 msgid "Pages"
-msgstr "Strona"
+msgstr "Strony"
 
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
@@ -1887,7 +1887,7 @@ msgid ""
 msgstr ""
 
 msgid "Page Ranges"
-msgstr "Zarządzanie stronami"
+msgstr "Zakresy stron"
 
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr ""
@@ -2224,10 +2224,10 @@ msgstr ""
 "nami."
 
 msgid "Unlock PDF Settings"
-msgstr "Odblokuj PDF"
+msgstr "Ustawienia odblokowania PDF"
 
 msgid "PDF Password"
-msgstr "PDF na Word"
+msgstr "Hasło PDF"
 
 msgid "Enter the password to unlock the PDF"
 msgstr ""
@@ -2238,10 +2238,10 @@ msgid ""
 msgstr ""
 
 msgid "Basic Information"
-msgstr "Informacje kontaktowe"
+msgstr "Podstawowe informacje"
 
 msgid "Translations"
-msgstr "Zakończenie"
+msgstr "Tłumaczenia"
 
 msgid "Add translations for other languages using the tabs above."
 msgstr ""
@@ -2259,7 +2259,7 @@ msgid "Empty translations"
 msgstr ""
 
 msgid "Articles"
-msgstr "Wszystkie artykuły"
+msgstr "Artykuły"
 
 msgid "English Content"
 msgstr ""
@@ -2290,7 +2290,7 @@ msgid "No image"
 msgstr ""
 
 msgid "Preview"
-msgstr "Poprzednia"
+msgstr "Podgląd"
 
 msgid "Name (English)"
 msgstr ""
@@ -2304,13 +2304,13 @@ msgid ""
 msgstr ""
 
 msgid "Description (English)"
-msgstr "Opis usług"
+msgstr "Opis (angielski)"
 
 msgid "Article Category"
 msgstr ""
 
 msgid "Article Categories"
-msgstr "Kategorie"
+msgstr "Kategorie artykułów"
 
 msgid "Draft"
 msgstr ""
@@ -2350,7 +2350,7 @@ msgid ""
 msgstr ""
 
 msgid "Category"
-msgstr "Kategorie"
+msgstr "Kategoria"
 
 msgid "Featured Image"
 msgstr ""
@@ -2362,7 +2362,7 @@ msgid "Published At"
 msgstr ""
 
 msgid "Created At"
-msgstr "Powiązane artykuły"
+msgstr "Data utworzenia"
 
 msgid "Updated At"
 msgstr ""
@@ -2371,7 +2371,7 @@ msgid "View Count"
 msgstr ""
 
 msgid "Article"
-msgstr "Wszystkie artykuły"
+msgstr "Artykuł"
 
 msgid "Your Name"
 msgstr "Twoje imię"
@@ -2389,16 +2389,16 @@ msgid "Subject"
 msgstr "Temat"
 
 msgid "Enter subject"
-msgstr "Temat"
+msgstr "Wprowadź temat"
 
 msgid "Message"
 msgstr "Wiadomość"
 
 msgid "Enter your message"
-msgstr "Przetwarzanie pliku..."
+msgstr "Wprowadź wiadomość"
 
 msgid "I agree to the Privacy Policy"
-msgstr "Zmiany w tej Polityce prywatności"
+msgstr "Zgadzam się z Polityką Prywatności"
 
 msgid "Message must be at least 10 characters long."
 msgstr ""
@@ -2520,7 +2520,7 @@ msgid "Please correct the errors in the form below."
 msgstr "Proszę poprawić błędy w formularzu poniżej."
 
 msgid "Frequently Asked Questions (FAQ) - Convertica"
-msgstr "Często zadawane pytania"
+msgstr "Często zadawane pytania (FAQ) - Convertica"
 
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
