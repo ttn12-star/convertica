@@ -254,22 +254,25 @@ jobs:
           LATEST_TAG=$(echo "$ALL_TAGS" | tail -1)
           echo "Latest tag: $LATEST_TAG"
 
-          # Compare versions (simple numeric comparison)
+          # Compare versions using sort -V (version sort)
+          # If current tag is not the latest, cancel deployment
           if [ "$CURRENT_TAG" != "$LATEST_TAG" ]; then
-            # Check if current tag is older than latest
-            CURRENT_VERSION=$(echo "$CURRENT_TAG" | sed 's/v//' | cut -d. -f1,2,3)
-            LATEST_VERSION=$(echo "$LATEST_TAG" | sed 's/v//' | cut -d. -f1,2,3)
+            # Check if current tag is older than latest using version sort
+            SORTED_TAGS=$(printf '%s\n' "$CURRENT_TAG" "$LATEST_TAG" | sort -V)
+            FIRST_TAG=$(echo "$SORTED_TAGS" | head -1)
 
-            # Simple version comparison
-            if [ "$(printf '%s\n' "$CURRENT_VERSION" "$LATEST_VERSION" | sort -V | head -1)" != "$CURRENT_VERSION" ] || [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
+            if [ "$FIRST_TAG" != "$CURRENT_TAG" ]; then
               echo "⚠️ Newer tag $LATEST_TAG exists, current tag $CURRENT_TAG is outdated"
+              echo "🛑 Cancelling deployment to avoid deploying outdated version"
               echo "should_cancel=true" >> $GITHUB_OUTPUT
-              exit 0
+            else
+              echo "✅ Current tag $CURRENT_TAG is newer than $LATEST_TAG (should not happen, but proceeding)"
+              echo "should_cancel=false" >> $GITHUB_OUTPUT
             fi
+          else
+            echo "✅ Current tag $CURRENT_TAG is the latest, proceeding with deployment"
+            echo "should_cancel=false" >> $GITHUB_OUTPUT
           fi
-
-          echo "✅ Current tag $CURRENT_TAG is the latest, proceeding with deployment"
-          echo "should_cancel=false" >> $GITHUB_OUTPUT
 
       - name: Cancel deployment if newer tag exists
         if: steps.check_newer_tag.outputs.should_cancel == 'true'
