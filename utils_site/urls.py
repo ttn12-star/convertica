@@ -28,7 +28,20 @@ def robots_txt(request):
     try:
         with open(robots_path, encoding="utf-8") as f:
             content = f.read()
-        # Remove any invalid directives (like Content-signal which is not a valid robots.txt directive)
+
+        # Remove Cloudflare Managed content block (includes invalid Content-signal directive)
+        # This block starts with "# BEGIN Cloudflare Managed content" and ends with "# END Cloudflare Managed Content"
+        import re
+
+        # Remove the entire Cloudflare managed block
+        content = re.sub(
+            r"# BEGIN Cloudflare Managed content.*?# END Cloudflare Managed Content",
+            "",
+            content,
+            flags=re.DOTALL | re.IGNORECASE,
+        )
+
+        # Remove any remaining invalid directives (like Content-signal which is not a valid robots.txt directive)
         lines = content.split("\n")
         valid_lines = []
         invalid_patterns = [
@@ -41,13 +54,39 @@ def robots_txt(request):
             "X-Robots-Tag",
             "x-robots-tag",
         ]
+        in_cloudflare_block = False
         for line in lines:
             # Skip lines with invalid directives (case-insensitive check)
             line_lower = line.lower()
             if any(invalid.lower() in line_lower for invalid in invalid_patterns):
                 continue
+            # Skip Cloudflare-related comments
+            if "cloudflare" in line_lower and (
+                "managed" in line_lower or "content signal" in line_lower
+            ):
+                continue
             valid_lines.append(line)
         content = "\n".join(valid_lines)
+
+        # Remove duplicate User-agent: * and Allow: / blocks
+        # Keep only the last occurrence (our custom rules)
+        lines = content.split("\n")
+        cleaned_lines = []
+        seen_user_agent_star = False
+        i = 0
+        while i < len(lines):
+            line = lines[i]
+            # If we see "User-agent: *" and haven't seen it before, skip it and its Allow: /
+            if line.strip().lower() == "user-agent: *" and not seen_user_agent_star:
+                seen_user_agent_star = True
+                # Skip this line and the next Allow: / if present
+                i += 1
+                if i < len(lines) and lines[i].strip().lower() == "allow: /":
+                    i += 1
+                continue
+            cleaned_lines.append(line)
+            i += 1
+        content = "\n".join(cleaned_lines)
         # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
         content = content.replace(
             "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
