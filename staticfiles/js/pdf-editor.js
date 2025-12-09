@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInputDrop = document.getElementById('fileInputDrop');
     const submitButton = form.querySelector('button[type="submit"]');
     const resultContainer = document.getElementById('editorResult');
-    
+
     // Create loading animation container
     const loadingContainer = document.getElementById('loadingContainer');
     if (!loadingContainer) {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newContainer.className = 'hidden mt-6';
         form.parentNode.insertBefore(newContainer, form.nextSibling);
     }
-    
+
     // Create download button container
     const downloadContainer = document.getElementById('downloadContainer');
     if (!downloadContainer) {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         // Check if this is a merge operation handled by merge-pdf-multi.js
         // If pdf_files_input exists and merge-pdf-multi.js is handling it, skip this handler
         const pdfFilesInput = document.getElementById('pdf_files_input');
@@ -40,10 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // This is merge page, let merge-pdf-multi.js handle it
             return;
         }
-        
+
         const formData = new FormData();
         const fieldName = window.FILE_INPUT_NAME || 'pdf_file';
-        
+
         // Handle multiple files for merge (legacy support)
         let selectedFile = null;
         if (fieldName === 'pdf_files') {
@@ -68,22 +68,22 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Get file from either input for single file operations
             selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
-            
+
             if (!selectedFile) {
                 showError(window.SELECT_FILE_MESSAGE || 'Please select a file');
                 return;
             }
-            
+
             formData.append(fieldName, selectedFile);
         }
 
         // Hide previous results
         hideResult();
         hideDownload();
-        
+
         // Show loading animation
         showLoading();
-        
+
         // Disable form
         setFormDisabled(true);
 
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (element.type === 'file' || element.name === 'csrfmiddlewaretoken') {
                 return;
             }
-            
+
             // Skip hidden watermark fields if not selected
             if (element.name === 'watermark_file' && document.getElementById('watermarkTypeText')?.checked) {
                 return;
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (element.name === 'watermark_text' && document.getElementById('watermarkTypeImage')?.checked) {
                 return;
             }
-            
+
             if (element.value && element.value.trim() !== '') {
                 // Convert number inputs to proper types
                 if (element.type === 'number') {
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const blob = await response.blob();
-            
+
             if (!response.ok) {
                 // Try to parse error message
                 try {
@@ -139,12 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Success - show download button
             hideLoading();
-            
+
             // Check if this is a compression response
             const inputSize = response.headers.get('X-Input-Size');
             const outputSize = response.headers.get('X-Output-Size');
             const compressionRatio = response.headers.get('X-Compression-Ratio');
-            
+
             if (inputSize && outputSize && compressionRatio) {
                 // This is a compression response - show compression notification
                 showCompressionNotification(
@@ -153,10 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     parseFloat(compressionRatio)
                 );
             }
-            
+
             showDownloadButton(selectedFile.name, blob);
             setFormDisabled(false);
-            
+
         } catch (error) {
             hideLoading();
             showError(error.message || window.ERROR_MESSAGE);
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showLoading() {
         const container = document.getElementById('loadingContainer');
         if (!container) return;
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         container.classList.remove('hidden');
-        
+
         // Simulate progress
         let progress = 0;
         const progressBar = container.querySelector('.animate-progress');
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 progressBar.style.width = `${progress}%`;
             }
         }, 200);
-        
+
         // Store interval to clear later
         container.dataset.interval = interval;
     }
@@ -208,26 +208,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideLoading() {
         const container = document.getElementById('loadingContainer');
         if (!container) return;
-        
+
         const interval = container.dataset.interval;
         if (interval) {
             clearInterval(interval);
         }
-        
+
         container.classList.add('hidden');
     }
 
     function showDownloadButton(originalFileName, blob) {
         const container = document.getElementById('downloadContainer');
         if (!container) return;
-        
+
         // Generate output filename
         const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$');
         const replaceTo = window.REPLACE_TO || '.pdf';
         const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
-        
+
         const url = URL.createObjectURL(blob);
-        
+
         container.innerHTML = `
             <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-4">
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <a href="${url}" 
+                        <a href="${url}"
                            download="${outputFileName}"
                            class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showError(message) {
         const container = document.getElementById('editorResult');
         if (!container) return;
-        
+
         container.innerHTML = `
             <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
                 <div class="flex flex-col items-center space-y-3">
@@ -345,13 +345,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const outputSizeFormatted = formatFileSize(outputSize);
         const savedSize = inputSize - outputSize;
         const savedSizeFormatted = formatFileSize(savedSize);
-        
+
         // Determine color based on compression ratio
         let bgColor = 'from-blue-50 to-blue-100';
         let borderColor = 'border-blue-300';
         let textColor = 'text-blue-900';
         let iconColor = 'text-blue-600';
-        
+
         if (compressionRatio > 30) {
             bgColor = 'from-green-50 to-green-100';
             borderColor = 'border-green-300';
@@ -393,7 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
-                    <button onclick="this.parentElement.parentElement.remove()" 
+                    <button onclick="this.parentElement.parentElement.remove()"
                             class="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         notificationContainer.classList.remove('hidden');
-        
+
         // Auto-hide after 10 seconds
         setTimeout(() => {
             if (notificationContainer && notificationContainer.parentNode) {
@@ -412,4 +412,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10000);
     }
 });
-
