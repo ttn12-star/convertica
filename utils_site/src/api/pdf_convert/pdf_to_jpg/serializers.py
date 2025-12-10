@@ -17,8 +17,8 @@ class PDFToJPGSerializer(serializers.Serializer):
     )
     dpi = serializers.IntegerField(
         required=False,
-        default=300,
-        min_value=72,
+        default=300,  # 300 DPI for high quality, suitable for printing and re-conversion
+        min_value=150,  # Minimum 150 DPI for acceptable quality
         max_value=600,
-        help_text="DPI (dots per inch) for image quality (default: 300, range: 72-600)",
+        help_text="DPI (dots per inch) for image quality (default: 300 for high quality, range: 150-600). Higher DPI = better quality but larger file size.",
     )
