@@ -163,6 +163,9 @@ def convert_word_to_pdf(
         )
         try:
             # Use improved LibreOffice parameters
+            env = os.environ.copy()
+            env["SAL_DEFAULT_PAPER"] = "A4"  # Force A4 to avoid page count drift
+            env["SAL_DISABLE_CUPS"] = "1"  # Avoid printer defaults changing paper size
             result = subprocess.run(
                 [
                     "libreoffice",
@@ -183,6 +186,7 @@ def convert_word_to_pdf(
                 stderr=subprocess.PIPE,
                 timeout=600,  # 10 minute timeout (increased for large files)
                 cwd=tmp_dir,  # Set working directory
+                env=env,
             )
             stdout = result.stdout.decode("utf-8", errors="ignore")
             stderr = result.stderr.decode("utf-8", errors="ignore")
