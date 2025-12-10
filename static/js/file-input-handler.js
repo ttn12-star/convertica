@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const DROP_HIT_MARGIN_PX = 48; // Allow near-miss drops within this margin
+    const DROP_HIT_MARGIN_PX = 96; // Allow near-miss drops within this margin
 
     // Create a clone of a FileList that can be assigned to inputs (cross-browser)
     function cloneFileList(files, allowMultiple = true) {
