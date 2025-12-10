@@ -396,12 +396,12 @@ LOGGING = {
         "src.api": {
             "handlers": ["console", "file", "error_file"],
             "level": "INFO",
-            "propagate": True,  # Allow ERROR logs to propagate to root for Sentry
+            "propagate": False,  # Avoid duplicate console logs (already handled here)
         },
         "src": {
             "handlers": ["console", "file"],
             "level": "INFO",
-            "propagate": True,  # Allow ERROR logs to propagate to root for Sentry
+            "propagate": False,  # Avoid duplicate console logs (already handled here)
         },
         # Send ERROR and above to Sentry (via root logger)
         "sentry_sdk": {
