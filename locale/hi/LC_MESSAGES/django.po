@@ -2846,5 +2846,49 @@ msgstr "सेकंडों में अपने PDF पृष्ठों �
 msgid "Organize and manage your PDF documents"
 msgstr "अपने PDF दस्तावेज़ों को व्यवस्थित और प्रबंधित करें"
 
+#: templates/frontend/pdf_to_jpg.html:56
+msgid "Choose which pages to convert from PDF to JPG: all pages or specific pages (e.g., 1,3,5 or 1-5)"
+msgstr "चुनें कि PDF से JPG में कौन से पृष्ठ कन्वर्ट करने हैं: सभी पृष्ठ या विशिष्ट पृष्ठ (उदा., 1,3,5 या 1-5)"
+
+#: templates/frontend/pdf_to_jpg.html:57
+msgid "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high quality, 72 DPI for smaller file size)"
+msgstr "PDF से JPG रूपांतरण के लिए DPI गुणवत्ता चुनें (उच्च गुणवत्ता के लिए 300 DPI अनुशंसित, छोटे फ़ाइल आकार के लिए 72 DPI)"
+
+#: templates/frontend/pdf_to_jpg.html:58
+msgid "Click the convert button to start the PDF to JPG conversion process"
+msgstr "PDF से JPG रूपांतरण प्रक्रिया शुरू करने के लिए कन्वर्ट बटन पर क्लिक करें"
+
+#: templates/frontend/pdf_to_jpg.html:59
+msgid "Wait for the PDF to JPG conversion to complete - all selected pages will be converted to JPG images"
+msgstr "PDF से JPG रूपांतरण पूरा होने की प्रतीक्षा करें - सभी चयनित पृष्ठ JPG छवियों में कन्वर्ट हो जाएंगे"
+
+#: templates/frontend/pdf_to_jpg.html:60
+msgid "Download the ZIP archive containing all converted JPG images from your PDF"
+msgstr "अपने PDF से सभी कन्वर्ट की गई JPG छवियों वाला ZIP संग्रह डाउनलोड करें"
+
+#: templates/frontend/pdf_to_word.html:11
+msgid "Click the convert button to start converting PDF to Word (PDF to DOCX conversion)"
+msgstr "PDF को Word में कन्वर्ट करना शुरू करने के लिए कन्वर्ट बटन पर क्लिक करें (PDF से DOCX रूपांतरण)"
+
+#: templates/frontend/pdf_to_word.html:12
+msgid "Wait for the PDF to Word conversion to complete - text and formatting will be extracted from your PDF and converted to editable Word format"
+msgstr "PDF से Word रूपांतरण पूरा होने की प्रतीक्षा करें - आपके PDF से पाठ और फ़ॉर्मेटिंग निकाली जाएगी और संपादन योग्य Word प्रारूप में कन्वर्ट की जाएगी"
+
+#: templates/frontend/pdf_to_word.html:13
+msgid "Download your editable Word document (DOCX format) - your PDF has been successfully converted to Word"
+msgstr "अपना संपादन योग्य Word दस्तावेज़ (DOCX प्रारूप) डाउनलोड करें - आपका PDF सफलतापूर्वक Word में कन्वर्ट हो गया है"
+
+#: templates/frontend/word_to_pdf.html:11
+msgid "Click the convert button to start converting Word to PDF (DOCX to PDF conversion)"
+msgstr "Word को PDF में कन्वर्ट करना शुरू करने के लिए कन्वर्ट बटन पर क्लिक करें (DOCX से PDF रूपांतरण)"
+
+#: templates/frontend/word_to_pdf.html:12
+msgid "Wait for the Word to PDF conversion to complete - formatting and layout will be preserved when converting from Word to PDF"
+msgstr "Word से PDF रूपांतरण पूरा होने की प्रतीक्षा करें - Word से PDF में कन्वर्ट करते समय फ़ॉर्मेटिंग और लेआउट संरक्षित रहेगा"
+
+#: templates/frontend/word_to_pdf.html:13
+msgid "Download your PDF file - your Word document has been successfully converted to PDF format"
+msgstr "अपनी PDF फ़ाइल डाउनलोड करें - आपका Word दस्तावेज़ सफलतापूर्वक PDF प्रारूप में कन्वर्ट हो गया है"
+
 #~ msgid "Thank you! Your message has been sent successfully."
 #~ msgstr "धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है।"

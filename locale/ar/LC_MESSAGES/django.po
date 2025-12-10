@@ -2911,3 +2911,47 @@ msgstr "حماية PDF بكلمة مرور - Convertica"
 
 msgid "Unlock PDF - Remove Password - Convertica"
 msgstr "إلغاء قفل PDF - إزالة كلمة المرور - Convertica"
+
+#: templates/frontend/pdf_to_jpg.html:56
+msgid "Choose which pages to convert from PDF to JPG: all pages or specific pages (e.g., 1,3,5 or 1-5)"
+msgstr "اختر الصفحات المراد تحويلها من PDF إلى JPG: جميع الصفحات أو صفحات محددة (مثل 1،3،5 أو 1-5)"
+
+#: templates/frontend/pdf_to_jpg.html:57
+msgid "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high quality, 72 DPI for smaller file size)"
+msgstr "حدد جودة DPI لتحويل PDF إلى JPG (يُنصح بـ 300 DPI للجودة العالية، 72 DPI لحجم ملف أصغر)"
+
+#: templates/frontend/pdf_to_jpg.html:58
+msgid "Click the convert button to start the PDF to JPG conversion process"
+msgstr "انقر على زر التحويل لبدء عملية تحويل PDF إلى JPG"
+
+#: templates/frontend/pdf_to_jpg.html:59
+msgid "Wait for the PDF to JPG conversion to complete - all selected pages will be converted to JPG images"
+msgstr "انتظر حتى يكتمل تحويل PDF إلى JPG - سيتم تحويل جميع الصفحات المحددة إلى صور JPG"
+
+#: templates/frontend/pdf_to_jpg.html:60
+msgid "Download the ZIP archive containing all converted JPG images from your PDF"
+msgstr "قم بتنزيل أرشيف ZIP الذي يحتوي على جميع صور JPG المحولة من PDF الخاص بك"
+
+#: templates/frontend/pdf_to_word.html:11
+msgid "Click the convert button to start converting PDF to Word (PDF to DOCX conversion)"
+msgstr "انقر على زر التحويل لبدء تحويل PDF إلى Word (تحويل PDF إلى DOCX)"
+
+#: templates/frontend/pdf_to_word.html:12
+msgid "Wait for the PDF to Word conversion to complete - text and formatting will be extracted from your PDF and converted to editable Word format"
+msgstr "انتظر حتى يكتمل تحويل PDF إلى Word - سيتم استخراج النص والتنسيق من PDF الخاص بك وتحويله إلى تنسيق Word قابل للتحرير"
+
+#: templates/frontend/pdf_to_word.html:13
+msgid "Download your editable Word document (DOCX format) - your PDF has been successfully converted to Word"
+msgstr "قم بتنزيل مستند Word القابل للتحرير (تنسيق DOCX) - تم تحويل PDF الخاص بك بنجاح إلى Word"
+
+#: templates/frontend/word_to_pdf.html:11
+msgid "Click the convert button to start converting Word to PDF (DOCX to PDF conversion)"
+msgstr "انقر على زر التحويل لبدء تحويل Word إلى PDF (تحويل DOCX إلى PDF)"
+
+#: templates/frontend/word_to_pdf.html:12
+msgid "Wait for the Word to PDF conversion to complete - formatting and layout will be preserved when converting from Word to PDF"
+msgstr "انتظر حتى يكتمل تحويل Word إلى PDF - سيتم الحفاظ على التنسيق والتخطيط عند التحويل من Word إلى PDF"
+
+#: templates/frontend/word_to_pdf.html:13
+msgid "Download your PDF file - your Word document has been successfully converted to PDF format"
+msgstr "قم بتنزيل ملف PDF الخاص بك - تم تحويل مستند Word الخاص بك بنجاح إلى تنسيق PDF"
