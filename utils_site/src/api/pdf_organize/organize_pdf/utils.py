@@ -95,6 +95,19 @@ def organize_pdf(
             writer = PdfWriter()
             total_pages = len(reader.pages)
 
+            # Log for debugging
+            logger.debug(
+                "Organizing PDF",
+                extra={
+                    **context,
+                    "total_pages": total_pages,
+                    "operation": operation,
+                    "page_order": page_order,
+                    "has_page_order": page_order is not None,
+                    "page_order_length": len(page_order) if page_order else 0,
+                },
+            )
+
             if operation == "reorder" and page_order:
                 # Validate page_order
                 if len(page_order) != total_pages:
