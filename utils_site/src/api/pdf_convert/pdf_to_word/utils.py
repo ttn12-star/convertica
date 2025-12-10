@@ -137,17 +137,21 @@ def convert_pdf_to_docx(
                 },
             )
 
-            # Create converter with optimized settings
+            # Create converter with optimized settings to preserve page layout
+            # pdf2docx tries to preserve page breaks and layout
             cv = Converter(conversion_pdf_path)
             try:
-                # Convert with better quality settings
-                # pdf2docx supports pages parameter for selective conversion
+                # Convert with settings to preserve page breaks and layout
+                # pdf2docx automatically tries to preserve page structure
+                # Setting start/end/pages=None converts all pages while preserving breaks
                 cv.convert(
                     docx_path,
                     start=0,  # Start from first page
                     end=None,  # Convert all pages
                     pages=None,  # Convert all pages
                 )
+                # Note: pdf2docx library automatically tries to preserve page breaks
+                # by detecting page boundaries in the PDF and inserting page breaks in DOCX
                 logger.debug(
                     "Conversion completed",
                     extra={**context, "event": "conversion_complete"},
