@@ -261,6 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadContainer.classList.remove('hidden');
         downloadContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
+        // Clear selected file from the form to avoid showing old file after success
+        resetSelectedFileUI();
+
         // Download button handler
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
@@ -360,6 +363,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function hideDownload() {
         downloadContainer.classList.add('hidden');
+    }
+
+    function resetSelectedFileUI() {
+        const fileInput = document.getElementById('fileInput');
+        const fileInputDrop = document.getElementById('fileInputDrop');
+        const selectedFileDiv = document.getElementById('selectedFile');
+        const fileInfo = document.getElementById('fileInfo');
+
+        if (fileInput) fileInput.value = '';
+        if (fileInputDrop) fileInputDrop.value = '';
+        if (selectedFileDiv) selectedFileDiv.classList.add('hidden');
+        if (fileInfo) fileInfo.classList.remove('hidden');
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+        }
     }
 
     function showError(message) {
