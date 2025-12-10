@@ -2902,5 +2902,18 @@ msgstr "के लिए आदर्श: PDF को Word में कन्व
 msgid "Perfect for: converting Word documents to PDF for sharing, creating PDF files from Word resumes, converting Word reports to PDF format, converting Word invoices to PDF, converting Word contracts to PDF, converting Word academic papers to PDF, converting Word presentations to PDF, converting Word forms to PDF, converting Word manuals to PDF, converting Word books to PDF format, creating PDF files from Word templates, converting Word documents for printing, converting Word files for email attachments, converting Word documents for archiving, converting Word files to PDF for legal documents."
 msgstr "के लिए आदर्श: साझा करने के लिए Word दस्तावेज़ों को PDF में कन्वर्ट करना, Word रिज्यूमे से PDF फ़ाइलें बनाना, Word रिपोर्ट को PDF प्रारूप में कन्वर्ट करना, Word चालान को PDF में कन्वर्ट करना, Word अनुबंधों को PDF में कन्वर्ट करना, Word शैक्षणिक पेपर को PDF में कन्वर्ट करना, Word प्रस्तुतियों को PDF में कन्वर्ट करना, Word फ़ॉर्म को PDF में कन्वर्ट करना, Word मैनुअल को PDF में कन्वर्ट करना, Word पुस्तकों को PDF प्रारूप में कन्वर्ट करना, Word टेम्प्लेट से PDF फ़ाइलें बनाना, प्रिंटिंग के लिए Word दस्तावेज़ों को कन्वर्ट करना, ईमेल अटैचमेंट के लिए Word फ़ाइलों को कन्वर्ट करना, आर्काइविंग के लिए Word दस्तावेज़ों को कन्वर्ट करना, कानूनी दस्तावेज़ों के लिए Word फ़ाइलों को PDF में कन्वर्ट करना।"
 
-#~ msgid "Thank you! Your message has been sent successfully."
-#~ msgstr "धन्यवाद! आपका संदेश सफलतापूर्वक भेजा गया है।"
+#: templates/frontend/pdf_to_jpg.html:64
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all converted JPG images, named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
+msgstr "50 पृष्ठों तक के PDF फ़ाइलें समर्थित हैं। बड़ी फ़ाइलों के लिए, कृपया उन्हें छोटे भागों में विभाजित करें। आउटपुट एक ZIP संग्रह होगा जिसमें सभी कन्वर्ट की गई JPG छवियां होंगी, पृष्ठ संख्याओं के साथ नामित (उदा., filename_page0001.jpg, filename_page0002.jpg)।"
+
+#: templates/frontend/pdf_to_word.html:17
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. Text-based PDFs work best - scanned PDFs (image-only) cannot be converted to editable Word format."
+msgstr "50 पृष्ठों तक के PDF फ़ाइलें समर्थित हैं। बड़ी फ़ाइलों के लिए, कृपया उन्हें छोटे भागों में विभाजित करें। टेक्स्ट-आधारित PDF सबसे अच्छा काम करते हैं - स्कैन किए गए PDF (केवल छवि) को संपादन योग्य Word प्रारूप में कन्वर्ट नहीं किया जा सकता।"
+
+#: templates/frontend/word_to_pdf.html:17
+msgid "Word documents with up to 50 pages are supported. For larger files, please split them into smaller parts. The conversion preserves formatting, fonts, images, and page layout."
+msgstr "50 पृष्ठों तक के Word दस्तावेज़ समर्थित हैं। बड़ी फ़ाइलों के लिए, कृपया उन्हें छोटे भागों में विभाजित करें। रूपांतरण फ़ॉर्मेटिंग, फ़ॉन्ट, छवियां और पृष्ठ लेआउट को संरक्षित करता है।"
+
+#: templates/frontend/edit_pdf_generic.html:184
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts."
+msgstr "50 पृष्ठों तक के PDF फ़ाइलें समर्थित हैं। बड़ी फ़ाइलों के लिए, कृपया उन्हें छोटे भागों में विभाजित करें।"

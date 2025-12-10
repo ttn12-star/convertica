@@ -2967,3 +2967,19 @@ msgstr "مثالي لـ: تحويل PDF إلى Word (تحويل PDF إلى DOCX)
 #: templates/frontend/word_to_pdf.html:20
 msgid "Perfect for: converting Word documents to PDF for sharing, creating PDF files from Word resumes, converting Word reports to PDF format, converting Word invoices to PDF, converting Word contracts to PDF, converting Word academic papers to PDF, converting Word presentations to PDF, converting Word forms to PDF, converting Word manuals to PDF, converting Word books to PDF format, creating PDF files from Word templates, converting Word documents for printing, converting Word files for email attachments, converting Word documents for archiving, converting Word files to PDF for legal documents."
 msgstr "مثالي لـ: تحويل مستندات Word إلى PDF للمشاركة، إنشاء ملفات PDF من سير Word، تحويل تقارير Word إلى تنسيق PDF، تحويل فواتير Word إلى PDF، تحويل عقود Word إلى PDF، تحويل الأوراق الأكاديمية Word إلى PDF، تحويل عروض Word التقديمية إلى PDF، تحويل نماذج Word إلى PDF، تحويل أدلة Word إلى PDF، تحويل كتب Word إلى تنسيق PDF، إنشاء ملفات PDF من قوالب Word، تحويل مستندات Word للطباعة، تحويل ملفات Word لمرفقات البريد الإلكتروني، تحويل مستندات Word للأرشفة، تحويل ملفات Word إلى PDF للمستندات القانونية."
+
+#: templates/frontend/pdf_to_jpg.html:64
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all converted JPG images, named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
+msgstr "يتم دعم ملفات PDF التي تصل إلى 50 صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. سيكون الإخراج عبارة عن أرشيف ZIP يحتوي على جميع صور JPG المحولة، مسماة بأرقام الصفحات (مثل filename_page0001.jpg، filename_page0002.jpg)."
+
+#: templates/frontend/pdf_to_word.html:17
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. Text-based PDFs work best - scanned PDFs (image-only) cannot be converted to editable Word format."
+msgstr "يتم دعم ملفات PDF التي تصل إلى 50 صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. تعمل ملفات PDF المستندة إلى النص بشكل أفضل - لا يمكن تحويل ملفات PDF الممسوحة ضوئيًا (الصور فقط) إلى تنسيق Word قابل للتحرير."
+
+#: templates/frontend/word_to_pdf.html:17
+msgid "Word documents with up to 50 pages are supported. For larger files, please split them into smaller parts. The conversion preserves formatting, fonts, images, and page layout."
+msgstr "يتم دعم مستندات Word التي تصل إلى 50 صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. يحافظ التحويل على التنسيق والخطوط والصور وتخطيط الصفحة."
+
+#: templates/frontend/edit_pdf_generic.html:184
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts."
+msgstr "يتم دعم ملفات PDF التي تصل إلى 50 صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."

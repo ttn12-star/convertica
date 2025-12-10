@@ -2891,3 +2891,19 @@ msgstr "Идеально для: конвертации PDF в Word (PDF в Word
 #: templates/frontend/word_to_pdf.html:20
 msgid "Perfect for: converting Word documents to PDF for sharing, creating PDF files from Word resumes, converting Word reports to PDF format, converting Word invoices to PDF, converting Word contracts to PDF, converting Word academic papers to PDF, converting Word presentations to PDF, converting Word forms to PDF, converting Word manuals to PDF, converting Word books to PDF format, creating PDF files from Word templates, converting Word documents for printing, converting Word files for email attachments, converting Word documents for archiving, converting Word files to PDF for legal documents."
 msgstr "Идеально для: конвертации документов Word в PDF для обмена, создания PDF файлов из резюме Word, конвертации отчетов Word в формат PDF, конвертации счетов Word в PDF, конвертации контрактов Word в PDF, конвертации академических работ Word в PDF, конвертации презентаций Word в PDF, конвертации форм Word в PDF, конвертации руководств Word в PDF, конвертации книг Word в формат PDF, создания PDF файлов из шаблонов Word, конвертации документов Word для печати, конвертации файлов Word для вложений в email, конвертации документов Word для архивирования, конвертации файлов Word в PDF для юридических документов."
+
+#: templates/frontend/pdf_to_jpg.html:64
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all converted JPG images, named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
+msgstr "Поддерживаются PDF файлы до 50 страниц. Для больших файлов, пожалуйста, разбейте их на более мелкие части. На выходе будет ZIP архив, содержащий все конвертированные изображения JPG, названные с номерами страниц (например, filename_page0001.jpg, filename_page0002.jpg)."
+
+#: templates/frontend/pdf_to_word.html:17
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. Text-based PDFs work best - scanned PDFs (image-only) cannot be converted to editable Word format."
+msgstr "Поддерживаются PDF файлы до 50 страниц. Для больших файлов, пожалуйста, разбейте их на более мелкие части. Текстовые PDF работают лучше всего - отсканированные PDF (только изображения) не могут быть конвертированы в редактируемый формат Word."
+
+#: templates/frontend/word_to_pdf.html:17
+msgid "Word documents with up to 50 pages are supported. For larger files, please split them into smaller parts. The conversion preserves formatting, fonts, images, and page layout."
+msgstr "Поддерживаются документы Word до 50 страниц. Для больших файлов, пожалуйста, разбейте их на более мелкие части. Конвертация сохраняет форматирование, шрифты, изображения и макет страницы."
+
+#: templates/frontend/edit_pdf_generic.html:184
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts."
+msgstr "Поддерживаются PDF файлы до 50 страниц. Для больших файлов, пожалуйста, разбейте их на более мелкие части."

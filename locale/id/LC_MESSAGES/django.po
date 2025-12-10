@@ -3022,5 +3022,21 @@ msgstr "Sempurna untuk: mengonversi PDF ke Word (konversi PDF ke DOCX), mengekst
 msgid "Perfect for: converting Word documents to PDF for sharing, creating PDF files from Word resumes, converting Word reports to PDF format, converting Word invoices to PDF, converting Word contracts to PDF, converting Word academic papers to PDF, converting Word presentations to PDF, converting Word forms to PDF, converting Word manuals to PDF, converting Word books to PDF format, creating PDF files from Word templates, converting Word documents for printing, converting Word files for email attachments, converting Word documents for archiving, converting Word files to PDF for legal documents."
 msgstr "Sempurna untuk: mengonversi dokumen Word ke PDF untuk berbagi, membuat file PDF dari resume Word, mengonversi laporan Word ke format PDF, mengonversi faktur Word ke PDF, mengonversi kontrak Word ke PDF, mengonversi makalah akademik Word ke PDF, mengonversi presentasi Word ke PDF, mengonversi formulir Word ke PDF, mengonversi manual Word ke PDF, mengonversi buku Word ke format PDF, membuat file PDF dari template Word, mengonversi dokumen Word untuk dicetak, mengonversi file Word untuk lampiran email, mengonversi dokumen Word untuk diarsipkan, mengonversi file Word ke PDF untuk dokumen hukum."
 
+#: templates/frontend/pdf_to_jpg.html:64
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all converted JPG images, named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
+msgstr "File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi bagian yang lebih kecil. Output akan berupa arsip ZIP yang berisi semua gambar JPG yang dikonversi, dinamai dengan nomor halaman (mis., filename_page0001.jpg, filename_page0002.jpg)."
+
+#: templates/frontend/pdf_to_word.html:17
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. Text-based PDFs work best - scanned PDFs (image-only) cannot be converted to editable Word format."
+msgstr "File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi bagian yang lebih kecil. PDF berbasis teks bekerja paling baik - PDF yang dipindai (hanya gambar) tidak dapat dikonversi ke format Word yang dapat diedit."
+
+#: templates/frontend/word_to_pdf.html:17
+msgid "Word documents with up to 50 pages are supported. For larger files, please split them into smaller parts. The conversion preserves formatting, fonts, images, and page layout."
+msgstr "Dokumen Word hingga 50 halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi bagian yang lebih kecil. Konversi mempertahankan pemformatan, font, gambar, dan tata letak halaman."
+
+#: templates/frontend/edit_pdf_generic.html:184
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts."
+msgstr "File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi bagian yang lebih kecil."
+
 #~ msgid "Thank you! Your message has been sent successfully."
 #~ msgstr "Terima kasih! Pesan Anda telah berhasil dikirim."
