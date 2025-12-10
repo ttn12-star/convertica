@@ -371,11 +371,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Fallback: direct download
+            // Fallback: prompt for filename, then trigger download (browser will ask location)
+            let finalName = outputFileName;
+            const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', outputFileName);
+            if (input && input.trim()) {
+                finalName = input.trim();
+                const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
+                if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
+                    finalName += originalExt;
+                }
+            }
+
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = outputFileName;
+            a.download = finalName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);

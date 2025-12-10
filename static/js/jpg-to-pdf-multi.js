@@ -414,10 +414,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
-            downloadBtn.addEventListener('click', () => {
+            downloadBtn.addEventListener('click', async () => {
+                const originalExt = downloadName.includes('.') ? downloadName.slice(downloadName.lastIndexOf('.')) : '.pdf';
+                let finalName = downloadName;
+
+                // Try modern file picker to let user choose directory & filename
+                if (window.showSaveFilePicker) {
+                    try {
+                        const handle = await window.showSaveFilePicker({
+                            suggestedName: downloadName,
+                            types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
+                        });
+                        const writable = await handle.createWritable();
+                        await writable.write(blob);
+                        await writable.close();
+                        finalName = handle.name || downloadName;
+                        downloadBtn.classList.add('bg-green-600');
+                        downloadBtn.innerHTML = '<span>✓ ' + (window.DOWNLOAD_BUTTON_TEXT || 'Download PDF') + '</span>';
+                        setTimeout(() => {
+                            downloadBtn.classList.remove('bg-green-600');
+                            downloadBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg><span>' + (window.DOWNLOAD_BUTTON_TEXT || 'Download PDF') + '</span>';
+                        }, 2000);
+                        return;
+                    } catch (err) {
+                        if (err.name !== 'AbortError') {
+                            console.warn('File picker failed, falling back to direct download:', err);
+                        } else {
+                            // User cancelled
+                            return;
+                        }
+                    }
+                }
+
+                // Fallback: prompt for filename, then trigger download (browser will ask location)
+                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', downloadName);
+                if (input && input.trim()) {
+                    finalName = input.trim();
+                    if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
+                        finalName += originalExt;
+                    }
+                }
+
                 const a = document.createElement('a');
                 a.href = blobUrl;
-                a.download = downloadName;
+                a.download = finalName;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);

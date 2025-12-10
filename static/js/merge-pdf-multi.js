@@ -643,7 +643,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                // Fallback: direct download
+                // Fallback: prompt for filename, then trigger download (browser will ask location)
+                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', originalFileName);
+                if (input && input.trim()) {
+                    finalName = input.trim();
+                    const originalExt = originalFileName.includes('.') ? originalFileName.slice(originalFileName.lastIndexOf('.')) : '.pdf';
+                    if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
+                        finalName += originalExt;
+                    }
+                }
+
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = finalName;
