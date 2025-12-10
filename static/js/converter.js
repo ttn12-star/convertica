@@ -65,6 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('pages', pagesInput.value);
         }
 
+        // Add DPI parameter if available (for PDF to JPG)
+        const dpiSelect = form.querySelector('select[name="dpi"]');
+        if (dpiSelect && dpiSelect.value) {
+            formData.append('dpi', dpiSelect.value);
+        }
+
         // Add Turnstile token if available
         const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
         if (turnstileResponse && turnstileResponse.value) {
