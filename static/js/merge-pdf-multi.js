@@ -6,9 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('editorForm') || document.getElementById('converterForm');
     if (!form) return;
 
-    const pdfFilesInput = document.getElementById('pdf_files_input');
-    const selectPdfFilesButton = document.getElementById('selectPdfFilesButton');
-    const addMorePdfFilesButton = document.getElementById('addMorePdfFilesButton');
+    // Use standard file inputs (fileInput, fileInputDrop) instead of custom ones
+    const fileInput = document.getElementById('fileInput');
+    const fileInputDrop = document.getElementById('fileInputDrop');
+    const selectFileButton = document.getElementById('selectFileButton');
+    const dropZone = document.getElementById('dropZone');
+    const selectedFile = document.getElementById('selectedFile');
+
     const selectedPdfFilesContainer = document.getElementById('selectedPdfFilesContainer');
     const selectedPdfFilesList = document.getElementById('selectedPdfFilesList');
     const pdfFileCount = document.getElementById('pdfFileCount');
@@ -21,7 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let draggedElement = null;
 
     // Initialize PDF.js worker
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    // Hide standard single file display for merge (we use our own list)
+    if (selectedFile) {
+        selectedFile.style.display = 'none';
+    }
 
     // Use event delegation for remove buttons (more reliable)
     if (selectedPdfFilesList) {
@@ -38,19 +49,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // File input handlers
-    selectPdfFilesButton?.addEventListener('click', () => {
-        pdfFilesInput?.click();
-    });
+    // File input handlers - use standard inputs
+    if (selectFileButton) {
+        selectFileButton.addEventListener('click', () => {
+            fileInput?.click();
+        });
+    }
 
-    addMorePdfFilesButton?.addEventListener('click', () => {
-        pdfFilesInput?.click();
-    });
+    if (fileInput) {
+        fileInput.addEventListener('change', (e) => {
+            handleFileSelection(e.target.files);
+            e.target.value = ''; // Reset input
+        });
+    }
 
-    pdfFilesInput?.addEventListener('change', (e) => {
-        handleFileSelection(e.target.files);
-        e.target.value = ''; // Reset input
-    });
+    if (fileInputDrop) {
+        fileInputDrop.addEventListener('change', (e) => {
+            handleFileSelection(e.target.files);
+            e.target.value = ''; // Reset input
+        });
+    }
+
+    // Drag and drop handlers for dropZone
+    if (dropZone) {
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add('border-blue-500', 'bg-blue-50');
+        });
+
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('border-blue-500', 'bg-blue-50');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('border-blue-500', 'bg-blue-50');
+
+            const files = e.dataTransfer.files;
+            if (files && files.length > 0) {
+                handleFileSelection(files);
+            }
+        });
+    }
 
     function handleFileSelection(files) {
         if (!files || files.length === 0) return;
