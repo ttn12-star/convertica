@@ -38,7 +38,10 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                 event["tags"] = event.get("tags", {})
                 event["tags"]["error_type"] = "handled"
                 event["tags"]["user_error"] = "true"
-            # Drop noisy Gunicorn scanner requests (invalid protocol / php probes)
+            # Drop Gunicorn access logs - these are just successful HTTP requests, not errors
+            if event.get("logger") == "gunicorn.access":
+                return None
+            # Drop noisy Gunicorn error logs (invalid protocol / php probes)
             if event.get("logger") == "gunicorn.error":
                 message = event.get("message") or ""
                 # Examples: "Invalid HTTP request line: 'SSH-2.0-Go'", "Error handling request /admin/config.php"
@@ -408,6 +411,18 @@ LOGGING = {
             "level": "WARNING",
             "handlers": ["console"],
             "propagate": False,
+        },
+        # Filter out Gunicorn access logs - these are just HTTP request logs, not errors
+        "gunicorn.access": {
+            "handlers": ["console"],  # Still log to console, but don't send to Sentry
+            "level": "INFO",
+            "propagate": False,  # Don't propagate to root logger (which would send to Sentry)
+        },
+        # Gunicorn error logs - filter noisy ones in before_send
+        "gunicorn.error": {
+            "handlers": ["console", "error_file"],
+            "level": "WARNING",  # Only WARNING and above (ERROR, CRITICAL)
+            "propagate": False,  # Don't propagate to root logger
         },
     },
     "root": {
