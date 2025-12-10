@@ -335,6 +335,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ensure pageOrder is updated from current preview order
         updateOrderFromPreview();
 
+        // Ensure pageOrder is initialized (should be set when PDF loads, but double-check)
+        if (!pageOrder || pageOrder.length === 0) {
+            // Fallback: initialize with original order
+            pageOrder = Array.from({ length: pdfDoc.numPages }, (_, i) => i);
+            if (typeof console !== 'undefined' && console.warn) {
+                console.warn('pageOrder was empty, initializing with original order:', pageOrder);
+            }
+        }
+
         // Add page order as JSON string (0-based indices)
         const pageOrderJson = JSON.stringify(pageOrder);
         formData.append('page_order', pageOrderJson);
@@ -343,6 +352,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof console !== 'undefined' && console.log) {
             console.log('Submitting page order:', pageOrder);
             console.log('Page order JSON:', pageOrderJson);
+            console.log('Total pages:', pdfDoc.numPages);
+            console.log('Page order length:', pageOrder.length);
         }
 
         // Show loading
