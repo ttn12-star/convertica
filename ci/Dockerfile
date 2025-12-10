@@ -37,6 +37,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libreoffice-core \
     && rm -rf /var/lib/apt/lists/*
 
+# Install common fonts to prevent layout reflow (missing fonts -> page splits)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    fonts-dejavu-core \
+    fonts-dejavu-extra \
+    fonts-liberation \
+    fonts-noto-core \
+    fonts-noto-cjk \
+    fonts-noto-emoji \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install remaining dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gettext \
