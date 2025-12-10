@@ -117,7 +117,7 @@ def pdf_to_word_page(request):
         button_text_key="Convert PDF to Word",
         select_file_message_key="Please select a PDF file.",
     )
-    return render(request, "frontend/converter_generic.html", context)
+    return render(request, "frontend/pdf_to_word.html", context)
 
 
 def word_to_pdf_page(request):
@@ -136,7 +136,7 @@ def word_to_pdf_page(request):
         button_text_key="Convert to PDF",
         select_file_message_key="Please select a Word file.",
     )
-    return render(request, "frontend/converter_generic.html", context)
+    return render(request, "frontend/word_to_pdf.html", context)
 
 
 def pdf_to_jpg_page(request):
