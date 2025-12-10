@@ -265,9 +265,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
             downloadBtn.addEventListener('click', () => {
+                // Allow user to choose/save name; preserve original extension if missing
+                const originalExt = downloadName.includes('.') ? downloadName.slice(downloadName.lastIndexOf('.')) : '';
+                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', downloadName);
+                let finalName = downloadName;
+                if (input && input.trim()) {
+                    finalName = input.trim();
+                    if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
+                        finalName += originalExt;
+                    }
+                }
+
                 const a = document.createElement('a');
                 a.href = blobUrl;
-                a.download = downloadName;
+                a.download = finalName;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
