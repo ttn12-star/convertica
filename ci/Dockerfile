@@ -45,6 +45,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-noto-core \
     fonts-noto-cjk \
     fonts-noto-emoji \
+    ttf-mscorefonts-installer \
     && rm -rf /var/lib/apt/lists/*
 
 # Install remaining dependencies
