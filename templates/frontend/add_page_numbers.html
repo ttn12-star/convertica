@@ -151,3 +151,27 @@
     </div>
   </div>
 {% endblock %}
+
+{% block help_section %}
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+      <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
+      <li>{% trans "Choose the position, font size, starting number, and format for adding page numbers to PDF" %}</li>
+      <li>{% trans "Preview how the page numbers will look on your PDF using the live preview" %}</li>
+      <li>{% trans "Select which pages to add numbers to: all pages, current page only, or specific pages" %}</li>
+      <li>{% trans "Click the add page numbers button to process your PDF and add page numbers" %}</li>
+      <li>{% trans "Download your PDF file with page numbers added using the download button" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-blue-200">
+      <p class="text-xs sm:text-sm text-gray-600">
+        <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to 50 pages are supported for adding page numbers. For larger files, please split them into smaller parts. The page numbers will be added according to your selected position, format, and font size." %}
+      </p>
+      <p class="text-xs sm:text-sm text-gray-600 mt-2">
+        {% trans "Perfect for: adding page numbers to PDF documents, numbering PDF pages, inserting page numbers in PDF files, adding page numbers to PDF reports, numbering pages in PDF documents, inserting page numbers in PDF contracts, adding page numbers to PDF invoices, numbering pages in PDF legal documents, inserting page numbers in PDF academic papers, adding page numbers to PDF business documents, numbering pages in PDF presentations, inserting page numbers in PDF manuals, adding page numbers to PDF books, numbering pages in PDF catalogs, inserting page numbers in PDF portfolios." %}
+      </p>
+    </div>
+  </div>
+{% endblock %}

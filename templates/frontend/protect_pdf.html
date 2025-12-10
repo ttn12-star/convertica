@@ -58,3 +58,25 @@
     </div>
   </div>
 {% endblock %}
+
+{% block help_section %}
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+      <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
+      <li>{% trans "Enter a password to protect your PDF file (required) and optionally set user/owner passwords" %}</li>
+      <li>{% trans "Click the protect button to encrypt your PDF with password protection" %}</li>
+      <li>{% trans "Download your password-protected PDF file using the download button" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-blue-200">
+      <p class="text-xs sm:text-sm text-gray-600">
+        <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to 50 pages are supported for password protection. For larger files, please split them into smaller parts. The password will be required to open, view, print, or edit the PDF." %}
+      </p>
+      <p class="text-xs sm:text-sm text-gray-600 mt-2">
+        {% trans "Perfect for: protecting PDF files with passwords, securing PDF documents with encryption, password protecting sensitive PDF files, securing confidential PDF documents, protecting PDF files from unauthorized access, encrypting PDF files for security, password protecting PDF contracts, securing PDF invoices with passwords, protecting PDF legal documents, securing PDF financial documents, password protecting PDF medical records, securing PDF personal documents, protecting PDF business files, securing PDF academic papers, password protecting PDF reports." %}
+      </p>
+    </div>
+  </div>
+{% endblock %}
