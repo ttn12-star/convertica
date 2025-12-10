@@ -68,13 +68,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const DROP_HIT_MARGIN_PX = 240; // Allow generous near-miss drops within this margin
+
+    // Create a clone of a FileList that can be assigned to inputs (cross-browser)
+    function cloneFileList(files, allowMultiple = true) {
+        if (!files || files.length === 0) return null;
+        // DataTransfer constructor is not available in some browsers (e.g., older Firefox/Safari)
+        if (typeof DataTransfer !== 'undefined') {
+            const dt = new DataTransfer();
+            const source = allowMultiple ? Array.from(files) : [files[0]];
+            source.forEach((file) => dt.items.add(file));
+            return dt.files;
+        }
+        // Fallback: return original FileList (assignment works in modern browsers)
+        return allowMultiple ? files : files;
+    }
+
     // Sync files between two inputs
     function syncFileInputs(sourceInput, targetInput) {
         if (sourceInput.files && sourceInput.files.length > 0) {
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(sourceInput.files[0]);
-            targetInput.files = dataTransfer.files;
+            const cloned = cloneFileList(sourceInput.files);
+            if (cloned) {
+                targetInput.files = cloned;
+            }
         }
+    }
+
+    // Check if pointer is within drop zone or within a margin
+    function isNearDropZone(e, zone, marginPx = DROP_HIT_MARGIN_PX) {
+        if (!zone || !e) return false;
+        const rect = zone.getBoundingClientRect();
+        const x = e.clientX;
+        const y = e.clientY;
+        return (
+            x >= rect.left - marginPx &&
+            x <= rect.right + marginPx &&
+            y >= rect.top - marginPx &&
+            y <= rect.bottom + marginPx
+        );
     }
 
     // Button click handler
@@ -152,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Drag and drop handlers (only if dropZone exists)
     if (dropZone) {
         let dragCounter = 0; // Track nested drag events
+        let isHoveringDropZone = false;
 
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropZone.addEventListener(eventName, preventDefaults, false);
@@ -164,12 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dropZone.addEventListener('dragenter', (e) => {
             dragCounter++;
+            isHoveringDropZone = true;
             dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
         }, false);
 
         dropZone.addEventListener('dragover', (e) => {
             // Keep highlighting during drag over
+            isHoveringDropZone = true;
             dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
         }, false);
@@ -177,37 +211,31 @@ document.addEventListener('DOMContentLoaded', () => {
         dropZone.addEventListener('dragleave', (e) => {
             dragCounter--;
             if (dragCounter === 0) {
+                isHoveringDropZone = false;
                 dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
                 dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
             }
         }, false);
 
-        dropZone.addEventListener('drop', (e) => {
+        function handleDrop(e) {
             dragCounter = 0;
+            isHoveringDropZone = false;
             dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
 
             const dt = e.dataTransfer;
-            const files = dt.files;
+            const files = dt ? dt.files : null;
 
             if (files && files.length > 0) {
-                // Create a new FileList-like object
-                const dataTransfer = new DataTransfer();
-                // Handle multiple files if needed (for jpg_to_pdf)
-                if (files.length > 1 && fileInputDrop && fileInputDrop.hasAttribute('multiple')) {
-                    for (let i = 0; i < files.length; i++) {
-                        dataTransfer.items.add(files[i]);
-                    }
-                } else {
-                    dataTransfer.items.add(files[0]);
-                }
+                const allowMultiple = fileInputDrop && fileInputDrop.hasAttribute('multiple');
+                const cloned = cloneFileList(files, allowMultiple);
 
                 // Set files to both inputs
-                if (fileInput) {
-                    fileInput.files = dataTransfer.files;
+                if (fileInput && cloned) {
+                    fileInput.files = cloned;
                 }
-                if (fileInputDrop) {
-                    fileInputDrop.files = dataTransfer.files;
+                if (fileInputDrop && cloned) {
+                    fileInputDrop.files = cloned;
                 }
 
                 showSelectedFile(files[0]);
@@ -229,7 +257,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 document.dispatchEvent(customEvent);
             }
+        }
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleDrop(e);
         }, false);
+
+        // Accept drops that are close to the zone (near-miss)
+        ['dragover', 'drop'].forEach((eventName) => {
+            document.addEventListener(eventName, (e) => {
+                const near = isNearDropZone(e, dropZone, DROP_HIT_MARGIN_PX);
+                if (!near && eventName === 'dragover') {
+                    // Remove highlight if we drifted away
+                    isHoveringDropZone = false;
+                    dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
+                    dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
+                    return;
+                }
+                if (!near) return;
+                e.preventDefault();
+                e.stopPropagation();
+                if (eventName === 'dragover') {
+                    isHoveringDropZone = true;
+                    dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
+                    dropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
+                } else if (eventName === 'drop') {
+                    handleDrop(e);
+                }
+            }, true);
+        });
+
+        // Fallback: if drop happens while zone is highlighted (hover state), accept it
+        document.addEventListener('drop', (e) => {
+            const near = isNearDropZone(e, dropZone, DROP_HIT_MARGIN_PX);
+            if (!isHoveringDropZone && !near) return;
+            e.preventDefault();
+            e.stopPropagation();
+            handleDrop(e);
+        }, true);
 
         // Remove click handler - drop zone is for drag & drop only
         // Users should use the "Select file" button to browse files

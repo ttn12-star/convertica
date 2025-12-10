@@ -261,22 +261,59 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadContainer.classList.remove('hidden');
         downloadContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
+        // Clear selected file from the form to avoid showing old file after success
+        resetSelectedFileUI();
+
         // Download button handler
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
-            downloadBtn.addEventListener('click', () => {
+            downloadBtn.addEventListener('click', async () => {
+                const originalExt = downloadName.includes('.') ? downloadName.slice(downloadName.lastIndexOf('.')) : '';
+                let finalName = downloadName;
+
+                // Try modern file picker to let user choose directory & filename
+                if (window.showSaveFilePicker) {
+                    try {
+                        const handle = await window.showSaveFilePicker({
+                            suggestedName: downloadName,
+                            types: originalExt
+                                ? [{ description: 'File', accept: { '*/*': [originalExt] } }]
+                                : undefined,
+                        });
+                        const writable = await handle.createWritable();
+                        await writable.write(blob);
+                        await writable.close();
+                        finalName = handle.name || downloadName;
+                        downloadBtn.classList.add('bg-green-600');
+                        setTimeout(() => downloadBtn.classList.remove('bg-green-600'), 200);
+                        return;
+                    } catch (err) {
+                        // If user cancels, just exit silently; otherwise fall back
+                        if (err && err.name === 'AbortError') {
+                            return;
+                        }
+                        // Fallback to prompt flow below
+                    }
+                }
+
+                // Fallback: prompt for filename, then trigger download (browser will ask location)
+                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', downloadName);
+                if (input && input.trim()) {
+                    finalName = input.trim();
+                    if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
+                        finalName += originalExt;
+                    }
+                }
+
                 const a = document.createElement('a');
                 a.href = blobUrl;
-                a.download = downloadName;
+                a.download = finalName;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
 
-                // Add visual feedback
                 downloadBtn.classList.add('bg-green-600');
-                setTimeout(() => {
-                    downloadBtn.classList.remove('bg-green-600');
-                }, 200);
+                setTimeout(() => downloadBtn.classList.remove('bg-green-600'), 200);
             });
         }
 
@@ -326,6 +363,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function hideDownload() {
         downloadContainer.classList.add('hidden');
+    }
+
+    function resetSelectedFileUI() {
+        const fileInput = document.getElementById('fileInput');
+        const fileInputDrop = document.getElementById('fileInputDrop');
+        const selectedFileDiv = document.getElementById('selectedFile');
+        const fileInfo = document.getElementById('fileInfo');
+
+        if (fileInput) fileInput.value = '';
+        if (fileInputDrop) fileInputDrop.value = '';
+        if (selectedFileDiv) selectedFileDiv.classList.add('hidden');
+        if (fileInfo) fileInfo.classList.remove('hidden');
+
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-50', 'cursor-not-allowed');
+        }
     }
 
     function showError(message) {
