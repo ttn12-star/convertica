@@ -364,7 +364,7 @@ def pdf_to_excel_page(request):
         button_text_key="Convert PDF to Excel",
         select_file_message_key="Please select a PDF file with tables.",
     )
-    return render(request, "frontend/converter_generic.html", context)
+    return render(request, "frontend/pdf_to_excel.html", context)
 
 
 def compress_pdf_page(request):
