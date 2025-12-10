@@ -3067,3 +3067,259 @@ msgstr "Se admiten archivos PDF de hasta 50 páginas. Para archivos más grandes
 
 #~ msgid "Thank you! Your message has been sent successfully."
 #~ msgstr "¡Gracias! Su mensaje ha sido enviado exitosamente."
+
+#: templates/frontend/rotate_pdf.html:77
+msgid "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
+msgstr "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
+
+#: templates/frontend/rotate_pdf.html:78
+msgid "Select which pages to rotate: all pages, current page only, or specific pages"
+msgstr "Select which pages to rotate: all pages, current page only, or specific pages"
+
+#: templates/frontend/rotate_pdf.html:79
+msgid "Click the rotate button to process your PDF and rotate the selected pages"
+msgstr "Click the rotate button to process your PDF and rotate the selected pages"
+
+#: templates/frontend/rotate_pdf.html:80
+msgid "Download your rotated PDF file using the download button"
+msgstr "Download your rotated PDF file using the download button"
+
+#: templates/frontend/rotate_pdf.html:84
+msgid "PDF files with up to 50 pages are supported for rotating. For larger files, please split them into smaller parts. The rotation preserves all content and formatting."
+msgstr "PDF files with up to 50 pages are supported for rotating. For larger files, please split them into smaller parts. The rotation preserves all content and formatting."
+
+#: templates/frontend/rotate_pdf.html:87
+msgid "Perfect for: rotating PDF pages that are upside down, rotating scanned PDF documents, rotating PDF pages for correct orientation, rotating PDF pages clockwise or counterclockwise, fixing PDF page orientation, rotating PDF pages for printing, rotating PDF pages for viewing, rotating PDF pages for mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-readers, rotating PDF pages for presentations, rotating PDF pages for reports, rotating PDF pages for legal documents, rotating PDF pages for academic papers, rotating PDF pages for business documents."
+msgstr "Perfect for: rotating PDF pages that are upside down, rotating scanned PDF documents, rotating PDF pages for correct orientation, rotating PDF pages clockwise or counterclockwise, fixing PDF page orientation, rotating PDF pages for printing, rotating PDF pages for viewing, rotating PDF pages for mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-readers, rotating PDF pages for presentations, rotating PDF pages for reports, rotating PDF pages for legal documents, rotating PDF pages for academic papers, rotating PDF pages for business documents."
+
+#: templates/frontend/remove_pages.html:64
+msgid "Choose which pages to remove from your PDF: all pages, current page only, or specific pages (e.g., 1,3,5 or 1-5)"
+msgstr "Choose which pages to remove from your PDF: all pages, current page only, or specific pages (e.g., 1,3,5 or 1-5)"
+
+#: templates/frontend/remove_pages.html:65
+msgid "Click the remove pages button to process your PDF and delete the selected pages"
+msgstr "Click the remove pages button to process your PDF and delete the selected pages"
+
+#: templates/frontend/remove_pages.html:66
+msgid "Download your PDF file with pages removed using the download button"
+msgstr "Download your PDF file with pages removed using the download button"
+
+#: templates/frontend/remove_pages.html:70
+msgid "PDF files with up to 50 pages are supported for removing pages. For larger files, please split them into smaller parts. The remaining pages will be preserved in their original order."
+msgstr "PDF files with up to 50 pages are supported for removing pages. For larger files, please split them into smaller parts. The remaining pages will be preserved in their original order."
+
+#: templates/frontend/remove_pages.html:73
+msgid "Perfect for: removing unwanted pages from PDF documents, deleting blank pages from PDF files, removing cover pages from PDF documents, removing table of contents pages from PDF files, removing appendix pages from PDF documents, deleting specific pages from PDF files, removing duplicate pages from PDF documents, removing watermark pages from PDF files, deleting page ranges from PDF documents, removing unwanted sections from PDF files, cleaning up PDF documents by removing pages, removing unnecessary pages from PDF files, deleting pages from scanned PDF documents, removing pages from merged PDF files, removing pages from PDF reports."
+msgstr "Perfect for: removing unwanted pages from PDF documents, deleting blank pages from PDF files, removing cover pages from PDF documents, removing table of contents pages from PDF files, removing appendix pages from PDF documents, deleting specific pages from PDF files, removing duplicate pages from PDF documents, removing watermark pages from PDF files, deleting page ranges from PDF documents, removing unwanted sections from PDF files, cleaning up PDF documents by removing pages, removing unnecessary pages from PDF files, deleting pages from scanned PDF documents, removing pages from merged PDF files, removing pages from PDF reports."
+
+#: templates/frontend/protect_pdf.html:69
+msgid "Enter a password to protect your PDF file (required) and optionally set user/owner passwords"
+msgstr "Enter a password to protect your PDF file (required) and optionally set user/owner passwords"
+
+#: templates/frontend/protect_pdf.html:70
+msgid "Click the protect button to encrypt your PDF with password protection"
+msgstr "Click the protect button to encrypt your PDF with password protection"
+
+#: templates/frontend/protect_pdf.html:71
+msgid "Download your password-protected PDF file using the download button"
+msgstr "Download your password-protected PDF file using the download button"
+
+#: templates/frontend/protect_pdf.html:75
+msgid "PDF files with up to 50 pages are supported for password protection. For larger files, please split them into smaller parts. The password will be required to open, view, print, or edit the PDF."
+msgstr "PDF files with up to 50 pages are supported for password protection. For larger files, please split them into smaller parts. The password will be required to open, view, print, or edit the PDF."
+
+#: templates/frontend/protect_pdf.html:78
+msgid "Perfect for: protecting PDF files with passwords, securing PDF documents with encryption, password protecting sensitive PDF files, securing confidential PDF documents, protecting PDF files from unauthorized access, encrypting PDF files for security, password protecting PDF contracts, securing PDF invoices with passwords, protecting PDF legal documents, securing PDF financial documents, password protecting PDF medical records, securing PDF personal documents, protecting PDF business files, securing PDF academic papers, password protecting PDF reports."
+msgstr "Perfect for: protecting PDF files with passwords, securing PDF documents with encryption, password protecting sensitive PDF files, securing confidential PDF documents, protecting PDF files from unauthorized access, encrypting PDF files for security, password protecting PDF contracts, securing PDF invoices with passwords, protecting PDF legal documents, securing PDF financial documents, password protecting PDF medical records, securing PDF personal documents, protecting PDF business files, securing PDF academic papers, password protecting PDF reports."
+
+#: templates/frontend/unlock_pdf.html:36
+msgid "Select your password-protected PDF file using the button above or drag and drop it into the zone below"
+msgstr "Select your password-protected PDF file using the button above or drag and drop it into the zone below"
+
+#: templates/frontend/unlock_pdf.html:37
+msgid "Enter the password that was used to protect the PDF file"
+msgstr "Enter the password that was used to protect the PDF file"
+
+#: templates/frontend/unlock_pdf.html:38
+msgid "Click the unlock button to remove password protection from your PDF"
+msgstr "Click the unlock button to remove password protection from your PDF"
+
+#: templates/frontend/unlock_pdf.html:39
+msgid "Download your unlocked PDF file (without password) using the download button"
+msgstr "Download your unlocked PDF file (without password) using the download button"
+
+#: templates/frontend/unlock_pdf.html:43
+msgid "PDF files with up to 50 pages are supported for unlocking. For larger files, please split them into smaller parts. You must know the correct password to unlock the PDF."
+msgstr "PDF files with up to 50 pages are supported for unlocking. For larger files, please split them into smaller parts. You must know the correct password to unlock the PDF."
+
+#: templates/frontend/unlock_pdf.html:46
+msgid "Perfect for: removing passwords from PDF files, unlocking password-protected PDF documents, removing PDF password protection, unlocking encrypted PDF files, removing security from PDF documents, unlocking PDF files for editing, removing password from PDF contracts, unlocking PDF invoices, removing password from PDF legal documents, unlocking PDF financial documents, removing password from PDF medical records, unlocking PDF personal documents, removing password from PDF business files, unlocking PDF academic papers, removing password from PDF reports."
+msgstr "Perfect for: removing passwords from PDF files, unlocking password-protected PDF documents, removing PDF password protection, unlocking encrypted PDF files, removing security from PDF documents, unlocking PDF files for editing, removing password from PDF contracts, unlocking PDF invoices, removing password from PDF legal documents, unlocking PDF financial documents, removing password from PDF medical records, unlocking PDF personal documents, removing password from PDF business files, unlocking PDF academic papers, removing password from PDF reports."
+
+#: templates/frontend/compress_pdf.html:35
+msgid "Choose the compression level (Low, Medium, or High) to compress PDF file size"
+msgstr "Choose the compression level (Low, Medium, or High) to compress PDF file size"
+
+#: templates/frontend/compress_pdf.html:36
+msgid "Click the compress button to reduce the size of your PDF file"
+msgstr "Click the compress button to reduce the size of your PDF file"
+
+#: templates/frontend/compress_pdf.html:37
+msgid "Download your compressed PDF file using the download button"
+msgstr "Download your compressed PDF file using the download button"
+
+#: templates/frontend/compress_pdf.html:41
+msgid "PDF files with up to 50 pages are supported for compression. For larger files, please split them into smaller parts. Higher compression reduces file size more but may slightly reduce image quality."
+msgstr "PDF files with up to 50 pages are supported for compression. For larger files, please split them into smaller parts. Higher compression reduces file size more but may slightly reduce image quality."
+
+#: templates/frontend/compress_pdf.html:44
+msgid "Perfect for: compressing PDF files to reduce size, reducing PDF file size for email, compressing large PDF documents, reducing PDF file size for web upload, compressing PDF files for storage, reducing PDF file size for sharing, compressing scanned PDF documents, reducing PDF file size for mobile devices, compressing PDF files for faster download, reducing PDF file size for cloud storage, compressing PDF files for archiving, reducing PDF file size for printing, compressing PDF files for presentations, reducing PDF file size for reports, compressing PDF files for business documents."
+msgstr "Perfect for: compressing PDF files to reduce size, reducing PDF file size for email, compressing large PDF documents, reducing PDF file size for web upload, compressing PDF files for storage, reducing PDF file size for sharing, compressing scanned PDF documents, reducing PDF file size for mobile devices, compressing PDF files for faster download, reducing PDF file size for cloud storage, compressing PDF files for archiving, reducing PDF file size for printing, compressing PDF files for presentations, reducing PDF file size for reports, compressing PDF files for business documents."
+
+#: templates/frontend/split_pdf.html:78
+msgid "Choose how to split your PDF: by individual pages, by page ranges, or every N pages"
+msgstr "Choose how to split your PDF: by individual pages, by page ranges, or every N pages"
+
+#: templates/frontend/split_pdf.html:79
+msgid "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for splitting PDF into separate files)"
+msgstr "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for splitting PDF into separate files)"
+
+#: templates/frontend/split_pdf.html:80
+msgid "Click the split button to process your PDF and create separate PDF files"
+msgstr "Click the split button to process your PDF and create separate PDF files"
+
+#: templates/frontend/split_pdf.html:81
+msgid "Download the ZIP archive containing all split PDF files using the download button"
+msgstr "Download the ZIP archive containing all split PDF files using the download button"
+
+#: templates/frontend/split_pdf.html:85
+msgid "The output will be a ZIP archive containing all split PDF files. You can split your PDF by individual pages, by page ranges, or every N pages."
+msgstr "The output will be a ZIP archive containing all split PDF files. You can split your PDF by individual pages, by page ranges, or every N pages."
+
+#: templates/frontend/split_pdf.html:88
+msgid "Perfect for: splitting PDF files into separate documents, dividing PDF documents into multiple files, splitting PDF by pages, breaking PDF into smaller files, splitting PDF by page ranges, dividing large PDF files, splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF for email attachments, dividing PDF documents for storage, splitting PDF for mobile viewing, breaking PDF into sections, splitting PDF for presentations, dividing PDF files for printing, splitting PDF for archiving."
+msgstr "Perfect for: splitting PDF files into separate documents, dividing PDF documents into multiple files, splitting PDF by pages, breaking PDF into smaller files, splitting PDF by page ranges, dividing large PDF files, splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF for email attachments, dividing PDF documents for storage, splitting PDF for mobile viewing, breaking PDF into sections, splitting PDF for presentations, dividing PDF files for printing, splitting PDF for archiving."
+
+#: templates/frontend/extract_pages.html:36
+msgid "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 to extract pages from PDF)"
+msgstr "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 to extract pages from PDF)"
+
+#: templates/frontend/extract_pages.html:37
+msgid "Click the extract button to process your PDF and extract the selected pages into a new PDF file"
+msgstr "Click the extract button to process your PDF and extract the selected pages into a new PDF file"
+
+#: templates/frontend/extract_pages.html:38
+msgid "Download your extracted PDF file containing only the selected pages using the download button"
+msgstr "Download your extracted PDF file containing only the selected pages using the download button"
+
+#: templates/frontend/extract_pages.html:42
+msgid "PDF files with up to 50 pages are supported for extracting pages. For larger files, please split them into smaller parts. The extracted pages will be combined into a single new PDF file."
+msgstr "PDF files with up to 50 pages are supported for extracting pages. For larger files, please split them into smaller parts. The extracted pages will be combined into a single new PDF file."
+
+#: templates/frontend/extract_pages.html:45
+msgid "Perfect for: extracting specific pages from PDF documents, extracting pages from PDF files, pulling pages from PDF documents, extracting selected pages from PDF files, getting specific pages from PDF documents, extracting page ranges from PDF files, pulling out pages from PDF documents, extracting pages from large PDF files, getting pages from PDF documents, extracting pages from scanned PDF files, pulling specific pages from PDF documents, extracting pages from PDF reports, getting pages from PDF contracts, extracting pages from PDF invoices, pulling pages from PDF legal documents."
+msgstr "Perfect for: extracting specific pages from PDF documents, extracting pages from PDF files, pulling pages from PDF documents, extracting selected pages from PDF files, getting specific pages from PDF documents, extracting page ranges from PDF files, pulling out pages from PDF documents, extracting pages from large PDF files, getting pages from PDF documents, extracting pages from scanned PDF files, pulling specific pages from PDF documents, extracting pages from PDF reports, getting pages from PDF contracts, extracting pages from PDF invoices, pulling pages from PDF legal documents."
+
+#: templates/frontend/organize_pdf.html:61
+msgid "Preview all pages and drag them to reorder pages in your PDF document"
+msgstr "Preview all pages and drag them to reorder pages in your PDF document"
+
+#: templates/frontend/organize_pdf.html:62
+msgid "Choose operation: reorder pages manually or sort pages automatically"
+msgstr "Choose operation: reorder pages manually or sort pages automatically"
+
+#: templates/frontend/organize_pdf.html:63
+msgid "Click the organize button to process your PDF and reorganize the pages"
+msgstr "Click the organize button to process your PDF and reorganize the pages"
+
+#: templates/frontend/organize_pdf.html:64
+msgid "Download your reorganized PDF file with pages in the new order using the download button"
+msgstr "Download your reorganized PDF file with pages in the new order using the download button"
+
+#: templates/frontend/organize_pdf.html:68
+msgid "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
+msgstr "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
+
+#: templates/frontend/organize_pdf.html:71
+msgid "Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF files, reordering pages in PDF documents, rearranging pages in PDF files, sorting pages in PDF documents, changing order of PDF pages, reorganizing PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF documents, changing PDF page sequence."
+msgstr "Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF files, reordering pages in PDF documents, rearranging pages in PDF files, sorting pages in PDF documents, changing order of PDF pages, reorganizing PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF documents, changing PDF page sequence."
+
+#: templates/frontend/merge_pdf.html:109
+msgid "Select 2-10 PDF files to merge using the button above"
+msgstr "Select 2-10 PDF files to merge using the button above"
+
+#: templates/frontend/merge_pdf.html:110
+msgid "Preview all PDF files and drag them to reorder the merge order"
+msgstr "Preview all PDF files and drag them to reorder the merge order"
+
+#: templates/frontend/merge_pdf.html:111
+msgid "Click the merge button to combine all PDF files into one document"
+msgstr "Click the merge button to combine all PDF files into one document"
+
+#: templates/frontend/merge_pdf.html:112
+msgid "Download your merged PDF file containing all pages from all selected files using the download button"
+msgstr "Download your merged PDF file containing all pages from all selected files using the download button"
+
+#: templates/frontend/merge_pdf.html:116
+msgid "You can merge 2-10 PDF files at once. The merged PDF will contain all pages from all selected files in the order you specified."
+msgstr "You can merge 2-10 PDF files at once. The merged PDF will contain all pages from all selected files in the order you specified."
+
+#: templates/frontend/merge_pdf.html:119
+msgid "Perfect for: merging multiple PDF files into one, combining PDF documents, joining PDF files together, merging PDF files for sharing, combining PDF documents into single file, joining multiple PDF files, merging PDF files for printing, combining PDF reports into one document, joining PDF files for archiving, merging PDF files for presentations, combining PDF invoices into one file, joining PDF contracts into single document, merging PDF files for business, combining PDF academic papers, joining PDF files for legal documents."
+msgstr "Perfect for: merging multiple PDF files into one, combining PDF documents, joining PDF files together, merging PDF files for sharing, combining PDF documents into single file, joining multiple PDF files, merging PDF files for printing, combining PDF reports into one document, joining PDF files for archiving, merging PDF files for presentations, combining PDF invoices into one file, joining PDF contracts into single document, merging PDF files for business, combining PDF academic papers, joining PDF files for legal documents."
+
+#: templates/frontend/add_page_numbers.html:162
+msgid "Choose the position, font size, starting number, and format for adding page numbers to PDF"
+msgstr "Choose the position, font size, starting number, and format for adding page numbers to PDF"
+
+#: templates/frontend/add_page_numbers.html:163
+msgid "Preview how the page numbers will look on your PDF using the live preview"
+msgstr "Preview how the page numbers will look on your PDF using the live preview"
+
+#: templates/frontend/add_page_numbers.html:164
+msgid "Select which pages to add numbers to: all pages, current page only, or specific pages"
+msgstr "Select which pages to add numbers to: all pages, current page only, or specific pages"
+
+#: templates/frontend/add_page_numbers.html:165
+msgid "Click the add page numbers button to process your PDF and add page numbers"
+msgstr "Click the add page numbers button to process your PDF and add page numbers"
+
+#: templates/frontend/add_page_numbers.html:166
+msgid "Download your PDF file with page numbers added using the download button"
+msgstr "Download your PDF file with page numbers added using the download button"
+
+#: templates/frontend/add_page_numbers.html:170
+msgid "PDF files with up to 50 pages are supported for adding page numbers. For larger files, please split them into smaller parts. The page numbers will be added according to your selected position, format, and font size."
+msgstr "PDF files with up to 50 pages are supported for adding page numbers. For larger files, please split them into smaller parts. The page numbers will be added according to your selected position, format, and font size."
+
+#: templates/frontend/add_page_numbers.html:173
+msgid "Perfect for: adding page numbers to PDF documents, numbering PDF pages, inserting page numbers in PDF files, adding page numbers to PDF reports, numbering pages in PDF documents, inserting page numbers in PDF contracts, adding page numbers to PDF invoices, numbering pages in PDF legal documents, inserting page numbers in PDF academic papers, adding page numbers to PDF business documents, numbering pages in PDF presentations, inserting page numbers in PDF manuals, adding page numbers to PDF books, numbering pages in PDF catalogs, inserting page numbers in PDF portfolios."
+msgstr "Perfect for: adding page numbers to PDF documents, numbering PDF pages, inserting page numbers in PDF files, adding page numbers to PDF reports, numbering pages in PDF documents, inserting page numbers in PDF contracts, adding page numbers to PDF invoices, numbering pages in PDF legal documents, inserting page numbers in PDF academic papers, adding page numbers to PDF business documents, numbering pages in PDF presentations, inserting page numbers in PDF manuals, adding page numbers to PDF books, numbering pages in PDF catalogs, inserting page numbers in PDF portfolios."
+
+#: templates/frontend/rotate_pdf.html:76
+msgid "Select your PDF file using the button above or drag and drop it into the zone below"
+msgstr "Select your PDF file using the button above or drag and drop it into the zone below"
+
+#: templates/frontend/unlock_pdf.html:23
+msgid "Enter the password that was used to protect the PDF. The password will be removed from the output PDF."
+msgstr "Enter the password that was used to protect the PDF. The password will be removed from the output PDF."
+
+#: templates/frontend/compress_pdf.html:21
+msgid "Choose compression level based on your needs. Higher compression reduces file size more but takes longer."
+msgstr "Choose compression level based on your needs. Higher compression reduces file size more but takes longer."
+
+#: templates/frontend/extract_pages.html:22
+msgid "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges (1-5)"
+msgstr "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges (1-5)"
+
+#: templates/frontend/organize_pdf.html:32
+msgid "Drag and drop pages to reorder them. The number on each page shows the new order."
+msgstr "Drag and drop pages to reorder them. The number on each page shows the new order."
+
+#: templates/frontend/merge_pdf.html:82
+msgid "Drag and drop to reorder files. The order shown here will be the merge order."
+msgstr "Drag and drop to reorder files. The order shown here will be the merge order."
+
+#: templates/frontend/add_page_numbers.html:149
+msgid "Preview shows page numbers as they will appear in the final PDF after download."
+msgstr "Preview shows page numbers as they will appear in the final PDF after download."
