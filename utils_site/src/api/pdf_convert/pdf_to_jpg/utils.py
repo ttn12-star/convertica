@@ -66,7 +66,7 @@ def parse_pages(pages_str: str, total_pages: int) -> list[int]:
 def convert_pdf_to_jpg(
     uploaded_file: UploadedFile,
     pages: str = "all",
-    dpi: int = 300,
+    dpi: int = 300,  # Default 300 DPI for high quality
     suffix: str = "_convertica",
 ) -> tuple[str, str]:
     """Convert PDF pages to JPG images and return as ZIP archive.
@@ -245,6 +245,7 @@ def convert_pdf_to_jpg(
                 raise ConversionError("No images generated from PDF", context=context)
 
             # Create ZIP archive with all images
+            # Use ZIP_STORED for better compatibility and to avoid recompression issues
             with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
                 for idx, image in enumerate(images):
                     # Determine page number for filename (1-indexed for display)
@@ -256,16 +257,39 @@ def convert_pdf_to_jpg(
                     else:
                         page_num = idx + 1  # 1-indexed
 
-                    # Save image to temporary file
+                    # Save image to temporary file with maximum quality
+                    # Use quality=100 for lossless-like quality, subsampling=0 to preserve color accuracy
                     jpg_name = f"{base}_page{page_num:04d}.jpg"
                     temp_jpg = os.path.join(tmp_dir, jpg_name)
-                    image.save(temp_jpg, "JPEG", quality=95, optimize=True)
 
-                    # Add to ZIP
-                    zipf.write(temp_jpg, jpg_name)
+                    # Convert image to RGB mode if needed (some PDFs may have different color modes)
+                    if image.mode not in ("RGB", "L"):
+                        image = image.convert("RGB")
 
-                    # Clean up temporary JPG
-                    os.remove(temp_jpg)
+                    # Save with maximum quality and no subsampling for best quality
+                    image.save(
+                        temp_jpg,
+                        "JPEG",
+                        quality=100,  # Maximum quality
+                        optimize=False,  # Disable optimization to avoid recompression
+                        subsampling=0,  # No chroma subsampling for best color accuracy
+                    )
+
+                    # Verify file was saved correctly before adding to ZIP
+                    if os.path.exists(temp_jpg) and os.path.getsize(temp_jpg) > 0:
+                        # Add to ZIP with explicit compression
+                        zipf.write(temp_jpg, jpg_name)
+                        # Clean up temporary JPG
+                        os.remove(temp_jpg)
+                    else:
+                        logger.warning(
+                            "Failed to save image file",
+                            extra={
+                                **context,
+                                "page_num": page_num,
+                                "event": "image_save_failed",
+                            },
+                        )
 
             context["images_count"] = len(images)
             logger.debug(

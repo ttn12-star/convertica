@@ -40,14 +40,16 @@ class PDFToJPGAPIView(BaseConversionAPIView):
     ) -> Response | None:
         """Validate DPI parameter."""
         dpi = validated_data.get("dpi", 300)
-        if dpi < 72 or dpi > 600:
+        if dpi < 150 or dpi > 600:
             log_file_validation_error(
                 logger,
                 f"DPI out of range: {dpi}",
                 context,
             )
             return Response(
-                {"error": "DPI must be between 72 and 600."},
+                {
+                    "error": "DPI must be between 150 and 600. Recommended: 300 DPI for high quality."
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
         return None
