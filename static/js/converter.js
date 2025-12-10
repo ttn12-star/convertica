@@ -59,6 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const fieldName = window.FILE_INPUT_NAME || 'file';
         formData.append(fieldName, selectedFile);
 
+        // Add pages parameter if available (for PDF to JPG)
+        const pagesInput = form.querySelector('input[name="pages"]');
+        if (pagesInput && pagesInput.value) {
+            formData.append('pages', pagesInput.value);
+        }
+
         // Add Turnstile token if available
         const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
         if (turnstileResponse && turnstileResponse.value) {
