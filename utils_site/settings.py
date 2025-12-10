@@ -34,11 +34,20 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         def before_send(event, hint):
             # Don't send InvalidPDFError as exception - it's handled gracefully
             if "exc_info" in hint and hint["exc_info"][0].__name__ == "InvalidPDFError":
-                # Still log it but as a message, not exception
                 event["level"] = "info"
                 event["tags"] = event.get("tags", {})
                 event["tags"]["error_type"] = "handled"
                 event["tags"]["user_error"] = "true"
+            # Drop noisy Gunicorn scanner requests (invalid protocol / php probes)
+            if event.get("logger") == "gunicorn.error":
+                message = event.get("message") or ""
+                # Examples: "Invalid HTTP request line: 'SSH-2.0-Go'", "Error handling request /admin/config.php"
+                if (
+                    "Invalid HTTP request line" in message
+                    or ".php" in message
+                    or "SSH-2.0" in message
+                ):
+                    return None
             return event
 
         sentry_sdk.init(
