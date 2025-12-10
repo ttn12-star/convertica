@@ -231,6 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (draggedElement) {
                     draggedElement.style.opacity = '1';
                 }
+                // Update order after drag ends to ensure pageOrder is current
+                updateOrderFromPreview();
                 draggedElement = null;
             };
 
