@@ -42,6 +42,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-dejavu-core \
     fonts-dejavu-extra \
     fonts-liberation \
+    fonts-crosextra-caladea \  # Cambria-compatible
+    fonts-crosextra-carlito \  # Calibri-compatible
     fonts-noto-core \
     fonts-noto-cjk \
     fonts-noto-emoji \
