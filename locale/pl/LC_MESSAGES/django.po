@@ -3252,3 +3252,143 @@ msgstr "Drag and drop to reorder files. The order shown here will be the merge o
 #: templates/frontend/add_page_numbers.html:149
 msgid "Preview shows page numbers as they will appear in the final PDF after download."
 msgstr "Preview shows page numbers as they will appear in the final PDF after download."
+
+#: templates/frontend/*.html
+msgid "A crop area covering most of the page is selected by default - adjust it as needed"
+msgstr "Domyślnie wybrana jest obszar przycinania obejmujący większość strony - dostosuj go w razie potrzeby"
+
+#: templates/frontend/*.html
+msgid "Choose the color and opacity using the sliders to customize your PDF watermark"
+msgstr "Wybierz kolor i przezroczystość za pomocą suwaków, aby dostosować znak wodny PDF"
+
+#: templates/frontend/*.html
+msgid "Choose which pages to apply the crop to (all pages, current page, or custom pages)"
+msgstr "Wybierz, do których stron zastosować przycinanie (wszystkie strony, bieżąca strona lub strony niestandardowe)"
+
+#: templates/frontend/*.html
+msgid "Click and drag on the PDF to select the crop area. The blue highlighted area will be kept. You can drag the selection box anywhere to move it, or use the corner/edge handles to resize it."
+msgstr "Kliknij i przeciągnij na PDF, aby wybrać obszar przycinania. Niebieski podświetlony obszar zostanie zachowany. Możesz przeciągnąć pole wyboru w dowolne miejsce, aby je przesunąć, lub użyć uchwytów narożnych/krawędziowych, aby zmienić jego rozmiar."
+
+#: templates/frontend/*.html
+msgid "Click on the PDF to position the watermark, or drag it to move it anywhere on the page"
+msgstr "Kliknij na PDF, aby ustawić znak wodny, lub przeciągnij go, aby przenieść go w dowolne miejsce na stronie"
+
+#: templates/frontend/*.html
+msgid "Click the add watermark button to process your PDF and add the watermark"
+msgstr "Kliknij przycisk dodaj znak wodny, aby przetworzyć PDF i dodać znak wodny"
+
+#: templates/frontend/*.html
+msgid "Click the button above to select one or more images, or drag and drop them into the zone below"
+msgstr "Kliknij przycisk powyżej, aby wybrać jedno lub więcej obrazów, lub przeciągnij je i upuść w strefie poniżej"
+
+#: templates/frontend/*.html
+msgid "Click the crop button to process your PDF and crop the selected area"
+msgstr "Kliknij przycisk przycinania, aby przetworzyć PDF i przyciąć wybrany obszar"
+
+#: templates/frontend/*.html
+msgid "Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize."
+msgstr "Obszar przycinania gotowy! Przeciągnij pole, aby je przesunąć, przeciągnij z zewnątrz, aby utworzyć nowy wybór, lub użyj uchwytów, aby zmienić rozmiar."
+
+#: templates/frontend/*.html
+msgid "Download your cropped PDF file using the download button"
+msgstr "Pobierz przycięty plik PDF za pomocą przycisku pobierania"
+
+#: templates/frontend/*.html
+msgid "Download your watermarked PDF file using the download button"
+msgstr "Pobierz plik PDF ze znakiem wodnym za pomocą przycisku pobierania"
+
+#: templates/frontend/*.html
+msgid "Drag the watermark to move it. Drag any corner handle to rotate and scale simultaneously."
+msgstr "Przeciągnij znak wodny, aby go przesunąć. Przeciągnij dowolny uchwyt narożny, aby jednocześnie obrócić i skalować."
+
+#: templates/frontend/*.html
+msgid "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all pages"
+msgstr "Wprowadź numery stron oddzielone przecinkami (np. 1,3,5) lub pozostaw puste, aby podzielić wszystkie strony"
+
+#: templates/frontend/*.html
+msgid "Enter your watermark text or upload an image to add as watermark to PDF"
+msgstr "Wprowadź tekst znaku wodnego lub prześlij obraz, aby dodać go jako znak wodny do PDF"
+
+#: templates/frontend/*.html
+msgid "High quality (recommended)"
+msgstr "Wysoka jakość (zalecane)"
+
+#: templates/frontend/*.html
+msgid "Higher DPI = better quality but larger file size. 300 DPI is recommended for most uses."
+msgstr "Wyższe DPI = lepsza jakość, ale większy rozmiar pliku. 300 DPI jest zalecane dla większości zastosowań."
+
+#: templates/frontend/*.html
+msgid "Image Quality (DPI)"
+msgstr "Jakość obrazu (DPI)"
+
+#: templates/frontend/*.html
+msgid "Maximum quality"
+msgstr "Maksymalna jakość"
+
+#: templates/frontend/*.html
+msgid "Note:"
+msgstr "Uwaga:"
+
+#: templates/frontend/*.html
+msgid "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
+msgstr "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
+
+#: templates/frontend/*.html
+msgid "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
+msgstr "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
+
+#: templates/frontend/*.html
+msgid "Page Selection"
+msgstr "Wybór stron"
+
+#: templates/frontend/*.html
+msgid "Pages to Convert"
+msgstr "Strony do konwersji"
+
+#: templates/frontend/*.html
+msgid "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
+msgstr "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
+
+#: templates/frontend/*.html
+msgid "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
+msgstr "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
+
+#: templates/frontend/*.html
+msgid "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
+msgstr "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
+
+#: templates/frontend/*.html
+msgid "Resize the selection by dragging the corners or edges to adjust the crop area"
+msgstr "Zmień rozmiar wyboru, przeciągając rogi lub krawędzie, aby dostosować obszar przycinania"
+
+#: templates/frontend/*.html
+msgid "Select page"
+msgstr "Wybierz stronę"
+
+#: templates/frontend/*.html
+msgid "Select your Word document (DOC or DOCX) using the button above or drag and drop it into the zone below"
+msgstr "Wybierz dokument Word (DOC lub DOCX) za pomocą przycisku powyżej lub przeciągnij i upuść go w strefie poniżej"
+
+#: templates/frontend/*.html
+msgid "Selection too small. Full page selected. Drag to create a new selection or drag the box to move it."
+msgstr "Wybór zbyt mały. Wybrana cała strona. Przeciągnij, aby utworzyć nowy wybór lub przeciągnij pole, aby je przesunąć."
+
+#: templates/frontend/*.html
+msgid "Smaller file size"
+msgstr "Mniejszy rozmiar pliku"
+
+#: templates/frontend/*.html
+msgid "The PDF will be displayed - click and drag to select the area you want to keep when cropping PDF"
+msgstr "PDF zostanie wyświetlony - kliknij i przeciągnij, aby wybrać obszar, który chcesz zachować podczas przycinania PDF"
+
+#: templates/frontend/*.html
+msgid "The watermark appears at the bottom of the page by default. Drag it to move, use the top handle to rotate, and the corner handle to scale. Click anywhere on the PDF to reposition it."
+msgstr "Znak wodny domyślnie pojawia się na dole strony. Przeciągnij go, aby przesunąć, użyj górnego uchwytu do obracania i narożnego uchwytu do skalowania. Kliknij w dowolnym miejscu PDF, aby zmienić jego pozycję."
+
+#: templates/frontend/*.html
+msgid "Very high quality"
+msgstr "Bardzo wysoka jakość"
+
+#: templates/frontend/*.html
+msgid "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. Supported formats include JPG, PNG, GIF, and BMP. The images will be combined in the order you select them."
+msgstr "Możesz przekonwertować wiele obrazów (JPG, PNG itp.) na pojedynczy plik PDF. Obsługiwane formaty obejmują JPG, PNG, GIF i BMP. Obrazy zostaną połączone w kolejności, w jakiej je wybierzesz."
