@@ -2724,3 +2724,47 @@ msgstr "The server is temporarily unavailable or overloaded. Please try again in
 #: templates/502.html:60
 msgid "This is usually a temporary issue. If it persists, please"
 msgstr "This is usually a temporary issue. If it persists, please"
+
+#: templates/frontend/pdf_to_jpg.html:56
+msgid "Choose which pages to convert from PDF to JPG: all pages or specific pages (e.g., 1,3,5 or 1-5)"
+msgstr "Choose which pages to convert from PDF to JPG: all pages or specific pages (e.g., 1,3,5 or 1-5)"
+
+#: templates/frontend/pdf_to_jpg.html:57
+msgid "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high quality, 72 DPI for smaller file size)"
+msgstr "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high quality, 72 DPI for smaller file size)"
+
+#: templates/frontend/pdf_to_jpg.html:58
+msgid "Click the convert button to start the PDF to JPG conversion process"
+msgstr "Click the convert button to start the PDF to JPG conversion process"
+
+#: templates/frontend/pdf_to_jpg.html:59
+msgid "Wait for the PDF to JPG conversion to complete - all selected pages will be converted to JPG images"
+msgstr "Wait for the PDF to JPG conversion to complete - all selected pages will be converted to JPG images"
+
+#: templates/frontend/pdf_to_jpg.html:60
+msgid "Download the ZIP archive containing all converted JPG images from your PDF"
+msgstr "Download the ZIP archive containing all converted JPG images from your PDF"
+
+#: templates/frontend/pdf_to_word.html:11
+msgid "Click the convert button to start converting PDF to Word (PDF to DOCX conversion)"
+msgstr "Click the convert button to start converting PDF to Word (PDF to DOCX conversion)"
+
+#: templates/frontend/pdf_to_word.html:12
+msgid "Wait for the PDF to Word conversion to complete - text and formatting will be extracted from your PDF and converted to editable Word format"
+msgstr "Wait for the PDF to Word conversion to complete - text and formatting will be extracted from your PDF and converted to editable Word format"
+
+#: templates/frontend/pdf_to_word.html:13
+msgid "Download your editable Word document (DOCX format) - your PDF has been successfully converted to Word"
+msgstr "Download your editable Word document (DOCX format) - your PDF has been successfully converted to Word"
+
+#: templates/frontend/word_to_pdf.html:11
+msgid "Click the convert button to start converting Word to PDF (DOCX to PDF conversion)"
+msgstr "Click the convert button to start converting Word to PDF (DOCX to PDF conversion)"
+
+#: templates/frontend/word_to_pdf.html:12
+msgid "Wait for the Word to PDF conversion to complete - formatting and layout will be preserved when converting from Word to PDF"
+msgstr "Wait for the Word to PDF conversion to complete - formatting and layout will be preserved when converting from Word to PDF"
+
+#: templates/frontend/word_to_pdf.html:13
+msgid "Download your PDF file - your Word document has been successfully converted to PDF format"
+msgstr "Download your PDF file - your Word document has been successfully converted to PDF format"

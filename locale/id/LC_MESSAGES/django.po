@@ -2966,5 +2966,49 @@ msgstr "Putar halaman PDF Anda dalam hitungan detik"
 msgid "Organize and manage your PDF documents"
 msgstr "Atur dan kelola dokumen PDF Anda"
 
+#: templates/frontend/pdf_to_jpg.html:56
+msgid "Choose which pages to convert from PDF to JPG: all pages or specific pages (e.g., 1,3,5 or 1-5)"
+msgstr "Pilih halaman mana yang akan dikonversi dari PDF ke JPG: semua halaman atau halaman tertentu (mis., 1,3,5 atau 1-5)"
+
+#: templates/frontend/pdf_to_jpg.html:57
+msgid "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high quality, 72 DPI for smaller file size)"
+msgstr "Pilih kualitas DPI untuk konversi PDF ke JPG (300 DPI direkomendasikan untuk kualitas tinggi, 72 DPI untuk ukuran file lebih kecil)"
+
+#: templates/frontend/pdf_to_jpg.html:58
+msgid "Click the convert button to start the PDF to JPG conversion process"
+msgstr "Klik tombol konversi untuk memulai proses konversi PDF ke JPG"
+
+#: templates/frontend/pdf_to_jpg.html:59
+msgid "Wait for the PDF to JPG conversion to complete - all selected pages will be converted to JPG images"
+msgstr "Tunggu hingga konversi PDF ke JPG selesai - semua halaman yang dipilih akan dikonversi menjadi gambar JPG"
+
+#: templates/frontend/pdf_to_jpg.html:60
+msgid "Download the ZIP archive containing all converted JPG images from your PDF"
+msgstr "Unduh arsip ZIP yang berisi semua gambar JPG yang dikonversi dari PDF Anda"
+
+#: templates/frontend/pdf_to_word.html:11
+msgid "Click the convert button to start converting PDF to Word (PDF to DOCX conversion)"
+msgstr "Klik tombol konversi untuk memulai konversi PDF ke Word (konversi PDF ke DOCX)"
+
+#: templates/frontend/pdf_to_word.html:12
+msgid "Wait for the PDF to Word conversion to complete - text and formatting will be extracted from your PDF and converted to editable Word format"
+msgstr "Tunggu hingga konversi PDF ke Word selesai - teks dan pemformatan akan diekstrak dari PDF Anda dan dikonversi ke format Word yang dapat diedit"
+
+#: templates/frontend/pdf_to_word.html:13
+msgid "Download your editable Word document (DOCX format) - your PDF has been successfully converted to Word"
+msgstr "Unduh dokumen Word yang dapat diedit (format DOCX) - PDF Anda telah berhasil dikonversi ke Word"
+
+#: templates/frontend/word_to_pdf.html:11
+msgid "Click the convert button to start converting Word to PDF (DOCX to PDF conversion)"
+msgstr "Klik tombol konversi untuk memulai konversi Word ke PDF (konversi DOCX ke PDF)"
+
+#: templates/frontend/word_to_pdf.html:12
+msgid "Wait for the Word to PDF conversion to complete - formatting and layout will be preserved when converting from Word to PDF"
+msgstr "Tunggu hingga konversi Word ke PDF selesai - pemformatan dan tata letak akan dipertahankan saat mengonversi dari Word ke PDF"
+
+#: templates/frontend/word_to_pdf.html:13
+msgid "Download your PDF file - your Word document has been successfully converted to PDF format"
+msgstr "Unduh file PDF Anda - dokumen Word Anda telah berhasil dikonversi ke format PDF"
+
 #~ msgid "Thank you! Your message has been sent successfully."
 #~ msgstr "Terima kasih! Pesan Anda telah berhasil dikirim."
