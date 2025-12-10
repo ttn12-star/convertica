@@ -271,7 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         downloadContainer.classList.remove('hidden');
-        downloadContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // Scroll to download button with a slight delay to ensure DOM is updated
+        setTimeout(() => {
+            downloadContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
 
         // Clear selected file from the form to avoid showing old file after success
         resetSelectedFileUI();
