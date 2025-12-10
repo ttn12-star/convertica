@@ -120,8 +120,9 @@ def convert_pdf_to_excel(
                             continue
                 page_numbers = [p - 1 for p in page_list]  # Convert to 0-indexed
 
-            # Extract tables from PDF
+            # Extract tables and text from PDF
             all_tables = []
+            all_text_pages = []  # Pages with plain text (one line per cell)
             pages_with_images = []  # Pages that need image fallback
 
             try:
@@ -253,15 +254,47 @@ def convert_pdf_to_excel(
                                                 "cells": non_empty_cells,
                                             },
                                         )
-                            else:
-                                logger.debug(
-                                    f"No tables found on page {page_num + 1}",
-                                    extra={**context, "page": page_num + 1},
-                                )
 
-                            # If no valid tables found on this page, mark for image fallback
+                            # If no valid tables found, try to extract plain text
                             if not page_has_valid_tables:
-                                pages_with_images.append(page_num + 1)
+                                try:
+                                    # Extract all text from the page
+                                    page_text = page.extract_text()
+
+                                    if page_text and page_text.strip():
+                                        # Split text into lines (each line = one cell)
+                                        lines = [
+                                            line.strip()
+                                            for line in page_text.split("\n")
+                                            if line.strip()
+                                        ]
+
+                                        if lines:
+                                            # Store as text data (one line per row, single column)
+                                            all_text_pages.append(
+                                                {"page": page_num + 1, "lines": lines}
+                                            )
+                                            logger.debug(
+                                                f"Extracted {len(lines)} lines of text from page {page_num + 1}",
+                                                extra={
+                                                    **context,
+                                                    "page": page_num + 1,
+                                                    "lines_count": len(lines),
+                                                },
+                                            )
+                                        else:
+                                            # No text found, mark for image fallback
+                                            pages_with_images.append(page_num + 1)
+                                    else:
+                                        # No text found, mark for image fallback
+                                        pages_with_images.append(page_num + 1)
+                                except Exception as text_err:
+                                    logger.debug(
+                                        f"Text extraction failed for page {page_num + 1}: {text_err}",
+                                        extra={**context, "page": page_num + 1},
+                                    )
+                                    # Mark for image fallback if text extraction fails
+                                    pages_with_images.append(page_num + 1)
 
                         except Exception as page_err:
                             logger.warning(
@@ -381,7 +414,57 @@ def convert_pdf_to_excel(
                             if page_num not in pages_with_images:
                                 pages_with_images.append(page_num)
 
-                # If there are pages that need image fallback (no tables found on those pages)
+                # Add plain text pages (one line per cell)
+                if all_text_pages:
+                    for text_data in all_text_pages:
+                        page_num = text_data["page"]
+                        lines = text_data["lines"]
+
+                        try:
+                            # Create DataFrame with single column, each line is a row
+                            df = pd.DataFrame(lines, columns=["Text"])
+
+                            # Generate sheet name
+                            sheet_name = f"Page {page_num} Text"
+                            if len(sheet_name) > 31:
+                                sheet_name = sheet_name[:31]
+
+                            # Ensure unique sheet names
+                            base_sheet_name = sheet_name
+                            counter = 1
+                            while sheet_name in [
+                                ws.title
+                                for ws in writer.book.worksheets
+                                if hasattr(writer, "book")
+                            ]:
+                                sheet_name = f"{base_sheet_name[:28]}_{counter}"
+                                counter += 1
+
+                            df.to_excel(writer, sheet_name=sheet_name, index=False)
+                            logger.debug(
+                                f"Added {len(lines)} lines of text from page {page_num} to Excel",
+                                extra={
+                                    **context,
+                                    "page": page_num,
+                                    "lines": len(lines),
+                                },
+                            )
+
+                        except Exception as text_err:
+                            logger.warning(
+                                f"Failed to add text from page {page_num}: {text_err}",
+                                extra={
+                                    **context,
+                                    "page": page_num,
+                                    "error": str(text_err),
+                                },
+                                exc_info=True,
+                            )
+                            # Mark page for image fallback
+                            if page_num not in pages_with_images:
+                                pages_with_images.append(page_num)
+
+                # If there are pages that need image fallback (no tables or text found on those pages)
                 if pages_with_images:
                     # Convert pages to images and add to Excel
                     try:
@@ -521,8 +604,11 @@ def convert_pdf_to_excel(
             # Log conversion results
             conversion_summary = {
                 "tables_found": len(all_tables),
+                "text_pages": len(all_text_pages),
                 "images_added": len(pages_with_images),
-                "total_sheets": len(all_tables) + len(pages_with_images),
+                "total_sheets": len(all_tables)
+                + len(all_text_pages)
+                + len(pages_with_images),
             }
             logger.info(
                 "PDF to Excel conversion completed",
