@@ -463,12 +463,15 @@ msgstr ""
 msgid "How to use:"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:200
+#: templates/frontend/*.html
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use the top handle to rotate, and the corner handle to scale. Click anywhere "
 "on the PDF to reposition it."
 msgstr ""
+"The watermark appears at the bottom of the page by default. Drag it to move, "
+"use the top handle to rotate, and the corner handle to scale. Click anywhere "
+"on the PDF to reposition it."
 
 #: templates/frontend/add_watermark.html:209
 msgid "Watermark Settings"
@@ -506,11 +509,13 @@ msgstr ""
 msgid "Interactive controls:"
 msgstr ""
 
-#: templates/frontend/add_watermark.html:314
+#: templates/frontend/*.html
 msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
 "simultaneously."
 msgstr ""
+"Drag the watermark to move it. Drag any corner handle to rotate and scale "
+"simultaneously."
 
 #: templates/frontend/add_watermark.html:401
 #: templates/frontend/converter_generic.html:180
@@ -850,6 +855,8 @@ msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
 msgstr ""
+"Choose compression level based on your needs. Higher compression reduces "
+"file size more but takes longer."
 
 #: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:454
 msgid "Contact Us - Convertica"
@@ -1064,12 +1071,15 @@ msgstr ""
 msgid "Crop Your PDF"
 msgstr ""
 
-#: templates/frontend/crop_pdf.html:167
+#: templates/frontend/*.html
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
 "corner/edge handles to resize it."
 msgstr ""
+"Click and drag on the PDF to select the crop area. The blue highlighted area "
+"will be kept. You can drag the selection box anywhere to move it, or use the "
+"corner/edge handles to resize it."
 
 #: templates/frontend/crop_pdf.html:172
 msgid "Page:"
@@ -1173,6 +1183,8 @@ msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
 "(1-5)"
 msgstr ""
+"Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
+"(1-5)"
 
 #: templates/frontend/includes/cookie_banner.html:10
 #: templates/frontend/includes/cookie_banner.html:42
@@ -1456,7 +1468,9 @@ msgid "Free PDF Tools - Convert, Edit & Organize"
 msgstr ""
 
 #: templates/frontend/index.html:400
-msgid "Access all our PDF tools: convert PDF to Word, merge PDFs, split, rotate, and more. Fast, secure, and completely free."
+msgid ""
+"Access all our PDF tools: convert PDF to Word, merge PDFs, split, rotate, "
+"and more. Fast, secure, and completely free."
 msgstr ""
 
 #: templates/frontend/index.html:415
@@ -1503,11 +1517,13 @@ msgstr ""
 msgid "multiple files supported"
 msgstr ""
 
-#: templates/frontend/jpg_to_pdf.html:135
+#: templates/frontend/*.html
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
 msgstr ""
+"Click the button above to select one or more images, or drag and drop them "
+"into the zone below"
 
 #: templates/frontend/jpg_to_pdf.html:136
 msgid ""
@@ -1567,10 +1583,11 @@ msgstr ""
 msgid "Preview & Reorder Pages"
 msgstr ""
 
-#: templates/frontend/merge_pdf.html:81
+#: templates/frontend/merge_pdf.html:82
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 msgstr ""
+"Drag and drop to reorder files. The order shown here will be the merge order."
 
 #: templates/frontend/organize_pdf.html:11
 msgid "Organization Settings"
@@ -1589,11 +1606,13 @@ msgstr ""
 msgid "Sort Pages"
 msgstr ""
 
-#: templates/frontend/organize_pdf.html:31
+#: templates/frontend/organize_pdf.html:32
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
 msgstr ""
+"Drag and drop pages to reorder them. The number on each page shows the new "
+"order."
 
 #: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:434
 msgid "Privacy Policy - Convertica"
@@ -1866,6 +1885,7 @@ msgstr ""
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
 msgstr ""
+"This password will be required to open the PDF. Make sure to remember it!"
 
 #: templates/frontend/protect_pdf.html:30
 msgid "User Password"
@@ -1880,11 +1900,13 @@ msgstr ""
 msgid "Optional: Different user password"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:39
+#: templates/frontend/protect_pdf.html:38
 msgid ""
 "Optional: Set a different password for users. If not provided, the main "
 "password will be used."
 msgstr ""
+"Optional: Set a different password for users. If not provided, the main "
+"password will be used."
 
 #: templates/frontend/protect_pdf.html:46
 msgid "Owner Password"
@@ -1894,11 +1916,13 @@ msgstr ""
 msgid "Optional: Different owner password"
 msgstr ""
 
-#: templates/frontend/protect_pdf.html:55
+#: templates/frontend/protect_pdf.html:54
 msgid ""
 "Optional: Set a different password for owner. If not provided, the main "
 "password will be used."
 msgstr ""
+"Optional: Set a different password for owner. If not provided, the main "
+"password will be used."
 
 #: templates/frontend/remove_pages.html:6
 msgid "Remove Pages Settings"
@@ -1960,11 +1984,13 @@ msgstr ""
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
 
-#: templates/frontend/split_pdf.html:51
+#: templates/frontend/*.html
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
 msgstr ""
+"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
+"pages"
 
 #: templates/frontend/split_pdf.html:53
 msgid "Page Ranges"
@@ -2310,6 +2336,8 @@ msgid ""
 "Enter the password that was used to protect the PDF. The password will be "
 "removed from the output PDF."
 msgstr ""
+"Enter the password that was used to protect the PDF. The password will be "
+"removed from the output PDF."
 
 #: utils_site/src/blog/admin.py:21 utils_site/src/blog/admin.py:95
 msgid "Basic Information"
@@ -2564,11 +2592,11 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:499
 msgid ""
-"Thank you! Your message has been sent successfully. We'll get back to you "
-"as soon as possible, usually within 24-48 hours."
+"Thank you! Your message has been sent successfully. We'll get back to you as "
+"soon as possible, usually within 24-48 hours."
 msgstr ""
-"Thank you! Your message has been sent successfully. We'll get back to you "
-"as soon as possible, usually within 24-48 hours."
+"Thank you! Your message has been sent successfully. We'll get back to you as "
+"soon as possible, usually within 24-48 hours."
 
 #: utils_site/src/frontend/views.py:581
 msgid ""
@@ -2620,8 +2648,12 @@ msgid "The request could not be understood by the server."
 msgstr "The request could not be understood by the server."
 
 #: templates/400.html:34
-msgid "The request you sent could not be understood by the server. Please check your input and try again."
-msgstr "The request you sent could not be understood by the server. Please check your input and try again."
+msgid ""
+"The request you sent could not be understood by the server. Please check "
+"your input and try again."
+msgstr ""
+"The request you sent could not be understood by the server. Please check "
+"your input and try again."
 
 #: templates/400.html:44
 msgid "Go Back"
@@ -2640,8 +2672,12 @@ msgid "You don't have permission to access this resource."
 msgstr "You don't have permission to access this resource."
 
 #: templates/403.html:35
-msgid "You don't have permission to access this page. If you believe this is an error, please contact support."
-msgstr "You don't have permission to access this page. If you believe this is an error, please contact support."
+msgid ""
+"You don't have permission to access this page. If you believe this is an "
+"error, please contact support."
+msgstr ""
+"You don't have permission to access this page. If you believe this is an "
+"error, please contact support."
 
 #: templates/403.html:53
 msgid "Contact Support"
@@ -2660,8 +2696,12 @@ msgid "Oops! Page Not Found"
 msgstr "Oops! Page Not Found"
 
 #: templates/404.html:33
-msgid "The page you're looking for seems to have wandered off. It might have been moved, deleted, or never existed."
-msgstr "The page you're looking for seems to have wandered off. It might have been moved, deleted, or never existed."
+msgid ""
+"The page you're looking for seems to have wandered off. It might have been "
+"moved, deleted, or never existed."
+msgstr ""
+"The page you're looking for seems to have wandered off. It might have been "
+"moved, deleted, or never existed."
 
 #: templates/404.html:51
 msgid "Browse All Tools"
@@ -2684,8 +2724,12 @@ msgid "Oops! Something Went Wrong"
 msgstr "Oops! Something Went Wrong"
 
 #: templates/500.html:34
-msgid "We're experiencing some technical difficulties. Our team has been notified and is working to fix the issue. Please try again in a few moments."
-msgstr "We're experiencing some technical difficulties. Our team has been notified and is working to fix the issue. Please try again in a few moments."
+msgid ""
+"We're experiencing some technical difficulties. Our team has been notified "
+"and is working to fix the issue. Please try again in a few moments."
+msgstr ""
+"We're experiencing some technical difficulties. Our team has been notified "
+"and is working to fix the issue. Please try again in a few moments."
 
 #: templates/500.html:44
 msgid "Try Again"
@@ -2712,132 +2756,304 @@ msgid "Bad Gateway"
 msgstr "Bad Gateway"
 
 #: templates/502.html:35
-msgid "The server is temporarily unavailable or overloaded. Please try again in a few moments. We're working to restore service as quickly as possible."
-msgstr "The server is temporarily unavailable or overloaded. Please try again in a few moments. We're working to restore service as quickly as possible."
+msgid ""
+"The server is temporarily unavailable or overloaded. Please try again in a "
+"few moments. We're working to restore service as quickly as possible."
+msgstr ""
+"The server is temporarily unavailable or overloaded. Please try again in a "
+"few moments. We're working to restore service as quickly as possible."
 
 #: templates/502.html:60
 msgid "This is usually a temporary issue. If it persists, please"
 msgstr "This is usually a temporary issue. If it persists, please"
 
 #: templates/frontend/pdf_to_jpg.html:56
-msgid "Choose which pages to convert from PDF to JPG: all pages or specific pages (e.g., 1,3,5 or 1-5)"
-msgstr "Choose which pages to convert from PDF to JPG: all pages or specific pages (e.g., 1,3,5 or 1-5)"
+msgid ""
+"Choose which pages to convert from PDF to JPG: all pages or specific pages "
+"(e.g., 1,3,5 or 1-5)"
+msgstr ""
+"Choose which pages to convert from PDF to JPG: all pages or specific pages "
+"(e.g., 1,3,5 or 1-5)"
 
 #: templates/frontend/pdf_to_jpg.html:57
-msgid "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high quality, 72 DPI for smaller file size)"
-msgstr "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high quality, 72 DPI for smaller file size)"
+msgid ""
+"Select DPI quality for PDF to JPG conversion (300 DPI recommended for high "
+"quality, 72 DPI for smaller file size)"
+msgstr ""
+"Select DPI quality for PDF to JPG conversion (300 DPI recommended for high "
+"quality, 72 DPI for smaller file size)"
 
 #: templates/frontend/pdf_to_jpg.html:58
 msgid "Click the convert button to start the PDF to JPG conversion process"
 msgstr "Click the convert button to start the PDF to JPG conversion process"
 
 #: templates/frontend/pdf_to_jpg.html:59
-msgid "Wait for the PDF to JPG conversion to complete - all selected pages will be converted to JPG images"
-msgstr "Wait for the PDF to JPG conversion to complete - all selected pages will be converted to JPG images"
+msgid ""
+"Wait for the PDF to JPG conversion to complete - all selected pages will be "
+"converted to JPG images"
+msgstr ""
+"Wait for the PDF to JPG conversion to complete - all selected pages will be "
+"converted to JPG images"
 
 #: templates/frontend/pdf_to_jpg.html:60
-msgid "Download the ZIP archive containing all converted JPG images from your PDF"
-msgstr "Download the ZIP archive containing all converted JPG images from your PDF"
+msgid ""
+"Download the ZIP archive containing all converted JPG images from your PDF"
+msgstr ""
+"Download the ZIP archive containing all converted JPG images from your PDF"
 
 #: templates/frontend/pdf_to_word.html:11
-msgid "Click the convert button to start converting PDF to Word (PDF to DOCX conversion)"
-msgstr "Click the convert button to start converting PDF to Word (PDF to DOCX conversion)"
+msgid ""
+"Click the convert button to start converting PDF to Word (PDF to DOCX "
+"conversion)"
+msgstr ""
+"Click the convert button to start converting PDF to Word (PDF to DOCX "
+"conversion)"
 
 #: templates/frontend/pdf_to_word.html:12
-msgid "Wait for the PDF to Word conversion to complete - text and formatting will be extracted from your PDF and converted to editable Word format"
-msgstr "Wait for the PDF to Word conversion to complete - text and formatting will be extracted from your PDF and converted to editable Word format"
+msgid ""
+"Wait for the PDF to Word conversion to complete - text and formatting will "
+"be extracted from your PDF and converted to editable Word format"
+msgstr ""
+"Wait for the PDF to Word conversion to complete - text and formatting will "
+"be extracted from your PDF and converted to editable Word format"
 
 #: templates/frontend/pdf_to_word.html:13
-msgid "Download your editable Word document (DOCX format) - your PDF has been successfully converted to Word"
-msgstr "Download your editable Word document (DOCX format) - your PDF has been successfully converted to Word"
+msgid ""
+"Download your editable Word document (DOCX format) - your PDF has been "
+"successfully converted to Word"
+msgstr ""
+"Download your editable Word document (DOCX format) - your PDF has been "
+"successfully converted to Word"
 
 #: templates/frontend/word_to_pdf.html:11
-msgid "Click the convert button to start converting Word to PDF (DOCX to PDF conversion)"
-msgstr "Click the convert button to start converting Word to PDF (DOCX to PDF conversion)"
+msgid ""
+"Click the convert button to start converting Word to PDF (DOCX to PDF "
+"conversion)"
+msgstr ""
+"Click the convert button to start converting Word to PDF (DOCX to PDF "
+"conversion)"
 
 #: templates/frontend/word_to_pdf.html:12
-msgid "Wait for the Word to PDF conversion to complete - formatting and layout will be preserved when converting from Word to PDF"
-msgstr "Wait for the Word to PDF conversion to complete - formatting and layout will be preserved when converting from Word to PDF"
+msgid ""
+"Wait for the Word to PDF conversion to complete - formatting and layout will "
+"be preserved when converting from Word to PDF"
+msgstr ""
+"Wait for the Word to PDF conversion to complete - formatting and layout will "
+"be preserved when converting from Word to PDF"
 
 #: templates/frontend/word_to_pdf.html:13
-msgid "Download your PDF file - your Word document has been successfully converted to PDF format"
-msgstr "Download your PDF file - your Word document has been successfully converted to PDF format"
+msgid ""
+"Download your PDF file - your Word document has been successfully converted "
+"to PDF format"
+msgstr ""
+"Download your PDF file - your Word document has been successfully converted "
+"to PDF format"
 
 #: templates/frontend/pdf_to_jpg.html:67
-msgid "Perfect for: extracting images from PDF documents, converting PDF pages for web use, creating thumbnails from PDF files, batch converting PDF pages to images, extracting scanned document pages as images, converting PDF presentations to image slides, extracting PDF diagrams as standalone images."
-msgstr "Perfect for: extracting images from PDF documents, converting PDF pages for web use, creating thumbnails from PDF files, batch converting PDF pages to images, extracting scanned document pages as images, converting PDF presentations to image slides, extracting PDF diagrams as standalone images."
+msgid ""
+"Perfect for: extracting images from PDF documents, converting PDF pages for "
+"web use, creating thumbnails from PDF files, batch converting PDF pages to "
+"images, extracting scanned document pages as images, converting PDF "
+"presentations to image slides, extracting PDF diagrams as standalone images."
+msgstr ""
+"Perfect for: extracting images from PDF documents, converting PDF pages for "
+"web use, creating thumbnails from PDF files, batch converting PDF pages to "
+"images, extracting scanned document pages as images, converting PDF "
+"presentations to image slides, extracting PDF diagrams as standalone images."
 
 #: templates/frontend/pdf_to_word.html:20
-msgid "Perfect for: converting PDF to Word (PDF в Word), конвертировать PDF в Word, PDF to DOCX conversion, extracting text from PDF files, editing PDF content in Microsoft Word, converting PDF resumes to Word format, converting PDF academic papers to editable documents, converting PDF invoices to Word templates, converting PDF forms to fillable Word documents, converting PDF reports to editable Word format, extracting PDF tables to Word, converting PDF articles to Word documents, converting PDF contracts to editable Word files, converting PDF presentations to Word format, converting PDF manuals to editable Word documents, converting PDF books to Word format for editing."
-msgstr "Perfect for: converting PDF to Word (PDF в Word), конвертировать PDF в Word, PDF to DOCX conversion, extracting text from PDF files, editing PDF content in Microsoft Word, converting PDF resumes to Word format, converting PDF academic papers to editable documents, converting PDF invoices to Word templates, converting PDF forms to fillable Word documents, converting PDF reports to editable Word format, extracting PDF tables to Word, converting PDF articles to Word documents, converting PDF contracts to editable Word files, converting PDF presentations to Word format, converting PDF manuals to editable Word documents, converting PDF books to Word format for editing."
+msgid ""
+"Perfect for: converting PDF to Word (PDF в Word), конвертировать PDF в Word, "
+"PDF to DOCX conversion, extracting text from PDF files, editing PDF content "
+"in Microsoft Word, converting PDF resumes to Word format, converting PDF "
+"academic papers to editable documents, converting PDF invoices to Word "
+"templates, converting PDF forms to fillable Word documents, converting PDF "
+"reports to editable Word format, extracting PDF tables to Word, converting "
+"PDF articles to Word documents, converting PDF contracts to editable Word "
+"files, converting PDF presentations to Word format, converting PDF manuals "
+"to editable Word documents, converting PDF books to Word format for editing."
+msgstr ""
+"Perfect for: converting PDF to Word (PDF в Word), конвертировать PDF в Word, "
+"PDF to DOCX conversion, extracting text from PDF files, editing PDF content "
+"in Microsoft Word, converting PDF resumes to Word format, converting PDF "
+"academic papers to editable documents, converting PDF invoices to Word "
+"templates, converting PDF forms to fillable Word documents, converting PDF "
+"reports to editable Word format, extracting PDF tables to Word, converting "
+"PDF articles to Word documents, converting PDF contracts to editable Word "
+"files, converting PDF presentations to Word format, converting PDF manuals "
+"to editable Word documents, converting PDF books to Word format for editing."
 
 #: templates/frontend/word_to_pdf.html:20
-msgid "Perfect for: converting Word documents to PDF for sharing, creating PDF files from Word resumes, converting Word reports to PDF format, converting Word invoices to PDF, converting Word contracts to PDF, converting Word academic papers to PDF, converting Word presentations to PDF, converting Word forms to PDF, converting Word manuals to PDF, converting Word books to PDF format, creating PDF files from Word templates, converting Word documents for printing, converting Word files for email attachments, converting Word documents for archiving, converting Word files to PDF for legal documents."
-msgstr "Perfect for: converting Word documents to PDF for sharing, creating PDF files from Word resumes, converting Word reports to PDF format, converting Word invoices to PDF, converting Word contracts to PDF, converting Word academic papers to PDF, converting Word presentations to PDF, converting Word forms to PDF, converting Word manuals to PDF, converting Word books to PDF format, creating PDF files from Word templates, converting Word documents for printing, converting Word files for email attachments, converting Word documents for archiving, converting Word files to PDF for legal documents."
+msgid ""
+"Perfect for: converting Word documents to PDF for sharing, creating PDF "
+"files from Word resumes, converting Word reports to PDF format, converting "
+"Word invoices to PDF, converting Word contracts to PDF, converting Word "
+"academic papers to PDF, converting Word presentations to PDF, converting "
+"Word forms to PDF, converting Word manuals to PDF, converting Word books to "
+"PDF format, creating PDF files from Word templates, converting Word "
+"documents for printing, converting Word files for email attachments, "
+"converting Word documents for archiving, converting Word files to PDF for "
+"legal documents."
+msgstr ""
+"Perfect for: converting Word documents to PDF for sharing, creating PDF "
+"files from Word resumes, converting Word reports to PDF format, converting "
+"Word invoices to PDF, converting Word contracts to PDF, converting Word "
+"academic papers to PDF, converting Word presentations to PDF, converting "
+"Word forms to PDF, converting Word manuals to PDF, converting Word books to "
+"PDF format, creating PDF files from Word templates, converting Word "
+"documents for printing, converting Word files for email attachments, "
+"converting Word documents for archiving, converting Word files to PDF for "
+"legal documents."
 
 #: templates/frontend/pdf_to_jpg.html:64
-msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all converted JPG images, named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
-msgstr "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all converted JPG images, named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
+msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. The output will be a ZIP archive containing all "
+"converted JPG images, named with page numbers (e.g., filename_page0001.jpg, "
+"filename_page0002.jpg)."
+msgstr ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. The output will be a ZIP archive containing all "
+"converted JPG images, named with page numbers (e.g., filename_page0001.jpg, "
+"filename_page0002.jpg)."
 
 #: templates/frontend/pdf_to_word.html:17
-msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. Text-based PDFs work best - scanned PDFs (image-only) cannot be converted to editable Word format."
-msgstr "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. Text-based PDFs work best - scanned PDFs (image-only) cannot be converted to editable Word format."
+msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. Text-based PDFs work best - scanned PDFs (image-"
+"only) cannot be converted to editable Word format."
+msgstr ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. Text-based PDFs work best - scanned PDFs (image-"
+"only) cannot be converted to editable Word format."
 
 #: templates/frontend/word_to_pdf.html:17
-msgid "Word documents with up to 50 pages are supported. For larger files, please split them into smaller parts. The conversion preserves formatting, fonts, images, and page layout."
-msgstr "Word documents with up to 50 pages are supported. For larger files, please split them into smaller parts. The conversion preserves formatting, fonts, images, and page layout."
+msgid ""
+"Word documents with up to 50 pages are supported. For larger files, please "
+"split them into smaller parts. The conversion preserves formatting, fonts, "
+"images, and page layout."
+msgstr ""
+"Word documents with up to 50 pages are supported. For larger files, please "
+"split them into smaller parts. The conversion preserves formatting, fonts, "
+"images, and page layout."
 
 #: templates/frontend/edit_pdf_generic.html:184
-msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts."
-msgstr "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts."
+msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts."
+msgstr ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts."
 
 #: templates/frontend/rotate_pdf.html:77
 msgid "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
 msgstr "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
 
 #: templates/frontend/rotate_pdf.html:78
-msgid "Select which pages to rotate: all pages, current page only, or specific pages"
-msgstr "Select which pages to rotate: all pages, current page only, or specific pages"
+msgid ""
+"Select which pages to rotate: all pages, current page only, or specific pages"
+msgstr ""
+"Select which pages to rotate: all pages, current page only, or specific pages"
 
 #: templates/frontend/rotate_pdf.html:79
-msgid "Click the rotate button to process your PDF and rotate the selected pages"
-msgstr "Click the rotate button to process your PDF and rotate the selected pages"
+msgid ""
+"Click the rotate button to process your PDF and rotate the selected pages"
+msgstr ""
+"Click the rotate button to process your PDF and rotate the selected pages"
 
 #: templates/frontend/rotate_pdf.html:80
 msgid "Download your rotated PDF file using the download button"
 msgstr "Download your rotated PDF file using the download button"
 
 #: templates/frontend/rotate_pdf.html:84
-msgid "PDF files with up to 50 pages are supported for rotating. For larger files, please split them into smaller parts. The rotation preserves all content and formatting."
-msgstr "PDF files with up to 50 pages are supported for rotating. For larger files, please split them into smaller parts. The rotation preserves all content and formatting."
+msgid ""
+"PDF files with up to 50 pages are supported for rotating. For larger files, "
+"please split them into smaller parts. The rotation preserves all content and "
+"formatting."
+msgstr ""
+"PDF files with up to 50 pages are supported for rotating. For larger files, "
+"please split them into smaller parts. The rotation preserves all content and "
+"formatting."
 
 #: templates/frontend/rotate_pdf.html:87
-msgid "Perfect for: rotating PDF pages that are upside down, rotating scanned PDF documents, rotating PDF pages for correct orientation, rotating PDF pages clockwise or counterclockwise, fixing PDF page orientation, rotating PDF pages for printing, rotating PDF pages for viewing, rotating PDF pages for mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-readers, rotating PDF pages for presentations, rotating PDF pages for reports, rotating PDF pages for legal documents, rotating PDF pages for academic papers, rotating PDF pages for business documents."
-msgstr "Perfect for: rotating PDF pages that are upside down, rotating scanned PDF documents, rotating PDF pages for correct orientation, rotating PDF pages clockwise or counterclockwise, fixing PDF page orientation, rotating PDF pages for printing, rotating PDF pages for viewing, rotating PDF pages for mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-readers, rotating PDF pages for presentations, rotating PDF pages for reports, rotating PDF pages for legal documents, rotating PDF pages for academic papers, rotating PDF pages for business documents."
+msgid ""
+"Perfect for: rotating PDF pages that are upside down, rotating scanned PDF "
+"documents, rotating PDF pages for correct orientation, rotating PDF pages "
+"clockwise or counterclockwise, fixing PDF page orientation, rotating PDF "
+"pages for printing, rotating PDF pages for viewing, rotating PDF pages for "
+"mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-"
+"readers, rotating PDF pages for presentations, rotating PDF pages for "
+"reports, rotating PDF pages for legal documents, rotating PDF pages for "
+"academic papers, rotating PDF pages for business documents."
+msgstr ""
+"Perfect for: rotating PDF pages that are upside down, rotating scanned PDF "
+"documents, rotating PDF pages for correct orientation, rotating PDF pages "
+"clockwise or counterclockwise, fixing PDF page orientation, rotating PDF "
+"pages for printing, rotating PDF pages for viewing, rotating PDF pages for "
+"mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-"
+"readers, rotating PDF pages for presentations, rotating PDF pages for "
+"reports, rotating PDF pages for legal documents, rotating PDF pages for "
+"academic papers, rotating PDF pages for business documents."
 
 #: templates/frontend/remove_pages.html:64
-msgid "Choose which pages to remove from your PDF: all pages, current page only, or specific pages (e.g., 1,3,5 or 1-5)"
-msgstr "Choose which pages to remove from your PDF: all pages, current page only, or specific pages (e.g., 1,3,5 or 1-5)"
+msgid ""
+"Choose which pages to remove from your PDF: all pages, current page only, or "
+"specific pages (e.g., 1,3,5 or 1-5)"
+msgstr ""
+"Choose which pages to remove from your PDF: all pages, current page only, or "
+"specific pages (e.g., 1,3,5 or 1-5)"
 
 #: templates/frontend/remove_pages.html:65
-msgid "Click the remove pages button to process your PDF and delete the selected pages"
-msgstr "Click the remove pages button to process your PDF and delete the selected pages"
+msgid ""
+"Click the remove pages button to process your PDF and delete the selected "
+"pages"
+msgstr ""
+"Click the remove pages button to process your PDF and delete the selected "
+"pages"
 
 #: templates/frontend/remove_pages.html:66
 msgid "Download your PDF file with pages removed using the download button"
 msgstr "Download your PDF file with pages removed using the download button"
 
 #: templates/frontend/remove_pages.html:70
-msgid "PDF files with up to 50 pages are supported for removing pages. For larger files, please split them into smaller parts. The remaining pages will be preserved in their original order."
-msgstr "PDF files with up to 50 pages are supported for removing pages. For larger files, please split them into smaller parts. The remaining pages will be preserved in their original order."
+msgid ""
+"PDF files with up to 50 pages are supported for removing pages. For larger "
+"files, please split them into smaller parts. The remaining pages will be "
+"preserved in their original order."
+msgstr ""
+"PDF files with up to 50 pages are supported for removing pages. For larger "
+"files, please split them into smaller parts. The remaining pages will be "
+"preserved in their original order."
 
 #: templates/frontend/remove_pages.html:73
-msgid "Perfect for: removing unwanted pages from PDF documents, deleting blank pages from PDF files, removing cover pages from PDF documents, removing table of contents pages from PDF files, removing appendix pages from PDF documents, deleting specific pages from PDF files, removing duplicate pages from PDF documents, removing watermark pages from PDF files, deleting page ranges from PDF documents, removing unwanted sections from PDF files, cleaning up PDF documents by removing pages, removing unnecessary pages from PDF files, deleting pages from scanned PDF documents, removing pages from merged PDF files, removing pages from PDF reports."
-msgstr "Perfect for: removing unwanted pages from PDF documents, deleting blank pages from PDF files, removing cover pages from PDF documents, removing table of contents pages from PDF files, removing appendix pages from PDF documents, deleting specific pages from PDF files, removing duplicate pages from PDF documents, removing watermark pages from PDF files, deleting page ranges from PDF documents, removing unwanted sections from PDF files, cleaning up PDF documents by removing pages, removing unnecessary pages from PDF files, deleting pages from scanned PDF documents, removing pages from merged PDF files, removing pages from PDF reports."
+msgid ""
+"Perfect for: removing unwanted pages from PDF documents, deleting blank "
+"pages from PDF files, removing cover pages from PDF documents, removing "
+"table of contents pages from PDF files, removing appendix pages from PDF "
+"documents, deleting specific pages from PDF files, removing duplicate pages "
+"from PDF documents, removing watermark pages from PDF files, deleting page "
+"ranges from PDF documents, removing unwanted sections from PDF files, "
+"cleaning up PDF documents by removing pages, removing unnecessary pages from "
+"PDF files, deleting pages from scanned PDF documents, removing pages from "
+"merged PDF files, removing pages from PDF reports."
+msgstr ""
+"Perfect for: removing unwanted pages from PDF documents, deleting blank "
+"pages from PDF files, removing cover pages from PDF documents, removing "
+"table of contents pages from PDF files, removing appendix pages from PDF "
+"documents, deleting specific pages from PDF files, removing duplicate pages "
+"from PDF documents, removing watermark pages from PDF files, deleting page "
+"ranges from PDF documents, removing unwanted sections from PDF files, "
+"cleaning up PDF documents by removing pages, removing unnecessary pages from "
+"PDF files, deleting pages from scanned PDF documents, removing pages from "
+"merged PDF files, removing pages from PDF reports."
 
 #: templates/frontend/protect_pdf.html:69
-msgid "Enter a password to protect your PDF file (required) and optionally set user/owner passwords"
-msgstr "Enter a password to protect your PDF file (required) and optionally set user/owner passwords"
+msgid ""
+"Enter a password to protect your PDF file (required) and optionally set user/"
+"owner passwords"
+msgstr ""
+"Enter a password to protect your PDF file (required) and optionally set user/"
+"owner passwords"
 
 #: templates/frontend/protect_pdf.html:70
 msgid "Click the protect button to encrypt your PDF with password protection"
@@ -2848,16 +3064,42 @@ msgid "Download your password-protected PDF file using the download button"
 msgstr "Download your password-protected PDF file using the download button"
 
 #: templates/frontend/protect_pdf.html:75
-msgid "PDF files with up to 50 pages are supported for password protection. For larger files, please split them into smaller parts. The password will be required to open, view, print, or edit the PDF."
-msgstr "PDF files with up to 50 pages are supported for password protection. For larger files, please split them into smaller parts. The password will be required to open, view, print, or edit the PDF."
+msgid ""
+"PDF files with up to 50 pages are supported for password protection. For "
+"larger files, please split them into smaller parts. The password will be "
+"required to open, view, print, or edit the PDF."
+msgstr ""
+"PDF files with up to 50 pages are supported for password protection. For "
+"larger files, please split them into smaller parts. The password will be "
+"required to open, view, print, or edit the PDF."
 
 #: templates/frontend/protect_pdf.html:78
-msgid "Perfect for: protecting PDF files with passwords, securing PDF documents with encryption, password protecting sensitive PDF files, securing confidential PDF documents, protecting PDF files from unauthorized access, encrypting PDF files for security, password protecting PDF contracts, securing PDF invoices with passwords, protecting PDF legal documents, securing PDF financial documents, password protecting PDF medical records, securing PDF personal documents, protecting PDF business files, securing PDF academic papers, password protecting PDF reports."
-msgstr "Perfect for: protecting PDF files with passwords, securing PDF documents with encryption, password protecting sensitive PDF files, securing confidential PDF documents, protecting PDF files from unauthorized access, encrypting PDF files for security, password protecting PDF contracts, securing PDF invoices with passwords, protecting PDF legal documents, securing PDF financial documents, password protecting PDF medical records, securing PDF personal documents, protecting PDF business files, securing PDF academic papers, password protecting PDF reports."
+msgid ""
+"Perfect for: protecting PDF files with passwords, securing PDF documents "
+"with encryption, password protecting sensitive PDF files, securing "
+"confidential PDF documents, protecting PDF files from unauthorized access, "
+"encrypting PDF files for security, password protecting PDF contracts, "
+"securing PDF invoices with passwords, protecting PDF legal documents, "
+"securing PDF financial documents, password protecting PDF medical records, "
+"securing PDF personal documents, protecting PDF business files, securing PDF "
+"academic papers, password protecting PDF reports."
+msgstr ""
+"Perfect for: protecting PDF files with passwords, securing PDF documents "
+"with encryption, password protecting sensitive PDF files, securing "
+"confidential PDF documents, protecting PDF files from unauthorized access, "
+"encrypting PDF files for security, password protecting PDF contracts, "
+"securing PDF invoices with passwords, protecting PDF legal documents, "
+"securing PDF financial documents, password protecting PDF medical records, "
+"securing PDF personal documents, protecting PDF business files, securing PDF "
+"academic papers, password protecting PDF reports."
 
 #: templates/frontend/unlock_pdf.html:36
-msgid "Select your password-protected PDF file using the button above or drag and drop it into the zone below"
-msgstr "Select your password-protected PDF file using the button above or drag and drop it into the zone below"
+msgid ""
+"Select your password-protected PDF file using the button above or drag and "
+"drop it into the zone below"
+msgstr ""
+"Select your password-protected PDF file using the button above or drag and "
+"drop it into the zone below"
 
 #: templates/frontend/unlock_pdf.html:37
 msgid "Enter the password that was used to protect the PDF file"
@@ -2868,20 +3110,46 @@ msgid "Click the unlock button to remove password protection from your PDF"
 msgstr "Click the unlock button to remove password protection from your PDF"
 
 #: templates/frontend/unlock_pdf.html:39
-msgid "Download your unlocked PDF file (without password) using the download button"
-msgstr "Download your unlocked PDF file (without password) using the download button"
+msgid ""
+"Download your unlocked PDF file (without password) using the download button"
+msgstr ""
+"Download your unlocked PDF file (without password) using the download button"
 
 #: templates/frontend/unlock_pdf.html:43
-msgid "PDF files with up to 50 pages are supported for unlocking. For larger files, please split them into smaller parts. You must know the correct password to unlock the PDF."
-msgstr "PDF files with up to 50 pages are supported for unlocking. For larger files, please split them into smaller parts. You must know the correct password to unlock the PDF."
+msgid ""
+"PDF files with up to 50 pages are supported for unlocking. For larger files, "
+"please split them into smaller parts. You must know the correct password to "
+"unlock the PDF."
+msgstr ""
+"PDF files with up to 50 pages are supported for unlocking. For larger files, "
+"please split them into smaller parts. You must know the correct password to "
+"unlock the PDF."
 
 #: templates/frontend/unlock_pdf.html:46
-msgid "Perfect for: removing passwords from PDF files, unlocking password-protected PDF documents, removing PDF password protection, unlocking encrypted PDF files, removing security from PDF documents, unlocking PDF files for editing, removing password from PDF contracts, unlocking PDF invoices, removing password from PDF legal documents, unlocking PDF financial documents, removing password from PDF medical records, unlocking PDF personal documents, removing password from PDF business files, unlocking PDF academic papers, removing password from PDF reports."
-msgstr "Perfect for: removing passwords from PDF files, unlocking password-protected PDF documents, removing PDF password protection, unlocking encrypted PDF files, removing security from PDF documents, unlocking PDF files for editing, removing password from PDF contracts, unlocking PDF invoices, removing password from PDF legal documents, unlocking PDF financial documents, removing password from PDF medical records, unlocking PDF personal documents, removing password from PDF business files, unlocking PDF academic papers, removing password from PDF reports."
+msgid ""
+"Perfect for: removing passwords from PDF files, unlocking password-protected "
+"PDF documents, removing PDF password protection, unlocking encrypted PDF "
+"files, removing security from PDF documents, unlocking PDF files for "
+"editing, removing password from PDF contracts, unlocking PDF invoices, "
+"removing password from PDF legal documents, unlocking PDF financial "
+"documents, removing password from PDF medical records, unlocking PDF "
+"personal documents, removing password from PDF business files, unlocking PDF "
+"academic papers, removing password from PDF reports."
+msgstr ""
+"Perfect for: removing passwords from PDF files, unlocking password-protected "
+"PDF documents, removing PDF password protection, unlocking encrypted PDF "
+"files, removing security from PDF documents, unlocking PDF files for "
+"editing, removing password from PDF contracts, unlocking PDF invoices, "
+"removing password from PDF legal documents, unlocking PDF financial "
+"documents, removing password from PDF medical records, unlocking PDF "
+"personal documents, removing password from PDF business files, unlocking PDF "
+"academic papers, removing password from PDF reports."
 
 #: templates/frontend/compress_pdf.html:35
-msgid "Choose the compression level (Low, Medium, or High) to compress PDF file size"
-msgstr "Choose the compression level (Low, Medium, or High) to compress PDF file size"
+msgid ""
+"Choose the compression level (Low, Medium, or High) to compress PDF file size"
+msgstr ""
+"Choose the compression level (Low, Medium, or High) to compress PDF file size"
 
 #: templates/frontend/compress_pdf.html:36
 msgid "Click the compress button to reduce the size of your PDF file"
@@ -2892,56 +3160,144 @@ msgid "Download your compressed PDF file using the download button"
 msgstr "Download your compressed PDF file using the download button"
 
 #: templates/frontend/compress_pdf.html:41
-msgid "PDF files with up to 50 pages are supported for compression. For larger files, please split them into smaller parts. Higher compression reduces file size more but may slightly reduce image quality."
-msgstr "PDF files with up to 50 pages are supported for compression. For larger files, please split them into smaller parts. Higher compression reduces file size more but may slightly reduce image quality."
+msgid ""
+"PDF files with up to 50 pages are supported for compression. For larger "
+"files, please split them into smaller parts. Higher compression reduces file "
+"size more but may slightly reduce image quality."
+msgstr ""
+"PDF files with up to 50 pages are supported for compression. For larger "
+"files, please split them into smaller parts. Higher compression reduces file "
+"size more but may slightly reduce image quality."
 
 #: templates/frontend/compress_pdf.html:44
-msgid "Perfect for: compressing PDF files to reduce size, reducing PDF file size for email, compressing large PDF documents, reducing PDF file size for web upload, compressing PDF files for storage, reducing PDF file size for sharing, compressing scanned PDF documents, reducing PDF file size for mobile devices, compressing PDF files for faster download, reducing PDF file size for cloud storage, compressing PDF files for archiving, reducing PDF file size for printing, compressing PDF files for presentations, reducing PDF file size for reports, compressing PDF files for business documents."
-msgstr "Perfect for: compressing PDF files to reduce size, reducing PDF file size for email, compressing large PDF documents, reducing PDF file size for web upload, compressing PDF files for storage, reducing PDF file size for sharing, compressing scanned PDF documents, reducing PDF file size for mobile devices, compressing PDF files for faster download, reducing PDF file size for cloud storage, compressing PDF files for archiving, reducing PDF file size for printing, compressing PDF files for presentations, reducing PDF file size for reports, compressing PDF files for business documents."
+msgid ""
+"Perfect for: compressing PDF files to reduce size, reducing PDF file size "
+"for email, compressing large PDF documents, reducing PDF file size for web "
+"upload, compressing PDF files for storage, reducing PDF file size for "
+"sharing, compressing scanned PDF documents, reducing PDF file size for "
+"mobile devices, compressing PDF files for faster download, reducing PDF file "
+"size for cloud storage, compressing PDF files for archiving, reducing PDF "
+"file size for printing, compressing PDF files for presentations, reducing "
+"PDF file size for reports, compressing PDF files for business documents."
+msgstr ""
+"Perfect for: compressing PDF files to reduce size, reducing PDF file size "
+"for email, compressing large PDF documents, reducing PDF file size for web "
+"upload, compressing PDF files for storage, reducing PDF file size for "
+"sharing, compressing scanned PDF documents, reducing PDF file size for "
+"mobile devices, compressing PDF files for faster download, reducing PDF file "
+"size for cloud storage, compressing PDF files for archiving, reducing PDF "
+"file size for printing, compressing PDF files for presentations, reducing "
+"PDF file size for reports, compressing PDF files for business documents."
 
 #: templates/frontend/split_pdf.html:78
-msgid "Choose how to split your PDF: by individual pages, by page ranges, or every N pages"
-msgstr "Choose how to split your PDF: by individual pages, by page ranges, or every N pages"
+msgid ""
+"Choose how to split your PDF: by individual pages, by page ranges, or every "
+"N pages"
+msgstr ""
+"Choose how to split your PDF: by individual pages, by page ranges, or every "
+"N pages"
 
 #: templates/frontend/split_pdf.html:79
-msgid "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for splitting PDF into separate files)"
-msgstr "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for splitting PDF into separate files)"
+msgid ""
+"Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for "
+"splitting PDF into separate files)"
+msgstr ""
+"Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for "
+"splitting PDF into separate files)"
 
 #: templates/frontend/split_pdf.html:80
-msgid "Click the split button to process your PDF and create separate PDF files"
-msgstr "Click the split button to process your PDF and create separate PDF files"
+msgid ""
+"Click the split button to process your PDF and create separate PDF files"
+msgstr ""
+"Click the split button to process your PDF and create separate PDF files"
 
 #: templates/frontend/split_pdf.html:81
-msgid "Download the ZIP archive containing all split PDF files using the download button"
-msgstr "Download the ZIP archive containing all split PDF files using the download button"
+msgid ""
+"Download the ZIP archive containing all split PDF files using the download "
+"button"
+msgstr ""
+"Download the ZIP archive containing all split PDF files using the download "
+"button"
 
 #: templates/frontend/split_pdf.html:85
-msgid "The output will be a ZIP archive containing all split PDF files. You can split your PDF by individual pages, by page ranges, or every N pages."
-msgstr "The output will be a ZIP archive containing all split PDF files. You can split your PDF by individual pages, by page ranges, or every N pages."
+msgid ""
+"The output will be a ZIP archive containing all split PDF files. You can "
+"split your PDF by individual pages, by page ranges, or every N pages."
+msgstr ""
+"The output will be a ZIP archive containing all split PDF files. You can "
+"split your PDF by individual pages, by page ranges, or every N pages."
 
 #: templates/frontend/split_pdf.html:88
-msgid "Perfect for: splitting PDF files into separate documents, dividing PDF documents into multiple files, splitting PDF by pages, breaking PDF into smaller files, splitting PDF by page ranges, dividing large PDF files, splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF for email attachments, dividing PDF documents for storage, splitting PDF for mobile viewing, breaking PDF into sections, splitting PDF for presentations, dividing PDF files for printing, splitting PDF for archiving."
-msgstr "Perfect for: splitting PDF files into separate documents, dividing PDF documents into multiple files, splitting PDF by pages, breaking PDF into smaller files, splitting PDF by page ranges, dividing large PDF files, splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF for email attachments, dividing PDF documents for storage, splitting PDF for mobile viewing, breaking PDF into sections, splitting PDF for presentations, dividing PDF files for printing, splitting PDF for archiving."
+msgid ""
+"Perfect for: splitting PDF files into separate documents, dividing PDF "
+"documents into multiple files, splitting PDF by pages, breaking PDF into "
+"smaller files, splitting PDF by page ranges, dividing large PDF files, "
+"splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF "
+"for email attachments, dividing PDF documents for storage, splitting PDF for "
+"mobile viewing, breaking PDF into sections, splitting PDF for presentations, "
+"dividing PDF files for printing, splitting PDF for archiving."
+msgstr ""
+"Perfect for: splitting PDF files into separate documents, dividing PDF "
+"documents into multiple files, splitting PDF by pages, breaking PDF into "
+"smaller files, splitting PDF by page ranges, dividing large PDF files, "
+"splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF "
+"for email attachments, dividing PDF documents for storage, splitting PDF for "
+"mobile viewing, breaking PDF into sections, splitting PDF for presentations, "
+"dividing PDF files for printing, splitting PDF for archiving."
 
 #: templates/frontend/extract_pages.html:36
-msgid "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 to extract pages from PDF)"
-msgstr "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 to extract pages from PDF)"
+msgid ""
+"Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 "
+"to extract pages from PDF)"
+msgstr ""
+"Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 "
+"to extract pages from PDF)"
 
 #: templates/frontend/extract_pages.html:37
-msgid "Click the extract button to process your PDF and extract the selected pages into a new PDF file"
-msgstr "Click the extract button to process your PDF and extract the selected pages into a new PDF file"
+msgid ""
+"Click the extract button to process your PDF and extract the selected pages "
+"into a new PDF file"
+msgstr ""
+"Click the extract button to process your PDF and extract the selected pages "
+"into a new PDF file"
 
 #: templates/frontend/extract_pages.html:38
-msgid "Download your extracted PDF file containing only the selected pages using the download button"
-msgstr "Download your extracted PDF file containing only the selected pages using the download button"
+msgid ""
+"Download your extracted PDF file containing only the selected pages using "
+"the download button"
+msgstr ""
+"Download your extracted PDF file containing only the selected pages using "
+"the download button"
 
 #: templates/frontend/extract_pages.html:42
-msgid "PDF files with up to 50 pages are supported for extracting pages. For larger files, please split them into smaller parts. The extracted pages will be combined into a single new PDF file."
-msgstr "PDF files with up to 50 pages are supported for extracting pages. For larger files, please split them into smaller parts. The extracted pages will be combined into a single new PDF file."
+msgid ""
+"PDF files with up to 50 pages are supported for extracting pages. For larger "
+"files, please split them into smaller parts. The extracted pages will be "
+"combined into a single new PDF file."
+msgstr ""
+"PDF files with up to 50 pages are supported for extracting pages. For larger "
+"files, please split them into smaller parts. The extracted pages will be "
+"combined into a single new PDF file."
 
 #: templates/frontend/extract_pages.html:45
-msgid "Perfect for: extracting specific pages from PDF documents, extracting pages from PDF files, pulling pages from PDF documents, extracting selected pages from PDF files, getting specific pages from PDF documents, extracting page ranges from PDF files, pulling out pages from PDF documents, extracting pages from large PDF files, getting pages from PDF documents, extracting pages from scanned PDF files, pulling specific pages from PDF documents, extracting pages from PDF reports, getting pages from PDF contracts, extracting pages from PDF invoices, pulling pages from PDF legal documents."
-msgstr "Perfect for: extracting specific pages from PDF documents, extracting pages from PDF files, pulling pages from PDF documents, extracting selected pages from PDF files, getting specific pages from PDF documents, extracting page ranges from PDF files, pulling out pages from PDF documents, extracting pages from large PDF files, getting pages from PDF documents, extracting pages from scanned PDF files, pulling specific pages from PDF documents, extracting pages from PDF reports, getting pages from PDF contracts, extracting pages from PDF invoices, pulling pages from PDF legal documents."
+msgid ""
+"Perfect for: extracting specific pages from PDF documents, extracting pages "
+"from PDF files, pulling pages from PDF documents, extracting selected pages "
+"from PDF files, getting specific pages from PDF documents, extracting page "
+"ranges from PDF files, pulling out pages from PDF documents, extracting "
+"pages from large PDF files, getting pages from PDF documents, extracting "
+"pages from scanned PDF files, pulling specific pages from PDF documents, "
+"extracting pages from PDF reports, getting pages from PDF contracts, "
+"extracting pages from PDF invoices, pulling pages from PDF legal documents."
+msgstr ""
+"Perfect for: extracting specific pages from PDF documents, extracting pages "
+"from PDF files, pulling pages from PDF documents, extracting selected pages "
+"from PDF files, getting specific pages from PDF documents, extracting page "
+"ranges from PDF files, pulling out pages from PDF documents, extracting "
+"pages from large PDF files, getting pages from PDF documents, extracting "
+"pages from scanned PDF files, pulling specific pages from PDF documents, "
+"extracting pages from PDF reports, getting pages from PDF contracts, "
+"extracting pages from PDF invoices, pulling pages from PDF legal documents."
 
 #: templates/frontend/organize_pdf.html:61
 msgid "Preview all pages and drag them to reorder pages in your PDF document"
@@ -2956,16 +3312,38 @@ msgid "Click the organize button to process your PDF and reorganize the pages"
 msgstr "Click the organize button to process your PDF and reorganize the pages"
 
 #: templates/frontend/organize_pdf.html:64
-msgid "Download your reorganized PDF file with pages in the new order using the download button"
-msgstr "Download your reorganized PDF file with pages in the new order using the download button"
+msgid ""
+"Download your reorganized PDF file with pages in the new order using the "
+"download button"
+msgstr ""
+"Download your reorganized PDF file with pages in the new order using the "
+"download button"
 
 #: templates/frontend/organize_pdf.html:68
-msgid "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
-msgstr "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
+msgid ""
+"PDF files with up to 50 pages are supported for organizing. For larger "
+"files, please split them into smaller parts. You can drag and drop pages to "
+"reorder them visually."
+msgstr ""
+"PDF files with up to 50 pages are supported for organizing. For larger "
+"files, please split them into smaller parts. You can drag and drop pages to "
+"reorder them visually."
 
 #: templates/frontend/organize_pdf.html:71
-msgid "Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF files, reordering pages in PDF documents, rearranging pages in PDF files, sorting pages in PDF documents, changing order of PDF pages, reorganizing PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF documents, changing PDF page sequence."
-msgstr "Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF files, reordering pages in PDF documents, rearranging pages in PDF files, sorting pages in PDF documents, changing order of PDF pages, reorganizing PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF documents, changing PDF page sequence."
+msgid ""
+"Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging "
+"PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF "
+"files, reordering pages in PDF documents, rearranging pages in PDF files, "
+"sorting pages in PDF documents, changing order of PDF pages, reorganizing "
+"PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF "
+"documents, changing PDF page sequence."
+msgstr ""
+"Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging "
+"PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF "
+"files, reordering pages in PDF documents, rearranging pages in PDF files, "
+"sorting pages in PDF documents, changing order of PDF pages, reorganizing "
+"PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF "
+"documents, changing PDF page sequence."
 
 #: templates/frontend/merge_pdf.html:109
 msgid "Select 2-10 PDF files to merge using the button above"
@@ -2980,144 +3358,240 @@ msgid "Click the merge button to combine all PDF files into one document"
 msgstr "Click the merge button to combine all PDF files into one document"
 
 #: templates/frontend/merge_pdf.html:112
-msgid "Download your merged PDF file containing all pages from all selected files using the download button"
-msgstr "Download your merged PDF file containing all pages from all selected files using the download button"
+msgid ""
+"Download your merged PDF file containing all pages from all selected files "
+"using the download button"
+msgstr ""
+"Download your merged PDF file containing all pages from all selected files "
+"using the download button"
 
 #: templates/frontend/merge_pdf.html:116
-msgid "You can merge 2-10 PDF files at once. The merged PDF will contain all pages from all selected files in the order you specified."
-msgstr "You can merge 2-10 PDF files at once. The merged PDF will contain all pages from all selected files in the order you specified."
+msgid ""
+"You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
+"from all selected files in the order you specified."
+msgstr ""
+"You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
+"from all selected files in the order you specified."
 
 #: templates/frontend/merge_pdf.html:119
-msgid "Perfect for: merging multiple PDF files into one, combining PDF documents, joining PDF files together, merging PDF files for sharing, combining PDF documents into single file, joining multiple PDF files, merging PDF files for printing, combining PDF reports into one document, joining PDF files for archiving, merging PDF files for presentations, combining PDF invoices into one file, joining PDF contracts into single document, merging PDF files for business, combining PDF academic papers, joining PDF files for legal documents."
-msgstr "Perfect for: merging multiple PDF files into one, combining PDF documents, joining PDF files together, merging PDF files for sharing, combining PDF documents into single file, joining multiple PDF files, merging PDF files for printing, combining PDF reports into one document, joining PDF files for archiving, merging PDF files for presentations, combining PDF invoices into one file, joining PDF contracts into single document, merging PDF files for business, combining PDF academic papers, joining PDF files for legal documents."
+msgid ""
+"Perfect for: merging multiple PDF files into one, combining PDF documents, "
+"joining PDF files together, merging PDF files for sharing, combining PDF "
+"documents into single file, joining multiple PDF files, merging PDF files "
+"for printing, combining PDF reports into one document, joining PDF files for "
+"archiving, merging PDF files for presentations, combining PDF invoices into "
+"one file, joining PDF contracts into single document, merging PDF files for "
+"business, combining PDF academic papers, joining PDF files for legal "
+"documents."
+msgstr ""
+"Perfect for: merging multiple PDF files into one, combining PDF documents, "
+"joining PDF files together, merging PDF files for sharing, combining PDF "
+"documents into single file, joining multiple PDF files, merging PDF files "
+"for printing, combining PDF reports into one document, joining PDF files for "
+"archiving, merging PDF files for presentations, combining PDF invoices into "
+"one file, joining PDF contracts into single document, merging PDF files for "
+"business, combining PDF academic papers, joining PDF files for legal "
+"documents."
 
 #: templates/frontend/add_page_numbers.html:162
-msgid "Choose the position, font size, starting number, and format for adding page numbers to PDF"
-msgstr "Choose the position, font size, starting number, and format for adding page numbers to PDF"
+msgid ""
+"Choose the position, font size, starting number, and format for adding page "
+"numbers to PDF"
+msgstr ""
+"Choose the position, font size, starting number, and format for adding page "
+"numbers to PDF"
 
 #: templates/frontend/add_page_numbers.html:163
-msgid "Preview how the page numbers will look on your PDF using the live preview"
-msgstr "Preview how the page numbers will look on your PDF using the live preview"
+msgid ""
+"Preview how the page numbers will look on your PDF using the live preview"
+msgstr ""
+"Preview how the page numbers will look on your PDF using the live preview"
 
 #: templates/frontend/add_page_numbers.html:164
-msgid "Select which pages to add numbers to: all pages, current page only, or specific pages"
-msgstr "Select which pages to add numbers to: all pages, current page only, or specific pages"
+msgid ""
+"Select which pages to add numbers to: all pages, current page only, or "
+"specific pages"
+msgstr ""
+"Select which pages to add numbers to: all pages, current page only, or "
+"specific pages"
 
 #: templates/frontend/add_page_numbers.html:165
-msgid "Click the add page numbers button to process your PDF and add page numbers"
-msgstr "Click the add page numbers button to process your PDF and add page numbers"
+msgid ""
+"Click the add page numbers button to process your PDF and add page numbers"
+msgstr ""
+"Click the add page numbers button to process your PDF and add page numbers"
 
 #: templates/frontend/add_page_numbers.html:166
-msgid "Download your PDF file with page numbers added using the download button"
-msgstr "Download your PDF file with page numbers added using the download button"
+msgid ""
+"Download your PDF file with page numbers added using the download button"
+msgstr ""
+"Download your PDF file with page numbers added using the download button"
 
 #: templates/frontend/add_page_numbers.html:170
-msgid "PDF files with up to 50 pages are supported for adding page numbers. For larger files, please split them into smaller parts. The page numbers will be added according to your selected position, format, and font size."
-msgstr "PDF files with up to 50 pages are supported for adding page numbers. For larger files, please split them into smaller parts. The page numbers will be added according to your selected position, format, and font size."
+msgid ""
+"PDF files with up to 50 pages are supported for adding page numbers. For "
+"larger files, please split them into smaller parts. The page numbers will be "
+"added according to your selected position, format, and font size."
+msgstr ""
+"PDF files with up to 50 pages are supported for adding page numbers. For "
+"larger files, please split them into smaller parts. The page numbers will be "
+"added according to your selected position, format, and font size."
 
 #: templates/frontend/add_page_numbers.html:173
-msgid "Perfect for: adding page numbers to PDF documents, numbering PDF pages, inserting page numbers in PDF files, adding page numbers to PDF reports, numbering pages in PDF documents, inserting page numbers in PDF contracts, adding page numbers to PDF invoices, numbering pages in PDF legal documents, inserting page numbers in PDF academic papers, adding page numbers to PDF business documents, numbering pages in PDF presentations, inserting page numbers in PDF manuals, adding page numbers to PDF books, numbering pages in PDF catalogs, inserting page numbers in PDF portfolios."
-msgstr "Perfect for: adding page numbers to PDF documents, numbering PDF pages, inserting page numbers in PDF files, adding page numbers to PDF reports, numbering pages in PDF documents, inserting page numbers in PDF contracts, adding page numbers to PDF invoices, numbering pages in PDF legal documents, inserting page numbers in PDF academic papers, adding page numbers to PDF business documents, numbering pages in PDF presentations, inserting page numbers in PDF manuals, adding page numbers to PDF books, numbering pages in PDF catalogs, inserting page numbers in PDF portfolios."
+msgid ""
+"Perfect for: adding page numbers to PDF documents, numbering PDF pages, "
+"inserting page numbers in PDF files, adding page numbers to PDF reports, "
+"numbering pages in PDF documents, inserting page numbers in PDF contracts, "
+"adding page numbers to PDF invoices, numbering pages in PDF legal documents, "
+"inserting page numbers in PDF academic papers, adding page numbers to PDF "
+"business documents, numbering pages in PDF presentations, inserting page "
+"numbers in PDF manuals, adding page numbers to PDF books, numbering pages in "
+"PDF catalogs, inserting page numbers in PDF portfolios."
+msgstr ""
+"Perfect for: adding page numbers to PDF documents, numbering PDF pages, "
+"inserting page numbers in PDF files, adding page numbers to PDF reports, "
+"numbering pages in PDF documents, inserting page numbers in PDF contracts, "
+"adding page numbers to PDF invoices, numbering pages in PDF legal documents, "
+"inserting page numbers in PDF academic papers, adding page numbers to PDF "
+"business documents, numbering pages in PDF presentations, inserting page "
+"numbers in PDF manuals, adding page numbers to PDF books, numbering pages in "
+"PDF catalogs, inserting page numbers in PDF portfolios."
 
 #: templates/frontend/rotate_pdf.html:76
-msgid "Select your PDF file using the button above or drag and drop it into the zone below"
-msgstr "Select your PDF file using the button above or drag and drop it into the zone below"
-
-#: templates/frontend/protect_pdf.html:23
-msgid "This password will be required to open the PDF. Make sure to remember it!"
-msgstr "This password will be required to open the PDF. Make sure to remember it!"
-
-#: templates/frontend/protect_pdf.html:38
-msgid "Optional: Set a different password for users. If not provided, the main password will be used."
-msgstr "Optional: Set a different password for users. If not provided, the main password will be used."
-
-#: templates/frontend/protect_pdf.html:54
-msgid "Optional: Set a different password for owner. If not provided, the main password will be used."
-msgstr "Optional: Set a different password for owner. If not provided, the main password will be used."
-
-#: templates/frontend/unlock_pdf.html:23
-msgid "Enter the password that was used to protect the PDF. The password will be removed from the output PDF."
-msgstr "Enter the password that was used to protect the PDF. The password will be removed from the output PDF."
-
-#: templates/frontend/compress_pdf.html:21
-msgid "Choose compression level based on your needs. Higher compression reduces file size more but takes longer."
-msgstr "Choose compression level based on your needs. Higher compression reduces file size more but takes longer."
-
-#: templates/frontend/extract_pages.html:22
-msgid "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges (1-5)"
-msgstr "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges (1-5)"
-
-#: templates/frontend/organize_pdf.html:32
-msgid "Drag and drop pages to reorder them. The number on each page shows the new order."
-msgstr "Drag and drop pages to reorder them. The number on each page shows the new order."
-
-#: templates/frontend/merge_pdf.html:82
-msgid "Drag and drop to reorder files. The order shown here will be the merge order."
-msgstr "Drag and drop to reorder files. The order shown here will be the merge order."
+msgid ""
+"Select your PDF file using the button above or drag and drop it into the "
+"zone below"
+msgstr ""
+"Select your PDF file using the button above or drag and drop it into the "
+"zone below"
 
 #: templates/frontend/add_page_numbers.html:149
-msgid "Preview shows page numbers as they will appear in the final PDF after download."
-msgstr "Preview shows page numbers as they will appear in the final PDF after download."
+msgid ""
+"Preview shows page numbers as they will appear in the final PDF after "
+"download."
+msgstr ""
+"Preview shows page numbers as they will appear in the final PDF after "
+"download."
 
 #: templates/frontend/pdf_to_excel.html:11
-msgid "Click the convert button to start converting PDF to Excel (PDF to XLSX conversion)"
-msgstr "Click the convert button to start converting PDF to Excel (PDF to XLSX conversion)"
+msgid ""
+"Click the convert button to start converting PDF to Excel (PDF to XLSX "
+"conversion)"
+msgstr ""
+"Click the convert button to start converting PDF to Excel (PDF to XLSX "
+"conversion)"
 
 #: templates/frontend/pdf_to_excel.html:12
-msgid "Wait for the PDF to Excel conversion to complete - tables and data will be extracted from your PDF and converted to editable Excel format"
-msgstr "Wait for the PDF to Excel conversion to complete - tables and data will be extracted from your PDF and converted to editable Excel format"
+msgid ""
+"Wait for the PDF to Excel conversion to complete - tables and data will be "
+"extracted from your PDF and converted to editable Excel format"
+msgstr ""
+"Wait for the PDF to Excel conversion to complete - tables and data will be "
+"extracted from your PDF and converted to editable Excel format"
 
 #: templates/frontend/pdf_to_excel.html:13
-msgid "Download your editable Excel file (XLSX format) - your PDF tables have been successfully converted to Excel"
-msgstr "Download your editable Excel file (XLSX format) - your PDF tables have been successfully converted to Excel"
+msgid ""
+"Download your editable Excel file (XLSX format) - your PDF tables have been "
+"successfully converted to Excel"
+msgstr ""
+"Download your editable Excel file (XLSX format) - your PDF tables have been "
+"successfully converted to Excel"
 
 #: templates/frontend/pdf_to_excel.html:17
-msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. PDF files with tables work best - plain text will be placed in separate cells, and images will be embedded in the Excel file."
-msgstr "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. PDF files with tables work best - plain text will be placed in separate cells, and images will be embedded in the Excel file."
+msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. PDF files with tables work best - plain text will "
+"be placed in separate cells, and images will be embedded in the Excel file."
+msgstr ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. PDF files with tables work best - plain text will "
+"be placed in separate cells, and images will be embedded in the Excel file."
 
 #: templates/frontend/pdf_to_excel.html:20
-msgid "Perfect for: converting PDF tables to Excel, extracting data from PDF invoices, converting PDF reports to Excel format, extracting tables from PDF documents, converting PDF spreadsheets to Excel, extracting data from PDF forms, converting PDF financial reports to Excel, extracting tables from PDF contracts, converting PDF data tables to Excel, extracting information from PDF invoices, converting PDF accounting documents to Excel, extracting data from PDF statements, converting PDF tables for data analysis, extracting tables from PDF presentations, converting PDF business reports to Excel, extracting data from PDF catalogs, converting PDF price lists to Excel, extracting tables from PDF manuals, converting PDF survey results to Excel, extracting data from PDF research papers, converting PDF statistical data to Excel, extracting tables from PDF legal documents, converting PDF inventory lists to Excel, extracting data from PDF receipts, converting PDF expense reports to Excel."
-msgstr "Perfect for: converting PDF tables to Excel, extracting data from PDF invoices, converting PDF reports to Excel format, extracting tables from PDF documents, converting PDF spreadsheets to Excel, extracting data from PDF forms, converting PDF financial reports to Excel, extracting tables from PDF contracts, converting PDF data tables to Excel, extracting information from PDF invoices, converting PDF accounting documents to Excel, extracting data from PDF statements, converting PDF tables for data analysis, extracting tables from PDF presentations, converting PDF business reports to Excel, extracting data from PDF catalogs, converting PDF price lists to Excel, extracting tables from PDF manuals, converting PDF survey results to Excel, extracting data from PDF research papers, converting PDF statistical data to Excel, extracting tables from PDF legal documents, converting PDF inventory lists to Excel, extracting data from PDF receipts, converting PDF expense reports to Excel."
+msgid ""
+"Perfect for: converting PDF tables to Excel, extracting data from PDF "
+"invoices, converting PDF reports to Excel format, extracting tables from PDF "
+"documents, converting PDF spreadsheets to Excel, extracting data from PDF "
+"forms, converting PDF financial reports to Excel, extracting tables from PDF "
+"contracts, converting PDF data tables to Excel, extracting information from "
+"PDF invoices, converting PDF accounting documents to Excel, extracting data "
+"from PDF statements, converting PDF tables for data analysis, extracting "
+"tables from PDF presentations, converting PDF business reports to Excel, "
+"extracting data from PDF catalogs, converting PDF price lists to Excel, "
+"extracting tables from PDF manuals, converting PDF survey results to Excel, "
+"extracting data from PDF research papers, converting PDF statistical data to "
+"Excel, extracting tables from PDF legal documents, converting PDF inventory "
+"lists to Excel, extracting data from PDF receipts, converting PDF expense "
+"reports to Excel."
+msgstr ""
+"Perfect for: converting PDF tables to Excel, extracting data from PDF "
+"invoices, converting PDF reports to Excel format, extracting tables from PDF "
+"documents, converting PDF spreadsheets to Excel, extracting data from PDF "
+"forms, converting PDF financial reports to Excel, extracting tables from PDF "
+"contracts, converting PDF data tables to Excel, extracting information from "
+"PDF invoices, converting PDF accounting documents to Excel, extracting data "
+"from PDF statements, converting PDF tables for data analysis, extracting "
+"tables from PDF presentations, converting PDF business reports to Excel, "
+"extracting data from PDF catalogs, converting PDF price lists to Excel, "
+"extracting tables from PDF manuals, converting PDF survey results to Excel, "
+"extracting data from PDF research papers, converting PDF statistical data to "
+"Excel, extracting tables from PDF legal documents, converting PDF inventory "
+"lists to Excel, extracting data from PDF receipts, converting PDF expense "
+"reports to Excel."
 
 #: templates/frontend/*.html
-msgid "A crop area covering most of the page is selected by default - adjust it as needed"
-msgstr "A crop area covering most of the page is selected by default - adjust it as needed"
+msgid ""
+"A crop area covering most of the page is selected by default - adjust it as "
+"needed"
+msgstr ""
+"A crop area covering most of the page is selected by default - adjust it as "
+"needed"
 
 #: templates/frontend/*.html
 msgid "Choose Image"
 msgstr "Choose Image"
 
 #: templates/frontend/*.html
-msgid "Choose the color and opacity using the sliders to customize your PDF watermark"
-msgstr "Choose the color and opacity using the sliders to customize your PDF watermark"
+msgid ""
+"Choose the color and opacity using the sliders to customize your PDF "
+"watermark"
+msgstr ""
+"Choose the color and opacity using the sliders to customize your PDF "
+"watermark"
 
 #: templates/frontend/*.html
-msgid "Choose which pages to apply the crop to (all pages, current page, or custom pages)"
-msgstr "Choose which pages to apply the crop to (all pages, current page, or custom pages)"
+msgid ""
+"Choose which pages to apply the crop to (all pages, current page, or custom "
+"pages)"
+msgstr ""
+"Choose which pages to apply the crop to (all pages, current page, or custom "
+"pages)"
 
 #: templates/frontend/*.html
-msgid "Click and drag on the PDF to select the crop area. The blue highlighted area will be kept. You can drag the selection box anywhere to move it, or use the corner/edge handles to resize it."
-msgstr "Click and drag on the PDF to select the crop area. The blue highlighted area will be kept. You can drag the selection box anywhere to move it, or use the corner/edge handles to resize it."
+msgid ""
+"Click on the PDF to position the watermark, or drag it to move it anywhere "
+"on the page"
+msgstr ""
+"Click on the PDF to position the watermark, or drag it to move it anywhere "
+"on the page"
 
 #: templates/frontend/*.html
-msgid "Click on the PDF to position the watermark, or drag it to move it anywhere on the page"
-msgstr "Click on the PDF to position the watermark, or drag it to move it anywhere on the page"
-
-#: templates/frontend/*.html
-msgid "Click the add watermark button to process your PDF and add the watermark"
-msgstr "Click the add watermark button to process your PDF and add the watermark"
-
-#: templates/frontend/*.html
-msgid "Click the button above to select one or more images, or drag and drop them into the zone below"
-msgstr "Click the button above to select one or more images, or drag and drop them into the zone below"
+msgid ""
+"Click the add watermark button to process your PDF and add the watermark"
+msgstr ""
+"Click the add watermark button to process your PDF and add the watermark"
 
 #: templates/frontend/*.html
 msgid "Click the crop button to process your PDF and crop the selected area"
 msgstr "Click the crop button to process your PDF and crop the selected area"
 
 #: templates/frontend/*.html
-msgid "Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize."
-msgstr "Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize."
+msgid ""
+"Crop area ready! Drag the box to move it, drag from outside to create a new "
+"selection, or use handles to resize."
+msgstr ""
+"Crop area ready! Drag the box to move it, drag from outside to create a new "
+"selection, or use handles to resize."
 
 #: templates/frontend/*.html
 msgid "Download your cropped PDF file using the download button"
@@ -3128,20 +3602,13 @@ msgid "Download your watermarked PDF file using the download button"
 msgstr "Download your watermarked PDF file using the download button"
 
 #: templates/frontend/*.html
-msgid "Drag the watermark to move it. Drag any corner handle to rotate and scale simultaneously."
-msgstr "Drag the watermark to move it. Drag any corner handle to rotate and scale simultaneously."
-
-#: templates/frontend/*.html
 msgid "Drag to select crop area..."
 msgstr "Drag to select crop area..."
 
 #: templates/frontend/*.html
-msgid "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all pages"
-msgstr "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all pages"
-
-#: templates/frontend/*.html
 msgid "Enter your watermark text or upload an image to add as watermark to PDF"
-msgstr "Enter your watermark text or upload an image to add as watermark to PDF"
+msgstr ""
+"Enter your watermark text or upload an image to add as watermark to PDF"
 
 #: templates/frontend/*.html
 msgid "Error loading preview"
@@ -3160,8 +3627,12 @@ msgid "High quality (recommended)"
 msgstr "High quality (recommended)"
 
 #: templates/frontend/*.html
-msgid "Higher DPI = better quality but larger file size. 300 DPI is recommended for most uses."
-msgstr "Higher DPI = better quality but larger file size. 300 DPI is recommended for most uses."
+msgid ""
+"Higher DPI = better quality but larger file size. 300 DPI is recommended for "
+"most uses."
+msgstr ""
+"Higher DPI = better quality but larger file size. 300 DPI is recommended for "
+"most uses."
 
 #: templates/frontend/*.html
 msgid "Image Quality (DPI)"
@@ -3192,12 +3663,24 @@ msgid "Organizing..."
 msgstr "Organizing..."
 
 #: templates/frontend/*.html
-msgid "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
-msgstr "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
+msgid ""
+"PDF files with up to 50 pages are supported for adding watermarks. For "
+"larger files, please split them into smaller parts. The watermark will be "
+"applied to all pages or selected pages as specified."
+msgstr ""
+"PDF files with up to 50 pages are supported for adding watermarks. For "
+"larger files, please split them into smaller parts. The watermark will be "
+"applied to all pages or selected pages as specified."
 
 #: templates/frontend/*.html
-msgid "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
-msgstr "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
+msgid ""
+"PDF files with up to 50 pages are supported for cropping. For larger files, "
+"please split them into smaller parts. The crop area you select will be "
+"applied to all selected pages."
+msgstr ""
+"PDF files with up to 50 pages are supported for cropping. For larger files, "
+"please split them into smaller parts. The crop area you select will be "
+"applied to all selected pages."
 
 #: templates/frontend/*.html
 msgid "Page Selection"
@@ -3208,16 +3691,54 @@ msgid "Pages to Convert"
 msgstr "Pages to Convert"
 
 #: templates/frontend/*.html
-msgid "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
-msgstr "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
+msgid ""
+"Perfect for: adding watermarks to PDF documents, protecting PDF files with "
+"watermarks, adding copyright notices to PDFs, adding company logos to PDF "
+"files, adding confidential labels to PDF documents, adding draft watermarks "
+"to PDF files, adding text watermarks to PDF pages, adding image watermarks "
+"to PDF documents, branding PDF files with watermarks, adding security "
+"watermarks to PDF files."
+msgstr ""
+"Perfect for: adding watermarks to PDF documents, protecting PDF files with "
+"watermarks, adding copyright notices to PDFs, adding company logos to PDF "
+"files, adding confidential labels to PDF documents, adding draft watermarks "
+"to PDF files, adding text watermarks to PDF pages, adding image watermarks "
+"to PDF documents, branding PDF files with watermarks, adding security "
+"watermarks to PDF files."
 
 #: templates/frontend/*.html
-msgid "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
-msgstr "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
+msgid ""
+"Perfect for: converting photos to PDF for printing, creating PDF files from "
+"scanned documents, combining multiple images into one PDF, converting "
+"screenshots to PDF, creating PDF files from mobile photos, converting "
+"receipts to PDF format, creating PDF files from artwork scans, converting "
+"passport photos to PDF, creating PDF files from homework photos, converting "
+"ID photos to PDF, creating PDF files from medical records, converting "
+"drawings to PDF format, creating PDF files from handwritten notes, "
+"converting certificates to PDF, creating PDF files from diplomas."
+msgstr ""
+"Perfect for: converting photos to PDF for printing, creating PDF files from "
+"scanned documents, combining multiple images into one PDF, converting "
+"screenshots to PDF, creating PDF files from mobile photos, converting "
+"receipts to PDF format, creating PDF files from artwork scans, converting "
+"passport photos to PDF, creating PDF files from homework photos, converting "
+"ID photos to PDF, creating PDF files from medical records, converting "
+"drawings to PDF format, creating PDF files from handwritten notes, "
+"converting certificates to PDF, creating PDF files from diplomas."
 
 #: templates/frontend/*.html
-msgid "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
-msgstr "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
+msgid ""
+"Perfect for: cropping PDF pages to remove margins, cropping PDF documents to "
+"specific dimensions, removing white space from PDF files, cropping scanned "
+"documents, cropping PDF pages for printing, cropping PDF forms to fit, "
+"cropping PDF images to size, cropping PDF pages for web use, cropping PDF "
+"pages for mobile viewing, cropping PDF pages for presentations."
+msgstr ""
+"Perfect for: cropping PDF pages to remove margins, cropping PDF documents to "
+"specific dimensions, removing white space from PDF files, cropping scanned "
+"documents, cropping PDF pages for printing, cropping PDF forms to fit, "
+"cropping PDF images to size, cropping PDF pages for web use, cropping PDF "
+"pages for mobile viewing, cropping PDF pages for presentations."
 
 #: templates/frontend/*.html
 msgid "Please select a PDF file first."
@@ -3232,40 +3753,56 @@ msgid "Please select at least 2 PDF files to merge."
 msgstr "Please select at least 2 PDF files to merge."
 
 #: templates/frontend/*.html
-msgid "Resize the selection by dragging the corners or edges to adjust the crop area"
-msgstr "Resize the selection by dragging the corners or edges to adjust the crop area"
+msgid ""
+"Resize the selection by dragging the corners or edges to adjust the crop area"
+msgstr ""
+"Resize the selection by dragging the corners or edges to adjust the crop area"
 
 #: templates/frontend/*.html
 msgid "Select page"
 msgstr "Select page"
 
 #: templates/frontend/*.html
-msgid "Select your Word document (DOC or DOCX) using the button above or drag and drop it into the zone below"
-msgstr "Select your Word document (DOC or DOCX) using the button above or drag and drop it into the zone below"
+msgid ""
+"Select your Word document (DOC or DOCX) using the button above or drag and "
+"drop it into the zone below"
+msgstr ""
+"Select your Word document (DOC or DOCX) using the button above or drag and "
+"drop it into the zone below"
 
 #: templates/frontend/*.html
-msgid "Selection too small. Full page selected. Drag to create a new selection or drag the box to move it."
-msgstr "Selection too small. Full page selected. Drag to create a new selection or drag the box to move it."
+msgid ""
+"Selection too small. Full page selected. Drag to create a new selection or "
+"drag the box to move it."
+msgstr ""
+"Selection too small. Full page selected. Drag to create a new selection or "
+"drag the box to move it."
 
 #: templates/frontend/*.html
 msgid "Smaller file size"
 msgstr "Smaller file size"
 
 #: templates/frontend/*.html
-msgid "The PDF will be displayed - click and drag to select the area you want to keep when cropping PDF"
-msgstr "The PDF will be displayed - click and drag to select the area you want to keep when cropping PDF"
-
-#: templates/frontend/*.html
-msgid "The watermark appears at the bottom of the page by default. Drag it to move, use the top handle to rotate, and the corner handle to scale. Click anywhere on the PDF to reposition it."
-msgstr "The watermark appears at the bottom of the page by default. Drag it to move, use the top handle to rotate, and the corner handle to scale. Click anywhere on the PDF to reposition it."
+msgid ""
+"The PDF will be displayed - click and drag to select the area you want to "
+"keep when cropping PDF"
+msgstr ""
+"The PDF will be displayed - click and drag to select the area you want to "
+"keep when cropping PDF"
 
 #: templates/frontend/*.html
 msgid "Very high quality"
 msgstr "Very high quality"
 
 #: templates/frontend/*.html
-msgid "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. Supported formats include JPG, PNG, GIF, and BMP. The images will be combined in the order you select them."
-msgstr "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. Supported formats include JPG, PNG, GIF, and BMP. The images will be combined in the order you select them."
+msgid ""
+"You can convert multiple images (JPG, PNG, etc.) into a single PDF file. "
+"Supported formats include JPG, PNG, GIF, and BMP. The images will be "
+"combined in the order you select them."
+msgstr ""
+"You can convert multiple images (JPG, PNG, etc.) into a single PDF file. "
+"Supported formats include JPG, PNG, GIF, and BMP. The images will be "
+"combined in the order you select them."
 
 #: templates/frontend/*.html
 msgid "is not a PDF file. Skipping."
