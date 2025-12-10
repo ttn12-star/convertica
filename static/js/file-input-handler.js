@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    const DROP_HIT_MARGIN_PX = 48; // Allow near-miss drops within this margin
+
     // Create a clone of a FileList that can be assigned to inputs (cross-browser)
     function cloneFileList(files, allowMultiple = true) {
         if (!files || files.length === 0) return null;
@@ -90,6 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetInput.files = cloned;
             }
         }
+    }
+
+    // Check if pointer is within drop zone or within a margin
+    function isNearDropZone(e, zone, marginPx = DROP_HIT_MARGIN_PX) {
+        if (!zone || !e) return false;
+        const rect = zone.getBoundingClientRect();
+        const x = e.clientX;
+        const y = e.clientY;
+        return (
+            x >= rect.left - marginPx &&
+            x <= rect.right + marginPx &&
+            y >= rect.top - marginPx &&
+            y <= rect.bottom + marginPx
+        );
     }
 
     // Button click handler
@@ -197,13 +213,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, false);
 
-        dropZone.addEventListener('drop', (e) => {
+        function handleDrop(e) {
             dragCounter = 0;
             dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
 
             const dt = e.dataTransfer;
-            const files = dt.files;
+            const files = dt ? dt.files : null;
 
             if (files && files.length > 0) {
                 const allowMultiple = fileInputDrop && fileInputDrop.hasAttribute('multiple');
@@ -236,7 +252,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 document.dispatchEvent(customEvent);
             }
+        }
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleDrop(e);
         }, false);
+
+        // Accept drops that are close to the zone (near-miss)
+        ['dragover', 'drop'].forEach((eventName) => {
+            document.addEventListener(eventName, (e) => {
+                if (!isNearDropZone(e, dropZone, DROP_HIT_MARGIN_PX)) return;
+                e.preventDefault();
+                e.stopPropagation();
+                if (eventName === 'dragover') {
+                    dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
+                    dropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
+                } else if (eventName === 'drop') {
+                    handleDrop(e);
+                }
+            }, true);
+        });
 
         // Remove click handler - drop zone is for drag & drop only
         // Users should use the "Select file" button to browse files
