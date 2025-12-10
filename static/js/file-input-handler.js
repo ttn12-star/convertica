@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const DROP_HIT_MARGIN_PX = 96; // Allow near-miss drops within this margin
+    const DROP_HIT_MARGIN_PX = 240; // Allow generous near-miss drops within this margin
 
     // Create a clone of a FileList that can be assigned to inputs (cross-browser)
     function cloneFileList(files, allowMultiple = true) {
@@ -268,7 +268,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Accept drops that are close to the zone (near-miss)
         ['dragover', 'drop'].forEach((eventName) => {
             document.addEventListener(eventName, (e) => {
-                if (!isNearDropZone(e, dropZone, DROP_HIT_MARGIN_PX)) return;
+                const near = isNearDropZone(e, dropZone, DROP_HIT_MARGIN_PX);
+                if (!near && eventName === 'dragover') {
+                    // Remove highlight if we drifted away
+                    isHoveringDropZone = false;
+                    dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
+                    dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
+                    return;
+                }
+                if (!near) return;
                 e.preventDefault();
                 e.stopPropagation();
                 if (eventName === 'dragover') {
@@ -283,7 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Fallback: if drop happens while zone is highlighted (hover state), accept it
         document.addEventListener('drop', (e) => {
-            if (!isHoveringDropZone) return;
+            const near = isNearDropZone(e, dropZone, DROP_HIT_MARGIN_PX);
+            if (!isHoveringDropZone && !near) return;
             e.preventDefault();
             e.stopPropagation();
             handleDrop(e);
