@@ -264,11 +264,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // Download button handler
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
-            downloadBtn.addEventListener('click', () => {
-                // Allow user to choose/save name; preserve original extension if missing
+            downloadBtn.addEventListener('click', async () => {
                 const originalExt = downloadName.includes('.') ? downloadName.slice(downloadName.lastIndexOf('.')) : '';
-                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', downloadName);
                 let finalName = downloadName;
+
+                // Try modern file picker to let user choose directory & filename
+                if (window.showSaveFilePicker) {
+                    try {
+                        const handle = await window.showSaveFilePicker({
+                            suggestedName: downloadName,
+                            types: originalExt
+                                ? [{ description: 'File', accept: { '*/*': [originalExt] } }]
+                                : undefined,
+                        });
+                        const writable = await handle.createWritable();
+                        await writable.write(blob);
+                        await writable.close();
+                        finalName = handle.name || downloadName;
+                        downloadBtn.classList.add('bg-green-600');
+                        setTimeout(() => downloadBtn.classList.remove('bg-green-600'), 200);
+                        return;
+                    } catch (err) {
+                        // If user cancels, just exit silently; otherwise fall back
+                        if (err && err.name === 'AbortError') {
+                            return;
+                        }
+                        // Fallback to prompt flow below
+                    }
+                }
+
+                // Fallback: prompt for filename, then trigger download (browser will ask location)
+                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', downloadName);
                 if (input && input.trim()) {
                     finalName = input.trim();
                     if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
@@ -283,11 +309,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 a.click();
                 document.body.removeChild(a);
 
-                // Add visual feedback
                 downloadBtn.classList.add('bg-green-600');
-                setTimeout(() => {
-                    downloadBtn.classList.remove('bg-green-600');
-                }, 200);
+                setTimeout(() => downloadBtn.classList.remove('bg-green-600'), 200);
             });
         }
 
