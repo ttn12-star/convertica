@@ -274,9 +274,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateOrderFromPreview() {
         const cards = Array.from(pdfPreviewContainer.querySelectorAll('.pdf-page-card'));
-        const newOrder = cards.map(card => parseInt(card.dataset.pageIndex));
 
-        // Update pageOrder
+        // Get the current order of pages based on DOM order
+        // Each card's dataset.pageIndex contains the original page index (0-based)
+        // The order of cards in DOM represents the new desired order
+        const newOrder = cards.map(card => parseInt(card.dataset.pageIndex, 10));
+
+        // Update pageOrder with the new order
         pageOrder = newOrder;
 
         // Update display indices and numbers
@@ -287,6 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 numberBadge.textContent = index + 1;
             }
         });
+
+        // Debug logging
+        if (typeof console !== 'undefined' && console.log) {
+            console.log('Page order updated:', pageOrder);
+        }
     }
 
     // Form submission
@@ -321,8 +330,18 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('pdf_file', fileToSubmit);
         formData.append('operation', 'reorder');
 
+        // Ensure pageOrder is updated from current preview order
+        updateOrderFromPreview();
+
         // Add page order as JSON string (0-based indices)
-        formData.append('page_order', JSON.stringify(pageOrder));
+        const pageOrderJson = JSON.stringify(pageOrder);
+        formData.append('page_order', pageOrderJson);
+
+        // Debug logging
+        if (typeof console !== 'undefined' && console.log) {
+            console.log('Submitting page order:', pageOrder);
+            console.log('Page order JSON:', pageOrderJson);
+        }
 
         // Show loading
         if (editButton) {

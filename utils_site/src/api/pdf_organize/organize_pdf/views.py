@@ -5,9 +5,12 @@ from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
 from ...base_views import BaseConversionAPIView
+from ...logging_utils import get_logger
 from .decorators import organize_pdf_docs
 from .serializers import OrganizePDFSerializer
 from .utils import organize_pdf
+
+logger = get_logger(__name__)
 
 
 class OrganizePDFAPIView(BaseConversionAPIView):
@@ -36,6 +39,19 @@ class OrganizePDFAPIView(BaseConversionAPIView):
         """Organize PDF."""
         operation = kwargs.get("operation", "reorder")
         page_order = kwargs.get("page_order")
+
+        # Log for debugging
+        logger.debug(
+            "Organize PDF conversion",
+            extra={
+                **context,
+                "operation": operation,
+                "page_order": page_order,
+                "page_order_length": len(page_order) if page_order else 0,
+                "has_page_order": page_order is not None,
+            },
+        )
+
         pdf_path, output_path = organize_pdf(
             uploaded_file,
             operation=operation,
