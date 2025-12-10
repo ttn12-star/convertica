@@ -162,10 +162,20 @@ def convert_word_to_pdf(
             extra={**context, "event": "conversion_start"},
         )
         try:
-            # Use improved LibreOffice parameters
+            # Use improved LibreOffice parameters to preserve page layout
             env = os.environ.copy()
             env["SAL_DEFAULT_PAPER"] = "A4"  # Force A4 to avoid page count drift
             env["SAL_DISABLE_CUPS"] = "1"  # Avoid printer defaults changing paper size
+            # PDF export filter parameters to preserve exact page layout
+            # UseTaggedPDF=0 - disable tagging for better compatibility
+            # SelectPdfVersion=1 - PDF 1.4 for better compatibility
+            # Quality=100 - maximum quality
+            # MaxImageResolution=300 - high resolution for images
+            # EmbedStandardFonts=1 - embed fonts to preserve layout
+            pdf_filter_params = (
+                "UseTaggedPDF=0,SelectPdfVersion=1,Quality=100,"
+                "MaxImageResolution=300,EmbedStandardFonts=1"
+            )
             result = subprocess.run(
                 [
                     "libreoffice",
@@ -176,7 +186,7 @@ def convert_word_to_pdf(
                     "--norestore",
                     "--invisible",
                     "--convert-to",
-                    "pdf:writer_pdf_Export",
+                    f"pdf:writer_pdf_Export:{pdf_filter_params}",
                     "--outdir",
                     tmp_dir,
                     docx_path,
