@@ -936,14 +936,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <a href="${url}"
-                           download="${outputFileName}"
-                           class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
+                        <button id="downloadButton"
+                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                             </svg>
                             <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
-                        </a>
+                        </button>
                         <button type="button"
                                 onclick="location.reload()"
                                 class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
@@ -954,6 +953,56 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         container.classList.remove('hidden');
+
+        // Scroll to download button
+        setTimeout(() => {
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+
+        // Download button handler with showSaveFilePicker
+        const downloadBtn = document.getElementById('downloadButton');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', async () => {
+                const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
+                let finalName = outputFileName;
+
+                // Try modern file picker to let user choose directory & filename
+                if (window.showSaveFilePicker) {
+                    try {
+                        const handle = await window.showSaveFilePicker({
+                            suggestedName: outputFileName,
+                            types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
+                        });
+                        const writable = await handle.createWritable();
+                        await writable.write(blob);
+                        await writable.close();
+                        finalName = handle.name || outputFileName;
+                        downloadBtn.classList.add('bg-green-700');
+                        downloadBtn.innerHTML = '<span>✓ ' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
+                        setTimeout(() => {
+                            downloadBtn.classList.remove('bg-green-700');
+                            downloadBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg><span>' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
+                        }, 2000);
+                        return;
+                    } catch (err) {
+                        if (err.name !== 'AbortError') {
+                            console.warn('File picker failed, falling back to direct download:', err);
+                        } else {
+                            // User cancelled
+                            return;
+                        }
+                    }
+                }
+
+                // Fallback: direct download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = finalName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+        }
     }
 
     function hideDownload() {

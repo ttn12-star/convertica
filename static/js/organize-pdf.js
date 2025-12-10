@@ -348,12 +348,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const blob = await response.blob();
+            const outputFileName = pdfFile.name.replace(/\.pdf$/i, '_organized.pdf');
 
-            // Create download link
+            // Try modern file picker to let user choose directory & filename
+            if (window.showSaveFilePicker) {
+                try {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName: outputFileName,
+                        types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
+                    });
+                    const writable = await handle.createWritable();
+                    await writable.write(blob);
+                    await writable.close();
+                    return;
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        console.warn('File picker failed, falling back to direct download:', err);
+                    } else {
+                        // User cancelled
+                        return;
+                    }
+                }
+            }
+
+            // Fallback: direct download
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = pdfFile.name.replace(/\.pdf$/i, '_organized.pdf');
+            a.download = outputFileName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
