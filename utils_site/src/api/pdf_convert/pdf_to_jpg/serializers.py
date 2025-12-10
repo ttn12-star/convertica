@@ -12,9 +12,10 @@ class PDFToJPGSerializer(serializers.Serializer):
     )
     page = serializers.IntegerField(
         required=False,
-        default=1,
+        default=None,
+        allow_null=True,
         min_value=1,
-        help_text="Page number to convert (default: 1). If not specified, converts first page.",
+        help_text="Page number to convert (optional). If not specified, converts all pages to ZIP archive.",
     )
     dpi = serializers.IntegerField(
         required=False,
