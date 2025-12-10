@@ -55,11 +55,12 @@ class PDFToJPGAPIView(BaseConversionAPIView):
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
-        """Perform PDF to JPG conversion."""
-        page = kwargs.get("page", 1)
+        """Perform PDF to JPG conversion (all pages to ZIP)."""
+        # Convert all pages by default (page=None)
+        page = kwargs.get("page", None)
         dpi = kwargs.get("dpi", 300)
 
-        pdf_path, jpg_path = convert_pdf_to_jpg(
+        pdf_path, zip_path = convert_pdf_to_jpg(
             uploaded_file, page=page, dpi=dpi, suffix="_convertica"
         )
-        return pdf_path, jpg_path
+        return pdf_path, zip_path

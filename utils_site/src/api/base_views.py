@@ -111,6 +111,7 @@ class BaseConversionAPIView(APIView, ABC):
             ".doc": "application/msword",
             ".jpg": "image/jpeg",
             ".jpeg": "image/jpeg",
+            ".zip": "application/zip",
         }
         return content_types.get(ext, "application/octet-stream")
 

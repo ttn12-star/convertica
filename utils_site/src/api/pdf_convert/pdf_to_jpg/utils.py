@@ -1,5 +1,6 @@
 import os
 import tempfile
+import zipfile
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2image import convert_from_bytes, convert_from_path
@@ -25,20 +26,20 @@ logger = get_logger(__name__)
 
 def convert_pdf_to_jpg(
     uploaded_file: UploadedFile,
-    page: int = 1,
+    page: int = None,
     dpi: int = 300,
     suffix: str = "_convertica",
 ) -> tuple[str, str]:
-    """Convert PDF page to JPG image.
+    """Convert PDF pages to JPG images and return as ZIP archive.
 
     Args:
         uploaded_file (UploadedFile): Uploaded PDF file.
-        page (int): Page number to convert (1-indexed).
+        page (int, optional): Page number to convert (1-indexed). If None, converts all pages.
         dpi (int): DPI for image quality (72-600).
         suffix (str): Suffix to add to output file base name.
 
     Returns:
-        Tuple[str, str]: (path_to_pdf, path_to_jpg) where jpg exists.
+        Tuple[str, str]: (path_to_pdf, path_to_zip) where zip contains all JPG images.
 
     Raises:
         EncryptedPDFError: when the PDF is password-protected.
@@ -74,13 +75,13 @@ def convert_pdf_to_jpg(
 
         pdf_path = os.path.join(tmp_dir, safe_name)
         base = os.path.splitext(safe_name)[0]
-        jpg_name = f"{base}{suffix}_page{page}.jpg"
-        jpg_path = os.path.join(tmp_dir, jpg_name)
+        zip_name = f"{base}{suffix}.zip"
+        zip_path = os.path.join(tmp_dir, zip_name)
 
         context.update(
             {
                 "pdf_path": pdf_path,
-                "jpg_path": jpg_path,
+                "zip_path": zip_path,
             }
         )
 
@@ -125,27 +126,34 @@ def convert_pdf_to_jpg(
                 validation_error or "Invalid PDF file", context=context
             )
 
-        # Check page number is valid
+        # Get total page count
+        total_pages = None
         try:
             from PyPDF2 import PdfReader
 
             reader = PdfReader(pdf_path)
             total_pages = len(reader.pages)
-            if page > total_pages:
-                raise InvalidPDFError(
-                    f"Page {page} does not exist. PDF has only {total_pages} page(s).",
-                    context={**context, "total_pages": total_pages},
-                )
-            if page < 1:
-                raise InvalidPDFError(
-                    f"Page number must be 1 or greater. Got: {page}", context=context
-                )
             context["total_pages"] = total_pages
+
+            # If specific page requested, validate it
+            if page is not None:
+                if page > total_pages:
+                    raise InvalidPDFError(
+                        f"Page {page} does not exist. PDF has only {total_pages} page(s).",
+                        context={**context, "total_pages": total_pages},
+                    )
+                if page < 1:
+                    raise InvalidPDFError(
+                        f"Page number must be 1 or greater. Got: {page}",
+                        context=context,
+                    )
         except ImportError:
             # PyPDF2 not available, skip page validation
             logger.debug(
                 "PyPDF2 not available, skipping page count validation", extra=context
             )
+        except InvalidPDFError:
+            raise
         except Exception as e:
             logger.warning(
                 "Could not validate page number",
@@ -167,41 +175,69 @@ def convert_pdf_to_jpg(
             with open(pdf_path, "rb") as f:
                 pdf_bytes = f.read()
 
-            # Convert PDF page to image
-            # pdf2image can work with bytes or path
+            # Convert PDF pages to images
+            # If page is specified, convert only that page; otherwise convert all pages
             try:
                 # Try to convert from bytes first (more efficient)
-                images = convert_from_bytes(
-                    pdf_bytes,
-                    dpi=dpi,
-                    first_page=page,
-                    last_page=page,
-                    fmt="jpeg",
-                )
+                if page is not None:
+                    images = convert_from_bytes(
+                        pdf_bytes,
+                        dpi=dpi,
+                        first_page=page,
+                        last_page=page,
+                        fmt="jpeg",
+                    )
+                else:
+                    # Convert all pages
+                    images = convert_from_bytes(
+                        pdf_bytes,
+                        dpi=dpi,
+                        fmt="jpeg",
+                    )
             except Exception:
                 # Fallback to path-based conversion
                 logger.debug(
                     "Bytes conversion failed, trying path-based", extra=context
                 )
-                images = convert_from_path(
-                    pdf_path,
-                    dpi=dpi,
-                    first_page=page,
-                    last_page=page,
-                    fmt="jpeg",
-                )
+                if page is not None:
+                    images = convert_from_path(
+                        pdf_path,
+                        dpi=dpi,
+                        first_page=page,
+                        last_page=page,
+                        fmt="jpeg",
+                    )
+                else:
+                    images = convert_from_path(
+                        pdf_path,
+                        dpi=dpi,
+                        fmt="jpeg",
+                    )
 
             if not images or len(images) == 0:
-                raise ConversionError(
-                    f"No image generated for page {page}", context=context
-                )
+                raise ConversionError("No images generated from PDF", context=context)
 
-            # Get the first (and only) image
-            image = images[0]
+            # Create ZIP archive with all images
+            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+                for idx, image in enumerate(images, start=1):
+                    # Determine page number for filename
+                    if page is not None:
+                        page_num = page
+                    else:
+                        page_num = idx
 
-            # Save as JPG with high quality
-            image.save(jpg_path, "JPEG", quality=95, optimize=True)
+                    # Save image to temporary file
+                    jpg_name = f"{base}_page{page_num:04d}.jpg"
+                    temp_jpg = os.path.join(tmp_dir, jpg_name)
+                    image.save(temp_jpg, "JPEG", quality=95, optimize=True)
 
+                    # Add to ZIP
+                    zipf.write(temp_jpg, jpg_name)
+
+                    # Clean up temporary JPG
+                    os.remove(temp_jpg)
+
+            context["images_count"] = len(images)
             logger.debug(
                 "Conversion completed",
                 extra={**context, "event": "conversion_complete"},
@@ -258,7 +294,7 @@ def convert_pdf_to_jpg(
 
         # Validate output file
         is_valid, validation_error = validate_output_file(
-            jpg_path, min_size=1000, context=context
+            zip_path, min_size=1000, context=context
         )
         if not is_valid:
             logger.error(
@@ -274,16 +310,7 @@ def convert_pdf_to_jpg(
                 context=context,
             )
 
-        output_size = os.path.getsize(jpg_path)
-        # Get image dimensions
-        try:
-            with Image.open(jpg_path) as img:
-                width, height = img.size
-                context["image_width"] = width
-                context["image_height"] = height
-        except Exception:
-            pass
-
+        output_size = os.path.getsize(zip_path)
         logger.info(
             "PDF to JPG conversion successful",
             extra={
@@ -291,10 +318,11 @@ def convert_pdf_to_jpg(
                 "event": "conversion_success",
                 "output_size": output_size,
                 "output_size_mb": round(output_size / (1024 * 1024), 2),
+                "pages_converted": len(images) if "images_count" in context else None,
             },
         )
 
-        return pdf_path, jpg_path
+        return pdf_path, zip_path
 
     except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):
         # Re-raise our custom exceptions
