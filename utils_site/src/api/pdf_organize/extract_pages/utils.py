@@ -18,8 +18,7 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
-from ...pdf_edit.rotate_pdf.utils import parse_pages
-from ...pdf_utils import repair_pdf
+from ...pdf_utils import parse_pages, repair_pdf
 
 logger = get_logger(__name__)
 

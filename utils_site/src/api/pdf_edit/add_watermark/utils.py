@@ -23,7 +23,7 @@ from ...file_validation import (
     validate_pdf_file,
 )
 from ...logging_utils import get_logger
-from ...pdf_utils import repair_pdf
+from ...pdf_utils import parse_pages, repair_pdf
 
 logger = get_logger(__name__)
 
@@ -74,45 +74,6 @@ def _register_watermark_font():
         )
 
     _WATERMARK_FONT_REGISTERED = True
-
-
-def parse_pages(pages_str: str, total_pages: int) -> list[int]:
-    """Parse page string into list of page indices (0-indexed).
-
-    Args:
-        pages_str: Page string like "all", "1,3,5", or "1-5"
-        total_pages: Total number of pages in PDF
-
-    Returns:
-        List of 0-indexed page numbers
-    """
-    if pages_str.lower() == "all":
-        return list(range(total_pages))
-
-    page_indices = []
-    parts = pages_str.split(",")
-
-    for part in parts:
-        part = part.strip()
-        if "-" in part:
-            # Range like "1-5"
-            start, end = part.split("-", 1)
-            try:
-                start_idx = max(0, int(start.strip()) - 1)  # Convert to 0-indexed
-                end_idx = min(total_pages, int(end.strip()))  # Keep 1-indexed for range
-                page_indices.extend(range(start_idx, end_idx))
-            except ValueError:
-                logger.warning("Invalid page range: %s", part)
-        else:
-            # Single page number
-            try:
-                page_num = int(part)
-                if 1 <= page_num <= total_pages:
-                    page_indices.append(page_num - 1)  # Convert to 0-indexed
-            except ValueError:
-                logger.warning("Invalid page number: %s", part)
-
-    return sorted(set(page_indices))  # Remove duplicates and sort
 
 
 def add_watermark(
