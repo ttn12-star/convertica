@@ -68,12 +68,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Create a clone of a FileList that can be assigned to inputs (cross-browser)
+    function cloneFileList(files, allowMultiple = true) {
+        if (!files || files.length === 0) return null;
+        // DataTransfer constructor is not available in some browsers (e.g., older Firefox/Safari)
+        if (typeof DataTransfer !== 'undefined') {
+            const dt = new DataTransfer();
+            const source = allowMultiple ? Array.from(files) : [files[0]];
+            source.forEach((file) => dt.items.add(file));
+            return dt.files;
+        }
+        // Fallback: return original FileList (assignment works in modern browsers)
+        return allowMultiple ? files : files;
+    }
+
     // Sync files between two inputs
     function syncFileInputs(sourceInput, targetInput) {
         if (sourceInput.files && sourceInput.files.length > 0) {
-            const dataTransfer = new DataTransfer();
-            dataTransfer.items.add(sourceInput.files[0]);
-            targetInput.files = dataTransfer.files;
+            const cloned = cloneFileList(sourceInput.files);
+            if (cloned) {
+                targetInput.files = cloned;
+            }
         }
     }
 
@@ -191,23 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const files = dt.files;
 
             if (files && files.length > 0) {
-                // Create a new FileList-like object
-                const dataTransfer = new DataTransfer();
-                // Handle multiple files if needed (for jpg_to_pdf)
-                if (files.length > 1 && fileInputDrop && fileInputDrop.hasAttribute('multiple')) {
-                    for (let i = 0; i < files.length; i++) {
-                        dataTransfer.items.add(files[i]);
-                    }
-                } else {
-                    dataTransfer.items.add(files[0]);
-                }
+                const allowMultiple = fileInputDrop && fileInputDrop.hasAttribute('multiple');
+                const cloned = cloneFileList(files, allowMultiple);
 
                 // Set files to both inputs
-                if (fileInput) {
-                    fileInput.files = dataTransfer.files;
+                if (fileInput && cloned) {
+                    fileInput.files = cloned;
                 }
-                if (fileInputDrop) {
-                    fileInputDrop.files = dataTransfer.files;
+                if (fileInputDrop && cloned) {
+                    fileInputDrop.files = cloned;
                 }
 
                 showSelectedFile(files[0]);
