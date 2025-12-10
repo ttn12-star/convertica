@@ -411,13 +411,21 @@
         {% trans "How it works" %}
       </h2>
       <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
-        <li>{% trans "Select your PDF file using the button above" %}</li>
-        <li>{% trans "Enter your watermark text or upload an image" %}</li>
-        <li>{% trans "Choose the color and opacity using the sliders" %}</li>
-        <li>{% trans "Click on the PDF to position the watermark" %}</li>
-        <li>{% trans "Click the add watermark button to process your file" %}</li>
-        <li>{% trans "Download your watermarked PDF file" %}</li>
+        <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
+        <li>{% trans "Enter your watermark text or upload an image to add as watermark to PDF" %}</li>
+        <li>{% trans "Choose the color and opacity using the sliders to customize your PDF watermark" %}</li>
+        <li>{% trans "Click on the PDF to position the watermark, or drag it to move it anywhere on the page" %}</li>
+        <li>{% trans "Click the add watermark button to process your PDF and add the watermark" %}</li>
+        <li>{% trans "Download your watermarked PDF file using the download button" %}</li>
       </ol>
+      <div class="mt-4 pt-4 border-t border-blue-200">
+        <p class="text-xs sm:text-sm text-gray-600">
+          <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified." %}
+        </p>
+        <p class="text-xs sm:text-sm text-gray-600 mt-2">
+          {% trans "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files." %}
+        </p>
+      </div>
     </div>
   </div>
 {% endblock %}
