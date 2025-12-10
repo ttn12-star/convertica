@@ -2966,8 +2966,8 @@ msgid "Download your reorganized PDF file with pages in the new order using the 
 msgstr "Download your reorganized PDF file with pages in the new order using the download button"
 
 #: templates/frontend/organize_pdf.html:68
-msgid "You can drag and drop pages to reorder them visually. The number on each page shows the new order. All changes will be applied to the final PDF."
-msgstr "You can drag and drop pages to reorder them visually. The number on each page shows the new order. All changes will be applied to the final PDF."
+msgid "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
+msgstr "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
 
 #: templates/frontend/organize_pdf.html:71
 msgid "Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF files, reordering pages in PDF documents, rearranging pages in PDF files, sorting pages in PDF documents, changing order of PDF pages, reorganizing PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF documents, changing PDF page sequence."
