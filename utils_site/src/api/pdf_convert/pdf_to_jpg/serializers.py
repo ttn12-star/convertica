@@ -10,12 +10,10 @@ class PDFToJPGSerializer(serializers.Serializer):
     pdf_file = serializers.FileField(
         required=True, help_text="PDF file to be converted into JPG format"
     )
-    page = serializers.IntegerField(
+    pages = serializers.CharField(
         required=False,
-        default=None,
-        allow_null=True,
-        min_value=1,
-        help_text="Page number to convert (optional). If not specified, converts all pages to ZIP archive.",
+        default="all",
+        help_text='Pages to convert: "all" for all pages, or specific pages like "1,3,5" or "1-5". Default: "all".',
     )
     dpi = serializers.IntegerField(
         required=False,

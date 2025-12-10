@@ -151,11 +151,11 @@ def pdf_to_jpg_page(request):
         file_accept=".pdf",
         api_url_name="pdf_to_jpg_api",
         replace_regex=r"\.pdf$",
-        replace_to=".jpg",
+        replace_to=".zip",
         button_text_key="Convert PDF to JPG",
         select_file_message_key="Please select a PDF file.",
     )
-    return render(request, "frontend/converter_generic.html", context)
+    return render(request, "frontend/pdf_to_jpg.html", context)
 
 
 def jpg_to_pdf_page(request):
