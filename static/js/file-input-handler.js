@@ -183,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Drag and drop handlers (only if dropZone exists)
     if (dropZone) {
         let dragCounter = 0; // Track nested drag events
+        let isHoveringDropZone = false;
 
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropZone.addEventListener(eventName, preventDefaults, false);
@@ -195,12 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dropZone.addEventListener('dragenter', (e) => {
             dragCounter++;
+            isHoveringDropZone = true;
             dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
         }, false);
 
         dropZone.addEventListener('dragover', (e) => {
             // Keep highlighting during drag over
+            isHoveringDropZone = true;
             dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
         }, false);
@@ -208,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dropZone.addEventListener('dragleave', (e) => {
             dragCounter--;
             if (dragCounter === 0) {
+                isHoveringDropZone = false;
                 dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
                 dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
             }
@@ -215,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function handleDrop(e) {
             dragCounter = 0;
+            isHoveringDropZone = false;
             dropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
             dropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
 
@@ -267,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 e.stopPropagation();
                 if (eventName === 'dragover') {
+                    isHoveringDropZone = true;
                     dropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
                     dropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
                 } else if (eventName === 'drop') {
@@ -274,6 +280,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, true);
         });
+
+        // Fallback: if drop happens while zone is highlighted (hover state), accept it
+        document.addEventListener('drop', (e) => {
+            if (!isHoveringDropZone) return;
+            e.preventDefault();
+            e.stopPropagation();
+            handleDrop(e);
+        }, true);
 
         // Remove click handler - drop zone is for drag & drop only
         // Users should use the "Select file" button to browse files
