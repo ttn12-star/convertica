@@ -3162,4 +3162,24 @@ msgstr "Drag and drop to reorder files. The order shown here will be the merge o
 
 #: templates/frontend/add_page_numbers.html:149
 msgid "Preview shows page numbers as they will appear in the final PDF after download."
-msgstr "Preview shows page numbers as they will appear in the final PDF after download."
+msgstr "Предпросмотр показывает номера страниц такими, какими они будут в финальном PDF после загрузки."
+
+#: templates/frontend/pdf_to_excel.html:11
+msgid "Click the convert button to start converting PDF to Excel (PDF to XLSX conversion)"
+msgstr "Нажмите кнопку конвертации, чтобы начать преобразование PDF в Excel (конвертация PDF в XLSX)"
+
+#: templates/frontend/pdf_to_excel.html:12
+msgid "Wait for the PDF to Excel conversion to complete - tables and data will be extracted from your PDF and converted to editable Excel format"
+msgstr "Дождитесь завершения конвертации PDF в Excel - таблицы и данные будут извлечены из вашего PDF и преобразованы в редактируемый формат Excel"
+
+#: templates/frontend/pdf_to_excel.html:13
+msgid "Download your editable Excel file (XLSX format) - your PDF tables have been successfully converted to Excel"
+msgstr "Скачайте ваш редактируемый файл Excel (формат XLSX) - ваши PDF таблицы успешно преобразованы в Excel"
+
+#: templates/frontend/pdf_to_excel.html:17
+msgid "PDF files with up to 50 pages are supported. For larger files, please split them into smaller parts. PDF files with tables work best - plain text will be placed in separate cells, and images will be embedded in the Excel file."
+msgstr "Поддерживаются PDF файлы до 50 страниц. Для больших файлов, пожалуйста, разбейте их на более мелкие части. PDF файлы с таблицами работают лучше всего - обычный текст будет размещен в отдельных ячейках, а изображения будут встроены в файл Excel."
+
+#: templates/frontend/pdf_to_excel.html:20
+msgid "Perfect for: converting PDF tables to Excel, extracting data from PDF invoices, converting PDF reports to Excel format, extracting tables from PDF documents, converting PDF spreadsheets to Excel, extracting data from PDF forms, converting PDF financial reports to Excel, extracting tables from PDF contracts, converting PDF data tables to Excel, extracting information from PDF invoices, converting PDF accounting documents to Excel, extracting data from PDF statements, converting PDF tables for data analysis, extracting tables from PDF presentations, converting PDF business reports to Excel, extracting data from PDF catalogs, converting PDF price lists to Excel, extracting tables from PDF manuals, converting PDF survey results to Excel, extracting data from PDF research papers, converting PDF statistical data to Excel, extracting tables from PDF legal documents, converting PDF inventory lists to Excel, extracting data from PDF receipts, converting PDF expense reports to Excel."
+msgstr "Идеально для: конвертации PDF таблиц в Excel, извлечения данных из PDF счетов, конвертации PDF отчетов в формат Excel, извлечения таблиц из PDF документов, конвертации PDF электронных таблиц в Excel, извлечения данных из PDF форм, конвертации PDF финансовых отчетов в Excel, извлечения таблиц из PDF контрактов, конвертации PDF таблиц данных в Excel, извлечения информации из PDF счетов, конвертации PDF бухгалтерских документов в Excel, извлечения данных из PDF выписок, конвертации PDF таблиц для анализа данных, извлечения таблиц из PDF презентаций, конвертации PDF бизнес-отчетов в Excel, извлечения данных из PDF каталогов, конвертации PDF прайс-листов в Excel, извлечения таблиц из PDF руководств, конвертации PDF результатов опросов в Excel, извлечения данных из PDF исследовательских работ, конвертации PDF статистических данных в Excel, извлечения таблиц из PDF юридических документов, конвертации PDF списков инвентаря в Excel, извлечения данных из PDF чеков, конвертации PDF отчетов о расходах в Excel."
