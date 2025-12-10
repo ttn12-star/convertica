@@ -51,7 +51,7 @@ dev: ## Start development environment
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml up
 
 dev-build: ## Build development environment
-	docker compose -f docker-compose.yml -f docker-compose.dev.yml build
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml build --no-cache
 
 dev-down: ## Stop development environment
 	docker compose -f docker-compose.yml -f docker-compose.dev.yml down
