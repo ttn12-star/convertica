@@ -42,6 +42,25 @@
         </div>
         <input type="hidden" id="pages" name="pages" value="all">
       </div>
+
+      <!-- DPI Selection -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-3" for="dpiSelect">
+          {% trans "Image Quality (DPI)" %}
+        </label>
+        <select id="dpiSelect"
+                name="dpi"
+                class="w-full sm:w-auto min-w-[200px] px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+          <option value="150">150 DPI - {% trans "Smaller file size" %}</option>
+          <option value="200">200 DPI - {% trans "Balanced" %}</option>
+          <option value="300" selected>300 DPI - {% trans "High quality (recommended)" %}</option>
+          <option value="400">400 DPI - {% trans "Very high quality" %}</option>
+          <option value="600">600 DPI - {% trans "Maximum quality" %}</option>
+        </select>
+        <p class="mt-2 text-xs text-gray-500">
+          {% trans "Higher DPI = better quality but larger file size. 300 DPI is recommended for most uses." %}
+        </p>
+      </div>
     </div>
   </div>
 {% endblock %}
@@ -104,7 +123,7 @@
         });
       }
 
-      // Override form submission to include pages parameter
+      // Override form submission to include pages and dpi parameters
       const form = document.getElementById('converterForm');
       if (form) {
         form.addEventListener('submit', (e) => {
@@ -120,6 +139,7 @@
           } else {
             form.querySelector('input[name="pages"]').value = pagesValue;
           }
+          // DPI is already in the form as a select element, converter.js will handle it
         });
       }
     });
