@@ -3146,3 +3146,143 @@ msgstr "Drag and drop to reorder files. The order shown here will be the merge o
 #: templates/frontend/add_page_numbers.html:149
 msgid "Preview shows page numbers as they will appear in the final PDF after download."
 msgstr "Preview shows page numbers as they will appear in the final PDF after download."
+
+#: templates/frontend/*.html
+msgid "A crop area covering most of the page is selected by default - adjust it as needed"
+msgstr "डिफ़ॉल्ट रूप से पृष्ठ के अधिकांश भाग को कवर करने वाला क्रॉप क्षेत्र चुना गया है - आवश्यकतानुसार समायोजित करें"
+
+#: templates/frontend/*.html
+msgid "Choose the color and opacity using the sliders to customize your PDF watermark"
+msgstr "अपने PDF वॉटरमार्क को अनुकूलित करने के लिए स्लाइडर का उपयोग करके रंग और अपारदर्शिता चुनें"
+
+#: templates/frontend/*.html
+msgid "Choose which pages to apply the crop to (all pages, current page, or custom pages)"
+msgstr "चुनें कि क्रॉप को किन पृष्ठों पर लागू करना है (सभी पृष्ठ, वर्तमान पृष्ठ, या कस्टम पृष्ठ)"
+
+#: templates/frontend/*.html
+msgid "Click and drag on the PDF to select the crop area. The blue highlighted area will be kept. You can drag the selection box anywhere to move it, or use the corner/edge handles to resize it."
+msgstr "क्रॉप क्षेत्र चुनने के लिए PDF पर क्लिक करें और खींचें। नीला हाइलाइट किया गया क्षेत्र रखा जाएगा। आप चयन बॉक्स को कहीं भी खींचकर स्थानांतरित कर सकते हैं, या इसका आकार बदलने के लिए कोने/किनारे हैंडल का उपयोग कर सकते हैं।"
+
+#: templates/frontend/*.html
+msgid "Click on the PDF to position the watermark, or drag it to move it anywhere on the page"
+msgstr "वॉटरमार्क को स्थिति देने के लिए PDF पर क्लिक करें, या इसे पृष्ठ पर कहीं भी स्थानांतरित करने के लिए खींचें"
+
+#: templates/frontend/*.html
+msgid "Click the add watermark button to process your PDF and add the watermark"
+msgstr "अपने PDF को प्रसंस्कृत करने और वॉटरमार्क जोड़ने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें"
+
+#: templates/frontend/*.html
+msgid "Click the button above to select one or more images, or drag and drop them into the zone below"
+msgstr "एक या अधिक छवियों को चुनने के लिए ऊपर दिए गए बटन पर क्लिक करें, या उन्हें नीचे के क्षेत्र में खींचें और छोड़ें"
+
+#: templates/frontend/*.html
+msgid "Click the crop button to process your PDF and crop the selected area"
+msgstr "अपने PDF को प्रसंस्कृत करने और चयनित क्षेत्र को क्रॉप करने के लिए क्रॉप बटन पर क्लिक करें"
+
+#: templates/frontend/*.html
+msgid "Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize."
+msgstr "क्रॉप क्षेत्र तैयार! इसे स्थानांतरित करने के लिए बॉक्स खींचें, नया चयन बनाने के लिए बाहर से खींचें, या आकार बदलने के लिए हैंडल का उपयोग करें।"
+
+#: templates/frontend/*.html
+msgid "Download your cropped PDF file using the download button"
+msgstr "डाउनलोड बटन का उपयोग करके अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें"
+
+#: templates/frontend/*.html
+msgid "Download your watermarked PDF file using the download button"
+msgstr "डाउनलोड बटन का उपयोग करके अपनी वॉटरमार्क वाली PDF फ़ाइल डाउनलोड करें"
+
+#: templates/frontend/*.html
+msgid "Drag the watermark to move it. Drag any corner handle to rotate and scale simultaneously."
+msgstr "वॉटरमार्क को स्थानांतरित करने के लिए खींचें। एक साथ घुमाने और स्केल करने के लिए किसी भी कोने के हैंडल को खींचें।"
+
+#: templates/frontend/*.html
+msgid "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all pages"
+msgstr "अल्पविराम से अलग पृष्ठ संख्याएं दर्ज करें (उदा., 1,3,5) या सभी पृष्ठों को विभाजित करने के लिए खाली छोड़ें"
+
+#: templates/frontend/*.html
+msgid "Enter your watermark text or upload an image to add as watermark to PDF"
+msgstr "अपना वॉटरमार्क टेक्स्ट दर्ज करें या PDF में वॉटरमार्क के रूप में जोड़ने के लिए एक छवि अपलोड करें"
+
+#: templates/frontend/*.html
+msgid "High quality (recommended)"
+msgstr "उच्च गुणवत्ता (अनुशंसित)"
+
+#: templates/frontend/*.html
+msgid "Higher DPI = better quality but larger file size. 300 DPI is recommended for most uses."
+msgstr "उच्च DPI = बेहतर गुणवत्ता लेकिन बड़ा फ़ाइल आकार। अधिकांश उपयोगों के लिए 300 DPI की अनुशंसा की जाती है।"
+
+#: templates/frontend/*.html
+msgid "Image Quality (DPI)"
+msgstr "छवि गुणवत्ता (DPI)"
+
+#: templates/frontend/*.html
+msgid "Maximum quality"
+msgstr "अधिकतम गुणवत्ता"
+
+#: templates/frontend/*.html
+msgid "Note:"
+msgstr "नोट:"
+
+#: templates/frontend/*.html
+msgid "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
+msgstr "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
+
+#: templates/frontend/*.html
+msgid "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
+msgstr "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
+
+#: templates/frontend/*.html
+msgid "Page Selection"
+msgstr "पृष्ठ चयन"
+
+#: templates/frontend/*.html
+msgid "Pages to Convert"
+msgstr "कन्वर्ट करने के लिए पृष्ठ"
+
+#: templates/frontend/*.html
+msgid "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
+msgstr "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
+
+#: templates/frontend/*.html
+msgid "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
+msgstr "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
+
+#: templates/frontend/*.html
+msgid "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
+msgstr "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
+
+#: templates/frontend/*.html
+msgid "Resize the selection by dragging the corners or edges to adjust the crop area"
+msgstr "क्रॉप क्षेत्र को समायोजित करने के लिए कोनों या किनारों को खींचकर चयन का आकार बदलें"
+
+#: templates/frontend/*.html
+msgid "Select page"
+msgstr "पृष्ठ चुनें"
+
+#: templates/frontend/*.html
+msgid "Select your Word document (DOC or DOCX) using the button above or drag and drop it into the zone below"
+msgstr "ऊपर दिए गए बटन का उपयोग करके अपना Word दस्तावेज़ (DOC या DOCX) चुनें या इसे नीचे के क्षेत्र में खींचें और छोड़ें"
+
+#: templates/frontend/*.html
+msgid "Selection too small. Full page selected. Drag to create a new selection or drag the box to move it."
+msgstr "चयन बहुत छोटा है। पूरा पृष्ठ चुना गया है। नया चयन बनाने के लिए खींचें या इसे स्थानांतरित करने के लिए बॉक्स खींचें।"
+
+#: templates/frontend/*.html
+msgid "Smaller file size"
+msgstr "छोटा फ़ाइल आकार"
+
+#: templates/frontend/*.html
+msgid "The PDF will be displayed - click and drag to select the area you want to keep when cropping PDF"
+msgstr "PDF प्रदर्शित किया जाएगा - PDF को क्रॉप करते समय आप जिस क्षेत्र को रखना चाहते हैं उसे चुनने के लिए क्लिक करें और खींचें"
+
+#: templates/frontend/*.html
+msgid "The watermark appears at the bottom of the page by default. Drag it to move, use the top handle to rotate, and the corner handle to scale. Click anywhere on the PDF to reposition it."
+msgstr "वॉटरमार्क डिफ़ॉल्ट रूप से पृष्ठ के नीचे दिखाई देता है। इसे स्थानांतरित करने के लिए खींचें, घुमाने के लिए शीर्ष हैंडल का उपयोग करें, और स्केल करने के लिए कोने के हैंडल का उपयोग करें। इसे पुनः स्थिति देने के लिए PDF पर कहीं भी क्लिक करें।"
+
+#: templates/frontend/*.html
+msgid "Very high quality"
+msgstr "बहुत उच्च गुणवत्ता"
+
+#: templates/frontend/*.html
+msgid "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. Supported formats include JPG, PNG, GIF, and BMP. The images will be combined in the order you select them."
+msgstr "आप कई छवियों (JPG, PNG, आदि) को एक PDF फ़ाइल में कन्वर्ट कर सकते हैं। समर्थित प्रारूपों में JPG, PNG, GIF और BMP शामिल हैं। छवियों को आपके द्वारा चुने गए क्रम में संयोजित किया जाएगा।"

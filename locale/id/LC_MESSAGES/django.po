@@ -3241,3 +3241,143 @@ msgstr "Drag and drop to reorder files. The order shown here will be the merge o
 #: templates/frontend/add_page_numbers.html:149
 msgid "Preview shows page numbers as they will appear in the final PDF after download."
 msgstr "Preview shows page numbers as they will appear in the final PDF after download."
+
+#: templates/frontend/*.html
+msgid "A crop area covering most of the page is selected by default - adjust it as needed"
+msgstr "Area potong yang mencakup sebagian besar halaman dipilih secara default - sesuaikan sesuai kebutuhan"
+
+#: templates/frontend/*.html
+msgid "Choose the color and opacity using the sliders to customize your PDF watermark"
+msgstr "Pilih warna dan opasitas menggunakan slider untuk menyesuaikan tanda air PDF Anda"
+
+#: templates/frontend/*.html
+msgid "Choose which pages to apply the crop to (all pages, current page, or custom pages)"
+msgstr "Pilih halaman mana yang akan diterapkan potongan (semua halaman, halaman saat ini, atau halaman kustom)"
+
+#: templates/frontend/*.html
+msgid "Click and drag on the PDF to select the crop area. The blue highlighted area will be kept. You can drag the selection box anywhere to move it, or use the corner/edge handles to resize it."
+msgstr "Klik dan seret pada PDF untuk memilih area potong. Area yang disorot biru akan dipertahankan. Anda dapat menyeret kotak pilihan ke mana saja untuk memindahkannya, atau menggunakan pegangan sudut/tepi untuk mengubah ukurannya."
+
+#: templates/frontend/*.html
+msgid "Click on the PDF to position the watermark, or drag it to move it anywhere on the page"
+msgstr "Klik pada PDF untuk memposisikan tanda air, atau seret untuk memindahkannya ke mana saja di halaman"
+
+#: templates/frontend/*.html
+msgid "Click the add watermark button to process your PDF and add the watermark"
+msgstr "Klik tombol tambah tanda air untuk memproses PDF Anda dan menambahkan tanda air"
+
+#: templates/frontend/*.html
+msgid "Click the button above to select one or more images, or drag and drop them into the zone below"
+msgstr "Klik tombol di atas untuk memilih satu atau lebih gambar, atau seret dan lepas ke zona di bawah"
+
+#: templates/frontend/*.html
+msgid "Click the crop button to process your PDF and crop the selected area"
+msgstr "Klik tombol potong untuk memproses PDF Anda dan memotong area yang dipilih"
+
+#: templates/frontend/*.html
+msgid "Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize."
+msgstr "Area potong siap! Seret kotak untuk memindahkannya, seret dari luar untuk membuat pilihan baru, atau gunakan pegangan untuk mengubah ukuran."
+
+#: templates/frontend/*.html
+msgid "Download your cropped PDF file using the download button"
+msgstr "Unduh file PDF yang dipotong menggunakan tombol unduh"
+
+#: templates/frontend/*.html
+msgid "Download your watermarked PDF file using the download button"
+msgstr "Unduh file PDF dengan tanda air menggunakan tombol unduh"
+
+#: templates/frontend/*.html
+msgid "Drag the watermark to move it. Drag any corner handle to rotate and scale simultaneously."
+msgstr "Seret tanda air untuk memindahkannya. Seret pegangan sudut mana pun untuk memutar dan menskalakan secara bersamaan."
+
+#: templates/frontend/*.html
+msgid "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all pages"
+msgstr "Masukkan nomor halaman yang dipisahkan koma (mis., 1,3,5) atau biarkan kosong untuk membagi semua halaman"
+
+#: templates/frontend/*.html
+msgid "Enter your watermark text or upload an image to add as watermark to PDF"
+msgstr "Masukkan teks tanda air Anda atau unggah gambar untuk ditambahkan sebagai tanda air ke PDF"
+
+#: templates/frontend/*.html
+msgid "High quality (recommended)"
+msgstr "Kualitas tinggi (disarankan)"
+
+#: templates/frontend/*.html
+msgid "Higher DPI = better quality but larger file size. 300 DPI is recommended for most uses."
+msgstr "DPI lebih tinggi = kualitas lebih baik tetapi ukuran file lebih besar. 300 DPI direkomendasikan untuk sebagian besar penggunaan."
+
+#: templates/frontend/*.html
+msgid "Image Quality (DPI)"
+msgstr "Kualitas Gambar (DPI)"
+
+#: templates/frontend/*.html
+msgid "Maximum quality"
+msgstr "Kualitas maksimal"
+
+#: templates/frontend/*.html
+msgid "Note:"
+msgstr "Catatan:"
+
+#: templates/frontend/*.html
+msgid "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
+msgstr "PDF files with up to 50 pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified."
+
+#: templates/frontend/*.html
+msgid "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
+msgstr "PDF files with up to 50 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages."
+
+#: templates/frontend/*.html
+msgid "Page Selection"
+msgstr "Pemilihan Halaman"
+
+#: templates/frontend/*.html
+msgid "Pages to Convert"
+msgstr "Halaman untuk Dikonversi"
+
+#: templates/frontend/*.html
+msgid "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
+msgstr "Perfect for: adding watermarks to PDF documents, protecting PDF files with watermarks, adding copyright notices to PDFs, adding company logos to PDF files, adding confidential labels to PDF documents, adding draft watermarks to PDF files, adding text watermarks to PDF pages, adding image watermarks to PDF documents, branding PDF files with watermarks, adding security watermarks to PDF files."
+
+#: templates/frontend/*.html
+msgid "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
+msgstr "Perfect for: converting photos to PDF for printing, creating PDF files from scanned documents, combining multiple images into one PDF, converting screenshots to PDF, creating PDF files from mobile photos, converting receipts to PDF format, creating PDF files from artwork scans, converting passport photos to PDF, creating PDF files from homework photos, converting ID photos to PDF, creating PDF files from medical records, converting drawings to PDF format, creating PDF files from handwritten notes, converting certificates to PDF, creating PDF files from diplomas."
+
+#: templates/frontend/*.html
+msgid "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
+msgstr "Perfect for: cropping PDF pages to remove margins, cropping PDF documents to specific dimensions, removing white space from PDF files, cropping scanned documents, cropping PDF pages for printing, cropping PDF forms to fit, cropping PDF images to size, cropping PDF pages for web use, cropping PDF pages for mobile viewing, cropping PDF pages for presentations."
+
+#: templates/frontend/*.html
+msgid "Resize the selection by dragging the corners or edges to adjust the crop area"
+msgstr "Ubah ukuran pilihan dengan menyeret sudut atau tepi untuk menyesuaikan area potong"
+
+#: templates/frontend/*.html
+msgid "Select page"
+msgstr "Pilih halaman"
+
+#: templates/frontend/*.html
+msgid "Select your Word document (DOC or DOCX) using the button above or drag and drop it into the zone below"
+msgstr "Pilih dokumen Word Anda (DOC atau DOCX) menggunakan tombol di atas atau seret dan lepas ke zona di bawah"
+
+#: templates/frontend/*.html
+msgid "Selection too small. Full page selected. Drag to create a new selection or drag the box to move it."
+msgstr "Pilihan terlalu kecil. Seluruh halaman dipilih. Seret untuk membuat pilihan baru atau seret kotak untuk memindahkannya."
+
+#: templates/frontend/*.html
+msgid "Smaller file size"
+msgstr "Ukuran file lebih kecil"
+
+#: templates/frontend/*.html
+msgid "The PDF will be displayed - click and drag to select the area you want to keep when cropping PDF"
+msgstr "PDF akan ditampilkan - klik dan seret untuk memilih area yang ingin Anda pertahankan saat memotong PDF"
+
+#: templates/frontend/*.html
+msgid "The watermark appears at the bottom of the page by default. Drag it to move, use the top handle to rotate, and the corner handle to scale. Click anywhere on the PDF to reposition it."
+msgstr "Tanda air muncul di bagian bawah halaman secara default. Seret untuk memindahkan, gunakan pegangan atas untuk memutar, dan pegangan sudut untuk menskalakan. Klik di mana saja pada PDF untuk memposisikannya kembali."
+
+#: templates/frontend/*.html
+msgid "Very high quality"
+msgstr "Kualitas sangat tinggi"
+
+#: templates/frontend/*.html
+msgid "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. Supported formats include JPG, PNG, GIF, and BMP. The images will be combined in the order you select them."
+msgstr "Anda dapat mengonversi beberapa gambar (JPG, PNG, dll.) menjadi satu file PDF. Format yang didukung termasuk JPG, PNG, GIF, dan BMP. Gambar akan digabungkan sesuai urutan Anda memilihnya."
