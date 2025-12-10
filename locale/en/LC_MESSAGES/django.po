@@ -2922,8 +2922,8 @@ msgid "Download the ZIP archive containing all split PDF files using the downloa
 msgstr "Download the ZIP archive containing all split PDF files using the download button"
 
 #: templates/frontend/split_pdf.html:85
-msgid "PDF files with up to 50 pages are supported for splitting. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all split PDF files."
-msgstr "PDF files with up to 50 pages are supported for splitting. For larger files, please split them into smaller parts. The output will be a ZIP archive containing all split PDF files."
+msgid "The output will be a ZIP archive containing all split PDF files. You can split your PDF by individual pages, by page ranges, or every N pages."
+msgstr "The output will be a ZIP archive containing all split PDF files. You can split your PDF by individual pages, by page ranges, or every N pages."
 
 #: templates/frontend/split_pdf.html:88
 msgid "Perfect for: splitting PDF files into separate documents, dividing PDF documents into multiple files, splitting PDF by pages, breaking PDF into smaller files, splitting PDF by page ranges, dividing large PDF files, splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF for email attachments, dividing PDF documents for storage, splitting PDF for mobile viewing, breaking PDF into sections, splitting PDF for presentations, dividing PDF files for printing, splitting PDF for archiving."
@@ -2966,8 +2966,8 @@ msgid "Download your reorganized PDF file with pages in the new order using the 
 msgstr "Download your reorganized PDF file with pages in the new order using the download button"
 
 #: templates/frontend/organize_pdf.html:68
-msgid "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
-msgstr "PDF files with up to 50 pages are supported for organizing. For larger files, please split them into smaller parts. You can drag and drop pages to reorder them visually."
+msgid "You can drag and drop pages to reorder them visually. The number on each page shows the new order. All changes will be applied to the final PDF."
+msgstr "You can drag and drop pages to reorder them visually. The number on each page shows the new order. All changes will be applied to the final PDF."
 
 #: templates/frontend/organize_pdf.html:71
 msgid "Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF files, reordering pages in PDF documents, rearranging pages in PDF files, sorting pages in PDF documents, changing order of PDF pages, reorganizing PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF documents, changing PDF page sequence."
