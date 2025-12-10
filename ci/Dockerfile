@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install common fonts to prevent layout reflow (missing fonts -> page splits)
+# Note: Use only packages available in Debian trixie main; mscorefonts requires non-free, so we rely on Carlito/Caladea as substitutes.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-dejavu-core \
     fonts-dejavu-extra \
@@ -48,8 +49,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-crosextra-carlito \
     fonts-noto-core \
     fonts-noto-cjk \
-    fonts-noto-emoji \
-    ttf-mscorefonts-installer \
     && rm -rf /var/lib/apt/lists/*
 
 # Install remaining dependencies
