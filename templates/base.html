@@ -4,6 +4,17 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <head>
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-5HH8RNG6');
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,17 +50,18 @@
     <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
     <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
-    <!-- Canonical URL (with language prefix for proper SEO) -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 
-    <!-- Preconnect to external domains for performance -->
+    <!-- Preconnect to external domains -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://challenges.cloudflare.com">
     <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://cloudflare-static.com">
     <link rel="preconnect" href="https://cloudflare-static.com" crossorigin>
-    <!-- Google Fonts for better typography -->
+
+    <!-- Google Fonts -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -58,7 +70,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Hreflang Tags for SEO -->
+    <!-- Hreflang -->
     {% for link in hreflangs %}
       <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
     {% endfor %}
@@ -70,93 +82,33 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
 
     <!-- Stylesheets -->
-    {% load static %}
-    <!-- Preload critical CSS early to reduce render blocking -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="all">
 
     <!-- Custom Animations -->
     <style>
-      @keyframes progress {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-      }
+      @keyframes progress { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+      @keyframes ping {75%,100%{transform:scale(2);opacity:0;}}
 
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
+      .animate-progress { animation: progress 2s linear infinite; background-size: 200% 100%; }
+      .animate-fade-in { animation: fadeIn 0.5s ease-out; }
+      .animate-scale-in { animation: scaleIn 0.3s ease-out; }
+      .shadow-3xl { box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25); }
 
-      @keyframes scaleIn {
-        from { opacity: 0; transform: scale(0.8); }
-        to { opacity: 1; transform: scale(1); }
-      }
+      html, body { overflow-x: hidden; max-width: 100%; width: 100%; }
+      * { box-sizing: border-box; transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: cubic-bezier(0.4,0,0.2,1); transition-duration: 150ms; }
 
-      @keyframes ping {
-        75%, 100% { transform: scale(2); opacity: 0; }
-      }
+      body { color: #111827; }
+      p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea { color: inherit; }
 
-      .animate-progress {
-        animation: progress 2s linear infinite;
-        background-size: 200% 100%;
-      }
+      img, video, iframe, embed, object { max-width: 100%; height: auto; }
 
-      .animate-fade-in {
-        animation: fadeIn 0.5s ease-out;
-      }
-
-      .animate-scale-in {
-        animation: scaleIn 0.3s ease-out;
-      }
-
-      .shadow-3xl {
-        box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
-      }
-
-        /* Prevent horizontal scrolling on mobile */
-      html, body {
-        overflow-x: hidden;
-        max-width: 100%;
-        width: 100%;
-      }
-
-        /* Ensure all containers don't overflow */
-      * {
-        box-sizing: border-box;
-      }
-
-        /* Force dark text on light backgrounds by default */
-      body {
-        color: #111827; /* gray-900 */
-      }
-
-        /* Ensure all text elements inherit color properly */
-      p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea {
-        color: inherit;
-      }
-
-        /* Smooth transitions */
-      * {
-        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 150ms;
-      }
-
-        /* Ensure images and media don't overflow */
-      img, video, iframe, embed, object {
-        max-width: 100%;
-        height: auto;
-      }
-
-        /* Fix for dropdown menus on mobile */
-      @media (max-width: 640px) {
-        .absolute {
-          max-width: calc(100vw - 1rem);
-        }
-      }
+      @media (max-width: 640px) { .absolute { max-width: calc(100vw - 1rem); } }
     </style>
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -197,15 +149,20 @@
     </script>
 
     {% block structured_data %}{% endblock %}
-
     {% block extra_head %}{% endblock %}
 
-    <!-- Cloudflare Turnstile (Anti-spam) -->
     {% if turnstile_site_key %}
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     {% endif %}
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HH8RNG6"
+              height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     {% include "frontend/includes/header.html" %}
 
@@ -214,37 +171,23 @@
     </main>
 
     {% include "frontend/includes/footer.html" %}
-
     {% include "frontend/includes/cookie_banner.html" %}
 
-    <!-- Cookie Consent Utility -->
     <script src="{% static 'js/cookie-consent.js' %}" defer></script>
-
     <script src="{% static 'js/language-detection.js' %}" defer></script>
 
     <script>
-    // Example: Initialize analytics only if allowed
       document.addEventListener('DOMContentLoaded', function() {
-        // Check if user has consented
         if (window.CookieConsent && window.CookieConsent.hasUserConsented()) {
-            // Initialize analytics if allowed
+
           window.CookieConsent.initAnalyticsIfAllowed(function() {
-                // Your analytics initialization code here
-                // Example: Google Analytics
-                // if (typeof gtag !== 'undefined') {
-                //     gtag('config', 'GA_MEASUREMENT_ID');
-                // }
             console.log('Analytics initialized (if allowed)');
           });
 
-            // Initialize marketing if allowed
           window.CookieConsent.initMarketingIfAllowed(function() {
-                // Your marketing initialization code here
-                // Example: Facebook Pixel, Google Ads, etc.
             console.log('Marketing initialized (if allowed)');
           });
 
-            // Track page view
           window.CookieConsent.trackPageView(window.location.pathname);
         }
       });
