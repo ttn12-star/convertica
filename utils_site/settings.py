@@ -260,12 +260,12 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en"
 LANGUAGES = [
     ("en", "English"),
-    ("ru", "Russian"),
-    ("pl", "Polish"),
-    ("hi", "Hindi"),
-    ("es", "Spanish"),
-    ("id", "Indonesian"),
-    ("ar", "Arabic"),
+    ("ru", "Русский"),
+    ("pl", "Polski"),
+    ("hi", "हिन्दी"),
+    ("es", "Español"),
+    ("id", "Bahasa Indonesia"),
+    ("ar", "العربية"),
 ]
 
 # Language detection settings

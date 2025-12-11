@@ -4,25 +4,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 11:50+0000\n"
+"POT-Creation-Date: 2025-12-11 13:02+0000\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: templates/400.html:4 templates/400.html:5
 msgid "400 - Bad Request"
 msgstr "400 - Неверный запрос"
 
+#: templates/400.html:4 templates/403.html:4 templates/404.html:4
+#: templates/500.html:4 templates/502.html:4
+#: templates/frontend/includes/header.html:22
 msgid "Convertica"
 msgstr "Convertica"
 
+#: templates/400.html:6
 msgid "The request could not be understood by the server."
 msgstr "Сервер не смог понять запрос."
 
+#: templates/400.html:33
 msgid "Bad Request"
 msgstr "Неверный запрос"
 
+#: templates/400.html:37
 msgid ""
 "The request you sent could not be understood by the server. Please check "
 "your input and try again."
@@ -30,23 +37,30 @@ msgstr ""
 "Сервер не смог понять отправленный запрос. Пожалуйста, проверьте введенные "
 "данные и попробуйте снова."
 
+#: templates/400.html:47
 msgid "Go Back"
 msgstr "Назад"
 
+#: templates/400.html:55 templates/403.html:48 templates/404.html:46
+#: templates/500.html:55 templates/502.html:56
 #, fuzzy
 #| msgid "Home"
 msgid "Go Home"
 msgstr "Главная"
 
+#: templates/403.html:4 templates/403.html:5
 msgid "403 - Access Forbidden"
 msgstr "403 - Доступ запрещен"
 
+#: templates/403.html:6
 msgid "You don't have permission to access this resource."
 msgstr "У вас нет разрешения на доступ к этому ресурсу."
 
+#: templates/403.html:34
 msgid "Access Forbidden"
 msgstr "Доступ запрещен"
 
+#: templates/403.html:38
 msgid ""
 "You don't have permission to access this page. If you believe this is an "
 "error, please contact support."
@@ -54,18 +68,23 @@ msgstr ""
 "У вас нет разрешения на доступ к этой странице. Если вы считаете, что это "
 "ошибка, пожалуйста, свяжитесь с поддержкой."
 
+#: templates/403.html:56
 msgid "Contact Support"
 msgstr "Связаться с поддержкой"
 
+#: templates/404.html:4 templates/404.html:5
 msgid "404 - Page Not Found"
 msgstr "404 - Страница не найдена"
 
+#: templates/404.html:6
 msgid "The page you are looking for could not be found."
 msgstr "Запрашиваемая страница не найдена."
 
+#: templates/404.html:32
 msgid "Oops! Page Not Found"
 msgstr "Упс! Страница не найдена"
 
+#: templates/404.html:36
 msgid ""
 "The page you're looking for seems to have wandered off. It might have been "
 "moved, deleted, or never existed."
@@ -73,33 +92,58 @@ msgstr ""
 "Похоже, что страница, которую вы ищете, исчезла. Возможно, она была "
 "перемещена, удалена или никогда не существовала."
 
+#: templates/404.html:54
 msgid "Browse All Tools"
 msgstr "Все инструменты"
 
+#: templates/404.html:60
 msgid "Popular pages:"
 msgstr "Популярные страницы:"
 
+#: templates/404.html:62 templates/blog/article_detail.html:340
+#: templates/frontend/all_tools.html:63
+#: templates/frontend/includes/footer.html:102
+#: templates/frontend/includes/header.html:101
+#: templates/frontend/includes/header.html:339
+#: templates/frontend/includes/header.html:708 templates/frontend/index.html:56
+#: templates/frontend/index.html:110
 msgid "PDF to Word"
 msgstr "PDF в Word"
 
+#: templates/404.html:63 templates/blog/article_detail.html:349
+#: templates/frontend/all_tools.html:281
+#: templates/frontend/includes/header.html:199
+#: templates/frontend/includes/header.html:523
+#: templates/frontend/includes/header.html:734 templates/frontend/index.html:65
+#: templates/frontend/index.html:250
 msgid "Merge PDF"
 msgstr "Объединить PDF"
 
+#: templates/404.html:64 templates/frontend/all_tools.html:300
+#: templates/frontend/includes/header.html:211
+#: templates/frontend/includes/header.html:535
+#: templates/frontend/includes/header.html:738
+#: templates/frontend/index.html:274
 msgid "Split PDF"
 msgstr "Разделить PDF"
 
+#: templates/404.html:65 templates/frontend/includes/footer.html:69
 msgid "FAQ"
 msgstr "FAQ"
 
+#: templates/500.html:4 templates/500.html:5
 msgid "500 - Server Error"
 msgstr "500 - Ошибка сервера"
 
+#: templates/500.html:6
 msgid "An internal server error occurred. We're working to fix it."
 msgstr "Произошла внутренняя ошибка сервера. Мы работаем над ее устранением."
 
+#: templates/500.html:33
 msgid "Oops! Something Went Wrong"
 msgstr "Упс! Что-то пошло не так"
 
+#: templates/500.html:37
 msgid ""
 "We're experiencing some technical difficulties. Our team has been notified "
 "and is working to fix the issue. Please try again in a few moments."
@@ -107,24 +151,31 @@ msgstr ""
 "У нас возникли технические трудности. Наша команда уведомлена и работает над "
 "устранением проблемы. Пожалуйста, попробуйте снова через несколько мгновений."
 
+#: templates/500.html:47 templates/502.html:48
 msgid "Try Again"
 msgstr "Попробовать снова"
 
+#: templates/500.html:62
 msgid "If the problem persists, please"
 msgstr "Если проблема сохраняется, пожалуйста"
 
+#: templates/500.html:63 templates/502.html:64
 msgid "contact us"
 msgstr "свяжитесь с нами"
 
+#: templates/502.html:4 templates/502.html:5
 msgid "502 - Bad Gateway"
 msgstr "502 - Ошибка шлюза"
 
+#: templates/502.html:6
 msgid "The server received an invalid response from an upstream server."
 msgstr "Сервер получил неверный ответ от вышестоящего сервера."
 
+#: templates/502.html:34
 msgid "Bad Gateway"
 msgstr "Ошибка шлюза"
 
+#: templates/502.html:38
 msgid ""
 "The server is temporarily unavailable or overloaded. Please try again in a "
 "few moments. We're working to restore service as quickly as possible."
@@ -133,9 +184,11 @@ msgstr ""
 "через несколько мгновений. Мы работаем над восстановлением сервиса как можно "
 "быстрее."
 
+#: templates/502.html:63
 msgid "This is usually a temporary issue. If it persists, please"
 msgstr "Обычно это временная проблема. Если она сохраняется, пожалуйста"
 
+#: templates/base.html:25
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
@@ -143,6 +196,7 @@ msgstr ""
 "Быстрый, простой и безопасный онлайн конвертер PDF в Word и Word в PDF. "
 "Установка не требуется."
 
+#: templates/base.html:26
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
@@ -150,76 +204,111 @@ msgstr ""
 "PDF в Word, Word в PDF, конвертер PDF, конвертер DOCX, онлайн конвертер, "
 "бесплатный конвертер"
 
+#: templates/base.html:118
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr ""
 "Быстрый, простой и безопасный онлайн конвертер PDF в Word и Word в PDF."
 
+#: templates/blog/article_detail.html:214
 msgid "Categories"
 msgstr "Категории"
 
+#: templates/blog/article_detail.html:223
 msgid "All"
 msgstr "Все"
 
+#: templates/blog/article_detail.html:275
 msgid "Related Articles"
 msgstr "Похожие статьи"
 
+#: templates/blog/article_detail.html:318
 msgid "Back to Blog"
 msgstr "Вернуться к блогу"
 
+#: templates/blog/article_detail.html:330 templates/frontend/index.html:90
 msgid "Popular Tools"
 msgstr "Популярные инструменты"
 
+#: templates/blog/article_detail.html:358 templates/frontend/all_tools.html:377
+#: templates/frontend/includes/header.html:259
+#: templates/frontend/includes/header.html:559
+#: templates/frontend/includes/header.html:754 templates/frontend/index.html:74
+#: templates/frontend/index.html:371
 msgid "Compress PDF"
 msgstr "Сжать PDF"
 
+#: templates/blog/article_detail.html:367 templates/frontend/all_tools.html:182
+#: templates/frontend/includes/header.html:144
+#: templates/frontend/includes/header.html:437
+#: templates/frontend/index.html:135
 msgid "Rotate PDF"
 msgstr "Повернуть PDF"
 
+#: templates/blog/article_detail.html:373
 msgid "View All Tools"
 msgstr "Все инструменты"
 
+#: templates/blog/article_list.html:7
 msgid "blog, articles, PDF guides, document tips, tutorials"
 msgstr "блог, статьи, руководства PDF, советы по документам, уроки"
 
+#: templates/blog/article_list.html:20
+#: templates/frontend/includes/footer.html:33
+#: templates/frontend/includes/footer.html:226
 msgid "Blog"
 msgstr "Блог"
 
+#: templates/blog/article_list.html:23
 msgid ""
 "Useful guides, tips, and articles about PDF tools and document management"
 msgstr ""
 "Полезные руководства, советы и статьи об инструментах PDF и управлении "
 "документами"
 
+#: templates/blog/article_list.html:41
 msgid "Search articles..."
 msgstr "Поиск статей..."
 
+#: templates/blog/article_list.html:45
 msgid "Search"
 msgstr "Поиск"
 
+#: templates/blog/article_list.html:54
 msgid "All Articles"
 msgstr "Все статьи"
 
+#: templates/blog/article_list.html:101
 msgid "Read"
 msgstr "Читать"
 
+#: templates/blog/article_list.html:116
 msgid "Previous"
 msgstr "Предыдущая"
 
+#: templates/blog/article_list.html:121
+#: templates/frontend/add_watermark.html:446
+#: templates/frontend/crop_pdf.html:360 templates/frontend/merge_pdf.html:91
+#: templates/frontend/organize_pdf.html:44
 msgid "Page"
 msgstr "Страница"
 
+#: templates/blog/article_list.html:121
 msgid "of"
 msgstr "из"
 
+#: templates/blog/article_list.html:127
 msgid "Next"
 msgstr "Следующая"
 
+#: templates/blog/article_list.html:135
 msgid "No articles found."
 msgstr "Статьи не найдены."
 
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:445
 msgid "About Us - Convertica"
 msgstr "О нас - Convertica"
 
+#: templates/frontend/about.html:25
 msgid ""
 "Free online PDF tools platform providing conversion, editing, and "
 "organization services."
@@ -227,21 +316,27 @@ msgstr ""
 "Бесплатная онлайн платформа для PDF инструментов, предоставляющая услуги "
 "конвертации, редактирования и организации."
 
+#: templates/frontend/about.html:27
 msgid "Today better than yesterday, tomorrow better than today"
 msgstr "Сегодня лучше, чем вчера, завтра лучше, чем сегодня"
 
+#: templates/frontend/about.html:46
 msgid "About Convertica"
 msgstr "О Convertica"
 
+#: templates/frontend/about.html:49
 msgid "Your trusted partner for all PDF document needs"
 msgstr "Ваш надежный партнер для всех задач с PDF документами"
 
+#: templates/frontend/about.html:63
 msgid "Mission icon"
 msgstr "Иконка миссии"
 
+#: templates/frontend/about.html:67
 msgid "Our Mission"
 msgstr "Наша миссия"
 
+#: templates/frontend/about.html:70
 msgid ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
@@ -255,20 +350,25 @@ msgstr ""
 "к тому, чтобы каждое взаимодействие с нашей платформой превосходило ваши "
 "ожидания."
 
+#: templates/frontend/about.html:78
 msgid "Growth icon"
 msgstr "Иконка роста"
 
+#: templates/frontend/about.html:82
 msgid "Our Core Principle: Constant Improvement"
 msgstr "Наш основной принцип: Постоянное совершенствование"
 
+#: templates/frontend/about.html:86
 msgid "We live by a simple yet powerful philosophy:"
 msgstr "Мы живем по простой, но мощной философии:"
 
+#: templates/frontend/about.html:90
 msgid ""
 "Today, we are better than we were yesterday. Tomorrow, we will be even "
 "better than today."
 msgstr "Сегодня мы лучше, чем вчера. Завтра мы будем еще лучше, чем сегодня."
 
+#: templates/frontend/about.html:94
 msgid ""
 "This isn't just a slogan—it's our commitment to you. Every day, our team "
 "works tirelessly to enhance our platform, improve our tools, and refine the "
@@ -282,6 +382,7 @@ msgstr ""
 "вашим отзывам, анализируем паттерны использования и внедряем улучшения, "
 "которые делают Convertica более мощной, интуитивной и надежной."
 
+#: templates/frontend/about.html:97
 msgid ""
 "Whether it's optimizing our conversion algorithms, adding new features, "
 "improving security, or enhancing performance, we never stop striving for "
@@ -296,15 +397,19 @@ msgstr ""
 "получаете лучшую версию нашей платформы - и мы уже работаем над тем, чтобы "
 "сделать ее еще лучше."
 
+#: templates/frontend/about.html:106
 msgid "Tools icon"
 msgstr "Иконка инструментов"
 
+#: templates/frontend/about.html:111
 msgid "What We Offer"
 msgstr "Что мы предлагаем"
 
+#: templates/frontend/about.html:115
 msgid "PDF Conversion"
 msgstr "Конвертация PDF"
 
+#: templates/frontend/about.html:117
 msgid ""
 "Convert PDFs to Word, Excel, and JPG formats, or create PDFs from various "
 "file types. Fast, accurate, and reliable conversions every time."
@@ -312,9 +417,11 @@ msgstr ""
 "Конвертируйте PDF в форматы Word, Excel и JPG или создавайте PDF из "
 "различных типов файлов. Быстрые, точные и надежные конвертации каждый раз."
 
+#: templates/frontend/about.html:121
 msgid "PDF Editing"
 msgstr "Редактирование PDF"
 
+#: templates/frontend/about.html:123
 msgid ""
 "Rotate, crop, add watermarks, and insert page numbers. Edit your PDFs with "
 "precision and ease."
@@ -322,9 +429,11 @@ msgstr ""
 "Поворачивайте, обрезайте, добавляйте водяные знаки и вставляйте номера "
 "страниц. Редактируйте ваши PDF с точностью и легкостью."
 
+#: templates/frontend/about.html:127
 msgid "PDF Organization"
 msgstr "Организация PDF"
 
+#: templates/frontend/about.html:129
 msgid ""
 "Merge, split, extract, remove, and organize pages. Manage your PDF documents "
 "efficiently."
@@ -332,9 +441,13 @@ msgstr ""
 "Объединяйте, разделяйте, извлекайте, удаляйте и организуйте страницы. "
 "Эффективно управляйте вашими PDF документами."
 
+#: templates/frontend/about.html:133 templates/frontend/all_tools.html:397
+#: templates/frontend/includes/header.html:267
+#: templates/frontend/includes/header.html:668
 msgid "PDF Security"
 msgstr "Безопасность PDF"
 
+#: templates/frontend/about.html:135
 msgid ""
 "Protect your documents with password encryption or unlock secured PDFs when "
 "needed."
@@ -342,19 +455,25 @@ msgstr ""
 "Защищайте ваши документы с помощью шифрования паролем или разблокируйте "
 "защищенные PDF при необходимости."
 
+#: templates/frontend/about.html:145
 msgid "Star icon"
 msgstr "Иконка звезды"
 
+#: templates/frontend/about.html:149
 msgid "Why Choose Convertica"
 msgstr "Почему выбирают Convertica"
 
+#: templates/frontend/about.html:154 templates/frontend/about.html:167
+#: templates/frontend/about.html:180 templates/frontend/about.html:193
 msgid "Checkmark icon"
 msgstr "Иконка галочки"
 
+#: templates/frontend/about.html:159
 #, python-format
 msgid "100%% Free"
 msgstr "100%% Бесплатно"
 
+#: templates/frontend/about.html:161
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
 "no credit card required."
@@ -362,9 +481,11 @@ msgstr ""
 "Все наши инструменты полностью бесплатны для использования. Никаких скрытых "
 "платежей, подписок или кредитных карт."
 
+#: templates/frontend/about.html:172
 msgid "Fast & Secure"
 msgstr "Быстро и безопасно"
 
+#: templates/frontend/about.html:174
 msgid ""
 "Process your files in seconds with our optimized algorithms. Your files are "
 "processed securely and deleted automatically after conversion."
@@ -373,9 +494,11 @@ msgstr ""
 "алгоритмов. Ваши файлы обрабатываются безопасно и автоматически удаляются "
 "после конвертации."
 
+#: templates/frontend/about.html:185
 msgid "No Registration Required"
 msgstr "Регистрация не требуется"
 
+#: templates/frontend/about.html:187
 msgid ""
 "Start using our tools immediately. No sign-up, no email verification, no "
 "hassle."
@@ -383,9 +506,11 @@ msgstr ""
 "Начните использовать наши инструменты немедленно. Без регистрации, без "
 "подтверждения email, без лишних хлопот."
 
+#: templates/frontend/about.html:198
 msgid "Privacy First"
 msgstr "Конфиденциальность прежде всего"
 
+#: templates/frontend/about.html:200
 msgid ""
 "Your privacy matters. We don't store your files permanently, and we never "
 "share your data with third parties."
@@ -393,78 +518,120 @@ msgstr ""
 "Ваша конфиденциальность важна. Мы не храним ваши файлы постоянно и никогда "
 "не передаем ваши данные третьим лицам."
 
+#: templates/frontend/about.html:209
 msgid "Ready to Get Started?"
 msgstr "Готовы начать?"
 
+#: templates/frontend/about.html:211
 msgid "Experience the power of Convertica's PDF tools today."
 msgstr "Ощутите мощь инструментов Convertica для PDF уже сегодня."
 
+#: templates/frontend/about.html:216 templates/frontend/index.html:404
 msgid "Explore All Tools"
 msgstr "Все инструменты"
 
+#: templates/frontend/about.html:220
 #, fuzzy
 #| msgid "Ready to Get Started?"
 msgid "Get Started"
 msgstr "Готовы начать?"
 
+#: templates/frontend/add_page_numbers.html:6
 msgid "Page Number Settings"
 msgstr "Настройки нумерации страниц"
 
+#: templates/frontend/add_page_numbers.html:12
 msgid "Position"
 msgstr "Позиция"
 
+#: templates/frontend/add_page_numbers.html:16
 msgid "Bottom Center"
 msgstr "По центру снизу"
 
+#: templates/frontend/add_page_numbers.html:17
 msgid "Bottom Left"
 msgstr "Слева снизу"
 
+#: templates/frontend/add_page_numbers.html:18
 msgid "Bottom Right"
 msgstr "Справа снизу"
 
+#: templates/frontend/add_page_numbers.html:19
 msgid "Top Center"
 msgstr "По центру сверху"
 
+#: templates/frontend/add_page_numbers.html:20
 msgid "Top Left"
 msgstr "Слева сверху"
 
+#: templates/frontend/add_page_numbers.html:21
 msgid "Top Right"
 msgstr "Справа сверху"
 
+#: templates/frontend/add_page_numbers.html:28
+#: templates/frontend/add_watermark.html:305
 msgid "Font Size"
 msgstr "Размер шрифта"
 
+#: templates/frontend/add_page_numbers.html:42
 msgid "Starting Page Number"
 msgstr "Начальный номер страницы"
 
+#: templates/frontend/add_page_numbers.html:55
 msgid "Format"
 msgstr "Формат"
 
+#: templates/frontend/add_page_numbers.html:64
 #, python-brace-format
 msgid "Use {page} for page number, {total} for total pages"
 msgstr "Используйте {page} для номера страницы, {total} для общего количества"
 
+#: templates/frontend/add_page_numbers.html:71
+#: templates/frontend/add_watermark.html:331
 msgid "Apply to pages"
 msgstr "Применить к страницам"
 
+#: templates/frontend/add_page_numbers.html:81
+#: templates/frontend/add_watermark.html:341
+#: templates/frontend/crop_pdf.html:211 templates/frontend/pdf_to_jpg.html:22
+#: templates/frontend/remove_pages.html:21
+#: templates/frontend/rotate_pdf.html:35
 msgid "All pages"
 msgstr "Все страницы"
 
+#: templates/frontend/add_page_numbers.html:89
+#: templates/frontend/add_watermark.html:349
+#: templates/frontend/crop_pdf.html:219 templates/frontend/remove_pages.html:29
+#: templates/frontend/rotate_pdf.html:43
 msgid "Current page only"
 msgstr "Только текущая страница"
 
+#: templates/frontend/add_page_numbers.html:97
+#: templates/frontend/add_watermark.html:357
+#: templates/frontend/crop_pdf.html:227 templates/frontend/pdf_to_jpg.html:30
+#: templates/frontend/remove_pages.html:38
+#: templates/frontend/rotate_pdf.html:51
 msgid "Custom pages:"
 msgstr "Пользовательские страницы:"
 
+#: templates/frontend/add_page_numbers.html:107
+#: templates/frontend/add_watermark.html:367
+#: templates/frontend/crop_pdf.html:237 templates/frontend/pdf_to_jpg.html:40
+#: templates/frontend/remove_pages.html:48
+#: templates/frontend/rotate_pdf.html:61
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "Введите страницы, например '1,3,5' или '1-5'"
 
+#: templates/frontend/add_page_numbers.html:131
+#: utils_site/src/blog/admin.py:168
 msgid "Preview"
 msgstr "Предпросмотр"
 
+#: templates/frontend/add_page_numbers.html:134
 msgid "Select page"
 msgstr "Выбрать страницу"
 
+#: templates/frontend/add_page_numbers.html:149
 msgid ""
 "Preview shows page numbers as they will appear in the final PDF after "
 "download."
@@ -472,15 +639,40 @@ msgstr ""
 "Предпросмотр показывает номера страниц такими, какими они будут в финальном "
 "PDF после загрузки."
 
+#: templates/frontend/add_page_numbers.html:158
+#: templates/frontend/add_watermark.html:411
+#: templates/frontend/compress_pdf.html:31
+#: templates/frontend/converter_generic.html:189
+#: templates/frontend/crop_pdf.html:324
+#: templates/frontend/edit_pdf_generic.html:174
+#: templates/frontend/extract_pages.html:32
+#: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:106
+#: templates/frontend/organize_pdf.html:57
+#: templates/frontend/pdf_to_excel.html:7 templates/frontend/pdf_to_jpg.html:71
+#: templates/frontend/pdf_to_word.html:7 templates/frontend/protect_pdf.html:65
+#: templates/frontend/remove_pages.html:60
+#: templates/frontend/rotate_pdf.html:73 templates/frontend/split_pdf.html:74
+#: templates/frontend/unlock_pdf.html:33 templates/frontend/word_to_pdf.html:7
 msgid "How it works"
 msgstr "Как это работает"
 
+#: templates/frontend/add_page_numbers.html:161
+#: templates/frontend/add_watermark.html:414
+#: templates/frontend/compress_pdf.html:34 templates/frontend/crop_pdf.html:327
+#: templates/frontend/extract_pages.html:35
+#: templates/frontend/organize_pdf.html:60
+#: templates/frontend/pdf_to_excel.html:10
+#: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:10
+#: templates/frontend/protect_pdf.html:68
+#: templates/frontend/remove_pages.html:63
+#: templates/frontend/rotate_pdf.html:76 templates/frontend/split_pdf.html:77
 msgid ""
 "Select your PDF file using the button above or drag and drop it into the "
 "zone below"
 msgstr ""
 "Выберите ваш PDF файл, используя кнопку выше, или перетащите его в зону ниже"
 
+#: templates/frontend/add_page_numbers.html:162
 msgid ""
 "Choose the position, font size, starting number, and format for adding page "
 "numbers to PDF"
@@ -488,12 +680,14 @@ msgstr ""
 "Выберите позицию, размер шрифта, начальный номер и формат для добавления "
 "номеров страниц в PDF"
 
+#: templates/frontend/add_page_numbers.html:163
 msgid ""
 "Preview how the page numbers will look on your PDF using the live preview"
 msgstr ""
 "Просмотрите, как будут выглядеть номера страниц на вашем PDF, используя "
 "живой предпросмотр"
 
+#: templates/frontend/add_page_numbers.html:164
 msgid ""
 "Select which pages to add numbers to: all pages, current page only, or "
 "specific pages"
@@ -501,21 +695,37 @@ msgstr ""
 "Выберите, на какие страницы добавить номера: все страницы, только текущую "
 "страницу или конкретные страницы"
 
+#: templates/frontend/add_page_numbers.html:165
 msgid ""
 "Click the add page numbers button to process your PDF and add page numbers"
 msgstr ""
 "Нажмите кнопку добавления номеров страниц для обработки вашего PDF и "
 "добавления номеров страниц"
 
+#: templates/frontend/add_page_numbers.html:166
 msgid ""
 "Download your PDF file with page numbers added using the download button"
 msgstr ""
 "Скачайте ваш PDF файл с добавленными номерами страниц, используя кнопку "
 "загрузки"
 
+#: templates/frontend/add_page_numbers.html:170
+#: templates/frontend/add_watermark.html:423
+#: templates/frontend/compress_pdf.html:41 templates/frontend/crop_pdf.html:336
+#: templates/frontend/edit_pdf_generic.html:184
+#: templates/frontend/extract_pages.html:42
+#: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:116
+#: templates/frontend/organize_pdf.html:68
+#: templates/frontend/pdf_to_excel.html:17
+#: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:17
+#: templates/frontend/protect_pdf.html:75
+#: templates/frontend/remove_pages.html:70
+#: templates/frontend/rotate_pdf.html:84 templates/frontend/split_pdf.html:85
+#: templates/frontend/unlock_pdf.html:43 templates/frontend/word_to_pdf.html:17
 msgid "Note:"
 msgstr "Примечание:"
 
+#: templates/frontend/add_page_numbers.html:170
 msgid ""
 "PDF files with up to 50 pages are supported for adding page numbers. For "
 "larger files, please split them into smaller parts. The page numbers will be "
@@ -526,50 +736,52 @@ msgstr ""
 "страниц будут добавлены согласно выбранной вами позиции, формату и размеру "
 "шрифта."
 
-msgid ""
-"Perfect for: adding page numbers to PDF documents, numbering PDF pages, "
-"inserting page numbers in PDF files, adding page numbers to PDF reports, "
-"numbering pages in PDF documents, inserting page numbers in PDF contracts, "
-"adding page numbers to PDF invoices, numbering pages in PDF legal documents, "
-"inserting page numbers in PDF academic papers, adding page numbers to PDF "
-"business documents, numbering pages in PDF presentations, inserting page "
-"numbers in PDF manuals, adding page numbers to PDF books, numbering pages in "
-"PDF catalogs, inserting page numbers in PDF portfolios."
-msgstr ""
-"Идеально для: добавления номеров страниц в PDF документы, нумерации страниц "
-"PDF, вставки номеров страниц в PDF файлы, добавления номеров страниц в PDF "
-"отчеты, нумерации страниц в PDF документах, вставки номеров страниц в PDF "
-"контракты, добавления номеров страниц в PDF счета, нумерации страниц в PDF "
-"юридических документах, вставки номеров страниц в PDF академические работы, "
-"добавления номеров страниц в PDF бизнес-документы, нумерации страниц в PDF "
-"презентациях, вставки номеров страниц в PDF руководства, добавления номеров "
-"страниц в PDF книги, нумерации страниц в PDF каталогах, вставки номеров "
-"страниц в PDF портфолио."
-
+#: templates/frontend/add_watermark.html:120
 msgid "Select file to watermark"
 msgstr "Выберите файл для добавления водяного знака"
 
+#: templates/frontend/add_watermark.html:138
+#: templates/frontend/converter_generic.html:103
+#: templates/frontend/crop_pdf.html:122
+#: templates/frontend/edit_pdf_generic.html:103
 msgid "Remove file"
 msgstr "Удалить файл"
 
+#: templates/frontend/add_watermark.html:163
+#: templates/frontend/converter_generic.html:128
+#: templates/frontend/crop_pdf.html:147
+#: templates/frontend/edit_pdf_generic.html:128
 msgid "Drag and drop your file here"
 msgstr "Перетащите файл сюда"
 
+#: templates/frontend/add_watermark.html:166
+#: templates/frontend/converter_generic.html:131
+#: templates/frontend/crop_pdf.html:150
+#: templates/frontend/edit_pdf_generic.html:131
+#: templates/frontend/jpg_to_pdf.html:93
 msgid "Use the button above to browse files"
 msgstr "Используйте кнопку выше для выбора файлов"
 
+#: templates/frontend/add_watermark.html:169
+#: templates/frontend/converter_generic.html:134
+#: templates/frontend/crop_pdf.html:153
+#: templates/frontend/edit_pdf_generic.html:134
 msgid "file"
 msgstr "файл"
 
+#: templates/frontend/add_watermark.html:178
 msgid "Visual Watermark Editor"
 msgstr "Визуальный редактор водяных знаков"
 
+#: templates/frontend/add_watermark.html:183
 msgid "Select Page"
 msgstr "Выбрать страницу"
 
+#: templates/frontend/add_watermark.html:201
 msgid "How to use:"
 msgstr "Как использовать:"
 
+#: templates/frontend/add_watermark.html:201
 #, fuzzy
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
@@ -585,36 +797,47 @@ msgstr ""
 "переместить, используйте верхний маркер для поворота и угловой маркер для "
 "масштабирования. Щелкните в любом месте PDF, чтобы переместить его."
 
+#: templates/frontend/add_watermark.html:210
 msgid "Watermark Settings"
 msgstr "Настройки водяного знака"
 
+#: templates/frontend/add_watermark.html:216
 msgid "Watermark Type"
 msgstr "Тип водяного знака"
 
+#: templates/frontend/add_watermark.html:221
 msgid "Text"
 msgstr "Текст"
 
+#: templates/frontend/add_watermark.html:225
 msgid "Image"
 msgstr "Изображение"
 
+#: templates/frontend/add_watermark.html:233
 msgid "Watermark Text"
 msgstr "Текст водяного знака"
 
+#: templates/frontend/add_watermark.html:246
 msgid "Watermark Image"
 msgstr "Изображение водяного знака"
 
+#: templates/frontend/add_watermark.html:258
 msgid "Choose Image"
 msgstr "Выбрать изображение"
 
+#: templates/frontend/add_watermark.html:267
 msgid "Color"
 msgstr "Цвет"
 
+#: templates/frontend/add_watermark.html:286
 msgid "Opacity"
 msgstr "Прозрачность"
 
+#: templates/frontend/add_watermark.html:324
 msgid "Interactive controls:"
 msgstr "Интерактивные элементы:"
 
+#: templates/frontend/add_watermark.html:324
 msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
 "simultaneously."
@@ -622,11 +845,13 @@ msgstr ""
 "Перетащите водяной знак для перемещения. Перетащите любую угловую ручку для "
 "одновременного поворота и масштабирования."
 
+#: templates/frontend/add_watermark.html:415
 msgid "Enter your watermark text or upload an image to add as watermark to PDF"
 msgstr ""
 "Введите текст водяного знака или загрузите изображение для добавления в "
 "качестве водяного знака в PDF"
 
+#: templates/frontend/add_watermark.html:416
 msgid ""
 "Choose the color and opacity using the sliders to customize your PDF "
 "watermark"
@@ -634,6 +859,7 @@ msgstr ""
 "Выберите цвет и прозрачность с помощью ползунков, чтобы настроить водяной "
 "знак PDF"
 
+#: templates/frontend/add_watermark.html:417
 msgid ""
 "Click on the PDF to position the watermark, or drag it to move it anywhere "
 "on the page"
@@ -641,15 +867,18 @@ msgstr ""
 "Нажмите на PDF, чтобы расположить водяной знак, или перетащите его для "
 "перемещения в любое место на странице"
 
+#: templates/frontend/add_watermark.html:418
 msgid ""
 "Click the add watermark button to process your PDF and add the watermark"
 msgstr ""
 "Нажмите кнопку добавления водяного знака для обработки PDF и добавления "
 "водяного знака"
 
+#: templates/frontend/add_watermark.html:419
 msgid "Download your watermarked PDF file using the download button"
 msgstr "Скачайте PDF файл с водяным знаком, используя кнопку загрузки"
 
+#: templates/frontend/add_watermark.html:423
 msgid ""
 "PDF files with up to 50 pages are supported for adding watermarks. For "
 "larger files, please split them into smaller parts. The watermark will be "
@@ -659,49 +888,66 @@ msgstr ""
 "больших файлов, пожалуйста, разделите их на меньшие части. Водяной знак "
 "будет применён ко всем страницам или выбранным страницам, как указано."
 
-msgid ""
-"Perfect for: adding watermarks to PDF documents, protecting PDF files with "
-"watermarks, adding copyright notices to PDFs, adding company logos to PDF "
-"files, adding confidential labels to PDF documents, adding draft watermarks "
-"to PDF files, adding text watermarks to PDF pages, adding image watermarks "
-"to PDF documents, branding PDF files with watermarks, adding security "
-"watermarks to PDF files."
-msgstr ""
-"Идеально для: добавления водяных знаков в PDF документы, защиты PDF файлов "
-"водяными знаками, добавления уведомлений об авторских правах в PDF, "
-"добавления логотипов компаний в PDF файлы, добавления конфиденциальных меток "
-"в PDF документы, добавления черновых водяных знаков в PDF файлы, добавления "
-"текстовых водяных знаков на страницы PDF, добавления изображений водяных "
-"знаков в PDF документы, брендинга PDF файлов водяными знаками, добавления "
-"защитных водяных знаков в PDF файлы."
-
+#: templates/frontend/add_watermark.html:439
+#: templates/frontend/crop_pdf.html:352
+#: templates/frontend/edit_pdf_generic.html:201
 msgid "Processing your file..."
 msgstr "Обработка вашего файла..."
 
+#: templates/frontend/add_watermark.html:440
+#: templates/frontend/converter_generic.html:213
+#: templates/frontend/crop_pdf.html:353
+#: templates/frontend/edit_pdf_generic.html:202
+#: templates/frontend/jpg_to_pdf.html:162
 msgid "Please wait, this may take a few moments"
 msgstr "Пожалуйста, подождите, это может занять несколько мгновений"
 
+#: templates/frontend/add_watermark.html:441
+#: templates/frontend/crop_pdf.html:354
+#: templates/frontend/edit_pdf_generic.html:203
 msgid "Editing Complete!"
 msgstr "Редактирование завершено!"
 
+#: templates/frontend/add_watermark.html:442
+#: templates/frontend/converter_generic.html:215
+#: templates/frontend/crop_pdf.html:355
+#: templates/frontend/edit_pdf_generic.html:204
 msgid "Your file is ready to download"
 msgstr "Ваш файл готов к загрузке"
 
+#: templates/frontend/add_watermark.html:443
+#: templates/frontend/converter_generic.html:216
+#: templates/frontend/crop_pdf.html:356
+#: templates/frontend/edit_pdf_generic.html:205
 msgid "Download File"
 msgstr "Скачать файл"
 
+#: templates/frontend/add_watermark.html:444
+#: templates/frontend/crop_pdf.html:357
+#: templates/frontend/edit_pdf_generic.html:206
 msgid "Edit another file"
 msgstr "Редактировать другой файл"
 
+#: templates/frontend/add_watermark.html:445
+#: templates/frontend/contact.html:140
+#: templates/frontend/converter_generic.html:218
+#: templates/frontend/crop_pdf.html:358
+#: templates/frontend/edit_pdf_generic.html:207
+#: templates/frontend/jpg_to_pdf.html:167
 msgid "Error"
 msgstr "Ошибка"
 
+#: templates/frontend/add_watermark.html:447
+#: templates/frontend/crop_pdf.html:366 templates/frontend/merge_pdf.html:96
+#: templates/frontend/organize_pdf.html:47
 msgid "Failed to load PDF file. Please try again."
 msgstr "Не удалось загрузить PDF файл. Пожалуйста, попробуйте снова."
 
+#: templates/frontend/all_tools.html:24
 msgid "All PDF Tools"
 msgstr "Все PDF инструменты"
 
+#: templates/frontend/all_tools.html:27
 msgid ""
 "Browse all our PDF tools organized by category. Convert, edit, and organize "
 "your PDFs with ease."
@@ -709,138 +955,231 @@ msgstr ""
 "Просмотрите все наши PDF инструменты, организованные по категориям. "
 "Конвертируйте, редактируйте и организуйте ваши PDF с легкостью."
 
+#: templates/frontend/all_tools.html:43
+#: templates/frontend/includes/header.html:66
+#: templates/frontend/includes/header.html:314
+#: templates/frontend/includes/header.html:690
 msgid "Convert PDF"
 msgstr "Конвертировать PDF"
 
+#: templates/frontend/all_tools.html:46
 msgid "Convert PDFs to other formats or convert other files to PDF"
 msgstr "Конвертируйте PDF в другие форматы или другие файлы в PDF"
 
+#: templates/frontend/all_tools.html:66 templates/frontend/index.html:113
 msgid "Convert PDF documents to editable Word files instantly."
 msgstr "Мгновенно конвертируйте PDF документы в редактируемые файлы Word."
 
+#: templates/frontend/all_tools.html:82
+#: templates/frontend/includes/footer.html:111
+#: templates/frontend/includes/header.html:77
+#: templates/frontend/includes/header.html:382
+#: templates/frontend/includes/header.html:700
+#: templates/frontend/index.html:159
 msgid "Word to PDF"
 msgstr "Word в PDF"
 
+#: templates/frontend/all_tools.html:85 templates/frontend/index.html:162
 msgid "Convert Word documents to secure PDF files."
 msgstr "Конвертируйте документы Word в защищенные PDF файлы."
 
+#: templates/frontend/all_tools.html:101
+#: templates/frontend/includes/footer.html:120
+#: templates/frontend/includes/header.html:113
+#: templates/frontend/includes/header.html:351
+#: templates/frontend/includes/header.html:712
 msgid "PDF to JPG"
 msgstr "PDF в JPG"
 
+#: templates/frontend/all_tools.html:104
 msgid "Convert PDF pages to high-quality JPG images."
 msgstr "Конвертируйте страницы PDF в высококачественные JPG изображения."
 
+#: templates/frontend/all_tools.html:124
+#: templates/frontend/includes/footer.html:129
+#: templates/frontend/includes/header.html:89
+#: templates/frontend/includes/header.html:394
+#: templates/frontend/includes/header.html:704
 msgid "JPG to PDF"
 msgstr "JPG в PDF"
 
+#: templates/frontend/all_tools.html:127
 msgid ""
 "Convert JPG images to PDF documents. Combine multiple images into one PDF."
 msgstr ""
 "Конвертируйте изображения JPG в PDF документы. Объединяйте несколько "
 "изображений в один PDF."
 
+#: templates/frontend/all_tools.html:142
+#: templates/frontend/includes/header.html:125
+#: templates/frontend/includes/header.html:363
+#: templates/frontend/includes/header.html:716
+#: templates/frontend/index.html:208
 msgid "PDF to Excel"
 msgstr "PDF в Excel"
 
+#: templates/frontend/all_tools.html:145 templates/frontend/index.html:211
 msgid "Extract tables from PDF and convert to Excel format."
 msgstr "Извлекайте таблицы из PDF и конвертируйте в формат Excel."
 
+#: templates/frontend/all_tools.html:162
+#: templates/frontend/includes/header.html:133
+#: templates/frontend/includes/header.html:412
 msgid "Edit PDF"
 msgstr "Редактировать PDF"
 
+#: templates/frontend/all_tools.html:165
 msgid "Modify and enhance your PDF documents"
 msgstr "Редактируйте и улучшайте ваши PDF документы"
 
+#: templates/frontend/all_tools.html:185 templates/frontend/index.html:138
 msgid "Rotate PDF pages by 90, 180, or 270 degrees."
 msgstr "Поворачивайте страницы PDF на 90, 180 или 270 градусов."
 
+#: templates/frontend/all_tools.html:201
+#: templates/frontend/includes/header.html:156
+#: templates/frontend/includes/header.html:449
 msgid "Crop PDF"
 msgstr "Обрезать PDF"
 
+#: templates/frontend/all_tools.html:204
 msgid "Crop PDF pages by specifying crop box coordinates."
 msgstr "Обрезайте страницы PDF, указывая координаты области обрезки."
 
+#: templates/frontend/all_tools.html:220
+#: templates/frontend/includes/header.html:168
+#: templates/frontend/includes/header.html:468
 msgid "Add Page Numbers"
 msgstr "Добавить номера страниц"
 
+#: templates/frontend/all_tools.html:223
 msgid "Add page numbers to your PDF documents."
 msgstr "Добавляйте номера страниц в ваши PDF документы."
 
+#: templates/frontend/all_tools.html:240
+#: templates/frontend/includes/header.html:180
+#: templates/frontend/includes/header.html:480
+#: templates/frontend/index.html:184
 msgid "Add Watermark"
 msgstr "Добавить водяной знак"
 
+#: templates/frontend/all_tools.html:243 templates/frontend/index.html:187
 msgid "Protect your PDFs with text or image watermarks."
 msgstr "Защищайте ваши PDF с помощью текстовых или графических водяных знаков."
 
+#: templates/frontend/all_tools.html:260 templates/frontend/all_tools.html:359
+#: templates/frontend/includes/header.html:188
+#: templates/frontend/includes/header.html:247
+#: templates/frontend/includes/header.html:498
+#: templates/frontend/includes/header.html:547
+#: templates/frontend/includes/header.html:724
+#: templates/frontend/includes/header.html:750
+#: templates/frontend/index.html:230 templates/frontend/index.html:347
 msgid "Organize PDF"
 msgstr "Организовать PDF"
 
+#: templates/frontend/all_tools.html:263
 msgid "Manage and organize your PDF documents"
 msgstr "Управляйте и организуйте ваши PDF документы"
 
+#: templates/frontend/all_tools.html:284 templates/frontend/index.html:253
 msgid "Combine multiple PDF files into one document."
 msgstr "Объединяйте несколько PDF файлов в один документ."
 
+#: templates/frontend/all_tools.html:303 templates/frontend/index.html:277
 msgid "Split PDF into multiple files by pages or ranges."
 msgstr "Разделяйте PDF на несколько файлов по страницам или диапазонам."
 
+#: templates/frontend/all_tools.html:320
+#: templates/frontend/includes/header.html:223
+#: templates/frontend/includes/header.html:578
+#: templates/frontend/includes/header.html:742
+#: templates/frontend/index.html:298
 msgid "Remove Pages"
 msgstr "Удалить страницы"
 
+#: templates/frontend/all_tools.html:323 templates/frontend/index.html:301
 msgid "Remove unwanted pages from your PDF document."
 msgstr "Удаляйте ненужные страницы из вашего PDF документа."
 
+#: templates/frontend/all_tools.html:339
+#: templates/frontend/includes/header.html:235
+#: templates/frontend/includes/header.html:590
+#: templates/frontend/includes/header.html:746
+#: templates/frontend/index.html:322
 msgid "Extract Pages"
 msgstr "Извлечь страницы"
 
+#: templates/frontend/all_tools.html:342 templates/frontend/index.html:325
 msgid "Extract specific pages from your PDF into a new file."
 msgstr "Извлекайте определенные страницы из вашего PDF в новый файл."
 
+#: templates/frontend/all_tools.html:362 templates/frontend/index.html:350
 msgid "Reorder and organize pages in your PDF document."
 msgstr "Переупорядочивайте и организуйте страницы в вашем PDF документе."
 
+#: templates/frontend/all_tools.html:380 templates/frontend/index.html:374
 msgid "Reduce PDF file size without losing quality."
 msgstr "Уменьшайте размер PDF файла без потери качества."
 
+#: templates/frontend/all_tools.html:400
 msgid "Protect and secure your PDF documents"
 msgstr "Защищайте и оберегайте ваши PDF документы"
 
+#: templates/frontend/all_tools.html:416
+#: templates/frontend/includes/header.html:278
+#: templates/frontend/includes/header.html:678
 msgid "Protect PDF"
 msgstr "Защитить PDF"
 
+#: templates/frontend/all_tools.html:419
 msgid "Add password protection to secure your PDF documents."
 msgstr "Добавляйте защиту паролем для защиты ваших PDF документов."
 
+#: templates/frontend/all_tools.html:434
+#: templates/frontend/includes/header.html:290
+#: templates/frontend/includes/header.html:682
 msgid "Unlock PDF"
 msgstr "Разблокировать PDF"
 
+#: templates/frontend/all_tools.html:437
 msgid "Remove password protection from your PDF documents."
 msgstr "Удаляйте защиту паролем из ваших PDF документов."
 
+#: templates/frontend/compress_pdf.html:6
 msgid "Compression Settings"
 msgstr "Настройки сжатия"
 
+#: templates/frontend/compress_pdf.html:12
 msgid "Compression Level"
 msgstr "Уровень сжатия"
 
+#: templates/frontend/compress_pdf.html:16
 msgid "Low"
 msgstr "Низкое"
 
+#: templates/frontend/compress_pdf.html:16
 msgid "Faster, less compression"
 msgstr "Быстрее, меньше сжатие"
 
+#: templates/frontend/compress_pdf.html:17
 msgid "Medium"
 msgstr "Среднее"
 
+#: templates/frontend/compress_pdf.html:17
+#: templates/frontend/pdf_to_jpg.html:55
 msgid "Balanced"
 msgstr "Сбалансированное"
 
+#: templates/frontend/compress_pdf.html:18
 msgid "High"
 msgstr "Высокое"
 
+#: templates/frontend/compress_pdf.html:18
 msgid "Slower, more compression"
 msgstr "Медленнее, больше сжатие"
 
+#: templates/frontend/compress_pdf.html:21
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
@@ -848,18 +1187,22 @@ msgstr ""
 "Выберите уровень сжатия в зависимости от ваших потребностей. Более высокое "
 "сжатие уменьшает размер файла больше, но занимает больше времени."
 
+#: templates/frontend/compress_pdf.html:35
 msgid ""
 "Choose the compression level (Low, Medium, or High) to compress PDF file size"
 msgstr ""
 "Выберите уровень сжатия (Низкий, Средний или Высокий) для сжатия размера PDF "
 "файла"
 
+#: templates/frontend/compress_pdf.html:36
 msgid "Click the compress button to reduce the size of your PDF file"
 msgstr "Нажмите кнопку сжатия для уменьшения размера вашего PDF файла"
 
+#: templates/frontend/compress_pdf.html:37
 msgid "Download your compressed PDF file using the download button"
 msgstr "Скачайте ваш сжатый PDF файл, используя кнопку загрузки"
 
+#: templates/frontend/compress_pdf.html:41
 msgid ""
 "PDF files with up to 50 pages are supported for compression. For larger "
 "files, please split them into smaller parts. Higher compression reduces file "
@@ -869,67 +1212,64 @@ msgstr ""
 "пожалуйста, разбейте их на более мелкие части. Более высокое сжатие "
 "уменьшает размер файла больше, но может немного снизить качество изображений."
 
-msgid ""
-"Perfect for: compressing PDF files to reduce size, reducing PDF file size "
-"for email, compressing large PDF documents, reducing PDF file size for web "
-"upload, compressing PDF files for storage, reducing PDF file size for "
-"sharing, compressing scanned PDF documents, reducing PDF file size for "
-"mobile devices, compressing PDF files for faster download, reducing PDF file "
-"size for cloud storage, compressing PDF files for archiving, reducing PDF "
-"file size for printing, compressing PDF files for presentations, reducing "
-"PDF file size for reports, compressing PDF files for business documents."
-msgstr ""
-"Идеально для: сжатия PDF файлов для уменьшения размера, уменьшения размера "
-"PDF файлов для электронной почты, сжатия больших PDF документов, уменьшения "
-"размера PDF файлов для загрузки в интернет, сжатия PDF файлов для хранения, "
-"уменьшения размера PDF файлов для обмена, сжатия отсканированных PDF "
-"документов, уменьшения размера PDF файлов для мобильных устройств, сжатия "
-"PDF файлов для быстрой загрузки, уменьшения размера PDF файлов для облачного "
-"хранилища, сжатия PDF файлов для архивирования, уменьшения размера PDF "
-"файлов для печати, сжатия PDF файлов для презентаций, уменьшения размера PDF "
-"файлов для отчетов, сжатия PDF файлов для бизнес-документов."
-
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:536
+#: utils_site/src/frontend/views.py:610
 msgid "Contact Us - Convertica"
 msgstr "Связаться с нами - Convertica"
 
+#: templates/frontend/contact.html:44 templates/frontend/faq.html:383
+#: templates/frontend/privacy.html:220 templates/frontend/terms.html:253
 msgid "Contact Us"
 msgstr "Связаться с нами"
 
+#: templates/frontend/contact.html:47
 msgid ""
 "We're here to help! Get in touch with us for support, questions, or feedback."
 msgstr ""
 "Мы здесь, чтобы помочь! Свяжитесь с нами для поддержки, вопросов или отзывов."
 
+#: templates/frontend/contact.html:63
 msgid "Email icon"
 msgstr "Иконка электронной почты"
 
+#: templates/frontend/contact.html:67
+#: templates/frontend/includes/footer.html:161
 msgid "Email"
 msgstr "Электронная почта"
 
+#: templates/frontend/contact.html:70
 msgid "Send us an email and we'll get back to you as soon as possible."
 msgstr "Отправьте нам письмо, и мы свяжемся с вами как можно скорее."
 
+#: templates/frontend/contact.html:85
 msgid "Support icon"
 msgstr "Иконка поддержки"
 
+#: templates/frontend/contact.html:89
 msgid "Support"
 msgstr "Поддержка"
 
+#: templates/frontend/contact.html:92
 msgid "Need help with our tools? We're here to assist you."
 msgstr "Нужна помощь с нашими инструментами? Мы здесь, чтобы помочь вам."
 
+#: templates/frontend/contact.html:95
 msgid "Response time: Usually within 24-48 hours"
 msgstr "Время ответа: Обычно в течение 24-48 часов"
 
+#: templates/frontend/contact.html:104
 msgid "Form icon"
 msgstr "Иконка формы"
 
+#: templates/frontend/contact.html:108
 msgid "Send Us a Message"
 msgstr "Отправьте нам сообщение"
 
+#: templates/frontend/contact.html:123
 msgid "Message Sent Successfully!"
 msgstr "Сообщение успешно отправлено!"
 
+#: templates/frontend/contact.html:129
 msgid ""
 "We have received your message and will get back to you as soon as possible, "
 "usually within 24-48 hours."
@@ -937,30 +1277,43 @@ msgstr ""
 "Мы получили ваше сообщение и свяжемся с вами как можно скорее, обычно в "
 "течении 24-48 часов."
 
+#: templates/frontend/contact.html:158
 msgid "Please correct the errors below:"
 msgstr "Пожалуйста, исправьте ошибки ниже:"
 
+#: templates/frontend/contact.html:216
 msgid "I agree to the"
 msgstr "Я согласен с"
 
+#: templates/frontend/contact.html:216 templates/frontend/contact.html:299
+#: templates/frontend/includes/cookie_banner.html:17
+#: templates/frontend/includes/footer.html:51
+#: templates/frontend/includes/footer.html:230
+#: templates/frontend/privacy.html:45
 msgid "Privacy Policy"
 msgstr "Политика конфиденциальности"
 
+#: templates/frontend/contact.html:216
 msgid "and consent to the processing of my personal data."
 msgstr "и согласен на обработку моих персональных данных."
 
+#: templates/frontend/contact.html:237
 msgid "Send Message"
 msgstr "Отправить сообщение"
 
+#: templates/frontend/contact.html:246
 msgid "FAQ icon"
 msgstr "Иконка FAQ"
 
+#: templates/frontend/contact.html:250 templates/frontend/faq.html:72
 msgid "Frequently Asked Questions"
 msgstr "Часто задаваемые вопросы"
 
+#: templates/frontend/contact.html:255
 msgid "How long does it take to process files?"
 msgstr "Сколько времени занимает обработка файлов?"
 
+#: templates/frontend/contact.html:257
 msgid ""
 "Most files are processed within seconds. Larger files or complex operations "
 "may take a few minutes."
@@ -968,9 +1321,11 @@ msgstr ""
 "Большинство файлов обрабатываются в течение нескольких секунд. Большие файлы "
 "или сложные операции могут занять несколько минут."
 
+#: templates/frontend/contact.html:262
 msgid "Are my files safe?"
 msgstr "Безопасны ли мои файлы?"
 
+#: templates/frontend/contact.html:264
 msgid ""
 "Yes! Your files are processed securely and automatically deleted immediately "
 "after processing. We never store your files permanently."
@@ -978,9 +1333,11 @@ msgstr ""
 "Да! Ваши файлы обрабатываются безопасно и автоматически удаляются сразу "
 "после обработки. Мы никогда не храним ваши файлы постоянно."
 
+#: templates/frontend/contact.html:269
 msgid "Is Convertica really free?"
 msgstr "Действительно ли Convertica бесплатна?"
 
+#: templates/frontend/contact.html:271
 msgid ""
 "Yes, all our tools are completely free to use. No hidden fees, no "
 "subscriptions required."
@@ -988,9 +1345,11 @@ msgstr ""
 "Да, все наши инструменты полностью бесплатны для использования. Никаких "
 "скрытых платежей, подписок не требуется."
 
+#: templates/frontend/contact.html:276
 msgid "What file formats are supported?"
 msgstr "Какие форматы файлов поддерживаются?"
 
+#: templates/frontend/contact.html:278
 msgid ""
 "We support PDF, Word (DOC, DOCX), JPG/JPEG, and Excel (XLSX) formats. Check "
 "individual tool pages for specific format requirements."
@@ -999,35 +1358,50 @@ msgstr ""
 "Проверьте страницы отдельных инструментов для конкретных требований к "
 "формату."
 
+#: templates/frontend/contact.html:286
 msgid "Additional Resources"
 msgstr "Дополнительные ресурсы"
 
+#: templates/frontend/contact.html:291
+#: templates/frontend/includes/footer.html:42
 msgid "About Us"
 msgstr "О нас"
 
+#: templates/frontend/contact.html:293
 msgid "Learn more about Convertica and our mission."
 msgstr "Узнайте больше о Convertica и нашей миссии."
 
+#: templates/frontend/contact.html:301
 msgid "Read our privacy policy to understand how we protect your data."
 msgstr ""
 "Прочитайте нашу политику конфиденциальности, чтобы понять, как мы защищаем "
 "ваши данные."
 
+#: templates/frontend/contact.html:307
+#: templates/frontend/includes/cookie_banner.html:19
+#: templates/frontend/includes/footer.html:60 templates/frontend/terms.html:45
 msgid "Terms of Service"
 msgstr "Условия использования"
 
+#: templates/frontend/contact.html:309
 msgid "Review our terms of service and usage policies."
 msgstr "Ознакомьтесь с нашими условиями использования."
 
+#: templates/frontend/contact.html:371
 msgid "Sending..."
 msgstr "Отправка..."
 
+#: templates/frontend/converter_generic.html:35
+#: templates/frontend/edit_pdf_generic.html:35
+#: templates/frontend/includes/footer.html:24
 msgid "Home"
 msgstr "Главная"
 
+#: templates/frontend/converter_generic.html:85
 msgid "Select file to convert"
 msgstr "Выберите файл для конвертации"
 
+#: templates/frontend/converter_generic.html:192
 msgid ""
 "Click the button above to select your file, or drag and drop it into the "
 "zone below"
@@ -1035,30 +1409,42 @@ msgstr ""
 "Загрузите файл через кнопку выше или перетащите его в зону ниже - наш "
 "бесплатный онлайн конвертер поддерживает все форматы"
 
+#: templates/frontend/converter_generic.html:193
 msgid "Click the convert button"
 msgstr "Нажмите кнопку конвертации"
 
+#: templates/frontend/converter_generic.html:194
+#: templates/frontend/jpg_to_pdf.html:139
 msgid "Wait for the conversion to complete"
 msgstr "Дождитесь завершения конвертации"
 
+#: templates/frontend/converter_generic.html:195
 msgid "Download your converted file using the download button"
 msgstr "Скачайте конвертированный файл с помощью кнопки скачивания"
 
+#: templates/frontend/converter_generic.html:212
 msgid "Converting your file..."
 msgstr "Конвертация файла..."
 
+#: templates/frontend/converter_generic.html:214
+#: templates/frontend/jpg_to_pdf.html:163
 msgid "Conversion Complete!"
 msgstr "Конвертация завершена!"
 
+#: templates/frontend/converter_generic.html:217
+#: templates/frontend/jpg_to_pdf.html:166
 msgid "Convert another file"
 msgstr "Конвертировать другой файл"
 
+#: templates/frontend/crop_pdf.html:104
 msgid "Select file to crop"
 msgstr "Выберите файл для обрезки"
 
+#: templates/frontend/crop_pdf.html:166
 msgid "Crop Your PDF"
 msgstr "Обрезать ваш PDF"
 
+#: templates/frontend/crop_pdf.html:168
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
@@ -1068,12 +1454,15 @@ msgstr ""
 "область будет сохранена. Вы можете перетащить рамку выделения куда угодно "
 "или использовать угловые/боковые маркеры для изменения размера."
 
+#: templates/frontend/crop_pdf.html:173
 msgid "Page:"
 msgstr "Страница:"
 
+#: templates/frontend/crop_pdf.html:190
 msgid "Crop area is active!"
 msgstr "Область обрезки активна!"
 
+#: templates/frontend/crop_pdf.html:193
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
 "ready."
@@ -1081,12 +1470,15 @@ msgstr ""
 "Выделенная синим область будет сохранена. Настройте её и нажмите 'Обрезать "
 "PDF', когда будете готовы."
 
+#: templates/frontend/crop_pdf.html:201
 msgid "Apply crop to pages"
 msgstr "Применить обрезку к страницам"
 
+#: templates/frontend/crop_pdf.html:274
 msgid "Tips:"
 msgstr "Советы:"
 
+#: templates/frontend/crop_pdf.html:276
 #, fuzzy
 msgid "A crop area covering most of the page is selected by default"
 msgstr ""
@@ -1097,6 +1489,7 @@ msgstr ""
 "По умолчанию выбрана область обрезки, покрывающая большую часть страницы - "
 "при необходимости настройте её"
 
+#: templates/frontend/crop_pdf.html:277
 #, fuzzy
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
@@ -1109,24 +1502,30 @@ msgstr ""
 "По умолчанию выбрана область обрезки, покрывающая большую часть страницы - "
 "при необходимости настройте её"
 
+#: templates/frontend/crop_pdf.html:278
 msgid "Click and drag inside the blue box to move it anywhere on the page"
 msgstr ""
 "Нажмите и перетащите внутри синей рамки, чтобы переместить её в любое место "
 "на странице"
 
+#: templates/frontend/crop_pdf.html:279
 msgid "Drag the corner or edge handles to resize the crop area"
 msgstr ""
 "Перетащите угловые или боковые маркеры для изменения размера области обрезки"
 
+#: templates/frontend/crop_pdf.html:280
 msgid "Click and drag outside the box to create a new selection"
 msgstr "Нажмите и перетащите за пределами рамки, чтобы создать новое выделение"
 
+#: templates/frontend/crop_pdf.html:281
 msgid "The cursor changes to 'move' when hovering over the selection box"
 msgstr "Курсор меняется на «перемещение» при наведении на рамку выделения"
 
+#: templates/frontend/crop_pdf.html:282
 msgid "When 'all' is selected, crop applies to all pages"
 msgstr "При выборе «все» обрезка применяется ко всем страницам"
 
+#: templates/frontend/crop_pdf.html:328
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
 "keep when cropping PDF"
@@ -1134,12 +1533,14 @@ msgstr ""
 "PDF будет отображён - щелкните и перетащите, чтобы выбрать область, которую "
 "вы хотите оставить при обрезке PDF"
 
+#: templates/frontend/crop_pdf.html:329
 msgid ""
 "Resize the selection by dragging the corners or edges to adjust the crop area"
 msgstr ""
 "Измените размер выбора, перетаскивая углы или края, чтобы настроить область "
 "обрезки"
 
+#: templates/frontend/crop_pdf.html:330
 msgid ""
 "Choose which pages to apply the crop to (all pages, current page, or custom "
 "pages)"
@@ -1147,12 +1548,15 @@ msgstr ""
 "Выберите, к каким страницам применить обрезку (все страницы, текущая "
 "страница или выбранные страницы)"
 
+#: templates/frontend/crop_pdf.html:331
 msgid "Click the crop button to process your PDF and crop the selected area"
 msgstr "Нажмите кнопку обрезки для обработки PDF и обрезки выбранной области"
 
+#: templates/frontend/crop_pdf.html:332
 msgid "Download your cropped PDF file using the download button"
 msgstr "Скачайте обрезанный PDF файл, используя кнопку загрузки"
 
+#: templates/frontend/crop_pdf.html:336
 msgid ""
 "PDF files with up to 50 pages are supported for cropping. For larger files, "
 "please split them into smaller parts. The crop area you select will be "
@@ -1162,20 +1566,7 @@ msgstr ""
 "пожалуйста, разделите их на меньшие части. Выбранная область обрезки будет "
 "применена ко всем выбранным страницам."
 
-msgid ""
-"Perfect for: cropping PDF pages to remove margins, cropping PDF documents to "
-"specific dimensions, removing white space from PDF files, cropping scanned "
-"documents, cropping PDF pages for printing, cropping PDF forms to fit, "
-"cropping PDF images to size, cropping PDF pages for web use, cropping PDF "
-"pages for mobile viewing, cropping PDF pages for presentations."
-msgstr ""
-"Идеально для: обрезки страниц PDF для удаления полей, обрезки PDF документов "
-"до определённых размеров, удаления пустого пространства из PDF файлов, "
-"обрезки отсканированных документов, обрезки страниц PDF для печати, обрезки "
-"PDF форм по размеру, обрезки изображений PDF до размера, обрезки страниц PDF "
-"для веб-использования, обрезки страниц PDF для мобильного просмотра, обрезки "
-"страниц PDF для презентаций."
-
+#: templates/frontend/crop_pdf.html:361
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
@@ -1183,9 +1574,11 @@ msgstr ""
 "Область обрезки готова! Перетащите рамку для перемещения, перетащите извне "
 "для создания нового выделения или используйте маркеры для изменения размера."
 
+#: templates/frontend/crop_pdf.html:362
 msgid "Drag to select crop area..."
 msgstr "Перетащите для выбора области обрезки..."
 
+#: templates/frontend/crop_pdf.html:363
 #, fuzzy
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
@@ -1198,6 +1591,7 @@ msgstr ""
 "Выбор слишком мал. Выбрана вся страница. Перетащите, чтобы создать новый "
 "выбор, или перетащите рамку, чтобы переместить её."
 
+#: templates/frontend/crop_pdf.html:364
 #, fuzzy
 #| msgid ""
 #| "Crop area selected! Drag the box to move it or use handles to resize. "
@@ -1209,6 +1603,7 @@ msgstr ""
 "Область обрезки выбрана! Перетащите рамку для перемещения или используйте "
 "маркеры для изменения размера. Нажмите \"Обрезать PDF\", когда будете готовы."
 
+#: templates/frontend/crop_pdf.html:365
 #, fuzzy
 #| msgid ""
 #| "Crop area moved! Drag again to reposition or use handles to resize. Click "
@@ -1221,21 +1616,27 @@ msgstr ""
 "используйте маркеры для изменения размера. Нажмите \"Обрезать PDF\", когда "
 "будете готовы."
 
+#: templates/frontend/edit_pdf_generic.html:85
 msgid "Select file to edit"
 msgstr "Выберите файл для редактирования"
 
+#: templates/frontend/edit_pdf_generic.html:177
 msgid "Select your PDF file using the button above or drag and drop it"
 msgstr "Выберите PDF файл с помощью кнопки выше или перетащите его"
 
+#: templates/frontend/edit_pdf_generic.html:178
 msgid "Configure the editing options below"
 msgstr "Настройте параметры редактирования ниже"
 
+#: templates/frontend/edit_pdf_generic.html:179
 msgid "Click the edit button to process your file"
 msgstr "Нажмите кнопку редактирования для обработки файла"
 
+#: templates/frontend/edit_pdf_generic.html:180
 msgid "Download your edited file using the download button"
 msgstr "Скачайте отредактированный файл с помощью кнопки скачивания"
 
+#: templates/frontend/edit_pdf_generic.html:184
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts."
@@ -1243,6 +1644,7 @@ msgstr ""
 "Поддерживаются PDF файлы до 50 страниц. Для больших файлов, пожалуйста, "
 "разбейте их на более мелкие части."
 
+#: templates/frontend/edit_pdf_generic.html:208
 #, fuzzy
 #| msgid ""
 #| "Please enter page numbers to remove, or select \"All pages\" or \"Current "
@@ -1254,12 +1656,16 @@ msgstr ""
 "Пожалуйста, введите номера страниц для удаления или выберите \"Все "
 "страницы\" или \"Только текущую страницу\""
 
+#: templates/frontend/extract_pages.html:6
 msgid "Extract Pages Settings"
 msgstr "Настройки извлечения страниц"
 
+#: templates/frontend/extract_pages.html:12
+#: templates/frontend/split_pdf.html:49
 msgid "Pages to Extract"
 msgstr "Страницы для извлечения"
 
+#: templates/frontend/extract_pages.html:22
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
 "(1-5)"
@@ -1267,6 +1673,7 @@ msgstr ""
 "Введите номера страниц для извлечения. Используйте числа через запятую "
 "(1,3,5) или диапазоны (1-5)"
 
+#: templates/frontend/extract_pages.html:36
 msgid ""
 "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 "
 "to extract pages from PDF)"
@@ -1274,6 +1681,7 @@ msgstr ""
 "Введите номера страниц, которые вы хотите извлечь из вашего PDF (например, "
 "1,3,5 или 1-5 для извлечения страниц из PDF)"
 
+#: templates/frontend/extract_pages.html:37
 msgid ""
 "Click the extract button to process your PDF and extract the selected pages "
 "into a new PDF file"
@@ -1281,6 +1689,7 @@ msgstr ""
 "Нажмите кнопку извлечения для обработки вашего PDF и извлечения выбранных "
 "страниц в новый PDF файл"
 
+#: templates/frontend/extract_pages.html:38
 msgid ""
 "Download your extracted PDF file containing only the selected pages using "
 "the download button"
@@ -1288,6 +1697,7 @@ msgstr ""
 "Скачайте ваш извлеченный PDF файл, содержащий только выбранные страницы, "
 "используя кнопку загрузки"
 
+#: templates/frontend/extract_pages.html:42
 msgid ""
 "PDF files with up to 50 pages are supported for extracting pages. For larger "
 "files, please split them into smaller parts. The extracted pages will be "
@@ -1297,35 +1707,19 @@ msgstr ""
 "файлов, пожалуйста, разбейте их на более мелкие части. Извлеченные страницы "
 "будут объединены в один новый PDF файл."
 
-msgid ""
-"Perfect for: extracting specific pages from PDF documents, extracting pages "
-"from PDF files, pulling pages from PDF documents, extracting selected pages "
-"from PDF files, getting specific pages from PDF documents, extracting page "
-"ranges from PDF files, pulling out pages from PDF documents, extracting "
-"pages from large PDF files, getting pages from PDF documents, extracting "
-"pages from scanned PDF files, pulling specific pages from PDF documents, "
-"extracting pages from PDF reports, getting pages from PDF contracts, "
-"extracting pages from PDF invoices, pulling pages from PDF legal documents."
-msgstr ""
-"Идеально для: извлечения конкретных страниц из PDF документов, извлечения "
-"страниц из PDF файлов, вытягивания страниц из PDF документов, извлечения "
-"выбранных страниц из PDF файлов, получения конкретных страниц из PDF "
-"документов, извлечения диапазонов страниц из PDF файлов, вытягивания страниц "
-"из PDF документов, извлечения страниц из больших PDF файлов, получения "
-"страниц из PDF документов, извлечения страниц из отсканированных PDF файлов, "
-"вытягивания конкретных страниц из PDF документов, извлечения страниц из PDF "
-"отчетов, получения страниц из PDF контрактов, извлечения страниц из PDF "
-"счетов, вытягивания страниц из PDF юридических документов."
-
+#: templates/frontend/faq.html:75
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr "Найдите ответы на частые вопросы о PDF инструментах Convertica"
 
+#: templates/frontend/faq.html:85
 msgid "General Questions"
 msgstr "Общие вопросы"
 
+#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:639
 msgid "Is Convertica free to use?"
 msgstr "Бесплатен ли Convertica?"
 
+#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:641
 msgid ""
 "Yes, Convertica is completely free to use. All PDF conversion, editing, and "
 "organization tools are available at no cost. There are no hidden fees, no "
@@ -1336,9 +1730,11 @@ msgstr ""
 "регистрация не требуется, и нет ограничений на размер файла в бесплатном "
 "плане."
 
+#: templates/frontend/faq.html:100
 msgid "Do I need to create an account?"
 msgstr "Нужно ли создавать аккаунт?"
 
+#: templates/frontend/faq.html:104
 msgid ""
 "No, you don't need to create an account. Convertica works without "
 "registration. Simply upload your file and start converting immediately."
@@ -1346,9 +1742,11 @@ msgstr ""
 "Нет, вам не нужно создавать аккаунт. Convertica работает без регистрации. "
 "Просто загрузите ваш файл и начните конвертировать сразу."
 
+#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:643
 msgid "What file formats does Convertica support?"
 msgstr "Какие форматы файлов поддерживает Convertica?"
 
+#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:645
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
 "can convert between these formats, edit PDFs, organize pages, and protect "
@@ -1358,9 +1756,11 @@ msgstr ""
 "можете конвертировать между этими форматами, редактировать PDF, "
 "организовывать страницы и защищать ваши документы паролями."
 
+#: templates/frontend/faq.html:120
 msgid "Is there a file size limit?"
 msgstr "Есть ли ограничение на размер файла?"
 
+#: templates/frontend/faq.html:124
 msgid ""
 "No, there are no file size limits on Convertica. You can process files of "
 "any size, from small documents to large PDF files."
@@ -1368,12 +1768,15 @@ msgstr ""
 "Нет, на Convertica нет ограничений на размер файла. Вы можете обрабатывать "
 "файлы любого размера, от небольших документов до больших PDF файлов."
 
+#: templates/frontend/faq.html:133
 msgid "Conversion Questions"
 msgstr "Вопросы о конвертации"
 
+#: templates/frontend/faq.html:138
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr "Как конвертировать PDF в Word без потери форматирования?"
 
+#: templates/frontend/faq.html:142
 msgid ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
@@ -1388,9 +1791,11 @@ msgstr ""
 "вашего оригинального документа. Все конвертации бесплатны и не требуют "
 "регистрации."
 
+#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:635
 msgid "How do I convert PDF to Word?"
 msgstr "Как конвертировать PDF в Word?"
 
+#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:637
 msgid ""
 "To convert PDF to Word, simply upload your PDF file using the upload button "
 "or drag and drop it into the upload zone. Click the convert button and wait "
@@ -1403,9 +1808,11 @@ msgstr ""
 "конвертированный документ Word, используя кнопку скачивания. Конвертация "
 "бесплатна и не требует регистрации."
 
+#: templates/frontend/faq.html:158
 msgid "How do I convert Word to PDF?"
 msgstr "Как конвертировать Word в PDF?"
 
+#: templates/frontend/faq.html:162
 msgid ""
 "Upload your Word document (.doc or .docx), click convert, and download your "
 "PDF. The conversion preserves formatting and layout of your original "
@@ -1415,9 +1822,11 @@ msgstr ""
 "скачайте ваш PDF. Конвертация сохраняет форматирование и макет вашего "
 "оригинального документа."
 
+#: templates/frontend/faq.html:168
 msgid "Can I convert PDF to JPG?"
 msgstr "Могу ли я конвертировать PDF в JPG?"
 
+#: templates/frontend/faq.html:172
 msgid ""
 "Yes, you can convert PDF pages to JPG images. Select the page you want to "
 "convert or convert all pages. You can also choose the image quality (DPI) "
@@ -1427,9 +1836,11 @@ msgstr ""
 "страницу, которую хотите конвертировать, или конвертируйте все страницы. Вы "
 "также можете выбрать качество изображения (DPI) от 72 до 600."
 
+#: templates/frontend/faq.html:178
 msgid "How do I convert images to PDF?"
 msgstr "Как конвертировать изображения в PDF?"
 
+#: templates/frontend/faq.html:182
 msgid ""
 "Upload one or multiple JPG/JPEG images, arrange them in the desired order, "
 "and click convert. All images will be combined into a single PDF document "
@@ -1439,9 +1850,11 @@ msgstr ""
 "порядке и нажмите конвертировать. Все изображения будут объединены в один "
 "PDF документ с автоматическим форматированием A4."
 
+#: templates/frontend/faq.html:188
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "Могу ли я извлечь таблицы из PDF в Excel?"
 
+#: templates/frontend/faq.html:192
 msgid ""
 "Yes, you can extract tables from PDF files and convert them to Excel format. "
 "Upload your PDF, and Convertica will extract all tables and save them in an "
@@ -1451,12 +1864,15 @@ msgstr ""
 "Excel. Загрузите ваш PDF, и Convertica извлечет все таблицы и сохранит их в "
 "файл Excel."
 
+#: templates/frontend/faq.html:201
 msgid "Editing & Organization"
 msgstr "Редактирование и организация"
 
+#: templates/frontend/faq.html:206
 msgid "How do I merge PDF online free without watermark?"
 msgstr "Как объединить PDF онлайн бесплатно без водяного знака?"
 
+#: templates/frontend/faq.html:210
 msgid ""
 "To merge PDF online free without watermark, use Convertica's PDF merger. Go "
 "to the Merge PDF page, select multiple PDF files, arrange them in the "
@@ -1471,9 +1887,11 @@ msgstr ""
 "один PDF документ без добавления водяного знака. Объединенный PDF сохраняет "
 "качество оригинальных файлов."
 
+#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:647
 msgid "How do I merge multiple PDF files?"
 msgstr "Как объединить несколько PDF файлов?"
 
+#: templates/frontend/faq.html:220
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order using drag and drop, and click merge. All "
@@ -1484,9 +1902,11 @@ msgstr ""
 "перетаскивания и нажмите объединить. Все выбранные файлы будут объединены в "
 "один PDF документ."
 
+#: templates/frontend/faq.html:226
 msgid "Can I split a PDF into separate files?"
 msgstr "Можно ли разделить PDF на отдельные файлы?"
 
+#: templates/frontend/faq.html:230
 msgid ""
 "Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
 "split it (by page range or every N pages), and download the resulting files."
@@ -1495,9 +1915,11 @@ msgstr ""
 "как разделить его (по диапазону страниц или каждые N страниц), и скачайте "
 "полученные файлы."
 
+#: templates/frontend/faq.html:236
 msgid "How do I compress PDF to under 1MB for email?"
 msgstr "Как сжать PDF до 1МБ для email?"
 
+#: templates/frontend/faq.html:240
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
 "Upload your PDF file, select the high compression level, and click compress. "
@@ -1511,9 +1933,11 @@ msgstr ""
 "качество для вложений email. Вы можете предварительно просмотреть размер "
 "сжатого файла перед скачиванием."
 
+#: templates/frontend/faq.html:246
 msgid "How do I compress a PDF file?"
 msgstr "Как сжать PDF файл?"
 
+#: templates/frontend/faq.html:250
 msgid ""
 "Upload your PDF file, select the compression level (low, medium, or high), "
 "and click compress. The file size will be reduced while maintaining "
@@ -1523,9 +1947,11 @@ msgstr ""
 "высокий) и нажмите сжать. Размер файла будет уменьшен при сохранении "
 "приемлемого качества."
 
+#: templates/frontend/faq.html:256
 msgid "Can I rotate PDF pages?"
 msgstr "Могу ли я повернуть страницы PDF?"
 
+#: templates/frontend/faq.html:260
 msgid ""
 "Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
 "you want to rotate and choose the rotation angle."
@@ -1533,9 +1959,11 @@ msgstr ""
 "Да, вы можете повернуть страницы PDF на 90, 180 или 270 градусов. Выберите "
 "страницы, которые хотите повернуть, и выберите угол поворота."
 
+#: templates/frontend/faq.html:266
 msgid "How do I add a watermark to PDF?"
 msgstr "Как добавить водяной знак в PDF?"
 
+#: templates/frontend/faq.html:270
 msgid ""
 "Upload your PDF, choose between text or image watermark, set the position "
 "and transparency, and apply. The watermark will be added to all pages or "
@@ -1545,12 +1973,15 @@ msgstr ""
 "установите позицию и прозрачность и примените. Водяной знак будет добавлен "
 "ко всем страницам или выбранным страницам."
 
+#: templates/frontend/faq.html:279
 msgid "Security & Privacy"
 msgstr "Безопасность и конфиденциальность"
 
+#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:651
 msgid "Is my data secure?"
 msgstr "Безопасны ли мои данные?"
 
+#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:653
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -1562,9 +1993,11 @@ msgstr ""
 "ваша конфиденциальность - наш главный приоритет. Вы также можете защитить "
 "ваши PDF шифрованием паролем."
 
+#: templates/frontend/faq.html:294
 msgid "How do I protect a PDF with a password?"
 msgstr "Как защитить PDF паролем?"
 
+#: templates/frontend/faq.html:298
 msgid ""
 "Upload your PDF, enter a password (and optionally an owner password), and "
 "click protect. The PDF will be encrypted and require a password to open."
@@ -1572,9 +2005,11 @@ msgstr ""
 "Загрузите ваш PDF, введите пароль (и опционально пароль владельца) и нажмите "
 "защитить. PDF будет зашифрован и потребует пароль для открытия."
 
+#: templates/frontend/faq.html:304
 msgid "Can I remove password protection from a PDF?"
 msgstr "Могу ли я удалить защиту паролем из PDF?"
 
+#: templates/frontend/faq.html:308
 msgid ""
 "Yes, if you know the password, you can unlock a protected PDF. Upload the "
 "protected PDF, enter the password, and click unlock. The password protection "
@@ -1584,9 +2019,11 @@ msgstr ""
 "Загрузите защищенный PDF, введите пароль и нажмите разблокировать. Защита "
 "паролем будет удалена."
 
+#: templates/frontend/faq.html:314
 msgid "Are my files stored on your servers?"
 msgstr "Хранятся ли мои файлы на ваших серверах?"
 
+#: templates/frontend/faq.html:318
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
@@ -1596,12 +2033,15 @@ msgstr ""
 "немедленно и автоматически удаляются после конвертации. Мы не храним копии "
 "ваших документов."
 
+#: templates/frontend/faq.html:327
 msgid "Technical Questions"
 msgstr "Технические вопросы"
 
+#: templates/frontend/faq.html:332
 msgid "What browsers are supported?"
 msgstr "Какие браузеры поддерживаются?"
 
+#: templates/frontend/faq.html:336
 msgid ""
 "Convertica works on all modern browsers including Chrome, Firefox, Safari, "
 "Edge, and Opera. The website is also mobile-friendly and works on "
@@ -1611,9 +2051,11 @@ msgstr ""
 "Safari, Edge и Opera. Сайт также адаптирован для мобильных устройств и "
 "работает на смартфонах и планшетах."
 
+#: templates/frontend/faq.html:342
 msgid "How long does conversion take?"
 msgstr "Сколько времени занимает конвертация?"
 
+#: templates/frontend/faq.html:346
 msgid ""
 "Conversion time depends on file size and complexity. Most conversions "
 "complete in seconds. Larger files may take a minute or two. The progress is "
@@ -1623,9 +2065,11 @@ msgstr ""
 "конвертаций завершаются за секунды. Большие файлы могут занять минуту или "
 "две. Прогресс отображается во время конвертации."
 
+#: templates/frontend/faq.html:352
 msgid "What if conversion fails?"
 msgstr "Что делать, если конвертация не удалась?"
 
+#: templates/frontend/faq.html:356
 msgid ""
 "If conversion fails, please check that your file is not corrupted and is in "
 "a supported format. Try again, and if the problem persists, contact our "
@@ -1635,9 +2079,11 @@ msgstr ""
 "поврежден и находится в поддерживаемом формате. Попробуйте снова, и если "
 "проблема сохраняется, свяжитесь с нашей службой поддержки."
 
+#: templates/frontend/faq.html:362
 msgid "Can I use Convertica on mobile devices?"
 msgstr "Могу ли я использовать Convertica на мобильных устройствах?"
 
+#: templates/frontend/faq.html:366
 msgid ""
 "Yes, Convertica is fully responsive and works on mobile devices. You can "
 "convert, edit, and organize PDFs directly from your smartphone or tablet."
@@ -1646,16 +2092,21 @@ msgstr ""
 "можете конвертировать, редактировать и организовывать PDF прямо с вашего "
 "смартфона или планшета."
 
+#: templates/frontend/faq.html:377
 msgid "Still have questions?"
 msgstr "Все еще есть вопросы?"
 
+#: templates/frontend/faq.html:380
 msgid ""
 "If you couldn't find the answer you're looking for, feel free to contact us."
 msgstr "Если вы не нашли нужный ответ, пожалуйста, свяжитесь с нами."
 
+#: templates/frontend/includes/cookie_banner.html:10
+#: templates/frontend/includes/cookie_banner.html:42
 msgid "Cookie Preferences"
 msgstr "Настройки Cookie"
 
+#: templates/frontend/includes/cookie_banner.html:13
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
 "security, analytics, and to provide personalized content."
@@ -1664,6 +2115,7 @@ msgstr ""
 "опыта просмотра, безопасности, аналитики и предоставления "
 "персонализированного контента."
 
+#: templates/frontend/includes/cookie_banner.html:16
 msgid ""
 "You can accept all cookies, reject non-essential cookies, or customize your "
 "preferences. Essential cookies are required for the website to function and "
@@ -1673,18 +2125,23 @@ msgstr ""
 "или настроить свои предпочтения. Основные файлы cookie необходимы для работы "
 "сайта и не могут быть отключены."
 
+#: templates/frontend/includes/cookie_banner.html:18
 msgid "and"
 msgstr "и"
 
+#: templates/frontend/includes/cookie_banner.html:27
 msgid "Reject All"
 msgstr "Отклонить все"
 
+#: templates/frontend/includes/cookie_banner.html:31
 msgid "Customize"
 msgstr "Настроить"
 
+#: templates/frontend/includes/cookie_banner.html:35
 msgid "Accept All"
 msgstr "Принять все"
 
+#: templates/frontend/includes/cookie_banner.html:44
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
 "cookies below. Essential cookies cannot be disabled as they are necessary "
@@ -1694,9 +2151,11 @@ msgstr ""
 "различные типы файлов cookie ниже. Основные файлы cookie не могут быть "
 "отключены, так как они необходимы для работы сайта."
 
+#: templates/frontend/includes/cookie_banner.html:51
 msgid "Essential Cookies"
 msgstr "Необходимые Cookie"
 
+#: templates/frontend/includes/cookie_banner.html:53
 msgid ""
 "Required for the website to function properly. These cookies enable core "
 "functionality such as security, network management, and accessibility. They "
@@ -1706,15 +2165,19 @@ msgstr ""
 "основную функциональность, такую как безопасность, управление сетью и "
 "доступность. Они не могут быть отключены."
 
+#: templates/frontend/includes/cookie_banner.html:56
 msgid "Examples: Session management, CSRF protection, language preferences"
 msgstr "Примеры: управление сессией, защита CSRF, языковые настройки"
 
+#: templates/frontend/includes/cookie_banner.html:60
 msgid "Always Active"
 msgstr "Всегда активны"
 
+#: templates/frontend/includes/cookie_banner.html:67
 msgid "Analytics Cookies"
 msgstr "Аналитические Cookie"
 
+#: templates/frontend/includes/cookie_banner.html:69
 msgid ""
 "Help us understand how visitors interact with our website by collecting and "
 "reporting information anonymously."
@@ -1722,15 +2185,19 @@ msgstr ""
 "Помогите нам понять, как посетители взаимодействуют с нашим сайтом, собирая "
 "и анонимно передавая информацию."
 
+#: templates/frontend/includes/cookie_banner.html:72
 msgid "Examples: Page views, time spent on site, error tracking"
 msgstr "Примеры: просмотры страниц, время на сайте, отслеживание ошибок"
 
+#: templates/frontend/includes/cookie_banner.html:78
 msgid "Enable Analytics Cookies"
 msgstr "Включить аналитические Cookie"
 
+#: templates/frontend/includes/cookie_banner.html:86
 msgid "Marketing Cookies"
 msgstr "Маркетинговые Cookie"
 
+#: templates/frontend/includes/cookie_banner.html:88
 msgid ""
 "Used to deliver personalized advertisements and track campaign "
 "effectiveness. These cookies may be set by advertising partners."
@@ -1739,12 +2206,15 @@ msgstr ""
 "эффективности кампаний. Эти файлы cookie могут устанавливаться рекламными "
 "партнерами."
 
+#: templates/frontend/includes/cookie_banner.html:91
 msgid "Examples: Ad targeting, conversion tracking, remarketing"
 msgstr "Примеры: таргетинг рекламы, отслеживание конверсий, ремаркетинг"
 
+#: templates/frontend/includes/cookie_banner.html:97
 msgid "Enable Marketing Cookies"
 msgstr "Включить маркетинговые Cookie"
 
+#: templates/frontend/includes/cookie_banner.html:105
 msgid ""
 "Your preferences will be saved and remembered for future visits. You can "
 "change these settings at any time."
@@ -1752,97 +2222,138 @@ msgstr ""
 "Ваши предпочтения будут сохранены и запомнены для будущих посещений. Вы "
 "можете изменить эти настройки в любое время."
 
+#: templates/frontend/includes/cookie_banner.html:110
 msgid "Save Preferences"
 msgstr "Сохранить настройки"
 
+#: templates/frontend/includes/cookie_banner.html:114
 msgid "Cancel"
 msgstr "Отмена"
 
+#: templates/frontend/includes/footer.html:15
+#: templates/frontend/includes/header.html:602
+#: templates/frontend/includes/header.html:760
 msgid "About"
 msgstr "О нас"
 
+#: templates/frontend/includes/footer.html:84
 msgid "Tools"
 msgstr "Инструменты"
 
+#: templates/frontend/includes/footer.html:93
+#: templates/frontend/includes/footer.html:201
+#: templates/frontend/includes/header.html:36
+#: templates/frontend/includes/header.html:51
+#: templates/frontend/includes/header.html:661
 msgid "All Tools"
 msgstr "Все инструменты"
 
+#: templates/frontend/includes/footer.html:143
+#: templates/frontend/includes/header.html:606
+#: templates/frontend/includes/header.html:764
 msgid "Contact"
 msgstr "Контакты"
 
+#: templates/frontend/includes/footer.html:152
 msgid "Contact Form"
 msgstr "Форма обратной связи"
 
+#: templates/frontend/includes/footer.html:175
+#: templates/frontend/includes/header.html:775
 msgid "Language"
 msgstr "Язык"
 
+#: templates/frontend/includes/footer.html:186
+#: templates/frontend/includes/header.html:621
 #, fuzzy
 #| msgid "Select Page"
 msgid "Select language"
 msgstr "Выбрать страницу"
 
+#: templates/frontend/includes/footer.html:196
 msgid "Resources"
 msgstr "Ресурсы"
 
+#: templates/frontend/includes/footer.html:217
 msgid "All rights reserved."
 msgstr "Все права защищены."
 
+#: templates/frontend/includes/footer.html:220
 msgid "Free PDF tools for everyone"
 msgstr "Бесплатные PDF инструменты для всех"
 
+#: templates/frontend/includes/footer.html:234
 msgid "Terms"
 msgstr "Условия"
 
+#: templates/frontend/includes/header.html:12
 msgid "Convertica - Home"
 msgstr "Convertica - Главная"
 
+#: templates/frontend/includes/header.html:18
 msgid "Convertica Logo"
 msgstr "Логотип Convertica"
 
+#: templates/frontend/includes/header.html:32
+#: templates/frontend/includes/header.html:46
 msgid "All PDF tools"
 msgstr "Все PDF инструменты"
 
+#: templates/frontend/includes/header.html:302
 msgid "Main navigation"
 msgstr "Главная навигация"
 
+#: templates/frontend/includes/header.html:312
 msgid "Convert PDF tools"
 msgstr "Инструменты конвертации PDF"
 
+#: templates/frontend/includes/header.html:328
 msgid "Convert from PDF"
 msgstr "Конвертировать из PDF"
 
+#: templates/frontend/includes/header.html:371
 msgid "Convert to PDF"
 msgstr "Конвертировать в PDF"
 
+#: templates/frontend/includes/header.html:410
 msgid "Edit PDF tools"
 msgstr "Инструменты редактирования PDF"
 
+#: templates/frontend/includes/header.html:426
 msgid "Basic Editing"
 msgstr "Редактирование"
 
+#: templates/frontend/includes/header.html:457
 msgid "Enhancements"
 msgstr "Улучшения"
 
+#: templates/frontend/includes/header.html:496
 msgid "Organize PDF tools"
 msgstr "Инструменты организации PDF"
 
+#: templates/frontend/includes/header.html:512
 msgid "Organization"
 msgstr "Организация"
 
+#: templates/frontend/includes/header.html:567
 msgid "Page Management"
 msgstr "Управление страницами"
 
+#: templates/frontend/includes/header.html:638
 msgid "Toggle menu"
 msgstr "Открыть меню"
 
+#: templates/frontend/includes/header.html:653
 msgid "Mobile navigation"
 msgstr "Мобильная навигация"
 
+#: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
 msgstr ""
 "Convertica – Онлайн инструменты PDF: Конвертация, Редактирование и "
 "Организация PDF"
 
+#: templates/frontend/index.html:6 templates/frontend/index.html:20
 msgid ""
 "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
 "rotate, add watermark, and more. Fast, secure, no registration required."
@@ -1851,6 +2362,7 @@ msgstr ""
 "объединение, разделение, поворот, добавление водяных знаков и многое другое. "
 "Быстро, безопасно, без регистрации."
 
+#: templates/frontend/index.html:7
 msgid ""
 "PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, "
 "PDF editor, PDF tools, online PDF converter, free PDF tools"
@@ -1859,9 +2371,13 @@ msgstr ""
 "повернуть PDF, PDF редактор, PDF инструменты, онлайн PDF конвертер, "
 "бесплатные PDF инструменты"
 
+#: templates/frontend/index.html:8 templates/frontend/index.html:10
+#: utils_site/src/frontend/views.py:31
 msgid "Convertica – Online PDF ↔ Word Converter"
 msgstr "Convertica – Онлайн конвертер PDF ↔ Word"
 
+#: templates/frontend/index.html:9 templates/frontend/index.html:11
+#: utils_site/src/frontend/views.py:33
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. "
 "Convert documents instantly, no registration required."
@@ -1869,9 +2385,11 @@ msgstr ""
 "Быстрый, простой и безопасный онлайн конвертер PDF в Word и Word в PDF. "
 "Конвертируйте документы мгновенно, регистрация не требуется."
 
+#: templates/frontend/index.html:44
 msgid "All-in-One PDF Tools"
 msgstr "Все инструменты для PDF в одном месте"
 
+#: templates/frontend/index.html:47
 msgid ""
 "Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No "
 "installations required."
@@ -1879,19 +2397,29 @@ msgstr ""
 "Конвертируйте, редактируйте, объединяйте, разделяйте и организуйте PDF "
 "файлы. Быстро, просто и безопасно. Установка не требуется."
 
+#: templates/frontend/index.html:93
 msgid "Most requested PDF tools at your fingertips"
 msgstr "Самые востребованные PDF инструменты под рукой"
 
+#: templates/frontend/index.html:116 templates/frontend/index.html:141
+#: templates/frontend/index.html:165 templates/frontend/index.html:190
+#: templates/frontend/index.html:214 templates/frontend/index.html:256
+#: templates/frontend/index.html:280 templates/frontend/index.html:304
+#: templates/frontend/index.html:328 templates/frontend/index.html:353
+#: templates/frontend/index.html:377
 msgid "Try it"
 msgstr "Попробовать"
 
+#: templates/frontend/index.html:233
 msgid "Manage and organize your PDF documents with powerful tools"
 msgstr ""
 "Управляйте и организуйте ваши PDF документы с помощью мощных инструментов"
 
+#: templates/frontend/index.html:397
 msgid "Free PDF Tools - Convert, Edit & Organize"
 msgstr "Бесплатные инструменты PDF - Конвертация, Редактирование и Организация"
 
+#: templates/frontend/index.html:400
 msgid ""
 "Access all our PDF tools: convert PDF to Word, merge PDFs, split, rotate, "
 "and more. Fast, secure, and completely free."
@@ -1900,39 +2428,50 @@ msgstr ""
 "PDF, разделение, поворот и многое другое. Быстро, безопасно и совершенно "
 "бесплатно."
 
+#: templates/frontend/index.html:415
 msgid "Latest Guides & Tips"
 msgstr "Последние руководства и советы"
 
+#: templates/frontend/index.html:418
 msgid "Learn how to get the most out of PDF tools with our expert guides"
 msgstr ""
 "Узнайте, как максимально эффективно использовать PDF инструменты с нашими "
 "экспертными руководствами"
 
+#: templates/frontend/index.html:462
 msgid "View All Articles"
 msgstr "Посмотреть все статьи"
 
+#: templates/frontend/jpg_to_pdf.html:26
 msgid "You can upload multiple images - they will be combined into one PDF"
 msgstr ""
 "Вы можете загрузить несколько изображений - они будут объединены в один PDF"
 
+#: templates/frontend/jpg_to_pdf.html:52
 msgid "Select image(s)"
 msgstr "Выберите изображение(я)"
 
+#: templates/frontend/jpg_to_pdf.html:59
 msgid "Selected Images"
 msgstr "Выбранные изображения"
 
+#: templates/frontend/jpg_to_pdf.html:67
 msgid "+ Add more images"
 msgstr "+ Добавить еще изображения"
 
+#: templates/frontend/jpg_to_pdf.html:90
 msgid "Drag and drop your images here"
 msgstr "Перетащите изображения сюда"
 
+#: templates/frontend/jpg_to_pdf.html:96
 msgid "files"
 msgstr "файлы"
 
+#: templates/frontend/jpg_to_pdf.html:96
 msgid "multiple files supported"
 msgstr "поддерживается несколько файлов"
 
+#: templates/frontend/jpg_to_pdf.html:135
 #, fuzzy
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
@@ -1946,6 +2485,7 @@ msgstr ""
 "Нажмите кнопку выше, чтобы выбрать одно или несколько изображений, или "
 "перетащите их в зону ниже"
 
+#: templates/frontend/jpg_to_pdf.html:136
 msgid ""
 "You can add more images by clicking 'Add more images' or by selecting files "
 "again"
@@ -1953,16 +2493,20 @@ msgstr ""
 "Вы можете добавить больше изображений, нажав 'Добавить еще изображения' или "
 "выбрав файлы снова - наш инструмент поддерживает множественную загрузку"
 
+#: templates/frontend/jpg_to_pdf.html:137
 msgid "Remove unwanted images by clicking the X button"
 msgstr "Удалите ненужные изображения, нажав кнопку X"
 
+#: templates/frontend/jpg_to_pdf.html:138
 msgid "Click the convert button to combine all images into one PDF"
 msgstr ""
 "Нажмите кнопку конвертации, чтобы объединить все изображения в один PDF"
 
+#: templates/frontend/jpg_to_pdf.html:140
 msgid "Download your converted PDF file"
 msgstr "Скачайте ваш конвертированный PDF файл"
 
+#: templates/frontend/jpg_to_pdf.html:144
 msgid ""
 "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. "
 "Supported formats include JPG, PNG, GIF, and BMP. The images will be "
@@ -1972,93 +2516,94 @@ msgstr ""
 "файл. Поддерживаемые форматы включают JPG, PNG, GIF и BMP. Изображения будут "
 "объединены в порядке их выбора."
 
-msgid ""
-"Perfect for: converting photos to PDF for printing, creating PDF files from "
-"scanned documents, combining multiple images into one PDF, converting "
-"screenshots to PDF, creating PDF files from mobile photos, converting "
-"receipts to PDF format, creating PDF files from artwork scans, converting "
-"passport photos to PDF, creating PDF files from homework photos, converting "
-"ID photos to PDF, creating PDF files from medical records, converting "
-"drawings to PDF format, creating PDF files from handwritten notes, "
-"converting certificates to PDF, creating PDF files from diplomas."
-msgstr ""
-"Идеально для: конвертации фотографий в PDF для печати, создания PDF файлов "
-"из отсканированных документов, объединения нескольких изображений в один "
-"PDF, конвертации скриншотов в PDF, создания PDF файлов из мобильных "
-"фотографий, конвертации чеков в формат PDF, создания PDF файлов из сканов "
-"произведений искусства, конвертации фотографий паспорта в PDF, создания PDF "
-"файлов из фотографий домашних заданий, конвертации фотографий удостоверений "
-"личности в PDF, создания PDF файлов из медицинских записей, конвертации "
-"рисунков в формат PDF, создания PDF файлов из рукописных заметок, "
-"конвертации сертификатов в PDF, создания PDF файлов из дипломов."
-
+#: templates/frontend/jpg_to_pdf.html:161
 msgid "Converting your images..."
 msgstr "Конвертация изображений..."
 
+#: templates/frontend/jpg_to_pdf.html:164
 msgid "Your PDF is ready to download"
 msgstr "Ваш PDF готов к загрузке"
 
+#: templates/frontend/jpg_to_pdf.html:165
 msgid "Download PDF"
 msgstr "Скачать PDF"
 
+#: templates/frontend/merge_pdf.html:28
 msgid "Merge Settings"
 msgstr "Настройки объединения"
 
+#: templates/frontend/merge_pdf.html:34
 msgid "Select PDF Files"
 msgstr "Выберите PDF файлы"
 
+#: templates/frontend/merge_pdf.html:43
 msgid "Select PDF files"
 msgstr "Выберите PDF файлы"
 
+#: templates/frontend/merge_pdf.html:56
 msgid "+ Add more files"
 msgstr "+ Добавить еще файлы"
 
+#: templates/frontend/merge_pdf.html:60
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 "Выберите 2-10 PDF файлов для объединения. Вы можете изменить их порядок, "
 "перетаскивая."
 
+#: templates/frontend/merge_pdf.html:68
 msgid "Selected Files"
 msgstr "Выбранные файлы"
 
+#: templates/frontend/merge_pdf.html:80
 msgid "Preview & Reorder Pages"
 msgstr "Предпросмотр и изменение порядка страниц"
 
+#: templates/frontend/merge_pdf.html:82
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 msgstr ""
 "Перетащите файлы, чтобы изменить их порядок. Порядок, показанный здесь, "
 "будет порядком объединения."
 
+#: templates/frontend/merge_pdf.html:92
 msgid "is not a PDF file. Skipping."
 msgstr "не является PDF файлом. Пропускаем."
 
+#: templates/frontend/merge_pdf.html:93
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
 msgstr "Максимум 10 файлов. Будут использованы только первые 10 файлов."
 
+#: templates/frontend/merge_pdf.html:94
 msgid "Error loading preview"
 msgstr "Ошибка загрузки предпросмотра"
 
+#: templates/frontend/merge_pdf.html:95
 msgid "Loading..."
 msgstr "Загрузка..."
 
+#: templates/frontend/merge_pdf.html:97
 msgid "Merging PDFs..."
 msgstr "Объединение PDF..."
 
+#: templates/frontend/merge_pdf.html:98
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Пожалуйста, выберите как минимум 2 PDF файла для объединения."
 
+#: templates/frontend/merge_pdf.html:109
 msgid "Select 2-10 PDF files to merge using the button above"
 msgstr "Выберите 2-10 PDF файлов для объединения, используя кнопку выше"
 
+#: templates/frontend/merge_pdf.html:110
 msgid "Preview all PDF files and drag them to reorder the merge order"
 msgstr ""
 "Просмотрите все PDF файлы и перетащите их для изменения порядка объединения"
 
+#: templates/frontend/merge_pdf.html:111
 msgid "Click the merge button to combine all PDF files into one document"
 msgstr ""
 "Нажмите кнопку объединения для объединения всех PDF файлов в один документ"
 
+#: templates/frontend/merge_pdf.html:112
 msgid ""
 "Download your merged PDF file containing all pages from all selected files "
 "using the download button"
@@ -2066,6 +2611,7 @@ msgstr ""
 "Скачайте ваш объединенный PDF файл, содержащий все страницы из всех "
 "выбранных файлов, используя кнопку загрузки"
 
+#: templates/frontend/merge_pdf.html:116
 msgid ""
 "You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
 "from all selected files in the order you specified."
@@ -2073,37 +2619,24 @@ msgstr ""
 "Вы можете объединить 2-10 PDF файлов одновременно. Объединенный PDF будет "
 "содержать все страницы из всех выбранных файлов в указанном вами порядке."
 
-msgid ""
-"Perfect for: merging multiple PDF files into one, combining PDF documents, "
-"joining PDF files together, merging PDF files for sharing, combining PDF "
-"documents into single file, joining multiple PDF files, merging PDF files "
-"for printing, combining PDF reports into one document, joining PDF files for "
-"archiving, merging PDF files for presentations, combining PDF invoices into "
-"one file, joining PDF contracts into single document, merging PDF files for "
-"business, combining PDF academic papers, joining PDF files for legal "
-"documents."
-msgstr ""
-"Идеально для: объединения нескольких PDF файлов в один, объединения PDF "
-"документов, соединения PDF файлов вместе, объединения PDF файлов для обмена, "
-"объединения PDF документов в один файл, соединения нескольких PDF файлов, "
-"объединения PDF файлов для печати, объединения PDF отчетов в один документ, "
-"соединения PDF файлов для архивирования, объединения PDF файлов для "
-"презентаций, объединения PDF счетов в один файл, соединения PDF контрактов в "
-"один документ, объединения PDF файлов для бизнеса, объединения PDF "
-"академических работ, соединения PDF файлов для юридических документов."
-
+#: templates/frontend/organize_pdf.html:12
 msgid "Organization Settings"
 msgstr "Настройки организации"
 
+#: templates/frontend/organize_pdf.html:17
 msgid "Operation"
 msgstr "Операция"
 
+#: templates/frontend/organize_pdf.html:21
+#: templates/frontend/organize_pdf.html:30
 msgid "Reorder Pages"
 msgstr "Изменить порядок страниц"
 
+#: templates/frontend/organize_pdf.html:22
 msgid "Sort Pages"
 msgstr "Сортировать страницы"
 
+#: templates/frontend/organize_pdf.html:32
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
@@ -2111,32 +2644,40 @@ msgstr ""
 "Перетащите страницы, чтобы изменить их порядок. Число на каждой странице "
 "показывает новый порядок."
 
+#: templates/frontend/organize_pdf.html:45
 msgid "Please select a PDF file."
 msgstr "Пожалуйста, выберите PDF файл."
 
+#: templates/frontend/organize_pdf.html:46
 msgid "Please select a PDF file first."
 msgstr "Сначала выберите PDF файл."
 
+#: templates/frontend/organize_pdf.html:48
 msgid "Organizing..."
 msgstr "Организация..."
 
+#: templates/frontend/organize_pdf.html:49
 msgid "Failed to organize PDF"
 msgstr "Не удалось организовать PDF"
 
+#: templates/frontend/organize_pdf.html:61
 msgid "Preview all pages and drag them to reorder pages in your PDF document"
 msgstr ""
 "Просмотрите все страницы и перетащите их для изменения порядка страниц в "
 "вашем PDF документе"
 
+#: templates/frontend/organize_pdf.html:62
 msgid "Choose operation: reorder pages manually or sort pages automatically"
 msgstr ""
 "Выберите операцию: изменить порядок страниц вручную или отсортировать "
 "страницы автоматически"
 
+#: templates/frontend/organize_pdf.html:63
 msgid "Click the organize button to process your PDF and reorganize the pages"
 msgstr ""
 "Нажмите кнопку организации для обработки вашего PDF и реорганизации страниц"
 
+#: templates/frontend/organize_pdf.html:64
 msgid ""
 "Download your reorganized PDF file with pages in the new order using the "
 "download button"
@@ -2144,6 +2685,7 @@ msgstr ""
 "Скачайте ваш реорганизованный PDF файл со страницами в новом порядке, "
 "используя кнопку загрузки"
 
+#: templates/frontend/organize_pdf.html:68
 msgid ""
 "PDF files with up to 50 pages are supported for organizing. For larger "
 "files, please split them into smaller parts. You can drag and drop pages to "
@@ -2153,22 +2695,7 @@ msgstr ""
 "пожалуйста, разбейте их на более мелкие части. Вы можете перетаскивать "
 "страницы для визуального изменения их порядка."
 
-msgid ""
-"Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging "
-"PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF "
-"files, reordering pages in PDF documents, rearranging pages in PDF files, "
-"sorting pages in PDF documents, changing order of PDF pages, reorganizing "
-"PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF "
-"documents, changing PDF page sequence."
-msgstr ""
-"Идеально для: изменения порядка страниц PDF, реорганизации PDF документов, "
-"перестановки страниц PDF, сортировки страниц PDF, изменения порядка страниц "
-"PDF, реорганизации PDF файлов, изменения порядка страниц в PDF документах, "
-"перестановки страниц в PDF файлах, сортировки страниц в PDF документах, "
-"изменения порядка страниц PDF, реорганизации PDF отчетов, изменения порядка "
-"глав PDF, перестановки разделов PDF, сортировки PDF документов, изменения "
-"последовательности страниц PDF."
-
+#: templates/frontend/pdf_to_excel.html:11
 msgid ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
@@ -2176,6 +2703,7 @@ msgstr ""
 "Нажмите кнопку конвертации, чтобы начать преобразование PDF в Excel "
 "(конвертация PDF в XLSX)"
 
+#: templates/frontend/pdf_to_excel.html:12
 msgid ""
 "Wait for the PDF to Excel conversion to complete - tables and data will be "
 "extracted from your PDF and converted to editable Excel format"
@@ -2183,6 +2711,7 @@ msgstr ""
 "Дождитесь завершения конвертации PDF в Excel - таблицы и данные будут "
 "извлечены из вашего PDF и преобразованы в редактируемый формат Excel"
 
+#: templates/frontend/pdf_to_excel.html:13
 msgid ""
 "Download your editable Excel file (XLSX format) - your PDF tables have been "
 "successfully converted to Excel"
@@ -2190,6 +2719,7 @@ msgstr ""
 "Скачайте ваш редактируемый файл Excel (формат XLSX) - ваши PDF таблицы "
 "успешно преобразованы в Excel"
 
+#: templates/frontend/pdf_to_excel.html:17
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. PDF files with tables work best - plain text will "
@@ -2200,58 +2730,35 @@ msgstr ""
 "всего - обычный текст будет размещен в отдельных ячейках, а изображения "
 "будут встроены в файл Excel."
 
-msgid ""
-"Perfect for: converting PDF tables to Excel, extracting data from PDF "
-"invoices, converting PDF reports to Excel format, extracting tables from PDF "
-"documents, converting PDF spreadsheets to Excel, extracting data from PDF "
-"forms, converting PDF financial reports to Excel, extracting tables from PDF "
-"contracts, converting PDF data tables to Excel, extracting information from "
-"PDF invoices, converting PDF accounting documents to Excel, extracting data "
-"from PDF statements, converting PDF tables for data analysis, extracting "
-"tables from PDF presentations, converting PDF business reports to Excel, "
-"extracting data from PDF catalogs, converting PDF price lists to Excel, "
-"extracting tables from PDF manuals, converting PDF survey results to Excel, "
-"extracting data from PDF research papers, converting PDF statistical data to "
-"Excel, extracting tables from PDF legal documents, converting PDF inventory "
-"lists to Excel, extracting data from PDF receipts, converting PDF expense "
-"reports to Excel."
-msgstr ""
-"Идеально для: конвертации пдф таблиц в эксель, извлечения данных из PDF "
-"счетов, конвертации PDF отчетов в формат Excel, извлечения таблиц из PDF "
-"документов, конвертации PDF электронных таблиц в Excel, извлечения данных из "
-"PDF форм, конвертации PDF финансовых отчетов в Excel, извлечения таблиц из "
-"PDF контрактов, конвертации PDF таблиц данных в Excel, извлечения информации "
-"из PDF счетов, конвертации PDF бухгалтерских документов в Excel, извлечения "
-"данных из PDF выписок, конвертации PDF таблиц для анализа данных, извлечения "
-"таблиц из PDF презентаций, конвертации PDF бизнес-отчетов в Excel, "
-"извлечения данных из PDF каталогов, конвертации PDF прайс-листов в Excel, "
-"извлечения таблиц из PDF руководств, конвертации PDF результатов опросов в "
-"Excel, извлечения данных из PDF исследовательских работ, конвертации PDF "
-"статистических данных в Excel, извлечения таблиц из PDF юридических "
-"документов, конвертации PDF списков инвентаря в Excel, извлечения данных из "
-"PDF чеков, конвертации PDF отчетов о расходах в Excel."
-
+#: templates/frontend/pdf_to_jpg.html:6
 msgid "Page Selection"
 msgstr "Выбор страниц"
 
+#: templates/frontend/pdf_to_jpg.html:12
 msgid "Pages to Convert"
 msgstr "Страницы для конвертации"
 
+#: templates/frontend/pdf_to_jpg.html:49
 msgid "Image Quality (DPI)"
 msgstr "Качество изображения (DPI)"
 
+#: templates/frontend/pdf_to_jpg.html:54
 msgid "Smaller file size"
 msgstr "Меньший размер файла"
 
+#: templates/frontend/pdf_to_jpg.html:56
 msgid "High quality (recommended)"
 msgstr "Высокое качество (рекомендуется)"
 
+#: templates/frontend/pdf_to_jpg.html:57
 msgid "Very high quality"
 msgstr "Очень высокое качество"
 
+#: templates/frontend/pdf_to_jpg.html:58
 msgid "Maximum quality"
 msgstr "Максимальное качество"
 
+#: templates/frontend/pdf_to_jpg.html:61
 msgid ""
 "Higher DPI = better quality but larger file size. 300 DPI is recommended for "
 "most uses."
@@ -2259,6 +2766,7 @@ msgstr ""
 "Более высокое DPI = лучшее качество, но больший размер файла. 300 DPI "
 "рекомендуется для большинства случаев использования."
 
+#: templates/frontend/pdf_to_jpg.html:75
 msgid ""
 "Choose which pages to convert from PDF to JPG: all pages or specific pages "
 "(e.g., 1,3,5 or 1-5)"
@@ -2266,6 +2774,7 @@ msgstr ""
 "Выберите, какие страницы конвертировать из PDF в JPG: все страницы или "
 "конкретные страницы (например, 1,3,5 или 1-5)"
 
+#: templates/frontend/pdf_to_jpg.html:76
 msgid ""
 "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high "
 "quality, 72 DPI for smaller file size)"
@@ -2273,10 +2782,12 @@ msgstr ""
 "Выберите качество DPI для конвертации PDF в JPG (рекомендуется 300 DPI для "
 "высокого качества, 72 DPI для меньшего размера файла)"
 
+#: templates/frontend/pdf_to_jpg.html:77
 msgid "Click the convert button to start the PDF to JPG conversion process"
 msgstr ""
 "Нажмите кнопку конвертации, чтобы начать процесс преобразования PDF в JPG"
 
+#: templates/frontend/pdf_to_jpg.html:78
 msgid ""
 "Wait for the PDF to JPG conversion to complete - all selected pages will be "
 "converted to JPG images"
@@ -2284,11 +2795,13 @@ msgstr ""
 "Дождитесь завершения конвертации PDF в JPG - все выбранные страницы будут "
 "преобразованы в изображения JPG"
 
+#: templates/frontend/pdf_to_jpg.html:79
 msgid ""
 "Download the ZIP archive containing all converted JPG images from your PDF"
 msgstr ""
 "Скачайте ZIP-архив со всеми конвертированными изображениями JPG из вашего PDF"
 
+#: templates/frontend/pdf_to_jpg.html:83
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. The output will be a ZIP archive containing all "
@@ -2300,18 +2813,7 @@ msgstr ""
 "конвертированные изображения JPG, названные с номерами страниц (например, "
 "filename_page0001.jpg, filename_page0002.jpg)."
 
-msgid ""
-"Perfect for: extracting images from PDF documents, converting PDF pages for "
-"web use, creating thumbnails from PDF files, batch converting PDF pages to "
-"images, extracting scanned document pages as images, converting PDF "
-"presentations to image slides, extracting PDF diagrams as standalone images."
-msgstr ""
-"Идеально для: извлечения изображений из PDF документов, конвертации страниц "
-"PDF для веб-использования, создания миниатюр из PDF файлов, пакетной "
-"конвертации страниц PDF в изображения, извлечения отсканированных страниц "
-"документов как изображений, конвертации PDF презентаций в слайды-"
-"изображения, извлечения PDF диаграмм как отдельных изображений."
-
+#: templates/frontend/pdf_to_word.html:11
 msgid ""
 "Click the convert button to start converting PDF to Word (PDF to DOCX "
 "conversion)"
@@ -2319,6 +2821,7 @@ msgstr ""
 "Нажмите кнопку конвертации, чтобы начать преобразование PDF в Word "
 "(конвертация PDF в DOCX)"
 
+#: templates/frontend/pdf_to_word.html:12
 msgid ""
 "Wait for the PDF to Word conversion to complete - text and formatting will "
 "be extracted from your PDF and converted to editable Word format"
@@ -2326,6 +2829,7 @@ msgstr ""
 "Дождитесь завершения конвертации PDF в Word - текст и форматирование будут "
 "извлечены из вашего PDF и преобразованы в редактируемый формат Word"
 
+#: templates/frontend/pdf_to_word.html:13
 msgid ""
 "Download your editable Word document (DOCX format) - your PDF has been "
 "successfully converted to Word"
@@ -2333,6 +2837,7 @@ msgstr ""
 "Скачайте ваш редактируемый документ Word (формат DOCX) - ваш PDF успешно "
 "конвертирован в Word"
 
+#: templates/frontend/pdf_to_word.html:17
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. Text-based PDFs work best - scanned PDFs (image-"
@@ -2343,34 +2848,15 @@ msgstr ""
 "отсканированные PDF (только изображения) не могут быть конвертированы в "
 "редактируемый формат Word."
 
-msgid ""
-"Perfect for: converting PDF to Word (PDF в Word), конвертировать PDF в Word, "
-"PDF to DOCX conversion, extracting text from PDF files, editing PDF content "
-"in Microsoft Word, converting PDF resumes to Word format, converting PDF "
-"academic papers to editable documents, converting PDF invoices to Word "
-"templates, converting PDF forms to fillable Word documents, converting PDF "
-"reports to editable Word format, extracting PDF tables to Word, converting "
-"PDF articles to Word documents, converting PDF contracts to editable Word "
-"files, converting PDF presentations to Word format, converting PDF manuals "
-"to editable Word documents, converting PDF books to Word format for editing."
-msgstr ""
-"Идеально для: конвертации PDF в Word (PDF в Word), конвертировать PDF в "
-"Word, преобразования PDF в DOCX, извлечения текста из PDF файлов, "
-"редактирования содержимого PDF в Microsoft Word, конвертации PDF резюме в "
-"формат Word, конвертации PDF академических работ в редактируемые документы, "
-"конвертации PDF счетов в шаблоны Word, конвертации PDF форм в заполняемые "
-"документы Word, конвертации PDF отчетов в редактируемый формат Word, "
-"извлечения PDF таблиц в Word, конвертации PDF статей в документы Word, "
-"конвертации PDF контрактов в редактируемые файлы Word, конвертации PDF "
-"презентаций в формат Word, конвертации PDF руководств в редактируемые "
-"документы Word, конвертации PDF книг в формат Word для редактирования."
-
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:460
 msgid "Privacy Policy - Convertica"
 msgstr "Политика конфиденциальности - Convertica"
 
+#: templates/frontend/privacy.html:48 templates/frontend/terms.html:48
 msgid "Last updated: January 2025"
 msgstr "Последнее обновление: Январь 2025"
 
+#: templates/frontend/privacy.html:61
 msgid ""
 "At Convertica, we take your privacy seriously. This Privacy Policy explains "
 "how we collect, use, disclose, and safeguard your information when you use "
@@ -2381,6 +2867,7 @@ msgstr ""
 "защищаем вашу информацию при использовании наших онлайн PDF инструментов и "
 "услуг."
 
+#: templates/frontend/privacy.html:64
 msgid ""
 "By using Convertica, you agree to the collection and use of information in "
 "accordance with this policy."
@@ -2388,12 +2875,15 @@ msgstr ""
 "Используя Convertica, вы соглашаетесь со сбором и использованием информации "
 "в соответствии с этой политикой."
 
+#: templates/frontend/privacy.html:70
 msgid "Information We Collect"
 msgstr "Информация, которую мы собираем"
 
+#: templates/frontend/privacy.html:74
 msgid "Files You Upload"
 msgstr "Файлы, которые вы загружаете"
 
+#: templates/frontend/privacy.html:76
 msgid ""
 "When you use our PDF tools, you may upload files for processing. These files "
 "are temporarily stored on our servers only for the duration of the "
@@ -2405,9 +2895,11 @@ msgstr ""
 "процесса конвертации или редактирования. Файлы автоматически удаляются сразу "
 "после завершения обработки, обычно в течение нескольких минут."
 
+#: templates/frontend/privacy.html:81
 msgid "Usage Information"
 msgstr "Информация об использовании"
 
+#: templates/frontend/privacy.html:83
 msgid ""
 "We may collect information about how you access and use our services, "
 "including:"
@@ -2415,42 +2907,55 @@ msgstr ""
 "Мы можем собирать информацию о том, как вы получаете доступ и используете "
 "наши услуги, включая:"
 
+#: templates/frontend/privacy.html:86
 msgid "IP address and browser type"
 msgstr "IP адрес и тип браузера"
 
+#: templates/frontend/privacy.html:87
 msgid "Device information and operating system"
 msgstr "Информация об устройстве и операционной системе"
 
+#: templates/frontend/privacy.html:88
 msgid "Pages visited and time spent on pages"
 msgstr "Посещенные страницы и время, проведенное на страницах"
 
+#: templates/frontend/privacy.html:89
 msgid "Referring website addresses"
 msgstr "Адреса реферальных веб-сайтов"
 
+#: templates/frontend/privacy.html:97
 msgid "How We Use Your Information"
 msgstr "Как мы используем вашу информацию"
 
+#: templates/frontend/privacy.html:101
 msgid "We use the information we collect to:"
 msgstr "Мы используем собранную информацию для:"
 
+#: templates/frontend/privacy.html:104
 msgid "Process and convert your files as requested"
 msgstr "Обрабатывать и конвертировать ваши файлы по запросу"
 
+#: templates/frontend/privacy.html:105
 msgid "Improve and optimize our services"
 msgstr "Улучшать и оптимизировать наши услуги"
 
+#: templates/frontend/privacy.html:106
 msgid "Monitor and analyze usage patterns"
 msgstr "Отслеживать и анализировать модели использования"
 
+#: templates/frontend/privacy.html:107
 msgid "Ensure the security and functionality of our platform"
 msgstr "Обеспечивать безопасность и функциональность нашей платформы"
 
+#: templates/frontend/privacy.html:108
 msgid "Respond to your inquiries and provide customer support"
 msgstr "Отвечать на ваши запросы и предоставлять поддержку клиентам"
 
+#: templates/frontend/privacy.html:115
 msgid "Data Security"
 msgstr "Безопасность данных"
 
+#: templates/frontend/privacy.html:119
 msgid ""
 "We implement appropriate technical and organizational security measures to "
 "protect your information:"
@@ -2458,21 +2963,27 @@ msgstr ""
 "Мы применяем соответствующие технические и организационные меры безопасности "
 "для защиты вашей информации:"
 
+#: templates/frontend/privacy.html:122
 msgid "All file transfers are encrypted using SSL/TLS protocols"
 msgstr "Все передачи файлов зашифрованы с использованием протоколов SSL/TLS"
 
+#: templates/frontend/privacy.html:123
 msgid "Files are stored temporarily in secure, isolated environments"
 msgstr "Файлы временно хранятся в безопасных, изолированных средах"
 
+#: templates/frontend/privacy.html:124
 msgid "Automatic deletion of files after processing completion"
 msgstr "Автоматическое удаление файлов после завершения обработки"
 
+#: templates/frontend/privacy.html:125
 msgid "Regular security audits and updates"
 msgstr "Регулярные проверки безопасности и обновления"
 
+#: templates/frontend/privacy.html:126
 msgid "Access controls and monitoring systems"
 msgstr "Контроль доступа и системы мониторинга"
 
+#: templates/frontend/privacy.html:129
 #, python-format
 msgid ""
 "However, no method of transmission over the Internet or electronic storage "
@@ -2484,9 +2995,11 @@ msgstr ""
 "приемлемые средства для защиты вашей информации, мы не можем гарантировать "
 "абсолютную безопасность."
 
+#: templates/frontend/privacy.html:136
 msgid "Data Retention"
 msgstr "Хранение данных"
 
+#: templates/frontend/privacy.html:139
 msgid ""
 "We retain your uploaded files only for the time necessary to complete the "
 "requested operation. Files are automatically deleted:"
@@ -2494,21 +3007,27 @@ msgstr ""
 "Мы храним ваши загруженные файлы только в течение времени, необходимого для "
 "завершения запрошенной операции. Файлы автоматически удаляются:"
 
+#: templates/frontend/privacy.html:142
 msgid "Immediately after successful processing"
 msgstr "Немедленно после успешной обработки"
 
+#: templates/frontend/privacy.html:143
 msgid "Within 1 hour if processing fails"
 msgstr "В течение 1 часа, если обработка не удалась"
 
+#: templates/frontend/privacy.html:144
 msgid "We do not store your files permanently"
 msgstr "Мы не храним ваши файлы постоянно"
 
+#: templates/frontend/privacy.html:145
 msgid "We do not create backups of your uploaded files"
 msgstr "Мы не создаем резервные копии ваших загруженных файлов"
 
+#: templates/frontend/privacy.html:151
 msgid "Third-Party Services"
 msgstr "Сторонние сервисы"
 
+#: templates/frontend/privacy.html:154
 msgid ""
 "We may use third-party services to help us operate our platform and analyze "
 "how our services are used. These services may have access to limited "
@@ -2520,15 +3039,18 @@ msgstr ""
 "иметь доступ к ограниченной информации, но они обязаны не раскрывать или "
 "использовать ее для любых других целей."
 
+#: templates/frontend/privacy.html:157
 msgid ""
 "We do not sell, trade, or rent your personal information to third parties."
 msgstr ""
 "Мы не продаем, не обмениваем и не сдаем в аренду вашу личную информацию "
 "третьим лицам."
 
+#: templates/frontend/privacy.html:163
 msgid "Cookies and Tracking"
 msgstr "Файлы cookie и отслеживание"
 
+#: templates/frontend/privacy.html:166
 msgid ""
 "We may use cookies and similar tracking technologies to track activity on "
 "our platform and hold certain information. Cookies are files with a small "
@@ -2539,6 +3061,7 @@ msgstr ""
 "информации. Файлы cookie - это файлы с небольшим количеством данных, которые "
 "могут включать анонимный уникальный идентификатор."
 
+#: templates/frontend/privacy.html:169
 msgid ""
 "You can instruct your browser to refuse all cookies or to indicate when a "
 "cookie is being sent. However, if you do not accept cookies, you may not be "
@@ -2549,27 +3072,35 @@ msgstr ""
 "принимаете файлы cookie, вы можете не иметь возможности использовать "
 "некоторые части нашего сервиса."
 
+#: templates/frontend/privacy.html:175
 msgid "Your Privacy Rights"
 msgstr "Ваши права на конфиденциальность"
 
+#: templates/frontend/privacy.html:179
 msgid "You have the right to:"
 msgstr "Вы имеете право:"
 
+#: templates/frontend/privacy.html:182
 msgid "Access information we hold about you"
 msgstr "Получать доступ к информации, которую мы храним о вас"
 
+#: templates/frontend/privacy.html:183
 msgid "Request correction of inaccurate information"
 msgstr "Запрашивать исправление неточной информации"
 
+#: templates/frontend/privacy.html:184
 msgid "Request deletion of your information"
 msgstr "Запрашивать удаление вашей информации"
 
+#: templates/frontend/privacy.html:185
 msgid "Object to processing of your information"
 msgstr "Возражать против обработки вашей информации"
 
+#: templates/frontend/privacy.html:186
 msgid "Request restriction of processing"
 msgstr "Запрашивать ограничение обработки"
 
+#: templates/frontend/privacy.html:189
 msgid ""
 "To exercise these rights, please contact us using the information provided "
 "in the Contact section."
@@ -2577,9 +3108,11 @@ msgstr ""
 "Чтобы воспользоваться этими правами, пожалуйста, свяжитесь с нами, используя "
 "информацию, предоставленную в разделе Контакты."
 
+#: templates/frontend/privacy.html:196
 msgid "Children's Privacy"
 msgstr "Конфиденциальность детей"
 
+#: templates/frontend/privacy.html:199
 msgid ""
 "Our services are not intended for children under the age of 13. We do not "
 "knowingly collect personal information from children under 13. If you are a "
@@ -2591,9 +3124,11 @@ msgstr ""
 "родителем или опекуном и считаете, что ваш ребенок предоставил нам личную "
 "информацию, пожалуйста, свяжитесь с нами."
 
+#: templates/frontend/privacy.html:205
 msgid "Changes to This Privacy Policy"
 msgstr "Изменения в этой Политике конфиденциальности"
 
+#: templates/frontend/privacy.html:208
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
@@ -2605,36 +3140,47 @@ msgstr ""
 "периодически просматривать эту Политику конфиденциальности на предмет любых "
 "изменений."
 
+#: templates/frontend/privacy.html:214
 msgid "Questions About Privacy?"
 msgstr "Вопросы о конфиденциальности?"
 
+#: templates/frontend/privacy.html:216
 msgid "If you have any questions about this Privacy Policy, please contact us."
 msgstr ""
 "Если у вас есть вопросы об этой Политике конфиденциальности, пожалуйста, "
 "свяжитесь с нами."
 
+#: templates/frontend/protect_pdf.html:6
 msgid "Password Protection Settings"
 msgstr "Настройки защиты паролем"
 
+#: templates/frontend/protect_pdf.html:12
 msgid "Password"
 msgstr "Пароль"
 
+#: templates/frontend/protect_pdf.html:20
 msgid "Enter password to protect PDF"
 msgstr "Введите пароль для защиты PDF"
 
+#: templates/frontend/protect_pdf.html:23
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
 msgstr "Этот пароль потребуется для открытия PDF. Обязательно запомните его!"
 
+#: templates/frontend/protect_pdf.html:30
 msgid "User Password"
 msgstr "Пароль пользователя"
 
+#: templates/frontend/protect_pdf.html:30
+#: templates/frontend/protect_pdf.html:46
 msgid "Optional"
 msgstr "Необязательно"
 
+#: templates/frontend/protect_pdf.html:36
 msgid "Optional: Different user password"
 msgstr "Необязательно: Другой пароль пользователя"
 
+#: templates/frontend/protect_pdf.html:39
 msgid ""
 "Optional: Set a different password for users. If not provided, the main "
 "password will be used."
@@ -2642,12 +3188,15 @@ msgstr ""
 "Необязательно: Установите другой пароль для пользователей. Если не указано, "
 "будет использоваться основной пароль."
 
+#: templates/frontend/protect_pdf.html:46
 msgid "Owner Password"
 msgstr "Пароль владельца"
 
+#: templates/frontend/protect_pdf.html:52
 msgid "Optional: Different owner password"
 msgstr "Необязательно: Другой пароль владельца"
 
+#: templates/frontend/protect_pdf.html:55
 msgid ""
 "Optional: Set a different password for owner. If not provided, the main "
 "password will be used."
@@ -2655,6 +3204,7 @@ msgstr ""
 "Необязательно: Установите другой пароль для владельца. Если не указано, "
 "будет использоваться основной пароль."
 
+#: templates/frontend/protect_pdf.html:69
 msgid ""
 "Enter a password to protect your PDF file (required) and optionally set user/"
 "owner passwords"
@@ -2662,12 +3212,15 @@ msgstr ""
 "Введите пароль для защиты вашего PDF файла (обязательно) и при необходимости "
 "установите пароли пользователя/владельца"
 
+#: templates/frontend/protect_pdf.html:70
 msgid "Click the protect button to encrypt your PDF with password protection"
 msgstr "Нажмите кнопку защиты для шифрования вашего PDF с защитой паролем"
 
+#: templates/frontend/protect_pdf.html:71
 msgid "Download your password-protected PDF file using the download button"
 msgstr "Скачайте ваш защищенный паролем PDF файл, используя кнопку загрузки"
 
+#: templates/frontend/protect_pdf.html:75
 msgid ""
 "PDF files with up to 50 pages are supported for password protection. For "
 "larger files, please split them into smaller parts. The password will be "
@@ -2677,31 +3230,15 @@ msgstr ""
 "файлов, пожалуйста, разбейте их на более мелкие части. Пароль потребуется "
 "для открытия, просмотра, печати или редактирования PDF."
 
-msgid ""
-"Perfect for: protecting PDF files with passwords, securing PDF documents "
-"with encryption, password protecting sensitive PDF files, securing "
-"confidential PDF documents, protecting PDF files from unauthorized access, "
-"encrypting PDF files for security, password protecting PDF contracts, "
-"securing PDF invoices with passwords, protecting PDF legal documents, "
-"securing PDF financial documents, password protecting PDF medical records, "
-"securing PDF personal documents, protecting PDF business files, securing PDF "
-"academic papers, password protecting PDF reports."
-msgstr ""
-"Идеально для: защиты PDF файлов паролями, защиты PDF документов шифрованием, "
-"защиты паролем конфиденциальных PDF файлов, защиты конфиденциальных PDF "
-"документов, защиты PDF файлов от несанкционированного доступа, шифрования "
-"PDF файлов для безопасности, защиты паролем PDF контрактов, защиты PDF "
-"счетов паролями, защиты PDF юридических документов, защиты PDF финансовых "
-"документов, защиты паролем PDF медицинских записей, защиты PDF личных "
-"документов, защиты PDF бизнес-файлов, защиты PDF академических работ, защиты "
-"паролем PDF отчетов."
-
+#: templates/frontend/remove_pages.html:6
 msgid "Remove Pages Settings"
 msgstr "Настройки удаления страниц"
 
+#: templates/frontend/remove_pages.html:12
 msgid "Pages to Remove"
 msgstr "Страницы для удаления"
 
+#: templates/frontend/remove_pages.html:64
 msgid ""
 "Choose which pages to remove from your PDF: all pages, current page only, or "
 "specific pages (e.g., 1,3,5 or 1-5)"
@@ -2709,6 +3246,7 @@ msgstr ""
 "Выберите, какие страницы удалить из вашего PDF: все страницы, только текущую "
 "страницу или конкретные страницы (например, 1,3,5 или 1-5)"
 
+#: templates/frontend/remove_pages.html:65
 msgid ""
 "Click the remove pages button to process your PDF and delete the selected "
 "pages"
@@ -2716,10 +3254,12 @@ msgstr ""
 "Нажмите кнопку удаления страниц для обработки вашего PDF и удаления "
 "выбранных страниц"
 
+#: templates/frontend/remove_pages.html:66
 msgid "Download your PDF file with pages removed using the download button"
 msgstr ""
 "Скачайте ваш PDF файл с удаленными страницами, используя кнопку загрузки"
 
+#: templates/frontend/remove_pages.html:70
 msgid ""
 "PDF files with up to 50 pages are supported for removing pages. For larger "
 "files, please split them into smaller parts. The remaining pages will be "
@@ -2729,63 +3269,52 @@ msgstr ""
 "файлов, пожалуйста, разбейте их на более мелкие части. Оставшиеся страницы "
 "будут сохранены в их исходном порядке."
 
-msgid ""
-"Perfect for: removing unwanted pages from PDF documents, deleting blank "
-"pages from PDF files, removing cover pages from PDF documents, removing "
-"table of contents pages from PDF files, removing appendix pages from PDF "
-"documents, deleting specific pages from PDF files, removing duplicate pages "
-"from PDF documents, removing watermark pages from PDF files, deleting page "
-"ranges from PDF documents, removing unwanted sections from PDF files, "
-"cleaning up PDF documents by removing pages, removing unnecessary pages from "
-"PDF files, deleting pages from scanned PDF documents, removing pages from "
-"merged PDF files, removing pages from PDF reports."
-msgstr ""
-"Идеально для: удаления ненужных страниц из PDF документов, удаления пустых "
-"страниц из PDF файлов, удаления титульных страниц из PDF документов, "
-"удаления страниц содержания из PDF файлов, удаления страниц приложений из "
-"PDF документов, удаления конкретных страниц из PDF файлов, удаления "
-"дублирующихся страниц из PDF документов, удаления страниц с водяными знаками "
-"из PDF файлов, удаления диапазонов страниц из PDF документов, удаления "
-"ненужных разделов из PDF файлов, очистки PDF документов путем удаления "
-"страниц, удаления ненужных страниц из PDF файлов, удаления страниц из "
-"отсканированных PDF документов, удаления страниц из объединенных PDF файлов, "
-"удаления страниц из PDF отчетов."
-
+#: templates/frontend/rotate_pdf.html:6
 msgid "Rotation Settings"
 msgstr "Настройки поворота"
 
+#: templates/frontend/rotate_pdf.html:12
 msgid "Rotation Angle"
 msgstr "Угол поворота"
 
+#: templates/frontend/rotate_pdf.html:16
 msgid "(Clockwise)"
 msgstr "(По часовой стрелке)"
 
+#: templates/frontend/rotate_pdf.html:17
 msgid "(Upside down)"
 msgstr "(Вверх ногами)"
 
+#: templates/frontend/rotate_pdf.html:18
 msgid "(Counter-clockwise)"
 msgstr "(Против часовой стрелки)"
 
+#: templates/frontend/rotate_pdf.html:25
 msgid "Pages to Rotate"
 msgstr "Страницы для поворота"
 
+#: templates/frontend/rotate_pdf.html:77
 msgid "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
 msgstr "Выберите угол поворота (90°, 180° или 270°) для поворота страниц PDF"
 
+#: templates/frontend/rotate_pdf.html:78
 msgid ""
 "Select which pages to rotate: all pages, current page only, or specific pages"
 msgstr ""
 "Выберите, какие страницы повернуть: все страницы, только текущую страницу "
 "или конкретные страницы"
 
+#: templates/frontend/rotate_pdf.html:79
 msgid ""
 "Click the rotate button to process your PDF and rotate the selected pages"
 msgstr ""
 "Нажмите кнопку поворота для обработки вашего PDF и поворота выбранных страниц"
 
+#: templates/frontend/rotate_pdf.html:80
 msgid "Download your rotated PDF file using the download button"
 msgstr "Скачайте ваш повернутый PDF файл, используя кнопку загрузки"
 
+#: templates/frontend/rotate_pdf.html:84
 msgid ""
 "PDF files with up to 50 pages are supported for rotating. For larger files, "
 "please split them into smaller parts. The rotation preserves all content and "
@@ -2795,49 +3324,37 @@ msgstr ""
 "пожалуйста, разбейте их на более мелкие части. Поворот сохраняет весь "
 "контент и форматирование."
 
-msgid ""
-"Perfect for: rotating PDF pages that are upside down, rotating scanned PDF "
-"documents, rotating PDF pages for correct orientation, rotating PDF pages "
-"clockwise or counterclockwise, fixing PDF page orientation, rotating PDF "
-"pages for printing, rotating PDF pages for viewing, rotating PDF pages for "
-"mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-"
-"readers, rotating PDF pages for presentations, rotating PDF pages for "
-"reports, rotating PDF pages for legal documents, rotating PDF pages for "
-"academic papers, rotating PDF pages for business documents."
-msgstr ""
-"Идеально для: поворота перевернутых страниц PDF, поворота отсканированных "
-"PDF документов, поворота страниц PDF для правильной ориентации, поворота "
-"страниц PDF по часовой стрелке или против часовой стрелки, исправления "
-"ориентации страниц PDF, поворота страниц PDF для печати, поворота страниц "
-"PDF для просмотра, поворота страниц PDF для мобильных устройств, поворота "
-"страниц PDF для планшетов, поворота страниц PDF для электронных книг, "
-"поворота страниц PDF для презентаций, поворота страниц PDF для отчетов, "
-"поворота страниц PDF для юридических документов, поворота страниц PDF для "
-"академических работ, поворота страниц PDF для бизнес-документов."
-
+#: templates/frontend/split_pdf.html:6
 msgid "Split Settings"
 msgstr "Настройки разделения"
 
+#: templates/frontend/split_pdf.html:12
 msgid "Split Type"
 msgstr "Тип разделения"
 
+#: templates/frontend/split_pdf.html:16
 msgid "By Individual Pages"
 msgstr "По отдельным страницам"
 
+#: templates/frontend/split_pdf.html:17
 msgid "By Page Ranges"
 msgstr "По диапазонам страниц"
 
+#: templates/frontend/split_pdf.html:18
 msgid "Every N Pages"
 msgstr "Каждые N страниц"
 
+#: templates/frontend/split_pdf.html:25
 msgid "Pages"
 msgstr "Страницы"
 
+#: templates/frontend/split_pdf.html:33
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
 "Введите номера страниц, например '1,3,5', или оставьте пустым для всех "
 "страниц"
 
+#: templates/frontend/split_pdf.html:51
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
@@ -2845,18 +3362,23 @@ msgstr ""
 "Введите номера страниц через запятую (например, 1,3,5) или оставьте пустым, "
 "чтобы разделить все страницы"
 
+#: templates/frontend/split_pdf.html:53
 msgid "Page Ranges"
 msgstr "Диапазоны страниц"
 
+#: templates/frontend/split_pdf.html:55
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr "Введите диапазоны страниц, например 1-3,5-7 (обязательно)"
 
+#: templates/frontend/split_pdf.html:58
 msgid "Pages per File"
 msgstr "Страниц в файле"
 
+#: templates/frontend/split_pdf.html:60
 msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
 msgstr "Введите количество страниц в файле (например, 5 для каждых 5 страниц)"
 
+#: templates/frontend/split_pdf.html:78
 msgid ""
 "Choose how to split your PDF: by individual pages, by page ranges, or every "
 "N pages"
@@ -2864,6 +3386,7 @@ msgstr ""
 "Выберите, как разделить ваш PDF: по отдельным страницам, по диапазонам "
 "страниц или каждые N страниц"
 
+#: templates/frontend/split_pdf.html:79
 msgid ""
 "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for "
 "splitting PDF into separate files)"
@@ -2871,12 +3394,14 @@ msgstr ""
 "Введите страницы или диапазоны, которые вы хотите разделить (например, 1,3,5 "
 "или 1-5 для разделения PDF на отдельные файлы)"
 
+#: templates/frontend/split_pdf.html:80
 msgid ""
 "Click the split button to process your PDF and create separate PDF files"
 msgstr ""
 "Нажмите кнопку разделения для обработки вашего PDF и создания отдельных PDF "
 "файлов"
 
+#: templates/frontend/split_pdf.html:81
 msgid ""
 "Download the ZIP archive containing all split PDF files using the download "
 "button"
@@ -2884,6 +3409,7 @@ msgstr ""
 "Скачайте ZIP архив, содержащий все разделенные PDF файлы, используя кнопку "
 "загрузки"
 
+#: templates/frontend/split_pdf.html:85
 msgid ""
 "The output will be a ZIP archive containing all split PDF files. You can "
 "split your PDF by individual pages, by page ranges, or every N pages."
@@ -2892,30 +3418,15 @@ msgstr ""
 "разделить ваш PDF по отдельным страницам, по диапазонам страниц или каждые N "
 "страниц."
 
-msgid ""
-"Perfect for: splitting PDF files into separate documents, dividing PDF "
-"documents into multiple files, splitting PDF by pages, breaking PDF into "
-"smaller files, splitting PDF by page ranges, dividing large PDF files, "
-"splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF "
-"for email attachments, dividing PDF documents for storage, splitting PDF for "
-"mobile viewing, breaking PDF into sections, splitting PDF for presentations, "
-"dividing PDF files for printing, splitting PDF for archiving."
-msgstr ""
-"Идеально для: разделения PDF файлов на отдельные документы, разделения PDF "
-"документов на несколько файлов, разделения PDF по страницам, разбиения PDF "
-"на более мелкие файлы, разделения PDF по диапазонам страниц, разделения "
-"больших PDF файлов, разделения PDF для более легкого обмена, разбиения PDF "
-"на главы, разделения PDF для вложений электронной почты, разделения PDF "
-"документов для хранения, разделения PDF для мобильного просмотра, разбиения "
-"PDF на разделы, разделения PDF для презентаций, разделения PDF файлов для "
-"печати, разделения PDF для архивирования."
-
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:475
 msgid "Terms of Service - Convertica"
 msgstr "Условия использования - Convertica"
 
+#: templates/frontend/terms.html:61
 msgid "Welcome to Convertica. These Terms of Service (\\"
 msgstr ""
 
+#: templates/frontend/terms.html:64
 msgid ""
 "If you disagree with any part of these Terms, then you may not access or use "
 "our Services."
@@ -2923,9 +3434,11 @@ msgstr ""
 "Если вы не согласны с какой-либо частью этих Условий, вы не можете получать "
 "доступ или использовать наши Услуги."
 
+#: templates/frontend/terms.html:70
 msgid "Acceptance of Terms"
 msgstr "Принятие условий"
 
+#: templates/frontend/terms.html:73
 msgid ""
 "By accessing or using Convertica's Services, you acknowledge that you have "
 "read, understood, and agree to be bound by these Terms and our Privacy "
@@ -2936,9 +3449,11 @@ msgstr ""
 "конфиденциальности. Если вы не согласны с этими Условиями, вы не должны "
 "использовать наши Услуги."
 
+#: templates/frontend/terms.html:79
 msgid "Description of Services"
 msgstr "Описание услуг"
 
+#: templates/frontend/terms.html:82
 msgid ""
 "Convertica provides online PDF tools and services, including but not limited "
 "to:"
@@ -2946,26 +3461,31 @@ msgstr ""
 "Convertica предоставляет онлайн PDF инструменты и услуги, включая, но не "
 "ограничиваясь:"
 
+#: templates/frontend/terms.html:85
 msgid ""
 "PDF conversion (PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, PDF to "
 "Excel)"
 msgstr ""
 "Конвертация PDF (PDF в Word, Word в PDF, PDF в JPG, JPG в PDF, PDF в Excel)"
 
+#: templates/frontend/terms.html:86
 msgid "PDF editing (rotate, crop, add watermark, add page numbers)"
 msgstr ""
 "Редактирование PDF (поворот, обрезка, добавление водяного знака, добавление "
 "номеров страниц)"
 
+#: templates/frontend/terms.html:87
 msgid ""
 "PDF organization (merge, split, extract, remove pages, organize, compress)"
 msgstr ""
 "Организация PDF (объединение, разделение, извлечение, удаление страниц, "
 "организация, сжатие)"
 
+#: templates/frontend/terms.html:88
 msgid "PDF security (protect with password, unlock PDF)"
 msgstr "Безопасность PDF (защита паролем, разблокировка PDF)"
 
+#: templates/frontend/terms.html:91
 msgid ""
 "We reserve the right to modify, suspend, or discontinue any part of our "
 "Services at any time without prior notice."
@@ -2973,9 +3493,11 @@ msgstr ""
 "Мы оставляем за собой право изменять, приостанавливать или прекращать любую "
 "часть наших Услуг в любое время без предварительного уведомления."
 
+#: templates/frontend/terms.html:97
 msgid "User Responsibilities"
 msgstr "Обязанности пользователя"
 
+#: templates/frontend/terms.html:101
 msgid ""
 "You agree to use our Services only for lawful purposes and in accordance "
 "with these Terms. You agree not to:"
@@ -2983,43 +3505,53 @@ msgstr ""
 "Вы соглашаетесь использовать наши Услуги только в законных целях и в "
 "соответствии с этими Условиями. Вы соглашаетесь не:"
 
+#: templates/frontend/terms.html:104
 msgid "Upload files that contain viruses, malware, or other harmful code"
 msgstr ""
 "Загружать файлы, содержащие вирусы, вредоносное ПО или другой вредоносный код"
 
+#: templates/frontend/terms.html:105
 msgid "Upload files that infringe on intellectual property rights"
 msgstr "Загружать файлы, нарушающие права интеллектуальной собственности"
 
+#: templates/frontend/terms.html:106
 msgid "Upload files that contain illegal, offensive, or inappropriate content"
 msgstr ""
 "Загружать файлы, содержащие незаконный, оскорбительный или неуместный контент"
 
+#: templates/frontend/terms.html:107
 msgid "Attempt to gain unauthorized access to our systems or networks"
 msgstr ""
 "Пытаться получить несанкционированный доступ к нашим системам или сетям"
 
+#: templates/frontend/terms.html:108
 msgid "Use automated systems or scripts to access our Services excessively"
 msgstr ""
 "Использовать автоматизированные системы или скрипты для чрезмерного доступа "
 "к нашим Услугам"
 
+#: templates/frontend/terms.html:109
 msgid ""
 "Interfere with or disrupt the Services or servers connected to the Services"
 msgstr ""
 "Вмешиваться в работу или нарушать работу Услуг или серверов, подключенных к "
 "Услугам"
 
+#: templates/frontend/terms.html:110
 msgid "Reverse engineer, decompile, or disassemble any part of our Services"
 msgstr ""
 "Обратно инженерно анализировать, декомпилировать или разбирать любую часть "
 "наших Услуг"
 
+#: templates/frontend/terms.html:117
 msgid "File Upload and Processing"
 msgstr "Загрузка и обработка файлов"
 
+#: templates/frontend/terms.html:121
 msgid "File Size and Format Limitations"
 msgstr "Ограничения размера и формата файлов"
 
+#: templates/frontend/terms.html:123
 msgid ""
 "You are responsible for ensuring that files you upload comply with our file "
 "size and format requirements. We reserve the right to reject or limit the "
@@ -3031,9 +3563,11 @@ msgstr ""
 "отклонять или ограничивать обработку файлов, которые превышают наши "
 "ограничения по размеру или находятся в неподдерживаемых форматах."
 
+#: templates/frontend/terms.html:128
 msgid "File Storage and Deletion"
 msgstr "Хранение и удаление файлов"
 
+#: templates/frontend/terms.html:130
 msgid ""
 "Files uploaded to our Services are processed temporarily and automatically "
 "deleted after processing is complete. We do not store your files "
@@ -3044,9 +3578,11 @@ msgstr ""
 "удаляются после завершения обработки. Мы не храним ваши файлы постоянно. "
 "Однако вы несете ответственность за поддержание резервных копий ваших файлов."
 
+#: templates/frontend/terms.html:135
 msgid "Processing Accuracy"
 msgstr "Точность обработки"
 
+#: templates/frontend/terms.html:137
 msgid ""
 "While we strive to provide accurate conversions and processing, we cannot "
 "guarantee that all files will be processed correctly or that the output will "
@@ -3058,12 +3594,15 @@ msgstr ""
 "будет соответствовать вашим конкретным требованиям. Вы несете "
 "ответственность за проверку точности обработанных файлов."
 
+#: templates/frontend/terms.html:145
 msgid "Intellectual Property"
 msgstr "Интеллектуальная собственность"
 
+#: templates/frontend/terms.html:149
 msgid "Our Intellectual Property"
 msgstr "Наша интеллектуальная собственность"
 
+#: templates/frontend/terms.html:151
 msgid ""
 "All content, features, and functionality of our Services, including but not "
 "limited to text, graphics, logos, icons, images, and software, are the "
@@ -3076,9 +3615,11 @@ msgstr ""
 "и защищены международными законами об авторском праве, товарных знаках и "
 "других законах об интеллектуальной собственности."
 
+#: templates/frontend/terms.html:156
 msgid "Your Content"
 msgstr "Ваш контент"
 
+#: templates/frontend/terms.html:158
 msgid ""
 "You retain all rights to files you upload. By uploading files, you grant us "
 "a limited, non-exclusive license to process your files solely for the "
@@ -3090,24 +3631,31 @@ msgstr ""
 "ваших файлов исключительно для целей предоставления запрошенных Услуг. Мы не "
 "претендуем на право собственности на ваши файлы."
 
+#: templates/frontend/terms.html:166
 msgid "Disclaimer of Warranties"
 msgstr "Отказ от гарантий"
 
+#: templates/frontend/terms.html:169
 msgid "Our Services are provided \\"
 msgstr ""
 
+#: templates/frontend/terms.html:172
 msgid "Warranties of merchantability"
 msgstr "Гарантии товарной пригодности"
 
+#: templates/frontend/terms.html:173
 msgid "Fitness for a particular purpose"
 msgstr "Пригодность для конкретной цели"
 
+#: templates/frontend/terms.html:174
 msgid "Non-infringement"
 msgstr "Отсутствие нарушений"
 
+#: templates/frontend/terms.html:175
 msgid "Accuracy, reliability, or completeness of results"
 msgstr "Точность, надежность или полнота результатов"
 
+#: templates/frontend/terms.html:178
 msgid ""
 "We do not warrant that our Services will be uninterrupted, secure, or error-"
 "free, or that defects will be corrected."
@@ -3115,9 +3663,11 @@ msgstr ""
 "Мы не гарантируем, что наши Услуги будут непрерывными, безопасными или "
 "безошибочными, или что дефекты будут исправлены."
 
+#: templates/frontend/terms.html:184
 msgid "Limitation of Liability"
 msgstr "Ограничение ответственности"
 
+#: templates/frontend/terms.html:187
 msgid ""
 "To the maximum extent permitted by law, Convertica and its affiliates, "
 "officers, employees, and agents shall not be liable for any indirect, "
@@ -3129,18 +3679,23 @@ msgstr ""
 "любой косвенный, случайный, особый, последующий или штрафной ущерб, включая, "
 "но не ограничиваясь:"
 
+#: templates/frontend/terms.html:190
 msgid "Loss of data or files"
 msgstr "Потеря данных или файлов"
 
+#: templates/frontend/terms.html:191
 msgid "Loss of profits or business opportunities"
 msgstr "Потеря прибыли или деловых возможностей"
 
+#: templates/frontend/terms.html:192
 msgid "Service interruptions or failures"
 msgstr "Перерывы в обслуживании или сбои"
 
+#: templates/frontend/terms.html:193
 msgid "Errors or inaccuracies in processed files"
 msgstr "Ошибки или неточности в обработанных файлах"
 
+#: templates/frontend/terms.html:196
 msgid ""
 "Our total liability for any claims arising from or related to the use of our "
 "Services shall not exceed the amount you paid to us (if any) in the twelve "
@@ -3151,9 +3706,11 @@ msgstr ""
 "заплатили нам (если таковая имеется) в течение двенадцати месяцев, "
 "предшествующих претензии, или $100, в зависимости от того, что больше."
 
+#: templates/frontend/terms.html:202
 msgid "Indemnification"
 msgstr "Возмещение ущерба"
 
+#: templates/frontend/terms.html:205
 msgid ""
 "You agree to indemnify, defend, and hold harmless Convertica and its "
 "affiliates, officers, employees, and agents from and against any claims, "
@@ -3165,21 +3722,27 @@ msgstr ""
 "претензий, ущерба, обязательств, потерь, обязательств, расходов или долгов и "
 "расходов (включая гонорары адвокатов), возникающих из:"
 
+#: templates/frontend/terms.html:208
 msgid "Your use of our Services"
 msgstr "Ваше использование наших Услуг"
 
+#: templates/frontend/terms.html:209
 msgid "Your violation of these Terms"
 msgstr "Ваше нарушение этих Условий"
 
+#: templates/frontend/terms.html:210
 msgid "Your violation of any third-party rights"
 msgstr "Ваше нарушение любых прав третьих лиц"
 
+#: templates/frontend/terms.html:211
 msgid "Files you upload or content you provide"
 msgstr "Файлы, которые вы загружаете, или контент, который вы предоставляете"
 
+#: templates/frontend/terms.html:217
 msgid "Termination"
 msgstr "Прекращение"
 
+#: templates/frontend/terms.html:220
 msgid ""
 "We reserve the right to terminate or suspend your access to our Services "
 "immediately, without prior notice or liability, for any reason, including if "
@@ -3191,9 +3754,11 @@ msgstr ""
 "по любой причине, включая нарушение вами этих Условий. При прекращении ваше "
 "право на использование Услуг прекращается немедленно."
 
+#: templates/frontend/terms.html:226
 msgid "Changes to Terms"
 msgstr "Изменения в условиях"
 
+#: templates/frontend/terms.html:229
 msgid ""
 "We reserve the right to modify or replace these Terms at any time. If a "
 "revision is material, we will provide at least 30 days notice prior to any "
@@ -3205,6 +3770,7 @@ msgstr ""
 "чем за 30 дней до вступления в силу любых новых условий. Что составляет "
 "существенное изменение, будет определяться по нашему единоличному усмотрению."
 
+#: templates/frontend/terms.html:232
 msgid ""
 "By continuing to access or use our Services after any revisions become "
 "effective, you agree to be bound by the revised terms."
@@ -3212,9 +3778,11 @@ msgstr ""
 "Продолжая получать доступ или использовать наши Услуги после вступления в "
 "силу любых пересмотров, вы соглашаетесь соблюдать пересмотренные условия."
 
+#: templates/frontend/terms.html:238
 msgid "Governing Law"
 msgstr "Применимое право"
 
+#: templates/frontend/terms.html:241
 msgid ""
 "These Terms shall be governed by and construed in accordance with applicable "
 "laws, without regard to its conflict of law provisions. Any disputes arising "
@@ -3226,24 +3794,30 @@ msgstr ""
 "возникающие из этих Условий или вашего использования наших Услуг, подлежат "
 "исключительной юрисдикции судов в применимой юрисдикции."
 
+#: templates/frontend/terms.html:247
 msgid "Questions About These Terms?"
 msgstr "Вопросы об этих Условиях?"
 
+#: templates/frontend/terms.html:249
 msgid ""
 "If you have any questions about these Terms of Service, please contact us."
 msgstr ""
 "Если у вас есть вопросы об этих Условиях использования, пожалуйста, "
 "свяжитесь с нами."
 
+#: templates/frontend/unlock_pdf.html:6
 msgid "Unlock PDF Settings"
 msgstr "Настройки разблокировки PDF"
 
+#: templates/frontend/unlock_pdf.html:12
 msgid "PDF Password"
 msgstr "Пароль PDF"
 
+#: templates/frontend/unlock_pdf.html:20
 msgid "Enter the password to unlock the PDF"
 msgstr "Введите пароль для разблокировки PDF"
 
+#: templates/frontend/unlock_pdf.html:23
 msgid ""
 "Enter the password that was used to protect the PDF. The password will be "
 "removed from the output PDF."
@@ -3251,6 +3825,7 @@ msgstr ""
 "Введите пароль, который использовался для защиты PDF. Пароль будет удален из "
 "выходного PDF."
 
+#: templates/frontend/unlock_pdf.html:36
 msgid ""
 "Select your password-protected PDF file using the button above or drag and "
 "drop it into the zone below"
@@ -3258,18 +3833,22 @@ msgstr ""
 "Выберите ваш защищенный паролем PDF файл, используя кнопку выше, или "
 "перетащите его в зону ниже"
 
+#: templates/frontend/unlock_pdf.html:37
 msgid "Enter the password that was used to protect the PDF file"
 msgstr "Введите пароль, который использовался для защиты PDF файла"
 
+#: templates/frontend/unlock_pdf.html:38
 msgid "Click the unlock button to remove password protection from your PDF"
 msgstr "Нажмите кнопку разблокировки для удаления защиты паролем из вашего PDF"
 
+#: templates/frontend/unlock_pdf.html:39
 msgid ""
 "Download your unlocked PDF file (without password) using the download button"
 msgstr ""
 "Скачайте ваш разблокированный PDF файл (без пароля), используя кнопку "
 "загрузки"
 
+#: templates/frontend/unlock_pdf.html:43
 msgid ""
 "PDF files with up to 50 pages are supported for unlocking. For larger files, "
 "please split them into smaller parts. You must know the correct password to "
@@ -3279,26 +3858,7 @@ msgstr ""
 "файлов, пожалуйста, разбейте их на более мелкие части. Вы должны знать "
 "правильный пароль для разблокировки PDF."
 
-msgid ""
-"Perfect for: removing passwords from PDF files, unlocking password-protected "
-"PDF documents, removing PDF password protection, unlocking encrypted PDF "
-"files, removing security from PDF documents, unlocking PDF files for "
-"editing, removing password from PDF contracts, unlocking PDF invoices, "
-"removing password from PDF legal documents, unlocking PDF financial "
-"documents, removing password from PDF medical records, unlocking PDF "
-"personal documents, removing password from PDF business files, unlocking PDF "
-"academic papers, removing password from PDF reports."
-msgstr ""
-"Идеально для: удаления паролей из PDF файлов, разблокировки защищенных "
-"паролем PDF документов, удаления защиты паролем PDF, разблокировки "
-"зашифрованных PDF файлов, удаления защиты из PDF документов, разблокировки "
-"PDF файлов для редактирования, удаления пароля из PDF контрактов, "
-"разблокировки PDF счетов, удаления пароля из PDF юридических документов, "
-"разблокировки PDF финансовых документов, удаления пароля из PDF медицинских "
-"записей, разблокировки PDF личных документов, удаления пароля из PDF бизнес-"
-"файлов, разблокировки PDF академических работ, удаления пароля из PDF "
-"отчетов."
-
+#: templates/frontend/word_to_pdf.html:10
 msgid ""
 "Select your Word document (DOC or DOCX) using the button above or drag and "
 "drop it into the zone below"
@@ -3306,6 +3866,7 @@ msgstr ""
 "Выберите ваш документ Word (DOC или DOCX), используя кнопку выше, или "
 "перетащите его в зону ниже"
 
+#: templates/frontend/word_to_pdf.html:11
 msgid ""
 "Click the convert button to start converting Word to PDF (DOCX to PDF "
 "conversion)"
@@ -3313,6 +3874,7 @@ msgstr ""
 "Нажмите кнопку конвертации, чтобы начать преобразование Word в PDF "
 "(конвертация DOCX в PDF)"
 
+#: templates/frontend/word_to_pdf.html:12
 msgid ""
 "Wait for the Word to PDF conversion to complete - formatting and layout will "
 "be preserved when converting from Word to PDF"
@@ -3320,12 +3882,14 @@ msgstr ""
 "Дождитесь завершения конвертации Word в PDF - форматирование и макет будут "
 "сохранены при преобразовании Word в PDF"
 
+#: templates/frontend/word_to_pdf.html:13
 msgid ""
 "Download your PDF file - your Word document has been successfully converted "
 "to PDF format"
 msgstr ""
 "Скачайте ваш PDF файл - ваш документ Word успешно конвертирован в формат PDF"
 
+#: templates/frontend/word_to_pdf.html:17
 msgid ""
 "Word documents with up to 50 pages are supported. For larger files, please "
 "split them into smaller parts. The conversion preserves formatting, fonts, "
@@ -3335,69 +3899,64 @@ msgstr ""
 "разбейте их на более мелкие части. Конвертация сохраняет форматирование, "
 "шрифты, изображения и макет страницы."
 
-msgid ""
-"Perfect for: converting Word documents to PDF for sharing, creating PDF "
-"files from Word resumes, converting Word reports to PDF format, converting "
-"Word invoices to PDF, converting Word contracts to PDF, converting Word "
-"academic papers to PDF, converting Word presentations to PDF, converting "
-"Word forms to PDF, converting Word manuals to PDF, converting Word books to "
-"PDF format, creating PDF files from Word templates, converting Word "
-"documents for printing, converting Word files for email attachments, "
-"converting Word documents for archiving, converting Word files to PDF for "
-"legal documents."
-msgstr ""
-"Идеально для: конвертации документов Word в PDF для обмена, создания PDF "
-"файлов из резюме Word, конвертации отчетов Word в формат PDF, конвертации "
-"счетов Word в PDF, конвертации контрактов Word в PDF, конвертации "
-"академических работ Word в PDF, конвертации презентаций Word в PDF, "
-"конвертации форм Word в PDF, конвертации руководств Word в PDF, конвертации "
-"книг Word в формат PDF, создания PDF файлов из шаблонов Word, конвертации "
-"документов Word для печати, конвертации файлов Word для вложений в email, "
-"конвертации документов Word для архивирования, конвертации файлов Word в PDF "
-"для юридических документов."
-
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:74
 msgid "Password cannot be empty"
 msgstr ""
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:95
 msgid ""
 "PDF is not password-protected. This PDF does not require a password to open."
 msgstr ""
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:104
 msgid "Incorrect password. Please check the password and try again."
 msgstr ""
 
+#: utils_site/src/blog/admin.py:30 utils_site/src/blog/admin.py:119
 msgid "Basic Information"
 msgstr "Основная информация"
 
+#: utils_site/src/blog/admin.py:32 utils_site/src/blog/admin.py:87
+#: utils_site/src/blog/admin.py:131 utils_site/src/blog/admin.py:198
+#: utils_site/src/blog/models.py:22 utils_site/src/blog/models.py:108
 msgid "Translations"
 msgstr "Переводы"
 
+#: utils_site/src/blog/admin.py:36
 msgid "Add translations for other languages using the tabs above."
 msgstr "Добавьте переводы для других языков, используя вкладки выше."
 
+#: utils_site/src/blog/admin.py:41
 msgid "Metadata"
 msgstr "Метаданные"
 
+#: utils_site/src/blog/admin.py:51 utils_site/src/blog/admin.py:174
 msgid "No translations"
 msgstr "Нет переводов"
 
+#: utils_site/src/blog/admin.py:62 utils_site/src/blog/admin.py:184
 msgid "No valid translations"
 msgstr "Нет действительных переводов"
 
+#: utils_site/src/blog/admin.py:82
 msgid "Empty translations"
 msgstr "Пустые переводы"
 
+#: utils_site/src/blog/admin.py:93 utils_site/src/blog/models.py:169
 msgid "Articles"
 msgstr "Статьи"
 
+#: utils_site/src/blog/admin.py:122
 msgid "English Content"
 msgstr "Английский контент"
 
+#: utils_site/src/blog/admin.py:124
 #, fuzzy
 #| msgid "Excerpt (English)"
 msgid "SEO - English"
 msgstr "Отрывок (английский)"
 
+#: utils_site/src/blog/admin.py:135
 msgid ""
 "Add translations for other languages using the tabs above. Each language has "
 "its own tab with all necessary fields."
@@ -3405,9 +3964,11 @@ msgstr ""
 "Добавьте переводы для других языков, используя вкладки выше. Каждый язык "
 "имеет свою вкладку со всеми необходимыми полями."
 
+#: utils_site/src/blog/admin.py:140 utils_site/src/blog/models.py:130
 msgid "AI Metadata"
 msgstr "Метаданные ИИ"
 
+#: utils_site/src/blog/admin.py:145
 msgid ""
 "Additional metadata for AI agents to better understand and index your "
 "content."
@@ -3415,21 +3976,27 @@ msgstr ""
 "Дополнительные метаданные для агентов ИИ, чтобы лучше понимать и "
 "индексировать ваш контент."
 
+#: utils_site/src/blog/admin.py:149
 msgid "Media"
 msgstr "Медиа"
 
+#: utils_site/src/blog/admin.py:151
 msgid "Statistics"
 msgstr "Статистика"
 
+#: utils_site/src/blog/admin.py:166
 msgid "No image"
 msgstr "Нет изображения"
 
+#: utils_site/src/blog/models.py:14
 msgid "Name (English)"
 msgstr "Название (английский)"
 
+#: utils_site/src/blog/models.py:15 utils_site/src/blog/models.py:93
 msgid "Slug"
 msgstr "Слаг"
 
+#: utils_site/src/blog/models.py:24
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"name\": \"...\", "
 "\"description\": \"...\"}, ...}"
@@ -3437,33 +4004,43 @@ msgstr ""
 "Переводы для других языков. Формат: {\"ru\": {\"name\": \"...\", "
 "\"description\": \"...\"}, ...}"
 
+#: utils_site/src/blog/models.py:30
 msgid "Description (English)"
 msgstr "Описание (английский)"
 
+#: utils_site/src/blog/models.py:37
 msgid "Article Category"
 msgstr "Категория статьи"
 
+#: utils_site/src/blog/models.py:38
 msgid "Article Categories"
 msgstr "Категории статей"
 
+#: utils_site/src/blog/models.py:86
 msgid "Draft"
 msgstr "Черновик"
 
+#: utils_site/src/blog/models.py:87
 msgid "Published"
 msgstr "Опубликовано"
 
+#: utils_site/src/blog/models.py:88
 msgid "Archived"
 msgstr "Архивировано"
 
+#: utils_site/src/blog/models.py:92
 msgid "Title (English)"
 msgstr "Заголовок (английский)"
 
+#: utils_site/src/blog/models.py:94
 msgid "Content (English)"
 msgstr "Содержание (английский)"
 
+#: utils_site/src/blog/models.py:96
 msgid "Excerpt (English)"
 msgstr "Отрывок (английский)"
 
+#: utils_site/src/blog/models.py:110
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"title\": \"...\", "
 "\"content\": \"...\", ...}, ...}"
@@ -3471,15 +4048,19 @@ msgstr ""
 "Переводы для других языков. Формат: {\"ru\": {\"title\": \"...\", "
 "\"content\": \"...\", ...}, ...}"
 
+#: utils_site/src/blog/models.py:116
 msgid "Meta Title (English)"
 msgstr "Мета-заголовок (английский)"
 
+#: utils_site/src/blog/models.py:119
 msgid "Meta Description (English)"
 msgstr "Мета-описание (английский)"
 
+#: utils_site/src/blog/models.py:122
 msgid "Meta Keywords (English)"
 msgstr "Мета-ключевые слова (английский)"
 
+#: utils_site/src/blog/models.py:132
 msgid ""
 "Additional metadata for AI agents: topics, entities, summary, related_terms, "
 "etc."
@@ -3487,63 +4068,83 @@ msgstr ""
 "Дополнительные метаданные для агентов ИИ: темы, сущности, сводка, связанные "
 "термины и т.д."
 
+#: utils_site/src/blog/models.py:143
 msgid "Category"
 msgstr "Категория"
 
+#: utils_site/src/blog/models.py:151
 msgid "Featured Image"
 msgstr "Избранное изображение"
 
+#: utils_site/src/blog/models.py:156
 msgid "Status"
 msgstr "Статус"
 
+#: utils_site/src/blog/models.py:159
 msgid "Published At"
 msgstr "Опубликовано"
 
+#: utils_site/src/blog/models.py:161
 msgid "Created At"
 msgstr "Дата создания"
 
+#: utils_site/src/blog/models.py:162
 msgid "Updated At"
 msgstr "Обновлено"
 
+#: utils_site/src/blog/models.py:165
 msgid "View Count"
 msgstr "Количество просмотров"
 
+#: utils_site/src/blog/models.py:168
 msgid "Article"
 msgstr "Статья"
 
+#: utils_site/src/frontend/forms.py:14
 msgid "Your Name"
 msgstr "Ваше имя"
 
+#: utils_site/src/frontend/forms.py:18
 msgid "Enter your name"
 msgstr "Введите ваше имя"
 
+#: utils_site/src/frontend/forms.py:25
 msgid "Your Email"
 msgstr "Ваш email"
 
+#: utils_site/src/frontend/forms.py:29
 msgid "your.email@example.com"
 msgstr "ваш.email@example.com"
 
+#: utils_site/src/frontend/forms.py:36
 msgid "Subject"
 msgstr "Тема"
 
+#: utils_site/src/frontend/forms.py:40
 msgid "Enter subject"
 msgstr "Введите тему"
 
+#: utils_site/src/frontend/forms.py:46
 msgid "Message"
 msgstr "Сообщение"
 
+#: utils_site/src/frontend/forms.py:51
 msgid "Enter your message"
 msgstr "Введите ваше сообщение"
 
+#: utils_site/src/frontend/forms.py:57
 msgid "I agree to the Privacy Policy"
 msgstr "Я согласен с Политикой конфиденциальности"
 
+#: utils_site/src/frontend/forms.py:69
 msgid "Message must be at least 10 characters long."
 msgstr "Сообщение должно содержать не менее 10 символов."
 
+#: utils_site/src/frontend/forms.py:71
 msgid "Message is too long. Maximum 5000 characters."
 msgstr "Сообщение слишком длинное. Максимум 5000 символов."
 
+#: utils_site/src/frontend/views.py:36
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter, convert PDF, convert Word, free pdf tools online, pdf tools "
@@ -3567,12 +4168,15 @@ msgstr ""
 "mac, конвертер pdf для windows, конвертер pdf для linux, мобильный конвертер "
 "pdf"
 
+#: utils_site/src/frontend/views.py:100
 msgid "Conversion failed. Please try again."
 msgstr "Конвертация не удалась. Пожалуйста, попробуйте снова."
 
+#: utils_site/src/frontend/views.py:430
 msgid "All PDF Tools - Convertica"
 msgstr "Все PDF инструменты - Convertica"
 
+#: utils_site/src/frontend/views.py:432
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
@@ -3581,6 +4185,7 @@ msgstr ""
 "Защита PDF. Бесплатные онлайн PDF инструменты для всех ваших потребностей в "
 "документах."
 
+#: utils_site/src/frontend/views.py:435
 msgid ""
 "PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all PDF "
 "tools, online PDF tools, free PDF tools, free pdf tools online, pdf tools no "
@@ -3608,6 +4213,7 @@ msgstr ""
 "pdf в word для резюме, объединить pdf для диссертации, сжать pdf для "
 "вложения email, разделить pdf по главам"
 
+#: utils_site/src/frontend/views.py:447
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
@@ -3617,6 +4223,7 @@ msgstr ""
 "стремимся к постоянному совершенствованию и предоставлению лучшего опыта "
 "конвертации и редактирования PDF."
 
+#: utils_site/src/frontend/views.py:450
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
@@ -3624,6 +4231,7 @@ msgstr ""
 "о Convertica, компания PDF инструментов, онлайн конвертер PDF, услуги PDF, "
 "конвертация документов"
 
+#: utils_site/src/frontend/views.py:462
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
@@ -3632,12 +4240,14 @@ msgstr ""
 "ваши данные и обрабатываем ваши файлы. Ваша конфиденциальность - наш "
 "приоритет."
 
+#: utils_site/src/frontend/views.py:465
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 msgstr ""
 "политика конфиденциальности, защита данных, безопасность файлов, "
 "конфиденциальность, конфиденциальность Convertica"
 
+#: utils_site/src/frontend/views.py:477
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
@@ -3645,12 +4255,14 @@ msgstr ""
 "Прочитайте Условия использования Convertica. Поймите условия использования "
 "наших PDF инструментов и услуг."
 
+#: utils_site/src/frontend/views.py:480
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
 msgstr ""
 "условия использования, условия и положения, пользовательское соглашение, "
 "условия Convertica"
 
+#: utils_site/src/frontend/views.py:503
 msgid ""
 "Thank you! Your message has been sent successfully. We'll get back to you as "
 "soon as possible, usually within 24-48 hours."
@@ -3658,9 +4270,11 @@ msgstr ""
 "Спасибо! Ваше сообщение успешно отправлено. Мы свяжемся с вами как можно "
 "скорее, обычно в течение 24-48 часов."
 
+#: utils_site/src/frontend/views.py:530
 msgid "Please complete the CAPTCHA verification."
 msgstr "Пожалуйста, завершите проверку CAPTCHA."
 
+#: utils_site/src/frontend/views.py:538 utils_site/src/frontend/views.py:612
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
@@ -3668,17 +4282,21 @@ msgstr ""
 "Свяжитесь с Convertica для поддержки, вопросов или отзывов. Мы здесь, чтобы "
 "помочь со всеми вашими потребностями в PDF инструментах."
 
+#: utils_site/src/frontend/views.py:541 utils_site/src/frontend/views.py:615
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr ""
 "связаться с Convertica, поддержка, служба поддержки клиентов, помощь, "
 "обратная связь"
 
+#: utils_site/src/frontend/views.py:606
 msgid "Please correct the errors in the form below."
 msgstr "Пожалуйста, исправьте ошибки в форме ниже."
 
+#: utils_site/src/frontend/views.py:627
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "Часто задаваемые вопросы (FAQ) - Convertica"
 
+#: utils_site/src/frontend/views.py:629
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
@@ -3687,6 +4305,7 @@ msgstr ""
 "Узнайте, как конвертировать, редактировать и организовывать PDF файлы онлайн "
 "бесплатно."
 
+#: utils_site/src/frontend/views.py:632
 msgid ""
 "FAQ, frequently asked questions, PDF converter help, PDF tools FAQ, how to "
 "convert PDF, PDF questions, convert pdf to word online free, pdf to word "
@@ -3714,6 +4333,7 @@ msgstr ""
 "инструментам, вопросы по конвертации PDF, вопросы по редактированию PDF, "
 "вопросы по организации PDF, вопросы по безопасности PDF"
 
+#: utils_site/src/frontend/views.py:649
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "
@@ -3722,3 +4342,350 @@ msgstr ""
 "Чтобы объединить PDF файлы, перейдите на страницу Объединить PDF, выберите "
 "несколько PDF файлов, расположите их в нужном порядке и нажмите объединить. "
 "Все выбранные файлы будут объединены в один PDF документ."
+
+#~ msgid ""
+#~ "Perfect for: adding page numbers to PDF documents, numbering PDF pages, "
+#~ "inserting page numbers in PDF files, adding page numbers to PDF reports, "
+#~ "numbering pages in PDF documents, inserting page numbers in PDF "
+#~ "contracts, adding page numbers to PDF invoices, numbering pages in PDF "
+#~ "legal documents, inserting page numbers in PDF academic papers, adding "
+#~ "page numbers to PDF business documents, numbering pages in PDF "
+#~ "presentations, inserting page numbers in PDF manuals, adding page numbers "
+#~ "to PDF books, numbering pages in PDF catalogs, inserting page numbers in "
+#~ "PDF portfolios."
+#~ msgstr ""
+#~ "Идеально для: добавления номеров страниц в PDF документы, нумерации "
+#~ "страниц PDF, вставки номеров страниц в PDF файлы, добавления номеров "
+#~ "страниц в PDF отчеты, нумерации страниц в PDF документах, вставки номеров "
+#~ "страниц в PDF контракты, добавления номеров страниц в PDF счета, "
+#~ "нумерации страниц в PDF юридических документах, вставки номеров страниц в "
+#~ "PDF академические работы, добавления номеров страниц в PDF бизнес-"
+#~ "документы, нумерации страниц в PDF презентациях, вставки номеров страниц "
+#~ "в PDF руководства, добавления номеров страниц в PDF книги, нумерации "
+#~ "страниц в PDF каталогах, вставки номеров страниц в PDF портфолио."
+
+#~ msgid ""
+#~ "Perfect for: adding watermarks to PDF documents, protecting PDF files "
+#~ "with watermarks, adding copyright notices to PDFs, adding company logos "
+#~ "to PDF files, adding confidential labels to PDF documents, adding draft "
+#~ "watermarks to PDF files, adding text watermarks to PDF pages, adding "
+#~ "image watermarks to PDF documents, branding PDF files with watermarks, "
+#~ "adding security watermarks to PDF files."
+#~ msgstr ""
+#~ "Идеально для: добавления водяных знаков в PDF документы, защиты PDF "
+#~ "файлов водяными знаками, добавления уведомлений об авторских правах в "
+#~ "PDF, добавления логотипов компаний в PDF файлы, добавления "
+#~ "конфиденциальных меток в PDF документы, добавления черновых водяных "
+#~ "знаков в PDF файлы, добавления текстовых водяных знаков на страницы PDF, "
+#~ "добавления изображений водяных знаков в PDF документы, брендинга PDF "
+#~ "файлов водяными знаками, добавления защитных водяных знаков в PDF файлы."
+
+#~ msgid ""
+#~ "Perfect for: compressing PDF files to reduce size, reducing PDF file size "
+#~ "for email, compressing large PDF documents, reducing PDF file size for "
+#~ "web upload, compressing PDF files for storage, reducing PDF file size for "
+#~ "sharing, compressing scanned PDF documents, reducing PDF file size for "
+#~ "mobile devices, compressing PDF files for faster download, reducing PDF "
+#~ "file size for cloud storage, compressing PDF files for archiving, "
+#~ "reducing PDF file size for printing, compressing PDF files for "
+#~ "presentations, reducing PDF file size for reports, compressing PDF files "
+#~ "for business documents."
+#~ msgstr ""
+#~ "Идеально для: сжатия PDF файлов для уменьшения размера, уменьшения "
+#~ "размера PDF файлов для электронной почты, сжатия больших PDF документов, "
+#~ "уменьшения размера PDF файлов для загрузки в интернет, сжатия PDF файлов "
+#~ "для хранения, уменьшения размера PDF файлов для обмена, сжатия "
+#~ "отсканированных PDF документов, уменьшения размера PDF файлов для "
+#~ "мобильных устройств, сжатия PDF файлов для быстрой загрузки, уменьшения "
+#~ "размера PDF файлов для облачного хранилища, сжатия PDF файлов для "
+#~ "архивирования, уменьшения размера PDF файлов для печати, сжатия PDF "
+#~ "файлов для презентаций, уменьшения размера PDF файлов для отчетов, сжатия "
+#~ "PDF файлов для бизнес-документов."
+
+#~ msgid ""
+#~ "Perfect for: cropping PDF pages to remove margins, cropping PDF documents "
+#~ "to specific dimensions, removing white space from PDF files, cropping "
+#~ "scanned documents, cropping PDF pages for printing, cropping PDF forms to "
+#~ "fit, cropping PDF images to size, cropping PDF pages for web use, "
+#~ "cropping PDF pages for mobile viewing, cropping PDF pages for "
+#~ "presentations."
+#~ msgstr ""
+#~ "Идеально для: обрезки страниц PDF для удаления полей, обрезки PDF "
+#~ "документов до определённых размеров, удаления пустого пространства из PDF "
+#~ "файлов, обрезки отсканированных документов, обрезки страниц PDF для "
+#~ "печати, обрезки PDF форм по размеру, обрезки изображений PDF до размера, "
+#~ "обрезки страниц PDF для веб-использования, обрезки страниц PDF для "
+#~ "мобильного просмотра, обрезки страниц PDF для презентаций."
+
+#~ msgid ""
+#~ "Perfect for: extracting specific pages from PDF documents, extracting "
+#~ "pages from PDF files, pulling pages from PDF documents, extracting "
+#~ "selected pages from PDF files, getting specific pages from PDF documents, "
+#~ "extracting page ranges from PDF files, pulling out pages from PDF "
+#~ "documents, extracting pages from large PDF files, getting pages from PDF "
+#~ "documents, extracting pages from scanned PDF files, pulling specific "
+#~ "pages from PDF documents, extracting pages from PDF reports, getting "
+#~ "pages from PDF contracts, extracting pages from PDF invoices, pulling "
+#~ "pages from PDF legal documents."
+#~ msgstr ""
+#~ "Идеально для: извлечения конкретных страниц из PDF документов, извлечения "
+#~ "страниц из PDF файлов, вытягивания страниц из PDF документов, извлечения "
+#~ "выбранных страниц из PDF файлов, получения конкретных страниц из PDF "
+#~ "документов, извлечения диапазонов страниц из PDF файлов, вытягивания "
+#~ "страниц из PDF документов, извлечения страниц из больших PDF файлов, "
+#~ "получения страниц из PDF документов, извлечения страниц из "
+#~ "отсканированных PDF файлов, вытягивания конкретных страниц из PDF "
+#~ "документов, извлечения страниц из PDF отчетов, получения страниц из PDF "
+#~ "контрактов, извлечения страниц из PDF счетов, вытягивания страниц из PDF "
+#~ "юридических документов."
+
+#~ msgid ""
+#~ "Perfect for: converting photos to PDF for printing, creating PDF files "
+#~ "from scanned documents, combining multiple images into one PDF, "
+#~ "converting screenshots to PDF, creating PDF files from mobile photos, "
+#~ "converting receipts to PDF format, creating PDF files from artwork scans, "
+#~ "converting passport photos to PDF, creating PDF files from homework "
+#~ "photos, converting ID photos to PDF, creating PDF files from medical "
+#~ "records, converting drawings to PDF format, creating PDF files from "
+#~ "handwritten notes, converting certificates to PDF, creating PDF files "
+#~ "from diplomas."
+#~ msgstr ""
+#~ "Идеально для: конвертации фотографий в PDF для печати, создания PDF "
+#~ "файлов из отсканированных документов, объединения нескольких изображений "
+#~ "в один PDF, конвертации скриншотов в PDF, создания PDF файлов из "
+#~ "мобильных фотографий, конвертации чеков в формат PDF, создания PDF файлов "
+#~ "из сканов произведений искусства, конвертации фотографий паспорта в PDF, "
+#~ "создания PDF файлов из фотографий домашних заданий, конвертации "
+#~ "фотографий удостоверений личности в PDF, создания PDF файлов из "
+#~ "медицинских записей, конвертации рисунков в формат PDF, создания PDF "
+#~ "файлов из рукописных заметок, конвертации сертификатов в PDF, создания "
+#~ "PDF файлов из дипломов."
+
+#~ msgid ""
+#~ "Perfect for: merging multiple PDF files into one, combining PDF "
+#~ "documents, joining PDF files together, merging PDF files for sharing, "
+#~ "combining PDF documents into single file, joining multiple PDF files, "
+#~ "merging PDF files for printing, combining PDF reports into one document, "
+#~ "joining PDF files for archiving, merging PDF files for presentations, "
+#~ "combining PDF invoices into one file, joining PDF contracts into single "
+#~ "document, merging PDF files for business, combining PDF academic papers, "
+#~ "joining PDF files for legal documents."
+#~ msgstr ""
+#~ "Идеально для: объединения нескольких PDF файлов в один, объединения PDF "
+#~ "документов, соединения PDF файлов вместе, объединения PDF файлов для "
+#~ "обмена, объединения PDF документов в один файл, соединения нескольких PDF "
+#~ "файлов, объединения PDF файлов для печати, объединения PDF отчетов в один "
+#~ "документ, соединения PDF файлов для архивирования, объединения PDF файлов "
+#~ "для презентаций, объединения PDF счетов в один файл, соединения PDF "
+#~ "контрактов в один документ, объединения PDF файлов для бизнеса, "
+#~ "объединения PDF академических работ, соединения PDF файлов для "
+#~ "юридических документов."
+
+#~ msgid ""
+#~ "Perfect for: reordering PDF pages, reorganizing PDF documents, "
+#~ "rearranging PDF pages, sorting PDF pages, changing PDF page order, "
+#~ "reorganizing PDF files, reordering pages in PDF documents, rearranging "
+#~ "pages in PDF files, sorting pages in PDF documents, changing order of PDF "
+#~ "pages, reorganizing PDF reports, reordering PDF chapters, rearranging PDF "
+#~ "sections, sorting PDF documents, changing PDF page sequence."
+#~ msgstr ""
+#~ "Идеально для: изменения порядка страниц PDF, реорганизации PDF "
+#~ "документов, перестановки страниц PDF, сортировки страниц PDF, изменения "
+#~ "порядка страниц PDF, реорганизации PDF файлов, изменения порядка страниц "
+#~ "в PDF документах, перестановки страниц в PDF файлах, сортировки страниц в "
+#~ "PDF документах, изменения порядка страниц PDF, реорганизации PDF отчетов, "
+#~ "изменения порядка глав PDF, перестановки разделов PDF, сортировки PDF "
+#~ "документов, изменения последовательности страниц PDF."
+
+#~ msgid ""
+#~ "Perfect for: converting PDF tables to Excel, extracting data from PDF "
+#~ "invoices, converting PDF reports to Excel format, extracting tables from "
+#~ "PDF documents, converting PDF spreadsheets to Excel, extracting data from "
+#~ "PDF forms, converting PDF financial reports to Excel, extracting tables "
+#~ "from PDF contracts, converting PDF data tables to Excel, extracting "
+#~ "information from PDF invoices, converting PDF accounting documents to "
+#~ "Excel, extracting data from PDF statements, converting PDF tables for "
+#~ "data analysis, extracting tables from PDF presentations, converting PDF "
+#~ "business reports to Excel, extracting data from PDF catalogs, converting "
+#~ "PDF price lists to Excel, extracting tables from PDF manuals, converting "
+#~ "PDF survey results to Excel, extracting data from PDF research papers, "
+#~ "converting PDF statistical data to Excel, extracting tables from PDF "
+#~ "legal documents, converting PDF inventory lists to Excel, extracting data "
+#~ "from PDF receipts, converting PDF expense reports to Excel."
+#~ msgstr ""
+#~ "Идеально для: конвертации пдф таблиц в эксель, извлечения данных из PDF "
+#~ "счетов, конвертации PDF отчетов в формат Excel, извлечения таблиц из PDF "
+#~ "документов, конвертации PDF электронных таблиц в Excel, извлечения данных "
+#~ "из PDF форм, конвертации PDF финансовых отчетов в Excel, извлечения "
+#~ "таблиц из PDF контрактов, конвертации PDF таблиц данных в Excel, "
+#~ "извлечения информации из PDF счетов, конвертации PDF бухгалтерских "
+#~ "документов в Excel, извлечения данных из PDF выписок, конвертации PDF "
+#~ "таблиц для анализа данных, извлечения таблиц из PDF презентаций, "
+#~ "конвертации PDF бизнес-отчетов в Excel, извлечения данных из PDF "
+#~ "каталогов, конвертации PDF прайс-листов в Excel, извлечения таблиц из PDF "
+#~ "руководств, конвертации PDF результатов опросов в Excel, извлечения "
+#~ "данных из PDF исследовательских работ, конвертации PDF статистических "
+#~ "данных в Excel, извлечения таблиц из PDF юридических документов, "
+#~ "конвертации PDF списков инвентаря в Excel, извлечения данных из PDF "
+#~ "чеков, конвертации PDF отчетов о расходах в Excel."
+
+#~ msgid ""
+#~ "Perfect for: extracting images from PDF documents, converting PDF pages "
+#~ "for web use, creating thumbnails from PDF files, batch converting PDF "
+#~ "pages to images, extracting scanned document pages as images, converting "
+#~ "PDF presentations to image slides, extracting PDF diagrams as standalone "
+#~ "images."
+#~ msgstr ""
+#~ "Идеально для: извлечения изображений из PDF документов, конвертации "
+#~ "страниц PDF для веб-использования, создания миниатюр из PDF файлов, "
+#~ "пакетной конвертации страниц PDF в изображения, извлечения "
+#~ "отсканированных страниц документов как изображений, конвертации PDF "
+#~ "презентаций в слайды-изображения, извлечения PDF диаграмм как отдельных "
+#~ "изображений."
+
+#~ msgid ""
+#~ "Perfect for: converting PDF to Word (PDF в Word), конвертировать PDF в "
+#~ "Word, PDF to DOCX conversion, extracting text from PDF files, editing PDF "
+#~ "content in Microsoft Word, converting PDF resumes to Word format, "
+#~ "converting PDF academic papers to editable documents, converting PDF "
+#~ "invoices to Word templates, converting PDF forms to fillable Word "
+#~ "documents, converting PDF reports to editable Word format, extracting PDF "
+#~ "tables to Word, converting PDF articles to Word documents, converting PDF "
+#~ "contracts to editable Word files, converting PDF presentations to Word "
+#~ "format, converting PDF manuals to editable Word documents, converting PDF "
+#~ "books to Word format for editing."
+#~ msgstr ""
+#~ "Идеально для: конвертации PDF в Word (PDF в Word), конвертировать PDF в "
+#~ "Word, преобразования PDF в DOCX, извлечения текста из PDF файлов, "
+#~ "редактирования содержимого PDF в Microsoft Word, конвертации PDF резюме в "
+#~ "формат Word, конвертации PDF академических работ в редактируемые "
+#~ "документы, конвертации PDF счетов в шаблоны Word, конвертации PDF форм в "
+#~ "заполняемые документы Word, конвертации PDF отчетов в редактируемый "
+#~ "формат Word, извлечения PDF таблиц в Word, конвертации PDF статей в "
+#~ "документы Word, конвертации PDF контрактов в редактируемые файлы Word, "
+#~ "конвертации PDF презентаций в формат Word, конвертации PDF руководств в "
+#~ "редактируемые документы Word, конвертации PDF книг в формат Word для "
+#~ "редактирования."
+
+#~ msgid ""
+#~ "Perfect for: protecting PDF files with passwords, securing PDF documents "
+#~ "with encryption, password protecting sensitive PDF files, securing "
+#~ "confidential PDF documents, protecting PDF files from unauthorized "
+#~ "access, encrypting PDF files for security, password protecting PDF "
+#~ "contracts, securing PDF invoices with passwords, protecting PDF legal "
+#~ "documents, securing PDF financial documents, password protecting PDF "
+#~ "medical records, securing PDF personal documents, protecting PDF business "
+#~ "files, securing PDF academic papers, password protecting PDF reports."
+#~ msgstr ""
+#~ "Идеально для: защиты PDF файлов паролями, защиты PDF документов "
+#~ "шифрованием, защиты паролем конфиденциальных PDF файлов, защиты "
+#~ "конфиденциальных PDF документов, защиты PDF файлов от "
+#~ "несанкционированного доступа, шифрования PDF файлов для безопасности, "
+#~ "защиты паролем PDF контрактов, защиты PDF счетов паролями, защиты PDF "
+#~ "юридических документов, защиты PDF финансовых документов, защиты паролем "
+#~ "PDF медицинских записей, защиты PDF личных документов, защиты PDF бизнес-"
+#~ "файлов, защиты PDF академических работ, защиты паролем PDF отчетов."
+
+#~ msgid ""
+#~ "Perfect for: removing unwanted pages from PDF documents, deleting blank "
+#~ "pages from PDF files, removing cover pages from PDF documents, removing "
+#~ "table of contents pages from PDF files, removing appendix pages from PDF "
+#~ "documents, deleting specific pages from PDF files, removing duplicate "
+#~ "pages from PDF documents, removing watermark pages from PDF files, "
+#~ "deleting page ranges from PDF documents, removing unwanted sections from "
+#~ "PDF files, cleaning up PDF documents by removing pages, removing "
+#~ "unnecessary pages from PDF files, deleting pages from scanned PDF "
+#~ "documents, removing pages from merged PDF files, removing pages from PDF "
+#~ "reports."
+#~ msgstr ""
+#~ "Идеально для: удаления ненужных страниц из PDF документов, удаления "
+#~ "пустых страниц из PDF файлов, удаления титульных страниц из PDF "
+#~ "документов, удаления страниц содержания из PDF файлов, удаления страниц "
+#~ "приложений из PDF документов, удаления конкретных страниц из PDF файлов, "
+#~ "удаления дублирующихся страниц из PDF документов, удаления страниц с "
+#~ "водяными знаками из PDF файлов, удаления диапазонов страниц из PDF "
+#~ "документов, удаления ненужных разделов из PDF файлов, очистки PDF "
+#~ "документов путем удаления страниц, удаления ненужных страниц из PDF "
+#~ "файлов, удаления страниц из отсканированных PDF документов, удаления "
+#~ "страниц из объединенных PDF файлов, удаления страниц из PDF отчетов."
+
+#~ msgid ""
+#~ "Perfect for: rotating PDF pages that are upside down, rotating scanned "
+#~ "PDF documents, rotating PDF pages for correct orientation, rotating PDF "
+#~ "pages clockwise or counterclockwise, fixing PDF page orientation, "
+#~ "rotating PDF pages for printing, rotating PDF pages for viewing, rotating "
+#~ "PDF pages for mobile devices, rotating PDF pages for tablets, rotating "
+#~ "PDF pages for e-readers, rotating PDF pages for presentations, rotating "
+#~ "PDF pages for reports, rotating PDF pages for legal documents, rotating "
+#~ "PDF pages for academic papers, rotating PDF pages for business documents."
+#~ msgstr ""
+#~ "Идеально для: поворота перевернутых страниц PDF, поворота отсканированных "
+#~ "PDF документов, поворота страниц PDF для правильной ориентации, поворота "
+#~ "страниц PDF по часовой стрелке или против часовой стрелки, исправления "
+#~ "ориентации страниц PDF, поворота страниц PDF для печати, поворота страниц "
+#~ "PDF для просмотра, поворота страниц PDF для мобильных устройств, поворота "
+#~ "страниц PDF для планшетов, поворота страниц PDF для электронных книг, "
+#~ "поворота страниц PDF для презентаций, поворота страниц PDF для отчетов, "
+#~ "поворота страниц PDF для юридических документов, поворота страниц PDF для "
+#~ "академических работ, поворота страниц PDF для бизнес-документов."
+
+#~ msgid ""
+#~ "Perfect for: splitting PDF files into separate documents, dividing PDF "
+#~ "documents into multiple files, splitting PDF by pages, breaking PDF into "
+#~ "smaller files, splitting PDF by page ranges, dividing large PDF files, "
+#~ "splitting PDF for easier sharing, breaking PDF into chapters, splitting "
+#~ "PDF for email attachments, dividing PDF documents for storage, splitting "
+#~ "PDF for mobile viewing, breaking PDF into sections, splitting PDF for "
+#~ "presentations, dividing PDF files for printing, splitting PDF for "
+#~ "archiving."
+#~ msgstr ""
+#~ "Идеально для: разделения PDF файлов на отдельные документы, разделения "
+#~ "PDF документов на несколько файлов, разделения PDF по страницам, "
+#~ "разбиения PDF на более мелкие файлы, разделения PDF по диапазонам "
+#~ "страниц, разделения больших PDF файлов, разделения PDF для более легкого "
+#~ "обмена, разбиения PDF на главы, разделения PDF для вложений электронной "
+#~ "почты, разделения PDF документов для хранения, разделения PDF для "
+#~ "мобильного просмотра, разбиения PDF на разделы, разделения PDF для "
+#~ "презентаций, разделения PDF файлов для печати, разделения PDF для "
+#~ "архивирования."
+
+#~ msgid ""
+#~ "Perfect for: removing passwords from PDF files, unlocking password-"
+#~ "protected PDF documents, removing PDF password protection, unlocking "
+#~ "encrypted PDF files, removing security from PDF documents, unlocking PDF "
+#~ "files for editing, removing password from PDF contracts, unlocking PDF "
+#~ "invoices, removing password from PDF legal documents, unlocking PDF "
+#~ "financial documents, removing password from PDF medical records, "
+#~ "unlocking PDF personal documents, removing password from PDF business "
+#~ "files, unlocking PDF academic papers, removing password from PDF reports."
+#~ msgstr ""
+#~ "Идеально для: удаления паролей из PDF файлов, разблокировки защищенных "
+#~ "паролем PDF документов, удаления защиты паролем PDF, разблокировки "
+#~ "зашифрованных PDF файлов, удаления защиты из PDF документов, "
+#~ "разблокировки PDF файлов для редактирования, удаления пароля из PDF "
+#~ "контрактов, разблокировки PDF счетов, удаления пароля из PDF юридических "
+#~ "документов, разблокировки PDF финансовых документов, удаления пароля из "
+#~ "PDF медицинских записей, разблокировки PDF личных документов, удаления "
+#~ "пароля из PDF бизнес-файлов, разблокировки PDF академических работ, "
+#~ "удаления пароля из PDF отчетов."
+
+#~ msgid ""
+#~ "Perfect for: converting Word documents to PDF for sharing, creating PDF "
+#~ "files from Word resumes, converting Word reports to PDF format, "
+#~ "converting Word invoices to PDF, converting Word contracts to PDF, "
+#~ "converting Word academic papers to PDF, converting Word presentations to "
+#~ "PDF, converting Word forms to PDF, converting Word manuals to PDF, "
+#~ "converting Word books to PDF format, creating PDF files from Word "
+#~ "templates, converting Word documents for printing, converting Word files "
+#~ "for email attachments, converting Word documents for archiving, "
+#~ "converting Word files to PDF for legal documents."
+#~ msgstr ""
+#~ "Идеально для: конвертации документов Word в PDF для обмена, создания PDF "
+#~ "файлов из резюме Word, конвертации отчетов Word в формат PDF, конвертации "
+#~ "счетов Word в PDF, конвертации контрактов Word в PDF, конвертации "
+#~ "академических работ Word в PDF, конвертации презентаций Word в PDF, "
+#~ "конвертации форм Word в PDF, конвертации руководств Word в PDF, "
+#~ "конвертации книг Word в формат PDF, создания PDF файлов из шаблонов Word, "
+#~ "конвертации документов Word для печати, конвертации файлов Word для "
+#~ "вложений в email, конвертации документов Word для архивирования, "
+#~ "конвертации файлов Word в PDF для юридических документов."
