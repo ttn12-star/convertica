@@ -687,14 +687,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Edit another button handler with smooth scroll to top
         const editAnotherBtn = document.getElementById('editAnotherButton');
         if (editAnotherBtn) {
-            editAnotherBtn.addEventListener('click', () => {
-                // Clear selected files list
-                selectedPdfFilesList.innerHTML = '';
-                selectedPdfFiles = [];
-                updatePdfFilesInput();
+            editAnotherBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
-                // Hide selected files section
-                selectedPdfFilesList.parentElement.classList.add('hidden');
+                // Clear selected files list (if present)
+                if (selectedPdfFilesList) {
+                    selectedPdfFilesList.innerHTML = '';
+                    selectedPdfFiles = [];
+                    updatePdfFilesInput();
+
+                    if (selectedPdfFilesList.parentElement) {
+                        selectedPdfFilesList.parentElement.classList.add('hidden');
+                    }
+                }
 
                 // Reset file input
                 if (pdfFilesInput) {
@@ -705,10 +711,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideDownload();
 
                 // Smooth scroll to top of page
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                try {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } catch (err) {
+                    // Fallback for browsers without smooth behavior support
+                    window.scrollTo(0, 0);
+                }
 
                 // Focus on select button after scroll completes
                 setTimeout(() => {
@@ -716,7 +727,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (selectFileButton) {
                         selectFileButton.focus();
                     }
-                }, 800); // Wait for smooth scroll to complete
+                }, 800);
             });
         }
     }
