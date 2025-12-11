@@ -38,9 +38,11 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                 event["tags"] = event.get("tags", {})
                 event["tags"]["error_type"] = "handled"
                 event["tags"]["user_error"] = "true"
+
             # Drop Gunicorn access logs - these are just successful HTTP requests, not errors
             if event.get("logger") == "gunicorn.access":
                 return None
+
             # Drop noisy Gunicorn error logs (invalid protocol / php probes)
             if event.get("logger") == "gunicorn.error":
                 message = event.get("message") or ""
@@ -51,6 +53,13 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                     or "SSH-2.0" in message
                 ):
                     return None
+
+            # Drop health-check events (e.g. /health/) so they don't clutter Sentry
+            request_data = event.get("request", {}) or {}
+            url = request_data.get("url", "") or ""
+            if "/health" in url:
+                return None
+
             return event
 
         sentry_sdk.init(
@@ -70,7 +79,7 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             # Environment tag
             environment=config("SENTRY_ENVIRONMENT", default="production"),
             # Release version - update on each release
-            release=config("SENTRY_RELEASE", default="convertica@1.0.25"),
+            release=config("SENTRY_RELEASE", default="convertica@dev"),
             # Filter handled errors
             before_send=before_send,
             # Async transport (non-blocking)
