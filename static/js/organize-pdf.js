@@ -257,18 +257,76 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateOrderFromPreview();
             };
 
+            // Touch event handlers for mobile support
+            let touchItem = null;
+            let touchOffset = { x: 0, y: 0 };
+
+            const touchStartHandler = (e) => {
+                touchItem = card;
+                const touch = e.touches[0];
+                const rect = card.getBoundingClientRect();
+                touchOffset.x = touch.clientX - rect.left;
+                touchOffset.y = touch.clientY - rect.top;
+                card.style.opacity = '0.5';
+                card.style.zIndex = '1000';
+                card.style.position = 'relative';
+                e.preventDefault();
+            };
+
+            const touchMoveHandler = (e) => {
+                if (!touchItem) return;
+
+                const touch = e.touches[0];
+
+                // Find the card under the touch point
+                const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+                const cardBelow = elementBelow?.closest('.pdf-page-card');
+
+                if (cardBelow && cardBelow !== touchItem) {
+                    const rectBelow = cardBelow.getBoundingClientRect();
+                    const midY = rectBelow.top + rectBelow.height / 2;
+
+                    if (touch.clientY < midY) {
+                        pdfPreviewContainer.insertBefore(touchItem, cardBelow);
+                    } else {
+                        pdfPreviewContainer.insertBefore(touchItem, cardBelow.nextSibling);
+                    }
+                }
+
+                e.preventDefault();
+            };
+
+            const touchEndHandler = (e) => {
+                if (touchItem) {
+                    touchItem.style.opacity = '1';
+                    touchItem.style.zIndex = '';
+                    touchItem.style.position = '';
+                    updateOrderFromPreview();
+                    touchItem = null;
+                }
+                e.preventDefault();
+            };
+
             // Attach handlers
             card.addEventListener('dragstart', dragStartHandler);
             card.addEventListener('dragend', dragEndHandler);
             card.addEventListener('dragover', dragOverHandler);
             card.addEventListener('drop', dropHandler);
 
+            // Touch events for mobile
+            card.addEventListener('touchstart', touchStartHandler, { passive: false });
+            card.addEventListener('touchmove', touchMoveHandler, { passive: false });
+            card.addEventListener('touchend', touchEndHandler, { passive: false });
+
             // Store handlers for cleanup
             handlers.push(
                 { event: 'dragstart', handler: dragStartHandler },
                 { event: 'dragend', handler: dragEndHandler },
                 { event: 'dragover', handler: dragOverHandler },
-                { event: 'drop', handler: dropHandler }
+                { event: 'drop', handler: dropHandler },
+                { event: 'touchstart', handler: touchStartHandler },
+                { event: 'touchmove', handler: touchMoveHandler },
+                { event: 'touchend', handler: touchEndHandler }
             );
             dragHandlers.set(card, handlers);
         });
