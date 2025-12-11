@@ -3,6 +3,7 @@ import os
 import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
+from django.utils.translation import gettext as _
 from PyPDF2 import PdfReader, PdfWriter
 from src.exceptions import (
     ConversionError,
@@ -70,7 +71,7 @@ def unlock_pdf(
 
         # Validate password
         if not password or not password.strip():
-            raise EncryptedPDFError("Password cannot be empty", context=context)
+            raise EncryptedPDFError(_("Password cannot be empty"), context=context)
 
         # Validate PDF file first
         is_valid, validation_error = validate_pdf_file(pdf_path, context)
@@ -90,7 +91,9 @@ def unlock_pdf(
             # Check if PDF is encrypted
             if not reader.is_encrypted:
                 raise InvalidPDFError(
-                    "PDF is not password-protected. This PDF does not require a password to open.",
+                    _(
+                        "PDF is not password-protected. This PDF does not require a password to open."
+                    ),
                     context=context,
                 )
 
@@ -98,7 +101,7 @@ def unlock_pdf(
             decrypt_result = reader.decrypt(password)
             if not decrypt_result:
                 raise EncryptedPDFError(
-                    "Incorrect password. Please check the password and try again.",
+                    _("Incorrect password. Please check the password and try again."),
                     context=context,
                 )
 

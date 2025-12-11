@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-08 21:56+0000\n"
+"POT-Creation-Date: 2025-12-11 11:50+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
 "Language: hi\n"
@@ -12,6 +12,132 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "400 - Bad Request"
+msgstr ""
+
+msgid "Convertica"
+msgstr "Convertica"
+
+msgid "The request could not be understood by the server."
+msgstr ""
+
+msgid "Bad Request"
+msgstr ""
+
+msgid ""
+"The request you sent could not be understood by the server. Please check "
+"your input and try again."
+msgstr ""
+
+msgid "Go Back"
+msgstr ""
+
+#, fuzzy
+#| msgid "Home"
+msgid "Go Home"
+msgstr "होम"
+
+msgid "403 - Access Forbidden"
+msgstr ""
+
+msgid "You don't have permission to access this resource."
+msgstr ""
+
+msgid "Access Forbidden"
+msgstr ""
+
+msgid ""
+"You don't have permission to access this page. If you believe this is an "
+"error, please contact support."
+msgstr ""
+
+#, fuzzy
+#| msgid "Contact support"
+msgid "Contact Support"
+msgstr "सहायता से संपर्क करें"
+
+msgid "404 - Page Not Found"
+msgstr ""
+
+msgid "The page you are looking for could not be found."
+msgstr ""
+
+msgid "Oops! Page Not Found"
+msgstr ""
+
+msgid ""
+"The page you're looking for seems to have wandered off. It might have been "
+"moved, deleted, or never existed."
+msgstr ""
+
+#, fuzzy
+#| msgid "View All Tools"
+msgid "Browse All Tools"
+msgstr "सभी उपकरण"
+
+#, fuzzy
+#| msgid "Popular Tools"
+msgid "Popular pages:"
+msgstr "लोकप्रिय उपकरण"
+
+msgid "PDF to Word"
+msgstr "PDF से Word"
+
+msgid "Merge PDF"
+msgstr "PDF मर्ज करें"
+
+msgid "Split PDF"
+msgstr "PDF विभाजित करें"
+
+msgid "FAQ"
+msgstr "अक्सर पूछे जाने वाले प्रश्न"
+
+#, fuzzy
+#| msgid "Server error"
+msgid "500 - Server Error"
+msgstr "सर्वर त्रुटि"
+
+msgid "An internal server error occurred. We're working to fix it."
+msgstr ""
+
+msgid "Oops! Something Went Wrong"
+msgstr ""
+
+msgid ""
+"We're experiencing some technical difficulties. Our team has been notified "
+"and is working to fix the issue. Please try again in a few moments."
+msgstr ""
+
+#, fuzzy
+#| msgid "Try it"
+msgid "Try Again"
+msgstr "आज़माएं"
+
+msgid "If the problem persists, please"
+msgstr ""
+
+#, fuzzy
+#| msgid "Contact Us"
+msgid "contact us"
+msgstr "हमसे संपर्क करें"
+
+msgid "502 - Bad Gateway"
+msgstr ""
+
+msgid "The server received an invalid response from an upstream server."
+msgstr ""
+
+msgid "Bad Gateway"
+msgstr ""
+
+msgid ""
+"The server is temporarily unavailable or overloaded. Please try again in a "
+"few moments. We're working to restore service as quickly as possible."
+msgstr ""
+
+msgid "This is usually a temporary issue. If it persists, please"
+msgstr ""
 
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
@@ -44,12 +170,6 @@ msgstr "ब्लॉग पर वापस जाएं"
 
 msgid "Popular Tools"
 msgstr "लोकप्रिय उपकरण"
-
-msgid "PDF to Word"
-msgstr "PDF से Word"
-
-msgid "Merge PDF"
-msgstr "PDF मर्ज करें"
 
 msgid "Compress PDF"
 msgstr "PDF संपीड़ित करें"
@@ -277,6 +397,11 @@ msgstr "आज ही Convertica के PDF उपकरणों की शक�
 msgid "Explore All Tools"
 msgstr "सभी उपकरण देखें"
 
+#, fuzzy
+#| msgid "Ready to Get Started?"
+msgid "Get Started"
+msgstr "शुरू करने के लिए तैयार?"
+
 msgid "Page Number Settings"
 msgstr "पेज नंबर"
 
@@ -328,6 +453,75 @@ msgstr "कस्टम पेज:"
 
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "'1,3,5' या '1-5' जैसे विशिष्ट पृष्ठ दर्ज करें"
+
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#, fuzzy
+#| msgid "Select Page"
+msgid "Select page"
+msgstr "पृष्ठ चुनें"
+
+msgid ""
+"Preview shows page numbers as they will appear in the final PDF after "
+"download."
+msgstr ""
+
+msgid "How it works"
+msgstr "यह कैसे काम करता है"
+
+#, fuzzy
+#| msgid "Select your PDF file using the button above or drag and drop it"
+msgid ""
+"Select your PDF file using the button above or drag and drop it into the "
+"zone below"
+msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें या इसे खींचें और छोड़ें"
+
+msgid ""
+"Choose the position, font size, starting number, and format for adding page "
+"numbers to PDF"
+msgstr ""
+
+msgid ""
+"Preview how the page numbers will look on your PDF using the live preview"
+msgstr ""
+
+msgid ""
+"Select which pages to add numbers to: all pages, current page only, or "
+"specific pages"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the add watermark button to process your file"
+msgid ""
+"Click the add page numbers button to process your PDF and add page numbers"
+msgstr "अपनी फ़ाइल प्रोसेस करने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid ""
+"Download your PDF file with page numbers added using the download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid "Note:"
+msgstr ""
+
+msgid ""
+"PDF files with up to 50 pages are supported for adding page numbers. For "
+"larger files, please split them into smaller parts. The page numbers will be "
+"added according to your selected position, format, and font size."
+msgstr ""
+
+msgid ""
+"Perfect for: adding page numbers to PDF documents, numbering PDF pages, "
+"inserting page numbers in PDF files, adding page numbers to PDF reports, "
+"numbering pages in PDF documents, inserting page numbers in PDF contracts, "
+"adding page numbers to PDF invoices, numbering pages in PDF legal documents, "
+"inserting page numbers in PDF academic papers, adding page numbers to PDF "
+"business documents, numbering pages in PDF presentations, inserting page "
+"numbers in PDF manuals, adding page numbers to PDF books, numbering pages in "
+"PDF catalogs, inserting page numbers in PDF portfolios."
+msgstr ""
 
 msgid "Select file to watermark"
 msgstr "वॉटरमार्क के लिए फ़ाइल चुनें"
@@ -399,26 +593,50 @@ msgstr ""
 "वॉटरमार्क को स्थानांतरित करने के लिए खींचें। एक साथ घुमाने और स्केल करने के लिए किसी भी "
 "कोने के हैंडल को खींचें।"
 
-msgid "How it works"
-msgstr "यह कैसे काम करता है"
-
-msgid "Select your PDF file using the button above"
-msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें"
-
-msgid "Enter your watermark text or upload an image"
+#, fuzzy
+#| msgid "Enter your watermark text or upload an image"
+msgid "Enter your watermark text or upload an image to add as watermark to PDF"
 msgstr "अपना वॉटरमार्क टेक्स्ट दर्ज करें या एक छवि अपलोड करें"
 
-msgid "Choose the color and opacity using the sliders"
+#, fuzzy
+#| msgid "Choose the color and opacity using the sliders"
+msgid ""
+"Choose the color and opacity using the sliders to customize your PDF "
+"watermark"
 msgstr "स्लाइडर का उपयोग करके रंग और अपारदर्शिता चुनें"
 
-msgid "Click on the PDF to position the watermark"
-msgstr "वॉटरमार्क की स्थिति के लिए PDF पर क्लिक करें"
+#, fuzzy
+#| msgid "Click and drag inside the blue box to move it anywhere on the page"
+msgid ""
+"Click on the PDF to position the watermark, or drag it to move it anywhere "
+"on the page"
+msgstr "पृष्ठ पर कहीं भी ले जाने के लिए नीले बॉक्स के अंदर क्लिक करें और खींचें"
 
-msgid "Click the add watermark button to process your file"
+#, fuzzy
+#| msgid "Click the add watermark button to process your file"
+msgid ""
+"Click the add watermark button to process your PDF and add the watermark"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें"
 
-msgid "Download your watermarked PDF file"
-msgstr "अपनी वॉटरमार्क वाली PDF फ़ाइल डाउनलोड करें"
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid "Download your watermarked PDF file using the download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid ""
+"PDF files with up to 50 pages are supported for adding watermarks. For "
+"larger files, please split them into smaller parts. The watermark will be "
+"applied to all pages or selected pages as specified."
+msgstr ""
+
+msgid ""
+"Perfect for: adding watermarks to PDF documents, protecting PDF files with "
+"watermarks, adding copyright notices to PDFs, adding company logos to PDF "
+"files, adding confidential labels to PDF documents, adding draft watermarks "
+"to PDF files, adding text watermarks to PDF pages, adding image watermarks "
+"to PDF documents, branding PDF files with watermarks, adding security "
+"watermarks to PDF files."
+msgstr ""
 
 msgid "Processing your file..."
 msgstr "आपकी फ़ाइल प्रोसेस हो रही है..."
@@ -524,9 +742,6 @@ msgstr "शक्तिशाली उपकरणों के साथ अ�
 msgid "Combine multiple PDF files into one document."
 msgstr "कई PDF फ़ाइलों को एक दस्तावेज़ में संयोजित करें।"
 
-msgid "Split PDF"
-msgstr "PDF विभाजित करें"
-
 msgid "Split PDF into multiple files by pages or ranges."
 msgstr "पेज या रेंज के अनुसार PDF को कई फ़ाइलों में विभाजित करें।"
 
@@ -593,6 +808,43 @@ msgid ""
 msgstr ""
 "अपनी आवश्यकताओं के आधार पर संपीड़न स्तर चुनें। उच्च संपीड़न फ़ाइल आकार को अधिक कम करता है "
 "लेकिन अधिक समय लेता है।"
+
+#, fuzzy
+#| msgid ""
+#| "Choose compression level based on your needs. Higher compression reduces "
+#| "file size more but takes longer."
+msgid ""
+"Choose the compression level (Low, Medium, or High) to compress PDF file size"
+msgstr ""
+"अपनी आवश्यकताओं के आधार पर संपीड़न स्तर चुनें। उच्च संपीड़न फ़ाइल आकार को अधिक कम करता है "
+"लेकिन अधिक समय लेता है।"
+
+#, fuzzy
+#| msgid "Click the crop button to process your file"
+msgid "Click the compress button to reduce the size of your PDF file"
+msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your converted file using the download button"
+msgid "Download your compressed PDF file using the download button"
+msgstr "डाउनलोड बटन का उपयोग करके अपनी परिवर्तित फ़ाइल डाउनलोड करें"
+
+msgid ""
+"PDF files with up to 50 pages are supported for compression. For larger "
+"files, please split them into smaller parts. Higher compression reduces file "
+"size more but may slightly reduce image quality."
+msgstr ""
+
+msgid ""
+"Perfect for: compressing PDF files to reduce size, reducing PDF file size "
+"for email, compressing large PDF documents, reducing PDF file size for web "
+"upload, compressing PDF files for storage, reducing PDF file size for "
+"sharing, compressing scanned PDF documents, reducing PDF file size for "
+"mobile devices, compressing PDF files for faster download, reducing PDF file "
+"size for cloud storage, compressing PDF files for archiving, reducing PDF "
+"file size for printing, compressing PDF files for presentations, reducing "
+"PDF file size for reports, compressing PDF files for business documents."
+msgstr ""
 
 msgid "Contact Us - Convertica"
 msgstr "हमसे संपर्क करें - Convertica"
@@ -791,6 +1043,13 @@ msgstr "सुझाव:"
 msgid "A crop area covering most of the page is selected by default"
 msgstr "डिफ़ॉल्ट रूप से पृष्ठ के अधिकांश भाग को कवर करने वाला क्रॉप क्षेत्र चुना जाता है"
 
+#, fuzzy
+#| msgid "A crop area covering most of the page is selected by default"
+msgid ""
+"A crop area covering most of the page is selected by default - adjust it as "
+"needed"
+msgstr "डिफ़ॉल्ट रूप से पृष्ठ के अधिकांश भाग को कवर करने वाला क्रॉप क्षेत्र चुना जाता है"
+
 msgid "Click and drag inside the blue box to move it anywhere on the page"
 msgstr "पृष्ठ पर कहीं भी ले जाने के लिए नीले बॉक्स के अंदर क्लिक करें और खींचें"
 
@@ -806,24 +1065,53 @@ msgstr "चयन बॉक्स पर होवर करने पर कर
 msgid "When 'all' is selected, crop applies to all pages"
 msgstr "जब 'सभी' चुना जाता है, तो क्रॉप सभी पृष्ठों पर लागू होता है"
 
+#, fuzzy
+#| msgid ""
+#| "The PDF will be displayed - click and drag to select the area you want to "
+#| "keep"
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
-"keep"
+"keep when cropping PDF"
 msgstr ""
 "PDF प्रदर्शित किया जाएगा - जिस क्षेत्र को आप रखना चाहते हैं उसे चुनने के लिए क्लिक करें और "
 "खींचें"
 
-msgid "Resize the selection by dragging the corners or edges"
+#, fuzzy
+#| msgid "Resize the selection by dragging the corners or edges"
+msgid ""
+"Resize the selection by dragging the corners or edges to adjust the crop area"
 msgstr "कोनों या किनारों को खींचकर चयन का आकार बदलें"
 
-msgid "Choose which pages to apply the crop to"
+#, fuzzy
+#| msgid "Choose which pages to apply the crop to"
+msgid ""
+"Choose which pages to apply the crop to (all pages, current page, or custom "
+"pages)"
 msgstr "चुनें कि क्रॉप किन पृष्ठों पर लागू करना है"
 
-msgid "Click the crop button to process your file"
+#, fuzzy
+#| msgid "Click the crop button to process your file"
+msgid "Click the crop button to process your PDF and crop the selected area"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
 
-msgid "Download your cropped PDF file"
-msgstr "अपनी क्रॉप की गई PDF फ़ाइल डाउनलोड करें"
+#, fuzzy
+#| msgid "Download your converted file using the download button"
+msgid "Download your cropped PDF file using the download button"
+msgstr "डाउनलोड बटन का उपयोग करके अपनी परिवर्तित फ़ाइल डाउनलोड करें"
+
+msgid ""
+"PDF files with up to 50 pages are supported for cropping. For larger files, "
+"please split them into smaller parts. The crop area you select will be "
+"applied to all selected pages."
+msgstr ""
+
+msgid ""
+"Perfect for: cropping PDF pages to remove margins, cropping PDF documents to "
+"specific dimensions, removing white space from PDF files, cropping scanned "
+"documents, cropping PDF pages for printing, cropping PDF forms to fit, "
+"cropping PDF images to size, cropping PDF pages for web use, cropping PDF "
+"pages for mobile viewing, cropping PDF pages for presentations."
+msgstr ""
 
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
@@ -872,6 +1160,11 @@ msgid "Download your edited file using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
 
 msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts."
+msgstr ""
+
+msgid ""
 "Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
 "\"Current page only\\\""
 msgstr ""
@@ -890,6 +1183,42 @@ msgid ""
 msgstr ""
 "निकालने के लिए पृष्ठ संख्याएं दर्ज करें। अल्पविराम से अलग संख्याएं (1,3,5) या श्रेणियाँ (1-5) "
 "का उपयोग करें"
+
+msgid ""
+"Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 "
+"to extract pages from PDF)"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the convert button to combine all images into one PDF"
+msgid ""
+"Click the extract button to process your PDF and extract the selected pages "
+"into a new PDF file"
+msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid ""
+"Download your extracted PDF file containing only the selected pages using "
+"the download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid ""
+"PDF files with up to 50 pages are supported for extracting pages. For larger "
+"files, please split them into smaller parts. The extracted pages will be "
+"combined into a single new PDF file."
+msgstr ""
+
+msgid ""
+"Perfect for: extracting specific pages from PDF documents, extracting pages "
+"from PDF files, pulling pages from PDF documents, extracting selected pages "
+"from PDF files, getting specific pages from PDF documents, extracting page "
+"ranges from PDF files, pulling out pages from PDF documents, extracting "
+"pages from large PDF files, getting pages from PDF documents, extracting "
+"pages from scanned PDF files, pulling specific pages from PDF documents, "
+"extracting pages from PDF reports, getting pages from PDF contracts, "
+"extracting pages from PDF invoices, pulling pages from PDF legal documents."
+msgstr ""
 
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr "Convertica PDF उपकरणों के बारे में सामान्य प्रश्नों के उत्तर खोजें"
@@ -1316,9 +1645,6 @@ msgstr "रद्द करें"
 msgid "About"
 msgstr "हमारे बारे में"
 
-msgid "FAQ"
-msgstr "अक्सर पूछे जाने वाले प्रश्न"
-
 msgid "Tools"
 msgstr "उपकरण"
 
@@ -1333,6 +1659,11 @@ msgstr "संपर्क फ़ॉर्म"
 
 msgid "Language"
 msgstr "भाषा"
+
+#, fuzzy
+#| msgid "Select Page"
+msgid "Select language"
+msgstr "पृष्ठ चुनें"
 
 msgid "Resources"
 msgstr "संसाधन"
@@ -1352,9 +1683,6 @@ msgstr "Convertica - होम"
 msgid "Convertica Logo"
 msgstr "Convertica लोगो"
 
-msgid "Convertica"
-msgstr "Convertica"
-
 msgid "All PDF tools"
 msgstr "सभी PDF उपकरण"
 
@@ -1369,18 +1697,6 @@ msgstr "PDF से कन्वर्ट करें"
 
 msgid "Convert to PDF"
 msgstr "PDF में कन्वर्ट करें"
-
-msgid "Convert PDF to Word"
-msgstr "PDF को Word में कन्वर्ट करें"
-
-msgid "Convert PDF to JPG"
-msgstr "PDF को JPG में कन्वर्ट करें"
-
-msgid "Convert PDF to Excel"
-msgstr "PDF को Excel में कन्वर्ट करें"
-
-msgid "Merge PDFs"
-msgstr "PDF मर्ज करें"
 
 msgid "Edit PDF tools"
 msgstr "PDF संपादन उपकरण"
@@ -1468,9 +1784,6 @@ msgstr "नवीनतम गाइड और युक्तियाँ"
 msgid "Learn how to get the most out of PDF tools with our expert guides"
 msgstr "हमारे विशेषज्ञ गाइड के साथ PDF उपकरणों का अधिकतम लाभ कैसे उठाएं, जानें"
 
-msgid "Read more"
-msgstr "अधिक पढ़ें"
-
 msgid "View All Articles"
 msgstr "सभी लेख देखें"
 
@@ -1517,6 +1830,23 @@ msgstr "सभी छवियों को एक PDF में संयोज
 
 msgid "Download your converted PDF file"
 msgstr "अपनी कन्वर्ट की गई PDF फ़ाइल डाउनलोड करें"
+
+msgid ""
+"You can convert multiple images (JPG, PNG, etc.) into a single PDF file. "
+"Supported formats include JPG, PNG, GIF, and BMP. The images will be "
+"combined in the order you select them."
+msgstr ""
+
+msgid ""
+"Perfect for: converting photos to PDF for printing, creating PDF files from "
+"scanned documents, combining multiple images into one PDF, converting "
+"screenshots to PDF, creating PDF files from mobile photos, converting "
+"receipts to PDF format, creating PDF files from artwork scans, converting "
+"passport photos to PDF, creating PDF files from homework photos, converting "
+"ID photos to PDF, creating PDF files from medical records, converting "
+"drawings to PDF format, creating PDF files from handwritten notes, "
+"converting certificates to PDF, creating PDF files from diplomas."
+msgstr ""
 
 msgid "Converting your images..."
 msgstr "आपकी छवियाँ रूपांतरित हो रही हैं..."
@@ -1571,6 +1901,42 @@ msgstr "PDF मर्ज हो रहे हैं..."
 msgid "Please select at least 2 PDF files to merge."
 msgstr "कृपया मर्ज करने के लिए PDF फ़ाइलें चुनें।"
 
+#, fuzzy
+#| msgid "Select your PDF file using the button above"
+msgid "Select 2-10 PDF files to merge using the button above"
+msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें"
+
+msgid "Preview all PDF files and drag them to reorder the merge order"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the convert button to combine all images into one PDF"
+msgid "Click the merge button to combine all PDF files into one document"
+msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your converted file using the download button"
+msgid ""
+"Download your merged PDF file containing all pages from all selected files "
+"using the download button"
+msgstr "डाउनलोड बटन का उपयोग करके अपनी परिवर्तित फ़ाइल डाउनलोड करें"
+
+msgid ""
+"You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
+"from all selected files in the order you specified."
+msgstr ""
+
+msgid ""
+"Perfect for: merging multiple PDF files into one, combining PDF documents, "
+"joining PDF files together, merging PDF files for sharing, combining PDF "
+"documents into single file, joining multiple PDF files, merging PDF files "
+"for printing, combining PDF reports into one document, joining PDF files for "
+"archiving, merging PDF files for presentations, combining PDF invoices into "
+"one file, joining PDF contracts into single document, merging PDF files for "
+"business, combining PDF academic papers, joining PDF files for legal "
+"documents."
+msgstr ""
+
 msgid "Organization Settings"
 msgstr "संगठन सेटिंग्स"
 
@@ -1601,6 +1967,184 @@ msgstr "व्यवस्थित हो रहा है..."
 
 msgid "Failed to organize PDF"
 msgstr "PDF व्यवस्थित करने में विफल"
+
+#, fuzzy
+#| msgid "Reorder and organize pages in your PDF document."
+msgid "Preview all pages and drag them to reorder pages in your PDF document"
+msgstr "अपने PDF दस्तावेज़ में पेजों को पुन: व्यवस्थित और व्यवस्थित करें।"
+
+msgid "Choose operation: reorder pages manually or sort pages automatically"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the crop button to process your file"
+msgid "Click the organize button to process your PDF and reorganize the pages"
+msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid ""
+"Download your reorganized PDF file with pages in the new order using the "
+"download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid ""
+"PDF files with up to 50 pages are supported for organizing. For larger "
+"files, please split them into smaller parts. You can drag and drop pages to "
+"reorder them visually."
+msgstr ""
+
+msgid ""
+"Perfect for: reordering PDF pages, reorganizing PDF documents, rearranging "
+"PDF pages, sorting PDF pages, changing PDF page order, reorganizing PDF "
+"files, reordering pages in PDF documents, rearranging pages in PDF files, "
+"sorting pages in PDF documents, changing order of PDF pages, reorganizing "
+"PDF reports, reordering PDF chapters, rearranging PDF sections, sorting PDF "
+"documents, changing PDF page sequence."
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the convert button to combine all images into one PDF"
+msgid ""
+"Click the convert button to start converting PDF to Excel (PDF to XLSX "
+"conversion)"
+msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
+
+msgid ""
+"Wait for the PDF to Excel conversion to complete - tables and data will be "
+"extracted from your PDF and converted to editable Excel format"
+msgstr ""
+
+msgid ""
+"Download your editable Excel file (XLSX format) - your PDF tables have been "
+"successfully converted to Excel"
+msgstr ""
+
+msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. PDF files with tables work best - plain text will "
+"be placed in separate cells, and images will be embedded in the Excel file."
+msgstr ""
+
+msgid ""
+"Perfect for: converting PDF tables to Excel, extracting data from PDF "
+"invoices, converting PDF reports to Excel format, extracting tables from PDF "
+"documents, converting PDF spreadsheets to Excel, extracting data from PDF "
+"forms, converting PDF financial reports to Excel, extracting tables from PDF "
+"contracts, converting PDF data tables to Excel, extracting information from "
+"PDF invoices, converting PDF accounting documents to Excel, extracting data "
+"from PDF statements, converting PDF tables for data analysis, extracting "
+"tables from PDF presentations, converting PDF business reports to Excel, "
+"extracting data from PDF catalogs, converting PDF price lists to Excel, "
+"extracting tables from PDF manuals, converting PDF survey results to Excel, "
+"extracting data from PDF research papers, converting PDF statistical data to "
+"Excel, extracting tables from PDF legal documents, converting PDF inventory "
+"lists to Excel, extracting data from PDF receipts, converting PDF expense "
+"reports to Excel."
+msgstr ""
+
+#, fuzzy
+#| msgid "Page selection"
+msgid "Page Selection"
+msgstr "पृष्ठ चयन"
+
+#, fuzzy
+#| msgid "Pages to Remove"
+msgid "Pages to Convert"
+msgstr "हटाने के लिए पृष्ठ"
+
+msgid "Image Quality (DPI)"
+msgstr ""
+
+msgid "Smaller file size"
+msgstr ""
+
+msgid "High quality (recommended)"
+msgstr ""
+
+msgid "Very high quality"
+msgstr ""
+
+msgid "Maximum quality"
+msgstr ""
+
+msgid ""
+"Higher DPI = better quality but larger file size. 300 DPI is recommended for "
+"most uses."
+msgstr ""
+
+msgid ""
+"Choose which pages to convert from PDF to JPG: all pages or specific pages "
+"(e.g., 1,3,5 or 1-5)"
+msgstr ""
+
+msgid ""
+"Select DPI quality for PDF to JPG conversion (300 DPI recommended for high "
+"quality, 72 DPI for smaller file size)"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the convert button to combine all images into one PDF"
+msgid "Click the convert button to start the PDF to JPG conversion process"
+msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
+
+msgid ""
+"Wait for the PDF to JPG conversion to complete - all selected pages will be "
+"converted to JPG images"
+msgstr ""
+
+msgid ""
+"Download the ZIP archive containing all converted JPG images from your PDF"
+msgstr ""
+
+msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. The output will be a ZIP archive containing all "
+"converted JPG images, named with page numbers (e.g., filename_page0001.jpg, "
+"filename_page0002.jpg)."
+msgstr ""
+
+msgid ""
+"Perfect for: extracting images from PDF documents, converting PDF pages for "
+"web use, creating thumbnails from PDF files, batch converting PDF pages to "
+"images, extracting scanned document pages as images, converting PDF "
+"presentations to image slides, extracting PDF diagrams as standalone images."
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the convert button to combine all images into one PDF"
+msgid ""
+"Click the convert button to start converting PDF to Word (PDF to DOCX "
+"conversion)"
+msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
+
+msgid ""
+"Wait for the PDF to Word conversion to complete - text and formatting will "
+"be extracted from your PDF and converted to editable Word format"
+msgstr ""
+
+msgid ""
+"Download your editable Word document (DOCX format) - your PDF has been "
+"successfully converted to Word"
+msgstr ""
+
+msgid ""
+"PDF files with up to 50 pages are supported. For larger files, please split "
+"them into smaller parts. Text-based PDFs work best - scanned PDFs (image-"
+"only) cannot be converted to editable Word format."
+msgstr ""
+
+msgid ""
+"Perfect for: converting PDF to Word (PDF в Word), конвертировать PDF в Word, "
+"PDF to DOCX conversion, extracting text from PDF files, editing PDF content "
+"in Microsoft Word, converting PDF resumes to Word format, converting PDF "
+"academic papers to editable documents, converting PDF invoices to Word "
+"templates, converting PDF forms to fillable Word documents, converting PDF "
+"reports to editable Word format, extracting PDF tables to Word, converting "
+"PDF articles to Word documents, converting PDF contracts to editable Word "
+"files, converting PDF presentations to Word format, converting PDF manuals "
+"to editable Word documents, converting PDF books to Word format for editing."
+msgstr ""
 
 msgid "Privacy Policy - Convertica"
 msgstr "गोपनीयता नीति - Convertica"
@@ -1881,11 +2425,76 @@ msgstr ""
 "वैकल्पिक: मालिक के लिए एक अलग पासवर्ड सेट करें। यदि प्रदान नहीं किया गया है, तो मुख्य "
 "पासवर्ड का उपयोग किया जाएगा।"
 
+msgid ""
+"Enter a password to protect your PDF file (required) and optionally set user/"
+"owner passwords"
+msgstr ""
+
+msgid "Click the protect button to encrypt your PDF with password protection"
+msgstr ""
+
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid "Download your password-protected PDF file using the download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid ""
+"PDF files with up to 50 pages are supported for password protection. For "
+"larger files, please split them into smaller parts. The password will be "
+"required to open, view, print, or edit the PDF."
+msgstr ""
+
+msgid ""
+"Perfect for: protecting PDF files with passwords, securing PDF documents "
+"with encryption, password protecting sensitive PDF files, securing "
+"confidential PDF documents, protecting PDF files from unauthorized access, "
+"encrypting PDF files for security, password protecting PDF contracts, "
+"securing PDF invoices with passwords, protecting PDF legal documents, "
+"securing PDF financial documents, password protecting PDF medical records, "
+"securing PDF personal documents, protecting PDF business files, securing PDF "
+"academic papers, password protecting PDF reports."
+msgstr ""
+
 msgid "Remove Pages Settings"
 msgstr "पृष्ठ हटाने की सेटिंग्स"
 
 msgid "Pages to Remove"
 msgstr "हटाने के लिए पृष्ठ"
+
+msgid ""
+"Choose which pages to remove from your PDF: all pages, current page only, or "
+"specific pages (e.g., 1,3,5 or 1-5)"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the crop button to process your file"
+msgid ""
+"Click the remove pages button to process your PDF and delete the selected "
+"pages"
+msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid "Download your PDF file with pages removed using the download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid ""
+"PDF files with up to 50 pages are supported for removing pages. For larger "
+"files, please split them into smaller parts. The remaining pages will be "
+"preserved in their original order."
+msgstr ""
+
+msgid ""
+"Perfect for: removing unwanted pages from PDF documents, deleting blank "
+"pages from PDF files, removing cover pages from PDF documents, removing "
+"table of contents pages from PDF files, removing appendix pages from PDF "
+"documents, deleting specific pages from PDF files, removing duplicate pages "
+"from PDF documents, removing watermark pages from PDF files, deleting page "
+"ranges from PDF documents, removing unwanted sections from PDF files, "
+"cleaning up PDF documents by removing pages, removing unnecessary pages from "
+"PDF files, deleting pages from scanned PDF documents, removing pages from "
+"merged PDF files, removing pages from PDF reports."
+msgstr ""
 
 msgid "Rotation Settings"
 msgstr "घुमाव सेटिंग्स"
@@ -1904,6 +2513,41 @@ msgstr "(वामावर्त)"
 
 msgid "Pages to Rotate"
 msgstr "घुमाने के लिए पृष्ठ"
+
+msgid "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
+msgstr ""
+
+msgid ""
+"Select which pages to rotate: all pages, current page only, or specific pages"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the crop button to process your file"
+msgid ""
+"Click the rotate button to process your PDF and rotate the selected pages"
+msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid "Download your rotated PDF file using the download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid ""
+"PDF files with up to 50 pages are supported for rotating. For larger files, "
+"please split them into smaller parts. The rotation preserves all content and "
+"formatting."
+msgstr ""
+
+msgid ""
+"Perfect for: rotating PDF pages that are upside down, rotating scanned PDF "
+"documents, rotating PDF pages for correct orientation, rotating PDF pages "
+"clockwise or counterclockwise, fixing PDF page orientation, rotating PDF "
+"pages for printing, rotating PDF pages for viewing, rotating PDF pages for "
+"mobile devices, rotating PDF pages for tablets, rotating PDF pages for e-"
+"readers, rotating PDF pages for presentations, rotating PDF pages for "
+"reports, rotating PDF pages for legal documents, rotating PDF pages for "
+"academic papers, rotating PDF pages for business documents."
+msgstr ""
 
 msgid "Split Settings"
 msgstr "विभाजन सेटिंग्स"
@@ -1926,6 +2570,13 @@ msgstr "पृष्ठ"
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr "पृष्ठ संख्याएं दर्ज करें जैसे '1,3,5' या सभी पृष्ठों के लिए खाली छोड़ें"
 
+#, fuzzy
+#| msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
+msgid ""
+"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
+"pages"
+msgstr "पृष्ठ संख्याएं दर्ज करें जैसे '1,3,5' या सभी पृष्ठों के लिए खाली छोड़ें"
+
 msgid "Page Ranges"
 msgstr "पृष्ठ श्रेणियाँ"
 
@@ -1938,17 +2589,49 @@ msgstr "प्रति फ़ाइल पृष्ठ"
 msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
 msgstr "प्रति फ़ाइल पृष्ठों की संख्या दर्ज करें (उदा., प्रत्येक 5 पृष्ठों के लिए 5)"
 
+msgid ""
+"Choose how to split your PDF: by individual pages, by page ranges, or every "
+"N pages"
+msgstr ""
+
+msgid ""
+"Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for "
+"splitting PDF into separate files)"
+msgstr ""
+
+#, fuzzy
+#| msgid "Click the edit button to process your file"
+msgid ""
+"Click the split button to process your PDF and create separate PDF files"
+msgstr "अपनी फ़ाइल को प्रसंस्कृत करने के लिए संपादन बटन पर क्लिक करें"
+
+#, fuzzy
+#| msgid "Download your converted file using the download button"
+msgid ""
+"Download the ZIP archive containing all split PDF files using the download "
+"button"
+msgstr "डाउनलोड बटन का उपयोग करके अपनी परिवर्तित फ़ाइल डाउनलोड करें"
+
+msgid ""
+"The output will be a ZIP archive containing all split PDF files. You can "
+"split your PDF by individual pages, by page ranges, or every N pages."
+msgstr ""
+
+msgid ""
+"Perfect for: splitting PDF files into separate documents, dividing PDF "
+"documents into multiple files, splitting PDF by pages, breaking PDF into "
+"smaller files, splitting PDF by page ranges, dividing large PDF files, "
+"splitting PDF for easier sharing, breaking PDF into chapters, splitting PDF "
+"for email attachments, dividing PDF documents for storage, splitting PDF for "
+"mobile viewing, breaking PDF into sections, splitting PDF for presentations, "
+"dividing PDF files for printing, splitting PDF for archiving."
+msgstr ""
+
 msgid "Terms of Service - Convertica"
 msgstr "सेवा की शर्तें - Convertica"
 
-msgid ""
-"Welcome to Convertica. These Terms of Service (\"Terms\") govern your access "
-"to and use of our online PDF tools and services (\"Services\"). By accessing "
-"or using our Services, you agree to be bound by these Terms."
+msgid "Welcome to Convertica. These Terms of Service (\\"
 msgstr ""
-"Convertica में आपका स्वागत है। ये सेवा की शर्तें (\"शर्तें\") हमारे ऑनलाइन PDF उपकरणों और "
-"सेवाओं (\"सेवाएं\") तक आपकी पहुंच और उपयोग को नियंत्रित करती हैं। हमारी सेवाओं तक पहुंचकर "
-"या उनका उपयोग करके, आप इन शर्तों से बाध्य होने के लिए सहमति देते हैं।"
 
 msgid ""
 "If you disagree with any part of these Terms, then you may not access or use "
@@ -2108,13 +2791,8 @@ msgstr ""
 msgid "Disclaimer of Warranties"
 msgstr "वारंटी का अस्वीकरण"
 
-msgid ""
-"Our Services are provided \"as is\" and \"as available\" without warranties "
-"of any kind, either express or implied, including but not limited to:"
+msgid "Our Services are provided \\"
 msgstr ""
-"हमारी सेवाएं \"जैसी हैं\" और \"जैसी उपलब्ध हैं\" के रूप में प्रदान की जाती हैं, बिना किसी "
-"प्रकार की गारंटी के, चाहे वह स्पष्ट हो या निहित, जिसमें शामिल है लेकिन इन्हीं तक सीमित "
-"नहीं:"
 
 msgid "Warranties of merchantability"
 msgstr "व्यापारिकता की वारंटी"
@@ -2264,6 +2942,106 @@ msgstr ""
 "वह पासवर्ड दर्ज करें जो PDF को सुरक्षित करने के लिए उपयोग किया गया था। पासवर्ड आउटपुट "
 "PDF से हटा दिया जाएगा।"
 
+#, fuzzy
+#| msgid "Select your PDF file using the button above or drag and drop it"
+msgid ""
+"Select your password-protected PDF file using the button above or drag and "
+"drop it into the zone below"
+msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें या इसे खींचें और छोड़ें"
+
+#, fuzzy
+#| msgid ""
+#| "Enter the password that was used to protect the PDF. The password will be "
+#| "removed from the output PDF."
+msgid "Enter the password that was used to protect the PDF file"
+msgstr ""
+"वह पासवर्ड दर्ज करें जो PDF को सुरक्षित करने के लिए उपयोग किया गया था। पासवर्ड आउटपुट "
+"PDF से हटा दिया जाएगा।"
+
+#, fuzzy
+#| msgid "Can I remove password protection from a PDF?"
+msgid "Click the unlock button to remove password protection from your PDF"
+msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
+
+#, fuzzy
+#| msgid "Download your edited file using the download button"
+msgid ""
+"Download your unlocked PDF file (without password) using the download button"
+msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
+
+msgid ""
+"PDF files with up to 50 pages are supported for unlocking. For larger files, "
+"please split them into smaller parts. You must know the correct password to "
+"unlock the PDF."
+msgstr ""
+
+msgid ""
+"Perfect for: removing passwords from PDF files, unlocking password-protected "
+"PDF documents, removing PDF password protection, unlocking encrypted PDF "
+"files, removing security from PDF documents, unlocking PDF files for "
+"editing, removing password from PDF contracts, unlocking PDF invoices, "
+"removing password from PDF legal documents, unlocking PDF financial "
+"documents, removing password from PDF medical records, unlocking PDF "
+"personal documents, removing password from PDF business files, unlocking PDF "
+"academic papers, removing password from PDF reports."
+msgstr ""
+
+#, fuzzy
+#| msgid "Select your PDF file using the button above or drag and drop it"
+msgid ""
+"Select your Word document (DOC or DOCX) using the button above or drag and "
+"drop it into the zone below"
+msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें या इसे खींचें और छोड़ें"
+
+#, fuzzy
+#| msgid "Click the convert button to combine all images into one PDF"
+msgid ""
+"Click the convert button to start converting Word to PDF (DOCX to PDF "
+"conversion)"
+msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
+
+msgid ""
+"Wait for the Word to PDF conversion to complete - formatting and layout will "
+"be preserved when converting from Word to PDF"
+msgstr ""
+
+msgid ""
+"Download your PDF file - your Word document has been successfully converted "
+"to PDF format"
+msgstr ""
+
+msgid ""
+"Word documents with up to 50 pages are supported. For larger files, please "
+"split them into smaller parts. The conversion preserves formatting, fonts, "
+"images, and page layout."
+msgstr ""
+
+msgid ""
+"Perfect for: converting Word documents to PDF for sharing, creating PDF "
+"files from Word resumes, converting Word reports to PDF format, converting "
+"Word invoices to PDF, converting Word contracts to PDF, converting Word "
+"academic papers to PDF, converting Word presentations to PDF, converting "
+"Word forms to PDF, converting Word manuals to PDF, converting Word books to "
+"PDF format, creating PDF files from Word templates, converting Word "
+"documents for printing, converting Word files for email attachments, "
+"converting Word documents for archiving, converting Word files to PDF for "
+"legal documents."
+msgstr ""
+
+#, fuzzy
+#| msgid "Passwords don't match"
+msgid "Password cannot be empty"
+msgstr "पासवर्ड मेल नहीं खाते"
+
+#, fuzzy
+#| msgid "This PDF requires a password to open."
+msgid ""
+"PDF is not password-protected. This PDF does not require a password to open."
+msgstr "इस PDF को खोलने के लिए पासवर्ड की आवश्यकता है।"
+
+msgid "Incorrect password. Please check the password and try again."
+msgstr ""
+
 msgid "Basic Information"
 msgstr "मूल जानकारी"
 
@@ -2318,9 +3096,6 @@ msgstr "आँकड़े"
 
 msgid "No image"
 msgstr "कोई छवि नहीं"
-
-msgid "Preview"
-msgstr "पूर्वावलोकन"
 
 msgid "Name (English)"
 msgstr "नाम (अंग्रेज़ी)"
@@ -2554,13 +3329,6 @@ msgstr ""
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr "Convertica से संपर्क करें, सहायता, ग्राहक सेवा, मदद, प्रतिक्रिया"
 
-msgid ""
-"Sorry, there was an error sending your message. Please try again later or "
-"contact us directly at info@convertica.net"
-msgstr ""
-"क्षमा करें, आपका संदेश भेजने में त्रुटि हुई। कृपया बाद में पुनः प्रयास करें या सीधे "
-"info@convertica.net पर हमसे संपर्क करें"
-
 msgid "Please correct the errors in the form below."
 msgstr "कृपया नीचे दिए गए फॉर्म में त्रुटियों को सही करें।"
 
@@ -2598,679 +3366,16 @@ msgstr ""
 "पीडीएफ कन्वर्टर फास्ट, पीडीएफ कन्वर्टर सेफ, पीडीएफ कन्वर्टर फ्री, पीडीएफ टूल्स हेल्प, "
 "पीडीएफ रूपांतरण प्रश्न, पीडीएफ संपादन प्रश्न, पीडीएफ संगठन प्रश्न, पीडीएफ सुरक्षा प्रश्न"
 
-msgid "PDF to Word - Convertica"
-msgstr "PDF से Word - Convertica"
-
-msgid "Word to PDF - Convertica"
-msgstr "Word से PDF - Convertica"
-
-msgid "PDF to JPG - Convertica"
-msgstr "PDF से JPG - Convertica"
-
-msgid "JPG to PDF - Convertica"
-msgstr "JPG से PDF - Convertica"
-
-msgid "Rotate PDF - Convertica"
-msgstr "PDF घुमाएं - Convertica"
-
-msgid "Add Page Numbers to PDF - Convertica"
-msgstr "PDF में पेज नंबर जोड़ें - Convertica"
-
-msgid "Add Watermark to PDF - Convertica"
-msgstr "PDF में वॉटरमार्क जोड़ें - Convertica"
-
-msgid "Crop PDF - Convertica"
-msgstr "PDF क्रॉप करें - Convertica"
-
-msgid "Merge PDF - Convertica"
-msgstr "PDF मर्ज करें - Convertica"
-
-msgid "Split PDF - Convertica"
-msgstr "PDF विभाजित करें - Convertica"
-
-msgid "Remove Pages from PDF - Convertica"
-msgstr "PDF से पेज हटाएं - Convertica"
-
-msgid "Extract Pages from PDF - Convertica"
-msgstr "PDF से पेज निकालें - Convertica"
-
-msgid "Organize PDF - Convertica"
-msgstr "PDF व्यवस्थित करें - Convertica"
-
-msgid "PDF to Excel - Convertica"
-msgstr "PDF से Excel - Convertica"
-
-msgid "Compress PDF - Convertica"
-msgstr "PDF संपीड़ित करें - Convertica"
-
-msgid "Protect PDF with Password - Convertica"
-msgstr "पासवर्ड से PDF सुरक्षित करें - Convertica"
-
-msgid "Unlock PDF - Remove Password - Convertica"
-msgstr "PDF अनलॉक करें - पासवर्ड हटाएं - Convertica"
-
-msgid "PDF to Word Converter"
-msgstr "PDF से Word कन्वर्टर"
-
-msgid "Word to PDF Converter"
-msgstr "Word से PDF कन्वर्टर"
-
-msgid "PDF to JPG Converter"
-msgstr "PDF से JPG कन्वर्टर"
-
-msgid "JPG to PDF Converter"
-msgstr "JPG से PDF कन्वर्टर"
-
-msgid "PDF to Excel Converter"
-msgstr "PDF से Excel कन्वर्टर"
-
-msgid "Convert your PDF documents to editable Word format in seconds"
-msgstr "अपने PDF दस्तावेज़ों को सेकंडों में संपादन योग्य Word प्रारूप में कनवर्ट करें"
-
-msgid "Rotate your PDF pages in seconds"
-msgstr "सेकंडों में अपने PDF पृष्ठों को घुमाएं"
-
-msgid "Organize and manage your PDF documents"
-msgstr "अपने PDF दस्तावेज़ों को व्यवस्थित और प्रबंधित करें"
-
-msgid "Compress PDF files to reduce size while maintaining quality."
-msgstr "गुणवत्ता बनाए रखते हुए आकार कम करने के लिए PDF फ़ाइलों को संपीड़ित करें।"
-
-# NOTE: Here were the missing 400+ lines that got cut off
-# These include all the template-specific strings for each PDF tool page
-msgid "PDF to Word - Convert PDF to DOCX online for free"
-msgstr "PDF से Word - मुफ्त में ऑनलाइन PDF को DOCX में कन्वर्ट करें"
-
-msgid "Word to PDF - Convert DOC/DOCX to PDF online for free"
-msgstr "Word से PDF - मुफ्त में ऑनलाइन DOC/DOCX को PDF में कन्वर्ट करें"
-
-msgid "PDF to JPG - Convert PDF pages to JPG images online"
-msgstr "PDF से JPG - PDF पृष्ठों को JPG छवियों में ऑनलाइन कन्वर्ट करें"
-
-msgid "JPG to PDF - Convert images to PDF online for free"
-msgstr "JPG से PDF - मुफ्त में ऑनलाइन छवियों को PDF में कन्वर्ट करें"
-
-msgid "Rotate PDF - Rotate PDF pages 90, 180, or 270 degrees"
-msgstr "PDF घुमाएं - PDF पृष्ठों को 90, 180, या 270 डिग्री घुमाएं"
-
-msgid "Add Page Numbers - Insert page numbers into PDF documents"
-msgstr "पेज नंबर जोड़ें - PDF दस्तावेज़ों में पेज नंबर डालें"
-
-msgid "Add Watermark - Add text or image watermark to PDF"
-msgstr "वॉटरमार्क जोड़ें - PDF में टेक्स्ट या छवि वॉटरमार्क जोड़ें"
-
-msgid "Crop PDF - Crop PDF pages to remove margins or unwanted areas"
-msgstr "PDF क्रॉप करें - हाशिये या अवांछित क्षेत्रों को हटाने के लिए PDF पृष्ठों को क्रॉप करें"
-
-msgid "Merge PDF - Combine multiple PDF files into one document"
-msgstr "PDF मर्ज करें - कई PDF फ़ाइलों को एक दस्तावेज़ में संयोजित करें"
-
-msgid "Split PDF - Split PDF into multiple files by pages or ranges"
-msgstr "PDF विभाजित करें - PDF को पृष्ठों या श्रेणियों द्वारा कई फ़ाइलों में विभाजित करें"
-
-msgid "Remove Pages - Delete unwanted pages from PDF documents"
-msgstr "पेज हटाएं - PDF दस्तावेज़ों से अवांछित पेज हटाएं"
-
-msgid "Extract Pages - Extract specific pages from PDF into new file"
-msgstr "पेज निकालें - PDF से विशिष्ट पृष्ठों को नई फ़ाइल में निकालें"
-
-msgid "Organize PDF - Reorder and organize pages in PDF documents"
-msgstr "PDF व्यवस्थित करें - PDF दस्तावेज़ों में पृष्ठों को पुनर्व्यवस्थित और व्यवस्थित करें"
-
-msgid "PDF to Excel - Extract tables from PDF to Excel format"
-msgstr "PDF से Excel - PDF से तालिकाओं को Excel प्रारूप में निकालें"
-
-msgid "Compress PDF - Reduce PDF file size without losing quality"
-msgstr "PDF संपीड़ित करें - गुणवत्ता खोए बिना PDF फ़ाइल आकार कम करें"
-
-msgid "Protect PDF - Add password protection to secure PDF documents"
-msgstr "PDF सुरक्षित करें - PDF दस्तावेज़ों को सुरक्षित करने के लिए पासवर्ड सुरक्षा जोड़ें"
-
-msgid "Unlock PDF - Remove password protection from PDF files"
-msgstr "PDF अनलॉक करें - PDF फ़ाइलों से पासवर्ड सुरक्षा हटाएं"
-
-msgid "Select your PDF file"
-msgstr "अपनी PDF फ़ाइल चुनें"
-
-msgid "Select your Word document"
-msgstr "अपना Word दस्तावेज़ चुनें"
-
-msgid "Select your JPG/JPEG images"
-msgstr "अपनी JPG/JPEG छवियाँ चुनें"
-
-msgid "Select your Excel file"
-msgstr "अपनी Excel फ़ाइल चुनें"
-
-msgid "Select protected PDF file"
-msgstr "सुरक्षित PDF फ़ाइल चुनें"
-
-msgid "Choose rotation angle"
-msgstr "घुमाव कोण चुनें"
-
-msgid "Choose pages to rotate"
-msgstr "घुमाने के लिए पृष्ठ चुनें"
-
-msgid "Choose pages to remove"
-msgstr "हटाने के लिए पृष्ठ चुनें"
-
-msgid "Choose pages to extract"
-msgstr "निकालने के लिए पृष्ठ चुनें"
-
-msgid "Drag to reorder pages"
-msgstr "पृष्ठों को पुनर्व्यवस्थित करने के लिए खींचें"
-
-msgid "Choose split method"
-msgstr "विभाजन विधि चुनें"
-
-msgid "Enter pages to split"
-msgstr "विभाजित करने के लिए पृष्ठ दर्ज करें"
-
-msgid "Enter password"
-msgstr "पासवर्ड दर्ज करें"
-
-msgid "Enter PDF password"
-msgstr "PDF पासवर्ड दर्ज करें"
-
-msgid "Choose compression level"
-msgstr "संपीड़न स्तर चुनें"
-
-msgid "Page selection"
-msgstr "पृष्ठ चयन"
-
-msgid "All pages selected"
-msgstr "सभी पृष्ठ चयनित"
-
-msgid "Current page selected"
-msgstr "वर्तमान पृष्ठ चयनित"
-
-msgid "Custom pages selected"
-msgstr "कस्टम पृष्ठ चयनित"
-
-msgid "Starting conversion..."
-msgstr "रूपांतरण शुरू हो रहा है..."
-
-msgid "Processing pages..."
-msgstr "पृष्ठ प्रोसेस हो रहे हैं..."
-
-msgid "Adding watermark..."
-msgstr "वॉटरमार्क जोड़ा जा रहा है..."
-
-msgid "Cropping PDF..."
-msgstr "PDF क्रॉप किया जा रहा है..."
-
-msgid "Merging files..."
-msgstr "फ़ाइलें मर्ज की जा रही हैं..."
-
-msgid "Splitting PDF..."
-msgstr "PDF विभाजित किया जा रहा है..."
-
-msgid "Removing pages..."
-msgstr "पृष्ठ हटाए जा रहे हैं..."
-
-msgid "Extracting pages..."
-msgstr "पृष्ठ निकाले जा रहे हैं..."
-
-msgid "Organizing pages..."
-msgstr "पृष्ठ व्यवस्थित किए जा रहे हैं..."
-
-msgid "Compressing PDF..."
-msgstr "PDF संपीड़ित किया जा रहा है..."
-
-msgid "Protecting PDF..."
-msgstr "PDF सुरक्षित किया जा रहा है..."
-
-msgid "Unlocking PDF..."
-msgstr "PDF अनलॉक किया जा रहा है..."
-
-msgid "Success!"
-msgstr "सफलता!"
-
-msgid "Your file has been converted successfully."
-msgstr "आपकी फ़ाइल सफलतापूर्वक कन्वर्ट हो गई है।"
-
-msgid "Watermark added successfully."
-msgstr "वॉटरमार्क सफलतापूर्वक जोड़ा गया।"
-
-msgid "PDF cropped successfully."
-msgstr "PDF सफलतापूर्वक क्रॉप हो गया।"
-
-msgid "PDF merged successfully."
-msgstr "PDF सफलतापूर्वक मर्ज हो गया।"
-
-msgid "PDF split successfully."
-msgstr "PDF सफलतापूर्वक विभाजित हो गया।"
-
-msgid "Pages removed successfully."
-msgstr "पृष्ठ सफलतापूर्वक हटाए गए।"
-
-msgid "Pages extracted successfully."
-msgstr "पृष्ठ सफलतापूर्वक निकाले गए।"
-
-msgid "PDF organized successfully."
-msgstr "PDF सफलतापूर्वक व्यवस्थित हो गया।"
-
-msgid "PDF compressed successfully."
-msgstr "PDF सफलतापूर्वक संपीड़ित हो गया।"
-
-msgid "PDF protected successfully."
-msgstr "PDF सफलतापूर्वक सुरक्षित हो गया।"
-
-msgid "PDF unlocked successfully."
-msgstr "PDF सफलतापूर्वक अनलॉक हो गया।"
-
-msgid "Download now"
-msgstr "अभी डाउनलोड करें"
-
-msgid "Process another file"
-msgstr "दूसरी फ़ाइल प्रोसेस करें"
-
-msgid "Back to tool"
-msgstr "उपकरण पर वापस जाएं"
-
-msgid "File too large"
-msgstr "फ़ाइल बहुत बड़ी है"
-
-msgid "Please select a file smaller than 50MB."
-msgstr "कृपया 50MB से छोटी फ़ाइल चुनें।"
-
-msgid "Invalid file type"
-msgstr "अमान्य फ़ाइल प्रकार"
-
-msgid "Please select a valid PDF file."
-msgstr "कृपया एक वैध PDF फ़ाइल चुनें।"
-
-msgid "Please select a valid Word document."
-msgstr "कृपया एक वैध Word दस्तावेज़ चुनें।"
-
-msgid "Please select valid JPG/JPEG images."
-msgstr "कृपया वैध JPG/JPEG छवियाँ चुनें।"
-
-msgid "Network error"
-msgstr "नेटवर्क त्रुटि"
-
-msgid "Please check your internet connection and try again."
-msgstr "कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।"
-
-msgid "Server error"
-msgstr "सर्वर त्रुटि"
-
-msgid "Please try again later."
-msgstr "कृपया बाद में पुनः प्रयास करें।"
-
-msgid "Unknown error"
-msgstr "अज्ञात त्रुटि"
-
-msgid "An unexpected error occurred."
-msgstr "एक अप्रत्याशित त्रुटि हुई।"
-
-msgid "Invalid password"
-msgstr "अमान्य पासवर्ड"
-
-msgid "The password you entered is incorrect."
-msgstr "आपके द्वारा दर्ज किया गया पासवर्ड गलत है।"
-
-msgid "No file selected"
-msgstr "कोई फ़ाइल चयनित नहीं"
-
-msgid "Please select a file to process."
-msgstr "कृपया प्रोसेस करने के लिए एक फ़ाइल चुनें।"
-
-msgid "No pages selected"
-msgstr "कोई पृष्ठ चयनित नहीं"
-
-msgid "Please select at least one page."
-msgstr "कृपया कम से कम एक पृष्ठ चुनें।"
-
-msgid "Invalid page range"
-msgstr "अमान्य पृष्ठ श्रेणी"
-
-msgid "Please enter a valid page range."
-msgstr "कृपया एक वैध पृष्ठ श्रेणी दर्ज करें।"
-
-msgid "Too many files"
-msgstr "बहुत अधिक फ़ाइलें"
-
-msgid "Please select no more than 10 files."
-msgstr "कृपया 10 से अधिक फ़ाइलें न चुनें।"
-
-msgid "File corrupted"
-msgstr "फ़ाइल खराब है"
-
-msgid "The selected file appears to be corrupted."
-msgstr "चयनित फ़ाइल खराब प्रतीत होती है।"
-
-msgid "Encrypted PDF"
-msgstr "एन्क्रिप्टेड PDF"
-
-msgid "This PDF is encrypted and cannot be processed."
-msgstr "यह PDF एन्क्रिप्टेड है और प्रोसेस नहीं किया जा सकता।"
-
-msgid "Password required"
-msgstr "पासवर्ड आवश्यक है"
-
-msgid "This PDF requires a password to open."
-msgstr "इस PDF को खोलने के लिए पासवर्ड की आवश्यकता है।"
-
-msgid "Unsupported format"
-msgstr "असमर्थित प्रारूप"
-
-msgid "The selected file format is not supported."
-msgstr "चयनित फ़ाइल प्रारूप समर्थित नहीं है।"
-
-msgid "Image too large"
-msgstr "छवि बहुत बड़ी है"
-
-msgid "Please select images with resolution under 5000x5000 pixels."
-msgstr "कृपया 5000x5000 पिक्सल से कम रिज़ॉल्यूशन वाली छवियाँ चुनें।"
-
-msgid "Too many pages"
-msgstr "बहुत अधिक पृष्ठ"
-
-msgid "Please select a PDF with fewer than 200 pages."
-msgstr "कृपया 200 से कम पृष्ठों वाला PDF चुनें।"
-
-msgid "OCR required"
-msgstr "OCR आवश्यक है"
-
-msgid "This PDF contains scanned images and requires OCR processing."
-msgstr "इस PDF में स्कैन की गई छवियाँ हैं और OCR प्रसंस्करण की आवश्यकता है।"
-
-msgid "Font embedding issue"
-msgstr "फ़ॉन्ट एम्बेडिंग समस्या"
-
-msgid "This PDF uses fonts that cannot be embedded."
-msgstr "यह PDF ऐसे फ़ॉन्ट्स का उपयोग करता है जिन्हें एम्बेड नहीं किया जा सकता।"
-
-msgid "Security restrictions"
-msgstr "सुरक्षा प्रतिबंध"
-
-msgid "This PDF has security restrictions that prevent processing."
-msgstr "इस PDF में सुरक्षा प्रतिबंध हैं जो प्रसंस्करण को रोकते हैं।"
-
-msgid "Out of memory"
-msgstr "मेमोरी समाप्त"
-
-msgid "The file is too complex to process."
-msgstr "फ़ाइल प्रोसेस करने के लिए बहुत जटिल है।"
-
-msgid "Timeout"
-msgstr "समय समाप्त"
-
-msgid "Processing took too long. Please try a smaller file."
-msgstr "प्रसंस्करण में बहुत अधिक समय लगा। कृपया एक छोटी फ़ाइल आज़माएं।"
-
-msgid "Invalid crop area"
-msgstr "अमान्य क्रॉप क्षेत्र"
-
-msgid "Please select a valid crop area."
-msgstr "कृपया एक वैध क्रॉप क्षेत्र चुनें।"
-
-msgid "Crop area too small"
-msgstr "क्रॉप क्षेत्र बहुत छोटा है"
-
-msgid "Please select a larger crop area."
-msgstr "कृपया एक बड़ा क्रॉप क्षेत्र चुनें।"
-
-msgid "Watermark text too long"
-msgstr "वॉटरमार्क टेक्स्ट बहुत लंबा है"
-
-msgid "Please use shorter watermark text (max 100 characters)."
-msgstr "कृपया छोटा वॉटरमार्क टेक्स्ट उपयोग करें (अधिकतम 100 वर्ण)।"
-
-msgid "Watermark image too large"
-msgstr "वॉटरमार्क छवि बहुत बड़ी है"
-
-msgid "Please use a smaller watermark image."
-msgstr "कृपया एक छोटी वॉटरमार्क छवि उपयोग करें।"
-
-msgid "Invalid page numbers"
-msgstr "अमान्य पृष्ठ संख्याएं"
-
-msgid "Please enter valid page numbers."
-msgstr "कृपया वैध पृष्ठ संख्याएं दर्ज करें।"
-
-msgid "Page out of range"
-msgstr "पृष्ठ सीमा से बाहर"
-
-msgid "One or more page numbers are outside the valid range."
-msgstr "एक या अधिक पृष्ठ संख्याएं वैध सीमा से बाहर हैं।"
-
-msgid "Duplicate pages"
-msgstr "डुप्लिकेट पृष्ठ"
-
-msgid "Please remove duplicate page numbers."
-msgstr "कृपया डुप्लिकेट पृष्ठ संख्याएं हटाएं।"
-
-msgid "Invalid split range"
-msgstr "अमान्य विभाजन श्रेणी"
-
-msgid "Please enter valid split ranges."
-msgstr "कृपया वैध विभाजन श्रेणियाँ दर्ज करें।"
-
-msgid "Split too small"
-msgstr "विभाजन बहुत छोटा है"
-
-msgid "Each split must contain at least one page."
-msgstr "प्रत्येक विभाजन में कम से कम एक पृष्ठ होना चाहिए।"
-
-msgid "Password too weak"
-msgstr "पासवर्ड बहुत कमजोर है"
-
-msgid "Please use a stronger password (at least 6 characters)."
-msgstr "कृपया एक मजबूत पासवर्ड उपयोग करें (कम से कम 6 वर्ण)।"
-
-msgid "Passwords don't match"
-msgstr "पासवर्ड मेल नहीं खाते"
-
-msgid "The passwords you entered do not match."
-msgstr "आपके द्वारा दर्ज किए गए पासवर्ड मेल नहीं खाते।"
-
-msgid "Compression failed"
-msgstr "संपीड़न विफल"
-
-msgid "Unable to compress the file further."
-msgstr "फ़ाइल को और संपीड़ित करने में असमर्थ।"
-
-msgid "Quality too low"
-msgstr "गुणवत्ता बहुत कम है"
-
-msgid "Compression would reduce quality too much."
-msgstr "संपीड़न गुणवत्ता को बहुत अधिक कम कर देगा।"
-
-msgid "Merge failed"
-msgstr "मर्ज विफल"
-
-msgid "Unable to merge the selected files."
-msgstr "चयनित फ़ाइलों को मर्ज करने में असमर्थ।"
-
-msgid "Files incompatible"
-msgstr "फ़ाइलें असंगत हैं"
-
-msgid "The selected files have incompatible formats."
-msgstr "चयनित फ़ाइलों के असंगत प्रारूप हैं।"
-
-msgid "Extraction failed"
-msgstr "निष्कर्षण विफल"
-
-msgid "Unable to extract the specified pages."
-msgstr "निर्दिष्ट पृष्ठों को निकालने में असमर्थ।"
-
-msgid "No tables found"
-msgstr "कोई तालिका नहीं मिली"
-
-msgid "No tables were found in the PDF."
-msgstr "PDF में कोई तालिका नहीं मिली।"
-
-msgid "Table extraction failed"
-msgstr "तालिका निष्कर्षण विफल"
-
-msgid "Unable to extract tables from the PDF."
-msgstr "PDF से तालिकाएँ निकालने में असमर्थ।"
-
-msgid "Rotation failed"
-msgstr "घुमाव विफल"
-
-msgid "Unable to rotate the specified pages."
-msgstr "निर्दिष्ट पृष्ठों को घुमाने में असमर्थ।"
-
-msgid "Organization failed"
-msgstr "व्यवस्थापन विफल"
-
-msgid "Unable to organize the pages."
-msgstr "पृष्ठों को व्यवस्थित करने में असमर्थ।"
-
-msgid "Protection failed"
-msgstr "सुरक्षा विफल"
-
-msgid "Unable to protect the PDF with password."
-msgstr "PDF को पासवर्ड से सुरक्षित करने में असमर्थ।"
-
-msgid "Unlock failed"
-msgstr "अनलॉक विफल"
-
-msgid "Unable to unlock the PDF."
-msgstr "PDF को अनलॉक करने में असमर्थ।"
-
-msgid "Watermark failed"
-msgstr "वॉटरमार्क विफल"
-
-msgid "Unable to add watermark to the PDF."
-msgstr "PDF में वॉटरमार्क जोड़ने में असमर्थ।"
-
-msgid "Page numbers failed"
-msgstr "पेज नंबर विफल"
-
-msgid "Unable to add page numbers to the PDF."
-msgstr "PDF में पेज नंबर जोड़ने में असमर्थ।"
-
-msgid "Crop failed"
-msgstr "क्रॉप विफल"
-
-msgid "Unable to crop the PDF."
-msgstr "PDF को क्रॉप करने में असमर्थ।"
-
-msgid "Conversion in progress"
-msgstr "रूपांतरण प्रगति पर है"
-
-msgid "Please wait while your file is being processed."
-msgstr "कृपया प्रतीक्षा करें जब तक आपकी फ़ाइल प्रोसेस हो रही है।"
-
-msgid "Estimated time remaining"
-msgstr "अनुमानित शेष समय"
-
-msgid "Processing complete"
-msgstr "प्रसंस्करण पूर्ण"
-
-msgid "Your file has been processed successfully."
-msgstr "आपकी फ़ाइल सफलतापूर्वक प्रोसेस हो गई है।"
-
-msgid "Preparing download"
-msgstr "डाउनलोड तैयार किया जा रहा है"
-
-msgid "Your file will download automatically."
-msgstr "आपकी फ़ाइल स्वचालित रूप से डाउनलोड हो जाएगी।"
-
-msgid "If download doesn't start"
-msgstr "यदि डाउनलोड शुरू नहीं होता है"
-
-msgid "click here"
-msgstr "यहाँ क्लिक करें"
-
-msgid "to download manually."
-msgstr "मैन्युअल रूप से डाउनलोड करने के लिए।"
-
-msgid "Processing another file"
-msgstr "दूसरी फ़ाइल प्रोसेस की जा रही है"
-
-msgid "You can now process another file."
-msgstr "अब आप दूसरी फ़ाइल प्रोसेस कर सकते हैं।"
-
-msgid "Select new file"
-msgstr "नई फ़ाइल चुनें"
-
-msgid "or drag and drop here."
-msgstr "या यहाँ खींचें और छोड़ें।"
-
-msgid "Return to tool"
-msgstr "उपकरण पर वापस जाएं"
-
-msgid "to use other features."
-msgstr "अन्य सुविधाओं का उपयोग करने के लिए।"
-
-msgid "Share this tool"
-msgstr "इस उपकरण को साझा करें"
-
-msgid "Help others discover this free PDF tool."
-msgstr "दूसरों को इस मुफ्त PDF उपकरण की खोज में मदद करें।"
-
-msgid "Rate our service"
-msgstr "हमारी सेवा का मूल्यांकन करें"
-
-msgid "How was your experience?"
-msgstr "आपका अनुभव कैसा था?"
-
-msgid "Excellent"
-msgstr "उत्कृष्ट"
-
-msgid "Good"
-msgstr "अच्छा"
-
-msgid "Average"
-msgstr "औसत"
-
-msgid "Poor"
-msgstr "खराब"
-
-msgid "Terrible"
-msgstr "भयानक"
-
-msgid "Submit feedback"
-msgstr "प्रतिक्रिया सबमिट करें"
-
-msgid "Thank you for your feedback!"
-msgstr "आपकी प्रतिक्रिया के लिए धन्यवाद!"
-
-msgid "Try other tools"
-msgstr "अन्य उपकरण आज़माएं"
-
-msgid "Explore more free PDF tools from Convertica."
-msgstr "Convertica के और अधिक मुफ्त PDF उपकरण एक्सप्लोर करें।"
-
-msgid "View all tools"
-msgstr "सभी उपकरण देखें"
-
-msgid "Need help?"
-msgstr "मदद चाहिए?"
-
-msgid "Visit our FAQ or contact support."
-msgstr "हमारे FAQ पर जाएं या सहायता से संपर्क करें।"
-
-msgid "Go to FAQ"
-msgstr "FAQ पर जाएं"
-
-msgid "Contact support"
-msgstr "सहायता से संपर्क करें"
-
-msgid "Bookmark this page"
-msgstr "इस पृष्ठ को बुकमार्क करें"
-
-msgid "Save for quick access later."
-msgstr "बाद में त्वरित पहुंच के लिए सहेजें।"
-
-msgid "Ctrl+D"
-msgstr "Ctrl+D"
-
-msgid "on Windows/Linux"
-msgstr "Windows/Linux पर"
-
-msgid "Cmd+D"
-msgstr "Cmd+D"
-
-msgid "on Mac"
-msgstr "Mac पर"
-
-msgid "Browser not supported"
-msgstr "ब्राउज़र समर्थित नहीं"
-
-msgid "Please use a modern browser like Chrome, Firefox, or Edge."
-msgstr "कृपया Chrome, Firefox, या Edge जैसे आधुनिक ब्राउज़र का उपयोग करें。"
+#, fuzzy
+#| msgid ""
+#| "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
+#| "arrange them in the desired order using drag and drop, and click merge. "
+#| "All selected files will be combined into a single PDF document."
+msgid ""
+"To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
+"arrange them in the desired order, and click merge. All selected files will "
+"be combined into a single PDF document."
+msgstr ""
+"PDF फ़ाइलों को मर्ज करने के लिए, मर्ज PDF पृष्ठ पर जाएं, कई PDF फ़ाइलें चुनें, उन्हें ड्रैग और "
+"ड्रॉप का उपयोग करके वांछित क्रम में व्यवस्थित करें, और मर्ज पर क्लिक करें। सभी चयनित फ़ाइलें "
+"एक ही PDF दस्तावेज़ में संयोजित की जाएंगी।"

@@ -362,11 +362,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideResult();
                 setFormDisabled(false);
 
-                // Focus on select button
-                const selectFileButton = document.getElementById('selectFileButton');
-                if (selectFileButton) {
-                    selectFileButton.focus();
-                }
+                // Smooth scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on select button after scroll completes
+                setTimeout(() => {
+                    const selectFileButton = document.getElementById('selectFileButton');
+                    if (selectFileButton) {
+                        selectFileButton.focus();
+                    }
+                }, 800); // Wait for smooth scroll to complete
             });
         }
 
