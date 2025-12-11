@@ -31,25 +31,26 @@ def robots_txt(request):
         with open(robots_path, encoding="utf-8") as f:
             content = f.read()
 
-        # Remove duplicate User-agent: * and Allow: / blocks
-        # Keep only the last occurrence (our custom rules)
+        # Read the file and ensure proper structure
         lines = content.split("\n")
         cleaned_lines = []
-        seen_user_agent_star = False
-        i = 0
-        while i < len(lines):
-            line = lines[i]
-            # If we see "User-agent: *" and haven't seen it before, skip it and its Allow: /
-            if line.strip().lower() == "user-agent: *" and not seen_user_agent_star:
-                seen_user_agent_star = True
-                # Skip this line and the next Allow: / if present
-                i += 1
-                if i < len(lines) and lines[i].strip().lower() == "allow: /":
-                    i += 1
+        user_agent_added = False
+
+        for line in lines:
+            line_stripped = line.strip().lower()
+
+            # Skip the original User-agent: * and Allow: / from the static file
+            # We'll add our own User-agent: * at the beginning
+            if line_stripped == "user-agent: *" and not user_agent_added:
+                user_agent_added = True
                 continue
+            elif line_stripped == "allow: /" and not user_agent_added:
+                continue
+
             cleaned_lines.append(line)
-            i += 1
-        content = "\n".join(cleaned_lines)
+
+        # Add proper User-agent: * at the beginning
+        content = "User-agent: *\n" + "\n".join(cleaned_lines)
         # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
         content = content.replace(
             "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
