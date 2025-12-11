@@ -29,7 +29,7 @@ services:
       # Sentry release & environment will be injected by CI/CD (e.g. GitHub Actions)
       # Example: SENTRY_RELEASE=convertica@v1.2.3, SENTRY_ENVIRONMENT=production
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
-      - SENTRY_RELEASE=${SENTRY_RELEASE:-convertica@dev}
+      - SENTRY_RELEASE=${SENTRY_RELEASE}
     deploy:
       resources:
         limits:
