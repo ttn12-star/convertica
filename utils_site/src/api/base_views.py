@@ -210,8 +210,14 @@ class BaseConversionAPIView(APIView, ABC):
                 start_time,
                 level="warning",
             )
+            # Use the original error message so users understand the exact problem
+            # (e.g. incorrect password, empty password), while keeping 400 status.
+            message = (
+                str(error).strip()
+                or "PDF is password-protected and cannot be converted."
+            )
             return Response(
-                {"error": "PDF is password-protected and cannot be converted."},
+                {"error": message},
                 status=status.HTTP_400_BAD_REQUEST,
             )
 

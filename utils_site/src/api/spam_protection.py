@@ -26,13 +26,15 @@ def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
     Returns:
         True if verification successful, False otherwise
     """
-    if not token:
-        return False
-
     secret = getattr(settings, "TURNSTILE_SECRET_KEY", None)
     if not secret:
         logger.warning("Turnstile not configured, skipping verification")
         return True
+
+    # When Turnstile is configured, an empty token means the user did not
+    # complete the challenge, so we must fail verification.
+    if not token:
+        return False
 
     try:
         import requests

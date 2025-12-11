@@ -600,41 +600,34 @@ document.addEventListener('DOMContentLoaded', () => {
     function attachWatermarkHandlers() {
         const cornerHandles = watermarkPreview.querySelectorAll('.corner');
 
-        // Drag to move
-        watermarkPreview.addEventListener('mousedown', (e) => {
-            // Check if clicking on any handle
-            if (Array.from(cornerHandles).includes(e.target)) {
-                return; // Let handles handle their own events
+        const onPointerDownMove = (clientX, clientY, target) => {
+            if (!pdfCanvas || !pdfDoc) return;
+            const rect = pdfCanvas.getBoundingClientRect();
+
+            // Drag to move (click on watermark itself, not on handles)
+            if (target === watermarkPreview) {
+                isDraggingWatermark = true;
+                dragStartX = clientX - rect.left;
+                dragStartY = clientY - rect.top;
+                return;
             }
 
-            isDraggingWatermark = true;
-            const rect = pdfCanvas.getBoundingClientRect();
-            dragStartX = e.clientX - rect.left;
-            dragStartY = e.clientY - rect.top;
-            e.preventDefault();
-        });
-
-        // Corner handles - combined rotation and scaling
-        cornerHandles.forEach(handle => {
-            handle.addEventListener('mousedown', (e) => {
-                // Enable both rotation and scaling
+            // Corner handles - combined rotation and scaling
+            if (Array.from(cornerHandles).includes(target)) {
                 isRotating = true;
                 isScaling = true;
-                currentScaleCorner = handle.dataset.corner;
+                currentScaleCorner = target.dataset.corner;
 
-                const rect = pdfCanvas.getBoundingClientRect();
                 const scaleFactor = canvasWidth / pdfPageWidth;
                 const centerX = watermarkX * scaleFactor;
                 const centerY = canvasHeight - (watermarkY * scaleFactor);
-                const startX = e.clientX - rect.left;
-                const startY = e.clientY - rect.top;
+                const startX = clientX - rect.left;
+                const startY = clientY - rect.top;
 
-                // Calculate initial angle for rotation
                 const startAngle = Math.atan2(startY - centerY, startX - centerX) * (180 / Math.PI);
                 dragStartAngle = startAngle;
                 initialRotation = watermarkRotation || 0;
 
-                // Calculate initial distance for scaling
                 initialDistance = Math.sqrt(
                     Math.pow(startX - centerX, 2) + Math.pow(startY - centerY, 2)
                 );
@@ -642,10 +635,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 dragStartX = startX;
                 dragStartY = startY;
+            }
+        };
 
+        // Mouse handlers
+        watermarkPreview.addEventListener('mousedown', (e) => {
+            if (!pdfCanvas || !pdfDoc) return;
+            // Let handles handle their own events in shared logic
+            onPointerDownMove(e.clientX, e.clientY, e.target);
+            e.preventDefault();
+        });
+
+        cornerHandles.forEach(handle => {
+            handle.addEventListener('mousedown', (e) => {
+                if (!pdfCanvas || !pdfDoc) return;
+                onPointerDownMove(e.clientX, e.clientY, handle);
                 e.stopPropagation();
                 e.preventDefault();
             });
+        });
+
+        // Touch handlers
+        watermarkPreview.addEventListener('touchstart', (e) => {
+            if (!pdfCanvas || !pdfDoc) return;
+            const touch = e.touches[0];
+            if (!touch) return;
+            onPointerDownMove(touch.clientX, touch.clientY, e.target);
+            e.preventDefault();
+        }, { passive: false });
+
+        cornerHandles.forEach(handle => {
+            handle.addEventListener('touchstart', (e) => {
+                if (!pdfCanvas || !pdfDoc) return;
+                const touch = e.touches[0];
+                if (!touch) return;
+                onPointerDownMove(touch.clientX, touch.clientY, handle);
+                e.stopPropagation();
+                e.preventDefault();
+            }, { passive: false });
         });
     }
 
@@ -749,7 +776,114 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Global touch move handler
+    document.addEventListener('touchmove', (e) => {
+        if (!pdfDoc || watermarkX === null || watermarkY === null) return;
+        const touch = e.touches[0];
+        if (!touch) return;
+
+        const rect = pdfCanvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+
+        if (isDraggingWatermark || isRotating || isScaling) {
+            // Reuse the mousemove logic by creating a fake event-like object
+            const fakeEvent = { clientX: touch.clientX, clientY: touch.clientY };
+            const rectLocal = rect;
+            const xLocal = fakeEvent.clientX - rectLocal.left;
+            const yLocal = fakeEvent.clientY - rectLocal.top;
+
+            // Inline copy of the mousemove core logic to avoid refactor
+            if (isDraggingWatermark) {
+                const scaleFactor = pdfPageWidth / canvasWidth;
+                const deltaX = (xLocal - dragStartX) * scaleFactor;
+                const deltaY = -(yLocal - dragStartY) * scaleFactor;
+
+                watermarkX += deltaX;
+                watermarkY += deltaY;
+
+                watermarkX = Math.max(0, Math.min(watermarkX, pdfPageWidth));
+                watermarkY = Math.max(0, Math.min(watermarkY, pdfPageHeight));
+
+                if (xInput) xInput.value = watermarkX.toFixed(2);
+                if (yInput) yInput.value = watermarkY.toFixed(2);
+
+                dragStartX = xLocal;
+                dragStartY = yLocal;
+                updateWatermarkPreview();
+            } else if (isRotating && isScaling) {
+                const scaleFactor = canvasWidth / pdfPageWidth;
+                const centerX = watermarkX * scaleFactor;
+                const centerY = canvasHeight - (watermarkY * scaleFactor);
+
+                const currentAngle = Math.atan2(yLocal - centerY, xLocal - centerX) * (180 / Math.PI);
+                let deltaAngle = currentAngle - dragStartAngle;
+
+                if (deltaAngle > 180) deltaAngle -= 360;
+                if (deltaAngle < -180) deltaAngle += 360;
+
+                watermarkRotation = initialRotation + deltaAngle;
+                while (watermarkRotation > 360) watermarkRotation -= 360;
+                while (watermarkRotation < -360) watermarkRotation += 360;
+
+                const currentDistance = Math.sqrt(
+                    Math.pow(xLocal - centerX, 2) + Math.pow(yLocal - centerY, 2)
+                );
+
+                const scaleRatio = currentDistance / initialDistance;
+                watermarkScale = Math.max(0.1, Math.min(3.0, initialScale * scaleRatio));
+
+                if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
+                if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
+
+                updateWatermarkPreview();
+            } else if (isRotating) {
+                const scaleFactor = canvasWidth / pdfPageWidth;
+                const centerX = watermarkX * scaleFactor;
+                const centerY = canvasHeight - (watermarkY * scaleFactor);
+
+                const currentAngle = Math.atan2(yLocal - centerY, xLocal - centerX) * (180 / Math.PI);
+                let deltaAngle = currentAngle - dragStartAngle;
+
+                if (deltaAngle > 180) deltaAngle -= 360;
+                if (deltaAngle < -180) deltaAngle += 360;
+
+                watermarkRotation = initialRotation + deltaAngle;
+                while (watermarkRotation > 360) watermarkRotation -= 360;
+                while (watermarkRotation < -360) watermarkRotation += 360;
+
+                if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
+
+                updateWatermarkPreview();
+            } else if (isScaling) {
+                const scaleFactor = canvasWidth / pdfPageWidth;
+                const centerX = watermarkX * scaleFactor;
+                const centerY = canvasHeight - (watermarkY * scaleFactor);
+
+                const currentDistance = Math.sqrt(
+                    Math.pow(xLocal - centerX, 2) + Math.pow(yLocal - centerY, 2)
+                );
+
+                const scaleRatio = currentDistance / initialDistance;
+                watermarkScale = Math.max(0.1, Math.min(3.0, initialScale * scaleRatio));
+
+                if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
+
+                updateWatermarkPreview();
+            }
+        }
+
+        e.preventDefault();
+    }, { passive: false });
+
     document.addEventListener('mouseup', () => {
+        isDraggingWatermark = false;
+        isRotating = false;
+        isScaling = false;
+        currentScaleCorner = null;
+    });
+
+    document.addEventListener('touchend', () => {
         isDraggingWatermark = false;
         isRotating = false;
         isScaling = false;

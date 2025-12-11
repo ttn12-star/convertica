@@ -322,6 +322,12 @@ jobs:
             CURRENT_TAG="${{ github.ref_name }}"
             echo "Current deploying tag: $CURRENT_TAG"
 
+            # Export Sentry environment & release so docker-compose passes them into Django
+            export SENTRY_ENVIRONMENT=production
+            export SENTRY_RELEASE="convertica@${CURRENT_TAG}"
+            echo "Using SENTRY_ENVIRONMENT=$SENTRY_ENVIRONMENT"
+            echo "Using SENTRY_RELEASE=$SENTRY_RELEASE"
+
             # Fetch all tags from remote
             git fetch --tags --force origin
 

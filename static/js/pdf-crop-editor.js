@@ -304,49 +304,115 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Touch move/end handlers for selection creation and dragging
+    document.addEventListener('touchmove', (e) => {
+        if (!pdfDoc) return;
+        const touch = e.touches[0];
+        if (!touch) return;
+
+        const rect = pdfCanvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+
+        // Mirror logic from mousemove
+        if (isDragging && currentSelection) {
+            let newX = x - dragStartX;
+            let newY = y - dragStartY;
+
+            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
+            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
+
+            currentSelection.x = newX;
+            currentSelection.y = newY;
+
+            updateSelection(newX, newY, currentSelection.width, currentSelection.height);
+            updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
+            updateCropCoordinates();
+        } else if (isSelecting && !isDragging) {
+            const minX = Math.min(selectionStartX, x);
+            const maxX = Math.max(selectionStartX, x);
+            const minY = Math.min(selectionStartY, y);
+            const maxY = Math.max(selectionStartY, y);
+
+            const width = maxX - minX;
+            const height = maxY - minY;
+
+            const selX = Math.max(0, Math.min(minX, canvasWidth - width));
+            const selY = Math.max(0, Math.min(minY, canvasHeight - height));
+            const selWidth = Math.min(width, canvasWidth - selX);
+            const selHeight = Math.min(height, canvasHeight - selY);
+
+            currentSelection = {
+                x: selX,
+                y: selY,
+                width: selWidth,
+                height: selHeight
+            };
+
+            updateSelection(selX, selY, selWidth, selHeight);
+            updateOverlay(selX, selY, selWidth, selHeight);
+            updateCropCoordinates();
+        }
+
+        e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => {
+        if (isSelecting && !isDragging) {
+            isSelecting = false;
+            pdfCanvas.style.cursor = 'crosshair';
+
+            if (currentSelection && (currentSelection.width < 10 || currentSelection.height < 10)) {
+                createInitialSelection();
+                if (cropReadyIndicator) {
+                    cropReadyIndicator.textContent = window.SELECTION_TOO_SMALL || 'Selection too small. Full page selected. Drag to create a new selection or drag the box to move it.';
+                }
+            } else if (currentSelection) {
+                updateCropCoordinates();
+                if (cropReadyIndicator) {
+                    cropReadyIndicator.textContent = window.CROP_AREA_SELECTED || 'Crop area selected! Drag the box to move it or use handles to resize. Click "Crop PDF" when ready.';
+                }
+            }
+        } else if (isDragging) {
+            isDragging = false;
+            pdfCanvas.style.cursor = isMouseOverSelection ? 'move' : 'crosshair';
+            if (currentSelection) {
+                updateCropCoordinates();
+                if (cropReadyIndicator) {
+                    cropReadyIndicator.textContent = window.CROP_AREA_MOVED || 'Crop area moved! Drag again to reposition or use handles to resize. Click "Crop PDF" when ready.';
+                }
+            }
+        }
+    });
+
     // Reset cursor when mouse leaves canvas
     pdfCanvas.addEventListener('mouseleave', () => {
         pdfCanvas.style.cursor = 'crosshair';
         isMouseOverSelection = false;
     });
 
-    // Add mousedown handler to cropSelection element for dragging
-    if (cropSelection) {
-        cropSelection.addEventListener('mousedown', (e) => {
-            // Don't interfere with handles
-            if (e.target && e.target.classList.contains('crop-handle')) {
+    // Shared helper to start drag or selection (mouse/touch)
+    function startSelectionOrDrag(clientX, clientY, target) {
+        if (!pdfDoc) return;
+
+        const rect = pdfCanvas.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        // If starting from cropSelection (but not handle) - drag selection
+        if (target === cropSelection) {
+            if (!currentSelection || currentSelection.width <= 0 || currentSelection.height <= 0) {
                 return;
             }
-
-            if (!pdfDoc || !currentSelection || currentSelection.width <= 0 || currentSelection.height <= 0) {
-                return;
-            }
-
-            const rect = pdfCanvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            // Start moving selection
             isDragging = true;
             dragStartX = x - currentSelection.x;
             dragStartY = y - currentSelection.y;
             pdfCanvas.style.cursor = 'grabbing';
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    }
+            return;
+        }
 
-    pdfCanvas.addEventListener('mousedown', (e) => {
-        if (!pdfDoc) return;
-
-        const rect = pdfCanvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Check if clicking on a handle (handles have their own handlers and stopPropagation)
-        const target = e.target;
-        if (target && target.classList.contains('crop-handle')) {
-            // Let handle logic handle it
+        // If clicking on handle - let handle logic handle it
+        if (target && target.classList && target.classList.contains('crop-handle')) {
             return;
         }
 
@@ -358,12 +424,10 @@ document.addEventListener('DOMContentLoaded', () => {
                            y <= currentSelection.y + currentSelection.height;
 
             if (isInside) {
-                // Start moving selection
                 isDragging = true;
                 dragStartX = x - currentSelection.x;
                 dragStartY = y - currentSelection.y;
                 pdfCanvas.style.cursor = 'grabbing';
-                e.preventDefault();
                 return;
             }
         }
@@ -374,7 +438,6 @@ document.addEventListener('DOMContentLoaded', () => {
         selectionStartY = y;
         pdfCanvas.style.cursor = 'crosshair';
 
-        // Create temporary selection
         currentSelection = {
             x: x,
             y: y,
@@ -385,14 +448,42 @@ document.addEventListener('DOMContentLoaded', () => {
         cropSelection.classList.remove('hidden');
         updateSelection(x, y, 0, 0);
 
-        // Show instruction
         if (cropReadyIndicator) {
             cropReadyIndicator.textContent = window.DRAG_TO_SELECT || 'Drag to select crop area...';
             cropReadyIndicator.classList.remove('hidden');
         }
+    }
 
+    // Add mousedown handler to cropSelection element for dragging
+    if (cropSelection) {
+        cropSelection.addEventListener('mousedown', (e) => {
+            startSelectionOrDrag(e.clientX, e.clientY, cropSelection);
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        // Touch support for dragging selection
+        cropSelection.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            if (!touch) return;
+            startSelectionOrDrag(touch.clientX, touch.clientY, cropSelection);
+            e.preventDefault();
+            e.stopPropagation();
+        }, { passive: false });
+    }
+
+    pdfCanvas.addEventListener('mousedown', (e) => {
+        startSelectionOrDrag(e.clientX, e.clientY, e.target);
         e.preventDefault();
     });
+
+    // Touch support for creating/dragging selection on canvas
+    pdfCanvas.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        startSelectionOrDrag(touch.clientX, touch.clientY, e.target);
+        e.preventDefault();
+    }, { passive: false });
 
     // Handle mousemove for selection creation and dragging
     // (mousemove for cursor changes is handled above)
@@ -636,6 +727,20 @@ document.addEventListener('DOMContentLoaded', () => {
             resizeStartY = e.clientY - rect.top;
             resizeStartSelection = { ...currentSelection };
         });
+
+        // Touch support for resize handles
+        handle.addEventListener('touchstart', (e) => {
+            e.stopPropagation();
+            const touch = e.touches[0];
+            if (!touch || !currentSelection) return;
+
+            resizeHandle = handle;
+            const rect = pdfCanvas.getBoundingClientRect();
+            resizeStartX = touch.clientX - rect.left;
+            resizeStartY = touch.clientY - rect.top;
+            resizeStartSelection = { ...currentSelection };
+            e.preventDefault();
+        }, { passive: false });
     });
 
     document.addEventListener('mousemove', (e) => {

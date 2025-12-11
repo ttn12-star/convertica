@@ -483,9 +483,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideResult();
                 setFormDisabled(false);
 
-                if (selectFileButton) {
-                    selectFileButton.focus();
-                }
+                // Smooth scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on select button after scroll completes
+                setTimeout(() => {
+                    if (selectFileButton) {
+                        selectFileButton.focus();
+                    }
+                }, 800); // Wait for smooth scroll to complete
             });
         }
 

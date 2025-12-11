@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
                         </button>
                         <button type="button"
-                                onclick="location.reload()"
+                                id="editAnotherButton"
                                 class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
                             <span>${window.EDIT_ANOTHER_TEXT || 'Edit another file'}</span>
                         </button>
@@ -322,6 +322,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
+            });
+        }
+
+        // Edit another button handler
+        const editAnotherBtn = document.getElementById('editAnotherButton');
+        if (editAnotherBtn) {
+            editAnotherBtn.addEventListener('click', () => {
+                const fileInput = document.getElementById('fileInput');
+                const fileInputDrop = document.getElementById('fileInputDrop');
+                const selectedFileDiv = document.getElementById('selectedFile');
+                const fileInfo = document.getElementById('fileInfo');
+                const editButton = document.getElementById('editButton');
+
+                if (fileInput) fileInput.value = '';
+                if (fileInputDrop) fileInputDrop.value = '';
+
+                // Hide selected file display
+                if (selectedFileDiv) {
+                    selectedFileDiv.classList.add('hidden');
+                }
+                if (fileInfo) {
+                    fileInfo.classList.remove('hidden');
+                }
+
+                // Disable edit button
+                if (editButton) {
+                    editButton.disabled = true;
+                }
+
+                hideDownload();
+                hideResult();
+                setFormDisabled(false);
+
+                // Smooth scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on select button after scroll completes
+                setTimeout(() => {
+                    const selectFileButton = document.getElementById('selectFileButton');
+                    if (selectFileButton) {
+                        selectFileButton.focus();
+                    }
+                }, 800); // Wait for smooth scroll to complete
             });
         }
     }

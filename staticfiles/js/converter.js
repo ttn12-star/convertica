@@ -59,6 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const fieldName = window.FILE_INPUT_NAME || 'file';
         formData.append(fieldName, selectedFile);
 
+        // Add pages parameter if available (for PDF to JPG)
+        const pagesInput = form.querySelector('input[name="pages"]');
+        if (pagesInput && pagesInput.value) {
+            formData.append('pages', pagesInput.value);
+        }
+
+        // Add DPI parameter if available (for PDF to JPG)
+        const dpiSelect = form.querySelector('select[name="dpi"]');
+        if (dpiSelect && dpiSelect.value) {
+            formData.append('dpi', dpiSelect.value);
+        }
+
         // Add Turnstile token if available
         const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
         if (turnstileResponse && turnstileResponse.value) {
@@ -259,7 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         downloadContainer.classList.remove('hidden');
-        downloadContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // Scroll to download button with a slight delay to ensure DOM is updated
+        setTimeout(() => {
+            downloadContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
 
         // Clear selected file from the form to avoid showing old file after success
         resetSelectedFileUI();
@@ -347,11 +362,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 hideResult();
                 setFormDisabled(false);
 
-                // Focus on select button
-                const selectFileButton = document.getElementById('selectFileButton');
-                if (selectFileButton) {
-                    selectFileButton.focus();
-                }
+                // Smooth scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on select button after scroll completes
+                setTimeout(() => {
+                    const selectFileButton = document.getElementById('selectFileButton');
+                    if (selectFileButton) {
+                        selectFileButton.focus();
+                    }
+                }, 800); // Wait for smooth scroll to complete
             });
         }
 

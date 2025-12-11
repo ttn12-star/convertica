@@ -26,6 +26,10 @@ services:
       - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-True}
       # Disable WhiteNoise in production (using Nginx for static files)
       - USE_WHITENOISE=False
+      # Sentry release & environment will be injected by CI/CD (e.g. GitHub Actions)
+      # Example: SENTRY_RELEASE=convertica@v1.2.3, SENTRY_ENVIRONMENT=production
+      - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
+      - SENTRY_RELEASE=${SENTRY_RELEASE:-convertica@dev}
     deploy:
       resources:
         limits:
