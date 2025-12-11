@@ -1078,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
                         </button>
                         <button type="button"
-                                onclick="location.reload()"
+                                id="editAnotherButton"
                                 class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
                             <span>${window.EDIT_ANOTHER_TEXT || 'Edit another file'}</span>
                         </button>
@@ -1144,6 +1144,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
+            });
+        }
+
+        // Edit another button handler with smooth scroll to top
+        const editAnotherBtn = document.getElementById('editAnotherButton');
+        if (editAnotherBtn) {
+            editAnotherBtn.addEventListener('click', () => {
+                // Hide selected file display
+                const selectedFileDiv = document.getElementById('selectedFile');
+                if (selectedFileDiv) {
+                    selectedFileDiv.classList.add('hidden');
+                }
+
+                // Reset file input
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) {
+                    fileInput.value = '';
+                }
+
+                // Reset watermark options
+                const watermarkText = document.getElementById('watermarkText');
+                const watermarkOpacity = document.getElementById('watermarkOpacity');
+                const watermarkRotation = document.getElementById('watermarkRotation');
+                if (watermarkText) watermarkText.value = '';
+                if (watermarkOpacity) watermarkOpacity.value = '50';
+                if (watermarkRotation) watermarkRotation.value = '45';
+
+                // Hide download container
+                hideDownload();
+
+                // Smooth scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on select button after scroll completes
+                setTimeout(() => {
+                    const selectFileButton = document.getElementById('selectFileButton');
+                    if (selectFileButton) {
+                        selectFileButton.focus();
+                    }
+                }, 800); // Wait for smooth scroll to complete
             });
         }
     }

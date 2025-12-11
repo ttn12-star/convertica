@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfFilesInput = document.getElementById('pdf_files_input');
     const selectPdfFilesButton = document.getElementById('selectPdfFilesButton');
     const addMorePdfFilesButton = document.getElementById('addMorePdfFilesButton');
+    const mergeDropZone = document.getElementById('mergeDropZone');
     const selectedPdfFilesContainer = document.getElementById('selectedPdfFilesContainer');
     const selectedPdfFilesList = document.getElementById('selectedPdfFilesList');
     const pdfFileCount = document.getElementById('pdfFileCount');
@@ -51,6 +52,71 @@ document.addEventListener('DOMContentLoaded', () => {
         handleFileSelection(e.target.files);
         e.target.value = ''; // Reset input
     });
+
+    // Drag & drop support for merge page
+    if (mergeDropZone) {
+        // Local helpers to prevent default browser behavior
+        const preventDefaults = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        };
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            mergeDropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        let dragCounter = 0;
+
+        mergeDropZone.addEventListener('dragenter', () => {
+            dragCounter++;
+            mergeDropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
+            mergeDropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
+        });
+
+        mergeDropZone.addEventListener('dragover', () => {
+            mergeDropZone.classList.add('border-blue-500', 'bg-blue-100', 'border-4');
+            mergeDropZone.classList.remove('border-2', 'border-gray-300', 'bg-gray-50');
+        });
+
+        mergeDropZone.addEventListener('dragleave', () => {
+            dragCounter--;
+            if (dragCounter <= 0) {
+                dragCounter = 0;
+                mergeDropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
+                mergeDropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
+            }
+        });
+
+        mergeDropZone.addEventListener('drop', (e) => {
+            dragCounter = 0;
+            mergeDropZone.classList.remove('border-blue-500', 'bg-blue-100', 'border-4');
+            mergeDropZone.classList.add('border-2', 'border-gray-300', 'bg-gray-50');
+
+            const dt = e.dataTransfer;
+            const files = dt?.files;
+            if (files && files.length > 0) {
+                handleFileSelection(files);
+            }
+        });
+
+        // Также принимаем дроп на всю форму, чтобы не было случайных промахов мимо зоны
+        if (form) {
+            ['dragover', 'drop'].forEach(eventName => {
+                form.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+
+            form.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const files = dt?.files;
+                if (files && files.length > 0) {
+                    handleFileSelection(files);
+                }
+            });
+        }
+    }
 
     function handleFileSelection(files) {
         if (!files || files.length === 0) return;
@@ -550,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
                         </button>
                         <button type="button"
-                                onclick="location.reload()"
+                                id="editAnotherButton"
                                 class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
                             <span>${window.EDIT_ANOTHER_TEXT || 'Merge another file'}</span>
                         </button>
@@ -615,6 +681,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
+            });
+        }
+
+        // Edit another button handler with smooth scroll to top
+        const editAnotherBtn = document.getElementById('editAnotherButton');
+        if (editAnotherBtn) {
+            editAnotherBtn.addEventListener('click', () => {
+                // Clear selected files list
+                selectedPdfFilesList.innerHTML = '';
+                selectedPdfFiles = [];
+                updatePdfFilesInput();
+
+                // Hide selected files section
+                selectedPdfFilesList.parentElement.classList.add('hidden');
+
+                // Reset file input
+                if (pdfFilesInput) {
+                    pdfFilesInput.value = '';
+                }
+
+                // Hide download container
+                hideDownload();
+
+                // Smooth scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on select button after scroll completes
+                setTimeout(() => {
+                    const selectFileButton = document.getElementById('selectFileButton');
+                    if (selectFileButton) {
+                        selectFileButton.focus();
+                    }
+                }, 800); // Wait for smooth scroll to complete
             });
         }
     }
