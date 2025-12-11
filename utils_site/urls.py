@@ -31,26 +31,6 @@ def robots_txt(request):
         with open(robots_path, encoding="utf-8") as f:
             content = f.read()
 
-        # Read the file and ensure proper structure
-        lines = content.split("\n")
-        cleaned_lines = []
-        user_agent_added = False
-
-        for line in lines:
-            line_stripped = line.strip().lower()
-
-            # Skip the original User-agent: * and Allow: / from the static file
-            # We'll add our own User-agent: * at the beginning
-            if line_stripped == "user-agent: *" and not user_agent_added:
-                user_agent_added = True
-                continue
-            elif line_stripped == "allow: /" and not user_agent_added:
-                continue
-
-            cleaned_lines.append(line)
-
-        # Add proper User-agent: * at the beginning
-        content = "User-agent: *\n" + "\n".join(cleaned_lines)
         # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
         content = content.replace(
             "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
