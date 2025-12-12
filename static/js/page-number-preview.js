@@ -16,17 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('pageNumberCanvas');
   const pageSelector = document.getElementById('pageNumberPageSelector');
   const previewSection = document.getElementById('pageNumberPreviewSection');
+  const settingsSection = document.getElementById('pageNumberSettingsSection');
 
   const positionSelect = document.getElementById('position');
   const fontSizeInput = document.getElementById('font_size');
   const startNumberInput = document.getElementById('start_number');
   const formatInput = document.getElementById('format_str');
 
-  if (!canvas || !pageSelector || !previewSection) return;
+  if (!canvas || !pageSelector || !previewSection || !settingsSection) return;
 
   let pdfDoc = null;
   let currentPage = 1;
   let scale = 1.2;
+
+  function calculateScale(viewport) {
+    const container = canvas.parentElement;
+    const containerWidth = container.clientWidth - 32; // padding
+    const containerHeight = window.innerHeight > 768 ? 600 : 400; // responsive height
+
+    const scaleX = containerWidth / viewport.width;
+    const scaleY = containerHeight / viewport.height;
+
+    return Math.min(scaleX, scaleY, 2); // max scale 2x
+  }
 
   function getSelectedFile() {
     return fileInput?.files?.[0] || fileInputDrop?.files?.[0] || null;
@@ -62,14 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseMarginPt = 36;
     const margin = baseMarginPt * scale;
 
-    let y = position.includes('top') ? pageHeight - margin - fontSizePx : margin + fontSizePx;
+    // Canvas coordinates: Y=0 at top
+    // For text positioning, we need to account for text baseline
+    let y;
+    if (position.includes('top')) {
+      // Top: margin from top edge, text baseline at fontSizePx
+      y = margin + fontSizePx;
+    } else {
+      // Bottom: margin from bottom edge, text sits on baseline
+      y = pageHeight - margin;
+    }
 
     let x;
     if (position.includes('left')) {
+      // Left: margin from left edge
       x = margin;
     } else if (position.includes('right')) {
+      // Right: margin from right edge, align right edge of text
       x = pageWidth - margin - textWidthPx;
     } else {
+      // Center: exact center of text
       x = pageWidth / 2 - textWidthPx / 2;
     }
     return { x, y };
@@ -78,15 +102,19 @@ document.addEventListener('DOMContentLoaded', () => {
   async function renderPage(pageNum) {
     if (!pdfDoc) return;
     const page = await pdfDoc.getPage(pageNum);
-    const viewport = page.getViewport({ scale });
+    const viewport = page.getViewport({ scale: 1 }); // Get natural scale first
+
+    // Calculate adaptive scale
+    scale = calculateScale(viewport);
+    const scaledViewport = page.getViewport({ scale });
 
     const ctx = canvas.getContext('2d');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
+    canvas.width = scaledViewport.width;
+    canvas.height = scaledViewport.height;
 
     const renderContext = {
       canvasContext: ctx,
-      viewport,
+      viewport: scaledViewport,
     };
 
     await page.render(renderContext).promise;
@@ -96,44 +124,112 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontSize = parseInt(fontSizeInput?.value || '12', 10) || 12;
     const text = getFormatText(pageNum, pdfDoc.numPages);
 
+    // Debug info
+    console.log('Drawing page number:', { pageNum, text, position, fontSize, scale });
+
     ctx.save();
     ctx.fillStyle = '#1f2937'; // gray-800
     ctx.font = `${fontSize * scale}px Helvetica`;
+    ctx.textBaseline = 'alphabetic'; // Match standard text rendering
     const textMetrics = ctx.measureText(text);
     const textWidth = textMetrics.width;
 
-    const { x, y } = getPositionCoordinates(position, viewport.width, viewport.height, fontSize * scale, textWidth);
+    const { x, y } = getPositionCoordinates(position, scaledViewport.width, scaledViewport.height, fontSize * scale, textWidth);
+
+    console.log('Text position:', { x, y, textWidth, canvasWidth: canvas.width, canvasHeight: canvas.height });
+
     ctx.fillText(text, x, y);
     ctx.restore();
   }
 
+  function showError(message) {
+    const resultContainer = document.getElementById('editorResult');
+    if (!resultContainer) return;
+
+    resultContainer.innerHTML = `
+        <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
+            <div class="flex flex-col items-center space-y-3">
+                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-red-900 mb-1">
+                        ${window.ERROR_TITLE || 'Error'}
+                    </h3>
+                    <p class="text-sm text-red-700">
+                        ${message}
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    resultContainer.classList.remove('hidden');
+
+    // Hide preview sections on error
+    previewSection.classList.add('hidden');
+    settingsSection.classList.add('hidden');
+}
+
+function clearError() {
+    const resultContainer = document.getElementById('editorResult');
+    if (resultContainer) {
+        resultContainer.classList.add('hidden');
+        resultContainer.innerHTML = '';
+    }
+}
+
   async function loadPdf(file) {
     try {
       // Clear any previous errors when selecting a new file
-      const errorElements = document.querySelectorAll('.error-message, .bg-red-50, .border-red-200');
-      errorElements.forEach(el => el.remove());
+      clearError();
+
+      // Validate page limit using common function
+      if (typeof window.validatePdfPageLimit === 'function') {
+        const isValid = await window.validatePdfPageLimit(file);
+        if (!isValid) {
+          // Error already shown by validatePdfPageLimit, hide preview
+          previewSection.classList.add('hidden');
+          settingsSection.classList.add('hidden');
+          return;
+        }
+      }
 
       const arrayBuffer = await file.arrayBuffer();
       const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
       pdfDoc = await loadingTask.promise;
 
-      // Early page count validation - check before rendering
-      const pageCount = pdfDoc.numPages;
-      const maxPages = 50; // Same as backend
-
-      if (pageCount > maxPages) {
-        alert(`PDF has ${pageCount} pages, maximum allowed is ${maxPages}. Please split your PDF into smaller parts.`);
-        previewSection.classList.add('hidden');
-        pdfDoc = null;
-        return;
-      }
-
+      // Show preview and settings (common approach)
       previewSection.classList.remove('hidden');
-      populatePageSelector(pageCount);
+      settingsSection.classList.remove('hidden');
+
+      populatePageSelector(pdfDoc.numPages);
       await renderPage(currentPage);
     } catch (e) {
       console.error('Failed to render PDF preview', e);
+
+      // Hide preview sections on error (common approach)
       previewSection.classList.add('hidden');
+      settingsSection.classList.add('hidden');
+
+      // Handle different types of errors
+      let errorMessage = 'Failed to load PDF file. Please try again.';
+      if (e && e.message) {
+        if (e.message.includes('Invalid PDF')) {
+          errorMessage = 'Invalid PDF file. Please select a valid PDF file.';
+        } else if (e.message.includes('password')) {
+          errorMessage = 'This PDF is password protected. Please unlock it first.';
+        } else if (e.message.includes('network') || e.message.includes('fetch')) {
+          errorMessage = 'Network error. Please check your connection and try again.';
+        } else if (e.message.includes('pages') && e.message.includes('maximum')) {
+          errorMessage = e.message; // Use backend page limit error
+        } else {
+          errorMessage = `Error: ${e.message}`;
+        }
+      }
+
+      showError(errorMessage);
     }
   }
 
@@ -160,8 +256,60 @@ document.addEventListener('DOMContentLoaded', () => {
           loadPdf(file);
         } else {
           previewSection.classList.add('hidden');
+          settingsSection.classList.add('hidden');
         }
       });
     }
   });
+
+  // Format preset buttons
+  const formatPresets = document.querySelectorAll('.format-preset');
+  formatPresets.forEach((button) => {
+    button.addEventListener('click', () => {
+      const format = button.dataset.format;
+      if (formatInput) {
+        formatInput.value = format;
+
+        // Visual feedback - highlight selected button
+        formatPresets.forEach((btn) => {
+          btn.classList.remove('bg-blue-500', 'text-white', 'border-blue-500');
+          btn.classList.add('bg-gray-100', 'border-gray-300');
+        });
+        button.classList.remove('bg-gray-100', 'border-gray-300');
+        button.classList.add('bg-blue-500', 'text-white', 'border-blue-500');
+
+        // Trigger preview update if PDF is loaded
+        if (pdfDoc) {
+          renderPage(currentPage);
+        }
+      }
+    });
+  });
+
+  // Real-time preview updates when settings change
+  const settingsInputs = [positionSelect, fontSizeInput, startNumberInput, formatInput];
+  settingsInputs.forEach((input) => {
+    if (input) {
+      input.addEventListener('input', () => {
+        if (pdfDoc) {
+          renderPage(currentPage);
+        }
+      });
+      input.addEventListener('change', () => {
+        if (pdfDoc) {
+          renderPage(currentPage);
+        }
+      });
+    }
+  });
+
+  // Page selector change
+  if (pageSelector) {
+    pageSelector.addEventListener('change', (e) => {
+      currentPage = parseInt(e.target.value, 10);
+      if (pdfDoc) {
+        renderPage(currentPage);
+      }
+    });
+  }
 });

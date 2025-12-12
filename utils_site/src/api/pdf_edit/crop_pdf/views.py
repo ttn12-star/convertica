@@ -77,6 +77,7 @@ class CropPDFAPIView(BaseConversionAPIView):
             height = None
 
         pages = kwargs.get("pages", "all")
+        scale_to_page_size = kwargs.get("scale_to_page_size", False)
 
         # Log all parameters for debugging
         from ...logging_utils import get_logger
@@ -99,6 +100,7 @@ class CropPDFAPIView(BaseConversionAPIView):
             width=width,
             height=height,
             pages=pages,
+            scale_to_page_size=scale_to_page_size,
             suffix="_convertica",
         )
         return pdf_path, output_path
