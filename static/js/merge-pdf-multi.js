@@ -48,7 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
         pdfFilesInput?.click();
     });
 
-    pdfFilesInput?.addEventListener('change', (e) => {
+    pdfFilesInput?.addEventListener('change', async (e) => {
+        // Small delay for mobile devices
+        await new Promise(resolve => setTimeout(resolve, 50));
         handleFileSelection(e.target.files);
         e.target.value = ''; // Reset input
     });
@@ -121,6 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleFileSelection(files) {
         if (!files || files.length === 0) return;
 
+        console.log('handleFileSelection called with files:', files);
+        console.log('Before selection - selectedFiles.length:', selectedFiles.length);
+
         // Add new files to the list (avoid duplicates by name and size)
         Array.from(files).forEach(file => {
             if (!file.name.toLowerCase().endsWith('.pdf')) {
@@ -148,6 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedFiles = selectedFiles.slice(0, 10);
             alert(window.MAX_FILES_EXCEEDED || 'Maximum 10 files allowed. Only the first 10 files will be used.');
         }
+
+        console.log('After selection - selectedFiles.length:', selectedFiles.length);
 
         updateFileList();
         updatePreview();
@@ -451,6 +458,20 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         e.stopPropagation(); // Prevent other handlers from running
 
+        // Small delay to ensure files are processed on mobile
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Additional check - if no files in selectedFiles, check form input directly
+        if (selectedFiles.length === 0 && pdfFilesInput && pdfFilesInput.files.length > 0) {
+            console.log('Fallback: Processing files from input directly');
+            handleFileSelection(pdfFilesInput.files);
+            // Another small delay after processing
+            await new Promise(resolve => setTimeout(resolve, 50));
+        }
+
+        console.log('Form submit - selectedFiles.length:', selectedFiles.length);
+        console.log('Form submit - selectedFiles:', selectedFiles);
+
         if (selectedFiles.length < 2) {
             showError('Please select at least 2 PDF files to merge.');
             return;
@@ -586,6 +607,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('downloadContainer');
         if (!container) return;
 
+        const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$');
+        const replaceTo = window.REPLACE_TO || '.pdf';
+        const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
+
         const url = URL.createObjectURL(blob);
 
         container.innerHTML = `
@@ -598,13 +623,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div>
                         <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            ${window.SUCCESS_TITLE || 'Merging Complete!'}
+                            ${window.SUCCESS_TITLE || 'Editing Complete!'}
                         </h3>
                         <p class="text-sm sm:text-base text-gray-600 mb-4">
                             ${window.SUCCESS_MESSAGE || 'Your file is ready to download'}
                         </p>
                         <p class="text-xs text-gray-500 font-mono break-all px-2">
-                            ${escapeHtml(originalFileName)}
+                            ${outputFileName}
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
@@ -618,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <button type="button"
                                 id="editAnotherButton"
                                 class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
-                            <span>${window.EDIT_ANOTHER_TEXT || 'Merge another file'}</span>
+                            <span>${window.EDIT_ANOTHER_TEXT || 'Edit another file'}</span>
                         </button>
                     </div>
                 </div>
@@ -635,19 +660,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
             downloadBtn.addEventListener('click', async () => {
-                let finalName = originalFileName;
+                const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
+                let finalName = outputFileName;
 
                 // Try modern file picker to let user choose directory & filename
                 if (window.showSaveFilePicker) {
                     try {
                         const handle = await window.showSaveFilePicker({
-                            suggestedName: originalFileName,
+                            suggestedName: outputFileName,
                             types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
                         });
                         const writable = await handle.createWritable();
                         await writable.write(blob);
                         await writable.close();
-                        finalName = handle.name || originalFileName;
+                        finalName = handle.name || outputFileName;
                         downloadBtn.classList.add('bg-green-700');
                         downloadBtn.innerHTML = '<span>✓ ' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
                         setTimeout(() => {
@@ -666,10 +692,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Fallback: prompt for filename, then trigger download (browser will ask location)
-                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', originalFileName);
+                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', outputFileName);
                 if (input && input.trim()) {
                     finalName = input.trim();
-                    const originalExt = originalFileName.includes('.') ? originalFileName.slice(originalFileName.lastIndexOf('.')) : '.pdf';
+                    const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
                     if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
                         finalName += originalExt;
                     }
@@ -687,39 +713,35 @@ document.addEventListener('DOMContentLoaded', () => {
         // Edit another button handler with smooth scroll to top
         const editAnotherBtn = document.getElementById('editAnotherButton');
         if (editAnotherBtn) {
-            editAnotherBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                // Clear selected files list (if present)
-                if (selectedPdfFilesList) {
-                    selectedPdfFilesList.innerHTML = '';
-                    selectedPdfFiles = [];
-                    updatePdfFilesInput();
-
-                    if (selectedPdfFilesList.parentElement) {
-                        selectedPdfFilesList.parentElement.classList.add('hidden');
-                    }
+            editAnotherBtn.addEventListener('click', () => {
+                // Hide selected file display
+                const selectedFileDiv = document.getElementById('selectedFile');
+                if (selectedFileDiv) {
+                    selectedFileDiv.classList.add('hidden');
                 }
 
                 // Reset file input
-                if (pdfFilesInput) {
-                    pdfFilesInput.value = '';
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) {
+                    fileInput.value = '';
                 }
+
+                // Reset watermark options
+                const watermarkText = document.getElementById('watermarkText');
+                const watermarkOpacity = document.getElementById('watermarkOpacity');
+                const watermarkRotation = document.getElementById('watermarkRotation');
+                if (watermarkText) watermarkText.value = '';
+                if (watermarkOpacity) watermarkOpacity.value = '50';
+                if (watermarkRotation) watermarkRotation.value = '45';
 
                 // Hide download container
                 hideDownload();
 
                 // Smooth scroll to top of page
-                try {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } catch (err) {
-                    // Fallback for browsers without smooth behavior support
-                    window.scrollTo(0, 0);
-                }
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
 
                 // Focus on select button after scroll completes
                 setTimeout(() => {
@@ -727,7 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (selectFileButton) {
                         selectFileButton.focus();
                     }
-                }, 800);
+                }, 800); // Wait for smooth scroll to complete
             });
         }
     }

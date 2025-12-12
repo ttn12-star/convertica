@@ -192,10 +192,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Also listen to direct change events as fallback (in case file-input-handler.js is not loaded)
     if (fileInput) {
-        fileInput.addEventListener('change', (e) => {
+        fileInput.addEventListener('change', async (e) => {
+            // Small delay for mobile devices
+            await new Promise(resolve => setTimeout(resolve, 100));
+
             if (e.target.files && e.target.files.length > 0) {
                 const file = e.target.files[0];
                 if (file.type === 'application/pdf') {
+                    console.log('File selected via change event:', file.name);
                     handleFileSelect(file);
                 }
             }
@@ -203,10 +207,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (fileInputDrop) {
-        fileInputDrop.addEventListener('change', (e) => {
+        fileInputDrop.addEventListener('change', async (e) => {
+            // Small delay for mobile devices
+            await new Promise(resolve => setTimeout(resolve, 100));
+
             if (e.target.files && e.target.files.length > 0) {
                 const file = e.target.files[0];
                 if (file.type === 'application/pdf') {
+                    console.log('File selected via drop change event:', file.name);
                     handleFileSelect(file);
                 }
             }
@@ -238,6 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Small delay to ensure file is ready
+            await new Promise(resolve => setTimeout(resolve, 50));
+
             // Load PDF
             const arrayBuffer = await file.arrayBuffer();
 
@@ -250,18 +261,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Load PDF document with error handling
-            pdfDoc = await pdfjsLib.getDocument({
-                data: arrayBuffer,
-                verbosity: 0 // Suppress warnings
-            }).promise;
+            // Load PDF document with retry mechanism for mobile devices
+            let retryCount = 0;
+            const maxRetries = 3;
 
-            if (!pdfDoc) {
-                showError('Failed to load PDF document. Please check if the file is a valid PDF.');
-                // Hide preview sections on load error
-                pdfPreviewSection.classList.add('hidden');
-                watermarkSettingsSection.classList.add('hidden');
-                return;
+            while (retryCount < maxRetries) {
+                try {
+                    console.log(`Loading PDF attempt ${retryCount + 1}/${maxRetries}`);
+
+                    pdfDoc = await pdfjsLib.getDocument({
+                        data: arrayBuffer,
+                        verbosity: 0 // Suppress warnings
+                    }).promise;
+
+                    if (!pdfDoc) {
+                        throw new Error('PDF document is null');
+                    }
+
+                    console.log('PDF loaded successfully');
+                    break; // Success, exit retry loop
+
+                } catch (error) {
+                    retryCount++;
+                    console.error(`PDF load attempt ${retryCount} failed:`, error);
+
+                    if (retryCount >= maxRetries) {
+                        showError('Failed to load PDF file. Please try again.');
+                        // Hide preview sections on load error
+                        pdfPreviewSection.classList.add('hidden');
+                        watermarkSettingsSection.classList.add('hidden');
+                        return;
+                    }
+
+                    // Wait before retry
+                    await new Promise(resolve => setTimeout(resolve, 500 * retryCount));
+                }
             }
 
             pageCount = pdfDoc.numPages;
