@@ -443,6 +443,9 @@ class BaseConversionAPIView(APIView, ABC):
                     temp_pdf_path, context
                 )
                 if page_validation_error is not None:
+                    logger.info(
+                        f"Returning page validation error: {page_validation_error.data}"
+                    )
                     return page_validation_error
 
                 # Cleanup validation temp dir
