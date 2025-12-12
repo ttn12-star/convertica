@@ -228,10 +228,6 @@ def crop_pdf(
 
                         can.setPageSize(page_size)
 
-                        # Set MediaBox and CropBox to ensure PDF viewers recognize the page
-                        can.setMediaBox([0, 0, page_size[0], page_size[1]])
-                        can.setCropBox([0, 0, page_size[0], page_size[1]])
-
                         # Save cropped image temporarily
                         img_path = os.path.join(tmp_dir, f"cropped_page_{page_num}.png")
                         cropped_img.save(img_path, "PNG")
