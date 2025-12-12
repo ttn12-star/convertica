@@ -19,6 +19,9 @@ class CropPDFAPIView(BaseConversionAPIView):
     CONVERSION_TYPE = "CROP_PDF"
     FILE_FIELD_NAME = "pdf_file"
 
+    # Explicitly enable PDF page validation for crop operations
+    VALIDATE_PDF_PAGES = True
+
     def get_serializer_class(self):
         return CropPDFSerializer
 
@@ -79,7 +82,12 @@ class CropPDFAPIView(BaseConversionAPIView):
 
         logger = get_logger(__name__)
         logger.info(
-            f"CropPDFAPIView: x={x}, y={y}, width={width}, height={height}, pages='{pages}'",
+            "CropPDFAPIView: x=%s, y=%s, width=%s, height=%s, pages='%s'",
+            x,
+            y,
+            width,
+            height,
+            pages,
             extra=context,
         )
 

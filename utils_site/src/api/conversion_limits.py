@@ -6,6 +6,7 @@ from functools import wraps
 from typing import Any
 
 import fitz  # PyMuPDF
+from django.utils.translation import gettext_lazy as _
 
 from .logging_utils import get_logger
 
@@ -56,8 +57,10 @@ def validate_pdf_pages(
         if page_count > max_pages:
             return (
                 False,
-                f"PDF has {page_count} pages, maximum allowed is {max_pages}. "
-                f"Please split your PDF into smaller parts.",
+                _(
+                    "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts."
+                )
+                % {"page_count": page_count, "max_pages": max_pages},
                 page_count,
             )
 

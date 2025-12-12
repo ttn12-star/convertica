@@ -19,6 +19,9 @@ class AddWatermarkAPIView(BaseConversionAPIView):
     CONVERSION_TYPE = "ADD_WATERMARK"
     FILE_FIELD_NAME = "pdf_file"
 
+    # Explicitly enable PDF page validation for watermark operations
+    VALIDATE_PDF_PAGES = True
+
     # Explicitly set parser classes to avoid auto-detection of request body
     from rest_framework.parsers import FormParser, MultiPartParser
 
@@ -104,9 +107,20 @@ class AddWatermarkAPIView(BaseConversionAPIView):
 
         logger = get_logger(__name__)
         logger.info(
-            f"AddWatermarkAPIView: watermark_text='{watermark_text}', has_file={watermark_file is not None}, "
-            f"position='{position}', x={x}, y={y}, color='{color}', opacity={opacity}, "
-            f"font_size={font_size}, rotation={rotation}, scale={scale}, pages='{pages}'",
+            "AddWatermarkAPIView: watermark_text='%s', has_file=%s, "
+            "position='%s', x=%s, y=%s, color='%s', opacity=%s, "
+            "font_size=%s, rotation=%s, scale=%s, pages='%s'",
+            watermark_text,
+            watermark_file is not None,
+            position,
+            x,
+            y,
+            color,
+            opacity,
+            font_size,
+            rotation,
+            scale,
+            pages,
             extra=context,
         )
 

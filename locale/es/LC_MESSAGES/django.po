@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 13:02+0000\n"
+"POT-Creation-Date: 2025-12-12 10:57+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
 "Language: es\n"
@@ -294,7 +294,7 @@ msgstr "Anterior"
 
 #: templates/blog/article_list.html:121
 #: templates/frontend/add_watermark.html:446
-#: templates/frontend/crop_pdf.html:360 templates/frontend/merge_pdf.html:91
+#: templates/frontend/crop_pdf.html:360 templates/frontend/merge_pdf.html:113
 #: templates/frontend/organize_pdf.html:44
 msgid "Page"
 msgstr "Página"
@@ -653,7 +653,7 @@ msgstr ""
 #: templates/frontend/crop_pdf.html:324
 #: templates/frontend/edit_pdf_generic.html:174
 #: templates/frontend/extract_pages.html:32
-#: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:106
+#: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:128
 #: templates/frontend/organize_pdf.html:57
 #: templates/frontend/pdf_to_excel.html:7 templates/frontend/pdf_to_jpg.html:71
 #: templates/frontend/pdf_to_word.html:7 templates/frontend/protect_pdf.html:65
@@ -722,7 +722,7 @@ msgstr ""
 #: templates/frontend/compress_pdf.html:41 templates/frontend/crop_pdf.html:336
 #: templates/frontend/edit_pdf_generic.html:184
 #: templates/frontend/extract_pages.html:42
-#: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:116
+#: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:138
 #: templates/frontend/organize_pdf.html:68
 #: templates/frontend/pdf_to_excel.html:17
 #: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:17
@@ -941,7 +941,7 @@ msgid "Error"
 msgstr "Error"
 
 #: templates/frontend/add_watermark.html:447
-#: templates/frontend/crop_pdf.html:366 templates/frontend/merge_pdf.html:96
+#: templates/frontend/crop_pdf.html:366 templates/frontend/merge_pdf.html:118
 #: templates/frontend/organize_pdf.html:47
 msgid "Failed to load PDF file. Please try again."
 msgstr "No se pudo cargar el archivo PDF. Por favor, inténtalo de nuevo."
@@ -2551,76 +2551,86 @@ msgstr "Configuración de combinación"
 msgid "Select PDF Files"
 msgstr "Seleccionar archivos PDF"
 
-#: templates/frontend/merge_pdf.html:43
+#: templates/frontend/merge_pdf.html:45
 msgid "Select PDF files"
 msgstr "Seleccionar archivos PDF"
 
-#: templates/frontend/merge_pdf.html:56
+#: templates/frontend/merge_pdf.html:59
 msgid "+ Add more files"
 msgstr "+ Agregar más archivos"
 
-#: templates/frontend/merge_pdf.html:60
+#: templates/frontend/merge_pdf.html:72
+#| msgid "Drag and drop your file here"
+msgid "Drag and drop your PDF files here"
+msgstr "Arrastra y suelta tu archivo aquí"
+
+#: templates/frontend/merge_pdf.html:75
+#| msgid "Use the button above to browse files"
+msgid "Or use the button above to browse files"
+msgstr "Usa el botón de arriba para explorar archivos"
+
+#: templates/frontend/merge_pdf.html:82
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 "Selecciona 2-10 archivos PDF para combinar. Puedes reordenarlos arrastrando."
 
-#: templates/frontend/merge_pdf.html:68
+#: templates/frontend/merge_pdf.html:90
 msgid "Selected Files"
 msgstr "Archivos seleccionados"
 
-#: templates/frontend/merge_pdf.html:80
+#: templates/frontend/merge_pdf.html:102
 msgid "Preview & Reorder Pages"
 msgstr "Vista previa y reordenar páginas"
 
-#: templates/frontend/merge_pdf.html:82
+#: templates/frontend/merge_pdf.html:104
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 msgstr ""
 "Arrastra y suelta para reordenar archivos. El orden mostrado aquí será el "
 "orden de combinación."
 
-#: templates/frontend/merge_pdf.html:92
+#: templates/frontend/merge_pdf.html:114
 msgid "is not a PDF file. Skipping."
 msgstr "no es un archivo PDF. Omitiendo."
 
-#: templates/frontend/merge_pdf.html:93
+#: templates/frontend/merge_pdf.html:115
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
 msgstr ""
 "Máximo 10 archivos permitidos. Solo se usarán los primeros 10 archivos."
 
-#: templates/frontend/merge_pdf.html:94
+#: templates/frontend/merge_pdf.html:116
 msgid "Error loading preview"
 msgstr "Error al cargar vista previa"
 
-#: templates/frontend/merge_pdf.html:95
+#: templates/frontend/merge_pdf.html:117
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: templates/frontend/merge_pdf.html:97
+#: templates/frontend/merge_pdf.html:119
 msgid "Merging PDFs..."
 msgstr "Fusionando PDFs..."
 
-#: templates/frontend/merge_pdf.html:98
+#: templates/frontend/merge_pdf.html:120
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Por favor, selecciona al menos 2 archivos PDF para combinar."
 
-#: templates/frontend/merge_pdf.html:109
+#: templates/frontend/merge_pdf.html:131
 msgid "Select 2-10 PDF files to merge using the button above"
 msgstr "Selecciona 2-10 archivos PDF para combinar usando el botón de arriba"
 
-#: templates/frontend/merge_pdf.html:110
+#: templates/frontend/merge_pdf.html:132
 msgid "Preview all PDF files and drag them to reorder the merge order"
 msgstr ""
 "Previsualiza todos los archivos PDF y arrástralos para reordenar el orden de "
 "combinación"
 
-#: templates/frontend/merge_pdf.html:111
+#: templates/frontend/merge_pdf.html:133
 msgid "Click the merge button to combine all PDF files into one document"
 msgstr ""
 "Haz clic en el botón de combinar para unir todos los archivos PDF en un "
 "documento"
 
-#: templates/frontend/merge_pdf.html:112
+#: templates/frontend/merge_pdf.html:134
 msgid ""
 "Download your merged PDF file containing all pages from all selected files "
 "using the download button"
@@ -2628,7 +2638,7 @@ msgstr ""
 "Descarga tu archivo PDF combinado que contiene todas las páginas de todos "
 "los archivos seleccionados usando el botón de descarga"
 
-#: templates/frontend/merge_pdf.html:116
+#: templates/frontend/merge_pdf.html:138
 msgid ""
 "You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
 "from all selected files in the order you specified."
@@ -3954,6 +3964,13 @@ msgstr ""
 "Se admiten documentos Word de hasta 50 páginas. Para archivos más grandes, "
 "divídalos en partes más pequeñas. La conversión preserva el formato, "
 "fuentes, imágenes y diseño de página."
+
+#: utils_site/src/api/conversion_limits.py:60
+#, python-format
+msgid ""
+"PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
+"your PDF into smaller parts."
+msgstr "El PDF tiene %(page_count)d páginas, el máximo permitido es %(max_pages)d. Por favor, divide tu PDF en partes más pequeñas."
 
 #: utils_site/src/api/pdf_security/unlock_pdf/utils.py:74
 msgid "Password cannot be empty"

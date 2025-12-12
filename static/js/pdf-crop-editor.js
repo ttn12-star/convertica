@@ -895,17 +895,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: formData
             });
 
-            const blob = await response.blob();
-
             if (!response.ok) {
-                try {
-                    const errorData = await blob.text();
-                    const errorJson = JSON.parse(errorData);
-                    throw new Error(errorJson.error || window.ERROR_MESSAGE);
-                } catch {
-                    throw new Error(window.ERROR_MESSAGE || 'Editing failed');
+                const errorData = await response.json().catch(() => ({}));
+                console.log('Crop PDF Error data received:', errorData);
+                console.log('Crop PDF Error data.error:', errorData.error);
+
+                // Always use API error if available
+                if (errorData.error) {
+                    throw new Error(errorData.error);
+                } else {
+                    throw new Error('API returned error but no error message');
                 }
             }
+
+            const blob = await response.blob();
 
             // Success
             hideLoading();
