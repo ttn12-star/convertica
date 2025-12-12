@@ -18,6 +18,7 @@ class PDFToWordAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".pdf"}
     CONVERSION_TYPE = "PDF_TO_WORD"
     FILE_FIELD_NAME = "pdf_file"
+    VALIDATE_PDF_PAGES = False  # Client-side validation implemented
 
     def get_serializer_class(self):
         return PDFToWordSerializer

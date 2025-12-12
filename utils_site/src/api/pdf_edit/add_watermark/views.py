@@ -19,8 +19,8 @@ class AddWatermarkAPIView(BaseConversionAPIView):
     CONVERSION_TYPE = "ADD_WATERMARK"
     FILE_FIELD_NAME = "pdf_file"
 
-    # Explicitly enable PDF page validation for watermark operations
-    VALIDATE_PDF_PAGES = True
+    # Disable PDF page validation - done on client side via pdfDoc.numPages
+    VALIDATE_PDF_PAGES = False
 
     # Explicitly set parser classes to avoid auto-detection of request body
     from rest_framework.parsers import FormParser, MultiPartParser

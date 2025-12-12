@@ -53,6 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Cleanup previous PDF if exists
         cleanupPreviousPDF();
 
+        // Clear any previous errors when selecting a new file
+        clearError();
+
         // Store file reference for form submission
         pdfFile = file;
 
@@ -66,8 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const arrayBuffer = await file.arrayBuffer();
             pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
+            // Universal page count validation
+            const isValid = await window.validatePdfPageLimit(file);
+            if (!isValid) {
+                if (pdfPreviewSection) {
+                    pdfPreviewSection.classList.add('hidden');
+                }
+                pdfDoc = null;
+                return;
+            }
+
             // Initialize page order (0-based indices)
-            pageOrder = Array.from({ length: pdfDoc.numPages }, (_, i) => i);
+            pageOrder = Array.from({ length: pageCount }, (_, i) => i);
 
             // Render all pages
             await renderAllPages();
@@ -130,6 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Fallback to alert
             alert(message);
+        }
+    }
+
+    function clearError() {
+        const errorContainer = document.getElementById('errorMessage');
+        if (errorContainer) {
+            errorContainer.classList.add('hidden');
+            errorContainer.textContent = '';
         }
     }
 

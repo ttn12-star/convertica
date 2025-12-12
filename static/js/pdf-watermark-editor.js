@@ -223,14 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleFileSelect(file) {
         try {
-            // Check if PDF.js is loaded
+            // Clear any previous errors when selecting a new file
+            clearError();
+
             if (typeof pdfjsLib === 'undefined') {
                 showError('PDF.js library is not loaded. Please refresh the page and try again.');
-                console.error('PDF.js library (pdfjsLib) is not available');
                 return;
             }
-
-            // Cleanup previous PDF if exists
             cleanupPreviousPDF();
 
             // Show preview section
@@ -290,15 +289,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Hide preview sections on load error
                         pdfPreviewSection.classList.add('hidden');
                         watermarkSettingsSection.classList.add('hidden');
+                        cleanupPreviousPDF();
                         return;
                     }
-
-                    // Wait before retry
-                    await new Promise(resolve => setTimeout(resolve, 500 * retryCount));
                 }
             }
 
-            pageCount = pdfDoc.numPages;
+            // Universal page count validation
+            const isValid = await window.validatePdfPageLimit(file);
+            if (!isValid) {
+                // Hide preview sections on validation error
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                cleanupPreviousPDF();
+                return;
+            }
 
             // Populate page selector
             pageSelector.innerHTML = '';
@@ -453,16 +458,18 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Set watermark at bottom center of page
+        // Set watermark at bottom center of page - position lower on mobile
+        const isMobile = window.innerWidth <= 768;
         watermarkX = pdfPageWidth / 2; // Center horizontally
-        watermarkY = 50; // 50 points from bottom
+        watermarkY = isMobile ? 30 : 50; // Lower position on mobile (30 points from bottom)
 
         // Initialize rotation and scale if not already set
         if (watermarkRotation === undefined || isNaN(watermarkRotation) || watermarkRotation === null) {
             watermarkRotation = 0.0;
         }
         if (watermarkScale === undefined || isNaN(watermarkScale) || watermarkScale === null) {
-            watermarkScale = 1.0;
+            // Smaller scale on mobile for better UX
+            watermarkScale = isMobile ? 0.8 : 1.0;
         }
 
         // Update hidden inputs
@@ -1266,6 +1273,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideResult() {
         if (resultContainer) {
             resultContainer.classList.add('hidden');
+        }
+    }
+
+    function clearError() {
+        if (resultContainer) {
+            resultContainer.classList.add('hidden');
+            resultContainer.innerHTML = '';
         }
     }
 

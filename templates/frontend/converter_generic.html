@@ -209,6 +209,7 @@
     window.REPLACE_REGEX = "{{ replace_regex }}";
     window.REPLACE_TO = "{{ replace_to }}";
     window.ERROR_MESSAGE = "{{ error_message|default:'Conversion failed. Please try again.' }}";
+    window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
     window.LOADING_TITLE = "{% trans 'Converting your file...' %}";
     window.LOADING_MESSAGE = "{% trans 'Please wait, this may take a few moments' %}";
     window.SUCCESS_TITLE = "{% trans 'Conversion Complete!' %}";
@@ -218,6 +219,13 @@
     window.ERROR_TITLE = "{% trans 'Error' %}";
   </script>
 {# External JS files #}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    // Set PDF.js worker
+    if (typeof pdfjsLib !== 'undefined') {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  </script>
   <script src="{% static 'js/file-input-handler.js' %}"></script>
   <script src="{% static 'js/converter.js' %}"></script>
 {% endblock %}

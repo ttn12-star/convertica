@@ -29,6 +29,162 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Show selected file and enable convert button
+    // Universal PDF page count validator - used across all pages
+    window.validatePdfPageLimit = async function(file) {
+        try {
+            if (file.type !== 'application/pdf') {
+                return true; // Not a PDF file, no validation needed
+            }
+
+            if (typeof pdfjsLib === 'undefined') {
+                console.warn('PDF.js not loaded, skipping page validation');
+                return true; // PDF.js not available, allow file
+            }
+
+            if (typeof window.PAGE_LIMIT_ERROR === 'undefined') {
+                console.warn('PAGE_LIMIT_ERROR not defined, skipping page validation');
+                return true; // Translation not available, allow file
+            }
+
+            const arrayBuffer = await file.arrayBuffer();
+            const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            const pageCount = pdfDoc.numPages;
+            const maxPages = 50; // Same as backend
+
+            if (pageCount > maxPages) {
+                // Show error using universal function with translation fallback
+                const errorMessage = getPageLimitError(pageCount, maxPages);
+                showUniversalError(errorMessage);
+
+                return false;
+            }
+
+            // Clear any previous errors
+            clearAllErrors();
+            return true;
+
+        } catch (error) {
+            console.error('Error validating PDF pages:', error);
+            return true; // Allow file if validation fails
+        }
+    };
+
+    // Clear errors from all possible containers
+    function clearAllErrors() {
+        // Clear converterResult
+        const converterResult = document.getElementById('converterResult');
+        if (converterResult) {
+            converterResult.classList.add('hidden');
+            converterResult.innerHTML = '';
+        }
+
+        // Clear editorResult
+        const editorResult = document.getElementById('editorResult');
+        if (editorResult) {
+            editorResult.classList.add('hidden');
+            editorResult.innerHTML = '';
+        }
+
+        // Clear errorMessage
+        const errorMessageDiv = document.getElementById('errorMessage');
+        if (errorMessageDiv) {
+            errorMessageDiv.classList.add('hidden');
+            errorMessageDiv.textContent = '';
+        }
+
+        // Clear inline error
+        clearInlineError();
+    }
+
+    // Universal error display function - works for all containers
+    function showUniversalError(message) {
+        // Find the first available error container
+        const containers = [
+            document.getElementById('converterResult'),
+            document.getElementById('editorResult'),
+            document.getElementById('errorMessage')
+        ];
+
+        const container = containers.find(c => c !== null);
+
+        if (container) {
+            // Use the same error HTML for all containers
+            const errorHtml = `
+                <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 shadow-lg animate-fade-in">
+                    <div class="flex items-start space-x-3">
+                        <svg class="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h4 class="font-semibold text-red-800 mb-1">${window.ERROR_TITLE || 'Error'}</h4>
+                            <p class="text-red-700 text-sm">${message}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = errorHtml;
+            container.classList.remove('hidden');
+            // Only scroll for converter pages, not for PDF editors
+            if (container.id === 'converterResult') {
+                container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        } else {
+            // Fallback: create error div dynamically
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'bg-red-50 border-2 border-red-200 rounded-xl p-6 shadow-lg animate-fade-in mt-6';
+            errorDiv.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <svg class="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <h4 class="font-semibold text-red-800 mb-1">${window.ERROR_TITLE || 'Error'}</h4>
+                        <p class="text-red-700 text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+
+            // Insert after file input
+            const fileInput = document.getElementById('fileInput') || document.getElementById('fileInputDrop');
+            if (fileInput && fileInput.parentNode) {
+                fileInput.parentNode.insertBefore(errorDiv, fileInput.nextSibling);
+            }
+        }
+    }
+
+    // Get translated page limit error with fallback
+    function getPageLimitError(pageCount, maxPages) {
+        if (typeof window.PAGE_LIMIT_ERROR !== 'undefined') {
+            return window.PAGE_LIMIT_ERROR.replace('%(page_count)d', pageCount).replace('%(max_pages)d', maxPages);
+        } else {
+            // Fallback to English if translation not available
+            return `PDF has ${pageCount} pages, maximum allowed is ${maxPages}. Please split your PDF into smaller parts.`;
+        }
+    }
+
+    // Clear inline error
+    function clearInlineError() {
+        // Clear all possible error containers
+        const containers = [
+            document.getElementById('converterResult'),
+            document.getElementById('editorResult'),
+            document.getElementById('errorMessage')
+        ];
+
+        containers.forEach(container => {
+            if (container) {
+                container.classList.add('hidden');
+                container.innerHTML = '';
+            }
+        });
+
+        // Clear any dynamically created error divs
+        const dynamicErrors = document.querySelectorAll('.bg-red-50.border-red-200');
+        dynamicErrors.forEach(error => error.remove());
+    }
+
+
     function showSelectedFile(file) {
         if (!selectedFileDiv || !fileName || !fileSize) return;
 
@@ -39,10 +195,36 @@ document.addEventListener('DOMContentLoaded', () => {
             fileInfo.classList.add('hidden');
         }
 
-        // Enable convert/edit button
-        if (convertButton) {
-            convertButton.disabled = false;
-            convertButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        // Validate PDF page count using universal function
+        if (file.type === 'application/pdf') {
+            window.validatePdfPageLimit(file).then(isValid => {
+                if (!isValid) {
+                    // Disable convert button if validation fails
+                    if (convertButton) {
+                        convertButton.disabled = true;
+                        convertButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    }
+                } else {
+                    // Enable convert button if validation passes
+                    if (convertButton) {
+                        convertButton.disabled = false;
+                        convertButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                }
+            }).catch(error => {
+                console.error('PDF validation error:', error);
+                // Enable button by default if validation fails
+                if (convertButton) {
+                    convertButton.disabled = false;
+                    convertButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        } else {
+            // Enable convert button for non-PDF files
+            if (convertButton) {
+                convertButton.disabled = false;
+                convertButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
         }
     }
 
