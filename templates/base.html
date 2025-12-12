@@ -5,16 +5,6 @@
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <head>
 
-    <!-- Google Tag Manager -->
-    <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                                                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-5HH8RNG6');
-    </script>
-    <!-- End Google Tag Manager -->
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -154,15 +144,33 @@
     {% if turnstile_site_key %}
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     {% endif %}
+
+    <!-- Yandex.Metrika loader -->
+    <script>
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) { return; }
+        }
+        k=e.createElement(t), a=e.getElementsByTagName(t)[0];
+        k.async = 1;
+        k.src = r;
+        a.parentNode.insertBefore(k,a);
+      })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    </script>
+
+    <!-- Google Analytics 4 loader -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
+    </script>
+
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased pt-24 sm:pt-24 md:pt-[72px]">
-
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HH8RNG6"
-              height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     {% include "frontend/includes/header.html" %}
 
@@ -176,16 +184,23 @@
     <script src="{% static 'js/cookie-consent.js' %}" defer></script>
     <script src="{% static 'js/language-detection.js' %}" defer></script>
 
+    <!-- Analytics init AFTER consent -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         if (window.CookieConsent && window.CookieConsent.hasUserConsented()) {
 
-          window.CookieConsent.initAnalyticsIfAllowed(function() {
-            console.log('Analytics initialized (if allowed)');
-          });
+          window.CookieConsent.initAnalyticsIfAllowed(function () {
+            // Yandex.Metrika
+            ym(105790338, 'init', {
+              ssr: true,
+              clickmap: true,
+              trackLinks: true,
+              accurateTrackBounce: true,
+              webvisor: false
+            });
 
-          window.CookieConsent.initMarketingIfAllowed(function() {
-            console.log('Marketing initialized (if allowed)');
+            // Google Analytics 4
+            gtag('event', 'page_view', { page_path: window.location.pathname });
           });
 
           window.CookieConsent.trackPageView(window.location.pathname);
