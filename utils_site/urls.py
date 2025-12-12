@@ -41,9 +41,15 @@ def robots_txt(request):
         # Replace hardcoded admin path with dynamic one
         content = content.replace("/admin/", f"/{admin_path}/")
         return HttpResponse(content, content_type="text/plain")
-    except FileNotFoundError:
+    except (FileNotFoundError, OSError):
+        # Fallback content if file not found or can't be read
         robots_content = f"User-agent: *\nAllow: /\n\n# Disallow admin and API endpoints\nDisallow: /{admin_path}/\nDisallow: /api/\n\n# Sitemap\nSitemap: {base_url}/sitemap.xml\n"
         return HttpResponse(robots_content, content_type="text/plain")
+    except Exception:
+        # Catch-all for any other errors
+        return HttpResponse(
+            "ERROR: Server error", content_type="text/plain", status=503
+        )
 
 
 @require_http_methods(["GET"])
