@@ -707,18 +707,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // PDF coordinate system: (0,0) is bottom-left
         // Canvas coordinate system: (0,0) is top-left
 
-        const scaleFactor = pdfPageWidth / canvasWidth;
+        // Use proper scale factors for X and Y to maintain aspect ratio
+        const scaleX = pdfPageWidth / canvasWidth;
+        const scaleY = pdfPageHeight / canvasHeight;
 
         // X coordinate (left edge) in points
-        const x = currentSelection.x * scaleFactor;
+        const x = currentSelection.x * scaleX;
 
         // Y coordinate (bottom edge) in points
         // Need to flip Y because PDF uses bottom-left origin
-        const y = (canvasHeight - currentSelection.y - currentSelection.height) * scaleFactor;
+        const y = (canvasHeight - currentSelection.y - currentSelection.height) * scaleY;
 
         // Width and height in points
-        const width = currentSelection.width * scaleFactor;
-        const height = currentSelection.height * scaleFactor;
+        const width = currentSelection.width * scaleX;
+        const height = currentSelection.height * scaleY;
 
         // Update form fields
         const xInput = document.getElementById('x');
@@ -735,16 +737,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (editButton && widthInput && widthInput.value && parseFloat(widthInput.value) > 0) {
             editButton.disabled = false;
             editButton.classList.remove('opacity-50', 'cursor-not-allowed');
-
-            // Show ready indicator
-            if (cropReadyIndicator) {
-                cropReadyIndicator.classList.remove('hidden');
-            }
-        } else {
-            // Hide ready indicator if not ready
-            if (cropReadyIndicator) {
-                cropReadyIndicator.classList.add('hidden');
-            }
+        } else if (editButton) {
+            editButton.disabled = true;
+            editButton.classList.add('opacity-50', 'cursor-not-allowed');
         }
     }
 
@@ -910,10 +905,31 @@ document.addEventListener('DOMContentLoaded', () => {
             // Custom pages
             pagesValue = pagesCustomInput.value.trim();
         } else {
-            // All pages (default)
+            // All pages (default) - explicitly send 'all' to ensure backend processes all pages
             pagesValue = 'all';
         }
+
+        // Debug info to verify what's being sent
+        console.log('Sending crop data:', {
+            x: parseFloat(xValue).toFixed(2),
+            y: parseFloat(yValue).toFixed(2),
+            width: parseFloat(widthValue).toFixed(2),
+            height: parseFloat(heightValue).toFixed(2),
+            pages: pagesValue,
+            currentPage: currentPage
+        });
+
         formData.append('pages', pagesValue);
+
+        // Add scale to page size option
+        const scaleToPageSizeCheckbox = document.getElementById('scaleToPageSize');
+        if (scaleToPageSizeCheckbox && scaleToPageSizeCheckbox.checked) {
+            formData.append('scale_to_page_size', 'true');
+            console.log('Scale to page size: ENABLED');
+        } else {
+            formData.append('scale_to_page_size', 'false');
+            console.log('Scale to page size: DISABLED');
+        }
 
         // Hide previous results
         hideResult();

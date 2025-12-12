@@ -31,3 +31,8 @@ class CropPDFSerializer(serializers.Serializer):
         default="all",
         help_text="Pages to crop. Use 'all' for all pages, or comma-separated page numbers (1-indexed).",
     )
+    scale_to_page_size = serializers.BooleanField(
+        required=False,
+        default=False,
+        help_text="Scale cropped area to full page size. If true, stretches the cropped area to fill the entire page.",
+    )
