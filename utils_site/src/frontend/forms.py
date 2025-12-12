@@ -4,6 +4,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from .telegram_service import TelegramService
+
 
 class ContactForm(forms.Form):
     """Contact form for sending messages."""
@@ -70,3 +72,20 @@ class ContactForm(forms.Form):
         if len(message) > 5000:
             raise ValidationError(_("Message is too long. Maximum 5000 characters."))
         return message
+
+    def send_to_telegram(self):
+        """
+        Send validated form data to Telegram.
+        Call only after is_valid().
+        """
+        cd = self.cleaned_data
+
+        text = (
+            "📩 <b>New contact form message</b>\n\n"
+            f"<b>Name:</b> {cd['name']}\n"
+            f"<b>Email:</b> {cd['email']}\n"
+            f"<b>Subject:</b> {cd['subject']}\n\n"
+            f"<b>Message:</b>\n{cd['message']}"
+        )
+
+        TelegramService.send_message(text)

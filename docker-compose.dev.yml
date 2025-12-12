@@ -36,6 +36,8 @@ services:
           - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
           - HCAPTCHA_SITE_KEY=${HCAPTCHA_SITE_KEY:-}
           - HCAPTCHA_SECRET_KEY=${HCAPTCHA_SECRET_KEY:-}
+          - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+          - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
     ports:
       - "8000:8000"
       - "5678:5678"  # Debug port
