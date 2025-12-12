@@ -20,7 +20,8 @@ class CropPDFAPIView(BaseConversionAPIView):
     FILE_FIELD_NAME = "pdf_file"
 
     # Explicitly enable PDF page validation for crop operations
-    VALIDATE_PDF_PAGES = True
+    # Disable PDF page validation - done on client side via pdfDoc.numPages
+    VALIDATE_PDF_PAGES = False
 
     def get_serializer_class(self):
         return CropPDFSerializer
