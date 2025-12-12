@@ -27,11 +27,12 @@ logger = get_logger(__name__)
 
 def crop_pdf(
     uploaded_file: UploadedFile,
-    x: float | None = None,
-    y: float | None = None,
-    width: float | None = None,
-    height: float | None = None,
+    x: float = 0.0,
+    y: float = 0.0,
+    width: float = None,
+    height: float = None,
     pages: str = "all",
+    scale_to_page_size: bool = False,
     suffix: str = "_convertica",
 ) -> tuple[str, str]:
     """Crop PDF pages.
@@ -43,6 +44,7 @@ def crop_pdf(
         width: Width of crop box (None = use remaining width)
         height: Height of crop box (None = use remaining height)
         pages: Pages to crop
+        scale_to_page_size: Scale cropped area to full page size
         suffix: Suffix for output filename
 
     Returns:
@@ -217,14 +219,37 @@ def crop_pdf(
                         )
 
                         # Set page size for cropped page
-                        can.setPageSize((crop_width, crop_height))
+                        if scale_to_page_size:
+                            # Scale cropped area to full page size
+                            page_size = (original_width, original_height)
+                        else:
+                            # Use cropped area size
+                            page_size = (crop_width, crop_height)
+
+                        can.setPageSize(page_size)
+
+                        # Set MediaBox and CropBox to ensure PDF viewers recognize the page
+                        can.setMediaBox([0, 0, page_size[0], page_size[1]])
+                        can.setCropBox([0, 0, page_size[0], page_size[1]])
 
                         # Save cropped image temporarily
                         img_path = os.path.join(tmp_dir, f"cropped_page_{page_num}.png")
                         cropped_img.save(img_path, "PNG")
-                        can.drawImage(
-                            img_path, 0, 0, width=crop_width, height=crop_height
-                        )
+
+                        if scale_to_page_size:
+                            # Draw cropped image scaled to full page size
+                            can.drawImage(
+                                img_path,
+                                0,
+                                0,
+                                width=original_width,
+                                height=original_height,
+                            )
+                        else:
+                            # Draw cropped image at actual size
+                            can.drawImage(
+                                img_path, 0, 0, width=crop_width, height=crop_height
+                            )
 
                         logger.debug(
                             ("Cropping page %d: x=%.2f, y=%.2f, " "w=%.2f, h=%.2f"),
