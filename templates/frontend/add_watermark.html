@@ -14,8 +14,6 @@
 <!-- PDF.js for rendering PDF pages -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" as="script" crossorigin>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-  <link rel="stylesheet" href="{% static 'css/pdf-preview.css' %}">
-  <link rel="stylesheet" href="{% static 'css/watermark.css' %}">
   <style>
     .watermark-preview {
       position: absolute;
@@ -43,7 +41,7 @@
       transform: scale(1.15);
       box-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
-    /* Corner handles - combined rotation and scaling - Mobile Optimized */
+    /* Corner handles - combined rotation and scaling */
     .watermark-handle.corner {
       width: 18px;
       height: 18px;
@@ -51,43 +49,10 @@
       border: 3px solid white;
       cursor: grab;
     }
-
-    /* Mobile-optimized handles */
-    @media (max-width: 768px) {
-      .watermark-handle.corner {
-        width: 28px;
-        height: 28px;
-        border-width: 4px;
-      }
-    }
-
-    /* Extra large for touch devices */
-    @media (hover: none) and (pointer: coarse) {
-      .watermark-handle.corner {
-        width: 32px;
-        height: 32px;
-        border-width: 4px;
-      }
-    }
-
     .watermark-handle.corner:hover {
       transform: scale(1.3);
       box-shadow: 0 3px 10px rgba(0,0,0,0.5);
       background: linear-gradient(135deg, #2563eb 0%, #059669 100%);
-    }
-
-    /* Better hover states for mobile */
-    @media (hover: hover) {
-      .watermark-handle.corner:hover {
-        transform: scale(1.3);
-      }
-    }
-
-    @media (hover: none) {
-      .watermark-handle.corner:active {
-        transform: scale(1.1);
-        background: linear-gradient(135deg, #1d4ed8 0%, #047857 100%);
-      }
     }
     .watermark-handle.corner:active {
       cursor: grabbing;
@@ -113,46 +78,6 @@
       bottom: -9px;
       right: -9px;
       cursor: nwse-resize;
-    }
-
-    /* Mobile-optimized corner positions */
-    @media (max-width: 768px) {
-      .watermark-handle.corner.nw {
-        top: -14px;
-        left: -14px;
-      }
-      .watermark-handle.corner.ne {
-        top: -14px;
-        right: -14px;
-      }
-      .watermark-handle.corner.sw {
-        bottom: -14px;
-        left: -14px;
-      }
-      .watermark-handle.corner.se {
-        bottom: -14px;
-        right: -14px;
-      }
-    }
-
-    /* Touch device corner positions */
-    @media (hover: none) and (pointer: coarse) {
-      .watermark-handle.corner.nw {
-        top: -16px;
-        left: -16px;
-      }
-      .watermark-handle.corner.ne {
-        top: -16px;
-        right: -16px;
-      }
-      .watermark-handle.corner.sw {
-        bottom: -16px;
-        left: -16px;
-      }
-      .watermark-handle.corner.se {
-        bottom: -16px;
-        right: -16px;
-      }
     }
   </style>
 {% endblock %}
