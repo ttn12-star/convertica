@@ -838,8 +838,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 watermarkX = Math.max(0, Math.min(watermarkX, pdfPageWidth));
                 watermarkY = Math.max(0, Math.min(watermarkY, pdfPageHeight));
 
-                if (xInput) xInput.value = watermarkX.toFixed(2);
-                if (yInput) yInput.value = watermarkY.toFixed(2);
+                if (xInput) xInput.value = watermarkX.toFixed(1);
+                if (yInput) yInput.value = watermarkY.toFixed(1);
 
                 dragStartX = xLocal;
                 dragStartY = yLocal;
@@ -906,7 +906,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        e.preventDefault();
+        // Only prevent default when actively interacting with watermark
+        if (isDraggingWatermark || isRotating || isScaling) {
+            e.preventDefault();
+        }
+        // Allow normal scrolling when not interacting with watermark
     }, { passive: false });
 
     document.addEventListener('mouseup', () => {
