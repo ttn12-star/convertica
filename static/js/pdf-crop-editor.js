@@ -179,15 +179,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createInitialSelection() {
+        // Get actual canvas display dimensions
+        const rect = pdfCanvas.getBoundingClientRect();
+        const displayWidth = rect.width;
+        const displayHeight = rect.height;
+
         // Create selection covering almost entire page with small margins
         // Use 5% margin on each side for better UX
-        const marginX = canvasWidth * 0.05;
-        const marginY = canvasHeight * 0.05;
+        const marginX = displayWidth * 0.05;
+        const marginY = displayHeight * 0.05;
 
         const initialX = marginX;
         const initialY = marginY;
-        const initialWidth = canvasWidth - (marginX * 2);
-        const initialHeight = canvasHeight - (marginY * 2);
+        const initialWidth = displayWidth - (marginX * 2);
+        const initialHeight = displayHeight - (marginY * 2);
 
         currentSelection = {
             x: initialX,
@@ -197,14 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         updateSelection(initialX, initialY, initialWidth, initialHeight);
-        cropSelection.classList.remove('hidden');
-        updateCropCoordinates();
         updateOverlay(initialX, initialY, initialWidth, initialHeight);
-
-        // Reset cursor
-        pdfCanvas.style.cursor = 'crosshair';
-        isMouseOverSelection = false;
-
+        updateCropCoordinates();
         // Enable edit button
         if (editButton) {
             editButton.disabled = false;
@@ -512,9 +511,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let newX = x - dragStartX;
             let newY = y - dragStartY;
 
-            // Constrain to canvas bounds
-            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
-            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
+            // Get actual canvas display dimensions
+            const rect = pdfCanvas.getBoundingClientRect();
+            const displayWidth = rect.width;
+            const displayHeight = rect.height;
+
+            // Constrain to canvas display bounds
+            newX = Math.max(0, Math.min(newX, displayWidth - currentSelection.width));
+            newY = Math.max(0, Math.min(newY, displayHeight - currentSelection.height));
 
             // Update currentSelection immediately for dragging
             currentSelection.x = newX;
@@ -538,11 +542,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const width = maxX - minX;
             const height = maxY - minY;
 
-            // Constrain to canvas bounds
-            const selX = Math.max(0, Math.min(minX, canvasWidth - width));
-            const selY = Math.max(0, Math.min(minY, canvasHeight - height));
-            const selWidth = Math.min(width, canvasWidth - selX);
-            const selHeight = Math.min(height, canvasHeight - selY);
+            // Get actual canvas display dimensions
+            const rect = pdfCanvas.getBoundingClientRect();
+            const displayWidth = rect.width;
+            const displayHeight = rect.height;
+
+            // Constrain to canvas display bounds
+            const selX = Math.max(0, Math.min(minX, displayWidth - width));
+            const selY = Math.max(0, Math.min(minY, displayHeight - height));
+            const selWidth = Math.min(width, displayWidth - selX);
+            const selHeight = Math.min(height, displayHeight - selY);
 
             currentSelection = {
                 x: selX,
@@ -591,9 +600,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateSelection(x, y, width, height) {
-        // Ensure selection is within canvas bounds
-        x = Math.max(0, Math.min(x, canvasWidth));
-        y = Math.max(0, Math.min(y, canvasHeight));
+        // Get actual canvas display dimensions
+        const rect = pdfCanvas.getBoundingClientRect();
+        const displayWidth = rect.width;
+        const displayHeight = rect.height;
+
+        // Ensure selection is within canvas display bounds
+        x = Math.max(0, Math.min(x, displayWidth));
+        y = Math.max(0, Math.min(y, displayHeight));
 
         if (width < 0) {
             x += width;
@@ -604,8 +618,8 @@ document.addEventListener('DOMContentLoaded', () => {
             height = Math.abs(height);
         }
 
-        width = Math.min(width, canvasWidth - x);
-        height = Math.min(height, canvasHeight - y);
+        width = Math.min(width, displayWidth - x);
+        height = Math.min(height, displayHeight - y);
 
         cropSelection.style.left = `${x}px`;
         cropSelection.style.top = `${y}px`;
