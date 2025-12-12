@@ -66,17 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleFileSelect(file) {
         try {
-            // Clear any previous errors when selecting a new file
-            clearError();
-
+            // Cleanup previous PDF if exists
             cleanupPreviousPDF();
 
             // Show preview section
             pdfPreviewSection.classList.remove('hidden');
 
-            // Load PDF document
+            // Load PDF
             const arrayBuffer = await file.arrayBuffer();
             pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            pageCount = pdfDoc.numPages;
 
             // Universal page count validation
             const isValid = await window.validatePdfPageLimit(file);
@@ -194,13 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const displayWidth = rect.width;
         const displayHeight = rect.height;
 
-        // On mobile, use smaller margins for better UX
-        const isMobile = window.innerWidth <= 768;
-        const marginPercent = isMobile ? 0.02 : 0.05; // 2% on mobile, 5% on desktop
-
         // Create selection covering almost entire page with small margins
-        const marginX = displayWidth * marginPercent;
-        const marginY = displayHeight * marginPercent;
+        // Use 5% margin on each side for better UX
+        const marginX = displayWidth * 0.05;
+        const marginY = displayHeight * 0.05;
 
         const initialX = marginX;
         const initialY = marginY;
@@ -217,11 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateSelection(initialX, initialY, initialWidth, initialHeight);
         updateOverlay(initialX, initialY, initialWidth, initialHeight);
         updateCropCoordinates();
-
-        // Ensure crop selection is visible
-        if (cropSelection) {
-            cropSelection.classList.remove('hidden');
-        }
         // Enable edit button
         if (editButton) {
             editButton.disabled = false;
@@ -703,13 +694,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateCropCoordinates() {
-        // Always enable edit button if we have a current selection
-        if (currentSelection) {
-            if (editButton) {
-                editButton.disabled = false;
-                editButton.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-        } else {
+        if (!currentSelection) {
             // Disable button if no selection
             if (editButton) {
                 editButton.disabled = true;
@@ -1114,6 +1099,53 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Edit another button handler with smooth scroll to top
+        const editAnotherBtn = document.getElementById('editAnotherButton');
+        if (editAnotherBtn) {
+            editAnotherBtn.addEventListener('click', () => {
+                // Hide selected file display
+                const selectedFileDiv = document.getElementById('selectedFile');
+                if (selectedFileDiv) {
+                    selectedFileDiv.classList.add('hidden');
+                }
+
+                // Reset file input
+                const fileInput = document.getElementById('fileInput');
+                if (fileInput) {
+                    fileInput.value = '';
+                }
+
+                // Hide download container
+                hideDownload();
+
+                // Clear PDF preview
+                cleanupPreviousPDF();
+                if (pdfPreviewSection) {
+                    pdfPreviewSection.classList.add('hidden');
+                }
+
+                // Smooth scroll to top of page
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+                // Focus on select button after scroll completes
+                setTimeout(() => {
+                    const selectFileButton = document.getElementById('selectFileButton');
+                    if (selectFileButton) {
+                        selectFileButton.focus();
+                    }
+                }, 800); // Wait for smooth scroll to complete
+            });
+        }
+    }
+
+    function hideDownload() {
+        const container = document.getElementById('downloadContainer');
+        if (container) {
+            container.classList.add('hidden');
+        }
     }
 
     function showError(message) {
@@ -1144,13 +1176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideResult() {
         if (resultContainer) {
             resultContainer.classList.add('hidden');
-        }
-    }
-
-    function clearError() {
-        if (resultContainer) {
-            resultContainer.classList.add('hidden');
-            resultContainer.innerHTML = '';
         }
     }
 
