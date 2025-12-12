@@ -314,47 +314,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const x = touch.clientX - rect.left;
         const y = touch.clientY - rect.top;
 
-        // Mirror logic from mousemove
-        if (isDragging && currentSelection) {
-            let newX = x - dragStartX;
-            let newY = y - dragStartY;
+        // Only handle touch move if we're actively selecting or dragging
+        if (isSelecting || isDragging) {
+            // Mirror logic from mousemove
+            if (isDragging && currentSelection) {
+                let newX = x - dragStartX;
+                let newY = y - dragStartY;
 
-            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
-            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
+                newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
+                newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
 
-            currentSelection.x = newX;
-            currentSelection.y = newY;
+                currentSelection.x = newX;
+                currentSelection.y = newY;
 
-            updateSelection(newX, newY, currentSelection.width, currentSelection.height);
-            updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
-            updateCropCoordinates();
-        } else if (isSelecting && !isDragging) {
-            const minX = Math.min(selectionStartX, x);
-            const maxX = Math.max(selectionStartX, x);
-            const minY = Math.min(selectionStartY, y);
-            const maxY = Math.max(selectionStartY, y);
+                updateSelection(newX, newY, currentSelection.width, currentSelection.height);
+                updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
+            } else if (isSelecting) {
+                let selX = Math.min(selectionStartX, x);
+                let selY = Math.min(selectionStartY, y);
+                let selWidth = Math.abs(x - selectionStartX);
+                let selHeight = Math.abs(y - selectionStartY);
 
-            const width = maxX - minX;
-            const height = maxY - minY;
+                currentSelection = {
+                    x: selX,
+                    y: selY,
+                    width: selWidth,
+                    height: selHeight
+                };
 
-            const selX = Math.max(0, Math.min(minX, canvasWidth - width));
-            const selY = Math.max(0, Math.min(minY, canvasHeight - height));
-            const selWidth = Math.min(width, canvasWidth - selX);
-            const selHeight = Math.min(height, canvasHeight - selY);
+                updateSelection(selX, selY, selWidth, selHeight);
+                updateOverlay(selX, selY, selWidth, selHeight);
+                updateCropCoordinates();
+            }
 
-            currentSelection = {
-                x: selX,
-                y: selY,
-                width: selWidth,
-                height: selHeight
-            };
-
-            updateSelection(selX, selY, selWidth, selHeight);
-            updateOverlay(selX, selY, selWidth, selHeight);
-            updateCropCoordinates();
+            e.preventDefault(); // Only prevent default during active selection/drag
         }
-
-        e.preventDefault();
+        // Allow normal scrolling when not selecting/dragging
     }, { passive: false });
 
     document.addEventListener('touchend', () => {
@@ -466,9 +461,18 @@ document.addEventListener('DOMContentLoaded', () => {
         cropSelection.addEventListener('touchstart', (e) => {
             const touch = e.touches[0];
             if (!touch) return;
-            startSelectionOrDrag(touch.clientX, touch.clientY, cropSelection);
-            e.preventDefault();
-            e.stopPropagation();
+
+            // Only prevent default if we're actually starting a drag operation
+            const rect = cropSelection.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+
+            // Check if touch is within selection area
+            if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                startSelectionOrDrag(touch.clientX, touch.clientY, cropSelection);
+                e.preventDefault();
+                e.stopPropagation();
+            }
         }, { passive: false });
     }
 
@@ -481,8 +485,17 @@ document.addEventListener('DOMContentLoaded', () => {
     pdfCanvas.addEventListener('touchstart', (e) => {
         const touch = e.touches[0];
         if (!touch) return;
-        startSelectionOrDrag(touch.clientX, touch.clientY, e.target);
-        e.preventDefault();
+
+        // Only prevent default if touch is within canvas bounds and we're starting selection
+        const rect = pdfCanvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+
+        // Check if touch is within canvas area
+        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+            startSelectionOrDrag(touch.clientX, touch.clientY, e.target);
+            e.preventDefault();
+        }
     }, { passive: false });
 
     // Handle mousemove for selection creation and dragging
