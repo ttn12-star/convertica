@@ -590,6 +590,15 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
                 user_ip=user_ip,
             )
 
+            # Send Telegram notification
+            try:
+                from .telegram_service import send_telegram_notification
+
+                send_telegram_notification(name, email, subject, message, user_ip)
+                logger.info("Telegram notification sent for contact form submission")
+            except Exception as e:
+                logger.error(f"Failed to send Telegram notification: {e}")
+
             # Log submission (email will be sent in background)
             logger.info(
                 "Contact form submitted from %s (IP: %s) - email queued",

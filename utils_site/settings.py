@@ -571,6 +571,10 @@ TURNSTILE_SECRET_KEY = os.environ.get(
     "TURNSTILE_SECRET_KEY", config("TURNSTILE_SECRET_KEY", default="", cast=str)
 )
 
+# Telegram Bot Configuration
+TELEGRAM_BOT_TOKEN = config("TELEGRAM_BOT_TOKEN", default="", cast=str)
+TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID", default="", cast=str)
+
 # Prometheus Monitoring (if available)
 try:
     import django_prometheus
