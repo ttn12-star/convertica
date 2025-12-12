@@ -1221,6 +1221,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Hide download container
                 hideDownload();
 
+                // Clear PDF preview
+                cleanupPreviousPDF();
+                if (pdfPreviewSection) {
+                    pdfPreviewSection.classList.add('hidden');
+                }
+
                 // Smooth scroll to top of page
                 window.scrollTo({
                     top: 0,
