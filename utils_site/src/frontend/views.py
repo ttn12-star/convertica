@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
@@ -487,9 +488,9 @@ def contact_page(request):
     """Contact page with form handling."""
     import logging
 
-    from django.conf import settings
     from django.contrib import messages
-    from django.shortcuts import redirect
+    from django.shortcuts import redirect, render
+    from django.utils.translation import gettext_lazy as _
 
     from .forms import ContactForm
 
@@ -500,7 +501,8 @@ def contact_page(request):
         messages.success(
             request,
             _(
-                "Thank you! Your message has been sent successfully. We'll get back to you as soon as possible, usually within 24-48 hours."
+                "Thank you! Your message has been sent successfully. "
+                "We'll get back to you as soon as possible, usually within 24-48 hours."
             ),
         )
 
@@ -535,7 +537,8 @@ def contact_page(request):
                 {
                     "page_title": _("Contact Us - Convertica"),
                     "page_description": _(
-                        "Contact Convertica for support, questions, or feedback. We're here to help with all your PDF tool needs."
+                        "Contact Convertica for support, questions, or feedback. "
+                        "We're here to help with all your PDF tool needs."
                     ),
                     "page_keywords": _(
                         "contact Convertica, support, customer service, help, feedback"
@@ -551,18 +554,47 @@ def contact_page(request):
             subject = form.cleaned_data["subject"]
             message = form.cleaned_data["message"]
 
-            # Get recipient email from settings or use default
-            recipient_email = getattr(settings, "CONTACT_EMAIL", "info@convertica.net")
-            from_email = getattr(
-                settings,
-                "DEFAULT_FROM_EMAIL",
-                f"noreply@{request.get_host()}",
-            )
             user_ip = request.META.get("REMOTE_ADDR", "Unknown")
 
-            # Prepare email content
-            email_subject = f"[Convertica Contact] {subject}"
-            email_body = f"""New contact form submission from Convertica website:
+            # Feature flag: Telegram OR Email
+            telegram_enabled = getattr(settings, "CONTACT_TELEGRAM_ENABLED", False)
+
+            if telegram_enabled:
+                # Send Telegram notification asynchronously
+                from src.tasks.telegram import send_telegram_message
+
+                telegram_message = f"""
+<b>📩 New contact form submission</b>
+
+<b>Name:</b> {name}
+<b>Email:</b> {email}
+<b>Subject:</b> {subject}
+
+<b>Message:</b>
+{message}
+
+<b>IP:</b> {user_ip}
+"""
+
+                send_telegram_message.delay(
+                    text=telegram_message,
+                )
+
+            else:
+                # Send email asynchronously via Celery
+                from src.tasks.email import send_contact_form_email
+
+                recipient_email = getattr(
+                    settings, "CONTACT_EMAIL", "info@convertica.net"
+                )
+                from_email = getattr(
+                    settings,
+                    "DEFAULT_FROM_EMAIL",
+                    f"noreply@{request.get_host()}",
+                )
+
+                email_subject = f"[Convertica Contact] {subject}"
+                email_body = f"""New contact form submission from Convertica website:
 
 Name: {name}
 Email: {email}
@@ -577,37 +609,18 @@ IP Address: {user_ip}
 User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
 """
 
-            # Send email asynchronously via Celery to avoid blocking
-            # This prevents the form from "hanging" if SMTP is slow/blocked
-            from src.tasks.email import send_contact_form_email
+                send_contact_form_email.delay(
+                    subject=email_subject,
+                    message=email_body,
+                    from_email=from_email,
+                    recipient_email=recipient_email,
+                    user_email=email,
+                    user_ip=user_ip,
+                )
 
-            send_contact_form_email.delay(
-                subject=email_subject,
-                message=email_body,
-                from_email=from_email,
-                recipient_email=recipient_email,
-                user_email=email,
-                user_ip=user_ip,
-            )
-
-            # Send Telegram notification
-            try:
-                from .telegram_service import send_telegram_notification
-
-                send_telegram_notification(name, email, subject, message, user_ip)
-                logger.info("Telegram notification sent for contact form submission")
-            except Exception as e:
-                logger.error(f"Failed to send Telegram notification: {e}")
-
-            # Log submission (email will be sent in background)
-            logger.info(
-                "Contact form submitted from %s (IP: %s) - email queued",
-                email,
-                user_ip,
-            )
-
-            # Redirect immediately - don't wait for email to be sent
+            # Redirect immediately - don't wait for background tasks
             return redirect(f"{request.path}?sent=1")
+
         else:
             # Form validation errors
             messages.error(
@@ -618,7 +631,8 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
     context = {
         "page_title": _("Contact Us - Convertica"),
         "page_description": _(
-            "Contact Convertica for support, questions, or feedback. We're here to help with all your PDF tool needs."
+            "Contact Convertica for support, questions, or feedback. "
+            "We're here to help with all your PDF tool needs."
         ),
         "page_keywords": _(
             "contact Convertica, support, customer service, help, feedback"
@@ -626,6 +640,7 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
         "form": form,
         "message_sent": message_sent,
     }
+
     return render(request, "frontend/contact.html", context)
 
 
@@ -668,7 +683,6 @@ def faq_page(request):
 @require_http_methods(["GET"])
 def sitemap_xml(request):
     """Generate sitemap.xml for SEO with multilingual support."""
-    from django.conf import settings
     from django.core.cache import cache
     from django.utils.translation import activate, get_language
     from src.blog.models import Article
