@@ -109,11 +109,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function loadPdf(file) {
     try {
+      // Clear any previous errors when selecting a new file
+      const errorElements = document.querySelectorAll('.error-message, .bg-red-50, .border-red-200');
+      errorElements.forEach(el => el.remove());
+
       const arrayBuffer = await file.arrayBuffer();
       const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
       pdfDoc = await loadingTask.promise;
+
+      // Early page count validation - check before rendering
+      const pageCount = pdfDoc.numPages;
+      const maxPages = 50; // Same as backend
+
+      if (pageCount > maxPages) {
+        alert(`PDF has ${pageCount} pages, maximum allowed is ${maxPages}. Please split your PDF into smaller parts.`);
+        previewSection.classList.add('hidden');
+        pdfDoc = null;
+        return;
+      }
+
       previewSection.classList.remove('hidden');
-      populatePageSelector(pdfDoc.numPages);
+      populatePageSelector(pageCount);
       await renderPage(currentPage);
     } catch (e) {
       console.error('Failed to render PDF preview', e);

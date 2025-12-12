@@ -45,6 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Validate PDF page count using universal function
+        if (selectedFile.type === 'application/pdf') {
+            try {
+                const isValid = await window.validatePdfPageLimit(selectedFile);
+                if (!isValid) {
+                    hideLoading();
+                    setFormDisabled(false);
+                    return;
+                }
+            } catch (error) {
+                console.error('PDF validation error:', error);
+                // Continue with conversion if validation fails
+            }
+        }
+
         // Hide previous results
         hideResult();
         hideDownload();
@@ -429,6 +444,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideResult() {
         if (resultContainer) {
             resultContainer.classList.add('hidden');
+        }
+    }
+
+    function clearError() {
+        if (resultContainer) {
+            resultContainer.classList.add('hidden');
+            resultContainer.innerHTML = '';
         }
     }
 
