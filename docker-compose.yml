@@ -86,40 +86,41 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=${DEBUG:-False}
-      - SECRET_KEY=${SECRET_KEY}
-      - DATABASE_ENGINE=postgresql
-      - DATABASE_NAME=${POSTGRES_DB:-convertica}
-      - DATABASE_USER=${POSTGRES_USER:-convertica}
-      - DATABASE_PASSWORD=${POSTGRES_PASSWORD:-changeme}
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/1
-      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
-      - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-False}
-      - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-False}
-      - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-False}
-      # WhiteNoise disabled by default (use Nginx in production, enable for dev)
-      - USE_WHITENOISE=${USE_WHITENOISE:-False}
-      - EMAIL_BACKEND=${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
-      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
-      - EMAIL_PORT=${EMAIL_PORT:-587}
-      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
-      - EMAIL_USE_SSL=${EMAIL_USE_SSL:-False}
-      - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
-      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
-      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-noreply@convertica.net}
-      - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
-      - HCAPTCHA_SITE_KEY=${HCAPTCHA_SITE_KEY:-}
-      - HCAPTCHA_SECRET_KEY=${HCAPTCHA_SECRET_KEY:-}
-      - ADMIN_URL_PATH=${ADMIN_URL_PATH:-admin}
-      - ADMIN_IP_WHITELIST=${ADMIN_IP_WHITELIST:-127.0.0.1,::1}
-      - CONTACT_TELEGRAM_ENABLED="true"
-
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+        - DEBUG=${DEBUG:-False}
+        - SECRET_KEY=${SECRET_KEY}
+        - DATABASE_ENGINE=postgresql
+        - DATABASE_NAME=${POSTGRES_DB:-convertica}
+        - DATABASE_USER=${POSTGRES_USER:-convertica}
+        - DATABASE_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+        - DATABASE_HOST=db
+        - DATABASE_PORT=5432
+        - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/1
+        - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
+        - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
+        - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
+        - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-False}
+        - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-False}
+        - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-False}
+        # WhiteNoise disabled by default (use Nginx in production, enable for dev)
+        - USE_WHITENOISE=${USE_WHITENOISE:-False}
+        - EMAIL_BACKEND=${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
+        - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
+        - EMAIL_PORT=${EMAIL_PORT:-587}
+        - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
+        - EMAIL_USE_SSL=${EMAIL_USE_SSL:-False}
+        - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
+        - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
+        - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-noreply@convertica.net}
+        - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
+        - HCAPTCHA_SITE_KEY=${HCAPTCHA_SITE_KEY:-}
+        - HCAPTCHA_SECRET_KEY=${HCAPTCHA_SECRET_KEY:-}
+        - ADMIN_URL_PATH=${ADMIN_URL_PATH:-admin}
+        - ADMIN_IP_WHITELIST=${ADMIN_IP_WHITELIST:-127.0.0.1,::1}
+        - CONTACT_TELEGRAM_ENABLED="True"
+        - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+        - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+        - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
+        - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
     depends_on:
       db:
         condition: service_healthy
