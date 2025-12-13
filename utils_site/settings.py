@@ -43,6 +43,22 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             if event.get("logger") == "gunicorn.access":
                 return None
 
+            # Drop any logs with WSGI parameters (detailed access logs)
+            message = event.get("message") or ""
+            if "message.parameter." in message or "{wsgi" in message:
+                return None
+
+            # Drop logs with access log format patterns
+            if any(
+                pattern in message
+                for pattern in ["%(h)s", "%(l)s", "%(u)s", "%(t)s", "%(r)s"]
+            ):
+                return None
+
+            # Drop health check logs specifically
+            if "/health/" in message or "GET /health/" in message:
+                return None
+
             # Drop noisy Gunicorn error logs (invalid protocol / php probes)
             if event.get("logger") == "gunicorn.error":
                 message = event.get("message") or ""
@@ -421,11 +437,11 @@ LOGGING = {
             "handlers": ["console"],
             "propagate": False,
         },
-        # Filter out Gunicorn access logs - these are just HTTP request logs, not errors
+        # Filter out Gunicorn access logs completely - these are just HTTP request logs, not errors
         "gunicorn.access": {
-            "handlers": ["console"],  # Still log to console, but don't send to Sentry
-            "level": "INFO",
-            "propagate": False,  # Don't propagate to root logger (which would send to Sentry)
+            "handlers": [],  # No handlers - completely disable
+            "level": "CRITICAL",  # Highest level to effectively disable
+            "propagate": False,  # Don't propagate to root logger
         },
         # Gunicorn error logs - filter noisy ones in before_send
         "gunicorn.error": {
