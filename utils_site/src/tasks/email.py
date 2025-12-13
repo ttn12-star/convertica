@@ -8,7 +8,6 @@ the main request thread, especially when SMTP is slow or unavailable.
 import socket
 
 from celery import shared_task
-from django.conf import settings
 from django.core.mail import send_mail
 from src.api.logging_utils import get_logger
 
