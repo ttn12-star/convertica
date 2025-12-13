@@ -3925,11 +3925,11 @@ msgstr ""
 #: utils_site/src/api/pdf_security/unlock_pdf/utils.py:95
 msgid ""
 "PDF is not password-protected. This PDF does not require a password to open."
-msgstr ""
+msgstr "PDF не защищен паролем. Этот PDF не требует пароля для открытия."
 
 #: utils_site/src/api/pdf_security/unlock_pdf/utils.py:104
 msgid "Incorrect password. Please check the password and try again."
-msgstr ""
+msgstr "Неверный пароль. Пожалуйста, проверьте корректность ввода и повторите попытку."
 
 #: utils_site/src/blog/admin.py:30 utils_site/src/blog/admin.py:119
 msgid "Basic Information"
