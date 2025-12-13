@@ -21,6 +21,10 @@ services:
              gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-4} --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload utils_site.wsgi:application"
     env_file:
       - .env
+    environment:
+      SENTRY_DSN: ${SENTRY_DSN}
+      SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-production}
+      SENTRY_RELEASE: ${SENTRY_RELEASE}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
       interval: 5s
@@ -41,6 +45,11 @@ services:
     command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-1} --max-tasks-per-child=500 -Q celery,default,maintenance
     env_file:
       - .env
+    environment:
+      # Sentry Configuration
+      SENTRY_DSN: ${SENTRY_DSN}
+      SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-production}
+      SENTRY_RELEASE: convertica@$(git describe --tags --always --dirty)
     healthcheck:
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
@@ -61,6 +70,11 @@ services:
     command: celery -A utils_site beat --loglevel=info
     env_file:
       - .env
+    environment:
+      # Sentry Configuration
+      SENTRY_DSN: ${SENTRY_DSN}
+      SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-production}
+      SENTRY_RELEASE: convertica@$(git describe --tags --always --dirty)
     healthcheck:
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
