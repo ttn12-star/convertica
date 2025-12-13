@@ -561,7 +561,7 @@ def contact_page(request):
 
             if telegram_enabled:
                 # Send Telegram notification asynchronously
-                from src.tasks.telegram import send_telegram_message
+                from src.tasks.telegram_service import send_telegram_message
 
                 telegram_message = f"""
 <b>📩 New contact form submission</b>
