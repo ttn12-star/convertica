@@ -564,14 +564,11 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@convertica.ne
 CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 
 # Cloudflare Turnstile Configuration
-TURNSTILE_SITE_KEY = os.environ.get(
-    "TURNSTILE_SITE_KEY", config("TURNSTILE_SITE_KEY", default="", cast=str)
-)
-TURNSTILE_SECRET_KEY = os.environ.get(
-    "TURNSTILE_SECRET_KEY", config("TURNSTILE_SECRET_KEY", default="", cast=str)
-)
+TURNSTILE_SITE_KEY = config("TURNSTILE_SITE_KEY", default="")
+TURNSTILE_SECRET_KEY = config("TURNSTILE_SECRET_KEY", default="")
 
 # Telegram Bot Configuration
+CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default="True")
 TELEGRAM_BOT_TOKEN = config("TELEGRAM_BOT_TOKEN", default="", cast=str)
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID", default="", cast=str)
 
