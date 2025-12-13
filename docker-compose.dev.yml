@@ -21,23 +21,8 @@ services:
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
       - ./logs:/app/logs
-    environment:
-          - DEBUG=True
-          - DATABASE_ENGINE=sqlite3  # Use SQLite for development
-          - USE_WHITENOISE=True  # Use WhiteNoise in development (simpler than Nginx)
-          - EMAIL_BACKEND=${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
-          - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
-          - EMAIL_PORT=${EMAIL_PORT:-587}
-          - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
-          - EMAIL_USE_SSL=${EMAIL_USE_SSL:-False}
-          - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
-          - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
-          - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-noreply@convertica.net}
-          - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
-          - HCAPTCHA_SITE_KEY=${HCAPTCHA_SITE_KEY:-}
-          - HCAPTCHA_SECRET_KEY=${HCAPTCHA_SECRET_KEY:-}
-          - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-          - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+    env_file:
+      - .env
     ports:
       - "8000:8000"
       - "5678:5678"  # Debug port
@@ -48,15 +33,21 @@ services:
       - production  # Only start with --profile production
 
   celery:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
     volumes:
       - .:/app  # Mount source code for hot reload
-    environment:
-      - DEBUG=True
-      - DATABASE_ENGINE=sqlite3
+    env_file:
+      - .env
+    command: celery -A utils_site worker --loglevel=info --concurrency=2 -Q celery,default,maintenance
 
   celery-beat:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
     volumes:
       - .:/app
-    environment:
-      - DEBUG=True
-      - DATABASE_ENGINE=sqlite3
+    env_file:
+      - .env
+    command: celery -A utils_site beat --loglevel=info
