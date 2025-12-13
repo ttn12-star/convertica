@@ -9,7 +9,7 @@ TELEGRAM_TIMEOUT = 10
 
 
 @shared_task(
-    name="telegram_service.send_message",
+    name="telegram.send_message",
     queue="default",
     bind=True,
     max_retries=3,
