@@ -3,9 +3,10 @@
 
 services:
   nginx:
-    # Healthcheck removed - nginx status can be checked by container status (Up/Restarting)
-    # If needed, can add simple process check: test: ["CMD", "nginx", "-t"]
-  # Django Web Application - Production optimizations
+    # Healthcheck removed - container status sufficient
+    profiles:
+      - production
+
   web:
     build:
       context: .
@@ -18,32 +19,14 @@ services:
              python manage.py compilemessages &&
              python manage.py migrate &&
              gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-4} --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload utils_site.wsgi:application"
-    environment:
-      - DEBUG=False
-      # Disable redirect to HTTPS for internal healthchecks; enable later when SSL terminates at nginx
-      - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-False}
-      - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-True}
-      - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-True}
-      # Disable WhiteNoise in production (using Nginx for static files)
-      - USE_WHITENOISE=False
-      # Sentry release & environment will be injected by CI/CD (e.g. GitHub Actions)
-      # Example: SENTRY_RELEASE=convertica@v1.2.3, SENTRY_ENVIRONMENT=production
-      - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
-      - SENTRY_RELEASE=${SENTRY_RELEASE}
-    deploy:
-      resources:
-        limits:
-          cpus: '${WEB_CPU_LIMIT:-1.0}'
-          memory: ${WEB_MEMORY_LIMIT:-768M}
-        reservations:
-          cpus: '${WEB_CPU_RESERVATION:-0.2}'
-          memory: ${WEB_MEMORY_RESERVATION:-256M}
+    env_file:
+      - .env
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
-      interval: 5s  # Check more frequently
+      interval: 5s
       timeout: 3s
-      retries: 5  # More retries before marking unhealthy
-      start_period: 90s  # Wait up to 90s for Django to start (allows time for migrations, compilemessages, collectstatic)
+      retries: 5
+      start_period: 90s
     restart: always
     logging:
       driver: "json-file"
@@ -51,22 +34,14 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Celery Worker - Production optimizations
   celery:
     build:
       context: .
       dockerfile: ci/Dockerfile
     command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-1} --max-tasks-per-child=500 -Q celery,default,maintenance
-    deploy:
-      resources:
-        limits:
-          cpus: '${CELERY_CPU_LIMIT:-0.5}'
-          memory: ${CELERY_MEMORY_LIMIT:-512M}
-        reservations:
-          cpus: '${CELERY_CPU_RESERVATION:-0.1}'
-          memory: ${CELERY_MEMORY_RESERVATION:-128M}
+    env_file:
+      - .env
     healthcheck:
-      # Override image healthcheck (uses /health/) to avoid false unhealthy
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
       timeout: 5s
@@ -79,22 +54,14 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Celery Beat - Production optimizations
   celery-beat:
     build:
       context: .
       dockerfile: ci/Dockerfile
     command: celery -A utils_site beat --loglevel=info
-    deploy:
-      resources:
-        limits:
-          cpus: '${CELERY_BEAT_CPU_LIMIT:-0.25}'
-          memory: ${CELERY_BEAT_MEMORY_LIMIT:-256M}
-        reservations:
-          cpus: '${CELERY_BEAT_CPU_RESERVATION:-0.1}'
-          memory: ${CELERY_BEAT_MEMORY_RESERVATION:-128M}
+    env_file:
+      - .env
     healthcheck:
-      # Override image healthcheck to a no-op ping
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
       timeout: 5s
@@ -107,7 +74,6 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # PostgreSQL - Production optimizations
   db:
     deploy:
       resources:
@@ -124,7 +90,6 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Redis - Production optimizations (increased for page caching)
   redis:
     deploy:
       resources:

@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   # PostgreSQL Database
   db:
@@ -9,7 +11,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    # Ports exposed only internally (not to host) for security
     expose:
       - "5432"
     healthcheck:
@@ -28,7 +29,6 @@ services:
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme}
     volumes:
       - redis_data:/data
-    # Ports exposed only internally (not to host) for security
     expose:
       - "6379"
     healthcheck:
@@ -41,28 +41,22 @@ services:
     restart: unless-stopped
 
   # Nginx for static files and reverse proxy
-  # Note: In development, Nginx is disabled via profiles (see docker-compose.dev.yml)
-  # For production, ensure port 80 is free or change the port mapping
   nginx:
     image: nginx:alpine
     container_name: convertica_nginx
-    # Profile removed for production - nginx should always run in production
     volumes:
       - ./staticfiles:/app/staticfiles:ro
       - ./media:/app/media:ro
       - ./ci/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      # SSL certificates (uncomment after obtaining certificates):
       - ./ssl:/etc/nginx/ssl:ro
     ports:
       - "80:80"
       - "443:443"
     depends_on:
-      - web  # Start after web, but don't require it to be healthy (nginx will retry)
+      - web
     networks:
       - convertica_network
     restart: unless-stopped
-    # Healthcheck removed - nginx status can be checked by container status (Up/Restarting)
-    # If needed, can add simple process check: test: ["CMD", "nginx", "-t"]
 
   # Django Web Application
   web:
@@ -82,45 +76,10 @@ services:
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
       - ./logs:/app/logs
-    # Port exposed to host for direct access (when Nginx is not used)
     ports:
       - "8000:8000"
-    environment:
-        - DEBUG=${DEBUG:-False}
-        - SECRET_KEY=${SECRET_KEY}
-        - DATABASE_ENGINE=postgresql
-        - DATABASE_NAME=${POSTGRES_DB:-convertica}
-        - DATABASE_USER=${POSTGRES_USER:-convertica}
-        - DATABASE_PASSWORD=${POSTGRES_PASSWORD:-changeme}
-        - DATABASE_HOST=db
-        - DATABASE_PORT=5432
-        - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/1
-        - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-        - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-        - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
-        - SECURE_SSL_REDIRECT=${SECURE_SSL_REDIRECT:-False}
-        - SESSION_COOKIE_SECURE=${SESSION_COOKIE_SECURE:-False}
-        - CSRF_COOKIE_SECURE=${CSRF_COOKIE_SECURE:-False}
-        # WhiteNoise disabled by default (use Nginx in production, enable for dev)
-        - USE_WHITENOISE=${USE_WHITENOISE:-False}
-        - EMAIL_BACKEND=${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
-        - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
-        - EMAIL_PORT=${EMAIL_PORT:-587}
-        - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
-        - EMAIL_USE_SSL=${EMAIL_USE_SSL:-False}
-        - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
-        - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
-        - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-noreply@convertica.net}
-        - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
-        - HCAPTCHA_SITE_KEY=${HCAPTCHA_SITE_KEY:-}
-        - HCAPTCHA_SECRET_KEY=${HCAPTCHA_SECRET_KEY:-}
-        - ADMIN_URL_PATH=${ADMIN_URL_PATH:-admin}
-        - ADMIN_IP_WHITELIST=${ADMIN_IP_WHITELIST:-127.0.0.1,::1}
-        - CONTACT_TELEGRAM_ENABLED="True"
-        - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-        - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
-        - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
-        - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+    env_file:
+      - .env
     depends_on:
       db:
         condition: service_healthy
@@ -131,7 +90,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 120s  # Increased to 2 minutes to allow Django to fully start
+      start_period: 120s
     networks:
       - convertica_network
     restart: unless-stopped
@@ -146,37 +105,14 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./media:/app/media
-    environment:
-      - DEBUG=${DEBUG:-False}
-      - SECRET_KEY=${SECRET_KEY}
-      - DATABASE_ENGINE=postgresql
-      - DATABASE_NAME=${POSTGRES_DB:-convertica}
-      - DATABASE_USER=${POSTGRES_USER:-convertica}
-      - DATABASE_PASSWORD=${POSTGRES_PASSWORD:-changeme}
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/1
-      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-      - EMAIL_BACKEND=${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
-      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
-      - EMAIL_PORT=${EMAIL_PORT:-587}
-      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
-      - EMAIL_USE_SSL=${EMAIL_USE_SSL:-False}
-      - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
-      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
-      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-noreply@convertica.net}
-      - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
-      - CONTACT_TELEGRAM_ENABLED="True"
-      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
-      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+    env_file:
+      - .env
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_healthy
     healthcheck:
-      # Override image healthcheck (uses /health/) to avoid false unhealthy
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
       timeout: 5s
@@ -186,7 +122,7 @@ services:
       - convertica_network
     restart: unless-stopped
 
-  # Celery Beat (for scheduled tasks)
+  # Celery Beat (scheduled tasks)
   celery-beat:
     build:
       context: .
@@ -195,34 +131,14 @@ services:
     command: celery -A utils_site beat --loglevel=info
     volumes:
       - ./logs:/app/logs
-    environment:
-      - DEBUG=${DEBUG:-False}
-      - SECRET_KEY=${SECRET_KEY}
-      - DATABASE_ENGINE=postgresql
-      - DATABASE_NAME=${POSTGRES_DB:-convertica}
-      - DATABASE_USER=${POSTGRES_USER:-convertica}
-      - DATABASE_PASSWORD=${POSTGRES_PASSWORD:-changeme}
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - REDIS_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/1
-      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD:-changeme}@redis:6379/0
-      - EMAIL_BACKEND=${EMAIL_BACKEND:-django.core.mail.backends.console.EmailBackend}
-      - EMAIL_HOST=${EMAIL_HOST:-smtp.gmail.com}
-      - EMAIL_PORT=${EMAIL_PORT:-587}
-      - EMAIL_USE_TLS=${EMAIL_USE_TLS:-True}
-      - EMAIL_USE_SSL=${EMAIL_USE_SSL:-False}
-      - EMAIL_HOST_USER=${EMAIL_HOST_USER:-}
-      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
-      - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-noreply@convertica.net}
-      - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
+    env_file:
+      - .env
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_healthy
     healthcheck:
-      # Override image healthcheck to a no-op ping
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
       timeout: 5s
