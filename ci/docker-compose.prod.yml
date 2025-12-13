@@ -22,9 +22,8 @@ services:
     env_file:
       - .env
     environment:
-      SENTRY_DSN: ${SENTRY_DSN}
-      SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-production}
-      SENTRY_RELEASE: ${SENTRY_RELEASE}
+      - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
+      - SENTRY_RELEASE=${SENTRY_RELEASE}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
       interval: 5s
@@ -46,10 +45,8 @@ services:
     env_file:
       - .env
     environment:
-      # Sentry Configuration
-      SENTRY_DSN: ${SENTRY_DSN}
-      SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-production}
-      SENTRY_RELEASE: convertica@$(git describe --tags --always --dirty)
+      - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
+      - SENTRY_RELEASE=${SENTRY_RELEASE}
     healthcheck:
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
@@ -71,10 +68,8 @@ services:
     env_file:
       - .env
     environment:
-      # Sentry Configuration
-      SENTRY_DSN: ${SENTRY_DSN}
-      SENTRY_ENVIRONMENT: ${SENTRY_ENVIRONMENT:-production}
-      SENTRY_RELEASE: convertica@$(git describe --tags --always --dirty)
+      - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
+      - SENTRY_RELEASE=${SENTRY_RELEASE}
     healthcheck:
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
