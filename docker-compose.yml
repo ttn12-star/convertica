@@ -167,6 +167,9 @@ services:
       - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD:-}
       - DEFAULT_FROM_EMAIL=${DEFAULT_FROM_EMAIL:-noreply@convertica.net}
       - CONTACT_EMAIL=${CONTACT_EMAIL:-info@convertica.net}
+      - CONTACT_TELEGRAM_ENABLED="True"
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
     depends_on:
       db:
         condition: service_healthy
