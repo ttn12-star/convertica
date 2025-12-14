@@ -24,6 +24,7 @@ services:
     environment:
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
+      - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
       interval: 5s
@@ -47,6 +48,7 @@ services:
     environment:
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
+      - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
     healthcheck:
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
@@ -70,6 +72,7 @@ services:
     environment:
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
+      - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
     healthcheck:
       test: ["CMD", "sh", "-c", "echo ok"]
       interval: 30s
