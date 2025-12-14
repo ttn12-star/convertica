@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from decouple import config
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
@@ -24,7 +25,13 @@ def robots_txt(request):
     if not getattr(settings, "DEBUG", False) and scheme == "http":
         scheme = "https"
 
-    base_url = f"{scheme}://{request.get_host()}"
+    # Use production domain instead of IP address for robots.txt
+    # Fallback to request.get_host() if SITE_DOMAIN not set
+    site_domain = config("SITE_DOMAIN", default=None)
+    if site_domain:
+        base_url = f"{scheme}://{site_domain}"
+    else:
+        base_url = f"{scheme}://{request.get_host()}"
     admin_path = getattr(settings, "ADMIN_URL_PATH", "admin")
 
     try:
