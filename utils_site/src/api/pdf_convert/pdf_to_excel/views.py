@@ -16,7 +16,7 @@ class PDFToExcelAPIView(BaseConversionAPIView):
     MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
     ALLOWED_CONTENT_TYPES = {"application/pdf", "application/octet-stream"}
     ALLOWED_EXTENSIONS = {".pdf"}
-    CONVERSION_TYPE = "PDF_TO_EXCEL"
+    CONVERSION_TYPE = "pdf_to_excel"
     FILE_FIELD_NAME = "pdf_file"
     VALIDATE_PDF_PAGES = False  # Client-side validation implemented
 

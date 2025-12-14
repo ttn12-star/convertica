@@ -26,6 +26,15 @@ services:
     ports:
       - "8000:8000"
       - "5678:5678"  # Debug port
+    # Production-like resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: '1.5G'
+        reservations:
+          cpus: '0.4'
+          memory: '1G'
 
   # Disable Nginx in development (use WhiteNoise instead)
   nginx:
@@ -40,7 +49,16 @@ services:
       - .:/app  # Mount source code for hot reload
     env_file:
       - .env
-    command: celery -A utils_site worker --loglevel=info --concurrency=2 -Q celery,default,maintenance
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 --max-tasks-per-child=500 -Q celery,default,maintenance
+    # Production-like resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: '1.2G'
+        reservations:
+          cpus: '0.3'
+          memory: '800M'
 
   celery-beat:
     build:
@@ -50,4 +68,36 @@ services:
       - .:/app
     env_file:
       - .env
-    command: celery -A utils_site beat --loglevel=info
+    command: celery -A utils_site beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    # Production-like resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '256M'
+        reservations:
+          cpus: '0.1'
+          memory: '128M'
+
+  db:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '256M'
+        reservations:
+          cpus: '0.1'
+          memory: '128M'
+
+  redis:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: '256M'
+        reservations:
+          cpus: '0.1'
+          memory: '128M'
+    env_file:
+      - .env
+    command: redis-server
