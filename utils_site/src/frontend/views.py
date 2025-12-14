@@ -683,6 +683,7 @@ def faq_page(request):
 @require_http_methods(["GET"])
 def sitemap_xml(request):
     """Generate sitemap.xml for SEO with multilingual support."""
+    from decouple import config
     from django.core.cache import cache
     from django.utils.translation import activate, get_language
     from src.blog.models import Article
@@ -701,7 +702,13 @@ def sitemap_xml(request):
     if not getattr(settings, "DEBUG", False) and scheme == "http":
         scheme = "https"
 
-    base_url = f"{scheme}://{request.get_host()}"
+    # Use production domain instead of IP address for sitemap
+    # Fallback to request.get_host() if SITE_DOMAIN not set
+    site_domain = config("SITE_DOMAIN", default=None)
+    if site_domain:
+        base_url = f"{scheme}://{site_domain}"
+    else:
+        base_url = f"{scheme}://{request.get_host()}"
     current_date = datetime.now().strftime("%Y-%m-%d")
     languages = getattr(settings, "LANGUAGES", [("en", "English")])
     default_language = settings.LANGUAGE_CODE
