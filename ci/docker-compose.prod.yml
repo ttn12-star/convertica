@@ -15,16 +15,23 @@ services:
       sh -c "python /app/clear_staticfiles.py || true &&
              python manage.py collectstatic --noinput &&
              python /app/create_manifest.py || true &&
-             python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
-             python manage.py compilemessages &&
+             python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete &&
              python manage.py migrate &&
-             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-4} --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload utils_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-2} --timeout 300 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload utils_site.wsgi:application"
     env_file:
       - .env
     environment:
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
       - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
+    deploy:
+      resources:
+        limits:
+          cpus: '${WEB_CPU_LIMIT:-0.8}'
+          memory: ${WEB_MEMORY_LIMIT:-1.5G}
+        reservations:
+          cpus: '${WEB_CPU_RESERVATION:-0.4}'
+          memory: ${WEB_MEMORY_RESERVATION:-1G}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
       interval: 5s
