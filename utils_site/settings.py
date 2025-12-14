@@ -171,6 +171,7 @@ MIDDLEWARE = [
     "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
+    # "src.core.middleware.DisableSessionForSitemapMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware
     "src.frontend.middleware.CaptchaRequirementMiddleware",  # Track failed attempts for CAPTCHA
     "django.middleware.common.CommonMiddleware",
@@ -178,6 +179,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # "src.core.middleware.DisableLocaleForSitemapMiddleware", # Disable locale for sitemap.xml
     "django.middleware.locale.LocaleMiddleware",  # Automatically detects language from Accept-Language header, session, or cookie
     # 'src.frontend.middleware.AutoLanguageMiddleware',  # DISABLED - interferes with language switching
 ]

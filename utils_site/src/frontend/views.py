@@ -680,7 +680,6 @@ def faq_page(request):
     return render(request, "frontend/faq.html", context)
 
 
-@require_http_methods(["GET"])
 def sitemap_xml(request):
     """Generate sitemap.xml for SEO with multilingual support."""
     from decouple import config
