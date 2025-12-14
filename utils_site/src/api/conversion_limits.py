@@ -17,19 +17,19 @@ logger = get_logger(__name__)
 # ============================================================================
 
 # Maximum number of pages allowed for PDF operations
-MAX_PDF_PAGES = 50  # Increase to 50 if needed, 20 is safe for low-memory servers
+MAX_PDF_PAGES = 50  # Keep 50 pages, monitor memory usage
 
-# Maximum file size in bytes (50 MB default)
-MAX_FILE_SIZE = 50 * 1024 * 1024
+# Maximum file size in bytes (reduced for low-memory server)
+MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB instead of 50 MB
 
 # Timeout for conversion operations in seconds
-CONVERSION_TIMEOUT = 120  # 2 minutes max per conversion
+CONVERSION_TIMEOUT = 180  # 3 minutes max per conversion
 
 # Timeout for simple operations (rotate, extract pages, etc.)
-SIMPLE_OPERATION_TIMEOUT = 60  # 1 minute
+SIMPLE_OPERATION_TIMEOUT = 90  # 1.5 minutes
 
 # Timeout for heavy operations (PDF to Word, PDF to Excel)
-HEAVY_OPERATION_TIMEOUT = 180  # 3 minutes
+HEAVY_OPERATION_TIMEOUT = 300  # 5 minutes
 
 
 # ============================================================================
@@ -118,7 +118,9 @@ def with_timeout(timeout_seconds: int = CONVERSION_TIMEOUT):
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args, **kwargs) -> Any:
-            with ThreadPoolExecutor(max_workers=1) as executor:
+            with ThreadPoolExecutor(
+                max_workers=2
+            ) as executor:  # Increased for low-memory server
                 future = executor.submit(func, *args, **kwargs)
                 try:
                     return future.result(timeout=timeout_seconds)
@@ -161,7 +163,9 @@ def run_with_timeout(
     if kwargs is None:
         kwargs = {}
 
-    with ThreadPoolExecutor(max_workers=1) as executor:
+    with ThreadPoolExecutor(
+        max_workers=2
+    ) as executor:  # Increased for low-memory server
         future = executor.submit(func, *args, **kwargs)
         try:
             return future.result(timeout=timeout)
@@ -283,5 +287,5 @@ def get_timeout_for_operation(
     if page_count > 20:
         base_timeout += (page_count - 20) * 2  # +2 sec per page over 20
 
-    # Cap at 5 minutes
-    return min(base_timeout, 300)
+    # Cap at 10 minutes for heavy files
+    return min(base_timeout, 600)
