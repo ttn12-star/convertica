@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-15 20:37+0000\n"
+"POT-Creation-Date: 2025-12-15 23:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,18 +18,25 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 # Error pages translations
+#: templates/400.html:4 templates/400.html:5
 msgid "400 - Bad Request"
 msgstr "400 - Bad Request"
 
+#: templates/400.html:4 templates/403.html:4 templates/404.html:4
+#: templates/500.html:4 templates/502.html:4
+#: templates/frontend/includes/header.html:22
 msgid "Convertica"
 msgstr ""
 
+#: templates/400.html:6
 msgid "The request could not be understood by the server."
 msgstr "The request could not be understood by the server."
 
+#: templates/400.html:33
 msgid "Bad Request"
 msgstr "Bad Request"
 
+#: templates/400.html:37
 msgid ""
 "The request you sent could not be understood by the server. Please check "
 "your input and try again."
@@ -37,21 +44,28 @@ msgstr ""
 "The request you sent could not be understood by the server. Please check "
 "your input and try again."
 
+#: templates/400.html:47
 msgid "Go Back"
 msgstr "Go Back"
 
+#: templates/400.html:55 templates/403.html:48 templates/404.html:46
+#: templates/500.html:55 templates/502.html:56
 msgid "Go Home"
 msgstr ""
 
+#: templates/403.html:4 templates/403.html:5
 msgid "403 - Access Forbidden"
 msgstr "403 - Access Forbidden"
 
+#: templates/403.html:6
 msgid "You don't have permission to access this resource."
 msgstr "You don't have permission to access this resource."
 
+#: templates/403.html:34
 msgid "Access Forbidden"
 msgstr "Access Forbidden"
 
+#: templates/403.html:38
 msgid ""
 "You don't have permission to access this page. If you believe this is an "
 "error, please contact support."
@@ -59,18 +73,23 @@ msgstr ""
 "You don't have permission to access this page. If you believe this is an "
 "error, please contact support."
 
+#: templates/403.html:56
 msgid "Contact Support"
 msgstr "Contact Support"
 
+#: templates/404.html:4 templates/404.html:5
 msgid "404 - Page Not Found"
 msgstr "404 - Page Not Found"
 
+#: templates/404.html:6
 msgid "The page you are looking for could not be found."
 msgstr "The page you are looking for could not be found."
 
+#: templates/404.html:32
 msgid "Oops! Page Not Found"
 msgstr "Oops! Page Not Found"
 
+#: templates/404.html:36
 msgid ""
 "The page you're looking for seems to have wandered off. It might have been "
 "moved, deleted, or never existed."
@@ -78,33 +97,61 @@ msgstr ""
 "The page you're looking for seems to have wandered off. It might have been "
 "moved, deleted, or never existed."
 
+#: templates/404.html:54
 msgid "Browse All Tools"
 msgstr "Browse All Tools"
 
+#: templates/404.html:60
 msgid "Popular pages:"
 msgstr "Popular pages:"
 
+#: templates/404.html:62 templates/blog/article_detail.html:340
+#: templates/frontend/all_tools.html:63
+#: templates/frontend/includes/footer.html:102
+#: templates/frontend/includes/header.html:92
+#: templates/frontend/includes/header.html:330
+#: templates/frontend/includes/header.html:709 templates/frontend/index.html:56
+#: templates/frontend/index.html:110
 msgid "PDF to Word"
 msgstr ""
 
+#: templates/404.html:63 templates/blog/article_detail.html:349
+#: templates/frontend/all_tools.html:281
+#: templates/frontend/includes/header.html:190
+#: templates/frontend/includes/header.html:514
+#: templates/frontend/includes/header.html:735 templates/frontend/index.html:65
+#: templates/frontend/index.html:250 utils_site/src/frontend/views.py:520
+#, fuzzy
+#| msgid "Merging PDFs..."
 msgid "Merge PDF"
-msgstr ""
+msgstr "Merging PDFs..."
 
+#: templates/404.html:64 templates/frontend/all_tools.html:300
+#: templates/frontend/includes/header.html:202
+#: templates/frontend/includes/header.html:526
+#: templates/frontend/includes/header.html:739
+#: templates/frontend/index.html:274 utils_site/src/frontend/views.py:570
+#: utils_site/src/frontend/views.py:576
 msgid "Split PDF"
 msgstr ""
 
+#: templates/404.html:65 templates/frontend/includes/footer.html:69
 msgid "FAQ"
 msgstr ""
 
+#: templates/500.html:4 templates/500.html:5
 msgid "500 - Server Error"
 msgstr "500 - Server Error"
 
+#: templates/500.html:6
 msgid "An internal server error occurred. We're working to fix it."
 msgstr "An internal server error occurred. We're working to fix it."
 
+#: templates/500.html:33
 msgid "Oops! Something Went Wrong"
 msgstr "Oops! Something Went Wrong"
 
+#: templates/500.html:37
 msgid ""
 "We're experiencing some technical difficulties. Our team has been notified "
 "and is working to fix the issue. Please try again in a few moments."
@@ -112,24 +159,31 @@ msgstr ""
 "We're experiencing some technical difficulties. Our team has been notified "
 "and is working to fix the issue. Please try again in a few moments."
 
+#: templates/500.html:47 templates/502.html:48
 msgid "Try Again"
 msgstr "Try Again"
 
+#: templates/500.html:62
 msgid "If the problem persists, please"
 msgstr "If the problem persists, please"
 
+#: templates/500.html:63 templates/502.html:64
 msgid "contact us"
 msgstr "contact us"
 
+#: templates/502.html:4 templates/502.html:5
 msgid "502 - Bad Gateway"
 msgstr "502 - Bad Gateway"
 
+#: templates/502.html:6
 msgid "The server received an invalid response from an upstream server."
 msgstr "The server received an invalid response from an upstream server."
 
+#: templates/502.html:34
 msgid "Bad Gateway"
 msgstr "Bad Gateway"
 
+#: templates/502.html:38
 msgid ""
 "The server is temporarily unavailable or overloaded. Please try again in a "
 "few moments. We're working to restore service as quickly as possible."
@@ -137,106 +191,157 @@ msgstr ""
 "The server is temporarily unavailable or overloaded. Please try again in a "
 "few moments. We're working to restore service as quickly as possible."
 
+#: templates/502.html:63
 msgid "This is usually a temporary issue. If it persists, please"
 msgstr "This is usually a temporary issue. If it persists, please"
 
+#: templates/base.html:14
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
 msgstr ""
 
+#: templates/base.html:15
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
 msgstr ""
 
+#: templates/base.html:107
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr ""
 
+#: templates/blog/article_detail.html:214
 msgid "Categories"
 msgstr ""
 
+#: templates/blog/article_detail.html:223
 msgid "All"
 msgstr ""
 
+#: templates/blog/article_detail.html:275
 msgid "Related Articles"
 msgstr ""
 
+#: templates/blog/article_detail.html:318
 msgid "Back to Blog"
 msgstr ""
 
+#: templates/blog/article_detail.html:330 templates/frontend/index.html:90
+#, fuzzy
+#| msgid "Popular pages:"
 msgid "Popular Tools"
-msgstr ""
+msgstr "Popular pages:"
 
+#: templates/blog/article_detail.html:358 templates/frontend/all_tools.html:377
+#: templates/frontend/includes/header.html:250
+#: templates/frontend/includes/header.html:550
+#: templates/frontend/includes/header.html:755 templates/frontend/index.html:74
+#: templates/frontend/index.html:371 utils_site/src/frontend/views.py:789
+#: utils_site/src/frontend/views.py:795
 msgid "Compress PDF"
 msgstr ""
 
+#: templates/blog/article_detail.html:367 templates/frontend/all_tools.html:182
+#: templates/frontend/includes/header.html:135
+#: templates/frontend/includes/header.html:428
+#: templates/frontend/includes/header.html:773
+#: templates/frontend/index.html:135 utils_site/src/frontend/views.py:348
+#: utils_site/src/frontend/views.py:354
 msgid "Rotate PDF"
 msgstr ""
 
+#: templates/blog/article_detail.html:373
+#, fuzzy
+#| msgid "Browse All Tools"
 msgid "View All Tools"
-msgstr ""
+msgstr "Browse All Tools"
 
+#: templates/blog/article_list.html:7
 msgid "blog, articles, PDF guides, document tips, tutorials"
 msgstr ""
 
+#: templates/blog/article_list.html:20
+#: templates/frontend/includes/footer.html:33
+#: templates/frontend/includes/footer.html:226
 msgid "Blog"
 msgstr ""
 
+#: templates/blog/article_list.html:23
 msgid ""
 "Useful guides, tips, and articles about PDF tools and document management"
 msgstr ""
 
+#: templates/blog/article_list.html:41
 msgid "Search articles..."
 msgstr ""
 
+#: templates/blog/article_list.html:45
 msgid "Search"
 msgstr ""
 
+#: templates/blog/article_list.html:54
 msgid "All Articles"
 msgstr ""
 
+#: templates/blog/article_list.html:101
 msgid "Read"
 msgstr ""
 
+#: templates/blog/article_list.html:116
 msgid "Previous"
 msgstr ""
 
+#: templates/blog/article_list.html:121
+#: templates/frontend/add_watermark.html:523
+#: templates/frontend/crop_pdf.html:400 templates/frontend/merge_pdf.html:113
+#: templates/frontend/organize_pdf.html:44
 msgid "Page"
 msgstr ""
 
+#: templates/blog/article_list.html:121
 msgid "of"
 msgstr ""
 
+#: templates/blog/article_list.html:127
 msgid "Next"
 msgstr ""
 
+#: templates/blog/article_list.html:135
 msgid "No articles found."
 msgstr ""
 
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:905
 msgid "About Us - Convertica"
 msgstr ""
 
+#: templates/frontend/about.html:25
 msgid ""
 "Free online PDF tools platform providing conversion, editing, and "
 "organization services."
 msgstr ""
 
+#: templates/frontend/about.html:27
 msgid "Today better than yesterday, tomorrow better than today"
 msgstr ""
 
+#: templates/frontend/about.html:46
 msgid "About Convertica"
 msgstr ""
 
+#: templates/frontend/about.html:49
 msgid "Your trusted partner for all PDF document needs"
 msgstr ""
 
+#: templates/frontend/about.html:63
 msgid "Mission icon"
 msgstr ""
 
+#: templates/frontend/about.html:67
 msgid "Our Mission"
 msgstr ""
 
+#: templates/frontend/about.html:70
 msgid ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
@@ -245,20 +350,25 @@ msgid ""
 "exceeds your expectations."
 msgstr ""
 
+#: templates/frontend/about.html:78
 msgid "Growth icon"
 msgstr ""
 
+#: templates/frontend/about.html:82
 msgid "Our Core Principle: Constant Improvement"
 msgstr ""
 
+#: templates/frontend/about.html:86
 msgid "We live by a simple yet powerful philosophy:"
 msgstr ""
 
+#: templates/frontend/about.html:90
 msgid ""
 "Today, we are better than we were yesterday. Tomorrow, we will be even "
 "better than today."
 msgstr ""
 
+#: templates/frontend/about.html:94
 msgid ""
 "This isn't just a slogan—it's our commitment to you. Every day, our team "
 "works tirelessly to enhance our platform, improve our tools, and refine the "
@@ -267,6 +377,7 @@ msgid ""
 "reliable."
 msgstr ""
 
+#: templates/frontend/about.html:97
 msgid ""
 "Whether it's optimizing our conversion algorithms, adding new features, "
 "improving security, or enhancing performance, we never stop striving for "
@@ -275,104 +386,142 @@ msgid ""
 "we're already working on making it even better."
 msgstr ""
 
+#: templates/frontend/about.html:106
 msgid "Tools icon"
 msgstr ""
 
+#: templates/frontend/about.html:111
 msgid "What We Offer"
 msgstr ""
 
+#: templates/frontend/about.html:115
 msgid "PDF Conversion"
 msgstr ""
 
+#: templates/frontend/about.html:117
 msgid ""
 "Convert PDFs to Word, Excel, and JPG formats, or create PDFs from various "
 "file types. Fast, accurate, and reliable conversions every time."
 msgstr ""
 
+#: templates/frontend/about.html:121
 msgid "PDF Editing"
 msgstr ""
 
+#: templates/frontend/about.html:123
 msgid ""
 "Rotate, crop, add watermarks, and insert page numbers. Edit your PDFs with "
 "precision and ease."
 msgstr ""
 
+#: templates/frontend/about.html:127
+#, fuzzy
+#| msgid "Organizing..."
 msgid "PDF Organization"
-msgstr ""
+msgstr "Organizing..."
 
+#: templates/frontend/about.html:129
 msgid ""
 "Merge, split, extract, remove, and organize pages. Manage your PDF documents "
 "efficiently."
 msgstr ""
 
+#: templates/frontend/about.html:133 templates/frontend/all_tools.html:397
+#: templates/frontend/includes/header.html:258
+#: templates/frontend/includes/header.html:669
 msgid "PDF Security"
 msgstr ""
 
+#: templates/frontend/about.html:135
 msgid ""
 "Protect your documents with password encryption or unlock secured PDFs when "
 "needed."
 msgstr ""
 
+#: templates/frontend/about.html:145
 msgid "Star icon"
 msgstr ""
 
+#: templates/frontend/about.html:149
 msgid "Why Choose Convertica"
 msgstr ""
 
+#: templates/frontend/about.html:154 templates/frontend/about.html:167
+#: templates/frontend/about.html:180 templates/frontend/about.html:193
 msgid "Checkmark icon"
 msgstr ""
 
+#: templates/frontend/about.html:159
 #, python-format
 msgid "100%% Free"
 msgstr ""
 
+#: templates/frontend/about.html:161
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
 "no credit card required."
 msgstr ""
 
+#: templates/frontend/about.html:172
 msgid "Fast & Secure"
 msgstr ""
 
+#: templates/frontend/about.html:174
 msgid ""
 "Process your files in seconds with our optimized algorithms. Your files are "
 "processed securely and deleted automatically after conversion."
 msgstr ""
 
+#: templates/frontend/about.html:185
 msgid "No Registration Required"
 msgstr ""
 
+#: templates/frontend/about.html:187
 msgid ""
 "Start using our tools immediately. No sign-up, no email verification, no "
 "hassle."
 msgstr ""
 
+#: templates/frontend/about.html:198
 msgid "Privacy First"
 msgstr ""
 
+#: templates/frontend/about.html:200
 msgid ""
 "Your privacy matters. We don't store your files permanently, and we never "
 "share your data with third parties."
 msgstr ""
 
+#: templates/frontend/about.html:209
 msgid "Ready to Get Started?"
 msgstr ""
 
+#: templates/frontend/about.html:211
 msgid "Experience the power of Convertica's PDF tools today."
 msgstr ""
 
+#: templates/frontend/about.html:216 templates/frontend/index.html:404
+#, fuzzy
+#| msgid "Browse All Tools"
 msgid "Explore All Tools"
-msgstr ""
+msgstr "Browse All Tools"
 
+#: templates/frontend/about.html:220
 msgid "Get Started"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:9
+#: templates/frontend/add_page_numbers.html:181
 msgid "Preview Page Numbers"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:12
+#: templates/frontend/add_page_numbers.html:184
 msgid "Select page"
 msgstr "Select page"
 
+#: templates/frontend/add_page_numbers.html:28
+#: templates/frontend/add_page_numbers.html:200
 #, fuzzy
 #| msgid ""
 #| "Preview how the page numbers will look on your PDF using the live preview"
@@ -382,75 +531,139 @@ msgid ""
 msgstr ""
 "Preview how the page numbers will look on your PDF using the live preview"
 
+#: templates/frontend/add_page_numbers.html:37
 msgid "Page Number Settings"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:43
 msgid "Position"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:47
 msgid "Bottom Center"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:48
 msgid "Bottom Left"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:49
 msgid "Bottom Right"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:50
 msgid "Top Center"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:51
 msgid "Top Left"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:52
 msgid "Top Right"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:59
+#: templates/frontend/add_watermark.html:342
 msgid "Font Size"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:73
 msgid "Starting Page Number"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:86
 msgid "Custom Format"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:94
 msgid "Simple"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:100
 msgid "With text"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:106
 msgid "With total"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:112
 msgid "In brackets"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:124
 #, python-brace-format
 msgid ""
 "Use {page} for page number, {total} for total pages. Click presets above or "
 "enter custom format."
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:131
+#: templates/frontend/add_watermark.html:408
 msgid "Apply to pages"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:141
+#: templates/frontend/add_watermark.html:418
+#: templates/frontend/crop_pdf.html:236 templates/frontend/pdf_to_jpg.html:22
+#: templates/frontend/remove_pages.html:21
+#: templates/frontend/rotate_pdf.html:35
+#, fuzzy
+#| msgid "Popular pages:"
 msgid "All pages"
-msgstr ""
+msgstr "Popular pages:"
 
+#: templates/frontend/add_page_numbers.html:149
+#: templates/frontend/add_watermark.html:426
+#: templates/frontend/crop_pdf.html:244 templates/frontend/remove_pages.html:29
+#: templates/frontend/rotate_pdf.html:43
 msgid "Current page only"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:157
+#: templates/frontend/add_watermark.html:434
+#: templates/frontend/crop_pdf.html:252 templates/frontend/pdf_to_jpg.html:30
+#: templates/frontend/remove_pages.html:38
+#: templates/frontend/rotate_pdf.html:51
 msgid "Custom pages:"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:167
+#: templates/frontend/add_watermark.html:444
+#: templates/frontend/crop_pdf.html:262 templates/frontend/pdf_to_jpg.html:40
+#: templates/frontend/remove_pages.html:48
+#: templates/frontend/rotate_pdf.html:61
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:209
+#: templates/frontend/add_watermark.html:488
+#: templates/frontend/compress_pdf.html:31
+#: templates/frontend/converter_generic.html:189
+#: templates/frontend/crop_pdf.html:364
+#: templates/frontend/edit_pdf_generic.html:174
+#: templates/frontend/extract_pages.html:32
+#: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:133
+#: templates/frontend/organize_pdf.html:62
+#: templates/frontend/pdf_to_excel.html:7 templates/frontend/pdf_to_jpg.html:71
+#: templates/frontend/pdf_to_word.html:7 templates/frontend/protect_pdf.html:65
+#: templates/frontend/remove_pages.html:60
+#: templates/frontend/rotate_pdf.html:73 templates/frontend/split_pdf.html:74
+#: templates/frontend/unlock_pdf.html:33 templates/frontend/word_to_pdf.html:7
 msgid "How it works"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:212
+#: templates/frontend/add_watermark.html:491
+#: templates/frontend/compress_pdf.html:34 templates/frontend/crop_pdf.html:367
+#: templates/frontend/extract_pages.html:35
+#: templates/frontend/organize_pdf.html:65
+#: templates/frontend/pdf_to_excel.html:10
+#: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:10
+#: templates/frontend/protect_pdf.html:68
+#: templates/frontend/remove_pages.html:63
+#: templates/frontend/rotate_pdf.html:76 templates/frontend/split_pdf.html:77
 msgid ""
 "Select your PDF file using the button above or drag and drop it into the "
 "zone below"
@@ -458,6 +671,7 @@ msgstr ""
 "Select your PDF file using the button above or drag and drop it into the "
 "zone below"
 
+#: templates/frontend/add_page_numbers.html:213
 msgid ""
 "Choose the position, font size, starting number, and format for adding page "
 "numbers to PDF"
@@ -465,11 +679,13 @@ msgstr ""
 "Choose the position, font size, starting number, and format for adding page "
 "numbers to PDF"
 
+#: templates/frontend/add_page_numbers.html:214
 msgid ""
 "Preview how the page numbers will look on your PDF using the live preview"
 msgstr ""
 "Preview how the page numbers will look on your PDF using the live preview"
 
+#: templates/frontend/add_page_numbers.html:215
 msgid ""
 "Select which pages to add numbers to: all pages, current page only, or "
 "specific pages"
@@ -477,19 +693,35 @@ msgstr ""
 "Select which pages to add numbers to: all pages, current page only, or "
 "specific pages"
 
+#: templates/frontend/add_page_numbers.html:216
 msgid ""
 "Click the add page numbers button to process your PDF and add page numbers"
 msgstr ""
 "Click the add page numbers button to process your PDF and add page numbers"
 
+#: templates/frontend/add_page_numbers.html:217
 msgid ""
 "Download your PDF file with page numbers added using the download button"
 msgstr ""
 "Download your PDF file with page numbers added using the download button"
 
+#: templates/frontend/add_page_numbers.html:221
+#: templates/frontend/add_watermark.html:500
+#: templates/frontend/compress_pdf.html:41 templates/frontend/crop_pdf.html:376
+#: templates/frontend/edit_pdf_generic.html:184
+#: templates/frontend/extract_pages.html:42
+#: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:143
+#: templates/frontend/organize_pdf.html:73
+#: templates/frontend/pdf_to_excel.html:17
+#: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:17
+#: templates/frontend/protect_pdf.html:75
+#: templates/frontend/remove_pages.html:70
+#: templates/frontend/rotate_pdf.html:84 templates/frontend/split_pdf.html:85
+#: templates/frontend/unlock_pdf.html:43 templates/frontend/word_to_pdf.html:17
 msgid "Note:"
 msgstr "Note:"
 
+#: templates/frontend/add_page_numbers.html:221
 msgid ""
 "PDF files with up to 50 pages are supported for adding page numbers. For "
 "larger files, please split them into smaller parts. The page numbers will be "
@@ -499,106 +731,153 @@ msgstr ""
 "larger files, please split them into smaller parts. The page numbers will be "
 "added according to your selected position, format, and font size."
 
+#: templates/frontend/add_page_numbers.html:235
+#: templates/frontend/add_watermark.html:525
+#: templates/frontend/converter_generic.html:212
+#: templates/frontend/crop_pdf.html:407 templates/frontend/merge_pdf.html:121
+#: templates/frontend/organize_pdf.html:50
 #, python-format
 msgid ""
 "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
 "split your PDF into smaller parts."
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:236
+#: templates/frontend/add_watermark.html:526
+#: templates/frontend/converter_generic.html:220
+#: templates/frontend/crop_pdf.html:408
+#: templates/frontend/edit_pdf_generic.html:209
+#: templates/frontend/jpg_to_pdf.html:168 templates/frontend/merge_pdf.html:122
+#: templates/frontend/organize_pdf.html:51
 msgid "Everything is going well!"
 msgstr ""
 
+#: templates/frontend/add_page_numbers.html:237
+#: templates/frontend/add_watermark.html:527
+#: templates/frontend/converter_generic.html:221
+#: templates/frontend/crop_pdf.html:409
+#: templates/frontend/edit_pdf_generic.html:210
+#: templates/frontend/jpg_to_pdf.html:169 templates/frontend/merge_pdf.html:123
+#: templates/frontend/organize_pdf.html:52
 msgid ""
 "Large files take a bit longer. Please do not close this page — your file is "
 "being processed."
 msgstr ""
 
+#: templates/frontend/add_watermark.html:155
 msgid "Select file to watermark"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:173
+#: templates/frontend/converter_generic.html:103
+#: templates/frontend/crop_pdf.html:147
+#: templates/frontend/edit_pdf_generic.html:103
 msgid "Remove file"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:198
+#: templates/frontend/converter_generic.html:128
+#: templates/frontend/crop_pdf.html:172
+#: templates/frontend/edit_pdf_generic.html:128
 msgid "Drag and drop your file here"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:201
+#: templates/frontend/converter_generic.html:131
+#: templates/frontend/crop_pdf.html:175
+#: templates/frontend/edit_pdf_generic.html:131
+#: templates/frontend/jpg_to_pdf.html:93
 msgid "Use the button above to browse files"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:204
+#: templates/frontend/converter_generic.html:134
+#: templates/frontend/crop_pdf.html:178
+#: templates/frontend/edit_pdf_generic.html:134
 msgid "file"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:213
 msgid "Visual Watermark Editor"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:219
+#, fuzzy
+#| msgid "Select page"
 msgid "Select Page"
-msgstr ""
+msgstr "Select page"
 
+#: templates/frontend/add_watermark.html:238
 msgid "How to use:"
 msgstr ""
 
-#, fuzzy
-#| msgid ""
-#| "The watermark appears at the bottom of the page by default. Drag it to "
-#| "move, use the top handle to rotate, and the corner handle to scale. Click "
-#| "anywhere on the PDF to reposition it."
+#: templates/frontend/add_watermark.html:238
 msgid ""
-"The watermark appears at the bottom of the page by default. Drag it to move, "
-"use corner handles to scale. Use the Rotation slider below to rotate. Click "
-"anywhere on the PDF to reposition."
+"After uploading, click on the PDF preview to position your watermark. Use "
+"the sliders below to adjust size and rotation. You can also drag the "
+"watermark to move it, or use corner handles to scale directly on the preview."
 msgstr ""
-"The watermark appears at the bottom of the page by default. Drag it to move, "
-"use the top handle to rotate, and the corner handle to scale. Click anywhere "
-"on the PDF to reposition it."
 
+#: templates/frontend/add_watermark.html:247
 msgid "Watermark Settings"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:253
 msgid "Watermark Type"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:258
 msgid "Text"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:262
 msgid "Image"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:270
 msgid "Watermark Text"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:283
 msgid "Watermark Image"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:295
 msgid "Choose Image"
 msgstr "Choose Image"
 
+#: templates/frontend/add_watermark.html:304
 msgid "Color"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:323
 msgid "Opacity"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:361
 msgid "Rotation"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:381
+msgid "Size"
+msgstr ""
+
+#: templates/frontend/add_watermark.html:401
 msgid "Interactive controls:"
 msgstr ""
 
-#, fuzzy
-#| msgid ""
-#| "Drag the watermark to move it. Drag any corner handle to rotate and scale "
-#| "simultaneously."
+#: templates/frontend/add_watermark.html:401
 msgid ""
-"Drag the watermark to move it. Use corner handles to scale. Use the rotation "
-"slider above to rotate."
+"Drag the watermark to move it. Use the Size and Rotation sliders above for "
+"easy control, or use corner handles to scale directly on the preview."
 msgstr ""
-"Drag the watermark to move it. Drag any corner handle to rotate and scale "
-"simultaneously."
 
+#: templates/frontend/add_watermark.html:492
 msgid "Enter your watermark text or upload an image to add as watermark to PDF"
 msgstr ""
 "Enter your watermark text or upload an image to add as watermark to PDF"
 
+#: templates/frontend/add_watermark.html:493
 msgid ""
 "Choose the color and opacity using the sliders to customize your PDF "
 "watermark"
@@ -606,6 +885,7 @@ msgstr ""
 "Choose the color and opacity using the sliders to customize your PDF "
 "watermark"
 
+#: templates/frontend/add_watermark.html:494
 msgid ""
 "Click on the PDF to position the watermark, or drag it to move it anywhere "
 "on the page"
@@ -613,14 +893,17 @@ msgstr ""
 "Click on the PDF to position the watermark, or drag it to move it anywhere "
 "on the page"
 
+#: templates/frontend/add_watermark.html:495
 msgid ""
 "Click the add watermark button to process your PDF and add the watermark"
 msgstr ""
 "Click the add watermark button to process your PDF and add the watermark"
 
+#: templates/frontend/add_watermark.html:496
 msgid "Download your watermarked PDF file using the download button"
 msgstr "Download your watermarked PDF file using the download button"
 
+#: templates/frontend/add_watermark.html:500
 msgid ""
 "PDF files with up to 50 pages are supported for adding watermarks. For "
 "larger files, please split them into smaller parts. The watermark will be "
@@ -630,168 +913,317 @@ msgstr ""
 "larger files, please split them into smaller parts. The watermark will be "
 "applied to all pages or selected pages as specified."
 
+#: templates/frontend/add_watermark.html:516
+#: templates/frontend/crop_pdf.html:392
+#: templates/frontend/edit_pdf_generic.html:201
 msgid "Processing your file..."
 msgstr ""
 
+#: templates/frontend/add_watermark.html:517
+#: templates/frontend/converter_generic.html:214
+#: templates/frontend/crop_pdf.html:393
+#: templates/frontend/edit_pdf_generic.html:202
+#: templates/frontend/jpg_to_pdf.html:162
 msgid "Please wait, this may take a few moments"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:518
+#: templates/frontend/crop_pdf.html:394
+#: templates/frontend/edit_pdf_generic.html:203
 msgid "Editing Complete!"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:519
+#: templates/frontend/converter_generic.html:216
+#: templates/frontend/crop_pdf.html:395
+#: templates/frontend/edit_pdf_generic.html:204
 msgid "Your file is ready to download"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:520
+#: templates/frontend/converter_generic.html:217
+#: templates/frontend/crop_pdf.html:396
+#: templates/frontend/edit_pdf_generic.html:205
 msgid "Download File"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:521
+#: templates/frontend/crop_pdf.html:397
+#: templates/frontend/edit_pdf_generic.html:206
 msgid "Edit another file"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:522
+#: templates/frontend/contact.html:140
+#: templates/frontend/converter_generic.html:219
+#: templates/frontend/crop_pdf.html:398
+#: templates/frontend/edit_pdf_generic.html:207
+#: templates/frontend/jpg_to_pdf.html:167
 msgid "Error"
 msgstr ""
 
+#: templates/frontend/add_watermark.html:524
+#: templates/frontend/crop_pdf.html:406 templates/frontend/merge_pdf.html:118
+#: templates/frontend/organize_pdf.html:47
 msgid "Failed to load PDF file. Please try again."
 msgstr "Failed to load PDF file. Please try again."
 
+#: templates/frontend/all_tools.html:24
+#, fuzzy
+#| msgid "Browse All Tools"
 msgid "All PDF Tools"
-msgstr ""
+msgstr "Browse All Tools"
 
+#: templates/frontend/all_tools.html:27
 msgid ""
 "Browse all our PDF tools organized by category. Convert, edit, and organize "
 "your PDFs with ease."
 msgstr ""
 
+#: templates/frontend/all_tools.html:43
+#: templates/frontend/includes/header.html:57
+#: templates/frontend/includes/header.html:305
+#: templates/frontend/includes/header.html:691
 msgid "Convert PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:46
 msgid "Convert PDFs to other formats or convert other files to PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:66 templates/frontend/index.html:113
 msgid "Convert PDF documents to editable Word files instantly."
 msgstr ""
 
+#: templates/frontend/all_tools.html:82
+#: templates/frontend/includes/footer.html:111
+#: templates/frontend/includes/header.html:68
+#: templates/frontend/includes/header.html:373
+#: templates/frontend/includes/header.html:701
+#: templates/frontend/index.html:159
 msgid "Word to PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:85 templates/frontend/index.html:162
 msgid "Convert Word documents to secure PDF files."
 msgstr ""
 
+#: templates/frontend/all_tools.html:101
+#: templates/frontend/includes/footer.html:120
+#: templates/frontend/includes/header.html:104
+#: templates/frontend/includes/header.html:342
+#: templates/frontend/includes/header.html:713
 msgid "PDF to JPG"
 msgstr ""
 
+#: templates/frontend/all_tools.html:104
 msgid "Convert PDF pages to high-quality JPG images."
 msgstr ""
 
+#: templates/frontend/all_tools.html:124
+#: templates/frontend/includes/footer.html:129
+#: templates/frontend/includes/header.html:80
+#: templates/frontend/includes/header.html:385
+#: templates/frontend/includes/header.html:705
 msgid "JPG to PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:127
 msgid ""
 "Convert JPG images to PDF documents. Combine multiple images into one PDF."
 msgstr ""
 
+#: templates/frontend/all_tools.html:142
+#: templates/frontend/includes/header.html:116
+#: templates/frontend/includes/header.html:354
+#: templates/frontend/includes/header.html:717
+#: templates/frontend/index.html:208
 msgid "PDF to Excel"
 msgstr ""
 
+#: templates/frontend/all_tools.html:145 templates/frontend/index.html:211
 msgid "Extract tables from PDF and convert to Excel format."
 msgstr ""
 
+#: templates/frontend/all_tools.html:162
+#: templates/frontend/includes/header.html:124
+#: templates/frontend/includes/header.html:403
+#: templates/frontend/includes/header.html:762
 msgid "Edit PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:165
 msgid "Modify and enhance your PDF documents"
 msgstr ""
 
+#: templates/frontend/all_tools.html:185 templates/frontend/index.html:138
 msgid "Rotate PDF pages by 90, 180, or 270 degrees."
 msgstr ""
 
+#: templates/frontend/all_tools.html:201
+#: templates/frontend/includes/header.html:147
+#: templates/frontend/includes/header.html:440
+#: templates/frontend/includes/header.html:778
+#: utils_site/src/frontend/views.py:480 utils_site/src/frontend/views.py:486
 msgid "Crop PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:204
 msgid "Crop PDF pages by specifying crop box coordinates."
 msgstr ""
 
+#: templates/frontend/all_tools.html:220
+#: templates/frontend/includes/header.html:159
+#: templates/frontend/includes/header.html:459
+#: templates/frontend/includes/header.html:783
+#: utils_site/src/frontend/views.py:392 utils_site/src/frontend/views.py:398
 msgid "Add Page Numbers"
 msgstr ""
 
+#: templates/frontend/all_tools.html:223
 msgid "Add page numbers to your PDF documents."
 msgstr ""
 
+#: templates/frontend/all_tools.html:240
+#: templates/frontend/includes/header.html:171
+#: templates/frontend/includes/header.html:471
+#: templates/frontend/includes/header.html:788
+#: templates/frontend/index.html:184 utils_site/src/frontend/views.py:437
+#: utils_site/src/frontend/views.py:443
 msgid "Add Watermark"
 msgstr ""
 
+#: templates/frontend/all_tools.html:243 templates/frontend/index.html:187
 msgid "Protect your PDFs with text or image watermarks."
 msgstr ""
 
+#: templates/frontend/all_tools.html:260 templates/frontend/all_tools.html:359
+#: templates/frontend/includes/header.html:179
+#: templates/frontend/includes/header.html:238
+#: templates/frontend/includes/header.html:489
+#: templates/frontend/includes/header.html:538
+#: templates/frontend/includes/header.html:725
+#: templates/frontend/includes/header.html:751
+#: templates/frontend/index.html:230 templates/frontend/index.html:347
+#: utils_site/src/frontend/views.py:696 utils_site/src/frontend/views.py:702
+#, fuzzy
+#| msgid "Failed to organize PDF"
 msgid "Organize PDF"
-msgstr ""
+msgstr "Failed to organize PDF"
 
+#: templates/frontend/all_tools.html:263
 msgid "Manage and organize your PDF documents"
 msgstr ""
 
+#: templates/frontend/all_tools.html:284 templates/frontend/index.html:253
+#, fuzzy
+#| msgid "Click the merge button to combine all PDF files into one document"
 msgid "Combine multiple PDF files into one document."
-msgstr ""
+msgstr "Click the merge button to combine all PDF files into one document"
 
+#: templates/frontend/all_tools.html:303 templates/frontend/index.html:277
 msgid "Split PDF into multiple files by pages or ranges."
 msgstr ""
 
+#: templates/frontend/all_tools.html:320
+#: templates/frontend/includes/header.html:214
+#: templates/frontend/includes/header.html:569
+#: templates/frontend/includes/header.html:743
+#: templates/frontend/index.html:298 utils_site/src/frontend/views.py:611
+#: utils_site/src/frontend/views.py:617
 msgid "Remove Pages"
 msgstr ""
 
+#: templates/frontend/all_tools.html:323 templates/frontend/index.html:301
 msgid "Remove unwanted pages from your PDF document."
 msgstr ""
 
+#: templates/frontend/all_tools.html:339
+#: templates/frontend/includes/header.html:226
+#: templates/frontend/includes/header.html:581
+#: templates/frontend/includes/header.html:747
+#: templates/frontend/index.html:322 utils_site/src/frontend/views.py:653
+#: utils_site/src/frontend/views.py:659
 msgid "Extract Pages"
 msgstr ""
 
+#: templates/frontend/all_tools.html:342 templates/frontend/index.html:325
 msgid "Extract specific pages from your PDF into a new file."
 msgstr ""
 
+#: templates/frontend/all_tools.html:362 templates/frontend/index.html:350
+#, fuzzy
+#| msgid ""
+#| "Preview all pages and drag them to reorder pages in your PDF document"
 msgid "Reorder and organize pages in your PDF document."
-msgstr ""
+msgstr "Preview all pages and drag them to reorder pages in your PDF document"
 
+#: templates/frontend/all_tools.html:380 templates/frontend/index.html:374
 msgid "Reduce PDF file size without losing quality."
 msgstr ""
 
+#: templates/frontend/all_tools.html:400
 msgid "Protect and secure your PDF documents"
 msgstr ""
 
+#: templates/frontend/all_tools.html:416
+#: templates/frontend/includes/header.html:269
+#: templates/frontend/includes/header.html:679
+#: utils_site/src/frontend/views.py:814 utils_site/src/frontend/views.py:820
 msgid "Protect PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:419
 msgid "Add password protection to secure your PDF documents."
 msgstr ""
 
+#: templates/frontend/all_tools.html:434
+#: templates/frontend/includes/header.html:281
+#: templates/frontend/includes/header.html:683
+#: utils_site/src/frontend/views.py:856 utils_site/src/frontend/views.py:862
 msgid "Unlock PDF"
 msgstr ""
 
+#: templates/frontend/all_tools.html:437
+#, fuzzy
+#| msgid "Click the unlock button to remove password protection from your PDF"
 msgid "Remove password protection from your PDF documents."
-msgstr ""
+msgstr "Click the unlock button to remove password protection from your PDF"
 
+#: templates/frontend/compress_pdf.html:6
 msgid "Compression Settings"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:12
 msgid "Compression Level"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:16
 msgid "Low"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:16
 msgid "Faster, less compression"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:17
 msgid "Medium"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:17
+#: templates/frontend/pdf_to_jpg.html:55
 msgid "Balanced"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:18
 msgid "High"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:18
 msgid "Slower, more compression"
 msgstr ""
 
+#: templates/frontend/compress_pdf.html:21
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
@@ -799,17 +1231,21 @@ msgstr ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
 
+#: templates/frontend/compress_pdf.html:35
 msgid ""
 "Choose the compression level (Low, Medium, or High) to compress PDF file size"
 msgstr ""
 "Choose the compression level (Low, Medium, or High) to compress PDF file size"
 
+#: templates/frontend/compress_pdf.html:36
 msgid "Click the compress button to reduce the size of your PDF file"
 msgstr "Click the compress button to reduce the size of your PDF file"
 
+#: templates/frontend/compress_pdf.html:37
 msgid "Download your compressed PDF file using the download button"
 msgstr "Download your compressed PDF file using the download button"
 
+#: templates/frontend/compress_pdf.html:41
 msgid ""
 "PDF files with up to 50 pages are supported for compression. For larger "
 "files, please split them into smaller parts. Higher compression reduces file "
@@ -819,46 +1255,73 @@ msgstr ""
 "files, please split them into smaller parts. Higher compression reduces file "
 "size more but may slightly reduce image quality."
 
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:1012
+#: utils_site/src/frontend/views.py:1108
 msgid "Contact Us - Convertica"
 msgstr ""
 
+#: templates/frontend/contact.html:44 templates/frontend/faq.html:383
+#: templates/frontend/privacy.html:220 templates/frontend/terms.html:253
+#, fuzzy
+#| msgid "contact us"
 msgid "Contact Us"
-msgstr ""
+msgstr "contact us"
 
+#: templates/frontend/contact.html:47
 msgid ""
 "We're here to help! Get in touch with us for support, questions, or feedback."
 msgstr ""
 
+#: templates/frontend/contact.html:63
 msgid "Email icon"
 msgstr ""
 
+#: templates/frontend/contact.html:67
+#: templates/frontend/includes/footer.html:161
 msgid "Email"
 msgstr ""
 
+#: templates/frontend/contact.html:70
+#, fuzzy
+#| msgid ""
+#| "We have received your message and will get back to you as soon as "
+#| "possible, usually within 24-48 hours."
 msgid "Send us an email and we'll get back to you as soon as possible."
 msgstr ""
+"We have received your message and will get back to you as soon as possible, "
+"usually within 24-48 hours."
 
+#: templates/frontend/contact.html:85
 msgid "Support icon"
 msgstr ""
 
+#: templates/frontend/contact.html:89
+#, fuzzy
+#| msgid "Contact Support"
 msgid "Support"
-msgstr ""
+msgstr "Contact Support"
 
+#: templates/frontend/contact.html:92
 msgid "Need help with our tools? We're here to assist you."
 msgstr ""
 
+#: templates/frontend/contact.html:95
 msgid "Response time: Usually within 24-48 hours"
 msgstr ""
 
+#: templates/frontend/contact.html:104
 msgid "Form icon"
 msgstr ""
 
+#: templates/frontend/contact.html:108
 msgid "Send Us a Message"
 msgstr ""
 
+#: templates/frontend/contact.html:123
 msgid "Message Sent Successfully!"
 msgstr "Message Sent Successfully!"
 
+#: templates/frontend/contact.html:129
 msgid ""
 "We have received your message and will get back to you as soon as possible, "
 "usually within 24-48 hours."
@@ -866,115 +1329,169 @@ msgstr ""
 "We have received your message and will get back to you as soon as possible, "
 "usually within 24-48 hours."
 
+#: templates/frontend/contact.html:158
 msgid "Please correct the errors below:"
 msgstr "Please correct the errors below:"
 
+#: templates/frontend/contact.html:216
 msgid "I agree to the"
 msgstr ""
 
+#: templates/frontend/contact.html:216 templates/frontend/contact.html:299
+#: templates/frontend/includes/cookie_banner.html:17
+#: templates/frontend/includes/footer.html:51
+#: templates/frontend/includes/footer.html:230
+#: templates/frontend/privacy.html:45
 msgid "Privacy Policy"
 msgstr ""
 
+#: templates/frontend/contact.html:216
 msgid "and consent to the processing of my personal data."
 msgstr ""
 
+#: templates/frontend/contact.html:237
 msgid "Send Message"
 msgstr ""
 
+#: templates/frontend/contact.html:246
 msgid "FAQ icon"
 msgstr ""
 
+#: templates/frontend/contact.html:250 templates/frontend/faq.html:72
 msgid "Frequently Asked Questions"
 msgstr ""
 
+#: templates/frontend/contact.html:255
 msgid "How long does it take to process files?"
 msgstr ""
 
+#: templates/frontend/contact.html:257
 msgid ""
 "Most files are processed within seconds. Larger files or complex operations "
 "may take a few minutes."
 msgstr ""
 
+#: templates/frontend/contact.html:262
 msgid "Are my files safe?"
 msgstr ""
 
+#: templates/frontend/contact.html:264
 msgid ""
 "Yes! Your files are processed securely and automatically deleted immediately "
 "after processing. We never store your files permanently."
 msgstr ""
 
+#: templates/frontend/contact.html:269
 msgid "Is Convertica really free?"
 msgstr ""
 
+#: templates/frontend/contact.html:271
 msgid ""
 "Yes, all our tools are completely free to use. No hidden fees, no "
 "subscriptions required."
 msgstr ""
 
+#: templates/frontend/contact.html:276
 msgid "What file formats are supported?"
 msgstr ""
 
+#: templates/frontend/contact.html:278
 msgid ""
 "We support PDF, Word (DOC, DOCX), JPG/JPEG, and Excel (XLSX) formats. Check "
 "individual tool pages for specific format requirements."
 msgstr ""
 
+#: templates/frontend/contact.html:286
 msgid "Additional Resources"
 msgstr ""
 
+#: templates/frontend/contact.html:291
+#: templates/frontend/includes/footer.html:42
 msgid "About Us"
 msgstr ""
 
+#: templates/frontend/contact.html:293
 msgid "Learn more about Convertica and our mission."
 msgstr ""
 
+#: templates/frontend/contact.html:301
 msgid "Read our privacy policy to understand how we protect your data."
 msgstr ""
 
+#: templates/frontend/contact.html:307
+#: templates/frontend/includes/cookie_banner.html:19
+#: templates/frontend/includes/footer.html:60 templates/frontend/terms.html:45
 msgid "Terms of Service"
 msgstr ""
 
+#: templates/frontend/contact.html:309
 msgid "Review our terms of service and usage policies."
 msgstr ""
 
+#: templates/frontend/contact.html:371
 msgid "Sending..."
 msgstr "Sending..."
 
+#: templates/frontend/converter_generic.html:35
+#: templates/frontend/edit_pdf_generic.html:35
+#: templates/frontend/includes/footer.html:24
 msgid "Home"
 msgstr ""
 
+#: templates/frontend/converter_generic.html:85
 msgid "Select file to convert"
 msgstr ""
 
+#: templates/frontend/converter_generic.html:192
+#, fuzzy
+#| msgid ""
+#| "Click the button above to select one or more images, or drag and drop "
+#| "them into the zone below"
 msgid ""
 "Click the button above to select your file, or drag and drop it into the "
 "zone below"
 msgstr ""
+"Click the button above to select one or more images, or drag and drop them "
+"into the zone below"
 
+#: templates/frontend/converter_generic.html:193
 msgid "Click the convert button"
 msgstr ""
 
+#: templates/frontend/converter_generic.html:194
+#: templates/frontend/jpg_to_pdf.html:139
 msgid "Wait for the conversion to complete"
 msgstr ""
 
+#: templates/frontend/converter_generic.html:195
+#, fuzzy
+#| msgid "Download your cropped PDF file using the download button"
 msgid "Download your converted file using the download button"
-msgstr ""
+msgstr "Download your cropped PDF file using the download button"
 
+#: templates/frontend/converter_generic.html:213
 msgid "Converting your file..."
 msgstr ""
 
+#: templates/frontend/converter_generic.html:215
+#: templates/frontend/jpg_to_pdf.html:163
 msgid "Conversion Complete!"
 msgstr ""
 
+#: templates/frontend/converter_generic.html:218
+#: templates/frontend/jpg_to_pdf.html:166
 msgid "Convert another file"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:129
 msgid "Select file to crop"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:191
 msgid "Crop Your PDF"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:193
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
@@ -984,32 +1501,41 @@ msgstr ""
 "will be kept. You can drag the selection box anywhere to move it, or use the "
 "corner/edge handles to resize it."
 
+#: templates/frontend/crop_pdf.html:198
 msgid "Page:"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:215
 msgid "Crop area is active!"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:218
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
 "ready."
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:226
 msgid "Apply crop to pages"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:274
 msgid "Scale cropped area to full page size"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:278
 msgid "Stretch the cropped area to fill the entire page size"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:314
 msgid "Tips:"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:316
 msgid "A crop area covering most of the page is selected by default"
 msgstr "A crop area covering most of the page is selected by default"
 
+#: templates/frontend/crop_pdf.html:317
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
@@ -1017,21 +1543,38 @@ msgstr ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
 
+#: templates/frontend/crop_pdf.html:318
+#, fuzzy
+#| msgid ""
+#| "Click on the PDF to position the watermark, or drag it to move it "
+#| "anywhere on the page"
 msgid "Click and drag inside the blue box to move it anywhere on the page"
 msgstr ""
+"Click on the PDF to position the watermark, or drag it to move it anywhere "
+"on the page"
 
+#: templates/frontend/crop_pdf.html:319
+#, fuzzy
+#| msgid ""
+#| "Resize the selection by dragging the corners or edges to adjust the crop "
+#| "area"
 msgid "Drag the corner or edge handles to resize the crop area"
 msgstr ""
+"Resize the selection by dragging the corners or edges to adjust the crop area"
 
+#: templates/frontend/crop_pdf.html:320
 msgid "Click and drag outside the box to create a new selection"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:321
 msgid "The cursor changes to 'move' when hovering over the selection box"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:322
 msgid "When 'all' is selected, crop applies to all pages"
 msgstr ""
 
+#: templates/frontend/crop_pdf.html:368
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
 "keep when cropping PDF"
@@ -1039,11 +1582,13 @@ msgstr ""
 "The PDF will be displayed - click and drag to select the area you want to "
 "keep when cropping PDF"
 
+#: templates/frontend/crop_pdf.html:369
 msgid ""
 "Resize the selection by dragging the corners or edges to adjust the crop area"
 msgstr ""
 "Resize the selection by dragging the corners or edges to adjust the crop area"
 
+#: templates/frontend/crop_pdf.html:370
 msgid ""
 "Choose which pages to apply the crop to (all pages, current page, or custom "
 "pages)"
@@ -1051,12 +1596,15 @@ msgstr ""
 "Choose which pages to apply the crop to (all pages, current page, or custom "
 "pages)"
 
+#: templates/frontend/crop_pdf.html:371
 msgid "Click the crop button to process your PDF and crop the selected area"
 msgstr "Click the crop button to process your PDF and crop the selected area"
 
+#: templates/frontend/crop_pdf.html:372
 msgid "Download your cropped PDF file using the download button"
 msgstr "Download your cropped PDF file using the download button"
 
+#: templates/frontend/crop_pdf.html:376
 msgid ""
 "PDF files with up to 50 pages are supported for cropping. For larger files, "
 "please split them into smaller parts. The crop area you select will be "
@@ -1066,6 +1614,7 @@ msgstr ""
 "please split them into smaller parts. The crop area you select will be "
 "applied to all selected pages."
 
+#: templates/frontend/crop_pdf.html:401
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
@@ -1073,9 +1622,11 @@ msgstr ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
 
+#: templates/frontend/crop_pdf.html:402
 msgid "Drag to select crop area..."
 msgstr "Drag to select crop area..."
 
+#: templates/frontend/crop_pdf.html:403
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
 "drag the box to move it."
@@ -1083,6 +1634,7 @@ msgstr ""
 "Selection too small. Full page selected. Drag to create a new selection or "
 "drag the box to move it."
 
+#: templates/frontend/crop_pdf.html:404
 #, fuzzy
 #| msgid ""
 #| "Crop area ready! Drag the box to move it, drag from outside to create a "
@@ -1094,26 +1646,45 @@ msgstr ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
 
+#: templates/frontend/crop_pdf.html:405
 msgid ""
 "Crop area moved! Drag again to reposition or use handles to resize. Click \\"
 "\"Crop PDF\\\" when ready."
 msgstr ""
 
+#: templates/frontend/edit_pdf_generic.html:85
 msgid "Select file to edit"
 msgstr ""
 
+#: templates/frontend/edit_pdf_generic.html:177
+#, fuzzy
+#| msgid ""
+#| "Select your PDF file using the button above or drag and drop it into the "
+#| "zone below"
 msgid "Select your PDF file using the button above or drag and drop it"
 msgstr ""
+"Select your PDF file using the button above or drag and drop it into the "
+"zone below"
 
+#: templates/frontend/edit_pdf_generic.html:178
 msgid "Configure the editing options below"
 msgstr ""
 
+#: templates/frontend/edit_pdf_generic.html:179
+#, fuzzy
+#| msgid ""
+#| "Click the split button to process your PDF and create separate PDF files"
 msgid "Click the edit button to process your file"
 msgstr ""
+"Click the split button to process your PDF and create separate PDF files"
 
+#: templates/frontend/edit_pdf_generic.html:180
+#, fuzzy
+#| msgid "Download your rotated PDF file using the download button"
 msgid "Download your edited file using the download button"
-msgstr ""
+msgstr "Download your rotated PDF file using the download button"
 
+#: templates/frontend/edit_pdf_generic.html:184
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts."
@@ -1121,17 +1692,24 @@ msgstr ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts."
 
+#: templates/frontend/edit_pdf_generic.html:208
 msgid ""
 "Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
 "\"Current page only\\\""
 msgstr ""
 
+#: templates/frontend/extract_pages.html:6
 msgid "Extract Pages Settings"
 msgstr ""
 
+#: templates/frontend/extract_pages.html:12
+#: templates/frontend/split_pdf.html:49
+#, fuzzy
+#| msgid "Pages to Convert"
 msgid "Pages to Extract"
-msgstr ""
+msgstr "Pages to Convert"
 
+#: templates/frontend/extract_pages.html:22
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
 "(1-5)"
@@ -1139,6 +1717,7 @@ msgstr ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
 "(1-5)"
 
+#: templates/frontend/extract_pages.html:36
 msgid ""
 "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 "
 "to extract pages from PDF)"
@@ -1146,6 +1725,7 @@ msgstr ""
 "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 "
 "to extract pages from PDF)"
 
+#: templates/frontend/extract_pages.html:37
 msgid ""
 "Click the extract button to process your PDF and extract the selected pages "
 "into a new PDF file"
@@ -1153,6 +1733,7 @@ msgstr ""
 "Click the extract button to process your PDF and extract the selected pages "
 "into a new PDF file"
 
+#: templates/frontend/extract_pages.html:38
 msgid ""
 "Download your extracted PDF file containing only the selected pages using "
 "the download button"
@@ -1160,6 +1741,7 @@ msgstr ""
 "Download your extracted PDF file containing only the selected pages using "
 "the download button"
 
+#: templates/frontend/extract_pages.html:42
 msgid ""
 "PDF files with up to 50 pages are supported for extracting pages. For larger "
 "files, please split them into smaller parts. The extracted pages will be "
@@ -1169,52 +1751,65 @@ msgstr ""
 "files, please split them into smaller parts. The extracted pages will be "
 "combined into a single new PDF file."
 
+#: templates/frontend/faq.html:75
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr ""
 
+#: templates/frontend/faq.html:85
 msgid "General Questions"
 msgstr ""
 
+#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:1159
 msgid "Is Convertica free to use?"
 msgstr ""
 
+#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:1161
 msgid ""
 "Yes, Convertica is completely free to use. All PDF conversion, editing, and "
 "organization tools are available at no cost. There are no hidden fees, no "
 "registration required, and no file size limits on the free plan."
 msgstr ""
 
+#: templates/frontend/faq.html:100
 msgid "Do I need to create an account?"
 msgstr ""
 
+#: templates/frontend/faq.html:104
 msgid ""
 "No, you don't need to create an account. Convertica works without "
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
 
+#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:1166
 msgid "What file formats does Convertica support?"
 msgstr ""
 
+#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:1168
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
 "can convert between these formats, edit PDFs, organize pages, and protect "
 "your documents with passwords."
 msgstr ""
 
+#: templates/frontend/faq.html:120
 msgid "Is there a file size limit?"
 msgstr ""
 
+#: templates/frontend/faq.html:124
 msgid ""
 "No, there are no file size limits on Convertica. You can process files of "
 "any size, from small documents to large PDF files."
 msgstr ""
 
+#: templates/frontend/faq.html:133
 msgid "Conversion Questions"
 msgstr ""
 
+#: templates/frontend/faq.html:138
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr ""
 
+#: templates/frontend/faq.html:142
 msgid ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
@@ -1223,9 +1818,11 @@ msgid ""
 "All conversions are free and require no registration."
 msgstr ""
 
+#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:1151
 msgid "How do I convert PDF to Word?"
 msgstr ""
 
+#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:1153
 msgid ""
 "To convert PDF to Word, simply upload your PDF file using the upload button "
 "or drag and drop it into the upload zone. Click the convert button and wait "
@@ -1233,48 +1830,59 @@ msgid ""
 "the download button. The conversion is free and requires no registration."
 msgstr ""
 
+#: templates/frontend/faq.html:158
 msgid "How do I convert Word to PDF?"
 msgstr ""
 
+#: templates/frontend/faq.html:162
 msgid ""
 "Upload your Word document (.doc or .docx), click convert, and download your "
 "PDF. The conversion preserves formatting and layout of your original "
 "document."
 msgstr ""
 
+#: templates/frontend/faq.html:168
 msgid "Can I convert PDF to JPG?"
 msgstr ""
 
+#: templates/frontend/faq.html:172
 msgid ""
 "Yes, you can convert PDF pages to JPG images. Select the page you want to "
 "convert or convert all pages. You can also choose the image quality (DPI) "
 "from 72 to 600."
 msgstr ""
 
+#: templates/frontend/faq.html:178
 msgid "How do I convert images to PDF?"
 msgstr ""
 
+#: templates/frontend/faq.html:182
 msgid ""
 "Upload one or multiple JPG/JPEG images, arrange them in the desired order, "
 "and click convert. All images will be combined into a single PDF document "
 "with automatic A4 formatting."
 msgstr ""
 
+#: templates/frontend/faq.html:188
 msgid "Can I extract tables from PDF to Excel?"
 msgstr ""
 
+#: templates/frontend/faq.html:192
 msgid ""
 "Yes, you can extract tables from PDF files and convert them to Excel format. "
 "Upload your PDF, and Convertica will extract all tables and save them in an "
 "Excel file."
 msgstr ""
 
+#: templates/frontend/faq.html:201
 msgid "Editing & Organization"
 msgstr ""
 
+#: templates/frontend/faq.html:206
 msgid "How do I merge PDF online free without watermark?"
 msgstr ""
 
+#: templates/frontend/faq.html:210
 msgid ""
 "To merge PDF online free without watermark, use Convertica's PDF merger. Go "
 "to the Merge PDF page, select multiple PDF files, arrange them in the "
@@ -1283,26 +1891,32 @@ msgid ""
 "PDF maintains the quality of original files."
 msgstr ""
 
+#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:1173
 msgid "How do I merge multiple PDF files?"
 msgstr ""
 
+#: templates/frontend/faq.html:220
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order using drag and drop, and click merge. All "
 "selected files will be combined into a single PDF document."
 msgstr ""
 
+#: templates/frontend/faq.html:226
 msgid "Can I split a PDF into separate files?"
 msgstr ""
 
+#: templates/frontend/faq.html:230
 msgid ""
 "Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
 "split it (by page range or every N pages), and download the resulting files."
 msgstr ""
 
+#: templates/frontend/faq.html:236
 msgid "How do I compress PDF to under 1MB for email?"
 msgstr ""
 
+#: templates/frontend/faq.html:240
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
 "Upload your PDF file, select the high compression level, and click compress. "
@@ -1311,38 +1925,47 @@ msgid ""
 "downloading."
 msgstr ""
 
+#: templates/frontend/faq.html:246
 msgid "How do I compress a PDF file?"
 msgstr ""
 
+#: templates/frontend/faq.html:250
 msgid ""
 "Upload your PDF file, select the compression level (low, medium, or high), "
 "and click compress. The file size will be reduced while maintaining "
 "acceptable quality."
 msgstr ""
 
+#: templates/frontend/faq.html:256
 msgid "Can I rotate PDF pages?"
 msgstr ""
 
+#: templates/frontend/faq.html:260
 msgid ""
 "Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
 "you want to rotate and choose the rotation angle."
 msgstr ""
 
+#: templates/frontend/faq.html:266
 msgid "How do I add a watermark to PDF?"
 msgstr ""
 
+#: templates/frontend/faq.html:270
 msgid ""
 "Upload your PDF, choose between text or image watermark, set the position "
 "and transparency, and apply. The watermark will be added to all pages or "
 "selected pages."
 msgstr ""
 
+#: templates/frontend/faq.html:279
 msgid "Security & Privacy"
 msgstr ""
 
+#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:1180
 msgid "Is my data secure?"
 msgstr ""
 
+#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:1182
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -1350,318 +1973,440 @@ msgid ""
 "encryption."
 msgstr ""
 
+#: templates/frontend/faq.html:294
 msgid "How do I protect a PDF with a password?"
 msgstr ""
 
+#: templates/frontend/faq.html:298
 msgid ""
 "Upload your PDF, enter a password (and optionally an owner password), and "
 "click protect. The PDF will be encrypted and require a password to open."
 msgstr ""
 
+#: templates/frontend/faq.html:304
 #, fuzzy
 #| msgid "Click the unlock button to remove password protection from your PDF"
 msgid "Can I remove password protection from a PDF?"
 msgstr "Click the unlock button to remove password protection from your PDF"
 
+#: templates/frontend/faq.html:308
 msgid ""
 "Yes, if you know the password, you can unlock a protected PDF. Upload the "
 "protected PDF, enter the password, and click unlock. The password protection "
 "will be removed."
 msgstr ""
 
+#: templates/frontend/faq.html:314
 msgid "Are my files stored on your servers?"
 msgstr ""
 
+#: templates/frontend/faq.html:318
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
 "copies of your documents."
 msgstr ""
 
+#: templates/frontend/faq.html:327
 msgid "Technical Questions"
 msgstr ""
 
+#: templates/frontend/faq.html:332
 msgid "What browsers are supported?"
 msgstr ""
 
+#: templates/frontend/faq.html:336
 msgid ""
 "Convertica works on all modern browsers including Chrome, Firefox, Safari, "
 "Edge, and Opera. The website is also mobile-friendly and works on "
 "smartphones and tablets."
 msgstr ""
 
+#: templates/frontend/faq.html:342
 msgid "How long does conversion take?"
 msgstr ""
 
+#: templates/frontend/faq.html:346
 msgid ""
 "Conversion time depends on file size and complexity. Most conversions "
 "complete in seconds. Larger files may take a minute or two. The progress is "
 "shown during conversion."
 msgstr ""
 
+#: templates/frontend/faq.html:352
 msgid "What if conversion fails?"
 msgstr ""
 
+#: templates/frontend/faq.html:356
 msgid ""
 "If conversion fails, please check that your file is not corrupted and is in "
 "a supported format. Try again, and if the problem persists, contact our "
 "support team."
 msgstr ""
 
+#: templates/frontend/faq.html:362
 msgid "Can I use Convertica on mobile devices?"
 msgstr ""
 
+#: templates/frontend/faq.html:366
 msgid ""
 "Yes, Convertica is fully responsive and works on mobile devices. You can "
 "convert, edit, and organize PDFs directly from your smartphone or tablet."
 msgstr ""
 
+#: templates/frontend/faq.html:377
 msgid "Still have questions?"
 msgstr ""
 
+#: templates/frontend/faq.html:380
 msgid ""
 "If you couldn't find the answer you're looking for, feel free to contact us."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:10
+#: templates/frontend/includes/cookie_banner.html:42
 msgid "Cookie Preferences"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:13
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
 "security, analytics, and to provide personalized content."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:16
 msgid ""
 "You can accept all cookies, reject non-essential cookies, or customize your "
 "preferences. Essential cookies are required for the website to function and "
 "cannot be disabled."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:18
 msgid "and"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:27
 msgid "Reject All"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:31
 msgid "Customize"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:35
 msgid "Accept All"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:44
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
 "cookies below. Essential cookies cannot be disabled as they are necessary "
 "for the website to function."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:51
 msgid "Essential Cookies"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:53
 msgid ""
 "Required for the website to function properly. These cookies enable core "
 "functionality such as security, network management, and accessibility. They "
 "cannot be disabled."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:56
 msgid "Examples: Session management, CSRF protection, language preferences"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:60
 msgid "Always Active"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:67
 msgid "Analytics Cookies"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:69
 msgid ""
 "Help us understand how visitors interact with our website by collecting and "
 "reporting information anonymously."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:72
 msgid "Examples: Page views, time spent on site, error tracking"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:78
 msgid "Enable Analytics Cookies"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:86
 msgid "Marketing Cookies"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:88
 msgid ""
 "Used to deliver personalized advertisements and track campaign "
 "effectiveness. These cookies may be set by advertising partners."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:91
 msgid "Examples: Ad targeting, conversion tracking, remarketing"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:97
 msgid "Enable Marketing Cookies"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:105
 msgid ""
 "Your preferences will be saved and remembered for future visits. You can "
 "change these settings at any time."
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:110
 msgid "Save Preferences"
 msgstr ""
 
+#: templates/frontend/includes/cookie_banner.html:114
 msgid "Cancel"
 msgstr ""
 
+#: templates/frontend/includes/footer.html:15
+#: templates/frontend/includes/header.html:593
+#: templates/frontend/includes/header.html:796
 msgid "About"
 msgstr ""
 
+#: templates/frontend/includes/footer.html:84
 msgid "Tools"
 msgstr ""
 
+#: templates/frontend/includes/footer.html:93
+#: templates/frontend/includes/footer.html:201
+#: templates/frontend/includes/header.html:42
+#: templates/frontend/includes/header.html:629
+#: templates/frontend/includes/header.html:662
+#, fuzzy
+#| msgid "Browse All Tools"
 msgid "All Tools"
-msgstr ""
+msgstr "Browse All Tools"
 
+#: templates/frontend/includes/footer.html:143
+#: templates/frontend/includes/header.html:597
+#: templates/frontend/includes/header.html:800
+#, fuzzy
+#| msgid "contact us"
 msgid "Contact"
-msgstr ""
+msgstr "contact us"
 
+#: templates/frontend/includes/footer.html:152
+#, fuzzy
+#| msgid "Contact Support"
 msgid "Contact Form"
-msgstr ""
+msgstr "Contact Support"
 
+#: templates/frontend/includes/footer.html:175
+#: templates/frontend/includes/header.html:811
 msgid "Language"
 msgstr ""
 
+#: templates/frontend/includes/footer.html:186
+#: templates/frontend/includes/header.html:612
 #, fuzzy
 #| msgid "Select page"
 msgid "Select language"
 msgstr "Select page"
 
+#: templates/frontend/includes/footer.html:196
 msgid "Resources"
 msgstr ""
 
+#: templates/frontend/includes/footer.html:217
 msgid "All rights reserved."
 msgstr ""
 
+#: templates/frontend/includes/footer.html:220
 msgid "Free PDF tools for everyone"
 msgstr ""
 
+#: templates/frontend/includes/footer.html:234
 msgid "Terms"
 msgstr ""
 
+#: templates/frontend/includes/header.html:12
 msgid "Convertica - Home"
 msgstr ""
 
+#: templates/frontend/includes/header.html:18
 msgid "Convertica Logo"
 msgstr ""
 
+#: templates/frontend/includes/header.html:37
+#: templates/frontend/includes/header.html:628
 msgid "All PDF tools"
 msgstr ""
 
+#: templates/frontend/includes/header.html:293
 msgid "Main navigation"
 msgstr ""
 
+#: templates/frontend/includes/header.html:303
 msgid "Convert PDF tools"
 msgstr ""
 
+#: templates/frontend/includes/header.html:319
 msgid "Convert from PDF"
 msgstr ""
 
+#: templates/frontend/includes/header.html:362
+#: utils_site/src/frontend/views.py:217 utils_site/src/frontend/views.py:310
 msgid "Convert to PDF"
 msgstr ""
 
+#: templates/frontend/includes/header.html:401
 msgid "Edit PDF tools"
 msgstr ""
 
+#: templates/frontend/includes/header.html:417
 msgid "Basic Editing"
 msgstr ""
 
+#: templates/frontend/includes/header.html:448
 msgid "Enhancements"
 msgstr ""
 
+#: templates/frontend/includes/header.html:487
 msgid "Organize PDF tools"
 msgstr ""
 
+#: templates/frontend/includes/header.html:503
+#, fuzzy
+#| msgid "Organizing..."
 msgid "Organization"
-msgstr ""
+msgstr "Organizing..."
 
+#: templates/frontend/includes/header.html:558
 msgid "Page Management"
 msgstr ""
 
+#: templates/frontend/includes/header.html:639
 msgid "Toggle menu"
 msgstr ""
 
+#: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
 msgstr ""
 
+#: templates/frontend/index.html:6 templates/frontend/index.html:20
 msgid ""
 "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
 "rotate, add watermark, and more. Fast, secure, no registration required."
 msgstr ""
 
+#: templates/frontend/index.html:7
 msgid ""
 "PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, "
 "PDF editor, PDF tools, online PDF converter, free PDF tools"
 msgstr ""
 
+#: templates/frontend/index.html:8 templates/frontend/index.html:10
+#: utils_site/src/frontend/views.py:31
 msgid "Convertica – Online PDF ↔ Word Converter"
 msgstr ""
 
+#: templates/frontend/index.html:9 templates/frontend/index.html:11
+#: utils_site/src/frontend/views.py:33
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. "
 "Convert documents instantly, no registration required."
 msgstr ""
 
+#: templates/frontend/index.html:44
 msgid "All-in-One PDF Tools"
 msgstr ""
 
+#: templates/frontend/index.html:47
 msgid ""
 "Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No "
 "installations required."
 msgstr ""
 
+#: templates/frontend/index.html:93
 msgid "Most requested PDF tools at your fingertips"
 msgstr ""
 
+#: templates/frontend/index.html:116 templates/frontend/index.html:141
+#: templates/frontend/index.html:165 templates/frontend/index.html:190
+#: templates/frontend/index.html:214 templates/frontend/index.html:256
+#: templates/frontend/index.html:280 templates/frontend/index.html:304
+#: templates/frontend/index.html:328 templates/frontend/index.html:353
+#: templates/frontend/index.html:377
+#, fuzzy
+#| msgid "Try Again"
 msgid "Try it"
-msgstr ""
+msgstr "Try Again"
 
+#: templates/frontend/index.html:233
 msgid "Manage and organize your PDF documents with powerful tools"
 msgstr ""
 
+#: templates/frontend/index.html:397
 msgid "Free PDF Tools - Convert, Edit & Organize"
 msgstr ""
 
+#: templates/frontend/index.html:400
 msgid ""
 "Access all our PDF tools: convert PDF to Word, merge PDFs, split, rotate, "
 "and more. Fast, secure, and completely free."
 msgstr ""
 
+#: templates/frontend/index.html:415
 msgid "Latest Guides & Tips"
 msgstr ""
 
+#: templates/frontend/index.html:418
 msgid "Learn how to get the most out of PDF tools with our expert guides"
 msgstr ""
 
+#: templates/frontend/index.html:462
 msgid "View All Articles"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:26
 msgid "You can upload multiple images - they will be combined into one PDF"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:52
+#, fuzzy
+#| msgid "Select page"
 msgid "Select image(s)"
-msgstr ""
+msgstr "Select page"
 
+#: templates/frontend/jpg_to_pdf.html:59
+#, fuzzy
+#| msgid "Select page"
 msgid "Selected Images"
-msgstr ""
+msgstr "Select page"
 
+#: templates/frontend/jpg_to_pdf.html:67
 msgid "+ Add more images"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:90
 msgid "Drag and drop your images here"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:96
 msgid "files"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:96
 msgid "multiple files supported"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:135
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
@@ -1669,20 +2414,29 @@ msgstr ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
 
+#: templates/frontend/jpg_to_pdf.html:136
 msgid ""
 "You can add more images by clicking 'Add more images' or by selecting files "
 "again"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:137
 msgid "Remove unwanted images by clicking the X button"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:138
+#, fuzzy
+#| msgid "Click the merge button to combine all PDF files into one document"
 msgid "Click the convert button to combine all images into one PDF"
-msgstr ""
+msgstr "Click the merge button to combine all PDF files into one document"
 
+#: templates/frontend/jpg_to_pdf.html:140
+#, fuzzy
+#| msgid "Download your compressed PDF file using the download button"
 msgid "Download your converted PDF file"
-msgstr ""
+msgstr "Download your compressed PDF file using the download button"
 
+#: templates/frontend/jpg_to_pdf.html:144
 msgid ""
 "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. "
 "Supported formats include JPG, PNG, GIF, and BMP. The images will be "
@@ -1692,74 +2446,105 @@ msgstr ""
 "Supported formats include JPG, PNG, GIF, and BMP. The images will be "
 "combined in the order you select them."
 
+#: templates/frontend/jpg_to_pdf.html:161
 msgid "Converting your images..."
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:164
 msgid "Your PDF is ready to download"
 msgstr ""
 
+#: templates/frontend/jpg_to_pdf.html:165
 msgid "Download PDF"
 msgstr ""
 
+#: templates/frontend/merge_pdf.html:28
 msgid "Merge Settings"
 msgstr ""
 
+#: templates/frontend/merge_pdf.html:34
+#, fuzzy
+#| msgid "Please select a PDF file."
 msgid "Select PDF Files"
-msgstr ""
+msgstr "Please select a PDF file."
 
+#: templates/frontend/merge_pdf.html:45
+#, fuzzy
+#| msgid "Please select a PDF file."
 msgid "Select PDF files"
-msgstr ""
+msgstr "Please select a PDF file."
 
+#: templates/frontend/merge_pdf.html:59
 msgid "+ Add more files"
 msgstr ""
 
+#: templates/frontend/merge_pdf.html:72
 msgid "Drag and drop your PDF files here"
 msgstr ""
 
+#: templates/frontend/merge_pdf.html:75
 msgid "Or use the button above to browse files"
 msgstr ""
 
+#: templates/frontend/merge_pdf.html:82
+#, fuzzy
+#| msgid "Select 2-10 PDF files to merge using the button above"
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
-msgstr ""
+msgstr "Select 2-10 PDF files to merge using the button above"
 
+#: templates/frontend/merge_pdf.html:90
+#, fuzzy
+#| msgid "Select page"
 msgid "Selected Files"
-msgstr ""
+msgstr "Select page"
 
+#: templates/frontend/merge_pdf.html:102
 msgid "Preview & Reorder Pages"
 msgstr ""
 
+#: templates/frontend/merge_pdf.html:104
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 msgstr ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 
+#: templates/frontend/merge_pdf.html:114
 msgid "is not a PDF file. Skipping."
 msgstr "is not a PDF file. Skipping."
 
+#: templates/frontend/merge_pdf.html:115
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
 msgstr "Maximum 10 files allowed. Only the first 10 files will be used."
 
+#: templates/frontend/merge_pdf.html:116
 msgid "Error loading preview"
 msgstr "Error loading preview"
 
+#: templates/frontend/merge_pdf.html:117
 msgid "Loading..."
 msgstr "Loading..."
 
+#: templates/frontend/merge_pdf.html:119
 msgid "Merging PDFs..."
 msgstr "Merging PDFs..."
 
+#: templates/frontend/merge_pdf.html:120
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Please select at least 2 PDF files to merge."
 
+#: templates/frontend/merge_pdf.html:136
 msgid "Select 2-10 PDF files to merge using the button above"
 msgstr "Select 2-10 PDF files to merge using the button above"
 
+#: templates/frontend/merge_pdf.html:137
 msgid "Preview all PDF files and drag them to reorder the merge order"
 msgstr "Preview all PDF files and drag them to reorder the merge order"
 
+#: templates/frontend/merge_pdf.html:138
 msgid "Click the merge button to combine all PDF files into one document"
 msgstr "Click the merge button to combine all PDF files into one document"
 
+#: templates/frontend/merge_pdf.html:139
 msgid ""
 "Download your merged PDF file containing all pages from all selected files "
 "using the download button"
@@ -1767,6 +2552,7 @@ msgstr ""
 "Download your merged PDF file containing all pages from all selected files "
 "using the download button"
 
+#: templates/frontend/merge_pdf.html:143
 msgid ""
 "You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
 "from all selected files in the order you specified."
@@ -1774,18 +2560,24 @@ msgstr ""
 "You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
 "from all selected files in the order you specified."
 
+#: templates/frontend/organize_pdf.html:12
 msgid "Organization Settings"
 msgstr ""
 
+#: templates/frontend/organize_pdf.html:17
 msgid "Operation"
 msgstr ""
 
+#: templates/frontend/organize_pdf.html:21
+#: templates/frontend/organize_pdf.html:30
 msgid "Reorder Pages"
 msgstr ""
 
+#: templates/frontend/organize_pdf.html:22
 msgid "Sort Pages"
 msgstr ""
 
+#: templates/frontend/organize_pdf.html:32
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
@@ -1793,27 +2585,41 @@ msgstr ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
 
+#: templates/frontend/organize_pdf.html:45 utils_site/src/frontend/views.py:169
+#: utils_site/src/frontend/views.py:264 utils_site/src/frontend/views.py:355
+#: utils_site/src/frontend/views.py:399 utils_site/src/frontend/views.py:444
+#: utils_site/src/frontend/views.py:487 utils_site/src/frontend/views.py:577
+#: utils_site/src/frontend/views.py:618 utils_site/src/frontend/views.py:660
+#: utils_site/src/frontend/views.py:703 utils_site/src/frontend/views.py:796
+#: utils_site/src/frontend/views.py:821
 msgid "Please select a PDF file."
 msgstr "Please select a PDF file."
 
+#: templates/frontend/organize_pdf.html:46
 msgid "Please select a PDF file first."
 msgstr "Please select a PDF file first."
 
+#: templates/frontend/organize_pdf.html:48
 msgid "Organizing..."
 msgstr "Organizing..."
 
+#: templates/frontend/organize_pdf.html:49
 msgid "Failed to organize PDF"
 msgstr "Failed to organize PDF"
 
+#: templates/frontend/organize_pdf.html:66
 msgid "Preview all pages and drag them to reorder pages in your PDF document"
 msgstr "Preview all pages and drag them to reorder pages in your PDF document"
 
+#: templates/frontend/organize_pdf.html:67
 msgid "Choose operation: reorder pages manually or sort pages automatically"
 msgstr "Choose operation: reorder pages manually or sort pages automatically"
 
+#: templates/frontend/organize_pdf.html:68
 msgid "Click the organize button to process your PDF and reorganize the pages"
 msgstr "Click the organize button to process your PDF and reorganize the pages"
 
+#: templates/frontend/organize_pdf.html:69
 msgid ""
 "Download your reorganized PDF file with pages in the new order using the "
 "download button"
@@ -1821,6 +2627,7 @@ msgstr ""
 "Download your reorganized PDF file with pages in the new order using the "
 "download button"
 
+#: templates/frontend/organize_pdf.html:73
 msgid ""
 "PDF files with up to 50 pages are supported for organizing. For larger "
 "files, please split them into smaller parts. You can drag and drop pages to "
@@ -1830,6 +2637,7 @@ msgstr ""
 "files, please split them into smaller parts. You can drag and drop pages to "
 "reorder them visually."
 
+#: templates/frontend/pdf_to_excel.html:11
 msgid ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
@@ -1837,6 +2645,7 @@ msgstr ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
 
+#: templates/frontend/pdf_to_excel.html:12
 msgid ""
 "Wait for the PDF to Excel conversion to complete - tables and data will be "
 "extracted from your PDF and converted to editable Excel format"
@@ -1844,6 +2653,7 @@ msgstr ""
 "Wait for the PDF to Excel conversion to complete - tables and data will be "
 "extracted from your PDF and converted to editable Excel format"
 
+#: templates/frontend/pdf_to_excel.html:13
 msgid ""
 "Download your editable Excel file (XLSX format) - your PDF tables have been "
 "successfully converted to Excel"
@@ -1851,6 +2661,7 @@ msgstr ""
 "Download your editable Excel file (XLSX format) - your PDF tables have been "
 "successfully converted to Excel"
 
+#: templates/frontend/pdf_to_excel.html:17
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. PDF files with tables work best - plain text will "
@@ -1860,27 +2671,35 @@ msgstr ""
 "them into smaller parts. PDF files with tables work best - plain text will "
 "be placed in separate cells, and images will be embedded in the Excel file."
 
+#: templates/frontend/pdf_to_jpg.html:6
 msgid "Page Selection"
 msgstr "Page Selection"
 
+#: templates/frontend/pdf_to_jpg.html:12
 msgid "Pages to Convert"
 msgstr "Pages to Convert"
 
+#: templates/frontend/pdf_to_jpg.html:49
 msgid "Image Quality (DPI)"
 msgstr "Image Quality (DPI)"
 
+#: templates/frontend/pdf_to_jpg.html:54
 msgid "Smaller file size"
 msgstr "Smaller file size"
 
+#: templates/frontend/pdf_to_jpg.html:56
 msgid "High quality (recommended)"
 msgstr "High quality (recommended)"
 
+#: templates/frontend/pdf_to_jpg.html:57
 msgid "Very high quality"
 msgstr "Very high quality"
 
+#: templates/frontend/pdf_to_jpg.html:58
 msgid "Maximum quality"
 msgstr "Maximum quality"
 
+#: templates/frontend/pdf_to_jpg.html:61
 msgid ""
 "Higher DPI = better quality but larger file size. 300 DPI is recommended for "
 "most uses."
@@ -1888,6 +2707,7 @@ msgstr ""
 "Higher DPI = better quality but larger file size. 300 DPI is recommended for "
 "most uses."
 
+#: templates/frontend/pdf_to_jpg.html:75
 msgid ""
 "Choose which pages to convert from PDF to JPG: all pages or specific pages "
 "(e.g., 1,3,5 or 1-5)"
@@ -1895,6 +2715,7 @@ msgstr ""
 "Choose which pages to convert from PDF to JPG: all pages or specific pages "
 "(e.g., 1,3,5 or 1-5)"
 
+#: templates/frontend/pdf_to_jpg.html:76
 msgid ""
 "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high "
 "quality, 72 DPI for smaller file size)"
@@ -1902,9 +2723,11 @@ msgstr ""
 "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high "
 "quality, 72 DPI for smaller file size)"
 
+#: templates/frontend/pdf_to_jpg.html:77
 msgid "Click the convert button to start the PDF to JPG conversion process"
 msgstr "Click the convert button to start the PDF to JPG conversion process"
 
+#: templates/frontend/pdf_to_jpg.html:78
 msgid ""
 "Wait for the PDF to JPG conversion to complete - all selected pages will be "
 "converted to JPG images"
@@ -1912,11 +2735,13 @@ msgstr ""
 "Wait for the PDF to JPG conversion to complete - all selected pages will be "
 "converted to JPG images"
 
+#: templates/frontend/pdf_to_jpg.html:79
 msgid ""
 "Download the ZIP archive containing all converted JPG images from your PDF"
 msgstr ""
 "Download the ZIP archive containing all converted JPG images from your PDF"
 
+#: templates/frontend/pdf_to_jpg.html:83
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. The output will be a ZIP archive containing all "
@@ -1928,6 +2753,7 @@ msgstr ""
 "converted JPG images, named with page numbers (e.g., filename_page0001.jpg, "
 "filename_page0002.jpg)."
 
+#: templates/frontend/pdf_to_word.html:11
 msgid ""
 "Click the convert button to start converting PDF to Word (PDF to DOCX "
 "conversion)"
@@ -1935,6 +2761,7 @@ msgstr ""
 "Click the convert button to start converting PDF to Word (PDF to DOCX "
 "conversion)"
 
+#: templates/frontend/pdf_to_word.html:12
 msgid ""
 "Wait for the PDF to Word conversion to complete - text and formatting will "
 "be extracted from your PDF and converted to editable Word format"
@@ -1942,6 +2769,7 @@ msgstr ""
 "Wait for the PDF to Word conversion to complete - text and formatting will "
 "be extracted from your PDF and converted to editable Word format"
 
+#: templates/frontend/pdf_to_word.html:13
 msgid ""
 "Download your editable Word document (DOCX format) - your PDF has been "
 "successfully converted to Word"
@@ -1949,6 +2777,7 @@ msgstr ""
 "Download your editable Word document (DOCX format) - your PDF has been "
 "successfully converted to Word"
 
+#: templates/frontend/pdf_to_word.html:17
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. Text-based PDFs work best - scanned PDFs (image-"
@@ -1958,29 +2787,36 @@ msgstr ""
 "them into smaller parts. Text-based PDFs work best - scanned PDFs (image-"
 "only) cannot be converted to editable Word format."
 
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:928
 msgid "Privacy Policy - Convertica"
 msgstr ""
 
+#: templates/frontend/privacy.html:48 templates/frontend/terms.html:48
 msgid "Last updated: January 2025"
 msgstr ""
 
+#: templates/frontend/privacy.html:61
 msgid ""
 "At Convertica, we take your privacy seriously. This Privacy Policy explains "
 "how we collect, use, disclose, and safeguard your information when you use "
 "our online PDF tools and services."
 msgstr ""
 
+#: templates/frontend/privacy.html:64
 msgid ""
 "By using Convertica, you agree to the collection and use of information in "
 "accordance with this policy."
 msgstr ""
 
+#: templates/frontend/privacy.html:70
 msgid "Information We Collect"
 msgstr ""
 
+#: templates/frontend/privacy.html:74
 msgid "Files You Upload"
 msgstr ""
 
+#: templates/frontend/privacy.html:76
 msgid ""
 "When you use our PDF tools, you may upload files for processing. These files "
 "are temporarily stored on our servers only for the duration of the "
@@ -1988,70 +2824,91 @@ msgid ""
 "after processing is complete, typically within minutes."
 msgstr ""
 
+#: templates/frontend/privacy.html:81
 msgid "Usage Information"
 msgstr ""
 
+#: templates/frontend/privacy.html:83
 msgid ""
 "We may collect information about how you access and use our services, "
 "including:"
 msgstr ""
 
+#: templates/frontend/privacy.html:86
 msgid "IP address and browser type"
 msgstr ""
 
+#: templates/frontend/privacy.html:87
 msgid "Device information and operating system"
 msgstr ""
 
+#: templates/frontend/privacy.html:88
 msgid "Pages visited and time spent on pages"
 msgstr ""
 
+#: templates/frontend/privacy.html:89
 msgid "Referring website addresses"
 msgstr ""
 
+#: templates/frontend/privacy.html:97
 msgid "How We Use Your Information"
 msgstr ""
 
+#: templates/frontend/privacy.html:101
 msgid "We use the information we collect to:"
 msgstr ""
 
+#: templates/frontend/privacy.html:104
 msgid "Process and convert your files as requested"
 msgstr ""
 
+#: templates/frontend/privacy.html:105
 msgid "Improve and optimize our services"
 msgstr ""
 
+#: templates/frontend/privacy.html:106
 msgid "Monitor and analyze usage patterns"
 msgstr ""
 
+#: templates/frontend/privacy.html:107
 msgid "Ensure the security and functionality of our platform"
 msgstr ""
 
+#: templates/frontend/privacy.html:108
 msgid "Respond to your inquiries and provide customer support"
 msgstr ""
 
+#: templates/frontend/privacy.html:115
 msgid "Data Security"
 msgstr ""
 
+#: templates/frontend/privacy.html:119
 msgid ""
 "We implement appropriate technical and organizational security measures to "
 "protect your information:"
 msgstr ""
 
+#: templates/frontend/privacy.html:122
 msgid "All file transfers are encrypted using SSL/TLS protocols"
 msgstr ""
 
+#: templates/frontend/privacy.html:123
 msgid "Files are stored temporarily in secure, isolated environments"
 msgstr ""
 
+#: templates/frontend/privacy.html:124
 msgid "Automatic deletion of files after processing completion"
 msgstr ""
 
+#: templates/frontend/privacy.html:125
 msgid "Regular security audits and updates"
 msgstr ""
 
+#: templates/frontend/privacy.html:126
 msgid "Access controls and monitoring systems"
 msgstr ""
 
+#: templates/frontend/privacy.html:129
 #, python-format
 msgid ""
 "However, no method of transmission over the Internet or electronic storage "
@@ -2059,29 +2916,37 @@ msgid ""
 "protect your information, we cannot guarantee absolute security."
 msgstr ""
 
+#: templates/frontend/privacy.html:136
 msgid "Data Retention"
 msgstr ""
 
+#: templates/frontend/privacy.html:139
 msgid ""
 "We retain your uploaded files only for the time necessary to complete the "
 "requested operation. Files are automatically deleted:"
 msgstr ""
 
+#: templates/frontend/privacy.html:142
 msgid "Immediately after successful processing"
 msgstr ""
 
+#: templates/frontend/privacy.html:143
 msgid "Within 1 hour if processing fails"
 msgstr ""
 
+#: templates/frontend/privacy.html:144
 msgid "We do not store your files permanently"
 msgstr ""
 
+#: templates/frontend/privacy.html:145
 msgid "We do not create backups of your uploaded files"
 msgstr ""
 
+#: templates/frontend/privacy.html:151
 msgid "Third-Party Services"
 msgstr ""
 
+#: templates/frontend/privacy.html:154
 msgid ""
 "We may use third-party services to help us operate our platform and analyze "
 "how our services are used. These services may have access to limited "
@@ -2089,54 +2954,68 @@ msgid ""
 "purpose."
 msgstr ""
 
+#: templates/frontend/privacy.html:157
 msgid ""
 "We do not sell, trade, or rent your personal information to third parties."
 msgstr ""
 
+#: templates/frontend/privacy.html:163
 msgid "Cookies and Tracking"
 msgstr ""
 
+#: templates/frontend/privacy.html:166
 msgid ""
 "We may use cookies and similar tracking technologies to track activity on "
 "our platform and hold certain information. Cookies are files with a small "
 "amount of data that may include an anonymous unique identifier."
 msgstr ""
 
+#: templates/frontend/privacy.html:169
 msgid ""
 "You can instruct your browser to refuse all cookies or to indicate when a "
 "cookie is being sent. However, if you do not accept cookies, you may not be "
 "able to use some portions of our service."
 msgstr ""
 
+#: templates/frontend/privacy.html:175
 msgid "Your Privacy Rights"
 msgstr ""
 
+#: templates/frontend/privacy.html:179
 msgid "You have the right to:"
 msgstr ""
 
+#: templates/frontend/privacy.html:182
 msgid "Access information we hold about you"
 msgstr ""
 
+#: templates/frontend/privacy.html:183
 msgid "Request correction of inaccurate information"
 msgstr ""
 
+#: templates/frontend/privacy.html:184
 msgid "Request deletion of your information"
 msgstr ""
 
+#: templates/frontend/privacy.html:185
 msgid "Object to processing of your information"
 msgstr ""
 
+#: templates/frontend/privacy.html:186
 msgid "Request restriction of processing"
 msgstr ""
 
+#: templates/frontend/privacy.html:189
 msgid ""
 "To exercise these rights, please contact us using the information provided "
 "in the Contact section."
 msgstr ""
 
+#: templates/frontend/privacy.html:196
 msgid "Children's Privacy"
 msgstr ""
 
+#: templates/frontend/privacy.html:199
 msgid ""
 "Our services are not intended for children under the age of 13. We do not "
 "knowingly collect personal information from children under 13. If you are a "
@@ -2144,44 +3023,59 @@ msgid ""
 "information, please contact us."
 msgstr ""
 
+#: templates/frontend/privacy.html:205
 msgid "Changes to This Privacy Policy"
 msgstr ""
 
+#: templates/frontend/privacy.html:208
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
 "\\"
 msgstr ""
 
+#: templates/frontend/privacy.html:214
 msgid "Questions About Privacy?"
 msgstr ""
 
+#: templates/frontend/privacy.html:216
 msgid "If you have any questions about this Privacy Policy, please contact us."
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:6
 msgid "Password Protection Settings"
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:12
 msgid "Password"
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:20
+#, fuzzy
+#| msgid "Enter the password that was used to protect the PDF file"
 msgid "Enter password to protect PDF"
-msgstr ""
+msgstr "Enter the password that was used to protect the PDF file"
 
+#: templates/frontend/protect_pdf.html:23
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
 msgstr ""
 "This password will be required to open the PDF. Make sure to remember it!"
 
+#: templates/frontend/protect_pdf.html:30
 msgid "User Password"
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:30
+#: templates/frontend/protect_pdf.html:46
 msgid "Optional"
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:36
 msgid "Optional: Different user password"
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:39
 msgid ""
 "Optional: Set a different password for users. If not provided, the main "
 "password will be used."
@@ -2189,12 +3083,15 @@ msgstr ""
 "Optional: Set a different password for users. If not provided, the main "
 "password will be used."
 
+#: templates/frontend/protect_pdf.html:46
 msgid "Owner Password"
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:52
 msgid "Optional: Different owner password"
 msgstr ""
 
+#: templates/frontend/protect_pdf.html:55
 msgid ""
 "Optional: Set a different password for owner. If not provided, the main "
 "password will be used."
@@ -2202,6 +3099,7 @@ msgstr ""
 "Optional: Set a different password for owner. If not provided, the main "
 "password will be used."
 
+#: templates/frontend/protect_pdf.html:69
 msgid ""
 "Enter a password to protect your PDF file (required) and optionally set user/"
 "owner passwords"
@@ -2209,12 +3107,15 @@ msgstr ""
 "Enter a password to protect your PDF file (required) and optionally set user/"
 "owner passwords"
 
+#: templates/frontend/protect_pdf.html:70
 msgid "Click the protect button to encrypt your PDF with password protection"
 msgstr "Click the protect button to encrypt your PDF with password protection"
 
+#: templates/frontend/protect_pdf.html:71
 msgid "Download your password-protected PDF file using the download button"
 msgstr "Download your password-protected PDF file using the download button"
 
+#: templates/frontend/protect_pdf.html:75
 msgid ""
 "PDF files with up to 50 pages are supported for password protection. For "
 "larger files, please split them into smaller parts. The password will be "
@@ -2224,12 +3125,17 @@ msgstr ""
 "larger files, please split them into smaller parts. The password will be "
 "required to open, view, print, or edit the PDF."
 
+#: templates/frontend/remove_pages.html:6
 msgid "Remove Pages Settings"
 msgstr ""
 
+#: templates/frontend/remove_pages.html:12
+#, fuzzy
+#| msgid "Pages to Convert"
 msgid "Pages to Remove"
-msgstr ""
+msgstr "Pages to Convert"
 
+#: templates/frontend/remove_pages.html:64
 msgid ""
 "Choose which pages to remove from your PDF: all pages, current page only, or "
 "specific pages (e.g., 1,3,5 or 1-5)"
@@ -2237,6 +3143,7 @@ msgstr ""
 "Choose which pages to remove from your PDF: all pages, current page only, or "
 "specific pages (e.g., 1,3,5 or 1-5)"
 
+#: templates/frontend/remove_pages.html:65
 msgid ""
 "Click the remove pages button to process your PDF and delete the selected "
 "pages"
@@ -2244,9 +3151,11 @@ msgstr ""
 "Click the remove pages button to process your PDF and delete the selected "
 "pages"
 
+#: templates/frontend/remove_pages.html:66
 msgid "Download your PDF file with pages removed using the download button"
 msgstr "Download your PDF file with pages removed using the download button"
 
+#: templates/frontend/remove_pages.html:70
 msgid ""
 "PDF files with up to 50 pages are supported for removing pages. For larger "
 "files, please split them into smaller parts. The remaining pages will be "
@@ -2256,40 +3165,53 @@ msgstr ""
 "files, please split them into smaller parts. The remaining pages will be "
 "preserved in their original order."
 
+#: templates/frontend/rotate_pdf.html:6
 msgid "Rotation Settings"
 msgstr ""
 
+#: templates/frontend/rotate_pdf.html:12
 msgid "Rotation Angle"
 msgstr ""
 
+#: templates/frontend/rotate_pdf.html:16
 msgid "(Clockwise)"
 msgstr ""
 
+#: templates/frontend/rotate_pdf.html:17
 msgid "(Upside down)"
 msgstr ""
 
+#: templates/frontend/rotate_pdf.html:18
 msgid "(Counter-clockwise)"
 msgstr ""
 
+#: templates/frontend/rotate_pdf.html:25
+#, fuzzy
+#| msgid "Pages to Convert"
 msgid "Pages to Rotate"
-msgstr ""
+msgstr "Pages to Convert"
 
+#: templates/frontend/rotate_pdf.html:77
 msgid "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
 msgstr "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
 
+#: templates/frontend/rotate_pdf.html:78
 msgid ""
 "Select which pages to rotate: all pages, current page only, or specific pages"
 msgstr ""
 "Select which pages to rotate: all pages, current page only, or specific pages"
 
+#: templates/frontend/rotate_pdf.html:79
 msgid ""
 "Click the rotate button to process your PDF and rotate the selected pages"
 msgstr ""
 "Click the rotate button to process your PDF and rotate the selected pages"
 
+#: templates/frontend/rotate_pdf.html:80
 msgid "Download your rotated PDF file using the download button"
 msgstr "Download your rotated PDF file using the download button"
 
+#: templates/frontend/rotate_pdf.html:84
 msgid ""
 "PDF files with up to 50 pages are supported for rotating. For larger files, "
 "please split them into smaller parts. The rotation preserves all content and "
@@ -2299,27 +3221,41 @@ msgstr ""
 "please split them into smaller parts. The rotation preserves all content and "
 "formatting."
 
+#: templates/frontend/split_pdf.html:6
 msgid "Split Settings"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:12
 msgid "Split Type"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:16
 msgid "By Individual Pages"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:17
 msgid "By Page Ranges"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:18
 msgid "Every N Pages"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:25
 msgid "Pages"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:33
+#, fuzzy
+#| msgid ""
+#| "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split "
+#| "all pages"
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
+"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
+"pages"
 
+#: templates/frontend/split_pdf.html:51
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
@@ -2327,18 +3263,23 @@ msgstr ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
 
+#: templates/frontend/split_pdf.html:53
 msgid "Page Ranges"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:55
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:58
 msgid "Pages per File"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:60
 msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
 msgstr ""
 
+#: templates/frontend/split_pdf.html:78
 msgid ""
 "Choose how to split your PDF: by individual pages, by page ranges, or every "
 "N pages"
@@ -2346,6 +3287,7 @@ msgstr ""
 "Choose how to split your PDF: by individual pages, by page ranges, or every "
 "N pages"
 
+#: templates/frontend/split_pdf.html:79
 msgid ""
 "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for "
 "splitting PDF into separate files)"
@@ -2353,11 +3295,13 @@ msgstr ""
 "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for "
 "splitting PDF into separate files)"
 
+#: templates/frontend/split_pdf.html:80
 msgid ""
 "Click the split button to process your PDF and create separate PDF files"
 msgstr ""
 "Click the split button to process your PDF and create separate PDF files"
 
+#: templates/frontend/split_pdf.html:81
 msgid ""
 "Download the ZIP archive containing all split PDF files using the download "
 "button"
@@ -2365,6 +3309,7 @@ msgstr ""
 "Download the ZIP archive containing all split PDF files using the download "
 "button"
 
+#: templates/frontend/split_pdf.html:85
 msgid ""
 "The output will be a ZIP archive containing all split PDF files. You can "
 "split your PDF by individual pages, by page ranges, or every N pages."
@@ -2372,90 +3317,114 @@ msgstr ""
 "The output will be a ZIP archive containing all split PDF files. You can "
 "split your PDF by individual pages, by page ranges, or every N pages."
 
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:950
 msgid "Terms of Service - Convertica"
 msgstr ""
 
+#: templates/frontend/terms.html:61
 msgid "Welcome to Convertica. These Terms of Service (\\"
 msgstr ""
 
+#: templates/frontend/terms.html:64
 msgid ""
 "If you disagree with any part of these Terms, then you may not access or use "
 "our Services."
 msgstr ""
 
+#: templates/frontend/terms.html:70
 msgid "Acceptance of Terms"
 msgstr ""
 
+#: templates/frontend/terms.html:73
 msgid ""
 "By accessing or using Convertica's Services, you acknowledge that you have "
 "read, understood, and agree to be bound by these Terms and our Privacy "
 "Policy. If you do not agree to these Terms, you must not use our Services."
 msgstr ""
 
+#: templates/frontend/terms.html:79
 msgid "Description of Services"
 msgstr ""
 
+#: templates/frontend/terms.html:82
 msgid ""
 "Convertica provides online PDF tools and services, including but not limited "
 "to:"
 msgstr ""
 
+#: templates/frontend/terms.html:85
 msgid ""
 "PDF conversion (PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, PDF to "
 "Excel)"
 msgstr ""
 
+#: templates/frontend/terms.html:86
 msgid "PDF editing (rotate, crop, add watermark, add page numbers)"
 msgstr ""
 
+#: templates/frontend/terms.html:87
 msgid ""
 "PDF organization (merge, split, extract, remove pages, organize, compress)"
 msgstr ""
 
+#: templates/frontend/terms.html:88
 msgid "PDF security (protect with password, unlock PDF)"
 msgstr ""
 
+#: templates/frontend/terms.html:91
 msgid ""
 "We reserve the right to modify, suspend, or discontinue any part of our "
 "Services at any time without prior notice."
 msgstr ""
 
+#: templates/frontend/terms.html:97
 msgid "User Responsibilities"
 msgstr ""
 
+#: templates/frontend/terms.html:101
 msgid ""
 "You agree to use our Services only for lawful purposes and in accordance "
 "with these Terms. You agree not to:"
 msgstr ""
 
+#: templates/frontend/terms.html:104
 msgid "Upload files that contain viruses, malware, or other harmful code"
 msgstr ""
 
+#: templates/frontend/terms.html:105
 msgid "Upload files that infringe on intellectual property rights"
 msgstr ""
 
+#: templates/frontend/terms.html:106
 msgid "Upload files that contain illegal, offensive, or inappropriate content"
 msgstr ""
 
+#: templates/frontend/terms.html:107
 msgid "Attempt to gain unauthorized access to our systems or networks"
 msgstr ""
 
+#: templates/frontend/terms.html:108
 msgid "Use automated systems or scripts to access our Services excessively"
 msgstr ""
 
+#: templates/frontend/terms.html:109
 msgid ""
 "Interfere with or disrupt the Services or servers connected to the Services"
 msgstr ""
 
+#: templates/frontend/terms.html:110
 msgid "Reverse engineer, decompile, or disassemble any part of our Services"
 msgstr ""
 
+#: templates/frontend/terms.html:117
 msgid "File Upload and Processing"
 msgstr ""
 
+#: templates/frontend/terms.html:121
 msgid "File Size and Format Limitations"
 msgstr ""
 
+#: templates/frontend/terms.html:123
 msgid ""
 "You are responsible for ensuring that files you upload comply with our file "
 "size and format requirements. We reserve the right to reject or limit the "
@@ -2463,9 +3432,11 @@ msgid ""
 "formats."
 msgstr ""
 
+#: templates/frontend/terms.html:128
 msgid "File Storage and Deletion"
 msgstr ""
 
+#: templates/frontend/terms.html:130
 msgid ""
 "Files uploaded to our Services are processed temporarily and automatically "
 "deleted after processing is complete. We do not store your files "
@@ -2473,9 +3444,11 @@ msgid ""
 "files."
 msgstr ""
 
+#: templates/frontend/terms.html:135
 msgid "Processing Accuracy"
 msgstr ""
 
+#: templates/frontend/terms.html:137
 msgid ""
 "While we strive to provide accurate conversions and processing, we cannot "
 "guarantee that all files will be processed correctly or that the output will "
@@ -2483,12 +3456,15 @@ msgid ""
 "accuracy of processed files."
 msgstr ""
 
+#: templates/frontend/terms.html:145
 msgid "Intellectual Property"
 msgstr ""
 
+#: templates/frontend/terms.html:149
 msgid "Our Intellectual Property"
 msgstr ""
 
+#: templates/frontend/terms.html:151
 msgid ""
 "All content, features, and functionality of our Services, including but not "
 "limited to text, graphics, logos, icons, images, and software, are the "
@@ -2496,9 +3472,11 @@ msgid ""
 "copyright, trademark, and other intellectual property laws."
 msgstr ""
 
+#: templates/frontend/terms.html:156
 msgid "Your Content"
 msgstr ""
 
+#: templates/frontend/terms.html:158
 msgid ""
 "You retain all rights to files you upload. By uploading files, you grant us "
 "a limited, non-exclusive license to process your files solely for the "
@@ -2506,32 +3484,41 @@ msgid ""
 "your files."
 msgstr ""
 
+#: templates/frontend/terms.html:166
 msgid "Disclaimer of Warranties"
 msgstr ""
 
+#: templates/frontend/terms.html:169
 msgid "Our Services are provided \\"
 msgstr ""
 
+#: templates/frontend/terms.html:172
 msgid "Warranties of merchantability"
 msgstr ""
 
+#: templates/frontend/terms.html:173
 msgid "Fitness for a particular purpose"
 msgstr ""
 
+#: templates/frontend/terms.html:174
 msgid "Non-infringement"
 msgstr ""
 
+#: templates/frontend/terms.html:175
 msgid "Accuracy, reliability, or completeness of results"
 msgstr ""
 
+#: templates/frontend/terms.html:178
 msgid ""
 "We do not warrant that our Services will be uninterrupted, secure, or error-"
 "free, or that defects will be corrected."
 msgstr ""
 
+#: templates/frontend/terms.html:184
 msgid "Limitation of Liability"
 msgstr ""
 
+#: templates/frontend/terms.html:187
 msgid ""
 "To the maximum extent permitted by law, Convertica and its affiliates, "
 "officers, employees, and agents shall not be liable for any indirect, "
@@ -2539,27 +3526,34 @@ msgid ""
 "limited to:"
 msgstr ""
 
+#: templates/frontend/terms.html:190
 msgid "Loss of data or files"
 msgstr ""
 
+#: templates/frontend/terms.html:191
 msgid "Loss of profits or business opportunities"
 msgstr ""
 
+#: templates/frontend/terms.html:192
 msgid "Service interruptions or failures"
 msgstr ""
 
+#: templates/frontend/terms.html:193
 msgid "Errors or inaccuracies in processed files"
 msgstr ""
 
+#: templates/frontend/terms.html:196
 msgid ""
 "Our total liability for any claims arising from or related to the use of our "
 "Services shall not exceed the amount you paid to us (if any) in the twelve "
 "months preceding the claim, or $100, whichever is greater."
 msgstr ""
 
+#: templates/frontend/terms.html:202
 msgid "Indemnification"
 msgstr ""
 
+#: templates/frontend/terms.html:205
 msgid ""
 "You agree to indemnify, defend, and hold harmless Convertica and its "
 "affiliates, officers, employees, and agents from and against any claims, "
@@ -2567,21 +3561,27 @@ msgid ""
 "(including attorney's fees) arising from:"
 msgstr ""
 
+#: templates/frontend/terms.html:208
 msgid "Your use of our Services"
 msgstr ""
 
+#: templates/frontend/terms.html:209
 msgid "Your violation of these Terms"
 msgstr ""
 
+#: templates/frontend/terms.html:210
 msgid "Your violation of any third-party rights"
 msgstr ""
 
+#: templates/frontend/terms.html:211
 msgid "Files you upload or content you provide"
 msgstr ""
 
+#: templates/frontend/terms.html:217
 msgid "Termination"
 msgstr ""
 
+#: templates/frontend/terms.html:220
 msgid ""
 "We reserve the right to terminate or suspend your access to our Services "
 "immediately, without prior notice or liability, for any reason, including if "
@@ -2589,9 +3589,13 @@ msgid ""
 "will cease immediately."
 msgstr ""
 
+#: templates/frontend/terms.html:226
+#, fuzzy
+#| msgid "Pages to Convert"
 msgid "Changes to Terms"
-msgstr ""
+msgstr "Pages to Convert"
 
+#: templates/frontend/terms.html:229
 msgid ""
 "We reserve the right to modify or replace these Terms at any time. If a "
 "revision is material, we will provide at least 30 days notice prior to any "
@@ -2599,14 +3603,17 @@ msgid ""
 "determined at our sole discretion."
 msgstr ""
 
+#: templates/frontend/terms.html:232
 msgid ""
 "By continuing to access or use our Services after any revisions become "
 "effective, you agree to be bound by the revised terms."
 msgstr ""
 
+#: templates/frontend/terms.html:238
 msgid "Governing Law"
 msgstr ""
 
+#: templates/frontend/terms.html:241
 msgid ""
 "These Terms shall be governed by and construed in accordance with applicable "
 "laws, without regard to its conflict of law provisions. Any disputes arising "
@@ -2614,22 +3621,30 @@ msgid ""
 "exclusive jurisdiction of the courts in the applicable jurisdiction."
 msgstr ""
 
+#: templates/frontend/terms.html:247
 msgid "Questions About These Terms?"
 msgstr ""
 
+#: templates/frontend/terms.html:249
 msgid ""
 "If you have any questions about these Terms of Service, please contact us."
 msgstr ""
 
+#: templates/frontend/unlock_pdf.html:6
 msgid "Unlock PDF Settings"
 msgstr ""
 
+#: templates/frontend/unlock_pdf.html:12
 msgid "PDF Password"
 msgstr ""
 
+#: templates/frontend/unlock_pdf.html:20
+#, fuzzy
+#| msgid "Enter the password that was used to protect the PDF file"
 msgid "Enter the password to unlock the PDF"
-msgstr ""
+msgstr "Enter the password that was used to protect the PDF file"
 
+#: templates/frontend/unlock_pdf.html:23
 msgid ""
 "Enter the password that was used to protect the PDF. The password will be "
 "removed from the output PDF."
@@ -2637,6 +3652,7 @@ msgstr ""
 "Enter the password that was used to protect the PDF. The password will be "
 "removed from the output PDF."
 
+#: templates/frontend/unlock_pdf.html:36
 msgid ""
 "Select your password-protected PDF file using the button above or drag and "
 "drop it into the zone below"
@@ -2644,17 +3660,21 @@ msgstr ""
 "Select your password-protected PDF file using the button above or drag and "
 "drop it into the zone below"
 
+#: templates/frontend/unlock_pdf.html:37
 msgid "Enter the password that was used to protect the PDF file"
 msgstr "Enter the password that was used to protect the PDF file"
 
+#: templates/frontend/unlock_pdf.html:38
 msgid "Click the unlock button to remove password protection from your PDF"
 msgstr "Click the unlock button to remove password protection from your PDF"
 
+#: templates/frontend/unlock_pdf.html:39
 msgid ""
 "Download your unlocked PDF file (without password) using the download button"
 msgstr ""
 "Download your unlocked PDF file (without password) using the download button"
 
+#: templates/frontend/unlock_pdf.html:43
 msgid ""
 "PDF files with up to 50 pages are supported for unlocking. For larger files, "
 "please split them into smaller parts. You must know the correct password to "
@@ -2664,6 +3684,7 @@ msgstr ""
 "please split them into smaller parts. You must know the correct password to "
 "unlock the PDF."
 
+#: templates/frontend/word_to_pdf.html:10
 msgid ""
 "Select your Word document (DOC or DOCX) using the button above or drag and "
 "drop it into the zone below"
@@ -2671,6 +3692,7 @@ msgstr ""
 "Select your Word document (DOC or DOCX) using the button above or drag and "
 "drop it into the zone below"
 
+#: templates/frontend/word_to_pdf.html:11
 msgid ""
 "Click the convert button to start converting Word to PDF (DOCX to PDF "
 "conversion)"
@@ -2678,6 +3700,7 @@ msgstr ""
 "Click the convert button to start converting Word to PDF (DOCX to PDF "
 "conversion)"
 
+#: templates/frontend/word_to_pdf.html:12
 msgid ""
 "Wait for the Word to PDF conversion to complete - formatting and layout will "
 "be preserved when converting from Word to PDF"
@@ -2685,6 +3708,7 @@ msgstr ""
 "Wait for the Word to PDF conversion to complete - formatting and layout will "
 "be preserved when converting from Word to PDF"
 
+#: templates/frontend/word_to_pdf.html:13
 msgid ""
 "Download your PDF file - your Word document has been successfully converted "
 "to PDF format"
@@ -2692,6 +3716,7 @@ msgstr ""
 "Download your PDF file - your Word document has been successfully converted "
 "to PDF format"
 
+#: templates/frontend/word_to_pdf.html:17
 msgid ""
 "Word documents with up to 50 pages are supported. For larger files, please "
 "split them into smaller parts. The conversion preserves formatting, fonts, "
@@ -2701,12 +3726,14 @@ msgstr ""
 "split them into smaller parts. The conversion preserves formatting, fonts, "
 "images, and page layout."
 
+#: utils_site/src/api/conversion_limits.py:68
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
 "your PDF into smaller parts."
 msgstr ""
 
+#: utils_site/src/api/conversion_limits.py:254
 #, python-format
 msgid ""
 "File is too large for this operation (%(file_mb).1f MB). Maximum size for "
@@ -2714,12 +3741,14 @@ msgid ""
 "PDF first."
 msgstr ""
 
+#: utils_site/src/api/conversion_limits.py:278
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
 msgstr ""
 
+#: utils_site/src/api/conversion_limits.py:307
 #, python-format
 msgid ""
 "This PDF appears to be scanned (contains many images). Scanned PDFs with "
@@ -2727,218 +3756,274 @@ msgid ""
 "pages (max ~%(max_pages)d for scanned PDFs)."
 msgstr ""
 
+#: utils_site/src/api/conversion_limits.py:350
 #, python-format
 msgid "File is too large (max %(max_mb)d MB for this operation)."
 msgstr ""
 
+#: utils_site/src/api/conversion_limits.py:360
 #, python-format
 msgid "Too many pages (max %(max_pages)d for this operation)."
 msgstr ""
 
+#: utils_site/src/api/conversion_limits.py:374
 msgid ""
 "File is too complex for our server. Estimated processing time exceeds "
 "limits. Please try with a smaller file."
 msgstr ""
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:74
 msgid "Password cannot be empty"
 msgstr ""
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:95
 msgid ""
 "PDF is not password-protected. This PDF does not require a password to open."
 msgstr ""
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:104
 msgid "Incorrect password. Please check the password and try again."
 msgstr ""
 
+#: utils_site/src/blog/admin.py:30 utils_site/src/blog/admin.py:119
 msgid "Basic Information"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:32 utils_site/src/blog/admin.py:87
+#: utils_site/src/blog/admin.py:131 utils_site/src/blog/admin.py:198
+#: utils_site/src/blog/models.py:22 utils_site/src/blog/models.py:108
 msgid "Translations"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:36
 msgid "Add translations for other languages using the tabs above."
 msgstr ""
 
+#: utils_site/src/blog/admin.py:41
 msgid "Metadata"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:51 utils_site/src/blog/admin.py:174
 msgid "No translations"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:62 utils_site/src/blog/admin.py:184
 msgid "No valid translations"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:82
 msgid "Empty translations"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:93 utils_site/src/blog/models.py:169
 msgid "Articles"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:122
 msgid "English Content"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:124
 msgid "SEO - English"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:135
 msgid ""
 "Add translations for other languages using the tabs above. Each language has "
 "its own tab with all necessary fields."
 msgstr ""
 
+#: utils_site/src/blog/admin.py:140 utils_site/src/blog/models.py:130
 msgid "AI Metadata"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:145
 msgid ""
 "Additional metadata for AI agents to better understand and index your "
 "content."
 msgstr ""
 
+#: utils_site/src/blog/admin.py:149
 msgid "Media"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:151
 msgid "Statistics"
 msgstr ""
 
+#: utils_site/src/blog/admin.py:166
+#, fuzzy
+#| msgid "Choose Image"
 msgid "No image"
-msgstr ""
+msgstr "Choose Image"
 
+#: utils_site/src/blog/admin.py:168
 msgid "Preview"
 msgstr ""
 
+#: utils_site/src/blog/models.py:14
 msgid "Name (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:15 utils_site/src/blog/models.py:93
 msgid "Slug"
 msgstr ""
 
+#: utils_site/src/blog/models.py:24
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"name\": \"...\", "
 "\"description\": \"...\"}, ...}"
 msgstr ""
 
+#: utils_site/src/blog/models.py:30
 msgid "Description (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:37
 msgid "Article Category"
 msgstr ""
 
+#: utils_site/src/blog/models.py:38
 msgid "Article Categories"
 msgstr ""
 
+#: utils_site/src/blog/models.py:86
 msgid "Draft"
 msgstr ""
 
+#: utils_site/src/blog/models.py:87
 msgid "Published"
 msgstr ""
 
+#: utils_site/src/blog/models.py:88
 msgid "Archived"
 msgstr ""
 
+#: utils_site/src/blog/models.py:92
 msgid "Title (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:94
 msgid "Content (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:96
 msgid "Excerpt (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:110
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"title\": \"...\", "
 "\"content\": \"...\", ...}, ...}"
 msgstr ""
 
+#: utils_site/src/blog/models.py:116
 msgid "Meta Title (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:119
 msgid "Meta Description (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:122
 msgid "Meta Keywords (English)"
 msgstr ""
 
+#: utils_site/src/blog/models.py:132
 msgid ""
 "Additional metadata for AI agents: topics, entities, summary, related_terms, "
 "etc."
 msgstr ""
 
+#: utils_site/src/blog/models.py:143
 msgid "Category"
 msgstr ""
 
+#: utils_site/src/blog/models.py:151
 msgid "Featured Image"
 msgstr ""
 
+#: utils_site/src/blog/models.py:156
 msgid "Status"
 msgstr ""
 
+#: utils_site/src/blog/models.py:159
 msgid "Published At"
 msgstr ""
 
+#: utils_site/src/blog/models.py:161
 msgid "Created At"
 msgstr ""
 
+#: utils_site/src/blog/models.py:162
 msgid "Updated At"
 msgstr ""
 
+#: utils_site/src/blog/models.py:165
 msgid "View Count"
 msgstr ""
 
+#: utils_site/src/blog/models.py:168
 msgid "Article"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:14
 msgid "Your Name"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:21
 msgid "Enter your name"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:29
 msgid "Your Email"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:36
 msgid "your.email@example.com"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:44
 msgid "Subject"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:51
 msgid "Enter subject"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:58
 msgid "Message"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:66
 msgid "Enter your message"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:73
 msgid "I agree to the Privacy Policy"
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:87
 msgid "Message must be at least 10 characters long."
 msgstr ""
 
+#: utils_site/src/frontend/forms.py:90
 msgid "Message is too long. Maximum 5000 characters."
 msgstr ""
 
-msgid ""
-"PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
-"free converter, convert PDF, convert Word, free pdf tools online, pdf tools "
-"no registration, best pdf converter online, pdf editor online free, pdf "
-"tools for students, pdf tools for business, smallpdf alternative, ilovepdf "
-"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile"
-msgstr ""
-
+#: utils_site/src/frontend/views.py:113
+#, fuzzy
+#| msgid "Failed to load PDF file. Please try again."
 msgid "Conversion failed. Please try again."
-msgstr ""
+msgstr "Failed to load PDF file. Please try again."
 
+#: utils_site/src/frontend/views.py:120
 #, fuzzy
 #| msgid "Pages to Convert"
 msgid "PDF to Word - Convertica"
 msgstr "Pages to Convert"
 
+#: utils_site/src/frontend/views.py:122
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
 "converter with no email required, unlimited conversions, high-quality "
@@ -2946,57 +4031,393 @@ msgid ""
 "needed."
 msgstr ""
 
+#: utils_site/src/frontend/views.py:160
+msgid "Convert your PDF documents to editable Word format in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:162
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "PDF to Word Converter"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:168
+msgid "Convert PDF to Word"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:177
+msgid "Word to PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:179
+msgid ""
+"Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
+"converter with no email required, unlimited conversions, high-quality "
+"output. Perfect for documents, resumes, and business files. No registration "
+"needed."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:210
+msgid "Convert your Word documents to PDF format in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:211
+msgid "Word to PDF Converter"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:218
+#, fuzzy
+#| msgid "Please select a PDF file."
+msgid "Please select a Word file."
+msgstr "Please select a PDF file."
+
+#: utils_site/src/frontend/views.py:226
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "PDF to JPG - Convertica"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:228
+msgid ""
+"Convert PDF to JPG online free with high quality. PDF to image converter "
+"with no watermark, high resolution (300-600 DPI), batch conversion. Extract "
+"images from PDF or convert PDF pages to JPG/PNG. Perfect for printing, web "
+"upload, and social media."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:256
+msgid "Convert PDF pages to high-quality JPG images in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:257
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "PDF to JPG Converter"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:263
+msgid "Convert PDF to JPG"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:272
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "JPG to PDF - Convertica"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:274
+msgid ""
+"Convert JPG to PDF online free without compression. Merge multiple images "
+"into one PDF, combine photos to PDF, create PDF from images with high "
+"resolution. Perfect for documents, receipts, homework, and university "
+"submissions. No watermark, unlimited conversions."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:303
+msgid "Convert your JPG images to PDF format in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:304
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "JPG to PDF Converter"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:311
+#, fuzzy
+#| msgid "Please select a PDF file."
+msgid "Please select a JPG/JPEG image file."
+msgstr "Please select a PDF file."
+
+#: utils_site/src/frontend/views.py:319
+msgid "Rotate PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:321
+msgid ""
+"Rotate PDF pages online free by 90, 180, or 270 degrees. Fast PDF rotation "
+"tool with no watermark, batch rotation, and quality preservation. Perfect "
+"for scanned documents and misoriented pages. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:347
+msgid "Rotate your PDF pages in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:363
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "Add Page Numbers to PDF - Convertica"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:365
+msgid ""
+"Add page numbers to PDF online free with customizable position, font size, "
+"and format. Fast PDF page numbering tool with no watermark. Perfect for "
+"documents, reports, and academic papers. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:391
+msgid "Add page numbers to your PDF in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:407
+msgid "Add Watermark to PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:409
+msgid ""
+"Add watermark to PDF online free with text or image. Customize position, "
+"transparency, and size. Fast PDF watermarking tool with no watermark on tool "
+"itself. Perfect for document protection and branding. No registration "
+"required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:436
+msgid "Add watermark to your PDF in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:452
+msgid "Crop PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:454
+msgid ""
+"Crop PDF pages online free with precise crop box coordinates. Fast PDF "
+"cropping tool with no watermark, visual editor, and quality preservation. "
+"Perfect for removing margins and unwanted content. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:479
+msgid "Crop your PDF pages in seconds"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:495
+msgid "Merge PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:497
+msgid ""
+"Merge PDF online free without watermark. Combine two PDFs into one, merge "
+"multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
+"merger with drag and drop. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:519
+#, fuzzy
+#| msgid "Click the merge button to combine all PDF files into one document"
+msgid "Combine multiple PDF files into one document"
+msgstr "Click the merge button to combine all PDF files into one document"
+
+#: utils_site/src/frontend/views.py:526
+#, fuzzy
+#| msgid "Merging PDFs..."
+msgid "Merge PDFs"
+msgstr "Merging PDFs..."
+
+#: utils_site/src/frontend/views.py:527
+#, fuzzy
+#| msgid "Please select at least 2 PDF files to merge."
+msgid "Please select PDF files to merge."
+msgstr "Please select at least 2 PDF files to merge."
+
+#: utils_site/src/frontend/views.py:535
+msgid "Split PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:537
+msgid ""
+"Split PDF online free by pages, ranges, or bookmarks. Extract specific pages "
+"from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
+"with no watermark. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:569
+msgid "Split your PDF into multiple files"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:585
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "Remove Pages from PDF - Convertica"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:587
+msgid ""
+"Remove pages from PDF online free. Delete unwanted pages quickly and easily "
+"with no watermark. Fast PDF page removal tool. Perfect for cleaning up "
+"documents. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:610
+msgid "Remove unwanted pages from your PDF"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:626
+msgid "Extract Pages from PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:628
+msgid ""
+"Extract pages from PDF online free. Select and extract specific pages to "
+"create a new PDF. Fast PDF page extraction tool with no watermark. Perfect "
+"for creating custom documents. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:652
+msgid "Extract specific pages from your PDF"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:668
+msgid "Organize PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:670
+msgid ""
+"Organize PDF online free. Reorder pages, sort content, and manage your PDF "
+"files with drag and drop. Fast PDF organizer with no watermark. Perfect for "
+"organizing documents and reports. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:695
+msgid "Organize and manage your PDF documents"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:711
+msgid "PDF to Excel - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:713
+msgid ""
+"Convert PDF to Excel online free with accurate table extraction. Extract "
+"tables from PDF and convert to XLSX format. Perfect for invoices, reports, "
+"and data analysis. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:744
+msgid "Extract tables from PDF and convert to Excel format"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:745
+#, fuzzy
+#| msgid "Pages to Convert"
+msgid "PDF to Excel Converter"
+msgstr "Pages to Convert"
+
+#: utils_site/src/frontend/views.py:751
+msgid "Convert PDF to Excel"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:752
+#, fuzzy
+#| msgid "Please select a PDF file first."
+msgid "Please select a PDF file with tables."
+msgstr "Please select a PDF file first."
+
+#: utils_site/src/frontend/views.py:760
+msgid "Compress PDF - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:762
+msgid ""
+"Compress PDF online free to reduce file size fast. PDF compressor with no "
+"watermark, compress PDF to under 1MB for email, reduce PDF file size without "
+"losing quality. Best PDF compression tool 2025."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:788
+msgid "Reduce PDF file size without losing quality"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:804
+msgid "Protect PDF with Password - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:806
+#, fuzzy
+#| msgid ""
+#| "Click the protect button to encrypt your PDF with password protection"
+msgid ""
+"Protect PDF files with password encryption. Secure your PDF documents with "
+"strong password protection."
+msgstr "Click the protect button to encrypt your PDF with password protection"
+
+#: utils_site/src/frontend/views.py:813
+#, fuzzy
+#| msgid ""
+#| "Click the protect button to encrypt your PDF with password protection"
+msgid "Secure your PDF documents with password protection"
+msgstr "Click the protect button to encrypt your PDF with password protection"
+
+#: utils_site/src/frontend/views.py:829
+msgid "Unlock PDF - Remove Password - Convertica"
+msgstr ""
+
+#: utils_site/src/frontend/views.py:831
+msgid ""
+"Unlock PDF online free. Remove password protection from PDF files with the "
+"correct password. Fast PDF unlock tool with no watermark. Perfect for "
+"accessing protected documents. No registration required."
+msgstr ""
+
+#: utils_site/src/frontend/views.py:855
+#, fuzzy
+#| msgid "Click the unlock button to remove password protection from your PDF"
+msgid "Remove password protection from your PDF"
+msgstr "Click the unlock button to remove password protection from your PDF"
+
+#: utils_site/src/frontend/views.py:863
+#, fuzzy
+#| msgid "Please select a PDF file."
+msgid "Please select a password-protected PDF file."
+msgstr "Please select a PDF file."
+
+#: utils_site/src/frontend/views.py:871
 msgid "All PDF Tools - Convertica"
 msgstr ""
 
+#: utils_site/src/frontend/views.py:873
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
 msgstr ""
 
-msgid ""
-"PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all PDF "
-"tools, online PDF tools, free PDF tools, free pdf tools online, pdf tools no "
-"registration, best pdf converter online, pdf editor online free, pdf tools "
-"for students, pdf tools for business, smallpdf alternative, ilovepdf "
-"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile, convert pdf to word "
-"for resume, merge pdf for thesis, compress pdf for email attachment, split "
-"pdf by chapters"
-msgstr ""
-
+#: utils_site/src/frontend/views.py:907
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
 "editing experience."
 msgstr ""
 
+#: utils_site/src/frontend/views.py:912
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
 msgstr ""
 
+#: utils_site/src/frontend/views.py:930
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
 msgstr ""
 
+#: utils_site/src/frontend/views.py:935
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 msgstr ""
 
+#: utils_site/src/frontend/views.py:952
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
 msgstr ""
 
+#: utils_site/src/frontend/views.py:956
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
 msgstr ""
 
+#: utils_site/src/frontend/views.py:983
 msgid ""
 "Thank you! Your message has been sent successfully. We'll get back to you as "
 "soon as possible, usually within 24-48 hours."
@@ -3004,42 +4425,35 @@ msgstr ""
 "Thank you! Your message has been sent successfully. We'll get back to you as "
 "soon as possible, usually within 24-48 hours."
 
+#: utils_site/src/frontend/views.py:1009
 msgid "Please complete the CAPTCHA verification."
 msgstr ""
 
+#: utils_site/src/frontend/views.py:1014 utils_site/src/frontend/views.py:1110
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
 msgstr ""
 
+#: utils_site/src/frontend/views.py:1018 utils_site/src/frontend/views.py:1113
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr ""
 
+#: utils_site/src/frontend/views.py:1105
 msgid "Please correct the errors in the form below."
 msgstr "Please correct the errors in the form below."
 
+#: utils_site/src/frontend/views.py:1130
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr ""
 
+#: utils_site/src/frontend/views.py:1132
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
 msgstr ""
 
-msgid ""
-"FAQ, frequently asked questions, PDF converter help, PDF tools FAQ, how to "
-"convert PDF, PDF questions, convert pdf to word online free, pdf to word "
-"without losing formatting, compress pdf online free, merge pdf online free, "
-"split pdf online free, pdf to jpg online free, jpg to pdf online free, pdf "
-"to excel online free, word to pdf online free, rotate pdf online free, add "
-"watermark to pdf online free, crop pdf online free, protect pdf online free, "
-"unlock pdf online free, pdf converter no email, pdf converter no "
-"registration, pdf converter unlimited, pdf converter no watermark, pdf "
-"converter fast, pdf converter safe, pdf converter free, pdf tools help, pdf "
-"conversion questions, pdf editing questions, pdf organization questions, pdf "
-"security questions"
-msgstr ""
-
+#: utils_site/src/frontend/views.py:1175
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "
