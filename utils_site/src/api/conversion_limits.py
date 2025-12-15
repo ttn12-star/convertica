@@ -19,6 +19,10 @@ logger = get_logger(__name__)
 # Maximum number of pages allowed for PDF operations
 MAX_PDF_PAGES = 50  # Keep 50 pages, monitor memory usage
 
+# Stricter limits for heavy operations (memory-intensive)
+MAX_PDF_PAGES_HEAVY = 30  # PDF to Word/Excel: fewer pages due to memory
+MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024  # 15 MB for heavy operations
+
 # Maximum file size in bytes (reduced for low-memory server)
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB instead of 50 MB
 
@@ -30,6 +34,9 @@ SIMPLE_OPERATION_TIMEOUT = 90  # 1.5 minutes
 
 # Timeout for heavy operations (PDF to Word, PDF to Excel)
 HEAVY_OPERATION_TIMEOUT = 300  # 5 minutes
+
+# Heavy operations that need stricter limits
+HEAVY_OPERATIONS = {"pdf_to_word", "pdf_to_excel", "word_to_pdf"}
 
 
 # ============================================================================
@@ -215,6 +222,163 @@ def check_available_memory(required_mb: int = 100) -> tuple[bool, str | None]:
     except Exception as e:
         logger.warning("Failed to check memory: %s", e)
         return True, None
+
+
+def validate_file_for_operation(
+    pdf_path: str,
+    file_size: int,
+    operation: str,
+) -> tuple[bool, str | None]:
+    """Validate if file can be processed for given operation.
+
+    Performs early validation to avoid starting operations that will likely fail.
+
+    Args:
+        pdf_path: Path to PDF file
+        file_size: File size in bytes
+        operation: Operation type (e.g., 'pdf_to_word')
+
+    Returns:
+        Tuple of (can_process, error_message)
+    """
+    is_heavy = operation in HEAVY_OPERATIONS
+
+    # Check file size limits
+    max_size = MAX_FILE_SIZE_HEAVY if is_heavy else MAX_FILE_SIZE
+    if file_size > max_size:
+        max_mb = max_size / (1024 * 1024)
+        file_mb = file_size / (1024 * 1024)
+        return (
+            False,
+            _(
+                "File is too large for this operation (%(file_mb).1f MB). "
+                "Maximum size for %(operation)s is %(max_mb)d MB. "
+                "Please use a smaller file or compress your PDF first."
+            )
+            % {
+                "file_mb": file_mb,
+                "operation": operation.replace("_", " "),
+                "max_mb": max_mb,
+            },
+        )
+
+    # Check page count
+    max_pages = MAX_PDF_PAGES_HEAVY if is_heavy else MAX_PDF_PAGES
+
+    try:
+        doc = fitz.open(pdf_path)
+        page_count = len(doc)
+
+        # Check page limit
+        if page_count > max_pages:
+            doc.close()
+            return (
+                False,
+                _(
+                    "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d pages. "
+                    "Please split your PDF into smaller parts."
+                )
+                % {
+                    "page_count": page_count,
+                    "operation": operation.replace("_", " "),
+                    "max_pages": max_pages,
+                },
+            )
+
+        # For heavy operations, check PDF complexity (images, scans)
+        if is_heavy and page_count > 10:
+            total_images = 0
+            for page_num in range(min(page_count, 5)):  # Check first 5 pages
+                page = doc[page_num]
+                images = page.get_images()
+                total_images += len(images)
+
+            doc.close()
+
+            # If PDF has many images, it's likely a scan - warn user
+            avg_images_per_page = total_images / min(page_count, 5)
+            if avg_images_per_page > 2:
+                # Estimate: scanned PDFs take much longer
+                estimated_time = page_count * 10  # ~10 sec per page for scanned
+                if estimated_time > HEAVY_OPERATION_TIMEOUT:
+                    return (
+                        False,
+                        _(
+                            "This PDF appears to be scanned (contains many images). "
+                            "Scanned PDFs with %(page_count)d pages may take too long to process. "
+                            "Please try with fewer pages (max ~%(max_pages)d for scanned PDFs)."
+                        )
+                        % {
+                            "page_count": page_count,
+                            "max_pages": HEAVY_OPERATION_TIMEOUT // 10,
+                        },
+                    )
+        else:
+            doc.close()
+
+        return True, None
+
+    except Exception as e:
+        logger.warning("Failed to validate PDF for operation: %s", e)
+        # If we can't validate, let conversion handle it
+        return True, None
+
+
+def can_process_file(
+    file_size: int,
+    page_count: int,
+    operation: str,
+) -> tuple[bool, str | None, int]:
+    """Quick check if we can process file without reading it.
+
+    Args:
+        file_size: File size in bytes
+        page_count: Number of pages (if known)
+        operation: Operation type
+
+    Returns:
+        Tuple of (can_process, error_message, estimated_time_seconds)
+    """
+    is_heavy = operation in HEAVY_OPERATIONS
+
+    # Check file size
+    max_size = MAX_FILE_SIZE_HEAVY if is_heavy else MAX_FILE_SIZE
+    if file_size > max_size:
+        max_mb = max_size / (1024 * 1024)
+        return (
+            False,
+            _("File is too large (max %(max_mb)d MB for this operation).")
+            % {"max_mb": max_mb},
+            0,
+        )
+
+    # Check page count
+    max_pages = MAX_PDF_PAGES_HEAVY if is_heavy else MAX_PDF_PAGES
+    if page_count > max_pages:
+        return (
+            False,
+            _("Too many pages (max %(max_pages)d for this operation).")
+            % {"max_pages": max_pages},
+            0,
+        )
+
+    # Estimate processing time
+    estimated_time = estimate_processing_time(file_size, page_count, operation)
+
+    # Check if it will likely timeout
+    timeout = get_timeout_for_operation(operation, page_count, file_size)
+    if estimated_time > timeout * 0.9:  # 90% of timeout
+        return (
+            False,
+            _(
+                "File is too complex for our server. "
+                "Estimated processing time exceeds limits. "
+                "Please try with a smaller file."
+            ),
+            estimated_time,
+        )
+
+    return True, None, estimated_time
 
 
 # ============================================================================
