@@ -140,8 +140,7 @@ services:
       dockerfile: ci/Dockerfile
     container_name: convertica_celery
     command: celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
-    mem_swappiness: 60  # Allow using swap when RAM is exhausted
-    memswap_limit: 1536M  # 768M RAM + 768M swap for heavy PDF operations
+    # Note: mem_swappiness removed - not supported on all kernels/cgroups configurations
     deploy:
       resources:
         limits:
