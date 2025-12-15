@@ -920,22 +920,28 @@ document.addEventListener('DOMContentLoaded', () => {
             dragStartY = newY;
             updateWatermarkPreview();
         } else if (isRotating) {
-            // Simple rotation: horizontal movement changes angle (like a slider)
+            // Rotation: only horizontal movement changes angle (like a slider)
             // Move right = clockwise rotation (visually), move left = counter-clockwise
             const deltaX = x - dragStartX;
 
-            // Sensitivity: 1 pixel = 0.3 degrees (reduced for smoother control)
+            // Ignore very small movements to prevent jitter
+            if (Math.abs(deltaX) < 0.5) {
+                return;
+            }
+
+            // Much lower sensitivity: 1 pixel = 0.15 degrees (very smooth control)
             // Negative because CSS uses -watermarkRotation, so we need to compensate
             // This makes: drag right = visual clockwise rotation
-            const rotationSensitivity = -0.3;
+            const rotationSensitivity = -0.15;
 
-            // Calculate rotation change
+            // Calculate rotation change based ONLY on horizontal movement
             let rotationChange = deltaX * rotationSensitivity;
 
-            // Limit maximum rotation change per frame to prevent wild spinning
-            const maxRotationPerFrame = 10; // max 10 degrees per frame
+            // Much stricter limit: max 3 degrees per frame to prevent wild spinning
+            const maxRotationPerFrame = 3;
             rotationChange = Math.max(-maxRotationPerFrame, Math.min(maxRotationPerFrame, rotationChange));
 
+            // Apply rotation change to initial rotation (not accumulated)
             let newRotation = initialRotation + rotationChange;
 
             // Normalize to 0-360 range
@@ -944,9 +950,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             watermarkRotation = newRotation;
 
-            // Update start position for next frame (continuous rotation)
+            // Update start position ONLY horizontally for next frame (ignore vertical movement)
             dragStartX = x;
-            initialRotation = watermarkRotation;
+            // Keep initialRotation fixed - don't update it, so rotation is relative to start
 
             // Update hidden input
             if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
