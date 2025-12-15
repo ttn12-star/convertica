@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideDownload();
 
         // Show loading animation
-        window.showLoading('loadingContainer');
+        showLoading();
 
         // Disable form
         setFormDisabled(true);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Success - show download button
-            window.hideLoading('loadingContainer');
+            hideLoading();
 
             // Check if this is a compression response
             const inputSize = response.headers.get('X-Input-Size');
@@ -154,53 +154,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             }
 
-            window.showDownloadButton(blob, selectedFile.name, 'downloadContainer', {
-                successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
-                downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
-                convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
-                onConvertAnother: () => {
-                    const fileInput = document.getElementById('fileInput');
-                    const fileInputDrop = document.getElementById('fileInputDrop');
-                    const selectedFileDiv = document.getElementById('selectedFile');
-                    const fileInfo = document.getElementById('fileInfo');
-                    const editButton = document.getElementById('editButton');
-
-                    if (fileInput) fileInput.value = '';
-                    if (fileInputDrop) fileInputDrop.value = '';
-
-                    if (selectedFileDiv) {
-                        selectedFileDiv.classList.add('hidden');
-                    }
-                    if (fileInfo) {
-                        fileInfo.classList.remove('hidden');
-                    }
-
-                    if (editButton) {
-                        editButton.disabled = true;
-                    }
-
-                    hideDownload();
-                    hideResult();
-                    setFormDisabled(false);
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-
-                    setTimeout(() => {
-                        const selectFileButton = document.getElementById('selectFileButton');
-                        if (selectFileButton) {
-                            selectFileButton.focus();
-                        }
-                    }, 800);
-                }
-            });
+            showDownloadButton(selectedFile.name, blob);
             setFormDisabled(false);
 
         } catch (error) {
-            window.hideLoading('loadingContainer');
-            window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
+            hideLoading();
+            showError(error.message || window.ERROR_MESSAGE);
             setFormDisabled(false);
         }
     });

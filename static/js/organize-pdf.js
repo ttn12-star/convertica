@@ -26,8 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // File input handlers
-    // file-input-handler.js handles the button click and file selection display
-    // We only need to listen for file changes to load the PDF
+    // Handle button click to open file dialog
+    if (selectFileButton && fileInput) {
+        selectFileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            fileInput.click();
+        });
+    }
+
     if (fileInput) {
         fileInput.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {

@@ -20,8 +20,6 @@ class HeaderNavigation {
     this.organizePdfDropdown = document.getElementById('organize-pdf-menu-dropdown');
     this.organizePdfButton = document.getElementById('organize-pdf-menu-button');
     this.organizePdfArrow = document.getElementById('organize-pdf-menu-arrow');
-    this.mobileEditPdfToggle = document.getElementById('mobile-edit-pdf-toggle');
-    this.mobileEditPdfMenu = document.getElementById('mobile-edit-pdf-menu');
     this.mobileOrganizePdfToggle = document.getElementById('mobile-organize-pdf-toggle');
     this.mobileOrganizePdfMenu = document.getElementById('mobile-organize-pdf-menu');
     this.mobilePdfSecurityToggle = document.getElementById('mobile-pdf-security-toggle');
@@ -39,10 +37,7 @@ class HeaderNavigation {
 
   init() {
     // Mobile menu toggle
-    this.mobileBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.toggleMobile();
-    });
+    this.mobileBtn?.addEventListener('click', () => this.toggleMobile());
 
     // Desktop mega menu (hover) - always attach, check width in methods
     if (this.megaParent) {
@@ -90,7 +85,6 @@ class HeaderNavigation {
     });
 
     // Mobile organize PDF menu toggle
-    this.mobileEditPdfToggle?.addEventListener('click', () => this.toggleMobileEditPdf());
     this.mobileOrganizePdfToggle?.addEventListener('click', () => this.toggleMobileOrganizePdf());
     this.mobilePdfSecurityToggle?.addEventListener('click', () => this.toggleMobilePdfSecurity());
 
@@ -218,19 +212,6 @@ class HeaderNavigation {
     isVisible ? this.hideEditPdf() : this.showEditPdf();
   }
 
-  toggleMobileEditPdf() {
-    if (!this.mobileEditPdfToggle || !this.mobileEditPdfMenu) return;
-
-    const isExpanded = this.mobileEditPdfToggle.getAttribute('aria-expanded') === 'true';
-    this.mobileEditPdfMenu.classList.toggle('hidden', isExpanded);
-    this.mobileEditPdfToggle.setAttribute('aria-expanded', !isExpanded);
-
-    const arrow = this.mobileEditPdfToggle.querySelector('svg');
-    if (arrow) {
-      arrow.classList.toggle('rotate-180');
-    }
-  }
-
   showOrganizePdf() {
     if (window.innerWidth < 768) return;
     if (!this.organizePdfDropdown || !this.organizePdfParent || !this.organizePdfButton) return;
@@ -344,7 +325,6 @@ class HeaderNavigation {
   outsideClick(e) {
     // Close mobile menu
     if (this.mobileMenu &&
-        !this.mobileMenu.classList.contains('hidden') &&
         !this.mobileMenu.contains(e.target) &&
         !this.mobileBtn.contains(e.target)) {
       this.mobileMenu.classList.add('hidden');
