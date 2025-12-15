@@ -251,8 +251,9 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
 /**
  * Hide loading animation
  * @param {string} containerId - Container ID (default: 'loadingContainer')
+ * @param {boolean} showComplete - Whether to show 100% before hiding (default: false)
  */
-function hideLoading(containerId = 'loadingContainer') {
+function hideLoading(containerId = 'loadingContainer', showComplete = false) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -268,21 +269,25 @@ function hideLoading(containerId = 'loadingContainer') {
         container._patienceTimeout = null;
     }
 
-    // Animate to 100% before hiding
-    const progressBar = document.getElementById('progressBar');
-    const progressPercentage = document.getElementById('progressPercentage');
+    // Only show 100% if explicitly requested (file is actually ready)
+    if (showComplete) {
+        const progressBar = document.getElementById('progressBar');
+        const progressPercentage = document.getElementById('progressPercentage');
 
-    if (progressBar && progressPercentage) {
-        progressBar.style.width = '100%';
-        progressPercentage.textContent = '100%';
+        if (progressBar && progressPercentage) {
+            progressBar.style.width = '100%';
+            progressPercentage.textContent = '100%';
 
-        // Wait a moment to show 100%, then hide
-        setTimeout(() => {
-            container.classList.add('hidden');
-        }, 300);
-    } else {
-        container.classList.add('hidden');
+            // Wait a moment to show 100%, then hide
+            setTimeout(() => {
+                container.classList.add('hidden');
+            }, 500);
+            return;
+        }
     }
+
+    // Just hide immediately without showing 100%
+    container.classList.add('hidden');
 }
 
 /**
@@ -542,6 +547,9 @@ async function submitAsyncConversion(options) {
                     if (onProgress) onProgress(progress, message);
                 },
                 onSuccess: async (result) => {
+                    // Update progress to show downloading
+                    updateProgress(95, 'Downloading result...');
+
                     // Download the result
                     const resultResponse = await fetch(`/api/tasks/${taskId}/result/`, {
                         method: 'GET',
@@ -557,7 +565,9 @@ async function submitAsyncConversion(options) {
                     const blob = await resultResponse.blob();
                     const filename = result.output_filename || originalFileName;
 
-                    hideLoading(loadingContainerId);
+                    // Now file is truly ready - show 100%
+                    updateProgress(100, 'Complete!');
+                    hideLoading(loadingContainerId, true);
 
                     if (onSuccess) {
                         onSuccess(blob, filename);
@@ -585,6 +595,8 @@ async function submitAsyncConversion(options) {
 
         } else if (response.ok) {
             // Synchronous response - file is ready
+            updateProgress(95, 'Downloading...');
+
             const blob = await response.blob();
             const contentDisposition = response.headers.get('content-disposition');
             let filename = originalFileName;
@@ -596,7 +608,9 @@ async function submitAsyncConversion(options) {
                 }
             }
 
-            hideLoading(loadingContainerId);
+            // Now file is truly ready - show 100%
+            updateProgress(100, 'Complete!');
+            hideLoading(loadingContainerId, true);
 
             if (onSuccess) {
                 onSuccess(blob, filename);
@@ -655,7 +669,8 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = 1000, maxAttempt
 
             switch (data.status) {
                 case 'SUCCESS':
-                    onProgress(100, 'Complete!');
+                    // Don't show 100% yet - let onSuccess handle it after file is downloaded
+                    onProgress(90, 'Preparing download...');
                     onSuccess(data);
                     break;
 
