@@ -69,6 +69,7 @@ utils_site/db.sqlite3
 logs/
 tmp/
 utils_site/temp/
+media/async_temp/
 # Ignore src symlink created by Docker (points to /app/utils_site/src)
 /src
 
