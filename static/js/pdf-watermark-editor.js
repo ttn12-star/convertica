@@ -924,17 +924,29 @@ document.addEventListener('DOMContentLoaded', () => {
             // Move right = clockwise rotation (visually), move left = counter-clockwise
             const deltaX = x - dragStartX;
 
-            // Sensitivity: 1 pixel = 0.5 degrees
+            // Sensitivity: 1 pixel = 0.3 degrees (reduced for smoother control)
             // Negative because CSS uses -watermarkRotation, so we need to compensate
             // This makes: drag right = visual clockwise rotation
-            const rotationSensitivity = -0.5;
-            let newRotation = initialRotation + (deltaX * rotationSensitivity);
+            const rotationSensitivity = -0.3;
+
+            // Calculate rotation change
+            let rotationChange = deltaX * rotationSensitivity;
+
+            // Limit maximum rotation change per frame to prevent wild spinning
+            const maxRotationPerFrame = 10; // max 10 degrees per frame
+            rotationChange = Math.max(-maxRotationPerFrame, Math.min(maxRotationPerFrame, rotationChange));
+
+            let newRotation = initialRotation + rotationChange;
 
             // Normalize to 0-360 range
             while (newRotation >= 360) newRotation -= 360;
             while (newRotation < 0) newRotation += 360;
 
             watermarkRotation = newRotation;
+
+            // Update start position for next frame (continuous rotation)
+            dragStartX = x;
+            initialRotation = watermarkRotation;
 
             // Update hidden input
             if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
