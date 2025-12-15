@@ -89,9 +89,10 @@ renew-ssl.sh
 # Documentation folder (internal docs, not for version control)
 docs/
 
-# Markdown files (except README.md)
+# Markdown files (except README.md and ROADMAP)
 *.md
 !README.md
+!ROADMAP_AND_RECOMMENDATIONS.md
 
 # Node modules
 node_modules/
