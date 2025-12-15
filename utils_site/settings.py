@@ -59,15 +59,34 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             if "/health/" in message or "GET /health/" in message:
                 return None
 
-            # Drop noisy Gunicorn error logs (invalid protocol / php probes)
+            # Drop noisy Gunicorn error logs (invalid protocol / php probes / bot scanners)
             if event.get("logger") == "gunicorn.error":
                 message = event.get("message") or ""
+                # Check both message template and logrecord (where actual path is)
+                logrecord = event.get("logentry", {})
+                log_params = logrecord.get("params", []) or []
+                full_message = message + " " + " ".join(str(p) for p in log_params)
+
                 # Examples: "Invalid HTTP request line: 'SSH-2.0-Go'", "Error handling request /admin/config.php"
-                if (
-                    "Invalid HTTP request line" in message
-                    or ".php" in message
-                    or "SSH-2.0" in message
-                ):
+                # Bot scanners look for: .php, .asp, .aspx, .env, .git, wp-admin, etc.
+                bot_patterns = [
+                    ".php",
+                    ".asp",
+                    ".aspx",
+                    ".env",
+                    ".git",
+                    "wp-admin",
+                    "wp-login",
+                    "wp-content",
+                    "wordpress",
+                    "xmlrpc",
+                    "phpmyadmin",
+                    "config.php",
+                    "admin.php",
+                    "Invalid HTTP request line",
+                    "SSH-2.0",
+                ]
+                if any(pattern in full_message for pattern in bot_patterns):
                     return None
 
             # Drop health-check events (e.g. /health/) so they don't clutter Sentry
