@@ -46,6 +46,11 @@
       cursor: nwse-resize;
       transition: transform 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
       z-index: 21;
+      /* Prevent accidental selection on touch */
+      touch-action: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
     }
     .crop-handle:hover {
       transform: scale(1.3);
@@ -63,6 +68,26 @@
     .crop-handle.s { bottom: -6px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
     .crop-handle.w { top: 50%; left: -6px; transform: translateY(-50%); cursor: ew-resize; }
     .crop-handle.e { top: 50%; right: -6px; transform: translateY(-50%); cursor: ew-resize; }
+
+    /* Mobile-friendly larger handles */
+    @media (max-width: 768px), (pointer: coarse) {
+      .crop-handle {
+        width: 28px;
+        height: 28px;
+        border-width: 4px;
+      }
+      .crop-handle.nw { top: -12px; left: -12px; }
+      .crop-handle.ne { top: -12px; right: -12px; }
+      .crop-handle.sw { bottom: -12px; left: -12px; }
+      .crop-handle.se { bottom: -12px; right: -12px; }
+      .crop-handle.n { top: -12px; }
+      .crop-handle.s { bottom: -12px; }
+      .crop-handle.w { left: -12px; }
+      .crop-handle.e { right: -12px; }
+      .crop-selection {
+        border-width: 5px;
+      }
+    }
   </style>
 {% endblock %}
 
@@ -381,6 +406,7 @@
     window.FAILED_TO_LOAD_PDF = "{% trans 'Failed to load PDF file. Please try again.' %}";
     window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
   </script>
+  <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/file-input-handler.js' %}"></script>
   <script src="{% static 'js/pdf-crop-editor.js' %}"></script>
 {% endblock %}
