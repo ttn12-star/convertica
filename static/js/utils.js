@@ -126,6 +126,10 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
     const message = options.message || window.LOADING_MESSAGE || 'Please wait, this may take a few moments';
     const showProgress = options.showProgress !== false; // Default to true
 
+    // Translations for the patience message
+    const patienceTitle = window.PATIENCE_TITLE || "Everything is going well!";
+    const patienceMessage = window.PATIENCE_MESSAGE || "Large files take a bit longer. Please don't close this page — your file is being processed.";
+
     container.innerHTML = `
         <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-12 shadow-lg border-2 border-blue-200">
             <div class="flex flex-col items-center justify-center space-y-6">
@@ -158,15 +162,54 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                              style="width: 0%">
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 mt-2 text-center">Processing your file...</p>
+                    <p id="progressStatusText" class="text-xs text-gray-500 mt-2 text-center">Processing your file...</p>
                 </div>
                 ` : ''}
+
+                <!-- Patience Message (hidden initially, shown after 30 seconds) -->
+                <div id="patienceMessage" class="hidden w-full max-w-md animate-fade-in">
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-4 sm:p-5">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-amber-800 mb-1">${patienceTitle}</h4>
+                                <p class="text-amber-700 text-sm">${patienceMessage}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <style>
+            @keyframes fade-in {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in {
+                animation: fade-in 0.5s ease-out forwards;
+            }
+        </style>
     `;
 
     container.classList.remove('hidden');
     container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Show patience message after 30 seconds
+    container._patienceTimeout = setTimeout(() => {
+        const patienceMsg = document.getElementById('patienceMessage');
+        if (patienceMsg) {
+            patienceMsg.classList.remove('hidden');
+            // Smooth scroll to show the message
+            patienceMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }, 30000); // 30 seconds
 
     if (showProgress) {
         // Animate progress
@@ -217,6 +260,12 @@ function hideLoading(containerId = 'loadingContainer') {
     if (container._progressInterval) {
         clearInterval(container._progressInterval);
         container._progressInterval = null;
+    }
+
+    // Clear patience message timeout if it exists
+    if (container._patienceTimeout) {
+        clearTimeout(container._patienceTimeout);
+        container._patienceTimeout = null;
     }
 
     // Animate to 100% before hiding
