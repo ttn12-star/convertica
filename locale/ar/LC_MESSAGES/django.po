@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-12 10:57+0000\n"
+"POT-Creation-Date: 2025-12-15 19:23+0000\n"
 "PO-Revision-Date: 2025-12-09 07:50+0000\n"
 "Last-Translator: Convertica Localization Bot <localization@convertica.net>\n"
 "Language-Team: Arabic\n"
@@ -110,26 +110,26 @@ msgstr "أدوات شائعة"
 #: templates/404.html:62 templates/blog/article_detail.html:340
 #: templates/frontend/all_tools.html:63
 #: templates/frontend/includes/footer.html:102
-#: templates/frontend/includes/header.html:101
-#: templates/frontend/includes/header.html:339
-#: templates/frontend/includes/header.html:708 templates/frontend/index.html:56
+#: templates/frontend/includes/header.html:92
+#: templates/frontend/includes/header.html:330
+#: templates/frontend/includes/header.html:709 templates/frontend/index.html:56
 #: templates/frontend/index.html:110
 msgid "PDF to Word"
 msgstr "PDF إلى Word"
 
 #: templates/404.html:63 templates/blog/article_detail.html:349
 #: templates/frontend/all_tools.html:281
-#: templates/frontend/includes/header.html:199
-#: templates/frontend/includes/header.html:523
-#: templates/frontend/includes/header.html:734 templates/frontend/index.html:65
+#: templates/frontend/includes/header.html:190
+#: templates/frontend/includes/header.html:514
+#: templates/frontend/includes/header.html:735 templates/frontend/index.html:65
 #: templates/frontend/index.html:250
 msgid "Merge PDF"
 msgstr "دمج PDF"
 
 #: templates/404.html:64 templates/frontend/all_tools.html:300
-#: templates/frontend/includes/header.html:211
-#: templates/frontend/includes/header.html:535
-#: templates/frontend/includes/header.html:738
+#: templates/frontend/includes/header.html:202
+#: templates/frontend/includes/header.html:526
+#: templates/frontend/includes/header.html:739
 #: templates/frontend/index.html:274
 msgid "Split PDF"
 msgstr "تقسيم PDF"
@@ -194,7 +194,7 @@ msgstr ""
 msgid "This is usually a temporary issue. If it persists, please"
 msgstr ""
 
-#: templates/base.html:25
+#: templates/base.html:14
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
@@ -202,7 +202,7 @@ msgstr ""
 "محول PDF إلى Word وWord إلى PDF سريع وبسيط وآمن يعمل عبر الإنترنت، ولا يتطلب "
 "أي تثبيت."
 
-#: templates/base.html:26
+#: templates/base.html:15
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
@@ -210,7 +210,7 @@ msgstr ""
 "PDF إلى Word، Word إلى PDF، محول PDF، محول DOCX، محول عبر الإنترنت، محول "
 "مجاني"
 
-#: templates/base.html:118
+#: templates/base.html:107
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr "محول PDF إلى Word وWord إلى PDF سريع وبسيط وآمن يعمل عبر الإنترنت."
 
@@ -235,16 +235,17 @@ msgid "Popular Tools"
 msgstr "أدوات شائعة"
 
 #: templates/blog/article_detail.html:358 templates/frontend/all_tools.html:377
-#: templates/frontend/includes/header.html:259
-#: templates/frontend/includes/header.html:559
-#: templates/frontend/includes/header.html:754 templates/frontend/index.html:74
+#: templates/frontend/includes/header.html:250
+#: templates/frontend/includes/header.html:550
+#: templates/frontend/includes/header.html:755 templates/frontend/index.html:74
 #: templates/frontend/index.html:371
 msgid "Compress PDF"
 msgstr "ضغط PDF"
 
 #: templates/blog/article_detail.html:367 templates/frontend/all_tools.html:182
-#: templates/frontend/includes/header.html:144
-#: templates/frontend/includes/header.html:437
+#: templates/frontend/includes/header.html:135
+#: templates/frontend/includes/header.html:428
+#: templates/frontend/includes/header.html:773
 #: templates/frontend/index.html:135
 msgid "Rotate PDF"
 msgstr "تدوير PDF"
@@ -289,8 +290,8 @@ msgid "Previous"
 msgstr "السابق"
 
 #: templates/blog/article_list.html:121
-#: templates/frontend/add_watermark.html:446
-#: templates/frontend/crop_pdf.html:360 templates/frontend/merge_pdf.html:113
+#: templates/frontend/add_watermark.html:490
+#: templates/frontend/crop_pdf.html:400 templates/frontend/merge_pdf.html:113
 #: templates/frontend/organize_pdf.html:44
 msgid "Page"
 msgstr "الصفحة"
@@ -307,7 +308,7 @@ msgstr "التالي"
 msgid "No articles found."
 msgstr "لم يتم العثور على مقالات."
 
-#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:445
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:446
 msgid "About Us - Convertica"
 msgstr "من نحن - Convertica"
 
@@ -438,8 +439,8 @@ msgstr ""
 "ادمج الصفحات أو قسّمها أو استخرجها أو احذفها ونظّمها لإدارة ملفات PDF بكفاءة."
 
 #: templates/frontend/about.html:133 templates/frontend/all_tools.html:397
-#: templates/frontend/includes/header.html:267
-#: templates/frontend/includes/header.html:668
+#: templates/frontend/includes/header.html:258
+#: templates/frontend/includes/header.html:669
 msgid "PDF Security"
 msgstr "أمان PDF"
 
@@ -530,116 +531,146 @@ msgstr "استكشف جميع الأدوات"
 msgid "Get Started"
 msgstr "هل أنت مستعد للبدء؟"
 
-#: templates/frontend/add_page_numbers.html:6
+#: templates/frontend/add_page_numbers.html:9
+#: templates/frontend/add_page_numbers.html:181
+#, fuzzy
+#| msgid "Add Page Numbers"
+msgid "Preview Page Numbers"
+msgstr "إضافة أرقام الصفحات"
+
+#: templates/frontend/add_page_numbers.html:12
+#: templates/frontend/add_page_numbers.html:184
+msgid "Select page"
+msgstr "اختر صفحة"
+
+#: templates/frontend/add_page_numbers.html:28
+#: templates/frontend/add_page_numbers.html:200
+#, fuzzy
+#| msgid ""
+#| "Preview how the page numbers will look on your PDF using the live preview"
+msgid ""
+"Preview shows how page numbers will appear on your PDF. Adjust settings "
+"below to see real-time changes."
+msgstr ""
+"معاينة كيف سيبدو شكل أرقام الصفحات على PDF الخاص بك باستخدام المعاينة "
+"المباشرة"
+
+#: templates/frontend/add_page_numbers.html:37
 msgid "Page Number Settings"
 msgstr "إعدادات رقم الصفحة"
 
-#: templates/frontend/add_page_numbers.html:12
+#: templates/frontend/add_page_numbers.html:43
 msgid "Position"
 msgstr "الموضع"
 
-#: templates/frontend/add_page_numbers.html:16
+#: templates/frontend/add_page_numbers.html:47
 msgid "Bottom Center"
 msgstr "وسط أسفل"
 
-#: templates/frontend/add_page_numbers.html:17
+#: templates/frontend/add_page_numbers.html:48
 msgid "Bottom Left"
 msgstr "أسفل اليسار"
 
-#: templates/frontend/add_page_numbers.html:18
+#: templates/frontend/add_page_numbers.html:49
 msgid "Bottom Right"
 msgstr "أسفل اليمين"
 
-#: templates/frontend/add_page_numbers.html:19
+#: templates/frontend/add_page_numbers.html:50
 msgid "Top Center"
 msgstr "وسط أعلى"
 
-#: templates/frontend/add_page_numbers.html:20
+#: templates/frontend/add_page_numbers.html:51
 msgid "Top Left"
 msgstr "أعلى يسار"
 
-#: templates/frontend/add_page_numbers.html:21
+#: templates/frontend/add_page_numbers.html:52
 msgid "Top Right"
 msgstr "أعلى اليمين"
 
-#: templates/frontend/add_page_numbers.html:28
-#: templates/frontend/add_watermark.html:305
+#: templates/frontend/add_page_numbers.html:59
+#: templates/frontend/add_watermark.html:349
 msgid "Font Size"
 msgstr "حجم الخط"
 
-#: templates/frontend/add_page_numbers.html:42
+#: templates/frontend/add_page_numbers.html:73
 msgid "Starting Page Number"
 msgstr "رقم الصفحة الابتدائية"
 
-#: templates/frontend/add_page_numbers.html:55
-msgid "Format"
+#: templates/frontend/add_page_numbers.html:86
+#, fuzzy
+#| msgid "Format"
+msgid "Custom Format"
 msgstr "تنسيق"
 
-#: templates/frontend/add_page_numbers.html:64
-#, python-brace-format
-msgid "Use {page} for page number, {total} for total pages"
+#: templates/frontend/add_page_numbers.html:94
+msgid "Simple"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:100
+msgid "With text"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:106
+msgid "With total"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:112
+msgid "In brackets"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:124
+#, fuzzy, python-brace-format
+#| msgid "Use {page} for page number, {total} for total pages"
+msgid ""
+"Use {page} for page number, {total} for total pages. Click presets above or "
+"enter custom format."
 msgstr "استخدم {page} لرقم الصفحة، و{total} لإجمالي الصفحات"
 
-#: templates/frontend/add_page_numbers.html:71
-#: templates/frontend/add_watermark.html:331
+#: templates/frontend/add_page_numbers.html:131
+#: templates/frontend/add_watermark.html:375
 msgid "Apply to pages"
 msgstr "تطبيق على الصفحات"
 
-#: templates/frontend/add_page_numbers.html:81
-#: templates/frontend/add_watermark.html:341
-#: templates/frontend/crop_pdf.html:211 templates/frontend/pdf_to_jpg.html:22
+#: templates/frontend/add_page_numbers.html:141
+#: templates/frontend/add_watermark.html:385
+#: templates/frontend/crop_pdf.html:236 templates/frontend/pdf_to_jpg.html:22
 #: templates/frontend/remove_pages.html:21
 #: templates/frontend/rotate_pdf.html:35
 msgid "All pages"
 msgstr "جميع الصفحات"
 
-#: templates/frontend/add_page_numbers.html:89
-#: templates/frontend/add_watermark.html:349
-#: templates/frontend/crop_pdf.html:219 templates/frontend/remove_pages.html:29
+#: templates/frontend/add_page_numbers.html:149
+#: templates/frontend/add_watermark.html:393
+#: templates/frontend/crop_pdf.html:244 templates/frontend/remove_pages.html:29
 #: templates/frontend/rotate_pdf.html:43
 msgid "Current page only"
 msgstr "الصفحة الحالية فقط"
 
-#: templates/frontend/add_page_numbers.html:97
-#: templates/frontend/add_watermark.html:357
-#: templates/frontend/crop_pdf.html:227 templates/frontend/pdf_to_jpg.html:30
+#: templates/frontend/add_page_numbers.html:157
+#: templates/frontend/add_watermark.html:401
+#: templates/frontend/crop_pdf.html:252 templates/frontend/pdf_to_jpg.html:30
 #: templates/frontend/remove_pages.html:38
 #: templates/frontend/rotate_pdf.html:51
 msgid "Custom pages:"
 msgstr "صفحات مخصصة:"
 
-#: templates/frontend/add_page_numbers.html:107
-#: templates/frontend/add_watermark.html:367
-#: templates/frontend/crop_pdf.html:237 templates/frontend/pdf_to_jpg.html:40
+#: templates/frontend/add_page_numbers.html:167
+#: templates/frontend/add_watermark.html:411
+#: templates/frontend/crop_pdf.html:262 templates/frontend/pdf_to_jpg.html:40
 #: templates/frontend/remove_pages.html:48
 #: templates/frontend/rotate_pdf.html:61
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "أدخل صفحات محددة مثل \"1,3,5\" أو \"1-5\""
 
-#: templates/frontend/add_page_numbers.html:131
-#: utils_site/src/blog/admin.py:168
-msgid "Preview"
-msgstr "معاينة"
-
-#: templates/frontend/add_page_numbers.html:134
-msgid "Select page"
-msgstr "اختر صفحة"
-
-#: templates/frontend/add_page_numbers.html:149
-msgid ""
-"Preview shows page numbers as they will appear in the final PDF after "
-"download."
-msgstr "تظهر المعاينة أرقام الصفحات كما ستظهر في ملف PDF النهائي بعد التنزيل."
-
-#: templates/frontend/add_page_numbers.html:158
-#: templates/frontend/add_watermark.html:411
+#: templates/frontend/add_page_numbers.html:209
+#: templates/frontend/add_watermark.html:455
 #: templates/frontend/compress_pdf.html:31
 #: templates/frontend/converter_generic.html:189
-#: templates/frontend/crop_pdf.html:324
+#: templates/frontend/crop_pdf.html:364
 #: templates/frontend/edit_pdf_generic.html:174
 #: templates/frontend/extract_pages.html:32
-#: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:128
-#: templates/frontend/organize_pdf.html:57
+#: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:133
+#: templates/frontend/organize_pdf.html:62
 #: templates/frontend/pdf_to_excel.html:7 templates/frontend/pdf_to_jpg.html:71
 #: templates/frontend/pdf_to_word.html:7 templates/frontend/protect_pdf.html:65
 #: templates/frontend/remove_pages.html:60
@@ -648,11 +679,11 @@ msgstr "تظهر المعاينة أرقام الصفحات كما ستظهر ف
 msgid "How it works"
 msgstr "كيف يعمل"
 
-#: templates/frontend/add_page_numbers.html:161
-#: templates/frontend/add_watermark.html:414
-#: templates/frontend/compress_pdf.html:34 templates/frontend/crop_pdf.html:327
+#: templates/frontend/add_page_numbers.html:212
+#: templates/frontend/add_watermark.html:458
+#: templates/frontend/compress_pdf.html:34 templates/frontend/crop_pdf.html:367
 #: templates/frontend/extract_pages.html:35
-#: templates/frontend/organize_pdf.html:60
+#: templates/frontend/organize_pdf.html:65
 #: templates/frontend/pdf_to_excel.html:10
 #: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:10
 #: templates/frontend/protect_pdf.html:68
@@ -664,21 +695,21 @@ msgid ""
 msgstr ""
 "اختر ملف PDF الخاص بك باستخدام الزر أعلاه أو اسحبه وأفلته في المنطقة أدناه"
 
-#: templates/frontend/add_page_numbers.html:162
+#: templates/frontend/add_page_numbers.html:213
 msgid ""
 "Choose the position, font size, starting number, and format for adding page "
 "numbers to PDF"
 msgstr ""
 "اختر الموضع، حجم الخط، الرقم البادئ، والتنسيق لإضافة أرقام الصفحات إلى PDF"
 
-#: templates/frontend/add_page_numbers.html:163
+#: templates/frontend/add_page_numbers.html:214
 msgid ""
 "Preview how the page numbers will look on your PDF using the live preview"
 msgstr ""
 "معاينة كيف سيبدو شكل أرقام الصفحات على PDF الخاص بك باستخدام المعاينة "
 "المباشرة"
 
-#: templates/frontend/add_page_numbers.html:164
+#: templates/frontend/add_page_numbers.html:215
 msgid ""
 "Select which pages to add numbers to: all pages, current page only, or "
 "specific pages"
@@ -686,24 +717,24 @@ msgstr ""
 "اختر الصفحات المراد إضافة الأرقام إليها: جميع الصفحات، الصفحة الحالية فقط، "
 "أو صفحات محددة"
 
-#: templates/frontend/add_page_numbers.html:165
+#: templates/frontend/add_page_numbers.html:216
 msgid ""
 "Click the add page numbers button to process your PDF and add page numbers"
 msgstr ""
 "انقر على زر إضافة أرقام الصفحات لمعالجة PDF الخاص بك وإضافة أرقام الصفحات"
 
-#: templates/frontend/add_page_numbers.html:166
+#: templates/frontend/add_page_numbers.html:217
 msgid ""
 "Download your PDF file with page numbers added using the download button"
 msgstr "قم بتنزيل ملف PDF الخاص بك مع إضافة أرقام الصفحات باستخدام زر التنزيل"
 
-#: templates/frontend/add_page_numbers.html:170
-#: templates/frontend/add_watermark.html:423
-#: templates/frontend/compress_pdf.html:41 templates/frontend/crop_pdf.html:336
+#: templates/frontend/add_page_numbers.html:221
+#: templates/frontend/add_watermark.html:467
+#: templates/frontend/compress_pdf.html:41 templates/frontend/crop_pdf.html:376
 #: templates/frontend/edit_pdf_generic.html:184
 #: templates/frontend/extract_pages.html:42
-#: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:138
-#: templates/frontend/organize_pdf.html:68
+#: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:143
+#: templates/frontend/organize_pdf.html:73
 #: templates/frontend/pdf_to_excel.html:17
 #: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:17
 #: templates/frontend/protect_pdf.html:75
@@ -713,7 +744,7 @@ msgstr "قم بتنزيل ملف PDF الخاص بك مع إضافة أرقام 
 msgid "Note:"
 msgstr "ملاحظة:"
 
-#: templates/frontend/add_page_numbers.html:170
+#: templates/frontend/add_page_numbers.html:221
 msgid ""
 "PDF files with up to 50 pages are supported for adding page numbers. For "
 "larger files, please split them into smaller parts. The page numbers will be "
@@ -723,52 +754,90 @@ msgstr ""
 "يرجى تقسيمها إلى أجزاء أصغر. سيتم إضافة أرقام الصفحات وفقاً للموضع والتنسيق "
 "وحجم الخط الذي حددته."
 
-#: templates/frontend/add_watermark.html:120
+#: templates/frontend/add_page_numbers.html:235
+#: templates/frontend/add_watermark.html:492
+#: templates/frontend/converter_generic.html:212
+#: templates/frontend/crop_pdf.html:407 templates/frontend/merge_pdf.html:121
+#: templates/frontend/organize_pdf.html:50
+#, fuzzy, python-format
+#| msgid ""
+#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
+#| "split your PDF into smaller parts."
+msgid ""
+"PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
+"split your PDF into smaller parts."
+msgstr ""
+"PDF يحتوي على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. "
+"يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
+
+#: templates/frontend/add_page_numbers.html:236
+#: templates/frontend/add_watermark.html:493
+#: templates/frontend/converter_generic.html:220
+#: templates/frontend/crop_pdf.html:408
+#: templates/frontend/edit_pdf_generic.html:209
+#: templates/frontend/jpg_to_pdf.html:168 templates/frontend/merge_pdf.html:122
+#: templates/frontend/organize_pdf.html:51
+msgid "Everything is going well!"
+msgstr ""
+
+#: templates/frontend/add_page_numbers.html:237
+#: templates/frontend/add_watermark.html:494
+#: templates/frontend/converter_generic.html:221
+#: templates/frontend/crop_pdf.html:409
+#: templates/frontend/edit_pdf_generic.html:210
+#: templates/frontend/jpg_to_pdf.html:169 templates/frontend/merge_pdf.html:123
+#: templates/frontend/organize_pdf.html:52
+msgid ""
+"Large files take a bit longer. Please do not close this page — your file is "
+"being processed."
+msgstr ""
+
+#: templates/frontend/add_watermark.html:162
 msgid "Select file to watermark"
 msgstr "اختر الملف لوضع العلامة المائية عليه"
 
-#: templates/frontend/add_watermark.html:138
+#: templates/frontend/add_watermark.html:180
 #: templates/frontend/converter_generic.html:103
-#: templates/frontend/crop_pdf.html:122
+#: templates/frontend/crop_pdf.html:147
 #: templates/frontend/edit_pdf_generic.html:103
 msgid "Remove file"
 msgstr "إزالة الملف"
 
-#: templates/frontend/add_watermark.html:163
+#: templates/frontend/add_watermark.html:205
 #: templates/frontend/converter_generic.html:128
-#: templates/frontend/crop_pdf.html:147
+#: templates/frontend/crop_pdf.html:172
 #: templates/frontend/edit_pdf_generic.html:128
 msgid "Drag and drop your file here"
 msgstr "اسحب وأفلت ملفك هنا"
 
-#: templates/frontend/add_watermark.html:166
+#: templates/frontend/add_watermark.html:208
 #: templates/frontend/converter_generic.html:131
-#: templates/frontend/crop_pdf.html:150
+#: templates/frontend/crop_pdf.html:175
 #: templates/frontend/edit_pdf_generic.html:131
 #: templates/frontend/jpg_to_pdf.html:93
 msgid "Use the button above to browse files"
 msgstr "استخدم الزر أعلاه لتصفح الملفات"
 
-#: templates/frontend/add_watermark.html:169
+#: templates/frontend/add_watermark.html:211
 #: templates/frontend/converter_generic.html:134
-#: templates/frontend/crop_pdf.html:153
+#: templates/frontend/crop_pdf.html:178
 #: templates/frontend/edit_pdf_generic.html:134
 msgid "file"
 msgstr "ملف"
 
-#: templates/frontend/add_watermark.html:178
+#: templates/frontend/add_watermark.html:220
 msgid "Visual Watermark Editor"
 msgstr "محرر العلامة المائية المرئية"
 
-#: templates/frontend/add_watermark.html:183
+#: templates/frontend/add_watermark.html:226
 msgid "Select Page"
 msgstr "اختر الصفحة"
 
-#: templates/frontend/add_watermark.html:201
+#: templates/frontend/add_watermark.html:245
 msgid "How to use:"
 msgstr "كيفية الاستخدام:"
 
-#: templates/frontend/add_watermark.html:201
+#: templates/frontend/add_watermark.html:245
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use the top handle to rotate, and the corner handle to scale. Click anywhere "
@@ -778,47 +847,47 @@ msgstr ""
 "المقبض العلوي للدوران، ومقبض الزاوية للتحجيم. انقر في أي مكان على ملف PDF "
 "لإعادة تموضعه."
 
-#: templates/frontend/add_watermark.html:210
+#: templates/frontend/add_watermark.html:254
 msgid "Watermark Settings"
 msgstr "إعدادات العلامة المائية"
 
-#: templates/frontend/add_watermark.html:216
+#: templates/frontend/add_watermark.html:260
 msgid "Watermark Type"
 msgstr "نوع العلامة المائية"
 
-#: templates/frontend/add_watermark.html:221
+#: templates/frontend/add_watermark.html:265
 msgid "Text"
 msgstr "نص"
 
-#: templates/frontend/add_watermark.html:225
+#: templates/frontend/add_watermark.html:269
 msgid "Image"
 msgstr "صورة"
 
-#: templates/frontend/add_watermark.html:233
+#: templates/frontend/add_watermark.html:277
 msgid "Watermark Text"
 msgstr "نص العلامة المائية"
 
-#: templates/frontend/add_watermark.html:246
+#: templates/frontend/add_watermark.html:290
 msgid "Watermark Image"
 msgstr "صورة العلامة المائية"
 
-#: templates/frontend/add_watermark.html:258
+#: templates/frontend/add_watermark.html:302
 msgid "Choose Image"
 msgstr "اختر صورة"
 
-#: templates/frontend/add_watermark.html:267
+#: templates/frontend/add_watermark.html:311
 msgid "Color"
 msgstr "لون"
 
-#: templates/frontend/add_watermark.html:286
+#: templates/frontend/add_watermark.html:330
 msgid "Opacity"
 msgstr "الشفافية"
 
-#: templates/frontend/add_watermark.html:324
+#: templates/frontend/add_watermark.html:368
 msgid "Interactive controls:"
 msgstr "عناصر التحكم التفاعلية:"
 
-#: templates/frontend/add_watermark.html:324
+#: templates/frontend/add_watermark.html:368
 msgid ""
 "Drag the watermark to move it. Drag any corner handle to rotate and scale "
 "simultaneously."
@@ -826,11 +895,11 @@ msgstr ""
 "اسحب العلامة المائية لتحريكها. اسحب أي مقبض زاوية للدوران والتحجيم في نفس "
 "الوقت."
 
-#: templates/frontend/add_watermark.html:415
+#: templates/frontend/add_watermark.html:459
 msgid "Enter your watermark text or upload an image to add as watermark to PDF"
 msgstr "أدخل نص العلامة المائية أو ارفع صورة لإضافتها كعلامة مائية إلى PDF"
 
-#: templates/frontend/add_watermark.html:416
+#: templates/frontend/add_watermark.html:460
 msgid ""
 "Choose the color and opacity using the sliders to customize your PDF "
 "watermark"
@@ -838,7 +907,7 @@ msgstr ""
 "اختر اللون والشفافية باستخدام المنزلقات لتخصيص العلامة المائية لـ PDF الخاص "
 "بك"
 
-#: templates/frontend/add_watermark.html:417
+#: templates/frontend/add_watermark.html:461
 msgid ""
 "Click on the PDF to position the watermark, or drag it to move it anywhere "
 "on the page"
@@ -846,17 +915,17 @@ msgstr ""
 "انقر على ملف PDF لوضع العلامة المائية، أو اسحبها لتحريكها إلى أي مكان على "
 "الصفحة"
 
-#: templates/frontend/add_watermark.html:418
+#: templates/frontend/add_watermark.html:462
 msgid ""
 "Click the add watermark button to process your PDF and add the watermark"
 msgstr ""
 "انقر على زر إضافة العلامة المائية لمعالجة PDF الخاص بك وإضافة العلامة المائية"
 
-#: templates/frontend/add_watermark.html:419
+#: templates/frontend/add_watermark.html:463
 msgid "Download your watermarked PDF file using the download button"
 msgstr "قم بتنزيل ملف PDF مع العلامة المائية باستخدام زر التنزيل"
 
-#: templates/frontend/add_watermark.html:423
+#: templates/frontend/add_watermark.html:467
 msgid ""
 "PDF files with up to 50 pages are supported for adding watermarks. For "
 "larger files, please split them into smaller parts. The watermark will be "
@@ -866,57 +935,57 @@ msgstr ""
 "الأكبر، يرجى تقسيمها إلى أجزاء أصغر. سيتم تطبيق العلامة المائية على جميع "
 "الصفحات أو الصفحات المحددة كما هو محدد."
 
-#: templates/frontend/add_watermark.html:439
-#: templates/frontend/crop_pdf.html:352
+#: templates/frontend/add_watermark.html:483
+#: templates/frontend/crop_pdf.html:392
 #: templates/frontend/edit_pdf_generic.html:201
 msgid "Processing your file..."
 msgstr "جاري معالجة ملفك..."
 
-#: templates/frontend/add_watermark.html:440
-#: templates/frontend/converter_generic.html:213
-#: templates/frontend/crop_pdf.html:353
+#: templates/frontend/add_watermark.html:484
+#: templates/frontend/converter_generic.html:214
+#: templates/frontend/crop_pdf.html:393
 #: templates/frontend/edit_pdf_generic.html:202
 #: templates/frontend/jpg_to_pdf.html:162
 msgid "Please wait, this may take a few moments"
 msgstr "يرجى الانتظار، قد يستغرق هذا بضع لحظات"
 
-#: templates/frontend/add_watermark.html:441
-#: templates/frontend/crop_pdf.html:354
+#: templates/frontend/add_watermark.html:485
+#: templates/frontend/crop_pdf.html:394
 #: templates/frontend/edit_pdf_generic.html:203
 msgid "Editing Complete!"
 msgstr "اكتمل التحرير!"
 
-#: templates/frontend/add_watermark.html:442
-#: templates/frontend/converter_generic.html:215
-#: templates/frontend/crop_pdf.html:355
+#: templates/frontend/add_watermark.html:486
+#: templates/frontend/converter_generic.html:216
+#: templates/frontend/crop_pdf.html:395
 #: templates/frontend/edit_pdf_generic.html:204
 msgid "Your file is ready to download"
 msgstr "ملفك جاهز للتنزيل"
 
-#: templates/frontend/add_watermark.html:443
-#: templates/frontend/converter_generic.html:216
-#: templates/frontend/crop_pdf.html:356
+#: templates/frontend/add_watermark.html:487
+#: templates/frontend/converter_generic.html:217
+#: templates/frontend/crop_pdf.html:396
 #: templates/frontend/edit_pdf_generic.html:205
 msgid "Download File"
 msgstr "تنزيل الملف"
 
-#: templates/frontend/add_watermark.html:444
-#: templates/frontend/crop_pdf.html:357
+#: templates/frontend/add_watermark.html:488
+#: templates/frontend/crop_pdf.html:397
 #: templates/frontend/edit_pdf_generic.html:206
 msgid "Edit another file"
 msgstr "تحرير ملف آخر"
 
-#: templates/frontend/add_watermark.html:445
+#: templates/frontend/add_watermark.html:489
 #: templates/frontend/contact.html:140
-#: templates/frontend/converter_generic.html:218
-#: templates/frontend/crop_pdf.html:358
+#: templates/frontend/converter_generic.html:219
+#: templates/frontend/crop_pdf.html:398
 #: templates/frontend/edit_pdf_generic.html:207
 #: templates/frontend/jpg_to_pdf.html:167
 msgid "Error"
 msgstr "خطأ"
 
-#: templates/frontend/add_watermark.html:447
-#: templates/frontend/crop_pdf.html:366 templates/frontend/merge_pdf.html:118
+#: templates/frontend/add_watermark.html:491
+#: templates/frontend/crop_pdf.html:406 templates/frontend/merge_pdf.html:118
 #: templates/frontend/organize_pdf.html:47
 msgid "Failed to load PDF file. Please try again."
 msgstr "فشل تحميل ملف PDF. يرجى المحاولة مرة أخرى."
@@ -934,9 +1003,9 @@ msgstr ""
 "وتحريرها وتنظيمها بسهولة."
 
 #: templates/frontend/all_tools.html:43
-#: templates/frontend/includes/header.html:66
-#: templates/frontend/includes/header.html:314
-#: templates/frontend/includes/header.html:690
+#: templates/frontend/includes/header.html:57
+#: templates/frontend/includes/header.html:305
+#: templates/frontend/includes/header.html:691
 msgid "Convert PDF"
 msgstr "تحويل PDF"
 
@@ -950,9 +1019,9 @@ msgstr "تحويل مستندات PDF إلى ملفات Word قابلة للتح
 
 #: templates/frontend/all_tools.html:82
 #: templates/frontend/includes/footer.html:111
-#: templates/frontend/includes/header.html:77
-#: templates/frontend/includes/header.html:382
-#: templates/frontend/includes/header.html:700
+#: templates/frontend/includes/header.html:68
+#: templates/frontend/includes/header.html:373
+#: templates/frontend/includes/header.html:701
 #: templates/frontend/index.html:159
 msgid "Word to PDF"
 msgstr "Word إلى PDF"
@@ -963,9 +1032,9 @@ msgstr "تحويل مستندات Word إلى ملفات PDF آمنة."
 
 #: templates/frontend/all_tools.html:101
 #: templates/frontend/includes/footer.html:120
-#: templates/frontend/includes/header.html:113
-#: templates/frontend/includes/header.html:351
-#: templates/frontend/includes/header.html:712
+#: templates/frontend/includes/header.html:104
+#: templates/frontend/includes/header.html:342
+#: templates/frontend/includes/header.html:713
 msgid "PDF to JPG"
 msgstr "PDF إلى JPG"
 
@@ -975,9 +1044,9 @@ msgstr "تحويل صفحات PDF إلى صور JPG عالية الجودة."
 
 #: templates/frontend/all_tools.html:124
 #: templates/frontend/includes/footer.html:129
-#: templates/frontend/includes/header.html:89
-#: templates/frontend/includes/header.html:394
-#: templates/frontend/includes/header.html:704
+#: templates/frontend/includes/header.html:80
+#: templates/frontend/includes/header.html:385
+#: templates/frontend/includes/header.html:705
 msgid "JPG to PDF"
 msgstr "JPG إلى PDF"
 
@@ -987,9 +1056,9 @@ msgid ""
 msgstr "تحويل صور JPG إلى مستندات PDF. دمج عدة صور في ملف PDF واحد."
 
 #: templates/frontend/all_tools.html:142
-#: templates/frontend/includes/header.html:125
-#: templates/frontend/includes/header.html:363
-#: templates/frontend/includes/header.html:716
+#: templates/frontend/includes/header.html:116
+#: templates/frontend/includes/header.html:354
+#: templates/frontend/includes/header.html:717
 #: templates/frontend/index.html:208
 msgid "PDF to Excel"
 msgstr "PDF إلى Excel"
@@ -999,8 +1068,9 @@ msgid "Extract tables from PDF and convert to Excel format."
 msgstr "استخراج الجداول من PDF وتحويلها إلى تنسيق Excel."
 
 #: templates/frontend/all_tools.html:162
-#: templates/frontend/includes/header.html:133
-#: templates/frontend/includes/header.html:412
+#: templates/frontend/includes/header.html:124
+#: templates/frontend/includes/header.html:403
+#: templates/frontend/includes/header.html:762
 msgid "Edit PDF"
 msgstr "تحرير PDF"
 
@@ -1013,8 +1083,9 @@ msgid "Rotate PDF pages by 90, 180, or 270 degrees."
 msgstr "تدوير صفحات PDF بمقدار 90 أو 180 أو 270 درجة."
 
 #: templates/frontend/all_tools.html:201
-#: templates/frontend/includes/header.html:156
-#: templates/frontend/includes/header.html:449
+#: templates/frontend/includes/header.html:147
+#: templates/frontend/includes/header.html:440
+#: templates/frontend/includes/header.html:778
 msgid "Crop PDF"
 msgstr "قص PDF"
 
@@ -1023,8 +1094,9 @@ msgid "Crop PDF pages by specifying crop box coordinates."
 msgstr "قص صفحات PDF عن طريق تحديد إحداثيات مربع القص."
 
 #: templates/frontend/all_tools.html:220
-#: templates/frontend/includes/header.html:168
-#: templates/frontend/includes/header.html:468
+#: templates/frontend/includes/header.html:159
+#: templates/frontend/includes/header.html:459
+#: templates/frontend/includes/header.html:783
 msgid "Add Page Numbers"
 msgstr "إضافة أرقام الصفحات"
 
@@ -1033,8 +1105,9 @@ msgid "Add page numbers to your PDF documents."
 msgstr "أضف أرقام الصفحات إلى مستندات PDF الخاصة بك."
 
 #: templates/frontend/all_tools.html:240
-#: templates/frontend/includes/header.html:180
-#: templates/frontend/includes/header.html:480
+#: templates/frontend/includes/header.html:171
+#: templates/frontend/includes/header.html:471
+#: templates/frontend/includes/header.html:788
 #: templates/frontend/index.html:184
 msgid "Add Watermark"
 msgstr "إضافة علامة مائية"
@@ -1044,12 +1117,12 @@ msgid "Protect your PDFs with text or image watermarks."
 msgstr "احمِ ملفات PDF الخاصة بك بعلامات مائية نصية أو صورية."
 
 #: templates/frontend/all_tools.html:260 templates/frontend/all_tools.html:359
-#: templates/frontend/includes/header.html:188
-#: templates/frontend/includes/header.html:247
-#: templates/frontend/includes/header.html:498
-#: templates/frontend/includes/header.html:547
-#: templates/frontend/includes/header.html:724
-#: templates/frontend/includes/header.html:750
+#: templates/frontend/includes/header.html:179
+#: templates/frontend/includes/header.html:238
+#: templates/frontend/includes/header.html:489
+#: templates/frontend/includes/header.html:538
+#: templates/frontend/includes/header.html:725
+#: templates/frontend/includes/header.html:751
 #: templates/frontend/index.html:230 templates/frontend/index.html:347
 msgid "Organize PDF"
 msgstr "تنظيم PDF"
@@ -1067,9 +1140,9 @@ msgid "Split PDF into multiple files by pages or ranges."
 msgstr "تقسيم PDF إلى عدة ملفات حسب الصفحات أو النطاقات."
 
 #: templates/frontend/all_tools.html:320
-#: templates/frontend/includes/header.html:223
-#: templates/frontend/includes/header.html:578
-#: templates/frontend/includes/header.html:742
+#: templates/frontend/includes/header.html:214
+#: templates/frontend/includes/header.html:569
+#: templates/frontend/includes/header.html:743
 #: templates/frontend/index.html:298
 msgid "Remove Pages"
 msgstr "إزالة الصفحات"
@@ -1079,9 +1152,9 @@ msgid "Remove unwanted pages from your PDF document."
 msgstr "إزالة الصفحات غير المرغوب فيها من مستند PDF الخاص بك."
 
 #: templates/frontend/all_tools.html:339
-#: templates/frontend/includes/header.html:235
-#: templates/frontend/includes/header.html:590
-#: templates/frontend/includes/header.html:746
+#: templates/frontend/includes/header.html:226
+#: templates/frontend/includes/header.html:581
+#: templates/frontend/includes/header.html:747
 #: templates/frontend/index.html:322
 msgid "Extract Pages"
 msgstr "استخراج الصفحات"
@@ -1103,8 +1176,8 @@ msgid "Protect and secure your PDF documents"
 msgstr "حماية وتأمين مستندات PDF الخاصة بك"
 
 #: templates/frontend/all_tools.html:416
-#: templates/frontend/includes/header.html:278
-#: templates/frontend/includes/header.html:678
+#: templates/frontend/includes/header.html:269
+#: templates/frontend/includes/header.html:679
 msgid "Protect PDF"
 msgstr "حماية PDF"
 
@@ -1113,8 +1186,8 @@ msgid "Add password protection to secure your PDF documents."
 msgstr "إضافة حماية بكلمة مرور لتأمين مستندات PDF الخاصة بك."
 
 #: templates/frontend/all_tools.html:434
-#: templates/frontend/includes/header.html:290
-#: templates/frontend/includes/header.html:682
+#: templates/frontend/includes/header.html:281
+#: templates/frontend/includes/header.html:683
 msgid "Unlock PDF"
 msgstr "فتح قفل PDF"
 
@@ -1191,8 +1264,8 @@ msgstr ""
 "إلى أجزاء أصغر. يقلل الضغط الأعلى حجم الملف أكثر ولكن قد يقلل جودة الصورة "
 "قليلاً."
 
-#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:536
-#: utils_site/src/frontend/views.py:610
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:538
+#: utils_site/src/frontend/views.py:632
 msgid "Contact Us - Convertica"
 msgstr "اتصل بنا - Convertica"
 
@@ -1392,29 +1465,29 @@ msgstr "انتظر حتى يكتمل التحويل"
 msgid "Download your converted file using the download button"
 msgstr "قم بتنزيل ملفك المحول باستخدام زر التنزيل"
 
-#: templates/frontend/converter_generic.html:212
+#: templates/frontend/converter_generic.html:213
 msgid "Converting your file..."
 msgstr "جاري تحويل ملفك..."
 
-#: templates/frontend/converter_generic.html:214
+#: templates/frontend/converter_generic.html:215
 #: templates/frontend/jpg_to_pdf.html:163
 msgid "Conversion Complete!"
 msgstr "اكتمل التحويل!"
 
-#: templates/frontend/converter_generic.html:217
+#: templates/frontend/converter_generic.html:218
 #: templates/frontend/jpg_to_pdf.html:166
 msgid "Convert another file"
 msgstr "تحويل ملف آخر"
 
-#: templates/frontend/crop_pdf.html:104
+#: templates/frontend/crop_pdf.html:129
 msgid "Select file to crop"
 msgstr "اختر الملف للقص"
 
-#: templates/frontend/crop_pdf.html:166
+#: templates/frontend/crop_pdf.html:191
 msgid "Crop Your PDF"
 msgstr "قص ملف PDF الخاص بك"
 
-#: templates/frontend/crop_pdf.html:168
+#: templates/frontend/crop_pdf.html:193
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
@@ -1424,15 +1497,15 @@ msgstr ""
 "باللون الأزرق. يمكنك سحب مربع التحديد في أي مكان لتحريكه، أو استخدام مقابض "
 "الزوايا/الحواف لتغيير حجمه."
 
-#: templates/frontend/crop_pdf.html:173
+#: templates/frontend/crop_pdf.html:198
 msgid "Page:"
 msgstr "الصفحة:"
 
-#: templates/frontend/crop_pdf.html:190
+#: templates/frontend/crop_pdf.html:215
 msgid "Crop area is active!"
 msgstr "منطقة القص نشطة!"
 
-#: templates/frontend/crop_pdf.html:193
+#: templates/frontend/crop_pdf.html:218
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
 "ready."
@@ -1440,19 +1513,27 @@ msgstr ""
 "سيتم الاحتفاظ بالمنطقة المميزة باللون الأزرق. اضبطها وانقر على \"قص PDF\" "
 "عندما تكون جاهزاً."
 
-#: templates/frontend/crop_pdf.html:201
+#: templates/frontend/crop_pdf.html:226
 msgid "Apply crop to pages"
 msgstr "تطبيق القص على الصفحات"
 
 #: templates/frontend/crop_pdf.html:274
+msgid "Scale cropped area to full page size"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:278
+msgid "Stretch the cropped area to fill the entire page size"
+msgstr ""
+
+#: templates/frontend/crop_pdf.html:314
 msgid "Tips:"
 msgstr "نصائح:"
 
-#: templates/frontend/crop_pdf.html:276
+#: templates/frontend/crop_pdf.html:316
 msgid "A crop area covering most of the page is selected by default"
 msgstr "يتم تحديد منطقة قص تغطي معظم الصفحة بشكل افتراضي"
 
-#: templates/frontend/crop_pdf.html:277
+#: templates/frontend/crop_pdf.html:317
 #, fuzzy
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
@@ -1463,27 +1544,27 @@ msgstr ""
 "#-#-#-#-#  django.po (Convertica)  #-#-#-#-#\n"
 "يتم تحديد منطقة قص تغطي معظم الصفحة افتراضيًا - اضبطها حسب الحاجة"
 
-#: templates/frontend/crop_pdf.html:278
+#: templates/frontend/crop_pdf.html:318
 msgid "Click and drag inside the blue box to move it anywhere on the page"
 msgstr "انقر واسحب داخل المربع الأزرق لتحريكه إلى أي مكان على الصفحة"
 
-#: templates/frontend/crop_pdf.html:279
+#: templates/frontend/crop_pdf.html:319
 msgid "Drag the corner or edge handles to resize the crop area"
 msgstr "اسحب مقابض الزوايا أو الحواف لتغيير حجم منطقة القص"
 
-#: templates/frontend/crop_pdf.html:280
+#: templates/frontend/crop_pdf.html:320
 msgid "Click and drag outside the box to create a new selection"
 msgstr "انقر واسحب خارج المربع لإنشاء تحديد جديد"
 
-#: templates/frontend/crop_pdf.html:281
+#: templates/frontend/crop_pdf.html:321
 msgid "The cursor changes to 'move' when hovering over the selection box"
 msgstr "يتغير المؤشر إلى \"نقل\" عند التمرير فوق مربع التحديد"
 
-#: templates/frontend/crop_pdf.html:282
+#: templates/frontend/crop_pdf.html:322
 msgid "When 'all' is selected, crop applies to all pages"
 msgstr "عند تحديد \"الكل\"، ينطبق القص على جميع الصفحات"
 
-#: templates/frontend/crop_pdf.html:328
+#: templates/frontend/crop_pdf.html:368
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
 "keep when cropping PDF"
@@ -1491,12 +1572,12 @@ msgstr ""
 "سيتم عرض ملف PDF - انقر واسحب لتحديد المنطقة التي تريد الاحتفاظ بها عند قص "
 "PDF"
 
-#: templates/frontend/crop_pdf.html:329
+#: templates/frontend/crop_pdf.html:369
 msgid ""
 "Resize the selection by dragging the corners or edges to adjust the crop area"
 msgstr "غيّر حجم التحديد عن طريق سحب الزوايا أو الحواف لضبط منطقة القص"
 
-#: templates/frontend/crop_pdf.html:330
+#: templates/frontend/crop_pdf.html:370
 msgid ""
 "Choose which pages to apply the crop to (all pages, current page, or custom "
 "pages)"
@@ -1504,15 +1585,15 @@ msgstr ""
 "اختر الصفحات المراد تطبيق القص عليها (جميع الصفحات، الصفحة الحالية، أو صفحات "
 "مخصصة)"
 
-#: templates/frontend/crop_pdf.html:331
+#: templates/frontend/crop_pdf.html:371
 msgid "Click the crop button to process your PDF and crop the selected area"
 msgstr "انقر على زر القص لمعالجة PDF الخاص بك وقطع المنطقة المحددة"
 
-#: templates/frontend/crop_pdf.html:332
+#: templates/frontend/crop_pdf.html:372
 msgid "Download your cropped PDF file using the download button"
 msgstr "قم بتنزيل ملف PDF المقطوع باستخدام زر التنزيل"
 
-#: templates/frontend/crop_pdf.html:336
+#: templates/frontend/crop_pdf.html:376
 msgid ""
 "PDF files with up to 50 pages are supported for cropping. For larger files, "
 "please split them into smaller parts. The crop area you select will be "
@@ -1521,7 +1602,7 @@ msgstr ""
 "يتم دعم ملفات PDF التي تصل إلى 50 صفحة للقص. للملفات الأكبر، يرجى تقسيمها "
 "إلى أجزاء أصغر. سيتم تطبيق منطقة القص التي تختارها على جميع الصفحات المحددة."
 
-#: templates/frontend/crop_pdf.html:361
+#: templates/frontend/crop_pdf.html:401
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
@@ -1529,11 +1610,11 @@ msgstr ""
 "منطقة القص جاهزة! اسحب المربع لتحريكه، اسحب من الخارج لإنشاء تحديد جديد، أو "
 "استخدم المقابض لتغيير الحجم."
 
-#: templates/frontend/crop_pdf.html:362
+#: templates/frontend/crop_pdf.html:402
 msgid "Drag to select crop area..."
 msgstr "اسحب لتحديد منطقة القص..."
 
-#: templates/frontend/crop_pdf.html:363
+#: templates/frontend/crop_pdf.html:403
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
 "drag the box to move it."
@@ -1541,7 +1622,7 @@ msgstr ""
 "التحديد صغير جداً. تم تحديد الصفحة الكاملة. اسحب لإنشاء تحديد جديد أو اسحب "
 "المربع لتحريكه."
 
-#: templates/frontend/crop_pdf.html:364
+#: templates/frontend/crop_pdf.html:404
 #, fuzzy
 #| msgid ""
 #| "Crop area ready! Drag the box to move it, drag from outside to create a "
@@ -1553,7 +1634,7 @@ msgstr ""
 "منطقة القص جاهزة! اسحب المربع لتحريكه، اسحب من الخارج لإنشاء تحديد جديد، أو "
 "استخدم المقابض لتغيير الحجم."
 
-#: templates/frontend/crop_pdf.html:365
+#: templates/frontend/crop_pdf.html:405
 msgid ""
 "Crop area moved! Drag again to reposition or use handles to resize. Click \\"
 "\"Crop PDF\\\" when ready."
@@ -1653,13 +1734,13 @@ msgstr ""
 msgid "General Questions"
 msgstr "الأسئلة الشائعة"
 
-#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:639
+#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:663
 #, fuzzy
 #| msgid "Is Convertica really free?"
 msgid "Is Convertica free to use?"
 msgstr "هل Convertica مجانية حقاً؟"
 
-#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:641
+#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:665
 msgid ""
 "Yes, Convertica is completely free to use. All PDF conversion, editing, and "
 "organization tools are available at no cost. There are no hidden fees, no "
@@ -1676,13 +1757,13 @@ msgid ""
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
 
-#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:643
+#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:667
 #, fuzzy
 #| msgid "What file formats are supported?"
 msgid "What file formats does Convertica support?"
 msgstr "ما هي تنسيقات الملفات المدعومة؟"
 
-#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:645
+#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:669
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
 "can convert between these formats, edit PDFs, organize pages, and protect "
@@ -1718,13 +1799,13 @@ msgid ""
 "All conversions are free and require no registration."
 msgstr ""
 
-#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:635
+#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:659
 #, fuzzy
 #| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word?"
 msgstr "تحويل PDF إلى Word"
 
-#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:637
+#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:661
 msgid ""
 "To convert PDF to Word, simply upload your PDF file using the upload button "
 "or drag and drop it into the upload zone. Click the convert button and wait "
@@ -1801,7 +1882,7 @@ msgid ""
 "PDF maintains the quality of original files."
 msgstr ""
 
-#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:647
+#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:671
 msgid "How do I merge multiple PDF files?"
 msgstr ""
 
@@ -1875,11 +1956,11 @@ msgstr ""
 msgid "Security & Privacy"
 msgstr ""
 
-#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:651
+#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:675
 msgid "Is my data secure?"
 msgstr ""
 
-#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:653
+#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:677
 #, fuzzy
 #| msgid ""
 #| "Yes! Your files are processed securely and automatically deleted "
@@ -2126,8 +2207,8 @@ msgid "Cancel"
 msgstr "إلغاء"
 
 #: templates/frontend/includes/footer.html:15
-#: templates/frontend/includes/header.html:602
-#: templates/frontend/includes/header.html:760
+#: templates/frontend/includes/header.html:593
+#: templates/frontend/includes/header.html:796
 msgid "About"
 msgstr "حول"
 
@@ -2137,15 +2218,15 @@ msgstr "الأدوات"
 
 #: templates/frontend/includes/footer.html:93
 #: templates/frontend/includes/footer.html:201
-#: templates/frontend/includes/header.html:36
-#: templates/frontend/includes/header.html:51
-#: templates/frontend/includes/header.html:661
+#: templates/frontend/includes/header.html:42
+#: templates/frontend/includes/header.html:629
+#: templates/frontend/includes/header.html:662
 msgid "All Tools"
 msgstr "جميع الأدوات"
 
 #: templates/frontend/includes/footer.html:143
-#: templates/frontend/includes/header.html:606
-#: templates/frontend/includes/header.html:764
+#: templates/frontend/includes/header.html:597
+#: templates/frontend/includes/header.html:800
 msgid "Contact"
 msgstr "اتصل"
 
@@ -2154,12 +2235,12 @@ msgid "Contact Form"
 msgstr "نموذج الاتصال"
 
 #: templates/frontend/includes/footer.html:175
-#: templates/frontend/includes/header.html:775
+#: templates/frontend/includes/header.html:811
 msgid "Language"
 msgstr "اللغة"
 
 #: templates/frontend/includes/footer.html:186
-#: templates/frontend/includes/header.html:621
+#: templates/frontend/includes/header.html:612
 #, fuzzy
 #| msgid "Select Page"
 msgid "Select language"
@@ -2191,58 +2272,54 @@ msgstr "Convertica - الصفحة الرئيسية"
 msgid "Convertica Logo"
 msgstr "Convertica"
 
-#: templates/frontend/includes/header.html:32
-#: templates/frontend/includes/header.html:46
+#: templates/frontend/includes/header.html:37
+#: templates/frontend/includes/header.html:628
 msgid "All PDF tools"
 msgstr "جميع أدوات PDF"
 
-#: templates/frontend/includes/header.html:302
+#: templates/frontend/includes/header.html:293
 msgid "Main navigation"
 msgstr "التنقل الرئيسي"
 
-#: templates/frontend/includes/header.html:312
+#: templates/frontend/includes/header.html:303
 msgid "Convert PDF tools"
 msgstr "أدوات تحويل PDF"
 
-#: templates/frontend/includes/header.html:328
+#: templates/frontend/includes/header.html:319
 msgid "Convert from PDF"
 msgstr "التحويل من PDF"
 
-#: templates/frontend/includes/header.html:371
+#: templates/frontend/includes/header.html:362
 msgid "Convert to PDF"
 msgstr "التحويل إلى PDF"
 
-#: templates/frontend/includes/header.html:410
+#: templates/frontend/includes/header.html:401
 msgid "Edit PDF tools"
 msgstr "أدوات تحرير PDF"
 
-#: templates/frontend/includes/header.html:426
+#: templates/frontend/includes/header.html:417
 msgid "Basic Editing"
 msgstr "التحرير الأساسي"
 
-#: templates/frontend/includes/header.html:457
+#: templates/frontend/includes/header.html:448
 msgid "Enhancements"
 msgstr "التحسينات"
 
-#: templates/frontend/includes/header.html:496
+#: templates/frontend/includes/header.html:487
 msgid "Organize PDF tools"
 msgstr "أدوات تنظيم PDF"
 
-#: templates/frontend/includes/header.html:512
+#: templates/frontend/includes/header.html:503
 msgid "Organization"
 msgstr "التنظيم"
 
-#: templates/frontend/includes/header.html:567
+#: templates/frontend/includes/header.html:558
 msgid "Page Management"
 msgstr "إدارة الصفحات"
 
-#: templates/frontend/includes/header.html:638
+#: templates/frontend/includes/header.html:639
 msgid "Toggle menu"
 msgstr "تبديل القائمة"
-
-#: templates/frontend/includes/header.html:653
-msgid "Mobile navigation"
-msgstr "التنقل على الأجهزة المحمولة"
 
 #: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
@@ -2265,12 +2342,12 @@ msgstr ""
 "PDF، أدوات PDF، محول PDF عبر الإنترنت، أدوات PDF مجانية"
 
 #: templates/frontend/index.html:8 templates/frontend/index.html:10
-#: utils_site/src/frontend/views.py:31
+#: utils_site/src/frontend/views.py:32
 msgid "Convertica – Online PDF ↔ Word Converter"
 msgstr "Convertica – محول PDF ↔ Word عبر الإنترنت"
 
 #: templates/frontend/index.html:9 templates/frontend/index.html:11
-#: utils_site/src/frontend/views.py:33
+#: utils_site/src/frontend/views.py:34
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. "
 "Convert documents instantly, no registration required."
@@ -2425,12 +2502,10 @@ msgid "+ Add more files"
 msgstr "+ إضافة المزيد من الملفات"
 
 #: templates/frontend/merge_pdf.html:72
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your PDF files here"
 msgstr "اسحب وأفلت ملفك هنا"
 
 #: templates/frontend/merge_pdf.html:75
-#| msgid "Use the button above to browse files"
 msgid "Or use the button above to browse files"
 msgstr "استخدم الزر أعلاه لتصفح الملفات"
 
@@ -2480,19 +2555,19 @@ msgstr "جاري دمج ملفات PDF..."
 msgid "Please select at least 2 PDF files to merge."
 msgstr "يرجى اختيار ملفين PDF على الأقل للدمج."
 
-#: templates/frontend/merge_pdf.html:131
+#: templates/frontend/merge_pdf.html:136
 msgid "Select 2-10 PDF files to merge using the button above"
 msgstr "اختر 2-10 ملفات PDF للدمج باستخدام الزر أعلاه"
 
-#: templates/frontend/merge_pdf.html:132
+#: templates/frontend/merge_pdf.html:137
 msgid "Preview all PDF files and drag them to reorder the merge order"
 msgstr "معاينة جميع ملفات PDF واسحبها لإعادة ترتيب ترتيب الدمج"
 
-#: templates/frontend/merge_pdf.html:133
+#: templates/frontend/merge_pdf.html:138
 msgid "Click the merge button to combine all PDF files into one document"
 msgstr "انقر على زر الدمج لدمج جميع ملفات PDF في مستند واحد"
 
-#: templates/frontend/merge_pdf.html:134
+#: templates/frontend/merge_pdf.html:139
 msgid ""
 "Download your merged PDF file containing all pages from all selected files "
 "using the download button"
@@ -2500,7 +2575,7 @@ msgstr ""
 "قم بتنزيل ملف PDF المدمج الذي يحتوي على جميع الصفحات من جميع الملفات المحددة "
 "باستخدام زر التنزيل"
 
-#: templates/frontend/merge_pdf.html:138
+#: templates/frontend/merge_pdf.html:143
 msgid ""
 "You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
 "from all selected files in the order you specified."
@@ -2552,26 +2627,26 @@ msgstr "جاري التنظيم..."
 msgid "Failed to organize PDF"
 msgstr "فشل تنظيم PDF"
 
-#: templates/frontend/organize_pdf.html:61
+#: templates/frontend/organize_pdf.html:66
 msgid "Preview all pages and drag them to reorder pages in your PDF document"
 msgstr "معاينة جميع الصفحات واسحبها لإعادة ترتيب الصفحات في مستند PDF الخاص بك"
 
-#: templates/frontend/organize_pdf.html:62
+#: templates/frontend/organize_pdf.html:67
 msgid "Choose operation: reorder pages manually or sort pages automatically"
 msgstr "اختر العملية: إعادة ترتيب الصفحات يدوياً أو فرز الصفحات تلقائياً"
 
-#: templates/frontend/organize_pdf.html:63
+#: templates/frontend/organize_pdf.html:68
 msgid "Click the organize button to process your PDF and reorganize the pages"
 msgstr "انقر على زر التنظيم لمعالجة PDF الخاص بك وإعادة تنظيم الصفحات"
 
-#: templates/frontend/organize_pdf.html:64
+#: templates/frontend/organize_pdf.html:69
 msgid ""
 "Download your reorganized PDF file with pages in the new order using the "
 "download button"
 msgstr ""
 "قم بتنزيل ملف PDF المنظم مع الصفحات بالترتيب الجديد باستخدام زر التنزيل"
 
-#: templates/frontend/organize_pdf.html:68
+#: templates/frontend/organize_pdf.html:73
 msgid ""
 "PDF files with up to 50 pages are supported for organizing. For larger "
 "files, please split them into smaller parts. You can drag and drop pages to "
@@ -2741,7 +2816,7 @@ msgstr ""
 "أجزاء أصغر. تعمل ملفات PDF المستندة إلى النص بشكل أفضل - لا يمكن تحويل ملفات "
 "PDF الممسوحة ضوئياً (صور فقط) إلى تنسيق Word قابل للتحرير."
 
-#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:460
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:461
 msgid "Privacy Policy - Convertica"
 msgstr "سياسة الخصوصية - Convertica"
 
@@ -3280,7 +3355,7 @@ msgstr ""
 "سيكون الإخراج عبارة عن أرشيف ZIP يحتوي على جميع ملفات PDF المقسمة. يمكنك "
 "تقسيم PDF الخاص بك حسب الصفحات الفردية، أو نطاقات الصفحات، أو كل N صفحات."
 
-#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:475
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:476
 msgid "Terms of Service - Convertica"
 msgstr "شروط الخدمة - Convertica"
 
@@ -3730,12 +3805,58 @@ msgstr ""
 "يتم دعم مستندات Word التي تصل إلى 50 صفحة. للملفات الأكبر، يرجى تقسيمها إلى "
 "أجزاء أصغر. يحافظ التحويل على التنسيق والخطوط والصور وتخطيط الصفحة."
 
-#: utils_site/src/api/conversion_limits.py:60
+#: utils_site/src/api/conversion_limits.py:68
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
 "your PDF into smaller parts."
-msgstr "PDF يحتوي على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
+msgstr ""
+"PDF يحتوي على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. "
+"يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
+
+#: utils_site/src/api/conversion_limits.py:254
+#, python-format
+msgid ""
+"File is too large for this operation (%(file_mb).1f MB). Maximum size for "
+"%(operation)s is %(max_mb)d MB. Please use a smaller file or compress your "
+"PDF first."
+msgstr ""
+
+#: utils_site/src/api/conversion_limits.py:278
+#, fuzzy, python-format
+#| msgid ""
+#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
+#| "split your PDF into smaller parts."
+msgid ""
+"PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
+"pages. Please split your PDF into smaller parts."
+msgstr ""
+"PDF يحتوي على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. "
+"يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
+
+#: utils_site/src/api/conversion_limits.py:307
+#, python-format
+msgid ""
+"This PDF appears to be scanned (contains many images). Scanned PDFs with "
+"%(page_count)d pages may take too long to process. Please try with fewer "
+"pages (max ~%(max_pages)d for scanned PDFs)."
+msgstr ""
+
+#: utils_site/src/api/conversion_limits.py:350
+#, python-format
+msgid "File is too large (max %(max_mb)d MB for this operation)."
+msgstr ""
+
+#: utils_site/src/api/conversion_limits.py:360
+#, python-format
+msgid "Too many pages (max %(max_pages)d for this operation)."
+msgstr ""
+
+#: utils_site/src/api/conversion_limits.py:374
+msgid ""
+"File is too complex for our server. Estimated processing time exceeds "
+"limits. Please try with a smaller file."
+msgstr ""
 
 #: utils_site/src/api/pdf_security/unlock_pdf/utils.py:74
 msgid "Password cannot be empty"
@@ -3822,6 +3943,10 @@ msgstr "الإحصائيات"
 #: utils_site/src/blog/admin.py:166
 msgid "No image"
 msgstr "لا توجد صورة"
+
+#: utils_site/src/blog/admin.py:168
+msgid "Preview"
+msgstr "معاينة"
 
 #: utils_site/src/blog/models.py:14
 msgid "Name (English)"
@@ -3939,53 +4064,53 @@ msgstr "المقال"
 msgid "Your Name"
 msgstr "اسمك"
 
-#: utils_site/src/frontend/forms.py:18
+#: utils_site/src/frontend/forms.py:21
 msgid "Enter your name"
 msgstr ""
 
-#: utils_site/src/frontend/forms.py:25
+#: utils_site/src/frontend/forms.py:29
 msgid "Your Email"
 msgstr "بريدك الإلكتروني"
 
-#: utils_site/src/frontend/forms.py:29
+#: utils_site/src/frontend/forms.py:36
 msgid "your.email@example.com"
 msgstr ""
 
-#: utils_site/src/frontend/forms.py:36
+#: utils_site/src/frontend/forms.py:44
 msgid "Subject"
 msgstr "الموضوع"
 
-#: utils_site/src/frontend/forms.py:40
+#: utils_site/src/frontend/forms.py:51
 #, fuzzy
 #| msgid "Subject"
 msgid "Enter subject"
 msgstr "الموضوع"
 
-#: utils_site/src/frontend/forms.py:46
+#: utils_site/src/frontend/forms.py:58
 msgid "Message"
 msgstr "الرسالة"
 
-#: utils_site/src/frontend/forms.py:51
+#: utils_site/src/frontend/forms.py:66
 #, fuzzy
 #| msgid "Converting your images..."
 msgid "Enter your message"
 msgstr "جاري تحويل صورك..."
 
-#: utils_site/src/frontend/forms.py:57
+#: utils_site/src/frontend/forms.py:73
 #, fuzzy
 #| msgid "Changes to This Privacy Policy"
 msgid "I agree to the Privacy Policy"
 msgstr "تغييرات على سياسة الخصوصية هذه"
 
-#: utils_site/src/frontend/forms.py:69
+#: utils_site/src/frontend/forms.py:87
 msgid "Message must be at least 10 characters long."
 msgstr ""
 
-#: utils_site/src/frontend/forms.py:71
+#: utils_site/src/frontend/forms.py:90
 msgid "Message is too long. Maximum 5000 characters."
 msgstr ""
 
-#: utils_site/src/frontend/views.py:36
+#: utils_site/src/frontend/views.py:37
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter, convert PDF, convert Word, free pdf tools online, pdf tools "
@@ -3998,15 +4123,15 @@ msgid ""
 "windows, pdf converter for linux, pdf converter mobile"
 msgstr ""
 
-#: utils_site/src/frontend/views.py:100
+#: utils_site/src/frontend/views.py:101
 msgid "Conversion failed. Please try again."
 msgstr "فشل التحويل. يرجى المحاولة مرة أخرى."
 
-#: utils_site/src/frontend/views.py:430
+#: utils_site/src/frontend/views.py:431
 msgid "All PDF Tools - Convertica"
 msgstr "جميع أدوات PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:432
+#: utils_site/src/frontend/views.py:433
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
@@ -4014,7 +4139,7 @@ msgstr ""
 "تصفح جميع أدوات PDF: تحويل، تحرير، تنظيم، وتأمين ملفات PDF. أدوات PDF مجانية "
 "عبر الإنترنت لجميع احتياجاتك من المستندات."
 
-#: utils_site/src/frontend/views.py:435
+#: utils_site/src/frontend/views.py:436
 msgid ""
 "PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all PDF "
 "tools, online PDF tools, free PDF tools, free pdf tools online, pdf tools no "
@@ -4029,7 +4154,7 @@ msgid ""
 "pdf by chapters"
 msgstr ""
 
-#: utils_site/src/frontend/views.py:447
+#: utils_site/src/frontend/views.py:448
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
@@ -4038,7 +4163,7 @@ msgstr ""
 "تعرف على Convertica - منصة أدوات PDF عبر الإنترنت الموثوقة الخاصة بك. نحن "
 "ملتزمون بالتحسين المستمر وتقديم أفضل تجربة لتحويل وتحرير PDF."
 
-#: utils_site/src/frontend/views.py:450
+#: utils_site/src/frontend/views.py:451
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
@@ -4046,7 +4171,7 @@ msgstr ""
 "حول Convertica، شركة أدوات PDF، محول PDF عبر الإنترنت، خدمات PDF، تحويل "
 "المستندات"
 
-#: utils_site/src/frontend/views.py:462
+#: utils_site/src/frontend/views.py:463
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
@@ -4054,13 +4179,13 @@ msgstr ""
 "اقرأ سياسة الخصوصية الخاصة بـ Convertica. تعرف على كيفية حمايتنا لبياناتك "
 "والتعامل مع ملفاتك. خصوصيتك هي أولويتنا."
 
-#: utils_site/src/frontend/views.py:465
+#: utils_site/src/frontend/views.py:466
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 msgstr ""
 "سياسة الخصوصية، حماية البيانات، أمان الملفات، الخصوصية، خصوصية Convertica"
 
-#: utils_site/src/frontend/views.py:477
+#: utils_site/src/frontend/views.py:478
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
@@ -4068,12 +4193,12 @@ msgstr ""
 "اقرأ شروط الخدمة الخاصة بـ Convertica. فهم الشروط والأحكام لاستخدام أدوات "
 "وخدمات PDF الخاصة بنا."
 
-#: utils_site/src/frontend/views.py:480
+#: utils_site/src/frontend/views.py:481
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
 msgstr "شروط الخدمة، الشروط والأحكام، اتفاقية المستخدم، شروط Convertica"
 
-#: utils_site/src/frontend/views.py:503
+#: utils_site/src/frontend/views.py:504
 msgid ""
 "Thank you! Your message has been sent successfully. We'll get back to you as "
 "soon as possible, usually within 24-48 hours."
@@ -4081,11 +4206,11 @@ msgstr ""
 "شكراً لك! تم إرسال رسالتك بنجاح. سنرد عليك في أقرب وقت ممكن، عادةً خلال 24-48 "
 "ساعة."
 
-#: utils_site/src/frontend/views.py:530
+#: utils_site/src/frontend/views.py:532
 msgid "Please complete the CAPTCHA verification."
 msgstr ""
 
-#: utils_site/src/frontend/views.py:538 utils_site/src/frontend/views.py:612
+#: utils_site/src/frontend/views.py:540 utils_site/src/frontend/views.py:634
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
@@ -4093,27 +4218,27 @@ msgstr ""
 "اتصل بـ Convertica للحصول على الدعم أو الأسئلة أو التعليقات. نحن هنا "
 "لمساعدتك في جميع احتياجاتك من أدوات PDF."
 
-#: utils_site/src/frontend/views.py:541 utils_site/src/frontend/views.py:615
+#: utils_site/src/frontend/views.py:544 utils_site/src/frontend/views.py:638
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr "اتصال Convertica، الدعم، خدمة العملاء، المساعدة، التعليقات"
 
-#: utils_site/src/frontend/views.py:606
+#: utils_site/src/frontend/views.py:628
 msgid "Please correct the errors in the form below."
 msgstr "يرجى تصحيح الأخطاء في النموذج أدناه."
 
-#: utils_site/src/frontend/views.py:627
+#: utils_site/src/frontend/views.py:651
 #, fuzzy
 #| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "الأسئلة الشائعة"
 
-#: utils_site/src/frontend/views.py:629
+#: utils_site/src/frontend/views.py:653
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
 msgstr ""
 
-#: utils_site/src/frontend/views.py:632
+#: utils_site/src/frontend/views.py:656
 msgid ""
 "FAQ, frequently asked questions, PDF converter help, PDF tools FAQ, how to "
 "convert PDF, PDF questions, convert pdf to word online free, pdf to word "
@@ -4128,12 +4253,21 @@ msgid ""
 "security questions"
 msgstr ""
 
-#: utils_site/src/frontend/views.py:649
+#: utils_site/src/frontend/views.py:673
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "
 "be combined into a single PDF document."
 msgstr ""
+
+#~ msgid ""
+#~ "Preview shows page numbers as they will appear in the final PDF after "
+#~ "download."
+#~ msgstr ""
+#~ "تظهر المعاينة أرقام الصفحات كما ستظهر في ملف PDF النهائي بعد التنزيل."
+
+#~ msgid "Mobile navigation"
+#~ msgstr "التنقل على الأجهزة المحمولة"
 
 #~ msgid ""
 #~ "Perfect for: adding page numbers to PDF documents, numbering PDF pages, "
