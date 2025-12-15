@@ -10,6 +10,7 @@ from django.urls import include, path
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.i18n import set_language
+from src.frontend.views import sitemap_index, sitemap_lang
 
 from utils_site.swagger import schema_view
 
@@ -84,8 +85,9 @@ urlpatterns = [
     path("i18n/setlang/", set_language, name="set_language"),
     path("robots.txt", robots_txt, name="robots_txt"),
     path("health/", health_check, name="health_check"),
-    # SEO - sitemap should be accessible without language prefix
-    path("sitemap.xml", include("src.frontend.urls_sitemap")),
+    # SEO - sitemaps should be accessible without language prefix
+    path("sitemap.xml", sitemap_index, name="sitemap_index"),
+    path("sitemap-<str:lang>.xml", sitemap_lang, name="sitemap_lang"),
     # Admin panel - should be accessible without language prefix
     # Read ADMIN_URL_PATH dynamically from settings
     path(f"{getattr(settings, 'ADMIN_URL_PATH', 'admin')}/", admin.site.urls),
