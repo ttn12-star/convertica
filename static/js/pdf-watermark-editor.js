@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let dragStartY = 0;
     let currentScaleCorner = null;
     let isInteracting = false; // Track if user is actively interacting
+    let isPinching = false; // Track pinch gesture for mobile
+    let initialPinchDistance = 0;
 
     // Visual enhancement elements
     let alignmentGrid = null;
@@ -149,6 +151,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update hidden input
             if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
+
+            updateWatermarkFromControls();
+        });
+    }
+
+    // Scale slider
+    const scaleSlider = document.getElementById('scale_slider');
+    const scaleValueDisplay = document.getElementById('scaleValue');
+
+    if (scaleSlider) {
+        scaleSlider.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            if (scaleValueDisplay) scaleValueDisplay.textContent = Math.round(value * 100) + '%';
+
+            // Calculate max scale based on page size
+            let maxScale = 3.0;
+            const isText = watermarkTypeText?.checked;
+            if (pdfDoc && pdfPageWidth && pdfPageHeight) {
+                if (isText) {
+                    const fontSize = parseInt(fontSizeSlider?.value || 72);
+                    const text = watermarkText?.value || 'CONFIDENTIAL';
+                    const estimatedWidth = fontSize * text.length * 0.6;
+                    const estimatedHeight = fontSize * 1.2;
+                    const maxScaleWidth = (pdfPageWidth * 0.95) / estimatedWidth;
+                    const maxScaleHeight = (pdfPageHeight * 0.95) / estimatedHeight;
+                    maxScale = Math.max(0.5, Math.min(maxScaleWidth, maxScaleHeight, 5.0));
+                } else if (watermarkImage) {
+                    const baseScale = Math.min(pdfPageWidth / watermarkImage.width, pdfPageHeight / watermarkImage.height) * 0.5;
+                    const scaledWidth = watermarkImage.width * baseScale;
+                    const scaledHeight = watermarkImage.height * baseScale;
+                    const maxScaleWidth = (pdfPageWidth * 0.95) / scaledWidth;
+                    const maxScaleHeight = (pdfPageHeight * 0.95) / scaledHeight;
+                    maxScale = Math.max(0.5, Math.min(maxScaleWidth, maxScaleHeight, 5.0));
+                }
+            }
+
+            // Update watermark scale with bounds
+            watermarkScale = Math.max(0.1, Math.min(maxScale, value));
+
+            // Update slider if clamped
+            if (watermarkScale !== value) {
+                scaleSlider.value = watermarkScale;
+                if (scaleValueDisplay) scaleValueDisplay.textContent = Math.round(watermarkScale * 100) + '%';
+            }
+
+            // Update hidden input
+            if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
 
             updateWatermarkFromControls();
         });
@@ -884,6 +933,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             watermarkScale = Math.max(0.1, Math.min(maxScale, initialScale * scaleRatio));
 
+            // Update scale slider
+            const scaleSlider = document.getElementById('scale_slider');
+            const scaleValueDisplay = document.getElementById('scaleValue');
+            if (scaleSlider) {
+                scaleSlider.value = watermarkScale;
+                if (scaleValueDisplay) scaleValueDisplay.textContent = Math.round(watermarkScale * 100) + '%';
+            }
+
             // Update hidden input
             if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
 
@@ -902,9 +959,70 @@ document.addEventListener('DOMContentLoaded', () => {
         handleMovement(x, y);
     });
 
-    // Global touch move handler
+    // Global touch move handler with pinch-to-zoom support
     document.addEventListener('touchmove', (e) => {
         if (!pdfDoc || watermarkX === null || watermarkY === null) return;
+
+        // Handle pinch-to-zoom (two fingers)
+        if (e.touches.length === 2 && isInteracting) {
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+
+            const currentPinchDistance = Math.sqrt(
+                Math.pow(touch2.clientX - touch1.clientX, 2) +
+                Math.pow(touch2.clientY - touch1.clientY, 2)
+            );
+
+            if (!isPinching) {
+                // Start pinch gesture
+                isPinching = true;
+                initialPinchDistance = currentPinchDistance;
+                initialScale = watermarkScale;
+            } else {
+                // Calculate scale change
+                const scaleRatio = currentPinchDistance / initialPinchDistance;
+
+                // Calculate max scale
+                let maxScale = 3.0;
+                const isText = watermarkTypeText?.checked;
+                if (isText) {
+                    const fontSize = parseInt(fontSizeSlider?.value || 72);
+                    const text = watermarkText?.value || 'CONFIDENTIAL';
+                    const estimatedWidth = fontSize * text.length * 0.6;
+                    const estimatedHeight = fontSize * 1.2;
+                    const maxScaleWidth = (pdfPageWidth * 0.95) / estimatedWidth;
+                    const maxScaleHeight = (pdfPageHeight * 0.95) / estimatedHeight;
+                    maxScale = Math.max(0.5, Math.min(maxScaleWidth, maxScaleHeight, 5.0));
+                } else if (watermarkImage) {
+                    const baseScale = Math.min(pdfPageWidth / watermarkImage.width, pdfPageHeight / watermarkImage.height) * 0.5;
+                    const scaledWidth = watermarkImage.width * baseScale;
+                    const scaledHeight = watermarkImage.height * baseScale;
+                    const maxScaleWidth = (pdfPageWidth * 0.95) / scaledWidth;
+                    const maxScaleHeight = (pdfPageHeight * 0.95) / scaledHeight;
+                    maxScale = Math.max(0.5, Math.min(maxScaleWidth, maxScaleHeight, 5.0));
+                }
+
+                watermarkScale = Math.max(0.1, Math.min(maxScale, initialScale * scaleRatio));
+
+                // Update scale slider
+                const scaleSlider = document.getElementById('scale_slider');
+                const scaleValueDisplay = document.getElementById('scaleValue');
+                if (scaleSlider) {
+                    scaleSlider.value = watermarkScale;
+                    if (scaleValueDisplay) scaleValueDisplay.textContent = Math.round(watermarkScale * 100) + '%';
+                }
+
+                // Update hidden input
+                if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
+
+                updateWatermarkPreview();
+            }
+
+            e.preventDefault();
+            return;
+        }
+
+        // Single touch - handle drag/scale
         const touch = e.touches[0];
         if (!touch) return;
 
@@ -917,7 +1035,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Only prevent default when actively interacting with watermark
-        if (isDraggingWatermark || isScaling) {
+        if (isDraggingWatermark || isScaling || isPinching) {
             e.preventDefault();
         }
         // Allow normal scrolling when not interacting with watermark
@@ -956,6 +1074,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Reset interaction states
             isDraggingWatermark = false;
             isScaling = false;
+            isPinching = false;
             currentScaleCorner = null;
             isInteracting = false;
 
