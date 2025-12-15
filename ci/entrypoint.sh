@@ -19,5 +19,11 @@ if [ -d /app/logs ]; then
     touch /app/logs/errors.log /app/logs/convertica.log 2>/dev/null || true
 fi
 
+# Create async_temp directory for Celery tasks
+# This directory is shared between web and celery containers via volume
+if [ -d /app/media ]; then
+    mkdir -p /app/media/async_temp 2>/dev/null || true
+fi
+
 # Execute the command passed to the container
 exec "$@"

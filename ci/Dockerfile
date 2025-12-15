@@ -105,7 +105,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Create non-root user for security
 RUN useradd -m -u 1000 appuser && \
-    mkdir -p /app /app/staticfiles /app/media /app/logs && \
+    mkdir -p /app /app/staticfiles /app/media /app/media/async_temp /app/logs && \
     chown -R appuser:appuser /app
 
 # Set working directory
