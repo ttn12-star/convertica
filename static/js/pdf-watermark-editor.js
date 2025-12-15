@@ -787,21 +787,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Rotation handle - rotation only
+            // Simple rotation: drag left/right to change angle (like a slider)
             if (target.classList.contains('rotation-handle')) {
                 isRotating = true;
 
-                const scaleFactor = canvasWidth / pdfPageWidth;
-                const centerX = watermarkX * scaleFactor;
-                const centerY = canvasHeight - (watermarkY * scaleFactor);
                 const startX = clientX - rect.left;
-                const startY = clientY - rect.top;
 
-                // Store initial rotation
+                // Store initial rotation and start position
                 initialRotation = watermarkRotation || 0;
-
-                // Calculate initial angle from center to cursor
-                // This is the angle where the user grabbed the handle
-                dragStartAngle = Math.atan2(centerY - startY, startX - centerX) * (180 / Math.PI);
+                dragStartX = startX;
 
                 // Show rotation indicator
                 showRotationIndicator(centerX, centerY);
@@ -926,25 +920,13 @@ document.addEventListener('DOMContentLoaded', () => {
             dragStartY = newY;
             updateWatermarkPreview();
         } else if (isRotating) {
-            // Rotation - handle follows cursor around center point
-            const scaleFactor = canvasWidth / pdfPageWidth;
-            const centerX = watermarkX * scaleFactor;
-            const centerY = canvasHeight - (watermarkY * scaleFactor);
+            // Simple rotation: horizontal movement changes angle (like a slider)
+            // Move right = increase angle, move left = decrease angle
+            const deltaX = x - dragStartX;
 
-            // Calculate current angle from center to cursor
-            // Using standard atan2 with Y inverted for screen coordinates
-            const currentAngle = Math.atan2(centerY - y, x - centerX) * (180 / Math.PI);
-
-            // Calculate how much the angle changed since we started dragging
-            let rotationChange = currentAngle - dragStartAngle;
-
-            // Handle angle wrap-around smoothly (avoid jumps when crossing 180/-180)
-            if (rotationChange > 180) rotationChange -= 360;
-            if (rotationChange < -180) rotationChange += 360;
-
-            // Invert rotation change because CSS uses -watermarkRotation
-            // This makes visual rotation follow cursor direction
-            let newRotation = initialRotation - rotationChange;
+            // Sensitivity: 1 pixel = 0.5 degrees
+            const rotationSensitivity = 0.5;
+            let newRotation = initialRotation + (deltaX * rotationSensitivity);
 
             // Normalize to 0-360 range
             while (newRotation >= 360) newRotation -= 360;
