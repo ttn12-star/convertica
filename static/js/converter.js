@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tokenInput.value = token;
     };
 
-    const fileInput = document.getElementById('fileInput');
     const submitButton = form.querySelector('button[type="submit"]');
     const resultContainer = document.getElementById('converterResult');
 
@@ -64,9 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hideResult();
         hideDownload();
 
-        // Ensure loading container exists
+        // Ensure containers exist (do this once before showing loading)
         if (!loadingContainer.parentNode && form.parentNode) {
             form.parentNode.insertBefore(loadingContainer, form.nextSibling);
+        }
+        if (!downloadContainer.parentNode && form.parentNode) {
+            form.parentNode.insertBefore(downloadContainer, loadingContainer.nextSibling || form.nextSibling);
         }
 
         // Show loading animation
@@ -95,14 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
         if (turnstileResponse && turnstileResponse.value) {
             formData.append('turnstile_token', turnstileResponse.value);
-        }
-
-        // Ensure containers exist
-        if (!loadingContainer.parentNode && form.parentNode) {
-            form.parentNode.insertBefore(loadingContainer, form.nextSibling);
-        }
-        if (!downloadContainer.parentNode && form.parentNode) {
-            form.parentNode.insertBefore(downloadContainer, loadingContainer.nextSibling || form.nextSibling);
         }
 
         // Determine conversion type from API URL or page path
