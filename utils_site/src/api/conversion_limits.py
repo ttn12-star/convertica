@@ -20,7 +20,7 @@ logger = get_logger(__name__)
 MAX_PDF_PAGES = 50  # Keep 50 pages, monitor memory usage
 
 # Stricter limits for heavy operations (memory-intensive)
-MAX_PDF_PAGES_HEAVY = 30  # PDF to Word/Excel: fewer pages due to memory
+MAX_PDF_PAGES_HEAVY = 50  # PDF to Word/Excel: fewer pages due to memory
 MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024  # 15 MB for heavy operations
 
 # Maximum file size in bytes (reduced for low-memory server)
