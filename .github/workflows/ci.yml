@@ -492,9 +492,11 @@ jobs:
               echo "🔄 Rolling back - stopping new container, restoring old..."
               docker stop "$NEW_WEB_ID" 2>/dev/null || true
               docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_EXISTS" ]; then
-                echo "   Restoring old web container..."
-                docker start "$OLD_WEB_EXISTS" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              else
+                echo "   ⚠️ No old container found to restore"
               fi
               exit 1
             fi
