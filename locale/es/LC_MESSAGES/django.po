@@ -33,8 +33,6 @@ msgstr ""
 msgid "Go Back"
 msgstr ""
 
-#, fuzzy
-#| msgid "Home"
 msgid "Go Home"
 msgstr "Inicio"
 
@@ -52,8 +50,6 @@ msgid ""
 "error, please contact support."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Form"
 msgid "Contact Support"
 msgstr "Formulario de contacto"
 
@@ -71,13 +67,9 @@ msgid ""
 "moved, deleted, or never existed."
 msgstr ""
 
-#, fuzzy
-#| msgid "View All Tools"
 msgid "Browse All Tools"
 msgstr "Todas las herramientas"
 
-#, fuzzy
-#| msgid "Popular Tools"
 msgid "Popular pages:"
 msgstr "Herramientas populares"
 
@@ -107,16 +99,12 @@ msgid ""
 "and is working to fix the issue. Please try again in a few moments."
 msgstr ""
 
-#, fuzzy
-#| msgid "Try it"
 msgid "Try Again"
 msgstr "Pruébalo"
 
 msgid "If the problem persists, please"
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Us"
 msgid "contact us"
 msgstr "Contáctanos"
 
@@ -144,7 +132,6 @@ msgstr ""
 "Convertidor online rápido, simple y seguro de PDF a Word y Word a PDF. "
 "Convierte documentos al instante, sin registro requerido."
 
-#, fuzzy
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
@@ -409,22 +396,15 @@ msgstr "Experimenta el poder de las herramientas PDF de Convertica hoy."
 msgid "Explore All Tools"
 msgstr "Explorar Todas las Herramientas"
 
-#, fuzzy
-#| msgid "Ready to Get Started?"
 msgid "Get Started"
 msgstr "¿Listo para comenzar?"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Preview Page Numbers"
 msgstr "Agregar números de página"
 
 msgid "Select page"
 msgstr "Seleccionar página"
 
-#, fuzzy
-#| msgid ""
-#| "Preview how the page numbers will look on your PDF using the live preview"
 msgid ""
 "Preview shows how page numbers will appear on your PDF. Adjust settings "
 "below to see real-time changes."
@@ -462,8 +442,6 @@ msgstr "Tamaño de fuente"
 msgid "Starting Page Number"
 msgstr "Número de página inicial"
 
-#, fuzzy
-#| msgid "Format"
 msgid "Custom Format"
 msgstr "Formato"
 
@@ -480,7 +458,6 @@ msgid "In brackets"
 msgstr ""
 
 #, fuzzy, python-brace-format
-#| msgid "Use {page} for page number, {total} for total pages"
 msgid ""
 "Use {page} for page number, {total} for total pages. Click presets above or "
 "enter custom format."
@@ -557,9 +534,6 @@ msgstr ""
 "seleccionados."
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
 "split your PDF into smaller parts."
@@ -599,11 +573,6 @@ msgstr "Seleccionar página"
 msgid "How to use:"
 msgstr "Cómo usar:"
 
-#, fuzzy
-#| msgid ""
-#| "The watermark appears at the bottom of the page by default. Drag it to "
-#| "move, use the top handle to rotate, and the corner handle to scale. Click "
-#| "anywhere on the PDF to reposition it."
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use corner handles to scale. Use the Rotation slider below to rotate. Click "
@@ -640,18 +609,12 @@ msgstr "Color"
 msgid "Opacity"
 msgstr "Opacidad"
 
-#, fuzzy
-#| msgid "Rotation Angle"
 msgid "Rotation"
 msgstr "Ángulo de rotación"
 
 msgid "Interactive controls:"
 msgstr "Controles interactivos:"
 
-#, fuzzy
-#| msgid ""
-#| "Drag the watermark to move it. Drag any corner handle to rotate and scale "
-#| "simultaneously."
 msgid ""
 "Drag the watermark to move it. Use corner handles to scale. Use the rotation "
 "slider above to rotate."
@@ -1065,7 +1028,6 @@ msgstr "Seleccionar archivo para recortar"
 msgid "Crop Your PDF"
 msgstr "Recorta tu PDF"
 
-#, fuzzy
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
@@ -1112,7 +1074,6 @@ msgstr ""
 "Se selecciona por defecto un área de recorte que cubre la mayor parte de la "
 "página"
 
-#, fuzzy
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
@@ -1179,7 +1140,6 @@ msgstr ""
 "grandes, divídalos en partes más pequeñas. El área de recorte que seleccione "
 "se aplicará a todas las páginas seleccionadas."
 
-#, fuzzy
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
@@ -1195,7 +1155,6 @@ msgstr ""
 msgid "Drag to select crop area..."
 msgstr "Arrastra para seleccionar área de recorte..."
 
-#, fuzzy
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
 "drag the box to move it."
@@ -1207,10 +1166,6 @@ msgstr ""
 "Selección demasiado pequeña. Página completa seleccionada. Arrastre para "
 "crear una nueva selección o arrastre el cuadro para moverlo."
 
-#, fuzzy
-#| msgid ""
-#| "Crop area selected! Drag the box to move it or use handles to resize. "
-#| "Click \"Crop PDF\" when ready."
 msgid ""
 "Crop area selected! Drag the box to move it or use handles to resize. Click "
 "\\\"Crop PDF\\\" when ready."
@@ -1218,10 +1173,6 @@ msgstr ""
 "¡Área de recorte seleccionada! Arrastra el cuadro para moverlo o usa las "
 "asas para cambiar el tamaño. Haz clic en \"Recortar PDF\" cuando estés listo."
 
-#, fuzzy
-#| msgid ""
-#| "Crop area moved! Drag again to reposition or use handles to resize. Click "
-#| "\"Crop PDF\" when ready."
 msgid ""
 "Crop area moved! Drag again to reposition or use handles to resize. Click \\"
 "\"Crop PDF\\\" when ready."
@@ -1251,10 +1202,6 @@ msgstr ""
 "Se admiten archivos PDF de hasta 50 páginas. Para archivos más grandes, "
 "divídalos en partes más pequeñas."
 
-#, fuzzy
-#| msgid ""
-#| "Please enter page numbers to remove, or select \"All pages\" or \"Current "
-#| "page only\""
 msgid ""
 "Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
 "\"Current page only\\\""
@@ -1768,8 +1715,6 @@ msgstr "Formulario de contacto"
 msgid "Language"
 msgstr "Idioma"
 
-#, fuzzy
-#| msgid "Select Page"
 msgid "Select language"
 msgstr "Seleccionar página"
 
@@ -1917,7 +1862,6 @@ msgstr "archivos"
 msgid "multiple files supported"
 msgstr "múltiples archivos soportados"
 
-#, fuzzy
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
@@ -2065,7 +2009,7 @@ msgstr ""
 "muestra el nuevo orden."
 
 msgid "Please select a PDF file."
-msgstr "Por favor, selecciona un archivo PDF."
+msgstr "Por favor, seleccione un archivo PDF."
 
 msgid "Please select a PDF file first."
 msgstr "Por favor selecciona un archivo PDF primero."
@@ -2107,10 +2051,6 @@ msgstr ""
 "más grandes, divídalos en partes más pequeñas. Puedes arrastrar y soltar "
 "páginas para reordenarlas visualmente."
 
-#, fuzzy
-#| msgid ""
-#| "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#| "conversion)"
 msgid ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
@@ -2118,10 +2058,6 @@ msgstr ""
 "Haz clic en el botón de convertir para iniciar la conversión de PDF a Word "
 "(conversión de PDF a DOCX)"
 
-#, fuzzy
-#| msgid ""
-#| "Wait for the PDF to Word conversion to complete - text and formatting "
-#| "will be extracted from your PDF and converted to editable Word format"
 msgid ""
 "Wait for the PDF to Excel conversion to complete - tables and data will be "
 "extracted from your PDF and converted to editable Excel format"
@@ -2129,10 +2065,6 @@ msgstr ""
 "Espera a que se complete la conversión de PDF a Word - el texto y el formato "
 "se extraerán de tu PDF y se convertirán al formato Word editable"
 
-#, fuzzy
-#| msgid ""
-#| "Download your editable Word document (DOCX format) - your PDF has been "
-#| "successfully converted to Word"
 msgid ""
 "Download your editable Excel file (XLSX format) - your PDF tables have been "
 "successfully converted to Excel"
@@ -2140,11 +2072,6 @@ msgstr ""
 "Descarga tu documento Word editable (formato DOCX) - tu PDF se ha convertido "
 "exitosamente a Word"
 
-#, fuzzy
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. Text-based PDFs work best - scanned PDFs "
-#| "(image-only) cannot be converted to editable Word format."
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. PDF files with tables work best - plain text will "
@@ -2487,12 +2414,6 @@ msgstr ""
 msgid "Changes to This Privacy Policy"
 msgstr "Cambios en esta Política de Privacidad"
 
-#, fuzzy
-#| msgid ""
-#| "We may update our Privacy Policy from time to time. We will notify you of "
-#| "any changes by posting the new Privacy Policy on this page and updating "
-#| "the \"Last updated\" date. You are advised to review this Privacy Policy "
-#| "periodically for any changes."
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
@@ -2680,7 +2601,6 @@ msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr ""
 "Ingresa números de página como '1,3,5' o deja vacío para todas las páginas"
 
-#, fuzzy
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
@@ -3162,9 +3082,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
@@ -3381,19 +3298,6 @@ msgstr "El mensaje debe tener al menos 10 caracteres."
 msgid "Message is too long. Maximum 5000 characters."
 msgstr "El mensaje es demasiado largo. Máximo 5000 caracteres."
 
-#, fuzzy
-#| msgid ""
-#| "PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all "
-#| "PDF tools, online PDF tools, free PDF tools, free pdf tools online, pdf "
-#| "tools no registration, best pdf converter online, pdf editor online free, "
-#| "pdf tools for students, pdf tools for business, smallpdf alternative, "
-#| "ilovepdf alternative, adobe acrobat alternative, free pdf converter, pdf "
-#| "merger online, pdf splitter online, pdf compressor online, pdf rotator "
-#| "online, pdf watermark tool, high quality pdf converter, pdf converter no "
-#| "quality loss, pdf converter best quality, pdf converter for mac, pdf "
-#| "converter for windows, pdf converter for linux, pdf converter mobile, "
-#| "convert pdf to word for resume, merge pdf for thesis, compress pdf for "
-#| "email attachment, split pdf by chapters"
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter, convert PDF, convert Word, free pdf tools online, pdf tools "
@@ -3421,10 +3325,8 @@ msgstr ""
 msgid "Conversion failed. Please try again."
 msgstr "La conversión falló. Por favor, inténtalo de nuevo."
 
-#, fuzzy
-#| msgid "All PDF Tools - Convertica"
 msgid "PDF to Word - Convertica"
-msgstr "Todas las herramientas PDF - Convertica"
+msgstr "PDF a Word - Convertica"
 
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
@@ -3572,11 +3474,6 @@ msgstr ""
 "preguntas conversión PDF, preguntas edición PDF, preguntas organización PDF, "
 "preguntas seguridad PDF"
 
-#, fuzzy
-#| msgid ""
-#| "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
-#| "arrange them in the desired order using drag and drop, and click merge. "
-#| "All selected files will be combined into a single PDF document."
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "

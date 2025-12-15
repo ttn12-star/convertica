@@ -33,8 +33,6 @@ msgstr ""
 msgid "Go Back"
 msgstr "Назад"
 
-#, fuzzy
-#| msgid "Home"
 msgid "Go Home"
 msgstr "Главная"
 
@@ -402,22 +400,15 @@ msgstr "Ощутите мощь инструментов Convertica для PDF �
 msgid "Explore All Tools"
 msgstr "Все инструменты"
 
-#, fuzzy
-#| msgid "Ready to Get Started?"
 msgid "Get Started"
 msgstr "Готовы начать?"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Preview Page Numbers"
 msgstr "Добавить номера страниц"
 
 msgid "Select page"
 msgstr "Выбрать страницу"
 
-#, fuzzy
-#| msgid ""
-#| "Preview how the page numbers will look on your PDF using the live preview"
 msgid ""
 "Preview shows how page numbers will appear on your PDF. Adjust settings "
 "below to see real-time changes."
@@ -455,8 +446,6 @@ msgstr "Размер шрифта"
 msgid "Starting Page Number"
 msgstr "Начальный номер страницы"
 
-#, fuzzy
-#| msgid "Format"
 msgid "Custom Format"
 msgstr "Формат"
 
@@ -473,7 +462,6 @@ msgid "In brackets"
 msgstr ""
 
 #, fuzzy, python-brace-format
-#| msgid "Use {page} for page number, {total} for total pages"
 msgid ""
 "Use {page} for page number, {total} for total pages. Click presets above or "
 "enter custom format."
@@ -549,9 +537,6 @@ msgstr ""
 "шрифта."
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
 "split your PDF into smaller parts."
@@ -591,7 +576,6 @@ msgstr "Выбрать страницу"
 msgid "How to use:"
 msgstr "Как использовать:"
 
-#, fuzzy
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use corner handles to scale. Use the Rotation slider below to rotate. Click "
@@ -633,18 +617,12 @@ msgstr "Цвет"
 msgid "Opacity"
 msgstr "Прозрачность"
 
-#, fuzzy
-#| msgid "Rotation Angle"
 msgid "Rotation"
 msgstr "Угол поворота"
 
 msgid "Interactive controls:"
 msgstr "Интерактивные элементы:"
 
-#, fuzzy
-#| msgid ""
-#| "Drag the watermark to move it. Drag any corner handle to rotate and scale "
-#| "simultaneously."
 msgid ""
 "Drag the watermark to move it. Use corner handles to scale. Use the rotation "
 "slider above to rotate."
@@ -1087,7 +1065,6 @@ msgstr ""
 msgid "Tips:"
 msgstr "Советы:"
 
-#, fuzzy
 msgid "A crop area covering most of the page is selected by default"
 msgstr ""
 "#-#-#-#-#  django.po (Convertica)  #-#-#-#-#\n"
@@ -1097,7 +1074,6 @@ msgstr ""
 "По умолчанию выбрана область обрезки, покрывающая большую часть страницы - "
 "при необходимости настройте её"
 
-#, fuzzy
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
@@ -1172,7 +1148,6 @@ msgstr ""
 msgid "Drag to select crop area..."
 msgstr "Перетащите для выбора области обрезки..."
 
-#, fuzzy
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
 "drag the box to move it."
@@ -1184,10 +1159,6 @@ msgstr ""
 "Выбор слишком мал. Выбрана вся страница. Перетащите, чтобы создать новый "
 "выбор, или перетащите рамку, чтобы переместить её."
 
-#, fuzzy
-#| msgid ""
-#| "Crop area selected! Drag the box to move it or use handles to resize. "
-#| "Click \"Crop PDF\" when ready."
 msgid ""
 "Crop area selected! Drag the box to move it or use handles to resize. Click "
 "\\\"Crop PDF\\\" when ready."
@@ -1195,10 +1166,6 @@ msgstr ""
 "Область обрезки выбрана! Перетащите рамку для перемещения или используйте "
 "маркеры для изменения размера. Нажмите \"Обрезать PDF\", когда будете готовы."
 
-#, fuzzy
-#| msgid ""
-#| "Crop area moved! Drag again to reposition or use handles to resize. Click "
-#| "\"Crop PDF\" when ready."
 msgid ""
 "Crop area moved! Drag again to reposition or use handles to resize. Click \\"
 "\"Crop PDF\\\" when ready."
@@ -1229,10 +1196,6 @@ msgstr ""
 "Поддерживаются PDF файлы до 50 страниц. Для больших файлов, пожалуйста, "
 "разбейте их на более мелкие части."
 
-#, fuzzy
-#| msgid ""
-#| "Please enter page numbers to remove, or select \"All pages\" or \"Current "
-#| "page only\""
 msgid ""
 "Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
 "\"Current page only\\\""
@@ -1742,8 +1705,6 @@ msgstr "Форма обратной связи"
 msgid "Language"
 msgstr "Язык"
 
-#, fuzzy
-#| msgid "Select Page"
 msgid "Select language"
 msgstr "Выбрать страницу"
 
@@ -1896,7 +1857,6 @@ msgstr "файлы"
 msgid "multiple files supported"
 msgstr "поддерживается несколько файлов"
 
-#, fuzzy
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
@@ -1956,13 +1916,9 @@ msgstr "Выберите PDF файлы"
 msgid "+ Add more files"
 msgstr "+ Добавить еще файлы"
 
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your PDF files here"
 msgstr "Перетащите файл сюда"
 
-#, fuzzy
-#| msgid "Use the button above to browse files"
 msgid "Or use the button above to browse files"
 msgstr "Используйте кнопку выше для выбора файлов"
 
@@ -3105,9 +3061,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
@@ -3172,8 +3125,6 @@ msgstr "Статьи"
 msgid "English Content"
 msgstr "Английский контент"
 
-#, fuzzy
-#| msgid "Excerpt (English)"
 msgid "SEO - English"
 msgstr "Отрывок (английский)"
 
@@ -3352,8 +3303,6 @@ msgstr ""
 msgid "Conversion failed. Please try again."
 msgstr "Конвертация не удалась. Пожалуйста, попробуйте снова."
 
-#, fuzzy
-#| msgid "All PDF Tools - Convertica"
 msgid "PDF to Word - Convertica"
 msgstr "PDF в Word - Convertica"
 

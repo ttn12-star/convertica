@@ -38,8 +38,6 @@ msgstr ""
 msgid "Go Back"
 msgstr ""
 
-#, fuzzy
-#| msgid "Home"
 msgid "Go Home"
 msgstr "الصفحة الرئيسية"
 
@@ -57,8 +55,6 @@ msgid ""
 "error, please contact support."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Form"
 msgid "Contact Support"
 msgstr "نموذج الاتصال"
 
@@ -76,13 +72,9 @@ msgid ""
 "moved, deleted, or never existed."
 msgstr ""
 
-#, fuzzy
-#| msgid "View All Tools"
 msgid "Browse All Tools"
 msgstr "عرض جميع الأدوات"
 
-#, fuzzy
-#| msgid "Popular Tools"
 msgid "Popular pages:"
 msgstr "أدوات شائعة"
 
@@ -112,16 +104,12 @@ msgid ""
 "and is working to fix the issue. Please try again in a few moments."
 msgstr ""
 
-#, fuzzy
-#| msgid "Try it"
 msgid "Try Again"
 msgstr "جربها"
 
 msgid "If the problem persists, please"
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Us"
 msgid "contact us"
 msgstr "اتصل بنا"
 
@@ -396,22 +384,15 @@ msgstr "جرّب قوة أدوات Convertica لملفات PDF اليوم."
 msgid "Explore All Tools"
 msgstr "استكشف جميع الأدوات"
 
-#, fuzzy
-#| msgid "Ready to Get Started?"
 msgid "Get Started"
 msgstr "هل أنت مستعد للبدء؟"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Preview Page Numbers"
 msgstr "إضافة أرقام الصفحات"
 
 msgid "Select page"
 msgstr "اختر صفحة"
 
-#, fuzzy
-#| msgid ""
-#| "Preview how the page numbers will look on your PDF using the live preview"
 msgid ""
 "Preview shows how page numbers will appear on your PDF. Adjust settings "
 "below to see real-time changes."
@@ -449,8 +430,6 @@ msgstr "حجم الخط"
 msgid "Starting Page Number"
 msgstr "رقم الصفحة الابتدائية"
 
-#, fuzzy
-#| msgid "Format"
 msgid "Custom Format"
 msgstr "تنسيق"
 
@@ -467,7 +446,6 @@ msgid "In brackets"
 msgstr ""
 
 #, fuzzy, python-brace-format
-#| msgid "Use {page} for page number, {total} for total pages"
 msgid ""
 "Use {page} for page number, {total} for total pages. Click presets above or "
 "enter custom format."
@@ -538,9 +516,6 @@ msgstr ""
 "وحجم الخط الذي حددته."
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
 "split your PDF into smaller parts."
@@ -580,11 +555,6 @@ msgstr "اختر الصفحة"
 msgid "How to use:"
 msgstr "كيفية الاستخدام:"
 
-#, fuzzy
-#| msgid ""
-#| "The watermark appears at the bottom of the page by default. Drag it to "
-#| "move, use the top handle to rotate, and the corner handle to scale. Click "
-#| "anywhere on the PDF to reposition it."
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use corner handles to scale. Use the Rotation slider below to rotate. Click "
@@ -621,18 +591,12 @@ msgstr "لون"
 msgid "Opacity"
 msgstr "الشفافية"
 
-#, fuzzy
-#| msgid "Rotation Angle"
 msgid "Rotation"
 msgstr "زاوية التدوير"
 
 msgid "Interactive controls:"
 msgstr "عناصر التحكم التفاعلية:"
 
-#, fuzzy
-#| msgid ""
-#| "Drag the watermark to move it. Drag any corner handle to rotate and scale "
-#| "simultaneously."
 msgid ""
 "Drag the watermark to move it. Use corner handles to scale. Use the rotation "
 "slider above to rotate."
@@ -782,7 +746,7 @@ msgid "Split PDF into multiple files by pages or ranges."
 msgstr "تقسيم PDF إلى عدة ملفات حسب الصفحات أو النطاقات."
 
 msgid "Remove Pages"
-msgstr "إزالة الصفحات"
+msgstr "حذف الصفحات"
 
 msgid "Remove unwanted pages from your PDF document."
 msgstr "إزالة الصفحات غير المرغوب فيها من مستند PDF الخاص بك."
@@ -838,7 +802,6 @@ msgstr "مرتفع"
 msgid "Slower, more compression"
 msgstr "أبطأ، ضغط أكثر"
 
-#, fuzzy
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
@@ -1067,7 +1030,6 @@ msgstr "نصائح:"
 msgid "A crop area covering most of the page is selected by default"
 msgstr "يتم تحديد منطقة قص تغطي معظم الصفحة بشكل افتراضي"
 
-#, fuzzy
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
@@ -1141,10 +1103,6 @@ msgstr ""
 "التحديد صغير جداً. تم تحديد الصفحة الكاملة. اسحب لإنشاء تحديد جديد أو اسحب "
 "المربع لتحريكه."
 
-#, fuzzy
-#| msgid ""
-#| "Crop area ready! Drag the box to move it, drag from outside to create a "
-#| "new selection, or use handles to resize."
 msgid ""
 "Crop area selected! Drag the box to move it or use handles to resize. Click "
 "\\\"Crop PDF\\\" when ready."
@@ -1229,13 +1187,9 @@ msgstr ""
 msgid "Find answers to common questions about Convertica PDF tools"
 msgstr ""
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "General Questions"
 msgstr "الأسئلة الشائعة"
 
-#, fuzzy
-#| msgid "Is Convertica really free?"
 msgid "Is Convertica free to use?"
 msgstr "هل Convertica مجانية حقاً؟"
 
@@ -1253,8 +1207,6 @@ msgid ""
 "registration. Simply upload your file and start converting immediately."
 msgstr ""
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What file formats does Convertica support?"
 msgstr "ما هي تنسيقات الملفات المدعومة؟"
 
@@ -1272,8 +1224,6 @@ msgid ""
 "any size, from small documents to large PDF files."
 msgstr ""
 
-#, fuzzy
-#| msgid "Conversion Complete!"
 msgid "Conversion Questions"
 msgstr "اكتمل التحويل!"
 
@@ -1288,8 +1238,6 @@ msgid ""
 "All conversions are free and require no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "How do I convert PDF to Word?"
 msgstr "تحويل PDF إلى Word"
 
@@ -1300,8 +1248,6 @@ msgid ""
 "the download button. The conversion is free and requires no registration."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "How do I convert Word to PDF?"
 msgstr "التحويل إلى PDF"
 
@@ -1311,8 +1257,6 @@ msgid ""
 "document."
 msgstr ""
 
-#, fuzzy
-#| msgid "Convert PDF to JPG"
 msgid "Can I convert PDF to JPG?"
 msgstr "تحويل PDF إلى JPG"
 
@@ -1331,8 +1275,6 @@ msgid ""
 "with automatic A4 formatting."
 msgstr ""
 
-#, fuzzy
-#| msgid "Extract tables from PDF and convert to Excel format."
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "استخراج الجداول من PDF وتحويلها إلى تنسيق Excel."
 
@@ -1342,8 +1284,6 @@ msgid ""
 "Excel file."
 msgstr ""
 
-#, fuzzy
-#| msgid "Organization"
 msgid "Editing & Organization"
 msgstr "التنظيم"
 
@@ -1386,8 +1326,6 @@ msgid ""
 "downloading."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your cropped PDF file"
 msgid "How do I compress a PDF file?"
 msgstr "قم بتنزيل ملف PDF المقطوع"
 
@@ -1405,8 +1343,6 @@ msgid ""
 "you want to rotate and choose the rotation angle."
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your watermarked PDF file"
 msgid "How do I add a watermark to PDF?"
 msgstr "قم بتنزيل ملف PDF مع العلامة المائية"
 
@@ -1422,10 +1358,6 @@ msgstr ""
 msgid "Is my data secure?"
 msgstr ""
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -1443,8 +1375,6 @@ msgid ""
 "click protect. The PDF will be encrypted and require a password to open."
 msgstr ""
 
-#, fuzzy
-#| msgid "Remove password protection from your PDF documents."
 msgid "Can I remove password protection from a PDF?"
 msgstr "إزالة حماية كلمة المرور من مستندات PDF الخاصة بك."
 
@@ -1457,10 +1387,6 @@ msgstr ""
 msgid "Are my files stored on your servers?"
 msgstr ""
 
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
@@ -1472,8 +1398,6 @@ msgstr ""
 msgid "Technical Questions"
 msgstr ""
 
-#, fuzzy
-#| msgid "What file formats are supported?"
 msgid "What browsers are supported?"
 msgstr "ما هي تنسيقات الملفات المدعومة؟"
 
@@ -1483,8 +1407,6 @@ msgid ""
 "smartphones and tablets."
 msgstr ""
 
-#, fuzzy
-#| msgid "How long does it take to process files?"
 msgid "How long does conversion take?"
 msgstr "كم من الوقت تستغرق معالجة الملفات؟"
 
@@ -1494,8 +1416,6 @@ msgid ""
 "shown during conversion."
 msgstr ""
 
-#, fuzzy
-#| msgid "Wait for the conversion to complete"
 msgid "What if conversion fails?"
 msgstr "انتظر حتى يكتمل التحويل"
 
@@ -1590,8 +1510,6 @@ msgstr ""
 msgid "Examples: Page views, time spent on site, error tracking"
 msgstr "أمثلة: مشاهدات الصفحة، الوقت المستغرق في الموقع، تتبع الأخطاء"
 
-#, fuzzy
-#| msgid "Analytics Cookies"
 msgid "Enable Analytics Cookies"
 msgstr "ملفات تعريف الارتباط التحليلية"
 
@@ -1608,8 +1526,6 @@ msgstr ""
 msgid "Examples: Ad targeting, conversion tracking, remarketing"
 msgstr "أمثلة: استهداف الإعلانات، تتبع التحويلات، إعادة التسويق"
 
-#, fuzzy
-#| msgid "Marketing Cookies"
 msgid "Enable Marketing Cookies"
 msgstr "ملفات تعريف الارتباط التسويقية"
 
@@ -1644,8 +1560,6 @@ msgstr "نموذج الاتصال"
 msgid "Language"
 msgstr "اللغة"
 
-#, fuzzy
-#| msgid "Select Page"
 msgid "Select language"
 msgstr "اختر الصفحة"
 
@@ -1664,8 +1578,6 @@ msgstr "الشروط"
 msgid "Convertica - Home"
 msgstr "Convertica - الصفحة الرئيسية"
 
-#, fuzzy
-#| msgid "Convertica"
 msgid "Convertica Logo"
 msgstr "Convertica"
 
@@ -1682,7 +1594,7 @@ msgid "Convert from PDF"
 msgstr "التحويل من PDF"
 
 msgid "Convert to PDF"
-msgstr "التحويل إلى PDF"
+msgstr "تحويل إلى PDF"
 
 msgid "Edit PDF tools"
 msgstr "أدوات تحرير PDF"
@@ -1858,7 +1770,6 @@ msgstr "الملفات المحددة"
 msgid "Preview & Reorder Pages"
 msgstr "معاينة وإعادة ترتيب الصفحات"
 
-#, fuzzy
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 msgstr ""
@@ -1920,7 +1831,6 @@ msgstr "إعادة ترتيب الصفحات"
 msgid "Sort Pages"
 msgstr "فرز الصفحات"
 
-#, fuzzy
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
@@ -1965,19 +1875,11 @@ msgstr ""
 "يتم دعم ملفات PDF التي تصل إلى 50 صفحة للتنظيم. للملفات الأكبر، يرجى تقسيمها "
 "إلى أجزاء أصغر. يمكنك سحب الصفحات وإفلاتها لإعادة ترتيبها بصرياً."
 
-#, fuzzy
-#| msgid ""
-#| "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#| "conversion)"
 msgid ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
 msgstr "انقر على زر التحويل لبدء تحويل PDF إلى Word (تحويل PDF إلى DOCX)"
 
-#, fuzzy
-#| msgid ""
-#| "Wait for the PDF to Word conversion to complete - text and formatting "
-#| "will be extracted from your PDF and converted to editable Word format"
 msgid ""
 "Wait for the PDF to Excel conversion to complete - tables and data will be "
 "extracted from your PDF and converted to editable Excel format"
@@ -1985,10 +1887,6 @@ msgstr ""
 "انتظر حتى يكتمل تحويل PDF إلى Word - سيتم استخراج النص والتنسيق من PDF الخاص "
 "بك وتحويله إلى تنسيق Word قابل للتحرير"
 
-#, fuzzy
-#| msgid ""
-#| "Download your editable Word document (DOCX format) - your PDF has been "
-#| "successfully converted to Word"
 msgid ""
 "Download your editable Excel file (XLSX format) - your PDF tables have been "
 "successfully converted to Excel"
@@ -1996,11 +1894,6 @@ msgstr ""
 "قم بتنزيل مستند Word القابل للتحرير (تنسيق DOCX) - تم تحويل PDF الخاص بك "
 "بنجاح إلى Word"
 
-#, fuzzy
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. Text-based PDFs work best - scanned PDFs "
-#| "(image-only) cannot be converted to editable Word format."
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. PDF files with tables work best - plain text will "
@@ -2929,9 +2822,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
@@ -3129,21 +3019,15 @@ msgstr ""
 msgid "Subject"
 msgstr "الموضوع"
 
-#, fuzzy
-#| msgid "Subject"
 msgid "Enter subject"
 msgstr "الموضوع"
 
 msgid "Message"
 msgstr "الرسالة"
 
-#, fuzzy
-#| msgid "Converting your images..."
 msgid "Enter your message"
 msgstr "جاري تحويل صورك..."
 
-#, fuzzy
-#| msgid "Changes to This Privacy Policy"
 msgid "I agree to the Privacy Policy"
 msgstr "تغييرات على سياسة الخصوصية هذه"
 
@@ -3168,10 +3052,8 @@ msgstr ""
 msgid "Conversion failed. Please try again."
 msgstr "فشل التحويل. يرجى المحاولة مرة أخرى."
 
-#, fuzzy
-#| msgid "All PDF Tools - Convertica"
 msgid "PDF to Word - Convertica"
-msgstr "جميع أدوات PDF - Convertica"
+msgstr "PDF إلى Word - Convertica"
 
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
@@ -3265,8 +3147,6 @@ msgstr "اتصال Convertica، الدعم، خدمة العملاء، المس�
 msgid "Please correct the errors in the form below."
 msgstr "يرجى تصحيح الأخطاء في النموذج أدناه."
 
-#, fuzzy
-#| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "الأسئلة الشائعة"
 

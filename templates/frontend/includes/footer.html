@@ -187,7 +187,7 @@
                   class="w-full border border-gray-600 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 bg-gray-800 text-white cursor-pointer hover:border-gray-500 transition-colors shadow-lg">
             {% for code, name in LANGUAGES %}
               <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-                {{ name }}
+                {% if code == 'en' %}English{% else %}{{ name }}{% endif %}
               </option>
             {% endfor %}
           </select>
