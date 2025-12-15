@@ -32,6 +32,11 @@ class RateLimitMiddleware(MiddlewareMixin):
         if not CACHE_AVAILABLE:
             return None
 
+        # Skip rate limiting for task status polling (safe GET endpoint)
+        # These are polled frequently during async conversions
+        if "/api/tasks/" in request.path and "/status/" in request.path:
+            return None
+
         # Get client IP
         x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
         if x_forwarded_for:
