@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_noop
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 
@@ -105,8 +106,10 @@ def _get_converter_context(
 def pdf_to_word_page(request):
     """PDF to Word conversion page."""
     context = _get_converter_context(
-        page_title_key="PDF to Word - Convertica",
-        page_description_key="Convert PDF to Word online free without losing formatting. Fast PDF to DOCX converter with no email required, unlimited conversions, high-quality output. Perfect for students, professionals, and businesses. No registration needed.",
+        page_title_key=gettext_noop("PDF to Word - Convertica"),
+        page_description_key=gettext_noop(
+            "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX converter with no email required, unlimited conversions, high-quality output. Perfect for students, professionals, and businesses. No registration needed."
+        ),
         page_keywords_key="PDF to Word, PDF to DOCX, convert PDF to Word online free, pdf to word without losing formatting, pdf to word converter no email, pdf to word fast online, pdf to editable word free, pdf to docx converter online, scanned pdf to word ocr free, convert protected pdf to word, pdf to word converter without watermark, pdf to word mobile friendly, pdf to word best quality, how to convert pdf to word without adobe, pdf to word converter unlimited, pdf to word converter no sign up, pdf to doc online converter, pdf to word export free, pdf form to word converter, pdf table to word online, convert pdf resume to word, pdf to word batch converter, convert multiple pdf to word online, pdf to word no ads, pdf to word no virus, pdf to word converter with ocr, pdf to word converter small file, pdf to word converter large file, pdf to word converter clean layout, pdf to word converter best 2025, pdf to word converter high accuracy, pdf to word converter for mac online, pdf to word for linux online, pdf to word converter for students, free pdf to word tool safe, pdf to word without registration, pdf to word one click, convert locked pdf to word, pdf to word keep images, pdf to word high resolution, pdf to word for legal documents, pdf to word for invoice, pdf to word maintain formatting, pdf to word google drive safe, pdf to word cloud converter, pdf to word export text only, pdf text to word converter, pdf to word editor included, pdf to doc converter without errors, best ocr pdf to word free, extract text from pdf to word, scanned image pdf to docx, pdf to word converter for handwriting, convert pdf article to word, convert pdf chapters to word, pdf to word export without tables mess, pdf to word italics preserved, pdf to word job application, pdf to word academic paper, pdf to word bibliography correct, pdf to word table alignment maintained, pdf to word hyperlinked text preserved",
         page_subtitle_key="Convert your PDF documents to editable Word format in seconds",
         header_text_key="PDF to Word Converter",
