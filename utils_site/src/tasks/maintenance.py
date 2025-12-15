@@ -5,8 +5,8 @@ These tasks handle periodic maintenance operations like
 cleaning up temporary files, updating statistics, etc.
 """
 
+import os
 import shutil
-import tempfile
 import time
 from pathlib import Path
 
@@ -16,9 +16,11 @@ from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)
 
-# Default async temp directory
+# Default async temp directory - uses MEDIA_ROOT for shared access
 ASYNC_TEMP_DIR = getattr(
-    settings, "ASYNC_TEMP_DIR", Path(tempfile.gettempdir()) / "convertica_async"
+    settings,
+    "ASYNC_TEMP_DIR",
+    Path(getattr(settings, "MEDIA_ROOT", "/app/media")) / "async_temp",
 )
 
 
