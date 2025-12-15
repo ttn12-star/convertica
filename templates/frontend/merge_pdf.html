@@ -120,6 +120,7 @@
     window.SELECT_AT_LEAST_2_FILES = "{% trans 'Please select at least 2 PDF files to merge.' %}";
     window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
   </script>
+  <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/merge-pdf-multi.js' %}"></script>
 {% endblock %}
 

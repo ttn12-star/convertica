@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearError();
 
             if (typeof pdfjsLib === 'undefined') {
-                showError('PDF.js library is not loaded. Please refresh the page and try again.');
+                window.showError('PDF.js library is not loaded. Please refresh the page and try again.', 'editorResult');
                 return;
             }
             cleanupPreviousPDF();
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validate file type
             if (!file || !file.type || !file.type.includes('pdf')) {
-                showError('Please select a valid PDF file.');
+                window.showError('Please select a valid PDF file.', 'editorResult');
                 // Hide preview sections on validation error
                 pdfPreviewSection.classList.add('hidden');
                 watermarkSettingsSection.classList.add('hidden');
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Check if arrayBuffer is valid
             if (!arrayBuffer || arrayBuffer.byteLength === 0) {
-                showError('Failed to read file. Please try again.');
+                window.showError('Failed to read file. Please try again.', 'editorResult');
                 // Hide preview sections on validation error
                 pdfPreviewSection.classList.add('hidden');
                 watermarkSettingsSection.classList.add('hidden');
@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error(`PDF load attempt ${retryCount} failed:`, error);
 
                     if (retryCount >= maxRetries) {
-                        showError('Failed to load PDF file. Please try again.');
+                        window.showError('Failed to load PDF file. Please try again.', 'editorResult');
                         // Hide preview sections on load error
                         pdfPreviewSection.classList.add('hidden');
                         watermarkSettingsSection.classList.add('hidden');
@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            showError(errorMessage);
+            window.showError(errorMessage, 'editorResult');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
                 console.error('Error details:', {
@@ -927,34 +927,26 @@ document.addEventListener('DOMContentLoaded', () => {
             dragStartY = newY;
             updateWatermarkPreview();
         } else if (isRotating) {
-            // Rotation only from rotation handle
+            // Rotation only from rotation handle - direct angle tracking
             const scaleFactor = canvasWidth / pdfPageWidth;
             const centerX = watermarkX * scaleFactor;
             const centerY = canvasHeight - (watermarkY * scaleFactor);
 
-            // Calculate angle from center to current cursor position
+            // Calculate current angle from center to cursor position
             const currentAngle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
 
-            // Calculate initial angle from center to starting position
-            const startAngle = Math.atan2(dragStartY - centerY, dragStartX - centerX) * (180 / Math.PI);
+            // Calculate rotation change relative to initial drag position
+            let rotationChange = currentAngle - dragStartAngle;
 
-            // Calculate rotation change with reduced sensitivity and correct direction
-            let rotationChange = startAngle - currentAngle; // Reversed for correct direction
-            rotationChange *= 0.15; // Further reduce sensitivity for very smooth rotation
-
-            // Add smoothing to prevent sudden jumps
-            const maxChangePerFrame = 2.0; // Max 2 degrees per frame
-            rotationChange = Math.max(-maxChangePerFrame, Math.min(maxChangePerFrame, rotationChange));
-
-            // Handle angle wrap-around for smooth rotation
+            // Handle angle wrap-around smoothly (avoid 360-degree jumps)
             if (rotationChange > 180) rotationChange -= 360;
             if (rotationChange < -180) rotationChange += 360;
 
-            // Apply rotation with smooth transitions
+            // Apply rotation directly (1:1 mapping for intuitive control)
             let newRotation = initialRotation + rotationChange;
 
             // Normalize angle to 0-360 range
-            while (newRotation > 360) newRotation -= 360;
+            while (newRotation >= 360) newRotation -= 360;
             while (newRotation < 0) newRotation += 360;
 
             watermarkRotation = newRotation;
@@ -974,7 +966,30 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             const scaleRatio = currentDistance / initialDistance;
-            watermarkScale = Math.max(0.1, Math.min(3.0, initialScale * scaleRatio));
+
+            // Calculate max scale based on page size to prevent watermark from exceeding page bounds
+            let maxScale = 3.0;
+            const isText = watermarkTypeText?.checked;
+            if (isText) {
+                // For text: estimate width based on font size and text length
+                const fontSize = parseInt(fontSizeSlider?.value || 72);
+                const text = watermarkText?.value || 'CONFIDENTIAL';
+                const estimatedWidth = fontSize * text.length * 0.6; // Approximate character width
+                const estimatedHeight = fontSize * 1.2;
+                const maxScaleWidth = (pdfPageWidth * 0.95) / estimatedWidth;
+                const maxScaleHeight = (pdfPageHeight * 0.95) / estimatedHeight;
+                maxScale = Math.max(0.5, Math.min(maxScaleWidth, maxScaleHeight, 5.0));
+            } else if (watermarkImage) {
+                // For image: use actual image dimensions with base scale
+                const baseScale = Math.min(pdfPageWidth / watermarkImage.width, pdfPageHeight / watermarkImage.height) * 0.5;
+                const scaledWidth = watermarkImage.width * baseScale;
+                const scaledHeight = watermarkImage.height * baseScale;
+                const maxScaleWidth = (pdfPageWidth * 0.95) / scaledWidth;
+                const maxScaleHeight = (pdfPageHeight * 0.95) / scaledHeight;
+                maxScale = Math.max(0.5, Math.min(maxScaleWidth, maxScaleHeight, 5.0));
+            }
+
+            watermarkScale = Math.max(0.1, Math.min(maxScale, initialScale * scaleRatio));
 
             // Update hidden input
             if (scaleInput) scaleInput.value = watermarkScale.toFixed(2);
@@ -1088,11 +1103,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function escapeHtml(text) {
+    // Use escapeHtml from utils.js
+    const escapeHtml = window.escapeHtml || function(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
-    }
+    };
 
     // Form submission
     form.addEventListener('submit', async (e) => {
@@ -1104,7 +1120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (watermarkX === null || watermarkY === null) {
-            showError('Please wait for PDF to load, then adjust the watermark.');
+            window.showError('Please wait for PDF to load, then adjust the watermark.', 'editorResult');
             return;
         }
 
@@ -1113,7 +1129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
 
         if (!selectedFile) {
-            showError(window.SELECT_FILE_MESSAGE || 'Please select a file');
+            window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'editorResult');
             return;
         }
 
@@ -1124,7 +1140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const xValue = parseFloat(xInput.value);
         const yValue = parseFloat(yInput.value);
         if (isNaN(xValue) || isNaN(yValue)) {
-            showError('Invalid watermark position. Please click on the PDF to set the position.');
+            window.showError('Invalid watermark position. Please click on the PDF to set the position.', 'editorResult');
             return;
         }
 
@@ -1169,7 +1185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideDownload();
 
         // Show loading
-        showLoading();
+        window.showLoading('loadingContainer');
 
         // Disable form
         setFormDisabled(true);
@@ -1199,235 +1215,60 @@ document.addEventListener('DOMContentLoaded', () => {
             const blob = await response.blob();
 
             // Success
-            hideLoading();
-            showDownloadButton(selectedFile.name, blob);
+            window.hideLoading('loadingContainer');
+            window.showDownloadButton(blob, selectedFile.name, 'downloadContainer', {
+                successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
+                downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
+                convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
+                onConvertAnother: () => {
+                    const fileInput = document.getElementById('fileInput');
+                    const fileInputDrop = document.getElementById('fileInputDrop');
+                    const selectedFileDiv = document.getElementById('selectedFile');
+                    const fileInfo = document.getElementById('fileInfo');
+                    const editButton = document.getElementById('editButton');
+
+                    if (fileInput) fileInput.value = '';
+                    if (fileInputDrop) fileInputDrop.value = '';
+
+                    if (selectedFileDiv) {
+                        selectedFileDiv.classList.add('hidden');
+                    }
+                    if (fileInfo) {
+                        fileInfo.classList.remove('hidden');
+                    }
+
+                    if (editButton) {
+                        editButton.disabled = true;
+                    }
+
+                    hideDownload();
+                    hideResult();
+                    setFormDisabled(false);
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+
+                    setTimeout(() => {
+                        const selectFileButton = document.getElementById('selectFileButton');
+                        if (selectFileButton) {
+                            selectFileButton.focus();
+                        }
+                    }, 800);
+                }
+            });
             setFormDisabled(false);
 
         } catch (error) {
-            hideLoading();
-            showError(error.message || window.ERROR_MESSAGE);
+            window.hideLoading('loadingContainer');
+            window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
             setFormDisabled(false);
         }
     });
 
-    function showLoading() {
-        const container = document.getElementById('loadingContainer');
-        if (!container) return;
-
-        container.innerHTML = `
-            <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="relative">
-                        <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            ${window.LOADING_TITLE || 'Processing your file...'}
-                        </h3>
-                        <p class="text-sm sm:text-base text-gray-600">
-                            ${window.LOADING_MESSAGE || 'Please wait, this may take a few moments'}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
-    }
-
-    function hideLoading() {
-        const container = document.getElementById('loadingContainer');
-        if (container) {
-            container.classList.add('hidden');
-        }
-    }
-
-    function showDownloadButton(originalFileName, blob) {
-        const container = document.getElementById('downloadContainer');
-        if (!container) return;
-
-        const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$');
-        const replaceTo = window.REPLACE_TO || '.pdf';
-        const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
-
-        const url = URL.createObjectURL(blob);
-
-        container.innerHTML = `
-            <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            ${window.SUCCESS_TITLE || 'Editing Complete!'}
-                        </h3>
-                        <p class="text-sm sm:text-base text-gray-600 mb-4">
-                            ${window.SUCCESS_MESSAGE || 'Your file is ready to download'}
-                        </p>
-                        <p class="text-xs text-gray-500 font-mono break-all px-2">
-                            ${outputFileName}
-                        </p>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <button id="downloadButton"
-                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                            </svg>
-                            <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
-                        </button>
-                        <button type="button"
-                                id="editAnotherButton"
-                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
-                            <span>${window.EDIT_ANOTHER_TEXT || 'Edit another file'}</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
-
-        // Scroll to download button
-        setTimeout(() => {
-            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
-
-        // Download button handler with showSaveFilePicker
-        const downloadBtn = document.getElementById('downloadButton');
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', async () => {
-                const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
-                let finalName = outputFileName;
-
-                // Try modern file picker to let user choose directory & filename
-                if (window.showSaveFilePicker) {
-                    try {
-                        const handle = await window.showSaveFilePicker({
-                            suggestedName: outputFileName,
-                            types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
-                        });
-                        const writable = await handle.createWritable();
-                        await writable.write(blob);
-                        await writable.close();
-                        finalName = handle.name || outputFileName;
-                        downloadBtn.classList.add('bg-green-700');
-                        downloadBtn.innerHTML = '<span>✓ ' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
-                        setTimeout(() => {
-                            downloadBtn.classList.remove('bg-green-700');
-                            downloadBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg><span>' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
-                        }, 2000);
-                        return;
-                    } catch (err) {
-                        if (err.name !== 'AbortError') {
-                            console.warn('File picker failed, falling back to direct download:', err);
-                        } else {
-                            // User cancelled
-                            return;
-                        }
-                    }
-                }
-
-                // Fallback: prompt for filename, then trigger download (browser will ask location)
-                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', outputFileName);
-                if (input && input.trim()) {
-                    finalName = input.trim();
-                    const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
-                    if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
-                        finalName += originalExt;
-                    }
-                }
-
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = finalName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            });
-        }
-
-        // Edit another button handler with smooth scroll to top
-        const editAnotherBtn = document.getElementById('editAnotherButton');
-        if (editAnotherBtn) {
-            editAnotherBtn.addEventListener('click', () => {
-                // Hide selected file display
-                const selectedFileDiv = document.getElementById('selectedFile');
-                if (selectedFileDiv) {
-                    selectedFileDiv.classList.add('hidden');
-                }
-
-                // Reset file input
-                const fileInput = document.getElementById('fileInput');
-                if (fileInput) {
-                    fileInput.value = '';
-                }
-
-                // Reset watermark options
-                const watermarkText = document.getElementById('watermarkText');
-                const watermarkOpacity = document.getElementById('watermarkOpacity');
-                const watermarkRotation = document.getElementById('watermarkRotation');
-                if (watermarkText) watermarkText.value = '';
-                if (watermarkOpacity) watermarkOpacity.value = '50';
-                if (watermarkRotation) watermarkRotation.value = '45';
-
-                // Hide download container
-                hideDownload();
-
-                // Clear PDF preview
-                cleanupPreviousPDF();
-                if (pdfPreviewSection) {
-                    pdfPreviewSection.classList.add('hidden');
-                }
-
-                // Smooth scroll to top of page
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-
-                // Focus on select button after scroll completes
-                setTimeout(() => {
-                    const selectFileButton = document.getElementById('selectFileButton');
-                    if (selectFileButton) {
-                        selectFileButton.focus();
-                    }
-                }, 800); // Wait for smooth scroll to complete
-            });
-        }
-    }
-
     function hideDownload() {
-        const container = document.getElementById('downloadContainer');
-        if (container) {
-            container.classList.add('hidden');
-        }
-    }
-
-    function showError(message) {
-        if (!resultContainer) return;
-
-        resultContainer.innerHTML = `
-            <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-3">
-                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-red-900 mb-1">
-                            ${window.ERROR_TITLE || 'Error'}
-                        </h3>
-                        <p class="text-sm text-red-700">
-                            ${escapeHtml(message)}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        `;
-        resultContainer.classList.remove('hidden');
+        window.hideDownload('downloadContainer');
     }
 
     function hideResult() {

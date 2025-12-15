@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideDownload();
 
         // Show loading animation
-        showLoading();
+        window.showLoading('loadingContainer');
 
         // Disable form
         setFormDisabled(true);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Success - show download button
-            hideLoading();
+            window.hideLoading('loadingContainer');
 
             // Check if this is a compression response
             const inputSize = response.headers.get('X-Input-Size');
@@ -154,255 +154,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             }
 
-            showDownloadButton(selectedFile.name, blob);
+            window.showDownloadButton(blob, selectedFile.name, 'downloadContainer', {
+                successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
+                downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
+                convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
+                onConvertAnother: () => {
+                    const fileInput = document.getElementById('fileInput');
+                    const fileInputDrop = document.getElementById('fileInputDrop');
+                    const selectedFileDiv = document.getElementById('selectedFile');
+                    const fileInfo = document.getElementById('fileInfo');
+                    const editButton = document.getElementById('editButton');
+
+                    if (fileInput) fileInput.value = '';
+                    if (fileInputDrop) fileInputDrop.value = '';
+
+                    if (selectedFileDiv) {
+                        selectedFileDiv.classList.add('hidden');
+                    }
+                    if (fileInfo) {
+                        fileInfo.classList.remove('hidden');
+                    }
+
+                    if (editButton) {
+                        editButton.disabled = true;
+                    }
+
+                    hideDownload();
+                    hideResult();
+                    setFormDisabled(false);
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+
+                    setTimeout(() => {
+                        const selectFileButton = document.getElementById('selectFileButton');
+                        if (selectFileButton) {
+                            selectFileButton.focus();
+                        }
+                    }, 800);
+                }
+            });
             setFormDisabled(false);
 
         } catch (error) {
-            hideLoading();
-            showError(error.message || window.ERROR_MESSAGE);
+            window.hideLoading('loadingContainer');
+            window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
             setFormDisabled(false);
         }
     });
 
-    function showLoading() {
-        const container = document.getElementById('loadingContainer');
-        if (!container) return;
-
-        container.innerHTML = `
-            <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="relative">
-                        <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            ${window.LOADING_TITLE || 'Processing your file...'}
-                        </h3>
-                        <p class="text-sm sm:text-base text-gray-600">
-                            ${window.LOADING_MESSAGE || 'Please wait, this may take a few moments'}
-                        </p>
-                    </div>
-                    <div class="w-full max-w-xs bg-gray-200 rounded-full h-2 overflow-hidden">
-                        <div class="bg-blue-600 h-2 rounded-full animate-progress" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
-
-        // Simulate progress
-        let progress = 0;
-        const progressBar = container.querySelector('.animate-progress');
-        const interval = setInterval(() => {
-            progress += Math.random() * 15;
-            if (progress > 95) progress = 95;
-            if (progressBar) {
-                progressBar.style.width = `${progress}%`;
-            }
-        }, 200);
-
-        // Store interval to clear later
-        container.dataset.interval = interval;
-    }
-
-    function hideLoading() {
-        const container = document.getElementById('loadingContainer');
-        if (!container) return;
-
-        const interval = container.dataset.interval;
-        if (interval) {
-            clearInterval(interval);
-        }
-
-        container.classList.add('hidden');
-    }
-
-    function showDownloadButton(originalFileName, blob) {
-        const container = document.getElementById('downloadContainer');
-        if (!container) return;
-
-        // Generate output filename
-        const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$');
-        const replaceTo = window.REPLACE_TO || '.pdf';
-        const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
-
-        const url = URL.createObjectURL(blob);
-
-        container.innerHTML = `
-            <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            ${window.SUCCESS_TITLE || 'Editing Complete!'}
-                        </h3>
-                        <p class="text-sm sm:text-base text-gray-600 mb-4">
-                            ${window.SUCCESS_MESSAGE || 'Your file is ready to download'}
-                        </p>
-                        <p class="text-xs text-gray-500 font-mono break-all px-2">
-                            ${outputFileName}
-                        </p>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <button id="downloadButton"
-                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                            </svg>
-                            <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
-                        </button>
-                        <button type="button"
-                                id="editAnotherButton"
-                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
-                            <span>${window.EDIT_ANOTHER_TEXT || 'Edit another file'}</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
-
-        // Scroll to download button
-        setTimeout(() => {
-            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
-
-        // Download button handler with showSaveFilePicker
-        const downloadBtn = document.getElementById('downloadButton');
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', async () => {
-                const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
-                let finalName = outputFileName;
-
-                // Try modern file picker to let user choose directory & filename
-                if (window.showSaveFilePicker) {
-                    try {
-                        const handle = await window.showSaveFilePicker({
-                            suggestedName: outputFileName,
-                            types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
-                        });
-                        const writable = await handle.createWritable();
-                        await writable.write(blob);
-                        await writable.close();
-                        finalName = handle.name || outputFileName;
-                        downloadBtn.classList.add('bg-green-700');
-                        downloadBtn.innerHTML = '<span>✓ ' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
-                        setTimeout(() => {
-                            downloadBtn.classList.remove('bg-green-700');
-                            downloadBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg><span>' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
-                        }, 2000);
-                        return;
-                    } catch (err) {
-                        if (err.name !== 'AbortError') {
-                            console.warn('File picker failed, falling back to direct download:', err);
-                        } else {
-                            // User cancelled
-                            return;
-                        }
-                    }
-                }
-
-                // Fallback: prompt for filename, then trigger download (browser will ask location)
-                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', outputFileName);
-                if (input && input.trim()) {
-                    finalName = input.trim();
-                    const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
-                    if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
-                        finalName += originalExt;
-                    }
-                }
-
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = finalName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            });
-        }
-
-        // Edit another button handler
-        const editAnotherBtn = document.getElementById('editAnotherButton');
-        if (editAnotherBtn) {
-            editAnotherBtn.addEventListener('click', () => {
-                const fileInput = document.getElementById('fileInput');
-                const fileInputDrop = document.getElementById('fileInputDrop');
-                const selectedFileDiv = document.getElementById('selectedFile');
-                const fileInfo = document.getElementById('fileInfo');
-                const editButton = document.getElementById('editButton');
-
-                if (fileInput) fileInput.value = '';
-                if (fileInputDrop) fileInputDrop.value = '';
-
-                // Hide selected file display
-                if (selectedFileDiv) {
-                    selectedFileDiv.classList.add('hidden');
-                }
-                if (fileInfo) {
-                    fileInfo.classList.remove('hidden');
-                }
-
-                // Disable edit button
-                if (editButton) {
-                    editButton.disabled = true;
-                }
-
-                hideDownload();
-                hideResult();
-                setFormDisabled(false);
-
-                // Smooth scroll to top of page
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-
-                // Focus on select button after scroll completes
-                setTimeout(() => {
-                    const selectFileButton = document.getElementById('selectFileButton');
-                    if (selectFileButton) {
-                        selectFileButton.focus();
-                    }
-                }, 800); // Wait for smooth scroll to complete
-            });
-        }
-    }
-
     function hideDownload() {
-        const container = document.getElementById('downloadContainer');
-        if (container) {
-            container.classList.add('hidden');
-        }
-    }
-
-    function showError(message) {
-        const container = document.getElementById('editorResult');
-        if (!container) return;
-
-        container.innerHTML = `
-            <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-3">
-                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-red-900 mb-1">
-                            ${window.ERROR_TITLE || 'Error'}
-                        </h3>
-                        <p class="text-sm text-red-700">
-                            ${message}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
+        window.hideDownload('downloadContainer');
     }
 
     function hideResult() {
@@ -424,13 +228,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function formatFileSize(bytes) {
+    // Use formatFileSize from utils.js
+    const formatFileSize = window.formatFileSize || function(bytes) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
         const sizes = ['Bytes', 'KB', 'MB', 'GB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
-    }
+    };
 
     function showCompressionNotification(inputSize, outputSize, compressionRatio) {
         // Create notification container if it doesn't exist
