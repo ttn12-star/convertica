@@ -447,24 +447,60 @@ function hideDownload(containerId = 'downloadContainer') {
 }
 
 /**
- * Update progress bar with real value from server
- * @param {number} progress - Progress percentage (0-100)
+ * Update progress bar with smooth animation
+ * @param {number} targetProgress - Target progress percentage (0-100)
  * @param {string} message - Optional status message
  */
-function updateProgress(progress, message = null) {
+function updateProgress(targetProgress, message = null) {
     const progressBar = document.getElementById('progressBar');
     const progressPercentage = document.getElementById('progressPercentage');
     const progressMessage = document.querySelector('#loadingContainer .text-xs.text-gray-500');
 
-    if (progressBar) {
-        progressBar.style.width = `${progress}%`;
-    }
-    if (progressPercentage) {
-        progressPercentage.textContent = `${Math.round(progress)}%`;
-    }
     if (progressMessage && message) {
         progressMessage.textContent = message;
     }
+
+    if (!progressBar || !progressPercentage) return;
+
+    // Get current progress from the bar width
+    const currentWidth = parseFloat(progressBar.style.width) || 0;
+
+    // If already at or past target, just set it
+    if (currentWidth >= targetProgress) {
+        progressBar.style.width = `${targetProgress}%`;
+        progressPercentage.textContent = `${Math.round(targetProgress)}%`;
+        return;
+    }
+
+    // Clear any existing animation
+    if (window._progressAnimationId) {
+        cancelAnimationFrame(window._progressAnimationId);
+    }
+
+    // Animate smoothly to target
+    const startProgress = currentWidth;
+    const progressDiff = targetProgress - startProgress;
+    const duration = Math.min(500, progressDiff * 20); // 20ms per percent, max 500ms
+    const startTime = performance.now();
+
+    function animateProgress(currentTime) {
+        const elapsed = currentTime - startTime;
+        const t = Math.min(elapsed / duration, 1);
+
+        // Ease-out cubic for smooth deceleration
+        const easeOut = 1 - Math.pow(1 - t, 3);
+
+        const currentProgress = startProgress + (progressDiff * easeOut);
+
+        progressBar.style.width = `${currentProgress}%`;
+        progressPercentage.textContent = `${Math.round(currentProgress)}%`;
+
+        if (t < 1) {
+            window._progressAnimationId = requestAnimationFrame(animateProgress);
+        }
+    }
+
+    window._progressAnimationId = requestAnimationFrame(animateProgress);
 }
 
 /**
