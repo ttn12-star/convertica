@@ -81,6 +81,8 @@ services:
         if [ ! -L /app/src ] && [ ! -d /app/src ]; then ln -s /app/utils_site/src /app/src; fi &&
         mkdir -p /app/media/async_temp &&
         celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
+    mem_swappiness: 60  # Allow using swap when needed
+    memswap_limit: 1536M  # Allow 768M RAM + 768M swap for heavy PDF operations
     deploy:
       resources:
         limits:
