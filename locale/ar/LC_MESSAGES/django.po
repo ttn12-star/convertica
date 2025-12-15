@@ -700,7 +700,7 @@ msgstr "يتم دعم ملفات PDF التي تصل إلى 50 صفحة لإضا
 #: templates/frontend/organize_pdf.html:50
 #, python-format
 msgid ""
-"PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
+"PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
 "split your PDF into smaller parts."
 msgstr "يحتوي PDF على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
 
@@ -3433,12 +3433,6 @@ msgid ""
 "images, and page layout."
 msgstr "يتم دعم مستندات Word التي تصل إلى 50 صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. يحافظ التحويل على التنسيق والخطوط والصور وتخطيط الصفحة."
 
-#: utils_site/src/api/conversion_limits.py:68
-#, python-format
-msgid ""
-"PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
-"your PDF into smaller parts."
-msgstr "يحتوي PDF على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
 
 #: utils_site/src/api/conversion_limits.py:254
 #, python-format
@@ -3453,7 +3447,10 @@ msgstr "الملف كبير جداً لهذه العملية (%(file_mb).1f مي
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
-msgstr "يحتوي PDF على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
+msgstr ""
+"يحتوي ملف PDF على %(page_count)d صفحة. الحد الأقصى المسموح به لعملية "
+"%(operation)s هو %(max_pages)d صفحة. يرجى تقسيم ملف PDF إلى أجزاء أصغر."
+
 
 #: utils_site/src/api/conversion_limits.py:307
 #, python-format
