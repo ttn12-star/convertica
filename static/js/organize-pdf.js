@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function handleFileSelect(file) {
         if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-            showError(window.SELECT_PDF_FILE || 'Please select a PDF file.');
+            window.showError(window.SELECT_PDF_FILE || 'Please select a PDF file.', 'errorMessage');
             return;
         }
 
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Initialize page order (0-based indices)
-            pageOrder = Array.from({ length: pageCount }, (_, i) => i);
+            pageOrder = Array.from({ length: pdfDoc.numPages }, (_, i) => i);
 
             // Render all pages
             await renderAllPages();
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
-            showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.');
+            window.showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.', 'errorMessage');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
             }
@@ -131,20 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         draggedElement = null;
     }
 
-    function showError(message) {
-        // Try to use a more user-friendly error display if available
-        const errorContainer = document.getElementById('errorMessage');
-        if (errorContainer) {
-            errorContainer.textContent = message;
-            errorContainer.classList.remove('hidden');
-            setTimeout(() => {
-                errorContainer.classList.add('hidden');
-            }, 5000);
-        } else {
-            // Fallback to alert
-            alert(message);
-        }
-    }
+    // Use showError from utils.js
 
     function clearError() {
         const errorContainer = document.getElementById('errorMessage');
@@ -384,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         if (!pdfFile || !pdfDoc) {
-            showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.');
+            window.showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.', 'errorMessage');
             return;
         }
 
@@ -404,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : pdfFile;
 
         if (!fileToSubmit) {
-            showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.');
+            window.showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.', 'errorMessage');
             return;
         }
 
@@ -504,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             const failedMsg = window.FAILED_TO_ORGANIZE || 'Failed to organize PDF';
-            showError(`${failedMsg}: ${error.message || 'Unknown error'}`);
+            window.showError(`${failedMsg}: ${error.message || 'Unknown error'}`, 'errorMessage');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error organizing PDF:', error);
             }

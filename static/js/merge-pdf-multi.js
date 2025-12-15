@@ -447,11 +447,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function escapeHtml(text) {
+    // Use escapeHtml from utils.js
+    const escapeHtml = window.escapeHtml || function(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
-    }
+    };
 
     // Form submission - intercept and use API
     form.addEventListener('submit', async (e) => {
@@ -473,12 +474,12 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Form submit - selectedFiles:', selectedFiles);
 
         if (selectedFiles.length < 2) {
-            showError('Please select at least 2 PDF files to merge.');
+            window.showError('Please select at least 2 PDF files to merge.', 'editorResult');
             return;
         }
 
         if (selectedFiles.length > 10) {
-            showError('Maximum 10 PDF files allowed.');
+            window.showError('Maximum 10 PDF files allowed.', 'editorResult');
             return;
         }
 
@@ -515,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideDownload();
 
         // Show loading
-        showLoading();
+        window.showLoading('loadingContainer');
 
         // Disable form
         setFormDisabled(true);
@@ -559,232 +560,47 @@ document.addEventListener('DOMContentLoaded', () => {
             const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
 
             // Hide loading and show download button
-            hideLoading();
-            showDownloadButton(outputFileName, blob);
+            window.hideLoading('loadingContainer');
+            window.showDownloadButton(blob, outputFileName, 'downloadContainer', {
+                successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
+                downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
+                convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
+                onConvertAnother: () => {
+                    const selectedFileDiv = document.getElementById('selectedFile');
+                    if (selectedFileDiv) {
+                        selectedFileDiv.classList.add('hidden');
+                    }
+                    const fileInput = document.getElementById('fileInput');
+                    if (fileInput) {
+                        fileInput.value = '';
+                    }
+                    hideDownload();
+                    hideResult();
+                    setFormDisabled(false);
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    setTimeout(() => {
+                        const selectFileButton = document.getElementById('selectFileButton');
+                        if (selectFileButton) {
+                            selectFileButton.focus();
+                        }
+                    }, 800);
+                }
+            });
             setFormDisabled(false);
 
         } catch (error) {
             console.error('Error merging PDFs:', error);
-            hideLoading();
-            showError(error.message || 'An error occurred while merging PDFs. Please try again.');
+            window.hideLoading('loadingContainer');
+            window.showError(error.message || 'An error occurred while merging PDFs. Please try again.', 'editorResult');
             setFormDisabled(false);
         }
     });
 
-    // Helper functions for UI
-    function showLoading() {
-        const container = document.getElementById('loadingContainer');
-        if (!container) return;
-
-        container.innerHTML = `
-            <div class="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="relative">
-                        <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
-                    </div>
-                    <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            ${window.LOADING_TITLE || 'Processing your file...'}
-                        </h3>
-                        <p class="text-sm sm:text-base text-gray-600">
-                            ${window.LOADING_MESSAGE || 'Please wait, this may take a few moments'}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
-    }
-
-    function hideLoading() {
-        const container = document.getElementById('loadingContainer');
-        if (container) {
-            container.classList.add('hidden');
-        }
-    }
-
-    function showDownloadButton(originalFileName, blob) {
-        const container = document.getElementById('downloadContainer');
-        if (!container) return;
-
-        const replaceRegex = new RegExp(window.REPLACE_REGEX || '\\.pdf$');
-        const replaceTo = window.REPLACE_TO || '.pdf';
-        const outputFileName = originalFileName.replace(replaceRegex, replaceTo);
-
-        const url = URL.createObjectURL(blob);
-
-        container.innerHTML = `
-            <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-4">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                            ${window.SUCCESS_TITLE || 'Editing Complete!'}
-                        </h3>
-                        <p class="text-sm sm:text-base text-gray-600 mb-4">
-                            ${window.SUCCESS_MESSAGE || 'Your file is ready to download'}
-                        </p>
-                        <p class="text-xs text-gray-500 font-mono break-all px-2">
-                            ${outputFileName}
-                        </p>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
-                        <button id="downloadButton"
-                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                            </svg>
-                            <span>${window.DOWNLOAD_BUTTON_TEXT || 'Download File'}</span>
-                        </button>
-                        <button type="button"
-                                id="editAnotherButton"
-                                class="flex-1 inline-flex items-center justify-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-300 hover:border-gray-400 transition-all duration-200">
-                            <span>${window.EDIT_ANOTHER_TEXT || 'Edit another file'}</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
-
-        // Scroll to download button
-        setTimeout(() => {
-            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
-
-        // Download button handler with showSaveFilePicker
-        const downloadBtn = document.getElementById('downloadButton');
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', async () => {
-                const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
-                let finalName = outputFileName;
-
-                // Try modern file picker to let user choose directory & filename
-                if (window.showSaveFilePicker) {
-                    try {
-                        const handle = await window.showSaveFilePicker({
-                            suggestedName: outputFileName,
-                            types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
-                        });
-                        const writable = await handle.createWritable();
-                        await writable.write(blob);
-                        await writable.close();
-                        finalName = handle.name || outputFileName;
-                        downloadBtn.classList.add('bg-green-700');
-                        downloadBtn.innerHTML = '<span>✓ ' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
-                        setTimeout(() => {
-                            downloadBtn.classList.remove('bg-green-700');
-                            downloadBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg><span>' + (window.DOWNLOAD_BUTTON_TEXT || 'Download File') + '</span>';
-                        }, 2000);
-                        return;
-                    } catch (err) {
-                        if (err.name !== 'AbortError') {
-                            console.warn('File picker failed, falling back to direct download:', err);
-                        } else {
-                            // User cancelled
-                            return;
-                        }
-                    }
-                }
-
-                // Fallback: prompt for filename, then trigger download (browser will ask location)
-                const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', outputFileName);
-                if (input && input.trim()) {
-                    finalName = input.trim();
-                    const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
-                    if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
-                        finalName += originalExt;
-                    }
-                }
-
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = finalName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            });
-        }
-
-        // Edit another button handler with smooth scroll to top
-        const editAnotherBtn = document.getElementById('editAnotherButton');
-        if (editAnotherBtn) {
-            editAnotherBtn.addEventListener('click', () => {
-                // Hide selected file display
-                const selectedFileDiv = document.getElementById('selectedFile');
-                if (selectedFileDiv) {
-                    selectedFileDiv.classList.add('hidden');
-                }
-
-                // Reset file input
-                const fileInput = document.getElementById('fileInput');
-                if (fileInput) {
-                    fileInput.value = '';
-                }
-
-                // Reset watermark options
-                const watermarkText = document.getElementById('watermarkText');
-                const watermarkOpacity = document.getElementById('watermarkOpacity');
-                const watermarkRotation = document.getElementById('watermarkRotation');
-                if (watermarkText) watermarkText.value = '';
-                if (watermarkOpacity) watermarkOpacity.value = '50';
-                if (watermarkRotation) watermarkRotation.value = '45';
-
-                // Hide download container
-                hideDownload();
-
-                // Smooth scroll to top of page
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-
-                // Focus on select button after scroll completes
-                setTimeout(() => {
-                    const selectFileButton = document.getElementById('selectFileButton');
-                    if (selectFileButton) {
-                        selectFileButton.focus();
-                    }
-                }, 800); // Wait for smooth scroll to complete
-            });
-        }
-    }
-
     function hideDownload() {
-        const container = document.getElementById('downloadContainer');
-        if (container) {
-            container.classList.add('hidden');
-        }
-    }
-
-    function showError(message) {
-        const container = document.getElementById('editorResult');
-        if (!container) return;
-
-        container.innerHTML = `
-            <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
-                <div class="flex flex-col items-center space-y-3">
-                    <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-red-900 mb-1">
-                            ${window.ERROR_TITLE || 'Error'}
-                        </h3>
-                        <p class="text-sm text-red-700">
-                            ${escapeHtml(message)}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        `;
-        container.classList.remove('hidden');
+        window.hideDownload('downloadContainer');
     }
 
     function hideResult() {

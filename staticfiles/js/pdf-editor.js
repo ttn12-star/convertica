@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideDownload();
 
         // Show loading animation
-        showLoading();
+        window.showLoading('loadingContainer');
 
         // Disable form
         setFormDisabled(true);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Success - show download button
-            hideLoading();
+            window.hideLoading('loadingContainer');
 
             // Check if this is a compression response
             const inputSize = response.headers.get('X-Input-Size');
@@ -154,12 +154,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             }
 
-            showDownloadButton(selectedFile.name, blob);
+            window.showDownloadButton(blob, selectedFile.name, 'downloadContainer', {
+                successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
+                downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
+                convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
+                onConvertAnother: () => {
+                    const fileInput = document.getElementById('fileInput');
+                    const fileInputDrop = document.getElementById('fileInputDrop');
+                    const selectedFileDiv = document.getElementById('selectedFile');
+                    const fileInfo = document.getElementById('fileInfo');
+                    const editButton = document.getElementById('editButton');
+
+                    if (fileInput) fileInput.value = '';
+                    if (fileInputDrop) fileInputDrop.value = '';
+
+                    if (selectedFileDiv) {
+                        selectedFileDiv.classList.add('hidden');
+                    }
+                    if (fileInfo) {
+                        fileInfo.classList.remove('hidden');
+                    }
+
+                    if (editButton) {
+                        editButton.disabled = true;
+                    }
+
+                    hideDownload();
+                    hideResult();
+                    setFormDisabled(false);
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+
+                    setTimeout(() => {
+                        const selectFileButton = document.getElementById('selectFileButton');
+                        if (selectFileButton) {
+                            selectFileButton.focus();
+                        }
+                    }, 800);
+                }
+            });
             setFormDisabled(false);
 
         } catch (error) {
-            hideLoading();
-            showError(error.message || window.ERROR_MESSAGE);
+            window.hideLoading('loadingContainer');
+            window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
             setFormDisabled(false);
         }
     });

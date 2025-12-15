@@ -83,12 +83,12 @@ def hreflang_links(request):
                             current_path = "/"
                             break
 
-                    # Add new language prefix
-                    # Django i18n_patterns adds prefix for ALL languages, including default
-                    if current_path == "/":
-                        lang_path = f"/{code}/"
-                    else:
-                        lang_path = f"/{code}{current_path}"
+                        # Add new language prefix
+                        # Django i18n_patterns adds prefix for ALL languages, including default
+                        if current_path == "/":
+                            lang_path = f"/{code}/"
+                        else:
+                            lang_path = f"/{code}{current_path}"
 
                     url = f"{base_url}{lang_path}"
 
@@ -109,12 +109,12 @@ def hreflang_links(request):
                         current_path = "/"
                         break
 
-                # Add new language prefix
-                # Django i18n_patterns adds prefix for ALL languages, including default
-                if current_path == "/":
-                    lang_path = f"/{code}/"
-                else:
-                    lang_path = f"/{code}{current_path}"
+                    # Add new language prefix
+                    # Django i18n_patterns adds prefix for ALL languages, including default
+                    if current_path == "/":
+                        lang_path = f"/{code}/"
+                    else:
+                        lang_path = f"/{code}{current_path}"
 
                 url = f"{base_url}{lang_path}"
 

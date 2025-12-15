@@ -142,35 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.restore();
   }
 
+  // Use showError from utils.js with additional logic
   function showError(message) {
-    const resultContainer = document.getElementById('editorResult');
-    if (!resultContainer) return;
-
-    resultContainer.innerHTML = `
-        <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6 text-center animate-fade-in">
-            <div class="flex flex-col items-center space-y-3">
-                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-red-900 mb-1">
-                        ${window.ERROR_TITLE || 'Error'}
-                    </h3>
-                    <p class="text-sm text-red-700">
-                        ${message}
-                    </p>
-                </div>
-            </div>
-        </div>
-    `;
-    resultContainer.classList.remove('hidden');
+    window.showError(message, 'editorResult');
 
     // Hide preview sections on error
     previewSection.classList.add('hidden');
     settingsSection.classList.add('hidden');
-}
+  }
 
 function clearError() {
     const resultContainer = document.getElementById('editorResult');

@@ -49,6 +49,7 @@
     window.FAILED_TO_ORGANIZE = "{% trans 'Failed to organize PDF' %}";
     window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
   </script>
+  <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/organize-pdf.js' %}"></script>
 {% endblock %}
 

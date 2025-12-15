@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!fileInput) return;
     // dropZone is optional (not all pages have it)
 
-    // Format file size
-    function formatFileSize(bytes) {
+    // Use formatFileSize from utils.js if available, otherwise define locally
+    const formatFileSize = window.formatFileSize || function(bytes) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
         const sizes = ['Bytes', 'KB', 'MB', 'GB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-    }
+    };
 
     // Show selected file and enable convert button
     // Universal PDF page count validator - used across all pages
