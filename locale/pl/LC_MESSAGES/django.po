@@ -34,8 +34,6 @@ msgstr ""
 msgid "Go Back"
 msgstr ""
 
-#, fuzzy
-#| msgid "Home"
 msgid "Go Home"
 msgstr "Strona główna"
 
@@ -53,8 +51,6 @@ msgid ""
 "error, please contact support."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Form"
 msgid "Contact Support"
 msgstr "Formularz kontaktowy"
 
@@ -72,13 +68,9 @@ msgid ""
 "moved, deleted, or never existed."
 msgstr ""
 
-#, fuzzy
-#| msgid "View All Tools"
 msgid "Browse All Tools"
 msgstr "Wszystkie narzędzia"
 
-#, fuzzy
-#| msgid "Popular Tools"
 msgid "Popular pages:"
 msgstr "Popularne narzędzia"
 
@@ -108,16 +100,12 @@ msgid ""
 "and is working to fix the issue. Please try again in a few moments."
 msgstr ""
 
-#, fuzzy
-#| msgid "Try it"
 msgid "Try Again"
 msgstr "Wypróbuj"
 
 msgid "If the problem persists, please"
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Us"
 msgid "contact us"
 msgstr "Skontaktuj się z nami"
 
@@ -406,22 +394,15 @@ msgstr "Doświadcz mocy narzędzi PDF Convertica już dziś."
 msgid "Explore All Tools"
 msgstr "Przeglądaj Wszystkie Narzędzia"
 
-#, fuzzy
-#| msgid "Ready to Get Started?"
 msgid "Get Started"
 msgstr "Gotowy do rozpoczęcia?"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Preview Page Numbers"
 msgstr "Numery stron"
 
 msgid "Select page"
 msgstr "Wybierz stronę"
 
-#, fuzzy
-#| msgid ""
-#| "Preview how the page numbers will look on your PDF using the live preview"
 msgid ""
 "Preview shows how page numbers will appear on your PDF. Adjust settings "
 "below to see real-time changes."
@@ -459,8 +440,6 @@ msgstr "Rozmiar czcionki"
 msgid "Starting Page Number"
 msgstr "Numer strony początkowej"
 
-#, fuzzy
-#| msgid "Format"
 msgid "Custom Format"
 msgstr "Format"
 
@@ -477,7 +456,6 @@ msgid "In brackets"
 msgstr ""
 
 #, fuzzy, python-brace-format
-#| msgid "Use {page} for page number, {total} for total pages"
 msgid ""
 "Use {page} for page number, {total} for total pages. Click presets above or "
 "enter custom format."
@@ -552,9 +530,6 @@ msgstr ""
 "zgodnie z wybraną pozycją, formatem i rozmiarem czcionki."
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
 "split your PDF into smaller parts."
@@ -594,11 +569,6 @@ msgstr "Wybierz stronę"
 msgid "How to use:"
 msgstr "Jak używać:"
 
-#, fuzzy
-#| msgid ""
-#| "The watermark appears at the bottom of the page by default. Drag it to "
-#| "move, use the top handle to rotate, and the corner handle to scale. Click "
-#| "anywhere on the PDF to reposition it."
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use corner handles to scale. Use the Rotation slider below to rotate. Click "
@@ -635,18 +605,12 @@ msgstr "Kolor"
 msgid "Opacity"
 msgstr "Przezroczystość"
 
-#, fuzzy
-#| msgid "Rotation Angle"
 msgid "Rotation"
 msgstr "Kąt obrotu"
 
 msgid "Interactive controls:"
 msgstr "Interaktywne kontrolki:"
 
-#, fuzzy
-#| msgid ""
-#| "Drag the watermark to move it. Drag any corner handle to rotate and scale "
-#| "simultaneously."
 msgid ""
 "Drag the watermark to move it. Use corner handles to scale. Use the rotation "
 "slider above to rotate."
@@ -780,7 +744,7 @@ msgid "Add page numbers to your PDF documents."
 msgstr "Dodaj numery stron do swoich dokumentów PDF."
 
 msgid "Add Watermark"
-msgstr "Znak wodny"
+msgstr "Dodaj znak wodny"
 
 msgid "Protect your PDFs with text or image watermarks."
 msgstr ""
@@ -1089,10 +1053,6 @@ msgstr ""
 msgid "Tips:"
 msgstr "Wskazówki:"
 
-#, fuzzy
-#| msgid ""
-#| "A crop area covering most of the page is selected by default - adjust it "
-#| "as needed"
 msgid "A crop area covering most of the page is selected by default"
 msgstr ""
 "Domyślnie wybrano obszar przycinania obejmujący większość strony - dostosuj "
@@ -1719,8 +1679,6 @@ msgstr "Formularz kontaktowy"
 msgid "Language"
 msgstr "Język"
 
-#, fuzzy
-#| msgid "Select Page"
 msgid "Select language"
 msgstr "Wybierz stronę"
 
@@ -1868,7 +1826,6 @@ msgstr "pliki"
 msgid "multiple files supported"
 msgstr "obsługiwane wiele plików"
 
-#, fuzzy
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
@@ -2054,10 +2011,6 @@ msgstr ""
 "podziel je na mniejsze części. Możesz przeciągać i upuszczać strony, aby "
 "zmieniać ich kolejność wizualnie."
 
-#, fuzzy
-#| msgid ""
-#| "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#| "conversion)"
 msgid ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
@@ -2065,10 +2018,6 @@ msgstr ""
 "Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na Word (konwersja "
 "PDF na DOCX)"
 
-#, fuzzy
-#| msgid ""
-#| "Wait for the PDF to Word conversion to complete - text and formatting "
-#| "will be extracted from your PDF and converted to editable Word format"
 msgid ""
 "Wait for the PDF to Excel conversion to complete - tables and data will be "
 "extracted from your PDF and converted to editable Excel format"
@@ -2076,10 +2025,6 @@ msgstr ""
 "Poczekaj na zakończenie konwersji PDF na Word - tekst i formatowanie zostaną "
 "wyodrębnione z twojego PDF i przekonwertowane na edytowalny format Word"
 
-#, fuzzy
-#| msgid ""
-#| "Download your editable Word document (DOCX format) - your PDF has been "
-#| "successfully converted to Word"
 msgid ""
 "Download your editable Excel file (XLSX format) - your PDF tables have been "
 "successfully converted to Excel"
@@ -2087,11 +2032,6 @@ msgstr ""
 "Pobierz swój edytowalny dokument Word (format DOCX) - twój PDF został "
 "pomyślnie przekonwertowany na Word"
 
-#, fuzzy
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. Text-based PDFs work best - scanned PDFs "
-#| "(image-only) cannot be converted to editable Word format."
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. PDF files with tables work best - plain text will "
@@ -3085,9 +3025,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
@@ -3329,10 +3266,8 @@ msgstr ""
 msgid "Conversion failed. Please try again."
 msgstr "Konwersja nie powiodła się. Proszę spróbować ponownie."
 
-#, fuzzy
-#| msgid "All PDF Tools - Convertica"
 msgid "PDF to Word - Convertica"
-msgstr "Wszystkie narzędzia PDF - Convertica"
+msgstr "PDF na Word - Convertica"
 
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
@@ -3480,11 +3415,6 @@ msgstr ""
 "dotyczące konwersji pdf, pytania dotyczące edycji pdf, pytania dotyczące "
 "organizacji pdf, pytania dotyczące bezpieczeństwa pdf"
 
-#, fuzzy
-#| msgid ""
-#| "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
-#| "arrange them in the desired order using drag and drop, and click merge. "
-#| "All selected files will be combined into a single PDF document."
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "
