@@ -796,13 +796,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const startX = clientX - rect.left;
                 const startY = clientY - rect.top;
 
-                // Store initial position and rotation for rotation
-                dragStartX = startX;
-                dragStartY = startY;
+                // Store initial rotation
                 initialRotation = watermarkRotation || 0;
 
-                // Calculate and store initial angle from center to handle
-                dragStartAngle = Math.atan2(startY - centerY, startX - centerX) * (180 / Math.PI);
+                // Calculate initial angle from center to cursor
+                // This is the angle where the user grabbed the handle
+                dragStartAngle = Math.atan2(centerY - startY, startX - centerX) * (180 / Math.PI);
 
                 // Show rotation indicator
                 showRotationIndicator(centerX, centerY);
@@ -927,25 +926,27 @@ document.addEventListener('DOMContentLoaded', () => {
             dragStartY = newY;
             updateWatermarkPreview();
         } else if (isRotating) {
-            // Rotation only from rotation handle - direct angle tracking
+            // Rotation - handle follows cursor around center point
             const scaleFactor = canvasWidth / pdfPageWidth;
             const centerX = watermarkX * scaleFactor;
             const centerY = canvasHeight - (watermarkY * scaleFactor);
 
-            // Calculate current angle from center to cursor position
-            const currentAngle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
+            // Calculate current angle from center to cursor
+            // Using standard atan2 with Y inverted for screen coordinates
+            const currentAngle = Math.atan2(centerY - y, x - centerX) * (180 / Math.PI);
 
-            // Calculate rotation change relative to initial drag position
+            // Calculate how much the angle changed since we started dragging
             let rotationChange = currentAngle - dragStartAngle;
 
-            // Handle angle wrap-around smoothly (avoid 360-degree jumps)
+            // Handle angle wrap-around smoothly (avoid jumps when crossing 180/-180)
             if (rotationChange > 180) rotationChange -= 360;
             if (rotationChange < -180) rotationChange += 360;
 
-            // Apply rotation directly (1:1 mapping for intuitive control)
-            let newRotation = initialRotation + rotationChange;
+            // Invert rotation change because CSS uses -watermarkRotation
+            // This makes visual rotation follow cursor direction
+            let newRotation = initialRotation - rotationChange;
 
-            // Normalize angle to 0-360 range
+            // Normalize to 0-360 range
             while (newRotation >= 360) newRotation -= 360;
             while (newRotation < 0) newRotation += 360;
 
