@@ -921,11 +921,13 @@ document.addEventListener('DOMContentLoaded', () => {
             updateWatermarkPreview();
         } else if (isRotating) {
             // Simple rotation: horizontal movement changes angle (like a slider)
-            // Move right = increase angle, move left = decrease angle
+            // Move right = clockwise rotation (visually), move left = counter-clockwise
             const deltaX = x - dragStartX;
 
             // Sensitivity: 1 pixel = 0.5 degrees
-            const rotationSensitivity = 0.5;
+            // Negative because CSS uses -watermarkRotation, so we need to compensate
+            // This makes: drag right = visual clockwise rotation
+            const rotationSensitivity = -0.5;
             let newRotation = initialRotation + (deltaX * rotationSensitivity);
 
             // Normalize to 0-360 range
