@@ -32,7 +32,7 @@ class PDFToWordAsyncAPIView(AsyncConversionAPIView):
     CONVERSION_TYPE = "pdf_to_word"
     FILE_FIELD_NAME = "pdf_file"
     VALIDATE_PDF_PAGES = True  # Enable validation for early rejection
-    MAX_PDF_PAGES = MAX_PDF_PAGES_HEAVY  # 30 pages for heavy operations
+    MAX_PDF_PAGES = MAX_PDF_PAGES_HEAVY  # 50 pages for heavy operations
 
     def get_serializer_class(self):
         return PDFToWordSerializer
@@ -54,7 +54,7 @@ class PDFToExcelAsyncAPIView(AsyncConversionAPIView):
     CONVERSION_TYPE = "pdf_to_excel"
     FILE_FIELD_NAME = "pdf_file"
     VALIDATE_PDF_PAGES = True  # Enable validation for early rejection
-    MAX_PDF_PAGES = MAX_PDF_PAGES_HEAVY  # 30 pages for heavy operations
+    MAX_PDF_PAGES = MAX_PDF_PAGES_HEAVY  # 50 pages for heavy operations
 
     def get_serializer_class(self):
         return PDFToExcelSerializer

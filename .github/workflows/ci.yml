@@ -553,6 +553,17 @@ jobs:
             echo "🗑️ Clearing Django cache..."
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
 
+            # Step 6.5: Clear Cloudflare cache (optional - requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ZONE_ID secrets)
+            if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] && [ -n "${{ secrets.CLOUDFLARE_ZONE_ID }}" ]; then
+              echo "☁️ Purging Cloudflare cache..."
+              curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+                -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+                -H "Content-Type: application/json" \
+                --data '{"purge_everything":true}' | jq -r '.success' | grep -q 'true' && echo "✅ Cloudflare cache purged!" || echo "⚠️ Cloudflare purge failed (non-critical)"
+            else
+              echo "⏭️ Skipping Cloudflare cache purge (secrets not configured)"
+            fi
+
             # Step 7: Verify health endpoint responds (critical check)
             echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
