@@ -166,7 +166,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                 </div>
                 ` : ''}
 
-                <!-- Patience Message (hidden initially, shown after 30 seconds) -->
+                <!-- Patience Message (hidden initially, shown after 40 seconds) -->
                 <div id="patienceMessage" class="hidden w-full max-w-md animate-fade-in">
                     <div class="bg-gradient-to-r from-emerald-100 to-teal-100 border-2 border-emerald-400 rounded-xl p-4 sm:p-5 shadow-md">
                         <div class="flex items-start space-x-3">
@@ -201,7 +201,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
     container.classList.remove('hidden');
     container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-    // Show patience message after 30 seconds
+    // Show patience message after 40 seconds
     container._patienceTimeout = setTimeout(() => {
         const patienceMsg = document.getElementById('patienceMessage');
         if (patienceMsg) {
@@ -209,7 +209,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
             // Smooth scroll to show the message
             patienceMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-    }, 30000); // 30 seconds
+    }, 40000); // 40 seconds
 
     if (showProgress) {
         // Animate progress
