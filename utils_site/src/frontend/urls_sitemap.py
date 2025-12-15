@@ -5,5 +5,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.sitemap_xml, name="sitemap_xml"),
+    # Sitemap index (lists all language-specific sitemaps)
+    path("", views.sitemap_index, name="sitemap_index"),
+    # Language-specific sitemaps
+    path("sitemap-<str:lang>.xml", views.sitemap_lang, name="sitemap_lang"),
 ]
