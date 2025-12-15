@@ -167,19 +167,19 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                 ` : ''}
 
                 <!-- Patience Message (hidden initially, shown after 30 seconds) -->
-                <div id="patienceMessage" class="hidden w-full max-w-md" style="animation: fade-in 0.5s ease-out forwards;">
-                    <div style="background: linear-gradient(to right, #d1fae5, #ccfbf1); border: 2px solid #34d399; border-radius: 12px; padding: 16px 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                        <div style="display: flex; align-items: flex-start; gap: 12px;">
-                            <div style="flex-shrink: 0;">
-                                <div style="width: 40px; height: 40px; background-color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">
-                                    <svg style="width: 24px; height: 24px; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div id="patienceMessage" class="hidden w-full max-w-md animate-fade-in">
+                    <div class="bg-gradient-to-r from-emerald-100 to-teal-100 border-2 border-emerald-400 rounded-xl p-4 sm:p-5 shadow-md">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shadow-sm">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </div>
                             </div>
                             <div>
-                                <h4 style="font-weight: bold; color: #065f46; font-size: 16px; margin-bottom: 4px;">${patienceTitle}</h4>
-                                <p style="color: #047857; font-size: 14px; margin: 0;">${patienceMessage}</p>
+                                <h4 class="font-bold text-emerald-800 text-base mb-1">${patienceTitle}</h4>
+                                <p class="text-emerald-700 text-sm">${patienceMessage}</p>
                             </div>
                         </div>
                     </div>
