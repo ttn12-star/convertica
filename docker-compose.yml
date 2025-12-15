@@ -9,6 +9,11 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-convertica}
       POSTGRES_USER: ${POSTGRES_USER:-convertica}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      # PostgreSQL memory optimization for 2GB server
+      POSTGRES_SHARED_BUFFERS: 128MB
+      POSTGRES_WORK_MEM: 4MB
+      POSTGRES_MAINTENANCE_WORK_MEM: 64MB
+      POSTGRES_EFFECTIVE_CACHE_SIZE: 256MB
     volumes:
       - postgres_data:/var/lib/postgresql/data
     expose:
@@ -18,6 +23,14 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
     networks:
       - convertica_network
     restart: unless-stopped
@@ -26,7 +39,7 @@ services:
   redis:
     image: redis:7-alpine
     container_name: convertica_redis
-    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme}
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme} --maxmemory 100mb --maxmemory-policy allkeys-lru
     volumes:
       - redis_data:/data
     expose:
@@ -36,6 +49,14 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
     networks:
       - convertica_network
     restart: unless-stopped
@@ -54,6 +75,14 @@ services:
       - "443:443"
     depends_on:
       - web
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 64M
+        reservations:
+          cpus: '0.05'
+          memory: 32M
     networks:
       - convertica_network
     restart: unless-stopped
@@ -71,6 +100,7 @@ services:
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
              python manage.py compilemessages &&
              python manage.py migrate &&
+             mkdir -p /app/media/async_temp &&
              gunicorn --bind 0.0.0.0:8000 --workers 2 --threads 2 --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info utils_site.wsgi:application"
     volumes:
       - ./staticfiles:/app/staticfiles
@@ -80,6 +110,14 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: 768M
+        reservations:
+          cpus: '0.3'
+          memory: 384M
     depends_on:
       db:
         condition: service_healthy
@@ -143,6 +181,14 @@ services:
       - ./logs:/app/logs
     env_file:
       - .env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 64M
+        reservations:
+          cpus: '0.05'
+          memory: 32M
     depends_on:
       db:
         condition: service_healthy
