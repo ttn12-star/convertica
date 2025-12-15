@@ -1,7 +1,30 @@
 # Development override for docker-compose.yml
 # Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# Resource limits match production server: 1 vCPU, 2GB RAM
+# This helps catch memory/CPU issues before deployment
 
 services:
+  db:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+
+  redis:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
+
   web:
     build:
       context: .
@@ -26,6 +49,14 @@ services:
     ports:
       - "8000:8000"
       - "5678:5678"  # Debug port
+    deploy:
+      resources:
+        limits:
+          cpus: '0.7'
+          memory: 1280M
+        reservations:
+          cpus: '0.3'
+          memory: 512M
 
   # Disable Nginx in development (use WhiteNoise instead)
   nginx:
@@ -40,7 +71,15 @@ services:
       - .:/app  # Mount source code for hot reload
     env_file:
       - .env
-    command: celery -A utils_site worker --loglevel=info --concurrency=2 -Q celery,default,maintenance
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 384M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
 
   celery-beat:
     build:
@@ -51,3 +90,11 @@ services:
     env_file:
       - .env
     command: celery -A utils_site beat --loglevel=info
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 128M
+        reservations:
+          cpus: '0.05'
+          memory: 64M
