@@ -28,7 +28,14 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .conversion_limits import MAX_PDF_PAGES, validate_pdf_pages
+from .conversion_limits import (
+    HEAVY_OPERATIONS,
+    MAX_FILE_SIZE_HEAVY,
+    MAX_PDF_PAGES,
+    MAX_PDF_PAGES_HEAVY,
+    validate_file_for_operation,
+    validate_pdf_pages,
+)
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
 from .spam_protection import validate_spam_protection
 
@@ -236,8 +243,14 @@ class AsyncConversionAPIView(APIView, ABC):
 
             # Validate PDF pages if needed
             if self.VALIDATE_PDF_PAGES and self._is_pdf_file(uploaded_file):
+                # Use stricter limits for heavy operations
+                max_pages = (
+                    MAX_PDF_PAGES_HEAVY
+                    if self.CONVERSION_TYPE in HEAVY_OPERATIONS
+                    else self.MAX_PDF_PAGES
+                )
                 is_valid, error_message, page_count = validate_pdf_pages(
-                    input_path, self.MAX_PDF_PAGES
+                    input_path, max_pages
                 )
                 if not is_valid:
                     cleanup_task_files(task_id)
@@ -245,6 +258,18 @@ class AsyncConversionAPIView(APIView, ABC):
                         {"error": error_message},
                         status=status.HTTP_400_BAD_REQUEST,
                     )
+
+                # For heavy operations, do additional validation (complexity, size)
+                if self.CONVERSION_TYPE in HEAVY_OPERATIONS:
+                    can_process, complexity_error = validate_file_for_operation(
+                        input_path, uploaded_file.size, self.CONVERSION_TYPE
+                    )
+                    if not can_process:
+                        cleanup_task_files(task_id)
+                        return Response(
+                            {"error": complexity_error},
+                            status=status.HTTP_400_BAD_REQUEST,
+                        )
                 context["pdf_page_count"] = page_count
 
             # Get task kwargs from validated data (excluding file)
