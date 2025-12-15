@@ -36,10 +36,16 @@ logger = get_logger(__name__)
 
 # Directory for storing files during async processing
 # Uses MEDIA_ROOT to ensure shared access between web and celery containers
+_media_root = getattr(settings, "MEDIA_ROOT", None)
+if _media_root is None:
+    _media_root = "/app/media"
+else:
+    _media_root = str(_media_root)  # Convert Path to string if needed
+
 ASYNC_TEMP_DIR = getattr(
     settings,
     "ASYNC_TEMP_DIR",
-    os.path.join(getattr(settings, "MEDIA_ROOT", "/app/media"), "async_temp"),
+    os.path.join(_media_root, "async_temp"),
 )
 
 # How long to keep temp files (seconds) - cleaned by maintenance task
