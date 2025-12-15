@@ -60,10 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let watermarkImage = null;
     let watermarkRotation = 0.0;
     let watermarkScale = 1.0;
-    let initialRotation = 0.0; // Add missing initialRotation variable
     // Watermark interaction states
     let isDraggingWatermark = false;
-    let isRotating = false;
     let isScaling = false;
     let dragStartX = 0;
     let dragStartY = 0;
@@ -72,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Visual enhancement elements
     let alignmentGrid = null;
-    let rotationIndicator = null;
     let isShowingGrid = false;
     let initialScale = 1.0;
     let initialDistance = 0;
@@ -134,6 +131,25 @@ document.addEventListener('DOMContentLoaded', () => {
         fontSizeSlider.addEventListener('input', (e) => {
             const value = parseInt(e.target.value);
             if (fontSizeValue) fontSizeValue.textContent = value + 'px';
+            updateWatermarkFromControls();
+        });
+    }
+
+    // Rotation slider
+    const rotationSlider = document.getElementById('rotation_slider');
+    const rotationValueDisplay = document.getElementById('rotationValue');
+
+    if (rotationSlider) {
+        rotationSlider.addEventListener('input', (e) => {
+            const value = parseInt(e.target.value);
+            if (rotationValueDisplay) rotationValueDisplay.textContent = value + '°';
+
+            // Update watermark rotation (convert to 0-360 range for internal use)
+            watermarkRotation = value < 0 ? 360 + value : value;
+
+            // Update hidden input
+            if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
+
             updateWatermarkFromControls();
         });
     }
@@ -377,7 +393,6 @@ document.addEventListener('DOMContentLoaded', () => {
         watermarkY = null;
         watermarkImage = null;
         isDraggingWatermark = false;
-        isRotating = false;
         isScaling = false;
 
         // Clear canvas
@@ -643,15 +658,11 @@ document.addEventListener('DOMContentLoaded', () => {
             content = `<span class="watermark-preview-text" style="font-size: ${24 * scaleFactor}px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; color: #ccc;">Select watermark type</span>`;
         }
 
-        // Add handles for rotation and scaling
-        // Corner handles for scaling only
+        // Add corner handles for scaling only (rotation is done via slider)
         content += '<div class="watermark-handle corner nw" data-corner="nw"></div>';
         content += '<div class="watermark-handle corner ne" data-corner="ne"></div>';
         content += '<div class="watermark-handle corner sw" data-corner="sw"></div>';
         content += '<div class="watermark-handle corner se" data-corner="se"></div>';
-
-        // Rotation handle near top-right corner with rotate icon
-        content += '<div class="watermark-handle rotation-handle" title="Rotate" style="position: absolute; top: -18px; right: -18px; width: 16px; height: 16px; background: rgba(239, 68, 68, 0.6); border: 2px solid white; border-radius: 50%; cursor: grab; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white;">↻</div>';
 
         watermarkPreview.innerHTML = content;
         watermarkPreview.classList.remove('hidden');
@@ -705,52 +716,12 @@ document.addEventListener('DOMContentLoaded', () => {
         isShowingGrid = false;
     }
 
-    function createRotationIndicator() {
-        if (rotationIndicator) return;
-
-        rotationIndicator = document.createElement('div');
-        rotationIndicator.id = 'rotationIndicator';
-        rotationIndicator.style.cssText = `
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border: 2px dashed rgba(59, 130, 246, 0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            z-index: 6;
-        `;
-
-        // Add rotation lines
-        rotationIndicator.innerHTML = `
-            <div style="position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(59, 130, 246, 0.4); transform: translateY(-50%);"></div>
-            <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 100%; background: rgba(59, 130, 246, 0.4); transform: translateX(-50%);"></div>
-        `;
-
-        pdfCanvasContainer.appendChild(rotationIndicator);
-    }
-
-    function showRotationIndicator(x, y) {
-        if (!rotationIndicator) createRotationIndicator();
-        rotationIndicator.style.left = (x - 30) + 'px';
-        rotationIndicator.style.top = (y - 30) + 'px';
-        rotationIndicator.style.opacity = '1';
-    }
-
-    function hideRotationIndicator() {
-        if (rotationIndicator) {
-            rotationIndicator.style.opacity = '0';
-        }
-    }
-
     function snapToGrid(value, gridSize = 20) {
         return Math.round(value / gridSize) * gridSize;
     }
 
     function attachWatermarkHandlers() {
         const cornerHandles = watermarkPreview.querySelectorAll('.corner');
-        const rotationHandle = watermarkPreview.querySelector('.rotation-handle');
 
         const onPointerDownMove = (clientX, clientY, target) => {
             if (!pdfCanvas || !pdfDoc) return;
@@ -782,31 +753,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add visual feedback to handle
                 target.style.transform = 'scale(1.2)';
                 target.style.backgroundColor = 'rgba(59, 130, 246, 0.8)';
-                return;
-            }
-
-            // Rotation handle - rotation only
-            // Simple rotation: drag left/right to change angle (like a slider)
-            if (target.classList.contains('rotation-handle')) {
-                isRotating = true;
-
-                const startX = clientX - rect.left;
-
-                // Store initial rotation and start position
-                initialRotation = watermarkRotation || 0;
-                dragStartX = startX;
-
-                // Calculate watermark center for rotation indicator
-                const scaleFactor = canvasWidth / pdfPageWidth;
-                const centerX = watermarkX * scaleFactor;
-                const centerY = canvasHeight - (watermarkY * scaleFactor);
-
-                // Show rotation indicator
-                showRotationIndicator(centerX, centerY);
-
-                // Add visual feedback to rotation handle
-                target.style.transform = 'scale(1.2)';
-                target.style.backgroundColor = 'rgba(239, 68, 68, 0.8)';
                 return;
             }
 
@@ -843,16 +789,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Rotation handle handlers
-        if (rotationHandle) {
-            rotationHandle.addEventListener('mousedown', (e) => {
-                if (!pdfCanvas || !pdfDoc) return;
-                onPointerDownMove(e.clientX, e.clientY, rotationHandle);
-                e.stopPropagation();
-                e.preventDefault();
-            });
-        }
-
         // Touch handlers
         watermarkPreview.addEventListener('touchstart', (e) => {
             if (!pdfCanvas || !pdfDoc) return;
@@ -873,17 +809,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, { passive: false });
         });
 
-        // Rotation handle touch handlers
-        if (rotationHandle) {
-            rotationHandle.addEventListener('touchstart', (e) => {
-                if (!pdfCanvas || !pdfDoc) return;
-                const touch = e.touches[0];
-                if (!touch) return;
-                onPointerDownMove(touch.clientX, touch.clientY, rotationHandle);
-                e.stopPropagation();
-                e.preventDefault();
-            }, { passive: false });
-        }
     }
 
     // Common movement handler to eliminate code duplication
@@ -922,25 +847,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             dragStartX = newX;
             dragStartY = newY;
-            updateWatermarkPreview();
-        } else if (isRotating) {
-            // Simple rotation: drag right = clockwise, drag left = counter-clockwise
-            const deltaX = x - dragStartX;
-
-            // Sensitivity: 0.5 degrees per pixel (intuitive)
-            // Positive deltaX (drag right) = clockwise rotation in CSS
-            let newRotation = watermarkRotation - deltaX * 0.5;
-
-            // Normalize to 0-360 range
-            newRotation = newRotation % 360;
-            if (newRotation < 0) newRotation += 360;
-
-            watermarkRotation = newRotation;
-            dragStartX = x;
-
-            // Update hidden input
-            if (rotationInput) rotationInput.value = watermarkRotation.toFixed(1);
-
             updateWatermarkPreview();
         } else if (isScaling) {
             // Scaling only from corner handles
@@ -1006,12 +912,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const x = touch.clientX - rect.left;
         const y = touch.clientY - rect.top;
 
-        if (isDraggingWatermark || isRotating || isScaling) {
+        if (isDraggingWatermark || isScaling) {
             handleMovement(x, y);
         }
 
         // Only prevent default when actively interacting with watermark
-        if (isDraggingWatermark || isRotating || isScaling) {
+        if (isDraggingWatermark || isScaling) {
             e.preventDefault();
         }
         // Allow normal scrolling when not interacting with watermark
@@ -1021,14 +927,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isInteracting) {
             // Reset interaction states
             isDraggingWatermark = false;
-            isRotating = false;
             isScaling = false;
             currentScaleCorner = null;
             isInteracting = false;
 
             // Hide visual helpers
             hideAlignmentGrid();
-            hideRotationIndicator();
 
             // Reset watermark preview styles
             if (watermarkPreview) {
@@ -1044,13 +948,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     handle.style.backgroundColor = 'rgba(59, 130, 246, 0.6)';
                 });
             }
-
-            // Reset rotation handle styles
-            const rotationHandle = watermarkPreview?.querySelector('.rotation-handle');
-            if (rotationHandle) {
-                rotationHandle.style.transform = 'scale(1)';
-                rotationHandle.style.backgroundColor = 'rgba(239, 68, 68, 0.6)';
-            }
         }
     });
 
@@ -1058,14 +955,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isInteracting) {
             // Reset interaction states
             isDraggingWatermark = false;
-            isRotating = false;
             isScaling = false;
             currentScaleCorner = null;
             isInteracting = false;
 
             // Hide visual helpers
             hideAlignmentGrid();
-            hideRotationIndicator();
 
             // Reset watermark preview styles
             if (watermarkPreview) {
@@ -1079,13 +974,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     handle.style.transform = 'scale(1)';
                     handle.style.backgroundColor = 'rgba(59, 130, 246, 0.6)';
                 });
-            }
-
-            // Reset rotation handle styles
-            const rotationHandle = watermarkPreview?.querySelector('.rotation-handle');
-            if (rotationHandle) {
-                rotationHandle.style.transform = 'scale(1)';
-                rotationHandle.style.backgroundColor = 'rgba(239, 68, 68, 0.6)';
             }
         }
     });
