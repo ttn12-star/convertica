@@ -163,3 +163,18 @@ def hreflang_links(request):
     hreflangs.append({"code": "x-default", "url": default_url})
 
     return {"hreflangs": hreflangs}
+
+
+def js_settings(request):
+    """Add configurable JS settings to template context.
+
+    These settings are passed to JavaScript via window object.
+    """
+    return {
+        "js_settings": {
+            # Time in seconds before showing patience message during long conversions
+            "patience_message_delay": getattr(settings, "PATIENCE_MESSAGE_DELAY", 40),
+            # Polling interval for async tasks (milliseconds)
+            "poll_interval": getattr(settings, "ASYNC_POLL_INTERVAL", 2500),
+        }
+    }

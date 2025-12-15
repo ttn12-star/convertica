@@ -201,7 +201,8 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
     container.classList.remove('hidden');
     container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-    // Show patience message after 40 seconds
+    // Show patience message after configured delay (default 40 seconds)
+    const patienceDelay = (window.JS_SETTINGS && window.JS_SETTINGS.patienceMessageDelay) || 40000;
     container._patienceTimeout = setTimeout(() => {
         const patienceMsg = document.getElementById('patienceMessage');
         if (patienceMsg) {
@@ -209,7 +210,7 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
             // Smooth scroll to show the message
             patienceMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-    }, 40000); // 40 seconds
+    }, patienceDelay);
 
     if (showProgress) {
         // Animate progress
@@ -651,7 +652,11 @@ async function submitAsyncConversion(options) {
  * @param {number} pollInterval - Polling interval in ms (default: 1000)
  * @param {number} maxAttempts - Maximum poll attempts (default: 600 = 10 minutes)
  */
-async function pollTaskStatus(taskId, callbacks, pollInterval = 2500, maxAttempts = 300) {
+async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempts = 300) {
+    // Use configured poll interval or default
+    if (pollInterval === null) {
+        pollInterval = (window.JS_SETTINGS && window.JS_SETTINGS.pollInterval) || 2500;
+    }
     const { onProgress, onSuccess, onError } = callbacks;
     let attempts = 0;
 
