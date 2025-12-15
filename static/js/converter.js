@@ -115,20 +115,30 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (apiUrl.includes('pdf-to-excel')) conversionType = 'pdf_to_excel';
             else if (apiUrl.includes('pdf-to-jpg')) conversionType = 'pdf_to_jpg';
             else if (apiUrl.includes('jpg-to-pdf')) conversionType = 'jpg_to_pdf';
+            else if (apiUrl.includes('compress')) conversionType = 'compress_pdf';
         }
 
-        // Determine if this is a heavy operation that should use async mode
-        // PDF to Word, Word to PDF, PDF to Excel are heavy operations
+        // Heavy operations that always use async mode
         const heavyOperations = ['pdf_to_word', 'word_to_pdf', 'pdf_to_excel'];
+        // Operations that use async for large files (> 5MB)
+        const mediumOperations = ['pdf_to_jpg', 'compress_pdf'];
+
         const isHeavyOperation = heavyOperations.includes(conversionType);
-        const isLargeFile = selectedFile.size > 3 * 1024 * 1024; // 3MB
+        const isMediumOperation = mediumOperations.includes(conversionType);
+        const isLargeFile = selectedFile.size > 5 * 1024 * 1024; // 5MB
 
-        // Use async mode for heavy operations or large files
-        const useAsync = isHeavyOperation || isLargeFile;
+        // Use async mode for:
+        // - Heavy operations (PDF to Word, Word to PDF, PDF to Excel) - always
+        // - Medium operations (PDF to JPG, Compress) - for large files
+        // - Any other operation - for very large files (> 10MB)
+        const useAsync = isHeavyOperation ||
+                        (isMediumOperation && isLargeFile) ||
+                        (selectedFile.size > 10 * 1024 * 1024);
 
-        // Use async API endpoint for heavy operations
+        // Use async API endpoint for operations that need it
         let apiUrl = window.API_URL;
-        if (useAsync && isHeavyOperation && !apiUrl.endsWith('/async/')) {
+        const needsAsyncEndpoint = (isHeavyOperation || isMediumOperation) && useAsync;
+        if (needsAsyncEndpoint && !apiUrl.endsWith('/async/')) {
             // Append /async/ to the URL for async processing
             apiUrl = apiUrl.replace(/\/$/, '') + '/async/';
         }

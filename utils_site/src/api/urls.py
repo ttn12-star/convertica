@@ -3,6 +3,7 @@ from django.urls import path
 from .async_views import TaskResultAPIView, TaskStatusAPIView
 from .pdf_convert.async_views import (
     PDFToExcelAsyncAPIView,
+    PDFToJPGAsyncAPIView,
     PDFToWordAsyncAPIView,
     WordToPDFAsyncAPIView,
 )
@@ -15,6 +16,7 @@ from .pdf_edit.add_page_numbers.views import AddPageNumbersAPIView
 from .pdf_edit.add_watermark.views import AddWatermarkAPIView
 from .pdf_edit.crop_pdf.views import CropPDFAPIView
 from .pdf_edit.rotate_pdf.views import RotatePDFAPIView
+from .pdf_organize.async_views import CompressPDFAsyncAPIView
 from .pdf_organize.compress_pdf.views import CompressPDFAPIView
 from .pdf_organize.extract_pages.views import ExtractPagesAPIView
 from .pdf_organize.merge_pdf.views import MergePDFAPIView
@@ -54,6 +56,11 @@ urlpatterns = [
         PDFToExcelAsyncAPIView.as_view(),
         name="pdf_to_excel_async_api",
     ),
+    path(
+        "pdf-to-jpg/async/",
+        PDFToJPGAsyncAPIView.as_view(),
+        name="pdf_to_jpg_async_api",
+    ),
     # PDF Edit endpoints
     path("pdf-edit/rotate/", RotatePDFAPIView.as_view(), name="rotate_pdf_api"),
     path(
@@ -85,6 +92,11 @@ urlpatterns = [
     ),
     path(
         "pdf-organize/compress/", CompressPDFAPIView.as_view(), name="compress_pdf_api"
+    ),
+    path(
+        "pdf-organize/compress/async/",
+        CompressPDFAsyncAPIView.as_view(),
+        name="compress_pdf_async_api",
     ),
     # PDF Security endpoints
     path("pdf-security/protect/", ProtectPDFAPIView.as_view(), name="protect_pdf_api"),

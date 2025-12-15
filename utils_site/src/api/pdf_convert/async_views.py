@@ -10,6 +10,7 @@ from src.tasks.pdf_conversion import generic_conversion_task
 
 from ..async_views import AsyncConversionAPIView
 from .pdf_to_excel.serializers import PDFToExcelSerializer
+from .pdf_to_jpg.serializers import PDFToJPGSerializer
 from .pdf_to_word.serializers import PDFToWordSerializer
 from .word_to_pdf.serializers import WordToPDFSerializer
 
@@ -80,3 +81,31 @@ class WordToPDFAsyncAPIView(AsyncConversionAPIView):
 
     def get_celery_task(self):
         return generic_conversion_task
+
+
+class PDFToJPGAsyncAPIView(AsyncConversionAPIView):
+    """Async PDF to JPG conversion.
+
+    Returns task_id immediately for progress polling.
+    Useful for large PDFs or high DPI settings.
+    """
+
+    MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
+    ALLOWED_CONTENT_TYPES = {"application/pdf", "application/octet-stream"}
+    ALLOWED_EXTENSIONS = {".pdf"}
+    CONVERSION_TYPE = "pdf_to_jpg"
+    FILE_FIELD_NAME = "pdf_file"
+    VALIDATE_PDF_PAGES = False  # Client-side validation
+
+    def get_serializer_class(self):
+        return PDFToJPGSerializer
+
+    def get_celery_task(self):
+        return generic_conversion_task
+
+    def get_task_kwargs(self, validated_data: dict) -> dict:
+        """Pass pages and DPI parameters."""
+        return {
+            "pages": validated_data.get("pages", "all"),
+            "dpi": validated_data.get("dpi", 300),
+        }
