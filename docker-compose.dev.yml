@@ -36,6 +36,7 @@ services:
       - -c
       - |
         if [ ! -L /app/src ] && [ ! -d /app/src ]; then ln -s /app/utils_site/src /app/src; fi &&
+        mkdir -p /app/media/async_temp &&
         python manage.py collectstatic --noinput &&
         python manage.py migrate &&
         python manage.py runserver 0.0.0.0:8000
@@ -67,12 +68,19 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
+    entrypoint: []
     volumes:
       - .:/app  # Mount source code for hot reload
       - ./media:/app/media  # Share media for async temp files
     env_file:
       - .env
-    command: celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
+    command:
+      - /bin/sh
+      - -c
+      - |
+        if [ ! -L /app/src ] && [ ! -d /app/src ]; then ln -s /app/utils_site/src /app/src; fi &&
+        mkdir -p /app/media/async_temp &&
+        celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
     deploy:
       resources:
         limits:
