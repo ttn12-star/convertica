@@ -315,6 +315,10 @@ STATICFILES_DIRS = [
 
 STATIC_URL = "static/"
 
+# Media files (user uploads, async temp files)
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "media/"
+
 # Use ManifestStaticFilesStorage for versioning (hash in filenames)
 # This allows long-term caching (365 days) while automatically invalidating
 # cache when files change (new hash = new filename)
