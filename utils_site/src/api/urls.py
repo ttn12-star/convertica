@@ -1,6 +1,11 @@
 from django.urls import path
 
 from .async_views import TaskResultAPIView, TaskStatusAPIView
+from .pdf_convert.async_views import (
+    PDFToExcelAsyncAPIView,
+    PDFToWordAsyncAPIView,
+    WordToPDFAsyncAPIView,
+)
 from .pdf_convert.jpg_to_pdf.views import JPGToPDFAPIView
 from .pdf_convert.pdf_to_excel.views import PDFToExcelAPIView
 from .pdf_convert.pdf_to_jpg.views import PDFToJPGAPIView
@@ -27,11 +32,28 @@ urlpatterns = [
     path(
         "tasks/<str:task_id>/result/", TaskResultAPIView.as_view(), name="task_result"
     ),
+    # Sync endpoints (for small files / fast operations)
     path("pdf-to-word/", PDFToWordAPIView.as_view(), name="pdf_to_word_api"),
     path("word-to-pdf/", WordToPDFAPIView.as_view(), name="word_to_pdf_api"),
     path("pdf-to-jpg/", PDFToJPGAPIView.as_view(), name="pdf_to_jpg_api"),
     path("jpg-to-pdf/", JPGToPDFAPIView.as_view(), name="jpg_to_pdf_api"),
     path("pdf-to-excel/", PDFToExcelAPIView.as_view(), name="pdf_to_excel_api"),
+    # Async endpoints (for large files / heavy operations - avoids Cloudflare timeout)
+    path(
+        "pdf-to-word/async/",
+        PDFToWordAsyncAPIView.as_view(),
+        name="pdf_to_word_async_api",
+    ),
+    path(
+        "word-to-pdf/async/",
+        WordToPDFAsyncAPIView.as_view(),
+        name="word_to_pdf_async_api",
+    ),
+    path(
+        "pdf-to-excel/async/",
+        PDFToExcelAsyncAPIView.as_view(),
+        name="pdf_to_excel_async_api",
+    ),
     # PDF Edit endpoints
     path("pdf-edit/rotate/", RotatePDFAPIView.as_view(), name="rotate_pdf_api"),
     path(

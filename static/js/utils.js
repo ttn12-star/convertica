@@ -168,18 +168,18 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
 
                 <!-- Patience Message (hidden initially, shown after 30 seconds) -->
                 <div id="patienceMessage" class="hidden w-full max-w-md animate-fade-in">
-                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-4 sm:p-5">
+                    <div class="bg-gradient-to-r from-emerald-100 to-teal-100 border-2 border-emerald-400 rounded-xl p-4 sm:p-5 shadow-md">
                         <div class="flex items-start space-x-3">
                             <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shadow-sm">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-amber-800 mb-1">${patienceTitle}</h4>
-                                <p class="text-amber-700 text-sm">${patienceMessage}</p>
+                                <h4 class="font-bold text-emerald-800 text-base mb-1">${patienceTitle}</h4>
+                                <p class="text-emerald-700 text-sm">${patienceMessage}</p>
                             </div>
                         </div>
                     </div>
