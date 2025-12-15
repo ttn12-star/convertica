@@ -8,11 +8,13 @@ Flow:
 1. POST /api/{conversion}/ - Upload file, start Celery task, return task_id immediately
 2. GET /api/tasks/{task_id}/status/ - Check task status and progress
 3. GET /api/tasks/{task_id}/result/ - Download result when ready
+
+Storage: Uses MEDIA_ROOT/async_temp/ for temporary files - this directory
+is shared between web and celery containers via volume mount.
 """
 
 import os
 import shutil
-import tempfile
 import uuid
 from abc import ABC, abstractmethod
 from typing import Any
@@ -33,8 +35,11 @@ from .spam_protection import validate_spam_protection
 logger = get_logger(__name__)
 
 # Directory for storing files during async processing
+# Uses MEDIA_ROOT to ensure shared access between web and celery containers
 ASYNC_TEMP_DIR = getattr(
-    settings, "ASYNC_TEMP_DIR", os.path.join(tempfile.gettempdir(), "convertica_async")
+    settings,
+    "ASYNC_TEMP_DIR",
+    os.path.join(getattr(settings, "MEDIA_ROOT", "/app/media"), "async_temp"),
 )
 
 # How long to keep temp files (seconds) - cleaned by maintenance task

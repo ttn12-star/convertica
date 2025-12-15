@@ -44,7 +44,6 @@ services:
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
       - ./logs:/app/logs
-      - async_temp:/tmp/convertica_async  # Shared volume for async tasks
     env_file:
       - .env
     ports:
@@ -70,7 +69,7 @@ services:
       dockerfile: ci/Dockerfile
     volumes:
       - .:/app  # Mount source code for hot reload
-      - async_temp:/tmp/convertica_async  # Shared volume for async tasks
+      - ./media:/app/media  # Share media for async temp files
     env_file:
       - .env
     command: celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
@@ -100,7 +99,3 @@ services:
         reservations:
           cpus: '0.05'
           memory: 64M
-
-volumes:
-  async_temp:
-    driver: local
