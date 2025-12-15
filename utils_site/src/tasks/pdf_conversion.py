@@ -33,7 +33,7 @@ def update_progress(task, progress: int, current_step: str = "", total_steps: in
 @shared_task(
     bind=True,
     name="pdf_conversion.generic_conversion",
-    queue="pdf_conversion",
+    queue="celery",  # Use default queue (pdf_conversion queue was not being consumed)
     soft_time_limit=540,
     time_limit=600,
 )
@@ -267,9 +267,7 @@ def generic_conversion_task(
 
 
 # Legacy tasks for backwards compatibility
-@shared_task(
-    bind=True, name="pdf_conversion.convert_pdf_to_word", queue="pdf_conversion"
-)
+@shared_task(bind=True, name="pdf_conversion.convert_pdf_to_word", queue="celery")
 def convert_pdf_to_word_task(
     self, file_path: str, output_filename: str, **kwargs
 ) -> dict:
@@ -283,9 +281,7 @@ def convert_pdf_to_word_task(
     )
 
 
-@shared_task(
-    bind=True, name="pdf_conversion.convert_word_to_pdf", queue="pdf_conversion"
-)
+@shared_task(bind=True, name="pdf_conversion.convert_word_to_pdf", queue="celery")
 def convert_word_to_pdf_task(
     self, file_path: str, output_filename: str, **kwargs
 ) -> dict:
@@ -299,7 +295,7 @@ def convert_word_to_pdf_task(
     )
 
 
-@shared_task(bind=True, name="pdf_conversion.compress_pdf", queue="pdf_processing")
+@shared_task(bind=True, name="pdf_conversion.compress_pdf", queue="celery")
 def compress_pdf_task(
     self,
     file_path: str,

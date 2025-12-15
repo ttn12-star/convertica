@@ -28,9 +28,13 @@ try:
 
     # Explicitly register tasks from src.tasks package
     # These are not in standard Django app structure so autodiscover won't find them
-    import src.tasks.email  # noqa: F401
-    import src.tasks.maintenance  # noqa: F401
-    import src.tasks.pdf_conversion  # noqa: F401
+    # Import AFTER app is created so tasks are registered with this app
+    from src.tasks import email  # noqa: F401
+    from src.tasks import maintenance  # noqa: F401
+    from src.tasks import pdf_conversion  # noqa: F401
+
+    # Also autodiscover from our custom tasks package
+    app.autodiscover_tasks(["src.tasks"])
 
     # Celery configuration
     app.conf.update(
