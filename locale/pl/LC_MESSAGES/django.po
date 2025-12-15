@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-15 20:37+0000\n"
+"POT-Creation-Date: 2025-12-15 22:09+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
 "Language: pl\n"
@@ -14,118 +14,182 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
+#: templates/400.html:4 templates/400.html:5
 msgid "400 - Bad Request"
-msgstr ""
+msgstr "400 - Nieprawidłowe żądanie"
 
+#: templates/400.html:4 templates/403.html:4 templates/404.html:4
+#: templates/500.html:4 templates/502.html:4
+#: templates/frontend/includes/header.html:22
 msgid "Convertica"
 msgstr "Convertica"
 
+#: templates/400.html:6
 msgid "The request could not be understood by the server."
-msgstr ""
+msgstr "Serwer nie mógł zrozumieć przesłanego żądania."
 
+#: templates/400.html:33
 msgid "Bad Request"
-msgstr ""
+msgstr "Nieprawidłowe żądanie"
 
+#: templates/400.html:37
 msgid ""
 "The request you sent could not be understood by the server. Please check "
 "your input and try again."
 msgstr ""
+"Wysłane przez Ciebie żądanie nie zostało zrozumiane przez serwer. Sprawdź "
+"wprowadzone dane i spróbuj ponownie."
 
+#: templates/400.html:47
 msgid "Go Back"
-msgstr ""
+msgstr "Wróć"
 
+#: templates/400.html:55 templates/403.html:48 templates/404.html:46
+#: templates/500.html:55 templates/502.html:56
 msgid "Go Home"
 msgstr "Strona główna"
 
+#: templates/403.html:4 templates/403.html:5
 msgid "403 - Access Forbidden"
-msgstr ""
+msgstr "403 - Dostęp zabroniony"
 
+#: templates/403.html:6
 msgid "You don't have permission to access this resource."
-msgstr ""
+msgstr "Nie masz uprawnień do dostępu do tego zasobu."
 
+#: templates/403.html:34
 msgid "Access Forbidden"
-msgstr ""
+msgstr "Dostęp zabroniony"
 
+#: templates/403.html:38
 msgid ""
 "You don't have permission to access this page. If you believe this is an "
 "error, please contact support."
 msgstr ""
+"Nie masz uprawnień do dostępu do tej strony. Jeśli uważasz, że to błąd, "
+"skontaktuj się z pomocą techniczną."
 
+#: templates/403.html:56
 msgid "Contact Support"
 msgstr "Formularz kontaktowy"
 
+#: templates/404.html:4 templates/404.html:5
 msgid "404 - Page Not Found"
-msgstr ""
+msgstr "404 - Nie znaleziono strony"
 
+#: templates/404.html:6
 msgid "The page you are looking for could not be found."
-msgstr ""
+msgstr "Nie można znaleźć strony, której szukasz."
 
+#: templates/404.html:32
 msgid "Oops! Page Not Found"
-msgstr ""
+msgstr "Ups! Nie znaleziono strony"
 
+#: templates/404.html:36
 msgid ""
 "The page you're looking for seems to have wandered off. It might have been "
 "moved, deleted, or never existed."
 msgstr ""
+"Strona, której szukasz, prawdopodobnie została przeniesiona, usunięta lub "
+"nigdy nie istniała."
 
+#: templates/404.html:54
 msgid "Browse All Tools"
 msgstr "Wszystkie narzędzia"
 
+#: templates/404.html:60
 msgid "Popular pages:"
 msgstr "Popularne narzędzia"
 
+#: templates/404.html:62 templates/blog/article_detail.html:340
+#: templates/frontend/all_tools.html:63
+#: templates/frontend/includes/footer.html:102
+#: templates/frontend/includes/header.html:92
+#: templates/frontend/includes/header.html:330
+#: templates/frontend/includes/header.html:709 templates/frontend/index.html:56
+#: templates/frontend/index.html:110
 msgid "PDF to Word"
 msgstr "PDF na Word"
 
+#: templates/404.html:63 templates/blog/article_detail.html:349
+#: templates/frontend/all_tools.html:281
+#: templates/frontend/includes/header.html:190
+#: templates/frontend/includes/header.html:514
+#: templates/frontend/includes/header.html:735 templates/frontend/index.html:65
+#: templates/frontend/index.html:250 utils_site/src/frontend/views.py:518
 msgid "Merge PDF"
 msgstr "Połącz PDF"
 
+#: templates/404.html:64 templates/frontend/all_tools.html:300
+#: templates/frontend/includes/header.html:202
+#: templates/frontend/includes/header.html:526
+#: templates/frontend/includes/header.html:739
+#: templates/frontend/index.html:274 utils_site/src/frontend/views.py:568
+#: utils_site/src/frontend/views.py:574
 msgid "Split PDF"
 msgstr "Podziel PDF"
 
+#: templates/404.html:65 templates/frontend/includes/footer.html:69
 msgid "FAQ"
 msgstr "FAQ"
 
+#: templates/500.html:4 templates/500.html:5
 msgid "500 - Server Error"
-msgstr ""
+msgstr "500 - Błąd serwera"
 
+#: templates/500.html:6
 msgid "An internal server error occurred. We're working to fix it."
-msgstr ""
+msgstr "Wystąpił wewnętrzny błąd serwera. Pracujemy nad jego naprawą."
 
+#: templates/500.html:33
 msgid "Oops! Something Went Wrong"
-msgstr ""
+msgstr "Ups! Coś poszło nie tak"
 
+#: templates/500.html:37
 msgid ""
 "We're experiencing some technical difficulties. Our team has been notified "
 "and is working to fix the issue. Please try again in a few moments."
 msgstr ""
+"Wystąpiły trudności techniczne. Nasz zespół został powiadomiony i pracuje "
+"nad rozwiązaniem problemu. Spróbuj ponownie za chwilę."
 
+#: templates/500.html:47 templates/502.html:48
 msgid "Try Again"
 msgstr "Wypróbuj"
 
+#: templates/500.html:62
 msgid "If the problem persists, please"
-msgstr ""
+msgstr "Jeśli problem będzie się powtarzał, prosimy"
 
+#: templates/500.html:63 templates/502.html:64
 msgid "contact us"
 msgstr "Skontaktuj się z nami"
 
+#: templates/502.html:4 templates/502.html:5
 msgid "502 - Bad Gateway"
-msgstr ""
+msgstr "502 - Zła bramka"
 
+#: templates/502.html:6
 msgid "The server received an invalid response from an upstream server."
-msgstr ""
+msgstr "Serwer otrzymał nieprawidłową odpowiedź od serwera nadrzędnego."
 
+#: templates/502.html:34
 msgid "Bad Gateway"
-msgstr ""
+msgstr "Zła bramka"
 
+#: templates/502.html:38
 msgid ""
 "The server is temporarily unavailable or overloaded. Please try again in a "
 "few moments. We're working to restore service as quickly as possible."
 msgstr ""
+"Serwer jest tymczasowo niedostępny lub przeciążony. Spróbuj ponownie za "
+"chwilę. Pracujemy nad jak najszybszym przywróceniem usługi."
 
+#: templates/502.html:63
 msgid "This is usually a temporary issue. If it persists, please"
-msgstr ""
+msgstr "Zazwyczaj jest to problem tymczasowy. Jeśli się utrzymuje, prosimy"
 
+#: templates/base.html:14
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
 "installations required."
@@ -133,6 +197,7 @@ msgstr ""
 "Szybki, prosty i bezpieczny konwerter online PDF na Word i Word na PDF. "
 "Konwertuj dokumenty natychmiast, bez rejestracji."
 
+#: templates/base.html:15
 msgid ""
 "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
 "free converter"
@@ -140,76 +205,114 @@ msgstr ""
 "PDF na Word, PDF na DOCX, konwertuj PDF, konwerter PDF, konwerter Word, "
 "konwerter PDF online"
 
+#: templates/base.html:107
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr ""
 "Szybki, prosty i bezpieczny konwerter PDF na Word i Word na PDF online."
 
+#: templates/blog/article_detail.html:214
 msgid "Categories"
 msgstr "Kategorie"
 
+#: templates/blog/article_detail.html:223
 msgid "All"
 msgstr "Wszystkie"
 
+#: templates/blog/article_detail.html:275
 msgid "Related Articles"
 msgstr "Powiązane artykuły"
 
+#: templates/blog/article_detail.html:318
 msgid "Back to Blog"
 msgstr "Powrót do bloga"
 
+#: templates/blog/article_detail.html:330 templates/frontend/index.html:90
 msgid "Popular Tools"
 msgstr "Popularne narzędzia"
 
+#: templates/blog/article_detail.html:358 templates/frontend/all_tools.html:377
+#: templates/frontend/includes/header.html:250
+#: templates/frontend/includes/header.html:550
+#: templates/frontend/includes/header.html:755 templates/frontend/index.html:74
+#: templates/frontend/index.html:371 utils_site/src/frontend/views.py:787
+#: utils_site/src/frontend/views.py:793
 msgid "Compress PDF"
 msgstr "Kompresuj PDF"
 
+#: templates/blog/article_detail.html:367 templates/frontend/all_tools.html:182
+#: templates/frontend/includes/header.html:135
+#: templates/frontend/includes/header.html:428
+#: templates/frontend/includes/header.html:773
+#: templates/frontend/index.html:135 utils_site/src/frontend/views.py:346
+#: utils_site/src/frontend/views.py:352
 msgid "Rotate PDF"
 msgstr "Obróć PDF"
 
+#: templates/blog/article_detail.html:373
 msgid "View All Tools"
 msgstr "Wszystkie narzędzia"
 
+#: templates/blog/article_list.html:7
 msgid "blog, articles, PDF guides, document tips, tutorials"
 msgstr "blog, artykuły, przewodniki PDF, porady dokumentowe, samouczki"
 
+#: templates/blog/article_list.html:20
+#: templates/frontend/includes/footer.html:33
+#: templates/frontend/includes/footer.html:226
 msgid "Blog"
 msgstr "Blog"
 
+#: templates/blog/article_list.html:23
 msgid ""
 "Useful guides, tips, and articles about PDF tools and document management"
 msgstr ""
 "Przydatne przewodniki, porady i artykuły o narzędziach PDF i zarządzaniu "
 "dokumentami"
 
+#: templates/blog/article_list.html:41
 msgid "Search articles..."
 msgstr "Szukaj artykułów..."
 
+#: templates/blog/article_list.html:45
 msgid "Search"
 msgstr "Szukaj"
 
+#: templates/blog/article_list.html:54
 msgid "All Articles"
 msgstr "Wszystkie artykuły"
 
+#: templates/blog/article_list.html:101
 msgid "Read"
 msgstr "Czytaj"
 
+#: templates/blog/article_list.html:116
 msgid "Previous"
 msgstr "Poprzednia"
 
+#: templates/blog/article_list.html:121
+#: templates/frontend/add_watermark.html:523
+#: templates/frontend/crop_pdf.html:400 templates/frontend/merge_pdf.html:113
+#: templates/frontend/organize_pdf.html:44
 msgid "Page"
 msgstr "Strona"
 
+#: templates/blog/article_list.html:121
 msgid "of"
 msgstr "z"
 
+#: templates/blog/article_list.html:127
 msgid "Next"
 msgstr "Następna"
 
+#: templates/blog/article_list.html:135
 msgid "No articles found."
 msgstr "Nie znaleziono artykułów."
 
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:903
 msgid "About Us - Convertica"
 msgstr "O nas - Convertica"
 
+#: templates/frontend/about.html:25
 msgid ""
 "Free online PDF tools platform providing conversion, editing, and "
 "organization services."
@@ -217,22 +320,28 @@ msgstr ""
 "Darmowa platforma narzędzi PDF online oferująca usługi konwersji, edycji i "
 "organizacji."
 
+#: templates/frontend/about.html:27
 msgid "Today better than yesterday, tomorrow better than today"
 msgstr "Dziś lepiej niż wczoraj, jutro lepiej niż dziś"
 
+#: templates/frontend/about.html:46
 msgid "About Convertica"
 msgstr "O Convertica"
 
+#: templates/frontend/about.html:49
 msgid "Your trusted partner for all PDF document needs"
 msgstr ""
 "Twój zaufany partner we wszystkich potrzebach związanych z dokumentami PDF"
 
+#: templates/frontend/about.html:63
 msgid "Mission icon"
 msgstr "Ikona misji"
 
+#: templates/frontend/about.html:67
 msgid "Our Mission"
 msgstr "Nasza misja"
 
+#: templates/frontend/about.html:70
 msgid ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
@@ -246,21 +355,26 @@ msgstr ""
 "zobowiązujemy się zapewnić, aby każde interakcje z naszą platformą "
 "przekraczały Twoje oczekiwania."
 
+#: templates/frontend/about.html:78
 msgid "Growth icon"
 msgstr "Ikona wzrostu"
 
+#: templates/frontend/about.html:82
 msgid "Our Core Principle: Constant Improvement"
 msgstr "Nasza podstawowa zasada: Ciągłe doskonalenie"
 
+#: templates/frontend/about.html:86
 msgid "We live by a simple yet powerful philosophy:"
 msgstr "Żyjemy według prostej, ale potężnej filozofii:"
 
+#: templates/frontend/about.html:90
 msgid ""
 "Today, we are better than we were yesterday. Tomorrow, we will be even "
 "better than today."
 msgstr ""
 "Dziś jesteśmy lepsi niż wczoraj. Jutro będziemy jeszcze lepsi niż dziś."
 
+#: templates/frontend/about.html:94
 msgid ""
 "This isn't just a slogan—it's our commitment to you. Every day, our team "
 "works tirelessly to enhance our platform, improve our tools, and refine the "
@@ -274,6 +388,7 @@ msgstr ""
 "opinii, analizujemy wzorce użytkowania i wdrażamy ulepszenia, które czynią "
 "Convertica bardziej potężną, intuicyjną i niezawodną."
 
+#: templates/frontend/about.html:97
 msgid ""
 "Whether it's optimizing our conversion algorithms, adding new features, "
 "improving security, or enhancing performance, we never stop striving for "
@@ -288,15 +403,19 @@ msgstr ""
 "najlepszą wersję naszej platformy — a my już pracujemy nad tym, aby była "
 "jeszcze lepsza."
 
+#: templates/frontend/about.html:106
 msgid "Tools icon"
 msgstr "Ikona narzędzi"
 
+#: templates/frontend/about.html:111
 msgid "What We Offer"
 msgstr "Co oferujemy"
 
+#: templates/frontend/about.html:115
 msgid "PDF Conversion"
 msgstr "Konwersja PDF"
 
+#: templates/frontend/about.html:117
 msgid ""
 "Convert PDFs to Word, Excel, and JPG formats, or create PDFs from various "
 "file types. Fast, accurate, and reliable conversions every time."
@@ -304,9 +423,11 @@ msgstr ""
 "Konwertuj pliki PDF na formaty Word, Excel i JPG lub twórz PDF z różnych "
 "typów plików. Szybkie, dokładne i niezawodne konwersje za każdym razem."
 
+#: templates/frontend/about.html:121
 msgid "PDF Editing"
 msgstr "Edycja PDF"
 
+#: templates/frontend/about.html:123
 msgid ""
 "Rotate, crop, add watermarks, and insert page numbers. Edit your PDFs with "
 "precision and ease."
@@ -314,9 +435,11 @@ msgstr ""
 "Obróć, przytnij, dodaj znaki wodne i wstaw numery stron. Edytuj swoje pliki "
 "PDF z precyzją i łatwością."
 
+#: templates/frontend/about.html:127
 msgid "PDF Organization"
 msgstr "Organizacja PDF"
 
+#: templates/frontend/about.html:129
 msgid ""
 "Merge, split, extract, remove, and organize pages. Manage your PDF documents "
 "efficiently."
@@ -324,9 +447,13 @@ msgstr ""
 "Łącz, dziel, wyodrębniaj, usuwaj i organizuj strony. Zarządzaj swoimi "
 "dokumentami PDF efektywnie."
 
+#: templates/frontend/about.html:133 templates/frontend/all_tools.html:397
+#: templates/frontend/includes/header.html:258
+#: templates/frontend/includes/header.html:669
 msgid "PDF Security"
 msgstr "Bezpieczeństwo PDF"
 
+#: templates/frontend/about.html:135
 msgid ""
 "Protect your documents with password encryption or unlock secured PDFs when "
 "needed."
@@ -334,19 +461,25 @@ msgstr ""
 "Chroń swoje dokumenty za pomocą szyfrowania hasłem lub odblokuj "
 "zabezpieczone pliki PDF w razie potrzeby."
 
+#: templates/frontend/about.html:145
 msgid "Star icon"
 msgstr "Ikona gwiazdy"
 
+#: templates/frontend/about.html:149
 msgid "Why Choose Convertica"
 msgstr "Dlaczego wybrać Convertica"
 
+#: templates/frontend/about.html:154 templates/frontend/about.html:167
+#: templates/frontend/about.html:180 templates/frontend/about.html:193
 msgid "Checkmark icon"
 msgstr "Ikona znacznika"
 
+#: templates/frontend/about.html:159
 #, python-format
 msgid "100%% Free"
 msgstr "100%% Darmowe"
 
+#: templates/frontend/about.html:161
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
 "no credit card required."
@@ -354,9 +487,11 @@ msgstr ""
 "Wszystkie nasze narzędzia są całkowicie darmowe. Bez ukrytych opłat, bez "
 "subskrypcji, bez karty kredytowej."
 
+#: templates/frontend/about.html:172
 msgid "Fast & Secure"
 msgstr "Szybko i bezpiecznie"
 
+#: templates/frontend/about.html:174
 msgid ""
 "Process your files in seconds with our optimized algorithms. Your files are "
 "processed securely and deleted automatically after conversion."
@@ -365,9 +500,11 @@ msgstr ""
 "algorytmom. Twoje pliki są przetwarzane bezpiecznie i automatycznie usuwane "
 "po konwersji."
 
+#: templates/frontend/about.html:185
 msgid "No Registration Required"
 msgstr "Bez rejestracji"
 
+#: templates/frontend/about.html:187
 msgid ""
 "Start using our tools immediately. No sign-up, no email verification, no "
 "hassle."
@@ -375,9 +512,11 @@ msgstr ""
 "Zacznij używać naszych narzędzi natychmiast. Bez rejestracji, bez "
 "weryfikacji e-mail, bez kłopotów."
 
+#: templates/frontend/about.html:198
 msgid "Privacy First"
 msgstr "Prywatność na pierwszym miejscu"
 
+#: templates/frontend/about.html:200
 msgid ""
 "Your privacy matters. We don't store your files permanently, and we never "
 "share your data with third parties."
@@ -385,100 +524,173 @@ msgstr ""
 "Twoja prywatność ma znaczenie. Nie przechowujemy Twoich plików na stałe i "
 "nigdy nie udostępniamy Twoich danych stronom trzecim."
 
+#: templates/frontend/about.html:209
 msgid "Ready to Get Started?"
 msgstr "Gotowy do rozpoczęcia?"
 
+#: templates/frontend/about.html:211
 msgid "Experience the power of Convertica's PDF tools today."
 msgstr "Doświadcz mocy narzędzi PDF Convertica już dziś."
 
+#: templates/frontend/about.html:216 templates/frontend/index.html:404
 msgid "Explore All Tools"
 msgstr "Przeglądaj Wszystkie Narzędzia"
 
+#: templates/frontend/about.html:220
 msgid "Get Started"
-msgstr "Gotowy do rozpoczęcia?"
+msgstr "Rozpocznij"
 
+#: templates/frontend/add_page_numbers.html:9
+#: templates/frontend/add_page_numbers.html:181
 msgid "Preview Page Numbers"
-msgstr "Numery stron"
+msgstr "Podgląd numerów stron"
 
+#: templates/frontend/add_page_numbers.html:12
+#: templates/frontend/add_page_numbers.html:184
 msgid "Select page"
 msgstr "Wybierz stronę"
 
+#: templates/frontend/add_page_numbers.html:28
+#: templates/frontend/add_page_numbers.html:200
 msgid ""
 "Preview shows how page numbers will appear on your PDF. Adjust settings "
 "below to see real-time changes."
 msgstr ""
-"Podejrzyj, jak będą wyglądać numery stron na twoim PDF, korzystając z "
-"podglądu na żywo"
+"Podgląd pokazuje, jak numery stron będą wyświetlane w Twoim pliku PDF. "
+"Dostosuj ustawienia poniżej, aby zobaczyć zmiany w czasie rzeczywistym."
 
+#: templates/frontend/add_page_numbers.html:37
 msgid "Page Number Settings"
-msgstr "Numery stron"
+msgstr "Ustawienia numerów stron"
 
+#: templates/frontend/add_page_numbers.html:43
 msgid "Position"
 msgstr "Pozycja"
 
+#: templates/frontend/add_page_numbers.html:47
 msgid "Bottom Center"
 msgstr "Na dole na środku"
 
+#: templates/frontend/add_page_numbers.html:48
 msgid "Bottom Left"
 msgstr "Na dole po lewej"
 
+#: templates/frontend/add_page_numbers.html:49
 msgid "Bottom Right"
 msgstr "Na dole po prawej"
 
+#: templates/frontend/add_page_numbers.html:50
 msgid "Top Center"
 msgstr "Na górze na środku"
 
+#: templates/frontend/add_page_numbers.html:51
 msgid "Top Left"
 msgstr "Na górze po lewej"
 
+#: templates/frontend/add_page_numbers.html:52
 msgid "Top Right"
 msgstr "Na górze po prawej"
 
+#: templates/frontend/add_page_numbers.html:59
+#: templates/frontend/add_watermark.html:342
 msgid "Font Size"
 msgstr "Rozmiar czcionki"
 
+#: templates/frontend/add_page_numbers.html:73
 msgid "Starting Page Number"
 msgstr "Numer strony początkowej"
 
+#: templates/frontend/add_page_numbers.html:86
 msgid "Custom Format"
-msgstr "Format"
+msgstr "Format niestandardowy"
 
+#: templates/frontend/add_page_numbers.html:94
 msgid "Simple"
-msgstr ""
+msgstr "Prosty"
 
+#: templates/frontend/add_page_numbers.html:100
 msgid "With text"
-msgstr ""
+msgstr "Z tekstem"
 
+#: templates/frontend/add_page_numbers.html:106
 msgid "With total"
-msgstr ""
+msgstr "Z sumą stron"
 
+#: templates/frontend/add_page_numbers.html:112
 msgid "In brackets"
-msgstr ""
+msgstr "W nawiasach"
 
-#, fuzzy, python-brace-format
+#: templates/frontend/add_page_numbers.html:124
 msgid ""
 "Use {page} for page number, {total} for total pages. Click presets above or "
 "enter custom format."
-msgstr "Użyj {page} dla numeru strony, {total} dla całkowitej liczby stron"
+msgstr ""
+"Użyj {page} dla numeru strony, {total} dla całkowitej liczby stron. Kliknij "
+"presety powyżej lub wprowadź własny format."
 
+#: templates/frontend/add_page_numbers.html:131
+#: templates/frontend/add_watermark.html:408
 msgid "Apply to pages"
 msgstr "Zastosuj do stron"
 
+#: templates/frontend/add_page_numbers.html:141
+#: templates/frontend/add_watermark.html:418
+#: templates/frontend/crop_pdf.html:236 templates/frontend/pdf_to_jpg.html:22
+#: templates/frontend/remove_pages.html:21
+#: templates/frontend/rotate_pdf.html:35
 msgid "All pages"
 msgstr "Wszystkie strony"
 
+#: templates/frontend/add_page_numbers.html:149
+#: templates/frontend/add_watermark.html:426
+#: templates/frontend/crop_pdf.html:244 templates/frontend/remove_pages.html:29
+#: templates/frontend/rotate_pdf.html:43
 msgid "Current page only"
 msgstr "Tylko bieżąca strona"
 
+#: templates/frontend/add_page_numbers.html:157
+#: templates/frontend/add_watermark.html:434
+#: templates/frontend/crop_pdf.html:252 templates/frontend/pdf_to_jpg.html:30
+#: templates/frontend/remove_pages.html:38
+#: templates/frontend/rotate_pdf.html:51
 msgid "Custom pages:"
 msgstr "Niestandardowe strony:"
 
+#: templates/frontend/add_page_numbers.html:167
+#: templates/frontend/add_watermark.html:444
+#: templates/frontend/crop_pdf.html:262 templates/frontend/pdf_to_jpg.html:40
+#: templates/frontend/remove_pages.html:48
+#: templates/frontend/rotate_pdf.html:61
 msgid "Enter specific pages like '1,3,5' or '1-5'"
 msgstr "Wprowadź konkretne strony jak '1,3,5' lub '1-5'"
 
+#: templates/frontend/add_page_numbers.html:209
+#: templates/frontend/add_watermark.html:488
+#: templates/frontend/compress_pdf.html:31
+#: templates/frontend/converter_generic.html:189
+#: templates/frontend/crop_pdf.html:364
+#: templates/frontend/edit_pdf_generic.html:174
+#: templates/frontend/extract_pages.html:32
+#: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:133
+#: templates/frontend/organize_pdf.html:62
+#: templates/frontend/pdf_to_excel.html:7 templates/frontend/pdf_to_jpg.html:71
+#: templates/frontend/pdf_to_word.html:7 templates/frontend/protect_pdf.html:65
+#: templates/frontend/remove_pages.html:60
+#: templates/frontend/rotate_pdf.html:73 templates/frontend/split_pdf.html:74
+#: templates/frontend/unlock_pdf.html:33 templates/frontend/word_to_pdf.html:7
 msgid "How it works"
 msgstr "Jak to działa"
 
+#: templates/frontend/add_page_numbers.html:212
+#: templates/frontend/add_watermark.html:491
+#: templates/frontend/compress_pdf.html:34 templates/frontend/crop_pdf.html:367
+#: templates/frontend/extract_pages.html:35
+#: templates/frontend/organize_pdf.html:65
+#: templates/frontend/pdf_to_excel.html:10
+#: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:10
+#: templates/frontend/protect_pdf.html:68
+#: templates/frontend/remove_pages.html:63
+#: templates/frontend/rotate_pdf.html:76 templates/frontend/split_pdf.html:77
 msgid ""
 "Select your PDF file using the button above or drag and drop it into the "
 "zone below"
@@ -486,6 +698,7 @@ msgstr ""
 "Wybierz plik PDF za pomocą przycisku powyżej lub przeciągnij i upuść go w "
 "strefie poniżej"
 
+#: templates/frontend/add_page_numbers.html:213
 msgid ""
 "Choose the position, font size, starting number, and format for adding page "
 "numbers to PDF"
@@ -493,12 +706,12 @@ msgstr ""
 "Wybierz pozycję, rozmiar czcionki, numer początkowy i format do dodawania "
 "numerów stron do PDF"
 
+#: templates/frontend/add_page_numbers.html:214
 msgid ""
 "Preview how the page numbers will look on your PDF using the live preview"
-msgstr ""
-"Podejrzyj, jak będą wyglądać numery stron na twoim PDF, korzystając z "
-"podglądu na żywo"
+msgstr "Podglądaj jak numery stron będą wyglądać na Twoim PDF w czasie rzeczywistym"
 
+#: templates/frontend/add_page_numbers.html:215
 msgid ""
 "Select which pages to add numbers to: all pages, current page only, or "
 "specific pages"
@@ -506,123 +719,198 @@ msgstr ""
 "Wybierz, do których stron dodać numery: wszystkie strony, tylko bieżąca "
 "strona lub konkretne strony"
 
+#: templates/frontend/add_page_numbers.html:216
 msgid ""
 "Click the add page numbers button to process your PDF and add page numbers"
-msgstr ""
-"Kliknij przycisk dodawania numerów stron, aby przetworzyć PDF i dodać numery "
-"stron"
+msgstr "Kliknij przycisk dodawania numerów stron, aby przetworzyć PDF i dodać numery stron"
 
+#: templates/frontend/add_page_numbers.html:217
 msgid ""
 "Download your PDF file with page numbers added using the download button"
-msgstr ""
-"Pobierz plik PDF z dodanymi numerami stron za pomocą przycisku pobierania"
+msgstr "Pobierz plik PDF z dodanymi numerami stron za pomocą przycisku pobierania"
 
+#: templates/frontend/add_page_numbers.html:221
+#: templates/frontend/add_watermark.html:500
+#: templates/frontend/compress_pdf.html:41 templates/frontend/crop_pdf.html:376
+#: templates/frontend/edit_pdf_generic.html:184
+#: templates/frontend/extract_pages.html:42
+#: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:143
+#: templates/frontend/organize_pdf.html:73
+#: templates/frontend/pdf_to_excel.html:17
+#: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:17
+#: templates/frontend/protect_pdf.html:75
+#: templates/frontend/remove_pages.html:70
+#: templates/frontend/rotate_pdf.html:84 templates/frontend/split_pdf.html:85
+#: templates/frontend/unlock_pdf.html:43 templates/frontend/word_to_pdf.html:17
 msgid "Note:"
 msgstr "Uwaga:"
 
+#: templates/frontend/add_page_numbers.html:221
 msgid ""
 "PDF files with up to 50 pages are supported for adding page numbers. For "
 "larger files, please split them into smaller parts. The page numbers will be "
 "added according to your selected position, format, and font size."
 msgstr ""
-"Do dodawania numerów stron obsługiwane są pliki PDF do 50 stron. Dla "
-"większych plików podziel je na mniejsze części. Numery stron zostaną dodane "
+"Pliki PDF do 50 stron są obsługiwane przy dodawaniu numerów stron. Większe "
+"pliki należy podzielić na mniejsze części. Numery stron zostaną dodane "
 "zgodnie z wybraną pozycją, formatem i rozmiarem czcionki."
 
-#, fuzzy, python-format
+#: templates/frontend/add_page_numbers.html:235
+#: templates/frontend/add_watermark.html:525
+#: templates/frontend/converter_generic.html:212
+#: templates/frontend/crop_pdf.html:407 templates/frontend/merge_pdf.html:121
+#: templates/frontend/organize_pdf.html:50
 msgid ""
 "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
 "split your PDF into smaller parts."
 msgstr ""
-"PDF ma %(page_count)d stron, maksymalnie dozwolone to %(max_pages)d. Proszę "
-"podzielić swój PDF na mniejsze części."
+"PDF ma %%(page_count)d stron, maksymalnie dozwolone to %%(max_pages)d. "
+"Podziel PDF na mniejsze części."
 
+#: templates/frontend/add_page_numbers.html:236
+#: templates/frontend/add_watermark.html:526
+#: templates/frontend/converter_generic.html:220
+#: templates/frontend/crop_pdf.html:408
+#: templates/frontend/edit_pdf_generic.html:209
+#: templates/frontend/jpg_to_pdf.html:168 templates/frontend/merge_pdf.html:122
+#: templates/frontend/organize_pdf.html:51
 msgid "Everything is going well!"
-msgstr ""
+msgstr "Wszystko idzie dobrze!"
 
+#: templates/frontend/add_page_numbers.html:237
+#: templates/frontend/add_watermark.html:527
+#: templates/frontend/converter_generic.html:221
+#: templates/frontend/crop_pdf.html:409
+#: templates/frontend/edit_pdf_generic.html:210
+#: templates/frontend/jpg_to_pdf.html:169 templates/frontend/merge_pdf.html:123
+#: templates/frontend/organize_pdf.html:52
 msgid ""
 "Large files take a bit longer. Please do not close this page — your file is "
 "being processed."
 msgstr ""
+"Duże pliki zajmują nieco więcej czasu. Nie zamykaj tej strony — Twój plik "
+"jest przetwarzany."
 
+#: templates/frontend/add_watermark.html:155
 msgid "Select file to watermark"
 msgstr "Wybierz plik do znaku wodnego"
 
+#: templates/frontend/add_watermark.html:173
+#: templates/frontend/converter_generic.html:103
+#: templates/frontend/crop_pdf.html:147
+#: templates/frontend/edit_pdf_generic.html:103
 msgid "Remove file"
 msgstr "Usuń plik"
 
+#: templates/frontend/add_watermark.html:198
+#: templates/frontend/converter_generic.html:128
+#: templates/frontend/crop_pdf.html:172
+#: templates/frontend/edit_pdf_generic.html:128
 msgid "Drag and drop your file here"
 msgstr "Przeciągnij plik tutaj"
 
+#: templates/frontend/add_watermark.html:201
+#: templates/frontend/converter_generic.html:131
+#: templates/frontend/crop_pdf.html:175
+#: templates/frontend/edit_pdf_generic.html:131
+#: templates/frontend/jpg_to_pdf.html:93
 msgid "Use the button above to browse files"
 msgstr "Użyj przycisku powyżej, aby przeglądać pliki"
 
+#: templates/frontend/add_watermark.html:204
+#: templates/frontend/converter_generic.html:134
+#: templates/frontend/crop_pdf.html:178
+#: templates/frontend/edit_pdf_generic.html:134
 msgid "file"
 msgstr "plik"
 
+#: templates/frontend/add_watermark.html:213
 msgid "Visual Watermark Editor"
 msgstr "Wizualny edytor znaku wodnego"
 
+#: templates/frontend/add_watermark.html:219
 msgid "Select Page"
 msgstr "Wybierz stronę"
 
+#: templates/frontend/add_watermark.html:238
 msgid "How to use:"
 msgstr "Jak używać:"
 
+#: templates/frontend/add_watermark.html:238
 msgid ""
-"The watermark appears at the bottom of the page by default. Drag it to move, "
-"use corner handles to scale. Use the Rotation slider below to rotate. Click "
-"anywhere on the PDF to reposition."
+"After uploading, click on the PDF preview to position your watermark. Use "
+"the sliders below to adjust size and rotation. You can also drag the "
+"watermark to move it, or use corner handles to scale directly on the preview."
 msgstr ""
-"Znak wodny domyślnie pojawia się na dole strony. Przeciągnij go, aby "
-"przesunąć, użyj górnego uchwytu do obracania i narożnego uchwytu do "
-"skalowania. Kliknij w dowolnym miejscu PDF, aby zmienić jego pozycję."
+"Po przesłaniu, kliknij w podgląd PDF, aby ustawić znak wodny. Użyj suwaków "
+"poniżej, aby dostosować rozmiar i obrót. Możesz również przeciągnąć znak "
+"wodny, aby go przesunąć, lub użyć uchwytów narożnych do skalowania "
+"bezpośrednio w podglądzie."
 
+#: templates/frontend/add_watermark.html:247
 msgid "Watermark Settings"
 msgstr "Ustawienia znaku wodnego"
 
+#: templates/frontend/add_watermark.html:253
 msgid "Watermark Type"
-msgstr "Znak wodny"
+msgstr "Typ znaku wodnego"
 
+#: templates/frontend/add_watermark.html:258
 msgid "Text"
 msgstr "Tekst"
 
+#: templates/frontend/add_watermark.html:262
 msgid "Image"
 msgstr "Obraz"
 
+#: templates/frontend/add_watermark.html:270
 msgid "Watermark Text"
-msgstr "Znak wodny"
+msgstr "Tekst znaku wodnego"
 
+#: templates/frontend/add_watermark.html:283
 msgid "Watermark Image"
-msgstr "Znak wodny"
+msgstr "Obraz znaku wodnego"
 
+#: templates/frontend/add_watermark.html:295
 msgid "Choose Image"
 msgstr "Wybierz obraz"
 
+#: templates/frontend/add_watermark.html:304
 msgid "Color"
 msgstr "Kolor"
 
+#: templates/frontend/add_watermark.html:323
 msgid "Opacity"
 msgstr "Przezroczystość"
 
+#: templates/frontend/add_watermark.html:361
 msgid "Rotation"
 msgstr "Kąt obrotu"
 
+#: templates/frontend/add_watermark.html:381
+msgid "Size"
+msgstr "Rozmiar"
+
+#: templates/frontend/add_watermark.html:401
 msgid "Interactive controls:"
-msgstr "Interaktywne kontrolki:"
+msgstr "Sterowanie interaktywne:"
 
+#: templates/frontend/add_watermark.html:401
 msgid ""
-"Drag the watermark to move it. Use corner handles to scale. Use the rotation "
-"slider above to rotate."
+"Drag the watermark to move it. Use the Size and Rotation sliders above for "
+"easy control, or use corner handles to scale directly on the preview."
 msgstr ""
-"Przeciągnij znak wodny, aby go przesunąć. Przeciągnij dowolny uchwyt "
-"narożny, aby jednocześnie obrócić i skalować."
+"Przeciągnij znak wodny, aby go przesunąć. Użyj suwaków Rozmiar i Obrót do "
+"łatwej kontroli lub użyj uchwytów narożnych do skalowania bezpośrednio w "
+"podglądzie."
 
+#: templates/frontend/add_watermark.html:492
 msgid "Enter your watermark text or upload an image to add as watermark to PDF"
 msgstr ""
 "Wprowadź tekst znaku wodnego lub prześlij obraz, aby dodać go jako znak "
 "wodny do PDF"
 
+#: templates/frontend/add_watermark.html:493
 msgid ""
 "Choose the color and opacity using the sliders to customize your PDF "
 "watermark"
@@ -630,6 +918,7 @@ msgstr ""
 "Wybierz kolor i przezroczystość za pomocą suwaków, aby dostosować znak wodny "
 "PDF"
 
+#: templates/frontend/add_watermark.html:494
 msgid ""
 "Click on the PDF to position the watermark, or drag it to move it anywhere "
 "on the page"
@@ -637,50 +926,85 @@ msgstr ""
 "Kliknij na PDF, aby ustawić znak wodny, lub przeciągnij go, aby przenieść go "
 "w dowolne miejsce na stronie"
 
+#: templates/frontend/add_watermark.html:495
 msgid ""
 "Click the add watermark button to process your PDF and add the watermark"
-msgstr ""
-"Kliknij przycisk dodaj znak wodny, aby przetworzyć PDF i dodać znak wodny"
+msgstr "Kliknij przycisk dodaj znak wodny, aby przetworzyć PDF i dodać znak wodny"
 
+#: templates/frontend/add_watermark.html:496
 msgid "Download your watermarked PDF file using the download button"
 msgstr "Pobierz plik PDF ze znakiem wodnym za pomocą przycisku pobierania"
 
+#: templates/frontend/add_watermark.html:500
 msgid ""
 "PDF files with up to 50 pages are supported for adding watermarks. For "
 "larger files, please split them into smaller parts. The watermark will be "
 "applied to all pages or selected pages as specified."
 msgstr ""
-"Do dodawania znaków wodnych obsługiwane są pliki PDF do 50 stron. Dla "
-"większych plików podziel je na mniejsze części. Znak wodny zostanie "
-"zastosowany do wszystkich stron lub wybranych stron, jak określono."
+"Pliki PDF do 50 stron są obsługiwane przy dodawaniu znaków wodnych. Większe "
+"pliki należy podzielić na mniejsze części. Znak wodny zostanie zastosowany "
+"do wszystkich stron lub wybranych stron, zgodnie z określeniem."
 
+#: templates/frontend/add_watermark.html:516
+#: templates/frontend/crop_pdf.html:392
+#: templates/frontend/edit_pdf_generic.html:201
 msgid "Processing your file..."
 msgstr "Przetwarzanie pliku..."
 
+#: templates/frontend/add_watermark.html:517
+#: templates/frontend/converter_generic.html:214
+#: templates/frontend/crop_pdf.html:393
+#: templates/frontend/edit_pdf_generic.html:202
+#: templates/frontend/jpg_to_pdf.html:162
 msgid "Please wait, this may take a few moments"
 msgstr "Proszę czekać, to może chwilę potrwać"
 
+#: templates/frontend/add_watermark.html:518
+#: templates/frontend/crop_pdf.html:394
+#: templates/frontend/edit_pdf_generic.html:203
 msgid "Editing Complete!"
 msgstr "Edycja zakończona!"
 
+#: templates/frontend/add_watermark.html:519
+#: templates/frontend/converter_generic.html:216
+#: templates/frontend/crop_pdf.html:395
+#: templates/frontend/edit_pdf_generic.html:204
 msgid "Your file is ready to download"
 msgstr "Twój plik jest gotowy do pobrania"
 
+#: templates/frontend/add_watermark.html:520
+#: templates/frontend/converter_generic.html:217
+#: templates/frontend/crop_pdf.html:396
+#: templates/frontend/edit_pdf_generic.html:205
 msgid "Download File"
 msgstr "Pobierz plik"
 
+#: templates/frontend/add_watermark.html:521
+#: templates/frontend/crop_pdf.html:397
+#: templates/frontend/edit_pdf_generic.html:206
 msgid "Edit another file"
 msgstr "Edytuj inny plik"
 
+#: templates/frontend/add_watermark.html:522
+#: templates/frontend/contact.html:140
+#: templates/frontend/converter_generic.html:219
+#: templates/frontend/crop_pdf.html:398
+#: templates/frontend/edit_pdf_generic.html:207
+#: templates/frontend/jpg_to_pdf.html:167
 msgid "Error"
 msgstr "Błąd"
 
+#: templates/frontend/add_watermark.html:524
+#: templates/frontend/crop_pdf.html:406 templates/frontend/merge_pdf.html:118
+#: templates/frontend/organize_pdf.html:47
 msgid "Failed to load PDF file. Please try again."
-msgstr "Konwersja nie powiodła się. Proszę spróbować ponownie."
+msgstr "Nie udało się załadować pliku PDF. Spróbuj ponownie."
 
+#: templates/frontend/all_tools.html:24
 msgid "All PDF Tools"
 msgstr "Wszystkie narzędzia PDF"
 
+#: templates/frontend/all_tools.html:27
 msgid ""
 "Browse all our PDF tools organized by category. Convert, edit, and organize "
 "your PDFs with ease."
@@ -688,137 +1012,242 @@ msgstr ""
 "Przeglądaj wszystkie nasze narzędzia PDF uporządkowane według kategorii. "
 "Konwertuj, edytuj i organizuj swoje pliki PDF z łatwością."
 
+#: templates/frontend/all_tools.html:43
+#: templates/frontend/includes/header.html:57
+#: templates/frontend/includes/header.html:305
+#: templates/frontend/includes/header.html:691
 msgid "Convert PDF"
 msgstr "Konwertuj PDF"
 
+#: templates/frontend/all_tools.html:46
 msgid "Convert PDFs to other formats or convert other files to PDF"
 msgstr "Konwertuj PDF na inne formaty lub konwertuj inne pliki na PDF"
 
+#: templates/frontend/all_tools.html:66 templates/frontend/index.html:113
 msgid "Convert PDF documents to editable Word files instantly."
 msgstr "Natychmiast konwertuj dokumenty PDF na edytowalne pliki Word."
 
+#: templates/frontend/all_tools.html:82
+#: templates/frontend/includes/footer.html:111
+#: templates/frontend/includes/header.html:68
+#: templates/frontend/includes/header.html:373
+#: templates/frontend/includes/header.html:701
+#: templates/frontend/index.html:159
 msgid "Word to PDF"
 msgstr "Word na PDF"
 
+#: templates/frontend/all_tools.html:85 templates/frontend/index.html:162
 msgid "Convert Word documents to secure PDF files."
 msgstr "Konwertuj dokumenty Word na bezpieczne pliki PDF."
 
+#: templates/frontend/all_tools.html:101
+#: templates/frontend/includes/footer.html:120
+#: templates/frontend/includes/header.html:104
+#: templates/frontend/includes/header.html:342
+#: templates/frontend/includes/header.html:713
 msgid "PDF to JPG"
 msgstr "PDF na JPG"
 
+#: templates/frontend/all_tools.html:104
 msgid "Convert PDF pages to high-quality JPG images."
 msgstr "Konwertuj strony PDF na wysokiej jakości obrazy JPG."
 
+#: templates/frontend/all_tools.html:124
+#: templates/frontend/includes/footer.html:129
+#: templates/frontend/includes/header.html:80
+#: templates/frontend/includes/header.html:385
+#: templates/frontend/includes/header.html:705
 msgid "JPG to PDF"
 msgstr "JPG na PDF"
 
+#: templates/frontend/all_tools.html:127
 msgid ""
 "Convert JPG images to PDF documents. Combine multiple images into one PDF."
 msgstr "Konwertuj obrazy JPG na dokumenty PDF. Łącz wiele obrazów w jeden PDF."
 
+#: templates/frontend/all_tools.html:142
+#: templates/frontend/includes/header.html:116
+#: templates/frontend/includes/header.html:354
+#: templates/frontend/includes/header.html:717
+#: templates/frontend/index.html:208
 msgid "PDF to Excel"
 msgstr "PDF na Excel"
 
+#: templates/frontend/all_tools.html:145 templates/frontend/index.html:211
 msgid "Extract tables from PDF and convert to Excel format."
 msgstr "Wyodrębnij tabele z PDF i konwertuj na format Excel."
 
+#: templates/frontend/all_tools.html:162
+#: templates/frontend/includes/header.html:124
+#: templates/frontend/includes/header.html:403
+#: templates/frontend/includes/header.html:762
 msgid "Edit PDF"
 msgstr "Edytuj PDF"
 
+#: templates/frontend/all_tools.html:165
 msgid "Modify and enhance your PDF documents"
 msgstr "Modyfikuj i ulepszaj swoje dokumenty PDF"
 
+#: templates/frontend/all_tools.html:185 templates/frontend/index.html:138
 msgid "Rotate PDF pages by 90, 180, or 270 degrees."
 msgstr "Obróć strony PDF o 90, 180 lub 270 stopni."
 
+#: templates/frontend/all_tools.html:201
+#: templates/frontend/includes/header.html:147
+#: templates/frontend/includes/header.html:440
+#: templates/frontend/includes/header.html:778
+#: utils_site/src/frontend/views.py:478 utils_site/src/frontend/views.py:484
 msgid "Crop PDF"
 msgstr "Przytnij PDF"
 
+#: templates/frontend/all_tools.html:204
 msgid "Crop PDF pages by specifying crop box coordinates."
 msgstr "Przytnij strony PDF, określając współrzędne obszaru przycinania."
 
+#: templates/frontend/all_tools.html:220
+#: templates/frontend/includes/header.html:159
+#: templates/frontend/includes/header.html:459
+#: templates/frontend/includes/header.html:783
+#: utils_site/src/frontend/views.py:390 utils_site/src/frontend/views.py:396
 msgid "Add Page Numbers"
-msgstr "Numery stron"
+msgstr "Dodaj numery stron"
 
+#: templates/frontend/all_tools.html:223
 msgid "Add page numbers to your PDF documents."
 msgstr "Dodaj numery stron do swoich dokumentów PDF."
 
+#: templates/frontend/all_tools.html:240
+#: templates/frontend/includes/header.html:171
+#: templates/frontend/includes/header.html:471
+#: templates/frontend/includes/header.html:788
+#: templates/frontend/index.html:184 utils_site/src/frontend/views.py:435
+#: utils_site/src/frontend/views.py:441
 msgid "Add Watermark"
 msgstr "Dodaj znak wodny"
 
+#: templates/frontend/all_tools.html:243 templates/frontend/index.html:187
 msgid "Protect your PDFs with text or image watermarks."
 msgstr ""
 "Chroń swoje pliki PDF za pomocą tekstowych lub graficznych znaków wodnych."
 
+#: templates/frontend/all_tools.html:260 templates/frontend/all_tools.html:359
+#: templates/frontend/includes/header.html:179
+#: templates/frontend/includes/header.html:238
+#: templates/frontend/includes/header.html:489
+#: templates/frontend/includes/header.html:538
+#: templates/frontend/includes/header.html:725
+#: templates/frontend/includes/header.html:751
+#: templates/frontend/index.html:230 templates/frontend/index.html:347
+#: utils_site/src/frontend/views.py:694 utils_site/src/frontend/views.py:700
 msgid "Organize PDF"
 msgstr "Organizuj PDF"
 
+#: templates/frontend/all_tools.html:263
 msgid "Manage and organize your PDF documents"
 msgstr "Zarządzaj i organizuj swoje dokumenty PDF"
 
+#: templates/frontend/all_tools.html:284 templates/frontend/index.html:253
 msgid "Combine multiple PDF files into one document."
 msgstr "Połącz wiele plików PDF w jeden dokument."
 
+#: templates/frontend/all_tools.html:303 templates/frontend/index.html:277
 msgid "Split PDF into multiple files by pages or ranges."
 msgstr "Podziel PDF na wiele plików według stron lub zakresów."
 
+#: templates/frontend/all_tools.html:320
+#: templates/frontend/includes/header.html:214
+#: templates/frontend/includes/header.html:569
+#: templates/frontend/includes/header.html:743
+#: templates/frontend/index.html:298 utils_site/src/frontend/views.py:609
+#: utils_site/src/frontend/views.py:615
 msgid "Remove Pages"
 msgstr "Usuń strony"
 
+#: templates/frontend/all_tools.html:323 templates/frontend/index.html:301
 msgid "Remove unwanted pages from your PDF document."
 msgstr "Usuń niechciane strony ze swojego dokumentu PDF."
 
+#: templates/frontend/all_tools.html:339
+#: templates/frontend/includes/header.html:226
+#: templates/frontend/includes/header.html:581
+#: templates/frontend/includes/header.html:747
+#: templates/frontend/index.html:322 utils_site/src/frontend/views.py:651
+#: utils_site/src/frontend/views.py:657
 msgid "Extract Pages"
 msgstr "Wyodrębnij strony"
 
+#: templates/frontend/all_tools.html:342 templates/frontend/index.html:325
 msgid "Extract specific pages from your PDF into a new file."
 msgstr "Wyodrębnij określone strony ze swojego PDF do nowego pliku."
 
+#: templates/frontend/all_tools.html:362 templates/frontend/index.html:350
 msgid "Reorder and organize pages in your PDF document."
 msgstr "Zmień kolejność i organizuj strony w swoim dokumencie PDF."
 
+#: templates/frontend/all_tools.html:380 templates/frontend/index.html:374
 msgid "Reduce PDF file size without losing quality."
 msgstr "Zmniejsz rozmiar pliku PDF bez utraty jakości"
 
+#: templates/frontend/all_tools.html:400
 msgid "Protect and secure your PDF documents"
 msgstr "Zabezpiecz i chroń swoje dokumenty PDF"
 
+#: templates/frontend/all_tools.html:416
+#: templates/frontend/includes/header.html:269
+#: templates/frontend/includes/header.html:679
+#: utils_site/src/frontend/views.py:812 utils_site/src/frontend/views.py:818
 msgid "Protect PDF"
 msgstr "Chroń PDF"
 
+#: templates/frontend/all_tools.html:419
 msgid "Add password protection to secure your PDF documents."
 msgstr "Dodaj ochronę hasłem, aby zabezpieczyć swoje dokumenty PDF."
 
+#: templates/frontend/all_tools.html:434
+#: templates/frontend/includes/header.html:281
+#: templates/frontend/includes/header.html:683
+#: utils_site/src/frontend/views.py:854 utils_site/src/frontend/views.py:860
 msgid "Unlock PDF"
 msgstr "Odblokuj PDF"
 
+#: templates/frontend/all_tools.html:437
 msgid "Remove password protection from your PDF documents."
 msgstr "Usuń ochronę hasłem ze swoich dokumentów PDF."
 
+#: templates/frontend/compress_pdf.html:6
 msgid "Compression Settings"
 msgstr "Ustawienia kompresji"
 
+#: templates/frontend/compress_pdf.html:12
 msgid "Compression Level"
 msgstr "Poziom kompresji"
 
+#: templates/frontend/compress_pdf.html:16
 msgid "Low"
 msgstr "Niski"
 
+#: templates/frontend/compress_pdf.html:16
 msgid "Faster, less compression"
 msgstr "Szybciej, mniejsza kompresja"
 
+#: templates/frontend/compress_pdf.html:17
 msgid "Medium"
 msgstr "Średni"
 
+#: templates/frontend/compress_pdf.html:17
+#: templates/frontend/pdf_to_jpg.html:55
 msgid "Balanced"
 msgstr "Zrównoważone"
 
+#: templates/frontend/compress_pdf.html:18
 msgid "High"
 msgstr "Wysoki"
 
+#: templates/frontend/compress_pdf.html:18
 msgid "Slower, more compression"
 msgstr "Wolniej, większa kompresja"
 
+#: templates/frontend/compress_pdf.html:21
 msgid ""
 "Choose compression level based on your needs. Higher compression reduces "
 "file size more but takes longer."
@@ -826,69 +1255,90 @@ msgstr ""
 "Wybierz poziom kompresji w zależności od potrzeb. Wyższa kompresja bardziej "
 "zmniejsza rozmiar pliku, ale trwa dłużej."
 
+#: templates/frontend/compress_pdf.html:35
 msgid ""
 "Choose the compression level (Low, Medium, or High) to compress PDF file size"
 msgstr ""
 "Wybierz poziom kompresji (Niski, Średni lub Wysoki), aby skompresować "
 "rozmiar pliku PDF"
 
+#: templates/frontend/compress_pdf.html:36
 msgid "Click the compress button to reduce the size of your PDF file"
 msgstr "Kliknij przycisk kompresji, aby zmniejszyć rozmiar pliku PDF"
 
+#: templates/frontend/compress_pdf.html:37
 msgid "Download your compressed PDF file using the download button"
 msgstr "Pobierz skompresowany plik PDF za pomocą przycisku pobierania"
 
+#: templates/frontend/compress_pdf.html:41
 msgid ""
 "PDF files with up to 50 pages are supported for compression. For larger "
 "files, please split them into smaller parts. Higher compression reduces file "
 "size more but may slightly reduce image quality."
 msgstr ""
-"Do kompresji obsługiwane są pliki PDF do 50 stron. Dla większych plików "
-"podziel je na mniejsze części. Wyższa kompresja bardziej zmniejsza rozmiar "
+"Pliki PDF do 50 stron są obsługiwane przy kompresji. Większe pliki należy "
+"podzielić na mniejsze części. Wyższa kompresja bardziej zmniejsza rozmiar "
 "pliku, ale może nieznacznie obniżyć jakość obrazu."
 
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:1012
+#: utils_site/src/frontend/views.py:1108
 msgid "Contact Us - Convertica"
-msgstr "Skontaktuj się z nami - Convertica"
+msgstr "Kontakt - Convertica"
 
+#: templates/frontend/contact.html:44 templates/frontend/faq.html:383
+#: templates/frontend/privacy.html:220 templates/frontend/terms.html:253
 msgid "Contact Us"
 msgstr "Skontaktuj się z nami"
 
+#: templates/frontend/contact.html:47
 msgid ""
 "We're here to help! Get in touch with us for support, questions, or feedback."
 msgstr ""
 "Jesteśmy tutaj, aby pomóc! Skontaktuj się z nami w sprawie wsparcia, pytań "
 "lub opinii."
 
+#: templates/frontend/contact.html:63
 msgid "Email icon"
 msgstr "Ikona e-mail"
 
+#: templates/frontend/contact.html:67
+#: templates/frontend/includes/footer.html:161
 msgid "Email"
 msgstr "E-mail"
 
+#: templates/frontend/contact.html:70
 msgid "Send us an email and we'll get back to you as soon as possible."
 msgstr "Wyślij nam e-mail, a odpowiemy tak szybko, jak to możliwe."
 
+#: templates/frontend/contact.html:85
 msgid "Support icon"
 msgstr "Ikona wsparcia"
 
+#: templates/frontend/contact.html:89
 msgid "Support"
 msgstr "Wsparcie"
 
+#: templates/frontend/contact.html:92
 msgid "Need help with our tools? We're here to assist you."
 msgstr "Potrzebujesz pomocy z naszymi narzędziami? Jesteśmy tutaj, aby pomóc."
 
+#: templates/frontend/contact.html:95
 msgid "Response time: Usually within 24-48 hours"
 msgstr "Czas odpowiedzi: Zwykle w ciągu 24-48 godzin"
 
+#: templates/frontend/contact.html:104
 msgid "Form icon"
 msgstr "Ikona formularza"
 
+#: templates/frontend/contact.html:108
 msgid "Send Us a Message"
 msgstr "Wyślij nam wiadomość"
 
+#: templates/frontend/contact.html:123
 msgid "Message Sent Successfully!"
 msgstr "Wiadomość wysłana pomyślnie!"
 
+#: templates/frontend/contact.html:129
 msgid ""
 "We have received your message and will get back to you as soon as possible, "
 "usually within 24-48 hours."
@@ -896,30 +1346,43 @@ msgstr ""
 "Otrzymaliśmy Twoją wiadomość i skontaktujemy się z Tobą tak szybko, jak to "
 "możliwe, zwykle w ciągu 24-48 godzin."
 
+#: templates/frontend/contact.html:158
 msgid "Please correct the errors below:"
 msgstr "Proszę poprawić błędy poniżej:"
 
+#: templates/frontend/contact.html:216
 msgid "I agree to the"
 msgstr "Zgadzam się z"
 
+#: templates/frontend/contact.html:216 templates/frontend/contact.html:299
+#: templates/frontend/includes/cookie_banner.html:17
+#: templates/frontend/includes/footer.html:51
+#: templates/frontend/includes/footer.html:230
+#: templates/frontend/privacy.html:45
 msgid "Privacy Policy"
 msgstr "Polityka prywatności"
 
+#: templates/frontend/contact.html:216
 msgid "and consent to the processing of my personal data."
 msgstr "i wyrażam zgodę na przetwarzanie moich danych osobowych."
 
+#: templates/frontend/contact.html:237
 msgid "Send Message"
 msgstr "Wyślij wiadomość"
 
+#: templates/frontend/contact.html:246
 msgid "FAQ icon"
 msgstr "Ikona FAQ"
 
+#: templates/frontend/contact.html:250 templates/frontend/faq.html:72
 msgid "Frequently Asked Questions"
 msgstr "Często zadawane pytania"
 
+#: templates/frontend/contact.html:255
 msgid "How long does it take to process files?"
 msgstr "Ile czasu zajmuje przetwarzanie plików?"
 
+#: templates/frontend/contact.html:257
 msgid ""
 "Most files are processed within seconds. Larger files or complex operations "
 "may take a few minutes."
@@ -927,9 +1390,11 @@ msgstr ""
 "Większość plików jest przetwarzana w ciągu kilku sekund. Większe pliki lub "
 "złożone operacje mogą zająć kilka minut."
 
+#: templates/frontend/contact.html:262
 msgid "Are my files safe?"
 msgstr "Czy moje pliki są bezpieczne?"
 
+#: templates/frontend/contact.html:264
 msgid ""
 "Yes! Your files are processed securely and automatically deleted immediately "
 "after processing. We never store your files permanently."
@@ -937,9 +1402,11 @@ msgstr ""
 "Tak! Twoje pliki są przetwarzane bezpiecznie i automatycznie usuwane "
 "natychmiast po przetworzeniu. Nigdy nie przechowujemy Twoich plików na stałe."
 
+#: templates/frontend/contact.html:269
 msgid "Is Convertica really free?"
 msgstr "Czy Convertica jest naprawdę darmowa?"
 
+#: templates/frontend/contact.html:271
 msgid ""
 "Yes, all our tools are completely free to use. No hidden fees, no "
 "subscriptions required."
@@ -947,9 +1414,11 @@ msgstr ""
 "Tak, wszystkie nasze narzędzia są całkowicie darmowe. Bez ukrytych opłat, "
 "bez subskrypcji."
 
+#: templates/frontend/contact.html:276
 msgid "What file formats are supported?"
 msgstr "Jakie formaty plików są obsługiwane?"
 
+#: templates/frontend/contact.html:278
 msgid ""
 "We support PDF, Word (DOC, DOCX), JPG/JPEG, and Excel (XLSX) formats. Check "
 "individual tool pages for specific format requirements."
@@ -958,35 +1427,50 @@ msgstr ""
 "strony poszczególnych narzędzi, aby uzyskać szczegółowe wymagania dotyczące "
 "formatu."
 
+#: templates/frontend/contact.html:286
 msgid "Additional Resources"
 msgstr "Dodatkowe zasoby"
 
+#: templates/frontend/contact.html:291
+#: templates/frontend/includes/footer.html:42
 msgid "About Us"
 msgstr "O nas"
 
+#: templates/frontend/contact.html:293
 msgid "Learn more about Convertica and our mission."
 msgstr "Dowiedz się więcej o Convertica i naszej misji."
 
+#: templates/frontend/contact.html:301
 msgid "Read our privacy policy to understand how we protect your data."
 msgstr ""
 "Przeczytaj naszą politykę prywatności, aby zrozumieć, jak chronimy Twoje "
 "dane."
 
+#: templates/frontend/contact.html:307
+#: templates/frontend/includes/cookie_banner.html:19
+#: templates/frontend/includes/footer.html:60 templates/frontend/terms.html:45
 msgid "Terms of Service"
 msgstr "Warunki korzystania"
 
+#: templates/frontend/contact.html:309
 msgid "Review our terms of service and usage policies."
 msgstr "Zapoznaj się z naszymi warunkami korzystania i politykami użytkowania."
 
+#: templates/frontend/contact.html:371
 msgid "Sending..."
 msgstr "Wysyłanie..."
 
+#: templates/frontend/converter_generic.html:35
+#: templates/frontend/edit_pdf_generic.html:35
+#: templates/frontend/includes/footer.html:24
 msgid "Home"
 msgstr "Strona główna"
 
+#: templates/frontend/converter_generic.html:85
 msgid "Select file to convert"
 msgstr "Wybierz plik do konwersji"
 
+#: templates/frontend/converter_generic.html:192
 msgid ""
 "Click the button above to select your file, or drag and drop it into the "
 "zone below"
@@ -994,30 +1478,42 @@ msgstr ""
 "Kliknij przycisk powyżej, aby wybrać plik, lub przeciągnij i upuść go w "
 "strefie poniżej"
 
+#: templates/frontend/converter_generic.html:193
 msgid "Click the convert button"
 msgstr "Kliknij przycisk konwertuj"
 
+#: templates/frontend/converter_generic.html:194
+#: templates/frontend/jpg_to_pdf.html:139
 msgid "Wait for the conversion to complete"
 msgstr "Poczekaj na zakończenie konwersji"
 
+#: templates/frontend/converter_generic.html:195
 msgid "Download your converted file using the download button"
 msgstr "Pobierz skonwertowany plik używając przycisku pobierania"
 
+#: templates/frontend/converter_generic.html:213
 msgid "Converting your file..."
-msgstr "Przetwarzanie pliku..."
+msgstr "Konwertowanie pliku..."
 
+#: templates/frontend/converter_generic.html:215
+#: templates/frontend/jpg_to_pdf.html:163
 msgid "Conversion Complete!"
 msgstr "Konwersja zakończona!"
 
+#: templates/frontend/converter_generic.html:218
+#: templates/frontend/jpg_to_pdf.html:166
 msgid "Convert another file"
 msgstr "Konwertuj inny plik"
 
+#: templates/frontend/crop_pdf.html:129
 msgid "Select file to crop"
 msgstr "Wybierz plik do przycięcia"
 
+#: templates/frontend/crop_pdf.html:191
 msgid "Crop Your PDF"
 msgstr "Przytnij PDF"
 
+#: templates/frontend/crop_pdf.html:193
 msgid ""
 "Click and drag on the PDF to select the crop area. The blue highlighted area "
 "will be kept. You can drag the selection box anywhere to move it, or use the "
@@ -1028,12 +1524,15 @@ msgstr ""
 "dowolne miejsce, aby je przesunąć, lub użyć uchwytów narożnych/"
 "krawędziowych, aby zmienić jego rozmiar."
 
+#: templates/frontend/crop_pdf.html:198
 msgid "Page:"
 msgstr "Strona:"
 
+#: templates/frontend/crop_pdf.html:215
 msgid "Crop area is active!"
 msgstr "Obszar przycinania jest aktywny!"
 
+#: templates/frontend/crop_pdf.html:218
 msgid ""
 "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when "
 "ready."
@@ -1041,23 +1540,27 @@ msgstr ""
 "Niebieski podświetlony obszar zostanie zachowany. Dostosuj go i kliknij "
 "'Przytnij PDF', gdy będziesz gotowy."
 
+#: templates/frontend/crop_pdf.html:226
 msgid "Apply crop to pages"
 msgstr "Zastosuj przycinanie do stron"
 
+#: templates/frontend/crop_pdf.html:274
 msgid "Scale cropped area to full page size"
-msgstr ""
+msgstr "Przeskaluj przycięty obszar do pełnego rozmiaru strony"
 
+#: templates/frontend/crop_pdf.html:278
 msgid "Stretch the cropped area to fill the entire page size"
-msgstr ""
+msgstr "Rozciągnij przycięty obszar, aby wypełnić cały rozmiar strony"
 
+#: templates/frontend/crop_pdf.html:314
 msgid "Tips:"
 msgstr "Wskazówki:"
 
+#: templates/frontend/crop_pdf.html:316
 msgid "A crop area covering most of the page is selected by default"
-msgstr ""
-"Domyślnie wybrano obszar przycinania obejmujący większość strony - dostosuj "
-"go w razie potrzeby"
+msgstr "Domyślnie wybrano obszar przycinania obejmujący większość strony"
 
+#: templates/frontend/crop_pdf.html:317
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
@@ -1065,24 +1568,29 @@ msgstr ""
 "Domyślnie wybrano obszar przycinania obejmujący większość strony - dostosuj "
 "go w razie potrzeby"
 
+#: templates/frontend/crop_pdf.html:318
 msgid "Click and drag inside the blue box to move it anywhere on the page"
 msgstr ""
 "Kliknij i przeciągnij wewnątrz niebieskiego pola, aby przenieść je w dowolne "
 "miejsce na stronie"
 
+#: templates/frontend/crop_pdf.html:319
 msgid "Drag the corner or edge handles to resize the crop area"
-msgstr ""
-"Przeciągnij rogi lub krawędzie, aby zmienić rozmiar obszaru przycinania"
+msgstr "Przeciągnij rogi lub krawędzie, aby zmienić rozmiar obszaru przycinania"
 
+#: templates/frontend/crop_pdf.html:320
 msgid "Click and drag outside the box to create a new selection"
 msgstr "Kliknij i przeciągnij poza polem, aby utworzyć nowy wybór"
 
+#: templates/frontend/crop_pdf.html:321
 msgid "The cursor changes to 'move' when hovering over the selection box"
 msgstr "Kursor zmienia się na 'przenieś' po najechaniu na pole wyboru"
 
+#: templates/frontend/crop_pdf.html:322
 msgid "When 'all' is selected, crop applies to all pages"
 msgstr "Gdy wybrano 'wszystkie', przycinanie dotyczy wszystkich stron"
 
+#: templates/frontend/crop_pdf.html:368
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
 "keep when cropping PDF"
@@ -1090,12 +1598,14 @@ msgstr ""
 "PDF zostanie wyświetlony - kliknij i przeciągnij, aby wybrać obszar, który "
 "chcesz zachować podczas przycinania PDF"
 
+#: templates/frontend/crop_pdf.html:369
 msgid ""
 "Resize the selection by dragging the corners or edges to adjust the crop area"
 msgstr ""
 "Zmień rozmiar wyboru, przeciągając rogi lub krawędzie, aby dostosować obszar "
 "przycinania"
 
+#: templates/frontend/crop_pdf.html:370
 msgid ""
 "Choose which pages to apply the crop to (all pages, current page, or custom "
 "pages)"
@@ -1103,22 +1613,25 @@ msgstr ""
 "Wybierz, do których stron zastosować przycinanie (wszystkie strony, bieżąca "
 "strona lub strony niestandardowe)"
 
+#: templates/frontend/crop_pdf.html:371
 msgid "Click the crop button to process your PDF and crop the selected area"
-msgstr ""
-"Kliknij przycisk przycinania, aby przetworzyć PDF i przyciąć wybrany obszar"
+msgstr "Kliknij przycisk przycinania, aby przetworzyć PDF i przyciąć wybrany obszar"
 
+#: templates/frontend/crop_pdf.html:372
 msgid "Download your cropped PDF file using the download button"
 msgstr "Pobierz przycięty plik PDF za pomocą przycisku pobierania"
 
+#: templates/frontend/crop_pdf.html:376
 msgid ""
 "PDF files with up to 50 pages are supported for cropping. For larger files, "
 "please split them into smaller parts. The crop area you select will be "
 "applied to all selected pages."
 msgstr ""
-"Do przycinania obsługiwane są pliki PDF do 50 stron. Dla większych plików "
-"podziel je na mniejsze części. Obszar przycinania, który wybierzesz, "
-"zostanie zastosowany do wszystkich wybranych stron."
+"Pliki PDF do 50 stron są obsługiwane przy przycinaniu. Większe pliki należy "
+"podzielić na mniejsze części. Obszar przycinania, który wybierzesz, zostanie "
+"zastosowany do wszystkich wybranych stron."
 
+#: templates/frontend/crop_pdf.html:401
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
 "selection, or use handles to resize."
@@ -1126,9 +1639,11 @@ msgstr ""
 "Obszar przycinania gotowy! Przeciągnij pole, aby je przesunąć, przeciągnij z "
 "zewnątrz, aby utworzyć nowy wybór, lub użyj uchwytów, aby zmienić rozmiar."
 
+#: templates/frontend/crop_pdf.html:402
 msgid "Drag to select crop area..."
 msgstr "Przeciągnij, aby wybrać obszar przycinania..."
 
+#: templates/frontend/crop_pdf.html:403
 msgid ""
 "Selection too small. Full page selected. Drag to create a new selection or "
 "drag the box to move it."
@@ -1136,56 +1651,69 @@ msgstr ""
 "Wybór zbyt mały. Wybrana cała strona. Przeciągnij, aby utworzyć nowy wybór "
 "lub przeciągnij pole, aby je przesunąć."
 
+#: templates/frontend/crop_pdf.html:404
 msgid ""
 "Crop area selected! Drag the box to move it or use handles to resize. Click "
-"\\\"Crop PDF\\\" when ready."
+"\"Crop PDF\" when ready."
 msgstr ""
 "Obszar przycinania wybrany! Przeciągnij pole, aby je przesunąć, lub użyj "
 "uchwytów, aby zmienić rozmiar. Kliknij \"Przytnij PDF\", gdy będziesz gotowy."
 
+#: templates/frontend/crop_pdf.html:405
 msgid ""
-"Crop area moved! Drag again to reposition or use handles to resize. Click \\"
-"\"Crop PDF\\\" when ready."
+"Crop area moved! Drag again to reposition or use handles to resize. Click "
+"\"Crop PDF\" when ready."
 msgstr ""
 "Obszar przycinania przesunięty! Przeciągnij ponownie, aby zmienić pozycję, "
 "lub użyj uchwytów, aby zmienić rozmiar. Kliknij \"Przytnij PDF\", gdy "
 "będziesz gotowy."
 
+#: templates/frontend/edit_pdf_generic.html:85
 msgid "Select file to edit"
 msgstr "Wybierz plik do edycji"
 
+#: templates/frontend/edit_pdf_generic.html:177
 msgid "Select your PDF file using the button above or drag and drop it"
 msgstr "Wybierz plik PDF używając przycisku powyżej lub przeciągnij i upuść"
 
+#: templates/frontend/edit_pdf_generic.html:178
 msgid "Configure the editing options below"
 msgstr "Skonfiguruj opcje edycji poniżej"
 
+#: templates/frontend/edit_pdf_generic.html:179
 msgid "Click the edit button to process your file"
 msgstr "Kliknij przycisk edycji, aby przetworzyć plik"
 
+#: templates/frontend/edit_pdf_generic.html:180
 msgid "Download your edited file using the download button"
 msgstr "Pobierz edytowany plik używając przycisku pobierania"
 
+#: templates/frontend/edit_pdf_generic.html:184
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts."
 msgstr ""
-"Obsługiwane są pliki PDF do 50 stron. Dla większych plików podziel je na "
+"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
 "mniejsze części."
 
+#: templates/frontend/edit_pdf_generic.html:208
 msgid ""
-"Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
-"\"Current page only\\\""
+"Please enter page numbers to remove, or select \"All pages\" or \"Current "
+"page only\""
 msgstr ""
 "Proszę wprowadzić numery stron do usunięcia lub wybrać \"Wszystkie strony\" "
 "lub \"Tylko bieżąca strona\""
 
+#: templates/frontend/extract_pages.html:6
 msgid "Extract Pages Settings"
 msgstr "Ustawienia wyodrębniania stron"
 
+#: templates/frontend/extract_pages.html:12
+#: templates/frontend/split_pdf.html:49
 msgid "Pages to Extract"
 msgstr "Strony do wyodrębnienia"
 
+#: templates/frontend/extract_pages.html:22
 msgid ""
 "Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
 "(1-5)"
@@ -1193,6 +1721,7 @@ msgstr ""
 "Wprowadź numery stron do wyodrębnienia. Użyj liczb oddzielonych przecinkami "
 "(1,3,5) lub zakresów (1-5)"
 
+#: templates/frontend/extract_pages.html:36
 msgid ""
 "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5 "
 "to extract pages from PDF)"
@@ -1200,6 +1729,7 @@ msgstr ""
 "Wprowadź numery stron, które chcesz wyodrębnić z PDF (np. 1,3,5 lub 1-5 do "
 "wyodrębniania stron z PDF)"
 
+#: templates/frontend/extract_pages.html:37
 msgid ""
 "Click the extract button to process your PDF and extract the selected pages "
 "into a new PDF file"
@@ -1207,6 +1737,7 @@ msgstr ""
 "Kliknij przycisk wyodrębniania, aby przetworzyć PDF i wyodrębnić wybrane "
 "strony do nowego pliku PDF"
 
+#: templates/frontend/extract_pages.html:38
 msgid ""
 "Download your extracted PDF file containing only the selected pages using "
 "the download button"
@@ -1214,26 +1745,29 @@ msgstr ""
 "Pobierz wyodrębniony plik PDF zawierający tylko wybrane strony za pomocą "
 "przycisku pobierania"
 
+#: templates/frontend/extract_pages.html:42
 msgid ""
 "PDF files with up to 50 pages are supported for extracting pages. For larger "
 "files, please split them into smaller parts. The extracted pages will be "
 "combined into a single new PDF file."
 msgstr ""
-"Do wyodrębniania stron obsługiwane są pliki PDF do 50 stron. Dla większych "
-"plików podziel je na mniejsze części. Wyodrębnione strony zostaną połączone "
-"w jeden nowy plik PDF."
+"Pliki PDF do 50 stron są obsługiwane przy wyodrębnianiu stron. Większe "
+"pliki należy podzielić na mniejsze części. Wyodrębnione strony zostaną "
+"połączone w jeden nowy plik PDF."
 
+#: templates/frontend/faq.html:75
 msgid "Find answers to common questions about Convertica PDF tools"
-msgstr ""
-"Znajdź odpowiedzi na często zadawane pytania dotyczące narzędzi Convertica "
-"PDF"
+msgstr "Znajdź odpowiedzi na często zadawane pytania dotyczące narzędzi Convertica PDF"
 
+#: templates/frontend/faq.html:85
 msgid "General Questions"
 msgstr "Pytania ogólne"
 
+#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:1161
 msgid "Is Convertica free to use?"
 msgstr "Czy Convertica jest darmowe?"
 
+#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:1163
 msgid ""
 "Yes, Convertica is completely free to use. All PDF conversion, editing, and "
 "organization tools are available at no cost. There are no hidden fees, no "
@@ -1243,9 +1777,11 @@ msgstr ""
 "edycji i organizacji PDF są dostępne bezpłatnie. Nie ma ukrytych opłat, "
 "rejestracji ani limitów rozmiaru plików w planie darmowym."
 
+#: templates/frontend/faq.html:100
 msgid "Do I need to create an account?"
 msgstr "Czy muszę utworzyć konto?"
 
+#: templates/frontend/faq.html:104
 msgid ""
 "No, you don't need to create an account. Convertica works without "
 "registration. Simply upload your file and start converting immediately."
@@ -1253,9 +1789,11 @@ msgstr ""
 "Nie, nie musisz tworzyć konta. Convertica działa bez rejestracji. Po prostu "
 "prześlij plik i zacznij konwertować natychmiast."
 
+#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:1168
 msgid "What file formats does Convertica support?"
 msgstr "Jakie formaty plików obsługuje Convertica?"
 
+#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:1170
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
 "can convert between these formats, edit PDFs, organize pages, and protect "
@@ -1265,9 +1803,11 @@ msgstr ""
 "konwertować między tymi formatami, edytować PDF, organizować strony i "
 "chronić dokumenty hasłami."
 
+#: templates/frontend/faq.html:120
 msgid "Is there a file size limit?"
 msgstr "Czy istnieje limit rozmiaru pliku?"
 
+#: templates/frontend/faq.html:124
 msgid ""
 "No, there are no file size limits on Convertica. You can process files of "
 "any size, from small documents to large PDF files."
@@ -1275,12 +1815,15 @@ msgstr ""
 "Nie, w Convertica nie ma limitów rozmiaru pliku. Możesz przetwarzać pliki "
 "dowolnej wielkości, od małych dokumentów po duże pliki PDF."
 
+#: templates/frontend/faq.html:133
 msgid "Conversion Questions"
 msgstr "Pytania dotyczące konwersji"
 
+#: templates/frontend/faq.html:138
 msgid "How do I convert PDF to Word without losing formatting?"
 msgstr "Jak przekonwertować PDF na Word bez utraty formatowania?"
 
+#: templates/frontend/faq.html:142
 msgid ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
@@ -1294,9 +1837,11 @@ msgstr ""
 "Konwersja zachowuje czcionki, kolory, odstępy i strukturę oryginalnego "
 "dokumentu. Wszystkie konwersje są darmowe i nie wymagają rejestracji."
 
+#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:1153
 msgid "How do I convert PDF to Word?"
 msgstr "Jak przekonwertować PDF na Word?"
 
+#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:1155
 msgid ""
 "To convert PDF to Word, simply upload your PDF file using the upload button "
 "or drag and drop it into the upload zone. Click the convert button and wait "
@@ -1309,9 +1854,11 @@ msgstr ""
 "skonwertowany dokument Word za pomocą przycisku pobierania. Konwersja jest "
 "darmowa i nie wymaga rejestracji."
 
+#: templates/frontend/faq.html:158
 msgid "How do I convert Word to PDF?"
 msgstr "Jak przekonwertować Word na PDF?"
 
+#: templates/frontend/faq.html:162
 msgid ""
 "Upload your Word document (.doc or .docx), click convert, and download your "
 "PDF. The conversion preserves formatting and layout of your original "
@@ -1320,9 +1867,11 @@ msgstr ""
 "Prześlij dokument Word (.doc lub .docx), kliknij konwertuj i pobierz PDF. "
 "Konwersja zachowuje formatowanie i układ oryginalnego dokumentu."
 
+#: templates/frontend/faq.html:168
 msgid "Can I convert PDF to JPG?"
 msgstr "Czy mogę przekonwertować PDF na JPG?"
 
+#: templates/frontend/faq.html:172
 msgid ""
 "Yes, you can convert PDF pages to JPG images. Select the page you want to "
 "convert or convert all pages. You can also choose the image quality (DPI) "
@@ -1332,9 +1881,11 @@ msgstr ""
 "chcesz przekonwertować, lub przekonwertuj wszystkie strony. Możesz również "
 "wybrać jakość obrazu (DPI) od 72 do 600."
 
+#: templates/frontend/faq.html:178
 msgid "How do I convert images to PDF?"
 msgstr "Jak przekonwertować obrazy na PDF?"
 
+#: templates/frontend/faq.html:182
 msgid ""
 "Upload one or multiple JPG/JPEG images, arrange them in the desired order, "
 "and click convert. All images will be combined into a single PDF document "
@@ -1344,9 +1895,11 @@ msgstr ""
 "kliknij konwertuj. Wszystkie obrazy zostaną połączone w jeden dokument PDF z "
 "automatycznym formatowaniem A4."
 
+#: templates/frontend/faq.html:188
 msgid "Can I extract tables from PDF to Excel?"
 msgstr "Czy mogę wyodrębnić tabele z PDF do Excel?"
 
+#: templates/frontend/faq.html:192
 msgid ""
 "Yes, you can extract tables from PDF files and convert them to Excel format. "
 "Upload your PDF, and Convertica will extract all tables and save them in an "
@@ -1356,12 +1909,15 @@ msgstr ""
 "Excel. Prześlij swój PDF, a Convertica wyodrębni wszystkie tabele i zapisze "
 "je w pliku Excel."
 
+#: templates/frontend/faq.html:201
 msgid "Editing & Organization"
 msgstr "Edycja i organizacja"
 
+#: templates/frontend/faq.html:206
 msgid "How do I merge PDF online free without watermark?"
 msgstr "Jak połączyć PDF online za darmo bez znaku wodnego?"
 
+#: templates/frontend/faq.html:210
 msgid ""
 "To merge PDF online free without watermark, use Convertica's PDF merger. Go "
 "to the Merge PDF page, select multiple PDF files, arrange them in the "
@@ -1375,9 +1931,11 @@ msgstr ""
 "Wszystkie wybrane pliki zostaną połączone w jeden dokument PDF bez dodanego "
 "znaku wodnego. Połączony PDF zachowuje jakość oryginalnych plików."
 
+#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:1175
 msgid "How do I merge multiple PDF files?"
 msgstr "Jak połączyć wiele plików PDF?"
 
+#: templates/frontend/faq.html:220
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order using drag and drop, and click merge. All "
@@ -1388,9 +1946,11 @@ msgstr ""
 "kliknij połącz. Wszystkie wybrane pliki zostaną połączone w jeden dokument "
 "PDF."
 
+#: templates/frontend/faq.html:226
 msgid "Can I split a PDF into separate files?"
 msgstr "Czy mogę podzielić PDF na osobne pliki?"
 
+#: templates/frontend/faq.html:230
 msgid ""
 "Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
 "split it (by page range or every N pages), and download the resulting files."
@@ -1398,9 +1958,11 @@ msgstr ""
 "Tak, możesz podzielić PDF na osobne pliki. Prześlij PDF, wybierz sposób "
 "podziału (według zakresu stron lub co N stron) i pobierz wynikowe pliki."
 
+#: templates/frontend/faq.html:236
 msgid "How do I compress PDF to under 1MB for email?"
 msgstr "Jak skompresować PDF do poniżej 1MB dla e-maila?"
 
+#: templates/frontend/faq.html:240
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
 "Upload your PDF file, select the high compression level, and click compress. "
@@ -1414,9 +1976,11 @@ msgstr ""
 "dla załączników e-mail. Możesz podejrzeć rozmiar skompresowanego pliku przed "
 "pobraniem."
 
+#: templates/frontend/faq.html:246
 msgid "How do I compress a PDF file?"
 msgstr "Jak skompresować plik PDF?"
 
+#: templates/frontend/faq.html:250
 msgid ""
 "Upload your PDF file, select the compression level (low, medium, or high), "
 "and click compress. The file size will be reduced while maintaining "
@@ -1426,9 +1990,11 @@ msgstr ""
 "kliknij kompresuj. Rozmiar pliku zostanie zmniejszony przy zachowaniu "
 "akceptowalnej jakości."
 
+#: templates/frontend/faq.html:256
 msgid "Can I rotate PDF pages?"
 msgstr "Czy mogę obrócić strony PDF?"
 
+#: templates/frontend/faq.html:260
 msgid ""
 "Yes, you can rotate PDF pages by 90, 180, or 270 degrees. Select the pages "
 "you want to rotate and choose the rotation angle."
@@ -1436,9 +2002,11 @@ msgstr ""
 "Tak, możesz obracać strony PDF o 90, 180 lub 270 stopni. Wybierz strony, "
 "które chcesz obrócić, i wybierz kąt obrotu."
 
+#: templates/frontend/faq.html:266
 msgid "How do I add a watermark to PDF?"
 msgstr "Jak dodać znak wodny do PDF?"
 
+#: templates/frontend/faq.html:270
 msgid ""
 "Upload your PDF, choose between text or image watermark, set the position "
 "and transparency, and apply. The watermark will be added to all pages or "
@@ -1448,12 +2016,15 @@ msgstr ""
 "przezroczystość, i zastosuj. Znak wodny zostanie dodany do wszystkich stron "
 "lub wybranych stron."
 
+#: templates/frontend/faq.html:279
 msgid "Security & Privacy"
 msgstr "Bezpieczeństwo i prywatność"
 
+#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:1182
 msgid "Is my data secure?"
 msgstr "Czy moje dane są bezpieczne?"
 
+#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:1184
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -1465,9 +2036,11 @@ msgstr ""
 "plików, a Twoja prywatność jest naszym najwyższym priorytetem. Możesz także "
 "chronić swoje PDF za pomocą szyfrowania hasłem."
 
+#: templates/frontend/faq.html:294
 msgid "How do I protect a PDF with a password?"
 msgstr "Jak chronić PDF hasłem?"
 
+#: templates/frontend/faq.html:298
 msgid ""
 "Upload your PDF, enter a password (and optionally an owner password), and "
 "click protect. The PDF will be encrypted and require a password to open."
@@ -1475,9 +2048,11 @@ msgstr ""
 "Prześlij PDF, wprowadź hasło (i opcjonalnie hasło właściciela) i kliknij "
 "chroń. PDF zostanie zaszyfrowany i będzie wymagał hasła do otwarcia."
 
+#: templates/frontend/faq.html:304
 msgid "Can I remove password protection from a PDF?"
 msgstr "Czy mogę usunąć ochronę hasłem z PDF?"
 
+#: templates/frontend/faq.html:308
 msgid ""
 "Yes, if you know the password, you can unlock a protected PDF. Upload the "
 "protected PDF, enter the password, and click unlock. The password protection "
@@ -1487,9 +2062,11 @@ msgstr ""
 "zabezpieczony PDF, wprowadź hasło i kliknij odblokuj. Ochrona hasłem "
 "zostanie usunięta."
 
+#: templates/frontend/faq.html:314
 msgid "Are my files stored on your servers?"
 msgstr "Czy moje pliki są przechowywane na waszych serwerach?"
 
+#: templates/frontend/faq.html:318
 msgid ""
 "No, your files are not stored on our servers. Files are processed "
 "immediately and automatically deleted after conversion. We do not keep "
@@ -1499,12 +2076,15 @@ msgstr ""
 "przetwarzane natychmiast i automatycznie usuwane po konwersji. Nie "
 "przechowujemy kopii Twoich dokumentów."
 
+#: templates/frontend/faq.html:327
 msgid "Technical Questions"
 msgstr "Pytania techniczne"
 
+#: templates/frontend/faq.html:332
 msgid "What browsers are supported?"
 msgstr "Jakie przeglądarki są obsługiwane?"
 
+#: templates/frontend/faq.html:336
 msgid ""
 "Convertica works on all modern browsers including Chrome, Firefox, Safari, "
 "Edge, and Opera. The website is also mobile-friendly and works on "
@@ -1514,9 +2094,11 @@ msgstr ""
 "Firefox, Safari, Edge i Opera. Strona jest również przyjazna dla urządzeń "
 "mobilnych i działa na smartfonach i tabletach."
 
+#: templates/frontend/faq.html:342
 msgid "How long does conversion take?"
 msgstr "Ile czasu zajmuje konwersja?"
 
+#: templates/frontend/faq.html:346
 msgid ""
 "Conversion time depends on file size and complexity. Most conversions "
 "complete in seconds. Larger files may take a minute or two. The progress is "
@@ -1526,9 +2108,11 @@ msgstr ""
 "kończy się w ciągu kilku sekund. Większe pliki mogą zająć minutę lub dwie. "
 "Postęp jest pokazywany podczas konwersji."
 
+#: templates/frontend/faq.html:352
 msgid "What if conversion fails?"
 msgstr "Co jeśli konwersja się nie powiedzie?"
 
+#: templates/frontend/faq.html:356
 msgid ""
 "If conversion fails, please check that your file is not corrupted and is in "
 "a supported format. Try again, and if the problem persists, contact our "
@@ -1538,9 +2122,11 @@ msgstr ""
 "czy jest w obsługiwanym formacie. Spróbuj ponownie, a jeśli problem będzie "
 "się powtarzał, skontaktuj się z naszym zespołem wsparcia."
 
+#: templates/frontend/faq.html:362
 msgid "Can I use Convertica on mobile devices?"
 msgstr "Czy mogę używać Convertica na urządzeniach mobilnych?"
 
+#: templates/frontend/faq.html:366
 msgid ""
 "Yes, Convertica is fully responsive and works on mobile devices. You can "
 "convert, edit, and organize PDFs directly from your smartphone or tablet."
@@ -1549,16 +2135,21 @@ msgstr ""
 "Możesz konwertować, edytować i organizować PDF bezpośrednio ze smartfona lub "
 "tabletu."
 
+#: templates/frontend/faq.html:377
 msgid "Still have questions?"
 msgstr "Nadal masz pytania?"
 
+#: templates/frontend/faq.html:380
 msgid ""
 "If you couldn't find the answer you're looking for, feel free to contact us."
 msgstr "Jeśli nie znalazłeś odpowiedzi, którą szukasz, skontaktuj się z nami."
 
+#: templates/frontend/includes/cookie_banner.html:10
+#: templates/frontend/includes/cookie_banner.html:42
 msgid "Cookie Preferences"
 msgstr "Ustawienia plików cookie"
 
+#: templates/frontend/includes/cookie_banner.html:13
 msgid ""
 "We use cookies and similar technologies to enhance your browsing experience, "
 "security, analytics, and to provide personalized content."
@@ -1567,6 +2158,7 @@ msgstr ""
 "doświadczenia przeglądania, bezpieczeństwa, analityki oraz dostarczania "
 "spersonalizowanych treści."
 
+#: templates/frontend/includes/cookie_banner.html:16
 msgid ""
 "You can accept all cookies, reject non-essential cookies, or customize your "
 "preferences. Essential cookies are required for the website to function and "
@@ -1576,18 +2168,23 @@ msgstr ""
 "lub dostosować swoje preferencje. Niezbędne pliki cookie są wymagane do "
 "działania witryny i nie można ich wyłączyć."
 
+#: templates/frontend/includes/cookie_banner.html:18
 msgid "and"
 msgstr "i"
 
+#: templates/frontend/includes/cookie_banner.html:27
 msgid "Reject All"
 msgstr "Odrzuć wszystkie"
 
+#: templates/frontend/includes/cookie_banner.html:31
 msgid "Customize"
 msgstr "Dostosuj"
 
+#: templates/frontend/includes/cookie_banner.html:35
 msgid "Accept All"
 msgstr "Zaakceptuj wszystkie"
 
+#: templates/frontend/includes/cookie_banner.html:44
 msgid ""
 "Manage your cookie preferences. You can enable or disable different types of "
 "cookies below. Essential cookies cannot be disabled as they are necessary "
@@ -1597,9 +2194,11 @@ msgstr ""
 "lub wyłączyć różne rodzaje plików cookie. Niezbędnych plików cookie nie "
 "można wyłączyć, ponieważ są niezbędne do działania witryny."
 
+#: templates/frontend/includes/cookie_banner.html:51
 msgid "Essential Cookies"
 msgstr "Niezbędne pliki cookie"
 
+#: templates/frontend/includes/cookie_banner.html:53
 msgid ""
 "Required for the website to function properly. These cookies enable core "
 "functionality such as security, network management, and accessibility. They "
@@ -1609,15 +2208,19 @@ msgstr ""
 "podstawową funkcjonalność, taką jak bezpieczeństwo, zarządzanie siecią i "
 "dostępność. Nie można ich wyłączyć."
 
+#: templates/frontend/includes/cookie_banner.html:56
 msgid "Examples: Session management, CSRF protection, language preferences"
 msgstr "Przykłady: zarządzanie sesjami, ochrona CSRF, preferencje językowe"
 
+#: templates/frontend/includes/cookie_banner.html:60
 msgid "Always Active"
 msgstr "Zawsze aktywne"
 
+#: templates/frontend/includes/cookie_banner.html:67
 msgid "Analytics Cookies"
 msgstr "Analityczne pliki cookie"
 
+#: templates/frontend/includes/cookie_banner.html:69
 msgid ""
 "Help us understand how visitors interact with our website by collecting and "
 "reporting information anonymously."
@@ -1625,16 +2228,20 @@ msgstr ""
 "Pomóż nam zrozumieć, w jaki sposób odwiedzający wchodzą w interakcję z naszą "
 "witryną, poprzez anonimowe zbieranie i raportowanie informacji."
 
+#: templates/frontend/includes/cookie_banner.html:72
 msgid "Examples: Page views, time spent on site, error tracking"
 msgstr ""
 "Przykłady: wyświetlenia stron, czas spędzony na stronie, śledzenie błędów"
 
+#: templates/frontend/includes/cookie_banner.html:78
 msgid "Enable Analytics Cookies"
 msgstr "Włącz analityczne pliki cookie"
 
+#: templates/frontend/includes/cookie_banner.html:86
 msgid "Marketing Cookies"
 msgstr "Marketingowe pliki cookie"
 
+#: templates/frontend/includes/cookie_banner.html:88
 msgid ""
 "Used to deliver personalized advertisements and track campaign "
 "effectiveness. These cookies may be set by advertising partners."
@@ -1642,12 +2249,15 @@ msgstr ""
 "Używane do dostarczania spersonalizowanych reklam i śledzenia skuteczności "
 "kampanii. Te pliki cookie mogą być ustawiane przez partnerów reklamowych."
 
+#: templates/frontend/includes/cookie_banner.html:91
 msgid "Examples: Ad targeting, conversion tracking, remarketing"
 msgstr "Przykłady: targetowanie reklam, śledzenie konwersji, remarketing"
 
+#: templates/frontend/includes/cookie_banner.html:97
 msgid "Enable Marketing Cookies"
 msgstr "Włącz marketingowe pliki cookie"
 
+#: templates/frontend/includes/cookie_banner.html:105
 msgid ""
 "Your preferences will be saved and remembered for future visits. You can "
 "change these settings at any time."
@@ -1655,90 +2265,131 @@ msgstr ""
 "Twoje preferencje zostaną zapisane i zapamiętane na przyszłe wizyty. Możesz "
 "zmienić te ustawienia w dowolnym momencie."
 
+#: templates/frontend/includes/cookie_banner.html:110
 msgid "Save Preferences"
 msgstr "Zapisz ustawienia"
 
+#: templates/frontend/includes/cookie_banner.html:114
 msgid "Cancel"
 msgstr "Anuluj"
 
+#: templates/frontend/includes/footer.html:15
+#: templates/frontend/includes/header.html:593
+#: templates/frontend/includes/header.html:796
 msgid "About"
 msgstr "O nas"
 
+#: templates/frontend/includes/footer.html:84
 msgid "Tools"
 msgstr "Narzędzia"
 
+#: templates/frontend/includes/footer.html:93
+#: templates/frontend/includes/footer.html:201
+#: templates/frontend/includes/header.html:42
+#: templates/frontend/includes/header.html:629
+#: templates/frontend/includes/header.html:662
 msgid "All Tools"
 msgstr "Wszystkie narzędzia"
 
+#: templates/frontend/includes/footer.html:143
+#: templates/frontend/includes/header.html:597
+#: templates/frontend/includes/header.html:800
 msgid "Contact"
 msgstr "Kontakt"
 
+#: templates/frontend/includes/footer.html:152
 msgid "Contact Form"
 msgstr "Formularz kontaktowy"
 
+#: templates/frontend/includes/footer.html:175
+#: templates/frontend/includes/header.html:811
 msgid "Language"
 msgstr "Język"
 
+#: templates/frontend/includes/footer.html:186
+#: templates/frontend/includes/header.html:612
 msgid "Select language"
-msgstr "Wybierz stronę"
+msgstr "Wybierz język"
 
+#: templates/frontend/includes/footer.html:196
 msgid "Resources"
 msgstr "Zasoby"
 
+#: templates/frontend/includes/footer.html:217
 msgid "All rights reserved."
 msgstr "Wszelkie prawa zastrzeżone."
 
+#: templates/frontend/includes/footer.html:220
 msgid "Free PDF tools for everyone"
 msgstr "Darmowe narzędzia PDF dla wszystkich"
 
+#: templates/frontend/includes/footer.html:234
 msgid "Terms"
 msgstr "Warunki"
 
+#: templates/frontend/includes/header.html:12
 msgid "Convertica - Home"
 msgstr "Convertica - Strona główna"
 
+#: templates/frontend/includes/header.html:18
 msgid "Convertica Logo"
 msgstr "Logo Convertica"
 
+#: templates/frontend/includes/header.html:37
+#: templates/frontend/includes/header.html:628
 msgid "All PDF tools"
 msgstr "Wszystkie narzędzia PDF"
 
+#: templates/frontend/includes/header.html:293
 msgid "Main navigation"
 msgstr "Główna nawigacja"
 
+#: templates/frontend/includes/header.html:303
 msgid "Convert PDF tools"
 msgstr "Narzędzia konwersji PDF"
 
+#: templates/frontend/includes/header.html:319
 msgid "Convert from PDF"
 msgstr "Konwertuj z PDF"
 
+#: templates/frontend/includes/header.html:362
+#: utils_site/src/frontend/views.py:215 utils_site/src/frontend/views.py:308
 msgid "Convert to PDF"
 msgstr "Konwertuj na PDF"
 
+#: templates/frontend/includes/header.html:401
 msgid "Edit PDF tools"
 msgstr "Narzędzia edycji PDF"
 
+#: templates/frontend/includes/header.html:417
 msgid "Basic Editing"
 msgstr "Podstawowa edycja"
 
+#: templates/frontend/includes/header.html:448
 msgid "Enhancements"
 msgstr "Ulepszenia"
 
+#: templates/frontend/includes/header.html:487
 msgid "Organize PDF tools"
 msgstr "Narzędzia organizacji PDF"
 
+#: templates/frontend/includes/header.html:503
 msgid "Organization"
 msgstr "Organizacja"
 
+#: templates/frontend/includes/header.html:558
 msgid "Page Management"
 msgstr "Zarządzanie stronami"
 
+#: templates/frontend/includes/header.html:639
 msgid "Toggle menu"
 msgstr "Przełącz menu"
 
+#: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
-msgstr "Convertica – Narzędzia PDF online: Konwersja, Edycja i Organizacja"
+msgstr "Convertica – Narzędzia PDF online: Konwersja, Edycja i Organizacja PDF"
 
+#: templates/frontend/index.html:6 templates/frontend/index.html:20
 msgid ""
 "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
 "rotate, add watermark, and more. Fast, secure, no registration required."
@@ -1747,6 +2398,7 @@ msgstr ""
 "dzielenie, obracanie, dodawanie znaków wodnych i więcej. Szybko, "
 "bezpiecznie, bez rejestracji."
 
+#: templates/frontend/index.html:7
 msgid ""
 "PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, "
 "PDF editor, PDF tools, online PDF converter, free PDF tools"
@@ -1755,9 +2407,13 @@ msgstr ""
 "obracanie PDF, edytor PDF, narzędzia PDF, konwerter PDF online, darmowe "
 "narzędzia PDF"
 
+#: templates/frontend/index.html:8 templates/frontend/index.html:10
+#: utils_site/src/frontend/views.py:31
 msgid "Convertica – Online PDF ↔ Word Converter"
 msgstr "Convertica – Konwerter online PDF ↔ Word"
 
+#: templates/frontend/index.html:9 templates/frontend/index.html:11
+#: utils_site/src/frontend/views.py:33
 msgid ""
 "Fast, simple and secure online PDF to Word and Word to PDF converter. "
 "Convert documents instantly, no registration required."
@@ -1765,9 +2421,11 @@ msgstr ""
 "Szybki, prosty i bezpieczny konwerter online PDF na Word i Word na PDF. "
 "Konwertuj dokumenty natychmiast, bez rejestracji."
 
+#: templates/frontend/index.html:44
 msgid "All-in-One PDF Tools"
 msgstr "Wszystkie narzędzia PDF w jednym miejscu"
 
+#: templates/frontend/index.html:47
 msgid ""
 "Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No "
 "installations required."
@@ -1775,18 +2433,28 @@ msgstr ""
 "Konwertuj, edytuj, łącz, dziel i organizuj pliki PDF. Szybko, prosto i "
 "bezpiecznie. Bez instalacji."
 
+#: templates/frontend/index.html:93
 msgid "Most requested PDF tools at your fingertips"
 msgstr "Najbardziej poszukiwane narzędzia PDF na wyciągnięcie ręki"
 
+#: templates/frontend/index.html:116 templates/frontend/index.html:141
+#: templates/frontend/index.html:165 templates/frontend/index.html:190
+#: templates/frontend/index.html:214 templates/frontend/index.html:256
+#: templates/frontend/index.html:280 templates/frontend/index.html:304
+#: templates/frontend/index.html:328 templates/frontend/index.html:353
+#: templates/frontend/index.html:377
 msgid "Try it"
 msgstr "Wypróbuj"
 
+#: templates/frontend/index.html:233
 msgid "Manage and organize your PDF documents with powerful tools"
 msgstr "Zarządzaj i organizuj swoje dokumenty PDF za pomocą potężnych narzędzi"
 
+#: templates/frontend/index.html:397
 msgid "Free PDF Tools - Convert, Edit & Organize"
 msgstr "Darmowe Narzędzia PDF - Konwertuj, Edytuj i Organizuj"
 
+#: templates/frontend/index.html:400
 msgid ""
 "Access all our PDF tools: convert PDF to Word, merge PDFs, split, rotate, "
 "and more. Fast, secure, and completely free."
@@ -1794,49 +2462,57 @@ msgstr ""
 "Dostęp do wszystkich naszych narzędzi PDF: konwertuj PDF na Word, łącz PDF, "
 "dziel, obracaj i więcej. Szybko, bezpiecznie i całkowicie za darmo."
 
+#: templates/frontend/index.html:415
 msgid "Latest Guides & Tips"
 msgstr "Najnowsze przewodniki i porady"
 
+#: templates/frontend/index.html:418
 msgid "Learn how to get the most out of PDF tools with our expert guides"
 msgstr ""
 "Dowiedz się, jak w pełni wykorzystać narzędzia PDF dzięki naszym eksperckim "
 "przewodnikom"
 
+#: templates/frontend/index.html:462
 msgid "View All Articles"
 msgstr "Zobacz wszystkie artykuły"
 
+#: templates/frontend/jpg_to_pdf.html:26
 msgid "You can upload multiple images - they will be combined into one PDF"
 msgstr "Możesz przesłać wiele obrazów - zostaną one połączone w jeden PDF"
 
+#: templates/frontend/jpg_to_pdf.html:52
 msgid "Select image(s)"
 msgstr "Wybierz obraz(y)"
 
+#: templates/frontend/jpg_to_pdf.html:59
 msgid "Selected Images"
 msgstr "Wybrane obrazy"
 
+#: templates/frontend/jpg_to_pdf.html:67
 msgid "+ Add more images"
 msgstr "+ Dodaj więcej obrazów"
 
+#: templates/frontend/jpg_to_pdf.html:90
 msgid "Drag and drop your images here"
 msgstr "Przeciągnij i upuść swoje zdjęcia tutaj"
 
+#: templates/frontend/jpg_to_pdf.html:96
 msgid "files"
 msgstr "pliki"
 
+#: templates/frontend/jpg_to_pdf.html:96
 msgid "multiple files supported"
 msgstr "obsługiwane wiele plików"
 
+#: templates/frontend/jpg_to_pdf.html:135
 msgid ""
 "Click the button above to select one or more images, or drag and drop them "
 "into the zone below"
 msgstr ""
-"#-#-#-#-#  django.po (Convertica)  #-#-#-#-#\n"
-"Kliknij przycisk powyżej, aby wybrać jedno lub więcej obrazów, lub "
-"przeciągnij je do strefy poniżej\n"
-"#-#-#-#-#  django.po (Convertica)  #-#-#-#-#\n"
 "Kliknij przycisk powyżej, aby wybrać jedno lub więcej obrazów, lub "
 "przeciągnij je i upuść w strefie poniżej"
 
+#: templates/frontend/jpg_to_pdf.html:136
 msgid ""
 "You can add more images by clicking 'Add more images' or by selecting files "
 "again"
@@ -1844,15 +2520,19 @@ msgstr ""
 "Możesz dodać więcej obrazów, klikając 'Dodaj więcej obrazów' lub wybierając "
 "pliki ponownie"
 
+#: templates/frontend/jpg_to_pdf.html:137
 msgid "Remove unwanted images by clicking the X button"
 msgstr "Usuń niechciane obrazy, klikając przycisk X"
 
+#: templates/frontend/jpg_to_pdf.html:138
 msgid "Click the convert button to combine all images into one PDF"
 msgstr "Kliknij przycisk konwersji, aby połączyć wszystkie obrazy w jeden PDF"
 
+#: templates/frontend/jpg_to_pdf.html:140
 msgid "Download your converted PDF file"
 msgstr "Pobierz przekonwertowany plik PDF"
 
+#: templates/frontend/jpg_to_pdf.html:144
 msgid ""
 "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. "
 "Supported formats include JPG, PNG, GIF, and BMP. The images will be "
@@ -1862,79 +2542,100 @@ msgstr ""
 "Obsługiwane formaty obejmują JPG, PNG, GIF i BMP. Obrazy zostaną połączone w "
 "kolejności, w jakiej je wybierzesz."
 
+#: templates/frontend/jpg_to_pdf.html:161
 msgid "Converting your images..."
 msgstr "Konwertowanie obrazów..."
 
+#: templates/frontend/jpg_to_pdf.html:164
 msgid "Your PDF is ready to download"
 msgstr "Twój PDF jest gotowy do pobrania"
 
+#: templates/frontend/jpg_to_pdf.html:165
 msgid "Download PDF"
 msgstr "Pobierz PDF"
 
+#: templates/frontend/merge_pdf.html:28
 msgid "Merge Settings"
 msgstr "Ustawienia scalania"
 
+#: templates/frontend/merge_pdf.html:34
 msgid "Select PDF Files"
 msgstr "Wybierz pliki PDF"
 
+#: templates/frontend/merge_pdf.html:45
 msgid "Select PDF files"
 msgstr "Wybierz pliki PDF"
 
+#: templates/frontend/merge_pdf.html:59
 msgid "+ Add more files"
 msgstr "+ Dodaj więcej plików"
 
+#: templates/frontend/merge_pdf.html:72
 msgid "Drag and drop your PDF files here"
 msgstr "Przeciągnij i upuść tutaj swoje pliki PDF"
 
+#: templates/frontend/merge_pdf.html:75
 msgid "Or use the button above to browse files"
 msgstr "Lub użyj przycisku powyżej, aby przeglądać pliki"
 
+#: templates/frontend/merge_pdf.html:82
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
 msgstr ""
 "Wybierz 2-10 plików PDF do scalenia. Możesz zmienić ich kolejność, "
 "przeciągając."
 
+#: templates/frontend/merge_pdf.html:90
 msgid "Selected Files"
 msgstr "Wybrane pliki"
 
+#: templates/frontend/merge_pdf.html:102
 msgid "Preview & Reorder Pages"
 msgstr "Podgląd i zmiana kolejności stron"
 
+#: templates/frontend/merge_pdf.html:104
 msgid ""
 "Drag and drop to reorder files. The order shown here will be the merge order."
 msgstr ""
 "Przeciągnij i upuść, aby zmienić kolejność plików. Kolejność pokazana tutaj "
 "będzie kolejnością scalenia."
 
+#: templates/frontend/merge_pdf.html:114
 msgid "is not a PDF file. Skipping."
 msgstr "nie jest plikiem PDF. Pomijanie."
 
+#: templates/frontend/merge_pdf.html:115
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
 msgstr "Maksymalnie 10 plików. Zostaną użyte tylko pierwsze 10 plików."
 
+#: templates/frontend/merge_pdf.html:116
 msgid "Error loading preview"
 msgstr "Błąd ładowania podglądu"
 
+#: templates/frontend/merge_pdf.html:117
 msgid "Loading..."
 msgstr "Ładowanie..."
 
+#: templates/frontend/merge_pdf.html:119
 msgid "Merging PDFs..."
 msgstr "Łączenie PDF..."
 
+#: templates/frontend/merge_pdf.html:120
 msgid "Please select at least 2 PDF files to merge."
 msgstr "Proszę wybrać co najmniej 2 pliki PDF do połączenia."
 
+#: templates/frontend/merge_pdf.html:136
 msgid "Select 2-10 PDF files to merge using the button above"
 msgstr "Wybierz 2-10 plików PDF do połączenia za pomocą przycisku powyżej"
 
+#: templates/frontend/merge_pdf.html:137
 msgid "Preview all PDF files and drag them to reorder the merge order"
-msgstr ""
-"Podejrzyj wszystkie pliki PDF i przeciągaj je, aby zmienić kolejność łączenia"
+msgstr "Podejrzyj wszystkie pliki PDF i przeciągaj je, aby zmienić kolejność łączenia"
 
+#: templates/frontend/merge_pdf.html:138
 msgid "Click the merge button to combine all PDF files into one document"
-msgstr ""
-"Kliknij przycisk łączenia, aby połączyć wszystkie pliki PDF w jeden dokument"
+msgstr "Kliknij przycisk łączenia, aby połączyć wszystkie pliki PDF w jeden dokument"
 
+#: templates/frontend/merge_pdf.html:139
 msgid ""
 "Download your merged PDF file containing all pages from all selected files "
 "using the download button"
@@ -1942,6 +2643,7 @@ msgstr ""
 "Pobierz połączony plik PDF zawierający wszystkie strony ze wszystkich "
 "wybranych plików za pomocą przycisku pobierania"
 
+#: templates/frontend/merge_pdf.html:143
 msgid ""
 "You can merge 2-10 PDF files at once. The merged PDF will contain all pages "
 "from all selected files in the order you specified."
@@ -1950,18 +2652,24 @@ msgstr ""
 "wszystkie strony ze wszystkich wybranych plików w określonej przez Ciebie "
 "kolejności."
 
+#: templates/frontend/organize_pdf.html:12
 msgid "Organization Settings"
 msgstr "Ustawienia organizacji"
 
+#: templates/frontend/organize_pdf.html:17
 msgid "Operation"
 msgstr "Operacja"
 
+#: templates/frontend/organize_pdf.html:21
+#: templates/frontend/organize_pdf.html:30
 msgid "Reorder Pages"
 msgstr "Zmień kolejność stron"
 
+#: templates/frontend/organize_pdf.html:22
 msgid "Sort Pages"
 msgstr "Sortuj strony"
 
+#: templates/frontend/organize_pdf.html:32
 msgid ""
 "Drag and drop pages to reorder them. The number on each page shows the new "
 "order."
@@ -1969,32 +2677,45 @@ msgstr ""
 "Przeciągnij i upuść strony, aby zmienić ich kolejność. Numer na każdej "
 "stronie pokazuje nową kolejność."
 
+#: templates/frontend/organize_pdf.html:45 utils_site/src/frontend/views.py:167
+#: utils_site/src/frontend/views.py:262 utils_site/src/frontend/views.py:353
+#: utils_site/src/frontend/views.py:397 utils_site/src/frontend/views.py:442
+#: utils_site/src/frontend/views.py:485 utils_site/src/frontend/views.py:575
+#: utils_site/src/frontend/views.py:616 utils_site/src/frontend/views.py:658
+#: utils_site/src/frontend/views.py:701 utils_site/src/frontend/views.py:794
+#: utils_site/src/frontend/views.py:819
 msgid "Please select a PDF file."
 msgstr "Proszę wybrać plik PDF."
 
+#: templates/frontend/organize_pdf.html:46
 msgid "Please select a PDF file first."
 msgstr "Najpierw wybierz plik PDF."
 
+#: templates/frontend/organize_pdf.html:48
 msgid "Organizing..."
 msgstr "Organizowanie..."
 
+#: templates/frontend/organize_pdf.html:49
 msgid "Failed to organize PDF"
 msgstr "Nie udało się zorganizować PDF"
 
+#: templates/frontend/organize_pdf.html:66
 msgid "Preview all pages and drag them to reorder pages in your PDF document"
 msgstr ""
 "Podejrzyj wszystkie strony i przeciągaj je, aby zmienić kolejność stron w "
 "dokumencie PDF"
 
+#: templates/frontend/organize_pdf.html:67
 msgid "Choose operation: reorder pages manually or sort pages automatically"
 msgstr ""
 "Wybierz operację: zmień kolejność stron ręcznie lub sortuj strony "
 "automatycznie"
 
+#: templates/frontend/organize_pdf.html:68
 msgid "Click the organize button to process your PDF and reorganize the pages"
-msgstr ""
-"Kliknij przycisk organizacji, aby przetworzyć PDF i zreorganizować strony"
+msgstr "Kliknij przycisk organizacji, aby przetworzyć PDF i zreorganizować strony"
 
+#: templates/frontend/organize_pdf.html:69
 msgid ""
 "Download your reorganized PDF file with pages in the new order using the "
 "download button"
@@ -2002,66 +2723,80 @@ msgstr ""
 "Pobierz zreorganizowany plik PDF ze stronami w nowej kolejności za pomocą "
 "przycisku pobierania"
 
+#: templates/frontend/organize_pdf.html:73
 msgid ""
 "PDF files with up to 50 pages are supported for organizing. For larger "
 "files, please split them into smaller parts. You can drag and drop pages to "
 "reorder them visually."
 msgstr ""
-"Do organizowania obsługiwane są pliki PDF do 50 stron. Dla większych plików "
-"podziel je na mniejsze części. Możesz przeciągać i upuszczać strony, aby "
-"zmieniać ich kolejność wizualnie."
+"Pliki PDF do 50 stron są obsługiwane przy organizowaniu. Większe pliki "
+"należy podzielić na mniejsze części. Możesz przeciągać i upuszczać strony, "
+"aby zmieniać ich kolejność wizualnie."
 
+#: templates/frontend/pdf_to_excel.html:11
 msgid ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
 msgstr ""
-"Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na Word (konwersja "
-"PDF na DOCX)"
+"Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na Excel (konwersja "
+"PDF na XLSX)"
 
+#: templates/frontend/pdf_to_excel.html:12
 msgid ""
 "Wait for the PDF to Excel conversion to complete - tables and data will be "
 "extracted from your PDF and converted to editable Excel format"
 msgstr ""
-"Poczekaj na zakończenie konwersji PDF na Word - tekst i formatowanie zostaną "
-"wyodrębnione z twojego PDF i przekonwertowane na edytowalny format Word"
+"Poczekaj na zakończenie konwersji PDF na Excel - tabele i dane zostaną "
+"wyodrębnione z Twojego PDF i przekonwertowane na edytowalny format Excel"
 
+#: templates/frontend/pdf_to_excel.html:13
 msgid ""
 "Download your editable Excel file (XLSX format) - your PDF tables have been "
 "successfully converted to Excel"
 msgstr ""
-"Pobierz swój edytowalny dokument Word (format DOCX) - twój PDF został "
-"pomyślnie przekonwertowany na Word"
+"Pobierz edytowalny plik Excel (format XLSX) - Twoje tabele PDF zostały "
+"pomyślnie przekonwertowane na Excel"
 
+#: templates/frontend/pdf_to_excel.html:17
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. PDF files with tables work best - plain text will "
 "be placed in separate cells, and images will be embedded in the Excel file."
 msgstr ""
-"Obsługiwane są pliki PDF do 50 stron. Dla większych plików podziel je na "
-"mniejsze części. Najlepiej działają PDF oparte na tekście - zeskanowane PDF "
-"(tylko obrazy) nie można przekonwertować na format Word edytowalny."
+"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
+"mniejsze części. Pliki PDF z tabelami działają najlepiej - zwykły tekst "
+"zostanie umieszczony w oddzielnych komórkach, a obrazy zostaną osadzone w "
+"pliku Excel."
 
+#: templates/frontend/pdf_to_jpg.html:6
 msgid "Page Selection"
 msgstr "Wybór stron"
 
+#: templates/frontend/pdf_to_jpg.html:12
 msgid "Pages to Convert"
 msgstr "Strony do konwersji"
 
+#: templates/frontend/pdf_to_jpg.html:49
 msgid "Image Quality (DPI)"
 msgstr "Jakość obrazu (DPI)"
 
+#: templates/frontend/pdf_to_jpg.html:54
 msgid "Smaller file size"
 msgstr "Mniejszy rozmiar pliku"
 
+#: templates/frontend/pdf_to_jpg.html:56
 msgid "High quality (recommended)"
 msgstr "Wysoka jakość (zalecane)"
 
+#: templates/frontend/pdf_to_jpg.html:57
 msgid "Very high quality"
 msgstr "Bardzo wysoka jakość"
 
+#: templates/frontend/pdf_to_jpg.html:58
 msgid "Maximum quality"
 msgstr "Maksymalna jakość"
 
+#: templates/frontend/pdf_to_jpg.html:61
 msgid ""
 "Higher DPI = better quality but larger file size. 300 DPI is recommended for "
 "most uses."
@@ -2069,6 +2804,7 @@ msgstr ""
 "Wyższe DPI = lepsza jakość, ale większy rozmiar pliku. 300 DPI jest zalecane "
 "dla większości zastosowań."
 
+#: templates/frontend/pdf_to_jpg.html:75
 msgid ""
 "Choose which pages to convert from PDF to JPG: all pages or specific pages "
 "(e.g., 1,3,5 or 1-5)"
@@ -2076,6 +2812,7 @@ msgstr ""
 "Wybierz, które strony przekonwertować z PDF na JPG: wszystkie strony lub "
 "konkretne strony (np. 1,3,5 lub 1-5)"
 
+#: templates/frontend/pdf_to_jpg.html:76
 msgid ""
 "Select DPI quality for PDF to JPG conversion (300 DPI recommended for high "
 "quality, 72 DPI for smaller file size)"
@@ -2083,9 +2820,11 @@ msgstr ""
 "Wybierz jakość DPI dla konwersji PDF na JPG (zalecane 300 DPI dla wysokiej "
 "jakości, 72 DPI dla mniejszego rozmiaru pliku)"
 
+#: templates/frontend/pdf_to_jpg.html:77
 msgid "Click the convert button to start the PDF to JPG conversion process"
 msgstr "Kliknij przycisk konwersji, aby rozpocząć proces konwersji PDF na JPG"
 
+#: templates/frontend/pdf_to_jpg.html:78
 msgid ""
 "Wait for the PDF to JPG conversion to complete - all selected pages will be "
 "converted to JPG images"
@@ -2093,23 +2832,26 @@ msgstr ""
 "Poczekaj na zakończenie konwersji PDF na JPG - wszystkie wybrane strony "
 "zostaną przekonwertowane na obrazy JPG"
 
+#: templates/frontend/pdf_to_jpg.html:79
 msgid ""
 "Download the ZIP archive containing all converted JPG images from your PDF"
 msgstr ""
 "Pobierz archiwum ZIP zawierające wszystkie przekonwertowane obrazy JPG z "
-"twojego PDF"
+"Twojego PDF"
 
+#: templates/frontend/pdf_to_jpg.html:83
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. The output will be a ZIP archive containing all "
 "converted JPG images, named with page numbers (e.g., filename_page0001.jpg, "
 "filename_page0002.jpg)."
 msgstr ""
-"Obsługiwane są pliki PDF do 50 stron. Dla większych plików podziel je na "
+"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
 "mniejsze części. Wynikiem będzie archiwum ZIP zawierające wszystkie "
-"przekonwertowane obrazy JPG, nazwane numerami stron (np. filename_page0001."
-"jpg, filename_page0002.jpg)."
+"przekonwertowane obrazy JPG, nazwane numerami stron (np. "
+"filename_page0001.jpg, filename_page0002.jpg)."
 
+#: templates/frontend/pdf_to_word.html:11
 msgid ""
 "Click the convert button to start converting PDF to Word (PDF to DOCX "
 "conversion)"
@@ -2117,35 +2859,41 @@ msgstr ""
 "Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na Word (konwersja "
 "PDF na DOCX)"
 
+#: templates/frontend/pdf_to_word.html:12
 msgid ""
 "Wait for the PDF to Word conversion to complete - text and formatting will "
 "be extracted from your PDF and converted to editable Word format"
 msgstr ""
 "Poczekaj na zakończenie konwersji PDF na Word - tekst i formatowanie zostaną "
-"wyodrębnione z twojego PDF i przekonwertowane na edytowalny format Word"
+"wyodrębnione z Twojego PDF i przekonwertowane na edytowalny format Word"
 
+#: templates/frontend/pdf_to_word.html:13
 msgid ""
 "Download your editable Word document (DOCX format) - your PDF has been "
 "successfully converted to Word"
 msgstr ""
-"Pobierz swój edytowalny dokument Word (format DOCX) - twój PDF został "
-"pomyślnie przekonwertowany na Word"
+"Pobierz edytowalny dokument Word (format DOCX) - Twój PDF został pomyślnie "
+"przekonwertowany na Word"
 
+#: templates/frontend/pdf_to_word.html:17
 msgid ""
 "PDF files with up to 50 pages are supported. For larger files, please split "
 "them into smaller parts. Text-based PDFs work best - scanned PDFs (image-"
 "only) cannot be converted to editable Word format."
 msgstr ""
-"Obsługiwane są pliki PDF do 50 stron. Dla większych plików podziel je na "
-"mniejsze części. Najlepiej działają PDF oparte na tekście - zeskanowane PDF "
-"(tylko obrazy) nie można przekonwertować na format Word edytowalny."
+"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
+"mniejsze części. PDF oparte na tekście działają najlepiej - zeskanowane PDF "
+"(tylko obrazy) nie można przekonwertować na edytowalny format Word."
 
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:926
 msgid "Privacy Policy - Convertica"
 msgstr "Polityka prywatności - Convertica"
 
+#: templates/frontend/privacy.html:48 templates/frontend/terms.html:48
 msgid "Last updated: January 2025"
 msgstr "Ostatnia aktualizacja: Styczeń 2025"
 
+#: templates/frontend/privacy.html:61
 msgid ""
 "At Convertica, we take your privacy seriously. This Privacy Policy explains "
 "how we collect, use, disclose, and safeguard your information when you use "
@@ -2155,6 +2903,7 @@ msgstr ""
 "wyjaśnia, jak zbieramy, wykorzystujemy, ujawniamy i chronimy Twoje "
 "informacje podczas korzystania z naszych narzędzi i usług PDF online."
 
+#: templates/frontend/privacy.html:64
 msgid ""
 "By using Convertica, you agree to the collection and use of information in "
 "accordance with this policy."
@@ -2162,12 +2911,15 @@ msgstr ""
 "Korzystając z Convertica, zgadzasz się na zbieranie i wykorzystywanie "
 "informacji zgodnie z tą polityką."
 
+#: templates/frontend/privacy.html:70
 msgid "Information We Collect"
 msgstr "Informacje, które zbieramy"
 
+#: templates/frontend/privacy.html:74
 msgid "Files You Upload"
 msgstr "Pliki, które przesyłasz"
 
+#: templates/frontend/privacy.html:76
 msgid ""
 "When you use our PDF tools, you may upload files for processing. These files "
 "are temporarily stored on our servers only for the duration of the "
@@ -2179,9 +2931,11 @@ msgstr ""
 "tylko na czas procesu konwersji lub edycji. Pliki są automatycznie usuwane "
 "natychmiast po zakończeniu przetwarzania, zwykle w ciągu kilku minut."
 
+#: templates/frontend/privacy.html:81
 msgid "Usage Information"
 msgstr "Informacje o użyciu"
 
+#: templates/frontend/privacy.html:83
 msgid ""
 "We may collect information about how you access and use our services, "
 "including:"
@@ -2189,42 +2943,55 @@ msgstr ""
 "Możemy zbierać informacje o tym, jak uzyskujesz dostęp i korzystasz z "
 "naszych usług, w tym:"
 
+#: templates/frontend/privacy.html:86
 msgid "IP address and browser type"
 msgstr "Adres IP i typ przeglądarki"
 
+#: templates/frontend/privacy.html:87
 msgid "Device information and operating system"
 msgstr "Informacje o urządzeniu i systemie operacyjnym"
 
+#: templates/frontend/privacy.html:88
 msgid "Pages visited and time spent on pages"
 msgstr "Odwiedzone strony i czas spędzony na stronach"
 
+#: templates/frontend/privacy.html:89
 msgid "Referring website addresses"
 msgstr "Adresy odsyłających stron internetowych"
 
+#: templates/frontend/privacy.html:97
 msgid "How We Use Your Information"
 msgstr "Jak wykorzystujemy Twoje informacje"
 
+#: templates/frontend/privacy.html:101
 msgid "We use the information we collect to:"
 msgstr "Wykorzystujemy zebrane informacje do:"
 
+#: templates/frontend/privacy.html:104
 msgid "Process and convert your files as requested"
 msgstr "Przetwarzaj i konwertuj swoje pliki zgodnie z żądaniem"
 
+#: templates/frontend/privacy.html:105
 msgid "Improve and optimize our services"
 msgstr "Ulepszaj i optymalizuj nasze usługi"
 
+#: templates/frontend/privacy.html:106
 msgid "Monitor and analyze usage patterns"
 msgstr "Monitoruj i analizuj wzorce użytkowania"
 
+#: templates/frontend/privacy.html:107
 msgid "Ensure the security and functionality of our platform"
 msgstr "Zapewnij bezpieczeństwo i funkcjonalność naszej platformy"
 
+#: templates/frontend/privacy.html:108
 msgid "Respond to your inquiries and provide customer support"
 msgstr "Odpowiadać na Twoje zapytania i zapewniać wsparcie klientom"
 
+#: templates/frontend/privacy.html:115
 msgid "Data Security"
 msgstr "Bezpieczeństwo danych"
 
+#: templates/frontend/privacy.html:119
 msgid ""
 "We implement appropriate technical and organizational security measures to "
 "protect your information:"
@@ -2232,23 +2999,29 @@ msgstr ""
 "Wdrażamy odpowiednie techniczne i organizacyjne środki bezpieczeństwa w celu "
 "ochrony Twoich informacji:"
 
+#: templates/frontend/privacy.html:122
 msgid "All file transfers are encrypted using SSL/TLS protocols"
 msgstr ""
 "Wszystkie transfery plików są szyfrowane przy użyciu protokołów SSL/TLS"
 
+#: templates/frontend/privacy.html:123
 msgid "Files are stored temporarily in secure, isolated environments"
 msgstr ""
 "Pliki są przechowywane tymczasowo w bezpiecznych, izolowanych środowiskach"
 
+#: templates/frontend/privacy.html:124
 msgid "Automatic deletion of files after processing completion"
 msgstr "Automatyczne usuwanie plików po zakończeniu przetwarzania"
 
+#: templates/frontend/privacy.html:125
 msgid "Regular security audits and updates"
 msgstr "Regularne audyty bezpieczeństwa i aktualizacje"
 
+#: templates/frontend/privacy.html:126
 msgid "Access controls and monitoring systems"
 msgstr "Kontrola dostępu i systemy monitorowania"
 
+#: templates/frontend/privacy.html:129
 #, python-format
 msgid ""
 "However, no method of transmission over the Internet or electronic storage "
@@ -2260,9 +3033,11 @@ msgstr ""
 "komercyjnie akceptowalnych środków do ochrony Twoich informacji, nie możemy "
 "zagwarantować absolutnego bezpieczeństwa."
 
+#: templates/frontend/privacy.html:136
 msgid "Data Retention"
 msgstr "Przechowywanie danych"
 
+#: templates/frontend/privacy.html:139
 msgid ""
 "We retain your uploaded files only for the time necessary to complete the "
 "requested operation. Files are automatically deleted:"
@@ -2270,21 +3045,27 @@ msgstr ""
 "Przechowujemy Twoje przesłane pliki tylko przez czas niezbędny do wykonania "
 "żądanej operacji. Pliki są automatycznie usuwane:"
 
+#: templates/frontend/privacy.html:142
 msgid "Immediately after successful processing"
 msgstr "Natychmiast po pomyślnym przetworzeniu"
 
+#: templates/frontend/privacy.html:143
 msgid "Within 1 hour if processing fails"
 msgstr "W ciągu 1 godziny, jeśli przetwarzanie się nie powiedzie"
 
+#: templates/frontend/privacy.html:144
 msgid "We do not store your files permanently"
 msgstr "Nie przechowujemy Twoich plików na stałe"
 
+#: templates/frontend/privacy.html:145
 msgid "We do not create backups of your uploaded files"
 msgstr "Nie tworzymy kopii zapasowych Twoich przesłanych plików"
 
+#: templates/frontend/privacy.html:151
 msgid "Third-Party Services"
 msgstr "Usługi stron trzecich"
 
+#: templates/frontend/privacy.html:154
 msgid ""
 "We may use third-party services to help us operate our platform and analyze "
 "how our services are used. These services may have access to limited "
@@ -2296,15 +3077,18 @@ msgstr ""
 "mieć dostęp do ograniczonych informacji, ale są zobowiązane nie ujawniać ani "
 "nie wykorzystywać ich do żadnych innych celów."
 
+#: templates/frontend/privacy.html:157
 msgid ""
 "We do not sell, trade, or rent your personal information to third parties."
 msgstr ""
 "Nie sprzedajemy, nie wymieniamy ani nie wynajmujemy Twoich danych osobowych "
 "stronom trzecim."
 
+#: templates/frontend/privacy.html:163
 msgid "Cookies and Tracking"
 msgstr "Pliki cookie i śledzenie"
 
+#: templates/frontend/privacy.html:166
 msgid ""
 "We may use cookies and similar tracking technologies to track activity on "
 "our platform and hold certain information. Cookies are files with a small "
@@ -2315,6 +3099,7 @@ msgstr ""
 "Pliki cookie to pliki z niewielką ilością danych, które mogą zawierać "
 "anonimowy unikalny identyfikator."
 
+#: templates/frontend/privacy.html:169
 msgid ""
 "You can instruct your browser to refuse all cookies or to indicate when a "
 "cookie is being sent. However, if you do not accept cookies, you may not be "
@@ -2325,27 +3110,35 @@ msgstr ""
 "akceptujesz plików cookie, możesz nie być w stanie korzystać z niektórych "
 "części naszej usługi."
 
+#: templates/frontend/privacy.html:175
 msgid "Your Privacy Rights"
 msgstr "Twoje prawa do prywatności"
 
+#: templates/frontend/privacy.html:179
 msgid "You have the right to:"
 msgstr "Masz prawo do:"
 
+#: templates/frontend/privacy.html:182
 msgid "Access information we hold about you"
 msgstr "Uzyskać dostęp do informacji, które przechowujemy o Tobie"
 
+#: templates/frontend/privacy.html:183
 msgid "Request correction of inaccurate information"
 msgstr "Wnioskować o poprawienie nieprawidłowych informacji"
 
+#: templates/frontend/privacy.html:184
 msgid "Request deletion of your information"
 msgstr "Wnioskować o usunięcie Twoich informacji"
 
+#: templates/frontend/privacy.html:185
 msgid "Object to processing of your information"
 msgstr "Sprzeciwić się przetwarzaniu Twoich informacji"
 
+#: templates/frontend/privacy.html:186
 msgid "Request restriction of processing"
 msgstr "Wnioskować o ograniczenie przetwarzania"
 
+#: templates/frontend/privacy.html:189
 msgid ""
 "To exercise these rights, please contact us using the information provided "
 "in the Contact section."
@@ -2353,9 +3146,11 @@ msgstr ""
 "Aby skorzystać z tych praw, skontaktuj się z nami, korzystając z informacji "
 "podanych w sekcji Kontakt."
 
+#: templates/frontend/privacy.html:196
 msgid "Children's Privacy"
 msgstr "Prywatność dzieci"
 
+#: templates/frontend/privacy.html:199
 msgid ""
 "Our services are not intended for children under the age of 13. We do not "
 "knowingly collect personal information from children under 13. If you are a "
@@ -2367,48 +3162,62 @@ msgstr ""
 "rodzicem lub opiekunem i uważasz, że Twoje dziecko przekazało nam dane "
 "osobowe, skontaktuj się z nami."
 
+#: templates/frontend/privacy.html:205
 msgid "Changes to This Privacy Policy"
 msgstr "Zmiany w tej Polityce prywatności"
 
+#: templates/frontend/privacy.html:208
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
-"\\"
+"\"Last updated\" date. We recommend periodically reviewing this Privacy "
+"Policy for changes."
 msgstr ""
 "Możemy od czasu do czasu aktualizować naszą Politykę prywatności. "
 "Powiadomimy Cię o wszelkich zmianach, publikując nową Politykę prywatności "
 "na tej stronie i aktualizując datę \"Ostatnia aktualizacja\". Zalecamy "
 "okresowe przeglądanie tej Polityki prywatności pod kątem zmian."
 
+#: templates/frontend/privacy.html:214
 msgid "Questions About Privacy?"
 msgstr "Pytania dotyczące prywatności?"
 
+#: templates/frontend/privacy.html:216
 msgid "If you have any questions about this Privacy Policy, please contact us."
 msgstr ""
 "Jeśli masz pytania dotyczące tej Polityki Prywatności, skontaktuj się z nami."
 
+#: templates/frontend/protect_pdf.html:6
 msgid "Password Protection Settings"
 msgstr "Ustawienia ochrony hasłem"
 
+#: templates/frontend/protect_pdf.html:12
 msgid "Password"
 msgstr "Hasło"
 
+#: templates/frontend/protect_pdf.html:20
 msgid "Enter password to protect PDF"
 msgstr "Wprowadź hasło do ochrony PDF"
 
+#: templates/frontend/protect_pdf.html:23
 msgid ""
 "This password will be required to open the PDF. Make sure to remember it!"
 msgstr "To hasło będzie wymagane do otwarcia PDF. Pamiętaj o nim!"
 
+#: templates/frontend/protect_pdf.html:30
 msgid "User Password"
 msgstr "Hasło użytkownika"
 
+#: templates/frontend/protect_pdf.html:30
+#: templates/frontend/protect_pdf.html:46
 msgid "Optional"
 msgstr "Opcjonalne"
 
+#: templates/frontend/protect_pdf.html:36
 msgid "Optional: Different user password"
 msgstr "Opcjonalne: Inne hasło użytkownika"
 
+#: templates/frontend/protect_pdf.html:39
 msgid ""
 "Optional: Set a different password for users. If not provided, the main "
 "password will be used."
@@ -2416,12 +3225,15 @@ msgstr ""
 "Opcjonalnie: Ustaw inne hasło dla użytkowników. Jeśli nie podano, zostanie "
 "użyte główne hasło."
 
+#: templates/frontend/protect_pdf.html:46
 msgid "Owner Password"
 msgstr "Hasło właściciela"
 
+#: templates/frontend/protect_pdf.html:52
 msgid "Optional: Different owner password"
 msgstr "Opcjonalne: Inne hasło właściciela"
 
+#: templates/frontend/protect_pdf.html:55
 msgid ""
 "Optional: Set a different password for owner. If not provided, the main "
 "password will be used."
@@ -2429,6 +3241,7 @@ msgstr ""
 "Opcjonalnie: Ustaw inne hasło dla właściciela. Jeśli nie podano, zostanie "
 "użyte główne hasło."
 
+#: templates/frontend/protect_pdf.html:69
 msgid ""
 "Enter a password to protect your PDF file (required) and optionally set user/"
 "owner passwords"
@@ -2436,27 +3249,33 @@ msgstr ""
 "Wprowadź hasło, aby chronić plik PDF (wymagane) i opcjonalnie ustaw hasła "
 "użytkownika/właściciela"
 
+#: templates/frontend/protect_pdf.html:70
 msgid "Click the protect button to encrypt your PDF with password protection"
 msgstr "Kliknij przycisk ochrony, aby zaszyfrować PDF z ochroną hasłem"
 
+#: templates/frontend/protect_pdf.html:71
 msgid "Download your password-protected PDF file using the download button"
 msgstr "Pobierz plik PDF chroniony hasłem za pomocą przycisku pobierania"
 
+#: templates/frontend/protect_pdf.html:75
 msgid ""
 "PDF files with up to 50 pages are supported for password protection. For "
 "larger files, please split them into smaller parts. The password will be "
 "required to open, view, print, or edit the PDF."
 msgstr ""
-"Do ochrony hasłem obsługiwane są pliki PDF do 50 stron. Dla większych plików "
-"podziel je na mniejsze części. Hasło będzie wymagane do otwarcia, "
+"Pliki PDF do 50 stron są obsługiwane przy ochronie hasłem. Większe pliki "
+"należy podzielić na mniejsze części. Hasło będzie wymagane do otwarcia, "
 "przeglądania, drukowania lub edycji PDF."
 
+#: templates/frontend/remove_pages.html:6
 msgid "Remove Pages Settings"
 msgstr "Ustawienia usuwania stron"
 
+#: templates/frontend/remove_pages.html:12
 msgid "Pages to Remove"
 msgstr "Strony do usunięcia"
 
+#: templates/frontend/remove_pages.html:64
 msgid ""
 "Choose which pages to remove from your PDF: all pages, current page only, or "
 "specific pages (e.g., 1,3,5 or 1-5)"
@@ -2464,89 +3283,108 @@ msgstr ""
 "Wybierz, które strony usunąć z PDF: wszystkie strony, tylko bieżąca strona "
 "lub konkretne strony (np. 1,3,5 lub 1-5)"
 
+#: templates/frontend/remove_pages.html:65
 msgid ""
 "Click the remove pages button to process your PDF and delete the selected "
 "pages"
-msgstr ""
-"Kliknij przycisk usuwania stron, aby przetworzyć PDF i usunąć wybrane strony"
+msgstr "Kliknij przycisk usuwania stron, aby przetworzyć PDF i usunąć wybrane strony"
 
+#: templates/frontend/remove_pages.html:66
 msgid "Download your PDF file with pages removed using the download button"
 msgstr "Pobierz plik PDF z usuniętymi stronami za pomocą przycisku pobierania"
 
+#: templates/frontend/remove_pages.html:70
 msgid ""
 "PDF files with up to 50 pages are supported for removing pages. For larger "
 "files, please split them into smaller parts. The remaining pages will be "
 "preserved in their original order."
 msgstr ""
-"Do usuwania stron obsługiwane są pliki PDF do 50 stron. Dla większych plików "
-"podziel je na mniejsze części. Pozostałe strony zostaną zachowane w "
+"Pliki PDF do 50 stron są obsługiwane przy usuwaniu stron. Większe pliki "
+"należy podzielić na mniejsze części. Pozostałe strony zostaną zachowane w "
 "oryginalnej kolejności."
 
+#: templates/frontend/rotate_pdf.html:6
 msgid "Rotation Settings"
 msgstr "Ustawienia obrotu"
 
+#: templates/frontend/rotate_pdf.html:12
 msgid "Rotation Angle"
 msgstr "Kąt obrotu"
 
+#: templates/frontend/rotate_pdf.html:16
 msgid "(Clockwise)"
 msgstr "(Zgodnie z ruchem wskazówek zegara)"
 
+#: templates/frontend/rotate_pdf.html:17
 msgid "(Upside down)"
 msgstr "(Do góry nogami)"
 
+#: templates/frontend/rotate_pdf.html:18
 msgid "(Counter-clockwise)"
 msgstr "(Przeciwnie do ruchu wskazówek zegara)"
 
+#: templates/frontend/rotate_pdf.html:25
 msgid "Pages to Rotate"
 msgstr "Strony do obrócenia"
 
+#: templates/frontend/rotate_pdf.html:77
 msgid "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
 msgstr "Wybierz kąt obrotu (90°, 180° lub 270°) do obracania stron PDF"
 
+#: templates/frontend/rotate_pdf.html:78
 msgid ""
 "Select which pages to rotate: all pages, current page only, or specific pages"
 msgstr ""
 "Wybierz, które strony obrócić: wszystkie strony, tylko bieżąca strona lub "
 "konkretne strony"
 
+#: templates/frontend/rotate_pdf.html:79
 msgid ""
 "Click the rotate button to process your PDF and rotate the selected pages"
-msgstr ""
-"Kliknij przycisk obracania, aby przetworzyć PDF i obrócić wybrane strony"
+msgstr "Kliknij przycisk obracania, aby przetworzyć PDF i obrócić wybrane strony"
 
+#: templates/frontend/rotate_pdf.html:80
 msgid "Download your rotated PDF file using the download button"
 msgstr "Pobierz obrócony plik PDF za pomocą przycisku pobierania"
 
+#: templates/frontend/rotate_pdf.html:84
 msgid ""
 "PDF files with up to 50 pages are supported for rotating. For larger files, "
 "please split them into smaller parts. The rotation preserves all content and "
 "formatting."
 msgstr ""
-"Do obracania obsługiwane są pliki PDF do 50 stron. Dla większych plików "
-"podziel je na mniejsze części. Obrót zachowuje całą zawartość i formatowanie."
+"Pliki PDF do 50 stron są obsługiwane przy obracaniu. Większe pliki należy "
+"podzielić na mniejsze części. Obrót zachowuje całą zawartość i formatowanie."
 
+#: templates/frontend/split_pdf.html:6
 msgid "Split Settings"
 msgstr "Ustawienia podziału"
 
+#: templates/frontend/split_pdf.html:12
 msgid "Split Type"
 msgstr "Typ podziału"
 
+#: templates/frontend/split_pdf.html:16
 msgid "By Individual Pages"
 msgstr "Po poszczególnych stronach"
 
+#: templates/frontend/split_pdf.html:17
 msgid "By Page Ranges"
 msgstr "Według zakresów stron"
 
+#: templates/frontend/split_pdf.html:18
 msgid "Every N Pages"
 msgstr "Co N stron"
 
+#: templates/frontend/split_pdf.html:25
 msgid "Pages"
 msgstr "Strony"
 
+#: templates/frontend/split_pdf.html:33
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
-msgstr ""
-"Wprowadź numery stron jak '1,3,5' lub pozostaw puste dla wszystkich stron"
+msgstr "Wprowadź numery stron jak '1,3,5' lub pozostaw puste dla wszystkich stron"
 
+#: templates/frontend/split_pdf.html:51
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
@@ -2554,18 +3392,23 @@ msgstr ""
 "Wprowadź numery stron oddzielone przecinkami (np. 1,3,5) lub pozostaw puste, "
 "aby podzielić wszystkie strony"
 
+#: templates/frontend/split_pdf.html:53
 msgid "Page Ranges"
 msgstr "Zakresy stron"
 
+#: templates/frontend/split_pdf.html:55
 msgid "Enter page ranges like 1-3,5-7 (required)"
 msgstr "Wprowadź zakresy stron jak 1-3,5-7 (wymagane)"
 
+#: templates/frontend/split_pdf.html:58
 msgid "Pages per File"
 msgstr "Stron na plik"
 
+#: templates/frontend/split_pdf.html:60
 msgid "Enter number of pages per file (e.g., 5 for every 5 pages)"
 msgstr "Wprowadź liczbę stron na plik (np. 5 dla każdej 5 stron)"
 
+#: templates/frontend/split_pdf.html:78
 msgid ""
 "Choose how to split your PDF: by individual pages, by page ranges, or every "
 "N pages"
@@ -2573,6 +3416,7 @@ msgstr ""
 "Wybierz sposób podziału PDF: po poszczególnych stronach, według zakresów "
 "stron lub co N stron"
 
+#: templates/frontend/split_pdf.html:79
 msgid ""
 "Enter the pages or ranges you want to split (e.g., 1,3,5 or 1-5 for "
 "splitting PDF into separate files)"
@@ -2580,11 +3424,12 @@ msgstr ""
 "Wprowadź strony lub zakresy, które chcesz podzielić (np. 1,3,5 lub 1-5 do "
 "podziału PDF na osobne pliki)"
 
+#: templates/frontend/split_pdf.html:80
 msgid ""
 "Click the split button to process your PDF and create separate PDF files"
-msgstr ""
-"Kliknij przycisk podziału, aby przetworzyć PDF i utworzyć osobne pliki PDF"
+msgstr "Kliknij przycisk podziału, aby przetworzyć PDF i utworzyć osobne pliki PDF"
 
+#: templates/frontend/split_pdf.html:81
 msgid ""
 "Download the ZIP archive containing all split PDF files using the download "
 "button"
@@ -2592,6 +3437,7 @@ msgstr ""
 "Pobierz archiwum ZIP zawierające wszystkie podzielone pliki PDF za pomocą "
 "przycisku pobierania"
 
+#: templates/frontend/split_pdf.html:85
 msgid ""
 "The output will be a ZIP archive containing all split PDF files. You can "
 "split your PDF by individual pages, by page ranges, or every N pages."
@@ -2600,12 +3446,17 @@ msgstr ""
 "Możesz podzielić PDF po poszczególnych stronach, według zakresów stron lub "
 "co N stron."
 
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:949
 msgid "Terms of Service - Convertica"
 msgstr "Warunki korzystania - Convertica"
 
-msgid "Welcome to Convertica. These Terms of Service (\\"
+#: templates/frontend/terms.html:61
+msgid "Welcome to Convertica. These Terms of Service (\"Terms\") govern your use of our website and services (collectively, \"Services\")."
 msgstr ""
+"Witamy w Convertica. Niniejsze Warunki korzystania (\"Warunki\") regulują "
+"Twoje korzystanie z naszej witryny i usług (łącznie \"Usługi\")."
 
+#: templates/frontend/terms.html:64
 msgid ""
 "If you disagree with any part of these Terms, then you may not access or use "
 "our Services."
@@ -2613,9 +3464,11 @@ msgstr ""
 "Jeśli nie zgadzasz się z jakąkolwiek częścią tych Warunków, nie możesz "
 "uzyskać dostępu ani korzystać z naszych Usług."
 
+#: templates/frontend/terms.html:70
 msgid "Acceptance of Terms"
 msgstr "Akceptacja warunków"
 
+#: templates/frontend/terms.html:73
 msgid ""
 "By accessing or using Convertica's Services, you acknowledge that you have "
 "read, understood, and agree to be bound by these Terms and our Privacy "
@@ -2626,9 +3479,11 @@ msgstr ""
 "Polityką prywatności. Jeśli nie zgadzasz się z tymi Warunkami, nie możesz "
 "korzystać z naszych Usług."
 
+#: templates/frontend/terms.html:79
 msgid "Description of Services"
 msgstr "Opis usług"
 
+#: templates/frontend/terms.html:82
 msgid ""
 "Convertica provides online PDF tools and services, including but not limited "
 "to:"
@@ -2636,6 +3491,7 @@ msgstr ""
 "Convertica zapewnia narzędzia i usługi PDF online, w tym, ale nie "
 "ograniczając się do:"
 
+#: templates/frontend/terms.html:85
 msgid ""
 "PDF conversion (PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, PDF to "
 "Excel)"
@@ -2643,20 +3499,24 @@ msgstr ""
 "Konwersja PDF (PDF na Word, Word na PDF, PDF na JPG, JPG na PDF, PDF na "
 "Excel)"
 
+#: templates/frontend/terms.html:86
 msgid "PDF editing (rotate, crop, add watermark, add page numbers)"
 msgstr ""
 "Edycja PDF (obracanie, przycinanie, dodawanie znaku wodnego, dodawanie "
 "numerów stron)"
 
+#: templates/frontend/terms.html:87
 msgid ""
 "PDF organization (merge, split, extract, remove pages, organize, compress)"
 msgstr ""
 "Organizacja PDF (łączenie, dzielenie, wyodrębnianie, usuwanie stron, "
 "organizowanie, kompresowanie)"
 
+#: templates/frontend/terms.html:88
 msgid "PDF security (protect with password, unlock PDF)"
 msgstr "Bezpieczeństwo PDF (ochrona hasłem, odblokowanie PDF)"
 
+#: templates/frontend/terms.html:91
 msgid ""
 "We reserve the right to modify, suspend, or discontinue any part of our "
 "Services at any time without prior notice."
@@ -2665,9 +3525,11 @@ msgstr ""
 "dowolnej części naszych Usług w dowolnym momencie bez wcześniejszego "
 "powiadomienia."
 
+#: templates/frontend/terms.html:97
 msgid "User Responsibilities"
 msgstr "Obowiązki użytkownika"
 
+#: templates/frontend/terms.html:101
 msgid ""
 "You agree to use our Services only for lawful purposes and in accordance "
 "with these Terms. You agree not to:"
@@ -2675,43 +3537,53 @@ msgstr ""
 "Zgadzasz się używać naszych Usług wyłącznie do celów zgodnych z prawem i "
 "zgodnie z tymi Warunkami. Zgadzasz się nie:"
 
+#: templates/frontend/terms.html:104
 msgid "Upload files that contain viruses, malware, or other harmful code"
 msgstr ""
 "Przesyłać pliki zawierające wirusy, złośliwe oprogramowanie lub inny "
 "szkodliwy kod"
 
+#: templates/frontend/terms.html:105
 msgid "Upload files that infringe on intellectual property rights"
 msgstr "Przesyłać pliki naruszające prawa własności intelektualnej"
 
+#: templates/frontend/terms.html:106
 msgid "Upload files that contain illegal, offensive, or inappropriate content"
 msgstr ""
 "Przesyłać pliki zawierające nielegalną, obraźliwą lub nieodpowiednią treść"
 
+#: templates/frontend/terms.html:107
 msgid "Attempt to gain unauthorized access to our systems or networks"
 msgstr "Próbować uzyskać nieautoryzowany dostęp do naszych systemów lub sieci"
 
+#: templates/frontend/terms.html:108
 msgid "Use automated systems or scripts to access our Services excessively"
 msgstr ""
 "Używać zautomatyzowanych systemów lub skryptów do nadmiernego dostępu do "
 "naszych Usług"
 
+#: templates/frontend/terms.html:109
 msgid ""
 "Interfere with or disrupt the Services or servers connected to the Services"
 msgstr ""
 "Ingerować w działanie lub zakłócać działanie Usług lub serwerów połączonych "
 "z Usługami"
 
+#: templates/frontend/terms.html:110
 msgid "Reverse engineer, decompile, or disassemble any part of our Services"
 msgstr ""
 "Odwrotnie inżynierować, dekompilować lub rozbierać jakąkolwiek część naszych "
 "Usług"
 
+#: templates/frontend/terms.html:117
 msgid "File Upload and Processing"
 msgstr "Przesyłanie i przetwarzanie plików"
 
+#: templates/frontend/terms.html:121
 msgid "File Size and Format Limitations"
 msgstr "Ograniczenia rozmiaru i formatu plików"
 
+#: templates/frontend/terms.html:123
 msgid ""
 "You are responsible for ensuring that files you upload comply with our file "
 "size and format requirements. We reserve the right to reject or limit the "
@@ -2723,9 +3595,11 @@ msgstr ""
 "odrzucenia lub ograniczenia przetwarzania plików, które przekraczają nasze "
 "limity rozmiaru lub są w nieobsługiwanych formatach."
 
+#: templates/frontend/terms.html:128
 msgid "File Storage and Deletion"
 msgstr "Przechowywanie i usuwanie plików"
 
+#: templates/frontend/terms.html:130
 msgid ""
 "Files uploaded to our Services are processed temporarily and automatically "
 "deleted after processing is complete. We do not store your files "
@@ -2737,9 +3611,11 @@ msgstr ""
 "stałe. Jednak jesteś odpowiedzialny za utrzymywanie kopii zapasowych swoich "
 "plików."
 
+#: templates/frontend/terms.html:135
 msgid "Processing Accuracy"
 msgstr "Dokładność przetwarzania"
 
+#: templates/frontend/terms.html:137
 msgid ""
 "While we strive to provide accurate conversions and processing, we cannot "
 "guarantee that all files will be processed correctly or that the output will "
@@ -2751,12 +3627,15 @@ msgstr ""
 "spełni Twoje konkretne wymagania. Jesteś odpowiedzialny za weryfikację "
 "dokładności przetworzonych plików."
 
+#: templates/frontend/terms.html:145
 msgid "Intellectual Property"
 msgstr "Własność intelektualna"
 
+#: templates/frontend/terms.html:149
 msgid "Our Intellectual Property"
 msgstr "Nasza własność intelektualna"
 
+#: templates/frontend/terms.html:151
 msgid ""
 "All content, features, and functionality of our Services, including but not "
 "limited to text, graphics, logos, icons, images, and software, are the "
@@ -2768,9 +3647,11 @@ msgstr ""
 "są wyłączną własnością Convertica i są chronione międzynarodowymi prawami "
 "autorskimi, znakami towarowymi i innymi prawami własności intelektualnej."
 
+#: templates/frontend/terms.html:156
 msgid "Your Content"
 msgstr "Twoja zawartość"
 
+#: templates/frontend/terms.html:158
 msgid ""
 "You retain all rights to files you upload. By uploading files, you grant us "
 "a limited, non-exclusive license to process your files solely for the "
@@ -2782,24 +3663,33 @@ msgstr ""
 "plików wyłącznie w celu świadczenia żądanych Usług. Nie rościmy sobie prawa "
 "własności do Twoich plików."
 
+#: templates/frontend/terms.html:166
 msgid "Disclaimer of Warranties"
 msgstr "Wyłączenie gwarancji"
 
-msgid "Our Services are provided \\"
+#: templates/frontend/terms.html:169
+msgid "Our Services are provided \"as is\" and \"as available\" without any warranties of any kind, either express or implied, including but not limited to:"
 msgstr ""
+"Nasze Usługi są świadczone \"tak jak są\" i \"dostępne\" bez jakichkolwiek "
+"gwarancji, wyraźnych lub dorozumianych, w tym, ale nie ograniczając się do:"
 
+#: templates/frontend/terms.html:172
 msgid "Warranties of merchantability"
 msgstr "Gwarancje zbywalności"
 
+#: templates/frontend/terms.html:173
 msgid "Fitness for a particular purpose"
 msgstr "Przydatność do określonego celu"
 
+#: templates/frontend/terms.html:174
 msgid "Non-infringement"
 msgstr "Brak naruszeń"
 
+#: templates/frontend/terms.html:175
 msgid "Accuracy, reliability, or completeness of results"
 msgstr "Dokładność, niezawodność lub kompletność wyników"
 
+#: templates/frontend/terms.html:178
 msgid ""
 "We do not warrant that our Services will be uninterrupted, secure, or error-"
 "free, or that defects will be corrected."
@@ -2807,9 +3697,11 @@ msgstr ""
 "Nie gwarantujemy, że nasze Usługi będą nieprzerwane, bezpieczne lub "
 "bezbłędne, lub że wady zostaną naprawione."
 
+#: templates/frontend/terms.html:184
 msgid "Limitation of Liability"
 msgstr "Ograniczenie odpowiedzialności"
 
+#: templates/frontend/terms.html:187
 msgid ""
 "To the maximum extent permitted by law, Convertica and its affiliates, "
 "officers, employees, and agents shall not be liable for any indirect, "
@@ -2821,18 +3713,23 @@ msgstr ""
 "odpowiedzialności za jakiekolwiek pośrednie, przypadkowe, szczególne, "
 "wynikowe lub karne szkody, w tym, ale nie ograniczając się do:"
 
+#: templates/frontend/terms.html:190
 msgid "Loss of data or files"
 msgstr "Utrata danych lub plików"
 
+#: templates/frontend/terms.html:191
 msgid "Loss of profits or business opportunities"
 msgstr "Utrata zysków lub możliwości biznesowych"
 
+#: templates/frontend/terms.html:192
 msgid "Service interruptions or failures"
 msgstr "Przerwy w świadczeniu usług lub awarie"
 
+#: templates/frontend/terms.html:193
 msgid "Errors or inaccuracies in processed files"
 msgstr "Błędy lub nieścisłości w przetworzonych plikach"
 
+#: templates/frontend/terms.html:196
 msgid ""
 "Our total liability for any claims arising from or related to the use of our "
 "Services shall not exceed the amount you paid to us (if any) in the twelve "
@@ -2843,9 +3740,11 @@ msgstr ""
 "zapłaciłeś nam (jeśli dotyczy) w ciągu dwunastu miesięcy poprzedzających "
 "roszczenie, lub 100 USD, w zależności od tego, co jest większe."
 
+#: templates/frontend/terms.html:202
 msgid "Indemnification"
 msgstr "Odszkodowanie"
 
+#: templates/frontend/terms.html:205
 msgid ""
 "You agree to indemnify, defend, and hold harmless Convertica and its "
 "affiliates, officers, employees, and agents from and against any claims, "
@@ -2858,21 +3757,27 @@ msgstr ""
 "kosztami lub długami i wydatkami (w tym honorariami adwokackimi) "
 "wynikającymi z:"
 
+#: templates/frontend/terms.html:208
 msgid "Your use of our Services"
 msgstr "Twoje korzystanie z naszych Usług"
 
+#: templates/frontend/terms.html:209
 msgid "Your violation of these Terms"
 msgstr "Twoje naruszenie tych Warunków"
 
+#: templates/frontend/terms.html:210
 msgid "Your violation of any third-party rights"
 msgstr "Twoje naruszenie jakichkolwiek praw stron trzecich"
 
+#: templates/frontend/terms.html:211
 msgid "Files you upload or content you provide"
 msgstr "Pliki, które przesyłasz lub treść, którą udostępniasz"
 
+#: templates/frontend/terms.html:217
 msgid "Termination"
 msgstr "Zakończenie"
 
+#: templates/frontend/terms.html:220
 msgid ""
 "We reserve the right to terminate or suspend your access to our Services "
 "immediately, without prior notice or liability, for any reason, including if "
@@ -2885,9 +3790,11 @@ msgstr ""
 "Warunków. Po zakończeniu Twoje prawo do korzystania z Usług natychmiast "
 "ustanie."
 
+#: templates/frontend/terms.html:226
 msgid "Changes to Terms"
 msgstr "Zmiany w warunkach"
 
+#: templates/frontend/terms.html:229
 msgid ""
 "We reserve the right to modify or replace these Terms at any time. If a "
 "revision is material, we will provide at least 30 days notice prior to any "
@@ -2899,6 +3806,7 @@ msgstr ""
 "najmniej 30 dni przed wejściem w życie nowych warunków. Co stanowi istotną "
 "zmianę, zostanie określone według naszego wyłącznego uznania."
 
+#: templates/frontend/terms.html:232
 msgid ""
 "By continuing to access or use our Services after any revisions become "
 "effective, you agree to be bound by the revised terms."
@@ -2906,9 +3814,11 @@ msgstr ""
 "Kontynuując dostęp lub korzystanie z naszych Usług po wejściu w życie "
 "jakichkolwiek zmian, zgadzasz się być związany zmienionymi warunkami."
 
+#: templates/frontend/terms.html:238
 msgid "Governing Law"
 msgstr "Prawo właściwe"
 
+#: templates/frontend/terms.html:241
 msgid ""
 "These Terms shall be governed by and construed in accordance with applicable "
 "laws, without regard to its conflict of law provisions. Any disputes arising "
@@ -2920,24 +3830,30 @@ msgstr ""
 "wynikające z tych Warunków lub Twojego korzystania z naszych Usług będą "
 "podlegać wyłącznej jurysdykcji sądów w odpowiedniej jurysdykcji."
 
+#: templates/frontend/terms.html:247
 msgid "Questions About These Terms?"
 msgstr "Pytania dotyczące tych Warunków?"
 
+#: templates/frontend/terms.html:249
 msgid ""
 "If you have any questions about these Terms of Service, please contact us."
 msgstr ""
 "Jeśli masz pytania dotyczące tych Warunków Świadczenia Usług, skontaktuj się "
 "z nami."
 
+#: templates/frontend/unlock_pdf.html:6
 msgid "Unlock PDF Settings"
 msgstr "Ustawienia odblokowania PDF"
 
+#: templates/frontend/unlock_pdf.html:12
 msgid "PDF Password"
 msgstr "Hasło PDF"
 
+#: templates/frontend/unlock_pdf.html:20
 msgid "Enter the password to unlock the PDF"
 msgstr "Wprowadź hasło, aby odblokować PDF"
 
+#: templates/frontend/unlock_pdf.html:23
 msgid ""
 "Enter the password that was used to protect the PDF. The password will be "
 "removed from the output PDF."
@@ -2945,6 +3861,7 @@ msgstr ""
 "Wprowadź hasło, które zostało użyte do zabezpieczenia PDF. Hasło zostanie "
 "usunięte z wynikowego PDF."
 
+#: templates/frontend/unlock_pdf.html:36
 msgid ""
 "Select your password-protected PDF file using the button above or drag and "
 "drop it into the zone below"
@@ -2952,26 +3869,30 @@ msgstr ""
 "Wybierz plik PDF chroniony hasłem za pomocą przycisku powyżej lub "
 "przeciągnij i upuść go w strefie poniżej"
 
+#: templates/frontend/unlock_pdf.html:37
 msgid "Enter the password that was used to protect the PDF file"
 msgstr "Wprowadź hasło, które zostało użyte do zabezpieczenia pliku PDF"
 
+#: templates/frontend/unlock_pdf.html:38
 msgid "Click the unlock button to remove password protection from your PDF"
 msgstr "Kliknij przycisk odblokowania, aby usunąć ochronę hasłem z PDF"
 
+#: templates/frontend/unlock_pdf.html:39
 msgid ""
 "Download your unlocked PDF file (without password) using the download button"
-msgstr ""
-"Pobierz odblokowany plik PDF (bez hasła) za pomocą przycisku pobierania"
+msgstr "Pobierz odblokowany plik PDF (bez hasła) za pomocą przycisku pobierania"
 
+#: templates/frontend/unlock_pdf.html:43
 msgid ""
 "PDF files with up to 50 pages are supported for unlocking. For larger files, "
 "please split them into smaller parts. You must know the correct password to "
 "unlock the PDF."
 msgstr ""
-"Do odblokowywania obsługiwane są pliki PDF do 50 stron. Dla większych plików "
-"podziel je na mniejsze części. Musisz znać poprawne hasło, aby odblokować "
-"PDF."
+"Pliki PDF do 50 stron są obsługiwane przy odblokowywaniu. Większe pliki "
+"należy podzielić na mniejsze części. Musisz znać poprawne hasło, aby "
+"odblokować PDF."
 
+#: templates/frontend/word_to_pdf.html:10
 msgid ""
 "Select your Word document (DOC or DOCX) using the button above or drag and "
 "drop it into the zone below"
@@ -2979,6 +3900,7 @@ msgstr ""
 "Wybierz dokument Word (DOC lub DOCX) za pomocą przycisku powyżej lub "
 "przeciągnij i upuść go w strefie poniżej"
 
+#: templates/frontend/word_to_pdf.html:11
 msgid ""
 "Click the convert button to start converting Word to PDF (DOCX to PDF "
 "conversion)"
@@ -2986,6 +3908,7 @@ msgstr ""
 "Kliknij przycisk konwersji, aby rozpocząć konwersję Word na PDF (konwersja "
 "DOCX na PDF)"
 
+#: templates/frontend/word_to_pdf.html:12
 msgid ""
 "Wait for the Word to PDF conversion to complete - formatting and layout will "
 "be preserved when converting from Word to PDF"
@@ -2993,6 +3916,7 @@ msgstr ""
 "Poczekaj na zakończenie konwersji Word na PDF - formatowanie i układ zostaną "
 "zachowane podczas konwersji z Word na PDF"
 
+#: templates/frontend/word_to_pdf.html:13
 msgid ""
 "Download your PDF file - your Word document has been successfully converted "
 "to PDF format"
@@ -3000,15 +3924,17 @@ msgstr ""
 "Pobierz swój plik PDF - twój dokument Word został pomyślnie przekonwertowany "
 "na format PDF"
 
+#: templates/frontend/word_to_pdf.html:17
 msgid ""
 "Word documents with up to 50 pages are supported. For larger files, please "
 "split them into smaller parts. The conversion preserves formatting, fonts, "
 "images, and page layout."
 msgstr ""
-"Obsługiwane są dokumenty Word do 50 stron. Dla większych plików podziel je "
-"na mniejsze części. Konwersja zachowuje formatowanie, czcionki, obrazy i "
-"układ strony."
+"Dokumenty Word do 50 stron są obsługiwane. Większe pliki należy podzielić na "
+"mniejsze części. Konwersja zachowuje formatowanie, czcionki, obrazy i układ "
+"strony."
 
+#: utils_site/src/api/conversion_limits.py:68
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
@@ -3017,81 +3943,111 @@ msgstr ""
 "PDF ma %(page_count)d stron, maksymalnie dozwolone to %(max_pages)d. Proszę "
 "podzielić swój PDF na mniejsze części."
 
+#: utils_site/src/api/conversion_limits.py:254
 #, python-format
 msgid ""
 "File is too large for this operation (%(file_mb).1f MB). Maximum size for "
 "%(operation)s is %(max_mb)d MB. Please use a smaller file or compress your "
 "PDF first."
 msgstr ""
+"Plik jest zbyt duży dla tej operacji (%(file_mb).1f MB). Maksymalny rozmiar "
+"dla %(operation)s to %(max_mb)d MB. Użyj mniejszego pliku lub najpierw "
+"skompresuj swój PDF."
 
-#, fuzzy, python-format
+#: utils_site/src/api/conversion_limits.py:278
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
 msgstr ""
-"PDF ma %(page_count)d stron, maksymalnie dozwolone to %(max_pages)d. Proszę "
-"podzielić swój PDF na mniejsze części."
+"PDF ma %(page_count)d stron. Maksimum dla %(operation)s to %(max_pages)d "
+"stron. Podziel PDF na mniejsze części."
 
+#: utils_site/src/api/conversion_limits.py:307
 #, python-format
 msgid ""
 "This PDF appears to be scanned (contains many images). Scanned PDFs with "
 "%(page_count)d pages may take too long to process. Please try with fewer "
 "pages (max ~%(max_pages)d for scanned PDFs)."
 msgstr ""
+"Ten PDF wydaje się być zeskanowany (zawiera wiele obrazów). Zeskanowane PDF "
+"z %(page_count)d stronami mogą przetwarzać się zbyt długo. Spróbuj z mniejszą "
+"liczbą stron (maks. ~%(max_pages)d dla zeskanowanych PDF)."
 
+#: utils_site/src/api/conversion_limits.py:350
 #, python-format
 msgid "File is too large (max %(max_mb)d MB for this operation)."
-msgstr ""
+msgstr "Plik jest zbyt duży (maks. %(max_mb)d MB dla tej operacji)."
 
+#: utils_site/src/api/conversion_limits.py:360
 #, python-format
 msgid "Too many pages (max %(max_pages)d for this operation)."
-msgstr ""
+msgstr "Zbyt wiele stron (maks. %(max_pages)d dla tej operacji)."
 
+#: utils_site/src/api/conversion_limits.py:374
 msgid ""
 "File is too complex for our server. Estimated processing time exceeds "
 "limits. Please try with a smaller file."
 msgstr ""
+"Plik jest zbyt złożony dla naszego serwera. Szacowany czas przetwarzania "
+"przekracza limity. Spróbuj z mniejszym plikiem."
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:74
 msgid "Password cannot be empty"
-msgstr ""
+msgstr "Hasło nie może być puste"
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:95
 msgid ""
 "PDF is not password-protected. This PDF does not require a password to open."
 msgstr ""
+"PDF nie jest chroniony hasłem. Ten PDF nie wymaga hasła do otwarcia."
 
+#: utils_site/src/api/pdf_security/unlock_pdf/utils.py:104
 msgid "Incorrect password. Please check the password and try again."
-msgstr ""
+msgstr "Nieprawidłowe hasło. Sprawdź hasło i spróbuj ponownie."
 
+#: utils_site/src/blog/admin.py:30 utils_site/src/blog/admin.py:119
 msgid "Basic Information"
 msgstr "Podstawowe informacje"
 
+#: utils_site/src/blog/admin.py:32 utils_site/src/blog/admin.py:87
+#: utils_site/src/blog/admin.py:131 utils_site/src/blog/admin.py:198
+#: utils_site/src/blog/models.py:22 utils_site/src/blog/models.py:108
 msgid "Translations"
 msgstr "Tłumaczenia"
 
+#: utils_site/src/blog/admin.py:36
 msgid "Add translations for other languages using the tabs above."
 msgstr "Dodaj tłumaczenia dla innych języków, używając kart powyżej."
 
+#: utils_site/src/blog/admin.py:41
 msgid "Metadata"
 msgstr "Metadane"
 
+#: utils_site/src/blog/admin.py:51 utils_site/src/blog/admin.py:174
 msgid "No translations"
 msgstr "Brak tłumaczeń"
 
+#: utils_site/src/blog/admin.py:62 utils_site/src/blog/admin.py:184
 msgid "No valid translations"
 msgstr "Brak prawidłowych tłumaczeń"
 
+#: utils_site/src/blog/admin.py:82
 msgid "Empty translations"
 msgstr "Puste tłumaczenia"
 
+#: utils_site/src/blog/admin.py:93 utils_site/src/blog/models.py:169
 msgid "Articles"
 msgstr "Artykuły"
 
+#: utils_site/src/blog/admin.py:122
 msgid "English Content"
 msgstr "Treść angielska"
 
+#: utils_site/src/blog/admin.py:124
 msgid "SEO - English"
 msgstr "SEO - angielski"
 
+#: utils_site/src/blog/admin.py:135
 msgid ""
 "Add translations for other languages using the tabs above. Each language has "
 "its own tab with all necessary fields."
@@ -3099,9 +4055,11 @@ msgstr ""
 "Dodaj tłumaczenia dla innych języków, używając kart powyżej. Każdy język ma "
 "własną kartę ze wszystkimi niezbędnymi polami."
 
+#: utils_site/src/blog/admin.py:140 utils_site/src/blog/models.py:130
 msgid "AI Metadata"
 msgstr "Metadane AI"
 
+#: utils_site/src/blog/admin.py:145
 msgid ""
 "Additional metadata for AI agents to better understand and index your "
 "content."
@@ -3109,24 +4067,31 @@ msgstr ""
 "Dodatkowe metadane dla agentów AI, aby lepiej rozumieć i indeksować Twoje "
 "treści."
 
+#: utils_site/src/blog/admin.py:149
 msgid "Media"
 msgstr "Media"
 
+#: utils_site/src/blog/admin.py:151
 msgid "Statistics"
 msgstr "Statystyki"
 
+#: utils_site/src/blog/admin.py:166
 msgid "No image"
 msgstr "Brak obrazu"
 
+#: utils_site/src/blog/admin.py:168
 msgid "Preview"
 msgstr "Podgląd"
 
+#: utils_site/src/blog/models.py:14
 msgid "Name (English)"
 msgstr "Nazwa (angielska)"
 
+#: utils_site/src/blog/models.py:15 utils_site/src/blog/models.py:93
 msgid "Slug"
 msgstr "Slug"
 
+#: utils_site/src/blog/models.py:24
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"name\": \"...\", "
 "\"description\": \"...\"}, ...}"
@@ -3134,33 +4099,43 @@ msgstr ""
 "Tłumaczenia dla innych języków. Format: {\"ru\": {\"name\": \"...\", "
 "\"description\": \"...\"}, ...}"
 
+#: utils_site/src/blog/models.py:30
 msgid "Description (English)"
 msgstr "Opis (angielski)"
 
+#: utils_site/src/blog/models.py:37
 msgid "Article Category"
 msgstr "Kategoria artykułu"
 
+#: utils_site/src/blog/models.py:38
 msgid "Article Categories"
 msgstr "Kategorie artykułów"
 
+#: utils_site/src/blog/models.py:86
 msgid "Draft"
 msgstr "Szkic"
 
+#: utils_site/src/blog/models.py:87
 msgid "Published"
 msgstr "Opublikowane"
 
+#: utils_site/src/blog/models.py:88
 msgid "Archived"
 msgstr "Zarchiwizowane"
 
+#: utils_site/src/blog/models.py:92
 msgid "Title (English)"
 msgstr "Tytuł (angielski)"
 
+#: utils_site/src/blog/models.py:94
 msgid "Content (English)"
 msgstr "Treść (angielska)"
 
+#: utils_site/src/blog/models.py:96
 msgid "Excerpt (English)"
 msgstr "Wstęp (angielski)"
 
+#: utils_site/src/blog/models.py:110
 msgid ""
 "Translations for other languages. Format: {\"ru\": {\"title\": \"...\", "
 "\"content\": \"...\", ...}, ...}"
@@ -3168,15 +4143,19 @@ msgstr ""
 "Tłumaczenia dla innych języków. Format: {\"ru\": {\"title\": \"...\", "
 "\"content\": \"...\", ...}, ...}"
 
+#: utils_site/src/blog/models.py:116
 msgid "Meta Title (English)"
 msgstr "Tytuł meta (angielski)"
 
+#: utils_site/src/blog/models.py:119
 msgid "Meta Description (English)"
 msgstr "Opis meta (angielski)"
 
+#: utils_site/src/blog/models.py:122
 msgid "Meta Keywords (English)"
 msgstr "Słowa kluczowe meta (angielski)"
 
+#: utils_site/src/blog/models.py:132
 msgid ""
 "Additional metadata for AI agents: topics, entities, summary, related_terms, "
 "etc."
@@ -3184,101 +4163,468 @@ msgstr ""
 "Dodatkowe metadane dla agentów AI: tematy, encje, podsumowanie, powiązane "
 "terminy itp."
 
+#: utils_site/src/blog/models.py:143
 msgid "Category"
 msgstr "Kategoria"
 
+#: utils_site/src/blog/models.py:151
 msgid "Featured Image"
 msgstr "Obraz wyróżniający"
 
+#: utils_site/src/blog/models.py:156
 msgid "Status"
 msgstr "Status"
 
+#: utils_site/src/blog/models.py:159
 msgid "Published At"
 msgstr "Opublikowano"
 
+#: utils_site/src/blog/models.py:161
 msgid "Created At"
 msgstr "Utworzono"
 
+#: utils_site/src/blog/models.py:162
 msgid "Updated At"
 msgstr "Zaktualizowano"
 
+#: utils_site/src/blog/models.py:165
 msgid "View Count"
 msgstr "Liczba wyświetleń"
 
+#: utils_site/src/blog/models.py:168
 msgid "Article"
 msgstr "Artykuł"
 
+#: utils_site/src/frontend/forms.py:14
 msgid "Your Name"
 msgstr "Twoje imię"
 
+#: utils_site/src/frontend/forms.py:21
 msgid "Enter your name"
 msgstr "Wprowadź swoje imię"
 
+#: utils_site/src/frontend/forms.py:29
 msgid "Your Email"
 msgstr "Twój e-mail"
 
+#: utils_site/src/frontend/forms.py:36
 msgid "your.email@example.com"
 msgstr "twoj.email@przyklad.com"
 
+#: utils_site/src/frontend/forms.py:44
 msgid "Subject"
 msgstr "Temat"
 
+#: utils_site/src/frontend/forms.py:51
 msgid "Enter subject"
 msgstr "Wprowadź temat"
 
+#: utils_site/src/frontend/forms.py:58
 msgid "Message"
 msgstr "Wiadomość"
 
+#: utils_site/src/frontend/forms.py:66
 msgid "Enter your message"
 msgstr "Wprowadź wiadomość"
 
+#: utils_site/src/frontend/forms.py:73
 msgid "I agree to the Privacy Policy"
 msgstr "Zgadzam się z Polityką Prywatności"
 
+#: utils_site/src/frontend/forms.py:87
 msgid "Message must be at least 10 characters long."
 msgstr "Wiadomość musi mieć co najmniej 10 znaków."
 
+#: utils_site/src/frontend/forms.py:90
 msgid "Message is too long. Maximum 5000 characters."
 msgstr "Wiadomość jest za długa. Maksymalnie 5000 znaków."
 
-msgid ""
-"PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
-"free converter, convert PDF, convert Word, free pdf tools online, pdf tools "
-"no registration, best pdf converter online, pdf editor online free, pdf "
-"tools for students, pdf tools for business, smallpdf alternative, ilovepdf "
-"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile"
-msgstr ""
-"PDF na Word, Word na PDF, konwerter PDF, konwerter DOCX, konwerter online, "
-"darmowy konwerter, konwertuj PDF, konwertuj Word, darmowe narzędzia pdf "
-"online, narzędzia pdf bez rejestracji, najlepszy konwerter pdf online, "
-"edytor pdf online za darmo, narzędzia pdf dla studentów, narzędzia pdf dla "
-"biznesu, alternatywa dla smallpdf, alternatywa dla ilovepdf, alternatywa dla "
-"adobe acrobat, darmowy konwerter pdf, łączenie pdf online, dzielenie pdf "
-"online, kompresja pdf online, obracanie pdf online, narzędzie do znaków "
-"wodnych pdf, wysokiej jakości konwerter pdf, konwerter pdf bez utraty "
-"jakości, konwerter pdf najlepsza jakość, konwerter pdf dla mac, konwerter "
-"pdf dla windows, konwerter pdf dla linux, konwerter pdf mobilny"
-
+#: utils_site/src/frontend/views.py:113
 msgid "Conversion failed. Please try again."
 msgstr "Konwersja nie powiodła się. Proszę spróbować ponownie."
 
+#: utils_site/src/frontend/views.py:120
 msgid "PDF to Word - Convertica"
 msgstr "PDF na Word - Convertica"
 
+#: utils_site/src/frontend/views.py:122
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
 "converter with no email required, unlimited conversions, high-quality "
 "output. Perfect for students, professionals, and businesses. No registration "
 "needed."
 msgstr ""
+"Konwertuj PDF na Word online za darmo bez utraty formatowania. Szybki "
+"konwerter PDF na DOCX bez wymaganego e-maila, nieograniczone konwersje, "
+"wysokiej jakości wynik. Idealne dla studentów, profesjonalistów i firm. Bez "
+"rejestracji."
 
+#: utils_site/src/frontend/views.py:159
+msgid "Convert your PDF documents to editable Word format in seconds"
+msgstr "Konwertuj swoje dokumenty PDF na edytowalny format Word w kilka sekund"
+
+#: utils_site/src/frontend/views.py:160
+msgid "PDF to Word Converter"
+msgstr "Konwerter PDF na Word"
+
+#: utils_site/src/frontend/views.py:166
+msgid "Convert PDF to Word"
+msgstr "Konwertuj PDF na Word"
+
+#: utils_site/src/frontend/views.py:175
+msgid "Word to PDF - Convertica"
+msgstr "Word na PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:177
+msgid ""
+"Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
+"converter with no email required, unlimited conversions, high-quality "
+"output. Perfect for documents, resumes, and business files. No registration "
+"needed."
+msgstr ""
+"Konwertuj Word na PDF online za darmo bez utraty formatowania. Szybki "
+"konwerter DOCX na PDF bez wymaganego e-maila, nieograniczone konwersje, "
+"wysokiej jakości wynik. Idealne dla dokumentów, CV i plików biznesowych. "
+"Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:208
+msgid "Convert your Word documents to PDF format in seconds"
+msgstr "Konwertuj swoje dokumenty Word na format PDF w kilka sekund"
+
+#: utils_site/src/frontend/views.py:209
+msgid "Word to PDF Converter"
+msgstr "Konwerter Word na PDF"
+
+#: utils_site/src/frontend/views.py:216
+msgid "Please select a Word file."
+msgstr "Proszę wybrać plik Word."
+
+#: utils_site/src/frontend/views.py:224
+msgid "PDF to JPG - Convertica"
+msgstr "PDF na JPG - Convertica"
+
+#: utils_site/src/frontend/views.py:226
+msgid ""
+"Convert PDF to JPG online free with high quality. PDF to image converter "
+"with no watermark, high resolution (300-600 DPI), batch conversion. Extract "
+"images from PDF or convert PDF pages to JPG/PNG. Perfect for printing, web "
+"upload, and social media."
+msgstr ""
+"Konwertuj PDF na JPG online za darmo z wysoką jakością. Konwerter PDF na "
+"obraz bez znaku wodnego, wysoka rozdzielczość (300-600 DPI), konwersja "
+"partiami. Wyodrębnij obrazy z PDF lub konwertuj strony PDF na JPG/PNG. "
+"Idealne do druku, wgrywania na strony internetowe i media społecznościowe."
+
+#: utils_site/src/frontend/views.py:254
+msgid "Convert PDF pages to high-quality JPG images in seconds"
+msgstr "Konwertuj strony PDF na wysokiej jakości obrazy JPG w kilka sekund"
+
+#: utils_site/src/frontend/views.py:255
+msgid "PDF to JPG Converter"
+msgstr "Konwerter PDF na JPG"
+
+#: utils_site/src/frontend/views.py:261
+msgid "Convert PDF to JPG"
+msgstr "Konwertuj PDF na JPG"
+
+#: utils_site/src/frontend/views.py:270
+msgid "JPG to PDF - Convertica"
+msgstr "JPG na PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:272
+msgid ""
+"Convert JPG to PDF online free without compression. Merge multiple images "
+"into one PDF, combine photos to PDF, create PDF from images with high "
+"resolution. Perfect for documents, receipts, homework, and university "
+"submissions. No watermark, unlimited conversions."
+msgstr ""
+"Konwertuj JPG na PDF online za darmo bez kompresji. Połącz wiele obrazów w "
+"jeden PDF, scal zdjęcia do PDF, twórz PDF z obrazów o wysokiej rozdzielczości. "
+"Idealne do dokumentów, paragonów, zadań domowych i zgłoszeń uniwersyteckich. "
+"Bez znaku wodnego, nieograniczone konwersje."
+
+#: utils_site/src/frontend/views.py:301
+msgid "Convert your JPG images to PDF format in seconds"
+msgstr "Konwertuj swoje obrazy JPG na format PDF w kilka sekund"
+
+#: utils_site/src/frontend/views.py:302
+msgid "JPG to PDF Converter"
+msgstr "Konwerter JPG na PDF"
+
+#: utils_site/src/frontend/views.py:309
+msgid "Please select a JPG/JPEG image file."
+msgstr "Proszę wybrać plik obrazu JPG/JPEG."
+
+#: utils_site/src/frontend/views.py:317
+msgid "Rotate PDF - Convertica"
+msgstr "Obróć PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:319
+msgid ""
+"Rotate PDF pages online free by 90, 180, or 270 degrees. Fast PDF rotation "
+"tool with no watermark, batch rotation, and quality preservation. Perfect "
+"for scanned documents and misoriented pages. No registration required."
+msgstr ""
+"Obróć strony PDF online za darmo o 90, 180 lub 270 stopni. Szybkie narzędzie "
+"do obracania PDF bez znaku wodnego, obracanie partiami i zachowanie jakości. "
+"Idealne dla zeskanowanych dokumentów i źle zorientowanych stron. Bez "
+"rejestracji."
+
+#: utils_site/src/frontend/views.py:345
+msgid "Rotate your PDF pages in seconds"
+msgstr "Obróć swoje strony PDF w kilka sekund"
+
+#: utils_site/src/frontend/views.py:361
+msgid "Add Page Numbers to PDF - Convertica"
+msgstr "Dodaj numery stron do PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:363
+msgid ""
+"Add page numbers to PDF online free with customizable position, font size, "
+"and format. Fast PDF page numbering tool with no watermark. Perfect for "
+"documents, reports, and academic papers. No registration required."
+msgstr ""
+"Dodaj numery stron do PDF online za darmo z dostosowywalną pozycją, "
+"rozmiarem czcionki i formatem. Szybkie narzędzie do numerowania stron PDF "
+"bez znaku wodnego. Idealne dla dokumentów, raportów i prac akademickich. Bez "
+"rejestracji."
+
+#: utils_site/src/frontend/views.py:389
+msgid "Add page numbers to your PDF in seconds"
+msgstr "Dodaj numery stron do swojego PDF w kilka sekund"
+
+#: utils_site/src/frontend/views.py:405
+msgid "Add Watermark to PDF - Convertica"
+msgstr "Dodaj znak wodny do PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:407
+msgid ""
+"Add watermark to PDF online free with text or image. Customize position, "
+"transparency, and size. Fast PDF watermarking tool with no watermark on tool "
+"itself. Perfect for document protection and branding. No registration "
+"required."
+msgstr ""
+"Dodaj znak wodny do PDF online za darmo z tekstem lub obrazem. Dostosuj "
+"pozycję, przezroczystość i rozmiar. Szybkie narzędzie do znakowania PDF bez "
+"znaku wodnego na samym narzędziu. Idealne do ochrony dokumentów i "
+"brandingu. Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:434
+msgid "Add watermark to your PDF in seconds"
+msgstr "Dodaj znak wodny do swojego PDF w kilka sekund"
+
+#: utils_site/src/frontend/views.py:450
+msgid "Crop PDF - Convertica"
+msgstr "Przytnij PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:452
+msgid ""
+"Crop PDF pages online free with precise crop box coordinates. Fast PDF "
+"cropping tool with no watermark, visual editor, and quality preservation. "
+"Perfect for removing margins and unwanted content. No registration required."
+msgstr ""
+"Przytnij strony PDF online za darmo z precyzyjnymi współrzędnymi obszaru "
+"przycinania. Szybkie narzędzie do przycinania PDF bez znaku wodnego, "
+"wizualny edytor i zachowanie jakości. Idealne do usuwania marginesów i "
+"niechcianej zawartości. Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:477
+msgid "Crop your PDF pages in seconds"
+msgstr "Przytnij swoje strony PDF w kilka sekund"
+
+#: utils_site/src/frontend/views.py:493
+msgid "Merge PDF - Convertica"
+msgstr "Połącz PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:495
+msgid ""
+"Merge PDF online free without watermark. Combine two PDFs into one, merge "
+"multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
+"merger with drag and drop. No registration required."
+msgstr ""
+"Połącz PDF online za darmo bez znaku wodnego. Połącz dwa PDF w jeden, scal "
+"wiele plików PDF szybko, zachowaj zakładki i jakość. Nieograniczony łączenie "
+"PDF z przeciąganiem i upuszczaniem. Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:517
+msgid "Combine multiple PDF files into one document"
+msgstr "Połącz wiele plików PDF w jeden dokument"
+
+#: utils_site/src/frontend/views.py:524
+msgid "Merge PDFs"
+msgstr "Połącz PDF"
+
+#: utils_site/src/frontend/views.py:525
+msgid "Please select PDF files to merge."
+msgstr "Proszę wybrać pliki PDF do połączenia."
+
+#: utils_site/src/frontend/views.py:533
+msgid "Split PDF - Convertica"
+msgstr "Podziel PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:535
+msgid ""
+"Split PDF online free by pages, ranges, or bookmarks. Extract specific pages "
+"from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
+"with no watermark. No registration required."
+msgstr ""
+"Podziel PDF online za darmo według stron, zakresów lub zakładek. Wyodrębnij "
+"konkretne strony z PDF, usuń strony, podziel PDF na wiele plików. Szybki "
+"dzielnik PDF bez znaku wodnego. Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:567
+msgid "Split your PDF into multiple files"
+msgstr "Podziel swój PDF na wiele plików"
+
+#: utils_site/src/frontend/views.py:583
+msgid "Remove Pages from PDF - Convertica"
+msgstr "Usuń strony z PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:585
+msgid ""
+"Remove pages from PDF online free. Delete unwanted pages quickly and easily "
+"with no watermark. Fast PDF page removal tool. Perfect for cleaning up "
+"documents. No registration required."
+msgstr ""
+"Usuń strony z PDF online za darmo. Usuń niechciane strony szybko i łatwo "
+"bez znaku wodnego. Szybkie narzędzie do usuwania stron PDF. Idealne do "
+"czyszczenia dokumentów. Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:608
+msgid "Remove unwanted pages from your PDF"
+msgstr "Usuń niechciane strony ze swojego PDF"
+
+#: utils_site/src/frontend/views.py:624
+msgid "Extract Pages from PDF - Convertica"
+msgstr "Wyodrębnij strony z PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:626
+msgid ""
+"Extract pages from PDF online free. Select and extract specific pages to "
+"create a new PDF. Fast PDF page extraction tool with no watermark. Perfect "
+"for creating custom documents. No registration required."
+msgstr ""
+"Wyodrębnij strony z PDF online za darmo. Wybierz i wyodrębnij konkretne "
+"strony, aby utworzyć nowy PDF. Szybkie narzędzie do wyodrębniania stron PDF "
+"bez znaku wodnego. Idealne do tworzenia niestandardowych dokumentów. Bez "
+"rejestracji."
+
+#: utils_site/src/frontend/views.py:650
+msgid "Extract specific pages from your PDF"
+msgstr "Wyodrębnij konkretne strony ze swojego PDF"
+
+#: utils_site/src/frontend/views.py:666
+msgid "Organize PDF - Convertica"
+msgstr "Organizuj PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:668
+msgid ""
+"Organize PDF online free. Reorder pages, sort content, and manage your PDF "
+"files with drag and drop. Fast PDF organizer with no watermark. Perfect for "
+"organizing documents and reports. No registration required."
+msgstr ""
+"Organizuj PDF online za darmo. Zmieniaj kolejność stron, sortuj zawartość i "
+"zarządzaj plikami PDF za pomocą przeciągania i upuszczania. Szybki "
+"organizer PDF bez znaku wodnego. Idealne do organizowania dokumentów i "
+"raportów. Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:693
+msgid "Organize and manage your PDF documents"
+msgstr "Organizuj i zarządzaj swoimi dokumentami PDF"
+
+#: utils_site/src/frontend/views.py:709
+msgid "PDF to Excel - Convertica"
+msgstr "PDF na Excel - Convertica"
+
+#: utils_site/src/frontend/views.py:711
+msgid ""
+"Convert PDF to Excel online free with accurate table extraction. Extract "
+"tables from PDF and convert to XLSX format. Perfect for invoices, reports, "
+"and data analysis. No registration required."
+msgstr ""
+"Konwertuj PDF na Excel online za darmo z dokładnym wyodrębnianiem tabel. "
+"Wyodrębnij tabele z PDF i konwertuj na format XLSX. Idealne dla faktur, "
+"raportów i analizy danych. Bez rejestracji."
+
+#: utils_site/src/frontend/views.py:742
+msgid "Extract tables from PDF and convert to Excel format"
+msgstr "Wyodrębnij tabele z PDF i konwertuj na format Excel"
+
+#: utils_site/src/frontend/views.py:743
+msgid "PDF to Excel Converter"
+msgstr "Konwerter PDF na Excel"
+
+#: utils_site/src/frontend/views.py:749
+msgid "Convert PDF to Excel"
+msgstr "Konwertuj PDF na Excel"
+
+#: utils_site/src/frontend/views.py:750
+msgid "Please select a PDF file with tables."
+msgstr "Proszę wybrać plik PDF z tabelami."
+
+#: utils_site/src/frontend/views.py:758
+msgid "Compress PDF - Convertica"
+msgstr "Kompresuj PDF - Convertica"
+
+#: utils_site/src/frontend/views.py:760
+msgid ""
+"Compress PDF online free to reduce file size fast. PDF compressor with no "
+"watermark, compress PDF to under 1MB for email, reduce PDF file size without "
+"losing quality. Best PDF compression tool 2025."
+msgstr ""
+"Kompresuj PDF online za darmo, aby szybko zmniejszyć rozmiar pliku. "
+"Kompresor PDF bez znaku wodnego, kompresuj PDF do poniżej 1MB dla e-maila, "
+"zmniejsz rozmiar pliku PDF bez utraty jakości. Najlepsze narzędzie do "
+"kompresji PDF 2025."
+
+#: utils_site/src/frontend/views.py:786
+msgid "Reduce PDF file size without losing quality"
+msgstr "Zmniejsz rozmiar pliku PDF bez utraty jakości"
+
+#: utils_site/src/frontend/views.py:802
+msgid "Protect PDF with Password - Convertica"
+msgstr "Chroń PDF hasłem - Convertica"
+
+#: utils_site/src/frontend/views.py:804
+msgid ""
+"Protect PDF files with password encryption. Secure your PDF documents with "
+"strong password protection."
+msgstr ""
+"Chroń pliki PDF za pomocą szyfrowania hasłem. Zabezpiecz swoje dokumenty PDF "
+"silną ochroną hasłem."
+
+#: utils_site/src/frontend/views.py:811
+msgid "Secure your PDF documents with password protection"
+msgstr "Zabezpiecz swoje dokumenty PDF ochroną hasłem"
+
+#: utils_site/src/frontend/views.py:827
+msgid "Unlock PDF - Remove Password - Convertica"
+msgstr "Odblokuj PDF - Usuń hasło - Convertica"
+
+#: utils_site/src/frontend/views.py:829
+msgid ""
+"Unlock PDF online free. Remove password protection from PDF files with the "
+"correct password. Fast PDF unlock tool with no watermark. Perfect for "
+"accessing protected documents. No registration required."
+msgstr ""
+"Odblokuj PDF online za darmo. Usuń ochronę hasłem z plików PDF za pomocą "
+"prawidłowego hasła. Szybkie narzędzie do odblokowywania PDF bez znaku "
+"wodnego. Idealne do uzyskiwania dostępu do chronionych dokumentów. Bez "
+"rejestracji."
+
+#: utils_site/src/frontend/views.py:853
+msgid "Remove password protection from your PDF"
+msgstr "Usuń ochronę hasłem ze swojego PDF"
+
+#: utils_site/src/frontend/views.py:861
+msgid "Please select a password-protected PDF file."
+msgstr "Proszę wybrać plik PDF chroniony hasłem."
+
+#: utils_site/src/frontend/views.py:869
 msgid "All PDF Tools - Convertica"
 msgstr "Wszystkie narzędzia PDF - Convertica"
 
+#: utils_site/src/frontend/views.py:871
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
@@ -3287,32 +4633,7 @@ msgstr ""
 "Zabezpieczanie PDF. Darmowe narzędzia PDF online dla wszystkich Twoich "
 "potrzeb związanych z dokumentami."
 
-msgid ""
-"PDF tools, PDF converter, PDF editor, PDF organizer, PDF security, all PDF "
-"tools, online PDF tools, free PDF tools, free pdf tools online, pdf tools no "
-"registration, best pdf converter online, pdf editor online free, pdf tools "
-"for students, pdf tools for business, smallpdf alternative, ilovepdf "
-"alternative, adobe acrobat alternative, free pdf converter, pdf merger "
-"online, pdf splitter online, pdf compressor online, pdf rotator online, pdf "
-"watermark tool, high quality pdf converter, pdf converter no quality loss, "
-"pdf converter best quality, pdf converter for mac, pdf converter for "
-"windows, pdf converter for linux, pdf converter mobile, convert pdf to word "
-"for resume, merge pdf for thesis, compress pdf for email attachment, split "
-"pdf by chapters"
-msgstr ""
-"narzędzia PDF, konwerter PDF, edytor PDF, organizator PDF, bezpieczeństwo "
-"PDF, wszystkie narzędzia PDF, narzędzia PDF online, darmowe narzędzia PDF, "
-"darmowe narzędzia pdf online, narzędzia pdf bez rejestracji, najlepszy "
-"konwerter pdf online, edytor pdf online za darmo, narzędzia pdf dla "
-"studentów, narzędzia pdf dla biznesu, alternatywa dla smallpdf, alternatywa "
-"dla ilovepdf, alternatywa dla adobe acrobat, darmowy konwerter pdf, łączenie "
-"pdf online, dzielenie pdf online, kompresja pdf online, obracanie pdf "
-"online, narzędzie do znaków wodnych pdf, wysokiej jakości konwerter pdf, "
-"konwerter pdf bez utraty jakości, konwerter pdf najlepsza jakość, konwerter "
-"pdf dla mac, konwerter pdf dla windows, konwerter pdf dla linux, konwerter "
-"pdf mobilny, konwertuj pdf na word dla życiorysu, łącz pdf dla pracy "
-"dyplomowej, kompresuj pdf dla załącznika email, dziel pdf według rozdziałów"
-
+#: utils_site/src/frontend/views.py:905
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
@@ -3322,6 +4643,7 @@ msgstr ""
 "Jesteśmy zaangażowani w ciągłe doskonalenie i zapewnienie najlepszego "
 "doświadczenia w konwersji i edycji PDF."
 
+#: utils_site/src/frontend/views.py:910
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
@@ -3329,6 +4651,7 @@ msgstr ""
 "o Convertica, firma narzędzi PDF, konwerter PDF online, usługi PDF, "
 "konwersja dokumentów"
 
+#: utils_site/src/frontend/views.py:928
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
@@ -3336,12 +4659,14 @@ msgstr ""
 "Przeczytaj Politykę prywatności Convertica. Dowiedz się, jak chronimy Twoje "
 "dane i przetwarzamy Twoje pliki. Twoja prywatność jest naszym priorytetem."
 
+#: utils_site/src/frontend/views.py:933
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 msgstr ""
 "polityka prywatności, ochrona danych, bezpieczeństwo plików, prywatność, "
 "prywatność Convertica"
 
+#: utils_site/src/frontend/views.py:951
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
@@ -3349,11 +4674,13 @@ msgstr ""
 "Przeczytaj Warunki korzystania z Convertica. Zrozum warunki korzystania z "
 "naszych narzędzi PDF i usług."
 
+#: utils_site/src/frontend/views.py:955
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
 msgstr ""
 "warunki korzystania, warunki i zasady, umowa użytkownika, warunki Convertica"
 
+#: utils_site/src/frontend/views.py:983
 msgid ""
 "Thank you! Your message has been sent successfully. We'll get back to you as "
 "soon as possible, usually within 24-48 hours."
@@ -3361,9 +4688,11 @@ msgstr ""
 "Dziękujemy! Twoja wiadomość została wysłana pomyślnie. Skontaktujemy się z "
 "Tobą tak szybko, jak to możliwe, zwykle w ciągu 24-48 godzin."
 
+#: utils_site/src/frontend/views.py:1009
 msgid "Please complete the CAPTCHA verification."
 msgstr "Proszę ukończyć weryfikację CAPTCHA."
 
+#: utils_site/src/frontend/views.py:1014 utils_site/src/frontend/views.py:1110
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
@@ -3372,15 +4701,19 @@ msgstr ""
 "tutaj, aby pomóc we wszystkich Twoich potrzebach związanych z narzędziami "
 "PDF."
 
+#: utils_site/src/frontend/views.py:1018 utils_site/src/frontend/views.py:1114
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr "skontaktuj się z Convertica, wsparcie, obsługa klienta, pomoc, opinie"
 
+#: utils_site/src/frontend/views.py:1105
 msgid "Please correct the errors in the form below."
 msgstr "Proszę poprawić błędy w formularzu poniżej."
 
+#: utils_site/src/frontend/views.py:1132
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "Często zadawane pytania (FAQ) - Convertica"
 
+#: utils_site/src/frontend/views.py:1134
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
@@ -3389,32 +4722,7 @@ msgstr ""
 "PDF. Dowiedz się, jak konwertować, edytować i organizować pliki PDF online "
 "za darmo."
 
-msgid ""
-"FAQ, frequently asked questions, PDF converter help, PDF tools FAQ, how to "
-"convert PDF, PDF questions, convert pdf to word online free, pdf to word "
-"without losing formatting, compress pdf online free, merge pdf online free, "
-"split pdf online free, pdf to jpg online free, jpg to pdf online free, pdf "
-"to excel online free, word to pdf online free, rotate pdf online free, add "
-"watermark to pdf online free, crop pdf online free, protect pdf online free, "
-"unlock pdf online free, pdf converter no email, pdf converter no "
-"registration, pdf converter unlimited, pdf converter no watermark, pdf "
-"converter fast, pdf converter safe, pdf converter free, pdf tools help, pdf "
-"conversion questions, pdf editing questions, pdf organization questions, pdf "
-"security questions"
-msgstr ""
-"FAQ, często zadawane pytania, pomoc konwertera PDF, FAQ narzędzi PDF, jak "
-"konwertować PDF, pytania o PDF, konwertuj pdf na word online za darmo, pdf "
-"na word bez utraty formatowania, kompresuj pdf online za darmo, łącz pdf "
-"online za darmo, dziel pdf online za darmo, pdf na jpg online za darmo, jpg "
-"na pdf online za darmo, pdf na excel online za darmo, word na pdf online za "
-"darmo, obróć pdf online za darmo, dodaj znak wodny do pdf online za darmo, "
-"przytnij pdf online za darmo, chroń pdf online za darmo, odblokuj pdf online "
-"za darmo, konwerter pdf bez email, konwerter pdf bez rejestracji, konwerter "
-"pdf bez limitu, konwerter pdf bez znaku wodnego, konwerter pdf szybki, "
-"konwerter pdf bezpieczny, konwerter pdf darmowy, pomoc narzędzi pdf, pytania "
-"dotyczące konwersji pdf, pytania dotyczące edycji pdf, pytania dotyczące "
-"organizacji pdf, pytania dotyczące bezpieczeństwa pdf"
-
+#: utils_site/src/frontend/views.py:1177
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "

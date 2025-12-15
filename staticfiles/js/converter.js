@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const isValid = await window.validatePdfPageLimit(selectedFile);
                 if (!isValid) {
-                    hideLoading();
+                    // Note: loading not shown yet at this point, but call for safety
+                    window.hideLoading('loadingContainer');
                     setFormDisabled(false);
                     return;
                 }
