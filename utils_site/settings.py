@@ -207,6 +207,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "src.frontend.context_processors.hreflang_links",
                 "src.frontend.context_processors.turnstile_site_key",
+                "src.frontend.context_processors.js_settings",
             ],
         },
     },
@@ -366,6 +367,12 @@ TEMP_DIR_PREFIX = "convertica_"
 DEFAULT_DPI = 300  # Default DPI for PDF to image conversion
 MAX_DPI = 600  # Maximum DPI for PDF to image conversion
 MIN_DPI = 72  # Minimum DPI for PDF to image conversion
+
+# UI Settings
+# Time in seconds before showing "patience message" during long conversions
+PATIENCE_MESSAGE_DELAY = config("PATIENCE_MESSAGE_DELAY", default=40, cast=int)
+# Polling interval for async task status (milliseconds)
+ASYNC_POLL_INTERVAL = config("ASYNC_POLL_INTERVAL", default=2500, cast=int)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

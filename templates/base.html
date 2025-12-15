@@ -203,6 +203,13 @@
 
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+    <!-- Global JS Settings from Django -->
+    <script>
+      window.JS_SETTINGS = {
+        patienceMessageDelay: {{ js_settings.patience_message_delay|default:40 }} * 1000,
+        pollInterval: {{ js_settings.poll_interval|default:2500 }}
+      };
+    </script>
 
     {% include "frontend/includes/header.html" %}
 
