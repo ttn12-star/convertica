@@ -76,6 +76,7 @@ services:
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
       - ./logs:/app/logs
+      - async_temp:/tmp/convertica_async
     ports:
       - "8000:8000"
     env_file:
@@ -105,6 +106,7 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./media:/app/media
+      - async_temp:/tmp/convertica_async
     env_file:
       - .env
     depends_on:
@@ -152,6 +154,8 @@ volumes:
   postgres_data:
     driver: local
   redis_data:
+    driver: local
+  async_temp:
     driver: local
 
 networks:
