@@ -1,5 +1,6 @@
 from django.urls import path
 
+from .async_views import TaskResultAPIView, TaskStatusAPIView
 from .pdf_convert.jpg_to_pdf.views import JPGToPDFAPIView
 from .pdf_convert.pdf_to_excel.views import PDFToExcelAPIView
 from .pdf_convert.pdf_to_jpg.views import PDFToJPGAPIView
@@ -19,6 +20,13 @@ from .pdf_security.protect_pdf.views import ProtectPDFAPIView
 from .pdf_security.unlock_pdf.views import UnlockPDFAPIView
 
 urlpatterns = [
+    # Async task endpoints (for progress polling and result download)
+    path(
+        "tasks/<str:task_id>/status/", TaskStatusAPIView.as_view(), name="task_status"
+    ),
+    path(
+        "tasks/<str:task_id>/result/", TaskResultAPIView.as_view(), name="task_result"
+    ),
     path("pdf-to-word/", PDFToWordAPIView.as_view(), name="pdf_to_word_api"),
     path("word-to-pdf/", WordToPDFAPIView.as_view(), name="word_to_pdf_api"),
     path("pdf-to-jpg/", PDFToJPGAPIView.as_view(), name="pdf_to_jpg_api"),

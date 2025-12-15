@@ -30,6 +30,7 @@ try:
     # These are not in standard Django app structure so autodiscover won't find them
     import src.tasks.email  # noqa: F401
     import src.tasks.maintenance  # noqa: F401
+    import src.tasks.pdf_conversion  # noqa: F401
 
     # Celery configuration
     app.conf.update(
@@ -46,31 +47,48 @@ try:
         result_serializer="json",
         timezone="UTC",
         enable_utc=True,
-        # Task routing
+        # Task routing - all conversion tasks go to same queue for simplicity on small server
         task_routes={
-            "src.tasks.pdf_conversion.*": {"queue": "pdf_conversion"},
-            "src.tasks.pdf_processing.*": {"queue": "pdf_processing"},
+            "pdf_conversion.*": {"queue": "celery"},
+            "src.tasks.pdf_conversion.*": {"queue": "celery"},
             "src.tasks.maintenance.*": {"queue": "maintenance"},
+            "maintenance.*": {"queue": "maintenance"},
             "email.*": {"queue": "default"},
         },
-        # Worker settings
-        worker_prefetch_multiplier=4,  # Prefetch 4 tasks at a time
-        worker_max_tasks_per_child=1000,  # Restart worker after 1000 tasks
+        # Default queue for unrouted tasks
+        task_default_queue="celery",
+        # Worker settings - optimized for 1 vCPU / 2GB server
+        worker_prefetch_multiplier=1,  # Process one task at a time (prevents memory issues)
+        worker_max_tasks_per_child=100,  # Restart worker after 100 tasks (free memory)
+        worker_max_memory_per_child=300000,  # 300MB per worker child
         # Task execution settings
         task_acks_late=True,  # Acknowledge tasks after completion
         task_reject_on_worker_lost=True,  # Reject tasks if worker dies
-        # Result expiration
-        result_expires=3600,  # Results expire after 1 hour
-        # Task time limits
+        # Result expiration - keep results for 2 hours for async download
+        result_expires=7200,  # Results expire after 2 hours
+        # Task time limits - allow up to 10 minutes for heavy conversions
         task_time_limit=600,  # Hard time limit: 10 minutes
         task_soft_time_limit=540,  # Soft time limit: 9 minutes
         # Retry settings - only for specific recoverable errors, NOT timeouts
-        # Individual tasks define their own retry logic
-        task_default_retry_delay=60,  # 1 minute between retries
-        task_max_retries=3,  # Maximum 3 retries globally
+        task_default_retry_delay=30,  # 30 seconds between retries
+        task_max_retries=2,  # Maximum 2 retries (to avoid queue backlog)
         # Monitoring
         worker_send_task_events=True,
         task_send_sent_event=True,
+        # Track task state during execution (for progress reporting)
+        task_track_started=True,
+        # Beat schedule for periodic tasks
+        beat_schedule={
+            "cleanup-async-temp-files": {
+                "task": "maintenance.cleanup_async_temp_files",
+                "schedule": 1800.0,  # Every 30 minutes
+                "kwargs": {"max_age_seconds": 3600},  # Clean files older than 1 hour
+            },
+            "cleanup-temp-files": {
+                "task": "maintenance.cleanup_temp_files",
+                "schedule": 3600.0,  # Every hour
+            },
+        },
     )
 
     @app.task(bind=True, ignore_result=True)

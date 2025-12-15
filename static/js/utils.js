@@ -391,6 +391,263 @@ function hideDownload(containerId = 'downloadContainer') {
     }
 }
 
+/**
+ * Update progress bar with real value from server
+ * @param {number} progress - Progress percentage (0-100)
+ * @param {string} message - Optional status message
+ */
+function updateProgress(progress, message = null) {
+    const progressBar = document.getElementById('progressBar');
+    const progressPercentage = document.getElementById('progressPercentage');
+    const progressMessage = document.querySelector('#loadingContainer .text-xs.text-gray-500');
+
+    if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+    }
+    if (progressPercentage) {
+        progressPercentage.textContent = `${Math.round(progress)}%`;
+    }
+    if (progressMessage && message) {
+        progressMessage.textContent = message;
+    }
+}
+
+/**
+ * Submit form as async task and poll for progress
+ * This avoids Cloudflare timeout issues for long operations
+ *
+ * @param {Object} options - Configuration options
+ * @param {string} options.apiUrl - API endpoint URL
+ * @param {FormData} options.formData - Form data to submit
+ * @param {string} options.csrfToken - CSRF token
+ * @param {string} options.originalFileName - Original file name for download
+ * @param {string} options.loadingContainerId - Loading container ID
+ * @param {string} options.downloadContainerId - Download container ID
+ * @param {string} options.errorContainerId - Error container ID
+ * @param {Function} options.onSuccess - Callback on success (receives blob, filename)
+ * @param {Function} options.onError - Callback on error
+ * @param {Function} options.onProgress - Callback on progress update
+ * @param {boolean} options.useAsync - Whether to use async mode (default: auto-detect based on file size)
+ * @returns {Promise<void>}
+ */
+async function submitAsyncConversion(options) {
+    const {
+        apiUrl,
+        formData,
+        csrfToken,
+        originalFileName,
+        loadingContainerId = 'loadingContainer',
+        downloadContainerId = 'downloadContainer',
+        errorContainerId = 'converterResult',
+        onSuccess,
+        onError,
+        onProgress,
+        useAsync = null,
+    } = options;
+
+    // Determine if we should use async mode
+    // Use async for files > 5MB or if explicitly requested
+    let asyncMode = useAsync;
+    if (asyncMode === null) {
+        const file = formData.get('file') || formData.get('pdf_file') || formData.get('word_file');
+        if (file && file.size) {
+            asyncMode = file.size > 5 * 1024 * 1024; // 5MB threshold
+        } else {
+            asyncMode = false;
+        }
+    }
+
+    // Show loading
+    showLoading(loadingContainerId, { showProgress: true });
+
+    // Stop fake progress animation - we'll use real progress
+    const loadingContainer = document.getElementById(loadingContainerId);
+    if (loadingContainer && loadingContainer._progressInterval) {
+        clearInterval(loadingContainer._progressInterval);
+        loadingContainer._progressInterval = null;
+    }
+
+    try {
+        // Submit the conversion request
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken,
+            },
+            body: formData,
+        });
+
+        // Check if this is an async response (202 Accepted with task_id)
+        if (response.status === 202) {
+            const data = await response.json();
+            const taskId = data.task_id;
+
+            if (!taskId) {
+                throw new Error('No task ID received');
+            }
+
+            // Poll for task status
+            await pollTaskStatus(taskId, {
+                onProgress: (progress, message) => {
+                    updateProgress(progress, message);
+                    if (onProgress) onProgress(progress, message);
+                },
+                onSuccess: async (result) => {
+                    // Download the result
+                    const resultResponse = await fetch(`/api/tasks/${taskId}/result/`, {
+                        method: 'GET',
+                        headers: {
+                            'X-CSRFToken': csrfToken,
+                        },
+                    });
+
+                    if (!resultResponse.ok) {
+                        throw new Error('Failed to download result');
+                    }
+
+                    const blob = await resultResponse.blob();
+                    const filename = result.output_filename || originalFileName;
+
+                    hideLoading(loadingContainerId);
+
+                    if (onSuccess) {
+                        onSuccess(blob, filename);
+                    } else {
+                        await showDownloadButton(blob, filename, downloadContainerId);
+                    }
+
+                    // Cleanup task files after download
+                    try {
+                        await fetch(`/api/tasks/${taskId}/result/`, {
+                            method: 'DELETE',
+                            headers: { 'X-CSRFToken': csrfToken },
+                        });
+                    } catch (e) {
+                        // Ignore cleanup errors
+                    }
+                },
+                onError: (error) => {
+                    hideLoading(loadingContainerId);
+                    const errorMsg = error || 'Conversion failed';
+                    showError(errorMsg, errorContainerId);
+                    if (onError) onError(errorMsg);
+                },
+            });
+
+        } else if (response.ok) {
+            // Synchronous response - file is ready
+            const blob = await response.blob();
+            const contentDisposition = response.headers.get('content-disposition');
+            let filename = originalFileName;
+
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+
+            hideLoading(loadingContainerId);
+
+            if (onSuccess) {
+                onSuccess(blob, filename);
+            } else {
+                await showDownloadButton(blob, filename, downloadContainerId);
+            }
+
+        } else {
+            // Error response
+            let errorMsg = 'Conversion failed';
+            try {
+                const errorData = await response.json();
+                errorMsg = errorData.error || errorData.detail || errorMsg;
+            } catch (e) {
+                // Couldn't parse error JSON
+            }
+
+            hideLoading(loadingContainerId);
+            showError(errorMsg, errorContainerId);
+            if (onError) onError(errorMsg);
+        }
+
+    } catch (error) {
+        hideLoading(loadingContainerId);
+        const errorMsg = error.message || 'An error occurred';
+        showError(errorMsg, errorContainerId);
+        if (onError) onError(errorMsg);
+    }
+}
+
+/**
+ * Poll task status until complete or failed
+ * @param {string} taskId - Task ID to poll
+ * @param {Object} callbacks - Callback functions
+ * @param {Function} callbacks.onProgress - Called with (progress, message)
+ * @param {Function} callbacks.onSuccess - Called with result object
+ * @param {Function} callbacks.onError - Called with error message
+ * @param {number} pollInterval - Polling interval in ms (default: 1000)
+ * @param {number} maxAttempts - Maximum poll attempts (default: 600 = 10 minutes)
+ */
+async function pollTaskStatus(taskId, callbacks, pollInterval = 1000, maxAttempts = 600) {
+    const { onProgress, onSuccess, onError } = callbacks;
+    let attempts = 0;
+
+    const poll = async () => {
+        attempts++;
+
+        if (attempts > maxAttempts) {
+            onError('Task timed out. Please try again with a smaller file.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/tasks/${taskId}/status/`);
+            const data = await response.json();
+
+            switch (data.status) {
+                case 'SUCCESS':
+                    onProgress(100, 'Complete!');
+                    onSuccess(data);
+                    break;
+
+                case 'FAILURE':
+                    onError(data.error || 'Conversion failed');
+                    break;
+
+                case 'PROGRESS':
+                    onProgress(data.progress || 0, data.current_step || 'Processing...');
+                    setTimeout(poll, pollInterval);
+                    break;
+
+                case 'PENDING':
+                    onProgress(0, data.message || 'Waiting in queue...');
+                    setTimeout(poll, pollInterval);
+                    break;
+
+                case 'STARTED':
+                    onProgress(5, data.message || 'Processing started...');
+                    setTimeout(poll, pollInterval);
+                    break;
+
+                default:
+                    // Unknown status - keep polling
+                    setTimeout(poll, pollInterval);
+            }
+
+        } catch (error) {
+            // Network error - retry
+            if (attempts < maxAttempts) {
+                setTimeout(poll, pollInterval * 2); // Back off on errors
+            } else {
+                onError('Lost connection to server');
+            }
+        }
+    };
+
+    // Start polling
+    poll();
+}
+
 // Export functions to global scope
 if (typeof window !== 'undefined') {
     window.formatFileSize = formatFileSize;
@@ -401,4 +658,7 @@ if (typeof window !== 'undefined') {
     window.hideLoading = hideLoading;
     window.showDownloadButton = showDownloadButton;
     window.hideDownload = hideDownload;
+    window.updateProgress = updateProgress;
+    window.submitAsyncConversion = submitAsyncConversion;
+    window.pollTaskStatus = pollTaskStatus;
 }
