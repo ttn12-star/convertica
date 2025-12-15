@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let isShowingGrid = false;
     let initialScale = 1.0;
     let initialDistance = 0;
-    let dragStartAngle = 0;
 
     // Watermark type toggle
     if (watermarkTypeText && watermarkTypeImage) {
@@ -796,6 +795,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Store initial rotation and start position
                 initialRotation = watermarkRotation || 0;
                 dragStartX = startX;
+
+                // Calculate watermark center for rotation indicator
+                const scaleFactor = canvasWidth / pdfPageWidth;
+                const centerX = watermarkX * scaleFactor;
+                const centerY = canvasHeight - (watermarkY * scaleFactor);
 
                 // Show rotation indicator
                 showRotationIndicator(centerX, centerY);
