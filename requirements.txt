@@ -41,7 +41,7 @@ six==1.17.0
 sqlparse==0.5.4
 typing-inspection==0.4.2
 typing_extensions==4.15.0
-tzdata==2025.2
+tzdata==2025.3
 wheel==0.45.1
 # Production WSGI server
 gunicorn==21.2.0
