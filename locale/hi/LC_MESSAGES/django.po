@@ -33,8 +33,6 @@ msgstr ""
 msgid "Go Back"
 msgstr ""
 
-#, fuzzy
-#| msgid "Home"
 msgid "Go Home"
 msgstr "होम"
 
@@ -52,8 +50,6 @@ msgid ""
 "error, please contact support."
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact support"
 msgid "Contact Support"
 msgstr "सहायता से संपर्क करें"
 
@@ -71,13 +67,9 @@ msgid ""
 "moved, deleted, or never existed."
 msgstr ""
 
-#, fuzzy
-#| msgid "View All Tools"
 msgid "Browse All Tools"
 msgstr "सभी उपकरण"
 
-#, fuzzy
-#| msgid "Popular Tools"
 msgid "Popular pages:"
 msgstr "लोकप्रिय उपकरण"
 
@@ -93,8 +85,6 @@ msgstr "PDF विभाजित करें"
 msgid "FAQ"
 msgstr "अक्सर पूछे जाने वाले प्रश्न"
 
-#, fuzzy
-#| msgid "Server error"
 msgid "500 - Server Error"
 msgstr "सर्वर त्रुटि"
 
@@ -109,16 +99,12 @@ msgid ""
 "and is working to fix the issue. Please try again in a few moments."
 msgstr ""
 
-#, fuzzy
-#| msgid "Try it"
 msgid "Try Again"
 msgstr "आज़माएं"
 
 msgid "If the problem persists, please"
 msgstr ""
 
-#, fuzzy
-#| msgid "Contact Us"
 msgid "contact us"
 msgstr "हमसे संपर्क करें"
 
@@ -175,7 +161,7 @@ msgid "Compress PDF"
 msgstr "PDF संपीड़ित करें"
 
 msgid "Rotate PDF"
-msgstr "PDF घुमाएं"
+msgstr "PDF घुमाएँ"
 
 msgid "View All Tools"
 msgstr "सभी उपकरण"
@@ -397,18 +383,12 @@ msgstr "आज ही Convertica के PDF उपकरणों की शक�
 msgid "Explore All Tools"
 msgstr "सभी उपकरण देखें"
 
-#, fuzzy
-#| msgid "Ready to Get Started?"
 msgid "Get Started"
 msgstr "शुरू करने के लिए तैयार?"
 
-#, fuzzy
-#| msgid "Add Page Numbers"
 msgid "Preview Page Numbers"
 msgstr "पेज नंबर"
 
-#, fuzzy
-#| msgid "Select Page"
 msgid "Select page"
 msgstr "पृष्ठ चुनें"
 
@@ -447,8 +427,6 @@ msgstr "फ़ॉन्ट आकार"
 msgid "Starting Page Number"
 msgstr "पेज नंबर"
 
-#, fuzzy
-#| msgid "Format"
 msgid "Custom Format"
 msgstr "प्रारूप"
 
@@ -465,7 +443,6 @@ msgid "In brackets"
 msgstr ""
 
 #, fuzzy, python-brace-format
-#| msgid "Use {page} for page number, {total} for total pages"
 msgid ""
 "Use {page} for page number, {total} for total pages. Click presets above or "
 "enter custom format."
@@ -489,8 +466,6 @@ msgstr "'1,3,5' या '1-5' जैसे विशिष्ट पृष्ठ 
 msgid "How it works"
 msgstr "यह कैसे काम करता है"
 
-#, fuzzy
-#| msgid "Select your PDF file using the button above or drag and drop it"
 msgid ""
 "Select your PDF file using the button above or drag and drop it into the "
 "zone below"
@@ -510,14 +485,10 @@ msgid ""
 "specific pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the add watermark button to process your file"
 msgid ""
 "Click the add page numbers button to process your PDF and add page numbers"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid ""
 "Download your PDF file with page numbers added using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
@@ -532,9 +503,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
 "split your PDF into smaller parts."
@@ -574,11 +542,6 @@ msgstr "पृष्ठ चुनें"
 msgid "How to use:"
 msgstr "यह कैसे काम करता है"
 
-#, fuzzy
-#| msgid ""
-#| "The watermark appears at the bottom of the page by default. Drag it to "
-#| "move, use the top handle to rotate, and the corner handle to scale. Click "
-#| "anywhere on the PDF to reposition it."
 msgid ""
 "The watermark appears at the bottom of the page by default. Drag it to move, "
 "use corner handles to scale. Use the Rotation slider below to rotate. Click "
@@ -615,18 +578,12 @@ msgstr "रंग"
 msgid "Opacity"
 msgstr "अपारदर्शिता"
 
-#, fuzzy
-#| msgid "Rotation Angle"
 msgid "Rotation"
 msgstr "घुमाव कोण"
 
 msgid "Interactive controls:"
 msgstr "इंटरैक्टिव नियंत्रण:"
 
-#, fuzzy
-#| msgid ""
-#| "Drag the watermark to move it. Drag any corner handle to rotate and scale "
-#| "simultaneously."
 msgid ""
 "Drag the watermark to move it. Use corner handles to scale. Use the rotation "
 "slider above to rotate."
@@ -634,33 +591,23 @@ msgstr ""
 "वॉटरमार्क को स्थानांतरित करने के लिए खींचें। एक साथ घुमाने और स्केल करने के लिए किसी भी "
 "कोने के हैंडल को खींचें।"
 
-#, fuzzy
-#| msgid "Enter your watermark text or upload an image"
 msgid "Enter your watermark text or upload an image to add as watermark to PDF"
 msgstr "अपना वॉटरमार्क टेक्स्ट दर्ज करें या एक छवि अपलोड करें"
 
-#, fuzzy
-#| msgid "Choose the color and opacity using the sliders"
 msgid ""
 "Choose the color and opacity using the sliders to customize your PDF "
 "watermark"
 msgstr "स्लाइडर का उपयोग करके रंग और अपारदर्शिता चुनें"
 
-#, fuzzy
-#| msgid "Click and drag inside the blue box to move it anywhere on the page"
 msgid ""
 "Click on the PDF to position the watermark, or drag it to move it anywhere "
 "on the page"
 msgstr "पृष्ठ पर कहीं भी ले जाने के लिए नीले बॉक्स के अंदर क्लिक करें और खींचें"
 
-#, fuzzy
-#| msgid "Click the add watermark button to process your file"
 msgid ""
 "Click the add watermark button to process your PDF and add the watermark"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए वॉटरमार्क जोड़ें बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid "Download your watermarked PDF file using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
 
@@ -760,7 +707,7 @@ msgid "Add page numbers to your PDF documents."
 msgstr "सेकंड में अपने PDF में पेज नंबर जोड़ें"
 
 msgid "Add Watermark"
-msgstr "वॉटरमार्क"
+msgstr "वॉटरमार्क जोड़ें"
 
 msgid "Protect your PDFs with text or image watermarks."
 msgstr "टेक्स्ट या छवि वॉटरमार्क के साथ अपने PDF की सुरक्षा करें।"
@@ -778,7 +725,7 @@ msgid "Split PDF into multiple files by pages or ranges."
 msgstr "पेज या रेंज के अनुसार PDF को कई फ़ाइलों में विभाजित करें।"
 
 msgid "Remove Pages"
-msgstr "पेज हटाएं"
+msgstr "पेज हटाएँ"
 
 msgid "Remove unwanted pages from your PDF document."
 msgstr "अपने PDF दस्तावेज़ से अवांछित पेज हटाएं।"
@@ -841,23 +788,15 @@ msgstr ""
 "अपनी आवश्यकताओं के आधार पर संपीड़न स्तर चुनें। उच्च संपीड़न फ़ाइल आकार को अधिक कम करता है "
 "लेकिन अधिक समय लेता है।"
 
-#, fuzzy
-#| msgid ""
-#| "Choose compression level based on your needs. Higher compression reduces "
-#| "file size more but takes longer."
 msgid ""
 "Choose the compression level (Low, Medium, or High) to compress PDF file size"
 msgstr ""
 "अपनी आवश्यकताओं के आधार पर संपीड़न स्तर चुनें। उच्च संपीड़न फ़ाइल आकार को अधिक कम करता है "
 "लेकिन अधिक समय लेता है।"
 
-#, fuzzy
-#| msgid "Click the crop button to process your file"
 msgid "Click the compress button to reduce the size of your PDF file"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your converted file using the download button"
 msgid "Download your compressed PDF file using the download button"
 msgstr "डाउनलोड बटन का उपयोग करके अपनी परिवर्तित फ़ाइल डाउनलोड करें"
 
@@ -1070,8 +1009,6 @@ msgstr "सुझाव:"
 msgid "A crop area covering most of the page is selected by default"
 msgstr "डिफ़ॉल्ट रूप से पृष्ठ के अधिकांश भाग को कवर करने वाला क्रॉप क्षेत्र चुना जाता है"
 
-#, fuzzy
-#| msgid "A crop area covering most of the page is selected by default"
 msgid ""
 "A crop area covering most of the page is selected by default - adjust it as "
 "needed"
@@ -1092,10 +1029,6 @@ msgstr "चयन बॉक्स पर होवर करने पर कर
 msgid "When 'all' is selected, crop applies to all pages"
 msgstr "जब 'सभी' चुना जाता है, तो क्रॉप सभी पृष्ठों पर लागू होता है"
 
-#, fuzzy
-#| msgid ""
-#| "The PDF will be displayed - click and drag to select the area you want to "
-#| "keep"
 msgid ""
 "The PDF will be displayed - click and drag to select the area you want to "
 "keep when cropping PDF"
@@ -1103,26 +1036,18 @@ msgstr ""
 "PDF प्रदर्शित किया जाएगा - जिस क्षेत्र को आप रखना चाहते हैं उसे चुनने के लिए क्लिक करें और "
 "खींचें"
 
-#, fuzzy
-#| msgid "Resize the selection by dragging the corners or edges"
 msgid ""
 "Resize the selection by dragging the corners or edges to adjust the crop area"
 msgstr "कोनों या किनारों को खींचकर चयन का आकार बदलें"
 
-#, fuzzy
-#| msgid "Choose which pages to apply the crop to"
 msgid ""
 "Choose which pages to apply the crop to (all pages, current page, or custom "
 "pages)"
 msgstr "चुनें कि क्रॉप किन पृष्ठों पर लागू करना है"
 
-#, fuzzy
-#| msgid "Click the crop button to process your file"
 msgid "Click the crop button to process your PDF and crop the selected area"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your converted file using the download button"
 msgid "Download your cropped PDF file using the download button"
 msgstr "डाउनलोड बटन का उपयोग करके अपनी परिवर्तित फ़ाइल डाउनलोड करें"
 
@@ -1208,15 +1133,11 @@ msgid ""
 "to extract pages from PDF)"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the convert button to combine all images into one PDF"
 msgid ""
 "Click the extract button to process your PDF and extract the selected pages "
 "into a new PDF file"
 msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid ""
 "Download your extracted PDF file containing only the selected pages using "
 "the download button"
@@ -1668,8 +1589,6 @@ msgstr "संपर्क फ़ॉर्म"
 msgid "Language"
 msgstr "भाषा"
 
-#, fuzzy
-#| msgid "Select Page"
 msgid "Select language"
 msgstr "पृष्ठ चुनें"
 
@@ -1704,7 +1623,7 @@ msgid "Convert from PDF"
 msgstr "PDF से कन्वर्ट करें"
 
 msgid "Convert to PDF"
-msgstr "PDF में कन्वर्ट करें"
+msgstr "PDF में बदलें"
 
 msgid "Edit PDF tools"
 msgstr "PDF संपादन उपकरण"
@@ -1904,21 +1823,15 @@ msgstr "PDF मर्ज हो रहे हैं..."
 msgid "Please select at least 2 PDF files to merge."
 msgstr "कृपया मर्ज करने के लिए PDF फ़ाइलें चुनें।"
 
-#, fuzzy
-#| msgid "Select your PDF file using the button above"
 msgid "Select 2-10 PDF files to merge using the button above"
 msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें"
 
 msgid "Preview all PDF files and drag them to reorder the merge order"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the convert button to combine all images into one PDF"
 msgid "Click the merge button to combine all PDF files into one document"
 msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your converted file using the download button"
 msgid ""
 "Download your merged PDF file containing all pages from all selected files "
 "using the download button"
@@ -1949,7 +1862,7 @@ msgstr ""
 "दिखाती है।"
 
 msgid "Please select a PDF file."
-msgstr "कृपया एक Word फ़ाइल चुनें।"
+msgstr "कृपया एक PDF फ़ाइल चुनें।"
 
 msgid "Please select a PDF file first."
 msgstr "कृपया पहले एक PDF फ़ाइल चुनें।"
@@ -1960,21 +1873,15 @@ msgstr "व्यवस्थित हो रहा है..."
 msgid "Failed to organize PDF"
 msgstr "PDF व्यवस्थित करने में विफल"
 
-#, fuzzy
-#| msgid "Reorder and organize pages in your PDF document."
 msgid "Preview all pages and drag them to reorder pages in your PDF document"
 msgstr "अपने PDF दस्तावेज़ में पेजों को पुन: व्यवस्थित और व्यवस्थित करें।"
 
 msgid "Choose operation: reorder pages manually or sort pages automatically"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the crop button to process your file"
 msgid "Click the organize button to process your PDF and reorganize the pages"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid ""
 "Download your reorganized PDF file with pages in the new order using the "
 "download button"
@@ -1986,8 +1893,6 @@ msgid ""
 "reorder them visually."
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the convert button to combine all images into one PDF"
 msgid ""
 "Click the convert button to start converting PDF to Excel (PDF to XLSX "
 "conversion)"
@@ -2009,13 +1914,9 @@ msgid ""
 "be placed in separate cells, and images will be embedded in the Excel file."
 msgstr ""
 
-#, fuzzy
-#| msgid "Page selection"
 msgid "Page Selection"
 msgstr "पृष्ठ चयन"
 
-#, fuzzy
-#| msgid "Pages to Remove"
 msgid "Pages to Convert"
 msgstr "हटाने के लिए पृष्ठ"
 
@@ -2049,8 +1950,6 @@ msgid ""
 "quality, 72 DPI for smaller file size)"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the convert button to combine all images into one PDF"
 msgid "Click the convert button to start the PDF to JPG conversion process"
 msgstr "सभी छवियों को एक PDF में संयोजित करने के लिए कन्वर्ट बटन पर क्लिक करें"
 
@@ -2070,8 +1969,6 @@ msgid ""
 "filename_page0002.jpg)."
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the convert button to combine all images into one PDF"
 msgid ""
 "Click the convert button to start converting PDF to Word (PDF to DOCX "
 "conversion)"
@@ -2380,8 +2277,6 @@ msgstr ""
 msgid "Click the protect button to encrypt your PDF with password protection"
 msgstr ""
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid "Download your password-protected PDF file using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
 
@@ -2402,15 +2297,11 @@ msgid ""
 "specific pages (e.g., 1,3,5 or 1-5)"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the crop button to process your file"
 msgid ""
 "Click the remove pages button to process your PDF and delete the selected "
 "pages"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid "Download your PDF file with pages removed using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
 
@@ -2445,14 +2336,10 @@ msgid ""
 "Select which pages to rotate: all pages, current page only, or specific pages"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the crop button to process your file"
 msgid ""
 "Click the rotate button to process your PDF and rotate the selected pages"
 msgstr "अपनी फ़ाइल प्रोसेस करने के लिए क्रॉप बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid "Download your rotated PDF file using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
 
@@ -2483,8 +2370,6 @@ msgstr "पृष्ठ"
 msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgstr "पृष्ठ संख्याएं दर्ज करें जैसे '1,3,5' या सभी पृष्ठों के लिए खाली छोड़ें"
 
-#, fuzzy
-#| msgid "Enter page numbers like '1,3,5' or leave empty for all pages"
 msgid ""
 "Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
 "pages"
@@ -2512,14 +2397,10 @@ msgid ""
 "splitting PDF into separate files)"
 msgstr ""
 
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid ""
 "Click the split button to process your PDF and create separate PDF files"
 msgstr "अपनी फ़ाइल को प्रसंस्कृत करने के लिए संपादन बटन पर क्लिक करें"
 
-#, fuzzy
-#| msgid "Download your converted file using the download button"
 msgid ""
 "Download the ZIP archive containing all split PDF files using the download "
 "button"
@@ -2845,29 +2726,19 @@ msgstr ""
 "वह पासवर्ड दर्ज करें जो PDF को सुरक्षित करने के लिए उपयोग किया गया था। पासवर्ड आउटपुट "
 "PDF से हटा दिया जाएगा।"
 
-#, fuzzy
-#| msgid "Select your PDF file using the button above or drag and drop it"
 msgid ""
 "Select your password-protected PDF file using the button above or drag and "
 "drop it into the zone below"
 msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें या इसे खींचें और छोड़ें"
 
-#, fuzzy
-#| msgid ""
-#| "Enter the password that was used to protect the PDF. The password will be "
-#| "removed from the output PDF."
 msgid "Enter the password that was used to protect the PDF file"
 msgstr ""
 "वह पासवर्ड दर्ज करें जो PDF को सुरक्षित करने के लिए उपयोग किया गया था। पासवर्ड आउटपुट "
 "PDF से हटा दिया जाएगा।"
 
-#, fuzzy
-#| msgid "Can I remove password protection from a PDF?"
 msgid "Click the unlock button to remove password protection from your PDF"
 msgstr "अपने PDF से पासवर्ड सुरक्षा हटाएं"
 
-#, fuzzy
-#| msgid "Download your edited file using the download button"
 msgid ""
 "Download your unlocked PDF file (without password) using the download button"
 msgstr "संपादित फ़ाइल डाउनलोड करें - पंजीकरण की आवश्यकता नहीं, पूरी तरह से मुफ्त, सुरक्षित"
@@ -2878,15 +2749,11 @@ msgid ""
 "unlock the PDF."
 msgstr ""
 
-#, fuzzy
-#| msgid "Select your PDF file using the button above or drag and drop it"
 msgid ""
 "Select your Word document (DOC or DOCX) using the button above or drag and "
 "drop it into the zone below"
 msgstr "ऊपर दिए गए बटन का उपयोग करके अपनी PDF फ़ाइल चुनें या इसे खींचें और छोड़ें"
 
-#, fuzzy
-#| msgid "Click the convert button to combine all images into one PDF"
 msgid ""
 "Click the convert button to start converting Word to PDF (DOCX to PDF "
 "conversion)"
@@ -2930,9 +2797,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
@@ -2960,13 +2824,9 @@ msgid ""
 "limits. Please try with a smaller file."
 msgstr ""
 
-#, fuzzy
-#| msgid "Passwords don't match"
 msgid "Password cannot be empty"
 msgstr "पासवर्ड मेल नहीं खाते"
 
-#, fuzzy
-#| msgid "This PDF requires a password to open."
 msgid ""
 "PDF is not password-protected. This PDF does not require a password to open."
 msgstr "इस PDF को खोलने के लिए पासवर्ड की आवश्यकता है।"
@@ -3173,10 +3033,8 @@ msgstr ""
 msgid "Conversion failed. Please try again."
 msgstr "रूपांतरण विफल रहा। कृपया पुनः प्रयास करें।"
 
-#, fuzzy
-#| msgid "All PDF Tools - Convertica"
 msgid "PDF to Word - Convertica"
-msgstr "सभी PDF उपकरण - Convertica"
+msgstr "PDF से Word - Convertica"
 
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
@@ -3313,11 +3171,6 @@ msgstr ""
 "पीडीएफ कन्वर्टर फास्ट, पीडीएफ कन्वर्टर सेफ, पीडीएफ कन्वर्टर फ्री, पीडीएफ टूल्स हेल्प, "
 "पीडीएफ रूपांतरण प्रश्न, पीडीएफ संपादन प्रश्न, पीडीएफ संगठन प्रश्न, पीडीएफ सुरक्षा प्रश्न"
 
-#, fuzzy
-#| msgid ""
-#| "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
-#| "arrange them in the desired order using drag and drop, and click merge. "
-#| "All selected files will be combined into a single PDF document."
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "

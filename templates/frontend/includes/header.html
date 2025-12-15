@@ -613,7 +613,7 @@
                     class="w-full border border-gray-300 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 cursor-pointer hover:border-blue-400 transition-colors shadow-sm min-w-[100px] lg:min-w-[120px]">
               {% for code, name in LANGUAGES %}
                 <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-                  {{ name }}
+                  {% if code == 'en' %}English{% else %}{{ name }}{% endif %}
                 </option>
               {% endfor %}
             </select>
@@ -815,7 +815,7 @@
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 shadow-sm">
           {% for code, name in LANGUAGES %}
             <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
-              {{ name }}
+              {% if code == 'en' %}English{% else %}{{ name }}{% endif %}
             </option>
           {% endfor %}
         </select>
