@@ -18,6 +18,24 @@
     const VISIBILITY_TIMEOUT = 60000; // Cancel after 60 seconds of inactivity
 
     /**
+     * Get cookie value by name
+     */
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    /**
      * Register a task for automatic cancellation
      * @param {string} taskId - Celery task ID
      */
@@ -46,10 +64,16 @@
      */
     async function cancelTask(taskId) {
         try {
+            // Get CSRF token from cookie or meta tag
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
+                || document.querySelector('meta[name="csrf-token"]')?.content
+                || getCookie('csrftoken');
+
             const response = await fetch('/api/cancel-task/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
                 },
                 body: JSON.stringify({ task_id: taskId }),
             });
@@ -89,10 +113,16 @@
     function handleBeforeUnload() {
         // Use sendBeacon for reliable delivery even when page is closing
         if (activeTasks.size > 0 && navigator.sendBeacon) {
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
+                || document.querySelector('meta[name="csrf-token"]')?.content
+                || getCookie('csrftoken');
+
             const tasks = Array.from(activeTasks);
             tasks.forEach(taskId => {
+                // Note: sendBeacon doesn't support custom headers well
+                // So we include CSRF token in the body
                 const blob = new Blob(
-                    [JSON.stringify({ task_id: taskId })],
+                    [JSON.stringify({ task_id: taskId, csrfmiddlewaretoken: csrfToken })],
                     { type: 'application/json' }
                 );
                 navigator.sendBeacon('/api/cancel-task/', blob);
