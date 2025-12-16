@@ -57,12 +57,25 @@ services:
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
       - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '${CELERY_CPU_LIMIT:-0.5}'
+          memory: ${CELERY_MEMORY_LIMIT:-512M}
+        reservations:
+          cpus: '${CELERY_CPU_RESERVATION:-0.2}'
+          memory: ${CELERY_MEMORY_RESERVATION:-256M}
     healthcheck:
-      test: ["CMD", "sh", "-c", "echo ok"]
+      test: ["CMD", "sh", "-c", "celery -A utils_site inspect ping -d celery@$$HOSTNAME > /dev/null 2>&1 || exit 1"]
       interval: 30s
-      timeout: 5s
+      timeout: 10s
       retries: 3
-      start_period: 10s
+      start_period: 30s
     restart: always
     logging:
       driver: "json-file"
@@ -74,19 +87,34 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
-    command: celery -A utils_site beat --loglevel=info
+    command: celery -A utils_site beat --loglevel=info --schedule=/tmp/celerybeat-schedule
+    volumes:
+      - celery-beat-schedule:/tmp
     env_file:
       - .env
     environment:
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
       - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '${CELERY_BEAT_CPU_LIMIT:-0.1}'
+          memory: ${CELERY_BEAT_MEMORY_LIMIT:-128M}
+        reservations:
+          cpus: '${CELERY_BEAT_CPU_RESERVATION:-0.05}'
+          memory: ${CELERY_BEAT_MEMORY_RESERVATION:-64M}
     healthcheck:
-      test: ["CMD", "sh", "-c", "echo ok"]
+      test: ["CMD", "sh", "-c", "pgrep -f 'celery.*beat' > /dev/null || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 10s
+      start_period: 20s
     restart: always
     logging:
       driver: "json-file"
@@ -125,3 +153,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+volumes:
+  celery-beat-schedule:
+    driver: local
