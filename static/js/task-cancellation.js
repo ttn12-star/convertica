@@ -179,7 +179,7 @@
     console.log('[Task Cancel] Task cancellation system initialized');
 
     // Cleanup on script unload
-    window.addEventListener('unload', () => {
+    window.addEventListener('pagehide', () => {
         if (visibilityTimer) {
             clearTimeout(visibilityTimer);
         }
