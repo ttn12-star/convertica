@@ -11,11 +11,26 @@ import os
 import shutil
 
 from celery import shared_task
+from celery.exceptions import Ignore
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from src.api.cancel_task_view import clear_task_cancelled, is_task_cancelled
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+
+class TaskCancelledException(Exception):
+    """Raised when a task has been cancelled by the user."""
+
+    pass
+
+
+def check_task_cancelled(task_id: str) -> None:
+    """Check if task was cancelled and raise exception if so."""
+    if is_task_cancelled(task_id):
+        logger.info(f"Task {task_id} was cancelled by user, stopping execution")
+        raise TaskCancelledException(f"Task {task_id} cancelled by user")
 
 
 def update_progress(task, progress: int, current_step: str = "", total_steps: int = 0):
@@ -64,13 +79,22 @@ def generic_conversion_task(
     """
     task_dir = os.path.dirname(input_path)
     output_path = None
+    # Use the task_id parameter (same as self.request.id, but explicit)
+    # This is what the frontend uses to cancel
+    cancellation_id = task_id
 
     try:
+        # Check cancellation before starting
+        check_task_cancelled(cancellation_id)
+
         # Step 1: Validate input file exists
         update_progress(self, 5, "Validating input file...", 5)
 
         if not os.path.exists(input_path):
             raise FileNotFoundError(f"Input file not found: {input_path}")
+
+        # Check cancellation before loading file
+        check_task_cancelled(cancellation_id)
 
         # Step 2: Load the file
         update_progress(self, 15, "Loading file...", 5)
@@ -133,6 +157,9 @@ def generic_conversion_task(
 
         module = importlib.import_module(module_path)
         converter_func = getattr(module, func_name)
+
+        # Check cancellation before heavy conversion
+        check_task_cancelled(cancellation_id)
 
         # Step 4: Perform conversion
         update_progress(self, 40, "Converting...", 5)
@@ -240,6 +267,9 @@ def generic_conversion_task(
 
         update_progress(self, 100, "Complete!", 5)
 
+        # Clear cancelled flag if task completed successfully
+        clear_task_cancelled(cancellation_id)
+
         logger.info(f"Conversion {conversion_type} completed: {final_output_path}")
 
         return {
@@ -248,6 +278,17 @@ def generic_conversion_task(
             "output_filename": output_filename,
             "conversion_type": conversion_type,
         }
+
+    except TaskCancelledException:
+        # Task was cancelled by user - cleanup and exit gracefully
+        logger.info(f"Task {cancellation_id} cancelled, cleaning up")
+        try:
+            if task_dir and os.path.isdir(task_dir):
+                shutil.rmtree(task_dir, ignore_errors=True)
+        except Exception:
+            pass
+        # Use Ignore to not record as failure
+        raise Ignore()
 
     except Exception as exc:
         logger.error(f"Conversion {conversion_type} failed: {str(exc)}", exc_info=True)

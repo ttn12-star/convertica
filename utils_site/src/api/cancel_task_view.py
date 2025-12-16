@@ -5,7 +5,10 @@ This allows users to cancel long-running conversions if they close the page,
 freeing up the queue for other users.
 """
 
+import json
+
 from celery.result import AsyncResult
+from django.core.cache import cache
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
@@ -16,6 +19,25 @@ from utils_site.celery import app as celery_app
 from .logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+# Cache key prefix for cancelled tasks
+CANCELLED_TASK_PREFIX = "cancelled_task:"
+CANCELLED_TASK_TTL = 3600  # 1 hour TTL
+
+
+def mark_task_cancelled(task_id: str) -> None:
+    """Mark a task as cancelled in Redis cache."""
+    cache.set(f"{CANCELLED_TASK_PREFIX}{task_id}", True, CANCELLED_TASK_TTL)
+
+
+def is_task_cancelled(task_id: str) -> bool:
+    """Check if a task has been cancelled."""
+    return cache.get(f"{CANCELLED_TASK_PREFIX}{task_id}") is True
+
+
+def clear_task_cancelled(task_id: str) -> None:
+    """Clear the cancelled flag for a task."""
+    cache.delete(f"{CANCELLED_TASK_PREFIX}{task_id}")
 
 
 @csrf_exempt
@@ -30,11 +52,8 @@ def cancel_task(request):
     Returns:
         200: Task cancelled successfully
         400: Missing or invalid task_id
-        404: Task not found or already completed
     """
     try:
-        import json
-
         data = json.loads(request.body)
         task_id = data.get("task_id")
 
@@ -43,53 +62,60 @@ def cancel_task(request):
                 {"error": "task_id is required"}, status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Get task result
+        # Get task result for logging
         task_result = AsyncResult(task_id, app=celery_app)
+        current_state = task_result.state
 
-        # Check if task exists and is active
-        if task_result.state in ("PENDING", "PROGRESS", "STARTED"):
-            # Revoke the task with SIGTERM for graceful shutdown
-            # SIGTERM allows the task to cleanup (unlike SIGKILL which kills immediately)
-            # This prevents "WorkerLostError" spam in Sentry
-            celery_app.control.revoke(task_id, terminate=True, signal="SIGTERM")
+        logger.info(
+            "Attempting to cancel task",
+            extra={
+                "task_id": task_id,
+                "state": current_state,
+                "event": "task_cancel_attempt",
+            },
+        )
 
-            logger.info(
-                "Task cancelled by user",
-                extra={
-                    "task_id": task_id,
-                    "state": task_result.state,
-                    "event": "user_task_cancellation",
-                },
-            )
+        # Always revoke - regardless of apparent state
+        # Reason: AsyncResult.state is unreliable:
+        # - "PENDING" can mean "in queue", "running", or "doesn't exist"
+        # - State may not be updated in real-time
+        #
+        # Strategy:
+        # 1. Mark as cancelled in Redis (persists across worker restarts)
+        # 2. Revoke without terminate - marks in worker memory
+        # 3. Revoke with terminate - kills if already running
 
-            return JsonResponse(
-                {
-                    "status": "success",
-                    "message": "Task cancelled successfully",
-                    "task_id": task_id,
-                },
-                status=status.HTTP_200_OK,
-            )
+        # Mark cancelled in Redis cache (survives worker restart)
+        mark_task_cancelled(task_id)
 
-        elif task_result.state in ("SUCCESS", "FAILURE", "REVOKED"):
-            # Task already completed or cancelled
-            return JsonResponse(
-                {
-                    "status": "already_finished",
-                    "message": f"Task already finished with state: {task_result.state}",
-                    "task_id": task_id,
-                },
-                status=status.HTTP_200_OK,
-            )
+        # Remove from queue (for pending tasks)
+        celery_app.control.revoke(task_id, terminate=False)
 
-        else:
-            return JsonResponse(
-                {
-                    "error": f"Task in unknown state: {task_result.state}",
-                    "task_id": task_id,
-                },
-                status=status.HTTP_404_NOT_FOUND,
-            )
+        # Terminate running task (SIGTERM for graceful shutdown)
+        celery_app.control.revoke(task_id, terminate=True, signal="SIGTERM")
+
+        logger.info(
+            "Task revoke commands sent",
+            extra={
+                "task_id": task_id,
+                "previous_state": current_state,
+                "event": "task_cancelled",
+            },
+        )
+
+        # Check new state
+        new_state = task_result.state
+
+        return JsonResponse(
+            {
+                "status": "success",
+                "message": "Task cancellation requested",
+                "task_id": task_id,
+                "previous_state": current_state,
+                "current_state": new_state,
+            },
+            status=status.HTTP_200_OK,
+        )
 
     except json.JSONDecodeError:
         return JsonResponse(
