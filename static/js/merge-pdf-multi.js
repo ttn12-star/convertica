@@ -574,6 +574,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (fileInput) {
                         fileInput.value = '';
                     }
+                    // Hide preview section
+                    const pdfPreviewSection = document.getElementById('pdfPreviewSection');
+                    if (pdfPreviewSection) {
+                        pdfPreviewSection.classList.add('hidden');
+                    }
+                    // Reset file list
+                    selectedFiles = [];
+                    updateFileList();
+                    updateMergeButton();
                     hideDownload();
                     hideResult();
                     setFormDisabled(false);
