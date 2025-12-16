@@ -366,6 +366,12 @@ class TaskStatusAPIView(APIView):
                 response_data["progress"] = 5
                 response_data["message"] = "Processing started..."
 
+            elif result.status == "REVOKED":
+                # Task was cancelled by user
+                response_data["progress"] = 0
+                response_data["error"] = "Task was cancelled"
+                response_data["cancelled"] = True
+
             return Response(response_data)
 
         except Exception as e:
