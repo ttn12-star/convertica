@@ -121,3 +121,112 @@ def open_pdf_safe(pdf_path: str, repair: bool = True) -> fitz.Document:
             pass  # Fall through to normal open
 
     return fitz.open(pdf_path)
+
+
+def execute_with_repair_fallback(
+    pdf_path: str,
+    operation_func,
+    context: dict | None = None,
+    *args,
+    **kwargs,
+):
+    """Execute a PDF operation with automatic repair fallback.
+
+    Tries the operation directly first (faster). If it fails, repairs the PDF
+    and retries. This avoids unnecessary repair_pdf() calls for clean PDFs,
+    significantly improving performance.
+
+    Args:
+        pdf_path: Path to the input PDF file
+        operation_func: Function to call with signature (pdf_path, *args, **kwargs)
+        context: Optional logging context dict
+        *args, **kwargs: Additional arguments to pass to operation_func
+
+    Returns:
+        Result from operation_func
+
+    Raises:
+        Exception: If operation fails even after repair
+
+    Example:
+        def my_operation(pdf_path, output_path, angle):
+            reader = PdfReader(pdf_path)
+            # ... operation logic ...
+            return output_path
+
+        result = execute_with_repair_fallback(
+            pdf_path="/tmp/input.pdf",
+            operation_func=my_operation,
+            context={"operation": "rotate"},
+            output_path="/tmp/output.pdf",
+            angle=90,
+        )
+    """
+    if context is None:
+        context = {}
+
+    original_pdf_path = pdf_path
+    repair_attempted = False
+
+    # Try up to 2 times: direct first, then with repair
+    for attempt in range(2):
+        try:
+            # On second attempt, repair the PDF first
+            if attempt == 1:
+                logger.warning(
+                    "First attempt failed, retrying with PDF repair",
+                    extra={**context, "attempt": 2, "event": "retry_with_repair"},
+                )
+                # Repair in-place (overwrites original in /tmp/)
+                pdf_path = repair_pdf(original_pdf_path)
+                repair_attempted = True
+
+            # Execute the operation
+            logger.debug(
+                "Executing operation",
+                extra={
+                    **context,
+                    "attempt": attempt + 1,
+                    "with_repair": repair_attempted,
+                    "event": "operation_attempt",
+                },
+            )
+
+            result = operation_func(pdf_path, *args, **kwargs)
+
+            logger.debug(
+                "Operation completed",
+                extra={
+                    **context,
+                    "repaired": repair_attempted,
+                    "event": "operation_success",
+                },
+            )
+
+            return result
+
+        except Exception as e:
+            # If this was first attempt, continue to retry with repair
+            if attempt == 0:
+                logger.debug(
+                    "Direct operation failed, will retry with repair",
+                    extra={
+                        **context,
+                        "first_error": str(e)[:200],
+                        "event": "direct_attempt_failed",
+                    },
+                )
+                continue  # Try again with repair
+
+            # Second attempt also failed - raise the error
+            logger.error(
+                "Operation failed even after repair",
+                extra={
+                    **context,
+                    "error": str(e),
+                    "repair_attempted": True,
+                    "event": "operation_failed",
+                },
+                exc_info=True,
+            )
+            raise
