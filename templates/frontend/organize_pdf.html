@@ -39,17 +39,17 @@
   </div>
 
   <script>
-    window.API_URL = "{{ api_url }}";
+    window.API_URL = "{{ api_url|escapejs }}";
     // Organize PDF translations
-    window.PAGE_LABEL = "{% trans 'Page' %}";
-    window.SELECT_PDF_FILE = "{% trans 'Please select a PDF file.' %}";
-    window.SELECT_PDF_FIRST = "{% trans 'Please select a PDF file first.' %}";
-    window.FAILED_TO_LOAD_PDF = "{% trans 'Failed to load PDF file. Please try again.' %}";
-    window.ORGANIZING = "{% trans 'Organizing...' %}";
-    window.FAILED_TO_ORGANIZE = "{% trans 'Failed to organize PDF' %}";
-    window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
-    window.PATIENCE_TITLE = "{% trans 'Everything is going well!' %}";
-    window.PATIENCE_MESSAGE = "{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}";
+    window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
+    window.SELECT_PDF_FILE = "{% filter escapejs %}{% trans 'Please select a PDF file.' %}{% endfilter %}";
+    window.SELECT_PDF_FIRST = "{% filter escapejs %}{% trans 'Please select a PDF file first.' %}{% endfilter %}";
+    window.FAILED_TO_LOAD_PDF = "{% filter escapejs %}{% trans 'Failed to load PDF file. Please try again.' %}{% endfilter %}";
+    window.ORGANIZING = "{% filter escapejs %}{% trans 'Organizing...' %}{% endfilter %}";
+    window.FAILED_TO_ORGANIZE = "{% filter escapejs %}{% trans 'Failed to organize PDF' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}{% endfilter %}";
+    window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
+    window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
   <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/task-cancellation.js' %}"></script>

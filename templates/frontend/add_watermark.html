@@ -506,25 +506,25 @@
 
 {% block extra_js %}
   <script>
-    window.API_URL = "{{ api_url }}";
+    window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
-    window.SELECT_FILE_MESSAGE = "{{ select_file_message }}";
-    window.FILE_INPUT_NAME = "{{ file_input_name }}";
-    window.REPLACE_REGEX = "{{ replace_regex }}";
-    window.REPLACE_TO = "{{ replace_to }}";
-    window.ERROR_MESSAGE = "{{ error_message|default:'Editing failed. Please try again.' }}";
-    window.LOADING_TITLE = "{% trans 'Processing your file...' %}";
-    window.LOADING_MESSAGE = "{% trans 'Please wait, this may take a few moments' %}";
-    window.SUCCESS_TITLE = "{% trans 'Editing Complete!' %}";
-    window.SUCCESS_MESSAGE = "{% trans 'Your file is ready to download' %}";
-    window.DOWNLOAD_BUTTON_TEXT = "{% trans 'Download File' %}";
-    window.EDIT_ANOTHER_TEXT = "{% trans 'Edit another file' %}";
-    window.ERROR_TITLE = "{% trans 'Error' %}";
-    window.PAGE_LABEL = "{% trans 'Page' %}";
-    window.FAILED_TO_LOAD_PDF = "{% trans 'Failed to load PDF file. Please try again.' %}";
-    window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
-    window.PATIENCE_TITLE = "{% trans 'Everything is going well!' %}";
-    window.PATIENCE_MESSAGE = "{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name|escapejs }}";
+    window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
+    window.REPLACE_TO = "{{ replace_to|escapejs }}";
+    window.ERROR_MESSAGE = "{{ error_message|default:'Editing failed. Please try again.'|escapejs }}";
+    window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Processing your file...' %}{% endfilter %}";
+    window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, this may take a few moments' %}{% endfilter %}";
+    window.SUCCESS_TITLE = "{% filter escapejs %}{% trans 'Editing Complete!' %}{% endfilter %}";
+    window.SUCCESS_MESSAGE = "{% filter escapejs %}{% trans 'Your file is ready to download' %}{% endfilter %}";
+    window.DOWNLOAD_BUTTON_TEXT = "{% filter escapejs %}{% trans 'Download File' %}{% endfilter %}";
+    window.EDIT_ANOTHER_TEXT = "{% filter escapejs %}{% trans 'Edit another file' %}{% endfilter %}";
+    window.ERROR_TITLE = "{% filter escapejs %}{% trans 'Error' %}{% endfilter %}";
+    window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
+    window.FAILED_TO_LOAD_PDF = "{% filter escapejs %}{% trans 'Failed to load PDF file. Please try again.' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}{% endfilter %}";
+    window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
+    window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
   <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/task-cancellation.js' %}"></script>

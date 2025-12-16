@@ -151,22 +151,22 @@
 {% block extra_js %}
 {# Configuration script - must be inline to use Django template variables #}
   <script>
-    window.API_URL = "{{ api_url }}";
+    window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
-    window.SELECT_FILE_MESSAGE = "{{ select_file_message }}";
-    window.FILE_INPUT_NAME = "{{ file_input_name }}";
-    window.REPLACE_REGEX = "{{ replace_regex }}";
-    window.REPLACE_TO = "{{ replace_to }}";
-    window.ERROR_MESSAGE = "{{ error_message|default:'Conversion failed. Please try again.' }}";
-    window.LOADING_TITLE = "{% trans 'Converting your images...' %}";
-    window.LOADING_MESSAGE = "{% trans 'Please wait, this may take a few moments' %}";
-    window.SUCCESS_TITLE = "{% trans 'Conversion Complete!' %}";
-    window.SUCCESS_MESSAGE = "{% trans 'Your PDF is ready to download' %}";
-    window.DOWNLOAD_BUTTON_TEXT = "{% trans 'Download PDF' %}";
-    window.CONVERT_ANOTHER_TEXT = "{% trans 'Convert another file' %}";
-    window.ERROR_TITLE = "{% trans 'Error' %}";
-    window.PATIENCE_TITLE = "{% trans 'Everything is going well!' %}";
-    window.PATIENCE_MESSAGE = "{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name|escapejs }}";
+    window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
+    window.REPLACE_TO = "{{ replace_to|escapejs }}";
+    window.ERROR_MESSAGE = "{{ error_message|default:'Conversion failed. Please try again.'|escapejs }}";
+    window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Converting your images...' %}{% endfilter %}";
+    window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, this may take a few moments' %}{% endfilter %}";
+    window.SUCCESS_TITLE = "{% filter escapejs %}{% trans 'Conversion Complete!' %}{% endfilter %}";
+    window.SUCCESS_MESSAGE = "{% filter escapejs %}{% trans 'Your PDF is ready to download' %}{% endfilter %}";
+    window.DOWNLOAD_BUTTON_TEXT = "{% filter escapejs %}{% trans 'Download PDF' %}{% endfilter %}";
+    window.CONVERT_ANOTHER_TEXT = "{% filter escapejs %}{% trans 'Convert another file' %}{% endfilter %}";
+    window.ERROR_TITLE = "{% filter escapejs %}{% trans 'Error' %}{% endfilter %}";
+    window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
+    window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
 {# External JS files #}
   <script src="{% static 'js/utils.js' %}"></script>
