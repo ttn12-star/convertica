@@ -480,7 +480,9 @@ function updateProgress(targetProgress, message = null) {
     // Animate smoothly to target
     const startProgress = currentWidth;
     const progressDiff = targetProgress - startProgress;
-    const duration = Math.min(500, progressDiff * 20); // 20ms per percent, max 500ms
+    // Increased smoothness: 50ms per percent (was 20ms), max 2000ms (was 500ms)
+    // This creates much smoother, more noticeable animations
+    const duration = Math.min(2000, progressDiff * 50);
     const startTime = performance.now();
 
     function animateProgress(currentTime) {
@@ -577,6 +579,11 @@ async function submitAsyncConversion(options) {
                 throw new Error('No task ID received');
             }
 
+            // Register task for automatic cancellation if user leaves page
+            if (window.registerTaskForCancellation) {
+                window.registerTaskForCancellation(taskId);
+            }
+
             // Poll for task status
             await pollTaskStatus(taskId, {
                 onProgress: (progress, message) => {
@@ -606,6 +613,11 @@ async function submitAsyncConversion(options) {
                     updateProgress(100, 'Complete!');
                     hideLoading(loadingContainerId, true);
 
+                    // Unregister task - no need to cancel anymore
+                    if (window.unregisterTaskForCancellation) {
+                        window.unregisterTaskForCancellation(taskId);
+                    }
+
                     if (onSuccess) {
                         onSuccess(blob, filename);
                     } else {
@@ -623,6 +635,11 @@ async function submitAsyncConversion(options) {
                     }
                 },
                 onError: (error) => {
+                    // Unregister task - no need to cancel anymore
+                    if (window.unregisterTaskForCancellation) {
+                        window.unregisterTaskForCancellation(taskId);
+                    }
+
                     hideLoading(loadingContainerId);
                     const errorMsg = error || 'Conversion failed';
                     showError(errorMsg, errorContainerId);
