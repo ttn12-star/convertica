@@ -1,6 +1,3 @@
-from pathlib import Path
-
-from decouple import config
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
@@ -13,55 +10,6 @@ from django.views.i18n import set_language
 from src.frontend.views import sitemap_index, sitemap_lang
 
 from utils_site.swagger import schema_view
-
-
-@require_http_methods(["GET"])
-@cache_page(3600, key_prefix="robots_txt")
-def robots_txt(request):
-    """Serve robots.txt file with dynamic sitemap URL and admin path."""
-    robots_path = Path(__file__).resolve().parent.parent / "static" / "robots.txt"
-
-    # Determine scheme: prefer X-Forwarded-Proto (from Nginx), fallback to request.scheme
-    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
-    # Force HTTPS in production (if not DEBUG)
-    if not getattr(settings, "DEBUG", False) and scheme == "http":
-        scheme = "https"
-
-    # Use production domain instead of IP address for robots.txt
-    # Fallback to request.get_host() if SITE_DOMAIN not set
-    site_domain = config("SITE_DOMAIN", default=None)
-    if site_domain:
-        base_url = f"{scheme}://{site_domain}"
-    else:
-        base_url = f"{scheme}://{request.get_host()}"
-    admin_path = getattr(settings, "ADMIN_URL_PATH", "admin")
-
-    # Fallback content in case of any errors
-    fallback_content = f"User-agent: *\nAllow: /\n\n# Disallow admin and API endpoints\nDisallow: /{admin_path}/\nDisallow: /api/\n\n# Sitemap\nSitemap: {base_url}/sitemap.xml\n"
-
-    try:
-        # Try to read the static robots.txt file
-        if robots_path.exists() and robots_path.is_file():
-            with open(robots_path, encoding="utf-8") as f:
-                content = f.read()
-
-            # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
-            content = content.replace(
-                "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
-            )
-            content = content.replace(
-                "http://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
-            )
-            # Replace hardcoded admin path with dynamic one
-            content = content.replace("/admin/", f"/{admin_path}/")
-            return HttpResponse(content, content_type="text/plain")
-        else:
-            # File doesn't exist, use fallback without logging error
-            return HttpResponse(fallback_content, content_type="text/plain")
-    except Exception:
-        # Use fallback content for any errors (file read errors, encoding issues, etc.)
-        # Don't log to Sentry - this is not a critical error
-        return HttpResponse(fallback_content, content_type="text/plain")
 
 
 @require_http_methods(["GET"])
@@ -87,7 +35,7 @@ def health_check(request):
 urlpatterns = [
     path("api/", include("src.api.urls")),
     path("i18n/setlang/", set_language, name="set_language"),
-    path("robots.txt", robots_txt, name="robots_txt"),
+    # robots.txt is now served directly by nginx from staticfiles/
     path("health/", health_check, name="health_check"),
     # SEO - sitemaps should be accessible without language prefix
     path("sitemap.xml", sitemap_index, name="sitemap_index"),

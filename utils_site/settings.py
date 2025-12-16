@@ -69,7 +69,6 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
 
                 # Examples: "Invalid HTTP request line: 'SSH-2.0-Go'", "Error handling request /admin/config.php"
                 # Bot scanners look for: .php, .asp, .aspx, .env, .git, wp-admin, etc.
-                # Also filter robots.txt errors as they're handled gracefully with fallback
                 bot_patterns = [
                     ".php",
                     ".asp",
@@ -86,8 +85,6 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                     "admin.php",
                     "Invalid HTTP request line",
                     "SSH-2.0",
-                    "/robots.txt",  # Has fallback content, not critical
-                    "/favicon.ico",  # Static file, not critical
                 ]
                 if any(pattern in full_message for pattern in bot_patterns):
                     return None
