@@ -16,6 +16,7 @@ from utils_site.swagger import schema_view
 
 
 @require_http_methods(["GET"])
+@cache_page(3600, key_prefix="robots_txt")
 def robots_txt(request):
     """Serve robots.txt file with dynamic sitemap URL and admin path."""
     robots_path = Path(__file__).resolve().parent.parent / "static" / "robots.txt"
@@ -35,29 +36,32 @@ def robots_txt(request):
         base_url = f"{scheme}://{request.get_host()}"
     admin_path = getattr(settings, "ADMIN_URL_PATH", "admin")
 
-    try:
-        with open(robots_path, encoding="utf-8") as f:
-            content = f.read()
+    # Fallback content in case of any errors
+    fallback_content = f"User-agent: *\nAllow: /\n\n# Disallow admin and API endpoints\nDisallow: /{admin_path}/\nDisallow: /api/\n\n# Sitemap\nSitemap: {base_url}/sitemap.xml\n"
 
-        # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
-        content = content.replace(
-            "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
-        )
-        content = content.replace(
-            "http://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
-        )
-        # Replace hardcoded admin path with dynamic one
-        content = content.replace("/admin/", f"/{admin_path}/")
-        return HttpResponse(content, content_type="text/plain")
-    except (FileNotFoundError, OSError):
-        # Fallback content if file not found or can't be read
-        robots_content = f"User-agent: *\nAllow: /\n\n# Disallow admin and API endpoints\nDisallow: /{admin_path}/\nDisallow: /api/\n\n# Sitemap\nSitemap: {base_url}/sitemap.xml\n"
-        return HttpResponse(robots_content, content_type="text/plain")
+    try:
+        # Try to read the static robots.txt file
+        if robots_path.exists() and robots_path.is_file():
+            with open(robots_path, encoding="utf-8") as f:
+                content = f.read()
+
+            # Replace hardcoded sitemap URL with dynamic one (handle both http and https)
+            content = content.replace(
+                "https://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
+            )
+            content = content.replace(
+                "http://convertica.net/sitemap.xml", f"{base_url}/sitemap.xml"
+            )
+            # Replace hardcoded admin path with dynamic one
+            content = content.replace("/admin/", f"/{admin_path}/")
+            return HttpResponse(content, content_type="text/plain")
+        else:
+            # File doesn't exist, use fallback without logging error
+            return HttpResponse(fallback_content, content_type="text/plain")
     except Exception:
-        # Catch-all for any other errors
-        return HttpResponse(
-            "ERROR: Server error", content_type="text/plain", status=503
-        )
+        # Use fallback content for any errors (file read errors, encoding issues, etc.)
+        # Don't log to Sentry - this is not a critical error
+        return HttpResponse(fallback_content, content_type="text/plain")
 
 
 @require_http_methods(["GET"])
