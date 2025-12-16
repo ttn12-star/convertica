@@ -1235,6 +1235,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         editButton.disabled = true;
                     }
 
+                    // Hide preview sections
+                    const pdfPreviewSection = document.getElementById('pdfPreviewSection');
+                    const watermarkSettingsSection = document.getElementById('watermarkSettingsSection');
+                    if (pdfPreviewSection) {
+                        pdfPreviewSection.classList.add('hidden');
+                    }
+                    if (watermarkSettingsSection) {
+                        watermarkSettingsSection.classList.add('hidden');
+                    }
+
                     hideDownload();
                     hideResult();
                     setFormDisabled(false);
