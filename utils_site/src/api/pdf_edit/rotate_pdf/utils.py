@@ -118,9 +118,8 @@ def rotate_pdf(
                 validation_error or "Invalid PDF file", context=context
             )
 
-        # Optimization: Skip repair for speed (pypdf handles most PDFs fine)
-        # Repair only if needed (uncomment if users report issues):
-        # pdf_path = repair_pdf(pdf_path)
+        # Repair PDF to handle potentially corrupted files
+        pdf_path = repair_pdf(pdf_path)
 
         # Rotate PDF
         try:
