@@ -579,6 +579,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (pdfPreviewSection) {
                         pdfPreviewSection.classList.add('hidden');
                     }
+                    // Hide selected files container
+                    const selectedPdfFilesContainer = document.getElementById('selectedPdfFilesContainer');
+                    if (selectedPdfFilesContainer) {
+                        selectedPdfFilesContainer.classList.add('hidden');
+                    }
                     // Reset file list
                     selectedFiles = [];
                     updateFileList();
@@ -586,18 +591,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     hideDownload();
                     hideResult();
                     setFormDisabled(false);
-                    // Scroll to top first, then focus
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
+
+                    // Scroll to top after DOM updates complete
+                    requestAnimationFrame(() => {
+                        window.scrollTo(0, 0);
+                        // Focus on the correct button for merge page
+                        setTimeout(() => {
+                            const selectPdfFilesButton = document.getElementById('selectPdfFilesButton');
+                            if (selectPdfFilesButton) {
+                                selectPdfFilesButton.focus({ preventScroll: true });
+                            }
+                        }, 100);
                     });
-                    // Focus on the correct button for merge page
-                    setTimeout(() => {
-                        const selectPdfFilesButton = document.getElementById('selectPdfFilesButton');
-                        if (selectPdfFilesButton) {
-                            selectPdfFilesButton.focus({ preventScroll: true });
-                        }
-                    }, 800);
                 }
             });
             setFormDisabled(false);
