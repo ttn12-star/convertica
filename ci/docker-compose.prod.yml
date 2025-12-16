@@ -67,7 +67,9 @@ services:
       resources:
         limits:
           cpus: '${CELERY_CPU_LIMIT:-0.5}'
-          memory: ${CELERY_MEMORY_LIMIT:-512M}
+          # Increased from 512M to 1G for heavy PDF operations (image-heavy files)
+          # PDF to Word/Excel can use 500-800MB for large files
+          memory: ${CELERY_MEMORY_LIMIT:-1G}
         reservations:
           cpus: '${CELERY_CPU_RESERVATION:-0.2}'
           memory: ${CELERY_MEMORY_RESERVATION:-256M}
