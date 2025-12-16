@@ -414,7 +414,7 @@ MIN_DPI = 72  # Minimum DPI for PDF to image conversion
 
 # UI Settings
 # Time in seconds before showing "patience message" during long conversions
-PATIENCE_MESSAGE_DELAY = config("PATIENCE_MESSAGE_DELAY", default=40, cast=int)
+PATIENCE_MESSAGE_DELAY = config("PATIENCE_MESSAGE_DELAY", default=60, cast=int)
 # Polling interval for async task status (milliseconds)
 ASYNC_POLL_INTERVAL = config("ASYNC_POLL_INTERVAL", default=2500, cast=int)
 
