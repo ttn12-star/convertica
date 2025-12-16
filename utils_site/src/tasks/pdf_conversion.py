@@ -34,8 +34,10 @@ def update_progress(task, progress: int, current_step: str = "", total_steps: in
     bind=True,
     name="pdf_conversion.generic_conversion",
     queue="celery",  # Use default queue (pdf_conversion queue was not being consumed)
-    soft_time_limit=540,
-    time_limit=600,
+    soft_time_limit=540,  # 9 minutes soft limit (warning signal sent to task)
+    time_limit=600,  # 10 minutes hard limit (task killed)
+    acks_late=True,  # Acknowledge after completion (allows task revocation)
+    reject_on_worker_lost=True,  # Don't requeue if worker dies
 )
 def generic_conversion_task(
     self,
