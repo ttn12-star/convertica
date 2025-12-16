@@ -95,6 +95,19 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             if "/health" in url:
                 return None
 
+            # Drop celery-beat INFO logs (e.g. "beat: Starting...")
+            # These are normal operational logs, not errors
+            if event.get("logger") == "celery.beat" and event.get("level") == "info":
+                return None
+
+            # Drop Celery INFO logs in general to reduce noise
+            # We only care about warnings and errors
+            if (
+                event.get("logger", "").startswith("celery.")
+                and event.get("level") == "info"
+            ):
+                return None
+
             return event
 
         sentry_sdk.init(
