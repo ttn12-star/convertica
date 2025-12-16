@@ -14,6 +14,7 @@ services:
     command: >
       sh -c "python /app/clear_staticfiles.py || true &&
              python manage.py collectstatic --noinput &&
+             python /app/ci/generate_robots_txt.py || true &&
              python /app/create_manifest.py || true &&
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
              python manage.py compilemessages &&
