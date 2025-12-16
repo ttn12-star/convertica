@@ -110,17 +110,17 @@
 
   <script>
     // Merge PDF translations
-    window.PAGE_LABEL = "{% trans 'Page' %}";
-    window.FILE_NOT_PDF = "{% trans 'is not a PDF file. Skipping.' %}";
-    window.MAX_FILES_EXCEEDED = "{% trans 'Maximum 10 files allowed. Only the first 10 files will be used.' %}";
-    window.ERROR_LOADING_PREVIEW = "{% trans 'Error loading preview' %}";
-    window.LOADING_PREVIEW = "{% trans 'Loading...' %}";
-    window.FAILED_TO_LOAD_PDF = "{% trans 'Failed to load PDF file. Please try again.' %}";
-    window.MERGING_PDFS = "{% trans 'Merging PDFs...' %}";
-    window.SELECT_AT_LEAST_2_FILES = "{% trans 'Please select at least 2 PDF files to merge.' %}";
-    window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
-    window.PATIENCE_TITLE = "{% trans 'Everything is going well!' %}";
-    window.PATIENCE_MESSAGE = "{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}";
+    window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
+    window.FILE_NOT_PDF = "{% filter escapejs %}{% trans 'is not a PDF file. Skipping.' %}{% endfilter %}";
+    window.MAX_FILES_EXCEEDED = "{% filter escapejs %}{% trans 'Maximum 10 files allowed. Only the first 10 files will be used.' %}{% endfilter %}";
+    window.ERROR_LOADING_PREVIEW = "{% filter escapejs %}{% trans 'Error loading preview' %}{% endfilter %}";
+    window.LOADING_PREVIEW = "{% filter escapejs %}{% trans 'Loading...' %}{% endfilter %}";
+    window.FAILED_TO_LOAD_PDF = "{% filter escapejs %}{% trans 'Failed to load PDF file. Please try again.' %}{% endfilter %}";
+    window.MERGING_PDFS = "{% filter escapejs %}{% trans 'Merging PDFs...' %}{% endfilter %}";
+    window.SELECT_AT_LEAST_2_FILES = "{% filter escapejs %}{% trans 'Please select at least 2 PDF files to merge.' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}{% endfilter %}";
+    window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
+    window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
   <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/task-cancellation.js' %}"></script>
