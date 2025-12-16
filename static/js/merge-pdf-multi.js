@@ -586,14 +586,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     hideDownload();
                     hideResult();
                     setFormDisabled(false);
+                    // Scroll to top first, then focus
                     window.scrollTo({
                         top: 0,
                         behavior: 'smooth'
                     });
+                    // Focus on the correct button for merge page
                     setTimeout(() => {
-                        const selectFileButton = document.getElementById('selectFileButton');
-                        if (selectFileButton) {
-                            selectFileButton.focus();
+                        const selectPdfFilesButton = document.getElementById('selectPdfFilesButton');
+                        if (selectPdfFilesButton) {
+                            selectPdfFilesButton.focus({ preventScroll: true });
                         }
                     }, 800);
                 }

@@ -1078,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         const selectFileButton = document.getElementById('selectFileButton');
                         if (selectFileButton) {
-                            selectFileButton.focus();
+                            selectFileButton.focus({ preventScroll: true });
                         }
                     }, 800);
                 }
