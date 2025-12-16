@@ -106,8 +106,8 @@ def crop_pdf(
                 validation_error or "Invalid PDF file", context=context
             )
 
-        # Repair PDF to handle potentially corrupted files
-        pdf_path = repair_pdf(pdf_path)
+        # Optimization: Skip repair for speed (PyMuPDF/pypdf handles most PDFs)
+        # Uncomment if users report corrupted PDF issues: pdf_path = repair_pdf(pdf_path)
 
         # Crop PDF
         try:
