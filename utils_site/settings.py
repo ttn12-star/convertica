@@ -108,6 +108,20 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             ):
                 return None
 
+            # Drop WorkerLostError from task cancellation
+            # These are expected when users cancel tasks (close page/tab)
+            # We use SIGTERM for graceful cancellation
+            if "exc_info" in hint:
+                exc_type = hint["exc_info"][0]
+                if exc_type and exc_type.__name__ == "WorkerLostError":
+                    # Check if this is from user cancellation (SIGTERM)
+                    exc_value = str(hint["exc_info"][1])
+                    if "SIGTERM" in exc_value or "signal 15" in exc_value:
+                        # User cancelled - don't send to Sentry
+                        return None
+                    # SIGKILL (signal 9) might be OOM killer - keep those errors
+                    # They indicate memory issues that need attention
+
             return event
 
         sentry_sdk.init(

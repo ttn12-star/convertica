@@ -48,13 +48,18 @@ def cancel_task(request):
 
         # Check if task exists and is active
         if task_result.state in ("PENDING", "PROGRESS", "STARTED"):
-            # Revoke the task (terminate=True stops the worker immediately)
-            # Note: This works best with Redis as broker (immediate termination)
-            celery_app.control.revoke(task_id, terminate=True, signal="SIGKILL")
+            # Revoke the task with SIGTERM for graceful shutdown
+            # SIGTERM allows the task to cleanup (unlike SIGKILL which kills immediately)
+            # This prevents "WorkerLostError" spam in Sentry
+            celery_app.control.revoke(task_id, terminate=True, signal="SIGTERM")
 
             logger.info(
                 "Task cancelled by user",
-                extra={"task_id": task_id, "state": task_result.state},
+                extra={
+                    "task_id": task_id,
+                    "state": task_result.state,
+                    "event": "user_task_cancellation",
+                },
             )
 
             return JsonResponse(
