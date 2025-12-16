@@ -11,7 +11,7 @@ import os
 import shutil
 
 from celery import shared_task
-from celery.exceptions import Ignore
+from celery.exceptions import Ignore, SoftTimeLimitExceeded
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from src.api.cancel_task_view import clear_task_cancelled, is_task_cancelled
@@ -22,8 +22,6 @@ logger = get_logger(__name__)
 
 class TaskCancelledException(Exception):
     """Raised when a task has been cancelled by the user."""
-
-    pass
 
 
 def check_task_cancelled(task_id: str) -> None:
@@ -82,6 +80,7 @@ def generic_conversion_task(
     # Use the task_id parameter (same as self.request.id, but explicit)
     # This is what the frontend uses to cancel
     cancellation_id = task_id
+    task_completed_successfully = False
 
     try:
         # Check cancellation before starting
@@ -267,6 +266,9 @@ def generic_conversion_task(
 
         update_progress(self, 100, "Complete!", 5)
 
+        # Mark task as successfully completed
+        task_completed_successfully = True
+
         # Clear cancelled flag if task completed successfully
         clear_task_cancelled(cancellation_id)
 
@@ -290,6 +292,38 @@ def generic_conversion_task(
         # Use Ignore to not record as failure
         raise Ignore()
 
+    except SoftTimeLimitExceeded:
+        # Task exceeded soft time limit - check if it was user cancellation
+        logger.warning(
+            f"Task {cancellation_id} exceeded soft time limit",
+            extra={"conversion_type": conversion_type},
+        )
+
+        # Check if this was due to user cancellation
+        if is_task_cancelled(cancellation_id):
+            logger.info(
+                f"Task {cancellation_id} cancelled during conversion, cleaning up"
+            )
+            try:
+                if task_dir and os.path.isdir(task_dir):
+                    shutil.rmtree(task_dir, ignore_errors=True)
+            except Exception:
+                pass
+            raise Ignore()
+
+        # Otherwise, it's a legitimate timeout - let it fail
+        # Cleanup temp files before raising
+        try:
+            if task_dir and os.path.isdir(task_dir):
+                shutil.rmtree(task_dir, ignore_errors=True)
+        except Exception:
+            pass
+        raise self.retry(
+            exc=SoftTimeLimitExceeded("Task exceeded time limit"),
+            countdown=60,
+            max_retries=0,
+        )
+
     except Exception as exc:
         logger.error(f"Conversion {conversion_type} failed: {str(exc)}", exc_info=True)
 
@@ -307,6 +341,29 @@ def generic_conversion_task(
 
         # Retry for transient errors
         raise self.retry(exc=exc, countdown=30, max_retries=2)
+
+    finally:
+        # Cleanup if task was interrupted (SIGTERM from revoke)
+        # This runs even if the task was killed
+        if not task_completed_successfully:
+            # Task was interrupted - check if it was user cancellation
+            if is_task_cancelled(cancellation_id):
+                logger.info(
+                    f"Task {cancellation_id} was interrupted (likely SIGTERM), cleaning up",
+                    extra={"conversion_type": conversion_type},
+                )
+            else:
+                logger.warning(
+                    f"Task {cancellation_id} was interrupted unexpectedly",
+                    extra={"conversion_type": conversion_type},
+                )
+
+            # Cleanup temp files
+            try:
+                if task_dir and os.path.isdir(task_dir):
+                    shutil.rmtree(task_dir, ignore_errors=True)
+            except Exception as e:
+                logger.error(f"Failed to cleanup task dir {task_dir}: {e}")
 
 
 # Legacy tasks for backwards compatibility
