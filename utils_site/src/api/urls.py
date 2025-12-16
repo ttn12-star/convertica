@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .async_views import TaskResultAPIView, TaskStatusAPIView
+from .cancel_task_view import cancel_task
 from .pdf_convert.async_views import (
     PDFToExcelAsyncAPIView,
     PDFToJPGAsyncAPIView,
@@ -34,6 +35,8 @@ urlpatterns = [
     path(
         "tasks/<str:task_id>/result/", TaskResultAPIView.as_view(), name="task_result"
     ),
+    # Cancel running task
+    path("cancel-task/", cancel_task, name="cancel_task"),
     # Sync endpoints (for small files / fast operations)
     path("pdf-to-word/", PDFToWordAPIView.as_view(), name="pdf_to_word_api"),
     path("word-to-pdf/", WordToPDFAPIView.as_view(), name="word_to_pdf_api"),
