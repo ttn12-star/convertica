@@ -4,8 +4,13 @@ import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
-from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
+from ....exceptions import (
+    ConversionError,
+    EncryptedPDFError,
+    InvalidPDFError,
+    StorageError,
+)
 from ...file_validation import (
     check_disk_space,
     sanitize_filename,
@@ -15,6 +20,10 @@ from ...file_validation import (
 from ...logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+# Magic numbers for DOCX/DOC validation
+DOCX_MAGIC = b"PK\x03\x04"
+DOC_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
 
 
 def _check_libreoffice_available() -> bool:
@@ -31,34 +40,33 @@ def _check_libreoffice_available() -> bool:
         return False
 
 
+def _validate_magic_number(uploaded_file: UploadedFile) -> None:
+    """Quickly validate Word file magic number before writing."""
+    try:
+        header = uploaded_file.read(16)
+        uploaded_file.seek(0)
+        if header.startswith(DOCX_MAGIC) or header.startswith(DOC_MAGIC):
+            return
+        else:
+            raise InvalidPDFError("File does not appear to be a valid Word document")
+    except Exception as e:
+        raise InvalidPDFError(f"Failed to validate Word file: {e}") from e
+
+
 def convert_word_to_pdf(
     uploaded_file: UploadedFile, suffix: str = "_convertica"
 ) -> tuple[str, str]:
-    """Convert DOC/DOCX → PDF using LibreOffice headless mode.
+    """Convert DOC/DOCX → PDF using LibreOffice headless mode (optimized)."""
 
-    Args:
-        uploaded_file (UploadedFile): Word file (.doc/.docx)
-        suffix (str): Suffix to append to output PDF filename.
-
-    Returns:
-        Tuple[str, str]: (path to original Word file, path to generated PDF)
-
-    Raises:
-        StorageError, ConversionError, InvalidPDFError
-    """
     tmp_dir = tempfile.mkdtemp(prefix="doc2pdf_")
 
-    # Get original filename for logging
     original_filename = uploaded_file.name if uploaded_file.name else "unknown"
-
-    # Sanitize filename for filesystem safety
     safe_name = sanitize_filename(
         get_valid_filename(os.path.basename(original_filename))
     )
 
-    # Ensure we have a valid extension
+    # Ensure proper extension
     if not safe_name.lower().endswith((".doc", ".docx")):
-        # Try to preserve extension from original filename
         original_ext = os.path.splitext(original_filename)[1].lower()
         if original_ext in (".doc", ".docx"):
             safe_name = os.path.splitext(safe_name)[0] + original_ext
@@ -72,6 +80,9 @@ def convert_word_to_pdf(
     }
 
     try:
+        # Quick magic number check before writing
+        _validate_magic_number(uploaded_file)
+
         # Check if LibreOffice is available
         if not _check_libreoffice_available():
             logger.error(
@@ -82,7 +93,7 @@ def convert_word_to_pdf(
                 "LibreOffice is not installed or not available in PATH", context=context
             )
 
-        # Check disk space
+        # Check disk space before writing
         disk_check, disk_error = check_disk_space(tmp_dir, required_mb=200)
         if not disk_check:
             raise StorageError(disk_error or "Insufficient disk space", context=context)
@@ -92,25 +103,19 @@ def convert_word_to_pdf(
         pdf_name = f"{base_name}{suffix}.pdf"
         pdf_path = os.path.join(tmp_dir, pdf_name)
 
-        context.update(
-            {
-                "docx_path": docx_path,
-                "pdf_path": pdf_path,
-            }
-        )
+        context.update({"docx_path": docx_path, "pdf_path": pdf_path})
 
-        # Write uploaded file to temp
+        # Write uploaded file to temp in controlled chunks
         try:
             logger.debug(
                 "Writing Word file to temporary location",
                 extra={**context, "event": "file_write_start"},
             )
             with open(docx_path, "wb") as f:
-                bytes_written = 0
-                for chunk in uploaded_file.chunks():
+                for chunk in uploaded_file.chunks(
+                    chunk_size=512 * 1024
+                ):  # 512 KB chunks
                     f.write(chunk)
-                    bytes_written += len(chunk)
-            context["bytes_written"] = bytes_written
             logger.debug(
                 "File written successfully",
                 extra={**context, "event": "file_write_success"},
@@ -126,56 +131,28 @@ def convert_word_to_pdf(
                 context={**context, "error_type": type(err).__name__},
             ) from err
 
-        # Validate Word file before conversion
+        # Validate Word file after writing
         is_valid, validation_error = validate_word_file(docx_path, context)
         if not is_valid:
-            # Log file details for debugging
-            try:
-                file_size = os.path.getsize(docx_path)
-                with open(docx_path, "rb") as f:
-                    header_bytes = f.read(16)
-                    header_hex = header_bytes.hex()
-
-                logger.warning(
-                    "Word file validation failed",
-                    extra={
-                        **context,
-                        "validation_error": validation_error,
-                        "file_size": file_size,
-                        "header_hex": header_hex,
-                        "event": "word_validation_failed",
-                    },
-                )
-            except Exception as log_err:
-                logger.warning(
-                    "Could not log file details",
-                    extra={**context, "log_error": str(log_err)},
-                )
-
             raise InvalidPDFError(
                 validation_error or "Invalid Word file structure", context=context
             )
 
-        # Perform LibreOffice conversion with improved settings
+        # Perform LibreOffice conversion
         logger.info(
             "Starting LibreOffice conversion",
             extra={**context, "event": "conversion_start"},
         )
         try:
-            # Use improved LibreOffice parameters to preserve page layout
             env = os.environ.copy()
-            env["SAL_DEFAULT_PAPER"] = "A4"  # Force A4 to avoid page count drift
-            env["SAL_DISABLE_CUPS"] = "1"  # Avoid printer defaults changing paper size
-            # PDF export filter parameters to preserve exact page layout
-            # UseTaggedPDF=0 - disable tagging for better compatibility
-            # SelectPdfVersion=1 - PDF 1.4 for better compatibility
-            # Quality=100 - maximum quality
-            # MaxImageResolution=300 - high resolution for images
-            # EmbedStandardFonts=1 - embed fonts to preserve layout
+            env["SAL_DEFAULT_PAPER"] = "A4"
+            env["SAL_DISABLE_CUPS"] = "1"
+
             pdf_filter_params = (
                 "UseTaggedPDF=0,SelectPdfVersion=1,Quality=100,"
                 "MaxImageResolution=300,EmbedStandardFonts=1"
             )
+
             result = subprocess.run(
                 [
                     "libreoffice",
@@ -194,30 +171,24 @@ def convert_word_to_pdf(
                 check=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                timeout=600,  # 10 minute timeout (increased for large files)
-                cwd=tmp_dir,  # Set working directory
+                timeout=600,
+                cwd=tmp_dir,
                 env=env,
             )
             stdout = result.stdout.decode("utf-8", errors="ignore")
             stderr = result.stderr.decode("utf-8", errors="ignore")
-
             logger.debug(
                 "LibreOffice conversion completed",
                 extra={
                     **context,
                     "event": "libreoffice_complete",
-                    "stdout": stdout[:500] if stdout else None,
-                    "stderr": stderr[:500] if stderr else None,
+                    "stdout": stdout[:200],
+                    "stderr": stderr[:200],
                 },
             )
         except subprocess.TimeoutExpired as e:
-            logger.error(
-                "LibreOffice conversion timeout",
-                extra={**context, "event": "conversion_timeout", "timeout": 600},
-                exc_info=True,
-            )
             raise ConversionError(
-                "LibreOffice conversion timed out after 10 minutes. File may be too large or complex.",
+                "LibreOffice conversion timed out after 10 minutes",
                 context={**context, "error_type": "TimeoutExpired"},
             ) from e
         except subprocess.CalledProcessError as e:
@@ -226,92 +197,42 @@ def convert_word_to_pdf(
                 if e.stderr
                 else "Unknown error"
             )
-            stdout = e.stdout.decode("utf-8", errors="ignore") if e.stdout else ""
-
-            # Enhanced error detection
-            error_msg = stderr.lower()
-            if "password" in error_msg or "protected" in error_msg:
-                logger.warning(
-                    "Word file appears to be password-protected",
-                    extra={
-                        **context,
-                        "event": "protected_file_error",
-                        "stderr": stderr[:500],
-                    },
-                )
+            if "password" in stderr.lower() or "protected" in stderr.lower():
                 raise ConversionError(
                     "Word file is password-protected and cannot be converted",
                     context={**context, "error_type": "ProtectedFile"},
                 ) from e
-
-            logger.error(
-                "LibreOffice conversion failed",
-                extra={
-                    **context,
-                    "event": "conversion_error",
-                    "return_code": e.returncode,
-                    "stderr": stderr[:500],
-                    "stdout": stdout[:500] if stdout else None,
-                },
-                exc_info=True,
-            )
             raise ConversionError(
                 f"LibreOffice conversion failed: {stderr[:200]}",
-                context={
-                    **context,
-                    "error_type": "CalledProcessError",
-                    "return_code": e.returncode,
-                },
+                context={**context, "error_type": "CalledProcessError"},
             ) from e
 
-        # Verify output file exists with improved search
+        # Verify output PDF exists
         if not os.path.exists(pdf_path):
-            # LibreOffice might create PDF with different name (especially for .doc files)
-            # Search for any PDF file in the directory
             pdf_files = [f for f in os.listdir(tmp_dir) if f.endswith(".pdf")]
-
             if pdf_files:
-                # Prefer file that starts with base_name, otherwise take first PDF
                 preferred = [f for f in pdf_files if f.startswith(base_name)]
                 found_file = preferred[0] if preferred else pdf_files[0]
                 pdf_path = os.path.join(tmp_dir, found_file)
-
                 logger.info(
                     "PDF file found with alternative name",
                     extra={
                         **context,
                         "event": "pdf_found_alternative",
                         "found_filename": found_file,
-                        "all_pdfs": pdf_files,
                     },
                 )
             else:
-                logger.error(
-                    "PDF output file not created",
-                    extra={
-                        **context,
-                        "event": "output_file_missing",
-                        "tmp_dir_contents": os.listdir(tmp_dir),
-                    },
-                )
                 raise ConversionError(
                     "PDF output file not created. LibreOffice conversion may have failed.",
                     context=context,
                 )
 
-        # Validate output PDF file
+        # Validate output PDF
         is_valid, validation_error = validate_output_file(
             pdf_path, min_size=500, context=context
         )
         if not is_valid:
-            logger.error(
-                "Output PDF validation failed",
-                extra={
-                    **context,
-                    "validation_error": validation_error,
-                    "event": "output_validation_failed",
-                },
-            )
             raise ConversionError(
                 validation_error or "Output PDF file is invalid", context=context
             )
@@ -323,17 +244,14 @@ def convert_word_to_pdf(
                 **context,
                 "event": "conversion_success",
                 "output_size": output_size,
-                "output_size_mb": round(output_size / (1024 * 1024), 2),
             },
         )
 
         return docx_path, pdf_path
 
     except (StorageError, ConversionError, InvalidPDFError):
-        # Re-raise our custom exceptions
         raise
     except Exception as e:
-        # Catch any unexpected errors
         logger.exception(
             "Unexpected error during Word to PDF conversion",
             extra={
