@@ -587,7 +587,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Reset file list
                     selectedFiles = [];
                     updateFileList();
-                    updateMergeButton();
+                    updateButtons();
                     hideDownload();
                     hideResult();
                     setFormDisabled(false);
