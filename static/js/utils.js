@@ -736,6 +736,11 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
                     onError(data.error || 'Conversion failed');
                     break;
 
+                case 'REVOKED':
+                    // Task was cancelled (e.g., user closed the page)
+                    onError(data.error || 'Task was cancelled');
+                    break;
+
                 case 'PROGRESS':
                     onProgress(data.progress || 0, data.current_step || 'Processing...');
                     setTimeout(poll, pollInterval);
