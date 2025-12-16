@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     setTimeout(() => {
                         if (selectFileButton) {
-                            selectFileButton.focus();
+                            selectFileButton.focus({ preventScroll: true });
                         }
                     }, 800);
                 }
