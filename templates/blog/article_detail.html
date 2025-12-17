@@ -248,13 +248,13 @@
               </div>
             {% endif %}
 
-            <div class="article-card rounded-3xl p-8 sm:p-10 md:p-12 lg:p-16 animate-fade-in-up">
+            <div class="article-card rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 animate-fade-in-up">
               <div class="article-content prose prose-lg max-w-none
                           prose-headings:font-extrabold prose-headings:text-gray-900 prose-headings:leading-tight
-                          prose-h1:text-4xl prose-h1:mb-8 prose-h1:mt-0
+                          prose-h1:text-4xl prose-h1:mb-4 prose-h1:mt-0
                           prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-12
                           prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-8
-                          prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-base
+                          prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4 prose-p:mt-0 prose-p:text-base
                           prose-a:text-blue-600 prose-a:font-semibold prose-a:no-underline
                           prose-strong:text-gray-900 prose-strong:font-bold
                           prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-6 prose-ul:space-y-2
@@ -266,6 +266,18 @@
                           prose-img:rounded-xl prose-img:shadow-2xl prose-img:my-10 prose-img:border-4 prose-img:border-gray-100">
                 {{ article.get_content|safe }}
               </div>
+
+              <!-- Relevant Tool Section -->
+              {% if article.get_relevant_tool_url %}
+                <div class="my-12 text-center">
+                  <a href="{{ article.get_relevant_tool_url }}" class="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors text-lg">
+                    <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    {{ article.get_relevant_tool_name }}
+                  </a>
+                </div>
+              {% endif %}
             </div>
 
                     <!-- Related Articles with Modern Design -->
