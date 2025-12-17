@@ -117,7 +117,16 @@ class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         (
             _("Basic Information"),
-            {"fields": ("title_en", "slug", "category", "status", "published_at")},
+            {
+                "fields": (
+                    "title_en",
+                    "slug",
+                    "category",
+                    "status",
+                    "published_at",
+                    "relevant_tool",
+                )
+            },
         ),
         (_("English Content"), {"fields": ("content_en", "excerpt_en")}),
         (
