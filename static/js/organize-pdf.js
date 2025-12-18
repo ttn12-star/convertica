@@ -17,12 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfPreviewSection = document.getElementById('pdfPreviewSection');
     const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
     const editButton = document.getElementById('editButton');
+    const dropZone = document.getElementById('dropZone');
+    const removeFileButton = document.getElementById('removeFile');
 
     let pdfDoc = null;
     let pdfFile = null;
     let pageOrder = [];
     let draggedElement = null;
     let dragHandlers = new Map();
+    let isProcessingFile = false;
 
     // File input handlers - standard approach
     if (fileInput) {
@@ -41,22 +44,130 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Drag and drop handlers for dropZone
+    if (dropZone) {
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        dropZone.addEventListener('drop', handleDrop, false);
+    }
+
+    // Remove file button handler
+    if (removeFileButton) {
+        removeFileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Reset processing flag
+            isProcessingFile = false;
+
+            // Clear file inputs
+            if (fileInput) fileInput.value = '';
+            if (fileInputDrop) fileInputDrop.value = '';
+
+            // Clear file reference and preview
+            pdfFile = null;
+            cleanupPreviousPDF();
+
+            // Hide preview section
+            if (pdfPreviewSection) {
+                pdfPreviewSection.classList.add('hidden');
+            }
+
+            // Hide selected file display
+            const selectedFileDiv = document.getElementById('selectedFile');
+            if (selectedFileDiv) {
+                selectedFileDiv.classList.add('hidden');
+            }
+
+            // Disable edit button
+            if (editButton) {
+                editButton.disabled = true;
+                editButton.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        });
+    }
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight(e) {
+        dropZone.classList.add('border-blue-500', 'bg-blue-50');
+        dropZone.classList.remove('border-gray-300', 'bg-gray-50');
+    }
+
+    function unhighlight(e) {
+        dropZone.classList.remove('border-blue-500', 'bg-blue-50');
+        dropZone.classList.add('border-gray-300', 'bg-gray-50');
+    }
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+
+        if (files && files.length > 0) {
+            handleFileSelect(files[0]);
+        }
+    }
+
     async function handleFileSelect(file) {
         if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
             window.showError(window.SELECT_PDF_FILE || 'Please select a PDF file.', 'errorMessage');
             return;
         }
 
-        // Store file reference but keep it in input for base template
-        pdfFile = file;
+        // Prevent multiple file processing
+        if (isProcessingFile) {
+            console.log('Organize PDF: Already processing file, ignoring duplicate');
+            return;
+        }
 
-        // Cleanup previous PDF if exists
-        cleanupPreviousPDF();
-
-        // Clear any previous errors when selecting a new file
-        clearError();
+        isProcessingFile = true;
 
         try {
+            // Store file reference and sync file inputs
+            pdfFile = file;
+
+            // Sync file inputs
+            if (fileInput) {
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                fileInput.files = dataTransfer.files;
+            }
+            if (fileInputDrop) {
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                fileInputDrop.files = dataTransfer.files;
+            }
+
+            // Show selected file display
+            const selectedFileDiv = document.getElementById('selectedFile');
+            const fileNameElement = document.getElementById('fileName');
+            const fileSizeElement = document.getElementById('fileSize');
+
+            if (selectedFileDiv && fileNameElement && fileSizeElement) {
+                fileNameElement.textContent = file.name;
+                fileSizeElement.textContent = window.formatFileSize ? window.formatFileSize(file.size) : `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+                selectedFileDiv.classList.remove('hidden');
+            }
+
+            // Cleanup previous PDF if exists
+            cleanupPreviousPDF();
+
+            // Clear any previous errors when selecting a new file
+            clearError();
+
             // Show preview section
             if (pdfPreviewSection) {
                 pdfPreviewSection.classList.remove('hidden');
@@ -96,6 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error loading PDF:', error);
             }
             window.showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.', 'errorMessage');
+        } finally {
+            // Reset processing flag
+            isProcessingFile = false;
         }
     }
 
