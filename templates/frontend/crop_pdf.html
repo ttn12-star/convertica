@@ -11,9 +11,12 @@
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
 {% block extra_head %}
-<!-- PDF.js for rendering PDF pages -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" as="script" crossorigin>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <link rel="preload"
+        href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+        as="script"
+        crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
   <style>
     .crop-selection {
       position: absolute;
