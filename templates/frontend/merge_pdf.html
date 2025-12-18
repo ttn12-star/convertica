@@ -2,9 +2,12 @@
 {% load i18n static %}
 
 {% block extra_head %}
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" as="script" crossorigin>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-  <link rel="stylesheet" href="{% static 'css/pdf-preview.css' %}">
+  <link rel="preload"
+        href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+        as="script"
+        crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block edit_options %}

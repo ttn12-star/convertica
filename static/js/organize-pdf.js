@@ -1,9 +1,14 @@
 /**
- * Organize PDF Component
- * Handles PDF file selection, page thumbnails display, drag-and-drop reordering, and submission
+ * Organize PDF Tool
+ * Simple approach like other PDF tools
  */
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('editorForm') || document.getElementById('converterForm');
+    // Set up PDF.js worker
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    const form = document.getElementById('editorForm');
     if (!form) return;
 
     const fileInput = document.getElementById('fileInput');
@@ -13,28 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
     const editButton = document.getElementById('editButton');
 
-    // Store PDF data
     let pdfDoc = null;
     let pdfFile = null;
-    let pageOrder = []; // Array of page indices (0-based)
+    let pageOrder = [];
     let draggedElement = null;
-    let dragHandlers = new Map(); // Store drag handlers for cleanup
+    let dragHandlers = new Map();
 
-    // Initialize PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    }
-
-    // File input handlers
-    // Handle button click to open file dialog
-    if (selectFileButton && fileInput) {
-        selectFileButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            fileInput.click();
-        });
-    }
-
+    // File input handlers - standard approach
     if (fileInput) {
         fileInput.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
@@ -57,14 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Store file reference but keep it in input for base template
+        pdfFile = file;
+
         // Cleanup previous PDF if exists
         cleanupPreviousPDF();
 
         // Clear any previous errors when selecting a new file
         clearError();
-
-        // Store file reference for form submission
-        pdfFile = file;
 
         try {
             // Show preview section
@@ -102,49 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
-            window.showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.', 'errorMessage');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
             }
-        }
-    }
-
-    function cleanupPreviousPDF() {
-        // Cleanup previous PDF document
-        if (pdfDoc) {
-            try {
-                pdfDoc.destroy();
-            } catch (e) {
-                // Ignore cleanup errors
-            }
-            pdfDoc = null;
-        }
-
-        // Clear preview container
-        if (pdfPreviewContainer) {
-            pdfPreviewContainer.innerHTML = '';
-        }
-
-        // Remove all drag handlers
-        dragHandlers.forEach((handlers, card) => {
-            handlers.forEach(({ event, handler }) => {
-                card.removeEventListener(event, handler);
-            });
-        });
-        dragHandlers.clear();
-
-        // Reset state
-        pageOrder = [];
-        draggedElement = null;
-    }
-
-    // Use showError from utils.js
-
-    function clearError() {
-        const errorContainer = document.getElementById('errorMessage');
-        if (errorContainer) {
-            errorContainer.classList.add('hidden');
-            errorContainer.textContent = '';
+            window.showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.', 'errorMessage');
         }
     }
 
@@ -226,7 +177,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function makeSortable() {
+        if (!pdfPreviewContainer) return;
+
+        console.log('Organize PDF: Making sortable with HTML5 drag and drop');
+
+        // Clean up previous drag handlers
+        dragHandlers.forEach((handlers, element) => {
+            handlers.forEach(handler => {
+                element.removeEventListener(handler.event, handler.handler);
+            });
+        });
+        dragHandlers.clear();
+
         const cards = pdfPreviewContainer.querySelectorAll('.pdf-page-card');
+        console.log('Organize PDF: Found cards:', cards.length);
 
         cards.forEach(card => {
             // Skip if handlers already attached
@@ -237,16 +201,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const handlers = [];
 
             const dragStartHandler = (e) => {
+                console.log('Organize PDF: Drag started');
                 draggedElement = card;
                 card.style.opacity = '0.5';
+                card.style.transform = 'scale(1.05) rotate(2deg)';
+                card.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                card.style.border = '2px solid #3b82f6';
                 e.dataTransfer.effectAllowed = 'move';
             };
 
             const dragEndHandler = () => {
+                console.log('Organize PDF: Drag ended');
                 if (draggedElement) {
                     draggedElement.style.opacity = '1';
+                    draggedElement.style.transform = '';
+                    draggedElement.style.boxShadow = '';
+                    draggedElement.style.border = '';
                 }
-                // Update order after drag ends to ensure pageOrder is current
                 updateOrderFromPreview();
                 draggedElement = null;
             };
@@ -264,6 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         pdfPreviewContainer.insertBefore(draggedElement, card.nextSibling);
                     }
+
+                    // Update display indices in real-time
+                    updateDisplayIndices();
                 }
             };
 
@@ -272,100 +246,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateOrderFromPreview();
             };
 
-            // Touch event handlers for mobile support
-            let touchItem = null;
-            let touchOffset = { x: 0, y: 0 };
-
-            const touchStartHandler = (e) => {
-                touchItem = card;
-                const touch = e.touches[0];
-                const rect = card.getBoundingClientRect();
-                touchOffset.x = touch.clientX - rect.left;
-                touchOffset.y = touch.clientY - rect.top;
-                card.style.opacity = '0.5';
-                card.style.zIndex = '1000';
-                card.style.position = 'relative';
-                e.preventDefault();
-            };
-
-            const touchMoveHandler = (e) => {
-                if (!touchItem) return;
-
-                const touch = e.touches[0];
-
-                // Find the card under the touch point
-                const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-                const cardBelow = elementBelow?.closest('.pdf-page-card');
-
-                if (cardBelow && cardBelow !== touchItem) {
-                    const rectBelow = cardBelow.getBoundingClientRect();
-                    const midY = rectBelow.top + rectBelow.height / 2;
-
-                    if (touch.clientY < midY) {
-                        pdfPreviewContainer.insertBefore(touchItem, cardBelow);
-                    } else {
-                        pdfPreviewContainer.insertBefore(touchItem, cardBelow.nextSibling);
-                    }
-                }
-
-                e.preventDefault();
-            };
-
-            const touchEndHandler = (e) => {
-                if (touchItem) {
-                    touchItem.style.opacity = '1';
-                    touchItem.style.zIndex = '';
-                    touchItem.style.position = '';
-                    updateOrderFromPreview();
-                    touchItem = null;
-                }
-                e.preventDefault();
-            };
-
             // Attach handlers
             card.addEventListener('dragstart', dragStartHandler);
             card.addEventListener('dragend', dragEndHandler);
             card.addEventListener('dragover', dragOverHandler);
             card.addEventListener('drop', dropHandler);
 
-            // Touch events for mobile
-            card.addEventListener('touchstart', touchStartHandler, { passive: false });
-            card.addEventListener('touchmove', touchMoveHandler, { passive: false });
-            card.addEventListener('touchend', touchEndHandler, { passive: false });
-
             // Store handlers for cleanup
             handlers.push(
                 { event: 'dragstart', handler: dragStartHandler },
                 { event: 'dragend', handler: dragEndHandler },
                 { event: 'dragover', handler: dragOverHandler },
-                { event: 'drop', handler: dropHandler },
-                { event: 'touchstart', handler: touchStartHandler },
-                { event: 'touchmove', handler: touchMoveHandler },
-                { event: 'touchend', handler: touchEndHandler }
+                { event: 'drop', handler: dropHandler }
             );
             dragHandlers.set(card, handlers);
         });
     }
 
-    function updateOrderFromPreview() {
-        const cards = Array.from(pdfPreviewContainer.querySelectorAll('.pdf-page-card'));
+    function updateDisplayIndices() {
+        const cards = pdfPreviewContainer.querySelectorAll('.pdf-page-card');
 
-        // Get the current order of pages based on DOM order
-        // Each card's dataset.pageIndex contains the original page index (0-based)
-        // The order of cards in DOM represents the new desired order
-        const newOrder = cards.map(card => parseInt(card.dataset.pageIndex, 10));
-
-        // Update pageOrder with the new order
-        pageOrder = newOrder;
-
-        // Update display indices and numbers
+        // Update visual display indices in real-time
         cards.forEach((card, index) => {
-            card.dataset.displayIndex = index;
-            const numberBadge = card.querySelector('.absolute .bg-blue-600');
-            if (numberBadge) {
-                numberBadge.textContent = index + 1;
+            const label = card.querySelector('.absolute.top-2.left-2');
+            if (label) {
+                label.textContent = `${index + 1}`;
             }
+            card.dataset.displayIndex = index;
         });
+    }
+
+    function updateOrderFromPreview() {
+        const cards = pdfPreviewContainer.querySelectorAll('.pdf-page-card');
+        pageOrder = Array.from(cards).map(card => parseInt(card.dataset.pageIndex));
+
+        // Update display indices
+        updateDisplayIndices();
 
         // Debug logging
         if (typeof console !== 'undefined' && console.log) {
@@ -373,144 +289,193 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Form submission
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    function updatePageNumbers() {
+        const containers = pdfPreviewContainer.querySelectorAll('[data-page-index]');
 
-        if (!pdfFile || !pdfDoc) {
-            window.showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.', 'errorMessage');
-            return;
-        }
-
-        // Get API URL
-        const apiUrl = window.API_URL || form.action || '/api/pdf-organize/organize/';
-
-        // Create FormData
-        const formData = new FormData();
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
-        if (csrfToken) {
-            formData.append('csrfmiddlewaretoken', csrfToken.value);
-        }
-
-        // Use file from fileInput if available, otherwise use stored pdfFile
-        const fileToSubmit = (fileInput && fileInput.files && fileInput.files.length > 0)
-            ? fileInput.files[0]
-            : pdfFile;
-
-        if (!fileToSubmit) {
-            window.showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.', 'errorMessage');
-            return;
-        }
-
-        formData.append('pdf_file', fileToSubmit);
-        formData.append('operation', 'reorder');
-
-        // Ensure pageOrder is updated from current preview order
-        updateOrderFromPreview();
-
-        // Ensure pageOrder is initialized (should be set when PDF loads, but double-check)
-        if (!pageOrder || pageOrder.length === 0) {
-            // Fallback: initialize with original order
-            pageOrder = Array.from({ length: pdfDoc.numPages }, (_, i) => i);
-            if (typeof console !== 'undefined' && console.warn) {
-                console.warn('pageOrder was empty, initializing with original order:', pageOrder);
+        // Update visual page numbers in real-time
+        containers.forEach((container, index) => {
+            const label = container.querySelector('.absolute.top-2.left-2');
+            if (label) {
+                label.textContent = `${index + 1}`;
             }
-        }
+        });
+    }
 
-        // Add page order as JSON string (0-based indices)
-        const pageOrderJson = JSON.stringify(pageOrder);
-        formData.append('page_order', pageOrderJson);
+    function updatePageOrder() {
+        const containers = pdfPreviewContainer.querySelectorAll('[data-page-index]');
+        pageOrder = Array.from(containers).map(container => parseInt(container.dataset.originalIndex));
+
+        // Update page numbers
+        updatePageNumbers();
 
         // Debug logging
         if (typeof console !== 'undefined' && console.log) {
-            console.log('Submitting page order:', pageOrder);
-            console.log('Page order JSON:', pageOrderJson);
-            console.log('Total pages:', pdfDoc.numPages);
-            console.log('Page order length:', pageOrder.length);
+            console.log('Page order updated:', pageOrder);
+        }
+    }
+
+    function cleanupPreviousPDF() {
+        // Cleanup previous PDF document
+        if (pdfDoc) {
+            try {
+                pdfDoc.destroy();
+            } catch (e) {
+                // Ignore cleanup errors
+            }
+            pdfDoc = null;
         }
 
-        // Show loading
+        // Clear preview container
+        if (pdfPreviewContainer) {
+            pdfPreviewContainer.innerHTML = '';
+        }
+
+        // Clear page order
+        pageOrder = [];
+
+        // Hide preview section
+        if (pdfPreviewSection) {
+            pdfPreviewSection.classList.add('hidden');
+        }
+
+        // Disable edit button
         if (editButton) {
             editButton.disabled = true;
-            const buttonText = editButton.querySelector('span span') || editButton;
-            const originalText = buttonText.textContent;
-            buttonText.textContent = window.ORGANIZING || 'Organizing...';
-            buttonText.dataset.originalText = originalText;
+            editButton.classList.add('opacity-50', 'cursor-not-allowed');
         }
+    }
 
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                }
-            });
+    function clearError() {
+        const errorMessage = document.getElementById('errorMessage');
+        if (errorMessage) {
+            errorMessage.classList.add('hidden');
+            errorMessage.textContent = '';
+        }
+    }
 
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.error || errorData.message || `Server error: ${response.status}`);
+    // Custom form submission like pdf-crop-editor.js
+    if (form && editButton) {
+        let isSubmitting = false;
+
+        // Handle button click instead of form submit to bypass base template
+        editButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (isSubmitting) {
+                console.log('Organize PDF: Already submitting, preventing duplicate');
+                return false;
             }
 
-            const blob = await response.blob();
-            const outputFileName = pdfFile.name.replace(/\.pdf$/i, '_organized.pdf');
+            if (!pdfFile || !pdfDoc) {
+                window.showError(window.SELECT_PDF_FIRST || 'Please select a PDF file first.', 'errorMessage');
+                return false;
+            }
 
-            // Try modern file picker to let user choose directory & filename
-            if (window.showSaveFilePicker) {
-                try {
-                    const handle = await window.showSaveFilePicker({
-                        suggestedName: outputFileName,
-                        types: [{ description: 'PDF File', accept: { 'application/pdf': ['.pdf'] } }],
-                    });
-                    const writable = await handle.createWritable();
-                    await writable.write(blob);
-                    await writable.close();
-                    return;
-                } catch (err) {
-                    if (err.name !== 'AbortError') {
-                        console.warn('File picker failed, falling back to direct download:', err);
-                    } else {
-                        // User cancelled
-                        return;
+            isSubmitting = true;
+
+            // Show loading and disable form
+            if (editButton) {
+                editButton.disabled = true;
+                const buttonText = editButton.querySelector('span span') || editButton;
+                buttonText.dataset.originalText = buttonText.textContent;
+                buttonText.textContent = window.ORGANIZING || 'Organizing...';
+            }
+
+            // Get API URL
+            const apiUrl = window.API_URL || form.action || '/api/pdf-organize/organize/';
+
+            // Create FormData
+            const formData = new FormData();
+            const fieldName = window.FILE_INPUT_NAME || 'pdf_file';
+            const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
+
+            if (!selectedFile) {
+                window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'errorMessage');
+                isSubmitting = false;
+                return;
+            }
+
+            formData.append(fieldName, selectedFile);
+            formData.append('page_order', JSON.stringify(pageOrder));
+
+            // Add CSRF token
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+            if (csrfToken) {
+                formData.append('csrfmiddlewaretoken', csrfToken.value);
+            }
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || errorData.message || `Server error: ${response.status}`);
+                }
+
+                const blob = await response.blob();
+
+                // Create resultContainer if it doesn't exist
+                let resultContainer = document.getElementById('resultContainer');
+                if (!resultContainer) {
+                    resultContainer = document.createElement('div');
+                    resultContainer.id = 'resultContainer';
+                    resultContainer.className = 'mt-6';
+                    form.parentNode.insertBefore(resultContainer, form.nextSibling);
+                } else {
+                    // Clear existing content to prevent duplicate buttons
+                    resultContainer.innerHTML = '';
+                }
+
+                // Show download button like pdf-crop-editor.js
+                window.showDownloadButton(blob, pdfFile.name, 'resultContainer', {
+                    successTitle: 'Organization Complete!',
+                    downloadButtonText: 'Download Organized PDF',
+                    convertAnotherText: 'Organize another file',
+                    onConvertAnother: () => {
+                        console.log('Organize PDF: onConvertAnother called');
+                        // Reset form
+                        pdfFile = null;
+                        pdfDoc = null;
+                        pageOrder = [];
+                        if (fileInput) fileInput.value = '';
+                        if (fileInputDrop) fileInputDrop.value = '';
+                        if (pdfPreviewSection) pdfPreviewSection.classList.add('hidden');
+                        cleanupPreviousPDF();
+
+                        // Hide result container
+                        if (resultContainer) {
+                            resultContainer.classList.add('hidden');
+                            resultContainer.innerHTML = '';
+                        }
+
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        setTimeout(() => {
+                            const selectFileButton = document.getElementById('selectFileButton');
+                            if (selectFileButton) selectFileButton.focus({ preventScroll: true });
+                        }, 800);
+                    }
+                });
+
+            } catch (error) {
+                window.showError(`${window.FAILED_TO_ORGANIZE || 'Failed to organize PDF'}: ${error.message}`, 'errorMessage');
+            } finally {
+                // Restore button and reset submitting flag
+                isSubmitting = false;
+                if (editButton) {
+                    editButton.disabled = false;
+                    const buttonText = editButton.querySelector('span span') || editButton;
+                    if (buttonText.dataset.originalText) {
+                        buttonText.textContent = buttonText.dataset.originalText;
                     }
                 }
             }
-
-            // Fallback: prompt for filename, then trigger download (browser will ask location)
-            let finalName = outputFileName;
-            const input = prompt(window.SAVE_AS_PROMPT || 'Save file as', outputFileName);
-            if (input && input.trim()) {
-                finalName = input.trim();
-                const originalExt = outputFileName.includes('.') ? outputFileName.slice(outputFileName.lastIndexOf('.')) : '.pdf';
-                if (originalExt && !finalName.toLowerCase().endsWith(originalExt.toLowerCase())) {
-                    finalName += originalExt;
-                }
-            }
-
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = finalName;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-
-        } catch (error) {
-            const failedMsg = window.FAILED_TO_ORGANIZE || 'Failed to organize PDF';
-            window.showError(`${failedMsg}: ${error.message || 'Unknown error'}`, 'errorMessage');
-            if (typeof console !== 'undefined' && console.error) {
-                console.error('Error organizing PDF:', error);
-            }
-        } finally {
-            // Restore button
-            if (editButton) {
-                editButton.disabled = false;
-                const buttonText = editButton.querySelector('span span') || editButton;
-                if (buttonText.dataset.originalText) {
-                    buttonText.textContent = buttonText.dataset.originalText;
-                }
-            }
-        }
-    });
+        });
+    }
 });
