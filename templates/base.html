@@ -5,12 +5,12 @@
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name='impact-site-verification' value='af3484b7-1cc3-421d-a5e9-40ae304c4315'>
 
     <!-- Primary Meta Tags -->
     <title>{% block title %}Convertica – Online PDF ↔ Word Converter{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}{% endblock %}">
     <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
     <meta name="author" content="Convertica">
@@ -22,10 +22,10 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://convertica.net{{ request.path }}">
-    <meta property="og:title" content="{% block og_title %}Convertica – Online PDF ↔ Word Converter{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}https://convertica.net{% static 'images/og-image.jpg' %}{% endblock %}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:title" content="{% block og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{% block og_image_alt %}Convertica - Online PDF Tools{% endblock %}">
@@ -34,20 +34,13 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://convertica.net{{ request.path }}">
-    <meta property="twitter:title" content="{% block twitter_title %}Convertica – Online PDF ↔ Word Converter{% endblock %}">
-    <meta property="twitter:description" content="{% block twitter_description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
-    <meta property="twitter:image" content="{% block twitter_image %}https://convertica.net{% static 'images/og-image.jpg' %}{% endblock %}">
+    <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta property="twitter:title" content="{% block twitter_title %}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
+    <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://convertica.net{{ request.path }}">
-
-    <!-- Hreflang tags for multilingual SEO -->
-    {% for link in hreflangs %}
-      <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
-    {% endfor %}
-    <link rel="alternate" hreflang="x-default" href="https://convertica.net/">
-
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
     <!-- Preconnect to external domains -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -65,6 +58,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
+    <!-- Hreflang -->
+    {% for link in hreflangs %}
+      <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
+    {% endfor %}
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
@@ -73,12 +71,6 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon-192x192.png' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-
-    <!-- PWA Support -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Convertica">
-    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Stylesheets -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
@@ -90,45 +82,24 @@
       @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
       @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
       @keyframes ping {75%,100%{transform:scale(2);opacity:0;}}
+
       .animate-progress { animation: progress 2s linear infinite; background-size: 200% 100%; }
       .animate-fade-in { animation: fadeIn 0.5s ease-out; }
       .animate-scale-in { animation: scaleIn 0.3s ease-out; }
       .shadow-3xl { box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25); }
+
       html, body { overflow-x: hidden; max-width: 100%; width: 100%; }
       * { box-sizing: border-box; transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: cubic-bezier(0.4,0,0.2,1); transition-duration: 150ms; }
+
       body { color: #111827; }
       p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea { color: inherit; }
+
       img, video, iframe, embed, object { max-width: 100%; height: auto; }
+
       @media (max-width: 640px) { .absolute { max-width: calc(100vw - 1rem); } }
     </style>
 
-    <!-- Structured Data - Organization -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Convertica",
-        "url": "https://convertica.net",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://convertica.net{% static 'images/logo.png' %}",
-          "width": 250,
-          "height": 60
-        },
-        "description": "{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter." %}",
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "PL"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "Customer Support",
-          "availableLanguage": ["en", "ru", "pl", "hi", "es", "id"]
-        }
-      }
-    </script>
-
-    <!-- Structured Data - WebApplication -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -138,7 +109,6 @@
         "description": "{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter." %}",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
-        "browserRequirements": "Requires JavaScript. Requires HTML5.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -152,9 +122,7 @@
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.8",
-          "ratingCount": "1247",
-          "bestRating": "5",
-          "worstRating": "1"
+          "ratingCount": "1247"
         },
         "featureList": [
           "PDF to Word conversion",
@@ -162,15 +130,12 @@
           "PDF merge",
           "PDF split",
           "PDF rotate",
-          "Add watermark to PDF",
-          "Crop PDF pages",
-          "Compress PDF files",
-          "Protect PDF with password",
+          "Add watermark",
+          "Crop PDF",
+          "Compress PDF",
+          "Protect PDF",
           "Organize PDF pages"
-        ],
-        "screenshot": "https://convertica.net{% static 'images/screenshot.jpg' %}",
-        "softwareVersion": "2.0",
-        "permissions": "No account required"
+        ]
       }
     </script>
 
@@ -181,8 +146,66 @@
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     {% endif %}
 
+    <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
+    <script>
+      (function() {
+        // Yandex.Metrika loader
+        (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) { return; }
+          }
+          k=e.createElement(t), a=e.getElementsByTagName(t)[0];
+          k.async = 1;
+          k.src = r;
+          a.parentNode.insertBefore(k,a);
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        // Google Analytics 4 loader
+        var gtagScript = document.createElement('script');
+        gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
+        gtagScript.async = true;
+        document.head.appendChild(gtagScript);
+
+        function initAnalytics() {
+          // --- Yandex.Metrika ---
+          if (window.ym) {
+            ym(105790338, 'init', {
+              clickmap: true,
+              trackLinks: true,
+              accurateTrackBounce: true,
+              webvisor: false
+            });
+            ym(105790338, 'hit', window.location.href);
+          }
+
+          // --- Google Analytics 4 ---
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
+          gtag('event', 'page_view', { page_path: window.location.pathname });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          if (window.CookieConsent) {
+            if (window.CookieConsent.hasUserConsented()) {
+              initAnalytics();
+            } else {
+              window.addEventListener('CookieConsentAccepted', initAnalytics);
+            }
+          } else {
+            initAnalytics();
+          }
+        });
+      })();
+    </script>
+
   </head>
   <body class="bg-gray-50 text-gray-900 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+    <!-- Global JS Settings from Django -->
     <script>
       window.JS_SETTINGS = {
         patienceMessageDelay: {{ js_settings.patience_message_delay|default:40 }} * 1000,
@@ -201,78 +224,6 @@
 
     <script src="{% static 'js/cookie-consent.js' %}" defer></script>
     <script src="{% static 'js/language-detection.js' %}" defer></script>
-
-    <!-- Analytics loaders (Yandex + GA4) - Moved to end of body for better performance -->
-    <!-- Google Analytics 4 -->
-    <script>
-      (function () {
-        function initGA() {
-          var s = document.createElement('script');
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC';
-          s.async = true;
-          document.head.appendChild(s);
-
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-
-          gtag('js', new Date());
-          gtag('config', 'G-65KKH2JRKC', {
-            anonymize_ip: true
-          });
-        }
-
-        if (window.CookieConsent) {
-          if (window.CookieConsent.hasUserConsented()) {
-            initGA();
-          } else {
-            window.addEventListener('CookieConsentAccepted', initGA, { once: true });
-          }
-        } else {
-          initGA();
-        }
-      })();
-    </script>
-    <!-- Yandex.Metrika -->
-    <script>
-      (function () {
-        function initMetrika() {
-          (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            k=e.createElement(t); a=e.getElementsByTagName(t)[0];
-            k.async=1; k.src=r;
-            a.parentNode.insertBefore(k,a);
-          })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
-
-          ym(105790338, 'init', {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:false
-          });
-        }
-
-        if (window.CookieConsent) {
-          if (window.CookieConsent.hasUserConsented()) {
-            initMetrika();
-          } else {
-            window.addEventListener('CookieConsentAccepted', initMetrika, { once: true });
-          }
-        } else {
-          initMetrika();
-        }
-      })();
-    </script>
-
-    <noscript>
-      <div>
-        <img src="https://mc.yandex.ru/watch/105790338"
-             style="position:absolute; left:-9999px;"
-             alt="" />
-      </div>
-    </noscript>
-
 
     {% block extra_js %}{% endblock %}
   </body>
