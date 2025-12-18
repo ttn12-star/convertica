@@ -219,13 +219,12 @@ MIDDLEWARE = [
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
     "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware
     "src.frontend.middleware.CaptchaRequirementMiddleware",  # Track failed attempts for CAPTCHA
+    "django.middleware.locale.LocaleMiddleware",  # ✅ ТОЛЬКО ОДИН РАЗ! Должна быть ДО CommonMiddleware
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.locale.LocaleMiddleware",  # Automatically detects language from Accept-Language header, session, or cookie
-    # 'src.frontend.middleware.AutoLanguageMiddleware',  # DISABLED - interferes with language switching
 ]
 
 # Add Prometheus middleware if available
@@ -546,7 +545,8 @@ CSRF_TRUSTED_ORIGINS = config(
     default="https://convertica.net,https://www.convertica.net",
     cast=Csv(),
 )
-
+CSRF_COOKIE_HTTPONLY = False
+CSRF_USE_SESSIONS = False
 # Cache Configuration
 # Using Redis for caching and session storage
 try:
