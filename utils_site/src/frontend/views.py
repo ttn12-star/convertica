@@ -8,6 +8,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.vary import vary_on_cookie
 
 
 def index_page(request):
@@ -898,10 +900,10 @@ def all_tools_page(request):
     return render(request, "frontend/all_tools.html", context)
 
 
+@vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def about_page(request):
     """About Us page."""
-
     page_title = _("About Us - Convertica")
     page_description = _(
         "Learn about Convertica - your trusted online PDF tools platform. "
@@ -921,10 +923,10 @@ def about_page(request):
     return render(request, "frontend/about.html", context)
 
 
+@vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def privacy_page(request):
     """Privacy Policy page."""
-
     page_title = _("Privacy Policy - Convertica")
     page_description = _(
         "Read Convertica's Privacy Policy. "
@@ -943,10 +945,10 @@ def privacy_page(request):
     return render(request, "frontend/privacy.html", context)
 
 
+@vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def terms_page(request):
     """Terms of Service page."""
-
     page_title = _("Terms of Service - Convertica")
     page_description = _(
         "Read Convertica's Terms of Service. "
@@ -964,13 +966,13 @@ def terms_page(request):
     return render(request, "frontend/terms.html", context)
 
 
+@ensure_csrf_cookie
 def contact_page(request):
     """Contact page with form handling."""
     import logging
 
     from django.contrib import messages
-    from django.shortcuts import redirect, render
-    from django.utils.translation import gettext_lazy as _
+    from django.shortcuts import redirect
 
     from .forms import ContactForm
 
@@ -1123,10 +1125,11 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
     return render(request, "frontend/contact.html", context)
 
 
+@vary_on_cookie
 @cache_page(60 * 60 * 24)
+@ensure_csrf_cookie
 def faq_page(request):
-    """FAQ page."""
-
+    """FAQ page with proper CSRF handling."""
     page_title = _("Frequently Asked Questions (FAQ) - Convertica")
     page_description = _(
         "Find answers to frequently asked questions about Convertica PDF tools. "
