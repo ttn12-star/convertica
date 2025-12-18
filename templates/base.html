@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name='impact-site-verification' value='af3484b7-1cc3-421d-a5e9-40ae304c4315'>
 
     <!-- Primary Meta Tags -->
     <title>{% block title %}Convertica – Online PDF ↔ Word Converter{% endblock %}</title>
@@ -41,7 +40,19 @@
     <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    {% if request.GET %}
+      <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}?{{ request.GET.urlencode }}">
+    {% else %}
+      <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    {% endif %}
+
+    <!-- Hreflang tags for multilingual SEO -->
+    {% get_current_language as current_lang %}
+    {% get_available_languages as languages %}
+    {% for lang_code, lang_name in languages %}
+      <link rel="alternate" hreflang="{{ lang_code }}" href="{{ request.scheme }}://{{ request.get_host }}{% if lang_code != 'en' %}/{{ lang_code }}{% endif %}{{ request.path }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}">
+    {% endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}">
 
     <!-- Preconnect to external domains -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
