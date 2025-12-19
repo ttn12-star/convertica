@@ -170,7 +170,8 @@ document.addEventListener('DOMContentLoaded', function() {
         googleButton.addEventListener('click', function(e) {
             console.log('Google button clicked');
             e.preventDefault();
-            socialAuth.openPopup('google', this.href);
+            const url = this.getAttribute('href');
+            socialAuth.openPopup('google', url);
         });
     }
 
@@ -178,7 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
         facebookButton.addEventListener('click', function(e) {
             console.log('Facebook button clicked');
             e.preventDefault();
-            socialAuth.openPopup('facebook', this.href);
+            const url = this.getAttribute('href');
+            socialAuth.openPopup('facebook', url);
         });
     }
 });
