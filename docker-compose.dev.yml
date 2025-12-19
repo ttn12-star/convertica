@@ -38,7 +38,6 @@ services:
         if [ ! -L /app/src ] && [ ! -d /app/src ]; then ln -s /app/utils_site/src /app/src; fi &&
         mkdir -p /app/media/async_temp &&
         python manage.py collectstatic --noinput &&
-        python manage.py migrate &&
         python manage.py runserver 0.0.0.0:8003
     volumes:
       - .:/app  # Mount source code for hot reload
