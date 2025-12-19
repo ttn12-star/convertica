@@ -216,12 +216,6 @@ try:
 except ImportError:
     pass
 
-try:
-    import django_prometheus
-
-    INSTALLED_APPS.append("django_prometheus")
-except ImportError:
-    pass
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -346,7 +340,7 @@ AUTHENTICATION_BACKENDS = [
 
 # Allauth account settings
 ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # Don't use username for authentication
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
@@ -617,16 +611,14 @@ else:
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
 
-# Site configuration
-SITE_ID = 1
 
 # Override site domain for local development
 SITE_DOMAIN = config("SITE_DOMAIN", default="localhost:8003")
 SITE_NAME = config("SITE_NAME", default="Convertica Local")
 
 # Force HTTP for local development
-USE_HTTP = True
-FORCE_HTTP = True
+USE_HTTP = DEBUG
+FORCE_HTTP = DEBUG
 
 
 # Override the site framework to use our custom domain
@@ -747,13 +739,6 @@ CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default="True")
 TELEGRAM_BOT_TOKEN = config("TELEGRAM_BOT_TOKEN", default="", cast=str)
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID", default="", cast=str)
 
-# Prometheus Monitoring (if available)
-try:
-    import django_prometheus
-
-    PROMETHEUS_EXPORT_MIGRATIONS = False
-except ImportError:
-    pass
 
 # Custom error handlers (defined in utils_site.urls)
 # Django will automatically use handler404, handler500, etc. from ROOT_URLCONF
