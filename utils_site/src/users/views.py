@@ -60,8 +60,12 @@ def user_register(request):
         if form.is_valid():
             user = form.save()
             # Log user in after registration
-            authenticated_user = authenticate(request, user=user)
-            auth_login(request, authenticated_user)
+            from django.contrib.auth import get_backends
+
+            # Get the first authentication backend
+            backend = get_backends()[0]
+            user.backend = f"{backend.__module__}.{backend.__class__.__name__}"
+            auth_login(request, user)
             return redirect("users:profile")
     else:
         form = CustomUserCreationForm()
