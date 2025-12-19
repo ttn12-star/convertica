@@ -1,4 +1,5 @@
 # Generated migration for production safe User model switch
+# pylint: skip-file
 
 import django.contrib.auth.models
 from django.db import migrations
