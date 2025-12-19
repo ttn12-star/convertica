@@ -7,6 +7,10 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /static/admin/
 
+# Disallow user authentication pages
+Disallow: /users/
+Disallow: /accounts/
+
 # Allow static files
 Allow: /static/
 Allow: /media/
