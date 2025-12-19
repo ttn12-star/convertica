@@ -119,26 +119,37 @@ class SocialAuth {
 
     showError(provider, error) {
         const errorMessage = {
-            'access_denied': 'Доступ запрещен',
-            'redirect_uri_mismatch': 'Неверный redirect URI',
-            'unknown_error': 'Произошла ошибка'
-        }[error] || 'Произошла ошибка авторизации';
+            'access_denied': 'Access denied. You refused to provide access.',
+            'redirect_uri_mismatch': 'Configuration error. Invalid redirect URI.',
+            'unknown_error': 'Authorization error occurred. Please try again.'
+        }[error] || 'Authorization error occurred. Please try again.';
 
         console.error('Social auth error:', error, errorMessage);
 
         // Show error message
         const errorDiv = document.createElement('div');
-        errorDiv.className = 'mb-4 p-3 rounded-lg bg-red-100 text-red-700';
-        errorDiv.innerHTML = errorMessage;
+        errorDiv.className = 'mb-4 p-3 rounded-lg bg-red-100 text-red-700 border border-red-200';
+        errorDiv.innerHTML = `
+            <div class="flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                </svg>
+                <span>Authorization failed: ${errorMessage}</span>
+            </div>
+        `;
 
         const form = document.querySelector('form');
         if (form) {
+            // Remove any existing error messages
+            const existingErrors = form.parentNode.querySelectorAll('.bg-red-100');
+            existingErrors.forEach(err => err.remove());
+
             form.parentNode.insertBefore(errorDiv, form);
 
-            // Remove error after 5 seconds
+            // Remove error after 8 seconds
             setTimeout(() => {
                 errorDiv.remove();
-            }, 5000);
+            }, 8000);
         }
     }
 }
