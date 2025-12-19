@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block title %}{% trans "Sign Up" %} - Convertica{% endblock %}
 
 {% block extra_js %}
