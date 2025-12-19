@@ -179,6 +179,10 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
 # Site URL for OAuth redirects (falls back to localhost for development)
 SITE_URL = config("SITE_URL", default="http://localhost:8003")
 
+# SSL/HTTPS settings for production behind reverse proxy
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
+
 
 # Application definition
 
