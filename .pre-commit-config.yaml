@@ -62,7 +62,6 @@ repos:
 # Global excludes
 exclude: |
   (?x)^(
-    .*migrations/.*|
     staticfiles/.*|
     node_modules/.*|
     \.git/.*|
