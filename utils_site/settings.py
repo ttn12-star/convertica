@@ -176,6 +176,9 @@ DEBUG = config("DEBUG", default=True, cast=bool)
 # Comma-separated list of allowed hosts
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
 
+# Site URL for OAuth redirects (falls back to localhost for development)
+SITE_URL = config("SITE_URL", default="http://localhost:8003")
+
 
 # Application definition
 
