@@ -7,11 +7,11 @@ from django.db import migrations
 def migrate_users(apps, _schema_editor):
     """Migrate existing users from auth.User to users.User"""
     # Use historical models to avoid AUTH_USER_MODEL conflict
-    old_user_model = apps.get_model('auth', 'User')
-    new_user_model = apps.get_model('users', 'User')
+    old_user_model = apps.get_model("auth", "User")
+    new_user_model = apps.get_model("users", "User")
 
     # Get all existing users from historical model
-    old_users = old_user_model.objects.using('default').all()
+    old_users = old_user_model.objects.using("default").all()
 
     for old_user in old_users:
         # Check if user already exists in new model
@@ -42,7 +42,7 @@ def reverse_migrate_users(_apps, _schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("users", "0002_alter_user_user_manager"),
+        ("users", "0001_initial"),
     ]
 
     operations = [
