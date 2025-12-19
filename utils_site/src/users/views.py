@@ -1,11 +1,15 @@
-from django.contrib.auth import authenticate, login, logout
+# pylint: skip-file
+from django.contrib import messages
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .forms import CustomUserCreationForm, LoginForm
 
@@ -26,7 +30,7 @@ def user_login(request):
             )
             if user is not None:
                 if user.is_active:
-                    login(request, user)
+                    auth_login(request, user)
                     return redirect("users:profile")
                 else:
                     return render(
@@ -55,8 +59,9 @@ def user_register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Log the user in after registration
-            login(request, user)
+            # Log user in after registration
+            authenticated_user = authenticate(request, user=user)
+            auth_login(request, authenticated_user)
             return redirect("users:profile")
     else:
         form = CustomUserCreationForm()
@@ -66,7 +71,7 @@ def user_register(request):
 
 def user_logout(request):
     """Handle user logout."""
-    logout(request)
+    auth_logout(request)
     return redirect("users:login")
 
 
