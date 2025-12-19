@@ -623,24 +623,12 @@ else:
     CSRF_COOKIE_SECURE = False
 
 
-# Override site domain for local development
-SITE_DOMAIN = config("SITE_DOMAIN", default="localhost:8003")
-SITE_NAME = config("SITE_NAME", default="Convertica Local")
-
 # Force HTTP for local development
 USE_HTTP = DEBUG
 FORCE_HTTP = DEBUG
 
 
 # Override the site framework to use our custom domain
-def get_current_site(request=None):
-    from django.contrib.sites.models import Site
-
-    site = Site.objects.get(id=SITE_ID)
-    if SITE_DOMAIN:
-        site.domain = SITE_DOMAIN
-        site.name = SITE_NAME
-    return site
 
 
 # CSRF Trusted Origins - required for CSRF to work with HTTPS
