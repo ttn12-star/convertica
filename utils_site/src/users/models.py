@@ -15,6 +15,8 @@ class User(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    username = models.CharField(max_length=150, blank=True, null=True)
+
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
