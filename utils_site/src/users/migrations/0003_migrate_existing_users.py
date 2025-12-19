@@ -1,4 +1,5 @@
 # Migration to migrate existing users from auth.User to users.User
+# pylint: skip-file
 
 from django.db import migrations
 
