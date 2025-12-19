@@ -55,8 +55,14 @@ except ImportError:
 
 urlpatterns += i18n_patterns(
     path("blog/", include("src.blog.urls")),
+    path("users/", include("src.users.urls")),
     path("", include("src.frontend.urls")),
 )
+
+# Add allauth URLs outside i18n_patterns
+urlpatterns += [
+    path("accounts/", include("allauth.urls")),
+]
 
 if settings.DEBUG:
     urlpatterns += [

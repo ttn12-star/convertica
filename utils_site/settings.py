@@ -188,9 +188,17 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_yasg",
+    # Django Allauth for social authentication
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.facebook",
     # Note: hCaptcha is used via JavaScript widget and direct API calls, not as Django app
     "src.frontend",
     "src.blog",
+    "src.users",
 ]
 
 # Optional apps (graceful degradation if not installed)
@@ -223,6 +231,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -314,6 +323,69 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+
+# Custom User Model
+AUTH_USER_MODEL = "users.User"
+
+# Django Allauth Configuration
+SITE_ID = 1
+
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+# Allauth account settings
+ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None  # Don't use username for authentication
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_PASSWORD_MIN_LENGTH = 8
+
+# Allauth social account settings
+SOCIALACCOUNT_ADAPTER = "allauth.socialaccount.adapter.DefaultSocialAccountAdapter"
+SOCIALACCOUNT_LOGIN_ON_GET = False
+SOCIALACCOUNT_EMAIL_VERIFICATION = True
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+    },
+    "facebook": {
+        "METHOD": "oauth2",
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "rerequest"},
+        "INIT_PARAMS": {"cookie": True},
+        "FIELDS": [
+            "id",
+            "email",
+            "name",
+            "first_name",
+            "last_name",
+            "verified",
+        ],
+        "VERSION": "v13.0",
+    },
+}
+
+# Login/Logout URLs
+LOGIN_URL = "/users/login/"
+LOGIN_REDIRECT_URL = "/users/profile/"
+LOGOUT_REDIRECT_URL = "/users/login/"
 
 
 # Internationalization
@@ -534,9 +606,32 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
 else:
     # Development settings
-    SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", default=False, cast=bool)
-    SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", default=False, cast=bool)
-    CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE", default=False, cast=bool)
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+
+# Site configuration
+SITE_ID = 1
+
+# Override site domain for local development
+SITE_DOMAIN = config("SITE_DOMAIN", default="localhost:8003")
+SITE_NAME = config("SITE_NAME", default="Convertica Local")
+
+# Force HTTP for local development
+USE_HTTP = True
+FORCE_HTTP = True
+
+
+# Override the site framework to use our custom domain
+def get_current_site(request=None):
+    from django.contrib.sites.models import Site
+
+    site = Site.objects.get(id=SITE_ID)
+    if SITE_DOMAIN:
+        site.domain = SITE_DOMAIN
+        site.name = SITE_NAME
+    return site
+
 
 # CSRF Trusted Origins - required for CSRF to work with HTTPS
 # Django 4.0+ requires explicit list of trusted origins for CSRF
