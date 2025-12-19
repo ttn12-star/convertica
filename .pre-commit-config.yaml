@@ -17,15 +17,17 @@ repos:
       - id: black
         language_version: python3
         args: ['--line-length=88']
+        exclude: '^.*migrations/.*$'
 
   # Ruff - Fast Python linter (replaces flake8, isort, etc.)
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.4
     hooks:
-      # Run the linter
+      # Run linter
       - id: ruff
         args: ['--fix', '--exit-non-zero-on-fix']
-      # Run the formatter (optional, black is primary)
+        exclude: '^.*migrations/.*$'
+      # Run formatter (optional, black is primary)
       # - id: ruff-format
 
   # Basic file checks
