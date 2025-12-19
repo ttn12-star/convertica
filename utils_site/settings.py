@@ -346,6 +346,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Allauth social account settings
+SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_ADAPTER = "allauth.socialaccount.adapter.DefaultSocialAccountAdapter"
 SOCIALACCOUNT_LOGIN_ON_GET = False
 SOCIALACCOUNT_EMAIL_VERIFICATION = "optional"
@@ -572,6 +573,21 @@ LOGGING = {
             "handlers": ["console", "error_file"],
             "level": "WARNING",  # Only WARNING and above (ERROR, CRITICAL)
             "propagate": False,  # Don't propagate to root logger
+        },
+        "allauth": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "allauth.account": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "allauth.socialaccount": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+            "propagate": False,
         },
     },
     "root": {
