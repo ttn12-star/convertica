@@ -637,11 +637,14 @@ try:
         }
     }
 except ImportError:
-    # Fallback to local memory cache if django-redis is not installed
+    # Fallback to file-based cache if django-redis is not installed
+    # This provides a shared cache backend for django-ratelimit
+    import os
+
     CACHES = {
         "default": {
-            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-            "LOCATION": "unique-snowflake",
+            "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+            "LOCATION": os.path.join(BASE_DIR, "cache"),
         }
     }
 
@@ -717,6 +720,25 @@ TURNSTILE_SECRET_KEY = config("TURNSTILE_SECRET_KEY", default="")
 
 # Telegram Bot Configuration
 CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default="True")
+
+# Subscription Pricing Configuration
+SUBSCRIPTION_PRICING = {
+    "daily": {
+        "price": config("DAILY_PRICE", default="1.00", cast=float),
+        "duration_days": 1,
+        "name": "Daily Hero Access",
+    },
+    "monthly": {
+        "price": config("MONTHLY_PRICE", default="5.00", cast=float),
+        "duration_days": 30,
+        "name": "Monthly Hero Access",
+    },
+    "yearly": {
+        "price": config("YEARLY_PRICE", default="48.00", cast=float),
+        "duration_days": 365,
+        "name": "Yearly Hero Access",
+    },
+}
 TELEGRAM_BOT_TOKEN = config("TELEGRAM_BOT_TOKEN", default="", cast=str)
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID", default="", cast=str)
 
