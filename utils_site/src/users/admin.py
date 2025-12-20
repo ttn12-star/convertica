@@ -100,6 +100,17 @@ class SocialAccountInline(admin.TabularInline):
         return False
 
 
+# SocialAccount is already registered by django-allauth
+# We need to unregister it first before registering our custom admin
+from django.contrib.admin import site
+
+# Unregister the default SocialAccount admin if it exists
+try:
+    site.unregister(SocialAccount)
+except admin.sites.NotRegistered:
+    pass
+
+
 @admin.register(SocialAccount)
 class SocialAccountAdmin(admin.ModelAdmin):
     """Custom SocialAccount admin with user information."""
@@ -110,7 +121,6 @@ class SocialAccountAdmin(admin.ModelAdmin):
         "uid",
         "date_joined",
         "last_login",
-        "is_active",
     )
     list_filter = ("provider", "date_joined", "last_login")
     search_fields = ("user__email", "uid", "extra_data")
@@ -124,7 +134,7 @@ class SocialAccountAdmin(admin.ModelAdmin):
     )
 
     fieldsets = (
-        ("Account Information", {"fields": ("user", "provider", "uid", "is_active")}),
+        ("Account Information", {"fields": ("user", "provider", "uid")}),
         ("OAuth Data", {"fields": ("extra_data",), "classes": ("collapse",)}),
         ("Dates", {"fields": ("date_joined", "last_login")}),
     )
@@ -174,10 +184,12 @@ custom_admin = CustomAdminSite(name="custom_admin")
 custom_admin.register(User, UserAdmin)
 custom_admin.register(SocialAccount, SocialAccountAdmin)
 
-# Also register with default admin for compatibility
+# Register with default admin (unregister first if needed)
+try:
+    admin.site.unregister(User)
+except admin.sites.NotRegistered:
+    pass
 admin.site.register(User, UserAdmin)
-admin.site.register(SocialAccount, SocialAccountAdmin)
-
 
 # Add SocialAccount inline to User admin
 UserAdmin.inlines = [SocialAccountInline]
