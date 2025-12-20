@@ -11,6 +11,9 @@ Disallow: /static/admin/
 Disallow: /users/
 Disallow: /accounts/
 
+# Disallow payment pages (noindex)
+Disallow: /payments/
+
 # Allow static files
 Allow: /static/
 Allow: /media/

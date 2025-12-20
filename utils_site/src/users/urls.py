@@ -18,8 +18,6 @@ urlpatterns = [
     path("delete-account/", views.delete_account, name="delete_account"),
     path("toggle-hero-display/", views.toggle_hero_display, name="toggle_hero_display"),
     path("download-data/", views.download_data, name="download_data"),
-    path("subscribe/<str:plan_type>/", views.subscribe_plan, name="subscribe_plan"),
-    path("api/plans/", views.get_subscription_plans, name="get_subscription_plans"),
     path(
         "google-direct/", social_views.google_direct_oauth, name="google_direct_oauth"
     ),

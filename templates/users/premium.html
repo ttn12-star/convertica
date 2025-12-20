@@ -3,6 +3,7 @@
 
 {% block extra_head %}
   <meta name="robots" content="noindex, nofollow">
+  <script src="https://js.stripe.com/v3/"></script>
 {% endblock %}
 
 {% block title %}{% trans "Become a Convertica Hero" %} - Convertica{% endblock %}
@@ -120,7 +121,7 @@
             </li>
           </ul>
 
-          <button onclick="selectPlan('daily')" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105">
+          <button type="button" onclick="selectPlan('daily')" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105">
             {% trans "Become Daily Hero" %}
           </button>
         </div>
@@ -191,7 +192,7 @@
             </li>
           </ul>
 
-          <button onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
+          <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
             {% trans "Become Monthly Hero" %}
           </button>
         </div>
@@ -252,7 +253,7 @@
             </li>
           </ul>
 
-          <button onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+          <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
             {% trans "Become Yearly Hero" %}
           </button>
         </div>
@@ -314,7 +315,7 @@
         <h2 class="text-4xl font-bold text-white mb-4">{% trans "Ready to Become a Hero?" %}</h2>
         <p class="text-xl text-gray-300 mb-8">{% trans "Join thousands of heroes transforming documents every day" %}</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="selectPlan('monthly')" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
+          <button type="button" onclick="selectPlan('monthly')" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
             {% trans "Start Your Hero Journey" %}
           </button>
         </div>
@@ -560,38 +561,58 @@
   </style>
 
   <script>
+    // Load Stripe
+    var stripe = Stripe('{{ stripe_publishable_key }}');
+
     function selectPlan(planType) {
       // Show loading state
-      const button = event.target;
+      const button = document.activeElement;
       const originalText = button.textContent;
       button.disabled = true;
       button.textContent = '{% trans "Processing..." %}';
 
-      // Make API call to subscribe
-      fetch(`/users/subscribe/${planType}/`, {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': getCookie('csrftoken'),
-          'Content-Type': 'application/json',
-        },
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-          // Redirect to account status with success message
-            window.location.href = '/users/account-status/?message=' + encodeURIComponent(data.message);
+      // Create checkout session
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', window.location.origin + '/en/payments/create-checkout-session/', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+
+      const requestBody = JSON.stringify({
+        plan_slug: planType === 'daily' ? 'daily-hero' : planType === 'monthly' ? 'monthly-hero' : 'yearly-hero'
+      });
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          const data = JSON.parse(xhr.responseText);
+          if (data.session_id) {
+            // Redirect to Stripe Checkout
+            return stripe.redirectToCheckout({ sessionId: data.session_id });
           } else {
-            alert(data.error || '{% trans "Payment failed" %}');
-            button.disabled = false;
-            button.textContent = originalText;
+            alert('Error: No session ID returned');
           }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          alert('{% trans "An error occurred. Please try again." %}');
-          button.disabled = false;
-          button.textContent = originalText;
-        });
+        } else {
+          let errorMessage = `Error ${xhr.status}: ${xhr.statusText}`;
+          try {
+            const errorData = JSON.parse(xhr.responseText);
+            errorMessage = errorData.error || errorMessage;
+          } catch (e) {
+            // Ignore JSON parse errors
+          }
+          alert(errorMessage);
+        }
+
+        // Reset button
+        button.disabled = false;
+        button.textContent = originalText;
+      };
+
+      xhr.onerror = function() {
+        alert('Request failed. Please try again.');
+        button.disabled = false;
+        button.textContent = originalText;
+      };
+
+      xhr.send(requestBody);
     }
 
     function getCookie(name) {
