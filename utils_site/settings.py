@@ -331,7 +331,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = "users.User"
 
 # Django Allauth Configuration
-SITE_ID = 2
+SITE_ID = 1
 
 # Authentication backends
 AUTHENTICATION_BACKENDS = [
