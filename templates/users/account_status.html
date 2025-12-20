@@ -1,0 +1,538 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}{% trans "Account Status" %} - Convertica{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="mb-4">
+          <a href="{% url 'users:profile' %}" class="inline-flex items-center bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            {% trans "Back to Profile" %}
+          </a>
+        </div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">{% trans "Account Status" %}</h1>
+        <p class="text-lg text-gray-600">{% trans "Manage your subscription and view your hero journey" %}</p>
+      </div>
+
+      <!-- Subscription Status Card -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-900">{% trans "Subscription Status" %}</h2>
+          {% if user.is_subscription_active %}
+            <div class="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Active" %}
+            </div>
+          {% elif user.subscription_end_date %}
+            <div class="inline-flex items-center px-4 py-2 bg-red-100 text-red-800 rounded-full">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Expired" %}
+            </div>
+          {% else %}
+            <div class="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-800 rounded-full">
+              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Free" %}
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Subscription Details -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-gray-50 rounded-xl p-6">
+            <div class="text-sm text-gray-600 mb-2">{% trans "Current Plan" %}</div>
+            <div class="text-xl font-semibold text-gray-900">
+              {% if user.is_subscription_active %}
+                {% trans "Premium Hero" %}
+              {% else %}
+                {% trans "Free User" %}
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6">
+            <div class="text-sm text-gray-600 mb-2">{% trans "Subscription Period" %}</div>
+            <div class="text-xl font-semibold text-gray-900">
+              {% if user.subscription_start_date and user.subscription_end_date %}
+                {{ user.subscription_start_date|date:"M d, Y" }} - {{ user.subscription_end_date|date:"M d, Y" }}
+              {% else %}
+                {% trans "No active subscription" %}
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6">
+            <div class="text-sm text-gray-600 mb-2">{% trans "Total Days as Hero" %}</div>
+            <div class="text-xl font-semibold text-gray-900">{{ user.total_subscription_days }} {% trans "days" %}</div>
+          </div>
+
+          <div class="bg-gray-50 rounded-xl p-6">
+            <div class="text-sm text-gray-600 mb-2">{% trans "Current Streak" %}</div>
+            <div class="text-xl font-semibold text-gray-900">{{ user.consecutive_subscription_days }} {% trans "days" %}</div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          {% if user.is_subscription_active %}
+            <a href="{% url 'users:manage_subscription' %}" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 text-center">
+              {% trans "Manage Subscription" %}
+            </a>
+          {% else %}
+            <a href="{% url 'users:premium' %}" class="flex-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 text-center">
+              {% trans "Become a Hero" %}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Hero Ranks -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">{% trans "Hero Ranks" %}</h2>
+        <p class="text-gray-600 mb-6">{% trans "Your rank is based on consecutive days as a premium hero. The longer your streak, the higher your rank!" %}</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Bronze Rank -->
+          <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 border border-orange-200">
+            <div class="flex items-center justify-center mb-4">
+              <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 text-center mb-2">{% trans "Bronze" %}</h3>
+            <p class="text-sm text-gray-600 text-center mb-2">{% trans "30+ consecutive days" %}</p>
+            <div class="text-center">
+              <span class="inline-block px-3 py-1 bg-orange-600 text-white rounded-full text-xs font-bold">
+                {% trans "Bronze Hero" %}
+              </span>
+            </div>
+          </div>
+
+          <!-- Silver Rank -->
+          <div class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-6 border border-gray-200">
+            <div class="flex items-center justify-center mb-4">
+              <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 text-center mb-2">{% trans "Silver" %}</h3>
+            <p class="text-sm text-gray-600 text-center mb-2">{% trans "90+ consecutive days" %}</p>
+            <div class="text-center">
+              <span class="inline-block px-3 py-1 bg-gray-600 text-white rounded-full text-xs font-bold">
+                {% trans "Silver Hero" %}
+              </span>
+            </div>
+          </div>
+
+          <!-- Gold Rank -->
+          <div class="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-xl p-6 border border-yellow-200">
+            <div class="flex items-center justify-center mb-4">
+              <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 text-center mb-2">{% trans "Gold" %}</h3>
+            <p class="text-sm text-gray-600 text-center mb-2">{% trans "180+ consecutive days" %}</p>
+            <div class="text-center">
+              <span class="inline-block px-3 py-1 bg-yellow-600 text-white rounded-full text-xs font-bold">
+                {% trans "Gold Hero" %}
+              </span>
+            </div>
+          </div>
+
+          <!-- Platinum Rank -->
+          <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-200">
+            <div class="flex items-center justify-center mb-4">
+              <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 text-center mb-2">{% trans "Platinum" %}</h3>
+            <p class="text-sm text-gray-600 text-center mb-2">{% trans "365+ consecutive days" %}</p>
+            <div class="text-center">
+              <span class="inline-block px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-bold">
+                {% trans "Platinum Hero" %}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Current Rank Display -->
+        <div class="mt-8 p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-1">{% trans "Your Current Rank" %}</h3>
+              <p class="text-gray-600">
+                {% if user.get_subscription_rank %}
+                  {% with rank=user.get_subscription_rank %}
+                    {{ rank.name }} {% trans "Hero" %} • {{ user.consecutive_subscription_days }} {% trans "consecutive days" %}
+                  {% endwith %}
+                {% else %}
+                  {% trans "No rank yet" %} • {{ user.consecutive_subscription_days }} {% trans "consecutive days" %}
+                {% endif %}
+              </p>
+            </div>
+            <div class="text-center">
+              {% if user.get_subscription_rank %}
+                {% with rank=user.get_subscription_rank %}
+                  <div class="flex justify-center">
+                    <a href="{% url 'users:premium' %}#heroes-hall" class="inline-block px-3 py-1 {{ rank.badge_color }} text-white rounded-full text-sm font-bold hover:opacity-90 hover:shadow-lg hover:scale-105 transition-all duration-200 cursor-pointer">
+                      {{ rank.name }}
+                    </a>
+                  </div>
+                {% endwith %}
+              {% else %}
+                <div class="flex justify-center">
+                  <span class="inline-block px-3 py-1 bg-gray-400 text-white rounded-full text-sm font-bold">
+                    {% trans "No Rank" %}
+                  </span>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment History -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">{% trans "Payment History" %}</h2>
+
+        {% if payments %}
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-gray-200">
+                  <th class="text-left py-3 px-4 text-gray-700">{% trans "Date" %}</th>
+                  <th class="text-left py-3 px-4 text-gray-700">{% trans "Plan" %}</th>
+                  <th class="text-left py-3 px-4 text-gray-700">{% trans "Amount" %}</th>
+                  <th class="text-left py-3 px-4 text-gray-700">{% trans "Status" %}</th>
+                  <th class="text-left py-3 px-4 text-gray-700">{% trans "Payment ID" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for payment in payments %}
+                  <tr class="border-b border-gray-100 hover:bg-gray-50">
+                    <td class="py-3 px-4 text-gray-900">{{ payment.created_at|date:"M d, Y" }}</td>
+                    <td class="py-3 px-4 text-gray-900">{{ payment.plan.name }}</td>
+                    <td class="py-3 px-4 text-gray-900">${{ payment.amount }}</td>
+                    <td class="py-3 px-4">
+                      {% if payment.status == 'completed' %}
+                        <span class="inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                          {% trans "Completed" %}
+                        </span>
+                      {% elif payment.status == 'pending' %}
+                        <span class="inline-flex items-center px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">
+                          {% trans "Pending" %}
+                        </span>
+                      {% elif payment.status == 'failed' %}
+                        <span class="inline-flex items-center px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">
+                          {% trans "Failed" %}
+                        </span>
+                      {% elif payment.status == 'refunded' %}
+                        <span class="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
+                          {% trans "Refunded" %}
+                        </span>
+                      {% endif %}
+                    </td>
+                    <td class="py-3 px-4 text-gray-600 text-sm">{{ payment.payment_id }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="text-center py-8">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V . . .;V7a.
+                                                                                         . . . . .;a2.
+                                                                                         . ..
+                                                                                         . . . .Control. . . . . ..
+                                                                                         . . . . . . ..
+                                                                                         . . tad. . . . .;M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </div>
+            <p class="text-gray-600">{% trans "No payment history yet" %}</p>
+            <a href="{% url 'users:premium' %}" class="text-blue-600 hover:text-blue-700 font-medium mt-2 inline-block">
+              {% trans "Become a Hero to see your payment history" %}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Account Actions -->
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">{% trans "Account Actions" %}</h2>
+
+        <div class="space-y-4">
+          <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+            <div>
+              <div class="font-semibold text-gray-900">{% trans "Download Your Data" %}</div>
+              <div class="text-sm text-gray-600">{% trans "Get a copy of all your data and activity" %}</div>
+            </div>
+            <button onclick="downloadData()" class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+              {% trans "Download" %}
+            </button>
+          </div>
+
+
+          {% if user.is_premium and not user.display_as_hero %}
+            <div class="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
+              <div>
+                <div class="font-semibold text-gray-900">{% trans "Join Heroes Hall" %}</div>
+                <div class="text-sm text-gray-600">{% trans "Display your profile in the Heroes Hall of Fame" %}</div>
+              </div>
+              <button onclick="enableHeroDisplay()" class="bg-yellow-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-yellow-700 transition-colors">
+                {% trans "Enable Display" %}
+              </button>
+            </div>
+          {% endif %}
+
+          <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+            <div>
+              <div class="font-semibold text-gray-900">{% trans "Change Password" %}</div>
+              <div class="text-sm text-gray-600">{% trans "Update your account password" %}</div>
+            </div>
+            <button onclick="changePassword()" class="bg-gray-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-gray-700 transition-colors">
+              {% trans "Change" %}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Unobtrusive Delete Account -->
+    <div class="mt-8 text-center">
+      <p class="text-xs text-gray-400 mb-2">
+        {% trans "Thinking about leaving?" %}
+      </p>
+      <button onclick="deleteAccount()" class="text-xs text-gray-500 hover:text-red-600 transition-colors duration-200 underline">
+        {% trans "Delete Account" %}
+      </button>
+    </div>
+  </div>
+
+  <!-- Confirmation Modals -->
+  <div id="cancelModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md mx-4">
+      <h3 class="text-xl font-bold text-gray-900 mb-4">{% trans "Cancel Subscription?" %}</h3>
+      <p class="text-gray-600 mb-6">{% trans "Are you sure you want to cancel your subscription? You'll continue to have access until the end of your current billing period." %}</p>
+      <div class="flex gap-4">
+        <button onclick="closeCancelModal()" class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+          {% trans "Keep Subscription" %}
+        </button>
+        <button onclick="confirmCancel()" class="flex-1 bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors">
+          {% trans "Cancel Anyway" %}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-8 max-w-md mx-4">
+      <h3 class="text-xl font-bold text-red-900 mb-4">{% trans "Delete Account Forever?" %}</h3>
+      <p class="text-gray-600 mb-6">{% trans "This action cannot be undone. All your data, including subscription history and files, will be permanently deleted according to GDPR requirements." %}</p>
+      <div class="flex gap-4">
+        <button onclick="closeDeleteModal()" class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+          {% trans "Keep Account" %}
+        </button>
+        <button onclick="confirmDelete()" class="flex-1 bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors">
+          {% trans "Delete Forever" %}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function manageSubscription() {
+      window.location.href = '/users/manage-subscription/';
+    }
+
+    function cancelSubscription() {
+      document.getElementById('cancelModal').style.display = 'flex';
+    }
+
+    function closeCancelModal() {
+      document.getElementById('cancelModal').style.display = 'none';
+    }
+
+    function confirmCancel() {
+      // Send request to cancel subscription
+      fetch('/users/cancel-subscription/', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': getCookie('csrftoken'),
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            location.reload();
+          } else {
+            alert(data.error || 'Failed to cancel subscription');
+          }
+        });
+    }
+
+    function changePassword() {
+      // Redirect to password change page
+      window.location.href = '/accounts/password/change/';
+    }
+
+    function deleteAccount() {
+      document.getElementById('deleteModal').style.display = 'flex';
+    }
+
+    function enableHeroDisplay() {
+      fetch('/users/toggle-hero-display/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+          'display_as_hero': true
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            location.reload(); // Reload to show changes
+          } else {
+            console.error('Failed to enable hero display:', data.error);
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    function toggleHeroDisplay(isChecked) {
+      fetch('/users/toggle-hero-display/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({
+          'display_as_hero': isChecked
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            console.log('Hero display updated successfully');
+          } else {
+            console.error('Failed to update hero display:', data.error);
+          // Revert checkbox on error
+            event.target.checked = !isChecked;
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        // Revert checkbox on error
+          event.target.checked = !isChecked;
+        });
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function confirmDelete() {
+      // Send request to delete account
+      fetch('/users/delete-account/', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': getCookie('csrftoken'),
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            window.location.href = '/';
+          } else {
+            alert(data.error || 'Failed to delete account');
+          }
+        });
+    }
+
+    function downloadData() {
+      window.location.href = '/users/download-data/';
+    }
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+  </script>
+
+  <script>
+  // Smooth scroll for anchor links
+    document.addEventListener('DOMContentLoaded', function() {
+      const links = document.querySelectorAll('a[href^="#"]');
+
+      links.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href.includes('#')) {
+            const url = href.split('#')[0];
+            const anchor = href.split('#')[1];
+
+          // If we're on the same page or going to premium page with anchor
+            if (url.includes('premium') && anchor === 'heroes-hall') {
+              e.preventDefault();
+              window.location.href = href;
+
+            // Wait for page to load, then scroll to anchor
+              setTimeout(() => {
+                const element = document.getElementById(anchor);
+                if (element) {
+                  element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }, 100);
+            }
+          }
+        });
+      });
+    });
+  </script>
+{% endblock %}

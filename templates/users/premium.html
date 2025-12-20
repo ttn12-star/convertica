@@ -1,0 +1,633 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}{% trans "Become a Convertica Hero" %} - Convertica{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0">
+        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="text-center">
+          <!-- Hero Badge -->
+          <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full text-sm font-semibold text-gray-900 mb-6">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+            {% trans "Join the Heroes Club" %}
+          </div>
+
+          <!-- Main Title -->
+          <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+            <span class="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">
+              {% trans "Become a" %}
+            </span>
+            <br>
+            <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              {% trans "Convertica Hero" %}
+            </span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            {% trans "Unlock unlimited PDF superpowers and join thousands of heroes who transform documents effortlessly" %}
+          </p>
+
+          <!-- Hero Stats -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+              <div class="text-3xl font-bold text-yellow-400 mb-2">10M+</div>
+              <div class="text-gray-300">{% trans "Documents Converted" %}</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+              <div class="text-3xl font-bold text-blue-400 mb-2">50K+</div>
+              <div class="text-gray-300">{% trans "Happy Heroes" %}</div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+              <div class="text-3xl font-bold text-purple-400 mb-2">99.9%</div>
+              <div class="text-gray-300">{% trans "Uptime Guaranteed" %}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Choose Your Hero Path" %}</h2>
+        <p class="text-xl text-gray-300">{% trans "Select the plan that fits your transformation needs" %}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Daily Plan -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">{% trans "Daily Hero" %}</h3>
+            <div class="text-4xl font-bold text-yellow-400 mb-4">
+              $1
+              <span class="text-lg text-gray-400">/{% trans "day" %}</span>
+            </div>
+            <p class="text-gray-300 mb-6">{% trans "Perfect for quick transformations" %}</p>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Unlimited conversions for 24 hours" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "No page limits" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Priority processing" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Ad-free experience" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Batch processing (up to 20 files)" %}
+            </li>
+          </ul>
+
+          <button onclick="selectPlan('daily')" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105">
+            {% trans "Become Daily Hero" %}
+          </button>
+        </div>
+
+        <!-- Monthly Plan -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 relative">
+          <div class="absolute top-4 right-4">
+            <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
+              {% trans "MOST POPULAR" %}
+            </span>
+          </div>
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">{% trans "Monthly Hero" %}</h3>
+            <div class="text-4xl font-bold text-yellow-400 mb-4">
+              $5
+              <span class="text-lg text-gray-400">/{% trans "month" %}</span>
+            </div>
+            <p class="text-gray-300 mb-6">{% trans "Best value for regular heroes" %}</p>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Unlimited conversions" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "No page limits" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Priority processing queue" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Ad-free experience" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "All premium features" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Become site hero" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Dark theme (coming soon)" %}
+            </li>
+          </ul>
+
+          <button onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
+            {% trans "Become Monthly Hero" %}
+          </button>
+        </div>
+
+
+        <!-- Yearly Plan -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">{% trans "Yearly Hero" %}</h3>
+            <div class="text-4xl font-bold text-purple-400 mb-4">
+              $48
+              <span class="text-lg text-gray-400">/{% trans "year" %}</span>
+            </div>
+            <p class="text-gray-300 mb-6">{% trans "Save 20% with annual commitment" %}</p>
+          </div>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Everything in Monthly, plus:" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Unlimited batch processing" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Priority support" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Advanced OCR features" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Hero badge (coming soon)" %}
+            </li>
+            <li class="flex items-center text-gray-300">
+              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              {% trans "Advanced OCR features" %}
+            </li>
+          </ul>
+
+          <button onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+            {% trans "Become Yearly Hero" %}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Heroes Love Convertica" %}</h2>
+        <p class="text-xl text-gray-300">{% trans "Join thousands of satisfied heroes worldwide" %}</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+              JD
+            </div>
+            <div>
+              <div class="text-white font-semibold">John Doe</div>
+              <div class="text-gray-400 text-sm">{% trans "Monthly Hero" %}</div>
+            </div>
+          </div>
+          <p class="text-gray-300">"{% trans "Convertica has transformed how I handle documents. The batch processing alone saves me hours every week!" %}"</p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-gray-900 font-bold mr-3">
+              SM
+            </div>
+            <div>
+              <div class="text-white font-semibold">Sarah Miller</div>
+              <div class="text-gray-400 text-sm">{% trans "Yearly Hero" %}</div>
+            </div>
+          </div>
+          <p class="text-gray-300">"{% trans "Worth every penny! The OCR feature is incredible and the priority support is amazing." %}"</p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+              AK
+            </div>
+            <div>
+              <div class="text-white font-semibold">Alex Kim</div>
+              <div class="text-gray-400 text-sm">{% trans "Daily Hero" %}</div>
+            </div>
+          </div>
+          <p class="text-gray-300">"{% trans "Perfect for my occasional needs. Just $1 for a day of unlimited conversions is fantastic!" %}"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-lg rounded-3xl p-12 border border-yellow-400/30 text-center">
+        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Ready to Become a Hero?" %}</h2>
+        <p class="text-xl text-gray-300 mb-8">{% trans "Join thousands of heroes transforming documents every day" %}</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="selectPlan('monthly')" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
+            {% trans "Start Your Hero Journey" %}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Honest Message Section -->
+    <div class="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-200/60 shadow-xl shadow-slate-200/50">
+          <div class="flex items-center justify-center mb-8">
+            <div class="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/25">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 text-center mb-4">
+            {% trans "Why Your Support Matters" %}
+          </h2>
+          <div class="space-y-4 text-gray-700">
+            <p class="text-center">
+              {% trans "This project exists because of heroes like you. We're completely transparent:" %}
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 mt-10">
+              <div class="text-center group">
+                <div class="w-20 h-20 bg-gradient-to-br from-emerald-50 to-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-emerald-200/50 transition-all duration-300">
+                  <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Ad-Free Experience" %}</h3>
+                <p class="text-gray-600 leading-relaxed">{% trans "Enjoy the site without any advertisements as a premium member" %}</p>
+              </div>
+              <div class="text-center group">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-blue-200/50 transition-all duration-300">
+                  <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Servers & Development" %}</h3>
+                <p class="text-gray-600 leading-relaxed">{% trans "Your support powers our infrastructure and improvements" %}</p>
+              </div>
+              <div class="text-center group">
+                <div class="w-20 h-20 bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-purple-200/50 transition-all duration-300">
+                  <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Community Driven" %}</h3>
+                <p class="text-gray-600 leading-relaxed">{% trans "You're not just a user - you're a project partner" %}</p>
+              </div>
+            </div>
+            <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+              <p class="text-center text-sm text-gray-700">
+                <strong>{% trans "The Truth:" %}</strong> {% trans "We don't have venture capital or investors. This project survives solely through the support of users like you. Every subscription directly funds servers, security, and development." %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heroes Showcase Section -->
+    <div id="heroes-hall" class="relative bg-gradient-to-br from-yellow-900 via-orange-900 to-red-900 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-white mb-4">{% trans "Heroes Hall of Fame" %}</h2>
+          <p class="text-yellow-300">{% trans "Our amazing premium subscribers supporting the project" %}</p>
+        </div>
+
+        {% if heroes %}
+          <!-- Scrolling Heroes -->
+          <div class="overflow-hidden relative mb-12">
+            <div class="flex space-x-4 animate-scroll">
+              {% for hero in heroes %}
+                <div class="flex items-center px-4 py-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-full {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}border {{ rank.border_color }}{% endwith %}{% else %}border border-yellow-400/30{% endif %} whitespace-nowrap shadow-lg">
+                  {% if hero.get_subscription_rank %}
+                    {% with rank=hero.get_subscription_rank %}
+                      <span class="px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold mr-2">
+                        {{ rank.name }}
+                      </span>
+                    {% endwith %}
+                  {% endif %}
+                  {% if hero.get_subscription_rank %}
+                    {% with rank=hero.get_subscription_rank %}
+                      <span class="{{ rank.text_color }} font-medium">
+                        {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                      </span>
+                    {% endwith %}
+                  {% else %}
+                    <span class="text-yellow-300 font-medium">
+                      {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                    </span>
+                  {% endif %}
+                  <span class="ml-2 px-2 py-1 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}bg-yellow-400 text-gray-900{% endif %} rounded-full text-xs font-bold shadow-md">
+                    {{ hero.consecutive_subscription_days|floatformat:0 }}d
+                  </span>
+                </div>
+              {% endfor %}
+              <!-- Duplicate for seamless scroll -->
+              {% for hero in heroes %}
+                <div class="flex items-center px-4 py-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-full {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}border {{ rank.border_color }}{% endwith %}{% else %}border border-yellow-400/30{% endif %} whitespace-nowrap shadow-lg">
+                  {% if hero.get_subscription_rank %}
+                    {% with rank=hero.get_subscription_rank %}
+                      <span class="px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold mr-2">
+                        {{ rank.name }}
+                      </span>
+                    {% endwith %}
+                  {% endif %}
+                  {% if hero.get_subscription_rank %}
+                    {% with rank=hero.get_subscription_rank %}
+                      <span class="{{ rank.text_color }} font-medium">
+                        {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                      </span>
+                    {% endwith %}
+                  {% else %}
+                    <span class="text-yellow-300 font-medium">
+                      {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                    </span>
+                  {% endif %}
+                  <span class="ml-2 px-2 py-1 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}bg-yellow-400 text-gray-900{% endif %} rounded-full text-xs font-bold shadow-md">
+                    {{ hero.consecutive_subscription_days|floatformat:0 }}d
+                  </span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <!-- No Heroes Yet Message -->
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-yellow-400/30 p-8 mb-12 text-center">
+            <div class="w-16 h-16 bg-yellow-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">{% trans "Be the First Hero!" %}</h3>
+            <p class="text-yellow-300">{% trans "стань 1м, поддержи проект" %}</p>
+          </div>
+        {% endif %}
+
+        <!-- Top 10 Subscribers -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-yellow-400/30 p-8">
+          <h3 class="text-xl font-bold text-white mb-6 text-center">{% trans "Top Heroes" %}</h3>
+          {% if top_subscribers %}
+            <!-- Podium - Top 3 -->
+            <div class="flex justify-center items-end mb-8 gap-4">
+              {% for hero in top_subscribers %}
+                {% if forloop.counter <= 3 %}
+                  <div class="flex flex-col items-center {% if forloop.counter == 1 %}order-2{% elif forloop.counter == 2 %}order-1{% else %}order-3{% endif %}">
+                    <!-- Hero Card -->
+                    <div class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-2xl border-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.border_color }}{% endwith %}{% else %}border-yellow-400/30{% endif %} p-4 mb-2 shadow-lg {% if forloop.counter == 1 %}scale-105{% endif %}">
+                      <div class="text-center">
+                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mx-auto mb-2 border-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.border_color }}{% endwith %}{% else %}border-yellow-400/50{% endif %}">
+                          {{ forloop.counter }}
+                        </div>
+                        <p class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.text_color }}{% endwith %}{% else %}text-white{% endif %} font-bold text-lg mb-1">
+                          {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                        </p>
+                        {% if hero.get_subscription_rank %}
+                          {% with rank=hero.get_subscription_rank %}
+                            <span class="inline-block px-3 py-1 {{ rank.badge_color }} text-white rounded-full text-sm font-bold mb-2">
+                              {{ rank.name }}
+                            </span>
+                          {% endwith %}
+                        {% endif %}
+                        <p class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}text-yellow-300{% endif %} px-3 py-1 rounded-full text-sm font-bold">
+                          {{ hero.consecutive_subscription_days|floatformat:0 }} {% trans "days" %}
+                        </p>
+                      </div>
+                    </div>
+                    <!-- Podium Base -->
+                    <div class="w-full {% if forloop.counter == 1 %}h-12 bg-gradient-to-r from-yellow-400 to-orange-400{% elif forloop.counter == 2 %}h-8 bg-gradient-to-r from-gray-300 to-gray-400{% else %}h-6 bg-gradient-to-r from-orange-600 to-orange-700{% endif %} rounded-t-lg flex items-center justify-center">
+                      <span class="text-white font-bold text-lg">{{ forloop.counter }}</span>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <!-- Rest of the list -->
+            {% if top_subscribers|length > 3 %}
+              <div class="space-y-2">
+                {% for hero in top_subscribers %}
+                  {% if forloop.counter > 3 %}
+                    <div class="flex items-center justify-between bg-white/5 rounded-lg p-3 border border-yellow-400/20">
+                      <div class="flex items-center">
+                        <div class="flex-shrink-0 w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                          {{ forloop.counter }}
+                        </div>
+                        <div class="flex items-center">
+                          <p class="text-white font-medium">
+                            {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                          </p>
+                          {% if hero.get_subscription_rank %}
+                            {% with rank=hero.get_subscription_rank %}
+                              <span class="ml-2 px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold shadow-sm">
+                                {{ rank.name }}
+                              </span>
+                            {% endwith %}
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="flex items-center">
+                        <span class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}text-yellow-300{% endif %} px-2 py-1 rounded-full text-sm font-bold mr-3">
+                          {{ hero.consecutive_subscription_days|floatformat:0 }} {% trans "days" %}
+                        </span>
+                        {% if hero.consecutive_subscription_days >= 365 %}
+                          <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                          </svg>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% else %}
+            <div class="text-center py-8">
+              <p class="text-yellow-300">{% trans "No heroes yet. Be the first to join the hall of fame!" %}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-scroll {
+      animation: scroll 40s linear infinite;
+      display: flex;
+      min-width: max-content;
+    }
+    .animate-scroll:hover {
+      animation-play-state: paused;
+    }
+  </style>
+
+  <script>
+    function selectPlan(planType) {
+      // Show loading state
+      const button = event.target;
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = '{% trans "Processing..." %}';
+
+      // Make API call to subscribe
+      fetch(`/users/subscribe/${planType}/`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': getCookie('csrftoken'),
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+          // Redirect to account status with success message
+            window.location.href = '/users/account-status/?message=' + encodeURIComponent(data.message);
+          } else {
+            alert(data.error || '{% trans "Payment failed" %}');
+            button.disabled = false;
+            button.textContent = originalText;
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('{% trans "An error occurred. Please try again." %}');
+          button.disabled = false;
+          button.textContent = originalText;
+        });
+    }
+
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    // Add blob animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+      }
+      .animate-blob {
+        animation: blob 7s infinite;
+      }
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+      .animation-delay-4000 {
+        animation-delay: 4s;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+{% endblock %}

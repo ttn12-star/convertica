@@ -11,6 +11,15 @@ urlpatterns = [
     path("logout/", views.user_logout, name="logout"),
     path("profile/", views.user_profile, name="profile"),
     path("profile/edit/", views.ProfileUpdateView.as_view(), name="profile_edit"),
+    path("premium/", views.premium_page, name="premium"),
+    path("account-status/", views.account_status, name="account_status"),
+    path("manage-subscription/", views.manage_subscription, name="manage_subscription"),
+    path("cancel-subscription/", views.cancel_subscription, name="cancel_subscription"),
+    path("delete-account/", views.delete_account, name="delete_account"),
+    path("toggle-hero-display/", views.toggle_hero_display, name="toggle_hero_display"),
+    path("download-data/", views.download_data, name="download_data"),
+    path("subscribe/<str:plan_type>/", views.subscribe_plan, name="subscribe_plan"),
+    path("api/plans/", views.get_subscription_plans, name="get_subscription_plans"),
     path(
         "google-direct/", social_views.google_direct_oauth, name="google_direct_oauth"
     ),

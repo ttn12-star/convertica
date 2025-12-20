@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
@@ -19,6 +20,9 @@ class UserAdmin(BaseUserAdmin):
         "username",
         "first_name",
         "last_name",
+        "subscription_status",
+        "subscription_rank",
+        "consecutive_days",
         "is_active",
         "is_staff",
         "date_joined",
@@ -28,6 +32,7 @@ class UserAdmin(BaseUserAdmin):
         "is_active",
         "is_staff",
         "is_superuser",
+        "is_premium",
         "date_joined",
         "socialaccount__provider",
     )
@@ -37,6 +42,19 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {"fields": ("email", "username", "password")}),
         ("Personal info", {"fields": ("first_name", "last_name")}),
+        (
+            "Subscription",
+            {
+                "fields": (
+                    "is_premium",
+                    "subscription_start_date",
+                    "subscription_end_date",
+                    "consecutive_subscription_days",
+                    "total_subscription_days",
+                    "display_as_hero",
+                )
+            },
+        ),
         (
             "Permissions",
             {
@@ -52,6 +70,11 @@ class UserAdmin(BaseUserAdmin):
         ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
 
+    readonly_fields = (
+        "consecutive_subscription_days",
+        "total_subscription_days",
+    )
+
     add_fieldsets = (
         (
             None,
@@ -61,6 +84,62 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     )
+
+    def subscription_status(self, obj):
+        """Display subscription status with color coding."""
+        if obj.is_premium:
+            if obj.subscription_end_date and obj.subscription_end_date < timezone.now():
+                return mark_safe(
+                    '<span style="color: #ff6b6b; font-weight: bold;">EXPIRED</span>'
+                )
+            return mark_safe(
+                '<span style="color: #51cf66; font-weight: normal;">Premium</span>'
+            )
+        return mark_safe('<span style="color: #868e96;">Free</span>')
+
+    subscription_status.short_description = "Subscription"
+
+    def subscription_rank(self, obj):
+        """Display subscription rank with color."""
+        rank = obj.get_subscription_rank()
+        if rank:
+            colors = {
+                "Platinum": "#9775fa",
+                "Gold": "#ffd43b",
+                "Silver": "#868e96",
+                "Bronze": "#ff922b",
+            }
+            color = colors.get(rank["name"], "#868e96")
+            return mark_safe(
+                f'<span style="color: {color}; font-weight: bold;">{rank["name"]}</span>'
+            )
+        return mark_safe('<span style="color: #868e96;">No rank</span>')
+
+    subscription_rank.short_description = "Rank"
+
+    def consecutive_days(self, obj):
+        """Display consecutive subscription days."""
+        days = obj.consecutive_subscription_days
+        if days > 0:
+            if days >= 365:
+                return mark_safe(
+                    f'<span style="color: #9775fa; font-weight: bold;">{days}</span>'
+                )
+            elif days >= 180:
+                return mark_safe(
+                    f'<span style="color: #ffd43b; font-weight: bold;">{days}</span>'
+                )
+            elif days >= 90:
+                return mark_safe(
+                    f'<span style="color: #868e96; font-weight: bold;">{days}</span>'
+                )
+            elif days >= 30:
+                return mark_safe(
+                    f'<span style="color: #ff922b; font-weight: bold;">{days}</span>'
+                )
+        return mark_safe(f'<span style="color: #868e96;">{days}</span>')
+
+    consecutive_days.short_description = "Days"
 
     def social_accounts(self, obj):
         """Display connected social accounts with links."""
@@ -81,8 +160,17 @@ class UserAdmin(BaseUserAdmin):
 
     social_accounts.short_description = "Social Accounts"
 
+    def save_model(self, request, obj, form, change):
+        """Override save_model to allow manual admin edits."""
+        # Set flag to prevent auto-updating is_premium during admin edits
+        obj._admin_manual_edit = True
+        super().save_model(request, obj, form, change)
+        # Clean up the flag after save
+        if hasattr(obj, "_admin_manual_edit"):
+            delattr(obj, "_admin_manual_edit")
+
     def get_queryset(self, request):
-        """Optimize queries with social account prefetch."""
+        """Optimize queryset with related objects."""
         return super().get_queryset(request).prefetch_related("socialaccount_set")
 
 
