@@ -1,4 +1,6 @@
 # pylint: skip-file
+import json
+
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
@@ -6,6 +8,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -74,9 +77,22 @@ def user_register(request):
 
 
 def user_logout(request):
-    """Handle user logout."""
+    """Handle user logout with complete session cleanup."""
+    # Clear all session data
+    request.session.flush()
+
+    # Perform Django logout
     auth_logout(request)
-    return redirect("users:login")
+
+    # Clear authentication cookies only (keep language preference)
+    response = redirect("users:login")
+    response.delete_cookie("sessionid")
+
+    # Add success message
+
+    messages.success(request, _("You have been successfully logged out."))
+
+    return response
 
 
 @login_required

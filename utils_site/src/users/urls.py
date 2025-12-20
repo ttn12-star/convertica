@@ -1,3 +1,4 @@
+# pylint: skip-file
 from django.urls import path
 
 from . import social_views, views
@@ -13,4 +14,5 @@ urlpatterns = [
     path(
         "google-direct/", social_views.google_direct_oauth, name="google_direct_oauth"
     ),
+    path("auth-status/", social_views.auth_status, name="auth_status"),
 ]

@@ -1,3 +1,4 @@
+# pylint: skip-file
 """
 Django settings for utils_site project.
 
@@ -330,7 +331,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTH_USER_MODEL = "users.User"
 
 # Django Allauth Configuration
-SITE_ID = 1
+SITE_ID = 2
 
 # Authentication backends
 AUTHENTICATION_BACKENDS = [
@@ -347,37 +348,12 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Allauth social account settings
 SOCIALACCOUNT_AUTO_SIGNUP = True
-SOCIALACCOUNT_ADAPTER = "allauth.socialaccount.adapter.DefaultSocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "src.users.social_adapter.SocialAccountAdapter"
 SOCIALACCOUNT_LOGIN_ON_GET = False
 SOCIALACCOUNT_EMAIL_VERIFICATION = "optional"
 SOCIALACCOUNT_EMAIL_REQUIRED = False
 SOCIALACCOUNT_QUERY_EMAIL = True
-SOCIALACCOUNT_PROVIDERS = {
-    "google": {
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
-        "AUTH_PARAMS": {
-            "access_type": "online",
-        },
-    },
-    "facebook": {
-        "METHOD": "oauth2",
-        "SCOPE": ["email", "public_profile"],
-        "AUTH_PARAMS": {"auth_type": "rerequest"},
-        "INIT_PARAMS": {"cookie": True},
-        "FIELDS": [
-            "id",
-            "email",
-            "name",
-            "first_name",
-            "last_name",
-            "verified",
-        ],
-        "VERSION": "v13.0",
-    },
-}
+
 
 # Login/Logout URLs
 LOGIN_URL = "/users/login/"
@@ -678,6 +654,12 @@ try:
 except ImportError:
     # Fallback to database sessions if django-redis is not installed
     SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+# Enhanced session security
+SESSION_COOKIE_AGE = 86400  # 24 hours session timeout
+SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access
+SESSION_SAVE_EVERY_REQUEST = True  # Update session on each request
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Keep session after browser close
 
 # Celery Configuration
 CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://127.0.0.1:6379/0")
