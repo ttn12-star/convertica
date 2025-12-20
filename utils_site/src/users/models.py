@@ -52,6 +52,11 @@ class User(AbstractUser):
         default=False, verbose_name=_("Display as Hero")
     )
 
+    # Stripe integration
+    stripe_customer_id = models.CharField(
+        max_length=100, blank=True, null=True, editable=False
+    )
+
     username = models.CharField(max_length=150, blank=True, null=True)
 
     USERNAME_FIELD = "email"
@@ -193,6 +198,10 @@ class User(AbstractUser):
         self._subscription_changed = True
         self.save()
 
+    def get_stripe_customer_id(self):
+        """Get Stripe customer ID."""
+        return self.stripe_customer_id
+
     def cancel_subscription(self):
         """Cancel subscription immediately."""
         self.subscription_end_date = timezone.now()
@@ -240,33 +249,32 @@ class User(AbstractUser):
 
 
 class SubscriptionPlan(models.Model):
-    """Subscription plan model with pricing."""
+    """Subscription plans for Stripe integration."""
 
-    PLAN_TYPES = [
-        ("daily", _("Daily")),
-        ("monthly", _("Monthly")),
-        ("yearly", _("Yearly")),
-    ]
-
-    name = models.CharField(max_length=100, verbose_name=_("Plan Name"))
-    plan_type = models.CharField(
-        max_length=20, choices=PLAN_TYPES, verbose_name=_("Plan Type")
-    )
-    price = models.DecimalField(
-        max_digits=10, decimal_places=2, verbose_name=_("Price")
-    )
-    duration_days = models.IntegerField(verbose_name=_("Duration Days"))
-    features = models.JSONField(default=list, verbose_name=_("Features"))
-    is_active = models.BooleanField(default=True, verbose_name=_("Is Active"))
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50, unique=True)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    currency = models.CharField(max_length=3, default="USD")
+    duration_days = models.IntegerField()
+    stripe_price_id = models.CharField(max_length=100, blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name = _("Subscription Plan")
-        verbose_name_plural = _("Subscription Plans")
         ordering = ["price"]
 
     def __str__(self):
-        return f"{self.name} - ${self.price}"
+        return f"{self.name} - ${self.price}/{self.get_duration_display()}"
+
+    def get_duration_display(self):
+        if self.duration_days == 1:
+            return "day"
+        elif self.duration_days == 30:
+            return "month"
+        elif self.duration_days == 365:
+            return "year"
+        return f"{self.duration_days} days"
 
 
 class Payment(models.Model):
@@ -361,3 +369,42 @@ class Payment(models.Model):
         # Cache for 10 minutes
         cache.set(cache_key, list(history), 600)
         return history
+
+
+class UserSubscription(models.Model):
+    """User subscription tracking."""
+
+    user = models.OneToOneField(
+        "User", on_delete=models.CASCADE, related_name="stripe_subscription"
+    )
+    plan = models.ForeignKey("SubscriptionPlan", on_delete=models.SET_NULL, null=True)
+    stripe_subscription_id = models.CharField(max_length=100, blank=True, null=True)
+    stripe_customer_id = models.CharField(max_length=100, blank=True, null=True)
+    current_period_start = models.DateTimeField(null=True, blank=True)
+    current_period_end = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=20, default="incomplete")
+    cancel_at_period_end = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["user", "status"]),
+            models.Index(fields=["stripe_subscription_id"]),
+        ]
+
+    def __str__(self):
+        return f"{self.user.email} - {self.plan.name if self.plan else 'No Plan'} ({self.status})"
+
+    def is_active(self):
+        """Check if subscription is active."""
+        return (
+            self.status in ["active", "trialing"]
+            and self.current_period_end
+            and self.current_period_end > timezone.now()
+        )
+
+    @property
+    def will_cancel(self):
+        """Check if subscription will cancel at period end."""
+        return self.cancel_at_period_end and self.is_active()

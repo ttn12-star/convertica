@@ -2,6 +2,7 @@
 import json
 import uuid
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
@@ -141,7 +142,11 @@ def premium_page(request):
     return render(
         request,
         "users/premium.html",
-        {"heroes": heroes, "top_subscribers": top_subscribers},
+        {
+            "heroes": heroes,
+            "top_subscribers": top_subscribers,
+            "stripe_publishable_key": settings.STRIPE_PUBLISHABLE_KEY,
+        },
     )
 
 
@@ -180,12 +185,33 @@ def cancel_subscription(request):
             {"success": False, "error": _("No active subscription to cancel")}
         )
 
-    # Use the model method for consistent logic
-    user.cancel_subscription()
+    try:
+        # Get user's Stripe subscription
+        from src.users.models import UserSubscription
 
-    return JsonResponse(
-        {"success": True, "message": _("Subscription cancelled successfully")}
-    )
+        user_subscription = UserSubscription.objects.filter(user=user).first()
+
+        if user_subscription and user_subscription.stripe_subscription_id:
+            # Cancel subscription in Stripe
+            import stripe
+            from django.conf import settings
+
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+
+            # Cancel at period end (immediate=False) or immediately (immediate=True)
+            stripe.Subscription.delete(user_subscription.stripe_subscription_id)
+
+        # Cancel local subscription
+        user.cancel_subscription()
+
+        return JsonResponse(
+            {"success": True, "message": _("Subscription cancelled successfully")}
+        )
+
+    except Exception as e:
+        return JsonResponse(
+            {"success": False, "error": _("Failed to cancel subscription")}
+        )
 
 
 @login_required
@@ -355,71 +381,3 @@ def download_data(request):
     )
     response["Content-Type"] = "application/json; charset=utf-8"
     return response
-
-
-@login_required
-def subscribe_plan(request, plan_type):
-    """Handle subscription to a plan."""
-    if request.method != "POST":
-        return JsonResponse({"success": False, "error": _("Method not allowed")})
-
-    try:
-        plan = get_object_or_404(SubscriptionPlan, plan_type=plan_type, is_active=True)
-
-        with transaction.atomic():
-            # Create payment record
-            payment = Payment.objects.create(
-                user=request.user,
-                plan=plan,
-                amount=plan.price,
-                status="pending",
-                payment_id=str(uuid.uuid4()),
-                payment_method="stripe",  # Will be updated based on actual payment method
-            )
-
-            # TODO: Integrate with actual payment processor (Stripe/PayPal)
-            # For now, simulate successful payment
-            payment.status = "completed"
-            payment.processed_at = timezone.now()
-            payment.save()
-
-            return JsonResponse(
-                {
-                    "success": True,
-                    "message": _("Subscription activated successfully!"),
-                    "payment_id": payment.payment_id,
-                }
-            )
-
-    except Exception as e:
-        return JsonResponse({"success": False, "error": str(e)})
-
-
-@login_required
-def get_subscription_plans(request):
-    """Get available subscription plans with caching."""
-    cache_key = "subscription_plans"
-    cached_plans = cache.get(cache_key)
-
-    if cached_plans is not None:
-        return JsonResponse({"success": True, "plans": cached_plans})
-
-    plans = SubscriptionPlan.objects.filter(is_active=True).order_by("price")
-    plans_data = []
-
-    for plan in plans:
-        plans_data.append(
-            {
-                "id": plan.id,
-                "name": plan.name,
-                "plan_type": plan.plan_type,
-                "price": str(plan.price),
-                "duration_days": plan.duration_days,
-                "features": plan.features,
-            }
-        )
-
-    # Cache for 1 hour
-    cache.set(cache_key, plans_data, 3600)
-
-    return JsonResponse({"success": True, "plans": plans_data})
