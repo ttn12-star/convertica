@@ -42,7 +42,7 @@
 
           <!-- Subtitle -->
           <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            {% trans "Unlock unlimited PDF superpowers and join thousands of heroes who transform documents effortlessly" %}
+            {% trans "Unlock unlimited PDF superpowers and transform documents effortlessly" %}
           </p>
 
           <!-- Hero Stats -->
@@ -263,376 +263,369 @@
     <!-- Testimonials Section -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Heroes Love Convertica" %}</h2>
-        <p class="text-xl text-gray-300">{% trans "Join thousands of satisfied heroes worldwide" %}</p>
-      </div>
+        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Support Our Project" %}</h2>
+        <p class="text-xl text-gray-300 mb-8">{% trans "Become a Convertica hero and help us make the service better" %}</p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
-              JD
+        <!-- Why Support Section -->
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
             </div>
-            <div>
-              <div class="text-white font-semibold">John Doe</div>
-              <div class="text-gray-400 text-sm">{% trans "Monthly Hero" %}</div>
-            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">{% trans "Fast & Reliable" %}</h3>
+            <p class="text-gray-400 text-sm">{% trans "We keep our servers running 24/7 to ensure your PDF conversions are always fast and dependable" %}</p>
           </div>
-          <p class="text-gray-300">"{% trans "Convertica has transformed how I handle documents. The batch processing alone saves me hours every week!" %}"</p>
-        </div>
 
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full flex items-center justify-center text-gray-900 font-bold mr-3">
-              SM
+          <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
             </div>
-            <div>
-              <div class="text-white font-semibold">Sarah Miller</div>
-              <div class="text-gray-400 text-sm">{% trans "Yearly Hero" %}</div>
-            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">{% trans "Privacy First" %}</h3>
+            <p class="text-gray-400 text-sm">{% trans "Your documents are processed securely and never stored. We respect your privacy above all" %}</p>
           </div>
-          <p class="text-gray-300">"{% trans "Worth every penny! The OCR feature is incredible and the priority support is amazing." %}"</p>
-        </div>
 
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-          <div class="flex items-center mb-4">
-            <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
-              AK
-            </div>
-            <div>
-              <div class="text-white font-semibold">Alex Kim</div>
-              <div class="text-gray-400 text-sm">{% trans "Daily Hero" %}</div>
-            </div>
-          </div>
-          <p class="text-gray-300">"{% trans "Perfect for my occasional needs. Just $1 for a day of unlimited conversions is fantastic!" %}"</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA Section -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-lg rounded-3xl p-12 border border-yellow-400/30 text-center">
-        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Ready to Become a Hero?" %}</h2>
-        <p class="text-xl text-gray-300 mb-8">{% trans "Join thousands of heroes transforming documents every day" %}</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button type="button" onclick="selectPlan('monthly')" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
-            {% trans "Start Your Hero Journey" %}
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Honest Message Section -->
-    <div class="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-200/60 shadow-xl shadow-slate-200/50">
-          <div class="flex items-center justify-center mb-8">
-            <div class="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/25">
-              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+            <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
               </svg>
             </div>
+            <h3 class="text-lg font-semibold text-white mb-2">{% trans "Made with Care" %}</h3>
+            <p class="text-gray-400 text-sm">{% trans "We're a small team passionate about creating the best PDF tools for everyone" %}</p>
           </div>
-          <h2 class="text-2xl font-bold text-gray-900 text-center mb-4">
-            {% trans "Why Your Support Matters" %}
-          </h2>
-          <div class="space-y-4 text-gray-700">
-            <p class="text-center">
-              {% trans "This project exists because of heroes like you. We're completely transparent:" %}
-            </p>
-            <div class="grid md:grid-cols-3 gap-8 mt-10">
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-emerald-50 to-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-emerald-200/50 transition-all duration-300">
-                  <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-                <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Ad-Free Experience" %}</h3>
-                <p class="text-gray-600 leading-relaxed">{% trans "Enjoy the site without any advertisements as a premium member" %}</p>
-              </div>
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-blue-200/50 transition-all duration-300">
-                  <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                </div>
-                <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Servers & Development" %}</h3>
-                <p class="text-gray-600 leading-relaxed">{% trans "Your support powers our infrastructure and improvements" %}</p>
-              </div>
-              <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-purple-200/50 transition-all duration-300">
-                  <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </div>
-                <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Community Driven" %}</h3>
-                <p class="text-gray-600 leading-relaxed">{% trans "You're not just a user - you're a project partner" %}</p>
+        </div>
+
+        <p class="text-lg text-gray-300 italic">{% trans "Your support helps us keep Convertica free for everyone and continuously improve our tools" %}</p>
+      </div>
+
+    <!-- CTA Section -->
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-lg rounded-3xl p-12 border border-yellow-400/30 text-center">
+          <h2 class="text-4xl font-bold text-white mb-4">{% trans "Ready to Become a Hero?" %}</h2>
+          <p class="text-xl text-gray-300 mb-8">{% trans "Start your document transformation journey today" %}</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button type="button" onclick="selectPlan('monthly')" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
+              {% trans "Start Your Hero Journey" %}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    <!-- Honest Message Section -->
+      <div class="relative bg-gradient-to-br from-slate-50 via-white to-slate-50 py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-10 border border-slate-200/60 shadow-xl shadow-slate-200/50">
+            <div class="flex items-center justify-center mb-8">
+              <div class="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/25">
+                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
               </div>
             </div>
-            <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-              <p class="text-center text-sm text-gray-700">
-                <strong>{% trans "The Truth:" %}</strong> {% trans "We don't have venture capital or investors. This project survives solely through the support of users like you. Every subscription directly funds servers, security, and development." %}
+            <h2 class="text-2xl font-bold text-gray-900 text-center mb-4">
+              {% trans "Why Your Support Matters" %}
+            </h2>
+            <div class="space-y-4 text-gray-700">
+              <p class="text-center">
+                {% trans "This project exists because of heroes like you. We're completely transparent:" %}
               </p>
+              <div class="grid md:grid-cols-3 gap-8 mt-10">
+                <div class="text-center group">
+                  <div class="w-20 h-20 bg-gradient-to-br from-emerald-50 to-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-emerald-200/50 transition-all duration-300">
+                    <svg class="w-10 h-10 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Ad-Free Experience" %}</h3>
+                  <p class="text-gray-600 leading-relaxed">{% trans "Enjoy the site without any advertisements as a premium member" %}</p>
+                </div>
+                <div class="text-center group">
+                  <div class="w-20 h-20 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-blue-200/50 transition-all duration-300">
+                    <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Servers & Development" %}</h3>
+                  <p class="text-gray-600 leading-relaxed">{% trans "Your support powers our infrastructure and improvements" %}</p>
+                </div>
+                <div class="text-center group">
+                  <div class="w-20 h-20 bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg group-hover:shadow-purple-200/50 transition-all duration-300">
+                    <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                  </div>
+                  <h3 class="font-bold text-gray-900 mb-3 text-lg">{% trans "Community Driven" %}</h3>
+                  <p class="text-gray-600 leading-relaxed">{% trans "You're not just a user - you're a project partner" %}</p>
+                </div>
+              </div>
+              <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                <p class="text-center text-sm text-gray-700">
+                  <strong>{% trans "The Truth:" %}</strong> {% trans "We don't have venture capital or investors. This project survives solely through the support of users like you. Every subscription directly funds servers, security, and development." %}
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     <!-- Heroes Showcase Section -->
-    <div id="heroes-hall" class="relative bg-gradient-to-br from-yellow-900 via-orange-900 to-red-900 py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-8">
-          <h2 class="text-3xl font-bold text-white mb-4">{% trans "Heroes Hall of Fame" %}</h2>
-          <p class="text-yellow-300">{% trans "Our amazing premium subscribers supporting the project" %}</p>
-        </div>
+      <div id="heroes-hall" class="relative bg-gradient-to-br from-yellow-900 via-orange-900 to-red-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-white mb-4">{% trans "Heroes Hall of Fame" %}</h2>
+            <p class="text-yellow-300">{% trans "Our amazing premium subscribers supporting the project" %}</p>
+          </div>
 
-        {% if heroes %}
+          {% if heroes %}
           <!-- Scrolling Heroes -->
-          <div class="overflow-hidden relative mb-12">
-            <div class="flex space-x-4 animate-scroll">
-              {% for hero in heroes %}
-                <div class="flex items-center px-4 py-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-full {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}border {{ rank.border_color }}{% endwith %}{% else %}border border-yellow-400/30{% endif %} whitespace-nowrap shadow-lg">
-                  {% if hero.get_subscription_rank %}
-                    {% with rank=hero.get_subscription_rank %}
-                      <span class="px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold mr-2">
-                        {{ rank.name }}
-                      </span>
-                    {% endwith %}
-                  {% endif %}
-                  {% if hero.get_subscription_rank %}
-                    {% with rank=hero.get_subscription_rank %}
-                      <span class="{{ rank.text_color }} font-medium">
+            <div class="overflow-hidden relative mb-12">
+              <div class="flex space-x-4 animate-scroll">
+                {% for hero in heroes %}
+                  <div class="flex items-center px-4 py-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-full {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}border {{ rank.border_color }}{% endwith %}{% else %}border border-yellow-400/30{% endif %} whitespace-nowrap shadow-lg">
+                    {% if hero.get_subscription_rank %}
+                      {% with rank=hero.get_subscription_rank %}
+                        <span class="px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold mr-2">
+                          {{ rank.name }}
+                        </span>
+                      {% endwith %}
+                    {% endif %}
+                    {% if hero.get_subscription_rank %}
+                      {% with rank=hero.get_subscription_rank %}
+                        <span class="{{ rank.text_color }} font-medium">
+                          {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                        </span>
+                      {% endwith %}
+                    {% else %}
+                      <span class="text-yellow-300 font-medium">
                         {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
                       </span>
-                    {% endwith %}
-                  {% else %}
-                    <span class="text-yellow-300 font-medium">
-                      {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                    {% endif %}
+                    <span class="ml-2 px-2 py-1 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}bg-yellow-400 text-gray-900{% endif %} rounded-full text-xs font-bold shadow-md">
+                      {{ hero.consecutive_subscription_days|floatformat:0 }}d
                     </span>
-                  {% endif %}
-                  <span class="ml-2 px-2 py-1 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}bg-yellow-400 text-gray-900{% endif %} rounded-full text-xs font-bold shadow-md">
-                    {{ hero.consecutive_subscription_days|floatformat:0 }}d
-                  </span>
-                </div>
-              {% endfor %}
+                  </div>
+                {% endfor %}
               <!-- Duplicate for seamless scroll -->
-              {% for hero in heroes %}
-                <div class="flex items-center px-4 py-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-full {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}border {{ rank.border_color }}{% endwith %}{% else %}border border-yellow-400/30{% endif %} whitespace-nowrap shadow-lg">
-                  {% if hero.get_subscription_rank %}
-                    {% with rank=hero.get_subscription_rank %}
-                      <span class="px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold mr-2">
-                        {{ rank.name }}
-                      </span>
-                    {% endwith %}
-                  {% endif %}
-                  {% if hero.get_subscription_rank %}
-                    {% with rank=hero.get_subscription_rank %}
-                      <span class="{{ rank.text_color }} font-medium">
+                {% for hero in heroes %}
+                  <div class="flex items-center px-4 py-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-full {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}border {{ rank.border_color }}{% endwith %}{% else %}border border-yellow-400/30{% endif %} whitespace-nowrap shadow-lg">
+                    {% if hero.get_subscription_rank %}
+                      {% with rank=hero.get_subscription_rank %}
+                        <span class="px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold mr-2">
+                          {{ rank.name }}
+                        </span>
+                      {% endwith %}
+                    {% endif %}
+                    {% if hero.get_subscription_rank %}
+                      {% with rank=hero.get_subscription_rank %}
+                        <span class="{{ rank.text_color }} font-medium">
+                          {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                        </span>
+                      {% endwith %}
+                    {% else %}
+                      <span class="text-yellow-300 font-medium">
                         {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
                       </span>
-                    {% endwith %}
-                  {% else %}
-                    <span class="text-yellow-300 font-medium">
-                      {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                    {% endif %}
+                    <span class="ml-2 px-2 py-1 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}bg-yellow-400 text-gray-900{% endif %} rounded-full text-xs font-bold shadow-md">
+                      {{ hero.consecutive_subscription_days|floatformat:0 }}d
                     </span>
-                  {% endif %}
-                  <span class="ml-2 px-2 py-1 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}bg-yellow-400 text-gray-900{% endif %} rounded-full text-xs font-bold shadow-md">
-                    {{ hero.consecutive_subscription_days|floatformat:0 }}d
-                  </span>
-                </div>
-              {% endfor %}
+                  </div>
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        {% else %}
+          {% else %}
           <!-- No Heroes Yet Message -->
-          <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-yellow-400/30 p-8 mb-12 text-center">
-            <div class="w-16 h-16 bg-yellow-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-yellow-400/30 p-8 mb-12 text-center">
+              <div class="w-16 h-16 bg-yellow-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-2">{% trans "Be the First Hero!" %}</h3>
+              <p class="text-yellow-300">{% trans "стань 1м, поддержи проект" %}</p>
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">{% trans "Be the First Hero!" %}</h3>
-            <p class="text-yellow-300">{% trans "стань 1м, поддержи проект" %}</p>
-          </div>
-        {% endif %}
+          {% endif %}
 
         <!-- Top 10 Subscribers -->
-        <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-yellow-400/30 p-8">
-          <h3 class="text-xl font-bold text-white mb-6 text-center">{% trans "Top Heroes" %}</h3>
-          {% if top_subscribers %}
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl border border-yellow-400/30 p-8">
+            <h3 class="text-xl font-bold text-white mb-6 text-center">{% trans "Top Heroes" %}</h3>
+            {% if top_subscribers %}
             <!-- Podium - Top 3 -->
-            <div class="flex justify-center items-end mb-8 gap-4">
-              {% for hero in top_subscribers %}
-                {% if forloop.counter <= 3 %}
-                  <div class="flex flex-col items-center {% if forloop.counter == 1 %}order-2{% elif forloop.counter == 2 %}order-1{% else %}order-3{% endif %}">
-                    <!-- Hero Card -->
-                    <div class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-2xl border-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.border_color }}{% endwith %}{% else %}border-yellow-400/30{% endif %} p-4 mb-2 shadow-lg {% if forloop.counter == 1 %}scale-105{% endif %}">
-                      <div class="text-center">
-                        <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mx-auto mb-2 border-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.border_color }}{% endwith %}{% else %}border-yellow-400/50{% endif %}">
-                          {{ forloop.counter }}
-                        </div>
-                        <p class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.text_color }}{% endwith %}{% else %}text-white{% endif %} font-bold text-lg mb-1">
-                          {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
-                        </p>
-                        {% if hero.get_subscription_rank %}
-                          {% with rank=hero.get_subscription_rank %}
-                            <span class="inline-block px-3 py-1 {{ rank.badge_color }} text-white rounded-full text-sm font-bold mb-2">
-                              {{ rank.name }}
-                            </span>
-                          {% endwith %}
-                        {% endif %}
-                        <p class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}text-yellow-300{% endif %} px-3 py-1 rounded-full text-sm font-bold">
-                          {{ hero.consecutive_subscription_days|floatformat:0 }} {% trans "days" %}
-                        </p>
-                      </div>
-                    </div>
-                    <!-- Podium Base -->
-                    <div class="w-full {% if forloop.counter == 1 %}h-12 bg-gradient-to-r from-yellow-400 to-orange-400{% elif forloop.counter == 2 %}h-8 bg-gradient-to-r from-gray-300 to-gray-400{% else %}h-6 bg-gradient-to-r from-orange-600 to-orange-700{% endif %} rounded-t-lg flex items-center justify-center">
-                      <span class="text-white font-bold text-lg">{{ forloop.counter }}</span>
-                    </div>
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-
-            <!-- Rest of the list -->
-            {% if top_subscribers|length > 3 %}
-              <div class="space-y-2">
+              <div class="flex justify-center items-end mb-8 gap-4">
                 {% for hero in top_subscribers %}
-                  {% if forloop.counter > 3 %}
-                    <div class="flex items-center justify-between bg-white/5 rounded-lg p-3 border border-yellow-400/20">
-                      <div class="flex items-center">
-                        <div class="flex-shrink-0 w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
-                          {{ forloop.counter }}
-                        </div>
-                        <div class="flex items-center">
-                          <p class="text-white font-medium">
+                  {% if forloop.counter <= 3 %}
+                    <div class="flex flex-col items-center {% if forloop.counter == 1 %}order-2{% elif forloop.counter == 2 %}order-1{% else %}order-3{% endif %}">
+                    <!-- Hero Card -->
+                      <div class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-gradient-to-r {{ rank.gradient }}{% endwith %}{% else %}bg-white/10{% endif %} backdrop-blur-lg rounded-2xl border-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.border_color }}{% endwith %}{% else %}border-yellow-400/30{% endif %} p-4 mb-2 shadow-lg {% if forloop.counter == 1 %}scale-105{% endif %}">
+                        <div class="text-center">
+                          <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center text-gray-900 font-bold text-xl mx-auto mb-2 border-2 {% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.border_color }}{% endwith %}{% else %}border-yellow-400/50{% endif %}">
+                            {{ forloop.counter }}
+                          </div>
+                          <p class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}{{ rank.text_color }}{% endwith %}{% else %}text-white{% endif %} font-bold text-lg mb-1">
                             {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
                           </p>
                           {% if hero.get_subscription_rank %}
                             {% with rank=hero.get_subscription_rank %}
-                              <span class="ml-2 px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold shadow-sm">
+                              <span class="inline-block px-3 py-1 {{ rank.badge_color }} text-white rounded-full text-sm font-bold mb-2">
                                 {{ rank.name }}
                               </span>
                             {% endwith %}
                           {% endif %}
+                          <p class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}text-yellow-300{% endif %} px-3 py-1 rounded-full text-sm font-bold">
+                            {{ hero.consecutive_subscription_days|floatformat:0 }} {% trans "days" %}
+                          </p>
                         </div>
                       </div>
-                      <div class="flex items-center">
-                        <span class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}text-yellow-300{% endif %} px-2 py-1 rounded-full text-sm font-bold mr-3">
-                          {{ hero.consecutive_subscription_days|floatformat:0 }} {% trans "days" %}
-                        </span>
-                        {% if hero.consecutive_subscription_days >= 365 %}
-                          <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                          </svg>
-                        {% endif %}
+                    <!-- Podium Base -->
+                      <div class="w-full {% if forloop.counter == 1 %}h-12 bg-gradient-to-r from-yellow-400 to-orange-400{% elif forloop.counter == 2 %}h-8 bg-gradient-to-r from-gray-300 to-gray-400{% else %}h-6 bg-gradient-to-r from-orange-600 to-orange-700{% endif %} rounded-t-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">{{ forloop.counter }}</span>
                       </div>
                     </div>
                   {% endif %}
                 {% endfor %}
               </div>
+
+            <!-- Rest of the list -->
+              {% if top_subscribers|length > 3 %}
+                <div class="space-y-2">
+                  {% for hero in top_subscribers %}
+                    {% if forloop.counter > 3 %}
+                      <div class="flex items-center justify-between bg-white/5 rounded-lg p-3 border border-yellow-400/20">
+                        <div class="flex items-center">
+                          <div class="flex-shrink-0 w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
+                            {{ forloop.counter }}
+                          </div>
+                          <div class="flex items-center">
+                            <p class="text-white font-medium">
+                              {% if hero.username %}{{ hero.username }}{% else %}{{ hero.email|cut:'@' }}{% endif %}
+                            </p>
+                            {% if hero.get_subscription_rank %}
+                              {% with rank=hero.get_subscription_rank %}
+                                <span class="ml-2 px-2 py-1 {{ rank.badge_color }} text-white rounded-full text-xs font-bold shadow-sm">
+                                  {{ rank.name }}
+                                </span>
+                              {% endwith %}
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class="flex items-center">
+                          <span class="{% if hero.get_subscription_rank %}{% with rank=hero.get_subscription_rank %}bg-white/90 text-gray-900{% endwith %}{% else %}text-yellow-300{% endif %} px-2 py-1 rounded-full text-sm font-bold mr-3">
+                            {{ hero.consecutive_subscription_days|floatformat:0 }} {% trans "days" %}
+                          </span>
+                          {% if hero.consecutive_subscription_days >= 365 %}
+                            <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                            </svg>
+                          {% endif %}
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% else %}
+              <div class="text-center py-8">
+                <p class="text-yellow-300">{% trans "No heroes yet. Be the first to join the hall of fame!" %}</p>
+              </div>
             {% endif %}
-          {% else %}
-            <div class="text-center py-8">
-              <p class="text-yellow-300">{% trans "No heroes yet. Be the first to join the hall of fame!" %}</p>
-            </div>
-          {% endif %}
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <style>
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .animate-scroll {
-      animation: scroll 40s linear infinite;
-      display: flex;
-      min-width: max-content;
-    }
-    .animate-scroll:hover {
-      animation-play-state: paused;
-    }
-  </style>
+    <style>
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-scroll {
+        animation: scroll 40s linear infinite;
+        display: flex;
+        min-width: max-content;
+      }
+      .animate-scroll:hover {
+        animation-play-state: paused;
+      }
+    </style>
 
-  <script>
+    <script>
     // Load Stripe
-    var stripe = Stripe('{{ stripe_publishable_key }}');
+      var stripe = Stripe('{{ stripe_publishable_key }}');
 
-    function selectPlan(planType) {
+      function selectPlan(planType) {
       // Show loading state
-      const button = document.activeElement;
-      const originalText = button.textContent;
-      button.disabled = true;
-      button.textContent = '{% trans "Processing..." %}';
+        const button = document.activeElement;
+        const originalText = button.textContent;
+        button.disabled = true;
+        button.textContent = '{% trans "Processing..." %}';
 
       // Create checkout session
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', window.location.origin + '/en/payments/create-checkout-session/', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', window.location.origin + '/en/payments/create-checkout-session/', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
 
-      const requestBody = JSON.stringify({
-        plan_slug: planType === 'daily' ? 'daily-hero' : planType === 'monthly' ? 'monthly-hero' : 'yearly-hero'
-      });
+        const requestBody = JSON.stringify({
+          plan_slug: planType === 'daily' ? 'daily-hero' : planType === 'monthly' ? 'monthly-hero' : 'yearly-hero'
+        });
 
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          const data = JSON.parse(xhr.responseText);
-          if (data.session_id) {
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            if (data.session_id) {
             // Redirect to Stripe Checkout
-            return stripe.redirectToCheckout({ sessionId: data.session_id });
+              return stripe.redirectToCheckout({ sessionId: data.session_id });
+            } else {
+              alert('Error: No session ID returned');
+            }
           } else {
-            alert('Error: No session ID returned');
-          }
-        } else {
-          let errorMessage = `Error ${xhr.status}: ${xhr.statusText}`;
-          try {
-            const errorData = JSON.parse(xhr.responseText);
-            errorMessage = errorData.error || errorMessage;
-          } catch (e) {
+            let errorMessage = `Error ${xhr.status}: ${xhr.statusText}`;
+            try {
+              const errorData = JSON.parse(xhr.responseText);
+              errorMessage = errorData.error || errorMessage;
+            } catch (e) {
             // Ignore JSON parse errors
+            }
+            alert(errorMessage);
           }
-          alert(errorMessage);
-        }
 
         // Reset button
-        button.disabled = false;
-        button.textContent = originalText;
-      };
+          button.disabled = false;
+          button.textContent = originalText;
+        };
 
-      xhr.onerror = function() {
-        alert('Request failed. Please try again.');
-        button.disabled = false;
-        button.textContent = originalText;
-      };
+        xhr.onerror = function() {
+          alert('Request failed. Please try again.');
+          button.disabled = false;
+          button.textContent = originalText;
+        };
 
-      xhr.send(requestBody);
-    }
+        xhr.send(requestBody);
+      }
 
-    function getCookie(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
           }
         }
+        return cookieValue;
       }
-      return cookieValue;
-    }
 
     // Add blob animations
-    const style = document.createElement('style');
-    style.textContent = `
+      const style = document.createElement('style');
+      style.textContent = `
       @keyframes blob {
         0% { transform: translate(0px, 0px) scale(1); }
         33% { transform: translate(30px, -50px) scale(1.1); }
@@ -649,6 +642,6 @@
         animation-delay: 4s;
       }
     `;
-    document.head.appendChild(style);
-  </script>
+      document.head.appendChild(style);
+    </script>
 {% endblock %}
