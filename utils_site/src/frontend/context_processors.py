@@ -124,45 +124,51 @@ def hreflang_links(request):
 
         hreflangs.append({"code": code, "url": url})
 
-    # Add x-default pointing to default language version
+    # Add x-default pointing to root for homepage, default language for other pages
     try:
-        if url_name:
-            from django.utils.translation import activate
+        # For homepage, x-default should point to root (/)
+        languages = getattr(settings, "LANGUAGES", [("en", "English")])
+        homepage_paths = [f"/{code}/" for code, _ in languages]
 
-            old_lang = get_language()
-            activate(default_language)
+        if request.path == "/" or request.path in homepage_paths:
+            default_url = f"{base_url}/"
+        else:
+            # For other pages, point to default language version
+            if url_name:
+                from django.utils.translation import activate
 
-            try:
-                default_url_path = reverse(url_name, kwargs=url_kwargs)
-                # Ensure proper encoding
-                if isinstance(default_url_path, bytes):
-                    default_url_path = default_url_path.decode("utf-8")
-            except Exception:
+                old_lang = get_language()
+                activate(default_language)
+
+                try:
+                    default_url_path = reverse(url_name, kwargs=url_kwargs)
+                    # Ensure proper encoding
+                    if isinstance(default_url_path, bytes):
+                        default_url_path = default_url_path.decode("utf-8")
+                except Exception:
+                    default_url_path = request.path
+                    # Ensure default_url_path is a string, not bytes
+                    if isinstance(default_url_path, bytes):
+                        default_url_path = default_url_path.decode("utf-8")
+                finally:
+                    activate(old_lang)
+            else:
                 default_url_path = request.path
                 # Ensure default_url_path is a string, not bytes
                 if isinstance(default_url_path, bytes):
                     default_url_path = default_url_path.decode("utf-8")
-                # Django i18n_patterns adds prefix for ALL languages, including default
-                # So default language URL should also have prefix (e.g., /en/)
-                # No need to remove prefix for default language
-            finally:
-                activate(old_lang)
-        else:
-            default_url_path = request.path
-            # Ensure default_url_path is a string, not bytes
-            if isinstance(default_url_path, bytes):
-                default_url_path = default_url_path.decode("utf-8")
-            # Django i18n_patterns adds prefix for ALL languages, including default
-            # So default language URL should also have prefix (e.g., /en/)
-            # No need to remove prefix for default language
 
-        default_url = f"{base_url}{default_url_path}"
+            default_url = f"{base_url}{default_url_path}"
     except Exception:
         default_url = f"{base_url}{request.path}"
 
     hreflangs.append({"code": "x-default", "url": default_url})
 
-    return {"hreflangs": hreflangs}
+    # Also return list of homepage paths for canonical URL logic
+    languages = getattr(settings, "LANGUAGES", [("en", "English")])
+    homepage_paths = [f"/{code}/" for code, _ in languages]
+
+    return {"hreflangs": hreflangs, "hreflang_homepage_paths": homepage_paths}
 
 
 def js_settings(request):
