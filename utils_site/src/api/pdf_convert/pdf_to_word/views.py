@@ -1,13 +1,19 @@
 # views.py
 
+import logging
+
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
+
+from utils_site.src.tasks.pdf_conversion import convert_pdf_to_word_task
 
 from ...base_views import BaseConversionAPIView
 from .decorators import pdf_to_word_docs
 from .serializers import PDFToWordSerializer
 from .utils import convert_pdf_to_docx
+
+logger = logging.getLogger(__name__)
 
 
 class PDFToWordAPIView(BaseConversionAPIView):
@@ -26,14 +32,25 @@ class PDFToWordAPIView(BaseConversionAPIView):
     def get_docs_decorator(self):
         return pdf_to_word_docs
 
-    @pdf_to_word_docs()
-    def post(self, request: HttpRequest):
-        """Handle POST request with Swagger documentation."""
-        return super().post(request)
+    def get_celery_task(self):
+        """Get the Celery task function to execute."""
+        return convert_pdf_to_word_task
 
-    def perform_conversion(
+    @pdf_to_word_docs()
+    async def post(self, request: HttpRequest):
+        """Handle POST request with Swagger documentation."""
+        return await self.post_async(request)
+
+    async def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform PDF to DOCX conversion."""
-        pdf_path, docx_path = convert_pdf_to_docx(uploaded_file, suffix="_convertica")
-        return pdf_path, docx_path
+        ocr_enabled = context.get("ocr_enabled", False)
+
+        # Attach request to uploaded_file for language detection
+        uploaded_file._request = self.request
+
+        docx_path, pdf_path = await convert_pdf_to_docx(
+            uploaded_file, suffix="_convertica", ocr_enabled=ocr_enabled
+        )
+        return docx_path, pdf_path

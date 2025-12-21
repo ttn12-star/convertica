@@ -3,6 +3,7 @@ Base API views for file conversion endpoints.
 Reduces code duplication across conversion APIs.
 """
 
+import asyncio
 import os
 import shutil
 import tempfile
@@ -15,6 +16,7 @@ from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
 from django.utils.text import get_valid_filename
 from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from src.exceptions import (
@@ -32,6 +34,7 @@ from .conversion_limits import (
     run_with_timeout,
     validate_pdf_pages,
 )
+from .file_validation import validate_output_file
 from .logging_utils import (
     build_request_context,
     get_logger,
@@ -96,8 +99,7 @@ class BaseConversionAPIView(APIView, ABC):
         Returns:
             Tuple[str, str]: (input_file_path, output_file_path)
 
-        Raises:
-            ConversionError, StorageError, InvalidPDFError, EncryptedPDFError
+        Can be either sync or async method - subclasses can override as async if needed.
         """
         raise NotImplementedError("Subclasses must implement perform_conversion()")
 
@@ -310,6 +312,125 @@ class BaseConversionAPIView(APIView, ABC):
                     },
                 )
 
+    async def post_async(self, request: HttpRequest):
+        """Async version of post method for optimized converters.
+
+        This method supports async perform_conversion methods.
+        Subclasses that use async conversion should override post() to call this method.
+        """
+        # Spam protection check
+        spam_check = validate_spam_protection(request)
+        if spam_check:
+            return spam_check
+
+        serializer_class = self.get_serializer_class()
+        # Combine all data sources: request.data (DRF), request.POST, and request.FILES
+        if hasattr(request, "data") and request.data is not None:
+            serializer_data = request.data
+        else:
+            from django.http import QueryDict
+
+            if request.POST:
+                serializer_data = request.POST.copy()
+            else:
+                serializer_data = QueryDict(mutable=True)
+            if request.FILES:
+                for key in request.FILES:
+                    serializer_data[key] = request.FILES[key]
+
+        # Validate serializer
+        serializer = serializer_class(data=serializer_data)
+        if not serializer.is_valid():
+            context = build_request_context(request)
+            log_validation_error(logger, serializer.errors, context)
+            return Response(
+                {"error": "Validation failed", "details": serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Get uploaded file
+        uploaded_file = serializer.validated_data[self.FILE_FIELD_NAME]
+        context = build_request_context(request)
+        context.update(
+            {
+                "filename": uploaded_file.name,
+                "file_size": uploaded_file.size,
+                "content_type": uploaded_file.content_type,
+            }
+        )
+
+        # Validate file
+        validation_error = self.validate_file_basic(uploaded_file, context)
+        if validation_error:
+            return validation_error
+
+        # Additional validation
+        additional_validation = self.validate_file_additional(
+            uploaded_file, context, serializer.validated_data
+        )
+        if additional_validation:
+            return additional_validation
+
+        # Page validation for PDF files
+        if self.VALIDATE_PDF_PAGES:
+            page_validation = self.validate_pdf_pages(uploaded_file, context)
+            if page_validation:
+                return page_validation
+
+        tmp_dir = None
+        start_time = None
+
+        try:
+            # Log conversion start
+            start_time = log_conversion_start(logger, self.CONVERSION_TYPE, context)
+
+            # Get timeout for this operation
+            timeout = self.get_conversion_timeout(context)
+            context["conversion_timeout"] = timeout
+
+            # Perform async conversion with timeout
+            try:
+                input_path, output_path = await asyncio.wait_for(
+                    self.perform_conversion(
+                        uploaded_file, context, **serializer.validated_data
+                    ),
+                    timeout=timeout,
+                )
+            except TimeoutError:
+                raise ConversionTimeoutError(
+                    f"Conversion timed out after {timeout} seconds", context=context
+                )
+
+            # Validate output
+            validate_output_file(output_path, context=context)
+
+            # Stream file
+            output_filename = os.path.basename(output_path)
+            response = FileResponse(
+                open(output_path, "rb"), as_attachment=True, filename=output_filename
+            )
+            response["Content-Type"] = self.get_output_content_type(output_path)
+
+            # Log success
+            log_conversion_success(
+                logger,
+                self.CONVERSION_TYPE,
+                context,
+                start_time,
+                output_filename=output_filename,
+                output_size_mb=round(os.path.getsize(output_path) / (1024 * 1024), 2),
+            )
+
+            return response
+
+        except Exception as e:
+            return self.handle_conversion_error(e, context, start_time)
+
+        finally:
+            # Cleanup temporary directory
+            if tmp_dir and os.path.exists(tmp_dir):
+                shutil.rmtree(tmp_dir, ignore_errors=True)
+
     def post(self, request: HttpRequest):
         """Handle POST request for file conversion.
 
@@ -407,6 +528,33 @@ class BaseConversionAPIView(APIView, ABC):
             if key != file_field_name:
                 context[key] = value
 
+        # OCR validation for premium users
+        if context.get("ocr_enabled", False):
+            if not request.user.is_authenticated:
+                logger.warning(
+                    "OCR requested by unauthenticated user",
+                    extra={**context, "event": "ocr_unauthorized"},
+                )
+                return Response(
+                    {
+                        "error": "OCR is a premium feature. Please log in and upgrade to Premium."
+                    },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+            elif not getattr(request.user, "is_premium", False) or not getattr(
+                request.user, "is_subscription_active", False
+            ):
+                logger.warning(
+                    "OCR requested by non-premium user",
+                    extra={**context, "event": "ocr_non_premium"},
+                )
+                return Response(
+                    {
+                        "error": "OCR is a premium feature. Upgrade to Premium to enable OCR processing."
+                    },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+
         # Basic file validation
         validation_error = self.validate_file_basic(uploaded_file, context)
         if validation_error:
@@ -438,9 +586,10 @@ class BaseConversionAPIView(APIView, ABC):
                 # Reset file pointer for later use
                 uploaded_file.seek(0)
 
-                # Validate page count
+                # Validate page count with user context
+                operation = getattr(self, "CONVERSION_TYPE", "").lower()
                 page_validation_error = self.validate_pdf_page_count(
-                    temp_pdf_path, context
+                    temp_pdf_path, context, user=request.user, operation=operation
                 )
                 if page_validation_error is not None:
                     logger.info(
@@ -576,13 +725,15 @@ class BaseConversionAPIView(APIView, ABC):
         return None
 
     def validate_pdf_page_count(
-        self, pdf_path: str, context: dict[str, Any]
+        self, pdf_path: str, context: dict[str, Any], user=None, operation: str = None
     ) -> Response | None:
         """Validate PDF page count doesn't exceed limit.
 
         Args:
             pdf_path: Path to the PDF file
             context: Logging context
+            user: Django user object (optional)
+            operation: Type of operation (optional)
 
         Returns:
             Response if validation failed, None if OK
@@ -591,7 +742,7 @@ class BaseConversionAPIView(APIView, ABC):
             return None
 
         is_valid, error_message, page_count = validate_pdf_pages(
-            pdf_path, self.MAX_PDF_PAGES
+            pdf_path, self.MAX_PDF_PAGES, user=user, operation=operation
         )
 
         context["pdf_page_count"] = page_count
@@ -602,8 +753,16 @@ class BaseConversionAPIView(APIView, ABC):
                 f"PDF page limit exceeded: {page_count} > {self.MAX_PDF_PAGES}",
                 context,
             )
+            # Add premium upgrade link for free users
+            response_data = {"error": error_message}
+            if user and (
+                not user.is_authenticated or not getattr(user, "is_premium", False)
+            ):
+                response_data["upgrade_url"] = "/users/premium/"
+                response_data["upgrade_text"] = "Upgrade to Premium"
+
             return Response(
-                {"error": error_message},
+                response_data,
                 status=status.HTTP_400_BAD_REQUEST,
             )
 

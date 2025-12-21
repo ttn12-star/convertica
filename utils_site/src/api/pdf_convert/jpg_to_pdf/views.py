@@ -7,6 +7,8 @@ from django.http import FileResponse, HttpRequest
 from rest_framework import status
 from rest_framework.response import Response
 
+from utils_site.src.tasks.pdf_conversion import generic_conversion_task
+
 from ...base_views import BaseConversionAPIView
 from ...logging_utils import (
     build_request_context,
@@ -46,8 +48,12 @@ class JPGToPDFAPIView(BaseConversionAPIView):
     def get_docs_decorator(self):
         return jpg_to_pdf_docs
 
+    def get_celery_task(self):
+        """Get the Celery task function to execute."""
+        return generic_conversion_task
+
     @jpg_to_pdf_docs()
-    def post(self, request: HttpRequest):
+    async def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation.
 
         Supports multiple files - all images will be combined into one PDF.
@@ -62,6 +68,15 @@ class JPGToPDFAPIView(BaseConversionAPIView):
                 {"error": f"{self.FILE_FIELD_NAME} is required"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+        # For multiple files, use the original sync method for now
+        # TODO: Convert to async when multiple file async conversion is implemented
+        if len(uploaded_files) == 1:
+            # Single file - use optimized async method
+            return await self.post_async(request)
+        else:
+            # Multiple files - fall back to sync method
+            return super().post(request)
 
         # Validate each file using serializer
         serializer_class = self.get_serializer_class()
@@ -104,12 +119,12 @@ class JPGToPDFAPIView(BaseConversionAPIView):
 
             # Perform conversion (single or multiple)
             if len(uploaded_files) == 1:
-                # Single file - use original function
-                input_path, output_path = convert_jpg_to_pdf(
-                    uploaded_files[0], suffix="_convertica"
+                # Single file - use optimized async function
+                input_path, output_path = await convert_jpg_to_pdf(
+                    uploaded_files[0], suffix="_convertica", use_optimized=True
                 )
             else:
-                # Multiple files - use new function
+                # Multiple files - use new function (will be updated to async later)
                 input_path, output_path = convert_multiple_jpg_to_pdf(
                     uploaded_files, suffix="_convertica"
                 )

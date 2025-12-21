@@ -131,41 +131,84 @@ services:
       - convertica_network
     restart: unless-stopped
 
-  # Celery Worker
+  # Celery Worker - optimized for 4GB server with more resources for regular users
   celery:
     build:
       context: .
       dockerfile: ci/Dockerfile
     container_name: convertica_celery
-    command: celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
-    # Note: mem_swappiness removed - not supported on all kernels/cgroups configurations
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 --pool=solo -Q premium,regular,maintenance,default
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: 768M
+          cpus: '1.5'  # Increased from 1.0 to 1.5
+          memory: 2.5G  # Increased from 2G to 2.5GB
         reservations:
-          cpus: '0.2'
-          memory: 384M
+          cpus: '0.75'  # Increased from 0.5
+          memory: 1.25G  # Increased from 1G
     volumes:
       - ./logs:/app/logs
       - ./media:/app/media
     env_file:
       - .env
+    environment:
+      - CELERY_WORKER_POOL=solo
+      - CELERY_WORKER_MAX_MEMORY_PER_CHILD=250000000  # 250MB (increased)
+      - CELERY_WORKER_MAX_TASKS_PER_CHILD=40  # Increased from 50 to 40
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "sh", "-c", "echo ok"]
+      test: ["CMD", "celery", "inspect", "ping"]
       interval: 30s
-      timeout: 5s
-      retries: 3
+      timeout: 10s
+      retries: 5
       start_period: 10s
     networks:
       - convertica_network
     restart: unless-stopped
+
+  # Premium Celery Worker (minimal resources until more premium users)
+  celery-premium:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
+    container_name: convertica_celery_premium
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 --pool=solo -Q premium
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'  # Reduced from 1.0
+          memory: 1G   # Reduced from 1.5G
+        reservations:
+          cpus: '0.25'  # Reduced from 0.5
+          memory: 512M  # Reduced from 768M
+    volumes:
+      - ./logs:/app/logs
+      - ./media:/app/media
+    env_file:
+      - .env
+    environment:
+      - CELERY_WORKER_POOL=solo
+      - CELERY_WORKER_MAX_MEMORY_PER_CHILD=200000000  # 200MB (reduced)
+      - CELERY_WORKER_MAX_TASKS_PER_CHILD=50  # Increased for stability
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "celery", "inspect", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    networks:
+      - convertica_network
+    restart: unless-stopped
+    profiles: ["premium"]  # Only start with --profile premium
 
   # Celery Beat (scheduled tasks)
   celery-beat:
