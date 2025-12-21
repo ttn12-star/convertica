@@ -9,9 +9,9 @@
 {% block title %}{% trans "Become a Convertica Hero" %} - Convertica{% endblock %}
 
 {% block content %}
-  <div class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
     <!-- Hero Section -->
-    <div class="relative overflow-hidden">
+    <div class="relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
       <!-- Background Effects -->
       <div class="absolute inset-0">
         <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -67,193 +67,193 @@
     <!-- Pricing Section -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Choose Your Hero Path" %}</h2>
-        <p class="text-xl text-gray-300">{% trans "Select the plan that fits your transformation needs" %}</p>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">{% trans "Choose Your Hero Path" %}</h2>
+        <p class="text-xl text-gray-700">{% trans "Select the plan that fits your transformation needs" %}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Daily Plan -->
-        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
-          <div class="text-center">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:transform hover:scale-105 flex flex-col h-full">
+          <div class="text-center flex-grow">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-2">{% trans "Daily Hero" %}</h3>
-            <div class="text-4xl font-bold text-yellow-400 mb-4">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Daily Hero" %}</h3>
+            <div class="text-4xl font-bold text-blue-600 mb-4">
               $1
-              <span class="text-lg text-gray-400">/{% trans "day" %}</span>
+              <span class="text-lg text-gray-600">/{% trans "day" %}</span>
             </div>
-            <p class="text-gray-300 mb-6">{% trans "Perfect for quick transformations" %}</p>
+            <p class="text-gray-700 mb-6">{% trans "Perfect for quick transformations" %}</p>
           </div>
 
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center text-gray-300">
+          <ul class="space-y-3 mb-8 flex-grow">
+            <li class="flex items-center text-gray-700">
               <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Unlimited conversions for 24 hours" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "No page limits" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Priority processing" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Ad-free experience" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Batch processing (up to 20 files)" %}
             </li>
           </ul>
 
-          <button type="button" onclick="selectPlan('daily')" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105">
+          <button type="button" onclick="selectPlan('daily')" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 mt-auto">
             {% trans "Become Daily Hero" %}
           </button>
         </div>
 
         <!-- Monthly Plan -->
-        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 relative">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-yellow-400 transition-all duration-300 hover:transform hover:scale-105 relative flex flex-col h-full">
           <div class="absolute top-4 right-4">
             <span class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
               {% trans "MOST POPULAR" %}
             </span>
           </div>
-          <div class="text-center">
+          <div class="text-center flex-grow">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-2">{% trans "Monthly Hero" %}</h3>
-            <div class="text-4xl font-bold text-yellow-400 mb-4">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Monthly Hero" %}</h3>
+            <div class="text-4xl font-bold text-yellow-600 mb-4">
               $5
-              <span class="text-lg text-gray-400">/{% trans "month" %}</span>
+              <span class="text-lg text-gray-600">/{% trans "month" %}</span>
             </div>
-            <p class="text-gray-300 mb-6">{% trans "Best value for regular heroes" %}</p>
+            <p class="text-gray-700 mb-6">{% trans "Best value for regular heroes" %}</p>
           </div>
 
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+          <ul class="space-y-3 mb-8 flex-grow">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Unlimited conversions" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "No page limits" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Priority processing queue" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Ad-free experience" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "All premium features" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Become site hero" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Dark theme (coming soon)" %}
             </li>
           </ul>
 
-          <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
+          <button type="button" onclick="selectPlan('monthly')" class="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 py-3 px-6 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105 mt-auto">
             {% trans "Become Monthly Hero" %}
           </button>
         </div>
 
 
         <!-- Yearly Plan -->
-        <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
-          <div class="text-center">
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-purple-400 transition-all duration-300 hover:transform hover:scale-105 flex flex-col h-full">
+          <div class="text-center flex-grow">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-2">{% trans "Yearly Hero" %}</h3>
-            <div class="text-4xl font-bold text-purple-400 mb-4">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Yearly Hero" %}</h3>
+            <div class="text-4xl font-bold text-purple-600 mb-4">
               $48
-              <span class="text-lg text-gray-400">/{% trans "year" %}</span>
+              <span class="text-lg text-gray-600">/{% trans "year" %}</span>
             </div>
-            <p class="text-gray-300 mb-6">{% trans "Save 20% with annual commitment" %}</p>
+            <p class="text-gray-700 mb-6">{% trans "Save 20% with annual commitment" %}</p>
           </div>
 
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+          <ul class="space-y-3 mb-8 flex-grow">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Everything in Monthly, plus:" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Unlimited batch processing" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Priority support" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Advanced OCR features" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Hero badge (coming soon)" %}
             </li>
-            <li class="flex items-center text-gray-300">
-              <svg class="w-5 h-5 text-purple-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+            <li class="flex items-center text-gray-700">
+              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Advanced OCR features" %}
             </li>
           </ul>
 
-          <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+          <button type="button" onclick="selectPlan('yearly')" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 mt-auto">
             {% trans "Become Yearly Hero" %}
           </button>
         </div>
@@ -263,52 +263,52 @@
     <!-- Testimonials Section -->
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold text-white mb-4">{% trans "Support Our Project" %}</h2>
-        <p class="text-xl text-gray-300 mb-8">{% trans "Become a Convertica hero and help us make the service better" %}</p>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">{% trans "Support Our Project" %}</h2>
+        <p class="text-xl text-gray-700 mb-8">{% trans "Become a Convertica hero and help us make the service better" %}</p>
 
         <!-- Why Support Section -->
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+          <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-lg">
             <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-semibold text-white mb-2">{% trans "Fast & Reliable" %}</h3>
-            <p class="text-gray-400 text-sm">{% trans "We keep our servers running 24/7 to ensure your PDF conversions are always fast and dependable" %}</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{% trans "Fast & Reliable" %}</h3>
+            <p class="text-gray-600 text-sm">{% trans "We keep our servers running 24/7 to ensure your PDF conversions are always fast and dependable" %}</p>
           </div>
 
-          <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+          <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-lg">
             <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-semibold text-white mb-2">{% trans "Privacy First" %}</h3>
-            <p class="text-gray-400 text-sm">{% trans "Your documents are processed securely and never stored. We respect your privacy above all" %}</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{% trans "Privacy First" %}</h3>
+            <p class="text-gray-600 text-sm">{% trans "Your documents are processed securely and never stored. We respect your privacy above all" %}</p>
           </div>
 
-          <div class="bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10">
+          <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-lg">
             <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-semibold text-white mb-2">{% trans "Made with Care" %}</h3>
-            <p class="text-gray-400 text-sm">{% trans "We're a small team passionate about creating the best PDF tools for everyone" %}</p>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">{% trans "Made with Care" %}</h3>
+            <p class="text-gray-600 text-sm">{% trans "We're a small team passionate about creating the best PDF tools for everyone" %}</p>
           </div>
         </div>
 
-        <p class="text-lg text-gray-300 italic">{% trans "Your support helps us keep Convertica free for everyone and continuously improve our tools" %}</p>
+        <p class="text-lg text-gray-600 italic">{% trans "Your support helps us keep Convertica free for everyone and continuously improve our tools" %}</p>
       </div>
 
     <!-- CTA Section -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="bg-gradient-to-r from-yellow-400/20 to-orange-400/20 backdrop-blur-lg rounded-3xl p-12 border border-yellow-400/30 text-center">
-          <h2 class="text-4xl font-bold text-white mb-4">{% trans "Ready to Become a Hero?" %}</h2>
-          <p class="text-xl text-gray-300 mb-8">{% trans "Start your document transformation journey today" %}</p>
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="bg-gradient-to-r from-yellow-400 to-orange-400 rounded-2xl p-8 text-center shadow-lg">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">{% trans "Ready to Become a Hero?" %}</h2>
+          <p class="text-lg text-gray-800 mb-6">{% trans "Start your document transformation journey today" %}</p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button type="button" onclick="selectPlan('monthly')" class="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-xl font-bold hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 transform hover:scale-105">
+            <button type="button" onclick="selectPlan('monthly')" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:from-blue-800 hover:to-indigo-800 hover:shadow-xl hover:scale-105 transition-all duration-200 transform shadow-lg">
               {% trans "Start Your Hero Journey" %}
             </button>
           </div>
