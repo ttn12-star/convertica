@@ -32,12 +32,12 @@ class PDFToJPGAPIView(BaseConversionAPIView):
         return pdf_to_jpg_docs
 
     @pdf_to_jpg_docs()
-    def post(self, request: HttpRequest):
+    async def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation."""
-        return super().post(request)
+        return await self.post_async(request)
 
     def validate_file_additional(
-        self, file: UploadedFile, context: dict, validated_data: dict
+        self, uploaded_file: UploadedFile, context: dict, validated_data: dict
     ) -> Response | None:
         """Validate DPI parameter."""
         dpi = validated_data.get("dpi", 300)
@@ -55,14 +55,14 @@ class PDFToJPGAPIView(BaseConversionAPIView):
             )
         return None
 
-    def perform_conversion(
+    async def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform PDF to JPG conversion (selected pages to ZIP)."""
         pages = kwargs.get("pages", "all")
         dpi = kwargs.get("dpi", 300)
 
-        pdf_path, zip_path = convert_pdf_to_jpg(
+        pdf_path, zip_path = await convert_pdf_to_jpg(
             uploaded_file, pages=pages, dpi=dpi, suffix="_convertica"
         )
         return pdf_path, zip_path

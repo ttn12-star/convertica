@@ -46,9 +46,11 @@ def update_progress(task, progress: int, current_step: str = "", total_steps: in
 @shared_task(
     bind=True,
     name="pdf_conversion.generic_conversion",
-    queue="celery",  # Use default queue (pdf_conversion queue was not being consumed)
-    soft_time_limit=540,  # 9 minutes soft limit (warning signal sent to task)
-    time_limit=600,  # 10 minutes hard limit (task killed)
+    queue=lambda self, task_id, input_path, original_filename, conversion_type, **kwargs: (
+        "premium" if kwargs.get("is_premium", False) else "regular"
+    ),
+    soft_time_limit=420,  # 7 minutes soft limit (reduced for 4GB server)
+    time_limit=480,  # 8 minutes hard limit (reduced for 4GB server)
     acks_late=True,  # Acknowledge after completion (allows task revocation)
     reject_on_worker_lost=True,  # Don't requeue if worker dies
 )
@@ -109,11 +111,11 @@ def generic_conversion_task(
 
         converter_map = {
             "pdf_to_word": (
-                "src.api.pdf_convert.pdf_to_word.utils",
-                "convert_pdf_to_docx",
+                "src.api.pdf_convert.pdf_to_word_optimized",
+                "convert_pdf_to_docx_optimized",
             ),
             "word_to_pdf": (
-                "src.api.pdf_convert.word_to_pdf.utils",
+                "src.api.optimization_manager",
                 "convert_word_to_pdf",
             ),
             "pdf_to_excel": (
@@ -121,12 +123,12 @@ def generic_conversion_task(
                 "convert_pdf_to_excel",
             ),
             "pdf_to_jpg": (
-                "src.api.pdf_convert.pdf_to_jpg.utils",
+                "src.api.optimization_manager",
                 "convert_pdf_to_jpg",
             ),
             "jpg_to_pdf": (
                 "src.api.pdf_convert.jpg_to_pdf.utils",
-                "convert_images_to_pdf",
+                "convert_jpg_to_pdf",
             ),
             "compress_pdf": ("src.api.pdf_organize.compress_pdf.utils", "compress_pdf"),
             "merge_pdf": ("src.api.pdf_organize.merge_pdf.utils", "merge_pdfs"),
@@ -161,108 +163,139 @@ def generic_conversion_task(
         check_task_cancelled(cancellation_id)
 
         # Step 4: Perform conversion
-        update_progress(self, 40, "Converting...", 5)
+        update_progress(self, 35, "Converting file...", 60)
 
-        # Call converter with appropriate arguments
-        if conversion_type in ("compress_pdf",):
-            compression_level = kwargs.get("compression_level", "medium")
-            _, output_path = converter_func(
-                uploaded_file, compression_level=compression_level, suffix="_convertica"
-            )
-        elif conversion_type in ("add_watermark",):
-            _, output_path = converter_func(
-                uploaded_file,
-                watermark_text=kwargs.get("watermark_text"),
-                watermark_file=kwargs.get("watermark_file"),
-                position=kwargs.get("position", "center"),
-                opacity=kwargs.get("opacity", 30),
-                color=kwargs.get("color", "#000000"),
-                font_size=kwargs.get("font_size", 72),
-                pages=kwargs.get("pages", "all"),
-                x=kwargs.get("x"),
-                y=kwargs.get("y"),
-                rotation=kwargs.get("rotation", 0),
-                scale=kwargs.get("scale", 1.0),
-                suffix="_convertica",
-            )
-        elif conversion_type in ("crop_pdf",):
-            _, output_path = converter_func(
-                uploaded_file,
-                x=kwargs.get("x", 0),
-                y=kwargs.get("y", 0),
-                width=kwargs.get("width", 0),
-                height=kwargs.get("height", 0),
-                pages=kwargs.get("pages", "all"),
-                scale_to_page_size=kwargs.get("scale_to_page_size", False),
-                suffix="_convertica",
-            )
-        elif conversion_type in ("rotate_pdf",):
-            _, output_path = converter_func(
-                uploaded_file,
-                rotation=kwargs.get("rotation", 90),
-                pages=kwargs.get("pages", "all"),
-                suffix="_convertica",
-            )
-        elif conversion_type in ("add_page_numbers",):
-            _, output_path = converter_func(
-                uploaded_file,
-                position=kwargs.get("position", "bottom-center"),
-                start_number=kwargs.get("start_number", 1),
-                format_string=kwargs.get("format_string", "{page}"),
-                font_size=kwargs.get("font_size", 12),
-                pages=kwargs.get("pages", "all"),
-                suffix="_convertica",
-            )
-        elif conversion_type in ("split_pdf",) or conversion_type in (
-            "extract_pages",
-            "remove_pages",
-        ):
-            _, output_path = converter_func(
-                uploaded_file,
-                pages=kwargs.get("pages", ""),
-                suffix="_convertica",
-            )
-        elif conversion_type in ("organize_pdf",):
-            _, output_path = converter_func(
-                uploaded_file,
-                page_order=kwargs.get("page_order", []),
-                suffix="_convertica",
-            )
+        # Prepare conversion kwargs
+        conversion_kwargs = {
+            "suffix": "_convertica",
+            "is_celery_task": True,
+        }
+
+        if conversion_type == "pdf_to_word":
+            conversion_kwargs["ocr_enabled"] = kwargs.get("ocr_enabled", False)
+            conversion_kwargs["ocr_language"] = kwargs.get("ocr_language", "auto")
+
+        # Filter kwargs to only include valid parameters for converter
+        if conversion_type == "pdf_to_word":
+            # PDF to Word supports additional parameters
+            valid_kwargs = {
+                "suffix",
+                "ocr_enabled",
+                "ocr_language",
+                "output_path",
+                "update_progress",
+                "is_celery_task",
+            }
         else:
-            # Default: simple conversion (pdf_to_word, word_to_pdf, etc.)
-            _, output_path = converter_func(uploaded_file, suffix="_convertica")
+            # Other converters only support basic parameters
+            valid_kwargs = {"suffix", "is_celery_task"}
+
+        filtered_kwargs = {
+            k: v for k, v in conversion_kwargs.items() if k in valid_kwargs
+        }
+
+        # Call converter function
+        if conversion_type == "pdf_to_word":
+            # Handle async function for pdf_to_word
+            import asyncio
+
+            # Generate output filename first
+            output_filename = (
+                f"{os.path.splitext(original_filename)[0]}_convertica.docx"
+            )
+            final_output_path = os.path.join(task_dir, output_filename)
+
+            # Pass output_path and progress update function to converter
+            filtered_kwargs["output_path"] = final_output_path
+            filtered_kwargs["update_progress"] = lambda progress, step: update_progress(
+                self, progress, step, 60
+            )
+
+            _, _ = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
+
+            # File should already be copied by converter
+            if os.path.exists(final_output_path):
+                output_path = final_output_path
+            else:
+                raise FileNotFoundError(f"Output file not found: {final_output_path}")
+        elif conversion_type == "word_to_pdf":
+            # Handle async function for word_to_pdf
+            import asyncio
+            import inspect
+
+            if inspect.iscoroutinefunction(converter_func):
+                # Handle async function
+                result = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
+                if isinstance(result, tuple) and len(result) == 2:
+                    # For word_to_pdf, result is (docx_path, pdf_path) - we want pdf_path
+                    _, output_path = result
+                else:
+                    output_path = result
+            else:
+                # Handle sync function
+                result = converter_func(uploaded_file, **filtered_kwargs)
+                if isinstance(result, tuple) and len(result) == 2:
+                    # For word_to_pdf, result is (docx_path, pdf_path) - we want pdf_path
+                    _, output_path = result
+                else:
+                    output_path = result
+        else:
+            # Handle other converters (check if async)
+            import asyncio
+            import inspect
+
+            if inspect.iscoroutinefunction(converter_func):
+                # Handle async function
+                result = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
+                if isinstance(result, tuple) and len(result) == 2:
+                    output_path, _ = result
+                else:
+                    output_path = result
+            else:
+                # Handle sync function
+                result = converter_func(uploaded_file, **filtered_kwargs)
+                if isinstance(result, tuple) and len(result) == 2:
+                    output_path, _ = result
+                else:
+                    output_path = result
 
         # Step 5: Move output to task directory for persistence
         update_progress(self, 85, "Finalizing...", 5)
 
-        # Generate output filename
-        base_name = os.path.splitext(original_filename)[0]
-        output_ext = os.path.splitext(output_path)[1]
+        # For non-pdf_to_word conversions, handle file copying
+        if conversion_type != "pdf_to_word":
+            # Generate output filename
+            base_name = os.path.splitext(original_filename)[0]
+            output_ext = os.path.splitext(output_path)[1]
 
-        # Map conversion types to output extensions
-        ext_map = {
-            "pdf_to_word": ".docx",
-            "pdf_to_excel": ".xlsx",
-            "pdf_to_jpg": ".zip",
-            "word_to_pdf": ".pdf",
-            "jpg_to_pdf": ".pdf",
-        }
-        if conversion_type in ext_map:
-            output_ext = ext_map[conversion_type]
+            # Map conversion types to output extensions
+            ext_map = {
+                "pdf_to_jpg": ".zip",
+                "word_to_pdf": ".pdf",
+                "jpg_to_pdf": ".pdf",
+            }
+            if conversion_type in ext_map:
+                output_ext = ext_map[conversion_type]
 
-        output_filename = f"{base_name}_convertica{output_ext}"
-        final_output_path = os.path.join(task_dir, output_filename)
+            output_filename = f"{base_name}_convertica{output_ext}"
+            final_output_path = os.path.join(task_dir, output_filename)
 
-        # Move or copy output to task dir
-        if output_path != final_output_path:
-            shutil.copy2(output_path, final_output_path)
-            # Cleanup original temp file
-            try:
-                temp_dir = os.path.dirname(output_path)
-                if temp_dir != task_dir and os.path.isdir(temp_dir):
-                    shutil.rmtree(temp_dir, ignore_errors=True)
-            except Exception:
-                pass
+            # Move or copy output to task dir
+            if output_path != final_output_path:
+                if os.path.exists(output_path):
+                    shutil.copy2(output_path, final_output_path)
+                    # Cleanup original temp file
+                    try:
+                        os.remove(output_path)
+                    except OSError as e:
+                        logger.warning(
+                            "Failed to cleanup temp file %s: %s", output_path, e
+                        )
+                else:
+                    raise FileNotFoundError(f"Output file not found: {output_path}")
+        else:
+            # For pdf_to_word, final_output_path is already set
+            final_output_path = output_path
 
         update_progress(self, 100, "Complete!", 5)
 
@@ -366,14 +399,15 @@ def generic_conversion_task(
                 logger.error(f"Failed to cleanup task dir {task_dir}: {e}")
 
 
-# Legacy tasks for backwards compatibility
-@shared_task(bind=True, name="pdf_conversion.convert_pdf_to_word", queue="celery")
+# Legacy tasks for backwards compatibility - updated to use new queues
+@shared_task(bind=True, name="pdf_conversion.convert_pdf_to_word", queue="regular")
 def convert_pdf_to_word_task(
     self, file_path: str, output_filename: str, **kwargs
 ) -> dict:
     """Legacy task - redirects to generic_conversion_task."""
     return generic_conversion_task(
-        task_id=self.request.id or "legacy",
+        self,
+        task_id=self.request.id,
         input_path=file_path,
         original_filename=output_filename,
         conversion_type="pdf_to_word",
@@ -381,13 +415,14 @@ def convert_pdf_to_word_task(
     )
 
 
-@shared_task(bind=True, name="pdf_conversion.convert_word_to_pdf", queue="celery")
+@shared_task(bind=True, name="pdf_conversion.convert_word_to_pdf", queue="regular")
 def convert_word_to_pdf_task(
     self, file_path: str, output_filename: str, **kwargs
 ) -> dict:
     """Legacy task - redirects to generic_conversion_task."""
     return generic_conversion_task(
-        task_id=self.request.id or "legacy",
+        self,
+        task_id=self.request.id,
         input_path=file_path,
         original_filename=output_filename,
         conversion_type="word_to_pdf",
@@ -395,7 +430,7 @@ def convert_word_to_pdf_task(
     )
 
 
-@shared_task(bind=True, name="pdf_conversion.compress_pdf", queue="celery")
+@shared_task(bind=True, name="pdf_conversion.compress_pdf", queue="regular")
 def compress_pdf_task(
     self,
     file_path: str,
@@ -405,7 +440,8 @@ def compress_pdf_task(
 ) -> dict:
     """Legacy task - redirects to generic_conversion_task."""
     return generic_conversion_task(
-        task_id=self.request.id or "legacy",
+        self,
+        task_id=self.request.id,
         input_path=file_path,
         original_filename=output_filename,
         conversion_type="compress_pdf",

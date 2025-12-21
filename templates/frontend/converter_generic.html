@@ -209,7 +209,11 @@
     window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
     window.REPLACE_TO = "{{ replace_to|escapejs }}";
     window.ERROR_MESSAGE = "{{ error_message|default:'Conversion failed. Please try again.'|escapejs }}";
-    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: 50). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process files without limits!' %}{% endfilter %}";
+    window.PREMIUM_LINK = "/users/premium/";
+    /* eslint-disable */
+    window.IS_PREMIUM = {{ is_premium|yesno:"true,false" }};
+    /* eslint-enable */
     window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Converting your file...' %}{% endfilter %}";
     window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, this may take a few moments' %}{% endfilter %}";
     window.SUCCESS_TITLE = "{% filter escapejs %}{% trans 'Conversion Complete!' %}{% endfilter %}";

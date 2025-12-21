@@ -1,11 +1,21 @@
 # Development override for docker-compose.yml
 # Usage: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 #
-# Resource limits match production server: 1 vCPU, 2GB RAM
+# Resource limits match production server: 2 vCPUs, 4GB RAM
 # This helps catch memory/CPU issues before deployment
 
 services:
   db:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'  # Increased for dev testing
+          memory: 512M  # Increased for dev testing
+        reservations:
+          cpus: '0.2'
+          memory: 256M
+
+  redis:
     deploy:
       resources:
         limits:
@@ -14,16 +24,6 @@ services:
         reservations:
           cpus: '0.1'
           memory: 128M
-
-  redis:
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 128M
-        reservations:
-          cpus: '0.05'
-          memory: 64M
 
   web:
     build:
@@ -48,62 +48,97 @@ services:
       - .env
     ports:
       - "8003:8003"
-      - "5678:5678"  # Debug port
     deploy:
       resources:
         limits:
-          cpus: '0.6'
-          memory: 896M  # Reduced to fit celery memory needs
+          cpus: '1.5'  # Match production regular worker
+          memory: 2.5G  # Match production regular worker
         reservations:
-          cpus: '0.2'
-          memory: 384M
+          cpus: '0.75'
+          memory: 1.25G
+
+  # Dev Celery Worker - matches production regular worker
+  celery:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 --pool=solo -Q premium,regular,maintenance,default
+    volumes:
+      - .:/app  # Mount source code for hot reload
+      - ./logs:/app/logs
+      - ./media:/app/media
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'  # Match production regular worker
+          memory: 2.5G  # Match production regular worker
+        reservations:
+          cpus: '0.75'
+          memory: 1.25G
+
+  # Dev Premium Worker - minimal resources like production
+  celery-premium:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 --pool=solo -Q premium
+    volumes:
+      - .:/app  # Mount source code for hot reload
+      - ./logs:/app/logs
+      - ./media:/app/media
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'  # Match production premium worker
+          memory: 1G   # Match production premium worker
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    profiles: ["premium-dev"]  # Optional: start with --profile premium-dev
 
   # Disable Nginx in development (use WhiteNoise instead)
   nginx:
     profiles:
       - production  # Only start with --profile production
 
-  celery:
-    build:
-      context: .
-      dockerfile: ci/Dockerfile
-    entrypoint: []
-    volumes:
-      - .:/app  # Mount source code for hot reload
-      - ./media:/app/media  # Share media for async temp files
-    env_file:
-      - .env
-    command:
-      - /bin/sh
-      - -c
-      - |
-        if [ ! -L /app/src ] && [ ! -d /app/src ]; then ln -s /app/utils_site/src /app/src; fi &&
-        mkdir -p /app/media/async_temp &&
-        celery -A utils_site worker --loglevel=info --concurrency=1 -Q celery,default,maintenance
-    # Note: mem_swappiness removed - not supported on all kernels/cgroups configurations
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 768M  # PDF conversion needs more RAM
-        reservations:
-          cpus: '0.2'
-          memory: 384M
-
+  # Celery Beat for development
   celery-beat:
     build:
       context: .
       dockerfile: ci/Dockerfile
+    command: >
+      sh -c "
+      export DJANGO_SETTINGS_MODULE=utils_site.settings &&
+      export PYTHONPATH=/app:$PYTHONPATH &&
+      celery -A utils_site beat --loglevel=info --schedule=/tmp/celerybeat-schedule
+      "
     volumes:
-      - .:/app
+      - .:/app  # Mount source code for hot reload
+      - ./logs:/app/logs
+      - celerybeat-data:/tmp  # Persist beat schedule
     env_file:
       - .env
-    command: celery -A utils_site beat --loglevel=info
+    depends_on:
+      - db
+      - redis
     deploy:
       resources:
         limits:
-          cpus: '0.1'
-          memory: 128M
+          cpus: '0.2'  # Increased from 0.1
+          memory: 128M  # Increased from 64M
         reservations:
-          cpus: '0.05'
+          cpus: '0.1'
           memory: 64M
+
+volumes:
+  celerybeat-data:

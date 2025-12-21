@@ -60,6 +60,7 @@ def index_page(request):
 
 
 def _get_converter_context(
+    request,
     page_title: str,
     page_description: str,
     page_keywords: str,
@@ -76,10 +77,11 @@ def _get_converter_context(
 ) -> dict:
     """Helper function to generate converter page context.
 
-    ВАЖНО: Все переводимые параметры должны передаваться уже обернутыми в _()
-    из вызывающей функции.
+    IMPORTANT: All translatable parameters must be passed already wrapped in _()
+    from the calling function.
 
     Args:
+        request: HTTP request object
         page_title: Already translated page title (wrapped in _() by caller)
         page_description: Already translated page description
         page_keywords: English keywords (not translated for SEO)
@@ -97,6 +99,14 @@ def _get_converter_context(
     Returns:
         dict: Context dictionary for the template
     """
+    # Check if user has active premium subscription
+    is_premium_active = False
+    if hasattr(request, "user") and request.user.is_authenticated:
+        is_premium_active = (
+            request.user.is_premium
+            and hasattr(request.user, "is_subscription_active")
+            and request.user.is_subscription_active
+        )
 
     return {
         "page_title": page_title,
@@ -113,33 +123,26 @@ def _get_converter_context(
         "replace_regex": replace_regex,
         "replace_to": replace_to,
         "error_message": _("Conversion failed. Please try again."),
+        "is_premium": is_premium_active,
     }
 
 
 def pdf_to_word_page(request):
     """PDF to Word conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("PDF to Word - Convertica"),
         page_description=_(
             "Convert PDF to Word online free without losing formatting. "
             "Fast PDF to DOCX converter with no email required, unlimited conversions, "
-            "high-quality output. Perfect for students, professionals, and businesses. "
+            "high-quality output. Perfect for documents, resumes, and business files. "
             "No registration needed."
         ),
         page_keywords=(
-            "PDF to Word, PDF to DOCX, convert PDF to Word online free, "
-            "pdf to word without losing formatting, pdf to word converter no email, "
-            "pdf to word fast online, pdf to editable word free, "
-            "pdf to docx converter online, scanned pdf to word ocr free, "
-            "convert protected pdf to word, pdf to word converter without watermark, "
-            "pdf to word mobile friendly, pdf to word best quality, "
-            "how to convert pdf to word without adobe, pdf to word converter unlimited, "
-            "pdf to word converter no sign up, pdf to doc online converter, "
-            "pdf to word export free, pdf form to word converter, "
-            "pdf table to word online, convert pdf resume to word, "
-            "pdf to word batch converter, convert multiple pdf to word online, "
-            "pdf to word no ads, pdf to word no virus, pdf to word converter with ocr, "
-            "pdf to word converter small file, pdf to word converter large file, "
+            "PDF to Word, convert PDF to Word online free, "
+            "PDF to DOCX, PDF to Word converter, "
+            "convert PDF to Word without losing formatting, "
+            "PDF to Word no email required, unlimited PDF to Word conversion"
             "pdf to word converter clean layout, pdf to word converter best 2025, "
             "pdf to word converter high accuracy, pdf to word converter for mac online, "
             "pdf to word for linux online, pdf to word converter for students, "
@@ -176,6 +179,7 @@ def pdf_to_word_page(request):
 def word_to_pdf_page(request):
     """Word to PDF conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("Word to PDF - Convertica"),
         page_description=_(
             "Convert Word to PDF online free without losing formatting. "
@@ -225,6 +229,7 @@ def word_to_pdf_page(request):
 def pdf_to_jpg_page(request):
     """PDF to JPG conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("PDF to JPG - Convertica"),
         page_description=_(
             "Convert PDF to JPG online free with high quality. "
@@ -271,6 +276,7 @@ def pdf_to_jpg_page(request):
 def jpg_to_pdf_page(request):
     """JPG to PDF conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("JPG to PDF - Convertica"),
         page_description=_(
             "Convert JPG to PDF online free without compression. "
@@ -318,6 +324,7 @@ def jpg_to_pdf_page(request):
 def rotate_pdf_page(request):
     """Rotate PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Rotate PDF - Convertica"),
         page_description=_(
             "Rotate PDF pages online free by 90, 180, or 270 degrees. "
@@ -362,6 +369,7 @@ def rotate_pdf_page(request):
 def add_page_numbers_page(request):
     """Add page numbers to PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Add Page Numbers to PDF - Convertica"),
         page_description=_(
             "Add page numbers to PDF online free with customizable position, "
@@ -406,6 +414,7 @@ def add_page_numbers_page(request):
 def add_watermark_page(request):
     """Add watermark to PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Add Watermark to PDF - Convertica"),
         page_description=_(
             "Add watermark to PDF online free with text or image. "
@@ -451,6 +460,7 @@ def add_watermark_page(request):
 def crop_pdf_page(request):
     """Crop PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Crop PDF - Convertica"),
         page_description=_(
             "Crop PDF pages online free with precise crop box coordinates. "
@@ -494,6 +504,7 @@ def crop_pdf_page(request):
 def merge_pdf_page(request):
     """Merge PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Merge PDF - Convertica"),
         page_description=_(
             "Merge PDF online free without watermark. "
@@ -534,6 +545,7 @@ def merge_pdf_page(request):
 def split_pdf_page(request):
     """Split PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Split PDF - Convertica"),
         page_description=_(
             "Split PDF online free by pages, ranges, or bookmarks. "
@@ -584,6 +596,7 @@ def split_pdf_page(request):
 def remove_pages_page(request):
     """Remove pages from PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Remove Pages from PDF - Convertica"),
         page_description=_(
             "Remove pages from PDF online free. "
@@ -625,6 +638,7 @@ def remove_pages_page(request):
 def extract_pages_page(request):
     """Extract pages from PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Extract Pages from PDF - Convertica"),
         page_description=_(
             "Extract pages from PDF online free. "
@@ -667,6 +681,7 @@ def extract_pages_page(request):
 def organize_pdf_page(request):
     """Organize PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Organize PDF - Convertica"),
         page_description=_(
             "Organize PDF online free. "
@@ -710,6 +725,7 @@ def organize_pdf_page(request):
 def pdf_to_excel_page(request):
     """PDF to Excel conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("PDF to Excel - Convertica"),
         page_description=_(
             "Convert PDF to Excel online free with accurate table extraction. "
@@ -759,6 +775,7 @@ def pdf_to_excel_page(request):
 def compress_pdf_page(request):
     """Compress PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Compress PDF - Convertica"),
         page_description=_(
             "Compress PDF online free to reduce file size fast. "
@@ -803,6 +820,7 @@ def compress_pdf_page(request):
 def protect_pdf_page(request):
     """Protect PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Protect PDF with Password - Convertica"),
         page_description=_(
             "Protect PDF files with password encryption. "
@@ -828,6 +846,7 @@ def protect_pdf_page(request):
 def unlock_pdf_page(request):
     """Unlock PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Unlock PDF - Remove Password - Convertica"),
         page_description=_(
             "Unlock PDF online free. "

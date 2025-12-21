@@ -94,11 +94,27 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('dpi', dpiSelect.value);
         }
 
+        // Add OCR parameter if available (only for PDF to Word)
+        const ocrCheckbox = form.querySelector('input[name="ocr_enabled"]');
+        if (ocrCheckbox) {
+            formData.append('ocr_enabled', ocrCheckbox.checked ? 'true' : 'false');
+        }
+
+        // Add OCR language if available (only for PDF to Word)
+        const ocrLanguageSelect = form.querySelector('select[name="ocr_language"]');
+        if (ocrLanguageSelect) {
+            formData.append('ocr_language', ocrLanguageSelect.value);
+            console.log('OCR Debug: Sending language:', ocrLanguageSelect.value);
+        } else {
+            console.log('OCR Debug: ocr_language select not found');
+        }
+
         // Add Turnstile token if available
         const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
         if (turnstileResponse && turnstileResponse.value) {
             formData.append('turnstile_token', turnstileResponse.value);
         }
+
 
         // Determine conversion type from API URL or page path
         let conversionType = window.CONVERSION_TYPE || '';
@@ -162,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             setTimeout(() => {
                                 const selectFileButton = document.getElementById('selectFileButton');
                                 if (selectFileButton) {
-                                    selectFileButton.focus();
+                                    selectFileButton.focus({ preventScroll: true });
                                 }
                             }, 800);
                         }

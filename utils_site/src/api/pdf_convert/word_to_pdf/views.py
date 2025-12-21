@@ -4,6 +4,8 @@ from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 
+from utils_site.src.tasks.pdf_conversion import convert_word_to_pdf_task
+
 from ...base_views import BaseConversionAPIView
 from .decorators import word_to_pdf_docs
 from .serializers import WordToPDFSerializer
@@ -29,14 +31,20 @@ class WordToPDFAPIView(BaseConversionAPIView):
     def get_docs_decorator(self):
         return word_to_pdf_docs
 
-    @word_to_pdf_docs()
-    def post(self, request: HttpRequest):
-        """Handle POST request with Swagger documentation."""
-        return super().post(request)
+    def get_celery_task(self):
+        """Get the Celery task function to execute."""
+        return convert_word_to_pdf_task
 
-    def perform_conversion(
+    @word_to_pdf_docs()
+    async def post(self, request: HttpRequest):
+        """Handle POST request with Swagger documentation."""
+        return await self.post_async(request)
+
+    async def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform Word to PDF conversion."""
-        docx_path, pdf_path = convert_word_to_pdf(uploaded_file, suffix="_convertica")
+        docx_path, pdf_path = await convert_word_to_pdf(
+            uploaded_file, suffix="_convertica"
+        )
         return docx_path, pdf_path

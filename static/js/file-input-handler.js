@@ -47,8 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (pageCount > maxPages) {
                 const errorMessage = getPageLimitError(pageCount, maxPages);
-                showUniversalError(errorMessage);
-                return false;
+                if (errorMessage) {
+                    showUniversalError(errorMessage);
+                    return false;
+                }
+                // Premium users - no error shown, continue processing
             }
 
             clearInlineError();
@@ -108,10 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getPageLimitError(pageCount, maxPages) {
+        // Don't show error for premium users
+        if (window.IS_PREMIUM) {
+            return null;
+        }
+
         if (window.PAGE_LIMIT_ERROR) {
-            return window.PAGE_LIMIT_ERROR.replace('%(page_count)d', pageCount).replace('%(max_pages)d', maxPages);
+            const message = window.PAGE_LIMIT_ERROR.replace('%(page_count)d', pageCount).replace('%(max_pages)d', maxPages);
+            const linkText = "get a 1-day Premium subscription for just $1";
+
+            if (window.PREMIUM_LINK && message.includes(linkText)) {
+                const link = `<a href="${window.PREMIUM_LINK}" class="text-amber-600 hover:text-amber-700 font-medium underline">${linkText}</a>`;
+                return message.replace(linkText, link);
+            }
+            return message;
         } else {
-            return `PDF has ${pageCount} pages, maximum allowed is ${maxPages}. Please split your PDF into smaller parts.`;
+            return `PDF has ${pageCount} pages (limit: 50). You can split your file into smaller parts or <a href="/users/premium/" class="text-amber-600 hover:text-amber-700 font-medium underline">get a 1-day Premium subscription for just $1</a> to process files without limits!`;
         }
     }
 

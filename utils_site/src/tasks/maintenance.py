@@ -5,6 +5,7 @@ These tasks handle periodic maintenance operations like
 cleaning up temporary files, updating statistics, etc.
 """
 
+import gc
 import os
 import shutil
 import time
@@ -28,6 +29,58 @@ ASYNC_TEMP_DIR = getattr(
     "ASYNC_TEMP_DIR",
     _media_root / "async_temp",
 )
+
+
+@shared_task(name="maintenance.memory_cleanup", queue="maintenance")
+def memory_cleanup():
+    """
+    Memory cleanup task for 4GB servers.
+
+    This task runs every 15 minutes to:
+    - Force garbage collection
+    - Clear Python memory caches
+    - Log memory usage for monitoring
+    """
+    try:
+        # Force garbage collection
+        collected = gc.collect()
+
+        # Get memory stats if psutil is available
+        memory_info = {}
+        try:
+            import psutil
+
+            process = psutil.Process()
+            memory_info = {
+                "rss_mb": process.memory_info().rss / 1024 / 1024,
+                "vms_mb": process.memory_info().vms / 1024 / 1024,
+                "cpu_percent": process.cpu_percent(),
+            }
+        except ImportError:
+            # psutil not available, just log basic info
+            pass
+
+        logger.info(
+            f"Memory cleanup completed - collected {collected} objects",
+            extra={
+                "event": "memory_cleanup",
+                "objects_collected": collected,
+                **memory_info,
+            },
+        )
+
+        return {
+            "status": "success",
+            "objects_collected": collected,
+            "memory_info": memory_info,
+        }
+
+    except Exception as e:
+        logger.error(
+            f"Memory cleanup failed: {e}",
+            extra={"event": "memory_cleanup_failed", "error": str(e)},
+        )
+        return {"status": "failed", "error": str(e)}
 
 
 @shared_task(name="maintenance.cleanup_temp_files", queue="maintenance")
