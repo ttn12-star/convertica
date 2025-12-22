@@ -8,11 +8,10 @@ import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
-
-from utils_site.src.api.file_validation import check_disk_space, sanitize_filename
-from utils_site.src.api.logging_utils import get_logger
-from utils_site.src.api.ocr_utils import extract_text_from_pdf_async
-from utils_site.src.exceptions import ConversionError, StorageError
+from src.api.file_validation import check_disk_space, sanitize_filename
+from src.api.logging_utils import get_logger
+from src.api.ocr_utils import extract_text_from_pdf_async
+from src.exceptions import ConversionError, StorageError
 
 logger = get_logger(__name__)
 
@@ -32,6 +31,7 @@ class OptimizedPDFToWordConverter:
         uploaded_file: UploadedFile,
         suffix: str = "_convertica",
         ocr_enabled: bool = False,
+        ocr_language: str = "auto",
         context: dict = None,
         output_path: str = None,
         update_progress: callable = None,
@@ -49,13 +49,24 @@ class OptimizedPDFToWordConverter:
         Returns:
             Tuple of (input_pdf_path, output_docx_path)
         """
-        if context is None:
+        # Initialize context if not provided
+        if context is None or isinstance(context, str):
             context = {}
 
         # Add Celery task context for logging
         if is_celery_task:
             context["is_celery_task"] = True
             context["conversion_environment"] = "celery_worker"
+
+        if update_progress is None or not callable(update_progress):
+            logger.warning(
+                "update_progress is not callable (%s); progress callbacks disabled",
+                type(update_progress),
+                extra=context,
+            )
+
+            def update_progress(*_args, **_kwargs):
+                return None
 
         # Import shutil at function level
         import shutil
@@ -84,6 +95,7 @@ class OptimizedPDFToWordConverter:
                     "pdf_path": pdf_path,
                     "docx_path": docx_path,
                     "ocr_enabled": ocr_enabled,
+                    "ocr_language": ocr_language,
                     "conversion_method": "optimized_parallel",
                 }
             )
@@ -119,7 +131,9 @@ class OptimizedPDFToWordConverter:
             if ocr_enabled:
                 if update_progress:
                     update_progress(50, "Starting OCR processing...")
-                ocr_text_content = await self._process_ocr_async(uploaded_file, context)
+                ocr_text_content = await self._process_ocr_async(
+                    uploaded_file, context, ocr_language
+                )
 
             # Perform optimized conversion
             if update_progress:
@@ -154,7 +168,7 @@ class OptimizedPDFToWordConverter:
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
     async def _process_ocr_async(
-        self, uploaded_file: UploadedFile, context: dict
+        self, uploaded_file: UploadedFile, context: dict, ocr_language: str = "auto"
     ) -> str | None:
         """
         Process OCR with async optimization and memory management.
@@ -172,14 +186,21 @@ class OptimizedPDFToWordConverter:
                 extra={**context, "event": "ocr_start"},
             )
 
-            # Get user language from request if available
             user_language = None
-            if hasattr(uploaded_file, "_request"):
+            if ocr_language and ocr_language != "auto":
+                user_language = ocr_language
+            elif hasattr(uploaded_file, "_request"):
                 user_language = getattr(uploaded_file._request, "LANGUAGE_CODE", None)
+
+            # Get confidence threshold from context
+            confidence_threshold = context.get("ocr_confidence_threshold", 60)
 
             # Perform async OCR with memory optimization
             _, extracted_text = await extract_text_from_pdf_async(
-                uploaded_file, dpi=150, user_language=user_language
+                uploaded_file,
+                dpi=300,
+                user_language=user_language,
+                confidence_threshold=confidence_threshold,
             )
 
             # Limit text length to prevent memory issues
@@ -345,6 +366,7 @@ async def convert_pdf_to_docx_optimized(
     uploaded_file: UploadedFile,
     suffix: str = "_convertica",
     ocr_enabled: bool = False,
+    ocr_language: str = "auto",
     context: dict = None,
     output_path: str = None,
     update_progress: callable = None,
@@ -366,11 +388,12 @@ async def convert_pdf_to_docx_optimized(
     """
     converter = OptimizedPDFToWordConverter()
     return await converter.convert_pdf_to_docx_optimized(
-        uploaded_file,
-        suffix,
-        ocr_enabled,
-        context,
-        output_path,
-        update_progress,
-        is_celery_task,
+        uploaded_file=uploaded_file,
+        suffix=suffix,
+        ocr_enabled=ocr_enabled,
+        ocr_language=ocr_language,
+        context=context,
+        output_path=output_path,
+        update_progress=update_progress,
+        is_celery_task=is_celery_task,
     )

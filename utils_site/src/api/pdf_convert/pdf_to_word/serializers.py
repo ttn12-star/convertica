@@ -46,5 +46,12 @@ class PDFToWordSerializer(serializers.Serializer):
             ("tur", "Turkish"),
             ("ind", "Indonesian"),
         ],
-        help_text="OCR language for text recognition",
+        help_text="OCR language for text recognition (auto-detect uses eng+rus+deu+fra+spa+chi_sim)",
+    )
+    ocr_confidence_threshold = serializers.IntegerField(
+        required=False,
+        default=60,
+        min_value=0,
+        max_value=100,
+        help_text="Minimum confidence threshold for OCR text (0-100, default 60)",
     )

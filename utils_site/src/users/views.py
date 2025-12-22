@@ -263,6 +263,9 @@ def toggle_hero_display(request):
             }
         )
 
+    except json.JSONDecodeError:
+        return JsonResponse({"success": False, "error": _("Invalid JSON")}, status=400)
+
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)})
 

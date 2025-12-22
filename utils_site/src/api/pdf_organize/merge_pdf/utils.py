@@ -1,6 +1,4 @@
-# utils.py
 import os
-import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -11,13 +9,9 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_pdf_file,
-)
+from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
+from ...pdf_processing import BasePDFMultiProcessor
 from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
@@ -38,7 +32,6 @@ def merge_pdf(
     Returns:
         Tuple of (temp_dir, output_path)
     """
-    tmp_dir = None
     context = {
         "function": "merge_pdf",
         "num_files": len(uploaded_files),
@@ -46,71 +39,18 @@ def merge_pdf(
     }
 
     try:
-        tmp_dir = tempfile.mkdtemp(prefix="merge_pdf_")
-        context["tmp_dir"] = tmp_dir
-
-        disk_check, disk_error = check_disk_space(tmp_dir, required_mb=500)
-        if not disk_check:
-            raise StorageError(disk_error or "Insufficient disk space", context=context)
-
         # Sort files if needed
         if order == "alphabetical":
             uploaded_files = sorted(uploaded_files, key=lambda f: f.name)
 
-        # Save all files in order
-        pdf_paths = []
-        logger.info(
-            "Saving %d files for merge",
-            len(uploaded_files),
-            extra={
-                **context,
-                "file_names": [f.name for f in uploaded_files],
-            },
+        processor = BasePDFMultiProcessor(
+            uploaded_files,
+            tmp_prefix="merge_pdf_",
+            required_mb=500,
+            context=context,
         )
-
-        for idx, uploaded_file in enumerate(uploaded_files):
-            safe_name = sanitize_filename(
-                "%d_%s" % (idx, os.path.basename(uploaded_file.name))
-            )
-            pdf_path = os.path.join(tmp_dir, safe_name)
-
-            logger.debug(
-                "Saving file %d: %s -> %s",
-                idx + 1,
-                uploaded_file.name,
-                safe_name,
-                extra={**context, "file_index": idx + 1},
-            )
-
-            try:
-                with open(pdf_path, "wb") as f:
-                    for chunk in uploaded_file.chunks():
-                        f.write(chunk)
-
-                # Validate each PDF
-                is_valid, validation_error = validate_pdf_file(pdf_path, context)
-                if not is_valid:
-                    if "password" in (validation_error or "").lower():
-                        raise EncryptedPDFError(
-                            "PDF %s is password-protected" % safe_name, context=context
-                        )
-                    raise InvalidPDFError(
-                        "Invalid PDF: %s" % safe_name, context=context
-                    )
-
-                # Repair PDF to handle potentially corrupted files
-                pdf_path = repair_pdf(pdf_path)
-                pdf_paths.append(pdf_path)
-                logger.debug(
-                    "File %d saved successfully: %s",
-                    idx + 1,
-                    safe_name,
-                    extra={**context, "file_index": idx + 1, "pdf_path": pdf_path},
-                )
-            except OSError as err:
-                raise StorageError(
-                    "Failed to write PDF %s: %s" % (safe_name, err), context=context
-                ) from err
+        pdf_paths = processor.prepare()
+        tmp_dir = processor.tmp_dir
 
         # Merge PDFs
         try:
@@ -125,12 +65,17 @@ def merge_pdf(
             )
 
             writer = PdfWriter()
-            total_pages_added = 0
+
+            def _open_reader(path: str) -> PdfReader:
+                try:
+                    return PdfReader(path, strict=False)
+                except Exception:
+                    repaired = repair_pdf(path)
+                    return PdfReader(repaired, strict=False)
 
             for idx, pdf_path in enumerate(pdf_paths):
                 try:
-                    # Try to read PDF with strict=False for better compatibility
-                    reader = PdfReader(pdf_path, strict=False)
+                    reader = _open_reader(pdf_path)
 
                     # Check if PDF is encrypted
                     if reader.is_encrypted:
@@ -147,41 +92,24 @@ def merge_pdf(
                                 context=context,
                             )
 
-                    # Add all pages from this PDF
-                    pages_added_from_this_pdf = 0
                     for page_num, page in enumerate(reader.pages):
                         try:
                             writer.add_page(page)
-                            pages_added_from_this_pdf += 1
-                            total_pages_added += 1
                         except Exception as page_err:
-                            logger.warning(
-                                "Failed to add page %d from PDF %d: %s",
-                                page_num + 1,
-                                idx + 1,
-                                page_err,
-                                extra={
+                            raise InvalidPDFError(
+                                "Failed to read page %d from PDF %d (%s)"
+                                % (
+                                    page_num + 1,
+                                    idx + 1,
+                                    os.path.basename(pdf_path),
+                                ),
+                                context={
                                     **context,
                                     "pdf_index": idx + 1,
                                     "page_num": page_num + 1,
-                                    "error": str(page_err),
+                                    "error": str(page_err)[:200],
                                 },
-                            )
-                            # Continue with next page instead of failing completely
-                            continue
-
-                    logger.info(
-                        "Added %d pages from PDF %d (%s)",
-                        pages_added_from_this_pdf,
-                        idx + 1,
-                        os.path.basename(pdf_path),
-                        extra={
-                            **context,
-                            "pdf_index": idx + 1,
-                            "num_pages": pages_added_from_this_pdf,
-                            "pdf_path": pdf_path,
-                        },
-                    )
+                            ) from page_err
 
                 except EncryptedPDFError:
                     raise
@@ -265,25 +193,7 @@ def merge_pdf(
                 "Failed to merge PDFs: %s" % merge_exc, context=error_context
             ) from merge_exc
 
-        # Validate output
-        is_valid, validation_error = validate_output_file(
-            output_path, min_size=1000, context=context
-        )
-        if not is_valid:
-            raise ConversionError(
-                validation_error or "Output PDF is invalid", context=context
-            )
-
-        output_size = os.path.getsize(output_path)
-        logger.info(
-            "PDF merge successful",
-            extra={
-                **context,
-                "event": "merge_success",
-                "output_size": output_size,
-                "output_size_mb": round(output_size / (1024 * 1024), 2),
-            },
-        )
+        processor.validate_output_pdf(output_path, min_size=1000)
 
         return tmp_dir, output_path
 

@@ -1,7 +1,7 @@
 from django.core.cache import cache
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from users.models import User
+from src.users.models import User
 
 
 class Command(BaseCommand):

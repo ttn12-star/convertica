@@ -243,6 +243,33 @@ class AsyncConversionAPIView(APIView, ABC):
         task_id = str(uuid.uuid4())
         task_dir = get_task_temp_dir(task_id)
 
+        # Lightweight DB analytics for async queueing (best-effort)
+        try:
+            from django.utils import timezone
+            from src.users.models import OperationRun
+
+            is_premium = (
+                request.user.is_authenticated
+                and getattr(request.user, "is_premium", False)
+                and request.user.is_subscription_active()
+            )
+
+            OperationRun.objects.create(
+                conversion_type=self.CONVERSION_TYPE,
+                status="queued",
+                user=request.user if request.user.is_authenticated else None,
+                is_premium=bool(is_premium),
+                request_id=str(context.get("request_id") or ""),
+                task_id=task_id,
+                input_size=getattr(uploaded_file, "size", None),
+                queued_at=timezone.now(),
+                remote_addr=str(context.get("remote_addr") or ""),
+                user_agent=str(context.get("user_agent") or ""),
+                path=str(context.get("path") or ""),
+            )
+        except Exception:
+            pass
+
         try:
             # Save uploaded file using async file operations
             file_extension = os.path.splitext(uploaded_file.name)[1]
@@ -280,7 +307,10 @@ class AsyncConversionAPIView(APIView, ABC):
                     else self.MAX_PDF_PAGES
                 )
                 is_valid, error_message, page_count = validate_pdf_pages(
-                    input_path, max_pages
+                    input_path,
+                    max_pages,
+                    user=request.user,
+                    operation=self.CONVERSION_TYPE,
                 )
                 if not is_valid:
                     cleanup_task_files(task_id)

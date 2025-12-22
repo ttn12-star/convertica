@@ -103,8 +103,8 @@
                            id="display_as_hero"
                            name="display_as_hero"
                            {% if user.display_as_hero %}checked{% endif %}
-                           {% if not user.is_premium %}disabled{% endif %}
-                           class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded {% if not user.is_premium %}opacity-50 cursor-not-allowed{% endif %}">
+                           {% if not user.is_premium_active %}disabled{% endif %}
+                           class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded {% if not user.is_premium_active %}opacity-50 cursor-not-allowed{% endif %}">
                   </div>
                   <div class="ml-3 text-sm">
                     <label for="display_as_hero" class="font-medium text-gray-700">
@@ -112,7 +112,7 @@
                     </label>
                     <p class="text-gray-500">
                       {% trans "Show your nickname in the Heroes Hall of Fame" %}
-                      {% if not user.is_premium %}
+                      {% if not user.is_premium_active %}
                         <span class="text-orange-600 font-medium">
                           ({% trans "Become a hero as a premium subscriber!" %})
                         </span>

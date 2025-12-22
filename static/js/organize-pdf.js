@@ -2,10 +2,66 @@
  * Organize PDF Tool
  * Simple approach like other PDF tools
  */
+const PDFJS_VERSION = '3.11.174';
+const localPdfSrc = typeof window.PDFJS_LOCAL_PDF === 'string' ? window.PDFJS_LOCAL_PDF : null;
+const localWorkerSrc = typeof window.PDFJS_LOCAL_WORKER === 'string' ? window.PDFJS_LOCAL_WORKER : null;
+
+const PDFJS_CANDIDATES = [
+    ...(localPdfSrc ? [localPdfSrc] : []),
+    `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`,
+    `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.js`,
+];
+const PDFJS_WORKER_CANDIDATES = [
+    ...(localWorkerSrc ? [localWorkerSrc] : []),
+    `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`,
+    `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.worker.min.js`,
+];
+
+function loadExternalScript(src) {
+    return new Promise((resolve, reject) => {
+        const existing = Array.from(document.scripts).find((s) => s.src === src);
+        if (existing) {
+            if (typeof window.pdfjsLib !== 'undefined') return resolve();
+            existing.addEventListener('load', () => resolve(), { once: true });
+            existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load ${src}`));
+        document.head.appendChild(script);
+    });
+}
+
+async function ensurePdfJsLoaded() {
+    if (typeof window.pdfjsLib !== 'undefined') return true;
+
+    for (const src of PDFJS_CANDIDATES) {
+        try {
+            await loadExternalScript(src);
+            if (typeof window.pdfjsLib !== 'undefined') break;
+        } catch (e) {
+            // try next
+        }
+    }
+
+    if (typeof window.pdfjsLib === 'undefined') return false;
+
+    if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+    }
+
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Set up PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    // Set up PDF.js worker (best-effort)
+    if (typeof window.pdfjsLib !== 'undefined') {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
     }
 
     const form = document.getElementById('editorForm');
@@ -173,9 +229,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 pdfPreviewSection.classList.remove('hidden');
             }
 
+            const pdfReady = await ensurePdfJsLoaded();
+            if (!pdfReady || typeof window.pdfjsLib === 'undefined') {
+                window.showError(
+                    'PDF preview engine (PDF.js) is not loaded. Please disable adblock for this site or check that cdnjs/unpkg are not blocked, then refresh the page.',
+                    'editorResult'
+                );
+                cleanupPreviousPDF();
+                return;
+            }
+            if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+            }
+
             // Load PDF document
             const arrayBuffer = await file.arrayBuffer();
-            pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            pdfDoc = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
             // Universal page count validation
             const isValid = await window.validatePdfPageLimit(file);
@@ -203,12 +272,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } catch (error) {
-            if (typeof console !== 'undefined' && console.error) {
-                console.error('Error loading PDF:', error);
+            console.error('Error loading PDF:', error);
+            console.error('Error details:', {
+                message: error.message,
+                name: error.name,
+                stack: error.stack
+            });
+
+            let errorMessage = 'Failed to load PDF file. Please try again.';
+            if (error.message && error.message.includes('pdfjsLib')) {
+                errorMessage = 'PDF preview engine is not loaded. Please refresh the page and try again.';
+            } else if (error.message) {
+                errorMessage = `Failed to load PDF: ${error.message}`;
             }
-            window.showError(window.FAILED_TO_LOAD_PDF || 'Failed to load PDF file. Please try again.', 'errorMessage');
+
+            window.showError(errorMessage, 'errorMessage');
+            cleanupPreviousPDF();
         } finally {
-            // Reset processing flag
             isProcessingFile = false;
         }
     }

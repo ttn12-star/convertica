@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.index_page, name="index_page"),
+    path("", views.index_page, name="index_page_lang"),
     path("all-tools/", views.all_tools_page, name="all_tools_page"),
     path("pdf-to-word/", views.pdf_to_word_page, name="pdf_to_word_page"),
     path("word-to-pdf/", views.word_to_pdf_page, name="word_to_pdf_page"),

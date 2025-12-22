@@ -1,0 +1,17 @@
+{
+  "name": "Convertica",
+  "short_name": "Convertica",
+  "description": "Online PDF tools: convert, edit and organize PDFs.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/static/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

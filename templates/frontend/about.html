@@ -17,11 +17,11 @@
       "@type": "AboutPage",
       "name": "{% trans "About Us - Convertica" %}",
       "description": "{{ page_description }}",
-      "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+      "url": "{{ site_current_url }}",
       "mainEntity": {
         "@type": "Organization",
         "name": "Convertica",
-        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "url": "{{ site_base_url }}",
         "description": "{% trans "Free online PDF tools platform providing conversion, editing, and organization services." %}",
         "foundingDate": "2024",
         "slogan": "{% trans "Today better than yesterday, tomorrow better than today" %}"

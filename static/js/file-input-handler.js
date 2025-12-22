@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             if (file.type !== 'application/pdf') return true;
 
+            // Premium users skip validation entirely
+            if (window.IS_PREMIUM) {
+                return true;
+            }
+
             // Ждем пока PDF.js будет загружен
             if (typeof pdfjsLib === 'undefined') {
                 console.info('PDF.js not loaded yet, skipping PDF page validation');
@@ -51,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     showUniversalError(errorMessage);
                     return false;
                 }
-                // Premium users - no error shown, continue processing
             }
 
             clearInlineError();

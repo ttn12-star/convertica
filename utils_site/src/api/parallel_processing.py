@@ -19,7 +19,7 @@ from .performance_config import get_performance_config
 logger = get_logger(__name__)
 
 # Get adaptive configuration
-perf_config: dict[str, any] = get_performance_config().get_config()
+perf_config = get_performance_config()
 
 # Thread pools optimized for current server resources
 BATCH_PROCESSING_POOL = ThreadPoolExecutor(
@@ -141,6 +141,11 @@ class MemorySafeBatchProcessor:
 
         return results
 
+    def process_in_batches(
+        self, items: list[any], processor_func: Callable, context: dict = None
+    ) -> list[any]:
+        return self.process_batch(items, processor_func, context)
+
 
 async def process_pdf_pages_parallel(
     pdf_path: str,
@@ -167,7 +172,10 @@ async def process_pdf_pages_parallel(
 
     try:
         # Get total page count first
-        from pypdf import PdfReader
+        try:
+            from pypdf import PdfReader
+        except ImportError:
+            from PyPDF2 import PdfReader
 
         with open(pdf_path, "rb") as f:
             pdf_reader = PdfReader(f)
@@ -283,9 +291,13 @@ async def process_images_parallel(
                     img = img.convert("RGB")
 
                 # Optimize for PDF
-                # Resize if too large (max 2000x2000 for memory efficiency)
-                max_size = 2000
-                if img.width > max_size or img.height > max_size:
+                # Only resize if quality is low AND image is extremely large
+                max_size = 4000  # Increased from 2000 for better quality
+                should_resize = quality < 85 and (
+                    img.width > max_size or img.height > max_size
+                )
+
+                if should_resize:
                     img.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)
 
                 # Save processed image
@@ -293,7 +305,17 @@ async def process_images_parallel(
                 name, ext = os.path.splitext(basename)
                 processed_path = os.path.join(output_dir, f"{name}_processed.jpg")
 
-                img.save(processed_path, "JPEG", quality=quality, optimize=True)
+                # For high quality, use better settings
+                if quality >= 90:
+                    img.save(
+                        processed_path,
+                        "JPEG",
+                        quality=quality,
+                        subsampling=0,
+                        optimize=False,
+                    )
+                else:
+                    img.save(processed_path, "JPEG", quality=quality, optimize=True)
                 return processed_path
 
         except Exception as e:
@@ -331,8 +353,10 @@ async def process_images_parallel(
 
 
 def get_optimal_batch_size(
-    file_size_mb: float, operation_type: str, memory_gb: float = 4.0
-) -> tuple[int, any]:
+    file_size_mb: float,
+    operation_type: str = "pdf_pages",
+    memory_gb: float | None = None,
+) -> int:
     """
     Calculate optimal batch size based on file size and available memory.
 
@@ -345,14 +369,27 @@ def get_optimal_batch_size(
         Optimal batch size (1-10)
     """
     # Base batch sizes for different file sizes
+    # If caller didn't pass memory, use detected server memory
+    if memory_gb is None:
+        try:
+            memory_gb = perf_config.total_memory_gb
+        except Exception:
+            memory_gb = 4.0
+
+    # Base batch sizes for different file sizes
     if file_size_mb < 10:
-        return 10  # Small files can use larger batches
+        base = 10
     elif file_size_mb < 50:
-        return 5  # Medium files
+        base = 5
     elif file_size_mb < 100:
-        return 3  # Large files
+        base = 3
     else:
-        return 2  # Very large files
+        base = 2
+
+    # On low-memory servers, be more conservative
+    if memory_gb < 4:
+        return max(1, min(base, 2))
+    return base
 
 
 async def optimize_pdf_to_jpg_conversion(
@@ -380,7 +417,7 @@ async def optimize_pdf_to_jpg_conversion(
 
     # Get file size for optimal batch size
     file_size_mb = os.path.getsize(pdf_path) / (1024 * 1024)
-    batch_size = get_optimal_batch_size(file_size_mb)
+    batch_size = get_optimal_batch_size(file_size_mb, operation_type="pdf_pages")
 
     logger.info(
         f"Starting optimized PDF-to-JPG conversion: file_size={file_size_mb:.1f}MB, batch_size={batch_size}",

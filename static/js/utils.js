@@ -584,6 +584,17 @@ async function submitAsyncConversion(options) {
                 window.registerTaskForCancellation(taskId);
             }
 
+            // Track abandonment for analytics if user leaves before completion
+            const abandonHandler = () => trackOperationAbandon(taskId);
+            window.addEventListener('beforeunload', abandonHandler);
+            window.addEventListener('pagehide', abandonHandler);
+
+            // Store handler reference for cleanup
+            const cleanupAbandonTracking = () => {
+                window.removeEventListener('beforeunload', abandonHandler);
+                window.removeEventListener('pagehide', abandonHandler);
+            };
+
             // Poll for task status
             await pollTaskStatus(taskId, {
                 onProgress: (progress, message) => {
@@ -618,6 +629,9 @@ async function submitAsyncConversion(options) {
                         window.unregisterTaskForCancellation(taskId);
                     }
 
+                    // Remove abandon tracking - operation completed successfully
+                    cleanupAbandonTracking();
+
                     if (onSuccess) {
                         onSuccess(blob, filename);
                     } else {
@@ -639,6 +653,9 @@ async function submitAsyncConversion(options) {
                     if (window.unregisterTaskForCancellation) {
                         window.unregisterTaskForCancellation(taskId);
                     }
+
+                    // Remove abandon tracking - operation failed/cancelled
+                    cleanupAbandonTracking();
 
                     hideLoading(loadingContainerId);
                     const errorMsg = error || 'Conversion failed';
@@ -775,6 +792,28 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
     poll();
 }
 
+/**
+ * Track operation abandonment for analytics
+ * Sends beacon to mark operation as abandoned when user leaves page
+ * @param {string} taskId - Task ID to mark as abandoned
+ */
+function trackOperationAbandon(taskId) {
+    if (!taskId || !navigator.sendBeacon) return;
+
+    try {
+        const blob = new Blob(
+            [JSON.stringify({ task_id: taskId })],
+            { type: 'application/json' }
+        );
+        const sent = navigator.sendBeacon('/api/operation-abandon/', blob);
+        if (sent) {
+            console.log(`[Analytics] Marked operation as abandoned: ${taskId}`);
+        }
+    } catch (error) {
+        console.error('[Analytics] Failed to track abandonment:', error);
+    }
+}
+
 // Export functions to global scope
 if (typeof window !== 'undefined') {
     window.formatFileSize = formatFileSize;
@@ -788,4 +827,5 @@ if (typeof window !== 'undefined') {
     window.updateProgress = updateProgress;
     window.submitAsyncConversion = submitAsyncConversion;
     window.pollTaskStatus = pollTaskStatus;
+    window.trackOperationAbandon = trackOperationAbandon;
 }

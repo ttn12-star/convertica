@@ -115,11 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.IS_PREMIUM) {
             return null;
         }
-        
+
         if (window.PAGE_LIMIT_ERROR) {
             const message = window.PAGE_LIMIT_ERROR.replace('%(page_count)d', pageCount).replace('%(max_pages)d', maxPages);
             const linkText = "get a 1-day Premium subscription for just $1";
-            
+
             if (window.PREMIUM_LINK && message.includes(linkText)) {
                 const link = `<a href="${window.PREMIUM_LINK}" class="text-amber-600 hover:text-amber-700 font-medium underline">${linkText}</a>`;
                 return message.replace(linkText, link);

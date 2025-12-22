@@ -104,7 +104,9 @@ services:
         reservations:
           cpus: '0.25'
           memory: 512M
-    profiles: ["premium-dev"]  # Optional: start with --profile premium-dev
+
+    profiles: ["premium-dev"]
+
 
   # Disable Nginx in development (use WhiteNoise instead)
   nginx:

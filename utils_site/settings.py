@@ -33,6 +33,14 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         # Filter handled errors - don't send InvalidPDFError as unhandled exceptions
         # These are expected user errors (corrupted files), not bugs
         def before_send(event, hint):
+            logentry = event.get("logentry") or {}
+            logentry_message = logentry.get("message") or ""
+            logentry_params = logentry.get("params") or []
+            base_message = event.get("message") or logentry_message
+            full_message = (
+                (base_message or "") + " " + " ".join(str(p) for p in logentry_params)
+            )
+
             # Don't send InvalidPDFError as exception - it's handled gracefully
             if "exc_info" in hint and hint["exc_info"][0].__name__ == "InvalidPDFError":
                 event["level"] = "info"
@@ -45,29 +53,27 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                 return None
 
             # Drop any logs with WSGI parameters (detailed access logs)
-            message = event.get("message") or ""
-            if "message.parameter." in message or "{wsgi" in message:
+            if "message.parameter." in full_message or "{wsgi" in full_message:
                 return None
 
             # Drop logs with access log format patterns
             if any(
-                pattern in message
+                pattern in full_message
                 for pattern in ["%(h)s", "%(l)s", "%(u)s", "%(t)s", "%(r)s"]
             ):
                 return None
 
             # Drop health check logs specifically
-            if "/health/" in message or "GET /health/" in message:
+            if "/health/" in full_message or "GET /health/" in full_message:
                 return None
+
+            # Drop noisy CSRF referer-check warnings caused by bots and broken clients
+            if event.get("logger") == "django.security.csrf":
+                if "Referer checking failed" in full_message:
+                    return None
 
             # Drop noisy Gunicorn error logs (invalid protocol / php probes / bot scanners)
             if event.get("logger") == "gunicorn.error":
-                message = event.get("message") or ""
-                # Check both message template and logrecord (where actual path is)
-                logrecord = event.get("logentry", {})
-                log_params = logrecord.get("params", []) or []
-                full_message = message + " " + " ".join(str(p) for p in log_params)
-
                 # Examples: "Invalid HTTP request line: 'SSH-2.0-Go'", "Error handling request /admin/config.php"
                 # Bot scanners look for: .php, .asp, .aspx, .env, .git, wp-admin, etc.
                 bot_patterns = [
@@ -88,6 +94,12 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                     "SSH-2.0",
                 ]
                 if any(pattern in full_message for pattern in bot_patterns):
+                    return None
+
+                # Absolute-form requests and random host:port probes (noise)
+                if "http://" in full_message or "https://" in full_message:
+                    return None
+                if ":443" in full_message or ":80" in full_message:
                     return None
 
             # Drop health-check events (e.g. /health/) so they don't clutter Sentry
@@ -260,6 +272,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "src.frontend.context_processors.hreflang_links",
+                "src.frontend.context_processors.site_urls",
                 "src.frontend.context_processors.turnstile_site_key",
                 "src.frontend.context_processors.js_settings",
             ],
@@ -341,9 +354,8 @@ AUTHENTICATION_BACKENDS = [
 
 # Allauth account settings
 ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Allauth social account settings
@@ -402,11 +414,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Media files (user uploads, async temp files)
 MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 
 # Use ManifestStaticFilesStorage for versioning (hash in filenames)
 # This allows long-term caching (365 days) while automatically invalidating

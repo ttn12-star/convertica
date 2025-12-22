@@ -5,6 +5,12 @@ File validation utilities for conversion APIs.
 import os
 import shutil
 
+from .cache_utils import (
+    cache_pdf_page_count,
+    cache_pdf_validation,
+    get_cached_pdf_page_count,
+    get_cached_pdf_validation,
+)
 from .logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -18,11 +24,21 @@ DOC_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"  # OLE2 format (old .doc)
 
 def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
     """
-    Validate PDF file structure.
+    Validate PDF file structure with caching.
 
     Returns:
         Tuple[bool, Optional[str]]: (is_valid, error_message)
     """
+    # Check cache first
+    cached_result = get_cached_pdf_validation(file_path)
+    if cached_result is not None:
+        logger.debug("Using cached PDF validation result", extra=context)
+        return (
+            (cached_result, None)
+            if cached_result
+            else (False, "Cached validation failed")
+        )
+
     try:
         # Check file exists and is not empty
         if not os.path.exists(file_path):
@@ -55,8 +71,12 @@ def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
                 return False, "PDF is password-protected"
 
             # Check if PDF has pages
-            if len(reader.pages) == 0:
+            page_count = len(reader.pages)
+            if page_count == 0:
                 return False, "PDF has no pages"
+
+            # Cache page count for future use
+            cache_pdf_page_count(file_path, page_count)
 
             # Try to access first page to verify it's readable
             try:
@@ -85,6 +105,8 @@ def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
             )
             # Don't fail validation if PyPDF2 has issues
 
+        # Cache successful validation
+        cache_pdf_validation(file_path, True)
         return True, None
 
     except Exception as e:
@@ -93,6 +115,8 @@ def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
             extra={**context, "error": str(e), "event": "pdf_validation_error"},
             exc_info=True,
         )
+        # Cache failed validation (shorter timeout)
+        cache_pdf_validation(file_path, False, timeout=300)  # 5 minutes
         return False, f"Error validating PDF: {str(e)}"
 
 

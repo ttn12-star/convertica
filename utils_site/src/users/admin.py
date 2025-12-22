@@ -8,7 +8,13 @@ from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from .models import Payment, SubscriptionPlan, UserSubscription
+from .models import (
+    OperationRun,
+    Payment,
+    StripeWebhookEvent,
+    SubscriptionPlan,
+    UserSubscription,
+)
 
 User = get_user_model()
 
@@ -390,3 +396,44 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
         return obj.plan.name if obj.plan else "No plan"
 
     plan_name.short_description = "Plan"
+
+
+@admin.register(OperationRun)
+class OperationRunAdmin(admin.ModelAdmin):
+    list_display = (
+        "conversion_type",
+        "status",
+        "is_premium",
+        "user_email",
+        "created_at",
+        "queued_at",
+        "started_at",
+        "finished_at",
+        "duration_ms",
+        "queue_wait_ms",
+    )
+    list_filter = ("conversion_type", "status", "is_premium", "created_at")
+    search_fields = ("task_id", "request_id", "user__email", "conversion_type")
+    readonly_fields = ("created_at", "updated_at")
+    list_select_related = ("user",)
+
+    def user_email(self, obj):
+        return obj.user.email if obj.user else "Anonymous"
+
+    user_email.short_description = "User Email"
+    user_email.admin_order_field = "user__email"
+
+
+@admin.register(StripeWebhookEvent)
+class StripeWebhookEventAdmin(admin.ModelAdmin):
+    list_display = (
+        "event_type",
+        "event_id",
+        "livemode",
+        "processing",
+        "processed_at",
+        "created_at",
+    )
+    list_filter = ("event_type", "livemode", "processing", "created_at")
+    search_fields = ("event_id",)
+    readonly_fields = ("created_at", "updated_at")

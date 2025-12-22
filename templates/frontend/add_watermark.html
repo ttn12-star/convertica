@@ -115,7 +115,18 @@
         /* Larger touch target */
         min-width: 60px;
         min-height: 60px;
+        cursor: default;
       }
+    }
+
+    .watermark-slider-vertical {
+      writing-mode: vertical-lr;
+      direction: rtl;
+      width: 8px;
+      height: 200px;
+      margin: 0;
+      padding: 0;
+      -webkit-appearance: slider-vertical;
     }
   </style>
 {% endblock %}
@@ -228,17 +239,48 @@
           </div>
 
                 <!-- PDF Canvas Container -->
-          <div class="relative bg-white border-2 border-gray-300 rounded-lg p-4 overflow-hidden flex justify-center items-center" style="max-height: 85vh; min-height: 400px;">
-            <div id="pdfCanvasContainer" class="relative inline-block" style="max-width: 100%; max-height: 100%;">
-              <canvas id="pdfCanvas" class="border border-gray-200 shadow-lg cursor-crosshair" style="max-width: 100%; max-height: 100%; display: block;"></canvas>
-              <div id="watermarkPreview" class="watermark-preview hidden"></div>
+          <div class="relative bg-white border-2 border-gray-300 rounded-lg p-4 overflow-hidden flex justify-center items-center" style="max-height: 85vh; max-width: 80%; min-height: 400px; margin: 0 auto;">
+            <div class="relative w-full h-full flex flex-col items-center justify-center">
+              <div class="flex items-stretch justify-center gap-3 w-full h-full">
+                <div class="flex items-center justify-center" style="width: 44px; flex: 0 0 auto;">
+                  <input
+                    id="watermarkYSlider"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="15"
+                    step="1"
+                    style="transform: rotate(270deg); width: calc(100% - 20px); min-width: 200px; max-width: 400px; height: 8px; margin: 0; padding: 0;"
+                    aria-label="{% trans 'Move watermark up/down' %}">
+                </div>
+
+                <div class="relative w-full h-full flex justify-center items-center">
+                  <div id="pdfCanvasContainer" class="relative" style="display: inline-block;">
+                    <canvas id="pdfCanvas" class="border border-gray-200 shadow-lg cursor-crosshair max-w-full max-h-full" style="display: block; width: auto; height: auto;"></canvas>
+                    <div id="watermarkPreview" class="watermark-preview hidden" style="position: absolute;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3 w-full flex justify-center">
+                <input
+                  id="watermarkXSlider"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  step="1"
+                  class="w-full max-w-md h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  aria-label="{% trans 'Move watermark left/right' %}">
+              </div>
             </div>
           </div>
 
                 <!-- Instructions -->
           <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
             <p class="text-xs text-blue-800">
-              <strong>{% trans "How to use:" %}</strong> {% trans "After uploading, click on the PDF preview to position your watermark. Use the sliders below to adjust size and rotation. You can also drag the watermark to move it, or use corner handles to scale directly on the preview." %}
+              <strong>{% trans "How to use:" %}</strong>
+              <span>{% trans "Use the sliders near the preview to move the watermark. Use the Size and Rotation sliders below to adjust the watermark." %}</span>
             </p>
           </div>
         </div>

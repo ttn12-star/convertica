@@ -2,11 +2,11 @@
 
 import logging
 
+from asgiref.sync import async_to_sync
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
-
-from utils_site.src.tasks.pdf_conversion import convert_pdf_to_word_task
+from src.tasks.pdf_conversion import convert_pdf_to_word_task
 
 from ...base_views import BaseConversionAPIView
 from .decorators import pdf_to_word_docs
@@ -37,11 +37,11 @@ class PDFToWordAPIView(BaseConversionAPIView):
         return convert_pdf_to_word_task
 
     @pdf_to_word_docs()
-    async def post(self, request: HttpRequest):
+    def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation."""
-        return await self.post_async(request)
+        return super().post(request)
 
-    async def perform_conversion(
+    def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform PDF to DOCX conversion."""
@@ -50,7 +50,9 @@ class PDFToWordAPIView(BaseConversionAPIView):
         # Attach request to uploaded_file for language detection
         uploaded_file._request = self.request
 
-        docx_path, pdf_path = await convert_pdf_to_docx(
-            uploaded_file, suffix="_convertica", ocr_enabled=ocr_enabled
+        docx_path, pdf_path = async_to_sync(convert_pdf_to_docx)(
+            uploaded_file,
+            suffix="_convertica",
+            ocr_enabled=ocr_enabled,
         )
         return docx_path, pdf_path

@@ -3,16 +3,23 @@
 
 {% block extra_head %}
   <link rel="preload"
-        href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+        href="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
         as="script"
         crossorigin="anonymous">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
+  <script
+    src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
+    crossorigin="anonymous"
+    onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
+  </script>
 {% endblock %}
 
 {% block edit_options %}
 <!-- Hide generic file inputs for merge (we use our own) -->
   <script>
+    window.PDFJS_LOCAL_PDF = "{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}";
+    window.PDFJS_LOCAL_WORKER = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
+
     document.addEventListener('DOMContentLoaded', () => {
     // Hide generic file selection button and drop zone for merge
       const selectFileButton = document.getElementById('selectFileButton');
@@ -121,13 +128,18 @@
     window.FAILED_TO_LOAD_PDF = "{% filter escapejs %}{% trans 'Failed to load PDF file. Please try again.' %}{% endfilter %}";
     window.MERGING_PDFS = "{% filter escapejs %}{% trans 'Merging PDFs...' %}{% endfilter %}";
     window.SELECT_AT_LEAST_2_FILES = "{% filter escapejs %}{% trans 'Please select at least 2 PDF files to merge.' %}{% endfilter %}";
-    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: 50). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process files without limits!' %}{% endfilter %}";
+    window.PREMIUM_LINK = "/users/premium/";
+    /* eslint-disable */
+    window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
+    /* eslint-enable */
     window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
   <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/task-cancellation.js' %}"></script>
-  <script src="{% static 'js/file-input-handler.js' %}"></script>
+  <!-- Note: file-input-handler.js and pdf-editor.js are NOT loaded for merge page -->
+  <!-- merge-pdf-multi.js handles all file selection logic -->
   <script src="{% static 'js/merge-pdf-multi.js' %}"></script>
 {% endblock %}
 
