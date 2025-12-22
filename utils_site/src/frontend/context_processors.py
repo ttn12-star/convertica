@@ -36,7 +36,11 @@ def hreflang_links(request):
     default_language = settings.LANGUAGE_CODE
 
     hreflangs = []
-    base_url = f"{request.scheme}://{request.get_host()}"
+    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
+    if not getattr(settings, "DEBUG", False) and scheme == "http":
+        scheme = "https"
+    site_domain = config("SITE_DOMAIN", default=None)
+    base_url = f"{scheme}://{site_domain or request.get_host()}"
 
     # Get current URL pattern name and kwargs
     try:
@@ -46,6 +50,22 @@ def hreflang_links(request):
     except (Resolver404, AttributeError):
         url_name = None
         url_kwargs = {}
+
+    homepage_paths = [f"/{code}/" for code, _ in languages]
+    if request.path == "/" or request.path in homepage_paths:
+        hreflangs = []
+        for code, _ in languages:
+            if code == default_language:
+                url = f"{base_url}/"
+            else:
+                url = f"{base_url}/{code}/"
+            hreflangs.append({"code": code, "url": url})
+        hreflangs.append({"code": "x-default", "url": f"{base_url}/"})
+        return {
+            "hreflangs": hreflangs,
+            "hreflang_homepage_paths": homepage_paths,
+            "default_language_code": default_language,
+        }
 
     # Generate hreflang for each language
     for code, _ in languages:
@@ -168,7 +188,11 @@ def hreflang_links(request):
     languages = getattr(settings, "LANGUAGES", [("en", "English")])
     homepage_paths = [f"/{code}/" for code, _ in languages]
 
-    return {"hreflangs": hreflangs, "hreflang_homepage_paths": homepage_paths}
+    return {
+        "hreflangs": hreflangs,
+        "hreflang_homepage_paths": homepage_paths,
+        "default_language_code": default_language,
+    }
 
 
 def js_settings(request):
@@ -183,4 +207,17 @@ def js_settings(request):
             # Polling interval for async tasks (milliseconds)
             "poll_interval": getattr(settings, "ASYNC_POLL_INTERVAL", 2500),
         }
+    }
+
+
+def site_urls(request):
+    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
+    if not getattr(settings, "DEBUG", False) and scheme == "http":
+        scheme = "https"
+
+    site_domain = config("SITE_DOMAIN", default=None)
+    base_url = f"{scheme}://{site_domain or request.get_host()}"
+    return {
+        "site_base_url": base_url,
+        "site_current_url": f"{base_url}{request.path}",
     }

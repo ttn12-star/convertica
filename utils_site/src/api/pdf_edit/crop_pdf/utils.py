@@ -1,10 +1,7 @@
-# utils.py
 import os
-import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
-from pdf2image import convert_from_path
-from PyPDF2 import PdfReader
+from PyPDF2 import PdfReader, PdfWriter
 from reportlab.pdfgen import canvas
 from src.exceptions import (
     ConversionError,
@@ -13,14 +10,9 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_pdf_file,
-)
 from ...logging_utils import get_logger
-from ...pdf_utils import parse_pages, repair_pdf
+from ...pdf_processing import BasePDFProcessor
+from ...pdf_utils import parse_pages
 
 logger = get_logger(__name__)
 
@@ -50,11 +42,9 @@ def crop_pdf(
     Returns:
         Tuple of (input_path, output_path)
     """
-    tmp_dir = None
-    safe_name = sanitize_filename(os.path.basename(uploaded_file.name))
     context = {
         "function": "crop_pdf",
-        "input_filename": safe_name,
+        "input_filename": os.path.basename(uploaded_file.name),
         "input_size": uploaded_file.size,
         "x": x,
         "y": y,
@@ -64,63 +54,30 @@ def crop_pdf(
     }
 
     try:
-        tmp_dir = tempfile.mkdtemp(prefix="crop_pdf_")
-        context["tmp_dir"] = tmp_dir
+        processor = BasePDFProcessor(
+            uploaded_file,
+            tmp_prefix="crop_pdf_",
+            required_mb=200,
+            context=context,
+        )
+        pdf_path = processor.prepare()
 
-        disk_check, disk_error = check_disk_space(tmp_dir, required_mb=200)
-        if not disk_check:
-            raise StorageError(disk_error or "Insufficient disk space", context=context)
+        tmp_dir = processor.tmp_dir or ""
 
-        pdf_path = os.path.join(tmp_dir, safe_name)
-        base = os.path.splitext(safe_name)[0]
+        base = os.path.splitext(os.path.basename(pdf_path))[0]
         output_name = f"{base}{suffix}.pdf"
-        output_path = os.path.join(tmp_dir, output_name)
-
-        context.update({"pdf_path": pdf_path, "output_path": output_path})
-
-        # Write uploaded file
-        try:
-            logger.debug(
-                "Writing PDF file", extra={**context, "event": "file_write_start"}
-            )
-            with open(pdf_path, "wb") as f:
-                for chunk in uploaded_file.chunks():
-                    f.write(chunk)
-        except OSError as err:
-            raise StorageError(
-                f"Failed to write PDF: {err}",
-                context={**context, "error_type": type(err).__name__},
-            ) from err
-
-        # Validate PDF
-        is_valid, validation_error = validate_pdf_file(pdf_path, context)
-        if not is_valid:
-            if (
-                "password" in (validation_error or "").lower()
-                or "encrypted" in (validation_error or "").lower()
-            ):
-                raise EncryptedPDFError(
-                    validation_error or "PDF is password-protected", context=context
-                )
-            raise InvalidPDFError(
-                validation_error or "Invalid PDF file", context=context
-            )
-
-        # Repair PDF to handle potentially corrupted files
-        pdf_path = repair_pdf(pdf_path)
+        output_path = os.path.join(processor.tmp_dir, output_name)
+        context["output_path"] = output_path
 
         # Crop PDF
         try:
-            logger.info("Cropping PDF", extra={**context, "event": "crop_start"})
-
             reader = PdfReader(pdf_path)
             total_pages = len(reader.pages)
-            pages_to_crop = parse_pages(pages, total_pages)
+            pages_to_crop = set(parse_pages(pages, total_pages))
 
             context["total_pages"] = total_pages
             context["pages_to_crop"] = len(pages_to_crop)
 
-            # Get crop parameters for first page (assuming same crop for all pages)
             first_page = reader.pages[0]
             original_width = float(first_page.mediabox.width)
             original_height = float(first_page.mediabox.height)
@@ -149,22 +106,39 @@ def crop_pdf(
                 10, min(crop_height, original_height - crop_y)
             )  # Minimum 10 points
 
-            logger.info(
-                ("Crop parameters: x=%.2f, y=%.2f, w=%.2f, " "h=%.2f, pages=%s"),
-                crop_x,
-                crop_y,
-                crop_width,
-                crop_height,
-                pages_to_crop,
-                extra=context,
-            )
+            if not scale_to_page_size:
+                # Fast path: modify cropbox/mediabox without rasterization
+                writer = PdfWriter()
+                for page_num in range(total_pages):
+                    page = reader.pages[page_num]
+                    if page_num in pages_to_crop:
+                        page.cropbox.lower_left = (crop_x, crop_y)
+                        page.cropbox.upper_right = (
+                            crop_x + crop_width,
+                            crop_y + crop_height,
+                        )
+                        page.mediabox.lower_left = (crop_x, crop_y)
+                        page.mediabox.upper_right = (
+                            crop_x + crop_width,
+                            crop_y + crop_height,
+                        )
+                    writer.add_page(page)
 
-            # Convert PDF pages to images, crop them, and create new PDF
-            # This is more reliable than just setting mediabox
-            images = convert_from_path(pdf_path, dpi=150)
+                with open(output_path, "wb") as output_file:
+                    writer.write(output_file)
+
+                processor.validate_output_pdf(output_path, min_size=1000)
+                return pdf_path, output_path
+
+            # Slow path: keep old behavior (scale_to_page_size=True) with rasterization
+            from pdf2image import convert_from_path
+
+            if not tmp_dir:
+                tmp_dir = os.path.dirname(output_path)
 
             # Create new PDF with cropped pages
             # Determine initial page size based on whether first page is cropped
+            images = convert_from_path(pdf_path, dpi=150)
             first_page_img = images[0] if images else None
             if first_page_img and 0 in pages_to_crop:
                 initial_page_size = (crop_width, crop_height)
@@ -271,33 +245,6 @@ def crop_pdf(
 
             can.save()
 
-            # Repair PDF after reportlab creation to ensure proper structure
-            # reportlab can create PDFs with incomplete xref tables or missing objects
-            # This ensures the PDF is properly structured for subsequent operations
-            logger.debug(
-                "Repairing PDF after crop",
-                extra={**context, "event": "crop_repair_start"},
-            )
-            try:
-                # Repair in-place to fix any structural issues
-                repair_pdf(output_path, output_path)
-                logger.debug(
-                    "PDF repaired after crop",
-                    extra={**context, "event": "crop_repair_success"},
-                )
-            except Exception as repair_error:
-                # If repair fails, log but don't fail - the PDF might still be usable
-                logger.warning(
-                    "PDF repair after crop failed (continuing anyway)",
-                    extra={
-                        **context,
-                        "event": "crop_repair_warning",
-                        "error": str(repair_error),
-                    },
-                )
-
-            logger.debug("Crop completed", extra={**context, "event": "crop_complete"})
-
         except Exception as e:
             error_context = {
                 **context,
@@ -313,26 +260,7 @@ def crop_pdf(
                 f"Failed to crop PDF: {e}", context=error_context
             ) from e
 
-        # Validate output
-        is_valid, validation_error = validate_output_file(
-            output_path, min_size=1000, context=context
-        )
-        if not is_valid:
-            raise ConversionError(
-                validation_error or "Output PDF is invalid", context=context
-            )
-
-        output_size = os.path.getsize(output_path)
-        logger.info(
-            "PDF cropped successfully",
-            extra={
-                **context,
-                "event": "crop_success",
-                "output_size": output_size,
-                "output_size_mb": round(output_size / (1024 * 1024), 2),
-            },
-        )
-
+        processor.validate_output_pdf(output_path, min_size=1000)
         return pdf_path, output_path
 
     except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):

@@ -7,13 +7,14 @@ to prevent blocking the main request/response cycle and Cloudflare timeouts.
 Tasks report progress via self.update_state() for real-time progress bars.
 """
 
+import inspect
 import os
 import shutil
+import time
 
 from celery import shared_task
 from celery.exceptions import Ignore, SoftTimeLimitExceeded
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
+from django.core.files.base import File
 from src.api.cancel_task_view import clear_task_cancelled, is_task_cancelled
 from src.api.logging_utils import get_logger
 
@@ -83,6 +84,31 @@ def generic_conversion_task(
     # This is what the frontend uses to cancel
     cancellation_id = task_id
     task_completed_successfully = False
+    input_fp = None
+
+    started_ts = time.time()
+
+    # Mark task as running in analytics (best-effort)
+    try:
+        from django.utils import timezone
+        from src.users.models import OperationRun
+
+        now = timezone.now()
+        queued_at = (
+            OperationRun.objects.filter(task_id=cancellation_id)
+            .values_list("queued_at", flat=True)
+            .first()
+        )
+        queue_wait_ms = None
+        if queued_at:
+            queue_wait_ms = int((now - queued_at).total_seconds() * 1000)
+        OperationRun.objects.filter(task_id=cancellation_id).update(
+            status="running",
+            started_at=now,
+            queue_wait_ms=queue_wait_ms,
+        )
+    except Exception:
+        pass
 
     try:
         # Check cancellation before starting
@@ -100,11 +126,13 @@ def generic_conversion_task(
         # Step 2: Load the file
         update_progress(self, 15, "Loading file...", 5)
 
-        with open(input_path, "rb") as f:
-            file_content = f.read()
-
-        uploaded_file = ContentFile(file_content)
-        uploaded_file.name = original_filename
+        input_fp = open(input_path, "rb")
+        try:
+            uploaded_file = File(input_fp, name=original_filename)
+        except Exception:
+            input_fp.close()
+            input_fp = None
+            raise
 
         # Step 3: Get the converter function based on conversion type
         update_progress(self, 25, "Preparing conversion...", 5)
@@ -165,34 +193,25 @@ def generic_conversion_task(
         # Step 4: Perform conversion
         update_progress(self, 35, "Converting file...", 60)
 
-        # Prepare conversion kwargs
-        conversion_kwargs = {
+        # Prepare kwargs (merge request-provided kwargs with task-internal kwargs)
+        conversion_kwargs: dict = {
+            **kwargs,
             "suffix": "_convertica",
             "is_celery_task": True,
+            "context": {},
         }
 
-        if conversion_type == "pdf_to_word":
-            conversion_kwargs["ocr_enabled"] = kwargs.get("ocr_enabled", False)
-            conversion_kwargs["ocr_language"] = kwargs.get("ocr_language", "auto")
+        def _filter_kwargs_for_callable(func, provided_kwargs: dict) -> dict:
+            sig = inspect.signature(func)
+            params = sig.parameters
+            accepts_var_kw = any(
+                p.kind == inspect.Parameter.VAR_KEYWORD for p in params.values()
+            )
+            if accepts_var_kw:
+                return provided_kwargs
+            return {k: v for k, v in provided_kwargs.items() if k in params}
 
-        # Filter kwargs to only include valid parameters for converter
-        if conversion_type == "pdf_to_word":
-            # PDF to Word supports additional parameters
-            valid_kwargs = {
-                "suffix",
-                "ocr_enabled",
-                "ocr_language",
-                "output_path",
-                "update_progress",
-                "is_celery_task",
-            }
-        else:
-            # Other converters only support basic parameters
-            valid_kwargs = {"suffix", "is_celery_task"}
-
-        filtered_kwargs = {
-            k: v for k, v in conversion_kwargs.items() if k in valid_kwargs
-        }
+        filtered_kwargs = _filter_kwargs_for_callable(converter_func, conversion_kwargs)
 
         # Call converter function
         if conversion_type == "pdf_to_word":
@@ -206,9 +225,16 @@ def generic_conversion_task(
             final_output_path = os.path.join(task_dir, output_filename)
 
             # Pass output_path and progress update function to converter
-            filtered_kwargs["output_path"] = final_output_path
-            filtered_kwargs["update_progress"] = lambda progress, step: update_progress(
-                self, progress, step, 60
+            filtered_kwargs.update(
+                _filter_kwargs_for_callable(
+                    converter_func,
+                    {
+                        "output_path": final_output_path,
+                        "update_progress": lambda progress, step: update_progress(
+                            self, progress, step, 60
+                        ),
+                    },
+                )
             )
 
             _, _ = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
@@ -221,7 +247,6 @@ def generic_conversion_task(
         elif conversion_type == "word_to_pdf":
             # Handle async function for word_to_pdf
             import asyncio
-            import inspect
 
             if inspect.iscoroutinefunction(converter_func):
                 # Handle async function
@@ -242,20 +267,19 @@ def generic_conversion_task(
         else:
             # Handle other converters (check if async)
             import asyncio
-            import inspect
 
             if inspect.iscoroutinefunction(converter_func):
                 # Handle async function
                 result = asyncio.run(converter_func(uploaded_file, **filtered_kwargs))
                 if isinstance(result, tuple) and len(result) == 2:
-                    output_path, _ = result
+                    _, output_path = result
                 else:
                     output_path = result
             else:
                 # Handle sync function
                 result = converter_func(uploaded_file, **filtered_kwargs)
                 if isinstance(result, tuple) and len(result) == 2:
-                    output_path, _ = result
+                    _, output_path = result
                 else:
                     output_path = result
 
@@ -307,6 +331,27 @@ def generic_conversion_task(
 
         logger.info(f"Conversion {conversion_type} completed: {final_output_path}")
 
+        # Analytics success (best-effort)
+        try:
+            from django.utils import timezone
+            from src.users.models import OperationRun
+
+            now = timezone.now()
+            duration_ms = int((time.time() - started_ts) * 1000)
+            out_size = None
+            try:
+                out_size = os.path.getsize(final_output_path)
+            except Exception:
+                pass
+            OperationRun.objects.filter(task_id=cancellation_id).update(
+                status="success",
+                finished_at=now,
+                duration_ms=duration_ms,
+                output_size=out_size,
+            )
+        except Exception:
+            pass
+
         return {
             "status": "success",
             "output_path": final_output_path,
@@ -323,6 +368,19 @@ def generic_conversion_task(
         except Exception:
             pass
         # Use Ignore to not record as failure
+        try:
+            from django.utils import timezone
+            from src.users.models import OperationRun
+
+            now = timezone.now()
+            duration_ms = int((time.time() - started_ts) * 1000)
+            OperationRun.objects.filter(task_id=cancellation_id).update(
+                status="cancelled",
+                finished_at=now,
+                duration_ms=duration_ms,
+            )
+        except Exception:
+            pass
         raise Ignore()
 
     except SoftTimeLimitExceeded:
@@ -342,23 +400,63 @@ def generic_conversion_task(
                     shutil.rmtree(task_dir, ignore_errors=True)
             except Exception:
                 pass
+            try:
+                from django.utils import timezone
+                from src.users.models import OperationRun
+
+                now = timezone.now()
+                duration_ms = int((time.time() - started_ts) * 1000)
+                OperationRun.objects.filter(task_id=cancellation_id).update(
+                    status="cancelled",
+                    finished_at=now,
+                    duration_ms=duration_ms,
+                )
+            except Exception:
+                pass
             raise Ignore()
 
-        # Otherwise, it's a legitimate timeout - let it fail
-        # Cleanup temp files before raising
+        # Record timeout as error (best-effort)
         try:
-            if task_dir and os.path.isdir(task_dir):
-                shutil.rmtree(task_dir, ignore_errors=True)
+            from django.utils import timezone
+            from src.users.models import OperationRun
+
+            now = timezone.now()
+            duration_ms = int((time.time() - started_ts) * 1000)
+            OperationRun.objects.filter(task_id=cancellation_id).update(
+                status="error",
+                finished_at=now,
+                duration_ms=duration_ms,
+                error_type="SoftTimeLimitExceeded",
+                error_message="Task exceeded time limit",
+            )
         except Exception:
             pass
-        raise self.retry(
-            exc=SoftTimeLimitExceeded("Task exceeded time limit"),
-            countdown=60,
-            max_retries=0,
-        )
+
+        return {
+            "status": "error",
+            "error": "Task exceeded time limit",
+            "conversion_type": conversion_type,
+        }
 
     except Exception as exc:
         logger.error(f"Conversion {conversion_type} failed: {str(exc)}", exc_info=True)
+
+        # Analytics error (best-effort)
+        try:
+            from django.utils import timezone
+            from src.users.models import OperationRun
+
+            now = timezone.now()
+            duration_ms = int((time.time() - started_ts) * 1000)
+            OperationRun.objects.filter(task_id=cancellation_id).update(
+                status="error",
+                finished_at=now,
+                duration_ms=duration_ms,
+                error_type=type(exc).__name__,
+                error_message=str(exc)[:2000],
+            )
+        except Exception:
+            pass
 
         # Don't retry for user errors (validation, etc.)
         error_message = str(exc)
@@ -376,27 +474,11 @@ def generic_conversion_task(
         raise self.retry(exc=exc, countdown=30, max_retries=2)
 
     finally:
-        # Cleanup if task was interrupted (SIGTERM from revoke)
-        # This runs even if the task was killed
-        if not task_completed_successfully:
-            # Task was interrupted - check if it was user cancellation
-            if is_task_cancelled(cancellation_id):
-                logger.info(
-                    f"Task {cancellation_id} was interrupted (likely SIGTERM), cleaning up",
-                    extra={"conversion_type": conversion_type},
-                )
-            else:
-                logger.warning(
-                    f"Task {cancellation_id} was interrupted unexpectedly",
-                    extra={"conversion_type": conversion_type},
-                )
-
-            # Cleanup temp files
-            try:
-                if task_dir and os.path.isdir(task_dir):
-                    shutil.rmtree(task_dir, ignore_errors=True)
-            except Exception as e:
-                logger.error(f"Failed to cleanup task dir {task_dir}: {e}")
+        try:
+            if input_fp is not None:
+                input_fp.close()
+        except Exception:
+            pass
 
 
 # Legacy tasks for backwards compatibility - updated to use new queues

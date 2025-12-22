@@ -102,10 +102,13 @@ def _get_converter_context(
     # Check if user has active premium subscription
     is_premium_active = False
     if hasattr(request, "user") and request.user.is_authenticated:
-        is_premium_active = (
-            request.user.is_premium
-            and hasattr(request.user, "is_subscription_active")
-            and request.user.is_subscription_active
+        is_premium_active = bool(
+            getattr(request.user, "is_premium_active", False)
+            or (
+                request.user.is_premium
+                and hasattr(request.user, "is_subscription_active")
+                and request.user.is_subscription_active()
+            )
         )
 
     return {
@@ -1012,7 +1015,7 @@ def contact_page(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
 
-        from utils_site.src.api.spam_protection import verify_turnstile
+        from src.api.spam_protection import verify_turnstile
 
         turnstile_token = request.POST.get("turnstile_token", "") or request.POST.get(
             "cf-turnstile-response", ""
@@ -1343,7 +1346,13 @@ def sitemap_lang(request, lang: str):
     for page in pages:
         page_url = page["url"]
         url = (
-            f"{base_url}/{lang}/" if page_url == "" else f"{base_url}/{lang}/{page_url}"
+            f"{base_url}/"
+            if page_url == "" and lang == default_language
+            else (
+                f"{base_url}/{lang}/"
+                if page_url == ""
+                else f"{base_url}/{lang}/{page_url}"
+            )
         )
 
         xml += "  <url>\n"
@@ -1354,18 +1363,28 @@ def sitemap_lang(request, lang: str):
 
         for alt_lang_code, _ in languages:
             alt_url = (
-                f"{base_url}/{alt_lang_code}/"
-                if page_url == ""
-                else f"{base_url}/{alt_lang_code}/{page_url}"
+                f"{base_url}/"
+                if page_url == "" and alt_lang_code == default_language
+                else (
+                    f"{base_url}/{alt_lang_code}/"
+                    if page_url == ""
+                    else f"{base_url}/{alt_lang_code}/{page_url}"
+                )
             )
-            xml += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>\n'
+            xml += (
+                f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>'
+                + "\n"
+            )
 
         default_url = (
-            f"{base_url}/{default_language}/"
+            f"{base_url}/"
             if page_url == ""
             else f"{base_url}/{default_language}/{page_url}"
         )
-        xml += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_url}"/>\n'
+        xml += (
+            f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_url}"/>'
+            + "\n"
+        )
         xml += "  </url>\n"
 
     published_articles = (

@@ -10,7 +10,7 @@
 
     <!-- Primary Meta Tags -->
     <title>{% block title %}Convertica – Online PDF ↔ Word Converter{% endblock %}</title>
-    <meta name="title" content="{% block meta_title %}{% endblock %}">
+    <meta name="title" content="{% block meta_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
     <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
     <meta name="author" content="Convertica">
@@ -22,10 +22,10 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-    <meta property="og:title" content="{% block og_title %}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+    <meta property="og:url" content="{{ site_current_url }}">
+    <meta property="og:title" content="{% block og_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{% block og_image_alt %}Convertica - Online PDF Tools{% endblock %}">
@@ -34,19 +34,21 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-    <meta property="twitter:title" content="{% block twitter_title %}{% endblock %}">
-    <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
-    <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+    <meta property="twitter:url" content="{{ site_current_url }}">
+    <meta property="twitter:title" content="{% block twitter_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
+    <meta property="twitter:image" content="{% block twitter_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
     <!-- Canonical URL -->
-    {% if request.path == '/' or request.path in hreflang_homepage_paths %}
-        <!-- For homepage, canonical points to root -->
-      <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}/">
-    {% else %}
-        <!-- For other pages, canonical points to current URL -->
-      <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-    {% endif %}
+    {% with default_home='/'|add:default_language_code|add:'/' %}
+      {% if request.path == '/' or request.path == default_home %}
+          <!-- For root homepage and default-language homepage, canonical points to root -->
+        <link rel="canonical" href="{{ site_base_url }}/">
+      {% else %}
+          <!-- For all other pages (including non-default language homepages like /ru/), canonical points to current URL -->
+        <link rel="canonical" href="{{ site_current_url }}">
+      {% endif %}
+    {% endwith %}
     <!-- Preconnect to external domains -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -77,6 +79,12 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon-96x96.png' %}">
     <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon-192x192.png' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <meta name="application-name" content="Convertica">
+    <meta name="apple-mobile-web-app-title" content="Convertica">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
     <!-- Stylesheets -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
@@ -111,7 +119,7 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Convertica",
-        "url": "https://convertica.net",
+        "url": "{{ site_base_url }}",
         "description": "{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter." %}",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
@@ -146,11 +154,29 @@
     </script>
 
     {% block structured_data %}{% endblock %}
-    {% block extra_head %}{% endblock %}
-
+    <!-- Cloudflare Turnstile (Anti-spam) -->
     {% if turnstile_site_key %}
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     {% endif %}
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/static/sw.js')
+            .then((registration) => {
+              console.log('[SW] Registered:', registration.scope);
+              // Check for updates every hour
+              setInterval(() => {
+                registration.update();
+              }, 3600000);
+            })
+            .catch((error) => {
+              console.log('[SW] Registration failed:', error);
+            });
+        });
+      }
+    </script>
 
     <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
     <script>
@@ -214,8 +240,8 @@
     <!-- Global JS Settings from Django -->
     <script>
       window.JS_SETTINGS = {
-        patienceMessageDelay: {{ js_settings.patience_message_delay|default:40|safe }} * 1000,
-        pollInterval: {{ js_settings.poll_interval|default:2500|safe }}
+        patienceMessageDelay: Number("{{ js_settings.patience_message_delay|default:40|escapejs }}") * 1000,
+        pollInterval: Number("{{ js_settings.poll_interval|default:2500|escapejs }}")
       };
     </script>
 

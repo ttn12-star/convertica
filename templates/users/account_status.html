@@ -57,7 +57,7 @@
           <div class="bg-gray-50 rounded-xl p-6">
             <div class="text-sm text-gray-600 mb-2">{% trans "Current Plan" %}</div>
             <div class="text-xl font-semibold text-gray-900">
-              {% if user.is_subscription_active %}
+              {% if user.is_premium_active %}
                 {% trans "Premium Hero" %}
               {% else %}
                 {% trans "Free User" %}

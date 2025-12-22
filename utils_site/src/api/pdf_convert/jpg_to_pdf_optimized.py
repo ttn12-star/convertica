@@ -12,14 +12,10 @@ from PIL import Image
 from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
-
-from utils_site.src.api.file_validation import check_disk_space, sanitize_filename
-from utils_site.src.api.logging_utils import get_logger
-from utils_site.src.api.parallel_processing import (
-    get_optimal_batch_size,
-    process_images_parallel,
-)
-from utils_site.src.exceptions import ConversionError, InvalidPDFError
+from src.api.file_validation import check_disk_space, sanitize_filename
+from src.api.logging_utils import get_logger
+from src.api.parallel_processing import get_optimal_batch_size, process_images_parallel
+from src.exceptions import ConversionError, InvalidPDFError
 
 logger = get_logger(__name__)
 
@@ -30,16 +26,21 @@ class OptimizedJPGToPDFConverter:
     """
 
     def __init__(self):
-        self.max_image_size = 2000  # Max dimension for memory efficiency
+        self.max_image_size = (
+            4000  # Max dimension for memory efficiency (increased for better quality)
+        )
         self.default_quality = 85
 
-    def optimize_image(self, image_path: str, output_dir: str) -> str | None:
+    def optimize_image(
+        self, image_path: str, output_dir: str, skip_optimization: bool = False
+    ) -> str | None:
         """
         Optimize a single image for PDF conversion.
 
         Args:
             image_path: Path to input image
             output_dir: Directory for optimized image
+            skip_optimization: If True, only convert to RGB without resizing/recompressing
 
         Returns:
             Path to optimized image or None if failed
@@ -47,24 +48,47 @@ class OptimizedJPGToPDFConverter:
         try:
             with Image.open(image_path) as img:
                 # Convert to RGB if necessary
-                if img.mode in ("RGBA", "LA", "P"):
+                needs_conversion = img.mode in ("RGBA", "LA", "P")
+
+                # For high quality (>= 90), skip optimization if already RGB/JPEG
+                if skip_optimization and not needs_conversion:
+                    return image_path
+
+                if needs_conversion:
                     img = img.convert("RGB")
 
-                # Resize if too large for memory efficiency
-                if img.width > self.max_image_size or img.height > self.max_image_size:
+                # Only resize if image is extremely large AND quality is low
+                should_resize = self.default_quality < 85 and (
+                    img.width > self.max_image_size or img.height > self.max_image_size
+                )
+
+                if should_resize:
                     img.thumbnail(
                         (self.max_image_size, self.max_image_size),
                         Image.Resampling.LANCZOS,
                     )
 
-                # Save optimized image
+                # Save optimized image (or just convert format if needed)
                 basename = os.path.basename(image_path)
                 name, ext = os.path.splitext(basename)
                 optimized_path = os.path.join(output_dir, f"{name}_opt.jpg")
 
-                img.save(
-                    optimized_path, "JPEG", quality=self.default_quality, optimize=True
-                )
+                # For high quality, use higher subsampling and no optimization
+                if self.default_quality >= 90:
+                    img.save(
+                        optimized_path,
+                        "JPEG",
+                        quality=self.default_quality,
+                        subsampling=0,  # 4:4:4 - no chroma subsampling
+                        optimize=False,
+                    )
+                else:
+                    img.save(
+                        optimized_path,
+                        "JPEG",
+                        quality=self.default_quality,
+                        optimize=True,
+                    )
                 return optimized_path
 
         except Exception as e:
@@ -110,59 +134,108 @@ class OptimizedJPGToPDFConverter:
             extra={**context, "total_images": len(image_paths), "page_size": page_size},
         )
 
-        # Create temporary directory for optimized images
-        with tempfile.TemporaryDirectory() as temp_dir:
-            # Optimize images in parallel
-            optimized_paths = await process_images_parallel(
-                image_paths=image_paths,
-                output_dir=temp_dir,
-                quality=self.default_quality,
-                batch_size=get_optimal_batch_size(
-                    len(image_paths) * 2
-                ),  # Estimate batch size
-                context={**context, "stage": "optimization"},
-            )
-
-            if not optimized_paths:
-                raise ConversionError("No images could be optimized", context=context)
-
-            # Create PDF with optimized images
+        # For high quality (>= 90), use original images directly without parallel optimization
+        successful_images = 0
+        if self.default_quality >= 90:
+            # Create PDF with original images (minimal processing)
             c = canvas.Canvas(output_path, pagesize=(page_width, page_height))
 
-            for i, optimized_path in enumerate(optimized_paths):
+            for i, image_path in enumerate(image_paths):
                 try:
-                    # Add image to PDF page
-                    self._add_image_to_canvas(
-                        c, optimized_path, available_width, available_height, margin
-                    )
+                    # Check if needs RGB conversion
+                    with Image.open(image_path) as img:
+                        if img.mode in ("RGBA", "LA", "P"):
+                            # Need to convert - do it inline
+                            with tempfile.TemporaryDirectory() as temp_dir:
+                                converted_path = os.path.join(
+                                    temp_dir, f"converted_{i}.jpg"
+                                )
+                                img.convert("RGB").save(
+                                    converted_path,
+                                    "JPEG",
+                                    quality=self.default_quality,
+                                    subsampling=0,
+                                )
+                                self._add_image_to_canvas(
+                                    c,
+                                    converted_path,
+                                    available_width,
+                                    available_height,
+                                    margin,
+                                )
+                        else:
+                            # Use original directly
+                            self._add_image_to_canvas(
+                                c, image_path, available_width, available_height, margin
+                            )
 
-                    # Add new page for next image (except last one)
-                    if i < len(optimized_paths) - 1:
+                    successful_images += 1
+                    if i < len(image_paths) - 1:
                         c.showPage()
 
                 except Exception as e:
                     logger.error(
-                        f"Failed to add image {optimized_path} to PDF: {e}",
-                        extra={
-                            **context,
-                            "image_index": i,
-                            "image_path": optimized_path,
-                        },
+                        f"Failed to add image {image_path} to PDF: {e}",
+                        extra={**context, "image_index": i, "image_path": image_path},
                     )
                     continue
 
             c.save()
+        else:
+            # For lower quality, use parallel optimization
+            with tempfile.TemporaryDirectory() as temp_dir:
+                # Optimize images in parallel
+                optimized_paths = await process_images_parallel(
+                    image_paths=image_paths,
+                    output_dir=temp_dir,
+                    quality=self.default_quality,
+                    batch_size=get_optimal_batch_size(len(image_paths) * 2),
+                    context={**context, "stage": "optimization"},
+                )
+
+                if not optimized_paths:
+                    raise ConversionError(
+                        "No images could be optimized", context=context
+                    )
+
+                # Create PDF with optimized images
+                c = canvas.Canvas(output_path, pagesize=(page_width, page_height))
+
+                for i, optimized_path in enumerate(optimized_paths):
+                    try:
+                        # Add image to PDF page
+                        self._add_image_to_canvas(
+                            c, optimized_path, available_width, available_height, margin
+                        )
+
+                        # Add new page for next image (except last one)
+                        if i < len(optimized_paths) - 1:
+                            c.showPage()
+
+                    except Exception as e:
+                        logger.error(
+                            f"Failed to add image {optimized_path} to PDF: {e}",
+                            extra={
+                                **context,
+                                "image_index": i,
+                                "image_path": optimized_path,
+                            },
+                        )
+                        continue
+
+                c.save()
+                successful_images = len(optimized_paths)
 
         # Verify PDF was created
         if not os.path.exists(output_path) or os.path.getsize(output_path) == 0:
             raise ConversionError("PDF creation failed", context=context)
 
         logger.info(
-            f"JPG to PDF conversion completed: {len(optimized_paths)} images",
+            f"JPG to PDF conversion completed: {successful_images} images",
             extra={
                 **context,
                 "event": "conversion_complete",
-                "successful_images": len(optimized_paths),
+                "successful_images": successful_images,
             },
         )
 
@@ -249,7 +322,7 @@ async def convert_jpg_to_pdf_optimized(
     converter = OptimizedJPGToPDFConverter()
     converter.default_quality = quality
 
-    # Create temporary directory
+    # Create temporary directory for processing
     with tempfile.TemporaryDirectory() as temp_dir:
         # Save uploaded file
         input_filename = sanitize_filename(uploaded_file.name)
@@ -287,7 +360,7 @@ async def convert_jpg_to_pdf_optimized(
         if not image_paths:
             raise ConversionError("No valid images found", context=context)
 
-        # Generate output path
+        # Generate output path inside temp_dir
         output_filename = f"{base_name}{suffix}.pdf"
         output_path = os.path.join(temp_dir, output_filename)
 
@@ -300,4 +373,22 @@ async def convert_jpg_to_pdf_optimized(
             context={**context, "conversion_type": "jpg_to_pdf_optimized"},
         )
 
-        return input_path, result_path
+        # Copy result to persistent temp file before temp_dir is deleted
+        import shutil
+
+        persistent_output = tempfile.NamedTemporaryFile(
+            delete=False, suffix=".pdf", prefix="jpg2pdf_"
+        )
+        persistent_output.close()
+        shutil.copy2(result_path, persistent_output.name)
+
+        # Copy input to persistent temp file as well
+        persistent_input = tempfile.NamedTemporaryFile(
+            delete=False,
+            suffix=os.path.splitext(input_filename)[1],
+            prefix="jpg2pdf_input_",
+        )
+        persistent_input.close()
+        shutil.copy2(input_path, persistent_input.name)
+
+        return persistent_input.name, persistent_output.name

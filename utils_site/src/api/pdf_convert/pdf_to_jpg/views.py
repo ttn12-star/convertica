@@ -31,10 +31,16 @@ class PDFToJPGAPIView(BaseConversionAPIView):
     def get_docs_decorator(self):
         return pdf_to_jpg_docs
 
+    def get_celery_task(self):
+        """Get the Celery task function to execute."""
+        from src.tasks.pdf_conversion import generic_conversion_task
+
+        return generic_conversion_task
+
     @pdf_to_jpg_docs()
-    async def post(self, request: HttpRequest):
+    def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation."""
-        return await self.post_async(request)
+        return super().post(request)
 
     def validate_file_additional(
         self, uploaded_file: UploadedFile, context: dict, validated_data: dict
@@ -55,14 +61,14 @@ class PDFToJPGAPIView(BaseConversionAPIView):
             )
         return None
 
-    async def perform_conversion(
+    def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform PDF to JPG conversion (selected pages to ZIP)."""
         pages = kwargs.get("pages", "all")
         dpi = kwargs.get("dpi", 300)
 
-        pdf_path, zip_path = await convert_pdf_to_jpg(
+        pdf_path, zip_path = convert_pdf_to_jpg(
             uploaded_file, pages=pages, dpi=dpi, suffix="_convertica"
         )
         return pdf_path, zip_path

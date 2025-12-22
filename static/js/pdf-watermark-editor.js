@@ -3,9 +3,65 @@
  * Visual PDF watermark positioning with color and opacity controls
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Set up PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const PDFJS_VERSION = '3.11.174';
+    const localPdfSrc = typeof window.PDFJS_LOCAL_PDF === 'string' ? window.PDFJS_LOCAL_PDF : null;
+    const localWorkerSrc = typeof window.PDFJS_LOCAL_WORKER === 'string' ? window.PDFJS_LOCAL_WORKER : null;
+
+    const PDFJS_CANDIDATES = [
+        ...(localPdfSrc ? [localPdfSrc] : []),
+        `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`,
+        `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.js`,
+    ];
+    const PDFJS_WORKER_CANDIDATES = [
+        ...(localWorkerSrc ? [localWorkerSrc] : []),
+        `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`,
+        `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.worker.min.js`,
+    ];
+
+    function loadExternalScript(src) {
+        return new Promise((resolve, reject) => {
+            const existing = Array.from(document.scripts).find((s) => s.src === src);
+            if (existing) {
+                if (typeof window.pdfjsLib !== 'undefined') return resolve();
+                existing.addEventListener('load', () => resolve(), { once: true });
+                existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error(`Failed to load ${src}`));
+            document.head.appendChild(script);
+        });
+    }
+
+    async function ensurePdfJsLoaded() {
+        if (typeof window.pdfjsLib !== 'undefined') return true;
+
+        for (const src of PDFJS_CANDIDATES) {
+            try {
+                await loadExternalScript(src);
+                if (typeof window.pdfjsLib !== 'undefined') break;
+            } catch (e) {
+                // try next
+            }
+        }
+
+        if (typeof window.pdfjsLib === 'undefined') return false;
+
+        if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+        }
+
+        return true;
+    }
+
+    // Set up PDF.js worker (best-effort)
+    if (typeof window.pdfjsLib !== 'undefined') {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
     }
 
     const form = document.getElementById('editorForm');
@@ -60,6 +116,66 @@ document.addEventListener('DOMContentLoaded', () => {
     let watermarkImage = null;
     let watermarkRotation = 0.0;
     let watermarkScale = 1.0;
+    let currentRenderTask = null;
+
+    // Position sliders (now used on all screen sizes)
+    const watermarkXSlider = document.getElementById('watermarkXSlider');
+    const watermarkYSlider = document.getElementById('watermarkYSlider');
+
+    function clamp01(v) {
+        return Math.max(0, Math.min(1, v));
+    }
+
+    function percentToRatio(value) {
+        const n = Number(value);
+        if (!Number.isFinite(n)) return 0.5;
+        return clamp01(n / 100);
+    }
+
+    function setSlidersFromRatio(xRatio, yRatio) {
+        if (watermarkXSlider) watermarkXSlider.value = String(Math.round(clamp01(xRatio) * 100));
+        if (watermarkYSlider) watermarkYSlider.value = String(Math.round(clamp01(yRatio) * 100));
+    }
+
+    function applyPositionFromSliders() {
+        if (!pdfDoc || !pdfPageWidth || !pdfPageHeight) {
+            return;
+        }
+        if (!watermarkXSlider || !watermarkYSlider) {
+            return;
+        }
+
+        const xRatio = percentToRatio(watermarkXSlider.value);
+        const yRatio = percentToRatio(watermarkYSlider.value);
+
+        // X in PDF points from left
+        watermarkX = pdfPageWidth * xRatio;
+        // Y slider: 0 = bottom, 100 = top
+        watermarkY = pdfPageHeight * yRatio;
+
+        if (xInput) xInput.value = watermarkX.toFixed(2);
+        if (yInput) yInput.value = watermarkY.toFixed(2);
+        if (positionInput) positionInput.value = 'custom';
+
+        updateWatermarkPreview();
+    }
+
+    function bindSliderPositionHandlers() {
+        if (watermarkXSlider) {
+            watermarkXSlider.addEventListener('input', () => {
+                applyPositionFromSliders();
+            });
+        }
+        if (watermarkYSlider) {
+            watermarkYSlider.addEventListener('input', () => {
+                applyPositionFromSliders();
+            });
+        }
+    }
+
+    // Enable slider-driven positioning
+    bindSliderPositionHandlers();
+
     // Watermark interaction states
     let isDraggingWatermark = false;
     let isScaling = false;
@@ -259,7 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.files && e.target.files.length > 0) {
                 const file = e.target.files[0];
                 if (file.type === 'application/pdf') {
-                    console.log('File selected via change event:', file.name);
                     handleFileSelect(file);
                 }
             }
@@ -274,7 +389,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target.files && e.target.files.length > 0) {
                 const file = e.target.files[0];
                 if (file.type === 'application/pdf') {
-                    console.log('File selected via drop change event:', file.name);
                     handleFileSelect(file);
                 }
             }
@@ -286,10 +400,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear any previous errors when selecting a new file
             clearError();
 
-            if (typeof pdfjsLib === 'undefined') {
-                window.showError('PDF.js library is not loaded. Please refresh the page and try again.', 'editorResult');
-                return;
-            }
             cleanupPreviousPDF();
 
             // Show preview section
@@ -303,6 +413,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 pdfPreviewSection.classList.add('hidden');
                 watermarkSettingsSection.classList.add('hidden');
                 return;
+            }
+
+            const pdfReady = await ensurePdfJsLoaded();
+            if (!pdfReady || typeof window.pdfjsLib === 'undefined') {
+                window.showError(
+                    'PDF preview engine (PDF.js) is not loaded. Please disable adblock for this site or check that cdnjs/unpkg are not blocked, then refresh the page.',
+                    'editorResult'
+                );
+                pdfPreviewSection.classList.add('hidden');
+                watermarkSettingsSection.classList.add('hidden');
+                cleanupPreviousPDF();
+                return;
+            }
+            if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
             }
 
             // Small delay to ensure file is ready
@@ -320,15 +445,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Load PDF document with retry mechanism for mobile devices
+            // Try loading PDF with retries
             let retryCount = 0;
             const maxRetries = 3;
-
             while (retryCount < maxRetries) {
                 try {
-                    console.log(`Loading PDF attempt ${retryCount + 1}/${maxRetries}`);
-
-                    pdfDoc = await pdfjsLib.getDocument({
+                    pdfDoc = await window.pdfjsLib.getDocument({
                         data: arrayBuffer,
                         verbosity: 0 // Suppress warnings
                     }).promise;
@@ -337,7 +459,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         throw new Error('PDF document is null');
                     }
 
-                    console.log('PDF loaded successfully');
                     break; // Success, exit retry loop
 
                 } catch (error) {
@@ -345,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error(`PDF load attempt ${retryCount} failed:`, error);
 
                     if (retryCount >= maxRetries) {
-                        window.showError('Failed to load PDF file. Please try again.', 'editorResult');
+                        window.window.showError('Failed to load PDF file. Please try again.', 'editorResult');
                         // Hide preview sections on load error
                         pdfPreviewSection.classList.add('hidden');
                         watermarkSettingsSection.classList.add('hidden');
@@ -404,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            window.showError(errorMessage, 'editorResult');
+            window.window.showError(errorMessage, 'editorResult');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
                 console.error('Error details:', {
@@ -488,18 +609,25 @@ document.addEventListener('DOMContentLoaded', () => {
             pdfPageWidth = viewport.width;
             pdfPageHeight = viewport.height;
 
+            // Cancel previous render if exists
+            if (currentRenderTask) {
+                currentRenderTask.cancel();
+                currentRenderTask = null;
+            }
+
             // Render PDF page
             const renderContext = {
                 canvasContext: pdfCanvas.getContext('2d'),
                 viewport: scaledViewport
             };
 
-            await page.render(renderContext).promise;
+            currentRenderTask = page.render(renderContext);
+            await currentRenderTask.promise;
+            currentRenderTask = null;
 
             // Create initial watermark at bottom center of page if not set
             // Wait a bit to ensure canvas is rendered
             setTimeout(() => {
-                console.log('PDF rendered, creating watermark...');
                 createInitialWatermark();
             }, 100);
 
@@ -511,11 +639,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createInitialWatermark() {
-        console.log('createInitialWatermark called', { pdfDoc, pdfPageWidth, pdfPageHeight });
-
         if (!pdfDoc || pdfPageWidth === 0 || pdfPageHeight === 0) {
             // PDF not ready yet
-            console.log('PDF not ready, skipping watermark creation');
             return;
         }
 
@@ -523,8 +648,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const isMobile = window.innerWidth <= 768;
         watermarkX = pdfPageWidth / 2; // Center horizontally
         watermarkY = isMobile ? 30 : 50; // Lower position on mobile (30 points from bottom)
-
-        console.log('Setting watermark position:', { watermarkX, watermarkY, isMobile });
 
         // Initialize rotation and scale if not already set
         if (watermarkRotation === undefined || isNaN(watermarkRotation) || watermarkRotation === null) {
@@ -539,14 +662,11 @@ document.addEventListener('DOMContentLoaded', () => {
         watermarkPreview.classList.remove('hidden');
 
         // Update hidden inputs
-        console.log('Updating inputs:', { xInput, yInput, positionInput, rotationInput, scaleInput });
         if (xInput) {
             xInput.value = watermarkX.toFixed(2);
-            console.log('xInput set to:', xInput.value);
         }
         if (yInput) {
             yInput.value = watermarkY.toFixed(2);
-            console.log('yInput set to:', yInput.value);
         }
         if (positionInput) positionInput.value = 'custom';
         if (rotationInput) rotationInput.value = (watermarkRotation || 0).toFixed(1);
@@ -637,8 +757,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function updateWatermarkPreview() {
-        console.log('updateWatermarkPreview called', { pdfDoc, watermarkX, watermarkY });
-
         if (!pdfDoc) {
             watermarkPreview.classList.add('hidden');
             return;
@@ -646,7 +764,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Always create initial watermark if position not set
         if (watermarkX === null || watermarkY === null) {
-            console.log('Watermark position not set, creating initial watermark');
             createInitialWatermark();
             return;
         }
@@ -1114,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (watermarkX === null || watermarkY === null) {
-            window.showError('Please wait for PDF to load, then adjust the watermark.', 'editorResult');
+            window.window.showError('Please wait for PDF to load, then adjust the watermark.', 'editorResult');
             return;
         }
 
@@ -1123,7 +1240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
 
         if (!selectedFile) {
-            window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'editorResult');
+            window.window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'editorResult');
             return;
         }
 
@@ -1134,7 +1251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const xValue = parseFloat(xInput.value);
         const yValue = parseFloat(yInput.value);
         if (isNaN(xValue) || isNaN(yValue)) {
-            window.showError('Invalid watermark position. Please click on the PDF to set the position.', 'editorResult');
+            window.window.showError('Invalid watermark position. Please click on the PDF to set the position.', 'editorResult');
             return;
         }
 
@@ -1266,7 +1383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             window.hideLoading('loadingContainer');
-            window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
+            window.window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
             setFormDisabled(false);
         }
     });

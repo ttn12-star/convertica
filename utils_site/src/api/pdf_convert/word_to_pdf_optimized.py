@@ -10,11 +10,10 @@ from concurrent.futures import ThreadPoolExecutor
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
-
-from utils_site.src.api.file_validation import check_disk_space, sanitize_filename
-from utils_site.src.api.logging_utils import get_logger
-from utils_site.src.api.parallel_processing import get_optimal_batch_size
-from utils_site.src.exceptions import ConversionError, InvalidPDFError, StorageError
+from src.api.file_validation import check_disk_space, sanitize_filename
+from src.api.logging_utils import get_logger
+from src.api.parallel_processing import get_optimal_batch_size
+from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 logger = get_logger(__name__)
 
@@ -202,7 +201,7 @@ class OptimizedWordToPDFConverter:
         """Validate Word file asynchronously."""
 
         def _validate():
-            from utils_site.src.api.file_validation import validate_word_file
+            from src.api.file_validation import validate_word_file
 
             is_valid, validation_error = validate_word_file(docx_path, context)
             if not is_valid:
@@ -388,5 +387,8 @@ async def convert_word_to_pdf_optimized(
     """
     converter = OptimizedWordToPDFConverter()
     return await converter.convert_word_to_pdf_optimized(
-        uploaded_file, suffix, context, is_celery_task
+        uploaded_file=uploaded_file,
+        suffix=suffix,
+        context=context,
+        is_celery_task=is_celery_task,
     )

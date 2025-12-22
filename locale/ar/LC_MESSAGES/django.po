@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-21 10:03+0000\n"
+"POT-Creation-Date: 2025-12-22 09:33+0000\n"
 "PO-Revision-Date: 2025-12-15 22:30+0000\n"
 "Last-Translator: Convertica Localization Team <localization@convertica.net>\n"
 "Language-Team: Arabic\n"
@@ -119,7 +119,7 @@ msgstr "PDF إلى Word"
 #: templates/frontend/includes/header.html:190
 #: templates/frontend/includes/header.html:514
 #: templates/frontend/includes/header.html:897 templates/frontend/index.html:65
-#: templates/frontend/index.html:285 utils_site/src/frontend/views.py:522
+#: templates/frontend/index.html:285 utils_site/src/frontend/views.py:536
 msgid "Merge PDF"
 msgstr "دمج ملفات PDF"
 
@@ -127,8 +127,8 @@ msgstr "دمج ملفات PDF"
 #: templates/frontend/includes/header.html:202
 #: templates/frontend/includes/header.html:526
 #: templates/frontend/includes/header.html:904
-#: templates/frontend/index.html:309 utils_site/src/frontend/views.py:572
-#: utils_site/src/frontend/views.py:578
+#: templates/frontend/index.html:309 utils_site/src/frontend/views.py:587
+#: utils_site/src/frontend/views.py:593
 msgid "Split PDF"
 msgstr "تقسيم ملف PDF"
 
@@ -494,7 +494,7 @@ msgstr ""
 "PDF إلى Word، Word إلى PDF، محول PDF، محول DOCX، محول عبر الإنترنت، محول "
 "مجاني"
 
-#: templates/base.html:109
+#: templates/base.html:115
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr "محول PDF إلى Word وWord إلى PDF عبر الإنترنت سريع وبسيط وآمن."
 
@@ -522,8 +522,8 @@ msgstr "الأدوات الشائعة"
 #: templates/frontend/includes/header.html:250
 #: templates/frontend/includes/header.html:550
 #: templates/frontend/includes/header.html:932 templates/frontend/index.html:74
-#: templates/frontend/index.html:406 utils_site/src/frontend/views.py:791
-#: utils_site/src/frontend/views.py:797
+#: templates/frontend/index.html:406 utils_site/src/frontend/views.py:811
+#: utils_site/src/frontend/views.py:817
 msgid "Compress PDF"
 msgstr "ضغط PDF"
 
@@ -531,8 +531,8 @@ msgstr "ضغط PDF"
 #: templates/frontend/includes/header.html:135
 #: templates/frontend/includes/header.html:428
 #: templates/frontend/includes/header.html:952
-#: templates/frontend/index.html:135 utils_site/src/frontend/views.py:350
-#: utils_site/src/frontend/views.py:356
+#: templates/frontend/index.html:135 utils_site/src/frontend/views.py:360
+#: utils_site/src/frontend/views.py:366
 msgid "Rotate PDF"
 msgstr "تدوير PDF"
 
@@ -596,7 +596,7 @@ msgstr "التالي"
 msgid "No articles found."
 msgstr "لم يتم العثور على مقالات."
 
-#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:907
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:929
 msgid "About Us - Convertica"
 msgstr "من نحن - كونفيرتيكا"
 
@@ -951,7 +951,7 @@ msgstr "أدخل صفحات محددة مثل '1,3,5' أو '1-5'"
 #: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:137
 #: templates/frontend/organize_pdf.html:49
 #: templates/frontend/pdf_to_excel.html:7 templates/frontend/pdf_to_jpg.html:71
-#: templates/frontend/pdf_to_word.html:50
+#: templates/frontend/pdf_to_word.html:88
 #: templates/frontend/protect_pdf.html:65
 #: templates/frontend/remove_pages.html:60
 #: templates/frontend/rotate_pdf.html:73 templates/frontend/split_pdf.html:74
@@ -965,7 +965,7 @@ msgstr "كيف يعمل"
 #: templates/frontend/extract_pages.html:35
 #: templates/frontend/organize_pdf.html:52
 #: templates/frontend/pdf_to_excel.html:10
-#: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:53
+#: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:91
 #: templates/frontend/protect_pdf.html:68
 #: templates/frontend/remove_pages.html:63
 #: templates/frontend/rotate_pdf.html:76 templates/frontend/split_pdf.html:77
@@ -1016,7 +1016,7 @@ msgstr "قم بتنزيل ملف PDF الخاص بك مع إضافة أرقام 
 #: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:147
 #: templates/frontend/organize_pdf.html:60
 #: templates/frontend/pdf_to_excel.html:17
-#: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:60
+#: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:98
 #: templates/frontend/protect_pdf.html:75
 #: templates/frontend/remove_pages.html:70
 #: templates/frontend/rotate_pdf.html:84 templates/frontend/split_pdf.html:85
@@ -1051,7 +1051,7 @@ msgstr ""
 
 #: templates/frontend/add_page_numbers.html:236
 #: templates/frontend/add_watermark.html:529
-#: templates/frontend/converter_generic.html:220
+#: templates/frontend/converter_generic.html:224
 #: templates/frontend/crop_pdf.html:411
 #: templates/frontend/edit_pdf_generic.html:209
 #: templates/frontend/jpg_to_pdf.html:168 templates/frontend/merge_pdf.html:125
@@ -1061,7 +1061,7 @@ msgstr "كل شيء يسير على ما يرام!"
 
 #: templates/frontend/add_page_numbers.html:237
 #: templates/frontend/add_watermark.html:530
-#: templates/frontend/converter_generic.html:221
+#: templates/frontend/converter_generic.html:225
 #: templates/frontend/crop_pdf.html:412
 #: templates/frontend/edit_pdf_generic.html:210
 #: templates/frontend/jpg_to_pdf.html:169 templates/frontend/merge_pdf.html:126
@@ -1231,7 +1231,7 @@ msgid "Processing your file..."
 msgstr "جارٍ معالجة ملفك..."
 
 #: templates/frontend/add_watermark.html:520
-#: templates/frontend/converter_generic.html:214
+#: templates/frontend/converter_generic.html:218
 #: templates/frontend/crop_pdf.html:396
 #: templates/frontend/edit_pdf_generic.html:202
 #: templates/frontend/jpg_to_pdf.html:162
@@ -1245,14 +1245,14 @@ msgid "Editing Complete!"
 msgstr "اكتمل التحرير!"
 
 #: templates/frontend/add_watermark.html:522
-#: templates/frontend/converter_generic.html:216
+#: templates/frontend/converter_generic.html:220
 #: templates/frontend/crop_pdf.html:398
 #: templates/frontend/edit_pdf_generic.html:204
 msgid "Your file is ready to download"
 msgstr "ملفك جاهز للتنزيل"
 
 #: templates/frontend/add_watermark.html:523
-#: templates/frontend/converter_generic.html:217
+#: templates/frontend/converter_generic.html:221
 #: templates/frontend/crop_pdf.html:399
 #: templates/frontend/edit_pdf_generic.html:205
 msgid "Download File"
@@ -1266,7 +1266,7 @@ msgstr "تحرير ملف آخر"
 
 #: templates/frontend/add_watermark.html:525
 #: templates/frontend/contact.html:140
-#: templates/frontend/converter_generic.html:219
+#: templates/frontend/converter_generic.html:223
 #: templates/frontend/crop_pdf.html:401
 #: templates/frontend/edit_pdf_generic.html:207
 #: templates/frontend/jpg_to_pdf.html:167
@@ -1375,7 +1375,7 @@ msgstr "قم بتدوير صفحات PDF بمقدار 90 أو 180 أو 270 در�
 #: templates/frontend/includes/header.html:147
 #: templates/frontend/includes/header.html:440
 #: templates/frontend/includes/header.html:959
-#: utils_site/src/frontend/views.py:482 utils_site/src/frontend/views.py:488
+#: utils_site/src/frontend/views.py:495 utils_site/src/frontend/views.py:501
 msgid "Crop PDF"
 msgstr "قص PDF"
 
@@ -1387,7 +1387,7 @@ msgstr "قص صفحات PDF عن طريق تحديد إحداثيات مربع �
 #: templates/frontend/includes/header.html:159
 #: templates/frontend/includes/header.html:459
 #: templates/frontend/includes/header.html:966
-#: utils_site/src/frontend/views.py:394 utils_site/src/frontend/views.py:400
+#: utils_site/src/frontend/views.py:405 utils_site/src/frontend/views.py:411
 msgid "Add Page Numbers"
 msgstr "إضافة أرقام صفحات"
 
@@ -1399,8 +1399,8 @@ msgstr "أضف أرقام صفحات إلى مستندات PDF الخاصة بك
 #: templates/frontend/includes/header.html:171
 #: templates/frontend/includes/header.html:471
 #: templates/frontend/includes/header.html:973
-#: templates/frontend/index.html:184 utils_site/src/frontend/views.py:439
-#: utils_site/src/frontend/views.py:445
+#: templates/frontend/index.html:184 utils_site/src/frontend/views.py:451
+#: utils_site/src/frontend/views.py:457
 msgid "Add Watermark"
 msgstr "إضافة علامة مائية"
 
@@ -1416,7 +1416,7 @@ msgstr "احمِ ملفات PDF الخاصة بك بعلامات مائية نص
 #: templates/frontend/includes/header.html:884
 #: templates/frontend/includes/header.html:925
 #: templates/frontend/index.html:265 templates/frontend/index.html:382
-#: utils_site/src/frontend/views.py:698 utils_site/src/frontend/views.py:704
+#: utils_site/src/frontend/views.py:716 utils_site/src/frontend/views.py:722
 msgid "Organize PDF"
 msgstr "تنظيم PDF"
 
@@ -1436,8 +1436,8 @@ msgstr "قسّم ملف PDF إلى ملفات متعددة حسب الصفحات
 #: templates/frontend/includes/header.html:214
 #: templates/frontend/includes/header.html:569
 #: templates/frontend/includes/header.html:911
-#: templates/frontend/index.html:333 utils_site/src/frontend/views.py:613
-#: utils_site/src/frontend/views.py:619
+#: templates/frontend/index.html:333 utils_site/src/frontend/views.py:629
+#: utils_site/src/frontend/views.py:635
 msgid "Remove Pages"
 msgstr "إزالة الصفحات"
 
@@ -1449,8 +1449,8 @@ msgstr "قم بإزالة الصفحات غير المرغوب فيها من م�
 #: templates/frontend/includes/header.html:226
 #: templates/frontend/includes/header.html:581
 #: templates/frontend/includes/header.html:918
-#: templates/frontend/index.html:357 utils_site/src/frontend/views.py:655
-#: utils_site/src/frontend/views.py:661
+#: templates/frontend/index.html:357 utils_site/src/frontend/views.py:672
+#: utils_site/src/frontend/views.py:678
 msgid "Extract Pages"
 msgstr "استخراج الصفحات"
 
@@ -1473,7 +1473,7 @@ msgstr "احمِ وآمن مستندات PDF الخاصة بك"
 #: templates/frontend/all_tools.html:416
 #: templates/frontend/includes/header.html:269
 #: templates/frontend/includes/header.html:820
-#: utils_site/src/frontend/views.py:816 utils_site/src/frontend/views.py:822
+#: utils_site/src/frontend/views.py:837 utils_site/src/frontend/views.py:843
 msgid "Protect PDF"
 msgstr "حماية PDF"
 
@@ -1484,7 +1484,7 @@ msgstr "أضف حماية بكلمة مرور لتأمين مستندات PDF ا
 #: templates/frontend/all_tools.html:434
 #: templates/frontend/includes/header.html:281
 #: templates/frontend/includes/header.html:827
-#: utils_site/src/frontend/views.py:858 utils_site/src/frontend/views.py:864
+#: utils_site/src/frontend/views.py:880 utils_site/src/frontend/views.py:886
 msgid "Unlock PDF"
 msgstr "فتح قفل PDF"
 
@@ -1556,8 +1556,8 @@ msgstr ""
 "إلى أجزاء أصغر. يقلل الضغط الأعلى حجم الملف أكثر ولكن قد يقلل جودة الصورة "
 "قليلاً."
 
-#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:1014
-#: utils_site/src/frontend/views.py:1110
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:1036
+#: utils_site/src/frontend/views.py:1132
 msgid "Contact Us - Convertica"
 msgstr "اتصل بنا - كونفيرتيكا"
 
@@ -1762,21 +1762,20 @@ msgstr "قم بتنزيل ملفك المحول باستخدام زر التنز
 #, python-format
 msgid ""
 "PDF has %%(page_count)d pages (limit: 50). You can split your file into "
-"smaller parts or <a href=\\\"/users/premium/\\\" class=\\\"text-amber-600 "
-"hover:text-amber-700 font-medium underline\\\">get a 1-day Premium "
-"subscription for just $1</a> to process files without limits!"
+"smaller parts or get a 1-day Premium subscription for just $1 to process "
+"files without limits!"
 msgstr ""
 
-#: templates/frontend/converter_generic.html:213
+#: templates/frontend/converter_generic.html:217
 msgid "Converting your file..."
 msgstr "جارٍ تحويل ملفك..."
 
-#: templates/frontend/converter_generic.html:215
+#: templates/frontend/converter_generic.html:219
 #: templates/frontend/jpg_to_pdf.html:163
 msgid "Conversion Complete!"
 msgstr "اكتمل التحويل!"
 
-#: templates/frontend/converter_generic.html:218
+#: templates/frontend/converter_generic.html:222
 #: templates/frontend/jpg_to_pdf.html:166
 msgid "Convert another file"
 msgstr "تحويل ملف آخر"
@@ -2037,11 +2036,11 @@ msgstr "ابحث عن إجابات للأسئلة الشائعة حول أدوا
 msgid "General Questions"
 msgstr "الأسئلة الشائعة"
 
-#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:1162
+#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:1184
 msgid "Is Convertica free to use?"
 msgstr "هل كونفيرتيكا مجانية حقاً؟"
 
-#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:1164
+#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:1186
 msgid ""
 "Yes, Convertica is completely free to use. All PDF conversion, editing, and "
 "organization tools are available at no cost. There are no hidden fees, no "
@@ -2063,11 +2062,11 @@ msgstr ""
 "لا، لا تحتاج إلى إنشاء حساب. تعمل كونفيرتيكا بدون تسجيل. ما عليك سوى رفع "
 "ملفك والبدء في التحويل على الفور."
 
-#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:1169
+#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:1191
 msgid "What file formats does Convertica support?"
 msgstr "ما هي تنسيقات الملفات المدعومة؟"
 
-#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:1171
+#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:1193
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
 "can convert between these formats, edit PDFs, organize pages, and protect "
@@ -2111,11 +2110,11 @@ msgstr ""
 "والألوان والتباعد وهيكل مستندك الأصلي. جميع عمليات التحويل مجانية ولا تتطلب "
 "تسجيلاً."
 
-#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:1154
+#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:1176
 msgid "How do I convert PDF to Word?"
 msgstr "تحويل PDF إلى Word"
 
-#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:1156
+#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:1178
 msgid ""
 "To convert PDF to Word, simply upload your PDF file using the upload button "
 "or drag and drop it into the upload zone. Click the convert button and wait "
@@ -2201,7 +2200,7 @@ msgstr ""
 "المحددة في مستند PDF واحد دون إضافة أي علامة مائية. يحافظ ملف PDF المدمج على "
 "جودة الملفات الأصلية."
 
-#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:1176
+#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:1198
 msgid "How do I merge multiple PDF files?"
 msgstr "كيف يمكنني دمج ملفات PDF متعددة؟"
 
@@ -2287,11 +2286,11 @@ msgstr ""
 msgid "Security & Privacy"
 msgstr "الأمان والخصوصية"
 
-#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:1183
+#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:1205
 msgid "Is my data secure?"
 msgstr "هل بياناتي آمنة؟"
 
-#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:1185
+#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:1207
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -2608,7 +2607,7 @@ msgid "Convert from PDF"
 msgstr "التحويل من PDF"
 
 #: templates/frontend/includes/header.html:362
-#: utils_site/src/frontend/views.py:219 utils_site/src/frontend/views.py:312
+#: utils_site/src/frontend/views.py:226 utils_site/src/frontend/views.py:321
 msgid "Convert to PDF"
 msgstr "التحويل إلى PDF"
 
@@ -2994,13 +2993,13 @@ msgid ""
 msgstr ""
 "اسحب الصفحات وأفلتها لإعادة ترتيبها. يظهر الرقم على كل صفحة الترتيب الجديد."
 
-#: templates/frontend/organize_pdf.html:32 utils_site/src/frontend/views.py:171
-#: utils_site/src/frontend/views.py:266 utils_site/src/frontend/views.py:357
-#: utils_site/src/frontend/views.py:401 utils_site/src/frontend/views.py:446
-#: utils_site/src/frontend/views.py:489 utils_site/src/frontend/views.py:579
-#: utils_site/src/frontend/views.py:620 utils_site/src/frontend/views.py:662
-#: utils_site/src/frontend/views.py:705 utils_site/src/frontend/views.py:798
-#: utils_site/src/frontend/views.py:823
+#: templates/frontend/organize_pdf.html:32 utils_site/src/frontend/views.py:177
+#: utils_site/src/frontend/views.py:274 utils_site/src/frontend/views.py:367
+#: utils_site/src/frontend/views.py:412 utils_site/src/frontend/views.py:458
+#: utils_site/src/frontend/views.py:502 utils_site/src/frontend/views.py:594
+#: utils_site/src/frontend/views.py:636 utils_site/src/frontend/views.py:679
+#: utils_site/src/frontend/views.py:723 utils_site/src/frontend/views.py:818
+#: utils_site/src/frontend/views.py:844
 msgid "Please select a PDF file."
 msgstr "يرجى تحديد ملف PDF."
 
@@ -3158,39 +3157,125 @@ msgstr ""
 "أجزاء أصغر. سيكون الإخراج عبارة عن أرشيف ZIP يحتوي على جميع صور JPG المحولة، "
 "مسماة بأرقام الصفحات (مثل filename_page0001.jpg، filename_page0002.jpg)."
 
-#: templates/frontend/pdf_to_word.html:24
+#: templates/frontend/pdf_to_word.html:25
 msgid "Enable OCR (Optical Character Recognition)"
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:28
+#: templates/frontend/pdf_to_word.html:29
 msgid ""
 "Extract text from scanned PDFs and images. Convert image-based PDFs to "
 "editable text."
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:30
+#: templates/frontend/pdf_to_word.html:31
 msgid ""
 "Premium feature - extract text from scanned PDFs and images. Upgrade to "
 "Premium to enable."
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:35
+#: templates/frontend/pdf_to_word.html:36
 msgid "Log in to upgrade"
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:39
+#: templates/frontend/pdf_to_word.html:40
 #: templates/users/manage_subscription.html:158
 #: templates/users/profile.html:142
 msgid "Upgrade to Premium"
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:54
+#: templates/frontend/pdf_to_word.html:51
+#, fuzzy
+#| msgid "Language"
+msgid "Document Language"
+msgstr "اللغة"
+
+#: templates/frontend/pdf_to_word.html:57
+msgid "Auto-detect"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:58
+#, fuzzy
+#| msgid "SEO - English"
+msgid "English"
+msgstr "تحسين محركات البحث - الإنجليزية"
+
+#: templates/frontend/pdf_to_word.html:59
+msgid "Russian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:60
+msgid "German"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:61
+msgid "French"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:62
+msgid "Spanish"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:63
+msgid "Italian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:64
+msgid "Portuguese"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:65
+#, fuzzy
+#| msgid "Published"
+msgid "Polish"
+msgstr "منشور"
+
+#: templates/frontend/pdf_to_word.html:66
+msgid "Ukrainian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:67
+msgid "Chinese (Simplified)"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:68
+msgid "Chinese (Traditional)"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:69
+msgid "Japanese"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:70
+msgid "Korean"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:71
+msgid "Arabic"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:72
+msgid "Hindi"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:73
+msgid "Turkish"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:74
+msgid "Indonesian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:77
+msgid "Select the language of your document for better OCR accuracy."
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:92
 msgid ""
 "Click the convert button to start converting PDF to Word (PDF to DOCX "
 "conversion)"
 msgstr "انقر على زر التحويل لبدء تحويل PDF إلى Word (تحويل PDF إلى DOCX)"
 
-#: templates/frontend/pdf_to_word.html:55
+#: templates/frontend/pdf_to_word.html:93
 msgid ""
 "Wait for the PDF to Word conversion to complete - text and formatting will "
 "be extracted from your PDF and converted to editable Word format"
@@ -3198,7 +3283,7 @@ msgstr ""
 "انتظر حتى يكتمل تحويل PDF إلى Word - سيتم استخراج النص والتنسيق من ملف PDF "
 "الخاص بك وتحويله إلى تنسيق Word قابل للتحرير"
 
-#: templates/frontend/pdf_to_word.html:56
+#: templates/frontend/pdf_to_word.html:94
 msgid ""
 "Download your editable Word document (DOCX format) - your PDF has been "
 "successfully converted to Word"
@@ -3206,7 +3291,7 @@ msgstr ""
 "قم بتنزيل مستند Word القابل للتحرير (تنسيق DOCX) - تم تحويل ملف PDF الخاص بك "
 "بنجاح إلى Word"
 
-#: templates/frontend/pdf_to_word.html:62
+#: templates/frontend/pdf_to_word.html:100
 #, fuzzy
 #| msgid ""
 #| "PDF files with up to 50 pages are supported for rotating. For larger "
@@ -3220,7 +3305,7 @@ msgstr ""
 "يتم دعم ملفات PDF التي تصل إلى 50 صفحة للتدوير. للملفات الأكبر، يرجى تقسيمها "
 "إلى أجزاء أصغر. يحافظ التدوير على جميع المحتويات والتنسيق."
 
-#: templates/frontend/pdf_to_word.html:65
+#: templates/frontend/pdf_to_word.html:103
 #, fuzzy
 #| msgid ""
 #| "PDF files with up to 50 pages are supported. For larger files, please "
@@ -3232,13 +3317,13 @@ msgstr ""
 "يتم دعم ملفات PDF التي تصل إلى 50 صفحة. للملفات الأكبر، يرجى تقسيمها إلى "
 "أجزاء أصغر."
 
-#: templates/frontend/pdf_to_word.html:67
+#: templates/frontend/pdf_to_word.html:105
 msgid ""
 "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
 "OCR for Premium users."
 msgstr ""
 
-#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:930
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:952
 msgid "Privacy Policy - Convertica"
 msgstr "سياسة الخصوصية - كونفيرتيكا"
 
@@ -3775,7 +3860,7 @@ msgstr ""
 "سيكون الإخراج عبارة عن أرشيف ZIP يحتوي على جميع ملفات PDF المقسمة. يمكنك "
 "تقسيم ملف PDF الخاص بك حسب الصفحات الفردية، أو نطاقات الصفحات، أو كل N صفحات."
 
-#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:952
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:974
 msgid "Terms of Service - Convertica"
 msgstr "شروط الخدمة - كونفيرتيكا"
 
@@ -4351,7 +4436,7 @@ msgstr "معلومات الاستخدام"
 
 #: templates/payments/success.html:31 templates/users/account_status.html:229
 #: templates/users/cancel_subscription.html:136
-#: utils_site/src/users/models.py:292
+#: utils_site/src/users/models.py:297
 msgid "Plan"
 msgstr ""
 
@@ -4361,7 +4446,7 @@ msgstr ""
 
 #: templates/payments/success.html:39 templates/users/account_status.html:231
 #: templates/users/manage_subscription.html:109
-#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:301
+#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:306
 msgid "Status"
 msgstr "الحالة"
 
@@ -4600,8 +4685,9 @@ msgid "Total Days as Hero"
 msgstr ""
 
 #: templates/users/account_status.html:81
-#: templates/users/account_status.html:86 templates/users/premium.html:480
-#: templates/users/premium.html:518
+#: templates/users/account_status.html:86
+#: templates/users/manage_subscription.html:143
+#: templates/users/premium.html:480 templates/users/premium.html:518
 msgid "days"
 msgstr ""
 
@@ -4700,31 +4786,31 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: templates/users/account_status.html:230 utils_site/src/users/models.py:295
+#: templates/users/account_status.html:230 utils_site/src/users/models.py:300
 msgid "Amount"
 msgstr ""
 
-#: templates/users/account_status.html:232 utils_site/src/users/models.py:304
+#: templates/users/account_status.html:232 utils_site/src/users/models.py:309
 msgid "Payment ID"
 msgstr ""
 
-#: templates/users/account_status.html:244 utils_site/src/users/models.py:285
+#: templates/users/account_status.html:244 utils_site/src/users/models.py:290
 #, fuzzy
 #| msgid "Editing Complete!"
 msgid "Completed"
 msgstr "اكتمل التحرير!"
 
-#: templates/users/account_status.html:248 utils_site/src/users/models.py:284
+#: templates/users/account_status.html:248 utils_site/src/users/models.py:289
 #, fuzzy
 #| msgid "Sending..."
 msgid "Pending"
 msgstr "جارٍ الإرسال..."
 
-#: templates/users/account_status.html:252 utils_site/src/users/models.py:286
+#: templates/users/account_status.html:252 utils_site/src/users/models.py:291
 msgid "Failed"
 msgstr ""
 
-#: templates/users/account_status.html:256 utils_site/src/users/models.py:287
+#: templates/users/account_status.html:256 utils_site/src/users/models.py:292
 msgid "Refunded"
 msgstr ""
 
@@ -5098,6 +5184,15 @@ msgstr ""
 #: templates/users/manage_subscription.html:176
 msgid ""
 "Billing history will be available once payment processing is implemented."
+msgstr ""
+
+#: templates/users/manage_subscription.html:228
+#: utils_site/src/users/views.py:213
+msgid "Failed to cancel subscription"
+msgstr ""
+
+#: templates/users/manage_subscription.html:233
+msgid "An error occurred while canceling subscription"
 msgstr ""
 
 #: templates/users/premium.html:29
@@ -5533,7 +5628,7 @@ msgstr ""
 msgid "By creating an account, you agree to our"
 msgstr ""
 
-#: utils_site/src/api/conversion_limits.py:110
+#: utils_site/src/api/conversion_limits.py:151
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages (limit: 50). You can split your file into "
@@ -5541,7 +5636,7 @@ msgid ""
 "files without limits!"
 msgstr ""
 
-#: utils_site/src/api/conversion_limits.py:121
+#: utils_site/src/api/conversion_limits.py:162
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
@@ -5550,7 +5645,7 @@ msgstr ""
 "يحتوي PDF على %(page_count)d صفحة، الحد الأقصى المسموح به هو %(max_pages)d. "
 "يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
 
-#: utils_site/src/api/conversion_limits.py:308
+#: utils_site/src/api/conversion_limits.py:353
 #, python-format
 msgid ""
 "File is too large for this operation (%(file_mb).1f MB). Maximum size for "
@@ -5561,7 +5656,7 @@ msgstr ""
 "%(operation)s هو %(max_mb)d ميغابايت. يرجى استخدام ملف أصغر أو ضغط ملف PDF "
 "الخاص بك أولاً."
 
-#: utils_site/src/api/conversion_limits.py:332
+#: utils_site/src/api/conversion_limits.py:382
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
@@ -5570,7 +5665,7 @@ msgstr ""
 "يحتوي ملف PDF على %(page_count)d صفحة. الحد الأقصى المسموح به لعملية "
 "%(operation)s هو %(max_pages)d صفحة. يرجى تقسيم ملف PDF إلى أجزاء أصغر."
 
-#: utils_site/src/api/conversion_limits.py:361
+#: utils_site/src/api/conversion_limits.py:409
 #, python-format
 msgid ""
 "This PDF appears to be scanned (contains many images). Scanned PDFs with "
@@ -5582,17 +5677,17 @@ msgstr ""
 "للمعالجة. يرجى المحاولة بعدد صفحات أقل (الحد الأقصى ~%(max_pages)d لملفات "
 "PDF الممسوحة ضوئياً)."
 
-#: utils_site/src/api/conversion_limits.py:404
+#: utils_site/src/api/conversion_limits.py:450
 #, python-format
 msgid "File is too large (max %(max_mb)d MB for this operation)."
 msgstr "الملف كبير جداً (الحد الأقصى %(max_mb)d ميغابايت لهذه العملية)."
 
-#: utils_site/src/api/conversion_limits.py:414
+#: utils_site/src/api/conversion_limits.py:460
 #, python-format
 msgid "Too many pages (max %(max_pages)d for this operation)."
 msgstr "عدد صفحات كبير جداً (الحد الأقصى %(max_pages)d لهذه العملية)."
 
-#: utils_site/src/api/conversion_limits.py:428
+#: utils_site/src/api/conversion_limits.py:474
 msgid ""
 "File is too complex for our server. Estimated processing time exceeds "
 "limits. Please try with a smaller file."
@@ -5791,11 +5886,11 @@ msgid "Published At"
 msgstr "تاريخ النشر"
 
 #: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:34
-#: utils_site/src/users/models.py:316
+#: utils_site/src/users/models.py:321
 msgid "Created At"
 msgstr "تاريخ الإنشاء"
 
-#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:317
+#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:322
 msgid "Updated At"
 msgstr "تاريخ التحديث"
 
@@ -5851,42 +5946,48 @@ msgstr "يجب أن تكون الرسالة مكونة من 10 أحرف على �
 msgid "Message is too long. Maximum 5000 characters."
 msgstr "الرسالة طويلة جداً. الحد الأقصى 5000 حرف."
 
-#: utils_site/src/frontend/views.py:115
+#: utils_site/src/frontend/views.py:128
 msgid "Conversion failed. Please try again."
 msgstr "فشل التحويل. يرجى المحاولة مرة أخرى."
 
-#: utils_site/src/frontend/views.py:122
+#: utils_site/src/frontend/views.py:137
 msgid "PDF to Word - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:124
+#: utils_site/src/frontend/views.py:139
+#, fuzzy
+#| msgid ""
+#| "Convert PDF to Word online free without losing formatting. Fast PDF to "
+#| "DOCX converter with no email required, unlimited conversions, high-"
+#| "quality output. Perfect for students, professionals, and businesses. No "
+#| "registration needed."
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
 "converter with no email required, unlimited conversions, high-quality "
-"output. Perfect for students, professionals, and businesses. No registration "
+"output. Perfect for documents, resumes, and business files. No registration "
 "needed."
 msgstr ""
 "قم بتحويل PDF إلى Word عبر الإنترنت مجاناً دون فقدان التنسيق. محول PDF إلى "
 "DOCX سريع لا يتطلب بريداً إلكترونياً، تحويلات غير محدودة، إخراج عالي الجودة. "
 "مثالي للطلاب والمحترفين والشركات. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:162
+#: utils_site/src/frontend/views.py:168
 msgid "Convert your PDF documents to editable Word format in seconds"
 msgstr "قم بتحويل مستندات PDF إلى ملفات Word قابلة للتحرير على الفور."
 
-#: utils_site/src/frontend/views.py:164
+#: utils_site/src/frontend/views.py:170
 msgid "PDF to Word Converter"
 msgstr "PDF إلى Word"
 
-#: utils_site/src/frontend/views.py:170
+#: utils_site/src/frontend/views.py:176
 msgid "Convert PDF to Word"
 msgstr "أدوات تحويل PDF"
 
-#: utils_site/src/frontend/views.py:179
+#: utils_site/src/frontend/views.py:186
 msgid "Word to PDF - Convertica"
 msgstr "من نحن - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:181
+#: utils_site/src/frontend/views.py:188
 msgid ""
 "Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
 "converter with no email required, unlimited conversions, high-quality "
@@ -5897,23 +5998,23 @@ msgstr ""
 "PDF سريع لا يتطلب بريداً إلكترونياً، تحويلات غير محدودة، إخراج عالي الجودة. "
 "مثالي للمستندات والسير الذاتية وملفات الأعمال. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:212
+#: utils_site/src/frontend/views.py:219
 msgid "Convert your Word documents to PDF format in seconds"
 msgstr "قم بتحويل مستندات Word إلى ملفات PDF آمنة."
 
-#: utils_site/src/frontend/views.py:213
+#: utils_site/src/frontend/views.py:220
 msgid "Word to PDF Converter"
 msgstr "Word إلى PDF"
 
-#: utils_site/src/frontend/views.py:220
+#: utils_site/src/frontend/views.py:227
 msgid "Please select a Word file."
 msgstr "يرجى تحديد ملف PDF."
 
-#: utils_site/src/frontend/views.py:228
+#: utils_site/src/frontend/views.py:236
 msgid "PDF to JPG - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:230
+#: utils_site/src/frontend/views.py:238
 msgid ""
 "Convert PDF to JPG online free with high quality. PDF to image converter "
 "with no watermark, high resolution (300-600 DPI), batch conversion. Extract "
@@ -5925,23 +6026,23 @@ msgstr ""
 "تحويل صفحات PDF إلى JPG/PNG. مثالي للطباعة والتحميل على الويب ووسائل التواصل "
 "الاجتماعي."
 
-#: utils_site/src/frontend/views.py:258
+#: utils_site/src/frontend/views.py:266
 msgid "Convert PDF pages to high-quality JPG images in seconds"
 msgstr "قم بتحويل صفحات PDF إلى صور JPG عالية الجودة."
 
-#: utils_site/src/frontend/views.py:259
+#: utils_site/src/frontend/views.py:267
 msgid "PDF to JPG Converter"
 msgstr "PDF إلى JPG"
 
-#: utils_site/src/frontend/views.py:265
+#: utils_site/src/frontend/views.py:273
 msgid "Convert PDF to JPG"
 msgstr "تحويل PDF إلى JPG"
 
-#: utils_site/src/frontend/views.py:274
+#: utils_site/src/frontend/views.py:283
 msgid "JPG to PDF - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:276
+#: utils_site/src/frontend/views.py:285
 msgid ""
 "Convert JPG to PDF online free without compression. Merge multiple images "
 "into one PDF, combine photos to PDF, create PDF from images with high "
@@ -5953,23 +6054,23 @@ msgstr ""
 "والإيصالات والواجبات المنزلية وتقديمات الجامعة. بدون علامة مائية، تحويلات "
 "غير محدودة."
 
-#: utils_site/src/frontend/views.py:305
+#: utils_site/src/frontend/views.py:314
 msgid "Convert your JPG images to PDF format in seconds"
 msgstr "قم بتحويل صور JPG الخاصة بك إلى تنسيق PDF في ثوانٍ"
 
-#: utils_site/src/frontend/views.py:306
+#: utils_site/src/frontend/views.py:315
 msgid "JPG to PDF Converter"
 msgstr "JPG إلى PDF"
 
-#: utils_site/src/frontend/views.py:313
+#: utils_site/src/frontend/views.py:322
 msgid "Please select a JPG/JPEG image file."
 msgstr "يرجى تحديد ملف PDF."
 
-#: utils_site/src/frontend/views.py:321
+#: utils_site/src/frontend/views.py:331
 msgid "Rotate PDF - Convertica"
 msgstr "اتصل بنا - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:323
+#: utils_site/src/frontend/views.py:333
 msgid ""
 "Rotate PDF pages online free by 90, 180, or 270 degrees. Fast PDF rotation "
 "tool with no watermark, batch rotation, and quality preservation. Perfect "
@@ -5979,15 +6080,15 @@ msgstr ""
 "تدوير PDF سريعة بدون علامة مائية، تدوير دفعات، والحفاظ على الجودة. مثالي "
 "للمستندات الممسوحة ضوئياً والصفحات غير الصحيحة الاتجاه. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:349
+#: utils_site/src/frontend/views.py:359
 msgid "Rotate your PDF pages in seconds"
 msgstr "قم بتدوير صفحات PDF الخاصة بك في ثوانٍ"
 
-#: utils_site/src/frontend/views.py:365
+#: utils_site/src/frontend/views.py:376
 msgid "Add Page Numbers to PDF - Convertica"
 msgstr "أضف أرقام صفحات إلى مستندات PDF الخاصة بك."
 
-#: utils_site/src/frontend/views.py:367
+#: utils_site/src/frontend/views.py:378
 msgid ""
 "Add page numbers to PDF online free with customizable position, font size, "
 "and format. Fast PDF page numbering tool with no watermark. Perfect for "
@@ -5997,15 +6098,15 @@ msgstr ""
 "وتنسيق. أداة ترقيم صفحات PDF سريعة بدون علامة مائية. مثالي للمستندات "
 "والتقارير والأوراق الأكاديمية. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:393
+#: utils_site/src/frontend/views.py:404
 msgid "Add page numbers to your PDF in seconds"
 msgstr "أضف أرقام صفحات إلى مستندات PDF الخاصة بك."
 
-#: utils_site/src/frontend/views.py:409
+#: utils_site/src/frontend/views.py:421
 msgid "Add Watermark to PDF - Convertica"
 msgstr "شروط الخدمة - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:411
+#: utils_site/src/frontend/views.py:423
 msgid ""
 "Add watermark to PDF online free with text or image. Customize position, "
 "transparency, and size. Fast PDF watermarking tool with no watermark on tool "
@@ -6016,15 +6117,15 @@ msgstr ""
 "والشفافية والحجم. أداة وضع علامة مائية على PDF سريعة بدون علامة مائية على "
 "الأداة نفسها. مثالي لحماية المستندات والعلامات التجارية. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:438
+#: utils_site/src/frontend/views.py:450
 msgid "Add watermark to your PDF in seconds"
 msgstr "أضف أرقام صفحات إلى مستندات PDF الخاصة بك."
 
-#: utils_site/src/frontend/views.py:454
+#: utils_site/src/frontend/views.py:467
 msgid "Crop PDF - Convertica"
 msgstr "اتصل بنا - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:456
+#: utils_site/src/frontend/views.py:469
 msgid ""
 "Crop PDF pages online free with precise crop box coordinates. Fast PDF "
 "cropping tool with no watermark, visual editor, and quality preservation. "
@@ -6034,15 +6135,15 @@ msgstr ""
 "بدون علامة مائية، محرر مرئي، والحفاظ على الجودة. مثالي لإزالة الهوامش "
 "والمحتوى غير المرغوب فيه. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:481
+#: utils_site/src/frontend/views.py:494
 msgid "Crop your PDF pages in seconds"
 msgstr "قص صفحات PDF الخاصة بك في ثوانٍ"
 
-#: utils_site/src/frontend/views.py:497
+#: utils_site/src/frontend/views.py:511
 msgid "Merge PDF - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:499
+#: utils_site/src/frontend/views.py:513
 msgid ""
 "Merge PDF online free without watermark. Combine two PDFs into one, merge "
 "multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
@@ -6052,23 +6153,23 @@ msgstr ""
 "واحد، دمج ملفات PDF متعددة بسرعة، الحفاظ على الإشارات المرجعية والجودة. أداة "
 "دمج PDF غير محدودة مع السحب والإفلات. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:521
+#: utils_site/src/frontend/views.py:535
 msgid "Combine multiple PDF files into one document"
 msgstr "اجمع ملفات PDF متعددة في مستند واحد."
 
-#: utils_site/src/frontend/views.py:528
+#: utils_site/src/frontend/views.py:542
 msgid "Merge PDFs"
 msgstr "دمج PDF"
 
-#: utils_site/src/frontend/views.py:529
+#: utils_site/src/frontend/views.py:543
 msgid "Please select PDF files to merge."
 msgstr "يرجى تحديد ملفين PDF على الأقل للدمج."
 
-#: utils_site/src/frontend/views.py:537
+#: utils_site/src/frontend/views.py:552
 msgid "Split PDF - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:539
+#: utils_site/src/frontend/views.py:554
 msgid ""
 "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages "
 "from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
@@ -6078,15 +6179,15 @@ msgstr ""
 "المرجعية. استخراج صفحات محددة من PDF، إزالة الصفحات، تقسيم PDF إلى ملفات "
 "متعددة. أداة تقسيم PDF سريعة بدون علامة مائية. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:571
+#: utils_site/src/frontend/views.py:586
 msgid "Split your PDF into multiple files"
 msgstr "قسّم ملف PDF إلى ملفات متعددة حسب الصفحات أو النطاقات."
 
-#: utils_site/src/frontend/views.py:587
+#: utils_site/src/frontend/views.py:603
 msgid "Remove Pages from PDF - Convertica"
 msgstr "قم بإزالة الصفحات غير المرغوب فيها من مستند PDF الخاص بك."
 
-#: utils_site/src/frontend/views.py:589
+#: utils_site/src/frontend/views.py:605
 msgid ""
 "Remove pages from PDF online free. Delete unwanted pages quickly and easily "
 "with no watermark. Fast PDF page removal tool. Perfect for cleaning up "
@@ -6096,15 +6197,15 @@ msgstr ""
 "وسهولة بدون علامة مائية. أداة إزالة صفحات PDF سريعة. مثالي لتنظيف المستندات. "
 "لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:612
+#: utils_site/src/frontend/views.py:628
 msgid "Remove unwanted pages from your PDF"
 msgstr "قم بإزالة الصفحات غير المرغوب فيها من مستند PDF الخاص بك."
 
-#: utils_site/src/frontend/views.py:628
+#: utils_site/src/frontend/views.py:645
 msgid "Extract Pages from PDF - Convertica"
 msgstr "استخراج الجداول من PDF وتحويلها إلى تنسيق Excel."
 
-#: utils_site/src/frontend/views.py:630
+#: utils_site/src/frontend/views.py:647
 msgid ""
 "Extract pages from PDF online free. Select and extract specific pages to "
 "create a new PDF. Fast PDF page extraction tool with no watermark. Perfect "
@@ -6114,15 +6215,15 @@ msgstr ""
 "ملف PDF جديد. أداة استخراج صفحات PDF سريعة بدون علامة مائية. مثالي لإنشاء "
 "مستندات مخصصة. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:654
+#: utils_site/src/frontend/views.py:671
 msgid "Extract specific pages from your PDF"
 msgstr "استخرج صفحات محددة من ملف PDF الخاص بك إلى ملف جديد."
 
-#: utils_site/src/frontend/views.py:670
+#: utils_site/src/frontend/views.py:688
 msgid "Organize PDF - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:672
+#: utils_site/src/frontend/views.py:690
 msgid ""
 "Organize PDF online free. Reorder pages, sort content, and manage your PDF "
 "files with drag and drop. Fast PDF organizer with no watermark. Perfect for "
@@ -6132,15 +6233,15 @@ msgstr ""
 "PDF الخاصة بك بالسحب والإفلات. منظم PDF سريع بدون علامة مائية. مثالي لتنظيم "
 "المستندات والتقارير. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:697
+#: utils_site/src/frontend/views.py:715
 msgid "Organize and manage your PDF documents"
 msgstr "قم بإدارة وتنظيم مستندات PDF الخاصة بك"
 
-#: utils_site/src/frontend/views.py:713
+#: utils_site/src/frontend/views.py:732
 msgid "PDF to Excel - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:715
+#: utils_site/src/frontend/views.py:734
 msgid ""
 "Convert PDF to Excel online free with accurate table extraction. Extract "
 "tables from PDF and convert to XLSX format. Perfect for invoices, reports, "
@@ -6150,27 +6251,27 @@ msgstr ""
 "الجداول من PDF وتحويلها إلى تنسيق XLSX. مثالي للفواتير والتقارير وتحليل "
 "البيانات. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:746
+#: utils_site/src/frontend/views.py:765
 msgid "Extract tables from PDF and convert to Excel format"
 msgstr "استخراج الجداول من PDF وتحويلها إلى تنسيق Excel."
 
-#: utils_site/src/frontend/views.py:747
+#: utils_site/src/frontend/views.py:766
 msgid "PDF to Excel Converter"
 msgstr "PDF إلى Excel"
 
-#: utils_site/src/frontend/views.py:753
+#: utils_site/src/frontend/views.py:772
 msgid "Convert PDF to Excel"
 msgstr "أدوات تحويل PDF"
 
-#: utils_site/src/frontend/views.py:754
+#: utils_site/src/frontend/views.py:773
 msgid "Please select a PDF file with tables."
 msgstr "يرجى تحديد ملف PDF أولاً."
 
-#: utils_site/src/frontend/views.py:762
+#: utils_site/src/frontend/views.py:782
 msgid "Compress PDF - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:764
+#: utils_site/src/frontend/views.py:784
 msgid ""
 "Compress PDF online free to reduce file size fast. PDF compressor with no "
 "watermark, compress PDF to under 1MB for email, reduce PDF file size without "
@@ -6180,29 +6281,29 @@ msgstr ""
 "مائية، ضغط PDF إلى أقل من 1 ميغابايت للبريد الإلكتروني، تقليل حجم ملف PDF "
 "دون فقدان الجودة. أفضل أداة ضغط PDF 2025."
 
-#: utils_site/src/frontend/views.py:790
+#: utils_site/src/frontend/views.py:810
 msgid "Reduce PDF file size without losing quality"
 msgstr "قلل حجم ملف PDF دون فقدان الجودة."
 
-#: utils_site/src/frontend/views.py:806
+#: utils_site/src/frontend/views.py:827
 msgid "Protect PDF with Password - Convertica"
 msgstr "اتصل بنا - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:808
+#: utils_site/src/frontend/views.py:829
 msgid ""
 "Protect PDF files with password encryption. Secure your PDF documents with "
 "strong password protection."
 msgstr "انقر على زر الحماية لتشفير ملف PDF الخاص بك بحماية كلمة المرور"
 
-#: utils_site/src/frontend/views.py:815
+#: utils_site/src/frontend/views.py:836
 msgid "Secure your PDF documents with password protection"
 msgstr "انقر على زر الحماية لتشفير ملف PDF الخاص بك بحماية كلمة المرور"
 
-#: utils_site/src/frontend/views.py:831
+#: utils_site/src/frontend/views.py:853
 msgid "Unlock PDF - Remove Password - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:833
+#: utils_site/src/frontend/views.py:855
 msgid ""
 "Unlock PDF online free. Remove password protection from PDF files with the "
 "correct password. Fast PDF unlock tool with no watermark. Perfect for "
@@ -6212,19 +6313,19 @@ msgstr ""
 "المرور الصحيحة. أداة فتح قفل PDF سريعة بدون علامة مائية. مثالي للوصول إلى "
 "المستندات المحمية. لا حاجة للتسجيل."
 
-#: utils_site/src/frontend/views.py:857
+#: utils_site/src/frontend/views.py:879
 msgid "Remove password protection from your PDF"
 msgstr "قم بإزالة حماية كلمة المرور من مستندات PDF الخاصة بك."
 
-#: utils_site/src/frontend/views.py:865
+#: utils_site/src/frontend/views.py:887
 msgid "Please select a password-protected PDF file."
 msgstr "يرجى تحديد ملف PDF."
 
-#: utils_site/src/frontend/views.py:873
+#: utils_site/src/frontend/views.py:895
 msgid "All PDF Tools - Convertica"
 msgstr "جميع أدوات PDF - كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:875
+#: utils_site/src/frontend/views.py:897
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
@@ -6232,7 +6333,7 @@ msgstr ""
 "تصفح جميع أدوات PDF: تحويل، تحرير، تنظيم، وتأمين ملفات PDF. أدوات PDF مجانية "
 "عبر الإنترنت لجميع احتياجاتك من المستندات."
 
-#: utils_site/src/frontend/views.py:909
+#: utils_site/src/frontend/views.py:931
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
@@ -6241,7 +6342,7 @@ msgstr ""
 "تعرف على كونفيرتيكا - منصة أدوات PDF عبر الإنترنت الموثوقة الخاصة بك. نحن "
 "ملتزمون بالتحسين المستمر وتقديم أفضل تجربة لتحويل وتحرير PDF."
 
-#: utils_site/src/frontend/views.py:914
+#: utils_site/src/frontend/views.py:936
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
@@ -6249,7 +6350,7 @@ msgstr ""
 "حول كونفيرتيكا، شركة أدوات PDF، محول PDF عبر الإنترنت، خدمات PDF، تحويل "
 "المستندات"
 
-#: utils_site/src/frontend/views.py:932
+#: utils_site/src/frontend/views.py:954
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
@@ -6257,13 +6358,13 @@ msgstr ""
 "اقرأ سياسة الخصوصية الخاصة بكونفيرتيكا. تعرف على كيفية حمايتنا لبياناتك "
 "والتعامل مع ملفاتك. خصوصيتك هي أولويتنا."
 
-#: utils_site/src/frontend/views.py:937
+#: utils_site/src/frontend/views.py:959
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 msgstr ""
 "سياسة الخصوصية، حماية البيانات، أمان الملفات، الخصوصية، خصوصية كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:954
+#: utils_site/src/frontend/views.py:976
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
@@ -6271,12 +6372,12 @@ msgstr ""
 "اقرأ شروط الخدمة الخاصة بكونفيرتيكا. فهم الشروط والأحكام لاستخدام أدوات "
 "وخدمات PDF الخاصة بنا."
 
-#: utils_site/src/frontend/views.py:958
+#: utils_site/src/frontend/views.py:980
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
 msgstr "شروط الخدمة، الشروط والأحكام، اتفاقية المستخدم، شروط كونفيرتيكا"
 
-#: utils_site/src/frontend/views.py:985
+#: utils_site/src/frontend/views.py:1007
 msgid ""
 "Thank you! Your message has been sent successfully. We'll get back to you as "
 "soon as possible, usually within 24-48 hours."
@@ -6284,11 +6385,11 @@ msgstr ""
 "شكراً لك! تم إرسال رسالتك بنجاح. سنرد عليك في أقرب وقت ممكن، عادةً خلال 24-48 "
 "ساعة."
 
-#: utils_site/src/frontend/views.py:1011
+#: utils_site/src/frontend/views.py:1033
 msgid "Please complete the CAPTCHA verification."
 msgstr "يرجى إكمال التحقق من CAPTCHA."
 
-#: utils_site/src/frontend/views.py:1016 utils_site/src/frontend/views.py:1112
+#: utils_site/src/frontend/views.py:1038 utils_site/src/frontend/views.py:1134
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
@@ -6296,19 +6397,19 @@ msgstr ""
 "اتصل بكونفيرتيكا للحصول على الدعم أو الأسئلة أو الملاحظات. نحن هنا لمساعدتك "
 "في جميع احتياجاتك من أدوات PDF."
 
-#: utils_site/src/frontend/views.py:1020 utils_site/src/frontend/views.py:1115
+#: utils_site/src/frontend/views.py:1042 utils_site/src/frontend/views.py:1137
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr "اتصال كونفيرتيكا، الدعم، خدمة العملاء، المساعدة، الملاحظات"
 
-#: utils_site/src/frontend/views.py:1107
+#: utils_site/src/frontend/views.py:1129
 msgid "Please correct the errors in the form below."
 msgstr "يرجى تصحيح الأخطاء في النموذج أدناه."
 
-#: utils_site/src/frontend/views.py:1133
+#: utils_site/src/frontend/views.py:1155
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "الأسئلة الشائعة"
 
-#: utils_site/src/frontend/views.py:1135
+#: utils_site/src/frontend/views.py:1157
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
@@ -6316,7 +6417,7 @@ msgstr ""
 "ابحث عن إجابات للأسئلة الشائعة حول أدوات PDF من كونفيرتيكا. تعلم كيفية تحويل "
 "وتحرير وتنظيم ملفات PDF عبر الإنترنت مجاناً."
 
-#: utils_site/src/frontend/views.py:1178
+#: utils_site/src/frontend/views.py:1200
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "
@@ -6398,6 +6499,18 @@ msgstr ""
 msgid "Hero badge on profile"
 msgstr ""
 
+#: utils_site/src/users/models.py:13
+msgid "The Email must be set"
+msgstr ""
+
+#: utils_site/src/users/models.py:24
+msgid "Superuser must have is_staff=True."
+msgstr ""
+
+#: utils_site/src/users/models.py:26
+msgid "Superuser must have is_superuser=True."
+msgstr ""
+
 #: utils_site/src/users/models.py:31
 msgid "email address"
 msgstr ""
@@ -6422,7 +6535,7 @@ msgstr ""
 msgid "Consecutive Subscription Days"
 msgstr ""
 
-#: utils_site/src/users/models.py:68 utils_site/src/users/models.py:290
+#: utils_site/src/users/models.py:68 utils_site/src/users/models.py:295
 msgid "User"
 msgstr ""
 
@@ -6430,27 +6543,27 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: utils_site/src/users/models.py:308
+#: utils_site/src/users/models.py:313
 msgid "Payment Method"
 msgstr ""
 
-#: utils_site/src/users/models.py:311
+#: utils_site/src/users/models.py:316
 #, fuzzy
 #| msgid "Translations"
 msgid "Transaction ID"
 msgstr "الترجمات"
 
-#: utils_site/src/users/models.py:314
+#: utils_site/src/users/models.py:319
 #, fuzzy
 #| msgid "Created At"
 msgid "Processed At"
 msgstr "تاريخ الإنشاء"
 
-#: utils_site/src/users/models.py:320
+#: utils_site/src/users/models.py:325
 msgid "Payment"
 msgstr ""
 
-#: utils_site/src/users/models.py:321
+#: utils_site/src/users/models.py:326
 #, fuzzy
 #| msgid "Enhancements"
 msgid "Payments"
@@ -6480,10 +6593,6 @@ msgstr ""
 msgid "Subscription cancelled successfully"
 msgstr ""
 
-#: utils_site/src/users/views.py:213
-msgid "Failed to cancel subscription"
-msgstr ""
-
 #: utils_site/src/users/views.py:231
 msgid "Account deleted successfully"
 msgstr ""
@@ -6494,6 +6603,10 @@ msgstr ""
 
 #: utils_site/src/users/views.py:262
 msgid "Hero display updated successfully"
+msgstr ""
+
+#: utils_site/src/users/views.py:268
+msgid "Invalid JSON"
 msgstr ""
 
 #~ msgid "Organization Settings"

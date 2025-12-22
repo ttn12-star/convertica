@@ -224,19 +224,41 @@
   </div>
 {% endblock %}
 
-{% block extra_head %}
-  {{ block.super }}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
-{% endblock %}
-
 {% block extra_js %}
-  {{ block.super }}
+  <!-- Load PDF.js before other scripts -->
+  <script
+    src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
+    crossorigin="anonymous"
+    onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
+  </script>
   <script>
-    window.PAGE_LIMIT_ERROR = "{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}";
-    window.PATIENCE_TITLE = "{% trans 'Everything is going well!' %}";
-    window.PATIENCE_MESSAGE = "{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}";
+    window.API_URL = "{{ api_url|escapejs }}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name|escapejs }}";
+    window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
+    window.REPLACE_TO = "{{ replace_to|escapejs }}";
+    window.ERROR_MESSAGE = "{{ error_message|default:'Editing failed. Please try again.'|escapejs }}";
+    window.PDFJS_LOCAL_PDF = "{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}";
+    window.PDFJS_LOCAL_WORKER = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
+    window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Processing your file...' %}{% endfilter %}";
+    window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, this may take a few moments' %}{% endfilter %}";
+    window.SUCCESS_TITLE = "{% filter escapejs %}{% trans 'Editing Complete!' %}{% endfilter %}";
+    window.SUCCESS_MESSAGE = "{% filter escapejs %}{% trans 'Your file is ready to download' %}{% endfilter %}";
+    window.DOWNLOAD_BUTTON_TEXT = "{% filter escapejs %}{% trans 'Download File' %}{% endfilter %}";
+    window.EDIT_ANOTHER_TEXT = "{% filter escapejs %}{% trans 'Edit another file' %}{% endfilter %}";
+    window.ERROR_TITLE = "{% filter escapejs %}{% trans 'Error' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: 50). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process files without limits!' %}{% endfilter %}";
+    window.PREMIUM_LINK = "/users/premium/";
+    /* eslint-disable */
+    window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
+    /* eslint-enable */
+    window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
+    window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
   <script src="{% static 'js/utils.js' %}"></script>
   <script src="{% static 'js/task-cancellation.js' %}"></script>
+  <script src="{% static 'js/file-input-handler.js' %}"></script>
+  <script src="{% static 'js/pdf-editor.js' %}"></script>
   <script src="{% static 'js/page-number-preview.js' %}"></script>
 {% endblock %}

@@ -116,13 +116,19 @@ async def _convert_pdf_to_docx_sequential(
                             uploaded_file._request, "LANGUAGE_CODE", None
                         )
 
+                    # Get confidence threshold from context
+                    confidence_threshold = context.get("ocr_confidence_threshold", 60)
+
                     # Run async OCR in event loop
                     loop = asyncio.new_event_loop()
                     asyncio.set_event_loop(loop)
                     try:
                         _, extracted_text = loop.run_until_complete(
                             extract_text_from_pdf_async(
-                                uploaded_file, dpi=150, user_language=user_language
+                                uploaded_file,
+                                dpi=300,
+                                user_language=user_language,
+                                confidence_threshold=confidence_threshold,
                             )
                         )
                     finally:
@@ -139,8 +145,14 @@ async def _convert_pdf_to_docx_sequential(
                             uploaded_file._request, "LANGUAGE_CODE", None
                         )
 
+                    # Get confidence threshold from context
+                    confidence_threshold = context.get("ocr_confidence_threshold", 60)
+
                     _, extracted_text = extract_text_from_pdf(
-                        uploaded_file, dpi=150, user_language=user_language
+                        uploaded_file,
+                        dpi=300,
+                        user_language=user_language,
+                        confidence_threshold=confidence_threshold,
                     )
 
                 # Limit text length to prevent memory issues

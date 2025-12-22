@@ -51,29 +51,8 @@ try:
         result_serializer="json",
         timezone="UTC",
         enable_utc=True,
-        # Task routing - prioritize regular users, minimal premium support
+        # Task routing
         task_routes={
-            # Premium users get dedicated queue but with fallback to regular
-            "pdf_conversion.generic_conversion": {
-                "queue": lambda task, args: (
-                    "premium"
-                    if (
-                        hasattr(task.request, "properties")
-                        and task.request.properties.get("priority", 0) > 5
-                    )
-                    else "regular"
-                )
-            },
-            "src.tasks.pdf_conversion.*": {
-                "queue": lambda task, args: (
-                    "premium"
-                    if (
-                        hasattr(task.request, "properties")
-                        and task.request.properties.get("priority", 0) > 5
-                    )
-                    else "regular"
-                )
-            },
             # Maintenance tasks to separate queue
             "src.tasks.maintenance.*": {"queue": "maintenance"},
             "maintenance.*": {"queue": "maintenance"},
@@ -102,14 +81,17 @@ try:
                 "routing_key": "default",
             },
         },
-        # Worker settings - optimized for regular users on 4GB server
-        worker_prefetch_multiplier=1,  # Process one task at a time
+        # Worker settings - optimized for premium priority
+        worker_prefetch_multiplier=1,  # Process one task at a time (prevents task hoarding)
         worker_max_tasks_per_child=40,  # Reduced for memory stability
-        worker_max_memory_per_child=250000,  # 250MB per worker child (increased for regular)
+        worker_max_memory_per_child=250000,  # 250MB per worker child
         worker_pool="solo",  # Use solo pool for memory efficiency on small servers
         # Task execution settings
-        task_acks_late=True,  # Acknowledge tasks after completion
+        task_acks_late=True,  # Acknowledge tasks after completion (allows task requeue on failure)
         task_reject_on_worker_lost=True,  # Reject tasks if worker dies
+        # Priority settings - premium tasks get higher priority
+        task_default_priority=5,  # Default priority for regular tasks
+        task_inherit_parent_priority=True,  # Child tasks inherit parent priority
         # Result expiration - keep results for 2 hours for async download
         result_expires=7200,  # Results expire after 2 hours
         # Task time limits - reduced for memory stability

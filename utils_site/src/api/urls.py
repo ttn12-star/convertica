@@ -1,17 +1,23 @@
 from django.urls import path
 
 from .async_views import TaskResultAPIView, TaskStatusAPIView
-from .cancel_task_view import cancel_task
+from .cancel_task_view import cancel_task, mark_operation_abandoned
+from .html_convert.batch_views import HTMLToPDFBatchAPIView
+from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
 from .pdf_convert.async_views import (
     PDFToExcelAsyncAPIView,
     PDFToJPGAsyncAPIView,
     PDFToWordAsyncAPIView,
     WordToPDFAsyncAPIView,
 )
+from .pdf_convert.excel_to_pdf.batch_views import ExcelToPDFBatchAPIView
+from .pdf_convert.excel_to_pdf.views import ExcelToPDFAPIView
 from .pdf_convert.jpg_to_pdf.views import JPGToPDFAPIView
 from .pdf_convert.pdf_to_excel.views import PDFToExcelAPIView
 from .pdf_convert.pdf_to_jpg.views import PDFToJPGAPIView
 from .pdf_convert.pdf_to_word.views import PDFToWordAPIView
+from .pdf_convert.ppt_to_pdf.batch_views import PowerPointToPDFBatchAPIView
+from .pdf_convert.ppt_to_pdf.views import PowerPointToPDFAPIView
 from .pdf_convert.word_to_pdf.views import WordToPDFAPIView
 from .pdf_edit.add_page_numbers.views import AddPageNumbersAPIView
 from .pdf_edit.add_watermark.views import AddWatermarkAPIView
@@ -37,9 +43,30 @@ urlpatterns = [
     ),
     # Cancel running task
     path("cancel-task/", cancel_task, name="cancel_task"),
+    path("operation-abandon/", mark_operation_abandoned, name="operation_abandon"),
     # Sync endpoints (for small files / fast operations)
     path("pdf-to-word/", PDFToWordAPIView.as_view(), name="pdf_to_word_api"),
     path("word-to-pdf/", WordToPDFAPIView.as_view(), name="word_to_pdf_api"),
+    path("excel-to-pdf/", ExcelToPDFAPIView.as_view(), name="excel_to_pdf_api"),
+    path("ppt-to-pdf/", PowerPointToPDFAPIView.as_view(), name="ppt_to_pdf_api"),
+    path("html-to-pdf/", HTMLToPDFAPIView.as_view(), name="html_to_pdf_api"),
+    path("url-to-pdf/", URLToPDFAPIView.as_view(), name="url_to_pdf_api"),
+    # Batch endpoints for premium users
+    path(
+        "excel-to-pdf/batch/",
+        ExcelToPDFBatchAPIView.as_view(),
+        name="excel_to_pdf_batch_api",
+    ),
+    path(
+        "ppt-to-pdf/batch/",
+        PowerPointToPDFBatchAPIView.as_view(),
+        name="ppt_to_pdf_batch_api",
+    ),
+    path(
+        "html-to-pdf/batch/",
+        HTMLToPDFBatchAPIView.as_view(),
+        name="html_to_pdf_batch_api",
+    ),
     path("pdf-to-jpg/", PDFToJPGAPIView.as_view(), name="pdf_to_jpg_api"),
     path("jpg-to-pdf/", JPGToPDFAPIView.as_view(), name="jpg_to_pdf_api"),
     path("pdf-to-excel/", PDFToExcelAPIView.as_view(), name="pdf_to_excel_api"),

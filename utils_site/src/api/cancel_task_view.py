@@ -10,6 +10,7 @@ import json
 from celery.result import AsyncResult
 from django.core.cache import cache
 from django.http import JsonResponse
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from rest_framework import status
@@ -88,6 +89,16 @@ def cancel_task(request):
         # Mark cancelled in Redis cache (survives worker restart)
         mark_task_cancelled(task_id)
 
+        # Analytics (best-effort)
+        try:
+            from src.users.models import OperationRun
+
+            OperationRun.objects.filter(task_id=task_id).exclude(
+                status__in=["success", "error", "cancelled"]
+            ).update(status="cancel_requested")
+        except Exception:
+            pass
+
         # Remove from queue (for pending tasks)
         celery_app.control.revoke(task_id, terminate=False)
 
@@ -128,3 +139,40 @@ def cancel_task(request):
             {"error": "Internal server error"},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR,
         )
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def mark_operation_abandoned(request):
+    """Mark an operation as abandoned (client closed/reloaded page).
+
+    Expected JSON body: {"task_id": "..."} or {"request_id": "..."}
+    This is intended to be called via navigator.sendBeacon().
+    """
+    try:
+        data = json.loads(request.body or b"{}")
+        task_id = data.get("task_id")
+        request_id = data.get("request_id")
+
+        if not task_id and not request_id:
+            return JsonResponse(
+                {"error": "task_id or request_id is required"}, status=400
+            )
+
+        try:
+            from src.users.models import OperationRun
+
+            qs = OperationRun.objects.exclude(
+                status__in=["success", "error", "cancelled"]
+            )
+            if task_id:
+                qs = qs.filter(task_id=task_id)
+            if request_id:
+                qs = qs.filter(request_id=request_id)
+            qs.update(status="abandoned", finished_at=timezone.now())
+        except Exception:
+            pass
+
+        return JsonResponse({"status": "ok"}, status=200)
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)

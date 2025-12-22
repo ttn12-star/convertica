@@ -10,7 +10,7 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         if not email:
-            raise ValueError("The Email must be set")
+            raise ValueError(_("The Email must be set"))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -21,9 +21,9 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
+            raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+            raise ValueError(_("Superuser must have is_superuser=True."))
         return self.create_user(email, password, **extra_fields)
 
 
@@ -133,6 +133,11 @@ class User(AbstractUser):
         return status
 
     @property
+    def is_premium_active(self) -> bool:
+        """True only when the user is premium AND the subscription is currently active."""
+        return bool(self.is_premium and self.is_subscription_active())
+
+    @property
     def subscription_status(self):
         """Get current subscription status."""
         if not self.is_premium or not self.subscription_end_date:
@@ -227,8 +232,9 @@ class User(AbstractUser):
         )
 
         # Cache for 5 minutes (300 seconds)
-        cache.set(cache_key, heroes, 300)
-        return heroes
+        heroes_list = list(heroes)
+        cache.set(cache_key, heroes_list, 300)
+        return heroes_list
 
     @classmethod
     def get_top_subscribers(cls, limit=10):
@@ -369,6 +375,100 @@ class Payment(models.Model):
         # Cache for 10 minutes
         cache.set(cache_key, list(history), 600)
         return history
+
+
+class StripeWebhookEvent(models.Model):
+    """Stripe webhook event log for idempotent processing."""
+
+    event_id = models.CharField(max_length=255, unique=True)
+    event_type = models.CharField(max_length=100, blank=True)
+    livemode = models.BooleanField(default=False)
+    processing = models.BooleanField(default=False)
+    processed_at = models.DateTimeField(null=True, blank=True)
+    last_error = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["event_id"]),
+            models.Index(fields=["event_type", "-created_at"]),
+            models.Index(fields=["processed_at"]),
+        ]
+
+    def __str__(self):
+        return f"{self.event_type or 'stripe_event'} - {self.event_id}"
+
+
+class OperationRun(models.Model):
+    """Lightweight operational analytics for conversions and PDF tools."""
+
+    STATUS_CHOICES = [
+        ("started", "started"),
+        ("queued", "queued"),
+        ("running", "running"),
+        ("success", "success"),
+        ("error", "error"),
+        ("cancel_requested", "cancel_requested"),
+        ("cancelled", "cancelled"),
+        ("abandoned", "abandoned"),
+    ]
+
+    conversion_type = models.CharField(max_length=80)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="started")
+
+    user = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="operation_runs",
+    )
+    is_premium = models.BooleanField(default=False)
+
+    request_id = models.CharField(max_length=64, blank=True)
+    task_id = models.CharField(max_length=64, blank=True)
+
+    input_size = models.BigIntegerField(null=True, blank=True)
+    output_size = models.BigIntegerField(null=True, blank=True)
+
+    queued_at = models.DateTimeField(null=True, blank=True)
+    started_at = models.DateTimeField(null=True, blank=True)
+    finished_at = models.DateTimeField(null=True, blank=True)
+
+    duration_ms = models.IntegerField(null=True, blank=True)
+    queue_wait_ms = models.IntegerField(null=True, blank=True)
+
+    error_type = models.CharField(max_length=120, blank=True)
+    error_message = models.TextField(blank=True)
+
+    remote_addr = models.CharField(max_length=64, blank=True)
+    user_agent = models.TextField(blank=True)
+    path = models.CharField(max_length=255, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["conversion_type", "-created_at"]),
+            models.Index(fields=["status", "-created_at"]),
+            models.Index(fields=["user", "-created_at"]),
+            models.Index(fields=["task_id"]),
+            models.Index(fields=["request_id"]),
+            models.Index(fields=["is_premium", "conversion_type", "-created_at"]),
+            # Composite indexes for analytics
+            models.Index(fields=["user", "status", "-created_at"]),  # User dashboard
+            models.Index(
+                fields=["is_premium", "status", "-created_at"]
+            ),  # Premium analytics
+            models.Index(
+                fields=["conversion_type", "status", "-created_at"]
+            ),  # Conversion analytics
+        ]
+
+    def __str__(self):
+        return f"{self.conversion_type} ({self.status})"
 
 
 class UserSubscription(models.Model):

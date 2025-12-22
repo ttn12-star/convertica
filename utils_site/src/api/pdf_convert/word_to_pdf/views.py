@@ -1,10 +1,12 @@
 # views.py
 
+from asgiref.sync import async_to_sync
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
-
-from utils_site.src.tasks.pdf_conversion import convert_word_to_pdf_task
+from rest_framework import status
+from rest_framework.response import Response
+from src.tasks.pdf_conversion import convert_word_to_pdf_task
 
 from ...base_views import BaseConversionAPIView
 from .decorators import word_to_pdf_docs
@@ -35,16 +37,27 @@ class WordToPDFAPIView(BaseConversionAPIView):
         """Get the Celery task function to execute."""
         return convert_word_to_pdf_task
 
-    @word_to_pdf_docs()
-    async def post(self, request: HttpRequest):
-        """Handle POST request with Swagger documentation."""
-        return await self.post_async(request)
+    def get(self, request: HttpRequest):
+        """Handle GET request - return method not allowed."""
+        return Response(
+            {"error": "GET method not allowed. Use POST to convert files."},
+            status=status.HTTP_405_METHOD_NOT_ALLOWED,
+        )
 
-    async def perform_conversion(
+    @word_to_pdf_docs()
+    def post(self, request: HttpRequest):
+        """Handle POST request with Swagger documentation."""
+        return async_to_sync(self.post_async)(request)
+
+    def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform Word to PDF conversion."""
-        docx_path, pdf_path = await convert_word_to_pdf(
+        from src.api.pdf_convert.word_to_pdf.utils import (
+            convert_word_to_pdf as convert_word_to_pdf_sync,
+        )
+
+        docx_path, pdf_path = convert_word_to_pdf_sync(
             uploaded_file, suffix="_convertica"
         )
         return docx_path, pdf_path

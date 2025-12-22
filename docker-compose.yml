@@ -99,7 +99,7 @@ services:
              python manage.py compilemessages &&
              python manage.py migrate &&
              mkdir -p /app/media/async_temp &&
-             gunicorn --bind 0.0.0.0:8000 --workers 2 --threads 2 --timeout 180 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info utils_site.wsgi:application"
+             daphne -b 0.0.0.0 -p 8000 utils_site.asgi:application"
     volumes:
       - ./staticfiles:/app/staticfiles
       - ./media:/app/media
@@ -208,7 +208,9 @@ services:
     networks:
       - convertica_network
     restart: unless-stopped
-    profiles: ["premium"]  # Only start with --profile premium
+
+    profiles: ["premium"]
+
 
   # Celery Beat (scheduled tasks)
   celery-beat:

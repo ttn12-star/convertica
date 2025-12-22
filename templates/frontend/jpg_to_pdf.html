@@ -99,6 +99,24 @@
         </div>
       </div>
 
+        <!-- Quality Settings -->
+      <div class="mb-6 bg-gray-50 rounded-lg p-4 border border-gray-200">
+        <label class="block text-sm font-semibold text-gray-700 mb-3" for="qualitySelect">
+          {% trans "Image Quality (JPEG)" %}
+        </label>
+        <select id="qualitySelect"
+                name="quality"
+                class="w-full sm:w-auto min-w-[200px] px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+          <option value="60">60 - {% trans "Low quality (smaller file)" %}</option>
+          <option value="75">75 - {% trans "Medium quality (balanced)" %}</option>
+          <option value="85" selected>85 - {% trans "High quality (recommended)" %}</option>
+          <option value="95">95 - {% trans "Maximum quality (larger file)" %}</option>
+        </select>
+        <p class="mt-2 text-xs text-gray-500">
+          {% trans "Higher quality = better image clarity but larger PDF file size. 85 is recommended for most uses." %}
+        </p>
+      </div>
+
         <!-- Submit Button -->
       <div class="text-center mt-8">
         <button type="submit"
@@ -135,6 +153,7 @@
         <li>{% trans "Click the button above to select one or more images, or drag and drop them into the zone below" %}</li>
         <li>{% trans "You can add more images by clicking 'Add more images' or by selecting files again" %}</li>
         <li>{% trans "Remove unwanted images by clicking the X button" %}</li>
+        <li>{% trans "Select image quality (60-95): higher quality = better clarity but larger file size. 85 is recommended." %}</li>
         <li>{% trans "Click the convert button to combine all images into one PDF" %}</li>
         <li>{% trans "Wait for the conversion to complete" %}</li>
         <li>{% trans "Download your converted PDF file" %}</li>

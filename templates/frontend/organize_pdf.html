@@ -3,11 +3,15 @@
 
 {% block extra_head %}
   <link rel="preload"
-        href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+        href="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
         as="script"
         crossorigin="anonymous">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
+  <script
+    src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
+    crossorigin="anonymous"
+    onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
+  </script>
 {% endblock %}
 
 {% block edit_options %}
@@ -27,6 +31,8 @@
 
   <script>
     window.API_URL = "{{ api_url|escapejs }}";
+    window.PDFJS_LOCAL_PDF = "{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}";
+    window.PDFJS_LOCAL_WORKER = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
     // Organize PDF translations
     window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
     window.SELECT_PDF_FILE = "{% filter escapejs %}{% trans 'Please select a PDF file.' %}{% endfilter %}";
@@ -34,7 +40,11 @@
     window.FAILED_TO_LOAD_PDF = "{% filter escapejs %}{% trans 'Failed to load PDF file. Please try again.' %}{% endfilter %}";
     window.ORGANIZING = "{% filter escapejs %}{% trans 'Organizing...' %}{% endfilter %}";
     window.FAILED_TO_ORGANIZE = "{% filter escapejs %}{% trans 'Failed to organize PDF' %}{% endfilter %}";
-    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: 50). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process files without limits!' %}{% endfilter %}";
+    window.PREMIUM_LINK = "/users/premium/";
+    /* eslint-disable */
+    window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
+    /* eslint-enable */
     window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>

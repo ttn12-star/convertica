@@ -7,7 +7,7 @@
 {% block keywords %}{{ meta_keywords }}{% endblock %}
 {% block og_title %}{{ meta_title|default:article.get_title }}{% endblock %}
 {% block og_description %}{{ meta_description|default:article.get_excerpt }}{% endblock %}
-{% block og_image %}{% if article.featured_image %}{{ request.scheme }}://{{ request.get_host }}{{ article.featured_image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_image %}{% if article.featured_image %}{{ site_base_url }}{{ article.featured_image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 
 {% block structured_data %}
   <script type="application/ld+json">
@@ -16,7 +16,7 @@
       "@type": "BlogPosting",
       "headline": "{{ article.get_title|escapejs }}",
       "description": "{{ article.get_excerpt|escapejs }}",
-      "image": "{% if article.featured_image %}{{ request.scheme }}://{{ request.get_host }}{{ article.featured_image.url }}{% endif %}",
+      "image": "{% if article.featured_image %}{{ site_base_url }}{{ article.featured_image.url }}{% endif %}",
       "datePublished": "{{ article.published_at|date:'c' }}",
       "dateModified": "{{ article.updated_at|date:'c' }}",
       "author": {
@@ -28,12 +28,12 @@
         "name": "Convertica",
         "logo": {
           "@type": "ImageObject",
-          "url": "{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %}"
+          "url": "{{ site_base_url }}{% static 'images/logo.png' %}"
         }
       },
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "{{ request.scheme }}://{{ request.get_host }}{{ article.get_absolute_url }}"
+        "@id": "{{ site_current_url }}"
       },
       "inLanguage": "{{ language_code }}"
     }
@@ -244,7 +244,9 @@
               <div class="mb-10 -mx-4 sm:mx-0 rounded-2xl overflow-hidden shadow-2xl animate-fade-in-up">
                 <img src="{{ article.featured_image.url }}"
                      alt="{{ article.get_title }}"
-                     class="w-full h-auto object-cover">
+                     class="w-full h-auto object-cover"
+                     loading="eager"
+                     decoding="async">
               </div>
             {% endif %}
 
@@ -294,7 +296,9 @@
                         <div class="w-full h-48 overflow-hidden">
                           <img src="{{ related.featured_image.url }}"
                                alt="{{ related.get_title }}"
-                               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                               loading="lazy"
+                               decoding="async">
                         </div>
                       {% else %}
                         <div class="w-full h-48 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center">

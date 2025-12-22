@@ -17,12 +17,12 @@
       "@type": "ContactPage",
       "name": "{% trans "Contact Us - Convertica" %}",
       "description": "{{ page_description }}",
-      "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+      "url": "{{ site_current_url }}",
       "mainEntity": {
         "@type": "Organization",
         "name": "Convertica",
         "email": "info@convertica.net",
-        "url": "{{ request.scheme }}://{{ request.get_host }}"
+        "url": "{{ site_base_url }}"
       },
       "inLanguage": "{{ LANGUAGE_CODE }}"
     }

@@ -71,7 +71,9 @@
                   <div class="w-full h-48 overflow-hidden">
                     <img src="{{ article.featured_image.url }}"
                          alt="{{ article.get_title }}"
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                         loading="lazy"
+                         decoding="async">
                   </div>
                 {% else %}
                   <div class="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">

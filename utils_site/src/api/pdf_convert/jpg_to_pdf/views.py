@@ -1,27 +1,25 @@
 # views.py
-import os
 
+import os
+import tempfile
+
+from asgiref.sync import async_to_sync
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
-from django.http import FileResponse, HttpRequest
+from django.http import HttpRequest, HttpResponse
+from PIL import Image
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.utils import ImageReader
+from reportlab.pdfgen import canvas
 from rest_framework import status
 from rest_framework.response import Response
-
-from utils_site.src.tasks.pdf_conversion import generic_conversion_task
+from src.tasks.pdf_conversion import generic_conversion_task
 
 from ...base_views import BaseConversionAPIView
-from ...logging_utils import (
-    build_request_context,
-    get_logger,
-    log_conversion_start,
-    log_conversion_success,
-    log_validation_error,
-)
+from ...logging_utils import build_request_context
 from .decorators import jpg_to_pdf_docs
 from .serializers import JPGToPDFSerializer
-from .utils import convert_jpg_to_pdf, convert_multiple_jpg_to_pdf
-
-logger = get_logger(__name__)
+from .utils import convert_jpg_to_pdf
 
 
 class JPGToPDFAPIView(BaseConversionAPIView):
@@ -52,8 +50,15 @@ class JPGToPDFAPIView(BaseConversionAPIView):
         """Get the Celery task function to execute."""
         return generic_conversion_task
 
+    def get(self, request: HttpRequest):
+        """Handle GET request - return method not allowed."""
+        return Response(
+            {"error": "GET method not allowed. Use POST to convert files."},
+            status=status.HTTP_405_METHOD_NOT_ALLOWED,
+        )
+
     @jpg_to_pdf_docs()
-    async def post(self, request: HttpRequest):
+    def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation.
 
         Supports multiple files - all images will be combined into one PDF.
@@ -69,99 +74,112 @@ class JPGToPDFAPIView(BaseConversionAPIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # For multiple files, use the original sync method for now
-        # TODO: Convert to async when multiple file async conversion is implemented
         if len(uploaded_files) == 1:
-            # Single file - use optimized async method
-            return await self.post_async(request)
-        else:
-            # Multiple files - fall back to sync method
-            return super().post(request)
+            return async_to_sync(self.post_async)(request)
 
-        # Validate each file using serializer
-        serializer_class = self.get_serializer_class()
-        validation_errors = []
-
-        for idx, uploaded_file in enumerate(uploaded_files):
-            serializer = serializer_class(data={self.FILE_FIELD_NAME: uploaded_file})
-            if not serializer.is_valid():
-                validation_errors.append({f"file_{idx + 1}": serializer.errors})
-
-        if validation_errors:
-            context = build_request_context(request)
-            log_validation_error(logger, {"files": validation_errors}, context)
-            return Response(
-                {"error": "File validation failed", "details": validation_errors},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        # Build context for logging
-        context = build_request_context(request)
-        context.update(
-            {
-                "num_files": len(uploaded_files),
-                "total_size": sum(f.size for f in uploaded_files),
-            }
-        )
-
-        # Validate all files (basic validation)
-        for idx, uploaded_file in enumerate(uploaded_files):
-            validation_error = self.validate_file_basic(uploaded_file, context)
-            if validation_error:
-                return validation_error
-
-        tmp_dir = None
-        start_time = None
-
+        # Get quality parameter from request (default 85)
         try:
-            # Log conversion start
-            start_time = log_conversion_start(logger, self.CONVERSION_TYPE, context)
+            quality_value = int(request.data.get("quality", 85))
+            # Validate range
+            quality_value = max(60, min(95, quality_value))
+        except (ValueError, TypeError):
+            quality_value = 85
 
-            # Perform conversion (single or multiple)
-            if len(uploaded_files) == 1:
-                # Single file - use optimized async function
-                input_path, output_path = await convert_jpg_to_pdf(
-                    uploaded_files[0], suffix="_convertica", use_optimized=True
-                )
-            else:
-                # Multiple files - use new function (will be updated to async later)
-                input_path, output_path = convert_multiple_jpg_to_pdf(
-                    uploaded_files, suffix="_convertica"
-                )
+        tmp_dir = tempfile.mkdtemp(prefix="jpg2pdf_multi_")
+        try:
+            pdf_path = os.path.join(tmp_dir, "merged_convertica.pdf")
+            c = canvas.Canvas(pdf_path, pagesize=A4)
+            page_width, page_height = A4
+            margin = 72
+            available_width = page_width - (2 * margin)
+            available_height = page_height - (2 * margin)
 
-            tmp_dir = os.path.dirname(input_path)
+            for idx, uploaded_file in enumerate(uploaded_files):
+                safe_name = os.path.basename(uploaded_file.name or f"image_{idx}.jpg")
+                image_path = os.path.join(tmp_dir, safe_name)
+                with open(image_path, "wb") as f:
+                    for chunk in uploaded_file.chunks():
+                        f.write(chunk)
 
-            # Stream file
-            output_filename = os.path.basename(output_path)
-            response = FileResponse(
-                open(output_path, "rb"), as_attachment=True, filename=output_filename
+                # For high quality (>= 90), use original image directly if possible
+                with Image.open(image_path) as img:
+                    needs_conversion = img.mode in ("RGBA", "LA", "P")
+
+                    if quality_value >= 90 and not needs_conversion:
+                        # Use original image directly without recompression
+                        use_path = image_path
+                        img_width, img_height = img.size
+                    else:
+                        # Convert/optimize image with specified quality
+                        optimized_path = os.path.join(tmp_dir, f"opt_{safe_name}")
+                        if needs_conversion:
+                            img = img.convert("RGB")
+
+                        # For high quality, disable chroma subsampling
+                        if quality_value >= 90:
+                            img.save(
+                                optimized_path,
+                                "JPEG",
+                                quality=quality_value,
+                                subsampling=0,
+                                optimize=False,
+                            )
+                        else:
+                            img.save(
+                                optimized_path,
+                                "JPEG",
+                                quality=quality_value,
+                                optimize=True,
+                            )
+
+                        use_path = optimized_path
+                        img_width, img_height = img.size
+
+                width_ratio = available_width / img_width
+                height_ratio = available_height / img_height
+                scale = min(width_ratio, height_ratio)
+                scaled_width = img_width * scale
+                scaled_height = img_height * scale
+                x = margin + (available_width - scaled_width) / 2
+                y = margin + (available_height - scaled_height) / 2
+
+                c.drawImage(ImageReader(use_path), x, y, scaled_width, scaled_height)
+                if idx < len(uploaded_files) - 1:
+                    c.showPage()
+
+            c.save()
+
+            with open(pdf_path, "rb") as fp:
+                pdf_bytes = fp.read()
+
+            response = HttpResponse(pdf_bytes, content_type="application/pdf")
+            response["Content-Disposition"] = (
+                'attachment; filename="merged_convertica.pdf"'
             )
-            response["Content-Type"] = self.get_output_content_type(output_path)
-
-            # Log success
-            log_conversion_success(
-                logger,
-                self.CONVERSION_TYPE,
-                context,
-                start_time,
-                output_filename=output_filename,
-                output_size_mb=round(os.path.getsize(output_path) / (1024 * 1024), 2),
-            )
-
             return response
-
-        except Exception as e:
-            return self.handle_conversion_error(e, context, start_time)
-
         finally:
-            self.cleanup_temp_files(tmp_dir, context)
+            try:
+                import shutil
 
-    def perform_conversion(
+                shutil.rmtree(tmp_dir, ignore_errors=True)
+            except Exception:
+                pass
+
+    async def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform JPG to PDF conversion.
 
         This method is kept for compatibility but is not used in the new implementation.
         """
-        image_path, pdf_path = convert_jpg_to_pdf(uploaded_file, suffix="_convertica")
-        return image_path, pdf_path
+        # Extract quality parameter (default 85)
+        try:
+            quality_value = int(kwargs.get("quality", 85))
+            # Validate range
+            quality_value = max(60, min(95, quality_value))
+        except (ValueError, TypeError):
+            quality_value = 85
+
+        return await convert_jpg_to_pdf(
+            uploaded_file, suffix="_convertica", quality=quality_value
+        )

@@ -17,11 +17,11 @@
       "@type": "PrivacyPolicy",
       "name": "{% trans "Privacy Policy - Convertica" %}",
       "description": "{{ page_description }}",
-      "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+      "url": "{{ site_current_url }}",
       "publisher": {
         "@type": "Organization",
         "name": "Convertica",
-        "url": "{{ request.scheme }}://{{ request.get_host }}"
+        "url": "{{ site_base_url }}"
       },
       "datePublished": "2024-01-01",
       "dateModified": "{% now "Y-m-d" %}",

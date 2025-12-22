@@ -17,7 +17,7 @@
       "@type": "WebApplication",
       "name": "{{ page_title }}",
       "description": "{{ page_description }}",
-      "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+      "url": "{{ site_current_url }}",
       "applicationCategory": "UtilityApplication",
       "operatingSystem": "Any",
       "offers": {
@@ -33,13 +33,13 @@
             "@type": "ListItem",
             "position": 1,
             "name": "{% trans 'Home' %}",
-            "item": "{{ request.scheme }}://{{ request.get_host }}/"
+            "item": "{{ site_base_url }}/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "{{ header_text }}",
-            "item": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}"
+            "item": "{{ site_current_url }}"
           }
         ]
       }
@@ -212,7 +212,7 @@
     window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: 50). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process files without limits!' %}{% endfilter %}";
     window.PREMIUM_LINK = "/users/premium/";
     /* eslint-disable */
-    window.IS_PREMIUM = {{ is_premium|yesno:"true,false" }};
+    window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
     /* eslint-enable */
     window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Converting your file...' %}{% endfilter %}";
     window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, this may take a few moments' %}{% endfilter %}";
@@ -225,11 +225,15 @@
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
 {# External JS files #}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script
+    src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
+    crossorigin="anonymous"
+    onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
+  </script>
   <script>
     // Set PDF.js worker
     if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
     }
   </script>
   <script src="{% static 'js/utils.js' %}"></script>

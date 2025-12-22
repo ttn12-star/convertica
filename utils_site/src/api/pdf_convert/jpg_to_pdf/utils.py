@@ -17,7 +17,7 @@ logger = get_logger(__name__)
 
 
 async def convert_jpg_to_pdf(
-    uploaded_file: UploadedFile, suffix: str = "_convertica"
+    uploaded_file: UploadedFile, suffix: str = "_convertica", **kwargs
 ) -> tuple[str, str]:
     """
     Convert JPG to PDF using adaptive optimization.
@@ -25,8 +25,11 @@ async def convert_jpg_to_pdf(
     Args:
         uploaded_file: Uploaded JPG file
         suffix: Suffix for output filename
+        **kwargs: Additional parameters (e.g., quality)
     """
-    return await optimization_manager.convert_jpg_to_pdf(uploaded_file, suffix=suffix)
+    return await optimization_manager.convert_jpg_to_pdf(
+        uploaded_file, suffix=suffix, **kwargs
+    )
 
 
 async def convert_multiple_jpg_to_pdf(
@@ -47,6 +50,8 @@ async def _convert_jpg_to_pdf_sequential(
     suffix: str = "_convertica",
     tmp_dir: str = None,
     context: dict = None,
+    quality: int = 85,
+    **kwargs,
 ) -> tuple[str, str]:
     """Sequential JPG to PDF conversion (fallback implementation)."""
     if tmp_dir is None:
@@ -67,11 +72,30 @@ async def _convert_jpg_to_pdf_sequential(
         for chunk in uploaded_file.chunks():
             f.write(chunk)
 
-    # Process image and create PDF
+    # Process image with quality control
+    processed_path = image_path
     with Image.open(image_path) as image:
-        # Convert to RGB if necessary
-        if image.mode in ("RGBA", "LA", "P"):
-            image = image.convert("RGB")
+        needs_conversion = image.mode in ("RGBA", "LA", "P")
+
+        # For high quality (>= 90) and RGB images, use original
+        if quality >= 90 and not needs_conversion:
+            processed_path = image_path
+        else:
+            # Convert/optimize image with specified quality
+            if needs_conversion:
+                image = image.convert("RGB")
+
+            processed_path = os.path.join(tmp_dir, f"processed_{safe_name}")
+            if quality >= 90:
+                image.save(
+                    processed_path,
+                    "JPEG",
+                    quality=quality,
+                    subsampling=0,
+                    optimize=False,
+                )
+            else:
+                image.save(processed_path, "JPEG", quality=quality, optimize=True)
 
         # Get image dimensions
         img_width, img_height = image.size
@@ -97,7 +121,7 @@ async def _convert_jpg_to_pdf_sequential(
         y = margin + (available_height - scaled_height) / 2
 
         # Draw image
-        c.drawImage(ImageReader(image_path), x, y, scaled_width, scaled_height)
+        c.drawImage(ImageReader(processed_path), x, y, scaled_width, scaled_height)
         c.save()
 
     return image_path, pdf_path

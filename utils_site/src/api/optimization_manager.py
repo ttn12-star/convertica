@@ -3,6 +3,8 @@ Central optimization manager for Convertica.
 Clean, organized system for adaptive resource management.
 """
 
+import asyncio
+import inspect
 import os
 
 import psutil
@@ -11,6 +13,17 @@ from django.core.files.uploadedfile import UploadedFile
 from .logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+
+def _filter_kwargs_for_callable(func, provided_kwargs: dict) -> dict:
+    sig = inspect.signature(func)
+    params = sig.parameters
+    accepts_var_kw = any(
+        p.kind == inspect.Parameter.VAR_KEYWORD for p in params.values()
+    )
+    if accepts_var_kw:
+        return provided_kwargs
+    return {k: v for k, v in provided_kwargs.items() if k in params}
 
 
 class OptimizationManager:
@@ -121,18 +134,42 @@ class OptimizationManager:
         self, uploaded_file: UploadedFile, **kwargs
     ) -> tuple[str, str]:
         """Adaptive PDF to JPG conversion."""
-        if self.should_optimize("pdf_to_jpg", uploaded_file.size / (1024 * 1024)):
+        # Skip optimization for Celery tasks to avoid conflicts
+        if kwargs.get("is_celery_task", False):
+            from .pdf_convert.pdf_to_jpg.utils import convert_pdf_to_jpg_sequential
+
+            # Remove Celery-specific kwargs
+            filtered_kwargs = {k: v for k, v in kwargs.items() if k != "is_celery_task"}
+            filtered_kwargs = _filter_kwargs_for_callable(
+                convert_pdf_to_jpg_sequential, filtered_kwargs
+            )
+            return await asyncio.to_thread(
+                convert_pdf_to_jpg_sequential, uploaded_file, **filtered_kwargs
+            )
+
+        # Try optimized version if available
+        try:
             from .pdf_convert.pdf_to_jpg_optimized import convert_pdf_to_jpg_optimized
 
-            try:
-                return await convert_pdf_to_jpg_optimized(uploaded_file, **kwargs)
-            except Exception as e:
-                logger.warning(f"Optimized conversion failed: {e}")
+            if self.should_optimize("pdf_to_jpg", uploaded_file.size / (1024 * 1024)):
+                try:
+                    return await convert_pdf_to_jpg_optimized(uploaded_file, **kwargs)
+                except Exception as e:
+                    logger.warning(f"Optimized conversion failed: {e}")
+        except ImportError:
+            logger.debug("Optimized PDF to JPG module not available, using fallback")
 
         # Fallback
-        from .pdf_convert.pdf_to_jpg.utils import _convert_pdf_to_jpg_sequential
+        from .pdf_convert.pdf_to_jpg.utils import convert_pdf_to_jpg_sequential
 
-        return await _convert_pdf_to_jpg_sequential(uploaded_file, **kwargs)
+        # Remove Celery-specific kwargs
+        filtered_kwargs = {k: v for k, v in kwargs.items() if k != "is_celery_task"}
+        filtered_kwargs = _filter_kwargs_for_callable(
+            convert_pdf_to_jpg_sequential, filtered_kwargs
+        )
+        return await asyncio.to_thread(
+            convert_pdf_to_jpg_sequential, uploaded_file, **filtered_kwargs
+        )
 
     async def convert_jpg_to_pdf(
         self, uploaded_file: UploadedFile, **kwargs
@@ -145,7 +182,7 @@ class OptimizationManager:
             )
 
             return await _convert_jpg_to_pdf_sync(
-                uploaded_file, kwargs.get("suffix", "_convertica")
+                uploaded_file, suffix=kwargs.get("suffix", "_convertica"), **kwargs
             )
 
         if self.should_optimize("jpg_to_pdf", uploaded_file.size / (1024 * 1024)):
@@ -198,7 +235,10 @@ class OptimizationManager:
         if kwargs.get("is_celery_task", False):
             from .pdf_convert.word_to_pdf_optimized import convert_word_to_pdf_optimized
 
-            return await convert_word_to_pdf_optimized(uploaded_file, **kwargs)
+            filtered_kwargs = _filter_kwargs_for_callable(
+                convert_word_to_pdf_optimized, kwargs
+            )
+            return await convert_word_to_pdf_optimized(uploaded_file, **filtered_kwargs)
 
         # Temporarily disable optimized version due to validation issues
         # if self.should_optimize("word_to_pdf", uploaded_file.size / (1024*1024)):

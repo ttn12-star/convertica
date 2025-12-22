@@ -1,10 +1,9 @@
-# utils.py
 import os
-import tempfile
+from io import BytesIO
 
+import fitz
 from django.core.files.uploadedfile import UploadedFile
-from PyPDF2 import PdfReader, PdfWriter
-from PyPDF2.generic import DictionaryObject
+from PIL import Image
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -12,14 +11,8 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_pdf_file,
-)
 from ...logging_utils import get_logger
-from ...pdf_utils import repair_pdf
+from ...pdf_processing import BasePDFProcessor
 
 logger = get_logger(__name__)
 
@@ -39,305 +32,211 @@ def compress_pdf(
     Returns:
         Tuple of (input_path, output_path)
     """
-    tmp_dir = None
-    safe_name = sanitize_filename(os.path.basename(uploaded_file.name))
     context = {
         "function": "compress_pdf",
-        "input_filename": safe_name,
+        "input_filename": os.path.basename(uploaded_file.name),
         "input_size": uploaded_file.size,
         "compression_level": compression_level,
     }
 
     try:
-        tmp_dir = tempfile.mkdtemp(prefix="compress_pdf_")
-        context["tmp_dir"] = tmp_dir
+        processor = BasePDFProcessor(
+            uploaded_file,
+            tmp_prefix="compress_pdf_",
+            required_mb=300,
+            context=context,
+        )
+        pdf_path = processor.prepare()
 
-        disk_check, disk_error = check_disk_space(tmp_dir, required_mb=300)
-        if not disk_check:
-            raise StorageError(disk_error or "Insufficient disk space", context=context)
-
-        pdf_path = os.path.join(tmp_dir, safe_name)
-        base = os.path.splitext(safe_name)[0]
+        base = os.path.splitext(os.path.basename(pdf_path))[0]
         output_name = f"{base}_compressed{suffix}.pdf"
-        output_path = os.path.join(tmp_dir, output_name)
+        output_path = os.path.join(processor.tmp_dir, output_name)
+        context["output_path"] = output_path
 
-        context.update({"pdf_path": pdf_path, "output_path": output_path})
-
-        # Write uploaded file
-        try:
-            with open(pdf_path, "wb") as f:
-                for chunk in uploaded_file.chunks():
-                    f.write(chunk)
-        except OSError as err:
-            raise StorageError(f"Failed to write PDF: {err}", context=context) from err
-
-        # Validate PDF
-        is_valid, validation_error = validate_pdf_file(pdf_path, context)
-        if not is_valid:
-            if "password" in (validation_error or "").lower():
-                raise EncryptedPDFError(
-                    validation_error or "PDF is password-protected", context=context
-                )
-            raise InvalidPDFError(
-                validation_error or "Invalid PDF file", context=context
-            )
-
-        # Repair PDF to handle potentially corrupted files
-        pdf_path = repair_pdf(pdf_path)
-
-        # Compress PDF
-        try:
-            logger.info(
-                "Starting PDF compression", extra={**context, "event": "compress_start"}
-            )
-
-            reader = PdfReader(pdf_path)
-            writer = PdfWriter()
-
-            total_pages = len(reader.pages)
-            context["total_pages"] = total_pages
-
-            # Copy all pages with aggressive compression
-            for page_num, page in enumerate(reader.pages):
-                # Compress page content streams multiple times for better compression
-                try:
-                    # First compression pass - always compress
-                    page.compress_content_streams()
-
-                    # For medium and high compression, try additional passes
-                    if compression_level in ["medium", "high"]:
-                        # Try to compress again (some streams may not compress on first pass)
-                        try:
-                            page.compress_content_streams()
-                        except Exception:
-                            pass  # Ignore if already compressed
-
-                    # For high compression, try even more aggressive optimization
-                    if compression_level == "high":
-                        # Third compression pass for maximum compression
-                        try:
-                            page.compress_content_streams()
-                        except Exception:
-                            pass
-
-                        # Try to optimize page resources (fonts, images, etc.)
-                        try:
-                            if "/Resources" in page:
-                                resources = page["/Resources"]
-                                # Remove unused resources if possible
-                                # This is a conservative approach - we don't want to break the PDF
-                                if isinstance(resources, DictionaryObject):
-                                    # Keep resources but optimize them
-                                    pass
-                        except Exception:
-                            pass  # Non-critical optimization
-
-                except Exception as e:
-                    logger.warning(
-                        "Failed to compress page %d: %s",
-                        page_num + 1,
-                        e,
-                        extra={**context, "page": page_num + 1},
-                    )
-
-                # Add page to writer
-                writer.add_page(page)
-
-            # Optimize based on compression level
-            if compression_level == "high":
-                # High compression: remove links, annotations, bookmarks, and optimize metadata
-                writer.remove_links = True
-                writer.remove_annotations = True
-                # Try to remove bookmarks/outline if possible
-                try:
-                    if hasattr(writer, "remove_outline"):
-                        writer.remove_outline = True
-                except Exception:
-                    pass
-
-                # Try to remove metadata for maximum compression
-                try:
-                    # Remove document metadata if possible
-                    if hasattr(writer, "remove_metadata"):
-                        writer.remove_metadata = True
-                except Exception:
-                    pass
-
-            elif compression_level == "medium":
-                # Medium compression: remove links, try to remove some annotations
-                writer.remove_links = True
-                writer.remove_annotations = False  # Keep annotations but compress them
-            else:  # low
-                # Low compression: keep everything, just compress streams
-                writer.remove_links = False
-                writer.remove_annotations = False
-
-            # Always keep images (we compress them via compress_content_streams)
-            writer.remove_images = False
-
-            # Write compressed PDF with optimization
-            with open(output_path, "wb") as output_file:
-                writer.write(output_file)
-
-            # For medium and high compression, try to re-read and re-compress for additional optimization
-            # This can sometimes achieve better compression ratios
-            if compression_level in ["medium", "high"]:
-                try:
-                    initial_size = os.path.getsize(output_path)
-                    max_passes = 3 if compression_level == "high" else 2
-
-                    current_path = output_path
-                    best_size = initial_size
-                    best_path = output_path
-
-                    # Try multiple compression passes
-                    for pass_num in range(1, max_passes + 1):
-                        try:
-                            # Re-read the compressed PDF and compress again
-                            temp_reader = PdfReader(current_path)
-                            temp_writer = PdfWriter()
-
-                            for page in temp_reader.pages:
-                                try:
-                                    # Compress each page again
-                                    page.compress_content_streams()
-                                    # Try additional passes for high compression
-                                    if compression_level == "high":
-                                        try:
-                                            page.compress_content_streams()
-                                        except Exception:
-                                            pass
-                                except Exception:
-                                    pass
-                                temp_writer.add_page(page)
-
-                            temp_writer.remove_links = True
-                            if compression_level == "high":
-                                temp_writer.remove_annotations = True
-
-                            # Write to a temporary file
-                            temp_output = current_path + f".pass{pass_num}.tmp"
-                            with open(temp_output, "wb") as temp_file:
-                                temp_writer.write(temp_file)
-
-                            temp_size = os.path.getsize(temp_output)
-
-                            # Keep this version if it's better (at least 0.5% smaller)
-                            if temp_size < best_size * 0.995:
-                                # Clean up previous temporary files
-                                if best_path != output_path and os.path.exists(
-                                    best_path
-                                ):
-                                    try:
-                                        os.remove(best_path)
-                                    except Exception:
-                                        pass
-                                best_size = temp_size
-                                best_path = temp_output
-                                current_path = temp_output
-                                logger.debug(
-                                    "Compression pass %d improved size: %d bytes",
-                                    pass_num,
-                                    temp_size,
-                                    extra={
-                                        **context,
-                                        "event": f"pass_{pass_num}_success",
-                                    },
-                                )
-                            else:
-                                # Remove this temporary file as it didn't help
-                                os.remove(temp_output)
-                                logger.debug(
-                                    "Compression pass %d did not improve size",
-                                    pass_num,
-                                    extra={
-                                        **context,
-                                        "event": f"pass_{pass_num}_skipped",
-                                    },
-                                )
-                                break  # No improvement, stop trying
-
-                        except Exception as e:
-                            logger.debug(
-                                "Compression pass %d failed (non-critical): %s",
-                                pass_num,
-                                e,
-                                extra={**context, "event": f"pass_{pass_num}_failed"},
-                            )
-                            break  # Stop trying if pass fails
-
-                    # Replace original if we found a better version
-                    if best_path != output_path and best_size < initial_size * 0.995:
-                        os.replace(best_path, output_path)
-                        logger.debug(
-                            "Multi-pass compression improved size: %d -> %d bytes (%.2f%%)",
-                            initial_size,
-                            best_size,
-                            ((initial_size - best_size) / initial_size * 100),
-                            extra={**context, "event": "multi_pass_success"},
-                        )
-                    elif best_path != output_path:
-                        # Clean up temporary file
-                        try:
-                            os.remove(best_path)
-                        except Exception:
-                            pass
-
-                except Exception as e:
-                    logger.debug(
-                        "Multi-pass compression failed (non-critical): %s",
-                        e,
-                        extra={**context},
-                    )
-                    # Continue with original compressed file
-
-            logger.debug(
-                "Compression completed", extra={**context, "event": "compress_complete"}
-            )
-
-        except Exception as e:
-            error_context = {
-                **context,
-                "error_type": type(e).__name__,
-                "error_message": str(e),
+        def _save_kwargs(level: str) -> dict:
+            if level == "high":
+                return {
+                    "garbage": 4,
+                    "deflate": True,
+                    "clean": True,
+                    "linear": False,
+                    "deflate_images": True,
+                    "deflate_fonts": True,
+                    "compression_effort": 9,
+                }
+            if level == "medium":
+                return {
+                    "garbage": 2,
+                    "deflate": True,
+                    "clean": True,
+                    "linear": False,
+                    "deflate_images": True,
+                    "deflate_fonts": True,
+                    "compression_effort": 6,
+                }
+            return {
+                "garbage": 1,
+                "deflate": True,
+                "clean": False,
+                "linear": False,
+                "deflate_images": False,
+                "deflate_fonts": False,
+                "compression_effort": 2,
             }
-            logger.error(
-                "PDF compression failed",
-                extra={**error_context, "event": "compress_error"},
-                exc_info=True,
-            )
-            raise ConversionError(
-                f"Failed to compress PDF: {e}", context=error_context
-            ) from e
 
-        # Validate output
-        is_valid, validation_error = validate_output_file(
-            output_path, min_size=1000, context=context
+        def _save_with_fallback(
+            doc: fitz.Document, output_path: str, save_kwargs: dict
+        ) -> None:
+            """Save with best-effort compatibility across PyMuPDF versions."""
+
+            try:
+                doc.save(output_path, **save_kwargs)
+                return
+            except TypeError:
+                pass
+
+            # Older PyMuPDF versions may not support these kwargs.
+            reduced = dict(save_kwargs)
+            for key in [
+                "deflate_images",
+                "deflate_fonts",
+                "compression_effort",
+                "linear",
+            ]:
+                reduced.pop(key, None)
+            doc.save(output_path, **reduced)
+
+        def _jpeg_quality(level: str) -> int:
+            if level == "high":
+                return 40
+            if level == "medium":
+                return 60
+            return 80
+
+        def _jpeg_max_dim(level: str) -> int:
+            if level == "high":
+                return 1600
+            if level == "medium":
+                return 2400
+            return 4000
+
+        def _recompress_jpegs(doc: fitz.Document, level: str) -> None:
+            if level not in {"medium", "high"}:
+                return
+
+            quality = _jpeg_quality(level)
+            max_dim = _jpeg_max_dim(level)
+            seen = set()
+
+            for page in doc:
+                for img in page.get_images(full=True):
+                    xref = img[0]
+                    if xref in seen:
+                        continue
+                    seen.add(xref)
+
+                    try:
+                        info = doc.extract_image(xref)
+                    except Exception:
+                        continue
+
+                    ext = (info.get("ext") or "").lower()
+                    if ext not in {"jpeg", "jpg"}:
+                        continue
+
+                    try:
+                        flt = doc.xref_get_key(xref, "Filter")[1]
+                    except Exception:
+                        flt = ""
+                    if "DCTDecode" not in (flt or ""):
+                        continue
+
+                    img_bytes = info.get("image")
+                    if not img_bytes:
+                        continue
+
+                    try:
+                        im = Image.open(BytesIO(img_bytes))
+                        im.load()
+                    except Exception:
+                        continue
+
+                    if im.mode not in {"RGB", "L"}:
+                        try:
+                            im = im.convert("RGB")
+                        except Exception:
+                            continue
+
+                    w, h = im.size
+                    max_side = max(w, h)
+                    if max_side > max_dim:
+                        scale = max_dim / float(max_side)
+                        new_size = (max(1, int(w * scale)), max(1, int(h * scale)))
+                        try:
+                            im = im.resize(new_size, Image.LANCZOS)
+                        except Exception:
+                            pass
+
+                    out = BytesIO()
+                    try:
+                        im.save(out, format="JPEG", quality=quality, optimize=True)
+                    except Exception:
+                        continue
+
+                    new_bytes = out.getvalue()
+                    if not new_bytes:
+                        continue
+                    if len(new_bytes) >= len(img_bytes):
+                        continue
+
+                    try:
+                        doc.update_stream(xref, new_bytes)
+                    except Exception:
+                        continue
+
+        def _op(input_pdf_path: str, *, output_path: str, compression_level: str):
+            doc = fitz.open(input_pdf_path)
+            try:
+                if compression_level == "high":
+                    for page in doc:
+                        try:
+                            page.set_links([])
+                        except Exception:
+                            pass
+                        try:
+                            annot = page.first_annot
+                            while annot:
+                                nxt = annot.next
+                                page.delete_annot(annot)
+                                annot = nxt
+                        except Exception:
+                            pass
+
+                _recompress_jpegs(doc, compression_level)
+                _save_with_fallback(doc, output_path, _save_kwargs(compression_level))
+            finally:
+                doc.close()
+
+            try:
+                in_size = os.path.getsize(input_pdf_path)
+                out_size = os.path.getsize(output_path)
+                if in_size > 0 and out_size > in_size and compression_level != "low":
+                    doc2 = fitz.open(input_pdf_path)
+                    try:
+                        _save_with_fallback(doc2, output_path, _save_kwargs("low"))
+                    finally:
+                        doc2.close()
+            except Exception:
+                pass
+
+            return output_path
+
+        processor.run_pdf_operation_with_repair(
+            _op,
+            output_path=output_path,
+            compression_level=compression_level,
         )
-        if not is_valid:
-            raise ConversionError(
-                validation_error or "Output PDF is invalid", context=context
-            )
-
-        input_size = os.path.getsize(pdf_path)
-        output_size = os.path.getsize(output_path)
-        compression_ratio = (
-            ((input_size - output_size) / input_size * 100) if input_size > 0 else 0
-        )
-
-        logger.info(
-            "PDF compression successful",
-            extra={
-                **context,
-                "event": "compress_success",
-                "input_size": input_size,
-                "input_size_mb": round(input_size / (1024 * 1024), 2),
-                "output_size": output_size,
-                "output_size_mb": round(output_size / (1024 * 1024), 2),
-                "compression_ratio": round(compression_ratio, 2),
-            },
-        )
-
+        processor.validate_output_pdf(output_path, min_size=1000)
         return pdf_path, output_path
 
     except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):

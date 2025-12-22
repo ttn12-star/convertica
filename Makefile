@@ -33,6 +33,12 @@ shell: ## Open Django shell in web container
 	docker compose exec web python manage.py shell
 
 test: ## Run tests
+	docker compose exec web python manage.py test --parallel=auto
+
+test-fast: ## Run tests with parallel execution (faster)
+	docker compose exec web python manage.py test --parallel=4 --verbosity=1
+
+test-single: ## Run tests without parallelization (for debugging)
 	docker compose exec web python manage.py test
 
 migrate: ## Run database migrations

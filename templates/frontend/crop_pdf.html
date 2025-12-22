@@ -18,25 +18,26 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
   <style>
-    .crop-selection {
-      position: absolute;
-      border: 4px solid #3b82f6;
-      background: rgba(59, 130, 246, 0.1);
-      cursor: move;
-      pointer-events: all;
-      box-shadow:
-      0 0 0 1px rgba(59, 130, 246, 0.3),
-      0 0 20px rgba(59, 130, 246, 0.4),
-      inset 0 0 20px rgba(59, 130, 246, 0.1);
-      z-index: 20;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    #cropSelection,
+    .crop-selection,
+    div.crop-selection {
+      position: absolute !important;
+      border: 4px solid #2563eb !important;
+      background: rgba(37, 99, 235, 0.35) !important;
+      background-color: rgba(37, 99, 235, 0.35) !important;
+      cursor: move !important;
+      pointer-events: all !important;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.6), 0 0 20px rgba(37, 99, 235, 0.7), inset 0 0 30px rgba(37, 99, 235, 0.2) !important;
+      z-index: 20 !important;
+      transition: all 0.2s ease !important;
     }
-    .crop-selection:hover {
-      border-color: #2563eb;
-      box-shadow:
-      0 0 0 1px rgba(37, 99, 235, 0.4),
-      0 0 25px rgba(37, 99, 235, 0.5),
-      inset 0 0 25px rgba(37, 99, 235, 0.15);
+    #cropSelection:hover,
+    .crop-selection:hover,
+    div.crop-selection:hover {
+      border-color: #1d4ed8 !important;
+      background: rgba(37, 99, 235, 0.45) !important;
+      background-color: rgba(37, 99, 235, 0.45) !important;
+      box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.7), 0 0 30px rgba(29, 78, 216, 0.8), inset 0 0 40px rgba(29, 78, 216, 0.25) !important;
     }
     .crop-handle {
       position: absolute;
@@ -285,24 +286,26 @@
 
                 <!-- PDF Canvas Container -->
           <div class="relative bg-white border-2 border-gray-300 rounded-lg p-4 overflow-hidden flex justify-center items-center" style="max-height: 85vh; min-height: 400px;">
-            <div id="pdfCanvasContainer" class="relative inline-block" style="max-width: 100%; max-height: 100%;">
-              <canvas id="pdfCanvas" class="border border-gray-200 shadow-lg relative z-10 cursor-crosshair select-none" style="max-width: 100%; max-height: 100%; display: block;"></canvas>
-                        <!-- Overlay for highlighting selection area (very light, barely visible) -->
-              <div id="cropOverlay" class="absolute inset-0 pointer-events-none hidden z-15" style="top: 0; left: 0; width: 100%; height: 100%;">
-                <div id="cropOverlayTop" class="absolute bg-gray-500 bg-opacity-5"></div>
-                <div id="cropOverlayRight" class="absolute bg-gray-500 bg-opacity-5"></div>
-                <div id="cropOverlayBottom" class="absolute bg-gray-500 bg-opacity-5"></div>
-                <div id="cropOverlayLeft" class="absolute bg-gray-500 bg-opacity-5"></div>
-              </div>
-              <div id="cropSelection" class="crop-selection hidden z-20">
-                <div class="crop-handle nw"></div>
-                <div class="crop-handle ne"></div>
-                <div class="crop-handle sw"></div>
-                <div class="crop-handle se"></div>
-                <div class="crop-handle n"></div>
-                <div class="crop-handle s"></div>
-                <div class="crop-handle w"></div>
-                <div class="crop-handle e"></div>
+            <div class="relative w-full h-full flex justify-center items-center">
+              <div id="pdfCanvasContainer" class="relative" style="display: inline-block;">
+                <canvas id="pdfCanvas" class="border border-gray-200 shadow-lg cursor-crosshair max-w-full max-h-full" style="display: block; width: auto; height: auto;"></canvas>
+                          <!-- Overlay for highlighting selection area (very light, barely visible) -->
+                <div id="cropOverlay" class="absolute inset-0 pointer-events-none hidden z-15" style="top: 0; left: 0; width: 100%; height: 100%;">
+                  <div id="cropOverlayTop" class="absolute bg-gray-500 bg-opacity-5"></div>
+                  <div id="cropOverlayRight" class="absolute bg-gray-500 bg-opacity-5"></div>
+                  <div id="cropOverlayBottom" class="absolute bg-gray-500 bg-opacity-5"></div>
+                  <div id="cropOverlayLeft" class="absolute bg-gray-500 bg-opacity-5"></div>
+                </div>
+                <div id="cropSelection" class="crop-selection hidden z-20" style="position: absolute; border: 4px solid #2563eb; background: rgba(37, 99, 235, 0.35); cursor: move; pointer-events: all; box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.6), 0 0 20px rgba(37, 99, 235, 0.7), inset 0 0 30px rgba(37, 99, 235, 0.2); z-index: 20;">
+                  <div class="crop-handle nw"></div>
+                  <div class="crop-handle ne"></div>
+                  <div class="crop-handle sw"></div>
+                  <div class="crop-handle se"></div>
+                  <div class="crop-handle n"></div>
+                  <div class="crop-handle s"></div>
+                  <div class="crop-handle w"></div>
+                  <div class="crop-handle e"></div>
+                </div>
               </div>
             </div>
           </div>

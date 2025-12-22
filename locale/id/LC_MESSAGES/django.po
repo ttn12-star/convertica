@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-21 10:03+0000\n"
+"POT-Creation-Date: 2025-12-22 09:33+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
 "Language: id\n"
@@ -115,7 +115,7 @@ msgstr "PDF ke Word"
 #: templates/frontend/includes/header.html:190
 #: templates/frontend/includes/header.html:514
 #: templates/frontend/includes/header.html:897 templates/frontend/index.html:65
-#: templates/frontend/index.html:285 utils_site/src/frontend/views.py:522
+#: templates/frontend/index.html:285 utils_site/src/frontend/views.py:536
 msgid "Merge PDF"
 msgstr "Gabungkan PDF"
 
@@ -123,8 +123,8 @@ msgstr "Gabungkan PDF"
 #: templates/frontend/includes/header.html:202
 #: templates/frontend/includes/header.html:526
 #: templates/frontend/includes/header.html:904
-#: templates/frontend/index.html:309 utils_site/src/frontend/views.py:572
-#: utils_site/src/frontend/views.py:578
+#: templates/frontend/index.html:309 utils_site/src/frontend/views.py:587
+#: utils_site/src/frontend/views.py:593
 msgid "Split PDF"
 msgstr "Pisahkan PDF"
 
@@ -492,7 +492,7 @@ msgstr ""
 "PDF ke Word, PDF ke DOCX, konversi PDF, konverter PDF, konverter Word, "
 "konverter PDF online"
 
-#: templates/base.html:109
+#: templates/base.html:115
 msgid "Fast, simple and secure online PDF to Word and Word to PDF converter."
 msgstr ""
 "Konverter PDF ke Word dan Word ke PDF online yang cepat, sederhana, dan aman."
@@ -521,8 +521,8 @@ msgstr "Alat populer"
 #: templates/frontend/includes/header.html:250
 #: templates/frontend/includes/header.html:550
 #: templates/frontend/includes/header.html:932 templates/frontend/index.html:74
-#: templates/frontend/index.html:406 utils_site/src/frontend/views.py:791
-#: utils_site/src/frontend/views.py:797
+#: templates/frontend/index.html:406 utils_site/src/frontend/views.py:811
+#: utils_site/src/frontend/views.py:817
 msgid "Compress PDF"
 msgstr "Kompres PDF"
 
@@ -530,8 +530,8 @@ msgstr "Kompres PDF"
 #: templates/frontend/includes/header.html:135
 #: templates/frontend/includes/header.html:428
 #: templates/frontend/includes/header.html:952
-#: templates/frontend/index.html:135 utils_site/src/frontend/views.py:350
-#: utils_site/src/frontend/views.py:356
+#: templates/frontend/index.html:135 utils_site/src/frontend/views.py:360
+#: utils_site/src/frontend/views.py:366
 msgid "Rotate PDF"
 msgstr "Putar PDF"
 
@@ -596,7 +596,7 @@ msgstr "Selanjutnya"
 msgid "No articles found."
 msgstr "Tidak ada artikel yang ditemukan."
 
-#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:907
+#: templates/frontend/about.html:18 utils_site/src/frontend/views.py:929
 msgid "About Us - Convertica"
 msgstr "Tentang kami - Convertica"
 
@@ -962,7 +962,7 @@ msgstr "Masukkan halaman tertentu seperti '1,3,5' atau '1-5'"
 #: templates/frontend/jpg_to_pdf.html:132 templates/frontend/merge_pdf.html:137
 #: templates/frontend/organize_pdf.html:49
 #: templates/frontend/pdf_to_excel.html:7 templates/frontend/pdf_to_jpg.html:71
-#: templates/frontend/pdf_to_word.html:50
+#: templates/frontend/pdf_to_word.html:88
 #: templates/frontend/protect_pdf.html:65
 #: templates/frontend/remove_pages.html:60
 #: templates/frontend/rotate_pdf.html:73 templates/frontend/split_pdf.html:74
@@ -976,7 +976,7 @@ msgstr "Cara kerjanya"
 #: templates/frontend/extract_pages.html:35
 #: templates/frontend/organize_pdf.html:52
 #: templates/frontend/pdf_to_excel.html:10
-#: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:53
+#: templates/frontend/pdf_to_jpg.html:74 templates/frontend/pdf_to_word.html:91
 #: templates/frontend/protect_pdf.html:68
 #: templates/frontend/remove_pages.html:63
 #: templates/frontend/rotate_pdf.html:76 templates/frontend/split_pdf.html:77
@@ -1032,7 +1032,7 @@ msgstr ""
 #: templates/frontend/jpg_to_pdf.html:144 templates/frontend/merge_pdf.html:147
 #: templates/frontend/organize_pdf.html:60
 #: templates/frontend/pdf_to_excel.html:17
-#: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:60
+#: templates/frontend/pdf_to_jpg.html:83 templates/frontend/pdf_to_word.html:98
 #: templates/frontend/protect_pdf.html:75
 #: templates/frontend/remove_pages.html:70
 #: templates/frontend/rotate_pdf.html:84 templates/frontend/split_pdf.html:85
@@ -1065,7 +1065,7 @@ msgstr ""
 
 #: templates/frontend/add_page_numbers.html:236
 #: templates/frontend/add_watermark.html:529
-#: templates/frontend/converter_generic.html:220
+#: templates/frontend/converter_generic.html:224
 #: templates/frontend/crop_pdf.html:411
 #: templates/frontend/edit_pdf_generic.html:209
 #: templates/frontend/jpg_to_pdf.html:168 templates/frontend/merge_pdf.html:125
@@ -1075,7 +1075,7 @@ msgstr "Semuanya berjalan dengan baik!"
 
 #: templates/frontend/add_page_numbers.html:237
 #: templates/frontend/add_watermark.html:530
-#: templates/frontend/converter_generic.html:221
+#: templates/frontend/converter_generic.html:225
 #: templates/frontend/crop_pdf.html:412
 #: templates/frontend/edit_pdf_generic.html:210
 #: templates/frontend/jpg_to_pdf.html:169 templates/frontend/merge_pdf.html:126
@@ -1251,7 +1251,7 @@ msgid "Processing your file..."
 msgstr "Memproses file Anda..."
 
 #: templates/frontend/add_watermark.html:520
-#: templates/frontend/converter_generic.html:214
+#: templates/frontend/converter_generic.html:218
 #: templates/frontend/crop_pdf.html:396
 #: templates/frontend/edit_pdf_generic.html:202
 #: templates/frontend/jpg_to_pdf.html:162
@@ -1265,14 +1265,14 @@ msgid "Editing Complete!"
 msgstr "Pengeditan selesai!"
 
 #: templates/frontend/add_watermark.html:522
-#: templates/frontend/converter_generic.html:216
+#: templates/frontend/converter_generic.html:220
 #: templates/frontend/crop_pdf.html:398
 #: templates/frontend/edit_pdf_generic.html:204
 msgid "Your file is ready to download"
 msgstr "File Anda siap untuk diunduh"
 
 #: templates/frontend/add_watermark.html:523
-#: templates/frontend/converter_generic.html:217
+#: templates/frontend/converter_generic.html:221
 #: templates/frontend/crop_pdf.html:399
 #: templates/frontend/edit_pdf_generic.html:205
 msgid "Download File"
@@ -1286,7 +1286,7 @@ msgstr "Edit file lain"
 
 #: templates/frontend/add_watermark.html:525
 #: templates/frontend/contact.html:140
-#: templates/frontend/converter_generic.html:219
+#: templates/frontend/converter_generic.html:223
 #: templates/frontend/crop_pdf.html:401
 #: templates/frontend/edit_pdf_generic.html:207
 #: templates/frontend/jpg_to_pdf.html:167
@@ -1397,7 +1397,7 @@ msgstr "Putar halaman PDF sebesar 90, 180, atau 270 derajat."
 #: templates/frontend/includes/header.html:147
 #: templates/frontend/includes/header.html:440
 #: templates/frontend/includes/header.html:959
-#: utils_site/src/frontend/views.py:482 utils_site/src/frontend/views.py:488
+#: utils_site/src/frontend/views.py:495 utils_site/src/frontend/views.py:501
 msgid "Crop PDF"
 msgstr "Pangkas PDF"
 
@@ -1409,7 +1409,7 @@ msgstr "Potong halaman PDF dengan menentukan koordinat kotak potong."
 #: templates/frontend/includes/header.html:159
 #: templates/frontend/includes/header.html:459
 #: templates/frontend/includes/header.html:966
-#: utils_site/src/frontend/views.py:394 utils_site/src/frontend/views.py:400
+#: utils_site/src/frontend/views.py:405 utils_site/src/frontend/views.py:411
 msgid "Add Page Numbers"
 msgstr "Tambahkan Nomor Halaman"
 
@@ -1421,8 +1421,8 @@ msgstr "Tambahkan nomor halaman ke dokumen PDF Anda."
 #: templates/frontend/includes/header.html:171
 #: templates/frontend/includes/header.html:471
 #: templates/frontend/includes/header.html:973
-#: templates/frontend/index.html:184 utils_site/src/frontend/views.py:439
-#: utils_site/src/frontend/views.py:445
+#: templates/frontend/index.html:184 utils_site/src/frontend/views.py:451
+#: utils_site/src/frontend/views.py:457
 msgid "Add Watermark"
 msgstr "Tambahkan Watermark"
 
@@ -1438,7 +1438,7 @@ msgstr "Lindungi PDF Anda dengan watermark teks atau gambar."
 #: templates/frontend/includes/header.html:884
 #: templates/frontend/includes/header.html:925
 #: templates/frontend/index.html:265 templates/frontend/index.html:382
-#: utils_site/src/frontend/views.py:698 utils_site/src/frontend/views.py:704
+#: utils_site/src/frontend/views.py:716 utils_site/src/frontend/views.py:722
 msgid "Organize PDF"
 msgstr "Atur PDF"
 
@@ -1458,8 +1458,8 @@ msgstr "Pisahkan PDF menjadi beberapa file berdasarkan halaman atau rentang."
 #: templates/frontend/includes/header.html:214
 #: templates/frontend/includes/header.html:569
 #: templates/frontend/includes/header.html:911
-#: templates/frontend/index.html:333 utils_site/src/frontend/views.py:613
-#: utils_site/src/frontend/views.py:619
+#: templates/frontend/index.html:333 utils_site/src/frontend/views.py:629
+#: utils_site/src/frontend/views.py:635
 msgid "Remove Pages"
 msgstr "Hapus Halaman"
 
@@ -1471,8 +1471,8 @@ msgstr "Hapus halaman yang tidak diinginkan dari dokumen PDF Anda."
 #: templates/frontend/includes/header.html:226
 #: templates/frontend/includes/header.html:581
 #: templates/frontend/includes/header.html:918
-#: templates/frontend/index.html:357 utils_site/src/frontend/views.py:655
-#: utils_site/src/frontend/views.py:661
+#: templates/frontend/index.html:357 utils_site/src/frontend/views.py:672
+#: utils_site/src/frontend/views.py:678
 msgid "Extract Pages"
 msgstr "Ekstrak Halaman"
 
@@ -1495,7 +1495,7 @@ msgstr "Lindungi dan amankan dokumen PDF Anda"
 #: templates/frontend/all_tools.html:416
 #: templates/frontend/includes/header.html:269
 #: templates/frontend/includes/header.html:820
-#: utils_site/src/frontend/views.py:816 utils_site/src/frontend/views.py:822
+#: utils_site/src/frontend/views.py:837 utils_site/src/frontend/views.py:843
 msgid "Protect PDF"
 msgstr "Lindungi PDF"
 
@@ -1506,7 +1506,7 @@ msgstr "Tambahkan perlindungan kata sandi untuk mengamankan dokumen PDF Anda."
 #: templates/frontend/all_tools.html:434
 #: templates/frontend/includes/header.html:281
 #: templates/frontend/includes/header.html:827
-#: utils_site/src/frontend/views.py:858 utils_site/src/frontend/views.py:864
+#: utils_site/src/frontend/views.py:880 utils_site/src/frontend/views.py:886
 msgid "Unlock PDF"
 msgstr "Buka Kunci PDF"
 
@@ -1581,8 +1581,8 @@ msgstr ""
 "tinggi mengurangi ukuran file lebih banyak tetapi mungkin sedikit mengurangi "
 "kualitas gambar."
 
-#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:1014
-#: utils_site/src/frontend/views.py:1110
+#: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:1036
+#: utils_site/src/frontend/views.py:1132
 msgid "Contact Us - Convertica"
 msgstr "Hubungi Kami - Convertica"
 
@@ -1796,21 +1796,20 @@ msgstr "Unduh file yang dikonversi menggunakan tombol unduh"
 #, python-format
 msgid ""
 "PDF has %%(page_count)d pages (limit: 50). You can split your file into "
-"smaller parts or <a href=\\\"/users/premium/\\\" class=\\\"text-amber-600 "
-"hover:text-amber-700 font-medium underline\\\">get a 1-day Premium "
-"subscription for just $1</a> to process files without limits!"
+"smaller parts or get a 1-day Premium subscription for just $1 to process "
+"files without limits!"
 msgstr ""
 
-#: templates/frontend/converter_generic.html:213
+#: templates/frontend/converter_generic.html:217
 msgid "Converting your file..."
 msgstr "Mengonversi file Anda..."
 
-#: templates/frontend/converter_generic.html:215
+#: templates/frontend/converter_generic.html:219
 #: templates/frontend/jpg_to_pdf.html:163
 msgid "Conversion Complete!"
 msgstr "Konversi Selesai!"
 
-#: templates/frontend/converter_generic.html:218
+#: templates/frontend/converter_generic.html:222
 #: templates/frontend/jpg_to_pdf.html:166
 msgid "Convert another file"
 msgstr "Konversi file lain"
@@ -2087,11 +2086,11 @@ msgstr "Temukan jawaban untuk pertanyaan umum tentang alat PDF Convertica"
 msgid "General Questions"
 msgstr "Pertanyaan Umum"
 
-#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:1162
+#: templates/frontend/faq.html:90 utils_site/src/frontend/views.py:1184
 msgid "Is Convertica free to use?"
 msgstr "Apakah Convertica gratis digunakan?"
 
-#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:1164
+#: templates/frontend/faq.html:94 utils_site/src/frontend/views.py:1186
 msgid ""
 "Yes, Convertica is completely free to use. All PDF conversion, editing, and "
 "organization tools are available at no cost. There are no hidden fees, no "
@@ -2113,11 +2112,11 @@ msgstr ""
 "Tidak, Anda tidak perlu membuat akun. Convertica bekerja tanpa registrasi. "
 "Cukup unggah file Anda dan mulailah mengonversi segera."
 
-#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:1169
+#: templates/frontend/faq.html:110 utils_site/src/frontend/views.py:1191
 msgid "What file formats does Convertica support?"
 msgstr "Format file apa yang didukung Convertica?"
 
-#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:1171
+#: templates/frontend/faq.html:114 utils_site/src/frontend/views.py:1193
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), JPG/JPEG, and Excel formats. You "
 "can convert between these formats, edit PDFs, organize pages, and protect "
@@ -2161,11 +2160,11 @@ msgstr ""
 "dan tata letak. Konversi mempertahankan font, warna, spasi, dan struktur "
 "dokumen asli Anda. Semua konversi gratis dan tidak memerlukan registrasi."
 
-#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:1154
+#: templates/frontend/faq.html:148 utils_site/src/frontend/views.py:1176
 msgid "How do I convert PDF to Word?"
 msgstr "Bagaimana cara mengonversi PDF ke Word?"
 
-#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:1156
+#: templates/frontend/faq.html:152 utils_site/src/frontend/views.py:1178
 msgid ""
 "To convert PDF to Word, simply upload your PDF file using the upload button "
 "or drag and drop it into the upload zone. Click the convert button and wait "
@@ -2254,7 +2253,7 @@ msgstr ""
 "Semua file yang dipilih akan digabungkan menjadi satu dokumen PDF tanpa "
 "watermark. PDF yang digabungkan mempertahankan kualitas file asli."
 
-#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:1176
+#: templates/frontend/faq.html:216 utils_site/src/frontend/views.py:1198
 msgid "How do I merge multiple PDF files?"
 msgstr "Bagaimana cara menggabungkan beberapa file PDF?"
 
@@ -2344,11 +2343,11 @@ msgstr ""
 msgid "Security & Privacy"
 msgstr "Keamanan & Privasi"
 
-#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:1183
+#: templates/frontend/faq.html:284 utils_site/src/frontend/views.py:1205
 msgid "Is my data secure?"
 msgstr "Apakah data saya aman?"
 
-#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:1185
+#: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:1207
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted immediately after conversion. We do not store your files, and your "
@@ -2675,7 +2674,7 @@ msgid "Convert from PDF"
 msgstr "Konversi dari PDF"
 
 #: templates/frontend/includes/header.html:362
-#: utils_site/src/frontend/views.py:219 utils_site/src/frontend/views.py:312
+#: utils_site/src/frontend/views.py:226 utils_site/src/frontend/views.py:321
 msgid "Convert to PDF"
 msgstr "Konversi ke PDF"
 
@@ -3073,13 +3072,13 @@ msgstr ""
 "Seret dan lepas halaman untuk mengurutkannya ulang. Angka pada setiap "
 "halaman menunjukkan urutan baru."
 
-#: templates/frontend/organize_pdf.html:32 utils_site/src/frontend/views.py:171
-#: utils_site/src/frontend/views.py:266 utils_site/src/frontend/views.py:357
-#: utils_site/src/frontend/views.py:401 utils_site/src/frontend/views.py:446
-#: utils_site/src/frontend/views.py:489 utils_site/src/frontend/views.py:579
-#: utils_site/src/frontend/views.py:620 utils_site/src/frontend/views.py:662
-#: utils_site/src/frontend/views.py:705 utils_site/src/frontend/views.py:798
-#: utils_site/src/frontend/views.py:823
+#: templates/frontend/organize_pdf.html:32 utils_site/src/frontend/views.py:177
+#: utils_site/src/frontend/views.py:274 utils_site/src/frontend/views.py:367
+#: utils_site/src/frontend/views.py:412 utils_site/src/frontend/views.py:458
+#: utils_site/src/frontend/views.py:502 utils_site/src/frontend/views.py:594
+#: utils_site/src/frontend/views.py:636 utils_site/src/frontend/views.py:679
+#: utils_site/src/frontend/views.py:723 utils_site/src/frontend/views.py:818
+#: utils_site/src/frontend/views.py:844
 msgid "Please select a PDF file."
 msgstr "Silakan pilih file PDF."
 
@@ -3246,33 +3245,119 @@ msgstr ""
 "berisi semua gambar JPG yang dikonversi, dinamai dengan nomor halaman (mis., "
 "filename_page0001.jpg, filename_page0002.jpg)."
 
-#: templates/frontend/pdf_to_word.html:24
+#: templates/frontend/pdf_to_word.html:25
 msgid "Enable OCR (Optical Character Recognition)"
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:28
+#: templates/frontend/pdf_to_word.html:29
 msgid ""
 "Extract text from scanned PDFs and images. Convert image-based PDFs to "
 "editable text."
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:30
+#: templates/frontend/pdf_to_word.html:31
 msgid ""
 "Premium feature - extract text from scanned PDFs and images. Upgrade to "
 "Premium to enable."
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:35
+#: templates/frontend/pdf_to_word.html:36
 msgid "Log in to upgrade"
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:39
+#: templates/frontend/pdf_to_word.html:40
 #: templates/users/manage_subscription.html:158
 #: templates/users/profile.html:142
 msgid "Upgrade to Premium"
 msgstr ""
 
-#: templates/frontend/pdf_to_word.html:54
+#: templates/frontend/pdf_to_word.html:51
+#, fuzzy
+#| msgid "Language"
+msgid "Document Language"
+msgstr "Bahasa"
+
+#: templates/frontend/pdf_to_word.html:57
+msgid "Auto-detect"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:58
+#, fuzzy
+#| msgid "SEO - English"
+msgid "English"
+msgstr "SEO - Bahasa Inggris"
+
+#: templates/frontend/pdf_to_word.html:59
+msgid "Russian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:60
+msgid "German"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:61
+msgid "French"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:62
+msgid "Spanish"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:63
+msgid "Italian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:64
+msgid "Portuguese"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:65
+#, fuzzy
+#| msgid "Published"
+msgid "Polish"
+msgstr "Diterbitkan"
+
+#: templates/frontend/pdf_to_word.html:66
+msgid "Ukrainian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:67
+msgid "Chinese (Simplified)"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:68
+msgid "Chinese (Traditional)"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:69
+msgid "Japanese"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:70
+msgid "Korean"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:71
+msgid "Arabic"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:72
+msgid "Hindi"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:73
+msgid "Turkish"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:74
+msgid "Indonesian"
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:77
+msgid "Select the language of your document for better OCR accuracy."
+msgstr ""
+
+#: templates/frontend/pdf_to_word.html:92
 msgid ""
 "Click the convert button to start converting PDF to Word (PDF to DOCX "
 "conversion)"
@@ -3280,7 +3365,7 @@ msgstr ""
 "Klik tombol konversi untuk memulai konversi PDF ke Word (konversi PDF ke "
 "DOCX)"
 
-#: templates/frontend/pdf_to_word.html:55
+#: templates/frontend/pdf_to_word.html:93
 msgid ""
 "Wait for the PDF to Word conversion to complete - text and formatting will "
 "be extracted from your PDF and converted to editable Word format"
@@ -3288,7 +3373,7 @@ msgstr ""
 "Tunggu hingga konversi PDF ke Word selesai - teks dan pemformatan akan "
 "diekstrak dari PDF Anda dan dikonversi ke format Word yang dapat diedit"
 
-#: templates/frontend/pdf_to_word.html:56
+#: templates/frontend/pdf_to_word.html:94
 msgid ""
 "Download your editable Word document (DOCX format) - your PDF has been "
 "successfully converted to Word"
@@ -3296,7 +3381,7 @@ msgstr ""
 "Unduh dokumen Word yang dapat diedit (format DOCX) - PDF Anda telah berhasil "
 "dikonversi ke Word"
 
-#: templates/frontend/pdf_to_word.html:62
+#: templates/frontend/pdf_to_word.html:100
 #, fuzzy
 #| msgid ""
 #| "PDF files with up to 50 pages are supported for rotating. For larger "
@@ -3311,7 +3396,7 @@ msgstr ""
 "besar, silakan bagi menjadi bagian yang lebih kecil. Rotasi mempertahankan "
 "semua konten dan pemformatan."
 
-#: templates/frontend/pdf_to_word.html:65
+#: templates/frontend/pdf_to_word.html:103
 #, fuzzy
 #| msgid ""
 #| "PDF files with up to 50 pages are supported. For larger files, please "
@@ -3323,13 +3408,13 @@ msgstr ""
 "File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
 "bagi menjadi bagian yang lebih kecil."
 
-#: templates/frontend/pdf_to_word.html:67
+#: templates/frontend/pdf_to_word.html:105
 msgid ""
 "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
 "OCR for Premium users."
 msgstr ""
 
-#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:930
+#: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:952
 msgid "Privacy Policy - Convertica"
 msgstr "Kebijakan Privasi - Convertica"
 
@@ -3901,7 +3986,7 @@ msgstr ""
 "Anda dapat memisahkan PDF Anda berdasarkan halaman individual, rentang "
 "halaman, atau setiap N halaman."
 
-#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:952
+#: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:974
 msgid "Terms of Service - Convertica"
 msgstr "Ketentuan Layanan - Convertica"
 
@@ -4503,7 +4588,7 @@ msgstr "Informasi Penggunaan"
 
 #: templates/payments/success.html:31 templates/users/account_status.html:229
 #: templates/users/cancel_subscription.html:136
-#: utils_site/src/users/models.py:292
+#: utils_site/src/users/models.py:297
 msgid "Plan"
 msgstr ""
 
@@ -4513,7 +4598,7 @@ msgstr ""
 
 #: templates/payments/success.html:39 templates/users/account_status.html:231
 #: templates/users/manage_subscription.html:109
-#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:301
+#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:306
 msgid "Status"
 msgstr "Status"
 
@@ -4752,8 +4837,9 @@ msgid "Total Days as Hero"
 msgstr ""
 
 #: templates/users/account_status.html:81
-#: templates/users/account_status.html:86 templates/users/premium.html:480
-#: templates/users/premium.html:518
+#: templates/users/account_status.html:86
+#: templates/users/manage_subscription.html:143
+#: templates/users/premium.html:480 templates/users/premium.html:518
 msgid "days"
 msgstr ""
 
@@ -4852,31 +4938,31 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: templates/users/account_status.html:230 utils_site/src/users/models.py:295
+#: templates/users/account_status.html:230 utils_site/src/users/models.py:300
 msgid "Amount"
 msgstr ""
 
-#: templates/users/account_status.html:232 utils_site/src/users/models.py:304
+#: templates/users/account_status.html:232 utils_site/src/users/models.py:309
 msgid "Payment ID"
 msgstr ""
 
-#: templates/users/account_status.html:244 utils_site/src/users/models.py:285
+#: templates/users/account_status.html:244 utils_site/src/users/models.py:290
 #, fuzzy
 #| msgid "Editing Complete!"
 msgid "Completed"
 msgstr "Pengeditan selesai!"
 
-#: templates/users/account_status.html:248 utils_site/src/users/models.py:284
+#: templates/users/account_status.html:248 utils_site/src/users/models.py:289
 #, fuzzy
 #| msgid "Sending..."
 msgid "Pending"
 msgstr "Mengirim..."
 
-#: templates/users/account_status.html:252 utils_site/src/users/models.py:286
+#: templates/users/account_status.html:252 utils_site/src/users/models.py:291
 msgid "Failed"
 msgstr ""
 
-#: templates/users/account_status.html:256 utils_site/src/users/models.py:287
+#: templates/users/account_status.html:256 utils_site/src/users/models.py:292
 msgid "Refunded"
 msgstr ""
 
@@ -5250,6 +5336,15 @@ msgstr ""
 #: templates/users/manage_subscription.html:176
 msgid ""
 "Billing history will be available once payment processing is implemented."
+msgstr ""
+
+#: templates/users/manage_subscription.html:228
+#: utils_site/src/users/views.py:213
+msgid "Failed to cancel subscription"
+msgstr ""
+
+#: templates/users/manage_subscription.html:233
+msgid "An error occurred while canceling subscription"
 msgstr ""
 
 #: templates/users/premium.html:29
@@ -5685,7 +5780,7 @@ msgstr ""
 msgid "By creating an account, you agree to our"
 msgstr ""
 
-#: utils_site/src/api/conversion_limits.py:110
+#: utils_site/src/api/conversion_limits.py:151
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages (limit: 50). You can split your file into "
@@ -5693,7 +5788,7 @@ msgid ""
 "files without limits!"
 msgstr ""
 
-#: utils_site/src/api/conversion_limits.py:121
+#: utils_site/src/api/conversion_limits.py:162
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
@@ -5702,7 +5797,7 @@ msgstr ""
 "PDF memiliki %(page_count)d halaman, maksimum yang diizinkan adalah "
 "%(max_pages)d. Silakan bagi PDF Anda menjadi bagian yang lebih kecil."
 
-#: utils_site/src/api/conversion_limits.py:308
+#: utils_site/src/api/conversion_limits.py:353
 #, python-format
 msgid ""
 "File is too large for this operation (%(file_mb).1f MB). Maximum size for "
@@ -5713,7 +5808,7 @@ msgstr ""
 "untuk %(operation)s adalah %(max_mb)d MB. Silakan gunakan file yang lebih "
 "kecil atau kompres PDF Anda terlebih dahulu."
 
-#: utils_site/src/api/conversion_limits.py:332
+#: utils_site/src/api/conversion_limits.py:382
 #, python-format
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
@@ -5722,7 +5817,7 @@ msgstr ""
 "PDF memiliki %(page_count)d halaman. Maksimum untuk %(operation)s adalah "
 "%(max_pages)d halaman. Silakan bagi PDF Anda menjadi bagian yang lebih kecil."
 
-#: utils_site/src/api/conversion_limits.py:361
+#: utils_site/src/api/conversion_limits.py:409
 #, python-format
 msgid ""
 "This PDF appears to be scanned (contains many images). Scanned PDFs with "
@@ -5734,17 +5829,17 @@ msgstr ""
 "diproses. Silakan coba dengan lebih sedikit halaman (maksimal ~%(max_pages)d "
 "untuk PDF yang dipindai)."
 
-#: utils_site/src/api/conversion_limits.py:404
+#: utils_site/src/api/conversion_limits.py:450
 #, python-format
 msgid "File is too large (max %(max_mb)d MB for this operation)."
 msgstr "File terlalu besar (maksimal %(max_mb)d MB untuk operasi ini)."
 
-#: utils_site/src/api/conversion_limits.py:414
+#: utils_site/src/api/conversion_limits.py:460
 #, python-format
 msgid "Too many pages (max %(max_pages)d for this operation)."
 msgstr "Terlalu banyak halaman (maksimal %(max_pages)d untuk operasi ini)."
 
-#: utils_site/src/api/conversion_limits.py:428
+#: utils_site/src/api/conversion_limits.py:474
 msgid ""
 "File is too complex for our server. Estimated processing time exceeds "
 "limits. Please try with a smaller file."
@@ -5946,11 +6041,11 @@ msgid "Published At"
 msgstr "Diterbitkan Pada"
 
 #: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:34
-#: utils_site/src/users/models.py:316
+#: utils_site/src/users/models.py:321
 msgid "Created At"
 msgstr "Dibuat Pada"
 
-#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:317
+#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:322
 msgid "Updated At"
 msgstr "Diperbarui Pada"
 
@@ -6006,44 +6101,50 @@ msgstr "Pesan harus setidaknya 10 karakter."
 msgid "Message is too long. Maximum 5000 characters."
 msgstr "Pesan terlalu panjang. Maksimum 5000 karakter."
 
-#: utils_site/src/frontend/views.py:115
+#: utils_site/src/frontend/views.py:128
 msgid "Conversion failed. Please try again."
 msgstr "Konversi gagal. Silakan coba lagi."
 
-#: utils_site/src/frontend/views.py:122
+#: utils_site/src/frontend/views.py:137
 msgid "PDF to Word - Convertica"
 msgstr "PDF ke Word - Convertica"
 
-#: utils_site/src/frontend/views.py:124
+#: utils_site/src/frontend/views.py:139
+#, fuzzy
+#| msgid ""
+#| "Convert PDF to Word online free without losing formatting. Fast PDF to "
+#| "DOCX converter with no email required, unlimited conversions, high-"
+#| "quality output. Perfect for students, professionals, and businesses. No "
+#| "registration needed."
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
 "converter with no email required, unlimited conversions, high-quality "
-"output. Perfect for students, professionals, and businesses. No registration "
+"output. Perfect for documents, resumes, and business files. No registration "
 "needed."
 msgstr ""
 "Konversi PDF ke Word online gratis tanpa kehilangan pemformatan. Konverter "
 "PDF ke DOCX cepat tanpa email, konversi tanpa batas, output berkualitas "
 "tinggi. Sempurna untuk siswa, profesional, dan bisnis. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:162
+#: utils_site/src/frontend/views.py:168
 msgid "Convert your PDF documents to editable Word format in seconds"
 msgstr ""
 "Konversi dokumen PDF Anda ke format Word yang dapat diedit dalam hitungan "
 "detik"
 
-#: utils_site/src/frontend/views.py:164
+#: utils_site/src/frontend/views.py:170
 msgid "PDF to Word Converter"
 msgstr "Konverter PDF ke Word"
 
-#: utils_site/src/frontend/views.py:170
+#: utils_site/src/frontend/views.py:176
 msgid "Convert PDF to Word"
 msgstr "Konversi PDF ke Word"
 
-#: utils_site/src/frontend/views.py:179
+#: utils_site/src/frontend/views.py:186
 msgid "Word to PDF - Convertica"
 msgstr "Word ke PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:181
+#: utils_site/src/frontend/views.py:188
 msgid ""
 "Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
 "converter with no email required, unlimited conversions, high-quality "
@@ -6054,23 +6155,23 @@ msgstr ""
 "DOCX ke PDF cepat tanpa email, konversi tanpa batas, output berkualitas "
 "tinggi. Sempurna untuk dokumen, resume, dan file bisnis. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:212
+#: utils_site/src/frontend/views.py:219
 msgid "Convert your Word documents to PDF format in seconds"
 msgstr "Konversi dokumen Word Anda ke format PDF dalam hitungan detik"
 
-#: utils_site/src/frontend/views.py:213
+#: utils_site/src/frontend/views.py:220
 msgid "Word to PDF Converter"
 msgstr "Konverter Word ke PDF"
 
-#: utils_site/src/frontend/views.py:220
+#: utils_site/src/frontend/views.py:227
 msgid "Please select a Word file."
 msgstr "Silakan pilih file Word."
 
-#: utils_site/src/frontend/views.py:228
+#: utils_site/src/frontend/views.py:236
 msgid "PDF to JPG - Convertica"
 msgstr "PDF ke JPG - Convertica"
 
-#: utils_site/src/frontend/views.py:230
+#: utils_site/src/frontend/views.py:238
 msgid ""
 "Convert PDF to JPG online free with high quality. PDF to image converter "
 "with no watermark, high resolution (300-600 DPI), batch conversion. Extract "
@@ -6082,24 +6183,24 @@ msgstr ""
 "Ekstrak gambar dari PDF atau konversi halaman PDF ke JPG/PNG. Sempurna untuk "
 "cetak, unggah web, dan media sosial."
 
-#: utils_site/src/frontend/views.py:258
+#: utils_site/src/frontend/views.py:266
 msgid "Convert PDF pages to high-quality JPG images in seconds"
 msgstr ""
 "Konversi halaman PDF ke gambar JPG berkualitas tinggi dalam hitungan detik"
 
-#: utils_site/src/frontend/views.py:259
+#: utils_site/src/frontend/views.py:267
 msgid "PDF to JPG Converter"
 msgstr "Konverter PDF ke JPG"
 
-#: utils_site/src/frontend/views.py:265
+#: utils_site/src/frontend/views.py:273
 msgid "Convert PDF to JPG"
 msgstr "Konversi PDF ke JPG"
 
-#: utils_site/src/frontend/views.py:274
+#: utils_site/src/frontend/views.py:283
 msgid "JPG to PDF - Convertica"
 msgstr "JPG ke PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:276
+#: utils_site/src/frontend/views.py:285
 msgid ""
 "Convert JPG to PDF online free without compression. Merge multiple images "
 "into one PDF, combine photos to PDF, create PDF from images with high "
@@ -6111,23 +6212,23 @@ msgstr ""
 "resolusi tinggi. Sempurna untuk dokumen, tanda terima, pekerjaan rumah, dan "
 "pengajuan universitas. Tanpa watermark, konversi tanpa batas."
 
-#: utils_site/src/frontend/views.py:305
+#: utils_site/src/frontend/views.py:314
 msgid "Convert your JPG images to PDF format in seconds"
 msgstr "Konversi gambar JPG Anda ke format PDF dalam hitungan detik"
 
-#: utils_site/src/frontend/views.py:306
+#: utils_site/src/frontend/views.py:315
 msgid "JPG to PDF Converter"
 msgstr "Konverter JPG ke PDF"
 
-#: utils_site/src/frontend/views.py:313
+#: utils_site/src/frontend/views.py:322
 msgid "Please select a JPG/JPEG image file."
 msgstr "Silakan pilih file gambar JPG/JPEG."
 
-#: utils_site/src/frontend/views.py:321
+#: utils_site/src/frontend/views.py:331
 msgid "Rotate PDF - Convertica"
 msgstr "Putar PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:323
+#: utils_site/src/frontend/views.py:333
 msgid ""
 "Rotate PDF pages online free by 90, 180, or 270 degrees. Fast PDF rotation "
 "tool with no watermark, batch rotation, and quality preservation. Perfect "
@@ -6138,15 +6239,15 @@ msgstr ""
 "Sempurna untuk dokumen yang dipindai dan halaman yang salah orientasi. Tanpa "
 "registrasi."
 
-#: utils_site/src/frontend/views.py:349
+#: utils_site/src/frontend/views.py:359
 msgid "Rotate your PDF pages in seconds"
 msgstr "Putar halaman PDF Anda dalam hitungan detik"
 
-#: utils_site/src/frontend/views.py:365
+#: utils_site/src/frontend/views.py:376
 msgid "Add Page Numbers to PDF - Convertica"
 msgstr "Tambahkan Nomor Halaman ke PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:367
+#: utils_site/src/frontend/views.py:378
 msgid ""
 "Add page numbers to PDF online free with customizable position, font size, "
 "and format. Fast PDF page numbering tool with no watermark. Perfect for "
@@ -6157,15 +6258,15 @@ msgstr ""
 "watermark. Sempurna untuk dokumen, laporan, dan makalah akademik. Tanpa "
 "registrasi."
 
-#: utils_site/src/frontend/views.py:393
+#: utils_site/src/frontend/views.py:404
 msgid "Add page numbers to your PDF in seconds"
 msgstr "Tambahkan nomor halaman ke PDF Anda dalam hitungan detik"
 
-#: utils_site/src/frontend/views.py:409
+#: utils_site/src/frontend/views.py:421
 msgid "Add Watermark to PDF - Convertica"
 msgstr "Tambahkan Watermark ke PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:411
+#: utils_site/src/frontend/views.py:423
 msgid ""
 "Add watermark to PDF online free with text or image. Customize position, "
 "transparency, and size. Fast PDF watermarking tool with no watermark on tool "
@@ -6177,15 +6278,15 @@ msgstr ""
 "watermark pada alat itu sendiri. Sempurna untuk perlindungan dokumen dan "
 "branding. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:438
+#: utils_site/src/frontend/views.py:450
 msgid "Add watermark to your PDF in seconds"
 msgstr "Tambahkan watermark ke PDF Anda dalam hitungan detik"
 
-#: utils_site/src/frontend/views.py:454
+#: utils_site/src/frontend/views.py:467
 msgid "Crop PDF - Convertica"
 msgstr "Potong PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:456
+#: utils_site/src/frontend/views.py:469
 msgid ""
 "Crop PDF pages online free with precise crop box coordinates. Fast PDF "
 "cropping tool with no watermark, visual editor, and quality preservation. "
@@ -6196,15 +6297,15 @@ msgstr ""
 "kualitas. Sempurna untuk menghapus margin dan konten yang tidak diinginkan. "
 "Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:481
+#: utils_site/src/frontend/views.py:494
 msgid "Crop your PDF pages in seconds"
 msgstr "Potong halaman PDF Anda dalam hitungan detik"
 
-#: utils_site/src/frontend/views.py:497
+#: utils_site/src/frontend/views.py:511
 msgid "Merge PDF - Convertica"
 msgstr "Gabungkan PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:499
+#: utils_site/src/frontend/views.py:513
 msgid ""
 "Merge PDF online free without watermark. Combine two PDFs into one, merge "
 "multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
@@ -6214,23 +6315,23 @@ msgstr ""
 "gabungkan beberapa file PDF dengan cepat, pertahankan bookmark dan kualitas. "
 "Penggabung PDF tanpa batas dengan drag and drop. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:521
+#: utils_site/src/frontend/views.py:535
 msgid "Combine multiple PDF files into one document"
 msgstr "Gabungkan beberapa file PDF menjadi satu dokumen"
 
-#: utils_site/src/frontend/views.py:528
+#: utils_site/src/frontend/views.py:542
 msgid "Merge PDFs"
 msgstr "Gabungkan PDF"
 
-#: utils_site/src/frontend/views.py:529
+#: utils_site/src/frontend/views.py:543
 msgid "Please select PDF files to merge."
 msgstr "Silakan pilih file PDF untuk digabungkan."
 
-#: utils_site/src/frontend/views.py:537
+#: utils_site/src/frontend/views.py:552
 msgid "Split PDF - Convertica"
 msgstr "Pisahkan PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:539
+#: utils_site/src/frontend/views.py:554
 msgid ""
 "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages "
 "from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
@@ -6240,15 +6341,15 @@ msgstr ""
 "Ekstrak halaman tertentu dari PDF, hapus halaman, bagi PDF menjadi beberapa "
 "file. Pemecah PDF cepat tanpa watermark. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:571
+#: utils_site/src/frontend/views.py:586
 msgid "Split your PDF into multiple files"
 msgstr "Pisahkan PDF Anda menjadi beberapa file"
 
-#: utils_site/src/frontend/views.py:587
+#: utils_site/src/frontend/views.py:603
 msgid "Remove Pages from PDF - Convertica"
 msgstr "Hapus Halaman dari PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:589
+#: utils_site/src/frontend/views.py:605
 msgid ""
 "Remove pages from PDF online free. Delete unwanted pages quickly and easily "
 "with no watermark. Fast PDF page removal tool. Perfect for cleaning up "
@@ -6258,15 +6359,15 @@ msgstr ""
 "dengan cepat dan mudah tanpa watermark. Alat penghapusan halaman PDF cepat. "
 "Sempurna untuk membersihkan dokumen. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:612
+#: utils_site/src/frontend/views.py:628
 msgid "Remove unwanted pages from your PDF"
 msgstr "Hapus halaman yang tidak diinginkan dari PDF Anda"
 
-#: utils_site/src/frontend/views.py:628
+#: utils_site/src/frontend/views.py:645
 msgid "Extract Pages from PDF - Convertica"
 msgstr "Ekstrak Halaman dari PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:630
+#: utils_site/src/frontend/views.py:647
 msgid ""
 "Extract pages from PDF online free. Select and extract specific pages to "
 "create a new PDF. Fast PDF page extraction tool with no watermark. Perfect "
@@ -6276,15 +6377,15 @@ msgstr ""
 "untuk membuat PDF baru. Alat ekstraksi halaman PDF cepat tanpa watermark. "
 "Sempurna untuk membuat dokumen kustom. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:654
+#: utils_site/src/frontend/views.py:671
 msgid "Extract specific pages from your PDF"
 msgstr "Ekstrak halaman tertentu dari PDF Anda"
 
-#: utils_site/src/frontend/views.py:670
+#: utils_site/src/frontend/views.py:688
 msgid "Organize PDF - Convertica"
 msgstr "Atur PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:672
+#: utils_site/src/frontend/views.py:690
 msgid ""
 "Organize PDF online free. Reorder pages, sort content, and manage your PDF "
 "files with drag and drop. Fast PDF organizer with no watermark. Perfect for "
@@ -6294,15 +6395,15 @@ msgstr ""
 "PDF Anda dengan drag and drop. Pengatur PDF cepat tanpa watermark. Sempurna "
 "untuk mengatur dokumen dan laporan. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:697
+#: utils_site/src/frontend/views.py:715
 msgid "Organize and manage your PDF documents"
 msgstr "Atur dan kelola dokumen PDF Anda"
 
-#: utils_site/src/frontend/views.py:713
+#: utils_site/src/frontend/views.py:732
 msgid "PDF to Excel - Convertica"
 msgstr "PDF ke Excel - Convertica"
 
-#: utils_site/src/frontend/views.py:715
+#: utils_site/src/frontend/views.py:734
 msgid ""
 "Convert PDF to Excel online free with accurate table extraction. Extract "
 "tables from PDF and convert to XLSX format. Perfect for invoices, reports, "
@@ -6312,27 +6413,27 @@ msgstr ""
 "Ekstrak tabel dari PDF dan konversi ke format XLSX. Sempurna untuk faktur, "
 "laporan, dan analisis data. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:746
+#: utils_site/src/frontend/views.py:765
 msgid "Extract tables from PDF and convert to Excel format"
 msgstr "Ekstrak tabel dari PDF dan konversi ke format Excel"
 
-#: utils_site/src/frontend/views.py:747
+#: utils_site/src/frontend/views.py:766
 msgid "PDF to Excel Converter"
 msgstr "Konverter PDF ke Excel"
 
-#: utils_site/src/frontend/views.py:753
+#: utils_site/src/frontend/views.py:772
 msgid "Convert PDF to Excel"
 msgstr "Konversi PDF ke Excel"
 
-#: utils_site/src/frontend/views.py:754
+#: utils_site/src/frontend/views.py:773
 msgid "Please select a PDF file with tables."
 msgstr "Silakan pilih file PDF dengan tabel."
 
-#: utils_site/src/frontend/views.py:762
+#: utils_site/src/frontend/views.py:782
 msgid "Compress PDF - Convertica"
 msgstr "Kompres PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:764
+#: utils_site/src/frontend/views.py:784
 msgid ""
 "Compress PDF online free to reduce file size fast. PDF compressor with no "
 "watermark, compress PDF to under 1MB for email, reduce PDF file size without "
@@ -6342,15 +6443,15 @@ msgstr ""
 "Kompresor PDF tanpa watermark, kompres PDF di bawah 1MB untuk email, kurangi "
 "ukuran file PDF tanpa kehilangan kualitas. Alat kompresi PDF terbaik 2025."
 
-#: utils_site/src/frontend/views.py:790
+#: utils_site/src/frontend/views.py:810
 msgid "Reduce PDF file size without losing quality"
 msgstr "Kurangi ukuran file PDF tanpa kehilangan kualitas"
 
-#: utils_site/src/frontend/views.py:806
+#: utils_site/src/frontend/views.py:827
 msgid "Protect PDF with Password - Convertica"
 msgstr "Lindungi PDF dengan Kata Sandi - Convertica"
 
-#: utils_site/src/frontend/views.py:808
+#: utils_site/src/frontend/views.py:829
 msgid ""
 "Protect PDF files with password encryption. Secure your PDF documents with "
 "strong password protection."
@@ -6358,15 +6459,15 @@ msgstr ""
 "Lindungi file PDF dengan enkripsi kata sandi. Amankan dokumen PDF Anda "
 "dengan perlindungan kata sandi yang kuat."
 
-#: utils_site/src/frontend/views.py:815
+#: utils_site/src/frontend/views.py:836
 msgid "Secure your PDF documents with password protection"
 msgstr "Amankan dokumen PDF Anda dengan perlindungan kata sandi"
 
-#: utils_site/src/frontend/views.py:831
+#: utils_site/src/frontend/views.py:853
 msgid "Unlock PDF - Remove Password - Convertica"
 msgstr "Buka Kunci PDF - Hapus Kata Sandi - Convertica"
 
-#: utils_site/src/frontend/views.py:833
+#: utils_site/src/frontend/views.py:855
 msgid ""
 "Unlock PDF online free. Remove password protection from PDF files with the "
 "correct password. Fast PDF unlock tool with no watermark. Perfect for "
@@ -6376,19 +6477,19 @@ msgstr ""
 "dengan kata sandi yang benar. Alat buka kunci PDF cepat tanpa watermark. "
 "Sempurna untuk mengakses dokumen yang dilindungi. Tanpa registrasi."
 
-#: utils_site/src/frontend/views.py:857
+#: utils_site/src/frontend/views.py:879
 msgid "Remove password protection from your PDF"
 msgstr "Hapus perlindungan kata sandi dari PDF Anda"
 
-#: utils_site/src/frontend/views.py:865
+#: utils_site/src/frontend/views.py:887
 msgid "Please select a password-protected PDF file."
 msgstr "Silakan pilih file PDF yang dilindungi kata sandi."
 
-#: utils_site/src/frontend/views.py:873
+#: utils_site/src/frontend/views.py:895
 msgid "All PDF Tools - Convertica"
 msgstr "Semua Alat PDF - Convertica"
 
-#: utils_site/src/frontend/views.py:875
+#: utils_site/src/frontend/views.py:897
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
@@ -6396,7 +6497,7 @@ msgstr ""
 "Jelajahi semua alat PDF: Konversi, Edit, Atur, dan Amankan PDF. Alat PDF "
 "online gratis untuk semua kebutuhan dokumen Anda."
 
-#: utils_site/src/frontend/views.py:909
+#: utils_site/src/frontend/views.py:931
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
@@ -6406,7 +6507,7 @@ msgstr ""
 "berkomitmen pada perbaikan berkelanjutan dan menyediakan pengalaman konversi "
 "dan pengeditan PDF terbaik."
 
-#: utils_site/src/frontend/views.py:914
+#: utils_site/src/frontend/views.py:936
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
@@ -6414,7 +6515,7 @@ msgstr ""
 "tentang Convertica, perusahaan alat PDF, konverter PDF online, layanan PDF, "
 "konversi dokumen"
 
-#: utils_site/src/frontend/views.py:932
+#: utils_site/src/frontend/views.py:954
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
@@ -6422,14 +6523,14 @@ msgstr ""
 "Baca Kebijakan Privasi Convertica. Pelajari bagaimana kami melindungi data "
 "Anda dan menangani file Anda. Privasi Anda adalah prioritas kami."
 
-#: utils_site/src/frontend/views.py:937
+#: utils_site/src/frontend/views.py:959
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 msgstr ""
 "kebijakan privasi, perlindungan data, keamanan file, privasi, privasi "
 "Convertica"
 
-#: utils_site/src/frontend/views.py:954
+#: utils_site/src/frontend/views.py:976
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
@@ -6437,14 +6538,14 @@ msgstr ""
 "Baca Ketentuan Layanan Convertica. Pahami syarat dan ketentuan untuk "
 "menggunakan alat dan layanan PDF kami."
 
-#: utils_site/src/frontend/views.py:958
+#: utils_site/src/frontend/views.py:980
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
 msgstr ""
 "ketentuan layanan, syarat dan ketentuan, perjanjian pengguna, ketentuan "
 "Convertica"
 
-#: utils_site/src/frontend/views.py:985
+#: utils_site/src/frontend/views.py:1007
 msgid ""
 "Thank you! Your message has been sent successfully. We'll get back to you as "
 "soon as possible, usually within 24-48 hours."
@@ -6452,11 +6553,11 @@ msgstr ""
 "Terima kasih! Pesan Anda telah berhasil dikirim. Kami akan menghubungi Anda "
 "sesegera mungkin, biasanya dalam 24-48 jam."
 
-#: utils_site/src/frontend/views.py:1011
+#: utils_site/src/frontend/views.py:1033
 msgid "Please complete the CAPTCHA verification."
 msgstr "Harap selesaikan verifikasi CAPTCHA."
 
-#: utils_site/src/frontend/views.py:1016 utils_site/src/frontend/views.py:1112
+#: utils_site/src/frontend/views.py:1038 utils_site/src/frontend/views.py:1134
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
@@ -6464,19 +6565,19 @@ msgstr ""
 "Hubungi Convertica untuk dukungan, pertanyaan, atau umpan balik. Kami di "
 "sini untuk membantu dengan semua kebutuhan alat PDF Anda."
 
-#: utils_site/src/frontend/views.py:1020 utils_site/src/frontend/views.py:1115
+#: utils_site/src/frontend/views.py:1042 utils_site/src/frontend/views.py:1137
 msgid "contact Convertica, support, customer service, help, feedback"
 msgstr "hubungi Convertica, dukungan, layanan pelanggan, bantuan, umpan balik"
 
-#: utils_site/src/frontend/views.py:1107
+#: utils_site/src/frontend/views.py:1129
 msgid "Please correct the errors in the form below."
 msgstr "Silakan perbaiki kesalahan dalam formulir di bawah ini."
 
-#: utils_site/src/frontend/views.py:1133
+#: utils_site/src/frontend/views.py:1155
 msgid "Frequently Asked Questions (FAQ) - Convertica"
 msgstr "Pertanyaan yang Sering Diajukan (FAQ) - Convertica"
 
-#: utils_site/src/frontend/views.py:1135
+#: utils_site/src/frontend/views.py:1157
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
@@ -6485,7 +6586,7 @@ msgstr ""
 "Convertica. Pelajari cara mengonversi, mengedit, dan mengatur file PDF "
 "online secara gratis."
 
-#: utils_site/src/frontend/views.py:1178
+#: utils_site/src/frontend/views.py:1200
 msgid ""
 "To merge PDF files, go to the Merge PDF page, select multiple PDF files, "
 "arrange them in the desired order, and click merge. All selected files will "
@@ -6567,6 +6668,18 @@ msgstr ""
 msgid "Hero badge on profile"
 msgstr ""
 
+#: utils_site/src/users/models.py:13
+msgid "The Email must be set"
+msgstr ""
+
+#: utils_site/src/users/models.py:24
+msgid "Superuser must have is_staff=True."
+msgstr ""
+
+#: utils_site/src/users/models.py:26
+msgid "Superuser must have is_superuser=True."
+msgstr ""
+
 #: utils_site/src/users/models.py:31
 msgid "email address"
 msgstr ""
@@ -6591,7 +6704,7 @@ msgstr ""
 msgid "Consecutive Subscription Days"
 msgstr ""
 
-#: utils_site/src/users/models.py:68 utils_site/src/users/models.py:290
+#: utils_site/src/users/models.py:68 utils_site/src/users/models.py:295
 msgid "User"
 msgstr ""
 
@@ -6599,27 +6712,27 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
-#: utils_site/src/users/models.py:308
+#: utils_site/src/users/models.py:313
 msgid "Payment Method"
 msgstr ""
 
-#: utils_site/src/users/models.py:311
+#: utils_site/src/users/models.py:316
 #, fuzzy
 #| msgid "Translations"
 msgid "Transaction ID"
 msgstr "Terjemahan"
 
-#: utils_site/src/users/models.py:314
+#: utils_site/src/users/models.py:319
 #, fuzzy
 #| msgid "Created At"
 msgid "Processed At"
 msgstr "Dibuat Pada"
 
-#: utils_site/src/users/models.py:320
+#: utils_site/src/users/models.py:325
 msgid "Payment"
 msgstr ""
 
-#: utils_site/src/users/models.py:321
+#: utils_site/src/users/models.py:326
 #, fuzzy
 #| msgid "Enhancements"
 msgid "Payments"
@@ -6649,10 +6762,6 @@ msgstr ""
 msgid "Subscription cancelled successfully"
 msgstr ""
 
-#: utils_site/src/users/views.py:213
-msgid "Failed to cancel subscription"
-msgstr ""
-
 #: utils_site/src/users/views.py:231
 msgid "Account deleted successfully"
 msgstr ""
@@ -6663,6 +6772,10 @@ msgstr ""
 
 #: utils_site/src/users/views.py:262
 msgid "Hero display updated successfully"
+msgstr ""
+
+#: utils_site/src/users/views.py:268
+msgid "Invalid JSON"
 msgstr ""
 
 #~ msgid "Organization Settings"
