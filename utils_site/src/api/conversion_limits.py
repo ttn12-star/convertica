@@ -30,10 +30,10 @@ logger = get_logger(__name__)
 # ============================================================================
 
 # Maximum number of pages allowed for PDF operations
-MAX_PDF_PAGES = 50  # Keep 50 pages, monitor memory usage
+MAX_PDF_PAGES = 30  # Keep 30 pages, monitor memory usage
 
 # Stricter limits for heavy operations (memory-intensive)
-MAX_PDF_PAGES_HEAVY = 50  # PDF to Word/Excel: fewer pages due to memory
+MAX_PDF_PAGES_HEAVY = 30  # PDF to Word/Excel: fewer pages due to memory
 MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024  # 15 MB for heavy operations
 
 # Maximum file size in bytes (reduced for low-memory server)
@@ -104,34 +104,36 @@ def get_max_pages_for_user(user, operation: str = None) -> int:
     if user.is_authenticated and hasattr(user, "is_premium") and user.is_premium:
         if hasattr(user, "is_subscription_active") and user.is_subscription_active():
             premium_limits: dict[str, int] = {
-                "pdf_to_word": 200,
-                "pdf_to_excel": 200,
-                "word_to_pdf": 200,
-                "excel_to_pdf": 200,
-                "ppt_to_pdf": 200,
-                "html_to_pdf": 100,
-                "url_to_pdf": 100,
-                "pdf_to_jpg": 100,
-                "compress_pdf": 300,
-                "merge_pdf": 300,
-                "split_pdf": 300,
-                "rotate_pdf": 500,
-                "crop_pdf": 500,
-                "organize_pdf": 500,
-                "extract_pages": 500,
-                "remove_pages": 500,
-                "unlock_pdf": 500,
-                "protect_pdf": 500,
-                "add_watermark": 500,
-                "add_page_numbers": 500,
+                "pdf_to_word": 300,
+                "pdf_to_excel": 300,
+                "pdf_to_ppt": 300,
+                "pdf_to_html": 300,
+                "word_to_pdf": 300,
+                "excel_to_pdf": 300,
+                "ppt_to_pdf": 300,
+                "html_to_pdf": 150,
+                "url_to_pdf": 150,
+                "pdf_to_jpg": 150,
+                "compress_pdf": 400,
+                "merge_pdf": 400,
+                "split_pdf": 400,
+                "rotate_pdf": 700,
+                "crop_pdf": 700,
+                "organize_pdf": 700,
+                "extract_pages": 700,
+                "remove_pages": 700,
+                "unlock_pdf": 700,
+                "protect_pdf": 700,
+                "add_watermark": 700,
+                "add_page_numbers": 700,
             }
 
             if operation_key in premium_limits:
                 return premium_limits[operation_key]
 
             if operation_key in HEAVY_OPERATIONS:
-                return 200
-            return 300
+                return 300
+            return 400
 
     # Free users get standard limits
     if operation_key in HEAVY_OPERATIONS:
@@ -179,15 +181,15 @@ def validate_pdf_pages(
                 and user.is_subscription_active()
             )
 
-            if not is_premium and page_count > 50:
+            if not is_premium and page_count > MAX_PDF_PAGES:
                 # Free user exceeding limit - offer upgrade
                 return (
                     False,
                     _(
-                        "PDF has %(page_count)d pages (limit: 50). "
-                        "You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process files without limits!"
+                        "PDF has %(page_count)d pages (limit: %(max_pages)d). "
+                        "You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!"
                     )
-                    % {"page_count": page_count},
+                    % {"page_count": page_count, "max_pages": MAX_PDF_PAGES},
                     page_count,
                 )
             else:
@@ -363,6 +365,7 @@ def validate_file_for_operation(
     pdf_path: str,
     file_size: int,
     operation: str,
+    user=None,
 ) -> tuple[bool, str | None]:
     """Validate if file can be processed for given operation.
 
@@ -379,7 +382,10 @@ def validate_file_for_operation(
     is_heavy = operation in HEAVY_OPERATIONS
 
     # Check file size limits
-    max_size = MAX_FILE_SIZE_HEAVY if is_heavy else MAX_FILE_SIZE
+    if user is not None:
+        max_size = get_max_file_size_for_user(user, operation)
+    else:
+        max_size = MAX_FILE_SIZE_HEAVY if is_heavy else MAX_FILE_SIZE
     if file_size > max_size:
         max_mb = max_size / (1024 * 1024)
         file_mb = file_size / (1024 * 1024)
@@ -398,7 +404,10 @@ def validate_file_for_operation(
         )
 
     # Check page count
-    max_pages = MAX_PDF_PAGES_HEAVY if is_heavy else MAX_PDF_PAGES
+    if user is not None:
+        max_pages = get_max_pages_for_user(user, operation)
+    else:
+        max_pages = MAX_PDF_PAGES_HEAVY if is_heavy else MAX_PDF_PAGES
 
     try:
         if not _pypdf_available:

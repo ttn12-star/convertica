@@ -1,17 +1,114 @@
 {
-  "name": "Convertica",
+  "name": "Convertica - PDF Tools",
   "short_name": "Convertica",
-  "description": "Online PDF tools: convert, edit and organize PDFs.",
+  "description": "Free online PDF tools: convert, edit, organize and secure PDFs. Works offline!",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
+  "categories": ["productivity", "utilities", "business"],
+  "lang": "en",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/static/favicon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "/static/screenshots/desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/static/screenshots/mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "PDF to Word",
+      "short_name": "To Word",
+      "description": "Convert PDF to Word document",
+      "url": "/pdf-to-word/",
+      "icons": [
+        {
+          "src": "/static/icons/pdf-to-word.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Word to PDF",
+      "short_name": "To PDF",
+      "description": "Convert Word to PDF",
+      "url": "/word-to-pdf/",
+      "icons": [
+        {
+          "src": "/static/icons/word-to-pdf.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Merge PDF",
+      "short_name": "Merge",
+      "description": "Combine multiple PDFs",
+      "url": "/pdf-organize/merge/",
+      "icons": [
+        {
+          "src": "/static/icons/merge-pdf.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Compress PDF",
+      "short_name": "Compress",
+      "description": "Reduce PDF file size",
+      "url": "/pdf-organize/compress/",
+      "icons": [
+        {
+          "src": "/static/icons/compress-pdf.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "share_target": {
+    "action": "/share-target/",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "file",
+          "accept": ["application/pdf", ".pdf", "application/msword", ".doc", ".docx"]
+        }
+      ]
+    }
+  }
 }

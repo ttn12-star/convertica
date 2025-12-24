@@ -23,11 +23,11 @@ class Command(BaseCommand):
             {
                 "name": _("Monthly Hero Access"),
                 "plan_type": "monthly",
-                "price": 5.00,
+                "price": 6.00,
                 "duration_days": 30,
                 "features": [
                     _("Everything in Daily, plus:"),
-                    _("Batch processing (up to 20 files)"),
+                    _("Batch processing (up to 10 files)"),
                     _("OCR text recognition"),
                     _("Cloud storage (5GB, 7 days)"),
                     _("API access (1000 requests/month)"),
@@ -36,7 +36,7 @@ class Command(BaseCommand):
             {
                 "name": _("Yearly Hero Access"),
                 "plan_type": "yearly",
-                "price": 48.00,
+                "price": 52.00,
                 "duration_days": 365,
                 "features": [
                     _("Everything in Monthly, plus:"),

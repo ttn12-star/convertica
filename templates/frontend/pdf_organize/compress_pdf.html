@@ -1,0 +1,45 @@
+{% extends "frontend/edit_pdf_generic.html" %}
+{% load i18n %}
+
+{% block edit_options %}
+  <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+    <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Compression Settings" %}</h3>
+
+    <div class="space-y-4">
+        <!-- Compression Level -->
+      <div>
+        <label for="compression_level" class="block text-sm font-semibold text-gray-700 mb-2">
+          {% trans "Compression Level" %}
+        </label>
+        <select id="compression_level" name="compression_level"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+          <option value="low">{% trans "Low" %} - {% trans "Faster, less compression" %}</option>
+          <option value="medium" selected>{% trans "Medium" %} - {% trans "Balanced" %}</option>
+          <option value="high">{% trans "High" %} - {% trans "Slower, more compression" %}</option>
+        </select>
+        <p class="mt-1.5 text-xs text-gray-500">
+          {% trans "Choose compression level based on your needs. Higher compression reduces file size more but takes longer." %}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block help_section %}
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+      <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
+      <li>{% trans "Choose the compression level (Low, Medium, or High) to compress PDF file size" %}</li>
+      <li>{% trans "Click the compress button to reduce the size of your PDF file" %}</li>
+      <li>{% trans "Download your compressed PDF file using the download button" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-blue-200">
+      <p class="text-xs sm:text-sm text-gray-600">
+        <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to 30 pages are supported for compression. For larger files, please split them into smaller parts. Higher compression reduces file size more but may slightly reduce image quality." %}
+      </p>
+    </div>
+  </div>
+{% endblock %}

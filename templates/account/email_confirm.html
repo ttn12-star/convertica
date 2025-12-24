@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}{% trans "Confirm Email" %} - Convertica{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center px-4">
+    <div class="max-w-md w-full">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900">{% trans "Confirm your email" %}</h1>
+        <p class="text-gray-600 mt-2">{% trans "Click the button below to confirm your email address" %}</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        {% if confirmation %}
+          <p class="text-gray-700 mb-6">
+            {% blocktrans with email=confirmation.email_address.email %}
+              Please confirm that <strong>{{ email }}</strong> is your email address.
+            {% endblocktrans %}
+          </p>
+
+          <form method="post" action="{{ action_url }}">
+            {% csrf_token %}
+            <button type="submit" class="w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-sm text-sm font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {% trans "Confirm Email" %}
+            </button>
+          </form>
+
+          <div class="mt-6 text-center">
+            <a href="{% url 'users:profile' %}" class="text-sm text-gray-600 hover:text-gray-700 transition-colors">
+              {% trans "Back to profile" %}
+            </a>
+          </div>
+        {% else %}
+          <div class="p-4 rounded-lg bg-red-100 text-red-700 mb-6">
+            <p class="font-medium">{% trans "Invalid confirmation link" %}</p>
+            <p class="text-sm mt-1">{% trans "This confirmation link is expired or invalid." %}</p>
+          </div>
+
+          <div class="space-y-3">
+            <a href="{% url 'users:login' %}" class="block w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-sm text-sm font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
+              {% trans "Go to login" %}
+            </a>
+            <a href="{% url 'users:profile' %}" class="block w-full text-center px-4 py-2 text-sm text-gray-600 hover:text-gray-700 transition-colors">
+              {% trans "Go to profile" %}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

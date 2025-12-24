@@ -62,7 +62,11 @@ class User(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-    objects = UserManager()  # <-- подключаем кастомный менеджер
+    objects = UserManager()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._subscription_changed = False
 
     class Meta:
         verbose_name = _("User")
@@ -104,14 +108,14 @@ class User(AbstractUser):
             self.total_subscription_days = 0
             self.consecutive_subscription_days = 0
 
+        # Clear cache when subscription data changes (must happen BEFORE is_subscription_active())
+        if getattr(self, "_subscription_changed", False):
+            cache.delete(f"user_subscription_status_{self.id}")
+
         # Only auto-update is_premium if subscription_end_date is set
         # Allow manual override when editing via admin
         if self.subscription_end_date and not hasattr(self, "_admin_manual_edit"):
             self.is_premium = self.is_subscription_active()
-
-        # Clear cache when subscription data changes
-        if hasattr(self, "_subscription_changed"):
-            cache.delete(f"user_subscription_status_{self.id}")
 
         super().save(*args, **kwargs)
 
@@ -156,15 +160,17 @@ class User(AbstractUser):
             return {
                 "name": "Platinum",
                 "color": "purple",
-                "badge_color": "bg-purple-600",
+                "icon": "sparkles",
+                "badge_color": "bg-gradient-to-r from-fuchsia-600 to-indigo-600",
                 "text_color": "text-white",
-                "border_color": "border-purple-500",
-                "gradient": "from-purple-600/70 to-indigo-600/70",
+                "border_color": "border-fuchsia-500",
+                "gradient": "from-fuchsia-600/70 to-indigo-600/70",
             }
         elif days >= 180:
             return {
                 "name": "Gold",
                 "color": "yellow",
+                "icon": "crown",
                 "badge_color": "bg-yellow-600",
                 "text_color": "text-white",
                 "border_color": "border-yellow-500",
@@ -174,6 +180,7 @@ class User(AbstractUser):
             return {
                 "name": "Silver",
                 "color": "gray",
+                "icon": "medal",
                 "badge_color": "bg-gray-500",
                 "text_color": "text-white",
                 "border_color": "border-gray-400",
@@ -183,13 +190,23 @@ class User(AbstractUser):
             return {
                 "name": "Bronze",
                 "color": "orange",
+                "icon": "shield",
                 "badge_color": "bg-orange-600",
                 "text_color": "text-white",
                 "border_color": "border-orange-500",
                 "gradient": "from-orange-600/70 to-amber-600/70",
             }
         else:
-            return None
+            # Default rank for all premium users (< 30 days)
+            return {
+                "name": "Hero",
+                "color": "blue",
+                "icon": "shield",
+                "badge_color": "bg-blue-600",
+                "text_color": "text-white",
+                "border_color": "border-blue-500",
+                "gradient": "from-blue-600/70 to-cyan-600/70",
+            }
 
     def activate_subscription(self, plan):
         """Activate subscription for given plan."""
@@ -227,13 +244,16 @@ class User(AbstractUser):
         if cached_heroes is not None:
             return cached_heroes
 
-        heroes = cls.objects.filter(display_as_hero=True, is_premium=True).order_by(
-            "-consecutive_subscription_days"
-        )
+        now = timezone.now()
+        heroes = cls.objects.filter(
+            display_as_hero=True,
+            subscription_end_date__isnull=False,
+            subscription_end_date__gte=now,
+        ).order_by("-consecutive_subscription_days")
 
-        # Cache for 5 minutes (300 seconds)
+        # Cache for 1 minute to ensure heroes disappear quickly after subscription expiry
         heroes_list = list(heroes)
-        cache.set(cache_key, heroes_list, 300)
+        cache.set(cache_key, heroes_list, 60)
         return heroes_list
 
     @classmethod
@@ -245,12 +265,15 @@ class User(AbstractUser):
         if cached_top is not None:
             return cached_top
 
-        top = cls.objects.filter(display_as_hero=True, is_premium=True).order_by(
-            "-consecutive_subscription_days"
-        )[:limit]
+        now = timezone.now()
+        top = cls.objects.filter(
+            display_as_hero=True,
+            subscription_end_date__isnull=False,
+            subscription_end_date__gte=now,
+        ).order_by("-consecutive_subscription_days")[:limit]
 
-        # Cache for 24 hours (86400 seconds)
-        cache.set(cache_key, list(top), 86400)
+        # Cache for 5 minutes
+        cache.set(cache_key, list(top), 300)
         return top
 
 

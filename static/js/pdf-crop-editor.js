@@ -1018,15 +1018,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const formData = new FormData();
-        const fieldName = window.FILE_INPUT_NAME || 'pdf_file';
-        const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
+        const singleFieldName = window.FILE_INPUT_NAME || 'pdf_file';
 
+        const selectedFiles = (fileInput?.files && fileInput.files.length > 0)
+            ? fileInput.files
+            : (fileInputDrop?.files && fileInputDrop.files.length > 0)
+                ? fileInputDrop.files
+                : null;
+
+        const isBatchMode = Boolean(
+            window.BATCH_ENABLED &&
+            window.IS_PREMIUM &&
+            selectedFiles &&
+            selectedFiles.length > 1 &&
+            window.BATCH_API_URL &&
+            window.BATCH_FIELD_NAME
+        );
+
+        const selectedFile = selectedFiles?.[0] || null;
         if (!selectedFile) {
             window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'editorResult');
             return;
         }
 
-        formData.append(fieldName, selectedFile);
+        if (isBatchMode) {
+            const batchFieldName = window.BATCH_FIELD_NAME;
+            Array.from(selectedFiles).forEach((f) => {
+                formData.append(batchFieldName, f);
+            });
+        } else {
+            formData.append(singleFieldName, selectedFile);
+        }
         const xValue = document.getElementById('x').value;
         const yValue = document.getElementById('y').value;
         const widthValue = document.getElementById('width').value;
@@ -1075,14 +1097,15 @@ document.addEventListener('DOMContentLoaded', () => {
         hideResult();
         hideDownload();
 
-        // Show loading
-        window.showLoading('loadingContainer');
+        // Show loading (disable progress bar for batch mode)
+        window.showLoading('loadingContainer', { showProgress: !isBatchMode });
 
         // Disable form
         setFormDisabled(true);
 
         try {
-            const response = await fetch(window.API_URL, {
+            const apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': window.CSRF_TOKEN
@@ -1105,7 +1128,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Success
             window.hideLoading('loadingContainer');
-            window.showDownloadButton(blob, selectedFile.name, 'downloadContainer', {
+            const contentDisposition = response.headers.get('content-disposition');
+            let downloadName = isBatchMode ? 'convertica.zip' : selectedFile.name;
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    downloadName = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+
+            window.showDownloadButton(blob, downloadName, 'downloadContainer', {
                 successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
                 downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
                 convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
@@ -1117,6 +1149,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const fileInput = document.getElementById('fileInput');
                     if (fileInput) {
                         fileInput.value = '';
+                    }
+                    const fileInputDrop = document.getElementById('fileInputDrop');
+                    if (fileInputDrop) {
+                        fileInputDrop.value = '';
                     }
                     hideDownload();
                     cleanupPreviousPDF();

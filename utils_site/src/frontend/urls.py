@@ -1,15 +1,24 @@
 from django.urls import path
 
 from . import views
+from .views import PricingPageView, SupportPageView, SupportSuccessPageView
+
+app_name = "frontend"
 
 urlpatterns = [
     path("", views.index_page, name="index_page_lang"),
     path("all-tools/", views.all_tools_page, name="all_tools_page"),
+    # PDF Conversion pages
     path("pdf-to-word/", views.pdf_to_word_page, name="pdf_to_word_page"),
     path("word-to-pdf/", views.word_to_pdf_page, name="word_to_pdf_page"),
     path("pdf-to-jpg/", views.pdf_to_jpg_page, name="pdf_to_jpg_page"),
     path("jpg-to-pdf/", views.jpg_to_pdf_page, name="jpg_to_pdf_page"),
     path("pdf-to-excel/", views.pdf_to_excel_page, name="pdf_to_excel_page"),
+    path("excel-to-pdf/", views.excel_to_pdf_page, name="excel_to_pdf_page"),
+    path("ppt-to-pdf/", views.ppt_to_pdf_page, name="ppt_to_pdf_page"),
+    path("html-to-pdf/", views.html_to_pdf_page, name="html_to_pdf_page"),
+    path("pdf-to-ppt/", views.pdf_to_ppt_page, name="pdf_to_ppt_page"),
+    path("pdf-to-html/", views.pdf_to_html_page, name="pdf_to_html_page"),
     # PDF Edit pages
     path("pdf-edit/rotate/", views.rotate_pdf_page, name="rotate_pdf_page"),
     path(
@@ -38,6 +47,13 @@ urlpatterns = [
     path("pdf-security/protect/", views.protect_pdf_page, name="protect_pdf_page"),
     path("pdf-security/unlock/", views.unlock_pdf_page, name="unlock_pdf_page"),
     # Static pages
+    path("pricing/", PricingPageView.as_view(), name="pricing"),
+    path("contribute/", SupportPageView.as_view(), name="contribute"),
+    path(
+        "contribute/success/",
+        SupportSuccessPageView.as_view(),
+        name="contribute_success",
+    ),
     path("about/", views.about_page, name="about_page"),
     path("privacy/", views.privacy_page, name="privacy_page"),
     path("terms/", views.terms_page, name="terms_page"),

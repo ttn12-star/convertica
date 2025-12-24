@@ -81,6 +81,8 @@ class PowerPointToPDFConverter {
                 this.isPremium = data.is_premium || false;
                 if (this.isPremium) {
                     this.batchSection.classList.remove('hidden');
+                    // Auto-enable batch mode for Premium users
+                    this.enableBatchMode();
                 }
             })
             .catch(error => {
@@ -139,7 +141,7 @@ class PowerPointToPDFConverter {
 
     enableBatchMode() {
         this.isBatchMode = true;
-        this.enableBatchBtn.textContent = 'Batch Mode Enabled';
+        this.enableBatchBtn.textContent = 'Batch Mode Enabled ✓';
         this.enableBatchBtn.disabled = true;
         this.enableBatchBtn.classList.add('bg-purple-700');
 
@@ -147,12 +149,24 @@ class PowerPointToPDFConverter {
         this.fileInput.multiple = true;
         this.fileInput.accept = '.ppt,.pptx,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation';
 
-        // Update UI text
+        // Update UI text to be more explicit about multi-file selection
         const dropZoneText = this.dropZone.querySelector('p.text-lg');
-        dropZoneText.textContent = 'Drop your PowerPoint files here or click to browse (up to 20 files)';
+        if (dropZoneText) {
+            dropZoneText.innerHTML = '<strong>Select multiple PowerPoint files</strong> (up to 10 files)';
+        }
 
         const dropZoneSubtext = this.dropZone.querySelector('p.text-sm');
-        dropZoneSubtext.textContent = 'Support for .ppt and .pptx files up to 200MB each (Premium)';
+        if (dropZoneSubtext) {
+            dropZoneSubtext.textContent = 'Drag & drop or click to browse • .ppt and .pptx files up to 200MB each';
+        }
+
+        // Update browse button text to indicate multiple file selection
+        if (this.browseBtn) {
+            const btnText = this.browseBtn.querySelector('span');
+            if (btnText) {
+                btnText.textContent = 'Select PowerPoint files (multiple)';
+            }
+        }
     }
 
     async handleSubmit(e) {
@@ -171,8 +185,8 @@ class PowerPointToPDFConverter {
             // Handle batch conversion
             const files = Array.from(this.fileInput.files);
 
-            if (files.length > 20) {
-                this.showError('Maximum 20 files allowed for batch processing');
+            if (files.length > 10) {
+                this.showError('Maximum 10 files allowed for batch processing');
                 return;
             }
 

@@ -24,7 +24,9 @@ class PDFToWordAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".pdf"}
     CONVERSION_TYPE = "pdf_to_word"
     FILE_FIELD_NAME = "pdf_file"
-    VALIDATE_PDF_PAGES = False  # Client-side validation implemented
+    VALIDATE_PDF_PAGES = (
+        True  # Enforce server-side limits (free: 50 pages; premium: higher)
+    )
 
     def get_serializer_class(self):
         return PDFToWordSerializer
@@ -50,9 +52,9 @@ class PDFToWordAPIView(BaseConversionAPIView):
         # Attach request to uploaded_file for language detection
         uploaded_file._request = self.request
 
-        docx_path, pdf_path = async_to_sync(convert_pdf_to_docx)(
+        pdf_path, docx_path = async_to_sync(convert_pdf_to_docx)(
             uploaded_file,
             suffix="_convertica",
             ocr_enabled=ocr_enabled,
         )
-        return docx_path, pdf_path
+        return pdf_path, docx_path

@@ -322,7 +322,10 @@ class AsyncConversionAPIView(APIView, ABC):
                 # For heavy operations, do additional validation (complexity, size)
                 if self.CONVERSION_TYPE in HEAVY_OPERATIONS:
                     can_process, complexity_error = validate_file_for_operation(
-                        input_path, uploaded_file.size, self.CONVERSION_TYPE
+                        input_path,
+                        uploaded_file.size,
+                        self.CONVERSION_TYPE,
+                        user=request.user,
                     )
                     if not can_process:
                         cleanup_task_files(task_id)

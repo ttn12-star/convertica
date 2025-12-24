@@ -1,9 +1,12 @@
 # pylint: skip-file
+import csv
+
 from allauth.socialaccount.models import SocialAccount, SocialApp
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.urls import reverse
+from django.http import HttpResponse
+from django.urls import path, reverse
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
@@ -409,10 +412,11 @@ class OperationRunAdmin(admin.ModelAdmin):
         "queued_at",
         "started_at",
         "finished_at",
-        "duration_ms",
-        "queue_wait_ms",
+        "duration_s",
+        "queue_wait_s",
     )
     list_filter = ("conversion_type", "status", "is_premium", "created_at")
+    date_hierarchy = "created_at"
     search_fields = ("task_id", "request_id", "user__email", "conversion_type")
     readonly_fields = ("created_at", "updated_at")
     list_select_related = ("user",)
@@ -422,6 +426,95 @@ class OperationRunAdmin(admin.ModelAdmin):
 
     user_email.short_description = "User Email"
     user_email.admin_order_field = "user__email"
+
+    def duration_s(self, obj):
+        if obj.duration_ms is None:
+            return None
+        return round(obj.duration_ms / 1000.0, 3)
+
+    duration_s.short_description = "Duration (s)"
+    duration_s.admin_order_field = "duration_ms"
+
+    def queue_wait_s(self, obj):
+        if obj.queue_wait_ms is None:
+            return None
+        return round(obj.queue_wait_ms / 1000.0, 3)
+
+    queue_wait_s.short_description = "Queue wait (s)"
+    queue_wait_s.admin_order_field = "queue_wait_ms"
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path(
+                "export/",
+                self.admin_site.admin_view(self.export_csv_view),
+                name="users_operationrun_export",
+            )
+        ]
+        return custom_urls + urls
+
+    def export_csv_view(self, request):
+        cl = self.get_changelist_instance(request)
+        queryset = cl.get_queryset(request)
+
+        response = HttpResponse(content_type="text/csv")
+        response["Content-Disposition"] = "attachment; filename=operation_runs.csv"
+
+        writer = csv.writer(response)
+        writer.writerow(
+            [
+                "id",
+                "conversion_type",
+                "status",
+                "is_premium",
+                "user_email",
+                "created_at",
+                "queued_at",
+                "started_at",
+                "finished_at",
+                "duration_s",
+                "queue_wait_s",
+                "input_size",
+                "output_size",
+                "remote_addr",
+                "path",
+                "error_type",
+            ]
+        )
+
+        queryset = queryset.select_related("user")
+        for obj in queryset.iterator(chunk_size=2000):
+            writer.writerow(
+                [
+                    obj.pk,
+                    obj.conversion_type,
+                    obj.status,
+                    obj.is_premium,
+                    (obj.user.email if obj.user else ""),
+                    obj.created_at,
+                    obj.queued_at,
+                    obj.started_at,
+                    obj.finished_at,
+                    (
+                        round(obj.duration_ms / 1000.0, 3)
+                        if obj.duration_ms is not None
+                        else ""
+                    ),
+                    (
+                        round(obj.queue_wait_ms / 1000.0, 3)
+                        if obj.queue_wait_ms is not None
+                        else ""
+                    ),
+                    obj.input_size,
+                    obj.output_size,
+                    obj.remote_addr,
+                    obj.path,
+                    obj.error_type,
+                ]
+            )
+
+        return response
 
 
 @admin.register(StripeWebhookEvent)

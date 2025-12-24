@@ -23,7 +23,9 @@ class PDFToJPGAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".pdf"}
     CONVERSION_TYPE = "PDF_TO_JPG"
     FILE_FIELD_NAME = "pdf_file"
-    VALIDATE_PDF_PAGES = False  # Client-side validation implemented
+    VALIDATE_PDF_PAGES = (
+        True  # Enforce server-side limits (free: 50 pages; premium: higher)
+    )
 
     def get_serializer_class(self):
         return PDFToJPGSerializer

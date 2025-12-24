@@ -47,6 +47,7 @@ from .logging_utils import (
     log_file_validation_error,
     log_validation_error,
 )
+from .rate_limit_utils import combined_rate_limit
 from .spam_protection import validate_spam_protection
 
 logger = get_logger(__name__)
@@ -572,6 +573,7 @@ class BaseConversionAPIView(APIView, ABC):
             if tmp_dir and os.path.exists(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
+    @combined_rate_limit(group="api_conversion", ip_rate="100/h", methods=["POST"])
     def post(self, request: HttpRequest):
         """Handle POST request for file conversion.
 
@@ -585,6 +587,12 @@ class BaseConversionAPIView(APIView, ABC):
 
         Note: Swagger documentation decorator should be applied in subclasses
         using @decorator() before this method.
+
+        Rate limits:
+        - IP: 100 requests/hour (prevents IP-based abuse)
+        - Anonymous: 100 requests/hour
+        - Authenticated: 1,000 requests/hour
+        - Premium: 10,000 requests/hour
         """
         # Spam protection check
         spam_check = validate_spam_protection(request)

@@ -4,6 +4,7 @@ Optimized PDF to Word conversion with parallel processing and memory management.
 
 import asyncio
 import os
+import shutil
 import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
@@ -11,6 +12,7 @@ from pdf2docx import Converter
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
 from src.api.ocr_utils import extract_text_from_pdf_async
+from src.api.pdf_utils import repair_pdf
 from src.exceptions import ConversionError, StorageError
 
 logger = get_logger(__name__)
@@ -59,17 +61,9 @@ class OptimizedPDFToWordConverter:
             context["conversion_environment"] = "celery_worker"
 
         if update_progress is None or not callable(update_progress):
-            logger.warning(
-                "update_progress is not callable (%s); progress callbacks disabled",
-                type(update_progress),
-                extra=context,
-            )
-
+            # Create no-op progress callback for batch operations
             def update_progress(*_args, **_kwargs):
                 return None
-
-        # Import shutil at function level
-        import shutil
 
         # Create temporary directory
         tmp_dir = tempfile.mkdtemp(prefix="pdf2docx_opt_")
@@ -163,8 +157,9 @@ class OptimizedPDFToWordConverter:
             return pdf_path, final_docx_path
 
         finally:
-            # Cleanup temporary directory (skip for Celery tasks - they handle cleanup)
-            if not is_celery_task and os.path.exists(tmp_dir):
+            # Cleanup temporary directory only for Celery tasks
+            # For batch processing, the caller (batch view) handles cleanup after ZIP creation
+            if is_celery_task and os.path.exists(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
     async def _process_ocr_async(
@@ -336,8 +331,8 @@ class OptimizedPDFToWordConverter:
             context: Logging context
         """
 
-        def _convert():
-            cv = Converter(pdf_path)
+        def _convert(pdf_to_use: str):
+            cv = Converter(pdf_to_use)
             try:
                 # Optimized settings for memory efficiency
                 cv.convert(
@@ -354,7 +349,34 @@ class OptimizedPDFToWordConverter:
 
         # Run conversion in thread pool to avoid blocking
         loop = asyncio.get_event_loop()
-        await loop.run_in_executor(None, _convert)
+
+        # Try direct conversion first
+        try:
+            await loop.run_in_executor(None, _convert, pdf_path)
+        except Exception as first_exc:
+            # If conversion fails, try with repair
+            logger.warning(
+                "Direct conversion failed, attempting with repair",
+                extra={
+                    **context,
+                    "event": "retry_with_repair",
+                    "error": str(first_exc)[:200],
+                },
+            )
+
+            # Repair to temporary file
+            tmp_dir = os.path.dirname(docx_path)
+            repaired_pdf_path = os.path.join(
+                tmp_dir, f"repaired_{os.path.basename(pdf_path)}"
+            )
+
+            # Use improved repair_pdf with pypdf fallback
+            repaired_path = await loop.run_in_executor(
+                None, repair_pdf, pdf_path, repaired_pdf_path
+            )
+
+            # Retry conversion with repaired PDF
+            await loop.run_in_executor(None, _convert, repaired_path)
 
         logger.info(
             "PDF to DOCX conversion completed",

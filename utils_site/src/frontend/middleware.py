@@ -79,8 +79,8 @@ class CaptchaRequirementMiddleware:
                 failed_attempts = request.session.get("failed_attempts", 0) + 1
                 request.session["failed_attempts"] = failed_attempts
 
-                # Require CAPTCHA after 3 failed attempts
-                if failed_attempts >= 3:
+                # Require CAPTCHA after 3 failed attempts (skip in DEBUG mode)
+                if failed_attempts >= 3 and not settings.DEBUG:
                     request.session["captcha_required"] = True
                     logger.info(
                         f"CAPTCHA required for IP {request.META.get('REMOTE_ADDR')} after {request.session['failed_attempts']} failed attempts"

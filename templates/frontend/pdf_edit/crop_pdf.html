@@ -1,0 +1,440 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords|default:"PDF editor, PDF tools, online PDF editor" }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="preload"
+        href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+        as="script"
+        crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
+  <style>
+    #cropSelection,
+    .crop-selection,
+    div.crop-selection {
+      position: absolute !important;
+      border: 4px solid #2563eb !important;
+      background: rgba(37, 99, 235, 0.35) !important;
+      background-color: rgba(37, 99, 235, 0.35) !important;
+      cursor: move !important;
+      pointer-events: all !important;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.6), 0 0 20px rgba(37, 99, 235, 0.7), inset 0 0 30px rgba(37, 99, 235, 0.2) !important;
+      z-index: 20 !important;
+      transition: all 0.2s ease !important;
+    }
+    #cropSelection:hover,
+    .crop-selection:hover,
+    div.crop-selection:hover {
+      border-color: #1d4ed8 !important;
+      background: rgba(37, 99, 235, 0.45) !important;
+      background-color: rgba(37, 99, 235, 0.45) !important;
+      box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.7), 0 0 30px rgba(29, 78, 216, 0.8), inset 0 0 40px rgba(29, 78, 216, 0.25) !important;
+    }
+    .crop-handle {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #3b82f6;
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(59, 130, 246, 0.3);
+      cursor: nwse-resize;
+      transition: transform 0.1s ease, background 0.1s ease, box-shadow 0.1s ease;
+      z-index: 21;
+      /* Prevent accidental selection on touch */
+      touch-action: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .crop-handle:hover {
+      transform: scale(1.3);
+      background: #2563eb;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 0 0 3px rgba(37, 99, 235, 0.4);
+    }
+    .crop-handle:active {
+      transform: scale(1.1);
+    }
+    .crop-handle.nw { top: -6px; left: -6px; cursor: nwse-resize; }
+    .crop-handle.ne { top: -6px; right: -6px; cursor: nesw-resize; }
+    .crop-handle.sw { bottom: -6px; left: -6px; cursor: nesw-resize; }
+    .crop-handle.se { bottom: -6px; right: -6px; cursor: nwse-resize; }
+    .crop-handle.n { top: -6px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+    .crop-handle.s { bottom: -6px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+    .crop-handle.w { top: 50%; left: -6px; transform: translateY(-50%); cursor: ew-resize; }
+    .crop-handle.e { top: 50%; right: -6px; transform: translateY(-50%); cursor: ew-resize; }
+
+    /* Mobile-friendly larger handles */
+    @media (max-width: 768px), (pointer: coarse) {
+      .crop-handle {
+        width: 28px;
+        height: 28px;
+        border-width: 4px;
+      }
+      .crop-handle.nw { top: -12px; left: -12px; }
+      .crop-handle.ne { top: -12px; right: -12px; }
+      .crop-handle.sw { bottom: -12px; left: -12px; }
+      .crop-handle.se { bottom: -12px; right: -12px; }
+      .crop-handle.n { top: -12px; }
+      .crop-handle.s { bottom: -12px; }
+      .crop-handle.w { left: -12px; }
+      .crop-handle.e { right: -12px; }
+      .crop-selection {
+        border-width: 5px;
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
+    <!-- Page Header -->
+    <div class="text-center mb-8 sm:mb-10">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">
+        {{ header_text }}
+      </h1>
+      {% if page_subtitle %}
+        <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+          {{ page_subtitle }}
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- Editor Form -->
+    <form id="editorForm"
+          method="post"
+          enctype="multipart/form-data"
+          class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
+      {% csrf_token %}
+
+        <!-- File Selection Button (Centered) -->
+      <div class="text-center mb-6">
+        <input type="file"
+               name="{{ file_input_name }}"
+               id="fileInput"
+               accept="{{ file_accept }}"
+               {% if batch_enabled %}multiple{% endif %}
+               class="hidden"
+               required>
+        <button type="button"
+                id="selectFileButton"
+                class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+          </svg>
+          <span>{% if batch_enabled %}{% trans "Select files to crop (multiple)" %}{% else %}{% trans "Select file to crop" %}{% endif %}</span>
+        </button>
+
+        {% if batch_enabled %}
+          <button type="button"
+                  id="addMoreFilesButton"
+                  class="hidden inline-flex items-center justify-center space-x-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold py-2.5 px-6 rounded-lg transition-colors mt-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            <span>{% trans "+ Add more files" %}</span>
+          </button>
+        {% endif %}
+
+            <!-- Selected File Display -->
+        <div id="selectedFile" class="hidden mt-4 p-4 bg-blue-50 rounded-lg border-2 border-blue-200 max-w-md mx-auto">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3 flex-1 min-w-0">
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-gray-900 text-sm sm:text-base truncate" id="fileName"></p>
+                <p class="text-gray-600 text-xs sm:text-sm" id="fileSize"></p>
+              </div>
+            </div>
+            <button type="button"
+                    id="removeFile"
+                    class="ml-3 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+                    aria-label="{% trans 'Remove file' %}">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+        <!-- Drag & Drop Zone (Below) -->
+      <div class="mb-6 hidden md:block">
+        <div id="dropZone"
+             class="relative border-2 border-dashed border-gray-300 rounded-lg p-3 sm:p-4 text-center transition-all duration-300 group bg-gray-50">
+          <input type="file"
+                 name="{{ file_input_name }}"
+                 id="fileInputDrop"
+                 accept="{{ file_accept }}"
+                 {% if batch_enabled %}multiple{% endif %}
+                 class="hidden">
+
+                <!-- Drop Zone Content -->
+          <div class="pointer-events-none relative z-0">
+            <svg class="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 text-gray-400 group-hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+            </svg>
+            <p class="text-gray-600 text-xs sm:text-sm font-medium mb-1">
+              {% if batch_enabled %}<strong>{% trans "Drag and drop your files here" %}</strong> ({% trans "up to 10 files" %}){% else %}{% trans "Drag and drop your file here" %}{% endif %}
+            </p>
+            <p class="text-gray-500 text-xs">
+              {% trans "Use the button above to browse files" %}
+            </p>
+            <p class="text-gray-400 text-xs mt-1.5" id="fileInfo">
+              {{ file_accept|upper }} {% if batch_enabled %}{% trans "files" %}{% else %}{% trans "file" %}{% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+
+        <!-- PDF Preview and Crop Area -->
+      <div id="pdfPreviewSection" class="hidden mb-6">
+        <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+                <!-- Controls and Instructions Block -->
+          <div class="mb-6 bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">{% trans "Crop Your PDF" %}</h3>
+                <p class="text-sm text-gray-600">
+                  {% trans "Click and drag on the PDF to select the crop area. The blue highlighted area will be kept. You can drag the selection box anywhere to move it, or use the corner/edge handles to resize it." %}
+                </p>
+              </div>
+              <div class="flex items-center gap-3">
+                <label for="pageSelector" class="text-sm font-semibold text-gray-700 whitespace-nowrap">
+                  {% trans "Page:" %}
+                </label>
+                <select id="pageSelector"
+                        class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 text-sm">
+                </select>
+              </div>
+            </div>
+
+                    <!-- Ready indicator -->
+            <div id="cropReadyIndicator" class="hidden mb-4 bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-300 rounded-lg p-4 flex items-center space-x-3 shadow-sm">
+              <div class="flex-shrink-0">
+                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-bold text-green-800">
+                  {% trans "Crop area is active!" %}
+                </p>
+                <p class="text-xs text-gray-600 mt-0.5">
+                  {% trans "The blue highlighted area will be kept. Adjust it and click 'Crop PDF' when ready." %}
+                </p>
+              </div>
+            </div>
+
+                    <!-- Pages to Crop -->
+            <div class="border-t border-gray-200 pt-4">
+              <label class="block text-sm font-semibold text-gray-700 mb-3">
+                {% trans "Apply crop to pages" %}
+              </label>
+              <div class="space-y-3">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio"
+                         name="pagesOption"
+                         id="pagesAll"
+                         value="all"
+                         checked
+                         class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <span class="text-sm text-gray-700">{% trans "All pages" %}</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio"
+                         name="pagesOption"
+                         id="pagesCurrent"
+                         value="current"
+                         class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <span class="text-sm text-gray-700">{% trans "Current page only" %}</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio"
+                         name="pagesOption"
+                         id="pagesCustom"
+                         value="custom"
+                         class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                  <span class="text-sm text-gray-700">{% trans "Custom pages:" %}</span>
+                </label>
+                <input type="text"
+                       id="pagesCustomInput"
+                       name="pagesCustom"
+                       placeholder="1,3,5 or 1-5"
+                       disabled
+                       class="ml-6 w-full sm:w-auto min-w-[200px] px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                       pattern="^[\d,\- ]+$">
+                <p class="ml-6 text-xs text-gray-500">
+                  {% trans "Enter specific pages like '1,3,5' or '1-5'" %}
+                </p>
+              </div>
+
+              <!-- Scale to page size option -->
+              <div class="flex items-center space-x-2 mt-4">
+                <input type="checkbox"
+                       id="scaleToPageSize"
+                       name="scaleToPageSize"
+                       value="true"
+                       class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                <label for="scaleToPageSize" class="text-sm text-gray-700 cursor-pointer">
+                  {% trans "Scale cropped area to full page size" %}
+                </label>
+              </div>
+              <p class="ml-6 text-xs text-gray-500">
+                {% trans "Stretch the cropped area to fill the entire page size" %}
+              </p>
+            </div>
+          </div>
+
+                <!-- PDF Canvas Container -->
+          <div class="relative bg-white border-2 border-gray-300 rounded-lg p-4 overflow-hidden flex justify-center items-center" style="max-height: 85vh; min-height: 400px;">
+            <div class="relative w-full h-full flex justify-center items-center">
+              <div id="pdfCanvasContainer" class="relative" style="display: inline-block;">
+                <canvas id="pdfCanvas" class="border border-gray-200 shadow-lg cursor-crosshair max-w-full max-h-full" style="display: block; width: auto; height: auto;"></canvas>
+                          <!-- Overlay for highlighting selection area (very light, barely visible) -->
+                <div id="cropOverlay" class="absolute inset-0 pointer-events-none hidden z-15" style="top: 0; left: 0; width: 100%; height: 100%;">
+                  <div id="cropOverlayTop" class="absolute bg-gray-500 bg-opacity-5"></div>
+                  <div id="cropOverlayRight" class="absolute bg-gray-500 bg-opacity-5"></div>
+                  <div id="cropOverlayBottom" class="absolute bg-gray-500 bg-opacity-5"></div>
+                  <div id="cropOverlayLeft" class="absolute bg-gray-500 bg-opacity-5"></div>
+                </div>
+                <div id="cropSelection" class="crop-selection hidden z-20" style="position: absolute; border: 4px solid #2563eb; background: rgba(37, 99, 235, 0.35); cursor: move; pointer-events: all; box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.6), 0 0 20px rgba(37, 99, 235, 0.7), inset 0 0 30px rgba(37, 99, 235, 0.2); z-index: 20;">
+                  <div class="crop-handle nw"></div>
+                  <div class="crop-handle ne"></div>
+                  <div class="crop-handle sw"></div>
+                  <div class="crop-handle se"></div>
+                  <div class="crop-handle n"></div>
+                  <div class="crop-handle s"></div>
+                  <div class="crop-handle w"></div>
+                  <div class="crop-handle e"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+                <!-- Quick Tips -->
+          <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
+            <div class="flex items-start space-x-2">
+              <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div class="text-xs text-blue-800">
+                <strong>{% trans "Tips:" %}</strong>
+                <ul class="list-disc list-inside mt-1 space-y-0.5">
+                  <li>{% trans "A crop area covering most of the page is selected by default" %}</li>
+                  <li>{% trans "A crop area covering most of the page is selected by default - adjust it as needed" %}</li>
+                  <li>{% trans "Click and drag inside the blue box to move it anywhere on the page" %}</li>
+                  <li>{% trans "Drag the corner or edge handles to resize the crop area" %}</li>
+                  <li>{% trans "Click and drag outside the box to create a new selection" %}</li>
+                  <li>{% trans "The cursor changes to 'move' when hovering over the selection box" %}</li>
+                  <li>{% trans "When 'all' is selected, crop applies to all pages" %}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- Hidden inputs for coordinates -->
+      <input type="hidden" id="x" name="x" value="0">
+      <input type="hidden" id="y" name="y" value="0">
+      <input type="hidden" id="width" name="width" value="">
+      <input type="hidden" id="height" name="height" value="">
+
+        <!-- Submit Button -->
+      <div class="text-center mt-8">
+        <button type="submit"
+                id="editButton"
+                class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 {{ button_class }} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                disabled>
+          <span class="flex items-center justify-center space-x-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            <span>{{ button_text }}</span>
+          </span>
+        </button>
+      </div>
+    </form>
+
+    <!-- Loading Container -->
+    <div id="loadingContainer" class="hidden mt-6"></div>
+
+    <!-- Download Container -->
+    <div id="downloadContainer" class="hidden mt-6"></div>
+
+    <!-- Result Message (for errors) -->
+    <div id="editorResult" class="hidden mt-6"></div>
+
+    <!-- Help Section -->
+    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+        {% trans "How it works" %}
+      </h2>
+      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+        <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
+        <li>{% trans "The PDF will be displayed - click and drag to select the area you want to keep when cropping PDF" %}</li>
+        <li>{% trans "Resize the selection by dragging the corners or edges to adjust the crop area" %}</li>
+        <li>{% trans "Choose which pages to apply the crop to (all pages, current page, or custom pages)" %}</li>
+        <li>{% trans "Click the crop button to process your PDF and crop the selected area" %}</li>
+        <li>{% trans "Download your cropped PDF file using the download button" %}</li>
+      </ol>
+      <div class="mt-4 pt-4 border-t border-blue-200">
+        <p class="text-xs sm:text-sm text-gray-600">
+          <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to 30 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages." %}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    window.API_URL = "{{ api_url|escapejs }}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name|escapejs }}";
+    window.BATCH_ENABLED = "{{ batch_enabled|yesno:'true,false'|escapejs }}" === "true";
+    window.BATCH_API_URL = "{{ batch_api_url|default:''|escapejs }}";
+    window.BATCH_FIELD_NAME = "{{ batch_field_name|default:''|escapejs }}";
+    /* eslint-disable */
+    window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
+    /* eslint-enable */
+    window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
+    window.REPLACE_TO = "{{ replace_to|escapejs }}";
+    window.ERROR_MESSAGE = "{{ error_message|default:'Editing failed. Please try again.'|escapejs }}";
+    window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Processing your file...' %}{% endfilter %}";
+    window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, this may take a few moments' %}{% endfilter %}";
+    window.SUCCESS_TITLE = "{% filter escapejs %}{% trans 'Editing Complete!' %}{% endfilter %}";
+    window.SUCCESS_MESSAGE = "{% filter escapejs %}{% trans 'Your file is ready to download' %}{% endfilter %}";
+    window.DOWNLOAD_BUTTON_TEXT = "{% filter escapejs %}{% trans 'Download File' %}{% endfilter %}";
+    window.EDIT_ANOTHER_TEXT = "{% filter escapejs %}{% trans 'Edit another file' %}{% endfilter %}";
+    window.ERROR_TITLE = "{% filter escapejs %}{% trans 'Error' %}{% endfilter %}";
+    // Crop editor translations
+    window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
+    window.CROP_AREA_READY = "{% filter escapejs %}{% trans 'Crop area ready! Drag the box to move it, drag from outside to create a new selection, or use handles to resize.' %}{% endfilter %}";
+    window.DRAG_TO_SELECT = "{% filter escapejs %}{% trans 'Drag to select crop area...' %}{% endfilter %}";
+    window.SELECTION_TOO_SMALL = "{% filter escapejs %}{% trans 'Selection too small. Full page selected. Drag to create a new selection or drag the box to move it.' %}{% endfilter %}";
+    window.CROP_AREA_SELECTED = "{% filter escapejs %}{% trans 'Crop area selected! Drag the box to move it or use handles to resize. Click Crop PDF when ready.' %}{% endfilter %}";
+    window.CROP_AREA_MOVED = "{% filter escapejs %}{% trans 'Crop area moved! Drag again to reposition or use handles to resize. Click Crop PDF when ready.' %}{% endfilter %}";
+    window.FAILED_TO_LOAD_PDF = "{% filter escapejs %}{% trans 'Failed to load PDF file. Please try again.' %}{% endfilter %}";
+    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts.' %}{% endfilter %}";
+    window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
+    window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
+  </script>
+  <script src="{% static 'js/utils.js' %}"></script>
+  <script src="{% static 'js/task-cancellation.js' %}"></script>
+  <script src="{% static 'js/file-input-handler.js' %}"></script>
+  <script src="{% static 'js/pdf-crop-editor.js' %}"></script>
+{% endblock %}

@@ -11,14 +11,14 @@
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
 {% block content %}
-  <main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen text-gray-900" itemscope itemtype="https://schema.org/CollectionPage">
+  <main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 min-h-screen text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/CollectionPage">
     <!-- Page Header -->
-    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200">
+    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200 dark:border-gray-800">
       <div class="absolute inset-0 opacity-5">
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
       </div>
 
-      <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-gray-900">
+      <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-gray-900 dark:text-gray-100">
         <div class="animate-fade-in">
           <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight text-gray-900" itemprop="headline">
             {% trans "All PDF Tools" %}
@@ -49,7 +49,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 <!-- PDF to Word - Featured with accent border -->
-          <a href="{% url 'pdf_to_word_page' %}"
+          <a href="{% url 'frontend:pdf_to_word_page' %}"
              class="group relative bg-gradient-to-br from-white to-blue-50/30 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-500 hover:border-blue-600 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
             <div class="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-bl-full transform translate-x-4 -translate-y-4"></div>
             <div class="mb-4 relative z-10">
@@ -68,8 +68,8 @@
           </a>
 
                 <!-- Word to PDF - With subtle gradient -->
-          <a href="{% url 'word_to_pdf_page' %}"
-             class="group relative bg-gradient-to-br from-white via-purple-50/20 to-pink-50/20 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-purple-200/50 hover:border-purple-300 animate-fade-in text-gray-900 cursor-pointer">
+          <a href="{% url 'frontend:word_to_pdf_page' %}"
+             class="group relative bg-gradient-to-br from-white via-purple-50/20 to-pink-50/20 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-purple-200/50 hover:border-purple-300 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
             <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="mb-4 relative z-10">
               <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
@@ -78,16 +78,70 @@
                 </svg>
               </div>
             </div>
-            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-pink-600 transition-colors relative z-10">
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors relative z-10">
               {% trans "Word to PDF" %}
             </h3>
-            <p class="text-gray-600 text-sm sm:text-base leading-relaxed relative z-10">
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed relative z-10">
               {% trans "Convert Word documents to secure PDF files." %}
             </p>
           </a>
 
+                <!-- Excel to PDF -->
+          <a href="{% url 'frontend:excel_to_pdf_page' %}"
+             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-t-4 border-green-400 hover:border-green-500 border-r border-b border-l border-gray-100 dark:border-gray-700 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+              {% trans "Excel to PDF" %}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+              {% trans "Convert Excel spreadsheets to PDF documents." %}
+            </p>
+          </a>
+
+                <!-- PowerPoint to PDF -->
+          <a href="{% url 'frontend:ppt_to_pdf_page' %}"
+             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-orange-400 hover:border-orange-500 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+              {% trans "PowerPoint to PDF" %}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+              {% trans "Convert PowerPoint presentations to PDF format." %}
+            </p>
+          </a>
+
+                <!-- HTML to PDF -->
+          <a href="{% url 'frontend:html_to_pdf_page' %}"
+             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-purple-400 hover:border-purple-500 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+              {% trans "HTML to PDF" %}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+              {% trans "Convert HTML content or web pages to PDF." %}
+            </p>
+          </a>
+
                 <!-- PDF to JPG - With top accent bar -->
-          <a href="{% url 'pdf_to_jpg_page' %}"
+          <a href="{% url 'frontend:pdf_to_jpg_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-t-4 border-pink-400 hover:border-pink-500 border-r border-b border-l border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
             <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 rounded-t-2xl"></div>
             <div class="mb-4">
@@ -106,7 +160,7 @@
           </a>
 
                 <!-- JPG to PDF - With corner accent -->
-          <a href="{% url 'jpg_to_pdf_page' %}"
+          <a href="{% url 'frontend:jpg_to_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-dashed border-pink-200 hover:border-pink-300 animate-fade-in text-gray-900 cursor-pointer">
             <div class="absolute -top-2 -right-2 w-8 h-8 bg-pink-500 rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,8 +182,8 @@
             </p>
           </a>
 
-                <!-- PDF to Excel - New -->
-          <a href="{% url 'pdf_to_excel_page' %}"
+                <!-- PDF to Excel -->
+          <a href="{% url 'frontend:pdf_to_excel_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-green-400 hover:border-green-500 animate-fade-in text-gray-900 cursor-pointer">
             <div class="mb-4">
               <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
@@ -143,6 +197,42 @@
             </h3>
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
               {% trans "Extract tables from PDF and convert to Excel format." %}
+            </p>
+          </a>
+
+                <!-- PDF to PowerPoint - New -->
+          <a href="{% url 'frontend:pdf_to_ppt_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-orange-400 hover:border-orange-500 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-orange-600 transition-colors">
+              {% trans "PDF to PowerPoint" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Convert PDF pages to editable PowerPoint slides." %}
+            </p>
+          </a>
+
+                <!-- PDF to HTML - New -->
+          <a href="{% url 'frontend:pdf_to_html_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-teal-400 hover:border-teal-500 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-teal-600 transition-colors">
+              {% trans "PDF to HTML" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Convert PDF content to HTML for web publishing." %}
             </p>
           </a>
         </div>
@@ -168,7 +258,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 <!-- Rotate PDF - With side accent -->
-          <a href="{% url 'rotate_pdf_page' %}"
+          <a href="{% url 'frontend:rotate_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-r-4 border-purple-400 hover:border-purple-500 border-t border-b border-l border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-16 bg-gradient-to-b from-purple-400 to-purple-600 rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="mb-4">
@@ -187,7 +277,7 @@
           </a>
 
                 <!-- Crop PDF - With gradient background -->
-          <a href="{% url 'crop_pdf_page' %}"
+          <a href="{% url 'frontend:crop_pdf_page' %}"
              class="group relative bg-gradient-to-br from-green-50/40 via-white to-green-50/20 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-green-200/60 hover:border-green-300 animate-fade-in text-gray-900 cursor-pointer">
             <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             <div class="mb-4">
@@ -206,7 +296,7 @@
           </a>
 
                 <!-- Add Page Numbers - With subtle pattern -->
-          <a href="{% url 'add_page_numbers_page' %}"
+          <a href="{% url 'frontend:add_page_numbers_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-blue-100 hover:border-blue-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
             <div class="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl transform translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500"></div>
             <div class="mb-4">
@@ -225,7 +315,7 @@
           </a>
 
                 <!-- Add Watermark - With diagonal accent -->
-          <a href="{% url 'add_watermark_page' %}"
+          <a href="{% url 'frontend:add_watermark_page' %}"
              class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-pink-200 hover:border-pink-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
             <div class="absolute -top-4 -right-4 w-24 h-24 bg-pink-400/20 rounded-full blur-2xl group-hover:bg-pink-400/30 transition-colors duration-300"></div>
             <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-500"></div>
@@ -266,7 +356,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6 sm:gap-8">
                 <!-- Merge PDF - Featured with badge -->
-          <a href="{% url 'merge_pdf_page' %}"
+          <a href="{% url 'frontend:merge_pdf_page' %}"
              class="group relative bg-gradient-to-br from-green-50/50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-green-300/50 hover:border-green-400 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
             <div class="absolute top-3 right-3 w-3 h-3 bg-green-500 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-400 via-emerald-400 to-green-500 rounded-t-2xl"></div>
@@ -286,7 +376,7 @@
           </a>
 
                 <!-- Split PDF - With corner accent -->
-          <a href="{% url 'split_pdf_page' %}"
+          <a href="{% url 'frontend:split_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-400 hover:border-blue-500 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
             <div class="absolute top-0 right-0 w-16 h-16 bg-blue-100/30 rounded-bl-full transform translate-x-4 -translate-y-4 group-hover:bg-blue-200/40 transition-colors duration-300"></div>
             <div class="mb-4">
@@ -305,7 +395,7 @@
           </a>
 
                 <!-- Remove Pages - With warning accent -->
-          <a href="{% url 'remove_pages_page' %}"
+          <a href="{% url 'frontend:remove_pages_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-red-200/60 hover:border-red-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
             <div class="absolute bottom-0 left-0 right-0 w-full h-1 bg-gradient-to-r from-red-400 to-red-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             <div class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></div>
@@ -325,7 +415,7 @@
           </a>
 
                 <!-- Extract Pages - With highlight effect -->
-          <a href="{% url 'extract_pages_page' %}"
+          <a href="{% url 'frontend:extract_pages_page' %}"
              class="group relative bg-gradient-to-br from-yellow-50/30 via-white to-orange-50/20 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-dashed border-yellow-300/50 hover:border-yellow-400 animate-fade-in text-gray-900 cursor-pointer">
             <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div class="mb-4">
@@ -344,7 +434,7 @@
           </a>
 
                 <!-- Organize PDF - With subtle pattern -->
-          <a href="{% url 'organize_pdf_page' %}"
+          <a href="{% url 'frontend:organize_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-teal-200/60 hover:border-teal-300 animate-fade-in text-gray-900 cursor-pointer overflow-hidden">
             <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-teal-300/20 rounded-full blur-2xl group-hover:bg-teal-400/30 group-hover:scale-150 transition-all duration-500"></div>
             <div class="absolute top-0 left-0 w-20 h-20 bg-cyan-200/20 rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -364,7 +454,7 @@
           </a>
 
                 <!-- Compress PDF - New -->
-          <a href="{% url 'compress_pdf_page' %}"
+          <a href="{% url 'frontend:compress_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-orange-200 hover:border-orange-300 animate-fade-in text-gray-900 cursor-pointer">
             <div class="mb-4">
               <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
@@ -403,7 +493,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                 <!-- Protect PDF -->
-          <a href="{% url 'protect_pdf_page' %}"
+          <a href="{% url 'frontend:protect_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-red-200 hover:border-red-300 animate-fade-in text-gray-900 cursor-pointer">
             <div class="mb-4">
               <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
@@ -421,7 +511,7 @@
           </a>
 
                 <!-- Unlock PDF -->
-          <a href="{% url 'unlock_pdf_page' %}"
+          <a href="{% url 'frontend:unlock_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-green-200 hover:border-green-300 animate-fade-in text-gray-900 cursor-pointer">
             <div class="mb-4">
               <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">

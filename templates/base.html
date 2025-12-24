@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-is-premium="{% if user.is_authenticated and user.is_premium_active %}true{% else %}false{% endif %}" class="scroll-smooth">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -14,7 +14,7 @@
     <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
     <meta name="author" content="Convertica">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="robots" content="{% block robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}">
     <meta name="language" content="{{ LANGUAGE_CODE }}">
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#2563eb">
@@ -86,9 +86,36 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
+    <script>
+      (function() {
+        try {
+          var html = document.documentElement;
+          var isPremium = html && html.dataset && html.dataset.isPremium === 'true';
+          if (!isPremium) {
+            html.classList.remove('dark');
+            return;
+          }
+          var storedTheme = localStorage.getItem('convertica_theme');
+          if (storedTheme === 'dark') {
+            html.classList.add('dark');
+            // Add dark-mode class to body as soon as it's available
+            // This runs synchronously in <head>, so body doesn't exist yet
+            // We'll add it via a tiny script right after <body> tag
+            window.__darkModeEnabled = true;
+          } else {
+            html.classList.remove('dark');
+            window.__darkModeEnabled = false;
+          }
+        } catch (e) {
+        }
+      })();
+    </script>
+
     <!-- Stylesheets -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="all">
+    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="all">
+    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}" media="all">
 
     <!-- Custom Animations -->
     <style>
@@ -103,9 +130,26 @@
       .shadow-3xl { box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25); }
 
       html, body { overflow-x: hidden; max-width: 100%; width: 100%; }
-      * { box-sizing: border-box; transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: cubic-bezier(0.4,0,0.2,1); transition-duration: 150ms; }
 
-      body { color: #111827; }
+      /* Smooth transitions for theme switching */
+      html {
+        transition: background-color 0.2s ease;
+      }
+
+      body {
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      * {
+        box-sizing: border-box;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+        transition-duration: 200ms;
+      }
+
+      body { color: #111827; background-color: #ffffff; }
+      html.dark body { color: #f3f4f6; background-color: #111827; }
+
       p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea { color: inherit; }
 
       img, video, iframe, embed, object { max-width: 100%; height: auto; }
@@ -153,6 +197,26 @@
       }
     </script>
 
+    <!-- BreadcrumbList Schema for SEO -->
+    {% if breadcrumb_items and breadcrumb_items|length > 1 %}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {% for item in breadcrumb_items %}
+              {
+                "@type": "ListItem",
+                "position": {{ item.position }},
+                "name": "{{ item.name|escapejs }}",
+                "item": "{{ item.url }}"
+              }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }
+      </script>
+    {% endif %}
+
     {% block structured_data %}{% endblock %}
     <!-- Cloudflare Turnstile (Anti-spam) -->
     {% if turnstile_site_key %}
@@ -163,7 +227,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/static/sw.js')
+          navigator.serviceWorker.register('/sw.js')
             .then((registration) => {
               console.log('[SW] Registered:', registration.scope);
               // Check for updates every hour
@@ -235,8 +299,17 @@
       })();
     </script>
 
+    {% block extra_head %}{% endblock %}
+
   </head>
-  <body class="bg-gray-50 text-gray-900 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+  <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+    <script>
+      // Apply dark-mode class to body immediately if dark theme is enabled
+      // This runs synchronously right after <body> tag to prevent white flash
+      if (window.__darkModeEnabled) {
+        document.body.classList.add('dark-mode');
+      }
+    </script>
     <!-- Global JS Settings from Django -->
     <script>
       window.JS_SETTINGS = {
@@ -247,15 +320,40 @@
 
     {% include "frontend/includes/header.html" %}
 
+    {% if not PAYMENTS_ENABLED %}
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        <div class="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-800/60 dark:bg-blue-900/20 dark:text-blue-100 px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div class="flex items-start sm:items-center gap-3">
+            <svg class="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+            </svg>
+            <div class="text-sm">
+              <div class="font-semibold">
+                {% trans "Premium is coming back soon." %}
+              </div>
+              <div class="opacity-90">
+                {% trans "Free tools are fully available right now." %}
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <a href="{% url 'frontend:contribute' %}" class="text-sm font-semibold underline hover:opacity-90">
+              {% trans "Learn more" %}
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
     <!-- Messages -->
     {% if messages %}
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4">
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }} mb-4 p-4 rounded-lg border flex items-center justify-between
-                      {% if message.tags == 'success' %}bg-green-50 border-green-200 text-green-800{% endif %}
-                      {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800{% endif %}
-                      {% if message.tags == 'warning' %}bg-yellow-50 border-yellow-200 text-yellow-800{% endif %}
-                      {% if message.tags == 'info' %}bg-blue-50 border-blue-200 text-blue-800{% endif %}
+                      {% if message.tags == 'success' %}bg-green-50 border-green-200 text-green-800 dark:bg-green-900/30 dark:border-green-700 dark:text-green-200{% endif %}
+                      {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-700 dark:text-red-200{% endif %}
+                      {% if message.tags == 'warning' %}bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/30 dark:border-yellow-700 dark:text-yellow-200{% endif %}
+                      {% if message.tags == 'info' %}bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200{% endif %}
                      ">
             <div class="flex items-center">
               {% if message.tags == 'success' %}
@@ -273,7 +371,7 @@
               {% endif %}
               <span>{{ message }}</span>
             </div>
-            <button type="button" class="ml-4 text-gray-400 hover:text-gray-600" onclick="this.parentElement.remove()">
+            <button type="button" class="ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" onclick="this.parentElement.remove()">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
@@ -283,7 +381,7 @@
       </div>
     {% endif %}
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
       {% block content %}{% endblock %}
     </main>
 
@@ -294,5 +392,11 @@
     <script src="{% static 'js/language-detection.js' %}" defer></script>
 
     {% block extra_js %}{% endblock %}
+
+    <!-- Theme Toggle Script (Premium Dark Mode) -->
+    <script src="{% static 'js/theme-toggle.js' %}" defer></script>
+
+    <!-- PWA Install Script -->
+    <script src="{% static 'js/pwa-install.js' %}" defer></script>
   </body>
 </html>

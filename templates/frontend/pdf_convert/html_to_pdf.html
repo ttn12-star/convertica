@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords|default:"HTML to PDF, URL to PDF, convert HTML to PDF" }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block structured_data %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "{{ page_title }}",
+      "description": "{{ page_description }}",
+      "url": "{{ site_current_url }}",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "inLanguage": "{{ LANGUAGE_CODE }}"
+    }
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+    <div class="text-center mb-8 sm:mb-10 pt-4 sm:pt-0">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900" itemprop="headline">{{ header_text }}</h1>
+      {% if page_subtitle %}
+        <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">{{ page_subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
+      <div class="flex space-x-1 mb-6 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+        <button type="button" id="htmlContentTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 shadow-sm">
+          {% trans "HTML Content" %}
+        </button>
+        <button type="button" id="urlTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition-colors">
+          {% trans "URL to PDF" %}
+        </button>
+      </div>
+
+      <form id="htmlContentForm" class="space-y-6">
+        {% csrf_token %}
+        <div>
+          <label for="htmlContent" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            {% trans "HTML Content" %}
+          </label>
+          <textarea
+            id="htmlContent"
+            name="html_content"
+            rows="12"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
+            placeholder="{% trans 'Enter your HTML code here...' %}"
+            required></textarea>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="filename" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              {% trans "Filename" %}
+            </label>
+            <input type="text"
+                   id="filename"
+                   name="filename"
+                   value="converted"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="pageSize" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              {% trans "Page Size" %}
+            </label>
+            <select id="pageSize"
+                    name="page_size"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="A4">A4</option>
+              <option value="A3">A3</option>
+              <option value="A5">A5</option>
+              <option value="Letter">Letter</option>
+              <option value="Legal">Legal</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="marginTop" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              {% trans "Top Margin" %}
+            </label>
+            <input type="text"
+                   id="marginTop"
+                   name="margin_top"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="marginBottom" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              {% trans "Bottom Margin" %}
+            </label>
+            <input type="text"
+                   id="marginBottom"
+                   name="margin_bottom"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="marginLeft" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              {% trans "Left Margin" %}
+            </label>
+            <input type="text"
+                   id="marginLeft"
+                   name="margin_left"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="marginRight" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              {% trans "Right Margin" %}
+            </label>
+            <input type="text"
+                   id="marginRight"
+                   name="margin_right"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+        </div>
+
+        <div class="text-center mt-8">
+          <button type="submit"
+                  class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 bg-green-600 hover:bg-green-700 text-white">
+            <span class="flex items-center justify-center space-x-3">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              <span>{% trans "Convert to PDF" %}</span>
+            </span>
+          </button>
+        </div>
+      </form>
+
+            <!-- URL Form -->
+      <form id="urlForm" class="space-y-6 hidden">
+        {% csrf_token %}
+
+        <div>
+          <label for="url" class="block text-sm font-medium text-gray-700 mb-2">
+            {% trans "Web Page URL" %}
+          </label>
+          <input type="url"
+                 id="url"
+                 name="url"
+                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                 placeholder="https://example.com"
+                 required>
+          <p class="mt-2 text-sm text-gray-500">
+            {% trans "Enter the URL of the web page you want to convert to PDF" %}
+          </p>
+        </div>
+
+                <!-- PDF Options (same as HTML form) -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="urlFilename" class="block text-sm font-medium text-gray-700 mb-2">
+              {% trans "Filename" %}
+            </label>
+            <input type="text"
+                   id="urlFilename"
+                   name="filename"
+                   value="converted"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="urlPageSize" class="block text-sm font-medium text-gray-700 mb-2">
+              {% trans "Page Size" %}
+            </label>
+            <select id="urlPageSize"
+                    name="page_size"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="A4">A4</option>
+              <option value="A3">A3</option>
+              <option value="A5">A5</option>
+              <option value="Letter">Letter</option>
+              <option value="Legal">Legal</option>
+            </select>
+          </div>
+        </div>
+
+                <!-- Margin Settings (same as HTML form) -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="urlMarginTop" class="block text-sm font-medium text-gray-700 mb-2">
+              {% trans "Top Margin" %}
+            </label>
+            <input type="text"
+                   id="urlMarginTop"
+                   name="margin_top"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="urlMarginBottom" class="block text-sm font-medium text-gray-700 mb-2">
+              {% trans "Bottom Margin" %}
+            </label>
+            <input type="text"
+                   id="urlMarginBottom"
+                   name="margin_bottom"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="urlMarginLeft" class="block text-sm font-medium text-gray-700 mb-2">
+              {% trans "Left Margin" %}
+            </label>
+            <input type="text"
+                   id="urlMarginLeft"
+                   name="margin_left"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+
+          <div>
+            <label for="urlMarginRight" class="block text-sm font-medium text-gray-700 mb-2">
+              {% trans "Right Margin" %}
+            </label>
+            <input type="text"
+                   id="urlMarginRight"
+                   name="margin_right"
+                   value="1cm"
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+        </div>
+
+                <!-- Convert Button -->
+        <button type="submit"
+                id="convertUrlBtn"
+                class="w-full py-3 px-6 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors">
+          {% trans "Convert URL to PDF" %}
+        </button>
+      </form>
+
+            <!-- Progress -->
+      <div id="progressSection" class="hidden mt-8">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-medium text-gray-700">
+              {% trans "Converting..." %}
+            </span>
+            <span class="text-sm text-gray-500" id="progressPercent">0%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div id="progressBar" class="bg-green-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <p class="text-sm text-gray-600 text-center" id="progressMessage">
+            {% trans "Please wait while we convert your content to PDF..." %}
+          </p>
+        </div>
+      </div>
+
+            <!-- Result -->
+      <div id="resultSection" class="hidden mt-8">
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+          <div class="flex items-center space-x-3">
+            <svg class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <h3 class="text-lg font-semibold text-green-900">
+                {% trans "Conversion Complete!" %}
+              </h3>
+              <p class="text-sm text-green-700">
+                {% trans "Your content has been converted to PDF successfully." %}
+              </p>
+            </div>
+          </div>
+          <div class="mt-4 space-y-3">
+            <a href="#" id="downloadLink" class="block w-full px-4 py-2 bg-green-600 text-white text-center rounded-lg hover:bg-green-700 transition-colors">
+              {% trans "Download PDF" %}
+            </a>
+            <button type="button" id="convertAnother" class="w-full px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50 transition-colors">
+              {% trans "Convert Another" %}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {% block help_section %}
+        <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+          <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-white" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">{% trans "How it works" %}</h2>
+          <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+            <li>{% trans "Paste your HTML or enter a URL" %}</li>
+            <li>{% trans "Click the convert button" %}</li>
+            <li>{% trans "Wait for the conversion to complete" %}</li>
+            <li>{% trans "Download your PDF file" %}</li>
+          </ol>
+        </div>
+      {% endblock %}
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/html-to-pdf.js' %}" defer></script>
+{% endblock %}

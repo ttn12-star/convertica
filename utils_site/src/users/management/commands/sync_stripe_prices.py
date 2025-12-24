@@ -1,6 +1,7 @@
 """Management command to sync Stripe prices with SubscriptionPlan models."""
 
 import stripe
+import stripe.apps
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction

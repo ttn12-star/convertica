@@ -16,7 +16,7 @@
         </div>
         <ul class="space-y-2.5 text-sm">
           <li>
-            <a href="/"
+            <a href="{% if LANGUAGE_CODE == default_language_code %}{% url 'frontend:index_page_lang' %}{% else %}{% url 'frontend:index_page_lang' %}{% endif %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-white hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -34,7 +34,7 @@
             </a>
           </li>
           <li>
-            <a href="/about/"
+            <a href="{% url 'frontend:about_page' %}"
                class="flex items-center space-x-2 text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li>
-            <a href="/privacy/"
+            <a href="{% url 'frontend:privacy_page' %}"
                class="flex items-center space-x-2 text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li>
-            <a href="/terms/"
+            <a href="{% url 'frontend:terms_page' %}"
                class="flex items-center space-x-2 text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -61,7 +61,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'faq_page' %}"
+            <a href="{% url 'frontend:faq_page' %}"
                class="flex items-center space-x-2 text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -85,7 +85,7 @@
         </div>
         <ul class="space-y-2.5 text-sm">
           <li>
-            <a href="{% url 'all_tools_page' %}"
+            <a href="{% url 'frontend:all_tools_page' %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-purple-400 hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -94,7 +94,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'pdf_to_word_page' %}"
+            <a href="{% url 'frontend:pdf_to_word_page' %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-blue-400 hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -103,7 +103,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'word_to_pdf_page' %}"
+            <a href="{% url 'frontend:word_to_pdf_page' %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-purple-400 hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -112,7 +112,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'pdf_to_jpg_page' %}"
+            <a href="{% url 'frontend:pdf_to_jpg_page' %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-pink-400 hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -121,7 +121,7 @@
             </a>
           </li>
           <li>
-            <a href="{% url 'jpg_to_pdf_page' %}"
+            <a href="{% url 'frontend:jpg_to_pdf_page' %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-pink-400 hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -144,7 +144,7 @@
         </div>
         <ul class="space-y-2.5 text-sm">
           <li>
-            <a href="/contact/"
+            <a href="{% url 'frontend:contact_page' %}"
                class="flex items-center space-x-2 text-gray-400 hover:text-cyan-400 hover:translate-x-1 transition-all duration-200 group">
               <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -196,7 +196,7 @@
           <p class="text-xs text-gray-400 mb-2">{% trans "Resources" %}</p>
           <ul class="space-y-2 text-sm">
             <li>
-              <a href="{% url 'all_tools_page' %}"
+              <a href="{% url 'frontend:all_tools_page' %}"
                  class="text-gray-400 hover:text-green-400 transition-colors">
                 {% trans "All Tools" %}
               </a>
@@ -225,11 +225,11 @@
              class="text-gray-400 hover:text-blue-400 transition-colors duration-200 hover:underline">
             {% trans "Blog" %}
           </a>
-          <a href="/privacy/"
+          <a href="{% url 'frontend:privacy_page' %}"
              class="text-gray-400 hover:text-white transition-colors duration-200 hover:underline">
             {% trans "Privacy Policy" %}
           </a>
-          <a href="/terms/"
+          <a href="{% url 'frontend:terms_page' %}"
              class="text-gray-400 hover:text-white transition-colors duration-200 hover:underline">
             {% trans "Terms" %}
           </a>
