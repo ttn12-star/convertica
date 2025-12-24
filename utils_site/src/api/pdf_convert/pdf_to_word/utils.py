@@ -84,19 +84,53 @@ async def _convert_pdf_to_docx_sequential(
             },
         )
 
-        # Quick page count check
+        # Quick page count check and text detection
         import fitz  # PyMuPDF
 
         try:
             doc = fitz.open(pdf_path)
             total_pages = len(doc)
+
+            # Check if PDF already has extractable text
+            has_text = False
+            text_sample = ""
+            for page_num in range(min(3, total_pages)):  # Check first 3 pages
+                page = doc[page_num]
+                page_text = page.get_text().strip()
+                if len(page_text) > 50:  # If page has meaningful text
+                    has_text = True
+                    text_sample = page_text[:200]
+                    break
+
             doc.close()
+
+            logger.info(
+                f"PDF analysis: {total_pages} pages, {'text-based' if has_text else 'image-based/scanned'}",
+                extra={
+                    **context,
+                    "total_pages": total_pages,
+                    "has_extractable_text": has_text,
+                    "text_sample_length": len(text_sample),
+                },
+            )
         except Exception as e:
             raise InvalidPDFError(f"Failed to read PDF: {e}", context=context) from e
 
-        # OCR processing when explicitly requested by user
+        # OCR processing - only for scanned/image-based PDFs
         ocr_text_content = None
-        if ocr_enabled:
+        should_use_ocr = ocr_enabled and not has_text
+
+        if ocr_enabled and has_text:
+            logger.info(
+                "OCR skipped: PDF already contains extractable text. Using standard conversion for better quality.",
+                extra={
+                    **context,
+                    "event": "ocr_skipped",
+                    "reason": "text_already_present",
+                },
+            )
+
+        if should_use_ocr:
             try:
                 logger.info(
                     "Starting OCR processing (user requested)",
@@ -192,7 +226,9 @@ async def _convert_pdf_to_docx_sequential(
         context.update(
             {
                 "total_pages": total_pages,
-                "ocr_enabled": ocr_enabled,
+                "ocr_requested": ocr_enabled,
+                "ocr_actually_used": should_use_ocr,
+                "pdf_has_text": has_text,
             }
         )
 
@@ -276,6 +312,8 @@ async def _convert_pdf_to_docx_sequential(
         # Perform conversion, retry with repair only if needed
         conversion_pdf_path = pdf_path
         repair_attempted = False
+        ocr_fallback_used = False
+
         try:
             perform_conversion(conversion_pdf_path, docx_path)
         except Exception as first_exc:
@@ -288,9 +326,52 @@ async def _convert_pdf_to_docx_sequential(
                     "error": str(first_exc)[:200],
                 },
             )
-            repaired_pdf_path = os.path.join(tmp_dir, f"repaired_{safe_name}")
-            conversion_pdf_path = repair_pdf(pdf_path, repaired_pdf_path)
-            perform_conversion(conversion_pdf_path, docx_path)
+            try:
+                repaired_pdf_path = os.path.join(tmp_dir, f"repaired_{safe_name}")
+                conversion_pdf_path = repair_pdf(pdf_path, repaired_pdf_path)
+                perform_conversion(conversion_pdf_path, docx_path)
+            except Exception as second_exc:
+                # If repair also fails, try OCR-based conversion as last resort
+                logger.warning(
+                    "Repair failed, attempting OCR-based conversion as fallback",
+                    extra={
+                        **context,
+                        "event": "ocr_fallback",
+                        "error": str(second_exc)[:200],
+                    },
+                )
+                ocr_fallback_used = True
+                # Force OCR conversion for severely corrupted PDFs
+                from ...ocr_utils import convert_pdf_to_images_and_ocr
+
+                try:
+                    # Convert PDF to images and OCR back to text
+                    ocr_text = convert_pdf_to_images_and_ocr(pdf_path)
+
+                    # Create DOCX from OCR text
+                    from docx import Document
+
+                    doc = Document()
+                    doc.add_paragraph(ocr_text)
+                    doc.save(docx_path)
+
+                    logger.info(
+                        "OCR fallback successful for corrupted PDF",
+                        extra={**context, "event": "ocr_fallback_success"},
+                    )
+                except Exception as ocr_exc:
+                    logger.error(
+                        "All conversion methods failed",
+                        extra={
+                            **context,
+                            "event": "all_methods_failed",
+                            "ocr_error": str(ocr_exc)[:200],
+                        },
+                    )
+                    raise ConversionError(
+                        f"PDF is too corrupted to convert. Tried: standard conversion, repair, and OCR. Last error: {ocr_exc}",
+                        context=context,
+                    )
 
         # Validate output DOCX
         valid, val_err = validate_output_file(docx_path, min_size=1000, context=context)
@@ -303,9 +384,14 @@ async def _convert_pdf_to_docx_sequential(
                 **context,
                 "event": "conversion_success",
                 "repair_attempted": repair_attempted,
+                "ocr_fallback_used": ocr_fallback_used,
                 "output_size_bytes": os.path.getsize(docx_path),
                 "ocr_enabled": ocr_enabled,
-                "conversion_type": "ocr_enhanced" if ocr_enabled else "standard",
+                "conversion_type": (
+                    "ocr_fallback"
+                    if ocr_fallback_used
+                    else ("ocr_enhanced" if ocr_enabled else "standard")
+                ),
             },
         )
 

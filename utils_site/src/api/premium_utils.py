@@ -36,10 +36,10 @@ def get_max_batch_files(user) -> int:
         user: Django user object
 
     Returns:
-        Maximum batch size (20 for premium, 1 for free)
+        Maximum batch size (10 for premium, 1 for free)
     """
     if is_premium_active(user):
-        return 20  # Premium users can process up to 20 files at once
+        return 10  # Premium users can process up to 10 files at once
     return 1  # Free users can only process 1 file at a time
 
 
@@ -60,7 +60,7 @@ def can_use_batch_processing(user, file_count: int) -> tuple[bool, str | None]:
             return (
                 False,
                 "Free users can only process 1 file at a time. "
-                "Upgrade to Premium to process up to 20 files at once! "
+                "Upgrade to Premium to process up to 10 files at once! "
                 "Get 1-day Premium for just $1.",
             )
         else:
@@ -87,8 +87,8 @@ def get_premium_features(user) -> dict:
     return {
         "is_premium": is_premium,
         "max_file_size_mb": 200 if is_premium else 25,
-        "max_pages": 200 if is_premium else 50,
-        "max_batch_files": 20 if is_premium else 1,
+        "max_pages": 200 if is_premium else 30,  # Free: 30 pages, Premium: 200 pages
+        "max_batch_files": 10 if is_premium else 1,
         "priority_queue": is_premium,
         "unlimited_conversions": is_premium,
         "no_ads": is_premium,

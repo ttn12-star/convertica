@@ -23,6 +23,7 @@ from ...logging_utils import (
     log_conversion_start,
     log_conversion_success,
 )
+from ...rate_limit_utils import combined_rate_limit
 from .decorators import split_pdf_docs
 from .serializers import SplitPDFSerializer
 from .utils import split_pdf
@@ -38,9 +39,15 @@ class SplitPDFAPIView(APIView):
     def get_serializer_class(self):
         return SplitPDFSerializer
 
+    @combined_rate_limit(group="api_conversion", ip_rate="100/h", methods=["POST"])
     @split_pdf_docs()
     def post(self, request: HttpRequest):
-        """Handle POST request for splitting PDF."""
+        """Handle POST request for splitting PDF.
+
+        Rate limits:
+        - IP: 100 requests/hour
+        - Anonymous: 100/h, Authenticated: 1,000/h, Premium: 10,000/h
+        """
         start_time = time.time()
         context = build_request_context(request)
 

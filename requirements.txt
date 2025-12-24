@@ -19,6 +19,7 @@ pdf2docx==0.5.8
 pdf2image==1.17.0
 pdfplumber==0.11.4
 pillow==12.0.0
+python-pptx==1.0.2
 pydantic==2.12.5
 pydantic_core==2.41.5
 PyPDF2==3.0.1
@@ -69,4 +70,9 @@ ruff==0.4.4
 isort==5.13.2
 sentry-sdk[django]
 # Stripe payment processing
-stripe==7.8.0
+stripe==14.1.0
+# Django Channels - WebSocket support for real-time progress updates
+channels==4.0.0
+channels-redis==4.1.0
+# Web Push - Push notifications for PWA
+pywebpush==1.14.0

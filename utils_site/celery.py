@@ -120,6 +120,10 @@ try:
                 "task": "maintenance.memory_cleanup",
                 "schedule": 900.0,  # Every 15 minutes for 4GB servers
             },
+            "update-subscription-daily": {
+                "task": "maintenance.update_subscription_daily",
+                "schedule": 86400.0,  # Every 24 hours
+            },
         },
     )
 

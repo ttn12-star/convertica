@@ -247,7 +247,7 @@
       }
 
       // Send cancellation request
-      fetch('/users/cancel-subscription/', {
+      fetch('{% url "users:cancel_subscription" %}', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

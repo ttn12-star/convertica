@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block extra_head %}
-  <meta name="robots" content="noindex, nofollow">
-{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
 
 {% block title %}{% trans "Payment Cancelled" %}{% endblock %}
 
@@ -34,7 +32,7 @@
               <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              {% trans "Unlimited PDF processing" %}
+              {% trans "Much higher limits for PDF processing" %}
             </li>
             <li class="flex items-center">
               <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,10 +57,10 @@
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="{% url 'payments:subscription_plans' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-200">
+        <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-200">
           {% trans "Try Again" %}
         </a>
-        <a href="{% url 'frontend:home' %}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg transition duration-200">
+        <a href="{% url 'frontend:index_page_lang' %}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg transition duration-200">
           {% trans "Back to Home" %}
         </a>
       </div>

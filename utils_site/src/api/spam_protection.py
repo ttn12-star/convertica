@@ -26,6 +26,11 @@ def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
     Returns:
         True if verification successful, False otherwise
     """
+    # Skip CAPTCHA verification in development mode
+    if settings.DEBUG:
+        logger.debug("CAPTCHA verification skipped (DEBUG mode)")
+        return True
+
     secret = getattr(settings, "TURNSTILE_SECRET_KEY", None)
     if not secret:
         logger.warning("Turnstile not configured, skipping verification")

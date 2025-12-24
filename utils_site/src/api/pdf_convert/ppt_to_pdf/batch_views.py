@@ -5,52 +5,106 @@ Supports processing up to 20 PowerPoint files simultaneously for premium users.
 Uses async processing for better performance with multiple files.
 """
 
-from django.http import HttpRequest
+import os
+import shutil
+import tempfile
+import time
+import zipfile
 
-from ...base_views import BaseConversionAPIView
+from asgiref.sync import async_to_sync
+from django.http import FileResponse, HttpRequest
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from src.api.rate_limit_utils import combined_rate_limit
+
+from ...logging_utils import build_request_context, get_logger, log_conversion_start
+from ...premium_utils import can_use_batch_processing, is_premium_active
 from .decorators import ppt_to_pdf_docs
-from .serializers import PowerPointToPDFBatchSerializer
 from .utils import convert_ppt_to_pdf, validate_ppt_file
 
+logger = get_logger(__name__)
 
-class PowerPointToPDFBatchAPIView(BaseConversionAPIView):
+
+class PowerPointToPDFBatchAPIView(APIView):
     """Handle batch PowerPoint → PDF conversion requests."""
 
-    MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB per file
-    ALLOWED_CONTENT_TYPES = {
-        "application/vnd.ms-powerpoint",  # .ppt
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",  # .pptx
-        "application/octet-stream",
-    }
-    ALLOWED_EXTENSIONS = {".ppt", ".pptx"}
-    CONVERSION_TYPE = "ppt_to_pdf_batch"
-    FILE_FIELD_NAME = "ppt_files"
-    VALIDATE_PDF_PAGES = False  # Not applicable for PowerPoint files
-
-    def get_serializer_class(self):
-        """Return appropriate serializer for this view."""
-        return PowerPointToPDFBatchSerializer
-
-    def get_docs_decorator(self):
-        """Return Swagger documentation decorator for this view."""
-        return ppt_to_pdf_docs
-
+    @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @ppt_to_pdf_docs()
     def post(self, request: HttpRequest):
-        """Handle POST request with Swagger documentation."""
-        return super().post(request)
+        start_time = time.time()
+        context = build_request_context(request)
 
-    def perform_conversion(self, uploaded_file, context, **kwargs) -> tuple[str, str]:
-        """Convert PowerPoint to PDF."""
-        ppt_path, output_path = convert_ppt_to_pdf(uploaded_file, suffix="_convertica")
-        return ppt_path, output_path
+        if not is_premium_active(request.user):
+            return Response(
+                {"error": "Batch conversion is a premium feature."},
+                status=status.HTTP_403_FORBIDDEN,
+            )
 
-    def validate_file(self, uploaded_file, request) -> tuple[bool, str | None]:
-        """Validate PowerPoint file before conversion."""
-        # First run base validation (size, extension, etc.)
-        is_valid, error = super().validate_file(uploaded_file, request)
-        if not is_valid:
-            return False, error
+        ppt_files = request.FILES.getlist("ppt_files")
+        if not ppt_files:
+            return Response(
+                {"error": "No PowerPoint files provided. Use 'ppt_files' field name."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
-        # Then run PowerPoint-specific validation
-        return validate_ppt_file(uploaded_file)
+        can_batch, error_msg = can_use_batch_processing(request.user, len(ppt_files))
+        if not can_batch:
+            return Response({"error": error_msg}, status=status.HTTP_403_FORBIDDEN)
+
+        log_conversion_start(logger, "PPT_TO_PDF_BATCH", context)
+
+        tmp_dir = tempfile.mkdtemp(prefix="ppt2pdf_batch_")
+        tmp_dirs_to_cleanup: set[str] = set()
+        output_files: list[tuple[str, str]] = []
+
+        try:
+            for idx, ppt_file in enumerate(ppt_files):
+                is_valid, err = validate_ppt_file(ppt_file)
+                if not is_valid:
+                    return Response(
+                        {"error": err or "Invalid PowerPoint file"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
+                input_path, output_path = async_to_sync(convert_ppt_to_pdf)(
+                    ppt_file, suffix="_convertica"
+                )
+                tmp_dirs_to_cleanup.add(os.path.dirname(input_path))
+                output_files.append((ppt_file.name, output_path))
+
+            if not output_files:
+                return Response(
+                    {"error": "Failed to process any files"},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
+
+            zip_path = os.path.join(tmp_dir, "converted_presentations.zip")
+            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+                for file_index, (original_name, pdf_path) in enumerate(
+                    output_files, start=1
+                ):
+                    base_name = os.path.splitext(original_name)[0]
+                    zip_name = (
+                        os.path.basename(pdf_path) or f"{base_name}_convertica.pdf"
+                    )
+                    if zip_name in zipf.namelist():
+                        zip_name = f"{base_name}_{file_index}_convertica.pdf"
+                    zipf.write(pdf_path, zip_name)
+
+            response = FileResponse(
+                open(zip_path, "rb"),
+                as_attachment=True,
+                filename="ppt_to_pdf_convertica.zip",
+            )
+            response["Content-Type"] = "application/zip"
+            response["X-Convertica-Batch-Count"] = str(len(output_files))
+            response["X-Convertica-Duration-Ms"] = str(
+                int((time.time() - start_time) * 1000)
+            )
+            return response
+
+        finally:
+            for d in tmp_dirs_to_cleanup:
+                shutil.rmtree(d, ignore_errors=True)
+            shutil.rmtree(tmp_dir, ignore_errors=True)

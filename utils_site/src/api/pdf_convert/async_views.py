@@ -105,7 +105,7 @@ class PDFToJPGAsyncAPIView(AsyncConversionAPIView):
     CONVERSION_TYPE = "pdf_to_jpg"
     FILE_FIELD_NAME = "pdf_file"
     VALIDATE_PDF_PAGES = True  # Enable validation
-    MAX_PDF_PAGES = 50  # Standard limit for image extraction
+    MAX_PDF_PAGES = 30  # Standard limit for image extraction
 
     def get_serializer_class(self):
         return PDFToJPGSerializer

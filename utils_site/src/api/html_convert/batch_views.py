@@ -6,6 +6,7 @@ Uses async processing for better performance with multiple files.
 """
 
 from django.http import HttpRequest
+from src.api.rate_limit_utils import combined_rate_limit
 
 from ..base_views import BaseConversionAPIView
 from .decorators import html_to_pdf_docs
@@ -29,6 +30,7 @@ class HTMLToPDFBatchAPIView(BaseConversionAPIView):
         """Return Swagger documentation decorator for this view."""
         return html_to_pdf_docs
 
+    @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @html_to_pdf_docs()
     def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation."""

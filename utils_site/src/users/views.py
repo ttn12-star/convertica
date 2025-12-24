@@ -40,6 +40,23 @@ def user_login(request):
             )
             if user is not None:
                 if user.is_active:
+                    from allauth.account.models import EmailAddress
+
+                    if not EmailAddress.objects.filter(
+                        user=user,
+                        email=user.email,
+                        verified=True,
+                    ).exists():
+                        return render(
+                            request,
+                            "users/login.html",
+                            {
+                                "form": form,
+                                "error": _(
+                                    "Please verify your email address before signing in."
+                                ),
+                            },
+                        )
                     auth_login(request, user)
                     return redirect("users:profile")
                 else:
@@ -61,7 +78,7 @@ def user_login(request):
 
 
 def user_register(request):
-    """Handle user registration."""
+    """Handle user registration with email verification."""
     if request.user.is_authenticated:
         return redirect("users:profile")
 
@@ -69,14 +86,29 @@ def user_register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # Log user in after registration
-            from django.contrib.auth import get_backends
 
-            # Get the first authentication backend
-            backend = get_backends()[0]
-            user.backend = f"{backend.__module__}.{backend.__class__.__name__}"
-            auth_login(request, user)
-            return redirect("users:profile")
+            # Send email verification
+            from allauth.account.models import EmailAddress
+            from allauth.account.utils import send_email_confirmation
+
+            # Create EmailAddress object for the user
+            EmailAddress.objects.get_or_create(
+                user=user,
+                email=user.email,
+                defaults={"primary": True, "verified": False},
+            )
+
+            # Send verification email
+            send_email_confirmation(request, user, signup=True)
+
+            # Show success message and redirect to login
+            messages.success(
+                request,
+                _(
+                    "Registration successful! Please check your email to verify your account before logging in."
+                ),
+            )
+            return redirect("users:login")
     else:
         form = CustomUserCreationForm()
 
@@ -105,7 +137,74 @@ def user_logout(request):
 @login_required
 def user_profile(request):
     """Display user profile."""
-    return render(request, "users/profile.html", {"user": request.user})
+    from allauth.account.models import EmailAddress
+
+    # Check if email is verified
+    email_verified = EmailAddress.objects.filter(
+        user=request.user, email=request.user.email, verified=True
+    ).exists()
+
+    # Calculate days since registration for unverified accounts
+    days_since_registration = None
+    if not email_verified:
+        from django.utils import timezone
+
+        days_since_registration = (timezone.now() - request.user.date_joined).days
+
+    context = {
+        "user": request.user,
+        "email_verified": email_verified,
+        "days_since_registration": days_since_registration,
+        "days_until_deletion": (
+            max(0, 30 - days_since_registration)
+            if days_since_registration is not None
+            else None
+        ),
+    }
+
+    return render(request, "users/profile.html", context)
+
+
+@login_required
+@require_POST
+def resend_confirmation_email(request):
+    from allauth.account.models import EmailAddress
+    from allauth.account.utils import send_email_confirmation
+
+    if EmailAddress.objects.filter(
+        user=request.user,
+        email=request.user.email,
+        verified=True,
+    ).exists():
+        messages.info(request, _("Your email is already verified."))
+        return redirect("users:profile")
+
+    EmailAddress.objects.get_or_create(
+        user=request.user,
+        email=request.user.email,
+        defaults={"primary": True, "verified": False},
+    )
+
+    send_email_confirmation(request, request.user, signup=False)
+    return redirect("users:profile")
+
+
+@login_required
+@require_POST
+def send_password_reset_email(request):
+    from allauth.account.forms import ResetPasswordForm
+
+    form = ResetPasswordForm(data={"email": request.user.email})
+    if form.is_valid():
+        form.save(request)
+        messages.success(
+            request,
+            _("Password reset email sent. Please check your inbox and spam folder."),
+        )
+    else:
+        messages.error(request, _("Unable to send password reset email."))
+
+    return redirect("users:profile")
 
 
 class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
@@ -131,23 +230,6 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         self.request.user.save()
 
         return super().form_valid(form)
-
-
-@login_required
-def premium_page(request):
-    """Display premium subscription plans."""
-    heroes = User.get_heroes()
-    top_subscribers = User.get_top_subscribers(10)
-
-    return render(
-        request,
-        "users/premium.html",
-        {
-            "heroes": heroes,
-            "top_subscribers": top_subscribers,
-            "stripe_publishable_key": settings.STRIPE_PUBLISHABLE_KEY,
-        },
-    )
 
 
 @login_required
@@ -194,6 +276,7 @@ def cancel_subscription(request):
         if user_subscription and user_subscription.stripe_subscription_id:
             # Cancel subscription in Stripe
             import stripe
+            import stripe.apps
             from django.conf import settings
 
             stripe.api_key = settings.STRIPE_SECRET_KEY

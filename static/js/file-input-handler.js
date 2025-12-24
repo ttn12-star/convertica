@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('fileInput');
     const fileInputDrop = document.getElementById('fileInputDrop');
     const selectFileButton = document.getElementById('selectFileButton');
+    const addMoreFilesButton = document.getElementById('addMoreFilesButton');
     const dropZone = document.getElementById('dropZone');
     const selectedFileDiv = document.getElementById('selectedFile');
     const fileName = document.getElementById('fileName');
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const convertButton = document.getElementById('convertButton') || document.getElementById('editButton');
 
     if (!fileInput) return;
+
+    let currentFiles = null;
 
     const formatFileSize = window.formatFileSize || function(bytes) {
         if (bytes === 0) return '0 Bytes';
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const arrayBuffer = await file.arrayBuffer();
             const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             const pageCount = pdfDoc.numPages;
-            const maxPages = 50;
+            const maxPages = Number(window.MAX_FREE_PDF_PAGES) || 30;
 
             if (pageCount > maxPages) {
                 const errorMessage = getPageLimitError(pageCount, maxPages);
@@ -130,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return message;
         } else {
-            return `PDF has ${pageCount} pages (limit: 50). You can split your file into smaller parts or <a href="/users/premium/" class="text-amber-600 hover:text-amber-700 font-medium underline">get a 1-day Premium subscription for just $1</a> to process files without limits!`;
+            return `PDF has ${pageCount} pages (limit: ${maxPages}). You can split your file into smaller parts or <a href="/pricing/" class="text-amber-600 hover:text-amber-700 font-medium underline">upgrade to Premium</a> to process larger files with much higher limits!`;
         }
     }
 
@@ -145,16 +148,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.bg-red-50.border-red-200').forEach(el => el.remove());
     }
 
-    function showSelectedFile(file) {
+    function showSelectedFile(files) {
         if (!selectedFileDiv || !fileName || !fileSize) return;
 
-        fileName.textContent = file.name;
-        fileSize.textContent = formatFileSize(file.size);
+        const fileList = Array.from(files || []);
+        const firstFile = fileList[0];
+        if (!firstFile) return;
+
+        const isBatchUi = Boolean(window.BATCH_ENABLED && window.IS_PREMIUM);
+        if (isBatchUi && fileList.length > 1) {
+            const totalSize = fileList.reduce((sum, f) => sum + (f.size || 0), 0);
+            fileName.textContent = `${fileList.length} files selected`;
+            fileSize.textContent = `Total: ${formatFileSize(totalSize)}`;
+        } else {
+            fileName.textContent = firstFile.name;
+            fileSize.textContent = formatFileSize(firstFile.size);
+        }
+
         selectedFileDiv.classList.remove('hidden');
         if (fileInfo) fileInfo.classList.add('hidden');
 
-        if (file.type === 'application/pdf') {
-            window.validatePdfPageLimit(file).then(isValid => {
+        if (addMoreFilesButton) {
+            if (isBatchUi && fileList.length > 0 && fileList.length < 10) {
+                addMoreFilesButton.classList.remove('hidden');
+            } else {
+                addMoreFilesButton.classList.add('hidden');
+            }
+        }
+
+        // Only validate PDF page count for single-file PDF uploads
+        // Skip validation entirely for batch mode (multiple files)
+        if (fileList.length === 1 && firstFile.type === 'application/pdf') {
+            window.validatePdfPageLimit(firstFile).then(isValid => {
                 if (convertButton) {
                     convertButton.disabled = !isValid;
                     convertButton.classList.toggle('opacity-50', !isValid);
@@ -167,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         } else {
+            // Multiple files or non-PDF: always enable button
             if (convertButton) {
                 convertButton.disabled = false;
                 convertButton.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -179,6 +205,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fileInfo) fileInfo.classList.remove('hidden');
         if (fileInput) fileInput.value = '';
         if (fileInputDrop) fileInputDrop.value = '';
+        if (addMoreFilesButton) addMoreFilesButton.classList.add('hidden');
+        currentFiles = null;
         if (convertButton) {
             convertButton.disabled = true;
             convertButton.classList.add('opacity-50', 'cursor-not-allowed');
@@ -196,6 +224,28 @@ document.addEventListener('DOMContentLoaded', () => {
             return dt.files;
         }
         return allowMultiple ? files : files;
+    }
+
+    function mergeFileLists(existingFiles, newFiles, allowMultiple = true) {
+        if (!newFiles || newFiles.length === 0) return existingFiles;
+        if (!allowMultiple) return cloneFileList(newFiles, false);
+
+        const existing = Array.from(existingFiles || []);
+        const incoming = Array.from(newFiles || []);
+        const merged = [];
+        const seen = new Set();
+
+        [...existing, ...incoming].forEach((f) => {
+            if (!f) return;
+            const key = `${f.name}::${f.size}::${f.lastModified}`;
+            if (seen.has(key)) return;
+            seen.add(key);
+            merged.push(f);
+        });
+
+        // Hard limit to 10 in UI to match batch backend expectations
+        const limited = merged.slice(0, 10);
+        return cloneFileList(limited, true) || limited;
     }
 
     function syncFileInputs(sourceInput, targetInput) {
@@ -232,43 +282,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (addMoreFilesButton && fileInput) {
+        addMoreFilesButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setTimeout(() => {
+                fileInput.click();
+            }, 0);
+        });
+    }
+
     // File input change (from button)
     if (fileInput) {
         fileInput.addEventListener('change', (e) => {
             if (e.target.files && e.target.files.length > 0) {
-                const file = e.target.files[0];
+                const allowMultiple = fileInput.hasAttribute('multiple');
+                const merged = mergeFileLists(currentFiles, e.target.files, allowMultiple);
+                if (merged) {
+                    fileInput.files = merged;
+                    currentFiles = merged;
+                }
 
                 // Sync to fileInputDrop
                 if (fileInputDrop) {
                     syncFileInputs(fileInput, fileInputDrop);
                 }
-                showSelectedFile(file);
 
-                // Dispatch custom event for other scripts (like organize-pdf.js)
+                showSelectedFile(fileInput.files);
+
+                // Dispatch custom event for other scripts (keep backward compatibility)
+                const firstFile = fileInput.files[0];
                 const customEvent = new CustomEvent('fileSelected', {
-                    detail: { file: file },
-                    bubbles: true
-                });
-                document.dispatchEvent(customEvent);
-            }
-        });
-    }
-
-    // File input change (from drop zone)
-    if (fileInputDrop) {
-        fileInputDrop.addEventListener('change', (e) => {
-            if (e.target.files && e.target.files.length > 0) {
-                const file = e.target.files[0];
-
-                // Sync to fileInput so pdf-crop-editor.js can pick it up
-                if (fileInput) {
-                    syncFileInputs(fileInputDrop, fileInput);
-                }
-                showSelectedFile(file);
-
-                // Dispatch custom event for other scripts (like organize-pdf.js)
-                const customEvent = new CustomEvent('fileSelected', {
-                    detail: { file: file },
+                    detail: { file: firstFile, files: fileInput.files },
                     bubbles: true
                 });
                 document.dispatchEvent(customEvent);
@@ -333,7 +378,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (files && files.length > 0) {
                 const allowMultiple = fileInputDrop && fileInputDrop.hasAttribute('multiple');
-                const cloned = cloneFileList(files, allowMultiple);
+                const merged = mergeFileLists(currentFiles, files, allowMultiple);
+                const cloned = cloneFileList(merged || files, allowMultiple);
 
                 // Set files to both inputs
                 if (fileInput && cloned) {
@@ -343,7 +389,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     fileInputDrop.files = cloned;
                 }
 
-                showSelectedFile(files[0]);
+                if (cloned) {
+                    currentFiles = cloned;
+                }
+
+                showSelectedFile(cloned || merged || files);
 
                 // Trigger change event on both inputs to ensure all handlers pick it up
                 if (fileInput) {
@@ -356,8 +406,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 // Dispatch custom event for other scripts (like organize-pdf.js)
+                const firstFile = (fileInput && fileInput.files && fileInput.files.length > 0)
+                    ? fileInput.files[0]
+                    : files[0];
                 const customEvent = new CustomEvent('fileSelected', {
-                    detail: { file: files[0] },
+                    detail: {
+                        file: firstFile,
+                        files: (fileInput && fileInput.files && fileInput.files.length > 0) ? fileInput.files : files,
+                    },
                     bubbles: true
                 });
                 document.dispatchEvent(customEvent);

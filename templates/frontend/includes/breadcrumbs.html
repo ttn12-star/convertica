@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<!-- Breadcrumb Navigation -->
+{% if breadcrumb_items and breadcrumb_items|length > 1 %}
+  <nav aria-label="{% trans "Breadcrumb" %}" class="mb-4 sm:mb-6">
+    <ol class="flex flex-wrap items-center space-x-1 sm:space-x-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400" itemscope itemtype="https://schema.org/BreadcrumbList">
+      {% for item in breadcrumb_items %}
+        <li class="flex items-center" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          {% if forloop.last %}
+          <!-- Current page - not a link -->
+            <span class="font-medium text-gray-900 dark:text-gray-100" itemprop="name">{{ item.name }}</span>
+          {% else %}
+          <!-- Link to previous pages -->
+            <a href="{{ item.url }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" itemprop="item">
+              <span itemprop="name">{{ item.name }}</span>
+            </a>
+          <!-- Separator -->
+            <svg class="w-3 h-3 sm:w-4 sm:h-4 mx-1 sm:mx-2 text-gray-400 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+            </svg>
+          {% endif %}
+          <meta itemprop="position" content="{{ item.position }}">
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

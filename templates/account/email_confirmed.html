@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block title %}{% trans "Email Confirmed" %} - Convertica{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center px-4">
+    <div class="max-w-md w-full">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900">{% trans "Email confirmed" %}</h1>
+        <p class="text-gray-600 mt-2">{% trans "Your email address has been verified successfully." %}</p>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <div class="space-y-3">
+          <a href="{% url 'users:profile' %}"
+             class="block w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-sm text-sm font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200">
+            {% trans "Go to profile" %}
+          </a>
+          <a href="{% url 'users:login' %}"
+             class="block w-full text-center px-4 py-2 text-sm text-gray-600 hover:text-gray-700 transition-colors">
+            {% trans "Go to login" %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

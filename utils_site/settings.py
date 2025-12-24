@@ -229,8 +229,17 @@ try:
 except ImportError:
     pass
 
+try:
+    import channels
+
+    INSTALLED_APPS.insert(0, "daphne")  # Daphne must be first for ASGI
+    INSTALLED_APPS.append("channels")
+except ImportError:
+    pass
+
 
 MIDDLEWARE = [
+    "django.middleware.gzip.GZipMiddleware",  # Compress responses (HTML, JSON, CSS, JS) - must be first
     "django.middleware.security.SecurityMiddleware",
     # WhiteNoise for static files (if enabled via USE_WHITENOISE env var)
     # Uncomment or use environment variable to enable
@@ -275,6 +284,9 @@ TEMPLATES = [
                 "src.frontend.context_processors.site_urls",
                 "src.frontend.context_processors.turnstile_site_key",
                 "src.frontend.context_processors.js_settings",
+                "src.frontend.context_processors.payments_enabled",
+                "src.frontend.context_processors.breadcrumbs",
+                "src.frontend.context_processors.related_tools",
             ],
         },
     },
@@ -353,10 +365,18 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Allauth account settings
-ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
+ACCOUNT_ADAPTER = "src.users.account_adapter.CustomAccountAdapter"
 ACCOUNT_LOGIN_METHODS = {"email"}
 ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Require email verification before login
+ACCOUNT_EMAIL_REQUIRED = True  # Email is required for registration
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
+    "/users/profile/"  # Redirect after email confirmation (logged in users)
+)
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = (
+    "/users/login/"  # Redirect after email confirmation (anonymous users)
+)
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # Auto-login after email confirmation
 
 # Allauth social account settings
 SOCIALACCOUNT_AUTO_SIGNUP = True
@@ -475,6 +495,7 @@ PATIENCE_MESSAGE_DELAY = config("PATIENCE_MESSAGE_DELAY", default=60, cast=int)
 ASYNC_POLL_INTERVAL = config("ASYNC_POLL_INTERVAL", default=2500, cast=int)
 
 # Stripe Payment Settings
+PAYMENTS_ENABLED = config("PAYMENTS_ENABLED", default="True", cast=bool)
 STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY", default="pk_test_...")
 STRIPE_SECRET_KEY = config(
     "STRIPE_SECRET_KEY",
@@ -516,19 +537,21 @@ LOGGING = {
         },
         "file": {
             "level": "INFO",
-            "class": "logging.handlers.RotatingFileHandler",
+            "class": "logging.handlers.TimedRotatingFileHandler",
             "filename": BASE_DIR / "logs" / "convertica.log",
-            "maxBytes": 1024 * 1024 * 10,  # 10 MB
-            "backupCount": 5,
+            "when": "W0",
+            "interval": 1,
+            "backupCount": 8,
             "formatter": "structured",
             "encoding": "utf-8",  # Support UTF-8 encoding for international characters
         },
         "error_file": {
             "level": "ERROR",
-            "class": "logging.handlers.RotatingFileHandler",
+            "class": "logging.handlers.TimedRotatingFileHandler",
             "filename": BASE_DIR / "logs" / "errors.log",
-            "maxBytes": 1024 * 1024 * 10,  # 10 MB
-            "backupCount": 5,
+            "when": "W0",
+            "interval": 1,
+            "backupCount": 8,
             "formatter": "verbose",
             "encoding": "utf-8",  # Support UTF-8 encoding for international characters
         },
@@ -704,6 +727,11 @@ CELERY_BEAT_SCHEDULE = {
         "task": "maintenance.cleanup_temp_files",
         "schedule": 3600,  # Every hour
     },
+    # Delete unverified accounts older than 30 days (runs daily at 3 AM)
+    "delete-unverified-accounts-daily": {
+        "task": "user_cleanup.delete_unverified_accounts",
+        "schedule": 86400,  # Every 24 hours
+    },
 }
 
 # Rate Limiting Configuration
@@ -751,19 +779,62 @@ SUBSCRIPTION_PRICING = {
         "name": "Daily Hero Access",
     },
     "monthly": {
-        "price": config("MONTHLY_PRICE", default="5.00", cast=float),
+        "price": config("MONTHLY_PRICE", default="6.00", cast=float),
         "duration_days": 30,
         "name": "Monthly Hero Access",
     },
-    "yearly": {
-        "price": config("YEARLY_PRICE", default="48.00", cast=float),
-        "duration_days": 365,
-        "name": "Yearly Hero Access",
-    },
 }
+
+# Web Push Notifications (VAPID Keys)
+VAPID_PRIVATE_KEY = config("VAPID_PRIVATE_KEY", default="").replace("\\n", "\n")
+VAPID_PUBLIC_KEY = config("VAPID_PUBLIC_KEY", default="")
+VAPID_CLAIMS = {
+    "sub": config("VAPID_CLAIMS_SUB", default="mailto:admin@convertica.net")
+}
+
+SUBSCRIPTION_PRICING.update(
+    {
+        "yearly": {
+            "price": config("YEARLY_PRICE", default="52.00", cast=float),
+            "duration_days": 365,
+            "name": "Yearly Hero Access",
+        },
+    }
+)
+
 TELEGRAM_BOT_TOKEN = config("TELEGRAM_BOT_TOKEN", default="", cast=str)
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID", default="", cast=str)
 
+
+# Django Channels Configuration (WebSocket support)
+try:
+    import channels
+
+    # ASGI application for Channels
+    ASGI_APPLICATION = "utils_site.asgi.application"
+
+    # Channel layer configuration (Redis backend recommended for production)
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [config("REDIS_URL", default="redis://127.0.0.1:6379/2")],
+                "capacity": 1500,
+                "expiry": 10,
+            },
+        },
+    }
+
+    # Fallback to in-memory channel layer for development if Redis not available
+    try:
+        import channels_redis
+    except ImportError:
+        CHANNEL_LAYERS = {
+            "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
+        }
+except ImportError:
+    # Channels not installed, skip configuration
+    pass
 
 # Custom error handlers (defined in utils_site.urls)
 # Django will automatically use handler404, handler500, etc. from ROOT_URLCONF

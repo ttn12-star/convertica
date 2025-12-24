@@ -225,7 +225,13 @@ class OptimizationManager:
         # Fallback
         from .pdf_convert.pdf_to_word.utils import _convert_pdf_to_docx_sequential
 
-        return await _convert_pdf_to_docx_sequential(uploaded_file, **kwargs)
+        return await _convert_pdf_to_docx_sequential(
+            uploaded_file,
+            kwargs.get("suffix", "_convertica"),
+            kwargs.get("ocr_enabled", False),
+            kwargs.get("context") or {},
+            kwargs.get("ocr_language", "auto"),
+        )
 
     async def convert_word_to_pdf(
         self, uploaded_file: UploadedFile, **kwargs

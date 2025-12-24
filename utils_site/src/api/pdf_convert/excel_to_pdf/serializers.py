@@ -20,6 +20,6 @@ class ExcelToPDFBatchSerializer(serializers.Serializer):
         child=serializers.FileField(),
         required=True,
         min_length=1,
-        max_length=20,  # Premium users can process up to 20 files
+        max_length=10,  # Premium users can process up to 10 files
         help_text="List of Excel files (.xls or .xlsx) to convert to PDF",
     )

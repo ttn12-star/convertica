@@ -458,8 +458,27 @@ def generic_conversion_task(
         except Exception:
             pass
 
-        # Don't retry for user errors (validation, etc.)
+        # Don't retry for user errors (validation, etc.) or permanent PDF corruption
         error_message = str(exc)
+        exc_type = type(exc).__name__
+
+        # Check for permanent PDF corruption errors (PyMuPDF xref/object errors)
+        is_permanent_corruption = (
+            "object out of range" in error_message.lower()
+            or "xref" in error_message.lower()
+            or "FzErrorFormat" in exc_type
+        )
+
+        if is_permanent_corruption:
+            return {
+                "status": "error",
+                "error": (
+                    "PDF file is corrupted or has structural errors. "
+                    "Please try re-saving the PDF (Print to PDF) or repairing it with a PDF tool, then retry."
+                ),
+                "conversion_type": conversion_type,
+            }
+
         if any(
             msg in error_message.lower()
             for msg in ["invalid", "corrupt", "password", "encrypted", "not found"]

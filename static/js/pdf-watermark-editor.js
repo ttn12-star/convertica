@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.error(`PDF load attempt ${retryCount} failed:`, error);
 
                     if (retryCount >= maxRetries) {
-                        window.window.showError('Failed to load PDF file. Please try again.', 'editorResult');
+                        window.showError('Failed to load PDF file. Please try again.', 'editorResult');
                         // Hide preview sections on load error
                         pdfPreviewSection.classList.add('hidden');
                         watermarkSettingsSection.classList.add('hidden');
@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            window.window.showError(errorMessage, 'editorResult');
+            window.showError(errorMessage, 'editorResult');
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Error loading PDF:', error);
                 console.error('Error details:', {
@@ -1231,27 +1231,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (watermarkX === null || watermarkY === null) {
-            window.window.showError('Please wait for PDF to load, then adjust the watermark.', 'editorResult');
+            window.showError('Please wait for PDF to load, then adjust the watermark.', 'editorResult');
             return;
         }
 
         const formData = new FormData();
-        const fieldName = window.FILE_INPUT_NAME || 'pdf_file';
-        const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
+        const singleFieldName = window.FILE_INPUT_NAME || 'pdf_file';
 
+        const selectedFiles = (fileInput?.files && fileInput.files.length > 0)
+            ? fileInput.files
+            : (fileInputDrop?.files && fileInputDrop.files.length > 0)
+                ? fileInputDrop.files
+                : null;
+
+        const isBatchMode = Boolean(
+            window.BATCH_ENABLED &&
+            window.IS_PREMIUM &&
+            selectedFiles &&
+            selectedFiles.length > 1 &&
+            window.BATCH_API_URL &&
+            window.BATCH_FIELD_NAME
+        );
+
+        const selectedFile = selectedFiles?.[0] || null;
         if (!selectedFile) {
-            window.window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'editorResult');
+            window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'editorResult');
             return;
         }
 
-        formData.append(fieldName, selectedFile);
+        if (isBatchMode) {
+            const batchFieldName = window.BATCH_FIELD_NAME;
+            Array.from(selectedFiles).forEach((f) => {
+                formData.append(batchFieldName, f);
+            });
+        } else {
+            formData.append(singleFieldName, selectedFile);
+        }
+        const watermarkType = watermarkTypeImage?.checked ? 'image' : 'text';
+        formData.append('watermark_type', watermarkType);
         formData.append('position', positionInput.value || 'custom');
 
         // Ensure coordinates are valid numbers
         const xValue = parseFloat(xInput.value);
         const yValue = parseFloat(yInput.value);
         if (isNaN(xValue) || isNaN(yValue)) {
-            window.window.showError('Invalid watermark position. Please click on the PDF to set the position.', 'editorResult');
+            window.showError('Invalid watermark position. Please click on the PDF to set the position.', 'editorResult');
             return;
         }
 
@@ -1286,23 +1310,28 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('watermark_text', textValue);
         formData.append('font_size', fontSizeSlider?.value || 72);
 
-        // Append watermark_file if image type is selected and file exists
-        if (watermarkTypeImage?.checked && watermarkFile?.files?.[0]) {
-            formData.append('watermark_file', watermarkFile.files[0]);
+        // Append watermark image if image type is selected and file exists
+        if (watermarkType === 'image' && watermarkFile?.files?.[0]) {
+            if (isBatchMode) {
+                formData.append('watermark_image', watermarkFile.files[0]);
+            } else {
+                formData.append('watermark_file', watermarkFile.files[0]);
+            }
         }
 
         // Hide previous results
         hideResult();
         hideDownload();
 
-        // Show loading
-        window.showLoading('loadingContainer');
+        // Show loading (disable progress bar for batch mode)
+        window.showLoading('loadingContainer', { showProgress: !isBatchMode });
 
         // Disable form
         setFormDisabled(true);
 
         try {
-            const response = await fetch(window.API_URL, {
+            const apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': window.CSRF_TOKEN
@@ -1327,7 +1356,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Success
             window.hideLoading('loadingContainer');
-            window.showDownloadButton(blob, selectedFile.name, 'downloadContainer', {
+
+            const contentDisposition = response.headers.get('content-disposition');
+            let downloadName = isBatchMode ? 'convertica.zip' : selectedFile.name;
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    downloadName = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+
+            window.showDownloadButton(blob, downloadName, 'downloadContainer', {
                 successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
                 downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
                 convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
@@ -1383,7 +1422,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             window.hideLoading('loadingContainer');
-            window.window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
+            window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
             setFormDisabled(false);
         }
     });
