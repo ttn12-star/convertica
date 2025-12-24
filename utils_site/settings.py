@@ -497,10 +497,7 @@ ASYNC_POLL_INTERVAL = config("ASYNC_POLL_INTERVAL", default=2500, cast=int)
 # Stripe Payment Settings
 PAYMENTS_ENABLED = config("PAYMENTS_ENABLED", default="True", cast=bool)
 STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY", default="pk_test_...")
-STRIPE_SECRET_KEY = config(
-    "STRIPE_SECRET_KEY",
-    default="",
-)
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
 STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET", default="")
 STRIPE_SUCCESS_URL = config("STRIPE_SUCCESS_URL", default="/payments/success/")
 STRIPE_CANCEL_URL = config("STRIPE_CANCEL_URL", default="/payments/cancel/")
