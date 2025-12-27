@@ -3,7 +3,6 @@ Decorators for Excel to PDF API documentation.
 """
 
 from collections.abc import Callable
-from typing import Any
 
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema

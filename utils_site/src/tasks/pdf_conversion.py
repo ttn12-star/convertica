@@ -83,7 +83,6 @@ def generic_conversion_task(
     # Use the task_id parameter (same as self.request.id, but explicit)
     # This is what the frontend uses to cancel
     cancellation_id = task_id
-    task_completed_successfully = False
     input_fp = None
 
     started_ts = time.time()
@@ -322,9 +321,6 @@ def generic_conversion_task(
             final_output_path = output_path
 
         update_progress(self, 100, "Complete!", 5)
-
-        # Mark task as successfully completed
-        task_completed_successfully = True
 
         # Clear cancelled flag if task completed successfully
         clear_task_cancelled(cancellation_id)

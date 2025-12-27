@@ -1247,14 +1247,10 @@ def terms_page(request):
 @ensure_csrf_cookie
 def contact_page(request):
     """Contact page with form handling."""
-    import logging
-
     from django.contrib import messages
     from django.shortcuts import redirect
 
     from .forms import ContactForm
-
-    logger = logging.getLogger(__name__)
 
     if request.method == "GET" and "sent" in request.GET:
         messages.success(

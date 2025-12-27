@@ -6,11 +6,9 @@ Supports batch processing for premium users.
 """
 
 import asyncio
-import logging
 import os
 import subprocess
 import tempfile
-from concurrent.futures import ThreadPoolExecutor
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
@@ -272,7 +270,7 @@ class PowerPointToPDFConverter:
                 await loop.run_in_executor(None, _convert_with_libreoffice)
                 break  # Success, exit retry loop
 
-            except ConversionError as e:
+            except ConversionError:
                 if attempt == self.max_retries:
                     logger.error(
                         f"LibreOffice conversion failed after {self.max_retries + 1} attempts",

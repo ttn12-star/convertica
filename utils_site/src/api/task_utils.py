@@ -5,8 +5,6 @@ Provides helper functions for routing tasks to appropriate queues
 based on user premium status and task priority.
 """
 
-from typing import Optional
-
 
 def get_task_queue(is_premium: bool = False) -> str:
     """Get appropriate Celery queue based on user premium status.

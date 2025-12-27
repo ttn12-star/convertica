@@ -6,13 +6,11 @@ import asyncio
 import os
 import subprocess
 import tempfile
-from concurrent.futures import ThreadPoolExecutor
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
-from src.api.parallel_processing import get_optimal_batch_size
 from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 logger = get_logger(__name__)
@@ -345,7 +343,7 @@ class OptimizedWordToPDFConverter:
                         "LibreOffice conversion returned non-zero exit code",
                         context=context,
                     )
-            except Exception as e:
+            except Exception:
                 if attempt == self.max_retries:
                     logger.error(
                         f"LibreOffice conversion failed after {self.max_retries + 1} attempts",

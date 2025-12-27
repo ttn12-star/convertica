@@ -16,7 +16,6 @@ from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
 
 from ...base_views import BaseConversionAPIView
-from ...logging_utils import build_request_context
 from .decorators import jpg_to_pdf_docs
 from .serializers import JPGToPDFSerializer
 from .utils import convert_jpg_to_pdf
@@ -68,7 +67,6 @@ class JPGToPDFAPIView(BaseConversionAPIView):
         uploaded_files: list[UploadedFile] = request.FILES.getlist(self.FILE_FIELD_NAME)
 
         if not uploaded_files:
-            context = build_request_context(request)
             return Response(
                 {"error": f"{self.FILE_FIELD_NAME} is required"},
                 status=status.HTTP_400_BAD_REQUEST,

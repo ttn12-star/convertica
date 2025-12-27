@@ -1,14 +1,13 @@
 import json
 import logging
 from datetime import UTC, datetime
-from datetime import timezone as dt_timezone
 
 import stripe
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError, transaction
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt

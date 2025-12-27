@@ -5,8 +5,6 @@ Provides helper functions for checking premium status and applying
 premium-specific features like batch processing and unlimited limits.
 """
 
-from typing import Optional
-
 
 def is_premium_active(user) -> bool:
     """Check if user has active premium subscription.

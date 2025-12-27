@@ -38,7 +38,10 @@ class Migration(migrations.Migration):
                         fields=["event_type", "-created_at"],
                         name="users_stripe_event_type_created_idx",
                     ),
-                    models.Index(fields=["processed_at"], name="users_stripe_event_processed_at_idx"),
+                    models.Index(
+                        fields=["processed_at"],
+                        name="users_stripe_event_processed_at_idx",
+                    ),
                 ],
             },
         ),

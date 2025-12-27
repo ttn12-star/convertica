@@ -1,8 +1,6 @@
 # pylint: skip-file
 import json
-import uuid
 
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
@@ -10,10 +8,8 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.cache import cache
-from django.db import transaction
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -21,7 +17,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic import UpdateView
 
 from .forms import CustomUserCreationForm, LoginForm
-from .models import Payment, SubscriptionPlan, User
+from .models import Payment
 
 
 def user_login(request):
@@ -291,7 +287,7 @@ def cancel_subscription(request):
             {"success": True, "message": _("Subscription cancelled successfully")}
         )
 
-    except Exception as e:
+    except Exception:
         return JsonResponse(
             {"success": False, "error": _("Failed to cancel subscription")}
         )

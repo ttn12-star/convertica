@@ -10,4 +10,3 @@ class UsersConfig(AppConfig):
 
     def ready(self):
         """Import signals when app is ready."""
-        import src.users.signals

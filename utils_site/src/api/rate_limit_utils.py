@@ -8,7 +8,6 @@ from functools import wraps
 
 from django.core.cache import cache
 from django_ratelimit.decorators import ratelimit
-from django_ratelimit.exceptions import Ratelimited
 
 logger = logging.getLogger(__name__)
 

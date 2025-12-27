@@ -111,7 +111,7 @@ class BlogViewsTestCase(TestCase):
             name_en="Category 2", slug="category-2"
         )
         # Create article in category2
-        article2 = Article.objects.create(
+        Article.objects.create(
             title_en="Article in Category 2",
             slug="article-category-2",
             excerpt_en="Excerpt",

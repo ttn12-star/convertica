@@ -11,7 +11,6 @@ from src.tasks.pdf_conversion import convert_word_to_pdf_task
 from ...base_views import BaseConversionAPIView
 from .decorators import word_to_pdf_docs
 from .serializers import WordToPDFSerializer
-from .utils import convert_word_to_pdf
 
 
 class WordToPDFAPIView(BaseConversionAPIView):
