@@ -10,177 +10,265 @@
 {% block content %}
   <div class="min-h-screen bg-gray-50 py-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Email Verification Warning -->
+      {% if not email_verified %}
+        <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 p-6 mb-6 rounded-lg shadow-md">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+            </div>
+            <div class="ml-4 flex-1">
+              <h3 class="text-lg font-bold text-red-800">
+                {% trans "Email Not Verified" %}
+              </h3>
+              <div class="mt-2 text-sm text-red-700">
+                <p class="font-semibold">
+                  {% if days_until_deletion > 0 %}
+                    {% blocktrans with days=days_until_deletion %}
+                      Your account will be automatically deleted in {{ days }} days if not verified.
+                    {% endblocktrans %}
+                  {% else %}
+                    {% trans "Your account is scheduled for deletion. Please verify your email immediately!" %}
+                  {% endif %}
+                </p>
+              </div>
+              <div class="mt-4">
+                <form method="post" action="{% url 'users:resend_confirmation_email' %}">
+                  {% csrf_token %}
+                  <button type="submit"
+                          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    {% trans "Send verification email" %}
+                  </button>
+                </form>
+                <form method="post" action="{% url 'users:send_password_reset_email' %}" class="mt-3">
+                  {% csrf_token %}
+                  <button type="submit"
+                          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m0-6v2m0-10a10 10 0 1010 10A10 10 0 0012 3z"></path>
+                    </svg>
+                    {% trans "Send password reset email" %}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
         <!-- Profile Header -->
-      <div class="bg-white shadow rounded-lg mb-6">
-        <div class="px-4 py-5 sm:px-6">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <div class="flex-shrink-0">
+      {% if user.is_premium_active %}
+        {% with rank=user.get_subscription_rank %}
+          <div class="bg-white shadow rounded-lg mb-6 overflow-hidden ring-4 ring-transparent bg-gradient-to-r from-{{ rank.color }}-500 to-{{ rank.color }}-700 p-[4px]">
+            <div class="bg-white rounded-lg">
+        {% endwith %}
+      {% else %}
+        <div class="bg-white shadow rounded-lg mb-6 overflow-hidden">
+      {% endif %}
+      <div class="px-4 py-5 sm:px-6">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              {% if user.is_premium_active %}
+                {% with rank=user.get_subscription_rank %}
+                  <div class="w-12 h-12 bg-gradient-to-r from-{{ rank.color }}-600 to-{{ rank.color }}-700 rounded-full flex items-center justify-center">
+                    <span class="text-white text-xl font-semibold">
+                      {{ user.email|slice:":1"|upper }}
+                    </span>
+                  </div>
+                {% endwith %}
+              {% else %}
                 <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
                   <span class="text-white text-xl font-semibold">
                     {{ user.email|slice:":1"|upper }}
                   </span>
                 </div>
-              </div>
-              <div class="ml-4">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                  {{ user.get_full_name|default:user.username }}
-                </h3>
-                <p class="mt-1 text-sm text-gray-500">{{ user.email }}</p>
-              </div>
+              {% endif %}
             </div>
-            <div class="flex items-center space-x-2">
-              {% if user.is_premium %}
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
+            <div class="ml-4">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                {{ user.get_full_name|default:user.username }}
+              </h3>
+              {% if user.is_premium_active %}
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-yellow-400 to-orange-500 text-white mt-1">
                   {% trans "Premium" %}
                 </span>
               {% else %}
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 mt-1">
                   {% trans "Free" %}
                 </span>
               {% endif %}
-              <a href="{% url 'users:profile_edit' %}"
-                 class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                {% trans "Edit Profile" %}
-              </a>
             </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            {% if user.is_premium_active %}
+              {% with rank=user.get_subscription_rank %}
+                <div class="flex flex-col items-center">
+                  <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold {{ rank.badge_color }} text-white">
+                    {{ rank.name }}
+                  </span>
+                  <span class="text-sm text-gray-500 mt-1">
+                    {% trans "Hero" %}
+                  </span>
+                </div>
+              {% endwith %}
+            {% endif %}
+            <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}"
+               class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+              {% trans "Heroes Board" %}
+            </a>
           </div>
         </div>
       </div>
+      {% if user.is_premium_active %}
+        {% with rank=user.get_subscription_rank %}
+          </div>
+        {% endwith %}
+      {% endif %}
+    </div>
 
         <!-- Account Information -->
-      <div class="bg-white shadow rounded-lg mb-6">
-        <div class="px-4 py-5 sm:px-6">
-          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
-            {% trans "Account Information" %}
-          </h3>
-          <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-            <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Username" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ user.username }}</dd>
+    <div class="bg-white shadow rounded-lg mb-6">
+      <div class="px-4 py-5 sm:px-6">
+        <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+          {% trans "Account Information" %}
+        </h3>
+        <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
+          <div>
+            <dt class="text-sm font-medium text-gray-500">{% trans "Username" %}</dt>
+            <dd class="mt-1 text-sm text-gray-900">{{ user.username }}</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-500">{% trans "Email" %}</dt>
+            <dd class="mt-1 text-sm text-gray-900">{{ user.email }}</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-500">{% trans "Full Name" %}</dt>
+            <dd class="mt-1 text-sm text-gray-900">
+              {{ user.get_full_name|default:_("Not set") }}
+            </dd>
+          </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-500">{% trans "Member Since" %}</dt>
+            <dd class="mt-1 text-sm text-gray-900">{{ user.date_joined|date:"F d, Y" }}</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-500">{% trans "Account Status" %}</dt>
+            <dd class="mt-1 text-sm text-gray-900">
+              {% if user.is_active %}
+                <span class="text-green-600">{% trans "Active" %}</span>
+              {% else %}
+                <span class="text-red-600">{% trans "Inactive" %}</span>
+              {% endif %}
+            </dd>
+          </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-500">{% trans "Account Type" %}</dt>
+            <dd class="mt-1 text-sm text-gray-900">
+              {% if user.is_premium_active %}
+                <span class="text-yellow-600 font-medium">{% trans "Premium" %}</span>
+              {% else %}
+                <span class="text-gray-600">{% trans "Free" %}</span>
+              {% endif %}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+        <!-- Premium Upgrade Section -->
+    {% if PAYMENTS_ENABLED and not user.is_premium_active %}
+      <div class="bg-gradient-to-r from-blue-600 to-purple-600 shadow rounded-lg p-6 text-white">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-lg leading-6 font-medium">
+              {% trans "Upgrade to Premium" %}
+            </h3>
+            <p class="mt-2 text-sm opacity-90">
+              {% trans "Unlock all features and remove limitations" %}
+            </p>
+          </div>
+          <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-white bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
+            {% trans "Upgrade Now" %}
+          </a>
+        </div>
+      </div>
+    {% endif %}
+
+        <!-- Quick Actions -->
+    <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-white shadow rounded-lg p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
             </div>
-            <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Email" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ user.email }}</dd>
-            </div>
-            <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Full Name" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">
-                {{ user.get_full_name|default:_("Not set") }}
-              </dd>
-            </div>
-            <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Member Since" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ user.date_joined|date:"F d, Y" }}</dd>
-            </div>
-            <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Account Status" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">
-                {% if user.is_active %}
-                  <span class="text-green-600">{% trans "Active" %}</span>
-                {% else %}
-                  <span class="text-red-600">{% trans "Inactive" %}</span>
-                {% endif %}
-              </dd>
-            </div>
-            <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Account Type" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">
-                {% if user.is_premium %}
-                  <span class="text-yellow-600 font-medium">{% trans "Premium" %}</span>
-                {% else %}
-                  <span class="text-gray-600">{% trans "Free" %}</span>
-                {% endif %}
-              </dd>
-            </div>
-          </dl>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-sm font-medium text-gray-900">{% trans "Edit Profile" %}</h3>
+            <p class="text-sm text-gray-500">{% trans "Update your information" %}</p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <a href="{% url 'users:profile_edit' %}" class="text-sm font-medium text-blue-600 hover:text-blue-500">
+            {% trans "Edit" %} →
+          </a>
         </div>
       </div>
 
-        <!-- Premium Upgrade Section -->
-      {% if not user.is_premium %}
-        <div class="bg-gradient-to-r from-blue-600 to-purple-600 shadow rounded-lg p-6 text-white">
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="text-lg leading-6 font-medium">
-                {% trans "Upgrade to Premium" %}
-              </h3>
-              <p class="mt-2 text-sm opacity-90">
-                {% trans "Unlock all features and remove limitations" %}
-              </p>
+      <div class="bg-white shadow rounded-lg p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
             </div>
-            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-white bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-              {% trans "Upgrade Now" %}
-            </a>
+          </div>
+          <div class="ml-4">
+            <h3 class="text-sm font-medium text-gray-900">{% trans "Account Status" %}</h3>
+            <p class="text-sm text-gray-500">{% trans "View your subscription" %}</p>
           </div>
         </div>
-      {% endif %}
+        <div class="mt-4">
+          <a href="{% url 'users:account_status' %}" class="text-sm font-medium text-green-600 hover:text-green-500">
+            {% trans "View" %} →
+          </a>
+        </div>
+      </div>
 
-        <!-- Quick Actions -->
-      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="bg-white shadow rounded-lg p-6">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                </svg>
-              </div>
-            </div>
-            <div class="ml-4">
-              <h3 class="text-sm font-medium text-gray-900">{% trans "Edit Profile" %}</h3>
-              <p class="text-sm text-gray-500">{% trans "Update your information" %}</p>
+      <div class="bg-white shadow rounded-lg p-6">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
             </div>
           </div>
-          <div class="mt-4">
-            <a href="{% url 'users:profile_edit' %}" class="text-sm font-medium text-blue-600 hover:text-blue-500">
-              {% trans "Edit" %} →
-            </a>
+          <div class="ml-4">
+            <h3 class="text-sm font-medium text-gray-900">{% trans "Sign Out" %}</h3>
+            <p class="text-sm text-gray-500">{% trans "Log out of your account" %}</p>
           </div>
         </div>
-
-        <div class="bg-white shadow rounded-lg p-6">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-            </div>
-            <div class="ml-4">
-              <h3 class="text-sm font-medium text-gray-900">{% trans "Account Status" %}</h3>
-              <p class="text-sm text-gray-500">{% trans "View your subscription" %}</p>
-            </div>
-          </div>
-          <div class="mt-4">
-            <a href="#" class="text-sm font-medium text-green-600 hover:text-green-500">
-              {% trans "View" %} →
-            </a>
-          </div>
-        </div>
-
-        <div class="bg-white shadow rounded-lg p-6">
-          <div class="flex items-center">
-            <div class="flex-shrink-0">
-              <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-                </svg>
-              </div>
-            </div>
-            <div class="ml-4">
-              <h3 class="text-sm font-medium text-gray-900">{% trans "Sign Out" %}</h3>
-              <p class="text-sm text-gray-500">{% trans "Log out of your account" %}</p>
-            </div>
-          </div>
-          <div class="mt-4">
-            <a href="{% url 'users:logout' %}" class="text-sm font-medium text-red-600 hover:text-red-500">
-              {% trans "Sign Out" %} →
-            </a>
-          </div>
+        <div class="mt-4">
+          <a href="{% url 'users:logout' %}" class="text-sm font-medium text-red-600 hover:text-red-500">
+            {% trans "Sign Out" %} →
+          </a>
         </div>
       </div>
     </div>
+  </div>
   </div>
 {% endblock %}

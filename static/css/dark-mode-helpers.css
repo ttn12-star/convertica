@@ -1,0 +1,213 @@
+/**
+ * Dark Mode Helper Classes
+ * Additional dark mode utilities for complex gradients and backgrounds
+ */
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+ html.dark body.dark-mode {
+   background-color: #0b1220 !important;
+   background-image:
+     radial-gradient(900px circle at 12% 10%, rgba(59, 130, 246, 0.14), transparent 45%),
+     radial-gradient(800px circle at 88% 18%, rgba(168, 85, 247, 0.12), transparent 46%),
+     radial-gradient(900px circle at 50% 110%, rgba(34, 211, 238, 0.08), transparent 52%),
+     repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.018) 0, rgba(255, 255, 255, 0.018) 1px, transparent 1px, transparent 9px),
+     linear-gradient(180deg, rgba(2, 6, 23, 1), rgba(17, 24, 39, 1)) !important;
+   background-attachment: fixed;
+ }
+
+ @media (max-width: 768px), (prefers-reduced-motion: reduce) {
+   html.dark body.dark-mode {
+     background-attachment: scroll;
+   }
+ }
+
+html.dark .bg-gradient-to-br:not(:is([class*="dark:from"], [class*="dark:via"], [class*="dark:to"])) {
+  background-image: linear-gradient(to bottom right, rgba(17, 24, 39, 1), rgba(15, 23, 42, 1)) !important;
+}
+
+/* Help section gradient backgrounds - override inline styles in dark mode */
+html.dark .bg-gradient-to-br.from-blue-50:not([class*="dark:from"]),
+html.dark .bg-gradient-to-br.from-orange-50:not([class*="dark:from"]),
+html.dark .bg-gradient-to-br.from-green-50:not([class*="dark:from"]),
+html.dark .bg-gradient-to-br.from-purple-50:not([class*="dark:from"]) {
+  background-image: linear-gradient(to bottom right, rgba(59, 130, 246, 0.15), rgba(147, 51, 234, 0.15)) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Text colors in help sections - ensure readability */
+html.dark .bg-gradient-to-br h2.text-gray-900:not([class*="dark:text"]) {
+  color: #ffffff !important;
+}
+
+html.dark .bg-gradient-to-br .text-gray-700:not([class*="dark:text"]) {
+  color: #d1d5db !important;
+}
+
+html.dark .bg-gradient-to-br .text-gray-600:not([class*="dark:text"]) {
+  color: #9ca3af !important;
+}
+
+html.dark .bg-gradient-to-br .text-gray-500:not([class*="dark:text"]) {
+  color: #9ca3af !important;
+}
+
+/* Border colors in help sections */
+html.dark .border-blue-200:not([class*="dark:border"]),
+html.dark .border-orange-200:not([class*="dark:border"]),
+html.dark .border-green-200:not([class*="dark:border"]) {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Ensure all text is visible in dark mode */
+html.dark .text-gray-900:not([class*="dark:text"]) {
+  color: #f9fafb !important;
+}
+
+html.dark .text-gray-800:not([class*="dark:text"]) {
+  color: #f3f4f6 !important;
+}
+
+html.dark .text-gray-700:not([class*="dark:text"]) {
+  color: #e5e7eb !important;
+}
+
+html.dark .text-gray-600:not([class*="dark:text"]) {
+  color: #d1d5db !important;
+}
+
+html.dark .text-gray-500:not([class*="dark:text"]) {
+  color: #9ca3af !important;
+}
+
+html.dark .text-gray-400:not([class*="dark:text"]) {
+  color: #d1d5db !important;
+}
+
+html.dark .text-blue-900:not([class*="dark:text"]) { color: #dbeafe !important; }
+html.dark .text-blue-800:not([class*="dark:text"]) { color: #bfdbfe !important; }
+html.dark .text-blue-700:not([class*="dark:text"]) { color: #93c5fd !important; }
+
+html.dark .text-green-900:not([class*="dark:text"]) { color: #dcfce7 !important; }
+html.dark .text-green-800:not([class*="dark:text"]) { color: #bbf7d0 !important; }
+html.dark .text-green-700:not([class*="dark:text"]) { color: #86efac !important; }
+
+html.dark .text-red-900:not([class*="dark:text"]) { color: #fee2e2 !important; }
+html.dark .text-red-800:not([class*="dark:text"]) { color: #fecaca !important; }
+html.dark .text-red-700:not([class*="dark:text"]) { color: #fca5a5 !important; }
+
+html.dark .text-yellow-900:not([class*="dark:text"]) { color: #fef9c3 !important; }
+html.dark .text-yellow-800:not([class*="dark:text"]) { color: #fef08a !important; }
+html.dark .text-yellow-700:not([class*="dark:text"]) { color: #fde047 !important; }
+
+/* Common surface backgrounds */
+html.dark .bg-white:not([class*="dark:bg"]) {
+  background-color: #111827 !important;
+}
+
+html.dark .bg-gray-50:not([class*="dark:bg"]) {
+  background-color: #111827 !important;
+}
+
+html.dark .bg-gray-100:not([class*="dark:bg"]) {
+  background-color: #1f2937 !important;
+}
+
+html.dark .bg-gray-200:not([class*="dark:bg"]) {
+  background-color: #374151 !important;
+}
+
+/* Soft icon backgrounds frequently used in menus (bg-*-100) */
+html.dark .bg-blue-100:not([class*="dark:bg"]) { background-color: rgba(30, 58, 138, 0.35) !important; }
+html.dark .bg-indigo-100:not([class*="dark:bg"]) { background-color: rgba(49, 46, 129, 0.35) !important; }
+html.dark .bg-purple-100:not([class*="dark:bg"]) { background-color: rgba(88, 28, 135, 0.35) !important; }
+html.dark .bg-pink-100:not([class*="dark:bg"]) { background-color: rgba(131, 24, 67, 0.35) !important; }
+html.dark .bg-rose-100:not([class*="dark:bg"]) { background-color: rgba(136, 19, 55, 0.35) !important; }
+html.dark .bg-green-100:not([class*="dark:bg"]) { background-color: rgba(20, 83, 45, 0.35) !important; }
+html.dark .bg-emerald-100:not([class*="dark:bg"]) { background-color: rgba(6, 95, 70, 0.35) !important; }
+html.dark .bg-teal-100:not([class*="dark:bg"]) { background-color: rgba(19, 78, 74, 0.35) !important; }
+html.dark .bg-cyan-100:not([class*="dark:bg"]) { background-color: rgba(22, 78, 99, 0.35) !important; }
+html.dark .bg-yellow-100:not([class*="dark:bg"]) { background-color: rgba(113, 63, 18, 0.35) !important; }
+html.dark .bg-orange-100:not([class*="dark:bg"]) { background-color: rgba(124, 45, 18, 0.35) !important; }
+html.dark .bg-red-100:not([class*="dark:bg"]) { background-color: rgba(127, 29, 29, 0.35) !important; }
+
+/* Borders */
+html.dark .border-gray-200:not([class*="dark:border"]) {
+  border-color: #374151 !important;
+}
+
+html.dark .border-gray-100:not([class*="dark:border"]) {
+  border-color: #1f2937 !important;
+}
+
+html.dark .border-gray-300:not([class*="dark:border"]) {
+  border-color: #4b5563 !important;
+}
+
+/* Form fields */
+html.dark input:not([class*="dark:"], [type="checkbox"], [type="radio"]),
+html.dark select:not([class*="dark:"]),
+html.dark textarea:not([class*="dark:"]) {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
+  border-color: #4b5563 !important;
+}
+
+html.dark select,
+html.dark option {
+  transition: none !important;
+}
+
+html.dark select option {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Focus rings (basic) */
+html.dark input:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+  outline: none;
+}
+
+/* Tailwind hover backgrounds used across menus/cards */
+html.dark .hover\:bg-blue-50:hover { background-color: rgba(30, 58, 138, 0.35) !important; }
+html.dark .hover\:bg-indigo-50:hover { background-color: rgba(49, 46, 129, 0.35) !important; }
+html.dark .hover\:bg-purple-50:hover { background-color: rgba(88, 28, 135, 0.35) !important; }
+html.dark .hover\:bg-green-50:hover { background-color: rgba(20, 83, 45, 0.35) !important; }
+html.dark .hover\:bg-red-50:hover { background-color: rgba(127, 29, 29, 0.35) !important; }
+html.dark .hover\:bg-orange-50:hover { background-color: rgba(124, 45, 18, 0.35) !important; }
+html.dark .hover\:bg-pink-50:hover { background-color: rgba(131, 24, 67, 0.35) !important; }
+html.dark .hover\:bg-rose-50:hover { background-color: rgba(136, 19, 55, 0.35) !important; }
+html.dark .hover\:bg-teal-50:hover { background-color: rgba(19, 78, 74, 0.35) !important; }
+html.dark .hover\:bg-cyan-50:hover { background-color: rgba(22, 78, 99, 0.35) !important; }
+
+/* Tailwind group-hover text colors used on homepage cards */
+html.dark .group:hover .group-hover\:text-blue-600 { color: #60a5fa !important; }
+html.dark .group:hover .group-hover\:text-indigo-600 { color: #818cf8 !important; }
+html.dark .group:hover .group-hover\:text-purple-600 { color: #c084fc !important; }
+html.dark .group:hover .group-hover\:text-green-600 { color: #4ade80 !important; }
+html.dark .group:hover .group-hover\:text-red-600 { color: #f87171 !important; }
+html.dark .group:hover .group-hover\:text-orange-600 { color: #fb923c !important; }
+html.dark .group:hover .group-hover\:text-pink-600 { color: #f472b6 !important; }
+html.dark .group:hover .group-hover\:text-rose-600 { color: #fb7185 !important; }
+html.dark .group:hover .group-hover\:text-cyan-600 { color: #22d3ee !important; }
+
+/* Pill / badge backgrounds frequently used on cards */
+html.dark .bg-blue-50:not([class*="dark:bg"]) { background-color: rgba(30, 58, 138, 0.25) !important; }
+html.dark .bg-indigo-50:not([class*="dark:bg"]) { background-color: rgba(49, 46, 129, 0.25) !important; }
+html.dark .bg-purple-50:not([class*="dark:bg"]) { background-color: rgba(88, 28, 135, 0.25) !important; }
+html.dark .bg-green-50:not([class*="dark:bg"]) { background-color: rgba(20, 83, 45, 0.25) !important; }
+html.dark .bg-red-50:not([class*="dark:bg"]) { background-color: rgba(127, 29, 29, 0.25) !important; }
+html.dark .bg-orange-50:not([class*="dark:bg"]) { background-color: rgba(124, 45, 18, 0.25) !important; }
+html.dark .bg-pink-50:not([class*="dark:bg"]) { background-color: rgba(131, 24, 67, 0.25) !important; }
+html.dark .bg-rose-50:not([class*="dark:bg"]) { background-color: rgba(136, 19, 55, 0.25) !important; }
+html.dark .bg-cyan-50:not([class*="dark:bg"]) { background-color: rgba(22, 78, 99, 0.25) !important; }

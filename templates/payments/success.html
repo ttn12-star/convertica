@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block robots %}noindex, nofollow{% endblock %}
+
+{% block title %}{% trans "Payment Successful" %}{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="text-center">
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">{% trans "Payment Successful!" %}</h1>
+        <p class="text-xl text-gray-600">{% trans "Thank you for your subscription" %}</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6">{% trans "Subscription Details" %}</h2>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="text-left">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">{% trans "Plan Information" %}</h3>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span class="text-gray-600">{% trans "Plan" %}:</span>
+                <span class="font-medium">{{ plan.name }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">{% trans "Price" %}:</span>
+                <span class="font-medium">${{ plan.price }}/{{ plan.get_duration_display }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">{% trans "Status" %}:</span>
+                <span class="font-medium text-green-600">{% trans "Active" %}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-left">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">{% trans "Billing Period" %}</h3>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span class="text-gray-600">{% trans "Start Date" %}:</span>
+                <span class="font-medium">{{ subscription.current_period_start|date:"F d, Y" }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">{% trans "Next Billing" %}:</span>
+                {% if plan.duration_days == 1 or subscription.cancel_at_period_end %}
+                  <span class="font-medium">—</span>
+                {% else %}
+                  <span class="font-medium">{{ subscription.current_period_end|date:"F d, Y" }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 rounded-xl p-6 mb-8">
+        <h3 class="text-lg font-semibold text-blue-900 mb-3">{% trans "What's Next?" %}</h3>
+        <p class="text-blue-800 mb-4">{% trans "Your premium features are now active! You can:" %}</p>
+        <ul class="text-left text-blue-800 space-y-2">
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            {% trans "Access all premium PDF tools with much higher limits" %}
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            {% trans "Process larger files and more documents" %}
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            {% trans "Enjoy priority processing speeds" %}
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="{% url 'frontend:index_page_lang' %}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-200">
+          {% trans "Start Using Premium Features" %}
+        </a>
+        <a href="{% url 'users:manage_subscription' %}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg transition duration-200">
+          {% trans "Manage Subscription" %}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

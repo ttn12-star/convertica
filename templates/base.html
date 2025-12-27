@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-is-premium="{% if user.is_authenticated and user.is_premium_active %}true{% else %}false{% endif %}" class="scroll-smooth">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -10,11 +10,11 @@
 
     <!-- Primary Meta Tags -->
     <title>{% block title %}Convertica – Online PDF ↔ Word Converter{% endblock %}</title>
-    <meta name="title" content="{% block meta_title %}{% endblock %}">
+    <meta name="title" content="{% block meta_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
     <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
     <meta name="author" content="Convertica">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="robots" content="{% block robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}">
     <meta name="language" content="{{ LANGUAGE_CODE }}">
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#2563eb">
@@ -22,10 +22,10 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-    <meta property="og:title" content="{% block og_title %}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+    <meta property="og:url" content="{{ site_current_url }}">
+    <meta property="og:title" content="{% block og_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{% block og_image_alt %}Convertica - Online PDF Tools{% endblock %}">
@@ -34,18 +34,25 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
-    <meta property="twitter:title" content="{% block twitter_title %}{% endblock %}">
-    <meta property="twitter:description" content="{% block twitter_description %}{% endblock %}">
-    <meta property="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.jpg' %}{% endblock %}">
+    <meta property="twitter:url" content="{{ site_current_url }}">
+    <meta property="twitter:title" content="{% block twitter_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
+    <meta property="twitter:description" content="{% block twitter_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
+    <meta property="twitter:image" content="{% block twitter_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
-    <!-- Canonical URL -->
-    {% if request.path == '/' or request.path in hreflang_homepage_paths %}
-        <!-- For homepage, canonical points to root -->
-      <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}/">
-    {% else %}
-        <!-- For other pages, canonical points to current URL -->
-      <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <!-- Canonical URL (without query parameters) -->
+    {% with default_home='/'|add:default_language_code|add:'/' %}
+      {% if request.path == '/' or request.path == default_home %}
+          <!-- For root homepage and default-language homepage, canonical points to root -->
+        <link rel="canonical" href="{{ site_base_url }}/">
+      {% else %}
+          <!-- For all other pages, canonical points to current URL without query parameters -->
+        <link rel="canonical" href="{{ site_base_url }}{{ request.path }}">
+      {% endif %}
+    {% endwith %}
+
+    <!-- Prevent indexing of pages with lang parameter (duplicates) -->
+    {% if request.GET.lang %}
+      <meta name="robots" content="noindex, follow">
     {% endif %}
     <!-- Preconnect to external domains -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -70,17 +77,47 @@
     {% endfor %}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="48x48" href="{% static 'favicon-48x48.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon-192x192.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <meta name="application-name" content="Convertica">
+    <meta name="apple-mobile-web-app-title" content="Convertica">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <script>
+      (function() {
+        try {
+          var html = document.documentElement;
+          var isPremium = html && html.dataset && html.dataset.isPremium === 'true';
+          if (!isPremium) {
+            html.classList.remove('dark');
+            return;
+          }
+          var storedTheme = localStorage.getItem('convertica_theme');
+          if (storedTheme === 'dark') {
+            html.classList.add('dark');
+            // Add dark-mode class to body as soon as it's available
+            // This runs synchronously in <head>, so body doesn't exist yet
+            // We'll add it via a tiny script right after <body> tag
+            window.__darkModeEnabled = true;
+          } else {
+            html.classList.remove('dark');
+            window.__darkModeEnabled = false;
+          }
+        } catch (e) {
+        }
+      })();
+    </script>
 
     <!-- Stylesheets -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="all">
+    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="all">
+    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}" media="all">
 
     <!-- Custom Animations -->
     <style>
@@ -95,9 +132,26 @@
       .shadow-3xl { box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25); }
 
       html, body { overflow-x: hidden; max-width: 100%; width: 100%; }
-      * { box-sizing: border-box; transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; transition-timing-function: cubic-bezier(0.4,0,0.2,1); transition-duration: 150ms; }
 
-      body { color: #111827; }
+      /* Smooth transitions for theme switching */
+      html {
+        transition: background-color 0.2s ease;
+      }
+
+      body {
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      * {
+        box-sizing: border-box;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4,0,0.2,1);
+        transition-duration: 200ms;
+      }
+
+      body { color: #111827; background-color: #ffffff; }
+      html.dark body { color: #f3f4f6; background-color: #111827; }
+
       p, span, div, h1, h2, h3, h4, h5, h6, a, li, label, button, input, select, textarea { color: inherit; }
 
       img, video, iframe, embed, object { max-width: 100%; height: auto; }
@@ -111,7 +165,7 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Convertica",
-        "url": "https://convertica.net",
+        "url": "{{ site_base_url }}",
         "description": "{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter." %}",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
@@ -145,12 +199,50 @@
       }
     </script>
 
-    {% block structured_data %}{% endblock %}
-    {% block extra_head %}{% endblock %}
+    <!-- BreadcrumbList Schema for SEO -->
+    {% if breadcrumb_items and breadcrumb_items|length > 1 %}
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {% for item in breadcrumb_items %}
+              {
+                "@type": "ListItem",
+                "position": {{ item.position }},
+                "name": "{{ item.name|escapejs }}",
+                "item": "{{ item.url }}"
+              }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+          ]
+        }
+      </script>
+    {% endif %}
 
+    {% block structured_data %}{% endblock %}
+    <!-- Cloudflare Turnstile (Anti-spam) -->
     {% if turnstile_site_key %}
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     {% endif %}
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('[SW] Registered:', registration.scope);
+              // Check for updates every hour
+              setInterval(() => {
+                registration.update();
+              }, 3600000);
+            })
+            .catch((error) => {
+              console.log('[SW] Registration failed:', error);
+            });
+        });
+      }
+    </script>
 
     <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
     <script>
@@ -209,19 +301,64 @@
       })();
     </script>
 
+    {% block extra_head %}{% endblock %}
+
   </head>
-  <body class="bg-gray-50 text-gray-900 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+  <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+    <script>
+      // Apply dark-mode class to body immediately if dark theme is enabled
+      // This runs synchronously right after <body> tag to prevent white flash
+      if (window.__darkModeEnabled) {
+        document.body.classList.add('dark-mode');
+      }
+    </script>
     <!-- Global JS Settings from Django -->
     <script>
       window.JS_SETTINGS = {
-        patienceMessageDelay: {{ js_settings.patience_message_delay|default:40 }} * 1000,
-        pollInterval: {{ js_settings.poll_interval|default:2500 }}
+        patienceMessageDelay: Number("{{ js_settings.patience_message_delay|default:40|escapejs }}") * 1000,
+        pollInterval: Number("{{ js_settings.poll_interval|default:2500|escapejs }}")
       };
     </script>
 
     {% include "frontend/includes/header.html" %}
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900">
+    <!-- Messages -->
+    {% if messages %}
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} mb-4 p-4 rounded-lg border flex items-center justify-between
+                      {% if message.tags == 'success' %}bg-green-50 border-green-200 text-green-800 dark:bg-green-900/30 dark:border-green-700 dark:text-green-200{% endif %}
+                      {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-700 dark:text-red-200{% endif %}
+                      {% if message.tags == 'warning' %}bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/30 dark:border-yellow-700 dark:text-yellow-200{% endif %}
+                      {% if message.tags == 'info' %}bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200{% endif %}
+                     ">
+            <div class="flex items-center">
+              {% if message.tags == 'success' %}
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              {% elif message.tags == 'error' %}
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                </svg>
+              {% else %}
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+              {% endif %}
+              <span>{{ message }}</span>
+            </div>
+            <button type="button" class="ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" onclick="this.parentElement.remove()">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
       {% block content %}{% endblock %}
     </main>
 
@@ -232,5 +369,11 @@
     <script src="{% static 'js/language-detection.js' %}" defer></script>
 
     {% block extra_js %}{% endblock %}
+
+    <!-- Theme Toggle Script (Premium Dark Mode) -->
+    <script src="{% static 'js/theme-toggle.js' %}" defer></script>
+
+    <!-- PWA Install Script -->
+    <script src="{% static 'js/pwa-install.js' %}" defer></script>
   </body>
 </html>

@@ -1,7 +1,6 @@
-# utils.py
 import os
-import tempfile
 import zipfile
+from io import BytesIO
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -12,9 +11,8 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import check_disk_space, sanitize_filename, validate_pdf_file
 from ...logging_utils import get_logger
-from ...pdf_utils import repair_pdf
+from ...pdf_processing import BasePDFProcessor
 
 logger = get_logger(__name__)
 
@@ -36,155 +34,120 @@ def split_pdf(
     Returns:
         Tuple of (temp_dir, zip_path) containing split PDFs
     """
-    tmp_dir = None
-    safe_name = sanitize_filename(os.path.basename(uploaded_file.name))
     context = {
         "function": "split_pdf",
-        "input_filename": safe_name,
+        "input_filename": os.path.basename(uploaded_file.name),
         "input_size": uploaded_file.size,
         "split_type": split_type,
     }
 
     try:
-        tmp_dir = tempfile.mkdtemp(prefix="split_pdf_")
-        context["tmp_dir"] = tmp_dir
+        processor = BasePDFProcessor(
+            uploaded_file,
+            tmp_prefix="split_pdf_",
+            required_mb=500,
+            context=context,
+        )
+        pdf_path = processor.prepare()
 
-        disk_check, disk_error = check_disk_space(tmp_dir, required_mb=500)
-        if not disk_check:
-            raise StorageError(disk_error or "Insufficient disk space", context=context)
+        base = os.path.splitext(os.path.basename(pdf_path))[0]
+        zip_name = f"{base}_split{suffix}.zip"
+        zip_path = os.path.join(processor.tmp_dir, zip_name)
+        context["zip_path"] = zip_path
 
-        pdf_path = os.path.join(tmp_dir, safe_name)
-        base = os.path.splitext(safe_name)[0]
-
-        # Write uploaded file
-        try:
-            with open(pdf_path, "wb") as f:
-                for chunk in uploaded_file.chunks():
-                    f.write(chunk)
-        except OSError as err:
-            raise StorageError(f"Failed to write PDF: {err}", context=context) from err
-
-        # Validate PDF
-        is_valid, validation_error = validate_pdf_file(pdf_path, context)
-        if not is_valid:
-            if "password" in (validation_error or "").lower():
-                raise EncryptedPDFError(
-                    validation_error or "PDF is password-protected", context=context
-                )
-            raise InvalidPDFError(
-                validation_error or "Invalid PDF file", context=context
-            )
-
-        # Repair PDF to handle potentially corrupted files
-        pdf_path = repair_pdf(pdf_path)
-
-        # Split PDF
-        try:
-            logger.info("Starting PDF split", extra={**context, "event": "split_start"})
-
-            reader = PdfReader(pdf_path)
+        def _op(
+            input_pdf_path: str, *, zip_path: str, split_type: str, pages: str | None
+        ):
+            reader = PdfReader(input_pdf_path)
             total_pages = len(reader.pages)
-            context["total_pages"] = total_pages
 
-            output_files = []
+            def _writer_to_bytes(writer: PdfWriter) -> bytes:
+                buf = BytesIO()
+                writer.write(buf)
+                return buf.getvalue()
 
-            if split_type == "page":
-                # Split by individual pages
-                if pages:
-                    page_nums = [
-                        int(p.strip()) - 1
-                        for p in pages.split(",")
-                        if p.strip().isdigit()
-                    ]
-                else:
-                    page_nums = list(range(total_pages))
+            written = 0
+            with zipfile.ZipFile(
+                zip_path, "w", compression=zipfile.ZIP_DEFLATED
+            ) as zipf:
+                if split_type == "page":
+                    if pages:
+                        page_nums = [
+                            int(p.strip()) - 1
+                            for p in pages.split(",")
+                            if p.strip().isdigit()
+                        ]
+                    else:
+                        page_nums = list(range(total_pages))
 
-                for page_num in page_nums:
-                    if 0 <= page_num < total_pages:
-                        writer = PdfWriter()
-                        writer.add_page(reader.pages[page_num])
-                        output_name = f"{base}_page_{page_num + 1}{suffix}.pdf"
-                        output_path = os.path.join(tmp_dir, output_name)
-                        with open(output_path, "wb") as f:
-                            writer.write(f)
-                        output_files.append(output_path)
+                    for page_num in page_nums:
+                        if 0 <= page_num < total_pages:
+                            writer = PdfWriter()
+                            writer.add_page(reader.pages[page_num])
+                            name = f"{base}_page_{page_num + 1}{suffix}.pdf"
+                            zipf.writestr(name, _writer_to_bytes(writer))
+                            written += 1
 
-            elif split_type == "range":
-                # Split by page ranges
-                if not pages:
-                    raise ConversionError(
-                        "Pages parameter required for range split", context=context
-                    )
-
-                ranges = pages.split(",")
-                for idx, range_str in enumerate(ranges):
-                    if "-" in range_str:
+                elif split_type == "range":
+                    if not pages:
+                        raise ConversionError(
+                            "Pages parameter required for range split", context=context
+                        )
+                    ranges = pages.split(",")
+                    for idx, range_str in enumerate(ranges):
+                        if "-" not in range_str:
+                            continue
                         start, end = range_str.split("-", 1)
                         start_page = max(0, int(start.strip()) - 1)
                         end_page = min(total_pages, int(end.strip()))
                         writer = PdfWriter()
                         for page_num in range(start_page, end_page):
                             writer.add_page(reader.pages[page_num])
-                        output_name = f"{base}_range_{idx + 1}{suffix}.pdf"
-                        output_path = os.path.join(tmp_dir, output_name)
-                        with open(output_path, "wb") as f:
-                            writer.write(f)
-                        output_files.append(output_path)
+                        name = f"{base}_range_{idx + 1}{suffix}.pdf"
+                        zipf.writestr(name, _writer_to_bytes(writer))
+                        written += 1
 
-            elif split_type == "every_n":
-                # Split every N pages
-                n = int(pages) if pages else 1
-                if n < 1:
-                    n = 1
+                elif split_type == "every_n":
+                    n = int(pages) if pages else 1
+                    if n < 1:
+                        n = 1
+                    file_idx = 1
+                    writer = PdfWriter()
+                    for page_num in range(total_pages):
+                        writer.add_page(reader.pages[page_num])
+                        if (page_num + 1) % n == 0 or page_num == total_pages - 1:
+                            name = f"{base}_part_{file_idx}{suffix}.pdf"
+                            zipf.writestr(name, _writer_to_bytes(writer))
+                            written += 1
+                            writer = PdfWriter()
+                            file_idx += 1
+                else:
+                    raise ConversionError("Invalid split_type", context=context)
 
-                file_idx = 1
-                writer = PdfWriter()
-                for page_num in range(total_pages):
-                    writer.add_page(reader.pages[page_num])
-                    if (page_num + 1) % n == 0 or page_num == total_pages - 1:
-                        output_name = f"{base}_part_{file_idx}{suffix}.pdf"
-                        output_path = os.path.join(tmp_dir, output_name)
-                        with open(output_path, "wb") as f:
-                            writer.write(f)
-                        output_files.append(output_path)
-                        writer = PdfWriter()
-                        file_idx += 1
-
-            if not output_files:
+            if written == 0:
                 raise ConversionError("No output files created", context=context)
 
-            # Create ZIP file with all split PDFs
-            zip_name = f"{base}_split{suffix}.zip"
-            zip_path = os.path.join(tmp_dir, zip_name)
-            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-                for output_file in output_files:
-                    zipf.write(output_file, os.path.basename(output_file))
+            return zip_path
 
-            logger.debug(
-                "Split completed",
-                extra={
-                    **context,
-                    "event": "split_complete",
-                    "num_files": len(output_files),
-                },
-            )
+        processor.run_pdf_operation_with_repair(
+            _op,
+            zip_path=zip_path,
+            split_type=split_type,
+            pages=pages,
+        )
 
-        except Exception as split_exc:
-            error_context = {
-                **context,
-                "error_type": type(split_exc).__name__,
-                "error_message": str(split_exc),
-            }
-            logger.error(
-                "PDF split failed",
-                extra={**error_context, "event": "split_error"},
-                exc_info=True,
-            )
+        # ZIP is not a PDF; validate existence/size only
+        from ...file_validation import validate_output_file
+
+        is_valid, validation_error = validate_output_file(
+            zip_path, min_size=1000, context=context
+        )
+        if not is_valid:
             raise ConversionError(
-                f"Failed to split PDF: {split_exc}", context=error_context
-            ) from split_exc
+                validation_error or "Output ZIP is invalid", context=context
+            )
 
-        return tmp_dir, zip_path
+        return processor.tmp_dir, zip_path
 
     except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):
         raise

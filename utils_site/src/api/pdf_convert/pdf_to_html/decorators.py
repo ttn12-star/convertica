@@ -1,0 +1,45 @@
+"""Swagger documentation decorators for PDF to HTML API."""
+
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+
+
+def pdf_to_html_docs():
+    """Swagger documentation for PDF to HTML conversion endpoint."""
+    return swagger_auto_schema(
+        operation_description="Convert PDF to HTML format",
+        operation_summary="PDF to HTML Converter",
+        tags=["PDF Conversion"],
+        manual_parameters=[
+            openapi.Parameter(
+                "pdf_file",
+                openapi.IN_FORM,
+                description="PDF file to convert",
+                type=openapi.TYPE_FILE,
+                required=True,
+            ),
+            openapi.Parameter(
+                "extract_images",
+                openapi.IN_FORM,
+                description="Extract and embed images from PDF",
+                type=openapi.TYPE_BOOLEAN,
+                default=True,
+            ),
+            openapi.Parameter(
+                "preserve_layout",
+                openapi.IN_FORM,
+                description="Preserve original PDF layout",
+                type=openapi.TYPE_BOOLEAN,
+                default=True,
+            ),
+        ],
+        responses={
+            200: openapi.Response(
+                description="HTML file",
+                schema=openapi.Schema(type=openapi.TYPE_FILE),
+            ),
+            400: "Bad request - invalid file or parameters",
+            413: "File too large",
+            500: "Conversion failed",
+        },
+    )

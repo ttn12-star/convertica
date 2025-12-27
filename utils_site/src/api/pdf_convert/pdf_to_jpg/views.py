@@ -23,7 +23,9 @@ class PDFToJPGAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".pdf"}
     CONVERSION_TYPE = "PDF_TO_JPG"
     FILE_FIELD_NAME = "pdf_file"
-    VALIDATE_PDF_PAGES = False  # Client-side validation implemented
+    VALIDATE_PDF_PAGES = (
+        True  # Enforce server-side limits (free: 50 pages; premium: higher)
+    )
 
     def get_serializer_class(self):
         return PDFToJPGSerializer
@@ -31,13 +33,19 @@ class PDFToJPGAPIView(BaseConversionAPIView):
     def get_docs_decorator(self):
         return pdf_to_jpg_docs
 
+    def get_celery_task(self):
+        """Get the Celery task function to execute."""
+        from src.tasks.pdf_conversion import generic_conversion_task
+
+        return generic_conversion_task
+
     @pdf_to_jpg_docs()
     def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation."""
         return super().post(request)
 
     def validate_file_additional(
-        self, file: UploadedFile, context: dict, validated_data: dict
+        self, uploaded_file: UploadedFile, context: dict, validated_data: dict
     ) -> Response | None:
         """Validate DPI parameter."""
         dpi = validated_data.get("dpi", 300)

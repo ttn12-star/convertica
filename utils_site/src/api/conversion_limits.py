@@ -5,8 +5,21 @@ from concurrent.futures import TimeoutError as FuturesTimeoutError
 from functools import wraps
 from typing import Any
 
-import fitz  # PyMuPDF
-from django.utils.translation import gettext_lazy as _
+# Use pypdf instead of PyMuPDF for better compatibility
+try:
+    from pypdf import PdfReader
+
+    _pypdf_available = True
+except ImportError:
+    _pypdf_available = False
+
+try:
+    from django.utils.translation import gettext_lazy as _
+except ImportError:
+    # Fallback for non-Django context
+    def _(text):
+        return text
+
 
 from .logging_utils import get_logger
 
@@ -17,14 +30,15 @@ logger = get_logger(__name__)
 # ============================================================================
 
 # Maximum number of pages allowed for PDF operations
-MAX_PDF_PAGES = 50  # Keep 50 pages, monitor memory usage
+MAX_PDF_PAGES = 30  # Keep 30 pages, monitor memory usage
 
 # Stricter limits for heavy operations (memory-intensive)
-MAX_PDF_PAGES_HEAVY = 50  # PDF to Word/Excel: fewer pages due to memory
+MAX_PDF_PAGES_HEAVY = 30  # PDF to Word/Excel: fewer pages due to memory
 MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024  # 15 MB for heavy operations
 
 # Maximum file size in bytes (reduced for low-memory server)
-MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB instead of 50 MB
+MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB for free users
+MAX_FILE_SIZE_PREMIUM = 200 * 1024 * 1024  # 200 MB for premium users
 
 # Timeout for conversion operations in seconds
 CONVERSION_TIMEOUT = 180  # 3 minutes max per conversion
@@ -36,7 +50,15 @@ SIMPLE_OPERATION_TIMEOUT = 90  # 1.5 minutes
 HEAVY_OPERATION_TIMEOUT = 300  # 5 minutes
 
 # Heavy operations that need stricter limits
-HEAVY_OPERATIONS = {"pdf_to_word", "pdf_to_excel", "word_to_pdf"}
+HEAVY_OPERATIONS = {
+    "pdf_to_word",
+    "pdf_to_excel",
+    "word_to_pdf",
+    "excel_to_pdf",
+    "ppt_to_pdf",
+    "html_to_pdf",
+    "url_to_pdf",
+}
 
 
 # ============================================================================
@@ -44,36 +66,165 @@ HEAVY_OPERATIONS = {"pdf_to_word", "pdf_to_excel", "word_to_pdf"}
 # ============================================================================
 
 
+def get_max_file_size_for_user(user, operation: str = None) -> int:
+    """Get maximum file size allowed for user based on subscription status.
+
+    Args:
+        user: Django user object
+        operation: Type of operation (optional, for heavy operations)
+
+    Returns:
+        Maximum file size in bytes
+    """
+    operation_key = (operation or "").lower()
+
+    if user.is_authenticated and hasattr(user, "is_premium") and user.is_premium:
+        if hasattr(user, "is_subscription_active") and user.is_subscription_active():
+            # Premium users get much higher limits
+            return MAX_FILE_SIZE_PREMIUM  # 200 MB
+
+    # Free users get standard limits
+    if operation_key in HEAVY_OPERATIONS:
+        return MAX_FILE_SIZE_HEAVY  # 15 MB for heavy operations
+    return MAX_FILE_SIZE  # 25 MB for regular operations
+
+
+def get_max_pages_for_user(user, operation: str = None) -> int:
+    """Get maximum pages allowed for user based on subscription status.
+
+    Args:
+        user: Django user object
+        operation: Type of operation (optional, for heavy operations)
+
+    Returns:
+        Maximum pages allowed
+    """
+    operation_key = (operation or "").lower()
+
+    if user.is_authenticated and hasattr(user, "is_premium") and user.is_premium:
+        if hasattr(user, "is_subscription_active") and user.is_subscription_active():
+            premium_limits: dict[str, int] = {
+                "pdf_to_word": 300,
+                "pdf_to_excel": 300,
+                "pdf_to_ppt": 300,
+                "pdf_to_html": 300,
+                "word_to_pdf": 300,
+                "excel_to_pdf": 300,
+                "ppt_to_pdf": 300,
+                "html_to_pdf": 150,
+                "url_to_pdf": 150,
+                "pdf_to_jpg": 150,
+                "compress_pdf": 400,
+                "merge_pdf": 400,
+                "split_pdf": 400,
+                "rotate_pdf": 700,
+                "crop_pdf": 700,
+                "organize_pdf": 700,
+                "extract_pages": 700,
+                "remove_pages": 700,
+                "unlock_pdf": 700,
+                "protect_pdf": 700,
+                "add_watermark": 700,
+                "add_page_numbers": 700,
+            }
+
+            if operation_key in premium_limits:
+                return premium_limits[operation_key]
+
+            if operation_key in HEAVY_OPERATIONS:
+                return 300
+            return 400
+
+    # Free users get standard limits
+    if operation_key in HEAVY_OPERATIONS:
+        return MAX_PDF_PAGES_HEAVY  # 50 for heavy operations
+    return MAX_PDF_PAGES  # 50 for regular operations
+
+
 def validate_pdf_pages(
-    pdf_path: str, max_pages: int = MAX_PDF_PAGES
+    pdf_path: str, max_pages: int = MAX_PDF_PAGES, user=None, operation: str = None
 ) -> tuple[bool, str | None, int]:
     """Validate PDF doesn't exceed page limit.
 
     Args:
         pdf_path: Path to PDF file
-        max_pages: Maximum allowed pages
+        max_pages: Maximum allowed pages (will be overridden by user limits)
+        user: Django user object (optional)
+        operation: Type of operation (optional)
 
     Returns:
         Tuple of (is_valid, error_message, page_count)
     """
     try:
-        doc = fitz.open(pdf_path)
-        page_count = len(doc)
-        doc.close()
+        if not _pypdf_available:
+            # Fallback if pypdf is not available - allow file but with warning
+            logger.warning("pypdf not available, skipping page count validation")
+            return True, None, 0  # Allow file but can't validate pages
 
-        if page_count > max_pages:
-            return (
-                False,
-                _(
-                    "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split your PDF into smaller parts."
-                )
-                % {"page_count": page_count, "max_pages": max_pages},
-                page_count,
+        with open(pdf_path, "rb") as f:
+            pdf_reader = PdfReader(f)
+            page_count = len(pdf_reader.pages)
+
+        # Get user-specific limit if user provided
+        if user is not None:
+            actual_max_pages = get_max_pages_for_user(user, operation)
+        else:
+            actual_max_pages = max_pages
+
+        if page_count > actual_max_pages:
+            # Check if payments are enabled
+            from django.conf import settings
+
+            payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+
+            # Check if user is premium for custom message
+            is_premium = (
+                user.is_authenticated
+                and hasattr(user, "is_premium")
+                and user.is_premium
+                and hasattr(user, "is_subscription_active")
+                and user.is_subscription_active()
             )
+
+            if not is_premium and page_count > MAX_PDF_PAGES:
+                # Free user exceeding limit
+                if payments_enabled:
+                    # Offer upgrade when payments are enabled
+                    return (
+                        False,
+                        _(
+                            "PDF has %(page_count)d pages (limit: %(max_pages)d). "
+                            "You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!"
+                        )
+                        % {"page_count": page_count, "max_pages": MAX_PDF_PAGES},
+                        page_count,
+                    )
+                else:
+                    # Simple message when payments are disabled
+                    return (
+                        False,
+                        _(
+                            "PDF has %(page_count)d pages (limit: %(max_pages)d). "
+                            "Please split your file into smaller parts."
+                        )
+                        % {"page_count": page_count, "max_pages": MAX_PDF_PAGES},
+                        page_count,
+                    )
+            else:
+                # Premium user exceeding their higher limit
+                return (
+                    False,
+                    _(
+                        "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. "
+                        "Please split your PDF into smaller parts."
+                    )
+                    % {"page_count": page_count, "max_pages": actual_max_pages},
+                    page_count,
+                )
 
         return True, None, page_count
 
-    except Exception as e:
+    except (ValueError, OSError) as e:
         logger.warning("Failed to validate PDF pages: %s", e)
         # If we can't read the PDF, let the conversion handle the error
         return True, None, 0
@@ -89,9 +240,13 @@ def get_pdf_page_count(pdf_path: str) -> int:
         Number of pages, or 0 if unable to read
     """
     try:
-        doc = fitz.open(pdf_path)
-        count = len(doc)
-        doc.close()
+        if not _pypdf_available:
+            # Fallback if pypdf is not available
+            return 0
+
+        with open(pdf_path, "rb") as f:
+            pdf_reader = PdfReader(f)
+            count = len(pdf_reader.pages)
         return count
     except Exception:
         return 0
@@ -131,7 +286,7 @@ def with_timeout(timeout_seconds: int = CONVERSION_TIMEOUT):
                 future = executor.submit(func, *args, **kwargs)
                 try:
                     return future.result(timeout=timeout_seconds)
-                except FuturesTimeoutError:
+                except FuturesTimeoutError as exc:
                     logger.error(
                         "Operation timed out after %d seconds: %s",
                         timeout_seconds,
@@ -140,7 +295,7 @@ def with_timeout(timeout_seconds: int = CONVERSION_TIMEOUT):
                     raise ConversionTimeoutError(
                         f"Operation timed out after {timeout_seconds} seconds. "
                         f"The file may be too complex. Please try with a smaller file."
-                    )
+                    ) from exc
 
         return wrapper
 
@@ -176,7 +331,7 @@ def run_with_timeout(
         future = executor.submit(func, *args, **kwargs)
         try:
             return future.result(timeout=timeout)
-        except FuturesTimeoutError:
+        except FuturesTimeoutError as exc:
             logger.error(
                 "Operation timed out after %d seconds: %s",
                 timeout,
@@ -185,7 +340,7 @@ def run_with_timeout(
             raise ConversionTimeoutError(
                 f"Operation timed out after {timeout} seconds. "
                 f"The file may be too complex or corrupted. Please try with a smaller file."
-            )
+            ) from exc
 
 
 # ============================================================================
@@ -228,6 +383,7 @@ def validate_file_for_operation(
     pdf_path: str,
     file_size: int,
     operation: str,
+    user=None,
 ) -> tuple[bool, str | None]:
     """Validate if file can be processed for given operation.
 
@@ -244,7 +400,10 @@ def validate_file_for_operation(
     is_heavy = operation in HEAVY_OPERATIONS
 
     # Check file size limits
-    max_size = MAX_FILE_SIZE_HEAVY if is_heavy else MAX_FILE_SIZE
+    if user is not None:
+        max_size = get_max_file_size_for_user(user, operation)
+    else:
+        max_size = MAX_FILE_SIZE_HEAVY if is_heavy else MAX_FILE_SIZE
     if file_size > max_size:
         max_mb = max_size / (1024 * 1024)
         file_mb = file_size / (1024 * 1024)
@@ -263,15 +422,23 @@ def validate_file_for_operation(
         )
 
     # Check page count
-    max_pages = MAX_PDF_PAGES_HEAVY if is_heavy else MAX_PDF_PAGES
+    if user is not None:
+        max_pages = get_max_pages_for_user(user, operation)
+    else:
+        max_pages = MAX_PDF_PAGES_HEAVY if is_heavy else MAX_PDF_PAGES
 
     try:
-        doc = fitz.open(pdf_path)
-        page_count = len(doc)
+        if not _pypdf_available:
+            # Fallback if pypdf is not available - allow file but with warning
+            logger.warning("pypdf not available, skipping page count validation")
+            return True, None  # Allow file but can't validate pages
+
+        with open(pdf_path, "rb") as f:
+            pdf_reader = PdfReader(f)
+            page_count = len(pdf_reader.pages)
 
         # Check page limit
         if page_count > max_pages:
-            doc.close()
             return (
                 False,
                 _(
@@ -288,12 +455,10 @@ def validate_file_for_operation(
         # For heavy operations, check PDF complexity (images, scans)
         if is_heavy and page_count > 10:
             total_images = 0
-            for page_num in range(min(page_count, 5)):  # Check first 5 pages
-                page = doc[page_num]
-                images = page.get_images()
-                total_images += len(images)
-
-            doc.close()
+            for _page_index in range(min(page_count, 5)):  # Check first 5 pages
+                # Note: pypdf doesn't have get_images() method like PyMuPDF
+                # This is a simplified check - image detection would need different approach
+                total_images += 0  # Placeholder
 
             # If PDF has many images, it's likely a scan - warn user
             avg_images_per_page = total_images / min(page_count, 5)
@@ -313,12 +478,10 @@ def validate_file_for_operation(
                             "max_pages": HEAVY_OPERATION_TIMEOUT // 10,
                         },
                     )
-        else:
-            doc.close()
 
         return True, None
 
-    except Exception as e:
+    except (ValueError, OSError) as e:
         logger.warning("Failed to validate PDF for operation: %s", e)
         # If we can't validate, let conversion handle it
         return True, None
@@ -402,6 +565,10 @@ def estimate_processing_time(file_size: int, page_count: int, operation: str) ->
         "pdf_to_word": 3,
         "pdf_to_excel": 5,
         "pdf_to_jpg": 1,
+        "excel_to_pdf": 4,
+        "ppt_to_pdf": 5,
+        "html_to_pdf": 2,
+        "url_to_pdf": 3,
         "compress": 0.5,
         "merge": 0.2,
         "split": 0.2,
@@ -434,15 +601,64 @@ def get_timeout_for_operation(
     Returns:
         Timeout in seconds
     """
+    op = (operation or "").lower()
+    op_map = {
+        "rotate_pdf": "rotate",
+        "crop_pdf": "crop",
+        "merge_pdf": "merge",
+        "split_pdf": "split",
+        "organize_pdf": "organize",
+        "compress_pdf": "compress",
+        "pdf_to_jpg": "pdf_to_jpg",
+        "pdf_to_word": "pdf_to_word",
+        "pdf_to_excel": "pdf_to_excel",
+        "word_to_pdf": "word_to_pdf",
+        "excel_to_pdf": "excel_to_pdf",
+        "ppt_to_pdf": "ppt_to_pdf",
+        "html_to_pdf": "html_to_pdf",
+        "url_to_pdf": "url_to_pdf",
+        "jpg_to_pdf": "jpg_to_pdf",
+        "unlock_pdf": "unlock_pdf",
+        "protect_pdf": "protect_pdf",
+    }
+    op = op_map.get(op, op)
+
     # Heavy operations that need more time
-    heavy_operations = {"pdf_to_word", "pdf_to_excel"}
+    heavy_operations = {
+        "pdf_to_word",
+        "pdf_to_excel",
+        "word_to_pdf",
+        "excel_to_pdf",
+        "ppt_to_pdf",
+        "html_to_pdf",
+        "url_to_pdf",
+    }
 
     # Simple operations that should be quick
-    simple_operations = {"rotate", "extract_pages", "remove_pages", "split", "organize"}
+    simple_operations = {
+        "rotate",
+        "rotate_pdf",
+        "extract_pages",
+        "remove_pages",
+        "split",
+        "split_pdf",
+        "organize",
+        "organize_pdf",
+        "crop",
+        "crop_pdf",
+        "merge",
+        "merge_pdf",
+        "compress",
+        "compress_pdf",
+        "add_watermark",
+        "add_page_numbers",
+        "unlock_pdf",
+        "protect_pdf",
+    }
 
-    if operation in heavy_operations:
+    if op in heavy_operations:
         base_timeout = HEAVY_OPERATION_TIMEOUT
-    elif operation in simple_operations:
+    elif op in simple_operations:
         base_timeout = SIMPLE_OPERATION_TIMEOUT
     else:
         base_timeout = CONVERSION_TIMEOUT

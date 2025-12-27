@@ -1,0 +1,28 @@
+{% extends "frontend/converter_generic.html" %}
+{% load i18n static %}
+
+{% block scripts %}
+  <script src="{% static 'js/utils.js' %}"></script>
+  <script src="{% static 'js/task-cancellation.js' %}"></script>
+  <script src="{% static 'js/file-input-handler.js' %}"></script>
+  <script src="{% static 'js/converter.js' %}"></script>
+{% endblock %}
+
+{% block help_section %}
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-orange-50 to-red-50 border border-orange-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
+      <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
+      <li>{% trans "Click the convert button to start converting PDF to PowerPoint (PDF to PPTX conversion)" %}</li>
+      <li>{% trans "Wait for the PDF to PowerPoint conversion to complete - pages will be extracted from your PDF and converted to editable PowerPoint slides" %}</li>
+      <li>{% trans "Download your editable PowerPoint presentation (PPTX format) - your PDF has been successfully converted to PowerPoint" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-orange-200">
+      <p class="text-xs sm:text-sm text-gray-600">
+        <strong>{% trans "Note:" %}</strong> {% trans "Free users can convert PDF files with up to 30 pages. Premium users have higher limits. Each PDF page will be converted to a PowerPoint slide. For best results, use PDFs with clear layouts and high-quality content." %}
+      </p>
+    </div>
+  </div>
+{% endblock %}

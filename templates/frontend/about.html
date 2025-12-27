@@ -17,11 +17,11 @@
       "@type": "AboutPage",
       "name": "{% trans "About Us - Convertica" %}",
       "description": "{{ page_description }}",
-      "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+      "url": "{{ site_current_url }}",
       "mainEntity": {
         "@type": "Organization",
         "name": "Convertica",
-        "url": "{{ request.scheme }}://{{ request.get_host }}",
+        "url": "{{ site_base_url }}",
         "description": "{% trans "Free online PDF tools platform providing conversion, editing, and organization services." %}",
         "foundingDate": "2024",
         "slogan": "{% trans "Today better than yesterday, tomorrow better than today" %}"
@@ -32,10 +32,10 @@
 {% endblock %}
 
 {% block content %}
-  <main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 min-h-screen text-gray-900" itemscope itemtype="https://schema.org/AboutPage">
+  <main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 min-h-screen text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/AboutPage">
 
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200">
+    <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-12 sm:py-16 md:py-20 overflow-hidden border-b border-gray-200 dark:border-gray-800">
       <div class="absolute inset-0 opacity-5">
         <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0); background-size: 40px 40px;"></div>
       </div>
@@ -211,11 +211,11 @@
             {% trans "Experience the power of Convertica's PDF tools today." %}
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{% url 'all_tools_page' %}"
+            <a href="{% url 'frontend:all_tools_page' %}"
                class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 shadow-lg">
               {% trans "Explore All Tools" %}
             </a>
-            <a href="{% url 'index_page' %}"
+            <a href="{% url 'frontend:index_page_lang' %}"
                class="bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors duration-200 shadow-lg">
               {% trans "Get Started" %}
             </a>

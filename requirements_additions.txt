@@ -1,0 +1,9 @@
+# Additional packages for new features
+# Add these to requirements.txt
+
+# Django Channels - WebSocket support for real-time progress updates
+channels==4.0.0
+channels-redis==4.1.0
+
+# Web Push - Push notifications for PWA
+pywebpush==1.14.0

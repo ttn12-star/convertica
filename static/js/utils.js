@@ -131,13 +131,13 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
     const patienceMessage = window.PATIENCE_MESSAGE || "Large files take a bit longer. Please don't close this page — your file is being processed.";
 
     container.innerHTML = `
-        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 sm:p-12 shadow-lg border-2 border-blue-200">
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 sm:p-12 shadow-lg border-2 border-blue-200 dark:border-gray-700">
             <div class="flex flex-col items-center justify-center space-y-6">
                 <!-- Animated Spinner -->
                 <div class="relative">
-                    <div class="w-20 h-20 sm:w-24 sm:h-24 border-8 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 border-8 border-blue-200 dark:border-gray-700 border-t-blue-600 dark:border-t-blue-500 rounded-full animate-spin"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-10 h-10 sm:w-12 sm:h-12 text-blue-600 dark:text-blue-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
                         </svg>
                     </div>
@@ -145,41 +145,41 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
 
                 <!-- Loading Text -->
                 <div class="text-center">
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">${title}</h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4">${message}</p>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">${title}</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base mb-4">${message}</p>
                 </div>
 
                 ${showProgress ? `
                 <!-- Progress Bar with Percentage -->
                 <div class="w-full max-w-md">
                     <div class="flex items-center justify-between mb-2">
-                        <span class="text-sm font-semibold text-gray-700">Progress</span>
-                        <span id="progressPercentage" class="text-sm font-bold text-blue-600">0%</span>
+                        <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Progress</span>
+                        <span id="progressPercentage" class="text-sm font-bold text-blue-600 dark:text-blue-400">0%</span>
                     </div>
-                    <div class="h-3 bg-blue-100 rounded-full overflow-hidden shadow-inner">
+                    <div class="h-3 bg-blue-100 dark:bg-gray-700 rounded-full overflow-hidden shadow-inner">
                         <div id="progressBar"
-                             class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-full transition-all duration-300 ease-out"
+                             class="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 dark:from-blue-600 dark:via-purple-600 dark:to-blue-600 rounded-full transition-all duration-300 ease-out"
                              style="width: 0%">
                         </div>
                     </div>
-                    <p id="progressStatusText" class="text-xs text-gray-500 mt-2 text-center">Processing your file...</p>
+                    <p id="progressStatusText" class="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">Processing your file...</p>
                 </div>
                 ` : ''}
 
                 <!-- Patience Message (hidden initially, shown after 40 seconds) -->
                 <div id="patienceMessage" class="hidden w-full max-w-md animate-fade-in">
-                    <div class="bg-gradient-to-r from-emerald-100 to-teal-100 border-2 border-emerald-400 rounded-xl p-4 sm:p-5 shadow-md">
+                    <div class="bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 border-2 border-emerald-400 dark:border-emerald-700 rounded-xl p-4 sm:p-5 shadow-md">
                         <div class="flex items-start space-x-3">
                             <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shadow-sm">
+                                <div class="w-10 h-10 bg-emerald-500 dark:bg-emerald-600 rounded-full flex items-center justify-center shadow-sm">
                                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </div>
                             </div>
                             <div>
-                                <h4 class="font-bold text-emerald-800 text-base mb-1">${patienceTitle}</h4>
-                                <p class="text-emerald-700 text-sm">${patienceMessage}</p>
+                                <h4 class="font-bold text-emerald-800 dark:text-emerald-200 text-base mb-1">${patienceTitle}</h4>
+                                <p class="text-emerald-700 dark:text-emerald-300 text-sm">${patienceMessage}</p>
                             </div>
                         </div>
                     </div>
@@ -323,23 +323,23 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
     const showConvertAnother = options.showConvertAnother !== false; // Default to true
 
     container.innerHTML = `
-        <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 sm:p-8 shadow-lg border-2 border-green-200 animate-fade-in">
+        <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-6 sm:p-8 shadow-lg border-2 border-green-200 dark:border-green-800 animate-fade-in">
             <div class="flex flex-col items-center justify-center space-y-4">
                 <!-- Success Icon -->
                 <div class="relative">
-                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-green-500 rounded-full flex items-center justify-center shadow-lg animate-scale-in">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-green-500 dark:bg-green-600 rounded-full flex items-center justify-center shadow-lg animate-scale-in">
                         <svg class="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                         </svg>
                     </div>
-                    <div class="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                    <div class="absolute inset-0 bg-green-400 dark:bg-green-600 rounded-full animate-ping opacity-75"></div>
                 </div>
 
                 <!-- Success Message -->
                 <div class="text-center">
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">${successTitle}</h3>
-                    <p class="text-gray-600 text-sm sm:text-base mb-4">${successMessage}</p>
-                    <p class="text-xs text-gray-500 font-mono">${escapeHtml(downloadName)}</p>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">${successTitle}</h3>
+                    <p class="text-gray-700 dark:text-gray-200 text-sm sm:text-base mb-4">${successMessage}</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 font-mono break-all">${escapeHtml(downloadName)}</p>
                 </div>
 
                 <!-- Download Button -->
@@ -354,7 +354,7 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
                 ${showConvertAnother ? `
                 <!-- Convert Another Button -->
                 <button id="convertAnotherButton"
-                        class="text-gray-600 hover:text-blue-600 font-medium text-sm sm:text-base transition-colors">
+                        class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm sm:text-base transition-colors">
                     ${convertAnotherText}
                 </button>
                 ` : ''}
@@ -584,6 +584,17 @@ async function submitAsyncConversion(options) {
                 window.registerTaskForCancellation(taskId);
             }
 
+            // Track abandonment for analytics if user leaves before completion
+            const abandonHandler = () => trackOperationAbandon(taskId);
+            window.addEventListener('beforeunload', abandonHandler);
+            window.addEventListener('pagehide', abandonHandler);
+
+            // Store handler reference for cleanup
+            const cleanupAbandonTracking = () => {
+                window.removeEventListener('beforeunload', abandonHandler);
+                window.removeEventListener('pagehide', abandonHandler);
+            };
+
             // Poll for task status
             await pollTaskStatus(taskId, {
                 onProgress: (progress, message) => {
@@ -618,6 +629,9 @@ async function submitAsyncConversion(options) {
                         window.unregisterTaskForCancellation(taskId);
                     }
 
+                    // Remove abandon tracking - operation completed successfully
+                    cleanupAbandonTracking();
+
                     if (onSuccess) {
                         onSuccess(blob, filename);
                     } else {
@@ -639,6 +653,9 @@ async function submitAsyncConversion(options) {
                     if (window.unregisterTaskForCancellation) {
                         window.unregisterTaskForCancellation(taskId);
                     }
+
+                    // Remove abandon tracking - operation failed/cancelled
+                    cleanupAbandonTracking();
 
                     hideLoading(loadingContainerId);
                     const errorMsg = error || 'Conversion failed';
@@ -667,7 +684,7 @@ async function submitAsyncConversion(options) {
             hideLoading(loadingContainerId, true);
 
             if (onSuccess) {
-                onSuccess(blob, filename);
+                onSuccess(blob, filename, response);
             } else {
                 await showDownloadButton(blob, filename, downloadContainerId);
             }
@@ -775,6 +792,28 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
     poll();
 }
 
+/**
+ * Track operation abandonment for analytics
+ * Sends beacon to mark operation as abandoned when user leaves page
+ * @param {string} taskId - Task ID to mark as abandoned
+ */
+function trackOperationAbandon(taskId) {
+    if (!taskId || !navigator.sendBeacon) return;
+
+    try {
+        const blob = new Blob(
+            [JSON.stringify({ task_id: taskId })],
+            { type: 'application/json' }
+        );
+        const sent = navigator.sendBeacon('/api/operation-abandon/', blob);
+        if (sent) {
+            console.log(`[Analytics] Marked operation as abandoned: ${taskId}`);
+        }
+    } catch (error) {
+        console.error('[Analytics] Failed to track abandonment:', error);
+    }
+}
+
 // Export functions to global scope
 if (typeof window !== 'undefined') {
     window.formatFileSize = formatFileSize;
@@ -788,4 +827,5 @@ if (typeof window !== 'undefined') {
     window.updateProgress = updateProgress;
     window.submitAsyncConversion = submitAsyncConversion;
     window.pollTaskStatus = pollTaskStatus;
+    window.trackOperationAbandon = trackOperationAbandon;
 }

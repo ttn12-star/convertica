@@ -28,6 +28,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     tesseract-ocr \
     tesseract-ocr-eng \
+    libmupdf-dev \
+    libfreetype6-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install LibreOffice (heavy package, cached separately)
@@ -90,6 +92,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     tesseract-ocr \
     tesseract-ocr-eng \
+    libmupdf-dev \
+    libfreetype6-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \

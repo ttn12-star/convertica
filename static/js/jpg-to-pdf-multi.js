@@ -222,6 +222,12 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append(fieldName, file);
         });
 
+        // Add quality parameter
+        const qualitySelect = document.getElementById('qualitySelect');
+        if (qualitySelect) {
+            formData.append('quality', qualitySelect.value);
+        }
+
         try {
             const response = await fetch(window.API_URL, {
                 method: 'POST',

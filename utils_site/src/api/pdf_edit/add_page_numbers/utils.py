@@ -1,6 +1,4 @@
-# utils.py
 import os
-import tempfile
 from io import BytesIO
 
 from django.core.files.uploadedfile import UploadedFile
@@ -14,14 +12,8 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_pdf_file,
-)
 from ...logging_utils import get_logger
-from ...pdf_utils import repair_pdf
+from ...pdf_processing import BasePDFProcessor
 
 logger = get_logger(__name__)
 
@@ -68,11 +60,9 @@ def add_page_numbers(
     Returns:
         Tuple of (input_path, output_path)
     """
-    tmp_dir = None
-    safe_name = sanitize_filename(os.path.basename(uploaded_file.name))
     context = {
         "function": "add_page_numbers",
-        "input_filename": safe_name,
+        "input_filename": os.path.basename(uploaded_file.name),
         "input_size": uploaded_file.size,
         "position": position,
         "font_size": font_size,
@@ -80,159 +70,66 @@ def add_page_numbers(
     }
 
     try:
-        tmp_dir = tempfile.mkdtemp(prefix="add_pages_")
-        context["tmp_dir"] = tmp_dir
+        processor = BasePDFProcessor(
+            uploaded_file,
+            tmp_prefix="add_pages_",
+            required_mb=200,
+            context=context,
+        )
+        pdf_path = processor.prepare()
 
-        disk_check, disk_error = check_disk_space(tmp_dir, required_mb=200)
-        if not disk_check:
-            raise StorageError(disk_error or "Insufficient disk space", context=context)
-
-        pdf_path = os.path.join(tmp_dir, safe_name)
-        base = os.path.splitext(safe_name)[0]
+        base = os.path.splitext(os.path.basename(pdf_path))[0]
         output_name = f"{base}{suffix}.pdf"
-        output_path = os.path.join(tmp_dir, output_name)
+        output_path = os.path.join(processor.tmp_dir, output_name)
+        context["output_path"] = output_path
 
-        context.update({"pdf_path": pdf_path, "output_path": output_path})
-
-        # Write uploaded file
-        try:
-            logger.debug(
-                "Writing PDF file", extra={**context, "event": "file_write_start"}
-            )
-            with open(pdf_path, "wb") as f:
-                for chunk in uploaded_file.chunks():
-                    f.write(chunk)
-        except OSError as err:
-            raise StorageError(
-                f"Failed to write PDF: {err}",
-                context={**context, "error_type": type(err).__name__},
-            ) from err
-
-        # Validate PDF
-        is_valid, validation_error = validate_pdf_file(pdf_path, context)
-        if not is_valid:
-            if (
-                "password" in (validation_error or "").lower()
-                or "encrypted" in (validation_error or "").lower()
-            ):
-                raise EncryptedPDFError(
-                    validation_error or "PDF is password-protected", context=context
-                )
-            raise InvalidPDFError(
-                validation_error or "Invalid PDF file", context=context
-            )
-
-        # Repair PDF to handle potentially corrupted files
-        pdf_path = repair_pdf(pdf_path)
-
-        # Add page numbers
-        try:
-            logger.info(
-                "Adding page numbers", extra={**context, "event": "add_numbers_start"}
-            )
-
-            reader = PdfReader(pdf_path)
+        def _op(
+            input_pdf_path: str,
+            *,
+            output_path: str,
+            position: str,
+            font_size: int,
+            start_number: int,
+            format_str: str,
+        ):
+            reader = PdfReader(input_pdf_path)
             writer = PdfWriter()
-
             total_pages = len(reader.pages)
-            context["total_pages"] = total_pages
 
             for page_num in range(total_pages):
                 page = reader.pages[page_num]
-
-                # Get page dimensions
                 page_width = float(page.mediabox.width)
                 page_height = float(page.mediabox.height)
 
-                # Create overlay with page number
                 packet = BytesIO()
                 can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-
-                # Calculate position
                 x, y = get_page_position(position, page_width, page_height, font_size)
 
-                # Format page number text
                 page_number = start_number + page_num
                 text = format_str.format(page=page_number, total=total_pages)
 
-                # Draw page number
                 can.setFont("Helvetica", font_size)
                 can.drawString(x, y, text)
                 can.save()
 
-                # Merge overlay with original page
                 packet.seek(0)
                 overlay = PdfReader(packet)
-                overlay_page = overlay.pages[0]
-
-                page.merge_page(overlay_page)
+                page.merge_page(overlay.pages[0])
                 writer.add_page(page)
 
-            # Write output
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
+            return output_path
 
-            # Repair PDF after PyPDF2 write to ensure proper structure
-            # (overlay was created via reportlab, so better safe than sorry)
-            logger.debug(
-                "Repairing PDF after adding page numbers",
-                extra={**context, "event": "add_numbers_repair_start"},
-            )
-            try:
-                repair_pdf(output_path, output_path)
-                logger.debug(
-                    "PDF repaired after adding page numbers",
-                    extra={**context, "event": "add_numbers_repair_success"},
-                )
-            except Exception as repair_error:
-                logger.warning(
-                    "PDF repair after adding page numbers failed (continuing anyway)",
-                    extra={
-                        **context,
-                        "event": "add_numbers_repair_warning",
-                        "error": str(repair_error),
-                    },
-                )
-
-            logger.debug(
-                "Page numbers added", extra={**context, "event": "add_numbers_complete"}
-            )
-
-        except Exception as e:
-            error_context = {
-                **context,
-                "error_type": type(e).__name__,
-                "error_message": str(e),
-            }
-            logger.error(
-                "Failed to add page numbers",
-                extra={**error_context, "event": "add_numbers_error"},
-                exc_info=True,
-            )
-            raise ConversionError(
-                f"Failed to add page numbers: {e}", context=error_context
-            ) from e
-
-        # Validate output
-        is_valid, validation_error = validate_output_file(
-            output_path, min_size=1000, context=context
+        processor.run_pdf_operation_with_repair(
+            _op,
+            output_path=output_path,
+            position=position,
+            font_size=font_size,
+            start_number=start_number,
+            format_str=format_str,
         )
-        if not is_valid:
-            raise ConversionError(
-                validation_error or "Output PDF is invalid", context=context
-            )
-
-        output_size = os.path.getsize(output_path)
-        logger.info(
-            "Page numbers added successfully",
-            extra={
-                **context,
-                "event": "add_numbers_success",
-                "output_size": output_size,
-                "output_size_mb": round(output_size / (1024 * 1024), 2),
-            },
-        )
-
+        processor.validate_output_pdf(output_path, min_size=1000)
         return pdf_path, output_path
 
     except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):
