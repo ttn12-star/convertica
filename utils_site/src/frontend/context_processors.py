@@ -146,8 +146,9 @@ def hreflang_links(request):
                 url = f"{base_url}{lang_path}"
 
         except Exception:
-            # Ultimate fallback
-            url = f"{base_url}{request.path}?lang={code}"
+            # Skip this language if we can't generate a proper URL
+            # Don't create URLs with ?lang= parameter as they create duplicates
+            continue
 
         hreflangs.append({"code": code, "url": url})
 

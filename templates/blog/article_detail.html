@@ -5,9 +5,9 @@
 {% block meta_title %}{{ meta_title|default:page_title }}{% endblock %}
 {% block description %}{{ meta_description|default:page_description }}{% endblock %}
 {% block keywords %}{{ meta_keywords }}{% endblock %}
-{% block og_title %}{{ meta_title|default:article.get_title }}{% endblock %}
-{% block og_description %}{{ meta_description|default:article.get_excerpt }}{% endblock %}
-{% block og_image %}{% if article.featured_image %}{{ site_base_url }}{{ article.featured_image.url }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block og_title %}{{ article.get_title }}{% endblock %}
+{% block og_description %}{{ article.get_excerpt }}{% endblock %}
+{% block og_image %}{% if article.featured_image %}{{ site_base_url }}{{ article.featured_image.url }}{% else %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endif %}{% endblock %}
 
 {% block structured_data %}
   <script type="application/ld+json">

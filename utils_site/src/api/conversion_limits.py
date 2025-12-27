@@ -172,6 +172,11 @@ def validate_pdf_pages(
             actual_max_pages = max_pages
 
         if page_count > actual_max_pages:
+            # Check if payments are enabled
+            from django.conf import settings
+
+            payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+
             # Check if user is premium for custom message
             is_premium = (
                 user.is_authenticated
@@ -182,16 +187,29 @@ def validate_pdf_pages(
             )
 
             if not is_premium and page_count > MAX_PDF_PAGES:
-                # Free user exceeding limit - offer upgrade
-                return (
-                    False,
-                    _(
-                        "PDF has %(page_count)d pages (limit: %(max_pages)d). "
-                        "You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!"
+                # Free user exceeding limit
+                if payments_enabled:
+                    # Offer upgrade when payments are enabled
+                    return (
+                        False,
+                        _(
+                            "PDF has %(page_count)d pages (limit: %(max_pages)d). "
+                            "You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!"
+                        )
+                        % {"page_count": page_count, "max_pages": MAX_PDF_PAGES},
+                        page_count,
                     )
-                    % {"page_count": page_count, "max_pages": MAX_PDF_PAGES},
-                    page_count,
-                )
+                else:
+                    # Simple message when payments are disabled
+                    return (
+                        False,
+                        _(
+                            "PDF has %(page_count)d pages (limit: %(max_pages)d). "
+                            "Please split your file into smaller parts."
+                        )
+                        % {"page_count": page_count, "max_pages": MAX_PDF_PAGES},
+                        page_count,
+                    )
             else:
                 # Premium user exceeding their higher limit
                 return (
