@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 
+# Disallow URLs with query parameters (duplicates)
+Disallow: /*?lang=*
+Disallow: /*&lang=*
+
 # Disallow admin and API endpoints
 # Note: /admin/ will be dynamically replaced with actual ADMIN_URL_PATH in views.py
 Disallow: /admin/

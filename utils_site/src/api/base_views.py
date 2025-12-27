@@ -679,15 +679,21 @@ class BaseConversionAPIView(APIView, ABC):
 
         # OCR validation for premium users
         if context.get("ocr_enabled", False):
+            from django.conf import settings
+
+            payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+
             if not request.user.is_authenticated:
                 logger.warning(
                     "OCR requested by unauthenticated user",
                     extra={**context, "event": "ocr_unauthorized"},
                 )
+                if payments_enabled:
+                    error_msg = "OCR is a premium feature. Please log in and upgrade to Premium."
+                else:
+                    error_msg = "OCR feature is not available. Please log in to use this feature."
                 return Response(
-                    {
-                        "error": "OCR is a premium feature. Please log in and upgrade to Premium."
-                    },
+                    {"error": error_msg},
                     status=status.HTTP_403_FORBIDDEN,
                 )
             elif not getattr(request.user, "is_premium", False) or not (
@@ -699,10 +705,12 @@ class BaseConversionAPIView(APIView, ABC):
                     "OCR requested by non-premium user",
                     extra={**context, "event": "ocr_non_premium"},
                 )
+                if payments_enabled:
+                    error_msg = "OCR is a premium feature. Upgrade to Premium to enable OCR processing."
+                else:
+                    error_msg = "OCR feature is not available at this time."
                 return Response(
-                    {
-                        "error": "OCR is a premium feature. Upgrade to Premium to enable OCR processing."
-                    },
+                    {"error": error_msg},
                     status=status.HTTP_403_FORBIDDEN,
                 )
 

@@ -186,7 +186,7 @@
     </div>
 
         <!-- Premium Upgrade Section -->
-    {% if not user.is_premium_active %}
+    {% if PAYMENTS_ENABLED and not user.is_premium_active %}
       <div class="bg-gradient-to-r from-blue-600 to-purple-600 shadow rounded-lg p-6 text-white">
         <div class="flex items-center justify-between">
           <div>
@@ -197,15 +197,9 @@
               {% trans "Unlock all features and remove limitations" %}
             </p>
           </div>
-          {% if PAYMENTS_ENABLED %}
-            <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-white bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-              {% trans "Upgrade Now" %}
-            </a>
-          {% else %}
-            <a href="{% url 'frontend:contribute' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-white bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
-              {% trans "Temporarily unavailable" %}
-            </a>
-          {% endif %}
+          <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-white bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white">
+            {% trans "Upgrade Now" %}
+          </a>
         </div>
       </div>
     {% endif %}

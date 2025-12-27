@@ -57,12 +57,23 @@ def can_use_batch_processing(user, file_count: int) -> tuple[bool, str | None]:
 
     if file_count > max_batch:
         if max_batch == 1:
-            return (
-                False,
-                "Free users can only process 1 file at a time. "
-                "Upgrade to Premium to process up to 10 files at once! "
-                "Get 1-day Premium for just $1.",
-            )
+            # Check if payments are enabled
+            from django.conf import settings
+
+            payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+
+            if payments_enabled:
+                return (
+                    False,
+                    "Free users can only process 1 file at a time. "
+                    "Upgrade to Premium to process up to 10 files at once! "
+                    "Get 1-day Premium for just $1.",
+                )
+            else:
+                return (
+                    False,
+                    "You can only process 1 file at a time.",
+                )
         else:
             return (
                 False,

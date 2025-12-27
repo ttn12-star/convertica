@@ -49,6 +49,9 @@
 
 {% block content %}
   <div class="max-w-3xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+    <!-- Breadcrumbs -->
+    {% include "frontend/includes/breadcrumbs.html" %}
+
     <!-- Page Header -->
     <div class="text-center mb-8 sm:mb-10 pt-4 sm:pt-0">
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900" itemprop="headline">
@@ -79,8 +82,9 @@
                required>
         <button type="button"
                 id="selectFileButton"
-                class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                class="inline-flex items-center justify-center space-x-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 px-10 sm:px-14 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 text-base sm:text-lg cursor-pointer border-0 outline-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                aria-label="{% trans 'Select file to upload' %}">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-label="{% trans 'Upload icon' %}">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
           </svg>
           <span>{% if batch_enabled %}{% trans "Select files to convert (multiple)" %}{% else %}{% trans "Select file to convert" %}{% endif %}</span>
@@ -210,8 +214,10 @@
       </div>
     {% endblock %}
 
-    <!-- FAQ Section -->
-    {% block faq_section %}{% endblock %}
+    <!-- Related Tools -->
+    {% if related_tools %}
+      {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+    {% endif %}
   </div>
 {% endblock %}
 

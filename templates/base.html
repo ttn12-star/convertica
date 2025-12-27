@@ -39,16 +39,21 @@
     <meta property="twitter:description" content="{% block twitter_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
     <meta property="twitter:image" content="{% block twitter_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
-    <!-- Canonical URL -->
+    <!-- Canonical URL (without query parameters) -->
     {% with default_home='/'|add:default_language_code|add:'/' %}
       {% if request.path == '/' or request.path == default_home %}
           <!-- For root homepage and default-language homepage, canonical points to root -->
         <link rel="canonical" href="{{ site_base_url }}/">
       {% else %}
-          <!-- For all other pages (including non-default language homepages like /ru/), canonical points to current URL -->
-        <link rel="canonical" href="{{ site_current_url }}">
+          <!-- For all other pages, canonical points to current URL without query parameters -->
+        <link rel="canonical" href="{{ site_base_url }}{{ request.path }}">
       {% endif %}
     {% endwith %}
+
+    <!-- Prevent indexing of pages with lang parameter (duplicates) -->
+    {% if request.GET.lang %}
+      <meta name="robots" content="noindex, follow">
+    {% endif %}
     <!-- Preconnect to external domains -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -72,14 +77,11 @@
     {% endfor %}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="48x48" href="{% static 'favicon-48x48.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'favicon-192x192.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
-
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
     <link rel="manifest" href="{% static 'site.webmanifest' %}">
     <meta name="application-name" content="Convertica">
     <meta name="apple-mobile-web-app-title" content="Convertica">
@@ -319,31 +321,6 @@
     </script>
 
     {% include "frontend/includes/header.html" %}
-
-    {% if not PAYMENTS_ENABLED %}
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-        <div class="rounded-xl border border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-800/60 dark:bg-blue-900/20 dark:text-blue-100 px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <div class="flex items-start sm:items-center gap-3">
-            <svg class="w-5 h-5 flex-shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-            </svg>
-            <div class="text-sm">
-              <div class="font-semibold">
-                {% trans "Premium is coming back soon." %}
-              </div>
-              <div class="opacity-90">
-                {% trans "Free tools are fully available right now." %}
-              </div>
-            </div>
-          </div>
-          <div class="flex items-center gap-3">
-            <a href="{% url 'frontend:contribute' %}" class="text-sm font-semibold underline hover:opacity-90">
-              {% trans "Learn more" %}
-            </a>
-          </div>
-        </div>
-      </div>
-    {% endif %}
 
     <!-- Messages -->
     {% if messages %}
