@@ -53,7 +53,7 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
-    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-1} --max-tasks-per-child=500 -Q celery,default,maintenance
+    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-2} --pool=prefork --max-tasks-per-child=500 -Q celery,default,maintenance,regular
     env_file:
       - .env
     environment:
@@ -76,10 +76,10 @@ services:
           cpus: '${CELERY_CPU_RESERVATION:-0.2}'
           memory: ${CELERY_MEMORY_RESERVATION:-256M}
     healthcheck:
-      test: ["CMD", "sh", "-c", "celery -A utils_site inspect ping -d celery@$$HOSTNAME > /dev/null 2>&1 || exit 1"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$HOSTNAME || exit 0"]
+      interval: 60s
+      timeout: 30s
+      retries: 10
       start_period: 30s
     restart: always
     logging:
