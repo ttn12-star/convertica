@@ -842,23 +842,25 @@
           </nav>
 
         <!-- Theme Toggle Button (Premium Feature - Desktop only) -->
-          <button id="theme-toggle-btn"
-                  class="hidden md:flex relative group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 flex-shrink-0"
-                  aria-label="{% trans 'Toggle theme' %}"
-                  title="{% if user.is_authenticated and user.is_premium_active %}{% trans 'Toggle Dark Mode' %}{% else %}{% trans 'Dark Mode (Premium)' %}{% endif %}">
-            <svg class="theme-icon w-5 h-5 text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
-                 fill="none"
-                 stroke="currentColor"
-                 viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-            </svg>
-            {% if not user.is_authenticated or not user.is_premium_active %}
-              <span class="absolute -top-1 -right-1 flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
-              </span>
-            {% endif %}
-          </button>
+          {% if PAYMENTS_ENABLED %}
+            <button id="theme-toggle-btn"
+                    class="hidden md:flex relative group p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 flex-shrink-0"
+                    aria-label="{% trans 'Toggle theme' %}"
+                    title="{% if user.is_authenticated and user.is_premium_active %}{% trans 'Toggle Dark Mode' %}{% else %}{% trans 'Dark Mode (Premium)' %}{% endif %}">
+              <svg class="theme-icon w-5 h-5 text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+                   fill="none"
+                   stroke="currentColor"
+                   viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+              {% if not user.is_authenticated or not user.is_premium_active %}
+                <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                </span>
+              {% endif %}
+            </button>
+          {% endif %}
 
         <!-- Language Switcher (Desktop only) -->
           <form method="post" action="{% url 'set_language' %}" class="ml-2 lg:ml-4 flex-shrink-0 min-w-[100px] lg:min-w-[120px]">
