@@ -4,7 +4,6 @@ import shutil
 import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
-from django.utils.text import get_valid_filename
 from pdf2docx import Converter
 
 from ....exceptions import (

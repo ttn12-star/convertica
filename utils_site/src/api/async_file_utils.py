@@ -7,7 +7,6 @@ import asyncio
 import os
 import tempfile
 from concurrent.futures import ThreadPoolExecutor
-from pathlib import Path
 
 from django.core.files.uploadedfile import UploadedFile
 from src.api.logging_utils import get_logger

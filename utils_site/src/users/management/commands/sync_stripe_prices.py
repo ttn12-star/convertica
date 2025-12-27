@@ -40,7 +40,6 @@ class Command(BaseCommand):
             return
 
         created_count = 0
-        updated_count = 0
         skipped_count = 0
 
         for plan in plans:

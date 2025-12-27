@@ -1,24 +1,6 @@
-import os
-import subprocess
-import tempfile
-
 from django.core.files.uploadedfile import UploadedFile
-from django.utils.text import get_valid_filename
 
-from ....exceptions import (
-    ConversionError,
-    EncryptedPDFError,
-    InvalidPDFError,
-    StorageError,
-)
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_word_file,
-)
 from ...logging_utils import get_logger
-from ...optimization_manager import optimization_manager
 
 logger = get_logger(__name__)
 

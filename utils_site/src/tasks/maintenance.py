@@ -6,7 +6,6 @@ cleaning up temporary files, updating statistics, etc.
 """
 
 import gc
-import os
 import shutil
 import time
 from pathlib import Path

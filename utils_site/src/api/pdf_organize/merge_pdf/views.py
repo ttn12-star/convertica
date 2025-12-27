@@ -10,20 +10,14 @@ from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from src.api.conversion_limits import MAX_PDF_PAGES, validate_pdf_pages
-from src.api.file_validation import validate_output_file
 from src.api.logging_utils import (
     build_request_context,
     get_logger,
     log_conversion_error,
     log_conversion_start,
     log_conversion_success,
-    log_file_validation_error,
 )
 from src.api.rate_limit_utils import combined_rate_limit
-from src.api.spam_protection import (
-    validate_spam_protection as validate_spam_protections,
-)
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

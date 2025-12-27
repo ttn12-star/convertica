@@ -15,7 +15,7 @@ from pdf2image import convert_from_path
 from PyPDF2 import PdfReader
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
-from src.exceptions import ConversionError, StorageError
+from src.exceptions import ConversionError
 
 logger = get_logger(__name__)
 

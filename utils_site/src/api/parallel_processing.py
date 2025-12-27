@@ -3,14 +3,12 @@ Parallel processing utilities for adaptive server optimization.
 Provides memory-safe batch processing for large files based on available resources.
 """
 
-import asyncio
-import logging
 import os
 import tempfile
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from pdf2image import convert_from_bytes, convert_from_path
+from pdf2image import convert_from_path
 from PIL import Image
 
 from .logging_utils import get_logger
@@ -97,7 +95,6 @@ class MemorySafeBatchProcessor:
                     }
 
                     for future in as_completed(future_to_item):
-                        item = future_to_item[future]
                         try:
                             result = future.result(timeout=30)  # 30s timeout per item
                             batch_results.append(result)

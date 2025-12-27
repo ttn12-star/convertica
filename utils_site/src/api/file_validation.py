@@ -8,7 +8,6 @@ import shutil
 from .cache_utils import (
     cache_pdf_page_count,
     cache_pdf_validation,
-    get_cached_pdf_page_count,
     get_cached_pdf_validation,
 )
 from .logging_utils import get_logger

@@ -31,7 +31,6 @@ from rest_framework.views import APIView
 
 from .conversion_limits import (
     HEAVY_OPERATIONS,
-    MAX_FILE_SIZE_HEAVY,
     MAX_PDF_PAGES,
     MAX_PDF_PAGES_HEAVY,
     validate_file_for_operation,

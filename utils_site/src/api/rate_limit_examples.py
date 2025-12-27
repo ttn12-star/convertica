@@ -115,8 +115,6 @@ class FileUploadAPIView(APIView):
         return Response({"status": "uploaded"})
 
 
-from django.core.exceptions import PermissionDenied
-
 # Example 7: Custom rate limit handling
 from django_ratelimit.exceptions import Ratelimited
 
@@ -131,7 +129,7 @@ class CustomRateLimitView(APIView):
         try:
             # Your logic here
             return Response({"status": "success"})
-        except Ratelimited as e:
+        except Ratelimited:
             # Custom handling
             return Response(
                 {

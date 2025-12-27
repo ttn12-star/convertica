@@ -6,7 +6,6 @@ page counting, and file size calculations.
 """
 
 import hashlib
-from typing import Optional
 
 from django.core.cache import cache
 

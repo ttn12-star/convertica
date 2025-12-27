@@ -7,7 +7,6 @@ These tests verify that the API handles:
 - Timeout scenarios (large files or many pages)
 """
 
-import io
 import tempfile
 from unittest.mock import patch
 

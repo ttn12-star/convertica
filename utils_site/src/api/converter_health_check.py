@@ -3,7 +3,6 @@ Health check system for converters and server resources.
 """
 
 import asyncio
-import os
 
 import psutil
 

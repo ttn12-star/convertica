@@ -112,7 +112,7 @@ def create_shortcut_icon(filename, emoji, bg_color, name, size=96):
                     [margin, margin, size - margin, size - margin], fill="white"
                 )
 
-        except Exception as e:
+        except Exception:
             # Fallback: draw a simple shape
             margin = size // 4
             draw.ellipse([margin, margin, size - margin, size - margin], fill="white")

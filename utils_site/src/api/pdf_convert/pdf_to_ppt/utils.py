@@ -14,7 +14,7 @@ from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
-from src.exceptions import ConversionError, StorageError
+from src.exceptions import ConversionError
 
 logger = get_logger(__name__)
 

@@ -4,7 +4,6 @@ Script to apply rate limiting to all batch_views.py files.
 Adds combined_rate_limit decorator with stricter limits for batch operations.
 """
 
-import os
 import re
 from pathlib import Path
 

@@ -8,9 +8,7 @@ Supports both HTML strings and URLs with proper security measures.
 import asyncio
 import os
 import tempfile
-from typing import Optional
 
-from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
@@ -286,7 +284,6 @@ class HTMLToPDFConverter:
                         await browser.close()
 
             # Run async function in sync context
-            import asyncio
 
             try:
                 loop.run_until_complete(_run_conversion())
@@ -305,7 +302,7 @@ class HTMLToPDFConverter:
                 await loop.run_in_executor(None, _convert_with_playwright)
                 break  # Success, exit retry loop
 
-            except ConversionError as e:
+            except ConversionError:
                 if attempt == self.max_retries:
                     logger.error(
                         f"Playwright conversion failed after {self.max_retries + 1} attempts",
@@ -385,7 +382,6 @@ class HTMLToPDFConverter:
                         await browser.close()
 
             # Run async function in sync context
-            import asyncio
 
             try:
                 loop.run_until_complete(_run_url_conversion())
@@ -404,7 +400,7 @@ class HTMLToPDFConverter:
                 await loop.run_in_executor(None, _convert_url_with_playwright)
                 break  # Success, exit retry loop
 
-            except ConversionError as e:
+            except ConversionError:
                 if attempt == self.max_retries:
                     logger.error(
                         f"Playwright URL conversion failed after {self.max_retries + 1} attempts",

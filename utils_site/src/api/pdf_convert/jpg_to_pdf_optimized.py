@@ -2,20 +2,18 @@
 Optimized JPG to PDF conversion with parallel processing.
 """
 
-import asyncio
 import os
 import tempfile
-from concurrent.futures import ThreadPoolExecutor
 
 from django.core.files.uploadedfile import UploadedFile
 from PIL import Image
 from reportlab.lib.pagesizes import A4, letter
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
-from src.api.file_validation import check_disk_space, sanitize_filename
+from src.api.file_validation import sanitize_filename
 from src.api.logging_utils import get_logger
 from src.api.parallel_processing import get_optimal_batch_size, process_images_parallel
-from src.exceptions import ConversionError, InvalidPDFError
+from src.exceptions import ConversionError
 
 logger = get_logger(__name__)
 

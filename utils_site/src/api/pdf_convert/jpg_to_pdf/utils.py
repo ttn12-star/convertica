@@ -6,12 +6,10 @@ from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
-from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
-from ...file_validation import check_disk_space, sanitize_filename, validate_output_file
+from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
 from ...optimization_manager import optimization_manager
-from ...pdf_utils import repair_pdf
 
 logger = get_logger(__name__)
 
