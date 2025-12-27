@@ -223,29 +223,32 @@ class Article(models.Model):
             return None
 
         tool_urls = {
-            "pdf_to_word": "frontend:pdf_to_word_page",
-            "word_to_pdf": "frontend:word_to_pdf_page",
-            "pdf_to_jpg": "frontend:pdf_to_jpg_page",
-            "jpg_to_pdf": "frontend:jpg_to_pdf_page",
-            "pdf_to_excel": "frontend:pdf_to_excel_page",
-            "merge_pdf": "frontend:merge_pdf_page",
-            "split_pdf": "frontend:split_pdf_page",
-            "compress_pdf": "frontend:compress_pdf_page",
-            "rotate_pdf": "frontend:rotate_pdf_page",
-            "crop_pdf": "frontend:crop_pdf_page",
-            "add_watermark": "frontend:add_watermark_page",
-            "protect_pdf": "frontend:protect_pdf_page",
-            "unlock_pdf": "frontend:unlock_pdf_page",
-            "organize_pdf": "frontend:organize_pdf_page",
-            "extract_pages": "frontend:extract_pages_page",
-            "remove_pages": "frontend:remove_pages_page",
-            "add_page_numbers": "frontend:add_page_numbers_page",
-            "all_tools": "frontend:all_tools_page",
+            "pdf_to_word": "pdf_to_word_page",
+            "word_to_pdf": "word_to_pdf_page",
+            "pdf_to_jpg": "pdf_to_jpg_page",
+            "jpg_to_pdf": "jpg_to_pdf_page",
+            "pdf_to_excel": "pdf_to_excel_page",
+            "merge_pdf": "merge_pdf_page",
+            "split_pdf": "split_pdf_page",
+            "compress_pdf": "compress_pdf_page",
+            "rotate_pdf": "rotate_pdf_page",
+            "crop_pdf": "crop_pdf_page",
+            "add_watermark": "add_watermark_page",
+            "protect_pdf": "protect_pdf_page",
+            "unlock_pdf": "unlock_pdf_page",
+            "organize_pdf": "organize_pdf_page",
+            "extract_pages": "extract_pages_page",
+            "remove_pages": "remove_pages_page",
+            "add_page_numbers": "add_page_numbers_page",
+            "all_tools": "all_tools_page",
         }
 
         url_name = tool_urls.get(self.relevant_tool)
         if url_name:
-            return reverse(url_name)
+            try:
+                return reverse(url_name)
+            except Exception:
+                return None
         return None
 
     def get_relevant_tool_name(self):
