@@ -87,8 +87,27 @@ def repair_pdf(input_path: str, output_path: str | None = None) -> str:
 
     except Exception as e:
         logger.warning("PDF repair failed for %s: %s", input_path, e)
-        # If repair fails, return original path - let the caller handle the error
-        return input_path
+
+        try:
+            from pypdf import PdfReader, PdfWriter
+
+            reader = PdfReader(input_path, strict=False)
+            writer = PdfWriter()
+            for page in reader.pages:
+                writer.add_page(page)
+            with open(output_path, "wb") as f:
+                writer.write(f)
+
+            logger.debug(
+                "PDF repair successful via pypdf rewrite: %s -> %s",
+                input_path,
+                output_path,
+            )
+            return output_path
+
+        except Exception as e2:
+            logger.warning("PDF repair fallback failed for %s: %s", input_path, e2)
+            return input_path
 
 
 def open_pdf_safe(pdf_path: str, repair: bool = True) -> fitz.Document:

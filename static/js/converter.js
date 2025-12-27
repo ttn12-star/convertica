@@ -37,15 +37,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // Get file from either input
         const fileInput = document.getElementById('fileInput');
         const fileInputDrop = document.getElementById('fileInputDrop');
-        const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
+        const selectedFiles = (fileInput?.files && fileInput.files.length > 0)
+            ? fileInput.files
+            : (fileInputDrop?.files && fileInputDrop.files.length > 0)
+                ? fileInputDrop.files
+                : null;
+        const selectedFile = selectedFiles?.[0];
+
+        const isBatchMode = Boolean(
+            window.BATCH_ENABLED &&
+            window.IS_PREMIUM &&
+            selectedFiles &&
+            selectedFiles.length > 1 &&
+            window.BATCH_API_URL &&
+            window.BATCH_FIELD_NAME
+        );
 
         if (!selectedFile) {
             window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'converterResult');
             return;
         }
 
-        // Validate PDF page count using universal function
-        if (selectedFile.type === 'application/pdf') {
+        // Validate PDF page count using universal function (single file only)
+        if (!isBatchMode && selectedFile.type === 'application/pdf') {
             try {
                 const isValid = await window.validatePdfPageLimit(selectedFile);
                 if (!isValid) {
@@ -72,15 +86,22 @@ document.addEventListener('DOMContentLoaded', () => {
             form.parentNode.insertBefore(downloadContainer, loadingContainer.nextSibling || form.nextSibling);
         }
 
-        // Show loading animation
-        window.showLoading('loadingContainer');
+        // Show loading animation (disable progress bar for batch mode)
+        window.showLoading('loadingContainer', { showProgress: !isBatchMode });
 
         // Disable form
         setFormDisabled(true);
 
         const formData = new FormData();
-        const fieldName = window.FILE_INPUT_NAME || 'file';
-        formData.append(fieldName, selectedFile);
+        const singleFieldName = window.FILE_INPUT_NAME || 'file';
+        if (isBatchMode) {
+            const batchFieldName = window.BATCH_FIELD_NAME;
+            Array.from(selectedFiles).forEach((f) => {
+                formData.append(batchFieldName, f);
+            });
+        } else {
+            formData.append(singleFieldName, selectedFile);
+        }
 
         // Add pages parameter if available (for PDF to JPG)
         const pagesInput = form.querySelector('input[name="pages"]');
@@ -94,11 +115,27 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('dpi', dpiSelect.value);
         }
 
+        // Add OCR parameter if available (only for PDF to Word)
+        const ocrCheckbox = form.querySelector('input[name="ocr_enabled"]');
+        if (ocrCheckbox) {
+            formData.append('ocr_enabled', ocrCheckbox.checked ? 'true' : 'false');
+        }
+
+        // Add OCR language if available (only for PDF to Word)
+        const ocrLanguageSelect = form.querySelector('select[name="ocr_language"]');
+        if (ocrLanguageSelect) {
+            formData.append('ocr_language', ocrLanguageSelect.value);
+            console.log('OCR Debug: Sending language:', ocrLanguageSelect.value);
+        } else {
+            console.log('OCR Debug: ocr_language select not found');
+        }
+
         // Add Turnstile token if available
         const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
         if (turnstileResponse && turnstileResponse.value) {
             formData.append('turnstile_token', turnstileResponse.value);
         }
+
 
         // Determine conversion type from API URL or page path
         let conversionType = window.CONVERSION_TYPE || '';
@@ -126,12 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // - Heavy operations (PDF to Word, Word to PDF, PDF to Excel) - always
         // - Medium operations (PDF to JPG, Compress) - for large files
         // - Any other operation - for very large files (> 10MB)
-        const useAsync = isHeavyOperation ||
+        const useAsync = (!isBatchMode) && (
+                        isHeavyOperation ||
                         (isMediumOperation && isLargeFile) ||
-                        (selectedFile.size > 10 * 1024 * 1024);
+                        (selectedFile.size > 10 * 1024 * 1024)
+                    );
 
         // Use async API endpoint for operations that need it
-        let apiUrl = window.API_URL;
+        let apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
         const needsAsyncEndpoint = (isHeavyOperation || isMediumOperation) && useAsync;
         if (needsAsyncEndpoint && !apiUrl.endsWith('/async/')) {
             // Append /async/ to the URL for async processing
@@ -143,12 +182,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 apiUrl: apiUrl,
                 formData: formData,
                 csrfToken: window.CSRF_TOKEN || '',
-                originalFileName: selectedFile.name,
+                originalFileName: isBatchMode ? 'convertica.zip' : selectedFile.name,
                 loadingContainerId: 'loadingContainer',
                 downloadContainerId: 'downloadContainer',
                 errorContainerId: 'converterResult',
                 useAsync: useAsync,
-                onSuccess: (blob, filename) => {
+                onSuccess: (blob, filename, response) => {
+                    // Check for batch failures
+                    if (isBatchMode && response && response.headers) {
+                        const failedCount = parseInt(response.headers.get('X-Convertica-Batch-Failed-Count') || '0');
+                        const successCount = parseInt(response.headers.get('X-Convertica-Batch-Count') || '0');
+
+                        if (failedCount > 0) {
+                            const totalCount = successCount + failedCount;
+                            const warningMsg = failedCount === 1
+                                ? `Warning: 1 file out of ${totalCount} failed to convert and was excluded from the archive. Check the file for corruption or try re-saving it.`
+                                : `Warning: ${failedCount} files out of ${totalCount} failed to convert and were excluded from the archive. Check these files for corruption or try re-saving them.`;
+
+                            window.showError(warningMsg, 'converterResult');
+                        }
+                    }
+
                     window.showDownloadButton(blob, filename, 'downloadContainer', {
                         onConvertAnother: () => {
                             resetSelectedFileUI();

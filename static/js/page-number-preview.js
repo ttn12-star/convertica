@@ -4,13 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // pdf.js worker
-  if (typeof pdfjsLib !== 'undefined') {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-  } else {
-    return;
-  }
-
   const fileInput = document.getElementById('fileInput');
   const fileInputDrop = document.getElementById('fileInputDrop');
   const canvas = document.getElementById('pageNumberCanvas');
@@ -28,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
   let pdfDoc = null;
   let currentPage = 1;
   let scale = 1.2;
+
+  // Initialize PDF.js worker when available
+  function initPdfJsWorker() {
+    if (typeof pdfjsLib !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+      const localWorkerSrc = typeof window.PDFJS_LOCAL_WORKER === 'string' ? window.PDFJS_LOCAL_WORKER : null;
+      pdfjsLib.GlobalWorkerOptions.workerSrc = localWorkerSrc || 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+  }
+
+  // Try to initialize immediately
+  initPdfJsWorker();
 
   function calculateScale(viewport) {
     const container = canvas.parentElement;
@@ -163,6 +167,15 @@ function clearError() {
     try {
       // Clear any previous errors when selecting a new file
       clearError();
+
+      // Ensure PDF.js is loaded
+      if (typeof pdfjsLib === 'undefined') {
+        showError('Unable to load PDF preview. Please refresh the page or disable browser extensions that may block scripts, then try again.');
+        return;
+      }
+
+      // Initialize worker if not already done
+      initPdfJsWorker();
 
       // Validate page limit using common function
       if (typeof window.validatePdfPageLimit === 'function') {

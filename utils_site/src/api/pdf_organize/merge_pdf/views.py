@@ -10,6 +10,20 @@ from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from src.api.conversion_limits import MAX_PDF_PAGES, validate_pdf_pages
+from src.api.file_validation import validate_output_file
+from src.api.logging_utils import (
+    build_request_context,
+    get_logger,
+    log_conversion_error,
+    log_conversion_start,
+    log_conversion_success,
+    log_file_validation_error,
+)
+from src.api.rate_limit_utils import combined_rate_limit
+from src.api.spam_protection import (
+    validate_spam_protection as validate_spam_protections,
+)
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -17,13 +31,6 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...logging_utils import (
-    build_request_context,
-    get_logger,
-    log_conversion_error,
-    log_conversion_start,
-    log_conversion_success,
-)
 from .decorators import merge_pdf_docs
 from .utils import merge_pdf
 
@@ -39,9 +46,15 @@ class MergePDFAPIView(APIView):
     # Don't define get_serializer_class to prevent drf-yasg from auto-detecting request_body
     # We handle validation manually in the post method
 
+    @combined_rate_limit(group="api_conversion", ip_rate="100/h", methods=["POST"])
     @merge_pdf_docs()
     def post(self, request: HttpRequest):
-        """Handle POST request for merging PDFs."""
+        """Handle POST request for merging PDFs.
+
+        Rate limits:
+        - IP: 100 requests/hour
+        - Anonymous: 100/h, Authenticated: 1,000/h, Premium: 10,000/h
+        """
         start_time = time.time()
         context = build_request_context(request)
 

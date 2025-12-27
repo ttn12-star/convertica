@@ -36,7 +36,7 @@ try:
     # Also autodiscover from our custom tasks package
     app.autodiscover_tasks(["src.tasks"])
 
-    # Celery configuration
+    # Celery configuration - optimized for 4GB server with premium queues
     app.conf.update(
         # Broker settings
         broker_url=os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379/0"),
@@ -51,31 +51,55 @@ try:
         result_serializer="json",
         timezone="UTC",
         enable_utc=True,
-        # Task routing - all conversion tasks go to same queue for simplicity on small server
+        # Task routing
         task_routes={
-            "pdf_conversion.*": {"queue": "celery"},
-            "src.tasks.pdf_conversion.*": {"queue": "celery"},
+            # Maintenance tasks to separate queue
             "src.tasks.maintenance.*": {"queue": "maintenance"},
             "maintenance.*": {"queue": "maintenance"},
+            # Email tasks to default queue
             "email.*": {"queue": "default"},
+            # Telegram tasks to default queue
+            "telegram.*": {"queue": "default"},
         },
-        # Default queue for unrouted tasks
-        task_default_queue="celery",
-        # Worker settings - optimized for 1 vCPU / 2GB server
-        worker_prefetch_multiplier=1,  # Process one task at a time (prevents memory issues)
-        worker_max_tasks_per_child=100,  # Restart worker after 100 tasks (free memory)
-        worker_max_memory_per_child=300000,  # 300MB per worker child
+        # Queue definitions - regular gets priority
+        task_default_queue="regular",
+        task_queues={
+            "regular": {
+                "exchange": "regular",
+                "routing_key": "regular",
+            },
+            "premium": {
+                "exchange": "premium",
+                "routing_key": "premium",
+            },
+            "maintenance": {
+                "exchange": "maintenance",
+                "routing_key": "maintenance",
+            },
+            "default": {
+                "exchange": "default",
+                "routing_key": "default",
+            },
+        },
+        # Worker settings - optimized for premium priority
+        worker_prefetch_multiplier=1,  # Process one task at a time (prevents task hoarding)
+        worker_max_tasks_per_child=40,  # Reduced for memory stability
+        worker_max_memory_per_child=250000,  # 250MB per worker child
+        worker_pool="solo",  # Use solo pool for memory efficiency on small servers
         # Task execution settings
-        task_acks_late=True,  # Acknowledge tasks after completion
+        task_acks_late=True,  # Acknowledge tasks after completion (allows task requeue on failure)
         task_reject_on_worker_lost=True,  # Reject tasks if worker dies
+        # Priority settings - premium tasks get higher priority
+        task_default_priority=5,  # Default priority for regular tasks
+        task_inherit_parent_priority=True,  # Child tasks inherit parent priority
         # Result expiration - keep results for 2 hours for async download
         result_expires=7200,  # Results expire after 2 hours
-        # Task time limits - allow up to 10 minutes for heavy conversions
-        task_time_limit=600,  # Hard time limit: 10 minutes
-        task_soft_time_limit=540,  # Soft time limit: 9 minutes
-        # Retry settings - only for specific recoverable errors, NOT timeouts
-        task_default_retry_delay=30,  # 30 seconds between retries
-        task_max_retries=2,  # Maximum 2 retries (to avoid queue backlog)
+        # Task time limits - reduced for memory stability
+        task_time_limit=480,  # Hard time limit: 8 minutes (reduced from 10)
+        task_soft_time_limit=420,  # Soft time limit: 7 minutes (reduced from 9)
+        # Retry settings - conservative for memory stability
+        task_default_retry_delay=60,  # 60 seconds between retries (increased)
+        task_max_retries=1,  # Maximum 1 retry (reduced from 2)
         # Monitoring
         worker_send_task_events=True,
         task_send_sent_event=True,
@@ -91,6 +115,14 @@ try:
             "cleanup-temp-files": {
                 "task": "maintenance.cleanup_temp_files",
                 "schedule": 3600.0,  # Every hour
+            },
+            "memory-cleanup": {
+                "task": "maintenance.memory_cleanup",
+                "schedule": 900.0,  # Every 15 minutes for 4GB servers
+            },
+            "update-subscription-daily": {
+                "task": "maintenance.update_subscription_daily",
+                "schedule": 86400.0,  # Every 24 hours
             },
         },
     )

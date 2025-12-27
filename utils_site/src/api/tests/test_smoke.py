@@ -12,25 +12,47 @@ import tempfile
 from unittest.mock import patch
 
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from rest_framework import status
 from rest_framework.test import APIClient
 
 
+@override_settings(
+    CACHES={
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        }
+    },
+    RATELIMIT_ENABLE=False,
+    CELERY_BROKER_URL="memory://",
+    CELERY_RESULT_BACKEND="cache+memory://",
+    CELERY_TASK_ALWAYS_EAGER=True,
+    CELERY_TASK_EAGER_PROPAGATES=True,
+    LOGGING={
+        "version": 1,
+        "disable_existing_loggers": True,
+        "handlers": {"null": {"class": "logging.NullHandler"}},
+        "root": {"handlers": ["null"]},
+    },
+)
 class SmokeTests(TestCase):
     """Smoke tests for critical API functionality."""
 
-    def setUp(self):
-        """Set up test fixtures."""
-        self.client = APIClient()
-        self.temp_dir = tempfile.mkdtemp()
+    @classmethod
+    def setUpClass(cls):
+        """Set up test fixtures once for all tests."""
+        super().setUpClass()
+        cls.client = APIClient()
+        cls.temp_dir = tempfile.mkdtemp()
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         """Clean up test fixtures."""
         import shutil
 
-        if hasattr(self, "temp_dir") and self.temp_dir:
-            shutil.rmtree(self.temp_dir, ignore_errors=True)
+        if hasattr(cls, "temp_dir") and cls.temp_dir:
+            shutil.rmtree(cls.temp_dir, ignore_errors=True)
+        super().tearDownClass()
 
     def _create_valid_pdf(self, pages: int = 1) -> SimpleUploadedFile:
         """Create a valid PDF file with specified number of pages."""
@@ -258,9 +280,14 @@ CORRUPTED DATA HERE - INVALID XREF"""
         """Test that PDF repair is attempted for corrupted files."""
         corrupted_pdf = self._create_corrupted_pdf()
 
-        # Mock repair_pdf to verify it's called
-        with patch("src.api.pdf_utils.repair_pdf") as mock_repair:
-            mock_repair.return_value = "/fake/repaired/path.pdf"
+        # Keep this test lightweight: don't run real conversion.
+        # We just verify the endpoint handles a corrupted PDF gracefully.
+        with patch(
+            "src.api.pdf_convert.pdf_to_word.utils.convert_pdf_to_docx"
+        ) as mock_convert:
+            from src.exceptions import InvalidPDFError
+
+            mock_convert.side_effect = InvalidPDFError("Corrupted PDF")
 
             response = self.client.post(
                 "/api/pdf-to-word/",
@@ -268,13 +295,7 @@ CORRUPTED DATA HERE - INVALID XREF"""
                 format="multipart",
             )
 
-            # repair_pdf should be called (even if it doesn't help)
-            # Note: This might not be called if validation fails first
-            # But if it reaches conversion, repair should be attempted
-            if response.status_code not in [
-                status.HTTP_400_BAD_REQUEST,
-                status.HTTP_429_TOO_MANY_REQUESTS,
-            ]:
-                # If we got past validation, repair should have been attempted
-                # (though mock might not be called if validation fails first)
-                pass
+            self.assertIn(
+                response.status_code,
+                [status.HTTP_400_BAD_REQUEST, status.HTTP_429_TOO_MANY_REQUESTS],
+            )

@@ -1,15 +1,32 @@
 User-agent: *
 Allow: /
 
+# Disallow URLs with query parameters (duplicates)
+Disallow: /*?lang=*
+Disallow: /*&lang=*
+
 # Disallow admin and API endpoints
 # Note: /admin/ will be dynamically replaced with actual ADMIN_URL_PATH in views.py
 Disallow: /admin/
 Disallow: /api/
 Disallow: /static/admin/
 
-# Disallow user authentication pages
-Disallow: /users/
+# Disallow user authentication pages (but allow premium page for SEO)
+Disallow: /users/login/
+Disallow: /users/register/
+Disallow: /users/profile/
+Disallow: /users/account/
+Disallow: /users/manage-subscription/
+Disallow: /users/cancel-subscription/
+Allow: /users/premium/
 Disallow: /accounts/
+
+# Disallow payment pages (noindex)
+Disallow: /payments/
+
+# Allow pricing page for SEO
+Allow: /pricing/
+Allow: /*/pricing/
 
 # Allow static files
 Allow: /static/

@@ -30,6 +30,13 @@ class HeaderNavigation {
     this.allToolsDropdown = document.getElementById('all-tools-menu-dropdown');
     this.allToolsButton = document.getElementById('all-tools-menu-button');
     this.allToolsArrow = document.getElementById('all-tools-menu-arrow');
+    this.moreParent = document.getElementById('more-menu-parent');
+    this.moreDropdown = document.getElementById('more-menu-dropdown');
+    this.moreButton = document.getElementById('more-menu-button');
+    this.moreArrow = document.getElementById('more-menu-arrow');
+    // Mobile More menu
+    this.mobileMoreToggle = document.getElementById('mobile-more-toggle');
+    this.mobileMoreMenu = document.getElementById('mobile-more-menu');
     // Mobile All Tools is now a simple link, no toggle needed
     this.menuIconOpen = document.getElementById('menu-icon-open');
     this.menuIconClose = document.getElementById('menu-icon-close');
@@ -110,8 +117,28 @@ class HeaderNavigation {
       // On mobile, allow navigation (it's a simple link)
     });
 
+    // Desktop more menu (hover) - always attach, check width in methods
+    if (this.moreParent) {
+      this.moreParent.addEventListener('mouseenter', () => this.showMore());
+      this.moreParent.addEventListener('mouseleave', () => this.hideMore());
+    }
+
+    // Desktop more menu (click for accessibility)
+    this.moreButton?.addEventListener('click', (e) => {
+      if (window.innerWidth < 768) {
+        e.preventDefault();
+        this.toggleMoreDesktop();
+      }
+    });
+
     // Mobile all tools menu toggle
     // Mobile All Tools is now a simple link, no event listener needed
+
+    // Mobile more menu toggle
+    this.mobileMoreToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleMobileMore();
+    });
 
     // Close menus on outside click
     document.addEventListener('click', (e) => this.outsideClick(e));
@@ -291,6 +318,19 @@ class HeaderNavigation {
     }
   }
 
+  toggleMobileMore() {
+    if (!this.mobileMoreToggle || !this.mobileMoreMenu) return;
+    const isExpanded = this.mobileMoreToggle.getAttribute('aria-expanded') === 'true';
+    this.mobileMoreMenu.classList.toggle('hidden', isExpanded);
+    this.mobileMoreToggle.setAttribute('aria-expanded', !isExpanded);
+
+    // Rotate arrow icon
+    const arrow = this.mobileMoreToggle.querySelector('svg');
+    if (arrow) {
+      arrow.classList.toggle('rotate-180');
+    }
+  }
+
   showAllTools() {
     if (window.innerWidth < 768) return;
     if (!this.allToolsDropdown || !this.allToolsParent || !this.allToolsButton) return;
@@ -339,6 +379,41 @@ class HeaderNavigation {
     isVisible ? this.hideAllTools() : this.showAllTools();
   }
 
+  showMore() {
+    if (window.innerWidth < 768) return;
+    if (!this.moreDropdown || !this.moreParent || !this.moreButton) return;
+    // Hide other menus if open
+    this.hideMega();
+    this.hideEditPdf();
+    this.hideOrganizePdf();
+    this.hideAllTools();
+    this.moreDropdown.classList.remove('opacity-0', 'invisible');
+    this.moreDropdown.classList.add('opacity-100', 'visible');
+    this.moreParent.setAttribute('aria-expanded', 'true');
+    this.moreButton.setAttribute('aria-expanded', 'true');
+    if (this.moreArrow) {
+      this.moreArrow.classList.add('rotate-180');
+    }
+  }
+
+  hideMore() {
+    if (window.innerWidth < 768) return;
+    if (!this.moreDropdown || !this.moreParent || !this.moreButton) return;
+    this.moreDropdown.classList.remove('opacity-100', 'visible');
+    this.moreDropdown.classList.add('opacity-0', 'invisible');
+    this.moreParent.setAttribute('aria-expanded', 'false');
+    this.moreButton.setAttribute('aria-expanded', 'false');
+    if (this.moreArrow) {
+      this.moreArrow.classList.remove('rotate-180');
+    }
+  }
+
+  toggleMoreDesktop() {
+    if (!this.moreDropdown) return;
+    const isVisible = !this.moreDropdown.classList.contains('invisible');
+    isVisible ? this.hideMore() : this.showMore();
+  }
+
   // toggleMobileAllTools removed - mobile All Tools is now a simple link
 
   outsideClick(e) {
@@ -352,6 +427,19 @@ class HeaderNavigation {
       if (this.menuIconOpen && this.menuIconClose) {
         this.menuIconOpen.classList.remove('hidden');
         this.menuIconClose.classList.add('hidden');
+      }
+    }
+
+    // Close mobile more menu
+    if (this.mobileMoreMenu &&
+        !this.mobileMoreMenu.classList.contains('hidden') &&
+        !this.mobileMoreMenu.contains(e.target) &&
+        !this.mobileMoreToggle.contains(e.target)) {
+      this.mobileMoreMenu.classList.add('hidden');
+      this.mobileMoreToggle.setAttribute('aria-expanded', 'false');
+      const arrow = this.mobileMoreToggle.querySelector('svg');
+      if (arrow) {
+        arrow.classList.remove('rotate-180');
       }
     }
 
@@ -382,6 +470,13 @@ class HeaderNavigation {
         window.innerWidth >= 768) {
       this.hideAllTools();
     }
+
+    // Close desktop more menu
+    if (this.moreDropdown &&
+        !this.moreParent.contains(e.target) &&
+        window.innerWidth >= 768) {
+      this.hideMore();
+    }
   }
 
   handleResize() {
@@ -391,6 +486,7 @@ class HeaderNavigation {
       this.hideEditPdf();
       this.hideOrganizePdf();
       this.hideAllTools();
+      this.hideMore();
     }
   }
 }

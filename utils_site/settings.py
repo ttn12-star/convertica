@@ -33,6 +33,14 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         # Filter handled errors - don't send InvalidPDFError as unhandled exceptions
         # These are expected user errors (corrupted files), not bugs
         def before_send(event, hint):
+            logentry = event.get("logentry") or {}
+            logentry_message = logentry.get("message") or ""
+            logentry_params = logentry.get("params") or []
+            base_message = event.get("message") or logentry_message
+            full_message = (
+                (base_message or "") + " " + " ".join(str(p) for p in logentry_params)
+            )
+
             # Don't send InvalidPDFError as exception - it's handled gracefully
             if "exc_info" in hint and hint["exc_info"][0].__name__ == "InvalidPDFError":
                 event["level"] = "info"
@@ -45,29 +53,27 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                 return None
 
             # Drop any logs with WSGI parameters (detailed access logs)
-            message = event.get("message") or ""
-            if "message.parameter." in message or "{wsgi" in message:
+            if "message.parameter." in full_message or "{wsgi" in full_message:
                 return None
 
             # Drop logs with access log format patterns
             if any(
-                pattern in message
+                pattern in full_message
                 for pattern in ["%(h)s", "%(l)s", "%(u)s", "%(t)s", "%(r)s"]
             ):
                 return None
 
             # Drop health check logs specifically
-            if "/health/" in message or "GET /health/" in message:
+            if "/health/" in full_message or "GET /health/" in full_message:
                 return None
+
+            # Drop noisy CSRF referer-check warnings caused by bots and broken clients
+            if event.get("logger") == "django.security.csrf":
+                if "Referer checking failed" in full_message:
+                    return None
 
             # Drop noisy Gunicorn error logs (invalid protocol / php probes / bot scanners)
             if event.get("logger") == "gunicorn.error":
-                message = event.get("message") or ""
-                # Check both message template and logrecord (where actual path is)
-                logrecord = event.get("logentry", {})
-                log_params = logrecord.get("params", []) or []
-                full_message = message + " " + " ".join(str(p) for p in log_params)
-
                 # Examples: "Invalid HTTP request line: 'SSH-2.0-Go'", "Error handling request /admin/config.php"
                 # Bot scanners look for: .php, .asp, .aspx, .env, .git, wp-admin, etc.
                 bot_patterns = [
@@ -88,6 +94,12 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                     "SSH-2.0",
                 ]
                 if any(pattern in full_message for pattern in bot_patterns):
+                    return None
+
+                # Absolute-form requests and random host:port probes (noise)
+                if "http://" in full_message or "https://" in full_message:
+                    return None
+                if ":443" in full_message or ":80" in full_message:
                     return None
 
             # Drop health-check events (e.g. /health/) so they don't clutter Sentry
@@ -217,8 +229,17 @@ try:
 except ImportError:
     pass
 
+try:
+    import channels
+
+    INSTALLED_APPS.insert(0, "daphne")  # Daphne must be first for ASGI
+    INSTALLED_APPS.append("channels")
+except ImportError:
+    pass
+
 
 MIDDLEWARE = [
+    "django.middleware.gzip.GZipMiddleware",  # Compress responses (HTML, JSON, CSS, JS) - must be first
     "django.middleware.security.SecurityMiddleware",
     # WhiteNoise for static files (if enabled via USE_WHITENOISE env var)
     # Uncomment or use environment variable to enable
@@ -260,8 +281,12 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "src.frontend.context_processors.hreflang_links",
+                "src.frontend.context_processors.site_urls",
                 "src.frontend.context_processors.turnstile_site_key",
                 "src.frontend.context_processors.js_settings",
+                "src.frontend.context_processors.payments_enabled",
+                "src.frontend.context_processors.breadcrumbs",
+                "src.frontend.context_processors.related_tools",
             ],
         },
     },
@@ -340,11 +365,18 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Allauth account settings
-ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_ADAPTER = "src.users.account_adapter.CustomAccountAdapter"
+ACCOUNT_LOGIN_METHODS = {"email"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Require email verification before login
+ACCOUNT_EMAIL_REQUIRED = True  # Email is required for registration
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
+    "/users/profile/"  # Redirect after email confirmation (logged in users)
+)
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = (
+    "/users/login/"  # Redirect after email confirmation (anonymous users)
+)
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # Auto-login after email confirmation
 
 # Allauth social account settings
 SOCIALACCOUNT_AUTO_SIGNUP = True
@@ -402,11 +434,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 
 # Media files (user uploads, async temp files)
 MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 
 # Use ManifestStaticFilesStorage for versioning (hash in filenames)
 # This allows long-term caching (365 days) while automatically invalidating
@@ -462,6 +494,14 @@ PATIENCE_MESSAGE_DELAY = config("PATIENCE_MESSAGE_DELAY", default=60, cast=int)
 # Polling interval for async task status (milliseconds)
 ASYNC_POLL_INTERVAL = config("ASYNC_POLL_INTERVAL", default=2500, cast=int)
 
+# Stripe Payment Settings
+PAYMENTS_ENABLED = config("PAYMENTS_ENABLED", default="True", cast=bool)
+STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY", default="pk_test_...")
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
+STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET", default="")
+STRIPE_SUCCESS_URL = config("STRIPE_SUCCESS_URL", default="/payments/success/")
+STRIPE_CANCEL_URL = config("STRIPE_CANCEL_URL", default="/payments/cancel/")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -494,19 +534,21 @@ LOGGING = {
         },
         "file": {
             "level": "INFO",
-            "class": "logging.handlers.RotatingFileHandler",
+            "class": "logging.handlers.TimedRotatingFileHandler",
             "filename": BASE_DIR / "logs" / "convertica.log",
-            "maxBytes": 1024 * 1024 * 10,  # 10 MB
-            "backupCount": 5,
+            "when": "W0",
+            "interval": 1,
+            "backupCount": 8,
             "formatter": "structured",
             "encoding": "utf-8",  # Support UTF-8 encoding for international characters
         },
         "error_file": {
             "level": "ERROR",
-            "class": "logging.handlers.RotatingFileHandler",
+            "class": "logging.handlers.TimedRotatingFileHandler",
             "filename": BASE_DIR / "logs" / "errors.log",
-            "maxBytes": 1024 * 1024 * 10,  # 10 MB
-            "backupCount": 5,
+            "when": "W0",
+            "interval": 1,
+            "backupCount": 8,
             "formatter": "verbose",
             "encoding": "utf-8",  # Support UTF-8 encoding for international characters
         },
@@ -637,11 +679,14 @@ try:
         }
     }
 except ImportError:
-    # Fallback to local memory cache if django-redis is not installed
+    # Fallback to file-based cache if django-redis is not installed
+    # This provides a shared cache backend for django-ratelimit
+    import os
+
     CACHES = {
         "default": {
-            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-            "LOCATION": "unique-snowflake",
+            "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+            "LOCATION": os.path.join(BASE_DIR, "cache"),
         }
     }
 
@@ -678,6 +723,11 @@ CELERY_BEAT_SCHEDULE = {
     "cleanup-temp-files-hourly": {
         "task": "maintenance.cleanup_temp_files",
         "schedule": 3600,  # Every hour
+    },
+    # Delete unverified accounts older than 30 days (runs daily at 3 AM)
+    "delete-unverified-accounts-daily": {
+        "task": "user_cleanup.delete_unverified_accounts",
+        "schedule": 86400,  # Every 24 hours
     },
 }
 
@@ -717,9 +767,71 @@ TURNSTILE_SECRET_KEY = config("TURNSTILE_SECRET_KEY", default="")
 
 # Telegram Bot Configuration
 CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default="True")
+
+# Subscription Pricing Configuration
+SUBSCRIPTION_PRICING = {
+    "daily": {
+        "price": config("DAILY_PRICE", default="1.00", cast=float),
+        "duration_days": 1,
+        "name": "Daily Hero Access",
+    },
+    "monthly": {
+        "price": config("MONTHLY_PRICE", default="6.00", cast=float),
+        "duration_days": 30,
+        "name": "Monthly Hero Access",
+    },
+}
+
+# Web Push Notifications (VAPID Keys)
+VAPID_PRIVATE_KEY = config("VAPID_PRIVATE_KEY", default="").replace("\\n", "\n")
+VAPID_PUBLIC_KEY = config("VAPID_PUBLIC_KEY", default="")
+VAPID_CLAIMS = {
+    "sub": config("VAPID_CLAIMS_SUB", default="mailto:admin@convertica.net")
+}
+
+SUBSCRIPTION_PRICING.update(
+    {
+        "yearly": {
+            "price": config("YEARLY_PRICE", default="52.00", cast=float),
+            "duration_days": 365,
+            "name": "Yearly Hero Access",
+        },
+    }
+)
+
 TELEGRAM_BOT_TOKEN = config("TELEGRAM_BOT_TOKEN", default="", cast=str)
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID", default="", cast=str)
 
+
+# Django Channels Configuration (WebSocket support)
+try:
+    import channels
+
+    # ASGI application for Channels
+    ASGI_APPLICATION = "utils_site.asgi.application"
+
+    # Channel layer configuration (Redis backend recommended for production)
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels_redis.core.RedisChannelLayer",
+            "CONFIG": {
+                "hosts": [config("REDIS_URL", default="redis://127.0.0.1:6379/2")],
+                "capacity": 1500,
+                "expiry": 10,
+            },
+        },
+    }
+
+    # Fallback to in-memory channel layer for development if Redis not available
+    try:
+        import channels_redis
+    except ImportError:
+        CHANNEL_LAYERS = {
+            "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}
+        }
+except ImportError:
+    # Channels not installed, skip configuration
+    pass
 
 # Custom error handlers (defined in utils_site.urls)
 # Django will automatically use handler404, handler500, etc. from ROOT_URLCONF

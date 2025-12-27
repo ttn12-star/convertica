@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block robots %}noindex, nofollow{% endblock %}
+
+{% block title %}{% trans "Payment Cancelled" %}{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="text-center">
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+          <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">{% trans "Payment Cancelled" %}</h1>
+        <p class="text-xl text-gray-600">{% trans "Your subscription payment was cancelled" %}</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-6">{% trans "No Problem!" %}</h2>
+        <p class="text-gray-600 mb-6">
+          {% trans "You haven't been charged. You can try subscribing again anytime when you're ready." %}
+        </p>
+
+        <div class="bg-blue-50 rounded-lg p-6 mb-6">
+          <h3 class="text-lg font-semibold text-blue-900 mb-3">{% trans "Still Interested?" %}</h3>
+          <p class="text-blue-800 mb-4">{% trans "Here are some reasons to upgrade to premium:" %}</p>
+          <ul class="text-left text-blue-800 space-y-2">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {% trans "Much higher limits for PDF processing" %}
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {% trans "Larger file size support" %}
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {% trans "Priority processing speeds" %}
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              {% trans "Advanced PDF tools and features" %}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-200">
+          {% trans "Try Again" %}
+        </a>
+        <a href="{% url 'frontend:index_page_lang' %}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg transition duration-200">
+          {% trans "Back to Home" %}
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

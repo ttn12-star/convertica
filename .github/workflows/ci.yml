@@ -144,8 +144,9 @@ jobs:
       - name: Run tests with coverage
         # DATABASE_* and other env variables are inherited from job-level env
         # Using Django's manage.py test (not pytest) as it's the project's test runner
+        # --parallel=auto enables parallel test execution for faster CI runs
         run: |
-          coverage run --source='utils_site' manage.py test --verbosity=2
+          coverage run --source='utils_site' manage.py test --parallel=auto --verbosity=2
           coverage xml -o coverage.xml --ignore-errors
           coverage report --ignore-errors
 

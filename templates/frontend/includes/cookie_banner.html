@@ -14,9 +14,9 @@
         </p>
         <p class="text-xs text-gray-600 leading-relaxed">
           {% trans "You can accept all cookies, reject non-essential cookies, or customize your preferences. Essential cookies are required for the website to function and cannot be disabled." %}
-          <a href="{% url 'privacy_page' %}" class="text-blue-600 hover:text-blue-800 underline break-words">{% trans "Privacy Policy" %}</a>
+          <a href="{% url 'frontend:privacy_page' %}" class="text-blue-600 hover:text-blue-800 underline break-words">{% trans "Privacy Policy" %}</a>
           {% trans "and" %}
-          <a href="{% url 'terms_page' %}" class="text-blue-600 hover:text-blue-800 underline break-words">{% trans "Terms of Service" %}</a>.
+          <a href="{% url 'frontend:terms_page' %}" class="text-blue-600 hover:text-blue-800 underline break-words">{% trans "Terms of Service" %}</a>.
         </p>
       </div>
 

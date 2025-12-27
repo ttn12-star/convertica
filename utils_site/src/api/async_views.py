@@ -21,6 +21,7 @@ from typing import Any
 
 from celery.result import AsyncResult
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
 from django.utils.text import get_valid_filename
@@ -120,6 +121,16 @@ class AsyncConversionAPIView(APIView, ABC):
         Override in subclasses to pass extra parameters.
         """
         return {}
+
+    def _is_json_serializable(self, obj) -> bool:
+        """Check if object is JSON serializable."""
+        try:
+            import json
+
+            json.dumps(obj)
+            return True
+        except (TypeError, ValueError):
+            return False
 
     def validate_file_basic(
         self, file: UploadedFile, context: dict[str, Any]
@@ -232,14 +243,60 @@ class AsyncConversionAPIView(APIView, ABC):
         task_id = str(uuid.uuid4())
         task_dir = get_task_temp_dir(task_id)
 
+        # Lightweight DB analytics for async queueing (best-effort)
         try:
-            # Save uploaded file to temp storage
-            safe_filename = get_valid_filename(uploaded_file.name)
-            input_path = os.path.join(task_dir, safe_filename)
+            from django.utils import timezone
+            from src.users.models import OperationRun
 
-            with open(input_path, "wb") as f:
-                for chunk in uploaded_file.chunks():
-                    f.write(chunk)
+            is_premium = (
+                request.user.is_authenticated
+                and getattr(request.user, "is_premium", False)
+                and request.user.is_subscription_active()
+            )
+
+            OperationRun.objects.create(
+                conversion_type=self.CONVERSION_TYPE,
+                status="queued",
+                user=request.user if request.user.is_authenticated else None,
+                is_premium=bool(is_premium),
+                request_id=str(context.get("request_id") or ""),
+                task_id=task_id,
+                input_size=getattr(uploaded_file, "size", None),
+                queued_at=timezone.now(),
+                remote_addr=str(context.get("remote_addr") or ""),
+                user_agent=str(context.get("user_agent") or ""),
+                path=str(context.get("path") or ""),
+            )
+        except Exception:
+            pass
+
+        try:
+            # Save uploaded file using async file operations
+            file_extension = os.path.splitext(uploaded_file.name)[1]
+            input_path = os.path.join(task_dir, f"input_{task_id}{file_extension}")
+
+            try:
+                # Use sync file saving to avoid event loop issues in Django view context
+                with open(input_path, "wb") as f:
+                    for chunk in uploaded_file.chunks():
+                        f.write(chunk)
+
+                # Verify file was saved successfully
+                if not os.path.exists(input_path):
+                    raise OSError(f"Failed to save file: {input_path}")
+
+                file_size = os.path.getsize(input_path)
+                logger.info(
+                    f"File saved successfully: {input_path} ({file_size} bytes)",
+                    extra=context,
+                )
+
+            except OSError as e:
+                cleanup_task_files(task_id)
+                raise ValidationError(
+                    f"Failed to save uploaded file: {e}",
+                    context={**context, "error": str(e)},
+                )
 
             # Validate PDF pages if needed
             if self.VALIDATE_PDF_PAGES and self._is_pdf_file(uploaded_file):
@@ -250,7 +307,10 @@ class AsyncConversionAPIView(APIView, ABC):
                     else self.MAX_PDF_PAGES
                 )
                 is_valid, error_message, page_count = validate_pdf_pages(
-                    input_path, max_pages
+                    input_path,
+                    max_pages,
+                    user=request.user,
+                    operation=self.CONVERSION_TYPE,
                 )
                 if not is_valid:
                     cleanup_task_files(task_id)
@@ -262,7 +322,10 @@ class AsyncConversionAPIView(APIView, ABC):
                 # For heavy operations, do additional validation (complexity, size)
                 if self.CONVERSION_TYPE in HEAVY_OPERATIONS:
                     can_process, complexity_error = validate_file_for_operation(
-                        input_path, uploaded_file.size, self.CONVERSION_TYPE
+                        input_path,
+                        uploaded_file.size,
+                        self.CONVERSION_TYPE,
+                        user=request.user,
                     )
                     if not can_process:
                         cleanup_task_files(task_id)
@@ -276,21 +339,79 @@ class AsyncConversionAPIView(APIView, ABC):
             task_kwargs = {
                 k: v
                 for k, v in serializer.validated_data.items()
-                if k != self.FILE_FIELD_NAME
+                if k != self.FILE_FIELD_NAME and self._is_json_serializable(v)
             }
+
+            # Log what we're filtering out
+            for k, v in serializer.validated_data.items():
+                if k != self.FILE_FIELD_NAME and not self._is_json_serializable(v):
+                    logger.warning(
+                        "Filtering non-serializable kwarg %s: %s", k, type(v)
+                    )
+
             task_kwargs.update(self.get_task_kwargs(serializer.validated_data))
+
+            # Log final kwargs for debugging
+            logger.info("Final task kwargs: %s", task_kwargs)
+
+            # Filter any remaining non-serializable objects from get_task_kwargs
+            filtered_kwargs = {}
+            for k, v in task_kwargs.items():
+                if self._is_json_serializable(v):
+                    filtered_kwargs[k] = v
+                else:
+                    logger.warning(
+                        "Filtering non-serializable kwarg from get_task_kwargs %s: %s",
+                        k,
+                        type(v),
+                    )
 
             # Start Celery task
             celery_task = self.get_celery_task()
-            result = celery_task.apply_async(
-                kwargs={
+
+            # Determine if user is premium for queue selection
+            is_premium = (
+                request.user.is_authenticated
+                and getattr(request.user, "is_premium", False)
+                and request.user.is_subscription_active()  # Call the method
+            )
+
+            # Add required parameters
+            filtered_kwargs.update(
+                {
                     "task_id": task_id,
                     "input_path": input_path,
                     "original_filename": uploaded_file.name,
                     "conversion_type": self.CONVERSION_TYPE,
-                    **task_kwargs,
-                },
+                    "is_premium": is_premium,
+                }
+            )
+
+            # Log filtered kwargs for debugging
+            logger.info("Filtered kwargs before Celery: %s", filtered_kwargs)
+
+            # Final serialization test
+            try:
+                import json
+
+                json.dumps(filtered_kwargs)
+                logger.info("JSON serialization test passed")
+            except Exception as e:
+                logger.error("JSON serialization failed: %s", e)
+                for k, v in filtered_kwargs.items():
+                    try:
+                        json.dumps(v)
+                    except Exception as ve:
+                        logger.error(
+                            "Non-serializable kwarg %s: %s - %s", k, type(v), ve
+                        )
+
+            result = celery_task.apply_async(
+                kwargs=filtered_kwargs,
                 task_id=task_id,
+                queue=(
+                    "premium" if is_premium else "regular"
+                ),  # Explicit queue selection
             )
 
             logger.info(

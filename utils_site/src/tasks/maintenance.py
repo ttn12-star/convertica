@@ -5,6 +5,7 @@ These tasks handle periodic maintenance operations like
 cleaning up temporary files, updating statistics, etc.
 """
 
+import gc
 import os
 import shutil
 import time
@@ -12,6 +13,8 @@ from pathlib import Path
 
 from celery import shared_task
 from django.conf import settings
+from django.core.cache import cache
+from django.utils import timezone
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)
@@ -28,6 +31,58 @@ ASYNC_TEMP_DIR = getattr(
     "ASYNC_TEMP_DIR",
     _media_root / "async_temp",
 )
+
+
+@shared_task(name="maintenance.memory_cleanup", queue="maintenance")
+def memory_cleanup():
+    """
+    Memory cleanup task for 4GB servers.
+
+    This task runs every 15 minutes to:
+    - Force garbage collection
+    - Clear Python memory caches
+    - Log memory usage for monitoring
+    """
+    try:
+        # Force garbage collection
+        collected = gc.collect()
+
+        # Get memory stats if psutil is available
+        memory_info = {}
+        try:
+            import psutil
+
+            process = psutil.Process()
+            memory_info = {
+                "rss_mb": process.memory_info().rss / 1024 / 1024,
+                "vms_mb": process.memory_info().vms / 1024 / 1024,
+                "cpu_percent": process.cpu_percent(),
+            }
+        except ImportError:
+            # psutil not available, just log basic info
+            pass
+
+        logger.info(
+            f"Memory cleanup completed - collected {collected} objects",
+            extra={
+                "event": "memory_cleanup",
+                "objects_collected": collected,
+                **memory_info,
+            },
+        )
+
+        return {
+            "status": "success",
+            "objects_collected": collected,
+            "memory_info": memory_info,
+        }
+
+    except Exception as e:
+        logger.error(
+            f"Memory cleanup failed: {e}",
+            extra={"event": "memory_cleanup_failed", "error": str(e)},
+        )
+        return {"status": "failed", "error": str(e)}
 
 
 @shared_task(name="maintenance.cleanup_temp_files", queue="maintenance")
@@ -73,6 +128,67 @@ def cleanup_temp_files():
 
     except Exception as exc:
         logger.error(f"Cleanup failed: {str(exc)}", exc_info=True)
+        return {"status": "error", "message": str(exc)}
+
+
+@shared_task(name="maintenance.update_subscription_daily", queue="maintenance")
+def update_subscription_daily():
+    try:
+        from django.contrib.auth import get_user_model
+
+        User = get_user_model()
+        today = timezone.now().date()
+        updated_count = 0
+
+        active_users = User.objects.filter(
+            is_premium=True, subscription_end_date__gte=today
+        )
+
+        for user in active_users:
+            if user.subscription_start_date:
+                days_subscribed = (today - user.subscription_start_date.date()).days + 1
+                if user.consecutive_subscription_days != days_subscribed:
+                    user.consecutive_subscription_days = days_subscribed
+                    user.save(update_fields=["consecutive_subscription_days"])
+                    updated_count += 1
+
+        expired_users = User.objects.filter(
+            is_premium=True, subscription_end_date__lt=today
+        )
+
+        for user in expired_users:
+            if user.consecutive_subscription_days > 0 or user.is_premium:
+                user.consecutive_subscription_days = 0
+                user.is_premium = False
+                user.save(update_fields=["consecutive_subscription_days", "is_premium"])
+                updated_count += 1
+
+        cache.delete("site_heroes")
+        cache.delete("top_subscribers_10")
+
+        logger.info(
+            "Daily subscription update completed",
+            extra={
+                "event": "update_subscription_daily",
+                "updated_count": updated_count,
+                "active_users": len(active_users),
+                "expired_users": len(expired_users),
+            },
+        )
+
+        return {
+            "status": "success",
+            "updated_count": updated_count,
+            "active_users": len(active_users),
+            "expired_users": len(expired_users),
+        }
+
+    except Exception as exc:
+        logger.error(
+            f"Daily subscription update failed: {str(exc)}",
+            exc_info=True,
+            extra={"event": "update_subscription_daily_failed"},
+        )
         return {"status": "error", "message": str(exc)}
 
 

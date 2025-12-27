@@ -1,6 +1,5 @@
 # utils.py
 import os
-import tempfile
 from io import BytesIO
 
 from django.core.files.uploadedfile import UploadedFile
@@ -16,14 +15,9 @@ from src.exceptions import (
     StorageError,
 )
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_pdf_file,
-)
 from ...logging_utils import get_logger
-from ...pdf_utils import parse_pages, repair_pdf
+from ...pdf_processing import BasePDFProcessor
+from ...pdf_utils import parse_pages
 
 logger = get_logger(__name__)
 
@@ -105,11 +99,9 @@ def add_watermark(
     Returns:
         Tuple of (input_path, output_path)
     """
-    tmp_dir = None
-    safe_name = sanitize_filename(os.path.basename(uploaded_file.name))
     context = {
         "function": "add_watermark",
-        "input_filename": safe_name,
+        "input_filename": os.path.basename(uploaded_file.name),
         "input_size": uploaded_file.size,
         "position": position,
         "opacity": opacity,
@@ -117,89 +109,22 @@ def add_watermark(
     }
 
     try:
-        tmp_dir = tempfile.mkdtemp(prefix="watermark_")
-        context["tmp_dir"] = tmp_dir
+        processor = BasePDFProcessor(
+            uploaded_file,
+            tmp_prefix="watermark_",
+            required_mb=200,
+            context=context,
+        )
+        pdf_path = processor.prepare()
+        tmp_dir = processor.tmp_dir
 
-        disk_check, disk_error = check_disk_space(tmp_dir, required_mb=200)
-        if not disk_check:
-            raise StorageError(disk_error or "Insufficient disk space", context=context)
-
-        pdf_path = os.path.join(tmp_dir, safe_name)
-        base = os.path.splitext(safe_name)[0]
+        base = os.path.splitext(os.path.basename(pdf_path))[0]
         output_name = "%s%s.pdf" % (base, suffix)
         output_path = os.path.join(tmp_dir, output_name)
-
-        context.update({"pdf_path": pdf_path, "output_path": output_path})
-
-        # Write uploaded file
-        try:
-            logger.debug(
-                "Writing PDF file", extra={**context, "event": "file_write_start"}
-            )
-            with open(pdf_path, "wb") as f:
-                for chunk in uploaded_file.chunks():
-                    f.write(chunk)
-        except OSError as err:
-            raise StorageError(
-                "Failed to write PDF: %s" % err,
-                context={**context, "error_type": type(err).__name__},
-            ) from err
-
-        # Validate PDF
-        is_valid, validation_error = validate_pdf_file(pdf_path, context)
-        if not is_valid:
-            if (
-                "password" in (validation_error or "").lower()
-                or "encrypted" in (validation_error or "").lower()
-            ):
-                raise EncryptedPDFError(
-                    validation_error or "PDF is password-protected", context=context
-                )
-            raise InvalidPDFError(
-                validation_error or "Invalid PDF file", context=context
-            )
-
-        # Repair PDF to handle potentially corrupted files
-        pdf_path = repair_pdf(pdf_path)
+        context["output_path"] = output_path
 
         # Add watermark
         try:
-            logger.info(
-                "Adding watermark",
-                extra={
-                    **context,
-                    "event": "watermark_start",
-                    "watermark_text": watermark_text[:50] if watermark_text else None,
-                    "has_image": watermark_file is not None,
-                    "position": position,
-                    "x": x,
-                    "y": y,
-                    "color": color,
-                    "opacity": opacity,
-                    "font_size": font_size,
-                    "rotation": rotation,
-                    "scale": scale,
-                    "pages": pages,
-                },
-            )
-            logger.debug(
-                "Watermark parameters received: text='%s', file=%s, "
-                "position='%s', x=%s, y=%s, color='%s', opacity=%s, "
-                "font_size=%s, rotation=%s, scale=%s, pages='%s'",
-                watermark_text,
-                watermark_file is not None,
-                position,
-                x,
-                y,
-                color,
-                opacity,
-                font_size,
-                rotation,
-                scale,
-                pages,
-                extra=context,
-            )
-
             reader = PdfReader(pdf_path)
             writer = PdfWriter()
 
@@ -584,31 +509,7 @@ def add_watermark(
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
 
-            # Repair PDF after PyPDF2 write to ensure proper structure
-            # (overlay was created via reportlab, so better safe than sorry)
-            logger.debug(
-                "Repairing PDF after adding watermark",
-                extra={**context, "event": "watermark_repair_start"},
-            )
-            try:
-                repair_pdf(output_path, output_path)
-                logger.debug(
-                    "PDF repaired after adding watermark",
-                    extra={**context, "event": "watermark_repair_success"},
-                )
-            except Exception as repair_error:
-                logger.warning(
-                    "PDF repair after adding watermark failed (continuing anyway)",
-                    extra={
-                        **context,
-                        "event": "watermark_repair_warning",
-                        "error": str(repair_error),
-                    },
-                )
-
-            logger.debug(
-                "Watermark added", extra={**context, "event": "watermark_complete"}
-            )
+            processor.validate_output_pdf(output_path, min_size=1000)
 
         except Exception as e:
             error_context = {
@@ -624,26 +525,6 @@ def add_watermark(
             raise ConversionError(
                 "Failed to add watermark: %s" % e, context=error_context
             ) from e
-
-        # Validate output
-        is_valid, validation_error = validate_output_file(
-            output_path, min_size=1000, context=context
-        )
-        if not is_valid:
-            raise ConversionError(
-                validation_error or "Output PDF is invalid", context=context
-            )
-
-        output_size = os.path.getsize(output_path)
-        logger.info(
-            "Watermark added successfully",
-            extra={
-                **context,
-                "event": "watermark_success",
-                "output_size": output_size,
-                "output_size_mb": round(output_size / (1024 * 1024), 2),
-            },
-        )
 
         return pdf_path, output_path
 

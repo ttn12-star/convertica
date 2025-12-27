@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block extra_head %}
+  <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
 {% block title %}{% trans "Edit Profile" %} - Convertica{% endblock %}
 
 {% block content %}
-  <div class="min-h-screen bg-gray-50 py-8">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-950 py-8">
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
       <div class="mb-8">
@@ -14,12 +18,12 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
           </a>
-          <h1 class="text-2xl font-bold text-gray-900">{% trans "Edit Profile" %}</h1>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{% trans "Edit Profile" %}</h1>
         </div>
       </div>
 
         <!-- Profile Edit Form -->
-      <div class="bg-white shadow rounded-lg">
+      <div class="bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-100 dark:border-gray-700">
         <div class="px-4 py-5 sm:p-6">
           {% if messages %}
             {% for message in messages %}
@@ -34,7 +38,7 @@
 
             <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
               <div>
-                <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   {% trans "Username" %} <span class="text-red-500">*</span>
                 </label>
                 <div class="mt-1">
@@ -48,19 +52,19 @@
               </div>
 
               <div>
-                <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   {% trans "Email" %}
                 </label>
                 <div class="mt-1">
                   <input type="email" value="{{ form.email.value|default:user.email }}"
-                         class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-100"
+                         class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100"
                          readonly>
-                  <p class="mt-1 text-sm text-gray-500">{% trans "Email cannot be changed" %}</p>
+                  <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Email cannot be changed" %}</p>
                 </div>
               </div>
 
               <div>
-                <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   {% trans "First Name" %}
                 </label>
                 <div class="mt-1">
@@ -74,7 +78,7 @@
               </div>
 
               <div>
-                <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                <label for="{{ form.last_name.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   {% trans "Last Name" %}
                 </label>
                 <div class="mt-1">
@@ -85,6 +89,57 @@
                     </div>
                   {% endif %}
                 </div>
+              </div>
+            </div>
+
+            <!-- Hero Display Settings -->
+            <div class="border-t border-gray-200 pt-6">
+              <div class="space-y-4">
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">{% trans "Hero Settings" %}</h3>
+
+                <div class="flex items-start">
+                  <div class="flex items-center h-5">
+                    <input type="checkbox"
+                           id="display_as_hero"
+                           name="display_as_hero"
+                           {% if user.display_as_hero %}checked{% endif %}
+                           {% if not user.is_premium_active %}disabled{% endif %}
+                           class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded {% if not user.is_premium_active %}opacity-50 cursor-not-allowed{% endif %}">
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="display_as_hero" class="font-medium text-gray-700 dark:text-gray-300">
+                      {% trans "Display as Hero" %}
+                    </label>
+                    <p class="text-gray-500 dark:text-gray-400">
+                      {% trans "Show your nickname in the Heroes Hall of Fame" %}
+                      {% if not user.is_premium_active %}
+                        <span class="text-orange-600 font-medium">
+                          ({% trans "Become a hero as a premium subscriber!" %})
+                        </span>
+                      {% endif %}
+                    </p>
+                  </div>
+                </div>
+
+                {% if user.is_hero %}
+                  <div class="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border border-yellow-200 dark:border-yellow-800/60 rounded-lg p-4">
+                    <div class="flex">
+                      <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                      </div>
+                      <div class="ml-3">
+                        <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-200">
+                          {% trans "You're a Hero!" %}
+                        </h3>
+                        <div class="mt-2 text-sm text-yellow-700 dark:text-yellow-100">
+                          <p>{% trans "Hero Status" %}: {{ user.consecutive_subscription_days|floatformat:0 }} {% trans "consecutive days" %}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
               </div>
             </div>
 
@@ -105,19 +160,19 @@
       </div>
 
         <!-- Account Information -->
-      <div class="mt-6 bg-white shadow rounded-lg">
+      <div class="mt-6 bg-white dark:bg-gray-800 shadow rounded-lg border border-gray-100 dark:border-gray-700">
         <div class="px-4 py-5 sm:p-6">
-          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-4">
             {% trans "Account Information" %}
           </h3>
           <dl class="space-y-4">
             <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Member Since" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ user.date_joined|date:"F d, Y" }}</dd>
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{% trans "Member Since" %}</dt>
+              <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ user.date_joined|date:"F d, Y" }}</dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Account Type" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{% trans "Account Type" %}</dt>
+              <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
                 {% if user.is_premium %}
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                     {% trans "Premium" %}
@@ -130,8 +185,8 @@
               </dd>
             </div>
             <div>
-              <dt class="text-sm font-medium text-gray-500">{% trans "Account Status" %}</dt>
-              <dd class="mt-1 text-sm text-gray-900">
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">{% trans "Account Status" %}</dt>
+              <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
                 {% if user.is_active %}
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                     {% trans "Active" %}

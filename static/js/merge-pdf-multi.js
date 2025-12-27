@@ -2,9 +2,72 @@
  * Merge PDF Multi-File Component
  * Handles multiple PDF file selection, preview, reordering, and merging
  */
+const PDFJS_VERSION = '3.11.174';
+const localPdfSrc = typeof window.PDFJS_LOCAL_PDF === 'string' ? window.PDFJS_LOCAL_PDF : null;
+const localWorkerSrc = typeof window.PDFJS_LOCAL_WORKER === 'string' ? window.PDFJS_LOCAL_WORKER : null;
+
+const PDFJS_CANDIDATES = [
+    ...(localPdfSrc ? [localPdfSrc] : []),
+    `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`,
+    `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.js`,
+];
+const PDFJS_WORKER_CANDIDATES = [
+    ...(localWorkerSrc ? [localWorkerSrc] : []),
+    `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`,
+    `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.worker.min.js`,
+];
+
+function loadExternalScript(src) {
+    return new Promise((resolve, reject) => {
+        const existing = Array.from(document.scripts).find((s) => s.src === src);
+        if (existing) {
+            if (typeof window.pdfjsLib !== 'undefined') return resolve();
+            existing.addEventListener('load', () => resolve(), { once: true });
+            existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.crossOrigin = 'anonymous';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Failed to load ${src}`));
+        document.head.appendChild(script);
+    });
+}
+
+async function ensurePdfJsLoaded() {
+    if (typeof window.pdfjsLib !== 'undefined') return true;
+
+    for (const src of PDFJS_CANDIDATES) {
+        try {
+            await loadExternalScript(src);
+            if (typeof window.pdfjsLib !== 'undefined') break;
+        } catch (e) {
+            // try next
+        }
+    }
+
+    if (typeof window.pdfjsLib === 'undefined') return false;
+
+    if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+    }
+
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Set up PDF.js worker (best-effort)
+    if (typeof window.pdfjsLib !== 'undefined') {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+    }
+
     const form = document.getElementById('editorForm') || document.getElementById('converterForm');
-    if (!form) return;
+    if (!form) {
+        console.log('Merge PDF: No form found, but continuing anyway');
+    }
 
     const pdfFilesInput = document.getElementById('pdf_files_input');
     const selectPdfFilesButton = document.getElementById('selectPdfFilesButton');
@@ -17,12 +80,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const pdfPreviewContainer = document.getElementById('pdfPreviewContainer');
     const editButton = document.getElementById('editButton');
 
+    // Debug: Check if elements exist
+    console.log('Merge PDF elements found:', {
+        pdfFilesInput: !!pdfFilesInput,
+        selectPdfFilesButton: !!selectPdfFilesButton,
+        addMorePdfFilesButton: !!addMorePdfFilesButton,
+        mergeDropZone: !!mergeDropZone,
+        selectedPdfFilesContainer: !!selectedPdfFilesContainer,
+        selectedPdfFilesList: !!selectedPdfFilesList,
+        pdfFileCount: !!pdfFileCount,
+        pdfPreviewSection: !!pdfPreviewSection,
+        pdfPreviewContainer: !!pdfPreviewContainer,
+        editButton: !!editButton
+    });
+
     // Store selected files with metadata
     let selectedFiles = [];
     let draggedElement = null;
-
-    // Initialize PDF.js worker
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
     // Use event delegation for remove buttons (more reliable)
     if (selectedPdfFilesList) {
@@ -40,13 +114,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // File input handlers
-    selectPdfFilesButton?.addEventListener('click', () => {
-        pdfFilesInput?.click();
-    });
+    if (selectPdfFilesButton) {
+        selectPdfFilesButton.addEventListener('click', () => {
+            console.log('Select PDF files button clicked');
+            pdfFilesInput?.click();
+        });
+    } else {
+        console.log('Select PDF files button not found');
+    }
 
-    addMorePdfFilesButton?.addEventListener('click', () => {
-        pdfFilesInput?.click();
-    });
+    if (addMorePdfFilesButton) {
+        addMorePdfFilesButton.addEventListener('click', () => {
+            console.log('Add more PDF files button clicked');
+            pdfFilesInput?.click();
+        });
+    } else {
+        console.log('Add more PDF files button not found');
+    }
 
     pdfFilesInput?.addEventListener('change', async (e) => {
         // Small delay for mobile devices
@@ -321,13 +405,182 @@ document.addEventListener('DOMContentLoaded', () => {
             </p>
         `;
 
-        pdfPreviewContainer.appendChild(previewCard);
+    pdfPreviewContainer.appendChild(previewCard);
 
-        // Load PDF and render first page
-        let pdf = null;
+    // Load PDF and render first page
+    let pdf = null;
+    try {
+        const pdfReady = await ensurePdfJsLoaded();
+        if (!pdfReady || typeof window.pdfjsLib === 'undefined') {
+            console.error('PDF.js not loaded for preview generation');
+            const canvasContainer = previewCard.querySelector('.pdf-preview-canvas-container');
+            canvasContainer.innerHTML = `<p class="text-xs text-red-600">${window.ERROR_LOADING_PREVIEW || 'Error loading preview'}</p>`;
+            return;
+        }
+        if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+        }
+
+        const arrayBuffer = await fileData.file.arrayBuffer();
+        pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 0.5 });
+
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const context = canvas.getContext('2d');
+
+        await page.render({
+            canvasContext: context,
+            viewport: viewport
+        }).promise;
+
+        const canvasContainer = previewCard.querySelector('.pdf-preview-canvas-container');
+        canvasContainer.innerHTML = '';
+        canvasContainer.appendChild(canvas);
+
+        fileData.preview = canvas;
+        fileData.pdfDoc = pdf;
+    } catch (error) {
+        console.error('Error loading PDF preview:', error);
+        const canvasContainer = previewCard.querySelector('.pdf-preview-canvas-container');
+        canvasContainer.innerHTML = `<p class="text-xs text-red-600">${window.ERROR_LOADING_PREVIEW || 'Error loading preview'}</p>`;
+        if (pdf) {
+            try {
+                pdf.destroy();
+            } catch (e) {
+                // Ignore cleanup errors
+            }
+        }
+    }
+}
+
+function removeFile(fileId) {
+    // Convert fileId to number for comparison (data attributes are strings)
+    // ID is created as Date.now() + Math.random(), so it's a number
+    const fileIdNum = typeof fileId === 'string' ? parseFloat(fileId) : fileId;
+
+    // Find and cleanup file data - use loose comparison to handle string/number mismatch
+    const fileData = selectedFiles.find(f => {
+        // Compare as numbers (with tolerance for floating point)
+        if (Math.abs(f.id - fileIdNum) < 0.0001) return true;
+        // Compare as strings
+        if (f.id.toString() === fileId.toString()) return true;
+        // Direct comparison
+        if (f.id === fileIdNum || f.id === fileId) return true;
+        return false;
+    });
+
+    if (!fileData) {
+        return;
+    }
+
+    // Cleanup PDF document if exists
+    if (fileData.pdfDoc) {
         try {
-            const arrayBuffer = await fileData.file.arrayBuffer();
-            pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            fileData.pdfDoc.destroy();
+        } catch (e) {
+            // Ignore cleanup errors
+        }
+    }
+    // Cleanup preview canvas
+    if (fileData.preview) {
+        const ctx = fileData.preview.getContext('2d');
+        ctx.clearRect(0, 0, fileData.preview.width, fileData.preview.height);
+    }
+
+    // Remove preview card from DOM - try multiple selectors
+    const previewCard = pdfPreviewContainer?.querySelector(`[data-file-id="${fileData.id}"]`) ||
+                      pdfPreviewContainer?.querySelector(`[data-file-id="${fileId}"]`) ||
+                      pdfPreviewContainer?.querySelector(`[data-file-id="${fileIdNum}"]`);
+    if (previewCard) {
+        previewCard.remove();
+    }
+
+    // Remove from array - use the same comparison logic
+    selectedFiles = selectedFiles.filter(f => {
+        // Keep files that don't match
+        if (Math.abs(f.id - fileIdNum) < 0.0001) return false;
+        if (f.id.toString() === fileId.toString()) return false;
+        if (f.id === fileIdNum || f.id === fileId) return false;
+        return true;
+    });
+
+    updateFileList();
+    updatePreview();
+    updateButtons();
+}
+
+async function updatePreview() {
+    if (!pdfPreviewContainer) return;
+
+    pdfPreviewContainer.innerHTML = '';
+
+    if (selectedFiles.length === 0) {
+        if (pdfPreviewSection) {
+            pdfPreviewSection.classList.add('hidden');
+        }
+        return;
+    }
+
+    if (pdfPreviewSection) {
+        pdfPreviewSection.classList.remove('hidden');
+    }
+
+    // Generate previews for each file
+    for (let i = 0; i < selectedFiles.length; i++) {
+        const fileData = selectedFiles[i];
+        await generatePreview(fileData, i);
+    }
+
+    // Make previews sortable
+    makeSortable();
+}
+
+async function generatePreview(fileData, index) {
+    const previewCard = document.createElement('div');
+    previewCard.className = 'pdf-preview-card bg-white rounded-lg border-2 border-gray-200 p-2 cursor-move hover:border-blue-400 transition-colors';
+    previewCard.dataset.fileId = fileData.id;
+    previewCard.dataset.index = index;
+    previewCard.draggable = true;
+
+    previewCard.innerHTML = `
+        <div class="relative">
+            <div class="w-full aspect-[3/4] bg-gray-100 rounded border border-gray-200 flex items-center justify-center overflow-hidden">
+                <div class="pdf-preview-canvas-container text-center">
+                    <div class="spinner-border text-blue-600" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-2 left-2 bg-blue-600 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center">
+                ${index + 1}
+            </div>
+        </div>
+        <p class="text-xs text-gray-600 mt-2 truncate" title="${escapeHtml(fileData.file.name)}">
+            ${escapeHtml(fileData.file.name)}
+        </p>
+    `;
+
+    pdfPreviewContainer.appendChild(previewCard);
+
+    // Load PDF and render first page
+    let pdf = null;
+    try {
+        const pdfReady = await ensurePdfJsLoaded();
+        if (!pdfReady || typeof window.pdfjsLib === 'undefined') {
+            console.error('PDF.js not loaded for preview generation');
+            const canvasContainer = previewCard.querySelector('.pdf-preview-canvas-container');
+            canvasContainer.innerHTML = `<p class="text-xs text-red-600">${window.ERROR_LOADING_PREVIEW || 'Error loading preview'}</p>`;
+            return;
+        }
+        if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+        }
+
+        const arrayBuffer = await fileData.file.arrayBuffer();
+        pdf = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             const page = await pdf.getPage(1);
             const viewport = page.getViewport({ scale: 0.5 });
 
@@ -504,9 +757,9 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('pdf_files', file, file.name);
         });
 
-        // Verify files are in FormData (for debugging)
+        // Verify files are in FormData
         if (selectedFiles.length !== Array.from(formData.getAll('pdf_files')).length) {
-            console.error('File count mismatch in FormData!');
+            throw new Error('File count mismatch in FormData');
         }
 
         formData.append('order', 'upload'); // Order is determined by array order

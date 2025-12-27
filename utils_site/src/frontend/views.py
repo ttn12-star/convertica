@@ -10,6 +10,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.vary import vary_on_cookie
+from django.views.generic import TemplateView
 
 
 def index_page(request):
@@ -60,6 +61,7 @@ def index_page(request):
 
 
 def _get_converter_context(
+    request,
     page_title: str,
     page_description: str,
     page_keywords: str,
@@ -76,10 +78,11 @@ def _get_converter_context(
 ) -> dict:
     """Helper function to generate converter page context.
 
-    ВАЖНО: Все переводимые параметры должны передаваться уже обернутыми в _()
-    из вызывающей функции.
+    IMPORTANT: All translatable parameters must be passed already wrapped in _()
+    from the calling function.
 
     Args:
+        request: HTTP request object
         page_title: Already translated page title (wrapped in _() by caller)
         page_description: Already translated page description
         page_keywords: English keywords (not translated for SEO)
@@ -97,6 +100,99 @@ def _get_converter_context(
     Returns:
         dict: Context dictionary for the template
     """
+    # Check if user has active premium subscription
+    is_premium_active = False
+    if hasattr(request, "user") and request.user.is_authenticated:
+        is_premium_active = bool(
+            getattr(request.user, "is_premium_active", False)
+            or (
+                request.user.is_premium
+                and hasattr(request.user, "is_subscription_active")
+                and request.user.is_subscription_active()
+            )
+        )
+
+    batch_enabled = False
+    batch_api_url = ""
+    batch_field_name = ""
+    if is_premium_active:
+        if api_url_name == "excel_to_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("excel_to_pdf_batch_api")
+            batch_field_name = "excel_files"
+        elif api_url_name == "ppt_to_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("ppt_to_pdf_batch_api")
+            batch_field_name = "ppt_files"
+        elif api_url_name == "pdf_to_word_api":
+            batch_enabled = True
+            batch_api_url = reverse("pdf_to_word_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "word_to_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("word_to_pdf_batch_api")
+            batch_field_name = "word_files"
+        elif api_url_name == "pdf_to_jpg_api":
+            batch_enabled = True
+            batch_api_url = reverse("pdf_to_jpg_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "jpg_to_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("jpg_to_pdf_batch_api")
+            batch_field_name = "image_files"
+        elif api_url_name == "pdf_to_excel_api":
+            batch_enabled = True
+            batch_api_url = reverse("pdf_to_excel_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "pdf_to_ppt_api":
+            batch_enabled = True
+            batch_api_url = reverse("pdf_to_ppt_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "pdf_to_html_api":
+            batch_enabled = True
+            batch_api_url = reverse("pdf_to_html_batch_api")
+            batch_field_name = "pdf_files"
+
+        elif api_url_name == "crop_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("crop_pdf_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "add_watermark_api":
+            batch_enabled = True
+            batch_api_url = reverse("add_watermark_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "add_page_numbers_api":
+            batch_enabled = True
+            batch_api_url = reverse("add_page_numbers_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "compress_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("compress_pdf_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "split_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("split_pdf_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "extract_pages_api":
+            batch_enabled = True
+            batch_api_url = reverse("extract_pages_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "remove_pages_api":
+            batch_enabled = True
+            batch_api_url = reverse("remove_pages_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "organize_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("organize_pdf_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "protect_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("protect_pdf_batch_api")
+            batch_field_name = "pdf_files"
+        elif api_url_name == "unlock_pdf_api":
+            batch_enabled = True
+            batch_api_url = reverse("unlock_pdf_batch_api")
+            batch_field_name = "pdf_files"
 
     return {
         "page_title": page_title,
@@ -113,33 +209,29 @@ def _get_converter_context(
         "replace_regex": replace_regex,
         "replace_to": replace_to,
         "error_message": _("Conversion failed. Please try again."),
+        "is_premium": is_premium_active,
+        "batch_enabled": batch_enabled,
+        "batch_api_url": batch_api_url,
+        "batch_field_name": batch_field_name,
     }
 
 
 def pdf_to_word_page(request):
     """PDF to Word conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("PDF to Word - Convertica"),
         page_description=_(
             "Convert PDF to Word online free without losing formatting. "
             "Fast PDF to DOCX converter with no email required, unlimited conversions, "
-            "high-quality output. Perfect for students, professionals, and businesses. "
+            "high-quality output. Perfect for documents, resumes, and business files. "
             "No registration needed."
         ),
         page_keywords=(
-            "PDF to Word, PDF to DOCX, convert PDF to Word online free, "
-            "pdf to word without losing formatting, pdf to word converter no email, "
-            "pdf to word fast online, pdf to editable word free, "
-            "pdf to docx converter online, scanned pdf to word ocr free, "
-            "convert protected pdf to word, pdf to word converter without watermark, "
-            "pdf to word mobile friendly, pdf to word best quality, "
-            "how to convert pdf to word without adobe, pdf to word converter unlimited, "
-            "pdf to word converter no sign up, pdf to doc online converter, "
-            "pdf to word export free, pdf form to word converter, "
-            "pdf table to word online, convert pdf resume to word, "
-            "pdf to word batch converter, convert multiple pdf to word online, "
-            "pdf to word no ads, pdf to word no virus, pdf to word converter with ocr, "
-            "pdf to word converter small file, pdf to word converter large file, "
+            "PDF to Word, convert PDF to Word online free, "
+            "PDF to DOCX, PDF to Word converter, "
+            "convert PDF to Word without losing formatting, "
+            "PDF to Word no email required, unlimited PDF to Word conversion"
             "pdf to word converter clean layout, pdf to word converter best 2025, "
             "pdf to word converter high accuracy, pdf to word converter for mac online, "
             "pdf to word for linux online, pdf to word converter for students, "
@@ -170,12 +262,13 @@ def pdf_to_word_page(request):
         button_text=_("Convert PDF to Word"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/pdf_to_word.html", context)
+    return render(request, "frontend/pdf_convert/pdf_to_word.html", context)
 
 
 def word_to_pdf_page(request):
     """Word to PDF conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("Word to PDF - Convertica"),
         page_description=_(
             "Convert Word to PDF online free without losing formatting. "
@@ -219,12 +312,13 @@ def word_to_pdf_page(request):
         button_text=_("Convert to PDF"),
         select_file_message=_("Please select a Word file."),
     )
-    return render(request, "frontend/word_to_pdf.html", context)
+    return render(request, "frontend/pdf_convert/word_to_pdf.html", context)
 
 
 def pdf_to_jpg_page(request):
     """PDF to JPG conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("PDF to JPG - Convertica"),
         page_description=_(
             "Convert PDF to JPG online free with high quality. "
@@ -265,12 +359,13 @@ def pdf_to_jpg_page(request):
         button_text=_("Convert PDF to JPG"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/pdf_to_jpg.html", context)
+    return render(request, "frontend/pdf_convert/pdf_to_jpg.html", context)
 
 
 def jpg_to_pdf_page(request):
     """JPG to PDF conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("JPG to PDF - Convertica"),
         page_description=_(
             "Convert JPG to PDF online free without compression. "
@@ -312,12 +407,13 @@ def jpg_to_pdf_page(request):
         button_text=_("Convert to PDF"),
         select_file_message=_("Please select a JPG/JPEG image file."),
     )
-    return render(request, "frontend/jpg_to_pdf.html", context)
+    return render(request, "frontend/pdf_convert/jpg_to_pdf.html", context)
 
 
 def rotate_pdf_page(request):
     """Rotate PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Rotate PDF - Convertica"),
         page_description=_(
             "Rotate PDF pages online free by 90, 180, or 270 degrees. "
@@ -356,12 +452,13 @@ def rotate_pdf_page(request):
         button_text=_("Rotate PDF"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/rotate_pdf.html", context)
+    return render(request, "frontend/pdf_edit/rotate_pdf.html", context)
 
 
 def add_page_numbers_page(request):
     """Add page numbers to PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Add Page Numbers to PDF - Convertica"),
         page_description=_(
             "Add page numbers to PDF online free with customizable position, "
@@ -400,12 +497,13 @@ def add_page_numbers_page(request):
         button_text=_("Add Page Numbers"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/add_page_numbers.html", context)
+    return render(request, "frontend/pdf_edit/add_page_numbers.html", context)
 
 
 def add_watermark_page(request):
     """Add watermark to PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Add Watermark to PDF - Convertica"),
         page_description=_(
             "Add watermark to PDF online free with text or image. "
@@ -445,12 +543,13 @@ def add_watermark_page(request):
         button_text=_("Add Watermark"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/add_watermark.html", context)
+    return render(request, "frontend/pdf_edit/add_watermark.html", context)
 
 
 def crop_pdf_page(request):
     """Crop PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Crop PDF - Convertica"),
         page_description=_(
             "Crop PDF pages online free with precise crop box coordinates. "
@@ -488,12 +587,13 @@ def crop_pdf_page(request):
         button_text=_("Crop PDF"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/crop_pdf.html", context)
+    return render(request, "frontend/pdf_edit/crop_pdf.html", context)
 
 
 def merge_pdf_page(request):
     """Merge PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Merge PDF - Convertica"),
         page_description=_(
             "Merge PDF online free without watermark. "
@@ -528,12 +628,13 @@ def merge_pdf_page(request):
         button_text=_("Merge PDFs"),
         select_file_message=_("Please select PDF files to merge."),
     )
-    return render(request, "frontend/merge_pdf.html", context)
+    return render(request, "frontend/pdf_organize/merge_pdf.html", context)
 
 
 def split_pdf_page(request):
     """Split PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Split PDF - Convertica"),
         page_description=_(
             "Split PDF online free by pages, ranges, or bookmarks. "
@@ -578,12 +679,13 @@ def split_pdf_page(request):
         button_text=_("Split PDF"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/split_pdf.html", context)
+    return render(request, "frontend/pdf_organize/split_pdf.html", context)
 
 
 def remove_pages_page(request):
     """Remove pages from PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Remove Pages from PDF - Convertica"),
         page_description=_(
             "Remove pages from PDF online free. "
@@ -619,12 +721,13 @@ def remove_pages_page(request):
         button_text=_("Remove Pages"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/remove_pages.html", context)
+    return render(request, "frontend/pdf_organize/remove_pages.html", context)
 
 
 def extract_pages_page(request):
     """Extract pages from PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Extract Pages from PDF - Convertica"),
         page_description=_(
             "Extract pages from PDF online free. "
@@ -661,12 +764,13 @@ def extract_pages_page(request):
         button_text=_("Extract Pages"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/extract_pages.html", context)
+    return render(request, "frontend/pdf_organize/extract_pages.html", context)
 
 
 def organize_pdf_page(request):
     """Organize PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Organize PDF - Convertica"),
         page_description=_(
             "Organize PDF online free. "
@@ -704,12 +808,13 @@ def organize_pdf_page(request):
         button_text=_("Organize PDF"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/organize_pdf.html", context)
+    return render(request, "frontend/pdf_organize/organize_pdf.html", context)
 
 
 def pdf_to_excel_page(request):
     """PDF to Excel conversion page."""
     context = _get_converter_context(
+        request,
         page_title=_("PDF to Excel - Convertica"),
         page_description=_(
             "Convert PDF to Excel online free with accurate table extraction. "
@@ -753,12 +858,183 @@ def pdf_to_excel_page(request):
         button_text=_("Convert PDF to Excel"),
         select_file_message=_("Please select a PDF file with tables."),
     )
-    return render(request, "frontend/pdf_to_excel.html", context)
+    return render(request, "frontend/pdf_convert/pdf_to_excel.html", context)
+
+
+def excel_to_pdf_page(request):
+    """Excel to PDF conversion page."""
+    context = _get_converter_context(
+        request,
+        page_title=_("Excel to PDF - Convertica"),
+        page_description=_(
+            "Convert Excel to PDF online free with high quality. "
+            "Convert XLS and XLSX spreadsheets to PDF format. "
+            "Preserve formatting, charts, and formulas. "
+            "No registration required."
+        ),
+        page_keywords=(
+            "Excel to PDF, XLSX to PDF, XLS to PDF, convert Excel to PDF online free, "
+            "excel to pdf without losing formatting, excel spreadsheet to pdf, "
+            "xlsx to pdf converter no email, excel to pdf fast online, "
+            "convert excel workbook to pdf, xlsx to pdf online free, "
+            "excel to pdf converter unlimited, excel to pdf converter no sign up, "
+            "convert excel data to pdf, excel to pdf export free, "
+            "excel to pdf maintain formatting, excel to pdf high quality, "
+            "convert excel invoice to pdf, excel to pdf batch converter, "
+            "convert multiple excel to pdf online, excel to pdf no ads, "
+            "excel to pdf converter best 2025, excel to pdf for business"
+        ),
+        page_subtitle=_("Convert Excel spreadsheets to PDF format"),
+        header_text=_("Excel to PDF Converter"),
+        file_input_name="excel_file",
+        file_accept=".xls,.xlsx",
+        api_url_name="excel_to_pdf_api",
+        replace_regex=r"\.(xlsx?|XLSX?)$",
+        replace_to=".pdf",
+        button_text=_("Convert to PDF"),
+        select_file_message=_("Please select an Excel file."),
+    )
+    return render(request, "frontend/pdf_convert/excel_to_pdf.html", context)
+
+
+def ppt_to_pdf_page(request):
+    """PowerPoint to PDF conversion page."""
+    context = _get_converter_context(
+        request,
+        page_title=_("PowerPoint to PDF - Convertica"),
+        page_description=_(
+            "Convert PowerPoint to PDF online free with high quality. "
+            "Convert PPT and PPTX presentations to PDF format. "
+            "Preserve slides, animations, and formatting. "
+            "No registration required."
+        ),
+        page_keywords=(
+            "PowerPoint to PDF, PPT to PDF, PPTX to PDF, convert PowerPoint to PDF online free, "
+            "ppt to pdf without losing formatting, powerpoint presentation to pdf, "
+            "pptx to pdf converter no email, ppt to pdf fast online, "
+            "convert powerpoint slides to pdf, pptx to pdf online free, "
+            "ppt to pdf converter unlimited, ppt to pdf converter no sign up, "
+            "convert presentation to pdf, ppt to pdf export free, "
+            "ppt to pdf maintain formatting, ppt to pdf high quality, "
+            "convert ppt slides to pdf, ppt to pdf batch converter, "
+            "ppt to pdf no ads, ppt to pdf converter best 2025"
+        ),
+        page_subtitle=_("Convert PowerPoint presentations to PDF format"),
+        header_text=_("PowerPoint to PDF Converter"),
+        file_input_name="ppt_file",
+        file_accept=".ppt,.pptx",
+        api_url_name="ppt_to_pdf_api",
+        replace_regex=r"\.(pptx?|PPTX?)$",
+        replace_to=".pdf",
+        button_text=_("Convert to PDF"),
+        select_file_message=_("Please select a PowerPoint file."),
+    )
+    return render(request, "frontend/pdf_convert/ppt_to_pdf.html", context)
+
+
+def html_to_pdf_page(request):
+    """HTML to PDF conversion page."""
+    context = _get_converter_context(
+        request,
+        page_title=_("HTML to PDF - Convertica"),
+        page_description=_(
+            "Convert HTML to PDF online free with high quality. "
+            "Convert HTML content and web pages to PDF format. "
+            "Preserve styling, images, and layout. "
+            "No registration required."
+        ),
+        page_keywords=(
+            "HTML to PDF, web page to PDF, URL to PDF, convert HTML to PDF online free, "
+            "html to pdf without losing formatting, html content to pdf, "
+            "url to pdf converter no email, html to pdf fast online, "
+            "convert web page to pdf, html to pdf online free, "
+            "html to pdf converter unlimited, html to pdf converter no sign up, "
+            "convert html string to pdf, html to pdf export free, "
+            "html to pdf maintain styling, html to pdf high quality, "
+            "save webpage as pdf, html to pdf batch converter, "
+            "html to pdf no ads, html to pdf converter best 2025"
+        ),
+        page_subtitle=_("Convert HTML content and web pages to PDF format"),
+        header_text=_("HTML to PDF Converter"),
+        file_input_name="html_content",
+        file_accept="",
+        api_url_name="html_to_pdf_api",
+        replace_regex=r"",
+        replace_to=".pdf",
+        button_text=_("Convert to PDF"),
+        select_file_message=_("Please enter HTML content or URL."),
+    )
+    return render(request, "frontend/pdf_convert/html_to_pdf.html", context)
+
+
+def pdf_to_ppt_page(request):
+    """PDF to PowerPoint conversion page."""
+    context = _get_converter_context(
+        request,
+        page_title=_("PDF to PowerPoint - Convertica"),
+        page_description=_(
+            "Convert PDF to PowerPoint online free with high quality. "
+            "Extract PDF pages and convert to PPTX presentation format. "
+            "Perfect for creating editable presentations from PDF documents. "
+            "No registration required."
+        ),
+        page_keywords=(
+            "PDF to PowerPoint, PDF to PPT, PDF to PPTX, convert PDF to PowerPoint online free, "
+            "pdf to ppt without losing formatting, pdf to powerpoint converter, "
+            "pdf to pptx converter no email, pdf to ppt fast online, "
+            "convert pdf slides to powerpoint, pdf to pptx online free, "
+            "pdf to ppt converter unlimited, pdf to ppt converter no sign up, "
+            "pdf to powerpoint high quality, pdf to ppt for presentations"
+        ),
+        page_subtitle=_("Convert PDF documents to PowerPoint presentations"),
+        header_text=_("PDF to PowerPoint Converter"),
+        file_input_name="pdf_file",
+        file_accept=".pdf",
+        api_url_name="pdf_to_ppt_api",
+        replace_regex=r"\.pdf$",
+        replace_to=".pptx",
+        button_text=_("Convert PDF to PowerPoint"),
+        select_file_message=_("Please select a PDF file."),
+    )
+    return render(request, "frontend/pdf_convert/pdf_to_ppt.html", context)
+
+
+def pdf_to_html_page(request):
+    """PDF to HTML conversion page."""
+    context = _get_converter_context(
+        request,
+        page_title=_("PDF to HTML - Convertica"),
+        page_description=_(
+            "Convert PDF to HTML online free with text extraction. "
+            "Extract content from PDF and convert to HTML format. "
+            "Perfect for web publishing and content management. "
+            "No registration required."
+        ),
+        page_keywords=(
+            "PDF to HTML, convert PDF to HTML online free, "
+            "pdf to html converter, pdf to html with images, "
+            "pdf to html converter no email, pdf to html fast online, "
+            "extract pdf to html, pdf to html online free, "
+            "pdf to html converter unlimited, pdf to html converter no sign up, "
+            "pdf to html high quality, pdf to html for web"
+        ),
+        page_subtitle=_("Convert PDF documents to HTML format"),
+        header_text=_("PDF to HTML Converter"),
+        file_input_name="pdf_file",
+        file_accept=".pdf",
+        api_url_name="pdf_to_html_api",
+        replace_regex=r"\.pdf$",
+        replace_to=".html",
+        button_text=_("Convert PDF to HTML"),
+        select_file_message=_("Please select a PDF file."),
+    )
+    return render(request, "frontend/pdf_convert/pdf_to_html.html", context)
 
 
 def compress_pdf_page(request):
     """Compress PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Compress PDF - Convertica"),
         page_description=_(
             "Compress PDF online free to reduce file size fast. "
@@ -797,12 +1073,13 @@ def compress_pdf_page(request):
         button_text=_("Compress PDF"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/compress_pdf.html", context)
+    return render(request, "frontend/pdf_organize/compress_pdf.html", context)
 
 
 def protect_pdf_page(request):
     """Protect PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Protect PDF with Password - Convertica"),
         page_description=_(
             "Protect PDF files with password encryption. "
@@ -822,12 +1099,13 @@ def protect_pdf_page(request):
         button_text=_("Protect PDF"),
         select_file_message=_("Please select a PDF file."),
     )
-    return render(request, "frontend/protect_pdf.html", context)
+    return render(request, "frontend/pdf_security/protect_pdf.html", context)
 
 
 def unlock_pdf_page(request):
     """Unlock PDF page."""
     context = _get_converter_context(
+        request,
         page_title=_("Unlock PDF - Remove Password - Convertica"),
         page_description=_(
             "Unlock PDF online free. "
@@ -864,7 +1142,7 @@ def unlock_pdf_page(request):
         button_text=_("Unlock PDF"),
         select_file_message=_("Please select a password-protected PDF file."),
     )
-    return render(request, "frontend/unlock_pdf.html", context)
+    return render(request, "frontend/pdf_security/unlock_pdf.html", context)
 
 
 def all_tools_page(request):
@@ -993,7 +1271,7 @@ def contact_page(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
 
-        from utils_site.src.api.spam_protection import verify_turnstile
+        from src.api.spam_protection import verify_turnstile
 
         turnstile_token = request.POST.get("turnstile_token", "") or request.POST.get(
             "cf-turnstile-response", ""
@@ -1236,6 +1514,11 @@ def _get_sitemap_pages():
         {"url": "pdf-to-jpg/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "jpg-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-to-excel/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "excel-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "ppt-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "html-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "pdf-to-ppt/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "pdf-to-html/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-edit/rotate/", "priority": "0.8", "changefreq": "weekly"},
         {
             "url": "pdf-edit/add-page-numbers/",
@@ -1268,7 +1551,7 @@ def sitemap_index(request):
 
     from django.core.cache import cache
 
-    cache_key = "sitemap_index"
+    cache_key = "sitemap_index_v2"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
@@ -1307,7 +1590,7 @@ def sitemap_lang(request, lang: str):
 
         raise Http404("Invalid language")
 
-    cache_key = f"sitemap_{lang}"
+    cache_key = f"sitemap_{lang}_v2"
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
@@ -1324,7 +1607,13 @@ def sitemap_lang(request, lang: str):
     for page in pages:
         page_url = page["url"]
         url = (
-            f"{base_url}/{lang}/" if page_url == "" else f"{base_url}/{lang}/{page_url}"
+            f"{base_url}/"
+            if page_url == "" and lang == default_language
+            else (
+                f"{base_url}/{lang}/"
+                if page_url == ""
+                else f"{base_url}/{lang}/{page_url}"
+            )
         )
 
         xml += "  <url>\n"
@@ -1335,18 +1624,28 @@ def sitemap_lang(request, lang: str):
 
         for alt_lang_code, _ in languages:
             alt_url = (
-                f"{base_url}/{alt_lang_code}/"
-                if page_url == ""
-                else f"{base_url}/{alt_lang_code}/{page_url}"
+                f"{base_url}/"
+                if page_url == "" and alt_lang_code == default_language
+                else (
+                    f"{base_url}/{alt_lang_code}/"
+                    if page_url == ""
+                    else f"{base_url}/{alt_lang_code}/{page_url}"
+                )
             )
-            xml += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>\n'
+            xml += (
+                f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>'
+                + "\n"
+            )
 
         default_url = (
-            f"{base_url}/{default_language}/"
+            f"{base_url}/"
             if page_url == ""
             else f"{base_url}/{default_language}/{page_url}"
         )
-        xml += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_url}"/>\n'
+        xml += (
+            f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_url}"/>'
+            + "\n"
+        )
         xml += "  </url>\n"
 
     published_articles = (
@@ -1409,3 +1708,56 @@ def sitemap_lang(request, lang: str):
 def sitemap_xml(request):
     """Legacy sitemap.xml - redirects to sitemap index."""
     return sitemap_index(request)
+
+
+class PricingPageView(TemplateView):
+    """Pricing page for Convertica Premium with all plans and Heroes Hall."""
+
+    template_name = "frontend/pricing.html"
+
+    def get_context_data(self, **kwargs):
+        from src.users.models import User
+
+        context = super().get_context_data(**kwargs)
+
+        # Add Heroes Hall and top subscribers
+        context["heroes"] = User.get_heroes()
+        context["top_subscribers"] = User.get_top_subscribers(10)
+
+        # Add Stripe publishable key for checkout
+        if bool(getattr(settings, "PAYMENTS_ENABLED", True)):
+            context["stripe_publishable_key"] = settings.STRIPE_PUBLISHABLE_KEY
+        else:
+            context["stripe_publishable_key"] = ""
+
+        return context
+
+
+class SupportPageView(TemplateView):
+    template_name = "frontend/support.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = _("Contribute to Convertica")
+        context["page_description"] = _(
+            "Contribute to the Convertica project with a one-time or monthly donation. "
+            "This does not unlock Premium features — it simply helps development. "
+            "Heroes are Premium subscribers; contributions here are support only."
+        )
+        context["page_keywords"] = (
+            "convertica contribute, donate, contribution, support project"
+        )
+        return context
+
+
+class SupportSuccessPageView(TemplateView):
+    template_name = "frontend/support_success.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["page_title"] = _("Thank you for your contribution")
+        context["page_description"] = _(
+            "Thank you for contributing to Convertica. Your support helps us keep improving the service."
+        )
+        context["page_keywords"] = "convertica contribute success, thank you"
+        return context

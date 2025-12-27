@@ -65,24 +65,22 @@ class CaptchaRequirementMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        # Initialize session variables if needed
-        if "captcha_required" not in request.session:
-            request.session["captcha_required"] = False
-        if "failed_attempts" not in request.session:
-            request.session["failed_attempts"] = 0
-
         response = self.get_response(request)
+
+        # Only track CAPTCHA requirement for API calls.
+        # Avoid creating/modifying sessions for anonymous users just browsing pages.
+        if not request.path.startswith("/api/"):
+            return response
 
         # Check if this was a failed request (429 or 400 from spam protection)
         if hasattr(response, "status_code"):
             if response.status_code in [429, 400]:
                 # Increment failed attempts
-                request.session["failed_attempts"] = (
-                    request.session.get("failed_attempts", 0) + 1
-                )
+                failed_attempts = request.session.get("failed_attempts", 0) + 1
+                request.session["failed_attempts"] = failed_attempts
 
-                # Require CAPTCHA after 3 failed attempts
-                if request.session["failed_attempts"] >= 3:
+                # Require CAPTCHA after 3 failed attempts (skip in DEBUG mode)
+                if failed_attempts >= 3 and not settings.DEBUG:
                     request.session["captcha_required"] = True
                     logger.info(
                         f"CAPTCHA required for IP {request.META.get('REMOTE_ADDR')} after {request.session['failed_attempts']} failed attempts"
@@ -90,7 +88,7 @@ class CaptchaRequirementMiddleware:
             else:
                 # Reset on successful request
                 if request.session.get("failed_attempts", 0) > 0:
-                    request.session["failed_attempts"] = 0
-                    request.session["captcha_required"] = False
+                    request.session.pop("failed_attempts", None)
+                    request.session.pop("captcha_required", None)
 
         return response

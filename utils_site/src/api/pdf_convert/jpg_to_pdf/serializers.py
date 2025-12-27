@@ -18,3 +18,11 @@ class JPGToPDFSerializer(serializers.Serializer):
             "Send multiple 'image_file' parameters for multiple files."
         ),
     )
+
+    quality = serializers.IntegerField(
+        required=False,
+        default=85,
+        min_value=60,
+        max_value=95,
+        help_text="JPEG quality for images in PDF (60-95). Higher quality = better image clarity but larger file size. Default: 85 (recommended).",
+    )

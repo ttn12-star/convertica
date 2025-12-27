@@ -3,9 +3,65 @@
  * Visual PDF cropping with drag & drop selection
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Set up PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const PDFJS_VERSION = '3.11.174';
+    const localPdfSrc = typeof window.PDFJS_LOCAL_PDF === 'string' ? window.PDFJS_LOCAL_PDF : null;
+    const localWorkerSrc = typeof window.PDFJS_LOCAL_WORKER === 'string' ? window.PDFJS_LOCAL_WORKER : null;
+
+    const PDFJS_CANDIDATES = [
+        ...(localPdfSrc ? [localPdfSrc] : []),
+        `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`,
+        `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.js`,
+    ];
+    const PDFJS_WORKER_CANDIDATES = [
+        ...(localWorkerSrc ? [localWorkerSrc] : []),
+        `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`,
+        `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.worker.min.js`,
+    ];
+
+    function loadExternalScript(src) {
+        return new Promise((resolve, reject) => {
+            const existing = Array.from(document.scripts).find((s) => s.src === src);
+            if (existing) {
+                if (typeof window.pdfjsLib !== 'undefined') return resolve();
+                existing.addEventListener('load', () => resolve(), { once: true });
+                existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error(`Failed to load ${src}`));
+            document.head.appendChild(script);
+        });
+    }
+
+    async function ensurePdfJsLoaded() {
+        if (typeof window.pdfjsLib !== 'undefined') return true;
+
+        for (const src of PDFJS_CANDIDATES) {
+            try {
+                await loadExternalScript(src);
+                if (typeof window.pdfjsLib !== 'undefined') break;
+            } catch (e) {
+                // try next
+            }
+        }
+
+        if (typeof window.pdfjsLib === 'undefined') return false;
+
+        if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+        }
+
+        return true;
+    }
+
+    // Set up PDF.js worker (best-effort)
+    if (typeof window.pdfjsLib !== 'undefined') {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
     }
 
     const form = document.getElementById('editorForm');
@@ -72,9 +128,23 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show preview section
             pdfPreviewSection.classList.remove('hidden');
 
+            const pdfReady = await ensurePdfJsLoaded();
+            if (!pdfReady || typeof window.pdfjsLib === 'undefined') {
+                window.showError(
+                    'PDF preview engine (PDF.js) is not loaded. Please disable adblock for this site or check that cdnjs/unpkg are not blocked, then refresh the page.',
+                    'editorResult'
+                );
+                pdfPreviewSection.classList.add('hidden');
+                cleanupPreviousPDF();
+                return;
+            }
+            if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CANDIDATES[0];
+            }
+
             // Load PDF
             const arrayBuffer = await file.arrayBuffer();
-            pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            pdfDoc = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             pageCount = pdfDoc.numPages;
 
             // Universal page count validation
@@ -154,15 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
             scale = Math.min(widthScale, heightScale, 1.0);
             const scaledViewport = page.getViewport({ scale: scale });
 
-            // Set canvas dimensions
+            // Set canvas dimensions to match viewport
             canvasWidth = scaledViewport.width;
             canvasHeight = scaledViewport.height;
             pdfCanvas.width = canvasWidth;
             pdfCanvas.height = canvasHeight;
-
-            // Reset any CSS scaling to ensure accurate coordinate calculations
-            pdfCanvas.style.width = '';
-            pdfCanvas.style.height = '';
 
             // Store PDF dimensions in points
             pdfPageWidth = viewport.width;
@@ -952,15 +1018,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const formData = new FormData();
-        const fieldName = window.FILE_INPUT_NAME || 'pdf_file';
-        const selectedFile = fileInput?.files?.[0] || fileInputDrop?.files?.[0];
+        const singleFieldName = window.FILE_INPUT_NAME || 'pdf_file';
 
+        const selectedFiles = (fileInput?.files && fileInput.files.length > 0)
+            ? fileInput.files
+            : (fileInputDrop?.files && fileInputDrop.files.length > 0)
+                ? fileInputDrop.files
+                : null;
+
+        const isBatchMode = Boolean(
+            window.BATCH_ENABLED &&
+            window.IS_PREMIUM &&
+            selectedFiles &&
+            selectedFiles.length > 1 &&
+            window.BATCH_API_URL &&
+            window.BATCH_FIELD_NAME
+        );
+
+        const selectedFile = selectedFiles?.[0] || null;
         if (!selectedFile) {
             window.showError(window.SELECT_FILE_MESSAGE || 'Please select a file', 'editorResult');
             return;
         }
 
-        formData.append(fieldName, selectedFile);
+        if (isBatchMode) {
+            const batchFieldName = window.BATCH_FIELD_NAME;
+            Array.from(selectedFiles).forEach((f) => {
+                formData.append(batchFieldName, f);
+            });
+        } else {
+            formData.append(singleFieldName, selectedFile);
+        }
         const xValue = document.getElementById('x').value;
         const yValue = document.getElementById('y').value;
         const widthValue = document.getElementById('width').value;
@@ -995,40 +1083,29 @@ document.addEventListener('DOMContentLoaded', () => {
             pagesValue = 'all';
         }
 
-        // Debug info to verify what's being sent
-        console.log('Sending crop data:', {
-            x: parseFloat(xValue).toFixed(2),
-            y: parseFloat(yValue).toFixed(2),
-            width: parseFloat(widthValue).toFixed(2),
-            height: parseFloat(heightValue).toFixed(2),
-            pages: pagesValue,
-            currentPage: currentPage
-        });
-
         formData.append('pages', pagesValue);
 
         // Add scale to page size option
         const scaleToPageSizeCheckbox = document.getElementById('scaleToPageSize');
         if (scaleToPageSizeCheckbox && scaleToPageSizeCheckbox.checked) {
             formData.append('scale_to_page_size', 'true');
-            console.log('Scale to page size: ENABLED');
         } else {
             formData.append('scale_to_page_size', 'false');
-            console.log('Scale to page size: DISABLED');
         }
 
         // Hide previous results
         hideResult();
         hideDownload();
 
-        // Show loading
-        window.showLoading('loadingContainer');
+        // Show loading (disable progress bar for batch mode)
+        window.showLoading('loadingContainer', { showProgress: !isBatchMode });
 
         // Disable form
         setFormDisabled(true);
 
         try {
-            const response = await fetch(window.API_URL, {
+            const apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': window.CSRF_TOKEN
@@ -1038,8 +1115,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
-                console.log('Crop PDF Error data received:', errorData);
-                console.log('Crop PDF Error data.error:', errorData.error);
 
                 // Always use API error if available
                 if (errorData.error) {
@@ -1053,7 +1128,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Success
             window.hideLoading('loadingContainer');
-            window.showDownloadButton(blob, selectedFile.name, 'downloadContainer', {
+            const contentDisposition = response.headers.get('content-disposition');
+            let downloadName = isBatchMode ? 'convertica.zip' : selectedFile.name;
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    downloadName = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+
+            window.showDownloadButton(blob, downloadName, 'downloadContainer', {
                 successTitle: window.SUCCESS_TITLE || 'Editing Complete!',
                 downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',
                 convertAnotherText: window.EDIT_ANOTHER_TEXT || 'Edit another file',
@@ -1065,6 +1149,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const fileInput = document.getElementById('fileInput');
                     if (fileInput) {
                         fileInput.value = '';
+                    }
+                    const fileInputDrop = document.getElementById('fileInputDrop');
+                    if (fileInputDrop) {
+                        fileInputDrop.value = '';
                     }
                     hideDownload();
                     cleanupPreviousPDF();

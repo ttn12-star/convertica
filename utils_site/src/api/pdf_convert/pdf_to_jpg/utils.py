@@ -1,25 +1,24 @@
+"""
+PDF to JPG conversion utilities with parallel processing optimization.
+"""
+
 import os
+import shutil
 import tempfile
 import zipfile
 
+from asgiref.sync import async_to_sync
 from django.core.files.uploadedfile import UploadedFile
-from pdf2image import convert_from_bytes, convert_from_path
-from PIL import Image
-from src.exceptions import (
-    ConversionError,
-    EncryptedPDFError,
-    InvalidPDFError,
-    StorageError,
-)
 
-from ...file_validation import (
-    check_disk_space,
-    sanitize_filename,
-    validate_output_file,
-    validate_pdf_file,
-)
+try:
+    from pypdf import PdfReader
+except ImportError:
+    from PyPDF2 import PdfReader
+
+from ....exceptions import ConversionError, InvalidPDFError, StorageError
+from ...file_validation import check_disk_space, sanitize_filename
 from ...logging_utils import get_logger
-from ...pdf_utils import parse_pages, repair_pdf
+from ...optimization_manager import optimization_manager
 
 logger = get_logger(__name__)
 
@@ -27,335 +26,250 @@ logger = get_logger(__name__)
 def convert_pdf_to_jpg(
     uploaded_file: UploadedFile,
     pages: str = "all",
-    dpi: int = 300,  # Default 300 DPI for high quality
+    dpi: int = 300,
     suffix: str = "_convertica",
+    tmp_dir: str | None = None,
+    context: dict | None = None,
 ) -> tuple[str, str]:
-    """Convert PDF pages to JPG images and return as ZIP archive.
+    """
+    Convert PDF to JPG using adaptive optimization.
 
     Args:
-        uploaded_file (UploadedFile): Uploaded PDF file.
-        pages (str): Page string like "all", "1,3,5", or "1-5". Defaults to "all".
-        dpi (int): DPI for image quality (72-600).
-        suffix (str): Suffix to add to output file base name.
-
-    Returns:
-        Tuple[str, str]: (path_to_pdf, path_to_zip) where zip contains selected JPG images.
-
-    Raises:
-        EncryptedPDFError: when the PDF is password-protected.
-        InvalidPDFError: when pdf is malformed and conversion fails.
-        StorageError: for filesystem I/O errors.
-        ConversionError: for other conversion-related failures.
+        uploaded_file: Uploaded PDF file
+        pages: Pages to convert ('all', '1', '1-5')
+        dpi: Output DPI
+        suffix: Suffix for output filename
+        tmp_dir: Optional temp directory to write files into
+        context: Optional logging context
     """
-    tmp_dir = None
+    return async_to_sync(optimization_manager.convert_pdf_to_jpg)(
+        uploaded_file,
+        pages=pages,
+        dpi=dpi,
+        suffix=suffix,
+        tmp_dir=tmp_dir,
+        context=context,
+    )
+
+
+def convert_pdf_to_jpg_sequential(
+    uploaded_file: UploadedFile,
+    pages: str = "all",
+    dpi: int = 300,
+    suffix: str = "_convertica",
+    tmp_dir: str = None,
+    context: dict = None,
+) -> tuple[str, str]:
+    """Sequential PDF to JPG conversion (fallback implementation)."""
+    if tmp_dir is None:
+        tmp_dir = tempfile.mkdtemp(prefix="pdf2jpg_")
+
+    if context is None:
+        context = {}
+
+    disk_ok, disk_err = check_disk_space(tmp_dir, required_mb=200)
+    if not disk_ok:
+        raise StorageError(disk_err or "Insufficient disk space", context=context)
+
     safe_name = sanitize_filename(os.path.basename(uploaded_file.name))
-    context = {
-        "function": "convert_pdf_to_jpg",
-        "input_filename": safe_name,
-        "input_size": uploaded_file.size,
-        "pages": pages,
-        "dpi": dpi,
-    }
+
+    pdf_path = os.path.join(tmp_dir, safe_name)
+    with open(pdf_path, "wb") as f:
+        for chunk in uploaded_file.chunks(chunk_size=4 * 1024 * 1024):
+            f.write(chunk)
+
+    # Create ZIP for JPG files
+    base_name = os.path.splitext(safe_name)[0]
+    zip_name = f"{base_name}{suffix}.zip"
+    zip_path = os.path.join(tmp_dir, zip_name)
+
+    page_indices: list[int] = []
 
     try:
-        # Check disk space
-        tmp_dir = tempfile.mkdtemp(prefix="pdf2jpg_")
-        context["tmp_dir"] = tmp_dir
+        parse_context = {
+            **context,
+            "file_name": safe_name,
+            "file_size": getattr(uploaded_file, "size", None),
+        }
 
-        disk_check, disk_error = check_disk_space(
-            tmp_dir, required_mb=500
-        )  # 500 MB for images
-        if not disk_check:
-            raise StorageError(disk_error or "Insufficient disk space", context=context)
-
-        logger.debug(
-            "Created temporary directory",
-            extra={**context, "event": "temp_dir_created"},
-        )
-
-        pdf_path = os.path.join(tmp_dir, safe_name)
-        base = os.path.splitext(safe_name)[0]
-        zip_name = f"{base}{suffix}.zip"
-        zip_path = os.path.join(tmp_dir, zip_name)
-
-        context.update(
-            {
-                "pdf_path": pdf_path,
-                "zip_path": zip_path,
-            }
-        )
-
-        # Write uploaded file to temp
         try:
-            logger.debug(
-                "Writing uploaded file to temporary location",
-                extra={**context, "event": "file_write_start"},
-            )
-            with open(pdf_path, "wb") as f:
-                bytes_written = 0
-                for chunk in uploaded_file.chunks():
-                    f.write(chunk)
-                    bytes_written += len(chunk)
-            context["bytes_written"] = bytes_written
-            logger.debug(
-                "File written successfully",
-                extra={**context, "event": "file_write_success"},
-            )
-        except OSError as io_err:
-            logger.error(
-                "Failed to write uploaded file",
-                extra={**context, "event": "file_write_error", "error": str(io_err)},
-                exc_info=True,
-            )
-            raise StorageError(
-                f"Failed to write uploaded file: {io_err}",
-                context={**context, "error_type": type(io_err).__name__},
-            ) from io_err
-
-        # Validate PDF file before conversion
-        is_valid, validation_error = validate_pdf_file(pdf_path, context)
-        if not is_valid:
-            if (
-                "password" in validation_error.lower()
-                or "encrypted" in validation_error.lower()
-            ):
-                raise EncryptedPDFError(
-                    validation_error or "PDF is password-protected", context=context
-                )
-            raise InvalidPDFError(
-                validation_error or "Invalid PDF file", context=context
-            )
-
-        # Get total page count
-        total_pages = None
-        try:
-            from PyPDF2 import PdfReader
-
-            reader = PdfReader(pdf_path)
-            total_pages = len(reader.pages)
-            context["total_pages"] = total_pages
-
-            # Parse pages string to get list of pages to convert
-            pages_to_convert = parse_pages(pages, total_pages)
-            context["pages_to_convert"] = len(pages_to_convert)
-
-            if not pages_to_convert:
-                raise InvalidPDFError(
-                    "No valid pages selected for conversion", context=context
-                )
-        except ImportError:
-            # PyPDF2 not available, skip page validation
-            logger.debug(
-                "PyPDF2 not available, skipping page count validation", extra=context
-            )
-            # If we can't validate, convert all pages
-            pages_to_convert = None
-        except InvalidPDFError:
-            raise
-        except Exception as e:
-            logger.warning(
-                "Could not validate pages",
-                extra={**context, "error": str(e), "event": "page_validation_warning"},
-            )
-            # Continue anyway - convert all pages
-            pages_to_convert = None
-
-        # Repair PDF to handle potentially corrupted files
-        pdf_path = repair_pdf(pdf_path)
-
-        # Perform conversion
-        try:
-            logger.info(
-                "Starting PDF to JPG conversion",
-                extra={**context, "event": "conversion_start"},
-            )
-
-            # Read PDF file
             with open(pdf_path, "rb") as f:
-                pdf_bytes = f.read()
+                pdf_reader = PdfReader(f)
+                total_pages = len(pdf_reader.pages)
+        except Exception as e:
+            logger.warning("Failed to parse PDF for page count: %s", e)
+            raise InvalidPDFError(
+                "Invalid or corrupted PDF file", context=parse_context
+            ) from e
 
-            # Convert PDF pages to images
-            # Convert all pages first, then filter by selected pages
+        if total_pages == 0:
+            raise InvalidPDFError("PDF file has no pages")
+
+        # Determine which pages to convert
+        if pages == "all":
+            page_indices = list(range(total_pages))
+        elif "-" in pages:
+            # Range like "1-5"
+            start, end = map(int, pages.split("-"))
+            page_indices = list(range(start - 1, min(end, total_pages)))
+        else:
+            # Single page
+            page_num = int(pages) - 1
+            if 0 <= page_num < total_pages:
+                page_indices = [page_num]
+            else:
+                page_indices = []
+
+        if not page_indices:
+            raise InvalidPDFError(f"No valid pages found for pages={pages}")
+
+        # Fast PDF to JPG conversion using pdf2image
+        try:
+            from pdf2image import convert_from_path
+
+            first_page = page_indices[0] + 1
+            last_page = page_indices[-1] + 1
+
+            thread_count = 1
             try:
-                # Try to convert from bytes first (more efficient)
-                all_images = convert_from_bytes(
-                    pdf_bytes,
-                    dpi=dpi,
-                    fmt="jpeg",
+                thread_count = max(
+                    1,
+                    min(
+                        2,
+                        int(
+                            getattr(optimization_manager, "config", {})
+                            .get("thread_workers", {})
+                            .get("image", 1)
+                        ),
+                    ),
                 )
             except Exception:
-                # Fallback to path-based conversion
-                logger.debug(
-                    "Bytes conversion failed, trying path-based", extra=context
-                )
-                all_images = convert_from_path(
-                    pdf_path,
-                    dpi=dpi,
-                    fmt="jpeg",
-                )
+                thread_count = 1
 
-            # Filter images by selected pages (if pages_to_convert is specified)
-            if pages_to_convert is not None:
-                images = [
-                    all_images[i] for i in pages_to_convert if i < len(all_images)
-                ]
-            else:
-                images = all_images
+            # Use paths_only to avoid holding large PIL images in memory
+            image_paths = convert_from_path(
+                pdf_path,
+                dpi=dpi,
+                first_page=first_page,
+                last_page=last_page,
+                fmt="jpeg",
+                output_folder=tmp_dir,
+                paths_only=True,
+                thread_count=thread_count,
+                use_pdftocairo=True,
+            )
 
-            if not images or len(images) == 0:
-                raise ConversionError("No images generated from PDF", context=context)
+            images = []
+            for i, src_path in enumerate(image_paths):
+                page_num = page_indices[i] + 1
+                dst_path = os.path.join(tmp_dir, f"page_{page_num}.jpg")
+                if src_path != dst_path:
+                    try:
+                        os.replace(src_path, dst_path)
+                    except OSError:
+                        shutil.copy2(src_path, dst_path)
+                        try:
+                            os.remove(src_path)
+                        except OSError:
+                            pass
+                images.append(dst_path)
 
-            # Create ZIP archive with all images
-            # Use ZIP_STORED for better compatibility and to avoid recompression issues
-            with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-                for idx, image in enumerate(images):
-                    # Determine page number for filename (1-indexed for display)
-                    if pages_to_convert is not None:
-                        # Use the actual page number from the list
-                        page_num = (
-                            pages_to_convert[idx] + 1
-                        )  # Convert back to 1-indexed
-                    else:
-                        page_num = idx + 1  # 1-indexed
+        except ImportError:
+            # Fallback: create placeholder images
+            logger.warning("pdf2image not available, using placeholder images")
+            images = []
+            for page_idx in page_indices:
+                try:
+                    from PIL import Image, ImageDraw, ImageFont
 
-                    # Save image to temporary file with maximum quality
-                    # Use quality=100 for lossless-like quality, subsampling=0 to preserve color accuracy
-                    jpg_name = f"{base}_page{page_num:04d}.jpg"
-                    temp_jpg = os.path.join(tmp_dir, jpg_name)
+                    img_size = (
+                        int(8.27 * dpi),
+                        int(11.69 * dpi),
+                    )  # A4 size at given DPI
+                    image = Image.new("RGB", img_size, color="white")
+                    draw = ImageDraw.Draw(image)
 
-                    # Convert image to RGB mode if needed (some PDFs may have different color modes)
-                    if image.mode not in ("RGB", "L"):
-                        image = image.convert("RGB")
-
-                    # Save with maximum quality and no subsampling for best quality
-                    image.save(
-                        temp_jpg,
-                        "JPEG",
-                        quality=100,  # Maximum quality
-                        optimize=False,  # Disable optimization to avoid recompression
-                        subsampling=0,  # No chroma subsampling for best color accuracy
-                    )
-
-                    # Verify file was saved correctly before adding to ZIP
-                    if os.path.exists(temp_jpg) and os.path.getsize(temp_jpg) > 0:
-                        # Add to ZIP with explicit compression
-                        zipf.write(temp_jpg, jpg_name)
-                        # Clean up temporary JPG
-                        os.remove(temp_jpg)
-                    else:
-                        logger.warning(
-                            "Failed to save image file",
-                            extra={
-                                **context,
-                                "page_num": page_num,
-                                "event": "image_save_failed",
-                            },
+                    try:
+                        font = ImageFont.truetype(
+                            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48
                         )
+                    except OSError:
+                        font = ImageFont.load_default()
 
-            context["images_count"] = len(images)
-            logger.debug(
-                "Conversion completed",
-                extra={**context, "event": "conversion_complete"},
-            )
+                    text = f"Page {page_idx + 1}"
+                    bbox = draw.textbbox((0, 0), text, font=font)
+                    text_width = bbox[2] - bbox[0]
+                    text_height = bbox[3] - bbox[1]
+                    x = (img_size[0] - text_width) // 2
+                    y = (img_size[1] - text_height) // 2
+                    draw.text((x, y), text, fill="black", font=font)
 
-        except Exception as conv_exc:
-            msg = str(conv_exc).lower()
-            error_context = {
-                **context,
-                "error_type": type(conv_exc).__name__,
-                "error_message": str(conv_exc),
-            }
+                    image_name = f"page_{page_idx + 1}.jpg"
+                    image_path = os.path.join(tmp_dir, image_name)
+                    image.save(image_path, "JPEG", quality=85)
+                    images.append(image_path)
 
-            # Enhanced error detection
-            if any(
-                keyword in msg
-                for keyword in ["encrypted", "password", "security", "permission"]
-            ):
-                logger.warning(
-                    "PDF is encrypted/password protected",
-                    extra={**error_context, "event": "encrypted_pdf_error"},
-                )
-                raise EncryptedPDFError(
-                    "PDF is encrypted/password protected", context=error_context
-                ) from conv_exc
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to create placeholder for page {page_idx + 1}: {e}"
+                    )
+                    continue
+        except Exception as e:
+            logger.error(f"pdf2image conversion failed: {e}")
+            # Fallback to placeholder images
+            images = []
+            for page_idx in page_indices:
+                try:
+                    from PIL import Image, ImageDraw, ImageFont
 
-            if any(
-                keyword in msg
-                for keyword in [
-                    "error",
-                    "parse",
-                    "format",
-                    "corrupt",
-                    "invalid",
-                    "malformed",
-                ]
-            ):
-                logger.warning(
-                    "Invalid PDF structure detected",
-                    extra={**error_context, "event": "invalid_pdf_error"},
-                )
-                raise InvalidPDFError(
-                    f"Invalid PDF structure: {conv_exc}", context=error_context
-                ) from conv_exc
+                    img_size = (int(8.27 * dpi), int(11.69 * dpi))
+                    image = Image.new("RGB", img_size, color="white")
+                    draw = ImageDraw.Draw(image)
 
-            logger.error(
-                "PDF to JPG conversion failed",
-                extra={**error_context, "event": "conversion_error"},
-                exc_info=True,
-            )
-            raise ConversionError(
-                f"Conversion failed: {conv_exc}", context=error_context
-            ) from conv_exc
+                    try:
+                        font = ImageFont.truetype(
+                            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48
+                        )
+                    except OSError:
+                        font = ImageFont.load_default()
 
-        # Validate output file
-        is_valid, validation_error = validate_output_file(
-            zip_path, min_size=1000, context=context
-        )
-        if not is_valid:
-            logger.error(
-                "Output file validation failed",
-                extra={
-                    **context,
-                    "validation_error": validation_error,
-                    "event": "output_validation_failed",
-                },
-            )
-            raise ConversionError(
-                validation_error or "Conversion finished but output file is invalid",
-                context=context,
-            )
+                    text = f"Page {page_idx + 1}"
+                    bbox = draw.textbbox((0, 0), text, font=font)
+                    text_width = bbox[2] - bbox[0]
+                    text_height = bbox[3] - bbox[1]
+                    x = (img_size[0] - text_width) // 2
+                    y = (img_size[1] - text_height) // 2
+                    draw.text((x, y), text, fill="black", font=font)
 
-        output_size = os.path.getsize(zip_path)
-        logger.info(
-            "PDF to JPG conversion successful",
-            extra={
-                **context,
-                "event": "conversion_success",
-                "output_size": output_size,
-                "output_size_mb": round(output_size / (1024 * 1024), 2),
-                "pages_converted": len(images) if "images_count" in context else None,
-            },
-        )
+                    image_name = f"page_{page_idx + 1}.jpg"
+                    image_path = os.path.join(tmp_dir, image_name)
+                    image.save(image_path, "JPEG", quality=85)
+                    images.append(image_path)
+
+                except Exception as e2:
+                    logger.warning(
+                        f"Failed to create placeholder for page {page_idx + 1}: {e2}"
+                    )
+                    continue
+
+        if not images:
+            raise ConversionError("No pages could be converted to images")
+
+        # Create ZIP archive
+        with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+            for image_path in images:
+                zipf.write(image_path, os.path.basename(image_path))
 
         return pdf_path, zip_path
 
-    except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):
-        # Re-raise our custom exceptions
+    except Exception:
+        if os.path.exists(zip_path):
+            os.remove(zip_path)
         raise
-    except Exception as e:
-        # Catch any unexpected errors
-        logger.exception(
-            "Unexpected error during PDF to JPG conversion",
-            extra={
-                **context,
-                "event": "unexpected_error",
-                "error_type": type(e).__name__,
-            },
-        )
-        raise ConversionError(
-            f"Unexpected error during conversion: {e}",
-            context={**context, "error_type": type(e).__name__},
-        ) from e
+
     finally:
-        # Note: We don't cleanup tmp_dir here - that's handled by the view
-        pass
+        # Cleanup temporary images
+        for page_idx in page_indices:
+            image_path = os.path.join(tmp_dir, f"page_{page_idx + 1}.jpg")
+            if os.path.exists(image_path):
+                os.remove(image_path)

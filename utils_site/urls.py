@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from django.contrib.staticfiles.finders import find
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import include, path
@@ -8,6 +9,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.i18n import set_language
 from src.frontend.views import index_page, sitemap_index, sitemap_lang
+from src.payments.views import stripe_webhook
 
 from utils_site.swagger import schema_view
 
@@ -32,9 +34,29 @@ def health_check(request):
         return HttpResponse(f"ERROR: {str(e)}", content_type="text/plain", status=503)
 
 
+@require_http_methods(["GET"])
+def service_worker(request):
+    sw_path = find("sw.js")
+    if not sw_path:
+        return HttpResponse("Not found", content_type="text/plain", status=404)
+
+    with open(sw_path, "rb") as f:
+        content = f.read()
+
+    response = HttpResponse(content, content_type="application/javascript")
+    response["Service-Worker-Allowed"] = "/"
+    response["Cache-Control"] = "no-cache"
+    return response
+
+
 urlpatterns = [
     path("api/", include("src.api.urls")),
     path("i18n/setlang/", set_language, name="set_language"),
+    path("payments/webhook/", stripe_webhook, name="stripe_webhook"),
+    path(
+        "offline.html", lambda request: render(request, "offline.html"), name="offline"
+    ),
+    path("sw.js", service_worker, name="service_worker"),
     # robots.txt is now served directly by nginx from staticfiles/
     path("health/", health_check, name="health_check"),
     # SEO - sitemaps should be accessible without language prefix
@@ -58,6 +80,7 @@ except ImportError:
 urlpatterns += i18n_patterns(
     path("blog/", include("src.blog.urls")),
     path("users/", include("src.users.urls")),
+    path("payments/", include("src.payments.urls")),
     path("", include("src.frontend.urls")),
 )
 
