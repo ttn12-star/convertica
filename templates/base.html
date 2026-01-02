@@ -124,8 +124,7 @@
     <link rel="preload" href="{% static 'css/mobile-optimizations.css' %}" as="style">
 
     <!-- Load full stylesheets asynchronously with fallback -->
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="print" onload="this.media='all';this.onload=null;document.documentElement.classList.add('css-loaded')">
-    <noscript><link rel="stylesheet" href="{% static 'css/tailwind.css' %}"></noscript>
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" onload="document.documentElement.classList.add('css-loaded')">
 
     <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="print" onload="this.media='all';this.onload=null">
     <noscript><link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}"></noscript>
