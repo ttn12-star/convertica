@@ -9,6 +9,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.i18n import set_language
 from src.frontend.views import index_page, sitemap_index, sitemap_lang
+from src.frontend.views_seo import favicon_view
 from src.payments.views import stripe_webhook
 
 from utils_site.swagger import schema_view
@@ -57,6 +58,8 @@ urlpatterns = [
         "offline.html", lambda request: render(request, "offline.html"), name="offline"
     ),
     path("sw.js", service_worker, name="service_worker"),
+    # Favicon - serve from static files
+    path("favicon.ico", favicon_view, name="favicon"),
     # robots.txt is now served directly by nginx from staticfiles/
     path("health/", health_check, name="health_check"),
     # SEO - sitemaps should be accessible without language prefix
