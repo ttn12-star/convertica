@@ -32,6 +32,9 @@
 
 {% block content %}
   <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+    <!-- Breadcrumbs -->
+    {% include "frontend/includes/breadcrumbs.html" %}
+
     <div class="text-center mb-8 sm:mb-10 pt-4 sm:pt-0">
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900" itemprop="headline">{{ header_text }}</h1>
       {% if page_subtitle %}
@@ -311,6 +314,12 @@
         </div>
       {% endblock %}
     </div>
+
+    <!-- Related Tools -->
+    {% if related_tools %}
+      {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+    {% endif %}
+  </div>
 {% endblock %}
 
 {% block extra_js %}
