@@ -16,6 +16,7 @@ from typing import Any
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
+from django.urls import reverse
 from django.utils.text import get_valid_filename
 from django.utils.translation import gettext as _
 from rest_framework import status
@@ -452,7 +453,7 @@ class BaseConversionAPIView(APIView, ABC):
                 from django.utils import timezone
                 from src.users.models import OperationRun
 
-                op_run_id = uuid.uuid4().hex
+                op_run_id = str(context.get("request_id") or uuid.uuid4().hex)
                 context["operation_run_id"] = op_run_id
 
                 is_premium = bool(
@@ -469,17 +470,19 @@ class BaseConversionAPIView(APIView, ABC):
                     )
                 )
 
-                OperationRun.objects.create(
-                    conversion_type=self.CONVERSION_TYPE,
-                    status="running",
-                    user=request.user if request.user.is_authenticated else None,
-                    is_premium=is_premium,
-                    request_id=str(context.get("request_id") or op_run_id),
-                    input_size=context.get("file_size"),
-                    started_at=timezone.now(),
-                    remote_addr=str(context.get("remote_addr") or ""),
-                    user_agent=str(context.get("user_agent") or ""),
-                    path=str(context.get("path") or ""),
+                OperationRun.objects.update_or_create(
+                    request_id=op_run_id,
+                    defaults={
+                        "conversion_type": self.CONVERSION_TYPE,
+                        "status": "running",
+                        "user": request.user if request.user.is_authenticated else None,
+                        "is_premium": is_premium,
+                        "input_size": context.get("file_size"),
+                        "started_at": timezone.now(),
+                        "remote_addr": str(context.get("remote_addr") or ""),
+                        "user_agent": str(context.get("user_agent") or ""),
+                        "path": str(context.get("path") or ""),
+                    },
                 )
             except Exception:
                 op_run_id = None
@@ -531,9 +534,7 @@ class BaseConversionAPIView(APIView, ABC):
                     duration_ms = None
                     if start_time:
                         duration_ms = int((time.time() - start_time) * 1000)
-                    OperationRun.objects.filter(
-                        request_id=str(context.get("request_id") or op_run_id)
-                    ).update(
+                    OperationRun.objects.filter(request_id=op_run_id).update(
                         status="success",
                         finished_at=now,
                         duration_ms=duration_ms,
@@ -554,9 +555,7 @@ class BaseConversionAPIView(APIView, ABC):
                     duration_ms = None
                     if start_time:
                         duration_ms = int((time.time() - start_time) * 1000)
-                    OperationRun.objects.filter(
-                        request_id=str(context.get("request_id") or op_run_id)
-                    ).update(
+                    OperationRun.objects.filter(request_id=op_run_id).update(
                         status="error",
                         finished_at=now,
                         duration_ms=duration_ms,
@@ -858,9 +857,7 @@ class BaseConversionAPIView(APIView, ABC):
                     duration_ms = None
                     if start_time:
                         duration_ms = int((time.time() - start_time) * 1000)
-                    OperationRun.objects.filter(
-                        request_id=str(context.get("request_id") or op_run_id)
-                    ).update(
+                    OperationRun.objects.filter(request_id=op_run_id).update(
                         status="error",
                         finished_at=now,
                         duration_ms=duration_ms,
@@ -881,9 +878,7 @@ class BaseConversionAPIView(APIView, ABC):
                     duration_ms = None
                     if start_time:
                         duration_ms = int((time.time() - start_time) * 1000)
-                    OperationRun.objects.filter(
-                        request_id=str(context.get("request_id") or op_run_id)
-                    ).update(
+                    OperationRun.objects.filter(request_id=op_run_id).update(
                         status="error",
                         finished_at=now,
                         duration_ms=duration_ms,
@@ -954,10 +949,19 @@ class BaseConversionAPIView(APIView, ABC):
             )
             # Add premium upgrade link for free users
             response_data = {"error": error_message}
-            if user and (
-                not user.is_authenticated or not getattr(user, "is_premium", False)
+            payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+
+            if (
+                payments_enabled
+                and user
+                and (
+                    not user.is_authenticated or not getattr(user, "is_premium", False)
+                )
             ):
-                response_data["upgrade_url"] = "/users/premium/"
+                try:
+                    response_data["upgrade_url"] = reverse("frontend:pricing")
+                except Exception:
+                    response_data["upgrade_url"] = "/pricing/"
                 response_data["upgrade_text"] = "Upgrade to Premium"
 
             return Response(

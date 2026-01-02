@@ -24,6 +24,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
+from django.urls import reverse
 from django.utils.text import get_valid_filename
 from rest_framework import status
 from rest_framework.response import Response
@@ -37,6 +38,7 @@ from .conversion_limits import (
     validate_pdf_pages,
 )
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
+from .operation_run_middleware_utils import ensure_request_id
 from .spam_protection import validate_spam_protection
 
 logger = get_logger(__name__)
@@ -231,6 +233,7 @@ class AsyncConversionAPIView(APIView, ABC):
             )
 
         # Build context
+        ensure_request_id(request)
         context = build_request_context(request, uploaded_file=uploaded_file)
 
         # Basic validation
@@ -253,18 +256,20 @@ class AsyncConversionAPIView(APIView, ABC):
                 and request.user.is_subscription_active()
             )
 
-            OperationRun.objects.create(
-                conversion_type=self.CONVERSION_TYPE,
-                status="queued",
-                user=request.user if request.user.is_authenticated else None,
-                is_premium=bool(is_premium),
+            OperationRun.objects.update_or_create(
                 request_id=str(context.get("request_id") or ""),
-                task_id=task_id,
-                input_size=getattr(uploaded_file, "size", None),
-                queued_at=timezone.now(),
-                remote_addr=str(context.get("remote_addr") or ""),
-                user_agent=str(context.get("user_agent") or ""),
-                path=str(context.get("path") or ""),
+                defaults={
+                    "conversion_type": self.CONVERSION_TYPE,
+                    "status": "queued",
+                    "user": request.user if request.user.is_authenticated else None,
+                    "is_premium": bool(is_premium),
+                    "task_id": task_id,
+                    "input_size": getattr(uploaded_file, "size", None),
+                    "queued_at": timezone.now(),
+                    "remote_addr": str(context.get("remote_addr") or ""),
+                    "user_agent": str(context.get("user_agent") or ""),
+                    "path": str(context.get("path") or ""),
+                },
             )
         except Exception:
             pass
@@ -313,8 +318,24 @@ class AsyncConversionAPIView(APIView, ABC):
                 )
                 if not is_valid:
                     cleanup_task_files(task_id)
+                    response_data = {
+                        "error": error_message,
+                        "page_count": page_count,
+                        "max_pages": max_pages,
+                    }
+                    payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+                    if payments_enabled and not (
+                        request.user.is_authenticated
+                        and getattr(request.user, "is_premium", False)
+                        and request.user.is_subscription_active()
+                    ):
+                        try:
+                            response_data["upgrade_url"] = reverse("frontend:pricing")
+                        except Exception:
+                            response_data["upgrade_url"] = "/pricing/"
+                        response_data["upgrade_text"] = "Upgrade to Premium"
                     return Response(
-                        {"error": error_message},
+                        response_data,
                         status=status.HTTP_400_BAD_REQUEST,
                     )
 

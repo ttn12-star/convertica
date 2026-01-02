@@ -105,6 +105,136 @@ class PerformanceMonitoringMiddleware(MiddlewareMixin):
         return response
 
 
+class OperationRunTrackingMiddleware(MiddlewareMixin):
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        try:
+            if request.method != "POST":
+                return None
+            if not request.path.startswith("/api/"):
+                return None
+
+            # Exclude non-user operational webhooks to avoid noisy analytics.
+            if request.path.startswith("/api/payments/webhook/"):
+                return None
+
+            try:
+                from .async_views import AsyncConversionAPIView
+            except Exception:
+                AsyncConversionAPIView = None
+
+            view_class = getattr(view_func, "view_class", None)
+            if (
+                AsyncConversionAPIView
+                and view_class
+                and issubclass(view_class, AsyncConversionAPIView)
+            ):
+                return None
+
+            from .operation_run_middleware_utils import (
+                create_operation_run,
+                ensure_request_id,
+            )
+
+            ensure_request_id(request)
+
+            conversion_type = None
+            if view_class is not None:
+                conversion_type = getattr(view_class, "CONVERSION_TYPE", None)
+
+            if not conversion_type:
+                match = getattr(request, "resolver_match", None)
+                conversion_type = getattr(match, "view_name", None) if match else None
+
+            if not conversion_type:
+                conversion_type = request.path
+
+            request._op_run_started_ts = time.time()
+            request._op_run_request_id = create_operation_run(
+                request=request,
+                conversion_type=str(conversion_type),
+                status="running",
+            )
+        except Exception:
+            pass
+
+        return None
+
+    def process_exception(self, request, exception):
+        try:
+            request_id = getattr(request, "_op_run_request_id", None)
+            started_ts = getattr(request, "_op_run_started_ts", None)
+            if not request_id or not started_ts:
+                return None
+
+            from .operation_run_middleware_utils import mark_error
+
+            duration_ms = int((time.time() - started_ts) * 1000)
+            mark_error(
+                request_id=str(request_id),
+                error_type=type(exception).__name__,
+                error_message=str(exception)[:2000],
+                duration_ms=duration_ms,
+            )
+        except Exception:
+            pass
+        return None
+
+    def process_response(self, request, response):
+        try:
+            request_id = getattr(request, "_op_run_request_id", None)
+            started_ts = getattr(request, "_op_run_started_ts", None)
+            if not request_id or not started_ts:
+                return response
+
+            duration_ms = int((time.time() - started_ts) * 1000)
+            status_code = getattr(response, "status_code", 200)
+
+            from django.utils import timezone
+
+            from .operation_run_middleware_utils import (
+                extract_error_message,
+                mark_http_error,
+                mark_success,
+                update_operation_run,
+            )
+
+            task_id = None
+            try:
+                data = getattr(response, "data", None)
+                if isinstance(data, dict):
+                    task_id = data.get("task_id")
+            except Exception:
+                pass
+
+            if task_id and status_code in (200, 201, 202):
+                update_operation_run(
+                    request_id=str(request_id),
+                    status="queued",
+                    task_id=str(task_id),
+                    queued_at=timezone.now(),
+                    duration_ms=duration_ms,
+                )
+                return response
+
+            if status_code and int(status_code) >= 400:
+                msg = extract_error_message(response) or f"HTTP {status_code}"
+                mark_http_error(
+                    request_id=str(request_id),
+                    error_message=msg,
+                    duration_ms=duration_ms,
+                )
+            else:
+                mark_success(
+                    request_id=str(request_id),
+                    output_size=None,
+                    duration_ms=duration_ms,
+                )
+        except Exception:
+            pass
+
+        return response
+
+
 class FilterProxyRequestsMiddleware(MiddlewareMixin):
     """
     Middleware to filter out proxy CONNECT requests and other suspicious requests.

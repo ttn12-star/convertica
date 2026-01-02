@@ -234,9 +234,14 @@
     window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
     window.REPLACE_TO = "{{ replace_to|escapejs }}";
     window.ERROR_MESSAGE = "{{ error_message|default:'Conversion failed. Please try again.'|escapejs }}";
-    window.MAX_FREE_PDF_PAGES = 30;
-    window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!' %}{% endfilter %}";
-    window.PREMIUM_LINK = "{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}";
+    window.MAX_FREE_PDF_PAGES = {{ conversion_limits.max_free_pdf_pages }};
+    {% if PAYMENTS_ENABLED %}
+      window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!' %}{% endfilter %}";
+      window.PREMIUM_LINK = "{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}";
+    {% else %}
+      window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: %(max_pages)d). Please split your file into smaller parts.' %}{% endfilter %}";
+      window.PREMIUM_LINK = "";
+    {% endif %}
     /* eslint-disable */
     window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
     /* eslint-enable */

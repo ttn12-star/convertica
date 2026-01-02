@@ -29,10 +29,21 @@ function escapeHtml(text) {
 
 /**
  * Show error message in appropriate container
- * @param {string} message - Error message to display
+ * @param {string|Object} message - Error message to display or error object with upgrade_url/upgrade_text
  * @param {string} containerId - Optional container ID (defaults to finding first available)
  */
 function showError(message, containerId = null) {
+    // Handle object with upgrade_url/upgrade_text from API
+    let errorText = message;
+    let upgradeUrl = null;
+    let upgradeText = null;
+
+    if (typeof message === 'object' && message !== null) {
+        errorText = message.error || message.message || 'An error occurred';
+        upgradeUrl = message.upgrade_url || null;
+        upgradeText = message.upgrade_text || null;
+    }
+
     // Find error container
     let container = null;
 
@@ -47,6 +58,14 @@ function showError(message, containerId = null) {
         }
     }
 
+    // Build upgrade link HTML if provided
+    let upgradeLinkHtml = '';
+    if (upgradeUrl && upgradeText) {
+        const safeUrl = escapeHtml(upgradeUrl);
+        const safeText = escapeHtml(upgradeText);
+        upgradeLinkHtml = `<a href="${safeUrl}" class="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200">${safeText}</a>`;
+    }
+
     if (!container) {
         // Fallback: create error div dynamically
         const errorDiv = document.createElement('div');
@@ -58,7 +77,8 @@ function showError(message, containerId = null) {
                 </svg>
                 <div>
                     <h4 class="font-semibold text-red-800 mb-1">${window.ERROR_TITLE || 'Error'}</h4>
-                    <p class="text-red-700 text-sm">${escapeHtml(message)}</p>
+                    <p class="text-red-700 text-sm">${escapeHtml(errorText)}</p>
+                    ${upgradeLinkHtml}
                 </div>
             </div>
         `;
@@ -80,7 +100,8 @@ function showError(message, containerId = null) {
                 </svg>
                 <div>
                     <h4 class="font-semibold text-red-800 mb-1">${window.ERROR_TITLE || 'Error'}</h4>
-                    <p class="text-red-700 text-sm">${escapeHtml(message)}</p>
+                    <p class="text-red-700 text-sm">${escapeHtml(errorText)}</p>
+                    ${upgradeLinkHtml}
                 </div>
             </div>
         </div>

@@ -408,16 +408,27 @@ class OperationRunAdmin(admin.ModelAdmin):
         "status",
         "is_premium",
         "user_email",
+        "request_id",
+        "task_id",
+        "path",
         "created_at",
         "queued_at",
         "started_at",
         "finished_at",
         "duration_s",
         "queue_wait_s",
+        "error_type",
     )
     list_filter = ("conversion_type", "status", "is_premium", "created_at")
     date_hierarchy = "created_at"
-    search_fields = ("task_id", "request_id", "user__email", "conversion_type")
+    search_fields = (
+        "task_id",
+        "request_id",
+        "user__email",
+        "conversion_type",
+        "path",
+        "error_type",
+    )
     readonly_fields = ("created_at", "updated_at")
     list_select_related = ("user",)
 

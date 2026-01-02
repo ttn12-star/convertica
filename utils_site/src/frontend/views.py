@@ -1712,13 +1712,27 @@ class PricingPageView(TemplateView):
     template_name = "frontend/pricing.html"
 
     def get_context_data(self, **kwargs):
-        from src.users.models import User
+        from src.users.models import SubscriptionPlan, User
 
         context = super().get_context_data(**kwargs)
 
         # Add Heroes Hall and top subscribers
         context["heroes"] = User.get_heroes()
         context["top_subscribers"] = User.get_top_subscribers(10)
+
+        plans = (
+            SubscriptionPlan.objects.filter(
+                slug__in=["daily-hero", "monthly-hero", "yearly-hero"],
+                is_active=True,
+            )
+            .only("slug", "price", "currency", "duration_days")
+            .all()
+        )
+        plans_by_slug = {p.slug: p for p in plans}
+
+        context["daily_plan"] = plans_by_slug.get("daily-hero")
+        context["monthly_plan"] = plans_by_slug.get("monthly-hero")
+        context["yearly_plan"] = plans_by_slug.get("yearly-hero")
 
         # Add Stripe publishable key for checkout
         if bool(getattr(settings, "PAYMENTS_ENABLED", True)):

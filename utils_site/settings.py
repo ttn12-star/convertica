@@ -254,6 +254,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "src.api.middleware.OperationRunTrackingMiddleware",  # DB analytics for all operations
     "allauth.account.middleware.AccountMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -284,6 +285,7 @@ TEMPLATES = [
                 "src.frontend.context_processors.site_urls",
                 "src.frontend.context_processors.turnstile_site_key",
                 "src.frontend.context_processors.js_settings",
+                "src.frontend.context_processors.conversion_limits",
                 "src.frontend.context_processors.payments_enabled",
                 "src.frontend.context_processors.breadcrumbs",
                 "src.frontend.context_processors.related_tools",
