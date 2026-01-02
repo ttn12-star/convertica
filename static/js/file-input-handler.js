@@ -174,17 +174,26 @@ document.addEventListener('DOMContentLoaded', () => {
             return null;
         }
 
+        // Escape HTML helper
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
         if (window.PAGE_LIMIT_ERROR) {
             const message = window.PAGE_LIMIT_ERROR.replace('%(page_count)d', pageCount).replace('%(max_pages)d', maxPages);
             const linkText = "get a 1-day Premium subscription for just $1";
 
             if (window.PREMIUM_LINK && message.includes(linkText)) {
-                const link = `<a href="${window.PREMIUM_LINK}" class="text-amber-600 hover:text-amber-700 font-medium underline">${linkText}</a>`;
-                return message.replace(linkText, link);
+                const safeUrl = escapeHtml(window.PREMIUM_LINK);
+                const safeLinkText = escapeHtml(linkText);
+                const link = `<a href="${safeUrl}" class="text-amber-600 hover:text-amber-700 font-medium underline">${safeLinkText}</a>`;
+                return escapeHtml(message).replace(escapeHtml(linkText), link);
             }
-            return message;
+            return escapeHtml(message);
         } else {
-            return `PDF has ${pageCount} pages (limit: ${maxPages}). You can split your file into smaller parts or <a href="/pricing/" class="text-amber-600 hover:text-amber-700 font-medium underline">upgrade to Premium</a> to process larger files with much higher limits!`;
+            return `PDF has ${escapeHtml(String(pageCount))} pages (limit: ${escapeHtml(String(maxPages))}). You can split your file into smaller parts or <a href="/pricing/" class="text-amber-600 hover:text-amber-700 font-medium underline">upgrade to Premium</a> to process larger files with much higher limits!`;
         }
     }
 

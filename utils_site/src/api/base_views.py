@@ -951,12 +951,12 @@ class BaseConversionAPIView(APIView, ABC):
             response_data = {"error": error_message}
             payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
 
-            if (
-                payments_enabled
-                and user
-                and (
-                    not user.is_authenticated or not getattr(user, "is_premium", False)
-                )
+            # Show upgrade link if payments enabled and user is not premium
+            # (either not authenticated or authenticated but not premium)
+            if payments_enabled and (
+                not user
+                or not user.is_authenticated
+                or not getattr(user, "is_premium", False)
             ):
                 try:
                     response_data["upgrade_url"] = reverse("frontend:pricing")
