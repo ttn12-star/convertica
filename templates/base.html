@@ -1,4 +1,6 @@
-{% load static i18n %}
+{% load static %}
+{% load i18n %}
+{% load minified_static %}
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -332,15 +334,15 @@
     {% include "frontend/includes/footer.html" %}
     {% include "frontend/includes/cookie_banner.html" %}
 
-    <script src="{% static 'js/cookie-consent.js' %}" defer></script>
-    <script src="{% static 'js/language-detection.js' %}" defer></script>
+    <script src="{% minified_static 'js/cookie-consent.js' %}" defer></script>
+    <script src="{% minified_static 'js/language-detection.js' %}" defer></script>
 
     {% block extra_js %}{% endblock %}
 
     <!-- Theme Toggle Script (Premium Dark Mode) -->
-    <script src="{% static 'js/theme-toggle.js' %}" defer></script>
+    <script src="{% minified_static 'js/theme-toggle.js' %}" defer></script>
 
     <!-- PWA Install Script -->
-    <script src="{% static 'js/pwa-install.js' %}" defer></script>
+    <script src="{% minified_static 'js/pwa-install.js' %}" defer></script>
   </body>
 </html>
