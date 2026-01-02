@@ -838,3 +838,15 @@ except ImportError:
 # Custom error handlers (defined in utils_site.urls)
 # Django will automatically use handler404, handler500, etc. from ROOT_URLCONF
 # These are defined in utils_site/urls.py
+
+# ============================================
+# IndexNow Configuration
+# ============================================
+# IndexNow is a protocol for instant search engine indexing
+# Supported: Bing, Yandex, Seznam (Google is testing)
+INDEXNOW_ENABLED = config("INDEXNOW_ENABLED", default=False, cast=bool)
+INDEXNOW_KEY = config("INDEXNOW_KEY", default="")
+
+# Site base URL for IndexNow (fallback if not set elsewhere)
+if not hasattr(locals(), "SITE_BASE_URL"):
+    SITE_BASE_URL = "https://convertica.net"

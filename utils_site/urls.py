@@ -9,6 +9,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.i18n import set_language
 from src.frontend.views import index_page, sitemap_index, sitemap_lang
+from src.frontend.views_indexnow import indexnow_key_file
 from src.frontend.views_seo import favicon_view
 from src.payments.views import stripe_webhook
 
@@ -60,6 +61,12 @@ urlpatterns = [
     path("sw.js", service_worker, name="service_worker"),
     # Favicon - serve from static files
     path("favicon.ico", favicon_view, name="favicon"),
+    # IndexNow key file for search engine verification
+    path(
+        f"{getattr(settings, 'INDEXNOW_KEY', 'indexnow-key')}.txt",
+        indexnow_key_file,
+        name="indexnow_key",
+    ),
     # robots.txt is now served directly by nginx from staticfiles/
     path("health/", health_check, name="health_check"),
     # SEO - sitemaps should be accessible without language prefix
