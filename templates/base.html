@@ -59,8 +59,10 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://challenges.cloudflare.com">
     <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cloudflare-static.com">
-    <link rel="preconnect" href="https://cloudflare-static.com" crossorigin>
+    <link rel="dns-prefetch" href="https://mc.yandex.ru">
+    <link rel="preconnect" href="https://mc.yandex.ru" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
     <!-- Google Fonts -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -116,8 +118,12 @@
     <!-- Stylesheets -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="all">
-    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="all">
-    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}" media="all">
+    <link rel="preload" href="{% static 'css/dark-mode-helpers.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}"></noscript>
+    <link rel="preload" href="{% static 'css/mobile-optimizations.css' %}" as="style">
+    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}"></noscript>
 
     <!-- Custom Animations -->
     <style>

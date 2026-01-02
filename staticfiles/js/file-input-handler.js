@@ -19,6 +19,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentFiles = null;
 
+    const PDFJS_VERSION = '3.11.174';
+
+    function loadExternalScript(src) {
+        return new Promise((resolve, reject) => {
+            const existing = Array.from(document.scripts).find((s) => s.src === src);
+            if (existing) {
+                if (typeof window.pdfjsLib !== 'undefined') return resolve();
+                existing.addEventListener('load', () => resolve(), { once: true });
+                existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            script.onload = () => resolve();
+            script.onerror = () => reject(new Error(`Failed to load ${src}`));
+            document.head.appendChild(script);
+        });
+    }
+
+    async function ensurePdfJsLoaded() {
+        if (typeof window.pdfjsLib !== 'undefined') return true;
+
+        const candidates = [
+            `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`,
+            `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.js`,
+        ];
+
+        for (const src of candidates) {
+            try {
+                await loadExternalScript(src);
+                if (typeof window.pdfjsLib !== 'undefined') break;
+            } catch (e) {
+                // try next
+            }
+        }
+
+        if (typeof window.pdfjsLib === 'undefined') return false;
+
+        try {
+            if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`;
+            }
+        } catch (e) {
+            // ignore
+        }
+
+        return true;
+    }
+
     const formatFileSize = window.formatFileSize || function(bytes) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
@@ -37,9 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return true;
             }
 
-            // Ждем пока PDF.js будет загружен
-            if (typeof pdfjsLib === 'undefined') {
-                console.info('PDF.js not loaded yet, skipping PDF page validation');
+            const pdfReady = await ensurePdfJsLoaded();
+            if (!pdfReady) {
                 return true;
             }
 
@@ -49,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const arrayBuffer = await file.arrayBuffer();
-            const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            const pdfDoc = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
             const pageCount = pdfDoc.numPages;
             const maxPages = Number(window.MAX_FREE_PDF_PAGES) || 30;
 

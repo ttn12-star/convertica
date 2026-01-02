@@ -229,6 +229,55 @@ def js_settings(request):
     }
 
 
+def conversion_limits(request):
+    try:
+        from src.api import conversion_limits as api_limits
+    except Exception:
+        api_limits = None
+
+    max_free_pdf_pages = getattr(settings, "MAX_FREE_PDF_PAGES", None)
+    if max_free_pdf_pages is None:
+        max_free_pdf_pages = getattr(settings, "MAX_PDF_PAGES", None)
+
+    if max_free_pdf_pages is None and api_limits is not None:
+        max_free_pdf_pages = getattr(api_limits, "MAX_PDF_PAGES", 30)
+    if max_free_pdf_pages is None:
+        max_free_pdf_pages = 30
+
+    max_free_pdf_pages_heavy = getattr(settings, "MAX_FREE_PDF_PAGES_HEAVY", None)
+    if max_free_pdf_pages_heavy is None:
+        max_free_pdf_pages_heavy = getattr(settings, "MAX_PDF_PAGES_HEAVY", None)
+    if max_free_pdf_pages_heavy is None and api_limits is not None:
+        max_free_pdf_pages_heavy = getattr(
+            api_limits, "MAX_PDF_PAGES_HEAVY", max_free_pdf_pages
+        )
+    if max_free_pdf_pages_heavy is None:
+        max_free_pdf_pages_heavy = max_free_pdf_pages
+
+    max_file_size = getattr(settings, "MAX_FILE_SIZE", None)
+    if max_file_size is None and api_limits is not None:
+        max_file_size = getattr(api_limits, "MAX_FILE_SIZE", 25 * 1024 * 1024)
+    if max_file_size is None:
+        max_file_size = 25 * 1024 * 1024
+
+    max_file_size_premium = getattr(settings, "MAX_FILE_SIZE_PREMIUM", None)
+    if max_file_size_premium is None and api_limits is not None:
+        max_file_size_premium = getattr(
+            api_limits, "MAX_FILE_SIZE_PREMIUM", 200 * 1024 * 1024
+        )
+    if max_file_size_premium is None:
+        max_file_size_premium = 200 * 1024 * 1024
+
+    return {
+        "conversion_limits": {
+            "max_free_pdf_pages": int(max_free_pdf_pages),
+            "max_free_pdf_pages_heavy": int(max_free_pdf_pages_heavy),
+            "max_file_size": int(max_file_size),
+            "max_file_size_premium": int(max_file_size_premium),
+        }
+    }
+
+
 def payments_enabled(request):
     return {"PAYMENTS_ENABLED": bool(getattr(settings, "PAYMENTS_ENABLED", True))}
 
