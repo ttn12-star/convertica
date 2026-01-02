@@ -66,13 +66,10 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
-    <!-- Google Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <!-- Google Fonts - Async loading to prevent render blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- Hreflang -->
@@ -118,14 +115,22 @@
       })();
     </script>
 
-    <!-- Stylesheets -->
+    <!-- Critical CSS - Inline for instant rendering without FOUC -->
+    <style>{% include "frontend/includes/critical.css" %}</style>
+
+    <!-- Preload full stylesheets for faster loading -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="all">
     <link rel="preload" href="{% static 'css/dark-mode-helpers.css' %}" as="style">
-    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}"></noscript>
     <link rel="preload" href="{% static 'css/mobile-optimizations.css' %}" as="style">
-    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}" media="print" onload="this.media='all'">
+
+    <!-- Load full stylesheets asynchronously with fallback -->
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="print" onload="this.media='all';this.onload=null;document.documentElement.classList.add('css-loaded')">
+    <noscript><link rel="stylesheet" href="{% static 'css/tailwind.css' %}"></noscript>
+
+    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="print" onload="this.media='all';this.onload=null">
+    <noscript><link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}"></noscript>
+
+    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}" media="print" onload="this.media='all';this.onload=null">
     <noscript><link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}"></noscript>
 
     <!-- Custom Animations -->
@@ -149,13 +154,6 @@
 
       body {
         transition: background-color 0.2s ease, color 0.2s ease;
-      }
-
-      * {
-        box-sizing: border-box;
-        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-        transition-timing-function: cubic-bezier(0.4,0,0.2,1);
-        transition-duration: 200ms;
       }
 
       body { color: #111827; background-color: #ffffff; }
@@ -195,81 +193,6 @@
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     {% endif %}
 
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-              console.log('[SW] Registered:', registration.scope);
-              // Check for updates every hour
-              setInterval(() => {
-                registration.update();
-              }, 3600000);
-            })
-            .catch((error) => {
-              console.log('[SW] Registration failed:', error);
-            });
-        });
-      }
-    </script>
-
-    <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
-    <script>
-      (function() {
-        // Yandex.Metrika loader
-        (function(m,e,t,r,i,k,a){
-          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-          m[i].l=1*new Date();
-          for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) { return; }
-          }
-          k=e.createElement(t), a=e.getElementsByTagName(t)[0];
-          k.async = 1;
-          k.src = r;
-          a.parentNode.insertBefore(k,a);
-        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        // Google Analytics 4 loader
-        var gtagScript = document.createElement('script');
-        gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
-        gtagScript.async = true;
-        document.head.appendChild(gtagScript);
-
-        function initAnalytics() {
-          // --- Yandex.Metrika ---
-          if (window.ym) {
-            ym(105790338, 'init', {
-              clickmap: true,
-              trackLinks: true,
-              accurateTrackBounce: true,
-              webvisor: false
-            });
-            ym(105790338, 'hit', window.location.href);
-          }
-
-          // --- Google Analytics 4 ---
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
-          gtag('event', 'page_view', { page_path: window.location.pathname });
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-          if (window.CookieConsent) {
-            if (window.CookieConsent.hasUserConsented()) {
-              initAnalytics();
-            } else {
-              window.addEventListener('CookieConsentAccepted', initAnalytics);
-            }
-          } else {
-            initAnalytics();
-          }
-        });
-      })();
-    </script>
 
     {% block extra_head %}{% endblock %}
 
@@ -345,5 +268,69 @@
 
     <!-- PWA Install Script -->
     <script src="{% minified_static 'js/pwa-install.js' %}" defer></script>
+
+    <!-- Service Worker Registration - moved to end of body for better performance -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('[SW] Registered:', registration.scope);
+              setInterval(() => { registration.update(); }, 3600000);
+            })
+            .catch((error) => {
+              console.log('[SW] Registration failed:', error);
+            });
+        });
+      }
+    </script>
+
+    <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
+    <script>
+      (function() {
+        (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) { return; }
+          }
+          k=e.createElement(t), a=e.getElementsByTagName(t)[0];
+          k.async = 1; k.src = r; a.parentNode.insertBefore(k,a);
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        var gtagScript = document.createElement('script');
+        gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
+        gtagScript.async = true;
+        document.head.appendChild(gtagScript);
+
+        function initAnalytics() {
+          if (window.ym) {
+            ym(105790338, 'init', {
+              clickmap: true, trackLinks: true,
+              accurateTrackBounce: true, webvisor: false
+            });
+            ym(105790338, 'hit', window.location.href);
+          }
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
+          gtag('event', 'page_view', { page_path: window.location.pathname });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          if (window.CookieConsent) {
+            if (window.CookieConsent.hasUserConsented()) {
+              initAnalytics();
+            } else {
+              window.addEventListener('CookieConsentAccepted', initAnalytics);
+            }
+          } else {
+            initAnalytics();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
