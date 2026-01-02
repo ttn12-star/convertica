@@ -1,0 +1,19 @@
+# ads.txt for convertica.net
+# This file is used by advertising networks to verify authorized sellers
+# Format: <FIELD #1>, <FIELD #2>, <FIELD #3>, <FIELD #4>
+# FIELD #1: Domain name of the advertising system
+# FIELD #2: Publisher's Account ID
+# FIELD #3: Type of Account/Relationship (DIRECT or RESELLER)
+# FIELD #4: Certification Authority ID (optional)
+
+# Google AdSense
+# Replace pub-0000000000000000 with your actual AdSense Publisher ID when ready
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+
+# Yandex.Direct
+# Replace 000000 with your actual Yandex Direct ID when ready
+# yandex.ru, 000000, DIRECT
+
+# IMPORTANT: This file is prepared but not active yet
+# Uncomment and fill in your actual Publisher IDs when you're ready to monetize
+# Keep this file at https://convertica.net/ads.txt

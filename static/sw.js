@@ -3,7 +3,7 @@
  * Provides offline support and caching for static assets
  */
 
-const CACHE_VERSION = 'convertica-v3';
+const CACHE_VERSION = 'convertica-v4';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -132,7 +132,10 @@ async function updateCache(request) {
     try {
         const networkResponse = await fetch(request);
         if (networkResponse && networkResponse.status === 200) {
-            const cache = await caches.open(DYNAMIC_CACHE);
+            const url = new URL(request.url);
+            const isStaticAsset = url.pathname.startsWith('/static/');
+            const targetCacheName = isStaticAsset ? STATIC_CACHE : DYNAMIC_CACHE;
+            const cache = await caches.open(targetCacheName);
             await cache.put(request, networkResponse);
         }
     } catch (error) {
