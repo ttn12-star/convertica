@@ -10,6 +10,66 @@
 {% block twitter_title %}{{ page_title }}{% endblock %}
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
+{% block structured_data %}
+  {{ block.super }}
+
+  <!-- WebApplication Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "{{ page_title }}",
+      "description": "{{ page_description }}",
+      "url": "{{ site_current_url }}",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "inLanguage": "{{ LANGUAGE_CODE }}"
+    }
+  </script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "{{ page_title }}",
+      "description": "{{ page_description }}",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "{% trans 'Upload PDF' %}",
+          "text": "{% trans 'Select your PDF file to crop' %}"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "{% trans 'Select Area' %}",
+          "text": "{% trans 'Click and drag to select the crop area on the PDF' %}"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "{% trans 'Crop' %}",
+          "text": "{% trans 'Click the Crop button to process your PDF' %}"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "{% trans 'Download' %}",
+          "text": "{% trans 'Download your cropped PDF file' %}"
+        }
+      ],
+      "totalTime": "PT2M"
+    }
+  </script>
+{% endblock %}
+
 {% block extra_head %}
   <link rel="preload"
         href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
@@ -96,9 +156,12 @@
 {% endblock %}
 
 {% block content %}
-  <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
+  <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+    <!-- Breadcrumbs -->
+    {% include "frontend/includes/breadcrumbs.html" %}
+
     <!-- Page Header -->
-    <div class="text-center mb-8 sm:mb-10">
+    <div class="text-center mb-8 sm:mb-10 pt-4 sm:pt-0">
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">
         {{ header_text }}
       </h1>
@@ -396,6 +459,11 @@
         </p>
       </div>
     </div>
+
+    <!-- Related Tools -->
+    {% if related_tools %}
+      {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+    {% endif %}
   </div>
 {% endblock %}
 
