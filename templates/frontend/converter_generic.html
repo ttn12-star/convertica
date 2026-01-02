@@ -11,6 +11,9 @@
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
 {% block structured_data %}
+  {{ block.super }}
+
+  <!-- WebApplication Schema -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -25,24 +28,41 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "inLanguage": "{{ LANGUAGE_CODE }}",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "{% trans 'Home' %}",
-            "item": "{{ site_base_url }}/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "{{ header_text }}",
-            "item": "{{ site_current_url }}"
-          }
-        ]
-      }
+      "inLanguage": "{{ LANGUAGE_CODE }}"
+    }
+  </script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "{{ page_title }}",
+      "description": "{{ page_description }}",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "{% trans 'Upload File' %}",
+          "text": "{% trans 'Click the upload button or drag and drop your file' %}",
+          "url": "{{ site_current_url }}#upload"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "{% trans 'Convert' %}",
+          "text": "{% trans 'Click the Convert button and wait for processing to complete' %}",
+          "url": "{{ site_current_url }}#convert"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "{% trans 'Download' %}",
+          "text": "{% trans 'Download your converted file instantly' %}",
+          "url": "{{ site_current_url }}#download"
+        }
+      ],
+      "totalTime": "PT2M"
     }
   </script>
 {% endblock %}
