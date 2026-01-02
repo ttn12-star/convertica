@@ -186,188 +186,161 @@
           }
         </script>
       {% endif %}
-      "Compress PDF",
-      "Protect PDF",
-      "Organize PDF pages"
-      ]
-      }
-      </script>
-
-    <!-- BreadcrumbList Schema for SEO -->
-      {% if breadcrumb_items and breadcrumb_items|length > 1 %}
-        <script type="application/ld+json">
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {% for item in breadcrumb_items %}
-                {
-                  "@type": "ListItem",
-                  "position": {{ item.position }},
-                  "name": "{{ item.name|escapejs }}",
-                  "item": "{{ item.url }}"
-                }{% if not forloop.last %},{% endif %}
-              {% endfor %}
-            ]
-          }
-        </script>
-      {% endif %}
-
-      {% block structured_data %}{% endblock %}
+    {% endblock %}
     <!-- Cloudflare Turnstile (Anti-spam) -->
-      {% if turnstile_site_key %}
-        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-      {% endif %}
+    {% if turnstile_site_key %}
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    {% endif %}
 
     <!-- Service Worker Registration -->
-      <script>
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js')
-              .then((registration) => {
-                console.log('[SW] Registered:', registration.scope);
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('[SW] Registered:', registration.scope);
               // Check for updates every hour
-                setInterval(() => {
-                  registration.update();
-                }, 3600000);
-              })
-              .catch((error) => {
-                console.log('[SW] Registration failed:', error);
-              });
-          });
-        }
-      </script>
+              setInterval(() => {
+                registration.update();
+              }, 3600000);
+            })
+            .catch((error) => {
+              console.log('[SW] Registration failed:', error);
+            });
+        });
+      }
+    </script>
 
     <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
-      <script>
-        (function() {
+    <script>
+      (function() {
         // Yandex.Metrika loader
-          (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {
-              if (document.scripts[j].src === r) { return; }
-            }
-            k=e.createElement(t), a=e.getElementsByTagName(t)[0];
-            k.async = 1;
-            k.src = r;
-            a.parentNode.insertBefore(k,a);
-          })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        (function(m,e,t,r,i,k,a){
+          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();
+          for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) { return; }
+          }
+          k=e.createElement(t), a=e.getElementsByTagName(t)[0];
+          k.async = 1;
+          k.src = r;
+          a.parentNode.insertBefore(k,a);
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         // Google Analytics 4 loader
-          var gtagScript = document.createElement('script');
-          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
-          gtagScript.async = true;
-          document.head.appendChild(gtagScript);
+        var gtagScript = document.createElement('script');
+        gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
+        gtagScript.async = true;
+        document.head.appendChild(gtagScript);
 
-          function initAnalytics() {
+        function initAnalytics() {
           // --- Yandex.Metrika ---
-            if (window.ym) {
-              ym(105790338, 'init', {
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
-                webvisor: false
-              });
-              ym(105790338, 'hit', window.location.href);
-            }
+          if (window.ym) {
+            ym(105790338, 'init', {
+              clickmap: true,
+              trackLinks: true,
+              accurateTrackBounce: true,
+              webvisor: false
+            });
+            ym(105790338, 'hit', window.location.href);
+          }
 
           // --- Google Analytics 4 ---
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
-            gtag('event', 'page_view', { page_path: window.location.pathname });
-          }
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
+          gtag('event', 'page_view', { page_path: window.location.pathname });
+        }
 
-          document.addEventListener('DOMContentLoaded', function () {
-            if (window.CookieConsent) {
-              if (window.CookieConsent.hasUserConsented()) {
-                initAnalytics();
-              } else {
-                window.addEventListener('CookieConsentAccepted', initAnalytics);
-              }
-            } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          if (window.CookieConsent) {
+            if (window.CookieConsent.hasUserConsented()) {
               initAnalytics();
+            } else {
+              window.addEventListener('CookieConsentAccepted', initAnalytics);
             }
-          });
-        })();
-      </script>
+          } else {
+            initAnalytics();
+          }
+        });
+      })();
+    </script>
 
-      {% block extra_head %}{% endblock %}
+    {% block extra_head %}{% endblock %}
 
-      </head>
-      <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased pt-24 sm:pt-24 md:pt-[72px]">
-        <script>
+  </head>
+  <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+    <script>
       // Apply dark-mode class to body immediately if dark theme is enabled
       // This runs synchronously right after <body> tag to prevent white flash
-          if (window.__darkModeEnabled) {
-            document.body.classList.add('dark-mode');
-          }
-        </script>
+      if (window.__darkModeEnabled) {
+        document.body.classList.add('dark-mode');
+      }
+    </script>
     <!-- Global JS Settings from Django -->
-        <script>
-          window.JS_SETTINGS = {
-            patienceMessageDelay: Number("{{ js_settings.patience_message_delay|default:40|escapejs }}") * 1000,
-            pollInterval: Number("{{ js_settings.poll_interval|default:2500|escapejs }}")
-          };
-        </script>
+    <script>
+      window.JS_SETTINGS = {
+        patienceMessageDelay: Number("{{ js_settings.patience_message_delay|default:40|escapejs }}") * 1000,
+        pollInterval: Number("{{ js_settings.poll_interval|default:2500|escapejs }}")
+      };
+    </script>
 
-        {% include "frontend/includes/header.html" %}
+    {% include "frontend/includes/header.html" %}
 
     <!-- Messages -->
-        {% if messages %}
-          <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4">
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }} mb-4 p-4 rounded-lg border flex items-center justify-between
-                          {% if message.tags == 'success' %}bg-green-50 border-green-200 text-green-800 dark:bg-green-900/30 dark:border-green-700 dark:text-green-200{% endif %}
-                          {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-700 dark:text-red-200{% endif %}
-                          {% if message.tags == 'warning' %}bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/30 dark:border-yellow-700 dark:text-yellow-200{% endif %}
-                          {% if message.tags == 'info' %}bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200{% endif %}
-                         ">
-                <div class="flex items-center">
-                  {% if message.tags == 'success' %}
-                    <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                  {% elif message.tags == 'error' %}
-                    <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
-                    </svg>
-                  {% else %}
-                    <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
-                    </svg>
-                  {% endif %}
-                  <span>{{ message }}</span>
-                </div>
-                <button type="button" class="ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" onclick="this.parentElement.remove()">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                  </svg>
-                </button>
-              </div>
-            {% endfor %}
+    {% if messages %}
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} mb-4 p-4 rounded-lg border flex items-center justify-between
+                      {% if message.tags == 'success' %}bg-green-50 border-green-200 text-green-800 dark:bg-green-900/30 dark:border-green-700 dark:text-green-200{% endif %}
+                      {% if message.tags == 'error' %}bg-red-50 border-red-200 text-red-800 dark:bg-red-900/30 dark:border-red-700 dark:text-red-200{% endif %}
+                      {% if message.tags == 'warning' %}bg-yellow-50 border-yellow-200 text-yellow-800 dark:bg-yellow-900/30 dark:border-yellow-700 dark:text-yellow-200{% endif %}
+                      {% if message.tags == 'info' %}bg-blue-50 border-blue-200 text-blue-800 dark:bg-blue-900/30 dark:border-blue-700 dark:text-blue-200{% endif %}
+                     ">
+            <div class="flex items-center">
+              {% if message.tags == 'success' %}
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              {% elif message.tags == 'error' %}
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                </svg>
+              {% else %}
+                <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+              {% endif %}
+              <span>{{ message }}</span>
+            </div>
+            <button type="button" class="ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" onclick="this.parentElement.remove()">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
           </div>
-        {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
 
-        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
-          {% block content %}{% endblock %}
-        </main>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+      {% block content %}{% endblock %}
+    </main>
 
-        {% include "frontend/includes/footer.html" %}
-        {% include "frontend/includes/cookie_banner.html" %}
+    {% include "frontend/includes/footer.html" %}
+    {% include "frontend/includes/cookie_banner.html" %}
 
-        <script src="{% static 'js/cookie-consent.js' %}" defer></script>
-        <script src="{% static 'js/language-detection.js' %}" defer></script>
+    <script src="{% static 'js/cookie-consent.js' %}" defer></script>
+    <script src="{% static 'js/language-detection.js' %}" defer></script>
 
-        {% block extra_js %}{% endblock %}
+    {% block extra_js %}{% endblock %}
 
     <!-- Theme Toggle Script (Premium Dark Mode) -->
-        <script src="{% static 'js/theme-toggle.js' %}" defer></script>
+    <script src="{% static 'js/theme-toggle.js' %}" defer></script>
 
     <!-- PWA Install Script -->
-        <script src="{% static 'js/pwa-install.js' %}" defer></script>
-      </body>
-      </html>
+    <script src="{% static 'js/pwa-install.js' %}" defer></script>
+  </body>
+</html>

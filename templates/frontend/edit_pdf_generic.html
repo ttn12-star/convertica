@@ -62,40 +62,6 @@
       "totalTime": "PT2M"
     }
   </script>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "{{ page_title }}",
-      "description": "{{ page_description }}",
-      "url": "{{ site_current_url }}",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "inLanguage": "{{ LANGUAGE_CODE }}",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "{% trans 'Home' %}",
-            "item": "{{ site_base_url }}/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "{{ header_text }}",
-            "item": "{{ site_current_url }}"
-          }
-        ]
-      }
-    }
-  </script>
 {% endblock %}
 
 {% block content %}
@@ -253,6 +219,11 @@
         </div>
       </div>
     {% endblock %}
+
+    <!-- Related Tools -->
+    {% if related_tools %}
+      {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+    {% endif %}
   </div>
 {% endblock %}
 
