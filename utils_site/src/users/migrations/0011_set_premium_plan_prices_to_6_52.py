@@ -18,7 +18,10 @@ def _update_plans(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("users", "0010_rename_users_oprun_conv_created_idx_users_opera_convers_d70162_idx_and_more"),
+        (
+            "users",
+            "0010_rename_users_oprun_conv_created_idx_users_opera_convers_d70162_idx_and_more",
+        ),
     ]
 
     operations = [
