@@ -203,6 +203,20 @@ def hreflang_links(request):
     }
 
 
+def site_urls(request):
+    """Generate site base URL and current URL for templates."""
+    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
+    if not getattr(settings, "DEBUG", False) and scheme == "http":
+        scheme = "https"
+
+    site_domain = config("SITE_DOMAIN", default=None)
+    base_url = f"{scheme}://{site_domain or request.get_host()}"
+    return {
+        "site_base_url": base_url,
+        "site_current_url": f"{base_url}{request.path}",
+    }
+
+
 def site_settings(request):
     """Add site-wide settings to template context."""
     from django.conf import settings
