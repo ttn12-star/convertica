@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "tailwindcss -i ./static/css/input.css -o ./static/css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i ./static/css/input.css -o ./static/css/tailwind.css --watch"
+    "watch:css": "tailwindcss -i ./static/css/input.css -o ./static/css/tailwind.css --watch",
+    "minify:js": "find static/js -name '*.js' ! -name '*.min.js' -exec sh -c 'terser \"$1\" -o \"${1%.js}.min.js\" -c -m' _ {} \\;",
+    "build": "npm run build:css && npm run minify:js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.22",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.18"
+    "tailwindcss": "^3.4.18",
+    "terser": "^5.36.0"
   }
 }
