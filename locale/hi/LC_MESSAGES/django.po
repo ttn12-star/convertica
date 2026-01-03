@@ -3301,7 +3301,7 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:113
 msgid "Text-based PDFs work best."
-msgstr ""
+msgstr "पाठ-आधारित PDF सबसे अच्छा काम करते हैं।"
 
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:10
 #| msgid "Select your PDF file using the button above or drag and drop it"
@@ -4593,9 +4593,9 @@ msgid "Ad-free experience"
 msgstr "विज्ञापन-मुक्त अनुभव"
 
 #: templates/frontend/pricing.html:152
-#| msgid "Batch processing (up to 20 files)"
+#| msgid "Batch processing (up to 10 files)"
 msgid "Batch processing (up to 10 files)"
-msgstr "बैच प्रसंस्करण (20 फाइलों तक)"
+msgstr "बैच प्रसंस्करण (10 फाइलों तक)"
 
 #: templates/frontend/pricing.html:158
 msgid "Become Daily Hero"
