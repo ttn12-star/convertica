@@ -98,6 +98,7 @@ services:
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
              python manage.py compilemessages &&
              python manage.py migrate &&
+             python manage.py create_subscription_plans &&
              mkdir -p /app/media/async_temp &&
              daphne -b 0.0.0.0 -p 8000 utils_site.asgi:application"
     volumes:
