@@ -14,7 +14,7 @@
 - 🆓 **100% Free** - All basic PDF tools available for free
 - 🔒 **Secure** - Files processed securely, automatically deleted after conversion
 - ⚡ **Fast** - Optimized for performance with async processing
-- 🌍 **Multilingual** - Available in 6 languages
+- 🌍 **Multilingual** - Available in 7 languages
 - 📱 **Responsive** - Works on all devices
 - 🎨 **Modern UI** - Beautiful interface built with Tailwind CSS
 
@@ -82,15 +82,16 @@ All conversion tools available at [convertica.net](https://convertica.net):
 - **Защита PDF** - установка пароля на PDF
 - **Разблокировка PDF** - снятие защиты с PDF (если известен пароль)
 
-## 🌍 Многоязычность
+## 🌍 Multilingual Support
 
-Проект поддерживает 6 языков:
+Available in 7 languages with automatic language detection:
 - 🇬🇧 English
-- 🇷🇺 Русский
-- 🇵🇱 Polski
+- 🇷🇺 Русский (Russian)
+- 🇵🇱 Polski (Polish)
 - 🇮🇳 हिंदी (Hindi)
-- 🇪🇸 Español
-- 🇮🇩 Bahasa Indonesia
+- 🇪🇸 Español (Spanish)
+- 🇮🇩 Bahasa Indonesia (Indonesian)
+- 🇸🇦 العربية (Arabic)
 
 Автоматическое определение языка пользователя, SEO-оптимизированный контент для каждого языка.
 
@@ -549,7 +550,9 @@ Proprietary - All rights reserved
 
 **[Convertica.net](https://convertica.net) - Free Online PDF Tools** 🚀
 
-[Convert PDF to Word](https://convertica.net/pdf-to-word/) | [Merge PDF Files](https://convertica.net/merge-pdf/) | [Compress PDF](https://convertica.net/compress-pdf/) | [All Tools](https://convertica.net/all-tools/)
+**22 Free PDF Tools:**
+
+[PDF to Word Converter](https://convertica.net/pdf-to-word/) | [Word to PDF Converter](https://convertica.net/word-to-pdf/) | [PDF to JPG Converter](https://convertica.net/pdf-to-jpg/) | [JPG to PDF Converter](https://convertica.net/jpg-to-pdf/) | [PDF to Excel Converter](https://convertica.net/pdf-to-excel/) | [Excel to PDF Converter](https://convertica.net/excel-to-pdf/) | [PowerPoint to PDF](https://convertica.net/ppt-to-pdf/) | [HTML to PDF](https://convertica.net/html-to-pdf/) | [Merge PDF Files Online](https://convertica.net/merge-pdf/) | [Split PDF Online](https://convertica.net/split-pdf/) | [Compress PDF Online](https://convertica.net/compress-pdf/) | [Rotate PDF Pages](https://convertica.net/rotate-pdf/) | [Crop PDF Online](https://convertica.net/crop-pdf/) | [Add Page Numbers to PDF](https://convertica.net/add-page-numbers/) | [Add Watermark to PDF](https://convertica.net/add-watermark/) | [Extract PDF Pages](https://convertica.net/extract-pages/) | [Remove PDF Pages](https://convertica.net/remove-pages/) | [Organize PDF Pages](https://convertica.net/organize-pdf/) | [Protect PDF with Password](https://convertica.net/protect-pdf/) | [Unlock PDF Online](https://convertica.net/unlock-pdf/) | [PDF to HTML Converter](https://convertica.net/pdf-to-html/) | [PDF to PowerPoint](https://convertica.net/pdf-to-ppt/)
 
 Made with ❤️ using Django and Python
 
