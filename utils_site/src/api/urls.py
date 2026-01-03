@@ -5,10 +5,12 @@ from .async_views import TaskResultAPIView, TaskStatusAPIView
 from .cancel_task_view import cancel_task, mark_operation_abandoned
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
-from .pdf_convert.async_views import (PDFToExcelAsyncAPIView,
-                                      PDFToJPGAsyncAPIView,
-                                      PDFToWordAsyncAPIView,
-                                      WordToPDFAsyncAPIView)
+from .pdf_convert.async_views import (
+    PDFToExcelAsyncAPIView,
+    PDFToJPGAsyncAPIView,
+    PDFToWordAsyncAPIView,
+    WordToPDFAsyncAPIView,
+)
 from .pdf_convert.excel_to_pdf.batch_views import ExcelToPDFBatchAPIView
 from .pdf_convert.excel_to_pdf.views import ExcelToPDFAPIView
 from .pdf_convert.jpg_to_pdf.batch_views import JPGToPDFBatchAPIView
