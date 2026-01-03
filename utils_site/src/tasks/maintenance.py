@@ -301,17 +301,20 @@ def cleanup_stuck_operations(max_age_hours: int = 24):
 
 
 @shared_task(name="maintenance.cleanup_old_operations", queue="maintenance")
-def cleanup_old_operations(retention_days: int = 30):
+def cleanup_old_operations(retention_days: int = 365):
     """
-    Delete old OperationRun records.
+    Delete old OperationRun records with export.
 
-    Removes operation records older than retention_days to keep database size manageable.
+    Exports operation records to JSON before deletion, then removes records
+    older than retention_days to keep database size manageable.
 
     Args:
-        retention_days: Number of days to retain operation records (default: 30)
+        retention_days: Number of days to retain operation records (default: 365)
     """
     try:
+        import json
         from datetime import timedelta
+        from pathlib import Path
 
         from src.users.models import OperationRun
 
@@ -319,18 +322,89 @@ def cleanup_old_operations(retention_days: int = 30):
 
         old_operations = OperationRun.objects.filter(created_at__lt=cutoff_time)
         deleted_count = old_operations.count()
-        old_operations.delete()
 
-        logger.info(
-            f"Cleanup old operations completed: {deleted_count} operations deleted",
-            extra={
-                "event": "cleanup_old_operations",
+        if deleted_count > 0:
+            # Export to JSON before deletion
+            export_dir = Path("/app/logs/operation_exports")
+            export_dir.mkdir(parents=True, exist_ok=True)
+
+            export_file = (
+                export_dir
+                / f"operations_export_{timezone.now().strftime('%Y%m%d_%H%M%S')}.json"
+            )
+
+            # Prepare data for export
+            export_data = []
+            for op in old_operations.values(
+                "id",
+                "conversion_type",
+                "status",
+                "user_id",
+                "is_premium",
+                "created_at",
+                "completed_at",
+                "duration_ms",
+                "file_size_bytes",
+                "error_message",
+            ):
+                # Convert datetime to string for JSON serialization
+                op["created_at"] = (
+                    op["created_at"].isoformat() if op["created_at"] else None
+                )
+                op["completed_at"] = (
+                    op["completed_at"].isoformat() if op["completed_at"] else None
+                )
+                export_data.append(op)
+
+            # Write to file
+            with open(export_file, "w") as f:
+                json.dump(
+                    {
+                        "export_date": timezone.now().isoformat(),
+                        "retention_days": retention_days,
+                        "records_count": deleted_count,
+                        "operations": export_data,
+                    },
+                    f,
+                    indent=2,
+                )
+
+            logger.info(
+                f"Exported {deleted_count} operations to {export_file}",
+                extra={
+                    "event": "operations_exported",
+                    "count": deleted_count,
+                    "file": str(export_file),
+                },
+            )
+
+            # Now delete
+            old_operations.delete()
+
+            logger.info(
+                f"Cleanup old operations completed: {deleted_count} operations deleted",
+                extra={
+                    "event": "cleanup_old_operations",
+                    "deleted_count": deleted_count,
+                    "retention_days": retention_days,
+                    "export_file": str(export_file),
+                },
+            )
+
+            return {
+                "status": "success",
                 "deleted_count": deleted_count,
-                "retention_days": retention_days,
-            },
-        )
-
-        return {"status": "success", "deleted_count": deleted_count}
+                "export_file": str(export_file),
+            }
+        else:
+            logger.info(
+                "No old operations to cleanup",
+                extra={
+                    "event": "cleanup_old_operations",
+                    "retention_days": retention_days,
+                },
+            )
+            return {"status": "success", "deleted_count": 0}
 
     except Exception as exc:
         logger.error(
