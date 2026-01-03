@@ -12,6 +12,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.vary import vary_on_cookie
 from django.views.generic import TemplateView
 
+from utils_site.src.api.conversion_limits import MAX_PDF_PAGES
+
 
 def index_page(request):
     """Home page view."""
@@ -213,6 +215,7 @@ def _get_converter_context(
         "batch_enabled": batch_enabled,
         "batch_api_url": batch_api_url,
         "batch_field_name": batch_field_name,
+        "max_pages": MAX_PDF_PAGES,
     }
 
 
@@ -1266,7 +1269,6 @@ def contact_page(request):
 
     if request.method == "POST":
         form = ContactForm(request.POST)
-
         from src.api.spam_protection import verify_turnstile
 
         turnstile_token = request.POST.get("turnstile_token", "") or request.POST.get(

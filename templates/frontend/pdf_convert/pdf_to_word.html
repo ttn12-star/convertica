@@ -99,9 +99,9 @@
         <strong>{% trans "Note:" %}</strong>
         <span id="freeUserNote">
           {% if PAYMENTS_ENABLED %}
-            {% trans "PDF files with up to 30 pages are supported for free users. For larger files, please split them into smaller parts or upgrade to Premium to process larger files with higher limits." %}
+            {% trans "PDF files with up to %(max_pages)d pages are supported for free users. For larger files, please split them into smaller parts or upgrade to Premium to process larger files with higher limits." %}
           {% else %}
-            {% trans "PDF files with up to 30 pages are supported. For larger files, please split them into smaller parts." %}
+            {% trans "PDF files with up to %(max_pages)d pages are supported. For larger files, please split them into smaller parts." %}
           {% endif %}
         </span>
         <span id="premiumUserNote" class="hidden">

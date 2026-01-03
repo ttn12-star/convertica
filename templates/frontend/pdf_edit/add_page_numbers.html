@@ -218,7 +218,7 @@
     </ol>
     <div class="mt-4 pt-4 border-t border-blue-200">
       <p class="text-xs sm:text-sm text-gray-600">
-        <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to 30 pages are supported for adding page numbers. For larger files, please split them into smaller parts. The page numbers will be added according to your selected position, format, and font size." %}
+        <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to %(max_pages)d pages are supported for adding page numbers. For larger files, please split them into smaller parts. The page numbers will be added according to your selected position, format, and font size." %}
       </p>
     </div>
   </div>
@@ -248,7 +248,7 @@
     window.DOWNLOAD_BUTTON_TEXT = "{% filter escapejs %}{% trans 'Download File' %}{% endfilter %}";
     window.EDIT_ANOTHER_TEXT = "{% filter escapejs %}{% trans 'Edit another file' %}{% endfilter %}";
     window.ERROR_TITLE = "{% filter escapejs %}{% trans 'Error' %}{% endfilter %}";
-    window.MAX_FREE_PDF_PAGES = {{ conversion_limits.max_free_pdf_pages }};
+    window.MAX_FREE_PDF_PAGES = {{ max_pages }};
     {% if PAYMENTS_ENABLED %}
       window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!' %}{% endfilter %}";
       window.PREMIUM_LINK = "{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}";
