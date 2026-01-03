@@ -133,7 +133,7 @@ try:
             "cleanup-old-operations": {
                 "task": "maintenance.cleanup_old_operations",
                 "schedule": 86400.0,  # Every 24 hours
-                "kwargs": {"retention_days": 30},  # Keep operations for 30 days
+                "kwargs": {"retention_days": 365},  # Keep operations for 1 year
             },
         },
     )
