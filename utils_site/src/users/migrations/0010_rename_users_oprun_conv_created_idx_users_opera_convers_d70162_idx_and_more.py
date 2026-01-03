@@ -10,31 +10,81 @@ def rename_indexes_safe(apps, schema_editor):
 
     with connection.cursor() as cursor:
         # Get all existing indexes
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT indexname FROM pg_indexes
             WHERE tablename IN ('users_operationrun', 'users_stripewebhookevent')
-        """)
+        """
+        )
         existing_indexes = {row[0] for row in cursor.fetchall()}
 
         # Rename only if old index exists and new doesn't
         renames = [
-            ('users_operationrun', 'users_oprun_conv_created_idx', 'users_opera_convers_d70162_idx'),
-            ('users_operationrun', 'users_oprun_status_created_idx', 'users_opera_status_117423_idx'),
-            ('users_operationrun', 'users_oprun_user_created_idx', 'users_opera_user_id_136365_idx'),
-            ('users_operationrun', 'users_oprun_task_id_idx', 'users_opera_task_id_ce08c4_idx'),
-            ('users_operationrun', 'users_oprun_request_id_idx', 'users_opera_request_7dd5ee_idx'),
-            ('users_operationrun', 'users_oprun_prem_conv_created_idx', 'users_opera_is_prem_4170d1_idx'),
-            ('users_operationrun', 'users_opera_user_id_status_created_idx', 'users_opera_user_id_44f659_idx'),
-            ('users_operationrun', 'users_opera_is_prem_status_created_idx', 'users_opera_is_prem_cc29d0_idx'),
-            ('users_operationrun', 'users_opera_conv_ty_status_created_idx', 'users_opera_convers_582843_idx'),
-            ('users_stripewebhookevent', 'users_stripe_event_id_idx', 'users_strip_event_i_20fac7_idx'),
-            ('users_stripewebhookevent', 'users_stripe_event_type_created_idx', 'users_strip_event_t_abb95e_idx'),
-            ('users_stripewebhookevent', 'users_stripe_event_processed_at_idx', 'users_strip_process_3e3129_idx'),
+            (
+                "users_operationrun",
+                "users_oprun_conv_created_idx",
+                "users_opera_convers_d70162_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_oprun_status_created_idx",
+                "users_opera_status_117423_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_oprun_user_created_idx",
+                "users_opera_user_id_136365_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_oprun_task_id_idx",
+                "users_opera_task_id_ce08c4_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_oprun_request_id_idx",
+                "users_opera_request_7dd5ee_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_oprun_prem_conv_created_idx",
+                "users_opera_is_prem_4170d1_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_user_id_status_created_idx",
+                "users_opera_user_id_44f659_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_is_prem_status_created_idx",
+                "users_opera_is_prem_cc29d0_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_conv_ty_status_created_idx",
+                "users_opera_convers_582843_idx",
+            ),
+            (
+                "users_stripewebhookevent",
+                "users_stripe_event_id_idx",
+                "users_strip_event_i_20fac7_idx",
+            ),
+            (
+                "users_stripewebhookevent",
+                "users_stripe_event_type_created_idx",
+                "users_strip_event_t_abb95e_idx",
+            ),
+            (
+                "users_stripewebhookevent",
+                "users_stripe_event_processed_at_idx",
+                "users_strip_process_3e3129_idx",
+            ),
         ]
 
         for table, old_name, new_name in renames:
             if old_name in existing_indexes and new_name not in existing_indexes:
-                cursor.execute(f'ALTER INDEX {old_name} RENAME TO {new_name}')
+                cursor.execute(f"ALTER INDEX {old_name} RENAME TO {new_name}")
 
 
 def reverse_rename_indexes(apps, schema_editor):
@@ -43,31 +93,81 @@ def reverse_rename_indexes(apps, schema_editor):
 
     with connection.cursor() as cursor:
         # Get all existing indexes
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT indexname FROM pg_indexes
             WHERE tablename IN ('users_operationrun', 'users_stripewebhookevent')
-        """)
+        """
+        )
         existing_indexes = {row[0] for row in cursor.fetchall()}
 
         # Reverse renames
         renames = [
-            ('users_operationrun', 'users_opera_convers_d70162_idx', 'users_oprun_conv_created_idx'),
-            ('users_operationrun', 'users_opera_status_117423_idx', 'users_oprun_status_created_idx'),
-            ('users_operationrun', 'users_opera_user_id_136365_idx', 'users_oprun_user_created_idx'),
-            ('users_operationrun', 'users_opera_task_id_ce08c4_idx', 'users_oprun_task_id_idx'),
-            ('users_operationrun', 'users_opera_request_7dd5ee_idx', 'users_oprun_request_id_idx'),
-            ('users_operationrun', 'users_opera_is_prem_4170d1_idx', 'users_oprun_prem_conv_created_idx'),
-            ('users_operationrun', 'users_opera_user_id_44f659_idx', 'users_opera_user_id_status_created_idx'),
-            ('users_operationrun', 'users_opera_is_prem_cc29d0_idx', 'users_opera_is_prem_status_created_idx'),
-            ('users_operationrun', 'users_opera_convers_582843_idx', 'users_opera_conv_ty_status_created_idx'),
-            ('users_stripewebhookevent', 'users_strip_event_i_20fac7_idx', 'users_stripe_event_id_idx'),
-            ('users_stripewebhookevent', 'users_strip_event_t_abb95e_idx', 'users_stripe_event_type_created_idx'),
-            ('users_stripewebhookevent', 'users_strip_process_3e3129_idx', 'users_stripe_event_processed_at_idx'),
+            (
+                "users_operationrun",
+                "users_opera_convers_d70162_idx",
+                "users_oprun_conv_created_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_status_117423_idx",
+                "users_oprun_status_created_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_user_id_136365_idx",
+                "users_oprun_user_created_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_task_id_ce08c4_idx",
+                "users_oprun_task_id_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_request_7dd5ee_idx",
+                "users_oprun_request_id_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_is_prem_4170d1_idx",
+                "users_oprun_prem_conv_created_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_user_id_44f659_idx",
+                "users_opera_user_id_status_created_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_is_prem_cc29d0_idx",
+                "users_opera_is_prem_status_created_idx",
+            ),
+            (
+                "users_operationrun",
+                "users_opera_convers_582843_idx",
+                "users_opera_conv_ty_status_created_idx",
+            ),
+            (
+                "users_stripewebhookevent",
+                "users_strip_event_i_20fac7_idx",
+                "users_stripe_event_id_idx",
+            ),
+            (
+                "users_stripewebhookevent",
+                "users_strip_event_t_abb95e_idx",
+                "users_stripe_event_type_created_idx",
+            ),
+            (
+                "users_stripewebhookevent",
+                "users_strip_process_3e3129_idx",
+                "users_stripe_event_processed_at_idx",
+            ),
         ]
 
         for table, new_name, old_name in renames:
             if new_name in existing_indexes and old_name not in existing_indexes:
-                cursor.execute(f'ALTER INDEX {new_name} RENAME TO {old_name}')
+                cursor.execute(f"ALTER INDEX {new_name} RENAME TO {old_name}")
 
 
 class Migration(migrations.Migration):
