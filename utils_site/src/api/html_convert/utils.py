@@ -228,19 +228,17 @@ class HTMLToPDFConverter:
         self, html_path: str, pdf_path: str, context: dict, **options
     ) -> None:
         """Convert HTML file to PDF using Playwright."""
-        loop = asyncio.get_event_loop()
+        try:
+            from playwright.async_api import async_playwright
+        except ImportError:
+            raise ConversionError(
+                "Playwright is not installed. Install with: pip install playwright",
+                context=context,
+            )
 
-        def _convert_with_playwright():
-            """Perform Playwright conversion with retry logic."""
+        # Perform conversion with retries
+        for attempt in range(self.max_retries + 1):
             try:
-                from playwright.async_api import async_playwright
-            except ImportError:
-                raise ConversionError(
-                    "Playwright is not installed. Install with: pip install playwright",
-                    context=context,
-                )
-
-            async def _run_conversion():
                 async with async_playwright() as p:
                     browser = await p.chromium.launch(headless=True)
                     page = await browser.new_page()
@@ -283,32 +281,17 @@ class HTMLToPDFConverter:
                     finally:
                         await browser.close()
 
-            # Run async function in sync context
-
-            try:
-                loop.run_until_complete(_run_conversion())
-            except Exception as e:
-                logger.error(
-                    f"Playwright conversion failed: {e}",
-                    extra={**context, "event": "playwright_error"},
-                )
-                raise ConversionError(
-                    f"Playwright conversion failed: {e}", context=context
-                )
-
-        # Perform conversion with retries
-        for attempt in range(self.max_retries + 1):
-            try:
-                await loop.run_in_executor(None, _convert_with_playwright)
                 break  # Success, exit retry loop
 
-            except ConversionError:
+            except Exception as e:
                 if attempt == self.max_retries:
                     logger.error(
                         f"Playwright conversion failed after {self.max_retries + 1} attempts",
                         extra={**context, "event": "playwright_max_retries"},
                     )
-                    raise
+                    raise ConversionError(
+                        f"Playwright conversion failed: {e}", context=context
+                    )
 
                 logger.warning(
                     f"Playwright conversion attempt {attempt + 1} failed, retrying...",
@@ -324,19 +307,17 @@ class HTMLToPDFConverter:
         self, url: str, pdf_path: str, context: dict, **options
     ) -> None:
         """Convert URL to PDF using Playwright."""
-        loop = asyncio.get_event_loop()
+        try:
+            from playwright.async_api import async_playwright
+        except ImportError:
+            raise ConversionError(
+                "Playwright is not installed. Install with: pip install playwright",
+                context=context,
+            )
 
-        def _convert_url_with_playwright():
-            """Perform Playwright URL conversion with retry logic."""
+        # Perform conversion with retries
+        for attempt in range(self.max_retries + 1):
             try:
-                from playwright.async_api import async_playwright
-            except ImportError:
-                raise ConversionError(
-                    "Playwright is not installed. Install with: pip install playwright",
-                    context=context,
-                )
-
-            async def _run_url_conversion():
                 async with async_playwright() as p:
                     browser = await p.chromium.launch(headless=True)
                     page = await browser.new_page()
@@ -381,32 +362,17 @@ class HTMLToPDFConverter:
                     finally:
                         await browser.close()
 
-            # Run async function in sync context
-
-            try:
-                loop.run_until_complete(_run_url_conversion())
-            except Exception as e:
-                logger.error(
-                    f"Playwright URL conversion failed: {e}",
-                    extra={**context, "event": "playwright_url_error"},
-                )
-                raise ConversionError(
-                    f"Playwright URL conversion failed: {e}", context=context
-                )
-
-        # Perform conversion with retries
-        for attempt in range(self.max_retries + 1):
-            try:
-                await loop.run_in_executor(None, _convert_url_with_playwright)
                 break  # Success, exit retry loop
 
-            except ConversionError:
+            except Exception as e:
                 if attempt == self.max_retries:
                     logger.error(
                         f"Playwright URL conversion failed after {self.max_retries + 1} attempts",
                         extra={**context, "event": "playwright_url_max_retries"},
                     )
-                    raise
+                    raise ConversionError(
+                        f"Playwright URL conversion failed: {e}", context=context
+                    )
 
                 logger.warning(
                     f"Playwright URL conversion attempt {attempt + 1} failed, retrying...",
@@ -468,7 +434,7 @@ class HTMLToPDFConverter:
 _html_converter = HTMLToPDFConverter()
 
 
-async def convert_html_to_pdf(
+def convert_html_to_pdf(
     html_content: str,
     filename: str = "converted",
     suffix: str = "_convertica",
@@ -486,12 +452,19 @@ async def convert_html_to_pdf(
     Returns:
         Tuple of (input_html_path, output_pdf_path)
     """
-    return await _html_converter.convert_html_to_pdf(
-        html_content, filename, suffix, **options
-    )
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    try:
+        return loop.run_until_complete(
+            _html_converter.convert_html_to_pdf(
+                html_content, filename, suffix, **options
+            )
+        )
+    finally:
+        loop.close()
 
 
-async def convert_url_to_pdf(
+def convert_url_to_pdf(
     url: str, filename: str = "converted", suffix: str = "_convertica", **options
 ) -> tuple[str, str]:
     """
@@ -506,7 +479,14 @@ async def convert_url_to_pdf(
     Returns:
         Tuple of (url, output_pdf_path)
     """
-    return await _html_converter.convert_url_to_pdf(url, filename, suffix, **options)
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    try:
+        return loop.run_until_complete(
+            _html_converter.convert_url_to_pdf(url, filename, suffix, **options)
+        )
+    finally:
+        loop.close()
 
 
 def validate_html_content(html_content: str) -> tuple[bool, str | None]:

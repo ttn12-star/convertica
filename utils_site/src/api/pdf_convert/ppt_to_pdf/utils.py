@@ -104,6 +104,11 @@ class PowerPointToPDFConverter:
             # Convert using LibreOffice
             await self._convert_with_libreoffice_async(ppt_path, pdf_path, context)
 
+            # LibreOffice creates file as base_name.pdf, need to rename if suffix is used
+            libreoffice_output = os.path.join(tmp_dir, f"{base_name}.pdf")
+            if libreoffice_output != pdf_path and os.path.exists(libreoffice_output):
+                os.rename(libreoffice_output, pdf_path)
+
             # Validate output
             if not os.path.exists(pdf_path):
                 raise ConversionError(
@@ -293,7 +298,7 @@ class PowerPointToPDFConverter:
 _ppt_converter = PowerPointToPDFConverter()
 
 
-async def convert_ppt_to_pdf(
+def convert_ppt_to_pdf(
     uploaded_file: UploadedFile, suffix: str = "_convertica"
 ) -> tuple[str, str]:
     """
@@ -306,7 +311,16 @@ async def convert_ppt_to_pdf(
     Returns:
         Tuple of (input_ppt_path, output_pdf_path)
     """
-    return await _ppt_converter.convert_ppt_to_pdf(uploaded_file, suffix=suffix)
+    import asyncio
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    try:
+        return loop.run_until_complete(
+            _ppt_converter.convert_ppt_to_pdf(uploaded_file, suffix=suffix)
+        )
+    finally:
+        loop.close()
 
 
 def validate_ppt_file(uploaded_file: UploadedFile) -> tuple[bool, str | None]:

@@ -251,6 +251,96 @@ def cleanup_async_temp_files(max_age_seconds: int = 3600):
         return {"status": "error", "message": str(exc)}
 
 
+@shared_task(name="maintenance.cleanup_stuck_operations", queue="maintenance")
+def cleanup_stuck_operations(max_age_hours: int = 24):
+    """
+    Clean up stuck OperationRun records.
+
+    Marks operations stuck in 'running' or 'started' status as 'abandoned'
+    if they are older than max_age_hours.
+
+    Args:
+        max_age_hours: Maximum age in hours before marking as abandoned (default: 24)
+    """
+    try:
+        from datetime import timedelta
+
+        from src.users.models import OperationRun
+
+        cutoff_time = timezone.now() - timedelta(hours=max_age_hours)
+
+        stuck_operations = OperationRun.objects.filter(
+            status__in=["running", "started"], created_at__lt=cutoff_time
+        )
+
+        updated_count = stuck_operations.update(
+            status="abandoned",
+            finished_at=timezone.now(),
+            error_type="TimeoutError",
+            error_message="Operation abandoned - exceeded maximum processing time",
+        )
+
+        logger.info(
+            f"Cleanup stuck operations completed: {updated_count} operations marked as abandoned",
+            extra={
+                "event": "cleanup_stuck_operations",
+                "updated_count": updated_count,
+                "max_age_hours": max_age_hours,
+            },
+        )
+
+        return {"status": "success", "updated_count": updated_count}
+
+    except Exception as exc:
+        logger.error(
+            f"Cleanup stuck operations failed: {str(exc)}",
+            exc_info=True,
+            extra={"event": "cleanup_stuck_operations_failed"},
+        )
+        return {"status": "error", "message": str(exc)}
+
+
+@shared_task(name="maintenance.cleanup_old_operations", queue="maintenance")
+def cleanup_old_operations(retention_days: int = 30):
+    """
+    Delete old OperationRun records.
+
+    Removes operation records older than retention_days to keep database size manageable.
+
+    Args:
+        retention_days: Number of days to retain operation records (default: 30)
+    """
+    try:
+        from datetime import timedelta
+
+        from src.users.models import OperationRun
+
+        cutoff_time = timezone.now() - timedelta(days=retention_days)
+
+        old_operations = OperationRun.objects.filter(created_at__lt=cutoff_time)
+        deleted_count = old_operations.count()
+        old_operations.delete()
+
+        logger.info(
+            f"Cleanup old operations completed: {deleted_count} operations deleted",
+            extra={
+                "event": "cleanup_old_operations",
+                "deleted_count": deleted_count,
+                "retention_days": retention_days,
+            },
+        )
+
+        return {"status": "success", "deleted_count": deleted_count}
+
+    except Exception as exc:
+        logger.error(
+            f"Cleanup old operations failed: {str(exc)}",
+            exc_info=True,
+            extra={"event": "cleanup_old_operations_failed"},
+        )
+        return {"status": "error", "message": str(exc)}
+
+
 @shared_task(name="maintenance.update_statistics", queue="maintenance")
 def update_statistics():
     """

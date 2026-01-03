@@ -44,14 +44,22 @@ class HTMLToPDFConverter {
     }
 
     checkPremiumStatus() {
-        // Check if user is premium (this would typically come from backend)
+        // Check if user is premium and get character limits from backend
         fetch('/api/user-info/')
             .then(response => response.json())
             .then(data => {
                 this.isPremium = data.is_premium || false;
+                // Store limits from API
+                this.htmlMaxCharsFree = data.limits?.html_to_pdf_max_chars_free || 10000;
+                this.htmlMaxCharsPremium = data.limits?.html_to_pdf_max_chars_premium || 500000;
+                // Update character counter if it exists
+                this.updateCharCounter();
             })
             .catch(error => {
                 console.log('Could not check premium status:', error);
+                // Fallback to default limits
+                this.htmlMaxCharsFree = 10000;
+                this.htmlMaxCharsPremium = 500000;
             });
     }
 
@@ -81,6 +89,8 @@ class HTMLToPDFConverter {
 
     updateCharCounter() {
         const htmlContent = document.getElementById('htmlContent');
+        if (!htmlContent) return;
+
         const charCount = htmlContent.value.length;
 
         // Add character counter if it doesn't exist
@@ -91,7 +101,10 @@ class HTMLToPDFConverter {
             htmlContent.parentNode.appendChild(counter);
         }
 
-        const maxChars = this.isPremium ? 100000 : 10000; // Premium gets higher limit
+        // Use limits from API or fallback to defaults
+        const maxChars = this.isPremium
+            ? (this.htmlMaxCharsPremium || 500000)
+            : (this.htmlMaxCharsFree || 10000);
         counter.textContent = `${charCount.toLocaleString()} / ${maxChars.toLocaleString()} characters`;
 
         if (charCount > maxChars) {
@@ -112,8 +125,10 @@ class HTMLToPDFConverter {
             return;
         }
 
-        // Check character limit
-        const maxChars = this.isPremium ? 100000 : 10000;
+        // Check character limit using API limits
+        const maxChars = this.isPremium
+            ? (this.htmlMaxCharsPremium || 500000)
+            : (this.htmlMaxCharsFree || 10000);
         if (htmlContent.length > maxChars) {
             this.showError(`HTML content exceeds ${maxChars.toLocaleString()} character limit`);
             return;
@@ -139,14 +154,31 @@ class HTMLToPDFConverter {
                 }
             });
 
-            const result = await response.json();
-
-            if (response.ok) {
-                this.updateProgress(100, 'Conversion completed!');
-                this.showResult(result);
-            } else {
+            if (!response.ok) {
+                // Handle error response (JSON)
+                const result = await response.json();
                 throw new Error(result.error || 'Conversion failed');
             }
+
+            // Handle success response (PDF file)
+            this.updateProgress(50, 'Processing PDF...');
+            const blob = await response.blob();
+
+            // Get filename from Content-Disposition header
+            const contentDisposition = response.headers.get('Content-Disposition');
+            let filename = 'converted.pdf';
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+
+            // Create download link
+            const url = window.URL.createObjectURL(blob);
+
+            this.updateProgress(100, 'Conversion completed!');
+            this.showResult({ download_url: url, filename: filename });
         } catch (error) {
             this.showError(error.message);
             this.hideProgress();
@@ -162,16 +194,7 @@ class HTMLToPDFConverter {
             return;
         }
 
-        // Validate URL format
-        try {
-            new URL(url);
-        } catch {
-            this.showError('Please enter a valid URL');
-            return;
-        }
-
         this.showProgress();
-
         const formData = new FormData(this.urlForm);
 
         this.updateProgress(10, 'Fetching web page...');
@@ -185,14 +208,31 @@ class HTMLToPDFConverter {
                 }
             });
 
-            const result = await response.json();
-
-            if (response.ok) {
-                this.updateProgress(100, 'Conversion completed!');
-                this.showResult(result);
-            } else {
+            if (!response.ok) {
+                // Handle error response (JSON)
+                const result = await response.json();
                 throw new Error(result.error || 'Conversion failed');
             }
+
+            // Handle success response (PDF file)
+            this.updateProgress(50, 'Processing PDF...');
+            const blob = await response.blob();
+
+            // Get filename from Content-Disposition header
+            const contentDisposition = response.headers.get('Content-Disposition');
+            let filename = 'converted.pdf';
+            if (contentDisposition) {
+                const filenameMatch = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                if (filenameMatch && filenameMatch[1]) {
+                    filename = filenameMatch[1].replace(/['"]/g, '');
+                }
+            }
+
+            // Create download link
+            const url = window.URL.createObjectURL(blob);
+
+            this.updateProgress(100, 'Conversion completed!');
+            this.showResult({ download_url: url, filename: filename });
         } catch (error) {
             this.showError(error.message);
             this.hideProgress();
@@ -200,22 +240,37 @@ class HTMLToPDFConverter {
     }
 
     validateHTMLContent(htmlContent) {
-        // Basic security validation
-        const dangerousPatterns = [
-            /<script[^>]*>/i,
-            /javascript:/i,
-            /data:/i,
-            /vbscript:/i,
-            /<iframe[^>]*>/i,
-            /<object[^>]*>/i,
-            /<embed[^>]*>/i
-        ];
+        // Security validation - check for dangerous patterns
+        // Note: Backend also validates, this is just a quick frontend check
 
-        for (const pattern of dangerousPatterns) {
-            if (pattern.test(htmlContent)) {
-                this.showError('HTML contains potentially dangerous content that cannot be processed for security reasons');
-                return false;
-            }
+        // Check for script tags
+        if (/<script[\s>]/i.test(htmlContent)) {
+            this.showError('HTML contains <script> tags which cannot be processed for security reasons');
+            return false;
+        }
+
+        // Check for javascript: in attributes (but not in text content)
+        if (/\son\w+\s*=|href\s*=\s*["']javascript:/i.test(htmlContent)) {
+            this.showError('HTML contains javascript: event handlers which cannot be processed for security reasons');
+            return false;
+        }
+
+        // Check for vbscript:
+        if (/vbscript:/i.test(htmlContent)) {
+            this.showError('HTML contains vbscript: which cannot be processed for security reasons');
+            return false;
+        }
+
+        // Check for iframes (often used for XSS)
+        if (/<iframe[\s>]/i.test(htmlContent)) {
+            this.showError('HTML contains <iframe> tags which cannot be processed for security reasons');
+            return false;
+        }
+
+        // Check for object/embed tags
+        if (/<(object|embed)[\s>]/i.test(htmlContent)) {
+            this.showError('HTML contains <object> or <embed> tags which cannot be processed for security reasons');
+            return false;
         }
 
         return true;
@@ -250,8 +305,6 @@ class HTMLToPDFConverter {
         this.resultSection.classList.remove('hidden');
 
         if (result.download_url) {
-            this.downloadLink.href = result.download_url;
-
             // Generate filename based on mode
             let filename = 'converted.pdf';
             if (this.currentMode === 'html') {
@@ -262,6 +315,8 @@ class HTMLToPDFConverter {
                 filename = filenameInput.endsWith('.pdf') ? filenameInput : `${filenameInput}.pdf`;
             }
 
+            // Set download link attributes
+            this.downloadLink.href = result.download_url;
             this.downloadLink.download = filename;
         }
     }

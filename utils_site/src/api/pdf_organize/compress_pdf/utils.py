@@ -107,17 +107,19 @@ def compress_pdf(
             doc.save(output_path, **reduced)
 
         def _jpeg_quality(level: str) -> int:
+            # Increased quality to prevent black pages with noise
             if level == "high":
-                return 40
+                return 65  # Was 40 - too aggressive, caused artifacts
             if level == "medium":
-                return 60
-            return 80
+                return 75  # Was 60 - increased for better quality
+            return 85  # Was 80
 
         def _jpeg_max_dim(level: str) -> int:
+            # Increased dimensions to preserve quality
             if level == "high":
-                return 1600
+                return 2000  # Was 1600 - too small, caused quality loss
             if level == "medium":
-                return 2400
+                return 2800  # Was 2400
             return 4000
 
         def _recompress_jpegs(doc: fitz.Document, level: str) -> None:
@@ -161,17 +163,36 @@ def compress_pdf(
                     except Exception:
                         continue
 
-                    if im.mode not in {"RGB", "L"}:
+                    # Skip images that are not RGB or grayscale to prevent color space issues
+                    if im.mode not in {"RGB", "L", "CMYK"}:
                         try:
                             im = im.convert("RGB")
                         except Exception:
                             continue
 
+                    # Preserve CMYK images for print quality
+                    if im.mode == "CMYK":
+                        continue
+
                     w, h = im.size
+                    original_pixels = w * h
+
+                    # Skip very small images - compression won't help much
+                    if original_pixels < 10000:  # Less than 100x100
+                        continue
+
                     max_side = max(w, h)
                     if max_side > max_dim:
                         scale = max_dim / float(max_side)
                         new_size = (max(1, int(w * scale)), max(1, int(h * scale)))
+
+                        # Don't resize if it would reduce quality too much
+                        new_pixels = new_size[0] * new_size[1]
+                        if (
+                            new_pixels < original_pixels * 0.25
+                        ):  # Don't reduce by more than 75%
+                            continue
+
                         try:
                             im = im.resize(new_size, Image.LANCZOS)
                         except Exception:
@@ -186,7 +207,9 @@ def compress_pdf(
                     new_bytes = out.getvalue()
                     if not new_bytes:
                         continue
-                    if len(new_bytes) >= len(img_bytes):
+
+                    # Only replace if we save at least 10% (not just any reduction)
+                    if len(new_bytes) >= len(img_bytes) * 0.9:
                         continue
 
                     try:

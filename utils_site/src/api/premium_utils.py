@@ -93,11 +93,25 @@ def get_premium_features(user) -> dict:
     """
     is_premium = is_premium_active(user)
 
+    from django.conf import settings
+
     return {
         "is_premium": is_premium,
-        "max_file_size_mb": 200 if is_premium else 25,
-        "max_pages": 200 if is_premium else 30,  # Free: 30 pages, Premium: 200 pages
-        "max_batch_files": 10 if is_premium else 1,
+        "max_file_size_mb": (
+            settings.MAX_FILE_SIZE_PREMIUM / (1024 * 1024)
+            if is_premium
+            else settings.MAX_FILE_SIZE_FREE / (1024 * 1024)
+        ),
+        "max_pages": (
+            settings.MAX_PDF_PAGES_PREMIUM
+            if is_premium
+            else settings.MAX_PDF_PAGES_FREE
+        ),
+        "max_batch_files": (
+            settings.MAX_BATCH_FILES_PREMIUM
+            if is_premium
+            else settings.MAX_BATCH_FILES_FREE
+        ),
         "priority_queue": is_premium,
         "unlimited_conversions": is_premium,
         "no_ads": is_premium,

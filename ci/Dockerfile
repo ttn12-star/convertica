@@ -51,6 +51,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-crosextra-carlito \
     fonts-noto-core \
     fonts-noto-cjk \
+    # Unifont for Playwright (replaces ttf-unifont)
+    fonts-unifont \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Playwright browser dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libnss3 \
+    libnspr4 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libdbus-1-3 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm1 \
+    libasound2 \
+    libpango-1.0-0 \
+    libcairo2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install remaining dependencies
@@ -72,6 +94,10 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 # Use pip cache mount for GitHub Actions (works with buildx)
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --no-cache-dir -r requirements.txt
+
+# Install Playwright browsers (only Chromium for HTML/URL to PDF)
+# Dependencies already installed manually above, so skip --with-deps
+RUN playwright install chromium
 
 # Production stage
 FROM python:3.12-slim AS production
@@ -103,6 +129,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    libnss3 \
+    libnspr4 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libdbus-1-3 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm1 \
+    libasound2 \
+    libpango-1.0-0 \
+    libcairo2 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gettext \
     curl \
     && rm -rf /var/lib/apt/lists/*
@@ -118,6 +163,9 @@ WORKDIR /app
 # Copy Python dependencies from builder
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
+
+# Copy Playwright browsers from builder to appuser home directory
+COPY --from=builder --chown=appuser:appuser /root/.cache/ms-playwright /home/appuser/.cache/ms-playwright
 
 # Copy application code
 COPY --chown=appuser:appuser . .

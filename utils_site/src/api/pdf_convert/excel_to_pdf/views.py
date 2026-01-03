@@ -42,7 +42,7 @@ class ExcelToPDFAPIView(BaseConversionAPIView):
         """Handle POST request with Swagger documentation."""
         return super().post(request)
 
-    def perform_conversion(self, uploaded_file, **kwargs) -> tuple[str, str]:
+    def perform_conversion(self, uploaded_file, context, **kwargs) -> tuple[str, str]:
         """Convert Excel to PDF."""
         excel_path, output_path = convert_excel_to_pdf(
             uploaded_file, suffix="_convertica"
