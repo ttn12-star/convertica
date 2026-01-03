@@ -20,6 +20,7 @@ class HTMLToPDFAPIView(BaseConversionAPIView):
     ALLOWED_CONTENT_TYPES = {"text/html", "text/plain", "application/json"}
     CONVERSION_TYPE = "html_to_pdf"
     VALIDATE_PDF_PAGES = False  # Not applicable for HTML content
+    FILE_FIELD_REQUIRED = False  # HTML conversion uses content field, not file upload
 
     def get_serializer_class(self):
         """Return appropriate serializer for this view."""
@@ -37,7 +38,8 @@ class HTMLToPDFAPIView(BaseConversionAPIView):
     def perform_conversion(self, _uploaded_file, context, **_kwargs) -> tuple[str, str]:
         """Convert HTML content to PDF."""
         request = context.get("request")
-        serializer = self.get_serializer(data=request.data)
+        serializer_class = self.get_serializer_class()
+        serializer = serializer_class(data=request.data, context={"request": request})
         serializer.is_valid(raise_exception=True)
 
         html_content = serializer.validated_data["html_content"]
@@ -77,6 +79,7 @@ class URLToPDFAPIView(BaseConversionAPIView):
     ALLOWED_CONTENT_TYPES = set()
     CONVERSION_TYPE = "url_to_pdf"
     VALIDATE_PDF_PAGES = False  # Not applicable for URL conversion
+    FILE_FIELD_REQUIRED = False  # URL conversion doesn't need file upload
 
     def get_serializer_class(self):
         """Return appropriate serializer for this view."""
@@ -94,7 +97,8 @@ class URLToPDFAPIView(BaseConversionAPIView):
     def perform_conversion(self, _uploaded_file, context, **_kwargs) -> tuple[str, str]:
         """Convert URL to PDF."""
         request = context.get("request")
-        serializer = self.get_serializer(data=request.data)
+        serializer_class = self.get_serializer_class()
+        serializer = serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         url = serializer.validated_data["url"]

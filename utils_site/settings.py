@@ -486,6 +486,46 @@ ADMIN_URL_PATH = config("ADMIN_URL_PATH", default="admin")
 MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB
 CONVERSION_TIMEOUT = 600  # 10 minutes (in seconds)
 TEMP_DIR_PREFIX = "convertica_"
+
+# ============================================================================
+# CONVERSION LIMITS - All configurable via environment variables
+# ============================================================================
+
+# HTML to PDF character limits
+HTML_TO_PDF_MAX_CHARS_FREE = config(
+    "HTML_TO_PDF_MAX_CHARS_FREE", default=10000, cast=int
+)
+HTML_TO_PDF_MAX_CHARS_PREMIUM = config(
+    "HTML_TO_PDF_MAX_CHARS_PREMIUM", default=500000, cast=int
+)
+
+# PDF page limits
+MAX_PDF_PAGES_FREE = config("MAX_PDF_PAGES_FREE", default=30, cast=int)
+MAX_PDF_PAGES_PREMIUM = config("MAX_PDF_PAGES_PREMIUM", default=200, cast=int)
+MAX_PDF_PAGES_HEAVY_FREE = config("MAX_PDF_PAGES_HEAVY_FREE", default=30, cast=int)
+MAX_PDF_PAGES_HEAVY_PREMIUM = config(
+    "MAX_PDF_PAGES_HEAVY_PREMIUM", default=100, cast=int
+)
+
+# File size limits (in bytes)
+MAX_FILE_SIZE_FREE = config(
+    "MAX_FILE_SIZE_FREE", default=25 * 1024 * 1024, cast=int
+)  # 25 MB
+MAX_FILE_SIZE_PREMIUM = config(
+    "MAX_FILE_SIZE_PREMIUM", default=200 * 1024 * 1024, cast=int
+)  # 200 MB
+MAX_FILE_SIZE_HEAVY_FREE = config(
+    "MAX_FILE_SIZE_HEAVY_FREE", default=15 * 1024 * 1024, cast=int
+)  # 15 MB
+MAX_FILE_SIZE_HEAVY_PREMIUM = config(
+    "MAX_FILE_SIZE_HEAVY_PREMIUM", default=100 * 1024 * 1024, cast=int
+)  # 100 MB
+
+# Batch processing limits
+MAX_BATCH_FILES_FREE = config("MAX_BATCH_FILES_FREE", default=1, cast=int)
+MAX_BATCH_FILES_PREMIUM = config("MAX_BATCH_FILES_PREMIUM", default=10, cast=int)
+
+# DPI limits for image conversion
 DEFAULT_DPI = 300  # Default DPI for PDF to image conversion
 MAX_DPI = 600  # Maximum DPI for PDF to image conversion
 MIN_DPI = 72  # Minimum DPI for PDF to image conversion

@@ -26,19 +26,44 @@ from .logging_utils import get_logger
 logger = get_logger(__name__)
 
 # ============================================================================
-# CONVERSION LIMITS - Adjust these values as needed
+# CONVERSION LIMITS - Now read from Django settings (configurable via .env)
 # ============================================================================
 
-# Maximum number of pages allowed for PDF operations
-MAX_PDF_PAGES = 30  # Keep 30 pages, monitor memory usage
+try:
+    from django.conf import settings
 
-# Stricter limits for heavy operations (memory-intensive)
-MAX_PDF_PAGES_HEAVY = 30  # PDF to Word/Excel: fewer pages due to memory
-MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024  # 15 MB for heavy operations
+    # PDF page limits (free users)
+    MAX_PDF_PAGES = getattr(settings, "MAX_PDF_PAGES_FREE", 30)
+    MAX_PDF_PAGES_HEAVY = getattr(settings, "MAX_PDF_PAGES_HEAVY_FREE", 30)
 
-# Maximum file size in bytes (reduced for low-memory server)
-MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB for free users
-MAX_FILE_SIZE_PREMIUM = 200 * 1024 * 1024  # 200 MB for premium users
+    # PDF page limits (premium users)
+    MAX_PDF_PAGES_PREMIUM = getattr(settings, "MAX_PDF_PAGES_PREMIUM", 200)
+    MAX_PDF_PAGES_HEAVY_PREMIUM = getattr(settings, "MAX_PDF_PAGES_HEAVY_PREMIUM", 100)
+
+    # File size limits (free users)
+    MAX_FILE_SIZE = getattr(settings, "MAX_FILE_SIZE_FREE", 25 * 1024 * 1024)
+    MAX_FILE_SIZE_HEAVY = getattr(
+        settings, "MAX_FILE_SIZE_HEAVY_FREE", 15 * 1024 * 1024
+    )
+
+    # File size limits (premium users)
+    MAX_FILE_SIZE_PREMIUM = getattr(
+        settings, "MAX_FILE_SIZE_PREMIUM", 200 * 1024 * 1024
+    )
+    MAX_FILE_SIZE_HEAVY_PREMIUM = getattr(
+        settings, "MAX_FILE_SIZE_HEAVY_PREMIUM", 100 * 1024 * 1024
+    )
+
+except ImportError:
+    # Fallback values if Django settings not available
+    MAX_PDF_PAGES = 30
+    MAX_PDF_PAGES_HEAVY = 30
+    MAX_PDF_PAGES_PREMIUM = 200
+    MAX_PDF_PAGES_HEAVY_PREMIUM = 100
+    MAX_FILE_SIZE = 25 * 1024 * 1024
+    MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024
+    MAX_FILE_SIZE_PREMIUM = 200 * 1024 * 1024
+    MAX_FILE_SIZE_HEAVY_PREMIUM = 100 * 1024 * 1024
 
 # Timeout for conversion operations in seconds
 CONVERSION_TIMEOUT = 180  # 3 minutes max per conversion
@@ -78,15 +103,18 @@ def get_max_file_size_for_user(user, operation: str = None) -> int:
     """
     operation_key = (operation or "").lower()
 
+    # Premium users with active subscription get much higher limits
     if user.is_authenticated and hasattr(user, "is_premium") and user.is_premium:
         if hasattr(user, "is_subscription_active") and user.is_subscription_active():
             # Premium users get much higher limits
-            return MAX_FILE_SIZE_PREMIUM  # 200 MB
+            if operation_key in HEAVY_OPERATIONS:
+                return MAX_FILE_SIZE_HEAVY_PREMIUM
+            return MAX_FILE_SIZE_PREMIUM
 
     # Free users get standard limits
     if operation_key in HEAVY_OPERATIONS:
-        return MAX_FILE_SIZE_HEAVY  # 15 MB for heavy operations
-    return MAX_FILE_SIZE  # 25 MB for regular operations
+        return MAX_FILE_SIZE_HEAVY
+    return MAX_FILE_SIZE
 
 
 def get_max_pages_for_user(user, operation: str = None) -> int:
@@ -131,14 +159,15 @@ def get_max_pages_for_user(user, operation: str = None) -> int:
             if operation_key in premium_limits:
                 return premium_limits[operation_key]
 
+            # Premium users can process much larger PDFs
             if operation_key in HEAVY_OPERATIONS:
-                return 300
-            return 400
+                return MAX_PDF_PAGES_HEAVY_PREMIUM
+            return MAX_PDF_PAGES_PREMIUM
 
     # Free users get standard limits
     if operation_key in HEAVY_OPERATIONS:
-        return MAX_PDF_PAGES_HEAVY  # 50 for heavy operations
-    return MAX_PDF_PAGES  # 50 for regular operations
+        return MAX_PDF_PAGES_HEAVY
+    return MAX_PDF_PAGES
 
 
 def validate_pdf_pages(

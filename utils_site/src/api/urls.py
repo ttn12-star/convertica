@@ -5,12 +5,10 @@ from .async_views import TaskResultAPIView, TaskStatusAPIView
 from .cancel_task_view import cancel_task, mark_operation_abandoned
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
-from .pdf_convert.async_views import (
-    PDFToExcelAsyncAPIView,
-    PDFToJPGAsyncAPIView,
-    PDFToWordAsyncAPIView,
-    WordToPDFAsyncAPIView,
-)
+from .pdf_convert.async_views import (PDFToExcelAsyncAPIView,
+                                      PDFToJPGAsyncAPIView,
+                                      PDFToWordAsyncAPIView,
+                                      WordToPDFAsyncAPIView)
 from .pdf_convert.excel_to_pdf.batch_views import ExcelToPDFBatchAPIView
 from .pdf_convert.excel_to_pdf.views import ExcelToPDFAPIView
 from .pdf_convert.jpg_to_pdf.batch_views import JPGToPDFBatchAPIView
@@ -52,8 +50,11 @@ from .pdf_security.protect_pdf.batch_views import ProtectPDFBatchAPIView
 from .pdf_security.protect_pdf.views import ProtectPDFAPIView
 from .pdf_security.unlock_pdf.batch_views import UnlockPDFBatchAPIView
 from .pdf_security.unlock_pdf.views import UnlockPDFAPIView
+from .user_info_view import UserInfoAPIView
 
 urlpatterns = [
+    # User info endpoint
+    path("user-info/", UserInfoAPIView.as_view(), name="user_info_api"),
     # Stripe webhook endpoint (for Stripe CLI local testing)
     path("payments/webhook/", stripe_webhook, name="api_stripe_webhook"),
     # Async task endpoints (for progress polling and result download)

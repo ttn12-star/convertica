@@ -99,6 +99,9 @@ class BaseConversionAPIView(APIView, ABC):
     # Whether this operation requires PDF page validation
     VALIDATE_PDF_PAGES = True  # Set to False for non-PDF operations
 
+    # Whether file upload is required (False for URL/HTML conversions)
+    FILE_FIELD_REQUIRED = True
+
     def get_serializer_class(self):
         """Get serializer class. Override in subclasses."""
         raise NotImplementedError("Subclasses must implement get_serializer_class()")
@@ -186,15 +189,22 @@ class BaseConversionAPIView(APIView, ABC):
                 request.user if hasattr(request, "user") else None
             )
 
-            if not is_premium and file.size > 25 * 1024 * 1024:
+            free_limit = settings.MAX_FILE_SIZE_FREE
+            premium_limit = settings.MAX_FILE_SIZE_PREMIUM
+
+            if not is_premium and file.size > free_limit:
                 # Free user exceeding limit - offer upgrade
                 return Response(
                     {
                         "error": _(
-                            "File too large (%(file_mb).1f MB). Free users: max 25 MB. "
-                            "Upgrade to Premium for 200 MB limit! Get 1-day Premium for just $1."
+                            "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. "
+                            "Upgrade to Premium for %(premium_mb).0f MB limit! Get 1-day Premium for just $1."
                         )
-                        % {"file_mb": file.size / (1024 * 1024)}
+                        % {
+                            "file_mb": file.size / (1024 * 1024),
+                            "free_mb": free_limit / (1024 * 1024),
+                            "premium_mb": premium_limit / (1024 * 1024),
+                        }
                     },
                     status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
                 )
@@ -657,7 +667,8 @@ class BaseConversionAPIView(APIView, ABC):
             file_field_name
         )
 
-        if uploaded_file is None:
+        # Check if file is required (some conversions like URL to PDF don't need file upload)
+        if uploaded_file is None and self.FILE_FIELD_REQUIRED:
             context = build_request_context(request)
             log_file_validation_error(
                 logger, f"{file_field_name} field is missing", context
@@ -670,10 +681,30 @@ class BaseConversionAPIView(APIView, ABC):
         # Build context for logging
         context = build_request_context(request, uploaded_file=uploaded_file)
 
+        # Add request to context for converters that need it (URL/HTML)
+        context["request"] = request
+
         # Add any additional parameters from serializer to context
+        # Rename keys that conflict with LogRecord attributes
+        reserved_keys = {
+            "filename",
+            "funcName",
+            "levelname",
+            "lineno",
+            "module",
+            "msecs",
+            "name",
+            "pathname",
+            "process",
+            "processName",
+        }
         for key, value in serializer.validated_data.items():
             if key != file_field_name:
-                context[key] = value
+                # Rename reserved keys to avoid LogRecord conflicts
+                if key in reserved_keys:
+                    context[f"input_{key}"] = value
+                else:
+                    context[key] = value
 
         # OCR validation for premium users
         if context.get("ocr_enabled", False):
@@ -712,17 +743,18 @@ class BaseConversionAPIView(APIView, ABC):
                     status=status.HTTP_403_FORBIDDEN,
                 )
 
-        # Basic file validation
-        validation_error = self.validate_file_basic(uploaded_file, context)
-        if validation_error:
-            return validation_error
+        # Basic file validation (skip if no file uploaded - for URL/HTML conversions)
+        if uploaded_file is not None:
+            validation_error = self.validate_file_basic(uploaded_file, context)
+            if validation_error:
+                return validation_error
 
-        # Additional validation (can be overridden)
-        additional_validation_response = self.validate_file_additional(
-            uploaded_file, context, serializer.validated_data
-        )
-        if additional_validation_response is not None:
-            return additional_validation_response
+            # Additional validation (can be overridden)
+            additional_validation_response = self.validate_file_additional(
+                uploaded_file, context, serializer.validated_data
+            )
+            if additional_validation_response is not None:
+                return additional_validation_response
 
         tmp_dir = None
         start_time = None

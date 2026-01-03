@@ -76,3 +76,5 @@ channels==4.0.0
 channels-redis==4.1.0
 # Web Push - Push notifications for PWA
 pywebpush==1.14.0
+# Playwright - HTML/URL to PDF conversion
+playwright==1.48.0

@@ -39,7 +39,8 @@ class HTMLToPDFBatchAPIView(BaseConversionAPIView):
     def perform_conversion(self, _uploaded_file, context, **_kwargs) -> tuple[str, str]:
         """Convert HTML content to PDF."""
         request = context.get("request")
-        serializer = self.get_serializer(data=request.data)
+        serializer_class = self.get_serializer_class()
+        serializer = serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         html_content = serializer.validated_data["html_content"]

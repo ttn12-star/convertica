@@ -32,6 +32,7 @@ try:
     from src.tasks import email  # noqa: F401
     from src.tasks import maintenance  # noqa: F401
     from src.tasks import pdf_conversion  # noqa: F401
+    from src.tasks import user_cleanup  # noqa: F401
 
     # Also autodiscover from our custom tasks package
     app.autodiscover_tasks(["src.tasks"])
@@ -123,6 +124,16 @@ try:
             "update-subscription-daily": {
                 "task": "maintenance.update_subscription_daily",
                 "schedule": 86400.0,  # Every 24 hours
+            },
+            "cleanup-stuck-operations": {
+                "task": "maintenance.cleanup_stuck_operations",
+                "schedule": 3600.0,  # Every hour
+                "kwargs": {"max_age_hours": 1},  # Mark as abandoned after 1 hour
+            },
+            "cleanup-old-operations": {
+                "task": "maintenance.cleanup_old_operations",
+                "schedule": 86400.0,  # Every 24 hours
+                "kwargs": {"retention_days": 30},  # Keep operations for 30 days
             },
         },
     )

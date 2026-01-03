@@ -42,7 +42,7 @@ class PowerPointToPDFAPIView(BaseConversionAPIView):
         """Handle POST request with Swagger documentation."""
         return super().post(request)
 
-    def perform_conversion(self, uploaded_file, **kwargs) -> tuple[str, str]:
+    def perform_conversion(self, uploaded_file, context, **kwargs) -> tuple[str, str]:
         """Convert PowerPoint to PDF."""
         ppt_path, output_path = convert_ppt_to_pdf(uploaded_file, suffix="_convertica")
         return ppt_path, output_path

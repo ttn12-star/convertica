@@ -3,14 +3,11 @@ Celery tasks for user account cleanup and maintenance.
 """
 
 from celery import shared_task
-from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 from ..api.logging_utils import get_logger
 
 logger = get_logger(__name__)
-
-User = get_user_model()
 
 
 @shared_task(name="user_cleanup.delete_unverified_accounts")
@@ -24,7 +21,9 @@ def delete_unverified_accounts():
     - Are not premium users (to avoid accidental deletion of paying customers)
     """
     from allauth.account.models import EmailAddress
+    from django.contrib.auth import get_user_model
 
+    User = get_user_model()
     cutoff_date = timezone.now() - timezone.timedelta(days=30)
 
     # Find users without verified email addresses

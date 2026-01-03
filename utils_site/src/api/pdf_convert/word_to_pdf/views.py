@@ -52,11 +52,9 @@ class WordToPDFAPIView(BaseConversionAPIView):
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
         """Perform Word to PDF conversion."""
-        from src.api.pdf_convert.word_to_pdf.utils import (
-            convert_word_to_pdf as convert_word_to_pdf_sync,
-        )
+        from src.api.pdf_convert.word_to_pdf.utils import convert_word_to_pdf
 
-        docx_path, pdf_path = convert_word_to_pdf_sync(
+        docx_path, pdf_path = async_to_sync(convert_word_to_pdf)(
             uploaded_file, suffix="_convertica"
         )
         return docx_path, pdf_path
