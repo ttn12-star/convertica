@@ -3357,7 +3357,7 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:113
 msgid "Text-based PDFs work best."
-msgstr ""
+msgstr "PDF berbasis teks bekerja terbaik."
 
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:10
 #| msgid "Select your PDF file using the button above or drag and drop it"
@@ -4698,9 +4698,9 @@ msgid "Ad-free experience"
 msgstr "Pengalaman bebas iklan"
 
 #: templates/frontend/pricing.html:152
-#| msgid "Batch processing (up to 20 files)"
+#| msgid "Batch processing (up to 10 files)"
 msgid "Batch processing (up to 10 files)"
-msgstr "Pemrosesan batch (hingga 20 file)"
+msgstr "Pemrosesan batch (hingga 10 file)"
 
 #: templates/frontend/pricing.html:158
 msgid "Become Daily Hero"

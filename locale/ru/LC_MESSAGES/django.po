@@ -938,7 +938,7 @@ msgstr "Защищайте и оберегайте свои документы �
 #: utils_site/src/frontend/context_processors.py:535
 #| msgid "Convert to PDF"
 msgid "PowerPoint to PDF"
-msgstr "Конвертировать в ПДФ"
+msgstr "PowerPoint в ПДФ"
 
 #: templates/frontend/all_tools.html:121
 msgid "Convert PowerPoint presentations to PDF format."
@@ -1011,7 +1011,7 @@ msgstr "Извлекайте таблицы из ПДФ и конвертиру�
 #: utils_site/src/frontend/context_processors.py:541
 #| msgid "PDF to Word"
 msgid "PDF to PowerPoint"
-msgstr "ПДФ в Ворд"
+msgstr "ПДФ в PowerPoint"
 
 #: templates/frontend/all_tools.html:217
 #| msgid "Convert PDF pages to high-quality JPG images."
@@ -1456,7 +1456,7 @@ msgstr "Перетащите файл сюда"
 #: templates/frontend/pdf_edit/add_watermark.html:295
 #: templates/frontend/pdf_edit/crop_pdf.html:252
 msgid "up to 10 files"
-msgstr ""
+msgstr "до 10 файлов"
 
 #: templates/frontend/converter_generic.html:165
 #: templates/frontend/edit_pdf_generic.html:161
@@ -2469,7 +2469,7 @@ msgstr "Переключить меню"
 
 #: templates/frontend/includes/related_tools.html:9
 msgid "You might also like"
-msgstr ""
+msgstr "Вас также может заинтересовать"
 
 #: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
@@ -2734,7 +2734,7 @@ msgstr "JPG в ПДФ"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:66
 msgid "Enter your HTML code here..."
-msgstr ""
+msgstr "Вставьте HTML код или введите его здесь..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:73
 #: templates/frontend/pdf_convert/html_to_pdf.html:180
@@ -2751,7 +2751,7 @@ msgstr "Страница"
 #: templates/frontend/pdf_convert/html_to_pdf.html:101
 #: templates/frontend/pdf_convert/html_to_pdf.html:209
 msgid "Top Margin"
-msgstr ""
+msgstr "Верхний отступ"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:112
 #: templates/frontend/pdf_convert/html_to_pdf.html:220
@@ -2762,25 +2762,25 @@ msgstr "Снизу справа"
 #: templates/frontend/pdf_convert/html_to_pdf.html:123
 #: templates/frontend/pdf_convert/html_to_pdf.html:231
 msgid "Left Margin"
-msgstr ""
+msgstr "Левый отступ"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:134
 #: templates/frontend/pdf_convert/html_to_pdf.html:242
 msgid "Right Margin"
-msgstr ""
+msgstr "Правый отступ"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:163
 msgid "Web Page URL"
-msgstr ""
+msgstr "URL веб-страницы"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:172
 msgid "Enter the URL of the web page you want to convert to PDF"
-msgstr ""
+msgstr "Введите адрес веб-страницы, которую хотите преобразовать в PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:256
 #| msgid "Convert to PDF"
 msgid "Convert URL to PDF"
-msgstr "Конвертировать в ПДФ"
+msgstr "Конвертировать URL в ПДФ"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:265
 #| msgid "Converting your file..."
@@ -2789,11 +2789,11 @@ msgstr "Конвертация вашего файла..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:273
 msgid "Please wait while we convert your content to PDF..."
-msgstr ""
+msgstr "Идет преобразование вашего контента в PDF. Пожалуйста, подождите..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:290
 msgid "Your content has been converted to PDF successfully."
-msgstr ""
+msgstr "Готово! Ваш PDF документ успешно создан."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:296
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:188
@@ -3365,7 +3365,7 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:113
 msgid "Text-based PDFs work best."
-msgstr ""
+msgstr "Лучше всего работают PDF на основе текста."
 
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:10
 #| msgid "Select your PDF file using the button above or drag and drop it"
@@ -4709,9 +4709,9 @@ msgid "Ad-free experience"
 msgstr "Без рекламы"
 
 #: templates/frontend/pricing.html:152
-#| msgid "Batch processing (up to 20 files)"
+#| msgid "Batch processing (up to 10 files)"
 msgid "Batch processing (up to 10 files)"
-msgstr "Пакетная обработка (до 20 файлов)"
+msgstr "Пакетная обработка (до 10 файлов)"
 
 #: templates/frontend/pricing.html:158
 msgid "Become Daily Hero"
@@ -6744,7 +6744,7 @@ msgstr "Показывать ваш никнейм в Зале славы гер
 
 #: templates/users/profile_edit.html:117
 msgid "Become a hero as a premium subscriber!"
-msgstr "Станьте героем как премиум-подписчик!"
+msgstr "Станьте героем оформив премиум-подписку!"
 
 #: templates/users/profile_edit.html:134
 msgid "You're a Hero!"
@@ -6777,36 +6777,35 @@ msgstr "Или зарегистрироваться с email"
 #: templates/users/register.html:132
 msgid "By creating an account, you agree to our"
 msgstr "Создавая аккаунт, вы соглашаетесь с нашими"
-
 #: utils_site/src/api/base_views.py:157
 msgid "File is empty. Please upload a valid file."
-msgstr ""
+msgstr "Файл пуст. Пожалуйста, загрузите корректный файл."
 
 #: utils_site/src/api/base_views.py:169
 msgid "File is too small to be valid."
-msgstr ""
+msgstr "Файл слишком мал. Загрузите файл соответствующего размера."
 
 #: utils_site/src/api/base_views.py:200
 #, python-format
 msgid ""
 "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade "
 "to Premium for %(premium_mb).0f MB limit! Get 1-day Premium for just $1."
-msgstr ""
+msgstr "Файл слишком большой (%(file_mb).1f МБ). Бесплатные пользователи: максимум %(free_mb).0f МБ. Перейдите на Premium для лимита %(premium_mb).0f МБ! Получите 1-дневный Premium всего за $1."
 
 #: utils_site/src/api/base_views.py:214
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
-msgstr ""
+msgstr "Файл слишком большой. Максимальный размер: %(max_mb).0f МБ."
 
 #: utils_site/src/api/base_views.py:236
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
-msgstr ""
+msgstr "Неподдерживаемый тип файла: %(content_type)s"
 
 #: utils_site/src/api/base_views.py:255
 #, python-format
 msgid "Only %(extensions)s files are allowed."
-msgstr ""
+msgstr "Разрешены только файлы форматов: %(extensions)s"
 
 #: utils_site/src/api/conversion_limits.py:225
 #| msgid ""
@@ -7120,7 +7119,7 @@ msgstr "Инструменты для конвертации ПДФ"
 #: utils_site/src/frontend/context_processors.py:436
 #| msgid "Convert to PDF"
 msgid "Convert Word to PDF"
-msgstr "Конвертировать в ПДФ"
+msgstr "Конвертировать Ворд в ПДФ"
 
 #: utils_site/src/frontend/context_processors.py:442
 #: utils_site/src/frontend/views.py:358
@@ -7131,7 +7130,7 @@ msgstr "Могу ли я конвертировать ПДФ в JPG?"
 #: utils_site/src/frontend/context_processors.py:448
 #| msgid "Convert to PDF"
 msgid "Convert JPG to PDF"
-msgstr "Конвертировать в ПДФ"
+msgstr "Конвертировать JPG в ПДФ"
 
 #: utils_site/src/frontend/context_processors.py:454
 #: utils_site/src/frontend/views.py:857
@@ -7142,7 +7141,7 @@ msgstr "Инструменты для конвертации ПДФ"
 #: utils_site/src/frontend/context_processors.py:460
 #| msgid "Convert to PDF"
 msgid "Convert Excel to PDF"
-msgstr "Конвертировать в ПДФ"
+msgstr "Конвертировать Excel в ПДФ"
 
 #: utils_site/src/frontend/context_processors.py:466
 #| msgid "How do I merge multiple PDF files?"
@@ -7200,12 +7199,12 @@ msgstr "Как добавить водяной знак в ПДФ?"
 
 #: utils_site/src/frontend/context_processors.py:532
 msgid "Number PDF pages"
-msgstr ""
+msgstr "Нумерация страниц PDF | Добавление номеров в документы"
 
 #: utils_site/src/frontend/context_processors.py:538
 #| msgid "Convert to PDF"
 msgid "Convert PowerPoint to PDF"
-msgstr "Конвертировать в ПДФ"
+msgstr "Конвертировать PowerPointв ПДФ"
 
 #: utils_site/src/frontend/context_processors.py:544
 #: utils_site/src/frontend/views.py:995
@@ -7216,13 +7215,13 @@ msgstr "Инструменты для конвертации ПДФ"
 #: utils_site/src/frontend/context_processors.py:550
 #| msgid "Convert to PDF"
 msgid "Convert HTML to PDF"
-msgstr "Конвертировать в ПДФ"
+msgstr "Конвертировать HTML в ПДФ"
 
 #: utils_site/src/frontend/context_processors.py:556
 #: utils_site/src/frontend/views.py:1027
 #| msgid "Convert PDF tools"
 msgid "Convert PDF to HTML"
-msgstr "Инструменты для конвертации ПДФ"
+msgstr "Инструменты для конвертации ПДФ в HTML"
 
 #: utils_site/src/frontend/forms.py:14
 msgid "Your Name"
@@ -7297,7 +7296,7 @@ msgstr "Мгновенно конвертируйте документы ПДФ 
 #: utils_site/src/frontend/views.py:255
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to Word Converter"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Конвертер ПДФ в Ворд"
 
 #: utils_site/src/frontend/views.py:271
 #| msgid "About Us - Convertica"
@@ -7339,7 +7338,7 @@ msgstr "Пожалуйста, выберите файл ПДФ."
 #: utils_site/src/frontend/views.py:321
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to JPG - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "ПДФ в JPG - Convertica"
 
 #: utils_site/src/frontend/views.py:323
 msgid ""
@@ -7347,7 +7346,7 @@ msgid ""
 "with no watermark, high resolution (300-600 DPI), batch conversion. Extract "
 "images from PDF or convert PDF pages to JPG/PNG. Perfect for printing, web "
 "upload, and social media."
-msgstr ""
+msgstr "Конвертация ПДФ в JPG онлайн | Высококачественное преобразование PDF в изображения (300-600 DPI). Пакетная конвертация, извлечение картинок из ПДФ. Идеально для печати, веб-загрузки и социальных сетей. Без водяных знаков."
 
 #: utils_site/src/frontend/views.py:351
 #| msgid "Convert PDF pages to high-quality JPG images."
@@ -7357,12 +7356,12 @@ msgstr "Конвертируйте страницы ПДФ в высококач
 #: utils_site/src/frontend/views.py:352
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to JPG Converter"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Конвертер ПДФ в JPG"
 
 #: utils_site/src/frontend/views.py:368
 #| msgid "PDF to Word - Convertica"
 msgid "JPG to PDF - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "JPG в ПДФ - Convertica"
 
 #: utils_site/src/frontend/views.py:370
 msgid ""
@@ -7370,11 +7369,11 @@ msgid ""
 "into one PDF, combine photos to PDF, create PDF from images with high "
 "resolution. Perfect for documents, receipts, homework, and university "
 "submissions. No watermark, unlimited conversions."
-msgstr ""
+msgstr "Конвертация JPG в ПДФ онлайн | Бесплатное создание PDF из изображений без сжатия. Объединение нескольких фото в один документ с высоким разрешением. Идеально для документов, квитанций и учебных работ. Без водяных знаков."
 
 #: utils_site/src/frontend/views.py:399
 msgid "Convert your JPG images to PDF format in seconds"
-msgstr ""
+msgstr "Конвертируйте ваши изображения JPG в формат PDF за секунды"
 
 #: utils_site/src/frontend/views.py:400
 #| msgid "JPG to PDF"
@@ -7396,11 +7395,11 @@ msgid ""
 "Rotate PDF pages online free by 90, 180, or 270 degrees. Fast PDF rotation "
 "tool with no watermark, batch rotation, and quality preservation. Perfect "
 "for scanned documents and misoriented pages. No registration required."
-msgstr ""
+msgstr "Поворот страниц ПДФ онлайн | Бесплатный инструмент для поворота на 90, 180 или 270 градусов. Пакетная обработка, сохранение качества, без водяных знаков. Идеально для отсканированных документов и исправления ориентации."
 
 #: utils_site/src/frontend/views.py:444
 msgid "Rotate your PDF pages in seconds"
-msgstr ""
+msgstr "Поворот страниц ПДФ онлайн | Быстрое изменение ориентации документов"
 
 #: utils_site/src/frontend/views.py:461
 #| msgid "Add page numbers to your PDF documents."
@@ -7412,7 +7411,7 @@ msgid ""
 "Add page numbers to PDF online free with customizable position, font size, "
 "and format. Fast PDF page numbering tool with no watermark. Perfect for "
 "documents, reports, and academic papers. No registration required."
-msgstr ""
+msgstr "Добавление номеров страниц в PDF онлайн | Бесплатный инструмент нумерации с настраиваемым положением, размером шрифта и форматом. Без водяных знаков. Идеально для документов, отчетов и научных работ."
 
 #: utils_site/src/frontend/views.py:489
 #| msgid "Add page numbers to your PDF documents."
@@ -7430,7 +7429,7 @@ msgid ""
 "transparency, and size. Fast PDF watermarking tool with no watermark on tool "
 "itself. Perfect for document protection and branding. No registration "
 "required."
-msgstr ""
+msgstr "Добавление водяного знака в PDF онлайн | Бесплатный инструмент для нанесения текстовых и графических водяных знаков. Настройка позиции, прозрачности, размера. Идеально для защиты документов и брендирования. Без водяных знаков на самом инструменте."
 
 #: utils_site/src/frontend/views.py:535
 #| msgid "Add page numbers to your PDF documents."
@@ -7442,28 +7441,21 @@ msgstr "Добавляйте номера страниц в свои докум�
 msgid "Crop PDF - Convertica"
 msgstr "Связаться с нами - Convertica"
 
-#: utils_site/src/frontend/views.py:554
-msgid ""
-"Crop PDF pages online free with precise crop box coordinates. Fast PDF "
-"cropping tool with no watermark, visual editor, and quality preservation. "
-"Perfect for removing margins and unwanted content. No registration required."
-msgstr ""
-
 #: utils_site/src/frontend/views.py:579
 msgid "Crop your PDF pages in seconds"
-msgstr ""
+msgstr "Обрезка PDF страниц за секунды | Быстрое удаление полей и лишних элементов"
 
 #: utils_site/src/frontend/views.py:596
 #| msgid "PDF to Word - Convertica"
 msgid "Merge PDF - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Объединить ПДФ- Convertica"
 
 #: utils_site/src/frontend/views.py:598
 msgid ""
 "Merge PDF online free without watermark. Combine two PDFs into one, merge "
 "multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
 "merger with drag and drop. No registration required."
-msgstr ""
+msgstr "Объединение ПДФ файлов онлайн | Бесплатный инструмент для слияния нескольких ПДФ в один документ. Сохранение закладок и качества, drag-and-drop интерфейс. Без водяных знаков и ограничений."
 
 #: utils_site/src/frontend/views.py:620
 #| msgid "Combine multiple PDF files into one document."
@@ -7490,7 +7482,7 @@ msgid ""
 "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages "
 "from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
 "with no watermark. No registration required."
-msgstr ""
+msgstr "Разделяйте ПДФ онлайн бесплатно по страницам, диапазонам или закладкам. Извлекайте конкретные страницы из ПДФ, удаляйте страницы, делите PDF на несколько файлов. Быстрый разделитель ПДФ без водяного знака. Регистрация не требуется."
 
 #: utils_site/src/frontend/views.py:671
 #| msgid "Split PDF into multiple files by pages or ranges."
@@ -7507,7 +7499,7 @@ msgid ""
 "Remove pages from PDF online free. Delete unwanted pages quickly and easily "
 "with no watermark. Fast PDF page removal tool. Perfect for cleaning up "
 "documents. No registration required."
-msgstr ""
+msgstr "Удаляйте страницы из ПДФ онлайн бесплатно. Удаляйте нежелательные страницы быстро и легко без водяного знака. Быстрый инструмент удаления страниц ПДФ. Идеально для очистки документов. Регистрация не требуется."
 
 #: utils_site/src/frontend/views.py:713
 #| msgid "Remove unwanted pages from your PDF document."
@@ -7524,7 +7516,7 @@ msgid ""
 "Extract pages from PDF online free. Select and extract specific pages to "
 "create a new PDF. Fast PDF page extraction tool with no watermark. Perfect "
 "for creating custom documents. No registration required."
-msgstr ""
+msgstr "Извлекайте страницы из PDF онлайн бесплатно. Выбирайте и извлекайте конкретные страницы для создания нового ПДФ. Быстрый инструмент извлечения страниц PDF без водяного знака. Идеально для создания пользовательских документов. Регистрация не требуется."
 
 #: utils_site/src/frontend/views.py:756
 #| msgid "Extract specific pages from your PDF into a new file."
@@ -7541,7 +7533,7 @@ msgid ""
 "Organize PDF online free. Reorder pages, sort content, and manage your PDF "
 "files with drag and drop. Fast PDF organizer with no watermark. Perfect for "
 "organizing documents and reports. No registration required."
-msgstr ""
+msgstr "Организация ПДФ документов онлайн | Бесплатный редактор для изменения порядка страниц и сортировки контента. Drag-and-drop интерфейс, без водяных знаков. Идеально для отчетов и рабочих документов."
 
 #: utils_site/src/frontend/views.py:800
 #| msgid "Manage and organize your PDF documents"
@@ -7551,14 +7543,14 @@ msgstr "Управляйте и упорядочивайте свои докум
 #: utils_site/src/frontend/views.py:817
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to Excel - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "ПДФ в Эксель - Convertica"
 
 #: utils_site/src/frontend/views.py:819
 msgid ""
 "Convert PDF to Excel online free with accurate table extraction. Extract "
 "tables from PDF and convert to XLSX format. Perfect for invoices, reports, "
 "and data analysis. No registration required."
-msgstr ""
+msgstr "Конвертация ПДФ в Excel онлайн | Точное извлечение таблиц из ПДФ документов в XLSX формат. Идеально для счетов-фактур, отчетности и работы с данными. Бесплатно, без регистрации."
 
 #: utils_site/src/frontend/views.py:850
 #| msgid "Extract tables from PDF and convert to Excel format."
@@ -7585,16 +7577,16 @@ msgid ""
 "Convert Excel to PDF online free with high quality. Convert XLS and XLSX "
 "spreadsheets to PDF format. Preserve formatting, charts, and formulas. No "
 "registration required."
-msgstr ""
+msgstr "Конвертация Эксель в ПДФ онлайн | Бесплатный конвертер таблиц XLS/XLSX в документы. Сохранение форматирования, графиков и формул. Высокое качество, без регистрации."
 
 #: utils_site/src/frontend/views.py:886
 msgid "Convert Excel spreadsheets to PDF format"
-msgstr ""
+msgstr "Конвертировать таблицы Excel в формат ПДФ"
 
 #: utils_site/src/frontend/views.py:887
 #| msgid "Pages to Convert"
 msgid "Excel to PDF Converter"
-msgstr "Страницы для конвертации"
+msgstr "Конвертер Excel в ПДФ"
 
 #: utils_site/src/frontend/views.py:894
 #| msgid "Please select a PDF file."
@@ -7611,16 +7603,16 @@ msgid ""
 "Convert PowerPoint to PDF online free with high quality. Convert PPT and "
 "PPTX presentations to PDF format. Preserve slides, animations, and "
 "formatting. No registration required."
-msgstr ""
+msgstr "Конвертация PowerPoint в ПДФ онлайн | Бесплатный конвертер презентаций PPT/PPTX в документы. Сохранение слайдов, анимаций и дизайна. Высокое качество, без регистрации."
 
 #: utils_site/src/frontend/views.py:921
 msgid "Convert PowerPoint presentations to PDF format"
-msgstr ""
+msgstr "Конвертация PowerPoint в PDF онлайн | PPT/PPTX в документы"
 
 #: utils_site/src/frontend/views.py:922
 #| msgid "Pages to Convert"
 msgid "PowerPoint to PDF Converter"
-msgstr "Страницы для конвертации"
+msgstr "Конвертер PowerPoint в ПДФ"
 
 #: utils_site/src/frontend/views.py:929
 #| msgid "Please select a PDF file."
@@ -7630,31 +7622,31 @@ msgstr "Пожалуйста, выберите файл ПДФ."
 #: utils_site/src/frontend/views.py:938
 #| msgid "PDF to Word - Convertica"
 msgid "HTML to PDF - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "HTML в ПДФ - Convertica"
 
 #: utils_site/src/frontend/views.py:940
 msgid ""
 "Convert HTML to PDF online free with high quality. Convert HTML content and "
 "web pages to PDF format. Preserve styling, images, and layout. No "
 "registration required."
-msgstr ""
+msgstr "Конвертация HTML в ПДФ онлайн | Бесплатный создатель ПДФ из веб-страниц с сохранением дизайна. Высокое качество, поддержка CSS и изображений. Без регистрации."
 
 #: utils_site/src/frontend/views.py:956
 msgid "Convert HTML content and web pages to PDF format"
-msgstr ""
+msgstr "Конвертация HTML в PDF онлайн | Сохранение веб-страниц как документов"
 
 #: utils_site/src/frontend/views.py:957
 msgid "HTML to PDF Converter"
-msgstr ""
+msgstr "Конвертер HTML в PDF | Сохранение веб-страниц"
 
 #: utils_site/src/frontend/views.py:964
 msgid "Please enter HTML content or URL."
-msgstr ""
+msgstr "Пожалуйста, введите HTML код или адрес веб-страницы."
 
 #: utils_site/src/frontend/views.py:973
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to PowerPoint - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "ПДФ в PowerPoint - Convertica"
 
 #: utils_site/src/frontend/views.py:975
 msgid ""
@@ -7671,19 +7663,19 @@ msgstr "Мгновенно конвертируйте документы ПДФ 
 #: utils_site/src/frontend/views.py:989
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to PowerPoint Converter"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Конвертер ПДФ в PowerPoint"
 
 #: utils_site/src/frontend/views.py:1005
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to HTML - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "ПДФ в HTML - Convertica"
 
 #: utils_site/src/frontend/views.py:1007
 msgid ""
 "Convert PDF to HTML online free with text extraction. Extract content from "
 "PDF and convert to HTML format. Perfect for web publishing and content "
 "management. No registration required."
-msgstr ""
+msgstr "Конвертация ПДФ в HTML онлайн | Извлечение текста из ПДФ документов для веб-публикации. Бесплатный конвертер без регистрации. Идеально для блогов, сайтов и CMS систем."
 
 #: utils_site/src/frontend/views.py:1020
 #| msgid "Convert PDF documents to editable Word files instantly."
@@ -7693,7 +7685,7 @@ msgstr "Мгновенно конвертируйте документы ПДФ 
 #: utils_site/src/frontend/views.py:1021
 #| msgid "PDF to Word - Convertica"
 msgid "PDF to HTML Converter"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Конвертер ПДФ в HTML"
 
 #: utils_site/src/frontend/views.py:1037
 #| msgid "Contact Us - Convertica"
@@ -7705,7 +7697,7 @@ msgid ""
 "Compress PDF online free to reduce file size fast. PDF compressor with no "
 "watermark, compress PDF to under 1MB for email, reduce PDF file size without "
 "losing quality. Best PDF compression tool 2025."
-msgstr ""
+msgstr "Сжимайте PDF онлайн бесплатно для быстрого уменьшения размера файла. Компрессор PDF без водяных знаков, сжимайте ПДФ до размера менее 1 МБ для электронной почты, уменьшайте размер файла ПДФ без потери качества. Лучший инструмент сжатия ПДФ."
 
 #: utils_site/src/frontend/views.py:1065
 #| msgid "Reduce PDF file size without losing quality."
@@ -7715,7 +7707,7 @@ msgstr "Уменьшите размер файла ПДФ без потери к
 #: utils_site/src/frontend/views.py:1082
 #| msgid "PDF to Word - Convertica"
 msgid "Protect PDF with Password - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Защита PDF паролем - Безопасное шифрование документов | Convertica"
 
 #: utils_site/src/frontend/views.py:1084
 #| msgid ""
@@ -7736,14 +7728,14 @@ msgstr ""
 #: utils_site/src/frontend/views.py:1108
 #| msgid "PDF to Word - Convertica"
 msgid "Unlock PDF - Remove Password - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Разблокировать PDF - Удалить пароль - Convertica"
 
 #: utils_site/src/frontend/views.py:1110
 msgid ""
 "Unlock PDF online free. Remove password protection from PDF files with the "
 "correct password. Fast PDF unlock tool with no watermark. Perfect for "
 "accessing protected documents. No registration required."
-msgstr ""
+msgstr "Разблокировка PDF файлов онлайн | Бесплатное удаление паролей с защищенных документов. Быстрый инструмент без водяных знаков для доступа к зашифрованным PDF. Без регистрации."
 
 #: utils_site/src/frontend/views.py:1134
 #| msgid "Remove password protection from your PDF documents."
@@ -7758,48 +7750,48 @@ msgstr "Пожалуйста, выберите файл ПДФ."
 #: utils_site/src/frontend/views.py:1150
 #| msgid "PDF to Word - Convertica"
 msgid "All PDF Tools - Convertica"
-msgstr "ПДФ в Ворд - Convertica"
+msgstr "Все инструменты PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:1152
 msgid ""
 "Browse all PDF tools: Convert, Edit, Organize, and Secure PDFs. Free online "
 "PDF tools for all your document needs."
-msgstr ""
+msgstr "Все инструменты для работы с PDF онлайн | Конвертация, редактирование, организация и защита документов. Бесплатные PDF решения для любых задач."
 
 #: utils_site/src/frontend/views.py:1186
 msgid ""
 "Learn about Convertica - your trusted online PDF tools platform. We are "
 "committed to constant improvement and providing the best PDF conversion and "
 "editing experience."
-msgstr ""
+msgstr "Convertica - надежная платформа PDF инструментов | Мы постоянно улучшаем сервис и предлагаем лучший опыт работы с PDF документами онлайн."
 
 #: utils_site/src/frontend/views.py:1191
 msgid ""
 "about Convertica, PDF tools company, online PDF converter, PDF services, "
 "document conversion"
-msgstr ""
+msgstr "инструменты PDF, онлайн конвертер, PDF сервисы, редактирование документов, работа с PDF, Convertica"
 
 #: utils_site/src/frontend/views.py:1209
 msgid ""
 "Read Convertica's Privacy Policy. Learn how we protect your data and handle "
 "your files. Your privacy is our priority."
-msgstr ""
+msgstr "Политика конфиденциальности Convertica | Защита данных пользователей и безопасная обработка файлов. Ваша приватность важна для нас."
 
 #: utils_site/src/frontend/views.py:1214
 msgid ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
-msgstr ""
+msgstr "конфиденциальность данных, GDPR, безопасность информации, защита персональных данных, политика приватности"
 
 #: utils_site/src/frontend/views.py:1231
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms and conditions for "
 "using our PDF tools and services."
-msgstr ""
+msgstr "Условия использования сервисов Convertica | Пользовательское соглашение и правила работы с PDF инструментами онлайн."
 
 #: utils_site/src/frontend/views.py:1235
 msgid ""
 "terms of service, terms and conditions, user agreement, Convertica terms"
-msgstr ""
+msgstr "правила использования, лицензионное соглашение, условия сервиса, юридические документы, пользовательские условия"
 
 #: utils_site/src/frontend/views.py:1258
 #| msgid ""
@@ -7814,33 +7806,31 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:1284
 msgid "Please complete the CAPTCHA verification."
-msgstr ""
+msgstr "Пожалуйста, завершите проверку CAPTCHA."
 
 #: utils_site/src/frontend/views.py:1289 utils_site/src/frontend/views.py:1385
 msgid ""
 "Contact Convertica for support, questions, or feedback. We're here to help "
 "with all your PDF tool needs."
-msgstr ""
+msgstr "Обратитесь в поддержку Convertica | Ответы на вопросы и помощь в работе с PDF инструментами"
 
 #: utils_site/src/frontend/views.py:1293 utils_site/src/frontend/views.py:1388
 msgid "contact Convertica, support, customer service, help, feedback"
-msgstr ""
+msgstr "контакты Convertica, поддержка, служба поддержки, помощь, обратная связь"
 
 #: utils_site/src/frontend/views.py:1380
-#| msgid "Please correct the errors below:"
 msgid "Please correct the errors in the form below."
-msgstr "Пожалуйста, исправьте ошибки ниже:"
+msgstr "Пожалуйста, исправьте ошибки в форме ниже."
 
 #: utils_site/src/frontend/views.py:1406
-#| msgid "Frequently Asked Questions"
 msgid "Frequently Asked Questions (FAQ) - Convertica"
-msgstr "Часто задаваемые вопросы"
+msgstr "Часто задаваемые вопросы о PDF инструментах | Convertica FAQ"
 
 #: utils_site/src/frontend/views.py:1408
 msgid ""
 "Find answers to frequently asked questions about Convertica PDF tools. Learn "
 "how to convert, edit, and organize PDF files online for free."
-msgstr ""
+msgstr "Найдите ответы на часто задаваемые вопросы о PDF-инструментах Convertica. Узнайте, как конвертировать, редактировать и организовывать PDF файлы онлайн бесплатно."
 
 #: utils_site/src/frontend/views.py:1451
 #| msgid ""
@@ -7862,7 +7852,7 @@ msgid ""
 "Contribute to the Convertica project with a one-time or monthly donation. "
 "This does not unlock Premium features — it simply helps development. Heroes "
 "are Premium subscribers; contributions here are support only."
-msgstr ""
+msgstr "Поддержите развитие Convertica разовым или регулярным пожертвованием. Взносы идут на развитие сервиса и не дают доступ к Premium-функциям. Премиум-статус доступен только по подписке."
 
 #: utils_site/src/frontend/views.py:1767
 #| msgid "Thank you for your subscription"
@@ -7873,7 +7863,7 @@ msgstr "Спасибо за вашу подписку"
 msgid ""
 "Thank you for contributing to Convertica. Your support helps us keep "
 "improving the service."
-msgstr ""
+msgstr "Спасибо за поддержку Convertica. Ваш вклад помогает нам постоянно улучшать сервис."
 
 #: utils_site/src/users/forms.py:14 utils_site/src/users/forms.py:35
 msgid "Enter your email"
@@ -7977,7 +7967,7 @@ msgstr "Платежи"
 
 #: utils_site/src/users/views.py:52
 msgid "Please verify your email address before signing in."
-msgstr ""
+msgstr "Пожалуйста, подтвердите email перед входом."
 
 #: utils_site/src/users/views.py:62
 msgid "Account is disabled"
@@ -7991,15 +7981,11 @@ msgstr "Неверный email или пароль"
 msgid ""
 "Registration successful! Please check your email to verify your account "
 "before logging in."
-msgstr ""
-
-#: utils_site/src/users/views.py:128
-msgid "You have been successfully logged out."
-msgstr "Вы успешно вышли из системы."
+msgstr "Регистрация завершена! Проверьте вашу почту и подтвердите аккаунт."
 
 #: utils_site/src/users/views.py:175
 msgid "Your email is already verified."
-msgstr ""
+msgstr "Email уже подтвержден."
 
 #: utils_site/src/users/views.py:198
 #| msgid "If you don't receive the email, check your spam folder."

@@ -20,7 +20,7 @@ msgstr ""
 # Error pages translations
 #: templates/400.html:4 templates/400.html:5
 msgid "400 - Bad Request"
-msgstr "400 - Bad Request"
+msgstr ""
 
 #: templates/400.html:4 templates/403.html:4 templates/404.html:4
 #: templates/500.html:4 templates/502.html:4
@@ -30,11 +30,11 @@ msgstr ""
 
 #: templates/400.html:6
 msgid "The request could not be understood by the server."
-msgstr "The request could not be understood by the server."
+msgstr ""
 
 #: templates/400.html:33
 msgid "Bad Request"
-msgstr "Bad Request"
+msgstr ""
 
 #: templates/400.html:37
 msgid ""
@@ -46,7 +46,7 @@ msgstr ""
 
 #: templates/400.html:47
 msgid "Go Back"
-msgstr "Go Back"
+msgstr ""
 
 #: templates/400.html:55 templates/403.html:48 templates/404.html:46
 #: templates/500.html:55 templates/502.html:56
@@ -55,15 +55,15 @@ msgstr ""
 
 #: templates/403.html:4 templates/403.html:5
 msgid "403 - Access Forbidden"
-msgstr "403 - Access Forbidden"
+msgstr ""
 
 #: templates/403.html:6
 msgid "You don't have permission to access this resource."
-msgstr "You don't have permission to access this resource."
+msgstr ""
 
 #: templates/403.html:34
 msgid "Access Forbidden"
-msgstr "Access Forbidden"
+msgstr ""
 
 #: templates/403.html:38
 msgid ""
@@ -75,19 +75,19 @@ msgstr ""
 
 #: templates/403.html:56 templates/payments/error.html:88
 msgid "Contact Support"
-msgstr "Contact Support"
+msgstr ""
 
 #: templates/404.html:4 templates/404.html:5
 msgid "404 - Page Not Found"
-msgstr "404 - Page Not Found"
+msgstr ""
 
 #: templates/404.html:6
 msgid "The page you are looking for could not be found."
-msgstr "The page you are looking for could not be found."
+msgstr ""
 
 #: templates/404.html:32
 msgid "Oops! Page Not Found"
-msgstr "Oops! Page Not Found"
+msgstr ""
 
 #: templates/404.html:36
 msgid ""
@@ -99,11 +99,11 @@ msgstr ""
 
 #: templates/404.html:54
 msgid "Browse All Tools"
-msgstr "Browse All Tools"
+msgstr ""
 
 #: templates/404.html:60
 msgid "Popular pages:"
-msgstr "Popular pages:"
+msgstr ""
 
 #: templates/404.html:62 templates/blog/article_detail.html:356
 #: templates/frontend/all_tools.html:63
@@ -128,7 +128,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:621
 #| msgid "Merging PDFs..."
 msgid "Merge PDF"
-msgstr "Merging PDFs..."
+msgstr ""
 
 #: templates/404.html:64 templates/frontend/all_tools.html:390
 #: templates/frontend/includes/header.html:261
@@ -148,15 +148,15 @@ msgstr ""
 
 #: templates/500.html:4 templates/500.html:5
 msgid "500 - Server Error"
-msgstr "500 - Server Error"
+msgstr ""
 
 #: templates/500.html:6
 msgid "An internal server error occurred. We're working to fix it."
-msgstr "An internal server error occurred. We're working to fix it."
+msgstr ""
 
 #: templates/500.html:33
 msgid "Oops! Something Went Wrong"
-msgstr "Oops! Something Went Wrong"
+msgstr ""
 
 #: templates/500.html:37
 msgid ""
@@ -169,27 +169,27 @@ msgstr ""
 #: templates/500.html:47 templates/502.html:48 templates/offline.html:31
 #: templates/payments/cancel.html:61 templates/payments/error.html:82
 msgid "Try Again"
-msgstr "Try Again"
+msgstr ""
 
 #: templates/500.html:62
 msgid "If the problem persists, please"
-msgstr "If the problem persists, please"
+msgstr ""
 
 #: templates/500.html:63 templates/502.html:64
 msgid "contact us"
-msgstr "contact us"
+msgstr ""
 
 #: templates/502.html:4 templates/502.html:5
 msgid "502 - Bad Gateway"
-msgstr "502 - Bad Gateway"
+msgstr ""
 
 #: templates/502.html:6
 msgid "The server received an invalid response from an upstream server."
-msgstr "The server received an invalid response from an upstream server."
+msgstr ""
 
 #: templates/502.html:34
 msgid "Bad Gateway"
-msgstr "Bad Gateway"
+msgstr ""
 
 #: templates/502.html:38
 msgid ""
@@ -201,7 +201,7 @@ msgstr ""
 
 #: templates/502.html:63
 msgid "This is usually a temporary issue. If it persists, please"
-msgstr "This is usually a temporary issue. If it persists, please"
+msgstr ""
 
 #: templates/account/email_confirm.html:8
 #: templates/account/email_confirm.html:37
@@ -287,7 +287,7 @@ msgstr ""
 #: templates/account/password_change.html:39
 #: templates/account/password_set.html:39 templates/frontend/contact.html:158
 msgid "Please correct the errors below:"
-msgstr "Please correct the errors below:"
+msgstr ""
 
 #: templates/account/password_change.html:55
 #: templates/account/password_set.html:56
@@ -453,7 +453,7 @@ msgstr ""
 #: templates/account/password_reset_from_key_done.html:34
 #| msgid "Message Sent Successfully!"
 msgid "Password Updated Successfully!"
-msgstr "Message Sent Successfully!"
+msgstr ""
 
 #: templates/account/password_reset_from_key_done.html:38
 msgid ""
@@ -494,7 +494,7 @@ msgstr ""
 #: templates/account/password_set.html:96
 #| msgid "Enter the password that was used to protect the PDF file"
 msgid "Enter password"
-msgstr "Enter the password that was used to protect the PDF file"
+msgstr ""
 
 #: templates/account/password_set.html:122 utils_site/src/users/forms.py:58
 msgid "Confirm Password"
@@ -546,7 +546,7 @@ msgstr ""
 #: templates/blog/article_detail.html:346 templates/frontend/index.html:156
 #| msgid "Popular pages:"
 msgid "Popular Tools"
-msgstr "Popular pages:"
+msgstr ""
 
 #: templates/blog/article_detail.html:374 templates/frontend/all_tools.html:467
 #: templates/frontend/includes/header.html:309
@@ -574,7 +574,7 @@ msgstr ""
 #: templates/frontend/includes/related_tools.html:37
 #| msgid "Browse All Tools"
 msgid "View All Tools"
-msgstr "Browse All Tools"
+msgstr ""
 
 #: templates/blog/article_list.html:7
 msgid "blog, articles, PDF guides, document tips, tutorials"
@@ -739,7 +739,7 @@ msgstr ""
 #: templates/frontend/about.html:127
 #| msgid "Organizing..."
 msgid "PDF Organization"
-msgstr "Organizing..."
+msgstr ""
 
 #: templates/frontend/about.html:129
 msgid ""
@@ -824,7 +824,7 @@ msgstr ""
 #: templates/frontend/about.html:216 templates/frontend/index.html:507
 #| msgid "Browse All Tools"
 msgid "Explore All Tools"
-msgstr "Browse All Tools"
+msgstr ""
 
 #: templates/frontend/about.html:220
 msgid "Get Started"
@@ -833,7 +833,7 @@ msgstr ""
 #: templates/frontend/all_tools.html:24
 #| msgid "Browse All Tools"
 msgid "All PDF Tools"
-msgstr "Browse All Tools"
+msgstr ""
 
 #: templates/frontend/all_tools.html:27
 msgid ""
@@ -961,7 +961,7 @@ msgstr ""
 #: utils_site/src/frontend/context_processors.py:541
 #| msgid "Pages to Convert"
 msgid "PDF to PowerPoint"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/all_tools.html:217
 msgid "Convert PDF pages to editable PowerPoint slides."
@@ -1051,7 +1051,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:801 utils_site/src/frontend/views.py:807
 #| msgid "Failed to organize PDF"
 msgid "Organize PDF"
-msgstr "Failed to organize PDF"
+msgstr ""
 
 #: templates/frontend/all_tools.html:353
 msgid "Manage and organize your PDF documents"
@@ -1060,7 +1060,7 @@ msgstr ""
 #: templates/frontend/all_tools.html:374 templates/frontend/index.html:356
 #| msgid "Click the merge button to combine all PDF files into one document"
 msgid "Combine multiple PDF files into one document."
-msgstr "Click the merge button to combine all PDF files into one document"
+msgstr ""
 
 #: templates/frontend/all_tools.html:393 templates/frontend/index.html:380
 msgid "Split PDF into multiple files by pages or ranges."
@@ -1100,7 +1100,7 @@ msgstr ""
 #| msgid ""
 #| "Preview all pages and drag them to reorder pages in your PDF document"
 msgid "Reorder and organize pages in your PDF document."
-msgstr "Preview all pages and drag them to reorder pages in your PDF document"
+msgstr ""
 
 #: templates/frontend/all_tools.html:470 templates/frontend/index.html:477
 msgid "Reduce PDF file size without losing quality."
@@ -1135,7 +1135,7 @@ msgstr ""
 #: templates/frontend/all_tools.html:527
 #| msgid "Click the unlock button to remove password protection from your PDF"
 msgid "Remove password protection from your PDF documents."
-msgstr "Click the unlock button to remove password protection from your PDF"
+msgstr ""
 
 #: templates/frontend/contact.html:18 utils_site/src/frontend/views.py:1287
 #: utils_site/src/frontend/views.py:1383
@@ -1146,7 +1146,7 @@ msgstr ""
 #: templates/frontend/privacy.html:220 templates/frontend/terms.html:253
 #| msgid "contact us"
 msgid "Contact Us"
-msgstr "contact us"
+msgstr ""
 
 #: templates/frontend/contact.html:47
 msgid ""
@@ -1180,7 +1180,7 @@ msgstr ""
 #: templates/frontend/contact.html:89
 #| msgid "Contact Support"
 msgid "Support"
-msgstr "Contact Support"
+msgstr ""
 
 #: templates/frontend/contact.html:92
 msgid "Need help with our tools? We're here to assist you."
@@ -1200,7 +1200,7 @@ msgstr ""
 
 #: templates/frontend/contact.html:123
 msgid "Message Sent Successfully!"
-msgstr "Message Sent Successfully!"
+msgstr ""
 
 #: templates/frontend/contact.html:129
 msgid ""
@@ -1322,7 +1322,7 @@ msgstr ""
 
 #: templates/frontend/contact.html:371
 msgid "Sending..."
-msgstr "Sending..."
+msgstr ""
 
 #: templates/frontend/converter_generic.html:46
 msgid "Upload File"
@@ -1338,7 +1338,7 @@ msgstr ""
 #: templates/frontend/converter_generic.html:53
 #| msgid "Pages to Convert"
 msgid "Convert"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/converter_generic.html:54
 #| msgid ""
@@ -1358,7 +1358,7 @@ msgstr ""
 #: templates/frontend/converter_generic.html:61
 #| msgid "Download your compressed PDF file using the download button"
 msgid "Download your converted file instantly"
-msgstr "Download your compressed PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/converter_generic.html:106
 msgid "Select file to upload"
@@ -1488,7 +1488,7 @@ msgstr ""
 #: templates/frontend/converter_generic.html:232
 #| msgid "Download your cropped PDF file using the download button"
 msgid "Download your converted file using the download button"
-msgstr "Download your cropped PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/converter_generic.html:259
 #: templates/frontend/pdf_edit/add_page_numbers.html:253
@@ -1584,7 +1584,7 @@ msgstr ""
 #: templates/frontend/edit_pdf_generic.html:47
 #| msgid "Please select a PDF file."
 msgid "Select your PDF file to edit"
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: templates/frontend/edit_pdf_generic.html:52 templates/users/profile.html:225
 msgid "Edit"
@@ -1597,7 +1597,7 @@ msgstr ""
 #: templates/frontend/edit_pdf_generic.html:59
 #| msgid "Download your compressed PDF file using the download button"
 msgid "Download your edited PDF file"
-msgstr "Download your compressed PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/edit_pdf_generic.html:106
 msgid "Select files to edit (multiple)"
@@ -1630,7 +1630,7 @@ msgstr ""
 #: templates/frontend/edit_pdf_generic.html:213
 #| msgid "Download your rotated PDF file using the download button"
 msgid "Download your edited file using the download button"
-msgstr "Download your rotated PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/edit_pdf_generic.html:217
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:163
@@ -1653,7 +1653,7 @@ msgstr "Download your rotated PDF file using the download button"
 #: templates/frontend/pdf_security/protect_pdf.html:75
 #: templates/frontend/pdf_security/unlock_pdf.html:43
 msgid "Note:"
-msgstr "Note:"
+msgstr ""
 
 #: templates/frontend/edit_pdf_generic.html:217
 #| msgid ""
@@ -1931,7 +1931,7 @@ msgstr ""
 #: templates/frontend/faq.html:304
 #| msgid "Click the unlock button to remove password protection from your PDF"
 msgid "Can I remove password protection from a PDF?"
-msgstr "Click the unlock button to remove password protection from your PDF"
+msgstr ""
 
 #: templates/frontend/faq.html:308
 msgid ""
@@ -2142,7 +2142,7 @@ msgstr ""
 #: utils_site/src/frontend/context_processors.py:348
 #| msgid "Browse All Tools"
 msgid "All Tools"
-msgstr "Browse All Tools"
+msgstr ""
 
 #: templates/frontend/includes/footer.html:143
 #: templates/frontend/includes/header.html:740
@@ -2150,12 +2150,12 @@ msgstr "Browse All Tools"
 #: utils_site/src/frontend/context_processors.py:352
 #| msgid "contact us"
 msgid "Contact"
-msgstr "contact us"
+msgstr ""
 
 #: templates/frontend/includes/footer.html:152
 #| msgid "Contact Support"
 msgid "Contact Form"
-msgstr "Contact Support"
+msgstr ""
 
 #: templates/frontend/includes/footer.html:175
 #: templates/frontend/includes/header.html:1215
@@ -2166,7 +2166,7 @@ msgstr ""
 #: templates/frontend/includes/header.html:875
 #| msgid "Select page"
 msgid "Select language"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/includes/footer.html:196
 msgid "Resources"
@@ -2236,7 +2236,7 @@ msgstr ""
 #: templates/frontend/includes/header.html:605
 #| msgid "Organizing..."
 msgid "Organization"
-msgstr "Organizing..."
+msgstr ""
 
 #: templates/frontend/includes/header.html:660
 msgid "Page Management"
@@ -2269,7 +2269,7 @@ msgstr ""
 #: templates/frontend/includes/header.html:1194
 #| msgid "Select page"
 msgid "Hero Page"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/includes/header.html:780
 msgid "Premium features and heroes"
@@ -2413,7 +2413,7 @@ msgstr ""
 #: templates/frontend/index.html:480
 #| msgid "Try Again"
 msgid "Try it"
-msgstr "Try Again"
+msgstr ""
 
 #: templates/frontend/index.html:302 templates/frontend/pricing.html:23
 msgid "Become a Convertica Hero"
@@ -2476,7 +2476,7 @@ msgstr ""
 #: templates/frontend/index.html:565
 #| msgid "Browse All Tools"
 msgid "View all FAQ"
-msgstr "Browse All Tools"
+msgstr ""
 
 #: templates/frontend/index.html:577
 msgid "Latest Guides & Tips"
@@ -2506,7 +2506,7 @@ msgstr ""
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:13
 #| msgid "Download your compressed PDF file using the download button"
 msgid "Download your PDF file"
-msgstr "Download your compressed PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:48
 #: templates/frontend/pdf_convert/html_to_pdf.html:59
@@ -2530,7 +2530,7 @@ msgstr ""
 #: templates/frontend/pdf_convert/html_to_pdf.html:191
 #| msgid "Page Selection"
 msgid "Page Size"
-msgstr "Page Selection"
+msgstr ""
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:101
 #: templates/frontend/pdf_convert/html_to_pdf.html:209
@@ -2567,7 +2567,7 @@ msgstr ""
 #: templates/frontend/pdf_convert/html_to_pdf.html:265
 #| msgid "Sending..."
 msgid "Converting..."
-msgstr "Sending..."
+msgstr ""
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:273
 msgid "Please wait while we convert your content to PDF..."
@@ -2597,12 +2597,12 @@ msgstr ""
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:55
 #| msgid "Select page"
 msgid "Select image(s)"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:62
 #| msgid "Select page"
 msgid "Selected Images"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:69
 msgid "+ Add more images"
@@ -2619,7 +2619,7 @@ msgstr ""
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:107
 #| msgid "Image Quality (DPI)"
 msgid "Image Quality (JPEG)"
-msgstr "Image Quality (DPI)"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:112
 msgid "Low quality (smaller file)"
@@ -2628,17 +2628,17 @@ msgstr ""
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:113
 #| msgid "Maximum quality"
 msgid "Medium quality (balanced)"
-msgstr "Maximum quality"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:114
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:56
 msgid "High quality (recommended)"
-msgstr "High quality (recommended)"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:115
 #| msgid "Maximum quality"
 msgid "Maximum quality (larger file)"
-msgstr "Maximum quality"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:118
 #| msgid ""
@@ -2683,12 +2683,12 @@ msgstr ""
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:157
 #| msgid "Click the merge button to combine all PDF files into one document"
 msgid "Click the convert button to combine all images into one PDF"
-msgstr "Click the merge button to combine all PDF files into one document"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:159
 #| msgid "Download your compressed PDF file using the download button"
 msgid "Download your converted PDF file"
-msgstr "Download your compressed PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:163
 msgid ""
@@ -2810,11 +2810,11 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:6
 msgid "Page Selection"
-msgstr "Page Selection"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:12
 msgid "Pages to Convert"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:22
 #: templates/frontend/pdf_edit/add_page_numbers.html:141
@@ -2824,7 +2824,7 @@ msgstr "Pages to Convert"
 #: templates/frontend/pdf_organize/remove_pages.html:21
 #| msgid "Popular pages:"
 msgid "All pages"
-msgstr "Popular pages:"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:30
 #: templates/frontend/pdf_edit/add_page_numbers.html:157
@@ -2846,11 +2846,11 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:49
 msgid "Image Quality (DPI)"
-msgstr "Image Quality (DPI)"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:54
 msgid "Smaller file size"
-msgstr "Smaller file size"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:55
 #: templates/frontend/pdf_organize/compress_pdf.html:17
@@ -2859,11 +2859,11 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:57
 msgid "Very high quality"
-msgstr "Very high quality"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:58
 msgid "Maximum quality"
-msgstr "Maximum quality"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:61
 msgid ""
@@ -2891,7 +2891,7 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:77
 msgid "Click the convert button to start the PDF to JPG conversion process"
-msgstr "Click the convert button to start the PDF to JPG conversion process"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:78
 msgid ""
@@ -2993,7 +2993,7 @@ msgstr ""
 #: templates/frontend/pdf_convert/pdf_to_word.html:52
 #| msgid "Select page"
 msgid "Document Language"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:58
 msgid "Auto-detect"
@@ -3206,7 +3206,7 @@ msgstr ""
 #: templates/frontend/pdf_edit/add_page_numbers.html:12
 #: templates/frontend/pdf_edit/add_page_numbers.html:184
 msgid "Select page"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pdf_edit/add_page_numbers.html:28
 #: templates/frontend/pdf_edit/add_page_numbers.html:200
@@ -3379,7 +3379,7 @@ msgstr ""
 #: templates/frontend/pdf_edit/add_watermark.html:71
 #| msgid "Download your compressed PDF file using the download button"
 msgid "Download your watermarked PDF file"
-msgstr "Download your compressed PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_edit/add_watermark.html:240
 msgid "Select files to watermark (multiple)"
@@ -3396,7 +3396,7 @@ msgstr ""
 #: templates/frontend/pdf_edit/add_watermark.html:316
 #| msgid "Select page"
 msgid "Select Page"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pdf_edit/add_watermark.html:337
 msgid "Move watermark up/down"
@@ -3442,7 +3442,7 @@ msgstr ""
 
 #: templates/frontend/pdf_edit/add_watermark.html:423
 msgid "Choose Image"
-msgstr "Choose Image"
+msgstr ""
 
 #: templates/frontend/pdf_edit/add_watermark.html:432
 msgid "Color"
@@ -3499,7 +3499,7 @@ msgstr ""
 
 #: templates/frontend/pdf_edit/add_watermark.html:624
 msgid "Download your watermarked PDF file using the download button"
-msgstr "Download your watermarked PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_edit/add_watermark.html:628
 #| msgid ""
@@ -3520,7 +3520,7 @@ msgstr ""
 #: templates/frontend/pdf_organize/merge_pdf.html:128
 #: templates/frontend/pdf_organize/organize_pdf.html:40
 msgid "Failed to load PDF file. Please try again."
-msgstr "Failed to load PDF file. Please try again."
+msgstr ""
 
 #: templates/frontend/pdf_edit/add_watermark.html:664
 #: templates/frontend/pdf_edit/crop_pdf.html:500
@@ -3533,12 +3533,12 @@ msgstr ""
 #: templates/frontend/pdf_edit/crop_pdf.html:47
 #| msgid "Please select a PDF file."
 msgid "Select your PDF file to crop"
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:52
 #| msgid "Select page"
 msgid "Select Area"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:53
 #| msgid ""
@@ -3563,7 +3563,7 @@ msgstr ""
 #: templates/frontend/pdf_edit/crop_pdf.html:65
 #| msgid "Download your compressed PDF file using the download button"
 msgid "Download your cropped PDF file"
-msgstr "Download your compressed PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:197
 msgid "Select files to crop (multiple)"
@@ -3619,7 +3619,7 @@ msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:398
 msgid "A crop area covering most of the page is selected by default"
-msgstr "A crop area covering most of the page is selected by default"
+msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:399
 msgid ""
@@ -3682,11 +3682,11 @@ msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:453
 msgid "Click the crop button to process your PDF and crop the selected area"
-msgstr "Click the crop button to process your PDF and crop the selected area"
+msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:454
 msgid "Download your cropped PDF file using the download button"
-msgstr "Download your cropped PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:458
 #| msgid ""
@@ -3712,7 +3712,7 @@ msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:495
 msgid "Drag to select crop area..."
-msgstr "Drag to select crop area..."
+msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:496
 msgid ""
@@ -3767,11 +3767,11 @@ msgstr ""
 #: templates/frontend/pdf_edit/rotate_pdf.html:25
 #| msgid "Pages to Convert"
 msgid "Pages to Rotate"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:77
 msgid "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
-msgstr "Choose the rotation angle (90°, 180°, or 270°) to rotate PDF pages"
+msgstr ""
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:78
 msgid ""
@@ -3787,7 +3787,7 @@ msgstr ""
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:80
 msgid "Download your rotated PDF file using the download button"
-msgstr "Download your rotated PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:84
 #| msgid ""
@@ -3847,11 +3847,11 @@ msgstr ""
 
 #: templates/frontend/pdf_organize/compress_pdf.html:36
 msgid "Click the compress button to reduce the size of your PDF file"
-msgstr "Click the compress button to reduce the size of your PDF file"
+msgstr ""
 
 #: templates/frontend/pdf_organize/compress_pdf.html:37
 msgid "Download your compressed PDF file using the download button"
-msgstr "Download your compressed PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_organize/compress_pdf.html:41
 #| msgid ""
@@ -3875,7 +3875,7 @@ msgstr ""
 #: templates/frontend/pdf_organize/split_pdf.html:49
 #| msgid "Pages to Convert"
 msgid "Pages to Extract"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/pdf_organize/extract_pages.html:22
 msgid ""
@@ -3930,12 +3930,12 @@ msgstr ""
 #: templates/frontend/pdf_organize/merge_pdf.html:44
 #| msgid "Please select a PDF file."
 msgid "Select PDF Files"
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:55
 #| msgid "Please select a PDF file."
 msgid "Select PDF files"
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:82
 msgid "Drag and drop your PDF files here"
@@ -3948,12 +3948,12 @@ msgstr ""
 #: templates/frontend/pdf_organize/merge_pdf.html:92
 #| msgid "Select 2-10 PDF files to merge using the button above"
 msgid "Select 2-10 PDF files to merge. You can reorder them by dragging."
-msgstr "Select 2-10 PDF files to merge using the button above"
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:100
 #| msgid "Select page"
 msgid "Selected Files"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:112
 msgid "Preview & Reorder Pages"
@@ -3967,39 +3967,39 @@ msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:124
 msgid "is not a PDF file. Skipping."
-msgstr "is not a PDF file. Skipping."
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:125
 msgid "Maximum 10 files allowed. Only the first 10 files will be used."
-msgstr "Maximum 10 files allowed. Only the first 10 files will be used."
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:126
 msgid "Error loading preview"
-msgstr "Error loading preview"
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:127
 msgid "Loading..."
-msgstr "Loading..."
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:129
 msgid "Merging PDFs..."
-msgstr "Merging PDFs..."
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:130
 msgid "Please select at least 2 PDF files to merge."
-msgstr "Please select at least 2 PDF files to merge."
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:158
 msgid "Select 2-10 PDF files to merge using the button above"
-msgstr "Select 2-10 PDF files to merge using the button above"
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:159
 msgid "Preview all PDF files and drag them to reorder the merge order"
-msgstr "Preview all PDF files and drag them to reorder the merge order"
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:160
 msgid "Click the merge button to combine all PDF files into one document"
-msgstr "Click the merge button to combine all PDF files into one document"
+msgstr ""
 
 #: templates/frontend/pdf_organize/merge_pdf.html:161
 msgid ""
@@ -4038,31 +4038,31 @@ msgstr ""
 #: utils_site/src/frontend/views.py:996 utils_site/src/frontend/views.py:1028
 #: utils_site/src/frontend/views.py:1073 utils_site/src/frontend/views.py:1099
 msgid "Please select a PDF file."
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: templates/frontend/pdf_organize/organize_pdf.html:39
 msgid "Please select a PDF file first."
-msgstr "Please select a PDF file first."
+msgstr ""
 
 #: templates/frontend/pdf_organize/organize_pdf.html:41
 msgid "Organizing..."
-msgstr "Organizing..."
+msgstr ""
 
 #: templates/frontend/pdf_organize/organize_pdf.html:42
 msgid "Failed to organize PDF"
-msgstr "Failed to organize PDF"
+msgstr ""
 
 #: templates/frontend/pdf_organize/organize_pdf.html:69
 msgid "Preview all pages and drag them to reorder pages in your PDF document"
-msgstr "Preview all pages and drag them to reorder pages in your PDF document"
+msgstr ""
 
 #: templates/frontend/pdf_organize/organize_pdf.html:70
 msgid "Choose operation: reorder pages manually or sort pages automatically"
-msgstr "Choose operation: reorder pages manually or sort pages automatically"
+msgstr ""
 
 #: templates/frontend/pdf_organize/organize_pdf.html:71
 msgid "Click the organize button to process your PDF and reorganize the pages"
-msgstr "Click the organize button to process your PDF and reorganize the pages"
+msgstr ""
 
 #: templates/frontend/pdf_organize/organize_pdf.html:72
 msgid ""
@@ -4093,7 +4093,7 @@ msgstr ""
 #: templates/frontend/pdf_organize/remove_pages.html:12
 #| msgid "Pages to Convert"
 msgid "Pages to Remove"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/pdf_organize/remove_pages.html:64
 msgid ""
@@ -4113,7 +4113,7 @@ msgstr ""
 
 #: templates/frontend/pdf_organize/remove_pages.html:66
 msgid "Download your PDF file with pages removed using the download button"
-msgstr "Download your PDF file with pages removed using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_organize/remove_pages.html:70
 #| msgid ""
@@ -4231,7 +4231,7 @@ msgstr ""
 #: templates/frontend/pdf_security/protect_pdf.html:20
 #| msgid "Enter the password that was used to protect the PDF file"
 msgid "Enter password to protect PDF"
-msgstr "Enter the password that was used to protect the PDF file"
+msgstr ""
 
 #: templates/frontend/pdf_security/protect_pdf.html:23
 msgid ""
@@ -4286,11 +4286,11 @@ msgstr ""
 
 #: templates/frontend/pdf_security/protect_pdf.html:70
 msgid "Click the protect button to encrypt your PDF with password protection"
-msgstr "Click the protect button to encrypt your PDF with password protection"
+msgstr ""
 
 #: templates/frontend/pdf_security/protect_pdf.html:71
 msgid "Download your password-protected PDF file using the download button"
-msgstr "Download your password-protected PDF file using the download button"
+msgstr ""
 
 #: templates/frontend/pdf_security/protect_pdf.html:75
 #| msgid ""
@@ -4317,7 +4317,7 @@ msgstr ""
 #: templates/frontend/pdf_security/unlock_pdf.html:20
 #| msgid "Enter the password that was used to protect the PDF file"
 msgid "Enter the password to unlock the PDF"
-msgstr "Enter the password that was used to protect the PDF file"
+msgstr ""
 
 #: templates/frontend/pdf_security/unlock_pdf.html:23
 msgid ""
@@ -4337,11 +4337,11 @@ msgstr ""
 
 #: templates/frontend/pdf_security/unlock_pdf.html:37
 msgid "Enter the password that was used to protect the PDF file"
-msgstr "Enter the password that was used to protect the PDF file"
+msgstr ""
 
 #: templates/frontend/pdf_security/unlock_pdf.html:38
 msgid "Click the unlock button to remove password protection from your PDF"
-msgstr "Click the unlock button to remove password protection from your PDF"
+msgstr ""
 
 #: templates/frontend/pdf_security/unlock_pdf.html:39
 msgid ""
@@ -4418,7 +4418,7 @@ msgstr ""
 #: templates/frontend/pricing.html:84
 #| msgid "Pages to Convert"
 msgid "Documents Converted"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/pricing.html:88
 msgid "Happy Heroes"
@@ -4555,7 +4555,7 @@ msgstr ""
 #: templates/frontend/pricing.html:302
 #| msgid "Select page"
 msgid "Hero badge"
-msgstr "Select page"
+msgstr ""
 
 #: templates/frontend/pricing.html:314
 msgid "Become Yearly Hero"
@@ -4599,7 +4599,7 @@ msgstr ""
 #: templates/frontend/pricing.html:370
 #| msgid "Pages to Convert"
 msgid "Want to Support Convertica?"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/pricing.html:371
 msgid ""
@@ -4715,7 +4715,7 @@ msgstr ""
 #: templates/frontend/pricing.html:762
 #| msgid "Sending..."
 msgid "Processing..."
-msgstr "Sending..."
+msgstr ""
 
 #: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:1207
 msgid "Privacy Policy - Convertica"
@@ -4975,7 +4975,7 @@ msgstr ""
 #: templates/frontend/support.html:15 utils_site/src/frontend/views.py:1750
 #| msgid "Pages to Convert"
 msgid "Contribute to Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/support.html:17
 msgid ""
@@ -5063,7 +5063,7 @@ msgstr ""
 #: templates/frontend/support_success.html:31
 #| msgid "Contact Support"
 msgid "Support again"
-msgstr "Contact Support"
+msgstr ""
 
 #: templates/frontend/support_success.html:34
 msgid "Back to Pricing"
@@ -5348,7 +5348,7 @@ msgstr ""
 #: templates/frontend/terms.html:226
 #| msgid "Pages to Convert"
 msgid "Changes to Terms"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/frontend/terms.html:229
 msgid ""
@@ -5441,7 +5441,7 @@ msgstr ""
 #: templates/payments/cancel.html:41
 #| msgid "Smaller file size"
 msgid "Larger file size support"
-msgstr "Smaller file size"
+msgstr ""
 
 #: templates/payments/cancel.html:47
 msgid "Priority processing speeds"
@@ -5503,12 +5503,12 @@ msgstr ""
 #: templates/payments/success.html:6
 #| msgid "Message Sent Successfully!"
 msgid "Payment Successful"
-msgstr "Message Sent Successfully!"
+msgstr ""
 
 #: templates/payments/success.html:17
 #| msgid "Message Sent Successfully!"
 msgid "Payment Successful!"
-msgstr "Message Sent Successfully!"
+msgstr ""
 
 #: templates/payments/success.html:18
 msgid "Thank you for your subscription"
@@ -5574,7 +5574,7 @@ msgstr ""
 #: templates/payments/success.html:77
 #| msgid "Click the merge button to combine all PDF files into one document"
 msgid "Process larger files and more documents"
-msgstr "Click the merge button to combine all PDF files into one document"
+msgstr ""
 
 #: templates/payments/success.html:83
 msgid "Enjoy priority processing speeds"
@@ -5589,7 +5589,7 @@ msgstr ""
 #: templates/users/manage_subscription.html:15
 #| msgid "Page Selection"
 msgid "Manage Subscription"
-msgstr "Page Selection"
+msgstr ""
 
 #: templates/socialaccount/connections.html:8
 #: templates/socialaccount/connections.html:17
@@ -5643,7 +5643,7 @@ msgstr ""
 #: templates/socialaccount/login.html:20
 #| msgid "Pages to Convert"
 msgid "Welcome to Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/socialaccount/login.html:21
 msgid "Sign in with your Google account"
@@ -5677,7 +5677,7 @@ msgstr ""
 #: templates/socialaccount/signup.html:20
 #| msgid "Pages to Convert"
 msgid "Join Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: templates/socialaccount/signup.html:21
 msgid "Create your account with Google"
@@ -5855,7 +5855,7 @@ msgstr ""
 #: templates/users/account_status.html:292 utils_site/src/users/models.py:313
 #| msgid "Sending..."
 msgid "Pending"
-msgstr "Sending..."
+msgstr ""
 
 #: templates/users/account_status.html:296 utils_site/src/users/models.py:315
 msgid "Failed"
@@ -6117,7 +6117,7 @@ msgstr ""
 #: templates/users/cancel_subscription.html:245
 #| msgid "Please select a PDF file."
 msgid "Please select a reason for cancellation"
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: templates/users/login.html:8 templates/users/login.html:116
 msgid "Sign In"
@@ -6126,7 +6126,7 @@ msgstr ""
 #: templates/users/login.html:24
 #| msgid "Go Back"
 msgid "Welcome Back"
-msgstr "Go Back"
+msgstr ""
 
 #: templates/users/login.html:25
 msgid "Sign in to your Convertica account"
@@ -6545,7 +6545,7 @@ msgstr ""
 #: utils_site/src/blog/admin.py:175
 #| msgid "Choose Image"
 msgid "No image"
-msgstr "Choose Image"
+msgstr ""
 
 #: utils_site/src/blog/admin.py:177
 msgid "Preview"
@@ -6696,7 +6696,7 @@ msgstr ""
 #: utils_site/src/frontend/context_processors.py:466
 #| msgid "Merging PDFs..."
 msgid "Merge multiple PDFs"
-msgstr "Merging PDFs..."
+msgstr ""
 
 #: utils_site/src/frontend/context_processors.py:472
 msgid "Split PDF into parts"
@@ -6713,12 +6713,12 @@ msgstr ""
 #: utils_site/src/frontend/context_processors.py:490
 #| msgid "Enter the password that was used to protect the PDF file"
 msgid "Password protect PDF"
-msgstr "Enter the password that was used to protect the PDF file"
+msgstr ""
 
 #: utils_site/src/frontend/context_processors.py:496
 #| msgid "Enter the password that was used to protect the PDF file"
 msgid "Remove PDF password"
-msgstr "Enter the password that was used to protect the PDF file"
+msgstr ""
 
 #: utils_site/src/frontend/context_processors.py:502
 msgid "Reorder PDF pages"
@@ -6731,7 +6731,7 @@ msgstr ""
 #: utils_site/src/frontend/context_processors.py:514
 #| msgid "Pages to Convert"
 msgid "Remove pages from PDF"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/context_processors.py:520
 msgid "Crop PDF pages"
@@ -6810,12 +6810,12 @@ msgstr ""
 #: utils_site/src/frontend/views.py:209
 #| msgid "Failed to load PDF file. Please try again."
 msgid "Conversion failed. Please try again."
-msgstr "Failed to load PDF file. Please try again."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:222
 #| msgid "Pages to Convert"
 msgid "PDF to Word - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:224
 msgid ""
@@ -6832,7 +6832,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:255
 #| msgid "Pages to Convert"
 msgid "PDF to Word Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:271
 msgid "Word to PDF - Convertica"
@@ -6857,12 +6857,12 @@ msgstr ""
 #: utils_site/src/frontend/views.py:312
 #| msgid "Please select a PDF file."
 msgid "Please select a Word file."
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:321
 #| msgid "Pages to Convert"
 msgid "PDF to JPG - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:323
 msgid ""
@@ -6879,12 +6879,12 @@ msgstr ""
 #: utils_site/src/frontend/views.py:352
 #| msgid "Pages to Convert"
 msgid "PDF to JPG Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:368
 #| msgid "Pages to Convert"
 msgid "JPG to PDF - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:370
 msgid ""
@@ -6901,12 +6901,12 @@ msgstr ""
 #: utils_site/src/frontend/views.py:400
 #| msgid "Pages to Convert"
 msgid "JPG to PDF Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:407
 #| msgid "Please select a PDF file."
 msgid "Please select a JPG/JPEG image file."
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:416
 msgid "Rotate PDF - Convertica"
@@ -6926,7 +6926,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:461
 #| msgid "Pages to Convert"
 msgid "Add Page Numbers to PDF - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:463
 msgid ""
@@ -6984,17 +6984,17 @@ msgstr ""
 #: utils_site/src/frontend/views.py:620
 #| msgid "Click the merge button to combine all PDF files into one document"
 msgid "Combine multiple PDF files into one document"
-msgstr "Click the merge button to combine all PDF files into one document"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:627
 #| msgid "Merging PDFs..."
 msgid "Merge PDFs"
-msgstr "Merging PDFs..."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:628
 #| msgid "Please select at least 2 PDF files to merge."
 msgid "Please select PDF files to merge."
-msgstr "Please select at least 2 PDF files to merge."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:637
 msgid "Split PDF - Convertica"
@@ -7014,7 +7014,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:688
 #| msgid "Pages to Convert"
 msgid "Remove Pages from PDF - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:690
 msgid ""
@@ -7075,17 +7075,17 @@ msgstr ""
 #: utils_site/src/frontend/views.py:851
 #| msgid "Pages to Convert"
 msgid "PDF to Excel Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:858
 #| msgid "Please select a PDF file first."
 msgid "Please select a PDF file with tables."
-msgstr "Please select a PDF file first."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:867
 #| msgid "Pages to Convert"
 msgid "Excel to PDF - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:869
 msgid ""
@@ -7101,17 +7101,17 @@ msgstr ""
 #: utils_site/src/frontend/views.py:887
 #| msgid "Pages to Convert"
 msgid "Excel to PDF Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:894
 #| msgid "Please select a PDF file."
 msgid "Please select an Excel file."
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:903
 #| msgid "Pages to Convert"
 msgid "PowerPoint to PDF - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:905
 msgid ""
@@ -7127,17 +7127,17 @@ msgstr ""
 #: utils_site/src/frontend/views.py:922
 #| msgid "Pages to Convert"
 msgid "PowerPoint to PDF Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:929
 #| msgid "Please select a PDF file."
 msgid "Please select a PowerPoint file."
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:938
 #| msgid "Pages to Convert"
 msgid "HTML to PDF - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:940
 msgid ""
@@ -7153,7 +7153,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:957
 #| msgid "Pages to Convert"
 msgid "HTML to PDF Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:964
 msgid "Please enter HTML content or URL."
@@ -7162,7 +7162,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:973
 #| msgid "Pages to Convert"
 msgid "PDF to PowerPoint - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:975
 msgid ""
@@ -7178,12 +7178,12 @@ msgstr ""
 #: utils_site/src/frontend/views.py:989
 #| msgid "Pages to Convert"
 msgid "PDF to PowerPoint Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1005
 #| msgid "Pages to Convert"
 msgid "PDF to HTML - Convertica"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1007
 msgid ""
@@ -7199,7 +7199,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:1021
 #| msgid "Pages to Convert"
 msgid "PDF to HTML Converter"
-msgstr "Pages to Convert"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1037
 msgid "Compress PDF - Convertica"
@@ -7226,13 +7226,13 @@ msgstr ""
 msgid ""
 "Protect PDF files with password encryption. Secure your PDF documents with "
 "strong password protection."
-msgstr "Click the protect button to encrypt your PDF with password protection"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1091
 #| msgid ""
 #| "Click the protect button to encrypt your PDF with password protection"
 msgid "Secure your PDF documents with password protection"
-msgstr "Click the protect button to encrypt your PDF with password protection"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1108
 msgid "Unlock PDF - Remove Password - Convertica"
@@ -7248,12 +7248,12 @@ msgstr ""
 #: utils_site/src/frontend/views.py:1134
 #| msgid "Click the unlock button to remove password protection from your PDF"
 msgid "Remove password protection from your PDF"
-msgstr "Click the unlock button to remove password protection from your PDF"
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1142
 #| msgid "Please select a PDF file."
 msgid "Please select a password-protected PDF file."
-msgstr "Please select a PDF file."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1150
 msgid "All PDF Tools - Convertica"
@@ -7324,7 +7324,7 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:1380
 msgid "Please correct the errors in the form below."
-msgstr "Please correct the errors in the form below."
+msgstr ""
 
 #: utils_site/src/frontend/views.py:1406
 msgid "Frequently Asked Questions (FAQ) - Convertica"
@@ -7371,7 +7371,7 @@ msgstr ""
 #: utils_site/src/users/forms.py:44
 #| msgid "Choose Image"
 msgid "Choose a username"
-msgstr "Choose Image"
+msgstr ""
 
 #: utils_site/src/users/forms.py:62
 msgid "Confirm your password"
@@ -7448,7 +7448,7 @@ msgstr ""
 #: utils_site/src/users/models.py:340
 #| msgid "Organizing..."
 msgid "Transaction ID"
-msgstr "Organizing..."
+msgstr ""
 
 #: utils_site/src/users/models.py:343
 msgid "Processed At"
