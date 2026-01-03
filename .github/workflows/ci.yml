@@ -456,6 +456,24 @@ jobs:
             echo "⏳ Additional wait to ensure Django is fully ready..."
             sleep 10
 
+            # Step 1.5: Backup database and verify data BEFORE migrations
+            echo "💾 Creating database backup before migrations..."
+            mkdir -p /opt/convertica/backups
+            BACKUP_FILE="/opt/convertica/backups/pre_deploy_$(date +%Y%m%d_%H%M%S).sql.gz"
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db pg_dump -U convertica convertica | gzip > "$BACKUP_FILE" || echo "⚠️ Backup failed (non-critical)"
+            if [ -f "$BACKUP_FILE" ]; then
+              echo "✅ Backup created: $BACKUP_FILE ($(du -h $BACKUP_FILE | cut -f1))"
+            fi
+
+            # Count data BEFORE migrations
+            echo "📊 Checking data count before migrations..."
+            OPERATIONS_BEFORE=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import OperationRun; print(OperationRun.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
+            USERS_BEFORE=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import User; print(User.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
+            ARTICLES_BEFORE=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.blog.models import Article; print(Article.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
+            echo "   Operations: $OPERATIONS_BEFORE"
+            echo "   Users: $USERS_BEFORE"
+            echo "   Articles: $ARTICLES_BEFORE"
+
             # Step 2: Run migrations (container must be running)
             echo "📊 Running migrations..."
             max_attempts=5
@@ -484,6 +502,47 @@ jobs:
                 echo "   ⚠️ No old container found to restore"
               fi
               exit 1
+            fi
+
+            # Step 2.5: Verify data AFTER migrations (detect data loss)
+            echo "🔍 Verifying data after migrations..."
+            OPERATIONS_AFTER=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import OperationRun; print(OperationRun.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
+            USERS_AFTER=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import User; print(User.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
+            ARTICLES_AFTER=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.blog.models import Article; print(Article.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
+            echo "   Operations: $OPERATIONS_AFTER (was: $OPERATIONS_BEFORE)"
+            echo "   Users: $USERS_AFTER (was: $USERS_BEFORE)"
+            echo "   Articles: $ARTICLES_AFTER (was: $ARTICLES_BEFORE)"
+
+            # Check for critical data loss (Users or Articles should never decrease)
+            if [ "$USERS_AFTER" -lt "$USERS_BEFORE" ] || [ "$ARTICLES_AFTER" -lt "$ARTICLES_BEFORE" ]; then
+              echo "❌ CRITICAL: Data loss detected after migrations!"
+              echo "   Users: $USERS_BEFORE → $USERS_AFTER"
+              echo "   Articles: $ARTICLES_BEFORE → $ARTICLES_AFTER"
+              echo "🔄 Rolling back and restoring from backup..."
+
+              # Restore from backup
+              if [ -f "$BACKUP_FILE" ]; then
+                echo "📦 Restoring database from backup..."
+                gunzip -c "$BACKUP_FILE" | docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db psql -U convertica convertica || echo "⚠️ Restore failed"
+              fi
+
+              # Rollback containers
+              docker stop "$NEW_WEB_ID" 2>/dev/null || true
+              docker rm "$NEW_WEB_ID" 2>/dev/null || true
+              if [ -n "$OLD_WEB_ID" ]; then
+                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
+                docker start "$OLD_WEB_ID" 2>/dev/null || true
+              fi
+              exit 1
+            fi
+
+            # Warn if operations decreased significantly (but don't fail)
+            if [ "$OPERATIONS_BEFORE" -gt 0 ] && [ "$OPERATIONS_AFTER" -lt "$OPERATIONS_BEFORE" ]; then
+              echo "⚠️ WARNING: Operations count decreased: $OPERATIONS_BEFORE → $OPERATIONS_AFTER"
+              echo "   This might indicate a migration issue or cleanup task"
+              echo "   Backup available at: $BACKUP_FILE"
+            else
+              echo "✅ Data verification passed!"
             fi
 
             # Step 3: Compile translations (CRITICAL - must succeed)
@@ -566,6 +625,17 @@ jobs:
             fi
 
             # Step 7: Verify health endpoint responds (critical check)
+            # Final verification
+            echo "📊 Final data verification:"
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "
+            from src.users.models import OperationRun, SubscriptionPlan, User
+            from src.blog.models import Article
+            print(f'✅ Users: {User.objects.count()}')
+            print(f'✅ Articles: {Article.objects.count()}')
+            print(f'✅ Plans: {SubscriptionPlan.objects.count()}')
+            print(f'📊 Operations: {OperationRun.objects.count()}')
+            " || echo "⚠️ Final verification failed (non-critical)"
+
             echo "🏥 Verifying health endpoint (critical check for rollback)..."
             max_attempts=10
             attempt=0
