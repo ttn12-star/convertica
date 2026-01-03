@@ -1,34 +1,65 @@
-# Convertica
+# Convertica - Free Online PDF Tools
 
-**Convertica** - это современная веб-платформа для работы с PDF файлами. Проект построен на Django и предоставляет полный набор инструментов для конвертации, редактирования, организации и защиты PDF документов.
+[![Website](https://img.shields.io/badge/Website-convertica.net-blue)](https://convertica.net)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-5.2-green.svg)](https://www.djangoproject.com/)
 
-## 🚀 Основные возможности
+**[Convertica](https://convertica.net)** is a modern web platform for working with PDF files. Built with Django 5.2 and Python 3.12, it provides a comprehensive suite of tools for PDF conversion, editing, organization, and security.
 
-### 📄 Конвертация файлов
+🌐 **Live Site:** [https://convertica.net](https://convertica.net)
 
-1. **PDF → Word (DOCX)**
-   - Конвертация PDF документов в формат Word
-   - Сохранение структуры и форматирования
-   - Поддержка сложных макетов
+## 🌟 Why Convertica?
 
-2. **Word → PDF**
-   - Конвертация документов Word (.doc, .docx) в PDF
-   - Поддержка старых форматов .doc и современных .docx
-   - Автоматическое форматирование
+- 🆓 **100% Free** - All basic PDF tools available for free
+- 🔒 **Secure** - Files processed securely, automatically deleted after conversion
+- ⚡ **Fast** - Optimized for performance with async processing
+- 🌍 **Multilingual** - Available in 6 languages
+- 📱 **Responsive** - Works on all devices
+- 🎨 **Modern UI** - Beautiful interface built with Tailwind CSS
 
-3. **PDF → JPG**
-   - Конвертация страниц PDF в изображения JPG
-   - Настраиваемое качество (DPI: 72-600)
-   - Выбор конкретной страницы для конвертации
+## 🚀 Features
 
-4. **JPG → PDF**
-   - Конвертация изображений JPG/JPEG в PDF документы
-   - Поддержка множественных изображений (объединение в один PDF)
-   - Автоматическое масштабирование под формат A4
+### 📄 PDF Conversion Tools
 
-5. **PDF → Excel**
-   - Извлечение таблиц из PDF в Excel формат
-   - Сохранение структуры таблиц
+All conversion tools available at [convertica.net](https://convertica.net):
+
+1. **[PDF to Word](https://convertica.net/pdf-to-word/)** - Convert PDF to DOCX
+   - Preserves formatting and structure
+   - Supports complex layouts
+   - High-quality text extraction
+
+2. **[Word to PDF](https://convertica.net/word-to-pdf/)** - Convert DOCX to PDF
+   - Supports .doc and .docx formats
+   - Maintains original formatting
+   - Fast conversion with LibreOffice
+
+3. **[PDF to JPG](https://convertica.net/pdf-to-jpg/)** - Convert PDF pages to images
+   - Adjustable quality (DPI: 72-600)
+   - Select specific pages
+   - High-resolution output
+
+4. **[JPG to PDF](https://convertica.net/jpg-to-pdf/)** - Convert images to PDF
+   - Multiple images to single PDF
+   - Auto-scaling to A4 format
+   - Batch processing support
+
+5. **[PDF to Excel](https://convertica.net/pdf-to-excel/)** - Extract tables from PDF
+   - Preserves table structure
+   - Accurate data extraction
+
+6. **[Excel to PDF](https://convertica.net/excel-to-pdf/)** - Convert spreadsheets to PDF
+   - Supports .xls and .xlsx
+   - Maintains formatting
+
+7. **[PowerPoint to PDF](https://convertica.net/ppt-to-pdf/)** - Convert presentations to PDF
+   - Preserves slides layout
+   - Supports .ppt and .pptx
+
+8. **[HTML to PDF](https://convertica.net/html-to-pdf/)** - Convert HTML/URL to PDF
+   - Web page to PDF conversion
+   - Custom page sizes and margins
+   - Powered by Playwright
 
 ### ✏️ Редактирование PDF
 
@@ -476,21 +507,50 @@ API возвращает понятные сообщения об ошибках
 3. Проверьте настройки в `.env` файле
 4. Проверьте, что файл не поврежден и соответствует требованиям
 
-## 🔄 Планы развития
+## 🔄 Roadmap
 
-- [ ] Поддержка конвертации PowerPoint ↔ PDF
-- [ ] Пакетная конвертация нескольких файлов через API
-- [ ] Улучшенная обработка OCR для сканированных документов
-- [ ] Поддержка других форматов изображений (PNG, TIFF) для конвертации в PDF
-- [ ] API для конвертации всех страниц PDF в JPG одним запросом
-- [ ] Интеграция с облачными хранилищами (Google Drive, Dropbox)
+- [x] PowerPoint ↔ PDF conversion
+- [x] Batch processing API
+- [x] HTML to PDF with Playwright
+- [x] Premium subscription system
+- [ ] OCR improvements for scanned documents
+- [ ] PNG, TIFF support for image conversion
+- [ ] Cloud storage integration (Google Drive, Dropbox)
+- [ ] Mobile apps (iOS, Android)
+- [ ] Desktop apps (Electron)
+- [ ] Browser extensions (Chrome, Firefox)
 
-## 📚 Дополнительная документация
+## 📚 Documentation
 
-- [ci/DEPLOYMENT.md](ci/DEPLOYMENT.md) - Полная инструкция по деплою
-- [ci/DOCKER.md](ci/DOCKER.md) - Работа с Docker
-- [ci/README_CI.md](ci/README_CI.md) - Настройка CI/CD
+- [ci/DEPLOYMENT.md](ci/DEPLOYMENT.md) - Full deployment guide
+- [ci/DOCKER.md](ci/DOCKER.md) - Docker documentation
+- [ci/README_CI.md](ci/README_CI.md) - CI/CD setup
+
+## 🔗 Links
+
+- 🌐 **Website:** [convertica.net](https://convertica.net)
+- 📄 **PDF to Word:** [convertica.net/pdf-to-word](https://convertica.net/pdf-to-word/)
+- 📄 **Word to PDF:** [convertica.net/word-to-pdf](https://convertica.net/word-to-pdf/)
+- 🖼️ **PDF to JPG:** [convertica.net/pdf-to-jpg](https://convertica.net/pdf-to-jpg/)
+- 🖼️ **JPG to PDF:** [convertica.net/jpg-to-pdf](https://convertica.net/jpg-to-pdf/)
+- 📊 **PDF to Excel:** [convertica.net/pdf-to-excel](https://convertica.net/pdf-to-excel/)
+- 🔀 **Merge PDF:** [convertica.net/merge-pdf](https://convertica.net/merge-pdf/)
+- ✂️ **Split PDF:** [convertica.net/split-pdf](https://convertica.net/split-pdf/)
+- 🗜️ **Compress PDF:** [convertica.net/compress-pdf](https://convertica.net/compress-pdf/)
+- 🔒 **Protect PDF:** [convertica.net/protect-pdf](https://convertica.net/protect-pdf/)
+
+## 📄 License
+
+Proprietary - All rights reserved
 
 ---
 
-**convertica.net** - Ваш надежный помощник в работе с PDF! 🚀
+<div align="center">
+
+**[Convertica.net](https://convertica.net) - Free Online PDF Tools** 🚀
+
+[Convert PDF to Word](https://convertica.net/pdf-to-word/) | [Merge PDF Files](https://convertica.net/merge-pdf/) | [Compress PDF](https://convertica.net/compress-pdf/) | [All Tools](https://convertica.net/all-tools/)
+
+Made with ❤️ using Django and Python
+
+</div>
