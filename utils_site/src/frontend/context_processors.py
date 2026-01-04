@@ -282,10 +282,13 @@ def conversion_limits(request):
     if max_file_size_premium is None:
         max_file_size_premium = 200 * 1024 * 1024
 
+    max_premium_pdf_pages = getattr(settings, "MAX_PDF_PAGES_PREMIUM", 200)
+
     return {
         "conversion_limits": {
             "max_free_pdf_pages": int(max_free_pdf_pages),
             "max_free_pdf_pages_heavy": int(max_free_pdf_pages_heavy),
+            "max_premium_pdf_pages": int(max_premium_pdf_pages),
             "max_file_size": int(max_file_size),
             "max_file_size_premium": int(max_file_size_premium),
         }

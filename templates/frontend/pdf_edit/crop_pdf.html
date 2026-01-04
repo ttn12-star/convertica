@@ -455,7 +455,7 @@
       </ol>
       <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
         <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-          <strong>{% trans "Note:" %}</strong> {% trans "PDF files with up to 30 pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages." %}
+          <strong>{% trans "Note:" %}</strong> {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}PDF files with up to {{ max_pages }} pages are supported for cropping. For larger files, please split them into smaller parts. The crop area you select will be applied to all selected pages.{% endblocktrans %}
         </p>
       </div>
     </div>
