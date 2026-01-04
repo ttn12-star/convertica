@@ -99,13 +99,19 @@
         <strong>{% trans "Note:" %}</strong>
         <span id="freeUserNote">
           {% if PAYMENTS_ENABLED %}
-            {% trans "PDF files with up to 30 pages are supported for free users. For larger files, please split them into smaller parts or upgrade to Premium to process larger files with higher limits." %}
+            {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}
+              PDF files with up to {{ max_pages }} pages are supported for free users. For larger files, please split them into smaller parts or upgrade to Premium to process larger files with higher limits.
+            {% endblocktrans %}
           {% else %}
-            {% trans "PDF files with up to 30 pages are supported. For larger files, please split them into smaller parts." %}
+            {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}
+              PDF files with up to {{ max_pages }} pages are supported. For larger files, please split them into smaller parts.
+            {% endblocktrans %}
           {% endif %}
         </span>
         <span id="premiumUserNote" class="hidden">
-          {% trans "Premium users can process PDF files with up to 300 pages. For larger files, please split them into smaller parts." %}
+          {% blocktrans with max_pages=conversion_limits.max_premium_pdf_pages %}
+            Premium users can process PDF files with up to {{ max_pages }} pages. For larger files, please split them into smaller parts.
+          {% endblocktrans %}
         </span>
         {% if PAYMENTS_ENABLED %}
           {% trans "Text-based PDFs work best - scanned PDFs (image-only) can be converted with OCR for Premium users." %}
