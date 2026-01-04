@@ -117,18 +117,7 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
             if request.path.startswith("/api/payments/webhook/"):
                 return None
 
-            try:
-                from .async_views import AsyncConversionAPIView
-            except Exception:
-                AsyncConversionAPIView = None
-
             view_class = getattr(view_func, "view_class", None)
-            if (
-                AsyncConversionAPIView
-                and view_class
-                and issubclass(view_class, AsyncConversionAPIView)
-            ):
-                return None
 
             from .operation_run_middleware_utils import (
                 create_operation_run,

@@ -70,7 +70,7 @@ msgstr ""
 
 #: templates/403.html:56 templates/payments/error.html:88
 msgid "Contact Support"
-msgstr "Formulir Kontak"
+msgstr "Hubungi Dukungan"
 
 #: templates/404.html:4 templates/404.html:5
 msgid "404 - Page Not Found"
@@ -94,11 +94,11 @@ msgstr ""
 
 #: templates/404.html:54
 msgid "Browse All Tools"
-msgstr "Semua alat"
+msgstr "Jelajahi Semua Alat"
 
 #: templates/404.html:60
 msgid "Popular pages:"
-msgstr "Alat populer"
+msgstr "Halaman populer:"
 
 #: templates/404.html:62 templates/blog/article_detail.html:356
 #: templates/frontend/all_tools.html:63
@@ -165,7 +165,7 @@ msgstr ""
 #: templates/500.html:47 templates/502.html:48 templates/offline.html:31
 #: templates/payments/cancel.html:61 templates/payments/error.html:82
 msgid "Try Again"
-msgstr "Coba"
+msgstr "Coba Lagi"
 
 #: templates/500.html:62
 msgid "If the problem persists, please"
@@ -173,7 +173,7 @@ msgstr "Jika masalah berlanjut, silakan"
 
 #: templates/500.html:63 templates/502.html:64
 msgid "contact us"
-msgstr "Hubungi Kami"
+msgstr "hubungi kami"
 
 #: templates/502.html:4 templates/502.html:5
 msgid "502 - Bad Gateway"
@@ -201,22 +201,16 @@ msgstr "Ini biasanya masalah sementara. Jika berlanjut, silakan"
 
 #: templates/account/email_confirm.html:8
 #: templates/account/email_confirm.html:37
-#, fuzzy
-#| msgid "Your Email"
 msgid "Confirm Email"
-msgstr "Email Anda"
+msgstr "Konfirmasi Email"
 
 #: templates/account/email_confirm.html:19
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Confirm your email"
-msgstr "Masukkan nama Anda"
+msgstr "Konfirmasi email Anda"
 
 #: templates/account/email_confirm.html:20
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the button below to confirm your email address"
-msgstr "Klik tombol edit untuk memproses file Anda"
+msgstr "Klik tombol di bawah untuk mengonfirmasi alamat email Anda"
 
 #: templates/account/email_confirm.html:26
 #, python-format
@@ -226,60 +220,52 @@ msgid ""
 "address.\n"
 "            "
 msgstr ""
+"\n"
+"              Harap konfirmasi bahwa <strong>%(email)s</strong> adalah "
+"alamat email Anda.\n"
+"            "
 
 #: templates/account/email_confirm.html:43
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to profile"
-msgstr "Kembali ke blog"
+msgstr "Kembali ke profil"
 
 #: templates/account/email_confirm.html:48
 msgid "Invalid confirmation link"
-msgstr ""
+msgstr "Tautan konfirmasi tidak valid"
 
 #: templates/account/email_confirm.html:49
 msgid "This confirmation link is expired or invalid."
-msgstr ""
+msgstr "Tautan konfirmasi ini telah kedaluwarsa atau tidak valid."
 
 #: templates/account/email_confirm.html:54
 #: templates/account/email_confirmed.html:31
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Go to login"
-msgstr "Kembali ke blog"
+msgstr "Pergi ke login"
 
 #: templates/account/email_confirm.html:57
 #: templates/account/email_confirmed.html:27
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Go to profile"
-msgstr "Kembali ke blog"
+msgstr "Pergi ke profil"
 
 #: templates/account/email_confirmed.html:8
-#, fuzzy
-#| msgid "Email icon"
 msgid "Email Confirmed"
-msgstr "Ikon email"
+msgstr "Email Dikonfirmasi"
 
 #: templates/account/email_confirmed.html:19
-#, fuzzy
-#| msgid "Email icon"
 msgid "Email confirmed"
-msgstr "Ikon email"
+msgstr "Email dikonfirmasi"
 
 #: templates/account/email_confirmed.html:20
 msgid "Your email address has been verified successfully."
-msgstr ""
+msgstr "Alamat email Anda telah berhasil diverifikasi."
 
 #: templates/account/password_change.html:8
 #: templates/account/password_change.html:23
 #: templates/account/password_change.html:154
 #: templates/account/password_set.html:8
 #: templates/users/account_status.html:354
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Change Password"
-msgstr "Kata Sandi Pemilik"
+msgstr "Ubah Kata Sandi"
 
 #: templates/account/password_change.html:20
 #: templates/account/password_set.html:20
@@ -287,62 +273,50 @@ msgstr "Kata Sandi Pemilik"
 #: templates/users/account_status.html:20
 #: templates/users/cancel_subscription.html:20
 #: templates/users/manage_subscription.html:175
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to Profile"
-msgstr "Kembali ke blog"
+msgstr "Kembali ke Profil"
 
 #: templates/account/password_change.html:24
 #: templates/users/account_status.html:355
 msgid "Update your account password"
-msgstr ""
+msgstr "Perbarui kata sandi akun Anda"
 
 #: templates/account/password_change.html:39
 #: templates/account/password_set.html:39 templates/frontend/contact.html:158
 msgid "Please correct the errors below:"
-msgstr "Silakan perbaiki kesalahan di bawah ini:"
+msgstr "Harap perbaiki kesalahan di bawah ini:"
 
 #: templates/account/password_change.html:55
 #: templates/account/password_set.html:56
-#, fuzzy
-#| msgid "User Password"
 msgid "Current Password"
-msgstr "Kata Sandi Pengguna"
+msgstr "Kata Sandi Saat Ini"
 
 #: templates/account/password_change.html:63
 #: templates/account/password_set.html:64
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Enter current password"
-msgstr "Kata Sandi Pemilik"
+msgstr "Masukkan kata sandi saat ini"
 
 #: templates/account/password_change.html:86
 #: templates/account/password_reset_from_key.html:48
 #: templates/allauth/account/password_set.html:48
-#, fuzzy
-#| msgid "User Password"
 msgid "New Password"
-msgstr "Kata Sandi Pengguna"
+msgstr "Kata Sandi Baru"
 
 #: templates/account/password_change.html:94
 #: templates/allauth/account/password_set.html:56
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Enter new password"
-msgstr "Kata Sandi Pemilik"
+msgstr "Masukkan kata sandi baru"
 
 #: templates/account/password_change.html:120
 #: templates/account/password_reset_from_key.html:62
 #: templates/allauth/account/password_set.html:76
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Confirm New Password"
-msgstr "Kata Sandi Pemilik"
+msgstr "Konfirmasi Kata Sandi Baru"
 
 #: templates/account/password_change.html:128
 #: templates/allauth/account/password_set.html:84
 msgid "Confirm new password"
-msgstr ""
+msgstr "Konfirmasi kata sandi baru"
 
 #: templates/account/password_change.html:165
 #: templates/frontend/includes/cookie_banner.html:114
@@ -351,71 +325,61 @@ msgid "Cancel"
 msgstr "Batal"
 
 #: templates/account/password_reset.html:8
-#, fuzzy
-#| msgid "User Password"
 msgid "Reset Password"
-msgstr "Kata Sandi Pengguna"
+msgstr "Atur Ulang Kata Sandi"
 
 #: templates/account/password_reset.html:20
-#, fuzzy
-#| msgid "User Password"
 msgid "Reset Your Password"
-msgstr "Kata Sandi Pengguna"
+msgstr "Atur Ulang Kata Sandi Anda"
 
 #: templates/account/password_reset.html:21
 msgid "Enter your email to receive reset instructions"
-msgstr ""
+msgstr "Masukkan email Anda untuk menerima petunjuk pengaturan ulang"
 
 #: templates/account/password_reset.html:39
 msgid "Email Address"
-msgstr ""
+msgstr "Alamat Email"
 
 #: templates/account/password_reset.html:47
-#, fuzzy
-#| msgid "Enter your message"
 msgid "Enter your email address"
-msgstr "Masukkan pesan Anda"
+msgstr "Masukkan alamat email Anda"
 
 #: templates/account/password_reset.html:55
 msgid "Send Reset Instructions"
-msgstr ""
+msgstr "Kirim Petunjuk Pengaturan Ulang"
 
 #: templates/account/password_reset.html:61
 msgid "Remember your password?"
-msgstr ""
+msgstr "Ingat kata sandi Anda?"
 
 #: templates/account/password_reset.html:62
 #: templates/socialaccount/signup.html:103 templates/users/register.html:144
 msgid "Sign in"
-msgstr ""
+msgstr "Masuk"
 
 #: templates/account/password_reset.html:68 templates/users/login.html:123
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Don't have an account?"
-msgstr "Apakah saya perlu membuat akun?"
+msgstr "Tidak punya akun?"
 
 #: templates/account/password_reset.html:69 templates/users/login.html:125
 msgid "Sign up"
-msgstr ""
+msgstr "Daftar"
 
 #: templates/account/password_reset_done.html:8
 msgid "Reset Instructions Sent"
-msgstr ""
+msgstr "Petunjuk Pengaturan Ulang Terkirim"
 
 #: templates/account/password_reset_done.html:20
-#, fuzzy
-#| msgid "Your Email"
 msgid "Check Your Email"
-msgstr "Email Anda"
+msgstr "Periksa Email Anda"
 
 #: templates/account/password_reset_done.html:21
 msgid "We've sent password reset instructions"
-msgstr ""
+msgstr "Kami telah mengirim petunjuk pengaturan ulang kata sandi"
 
 #: templates/account/password_reset_done.html:34
 msgid "Reset Email Sent!"
-msgstr ""
+msgstr "Email Pengaturan Ulang Terkirim!"
 
 #: templates/account/password_reset_done.html:38
 #, python-format
@@ -423,109 +387,101 @@ msgid ""
 "We've sent an email to <strong>%(email)s</strong> with instructions to reset "
 "your password."
 msgstr ""
+"Kami telah mengirim email ke <strong>%(email)s</strong> dengan petunjuk "
+"untuk mengatur ulang kata sandi Anda."
 
 #: templates/account/password_reset_done.html:43
 msgid "Please note:"
-msgstr ""
+msgstr "Harap diperhatikan:"
 
 #: templates/account/password_reset_done.html:44
 msgid "The reset link will expire in 24 hours."
-msgstr ""
+msgstr "Tautan pengaturan ulang akan kedaluwarsa dalam 24 jam."
 
 #: templates/account/password_reset_done.html:45
 msgid "If you don't receive the email, check your spam folder."
-msgstr ""
+msgstr "Jika Anda tidak menerima email, periksa folder spam Anda."
 
 #: templates/account/password_reset_done.html:54
 msgid "Return to Login"
-msgstr ""
+msgstr "Kembali ke Login"
 
 #: templates/account/password_reset_done.html:58
 msgid "Send another reset email"
-msgstr ""
+msgstr "Kirim email pengaturan ulang lain"
 
 #: templates/account/password_reset_from_key.html:8
 #: templates/account/password_reset_from_key.html:20
 #: templates/account/password_reset_from_key.html:78
-#, fuzzy
-#| msgid "User Password"
 msgid "Set New Password"
-msgstr "Kata Sandi Pengguna"
+msgstr "Atur Kata Sandi Baru"
 
 #: templates/account/password_reset_from_key.html:21
 msgid "Choose a new secure password"
-msgstr ""
+msgstr "Pilih kata sandi baru yang aman"
 
 #: templates/account/password_reset_from_key.html:28
 msgid "Invalid Reset Link"
-msgstr ""
+msgstr "Tautan Pengaturan Ulang Tidak Valid"
 
 #: templates/account/password_reset_from_key.html:29
 msgid "This password reset link has expired or is invalid."
-msgstr ""
+msgstr "Tautan pengaturan ulang kata sandi ini telah kedaluwarsa atau tidak valid."
 
 #: templates/account/password_reset_from_key.html:31
 msgid "Request a new reset link"
-msgstr ""
+msgstr "Minta tautan pengaturan ulang baru"
 
 #: templates/account/password_reset_from_key.html:56
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Enter your new password"
-msgstr "Masukkan nama Anda"
+msgstr "Masukkan kata sandi baru Anda"
 
 #: templates/account/password_reset_from_key.html:70
 msgid "Confirm your new password"
-msgstr ""
+msgstr "Konfirmasi kata sandi baru Anda"
 
 #: templates/account/password_reset_from_key_done.html:8
 #: templates/account/password_reset_from_key_done.html:20
 msgid "Password Reset Complete"
-msgstr ""
+msgstr "Pengaturan Ulang Kata Sandi Selesai"
 
 #: templates/account/password_reset_from_key_done.html:21
 msgid "Your password has been successfully updated"
-msgstr ""
+msgstr "Kata sandi Anda telah berhasil diperbarui"
 
 #: templates/account/password_reset_from_key_done.html:34
-#, fuzzy
-#| msgid "Message Sent Successfully!"
 msgid "Password Updated Successfully!"
-msgstr "Pesan Berhasil Dikirim!"
+msgstr "Kata Sandi Berhasil Diperbarui!"
 
 #: templates/account/password_reset_from_key_done.html:38
 msgid ""
 "Your password has been changed. You can now sign in with your new password."
-msgstr ""
+msgstr "Kata sandi Anda telah diubah. Anda sekarang dapat masuk dengan kata sandi baru Anda."
 
 #: templates/account/password_reset_from_key_done.html:43
-#, fuzzy
-#| msgid "Security & Privacy"
 msgid "Security Tip:"
-msgstr "Keamanan & Privasi"
+msgstr "Tip Keamanan:"
 
 #: templates/account/password_reset_from_key_done.html:44
 msgid "Make sure to use a strong password that you haven't used before."
-msgstr ""
+msgstr "Pastikan menggunakan kata sandi kuat yang belum pernah Anda gunakan sebelumnya."
 
 #: templates/account/password_reset_from_key_done.html:52
 msgid "Sign In with New Password"
-msgstr ""
+msgstr "Masuk dengan Kata Sandi Baru"
 
 #: templates/account/password_set.html:23
 #: templates/account/password_set.html:156
 #: templates/allauth/account/password_set.html:12
 #: templates/allauth/account/password_set.html:27
 #: templates/allauth/account/password_set.html:104
-#, fuzzy
-#| msgid "User Password"
 msgid "Set Password"
-msgstr "Kata Sandi Pengguna"
+msgstr "Atur Kata Sandi"
 
 #: templates/account/password_set.html:24
 #: templates/allauth/account/password_set.html:28
 msgid "Create a password for your account"
-msgstr ""
+msgstr "Buat kata sandi untuk akun Anda"
 
 #: templates/account/password_set.html:88
 #: templates/frontend/pdf_security/protect_pdf.html:12
@@ -534,27 +490,21 @@ msgid "Password"
 msgstr "Kata Sandi"
 
 #: templates/account/password_set.html:96
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Enter password"
-msgstr "Kata Sandi Pemilik"
+msgstr "Masukkan kata sandi"
 
 #: templates/account/password_set.html:122 utils_site/src/users/forms.py:58
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Confirm Password"
-msgstr "Kata Sandi Pemilik"
+msgstr "Konfirmasi Kata Sandi"
 
 #: templates/account/password_set.html:130
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Confirm password"
-msgstr "Kata Sandi Pemilik"
+msgstr "Konfirmasi kata sandi"
 
 #: templates/account/password_set.html:167
 #: templates/allauth/account/password_set.html:115
 msgid "Cancel and return to account"
-msgstr ""
+msgstr "Batal dan kembali ke akun"
 
 #: templates/base.html:15 templates/base.html:28 templates/base.html:40
 #: templates/frontend/index.html:8 templates/frontend/index.html:10
@@ -588,15 +538,15 @@ msgstr "Semua"
 
 #: templates/blog/article_detail.html:289
 msgid "Related Articles"
-msgstr "Artikel terkait"
+msgstr "Artikel Terkait"
 
 #: templates/blog/article_detail.html:334
 msgid "Back to Blog"
-msgstr "Kembali ke blog"
+msgstr "Kembali ke Blog"
 
 #: templates/blog/article_detail.html:346 templates/frontend/index.html:156
 msgid "Popular Tools"
-msgstr "Alat populer"
+msgstr "Alat Populer"
 
 #: templates/blog/article_detail.html:374 templates/frontend/all_tools.html:467
 #: templates/frontend/includes/header.html:309
@@ -623,7 +573,7 @@ msgstr "Putar PDF"
 #: templates/blog/article_detail.html:389
 #: templates/frontend/includes/related_tools.html:37
 msgid "View All Tools"
-msgstr "Semua alat"
+msgstr "Lihat Semua Alat"
 
 #: templates/blog/article_list.html:7
 msgid "blog, articles, PDF guides, document tips, tutorials"
@@ -653,7 +603,7 @@ msgstr "Cari"
 
 #: templates/blog/article_list.html:54
 msgid "All Articles"
-msgstr "Semua artikel"
+msgstr "Semua Artikel"
 
 #: templates/blog/article_list.html:103
 msgid "Read"
@@ -685,7 +635,7 @@ msgstr "Tidak ada artikel yang ditemukan."
 
 #: templates/frontend/about.html:18 utils_site/src/frontend/views.py:1185
 msgid "About Us - Convertica"
-msgstr "Tentang kami - Convertica"
+msgstr "Tentang Kami - Convertica"
 
 #: templates/frontend/about.html:25
 msgid ""
@@ -713,7 +663,7 @@ msgstr "Ikon misi"
 
 #: templates/frontend/about.html:67
 msgid "Our Mission"
-msgstr "Misi kami"
+msgstr "Misi Kami"
 
 #: templates/frontend/about.html:70
 msgid ""
@@ -735,7 +685,7 @@ msgstr "Ikon pertumbuhan"
 
 #: templates/frontend/about.html:82
 msgid "Our Core Principle: Constant Improvement"
-msgstr "Prinsip inti kami: Perbaikan berkelanjutan"
+msgstr "Prinsip Inti Kami: Perbaikan Berkelanjutan"
 
 #: templates/frontend/about.html:86
 msgid "We live by a simple yet powerful philosophy:"
@@ -784,7 +734,7 @@ msgstr "Ikon alat"
 
 #: templates/frontend/about.html:111
 msgid "What We Offer"
-msgstr "Apa yang kami tawarkan"
+msgstr "Apa yang Kami Tawarkan"
 
 #: templates/frontend/about.html:115
 msgid "PDF Conversion"
@@ -842,7 +792,7 @@ msgstr "Ikon bintang"
 
 #: templates/frontend/about.html:149
 msgid "Why Choose Convertica"
-msgstr "Mengapa memilih Convertica"
+msgstr "Mengapa Memilih Convertica"
 
 #: templates/frontend/about.html:154 templates/frontend/about.html:167
 #: templates/frontend/about.html:180 templates/frontend/about.html:193
@@ -876,7 +826,7 @@ msgstr ""
 
 #: templates/frontend/about.html:185
 msgid "No Registration Required"
-msgstr "Tidak perlu registrasi"
+msgstr "Tidak Perlu Registrasi"
 
 #: templates/frontend/about.html:187
 msgid ""
@@ -888,7 +838,7 @@ msgstr ""
 
 #: templates/frontend/about.html:198 templates/frontend/pricing.html:349
 msgid "Privacy First"
-msgstr "Privasi diutamakan"
+msgstr "Privasi Diutamakan"
 
 #: templates/frontend/about.html:200
 msgid ""
@@ -900,7 +850,7 @@ msgstr ""
 
 #: templates/frontend/about.html:209
 msgid "Ready to Get Started?"
-msgstr "Siap untuk memulai?"
+msgstr "Siap untuk Memulai?"
 
 #: templates/frontend/about.html:211
 msgid "Experience the power of Convertica's PDF tools today."
@@ -916,7 +866,7 @@ msgstr "Mulai"
 
 #: templates/frontend/all_tools.html:24
 msgid "All PDF Tools"
-msgstr "Semua alat PDF"
+msgstr "Semua Alat PDF"
 
 #: templates/frontend/all_tools.html:27
 msgid ""
@@ -962,16 +912,12 @@ msgstr "Konversi dokumen Word ke file PDF yang aman."
 #: templates/frontend/includes/header.html:1001
 #: utils_site/src/frontend/context_processors.py:330
 #: utils_site/src/frontend/context_processors.py:460
-#, fuzzy
-#| msgid "JPG to PDF"
 msgid "Excel to PDF"
-msgstr "JPG ke PDF"
+msgstr "Excel ke PDF"
 
 #: templates/frontend/all_tools.html:103
-#, fuzzy
-#| msgid "Protect and secure your PDF documents"
 msgid "Convert Excel spreadsheets to PDF documents."
-msgstr "Lindungi dan amankan dokumen PDF Anda"
+msgstr "Konversi spreadsheet Excel ke dokumen PDF."
 
 #: templates/frontend/all_tools.html:118
 #: templates/frontend/includes/header.html:139
@@ -979,16 +925,12 @@ msgstr "Lindungi dan amankan dokumen PDF Anda"
 #: templates/frontend/includes/header.html:1015
 #: utils_site/src/frontend/context_processors.py:331
 #: utils_site/src/frontend/context_processors.py:538
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "PowerPoint to PDF"
-msgstr "Konversi ke PDF"
+msgstr "PowerPoint ke PDF"
 
 #: templates/frontend/all_tools.html:121
-#, fuzzy
-#| msgid "Convert your Word documents to PDF format in seconds"
 msgid "Convert PowerPoint presentations to PDF format."
-msgstr "Konversi dokumen Word Anda ke format PDF dalam hitungan detik"
+msgstr "Konversi presentasi PowerPoint ke format PDF."
 
 #: templates/frontend/all_tools.html:136
 #: templates/frontend/includes/header.html:163
@@ -996,14 +938,12 @@ msgstr "Konversi dokumen Word Anda ke format PDF dalam hitungan detik"
 #: templates/frontend/includes/header.html:1029
 #: utils_site/src/frontend/context_processors.py:333
 #: utils_site/src/frontend/context_processors.py:550
-#, fuzzy
-#| msgid "JPG to PDF"
 msgid "HTML to PDF"
-msgstr "JPG ke PDF"
+msgstr "HTML ke PDF"
 
 #: templates/frontend/all_tools.html:139
 msgid "Convert HTML content or web pages to PDF."
-msgstr ""
+msgstr "Konversi konten HTML atau halaman web ke PDF."
 
 #: templates/frontend/all_tools.html:155
 #: templates/frontend/includes/footer.html:120
@@ -1056,16 +996,12 @@ msgstr "Ekstrak tabel dari PDF dan konversi ke format Excel."
 #: templates/frontend/includes/header.html:1022
 #: utils_site/src/frontend/context_processors.py:332
 #: utils_site/src/frontend/context_processors.py:544
-#, fuzzy
-#| msgid "PDF to JPG Converter"
 msgid "PDF to PowerPoint"
-msgstr "Konverter PDF ke JPG"
+msgstr "PDF ke PowerPoint"
 
 #: templates/frontend/all_tools.html:217
-#, fuzzy
-#| msgid "Convert PDF pages to high-quality JPG images."
 msgid "Convert PDF pages to editable PowerPoint slides."
-msgstr "Konversi halaman PDF ke gambar JPG berkualitas tinggi."
+msgstr "Konversi halaman PDF ke slide PowerPoint yang dapat diedit."
 
 #: templates/frontend/all_tools.html:232
 #: templates/frontend/includes/header.html:175
@@ -1073,14 +1009,12 @@ msgstr "Konversi halaman PDF ke gambar JPG berkualitas tinggi."
 #: templates/frontend/includes/header.html:1036
 #: utils_site/src/frontend/context_processors.py:334
 #: utils_site/src/frontend/context_processors.py:556
-#, fuzzy
-#| msgid "PDF to JPG"
 msgid "PDF to HTML"
-msgstr "PDF ke JPG"
+msgstr "PDF ke HTML"
 
 #: templates/frontend/all_tools.html:235
 msgid "Convert PDF content to HTML for web publishing."
-msgstr ""
+msgstr "Konversi konten PDF ke HTML untuk publikasi web."
 
 #: templates/frontend/all_tools.html:252
 #: templates/frontend/includes/header.html:183
@@ -1428,62 +1362,44 @@ msgid "Sending..."
 msgstr "Mengirim..."
 
 #: templates/frontend/converter_generic.html:46
-#, fuzzy
-#| msgid "Download File"
 msgid "Upload File"
-msgstr "Unduh file"
+msgstr "Unggah File"
 
 #: templates/frontend/converter_generic.html:47
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the upload button or drag and drop your file"
-msgstr "Klik tombol edit untuk memproses file Anda"
+msgstr "Klik tombol unggah atau seret dan lepas file Anda"
 
 #: templates/frontend/converter_generic.html:53
-#, fuzzy
-#| msgid "Convertica"
 msgid "Convert"
-msgstr "Convertica"
+msgstr "Konversi"
 
 #: templates/frontend/converter_generic.html:54
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the Convert button and wait for processing to complete"
-msgstr "Klik tombol edit untuk memproses file Anda"
+msgstr "Klik tombol Konversi dan tunggu hingga pemrosesan selesai"
 
 #: templates/frontend/converter_generic.html:60
 #: templates/frontend/edit_pdf_generic.html:58
 #: templates/frontend/pdf_edit/add_watermark.html:70
 #: templates/frontend/pdf_edit/crop_pdf.html:64
 #: templates/users/account_status.html:335
-#, fuzzy
-#| msgid "Download PDF"
 msgid "Download"
-msgstr "Unduh PDF"
+msgstr "Unduh"
 
 #: templates/frontend/converter_generic.html:61
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your converted file instantly"
-msgstr "Unduh file PDF yang telah dikonversi"
+msgstr "Unduh file yang dikonversi Anda secara instan"
 
 #: templates/frontend/converter_generic.html:106
-#, fuzzy
-#| msgid "Select file to crop"
 msgid "Select file to upload"
-msgstr "Pilih file untuk dipotong"
+msgstr "Pilih file untuk diunggah"
 
 #: templates/frontend/converter_generic.html:107
-#, fuzzy
-#| msgid "Support icon"
 msgid "Upload icon"
-msgstr "Ikon dukungan"
+msgstr "Ikon unggah"
 
 #: templates/frontend/converter_generic.html:110
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select files to convert (multiple)"
-msgstr "Pilih file untuk dikonversi"
+msgstr "Pilih file untuk dikonversi (beberapa)"
 
 #: templates/frontend/converter_generic.html:110
 msgid "Select file to convert"
@@ -1507,23 +1423,21 @@ msgstr "Hapus file"
 #: templates/frontend/converter_generic.html:165
 #: templates/frontend/pdf_edit/add_watermark.html:295
 #: templates/frontend/pdf_edit/crop_pdf.html:252
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your files here"
-msgstr "Seret dan lepas file Anda ke sini"
+msgstr "Seret dan lepas file Anda di sini"
 
 #: templates/frontend/converter_generic.html:165
 #: templates/frontend/pdf_edit/add_watermark.html:295
 #: templates/frontend/pdf_edit/crop_pdf.html:252
 msgid "up to 10 files"
-msgstr ""
+msgstr "hingga 10 file"
 
 #: templates/frontend/converter_generic.html:165
 #: templates/frontend/edit_pdf_generic.html:161
 #: templates/frontend/pdf_edit/add_watermark.html:295
 #: templates/frontend/pdf_edit/crop_pdf.html:252
 msgid "Drag and drop your file here"
-msgstr "Seret dan lepas file Anda ke sini"
+msgstr "Seret dan lepas file Anda di sini"
 
 #: templates/frontend/converter_generic.html:168
 #: templates/frontend/edit_pdf_generic.html:164
@@ -1592,8 +1506,6 @@ msgstr "Klik tombol konversi"
 #: templates/frontend/converter_generic.html:231
 #: templates/frontend/pdf_convert/excel_to_pdf.html:12
 #: templates/frontend/pdf_convert/html_to_pdf.html:311
-#: templates/frontend/pdf_convert/jpg_to_pdf.html:158
-#: templates/frontend/pdf_convert/ppt_to_pdf.html:12
 msgid "Wait for the conversion to complete"
 msgstr "Tunggu hingga konversi selesai"
 
@@ -1611,21 +1523,22 @@ msgid ""
 "file into smaller parts or get a 1-day Premium subscription for just $1 to "
 "process larger files with much higher limits!"
 msgstr ""
+"PDF memiliki %%(page_count)d halaman (batas: %%(max_pages)d). Anda dapat "
+"membagi file Anda menjadi bagian yang lebih kecil atau mendapatkan "
+"langganan Premium 1-hari hanya dengan $1 untuk memproses file yang lebih "
+"besar dengan batas yang jauh lebih tinggi!"
 
 #: templates/frontend/converter_generic.html:262
 #: templates/frontend/pdf_edit/add_page_numbers.html:256
 #: templates/frontend/pdf_organize/merge_pdf.html:136
 #: templates/frontend/pdf_organize/organize_pdf.html:48
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
-#| "split your PDF into smaller parts."
+#, python-format
 msgid ""
 "PDF has %%(page_count)d pages (limit: %%(max_pages)d). Please split your "
 "file into smaller parts."
 msgstr ""
-"PDF memiliki %%(page_count)d halaman, maksimum yang diizinkan adalah "
-"%%(max_pages)d. Silakan bagi PDF Anda menjadi bagian yang lebih kecil."
+"PDF memiliki %%(page_count)d halaman (batas: %%(max_pages)d). Silakan bagi "
+"file Anda menjadi bagian yang lebih kecil."
 
 #: templates/frontend/converter_generic.html:268
 msgid "Converting your file..."
@@ -1660,7 +1573,7 @@ msgstr "File Anda siap untuk diunduh"
 #: templates/frontend/pdf_edit/add_watermark.html:659
 #: templates/frontend/pdf_edit/crop_pdf.html:489
 msgid "Download File"
-msgstr "Unduh file"
+msgstr "Unduh File"
 
 #: templates/frontend/converter_generic.html:273
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:189
@@ -1696,38 +1609,28 @@ msgstr ""
 #: templates/frontend/edit_pdf_generic.html:46
 #: templates/frontend/pdf_edit/add_watermark.html:46
 #: templates/frontend/pdf_edit/crop_pdf.html:46
-#, fuzzy
-#| msgid "Download PDF"
 msgid "Upload PDF"
-msgstr "Unduh PDF"
+msgstr "Unggah PDF"
 
 #: templates/frontend/edit_pdf_generic.html:47
-#, fuzzy
-#| msgid "Select file to edit"
 msgid "Select your PDF file to edit"
-msgstr "Pilih file untuk diedit"
+msgstr "Pilih file PDF Anda untuk diedit"
 
 #: templates/frontend/edit_pdf_generic.html:52 templates/users/profile.html:225
-#, fuzzy
-#| msgid "Edit PDF"
 msgid "Edit"
-msgstr "Edit PDF"
+msgstr "Edit"
 
 #: templates/frontend/edit_pdf_generic.html:53
 msgid "Apply your changes and click the Edit button"
-msgstr ""
+msgstr "Terapkan perubahan Anda dan klik tombol Edit"
 
 #: templates/frontend/edit_pdf_generic.html:59
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your edited PDF file"
-msgstr "Unduh file PDF yang telah dikonversi"
+msgstr "Unduh file PDF yang telah diedit"
 
 #: templates/frontend/edit_pdf_generic.html:106
-#, fuzzy
-#| msgid "Select file to edit"
 msgid "Select files to edit (multiple)"
-msgstr "Pilih file untuk diedit"
+msgstr "Pilih file untuk diedit (beberapa)"
 
 #: templates/frontend/edit_pdf_generic.html:106
 msgid "Select file to edit"
@@ -1773,16 +1676,13 @@ msgid "Note:"
 msgstr "Catatan:"
 
 #: templates/frontend/edit_pdf_generic.html:217
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported. For larger files, "
 "please split them into smaller parts."
 msgstr ""
-"File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-"bagi menjadi bagian yang lebih kecil."
+"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih "
+"besar, silakan bagi menjadi bagian yang lebih kecil."
 
 #: templates/frontend/edit_pdf_generic.html:245
 #: templates/frontend/pdf_edit/add_page_numbers.html:244
@@ -1796,7 +1696,7 @@ msgstr "Memproses file Anda..."
 #: templates/frontend/pdf_edit/add_watermark.html:657
 #: templates/frontend/pdf_edit/crop_pdf.html:487
 msgid "Editing Complete!"
-msgstr "Pengeditan selesai!"
+msgstr "Pengeditan Selesai!"
 
 #: templates/frontend/edit_pdf_generic.html:250
 #: templates/frontend/pdf_edit/add_page_numbers.html:249
@@ -1806,10 +1706,6 @@ msgid "Edit another file"
 msgstr "Edit file lain"
 
 #: templates/frontend/edit_pdf_generic.html:252
-#, fuzzy
-#| msgid ""
-#| "Please enter page numbers to remove, or select \"All pages\" or \"Current "
-#| "page only\""
 msgid ""
 "Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
 "\"Current page only\\\""
@@ -2212,7 +2108,7 @@ msgstr ""
 
 #: templates/frontend/includes/breadcrumbs.html:5
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Breadcrumb"
 
 #: templates/frontend/includes/cookie_banner.html:10
 #: templates/frontend/includes/cookie_banner.html:42
@@ -2461,78 +2357,66 @@ msgstr "Manajemen Halaman"
 
 #: templates/frontend/includes/header.html:699
 msgid "More options"
-msgstr ""
+msgstr "Opsi lainnya"
 
 #: templates/frontend/includes/header.html:700
 #: templates/frontend/includes/header.html:1143
 msgid "More"
-msgstr ""
+msgstr "Lainnya"
 
 #: templates/frontend/includes/header.html:724
-#, fuzzy
-#| msgid "Learn more about Convertica and our mission."
 msgid "Learn more about Convertica"
-msgstr "Pelajari lebih lanjut tentang Convertica dan misi kami."
+msgstr "Pelajari lebih lanjut tentang Convertica"
 
 #: templates/frontend/includes/header.html:741
 msgid "Get in touch with us"
-msgstr ""
+msgstr "Hubungi kami"
 
 #: templates/frontend/includes/header.html:758
-#, fuzzy
-#| msgid "Latest Guides & Tips"
 msgid "Latest news and updates"
-msgstr "Panduan & Tips Terbaru"
+msgstr "Berita dan pembaruan terbaru"
 
 #: templates/frontend/includes/header.html:779
 #: templates/frontend/includes/header.html:813
 #: templates/frontend/includes/header.html:1179
 #: templates/frontend/includes/header.html:1194
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Hero Page"
-msgstr "Hapus Halaman"
+msgstr "Halaman Hero"
 
 #: templates/frontend/includes/header.html:780
 msgid "Premium features and heroes"
-msgstr ""
+msgstr "Fitur premium dan hero"
 
 #: templates/frontend/includes/header.html:796
 #: templates/frontend/includes/header.html:830
 #: templates/frontend/includes/header.html:1186
 #: templates/frontend/includes/header.html:1201 templates/users/profile.html:8
-#, fuzzy
-#| msgid "file"
 msgid "Profile"
-msgstr "file"
+msgstr "Profil"
 
 #: templates/frontend/includes/header.html:797
-#, fuzzy
-#| msgid "Rotation Settings"
 msgid "Your account settings"
-msgstr "Pengaturan Rotasi"
+msgstr "Pengaturan akun Anda"
 
 #: templates/frontend/includes/header.html:814
 msgid "Sign in to access premium"
-msgstr ""
+msgstr "Masuk untuk mengakses premium"
 
 #: templates/frontend/includes/header.html:831
 msgid "Sign in to your account"
-msgstr ""
+msgstr "Masuk ke akun Anda"
 
 #: templates/frontend/includes/header.html:848
-#, fuzzy
-#| msgid "Toggle menu"
 msgid "Toggle theme"
-msgstr "Alihkan menu"
+msgstr "Alihkan tema"
 
 #: templates/frontend/includes/header.html:849
 msgid "Toggle Dark Mode"
-msgstr ""
+msgstr "Alihkan Mode Gelap"
 
 #: templates/frontend/includes/header.html:849
 msgid "Dark Mode (Premium)"
-msgstr ""
+msgstr "Mode Gelap (Premium)"
 
 #: templates/frontend/includes/header.html:902
 msgid "Toggle menu"
@@ -2540,7 +2424,7 @@ msgstr "Alihkan menu"
 
 #: templates/frontend/includes/related_tools.html:9
 msgid "You might also like"
-msgstr ""
+msgstr "Anda mungkin juga menyukai"
 
 #: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
@@ -2577,87 +2461,68 @@ msgid ""
 "Simply upload your PDF file, click convert, and download your Word document. "
 "No registration required, completely free."
 msgstr ""
+"Cukup unggah file PDF Anda, klik konversi, dan unduh dokumen Word Anda. "
+"Tanpa registrasi, sepenuhnya gratis."
 
 #: templates/frontend/index.html:49
-#, fuzzy
-#| msgid ""
-#| "Yes, Convertica is completely free to use. All PDF conversion, editing, "
-#| "and organization tools are available at no cost. There are no hidden "
-#| "fees, no registration required, and no file size limits on the free plan."
 msgid ""
 "Yes, Convertica is completely free. All PDF conversion and editing tools are "
 "available at no cost with no hidden fees."
 msgstr ""
-"Ya, Convertica sepenuhnya gratis digunakan. Semua alat konversi, pengeditan, "
-"dan organisasi PDF tersedia tanpa biaya. Tidak ada biaya tersembunyi, tidak "
-"perlu registrasi, dan tidak ada batasan ukuran file pada paket gratis."
+"Ya, Convertica sepenuhnya gratis. Semua alat konversi dan pengeditan PDF "
+"tersedia tanpa biaya dan tanpa biaya tersembunyi."
 
 #: templates/frontend/index.html:57
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted after conversion. We do not store your files."
 msgstr ""
-"Ya! File Anda diproses dengan aman dan dihapus otomatis segera setelah "
-"pemrosesan. Kami tidak pernah menyimpan file Anda secara permanen."
+"Ya, data Anda aman. Semua file diproses dengan aman dan dihapus otomatis "
+"setelah konversi. Kami tidak menyimpan file Anda."
 
 #: templates/frontend/index.html:65
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), Excel (XLS, XLSX), PowerPoint "
 "(PPT, PPTX), JPG, PNG, and HTML formats."
 msgstr ""
+"Convertica mendukung format PDF, Word (DOC, DOCX), Excel (XLS, XLSX), "
+"PowerPoint (PPT, PPTX), JPG, PNG, dan HTML."
 
 #: templates/frontend/index.html:70
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Do I need to register?"
-msgstr "Apakah saya perlu membuat akun?"
+msgstr "Apakah saya perlu mendaftar?"
 
 #: templates/frontend/index.html:73
 msgid ""
 "No registration required. You can use all tools instantly without creating "
 "an account. Premium features are available for advanced users."
 msgstr ""
+"Tidak perlu registrasi. Anda dapat menggunakan semua alat secara instan "
+"tanpa membuat akun. Fitur premium tersedia untuk pengguna tingkat lanjut."
 
 #: templates/frontend/index.html:78 templates/frontend/index.html:540
-#, fuzzy
-#| msgid "Are my files safe?"
 msgid "How long are my files stored?"
-msgstr "Apakah file saya aman?"
+msgstr "Berapa lama file saya disimpan?"
 
 #: templates/frontend/index.html:81
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Your files are processed securely and automatically deleted after "
 "conversion. We do not store your files longer than necessary."
 msgstr ""
-"Ya! File Anda diproses dengan aman dan dihapus otomatis segera setelah "
-"pemrosesan. Kami tidak pernah menyimpan file Anda secara permanen."
+"File Anda diproses dengan aman dan dihapus otomatis setelah konversi. Kami "
+"tidak menyimpan file Anda lebih lama dari yang diperlukan."
 
 #: templates/frontend/index.html:86 templates/frontend/index.html:552
-#, fuzzy
-#| msgid "Can I use Convertica on mobile devices?"
 msgid "Can I use Convertica on mobile?"
-msgstr "Bisakah saya menggunakan Convertica di perangkat seluler?"
+msgstr "Bisakah saya menggunakan Convertica di ponsel?"
 
 #: templates/frontend/index.html:89
-#, fuzzy
-#| msgid ""
-#| "Yes, Convertica is fully responsive and works on mobile devices. You can "
-#| "convert, edit, and organize PDFs directly from your smartphone or tablet."
 msgid ""
 "Yes. Convertica works on mobile and desktop browsers. You can convert and "
 "edit PDFs from your phone or tablet."
 msgstr ""
-"Ya, Convertica sepenuhnya responsif dan bekerja di perangkat seluler. Anda "
-"dapat mengonversi, mengedit, dan mengatur PDF langsung dari smartphone atau "
-"tablet Anda."
+"Ya. Convertica bekerja di browser seluler dan desktop. Anda dapat "
+"mengonversi dan mengedit PDF dari ponsel atau tablet Anda."
 
 #: templates/frontend/index.html:110
 msgid "All-in-One PDF Tools"
@@ -2685,28 +2550,28 @@ msgid "Try it"
 msgstr "Coba"
 
 #: templates/frontend/index.html:302 templates/frontend/pricing.html:23
-#, fuzzy
-#| msgid "Convertica - Home"
 msgid "Become a Convertica Hero"
-msgstr "Convertica - Beranda"
+msgstr "Menjadi Convertica Hero"
 
 #: templates/frontend/index.html:305 templates/frontend/pricing.html:328
 msgid "Support Our Project"
-msgstr ""
+msgstr "Dukung Proyek Kami"
 
 #: templates/frontend/index.html:308
 msgid ""
 "Process larger files with much higher limits, priority processing, and "
 "premium features"
 msgstr ""
+"Proses file yang lebih besar dengan batas yang jauh lebih tinggi, "
+"pemrosesan prioritas, dan fitur premium"
 
 #: templates/frontend/index.html:318 templates/users/account_status.html:98
 msgid "Become a Hero"
-msgstr ""
+msgstr "Menjadi Hero"
 
 #: templates/frontend/index.html:321
 msgid "Your support helps us keep Convertica free for everyone"
-msgstr ""
+msgstr "Dukungan Anda membantu kami menjaga Convertica tetap gratis untuk semua orang"
 
 #: templates/frontend/index.html:336
 msgid "Manage and organize your PDF documents with powerful tools"
@@ -2726,44 +2591,36 @@ msgstr ""
 
 #: templates/frontend/index.html:520
 msgid "Quick answers to common questions. Need more? Visit the full FAQ page."
-msgstr ""
+msgstr "Jawaban cepat untuk pertanyaan umum. Butuh lebih banyak? Kunjungi halaman FAQ lengkap."
 
 #: templates/frontend/index.html:533
 msgid ""
 "Yes. Convertica is free to use — no registration required. Premium "
 "subscriptions are optional and provide higher limits and additional features."
 msgstr ""
+"Ya. Convertica gratis digunakan — tidak perlu registrasi. Langganan premium "
+"bersifat opsional dan menyediakan batas yang lebih tinggi dan fitur "
+"tambahan."
 
 #: templates/frontend/index.html:545
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Files are processed securely and automatically deleted after conversion. We "
 "do not store your files longer than necessary."
 msgstr ""
-"Ya! File Anda diproses dengan aman dan dihapus otomatis segera setelah "
-"pemrosesan. Kami tidak pernah menyimpan file Anda secara permanen."
+"File diproses dengan aman dan dihapus otomatis setelah konversi. Kami tidak "
+"menyimpan file Anda lebih lama dari yang diperlukan."
 
 #: templates/frontend/index.html:557
-#, fuzzy
-#| msgid ""
-#| "Yes, Convertica is fully responsive and works on mobile devices. You can "
-#| "convert, edit, and organize PDFs directly from your smartphone or tablet."
 msgid ""
 "Yes. Convertica works on mobile and desktop browsers — you can convert and "
 "edit PDFs from your phone or tablet."
 msgstr ""
-"Ya, Convertica sepenuhnya responsif dan bekerja di perangkat seluler. Anda "
-"dapat mengonversi, mengedit, dan mengatur PDF langsung dari smartphone atau "
-"tablet Anda."
+"Ya. Convertica bekerja di browser seluler dan desktop — Anda dapat "
+"mengonversi dan mengedit PDF dari ponsel atau tablet Anda."
 
 #: templates/frontend/index.html:565
-#, fuzzy
-#| msgid "View All Articles"
 msgid "View all FAQ"
-msgstr "Lihat Semua Artikel"
+msgstr "Lihat semua FAQ"
 
 #: templates/frontend/index.html:577
 msgid "Latest Guides & Tips"
@@ -2778,99 +2635,82 @@ msgid "View All Articles"
 msgstr "Lihat Semua Artikel"
 
 #: templates/frontend/pdf_convert/excel_to_pdf.html:10
-#, fuzzy
-#| msgid "Select your PDF file using the button above or drag and drop it"
 msgid ""
 "Select your Excel file (XLS or XLSX) using the button above or drag and drop "
 "it"
-msgstr "Pilih file PDF Anda menggunakan tombol di atas atau seret dan lepas"
+msgstr "Pilih file Excel Anda (XLS atau XLSX) menggunakan tombol di atas atau seret dan lepas"
 
 #: templates/frontend/pdf_convert/excel_to_pdf.html:13
 #: templates/frontend/pdf_convert/html_to_pdf.html:312
-#: templates/frontend/pdf_convert/ppt_to_pdf.html:13
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your PDF file"
-msgstr "Unduh file PDF yang telah dikonversi"
+msgstr "Unduh file PDF Anda"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:48
 #: templates/frontend/pdf_convert/html_to_pdf.html:59
-#, fuzzy
-#| msgid "Your Content"
 msgid "HTML Content"
-msgstr "Konten Anda"
+msgstr "Konten HTML"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:51
-#, fuzzy
-#| msgid "JPG to PDF"
 msgid "URL to PDF"
-msgstr "JPG ke PDF"
+msgstr "URL ke PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:66
 msgid "Enter your HTML code here..."
-msgstr ""
+msgstr "Masukkan kode HTML Anda di sini..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:73
 #: templates/frontend/pdf_convert/html_to_pdf.html:180
 msgid "Filename"
-msgstr ""
+msgstr "Nama File"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:84
 #: templates/frontend/pdf_convert/html_to_pdf.html:191
-#, fuzzy
-#| msgid "Page"
 msgid "Page Size"
-msgstr "Halaman"
+msgstr "Ukuran Halaman"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:101
 #: templates/frontend/pdf_convert/html_to_pdf.html:209
 msgid "Top Margin"
-msgstr ""
+msgstr "Margin Atas"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:112
 #: templates/frontend/pdf_convert/html_to_pdf.html:220
-#, fuzzy
-#| msgid "Bottom Right"
 msgid "Bottom Margin"
-msgstr "Bawah Kanan"
+msgstr "Margin Bawah"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:123
 #: templates/frontend/pdf_convert/html_to_pdf.html:231
 msgid "Left Margin"
-msgstr ""
+msgstr "Margin Kiri"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:134
 #: templates/frontend/pdf_convert/html_to_pdf.html:242
 msgid "Right Margin"
-msgstr ""
+msgstr "Margin Kanan"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:163
 msgid "Web Page URL"
-msgstr ""
+msgstr "URL Halaman Web"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:172
 msgid "Enter the URL of the web page you want to convert to PDF"
-msgstr ""
+msgstr "Masukkan URL halaman web yang ingin Anda konversi ke PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:256
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert URL to PDF"
-msgstr "Konversi ke PDF"
+msgstr "Konversi URL ke PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:265
-#, fuzzy
-#| msgid "Converting your file..."
 msgid "Converting..."
-msgstr "Mengonversi file Anda..."
+msgstr "Mengonversi..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:273
 msgid "Please wait while we convert your content to PDF..."
-msgstr ""
+msgstr "Harap tunggu sementara kami mengonversi konten Anda ke PDF..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:290
 msgid "Your content has been converted to PDF successfully."
-msgstr ""
+msgstr "Konten Anda telah berhasil dikonversi ke PDF."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:296
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:188
@@ -2878,14 +2718,12 @@ msgid "Download PDF"
 msgstr "Unduh PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:299
-#, fuzzy
-#| msgid "Convert another file"
 msgid "Convert Another"
-msgstr "Konversi file lain"
+msgstr "Konversi Lainnya"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:309
 msgid "Paste your HTML or enter a URL"
-msgstr ""
+msgstr "Tempel HTML Anda atau masukkan URL"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:29
 msgid "You can upload multiple images - they will be combined into one PDF"
@@ -2914,20 +2752,16 @@ msgid "multiple files supported"
 msgstr "mendukung banyak file"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:107
-#, fuzzy
-#| msgid "Image Quality (DPI)"
 msgid "Image Quality (JPEG)"
-msgstr "Kualitas Gambar (DPI)"
+msgstr "Kualitas Gambar (JPEG)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:112
 msgid "Low quality (smaller file)"
-msgstr ""
+msgstr "Kualitas rendah (file lebih kecil)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:113
-#, fuzzy
-#| msgid "Maximum quality"
 msgid "Medium quality (balanced)"
-msgstr "Kualitas maksimal"
+msgstr "Kualitas sedang (seimbang)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:114
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:56
@@ -2935,22 +2769,16 @@ msgid "High quality (recommended)"
 msgstr "Kualitas tinggi (direkomendasikan)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:115
-#, fuzzy
-#| msgid "Maximum quality"
 msgid "Maximum quality (larger file)"
-msgstr "Kualitas maksimal"
+msgstr "Kualitas maksimum (file lebih besar)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:118
-#, fuzzy
-#| msgid ""
-#| "Higher DPI = better quality but larger file size. 300 DPI is recommended "
-#| "for most uses."
 msgid ""
 "Higher quality = better image clarity but larger PDF file size. 85 is "
 "recommended for most uses."
 msgstr ""
-"DPI lebih tinggi = kualitas lebih baik tetapi ukuran file lebih besar. 300 "
-"DPI direkomendasikan untuk sebagian besar penggunaan."
+"Kualitas lebih tinggi = kejelasan gambar lebih baik tetapi ukuran file PDF "
+"lebih besar. 85 direkomendasikan untuk sebagian besar penggunaan."
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:153
 msgid ""
@@ -2973,16 +2801,12 @@ msgid "Remove unwanted images by clicking the X button"
 msgstr "Hapus gambar yang tidak diinginkan dengan mengklik tombol X"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:156
-#, fuzzy
-#| msgid ""
-#| "Higher DPI = better quality but larger file size. 300 DPI is recommended "
-#| "for most uses."
 msgid ""
 "Select image quality (60-95): higher quality = better clarity but larger "
 "file size. 85 is recommended."
 msgstr ""
-"DPI lebih tinggi = kualitas lebih baik tetapi ukuran file lebih besar. 300 "
-"DPI direkomendasikan untuk sebagian besar penggunaan."
+"Pilih kualitas gambar (60-95): kualitas lebih tinggi = kejelasan lebih baik "
+"tetapi ukuran file lebih besar. 85 direkomendasikan."
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:157
 msgid "Click the convert button to combine all images into one PDF"
@@ -3057,73 +2881,50 @@ msgstr ""
 "berhasil dikonversi ke Excel"
 
 #: templates/frontend/pdf_convert/pdf_to_excel.html:17
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. PDF files with tables work best - plain "
-#| "text will be placed in separate cells, and images will be embedded in the "
-#| "Excel file."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. For larger files, please split them into smaller "
 "parts. PDF files with tables work best - plain text will be placed in "
 "separate cells, and images will be embedded in the Excel file."
 msgstr ""
-"File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-"bagi menjadi bagian yang lebih kecil. PDF dengan tabel bekerja paling baik - "
-"teks biasa akan ditempatkan di sel terpisah, dan gambar akan disematkan "
-"dalam file Excel."
+"Pengguna gratis dapat mengonversi file PDF hingga %(max_pages)s halaman. "
+"Pengguna premium memiliki batas lebih tinggi. Untuk file yang lebih besar, "
+"silakan bagi menjadi beberapa bagian. File PDF dengan tabel memberikan hasil "
+"terbaik - teks biasa akan ditempatkan di sel terpisah, dan gambar akan "
+"disematkan dalam file Excel."
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:18
-#, fuzzy
-#| msgid ""
-#| "Click the convert button to start converting PDF to Excel (PDF to XLSX "
-#| "conversion)"
 msgid "Click the convert button to start converting PDF to HTML"
-msgstr ""
-"Klik tombol konversi untuk memulai konversi PDF ke Excel (konversi PDF ke "
-"XLSX)"
+msgstr "Klik tombol konversi untuk memulai konversi PDF ke HTML"
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:19
-#, fuzzy
-#| msgid ""
-#| "Wait for the PDF to Word conversion to complete - text and formatting "
-#| "will be extracted from your PDF and converted to editable Word format"
 msgid ""
 "Wait for the PDF to HTML conversion to complete - text and content will be "
 "extracted from your PDF and converted to HTML format"
 msgstr ""
-"Tunggu hingga konversi PDF ke Word selesai - teks dan pemformatan akan "
-"diekstrak dari PDF Anda dan dikonversi ke format Word yang dapat diedit"
+"Tunggu hingga konversi PDF ke HTML selesai - teks dan konten akan diekstrak "
+"dari PDF Anda dan dikonversi ke format HTML"
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:20
-#, fuzzy
-#| msgid ""
-#| "Download your PDF file - your Word document has been successfully "
-#| "converted to PDF format"
 msgid ""
 "Download your HTML file - your PDF has been successfully converted to HTML "
 "for web publishing"
 msgstr ""
-"Unduh file PDF Anda - dokumen Word Anda telah berhasil dikonversi ke format "
-"PDF"
+"Unduh file HTML Anda - PDF Anda telah berhasil dikonversi ke HTML untuk "
+"penerbitan web"
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:24
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. PDF files with tables work best - plain "
-#| "text will be placed in separate cells, and images will be embedded in the "
-#| "Excel file."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. Text content will be extracted and formatted as "
 "HTML. Images from the PDF will be embedded as base64 for easy web publishing."
 msgstr ""
-"File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-"bagi menjadi bagian yang lebih kecil. PDF dengan tabel bekerja paling baik - "
-"teks biasa akan ditempatkan di sel terpisah, dan gambar akan disematkan "
-"dalam file Excel."
+"Pengguna gratis dapat mengonversi file PDF hingga %(max_pages)s halaman. "
+"Pengguna premium memiliki batas lebih tinggi. Konten teks akan diekstrak dan "
+"diformat sebagai HTML. Gambar dari PDF akan disematkan sebagai base64 untuk "
+"memudahkan penerbitan web."
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:6
 msgid "Page Selection"
@@ -3224,188 +3025,165 @@ msgstr ""
 "Unduh arsip ZIP yang berisi semua gambar JPG yang dikonversi dari PDF Anda"
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:83
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. The output will be a ZIP archive "
-#| "containing all converted JPG images, named with page numbers (e.g., "
-#| "filename_page0001.jpg, filename_page0002.jpg)."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. For larger files, please split them into smaller "
 "parts. The output will be a ZIP archive containing all converted JPG images, "
 "named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
 msgstr ""
-"File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-"bagi menjadi bagian yang lebih kecil. Output akan berupa arsip ZIP yang "
+"Pengguna gratis dapat mengonversi file PDF hingga %(max_pages)s halaman. "
+"Pengguna premium memiliki batas lebih tinggi. Untuk file yang lebih besar, "
+"silakan bagi menjadi beberapa bagian. Output akan berupa arsip ZIP yang "
 "berisi semua gambar JPG yang dikonversi, dinamai dengan nomor halaman (mis., "
 "filename_page0001.jpg, filename_page0002.jpg)."
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:18
-#, fuzzy
-#| msgid ""
-#| "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#| "conversion)"
 msgid ""
 "Click the convert button to start converting PDF to PowerPoint (PDF to PPTX "
 "conversion)"
 msgstr ""
-"Klik tombol konversi untuk memulai konversi PDF ke Word (konversi PDF ke "
-"DOCX)"
+"Klik tombol konversi untuk memulai konversi PDF ke PowerPoint (konversi PDF "
+"ke PPTX)"
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:19
-#, fuzzy
-#| msgid ""
-#| "Wait for the PDF to Word conversion to complete - text and formatting "
-#| "will be extracted from your PDF and converted to editable Word format"
 msgid ""
 "Wait for the PDF to PowerPoint conversion to complete - pages will be "
 "extracted from your PDF and converted to editable PowerPoint slides"
 msgstr ""
-"Tunggu hingga konversi PDF ke Word selesai - teks dan pemformatan akan "
-"diekstrak dari PDF Anda dan dikonversi ke format Word yang dapat diedit"
+"Tunggu hingga konversi PDF ke PowerPoint selesai - halaman akan diekstrak "
+"dari PDF Anda dan dikonversi ke slide PowerPoint yang dapat diedit"
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:20
-#, fuzzy
-#| msgid ""
-#| "Download your editable Word document (DOCX format) - your PDF has been "
-#| "successfully converted to Word"
 msgid ""
 "Download your editable PowerPoint presentation (PPTX format) - your PDF has "
 "been successfully converted to PowerPoint"
 msgstr ""
-"Unduh dokumen Word yang dapat diedit (format DOCX) - PDF Anda telah berhasil "
-"dikonversi ke Word"
+"Unduh presentasi PowerPoint yang dapat diedit (format PPTX) - PDF Anda "
+"telah berhasil dikonversi ke PowerPoint"
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:24
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. PDF files with tables work best - plain "
-#| "text will be placed in separate cells, and images will be embedded in the "
-#| "Excel file."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. Each PDF page will be converted to a PowerPoint "
 "slide. For best results, use PDFs with clear layouts and high-quality "
 "content."
 msgstr ""
-"File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-"bagi menjadi bagian yang lebih kecil. PDF dengan tabel bekerja paling baik - "
-"teks biasa akan ditempatkan di sel terpisah, dan gambar akan disematkan "
-"dalam file Excel."
+"Pengguna gratis dapat mengonversi file PDF hingga %(max_pages)s halaman. "
+"Pengguna premium memiliki batas lebih tinggi. Setiap halaman PDF akan "
+"dikonversi menjadi slide PowerPoint. Untuk hasil terbaik, gunakan PDF dengan "
+"tata letak yang jelas dan konten berkualitas tinggi."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
-msgstr ""
+msgstr "Aktifkan OCR (Pengenalan Karakter Optik)"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:30
 msgid ""
 "Extract text from scanned PDFs and images. Convert image-based PDFs to "
 "editable text."
 msgstr ""
+"Ekstrak teks dari PDF yang dipindai dan gambar. Konversi PDF berbasis "
+"gambar menjadi teks yang dapat diedit."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:32
 msgid ""
 "Premium feature - extract text from scanned PDFs and images. Upgrade to "
 "Premium to enable."
 msgstr ""
+"Fitur premium - ekstrak teks dari PDF yang dipindai dan gambar. Tingkatkan "
+"ke Premium untuk mengaktifkan."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:37
 msgid "Log in to upgrade"
-msgstr ""
+msgstr "Masuk untuk meningkatkan"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:41
 #: templates/users/manage_subscription.html:165
 #: templates/users/profile.html:194
 msgid "Upgrade to Premium"
-msgstr ""
+msgstr "Tingkatkan ke Premium"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:52
-#, fuzzy
-#| msgid "Language"
 msgid "Document Language"
-msgstr "Bahasa"
+msgstr "Bahasa Dokumen"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:58
 msgid "Auto-detect"
-msgstr ""
+msgstr "Deteksi otomatis"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:59
-#, fuzzy
-#| msgid "SEO - English"
 msgid "English"
-msgstr "SEO - Bahasa Inggris"
+msgstr "Inggris"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:60
 msgid "Russian"
-msgstr ""
+msgstr "Rusia"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:61
 msgid "German"
-msgstr ""
+msgstr "Jerman"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:62
 msgid "French"
-msgstr ""
+msgstr "Prancis"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:63
 msgid "Spanish"
-msgstr ""
+msgstr "Spanyol"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:64
 msgid "Italian"
-msgstr ""
+msgstr "Italia"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:65
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugis"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:66
-#, fuzzy
-#| msgid "Published"
 msgid "Polish"
-msgstr "Diterbitkan"
+msgstr "Polandia"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:67
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukraina"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:68
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Cina (Sederhana)"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:69
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Cina (Tradisional)"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:70
 msgid "Japanese"
-msgstr ""
+msgstr "Jepang"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:71
 msgid "Korean"
-msgstr ""
+msgstr "Korea"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:72
 msgid "Arabic"
-msgstr ""
+msgstr "Arab"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:73
 msgid "Hindi"
-msgstr ""
+msgstr "Hindi"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:74
 msgid "Turkish"
-msgstr ""
+msgstr "Turki"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:75
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonesia"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:78
 msgid "Select the language of your document for better OCR accuracy."
-msgstr ""
+msgstr "Pilih bahasa dokumen Anda untuk akurasi OCR yang lebih baik."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:93
 msgid ""
@@ -3432,64 +3210,95 @@ msgstr ""
 "dikonversi ke Word"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:102
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for rotating. For larger "
-#| "files, please split them into smaller parts. The rotation preserves all "
-#| "content and formatting."
+#, python-format
 msgid ""
 "\n"
 "PDF files with up to %(max_pages)s pages are supported for free users. For "
 "larger files, please split them into smaller parts or upgrade to Premium to "
 "process larger files with higher limits.\n"
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk diputar. Untuk file yang lebih "
-"besar, silakan bagi menjadi bagian yang lebih kecil. Rotasi mempertahankan "
-"semua konten dan pemformatan."
+"\n"
+"File PDF hingga %(max_pages)s halaman didukung untuk pengguna gratis. "
+"Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian atau "
+"tingkatkan ke Premium untuk memproses file yang lebih besar dengan batas "
+"yang lebih tinggi.\n"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:106
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts."
+#, python-format
 msgid ""
 "\n"
 "PDF files with up to %(max_pages)s pages are supported. For larger files, "
 "please split them into smaller parts.\n"
 msgstr ""
-"File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-"bagi menjadi bagian yang lebih kecil."
+"\n"
+"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih "
+"besar, silakan bagi menjadi beberapa bagian.\n"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:112
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts."
+#, python-format
 msgid ""
 "\n"
 "Premium users can process PDF files with up to %(max_pages)s pages. For "
 "larger files, please split them into smaller parts.\n"
 msgstr ""
-"File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-"bagi menjadi bagian yang lebih kecil."
+"\n"
+"Pengguna premium dapat memproses file PDF hingga %(max_pages)s halaman. "
+"Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian.\n"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:117
 msgid ""
 "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
 "OCR for Premium users."
 msgstr ""
+"PDF berbasis teks memberikan hasil terbaik - PDF yang dipindai (hanya "
+"gambar) dapat dikonversi dengan OCR untuk pengguna premium."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:119
 msgid "Text-based PDFs work best."
-msgstr ""
+msgstr "PDF berbasis teks memberikan hasil terbaik."
 
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:10
-#, fuzzy
-#| msgid "Select your PDF file using the button above or drag and drop it"
 msgid ""
 "Select your PowerPoint file (PPT or PPTX) using the button above or drag and "
 "drop it"
-msgstr "Pilih file PDF Anda menggunakan tombol di atas atau seret dan lepas"
+msgstr ""
+"Pilih file PowerPoint Anda (PPT atau PPTX) menggunakan tombol di atas atau "
+"seret dan lepas"
+
+#: templates/frontend/pdf_convert/ppt_to_pdf.html:11
+msgid ""
+"Click the convert button to start converting PowerPoint to PDF (PPTX to PDF "
+"conversion)"
+msgstr ""
+"Klik tombol konversi untuk memulai konversi PowerPoint ke PDF (konversi "
+"PPTX ke PDF)"
+
+#: templates/frontend/pdf_convert/ppt_to_pdf.html:12
+msgid ""
+"Wait for the PowerPoint to PDF conversion to complete - slides will be "
+"converted to PDF pages preserving layout and formatting"
+msgstr ""
+"Tunggu hingga konversi PowerPoint ke PDF selesai - slide akan dikonversi "
+"menjadi halaman PDF dengan mempertahankan tata letak dan pemformatan"
+
+#: templates/frontend/pdf_convert/ppt_to_pdf.html:13
+msgid ""
+"Download your PDF file - your PowerPoint presentation has been successfully "
+"converted to PDF format"
+msgstr ""
+"Unduh file PDF Anda - presentasi PowerPoint Anda telah berhasil dikonversi "
+"ke format PDF"
+
+#: templates/frontend/pdf_convert/ppt_to_pdf.html:17
+#, python-format
+msgid ""
+"PowerPoint files with up to %(max_pages)s slides are supported. For larger "
+"files, please split them into smaller parts. The conversion preserves "
+"animations, transitions, and slide layouts."
+msgstr ""
+"File PowerPoint hingga %(max_pages)s slide didukung. Untuk file yang lebih "
+"besar, silakan bagi menjadi beberapa bagian. Konversi mempertahankan "
+"animasi, transisi, dan tata letak slide."
 
 #: templates/frontend/pdf_convert/word_to_pdf.html:10
 msgid ""
@@ -3524,18 +3333,14 @@ msgstr ""
 "PDF"
 
 #: templates/frontend/pdf_convert/word_to_pdf.html:17
-#, fuzzy, python-format
-#| msgid ""
-#| "Word documents with up to 50 pages are supported. For larger files, "
-#| "please split them into smaller parts. The conversion preserves "
-#| "formatting, fonts, images, and page layout."
+#, python-format
 msgid ""
 "Word documents with up to %(max_pages)s pages are supported. For larger "
 "files, please split them into smaller parts. The conversion preserves "
 "formatting, fonts, images, and page layout."
 msgstr ""
-"Dokumen Word hingga 50 halaman didukung. Untuk file yang lebih besar, "
-"silakan bagi menjadi bagian yang lebih kecil. Konversi mempertahankan "
+"Dokumen Word hingga %(max_pages)s halaman didukung. Untuk file yang lebih "
+"besar, silakan bagi menjadi beberapa bagian. Konversi mempertahankan "
 "pemformatan, font, gambar, dan tata letak halaman."
 
 #: templates/frontend/pdf_edit/add_page_numbers.html:9
@@ -3679,11 +3484,7 @@ msgstr ""
 "unduh"
 
 #: templates/frontend/pdf_edit/add_page_numbers.html:221
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for adding page numbers. For "
-#| "larger files, please split them into smaller parts. The page numbers will "
-#| "be added according to your selected position, format, and font size."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for adding page "
 "numbers. For larger files, please split them into smaller parts. The page "
@@ -3696,46 +3497,36 @@ msgstr ""
 "Anda pilih."
 
 #: templates/frontend/pdf_edit/add_watermark.html:47
-#, fuzzy
-#| msgid "Select file to watermark"
 msgid "Select your PDF file to add watermark"
-msgstr "Pilih file untuk watermark"
+msgstr "Pilih file PDF Anda untuk menambahkan watermark"
 
 #: templates/frontend/pdf_edit/add_watermark.html:52
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Configure Watermark"
-msgstr "Tambahkan Watermark"
+msgstr "Konfigurasi Watermark"
 
 #: templates/frontend/pdf_edit/add_watermark.html:53
 msgid "Enter text or upload image, adjust color and opacity"
-msgstr ""
+msgstr "Masukkan teks atau unggah gambar, sesuaikan warna dan opacity"
 
 #: templates/frontend/pdf_edit/add_watermark.html:59
 msgid "Drag the watermark to position it on the page"
-msgstr ""
+msgstr "Seret watermark untuk memposisikannya di halaman"
 
 #: templates/frontend/pdf_edit/add_watermark.html:64
 msgid "Apply"
-msgstr ""
+msgstr "Terapkan"
 
 #: templates/frontend/pdf_edit/add_watermark.html:65
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click Add Watermark button to process"
-msgstr "Klik tombol edit untuk memproses file Anda"
+msgstr "Klik tombol Tambah Watermark untuk memproses"
 
 #: templates/frontend/pdf_edit/add_watermark.html:71
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your watermarked PDF file"
-msgstr "Unduh file PDF yang telah dikonversi"
+msgstr "Unduh file PDF berwatermark Anda"
 
 #: templates/frontend/pdf_edit/add_watermark.html:240
-#, fuzzy
-#| msgid "Select file to watermark"
 msgid "Select files to watermark (multiple)"
-msgstr "Pilih file untuk watermark"
+msgstr "Pilih file untuk watermark (beberapa)"
 
 #: templates/frontend/pdf_edit/add_watermark.html:240
 msgid "Select file to watermark"
@@ -3751,13 +3542,11 @@ msgstr "Pilih Halaman"
 
 #: templates/frontend/pdf_edit/add_watermark.html:337
 msgid "Move watermark up/down"
-msgstr ""
+msgstr "Pindahkan watermark atas/bawah"
 
 #: templates/frontend/pdf_edit/add_watermark.html:357
-#, fuzzy
-#| msgid "Watermark Settings"
 msgid "Move watermark left/right"
-msgstr "Pengaturan Watermark"
+msgstr "Pindahkan watermark kiri/kanan"
 
 #: templates/frontend/pdf_edit/add_watermark.html:365
 msgid "How to use:"
@@ -3768,6 +3557,8 @@ msgid ""
 "Use the sliders near the preview to move the watermark. Use the Size and "
 "Rotation sliders below to adjust the watermark."
 msgstr ""
+"Gunakan slider di dekat pratinjau untuk memindahkan watermark. Gunakan "
+"slider Ukuran dan Rotasi di bawah untuk menyesuaikan watermark."
 
 #: templates/frontend/pdf_edit/add_watermark.html:375
 msgid "Watermark Settings"
@@ -3803,7 +3594,7 @@ msgstr "Warna"
 
 #: templates/frontend/pdf_edit/add_watermark.html:451
 msgid "Opacity"
-msgstr "Opasitas"
+msgstr "Opacity"
 
 #: templates/frontend/pdf_edit/add_watermark.html:489
 msgid "Rotation"
@@ -3837,7 +3628,7 @@ msgid ""
 "Choose the color and opacity using the sliders to customize your PDF "
 "watermark"
 msgstr ""
-"Pilih warna dan opasitas menggunakan slider untuk menyesuaikan watermark PDF "
+"Pilih warna dan opacity menggunakan slider untuk menyesuaikan watermark PDF "
 "Anda"
 
 #: templates/frontend/pdf_edit/add_watermark.html:622
@@ -3860,20 +3651,16 @@ msgid "Download your watermarked PDF file using the download button"
 msgstr "Unduh file PDF berwatermark Anda menggunakan tombol unduh"
 
 #: templates/frontend/pdf_edit/add_watermark.html:628
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for adding watermarks. For "
-#| "larger files, please split them into smaller parts. The watermark will be "
-#| "applied to all pages or selected pages as specified."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for adding "
 "watermarks. For larger files, please split them into smaller parts. The "
 "watermark will be applied to all pages or selected pages as specified."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk menambahkan watermark. Untuk file "
-"yang lebih besar, silakan bagi menjadi bagian yang lebih kecil. Watermark "
-"akan diterapkan ke semua halaman atau halaman yang dipilih seperti yang "
-"ditentukan."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk menambahkan "
+"watermark. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. "
+"Watermark akan diterapkan ke semua halaman atau halaman yang dipilih seperti "
+"yang ditentukan."
 
 #: templates/frontend/pdf_edit/add_watermark.html:663
 #: templates/frontend/pdf_edit/crop_pdf.html:499
@@ -3893,46 +3680,32 @@ msgstr ""
 "%%(max_pages)d. Silakan bagi PDF Anda menjadi bagian yang lebih kecil."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:47
-#, fuzzy
-#| msgid "Select file to crop"
 msgid "Select your PDF file to crop"
-msgstr "Pilih file untuk dipotong"
+msgstr "Pilih file PDF Anda untuk dipotong"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:52
-#, fuzzy
-#| msgid "Select page"
 msgid "Select Area"
-msgstr "Pilih halaman"
+msgstr "Pilih Area"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:53
-#, fuzzy
-#| msgid "Click and drag outside the box to create a new selection"
 msgid "Click and drag to select the crop area on the PDF"
-msgstr "Klik dan seret di luar kotak untuk membuat seleksi baru"
+msgstr "Klik dan seret untuk memilih area potong pada PDF"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:58
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop"
-msgstr "Pangkas PDF"
+msgstr "Potong"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:59
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the Crop button to process your PDF"
-msgstr "Klik tombol edit untuk memproses file Anda"
+msgstr "Klik tombol Potong untuk memproses PDF Anda"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:65
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your cropped PDF file"
-msgstr "Unduh file PDF yang telah dikonversi"
+msgstr "Unduh file PDF yang telah dipotong"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:197
-#, fuzzy
-#| msgid "Select file to crop"
 msgid "Select files to crop (multiple)"
-msgstr "Pilih file untuk dipotong"
+msgstr "Pilih file untuk dipotong (beberapa)"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:197
 msgid "Select file to crop"
@@ -4054,19 +3827,15 @@ msgid "Download your cropped PDF file using the download button"
 msgstr "Unduh file PDF yang telah dipotong menggunakan tombol unduh"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:458
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for cropping. For larger "
-#| "files, please split them into smaller parts. The crop area you select "
-#| "will be applied to all selected pages."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for cropping. For "
 "larger files, please split them into smaller parts. The crop area you select "
 "will be applied to all selected pages."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk dipotong. Untuk file yang lebih "
-"besar, silakan bagi menjadi bagian yang lebih kecil. Area potong yang Anda "
-"pilih akan diterapkan ke semua halaman yang dipilih."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk dipotong. Untuk "
+"file yang lebih besar, silakan bagi menjadi beberapa bagian. Area potong "
+"yang Anda pilih akan diterapkan ke semua halaman yang dipilih."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:494
 msgid ""
@@ -4089,28 +3858,20 @@ msgstr ""
 "baru atau seret kotak untuk memindahkannya."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:497
-#, fuzzy
-#| msgid ""
-#| "Crop area selected! Drag the box to move it or use handles to resize. "
-#| "Click \"Crop PDF\" when ready."
 msgid ""
 "Crop area selected! Drag the box to move it or use handles to resize. Click "
 "Crop PDF when ready."
 msgstr ""
 "Area potong dipilih! Seret kotak untuk memindahkannya atau gunakan pegangan "
-"untuk mengubah ukuran. Klik \"Potong PDF\" saat siap."
+"untuk mengubah ukuran. Klik Potong PDF saat siap."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:498
-#, fuzzy
-#| msgid ""
-#| "Crop area moved! Drag again to reposition or use handles to resize. Click "
-#| "\"Crop PDF\" when ready."
 msgid ""
 "Crop area moved! Drag again to reposition or use handles to resize. Click "
 "Crop PDF when ready."
 msgstr ""
 "Area potong dipindahkan! Seret lagi untuk memposisikan ulang atau gunakan "
-"pegangan untuk mengubah ukuran. Klik \"Potong PDF\" saat siap."
+"pegangan untuk mengubah ukuran. Klik Potong PDF saat siap."
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:6
 msgid "Rotation Settings"
@@ -4158,19 +3919,15 @@ msgid "Download your rotated PDF file using the download button"
 msgstr "Unduh file PDF yang telah diputar menggunakan tombol unduh"
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:84
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for rotating. For larger "
-#| "files, please split them into smaller parts. The rotation preserves all "
-#| "content and formatting."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for rotating. For "
 "larger files, please split them into smaller parts. The rotation preserves "
 "all content and formatting."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk diputar. Untuk file yang lebih "
-"besar, silakan bagi menjadi bagian yang lebih kecil. Rotasi mempertahankan "
-"semua konten dan pemformatan."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk diputar. Untuk "
+"file yang lebih besar, silakan bagi menjadi beberapa bagian. Rotasi "
+"mempertahankan semua konten dan pemformatan."
 
 #: templates/frontend/pdf_organize/compress_pdf.html:6
 msgid "Compression Settings"
@@ -4224,20 +3981,16 @@ msgid "Download your compressed PDF file using the download button"
 msgstr "Unduh file PDF yang dikompresi menggunakan tombol unduh"
 
 #: templates/frontend/pdf_organize/compress_pdf.html:41
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for compression. For larger "
-#| "files, please split them into smaller parts. Higher compression reduces "
-#| "file size more but may slightly reduce image quality."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for compression. For "
 "larger files, please split them into smaller parts. Higher compression "
 "reduces file size more but may slightly reduce image quality."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk kompresi. Untuk file yang lebih "
-"besar, silakan bagi menjadi bagian yang lebih kecil. Kompresi yang lebih "
-"tinggi mengurangi ukuran file lebih banyak tetapi mungkin sedikit mengurangi "
-"kualitas gambar."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk kompresi. Untuk "
+"file yang lebih besar, silakan bagi menjadi beberapa bagian. Kompresi yang "
+"lebih tinggi mengurangi ukuran file lebih banyak tetapi mungkin sedikit "
+"mengurangi kualitas gambar."
 
 #: templates/frontend/pdf_organize/extract_pages.html:6
 msgid "Extract Pages Settings"
@@ -4281,19 +4034,15 @@ msgstr ""
 "menggunakan tombol unduh"
 
 #: templates/frontend/pdf_organize/extract_pages.html:42
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for extracting pages. For "
-#| "larger files, please split them into smaller parts. The extracted pages "
-#| "will be combined into a single new PDF file."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for extracting pages. "
 "For larger files, please split them into smaller parts. The extracted pages "
 "will be combined into a single new PDF file."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk mengekstrak halaman. Untuk file "
-"yang lebih besar, silakan bagi menjadi bagian yang lebih kecil. Halaman yang "
-"diekstrak akan digabungkan menjadi satu file PDF baru."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk mengekstrak "
+"halaman. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. "
+"Halaman yang diekstrak akan digabungkan menjadi satu file PDF baru."
 
 #: templates/frontend/pdf_organize/merge_pdf.html:38
 msgid "Merge Settings"
@@ -4452,19 +4201,15 @@ msgstr ""
 "menggunakan tombol unduh"
 
 #: templates/frontend/pdf_organize/organize_pdf.html:76
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for organizing. For larger "
-#| "files, please split them into smaller parts. You can drag and drop pages "
-#| "to reorder them visually."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for organizing. For "
 "larger files, please split them into smaller parts. You can drag and drop "
 "pages to reorder them visually."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk diatur. Untuk file yang lebih "
-"besar, silakan bagi menjadi bagian yang lebih kecil. Anda dapat menyeret dan "
-"melepas halaman untuk mengurutkannya ulang secara visual."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk diatur. Untuk "
+"file yang lebih besar, silakan bagi menjadi beberapa bagian. Anda dapat "
+"menyeret dan melepas halaman untuk mengurutkannya ulang secara visual."
 
 #: templates/frontend/pdf_organize/remove_pages.html:6
 msgid "Remove Pages Settings"
@@ -4496,19 +4241,15 @@ msgstr ""
 "Unduh file PDF Anda dengan halaman yang dihapus menggunakan tombol unduh"
 
 #: templates/frontend/pdf_organize/remove_pages.html:70
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for removing pages. For "
-#| "larger files, please split them into smaller parts. The remaining pages "
-#| "will be preserved in their original order."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for removing pages. "
 "For larger files, please split them into smaller parts. The remaining pages "
 "will be preserved in their original order."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk menghapus halaman. Untuk file yang "
-"lebih besar, silakan bagi menjadi bagian yang lebih kecil. Halaman yang "
-"tersisa akan dipertahankan dalam urutan aslinya."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk menghapus "
+"halaman. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. "
+"Halaman yang tersisa akan dipertahankan dalam urutan aslinya."
 
 #: templates/frontend/pdf_organize/split_pdf.html:6
 msgid "Split Settings"
@@ -4674,19 +4415,16 @@ msgid "Download your password-protected PDF file using the download button"
 msgstr "Unduh file PDF yang dilindungi kata sandi menggunakan tombol unduh"
 
 #: templates/frontend/pdf_security/protect_pdf.html:75
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for password protection. For "
-#| "larger files, please split them into smaller parts. The password will be "
-#| "required to open, view, print, or edit the PDF."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for password "
 "protection. For larger files, please split them into smaller parts. The "
 "password will be required to open, view, print, or edit the PDF."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk perlindungan kata sandi. Untuk "
-"file yang lebih besar, silakan bagi menjadi bagian yang lebih kecil. Kata "
-"sandi akan diperlukan untuk membuka, melihat, mencetak, atau mengedit PDF."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk perlindungan "
+"kata sandi. Untuk file yang lebih besar, silakan bagi menjadi beberapa "
+"bagian. Kata sandi akan diperlukan untuk membuka, melihat, mencetak, atau "
+"mengedit PDF."
 
 #: templates/frontend/pdf_security/unlock_pdf.html:6
 msgid "Unlock PDF Settings"
@@ -4733,320 +4471,321 @@ msgstr ""
 "unduh"
 
 #: templates/frontend/pdf_security/unlock_pdf.html:43
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for unlocking. For larger "
-#| "files, please split them into smaller parts. You must know the correct "
-#| "password to unlock the PDF."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for unlocking. For "
 "larger files, please split them into smaller parts. You must know the "
 "correct password to unlock the PDF."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk dibuka kunci. Untuk file yang "
-"lebih besar, silakan bagi menjadi bagian yang lebih kecil. Anda harus "
-"mengetahui kata sandi yang benar untuk membuka kunci PDF."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk dibuka kunci. "
+"Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. Anda "
+"harus mengetahui kata sandi yang benar untuk membuka kunci PDF."
 
 #: templates/frontend/pricing.html:7 templates/frontend/pricing.html:25
 msgid ""
 "Upgrade to Convertica Premium for unlimited PDF conversions, 200 pages per "
 "file, priority processing, batch conversion, and ad-free experience."
 msgstr ""
+"Tingkatkan ke Convertica Premium untuk konversi PDF tanpa batas, 200 "
+"halaman per file, pemrosesan prioritas, konversi batch, dan pengalaman "
+"bebas iklan."
 
 #: templates/frontend/pricing.html:10 templates/frontend/pricing.html:15
-#, fuzzy
-#| msgid "PDF Conversion"
 msgid "Convertica Premium - Unlimited PDF Conversion"
-msgstr "Konversi PDF"
+msgstr "Convertica Premium - Konversi PDF Tanpa Batas"
 
 #: templates/frontend/pricing.html:11
 msgid ""
 "Unlimited conversions, priority processing, batch operations, and more. "
 "Upgrade to Premium today."
 msgstr ""
+"Konversi tanpa batas, pemrosesan prioritas, operasi batch, dan lainnya. "
+"Tingkatkan ke Premium hari ini."
 
 #: templates/frontend/pricing.html:16
 msgid "Unlimited conversions, priority processing, batch operations, and more."
 msgstr ""
+"Konversi tanpa batas, pemrosesan prioritas, operasi batch, dan lainnya."
 
 #: templates/frontend/pricing.html:45
 msgid "Join the Heroes Club"
-msgstr ""
+msgstr "Bergabunglah dengan Klub Pahlawan"
 
 #: templates/frontend/pricing.html:51
 msgid "Become a"
-msgstr ""
+msgstr "Menjadi"
 
 #: templates/frontend/pricing.html:55
-#, fuzzy
-#| msgid "Convertica - Home"
 msgid "Convertica Hero"
-msgstr "Convertica - Beranda"
+msgstr "Pahlawan Convertica"
 
 #: templates/frontend/pricing.html:61
 msgid ""
 "Unlock powerful premium features, much higher limits, and transform "
 "documents effortlessly"
 msgstr ""
+"Buka fitur premium yang kuat, batas yang jauh lebih tinggi, dan ubah "
+"dokumen dengan mudah"
 
 #: templates/frontend/pricing.html:67
 msgid "Premium payments are temporarily unavailable."
-msgstr ""
+msgstr "Pembayaran premium sementara tidak tersedia."
 
 #: templates/frontend/pricing.html:70
 msgid ""
 "You can still use the free tools. We'll re-enable subscriptions as soon as "
 "it's available."
 msgstr ""
+"Anda masih dapat menggunakan alat gratis. Kami akan mengaktifkan kembali "
+"langganan segera setelah tersedia."
 
 #: templates/frontend/pricing.html:74
 msgid "Learn more"
-msgstr ""
+msgstr "Pelajari lebih lanjut"
 
 #: templates/frontend/pricing.html:84
-#, fuzzy
-#| msgid "PDF to Excel Converter"
 msgid "Documents Converted"
-msgstr "Konverter PDF ke Excel"
+msgstr "Dokumen Dikonversi"
 
 #: templates/frontend/pricing.html:88
 msgid "Happy Heroes"
-msgstr ""
+msgstr "Pahlawan Bahagia"
 
 #: templates/frontend/pricing.html:92
 msgid "Uptime Guaranteed"
-msgstr ""
+msgstr "Uptime Dijamin"
 
 #: templates/frontend/pricing.html:102
 msgid "Choose Your Hero Path"
-msgstr ""
+msgstr "Pilih Jalur Pahlawan Anda"
 
 #: templates/frontend/pricing.html:103
 msgid "Select the plan that fits your transformation needs"
-msgstr ""
+msgstr "Pilih paket yang sesuai dengan kebutuhan transformasi Anda"
 
 #: templates/frontend/pricing.html:115
 msgid "Daily Hero"
-msgstr ""
+msgstr "Pahlawan Harian"
 
 #: templates/frontend/pricing.html:118
 msgid "day"
-msgstr ""
+msgstr "hari"
 
 #: templates/frontend/pricing.html:120
 msgid "Perfect for quick transformations"
-msgstr ""
+msgstr "Sempurna untuk transformasi cepat"
 
 #: templates/frontend/pricing.html:128
 msgid "No daily conversion limits for 24 hours"
-msgstr ""
+msgstr "Tidak ada batas konversi harian selama 24 jam"
 
 #: templates/frontend/pricing.html:134 templates/frontend/pricing.html:199
 msgid "Much higher page limits"
-msgstr ""
+msgstr "Batas halaman yang jauh lebih tinggi"
 
 #: templates/frontend/pricing.html:140
 #: templates/users/manage_subscription.html:79
 msgid "Priority processing"
-msgstr ""
+msgstr "Pemrosesan prioritas"
 
 #: templates/frontend/pricing.html:146 templates/frontend/pricing.html:223
 msgid "Ad-free experience"
-msgstr ""
+msgstr "Pengalaman bebas iklan"
 
 #: templates/frontend/pricing.html:152
 msgid "Batch processing (up to 10 files)"
-msgstr ""
+msgstr "Pemrosesan batch (hingga 10 file)"
 
 #: templates/frontend/pricing.html:158
 msgid "Become Daily Hero"
-msgstr ""
+msgstr "Menjadi Pahlawan Harian"
 
 #: templates/frontend/pricing.html:162 templates/frontend/pricing.html:251
 #: templates/frontend/pricing.html:318
 #: templates/users/manage_subscription.html:169
 msgid "Temporarily unavailable"
-msgstr ""
+msgstr "Sementara tidak tersedia"
 
 #: templates/frontend/pricing.html:171
 msgid "MOST POPULAR"
-msgstr ""
+msgstr "PALING POPULER"
 
 #: templates/frontend/pricing.html:180
 msgid "Monthly Hero"
-msgstr ""
+msgstr "Pahlawan Bulanan"
 
 #: templates/frontend/pricing.html:183
 msgid "month"
-msgstr ""
+msgstr "bulan"
 
 #: templates/frontend/pricing.html:185
 msgid "Best value for regular heroes"
-msgstr ""
+msgstr "Nilai terbaik untuk pahlawan reguler"
 
 #: templates/frontend/pricing.html:193
-#, fuzzy
-#| msgid "Is there a file size limit?"
 msgid "No daily conversion limits"
-msgstr "Apakah ada batasan ukuran file?"
+msgstr "Tidak ada batas konversi harian"
 
 #: templates/frontend/pricing.html:205
 msgid "Priority processing queue"
-msgstr ""
+msgstr "Antrian pemrosesan prioritas"
 
 #: templates/frontend/pricing.html:211 templates/frontend/pricing.html:290
 msgid "Priority support"
-msgstr ""
+msgstr "Dukungan prioritas"
 
 #: templates/frontend/pricing.html:217
 msgid "Custom solutions on request"
-msgstr ""
+msgstr "Solusi kustom berdasarkan permintaan"
 
 #: templates/frontend/pricing.html:229
 msgid "All premium features"
-msgstr ""
+msgstr "Semua fitur premium"
 
 #: templates/frontend/pricing.html:235
 msgid "Become site hero"
-msgstr ""
+msgstr "Menjadi pahlawan situs"
 
 #: templates/frontend/pricing.html:241
 msgid "Dark theme"
-msgstr ""
+msgstr "Tema gelap"
 
 #: templates/frontend/pricing.html:247
 msgid "Become Monthly Hero"
-msgstr ""
+msgstr "Menjadi Pahlawan Bulanan"
 
 #: templates/frontend/pricing.html:265
 msgid "Yearly Hero"
-msgstr ""
+msgstr "Pahlawan Tahunan"
 
 #: templates/frontend/pricing.html:268
 msgid "year"
-msgstr ""
+msgstr "tahun"
 
 #: templates/frontend/pricing.html:270
 #, python-format
 msgid "Save 28%% with annual commitment"
-msgstr ""
+msgstr "Hemat 28%% dengan komitmen tahunan"
 
 #: templates/frontend/pricing.html:278
-#, fuzzy
-#| msgid "Everything is going well!"
 msgid "Everything in Monthly, plus:"
-msgstr "Semuanya berjalan dengan baik!"
+msgstr "Semua yang ada di Bulanan, plus:"
 
 #: templates/frontend/pricing.html:284
 msgid "Batch processing (up to 10 files at once)"
-msgstr ""
+msgstr "Pemrosesan batch (hingga 10 file sekaligus)"
 
 #: templates/frontend/pricing.html:296 templates/frontend/pricing.html:308
 msgid "Advanced OCR features"
-msgstr ""
+msgstr "Fitur OCR lanjutan"
 
 #: templates/frontend/pricing.html:302
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Hero badge"
-msgstr "Hapus Halaman"
+msgstr "Lencana pahlawan"
 
 #: templates/frontend/pricing.html:314
 msgid "Become Yearly Hero"
-msgstr ""
+msgstr "Menjadi Pahlawan Tahunan"
 
 #: templates/frontend/pricing.html:329
 msgid "Become a Convertica hero and help us make the service better"
-msgstr ""
+msgstr "Jadilah pahlawan Convertica dan bantu kami membuat layanan lebih baik"
 
 #: templates/frontend/pricing.html:339
-#, fuzzy
-#| msgid "Fast & Secure"
 msgid "Fast & Reliable"
-msgstr "Cepat & Aman"
+msgstr "Cepat & Andal"
 
 #: templates/frontend/pricing.html:340
 msgid ""
 "We keep our servers running 24/7 to ensure your PDF conversions are always "
 "fast and dependable"
 msgstr ""
+"Kami menjaga server kami berjalan 24/7 untuk memastikan konversi PDF Anda "
+"selalu cepat dan dapat diandalkan"
 
 #: templates/frontend/pricing.html:350
 msgid ""
 "Your documents are processed securely and never stored. We respect your "
 "privacy above all"
 msgstr ""
+"Dokumen Anda diproses dengan aman dan tidak pernah disimpan. Kami menghargai "
+"privasi Anda di atas segalanya"
 
 #: templates/frontend/pricing.html:359
 msgid "Made with Care"
-msgstr ""
+msgstr "Dibuat dengan Perhatian"
 
 #: templates/frontend/pricing.html:360
 msgid ""
 "We're a small team passionate about creating the best PDF tools for everyone"
 msgstr ""
+"Kami adalah tim kecil yang bersemangat menciptakan alat PDF terbaik untuk "
+"semua orang"
 
 #: templates/frontend/pricing.html:364
 msgid ""
 "Your support helps us keep Convertica free for everyone and continuously "
 "improve our tools"
 msgstr ""
+"Dukungan Anda membantu kami menjaga Convertica tetap gratis untuk semua "
+"orang dan terus meningkatkan alat kami"
 
 #: templates/frontend/pricing.html:370
-#, fuzzy
-#| msgid "Learn more about Convertica and our mission."
 msgid "Want to Support Convertica?"
-msgstr "Pelajari lebih lanjut tentang Convertica dan misi kami."
+msgstr "Ingin Mendukung Convertica?"
 
 #: templates/frontend/pricing.html:371
 msgid ""
 "If you want to support the project without Premium, you can contribute here."
 msgstr ""
+"Jika Anda ingin mendukung proyek tanpa Premium, Anda dapat berkontribusi di "
+"sini."
 
 #: templates/frontend/pricing.html:372
 msgid "Note: contributing does not unlock Premium features."
-msgstr ""
+msgstr "Catatan: berkontribusi tidak membuka kunci fitur Premium."
 
 #: templates/frontend/pricing.html:375
 msgid "Contribute to the Project"
-msgstr ""
+msgstr "Berkontribusi ke Proyek"
 
 #: templates/frontend/pricing.html:393
 msgid "Why Your Support Matters"
-msgstr ""
+msgstr "Mengapa Dukungan Anda Penting"
 
 #: templates/frontend/pricing.html:397
 msgid ""
 "This project exists because of heroes like you. We're completely transparent:"
 msgstr ""
+"Proyek ini ada karena pahlawan seperti Anda. Kami sepenuhnya transparan:"
 
 #: templates/frontend/pricing.html:406
 msgid "Ad-Free Experience"
-msgstr ""
+msgstr "Pengalaman Bebas Iklan"
 
 #: templates/frontend/pricing.html:407
 msgid "Enjoy the site without any advertisements as a premium member"
-msgstr ""
+msgstr "Nikmati situs tanpa iklan sebagai anggota premium"
 
 #: templates/frontend/pricing.html:416
 msgid "Servers & Development"
-msgstr ""
+msgstr "Server & Pengembangan"
 
 #: templates/frontend/pricing.html:417
 msgid "Your support powers our infrastructure and improvements"
-msgstr ""
+msgstr "Dukungan Anda memberi tenaga pada infrastruktur dan peningkatan kami"
 
 #: templates/frontend/pricing.html:425
 msgid "Community Driven"
-msgstr ""
+msgstr "Digerakkan oleh Komunitas"
 
 #: templates/frontend/pricing.html:426
 msgid "You're not just a user - you're a project partner"
-msgstr ""
+msgstr "Anda bukan hanya pengguna - Anda adalah mitra proyek"
 
 #: templates/frontend/pricing.html:431
 msgid "The Truth:"
-msgstr ""
+msgstr "Kebenarannya:"
 
 #: templates/frontend/pricing.html:431
 msgid ""
@@ -5054,68 +4793,72 @@ msgid ""
 "through the support of users like you. Every subscription directly funds "
 "servers, security, and development."
 msgstr ""
+"Kami tidak memiliki modal ventura atau investor. Proyek ini bertahan hanya "
+"melalui dukungan pengguna seperti Anda. Setiap langganan langsung mendanai "
+"server, keamanan, dan pengembangan."
 
 #: templates/frontend/pricing.html:443
 msgid "Heroes Hall of Fame"
-msgstr ""
+msgstr "Galeri Kehormatan Pahlawan"
 
 #: templates/frontend/pricing.html:446
 msgid "Our amazing premium subscribers supporting the project"
-msgstr ""
+msgstr "Pelanggan premium kami yang luar biasa mendukung proyek ini"
 
 #: templates/frontend/pricing.html:448
 msgid "This section will showcase Premium Heroes once subscriptions reopen."
 msgstr ""
+"Bagian ini akan menampilkan Pahlawan Premium setelah langganan dibuka "
+"kembali."
 
 #: templates/frontend/pricing.html:456
 msgid ""
 "Subscriptions are temporarily paused. Free tools are available, and Premium "
 "will return soon."
 msgstr ""
+"Langganan sementara dijeda. Alat gratis tersedia, dan Premium akan segera "
+"kembali."
 
 #: templates/frontend/pricing.html:468 templates/frontend/pricing.html:523
 msgid "Premium Heroes are coming soon"
-msgstr ""
+msgstr "Pahlawan Premium segera hadir"
 
 #: templates/frontend/pricing.html:586
 msgid "Be the First Hero!"
-msgstr ""
+msgstr "Jadilah Pahlawan Pertama!"
 
 #: templates/frontend/pricing.html:588
 msgid "Heroes are coming soon"
-msgstr ""
+msgstr "Pahlawan segera hadir"
 
 #: templates/frontend/pricing.html:593
 msgid "Be the first Premium Hero and support the project."
-msgstr ""
+msgstr "Jadilah Pahlawan Premium pertama dan dukung proyek ini."
 
 #: templates/frontend/pricing.html:595
 msgid ""
 "This area will fill up with Premium Heroes once subscriptions are available."
 msgstr ""
+"Area ini akan terisi dengan Pahlawan Premium setelah langganan tersedia."
 
 #: templates/frontend/pricing.html:603
-#, fuzzy
-#| msgid "Top Center"
 msgid "Top Heroes"
-msgstr "Atas Tengah"
+msgstr "Pahlawan Teratas"
 
 #: templates/frontend/pricing.html:649 templates/frontend/pricing.html:709
 #: templates/users/account_status.html:81
 #: templates/users/account_status.html:86
 #: templates/users/manage_subscription.html:149
 msgid "days"
-msgstr ""
+msgstr "hari"
 
 #: templates/frontend/pricing.html:729
 msgid "No heroes yet. Be the first to join the hall of fame!"
-msgstr ""
+msgstr "Belum ada pahlawan. Jadilah yang pertama bergabung dengan galeri kehormatan!"
 
 #: templates/frontend/pricing.html:762
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Processing..."
-msgstr "Memproses file Anda..."
+msgstr "Memproses..."
 
 #: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:1208
 msgid "Privacy Policy - Convertica"
@@ -5398,15 +5141,10 @@ msgid "Changes to This Privacy Policy"
 msgstr "Perubahan pada Kebijakan Privasi Ini"
 
 #: templates/frontend/privacy.html:208
-#, fuzzy
-#| msgid ""
-#| "We may update our Privacy Policy from time to time. We will notify you of "
-#| "any changes by posting the new Privacy Policy on this page and updating "
-#| "the \"Last updated\" date."
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
-"\\"
+"\"Last updated\" date."
 msgstr ""
 "Kami dapat memperbarui Kebijakan Privasi kami dari waktu ke waktu. Kami akan "
 "memberi tahu Anda tentang perubahan apa pun dengan memposting Kebijakan "
@@ -5423,16 +5161,16 @@ msgstr ""
 "kami."
 
 #: templates/frontend/support.html:15 utils_site/src/frontend/views.py:1751
-#, fuzzy
-#| msgid "Contact Us - Convertica"
 msgid "Contribute to Convertica"
-msgstr "Hubungi Kami - Convertica"
+msgstr "Berkontribusi ke Convertica"
 
 #: templates/frontend/support.html:17
 msgid ""
 "This is a donation to support the project and its developers. It does not "
 "unlock Premium features."
 msgstr ""
+"Ini adalah donasi untuk mendukung proyek dan pengembangnya. Ini tidak "
+"membuka kunci fitur Premium."
 
 #: templates/frontend/support.html:20
 msgid ""
@@ -5440,102 +5178,109 @@ msgid ""
 "Contributions here are for support only — think of it as becoming an "
 "invisible hero."
 msgstr ""
+"Pahlawan di Convertica adalah pengguna yang membeli langganan Premium. "
+"Kontribusi di sini hanya untuk dukungan — anggap saja sebagai menjadi "
+"pahlawan tak terlihat."
 
 #: templates/frontend/support.html:24
 msgid ""
 "Subscriptions and contributions are temporarily paused while we complete the "
 "business setup. The free tools remain fully available."
 msgstr ""
+"Langganan dan kontribusi sementara dijeda sementara kami menyelesaikan "
+"persiapan bisnis. Alat gratis tetap tersedia sepenuhnya."
 
 #: templates/frontend/support.html:32
 msgid "Contribution type"
-msgstr ""
+msgstr "Jenis kontribusi"
 
 #: templates/frontend/support.html:35
 msgid "One-time"
-msgstr ""
+msgstr "Sekali waktu"
 
 #: templates/frontend/support.html:38
 msgid "Monthly"
-msgstr ""
+msgstr "Bulanan"
 
 #: templates/frontend/support.html:44
-#, fuzzy
-#| msgid "Current page only"
 msgid "Currency"
-msgstr "Hanya halaman saat ini"
+msgstr "Mata uang"
 
 #: templates/frontend/support.html:53 templates/users/account_status.html:274
 #: utils_site/src/users/models.py:324
 msgid "Amount"
-msgstr ""
+msgstr "Jumlah"
 
 #: templates/frontend/support.html:64
 msgid "Proceed to secure payment"
-msgstr ""
+msgstr "Lanjutkan ke pembayaran aman"
 
 #: templates/frontend/support.html:67
 msgid ""
 "Payments are processed by Stripe. You can cancel monthly support anytime in "
 "Stripe customer portal."
 msgstr ""
+"Pembayaran diproses oleh Stripe. Anda dapat membatalkan dukungan bulanan "
+"kapan saja di portal pelanggan Stripe."
 
 #: templates/frontend/support.html:72
 msgid "Why payments are paused"
-msgstr ""
+msgstr "Mengapa pembayaran dijeda"
 
 #: templates/frontend/support.html:74
 msgid ""
-"We’re temporarily pausing Premium subscriptions and contributions while we "
+"We're temporarily pausing Premium subscriptions and contributions while we "
 "complete the business setup. This helps us keep everything clean and "
 "compliant."
 msgstr ""
+"Kami sementara menjeda langganan Premium dan kontribusi sementara kami "
+"menyelesaikan persiapan bisnis. Ini membantu kami menjaga semuanya bersih "
+"dan sesuai."
 
 #: templates/frontend/support.html:77
 msgid "Good news: all free tools remain fully available."
-msgstr ""
+msgstr "Kabar baik: semua alat gratis tetap tersedia sepenuhnya."
 
 #: templates/frontend/support.html:82
 msgid "Go to free tools"
-msgstr ""
+msgstr "Pergi ke alat gratis"
 
 #: templates/frontend/support_success.html:19
 msgid "Thank you!"
-msgstr ""
+msgstr "Terima kasih!"
 
 #: templates/frontend/support_success.html:22
 msgid "Your support helps us keep improving Convertica."
-msgstr ""
+msgstr "Dukungan Anda membantu kami terus meningkatkan Convertica."
 
 #: templates/frontend/support_success.html:26
 msgid ""
 "Premium features and Hero status are part of the subscription plans. This "
 "contribution is support only — thank you for being an invisible hero."
 msgstr ""
+"Fitur premium dan status Pahlawan adalah bagian dari paket langganan. "
+"Kontribusi ini hanya untuk dukungan — terima kasih telah menjadi pahlawan "
+"tak terlihat."
 
 #: templates/frontend/support_success.html:31
-#, fuzzy
-#| msgid "Support icon"
 msgid "Support again"
-msgstr "Ikon dukungan"
+msgstr "Dukung lagi"
 
 #: templates/frontend/support_success.html:34
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to Pricing"
-msgstr "Kembali ke blog"
+msgstr "Kembali ke Harga"
 
 #: templates/frontend/support_success.html:39
 msgid "Note: this support payment does not unlock Premium features."
-msgstr ""
+msgstr "Catatan: pembayaran dukungan ini tidak membuka kunci fitur Premium."
 
 #: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:1230
 msgid "Terms of Service - Convertica"
 msgstr "Ketentuan Layanan - Convertica"
 
 #: templates/frontend/terms.html:61
-msgid "Welcome to Convertica. These Terms of Service (\\"
-msgstr ""
+msgid "Welcome to Convertica. These Terms of Service (\"Terms\") govern your use of our website and services."
+msgstr "Selamat datang di Convertica. Ketentuan Layanan ini (\"Ketentuan\") mengatur penggunaan Anda atas situs web dan layanan kami."
 
 #: templates/frontend/terms.html:64
 msgid ""
@@ -5740,8 +5485,8 @@ msgid "Disclaimer of Warranties"
 msgstr "Penyangkalan Jaminan"
 
 #: templates/frontend/terms.html:169
-msgid "Our Services are provided \\"
-msgstr ""
+msgid "Our Services are provided \"as is\" and \"as available\" without warranties of any kind."
+msgstr "Layanan kami disediakan \"sebagaimana adanya\" dan \"sebagaimana tersedia\" tanpa jaminan apa pun."
 
 #: templates/frontend/terms.html:172
 msgid "Warranties of merchantability"
@@ -5911,161 +5656,208 @@ msgstr ""
 
 #: templates/offline.html:7
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: templates/offline.html:19
 msgid "You're Offline"
-msgstr ""
+msgstr "Anda Offline"
 
 #: templates/offline.html:23
-#, fuzzy
-#| msgid ""
-#| "The request you sent could not be understood by the server. Please check "
-#| "your input and try again."
 msgid ""
 "It looks like you've lost your internet connection. Please check your "
 "connection and try again."
 msgstr ""
-"Permintaan yang Anda kirim tidak dapat dipahami oleh server. Silakan periksa "
-"masukan Anda dan coba lagi."
+"Sepertinya Anda kehilangan koneksi internet. Silakan periksa koneksi Anda "
+"dan coba lagi."
 
 #: templates/offline.html:36
 msgid "Some features may still be available offline"
-msgstr ""
+msgstr "Beberapa fitur mungkin masih tersedia secara offline"
 
 #: templates/payments/cancel.html:6 templates/payments/cancel.html:17
 msgid "Payment Cancelled"
-msgstr ""
+msgstr "Pembayaran Dibatalkan"
 
 #: templates/payments/cancel.html:18
 msgid "Your subscription payment was cancelled"
-msgstr ""
+msgstr "Pembayaran langganan Anda dibatalkan"
 
 #: templates/payments/cancel.html:22
 msgid "No Problem!"
-msgstr ""
+msgstr "Tidak Masalah!"
 
 #: templates/payments/cancel.html:24
 msgid ""
 "You haven't been charged. You can try subscribing again anytime when you're "
 "ready."
 msgstr ""
+"Anda belum dikenakan biaya. Anda dapat mencoba berlangganan lagi kapan saja "
+"saat Anda siap."
 
 #: templates/payments/cancel.html:28
 msgid "Still Interested?"
-msgstr ""
+msgstr "Masih Tertarik?"
 
 #: templates/payments/cancel.html:29
 msgid "Here are some reasons to upgrade to premium:"
-msgstr ""
+msgstr "Berikut beberapa alasan untuk meningkatkan ke premium:"
 
 #: templates/payments/cancel.html:35
 msgid "Much higher limits for PDF processing"
-msgstr ""
+msgstr "Batas yang jauh lebih tinggi untuk pemrosesan PDF"
 
 #: templates/payments/cancel.html:41
-#, fuzzy
-#| msgid "Smaller file size"
 msgid "Larger file size support"
-msgstr "Ukuran file lebih kecil"
+msgstr "Dukungan ukuran file yang lebih besar"
 
 #: templates/payments/cancel.html:47
 msgid "Priority processing speeds"
-msgstr ""
+msgstr "Kecepatan pemrosesan prioritas"
 
 #: templates/payments/cancel.html:53
 msgid "Advanced PDF tools and features"
-msgstr ""
+msgstr "Alat dan fitur PDF lanjutan"
 
 #: templates/payments/cancel.html:64 templates/payments/error.html:85
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to Home"
-msgstr "Kembali ke blog"
+msgstr "Kembali ke Beranda"
 
 #: templates/payments/error.html:6 templates/payments/error.html:17
 msgid "Payment Error"
-msgstr ""
+msgstr "Kesalahan Pembayaran"
 
 #: templates/payments/error.html:18
 msgid "There was an issue processing your payment"
-msgstr ""
+msgstr "Ada masalah dalam memproses pembayaran Anda"
 
 #: templates/payments/error.html:22
 msgid "What Happened?"
-msgstr ""
+msgstr "Apa yang Terjadi?"
 
 #: templates/payments/error.html:30
 msgid ""
 "We encountered an error while processing your payment. This could be due to:"
 msgstr ""
+"Kami mengalami kesalahan saat memproses pembayaran Anda. Ini bisa disebabkan "
+"oleh:"
 
+#: templates/payments/error.html:31
+msgid "Insufficient funds in your account"
+msgstr "Dana tidak mencukupi di akun Anda"
+
+#: templates/payments/error.html:32
+msgid "Card expiration or incorrect details"
+msgstr "Kedaluwarsa kartu atau detail yang salah"
+
+#: templates/payments/error.html:33
+msgid "Bank or card issuer restrictions"
+msgstr "Pembatasan bank atau penerbit kartu"
+
+#: templates/payments/error.html:34
+msgid "Temporary network issues"
+msgstr "Masalah jaringan sementara"
+
+#: templates/payments/error.html:40
+msgid "What to Do Next"
+msgstr "Apa yang Harus Dilakukan Selanjutnya"
+
+#: templates/payments/error.html:42
+msgid "Check your payment details and try again"
+msgstr "Periksa detail pembayaran Anda dan coba lagi"
+
+#: templates/payments/error.html:45
+msgid "Contact your bank or card issuer"
+msgstr "Hubungi bank atau penerbit kartu Anda"
+
+#: templates/payments/error.html:48
+msgid "Try a different payment method"
+msgstr "Coba metode pembayaran yang berbeda"
+
+#: templates/payments/error.html:51
+msgid "Wait a few minutes and retry"
+msgstr "Tunggu beberapa menit dan coba lagi"
+
+#: templates/payments/error.html:64
+msgid "Your Card Was Not Charged"
+msgstr "Kartu Anda Tidak Dikenakan Biaya"
+
+#: templates/payments/error.html:66
+msgid ""
+"Rest assured that no money was taken from your account. The payment was not "
+"processed successfully."
+msgstr ""
+"Tenang, tidak ada uang yang diambil dari akun Anda. Pembayaran tidak "
+"berhasil diproses."
+
+#: templates/payments/error.html:71
+msgid "Need Help?"
+msgstr "Butuh Bantuan?"
+
+#: templates/payments/error.html:73
+msgid ""
+"If you continue to experience issues, please contact our support team for "
+"assistance."
+msgstr ""
+"Jika Anda terus mengalami masalah, silakan hubungi tim dukungan kami untuk "
+"bantuan."
 #: templates/payments/error.html:38
 msgid "Network connectivity issues"
-msgstr ""
+msgstr "Masalah konektivitas jaringan"
 
 #: templates/payments/error.html:44
 msgid "Payment processor temporary issues"
-msgstr ""
+msgstr "Masalah sementara pada prosesor pembayaran"
 
 #: templates/payments/error.html:50
 msgid "Invalid payment information"
-msgstr ""
+msgstr "Informasi pembayaran tidak valid"
 
 #: templates/payments/error.html:56
 msgid "What You Can Do"
-msgstr ""
+msgstr "Yang Dapat Anda Lakukan"
 
 #: templates/payments/error.html:62
 msgid "Try again in a few minutes"
-msgstr ""
+msgstr "Coba lagi dalam beberapa menit"
 
 #: templates/payments/error.html:68
 msgid "Check your payment information"
-msgstr ""
+msgstr "Periksa informasi pembayaran Anda"
 
 #: templates/payments/error.html:74
 msgid "Contact your bank if the issue persists"
-msgstr ""
+msgstr "Hubungi bank Anda jika masalah berlanjut"
 
 #: templates/payments/success.html:6
-#, fuzzy
-#| msgid "Message Sent Successfully!"
 msgid "Payment Successful"
-msgstr "Pesan Berhasil Dikirim!"
+msgstr "Pembayaran Berhasil"
 
 #: templates/payments/success.html:17
-#, fuzzy
-#| msgid "Message Sent Successfully!"
 msgid "Payment Successful!"
-msgstr "Pesan Berhasil Dikirim!"
+msgstr "Pembayaran Berhasil!"
 
 #: templates/payments/success.html:18
 msgid "Thank you for your subscription"
-msgstr ""
+msgstr "Terima kasih atas langganan Anda"
 
 #: templates/payments/success.html:22
 #: templates/users/manage_subscription.html:112
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Subscription Details"
-msgstr "Deskripsi Layanan"
+msgstr "Detail Langganan"
 
 #: templates/payments/success.html:26
-#, fuzzy
-#| msgid "Usage Information"
 msgid "Plan Information"
-msgstr "Informasi Penggunaan"
+msgstr "Informasi Paket"
 
 #: templates/payments/success.html:29 templates/users/account_status.html:273
 #: templates/users/cancel_subscription.html:136
 #: utils_site/src/users/models.py:321
 msgid "Plan"
-msgstr ""
+msgstr "Paket"
 
 #: templates/payments/success.html:33
 msgid "Price"
-msgstr ""
+msgstr "Harga"
 
 #: templates/payments/success.html:37 templates/users/account_status.html:275
 #: templates/users/manage_subscription.html:115
@@ -6078,404 +5870,372 @@ msgstr "Status"
 #: templates/users/manage_subscription.html:28
 #: templates/users/manage_subscription.html:118
 #: templates/users/profile.html:168 templates/users/profile_edit.html:192
-#, fuzzy
-#| msgid "Always Active"
 msgid "Active"
-msgstr "Selalu Aktif"
+msgstr "Aktif"
 
 #: templates/payments/success.html:44
 msgid "Billing Period"
-msgstr ""
+msgstr "Periode Penagihan"
 
 #: templates/payments/success.html:47
 msgid "Start Date"
-msgstr ""
+msgstr "Tanggal Mulai"
 
 #: templates/payments/success.html:51
 msgid "Next Billing"
-msgstr ""
+msgstr "Penagihan Berikutnya"
 
 #: templates/payments/success.html:64
 msgid "What's Next?"
-msgstr ""
+msgstr "Selanjutnya Apa?"
 
 #: templates/payments/success.html:65
 msgid "Your premium features are now active! You can:"
-msgstr ""
+msgstr "Fitur premium Anda sekarang aktif! Anda dapat:"
 
 #: templates/payments/success.html:71
 msgid "Access all premium PDF tools with much higher limits"
-msgstr ""
+msgstr "Akses semua alat PDF premium dengan batasan yang jauh lebih tinggi"
 
 #: templates/payments/success.html:77
-#, fuzzy
-#| msgid "Process and convert your files as requested"
 msgid "Process larger files and more documents"
-msgstr "Memproses dan mengonversi file Anda sesuai permintaan"
+msgstr "Proses file yang lebih besar dan lebih banyak dokumen"
 
 #: templates/payments/success.html:83
 msgid "Enjoy priority processing speeds"
-msgstr ""
+msgstr "Nikmati kecepatan pemrosesan prioritas"
 
 #: templates/payments/success.html:90
-#, fuzzy
-#| msgid "Starting Page Number"
 msgid "Start Using Premium Features"
-msgstr "Nomor Halaman Awal"
+msgstr "Mulai Gunakan Fitur Premium"
 
 #: templates/payments/success.html:93 templates/users/account_status.html:94
 #: templates/users/manage_subscription.html:8
 #: templates/users/manage_subscription.html:15
-#, fuzzy
-#| msgid "Page Selection"
 msgid "Manage Subscription"
-msgstr "Pemilihan Halaman"
+msgstr "Kelola Langganan"
 
 #: templates/socialaccount/connections.html:8
 #: templates/socialaccount/connections.html:17
 msgid "Connected Accounts"
-msgstr ""
+msgstr "Akun Terhubung"
 
 #: templates/socialaccount/connections.html:18
 msgid "Manage your connected social accounts"
-msgstr ""
+msgstr "Kelola akun sosial media Anda yang terhubung"
 
 #: templates/socialaccount/connections.html:30
-#, fuzzy
-#| msgid "Your Content"
 msgid "Your Connected Accounts"
-msgstr "Konten Anda"
+msgstr "Akun Terhubung Anda"
 
 #: templates/socialaccount/connections.html:52
 msgid "Connected"
-msgstr ""
+msgstr "Terhubung"
 
 #: templates/socialaccount/connections.html:61
 msgid "Disconnect"
-msgstr ""
+msgstr "Putuskan"
 
 #: templates/socialaccount/connections.html:76
 msgid "No Connected Accounts"
-msgstr ""
+msgstr "Tidak Ada Akun Terhubung"
 
 #: templates/socialaccount/connections.html:77
 msgid "Connect your social accounts for easier login"
-msgstr ""
+msgstr "Hubungkan akun sosial media Anda untuk login yang lebih mudah"
 
 #: templates/socialaccount/connections.html:85
 msgid "Connect Google Account"
-msgstr ""
+msgstr "Hubungkan Akun Google"
 
 #: templates/socialaccount/connections.html:94
 msgid "Add More Accounts"
-msgstr ""
+msgstr "Tambahkan Akun Lainnya"
 
 #: templates/socialaccount/connections.html:110
 msgid "Connect your"
-msgstr ""
+msgstr "Hubungkan"
 
 #: templates/socialaccount/connections.html:110
 msgid "account"
-msgstr ""
+msgstr "akun Anda"
 
 #: templates/socialaccount/login.html:8
 msgid "Sign In with Google"
-msgstr ""
+msgstr "Masuk dengan Google"
 
 #: templates/socialaccount/login.html:20
-#, fuzzy
-#| msgid "Word to PDF - Convertica"
 msgid "Welcome to Convertica"
-msgstr "Word ke PDF - Convertica"
+msgstr "Selamat Datang di Convertica"
 
 #: templates/socialaccount/login.html:21
 msgid "Sign in with your Google account"
-msgstr ""
+msgstr "Masuk dengan akun Google Anda"
 
 #: templates/socialaccount/login.html:49 templates/socialaccount/login.html:63
 #: templates/users/login.html:55 templates/users/register.html:49
 msgid "Continue with Google"
-msgstr ""
+msgstr "Lanjutkan dengan Google"
 
 #: templates/socialaccount/login.html:50
 msgid "Use your Google account to access Convertica"
-msgstr ""
+msgstr "Gunakan akun Google Anda untuk mengakses Convertica"
 
 #: templates/socialaccount/login.html:69
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Don't have a Google account?"
-msgstr "Apakah saya perlu membuat akun?"
+msgstr "Tidak punya akun Google?"
 
 #: templates/socialaccount/login.html:70
 msgid "Sign up with email"
-msgstr ""
+msgstr "Daftar dengan email"
 
 #: templates/socialaccount/login.html:76
 msgid "← Back to regular login"
-msgstr ""
+msgstr "← Kembali ke login reguler"
 
 #: templates/socialaccount/signup.html:8
 msgid "Sign Up with Google"
-msgstr ""
+msgstr "Daftar dengan Google"
 
 #: templates/socialaccount/signup.html:20
-#, fuzzy
-#| msgid "Convertica"
 msgid "Join Convertica"
-msgstr "Convertica"
+msgstr "Bergabung dengan Convertica"
 
 #: templates/socialaccount/signup.html:21
 msgid "Create your account with Google"
-msgstr ""
+msgstr "Buat akun Anda dengan Google"
 
 #: templates/socialaccount/signup.html:49
 msgid "Create Account with Google"
-msgstr ""
+msgstr "Buat Akun dengan Google"
 
 #: templates/socialaccount/signup.html:50
 msgid "Get instant access to all Convertica features"
-msgstr ""
+msgstr "Dapatkan akses instan ke semua fitur Convertica"
 
 #: templates/socialaccount/signup.html:96
-#, fuzzy
-#| msgid "No Registration Required"
 msgid "Complete Registration"
-msgstr "Tidak perlu registrasi"
+msgstr "Selesaikan Pendaftaran"
 
 #: templates/socialaccount/signup.html:102 templates/users/register.html:142
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Already have an account?"
-msgstr "Apakah saya perlu membuat akun?"
+msgstr "Sudah memiliki akun?"
 
 #: templates/socialaccount/signup.html:109
 msgid "← Sign up with email instead"
-msgstr ""
+msgstr "← Daftar dengan email saja"
 
 #: templates/users/account_status.html:8 templates/users/account_status.html:23
 #: templates/users/profile.html:165 templates/users/profile.html:240
 #: templates/users/profile_edit.html:188
-#, fuzzy
-#| msgid "Status"
 msgid "Account Status"
-msgstr "Status"
+msgstr "Status Akun"
 
 #: templates/users/account_status.html:24
 msgid "Manage your subscription and view your hero journey"
-msgstr ""
+msgstr "Kelola langganan Anda dan lihat perjalanan hero Anda"
 
 #: templates/users/account_status.html:30
 msgid "Subscription Status"
-msgstr ""
+msgstr "Status Langganan"
 
 #: templates/users/account_status.html:43
 msgid "Expired"
-msgstr ""
+msgstr "Kedaluwarsa"
 
 #: templates/users/account_status.html:50 templates/users/profile.html:104
 #: templates/users/profile.html:180 templates/users/profile_edit.html:182
 msgid "Free"
-msgstr ""
+msgstr "Gratis"
 
 #: templates/users/account_status.html:58
 #: templates/users/manage_subscription.html:22
-#, fuzzy
-#| msgid "Current page only"
 msgid "Current Plan"
-msgstr "Hanya halaman saat ini"
+msgstr "Paket Saat Ini"
 
 #: templates/users/account_status.html:61
 msgid "Premium Hero"
-msgstr ""
+msgstr "Hero Premium"
 
 #: templates/users/account_status.html:63
 msgid "Free User"
-msgstr ""
+msgstr "Pengguna Gratis"
 
 #: templates/users/account_status.html:69
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Subscription Period"
-msgstr "Deskripsi Layanan"
+msgstr "Periode Langganan"
 
 #: templates/users/account_status.html:74
 msgid "No active subscription"
-msgstr ""
+msgstr "Tidak ada langganan aktif"
 
 #: templates/users/account_status.html:80
 msgid "Total Days as Hero"
-msgstr ""
+msgstr "Total Hari sebagai Hero"
 
 #: templates/users/account_status.html:85
 #: templates/users/manage_subscription.html:148
 msgid "Current Streak"
-msgstr ""
+msgstr "Streak Saat Ini"
 
 #: templates/users/account_status.html:106
 msgid "Hero Ranks"
-msgstr ""
+msgstr "Peringkat Hero"
 
 #: templates/users/account_status.html:107
 msgid ""
 "Your rank is based on consecutive days as a premium hero. The longer your "
 "streak, the higher your rank!"
 msgstr ""
+"Peringkat Anda didasarkan pada hari berturut-turut sebagai hero premium. "
+"Semakin lama streak Anda, semakin tinggi peringkat Anda!"
 
 #: templates/users/account_status.html:119
 msgid "Bronze"
-msgstr ""
+msgstr "Perunggu"
 
 #: templates/users/account_status.html:120
 msgid "30+ consecutive days"
-msgstr ""
+msgstr "30+ hari berturut-turut"
 
 #: templates/users/account_status.html:123
 msgid "Bronze Hero"
-msgstr ""
+msgstr "Hero Perunggu"
 
 #: templates/users/account_status.html:137
 msgid "Silver"
-msgstr ""
+msgstr "Perak"
 
 #: templates/users/account_status.html:138
 msgid "90+ consecutive days"
-msgstr ""
+msgstr "90+ hari berturut-turut"
 
 #: templates/users/account_status.html:141
 msgid "Silver Hero"
-msgstr ""
+msgstr "Hero Perak"
 
 #: templates/users/account_status.html:155
 msgid "Gold"
-msgstr ""
+msgstr "Emas"
 
 #: templates/users/account_status.html:156
 msgid "180+ consecutive days"
-msgstr ""
+msgstr "180+ hari berturut-turut"
 
 #: templates/users/account_status.html:159
 msgid "Gold Hero"
-msgstr ""
+msgstr "Hero Emas"
 
 #: templates/users/account_status.html:173
 msgid "Platinum"
-msgstr ""
+msgstr "Platinum"
 
 #: templates/users/account_status.html:174
 msgid "365+ consecutive days"
-msgstr ""
+msgstr "365+ hari berturut-turut"
 
 #: templates/users/account_status.html:177
 msgid "Platinum Hero"
-msgstr ""
+msgstr "Hero Platinum"
 
 #: templates/users/account_status.html:187
-#, fuzzy
-#| msgid "Your Content"
 msgid "Your Current Rank"
-msgstr "Konten Anda"
+msgstr "Peringkat Anda Saat Ini"
 
 #: templates/users/account_status.html:213 templates/users/profile.html:117
 msgid "Hero"
-msgstr ""
+msgstr "Hero"
 
 #: templates/users/account_status.html:213
 #: templates/users/account_status.html:216
 #: templates/users/profile_edit.html:137
 msgid "consecutive days"
-msgstr ""
+msgstr "hari berturut-turut"
 
 #: templates/users/account_status.html:216
 msgid "No rank yet"
-msgstr ""
+msgstr "Belum ada peringkat"
 
 #: templates/users/account_status.html:254
 msgid "No Rank"
-msgstr ""
+msgstr "Tanpa Peringkat"
 
 #: templates/users/account_status.html:265
 msgid "Payment History"
-msgstr ""
+msgstr "Riwayat Pembayaran"
 
 #: templates/users/account_status.html:272
 msgid "Date"
-msgstr ""
+msgstr "Tanggal"
 
 #: templates/users/account_status.html:276 utils_site/src/users/models.py:333
 msgid "Payment ID"
-msgstr ""
+msgstr "ID Pembayaran"
 
 #: templates/users/account_status.html:288 utils_site/src/users/models.py:314
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Completed"
-msgstr "Pengeditan selesai!"
+msgstr "Selesai"
 
 #: templates/users/account_status.html:292 utils_site/src/users/models.py:313
-#, fuzzy
-#| msgid "Sending..."
 msgid "Pending"
-msgstr "Mengirim..."
+msgstr "Tertunda"
 
 #: templates/users/account_status.html:296 utils_site/src/users/models.py:315
 msgid "Failed"
-msgstr ""
+msgstr "Gagal"
 
 #: templates/users/account_status.html:300 utils_site/src/users/models.py:316
 msgid "Refunded"
-msgstr ""
+msgstr "Dikembalikan"
 
 #: templates/users/account_status.html:317
 msgid "No payment history yet"
-msgstr ""
+msgstr "Belum ada riwayat pembayaran"
 
 #: templates/users/account_status.html:319
 msgid "Become a Hero to see your payment history"
-msgstr ""
+msgstr "Jadilah Hero untuk melihat riwayat pembayaran Anda"
 
 #: templates/users/account_status.html:326
 msgid "Account Actions"
-msgstr ""
+msgstr "Aksi Akun"
 
 #: templates/users/account_status.html:331
-#, fuzzy
-#| msgid "Download PDF"
 msgid "Download Your Data"
-msgstr "Unduh PDF"
+msgstr "Unduh Data Anda"
 
 #: templates/users/account_status.html:332
 msgid "Get a copy of all your data and activity"
-msgstr ""
+msgstr "Dapatkan salinan semua data dan aktivitas Anda"
 
 #: templates/users/account_status.html:343
 msgid "Join Heroes Hall"
-msgstr ""
+msgstr "Bergabung dengan Balai Hero"
 
 #: templates/users/account_status.html:344
 msgid "Display your profile in the Heroes Hall of Fame"
-msgstr ""
+msgstr "Tampilkan profil Anda di Balai Pahlawan (Hall of Fame)"
 
 #: templates/users/account_status.html:347
 msgid "Enable Display"
-msgstr ""
+msgstr "Aktifkan Tampilan"
 
 #: templates/users/account_status.html:358
 msgid "Change"
-msgstr ""
+msgstr "Ubah"
 
 #: templates/users/account_status.html:368
 msgid "Thinking about leaving?"
-msgstr ""
+msgstr "Mempertimbangkan untuk meninggalkan?"
 
 #: templates/users/account_status.html:371
 msgid "Delete Account"
-msgstr ""
+msgstr "Hapus Akun"
 
 #: templates/users/account_status.html:379
 #: templates/users/manage_subscription.html:201
 msgid "Cancel Subscription?"
-msgstr ""
+msgstr "Batalkan Langganan?"
 
 #: templates/users/account_status.html:380
 #: templates/users/manage_subscription.html:202
@@ -6483,327 +6243,319 @@ msgid ""
 "Are you sure you want to cancel your subscription? You'll continue to have "
 "access until the end of your current billing period."
 msgstr ""
+"Apakah Anda yakin ingin membatalkan langganan Anda? Anda akan tetap "
+"memiliki akses hingga akhir periode penagihan saat ini."
 
 #: templates/users/account_status.html:383
 #: templates/users/cancel_subscription.html:184
 #: templates/users/manage_subscription.html:206
 msgid "Keep Subscription"
-msgstr ""
+msgstr "Pertahankan Langganan"
 
 #: templates/users/account_status.html:386
 #: templates/users/manage_subscription.html:209
-#, fuzzy
-#| msgid "Cancel"
 msgid "Cancel Anyway"
-msgstr "Batal"
+msgstr "Tetap Batalkan"
 
 #: templates/users/account_status.html:394
 msgid "Delete Account Forever?"
-msgstr ""
+msgstr "Hapus Akun Selamanya?"
 
 #: templates/users/account_status.html:395
 msgid ""
 "This action cannot be undone. All your data, including subscription history "
 "and files, will be permanently deleted according to GDPR requirements."
 msgstr ""
+"Tindakan ini tidak dapat dibatalkan. Semua data Anda, termasuk riwayat "
+"langganan dan file, akan dihapus secara permanen sesuai persyaratan GDPR."
 
 #: templates/users/account_status.html:398
 msgid "Keep Account"
-msgstr ""
+msgstr "Pertahankan Akun"
 
 #: templates/users/account_status.html:401
 msgid "Delete Forever"
-msgstr ""
+msgstr "Hapus Selamanya"
 
 #: templates/users/cancel_subscription.html:8
 #: templates/users/cancel_subscription.html:28
 #: templates/users/manage_subscription.html:160
 msgid "Cancel Subscription"
-msgstr ""
+msgstr "Batalkan Langganan"
 
 #: templates/users/cancel_subscription.html:29
 msgid "We're sorry to see you go"
-msgstr ""
+msgstr "Kami sedih melihat Anda pergi"
 
 #: templates/users/cancel_subscription.html:35
 msgid "Before you go, please tell us why:"
-msgstr ""
+msgstr "Sebelum Anda pergi, beri tahu kami alasannya:"
 
 #: templates/users/cancel_subscription.html:43
 msgid "Reason for cancellation"
-msgstr ""
+msgstr "Alasan pembatalan"
 
 #: templates/users/cancel_subscription.html:49
 msgid "Too expensive"
-msgstr ""
+msgstr "Terlalu mahal"
 
 #: templates/users/cancel_subscription.html:50
 msgid "The cost is more than I can afford"
-msgstr ""
+msgstr "Biayanya lebih dari yang bisa saya tanggung"
 
 #: templates/users/cancel_subscription.html:57
 msgid "Not using enough"
-msgstr ""
+msgstr "Tidak cukup sering digunakan"
 
 #: templates/users/cancel_subscription.html:58
 msgid "I don't use the service frequently enough"
-msgstr ""
+msgstr "Saya tidak menggunakan layanan ini cukup sering"
 
 #: templates/users/cancel_subscription.html:65
 msgid "Missing features"
-msgstr ""
+msgstr "Fitur yang kurang"
 
 #: templates/users/cancel_subscription.html:66
 msgid "I need features that aren't available"
-msgstr ""
+msgstr "Saya membutuhkan fitur yang tidak tersedia"
 
 #: templates/users/cancel_subscription.html:73
-#, fuzzy
-#| msgid "Technical Questions"
 msgid "Technical issues"
-msgstr "Pertanyaan Teknis"
+msgstr "Masalah teknis"
 
 #: templates/users/cancel_subscription.html:74
 msgid "I'm experiencing problems with the service"
-msgstr ""
+msgstr "Saya mengalami masalah dengan layanan ini"
 
 #: templates/users/cancel_subscription.html:81
 msgid "Found alternative"
-msgstr ""
+msgstr "Menemukan alternatif"
 
 #: templates/users/cancel_subscription.html:82
 msgid "I'm switching to a different service"
-msgstr ""
+msgstr "Saya beralih ke layanan lain"
 
 #: templates/users/cancel_subscription.html:89
 msgid "Other reason"
-msgstr ""
+msgstr "Alasan lain"
 
 #: templates/users/cancel_subscription.html:90
 msgid "Something else"
-msgstr ""
+msgstr "Hal lain"
 
 #: templates/users/cancel_subscription.html:99
 msgid "Additional comments (optional)"
-msgstr ""
+msgstr "Komentar tambahan (opsional)"
 
 #: templates/users/cancel_subscription.html:106
 msgid "Tell us more about your experience..."
-msgstr ""
+msgstr "Ceritakan lebih banyak tentang pengalaman Anda..."
 
 #: templates/users/cancel_subscription.html:112
 msgid "Before you cancel, consider these options:"
-msgstr ""
+msgstr "Sebelum membatalkan, pertimbangkan opsi ini:"
 
 #: templates/users/cancel_subscription.html:116
 msgid "Switch to a lower tier plan"
-msgstr ""
+msgstr "Beralih ke paket yang lebih rendah"
 
 #: templates/users/cancel_subscription.html:120
 msgid "Pause subscription for 3 months"
-msgstr ""
+msgstr "Jeda langganan selama 3 bulan"
 
 #: templates/users/cancel_subscription.html:124
 msgid "Apply a discount for next renewal"
-msgstr ""
+msgstr "Terapkan diskon untuk perpanjangan berikutnya"
 
 #: templates/users/cancel_subscription.html:133
 msgid "Current Subscription Details"
-msgstr ""
+msgstr "Detail Langganan Saat Ini"
 
 #: templates/users/cancel_subscription.html:137
 #: templates/users/profile.html:100 templates/users/profile.html:178
 #: templates/users/profile_edit.html:178
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: templates/users/cancel_subscription.html:140
 msgid "Next billing date"
-msgstr ""
+msgstr "Tanggal penagihan berikutnya"
 
 #: templates/users/cancel_subscription.html:145
 #: templates/users/cancel_subscription.html:155
 msgid "Not available"
-msgstr ""
+msgstr "Tidak tersedia"
 
 #: templates/users/cancel_subscription.html:150
 msgid "Access until"
-msgstr ""
+msgstr "Akses hingga"
 
 #: templates/users/cancel_subscription.html:160
 msgid "Hero status"
-msgstr ""
+msgstr "Status hero"
 
 #: templates/users/cancel_subscription.html:165
 msgid "Hidden"
-msgstr ""
+msgstr "Tersembunyi"
 
 #: templates/users/cancel_subscription.html:178
 msgid "Proceed with Cancellation"
-msgstr ""
+msgstr "Lanjutkan Pembatalan"
 
 #: templates/users/cancel_subscription.html:191
 msgid "What happens after cancellation?"
-msgstr ""
+msgstr "Apa yang terjadi setelah pembatalan?"
 
 #: templates/users/cancel_subscription.html:198
 msgid "Continue using premium features"
-msgstr ""
+msgstr "Terus gunakan fitur premium"
 
 #: templates/users/cancel_subscription.html:199
 msgid ""
 "You'll keep access to all premium features until the end of your current "
 "billing period."
 msgstr ""
+"Anda akan tetap memiliki akses ke semua fitur premium hingga akhir periode "
+"penagihan saat ini."
 
 #: templates/users/cancel_subscription.html:208
 msgid "Hero status remains"
-msgstr ""
+msgstr "Status hero tetap ada"
 
 #: templates/users/cancel_subscription.html:209
 msgid ""
 "Your hero status and ranking will be preserved during the remaining period."
 msgstr ""
+"Status hero dan peringkat Anda akan dipertahankan selama periode yang "
+"tersisa."
 
 #: templates/users/cancel_subscription.html:218
-#, fuzzy
-#| msgid "All rights reserved."
 msgid "Data is preserved"
-msgstr "Hak cipta dilindungi undang-undang."
+msgstr "Data dipertahankan"
 
 #: templates/users/cancel_subscription.html:219
 msgid "All your data and conversions. and settings will be saved."
-msgstr ""
+msgstr "Semua data, konversi, dan pengaturan Anda akan disimpan."
 
 #: templates/users/cancel_subscription.html:228
 msgid "Can re-subscribe anytime"
-msgstr ""
+msgstr "Dapat berlangganan kembali kapan saja"
 
 #: templates/users/cancel_subscription.html:229
 msgid "You can always come back and upgrade to premium again."
-msgstr ""
+msgstr "Anda selalu dapat kembali dan meningkatkan ke premium lagi."
 
 #: templates/users/cancel_subscription.html:245
-#, fuzzy
-#| msgid "Please select a Word file."
 msgid "Please select a reason for cancellation"
-msgstr "Silakan pilih file Word."
+msgstr "Silakan pilih alasan pembatalan"
 
 #: templates/users/login.html:8 templates/users/login.html:116
 msgid "Sign In"
-msgstr ""
+msgstr "Masuk"
 
 #: templates/users/login.html:24
-#, fuzzy
-#| msgid "Go Back"
 msgid "Welcome Back"
-msgstr "Kembali"
+msgstr "Selamat Datang Kembali"
 
 #: templates/users/login.html:25
 msgid "Sign in to your Convertica account"
-msgstr ""
+msgstr "Masuk ke akun Convertica Anda"
 
 #: templates/users/login.html:66 templates/users/register.html:60
 msgid "Continue with Facebook"
-msgstr ""
+msgstr "Lanjutkan dengan Facebook"
 
 #: templates/users/login.html:76
 msgid "Or continue with email"
-msgstr ""
+msgstr "Atau lanjutkan dengan email"
 
 #: templates/users/login.html:103
 msgid "Remember me"
-msgstr ""
+msgstr "Ingat saya"
 
 #: templates/users/login.html:109
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Lupa kata sandi?"
 
 #: templates/users/manage_subscription.html:16
 msgid "Update your subscription plan and billing information"
-msgstr ""
+msgstr "Perbarui paket langganan dan informasi penagihan Anda"
 
 #: templates/users/manage_subscription.html:35
 #: templates/users/manage_subscription.html:120
 #: templates/users/profile.html:170 templates/users/profile_edit.html:196
 msgid "Inactive"
-msgstr ""
+msgstr "Nonaktif"
 
 #: templates/users/manage_subscription.html:51
 msgid "Premium Plan"
-msgstr ""
+msgstr "Paket Premium"
 
 #: templates/users/manage_subscription.html:52
 msgid "Much higher limits and premium features"
-msgstr ""
+msgstr "Batasan jauh lebih tinggi dan fitur premium"
 
 #: templates/users/manage_subscription.html:61
 msgid "Free Plan"
-msgstr ""
+msgstr "Paket Gratis"
 
 #: templates/users/manage_subscription.html:62
 msgid "Basic features with limitations"
-msgstr ""
+msgstr "Fitur dasar dengan batasan"
 
 #: templates/users/manage_subscription.html:73
-#, fuzzy
-#| msgid "Is there a file size limit?"
 msgid "Much higher page and file size limits"
-msgstr "Apakah ada batasan ukuran file?"
+msgstr "Batasan halaman dan ukuran file jauh lebih tinggi"
 
 #: templates/users/manage_subscription.html:85
 msgid "Hero status & ranking"
-msgstr ""
+msgstr "Status & peringkat hero"
 
 #: templates/users/manage_subscription.html:91
 msgid "Priority support and custom solutions on request"
-msgstr ""
+msgstr "Dukungan prioritas dan solusi kustom sesuai permintaan"
 
 #: templates/users/manage_subscription.html:98
 msgid "Limited conversions per day"
-msgstr ""
+msgstr "Konversi terbatas per hari"
 
 #: templates/users/manage_subscription.html:104
-#, fuzzy
-#| msgid "File Upload and Processing"
 msgid "Standard processing"
-msgstr "Unggah dan Pemrosesan File"
+msgstr "Pemrosesan standar"
 
 #: templates/users/manage_subscription.html:127
-#, fuzzy
-#| msgid "Get Started"
 msgid "Started"
-msgstr "Mulai"
+msgstr "Dimulai"
 
 #: templates/users/manage_subscription.html:134
 msgid "Expires"
-msgstr ""
+msgstr "Kedaluwarsa"
 
 #: templates/users/manage_subscription.html:141
 msgid "Total Days"
-msgstr ""
+msgstr "Total Hari"
 
 #: templates/users/manage_subscription.html:182
 msgid "Billing History"
-msgstr ""
+msgstr "Riwayat Penagihan"
 
 #: templates/users/manage_subscription.html:188
 msgid ""
 "Billing history will be available once payment processing is implemented."
-msgstr ""
+msgstr "Riwayat penagihan akan tersedia setelah pemrosesan pembayaran diimplementasikan."
 
 #: templates/users/manage_subscription.html:240
 #: utils_site/src/users/views.py:292
 msgid "Failed to cancel subscription"
-msgstr ""
+msgstr "Gagal membatalkan langganan"
 
 #: templates/users/manage_subscription.html:245
 msgid "An error occurred while canceling subscription"
-msgstr ""
+msgstr "Terjadi kesalahan saat membatalkan langganan"
 
 #: templates/users/profile.html:25
 msgid "Email Not Verified"
-msgstr ""
+msgstr "Email Belum Diverifikasi"
 
 #: templates/users/profile.html:30
 #, python-format
@@ -6813,169 +6565,154 @@ msgid ""
 "days if not verified.\n"
 "                    "
 msgstr ""
+"\n"
+"                      Akun Anda akan dihapus secara otomatis dalam %(days)s "
+"hari jika tidak diverifikasi.\n"
+"                    "
 
 #: templates/users/profile.html:34
 msgid ""
 "Your account is scheduled for deletion. Please verify your email immediately!"
 msgstr ""
+"Akun Anda dijadwalkan untuk dihapus. Harap verifikasi email Anda segera!"
 
 #: templates/users/profile.html:46
-#, fuzzy
-#| msgid "Indemnification"
 msgid "Send verification email"
-msgstr "Ganti Rugi"
+msgstr "Kirim email verifikasi"
 
 #: templates/users/profile.html:56
 msgid "Send password reset email"
-msgstr ""
+msgstr "Kirim email reset kata sandi"
 
 #: templates/users/profile.html:127
 msgid "Heroes Board"
-msgstr ""
+msgstr "Papan Pahlawan"
 
 #: templates/users/profile.html:143 templates/users/profile_edit.html:166
-#, fuzzy
-#| msgid "Basic Information"
 msgid "Account Information"
-msgstr "Informasi Dasar"
+msgstr "Informasi Akun"
 
 #: templates/users/profile.html:147 templates/users/profile_edit.html:42
 #: utils_site/src/users/forms.py:40
 msgid "Username"
-msgstr ""
+msgstr "Nama Pengguna"
 
 #: templates/users/profile.html:155
-#, fuzzy
-#| msgid "Your Name"
 msgid "Full Name"
-msgstr "Nama Anda"
+msgstr "Nama Lengkap"
 
 #: templates/users/profile.html:157
 msgid "Not set"
-msgstr ""
+msgstr "Belum diatur"
 
 #: templates/users/profile.html:161 templates/users/profile_edit.html:170
 msgid "Member Since"
-msgstr ""
+msgstr "Anggota Sejak"
 
 #: templates/users/profile.html:175 templates/users/profile_edit.html:174
 msgid "Account Type"
-msgstr ""
+msgstr "Tipe Akun"
 
 #: templates/users/profile.html:197
 msgid "Unlock all features and remove limitations"
-msgstr ""
+msgstr "Buka kunci semua fitur dan hapus batasan"
 
 #: templates/users/profile.html:201
 msgid "Upgrade Now"
-msgstr ""
+msgstr "Tingkatkan Sekarang"
 
 #: templates/users/profile.html:219 templates/users/profile_edit.html:8
 #: templates/users/profile_edit.html:21 utils_site/src/users/views.py:219
-#, fuzzy
-#| msgid "Edit another file"
 msgid "Edit Profile"
-msgstr "Edit file lain"
+msgstr "Edit Profil"
 
 #: templates/users/profile.html:220
-#, fuzzy
-#| msgid "Usage Information"
 msgid "Update your information"
-msgstr "Informasi Penggunaan"
+msgstr "Perbarui informasi Anda"
 
 #: templates/users/profile.html:241
 msgid "View your subscription"
-msgstr ""
+msgstr "Lihat langganan Anda"
 
 #: templates/users/profile.html:246
 msgid "View"
-msgstr ""
+msgstr "Lihat"
 
 #: templates/users/profile.html:261 templates/users/profile.html:267
 msgid "Sign Out"
-msgstr ""
+msgstr "Keluar"
 
 #: templates/users/profile.html:262
 msgid "Log out of your account"
-msgstr ""
+msgstr "Keluar dari akun Anda"
 
 #: templates/users/profile_edit.html:62
 msgid "Email cannot be changed"
-msgstr ""
+msgstr "Email tidak dapat diubah"
 
 #: templates/users/profile_edit.html:68
-#, fuzzy
-#| msgid "Your Name"
 msgid "First Name"
-msgstr "Nama Anda"
+msgstr "Nama Depan"
 
 #: templates/users/profile_edit.html:82
 msgid "Last Name"
-msgstr ""
+msgstr "Nama Belakang"
 
 #: templates/users/profile_edit.html:98
-#, fuzzy
-#| msgid "Merge Settings"
 msgid "Hero Settings"
-msgstr "Pengaturan Penggabungan"
+msgstr "Pengaturan Hero"
 
 #: templates/users/profile_edit.html:111 utils_site/src/users/models.py:52
 msgid "Display as Hero"
-msgstr ""
+msgstr "Tampilkan sebagai Hero"
 
 #: templates/users/profile_edit.html:114
 msgid "Show your nickname in the Heroes Hall of Fame"
-msgstr ""
+msgstr "Tampilkan nama panggilan Anda di Balai Pahlawan (Hall of Fame)"
 
 #: templates/users/profile_edit.html:117
 msgid "Become a hero as a premium subscriber!"
-msgstr ""
+msgstr "Jadilah hero sebagai pelanggan premium!"
 
 #: templates/users/profile_edit.html:134
 msgid "You're a Hero!"
-msgstr ""
+msgstr "Anda adalah Hero!"
 
 #: templates/users/profile_edit.html:137
-#, fuzzy
-#| msgid "Status"
 msgid "Hero Status"
-msgstr "Status"
+msgstr "Status Hero"
 
 #: templates/users/profile_edit.html:154
-#, fuzzy
-#| msgid "Page Ranges"
 msgid "Save Changes"
-msgstr "Rentang Halaman"
+msgstr "Simpan Perubahan"
 
 #: templates/users/register.html:8
 msgid "Sign Up"
-msgstr ""
+msgstr "Daftar"
 
 #: templates/users/register.html:24 templates/users/register.html:126
-#, fuzzy
-#| msgid "Created At"
 msgid "Create Account"
-msgstr "Dibuat Pada"
+msgstr "Buat Akun"
 
 #: templates/users/register.html:25
 msgid "Join Convertica and unlock premium features"
-msgstr ""
+msgstr "Bergabunglah dengan Convertica dan buka kunci fitur premium"
 
 #: templates/users/register.html:70
 msgid "Or sign up with email"
-msgstr ""
+msgstr "Atau daftar dengan email"
 
 #: templates/users/register.html:132
 msgid "By creating an account, you agree to our"
-msgstr ""
+msgstr "Dengan membuat akun, Anda setuju dengan"
 
 #: utils_site/src/api/base_views.py:157
 msgid "File is empty. Please upload a valid file."
-msgstr ""
+msgstr "File kosong. Harap unggah file yang valid."
 
 #: utils_site/src/api/base_views.py:169
 msgid "File is too small to be valid."
-msgstr ""
+msgstr "File terlalu kecil untuk menjadi valid."
 
 #: utils_site/src/api/base_views.py:200
 #, python-format
@@ -6983,21 +6720,24 @@ msgid ""
 "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade "
 "to Premium for %(premium_mb).0f MB limit! Get 1-day Premium for just $1."
 msgstr ""
+"File terlalu besar (%(file_mb).1f MB). Pengguna gratis: maks %(free_mb).0f "
+"MB. Tingkatkan ke Premium untuk batasan %(premium_mb).0f MB! Dapatkan "
+"Premium 1-hari hanya dengan $1."
 
 #: utils_site/src/api/base_views.py:214
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
-msgstr ""
+msgstr "File terlalu besar. Ukuran maksimum adalah %(max_mb).0f MB."
 
 #: utils_site/src/api/base_views.py:236
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
-msgstr ""
+msgstr "Tipe konten tidak didukung: %(content_type)s"
 
 #: utils_site/src/api/base_views.py:255
 #, python-format
 msgid "Only %(extensions)s files are allowed."
-msgstr ""
+msgstr "Hanya file %(extensions)s yang diizinkan."
 
 #: utils_site/src/api/conversion_limits.py:225
 #, python-format
@@ -7006,18 +6746,19 @@ msgid ""
 "into smaller parts or get a 1-day Premium subscription for just $1 to "
 "process larger files with much higher limits!"
 msgstr ""
+"PDF memiliki %(page_count)d halaman (batas: %(max_pages)d). Anda dapat "
+"membagi file menjadi bagian yang lebih kecil atau mendapatkan langganan "
+"Premium 1-hari hanya dengan $1 untuk memproses file yang lebih besar dengan "
+"batasan yang jauh lebih tinggi!"
 
 #: utils_site/src/api/conversion_limits.py:236
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
+#, python-format
 msgid ""
 "PDF has %(page_count)d pages (limit: %(max_pages)d). Please split your file "
 "into smaller parts."
 msgstr ""
-"PDF memiliki %(page_count)d halaman, maksimum yang diizinkan adalah "
-"%(max_pages)d. Silakan bagi PDF Anda menjadi bagian yang lebih kecil."
+"PDF memiliki %(page_count)d halaman (batas: %(max_pages)d). Silakan bagi "
+"file Anda menjadi bagian yang lebih kecil."
 
 #: utils_site/src/api/conversion_limits.py:247
 #, python-format
@@ -7261,11 +7002,11 @@ msgstr "Gambar Unggulan"
 
 #: utils_site/src/blog/models.py:179
 msgid "Relevant Tool"
-msgstr ""
+msgstr "Alat Terkait"
 
 #: utils_site/src/blog/models.py:180
 msgid "Select the most relevant tool for this article"
-msgstr ""
+msgstr "Pilih alat yang paling relevan untuk artikel ini"
 
 #: utils_site/src/blog/models.py:188
 msgid "Published At"
@@ -7290,7 +7031,7 @@ msgstr "Artikel"
 
 #: utils_site/src/frontend/context_processors.py:352
 msgid "Pricing"
-msgstr ""
+msgstr "Harga"
 
 #: utils_site/src/frontend/context_processors.py:433
 #: utils_site/src/frontend/views.py:262
@@ -7298,10 +7039,8 @@ msgid "Convert PDF to Word"
 msgstr "Konversi PDF ke Word"
 
 #: utils_site/src/frontend/context_processors.py:439
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert Word to PDF"
-msgstr "Konversi ke PDF"
+msgstr "Konversi Word ke PDF"
 
 #: utils_site/src/frontend/context_processors.py:445
 #: utils_site/src/frontend/views.py:359
@@ -7309,10 +7048,8 @@ msgid "Convert PDF to JPG"
 msgstr "Konversi PDF ke JPG"
 
 #: utils_site/src/frontend/context_processors.py:451
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert JPG to PDF"
-msgstr "Konversi ke PDF"
+msgstr "Konversi JPG ke PDF"
 
 #: utils_site/src/frontend/context_processors.py:457
 #: utils_site/src/frontend/views.py:858
@@ -7320,104 +7057,74 @@ msgid "Convert PDF to Excel"
 msgstr "Konversi PDF ke Excel"
 
 #: utils_site/src/frontend/context_processors.py:463
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert Excel to PDF"
-msgstr "Konversi ke PDF"
+msgstr "Konversi Excel ke PDF"
 
 #: utils_site/src/frontend/context_processors.py:469
-#, fuzzy
-#| msgid "Merge PDFs"
 msgid "Merge multiple PDFs"
-msgstr "Gabungkan PDF"
+msgstr "Gabungkan beberapa PDF"
 
 #: utils_site/src/frontend/context_processors.py:475
-#, fuzzy
-#| msgid "Can I split a PDF into separate files?"
 msgid "Split PDF into parts"
-msgstr "Bisakah saya memisahkan PDF menjadi file terpisah?"
+msgstr "Pisahkan PDF menjadi beberapa bagian"
 
 #: utils_site/src/frontend/context_processors.py:481
 msgid "Reduce PDF size"
-msgstr ""
+msgstr "Perkecil ukuran PDF"
 
 #: utils_site/src/frontend/context_processors.py:487
-#, fuzzy
-#| msgid "Can I rotate PDF pages?"
 msgid "Rotate PDF pages"
-msgstr "Bisakah saya memutar halaman PDF?"
+msgstr "Putar halaman PDF"
 
 #: utils_site/src/frontend/context_processors.py:493
-#, fuzzy
-#| msgid "Enter password to protect PDF"
 msgid "Password protect PDF"
-msgstr "Masukkan kata sandi untuk melindungi PDF"
+msgstr "Lindungi PDF dengan kata sandi"
 
 #: utils_site/src/frontend/context_processors.py:499
-#, fuzzy
-#| msgid "User Password"
 msgid "Remove PDF password"
-msgstr "Kata Sandi Pengguna"
+msgstr "Hapus kata sandi PDF"
 
 #: utils_site/src/frontend/context_processors.py:505
-#, fuzzy
-#| msgid "Reorder Pages"
 msgid "Reorder PDF pages"
-msgstr "Susun Ulang Halaman"
+msgstr "Susun ulang halaman PDF"
 
 #: utils_site/src/frontend/context_processors.py:511
-#, fuzzy
-#| msgid "Extract specific pages from your PDF"
 msgid "Extract specific pages"
-msgstr "Ekstrak halaman tertentu dari PDF Anda"
+msgstr "Ekstrak halaman tertentu"
 
 #: utils_site/src/frontend/context_processors.py:517
-#, fuzzy
-#| msgid "Remove unwanted pages from your PDF"
 msgid "Remove pages from PDF"
-msgstr "Hapus halaman yang tidak diinginkan dari PDF Anda"
+msgstr "Hapus halaman dari PDF"
 
 #: utils_site/src/frontend/context_processors.py:523
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop PDF pages"
-msgstr "Pangkas PDF"
+msgstr "Pangkas halaman PDF"
 
 #: utils_site/src/frontend/context_processors.py:529
-#, fuzzy
-#| msgid "How do I add a watermark to PDF?"
 msgid "Add watermark to PDF"
-msgstr "Bagaimana cara menambahkan watermark ke PDF?"
+msgstr "Tambahkan watermark ke PDF"
 
 #: utils_site/src/frontend/context_processors.py:535
 msgid "Number PDF pages"
-msgstr ""
+msgstr "Beri nomor halaman PDF"
 
 #: utils_site/src/frontend/context_processors.py:541
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert PowerPoint to PDF"
-msgstr "Konversi ke PDF"
+msgstr "Konversi PowerPoint ke PDF"
 
 #: utils_site/src/frontend/context_processors.py:547
 #: utils_site/src/frontend/views.py:996
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "Convert PDF to PowerPoint"
-msgstr "Konversi PDF ke Word"
+msgstr "Konversi PDF ke PowerPoint"
 
 #: utils_site/src/frontend/context_processors.py:553
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert HTML to PDF"
-msgstr "Konversi ke PDF"
+msgstr "Konversi HTML ke PDF"
 
 #: utils_site/src/frontend/context_processors.py:559
 #: utils_site/src/frontend/views.py:1028
-#, fuzzy
-#| msgid "Convert PDF to JPG"
 msgid "Convert PDF to HTML"
-msgstr "Konversi PDF ke JPG"
+msgstr "Konversi PDF ke HTML"
 
 #: utils_site/src/frontend/forms.py:14
 msgid "Your Name"
@@ -7472,12 +7179,6 @@ msgid "PDF to Word - Convertica"
 msgstr "PDF ke Word - Convertica"
 
 #: utils_site/src/frontend/views.py:225
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Word online free without losing formatting. Fast PDF to "
-#| "DOCX converter with no email required, unlimited conversions, high-"
-#| "quality output. Perfect for students, professionals, and businesses. No "
-#| "registration needed."
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
 "converter with no email required, unlimited conversions, high-quality "
@@ -7486,7 +7187,7 @@ msgid ""
 msgstr ""
 "Konversi PDF ke Word online gratis tanpa kehilangan pemformatan. Konverter "
 "PDF ke DOCX cepat tanpa email, konversi tanpa batas, output berkualitas "
-"tinggi. Sempurna untuk siswa, profesional, dan bisnis. Tanpa registrasi."
+"tinggi. Sempurna untuk dokumen, resume, dan file bisnis. Tanpa registrasi."
 
 #: utils_site/src/frontend/views.py:254
 msgid "Convert your PDF documents to editable Word format in seconds"
@@ -7780,49 +7481,34 @@ msgid "Please select a PDF file with tables."
 msgstr "Silakan pilih file PDF dengan tabel."
 
 #: utils_site/src/frontend/views.py:868
-#, fuzzy
-#| msgid "JPG to PDF - Convertica"
 msgid "Excel to PDF - Convertica"
-msgstr "JPG ke PDF - Convertica"
+msgstr "Excel ke PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:870
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert Excel to PDF online free with high quality. Convert XLS and XLSX "
 "spreadsheets to PDF format. Preserve formatting, charts, and formulas. No "
 "registration required."
 msgstr ""
-"Konversi PDF ke Excel online gratis dengan ekstraksi tabel yang akurat. "
-"Ekstrak tabel dari PDF dan konversi ke format XLSX. Sempurna untuk faktur, "
-"laporan, dan analisis data. Tanpa registrasi."
+"Konversi Excel ke PDF online gratis dengan kualitas tinggi. Konversi "
+"spreadsheet XLS dan XLSX ke format PDF. Pertahankan pemformatan, bagan, dan "
+"rumus. Tanpa registrasi."
 
 #: utils_site/src/frontend/views.py:887
-#, fuzzy
-#| msgid "Convert your Word documents to PDF format in seconds"
 msgid "Convert Excel spreadsheets to PDF format"
-msgstr "Konversi dokumen Word Anda ke format PDF dalam hitungan detik"
+msgstr "Konversi spreadsheet Excel ke format PDF"
 
 #: utils_site/src/frontend/views.py:888
-#, fuzzy
-#| msgid "JPG to PDF Converter"
 msgid "Excel to PDF Converter"
-msgstr "Konverter JPG ke PDF"
+msgstr "Konverter Excel ke PDF"
 
 #: utils_site/src/frontend/views.py:895
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Please select an Excel file."
-msgstr "Silakan pilih file PDF."
+msgstr "Silakan pilih file Excel."
 
 #: utils_site/src/frontend/views.py:904
-#, fuzzy
-#| msgid "Word to PDF - Convertica"
 msgid "PowerPoint to PDF - Convertica"
-msgstr "Word ke PDF - Convertica"
+msgstr "PowerPoint ke PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:906
 msgid ""
@@ -7830,129 +7516,91 @@ msgid ""
 "PPTX presentations to PDF format. Preserve slides, animations, and "
 "formatting. No registration required."
 msgstr ""
+"Konversi PowerPoint ke PDF online gratis dengan kualitas tinggi. Konversi "
+"presentasi PPT dan PPTX ke format PDF. Pertahankan slide, animasi, dan "
+"pemformatan. Tanpa registrasi."
 
 #: utils_site/src/frontend/views.py:922
-#, fuzzy
-#| msgid "Convert your Word documents to PDF format in seconds"
 msgid "Convert PowerPoint presentations to PDF format"
-msgstr "Konversi dokumen Word Anda ke format PDF dalam hitungan detik"
+msgstr "Konversi presentasi PowerPoint ke format PDF"
 
 #: utils_site/src/frontend/views.py:923
-#, fuzzy
-#| msgid "Word to PDF Converter"
 msgid "PowerPoint to PDF Converter"
-msgstr "Konverter Word ke PDF"
+msgstr "Konverter PowerPoint ke PDF"
 
 #: utils_site/src/frontend/views.py:930
-#, fuzzy
-#| msgid "Please select a Word file."
 msgid "Please select a PowerPoint file."
-msgstr "Silakan pilih file Word."
+msgstr "Silakan pilih file PowerPoint."
 
 #: utils_site/src/frontend/views.py:939
-#, fuzzy
-#| msgid "JPG to PDF - Convertica"
 msgid "HTML to PDF - Convertica"
-msgstr "JPG ke PDF - Convertica"
+msgstr "HTML ke PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:941
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert HTML to PDF online free with high quality. Convert HTML content and "
 "web pages to PDF format. Preserve styling, images, and layout. No "
 "registration required."
 msgstr ""
-"Konversi PDF ke Excel online gratis dengan ekstraksi tabel yang akurat. "
-"Ekstrak tabel dari PDF dan konversi ke format XLSX. Sempurna untuk faktur, "
-"laporan, dan analisis data. Tanpa registrasi."
+"Konversi HTML ke PDF online gratis dengan kualitas tinggi. Konversi konten "
+"HTML dan halaman web ke format PDF. Pertahankan gaya, gambar, dan tata "
+"letak. Tanpa registrasi."
 
 #: utils_site/src/frontend/views.py:957
-#, fuzzy
-#| msgid "Convert your JPG images to PDF format in seconds"
 msgid "Convert HTML content and web pages to PDF format"
-msgstr "Konversi gambar JPG Anda ke format PDF dalam hitungan detik"
+msgstr "Konversi konten HTML dan halaman web ke format PDF"
 
 #: utils_site/src/frontend/views.py:958
-#, fuzzy
-#| msgid "JPG to PDF Converter"
 msgid "HTML to PDF Converter"
-msgstr "Konverter JPG ke PDF"
+msgstr "Konverter HTML ke PDF"
 
 #: utils_site/src/frontend/views.py:965
 msgid "Please enter HTML content or URL."
-msgstr ""
+msgstr "Silakan masukkan konten HTML atau URL."
 
 #: utils_site/src/frontend/views.py:974
-#, fuzzy
-#| msgid "PDF to Word - Convertica"
 msgid "PDF to PowerPoint - Convertica"
-msgstr "PDF ke Word - Convertica"
+msgstr "PDF ke PowerPoint - Convertica"
 
 #: utils_site/src/frontend/views.py:976
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert PDF to PowerPoint online free with high quality. Extract PDF pages "
 "and convert to PPTX presentation format. Perfect for creating editable "
 "presentations from PDF documents. No registration required."
 msgstr ""
-"Konversi PDF ke Excel online gratis dengan ekstraksi tabel yang akurat. "
-"Ekstrak tabel dari PDF dan konversi ke format XLSX. Sempurna untuk faktur, "
-"laporan, dan analisis data. Tanpa registrasi."
+"Konversi PDF ke PowerPoint online gratis dengan kualitas tinggi. Ekstrak "
+"halaman PDF dan konversi ke format presentasi PPTX. Sempurna untuk membuat "
+"presentasi yang dapat diedit dari dokumen PDF. Tanpa registrasi."
 
 #: utils_site/src/frontend/views.py:989
-#, fuzzy
-#| msgid "Convert PDF documents to editable Word files instantly."
 msgid "Convert PDF documents to PowerPoint presentations"
-msgstr "Konversi dokumen PDF ke file Word yang dapat diedit secara instan."
+msgstr "Konversi dokumen PDF ke presentasi PowerPoint"
 
 #: utils_site/src/frontend/views.py:990
-#, fuzzy
-#| msgid "PDF to Word Converter"
 msgid "PDF to PowerPoint Converter"
-msgstr "Konverter PDF ke Word"
+msgstr "Konverter PDF ke PowerPoint"
 
 #: utils_site/src/frontend/views.py:1006
-#, fuzzy
-#| msgid "PDF to JPG - Convertica"
 msgid "PDF to HTML - Convertica"
-msgstr "PDF ke JPG - Convertica"
+msgstr "PDF ke HTML - Convertica"
 
 #: utils_site/src/frontend/views.py:1008
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert PDF to HTML online free with text extraction. Extract content from "
 "PDF and convert to HTML format. Perfect for web publishing and content "
 "management. No registration required."
 msgstr ""
-"Konversi PDF ke Excel online gratis dengan ekstraksi tabel yang akurat. "
-"Ekstrak tabel dari PDF dan konversi ke format XLSX. Sempurna untuk faktur, "
-"laporan, dan analisis data. Tanpa registrasi."
+"Konversi PDF ke HTML online gratis dengan ekstraksi teks. Ekstrak konten "
+"dari PDF dan konversi ke format HTML. Sempurna untuk penerbitan web dan "
+"manajemen konten. Tanpa registrasi."
 
 #: utils_site/src/frontend/views.py:1021
-#, fuzzy
-#| msgid "Convert your PDF documents to editable Word format in seconds"
 msgid "Convert PDF documents to HTML format"
-msgstr ""
-"Konversi dokumen PDF Anda ke format Word yang dapat diedit dalam hitungan "
-"detik"
+msgstr "Konversi dokumen PDF ke format HTML"
 
 #: utils_site/src/frontend/views.py:1022
-#, fuzzy
-#| msgid "PDF to JPG Converter"
 msgid "PDF to HTML Converter"
-msgstr "Konverter PDF ke JPG"
+msgstr "Konverter PDF ke HTML"
 
 #: utils_site/src/frontend/views.py:1038
 msgid "Compress PDF - Convertica"
@@ -8127,257 +7775,182 @@ msgid ""
 "This does not unlock Premium features — it simply helps development. Heroes "
 "are Premium subscribers; contributions here are support only."
 msgstr ""
+"Berkontribusi pada proyek Convertica dengan donasi satu kali atau bulanan. "
+"Ini tidak membuka kunci fitur Premium — hanya membantu pengembangan. Hero "
+"adalah pelanggan Premium; kontribusi di sini hanya untuk dukungan."
 
 #: utils_site/src/frontend/views.py:1768
 msgid "Thank you for your contribution"
-msgstr ""
+msgstr "Terima kasih atas kontribusi Anda"
 
 #: utils_site/src/frontend/views.py:1770
 msgid ""
 "Thank you for contributing to Convertica. Your support helps us keep "
 "improving the service."
 msgstr ""
+"Terima kasih telah berkontribusi pada Convertica. Dukungan Anda membantu "
+"kami terus meningkatkan layanan."
 
 #: utils_site/src/users/forms.py:14 utils_site/src/users/forms.py:35
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Enter your email"
-msgstr "Masukkan nama Anda"
+msgstr "Masukkan email Anda"
 
 #: utils_site/src/users/forms.py:23 utils_site/src/users/forms.py:53
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Enter your password"
-msgstr "Masukkan nama Anda"
+msgstr "Masukkan kata sandi Anda"
 
 #: utils_site/src/users/forms.py:44
-#, fuzzy
-#| msgid "Choose Image"
 msgid "Choose a username"
-msgstr "Pilih Gambar"
+msgstr "Pilih nama pengguna"
 
 #: utils_site/src/users/forms.py:62
 msgid "Confirm your password"
-msgstr ""
+msgstr "Konfirmasi kata sandi Anda"
 
 #: utils_site/src/users/forms.py:67
-#, fuzzy
-#| msgid "I agree to the Privacy Policy"
 msgid "I agree to the Terms of Service and Privacy Policy"
-msgstr "Saya setuju dengan Kebijakan Privasi"
+msgstr "Saya setuju dengan Ketentuan Layanan dan Kebijakan Privasi"
 
 #: utils_site/src/users/forms.py:83
 msgid "A user with this email already exists."
-msgstr ""
+msgstr "Pengguna dengan email ini sudah ada."
 
 #: utils_site/src/users/management/commands/create_subscription_plans.py:12
 msgid "Daily Hero Access"
-msgstr ""
+msgstr "Akses Hero Harian"
 
 #: utils_site/src/users/management/commands/create_subscription_plans.py:20
 msgid "Monthly Hero Access"
-msgstr ""
+msgstr "Akses Hero Bulanan"
 
 #: utils_site/src/users/management/commands/create_subscription_plans.py:28
 msgid "Yearly Hero Access"
-msgstr ""
+msgstr "Akses Hero Tahunan"
 
 #: utils_site/src/users/models.py:13
 msgid "The Email must be set"
-msgstr ""
+msgstr "Email harus diatur"
 
 #: utils_site/src/users/models.py:24
 msgid "Superuser must have is_staff=True."
-msgstr ""
+msgstr "Superuser harus memiliki is_staff=True."
 
 #: utils_site/src/users/models.py:26
 msgid "Superuser must have is_superuser=True."
-msgstr ""
+msgstr "Superuser harus memiliki is_superuser=True."
 
 #: utils_site/src/users/models.py:31
 msgid "email address"
-msgstr ""
+msgstr "alamat email"
 
 #: utils_site/src/users/models.py:33
 msgid "Is Premium"
-msgstr ""
+msgstr "Apakah Premium"
 
 #: utils_site/src/users/models.py:38
 msgid "Subscription Start Date"
-msgstr ""
+msgstr "Tanggal Mulai Langganan"
 
 #: utils_site/src/users/models.py:41
 msgid "Subscription End Date"
-msgstr ""
+msgstr "Tanggal Berakhir Langganan"
 
 #: utils_site/src/users/models.py:44
 msgid "Total Subscription Days"
-msgstr ""
+msgstr "Total Hari Langganan"
 
 #: utils_site/src/users/models.py:47
 msgid "Consecutive Subscription Days"
-msgstr ""
+msgstr "Hari Langganan Berturut-turut"
 
 #: utils_site/src/users/models.py:72 utils_site/src/users/models.py:319
 msgid "User"
-msgstr ""
+msgstr "Pengguna"
 
 #: utils_site/src/users/models.py:73
 msgid "Users"
-msgstr ""
+msgstr "Pengguna"
 
 #: utils_site/src/users/models.py:337
 msgid "Payment Method"
-msgstr ""
+msgstr "Metode Pembayaran"
 
 #: utils_site/src/users/models.py:340
-#, fuzzy
-#| msgid "Translations"
 msgid "Transaction ID"
-msgstr "Terjemahan"
+msgstr "ID Transaksi"
 
 #: utils_site/src/users/models.py:343
-#, fuzzy
-#| msgid "Created At"
 msgid "Processed At"
-msgstr "Dibuat Pada"
+msgstr "Diproses Pada"
 
 #: utils_site/src/users/models.py:349
 msgid "Payment"
-msgstr ""
+msgstr "Pembayaran"
 
 #: utils_site/src/users/models.py:350
-#, fuzzy
-#| msgid "Enhancements"
 msgid "Payments"
-msgstr "Peningkatan"
+msgstr "Pembayaran"
 
 #: utils_site/src/users/views.py:52
 msgid "Please verify your email address before signing in."
-msgstr ""
+msgstr "Harap verifikasi alamat email Anda sebelum masuk."
 
 #: utils_site/src/users/views.py:62
 msgid "Account is disabled"
-msgstr ""
+msgstr "Akun dinonaktifkan"
 
 #: utils_site/src/users/views.py:68
 msgid "Invalid email or password"
-msgstr ""
+msgstr "Email atau kata sandi tidak valid"
 
 #: utils_site/src/users/views.py:104
 msgid ""
 "Registration successful! Please check your email to verify your account "
 "before logging in."
 msgstr ""
+"Pendaftaran berhasil! Harap periksa email Anda untuk memverifikasi akun "
+"sebelum masuk."
 
 #: utils_site/src/users/views.py:128
 msgid "You have been successfully logged out."
-msgstr ""
+msgstr "Anda telah berhasil keluar."
 
 #: utils_site/src/users/views.py:175
 msgid "Your email is already verified."
-msgstr ""
+msgstr "Email Anda sudah diverifikasi."
 
 #: utils_site/src/users/views.py:198
 msgid "Password reset email sent. Please check your inbox and spam folder."
-msgstr ""
+msgstr "Email reset kata sandi terkirim. Harap periksa kotak masuk dan folder spam Anda."
 
 #: utils_site/src/users/views.py:201
 msgid "Unable to send password reset email."
-msgstr ""
+msgstr "Tidak dapat mengirim email reset kata sandi."
 
 #: utils_site/src/users/views.py:212
 msgid "Profile updated successfully!"
-msgstr ""
+msgstr "Profil berhasil diperbarui!"
 
 #: utils_site/src/users/views.py:263
 msgid "No active subscription to cancel"
-msgstr ""
+msgstr "Tidak ada langganan aktif untuk dibatalkan"
 
 #: utils_site/src/users/views.py:287
 msgid "Subscription cancelled successfully"
-msgstr ""
+msgstr "Langganan berhasil dibatalkan"
 
 #: utils_site/src/users/views.py:310
 msgid "Account deleted successfully"
-msgstr ""
+msgstr "Akun berhasil dihapus"
 
 #: utils_site/src/users/views.py:321
 msgid "Method not allowed"
-msgstr ""
+msgstr "Metode tidak diizinkan"
 
 #: utils_site/src/users/views.py:341
 msgid "Hero display updated successfully"
-msgstr ""
+msgstr "Tampilan hero berhasil diperbarui"
 
 #: utils_site/src/users/views.py:346
 msgid "Invalid JSON"
-msgstr ""
-
-#~ msgid ""
-#~ "Fast, simple and secure online PDF to Word and Word to PDF converter."
-#~ msgstr ""
-#~ "Konverter PDF ke Word dan Word ke PDF online yang cepat, sederhana, dan "
-#~ "aman."
-
-#~ msgid ""
-#~ "After uploading, click on the PDF preview to position your watermark. Use "
-#~ "the sliders below to adjust size and rotation. You can also drag the "
-#~ "watermark to move it, or use corner handles to scale directly on the "
-#~ "preview."
-#~ msgstr ""
-#~ "Setelah mengunggah, klik pada pratinjau PDF untuk memposisikan watermark "
-#~ "anda. Gunakan slider di bawah untuk menyesuaikan ukuran dan rotasi. Anda "
-#~ "juga dapat menyeret watermark untuk memindahkannya, atau menggunakan "
-#~ "pegangan sudut untuk menskalakan langsung pada pratinjau."
-
-#, fuzzy
-#~| msgid "Ready to Get Started?"
-#~ msgid "Ready to Become a Hero?"
-#~ msgstr "Siap untuk memulai?"
-
-#, fuzzy
-#~| msgid "Convert your Word documents to PDF format in seconds"
-#~ msgid "Start your document transformation journey today"
-#~ msgstr "Konversi dokumen Word Anda ke format PDF dalam hitungan detik"
-
-#, fuzzy
-#~| msgid "Everything is going well!"
-#~ msgid "Everything in Daily, plus:"
-#~ msgstr "Semuanya berjalan dengan baik!"
-
-#~ msgid "Organization Settings"
-#~ msgstr "Pengaturan Organisasi"
-
-#~ msgid "Operation"
-#~ msgstr "Operasi"
-
-#~ msgid "Sort Pages"
-#~ msgstr "Urutkan Halaman"
-
-#~ msgid ""
-#~ "PDF files with up to 50 pages are supported. For larger files, please "
-#~ "split them into smaller parts. Text-based PDFs work best - scanned PDFs "
-#~ "(image-only) cannot be converted to editable Word format."
-#~ msgstr ""
-#~ "File PDF hingga 50 halaman didukung. Untuk file yang lebih besar, silakan "
-#~ "bagi menjadi bagian yang lebih kecil. PDF berbasis teks bekerja paling "
-#~ "baik - PDF yang dipindai (hanya gambar) tidak dapat dikonversi ke format "
-#~ "Word yang dapat diedit."
-
-#~ msgid ""
-#~ "Welcome to Convertica. These Terms of Service (\"Terms\") govern your use "
-#~ "of our online PDF tools and services (\"Services\")."
-#~ msgstr ""
-#~ "Selamat datang di Convertica. Ketentuan Layanan ini (\"Ketentuan\") "
-#~ "mengatur penggunaan Anda atas alat dan layanan PDF online kami "
-#~ "(\"Layanan\")."
-
-#~ msgid ""
-#~ "Our Services are provided \"as is\" and \"as available\" without "
-#~ "warranties of any kind, either express or implied, including, but not "
-#~ "limited to:"
-#~ msgstr ""
-#~ "Layanan kami disediakan \"sebagaimana adanya\" dan \"sebagaimana "
-#~ "tersedia\" tanpa jaminan apa pun, baik tersurat maupun tersirat, "
-#~ "termasuk, tetapi tidak terbatas pada:"
+msgstr "JSON tidak valid"
