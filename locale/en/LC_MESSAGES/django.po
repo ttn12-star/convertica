@@ -3431,10 +3431,7 @@ msgid ""
 "numbers will be added according to your selected position, format, and font "
 "size."
 msgstr ""
-"PDF files with up to %(max_pages)s pages are supported for adding page "
-"numbers. For larger files, please split them into smaller parts. The page "
-"numbers will be added according to your selected position, format, and font "
-"size."
+
 
 #: templates/frontend/pdf_edit/add_watermark.html:47
 msgid "Select your PDF file to add watermark"
@@ -4418,9 +4415,6 @@ msgid ""
 "protection. For larger files, please split them into smaller parts. The "
 "password will be required to open, view, print, or edit the PDF."
 msgstr ""
-"PDF files with up to 50 pages are supported for password protection. For "
-"larger files, please split them into smaller parts. The password will be "
-"required to open, view, print, or edit the PDF."
 
 #: templates/frontend/pdf_security/unlock_pdf.html:6
 msgid "Unlock PDF Settings"

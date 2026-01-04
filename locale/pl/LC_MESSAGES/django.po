@@ -200,22 +200,16 @@ msgstr "Zazwyczaj jest to problem tymczasowy. Jeśli się utrzymuje, prosimy"
 
 #: templates/account/email_confirm.html:8
 #: templates/account/email_confirm.html:37
-#, fuzzy
-#| msgid "Your Email"
 msgid "Confirm Email"
-msgstr "Twój e-mail"
+msgstr "Potwierdź e-mail"
 
 #: templates/account/email_confirm.html:19
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Confirm your email"
-msgstr "Wprowadź swoje imię"
+msgstr "Potwierdź swój e-mail"
 
 #: templates/account/email_confirm.html:20
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the button below to confirm your email address"
-msgstr "Kliknij przycisk edycji, aby przetworzyć plik"
+msgstr "Kliknij przycisk poniżej, aby potwierdzić swój adres e-mail"
 
 #: templates/account/email_confirm.html:26
 #, python-format
@@ -225,60 +219,51 @@ msgid ""
 "address.\n"
 "            "
 msgstr ""
+"\n"
+"              Potwierdź, że <strong>%(email)s</strong> to Twój adres e-mail.\n"
+"            "
 
 #: templates/account/email_confirm.html:43
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to profile"
-msgstr "Powrót do bloga"
+msgstr "Powrót do profilu"
 
 #: templates/account/email_confirm.html:48
 msgid "Invalid confirmation link"
-msgstr ""
+msgstr "Nieprawidłowy link potwierdzający"
 
 #: templates/account/email_confirm.html:49
 msgid "This confirmation link is expired or invalid."
-msgstr ""
+msgstr "Ten link potwierdzający wygasł lub jest nieprawidłowy."
 
 #: templates/account/email_confirm.html:54
 #: templates/account/email_confirmed.html:31
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Go to login"
-msgstr "Powrót do bloga"
+msgstr "Przejdź do logowania"
 
 #: templates/account/email_confirm.html:57
 #: templates/account/email_confirmed.html:27
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Go to profile"
-msgstr "Powrót do bloga"
+msgstr "Przejdź do profilu"
 
 #: templates/account/email_confirmed.html:8
-#, fuzzy
-#| msgid "Email icon"
 msgid "Email Confirmed"
-msgstr "Ikona e-mail"
+msgstr "E-mail potwierdzony"
 
 #: templates/account/email_confirmed.html:19
-#, fuzzy
-#| msgid "Email icon"
 msgid "Email confirmed"
-msgstr "Ikona e-mail"
+msgstr "E-mail potwierdzony"
 
 #: templates/account/email_confirmed.html:20
 msgid "Your email address has been verified successfully."
-msgstr ""
+msgstr "Twój adres e-mail został pomyślnie zweryfikowany."
 
 #: templates/account/password_change.html:8
 #: templates/account/password_change.html:23
 #: templates/account/password_change.html:154
 #: templates/account/password_set.html:8
 #: templates/users/account_status.html:354
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Change Password"
-msgstr "Hasło właściciela"
+msgstr "Zmień hasło"
 
 #: templates/account/password_change.html:20
 #: templates/account/password_set.html:20
@@ -286,15 +271,13 @@ msgstr "Hasło właściciela"
 #: templates/users/account_status.html:20
 #: templates/users/cancel_subscription.html:20
 #: templates/users/manage_subscription.html:175
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to Profile"
-msgstr "Powrót do bloga"
+msgstr "Powrót do profilu"
 
 #: templates/account/password_change.html:24
 #: templates/users/account_status.html:355
 msgid "Update your account password"
-msgstr ""
+msgstr "Zaktualizuj hasło do konta"
 
 #: templates/account/password_change.html:39
 #: templates/account/password_set.html:39 templates/frontend/contact.html:158
@@ -303,45 +286,35 @@ msgstr "Proszę poprawić błędy poniżej:"
 
 #: templates/account/password_change.html:55
 #: templates/account/password_set.html:56
-#, fuzzy
-#| msgid "User Password"
 msgid "Current Password"
-msgstr "Hasło użytkownika"
+msgstr "Bieżące hasło"
 
 #: templates/account/password_change.html:63
 #: templates/account/password_set.html:64
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Enter current password"
-msgstr "Hasło właściciela"
+msgstr "Wprowadź bieżące hasło"
 
 #: templates/account/password_change.html:86
 #: templates/account/password_reset_from_key.html:48
 #: templates/allauth/account/password_set.html:48
-#, fuzzy
-#| msgid "User Password"
 msgid "New Password"
-msgstr "Hasło użytkownika"
+msgstr "Nowe hasło"
 
 #: templates/account/password_change.html:94
 #: templates/allauth/account/password_set.html:56
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Enter new password"
-msgstr "Hasło właściciela"
+msgstr "Wprowadź nowe hasło"
 
 #: templates/account/password_change.html:120
 #: templates/account/password_reset_from_key.html:62
 #: templates/allauth/account/password_set.html:76
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Confirm New Password"
-msgstr "Hasło właściciela"
+msgstr "Potwierdź nowe hasło"
 
 #: templates/account/password_change.html:128
 #: templates/allauth/account/password_set.html:84
 msgid "Confirm new password"
-msgstr ""
+msgstr "Potwierdź nowe hasło"
 
 #: templates/account/password_change.html:165
 #: templates/frontend/includes/cookie_banner.html:114
@@ -350,71 +323,61 @@ msgid "Cancel"
 msgstr "Anuluj"
 
 #: templates/account/password_reset.html:8
-#, fuzzy
-#| msgid "User Password"
 msgid "Reset Password"
-msgstr "Hasło użytkownika"
+msgstr "Zresetuj hasło"
 
 #: templates/account/password_reset.html:20
-#, fuzzy
-#| msgid "User Password"
 msgid "Reset Your Password"
-msgstr "Hasło użytkownika"
+msgstr "Zresetuj swoje hasło"
 
 #: templates/account/password_reset.html:21
 msgid "Enter your email to receive reset instructions"
-msgstr ""
+msgstr "Wprowadź swój e-mail, aby otrzymać instrukcje resetowania"
 
 #: templates/account/password_reset.html:39
 msgid "Email Address"
-msgstr ""
+msgstr "Adres e-mail"
 
 #: templates/account/password_reset.html:47
-#, fuzzy
-#| msgid "Enter your message"
 msgid "Enter your email address"
-msgstr "Wprowadź wiadomość"
+msgstr "Wprowadź swój adres e-mail"
 
 #: templates/account/password_reset.html:55
 msgid "Send Reset Instructions"
-msgstr ""
+msgstr "Wyślij instrukcje resetowania"
 
 #: templates/account/password_reset.html:61
 msgid "Remember your password?"
-msgstr ""
+msgstr "Pamiętasz swoje hasło?"
 
 #: templates/account/password_reset.html:62
 #: templates/socialaccount/signup.html:103 templates/users/register.html:144
 msgid "Sign in"
-msgstr ""
+msgstr "Zaloguj się"
 
 #: templates/account/password_reset.html:68 templates/users/login.html:123
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Don't have an account?"
-msgstr "Czy muszę utworzyć konto?"
+msgstr "Nie masz konta?"
 
 #: templates/account/password_reset.html:69 templates/users/login.html:125
 msgid "Sign up"
-msgstr ""
+msgstr "Zarejestruj się"
 
 #: templates/account/password_reset_done.html:8
 msgid "Reset Instructions Sent"
-msgstr ""
+msgstr "Instrukcje resetowania wysłane"
 
 #: templates/account/password_reset_done.html:20
-#, fuzzy
-#| msgid "Your Email"
 msgid "Check Your Email"
-msgstr "Twój e-mail"
+msgstr "Sprawdź swoją pocztę"
 
 #: templates/account/password_reset_done.html:21
 msgid "We've sent password reset instructions"
-msgstr ""
+msgstr "Wysłaliśmy instrukcje resetowania hasła"
 
 #: templates/account/password_reset_done.html:34
 msgid "Reset Email Sent!"
-msgstr ""
+msgstr "E-mail resetujący wysłany!"
 
 #: templates/account/password_reset_done.html:38
 #, python-format
@@ -422,109 +385,103 @@ msgid ""
 "We've sent an email to <strong>%(email)s</strong> with instructions to reset "
 "your password."
 msgstr ""
+"Wysłaliśmy e-mail na adres <strong>%(email)s</strong> z instrukcjami do "
+"zresetowania hasła."
 
 #: templates/account/password_reset_done.html:43
 msgid "Please note:"
-msgstr ""
+msgstr "Proszę pamiętać:"
 
 #: templates/account/password_reset_done.html:44
 msgid "The reset link will expire in 24 hours."
-msgstr ""
+msgstr "Link resetujący wygaśnie za 24 godziny."
 
 #: templates/account/password_reset_done.html:45
 msgid "If you don't receive the email, check your spam folder."
-msgstr ""
+msgstr "Jeśli nie otrzymasz e-maila, sprawdź folder ze spamem."
 
 #: templates/account/password_reset_done.html:54
 msgid "Return to Login"
-msgstr ""
+msgstr "Powrót do logowania"
 
 #: templates/account/password_reset_done.html:58
 msgid "Send another reset email"
-msgstr ""
+msgstr "Wyślij kolejny e-mail resetujący"
 
 #: templates/account/password_reset_from_key.html:8
 #: templates/account/password_reset_from_key.html:20
 #: templates/account/password_reset_from_key.html:78
-#, fuzzy
-#| msgid "User Password"
 msgid "Set New Password"
-msgstr "Hasło użytkownika"
+msgstr "Ustaw nowe hasło"
 
 #: templates/account/password_reset_from_key.html:21
 msgid "Choose a new secure password"
-msgstr ""
+msgstr "Wybierz nowe bezpieczne hasło"
 
 #: templates/account/password_reset_from_key.html:28
 msgid "Invalid Reset Link"
-msgstr ""
+msgstr "Nieprawidłowy link resetujący"
 
 #: templates/account/password_reset_from_key.html:29
 msgid "This password reset link has expired or is invalid."
-msgstr ""
+msgstr "Ten link resetowania hasła wygasł lub jest nieprawidłowy."
 
 #: templates/account/password_reset_from_key.html:31
 msgid "Request a new reset link"
-msgstr ""
+msgstr "Poproś o nowy link resetujący"
 
 #: templates/account/password_reset_from_key.html:56
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Enter your new password"
-msgstr "Wprowadź swoje imię"
+msgstr "Wprowadź swoje nowe hasło"
 
 #: templates/account/password_reset_from_key.html:70
 msgid "Confirm your new password"
-msgstr ""
+msgstr "Potwierdź swoje nowe hasło"
 
 #: templates/account/password_reset_from_key_done.html:8
 #: templates/account/password_reset_from_key_done.html:20
 msgid "Password Reset Complete"
-msgstr ""
+msgstr "Resetowanie hasła zakończone"
 
 #: templates/account/password_reset_from_key_done.html:21
 msgid "Your password has been successfully updated"
-msgstr ""
+msgstr "Twoje hasło zostało pomyślnie zaktualizowane"
 
 #: templates/account/password_reset_from_key_done.html:34
-#, fuzzy
-#| msgid "Message Sent Successfully!"
 msgid "Password Updated Successfully!"
-msgstr "Wiadomość wysłana pomyślnie!"
+msgstr "Hasło pomyślnie zaktualizowane!"
 
 #: templates/account/password_reset_from_key_done.html:38
 msgid ""
 "Your password has been changed. You can now sign in with your new password."
 msgstr ""
+"Twoje hasło zostało zmienione. Możesz się teraz zalogować za pomocą nowego "
+"hasła."
 
 #: templates/account/password_reset_from_key_done.html:43
-#, fuzzy
-#| msgid "Security & Privacy"
 msgid "Security Tip:"
-msgstr "Bezpieczeństwo i prywatność"
+msgstr "Wskazówka bezpieczeństwa:"
 
 #: templates/account/password_reset_from_key_done.html:44
 msgid "Make sure to use a strong password that you haven't used before."
-msgstr ""
+msgstr "Upewnij się, że używasz silnego hasła, którego wcześniej nie używałeś."
 
 #: templates/account/password_reset_from_key_done.html:52
 msgid "Sign In with New Password"
-msgstr ""
+msgstr "Zaloguj się za pomocą nowego hasła"
 
 #: templates/account/password_set.html:23
 #: templates/account/password_set.html:156
 #: templates/allauth/account/password_set.html:12
 #: templates/allauth/account/password_set.html:27
 #: templates/allauth/account/password_set.html:104
-#, fuzzy
-#| msgid "User Password"
 msgid "Set Password"
-msgstr "Hasło użytkownika"
+msgstr "Ustaw hasło"
 
 #: templates/account/password_set.html:24
 #: templates/allauth/account/password_set.html:28
 msgid "Create a password for your account"
-msgstr ""
+msgstr "Utwórz hasło dla swojego konta"
 
 #: templates/account/password_set.html:88
 #: templates/frontend/pdf_security/protect_pdf.html:12
@@ -533,27 +490,21 @@ msgid "Password"
 msgstr "Hasło"
 
 #: templates/account/password_set.html:96
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Enter password"
-msgstr "Hasło właściciela"
+msgstr "Wprowadź hasło"
 
 #: templates/account/password_set.html:122 utils_site/src/users/forms.py:58
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Confirm Password"
-msgstr "Hasło właściciela"
+msgstr "Potwierdź hasło"
 
 #: templates/account/password_set.html:130
-#, fuzzy
-#| msgid "Owner Password"
 msgid "Confirm password"
-msgstr "Hasło właściciela"
+msgstr "Potwierdź hasło"
 
 #: templates/account/password_set.html:167
 #: templates/allauth/account/password_set.html:115
 msgid "Cancel and return to account"
-msgstr ""
+msgstr "Anuluj i wróć do konta"
 
 #: templates/base.html:15 templates/base.html:28 templates/base.html:40
 #: templates/frontend/index.html:8 templates/frontend/index.html:10
@@ -963,16 +914,12 @@ msgstr "Konwertuj dokumenty Word na bezpieczne pliki PDF."
 #: templates/frontend/includes/header.html:1001
 #: utils_site/src/frontend/context_processors.py:330
 #: utils_site/src/frontend/context_processors.py:460
-#, fuzzy
-#| msgid "JPG to PDF"
 msgid "Excel to PDF"
-msgstr "JPG na PDF"
+msgstr "Excel na PDF"
 
 #: templates/frontend/all_tools.html:103
-#, fuzzy
-#| msgid "Protect and secure your PDF documents"
 msgid "Convert Excel spreadsheets to PDF documents."
-msgstr "Zabezpiecz i chroń swoje dokumenty PDF"
+msgstr "Konwertuj arkusze kalkulacyjne Excel na dokumenty PDF."
 
 #: templates/frontend/all_tools.html:118
 #: templates/frontend/includes/header.html:139
@@ -980,16 +927,12 @@ msgstr "Zabezpiecz i chroń swoje dokumenty PDF"
 #: templates/frontend/includes/header.html:1015
 #: utils_site/src/frontend/context_processors.py:331
 #: utils_site/src/frontend/context_processors.py:538
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "PowerPoint to PDF"
-msgstr "Konwertuj na PDF"
+msgstr "PowerPoint na PDF"
 
 #: templates/frontend/all_tools.html:121
-#, fuzzy
-#| msgid "Convert your Word documents to PDF format in seconds"
 msgid "Convert PowerPoint presentations to PDF format."
-msgstr "Konwertuj swoje dokumenty Word na format PDF w kilka sekund"
+msgstr "Konwertuj prezentacje PowerPoint na format PDF."
 
 #: templates/frontend/all_tools.html:136
 #: templates/frontend/includes/header.html:163
@@ -997,14 +940,12 @@ msgstr "Konwertuj swoje dokumenty Word na format PDF w kilka sekund"
 #: templates/frontend/includes/header.html:1029
 #: utils_site/src/frontend/context_processors.py:333
 #: utils_site/src/frontend/context_processors.py:550
-#, fuzzy
-#| msgid "JPG to PDF"
 msgid "HTML to PDF"
-msgstr "JPG na PDF"
+msgstr "HTML na PDF"
 
 #: templates/frontend/all_tools.html:139
 msgid "Convert HTML content or web pages to PDF."
-msgstr ""
+msgstr "Konwertuj zawartość HTML lub strony internetowe na PDF."
 
 #: templates/frontend/all_tools.html:155
 #: templates/frontend/includes/footer.html:120
@@ -1055,16 +996,12 @@ msgstr "Wyodrębnij tabele z PDF i konwertuj na format Excel."
 #: templates/frontend/includes/header.html:1022
 #: utils_site/src/frontend/context_processors.py:332
 #: utils_site/src/frontend/context_processors.py:544
-#, fuzzy
-#| msgid "PDF to JPG Converter"
 msgid "PDF to PowerPoint"
-msgstr "Konwerter PDF na JPG"
+msgstr "PDF na PowerPoint"
 
 #: templates/frontend/all_tools.html:217
-#, fuzzy
-#| msgid "Convert PDF pages to high-quality JPG images."
 msgid "Convert PDF pages to editable PowerPoint slides."
-msgstr "Konwertuj strony PDF na wysokiej jakości obrazy JPG."
+msgstr "Konwertuj strony PDF na edytowalne slajdy PowerPoint."
 
 #: templates/frontend/all_tools.html:232
 #: templates/frontend/includes/header.html:175
@@ -1072,14 +1009,12 @@ msgstr "Konwertuj strony PDF na wysokiej jakości obrazy JPG."
 #: templates/frontend/includes/header.html:1036
 #: utils_site/src/frontend/context_processors.py:334
 #: utils_site/src/frontend/context_processors.py:556
-#, fuzzy
-#| msgid "PDF to JPG"
 msgid "PDF to HTML"
-msgstr "PDF na JPG"
+msgstr "PDF na HTML"
 
 #: templates/frontend/all_tools.html:235
 msgid "Convert PDF content to HTML for web publishing."
-msgstr ""
+msgstr "Konwertuj zawartość PDF na HTML do publikacji internetowej."
 
 #: templates/frontend/all_tools.html:252
 #: templates/frontend/includes/header.html:183
@@ -1428,62 +1363,44 @@ msgid "Sending..."
 msgstr "Wysyłanie..."
 
 #: templates/frontend/converter_generic.html:46
-#, fuzzy
-#| msgid "Download File"
 msgid "Upload File"
-msgstr "Pobierz plik"
+msgstr "Prześlij plik"
 
 #: templates/frontend/converter_generic.html:47
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the upload button or drag and drop your file"
-msgstr "Kliknij przycisk edycji, aby przetworzyć plik"
+msgstr "Kliknij przycisk przesyłania lub przeciągnij i upuść swój plik"
 
 #: templates/frontend/converter_generic.html:53
-#, fuzzy
-#| msgid "Convertica"
 msgid "Convert"
-msgstr "Convertica"
+msgstr "Konwertuj"
 
 #: templates/frontend/converter_generic.html:54
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the Convert button and wait for processing to complete"
-msgstr "Kliknij przycisk edycji, aby przetworzyć plik"
+msgstr "Kliknij przycisk Konwertuj i poczekaj na zakończenie przetwarzania"
 
 #: templates/frontend/converter_generic.html:60
 #: templates/frontend/edit_pdf_generic.html:58
 #: templates/frontend/pdf_edit/add_watermark.html:70
 #: templates/frontend/pdf_edit/crop_pdf.html:64
 #: templates/users/account_status.html:335
-#, fuzzy
-#| msgid "Download PDF"
 msgid "Download"
-msgstr "Pobierz PDF"
+msgstr "Pobierz"
 
 #: templates/frontend/converter_generic.html:61
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your converted file instantly"
-msgstr "Pobierz przekonwertowany plik PDF"
+msgstr "Natychmiast pobierz swój przekonwertowany plik"
 
 #: templates/frontend/converter_generic.html:106
-#, fuzzy
-#| msgid "Select file to crop"
 msgid "Select file to upload"
-msgstr "Wybierz plik do przycięcia"
+msgstr "Wybierz plik do przesłania"
 
 #: templates/frontend/converter_generic.html:107
-#, fuzzy
-#| msgid "Support icon"
 msgid "Upload icon"
-msgstr "Ikona wsparcia"
+msgstr "Ikona przesyłania"
 
 #: templates/frontend/converter_generic.html:110
-#, fuzzy
-#| msgid "Select file to convert"
 msgid "Select files to convert (multiple)"
-msgstr "Wybierz plik do konwersji"
+msgstr "Wybierz pliki do konwersji (wiele)"
 
 #: templates/frontend/converter_generic.html:110
 msgid "Select file to convert"
@@ -1507,16 +1424,14 @@ msgstr "Usuń plik"
 #: templates/frontend/converter_generic.html:165
 #: templates/frontend/pdf_edit/add_watermark.html:295
 #: templates/frontend/pdf_edit/crop_pdf.html:252
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drag and drop your files here"
-msgstr "Przeciągnij plik tutaj"
+msgstr "Przeciągnij i upuść swoje pliki tutaj"
 
 #: templates/frontend/converter_generic.html:165
 #: templates/frontend/pdf_edit/add_watermark.html:295
 #: templates/frontend/pdf_edit/crop_pdf.html:252
 msgid "up to 10 files"
-msgstr ""
+msgstr "do 10 plików"
 
 #: templates/frontend/converter_generic.html:165
 #: templates/frontend/edit_pdf_generic.html:161
@@ -1611,21 +1526,21 @@ msgid ""
 "file into smaller parts or get a 1-day Premium subscription for just $1 to "
 "process larger files with much higher limits!"
 msgstr ""
+"Plik PDF ma %%(page_count)d stron (limit: %%(max_pages)d). Możesz podzielić "
+"plik na mniejsze części lub uzyskać 1-dniową subskrypcję Premium za jedynie "
+"1$, aby przetwarzać większe pliki z dużo wyższymi limitami!"
 
 #: templates/frontend/converter_generic.html:262
 #: templates/frontend/pdf_edit/add_page_numbers.html:256
 #: templates/frontend/pdf_organize/merge_pdf.html:136
 #: templates/frontend/pdf_organize/organize_pdf.html:48
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF has %%(page_count)d pages, maximum allowed is %%(max_pages)d. Please "
-#| "split your PDF into smaller parts."
+#, python-format
 msgid ""
 "PDF has %%(page_count)d pages (limit: %%(max_pages)d). Please split your "
 "file into smaller parts."
 msgstr ""
-"PDF ma %%(page_count)d stron, maksymalnie dozwolone to %%(max_pages)d. "
-"Podziel PDF na mniejsze części."
+"Plik PDF ma %%(page_count)d stron (limit: %%(max_pages)d). Proszę podzielić "
+"plik na mniejsze części."
 
 #: templates/frontend/converter_generic.html:268
 msgid "Converting your file..."
@@ -1696,38 +1611,28 @@ msgstr ""
 #: templates/frontend/edit_pdf_generic.html:46
 #: templates/frontend/pdf_edit/add_watermark.html:46
 #: templates/frontend/pdf_edit/crop_pdf.html:46
-#, fuzzy
-#| msgid "Download PDF"
 msgid "Upload PDF"
-msgstr "Pobierz PDF"
+msgstr "Prześlij PDF"
 
 #: templates/frontend/edit_pdf_generic.html:47
-#, fuzzy
-#| msgid "Select file to edit"
 msgid "Select your PDF file to edit"
-msgstr "Wybierz plik do edycji"
+msgstr "Wybierz swój plik PDF do edycji"
 
 #: templates/frontend/edit_pdf_generic.html:52 templates/users/profile.html:225
-#, fuzzy
-#| msgid "Edit PDF"
 msgid "Edit"
-msgstr "Edytuj PDF"
+msgstr "Edytuj"
 
 #: templates/frontend/edit_pdf_generic.html:53
 msgid "Apply your changes and click the Edit button"
-msgstr ""
+msgstr "Zastosuj swoje zmiany i kliknij przycisk Edytuj"
 
 #: templates/frontend/edit_pdf_generic.html:59
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your edited PDF file"
-msgstr "Pobierz przekonwertowany plik PDF"
+msgstr "Pobierz swój edytowany plik PDF"
 
 #: templates/frontend/edit_pdf_generic.html:106
-#, fuzzy
-#| msgid "Select file to edit"
 msgid "Select files to edit (multiple)"
-msgstr "Wybierz plik do edycji"
+msgstr "Wybierz pliki do edycji (wiele)"
 
 #: templates/frontend/edit_pdf_generic.html:106
 msgid "Select file to edit"
@@ -1773,16 +1678,13 @@ msgid "Note:"
 msgstr "Uwaga:"
 
 #: templates/frontend/edit_pdf_generic.html:217
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported. For larger files, "
 "please split them into smaller parts."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
-"mniejsze części."
+"Obsługiwane są pliki PDF do %(max_pages)s stron. Większe pliki należy "
+"podzielić na mniejsze części."
 
 #: templates/frontend/edit_pdf_generic.html:245
 #: templates/frontend/pdf_edit/add_page_numbers.html:244
@@ -1806,13 +1708,9 @@ msgid "Edit another file"
 msgstr "Edytuj inny plik"
 
 #: templates/frontend/edit_pdf_generic.html:252
-#, fuzzy
-#| msgid ""
-#| "Please enter page numbers to remove, or select \"All pages\" or \"Current "
-#| "page only\""
 msgid ""
-"Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
-"\"Current page only\\\""
+"Please enter page numbers to remove, or select \"All pages\" or \"Current "
+"page only\""
 msgstr ""
 "Proszę wprowadzić numery stron do usunięcia lub wybrać \"Wszystkie strony\" "
 "lub \"Tylko bieżąca strona\""
@@ -2213,7 +2111,7 @@ msgstr "Jeśli nie znalazłeś odpowiedzi, którą szukasz, skontaktuj się z na
 
 #: templates/frontend/includes/breadcrumbs.html:5
 msgid "Breadcrumb"
-msgstr ""
+msgstr "Ścieżka nawigacyjna"
 
 #: templates/frontend/includes/cookie_banner.html:10
 #: templates/frontend/includes/cookie_banner.html:42
@@ -2462,78 +2360,66 @@ msgstr "Zarządzanie stronami"
 
 #: templates/frontend/includes/header.html:699
 msgid "More options"
-msgstr ""
+msgstr "Więcej opcji"
 
 #: templates/frontend/includes/header.html:700
 #: templates/frontend/includes/header.html:1143
 msgid "More"
-msgstr ""
+msgstr "Więcej"
 
 #: templates/frontend/includes/header.html:724
-#, fuzzy
-#| msgid "Learn more about Convertica and our mission."
 msgid "Learn more about Convertica"
-msgstr "Dowiedz się więcej o Convertica i naszej misji."
+msgstr "Dowiedz się więcej o Convertica"
 
 #: templates/frontend/includes/header.html:741
 msgid "Get in touch with us"
-msgstr ""
+msgstr "Skontaktuj się z nami"
 
 #: templates/frontend/includes/header.html:758
-#, fuzzy
-#| msgid "Latest Guides & Tips"
 msgid "Latest news and updates"
-msgstr "Najnowsze przewodniki i porady"
+msgstr "Najnowsze wiadomości i aktualizacje"
 
 #: templates/frontend/includes/header.html:779
 #: templates/frontend/includes/header.html:813
 #: templates/frontend/includes/header.html:1179
 #: templates/frontend/includes/header.html:1194
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Hero Page"
-msgstr "Usuń strony"
+msgstr "Strona Bohatera"
 
 #: templates/frontend/includes/header.html:780
 msgid "Premium features and heroes"
-msgstr ""
+msgstr "Funkcje premium i bohaterowie"
 
 #: templates/frontend/includes/header.html:796
 #: templates/frontend/includes/header.html:830
 #: templates/frontend/includes/header.html:1186
 #: templates/frontend/includes/header.html:1201 templates/users/profile.html:8
-#, fuzzy
-#| msgid "file"
 msgid "Profile"
-msgstr "plik"
+msgstr "Profil"
 
 #: templates/frontend/includes/header.html:797
-#, fuzzy
-#| msgid "Rotation Settings"
 msgid "Your account settings"
-msgstr "Ustawienia obrotu"
+msgstr "Ustawienia Twojego konta"
 
 #: templates/frontend/includes/header.html:814
 msgid "Sign in to access premium"
-msgstr ""
+msgstr "Zaloguj się, aby uzyskać dostęp do premium"
 
 #: templates/frontend/includes/header.html:831
 msgid "Sign in to your account"
-msgstr ""
+msgstr "Zaloguj się do swojego konta"
 
 #: templates/frontend/includes/header.html:848
-#, fuzzy
-#| msgid "Toggle menu"
 msgid "Toggle theme"
-msgstr "Przełącz menu"
+msgstr "Przełącz motyw"
 
 #: templates/frontend/includes/header.html:849
 msgid "Toggle Dark Mode"
-msgstr ""
+msgstr "Przełącz tryb ciemny"
 
 #: templates/frontend/includes/header.html:849
 msgid "Dark Mode (Premium)"
-msgstr ""
+msgstr "Tryb ciemny (Premium)"
 
 #: templates/frontend/includes/header.html:902
 msgid "Toggle menu"
@@ -2541,7 +2427,7 @@ msgstr "Przełącz menu"
 
 #: templates/frontend/includes/related_tools.html:9
 msgid "You might also like"
-msgstr ""
+msgstr "Może Ci się spodobać"
 
 #: templates/frontend/index.html:4 templates/frontend/index.html:5
 msgid "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs"
@@ -2579,87 +2465,69 @@ msgid ""
 "Simply upload your PDF file, click convert, and download your Word document. "
 "No registration required, completely free."
 msgstr ""
+"Po prostu prześlij plik PDF, kliknij konwertuj i pobierz dokument Word. Bez "
+"rejestracji, całkowicie darmowe."
 
 #: templates/frontend/index.html:49
-#, fuzzy
-#| msgid ""
-#| "Yes, Convertica is completely free to use. All PDF conversion, editing, "
-#| "and organization tools are available at no cost. There are no hidden "
-#| "fees, no registration required, and no file size limits on the free plan."
 msgid ""
 "Yes, Convertica is completely free. All PDF conversion and editing tools are "
 "available at no cost with no hidden fees."
 msgstr ""
-"Tak, Convertica jest całkowicie darmowe. Wszystkie narzędzia do konwersji, "
-"edycji i organizacji PDF są dostępne bezpłatnie. Nie ma ukrytych opłat, "
-"rejestracji ani limitów rozmiaru plików w planie darmowym."
+"Tak, Convertica jest całkowicie darmowe. Wszystkie narzędzia do konwersji i "
+"edycji PDF są dostępne bezpłatnie, bez ukrytych opłat."
 
 #: templates/frontend/index.html:57
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Yes, your data is secure. All files are processed securely and automatically "
 "deleted after conversion. We do not store your files."
 msgstr ""
-"Tak! Twoje pliki są przetwarzane bezpiecznie i automatycznie usuwane "
-"natychmiast po przetworzeniu. Nigdy nie przechowujemy Twoich plików na stałe."
+"Tak, Twoje dane są bezpieczne. Wszystkie pliki są przetwarzane bezpiecznie i "
+"automatycznie usuwane po konwersji. Nie przechowujemy Twoich plików."
 
 #: templates/frontend/index.html:65
 msgid ""
 "Convertica supports PDF, Word (DOC, DOCX), Excel (XLS, XLSX), PowerPoint "
 "(PPT, PPTX), JPG, PNG, and HTML formats."
 msgstr ""
+"Convertica obsługuje formaty PDF, Word (DOC, DOCX), Excel (XLS, XLSX), "
+"PowerPoint (PPT, PPTX), JPG, PNG i HTML."
 
 #: templates/frontend/index.html:70
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Do I need to register?"
-msgstr "Czy muszę utworzyć konto?"
+msgstr "Czy muszę się rejestrować?"
 
 #: templates/frontend/index.html:73
 msgid ""
 "No registration required. You can use all tools instantly without creating "
 "an account. Premium features are available for advanced users."
 msgstr ""
+"Rejestracja nie jest wymagana. Możesz natychmiast korzystać ze wszystkich "
+"narzędzi bez tworzenia konta. Funkcje premium są dostępne dla zaawansowanych "
+"użytkowników."
 
 #: templates/frontend/index.html:78 templates/frontend/index.html:540
-#, fuzzy
-#| msgid "Are my files safe?"
 msgid "How long are my files stored?"
-msgstr "Czy moje pliki są bezpieczne?"
+msgstr "Jak długo przechowywane są moje pliki?"
 
 #: templates/frontend/index.html:81
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Your files are processed securely and automatically deleted after "
 "conversion. We do not store your files longer than necessary."
 msgstr ""
-"Tak! Twoje pliki są przetwarzane bezpiecznie i automatycznie usuwane "
-"natychmiast po przetworzeniu. Nigdy nie przechowujemy Twoich plików na stałe."
+"Twoje pliki są przetwarzane bezpiecznie i automatycznie usuwane po "
+"konwersji. Nie przechowujemy Twoich plików dłużej niż to konieczne."
 
 #: templates/frontend/index.html:86 templates/frontend/index.html:552
-#, fuzzy
-#| msgid "Can I use Convertica on mobile devices?"
 msgid "Can I use Convertica on mobile?"
 msgstr "Czy mogę używać Convertica na urządzeniach mobilnych?"
 
 #: templates/frontend/index.html:89
-#, fuzzy
-#| msgid ""
-#| "Yes, Convertica is fully responsive and works on mobile devices. You can "
-#| "convert, edit, and organize PDFs directly from your smartphone or tablet."
 msgid ""
 "Yes. Convertica works on mobile and desktop browsers. You can convert and "
 "edit PDFs from your phone or tablet."
 msgstr ""
-"Tak, Convertica jest w pełni responsywna i działa na urządzeniach mobilnych. "
-"Możesz konwertować, edytować i organizować PDF bezpośrednio ze smartfona lub "
-"tabletu."
+"Tak. Convertica działa w przeglądarkach mobilnych i desktopowych. Możesz "
+"konwertować i edytować PDF na swoim telefonie lub tablecie."
 
 #: templates/frontend/index.html:110
 msgid "All-in-One PDF Tools"
@@ -2687,28 +2555,28 @@ msgid "Try it"
 msgstr "Wypróbuj"
 
 #: templates/frontend/index.html:302 templates/frontend/pricing.html:23
-#, fuzzy
-#| msgid "Convertica - Home"
 msgid "Become a Convertica Hero"
-msgstr "Convertica - Strona główna"
+msgstr "Zostań Bohaterem Convertica"
 
 #: templates/frontend/index.html:305 templates/frontend/pricing.html:328
 msgid "Support Our Project"
-msgstr ""
+msgstr "Wesprzyj nasz projekt"
 
 #: templates/frontend/index.html:308
 msgid ""
 "Process larger files with much higher limits, priority processing, and "
 "premium features"
 msgstr ""
+"Przetwarzaj większe pliki z dużo wyższymi limitami, priorytetowym "
+"przetwarzaniem i funkcjami premium"
 
 #: templates/frontend/index.html:318 templates/users/account_status.html:98
 msgid "Become a Hero"
-msgstr ""
+msgstr "Zostań Bohaterem"
 
 #: templates/frontend/index.html:321
 msgid "Your support helps us keep Convertica free for everyone"
-msgstr ""
+msgstr "Twoje wsparcie pomaga nam utrzymać Convertica darmowym dla wszystkich"
 
 #: templates/frontend/index.html:336
 msgid "Manage and organize your PDF documents with powerful tools"
@@ -2729,43 +2597,36 @@ msgstr ""
 #: templates/frontend/index.html:520
 msgid "Quick answers to common questions. Need more? Visit the full FAQ page."
 msgstr ""
+"Szybkie odpowiedzi na często zadawane pytania. Potrzebujesz więcej? Odwiedź "
+"pełną stronę FAQ."
 
 #: templates/frontend/index.html:533
 msgid ""
 "Yes. Convertica is free to use — no registration required. Premium "
 "subscriptions are optional and provide higher limits and additional features."
 msgstr ""
+"Tak. Convertica jest darmowe — rejestracja nie jest wymagana. Subskrypcje "
+"Premium są opcjonalne i zapewniają wyższe limity oraz dodatkowe funkcje."
 
 #: templates/frontend/index.html:545
-#, fuzzy
-#| msgid ""
-#| "Yes! Your files are processed securely and automatically deleted "
-#| "immediately after processing. We never store your files permanently."
 msgid ""
 "Files are processed securely and automatically deleted after conversion. We "
 "do not store your files longer than necessary."
 msgstr ""
-"Tak! Twoje pliki są przetwarzane bezpiecznie i automatycznie usuwane "
-"natychmiast po przetworzeniu. Nigdy nie przechowujemy Twoich plików na stałe."
+"Pliki są przetwarzane bezpiecznie i automatycznie usuwane po konwersji. Nie "
+"przechowujemy Twoich plików dłużej niż to konieczne."
 
 #: templates/frontend/index.html:557
-#, fuzzy
-#| msgid ""
-#| "Yes, Convertica is fully responsive and works on mobile devices. You can "
-#| "convert, edit, and organize PDFs directly from your smartphone or tablet."
 msgid ""
 "Yes. Convertica works on mobile and desktop browsers — you can convert and "
 "edit PDFs from your phone or tablet."
 msgstr ""
-"Tak, Convertica jest w pełni responsywna i działa na urządzeniach mobilnych. "
-"Możesz konwertować, edytować i organizować PDF bezpośrednio ze smartfona lub "
-"tabletu."
+"Tak. Convertica działa w przeglądarkach mobilnych i desktopowych — możesz "
+"konwertować i edytować PDF na swoim telefonie lub tablecie."
 
 #: templates/frontend/index.html:565
-#, fuzzy
-#| msgid "View All Articles"
 msgid "View all FAQ"
-msgstr "Zobacz wszystkie artykuły"
+msgstr "Zobacz wszystkie FAQ"
 
 #: templates/frontend/index.html:577
 msgid "Latest Guides & Tips"
@@ -2782,99 +2643,85 @@ msgid "View All Articles"
 msgstr "Zobacz wszystkie artykuły"
 
 #: templates/frontend/pdf_convert/excel_to_pdf.html:10
-#, fuzzy
-#| msgid "Select your PDF file using the button above or drag and drop it"
 msgid ""
 "Select your Excel file (XLS or XLSX) using the button above or drag and drop "
 "it"
-msgstr "Wybierz plik PDF używając przycisku powyżej lub przeciągnij i upuść"
+msgstr ""
+"Wybierz swój plik Excel (XLS lub XLSX) za pomocą przycisku powyżej lub "
+"przeciągnij i upuść go"
 
 #: templates/frontend/pdf_convert/excel_to_pdf.html:13
 #: templates/frontend/pdf_convert/html_to_pdf.html:312
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:13
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your PDF file"
-msgstr "Pobierz przekonwertowany plik PDF"
+msgstr "Pobierz swój plik PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:48
 #: templates/frontend/pdf_convert/html_to_pdf.html:59
-#, fuzzy
-#| msgid "Your Content"
 msgid "HTML Content"
-msgstr "Twoja zawartość"
+msgstr "Zawartość HTML"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:51
-#, fuzzy
-#| msgid "JPG to PDF"
 msgid "URL to PDF"
-msgstr "JPG na PDF"
+msgstr "URL do PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:66
 msgid "Enter your HTML code here..."
-msgstr ""
+msgstr "Wprowadź swój kod HTML tutaj..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:73
 #: templates/frontend/pdf_convert/html_to_pdf.html:180
 msgid "Filename"
-msgstr ""
+msgstr "Nazwa pliku"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:84
 #: templates/frontend/pdf_convert/html_to_pdf.html:191
-#, fuzzy
-#| msgid "Page"
 msgid "Page Size"
-msgstr "Strona"
+msgstr "Rozmiar strony"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:101
 #: templates/frontend/pdf_convert/html_to_pdf.html:209
 msgid "Top Margin"
-msgstr ""
+msgstr "Górny margines"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:112
 #: templates/frontend/pdf_convert/html_to_pdf.html:220
-#, fuzzy
-#| msgid "Bottom Right"
 msgid "Bottom Margin"
-msgstr "Na dole po prawej"
+msgstr "Dolny margines"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:123
 #: templates/frontend/pdf_convert/html_to_pdf.html:231
 msgid "Left Margin"
-msgstr ""
+msgstr "Lewy margines"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:134
 #: templates/frontend/pdf_convert/html_to_pdf.html:242
 msgid "Right Margin"
-msgstr ""
+msgstr "Prawy margines"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:163
 msgid "Web Page URL"
-msgstr ""
+msgstr "URL strony internetowej"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:172
 msgid "Enter the URL of the web page you want to convert to PDF"
-msgstr ""
+msgstr "Wprowadź URL strony internetowej, którą chcesz przekonwertować na PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:256
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert URL to PDF"
-msgstr "Konwertuj na PDF"
+msgstr "Konwertuj URL na PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:265
-#, fuzzy
-#| msgid "Converting your file..."
 msgid "Converting..."
-msgstr "Konwertowanie pliku..."
+msgstr "Konwertowanie..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:273
 msgid "Please wait while we convert your content to PDF..."
-msgstr ""
+msgstr "Proszę czekać, konwertujemy Twoją zawartość na PDF..."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:290
 msgid "Your content has been converted to PDF successfully."
-msgstr ""
+msgstr "Twoja zawartość została pomyślnie przekonwertowana na PDF."
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:296
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:188
@@ -2882,14 +2729,12 @@ msgid "Download PDF"
 msgstr "Pobierz PDF"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:299
-#, fuzzy
-#| msgid "Convert another file"
 msgid "Convert Another"
-msgstr "Konwertuj inny plik"
+msgstr "Konwertuj kolejny"
 
 #: templates/frontend/pdf_convert/html_to_pdf.html:309
 msgid "Paste your HTML or enter a URL"
-msgstr ""
+msgstr "Wklej swój HTML lub wprowadź URL"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:29
 msgid "You can upload multiple images - they will be combined into one PDF"
@@ -2916,20 +2761,16 @@ msgid "multiple files supported"
 msgstr "obsługiwane wiele plików"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:107
-#, fuzzy
-#| msgid "Image Quality (DPI)"
 msgid "Image Quality (JPEG)"
-msgstr "Jakość obrazu (DPI)"
+msgstr "Jakość obrazu (JPEG)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:112
 msgid "Low quality (smaller file)"
-msgstr ""
+msgstr "Niska jakość (mniejszy plik)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:113
-#, fuzzy
-#| msgid "Maximum quality"
 msgid "Medium quality (balanced)"
-msgstr "Maksymalna jakość"
+msgstr "Średnia jakość (zrównoważona)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:114
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:56
@@ -2937,22 +2778,16 @@ msgid "High quality (recommended)"
 msgstr "Wysoka jakość (zalecane)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:115
-#, fuzzy
-#| msgid "Maximum quality"
 msgid "Maximum quality (larger file)"
-msgstr "Maksymalna jakość"
+msgstr "Maksymalna jakość (większy plik)"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:118
-#, fuzzy
-#| msgid ""
-#| "Higher DPI = better quality but larger file size. 300 DPI is recommended "
-#| "for most uses."
 msgid ""
 "Higher quality = better image clarity but larger PDF file size. 85 is "
 "recommended for most uses."
 msgstr ""
-"Wyższe DPI = lepsza jakość, ale większy rozmiar pliku. 300 DPI jest zalecane "
-"dla większości zastosowań."
+"Wyższa jakość = lepsza przejrzystość obrazu, ale większy rozmiar pliku PDF. "
+"85 jest zalecane dla większości zastosowań."
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:153
 msgid ""
@@ -2975,16 +2810,12 @@ msgid "Remove unwanted images by clicking the X button"
 msgstr "Usuń niechciane obrazy, klikając przycisk X"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:156
-#, fuzzy
-#| msgid ""
-#| "Higher DPI = better quality but larger file size. 300 DPI is recommended "
-#| "for most uses."
 msgid ""
 "Select image quality (60-95): higher quality = better clarity but larger "
 "file size. 85 is recommended."
 msgstr ""
-"Wyższe DPI = lepsza jakość, ale większy rozmiar pliku. 300 DPI jest zalecane "
-"dla większości zastosowań."
+"Wybierz jakość obrazu (60-95): wyższa jakość = lepsza przejrzystość, ale "
+"większy rozmiar pliku. Zalecane jest 85."
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:157
 msgid "Click the convert button to combine all images into one PDF"
@@ -3059,73 +2890,50 @@ msgstr ""
 "pomyślnie przekonwertowane na Excel"
 
 #: templates/frontend/pdf_convert/pdf_to_excel.html:17
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. PDF files with tables work best - plain "
-#| "text will be placed in separate cells, and images will be embedded in the "
-#| "Excel file."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. For larger files, please split them into smaller "
 "parts. PDF files with tables work best - plain text will be placed in "
 "separate cells, and images will be embedded in the Excel file."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
+"Użytkownicy darmowi mogą konwertować pliki PDF do %(max_pages)s stron. "
+"Użytkownicy Premium mają wyższe limity. Większe pliki należy podzielić na "
 "mniejsze części. Pliki PDF z tabelami działają najlepiej - zwykły tekst "
 "zostanie umieszczony w oddzielnych komórkach, a obrazy zostaną osadzone w "
 "pliku Excel."
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:18
-#, fuzzy
-#| msgid ""
-#| "Click the convert button to start converting PDF to Excel (PDF to XLSX "
-#| "conversion)"
 msgid "Click the convert button to start converting PDF to HTML"
-msgstr ""
-"Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na Excel (konwersja "
-"PDF na XLSX)"
+msgstr "Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na HTML"
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:19
-#, fuzzy
-#| msgid ""
-#| "Wait for the PDF to Word conversion to complete - text and formatting "
-#| "will be extracted from your PDF and converted to editable Word format"
 msgid ""
 "Wait for the PDF to HTML conversion to complete - text and content will be "
 "extracted from your PDF and converted to HTML format"
 msgstr ""
-"Poczekaj na zakończenie konwersji PDF na Word - tekst i formatowanie zostaną "
-"wyodrębnione z Twojego PDF i przekonwertowane na edytowalny format Word"
+"Poczekaj na zakończenie konwersji PDF na HTML - tekst i zawartość zostaną "
+"wyodrębnione z Twojego PDF i przekonwertowane na format HTML"
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:20
-#, fuzzy
-#| msgid ""
-#| "Download your PDF file - your Word document has been successfully "
-#| "converted to PDF format"
 msgid ""
 "Download your HTML file - your PDF has been successfully converted to HTML "
 "for web publishing"
 msgstr ""
-"Pobierz swój plik PDF - twój dokument Word został pomyślnie przekonwertowany "
-"na format PDF"
+"Pobierz swój plik HTML - Twój PDF został pomyślnie przekonwertowany na HTML "
+"do publikacji internetowej"
 
 #: templates/frontend/pdf_convert/pdf_to_html.html:24
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. PDF files with tables work best - plain "
-#| "text will be placed in separate cells, and images will be embedded in the "
-#| "Excel file."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. Text content will be extracted and formatted as "
 "HTML. Images from the PDF will be embedded as base64 for easy web publishing."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
-"mniejsze części. Pliki PDF z tabelami działają najlepiej - zwykły tekst "
-"zostanie umieszczony w oddzielnych komórkach, a obrazy zostaną osadzone w "
-"pliku Excel."
+"Użytkownicy darmowi mogą konwertować pliki PDF do %(max_pages)s stron. "
+"Użytkownicy Premium mają wyższe limity. Zawartość tekstowa zostanie "
+"wyodrębniona i sformatowana jako HTML. Obrazy z PDF zostaną osadzone jako "
+"base64 dla łatwej publikacji internetowej."
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:6
 msgid "Page Selection"
@@ -3227,188 +3035,166 @@ msgstr ""
 "Twojego PDF"
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:83
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. The output will be a ZIP archive "
-#| "containing all converted JPG images, named with page numbers (e.g., "
-#| "filename_page0001.jpg, filename_page0002.jpg)."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. For larger files, please split them into smaller "
 "parts. The output will be a ZIP archive containing all converted JPG images, "
 "named with page numbers (e.g., filename_page0001.jpg, filename_page0002.jpg)."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
+"Użytkownicy darmowi mogą konwertować pliki PDF do %(max_pages)s stron. "
+"Użytkownicy Premium mają wyższe limity. Większe pliki należy podzielić na "
 "mniejsze części. Wynikiem będzie archiwum ZIP zawierające wszystkie "
 "przekonwertowane obrazy JPG, nazwane numerami stron (np. filename_page0001."
 "jpg, filename_page0002.jpg)."
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:18
-#, fuzzy
-#| msgid ""
-#| "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#| "conversion)"
 msgid ""
 "Click the convert button to start converting PDF to PowerPoint (PDF to PPTX "
 "conversion)"
 msgstr ""
-"Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na Word (konwersja "
-"PDF na DOCX)"
+"Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na PowerPoint "
+"(konwersja PDF na PPTX)"
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:19
-#, fuzzy
-#| msgid ""
-#| "Wait for the PDF to Word conversion to complete - text and formatting "
-#| "will be extracted from your PDF and converted to editable Word format"
 msgid ""
 "Wait for the PDF to PowerPoint conversion to complete - pages will be "
 "extracted from your PDF and converted to editable PowerPoint slides"
 msgstr ""
-"Poczekaj na zakończenie konwersji PDF na Word - tekst i formatowanie zostaną "
-"wyodrębnione z Twojego PDF i przekonwertowane na edytowalny format Word"
+"Poczekaj na zakończenie konwersji PDF na PowerPoint - strony zostaną "
+"wyodrębnione z Twojego PDF i przekonwertowane na edytowalne slajdy "
+"PowerPoint"
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:20
-#, fuzzy
-#| msgid ""
-#| "Download your editable Word document (DOCX format) - your PDF has been "
-#| "successfully converted to Word"
 msgid ""
 "Download your editable PowerPoint presentation (PPTX format) - your PDF has "
 "been successfully converted to PowerPoint"
 msgstr ""
-"Pobierz edytowalny dokument Word (format DOCX) - Twój PDF został pomyślnie "
-"przekonwertowany na Word"
+"Pobierz swoją edytowalną prezentację PowerPoint (format PPTX) - Twój PDF "
+"został pomyślnie przekonwertowany na PowerPoint"
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:24
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts. PDF files with tables work best - plain "
-#| "text will be placed in separate cells, and images will be embedded in the "
-#| "Excel file."
+#, python-format
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. Each PDF page will be converted to a PowerPoint "
 "slide. For best results, use PDFs with clear layouts and high-quality "
 "content."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
-"mniejsze części. Pliki PDF z tabelami działają najlepiej - zwykły tekst "
-"zostanie umieszczony w oddzielnych komórkach, a obrazy zostaną osadzone w "
-"pliku Excel."
+"Użytkownicy darmowi mogą konwertować pliki PDF do %(max_pages)s stron. "
+"Użytkownicy Premium mają wyższe limity. Każda strona PDF zostanie "
+"przekonwertowana na slajd PowerPoint. Dla najlepszych rezultatów używaj "
+"plików PDF z wyraźnym układem i wysokiej jakości treścią."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
-msgstr ""
+msgstr "Włącz OCR (optyczne rozpoznawanie znaków)"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:30
 msgid ""
 "Extract text from scanned PDFs and images. Convert image-based PDFs to "
 "editable text."
 msgstr ""
+"Wyodrębnij tekst ze zeskanowanych plików PDF i obrazów. Konwertuj PDF "
+"oparte na obrazach na edytowalny tekst."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:32
 msgid ""
 "Premium feature - extract text from scanned PDFs and images. Upgrade to "
 "Premium to enable."
 msgstr ""
+"Funkcja Premium - wyodrębnianie tekstu ze zeskanowanych plików PDF i "
+"obrazów. Przejdź na Premium, aby włączyć."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:37
 msgid "Log in to upgrade"
-msgstr ""
+msgstr "Zaloguj się, aby przejść na wyższy plan"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:41
 #: templates/users/manage_subscription.html:165
 #: templates/users/profile.html:194
 msgid "Upgrade to Premium"
-msgstr ""
+msgstr "Przejdź na Premium"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:52
-#, fuzzy
-#| msgid "Language"
 msgid "Document Language"
-msgstr "Język"
+msgstr "Język dokumentu"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:58
 msgid "Auto-detect"
-msgstr ""
+msgstr "Automatyczne wykrywanie"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:59
-#, fuzzy
-#| msgid "SEO - English"
 msgid "English"
-msgstr "SEO - angielski"
+msgstr "Angielski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:60
 msgid "Russian"
-msgstr ""
+msgstr "Rosyjski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:61
 msgid "German"
-msgstr ""
+msgstr "Niemiecki"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:62
 msgid "French"
-msgstr ""
+msgstr "Francuski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:63
 msgid "Spanish"
-msgstr ""
+msgstr "Hiszpański"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:64
 msgid "Italian"
-msgstr ""
+msgstr "Włoski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:65
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugalski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:66
-#, fuzzy
-#| msgid "Published"
 msgid "Polish"
-msgstr "Opublikowane"
+msgstr "Polski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:67
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukraiński"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:68
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chiński (uproszczony)"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:69
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Chiński (tradycyjny)"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:70
 msgid "Japanese"
-msgstr ""
+msgstr "Japoński"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:71
 msgid "Korean"
-msgstr ""
+msgstr "Koreański"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:72
 msgid "Arabic"
-msgstr ""
+msgstr "Arabski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:73
 msgid "Hindi"
-msgstr ""
+msgstr "Hindi"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:74
 msgid "Turkish"
-msgstr ""
+msgstr "Turecki"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:75
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonezyjski"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:78
 msgid "Select the language of your document for better OCR accuracy."
-msgstr ""
+msgstr "Wybierz język dokumentu dla lepszej dokładności OCR."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:93
 msgid ""
@@ -3435,63 +3221,59 @@ msgstr ""
 "przekonwertowany na Word"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:102
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for rotating. For larger "
-#| "files, please split them into smaller parts. The rotation preserves all "
-#| "content and formatting."
+#, python-format
 msgid ""
 "\n"
 "PDF files with up to %(max_pages)s pages are supported for free users. For "
 "larger files, please split them into smaller parts or upgrade to Premium to "
 "process larger files with higher limits.\n"
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy obracaniu. Większe pliki należy "
-"podzielić na mniejsze części. Obrót zachowuje całą zawartość i formatowanie."
+"\n"
+"Dla użytkowników darmowych obsługiwane są pliki PDF do %(max_pages)s stron. "
+"Większe pliki należy podzielić na mniejsze części lub przejść na Premium, "
+"aby przetwarzać większe pliki z wyższymi limitami.\n"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:106
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts."
+#, python-format
 msgid ""
 "\n"
 "PDF files with up to %(max_pages)s pages are supported. For larger files, "
 "please split them into smaller parts.\n"
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
-"mniejsze części."
+"\n"
+"Obsługiwane są pliki PDF do %(max_pages)s stron. Większe pliki należy "
+"podzielić na mniejsze części.\n"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:112
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported. For larger files, please "
-#| "split them into smaller parts."
+#, python-format
 msgid ""
 "\n"
 "Premium users can process PDF files with up to %(max_pages)s pages. For "
 "larger files, please split them into smaller parts.\n"
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
-"mniejsze części."
+"\n"
+"Użytkownicy Premium mogą przetwarzać pliki PDF do %(max_pages)s stron. "
+"Większe pliki należy podzielić na mniejsze części.\n"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:117
 msgid ""
 "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
 "OCR for Premium users."
 msgstr ""
+"PDF oparte na tekście działają najlepiej - zeskanowane PDF (tylko obrazy) "
+"mogą być konwertowane z OCR dla użytkowników Premium."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:119
 msgid "Text-based PDFs work best."
-msgstr ""
+msgstr "PDF oparte na tekście działają najlepiej."
 
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:10
-#, fuzzy
-#| msgid "Select your PDF file using the button above or drag and drop it"
 msgid ""
 "Select your PowerPoint file (PPT or PPTX) using the button above or drag and "
 "drop it"
-msgstr "Wybierz plik PDF używając przycisku powyżej lub przeciągnij i upuść"
+msgstr ""
+"Wybierz swój plik PowerPoint (PPT lub PPTX) za pomocą przycisku powyżej lub "
+"przeciągnij i upuść go"
 
 #: templates/frontend/pdf_convert/word_to_pdf.html:10
 msgid ""
@@ -3526,19 +3308,15 @@ msgstr ""
 "na format PDF"
 
 #: templates/frontend/pdf_convert/word_to_pdf.html:17
-#, fuzzy, python-format
-#| msgid ""
-#| "Word documents with up to 50 pages are supported. For larger files, "
-#| "please split them into smaller parts. The conversion preserves "
-#| "formatting, fonts, images, and page layout."
+#, python-format
 msgid ""
 "Word documents with up to %(max_pages)s pages are supported. For larger "
 "files, please split them into smaller parts. The conversion preserves "
 "formatting, fonts, images, and page layout."
 msgstr ""
-"Dokumenty Word do 50 stron są obsługiwane. Większe pliki należy podzielić na "
-"mniejsze części. Konwersja zachowuje formatowanie, czcionki, obrazy i układ "
-"strony."
+"Obsługiwane są dokumenty Word do %(max_pages)s stron. Większe pliki należy "
+"podzielić na mniejsze części. Konwersja zachowuje formatowanie, czcionki, "
+"obrazy i układ strony."
 
 #: templates/frontend/pdf_edit/add_page_numbers.html:9
 #: templates/frontend/pdf_edit/add_page_numbers.html:181
@@ -3679,11 +3457,7 @@ msgstr ""
 "Pobierz plik PDF z dodanymi numerami stron za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_edit/add_page_numbers.html:221
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for adding page numbers. For "
-#| "larger files, please split them into smaller parts. The page numbers will "
-#| "be added according to your selected position, format, and font size."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for adding page "
 "numbers. For larger files, please split them into smaller parts. The page "
@@ -3695,45 +3469,36 @@ msgstr ""
 "zostaną dodane zgodnie z wybraną pozycją, formatem i rozmiarem czcionki."
 
 #: templates/frontend/pdf_edit/add_watermark.html:47
-#, fuzzy
-#| msgid "Select file to watermark"
 msgid "Select your PDF file to add watermark"
-msgstr "Wybierz plik PDF do dodania znaku wodnego"
+msgstr "Wybierz swój plik PDF, aby dodać znak wodny"
+
 #: templates/frontend/pdf_edit/add_watermark.html:52
-#, fuzzy
-#| msgid "Add Watermark"
 msgid "Configure Watermark"
-msgstr "Dodaj znak wodny"
+msgstr "Skonfiguruj znak wodny"
 
 #: templates/frontend/pdf_edit/add_watermark.html:53
 msgid "Enter text or upload image, adjust color and opacity"
-msgstr ""
+msgstr "Wprowadź tekst lub prześlij obraz, dostosuj kolor i przezroczystość"
 
 #: templates/frontend/pdf_edit/add_watermark.html:59
 msgid "Drag the watermark to position it on the page"
-msgstr ""
+msgstr "Przeciągnij znak wodny, aby ustawić go na stronie"
 
 #: templates/frontend/pdf_edit/add_watermark.html:64
 msgid "Apply"
-msgstr ""
+msgstr "Zastosuj"
 
 #: templates/frontend/pdf_edit/add_watermark.html:65
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click Add Watermark button to process"
-msgstr "Kliknij przycisk edycji, aby przetworzyć plik"
+msgstr "Kliknij przycisk Dodaj znak wodny, aby przetworzyć"
 
 #: templates/frontend/pdf_edit/add_watermark.html:71
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your watermarked PDF file"
-msgstr "Pobierz przekonwertowany plik PDF"
+msgstr "Pobierz swój plik PDF ze znakiem wodnym"
 
 #: templates/frontend/pdf_edit/add_watermark.html:240
-#, fuzzy
-#| msgid "Select file to watermark"
 msgid "Select files to watermark (multiple)"
-msgstr "Wybierz plik do znaku wodnego"
+msgstr "Wybierz pliki do dodania znaku wodnego (wiele)"
 
 #: templates/frontend/pdf_edit/add_watermark.html:240
 msgid "Select file to watermark"
@@ -3749,13 +3514,11 @@ msgstr "Wybierz stronę"
 
 #: templates/frontend/pdf_edit/add_watermark.html:337
 msgid "Move watermark up/down"
-msgstr ""
+msgstr "Przesuń znak wodny w górę/dół"
 
 #: templates/frontend/pdf_edit/add_watermark.html:357
-#, fuzzy
-#| msgid "Watermark Settings"
 msgid "Move watermark left/right"
-msgstr "Ustawienia znaku wodnego"
+msgstr "Przesuń znak wodny w lewo/prawo"
 
 #: templates/frontend/pdf_edit/add_watermark.html:365
 msgid "How to use:"
@@ -3766,6 +3529,8 @@ msgid ""
 "Use the sliders near the preview to move the watermark. Use the Size and "
 "Rotation sliders below to adjust the watermark."
 msgstr ""
+"Użyj suwaków obok podglądu, aby przesunąć znak wodny. Użyj suwaków Rozmiar i "
+"Obrót poniżej, aby dostosować znak wodny."
 
 #: templates/frontend/pdf_edit/add_watermark.html:375
 msgid "Watermark Settings"
@@ -3857,19 +3622,16 @@ msgid "Download your watermarked PDF file using the download button"
 msgstr "Pobierz plik PDF ze znakiem wodnym za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_edit/add_watermark.html:628
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for adding watermarks. For "
-#| "larger files, please split them into smaller parts. The watermark will be "
-#| "applied to all pages or selected pages as specified."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for adding "
 "watermarks. For larger files, please split them into smaller parts. The "
 "watermark will be applied to all pages or selected pages as specified."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy dodawaniu znaków wodnych. Większe "
-"pliki należy podzielić na mniejsze części. Znak wodny zostanie zastosowany "
-"do wszystkich stron lub wybranych stron, zgodnie z określeniem."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy dodawaniu znaków "
+"wodnych. Większe pliki należy podzielić na mniejsze części. Znak wodny "
+"zostanie zastosowany do wszystkich stron lub wybranych stron, zgodnie z "
+"określeniem."
 
 #: templates/frontend/pdf_edit/add_watermark.html:663
 #: templates/frontend/pdf_edit/crop_pdf.html:499
@@ -3889,46 +3651,32 @@ msgstr ""
 "Podziel PDF na mniejsze części."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:47
-#, fuzzy
-#| msgid "Select file to crop"
 msgid "Select your PDF file to crop"
-msgstr "Wybierz plik do przycięcia"
+msgstr "Wybierz swój plik PDF do przycięcia"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:52
-#, fuzzy
-#| msgid "Select page"
 msgid "Select Area"
-msgstr "Wybierz stronę"
+msgstr "Wybierz obszar"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:53
-#, fuzzy
-#| msgid "Click and drag outside the box to create a new selection"
 msgid "Click and drag to select the crop area on the PDF"
-msgstr "Kliknij i przeciągnij poza polem, aby utworzyć nowy wybór"
+msgstr "Kliknij i przeciągnij, aby wybrać obszar przycinania na PDF"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:58
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop"
-msgstr "Przytnij PDF"
+msgstr "Przytnij"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:59
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the Crop button to process your PDF"
-msgstr "Kliknij przycisk edycji, aby przetworzyć plik"
+msgstr "Kliknij przycisk Przytnij, aby przetworzyć swój PDF"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:65
-#, fuzzy
-#| msgid "Download your converted PDF file"
 msgid "Download your cropped PDF file"
-msgstr "Pobierz przekonwertowany plik PDF"
+msgstr "Pobierz swój przycięty plik PDF"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:197
-#, fuzzy
-#| msgid "Select file to crop"
 msgid "Select files to crop (multiple)"
-msgstr "Wybierz plik do przycięcia"
+msgstr "Wybierz pliki do przycięcia (wiele)"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:197
 msgid "Select file to crop"
@@ -4001,8 +3749,7 @@ msgstr ""
 
 #: templates/frontend/pdf_edit/crop_pdf.html:401
 msgid "Drag the corner or edge handles to resize the crop area"
-msgstr ""
-"Przeciągnij rogi lub krawędzie, aby zmienić rozmiar obszaru przycinania"
+msgstr "Przeciągnij rogi lub krawędzie, aby zmienić rozmiar obszaru przycinania"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:402
 msgid "Click and drag outside the box to create a new selection"
@@ -4049,19 +3796,14 @@ msgid "Download your cropped PDF file using the download button"
 msgstr "Pobierz przycięty plik PDF za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:458
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for cropping. For larger "
-#| "files, please split them into smaller parts. The crop area you select "
-#| "will be applied to all selected pages."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for cropping. For "
 "larger files, please split them into smaller parts. The crop area you select "
 "will be applied to all selected pages."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy przycinaniu. Większe pliki należy "
-"podzielić na mniejsze części. Obszar przycinania, który wybierzesz, zostanie "
-"zastosowany do wszystkich wybranych stron."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy przycinaniu. Większe "
+"pliki należy podzielić na mniejsze części. Obszar przycinania, który "
+"wybierzesz, zostanie zastosowany do wszystkich wybranych stron."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:494
 msgid ""
@@ -4084,10 +3826,6 @@ msgstr ""
 "lub przeciągnij pole, aby je przesunąć."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:497
-#, fuzzy
-#| msgid ""
-#| "Crop area selected! Drag the box to move it or use handles to resize. "
-#| "Click \"Crop PDF\" when ready."
 msgid ""
 "Crop area selected! Drag the box to move it or use handles to resize. Click "
 "Crop PDF when ready."
@@ -4096,10 +3834,6 @@ msgstr ""
 "uchwytów, aby zmienić rozmiar. Kliknij \"Przytnij PDF\", gdy będziesz gotowy."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:498
-#, fuzzy
-#| msgid ""
-#| "Crop area moved! Drag again to reposition or use handles to resize. Click "
-#| "\"Crop PDF\" when ready."
 msgid ""
 "Crop area moved! Drag again to reposition or use handles to resize. Click "
 "Crop PDF when ready."
@@ -4154,18 +3888,14 @@ msgid "Download your rotated PDF file using the download button"
 msgstr "Pobierz obrócony plik PDF za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:84
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for rotating. For larger "
-#| "files, please split them into smaller parts. The rotation preserves all "
-#| "content and formatting."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for rotating. For "
 "larger files, please split them into smaller parts. The rotation preserves "
 "all content and formatting."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy obracaniu. Większe pliki należy "
-"podzielić na mniejsze części. Obrót zachowuje całą zawartość i formatowanie."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy obracaniu. Większe "
+"pliki należy podzielić na mniejsze części. Obrót zachowuje całą zawartość i "
+"formatowanie."
 
 #: templates/frontend/pdf_organize/compress_pdf.html:6
 msgid "Compression Settings"
@@ -4219,19 +3949,14 @@ msgid "Download your compressed PDF file using the download button"
 msgstr "Pobierz skompresowany plik PDF za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_organize/compress_pdf.html:41
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for compression. For larger "
-#| "files, please split them into smaller parts. Higher compression reduces "
-#| "file size more but may slightly reduce image quality."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for compression. For "
 "larger files, please split them into smaller parts. Higher compression "
 "reduces file size more but may slightly reduce image quality."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy kompresji. Większe pliki należy "
-"podzielić na mniejsze części. Wyższa kompresja bardziej zmniejsza rozmiar "
-"pliku, ale może nieznacznie obniżyć jakość obrazu."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy kompresji. Większe "
+"pliki należy podzielić na mniejsze części. Wyższa kompresja bardziej "
+"zmniejsza rozmiar pliku, ale może nieznacznie obniżyć jakość obrazu."
 
 #: templates/frontend/pdf_organize/extract_pages.html:6
 msgid "Extract Pages Settings"
@@ -4275,19 +4000,14 @@ msgstr ""
 "przycisku pobierania"
 
 #: templates/frontend/pdf_organize/extract_pages.html:42
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for extracting pages. For "
-#| "larger files, please split them into smaller parts. The extracted pages "
-#| "will be combined into a single new PDF file."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for extracting pages. "
 "For larger files, please split them into smaller parts. The extracted pages "
 "will be combined into a single new PDF file."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy wyodrębnianiu stron. Większe pliki "
-"należy podzielić na mniejsze części. Wyodrębnione strony zostaną połączone w "
-"jeden nowy plik PDF."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy wyodrębnianiu stron. "
+"Większe pliki należy podzielić na mniejsze części. Wyodrębnione strony "
+"zostaną połączone w jeden nowy plik PDF."
 
 #: templates/frontend/pdf_organize/merge_pdf.html:38
 msgid "Merge Settings"
@@ -4446,19 +4166,14 @@ msgstr ""
 "przycisku pobierania"
 
 #: templates/frontend/pdf_organize/organize_pdf.html:76
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for organizing. For larger "
-#| "files, please split them into smaller parts. You can drag and drop pages "
-#| "to reorder them visually."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for organizing. For "
 "larger files, please split them into smaller parts. You can drag and drop "
 "pages to reorder them visually."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy organizowaniu. Większe pliki "
-"należy podzielić na mniejsze części. Możesz przeciągać i upuszczać strony, "
-"aby zmieniać ich kolejność wizualnie."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy organizowaniu. Większe "
+"pliki należy podzielić na mniejsze części. Możesz przeciągać i upuszczać "
+"strony, aby zmieniać ich kolejność wizualnie."
 
 #: templates/frontend/pdf_organize/remove_pages.html:6
 msgid "Remove Pages Settings"
@@ -4488,19 +4203,14 @@ msgid "Download your PDF file with pages removed using the download button"
 msgstr "Pobierz plik PDF z usuniętymi stronami za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_organize/remove_pages.html:70
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for removing pages. For "
-#| "larger files, please split them into smaller parts. The remaining pages "
-#| "will be preserved in their original order."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for removing pages. "
 "For larger files, please split them into smaller parts. The remaining pages "
 "will be preserved in their original order."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy usuwaniu stron. Większe pliki "
-"należy podzielić na mniejsze części. Pozostałe strony zostaną zachowane w "
-"oryginalnej kolejności."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy usuwaniu stron. Większe "
+"pliki należy podzielić na mniejsze części. Pozostałe strony zostaną "
+"zachowane w oryginalnej kolejności."
 
 #: templates/frontend/pdf_organize/split_pdf.html:6
 msgid "Split Settings"
@@ -4661,19 +4371,14 @@ msgid "Download your password-protected PDF file using the download button"
 msgstr "Pobierz plik PDF chroniony hasłem za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_security/protect_pdf.html:75
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for password protection. For "
-#| "larger files, please split them into smaller parts. The password will be "
-#| "required to open, view, print, or edit the PDF."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for password "
 "protection. For larger files, please split them into smaller parts. The "
 "password will be required to open, view, print, or edit the PDF."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy ochronie hasłem. Większe pliki "
-"należy podzielić na mniejsze części. Hasło będzie wymagane do otwarcia, "
-"przeglądania, drukowania lub edycji PDF."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy ochronie hasłem. "
+"Większe pliki należy podzielić na mniejsze części. Hasło będzie wymagane do "
+"otwarcia, przeglądania, drukowania lub edycji PDF."
 
 #: templates/frontend/pdf_security/unlock_pdf.html:6
 msgid "Unlock PDF Settings"
@@ -4718,389 +4423,363 @@ msgstr ""
 "Pobierz odblokowany plik PDF (bez hasła) za pomocą przycisku pobierania"
 
 #: templates/frontend/pdf_security/unlock_pdf.html:43
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for unlocking. For larger "
-#| "files, please split them into smaller parts. You must know the correct "
-#| "password to unlock the PDF."
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for unlocking. For "
 "larger files, please split them into smaller parts. You must know the "
 "correct password to unlock the PDF."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy odblokowywaniu. Większe pliki "
-"należy podzielić na mniejsze części. Musisz znać poprawne hasło, aby "
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy odblokowywaniu. Większe "
+"pliki należy podzielić na mniejsze części. Musisz znać poprawne hasło, aby "
 "odblokować PDF."
 
 #: templates/frontend/pricing.html:7 templates/frontend/pricing.html:25
 msgid ""
 "Upgrade to Convertica Premium for unlimited PDF conversions, 200 pages per "
 "file, priority processing, batch conversion, and ad-free experience."
-msgstr ""
+msgstr "Przejdź na Convertica Premium, aby uzyskać nieograniczone konwersje PDF, 200 stron na plik, priorytetowe przetwarzanie, konwersję zbiorczą i środowisko bez reklam."
 
 #: templates/frontend/pricing.html:10 templates/frontend/pricing.html:15
-#, fuzzy
-#| msgid "PDF Conversion"
 msgid "Convertica Premium - Unlimited PDF Conversion"
-msgstr "Konwersja PDF"
+msgstr "Convertica Premium - Nieograniczona konwersja PDF"
 
 #: templates/frontend/pricing.html:11
 msgid ""
 "Unlimited conversions, priority processing, batch operations, and more. "
 "Upgrade to Premium today."
-msgstr ""
+msgstr "Nieograniczone konwersje, priorytetowe przetwarzanie, operacje zbiorcze i więcej. Przejdź na Premium już dziś."
 
 #: templates/frontend/pricing.html:16
 msgid "Unlimited conversions, priority processing, batch operations, and more."
-msgstr ""
+msgstr "Nieograniczone konwersje, priorytetowe przetwarzanie, operacje zbiorcze i więcej."
 
 #: templates/frontend/pricing.html:45
 msgid "Join the Heroes Club"
-msgstr ""
+msgstr "Dołącz do Klubu Bohaterów"
 
 #: templates/frontend/pricing.html:51
 msgid "Become a"
-msgstr ""
+msgstr "Zostań"
 
 #: templates/frontend/pricing.html:55
-#, fuzzy
-#| msgid "Convertica - Home"
 msgid "Convertica Hero"
-msgstr "Convertica - Strona główna"
+msgstr "Bohaterem Convertica"
 
 #: templates/frontend/pricing.html:61
 msgid ""
 "Unlock powerful premium features, much higher limits, and transform "
 "documents effortlessly"
-msgstr ""
+msgstr "Odblokuj potężne funkcje premium, znacznie wyższe limity i przekształcaj dokumenty bez wysiłku"
 
 #: templates/frontend/pricing.html:67
 msgid "Premium payments are temporarily unavailable."
-msgstr ""
+msgstr "Płatności Premium są tymczasowo niedostępne."
 
 #: templates/frontend/pricing.html:70
 msgid ""
 "You can still use the free tools. We'll re-enable subscriptions as soon as "
 "it's available."
-msgstr ""
+msgstr "Nadal możesz korzystać z bezpłatnych narzędzi. Włączymy subskrypcje ponownie, gdy tylko będzie to możliwe."
 
 #: templates/frontend/pricing.html:74
 msgid "Learn more"
-msgstr ""
+msgstr "Dowiedz się więcej"
 
 #: templates/frontend/pricing.html:84
-#, fuzzy
-#| msgid "PDF to Excel Converter"
 msgid "Documents Converted"
-msgstr "Konwerter PDF na Excel"
+msgstr "Przekonwertowanych dokumentów"
 
 #: templates/frontend/pricing.html:88
 msgid "Happy Heroes"
-msgstr ""
+msgstr "Zadowolonych Bohaterów"
 
 #: templates/frontend/pricing.html:92
 msgid "Uptime Guaranteed"
-msgstr ""
+msgstr "Gwarantowany czas działania"
 
 #: templates/frontend/pricing.html:102
 msgid "Choose Your Hero Path"
-msgstr ""
+msgstr "Wybierz swoją ścieżkę Bohatera"
 
 #: templates/frontend/pricing.html:103
 msgid "Select the plan that fits your transformation needs"
-msgstr ""
+msgstr "Wybierz plan, który odpowiada Twoim potrzebom transformacji"
 
 #: templates/frontend/pricing.html:115
 msgid "Daily Hero"
-msgstr ""
+msgstr "Bohater Dzienny"
 
 #: templates/frontend/pricing.html:118
 msgid "day"
-msgstr ""
+msgstr "dzień"
 
 #: templates/frontend/pricing.html:120
 msgid "Perfect for quick transformations"
-msgstr ""
+msgstr "Idealny do szybkich przekształceń"
 
 #: templates/frontend/pricing.html:128
 msgid "No daily conversion limits for 24 hours"
-msgstr ""
+msgstr "Brak dziennych limitów konwersji przez 24 godziny"
 
 #: templates/frontend/pricing.html:134 templates/frontend/pricing.html:199
 msgid "Much higher page limits"
-msgstr ""
+msgstr "Znacznie wyższe limity stron"
 
 #: templates/frontend/pricing.html:140
 #: templates/users/manage_subscription.html:79
 msgid "Priority processing"
-msgstr ""
+msgstr "Priorytetowe przetwarzanie"
 
 #: templates/frontend/pricing.html:146 templates/frontend/pricing.html:223
 msgid "Ad-free experience"
-msgstr ""
+msgstr "Doświadczenie bez reklam"
 
 #: templates/frontend/pricing.html:152
 msgid "Batch processing (up to 10 files)"
-msgstr ""
+msgstr "Przetwarzanie zbiorcze (do 10 plików)"
 
 #: templates/frontend/pricing.html:158
 msgid "Become Daily Hero"
-msgstr ""
+msgstr "Zostań Bohaterem Dzennym"
 
 #: templates/frontend/pricing.html:162 templates/frontend/pricing.html:251
 #: templates/frontend/pricing.html:318
 #: templates/users/manage_subscription.html:169
 msgid "Temporarily unavailable"
-msgstr ""
+msgstr "Tymczasowo niedostępne"
 
 #: templates/frontend/pricing.html:171
 msgid "MOST POPULAR"
-msgstr ""
+msgstr "NAJPOPULARNIEJSZY"
 
 #: templates/frontend/pricing.html:180
 msgid "Monthly Hero"
-msgstr ""
+msgstr "Bohater Miesięczny"
 
 #: templates/frontend/pricing.html:183
 msgid "month"
-msgstr ""
+msgstr "miesiąc"
 
 #: templates/frontend/pricing.html:185
 msgid "Best value for regular heroes"
-msgstr ""
+msgstr "Najlepsza wartość dla regularnych bohaterów"
 
 #: templates/frontend/pricing.html:193
-#, fuzzy
-#| msgid "Is there a file size limit?"
 msgid "No daily conversion limits"
-msgstr "Czy istnieje limit rozmiaru pliku?"
+msgstr "Brak dziennych limitów konwersji"
 
 #: templates/frontend/pricing.html:205
 msgid "Priority processing queue"
-msgstr ""
+msgstr "Kolejka priorytetowego przetwarzania"
 
 #: templates/frontend/pricing.html:211 templates/frontend/pricing.html:290
 msgid "Priority support"
-msgstr ""
+msgstr "Priorytetowe wsparcie"
 
 #: templates/frontend/pricing.html:217
 msgid "Custom solutions on request"
-msgstr ""
+msgstr "Niestandardowe rozwiązania na życzenie"
 
 #: templates/frontend/pricing.html:229
 msgid "All premium features"
-msgstr ""
+msgstr "Wszystkie funkcje premium"
 
 #: templates/frontend/pricing.html:235
 msgid "Become site hero"
-msgstr ""
+msgstr "Zostań bohaterem serwisu"
 
 #: templates/frontend/pricing.html:241
 msgid "Dark theme"
-msgstr ""
+msgstr "Tryb ciemny"
 
 #: templates/frontend/pricing.html:247
 msgid "Become Monthly Hero"
-msgstr ""
+msgstr "Zostań Bohaterem Miesięcznym"
 
 #: templates/frontend/pricing.html:265
 msgid "Yearly Hero"
-msgstr ""
+msgstr "Bohater Roczny"
 
 #: templates/frontend/pricing.html:268
 msgid "year"
-msgstr ""
+msgstr "rok"
 
 #: templates/frontend/pricing.html:270
-#, python-format
-msgid "Save 28%% with annual commitment"
-msgstr ""
+msgid "Save 28% with annual commitment"
+msgstr "Zaoszczędź 28% z rocznym zobowiązaniem"
 
 #: templates/frontend/pricing.html:278
-#, fuzzy
-#| msgid "Everything is going well!"
 msgid "Everything in Monthly, plus:"
-msgstr "Wszystko idzie dobrze!"
+msgstr "Wszystko co w miesięcznym, plus:"
 
 #: templates/frontend/pricing.html:284
 msgid "Batch processing (up to 10 files at once)"
-msgstr ""
+msgstr "Przetwarzanie zbiorcze (do 10 plików na raz)"
 
 #: templates/frontend/pricing.html:296 templates/frontend/pricing.html:308
 msgid "Advanced OCR features"
-msgstr ""
+msgstr "Zaawansowane funkcje OCR"
 
 #: templates/frontend/pricing.html:302
-#, fuzzy
-#| msgid "Remove Pages"
 msgid "Hero badge"
-msgstr "Usuń strony"
+msgstr "Odznaka Bohatera"
 
 #: templates/frontend/pricing.html:314
 msgid "Become Yearly Hero"
-msgstr ""
+msgstr "Zostań Bohaterem Rocznym"
 
 #: templates/frontend/pricing.html:329
 msgid "Become a Convertica hero and help us make the service better"
-msgstr ""
+msgstr "Zostań bohaterem Convertica i pomóż nam ulepszać usługę"
 
 #: templates/frontend/pricing.html:339
-#, fuzzy
-#| msgid "Fast & Secure"
 msgid "Fast & Reliable"
-msgstr "Szybko i bezpiecznie"
+msgstr "Szybkie i Niezawodne"
 
 #: templates/frontend/pricing.html:340
 msgid ""
 "We keep our servers running 24/7 to ensure your PDF conversions are always "
 "fast and dependable"
-msgstr ""
+msgstr "Utrzymujemy nasze serwery działające 24/7, aby zapewnić szybkie i niezawodne konwersje PDF"
 
 #: templates/frontend/pricing.html:350
 msgid ""
 "Your documents are processed securely and never stored. We respect your "
 "privacy above all"
-msgstr ""
+msgstr "Twoje dokumenty są przetwarzane bezpiecznie i nigdy nie przechowywane. Szanujemy Twoją prywatność ponad wszystko"
 
 #: templates/frontend/pricing.html:359
 msgid "Made with Care"
-msgstr ""
+msgstr "Stworzone z Troską"
 
 #: templates/frontend/pricing.html:360
 msgid ""
 "We're a small team passionate about creating the best PDF tools for everyone"
-msgstr ""
+msgstr "Jesteśmy małym zespołem z pasją tworzącym najlepsze narzędzia PDF dla wszystkich"
 
 #: templates/frontend/pricing.html:364
 msgid ""
 "Your support helps us keep Convertica free for everyone and continuously "
 "improve our tools"
-msgstr ""
+msgstr "Twoje wsparcie pomaga nam utrzymać Convertica za darmo dla wszystkich i ciągle ulepszać nasze narzędzia"
 
 #: templates/frontend/pricing.html:370
-#, fuzzy
-#| msgid "Learn more about Convertica and our mission."
 msgid "Want to Support Convertica?"
-msgstr "Dowiedz się więcej o Convertica i naszej misji."
+msgstr "Chcesz wesprzeć Convertica?"
 
 #: templates/frontend/pricing.html:371
 msgid ""
 "If you want to support the project without Premium, you can contribute here."
-msgstr ""
+msgstr "Jeśli chcesz wesprzeć projekt bez Premium, możesz wnieść wkład tutaj."
 
 #: templates/frontend/pricing.html:372
 msgid "Note: contributing does not unlock Premium features."
-msgstr ""
+msgstr "Uwaga: składanie wkładu nie odblokowuje funkcji Premium."
 
 #: templates/frontend/pricing.html:375
 msgid "Contribute to the Project"
-msgstr ""
+msgstr "Wesprzyj Projekt"
 
 #: templates/frontend/pricing.html:393
 msgid "Why Your Support Matters"
-msgstr ""
+msgstr "Dlaczego Twoje wsparcie ma znaczenie"
 
 #: templates/frontend/pricing.html:397
 msgid ""
 "This project exists because of heroes like you. We're completely transparent:"
-msgstr ""
+msgstr "Ten projekt istnieje dzięki bohaterom takim jak Ty. Jesteśmy całkowicie przejrzyści:"
 
 #: templates/frontend/pricing.html:406
 msgid "Ad-Free Experience"
-msgstr ""
+msgstr "Doświadczenie bez reklam"
 
 #: templates/frontend/pricing.html:407
 msgid "Enjoy the site without any advertisements as a premium member"
-msgstr ""
+msgstr "Ciesz się serwisem bez żadnych reklam jako członek premium"
 
 #: templates/frontend/pricing.html:416
 msgid "Servers & Development"
-msgstr ""
+msgstr "Serwery i rozwój"
 
 #: templates/frontend/pricing.html:417
 msgid "Your support powers our infrastructure and improvements"
-msgstr ""
+msgstr "Twoje wsparcie napędza naszą infrastrukturę i ulepszenia"
 
 #: templates/frontend/pricing.html:425
 msgid "Community Driven"
-msgstr ""
+msgstr "Napędzane przez społeczność"
 
 #: templates/frontend/pricing.html:426
 msgid "You're not just a user - you're a project partner"
-msgstr ""
+msgstr "Nie jesteś tylko użytkownikiem - jesteś partnerem projektu"
 
 #: templates/frontend/pricing.html:431
 msgid "The Truth:"
-msgstr ""
+msgstr "Prawda:"
 
 #: templates/frontend/pricing.html:431
 msgid ""
 "We don't have venture capital or investors. This project survives solely "
 "through the support of users like you. Every subscription directly funds "
 "servers, security, and development."
-msgstr ""
+msgstr "Nie mamy kapitału wysokiego ryzyka ani inwestorów. Ten projekt przetrwa wyłącznie dzięki wsparciu użytkowników takich jak Ty. Każda subskrypcja bezpośrednio finansuje serwery, bezpieczeństwo i rozwój."
 
 #: templates/frontend/pricing.html:443
 msgid "Heroes Hall of Fame"
-msgstr ""
+msgstr "Galeria Sław Bohaterów"
 
 #: templates/frontend/pricing.html:446
 msgid "Our amazing premium subscribers supporting the project"
-msgstr ""
+msgstr "Nasi wspaniali subskrybenci premium wspierający projekt"
 
 #: templates/frontend/pricing.html:448
 msgid "This section will showcase Premium Heroes once subscriptions reopen."
-msgstr ""
+msgstr "Ta sekcja zaprezentuje Bohaterów Premium, gdy subskrypcje zostaną ponownie otwarte."
 
 #: templates/frontend/pricing.html:456
 msgid ""
 "Subscriptions are temporarily paused. Free tools are available, and Premium "
 "will return soon."
-msgstr ""
+msgstr "Subskrypcje są tymczasowo wstrzymane. Darmowe narzędzia są dostępne, a Premium wkrótce wróci."
 
 #: templates/frontend/pricing.html:468 templates/frontend/pricing.html:523
 msgid "Premium Heroes are coming soon"
-msgstr ""
+msgstr "Bohaterowie Premium wkrótce"
 
 #: templates/frontend/pricing.html:586
 msgid "Be the First Hero!"
-msgstr ""
+msgstr "Bądź pierwszym Bohaterem!"
 
 #: templates/frontend/pricing.html:588
 msgid "Heroes are coming soon"
-msgstr ""
+msgstr "Bohaterowie wkrótce"
 
 #: templates/frontend/pricing.html:593
 msgid "Be the first Premium Hero and support the project."
-msgstr ""
+msgstr "Bądź pierwszym Bohaterem Premium i wesprzyj projekt."
 
 #: templates/frontend/pricing.html:595
 msgid ""
 "This area will fill up with Premium Heroes once subscriptions are available."
-msgstr ""
+msgstr "Ten obszar wypełni się Bohaterami Premium, gdy subskrypcje będą dostępne."
 
 #: templates/frontend/pricing.html:603
-#, fuzzy
-#| msgid "Top Center"
 msgid "Top Heroes"
-msgstr "Na górze na środku"
+msgstr "Najlepsi Bohaterowie"
 
 #: templates/frontend/pricing.html:649 templates/frontend/pricing.html:709
 #: templates/users/account_status.html:81
 #: templates/users/account_status.html:86
 #: templates/users/manage_subscription.html:149
 msgid "days"
-msgstr ""
+msgstr "dni"
 
 #: templates/frontend/pricing.html:729
 msgid "No heroes yet. Be the first to join the hall of fame!"
-msgstr ""
+msgstr "Brak jeszcze bohaterów. Bądź pierwszym, który dołączy do galerii sław!"
 
 #: templates/frontend/pricing.html:762
-#, fuzzy
-#| msgid "Processing your file..."
 msgid "Processing..."
-msgstr "Przetwarzanie pliku..."
+msgstr "Przetwarzanie..."
 
 #: templates/frontend/privacy.html:18 utils_site/src/frontend/views.py:1208
 msgid "Privacy Policy - Convertica"
@@ -5239,14 +4918,13 @@ msgid "Access controls and monitoring systems"
 msgstr "Kontrola dostępu i systemy monitorowania"
 
 #: templates/frontend/privacy.html:129
-#, python-format
 msgid ""
 "However, no method of transmission over the Internet or electronic storage "
-"is 100%% secure. While we strive to use commercially acceptable means to "
+"is 100% secure. While we strive to use commercially acceptable means to "
 "protect your information, we cannot guarantee absolute security."
 msgstr ""
 "Jednak żadna metoda transmisji przez Internet lub przechowywania "
-"elektronicznego nie jest w 100%% bezpieczna. Chociaż staramy się używać "
+"elektronicznego nie jest w 100% bezpieczna. Chociaż staramy się używać "
 "komercyjnie akceptowalnych środków do ochrony Twoich informacji, nie możemy "
 "zagwarantować absolutnego bezpieczeństwa."
 
@@ -5384,16 +5062,11 @@ msgid "Changes to This Privacy Policy"
 msgstr "Zmiany w tej Polityce prywatności"
 
 #: templates/frontend/privacy.html:208
-#, fuzzy
-#| msgid ""
-#| "We may update our Privacy Policy from time to time. We will notify you of "
-#| "any changes by posting the new Privacy Policy on this page and updating "
-#| "the \"Last updated\" date. We recommend periodically reviewing this "
-#| "Privacy Policy for changes."
 msgid ""
 "We may update our Privacy Policy from time to time. We will notify you of "
 "any changes by posting the new Privacy Policy on this page and updating the "
-"\\"
+"\"Last updated\" date. We recommend periodically reviewing this Privacy "
+"Policy for changes."
 msgstr ""
 "Możemy od czasu do czasu aktualizować naszą Politykę prywatności. "
 "Powiadomimy Cię o wszelkich zmianach, publikując nową Politykę prywatności "
@@ -5410,119 +5083,111 @@ msgstr ""
 "Jeśli masz pytania dotyczące tej Polityki Prywatności, skontaktuj się z nami."
 
 #: templates/frontend/support.html:15 utils_site/src/frontend/views.py:1751
-#, fuzzy
-#| msgid "Contact Us - Convertica"
 msgid "Contribute to Convertica"
-msgstr "Kontakt - Convertica"
+msgstr "Wesprzyj Convertica"
 
 #: templates/frontend/support.html:17
 msgid ""
 "This is a donation to support the project and its developers. It does not "
 "unlock Premium features."
-msgstr ""
+msgstr "To darowizna na wsparcie projektu i jego deweloperów. Nie odblokowuje funkcji Premium."
 
 #: templates/frontend/support.html:20
 msgid ""
 "Heroes on Convertica are users who purchase a Premium subscription. "
 "Contributions here are for support only — think of it as becoming an "
 "invisible hero."
-msgstr ""
+msgstr "Bohaterowie w Convertica to użytkownicy, którzy wykupili subskrypcję Premium. Wkłady tutaj są tylko na wsparcie — myśl o tym jak o zostaniu niewidzialnym bohaterem."
 
 #: templates/frontend/support.html:24
 msgid ""
 "Subscriptions and contributions are temporarily paused while we complete the "
 "business setup. The free tools remain fully available."
-msgstr ""
+msgstr "Subskrypcje i wkłady są tymczasowo wstrzymane, podczas gdy ukończymy konfigurację biznesową. Darmowe narzędzia pozostają w pełni dostępne."
 
 #: templates/frontend/support.html:32
 msgid "Contribution type"
-msgstr ""
+msgstr "Typ wkładu"
 
 #: templates/frontend/support.html:35
 msgid "One-time"
-msgstr ""
+msgstr "Jednorazowy"
 
 #: templates/frontend/support.html:38
 msgid "Monthly"
-msgstr ""
+msgstr "Miesięczny"
 
 #: templates/frontend/support.html:44
-#, fuzzy
-#| msgid "Current page only"
 msgid "Currency"
-msgstr "Tylko bieżąca strona"
+msgstr "Waluta"
 
 #: templates/frontend/support.html:53 templates/users/account_status.html:274
 #: utils_site/src/users/models.py:324
 msgid "Amount"
-msgstr ""
+msgstr "Kwota"
 
 #: templates/frontend/support.html:64
 msgid "Proceed to secure payment"
-msgstr ""
+msgstr "Przejdź do bezpiecznej płatności"
 
 #: templates/frontend/support.html:67
 msgid ""
 "Payments are processed by Stripe. You can cancel monthly support anytime in "
 "Stripe customer portal."
-msgstr ""
+msgstr "Płatności są przetwarzane przez Stripe. Możesz anulować wsparcie miesięczne w dowolnym momencie w portalu klienta Stripe."
 
 #: templates/frontend/support.html:72
 msgid "Why payments are paused"
-msgstr ""
+msgstr "Dlaczego płatności są wstrzymane"
 
 #: templates/frontend/support.html:74
 msgid ""
-"We’re temporarily pausing Premium subscriptions and contributions while we "
+"We're temporarily pausing Premium subscriptions and contributions while we "
 "complete the business setup. This helps us keep everything clean and "
 "compliant."
-msgstr ""
+msgstr "Tymczasowo wstrzymujemy subskrypcje Premium i wkłady, podczas gdy ukończymy konfigurację biznesową. Pomaga nam to utrzymać wszystko w porządku i zgodnie z przepisami."
 
 #: templates/frontend/support.html:77
 msgid "Good news: all free tools remain fully available."
-msgstr ""
+msgstr "Dobra wiadomość: wszystkie darmowe narzędzia pozostają w pełni dostępne."
 
 #: templates/frontend/support.html:82
 msgid "Go to free tools"
-msgstr ""
+msgstr "Przejdź do darmowych narzędzi"
 
 #: templates/frontend/support_success.html:19
 msgid "Thank you!"
-msgstr ""
+msgstr "Dziękujemy!"
 
 #: templates/frontend/support_success.html:22
 msgid "Your support helps us keep improving Convertica."
-msgstr ""
+msgstr "Twoje wsparcie pomaga nam ciągle ulepszać Convertica."
 
 #: templates/frontend/support_success.html:26
 msgid ""
 "Premium features and Hero status are part of the subscription plans. This "
 "contribution is support only — thank you for being an invisible hero."
-msgstr ""
+msgstr "Funkcje Premium i status Bohatera są częścią planów subskrypcyjnych. Ten wkład to tylko wsparcie — dziękujemy za bycie niewidzialnym bohaterem."
 
 #: templates/frontend/support_success.html:31
-#, fuzzy
-#| msgid "Support icon"
 msgid "Support again"
-msgstr "Ikona wsparcia"
+msgstr "Wesprzyj ponownie"
 
 #: templates/frontend/support_success.html:34
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to Pricing"
-msgstr "Powrót do bloga"
+msgstr "Powrót do Cen"
 
 #: templates/frontend/support_success.html:39
 msgid "Note: this support payment does not unlock Premium features."
-msgstr ""
+msgstr "Uwaga: ta płatność wsparcia nie odblokowuje funkcji Premium."
 
 #: templates/frontend/terms.html:18 utils_site/src/frontend/views.py:1230
 msgid "Terms of Service - Convertica"
 msgstr "Warunki korzystania - Convertica"
 
 #: templates/frontend/terms.html:61
-msgid "Welcome to Convertica. These Terms of Service (\\"
-msgstr ""
+msgid "Welcome to Convertica. These Terms of Service (\"Terms\") govern your use of our website and services (collectively, \"Services\")."
+msgstr "Witamy w Convertica. Niniejsze Warunki korzystania (\"Warunki\") regulują Twoje korzystanie z naszej witryny i usług (łącznie \"Usługi\")."
 
 #: templates/frontend/terms.html:64
 msgid ""
@@ -5736,8 +5401,8 @@ msgid "Disclaimer of Warranties"
 msgstr "Wyłączenie gwarancji"
 
 #: templates/frontend/terms.html:169
-msgid "Our Services are provided \\"
-msgstr ""
+msgid "Our Services are provided \"as is\" and \"as available\" without any warranties of any kind, either express or implied, including but not limited to:"
+msgstr "Nasze Usługi są świadczone \"tak jak są\" i \"dostępne\" bez jakichkolwiek gwarancji, wyraźnych lub dorozumianych, w tym, ale nie ograniczając się do:"
 
 #: templates/frontend/terms.html:172
 msgid "Warranties of merchantability"
@@ -5909,161 +5574,143 @@ msgstr ""
 
 #: templates/offline.html:7
 msgid "Offline"
-msgstr ""
+msgstr "Offline"
 
 #: templates/offline.html:19
 msgid "You're Offline"
-msgstr ""
+msgstr "Jesteś offline"
 
 #: templates/offline.html:23
-#, fuzzy
-#| msgid ""
-#| "The request you sent could not be understood by the server. Please check "
-#| "your input and try again."
 msgid ""
 "It looks like you've lost your internet connection. Please check your "
 "connection and try again."
-msgstr ""
-"Wysłane przez Ciebie żądanie nie zostało zrozumiane przez serwer. Sprawdź "
-"wprowadzone dane i spróbuj ponownie."
+msgstr "Wygląda na to, że utraciłeś połączenie z internetem. Sprawdź swoje połączenie i spróbuj ponownie."
 
 #: templates/offline.html:36
 msgid "Some features may still be available offline"
-msgstr ""
+msgstr "Niektóre funkcje mogą nadal być dostępne offline"
 
 #: templates/payments/cancel.html:6 templates/payments/cancel.html:17
 msgid "Payment Cancelled"
-msgstr ""
+msgstr "Płatność anulowana"
 
 #: templates/payments/cancel.html:18
 msgid "Your subscription payment was cancelled"
-msgstr ""
+msgstr "Twoja płatność subskrypcyjna została anulowana"
 
 #: templates/payments/cancel.html:22
 msgid "No Problem!"
-msgstr ""
+msgstr "Bez problemu!"
 
 #: templates/payments/cancel.html:24
 msgid ""
 "You haven't been charged. You can try subscribing again anytime when you're "
 "ready."
-msgstr ""
+msgstr "Nie zostałeś obciążony. Możesz spróbować zasubskrybować ponownie w dowolnym momencie, gdy będziesz gotowy."
 
 #: templates/payments/cancel.html:28
 msgid "Still Interested?"
-msgstr ""
+msgstr "Nadal zainteresowany?"
 
 #: templates/payments/cancel.html:29
 msgid "Here are some reasons to upgrade to premium:"
-msgstr ""
+msgstr "Oto kilka powodów, aby przejść na premium:"
 
 #: templates/payments/cancel.html:35
 msgid "Much higher limits for PDF processing"
-msgstr ""
+msgstr "Znacznie wyższe limity przetwarzania PDF"
 
 #: templates/payments/cancel.html:41
-#, fuzzy
-#| msgid "Smaller file size"
 msgid "Larger file size support"
-msgstr "Mniejszy rozmiar pliku"
+msgstr "Obsługa większych rozmiarów plików"
 
 #: templates/payments/cancel.html:47
 msgid "Priority processing speeds"
-msgstr ""
+msgstr "Priorytetowa prędkość przetwarzania"
 
 #: templates/payments/cancel.html:53
 msgid "Advanced PDF tools and features"
-msgstr ""
+msgstr "Zaawansowane narzędzia i funkcje PDF"
 
 #: templates/payments/cancel.html:64 templates/payments/error.html:85
-#, fuzzy
-#| msgid "Back to Blog"
 msgid "Back to Home"
-msgstr "Powrót do bloga"
+msgstr "Powrót do strony głównej"
 
 #: templates/payments/error.html:6 templates/payments/error.html:17
 msgid "Payment Error"
-msgstr ""
+msgstr "Błąd płatności"
 
 #: templates/payments/error.html:18
 msgid "There was an issue processing your payment"
-msgstr ""
+msgstr "Wystąpił problem z przetwarzaniem Twojej płatności"
 
 #: templates/payments/error.html:22
 msgid "What Happened?"
-msgstr ""
+msgstr "Co się stało?"
 
 #: templates/payments/error.html:30
 msgid ""
 "We encountered an error while processing your payment. This could be due to:"
-msgstr ""
+msgstr "Napotkaliśmy błąd podczas przetwarzania Twojej płatności. Może to wynikać z:"
 
 #: templates/payments/error.html:38
 msgid "Network connectivity issues"
-msgstr ""
+msgstr "Problemów z łącznością sieciową"
 
 #: templates/payments/error.html:44
 msgid "Payment processor temporary issues"
-msgstr ""
+msgstr "Tymczasowych problemów procesora płatności"
 
 #: templates/payments/error.html:50
 msgid "Invalid payment information"
-msgstr ""
+msgstr "Nieprawidłowych informacji płatniczych"
 
 #: templates/payments/error.html:56
 msgid "What You Can Do"
-msgstr ""
+msgstr "Co możesz zrobić"
 
 #: templates/payments/error.html:62
 msgid "Try again in a few minutes"
-msgstr ""
+msgstr "Spróbuj ponownie za kilka minut"
 
 #: templates/payments/error.html:68
 msgid "Check your payment information"
-msgstr ""
+msgstr "Sprawdź swoje dane płatnicze"
 
 #: templates/payments/error.html:74
 msgid "Contact your bank if the issue persists"
-msgstr ""
+msgstr "Skontaktuj się ze swoim bankiem, jeśli problem będzie się utrzymywał"
 
 #: templates/payments/success.html:6
-#, fuzzy
-#| msgid "Message Sent Successfully!"
 msgid "Payment Successful"
-msgstr "Wiadomość wysłana pomyślnie!"
+msgstr "Płatność zakończona sukcesem"
 
 #: templates/payments/success.html:17
-#, fuzzy
-#| msgid "Message Sent Successfully!"
 msgid "Payment Successful!"
-msgstr "Wiadomość wysłana pomyślnie!"
+msgstr "Płatność zakończona sukcesem!"
 
 #: templates/payments/success.html:18
 msgid "Thank you for your subscription"
-msgstr ""
+msgstr "Dziękujemy za Twoją subskrypcję"
 
 #: templates/payments/success.html:22
 #: templates/users/manage_subscription.html:112
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Subscription Details"
-msgstr "Opis usług"
+msgstr "Szczegóły subskrypcji"
 
 #: templates/payments/success.html:26
-#, fuzzy
-#| msgid "Usage Information"
 msgid "Plan Information"
-msgstr "Informacje o użyciu"
+msgstr "Informacje o planie"
 
 #: templates/payments/success.html:29 templates/users/account_status.html:273
 #: templates/users/cancel_subscription.html:136
 #: utils_site/src/users/models.py:321
 msgid "Plan"
-msgstr ""
+msgstr "Plan"
 
 #: templates/payments/success.html:33
 msgid "Price"
-msgstr ""
+msgstr "Cena"
 
 #: templates/payments/success.html:37 templates/users/account_status.html:275
 #: templates/users/manage_subscription.html:115
@@ -6076,949 +5723,878 @@ msgstr "Status"
 #: templates/users/manage_subscription.html:28
 #: templates/users/manage_subscription.html:118
 #: templates/users/profile.html:168 templates/users/profile_edit.html:192
-#, fuzzy
-#| msgid "Always Active"
 msgid "Active"
-msgstr "Zawsze aktywne"
+msgstr "Aktywna"
 
 #: templates/payments/success.html:44
 msgid "Billing Period"
-msgstr ""
+msgstr "Okres rozliczeniowy"
 
 #: templates/payments/success.html:47
 msgid "Start Date"
-msgstr ""
+msgstr "Data rozpoczęcia"
 
 #: templates/payments/success.html:51
 msgid "Next Billing"
-msgstr ""
+msgstr "Następna płatność"
 
 #: templates/payments/success.html:64
 msgid "What's Next?"
-msgstr ""
+msgstr "Co dalej?"
 
 #: templates/payments/success.html:65
 msgid "Your premium features are now active! You can:"
-msgstr ""
+msgstr "Twoje funkcje premium są teraz aktywne! Możesz:"
 
 #: templates/payments/success.html:71
 msgid "Access all premium PDF tools with much higher limits"
-msgstr ""
+msgstr "Uzyskać dostęp do wszystkich premium narzędzi PDF z znacznie wyższymi limitami"
 
 #: templates/payments/success.html:77
-#, fuzzy
-#| msgid "Process and convert your files as requested"
 msgid "Process larger files and more documents"
-msgstr "Przetwarzaj i konwertuj swoje pliki zgodnie z żądaniem"
+msgstr "Przetwarzać większe pliki i więcej dokumentów"
 
 #: templates/payments/success.html:83
 msgid "Enjoy priority processing speeds"
-msgstr ""
+msgstr "Cieszyć się priorytetowymi prędkościami przetwarzania"
 
 #: templates/payments/success.html:90
-#, fuzzy
-#| msgid "Starting Page Number"
 msgid "Start Using Premium Features"
-msgstr "Numer strony początkowej"
+msgstr "Zacznij używać funkcji Premium"
 
 #: templates/payments/success.html:93 templates/users/account_status.html:94
 #: templates/users/manage_subscription.html:8
 #: templates/users/manage_subscription.html:15
-#, fuzzy
-#| msgid "Page Selection"
 msgid "Manage Subscription"
-msgstr "Wybór stron"
+msgstr "Zarządzaj subskrypcją"
 
 #: templates/socialaccount/connections.html:8
 #: templates/socialaccount/connections.html:17
 msgid "Connected Accounts"
-msgstr ""
+msgstr "Połączone konta"
 
 #: templates/socialaccount/connections.html:18
 msgid "Manage your connected social accounts"
-msgstr ""
+msgstr "Zarządzaj swoimi połączonymi kontami społecznościowymi"
 
 #: templates/socialaccount/connections.html:30
-#, fuzzy
-#| msgid "Your Content"
 msgid "Your Connected Accounts"
-msgstr "Twoja zawartość"
+msgstr "Twoje połączone konta"
 
 #: templates/socialaccount/connections.html:52
 msgid "Connected"
-msgstr ""
+msgstr "Połączono"
 
 #: templates/socialaccount/connections.html:61
 msgid "Disconnect"
-msgstr ""
+msgstr "Rozłącz"
 
 #: templates/socialaccount/connections.html:76
 msgid "No Connected Accounts"
-msgstr ""
+msgstr "Brak połączonych kont"
 
 #: templates/socialaccount/connections.html:77
 msgid "Connect your social accounts for easier login"
-msgstr ""
+msgstr "Połącz swoje konta społecznościowe, aby ułatwić logowanie"
 
 #: templates/socialaccount/connections.html:85
 msgid "Connect Google Account"
-msgstr ""
+msgstr "Połącz konto Google"
 
 #: templates/socialaccount/connections.html:94
 msgid "Add More Accounts"
-msgstr ""
+msgstr "Dodaj więcej kont"
 
 #: templates/socialaccount/connections.html:110
 msgid "Connect your"
-msgstr ""
+msgstr "Połącz swoje"
 
 #: templates/socialaccount/connections.html:110
 msgid "account"
-msgstr ""
+msgstr "konto"
 
 #: templates/socialaccount/login.html:8
 msgid "Sign In with Google"
-msgstr ""
+msgstr "Zaloguj się przez Google"
 
 #: templates/socialaccount/login.html:20
-#, fuzzy
-#| msgid "Word to PDF - Convertica"
 msgid "Welcome to Convertica"
-msgstr "Word na PDF - Convertica"
+msgstr "Witamy w Convertica"
 
 #: templates/socialaccount/login.html:21
 msgid "Sign in with your Google account"
-msgstr ""
+msgstr "Zaloguj się za pomocą konta Google"
 
 #: templates/socialaccount/login.html:49 templates/socialaccount/login.html:63
 #: templates/users/login.html:55 templates/users/register.html:49
 msgid "Continue with Google"
-msgstr ""
+msgstr "Kontynuuj przez Google"
 
 #: templates/socialaccount/login.html:50
 msgid "Use your Google account to access Convertica"
-msgstr ""
+msgstr "Użyj swojego konta Google, aby uzyskać dostęp do Convertica"
 
 #: templates/socialaccount/login.html:69
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Don't have a Google account?"
-msgstr "Czy muszę utworzyć konto?"
+msgstr "Nie masz konta Google?"
 
 #: templates/socialaccount/login.html:70
 msgid "Sign up with email"
-msgstr ""
+msgstr "Zarejestruj się przez e-mail"
 
 #: templates/socialaccount/login.html:76
 msgid "← Back to regular login"
-msgstr ""
+msgstr "← Powrót do zwykłego logowania"
 
 #: templates/socialaccount/signup.html:8
 msgid "Sign Up with Google"
-msgstr ""
+msgstr "Zarejestruj się przez Google"
 
 #: templates/socialaccount/signup.html:20
-#, fuzzy
-#| msgid "Convertica"
 msgid "Join Convertica"
-msgstr "Convertica"
+msgstr "Dołącz do Convertica"
 
 #: templates/socialaccount/signup.html:21
 msgid "Create your account with Google"
-msgstr ""
+msgstr "Utwórz swoje konto za pomocą Google"
 
 #: templates/socialaccount/signup.html:49
 msgid "Create Account with Google"
-msgstr ""
+msgstr "Utwórz konto przez Google"
 
 #: templates/socialaccount/signup.html:50
 msgid "Get instant access to all Convertica features"
-msgstr ""
+msgstr "Uzyskaj natychmiastowy dostęp do wszystkich funkcji Convertica"
 
 #: templates/socialaccount/signup.html:96
-#, fuzzy
-#| msgid "No Registration Required"
 msgid "Complete Registration"
-msgstr "Bez rejestracji"
+msgstr "Dokończ rejestrację"
 
 #: templates/socialaccount/signup.html:102 templates/users/register.html:142
-#, fuzzy
-#| msgid "Do I need to create an account?"
 msgid "Already have an account?"
-msgstr "Czy muszę utworzyć konto?"
+msgstr "Masz już konto?"
 
 #: templates/socialaccount/signup.html:109
 msgid "← Sign up with email instead"
-msgstr ""
+msgstr "← Zarejestruj się przez e-mail"
 
 #: templates/users/account_status.html:8 templates/users/account_status.html:23
 #: templates/users/profile.html:165 templates/users/profile.html:240
 #: templates/users/profile_edit.html:188
-#, fuzzy
-#| msgid "Status"
 msgid "Account Status"
-msgstr "Status"
+msgstr "Status konta"
 
 #: templates/users/account_status.html:24
 msgid "Manage your subscription and view your hero journey"
-msgstr ""
+msgstr "Zarządzaj swoją subskrypcją i przeglądaj swoją podróż bohatera"
 
 #: templates/users/account_status.html:30
 msgid "Subscription Status"
-msgstr ""
+msgstr "Status subskrypcji"
 
 #: templates/users/account_status.html:43
 msgid "Expired"
-msgstr ""
+msgstr "Wygasła"
 
 #: templates/users/account_status.html:50 templates/users/profile.html:104
 #: templates/users/profile.html:180 templates/users/profile_edit.html:182
 msgid "Free"
-msgstr ""
+msgstr "Darmowe"
 
 #: templates/users/account_status.html:58
 #: templates/users/manage_subscription.html:22
-#, fuzzy
-#| msgid "Current page only"
 msgid "Current Plan"
-msgstr "Tylko bieżąca strona"
+msgstr "Bieżący plan"
 
 #: templates/users/account_status.html:61
 msgid "Premium Hero"
-msgstr ""
+msgstr "Bohater Premium"
 
 #: templates/users/account_status.html:63
 msgid "Free User"
-msgstr ""
+msgstr "Użytkownik darmowy"
 
 #: templates/users/account_status.html:69
-#, fuzzy
-#| msgid "Description of Services"
 msgid "Subscription Period"
-msgstr "Opis usług"
+msgstr "Okres subskrypcji"
 
 #: templates/users/account_status.html:74
 msgid "No active subscription"
-msgstr ""
+msgstr "Brak aktywnej subskrypcji"
 
 #: templates/users/account_status.html:80
 msgid "Total Days as Hero"
-msgstr ""
+msgstr "Łączna liczba dni jako Bohater"
 
 #: templates/users/account_status.html:85
 #: templates/users/manage_subscription.html:148
 msgid "Current Streak"
-msgstr ""
+msgstr "Bieżąca seria"
 
 #: templates/users/account_status.html:106
 msgid "Hero Ranks"
-msgstr ""
+msgstr "Rangi Bohaterów"
 
 #: templates/users/account_status.html:107
 msgid ""
 "Your rank is based on consecutive days as a premium hero. The longer your "
 "streak, the higher your rank!"
-msgstr ""
+msgstr "Twoja ranga jest oparta na kolejnych dniach jako bohater premium. Im dłuższa Twoja seria, tym wyższa ranga!"
 
 #: templates/users/account_status.html:119
 msgid "Bronze"
-msgstr ""
+msgstr "Brązowy"
 
 #: templates/users/account_status.html:120
 msgid "30+ consecutive days"
-msgstr ""
+msgstr "30+ kolejnych dni"
 
 #: templates/users/account_status.html:123
 msgid "Bronze Hero"
-msgstr ""
+msgstr "Brązowy Bohater"
 
 #: templates/users/account_status.html:137
 msgid "Silver"
-msgstr ""
+msgstr "Srebrny"
 
 #: templates/users/account_status.html:138
 msgid "90+ consecutive days"
-msgstr ""
+msgstr "90+ kolejnych dni"
 
 #: templates/users/account_status.html:141
 msgid "Silver Hero"
-msgstr ""
+msgstr "Srebrny Bohater"
 
 #: templates/users/account_status.html:155
 msgid "Gold"
-msgstr ""
+msgstr "Złoty"
 
 #: templates/users/account_status.html:156
 msgid "180+ consecutive days"
-msgstr ""
+msgstr "180+ kolejnych dni"
 
 #: templates/users/account_status.html:159
 msgid "Gold Hero"
-msgstr ""
+msgstr "Złoty Bohater"
 
 #: templates/users/account_status.html:173
 msgid "Platinum"
-msgstr ""
+msgstr "Platynowy"
 
 #: templates/users/account_status.html:174
 msgid "365+ consecutive days"
-msgstr ""
+msgstr "365+ kolejnych dni"
 
 #: templates/users/account_status.html:177
 msgid "Platinum Hero"
-msgstr ""
+msgstr "Platynowy Bohater"
 
 #: templates/users/account_status.html:187
-#, fuzzy
-#| msgid "Your Content"
 msgid "Your Current Rank"
-msgstr "Twoja zawartość"
+msgstr "Twoja bieżąca ranga"
 
 #: templates/users/account_status.html:213 templates/users/profile.html:117
 msgid "Hero"
-msgstr ""
+msgstr "Bohater"
 
 #: templates/users/account_status.html:213
 #: templates/users/account_status.html:216
 #: templates/users/profile_edit.html:137
 msgid "consecutive days"
-msgstr ""
+msgstr "kolejnych dni"
 
 #: templates/users/account_status.html:216
 msgid "No rank yet"
-msgstr ""
+msgstr "Brak jeszcze rangi"
 
 #: templates/users/account_status.html:254
 msgid "No Rank"
-msgstr ""
+msgstr "Brak rangi"
 
 #: templates/users/account_status.html:265
 msgid "Payment History"
-msgstr ""
+msgstr "Historia płatności"
 
 #: templates/users/account_status.html:272
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: templates/users/account_status.html:276 utils_site/src/users/models.py:333
 msgid "Payment ID"
-msgstr ""
+msgstr "ID płatności"
 
 #: templates/users/account_status.html:288 utils_site/src/users/models.py:314
-#, fuzzy
-#| msgid "Editing Complete!"
 msgid "Completed"
-msgstr "Edycja zakończona!"
+msgstr "Zakończona"
 
 #: templates/users/account_status.html:292 utils_site/src/users/models.py:313
-#, fuzzy
-#| msgid "Sending..."
 msgid "Pending"
-msgstr "Wysyłanie..."
+msgstr "Oczekująca"
 
 #: templates/users/account_status.html:296 utils_site/src/users/models.py:315
 msgid "Failed"
-msgstr ""
+msgstr "Nieudana"
 
 #: templates/users/account_status.html:300 utils_site/src/users/models.py:316
 msgid "Refunded"
-msgstr ""
+msgstr "Zwrócona"
 
 #: templates/users/account_status.html:317
 msgid "No payment history yet"
-msgstr ""
+msgstr "Brak jeszcze historii płatności"
 
 #: templates/users/account_status.html:319
 msgid "Become a Hero to see your payment history"
-msgstr ""
+msgstr "Zostań Bohaterem, aby zobaczyć swoją historię płatności"
 
 #: templates/users/account_status.html:326
 msgid "Account Actions"
-msgstr ""
+msgstr "Akcje konta"
 
 #: templates/users/account_status.html:331
-#, fuzzy
-#| msgid "Download PDF"
 msgid "Download Your Data"
-msgstr "Pobierz PDF"
+msgstr "Pobierz swoje dane"
 
 #: templates/users/account_status.html:332
 msgid "Get a copy of all your data and activity"
-msgstr ""
+msgstr "Uzyskaj kopię wszystkich swoich danych i aktywności"
 
 #: templates/users/account_status.html:343
 msgid "Join Heroes Hall"
-msgstr ""
+msgstr "Dołącz do Galerii Bohaterów"
 
 #: templates/users/account_status.html:344
 msgid "Display your profile in the Heroes Hall of Fame"
-msgstr ""
+msgstr "Wyświetl swój profil w Galerii Sław Bohaterów"
 
 #: templates/users/account_status.html:347
 msgid "Enable Display"
-msgstr ""
+msgstr "Włącz wyświetlanie"
 
 #: templates/users/account_status.html:358
 msgid "Change"
-msgstr ""
+msgstr "Zmień"
 
 #: templates/users/account_status.html:368
 msgid "Thinking about leaving?"
-msgstr ""
+msgstr "Myślisz o odejściu?"
 
 #: templates/users/account_status.html:371
 msgid "Delete Account"
-msgstr ""
+msgstr "Usuń konto"
 
 #: templates/users/account_status.html:379
 #: templates/users/manage_subscription.html:201
 msgid "Cancel Subscription?"
-msgstr ""
+msgstr "Anulować subskrypcję?"
 
 #: templates/users/account_status.html:380
 #: templates/users/manage_subscription.html:202
 msgid ""
 "Are you sure you want to cancel your subscription? You'll continue to have "
 "access until the end of your current billing period."
-msgstr ""
+msgstr "Czy na pewno chcesz anulować swoją subskrypcję? Będziesz mieć dostęp do końca bieżącego okresu rozliczeniowego."
 
 #: templates/users/account_status.html:383
 #: templates/users/cancel_subscription.html:184
 #: templates/users/manage_subscription.html:206
 msgid "Keep Subscription"
-msgstr ""
+msgstr "Zachowaj subskrypcję"
 
 #: templates/users/account_status.html:386
 #: templates/users/manage_subscription.html:209
-#, fuzzy
-#| msgid "Cancel"
 msgid "Cancel Anyway"
-msgstr "Anuluj"
+msgstr "Anuluj mimo to"
 
 #: templates/users/account_status.html:394
 msgid "Delete Account Forever?"
-msgstr ""
+msgstr "Usunąć konto na zawsze?"
 
 #: templates/users/account_status.html:395
 msgid ""
 "This action cannot be undone. All your data, including subscription history "
 "and files, will be permanently deleted according to GDPR requirements."
-msgstr ""
+msgstr "Tej akcji nie można cofnąć. Wszystkie Twoje dane, w tym historia subskrypcji i pliki, zostaną trwale usunięte zgodnie z wymaganiami RODO."
 
 #: templates/users/account_status.html:398
 msgid "Keep Account"
-msgstr ""
+msgstr "Zachowaj konto"
 
 #: templates/users/account_status.html:401
 msgid "Delete Forever"
-msgstr ""
+msgstr "Usuń na zawsze"
 
 #: templates/users/cancel_subscription.html:8
 #: templates/users/cancel_subscription.html:28
 #: templates/users/manage_subscription.html:160
 msgid "Cancel Subscription"
-msgstr ""
+msgstr "Anuluj subskrypcję"
 
 #: templates/users/cancel_subscription.html:29
 msgid "We're sorry to see you go"
-msgstr ""
+msgstr "Szkoda, że odchodzisz"
 
 #: templates/users/cancel_subscription.html:35
 msgid "Before you go, please tell us why:"
-msgstr ""
+msgstr "Zanim odejdziesz, proszę powiedz nam dlaczego:"
 
 #: templates/users/cancel_subscription.html:43
 msgid "Reason for cancellation"
-msgstr ""
+msgstr "Powód anulowania"
 
 #: templates/users/cancel_subscription.html:49
 msgid "Too expensive"
-msgstr ""
+msgstr "Zbyt drogie"
 
 #: templates/users/cancel_subscription.html:50
 msgid "The cost is more than I can afford"
-msgstr ""
+msgstr "Koszt przekracza moje możliwości"
 
 #: templates/users/cancel_subscription.html:57
 msgid "Not using enough"
-msgstr ""
+msgstr "Nie używam wystarczająco"
 
 #: templates/users/cancel_subscription.html:58
 msgid "I don't use the service frequently enough"
-msgstr ""
+msgstr "Nie korzystam z usługi wystarczająco często"
 
 #: templates/users/cancel_subscription.html:65
 msgid "Missing features"
-msgstr ""
+msgstr "Brakujące funkcje"
 
 #: templates/users/cancel_subscription.html:66
 msgid "I need features that aren't available"
-msgstr ""
+msgstr "Potrzebuję funkcji, które nie są dostępne"
 
 #: templates/users/cancel_subscription.html:73
-#, fuzzy
-#| msgid "Technical Questions"
 msgid "Technical issues"
-msgstr "Pytania techniczne"
+msgstr "Problemy techniczne"
 
 #: templates/users/cancel_subscription.html:74
 msgid "I'm experiencing problems with the service"
-msgstr ""
+msgstr "Doświadczam problemów z usługą"
 
 #: templates/users/cancel_subscription.html:81
 msgid "Found alternative"
-msgstr ""
+msgstr "Znalazłem alternatywę"
 
 #: templates/users/cancel_subscription.html:82
 msgid "I'm switching to a different service"
-msgstr ""
+msgstr "Przechodzę na inną usługę"
 
 #: templates/users/cancel_subscription.html:89
 msgid "Other reason"
-msgstr ""
+msgstr "Inny powód"
 
 #: templates/users/cancel_subscription.html:90
 msgid "Something else"
-msgstr ""
+msgstr "Coś innego"
 
 #: templates/users/cancel_subscription.html:99
 msgid "Additional comments (optional)"
-msgstr ""
+msgstr "Dodatkowe komentarze (opcjonalnie)"
 
 #: templates/users/cancel_subscription.html:106
 msgid "Tell us more about your experience..."
-msgstr ""
+msgstr "Opowiedz nam więcej o swoim doświadczeniu..."
 
 #: templates/users/cancel_subscription.html:112
 msgid "Before you cancel, consider these options:"
-msgstr ""
+msgstr "Zanim anulujesz, rozważ te opcje:"
 
 #: templates/users/cancel_subscription.html:116
 msgid "Switch to a lower tier plan"
-msgstr ""
+msgstr "Przejdź na niższy plan"
 
 #: templates/users/cancel_subscription.html:120
 msgid "Pause subscription for 3 months"
-msgstr ""
+msgstr "Wstrzymaj subskrypcję na 3 miesiące"
 
 #: templates/users/cancel_subscription.html:124
 msgid "Apply a discount for next renewal"
-msgstr ""
+msgstr "Zastosuj zniżkę na kolejne odnowienie"
 
 #: templates/users/cancel_subscription.html:133
 msgid "Current Subscription Details"
-msgstr ""
+msgstr "Szczegóły bieżącej subskrypcji"
 
 #: templates/users/cancel_subscription.html:137
 #: templates/users/profile.html:100 templates/users/profile.html:178
 #: templates/users/profile_edit.html:178
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: templates/users/cancel_subscription.html:140
 msgid "Next billing date"
-msgstr ""
+msgstr "Data następnej płatności"
 
 #: templates/users/cancel_subscription.html:145
 #: templates/users/cancel_subscription.html:155
 msgid "Not available"
-msgstr ""
+msgstr "Nie dostępne"
 
 #: templates/users/cancel_subscription.html:150
 msgid "Access until"
-msgstr ""
+msgstr "Dostęp do"
 
 #: templates/users/cancel_subscription.html:160
 msgid "Hero status"
-msgstr ""
+msgstr "Status bohatera"
 
 #: templates/users/cancel_subscription.html:165
 msgid "Hidden"
-msgstr ""
+msgstr "Ukryty"
 
 #: templates/users/cancel_subscription.html:178
 msgid "Proceed with Cancellation"
-msgstr ""
+msgstr "Przejdź do anulowania"
 
 #: templates/users/cancel_subscription.html:191
 msgid "What happens after cancellation?"
-msgstr ""
+msgstr "Co się stanie po anulowaniu?"
 
 #: templates/users/cancel_subscription.html:198
 msgid "Continue using premium features"
-msgstr ""
+msgstr "Kontynuuj korzystanie z funkcji premium"
 
 #: templates/users/cancel_subscription.html:199
 msgid ""
 "You'll keep access to all premium features until the end of your current "
 "billing period."
-msgstr ""
+msgstr "Zachowasz dostęp do wszystkich funkcji premium do końca bieżącego okresu rozliczeniowego."
 
 #: templates/users/cancel_subscription.html:208
 msgid "Hero status remains"
-msgstr ""
+msgstr "Status bohatera pozostaje"
 
 #: templates/users/cancel_subscription.html:209
 msgid ""
 "Your hero status and ranking will be preserved during the remaining period."
-msgstr ""
+msgstr "Twój status bohatera i ranking zostaną zachowane podczas pozostałego okresu."
 
 #: templates/users/cancel_subscription.html:218
-#, fuzzy
-#| msgid "All rights reserved."
 msgid "Data is preserved"
-msgstr "Wszelkie prawa zastrzeżone."
+msgstr "Dane są zachowane"
 
 #: templates/users/cancel_subscription.html:219
-msgid "All your data and conversions. and settings will be saved."
-msgstr ""
+msgid "All your data and conversions and settings will be saved."
+msgstr "Wszystkie Twoje dane, konwersje i ustawienia zostaną zapisane."
 
 #: templates/users/cancel_subscription.html:228
 msgid "Can re-subscribe anytime"
-msgstr ""
+msgstr "Możesz ponownie zasubskrybować w dowolnym momencie"
 
 #: templates/users/cancel_subscription.html:229
 msgid "You can always come back and upgrade to premium again."
-msgstr ""
+msgstr "Zawsze możesz wrócić i ponownie przejść na premium."
 
 #: templates/users/cancel_subscription.html:245
-#, fuzzy
-#| msgid "Please select a Word file."
 msgid "Please select a reason for cancellation"
-msgstr "Proszę wybrać plik Word."
+msgstr "Proszę wybrać powód anulowania"
 
 #: templates/users/login.html:8 templates/users/login.html:116
 msgid "Sign In"
-msgstr ""
+msgstr "Zaloguj się"
 
 #: templates/users/login.html:24
-#, fuzzy
-#| msgid "Go Back"
 msgid "Welcome Back"
-msgstr "Wróć"
+msgstr "Witaj ponownie"
 
 #: templates/users/login.html:25
 msgid "Sign in to your Convertica account"
-msgstr ""
+msgstr "Zaloguj się na swoje konto Convertica"
 
 #: templates/users/login.html:66 templates/users/register.html:60
 msgid "Continue with Facebook"
-msgstr ""
+msgstr "Kontynuuj przez Facebook"
 
 #: templates/users/login.html:76
 msgid "Or continue with email"
-msgstr ""
+msgstr "Lub kontynuuj przez e-mail"
 
 #: templates/users/login.html:103
 msgid "Remember me"
-msgstr ""
+msgstr "Zapamiętaj mnie"
 
 #: templates/users/login.html:109
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Zapomniałeś hasła?"
 
 #: templates/users/manage_subscription.html:16
 msgid "Update your subscription plan and billing information"
-msgstr ""
+msgstr "Zaktualizuj swój plan subskrypcyjny i informacje rozliczeniowe"
 
 #: templates/users/manage_subscription.html:35
 #: templates/users/manage_subscription.html:120
 #: templates/users/profile.html:170 templates/users/profile_edit.html:196
 msgid "Inactive"
-msgstr ""
+msgstr "Nieaktywna"
 
 #: templates/users/manage_subscription.html:51
 msgid "Premium Plan"
-msgstr ""
+msgstr "Plan Premium"
 
 #: templates/users/manage_subscription.html:52
 msgid "Much higher limits and premium features"
-msgstr ""
+msgstr "Znacznie wyższe limity i funkcje premium"
 
 #: templates/users/manage_subscription.html:61
 msgid "Free Plan"
-msgstr ""
+msgstr "Plan Darmowy"
 
 #: templates/users/manage_subscription.html:62
 msgid "Basic features with limitations"
-msgstr ""
+msgstr "Podstawowe funkcje z ograniczeniami"
 
 #: templates/users/manage_subscription.html:73
-#, fuzzy
-#| msgid "Is there a file size limit?"
 msgid "Much higher page and file size limits"
-msgstr "Czy istnieje limit rozmiaru pliku?"
+msgstr "Znacznie wyższe limity stron i rozmiarów plików"
 
 #: templates/users/manage_subscription.html:85
 msgid "Hero status & ranking"
-msgstr ""
+msgstr "Status bohatera i ranking"
 
 #: templates/users/manage_subscription.html:91
 msgid "Priority support and custom solutions on request"
-msgstr ""
+msgstr "Priorytetowe wsparcie i niestandardowe rozwiązania na życzenie"
 
 #: templates/users/manage_subscription.html:98
 msgid "Limited conversions per day"
-msgstr ""
+msgstr "Ograniczone konwersje dziennie"
 
 #: templates/users/manage_subscription.html:104
-#, fuzzy
-#| msgid "File Upload and Processing"
 msgid "Standard processing"
-msgstr "Przesyłanie i przetwarzanie plików"
+msgstr "Standardowe przetwarzanie"
 
 #: templates/users/manage_subscription.html:127
-#, fuzzy
-#| msgid "Get Started"
 msgid "Started"
-msgstr "Rozpocznij"
+msgstr "Rozpoczęto"
 
 #: templates/users/manage_subscription.html:134
 msgid "Expires"
-msgstr ""
+msgstr "Wygasa"
 
 #: templates/users/manage_subscription.html:141
 msgid "Total Days"
-msgstr ""
+msgstr "Łączna liczba dni"
 
 #: templates/users/manage_subscription.html:182
 msgid "Billing History"
-msgstr ""
+msgstr "Historia rozliczeń"
 
 #: templates/users/manage_subscription.html:188
 msgid ""
 "Billing history will be available once payment processing is implemented."
-msgstr ""
+msgstr "Historia rozliczeń będzie dostępna po wdrożeniu przetwarzania płatności."
 
 #: templates/users/manage_subscription.html:240
 #: utils_site/src/users/views.py:292
 msgid "Failed to cancel subscription"
-msgstr ""
+msgstr "Nie udało się anulować subskrypcji"
 
 #: templates/users/manage_subscription.html:245
 msgid "An error occurred while canceling subscription"
-msgstr ""
+msgstr "Wystąpił błąd podczas anulowania subskrypcji"
 
 #: templates/users/profile.html:25
 msgid "Email Not Verified"
-msgstr ""
+msgstr "E-mail niezweryfikowany"
 
 #: templates/users/profile.html:30
-#, python-format
 msgid ""
 "\n"
 "                      Your account will be automatically deleted in %(days)s "
 "days if not verified.\n"
 "                    "
 msgstr ""
+"\n"
+"                      Twoje konto zostanie automatycznie usunięte za "
+"%(days)s dni, jeśli nie zostanie zweryfikowane.\n"
+"                    "
 
 #: templates/users/profile.html:34
 msgid ""
 "Your account is scheduled for deletion. Please verify your email immediately!"
-msgstr ""
+msgstr "Twoje konto jest zaplanowane do usunięcia. Proszę zweryfikuj swój e-mail natychmiast!"
 
 #: templates/users/profile.html:46
-#, fuzzy
-#| msgid "Indemnification"
 msgid "Send verification email"
-msgstr "Odszkodowanie"
+msgstr "Wyślij e-mail weryfikacyjny"
 
 #: templates/users/profile.html:56
 msgid "Send password reset email"
-msgstr ""
+msgstr "Wyślij e-mail resetowania hasła"
 
 #: templates/users/profile.html:127
 msgid "Heroes Board"
-msgstr ""
+msgstr "Tablica Bohaterów"
 
 #: templates/users/profile.html:143 templates/users/profile_edit.html:166
-#, fuzzy
-#| msgid "Basic Information"
 msgid "Account Information"
-msgstr "Podstawowe informacje"
+msgstr "Informacje o koncie"
 
 #: templates/users/profile.html:147 templates/users/profile_edit.html:42
 #: utils_site/src/users/forms.py:40
 msgid "Username"
-msgstr ""
+msgstr "Nazwa użytkownika"
 
 #: templates/users/profile.html:155
-#, fuzzy
-#| msgid "Your Name"
 msgid "Full Name"
-msgstr "Twoje imię"
+msgstr "Pełne imię i nazwisko"
 
 #: templates/users/profile.html:157
 msgid "Not set"
-msgstr ""
+msgstr "Nie ustawiono"
 
 #: templates/users/profile.html:161 templates/users/profile_edit.html:170
 msgid "Member Since"
-msgstr ""
+msgstr "Członek od"
 
 #: templates/users/profile.html:175 templates/users/profile_edit.html:174
 msgid "Account Type"
-msgstr ""
+msgstr "Typ konta"
 
 #: templates/users/profile.html:197
 msgid "Unlock all features and remove limitations"
-msgstr ""
+msgstr "Odblokuj wszystkie funkcje i usuń ograniczenia"
 
 #: templates/users/profile.html:201
 msgid "Upgrade Now"
-msgstr ""
+msgstr "Przejdź na wyższy plan teraz"
 
 #: templates/users/profile.html:219 templates/users/profile_edit.html:8
 #: templates/users/profile_edit.html:21 utils_site/src/users/views.py:219
-#, fuzzy
-#| msgid "Edit another file"
 msgid "Edit Profile"
-msgstr "Edytuj inny plik"
+msgstr "Edytuj profil"
 
 #: templates/users/profile.html:220
-#, fuzzy
-#| msgid "Usage Information"
 msgid "Update your information"
-msgstr "Informacje o użyciu"
+msgstr "Zaktualizuj swoje informacje"
 
 #: templates/users/profile.html:241
 msgid "View your subscription"
-msgstr ""
+msgstr "Zobacz swoją subskrypcję"
 
 #: templates/users/profile.html:246
 msgid "View"
-msgstr ""
+msgstr "Zobacz"
 
 #: templates/users/profile.html:261 templates/users/profile.html:267
 msgid "Sign Out"
-msgstr ""
+msgstr "Wyloguj się"
 
 #: templates/users/profile.html:262
 msgid "Log out of your account"
-msgstr ""
+msgstr "Wyloguj się ze swojego konta"
 
 #: templates/users/profile_edit.html:62
 msgid "Email cannot be changed"
-msgstr ""
+msgstr "E-mail nie może być zmieniony"
 
 #: templates/users/profile_edit.html:68
-#, fuzzy
-#| msgid "Your Name"
 msgid "First Name"
-msgstr "Twoje imię"
+msgstr "Imię"
 
 #: templates/users/profile_edit.html:82
 msgid "Last Name"
-msgstr ""
+msgstr "Nazwisko"
 
 #: templates/users/profile_edit.html:98
-#, fuzzy
-#| msgid "Merge Settings"
 msgid "Hero Settings"
-msgstr "Ustawienia scalania"
+msgstr "Ustawienia Bohatera"
 
 #: templates/users/profile_edit.html:111 utils_site/src/users/models.py:52
 msgid "Display as Hero"
-msgstr ""
+msgstr "Wyświetlaj jako Bohatera"
 
 #: templates/users/profile_edit.html:114
 msgid "Show your nickname in the Heroes Hall of Fame"
-msgstr ""
+msgstr "Pokaż swoją nazwę w Galerii Sław Bohaterów"
 
 #: templates/users/profile_edit.html:117
 msgid "Become a hero as a premium subscriber!"
-msgstr ""
+msgstr "Zostań bohaterem jako subskrybent premium!"
 
 #: templates/users/profile_edit.html:134
 msgid "You're a Hero!"
-msgstr ""
+msgstr "Jesteś Bohaterem!"
 
 #: templates/users/profile_edit.html:137
-#, fuzzy
-#| msgid "Status"
 msgid "Hero Status"
-msgstr "Status"
+msgstr "Status Bohatera"
 
 #: templates/users/profile_edit.html:154
-#, fuzzy
-#| msgid "Page Ranges"
 msgid "Save Changes"
-msgstr "Zakresy stron"
+msgstr "Zapisz zmiany"
 
 #: templates/users/register.html:8
 msgid "Sign Up"
-msgstr ""
+msgstr "Zarejestruj się"
 
 #: templates/users/register.html:24 templates/users/register.html:126
-#, fuzzy
-#| msgid "Created At"
 msgid "Create Account"
-msgstr "Utworzono"
+msgstr "Utwórz konto"
 
 #: templates/users/register.html:25
 msgid "Join Convertica and unlock premium features"
-msgstr ""
+msgstr "Dołącz do Convertica i odblokuj funkcje premium"
 
 #: templates/users/register.html:70
 msgid "Or sign up with email"
-msgstr ""
+msgstr "Lub zarejestruj się przez e-mail"
 
 #: templates/users/register.html:132
 msgid "By creating an account, you agree to our"
-msgstr ""
+msgstr "Tworząc konto, zgadzasz się na nasze"
 
 #: utils_site/src/api/base_views.py:157
 msgid "File is empty. Please upload a valid file."
-msgstr ""
+msgstr "Plik jest pusty. Prześlij prawidłowy plik."
 
 #: utils_site/src/api/base_views.py:169
 msgid "File is too small to be valid."
-msgstr ""
+msgstr "Plik jest zbyt mały, aby był prawidłowy."
 
 #: utils_site/src/api/base_views.py:200
-#, python-format
 msgid ""
 "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade "
 "to Premium for %(premium_mb).0f MB limit! Get 1-day Premium for just $1."
 msgstr ""
+"Plik zbyt duży (%(file_mb).1f MB). Użytkownicy darmowi: maks. %(free_mb).0f "
+"MB. Przejdź na Premium, aby uzyskać limit %(premium_mb).0f MB! Kup "
+"1-dniowe Premium za jedynie 1$."
 
 #: utils_site/src/api/base_views.py:214
-#, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
-msgstr ""
+msgstr "Plik zbyt duży. Maksymalny rozmiar to %(max_mb).0f MB."
 
 #: utils_site/src/api/base_views.py:236
-#, python-format
 msgid "Unsupported content-type: %(content_type)s"
-msgstr ""
+msgstr "Nieobsługiwany typ zawartości: %(content_type)s"
 
 #: utils_site/src/api/base_views.py:255
-#, python-format
 msgid "Only %(extensions)s files are allowed."
-msgstr ""
+msgstr "Dozwolone są tylko pliki %(extensions)s."
 
 #: utils_site/src/api/conversion_limits.py:225
-#, python-format
 msgid ""
 "PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file "
 "into smaller parts or get a 1-day Premium subscription for just $1 to "
 "process larger files with much higher limits!"
 msgstr ""
+"PDF ma %(page_count)d stron (limit: %(max_pages)d). Możesz podzielić swój "
+"plik na mniejsze części lub uzyskać 1-dniową subskrypcję Premium za jedynie "
+"1$, aby przetwarzać większe pliki z znacznie wyższymi limitami!"
 
 #: utils_site/src/api/conversion_limits.py:236
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please "
-#| "split your PDF into smaller parts."
 msgid ""
 "PDF has %(page_count)d pages (limit: %(max_pages)d). Please split your file "
 "into smaller parts."
 msgstr ""
-"PDF ma %(page_count)d stron, maksymalnie dozwolone to %(max_pages)d. Proszę "
-"podzielić swój PDF na mniejsze części."
+"PDF ma %(page_count)d stron (limit: %(max_pages)d). Proszę podzielić plik na "
+"mniejsze części."
 
 #: utils_site/src/api/conversion_limits.py:247
-#, python-format
 msgid ""
 "PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
 "your PDF into smaller parts."
@@ -7027,7 +6603,6 @@ msgstr ""
 "podzielić swój PDF na mniejsze części."
 
 #: utils_site/src/api/conversion_limits.py:442
-#, python-format
 msgid ""
 "File is too large for this operation (%(file_mb).1f MB). Maximum size for "
 "%(operation)s is %(max_mb)d MB. Please use a smaller file or compress your "
@@ -7038,7 +6613,6 @@ msgstr ""
 "skompresuj swój PDF."
 
 #: utils_site/src/api/conversion_limits.py:474
-#, python-format
 msgid ""
 "PDF has %(page_count)d pages. Maximum for %(operation)s is %(max_pages)d "
 "pages. Please split your PDF into smaller parts."
@@ -7047,7 +6621,6 @@ msgstr ""
 "stron. Podziel PDF na mniejsze części."
 
 #: utils_site/src/api/conversion_limits.py:501
-#, python-format
 msgid ""
 "This PDF appears to be scanned (contains many images). Scanned PDFs with "
 "%(page_count)d pages may take too long to process. Please try with fewer "
@@ -7058,12 +6631,10 @@ msgstr ""
 "mniejszą liczbą stron (maks. ~%(max_pages)d dla zeskanowanych PDF)."
 
 #: utils_site/src/api/conversion_limits.py:542
-#, python-format
 msgid "File is too large (max %(max_mb)d MB for this operation)."
 msgstr "Plik jest zbyt duży (maks. %(max_mb)d MB dla tej operacji)."
 
 #: utils_site/src/api/conversion_limits.py:552
-#, python-format
 msgid "Too many pages (max %(max_pages)d for this operation)."
 msgstr "Zbyt wiele stron (maks. %(max_pages)d dla tej operacji)."
 
@@ -7256,11 +6827,11 @@ msgstr "Obraz wyróżniający"
 
 #: utils_site/src/blog/models.py:179
 msgid "Relevant Tool"
-msgstr ""
+msgstr "Powiązane narzędzie"
 
 #: utils_site/src/blog/models.py:180
 msgid "Select the most relevant tool for this article"
-msgstr ""
+msgstr "Wybierz najbardziej powiązane narzędzie dla tego artykułu"
 
 #: utils_site/src/blog/models.py:188
 msgid "Published At"
@@ -7285,7 +6856,7 @@ msgstr "Artykuł"
 
 #: utils_site/src/frontend/context_processors.py:352
 msgid "Pricing"
-msgstr ""
+msgstr "Cennik"
 
 #: utils_site/src/frontend/context_processors.py:433
 #: utils_site/src/frontend/views.py:262
@@ -7293,10 +6864,8 @@ msgid "Convert PDF to Word"
 msgstr "Konwertuj PDF na Word"
 
 #: utils_site/src/frontend/context_processors.py:439
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert Word to PDF"
-msgstr "Konwertuj na PDF"
+msgstr "Konwertuj Word na PDF"
 
 #: utils_site/src/frontend/context_processors.py:445
 #: utils_site/src/frontend/views.py:359
@@ -7304,10 +6873,8 @@ msgid "Convert PDF to JPG"
 msgstr "Konwertuj PDF na JPG"
 
 #: utils_site/src/frontend/context_processors.py:451
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert JPG to PDF"
-msgstr "Konwertuj na PDF"
+msgstr "Konwertuj JPG na PDF"
 
 #: utils_site/src/frontend/context_processors.py:457
 #: utils_site/src/frontend/views.py:858
@@ -7315,104 +6882,74 @@ msgid "Convert PDF to Excel"
 msgstr "Konwertuj PDF na Excel"
 
 #: utils_site/src/frontend/context_processors.py:463
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert Excel to PDF"
-msgstr "Konwertuj na PDF"
+msgstr "Konwertuj Excel na PDF"
 
 #: utils_site/src/frontend/context_processors.py:469
-#, fuzzy
-#| msgid "Merge PDFs"
 msgid "Merge multiple PDFs"
-msgstr "Połącz PDF"
+msgstr "Połącz wiele plików PDF"
 
 #: utils_site/src/frontend/context_processors.py:475
-#, fuzzy
-#| msgid "Can I split a PDF into separate files?"
 msgid "Split PDF into parts"
-msgstr "Czy mogę podzielić PDF na osobne pliki?"
+msgstr "Podziel PDF na części"
 
 #: utils_site/src/frontend/context_processors.py:481
 msgid "Reduce PDF size"
-msgstr ""
+msgstr "Zmniejsz rozmiar PDF"
 
 #: utils_site/src/frontend/context_processors.py:487
-#, fuzzy
-#| msgid "Can I rotate PDF pages?"
 msgid "Rotate PDF pages"
-msgstr "Czy mogę obrócić strony PDF?"
+msgstr "Obróć strony PDF"
 
 #: utils_site/src/frontend/context_processors.py:493
-#, fuzzy
-#| msgid "Enter password to protect PDF"
 msgid "Password protect PDF"
-msgstr "Wprowadź hasło do ochrony PDF"
+msgstr "Chroń PDF hasłem"
 
 #: utils_site/src/frontend/context_processors.py:499
-#, fuzzy
-#| msgid "User Password"
 msgid "Remove PDF password"
-msgstr "Hasło użytkownika"
+msgstr "Usuń hasło PDF"
 
 #: utils_site/src/frontend/context_processors.py:505
-#, fuzzy
-#| msgid "Reorder Pages"
 msgid "Reorder PDF pages"
-msgstr "Zmień kolejność stron"
+msgstr "Zmień kolejność stron PDF"
 
 #: utils_site/src/frontend/context_processors.py:511
-#, fuzzy
-#| msgid "Extract specific pages from your PDF"
 msgid "Extract specific pages"
-msgstr "Wyodrębnij konkretne strony ze swojego PDF"
+msgstr "Wyodrębnij konkretne strony"
 
 #: utils_site/src/frontend/context_processors.py:517
-#, fuzzy
-#| msgid "Remove unwanted pages from your PDF"
 msgid "Remove pages from PDF"
-msgstr "Usuń niechciane strony ze swojego PDF"
+msgstr "Usuń strony z PDF"
 
 #: utils_site/src/frontend/context_processors.py:523
-#, fuzzy
-#| msgid "Crop PDF"
 msgid "Crop PDF pages"
-msgstr "Przytnij PDF"
+msgstr "Przytnij strony PDF"
 
 #: utils_site/src/frontend/context_processors.py:529
-#, fuzzy
-#| msgid "How do I add a watermark to PDF?"
 msgid "Add watermark to PDF"
-msgstr "Jak dodać znak wodny do PDF?"
+msgstr "Dodaj znak wodny do PDF"
 
 #: utils_site/src/frontend/context_processors.py:535
 msgid "Number PDF pages"
-msgstr ""
+msgstr "Numeruj strony PDF"
 
 #: utils_site/src/frontend/context_processors.py:541
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert PowerPoint to PDF"
-msgstr "Konwertuj na PDF"
+msgstr "Konwertuj PowerPoint na PDF"
 
 #: utils_site/src/frontend/context_processors.py:547
 #: utils_site/src/frontend/views.py:996
-#, fuzzy
-#| msgid "Convert PDF to Word"
 msgid "Convert PDF to PowerPoint"
-msgstr "Konwertuj PDF na Word"
+msgstr "Konwertuj PDF na PowerPoint"
 
 #: utils_site/src/frontend/context_processors.py:553
-#, fuzzy
-#| msgid "Convert to PDF"
 msgid "Convert HTML to PDF"
-msgstr "Konwertuj na PDF"
+msgstr "Konwertuj HTML na PDF"
 
 #: utils_site/src/frontend/context_processors.py:559
 #: utils_site/src/frontend/views.py:1028
-#, fuzzy
-#| msgid "Convert PDF to JPG"
 msgid "Convert PDF to HTML"
-msgstr "Konwertuj PDF na JPG"
+msgstr "Konwertuj PDF na HTML"
 
 #: utils_site/src/frontend/forms.py:14
 msgid "Your Name"
@@ -7467,12 +7004,6 @@ msgid "PDF to Word - Convertica"
 msgstr "PDF na Word - Convertica"
 
 #: utils_site/src/frontend/views.py:225
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Word online free without losing formatting. Fast PDF to "
-#| "DOCX converter with no email required, unlimited conversions, high-"
-#| "quality output. Perfect for students, professionals, and businesses. No "
-#| "registration needed."
 msgid ""
 "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
 "converter with no email required, unlimited conversions, high-quality "
@@ -7481,7 +7012,7 @@ msgid ""
 msgstr ""
 "Konwertuj PDF na Word online za darmo bez utraty formatowania. Szybki "
 "konwerter PDF na DOCX bez wymaganego e-maila, nieograniczone konwersje, "
-"wysokiej jakości wynik. Idealne dla studentów, profesjonalistów i firm. Bez "
+"wysokiej jakości wynik. Idealne dla dokumentów, CV i plików biznesowych. Bez "
 "rejestracji."
 
 #: utils_site/src/frontend/views.py:254
@@ -7776,49 +7307,34 @@ msgid "Please select a PDF file with tables."
 msgstr "Proszę wybrać plik PDF z tabelami."
 
 #: utils_site/src/frontend/views.py:868
-#, fuzzy
-#| msgid "JPG to PDF - Convertica"
 msgid "Excel to PDF - Convertica"
-msgstr "JPG na PDF - Convertica"
+msgstr "Excel na PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:870
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert Excel to PDF online free with high quality. Convert XLS and XLSX "
 "spreadsheets to PDF format. Preserve formatting, charts, and formulas. No "
 "registration required."
 msgstr ""
-"Konwertuj PDF na Excel online za darmo z dokładnym wyodrębnianiem tabel. "
-"Wyodrębnij tabele z PDF i konwertuj na format XLSX. Idealne dla faktur, "
-"raportów i analizy danych. Bez rejestracji."
+"Konwertuj Excel na PDF online za darmo z wysoką jakością. Konwertuj "
+"arkusze XLS i XLSX na format PDF. Zachowaj formatowanie, wykresy i formuły. "
+"Bez rejestracji."
 
 #: utils_site/src/frontend/views.py:887
-#, fuzzy
-#| msgid "Convert your Word documents to PDF format in seconds"
 msgid "Convert Excel spreadsheets to PDF format"
-msgstr "Konwertuj swoje dokumenty Word na format PDF w kilka sekund"
+msgstr "Konwertuj arkusze Excel na format PDF"
 
 #: utils_site/src/frontend/views.py:888
-#, fuzzy
-#| msgid "JPG to PDF Converter"
 msgid "Excel to PDF Converter"
-msgstr "Konwerter JPG na PDF"
+msgstr "Konwerter Excel na PDF"
 
 #: utils_site/src/frontend/views.py:895
-#, fuzzy
-#| msgid "Please select a PDF file."
 msgid "Please select an Excel file."
-msgstr "Proszę wybrać plik PDF."
+msgstr "Proszę wybrać plik Excel."
 
 #: utils_site/src/frontend/views.py:904
-#, fuzzy
-#| msgid "Word to PDF - Convertica"
 msgid "PowerPoint to PDF - Convertica"
-msgstr "Word na PDF - Convertica"
+msgstr "PowerPoint na PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:906
 msgid ""
@@ -7826,127 +7342,91 @@ msgid ""
 "PPTX presentations to PDF format. Preserve slides, animations, and "
 "formatting. No registration required."
 msgstr ""
+"Konwertuj PowerPoint na PDF online za darmo z wysoką jakością. Konwertuj "
+"prezentacje PPT i PPTX na format PDF. Zachowaj slajdy, animacje i "
+"formatowanie. Bez rejestracji."
 
 #: utils_site/src/frontend/views.py:922
-#, fuzzy
-#| msgid "Convert your Word documents to PDF format in seconds"
 msgid "Convert PowerPoint presentations to PDF format"
-msgstr "Konwertuj swoje dokumenty Word na format PDF w kilka sekund"
+msgstr "Konwertuj prezentacje PowerPoint na format PDF"
 
 #: utils_site/src/frontend/views.py:923
-#, fuzzy
-#| msgid "Word to PDF Converter"
 msgid "PowerPoint to PDF Converter"
-msgstr "Konwerter Word na PDF"
+msgstr "Konwerter PowerPoint na PDF"
 
 #: utils_site/src/frontend/views.py:930
-#, fuzzy
-#| msgid "Please select a Word file."
 msgid "Please select a PowerPoint file."
-msgstr "Proszę wybrać plik Word."
+msgstr "Proszę wybrać plik PowerPoint."
 
 #: utils_site/src/frontend/views.py:939
-#, fuzzy
-#| msgid "JPG to PDF - Convertica"
 msgid "HTML to PDF - Convertica"
-msgstr "JPG na PDF - Convertica"
+msgstr "HTML na PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:941
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert HTML to PDF online free with high quality. Convert HTML content and "
 "web pages to PDF format. Preserve styling, images, and layout. No "
 "registration required."
 msgstr ""
-"Konwertuj PDF na Excel online za darmo z dokładnym wyodrębnianiem tabel. "
-"Wyodrębnij tabele z PDF i konwertuj na format XLSX. Idealne dla faktur, "
-"raportów i analizy danych. Bez rejestracji."
+"Konwertuj HTML na PDF online za darmo z wysoką jakością. Konwertuj treść "
+"HTML i strony internetowe na format PDF. Zachowaj stylowanie, obrazy i "
+"układ. Bez rejestracji."
 
 #: utils_site/src/frontend/views.py:957
-#, fuzzy
-#| msgid "Convert your JPG images to PDF format in seconds"
 msgid "Convert HTML content and web pages to PDF format"
-msgstr "Konwertuj swoje obrazy JPG na format PDF w kilka sekund"
+msgstr "Konwertuj treść HTML i strony internetowe na format PDF"
 
 #: utils_site/src/frontend/views.py:958
-#, fuzzy
-#| msgid "JPG to PDF Converter"
 msgid "HTML to PDF Converter"
-msgstr "Konwerter JPG na PDF"
+msgstr "Konwerter HTML na PDF"
 
 #: utils_site/src/frontend/views.py:965
 msgid "Please enter HTML content or URL."
-msgstr ""
+msgstr "Proszę wprowadzić treść HTML lub URL."
 
 #: utils_site/src/frontend/views.py:974
-#, fuzzy
-#| msgid "PDF to Word - Convertica"
 msgid "PDF to PowerPoint - Convertica"
-msgstr "PDF na Word - Convertica"
+msgstr "PDF na PowerPoint - Convertica"
 
 #: utils_site/src/frontend/views.py:976
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert PDF to PowerPoint online free with high quality. Extract PDF pages "
 "and convert to PPTX presentation format. Perfect for creating editable "
 "presentations from PDF documents. No registration required."
 msgstr ""
-"Konwertuj PDF na Excel online za darmo z dokładnym wyodrębnianiem tabel. "
-"Wyodrębnij tabele z PDF i konwertuj na format XLSX. Idealne dla faktur, "
-"raportów i analizy danych. Bez rejestracji."
+"Konwertuj PDF na PowerPoint online za darmo z wysoką jakością. Wyodrębnij "
+"strony PDF i konwertuj na format prezentacji PPTX. Idealne do tworzenia "
+"edytowalnych prezentacji z dokumentów PDF. Bez rejestracji."
 
 #: utils_site/src/frontend/views.py:989
-#, fuzzy
-#| msgid "Convert PDF documents to editable Word files instantly."
 msgid "Convert PDF documents to PowerPoint presentations"
-msgstr "Natychmiast konwertuj dokumenty PDF na edytowalne pliki Word."
+msgstr "Konwertuj dokumenty PDF na prezentacje PowerPoint"
 
 #: utils_site/src/frontend/views.py:990
-#, fuzzy
-#| msgid "PDF to Word Converter"
 msgid "PDF to PowerPoint Converter"
-msgstr "Konwerter PDF na Word"
+msgstr "Konwerter PDF na PowerPoint"
 
 #: utils_site/src/frontend/views.py:1006
-#, fuzzy
-#| msgid "PDF to JPG - Convertica"
 msgid "PDF to HTML - Convertica"
-msgstr "PDF na JPG - Convertica"
+msgstr "PDF na HTML - Convertica"
 
 #: utils_site/src/frontend/views.py:1008
-#, fuzzy
-#| msgid ""
-#| "Convert PDF to Excel online free with accurate table extraction. Extract "
-#| "tables from PDF and convert to XLSX format. Perfect for invoices, "
-#| "reports, and data analysis. No registration required."
 msgid ""
 "Convert PDF to HTML online free with text extraction. Extract content from "
 "PDF and convert to HTML format. Perfect for web publishing and content "
 "management. No registration required."
 msgstr ""
-"Konwertuj PDF na Excel online za darmo z dokładnym wyodrębnianiem tabel. "
-"Wyodrębnij tabele z PDF i konwertuj na format XLSX. Idealne dla faktur, "
-"raportów i analizy danych. Bez rejestracji."
+"Konwertuj PDF na HTML online za darmo z ekstrakcją tekstu. Wyodrębnij treść "
+"z PDF i konwertuj na format HTML. Idealne dla publikacji internetowych i "
+"zarządzania treścią. Bez rejestracji."
 
 #: utils_site/src/frontend/views.py:1021
-#, fuzzy
-#| msgid "Convert your PDF documents to editable Word format in seconds"
 msgid "Convert PDF documents to HTML format"
-msgstr "Konwertuj swoje dokumenty PDF na edytowalny format Word w kilka sekund"
+msgstr "Konwertuj dokumenty PDF na format HTML"
 
 #: utils_site/src/frontend/views.py:1022
-#, fuzzy
-#| msgid "PDF to JPG Converter"
 msgid "PDF to HTML Converter"
-msgstr "Konwerter PDF na JPG"
+msgstr "Konwerter PDF na HTML"
 
 #: utils_site/src/frontend/views.py:1038
 msgid "Compress PDF - Convertica"
@@ -8125,254 +7605,178 @@ msgid ""
 "This does not unlock Premium features — it simply helps development. Heroes "
 "are Premium subscribers; contributions here are support only."
 msgstr ""
+"Wesprzyj projekt Convertica jednorazową lub miesięczną darowizną. To nie "
+"odblokowuje funkcji Premium — po prostu pomaga w rozwoju. Bohaterami są "
+"subskrybenci Premium; wkłady tutaj są tylko wsparciem."
 
 #: utils_site/src/frontend/views.py:1768
 msgid "Thank you for your contribution"
-msgstr ""
+msgstr "Dziękujemy za Twój wkład"
 
 #: utils_site/src/frontend/views.py:1770
 msgid ""
 "Thank you for contributing to Convertica. Your support helps us keep "
 "improving the service."
-msgstr ""
+msgstr "Dziękujemy za wsparcie Convertica. Twoje wsparcie pomaga nam ciągle ulepszać usługę."
 
 #: utils_site/src/users/forms.py:14 utils_site/src/users/forms.py:35
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Enter your email"
-msgstr "Wprowadź swoje imię"
+msgstr "Wprowadź swój e-mail"
 
 #: utils_site/src/users/forms.py:23 utils_site/src/users/forms.py:53
-#, fuzzy
-#| msgid "Enter your name"
 msgid "Enter your password"
-msgstr "Wprowadź swoje imię"
+msgstr "Wprowadź swoje hasło"
 
 #: utils_site/src/users/forms.py:44
-#, fuzzy
-#| msgid "Choose Image"
 msgid "Choose a username"
-msgstr "Wybierz obraz"
+msgstr "Wybierz nazwę użytkownika"
 
 #: utils_site/src/users/forms.py:62
 msgid "Confirm your password"
-msgstr ""
+msgstr "Potwierdź swoje hasło"
 
 #: utils_site/src/users/forms.py:67
-#, fuzzy
-#| msgid "I agree to the Privacy Policy"
 msgid "I agree to the Terms of Service and Privacy Policy"
-msgstr "Zgadzam się z Polityką Prywatności"
+msgstr "Zgadzam się z Warunkami korzystania i Polityką prywatności"
 
 #: utils_site/src/users/forms.py:83
 msgid "A user with this email already exists."
-msgstr ""
+msgstr "Użytkownik z tym e-mailem już istnieje."
 
 #: utils_site/src/users/management/commands/create_subscription_plans.py:12
 msgid "Daily Hero Access"
-msgstr ""
+msgstr "Dostęp Dziennika Bohatera"
 
 #: utils_site/src/users/management/commands/create_subscription_plans.py:20
 msgid "Monthly Hero Access"
-msgstr ""
+msgstr "Dostęp Miesięcznego Bohatera"
 
 #: utils_site/src/users/management/commands/create_subscription_plans.py:28
 msgid "Yearly Hero Access"
-msgstr ""
+msgstr "Dostęp Rocznego Bohatera"
 
 #: utils_site/src/users/models.py:13
 msgid "The Email must be set"
-msgstr ""
+msgstr "E-mail musi być ustawiony"
 
 #: utils_site/src/users/models.py:24
 msgid "Superuser must have is_staff=True."
-msgstr ""
+msgstr "Superużytkownik musi mieć is_staff=True."
 
 #: utils_site/src/users/models.py:26
 msgid "Superuser must have is_superuser=True."
-msgstr ""
+msgstr "Superużytkownik musi mieć is_superuser=True."
 
 #: utils_site/src/users/models.py:31
 msgid "email address"
-msgstr ""
+msgstr "adres e-mail"
 
 #: utils_site/src/users/models.py:33
 msgid "Is Premium"
-msgstr ""
+msgstr "Czy jest Premium"
 
 #: utils_site/src/users/models.py:38
 msgid "Subscription Start Date"
-msgstr ""
+msgstr "Data rozpoczęcia subskrypcji"
 
 #: utils_site/src/users/models.py:41
 msgid "Subscription End Date"
-msgstr ""
+msgstr "Data zakończenia subskrypcji"
 
 #: utils_site/src/users/models.py:44
 msgid "Total Subscription Days"
-msgstr ""
+msgstr "Łączna liczba dni subskrypcji"
 
 #: utils_site/src/users/models.py:47
 msgid "Consecutive Subscription Days"
-msgstr ""
+msgstr "Kolejne dni subskrypcji"
 
 #: utils_site/src/users/models.py:72 utils_site/src/users/models.py:319
 msgid "User"
-msgstr ""
+msgstr "Użytkownik"
 
 #: utils_site/src/users/models.py:73
 msgid "Users"
-msgstr ""
+msgstr "Użytkownicy"
 
 #: utils_site/src/users/models.py:337
 msgid "Payment Method"
-msgstr ""
+msgstr "Metoda płatności"
 
 #: utils_site/src/users/models.py:340
-#, fuzzy
-#| msgid "Translations"
 msgid "Transaction ID"
-msgstr "Tłumaczenia"
+msgstr "ID transakcji"
 
 #: utils_site/src/users/models.py:343
-#, fuzzy
-#| msgid "Created At"
 msgid "Processed At"
-msgstr "Utworzono"
+msgstr "Przetworzono"
 
 #: utils_site/src/users/models.py:349
 msgid "Payment"
-msgstr ""
+msgstr "Płatność"
 
 #: utils_site/src/users/models.py:350
-#, fuzzy
-#| msgid "Enhancements"
 msgid "Payments"
-msgstr "Ulepszenia"
+msgstr "Płatności"
 
 #: utils_site/src/users/views.py:52
 msgid "Please verify your email address before signing in."
-msgstr ""
+msgstr "Proszę zweryfikuj swój adres e-mail przed zalogowaniem."
 
 #: utils_site/src/users/views.py:62
 msgid "Account is disabled"
-msgstr ""
+msgstr "Konto jest wyłączone"
 
 #: utils_site/src/users/views.py:68
 msgid "Invalid email or password"
-msgstr ""
+msgstr "Nieprawidłowy e-mail lub hasło"
 
 #: utils_site/src/users/views.py:104
 msgid ""
 "Registration successful! Please check your email to verify your account "
 "before logging in."
-msgstr ""
+msgstr "Rejestracja udana! Proszę sprawdzić swój e-mail, aby zweryfikować konto przed zalogowaniem."
 
 #: utils_site/src/users/views.py:128
 msgid "You have been successfully logged out."
-msgstr ""
+msgstr "Zostałeś pomyślnie wylogowany."
 
 #: utils_site/src/users/views.py:175
 msgid "Your email is already verified."
-msgstr ""
+msgstr "Twój e-mail jest już zweryfikowany."
 
 #: utils_site/src/users/views.py:198
 msgid "Password reset email sent. Please check your inbox and spam folder."
-msgstr ""
+msgstr "E-mail resetowania hasła wysłany. Proszę sprawdzić skrzynkę odbiorczą i folder spam."
 
 #: utils_site/src/users/views.py:201
 msgid "Unable to send password reset email."
-msgstr ""
+msgstr "Nie można wysłać e-maila resetowania hasła."
 
 #: utils_site/src/users/views.py:212
 msgid "Profile updated successfully!"
-msgstr ""
+msgstr "Profil zaktualizowany pomyślnie!"
 
 #: utils_site/src/users/views.py:263
 msgid "No active subscription to cancel"
-msgstr ""
+msgstr "Brak aktywnej subskrypcji do anulowania"
 
 #: utils_site/src/users/views.py:287
 msgid "Subscription cancelled successfully"
-msgstr ""
+msgstr "Subskrypcja anulowana pomyślnie"
 
 #: utils_site/src/users/views.py:310
 msgid "Account deleted successfully"
-msgstr ""
+msgstr "Konto usunięte pomyślnie"
 
 #: utils_site/src/users/views.py:321
 msgid "Method not allowed"
-msgstr ""
+msgstr "Metoda niedozwolona"
 
 #: utils_site/src/users/views.py:341
 msgid "Hero display updated successfully"
-msgstr ""
+msgstr "Wyświetlanie bohatera zaktualizowane pomyślnie"
 
 #: utils_site/src/users/views.py:346
 msgid "Invalid JSON"
-msgstr ""
-
-#~ msgid ""
-#~ "Fast, simple and secure online PDF to Word and Word to PDF converter."
-#~ msgstr ""
-#~ "Szybki, prosty i bezpieczny konwerter PDF na Word i Word na PDF online."
-
-#~ msgid ""
-#~ "After uploading, click on the PDF preview to position your watermark. Use "
-#~ "the sliders below to adjust size and rotation. You can also drag the "
-#~ "watermark to move it, or use corner handles to scale directly on the "
-#~ "preview."
-#~ msgstr ""
-#~ "Po przesłaniu, kliknij w podgląd PDF, aby ustawić znak wodny. Użyj "
-#~ "suwaków poniżej, aby dostosować rozmiar i obrót. Możesz również "
-#~ "przeciągnąć znak wodny, aby go przesunąć, lub użyć uchwytów narożnych do "
-#~ "skalowania bezpośrednio w podglądzie."
-
-#, fuzzy
-#~| msgid "Ready to Get Started?"
-#~ msgid "Ready to Become a Hero?"
-#~ msgstr "Gotowy do rozpoczęcia?"
-
-#, fuzzy
-#~| msgid "Convert your Word documents to PDF format in seconds"
-#~ msgid "Start your document transformation journey today"
-#~ msgstr "Konwertuj swoje dokumenty Word na format PDF w kilka sekund"
-
-#, fuzzy
-#~| msgid "Everything is going well!"
-#~ msgid "Everything in Daily, plus:"
-#~ msgstr "Wszystko idzie dobrze!"
-
-#~ msgid "Organization Settings"
-#~ msgstr "Ustawienia organizacji"
-
-#~ msgid "Operation"
-#~ msgstr "Operacja"
-
-#~ msgid "Sort Pages"
-#~ msgstr "Sortuj strony"
-
-#~ msgid ""
-#~ "PDF files with up to 50 pages are supported. For larger files, please "
-#~ "split them into smaller parts. Text-based PDFs work best - scanned PDFs "
-#~ "(image-only) cannot be converted to editable Word format."
-#~ msgstr ""
-#~ "Pliki PDF do 50 stron są obsługiwane. Większe pliki należy podzielić na "
-#~ "mniejsze części. PDF oparte na tekście działają najlepiej - zeskanowane "
-#~ "PDF (tylko obrazy) nie można przekonwertować na edytowalny format Word."
-
-#~ msgid ""
-#~ "Welcome to Convertica. These Terms of Service (\"Terms\") govern your use "
-#~ "of our website and services (collectively, \"Services\")."
-#~ msgstr ""
-#~ "Witamy w Convertica. Niniejsze Warunki korzystania (\"Warunki\") regulują "
-#~ "Twoje korzystanie z naszej witryny i usług (łącznie \"Usługi\")."
-
-#~ msgid ""
-#~ "Our Services are provided \"as is\" and \"as available\" without any "
-#~ "warranties of any kind, either express or implied, including but not "
-#~ "limited to:"
-#~ msgstr ""
-#~ "Nasze Usługi są świadczone \"tak jak są\" i \"dostępne\" bez "
-#~ "jakichkolwiek gwarancji, wyraźnych lub dorozumianych, w tym, ale nie "
-#~ "ograniczając się do:"
+msgstr "Nieprawidłowy JSON"
