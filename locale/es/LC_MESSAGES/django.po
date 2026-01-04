@@ -3700,21 +3700,17 @@ msgstr ""
 "descarga"
 
 #: templates/frontend/pdf_edit/add_page_numbers.html:221
-#, fuzzy, python-format
-#| msgid ""
-#| "PDF files with up to 50 pages are supported for adding page numbers. For "
-#| "larger files, please split them into smaller parts. The page numbers will "
-#| "be added according to your selected position, format, and font size."
+#, python-format
 msgid ""
 "PDF files with up to %(max_pages)s pages are supported for adding page "
 "numbers. For larger files, please split them into smaller parts. The page "
 "numbers will be added according to your selected position, format, and font "
 "size."
 msgstr ""
-"Se admiten archivos PDF de hasta 50 páginas para agregar números de página. "
-"Para archivos más grandes, divídalos en partes más pequeñas. Los números de "
-"página se agregarán según la posición, formato y tamaño de fuente "
-"seleccionados."
+"Los archivos PDF con hasta %(max_pages)s páginas son compatibles para añadir "
+"números de página. Para archivos más grandes, divídelos en partes más "
+"pequeñas. Los números de página se añadirán según la posición, el formato y "
+"el tamaño de fuente que hayas seleccionado."
 
 #: templates/frontend/pdf_edit/add_watermark.html:47
 #, fuzzy

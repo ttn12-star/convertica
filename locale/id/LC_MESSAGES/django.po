@@ -3690,10 +3690,10 @@ msgid ""
 "numbers will be added according to your selected position, format, and font "
 "size."
 msgstr ""
-"File PDF hingga 50 halaman didukung untuk menambahkan nomor halaman. Untuk "
-"file yang lebih besar, silakan bagi menjadi bagian yang lebih kecil. Nomor "
-"halaman akan ditambahkan sesuai posisi, format, dan ukuran font yang Anda "
-"pilih."
+"File PDF dengan hingga %(max_pages)s halaman didukung untuk penambahan nomor "
+"halaman. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. "
+"Nomor halaman akan ditambahkan sesuai posisi, format, dan ukuran font yang "
+"Anda pilih."
 
 #: templates/frontend/pdf_edit/add_watermark.html:47
 #, fuzzy

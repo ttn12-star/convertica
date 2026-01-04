@@ -3690,16 +3690,15 @@ msgid ""
 "numbers will be added according to your selected position, format, and font "
 "size."
 msgstr ""
-"Pliki PDF do 50 stron są obsługiwane przy dodawaniu numerów stron. Większe "
-"pliki należy podzielić na mniejsze części. Numery stron zostaną dodane "
-"zgodnie z wybraną pozycją, formatem i rozmiarem czcionki."
+"Pliki PDF do %(max_pages)s stron są obsługiwane przy dodawaniu numerów "
+"stron. Większe pliki należy podzielić na mniejsze części. Numery stron "
+"zostaną dodane zgodnie z wybraną pozycją, formatem i rozmiarem czcionki."
 
 #: templates/frontend/pdf_edit/add_watermark.html:47
 #, fuzzy
 #| msgid "Select file to watermark"
 msgid "Select your PDF file to add watermark"
-msgstr "Wybierz plik do znaku wodnego"
-
+msgstr "Wybierz plik PDF do dodania znaku wodnego"
 #: templates/frontend/pdf_edit/add_watermark.html:52
 #, fuzzy
 #| msgid "Add Watermark"
