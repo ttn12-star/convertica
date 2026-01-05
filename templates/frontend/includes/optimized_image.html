@@ -1,0 +1,9 @@
+<img src="{{ src }}"
+     alt="{{ alt }}"
+     {% if width %}width="{{ width }}"{% endif %}
+     {% if height %}height="{{ height }}"{% endif %}
+     loading="{{ loading }}"
+     fetchpriority="{{ fetchpriority }}"
+     decoding="async"
+     {% if class_name %}class="{{ class_name }}"{% endif %}
+     {% if sizes %}sizes="{{ sizes }}"{% endif %}>

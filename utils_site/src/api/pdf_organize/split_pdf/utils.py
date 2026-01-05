@@ -1,4 +1,5 @@
 import os
+import time
 import zipfile
 from io import BytesIO
 
@@ -35,6 +36,7 @@ def split_pdf(
     Returns:
         Tuple of (temp_dir, zip_path) containing split PDFs
     """
+    start_time = time.time()
     context = {
         "function": "split_pdf",
         "input_filename": os.path.basename(uploaded_file.name),
@@ -50,6 +52,16 @@ def split_pdf(
             context=context,
         )
         pdf_path = processor.prepare()
+
+        prep_time = time.time() - start_time
+        logger.debug(
+            f"PDF preparation completed in {prep_time:.2f}s",
+            extra={
+                **context,
+                "event": "split_pdf_prep",
+                "elapsed_s": round(prep_time, 2),
+            },
+        )
 
         base = os.path.splitext(os.path.basename(pdf_path))[0]
         zip_name = f"{base}_split{suffix}.zip"

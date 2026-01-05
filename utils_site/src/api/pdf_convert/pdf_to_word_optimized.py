@@ -3,11 +3,14 @@ Optimized PDF to Word conversion with parallel processing and memory management.
 """
 
 import asyncio
+import hashlib
 import os
 import shutil
 import tempfile
+import time
 
 import fitz
+from django.core.cache import cache
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
 from src.api.file_validation import check_disk_space, sanitize_filename
@@ -19,18 +22,60 @@ from src.exceptions import ConversionError, StorageError
 logger = get_logger(__name__)
 
 
-def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str) -> str:
+def _get_pdf_hash(pdf_path: str) -> str:
+    """Calculate SHA256 hash of PDF file for caching."""
+    sha256 = hashlib.sha256()
+    with open(pdf_path, "rb") as f:
+        # Read in chunks to handle large files
+        for chunk in iter(lambda: f.read(8192), b""):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
+
+def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str, context: dict = None) -> str:
     """
     Re-render PDF pages to RGB-only PDF to avoid PyMuPDF pixmap PNG write errors
     (e.g., CMYK/spot colors).
 
+    Uses caching to avoid re-normalizing the same PDF multiple times.
+
     Args:
         pdf_path: Input PDF path
         tmp_dir: Directory to place normalized PDF
+        context: Logging context (optional)
 
     Returns:
         Path to normalized RGB PDF
     """
+    if context is None:
+        context = {}
+
+    start_time = time.time()
+
+    # Check cache first (valid for 1 hour)
+    try:
+        pdf_hash = _get_pdf_hash(pdf_path)
+        cache_key = f"rgb_normalized:{pdf_hash}"
+        cached_path = cache.get(cache_key)
+
+        if cached_path and os.path.exists(cached_path):
+            elapsed = time.time() - start_time
+            logger.info(
+                "RGB normalization cache hit",
+                extra={
+                    **context,
+                    "event": "rgb_cache_hit",
+                    "elapsed_ms": round(elapsed * 1000, 2),
+                },
+            )
+            return cached_path
+    except Exception as e:
+        logger.warning(
+            f"Cache check failed, proceeding with normalization: {e}",
+            extra={**context, "event": "rgb_cache_check_failed"},
+        )
+
+    # Cache miss - perform normalization
     rgb_path = os.path.join(tmp_dir, f"rgb_{os.path.basename(pdf_path)}")
     src = None
     out = None
@@ -38,7 +83,8 @@ def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str) -> str:
         src = fitz.open(pdf_path)
         out = fitz.open()
 
-        for page in src:
+        page_count = src.page_count
+        for idx, page in enumerate(src):
             # Use matrix for better quality and performance
             pix = page.get_pixmap(
                 alpha=False, colorspace=fitz.csRGB, matrix=fitz.Matrix(1, 1)
@@ -47,7 +93,36 @@ def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str) -> str:
             rect = fitz.Rect(0, 0, pix.width, pix.height)
             new_page.insert_image(rect, stream=pix.tobytes("png"))
 
+            # Log progress for large PDFs
+            if page_count > 10 and (idx + 1) % 10 == 0:
+                logger.debug(
+                    f"RGB normalization progress: {idx + 1}/{page_count} pages",
+                    extra={**context, "event": "rgb_normalization_progress"},
+                )
+
         out.save(rgb_path, garbage=4, deflate=True)
+
+        # Cache the result (1 hour TTL)
+        try:
+            cache.set(cache_key, rgb_path, 3600)
+        except Exception as e:
+            logger.warning(
+                f"Failed to cache RGB normalized PDF: {e}",
+                extra={**context, "event": "rgb_cache_set_failed"},
+            )
+
+        elapsed = time.time() - start_time
+        logger.info(
+            "RGB normalization completed",
+            extra={
+                **context,
+                "event": "rgb_normalization_success",
+                "elapsed_ms": round(elapsed * 1000, 2),
+                "page_count": page_count,
+                "file_size_kb": round(os.path.getsize(rgb_path) / 1024, 2),
+            },
+        )
+
         return rgb_path
     finally:
         if out:
@@ -404,7 +479,7 @@ class OptimizedPDFToWordConverter:
                 )
                 try:
                     rgb_pdf_path = _normalize_pdf_to_rgb(
-                        pdf_path, os.path.dirname(docx_path)
+                        pdf_path, os.path.dirname(docx_path), context
                     )
                     await loop.run_in_executor(None, _convert, rgb_pdf_path)
                     logger.info(

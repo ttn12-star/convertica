@@ -1,113 +1,100 @@
-"""
-Template tags for image optimization.
-Provides WebP support with fallback and responsive images.
-"""
+"""Template tags for optimized image loading."""
 
 from django import template
-from django.utils.safestring import mark_safe
+from django.template.loader import render_to_string
+from django.templatetags.static import static
 
 register = template.Library()
 
 
-@register.simple_tag
-def optimized_image(src, alt="", width=None, height=None, css_class="", loading="lazy"):
+@register.inclusion_tag("frontend/includes/optimized_image.html")
+def optimized_image(
+    src,
+    alt="",
+    width=None,
+    height=None,
+    loading="lazy",
+    fetchpriority="auto",
+    class_name="",
+    sizes="100vw",
+):
     """
-    Generate optimized image tag with WebP support and fallback.
+    Render an optimized image with lazy loading, proper dimensions, and responsive support.
 
     Usage:
-        {% optimized_image "images/hero.jpg" "Hero image" width=800 height=600 css_class="rounded-lg" %}
+        {% load image_tags %}
+        {% optimized_image "images/hero.jpg" "Hero image" width=800 height=600 fetchpriority="high" %}
+        {% optimized_image "images/feature.webp" "Feature" loading="lazy" class_name="rounded-lg" %}
 
     Args:
-        src: Image source path (without extension)
+        src: Image source (will be passed through static tag)
         alt: Alt text for accessibility
         width: Image width in pixels
         height: Image height in pixels
-        css_class: CSS classes to apply
-        loading: Loading strategy (lazy, eager, auto)
+        loading: 'lazy' (default), 'eager', or 'auto'
+        fetchpriority: 'high', 'low', or 'auto' (default)
+        class_name: CSS classes
+        sizes: Sizes attribute for responsive images
 
-    Returns:
-        HTML picture element with WebP and fallback
+    Features:
+        - Lazy loading by default (except for above-the-fold images)
+        - Proper width/height to prevent layout shift (CLS)
+        - decoding="async" for better performance
+        - Support for high-priority images (hero images)
     """
-    # Remove extension if present
-    if src.endswith((".jpg", ".jpeg", ".png", ".webp")):
-        src_base = src.rsplit(".", 1)[0]
-        ext = src.rsplit(".", 1)[1]
-    else:
-        src_base = src
-        ext = "jpg"
-
-    # Build attributes
-    attrs = []
-    if css_class:
-        attrs.append(f'class="{css_class}"')
-    if width:
-        attrs.append(f'width="{width}"')
-    if height:
-        attrs.append(f'height="{height}"')
-    if loading:
-        attrs.append(f'loading="{loading}"')
-
-    attrs_str = " ".join(attrs)
-
-    # Generate picture element
-    html = f"""<picture>
-  <source srcset="{src_base}.webp" type="image/webp">
-  <source srcset="{src_base}.{ext}" type="image/{ext}">
-  <img src="{src_base}.{ext}" alt="{alt}" {attrs_str}>
-</picture>"""
-
-    return mark_safe(html)
+    return {
+        "src": static(src),
+        "alt": alt,
+        "width": width,
+        "height": height,
+        "loading": loading,
+        "fetchpriority": fetchpriority,
+        "class_name": class_name,
+        "sizes": sizes,
+        "has_dimensions": width and height,
+    }
 
 
 @register.simple_tag
-def responsive_image(src, alt="", sizes="100vw", css_class="", loading="lazy"):
+def picture_tag(webp_src, fallback_src, alt="", width=None, height=None, **kwargs):
     """
-    Generate responsive image with srcset for different screen sizes.
+    Generate a <picture> element with WebP and fallback sources.
 
     Usage:
-        {% responsive_image "images/hero.jpg" "Hero" sizes="(max-width: 768px) 100vw, 50vw" %}
+        {% picture_tag "images/hero.webp" "images/hero.jpg" "Hero" width=800 height=600 fetchpriority="high" %}
 
     Args:
-        src: Base image source path
+        webp_src: WebP image source
+        fallback_src: Fallback image (JPG/PNG)
         alt: Alt text
-        sizes: Sizes attribute for responsive images
-        css_class: CSS classes
-        loading: Loading strategy
+        width: Image width
+        height: Image height
+        **kwargs: Additional attributes (loading, fetchpriority, class_name)
 
     Returns:
-        HTML picture element with responsive srcset
+        HTML string with <picture> element
     """
-    # Remove extension
-    if src.endswith((".jpg", ".jpeg", ".png", ".webp")):
-        src_base = src.rsplit(".", 1)[0]
-        ext = src.rsplit(".", 1)[1]
-    else:
-        src_base = src
-        ext = "jpg"
+    loading = kwargs.get("loading", "lazy")
+    fetchpriority = kwargs.get("fetchpriority", "auto")
+    class_name = kwargs.get("class_name", "")
 
-    # Generate srcset for different sizes (assuming you have these generated)
-    widths = [320, 640, 768, 1024, 1280, 1536, 1920]
+    width_attr = f'width="{width}"' if width else ""
+    height_attr = f'height="{height}"' if height else ""
+    class_attr = f'class="{class_name}"' if class_name else ""
 
-    # WebP srcset
-    webp_srcset = ", ".join([f"{src_base}-{w}.webp {w}w" for w in widths])
+    html = f"""
+    <picture>
+      <source srcset="{static(webp_src)}" type="image/webp">
+      <source srcset="{static(fallback_src)}" type="image/{fallback_src.split('.')[-1]}">
+      <img src="{static(fallback_src)}"
+           alt="{alt}"
+           {width_attr}
+           {height_attr}
+           loading="{loading}"
+           fetchpriority="{fetchpriority}"
+           decoding="async"
+           {class_attr}>
+    </picture>
+    """.strip()
 
-    # Fallback srcset
-    fallback_srcset = ", ".join([f"{src_base}-{w}.{ext} {w}w" for w in widths])
-
-    # Build attributes
-    attrs = []
-    if css_class:
-        attrs.append(f'class="{css_class}"')
-    if loading:
-        attrs.append(f'loading="{loading}"')
-
-    attrs_str = " ".join(attrs)
-
-    # Generate picture element
-    html = f"""<picture>
-  <source srcset="{webp_srcset}" sizes="{sizes}" type="image/webp">
-  <source srcset="{fallback_srcset}" sizes="{sizes}" type="image/{ext}">
-  <img src="{src_base}.{ext}" alt="{alt}" {attrs_str}>
-</picture>"""
-
-    return mark_safe(html)
+    return html
