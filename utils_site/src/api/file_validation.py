@@ -210,7 +210,7 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
                 return True, None
 
             else:
-                # Magic number not found - try extension-based validation
+                # Magic number not found - try extension-based lenient validation
                 if is_docx:
                     # Try to validate as DOCX even without magic number
                     # (some files might have BOM or other prefixes)
@@ -218,41 +218,40 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
                         import zipfile
 
                         with zipfile.ZipFile(file_path, "r") as zip_file:
-                            file_list = zip_file.namelist()
-                            if any(
-                                "word/document.xml" in f or "[Content_Types]" in f
-                                for f in file_list
-                            ):
-                                logger.info(
-                                    "DOCX validated by structure despite missing magic number",
-                                    extra={
-                                        **context,
-                                        "event": "docx_structure_validation",
-                                    },
-                                )
-                                return True, None
-                    except Exception as zip_err:
-                        logger.debug(
-                            "Extension-based DOCX validation failed",
+                            # Basic check: can list files and verify structure
+                            namelist = zip_file.namelist()
+                            # More robust check for DOCX structure
+                            has_content_types = "[Content_Types].xml" in namelist
+                            has_word_dir = any("word/" in name for name in namelist)
+
+                            if not (has_content_types or has_word_dir):
+                                raise ValueError("Missing DOCX structure")
+
+                        logger.info(
+                            "DOCX validated by zip structure despite missing magic number",
+                            extra={**context, "event": "docx_structure_validated"},
+                        )
+                        return True, None
+                    except Exception as e:
+                        logger.warning(
+                            "DOCX extension-based validation warning",
                             extra={
                                 **context,
-                                "error": str(zip_err),
-                                "event": "docx_extension_validation_failed",
+                                "error": str(e),
+                                "event": "docx_extension_validation_warning",
                             },
                         )
+                        if file_size > 1000:
+                            logger.info(
+                                "Allowing DOCX file despite header/zip warning (lenient)",
+                                extra={**context, "event": "docx_lenient_extension"},
+                            )
+                            return True, None
+                        return False, "File does not appear to be a valid Word document"
 
-                # Log header for debugging
-                header_hex = header[:8].hex() if len(header) >= 8 else header.hex()
-                logger.warning(
-                    "Word file magic number not recognized",
-                    extra={
-                        **context,
-                        "header_hex": header_hex,
-                        "file_ext": file_ext,
-                        "file_size": file_size,
-                        "event": "word_magic_number_unknown",
-                    },
-                )
+                elif is_doc:
+                    if file_size < 1000:  # Minimum reasonable size
+                        return False, "DOC file is too small to be valid"
 
                 # If extension is .docx or .doc and file size is reasonable, be lenient
                 if (is_docx or is_doc) and file_size > 100:
@@ -267,6 +266,8 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
                     )
                     return True, None
 
+                # Generate header hex for error message
+                header_hex = header[:8].hex() if len(header) >= 8 else header.hex()
                 return (
                     False,
                     f"File does not appear to be a valid Word document (header: {header_hex[:16]})",

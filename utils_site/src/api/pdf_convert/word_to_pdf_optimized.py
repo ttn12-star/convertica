@@ -156,9 +156,12 @@ class OptimizedWordToPDFConverter:
             try:
                 header = uploaded_file.read(16)
                 uploaded_file.seek(0)
+
+                # Lenient: allow .doc/.docx even if magic missing, but warn
                 if not (header.startswith(DOCX_MAGIC) or header.startswith(DOC_MAGIC)):
-                    raise InvalidPDFError(
-                        "File does not appear to be a valid Word document"
+                    logger.warning(
+                        "Word magic number missing, allowing based on extension/size",
+                        extra={**context, "event": "word_magic_missing"},
                     )
             except Exception as e:
                 raise InvalidPDFError(f"Failed to validate Word file: {e}") from e

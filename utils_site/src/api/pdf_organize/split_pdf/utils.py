@@ -2,6 +2,7 @@ import os
 import zipfile
 from io import BytesIO
 
+import fitz
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
 from src.exceptions import (
@@ -60,6 +61,8 @@ def split_pdf(
         ):
             reader = PdfReader(input_pdf_path)
             total_pages = len(reader.pages)
+            if total_pages == 0:
+                raise ConversionError("PDF has no pages", context=context)
 
             def _writer_to_bytes(writer: PdfWriter) -> bytes:
                 buf = BytesIO()
@@ -67,6 +70,7 @@ def split_pdf(
                 return buf.getvalue()
 
             written = 0
+            # First attempt with PyPDF2
             with zipfile.ZipFile(
                 zip_path, "w", compression=zipfile.ZIP_DEFLATED
             ) as zipf:
@@ -123,6 +127,40 @@ def split_pdf(
                             file_idx += 1
                 else:
                     raise ConversionError("Invalid split_type", context=context)
+
+            # Fallback to PyMuPDF splitting if PyPDF2 produced nothing
+            if written == 0:
+                logger.warning(
+                    "PyPDF2 produced no output, falling back to PyMuPDF",
+                    extra={**context, "event": "fallback_to_pymupdf"},
+                )
+                doc = None
+                try:
+                    doc = fitz.open(input_pdf_path)
+                    with zipfile.ZipFile(
+                        zip_path, "w", compression=zipfile.ZIP_DEFLATED
+                    ) as zipf:
+                        for page_idx in range(doc.page_count):
+                            single = None
+                            try:
+                                single = fitz.open()
+                                single.insert_pdf(
+                                    doc, from_page=page_idx, to_page=page_idx
+                                )
+                                name = f"{base}_page_{page_idx + 1}{suffix}.pdf"
+                                zipf.writestr(name, single.tobytes())
+                                written += 1
+                            finally:
+                                if single:
+                                    single.close()
+                except Exception as e:
+                    raise ConversionError(
+                        f"No output files created (fallback failed: {e})",
+                        context=context,
+                    )
+                finally:
+                    if doc:
+                        doc.close()
 
             if written == 0:
                 raise ConversionError("No output files created", context=context)
