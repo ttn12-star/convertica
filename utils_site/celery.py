@@ -21,6 +21,9 @@ try:
     # the configuration object to child processes.
     # - namespace='CELERY' means all celery-related configuration keys
     #   should have a `CELERY_` prefix.
+    # IMPORTANT: This loads CELERY_BEAT_SCHEDULE from settings.py
+    # The beat_schedule defined below in app.conf.update() will be OVERRIDDEN
+    # by settings.CELERY_BEAT_SCHEDULE - always edit settings.py for beat schedule
     app.config_from_object("django.conf:settings", namespace="CELERY")
 
     # Load task modules from all registered Django apps.
@@ -106,7 +109,10 @@ try:
         task_send_sent_event=True,
         # Track task state during execution (for progress reporting)
         task_track_started=True,
-        # Beat schedule for periodic tasks
+        # ⚠️ DEPRECATED: Beat schedule for periodic tasks
+        # This configuration is OVERRIDDEN by settings.CELERY_BEAT_SCHEDULE
+        # Edit settings.py instead of this file to configure beat schedule
+        # Left here for reference only - not used in production
         beat_schedule={
             "cleanup-async-temp-files": {
                 "task": "maintenance.cleanup_async_temp_files",

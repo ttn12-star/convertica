@@ -75,6 +75,8 @@ stripe==14.1.0
 channels==4.0.0
 channels-redis==4.1.0
 # Web Push - Push notifications for PWA
+# Note: py_vapid 1.9.3 has broken tar file, pin to working version
+py-vapid==1.9.1
 pywebpush==1.14.0
 # Playwright - HTML/URL to PDF conversion
 playwright==1.48.0
