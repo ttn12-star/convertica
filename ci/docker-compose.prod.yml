@@ -31,9 +31,7 @@ services:
              python /app/create_manifest.py || true &&
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
              python manage.py compilemessages &&
-             python manage.py migrate users 0001_initial --fake-initial &&
-             python manage.py migrate users 0002_alter_user_managers &&
-             python manage.py migrate &&
+             python manage.py migrate --noinput &&
              gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-2} --timeout 300 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload utils_site.wsgi:application"
     env_file:
       - .env

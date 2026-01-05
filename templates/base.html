@@ -324,31 +324,89 @@
           gtagScript.defer = true;
           document.head.appendChild(gtagScript);
 
-          function initAnalytics() {
-            if (window.ym) {
-              ym(105790338, 'init', {
-                clickmap: true, trackLinks: true,
-                accurateTrackBounce: true, webvisor: false
-              });
-              ym(105790338, 'hit', window.location.href);
+          // Wait for scripts to load before initializing
+          function waitForScripts(callback) {
+            var attempts = 0;
+            var maxAttempts = 50; // 5 seconds max wait
+
+            function check() {
+              attempts++;
+              // Check if Yandex Metrika is loaded (optional, will work without it)
+              var ymReady = typeof window.ym !== 'undefined' || attempts > 10;
+              // Check if Google Analytics is loaded
+              var gaReady = typeof window.gtag !== 'undefined' || attempts > 10;
+
+              if (ymReady && gaReady) {
+                callback();
+              } else if (attempts < maxAttempts) {
+                setTimeout(check, 100);
+              } else {
+                // Timeout - initialize anyway (scripts might load later)
+                callback();
+              }
             }
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
-            gtag('event', 'page_view', { page_path: window.location.pathname });
+            check();
           }
 
-          if (window.CookieConsent) {
-            if (window.CookieConsent.hasUserConsented()) {
-              initAnalytics();
+          function initAnalytics() {
+            // Initialize Yandex Metrika
+            if (typeof window.ym !== 'undefined') {
+              try {
+                ym(105790338, 'init', {
+                  clickmap: true, trackLinks: true,
+                  accurateTrackBounce: true, webvisor: false
+                });
+                ym(105790338, 'hit', window.location.href);
+              } catch(e) {
+                console.warn('Yandex Metrika init error:', e);
+              }
             } else {
-              window.addEventListener('CookieConsentAccepted', initAnalytics);
+              // Yandex script not loaded yet, try again later
+              setTimeout(function() {
+                if (typeof window.ym !== 'undefined') {
+                  ym(105790338, 'init', {
+                    clickmap: true, trackLinks: true,
+                    accurateTrackBounce: true, webvisor: false
+                  });
+                  ym(105790338, 'hit', window.location.href);
+                }
+              }, 1000);
             }
-          } else {
-            initAnalytics();
+
+            // Initialize Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            if (typeof window.gtag === 'undefined') {
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+            }
+
+            try {
+              gtag('js', new Date());
+              gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
+              gtag('event', 'page_view', { page_path: window.location.pathname });
+            } catch(e) {
+              console.warn('Google Analytics init error:', e);
+            }
           }
+
+          // Check cookie consent
+          function checkAndInitAnalytics() {
+            var cookieConsent = localStorage.getItem('cookie_consent');
+            var cookieAnalytics = localStorage.getItem('cookie_analytics');
+
+            // If user has accepted cookies and analytics is enabled
+            if (cookieConsent === 'accepted' && cookieAnalytics === 'true') {
+              waitForScripts(initAnalytics);
+            } else if (!cookieConsent) {
+              // No consent yet - wait for user decision
+              window.addEventListener('cookieConsentAccepted', function() {
+                waitForScripts(initAnalytics);
+              }, { once: true });
+            }
+            // If user rejected, don't initialize analytics
+          }
+
+          checkAndInitAnalytics();
         }
 
         // Load analytics after page is interactive (not blocking LCP)
