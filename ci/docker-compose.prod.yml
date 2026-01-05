@@ -13,7 +13,7 @@ services:
         condition: service_healthy
     healthcheck:
       # Check nginx is responding (health endpoint is served directly by nginx)
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health/"]
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "--header=Host: convertica.net", "http://127.0.0.1/health/"]
       interval: 30s
       timeout: 5s
       retries: 3
