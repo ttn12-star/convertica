@@ -5,7 +5,7 @@ services:
   nginx:
     # Use nginx with Brotli support
     build:
-      context: ..
+      context: .
       dockerfile: ci/nginx.Dockerfile
     # Note: profiles removed - nginx should always be available in production
     depends_on:
