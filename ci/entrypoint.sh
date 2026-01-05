@@ -25,5 +25,13 @@ if [ -d /app/media ]; then
     mkdir -p /app/media/async_temp 2>/dev/null || true
 fi
 
+# Pre-compress static files with gzip and brotli (if available)
+# This runs after collectstatic (which is done in Dockerfile)
+# Compression is idempotent - safe to run multiple times
+if [ -d /app/staticfiles ] && [ -f /app/scripts/compress_static.sh ]; then
+    echo "Pre-compressing static files..."
+    /app/scripts/compress_static.sh /app/staticfiles 2>/dev/null || true
+fi
+
 # Execute the command passed to the container
 exec "$@"

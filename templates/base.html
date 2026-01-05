@@ -56,7 +56,7 @@
     {% if request.GET.lang %}
       <meta name="robots" content="noindex, follow">
     {% endif %}
-    <!-- Preconnect to external domains -->
+    <!-- Preconnect to external domains (for analytics and CDN) -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="dns-prefetch" href="https://challenges.cloudflare.com">
@@ -66,11 +66,25 @@
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 
-    <!-- Google Fonts - Async loading to prevent render blocking -->
+    <!-- Critical resources preload -->
+    <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
+    <link rel="preload" href="{% static 'js/utils.js' %}" as="script">
+
+    <!-- Self-hosted fonts (300ms faster than Google Fonts CDN) -->
+    <!-- Preload critical fonts for better FCP -->
+    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-600.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/poppins/poppins-v20-latin-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <!-- Load fonts CSS -->
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+
+    <!-- Google Fonts (DISABLED - using self-hosted for better performance) -->
+    <!--
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    -->
 
     <!-- Hreflang -->
     {% for link in hreflangs %}

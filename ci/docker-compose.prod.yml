@@ -3,7 +3,10 @@
 
 services:
   nginx:
-    # Healthcheck removed - container status sufficient
+    # Use nginx with Brotli support
+    build:
+      context: ..
+      dockerfile: ci/nginx.Dockerfile
     profiles:
       - production
 
@@ -14,6 +17,7 @@ services:
     command: >
       sh -c "python /app/clear_staticfiles.py || true &&
              python manage.py collectstatic --noinput &&
+             /app/scripts/compress_static.sh /app/staticfiles || true &&
              python /app/ci/generate_robots_txt.py || true &&
              python /app/create_manifest.py || true &&
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
