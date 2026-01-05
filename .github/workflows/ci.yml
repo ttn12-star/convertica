@@ -389,7 +389,14 @@ jobs:
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml pull web celery celery-beat || true
 
             # Rebuild containers (to get latest code changes)
+            # Note: nginx now requires build (Brotli support), so we build it too
             echo "🔨 Rebuilding containers..."
+            # Build nginx first (it's a dependency for web)
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build nginx; then
+              echo "⚠️ Nginx build failed, but continuing with other services..."
+              echo "   This may be due to network issues pulling base image"
+            fi
+            # Build other services
             docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build web celery celery-beat
 
             # Rolling deployment with automatic rollback strategy
@@ -421,6 +428,13 @@ jobs:
             echo "   Note: Old container will be stopped before new one starts (sequential deployment)"
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web; then
               echo "❌ Failed to start new web container"
+              echo "🔍 Diagnostics (web container)"
+              docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml ps web || true
+              docker ps -a --filter name=convertica_web --format 'table {{.Names}}\t{{.Status}}\t{{.Image}}' || true
+              echo "--- docker logs (last 200) ---"
+              docker logs --tail 200 convertica_web 2>/dev/null || true
+              echo "--- docker inspect (health) ---"
+              docker inspect --format='{{json .State.Health}}' convertica_web 2>/dev/null || true
               echo "🔄 Rolling back - restoring old container..."
               if [ -n "$OLD_WEB_ID" ]; then
                 echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
