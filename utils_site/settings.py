@@ -760,17 +760,50 @@ CELERY_TIMEZONE = "UTC"
 CELERY_ENABLE_UTC = True
 
 # Celery Beat Schedule (periodic tasks)
+# NOTE: This configuration takes precedence over celery.py configuration
 CELERY_BEAT_SCHEDULE = {
     # Clean up temp files every hour (safety net)
     "cleanup-temp-files-hourly": {
         "task": "maintenance.cleanup_temp_files",
         "schedule": 3600,  # Every hour
     },
-    # Delete unverified accounts older than 30 days (runs daily at 3 AM)
+    # Clean up async temp files every 30 minutes
+    "cleanup-async-temp-files": {
+        "task": "maintenance.cleanup_async_temp_files",
+        "schedule": 1800,  # Every 30 minutes
+        "kwargs": {"max_age_seconds": 3600},  # Clean files older than 1 hour
+    },
+    # Memory cleanup every 15 minutes (for 4GB servers)
+    "memory-cleanup": {
+        "task": "maintenance.memory_cleanup",
+        "schedule": 900,  # Every 15 minutes
+    },
+    # Update subscriptions daily
+    "update-subscription-daily": {
+        "task": "maintenance.update_subscription_daily",
+        "schedule": 86400,  # Every 24 hours
+    },
+    # Mark stuck operations as abandoned (but don't delete them)
+    "cleanup-stuck-operations": {
+        "task": "maintenance.cleanup_stuck_operations",
+        "schedule": 3600,  # Every hour
+        "kwargs": {
+            "max_age_hours": 24
+        },  # Mark as abandoned after 24 hours (not 1 hour!)
+    },
+    # Delete unverified accounts older than 30 days (runs daily)
     "delete-unverified-accounts-daily": {
         "task": "user_cleanup.delete_unverified_accounts",
         "schedule": 86400,  # Every 24 hours
     },
+    # ⚠️ DISABLED: cleanup-old-operations - Keep all operation data permanently
+    # If you need to cleanup old data, run manually:
+    #   docker compose exec web python manage.py shell -c "from src.tasks.maintenance import cleanup_old_operations; cleanup_old_operations(retention_days=730)"
+    # "cleanup-old-operations": {
+    #     "task": "maintenance.cleanup_old_operations",
+    #     "schedule": 86400,  # Every 24 hours
+    #     "kwargs": {"retention_days": 730},  # Keep operations for 2 years (was 365)
+    # },
 }
 
 # Rate Limiting Configuration
