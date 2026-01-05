@@ -43,7 +43,7 @@ services:
     expose:
       - "6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-changeme}", "ping"]
       interval: 10s
       timeout: 3s
       retries: 5
@@ -59,9 +59,11 @@ services:
       - convertica_network
     restart: unless-stopped
 
-  # Nginx for static files and reverse proxy
+  # Nginx for static files and reverse proxy (with Brotli compression)
   nginx:
-    image: nginx:alpine
+    build:
+      context: .
+      dockerfile: ci/nginx.Dockerfile
     container_name: convertica_nginx
     volumes:
       - ./staticfiles:/app/staticfiles:ro
@@ -81,6 +83,11 @@ services:
         reservations:
           cpus: '0.05'
           memory: 32M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     networks:
       - convertica_network
     restart: unless-stopped
@@ -94,6 +101,7 @@ services:
     command: >
       sh -c "python /app/clear_staticfiles.py || true &&
              python manage.py collectstatic --noinput &&
+             /app/scripts/compress_static.sh /app/staticfiles || true &&
              python /app/create_manifest.py || true &&
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
              python manage.py compilemessages &&
@@ -238,11 +246,17 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "sh", "-c", "echo ok"]
+      # Check if celery beat process is running
+      test: ["CMD-SHELL", "pgrep -f 'celery.*beat' > /dev/null || exit 1"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     networks:
       - convertica_network
     restart: unless-stopped

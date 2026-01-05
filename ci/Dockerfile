@@ -105,6 +105,7 @@ FROM python:3.12-slim AS production
 # Install runtime dependencies (split for better caching)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
+    brotli \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -180,6 +181,11 @@ RUN chmod +x /app/clear_staticfiles.py || true
 # Copy manifest creation script
 COPY --chown=appuser:appuser ci/create_manifest.py /app/create_manifest.py
 RUN chmod +x /app/create_manifest.py || true
+
+# Copy compression scripts
+RUN mkdir -p /app/scripts && chown appuser:appuser /app/scripts
+COPY --chown=appuser:appuser scripts/compress_static.sh /app/scripts/compress_static.sh
+RUN chmod +x /app/scripts/compress_static.sh || true
 
 # Create symlink for src module to make it importable from root
 # This allows Django to find 'src.frontend' and 'src.blog' apps
