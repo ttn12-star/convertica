@@ -356,8 +356,10 @@ jobs:
             echo "✅ Current tag $CURRENT_TAG is the latest, proceeding with deployment"
 
             # Save server-specific files (SSL, staticfiles, etc.) before pull
+            # IMPORTANT: restrict stash to these paths only, so docker compose configs and code
+            # can't be accidentally restored from local changes and break prod startup.
             echo "💾 Saving server-specific files..."
-            git stash push -m "Server local changes: staticfiles, ssl, renew-ssl.sh" || true
+            git stash push -m "Server local changes: staticfiles, ssl, renew-ssl.sh" -- staticfiles ssl renew-ssl.sh || true
 
             # Pull latest code from repository
             echo "📥 Pulling latest code..."
