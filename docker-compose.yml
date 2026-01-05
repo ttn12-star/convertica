@@ -74,7 +74,15 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - web
+      web:
+        condition: service_healthy
+    healthcheck:
+      # Check nginx is responding (health endpoint is served directly by nginx)
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     deploy:
       resources:
         limits:

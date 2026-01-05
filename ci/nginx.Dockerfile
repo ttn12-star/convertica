@@ -3,11 +3,10 @@
 
 FROM fholzer/nginx-brotli:latest
 
-# Install wget for healthcheck (if not present)
+# Install wget for healthcheck (nginx:alpine usually has it, but ensure it's available)
 RUN apk add --no-cache wget || true
 
-# Healthcheck - check internal health endpoint
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD wget -q --spider http://127.0.0.1/health/ || exit 1
+# Note: Healthcheck is defined in docker-compose.yml, not here
+# This avoids conflicts and allows better control over healthcheck behavior
 
 EXPOSE 80 443

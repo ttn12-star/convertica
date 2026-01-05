@@ -5,8 +5,11 @@
 #
 # Usage: ./scripts/compress_static.sh [staticfiles_directory]
 #
+# Note: Script is designed to be resilient - continues even if compression fails
+#       This ensures deployment doesn't fail if compression tools are missing
 
-set -e
+# Don't exit on error - we want to continue even if compression fails
+set +e
 
 # Colors for output
 GREEN='\033[0;32m'
@@ -38,27 +41,34 @@ echo
 #===============================================================================
 echo -e "${GREEN}[1/2] Gzip compression (level 9)...${NC}"
 
-gzip_count=0
-gzip_size_before=0
-gzip_size_after=0
+if ! command -v gzip &> /dev/null; then
+    echo -e "${YELLOW}  ⚠ Gzip not found, skipping...${NC}"
+    gzip_count=0
+    gzip_size_before=0
+    gzip_size_after=0
+else
+    gzip_count=0
+    gzip_size_before=0
+    gzip_size_after=0
 
-while IFS= read -r file; do
-    if [ -f "$file" ]; then
-        size_before=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
-        gzip_size_before=$((gzip_size_before + size_before))
+    while IFS= read -r file; do
+        if [ -f "$file" ]; then
+            size_before=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo "0")
+            gzip_size_before=$((gzip_size_before + size_before))
 
-        # Create gzipped version (keep original)
-        gzip -9 -k -f "$file"
-
-        if [ -f "${file}.gz" ]; then
-            size_after=$(stat -f%z "${file}.gz" 2>/dev/null || stat -c%s "${file}.gz" 2>/dev/null)
-            gzip_size_after=$((gzip_size_after + size_after))
-            gzip_count=$((gzip_count + 1))
+            # Create gzipped version (keep original) - continue on error
+            if gzip -9 -k -f "$file" 2>/dev/null; then
+                if [ -f "${file}.gz" ]; then
+                    size_after=$(stat -f%z "${file}.gz" 2>/dev/null || stat -c%s "${file}.gz" 2>/dev/null || echo "0")
+                    gzip_size_after=$((gzip_size_after + size_after))
+                    gzip_count=$((gzip_count + 1))
+                fi
+            fi
         fi
-    fi
-done < <(find . -type f \( -name '*.css' -o -name '*.js' -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.html' -o -name '*.txt' \) -not -name '*.gz' -not -name '*.br')
+    done < <(find . -type f \( -name '*.css' -o -name '*.js' -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.html' -o -name '*.txt' \) -not -name '*.gz' -not -name '*.br' 2>/dev/null || true)
 
-echo "  ✓ Compressed $gzip_count files"
+    echo "  ✓ Compressed $gzip_count files"
+fi
 if [ $gzip_size_before -gt 0 ]; then
     gzip_ratio=$(awk "BEGIN {printf \"%.1f\", (1 - $gzip_size_after / $gzip_size_before) * 100}")
     echo "  ✓ Size reduction: ${gzip_ratio}%"
@@ -82,20 +92,20 @@ else
 
     while IFS= read -r file; do
         if [ -f "$file" ]; then
-            size_before=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null)
+            size_before=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo "0")
             brotli_size_before=$((brotli_size_before + size_before))
 
-            # Create brotli version (keep original)
+            # Create brotli version (keep original) - continue on error
             # Level 11 = maximum compression (slower but best for static files)
-            brotli -q 11 -k -f "$file"
-
-            if [ -f "${file}.br" ]; then
-                size_after=$(stat -f%z "${file}.br" 2>/dev/null || stat -c%s "${file}.br" 2>/dev/null)
-                brotli_size_after=$((brotli_size_after + size_after))
-                brotli_count=$((brotli_count + 1))
+            if brotli -q 11 -k -f "$file" 2>/dev/null; then
+                if [ -f "${file}.br" ]; then
+                    size_after=$(stat -f%z "${file}.br" 2>/dev/null || stat -c%s "${file}.br" 2>/dev/null || echo "0")
+                    brotli_size_after=$((brotli_size_after + size_after))
+                    brotli_count=$((brotli_count + 1))
+                fi
             fi
         fi
-    done < <(find . -type f \( -name '*.css' -o -name '*.js' -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.html' -o -name '*.txt' \) -not -name '*.gz' -not -name '*.br')
+    done < <(find . -type f \( -name '*.css' -o -name '*.js' -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.html' -o -name '*.txt' \) -not -name '*.gz' -not -name '*.br' 2>/dev/null || true)
 
     echo "  ✓ Compressed $brotli_count files"
     if [ $brotli_size_before -gt 0 ]; then
