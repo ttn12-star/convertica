@@ -65,6 +65,8 @@
     <link rel="preconnect" href="https://mc.yandex.ru" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
     <!-- Critical resources preload -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
@@ -75,8 +77,9 @@
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-600.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{% static 'fonts/poppins/poppins-v20-latin-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <!-- Load fonts CSS -->
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <!-- Load fonts CSS asynchronously (non-blocking) -->
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}" media="print" onload="this.media='all';this.onload=null">
+    <noscript><link rel="stylesheet" href="{% static 'css/fonts.css' %}"></noscript>
 
     <!-- Google Fonts (DISABLED - using self-hosted for better performance) -->
     <!--
@@ -137,8 +140,9 @@
     <link rel="preload" href="{% static 'css/dark-mode-helpers.css' %}" as="style">
     <link rel="preload" href="{% static 'css/mobile-optimizations.css' %}" as="style">
 
-    <!-- Load full stylesheets asynchronously with fallback -->
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" onload="document.documentElement.classList.add('css-loaded')">
+    <!-- Load full stylesheets asynchronously with fallback (non-blocking) -->
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="print" onload="this.media='all';document.documentElement.classList.add('css-loaded');this.onload=null">
+    <noscript><link rel="stylesheet" href="{% static 'css/tailwind.css' %}"></noscript>
 
     <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="print" onload="this.media='all';this.onload=null">
     <noscript><link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}"></noscript>
@@ -299,40 +303,43 @@
     </script>
 
     <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
+    <!-- Deferred loading to improve LCP - analytics loads after page is interactive -->
     <script>
       (function() {
-        (function(m,e,t,r,i,k,a){
-          m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-          m[i].l=1*new Date();
-          for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) { return; }
+        // Delay analytics loading until after page is interactive
+        function loadAnalytics() {
+          (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+              if (document.scripts[j].src === r) { return; }
+            }
+            k=e.createElement(t), a=e.getElementsByTagName(t)[0];
+            k.async = 1; k.defer = 1; k.src = r; a.parentNode.insertBefore(k,a);
+          })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+          var gtagScript = document.createElement('script');
+          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
+          gtagScript.async = true;
+          gtagScript.defer = true;
+          document.head.appendChild(gtagScript);
+
+          function initAnalytics() {
+            if (window.ym) {
+              ym(105790338, 'init', {
+                clickmap: true, trackLinks: true,
+                accurateTrackBounce: true, webvisor: false
+              });
+              ym(105790338, 'hit', window.location.href);
+            }
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
+            gtag('event', 'page_view', { page_path: window.location.pathname });
           }
-          k=e.createElement(t), a=e.getElementsByTagName(t)[0];
-          k.async = 1; k.src = r; a.parentNode.insertBefore(k,a);
-        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-        var gtagScript = document.createElement('script');
-        gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
-        gtagScript.async = true;
-        document.head.appendChild(gtagScript);
-
-        function initAnalytics() {
-          if (window.ym) {
-            ym(105790338, 'init', {
-              clickmap: true, trackLinks: true,
-              accurateTrackBounce: true, webvisor: false
-            });
-            ym(105790338, 'hit', window.location.href);
-          }
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', 'G-65KKH2JRKC', { send_page_view: false });
-          gtag('event', 'page_view', { page_path: window.location.pathname });
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
           if (window.CookieConsent) {
             if (window.CookieConsent.hasUserConsented()) {
               initAnalytics();
@@ -342,7 +349,23 @@
           } else {
             initAnalytics();
           }
-        });
+        }
+
+        // Load analytics after page is interactive (not blocking LCP)
+        if (document.readyState === 'complete') {
+          // Page already loaded, load analytics immediately
+          setTimeout(loadAnalytics, 0);
+        } else {
+          // Wait for page to be interactive before loading analytics
+          window.addEventListener('load', function() {
+            // Use requestIdleCallback if available, otherwise setTimeout
+            if (window.requestIdleCallback) {
+              requestIdleCallback(loadAnalytics, { timeout: 2000 });
+            } else {
+              setTimeout(loadAnalytics, 2000);
+            }
+          });
+        }
       })();
     </script>
   </body>
