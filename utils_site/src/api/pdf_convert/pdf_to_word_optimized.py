@@ -7,6 +7,7 @@ import os
 import shutil
 import tempfile
 
+import fitz
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
 from src.api.file_validation import check_disk_space, sanitize_filename
@@ -16,6 +17,43 @@ from src.api.pdf_utils import repair_pdf
 from src.exceptions import ConversionError, StorageError
 
 logger = get_logger(__name__)
+
+
+def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str) -> str:
+    """
+    Re-render PDF pages to RGB-only PDF to avoid PyMuPDF pixmap PNG write errors
+    (e.g., CMYK/spot colors).
+
+    Args:
+        pdf_path: Input PDF path
+        tmp_dir: Directory to place normalized PDF
+
+    Returns:
+        Path to normalized RGB PDF
+    """
+    rgb_path = os.path.join(tmp_dir, f"rgb_{os.path.basename(pdf_path)}")
+    src = None
+    out = None
+    try:
+        src = fitz.open(pdf_path)
+        out = fitz.open()
+
+        for page in src:
+            # Use matrix for better quality and performance
+            pix = page.get_pixmap(
+                alpha=False, colorspace=fitz.csRGB, matrix=fitz.Matrix(1, 1)
+            )
+            new_page = out.new_page(width=pix.width, height=pix.height)
+            rect = fitz.Rect(0, 0, pix.width, pix.height)
+            new_page.insert_image(rect, stream=pix.tobytes("png"))
+
+        out.save(rgb_path, garbage=4, deflate=True)
+        return rgb_path
+    finally:
+        if out:
+            out.close()
+        if src:
+            src.close()
 
 
 class OptimizedPDFToWordConverter:
@@ -354,6 +392,42 @@ class OptimizedPDFToWordConverter:
         try:
             await loop.run_in_executor(None, _convert, pdf_path)
         except Exception as first_exc:
+            msg = str(first_exc).lower()
+            if "pixmap must be grayscale or rgb" in msg or "colorspace" in msg:
+                logger.warning(
+                    "Direct conversion failed due to pixmap colorspace; retrying with RGB-normalized PDF",
+                    extra={
+                        **context,
+                        "event": "retry_with_rgb",
+                        "error": str(first_exc)[:200],
+                    },
+                )
+                try:
+                    rgb_pdf_path = _normalize_pdf_to_rgb(
+                        pdf_path, os.path.dirname(docx_path)
+                    )
+                    await loop.run_in_executor(None, _convert, rgb_pdf_path)
+                    logger.info(
+                        "Retry with RGB-normalized PDF succeeded",
+                        extra={**context, "event": "retry_with_rgb_success"},
+                    )
+                    # Clean up the temporary RGB PDF
+                    try:
+                        os.remove(rgb_pdf_path)
+                    except Exception:
+                        pass
+                    return
+                except Exception as rgb_exc:
+                    logger.error(
+                        "RGB normalization retry failed",
+                        extra={
+                            **context,
+                            "event": "retry_with_rgb_failed",
+                            "error": str(rgb_exc)[:200],
+                        },
+                    )
+                    # Fall through to original retry logic
+
             # If conversion fails, try with repair
             logger.warning(
                 "Direct conversion failed, attempting with repair",

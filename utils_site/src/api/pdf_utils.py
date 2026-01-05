@@ -63,6 +63,7 @@ def repair_pdf(input_path: str, output_path: str | None = None) -> str:
     Raises:
         Exception: If repair fails completely
     """
+    in_place = output_path is None or output_path == input_path
     if output_path is None:
         output_path = input_path
 
@@ -70,17 +71,27 @@ def repair_pdf(input_path: str, output_path: str | None = None) -> str:
         # Open PDF (PyMuPDF automatically attempts basic repair on open)
         doc = fitz.open(input_path)
 
+        # When repairing in place, save to temp then replace to avoid
+        # "save to original must be incremental" errors.
+        target_path = output_path
+        tmp_path = output_path
+        if in_place:
+            tmp_path = f"{output_path}.repair.tmp"
+
         # Re-save with maximum garbage collection and compression
         # garbage=4 removes unused objects and compacts xref
         # deflate=True compresses streams
         # clean=True sanitizes content streams
         doc.save(
-            output_path,
+            tmp_path,
             garbage=4,
             deflate=True,
             clean=True,
         )
         doc.close()
+
+        if in_place and tmp_path != target_path:
+            os.replace(tmp_path, target_path)
 
         logger.debug("PDF repair successful: %s -> %s", input_path, output_path)
         return output_path

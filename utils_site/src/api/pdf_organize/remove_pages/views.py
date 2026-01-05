@@ -18,6 +18,7 @@ class RemovePagesAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".pdf"}
     CONVERSION_TYPE = "REMOVE_PAGES"
     FILE_FIELD_NAME = "pdf_file"
+    VALIDATE_PDF_PAGES = False
 
     def get_serializer_class(self):
         return RemovePagesSerializer
