@@ -215,7 +215,7 @@ celery -A utils_site beat -l info
 
 ## 🐳 Docker
 
-Проект полностью готов к контейнеризации. Подробные инструкции см. в [ci/DOCKER.md](ci/DOCKER.md).
+Проект полностью готов к контейнеризации. Подробные инструкции см. в [ci/DEPLOYMENT_GUIDE.md](ci/DEPLOYMENT_GUIDE.md).
 
 ### Быстрый старт с Docker:
 ```bash
@@ -241,7 +241,7 @@ make down        # Остановка
 - 📦 Gzip сжатие (~70% уменьшение размера)
 - 💾 Кеширование на 1 год
 
-**Альтернатива:** WhiteNoise (проще, но медленнее) - см. `README_STATIC_FILES.md`
+**Альтернатива:** WhiteNoise (проще, но медленнее) - можно настроить в `utils_site/settings.py`
 
 ## 🔄 CI/CD
 
@@ -261,7 +261,7 @@ make down        # Остановка
 
 2. Push в репозиторий - CI/CD запустится автоматически!
 
-📖 **Подробная инструкция:** [docs/CI_CD_SETUP.md](docs/CI_CD_SETUP.md)
+📖 **Подробная инструкция:** [ci/AUTO_DEPLOY_SETUP.md](ci/AUTO_DEPLOY_SETUP.md)
 
 ## 📡 API Endpoints
 
@@ -416,9 +416,11 @@ convertica/
 ├── locale/                  # Переводы (i18n)
 ├── logs/                    # Логи приложения
 ├── ci/                      # Документация по деплою и CI/CD
-│   ├── DEPLOYMENT.md        # Инструкция по деплою
-│   ├── DOCKER.md            # Docker документация
-│   └── README_CI.md         # CI/CD документация
+│   ├── DEPLOYMENT_GUIDE.md  # Полное руководство по деплою
+│   ├── DEPLOYMENT_QUICK_START.md  # Быстрый старт
+│   ├── AUTO_DEPLOY_SETUP.md # Настройка CI/CD
+│   ├── Dockerfile           # Docker образ приложения
+│   └── nginx.Dockerfile     # Docker образ Nginx
 ├── Dockerfile               # Docker образ
 ├── docker-compose.yml       # Production compose
 ├── docker-compose.dev.yml   # Development compose
@@ -429,7 +431,7 @@ convertica/
 
 ## 🚀 Деплой в production
 
-Полная инструкция по деплою доступна в [ci/DEPLOYMENT.md](ci/DEPLOYMENT.md).
+Полная инструкция по деплою доступна в [ci/DEPLOYMENT_GUIDE.md](ci/DEPLOYMENT_GUIDE.md).
 
 ### Рекомендуемые платформы:
 - **DigitalOcean App Platform** (⭐ рекомендуется для начала)
@@ -493,7 +495,7 @@ API возвращает понятные сообщения об ошибках
 
 2. Push в репозиторий - CI/CD запустится автоматически!
 
-📖 **Подробная инструкция:** [docs/CI_CD_SETUP.md](docs/CI_CD_SETUP.md)
+📖 **Подробная инструкция:** [ci/AUTO_DEPLOY_SETUP.md](ci/AUTO_DEPLOY_SETUP.md)
 
 ## 📄 Лицензия
 
@@ -523,9 +525,10 @@ API возвращает понятные сообщения об ошибках
 
 ## 📚 Documentation
 
-- [ci/DEPLOYMENT.md](ci/DEPLOYMENT.md) - Full deployment guide
-- [ci/DOCKER.md](ci/DOCKER.md) - Docker documentation
-- [ci/README_CI.md](ci/README_CI.md) - CI/CD setup
+- [ci/DEPLOYMENT_GUIDE.md](ci/DEPLOYMENT_GUIDE.md) - Full deployment guide
+- [ci/DEPLOYMENT_QUICK_START.md](ci/DEPLOYMENT_QUICK_START.md) - Quick start guide
+- [ci/AUTO_DEPLOY_SETUP.md](ci/AUTO_DEPLOY_SETUP.md) - CI/CD setup
+- [ci/PRODUCTION_CHECKLIST.md](ci/PRODUCTION_CHECKLIST.md) - Production checklist
 
 ## 🔗 Links
 
@@ -535,10 +538,10 @@ API возвращает понятные сообщения об ошибках
 - 🖼️ **PDF to JPG:** [convertica.net/pdf-to-jpg](https://convertica.net/pdf-to-jpg/)
 - 🖼️ **JPG to PDF:** [convertica.net/jpg-to-pdf](https://convertica.net/jpg-to-pdf/)
 - 📊 **PDF to Excel:** [convertica.net/pdf-to-excel](https://convertica.net/pdf-to-excel/)
-- 🔀 **Merge PDF:** [convertica.net/merge-pdf](https://convertica.net/merge-pdf/)
-- ✂️ **Split PDF:** [convertica.net/split-pdf](https://convertica.net/split-pdf/)
-- 🗜️ **Compress PDF:** [convertica.net/compress-pdf](https://convertica.net/compress-pdf/)
-- 🔒 **Protect PDF:** [convertica.net/protect-pdf](https://convertica.net/protect-pdf/)
+- 🔀 **Merge PDF:** [convertica.net/pdf-organize/merge/](https://convertica.net/pdf-organize/merge/)
+- ✂️ **Split PDF:** [convertica.net/pdf-organize/split/](https://convertica.net/pdf-organize/split/)
+- 🗜️ **Compress PDF:** [convertica.net/pdf-organize/compress/](https://convertica.net/pdf-organize/compress/)
+- 🔒 **Protect PDF:** [convertica.net/pdf-security/protect/](https://convertica.net/pdf-security/protect/)
 
 ## 📄 License
 
@@ -552,7 +555,7 @@ Proprietary - All rights reserved
 
 **22 Free PDF Tools:**
 
-[PDF to Word Converter](https://convertica.net/pdf-to-word/) | [Word to PDF Converter](https://convertica.net/word-to-pdf/) | [PDF to JPG Converter](https://convertica.net/pdf-to-jpg/) | [JPG to PDF Converter](https://convertica.net/jpg-to-pdf/) | [PDF to Excel Converter](https://convertica.net/pdf-to-excel/) | [Excel to PDF Converter](https://convertica.net/excel-to-pdf/) | [PowerPoint to PDF](https://convertica.net/ppt-to-pdf/) | [HTML to PDF](https://convertica.net/html-to-pdf/) | [Merge PDF Files Online](https://convertica.net/merge-pdf/) | [Split PDF Online](https://convertica.net/split-pdf/) | [Compress PDF Online](https://convertica.net/compress-pdf/) | [Rotate PDF Pages](https://convertica.net/rotate-pdf/) | [Crop PDF Online](https://convertica.net/crop-pdf/) | [Add Page Numbers to PDF](https://convertica.net/add-page-numbers/) | [Add Watermark to PDF](https://convertica.net/add-watermark/) | [Extract PDF Pages](https://convertica.net/extract-pages/) | [Remove PDF Pages](https://convertica.net/remove-pages/) | [Organize PDF Pages](https://convertica.net/organize-pdf/) | [Protect PDF with Password](https://convertica.net/protect-pdf/) | [Unlock PDF Online](https://convertica.net/unlock-pdf/) | [PDF to HTML Converter](https://convertica.net/pdf-to-html/) | [PDF to PowerPoint](https://convertica.net/pdf-to-ppt/)
+[PDF to Word Converter](https://convertica.net/pdf-to-word/) | [Word to PDF Converter](https://convertica.net/word-to-pdf/) | [PDF to JPG Converter](https://convertica.net/pdf-to-jpg/) | [JPG to PDF Converter](https://convertica.net/jpg-to-pdf/) | [PDF to Excel Converter](https://convertica.net/pdf-to-excel/) | [Excel to PDF Converter](https://convertica.net/excel-to-pdf/) | [PowerPoint to PDF](https://convertica.net/ppt-to-pdf/) | [HTML to PDF](https://convertica.net/html-to-pdf/) | [Merge PDF Files Online](https://convertica.net/pdf-organize/merge/) | [Split PDF Online](https://convertica.net/pdf-organize/split/) | [Compress PDF Online](https://convertica.net/pdf-organize/compress/) | [Rotate PDF Pages](https://convertica.net/pdf-edit/rotate/) | [Crop PDF Online](https://convertica.net/pdf-edit/crop/) | [Add Page Numbers to PDF](https://convertica.net/pdf-edit/add-page-numbers/) | [Add Watermark to PDF](https://convertica.net/pdf-edit/add-watermark/) | [Extract PDF Pages](https://convertica.net/pdf-organize/extract-pages/) | [Remove PDF Pages](https://convertica.net/pdf-organize/remove-pages/) | [Organize PDF Pages](https://convertica.net/pdf-organize/organize/) | [Protect PDF with Password](https://convertica.net/pdf-security/protect/) | [Unlock PDF Online](https://convertica.net/pdf-security/unlock/) | [PDF to HTML Converter](https://convertica.net/pdf-to-html/) | [PDF to PowerPoint](https://convertica.net/pdf-to-ppt/)
 
 Made with ❤️ using Django and Python
 
