@@ -67,10 +67,30 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             if "/health/" in full_message or "GET /health/" in full_message:
                 return None
 
-            # Drop noisy CSRF referer-check warnings caused by bots and broken clients
+            # Drop noisy CSRF warnings caused by bots, broken clients, and cached pages
+            # These are common when:
+            # - Bots try to submit forms without valid CSRF tokens
+            # - Users submit forms from cached pages with expired CSRF tokens
+            # - Session/Cookie issues (especially with Cloudflare or CDN)
             if event.get("logger") == "django.security.csrf":
                 if "Referer checking failed" in full_message:
                     return None
+                # Filter "CSRF token from POST incorrect" - usually from cached pages or bots
+                if "CSRF token from POST incorrect" in full_message:
+                    return None
+
+            # Filter naive datetime warnings - these are handled by improved _dt_from_timestamp
+            # but may still occur from legacy data or external API responses
+            if event.get("logger") == "py.warnings":
+                if (
+                    "RuntimeWarning" in full_message
+                    and "naive datetime" in full_message
+                ):
+                    if (
+                        "subscription_end_date" in full_message
+                        or "DateTimeField" in full_message
+                    ):
+                        return None
 
             # Drop noisy Gunicorn error logs (invalid protocol / php probes / bot scanners)
             if event.get("logger") == "gunicorn.error":

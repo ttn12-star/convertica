@@ -56,11 +56,12 @@ def submit_urls_to_indexnow(urls: list[str]) -> bool:
     site_url = getattr(settings, "SITE_BASE_URL", "https://convertica.net")
     host = site_url.replace("https://", "").replace("http://", "").rstrip("/")
 
-    # Prepare payload
+    # Prepare payload according to IndexNow specification
+    # Note: keyLocation is used only for validation - the key file must be accessible
+    # at {site_url}/{indexnow_key}.txt, but keyLocation should NOT be in the payload
     payload = {
         "host": host,
         "key": indexnow_key,
-        "keyLocation": f"{site_url}/{indexnow_key}.txt",
         "urlList": urls,
     }
 

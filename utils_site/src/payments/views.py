@@ -85,11 +85,28 @@ def _stripe_obj_get(obj, key, default=None):
 
 
 def _dt_from_timestamp(ts):
+    """Convert timestamp or datetime to timezone-aware datetime.
+
+    Handles various input types:
+    - Unix timestamp (int or float)
+    - datetime objects (naive or aware)
+    - None
+    """
     try:
         if ts is None:
             return None
+
+        # If it's already a datetime object
+        if isinstance(ts, datetime):
+            # If naive, make it timezone-aware using UTC
+            if ts.tzinfo is None:
+                return ts.replace(tzinfo=UTC)
+            # If aware, convert to UTC
+            return ts.astimezone(UTC)
+
+        # Convert timestamp to datetime
         return datetime.fromtimestamp(int(ts), tz=UTC)
-    except Exception:
+    except (ValueError, TypeError, OverflowError):
         return None
 
 
