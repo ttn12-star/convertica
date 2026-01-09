@@ -25,9 +25,14 @@ def turnstile_site_key(request):
     if not site_key:
         site_key = config("TURNSTILE_SITE_KEY", default="", cast=str)
 
+    # Safely check for session - it may not be available during error handling
+    captcha_required = False
+    if hasattr(request, "session"):
+        captcha_required = request.session.get("captcha_required", False)
+
     return {
         "turnstile_site_key": site_key,
-        "captcha_required": request.session.get("captcha_required", False),
+        "captcha_required": captcha_required,
     }
 
 

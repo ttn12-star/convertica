@@ -231,7 +231,69 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
             {"error": "Invalid request"}, status=status.HTTP_400_BAD_REQUEST
         )
 
-    # 2. Check rate limit (stricter for file uploads)
+    # Get client IP once for all checks (used multiple times below)
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    if x_forwarded_for:
+        remote_ip = x_forwarded_for.split(",")[0].strip()
+    else:
+        remote_ip = request.META.get("REMOTE_ADDR", "unknown")
+
+    # 2. Check if CAPTCHA is required (check BEFORE rate limit to prevent bypass)
+    # We need to check both session-based and IP-based rate limiting
+    # This prevents bypassing CAPTCHA by disabling cookies
+    captcha_required = False
+
+    # Check session-based CAPTCHA requirement (if session exists)
+    if hasattr(request, "session"):
+        captcha_required = request.session.get("captcha_required", False)
+
+    # Also check IP-based CAPTCHA requirement (for cookie-less spam protection)
+    if not captcha_required:
+        ip_captcha_key = f"captcha_required_ip:{remote_ip}"
+        try:
+            ip_requires_captcha = cache.get(ip_captcha_key, False)
+            if ip_requires_captcha:
+                captcha_required = True
+                logger.info(
+                    "CAPTCHA required for IP due to previous failures",
+                    extra={
+                        **context,
+                        "ip": remote_ip,
+                        "reason": "ip_based_tracking",
+                    },
+                )
+        except Exception as e:
+            logger.error(
+                f"Error checking IP-based CAPTCHA requirement: {str(e)}", exc_info=True
+            )
+
+    # 3. Check rate limit (stricter for file uploads)
+    # Check rate limit BEFORE incrementing to see if we're approaching limit
+    rate_limit_key = f"file_upload_spam:{remote_ip}"
+    rate_limit_count_before = cache.get(rate_limit_key, 0)
+
+    # If approaching limit (>= 14 out of 20), require CAPTCHA if not already required
+    # This provides proactive protection
+    if not captcha_required and rate_limit_count_before >= 14:
+        captcha_required = True
+        ip_captcha_key = f"captcha_required_ip:{remote_ip}"
+        try:
+            cache.set(ip_captcha_key, True, 3600)  # Remember for 1 hour
+            logger.info(
+                "CAPTCHA required for IP due to high request rate",
+                extra={
+                    **context,
+                    "ip": remote_ip,
+                    "request_count": rate_limit_count_before,
+                    "reason": "rate_limit_approaching",
+                },
+            )
+        except Exception as e:
+            logger.error(
+                f"Error setting IP-based CAPTCHA requirement: {str(e)}", exc_info=True
+            )
+
+    # Now actually check and increment rate limit
     is_allowed, error_msg = check_rate_limit_by_ip(
         request,
         limit=20,  # 20 requests per minute for file uploads
@@ -241,15 +303,12 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
     if not is_allowed:
         return Response({"error": error_msg}, status=status.HTTP_429_TOO_MANY_REQUESTS)
 
-    # 3. Check minimum time between requests
+    # 4. Check minimum time between requests
     is_allowed, error_msg = check_minimum_time_between_requests(
         request, min_seconds=2  # At least 2 seconds between requests
     )
     if not is_allowed:
         return Response({"error": error_msg}, status=status.HTTP_429_TOO_MANY_REQUESTS)
-
-    # 4. Check if CAPTCHA is required (after failed attempts)
-    captcha_required = request.session.get("captcha_required", False)
 
     # 5. Verify Turnstile (if required or token provided)
     turnstile_token = None
@@ -266,7 +325,7 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
     if captcha_required and not turnstile_token:
         logger.warning(
             "CAPTCHA required but not provided",
-            extra={**context, "ip": request.META.get("REMOTE_ADDR")},
+            extra={**context, "ip": remote_ip},
         )
         return Response(
             {
@@ -275,14 +334,8 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
             status=status.HTTP_400_BAD_REQUEST,
         )
 
+    # If CAPTCHA token is provided, verify it
     if turnstile_token:
-        # Get client IP for Turnstile verification
-        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-        if x_forwarded_for:
-            remote_ip = x_forwarded_for.split(",")[0].strip()
-        else:
-            remote_ip = request.META.get("REMOTE_ADDR")
-
         if not verify_turnstile(turnstile_token, remote_ip):
             logger.warning(
                 "Turnstile verification failed", extra={**context, "ip": remote_ip}
@@ -293,7 +346,22 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
             )
         else:
             # CAPTCHA verified successfully - reset failed attempts
-            request.session["failed_attempts"] = 0
-            request.session["captcha_required"] = False
+            # Reset both session-based and IP-based tracking
+            if hasattr(request, "session"):
+                request.session["failed_attempts"] = 0
+                request.session["captcha_required"] = False
+
+            # Also reset IP-based CAPTCHA requirement on successful verification
+            ip_captcha_key = f"captcha_required_ip:{remote_ip}"
+            ip_failed_key = f"captcha_failed_attempts_ip:{remote_ip}"
+            try:
+                cache.delete(ip_captcha_key)
+                cache.delete(ip_failed_key)
+            except Exception:
+                pass
+    # Note: If CAPTCHA is not required and no token is provided, this is a normal request.
+    # We don't reset counters here because if CAPTCHA was required due to high request rate
+    # or previous failures, it should remain until explicitly verified via CAPTCHA token or TTL expires.
+    # Successful requests without CAPTCHA shouldn't automatically clear security flags.
 
     return None
