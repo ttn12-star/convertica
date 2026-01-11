@@ -266,6 +266,7 @@ MIDDLEWARE = [
     # "whitenoise.middleware.WhiteNoiseMiddleware",
     "src.api.middleware.FilterProxyRequestsMiddleware",  # Filter proxy CONNECT requests (must be early)
     "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
+    "src.frontend.middleware.DoubleLanguagePrefixMiddleware",  # Redirect URLs with double language prefixes (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
     "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware
