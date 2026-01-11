@@ -5,6 +5,7 @@ Custom middleware for frontend.
 import logging
 
 from django.conf import settings
+from django.http import HttpResponsePermanentRedirect
 from django.utils.translation import activate
 
 logger = logging.getLogger(__name__)
@@ -52,6 +53,56 @@ class AutoLanguageMiddleware:
                     request.session["django_language"] = detected_language
                     activate(detected_language)
                     logger.debug(f"Auto-detected language: {detected_language}")
+
+        response = self.get_response(request)
+        return response
+
+
+class DoubleLanguagePrefixMiddleware:
+    """
+    Redirect URLs with double language prefixes (e.g., /en/pl/...) to correct URLs.
+    This prevents Google from indexing invalid URLs with multiple language codes.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        path = request.path
+
+        # Check if path has multiple language prefixes
+        # Example: /en/pl/pdf-organize/merge/ -> /pl/pdf-organize/merge/
+        if path and path.startswith("/"):
+            path_parts = path.strip("/").split("/")
+            if len(path_parts) >= 2:
+                supported_languages = [code for code, _ in settings.LANGUAGES]
+
+                # Count how many consecutive language prefixes we have
+                lang_prefix_count = 0
+                for part in path_parts:
+                    if part in supported_languages:
+                        lang_prefix_count += 1
+                    else:
+                        break
+
+                # If we have 2+ language prefixes, redirect to correct URL
+                if lang_prefix_count >= 2:
+                    # Remove all language prefixes and keep only the last one
+                    # This handles cases like /en/pl/ru/... -> /ru/...
+                    remaining_parts = path_parts[lang_prefix_count - 1 :]
+                    corrected_path = "/" + "/".join(remaining_parts)
+                    if not corrected_path.endswith("/") and path.endswith("/"):
+                        corrected_path += "/"
+
+                    # Preserve query string
+                    query_string = request.META.get("QUERY_STRING", "")
+                    if query_string:
+                        corrected_path += f"?{query_string}"
+
+                    logger.warning(
+                        f"Multiple language prefixes detected ({lang_prefix_count}): {path} -> redirecting to {corrected_path}"
+                    )
+                    return HttpResponsePermanentRedirect(corrected_path)
 
         response = self.get_response(request)
         return response

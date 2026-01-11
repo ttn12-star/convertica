@@ -12,7 +12,9 @@ register = template.Library()
 def remove_language_prefix(path):
     """
     Remove language prefix from URL path.
+    Removes ALL language prefixes, not just the first one.
     Example: /en/all-tools/ -> /all-tools/
+    Example: /en/pl/all-tools/ -> /all-tools/ (removes both)
     """
     if not path:
         return path
@@ -35,12 +37,21 @@ def remove_language_prefix(path):
     # Remove leading slash if present
     path = path.lstrip("/")
 
-    # Check if path starts with language code
-    for lang_code, _ in settings.LANGUAGES:
-        if path.startswith(f"{lang_code}/"):
-            return "/" + path[len(lang_code) + 1 :]
-        elif path == lang_code:
-            return "/"
+    # Remove ALL language prefixes (in case of double prefixes like /en/pl/...)
+    removed_any = True
+    while removed_any:
+        removed_any = False
+        for lang_code, _ in settings.LANGUAGES:
+            if path.startswith(f"{lang_code}/"):
+                path = path[len(lang_code) + 1 :]
+                removed_any = True
+                break
+            elif path == lang_code:
+                path = ""
+                removed_any = True
+                break
 
-    # No language prefix found, return as is
+    # Return result
+    if not path:
+        return "/"
     return "/" + path if not path.startswith("/") else path

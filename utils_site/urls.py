@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
-from django.views.i18n import set_language
+from src.frontend.i18n_views import set_language
 from src.frontend.views import index_page, sitemap_index, sitemap_lang
 from src.frontend.views_indexnow import indexnow_key_file
 from src.frontend.views_seo import favicon_view

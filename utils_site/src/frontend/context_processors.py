@@ -104,17 +104,22 @@ def hreflang_links(request):
                     # Ensure current_path is a string, not bytes
                     if isinstance(current_path, bytes):
                         current_path = current_path.decode("utf-8")
-                    # Remove current language prefix once
+                    # Remove ALL language prefixes (in case of double prefixes)
                     current_path_no_lang = current_path
-                    for lang_code, _ in languages:
-                        if current_path_no_lang.startswith(f"/{lang_code}/"):
-                            current_path_no_lang = current_path_no_lang.replace(
-                                f"/{lang_code}/", "/", 1
-                            )
-                            break
-                        elif current_path_no_lang == f"/{lang_code}":
-                            current_path_no_lang = "/"
-                            break
+                    removed_any = True
+                    while removed_any:
+                        removed_any = False
+                        for lang_code, _ in languages:
+                            if current_path_no_lang.startswith(f"/{lang_code}/"):
+                                current_path_no_lang = current_path_no_lang.replace(
+                                    f"/{lang_code}/", "/", 1
+                                )
+                                removed_any = True
+                                break
+                            elif current_path_no_lang == f"/{lang_code}":
+                                current_path_no_lang = "/"
+                                removed_any = True
+                                break
 
                     # Add new language prefix (Django i18n_patterns adds prefix for all languages)
                     if current_path_no_lang == "/":
@@ -131,17 +136,22 @@ def hreflang_links(request):
                 # Ensure current_path is a string, not bytes
                 if isinstance(current_path, bytes):
                     current_path = current_path.decode("utf-8")
-                # Remove current language prefix once
+                # Remove ALL language prefixes (in case of double prefixes)
                 current_path_no_lang = current_path
-                for lang_code, _ in languages:
-                    if current_path_no_lang.startswith(f"/{lang_code}/"):
-                        current_path_no_lang = current_path_no_lang.replace(
-                            f"/{lang_code}/", "/", 1
-                        )
-                        break
-                    elif current_path_no_lang == f"/{lang_code}":
-                        current_path_no_lang = "/"
-                        break
+                removed_any = True
+                while removed_any:
+                    removed_any = False
+                    for lang_code, _ in languages:
+                        if current_path_no_lang.startswith(f"/{lang_code}/"):
+                            current_path_no_lang = current_path_no_lang.replace(
+                                f"/{lang_code}/", "/", 1
+                            )
+                            removed_any = True
+                            break
+                        elif current_path_no_lang == f"/{lang_code}":
+                            current_path_no_lang = "/"
+                            removed_any = True
+                            break
 
                 # Add new language prefix (Django i18n_patterns adds prefix for all languages)
                 if current_path_no_lang == "/":
