@@ -20,6 +20,9 @@ pdf2image==1.17.0
 pdfplumber==0.11.4
 pillow==12.0.0
 python-pptx==1.0.2
+# Word document processing
+python-docx==1.1.2
+olefile==0.47
 pydantic==2.12.5
 pydantic_core==2.41.5
 PyPDF2==3.0.1
