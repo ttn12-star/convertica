@@ -62,6 +62,9 @@ class DoubleLanguagePrefixMiddleware:
     """
     Redirect URLs with double language prefixes (e.g., /en/pl/...) to correct URLs.
     This prevents Google from indexing invalid URLs with multiple language codes.
+
+    Additionally adds X-Robots-Tag: noindex to the redirect response to tell search
+    engines not to index these malformed URLs.
     """
 
     def __init__(self, get_response):
@@ -102,7 +105,12 @@ class DoubleLanguagePrefixMiddleware:
                     logger.warning(
                         f"Multiple language prefixes detected ({lang_prefix_count}): {path} -> redirecting to {corrected_path}"
                     )
-                    return HttpResponsePermanentRedirect(corrected_path)
+
+                    # Create redirect response with noindex header
+                    # This tells Google and other search engines not to index this URL
+                    response = HttpResponsePermanentRedirect(corrected_path)
+                    response["X-Robots-Tag"] = "noindex, nofollow"
+                    return response
 
         response = self.get_response(request)
         return response

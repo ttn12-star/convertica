@@ -246,3 +246,10 @@ marimo/_lsp/
 __marimo__/
 
 .vscode/
+
+# Claude Code CLI artifacts
+.claude/
+
+# Test scripts (can be kept locally but not committed)
+test_double_lang.py
+seo_audit.py

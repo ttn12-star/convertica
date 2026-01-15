@@ -5,6 +5,51 @@ Allow: /
 Disallow: /*?lang=*
 Disallow: /*&lang=*
 
+# Disallow URLs with double language prefixes (malformed URLs)
+# These patterns block URLs like /es/ru/, /en/pl/, /ru/hi/, etc.
+Disallow: /en/ru/
+Disallow: /en/pl/
+Disallow: /en/hi/
+Disallow: /en/es/
+Disallow: /en/id/
+Disallow: /en/ar/
+Disallow: /ru/en/
+Disallow: /ru/pl/
+Disallow: /ru/hi/
+Disallow: /ru/es/
+Disallow: /ru/id/
+Disallow: /ru/ar/
+Disallow: /pl/en/
+Disallow: /pl/ru/
+Disallow: /pl/hi/
+Disallow: /pl/es/
+Disallow: /pl/id/
+Disallow: /pl/ar/
+Disallow: /hi/en/
+Disallow: /hi/ru/
+Disallow: /hi/pl/
+Disallow: /hi/es/
+Disallow: /hi/id/
+Disallow: /hi/ar/
+Disallow: /es/en/
+Disallow: /es/ru/
+Disallow: /es/pl/
+Disallow: /es/hi/
+Disallow: /es/id/
+Disallow: /es/ar/
+Disallow: /id/en/
+Disallow: /id/ru/
+Disallow: /id/pl/
+Disallow: /id/hi/
+Disallow: /id/es/
+Disallow: /id/ar/
+Disallow: /ar/en/
+Disallow: /ar/ru/
+Disallow: /ar/pl/
+Disallow: /ar/hi/
+Disallow: /ar/es/
+Disallow: /ar/id/
+
 # Disallow admin and API endpoints
 # Note: /admin/ will be dynamically replaced with actual ADMIN_URL_PATH in views.py
 Disallow: /admin/

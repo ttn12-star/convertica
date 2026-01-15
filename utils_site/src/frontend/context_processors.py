@@ -105,21 +105,26 @@ def hreflang_links(request):
                     if isinstance(current_path, bytes):
                         current_path = current_path.decode("utf-8")
                     # Remove ALL language prefixes (in case of double prefixes)
-                    current_path_no_lang = current_path
-                    removed_any = True
-                    while removed_any:
-                        removed_any = False
-                        for lang_code, _ in languages:
-                            if current_path_no_lang.startswith(f"/{lang_code}/"):
-                                current_path_no_lang = current_path_no_lang.replace(
-                                    f"/{lang_code}/", "/", 1
-                                )
-                                removed_any = True
-                                break
-                            elif current_path_no_lang == f"/{lang_code}":
-                                current_path_no_lang = "/"
-                                removed_any = True
-                                break
+                    # Use a more robust approach to strip ALL language codes
+                    current_path_no_lang = current_path.lstrip("/")
+                    path_parts = current_path_no_lang.split("/")
+
+                    # Remove all leading language codes
+                    supported_lang_codes = [lang_code for lang_code, _ in languages]
+                    while path_parts and path_parts[0] in supported_lang_codes:
+                        path_parts.pop(0)
+
+                    # Reconstruct path without language prefixes
+                    if path_parts:
+                        current_path_no_lang = "/" + "/".join(path_parts)
+                    else:
+                        current_path_no_lang = "/"
+
+                    # Ensure trailing slash is preserved if it was in original
+                    if current_path.endswith("/") and not current_path_no_lang.endswith(
+                        "/"
+                    ):
+                        current_path_no_lang += "/"
 
                     # Add new language prefix (Django i18n_patterns adds prefix for all languages)
                     if current_path_no_lang == "/":
@@ -137,21 +142,26 @@ def hreflang_links(request):
                 if isinstance(current_path, bytes):
                     current_path = current_path.decode("utf-8")
                 # Remove ALL language prefixes (in case of double prefixes)
-                current_path_no_lang = current_path
-                removed_any = True
-                while removed_any:
-                    removed_any = False
-                    for lang_code, _ in languages:
-                        if current_path_no_lang.startswith(f"/{lang_code}/"):
-                            current_path_no_lang = current_path_no_lang.replace(
-                                f"/{lang_code}/", "/", 1
-                            )
-                            removed_any = True
-                            break
-                        elif current_path_no_lang == f"/{lang_code}":
-                            current_path_no_lang = "/"
-                            removed_any = True
-                            break
+                # Use a more robust approach to strip ALL language codes
+                current_path_no_lang = current_path.lstrip("/")
+                path_parts = current_path_no_lang.split("/")
+
+                # Remove all leading language codes
+                supported_lang_codes = [lang_code for lang_code, _ in languages]
+                while path_parts and path_parts[0] in supported_lang_codes:
+                    path_parts.pop(0)
+
+                # Reconstruct path without language prefixes
+                if path_parts:
+                    current_path_no_lang = "/" + "/".join(path_parts)
+                else:
+                    current_path_no_lang = "/"
+
+                # Ensure trailing slash is preserved if it was in original
+                if current_path.endswith("/") and not current_path_no_lang.endswith(
+                    "/"
+                ):
+                    current_path_no_lang += "/"
 
                 # Add new language prefix (Django i18n_patterns adds prefix for all languages)
                 if current_path_no_lang == "/":
