@@ -66,28 +66,19 @@ class OptimizedWordToPDFConverter:
         is_celery_task: bool = False,
     ) -> tuple[str, str]:
         """
-        Optimized Word to PDF conversion with parallel processing.
+        Optimized Word to PDF conversion with advanced LibreOffice parameters.
 
         Features:
-        - Automatic page orientation detection for both .docx and .doc files
-        - Multi-section document support (uses majority orientation)
-        - Fallback PDF orientation verification when Word orientation is unavailable
-        - Fallback conversion logic for problematic documents
+        - Advanced PDF export filters for better quality
+        - Multiple fallback conversion strategies
         - Non-ASCII filename handling
         - Memory-efficient chunked file writing
         - Detailed logging for debugging
-        - PDF export with optimized quality parameters
-
-        Orientation Detection:
-        - .docx files: Full support via python-docx (all sections)
-        - .doc files: Best-effort support via olefile (may not work for all documents)
-        - Fallback: PDF-based consistency check if Word detection fails
+        - Automatic orientation handling by LibreOffice
 
         Limitations:
         - LibreOffice rendering may differ from MS Word (fonts, line breaks, spacing)
         - Complex formatting (nested tables, custom styles) may not preserve perfectly
-        - .doc orientation detection is heuristic-based and may not work for all files
-        - Multi-section documents with mixed orientations use majority orientation
 
         Args:
             uploaded_file: Uploaded Word file
@@ -155,12 +146,8 @@ class OptimizedWordToPDFConverter:
             # Validate Word file (temporarily disabled for testing)
             # await self._validate_word_file_async(docx_path, context)
 
-            # Read page orientation from Word document before conversion
-            word_orientation = await self._get_word_orientation_async(
-                docx_path, context
-            )
-
             # Perform optimized LibreOffice conversion
+            # LibreOffice handles orientation correctly, no need for post-processing
             await self._convert_with_libreoffice_async(docx_path, pdf_path, context)
 
             # Validate output - LibreOffice creates PDF based on the input filename
@@ -230,15 +217,10 @@ class OptimizedWordToPDFConverter:
             else:
                 pdf_path = found_pdf_path
 
-            # Fix page orientation in PDF if it doesn't match Word document
-            # If word_orientation is None, we'll try to detect it from the PDF itself
-            if word_orientation:
-                await self._fix_pdf_orientation_async(
-                    pdf_path, word_orientation, context
-                )
-            else:
-                # Fallback: Try to auto-detect orientation from PDF and verify consistency
-                await self._verify_pdf_orientation_consistency_async(pdf_path, context)
+            # LibreOffice correctly handles orientation from Word documents
+            # No post-processing needed - trust LibreOffice output
+            # Only log orientation info for debugging if needed
+            await self._verify_pdf_orientation_consistency_async(pdf_path, context)
 
             # Log file size for debugging
             file_size = os.path.getsize(pdf_path)
@@ -401,7 +383,9 @@ class OptimizedWordToPDFConverter:
             elif safe_input_path.lower().endswith(".doc"):
                 infilter = "MS Word 97"
 
-            def _build_cmd(use_infilter: bool) -> list[str]:
+            def _build_cmd(
+                use_infilter: bool, use_advanced_pdf: bool = True
+            ) -> list[str]:
                 cmd = [
                     "libreoffice",
                     "--headless",
@@ -414,13 +398,30 @@ class OptimizedWordToPDFConverter:
                 if use_infilter and infilter:
                     cmd.extend(["--infilter", infilter])
 
-                # PDF export filter
-                # Note: Complex filter parameters may cause issues with some LibreOffice versions
-                # Using simple "pdf" format for maximum compatibility
+                # PDF export filter with advanced parameters for better quality
+                # Using JSON-style filter options for optimal formatting preservation
+                if use_advanced_pdf:
+                    # Advanced PDF export parameters for better quality and formatting
+                    pdf_filter = (
+                        "pdf:writer_pdf_Export:"
+                        "{"
+                        '"UseLosslessCompression":{"type":"boolean","value":"true"},'
+                        '"Quality":{"type":"long","value":"95"},'
+                        '"ReduceImageResolution":{"type":"boolean","value":"false"},'
+                        '"MaxImageResolution":{"type":"long","value":"300"},'
+                        '"ExportBookmarks":{"type":"boolean","value":"true"},'
+                        '"ExportNotes":{"type":"boolean","value":"false"},'
+                        '"EmbedStandardFonts":{"type":"boolean","value":"true"}'
+                        "}"
+                    )
+                else:
+                    # Fallback: simple format for maximum compatibility
+                    pdf_filter = "pdf"
+
                 cmd.extend(
                     [
                         "--convert-to",
-                        "pdf",  # Simple format without parameters for compatibility
+                        pdf_filter,
                         "--outdir",
                         os.path.dirname(pdf_path),
                         safe_input_path,
@@ -592,7 +593,7 @@ class OptimizedWordToPDFConverter:
                         if fallback_e.stderr
                         else ""
                     )
-                    logger.error(
+                    logger.warning(
                         f"LibreOffice fallback conversion failed: {fallback_stderr_preview or 'Unknown error'}",
                         extra={
                             **context,
@@ -601,12 +602,63 @@ class OptimizedWordToPDFConverter:
                             "command": " ".join(getattr(fallback_e, "cmd", []) or []),
                         },
                     )
-                    # Both attempts failed, include both errors in exception
-                    raise ConversionError(
-                        f"LibreOffice conversion failed on both attempts. "
-                        f"Original error: {e}. Fallback error: {fallback_e}",
-                        context=context,
-                    ) from fallback_e
+
+                    # Third attempt: simple PDF filter without advanced parameters
+                    try:
+                        simple_cmd = _build_cmd(
+                            use_infilter=False, use_advanced_pdf=False
+                        )
+                        logger.info(
+                            f"Running LibreOffice with simple PDF filter: {' '.join(simple_cmd)}",
+                            extra={**context, "event": "conversion_simple_pdf_command"},
+                        )
+
+                        simple_process = subprocess.run(
+                            simple_cmd,
+                            env=env,
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE,
+                            timeout=self.timeout_seconds,
+                            check=True,
+                        )
+
+                        output_dir = os.path.dirname(pdf_path)
+                        files_after = os.listdir(output_dir)
+                        pdf_files = [
+                            f for f in files_after if f.lower().endswith(".pdf")
+                        ]
+
+                        logger.info(
+                            f"LibreOffice conversion successful with simple PDF filter; files: {pdf_files}",
+                            extra={
+                                **context,
+                                "event": "conversion_simple_success",
+                                "pdf_files": pdf_files,
+                            },
+                        )
+
+                        if not pdf_files:
+                            logger.error(
+                                "LibreOffice simple conversion completed but no PDF file was created",
+                                extra={**context, "event": "no_pdf_created_simple"},
+                            )
+                            return False
+
+                        return simple_process.returncode == 0
+                    except (
+                        subprocess.TimeoutExpired,
+                        subprocess.CalledProcessError,
+                    ) as simple_e:
+                        logger.error(
+                            f"All LibreOffice conversion attempts failed. Simple filter error: {simple_e}",
+                            extra={**context, "event": "conversion_all_failed"},
+                        )
+                        # All three attempts failed
+                        raise ConversionError(
+                            f"LibreOffice conversion failed after 3 attempts. "
+                            f"Advanced filter: {e}. No infilter: {fallback_e}. Simple filter: {simple_e}",
+                            context=context,
+                        ) from simple_e
             finally:
                 # Cleanup temporary safe_input_path if it was created
                 if needs_cleanup and safe_input_path != docx_path:
