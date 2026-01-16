@@ -352,6 +352,60 @@ def sanitize_filename(filename: str, max_length: int = 200) -> str:
     return filename
 
 
+def encode_filename_for_header(filename: str) -> str:
+    """
+    Encode filename for Content-Disposition header according to RFC 5987.
+    Supports non-ASCII characters (Cyrillic, CJK, Arabic, etc.)
+
+    Args:
+        filename: Filename (may contain Unicode characters)
+
+    Returns:
+        Properly encoded Content-Disposition value
+
+    Examples:
+        >>> encode_filename_for_header("document.pdf")
+        'attachment; filename="document.pdf"'
+        >>> encode_filename_for_header("документ.pdf")
+        'attachment; filename="file.pdf"; filename*=UTF-8\'\'%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82.pdf'
+    """
+    from urllib.parse import quote
+
+    try:
+        # Try to encode as ASCII (for backward compatibility)
+        filename.encode("ascii")
+        # ASCII filenames can be used directly
+        return f'attachment; filename="{filename}"'
+    except UnicodeEncodeError:
+        # Non-ASCII filenames - encode per RFC 5987
+        encoded = quote(filename.encode("utf-8"))
+        # Use dual header for maximum compatibility
+
+        # Extract extension first
+        name_part = "file"
+        ext_part = ""
+        if "." in filename:
+            name, ext = filename.rsplit(".", 1)
+            # Try to keep extension if it's ASCII
+            try:
+                ext.encode("ascii")
+                ext_part = f".{ext}"
+            except UnicodeEncodeError:
+                ext_part = ""
+            # Try to extract ASCII chars from name
+            ascii_name = name.encode("ascii", errors="ignore").decode("ascii")
+            if ascii_name and ascii_name != ".":
+                name_part = ascii_name.strip("._-") or "file"
+        else:
+            # No extension - try to get ASCII chars from whole filename
+            ascii_name = filename.encode("ascii", errors="ignore").decode("ascii")
+            if ascii_name and ascii_name != ".":
+                name_part = ascii_name.strip("._-") or "file"
+
+        ascii_fallback = f"{name_part}{ext_part}"
+        return f"attachment; filename=\"{ascii_fallback}\"; filename*=UTF-8''{encoded}"
+
+
 def validate_output_file(
     file_path: str, min_size: int = 100, context: dict = None
 ) -> tuple[bool, str | None]:

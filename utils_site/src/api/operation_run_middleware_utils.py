@@ -52,7 +52,7 @@ def _extract_error_message(response) -> str:
         if not content:
             return ""
         if isinstance(content, bytes):
-            content = content.decode("utf-8", errors="ignore")
+            content = content.decode("utf-8", errors="replace")
         content = str(content)
         if not content.strip():
             return ""

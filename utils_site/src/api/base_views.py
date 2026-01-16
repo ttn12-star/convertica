@@ -37,7 +37,7 @@ from .conversion_limits import (
     run_with_timeout,
     validate_pdf_pages,
 )
-from .file_validation import validate_output_file
+from .file_validation import encode_filename_for_header, validate_output_file
 from .logging_utils import (
     build_request_context,
     get_logger,
@@ -136,6 +136,7 @@ class BaseConversionAPIView(APIView, ABC):
             ".pdf": "application/pdf",
             ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             ".doc": "application/msword",
+            ".html": "text/html; charset=utf-8",
             ".jpg": "image/jpeg",
             ".jpeg": "image/jpeg",
             ".zip": "application/zip",
@@ -519,8 +520,9 @@ class BaseConversionAPIView(APIView, ABC):
 
             # Stream file
             output_filename = os.path.basename(output_path)
-            response = FileResponse(
-                open(output_path, "rb"), as_attachment=True, filename=output_filename
+            response = FileResponse(open(output_path, "rb"))
+            response["Content-Disposition"] = encode_filename_for_header(
+                output_filename
             )
             response["Content-Type"] = self.get_output_content_type(output_path)
 
@@ -862,8 +864,9 @@ class BaseConversionAPIView(APIView, ABC):
 
             # Stream file
             output_filename = os.path.basename(output_path)
-            response = FileResponse(
-                open(output_path, "rb"), as_attachment=True, filename=output_filename
+            response = FileResponse(open(output_path, "rb"))
+            response["Content-Disposition"] = encode_filename_for_header(
+                output_filename
             )
             response["Content-Type"] = self.get_output_content_type(output_path)
 
