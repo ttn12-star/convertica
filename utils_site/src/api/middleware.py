@@ -273,6 +273,10 @@ class FilterProxyRequestsMiddleware(MiddlewareMixin):
         if not allowed_hosts or "*" in allowed_hosts:
             return None
 
+        # Allow Django test client (uses 'testserver' as default host)
+        if host_without_port == "testserver":
+            return None
+
         # Check if host is valid
         is_valid_host = False
         for allowed in allowed_hosts:
