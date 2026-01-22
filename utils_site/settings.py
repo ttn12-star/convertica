@@ -92,6 +92,18 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                     ):
                         return None
 
+            # Drop DisallowedHost errors - these are just bot scanners
+            # Should be blocked by FilterProxyRequestsMiddleware, but catch any that slip through
+            if "exc_info" in hint:
+                exc_type = hint["exc_info"][0]
+                if exc_type and exc_type.__name__ == "DisallowedHost":
+                    return None
+            if (
+                "DisallowedHost" in full_message
+                or "Invalid HTTP_HOST header" in full_message
+            ):
+                return None
+
             # Drop noisy Gunicorn error logs (invalid protocol / php probes / bot scanners)
             if event.get("logger") == "gunicorn.error":
                 # Examples: "Invalid HTTP request line: 'SSH-2.0-Go'", "Error handling request /admin/config.php"
@@ -112,6 +124,8 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                     "admin.php",
                     "Invalid HTTP request line",
                     "SSH-2.0",
+                    "DisallowedHost",  # Host header attacks
+                    "mstshash",  # RDP scanner
                 ]
                 if any(pattern in full_message for pattern in bot_patterns):
                     return None
@@ -260,11 +274,11 @@ except ImportError:
 
 MIDDLEWARE = [
     "django.middleware.gzip.GZipMiddleware",  # Compress responses (HTML, JSON, CSS, JS) - must be first
+    "src.api.middleware.FilterProxyRequestsMiddleware",  # Filter invalid hosts/proxy CONNECT - BEFORE SecurityMiddleware!
     "django.middleware.security.SecurityMiddleware",
     # WhiteNoise for static files (if enabled via USE_WHITENOISE env var)
     # Uncomment or use environment variable to enable
     # "whitenoise.middleware.WhiteNoiseMiddleware",
-    "src.api.middleware.FilterProxyRequestsMiddleware",  # Filter proxy CONNECT requests (must be early)
     "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
     "src.frontend.middleware.DoubleLanguagePrefixMiddleware",  # Redirect URLs with double language prefixes (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
@@ -588,6 +602,9 @@ LOGGING = {
         "require_debug_true": {
             "()": "django.utils.log.RequireDebugTrue",
         },
+        "suppress_disallowed_host": {
+            "()": "src.api.log_filters.SuppressDisallowedHostFilter",
+        },
     },
     "handlers": {
         "console": {
@@ -654,6 +671,13 @@ LOGGING = {
             "handlers": ["console", "error_file"],
             "level": "WARNING",  # Only WARNING and above (ERROR, CRITICAL)
             "propagate": False,  # Don't propagate to root logger
+            "filters": ["suppress_disallowed_host"],  # Filter DisallowedHost errors
+        },
+        # Django security logs - suppress DisallowedHost (bot scanners)
+        "django.security.DisallowedHost": {
+            "handlers": [],  # Completely suppress - these are just bot scanners
+            "level": "CRITICAL",
+            "propagate": False,
         },
         "allauth": {
             "handlers": ["console", "file"],
