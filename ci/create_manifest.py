@@ -4,6 +4,7 @@ Script to create staticfiles.json manifest if it doesn't exist.
 This ensures ManifestStaticFilesStorage works correctly even if
 Django doesn't create the manifest automatically during collectstatic.
 """
+
 import hashlib
 import json
 import os

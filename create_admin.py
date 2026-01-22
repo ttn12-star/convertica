@@ -3,6 +3,7 @@
 Script to create or update admin user.
 Usage: python create_admin.py
 """
+
 import os
 import sys
 
