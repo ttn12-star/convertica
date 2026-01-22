@@ -226,35 +226,71 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
 
 class FilterProxyRequestsMiddleware(MiddlewareMixin):
     """
-    Middleware to filter out proxy CONNECT requests and other suspicious requests.
+    Middleware to filter out proxy CONNECT requests, invalid hosts, and bot scanners.
 
-    This prevents DisallowedHost errors from proxy tunneling attempts (e.g., CONNECT ipinfo.io:443).
-    These requests are typically from bots/scanners trying to use the server as a proxy.
+    This middleware MUST run BEFORE SecurityMiddleware to prevent DisallowedHost
+    errors from proxy tunneling attempts and bot scanners. Without this, these
+    attacks cause cascading errors in cache middleware when Django tries to
+    generate error pages.
+
+    Common attacks blocked:
+    - CONNECT method (HTTP proxy tunneling)
+    - Invalid HOST headers (httpbin.org, 0.0.0.0:8000, etc.)
+    - RDP scanners (mstshash in headers)
+    - Invalid HTTP request lines
     """
 
     def process_request(self, request):
+        from django.conf import settings
+        from django.http import HttpResponseBadRequest
+
         # Filter CONNECT requests (HTTP proxy tunneling)
         if request.method == "CONNECT":
-            from django.http import HttpResponseBadRequest
+            return HttpResponseBadRequest(b"", content_type="text/plain")
 
-            return HttpResponseBadRequest("Proxy requests are not allowed")
-
-        # Filter requests with suspicious Host headers (common in proxy attacks)
-        # Check HTTP_HOST header directly to avoid DisallowedHost exception
+        # Get HOST header directly (don't call request.get_host() as it may raise)
         host = request.META.get("HTTP_HOST", "")
 
-        # Check if host looks like a proxy target (contains port and is not our domain)
-        if (
-            host
-            and ":" in host
-            and "convertica.net" not in host.lower()
-            and "localhost" not in host.lower()
-            and "127.0.0.1" not in host
-        ):
-            # This is likely a proxy CONNECT request that got through
-            # Return 400 without raising DisallowedHost
-            from django.http import HttpResponseBadRequest
+        # Reject empty host (malformed requests)
+        if not host:
+            return HttpResponseBadRequest(b"", content_type="text/plain")
 
-            return HttpResponseBadRequest("Invalid request")
+        # Reject hosts with suspicious characters (binary data, control chars)
+        # Valid hostnames only contain alphanumeric, dots, hyphens, colons (for port)
+        try:
+            host.encode("ascii")
+        except UnicodeEncodeError:
+            return HttpResponseBadRequest(b"", content_type="text/plain")
+
+        # Strip port from host for validation
+        host_without_port = host.split(":")[0].lower()
+
+        # Get allowed hosts from settings
+        allowed_hosts = getattr(settings, "ALLOWED_HOSTS", [])
+
+        # If ALLOWED_HOSTS is empty or contains '*', skip validation
+        # (development mode)
+        if not allowed_hosts or "*" in allowed_hosts:
+            return None
+
+        # Check if host is valid
+        is_valid_host = False
+        for allowed in allowed_hosts:
+            allowed_lower = allowed.lower()
+            # Handle wildcard subdomains (e.g., .convertica.net)
+            if allowed_lower.startswith("."):
+                if host_without_port == allowed_lower[1:] or host_without_port.endswith(
+                    allowed_lower
+                ):
+                    is_valid_host = True
+                    break
+            elif host_without_port == allowed_lower:
+                is_valid_host = True
+                break
+
+        if not is_valid_host:
+            # Return 400 silently without logging - these are just bot scanners
+            # The response is minimal to avoid giving attackers information
+            return HttpResponseBadRequest(b"", content_type="text/plain")
 
         return None
