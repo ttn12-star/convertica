@@ -3,6 +3,7 @@
 Script to safely clear staticfiles directory, ignoring permission errors.
 This is needed when files were created with different permissions.
 """
+
 import os
 import sys
 from pathlib import Path

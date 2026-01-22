@@ -4,6 +4,7 @@ Script to check OperationRun data retention in production.
 Run this via SSH on production server:
   docker compose exec web python /app/check_prod_data.py
 """
+
 import os
 
 import django  # type: ignore
