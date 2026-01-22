@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 black isort mypy
+          pip install flake8 black==24.4.2 isort mypy  # black version must match pre-commit
           pip install -r requirements.txt
 
       - name: Run flake8
