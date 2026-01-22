@@ -354,8 +354,9 @@ html.dark .hover\:bg-gray-800:hover{background-color:#1f2937}
 /* Smooth scroll */
 .scroll-smooth{scroll-behavior:smooth}
 
-/* Overflow hidden */
-html,body{overflow-x:hidden;max-width:100%;width:100%}
+/* Overflow hidden - only on html to prevent horizontal scroll without blocking touch scroll on Android */
+html{overflow-x:hidden;max-width:100%;width:100%}
+body{max-width:100%;width:100%}
 
 /* Gradient text (для логотипа Convertica) */
 .bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}
