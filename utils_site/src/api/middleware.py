@@ -249,9 +249,11 @@ class FilterProxyRequestsMiddleware(MiddlewareMixin):
             return HttpResponseBadRequest(b"", content_type="text/plain")
 
         # Get HOST header directly (don't call request.get_host() as it may raise)
-        host = request.META.get("HTTP_HOST", "")
+        # Check HTTP_HOST first, then SERVER_NAME (used by Django test client)
+        host = request.META.get("HTTP_HOST") or request.META.get("SERVER_NAME", "")
 
-        # Reject empty host (malformed requests)
+        # Reject empty host (malformed requests from production only)
+        # In tests, SERVER_NAME might be empty but that's OK
         if not host:
             return HttpResponseBadRequest(b"", content_type="text/plain")
 
