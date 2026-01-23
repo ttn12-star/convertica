@@ -17,5 +17,6 @@ urlpatterns = [
     ),
     path("success/", views.payment_success, name="payment_success"),
     path("cancel/", views.payment_cancel, name="payment_cancel"),
-    path("webhook/", views.stripe_webhook, name="stripe_webhook"),
+    # Note: webhook is defined in root urls.py without i18n prefix
+    # Stripe requires a fixed URL without language prefix
 ]
