@@ -413,8 +413,11 @@ AUTHENTICATION_BACKENDS = [
 
 # Allauth account settings
 ACCOUNT_ADAPTER = "src.users.account_adapter.CustomAccountAdapter"
-ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]  # email* = required
+# Use legacy settings for allauth 0.63.x compatibility (pinned in requirements.txt)
+# These also work in newer versions (with deprecation warnings)
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # Login using email (not username)
+ACCOUNT_USERNAME_REQUIRED = False  # Don't require username
+ACCOUNT_EMAIL_REQUIRED = True  # Email is required for registration
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Require email verification before login
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
     "/users/profile/"  # Redirect after email confirmation (logged in users)
