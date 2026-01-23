@@ -109,39 +109,8 @@ try:
         task_send_sent_event=True,
         # Track task state during execution (for progress reporting)
         task_track_started=True,
-        # ⚠️ DEPRECATED: Beat schedule for periodic tasks
-        # This configuration is OVERRIDDEN by settings.CELERY_BEAT_SCHEDULE
-        # Edit settings.py instead of this file to configure beat schedule
-        # Left here for reference only - not used in production
-        beat_schedule={
-            "cleanup-async-temp-files": {
-                "task": "maintenance.cleanup_async_temp_files",
-                "schedule": 1800.0,  # Every 30 minutes
-                "kwargs": {"max_age_seconds": 3600},  # Clean files older than 1 hour
-            },
-            "cleanup-temp-files": {
-                "task": "maintenance.cleanup_temp_files",
-                "schedule": 3600.0,  # Every hour
-            },
-            "memory-cleanup": {
-                "task": "maintenance.memory_cleanup",
-                "schedule": 900.0,  # Every 15 minutes for 4GB servers
-            },
-            "update-subscription-daily": {
-                "task": "maintenance.update_subscription_daily",
-                "schedule": 86400.0,  # Every 24 hours
-            },
-            "cleanup-stuck-operations": {
-                "task": "maintenance.cleanup_stuck_operations",
-                "schedule": 3600.0,  # Every hour
-                "kwargs": {"max_age_hours": 1},  # Mark as abandoned after 1 hour
-            },
-            "cleanup-old-operations": {
-                "task": "maintenance.cleanup_old_operations",
-                "schedule": 86400.0,  # Every 24 hours
-                "kwargs": {"retention_days": 365},  # Keep operations for 1 year
-            },
-        },
+        # NOTE: Beat schedule is configured in settings.CELERY_BEAT_SCHEDULE
+        # This is loaded via app.config_from_object() with namespace='CELERY'
     )
 
     @app.task(bind=True, ignore_result=True)

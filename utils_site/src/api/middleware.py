@@ -300,3 +300,111 @@ class FilterProxyRequestsMiddleware(MiddlewareMixin):
             return HttpResponseBadRequest(b"", content_type="text/plain")
 
         return None
+
+
+class SecurityHeadersMiddleware(MiddlewareMixin):
+    """
+    Middleware to add security headers including Content Security Policy (CSP).
+
+    CSP helps prevent XSS attacks by specifying allowed sources for scripts,
+    styles, images, and other resources.
+    """
+
+    def process_response(self, request, response):
+        # Skip CSP for admin panel (it has its own inline scripts)
+        if request.path.startswith("/admin"):
+            return response
+
+        # Skip CSP for API responses (JSON doesn't need CSP)
+        if request.path.startswith("/api/"):
+            return response
+
+        # Skip CSP for Swagger docs
+        if request.path.startswith("/swagger") or request.path.startswith("/redoc"):
+            return response
+
+        # Build CSP policy
+        csp_directives = [
+            # Default: only same origin
+            "default-src 'self'",
+            # Scripts: self, inline (for Django templates), Stripe, Turnstile, Google Analytics
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
+            "https://js.stripe.com "
+            "https://challenges.cloudflare.com "
+            "https://www.googletagmanager.com "
+            "https://www.google-analytics.com "
+            "https://accounts.google.com "
+            "https://connect.facebook.net",
+            # Styles: self, inline (for Tailwind and dynamic styles)
+            "style-src 'self' 'unsafe-inline' " "https://fonts.googleapis.com",
+            # Fonts: self, Google Fonts
+            "font-src 'self' " "https://fonts.gstatic.com " "data:",
+            # Images: self, data URIs, blob, common CDNs
+            "img-src 'self' data: blob: "
+            "https://*.stripe.com "
+            "https://www.googletagmanager.com "
+            "https://www.google-analytics.com "
+            "https://*.google.com "
+            "https://*.facebook.com",
+            # Connect: self, Stripe, Turnstile, WebSocket, analytics
+            "connect-src 'self' "
+            "https://api.stripe.com "
+            "https://challenges.cloudflare.com "
+            "https://www.google-analytics.com "
+            "https://accounts.google.com "
+            "wss://*.convertica.net "
+            "ws://localhost:* "
+            "wss://localhost:*",
+            # Frames: Stripe checkout, Turnstile, OAuth
+            "frame-src 'self' "
+            "https://js.stripe.com "
+            "https://hooks.stripe.com "
+            "https://challenges.cloudflare.com "
+            "https://accounts.google.com "
+            "https://www.facebook.com",
+            # Form actions: self only
+            "form-action 'self' "
+            "https://accounts.google.com "
+            "https://www.facebook.com",
+            # Base URI: self only (prevents base tag injection)
+            "base-uri 'self'",
+            # Object sources: none (prevents Flash/plugins)
+            "object-src 'none'",
+            # Upgrade insecure requests in production
+            "upgrade-insecure-requests" if not self._is_debug() else "",
+        ]
+
+        # Filter out empty directives and join
+        csp_policy = "; ".join(d for d in csp_directives if d)
+
+        # Add CSP header
+        response["Content-Security-Policy"] = csp_policy
+
+        # Add other security headers (complement to Django's built-in ones)
+        # Referrer Policy - don't leak full URL to external sites
+        if "Referrer-Policy" not in response:
+            response["Referrer-Policy"] = "strict-origin-when-cross-origin"
+
+        # Permissions Policy - disable unnecessary browser features
+        if "Permissions-Policy" not in response:
+            response["Permissions-Policy"] = (
+                "accelerometer=(), "
+                "camera=(), "
+                "geolocation=(), "
+                "gyroscope=(), "
+                "magnetometer=(), "
+                "microphone=(), "
+                'payment=(self "https://js.stripe.com"), '
+                "usb=()"
+            )
+
+        return response
+
+    def _is_debug(self):
+        """Check if Django is in debug mode."""
+        try:
+            from django.conf import settings
+
+            return getattr(settings, "DEBUG", False)
+        except Exception:
+            return False

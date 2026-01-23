@@ -1,0 +1,213 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_extras %}
+
+{% block title %}{{ title }} | {{ site_title }}{% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_label|capfirst }}</a>
+    &rsaquo; <a href="{% url 'admin:users_operationrun_changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+    &rsaquo; {{ title }}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <style>
+    .stats-container {
+      margin: 20px 0;
+    }
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 13px;
+    }
+    .stats-table th,
+    .stats-table td {
+      border: 1px solid #ddd;
+      padding: 8px 10px;
+      text-align: right;
+    }
+    .stats-table th {
+      background-color: #79aec8;
+      color: white;
+      font-weight: bold;
+    }
+    .stats-table th:first-child,
+    .stats-table td:first-child {
+      text-align: left;
+    }
+    .stats-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .stats-table tr:hover {
+      background-color: #f1f1f1;
+    }
+    .stats-table .totals-row {
+      background-color: #417690 !important;
+      color: white;
+      font-weight: bold;
+    }
+    .stats-table .totals-row:hover {
+      background-color: #417690 !important;
+    }
+    .month-header {
+      background-color: #417690;
+      color: white;
+      padding: 12px 15px;
+      margin-top: 25px;
+      margin-bottom: 0;
+      border-radius: 4px 4px 0 0;
+      font-size: 16px;
+    }
+    .month-header:first-of-type {
+      margin-top: 0;
+    }
+    .success-rate {
+      font-weight: bold;
+    }
+    .success-rate.high {
+      color: #28a745;
+    }
+    .success-rate.medium {
+      color: #ffc107;
+    }
+    .success-rate.low {
+      color: #dc3545;
+    }
+    .grand-totals {
+      background-color: #264653;
+      color: white;
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 30px;
+    }
+    .grand-totals h3 {
+      margin: 0 0 15px 0;
+      font-size: 18px;
+    }
+    .grand-totals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+    }
+    .grand-stat {
+      text-align: center;
+    }
+    .grand-stat .value {
+      font-size: 24px;
+      font-weight: bold;
+      display: block;
+    }
+    .grand-stat .label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .nav-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #447e9b;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+    .empty-cell {
+      color: #999;
+    }
+  </style>
+
+  <div class="stats-container">
+    <a href="{% url 'admin:users_operationrun_changelist' %}" class="nav-link">&larr; Back to Operations List</a>
+
+    {% if grand_totals.total > 0 %}
+      <div class="grand-totals">
+        <h3>All Time Totals</h3>
+        <div class="grand-totals-grid">
+          <div class="grand-stat">
+            <span class="value">{{ grand_totals.total|default:0 }}</span>
+            <span class="label">Total Operations</span>
+          </div>
+          <div class="grand-stat">
+            <span class="value">{{ grand_totals.success|default:0 }}</span>
+            <span class="label">Successful</span>
+          </div>
+          <div class="grand-stat">
+            <span class="value">{{ grand_totals.error|default:0 }}</span>
+            <span class="label">Errors</span>
+          </div>
+          <div class="grand-stat">
+            <span class="value">{{ grand_totals.cancelled|default:0 }}</span>
+            <span class="label">Cancelled</span>
+          </div>
+          <div class="grand-stat">
+            <span class="value">{{ grand_totals.abandoned|default:0 }}</span>
+            <span class="label">Abandoned</span>
+          </div>
+          <div class="grand-stat">
+            <span class="value {% if grand_totals.success_rate >= 90 %}high{% elif grand_totals.success_rate >= 70 %}medium{% else %}low{% endif %}">{{ grand_totals.success_rate }}%</span>
+            <span class="label">Success Rate</span>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% for month_data in months %}
+      <h3 class="month-header">
+        {{ month_data.month|date:"F Y" }}
+        <span style="font-weight: normal; font-size: 14px; margin-left: 10px;">
+          ({{ month_data.totals.total }} operations, {{ month_data.totals.success_rate }}% success)
+        </span>
+      </h3>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Operation Type</th>
+            <th>Total</th>
+            <th>Success</th>
+            <th>Errors</th>
+            <th>Cancelled</th>
+            <th>Abandoned</th>
+            <th>In Progress</th>
+            <th>Success Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for conv_type in conversion_types %}
+            {% with stats=month_data.operations %}
+              {% if conv_type in stats %}
+                <tr>
+                  <td><strong>{{ conv_type }}</strong></td>
+                  <td>{{ stats|get_item:conv_type|get_item:"total" }}</td>
+                  <td>{{ stats|get_item:conv_type|get_item:"success" }}</td>
+                  <td>{% with val=stats|get_item:conv_type|get_item:"error" %}{% if val > 0 %}<span style="color: #dc3545; font-weight: bold;">{{ val }}</span>{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
+                  <td>{% with val=stats|get_item:conv_type|get_item:"cancelled" %}{% if val > 0 %}{{ val }}{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
+                  <td>{% with val=stats|get_item:conv_type|get_item:"abandoned" %}{% if val > 0 %}{{ val }}{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
+                  <td>{% with val=stats|get_item:conv_type|get_item:"other" %}{% if val > 0 %}{{ val }}{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
+                  <td>
+                    {% with rate=stats|get_item:conv_type|get_item:"success_rate" %}
+                      <span class="success-rate {% if rate >= 90 %}high{% elif rate >= 70 %}medium{% else %}low{% endif %}">{{ rate }}%</span>
+                    {% endwith %}
+                  </td>
+                </tr>
+              {% endif %}
+            {% endwith %}
+          {% endfor %}
+          <tr class="totals-row">
+            <td><strong>MONTH TOTAL</strong></td>
+            <td>{{ month_data.totals.total }}</td>
+            <td>{{ month_data.totals.success }}</td>
+            <td>{{ month_data.totals.error }}</td>
+            <td>{{ month_data.totals.cancelled }}</td>
+            <td>{{ month_data.totals.abandoned }}</td>
+            <td>{{ month_data.totals.other }}</td>
+            <td>{{ month_data.totals.success_rate }}%</td>
+          </tr>
+        </tbody>
+      </table>
+    {% empty %}
+      <p>No operations recorded yet.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -736,10 +736,50 @@ def payment_cancel(request):
     return render(request, "payments/cancel.html")
 
 
+def _get_client_ip(request) -> str:
+    """Extract client IP from request, handling proxies."""
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    if x_forwarded_for:
+        return x_forwarded_for.split(",")[0].strip()
+    return request.META.get("REMOTE_ADDR", "")
+
+
+def _check_stripe_webhook_ip(request) -> bool:
+    """Verify webhook request comes from Stripe IP addresses.
+
+    Returns True if IP check passes or is disabled.
+    """
+    if not getattr(settings, "STRIPE_WEBHOOK_IP_WHITELIST_ENABLED", True):
+        return True
+
+    allowed_ips = getattr(settings, "STRIPE_WEBHOOK_IPS", [])
+    if not allowed_ips:
+        # No IPs configured, skip check
+        return True
+
+    client_ip = _get_client_ip(request)
+    if client_ip in allowed_ips:
+        return True
+
+    logger.warning(
+        "Stripe webhook from unauthorized IP",
+        extra={
+            "event": "stripe_webhook_ip_blocked",
+            "client_ip": client_ip,
+            "allowed_ips_count": len(allowed_ips),
+        },
+    )
+    return False
+
+
 @csrf_exempt
 @require_http_methods(["POST"])
 def stripe_webhook(request):
     """Handle Stripe webhooks."""
+    # IP whitelist check (additional layer on top of signature verification)
+    if not _check_stripe_webhook_ip(request):
+        return HttpResponse("Forbidden", status=403)
+
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE")
 
@@ -831,20 +871,19 @@ def handle_checkout_session_completed(session):
 
         if payment_type == "one_time" and plan.duration_days == 1:
             payment_id = session.payment_intent or session.id
-            payment, created = Payment.objects.get_or_create(
+            payment, created = Payment.create_from_webhook(
                 payment_id=payment_id,
-                defaults={
-                    "user": user,
-                    "plan": plan,
-                    "amount": plan.price,
-                    "status": "completed",
-                    "payment_method": "stripe",
-                    "processed_at": now,
-                },
+                user=user,
+                plan=plan,
+                amount=plan.price,
+                status="completed",
+                payment_method="stripe",
+                processed_at=now,
             )
             if not created and payment.status != "completed":
                 payment.status = "completed"
                 payment.processed_at = now
+                payment._skip_subscription_sync = True
                 payment.save(update_fields=["status", "processed_at"])
             return
 
@@ -931,18 +970,16 @@ def handle_checkout_session_completed(session):
             )
 
             if getattr(session, "payment_status", None) == "paid":
-                Payment.objects.get_or_create(
+                Payment.create_from_webhook(
                     payment_id=getattr(session, "id", None)
                     or getattr(session, "subscription", None),
-                    defaults={
-                        "user": user,
-                        "plan": plan,
-                        "amount": plan.price,
-                        "status": "completed",
-                        "payment_method": "stripe",
-                        "transaction_id": getattr(session, "subscription", None),
-                        "processed_at": now,
-                    },
+                    user=user,
+                    plan=plan,
+                    amount=plan.price,
+                    status="completed",
+                    payment_method="stripe",
+                    transaction_id=getattr(session, "subscription", None),
+                    processed_at=now,
                 )
             return
 
@@ -985,18 +1022,16 @@ def handle_checkout_session_completed(session):
         )
 
         if getattr(session, "payment_status", None) == "paid":
-            Payment.objects.get_or_create(
+            Payment.create_from_webhook(
                 payment_id=getattr(session, "id", None)
                 or getattr(session, "subscription", None),
-                defaults={
-                    "user": user,
-                    "plan": plan,
-                    "amount": plan.price,
-                    "status": "completed",
-                    "payment_method": "stripe",
-                    "transaction_id": getattr(session, "subscription", None),
-                    "processed_at": now,
-                },
+                user=user,
+                plan=plan,
+                amount=plan.price,
+                status="completed",
+                payment_method="stripe",
+                transaction_id=getattr(session, "subscription", None),
+                processed_at=now,
             )
 
     except Exception as e:
@@ -1086,16 +1121,14 @@ def handle_invoice_payment_succeeded(invoice):
 
             payment_id = getattr(invoice, "id", None)
             if payment_id:
-                Payment.objects.get_or_create(
+                Payment.create_from_webhook(
                     payment_id=payment_id,
-                    defaults={
-                        "user": user,
-                        "plan": plan,
-                        "amount": plan.price,
-                        "status": "completed",
-                        "payment_method": "stripe",
-                        "processed_at": now,
-                    },
+                    user=user,
+                    plan=plan,
+                    amount=plan.price,
+                    status="completed",
+                    payment_method="stripe",
+                    processed_at=now,
                 )
 
             logger.info(
@@ -1139,20 +1172,19 @@ def handle_invoice_payment_succeeded(invoice):
             invoice, "id", None
         )
         if payment_id:
-            payment, created = Payment.objects.get_or_create(
+            payment, created = Payment.create_from_webhook(
                 payment_id=payment_id,
-                defaults={
-                    "user": subscription.user,
-                    "plan": subscription.plan,
-                    "amount": subscription.plan.price,
-                    "status": "completed",
-                    "payment_method": "stripe",
-                    "processed_at": timezone.now(),
-                },
+                user=subscription.user,
+                plan=subscription.plan,
+                amount=subscription.plan.price,
+                status="completed",
+                payment_method="stripe",
+                processed_at=timezone.now(),
             )
             if not created and payment.status != "completed":
                 payment.status = "completed"
                 payment.processed_at = timezone.now()
+                payment._skip_subscription_sync = True
                 payment.save(update_fields=["status", "processed_at"])
 
     except Exception as e:

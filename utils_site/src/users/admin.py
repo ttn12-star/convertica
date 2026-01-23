@@ -403,6 +403,7 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
 
 @admin.register(OperationRun)
 class OperationRunAdmin(admin.ModelAdmin):
+    change_list_template = "admin/users/operationrun/change_list.html"
     list_display = (
         "conversion_type",
         "status",
@@ -461,7 +462,12 @@ class OperationRunAdmin(admin.ModelAdmin):
                 "export/",
                 self.admin_site.admin_view(self.export_csv_view),
                 name="users_operationrun_export",
-            )
+            ),
+            path(
+                "monthly-stats/",
+                self.admin_site.admin_view(self.monthly_stats_view),
+                name="users_operationrun_monthly_stats",
+            ),
         ]
         return custom_urls + urls
 
@@ -526,6 +532,117 @@ class OperationRunAdmin(admin.ModelAdmin):
             )
 
         return response
+
+    def monthly_stats_view(self, request):
+        """Monthly statistics view for operations."""
+        from collections import defaultdict
+
+        from django.db.models import Count, Q
+        from django.db.models.functions import TruncMonth
+        from django.shortcuts import render
+
+        # Get all unique conversion types
+        conversion_types = (
+            OperationRun.objects.values_list("conversion_type", flat=True)
+            .distinct()
+            .order_by("conversion_type")
+        )
+
+        # Aggregate data by month and conversion_type
+        monthly_data = (
+            OperationRun.objects.annotate(month=TruncMonth("created_at"))
+            .values("month", "conversion_type")
+            .annotate(
+                total=Count("id"),
+                success=Count("id", filter=Q(status="success")),
+                error=Count("id", filter=Q(status="error")),
+                cancelled=Count(
+                    "id", filter=Q(status__in=["cancelled", "cancel_requested"])
+                ),
+                abandoned=Count("id", filter=Q(status="abandoned")),
+                other=Count(
+                    "id",
+                    filter=Q(status__in=["started", "queued", "running"]),
+                ),
+            )
+            .order_by("-month", "conversion_type")
+        )
+
+        # Organize data by month
+        months_dict = defaultdict(
+            lambda: {"operations": {}, "totals": defaultdict(int)}
+        )
+
+        for row in monthly_data:
+            month_key = row["month"]
+            conv_type = row["conversion_type"]
+
+            months_dict[month_key]["operations"][conv_type] = {
+                "total": row["total"],
+                "success": row["success"],
+                "error": row["error"],
+                "cancelled": row["cancelled"],
+                "abandoned": row["abandoned"],
+                "other": row["other"],
+                "success_rate": (
+                    round(row["success"] / row["total"] * 100, 1)
+                    if row["total"] > 0
+                    else 0
+                ),
+            }
+
+            # Accumulate totals for the month
+            months_dict[month_key]["totals"]["total"] += row["total"]
+            months_dict[month_key]["totals"]["success"] += row["success"]
+            months_dict[month_key]["totals"]["error"] += row["error"]
+            months_dict[month_key]["totals"]["cancelled"] += row["cancelled"]
+            months_dict[month_key]["totals"]["abandoned"] += row["abandoned"]
+            months_dict[month_key]["totals"]["other"] += row["other"]
+
+        # Convert to sorted list
+        months_list = []
+        for month, data in sorted(
+            months_dict.items(), key=lambda x: x[0], reverse=True
+        ):
+            totals = data["totals"]
+            totals["success_rate"] = (
+                round(totals["success"] / totals["total"] * 100, 1)
+                if totals["total"] > 0
+                else 0
+            )
+            months_list.append(
+                {
+                    "month": month,
+                    "operations": data["operations"],
+                    "totals": dict(totals),
+                }
+            )
+
+        # Grand totals
+        grand_totals = {
+            "total": sum(m["totals"]["total"] for m in months_list),
+            "success": sum(m["totals"]["success"] for m in months_list),
+            "error": sum(m["totals"]["error"] for m in months_list),
+            "cancelled": sum(m["totals"]["cancelled"] for m in months_list),
+            "abandoned": sum(m["totals"]["abandoned"] for m in months_list),
+            "other": sum(m["totals"]["other"] for m in months_list),
+        }
+        grand_totals["success_rate"] = (
+            round(grand_totals["success"] / grand_totals["total"] * 100, 1)
+            if grand_totals["total"] > 0
+            else 0
+        )
+
+        context = {
+            **self.admin_site.each_context(request),
+            "title": "Monthly Operations Statistics",
+            "months": months_list,
+            "conversion_types": list(conversion_types),
+            "grand_totals": grand_totals,
+            "opts": self.model._meta,
+        }
+
+        return render(request, "admin/users/operationrun/monthly_stats.html", context)
 
 
 @admin.register(StripeWebhookEvent)

@@ -1,8 +1,10 @@
 # Conversion limits and timeout utilities
+import atexit
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import TimeoutError as FuturesTimeoutError
 from functools import wraps
+from threading import Lock
 from typing import Any
 
 # Use pypdf instead of PyMuPDF for better compatibility
@@ -87,6 +89,48 @@ HEAVY_OPERATIONS = {
 
 
 # ============================================================================
+# GLOBAL THREAD POOL - Reusable executor for timeout operations
+# ============================================================================
+# Using a global pool avoids creating a new ThreadPoolExecutor per request,
+# which would create 2 threads per request (max_workers=2).
+# With 100 concurrent requests, that's 200 threads - excessive and wasteful.
+# A global pool with 4 workers handles all timeout operations efficiently.
+
+_global_executor: ThreadPoolExecutor | None = None
+_executor_lock = Lock()
+
+
+def _get_global_executor() -> ThreadPoolExecutor:
+    """Get or create the global ThreadPoolExecutor.
+
+    Thread-safe lazy initialization of the executor pool.
+    The pool is reused across all requests.
+    """
+    global _global_executor
+    if _global_executor is None:
+        with _executor_lock:
+            if _global_executor is None:
+                # 4 workers is enough for timeout operations
+                # Actual conversion work happens in the same thread,
+                # executor is just for timeout monitoring
+                _global_executor = ThreadPoolExecutor(
+                    max_workers=4,
+                    thread_name_prefix="timeout_pool",
+                )
+                # Register cleanup on interpreter shutdown
+                atexit.register(_shutdown_executor)
+    return _global_executor
+
+
+def _shutdown_executor():
+    """Shutdown the global executor gracefully."""
+    global _global_executor
+    if _global_executor is not None:
+        _global_executor.shutdown(wait=False)
+        _global_executor = None
+
+
+# ============================================================================
 # PDF VALIDATION
 # ============================================================================
 
@@ -131,30 +175,13 @@ def get_max_pages_for_user(user, operation: str = None) -> int:
 
     if user.is_authenticated and hasattr(user, "is_premium") and user.is_premium:
         if hasattr(user, "is_subscription_active") and user.is_subscription_active():
-            premium_limits: dict[str, int] = {
-                "pdf_to_word": 300,
-                "pdf_to_excel": 300,
-                "pdf_to_ppt": 300,
-                "pdf_to_html": 300,
-                "word_to_pdf": 300,
-                "excel_to_pdf": 300,
-                "ppt_to_pdf": 300,
-                "html_to_pdf": 150,
-                "url_to_pdf": 150,
-                "pdf_to_jpg": 150,
-                "compress_pdf": 400,
-                "merge_pdf": 400,
-                "split_pdf": 400,
-                "rotate_pdf": 700,
-                "crop_pdf": 700,
-                "organize_pdf": 700,
-                "extract_pages": 700,
-                "remove_pages": 700,
-                "unlock_pdf": 700,
-                "protect_pdf": 700,
-                "add_watermark": 700,
-                "add_page_numbers": 700,
-            }
+            # Load premium limits from settings (configurable via .env)
+            try:
+                from django.conf import settings
+
+                premium_limits = getattr(settings, "PREMIUM_PAGE_LIMITS", {})
+            except ImportError:
+                premium_limits = {}
 
             if operation_key in premium_limits:
                 return premium_limits[operation_key]
@@ -295,7 +322,7 @@ class ConversionTimeoutError(Exception):
 def with_timeout(timeout_seconds: int = CONVERSION_TIMEOUT):
     """Decorator to add timeout to a function.
 
-    Uses ThreadPoolExecutor for cross-platform compatibility.
+    Uses a global ThreadPoolExecutor for efficiency.
 
     Args:
         timeout_seconds: Maximum time allowed for the function to execute
@@ -309,22 +336,20 @@ def with_timeout(timeout_seconds: int = CONVERSION_TIMEOUT):
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args, **kwargs) -> Any:
-            with ThreadPoolExecutor(
-                max_workers=2
-            ) as executor:  # Increased for low-memory server
-                future = executor.submit(func, *args, **kwargs)
-                try:
-                    return future.result(timeout=timeout_seconds)
-                except FuturesTimeoutError as exc:
-                    logger.error(
-                        "Operation timed out after %d seconds: %s",
-                        timeout_seconds,
-                        func.__name__,
-                    )
-                    raise ConversionTimeoutError(
-                        f"Operation timed out after {timeout_seconds} seconds. "
-                        f"The file may be too complex. Please try with a smaller file."
-                    ) from exc
+            executor = _get_global_executor()
+            future = executor.submit(func, *args, **kwargs)
+            try:
+                return future.result(timeout=timeout_seconds)
+            except FuturesTimeoutError as exc:
+                logger.error(
+                    "Operation timed out after %d seconds: %s",
+                    timeout_seconds,
+                    func.__name__,
+                )
+                raise ConversionTimeoutError(
+                    f"Operation timed out after {timeout_seconds} seconds. "
+                    f"The file may be too complex. Please try with a smaller file."
+                ) from exc
 
         return wrapper
 
@@ -338,6 +363,8 @@ def run_with_timeout(
     timeout: int = CONVERSION_TIMEOUT,
 ) -> Any:
     """Run a function with a timeout.
+
+    Uses a global ThreadPoolExecutor for efficiency.
 
     Args:
         func: Function to execute
@@ -354,22 +381,20 @@ def run_with_timeout(
     if kwargs is None:
         kwargs = {}
 
-    with ThreadPoolExecutor(
-        max_workers=2
-    ) as executor:  # Increased for low-memory server
-        future = executor.submit(func, *args, **kwargs)
-        try:
-            return future.result(timeout=timeout)
-        except FuturesTimeoutError as exc:
-            logger.error(
-                "Operation timed out after %d seconds: %s",
-                timeout,
-                func.__name__,
-            )
-            raise ConversionTimeoutError(
-                f"Operation timed out after {timeout} seconds. "
-                f"The file may be too complex or corrupted. Please try with a smaller file."
-            ) from exc
+    executor = _get_global_executor()
+    future = executor.submit(func, *args, **kwargs)
+    try:
+        return future.result(timeout=timeout)
+    except FuturesTimeoutError as exc:
+        logger.error(
+            "Operation timed out after %d seconds: %s",
+            timeout,
+            func.__name__,
+        )
+        raise ConversionTimeoutError(
+            f"Operation timed out after {timeout} seconds. "
+            f"The file may be too complex or corrupted. Please try with a smaller file."
+        ) from exc
 
 
 # ============================================================================
