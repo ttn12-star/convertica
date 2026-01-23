@@ -350,12 +350,18 @@
 
           function initAnalytics() {
             // Initialize Yandex Metrika
+            // Disable clickmap on mobile - it can block touch scroll on Android
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            var ymConfig = {
+              clickmap: !isMobile, // Disable clickmap on mobile to prevent scroll issues
+              trackLinks: true,
+              accurateTrackBounce: true,
+              webvisor: false
+            };
+
             if (typeof window.ym !== 'undefined') {
               try {
-                ym(105790338, 'init', {
-                  clickmap: true, trackLinks: true,
-                  accurateTrackBounce: true, webvisor: false
-                });
+                ym(105790338, 'init', ymConfig);
                 ym(105790338, 'hit', window.location.href);
               } catch(e) {
                 console.warn('Yandex Metrika init error:', e);
@@ -364,10 +370,7 @@
               // Yandex script not loaded yet, try again later
               setTimeout(function() {
                 if (typeof window.ym !== 'undefined') {
-                  ym(105790338, 'init', {
-                    clickmap: true, trackLinks: true,
-                    accurateTrackBounce: true, webvisor: false
-                  });
+                  ym(105790338, 'init', ymConfig);
                   ym(105790338, 'hit', window.location.href);
                 }
               }, 1000);

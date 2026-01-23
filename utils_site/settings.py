@@ -414,9 +414,8 @@ AUTHENTICATION_BACKENDS = [
 # Allauth account settings
 ACCOUNT_ADAPTER = "src.users.account_adapter.CustomAccountAdapter"
 ACCOUNT_LOGIN_METHODS = {"email"}
-ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]  # email* = required
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Require email verification before login
-ACCOUNT_EMAIL_REQUIRED = True  # Email is required for registration
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
     "/users/profile/"  # Redirect after email confirmation (logged in users)
 )
