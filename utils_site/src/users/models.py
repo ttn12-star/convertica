@@ -78,7 +78,25 @@ class User(AbstractUser):
 
     def save(self, *args, **kwargs):
         """Override save to update subscription fields based on dates and clear cache."""
-        # Auto-calculate subscription days when dates are set
+        # Skip auto-calculation if explicitly disabled (e.g., during cancellation)
+        skip_days_calculation = getattr(self, "_skip_days_calculation", False)
+
+        if not skip_days_calculation:
+            # Auto-calculate subscription days when dates are set
+            self._calculate_subscription_days()
+
+        # Clear cache when subscription data changes (must happen BEFORE is_subscription_active())
+        if getattr(self, "_subscription_changed", False):
+            cache.delete(f"user_subscription_status_{self.id}")
+
+        super().save(*args, **kwargs)
+
+    def _calculate_subscription_days(self):
+        """Calculate total and consecutive subscription days based on dates.
+
+        This is the single source of truth for subscription day calculations.
+        Called automatically in save() unless _skip_days_calculation is set.
+        """
         if self.subscription_start_date and self.subscription_end_date:
             if self.subscription_end_date > self.subscription_start_date:
                 # Calculate total days between start and end dates
@@ -108,16 +126,10 @@ class User(AbstractUser):
             self.total_subscription_days = 0
             self.consecutive_subscription_days = 0
 
-        # Clear cache when subscription data changes (must happen BEFORE is_subscription_active())
-        if getattr(self, "_subscription_changed", False):
-            cache.delete(f"user_subscription_status_{self.id}")
-
         # Only auto-update is_premium if subscription_end_date is set
         # Allow manual override when editing via admin
         if self.subscription_end_date and not hasattr(self, "_admin_manual_edit"):
             self.is_premium = self.is_subscription_active()
-
-        super().save(*args, **kwargs)
 
     def is_subscription_active(self):
         """Check if user's subscription is currently active with Redis caching."""
@@ -208,14 +220,44 @@ class User(AbstractUser):
                 "gradient": "from-blue-600/70 to-cyan-600/70",
             }
 
-    def activate_subscription(self, plan):
-        """Activate subscription for given plan."""
+    def activate_subscription(self, plan, extend_if_active=True):
+        """Activate or extend subscription for given plan.
+
+        Args:
+            plan: SubscriptionPlan instance
+            extend_if_active: If True and subscription is already active,
+                              extend it instead of resetting dates.
+                              If False, only activate if not already active.
+        """
         from datetime import timedelta
 
-        self.subscription_start_date = timezone.now()
-        self.subscription_end_date = timezone.now() + timedelta(days=plan.duration_days)
-        self.total_subscription_days += plan.duration_days
-        self.consecutive_subscription_days += plan.duration_days
+        now = timezone.now()
+
+        # Check if subscription is currently active
+        is_currently_active = (
+            self.is_premium
+            and self.subscription_end_date
+            and self.subscription_end_date > now
+        )
+
+        if is_currently_active:
+            if not extend_if_active:
+                # Already active and we don't want to extend - skip
+                return
+
+            # Extend existing subscription from current end date
+            self.subscription_end_date = self.subscription_end_date + timedelta(
+                days=plan.duration_days
+            )
+            self.total_subscription_days += plan.duration_days
+            # Don't reset consecutive_subscription_days - it's calculated in save()
+        else:
+            # New subscription or expired - set fresh start date
+            self.subscription_start_date = now
+            self.subscription_end_date = now + timedelta(days=plan.duration_days)
+            self.total_subscription_days += plan.duration_days
+            # consecutive_subscription_days will be calculated in save()
+
         self.is_premium = True
         self._subscription_changed = True
         self.save()
@@ -225,11 +267,14 @@ class User(AbstractUser):
         return self.stripe_customer_id
 
     def cancel_subscription(self):
-        """Cancel subscription immediately."""
+        """Cancel subscription immediately and reset streak."""
         self.subscription_end_date = timezone.now()
-        self.consecutive_subscription_days = 0
+        self.consecutive_subscription_days = 0  # Reset streak on cancellation
         self._subscription_changed = True
+        self._skip_days_calculation = True  # Don't recalculate, keep 0
         self.save()
+        # Clean up flag
+        self._skip_days_calculation = False
 
     def is_hero(self):
         """Check if user qualifies as hero (premium user with display enabled)."""
@@ -359,9 +404,14 @@ class Payment(models.Model):
         return f"{self.user.email} - {self.plan.name} - ${self.amount}"
 
     def save(self, *args, **kwargs):
-        """Override save to handle status changes and clear user cache."""
+        """Override save to handle status changes and clear user cache.
+
+        Set self._skip_subscription_sync = True before saving if the subscription
+        was already activated by webhook (to avoid double activation).
+        """
         is_new = self.pk is None
         old_status = None
+        skip_sync = getattr(self, "_skip_subscription_sync", False)
 
         if not is_new:
             try:
@@ -372,17 +422,54 @@ class Payment(models.Model):
 
         super().save(*args, **kwargs)
 
+        # Skip subscription sync if flag is set (webhook already handled it)
+        if skip_sync:
+            return
+
         # Clear user subscription cache when payment status changes to completed
         if (is_new and self.status == "completed") or (
             old_status != "completed" and self.status == "completed"
         ):
             cache.delete(f"user_subscription_status_{self.user.id}")
-            # Activate subscription
-            self.user.activate_subscription(self.plan)
+            # Activate subscription (extend_if_active=False to avoid overwriting
+            # dates that were already set by webhook)
+            self.user.activate_subscription(self.plan, extend_if_active=False)
         elif old_status == "completed" and self.status in ["refunded", "failed"]:
             cache.delete(f"user_subscription_status_{self.user.id}")
             # Cancel subscription
             self.user.cancel_subscription()
+
+    @classmethod
+    def create_from_webhook(cls, payment_id, user, plan, amount, **extra_fields):
+        """Create Payment from webhook without triggering subscription activation.
+
+        Use this when the subscription was already activated by the webhook handler
+        to avoid double activation.
+
+        Args:
+            payment_id: Unique payment identifier
+            user: User instance
+            plan: SubscriptionPlan instance
+            amount: Payment amount
+            **extra_fields: Additional fields (status, payment_method, etc.)
+
+        Returns:
+            Tuple of (Payment, created) similar to get_or_create
+        """
+        try:
+            payment = cls.objects.get(payment_id=payment_id)
+            return payment, False
+        except cls.DoesNotExist:
+            payment = cls(
+                payment_id=payment_id,
+                user=user,
+                plan=plan,
+                amount=amount,
+                **extra_fields,
+            )
+            payment._skip_subscription_sync = True
+            payment.save()
+            return payment, True
 
     @classmethod
     def get_user_payment_history(cls, user_id, limit=10):

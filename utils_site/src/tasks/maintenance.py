@@ -132,6 +132,19 @@ def cleanup_temp_files():
 
 @shared_task(name="maintenance.update_subscription_daily", queue="maintenance")
 def update_subscription_daily():
+    """
+    Update subscription days for active users and deactivate expired subscriptions.
+
+    This task only runs if PAYMENTS_ENABLED is True.
+    """
+    # Skip if payments/subscriptions are disabled
+    if not getattr(settings, "PAYMENTS_ENABLED", True):
+        logger.info(
+            "Subscription update skipped - payments disabled",
+            extra={"event": "update_subscription_daily_skipped"},
+        )
+        return {"status": "skipped", "reason": "payments_disabled"}
+
     try:
         from django.contrib.auth import get_user_model
 
@@ -140,49 +153,73 @@ def update_subscription_daily():
         today = now.date()
         # Use timezone-aware datetime for DateTimeField comparisons
         start_of_today = now.replace(hour=0, minute=0, second=0, microsecond=0)
-        updated_count = 0
 
-        active_users = User.objects.filter(
-            is_premium=True, subscription_end_date__gte=start_of_today
+        # Update active users' subscription days using bulk_update
+        active_users = list(
+            User.objects.filter(
+                is_premium=True, subscription_end_date__gte=start_of_today
+            )
         )
 
+        users_to_update_active = []
         for user in active_users:
             if user.subscription_start_date:
                 days_subscribed = (today - user.subscription_start_date.date()).days + 1
                 if user.consecutive_subscription_days != days_subscribed:
                     user.consecutive_subscription_days = days_subscribed
-                    user.save(update_fields=["consecutive_subscription_days"])
-                    updated_count += 1
+                    users_to_update_active.append(user)
 
-        expired_users = User.objects.filter(
-            is_premium=True, subscription_end_date__lt=start_of_today
+        if users_to_update_active:
+            User.objects.bulk_update(
+                users_to_update_active,
+                ["consecutive_subscription_days"],
+                batch_size=500,
+            )
+
+        # Handle expired subscriptions using bulk_update
+        expired_users = list(
+            User.objects.filter(
+                is_premium=True, subscription_end_date__lt=start_of_today
+            )
         )
 
+        users_to_update_expired = []
         for user in expired_users:
             if user.consecutive_subscription_days > 0 or user.is_premium:
                 user.consecutive_subscription_days = 0
                 user.is_premium = False
-                user.save(update_fields=["consecutive_subscription_days", "is_premium"])
-                updated_count += 1
+                users_to_update_expired.append(user)
+
+        if users_to_update_expired:
+            User.objects.bulk_update(
+                users_to_update_expired,
+                ["consecutive_subscription_days", "is_premium"],
+                batch_size=500,
+            )
 
         cache.delete("site_heroes")
         cache.delete("top_subscribers_10")
+
+        updated_active = len(users_to_update_active)
+        updated_expired = len(users_to_update_expired)
 
         logger.info(
             "Daily subscription update completed",
             extra={
                 "event": "update_subscription_daily",
-                "updated_count": updated_count,
-                "active_users": len(active_users),
-                "expired_users": len(expired_users),
+                "updated_active": updated_active,
+                "updated_expired": updated_expired,
+                "total_active": len(active_users),
+                "total_expired": len(expired_users),
             },
         )
 
         return {
             "status": "success",
-            "updated_count": updated_count,
-            "active_users": len(active_users),
-            "expired_users": len(expired_users),
+            "updated_active": updated_active,
+            "updated_expired": updated_expired,
+            "total_active": len(active_users),
+            "total_expired": len(expired_users),
         }
 
     except Exception as exc:
@@ -437,4 +474,155 @@ def update_statistics():
 
     except Exception as exc:
         logger.error(f"Statistics update failed: {str(exc)}", exc_info=True)
+        return {"status": "error", "message": str(exc)}
+
+
+@shared_task(
+    name="maintenance.retry_failed_webhooks",
+    queue="maintenance",
+    bind=True,
+    max_retries=0,
+)
+def retry_failed_webhooks(self, max_age_hours: int = 24, max_retries: int = 3):
+    """
+    Retry failed Stripe webhook events.
+
+    Finds webhook events with errors that are less than max_age_hours old
+    and haven't exceeded max_retries, then attempts to reprocess them.
+
+    This task only runs if PAYMENTS_ENABLED is True.
+
+    Args:
+        max_age_hours: Maximum age of events to retry (default: 24 hours)
+        max_retries: Maximum number of retry attempts per event (default: 3)
+    """
+    # Skip if payments/subscriptions are disabled
+    if not getattr(settings, "PAYMENTS_ENABLED", True):
+        logger.info(
+            "Webhook retry skipped - payments disabled",
+            extra={"event": "retry_failed_webhooks_skipped"},
+        )
+        return {"status": "skipped", "reason": "payments_disabled"}
+
+    try:
+        from datetime import timedelta
+
+        import stripe
+        from src.users.models import StripeWebhookEvent
+
+        # Skip if Stripe is not configured
+        if not getattr(settings, "STRIPE_SECRET_KEY", None):
+            logger.info("Stripe not configured, skipping webhook retry")
+            return {"status": "skipped", "reason": "stripe_not_configured"}
+
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
+        cutoff_time = timezone.now() - timedelta(hours=max_age_hours)
+
+        # Find failed events (have last_error, not currently processing)
+        failed_events = StripeWebhookEvent.objects.filter(
+            last_error__isnull=False,
+            processing=False,
+            created_at__gte=cutoff_time,
+        ).exclude(last_error="")
+
+        retried_count = 0
+        success_count = 0
+        still_failing = 0
+
+        for webhook_event in failed_events:
+            # Check retry count (stored in last_error as "Retry X: ...")
+            retry_count = webhook_event.last_error.count("Retry ")
+            if retry_count >= max_retries:
+                continue
+
+            try:
+                # Mark as processing
+                webhook_event.processing = True
+                webhook_event.save(update_fields=["processing"])
+
+                # Retrieve event from Stripe
+                event = stripe.Event.retrieve(webhook_event.event_id)
+
+                # Import handlers
+                from src.payments.views import (
+                    handle_charge_dispute_created,
+                    handle_charge_refunded,
+                    handle_checkout_session_completed,
+                    handle_invoice_payment_failed,
+                    handle_invoice_payment_succeeded,
+                    handle_subscription_deleted,
+                    handle_subscription_updated,
+                )
+
+                # Route to appropriate handler
+                handlers = {
+                    "checkout.session.completed": handle_checkout_session_completed,
+                    "invoice.payment_succeeded": handle_invoice_payment_succeeded,
+                    "invoice.payment_failed": handle_invoice_payment_failed,
+                    "customer.subscription.created": handle_subscription_updated,
+                    "customer.subscription.updated": handle_subscription_updated,
+                    "customer.subscription.deleted": handle_subscription_deleted,
+                    "charge.refunded": handle_charge_refunded,
+                    "charge.dispute.created": handle_charge_dispute_created,
+                }
+
+                handler = handlers.get(event.type)
+                if handler:
+                    handler(event.data.object)
+                    success_count += 1
+
+                    # Clear error on success
+                    webhook_event.last_error = ""
+                    webhook_event.processed_at = timezone.now()
+
+                retried_count += 1
+
+            except Exception as e:
+                # Update error with retry count
+                webhook_event.last_error = (
+                    f"Retry {retry_count + 1}: {str(e)[:500]}\n"
+                    f"Previous: {webhook_event.last_error[:1000]}"
+                )
+                still_failing += 1
+                logger.warning(
+                    f"Webhook retry failed for {webhook_event.event_id}: {e}",
+                    extra={
+                        "event": "webhook_retry_failed",
+                        "event_id": webhook_event.event_id,
+                        "event_type": webhook_event.event_type,
+                        "retry_count": retry_count + 1,
+                    },
+                )
+
+            finally:
+                webhook_event.processing = False
+                webhook_event.save(
+                    update_fields=["processing", "last_error", "processed_at"]
+                )
+
+        logger.info(
+            f"Webhook retry completed: {retried_count} retried, "
+            f"{success_count} succeeded, {still_failing} still failing",
+            extra={
+                "event": "webhook_retry_completed",
+                "retried": retried_count,
+                "succeeded": success_count,
+                "still_failing": still_failing,
+            },
+        )
+
+        return {
+            "status": "success",
+            "retried": retried_count,
+            "succeeded": success_count,
+            "still_failing": still_failing,
+        }
+
+    except Exception as exc:
+        logger.error(
+            f"Webhook retry task failed: {str(exc)}",
+            exc_info=True,
+            extra={"event": "webhook_retry_task_failed"},
+        )
         return {"status": "error", "message": str(exc)}

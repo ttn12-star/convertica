@@ -15,7 +15,7 @@ from .logging_utils import build_request_context, get_logger
 logger = get_logger(__name__)
 
 
-def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
+def verify_turnstile(token: str, remote_ip: str | None = None) -> bool | str:
     """
     Verify Cloudflare Turnstile token.
 
@@ -24,7 +24,9 @@ def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
         remote_ip: Client IP address (optional)
 
     Returns:
-        True if verification successful, False otherwise
+        True if verification successful
+        False if verification failed
+        "fallback" if API unavailable (triggers stricter rate limiting)
     """
     # Skip CAPTCHA verification in development mode
     if settings.DEBUG:
@@ -61,9 +63,10 @@ def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
 
         return result.get("success", False)
     except Exception as e:
-        # Fail-open to avoid blocking users if Turnstile is down/reachable issues
+        # Return "fallback" to signal API unavailability
+        # This triggers stricter rate limiting instead of complete bypass
         logger.warning(
-            "Turnstile verification error (allowing request)",
+            "Turnstile verification error (using fallback rate limiting)",
             extra={
                 "error": str(e),
                 "remote_ip": remote_ip,
@@ -72,7 +75,45 @@ def verify_turnstile(token: str, remote_ip: str | None = None) -> bool:
             },
             exc_info=True,
         )
-        return True
+        return "fallback"
+
+
+def _check_fallback_rate_limit(request, remote_ip: str) -> tuple[bool, str | None]:
+    """
+    Stricter rate limiting when Turnstile API is unavailable.
+
+    This is used as a fallback to prevent abuse when CAPTCHA verification fails.
+    Limits are 5x stricter than normal rate limits.
+    """
+    fallback_key = f"turnstile_fallback:{remote_ip}"
+
+    try:
+        current_count = cache.get(fallback_key, 0)
+
+        # Strict limit: 4 requests per minute (vs normal 20)
+        if current_count >= 4:
+            logger.warning(
+                "Fallback rate limit exceeded (Turnstile unavailable)",
+                extra={
+                    **build_request_context(request),
+                    "ip": remote_ip,
+                    "current_count": current_count,
+                    "event": "fallback_rate_limit_exceeded",
+                },
+            )
+            return False, (
+                "Service temporarily unavailable. "
+                "Please wait a moment and try again."
+            )
+
+        # Increment counter with 60-second window
+        cache.set(fallback_key, current_count + 1, 60)
+        return True, None
+
+    except Exception as e:
+        logger.error(f"Fallback rate limit check error: {str(e)}", exc_info=True)
+        # On error, allow request but with warning
+        return True, None
 
 
 def check_honeypot(request: HttpRequest, honeypot_field: str = "website") -> bool:
@@ -336,7 +377,22 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
 
     # If CAPTCHA token is provided, verify it
     if turnstile_token:
-        if not verify_turnstile(turnstile_token, remote_ip):
+        verification_result = verify_turnstile(turnstile_token, remote_ip)
+
+        if verification_result == "fallback":
+            # Turnstile API unavailable - use stricter rate limiting as fallback
+            is_allowed, error_msg = _check_fallback_rate_limit(request, remote_ip)
+            if not is_allowed:
+                return Response(
+                    {"error": error_msg},
+                    status=status.HTTP_429_TOO_MANY_REQUESTS,
+                )
+            # Allow request with fallback rate limiting applied
+            logger.info(
+                "Request allowed via fallback rate limiting (Turnstile unavailable)",
+                extra={**context, "ip": remote_ip, "event": "fallback_allowed"},
+            )
+        elif not verification_result:
             logger.warning(
                 "Turnstile verification failed", extra={**context, "ip": remote_ip}
             )

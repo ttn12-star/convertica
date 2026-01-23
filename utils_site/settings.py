@@ -211,11 +211,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Load from environment variable, fallback to insecure key for development
-SECRET_KEY = config(
-    "SECRET_KEY",
-    default="django-insecure-p03zfs4mx09p=oz55doc&#td84i936y$b&8yt7q4^2eh*5_p8v",
+# Load from environment variable - REQUIRED in production
+_default_secret_key = (
+    "django-insecure-dev-only-key-do-not-use-in-production-abc123"
+    if config("DEBUG", default=True, cast=bool)
+    else ""
 )
+SECRET_KEY = config("SECRET_KEY", default=_default_secret_key)
+
+# Fail fast if SECRET_KEY is not set in production
+if not SECRET_KEY:
+    raise ValueError(
+        "SECRET_KEY environment variable is required in production! "
+        'Generate one with: python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"'
+    )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
@@ -293,6 +302,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "src.api.middleware.SecurityHeadersMiddleware",  # CSP and other security headers
 ]
 
 # Add Prometheus middleware if available
@@ -560,6 +570,38 @@ MAX_FILE_SIZE_HEAVY_PREMIUM = config(
 MAX_BATCH_FILES_FREE = config("MAX_BATCH_FILES_FREE", default=1, cast=int)
 MAX_BATCH_FILES_PREMIUM = config("MAX_BATCH_FILES_PREMIUM", default=10, cast=int)
 
+# Premium operation-specific page limits
+# Override in .env as JSON: PREMIUM_PAGE_LIMITS={"pdf_to_word": 500, ...}
+# These limits are per-operation maximums for premium users
+PREMIUM_PAGE_LIMITS = {
+    # Heavy conversions (CPU/memory intensive)
+    "pdf_to_word": 300,
+    "pdf_to_excel": 300,
+    "pdf_to_ppt": 300,
+    "pdf_to_html": 300,
+    "word_to_pdf": 300,
+    "excel_to_pdf": 300,
+    "ppt_to_pdf": 300,
+    # Image conversions
+    "html_to_pdf": 150,
+    "url_to_pdf": 150,
+    "pdf_to_jpg": 150,
+    # PDF organization (relatively fast)
+    "compress_pdf": 400,
+    "merge_pdf": 400,
+    "split_pdf": 400,
+    # Simple operations (very fast)
+    "rotate_pdf": 700,
+    "crop_pdf": 700,
+    "organize_pdf": 700,
+    "extract_pages": 700,
+    "remove_pages": 700,
+    "unlock_pdf": 700,
+    "protect_pdf": 700,
+    "add_watermark": 700,
+    "add_page_numbers": 700,
+}
+
 # DPI limits for image conversion
 DEFAULT_DPI = 300  # Default DPI for PDF to image conversion
 MAX_DPI = 600  # Maximum DPI for PDF to image conversion
@@ -576,6 +618,32 @@ PAYMENTS_ENABLED = config("PAYMENTS_ENABLED", default="True", cast=bool)
 STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY", default="pk_test_...")
 STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
 STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET", default="")
+
+# Stripe Webhook IP Whitelist
+# https://stripe.com/docs/ips - these are Stripe's webhook IP addresses
+# Set STRIPE_WEBHOOK_IP_WHITELIST_ENABLED=False to disable IP checking (signature is still verified)
+STRIPE_WEBHOOK_IP_WHITELIST_ENABLED = config(
+    "STRIPE_WEBHOOK_IP_WHITELIST_ENABLED", default=True, cast=bool
+)
+# Stripe webhook IPs (updated Jan 2024, check https://stripe.com/docs/ips for latest)
+STRIPE_WEBHOOK_IPS = [
+    # Stripe webhook source IPs
+    "3.18.12.63",
+    "3.130.192.231",
+    "13.235.14.237",
+    "13.235.122.149",
+    "18.211.135.69",
+    "35.154.171.200",
+    "52.15.183.38",
+    "54.88.130.119",
+    "54.88.130.237",
+    "54.187.174.169",
+    "54.187.205.235",
+    "54.187.216.72",
+    # Allow localhost for testing
+    "127.0.0.1",
+    "::1",
+]
 STRIPE_SUCCESS_URL = config("STRIPE_SUCCESS_URL", default="/payments/success/")
 STRIPE_CANCEL_URL = config("STRIPE_CANCEL_URL", default="/payments/cancel/")
 
@@ -840,6 +908,15 @@ CELERY_BEAT_SCHEDULE = {
     "delete-unverified-accounts-daily": {
         "task": "user_cleanup.delete_unverified_accounts",
         "schedule": 86400,  # Every 24 hours
+    },
+    # Retry failed Stripe webhooks every hour
+    "retry-failed-webhooks": {
+        "task": "maintenance.retry_failed_webhooks",
+        "schedule": 3600,  # Every hour
+        "kwargs": {
+            "max_age_hours": 24,  # Only retry events from last 24 hours
+            "max_retries": 3,  # Maximum 3 retry attempts
+        },
     },
     # ⚠️ DISABLED: cleanup-old-operations - Keep all operation data permanently
     # If you need to cleanup old data, run manually:
