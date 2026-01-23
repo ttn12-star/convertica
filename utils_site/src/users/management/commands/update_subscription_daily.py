@@ -10,12 +10,15 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         # Django commands require *args, **kwargs parameters
         # but we don't use them in this specific command
-        today = timezone.now().date()
+        now = timezone.now()
+        today = now.date()
+        # Use timezone-aware datetime for DateTimeField comparisons
+        start_of_today = now.replace(hour=0, minute=0, second=0, microsecond=0)
         updated_count = 0
 
         # Update active subscribers - count real days
         active_users = User.objects.filter(
-            is_premium=True, subscription_end_date__gte=today
+            is_premium=True, subscription_end_date__gte=start_of_today
         )
 
         for user in active_users:
@@ -30,7 +33,7 @@ class Command(BaseCommand):
 
         # Handle expired subscriptions - reset counters
         expired_users = User.objects.filter(
-            is_premium=True, subscription_end_date__lt=today
+            is_premium=True, subscription_end_date__lt=start_of_today
         )
 
         for user in expired_users:

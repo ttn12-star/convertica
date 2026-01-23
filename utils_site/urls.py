@@ -17,8 +17,22 @@ from utils_site.swagger import schema_view
 
 
 @require_http_methods(["GET"])
+def liveness_check(request):
+    """Simple liveness check - just confirms the app is running.
+
+    Used for Docker healthcheck to detect if the process is alive.
+    Does NOT check external dependencies (DB, Redis) to avoid false negatives.
+    """
+    return HttpResponse("OK", content_type="text/plain", status=200)
+
+
+@require_http_methods(["GET"])
 def health_check(request):
-    """Health check endpoint for Docker and load balancers."""
+    """Full health check endpoint for Docker and load balancers.
+
+    Checks database and cache connectivity.
+    Use /livez/ for simple liveness checks that don't depend on external services.
+    """
     from django.core.cache import cache
     from django.db import connection
 
@@ -69,6 +83,7 @@ urlpatterns = [
     ),
     # robots.txt is now served directly by nginx from staticfiles/
     path("health/", health_check, name="health_check"),
+    path("livez/", liveness_check, name="liveness_check"),
     # SEO - sitemaps should be accessible without language prefix
     path("sitemap.xml", sitemap_index, name="sitemap_index"),
     path("sitemap-<str:lang>.xml", sitemap_lang, name="sitemap_lang"),

@@ -18,6 +18,14 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    restart: always
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   web:
     build:
@@ -32,7 +40,7 @@ services:
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
              python manage.py compilemessages &&
              python manage.py migrate --noinput &&
-             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-1} --threads ${GUNICORN_THREADS:-2} --timeout 300 --graceful-timeout 30 --max-requests 500 --max-requests-jitter 50 --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload utils_site.wsgi:application"
+             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-2} --threads ${GUNICORN_THREADS:-3} --timeout 300 --graceful-timeout 30 --max-requests 300 --max-requests-jitter 50 --worker-tmp-dir /dev/shm --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload --keep-alive 5 utils_site.wsgi:application"
     env_file:
       - .env
     environment:
@@ -48,12 +56,16 @@ services:
           cpus: '${WEB_CPU_RESERVATION:-0.4}'
           memory: ${WEB_MEMORY_RESERVATION:-1G}
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
+      # Use /livez/ for liveness check (doesn't depend on DB/Redis)
+      # This prevents false unhealthy status when DB/Redis are slow
+      test: ["CMD", "curl", "-f", "http://localhost:8000/livez/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
       start_period: 180s
     restart: always
+    labels:
+      - "autoheal=true"
     logging:
       driver: "json-file"
       options:
@@ -93,6 +105,8 @@ services:
       retries: 10
       start_period: 30s
     restart: always
+    labels:
+      - "autoheal=true"
     logging:
       driver: "json-file"
       options:
@@ -132,6 +146,8 @@ services:
       retries: 5
       start_period: 30s
     restart: always
+    labels:
+      - "autoheal=true"
     logging:
       driver: "json-file"
       options:
@@ -169,6 +185,51 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  # Autoheal - automatically restarts unhealthy containers
+  autoheal:
+    image: willfarrell/autoheal:latest
+    restart: always
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal
+      - AUTOHEAL_INTERVAL=30
+      - AUTOHEAL_START_PERIOD=300
+      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+  # Docker monitor - sends Telegram alerts when containers die/restart
+  docker-monitor:
+    image: docker:cli
+    restart: always
+    entrypoint: /bin/sh
+    command: ["/monitor.sh"]
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./ci/docker-monitor.sh:/monitor.sh:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.05'
+          memory: 32M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
 
 volumes:
   celery-beat-schedule:
