@@ -334,6 +334,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
             "https://mc.yandex.ru "
+            "https://mc.yandex.com "
             "https://accounts.google.com "
             "https://connect.facebook.net",
             # Styles: self, inline (for Tailwind and dynamic styles)
@@ -347,13 +348,16 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://www.google-analytics.com "
             "https://*.google.com "
             "https://*.facebook.com "
-            "https://mc.yandex.ru",
+            "https://mc.yandex.ru "
+            "https://mc.yandex.com",
             # Connect: self, Stripe, Turnstile, WebSocket, analytics, Yandex Metrika
             "connect-src 'self' "
             "https://api.stripe.com "
             "https://challenges.cloudflare.com "
             "https://www.google-analytics.com "
+            "https://*.google-analytics.com "
             "https://mc.yandex.ru "
+            "https://mc.yandex.com "
             "https://accounts.google.com "
             "wss://*.convertica.net "
             "ws://localhost:* "
