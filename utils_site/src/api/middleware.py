@@ -327,30 +327,33 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
         csp_directives = [
             # Default: only same origin
             "default-src 'self'",
-            # Scripts: self, inline (for Django templates), Stripe, Turnstile, Google Analytics
+            # Scripts: self, inline (for Django templates), Stripe, Turnstile, Google Analytics, Yandex Metrika
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
             "https://js.stripe.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
+            "https://mc.yandex.ru "
             "https://accounts.google.com "
             "https://connect.facebook.net",
             # Styles: self, inline (for Tailwind and dynamic styles)
             "style-src 'self' 'unsafe-inline' " "https://fonts.googleapis.com",
             # Fonts: self, Google Fonts
             "font-src 'self' " "https://fonts.gstatic.com " "data:",
-            # Images: self, data URIs, blob, common CDNs
+            # Images: self, data URIs, blob, common CDNs, Yandex Metrika
             "img-src 'self' data: blob: "
             "https://*.stripe.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
             "https://*.google.com "
-            "https://*.facebook.com",
-            # Connect: self, Stripe, Turnstile, WebSocket, analytics
+            "https://*.facebook.com "
+            "https://mc.yandex.ru",
+            # Connect: self, Stripe, Turnstile, WebSocket, analytics, Yandex Metrika
             "connect-src 'self' "
             "https://api.stripe.com "
             "https://challenges.cloudflare.com "
             "https://www.google-analytics.com "
+            "https://mc.yandex.ru "
             "https://accounts.google.com "
             "wss://*.convertica.net "
             "ws://localhost:* "
