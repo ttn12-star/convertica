@@ -41,6 +41,13 @@ module.exports = {
     'from-purple-500', 'to-blue-500',
     'from-red-500', 'to-orange-500',
     'from-orange-500', 'to-red-500',
+    // YouTube video component (youtube_video.html)
+    'group-hover:scale-105',
+    'group-hover:scale-110',
+    'group-hover:bg-red-500',
+    'bg-black/20',
+    'bg-black/30',
+    'from-black/80',
   ],
   theme: {
     extend: {
