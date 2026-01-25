@@ -57,6 +57,9 @@ services:
         reservations:
           cpus: '${WEB_CPU_RESERVATION:-0.5}'
           memory: ${WEB_MEMORY_RESERVATION:-1G}
+    # Allow container to use host swap (memory + swap total = 2.5G)
+    # Without this, container is killed when hitting memory limit even if host has swap
+    memswap_limit: 2.5G
     healthcheck:
       # Use /livez/ for liveness check (doesn't depend on DB/Redis)
       # This prevents false unhealthy status when DB/Redis are slow
@@ -100,6 +103,8 @@ services:
         reservations:
           cpus: '${CELERY_CPU_RESERVATION:-0.2}'
           memory: ${CELERY_MEMORY_RESERVATION:-256M}
+    # Allow celery to use swap for heavy PDF operations (memory + swap = 1.5G)
+    memswap_limit: 1.5G
     healthcheck:
       test: ["CMD-SHELL", "celery -A utils_site inspect ping -d celery@$$HOSTNAME || exit 0"]
       interval: 60s
@@ -137,10 +142,10 @@ services:
       resources:
         limits:
           cpus: '${CELERY_BEAT_CPU_LIMIT:-0.1}'
-          memory: ${CELERY_BEAT_MEMORY_LIMIT:-128M}
+          memory: ${CELERY_BEAT_MEMORY_LIMIT:-256M}  # Increased from 128M - Django import needs memory at startup
         reservations:
           cpus: '${CELERY_BEAT_CPU_RESERVATION:-0.05}'
-          memory: ${CELERY_BEAT_MEMORY_RESERVATION:-64M}
+          memory: ${CELERY_BEAT_MEMORY_RESERVATION:-128M}
     healthcheck:
       test: ["CMD", "sh", "-c", "pgrep -f 'celery.*beat' > /dev/null && test -f /app/celerybeat-schedule/celerybeat-schedule.db || exit 1"]
       interval: 60s

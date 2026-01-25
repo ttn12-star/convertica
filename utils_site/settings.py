@@ -365,7 +365,7 @@ if DATABASE_ENGINE == "postgresql":
             "PASSWORD": config("DATABASE_PASSWORD", default=""),
             "HOST": config("DATABASE_HOST", default="localhost"),
             "PORT": config("DATABASE_PORT", default="5432"),
-            "CONN_MAX_AGE": 600,  # Connection pooling: reuse connections for 10 minutes
+            "CONN_MAX_AGE": 60,  # Connection pooling: reuse for 1 min (reduced from 10 to prevent memory buildup)
             "OPTIONS": {
                 "connect_timeout": 10,
             },

@@ -246,10 +246,10 @@ services:
       resources:
         limits:
           cpus: '0.1'
-          memory: 64M
+          memory: 256M  # Increased from 64M - Django import needs memory at startup
         reservations:
           cpus: '0.05'
-          memory: 32M
+          memory: 128M
     depends_on:
       db:
         condition: service_healthy
