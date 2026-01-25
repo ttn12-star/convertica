@@ -387,7 +387,7 @@
     </div>
   </div>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     function toggleFaq(element) {
       const answer = element.nextElementSibling;
       const icon = element.querySelector('.faq-icon');
