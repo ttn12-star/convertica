@@ -231,7 +231,7 @@
     crossorigin="anonymous"
     onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
   </script>
-  <script nonce="{{ csp_nonce }}">
+  <script>
     window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";

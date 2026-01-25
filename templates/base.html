@@ -107,7 +107,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
-    <script nonce="{{ csp_nonce }}">
+    <script>
       (function() {
         try {
           var html = document.documentElement;
@@ -215,7 +215,7 @@
 
   </head>
   <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased pt-24 sm:pt-24 md:pt-[72px]">
-    <script nonce="{{ csp_nonce }}">
+    <script>
       // Apply dark-mode class to body immediately if dark theme is enabled
       // This runs synchronously right after <body> tag to prevent white flash
       if (window.__darkModeEnabled) {
@@ -223,7 +223,7 @@
       }
     </script>
     <!-- Global JS Settings from Django -->
-    <script nonce="{{ csp_nonce }}">
+    <script>
       window.JS_SETTINGS = {
         patienceMessageDelay: Number("{{ js_settings.patience_message_delay|default:40|escapejs }}") * 1000,
         pollInterval: Number("{{ js_settings.poll_interval|default:2500|escapejs }}")
@@ -287,7 +287,7 @@
     <script src="{% minified_static 'js/pwa-install.js' %}" defer></script>
 
     <!-- Service Worker Registration - moved to end of body for better performance -->
-    <script nonce="{{ csp_nonce }}">
+    <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
@@ -304,7 +304,7 @@
 
     <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
     <!-- Deferred loading to improve LCP - analytics loads after page is interactive -->
-    <script nonce="{{ csp_nonce }}">
+    <script>
       (function() {
         // Delay analytics loading until after page is interactive
         function loadAnalytics() {

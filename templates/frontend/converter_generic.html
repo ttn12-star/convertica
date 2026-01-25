@@ -243,7 +243,7 @@
 
 {% block extra_js %}
 {# Configuration script - must be inline to use Django template variables #}
-  <script nonce="{{ csp_nonce }}">
+  <script>
     window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
@@ -281,7 +281,7 @@
     crossorigin="anonymous"
     onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
   </script>
-  <script nonce="{{ csp_nonce }}">
+  <script>
     // Set PDF.js worker
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
