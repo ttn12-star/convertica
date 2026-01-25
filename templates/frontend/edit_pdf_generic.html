@@ -228,7 +228,7 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script>
+  <script nonce="{{ csp_nonce }}">
     window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
@@ -253,9 +253,9 @@
     window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
-  <script src="{% static 'js/utils.js' %}"></script>
-  <script src="{% static 'js/task-cancellation.js' %}"></script>
-  <script src="{% static 'js/file-input-handler.js' %}"></script>
-  <script src="{% static 'js/pdf-editor.js' %}"></script>
-  <script src="{% static 'js/pages-selector.js' %}"></script>
+  <script src="{% static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/pdf-editor.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/pages-selector.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}

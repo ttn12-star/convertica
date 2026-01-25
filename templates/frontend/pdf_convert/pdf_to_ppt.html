@@ -2,10 +2,10 @@
 {% load i18n static %}
 
 {% block scripts %}
-  <script src="{% static 'js/utils.js' %}"></script>
-  <script src="{% static 'js/task-cancellation.js' %}"></script>
-  <script src="{% static 'js/file-input-handler.js' %}"></script>
-  <script src="{% static 'js/converter.js' %}"></script>
+  <script src="{% static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/converter.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}
 
 {% block help_section %}

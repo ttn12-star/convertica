@@ -323,5 +323,5 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script src="{% static 'js/html-to-pdf.js' %}" defer></script>
+  <script src="{% static 'js/html-to-pdf.js' %}" defer nonce="{{ csp_nonce }}"></script>
 {% endblock %}

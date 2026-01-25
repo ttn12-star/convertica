@@ -8,7 +8,7 @@
 {% block title %}{% trans "Sign Up" %} - Convertica{% endblock %}
 
 {% block extra_js %}
-  <script src="{% static 'js/social-auth.js' %}" defer></script>
+  <script src="{% static 'js/social-auth.js' %}" defer nonce="{{ csp_nonce }}"></script>
 {% endblock %}
 
 {% block content %}

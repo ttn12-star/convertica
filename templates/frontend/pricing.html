@@ -750,7 +750,7 @@
     </style>
 
     {% if PAYMENTS_ENABLED %}
-      <script>
+      <script nonce="{{ csp_nonce }}">
       // Load Stripe
         var stripe = Stripe('{{ stripe_publishable_key }}');
 
@@ -823,7 +823,7 @@
       </script>
     {% endif %}
 
-    <script>
+    <script nonce="{{ csp_nonce }}">
     // Add blob animations
       const style = document.createElement('style');
       style.textContent = `

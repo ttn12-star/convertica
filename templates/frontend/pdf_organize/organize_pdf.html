@@ -10,6 +10,7 @@
   <script
     src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
     crossorigin="anonymous"
+    nonce="{{ csp_nonce }}"
     onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
   </script>
 {% endblock %}
@@ -29,7 +30,7 @@
     <div id="errorMessage" class="hidden mt-4 p-3 bg-red-50 border border-red-200 dark:bg-red-900/30 dark:border-red-700 rounded-lg text-red-700 dark:text-red-200 text-sm"></div>
   </div>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     window.API_URL = "{{ api_url|escapejs }}";
     window.PDFJS_LOCAL_PDF = "{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}";
     window.PDFJS_LOCAL_WORKER = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
@@ -54,9 +55,9 @@
     window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
-  <script src="{% static 'js/utils.js' %}"></script>
-  <script src="{% static 'js/task-cancellation.js' %}"></script>
-  <script src="{% static 'js/organize-pdf.js' %}"></script>
+  <script src="{% static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/organize-pdf.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}
 
 {% block help_section %}
