@@ -277,12 +277,24 @@
   </script>
 {# External JS files #}
   <script
+    id="pdfjs-script"
     src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
     crossorigin="anonymous"
-    nonce="{{ csp_nonce }}"
-    onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
+    nonce="{{ csp_nonce }}">
   </script>
   <script nonce="{{ csp_nonce }}">
+    // Fallback to CDN if local PDF.js fails to load
+    (function() {
+      var script = document.getElementById('pdfjs-script');
+      if (script) {
+        script.addEventListener('error', function() {
+          var fallback = document.createElement('script');
+          fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+          fallback.crossOrigin = 'anonymous';
+          document.head.appendChild(fallback);
+        });
+      }
+    })();
     // Set PDF.js worker
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";

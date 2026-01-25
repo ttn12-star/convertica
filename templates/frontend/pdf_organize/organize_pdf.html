@@ -8,10 +8,23 @@
         crossorigin="anonymous">
 
   <script
+    id="pdfjs-organize-script"
     src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
     crossorigin="anonymous"
-    nonce="{{ csp_nonce }}"
-    onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
+    nonce="{{ csp_nonce }}">
+  </script>
+  <script nonce="{{ csp_nonce }}">
+    (function() {
+      var script = document.getElementById('pdfjs-organize-script');
+      if (script) {
+        script.addEventListener('error', function() {
+          var fallback = document.createElement('script');
+          fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+          fallback.crossOrigin = 'anonymous';
+          document.head.appendChild(fallback);
+        });
+      }
+    })();
   </script>
 {% endblock %}
 

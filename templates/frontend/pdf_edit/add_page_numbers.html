@@ -227,10 +227,23 @@
 {% block extra_js %}
   <!-- Load PDF.js before other scripts -->
   <script
+    id="pdfjs-pagenumbers-script"
     src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
     crossorigin="anonymous"
-    nonce="{{ csp_nonce }}"
-    onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
+    nonce="{{ csp_nonce }}">
+  </script>
+  <script nonce="{{ csp_nonce }}">
+    (function() {
+      var script = document.getElementById('pdfjs-pagenumbers-script');
+      if (script) {
+        script.addEventListener('error', function() {
+          var fallback = document.createElement('script');
+          fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+          fallback.crossOrigin = 'anonymous';
+          document.head.appendChild(fallback);
+        });
+      }
+    })();
   </script>
   <script nonce="{{ csp_nonce }}">
     window.API_URL = "{{ api_url|escapejs }}";
