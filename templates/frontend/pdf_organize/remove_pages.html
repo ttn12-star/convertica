@@ -15,14 +15,6 @@
           <label class="flex items-center space-x-2 cursor-pointer">
             <input type="radio"
                    name="pagesOption"
-                   id="removePagesAll"
-                   value="all"
-                   class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
-            <span class="text-sm text-gray-700">{% trans "All pages" %}</span>
-          </label>
-          <label class="flex items-center space-x-2 cursor-pointer">
-            <input type="radio"
-                   name="pagesOption"
                    id="removePagesCurrent"
                    value="current"
                    class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
@@ -61,7 +53,7 @@
     </h2>
     <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
       <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
-      <li>{% trans "Choose which pages to remove from your PDF: all pages, current page only, or specific pages (e.g., 1,3,5 or 1-5)" %}</li>
+      <li>{% trans "Choose which pages to remove from your PDF: current page only or specific pages (e.g., 1,3,5 or 1-5)" %}</li>
       <li>{% trans "Click the remove pages button to process your PDF and delete the selected pages" %}</li>
       <li>{% trans "Download your PDF file with pages removed using the download button" %}</li>
     </ol>

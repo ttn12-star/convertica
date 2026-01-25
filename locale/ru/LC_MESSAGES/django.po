@@ -4200,13 +4200,13 @@ msgstr "Настройки удаления страниц"
 msgid "Pages to Remove"
 msgstr "Страницы для удаления"
 
-#: templates/frontend/pdf_organize/remove_pages.html:64
+#: templates/frontend/pdf_organize/remove_pages.html:56
 msgid ""
-"Choose which pages to remove from your PDF: all pages, current page only, or "
-"specific pages (e.g., 1,3,5 or 1-5)"
+"Choose which pages to remove from your PDF: current page only or specific "
+"pages (e.g., 1,3,5 or 1-5)"
 msgstr ""
-"Выберите, какие страницы удалить из вашего ПДФ: все страницы, только текущую "
-"страницу или конкретные страницы (например, 1,3,5 или 1-5)"
+"Выберите, какие страницы удалить из вашего ПДФ: только текущую страницу или "
+"конкретные страницы (например, 1,3,5 или 1-5)"
 
 #: templates/frontend/pdf_organize/remove_pages.html:65
 msgid ""

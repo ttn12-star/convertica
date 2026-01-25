@@ -3764,11 +3764,11 @@ msgstr "Remove Pages Settings"
 msgid "Pages to Remove"
 msgstr "Pages to Remove"
 
-#: templates/frontend/pdf_organize/remove_pages.html:64
+#: templates/frontend/pdf_organize/remove_pages.html:56
 msgid ""
-"Choose which pages to remove from your PDF: all pages, current page only, or "
-"specific pages (e.g., 1,3,5 or 1-5)"
-msgstr "Choose which pages to remove from your PDF: all pages, current page only, or specific pages (e.g., 1,3,5 or 1-5)"
+"Choose which pages to remove from your PDF: current page only or specific "
+"pages (e.g., 1,3,5 or 1-5)"
+msgstr "Choose which pages to remove from your PDF: current page only or specific pages (e.g., 1,3,5 or 1-5)"
 
 #: templates/frontend/pdf_organize/remove_pages.html:65
 msgid ""

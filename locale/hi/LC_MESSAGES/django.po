@@ -4013,12 +4013,12 @@ msgstr "पृष्ठ हटाने की सेटिंग्स"
 msgid "Pages to Remove"
 msgstr "हटाने के लिए पृष्ठ"
 
-#: templates/frontend/pdf_organize/remove_pages.html:64
+#: templates/frontend/pdf_organize/remove_pages.html:56
 msgid ""
-"Choose which pages to remove from your PDF: all pages, current page only, or "
-"specific pages (e.g., 1,3,5 or 1-5)"
+"Choose which pages to remove from your PDF: current page only or specific "
+"pages (e.g., 1,3,5 or 1-5)"
 msgstr ""
-"चुनें कि अपने PDF से किन पृष्ठों को हटाना है: सभी पृष्ठ, केवल वर्तमान पृष्ठ, या विशिष्ट पृष्ठ "
+"चुनें कि अपने PDF से किन पृष्ठों को हटाना है: केवल वर्तमान पृष्ठ या विशिष्ट पृष्ठ "
 "(उदाहरण के लिए, 1,3,5 या 1-5)"
 
 #: templates/frontend/pdf_organize/remove_pages.html:65

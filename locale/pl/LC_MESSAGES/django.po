@@ -4183,13 +4183,13 @@ msgstr "Ustawienia usuwania stron"
 msgid "Pages to Remove"
 msgstr "Strony do usunięcia"
 
-#: templates/frontend/pdf_organize/remove_pages.html:64
+#: templates/frontend/pdf_organize/remove_pages.html:56
 msgid ""
-"Choose which pages to remove from your PDF: all pages, current page only, or "
-"specific pages (e.g., 1,3,5 or 1-5)"
+"Choose which pages to remove from your PDF: current page only or specific "
+"pages (e.g., 1,3,5 or 1-5)"
 msgstr ""
-"Wybierz, które strony usunąć z PDF: wszystkie strony, tylko bieżąca strona "
-"lub konkretne strony (np. 1,3,5 lub 1-5)"
+"Wybierz, które strony usunąć z PDF: tylko bieżąca strona lub konkretne "
+"strony (np. 1,3,5 lub 1-5)"
 
 #: templates/frontend/pdf_organize/remove_pages.html:65
 msgid ""
