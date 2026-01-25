@@ -404,7 +404,7 @@
     </div>
   </div>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     function manageSubscription() {
       window.location.href = '/users/manage-subscription/';
     }
@@ -542,7 +542,7 @@
     }
   </script>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
   // Smooth scroll for anchor links
     document.addEventListener('DOMContentLoaded', function() {
       const links = document.querySelectorAll('a[href^="#"]');

@@ -2,10 +2,28 @@
 API middleware for rate limiting and performance monitoring.
 """
 
+import base64
+import os
 import time
 
 from django.http import JsonResponse
 from django.utils.deprecation import MiddlewareMixin
+
+
+class CSPNonceMiddleware(MiddlewareMixin):
+    """
+    Middleware to generate a unique nonce for Content Security Policy.
+
+    The nonce is generated per-request and used to allow specific inline scripts
+    while blocking all other inline scripts (preventing XSS attacks).
+    """
+
+    def process_request(self, request):
+        # Generate a cryptographically secure random nonce (16 bytes = 128 bits)
+        nonce = base64.b64encode(os.urandom(16)).decode("utf-8")
+        request.csp_nonce = nonce
+        return None
+
 
 # Graceful degradation if cache is not available
 try:
@@ -308,6 +326,9 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
 
     CSP helps prevent XSS attacks by specifying allowed sources for scripts,
     styles, images, and other resources.
+
+    Uses nonce-based CSP for inline scripts to prevent XSS while allowing
+    legitimate inline scripts in our templates.
     """
 
     def process_response(self, request, response):
@@ -323,12 +344,17 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
         if request.path.startswith("/swagger") or request.path.startswith("/redoc"):
             return response
 
+        # Get nonce from request (set by CSPNonceMiddleware)
+        nonce = getattr(request, "csp_nonce", "")
+
         # Build CSP policy
         csp_directives = [
             # Default: only same origin
             "default-src 'self'",
-            # Scripts: self, inline (for Django templates), Stripe, Turnstile, Google Analytics, Yandex Metrika
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
+            # Scripts: nonce-based + strict-dynamic for trusted script chains
+            # 'strict-dynamic' allows scripts loaded by nonced scripts to execute
+            # Host allowlist is fallback for browsers not supporting strict-dynamic
+            f"script-src 'nonce-{nonce}' 'strict-dynamic' 'unsafe-eval' "
             "https://js.stripe.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "

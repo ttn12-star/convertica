@@ -16,7 +16,7 @@
 
 {% block edit_options %}
 <!-- Hide generic file inputs for merge (we use our own) -->
-  <script>
+  <script nonce="{{ csp_nonce }}">
     window.PDFJS_LOCAL_PDF = "{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}";
     window.PDFJS_LOCAL_WORKER = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
 
@@ -118,7 +118,7 @@
     </div>
   </div>
 
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Merge PDF translations
     window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
     window.FILE_NOT_PDF = "{% filter escapejs %}{% trans 'is not a PDF file. Skipping.' %}{% endfilter %}";

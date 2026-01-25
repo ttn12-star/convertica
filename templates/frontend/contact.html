@@ -319,7 +319,7 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script>
+  <script nonce="{{ csp_nonce }}">
 // Auto-scroll to success/error message when form is submitted
     document.addEventListener('DOMContentLoaded', function() {
       const messageContainer = document.getElementById('message-container');
