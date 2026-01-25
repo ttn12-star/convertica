@@ -8,9 +8,11 @@ services:
       context: .
       dockerfile: ci/nginx.Dockerfile
     # Note: profiles removed - nginx should always be available in production
+    # IMPORTANT: Using service_started instead of service_healthy to avoid deadlock
+    # when web crashes - nginx should start independently and show 502 if web is down
     depends_on:
       web:
-        condition: service_healthy
+        condition: service_started
     healthcheck:
       # Check nginx is responding (health endpoint is served directly by nginx)
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "--header=Host: convertica.net", "http://127.0.0.1/health/"]
@@ -40,7 +42,7 @@ services:
              python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
              python manage.py compilemessages &&
              python manage.py migrate --noinput &&
-             gunicorn --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-2} --threads ${GUNICORN_THREADS:-3} --timeout 300 --graceful-timeout 30 --max-requests 300 --max-requests-jitter 50 --worker-tmp-dir /dev/shm --access-logfile - --error-logfile - --log-level info --worker-class gthread --preload --keep-alive 5 utils_site.wsgi:application"
+             gunicorn --config /app/ci/gunicorn.conf.py utils_site.wsgi:application"
     env_file:
       - .env
     environment:
@@ -50,19 +52,19 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '${WEB_CPU_LIMIT:-0.8}'
-          memory: ${WEB_MEMORY_LIMIT:-1.5G}
+          cpus: '${WEB_CPU_LIMIT:-1.0}'
+          memory: ${WEB_MEMORY_LIMIT:-1.8G}
         reservations:
-          cpus: '${WEB_CPU_RESERVATION:-0.4}'
+          cpus: '${WEB_CPU_RESERVATION:-0.5}'
           memory: ${WEB_MEMORY_RESERVATION:-1G}
     healthcheck:
       # Use /livez/ for liveness check (doesn't depend on DB/Redis)
       # This prevents false unhealthy status when DB/Redis are slow
       test: ["CMD", "curl", "-f", "http://localhost:8000/livez/"]
-      interval: 10s
-      timeout: 5s
+      interval: 15s
+      timeout: 10s
       retries: 3
-      start_period: 180s
+      start_period: 120s
     restart: always
     labels:
       - "autoheal=true"
@@ -193,7 +195,7 @@ services:
     environment:
       - AUTOHEAL_CONTAINER_LABEL=autoheal
       - AUTOHEAL_INTERVAL=30
-      - AUTOHEAL_START_PERIOD=300
+      - AUTOHEAL_START_PERIOD=120
       - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

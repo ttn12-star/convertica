@@ -70,7 +70,7 @@
 
     <!-- Critical resources preload -->
     <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
-    <link rel="preload" href="{% static 'js/utils.js' %}" as="script">
+    <!-- Note: utils.js preload removed - it's only used on converter pages, not globally -->
 
     <!-- Self-hosted fonts (300ms faster than Google Fonts CDN) -->
     <!-- Preload critical fonts for better FCP -->

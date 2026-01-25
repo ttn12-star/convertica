@@ -20,8 +20,10 @@ echo "Bot token configured: $([ -n "$BOT_TOKEN" ] && echo 'yes' || echo 'no')"
 echo "Chat ID configured: $([ -n "$CHAT_ID" ] && echo 'yes' || echo 'no')"
 
 # Listen for docker events with exit code
+# Note: Using .Action instead of .Status for newer Docker versions
+# exitCode is only available for 'die' events, will be empty for 'start'
 docker events --filter 'event=die' --filter 'event=start' --filter 'type=container' \
-    --format '{{.Status}} {{.Actor.Attributes.name}} {{.Actor.Attributes.exitCode}}' | while read event container exitcode; do
+    --format '{{.Action}} {{.Actor.Attributes.name}} {{.Actor.Attributes.exitCode}}' | while read event container exitcode; do
     timestamp=$(date '+%Y-%m-%d %H:%M:%S UTC')
 
     # Only alert for our project containers
