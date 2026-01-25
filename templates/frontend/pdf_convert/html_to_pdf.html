@@ -44,15 +44,15 @@
 
     <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
       <div class="flex space-x-1 mb-6 bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-        <button type="button" id="htmlContentTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 shadow-sm">
-          {% trans "HTML Content" %}
-        </button>
-        <button type="button" id="urlTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition-colors">
+        <button type="button" id="urlTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 shadow-sm">
           {% trans "URL to PDF" %}
+        </button>
+        <button type="button" id="htmlContentTab" class="flex-1 py-2 px-4 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white transition-colors">
+          {% trans "HTML Content" %}
         </button>
       </div>
 
-      <form id="htmlContentForm" class="space-y-6">
+      <form id="htmlContentForm" class="space-y-6 hidden">
         {% csrf_token %}
         <div>
           <label for="htmlContent" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -155,7 +155,7 @@
       </form>
 
             <!-- URL Form -->
-      <form id="urlForm" class="space-y-6 hidden">
+      <form id="urlForm" class="space-y-6">
         {% csrf_token %}
 
         <div>
