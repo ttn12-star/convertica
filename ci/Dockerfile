@@ -187,6 +187,9 @@ RUN mkdir -p /app/scripts && chown appuser:appuser /app/scripts
 COPY --chown=appuser:appuser scripts/compress_static.sh /app/scripts/compress_static.sh
 RUN chmod +x /app/scripts/compress_static.sh || true
 
+# Copy gunicorn configuration
+COPY --chown=appuser:appuser ci/gunicorn.conf.py /app/ci/gunicorn.conf.py
+
 # Create symlink for src module to make it importable from root
 # This allows Django to find 'src.frontend' and 'src.blog' apps
 RUN ln -s /app/utils_site/src /app/src
