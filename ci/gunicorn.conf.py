@@ -111,7 +111,9 @@ def child_exit(server, worker):
 
     This is crucial for debugging - logs when workers die.
     """
-    server.log.warning(f"Worker {worker.pid} exited (exit code: {worker.exitcode})")
+    # exitcode may not be available on all worker types (e.g., SyncWorker)
+    exit_code = getattr(worker, "exitcode", None)
+    server.log.warning(f"Worker {worker.pid} exited (exit code: {exit_code})")
 
     # Log memory info if available
     try:
