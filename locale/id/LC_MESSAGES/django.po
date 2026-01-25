@@ -4219,13 +4219,13 @@ msgstr "Pengaturan Hapus Halaman"
 msgid "Pages to Remove"
 msgstr "Halaman yang Akan Dihapus"
 
-#: templates/frontend/pdf_organize/remove_pages.html:64
+#: templates/frontend/pdf_organize/remove_pages.html:56
 msgid ""
-"Choose which pages to remove from your PDF: all pages, current page only, or "
-"specific pages (e.g., 1,3,5 or 1-5)"
+"Choose which pages to remove from your PDF: current page only or specific "
+"pages (e.g., 1,3,5 or 1-5)"
 msgstr ""
-"Pilih halaman mana yang akan dihapus dari PDF Anda: semua halaman, hanya "
-"halaman saat ini, atau halaman tertentu (mis., 1,3,5 atau 1-5)"
+"Pilih halaman mana yang akan dihapus dari PDF Anda: hanya halaman saat ini "
+"atau halaman tertentu (mis., 1,3,5 atau 1-5)"
 
 #: templates/frontend/pdf_organize/remove_pages.html:65
 msgid ""

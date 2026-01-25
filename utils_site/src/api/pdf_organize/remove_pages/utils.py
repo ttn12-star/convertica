@@ -67,6 +67,12 @@ def remove_pages(
         context["total_pages"] = total_pages
         context["pages_to_remove"] = len(pages_to_remove)
 
+        if len(pages_to_remove) >= total_pages:
+            raise ConversionError(
+                "Cannot remove all pages from PDF. At least one page must remain.",
+                context=context,
+            )
+
         processor.run_pdf_operation_with_repair(
             _op,
             output_path=output_path,
