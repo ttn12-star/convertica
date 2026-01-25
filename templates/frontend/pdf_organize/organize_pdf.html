@@ -29,7 +29,7 @@
     <div id="errorMessage" class="hidden mt-4 p-3 bg-red-50 border border-red-200 dark:bg-red-900/30 dark:border-red-700 rounded-lg text-red-700 dark:text-red-200 text-sm"></div>
   </div>
 
-  <script nonce="{{ csp_nonce }}">
+  <script>
     window.API_URL = "{{ api_url|escapejs }}";
     window.PDFJS_LOCAL_PDF = "{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}";
     window.PDFJS_LOCAL_WORKER = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";

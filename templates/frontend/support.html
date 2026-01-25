@@ -91,7 +91,7 @@
 
 {% block extra_js %}
   {% if PAYMENTS_ENABLED %}
-    <script nonce="{{ csp_nonce }}">
+    <script>
       window.SUPPORT_CHECKOUT_URL = "{% url 'payments:create_support_checkout_session' %}";
     </script>
     <script src="{% static 'js/support.js' %}" defer></script>

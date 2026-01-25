@@ -10,13 +10,6 @@ from django.urls import Resolver404, resolve, reverse
 from django.utils.translation import get_language
 
 
-def csp_nonce(request):
-    """Add CSP nonce to template context for use in inline script tags."""
-    return {
-        "csp_nonce": getattr(request, "csp_nonce", ""),
-    }
-
-
 def turnstile_site_key(request):
     """Add Cloudflare Turnstile site key and requirement status to template context."""
     # Skip CAPTCHA in DEBUG mode

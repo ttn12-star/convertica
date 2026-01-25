@@ -468,7 +468,7 @@
 {% endblock %}
 
 {% block extra_js %}
-  <script nonce="{{ csp_nonce }}">
+  <script>
     window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
