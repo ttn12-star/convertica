@@ -7780,3 +7780,28 @@ msgstr "Wyświetlanie bohatera zaktualizowane pomyślnie"
 #: utils_site/src/users/views.py:346
 msgid "Invalid JSON"
 msgstr "Nieprawidłowy JSON"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Video Tutorial"
+msgstr "Samouczek wideo"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Click to play the video tutorial"
+msgstr "Kliknij, aby odtworzyć samouczek wideo"
+
+#: templates/frontend/pdf_convert/pdf_to_word.html
+msgid "How to Convert PDF to Editable Word Document Online Free"
+msgstr "Jak przekonwertować PDF na edytowalny dokument Word online za darmo"
+
+#: templates/frontend/pdf_convert/word_to_pdf.html
+msgid "How to Convert Word Document to PDF File Online Free"
+msgstr "Jak przekonwertować dokument Word na plik PDF online za darmo"
+
+#: templates/frontend/pdf_organize/merge_pdf.html
+msgid "How to Merge Multiple PDF Files into One Document Online Free"
+msgstr "Jak połączyć wiele plików PDF w jeden dokument online za darmo"
+
+#: templates/frontend/includes/youtube_video.html
+#, python-format
+msgid "Play video: %(title)s"
+msgstr "Odtwórz wideo: %(title)s"

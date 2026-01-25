@@ -1,0 +1,129 @@
+{% comment %}
+YouTube Video Component with Lazy Loading
+
+Usage:
+{% include "frontend/includes/youtube_video.html" with video_id="YOUR_VIDEO_ID" title="Video Title" %}
+
+Optional parameters:
+- video_id: YouTube video ID (required)
+- title: Video title for accessibility and display (required)
+- aspect_ratio: "16:9" (default) or "4:3"
+{% endcomment %}
+
+{% load i18n %}
+
+<style>
+  .youtube-facade:hover .yt-thumbnail { transform: scale(1.05); }
+  .youtube-facade:hover .yt-play-btn { transform: scale(1.1); background-color: #ef4444; }
+  .youtube-facade:hover .yt-overlay { background-color: rgba(0,0,0,0.3) !important; }
+</style>
+
+<div class="youtube-video-wrapper mt-6 sm:mt-8">
+  <h3 class="text-base sm:text-lg font-bold mb-3 text-gray-900 dark:text-white flex items-center gap-2">
+    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+    {% trans "Video Tutorial" %}
+  </h3>
+
+  <div class="youtube-facade relative w-full rounded-xl overflow-hidden shadow-lg bg-gray-900 cursor-pointer group"
+       style="aspect-ratio: {{ aspect_ratio|default:'16/9' }};"
+       data-video-id="{{ video_id }}"
+       role="button"
+       tabindex="0"
+       aria-label="{% blocktrans with title=title %}Play video: {{ title }}{% endblocktrans %}">
+
+    <!-- Thumbnail (loaded lazily) -->
+    <img src="https://i.ytimg.com/vi/{{ video_id }}/maxresdefault.jpg"
+         alt="{{ title }}"
+         class="yt-thumbnail absolute inset-0 w-full h-full object-cover transition-transform duration-300"
+         loading="lazy"
+         data-fallback="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg">
+
+    <!-- Dark overlay for better play button visibility -->
+    <div class="yt-overlay absolute inset-0 transition-colors duration-300" style="background-color: rgba(0,0,0,0.2);"></div>
+
+    <!-- Play button -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="yt-play-btn w-16 h-16 sm:w-20 sm:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-xl transition-all duration-300">
+        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Video title overlay -->
+    <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+      <p class="text-white text-sm sm:text-base font-medium truncate">{{ title }}</p>
+    </div>
+  </div>
+
+  <p class="mt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center">
+    {% trans "Click to play the video tutorial" %}
+  </p>
+</div>
+
+<script nonce="{{ csp_nonce }}">
+  (function() {
+  // Initialize YouTube facade lazy loading
+    function initYouTubeFacade() {
+      const facades = document.querySelectorAll('.youtube-facade:not([data-initialized])');
+
+      facades.forEach(function(facade) {
+        facade.setAttribute('data-initialized', 'true');
+
+        function loadVideo() {
+          const videoId = facade.getAttribute('data-video-id');
+          if (!videoId) return;
+
+          const iframe = document.createElement('iframe');
+          iframe.setAttribute('src', 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0');
+          iframe.setAttribute('title', facade.getAttribute('aria-label'));
+          iframe.setAttribute('frameborder', '0');
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.className = 'absolute inset-0 w-full h-full';
+
+        // Clear facade content and add iframe
+          facade.innerHTML = '';
+          facade.appendChild(iframe);
+          facade.classList.remove('cursor-pointer', 'group');
+          facade.removeAttribute('role');
+          facade.removeAttribute('tabindex');
+        }
+
+        facade.addEventListener('click', loadVideo);
+        facade.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            loadVideo();
+          }
+        });
+      });
+    }
+
+  // Handle thumbnail fallback
+    function initThumbnailFallback() {
+      const thumbnails = document.querySelectorAll('.yt-thumbnail[data-fallback]');
+      thumbnails.forEach(function(img) {
+        img.addEventListener('error', function() {
+          const fallback = this.getAttribute('data-fallback');
+          if (fallback && this.src !== fallback) {
+            this.src = fallback;
+          }
+        });
+      });
+    }
+
+  // Run on DOM ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initYouTubeFacade();
+        initThumbnailFallback();
+      });
+    } else {
+      initYouTubeFacade();
+      initThumbnailFallback();
+    }
+  })();
+</script>

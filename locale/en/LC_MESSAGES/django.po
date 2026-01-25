@@ -7074,3 +7074,28 @@ msgstr "Hero display updated successfully"
 #: utils_site/src/users/views.py:346
 msgid "Invalid JSON"
 msgstr "Invalid JSON"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Video Tutorial"
+msgstr "Video Tutorial"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Click to play the video tutorial"
+msgstr "Click to play the video tutorial"
+
+#: templates/frontend/pdf_convert/pdf_to_word.html
+msgid "How to Convert PDF to Editable Word Document Online Free"
+msgstr "How to Convert PDF to Editable Word Document Online Free"
+
+#: templates/frontend/pdf_convert/word_to_pdf.html
+msgid "How to Convert Word Document to PDF File Online Free"
+msgstr "How to Convert Word Document to PDF File Online Free"
+
+#: templates/frontend/pdf_organize/merge_pdf.html
+msgid "How to Merge Multiple PDF Files into One Document Online Free"
+msgstr "How to Merge Multiple PDF Files into One Document Online Free"
+
+#: templates/frontend/includes/youtube_video.html
+#, python-format
+msgid "Play video: %(title)s"
+msgstr "Play video: %(title)s"

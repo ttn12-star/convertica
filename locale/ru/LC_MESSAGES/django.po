@@ -7899,3 +7899,28 @@ msgstr "Отображение героя успешно обновлено"
 #: utils_site/src/users/views.py:346
 msgid "Invalid JSON"
 msgstr "Неверный JSON"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Video Tutorial"
+msgstr "Видеоинструкция"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Click to play the video tutorial"
+msgstr "Нажмите, чтобы воспроизвести видеоинструкцию"
+
+#: templates/frontend/pdf_convert/pdf_to_word.html
+msgid "How to Convert PDF to Editable Word Document Online Free"
+msgstr "Как бесплатно конвертировать PDF в редактируемый Word документ онлайн"
+
+#: templates/frontend/pdf_convert/word_to_pdf.html
+msgid "How to Convert Word Document to PDF File Online Free"
+msgstr "Как бесплатно конвертировать Word документ в PDF файл онлайн"
+
+#: templates/frontend/pdf_organize/merge_pdf.html
+msgid "How to Merge Multiple PDF Files into One Document Online Free"
+msgstr "Как бесплатно объединить несколько PDF файлов в один документ онлайн"
+
+#: templates/frontend/includes/youtube_video.html
+#, python-format
+msgid "Play video: %(title)s"
+msgstr "Воспроизвести видео: %(title)s"

@@ -7344,3 +7344,28 @@ msgstr "تم تحديث عرض البطل بنجاح"
 #: utils_site/src/users/views.py:346
 msgid "Invalid JSON"
 msgstr "JSON غير صالح"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Video Tutorial"
+msgstr "فيديو تعليمي"
+
+#: templates/frontend/includes/youtube_video.html
+msgid "Click to play the video tutorial"
+msgstr "انقر لتشغيل الفيديو التعليمي"
+
+#: templates/frontend/pdf_convert/pdf_to_word.html
+msgid "How to Convert PDF to Editable Word Document Online Free"
+msgstr "كيفية تحويل PDF إلى مستند Word قابل للتحرير عبر الإنترنت مجانًا"
+
+#: templates/frontend/pdf_convert/word_to_pdf.html
+msgid "How to Convert Word Document to PDF File Online Free"
+msgstr "كيفية تحويل مستند Word إلى ملف PDF عبر الإنترنت مجانًا"
+
+#: templates/frontend/pdf_organize/merge_pdf.html
+msgid "How to Merge Multiple PDF Files into One Document Online Free"
+msgstr "كيفية دمج ملفات PDF متعددة في مستند واحد عبر الإنترنت مجانًا"
+
+#: templates/frontend/includes/youtube_video.html
+#, python-format
+msgid "Play video: %(title)s"
+msgstr "تشغيل الفيديو: %(title)s"
