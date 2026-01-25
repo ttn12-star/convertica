@@ -88,8 +88,8 @@
 
 {% block extra_js %}
   {{ block.super }}
-  <script src="{% static 'js/pages-selector.js' %}"></script>
-  <script>
+  <script src="{% static 'js/pages-selector.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script nonce="{{ csp_nonce }}">
     // Override pages selector prefix for PDF to JPG
     document.addEventListener('DOMContentLoaded', () => {
       const allRadio = document.getElementById('convertPagesAll');

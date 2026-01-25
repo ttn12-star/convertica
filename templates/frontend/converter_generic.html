@@ -243,7 +243,7 @@
 
 {% block extra_js %}
 {# Configuration script - must be inline to use Django template variables #}
-  <script>
+  <script nonce="{{ csp_nonce }}">
     window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";
     window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
@@ -279,16 +279,17 @@
   <script
     src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
     crossorigin="anonymous"
+    nonce="{{ csp_nonce }}"
     onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';">
   </script>
-  <script>
+  <script nonce="{{ csp_nonce }}">
     // Set PDF.js worker
     if (typeof pdfjsLib !== 'undefined') {
       pdfjsLib.GlobalWorkerOptions.workerSrc = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
     }
   </script>
-  <script src="{% static 'js/utils.js' %}"></script>
-  <script src="{% static 'js/task-cancellation.js' %}"></script>
-  <script src="{% static 'js/file-input-handler.js' %}"></script>
-  <script src="{% static 'js/converter.js' %}"></script>
+  <script src="{% static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/converter.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}
