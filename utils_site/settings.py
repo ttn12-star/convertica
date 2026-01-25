@@ -292,6 +292,7 @@ MIDDLEWARE = [
     "src.frontend.middleware.DoubleLanguagePrefixMiddleware",  # Redirect URLs with double language prefixes (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
+    "src.api.middleware.CSPNonceMiddleware",  # Generate CSP nonce for each request
     "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware
     "src.frontend.middleware.CaptchaRequirementMiddleware",  # Track failed attempts for CAPTCHA
     "django.middleware.locale.LocaleMiddleware",  # ✅ ТОЛЬКО ОДИН РАЗ! Должна быть ДО CommonMiddleware
@@ -302,7 +303,7 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "src.api.middleware.SecurityHeadersMiddleware",  # CSP and other security headers
+    "src.api.middleware.SecurityHeadersMiddleware",  # Add CSP and other security headers
 ]
 
 # Add Prometheus middleware if available
@@ -326,6 +327,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "src.frontend.context_processors.csp_nonce",
                 "src.frontend.context_processors.hreflang_links",
                 "src.frontend.context_processors.site_urls",
                 "src.frontend.context_processors.turnstile_site_key",

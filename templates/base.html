@@ -207,7 +207,7 @@
     {% endblock %}
     <!-- Cloudflare Turnstile (Anti-spam) -->
     {% if turnstile_site_key %}
-      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer nonce="{{ csp_nonce }}"></script>
     {% endif %}
 
 

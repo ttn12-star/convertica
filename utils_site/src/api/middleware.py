@@ -348,14 +348,18 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
         nonce = getattr(request, "csp_nonce", "")
 
         # Build CSP policy
+        # Note: nonce is generated but not used in CSP because 'strict-dynamic'
+        # was removed - it disables 'unsafe-inline' for inline event handlers
+        _ = nonce  # Silence unused variable warning, nonce is still set on request
+
         csp_directives = [
             # Default: only same origin
             "default-src 'self'",
-            # Scripts: self + nonce-based + strict-dynamic for trusted script chains
-            # 'self' allows same-origin scripts without nonce
-            # 'strict-dynamic' allows scripts loaded by nonced scripts to execute
-            # Host allowlist is fallback for browsers not supporting strict-dynamic
-            f"script-src 'self' 'unsafe-inline' 'nonce-{nonce}' 'strict-dynamic' 'unsafe-eval' "
+            # Scripts: self + unsafe-inline for inline scripts and event handlers
+            # Note: 'strict-dynamic' was removed because it disables 'unsafe-inline'
+            # for inline event handlers (onclick, onload, etc.)
+            # Host allowlist for trusted third-party scripts
+            "script-src 'self' 'unsafe-inline' "
             "https://js.stripe.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
