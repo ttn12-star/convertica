@@ -1,5 +1,5 @@
 {% extends "frontend/edit_pdf_generic.html" %}
-{% load i18n static %}
+{% load i18n static minified_static %}
 
 {% block edit_options %}
   <!-- Preview Section - hidden until file is selected -->
@@ -276,9 +276,9 @@
     window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
-  <script src="{% static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% static 'js/pdf-editor.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% static 'js/page-number-preview.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/pdf-editor.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/page-number-preview.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}

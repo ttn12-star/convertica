@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static minified_static %}
 
 {% block title %}{{ page_title }}{% endblock %}
 {% block meta_title %}{{ page_title }}{% endblock %}
@@ -94,7 +94,7 @@
             <p class="text-gray-500 text-xs">
               {% trans "Use the button above to browse files" %}
             </p>
-            <p class="text-gray-400 text-xs mt-1.5" id="fileInfo">
+            <p class="text-gray-500 text-xs mt-1.5" id="fileInfo">
               {{ file_accept|upper }} {% trans "files" %} ({% trans "multiple files supported" %})
             </p>
           </div>
@@ -192,7 +192,7 @@
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
 {# External JS files #}
-  <script src="{% static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% static 'js/jpg-to-pdf-multi.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/jpg-to-pdf-multi.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends "frontend/edit_pdf_generic.html" %}
-{% load i18n static %}
+{% load i18n static minified_static %}
 
 {% block extra_head %}
   <link rel="preload"
@@ -156,11 +156,11 @@
     window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
   </script>
-  <script src="{% static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
   <!-- Note: file-input-handler.js and pdf-editor.js are NOT loaded for merge page -->
   <!-- merge-pdf-multi.js handles all file selection logic -->
-  <script src="{% static 'js/merge-pdf-multi.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/merge-pdf-multi.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}
 
 {% block help_section %}
