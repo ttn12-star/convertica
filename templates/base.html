@@ -323,13 +323,21 @@
               if (document.scripts[j].src === r) { return; }
             }
             k=e.createElement(t), a=e.getElementsByTagName(t)[0];
-            k.async = 1; k.defer = 1; k.src = r; a.parentNode.insertBefore(k,a);
+            k.async = 1; k.defer = 1; k.src = r;
+            k.onerror = function() {
+              console.debug('[Analytics] Yandex Metrika blocked - likely by ad blocker');
+            };
+            a.parentNode.insertBefore(k,a);
           })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
           var gtagScript = document.createElement('script');
           gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
           gtagScript.async = true;
           gtagScript.defer = true;
+          gtagScript.onerror = function() {
+            // Silently handle blocked analytics (ad blockers, privacy extensions)
+            console.debug('[Analytics] Google Tag Manager blocked - likely by ad blocker');
+          };
           document.head.appendChild(gtagScript);
 
           // Wait for scripts to load before initializing
