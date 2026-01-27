@@ -355,15 +355,18 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
         csp_directives = [
             # Default: only same origin
             "default-src 'self'",
-            # Scripts: self + unsafe-inline for inline scripts and event handlers
+            # Scripts: self + unsafe-inline + unsafe-eval for inline scripts and analytics
             # Note: 'strict-dynamic' was removed because it disables 'unsafe-inline'
             # for inline event handlers (onclick, onload, etc.)
+            # 'unsafe-eval' is required by Google Tag Manager for dynamic code execution
             # Host allowlist for trusted third-party scripts
-            "script-src 'self' 'unsafe-inline' "
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
             "https://js.stripe.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
+            "https://ssl.google-analytics.com "
+            "https://tagmanager.google.com "
             "https://mc.yandex.ru "
             "https://mc.yandex.com "
             "https://accounts.google.com "
@@ -390,6 +393,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://challenges.cloudflare.com "
             "https://www.google-analytics.com "
             "https://*.google-analytics.com "
+            "https://www.googletagmanager.com "
+            "https://region1.google-analytics.com "
             "https://mc.yandex.ru "
             "https://mc.yandex.com "
             "https://accounts.google.com "
