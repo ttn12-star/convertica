@@ -51,8 +51,15 @@ else
     gzip_size_before=0
     gzip_size_after=0
 
+    gzip_skipped=0
     while IFS= read -r file; do
         if [ -f "$file" ]; then
+            # Skip if .gz already exists and is newer than original
+            if [ -f "${file}.gz" ] && [ "${file}.gz" -nt "$file" ]; then
+                gzip_skipped=$((gzip_skipped + 1))
+                continue
+            fi
+
             size_before=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo "0")
             gzip_size_before=$((gzip_size_before + size_before))
 
@@ -67,7 +74,11 @@ else
         fi
     done < <(find . -type f \( -name '*.css' -o -name '*.js' -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.html' -o -name '*.txt' \) -not -name '*.gz' -not -name '*.br' 2>/dev/null || true)
 
-    echo "  ✓ Compressed $gzip_count files"
+    if [ $gzip_skipped -gt 0 ]; then
+        echo "  ✓ Compressed $gzip_count files (skipped $gzip_skipped already compressed)"
+    else
+        echo "  ✓ Compressed $gzip_count files"
+    fi
 fi
 if [ $gzip_size_before -gt 0 ]; then
     gzip_ratio=$(awk "BEGIN {printf \"%.1f\", (1 - $gzip_size_after / $gzip_size_before) * 100}")
@@ -89,9 +100,16 @@ else
     brotli_count=0
     brotli_size_before=0
     brotli_size_after=0
+    brotli_skipped=0
 
     while IFS= read -r file; do
         if [ -f "$file" ]; then
+            # Skip if .br already exists and is newer than original
+            if [ -f "${file}.br" ] && [ "${file}.br" -nt "$file" ]; then
+                brotli_skipped=$((brotli_skipped + 1))
+                continue
+            fi
+
             size_before=$(stat -f%z "$file" 2>/dev/null || stat -c%s "$file" 2>/dev/null || echo "0")
             brotli_size_before=$((brotli_size_before + size_before))
 
@@ -107,7 +125,11 @@ else
         fi
     done < <(find . -type f \( -name '*.css' -o -name '*.js' -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.html' -o -name '*.txt' \) -not -name '*.gz' -not -name '*.br' 2>/dev/null || true)
 
-    echo "  ✓ Compressed $brotli_count files"
+    if [ $brotli_skipped -gt 0 ]; then
+        echo "  ✓ Compressed $brotli_count files (skipped $brotli_skipped already compressed)"
+    else
+        echo "  ✓ Compressed $brotli_count files"
+    fi
     if [ $brotli_size_before -gt 0 ]; then
         brotli_ratio=$(awk "BEGIN {printf \"%.1f\", (1 - $brotli_size_after / $brotli_size_before) * 100}")
         echo "  ✓ Size reduction: ${brotli_ratio}%"

@@ -6,6 +6,7 @@ import asyncio
 import hashlib
 import os
 import shutil
+import subprocess
 import tempfile
 import time
 
@@ -438,6 +439,8 @@ class OptimizedPDFToWordConverter:
         """
         Convert PDF to DOCX using pdf2docx with optimized settings.
 
+        Falls back to LibreOffice if pdf2docx fails.
+
         Args:
             pdf_path: Path to input PDF
             docx_path: Path to output DOCX
@@ -447,7 +450,6 @@ class OptimizedPDFToWordConverter:
         def _convert(pdf_to_use: str):
             cv = Converter(pdf_to_use)
             try:
-                # Optimized settings for memory efficiency
                 cv.convert(
                     docx_path,
                     start=0,
@@ -460,12 +462,35 @@ class OptimizedPDFToWordConverter:
             finally:
                 cv.close()
 
-        # Run conversion in thread pool to avoid blocking
         loop = asyncio.get_event_loop()
+
+        # Timeout for pdf2docx conversion (prevents hanging on complex PDFs)
+        PDF2DOCX_TIMEOUT = 180  # 3 minutes max per attempt
 
         # Try direct conversion first
         try:
-            await loop.run_in_executor(None, _convert, pdf_path)
+            await asyncio.wait_for(
+                loop.run_in_executor(None, _convert, pdf_path), timeout=PDF2DOCX_TIMEOUT
+            )
+        except TimeoutError:
+            logger.warning(
+                f"pdf2docx direct conversion timed out after {PDF2DOCX_TIMEOUT}s",
+                extra={**context, "event": "pdf2docx_timeout"},
+            )
+            # Go straight to LibreOffice fallback on timeout
+            success = await loop.run_in_executor(
+                None, self._convert_with_libreoffice, pdf_path, docx_path, context
+            )
+            if success:
+                logger.info(
+                    "PDF to DOCX conversion completed via LibreOffice (after timeout)",
+                    extra={**context, "event": "pdf2docx_complete"},
+                )
+                return
+            raise ConversionError(
+                "Conversion timed out and LibreOffice fallback failed",
+                context=context,
+            )
         except Exception as first_exc:
             msg = str(first_exc).lower()
             if "pixmap must be grayscale or rgb" in msg or "colorspace" in msg:
@@ -481,7 +506,10 @@ class OptimizedPDFToWordConverter:
                     rgb_pdf_path = _normalize_pdf_to_rgb(
                         pdf_path, os.path.dirname(docx_path), context
                     )
-                    await loop.run_in_executor(None, _convert, rgb_pdf_path)
+                    await asyncio.wait_for(
+                        loop.run_in_executor(None, _convert, rgb_pdf_path),
+                        timeout=PDF2DOCX_TIMEOUT,
+                    )
                     logger.info(
                         "Retry with RGB-normalized PDF succeeded",
                         extra={**context, "event": "retry_with_rgb_success"},
@@ -492,7 +520,7 @@ class OptimizedPDFToWordConverter:
                     except Exception:
                         pass
                     return
-                except Exception as rgb_exc:
+                except (TimeoutError, Exception) as rgb_exc:
                     logger.error(
                         "RGB normalization retry failed",
                         extra={
@@ -519,18 +547,145 @@ class OptimizedPDFToWordConverter:
                 tmp_dir, f"repaired_{os.path.basename(pdf_path)}"
             )
 
-            # Use improved repair_pdf with pypdf fallback
-            repaired_path = await loop.run_in_executor(
-                None, repair_pdf, pdf_path, repaired_pdf_path
-            )
+            try:
+                # Use improved repair_pdf with pypdf fallback
+                repaired_path = await asyncio.wait_for(
+                    loop.run_in_executor(None, repair_pdf, pdf_path, repaired_pdf_path),
+                    timeout=60,  # 1 minute max for repair
+                )
 
-            # Retry conversion with repaired PDF
-            await loop.run_in_executor(None, _convert, repaired_path)
+                # Retry conversion with repaired PDF
+                await asyncio.wait_for(
+                    loop.run_in_executor(None, _convert, repaired_path),
+                    timeout=PDF2DOCX_TIMEOUT,
+                )
+            except (TimeoutError, Exception) as repair_exc:
+                # Last resort: try LibreOffice fallback
+                logger.warning(
+                    "Repair failed, trying LibreOffice fallback",
+                    extra={
+                        **context,
+                        "event": "trying_libreoffice_fallback",
+                        "error": str(repair_exc)[:200],
+                    },
+                )
+
+                success = await loop.run_in_executor(
+                    None, self._convert_with_libreoffice, pdf_path, docx_path, context
+                )
+
+                if not success:
+                    raise ConversionError(
+                        f"All conversion methods failed. Last error: {repair_exc}",
+                        context=context,
+                    ) from repair_exc
 
         logger.info(
             "PDF to DOCX conversion completed",
             extra={**context, "event": "pdf2docx_complete"},
         )
+
+    def _convert_with_libreoffice(
+        self, pdf_path: str, docx_path: str, context: dict, timeout: int = 120
+    ) -> bool:
+        """
+        Fallback conversion using LibreOffice.
+
+        LibreOffice can handle some PDFs that pdf2docx struggles with,
+        especially those with complex colorspaces or corrupted structures.
+
+        Args:
+            pdf_path: Path to input PDF
+            docx_path: Path to output DOCX
+            context: Logging context
+            timeout: Timeout in seconds
+
+        Returns:
+            True if conversion succeeded, False otherwise
+        """
+        output_dir = os.path.dirname(docx_path)
+        env = os.environ.copy()
+        env.update(
+            {
+                "HOME": output_dir,
+                "TMPDIR": output_dir,
+                "LANG": "C.UTF-8",
+                "LC_ALL": "C.UTF-8",
+            }
+        )
+
+        cmd = [
+            "libreoffice",
+            "--headless",
+            "--nodefault",
+            "--nolockcheck",
+            "--infilter=writer_pdf_import",
+            "--convert-to",
+            "docx",
+            "--outdir",
+            output_dir,
+            pdf_path,
+        ]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                env=env,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=timeout,
+            )
+
+            if result.returncode != 0:
+                logger.warning(
+                    "LibreOffice PDF->DOCX failed",
+                    extra={
+                        **context,
+                        "event": "libreoffice_fallback_failed",
+                        "stderr": result.stderr.decode(errors="replace")[:200],
+                    },
+                )
+                return False
+
+            # LibreOffice creates file with original name, find and rename it
+            base_name = os.path.splitext(os.path.basename(pdf_path))[0]
+            created_docx = os.path.join(output_dir, f"{base_name}.docx")
+
+            if os.path.exists(created_docx):
+                if created_docx != docx_path:
+                    shutil.move(created_docx, docx_path)
+                logger.info(
+                    "LibreOffice fallback succeeded",
+                    extra={**context, "event": "libreoffice_fallback_success"},
+                )
+                return True
+
+            # Search for any created docx
+            for f in os.listdir(output_dir):
+                if f.endswith(".docx") and f != os.path.basename(docx_path):
+                    shutil.move(os.path.join(output_dir, f), docx_path)
+                    return True
+
+            return False
+
+        except subprocess.TimeoutExpired:
+            logger.warning(
+                f"LibreOffice fallback timed out after {timeout}s",
+                extra={**context, "event": "libreoffice_fallback_timeout"},
+            )
+            return False
+        except FileNotFoundError:
+            logger.warning(
+                "LibreOffice not installed, fallback unavailable",
+                extra={**context, "event": "libreoffice_not_found"},
+            )
+            return False
+        except Exception as e:
+            logger.warning(
+                f"LibreOffice fallback error: {e}",
+                extra={**context, "event": "libreoffice_fallback_error"},
+            )
+            return False
 
 
 async def convert_pdf_to_docx_optimized(
