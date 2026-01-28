@@ -69,6 +69,8 @@ services:
       retries: 3
       start_period: 120s
     restart: always
+    # Give gunicorn 30s to gracefully shutdown (default is 10s which is too short)
+    stop_grace_period: 30s
     labels:
       - "autoheal=true"
     logging:
