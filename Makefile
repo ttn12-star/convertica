@@ -103,9 +103,13 @@ dev-swarm: ## Start local Swarm stack (test production config)
 		echo "Initializing Swarm..."; \
 		docker swarm init 2>/dev/null || docker swarm init --advertise-addr 127.0.0.1; \
 	fi
-	@set -a && source .env && set +a && \
-		docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build && \
-		docker stack deploy -c docker-compose.yml -c ci/docker-compose.prod.yml -c ci/docker-compose.swarm.yml --prune convertica
+	@echo "Building images..."
+	@docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build
+	@echo "Generating Swarm-compatible config..."
+	@docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml -f ci/docker-compose.swarm.yml config 2>/dev/null | \
+		python3 scripts/swarm-config-converter.py > /tmp/swarm-merged.yml
+	@echo "Deploying stack..."
+	@docker stack deploy -c /tmp/swarm-merged.yml convertica
 	@echo "Stack deployed. Check status: make dev-swarm-status"
 
 dev-swarm-status: ## Show local Swarm stack status

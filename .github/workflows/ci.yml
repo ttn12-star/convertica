@@ -349,7 +349,8 @@ jobs:
 
             # Post-deploy tasks (inside running container)
             echo "📦 Running post-deploy tasks..."
-            WEB_CONTAINER=$(docker ps -q -f name=convertica_web | head -1)
+            # In Swarm mode, container names are like convertica_web.1.xxxxx
+            WEB_CONTAINER=$(docker ps -q -f name=convertica_web --format "{{.ID}}" | head -1)
 
             if [ -n "$WEB_CONTAINER" ]; then
               # Compile translations

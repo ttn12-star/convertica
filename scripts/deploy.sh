@@ -93,9 +93,15 @@ cmd_deploy() {
         log_info "Skipping build (--skip-build)"
     fi
 
+    # Generate Swarm-compatible config (removes unsupported options)
+    log_info "Generating Swarm-compatible config..."
+    MERGED_CONFIG="/tmp/swarm-merged-${STACK_NAME}.yml"
+    docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml -f ci/docker-compose.swarm.yml config 2>/dev/null | \
+        python3 scripts/swarm-config-converter.py > "$MERGED_CONFIG"
+
     # Deploy stack with rolling update
     log_info "Deploying stack with rolling update..."
-    docker stack deploy $COMPOSE_FILES --with-registry-auth --prune $STACK_NAME
+    docker stack deploy -c "$MERGED_CONFIG" --prune $STACK_NAME
 
     # Wait for services to converge
     log_info "Waiting for services to update..."
