@@ -4,392 +4,189 @@ on:
   push:
     branches: [ main, develop ]
     tags:
-      - 'v*'  # Deploy on version tags (e.g., v1.0.0)
+      - 'v*'
   pull_request:
     branches: [ main, develop ]
 
 env:
   PYTHON_VERSION: '3.12'
   NODE_VERSION: '18'
+  IMAGE_NAME: convertica
 
 jobs:
-  # Lint and Code Quality
+# =========================
+# LINT
+# =========================
   lint:
     name: Code Quality Checks
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
+          cache: pip
 
-      - name: Install dependencies
+      - name: Install lint dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install flake8 black==24.4.2 isort mypy  # black version must match pre-commit
+          pip install --upgrade pip
+          pip install flake8 black==24.4.2 isort mypy
           pip install -r requirements.txt
 
-      - name: Run flake8
-        run: |
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - run: flake8 .
+      - run: black --check .
+      - run: isort --check-only --profile black .
 
-      - name: Check code formatting with black
-        run: |
-          black --check . || (echo "⚠️ Code formatting issues found. Run 'black .' to fix." && exit 1)
-
-      - name: Check import sorting with isort
-        run: |
-          isort --check-only --profile black . || (echo "⚠️ Import sorting issues found. Run 'isort --profile black .' to fix." && exit 1)
-
-  # Security Scanning
-  security:
-    name: Security Scan
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install safety bandit
-          pip install -r requirements.txt
-
-      - name: Run Safety check
-        run: safety check --json || true
-
-      - name: Run Bandit security scan
-        run: bandit -r . -f json -o bandit-report.json || true
-
-  # Tests
+# =========================
+# TESTS
+# =========================
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    needs: lint
 
-    # Centralized database configuration to ensure consistency
     env:
-      POSTGRES_DB: convertica_test
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      DATABASE_ENGINE: postgresql
-      DATABASE_NAME: convertica_test
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: localhost
-      DATABASE_PORT: 5432
-      SECRET_KEY: test-secret-key
-      DEBUG: True
-      REDIS_URL: redis://localhost:6379/1
-      CELERY_BROKER_URL: redis://localhost:6379/0
-      CELERY_RESULT_BACKEND: redis://localhost:6379/0
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/convertica_test
+      SECRET_KEY: test
+      DEBUG: "1"
+      REDIS_URL: redis://localhost:6379/0
 
     services:
       postgres:
         image: postgres:16
         env:
-          # PostgreSQL container uses POSTGRES_* variables
-          # Values must match DATABASE_* variables in job env above
           POSTGRES_DB: convertica_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
         ports:
-          - 5432:5432
+          - "5432:5432"
 
       redis:
         image: redis:7-alpine
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
         ports:
-          - 6379:6379
+          - "6379:6379"
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
+          cache: pip
 
-      - name: Install dependencies
+      - name: Install test dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install coverage
 
       - name: Run migrations
-        # DATABASE_* variables are inherited from job-level env
+        run: python manage.py migrate
+
+      - name: Run tests
         run: |
-          python manage.py migrate
+          coverage run manage.py test
+          coverage report
 
-      - name: Run tests with coverage
-        # DATABASE_* and other env variables are inherited from job-level env
-        # Using Django's manage.py test (not pytest) as it's the project's test runner
-        # --parallel=auto enables parallel test execution for faster CI runs
-        run: |
-          coverage run --source='utils_site' manage.py test --parallel=auto --verbosity=2
-          coverage xml -o coverage.xml --ignore-errors
-          coverage report --ignore-errors
-
-      - name: Upload coverage to Codecov
-        if: always()
-        uses: codecov/codecov-action@v5
-        with:
-          file: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: false
-
-  # Build Docker Image
+# =========================
+# BUILD IMAGE
+# =========================
   build:
-    name: Build Docker Image
+    name: Build & Push Docker Image
     runs-on: ubuntu-latest
-    needs: [lint, test]
+    needs: test
     if: github.event_name == 'push'
-    # Cancel in-progress builds when a new push/tag arrives
-    # For tags: use common group so new tags cancel old tag builds
-    # For branches: use branch-specific group so branches don't cancel each other
-    concurrency:
-      group: ${{ startsWith(github.ref, 'refs/tags/') && 'build-tags' || format('build-{0}', github.ref) }}
-      cancel-in-progress: true
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-        with:
-          driver-opts: |
-            image=moby/buildkit:latest
+      - uses: docker/setup-buildx-action@v3
 
-      - name: Login to Docker Hub
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
+      - uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          logout: false
 
-      - name: Extract metadata
-        id: meta
+      - name: Extract Docker metadata
         uses: docker/metadata-action@v5
+        id: meta
         with:
-          images: ${{ secrets.DOCKER_USERNAME }}/convertica
+          images: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
             type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=sha,prefix=sha-
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha
 
-      - name: Build and push
+      - name: Build & push image
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./ci/Dockerfile
-          push: ${{ github.event_name != 'pull_request' }}
+          file: ci/Dockerfile
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha,scope=build
-          cache-to: type=gha,mode=max,scope=build
-          # Build only for amd64 to speed up (uncomment arm64 if needed)
           platforms: linux/amd64
 
-  # Deploy to Production Server
+# =========================
+# DEPLOY
+# =========================
   deploy:
     name: Deploy to Production
     runs-on: ubuntu-latest
-    needs: [build]
-    # Deploy ONLY on version tags (v*), NOT on push to main
-    # This ensures deployment happens only after creating a release tag
-    if: |
-      startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push'
-    # Cancel in-progress deployments when a new tag is pushed
-    # This prevents wasting resources on outdated deployments
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+
     concurrency:
       group: deploy-production
       cancel-in-progress: true
+
     environment:
       name: production
       url: https://convertica.net
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Fetch all history to compare tags
-
-      - name: Check if newer tag exists
-        id: check_newer_tag
-        run: |
-          CURRENT_TAG="${GITHUB_REF#refs/tags/}"
-          echo "Current tag: $CURRENT_TAG"
-
-          # Fetch all tags
-          git fetch --tags --force
-
-          # Get all version tags sorted by version
-          ALL_TAGS=$(git tag -l "v*" | sort -V)
-
-          # Find the latest tag
-          LATEST_TAG=$(echo "$ALL_TAGS" | tail -1)
-          echo "Latest tag: $LATEST_TAG"
-
-          # Compare versions using sort -V (version sort)
-          # If current tag is not the latest, cancel deployment
-          if [ "$CURRENT_TAG" != "$LATEST_TAG" ]; then
-            # Check if current tag is older than latest using version sort
-            SORTED_TAGS=$(printf '%s\n' "$CURRENT_TAG" "$LATEST_TAG" | sort -V)
-            FIRST_TAG=$(echo "$SORTED_TAGS" | head -1)
-
-            if [ "$FIRST_TAG" != "$CURRENT_TAG" ]; then
-              echo "⚠️ Newer tag $LATEST_TAG exists, current tag $CURRENT_TAG is outdated"
-              echo "🛑 Cancelling deployment to avoid deploying outdated version"
-              echo "should_cancel=true" >> $GITHUB_OUTPUT
-            else
-              echo "✅ Current tag $CURRENT_TAG is newer than $LATEST_TAG (should not happen, but proceeding)"
-              echo "should_cancel=false" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "✅ Current tag $CURRENT_TAG is the latest, proceeding with deployment"
-            echo "should_cancel=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Cancel deployment if newer tag exists
-        if: steps.check_newer_tag.outputs.should_cancel == 'true'
-        run: |
-          echo "🛑 Cancelling deployment - newer tag exists"
-          exit 1
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      - name: Install npm dependencies
-        run: npm ci
-
-      - name: Build Tailwind CSS
-        run: npm run build:css
-
-      - name: Check if Tailwind CSS was updated
-        run: |
-          if [ -n "$(git status --porcelain static/css/tailwind.css)" ]; then
-            echo "⚠️ Tailwind CSS file was modified during build (this is normal in CI/CD)"
-            echo "   The updated file will be used for deployment."
-            git diff --stat static/css/tailwind.css || true
-          else
-            echo "✅ Tailwind CSS is up to date"
-          fi
-
-      - name: Deploy to server via SSH (Docker Swarm)
+      - name: Deploy via SSH (Docker Swarm)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: ${{ secrets.DEPLOY_SSH_PORT || 22 }}
+          port: 22
           script: |
             set -e
-            echo "🚀 Starting deployment with Docker Swarm (zero-downtime)..."
 
-            cd /opt/convertica
+            TAG="${GITHUB_REF#refs/tags/}"
+            IMAGE="${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${TAG}"
 
-            # Check for newer tags
-            CURRENT_TAG="${{ github.ref_name }}"
-            echo "Current deploying tag: $CURRENT_TAG"
+            echo "🚀 Deploying ${IMAGE}"
 
-            git fetch --tags --force origin
-            LATEST_TAG=$(git tag -l "v*" | sort -V | tail -1)
-            echo "Latest tag: $LATEST_TAG"
+            docker pull "${IMAGE}"
 
-            if [ "$CURRENT_TAG" != "$LATEST_TAG" ]; then
-              SORTED=$(printf '%s\n' "$CURRENT_TAG" "$LATEST_TAG" | sort -V | head -1)
-              if [ "$SORTED" != "$CURRENT_TAG" ]; then
-                echo "🛑 Newer tag $LATEST_TAG exists, cancelling deployment"
-                exit 1
-              fi
+            docker swarm init 2>/dev/null || true
+
+            docker stack deploy \
+              --with-registry-auth \
+              -c docker-compose.swarm.yml \
+              convertica
+
+            echo "📦 Post-deploy tasks..."
+
+            CONTAINER=$(docker ps -q -f name=convertica_web | head -1)
+
+            if [ -n "$CONTAINER" ]; then
+              docker exec "$CONTAINER" python manage.py migrate
+              docker exec "$CONTAINER" python manage.py collectstatic --noinput
+              docker exec "$CONTAINER" python -c "from django.core.cache import cache; cache.clear()"
             fi
 
-            echo "✅ Deploying $CURRENT_TAG"
-
-            # Export Sentry vars
-            export SENTRY_ENVIRONMENT=production
-            export SENTRY_RELEASE="convertica@${CURRENT_TAG}"
-
-            # Save and restore server-specific files
-            git stash push -m "Server local changes" -- staticfiles ssl renew-ssl.sh || true
-            git fetch origin && git reset --hard origin/main
-            git stash apply 2>/dev/null && git stash drop || true
-
-            # Deploy with Swarm (auto-init if needed)
-            echo "🐳 Deploying with Docker Swarm..."
-            ./scripts/deploy.sh
-
-            # Post-deploy tasks (inside running container)
-            echo "📦 Running post-deploy tasks..."
-            # In Swarm mode, container names are like convertica_web.1.xxxxx
-            WEB_CONTAINER=$(docker ps -q -f name=convertica_web --format "{{.ID}}" | head -1)
-
-            if [ -n "$WEB_CONTAINER" ]; then
-              # Compile translations
-              echo "🌍 Compiling translations..."
-              docker exec "$WEB_CONTAINER" python manage.py compilemessages || true
-
-              # Build Tailwind CSS
-              echo "🎨 Building Tailwind CSS..."
-              docker exec --user root "$WEB_CONTAINER" sh -c "
-                if command -v npm > /dev/null 2>&1; then
-                  cd /app && npm ci --silent 2>/dev/null || npm install --silent 2>/dev/null || true
-                  npm run build:css 2>/dev/null || true
-                fi
-              " || true
-
-              # Collect static files
-              echo "📦 Collecting static files..."
-              docker exec "$WEB_CONTAINER" sh -c "
-                python /app/clear_staticfiles.py 2>/dev/null || true
-                python manage.py collectstatic --noinput
-                python /app/create_manifest.py 2>/dev/null || true
-              " || true
-
-              # Clear caches
-              echo "🗑️ Clearing caches..."
-              docker exec "$WEB_CONTAINER" python -c "from django.core.cache import cache; cache.clear()" || true
-            fi
-
-            # Clear Cloudflare cache
             if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] && [ -n "${{ secrets.CLOUDFLARE_ZONE_ID }}" ]; then
               echo "☁️ Purging Cloudflare cache..."
-              curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+              curl -s -X POST \
+                "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
                 -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
                 -H "Content-Type: application/json" \
-                --data '{"purge_everything":true}' | jq -r '.success' | grep -q 'true' && echo "✅ Done" || true
+                --data '{"purge_everything":true}' \
+              | grep -q '"success":true' && echo "✅ Cloudflare cache purged"
             fi
 
-            # Cleanup
-            docker image prune -f || true
-
-            echo "✅ Deployment completed with zero-downtime!"
-            ./scripts/deploy.sh status
+            docker image prune -f
+            echo "✅ Deployment finished"
