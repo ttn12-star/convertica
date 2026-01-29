@@ -8,6 +8,8 @@
 
 services:
   nginx:
+    # Swarm ignores depends_on, services start based on restart policy
+    depends_on: []
     deploy:
       mode: replicated
       replicas: 1
@@ -27,6 +29,8 @@ services:
         window: 120s
 
   web:
+    # Swarm ignores depends_on, services start based on restart policy
+    depends_on: []
     deploy:
       mode: replicated
       replicas: 1
@@ -47,6 +51,8 @@ services:
       # Resource limits are already in docker-compose.prod.yml
 
   celery:
+    # Swarm ignores depends_on, services start based on restart policy
+    depends_on: []
     deploy:
       mode: replicated
       replicas: 1
@@ -66,6 +72,8 @@ services:
         window: 120s
 
   celery-beat:
+    # Swarm ignores depends_on, services start based on restart policy
+    depends_on: []
     deploy:
       mode: replicated
       replicas: 1  # Must be 1 - only one beat scheduler allowed
