@@ -3,30 +3,31 @@
 help: ## Show this help message
 	@echo 'Usage: make [target]'
 	@echo ''
-	@echo 'Available targets:'
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@echo 'Development:'
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / && !/prod/ {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@echo ''
+	@echo 'Production (Swarm):'
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / && /prod|Swarm|Production/ {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 	@echo ''
 	@echo 'For more information, see ci/README.md'
 
-build: ## Build Docker images
+# =============================================================================
+# Development Commands (docker-compose)
+# =============================================================================
+
+build: ## Build Docker images (dev)
 	docker compose build
 
-build-prod: ## Build production Docker images
-	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build
-
-up: ## Start all services
+up: ## Start all services (dev)
 	docker compose up -d
 
-up-prod: ## Start production services
-	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d
-
-down: ## Stop all services
+down: ## Stop all services (dev)
 	docker compose down
 
-restart: ## Restart all services
+restart: ## Restart all services (dev)
 	docker compose restart
 
-logs: ## Show logs from all services
+logs: ## Show logs from all services (dev)
 	docker compose logs -f
 
 shell: ## Open Django shell in web container
@@ -65,12 +66,71 @@ dev-down: ## Stop development environment
 clean: ## Remove all containers, volumes, and images
 	docker compose down -v --rmi all
 
-rebuild: ## Rebuild and restart all services
+rebuild: ## Rebuild and restart all services (dev)
 	docker compose down
 	docker compose build --no-cache
 	docker compose up -d
 
-# Development tools
+# =============================================================================
+# Production Commands (Docker Swarm - zero-downtime)
+# =============================================================================
+
+deploy: ## Deploy to production with Swarm (zero-downtime)
+	./scripts/deploy.sh
+
+deploy-skip-build: ## Deploy to production without rebuilding images
+	./scripts/deploy.sh --skip-build
+
+prod-status: ## Show production Swarm stack status
+	./scripts/deploy.sh status
+
+prod-logs: ## Show production logs (web)
+	./scripts/deploy.sh logs web
+
+prod-logs-celery: ## Show production celery logs
+	./scripts/deploy.sh logs celery
+
+prod-rollback: ## Rollback production to previous version
+	./scripts/deploy.sh rollback
+
+prod-stop: ## Stop production stack
+	./scripts/deploy.sh stop
+
+# Local Swarm testing (mirrors production)
+dev-swarm: ## Start local Swarm stack (test production config)
+	@echo "Starting local Swarm stack (mirrors production)..."
+	@if ! docker info 2>/dev/null | grep -q "Swarm: active"; then \
+		echo "Initializing Swarm..."; \
+		docker swarm init 2>/dev/null || docker swarm init --advertise-addr 127.0.0.1; \
+	fi
+	@set -a && source .env && set +a && \
+		docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build && \
+		docker stack deploy -c docker-compose.yml -c ci/docker-compose.prod.yml -c ci/docker-compose.swarm.yml --prune convertica
+	@echo "Stack deployed. Check status: make dev-swarm-status"
+
+dev-swarm-status: ## Show local Swarm stack status
+	docker stack services convertica
+	@echo ""
+	docker stack ps convertica --no-trunc | head -15
+
+dev-swarm-logs: ## Show local Swarm web logs
+	docker service logs -f convertica_web --tail 100
+
+dev-swarm-stop: ## Stop local Swarm stack
+	docker stack rm convertica
+	@echo "Stack removed. To leave Swarm: docker swarm leave --force"
+
+# Legacy production commands (non-Swarm) - kept for compatibility
+build-prod: ## Build production Docker images (non-Swarm)
+	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build
+
+up-prod: ## Start production services (non-Swarm, use 'make deploy' instead)
+	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d
+
+# =============================================================================
+# Development Tools
+# =============================================================================
+
 install-hooks: ## Install pre-commit hooks
 	pip install pre-commit
 	pre-commit install

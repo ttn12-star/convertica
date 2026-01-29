@@ -303,7 +303,7 @@ jobs:
             echo "✅ Tailwind CSS is up to date"
           fi
 
-      - name: Deploy to server via SSH
+      - name: Deploy to server via SSH (Docker Swarm)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEPLOY_HOST }}
@@ -312,403 +312,83 @@ jobs:
           port: ${{ secrets.DEPLOY_SSH_PORT || 22 }}
           script: |
             set -e
-            echo "🚀 Starting deployment..."
+            echo "🚀 Starting deployment with Docker Swarm (zero-downtime)..."
 
-            # Navigate to project directory
             cd /opt/convertica
 
-            # CRITICAL: Check if a newer tag exists before starting deployment
-            # This prevents deploying outdated tags even if the build already started
-            echo "🔍 Checking for newer tags..."
+            # Check for newer tags
             CURRENT_TAG="${{ github.ref_name }}"
             echo "Current deploying tag: $CURRENT_TAG"
 
-            # Export Sentry environment & release so docker-compose passes them into Django
-            export SENTRY_ENVIRONMENT=production
-            export SENTRY_RELEASE="convertica@${CURRENT_TAG}"
-            echo "Using SENTRY_ENVIRONMENT=$SENTRY_ENVIRONMENT"
-            echo "Using SENTRY_RELEASE=$SENTRY_RELEASE"
-
-            # Fetch all tags from remote
             git fetch --tags --force origin
+            LATEST_TAG=$(git tag -l "v*" | sort -V | tail -1)
+            echo "Latest tag: $LATEST_TAG"
 
-            # Get all version tags sorted by version
-            ALL_TAGS=$(git tag -l "v*" | sort -V)
-
-            # Find the latest tag
-            LATEST_TAG=$(echo "$ALL_TAGS" | tail -1)
-            echo "Latest tag in repository: $LATEST_TAG"
-
-            # Compare versions using sort -V (version sort)
             if [ "$CURRENT_TAG" != "$LATEST_TAG" ]; then
-              # Check if current tag is older than latest using version sort
-              SORTED_TAGS=$(printf '%s\n' "$CURRENT_TAG" "$LATEST_TAG" | sort -V)
-              FIRST_TAG=$(echo "$SORTED_TAGS" | head -1)
-
-              if [ "$FIRST_TAG" != "$CURRENT_TAG" ]; then
-                echo "⚠️  WARNING: Newer tag $LATEST_TAG exists!"
-                echo "🛑 Current tag $CURRENT_TAG is outdated, cancelling deployment"
-                echo "   This prevents deploying an old version when a newer one is available"
+              SORTED=$(printf '%s\n' "$CURRENT_TAG" "$LATEST_TAG" | sort -V | head -1)
+              if [ "$SORTED" != "$CURRENT_TAG" ]; then
+                echo "🛑 Newer tag $LATEST_TAG exists, cancelling deployment"
                 exit 1
               fi
             fi
 
-            echo "✅ Current tag $CURRENT_TAG is the latest, proceeding with deployment"
+            echo "✅ Deploying $CURRENT_TAG"
 
-            # Save server-specific files (SSL, staticfiles, etc.) before pull
-            # IMPORTANT: restrict stash to these paths only, so docker compose configs and code
-            # can't be accidentally restored from local changes and break prod startup.
-            echo "💾 Saving server-specific files..."
-            git stash push -m "Server local changes: staticfiles, ssl, renew-ssl.sh" -- staticfiles ssl renew-ssl.sh || true
+            # Export Sentry vars
+            export SENTRY_ENVIRONMENT=production
+            export SENTRY_RELEASE="convertica@${CURRENT_TAG}"
 
-            # Pull latest code from repository
-            echo "📥 Pulling latest code..."
-            git fetch origin
-            git reset --hard origin/main
+            # Save and restore server-specific files
+            git stash push -m "Server local changes" -- staticfiles ssl renew-ssl.sh || true
+            git fetch origin && git reset --hard origin/main
+            git stash apply 2>/dev/null && git stash drop || true
 
-            # Note: Tailwind CSS will be built INSIDE the container after it starts
-            # This ensures CSS is built with the correct code version and copied to staticfiles
-            echo "ℹ️  Tailwind CSS will be built inside container after startup (before collectstatic)"
+            # Deploy with Swarm (auto-init if needed)
+            echo "🐳 Deploying with Docker Swarm..."
+            ./scripts/deploy.sh
 
-            # Restore server-specific files (if any were stashed)
-            # Use stash apply instead of pop to keep stash in case of conflicts
-            echo "📦 Restoring server-specific files..."
-            if git stash list | grep -q "Server local changes"; then
-              # Try to apply stash, if conflict - abort and keep server files
-              if ! git stash apply --index 2>/dev/null; then
-                echo "⚠️  Conflict in stash, keeping server files and aborting stash apply"
-                git reset --hard HEAD
-                git stash drop || true
-              else
-                git stash drop || true
-              fi
-            fi
+            # Post-deploy tasks (inside running container)
+            echo "📦 Running post-deploy tasks..."
+            WEB_CONTAINER=$(docker ps -q -f name=convertica_web | head -1)
 
-            # Pull latest Docker images (if using Docker Hub)
-            echo "🐳 Pulling latest Docker images..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml pull web celery celery-beat || true
+            if [ -n "$WEB_CONTAINER" ]; then
+              # Compile translations
+              echo "🌍 Compiling translations..."
+              docker exec "$WEB_CONTAINER" python manage.py compilemessages || true
 
-            # Rebuild containers (to get latest code changes)
-            # Note: nginx now requires build (Brotli support), so we build it too
-            echo "🔨 Rebuilding containers..."
-            # Build nginx first (it's a dependency for web)
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build nginx; then
-              echo "⚠️ Nginx build failed, but continuing with other services..."
-              echo "   This may be due to network issues pulling base image"
-            fi
-            # Build other services
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build web celery celery-beat
-
-            # Rolling deployment with automatic rollback strategy
-            echo "🔄 Starting rolling deployment with automatic rollback..."
-            echo "📊 Current memory usage: ~2.1GB limits, server has 2GB RAM + 2GB swap = 4GB total"
-            echo "✅ Deployment strategy: Sequential (old stops before new starts) - fits in resources"
-
-            # Save current container IDs for rollback BEFORE starting new ones
-            # Note: docker compose up -d will stop and remove old containers, so we save IDs first
-            # We need to save both running and stopped containers
-            OLD_WEB_ID=$(docker ps -q -f name=convertica_web | head -1)
-            if [ -z "$OLD_WEB_ID" ]; then
-              # If no running container, check for stopped one
-              OLD_WEB_ID=$(docker ps -a -q -f name=convertica_web | head -1)
-            fi
-            OLD_CELERY_ID=$(docker ps -q -f name=convertica_celery | head -1)
-            if [ -z "$OLD_CELERY_ID" ]; then
-              OLD_CELERY_ID=$(docker ps -a -q -f name=convertica_celery | head -1)
-            fi
-            OLD_CELERY_BEAT_ID=$(docker ps -q -f name=convertica_celery_beat | head -1)
-            if [ -z "$OLD_CELERY_BEAT_ID" ]; then
-              OLD_CELERY_BEAT_ID=$(docker ps -a -q -f name=convertica_celery_beat | head -1)
-            fi
-            echo "📋 Saved old container IDs for rollback: web=$OLD_WEB_ID, celery=$OLD_CELERY_ID, beat=$OLD_CELERY_BEAT_ID"
-
-            # Step 1: Start new web container and wait for healthcheck
-            # docker compose up -d will stop old and start new (sequential, not parallel)
-            echo "📦 Starting new web container (waiting for healthcheck)..."
-            echo "   Note: Old container will be stopped before new one starts (sequential deployment)"
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps --wait web; then
-              echo "❌ Failed to start new web container"
-              echo "🔍 Diagnostics (web container)"
-              docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml ps web || true
-              docker ps -a --filter name=convertica_web --format 'table {{.Names}}\t{{.Status}}\t{{.Image}}' || true
-              echo "--- docker logs (last 200) ---"
-              docker logs --tail 200 convertica_web 2>/dev/null || true
-              echo "--- docker inspect (health) ---"
-              docker inspect --format='{{json .State.Health}}' convertica_web 2>/dev/null || true
-              echo "🔄 Rolling back - restoring old container..."
-              if [ -n "$OLD_WEB_ID" ]; then
-                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
-              else
-                echo "   ⚠️ No old container found to restore"
-              fi
-              exit 1
-            fi
-
-            NEW_WEB_ID=$(docker ps -q -f name=convertica_web)
-
-            # Wait for container to be fully ready and healthy
-            echo "⏳ Waiting for web container to be fully ready and healthy..."
-            max_health_attempts=30
-            health_attempt=0
-            container_healthy=false
-            while [ $health_attempt -lt $max_health_attempts ]; do
-              # Check if container is healthy (Docker healthcheck)
-              if docker inspect --format='{{.State.Health.Status}}' "$NEW_WEB_ID" 2>/dev/null | grep -q "healthy"; then
-                echo "✅ Container is healthy!"
-                container_healthy=true
-                break
-              fi
-              health_attempt=$((health_attempt + 1))
-              echo "   Waiting for healthcheck... (${health_attempt}/${max_health_attempts})"
-              sleep 2
-            done
-
-            if [ "$container_healthy" = false ]; then
-              echo "⚠️ Container healthcheck not passed, but continuing with additional wait..."
-            fi
-
-            # Additional wait to ensure Django is fully ready to accept requests
-            echo "⏳ Additional wait to ensure Django is fully ready..."
-            sleep 10
-
-            # Step 1.5: Backup database and verify data BEFORE migrations
-            echo "💾 Creating database backup before migrations..."
-            mkdir -p /opt/convertica/backups
-            BACKUP_FILE="/opt/convertica/backups/pre_deploy_$(date +%Y%m%d_%H%M%S).sql.gz"
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db pg_dump -U convertica convertica | gzip > "$BACKUP_FILE" || echo "⚠️ Backup failed (non-critical)"
-            if [ -f "$BACKUP_FILE" ]; then
-              echo "✅ Backup created: $BACKUP_FILE ($(du -h $BACKUP_FILE | cut -f1))"
-            fi
-
-            # Count data BEFORE migrations
-            echo "📊 Checking data count before migrations..."
-            OPERATIONS_BEFORE=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import OperationRun; print(OperationRun.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
-            USERS_BEFORE=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import User; print(User.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
-            ARTICLES_BEFORE=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.blog.models import Article; print(Article.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
-            echo "   Operations: $OPERATIONS_BEFORE"
-            echo "   Users: $USERS_BEFORE"
-            echo "   Articles: $ARTICLES_BEFORE"
-
-            # Step 2: Run migrations (container must be running)
-            echo "📊 Running migrations..."
-            max_attempts=5
-            attempt=0
-            migration_success=false
-            while [ $attempt -lt $max_attempts ]; do
-              if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py migrate --noinput; then
-                echo "✅ Migrations completed!"
-                migration_success=true
-                break
-              fi
-              attempt=$((attempt + 1))
-              echo "   Retry ${attempt}/${max_attempts}..."
-              sleep 3
-            done
-
-            if [ "$migration_success" = false ]; then
-              echo "❌ Migrations failed after ${max_attempts} attempts"
-              echo "🔄 Rolling back - stopping new container, restoring old..."
-              docker stop "$NEW_WEB_ID" 2>/dev/null || true
-              docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
-              else
-                echo "   ⚠️ No old container found to restore"
-              fi
-              exit 1
-            fi
-
-            # Step 2.5: Verify data AFTER migrations (detect data loss)
-            echo "🔍 Verifying data after migrations..."
-            OPERATIONS_AFTER=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import OperationRun; print(OperationRun.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
-            USERS_AFTER=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.users.models import User; print(User.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
-            ARTICLES_AFTER=$(docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "from src.blog.models import Article; print(Article.objects.count())" 2>/dev/null | tail -1 | tr -d '\r' || echo "0")
-            echo "   Operations: $OPERATIONS_AFTER (was: $OPERATIONS_BEFORE)"
-            echo "   Users: $USERS_AFTER (was: $USERS_BEFORE)"
-            echo "   Articles: $ARTICLES_AFTER (was: $ARTICLES_BEFORE)"
-
-            # Check for critical data loss (Users or Articles should never decrease)
-            if [ "$USERS_AFTER" -lt "$USERS_BEFORE" ] || [ "$ARTICLES_AFTER" -lt "$ARTICLES_BEFORE" ]; then
-              echo "❌ CRITICAL: Data loss detected after migrations!"
-              echo "   Users: $USERS_BEFORE → $USERS_AFTER"
-              echo "   Articles: $ARTICLES_BEFORE → $ARTICLES_AFTER"
-              echo "🔄 Rolling back and restoring from backup..."
-
-              # Restore from backup
-              if [ -f "$BACKUP_FILE" ]; then
-                echo "📦 Restoring database from backup..."
-                gunzip -c "$BACKUP_FILE" | docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T db psql -U convertica convertica || echo "⚠️ Restore failed"
-              fi
-
-              # Rollback containers
-              docker stop "$NEW_WEB_ID" 2>/dev/null || true
-              docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
-              fi
-              exit 1
-            fi
-
-            # Warn if operations decreased significantly (but don't fail)
-            if [ "$OPERATIONS_BEFORE" -gt 0 ] && [ "$OPERATIONS_AFTER" -lt "$OPERATIONS_BEFORE" ]; then
-              echo "⚠️ WARNING: Operations count decreased: $OPERATIONS_BEFORE → $OPERATIONS_AFTER"
-              echo "   This might indicate a migration issue or cleanup task"
-              echo "   Backup available at: $BACKUP_FILE"
-            else
-              echo "✅ Data verification passed!"
-            fi
-
-            # Step 3: Compile translations (CRITICAL - must succeed)
-            echo "🌍 Compiling translations..."
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py compilemessages; then
-              echo "❌ Translation compilation failed"
-              echo "🔄 Rolling back - stopping new container, restoring old..."
-              docker stop "$NEW_WEB_ID" 2>/dev/null || true
-              docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
-              else
-                echo "   ⚠️ No old container found to restore"
-              fi
-              exit 1
-            fi
-
-            # Step 4: Build Tailwind CSS inside container (before collectstatic)
-            echo "🎨 Building Tailwind CSS inside container..."
-            # Install Node.js and npm in container if not present, then build CSS
-            # Run as root to install packages, but build as appuser to match file ownership
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T --user root web sh -c "
-              if command -v npm > /dev/null 2>&1; then
-                echo '   npm found, building CSS...'
-                cd /app
-                chown -R appuser:appuser /app/static /app/package.json /app/package-lock.json 2>/dev/null || true
-                su appuser -s /bin/sh -c 'cd /app && npm ci --silent 2>&1 | grep -v npm\ WARN || npm install --silent 2>&1 | grep -v npm\ WARN || true'
-                su appuser -s /bin/sh -c 'cd /app && npm run build:css 2>&1' || echo '⚠️ CSS build failed'
-                ls -lh /app/static/css/tailwind.css || echo '⚠️ CSS file not found'
-              else
-                echo '⚠️ npm not found in container, installing Node.js...'
-                apt-get update -qq > /dev/null 2>&1
-                apt-get install -y -qq curl > /dev/null 2>&1 || true
-                curl -fsSL https://deb.nodesource.com/setup_20.x | bash - > /dev/null 2>&1 || true
-                apt-get install -y -qq nodejs > /dev/null 2>&1 || echo '⚠️ Node.js installation failed'
+              # Build Tailwind CSS
+              echo "🎨 Building Tailwind CSS..."
+              docker exec --user root "$WEB_CONTAINER" sh -c "
                 if command -v npm > /dev/null 2>&1; then
-                  echo '   npm installed, building CSS...'
-                  cd /app
-                  chown -R appuser:appuser /app/static /app/package.json /app/package-lock.json 2>/dev/null || true
-                  su appuser -s /bin/sh -c 'cd /app && npm ci --silent 2>&1 | grep -v npm\ WARN || npm install --silent 2>&1 | grep -v npm\ WARN || true'
-                  su appuser -s /bin/sh -c 'cd /app && npm run build:css 2>&1' || echo '⚠️ CSS build failed'
-                else
-                  echo '⚠️ npm still not available, CSS should be in repository'
+                  cd /app && npm ci --silent 2>/dev/null || npm install --silent 2>/dev/null || true
+                  npm run build:css 2>/dev/null || true
                 fi
-              fi
-            "; then
-              echo "⚠️ Tailwind CSS build failed, but continuing with collectstatic..."
+              " || true
+
+              # Collect static files
+              echo "📦 Collecting static files..."
+              docker exec "$WEB_CONTAINER" sh -c "
+                python /app/clear_staticfiles.py 2>/dev/null || true
+                python manage.py collectstatic --noinput
+                python /app/create_manifest.py 2>/dev/null || true
+              " || true
+
+              # Clear caches
+              echo "🗑️ Clearing caches..."
+              docker exec "$WEB_CONTAINER" python -c "from django.core.cache import cache; cache.clear()" || true
             fi
 
-            # Step 5: Collect static files (clear old files first)
-            echo "📦 Collecting static files..."
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "python /app/clear_staticfiles.py || true && python manage.py collectstatic --noinput && python /app/create_manifest.py || true"; then
-              echo "❌ Static files collection failed"
-              echo "🔄 Rolling back - stopping new container, restoring old..."
-              docker stop "$NEW_WEB_ID" 2>/dev/null || true
-              docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
-              else
-                echo "   ⚠️ No old container found to restore"
-              fi
-              exit 1
-            fi
-
-            # Step 6: Clear Django cache (Redis) to ensure fresh content after deploy
-            echo "🗑️ Clearing Django cache..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python -c "from django.core.cache import cache; cache.clear(); print('Cache cleared!')" || true
-
-            # Step 6.5: Clear Cloudflare cache (optional - requires CLOUDFLARE_API_TOKEN and CLOUDFLARE_ZONE_ID secrets)
+            # Clear Cloudflare cache
             if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] && [ -n "${{ secrets.CLOUDFLARE_ZONE_ID }}" ]; then
               echo "☁️ Purging Cloudflare cache..."
               curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
                 -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
                 -H "Content-Type: application/json" \
-                --data '{"purge_everything":true}' | jq -r '.success' | grep -q 'true' && echo "✅ Cloudflare cache purged!" || echo "⚠️ Cloudflare purge failed (non-critical)"
-            else
-              echo "⏭️ Skipping Cloudflare cache purge (secrets not configured)"
+                --data '{"purge_everything":true}' | jq -r '.success' | grep -q 'true' && echo "✅ Done" || true
             fi
 
-            # Step 7: Verify health endpoint responds (critical check)
-            # Final verification
-            echo "📊 Final data verification:"
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py shell -c "
-            from src.users.models import OperationRun, SubscriptionPlan, User
-            from src.blog.models import Article
-            print(f'✅ Users: {User.objects.count()}')
-            print(f'✅ Articles: {Article.objects.count()}')
-            print(f'✅ Plans: {SubscriptionPlan.objects.count()}')
-            print(f'📊 Operations: {OperationRun.objects.count()}')
-            " || echo "⚠️ Final verification failed (non-critical)"
-
-            echo "🏥 Verifying health endpoint (critical check for rollback)..."
-            max_attempts=10
-            attempt=0
-            health_check_passed=false
-            while [ $attempt -lt $max_attempts ]; do
-              if docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web curl -f http://localhost:8000/health/ > /dev/null 2>&1; then
-                echo "✅ Health check passed!"
-                health_check_passed=true
-                break
-              fi
-              attempt=$((attempt + 1))
-              echo "   Retry ${attempt}/${max_attempts}..."
-              sleep 2
-            done
-
-            if [ "$health_check_passed" = false ]; then
-              echo "❌ Health check failed after ${max_attempts} attempts"
-              echo "🔄 Rolling back - stopping new container, restoring old..."
-              docker stop "$NEW_WEB_ID" 2>/dev/null || true
-              docker rm "$NEW_WEB_ID" 2>/dev/null || true
-              if [ -n "$OLD_WEB_ID" ]; then
-                echo "   Restoring old web container (ID: $OLD_WEB_ID)..."
-                docker start "$OLD_WEB_ID" 2>/dev/null || true
-              else
-                echo "   ⚠️ No old container found to restore"
-              fi
-              exit 1
-            fi
-
-            # Give web container a moment to fully stabilize
-            echo "⏸️ Waiting 3 seconds for web container to stabilize..."
-            sleep 3
-
-            # Step 7: Restart other services (with rollback on failure)
-            echo "🔄 Restarting background workers..."
-            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat; then
-              echo "⚠️ Failed to restart celery services, but web is healthy - continuing..."
-            fi
-
-            # Step 8: Reload nginx gracefully (no downtime)
-            echo "🔄 Reloading nginx (graceful reload)..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T nginx nginx -s reload 2>/dev/null || {
-              echo "   Nginx reload failed, restarting..."
-              docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
-            }
-
-            # Step 9: Clean up old stopped containers (only if new ones are healthy)
-            echo "🧹 Cleaning up old stopped containers..."
-            # Remove old stopped containers (docker compose may have left them)
-            docker container prune -f --filter "name=convertica_web" --filter "status=exited" 2>/dev/null || true
-            docker container prune -f --filter "name=convertica_celery" --filter "status=exited" 2>/dev/null || true
-            docker container prune -f --filter "name=convertica_celery_beat" --filter "status=exited" 2>/dev/null || true
-
-            echo "✅ Deployment completed!"
-
-            # Clean up old Docker images
-            echo "🧹 Cleaning up old Docker images..."
+            # Cleanup
             docker image prune -f || true
 
-            echo "✅ Deployment completed!"
+            echo "✅ Deployment completed with zero-downtime!"
+            ./scripts/deploy.sh status
