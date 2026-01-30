@@ -93,6 +93,8 @@ services:
         reservations:
           cpus: '0.05'
           memory: 32M
+    labels:
+      - "autoheal=true"
     logging:
       driver: "json-file"
       options:
@@ -108,16 +110,9 @@ services:
       context: .
       dockerfile: ci/Dockerfile
     container_name: convertica_web
+    # Fast startup: only migrate + server. Static files built separately via 'make build-static'
     command: >
-      sh -c "python /app/clear_staticfiles.py || true &&
-             python manage.py collectstatic --noinput &&
-             /app/scripts/compress_static.sh /app/staticfiles || true &&
-             python /app/create_manifest.py || true &&
-             python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
-             python manage.py compilemessages &&
-             python manage.py migrate &&
-             python manage.py create_subscription_plans &&
-             mkdir -p /app/media/async_temp &&
+      sh -c "python manage.py migrate &&
              daphne -b 0.0.0.0 -p 8000 utils_site.asgi:application"
     volumes:
       - ./staticfiles:/app/staticfiles
@@ -146,6 +141,13 @@ services:
       timeout: 10s
       retries: 5
       start_period: 120s
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     networks:
       - convertica_network
     restart: unless-stopped
@@ -185,6 +187,13 @@ services:
       timeout: 30s
       retries: 10
       start_period: 30s
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     networks:
       - convertica_network
     restart: unless-stopped
@@ -262,6 +271,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    labels:
+      - "autoheal=true"
     logging:
       driver: "json-file"
       options:
@@ -270,6 +281,31 @@ services:
     networks:
       - convertica_network
     restart: unless-stopped
+
+  # Autoheal - automatically restarts unhealthy containers
+  autoheal:
+    image: willfarrell/autoheal:latest
+    container_name: convertica_autoheal
+    restart: unless-stopped
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal
+      - AUTOHEAL_INTERVAL=30
+      - AUTOHEAL_START_PERIOD=120
+      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+    networks:
+      - convertica_network
 
 volumes:
   postgres_data:
