@@ -33,15 +33,9 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
+    # Fast startup: only migrate + server. Static files built separately via 'make build-static'
     command: >
-      sh -c "python /app/clear_staticfiles.py || true &&
-             python manage.py collectstatic --noinput &&
-             /app/scripts/compress_static.sh /app/staticfiles || true &&
-             python /app/ci/generate_robots_txt.py || true &&
-             python /app/create_manifest.py || true &&
-             python manage.py makemessages -l en -l ru -l es -l pl -l hi -l id -l ar --no-location --no-obsolete || true &&
-             python manage.py compilemessages &&
-             python manage.py migrate --noinput &&
+      sh -c "python manage.py migrate --noinput &&
              gunicorn --config /app/ci/gunicorn.conf.py utils_site.wsgi:application"
     env_file:
       - .env
@@ -193,31 +187,14 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Autoheal - automatically restarts unhealthy containers
+  # Autoheal - production override (restart: always)
   autoheal:
-    image: willfarrell/autoheal:latest
     restart: always
-    environment:
-      - AUTOHEAL_CONTAINER_LABEL=autoheal
-      - AUTOHEAL_INTERVAL=30
-      - AUTOHEAL_START_PERIOD=120
-      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 64M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "5m"
-        max-file: "2"
 
-  # Docker monitor - sends Telegram alerts when containers die/restart
+  # Docker monitor - sends Telegram alerts when containers die/restart (production only)
   docker-monitor:
     image: docker:cli
+    container_name: convertica_docker_monitor
     restart: always
     entrypoint: /bin/sh
     command: ["/monitor.sh"]

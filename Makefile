@@ -1,10 +1,10 @@
-.PHONY: help build up down restart logs shell test migrate collectstatic
+.PHONY: help build up down restart logs shell test migrate collectstatic build-static deploy deploy-prod restart-fast
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
 	@echo ''
 	@echo 'Available targets:'
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-20s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 	@echo ''
 	@echo 'For more information, see ci/README.md'
 
@@ -23,8 +23,52 @@ up-prod: ## Start production services
 down: ## Stop all services
 	docker compose down
 
-restart: ## Restart all services
+restart: ## Fast restart (no static rebuild)
 	docker compose restart
+
+restart-prod: ## Fast restart production (no static rebuild)
+	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart
+
+# Static files build (run once after deploy or when static files change)
+build-static: ## Build static files (collectstatic + compress + manifest)
+	@echo "Building static files..."
+	docker compose exec -T web sh -c "\
+		python /app/clear_staticfiles.py || true && \
+		python manage.py collectstatic --noinput && \
+		/app/scripts/compress_static.sh /app/staticfiles || true && \
+		python /app/create_manifest.py || true && \
+		python manage.py compilemessages || true"
+	@echo "Static files built successfully!"
+
+build-static-prod: ## Build static files for production (includes robots.txt)
+	@echo "Building static files for production..."
+	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "\
+		python /app/clear_staticfiles.py || true && \
+		python manage.py collectstatic --noinput && \
+		/app/scripts/compress_static.sh /app/staticfiles || true && \
+		python /app/ci/generate_robots_txt.py || true && \
+		python /app/create_manifest.py || true && \
+		python manage.py compilemessages || true"
+	@echo "Static files built successfully!"
+
+# Full deploy (build + up + static)
+deploy: ## Full deploy: build images, start services, build static
+	@echo "Starting full deploy..."
+	docker compose build
+	docker compose up -d
+	@echo "Waiting for services to start..."
+	sleep 5
+	$(MAKE) build-static
+	@echo "Deploy complete!"
+
+deploy-prod: ## Full production deploy: build + up + static
+	@echo "Starting production deploy..."
+	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml build
+	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d
+	@echo "Waiting for services to start..."
+	sleep 5
+	$(MAKE) build-static-prod
+	@echo "Production deploy complete!"
 
 logs: ## Show logs from all services
 	docker compose logs -f
