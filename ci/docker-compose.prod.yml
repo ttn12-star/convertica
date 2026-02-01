@@ -40,6 +40,7 @@ services:
     env_file:
       - .env
     environment:
+      - SERVICE_NAME=web
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
       - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
@@ -79,6 +80,7 @@ services:
     env_file:
       - .env
     environment:
+      - SERVICE_NAME=celery
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
       - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
@@ -124,6 +126,7 @@ services:
     env_file:
       - .env
     environment:
+      - SERVICE_NAME=beat
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
       - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
