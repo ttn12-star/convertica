@@ -31,6 +31,9 @@ class OptimizationManager:
     Central manager for all optimization decisions and resource monitoring.
     """
 
+    # Maximum cache entries to prevent unbounded memory growth
+    MAX_CACHE_SIZE = 100
+
     def __init__(self):
         self.total_memory_gb = self._get_memory_gb()
         self.cpu_count = os.cpu_count() or 2
@@ -101,7 +104,9 @@ class OptimizationManager:
 
     def should_optimize(self, converter_type: str, file_size_mb: float = 0) -> bool:
         """Make intelligent optimization decision."""
-        cache_key = f"{converter_type}_{file_size_mb}"
+        # Round file_size_mb to reduce cache key cardinality (5MB buckets)
+        size_bucket = int(file_size_mb / 5) * 5
+        cache_key = f"{converter_type}_{size_bucket}"
         if cache_key in self._decision_cache:
             return self._decision_cache[cache_key]
 
@@ -118,6 +123,15 @@ class OptimizationManager:
         else:
             decision = True
             reason = "Resources adequate"
+
+        # Evict oldest entries if cache is too large (LRU-like cleanup)
+        if len(self._decision_cache) >= self.MAX_CACHE_SIZE:
+            # Remove half the cache to avoid frequent evictions
+            keys_to_remove = list(self._decision_cache.keys())[
+                : self.MAX_CACHE_SIZE // 2
+            ]
+            for key in keys_to_remove:
+                del self._decision_cache[key]
 
         self._decision_cache[cache_key] = decision
         logger.info(f"Optimization {decision} for {converter_type}: {reason}")

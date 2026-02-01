@@ -87,7 +87,7 @@ try:
         },
         # Worker settings - optimized for premium priority
         worker_prefetch_multiplier=1,  # Process one task at a time (prevents task hoarding)
-        worker_max_tasks_per_child=40,  # Reduced for memory stability
+        worker_max_tasks_per_child=50,  # Aligned with docker-compose.prod.yml for memory stability
         worker_max_memory_per_child=250000,  # 250MB per worker child
         worker_pool="solo",  # Use solo pool for memory efficiency on small servers
         # Task execution settings
