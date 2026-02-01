@@ -367,7 +367,7 @@ if DATABASE_ENGINE == "postgresql":
             "PASSWORD": config("DATABASE_PASSWORD", default=""),
             "HOST": config("DATABASE_HOST", default="localhost"),
             "PORT": config("DATABASE_PORT", default="5432"),
-            "CONN_MAX_AGE": 60,  # Connection pooling: reuse for 1 min (reduced from 10 to prevent memory buildup)
+            "CONN_MAX_AGE": 300,  # Connection pooling: reuse for 5 min (reduces connection churn)
             "OPTIONS": {
                 "connect_timeout": 10,
             },
@@ -862,7 +862,9 @@ except ImportError:
 # Enhanced session security
 SESSION_COOKIE_AGE = 86400  # 24 hours session timeout
 SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access
-SESSION_SAVE_EVERY_REQUEST = True  # Update session on each request
+SESSION_SAVE_EVERY_REQUEST = (
+    False  # Only save session when modified (prevents memory leak)
+)
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Keep session after browser close
 
 # Celery Configuration

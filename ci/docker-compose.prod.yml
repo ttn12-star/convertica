@@ -75,7 +75,7 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
-    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-2} --pool=prefork --max-tasks-per-child=500 -Q celery,default,maintenance,regular
+    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-2} --pool=prefork --max-tasks-per-child=50 --max-memory-per-child=250000 -Q celery,default,maintenance,regular
     env_file:
       - .env
     environment:
