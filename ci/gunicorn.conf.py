@@ -66,6 +66,23 @@ def on_reload(server):
 
 def when_ready(server):
     """Called just after the server is started."""
+    import datetime
+
+    # Log release info for easy debugging
+    release = os.environ.get("SENTRY_RELEASE", "unknown")
+    git_commit = os.environ.get(
+        "GIT_COMMIT", release[:8] if len(release) >= 8 else "unknown"
+    )
+    environment = os.environ.get("SENTRY_ENVIRONMENT", "unknown")
+    start_time = datetime.datetime.now(datetime.UTC).strftime("%Y-%m-%d %H:%M:%S UTC")
+
+    server.log.info("=" * 60)
+    server.log.info(f"🚀 CONTAINER STARTED - {start_time}")
+    server.log.info(f"   Release: {release}")
+    server.log.info(f"   Commit:  {git_commit}")
+    server.log.info(f"   Env:     {environment}")
+    server.log.info(f"   Workers: {workers}")
+    server.log.info("=" * 60)
     server.log.info("Gunicorn master ready. Spawning workers...")
 
 
