@@ -170,7 +170,9 @@
       .animate-scale-in { animation: scaleIn 0.3s ease-out; }
       .shadow-3xl { box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25); }
 
-      html, body { overflow-x: hidden; max-width: 100%; width: 100%; }
+      /* Prevent horizontal scroll without blocking vertical scroll/touch */
+      html { overflow-x: hidden; max-width: 100%; width: 100%; }
+      body { max-width: 100%; width: 100%; -webkit-overflow-scrolling: touch; }
 
       /* Smooth transitions for theme switching */
       html {

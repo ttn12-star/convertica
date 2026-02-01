@@ -379,51 +379,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Touch move/end handlers for selection creation and dragging
+    // Use passive: true by default and only prevent when actively interacting with PDF area
     document.addEventListener('touchmove', (e) => {
         if (!pdfDoc) return;
+
+        // Only handle if we're actively selecting or dragging
+        if (!isSelecting && !isDragging) return;
+
         const touch = e.touches[0];
         if (!touch) return;
+
+        // Check if touch is within or originated from the PDF canvas container
+        const container = pdfCanvasContainer;
+        if (!container) return;
 
         const rect = pdfCanvas.getBoundingClientRect();
         const x = touch.clientX - rect.left;
         const y = touch.clientY - rect.top;
 
-        // Only handle touch move if we're actively selecting or dragging
-        if (isSelecting || isDragging) {
-            // Mirror logic from mousemove
-            if (isDragging && currentSelection) {
-                let newX = x - dragStartX;
-                let newY = y - dragStartY;
+        // Mirror logic from mousemove
+        if (isDragging && currentSelection) {
+            let newX = x - dragStartX;
+            let newY = y - dragStartY;
 
-                newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
-                newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
+            newX = Math.max(0, Math.min(newX, canvasWidth - currentSelection.width));
+            newY = Math.max(0, Math.min(newY, canvasHeight - currentSelection.height));
 
-                currentSelection.x = newX;
-                currentSelection.y = newY;
+            currentSelection.x = newX;
+            currentSelection.y = newY;
 
-                updateSelection(newX, newY, currentSelection.width, currentSelection.height);
-                updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
-            } else if (isSelecting) {
-                let selX = Math.min(selectionStartX, x);
-                let selY = Math.min(selectionStartY, y);
-                let selWidth = Math.abs(x - selectionStartX);
-                let selHeight = Math.abs(y - selectionStartY);
+            updateSelection(newX, newY, currentSelection.width, currentSelection.height);
+            updateOverlay(newX, newY, currentSelection.width, currentSelection.height);
+        } else if (isSelecting) {
+            let selX = Math.min(selectionStartX, x);
+            let selY = Math.min(selectionStartY, y);
+            let selWidth = Math.abs(x - selectionStartX);
+            let selHeight = Math.abs(y - selectionStartY);
 
-                currentSelection = {
-                    x: selX,
-                    y: selY,
-                    width: selWidth,
-                    height: selHeight
-                };
+            currentSelection = {
+                x: selX,
+                y: selY,
+                width: selWidth,
+                height: selHeight
+            };
 
-                updateSelection(selX, selY, selWidth, selHeight);
-                updateOverlay(selX, selY, selWidth, selHeight);
-                updateCropCoordinates();
-            }
-
-            e.preventDefault(); // Only prevent default during active selection/drag
+            updateSelection(selX, selY, selWidth, selHeight);
+            updateOverlay(selX, selY, selWidth, selHeight);
+            updateCropCoordinates();
         }
-        // Allow normal scrolling when not selecting/dragging
+
+        // Prevent default only during active interaction to avoid blocking page scroll
+        e.preventDefault();
     }, { passive: false });
 
     document.addEventListener('touchend', () => {
@@ -923,7 +929,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Touch move handler for resize handles
+    // Only prevents default when actively resizing a handle
     document.addEventListener('touchmove', (e) => {
+        // Only handle when actively resizing
         if (!resizeHandle || !resizeStartSelection) return;
 
         const touch = e.touches[0];
@@ -990,6 +998,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update coordinates in real-time during resize
         updateCropCoordinates();
 
+        // Prevent default only during active resize
         e.preventDefault();
     }, { passive: false });
 
