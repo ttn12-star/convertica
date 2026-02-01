@@ -171,6 +171,10 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
 
             return event
 
+        # Determine service type from environment variable
+        # Set SERVICE_NAME=web|celery|beat in docker-compose for each service
+        service_name = config("SERVICE_NAME", default="web")
+
         sentry_sdk.init(
             dsn=SENTRY_DSN,
             integrations=[
@@ -198,6 +202,9 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             # Note: Profiling (profile_session_sample_rate) is a paid feature
             # Only enable if you upgrade to a paid plan
         )
+
+        # Set service tag for filtering in Sentry (web vs celery vs beat)
+        sentry_sdk.set_tag("service", service_name)
     except ImportError:
         # sentry-sdk not installed - skip Sentry initialization
         # This allows the app to run without Sentry in development
