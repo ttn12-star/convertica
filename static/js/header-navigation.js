@@ -4,6 +4,7 @@
  */
 class HeaderNavigation {
   constructor() {
+    this.header = document.querySelector('header');
     this.mobileBtn = document.getElementById('mobile-menu-btn');
     this.mobileMenu = document.getElementById('mobile-menu');
     this.megaParent = document.getElementById('mega-menu-parent');
@@ -150,7 +151,17 @@ class HeaderNavigation {
   toggleMobile() {
     if (!this.mobileMenu || !this.mobileBtn) return;
     const isOpen = !this.mobileMenu.classList.contains('hidden');
-    this.mobileMenu.classList.toggle('hidden', isOpen);
+
+    // Update menu position before showing
+    if (isOpen) {
+      // Closing menu
+      this.mobileMenu.classList.add('hidden');
+    } else {
+      // Opening menu - position it below the header
+      this.updateMobileMenuPosition();
+      this.mobileMenu.classList.remove('hidden');
+    }
+
     this.mobileBtn.setAttribute('aria-expanded', !isOpen);
 
     // Toggle menu icon
@@ -163,6 +174,13 @@ class HeaderNavigation {
         this.menuIconClose.classList.remove('hidden');
       }
     }
+  }
+
+  updateMobileMenuPosition() {
+    if (!this.mobileMenu || !this.header) return;
+    const headerHeight = this.header.offsetHeight;
+    this.mobileMenu.style.top = `${headerHeight}px`;
+    this.mobileMenu.style.maxHeight = `calc(100vh - ${headerHeight}px)`;
   }
 
   showMega() {
@@ -487,6 +505,11 @@ class HeaderNavigation {
       this.hideOrganizePdf();
       this.hideAllTools();
       this.hideMore();
+    }
+
+    // Update mobile menu position if it's open
+    if (this.mobileMenu && !this.mobileMenu.classList.contains('hidden')) {
+      this.updateMobileMenuPosition();
     }
   }
 }

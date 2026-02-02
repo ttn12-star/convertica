@@ -913,7 +913,8 @@
 
 <!-- Mobile Menu -->
 <div id="mobile-menu"
-     class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-xl text-gray-900 dark:text-gray-100">
+     class="hidden md:hidden fixed left-0 right-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-xl text-gray-900 dark:text-gray-100 overflow-y-auto"
+     style="top: var(--header-height, 56px); max-height: calc(100vh - var(--header-height, 56px)); z-index: 40;">
   <nav class="flex flex-col px-4 py-6 space-y-1 text-sm font-medium text-gray-900 dark:text-gray-100">
 
   <!-- Mobile All Tools Link (simple button/link to all tools page) -->
@@ -1208,6 +1209,8 @@
     <div class="pt-4 border-t border-gray-200 mt-2">
       <form method="post" action="{% url 'set_language' %}">
         {% csrf_token %}
+        {% get_current_language as MOBILE_LANGUAGE_CODE %}
+        {% get_available_languages as MOBILE_LANGUAGES %}
         {% with path_without_lang=request.path|remove_language_prefix %}
           <input type="hidden" name="next" value="{{ path_without_lang }}{% if request.GET.urlencode %}?{{ request.GET.urlencode }}{% endif %}">
         {% endwith %}
@@ -1217,8 +1220,8 @@
         <select name="language"
                 onchange="this.form.submit();"
                 class="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 shadow-sm">
-          {% for code, name in LANGUAGES %}
-            <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>
+          {% for code, name in MOBILE_LANGUAGES %}
+            <option value="{{ code }}" {% if code == MOBILE_LANGUAGE_CODE %}selected{% endif %}>
               {% if code == 'en' %}English{% else %}{{ name }}{% endif %}
             </option>
           {% endfor %}
