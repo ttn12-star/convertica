@@ -50,22 +50,9 @@ def set_language(request):
     if request.method == "POST":
         lang_code = request.POST.get("language")
         if lang_code and lang_code in dict(settings.LANGUAGES):
+            # Store in session if available
             if hasattr(request, "session"):
                 request.session["django_language"] = lang_code
-            else:
-                # Fallback to cookie if no session
-                response = HttpResponseRedirect(request.get_full_path())
-                response.set_cookie(
-                    settings.LANGUAGE_COOKIE_NAME,
-                    lang_code,
-                    max_age=settings.LANGUAGE_COOKIE_AGE,
-                    path=settings.LANGUAGE_COOKIE_PATH,
-                    domain=settings.LANGUAGE_COOKIE_DOMAIN,
-                    secure=settings.LANGUAGE_COOKIE_SECURE,
-                    httponly=settings.LANGUAGE_COOKIE_HTTPONLY,
-                    samesite=settings.LANGUAGE_COOKIE_SAMESITE,
-                )
-                return response
 
             activate(lang_code)
 
@@ -98,7 +85,47 @@ def set_language(request):
                     else:
                         final_url = f"/{lang_code}{next_url}"
 
-                return HttpResponseRedirect(final_url)
+                response = HttpResponseRedirect(final_url)
+
+                # IMPORTANT: Always set the language cookie!
+                # LocaleMiddleware checks cookie BEFORE Accept-Language header.
+                # Without this cookie, users with browser language set to Russian
+                # would be redirected to Russian even after selecting English.
+                response.set_cookie(
+                    settings.LANGUAGE_COOKIE_NAME,
+                    lang_code,
+                    max_age=(
+                        settings.LANGUAGE_COOKIE_AGE
+                        if hasattr(settings, "LANGUAGE_COOKIE_AGE")
+                        else 365 * 24 * 60 * 60
+                    ),  # 1 year default
+                    path=(
+                        settings.LANGUAGE_COOKIE_PATH
+                        if hasattr(settings, "LANGUAGE_COOKIE_PATH")
+                        else "/"
+                    ),
+                    domain=(
+                        settings.LANGUAGE_COOKIE_DOMAIN
+                        if hasattr(settings, "LANGUAGE_COOKIE_DOMAIN")
+                        else None
+                    ),
+                    secure=(
+                        settings.LANGUAGE_COOKIE_SECURE
+                        if hasattr(settings, "LANGUAGE_COOKIE_SECURE")
+                        else False
+                    ),
+                    httponly=(
+                        settings.LANGUAGE_COOKIE_HTTPONLY
+                        if hasattr(settings, "LANGUAGE_COOKIE_HTTPONLY")
+                        else False
+                    ),
+                    samesite=(
+                        settings.LANGUAGE_COOKIE_SAMESITE
+                        if hasattr(settings, "LANGUAGE_COOKIE_SAMESITE")
+                        else "Lax"
+                    ),
+                )
+                return response
 
     # Fallback to default Django behavior
     return django_set_language(request)
