@@ -10,6 +10,106 @@
 {% block twitter_title %}{{ page_title }}{% endblock %}
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
+{% block structured_data %}
+  {{ block.super }}
+
+  <!-- SoftwareApplication Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "{{ header_text|default:page_title }}",
+      "description": "{{ page_description }}",
+      "url": "{{ site_current_url }}",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "inLanguage": "{{ LANGUAGE_CODE }}",
+      "browserRequirements": "Requires JavaScript. Works on all modern browsers."
+    }
+  </script>
+
+  <!-- HowTo Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "{{ header_text|default:page_title }}",
+      "description": "{{ page_description }}",
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}"
+        }
+      ],
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "{% trans 'JPG, PNG, GIF or BMP images to convert' %}"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "{% trans 'Select Images' %}",
+          "text": "{% trans 'Click the Select images button or drag and drop your images' %}",
+          "url": "{{ site_current_url }}#upload"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "{% trans 'Arrange Order' %}",
+          "text": "{% trans 'Add more images and arrange them in the desired order' %}",
+          "url": "{{ site_current_url }}#arrange"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "{% trans 'Convert' %}",
+          "text": "{% trans 'Click Convert to combine all images into one PDF' %}",
+          "url": "{{ site_current_url }}#convert"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "{% trans 'Download' %}",
+          "text": "{% trans 'Download your PDF file instantly' %}",
+          "url": "{{ site_current_url }}#download"
+        }
+      ],
+      "totalTime": "PT2M"
+    }
+  </script>
+
+  {% if page_faq %}
+  <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="max-w-3xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
     <!-- Breadcrumbs -->
@@ -145,25 +245,36 @@
     <div id="converterResult" class="hidden mt-6"></div>
 
     <!-- Help Section -->
-    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
-      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-white" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
         {% trans "How it works" %}
       </h2>
-      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
-        <li>{% trans "Click the button above to select one or more images, or drag and drop them into the zone below" %}</li>
-        <li>{% trans "You can add more images by clicking 'Add more images' or by selecting files again" %}</li>
+      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+        <li>{% trans "Click the button to select images or drag and drop them" %}</li>
+        <li>{% trans "Add more images by clicking 'Add more images'" %}</li>
         <li>{% trans "Remove unwanted images by clicking the X button" %}</li>
-        <li>{% trans "Select image quality (60-95): higher quality = better clarity but larger file size. 85 is recommended." %}</li>
-        <li>{% trans "Click the convert button to combine all images into one PDF" %}</li>
-        <li>{% trans "Wait for the conversion to complete" %}</li>
+        <li>{% trans "Select image quality (85 is recommended)" %}</li>
+        <li>{% trans "Click Convert to combine all images into one PDF" %}</li>
         <li>{% trans "Download your converted PDF file" %}</li>
       </ol>
       <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
         <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-          <strong>{% trans "Note:" %}</strong> {% trans "You can convert multiple images (JPG, PNG, etc.) into a single PDF file. Supported formats include JPG, PNG, GIF, and BMP. The images will be combined in the order you select them." %}
+          <strong>{% trans "Note:" %}</strong> {% trans "Supports JPG, PNG, GIF, and BMP formats. Images will be combined in the order you select them." %}
         </p>
       </div>
     </div>
+
+    <!-- SEO Content Block -->
+    {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+    <!-- SEO Benefits -->
+    {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+    <!-- SEO Tips -->
+    {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+    <!-- SEO FAQ -->
+    {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
 
     <!-- Related Tools -->
     {% if related_tools %}

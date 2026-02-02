@@ -13,22 +13,24 @@
 {% block structured_data %}
   {{ block.super }}
 
-  <!-- WebApplication Schema -->
+  <!-- SoftwareApplication Schema -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "{{ page_title }}",
+      "@type": "SoftwareApplication",
+      "name": "{{ header_text|default:page_title }}",
       "description": "{{ page_description }}",
       "url": "{{ site_current_url }}",
       "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Any",
+      "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD"
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
       },
-      "inLanguage": "{{ LANGUAGE_CODE }}"
+      "inLanguage": "{{ LANGUAGE_CODE }}",
+      "browserRequirements": "Requires JavaScript. Works on all modern browsers."
     }
   </script>
 
@@ -37,31 +39,68 @@
     {
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": "{{ page_title }}",
+      "name": "{{ header_text|default:page_title }}",
       "description": "{{ page_description }}",
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}"
+        }
+      ],
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "{% trans 'PDF file to edit' %}"
+        }
+      ],
       "step": [
         {
           "@type": "HowToStep",
           "position": 1,
           "name": "{% trans 'Upload PDF' %}",
-          "text": "{% trans 'Select your PDF file to edit' %}"
+          "text": "{% trans 'Select your PDF file using the upload button or drag and drop' %}",
+          "url": "{{ site_current_url }}#upload"
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "{% trans 'Edit' %}",
-          "text": "{% trans 'Apply your changes and click the Edit button' %}"
+          "name": "{% trans 'Configure Options' %}",
+          "text": "{% trans 'Adjust settings as needed for your task' %}",
+          "url": "{{ site_current_url }}#options"
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "{% trans 'Download' %}",
-          "text": "{% trans 'Download your edited PDF file' %}"
+          "name": "{% trans 'Process & Download' %}",
+          "text": "{% trans 'Click the button to process and download your edited PDF' %}",
+          "url": "{{ site_current_url }}#download"
         }
       ],
       "totalTime": "PT2M"
     }
   </script>
+
+  {% if page_faq %}
+  <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
 {% endblock %}
 
 {% block content %}
