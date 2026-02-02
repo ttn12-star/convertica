@@ -48,17 +48,17 @@ Optional parameters:
        tabindex="0"
        aria-label="{% blocktrans with title=title %}Play video: {{ title }}{% endblocktrans %}">
 
-    <!-- Thumbnail with responsive srcset for optimal size -->
-    <img src="https://i.ytimg.com/vi/{{ video_id }}/sddefault.jpg"
+    <!-- Thumbnail with responsive srcset using guaranteed YouTube sizes -->
+    <!-- Note: sddefault.jpg and maxresdefault.jpg are NOT guaranteed for all videos -->
+    <!-- mqdefault.jpg (320x180) and hqdefault.jpg (480x360) always exist -->
+    <img src="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg"
          srcset="https://i.ytimg.com/vi/{{ video_id }}/mqdefault.jpg 320w,
-                 https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg 480w,
-                 https://i.ytimg.com/vi/{{ video_id }}/sddefault.jpg 640w"
-         sizes="(max-width: 640px) 100vw, 640px"
+                 https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg 480w"
+         sizes="(max-width: 480px) 100vw, 480px"
          alt="{{ title }}"
          class="yt-thumbnail absolute inset-0 w-full h-full object-cover transition-transform duration-300"
          {% if is_lcp %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
-         decoding="async"
-         data-fallback="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg">
+         decoding="async">
 
     <!-- Dark overlay for better play button visibility -->
     <div class="yt-overlay absolute inset-0 transition-colors duration-300" style="background-color: rgba(0,0,0,0.2);"></div>
@@ -122,28 +122,11 @@ Optional parameters:
       });
     }
 
-  // Handle thumbnail fallback
-    function initThumbnailFallback() {
-      const thumbnails = document.querySelectorAll('.yt-thumbnail[data-fallback]');
-      thumbnails.forEach(function(img) {
-        img.addEventListener('error', function() {
-          const fallback = this.getAttribute('data-fallback');
-          if (fallback && this.src !== fallback) {
-            this.src = fallback;
-          }
-        });
-      });
-    }
-
   // Run on DOM ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', function() {
-        initYouTubeFacade();
-        initThumbnailFallback();
-      });
+      document.addEventListener('DOMContentLoaded', initYouTubeFacade);
     } else {
       initYouTubeFacade();
-      initThumbnailFallback();
     }
   })();
 </script>
