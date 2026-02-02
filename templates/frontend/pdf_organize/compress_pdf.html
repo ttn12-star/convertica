@@ -26,20 +26,36 @@
 {% endblock %}
 
 {% block help_section %}
-  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
-    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+  <!-- How it works -->
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
       {% trans "How it works" %}
     </h2>
-    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
-      <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
-      <li>{% trans "Choose the compression level (Low, Medium, or High) to compress PDF file size" %}</li>
-      <li>{% trans "Click the compress button to reduce the size of your PDF file" %}</li>
-      <li>{% trans "Download your compressed PDF file using the download button" %}</li>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+      <li>{% trans "Select your PDF file using the button above" %}</li>
+      <li>{% trans "Choose compression level: Low, Medium, or High" %}</li>
+      <li>{% trans "Click Compress to reduce your PDF file size" %}</li>
+      <li>{% trans "Download your smaller PDF file" %}</li>
     </ol>
-    <div class="mt-4 pt-4 border-t border-blue-200">
-      <p class="text-xs sm:text-sm text-gray-600">
-        <strong>{% trans "Note:" %}</strong> {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}PDF files with up to {{ max_pages }} pages are supported for compression. For larger files, please split them into smaller parts. Higher compression reduces file size more but may slightly reduce image quality.{% endblocktrans %}
+    <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+        <strong>{% trans "Note:" %}</strong>
+        {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}
+          PDF files with up to {{ max_pages }} pages are supported. Higher compression = smaller file size but may reduce image quality.
+        {% endblocktrans %}
       </p>
     </div>
   </div>
+
+  <!-- SEO Content Block -->
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+  <!-- SEO Benefits -->
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+  <!-- SEO Tips -->
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+  <!-- SEO FAQ -->
+  {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
 {% endblock %}

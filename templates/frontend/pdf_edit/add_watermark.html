@@ -610,24 +610,39 @@
     <div id="editorResult" class="hidden mt-6"></div>
 
     <!-- Help Section -->
-    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7" style="font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
-      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-white" style="font-family: 'Poppins', sans-serif; font-weight: 700; letter-spacing: -0.02em;">
+    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
         {% trans "How it works" %}
       </h2>
-      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300" style="font-family: 'Inter', sans-serif; font-weight: 500; line-height: 1.7;">
-        <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone below" %}</li>
-        <li>{% trans "Enter your watermark text or upload an image to add as watermark to PDF" %}</li>
-        <li>{% trans "Choose the color and opacity using the sliders to customize your PDF watermark" %}</li>
-        <li>{% trans "Click on the PDF to position the watermark, or drag it to move it anywhere on the page" %}</li>
-        <li>{% trans "Click the add watermark button to process your PDF and add the watermark" %}</li>
-        <li>{% trans "Download your watermarked PDF file using the download button" %}</li>
+      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+        <li>{% trans "Select your PDF file using the button above or drag and drop" %}</li>
+        <li>{% trans "Enter watermark text or upload an image" %}</li>
+        <li>{% trans "Customize color, opacity, and size using the sliders" %}</li>
+        <li>{% trans "Position the watermark by dragging on the preview" %}</li>
+        <li>{% trans "Click Add Watermark to process your PDF" %}</li>
+        <li>{% trans "Download your watermarked PDF file" %}</li>
       </ol>
       <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
         <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-          <strong>{% trans "Note:" %}</strong> {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}PDF files with up to {{ max_pages }} pages are supported for adding watermarks. For larger files, please split them into smaller parts. The watermark will be applied to all pages or selected pages as specified.{% endblocktrans %}
+          <strong>{% trans "Note:" %}</strong>
+          {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}
+            PDF files with up to {{ max_pages }} pages are supported. Watermark applies to all or selected pages.
+          {% endblocktrans %}
         </p>
       </div>
     </div>
+
+    <!-- SEO Content Block -->
+    {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+    <!-- SEO Benefits -->
+    {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+    <!-- SEO Tips -->
+    {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+    <!-- SEO FAQ -->
+    {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
 
     <!-- Related Tools -->
     {% if related_tools %}
