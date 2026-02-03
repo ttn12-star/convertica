@@ -1130,6 +1130,8 @@ msgstr "Contact Us"
 msgid ""
 "We're here to help! Get in touch with us for support, questions, or feedback."
 msgstr ""
+"We're here to help! Get in touch with us for support, questions, or feedback."
+
 
 #: templates/frontend/contact.html:63
 msgid "Email icon"
@@ -1606,6 +1608,8 @@ msgid ""
 "PDF files with up to %(max_pages)s pages are supported. For larger files, "
 "please split them into smaller parts."
 msgstr ""
+"PDF files with up to %(max_pages)s pages are supported. For larger files, "
+"please split them into smaller parts."
 
 #: templates/frontend/edit_pdf_generic.html:245
 #: templates/frontend/pdf_edit/add_page_numbers.html:244
