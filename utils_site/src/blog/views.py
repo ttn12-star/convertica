@@ -78,6 +78,8 @@ def article_list(request):
 
                 # Check translations for each article (batch processing)
                 # Limit to first 1000 articles to prevent memory issues
+                # Collect IDs first, then batch load to avoid N+1 queries
+                translation_match_ids = []
                 for article in all_articles[:1000]:
                     if article.id in article_ids_found:
                         continue  # Already found in English search
@@ -92,12 +94,15 @@ def article_list(request):
                             or trans.get("content", "").lower().find(search_lower) != -1
                             or trans.get("excerpt", "").lower().find(search_lower) != -1
                         ):
-                            # Reload full article for results
-                            full_article = Article.objects.select_related(
-                                "category"
-                            ).get(id=article.id)
-                            articles_list.append(full_article)
+                            translation_match_ids.append(article.id)
                             article_ids_found.add(article.id)
+
+                # Batch load all matching articles in one query (fixes N+1)
+                if translation_match_ids:
+                    full_articles = Article.objects.filter(
+                        id__in=translation_match_ids
+                    ).select_related("category")
+                    articles_list.extend(full_articles)
 
                 # Sort by published_at (newest first) and convert to list for pagination
                 articles_list.sort(

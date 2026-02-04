@@ -3,6 +3,7 @@ Parallel processing utilities for adaptive server optimization.
 Provides memory-safe batch processing for large files based on available resources.
 """
 
+import atexit
 import os
 import tempfile
 from collections.abc import Callable
@@ -28,6 +29,20 @@ IMAGE_PROCESSING_POOL = ThreadPoolExecutor(
     max_workers=perf_config.get_thread_workers("image_processing"),
     thread_name_prefix="img_proc",
 )
+
+
+def _cleanup_thread_pools():
+    """Cleanup thread pools on interpreter shutdown to prevent resource leaks."""
+    try:
+        BATCH_PROCESSING_POOL.shutdown(wait=False)
+        IMAGE_PROCESSING_POOL.shutdown(wait=False)
+        logger.debug("Thread pools cleaned up successfully")
+    except Exception as e:
+        logger.warning(f"Error during thread pool cleanup: {e}")
+
+
+# Register cleanup function to run on interpreter exit
+atexit.register(_cleanup_thread_pools)
 
 
 class MemorySafeBatchProcessor:
