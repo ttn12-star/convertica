@@ -73,8 +73,7 @@
     <link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
     <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
 
-    <!-- Critical resources preload -->
-    <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
+    <!-- Note: CSS preloads moved below critical CSS section -->
     <!-- Note: utils.js preload removed - it's only used on converter pages, not globally -->
 
     <!-- Self-hosted fonts (300ms faster than Google Fonts CDN) -->
@@ -114,6 +113,23 @@
     <meta name="apple-mobile-web-app-title" content="Convertica">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Organization Schema for Google Search Logo -->
+    <script type="application/ld+json" nonce="{{ csp_nonce }}">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Convertica",
+        "url": "{{ site_base_url }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ site_base_url }}{% static 'favicon-512x512.png' %}",
+          "width": 512,
+          "height": 512
+        },
+        "sameAs": []
+      }
+    </script>
 
     <script nonce="{{ csp_nonce }}">
       (function() {
