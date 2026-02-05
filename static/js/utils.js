@@ -3,6 +3,59 @@
  * Shared functions used across multiple components
  */
 
+// ── Global cancel / background-task state ──
+window._currentTaskId = null;          // Celery async task ID (set after 202 response)
+window._currentAbortController = null; // AbortController for sync fetch requests
+window._onCancelCallback = null;       // UI cleanup callback set by caller
+
+/**
+ * Cancel the currently running operation.
+ * Works for both async Celery tasks and sync fetch requests.
+ */
+function cancelCurrentOperation() {
+    const taskId = window._currentTaskId;
+    const controller = window._currentAbortController;
+    const callback = window._onCancelCallback;
+
+    // 1. Cancel async Celery task via API
+    if (taskId) {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
+            || document.querySelector('meta[name="csrf-token"]')?.content
+            || _getCookieValue('csrftoken');
+
+        fetch('/api/cancel-task/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
+            body: JSON.stringify({ task_id: taskId }),
+        }).catch(() => {});
+
+        if (window.unregisterTaskForCancellation) {
+            window.unregisterTaskForCancellation(taskId);
+        }
+    }
+
+    // 2. Abort sync fetch
+    if (controller) {
+        try { controller.abort(); } catch (_) {}
+    }
+
+    // 3. Reset state
+    window._currentTaskId = null;
+    window._currentAbortController = null;
+
+    // 4. UI cleanup
+    if (typeof callback === 'function') {
+        callback();
+    }
+    window._onCancelCallback = null;
+}
+
+/** @private cookie helper (duplicated from task-cancellation to keep utils standalone) */
+function _getCookieValue(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+}
+
 /**
  * Format file size in human-readable format
  * @param {number} bytes - File size in bytes
@@ -205,6 +258,29 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
                         </div>
                     </div>
                 </div>
+
+                <!-- Action Buttons: Cancel + Continue in Background -->
+                <div class="flex items-center justify-center gap-4 mt-2">
+                    <!-- Cancel Button -->
+                    <button id="cancelOperationBtn" type="button"
+                            class="inline-flex items-center gap-1.5 text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
+                            title="${window.CANCEL_OPERATION_TEXT || 'Cancel operation'}">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                        <span>${window.CANCEL_OPERATION_TEXT || 'Cancel'}</span>
+                    </button>
+
+                    <!-- Continue in Background Button (Premium only, hidden by default) -->
+                    <button id="sendToBackgroundBtn" type="button"
+                            class="hidden inline-flex items-center gap-1.5 text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                            title="${window.CONTINUE_IN_BACKGROUND_TEXT || 'Continue in background'}">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                        </svg>
+                        <span>${window.CONTINUE_IN_BACKGROUND_TEXT || 'Continue in background'}</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -221,6 +297,16 @@ function showLoading(containerId = 'loadingContainer', options = {}) {
 
     container.classList.remove('hidden');
     container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Wire up Cancel button
+    const cancelBtn = document.getElementById('cancelOperationBtn');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', () => cancelCurrentOperation());
+    }
+
+    // Show "Continue in background" only for premium users with async tasks
+    // Will be made visible dynamically by submitAsyncConversion when task_id is set
+    // (kept hidden by default via the 'hidden' class)
 
     // Show patience message after configured delay (default 40 seconds)
     const patienceDelay = (window.JS_SETTINGS && window.JS_SETTINGS.patienceMessageDelay) || 40000;
@@ -290,6 +376,11 @@ function hideLoading(containerId = 'loadingContainer', showComplete = false) {
         clearTimeout(container._patienceTimeout);
         container._patienceTimeout = null;
     }
+
+    // Reset cancel state
+    window._currentTaskId = null;
+    window._currentAbortController = null;
+    window._onCancelCallback = null;
 
     // Only show 100% if explicitly requested (file is actually ready)
     if (showComplete) {
@@ -571,6 +662,10 @@ async function submitAsyncConversion(options) {
         }
     }
 
+    // Create AbortController for the initial upload fetch
+    const abortController = new AbortController();
+    window._currentAbortController = abortController;
+
     // Show loading
     showLoading(loadingContainerId, { showProgress: true });
 
@@ -589,6 +684,7 @@ async function submitAsyncConversion(options) {
                 'X-CSRFToken': csrfToken,
             },
             body: formData,
+            signal: abortController.signal,
         });
 
         // Check if this is an async response (202 Accepted with task_id)
@@ -598,6 +694,42 @@ async function submitAsyncConversion(options) {
 
             if (!taskId) {
                 throw new Error('No task ID received');
+            }
+
+            // Save task_id for cancel button
+            window._currentTaskId = taskId;
+            // Upload done — AbortController no longer needed
+            window._currentAbortController = null;
+
+            // Show "Continue in background" for premium users
+            if (window.IS_PREMIUM) {
+                const bgBtn = document.getElementById('sendToBackgroundBtn');
+                if (bgBtn) {
+                    bgBtn.classList.remove('hidden');
+                    bgBtn.addEventListener('click', () => {
+                        // Move task to background via background-tasks module
+                        if (window.addBackgroundTask) {
+                            window.addBackgroundTask(taskId, window.CONVERSION_TYPE || '', originalFileName);
+                        }
+                        // Mark as background on server
+                        fetch('/api/task-background/', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
+                            body: JSON.stringify({ task_id: taskId }),
+                        }).catch(() => {});
+                        // Unregister from auto-cancel
+                        if (window.unregisterTaskForCancellation) {
+                            window.unregisterTaskForCancellation(taskId);
+                        }
+                        // Reset state and restore UI
+                        window._currentTaskId = null;
+                        window._onCancelCallback = null;
+                        hideLoading(loadingContainerId);
+                        if (options.onBackground) {
+                            options.onBackground();
+                        }
+                    });
+                }
             }
 
             // Register task for automatic cancellation if user leaves page
@@ -726,6 +858,11 @@ async function submitAsyncConversion(options) {
         }
 
     } catch (error) {
+        // If the user cancelled the operation, don't show an error
+        if (error && error.name === 'AbortError') {
+            hideLoading(loadingContainerId);
+            return;
+        }
         hideLoading(loadingContainerId);
         const errorMsg = error.message || 'An error occurred';
         showError(errorMsg, errorContainerId);
@@ -849,4 +986,5 @@ if (typeof window !== 'undefined') {
     window.submitAsyncConversion = submitAsyncConversion;
     window.pollTaskStatus = pollTaskStatus;
     window.trackOperationAbandon = trackOperationAbandon;
+    window.cancelCurrentOperation = cancelCurrentOperation;
 }

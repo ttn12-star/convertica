@@ -25,6 +25,10 @@ logger = get_logger(__name__)
 CANCELLED_TASK_PREFIX = "cancelled_task:"
 CANCELLED_TASK_TTL = 3600  # 1 hour TTL
 
+# Cache key prefix for background tasks (premium)
+BACKGROUND_TASK_PREFIX = "background_task:"
+BACKGROUND_TASK_TTL = 3600  # 1 hour TTL (matches async temp file TTL)
+
 
 def mark_task_cancelled(task_id: str) -> None:
     """Mark a task as cancelled in Redis cache."""
@@ -39,6 +43,16 @@ def is_task_cancelled(task_id: str) -> bool:
 def clear_task_cancelled(task_id: str) -> None:
     """Clear the cancelled flag for a task."""
     cache.delete(f"{CANCELLED_TASK_PREFIX}{task_id}")
+
+
+def mark_task_as_background(task_id: str) -> None:
+    """Mark a task as a background task (premium)."""
+    cache.set(f"{BACKGROUND_TASK_PREFIX}{task_id}", True, BACKGROUND_TASK_TTL)
+
+
+def is_task_background(task_id: str) -> bool:
+    """Check if a task is marked as background."""
+    return cache.get(f"{BACKGROUND_TASK_PREFIX}{task_id}") is True
 
 
 @csrf_exempt
@@ -176,3 +190,53 @@ def mark_operation_abandoned(request):
         return JsonResponse({"status": "ok"}, status=200)
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def mark_task_background(request):
+    """Mark a task as a background task (premium users only).
+
+    This tells the maintenance system not to clean up the task's temp files
+    prematurely, and prevents auto-cancellation on page leave.
+
+    POST /api/task-background/
+    Body: {"task_id": "abc-123-def"}
+    """
+    try:
+        # Only premium users can use background tasks
+        if not request.user.is_authenticated or not getattr(
+            request.user, "is_premium_active", False
+        ):
+            return JsonResponse({"error": "Premium subscription required"}, status=403)
+
+        data = json.loads(request.body)
+        task_id = data.get("task_id")
+
+        if not task_id:
+            return JsonResponse(
+                {"error": "task_id is required"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        mark_task_as_background(task_id)
+
+        logger.info(
+            "Task marked as background",
+            extra={
+                "task_id": task_id,
+                "user_id": request.user.id,
+                "event": "task_background",
+            },
+        )
+
+        return JsonResponse(
+            {"status": "success", "task_id": task_id},
+            status=status.HTTP_200_OK,
+        )
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON"}, status=400)
+    except Exception as e:
+        logger.error(f"Error marking task as background: {str(e)}", exc_info=True)
+        return JsonResponse({"error": "Internal server error"}, status=500)

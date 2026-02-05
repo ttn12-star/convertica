@@ -309,6 +309,11 @@
     <!-- Theme Toggle Script (Premium Dark Mode) -->
     <script src="{% minified_static 'js/theme-toggle.js' %}" defer nonce="{{ csp_nonce }}"></script>
 
+    <!-- Background Tasks Manager (Premium only) -->
+    {% if user.is_authenticated and user.is_premium_active %}
+      <script src="{% minified_static 'js/background-tasks.js' %}" defer nonce="{{ csp_nonce }}"></script>
+    {% endif %}
+
     <!-- PWA Install Script -->
     <script src="{% minified_static 'js/pwa-install.js' %}" defer nonce="{{ csp_nonce }}"></script>
 

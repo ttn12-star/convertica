@@ -7252,7 +7252,7 @@ msgstr "Email Anda"
 
 #: utils_site/src/frontend/forms.py:36
 msgid "your.email@example.com"
-msgstr "email.anda@contoh.com"
+msgstr "email.anda@example.com"
 
 #: utils_site/src/frontend/forms.py:44
 msgid "Subject"
@@ -7913,11 +7913,7 @@ msgid ""
 "Free users can convert PDFs with up to a certain number of pages. For larger"
 " files, you can split them into smaller parts or upgrade to Premium for "
 "higher limits."
-msgstr ""
-"File PDF hingga %(max_pages)s halaman didukung untuk pengguna gratis. Untuk "
-"file yang lebih besar, silakan bagi menjadi beberapa bagian atau tingkatkan "
-"ke Premium untuk memproses file yang lebih besar dengan batas yang lebih "
-"tinggi."
+msgstr "Pengguna gratis dapat mengonversi PDF hingga sejumlah halaman tertentu. Untuk file yang lebih besar, Anda dapat membaginya menjadi bagian yang lebih kecil atau upgrade ke Premium untuk batas yang lebih tinggi."
 
 #: utils_site/src/frontend/views.py:772
 #| msgid "Are my files safe?"
@@ -8302,7 +8298,7 @@ msgid ""
 "Free users can rotate PDFs with up to a certain number of pages. For larger "
 "files, split them or upgrade to Premium for higher limits."
 msgstr ""
-"Pengguna premium dapat memproses file PDF hingga %(max_pages)s halaman. "
+"Pengguna premium dapat memproses file PDF hingga halaman."
 "Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian."
 
 #: utils_site/src/frontend/views.py:1064
@@ -8619,10 +8615,8 @@ msgid "How do I make the watermark semi-transparent?"
 msgstr "Bagaimana cara menambahkan watermark ke PDF?"
 
 #: utils_site/src/frontend/views.py:1316
-msgid "Use the opacity slider to adjust transparency from 10% to 100%."
-msgstr ""
-"Gunakan penggeser opasitas untuk menyesuaikan transparansi dari 10% hingga "
-"100%%."
+msgid "Use the opacity slider to adjust transparency from 10%% to 100%%."
+msgstr "Gunakan penggeser opasitas untuk menyesuaikan transparansi dari 10%% hingga 100%%."
 
 #: utils_site/src/frontend/views.py:1320
 msgid "Can I add watermark to specific pages only?"
@@ -11093,7 +11087,7 @@ msgstr "Kurangi ukuran file PDF tanpa kehilangan kualitas"
 
 #: utils_site/src/frontend/views.py:3168
 msgid "Reduce Up to 90%"
-msgstr "Kurangi Hingga 90%%"
+msgstr "Kurangi hingga 90%"
 
 #: utils_site/src/frontend/views.py:3170
 #| msgid "Reduce PDF file size without losing quality"
@@ -11140,11 +11134,7 @@ msgid ""
 "Results vary depending on the content, but you can typically reduce PDF size"
 " by 50-90%. PDFs with many images compress more than text-only documents. "
 "Scanned documents usually achieve the best compression ratios."
-msgstr ""
-"Hasil bervariasi tergantung konten, tetapi biasanya Anda dapat mengurangi "
-"ukuran PDF sebesar 50-90%%. PDF dengan banyak gambar lebih terkompresi "
-"daripada dokumen hanya teks. Dokumen yang dipindai biasanya mencapai rasio "
-"kompresi terbaik."
+msgstr "Hasil bervariasi tergantung konten, tetapi biasanya Anda dapat mengurangi ukuran PDF sebesar 50-90%. PDF dengan banyak gambar terkompresi lebih baik daripada dokumen hanya teks. Dokumen hasil pemindaian biasanya mencapai rasio kompresi terbaik."
 
 #: utils_site/src/frontend/views.py:3211
 msgid "Will compression affect text quality?"
@@ -11227,8 +11217,8 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:3250
 #, python-format
-msgid "Scanned documents usually achieve 70-90% size reduction"
-msgstr "Dokumen yang dipindai biasanya mencapai pengurangan ukuran 70-90% s"
+msgid "Scanned documents usually achieve 70-90%% size reduction"
+msgstr "Dokumen hasil pemindaian biasanya mencapai pengurangan ukuran 70-90%%"
 
 #: utils_site/src/frontend/views.py:3251
 msgid "Keep the original file if you need maximum print quality"
@@ -11262,7 +11252,7 @@ msgstr ""
 "menggunakan algoritma kompresi cerdas yang mengoptimalkan gambar dan "
 "menghapus metadata yang tidak perlu sambil menjaga teks tetap tajam dan "
 "dokumen sepenuhnya dapat dicari. Sebagian besar PDF dapat dikurangi "
-"ukurannya sebesar <strong>50-90%%</strong>.</p><p><strong>Penggunaan "
+"ukurannya sebesar <strong>50-90%</strong>.</p><p><strong>Penggunaan "
 "umum:</strong> Kompres PDF untuk email (di bawah 25MB untuk Gmail), kurangi "
 "ukuran dokumen yang dipindai, optimalkan PDF untuk unggahan situs web, "
 "perkecil ekspor presentasi, dan siapkan file untuk dilihat di perangkat "
@@ -12376,3 +12366,24 @@ msgstr "JSON tidak valid"
 #~ "Kompres PDF online gratis untuk mengurangi ukuran file dengan cepat. "
 #~ "Kompresor PDF tanpa watermark, kompres PDF di bawah 1MB untuk email, kurangi"
 #~ " ukuran file PDF tanpa kehilangan kualitas. Alat kompresi PDF terbaik 2025."
+
+msgid "Continue in background"
+msgstr "Lanjutkan di latar belakang"
+
+msgid "Task running in background"
+msgstr "Tugas berjalan di latar belakang"
+
+msgid "File is ready!"
+msgstr "Berkas siap!"
+
+msgid "Conversion failed"
+msgstr "Konversi gagal"
+
+msgid "No background tasks"
+msgstr "Tidak ada tugas latar belakang"
+
+msgid "Background tasks"
+msgstr "Tugas latar belakang"
+
+msgid "Background Tasks"
+msgstr "Tugas latar belakang"

@@ -784,6 +784,14 @@
               let errorMessage = `Error ${xhr.status}: ${xhr.statusText}`;
               try {
                 const errorData = JSON.parse(xhr.responseText);
+                if (errorData.portal_url) {
+                  window.location.href = errorData.portal_url;
+                  return;
+                }
+                if (errorData.manage_url) {
+                  window.location.href = errorData.manage_url;
+                  return;
+                }
                 errorMessage = errorData.error || errorMessage;
               } catch (e) {
               // Ignore JSON parse errors

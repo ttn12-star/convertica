@@ -228,13 +228,23 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('quality', qualitySelect.value);
         }
 
+        // Set cancel callback so the cancel button can restore the form
+        window._onCancelCallback = () => {
+            window.hideLoading('loadingContainer');
+            setFormDisabled(false);
+        };
+        // Create AbortController for cancel support
+        const abortController = new AbortController();
+        window._currentAbortController = abortController;
+
         try {
             const response = await fetch(window.API_URL, {
                 method: 'POST',
                 body: formData,
                 headers: {
                     'X-CSRFToken': window.CSRF_TOKEN || ''
-                }
+                },
+                signal: abortController.signal
             });
 
             if (!response.ok) {
@@ -282,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
         } catch (err) {
+            if (err && err.name === 'AbortError') { return; }
             if (typeof console !== 'undefined' && console.error) {
                 console.error('Conversion error:', err);
             }

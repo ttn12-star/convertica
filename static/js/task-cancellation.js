@@ -14,6 +14,8 @@
 
     // Track active task IDs
     let activeTasks = new Set();
+    // Tasks moved to background (premium) — never auto-cancel these
+    let backgroundTasks = new Set();
     let visibilityTimer = null;
     const VISIBILITY_TIMEOUT = 60000; // Cancel after 60 seconds of inactivity
 
@@ -53,7 +55,20 @@
     window.unregisterTaskForCancellation = function(taskId) {
         if (taskId) {
             activeTasks.delete(taskId);
+            backgroundTasks.delete(taskId);
             console.log(`[Task Cancel] Unregistered task: ${taskId}`);
+        }
+    };
+
+    /**
+     * Mark a task as background (premium) — prevents auto-cancellation
+     * @param {string} taskId - Celery task ID
+     */
+    window.markTaskAsBackground = function(taskId) {
+        if (taskId) {
+            backgroundTasks.add(taskId);
+            activeTasks.delete(taskId);
+            console.log(`[Task Cancel] Moved task to background: ${taskId}`);
         }
     };
 
@@ -111,23 +126,22 @@
      * Handle page unload (user navigating away or closing tab)
      */
     function handleBeforeUnload() {
-        // Use sendBeacon for reliable delivery even when page is closing
-        if (activeTasks.size > 0 && navigator.sendBeacon) {
+        // Filter out background tasks — those should NOT be cancelled
+        const tasksToCancel = Array.from(activeTasks).filter(id => !backgroundTasks.has(id));
+
+        if (tasksToCancel.length > 0 && navigator.sendBeacon) {
             const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
                 || document.querySelector('meta[name="csrf-token"]')?.content
                 || getCookie('csrftoken');
 
-            const tasks = Array.from(activeTasks);
-            tasks.forEach(taskId => {
-                // Note: sendBeacon doesn't support custom headers well
-                // So we include CSRF token in the body
+            tasksToCancel.forEach(taskId => {
                 const blob = new Blob(
                     [JSON.stringify({ task_id: taskId, csrfmiddlewaretoken: csrfToken })],
                     { type: 'application/json' }
                 );
                 navigator.sendBeacon('/api/cancel-task/', blob);
             });
-            console.log(`[Task Cancel] Sent cancellation beacons for ${tasks.length} task(s)`);
+            console.log(`[Task Cancel] Sent cancellation beacons for ${tasksToCancel.length} task(s), skipped ${backgroundTasks.size} background task(s)`);
         }
     }
 

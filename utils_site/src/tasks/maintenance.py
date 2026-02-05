@@ -251,12 +251,22 @@ def cleanup_async_temp_files(max_age_seconds: int = 3600):
         cleaned_count = 0
         total_size = 0
 
+        # Import background task checker
+        from src.api.cancel_task_view import is_task_background
+
         # Iterate through task directories
+        skipped_bg = 0
         for task_dir in async_dir.iterdir():
             if not task_dir.is_dir():
                 continue
 
             try:
+                # Skip background tasks (premium users' tasks still in progress)
+                task_id = task_dir.name
+                if is_task_background(task_id):
+                    skipped_bg += 1
+                    continue
+
                 # Check directory age by looking at modification time
                 dir_age = current_time - task_dir.stat().st_mtime
                 if dir_age > max_age_seconds:
@@ -277,13 +287,14 @@ def cleanup_async_temp_files(max_age_seconds: int = 3600):
         size_freed_mb = round(total_size / (1024 * 1024), 2)
         logger.info(
             f"Async cleanup completed: {cleaned_count} task dirs, "
-            f"{size_freed_mb} MB freed"
+            f"{size_freed_mb} MB freed, {skipped_bg} background tasks skipped"
         )
 
         return {
             "status": "success",
             "cleaned": cleaned_count,
             "size_freed_mb": size_freed_mb,
+            "skipped_background": skipped_bg,
         }
 
     except Exception as exc:

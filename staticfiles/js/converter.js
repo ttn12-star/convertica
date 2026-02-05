@@ -177,6 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
             apiUrl = apiUrl.replace(/\/$/, '') + '/async/';
         }
 
+        // Set cancel callback so the cancel button can restore the form
+        window._onCancelCallback = () => {
+            window.hideLoading('loadingContainer');
+            setFormDisabled(false);
+        };
+
         try {
             await window.submitAsyncConversion({
                 apiUrl: apiUrl,
@@ -187,6 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 downloadContainerId: 'downloadContainer',
                 errorContainerId: 'converterResult',
                 useAsync: useAsync,
+                onBackground: () => {
+                    // User sent task to background — restore form
+                    setFormDisabled(false);
+                },
                 onSuccess: (blob, filename, response) => {
                     // Check for batch failures
                     if (isBatchMode && response && response.headers) {

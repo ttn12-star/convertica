@@ -8658,10 +8658,8 @@ msgid "How do I make the watermark semi-transparent?"
 msgstr "Как добавить водяной знак в ПДФ?"
 
 #: utils_site/src/frontend/views.py:1316
-msgid "Use the opacity slider to adjust transparency from 10% to 100%."
-msgstr ""
-"Используйте ползунок прозрачности, чтобы настроить прозрачность от 10% до "
-"100%."
+msgid "Use the opacity slider to adjust transparency from 10%% to 100%%."
+msgstr "Используйте ползунок прозрачности, чтобы настроить прозрачность от 10%% до 100%%."
 
 #: utils_site/src/frontend/views.py:1320
 msgid "Can I add watermark to specific pages only?"
@@ -11302,9 +11300,8 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:3250
 #, python-format
-msgid "Scanned documents usually achieve 70-90% size reduction"
-msgstr ""
-"Отсканированные документы обычно достигают уменьшения размера на 70-90% s"
+msgid "Scanned documents usually achieve 70-90%% size reduction"
+msgstr "Отсканированные документы обычно достигают уменьшения размера на 70–90%%"
 
 #: utils_site/src/frontend/views.py:3251
 msgid "Keep the original file if you need maximum print quality"
@@ -12371,3 +12368,24 @@ msgstr "Неверный JSON"
 #~ "Компрессор PDF без водяного знака, сжимайте PDF до размера менее 1 МБ для "
 #~ "электронной почты, уменьшайте размер файла PDF без потери качества. Лучший "
 #~ "инструмент сжатия PDF 2025."
+
+msgid "Continue in background"
+msgstr "Продолжить в фоне"
+
+msgid "Task running in background"
+msgstr "Задача выполняется в фоне"
+
+msgid "File is ready!"
+msgstr "Файл готов!"
+
+msgid "Conversion failed"
+msgstr "Конвертация не удалась"
+
+msgid "No background tasks"
+msgstr "Нет фоновых задач"
+
+msgid "Background tasks"
+msgstr "Фоновые задачи"
+
+msgid "Background Tasks"
+msgstr "Фоновые задачи"

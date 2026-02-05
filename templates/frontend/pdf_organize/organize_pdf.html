@@ -67,6 +67,12 @@
     /* eslint-enable */
     window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
     window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
+    window.CANCEL_OPERATION_TEXT = "{% filter escapejs %}{% trans 'Cancel' %}{% endfilter %}";
+    window.CONTINUE_IN_BACKGROUND_TEXT = "{% filter escapejs %}{% trans 'Continue in background' %}{% endfilter %}";
+    window.BG_TASK_SENT_TEXT = "{% filter escapejs %}{% trans 'Task running in background' %}{% endfilter %}";
+    window.BG_TASK_DONE_TEXT = "{% filter escapejs %}{% trans 'File is ready!' %}{% endfilter %}";
+    window.BG_TASK_ERROR_TEXT = "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}";
+    window.BG_NO_TASKS_TEXT = "{% filter escapejs %}{% trans 'No background tasks' %}{% endfilter %}";
   </script>
   <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
   <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
