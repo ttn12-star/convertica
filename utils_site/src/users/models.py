@@ -140,7 +140,8 @@ class User(AbstractUser):
             return cached_status
 
         if not self.subscription_end_date:
-            status = False
+            # Legacy/manual premium without an end date should be treated as active.
+            status = bool(self.is_premium)
         else:
             status = timezone.now() <= self.subscription_end_date
 
@@ -156,8 +157,11 @@ class User(AbstractUser):
     @property
     def subscription_status(self):
         """Get current subscription status."""
-        if not self.is_premium or not self.subscription_end_date:
+        if not self.is_premium:
             return "expired"
+
+        if not self.subscription_end_date:
+            return "active"
 
         if self.subscription_end_date < timezone.now():
             return "expired"

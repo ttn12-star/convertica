@@ -84,6 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Disable form
         setFormDisabled(true);
 
+        // Set cancel callback so the cancel button can restore the form
+        window._onCancelCallback = () => {
+            window.hideLoading('loadingContainer');
+            setFormDisabled(false);
+        };
+
+        // Create AbortController for cancel support
+        const abortController = new AbortController();
+        window._currentAbortController = abortController;
+
         // Collect all form fields (except file and CSRF token)
         const formElements = form.querySelectorAll('input, select, textarea');
         formElements.forEach(element => {
@@ -119,7 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'X-CSRFToken': window.CSRF_TOKEN
                 },
-                body: formData
+                body: formData,
+                signal: abortController.signal,
             });
 
             const blob = await response.blob();
@@ -207,6 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
             setFormDisabled(false);
 
         } catch (error) {
+            if (error && error.name === 'AbortError') {
+                // User cancelled — UI already cleaned up by cancelCurrentOperation
+                return;
+            }
             window.hideLoading('loadingContainer');
             window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
             setFormDisabled(false);

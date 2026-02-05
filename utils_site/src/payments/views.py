@@ -35,6 +35,22 @@ def _ensure_stripe_sdk_ready():
     ):
         return
 
+
+def _create_billing_portal_session(user: User, return_url: str | None = None):
+    """Create a Stripe Billing Portal session for an existing customer."""
+    _ensure_stripe_sdk_ready()
+    if not getattr(stripe, "billing_portal", None):
+        return None
+    if not user.stripe_customer_id:
+        return None
+    try:
+        return stripe.billing_portal.Session.create(
+            customer=user.stripe_customer_id,
+            return_url=return_url,
+        )
+    except Exception:
+        return None
+
     try:
         import importlib
 
@@ -467,6 +483,47 @@ def create_checkout_session(request):
 
         # Get user
         user = request.user
+
+        # If user already has an active subscription, redirect to Billing Portal
+        existing_subscription = (
+            UserSubscription.objects.filter(user=user)
+            .order_by("-updated_at", "-created_at")
+            .first()
+        )
+        has_blocking_subscription = False
+        if existing_subscription:
+            if existing_subscription.is_active():
+                has_blocking_subscription = True
+            else:
+                # Treat past_due/unpaid/incomplete within the current period as managed via portal
+                now = timezone.now()
+                if (
+                    existing_subscription.status in {"past_due", "unpaid", "incomplete"}
+                    and existing_subscription.current_period_end
+                    and existing_subscription.current_period_end > now
+                ):
+                    has_blocking_subscription = True
+
+        if has_blocking_subscription:
+            return_url = request.build_absolute_uri(
+                reverse("users:manage_subscription")
+            )
+            portal_session = _create_billing_portal_session(user, return_url=return_url)
+            if portal_session and getattr(portal_session, "url", None):
+                return JsonResponse(
+                    {
+                        "error": "You already have an active subscription. Manage it in the billing portal.",
+                        "portal_url": portal_session.url,
+                    },
+                    status=409,
+                )
+            return JsonResponse(
+                {
+                    "error": "You already have an active subscription. Please manage it from your account page.",
+                    "manage_url": return_url,
+                },
+                status=409,
+            )
 
         # Get or create Stripe customer
         customer_id = user.get_stripe_customer_id()

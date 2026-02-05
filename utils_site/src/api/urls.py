@@ -2,7 +2,11 @@ from django.urls import path
 from src.payments.views import stripe_webhook
 
 from .async_views import TaskResultAPIView, TaskStatusAPIView
-from .cancel_task_view import cancel_task, mark_operation_abandoned
+from .cancel_task_view import (
+    cancel_task,
+    mark_operation_abandoned,
+    mark_task_background,
+)
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
 from .pdf_convert.async_views import (
@@ -69,6 +73,7 @@ urlpatterns = [
     # Cancel running task
     path("cancel-task/", cancel_task, name="cancel_task"),
     path("operation-abandon/", mark_operation_abandoned, name="operation_abandon"),
+    path("task-background/", mark_task_background, name="task_background"),
     # Sync endpoints (for small files / fast operations)
     path("pdf-to-word/", PDFToWordAPIView.as_view(), name="pdf_to_word_api"),
     path("word-to-pdf/", WordToPDFAPIView.as_view(), name="word_to_pdf_api"),

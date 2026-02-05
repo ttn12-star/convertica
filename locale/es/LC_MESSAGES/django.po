@@ -7965,11 +7965,7 @@ msgid ""
 "Free users can convert PDFs with up to a certain number of pages. For larger"
 " files, you can split them into smaller parts or upgrade to Premium for "
 "higher limits."
-msgstr ""
-"Los usuarios gratuitos pueden convertir archivos PDF con hasta %(max_pages)s"
-" páginas. Para archivos más grandes, divídelos en partes más pequeñas o "
-"actualiza a Premium para procesar archivos más grandes con límites más "
-"altos."
+msgstr "Los usuarios gratuitos pueden convertir PDFs hasta un número determinado de páginas. Para archivos más grandes, puedes dividirlos en partes más pequeñas o actualizar a Premium para límites más altos."
 
 #: utils_site/src/frontend/views.py:772
 #| msgid "Are my files safe?"
@@ -8357,7 +8353,7 @@ msgid ""
 "Free users can rotate PDFs with up to a certain number of pages. For larger "
 "files, split them or upgrade to Premium for higher limits."
 msgstr ""
-"Los usuarios premium pueden procesar archivos PDF con hasta %(max_pages)s "
+"Los usuarios premium pueden procesar archivos PDF con hasta"
 "páginas. Para archivos más grandes, divídelos en partes más pequeñas."
 
 #: utils_site/src/frontend/views.py:1064
@@ -8679,10 +8675,8 @@ msgid "How do I make the watermark semi-transparent?"
 msgstr "¿Cómo agrego una marca de agua a PDF?"
 
 #: utils_site/src/frontend/views.py:1316
-msgid "Use the opacity slider to adjust transparency from 10% to 100%."
-msgstr ""
-"Usa el control deslizante de opacidad para ajustar la transparencia del "
-"10%al 100%%."
+msgid "Use the opacity slider to adjust transparency from 10%% to 100%%."
+msgstr "Usa el control deslizante de opacidad para ajustar la transparencia del 10%% al 100%%."
 
 #: utils_site/src/frontend/views.py:1320
 msgid "Can I add watermark to specific pages only?"
@@ -11191,7 +11185,7 @@ msgstr "Reduce el tamaño del archivo PDF sin perder calidad"
 
 #: utils_site/src/frontend/views.py:3168
 msgid "Reduce Up to 90%"
-msgstr "Reduce hasta un 90%%"
+msgstr "Reduce hasta un 90%"
 
 #: utils_site/src/frontend/views.py:3170
 #| msgid "Reduce PDF file size without losing quality"
@@ -11238,11 +11232,7 @@ msgid ""
 "Results vary depending on the content, but you can typically reduce PDF size"
 " by 50-90%. PDFs with many images compress more than text-only documents. "
 "Scanned documents usually achieve the best compression ratios."
-msgstr ""
-"Los resultados varían según el contenido, pero normalmente puedes reducir el"
-" tamaño del PDF entre un 50%% y un 90%%. Los PDF con muchas imágenes se "
-"comprimen más que los documentos solo de texto. Los documentos escaneados "
-"suelen lograr las mejores tasas de compresión."
+msgstr "Los resultados varían según el contenido, pero normalmente puedes reducir el tamaño del PDF en un 50-90%. Los PDF con muchas imágenes se comprimen más que los documentos solo de texto. Los documentos escaneados suelen lograr las mejores tasas de compresión."
 
 #: utils_site/src/frontend/views.py:3211
 msgid "Will compression affect text quality?"
@@ -11330,10 +11320,8 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:3250
 #, python-format
-msgid "Scanned documents usually achieve 70-90% size reduction"
-msgstr ""
-"Los documentos escaneados suelen lograr una reducción de tamaño del 70% sl "
-"90%%"
+msgid "Scanned documents usually achieve 70-90%% size reduction"
+msgstr "Los documentos escaneados suelen lograr una reducción de tamaño del 70–90%%"
 
 #: utils_site/src/frontend/views.py:3251
 msgid "Keep the original file if you need maximum print quality"
@@ -11369,7 +11357,7 @@ msgstr ""
 "compresión inteligentes que optimizan las imágenes y eliminan metadatos "
 "innecesarios manteniendo el texto nítido y los documentos completamente "
 "buscables. La mayoría de los PDF se pueden reducir en un "
-"<strong>50-90%%</strong> de tamaño.</p><p><strong>Usos comunes:</strong> "
+"<strong>50-90%</strong> de tamaño.</p><p><strong>Usos comunes:</strong> "
 "Comprimir PDF para correo electrónico (menos de 25MB para Gmail), reducir el"
 " tamaño de documentos escaneados, optimizar PDF para subida a sitios web, "
 "reducir exportaciones de presentaciones y preparar archivos para "
@@ -12412,3 +12400,24 @@ msgstr "JSON inválido"
 #~ "Compresor de PDF sin marca de agua, comprime PDF a menos de 1MB para email, "
 #~ "reduce el tamaño del archivo PDF sin perder calidad. La mejor herramienta de"
 #~ " compresión PDF 2025."
+
+msgid "Continue in background"
+msgstr "Continuar en segundo plano"
+
+msgid "Task running in background"
+msgstr "Tarea en ejecución en segundo plano"
+
+msgid "File is ready!"
+msgstr "¡El archivo está listo!"
+
+msgid "Conversion failed"
+msgstr "La conversión falló"
+
+msgid "No background tasks"
+msgstr "No hay tareas en segundo plano"
+
+msgid "Background tasks"
+msgstr "Tareas en segundo plano"
+
+msgid "Background Tasks"
+msgstr "Tareas en segundo plano"

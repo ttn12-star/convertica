@@ -175,6 +175,8 @@ class UserAdmin(BaseUserAdmin):
         """Override save_model to allow manual admin edits."""
         # Set flag to prevent auto-updating is_premium during admin edits
         obj._admin_manual_edit = True
+        # Ensure cached subscription status is cleared after admin edits
+        obj._subscription_changed = True
         super().save_model(request, obj, form, change)
         # Clean up the flag after save
         if hasattr(obj, "_admin_manual_edit"):

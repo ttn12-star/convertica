@@ -1329,6 +1329,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Disable form
         setFormDisabled(true);
 
+        // Set cancel callback so the cancel button can restore the form
+        window._onCancelCallback = () => {
+            window.hideLoading('loadingContainer');
+            setFormDisabled(false);
+        };
+
+        // Create AbortController for cancel support
+        const abortController = new AbortController();
+        window._currentAbortController = abortController;
+
         try {
             const apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
             const response = await fetch(apiUrl, {
@@ -1336,7 +1346,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'X-CSRFToken': window.CSRF_TOKEN
                 },
-                body: formData
+                body: formData,
+                signal: abortController.signal
             });
 
             if (!response.ok) {
@@ -1421,6 +1432,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setFormDisabled(false);
 
         } catch (error) {
+            if (error && error.name === 'AbortError') { return; }
             window.hideLoading('loadingContainer');
             window.showError(error.message || window.ERROR_MESSAGE, 'editorResult');
             setFormDisabled(false);

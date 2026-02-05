@@ -46,6 +46,43 @@ jobs:
         run: |
           isort --check-only --profile black . || (echo "⚠️ Import sorting issues found. Run 'isort --profile black .' to fix." && exit 1)
 
+  # Localization Quality
+  l10n:
+    name: Localization Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for localization changes
+        id: changes
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            l10n:
+              - 'locale/**/*.po'
+
+      - name: Set up Python
+        if: steps.changes.outputs.l10n == 'true'
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install l10n-quality
+        if: steps.changes.outputs.l10n == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install git+https://github.com/ttn12-star/l10n-quality
+
+      - name: Check localization quality (no fuzzy/empty)
+        if: steps.changes.outputs.l10n == 'true'
+        run: |
+          shopt -s globstar
+          l10n-quality check locale/**/*.po --strict
+
   # Security Scanning
   security:
     name: Security Scan

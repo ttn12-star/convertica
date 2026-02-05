@@ -7256,7 +7256,7 @@ msgstr "Twój e-mail"
 
 #: utils_site/src/frontend/forms.py:36
 msgid "your.email@example.com"
-msgstr "twoj.email@przyklad.com"
+msgstr "twoj.email@example.com"
 
 #: utils_site/src/frontend/forms.py:44
 msgid "Subject"
@@ -7921,10 +7921,7 @@ msgid ""
 "Free users can convert PDFs with up to a certain number of pages. For larger"
 " files, you can split them into smaller parts or upgrade to Premium for "
 "higher limits."
-msgstr ""
-"Dla użytkowników darmowych obsługiwane są pliki PDF do %(max_pages)s stron. "
-"Większe pliki należy podzielić na mniejsze części lub przejść na Premium, "
-"aby przetwarzać większe pliki z wyższymi limitami."
+msgstr "Użytkownicy darmowi mogą konwertować pliki PDF do określonej liczby stron. W przypadku większych plików możesz podzielić je na mniejsze części lub przejść na Premium, aby uzyskać wyższe limity."
 
 #: utils_site/src/frontend/views.py:772
 #| msgid "Are my files safe?"
@@ -8313,7 +8310,7 @@ msgid ""
 "Free users can rotate PDFs with up to a certain number of pages. For larger "
 "files, split them or upgrade to Premium for higher limits."
 msgstr ""
-"Użytkownicy Premium mogą przetwarzać pliki PDF do %(max_pages)s stron. "
+"Użytkownicy Premium mogą przetwarzać pliki PDF do stron."
 "Większe pliki należy podzielić na mniejsze części."
 
 #: utils_site/src/frontend/views.py:1064
@@ -8633,9 +8630,8 @@ msgid "How do I make the watermark semi-transparent?"
 msgstr "Jak dodać znak wodny do PDF?"
 
 #: utils_site/src/frontend/views.py:1316
-msgid "Use the opacity slider to adjust transparency from 10% to 100%."
-msgstr ""
-"Użyj suwaka przezroczystości, aby dostosować przejrzystość od 10%do 100%%."
+msgid "Use the opacity slider to adjust transparency from 10%% to 100%%."
+msgstr "Użyj suwaka krycia, aby dostosować przezroczystość od 10%% do 100%%."
 
 #: utils_site/src/frontend/views.py:1320
 msgid "Can I add watermark to specific pages only?"
@@ -11125,7 +11121,7 @@ msgstr "Zmniejsz rozmiar pliku PDF bez utraty jakości"
 
 #: utils_site/src/frontend/views.py:3168
 msgid "Reduce Up to 90%"
-msgstr "Zmniejsz do 90%%"
+msgstr "Zredukuj nawet o 90%"
 
 #: utils_site/src/frontend/views.py:3170
 #| msgid "Reduce PDF file size without losing quality"
@@ -11173,11 +11169,7 @@ msgid ""
 "Results vary depending on the content, but you can typically reduce PDF size"
 " by 50-90%. PDFs with many images compress more than text-only documents. "
 "Scanned documents usually achieve the best compression ratios."
-msgstr ""
-"Wyniki różnią się w zależności od zawartości, ale zazwyczaj można zmniejszyć"
-" rozmiar PDF o 50-90%%. Pliki PDF z wieloma obrazami kompresują się lepiej "
-"niż dokumenty zawierające tylko tekst. Zeskanowane dokumenty zwykle osiągają"
-" najlepsze współczynniki kompresji."
+msgstr "Wyniki zależą od zawartości, ale zazwyczaj można zmniejszyć rozmiar PDF o 50–90%. Pliki PDF z wieloma obrazami kompresują się bardziej niż dokumenty tylko tekstowe. Skanowane dokumenty zwykle osiągają najlepsze współczynniki kompresji."
 
 #: utils_site/src/frontend/views.py:3211
 msgid "Will compression affect text quality?"
@@ -11264,8 +11256,8 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:3250
 #, python-format
-msgid "Scanned documents usually achieve 70-90% size reduction"
-msgstr "Zeskanowane dokumenty zazwyczaj osiągają redukcję rozmiaru o 70-90% s"
+msgid "Scanned documents usually achieve 70-90%% size reduction"
+msgstr "Skanowane dokumenty zwykle osiągają redukcję rozmiaru o 70–90%%"
 
 #: utils_site/src/frontend/views.py:3251
 msgid "Keep the original file if you need maximum print quality"
@@ -11300,7 +11292,7 @@ msgstr ""
 "wykorzystuje inteligentne algorytmy kompresji, które optymalizują obrazy i "
 "usuwają niepotrzebne metadane, zachowując jednocześnie ostrość tekstu i w "
 "pełni możliwość wyszukiwania w dokumentach. Większość plików PDF można "
-"zmniejszyć o <strong>50-90%%</strong> rozmiaru.</p><p><strong>Typowe "
+"zmniejszyć o <strong>50-90%</strong> rozmiaru.</p><p><strong>Typowe "
 "zastosowania:</strong> Kompresja PDF do e-maili (poniżej 25 MB dla Gmail), "
 "zmniejszanie rozmiarów zeskanowanych dokumentów, optymalizacja PDF do "
 "przesyłania na strony internetowe, zmniejszanie eksportów prezentacji oraz "
@@ -12339,3 +12331,24 @@ msgstr "Nieprawidłowy JSON"
 #~ "Kompresor PDF bez znaku wodnego, kompresuj PDF do poniżej 1MB dla e-maila, "
 #~ "zmniejsz rozmiar pliku PDF bez utraty jakości. Najlepsze narzędzie do "
 #~ "kompresji PDF 2025."
+
+msgid "Continue in background"
+msgstr "Kontynuuj w tle"
+
+msgid "Task running in background"
+msgstr "Zadanie działa w tle"
+
+msgid "File is ready!"
+msgstr "Plik jest gotowy!"
+
+msgid "Conversion failed"
+msgstr "Konwersja nie powiodła się"
+
+msgid "No background tasks"
+msgstr "Brak zadań w tle"
+
+msgid "Background tasks"
+msgstr "Zadania w tle"
+
+msgid "Background Tasks"
+msgstr "Zadania w tle"

@@ -1358,7 +1358,7 @@ def add_watermark_page(request):
         {
             "question": _("How do I make the watermark semi-transparent?"),
             "answer": _(
-                "Use the opacity slider to adjust transparency from 10% to 100%."
+                "Use the opacity slider to adjust transparency from 10%% to 100%%."
             ),
         },
         {
@@ -3361,7 +3361,7 @@ def compress_pdf_page(request):
         _("PDFs with images compress better than text-only documents"),
         _("For email attachments, aim for under 10MB (or 25MB for Gmail)"),
         _("If the file is still too large after compression, try splitting it first"),
-        _("Scanned documents usually achieve 70-90% size reduction"),
+        _("Scanned documents usually achieve 70-90%% size reduction"),
         _("Keep the original file if you need maximum print quality"),
     ]
     context["tips_title"] = _("Tips for PDF Compression")

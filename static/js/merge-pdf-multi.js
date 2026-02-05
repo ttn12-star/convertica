@@ -774,6 +774,15 @@ async function generatePreview(fileData, index) {
         // Disable form
         setFormDisabled(true);
 
+        // Set cancel callback so the cancel button can restore the form
+        window._onCancelCallback = () => {
+            window.hideLoading('loadingContainer');
+            setFormDisabled(false);
+        };
+        // Create AbortController for cancel support
+        const abortController = new AbortController();
+        window._currentAbortController = abortController;
+
         try {
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -781,7 +790,8 @@ async function generatePreview(fileData, index) {
                 headers: {
                     'X-CSRFToken': csrfToken,
                     'X-Requested-With': 'XMLHttpRequest'
-                }
+                },
+                signal: abortController.signal
             });
 
             const blob = await response.blob();
@@ -861,6 +871,7 @@ async function generatePreview(fileData, index) {
             setFormDisabled(false);
 
         } catch (error) {
+            if (error && error.name === 'AbortError') { return; }
             console.error('Error merging PDFs:', error);
             window.hideLoading('loadingContainer');
             window.showError(error.message || 'An error occurred while merging PDFs. Please try again.', 'editorResult');

@@ -7718,10 +7718,7 @@ msgid ""
 "Free users can convert PDFs with up to a certain number of pages. For larger"
 " files, you can split them into smaller parts or upgrade to Premium for "
 "higher limits."
-msgstr ""
-"يمكن للمستخدمين المجانيين معالجة ملفات PDF التي تصل إلى %(max_pages)s صفحة. "
-"للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر أو الترقية إلى المميز لمعالجة "
-"ملفات أكبر بحدود أعلى."
+msgstr "يمكن للمستخدمين المجانيين تحويل ملفات PDF بعدد صفحات معين. للملفات الأكبر، يمكنك تقسيمها إلى أجزاء أصغر أو الترقية إلى بريميوم لحدود أعلى."
 
 #: utils_site/src/frontend/views.py:772
 #| msgid "Are my files safe?"
@@ -8086,7 +8083,7 @@ msgid ""
 "Free users can rotate PDFs with up to a certain number of pages. For larger "
 "files, split them or upgrade to Premium for higher limits."
 msgstr ""
-"يمكن للمستخدمين المميزين معالجة ملفات PDF التي تصل إلى %(max_pages)s صفحة. "
+"يمكن للمستخدمين المميزين معالجة ملفات PDF التي تصل إلى صفحة."
 "للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
 
 #: utils_site/src/frontend/views.py:1064
@@ -8379,7 +8376,7 @@ msgid "How do I make the watermark semi-transparent?"
 msgstr "كيف يمكنني إضافة علامة مائية إلى PDF؟"
 
 #: utils_site/src/frontend/views.py:1316
-msgid "Use the opacity slider to adjust transparency from 10% to 100%."
+msgid "Use the opacity slider to adjust transparency from 10%% to 100%%."
 msgstr "استخدم شريط التمرير للشفافية لضبط الشفافية من 10%% إلى 100%%."
 
 #: utils_site/src/frontend/views.py:1320
@@ -10743,7 +10740,7 @@ msgstr "قلل حجم ملف PDF دون فقدان الجودة"
 
 #: utils_site/src/frontend/views.py:3168
 msgid "Reduce Up to 90%"
-msgstr "تقليل حتى 90%%"
+msgstr "تقليل حتى 90%"
 
 #: utils_site/src/frontend/views.py:3170
 #| msgid "Reduce PDF file size without losing quality"
@@ -10787,10 +10784,7 @@ msgid ""
 "Results vary depending on the content, but you can typically reduce PDF size"
 " by 50-90%. PDFs with many images compress more than text-only documents. "
 "Scanned documents usually achieve the best compression ratios."
-msgstr ""
-"تختلف النتائج حسب المحتوى، ولكن يمكنك عادةً تقليل حجم PDF بنسبة 50-90%%. "
-"ملفات PDF التي تحتوي على العديد من الصور تضغط أكثر من المستندات النصية فقط. "
-"المستندات الممسوحة ضوئيًا تحقق عادةً أفضل نسب الضغط."
+msgstr "تختلف النتائج حسب المحتوى، لكن يمكنك عادةً تقليل حجم PDF بنسبة 50-90%. تنضغط ملفات PDF التي تحتوي على الكثير من الصور أكثر من المستندات النصية فقط. عادةً ما تحقق المستندات الممسوحة أفضل معدلات الضغط."
 
 #: utils_site/src/frontend/views.py:3211
 msgid "Will compression affect text quality?"
@@ -10871,9 +10865,8 @@ msgstr "إذا كان الملف لا يزال كبيرًا جدًا بعد ال
 
 #: utils_site/src/frontend/views.py:3250
 #, python-format
-msgid "Scanned documents usually achieve 70-90% size reduction"
-msgstr ""
-"عادةً ما تحقق المستندات الممسوحة ضوئيًا تخفيضًا في الحجم بنسبة 70-90% s"
+msgid "Scanned documents usually achieve 70-90%% size reduction"
+msgstr "المستندات الممسوحة عادةً تحقق تقليلًا للحجم بنسبة 70-90%%"
 
 #: utils_site/src/frontend/views.py:3251
 msgid "Keep the original file if you need maximum print quality"
@@ -10906,7 +10899,7 @@ msgstr ""
 "والتحميلات على الويب، وتحسين التخزين</strong>.</p><p>تستخدم الأداة خوارزميات"
 " ضغط ذكية تحسن الصور وتزيل البيانات الوصفية غير الضرورية مع الحفاظ على وضوح "
 "النص وجعل المستندات قابلة للبحث بالكامل. يمكن تقليل حجم معظم ملفات PDF بنسبة"
-" <strong>50-90%%</strong>.</p><p><strong>الاستخدامات الشائعة:</strong> ضغط "
+" <strong>50-90%</strong>.</p><p><strong>الاستخدامات الشائعة:</strong> ضغط "
 "ملفات PDF للبريد الإلكتروني (أقل من 25 ميجابايت لـ Gmail)، وتقليل أحجام "
 "المستندات الممسوحة ضوئيًا، وتحسين ملفات PDF للتحميل على الموقع الإلكتروني، "
 "وتقليل حجم تصدير العروض التقديمية، وإعداد الملفات للعرض على الأجهزة "
@@ -11891,3 +11884,24 @@ msgstr "JSON غير صالح"
 #~ "ضغط PDF عبر الإنترنت مجاناً لتقليل حجم الملف بسرعة. أداة ضغط PDF بدون علامة "
 #~ "مائية، ضغط PDF إلى أقل من 1 ميجابايت للبريد الإلكتروني، تقليل حجم ملف PDF "
 #~ "دون فقدان الجودة. أفضل أداة ضغط PDF 2025."
+
+msgid "Continue in background"
+msgstr "المتابعة في الخلفية"
+
+msgid "Task running in background"
+msgstr "المهمة قيد التشغيل في الخلفية"
+
+msgid "File is ready!"
+msgstr "الملف جاهز!"
+
+msgid "Conversion failed"
+msgstr "فشل التحويل"
+
+msgid "No background tasks"
+msgstr "لا توجد مهام في الخلفية"
+
+msgid "Background tasks"
+msgstr "مهام الخلفية"
+
+msgid "Background Tasks"
+msgstr "مهام الخلفية"
