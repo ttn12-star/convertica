@@ -18,6 +18,7 @@ from rest_framework import status
 from utils_site.celery import app as celery_app
 
 from .logging_utils import get_logger
+from .task_tokens import verify_task_token
 
 logger = get_logger(__name__)
 
@@ -55,6 +56,25 @@ def is_task_background(task_id: str) -> bool:
     return cache.get(f"{BACKGROUND_TASK_PREFIX}{task_id}") is True
 
 
+def _authorize_task_request(request, task_id: str, task_token: str | None) -> bool:
+    """Authorize task control request by token or ownership."""
+    user = getattr(request, "user", None)
+    if user is not None and getattr(user, "is_authenticated", False):
+        # Prefer signed token if provided
+        if task_token and verify_task_token(task_token, task_id, user.id):
+            return True
+        # Fallback to DB ownership (backward compatibility)
+        try:
+            from src.users.models import OperationRun
+
+            return OperationRun.objects.filter(task_id=task_id, user=user).exists()
+        except Exception:
+            return False
+
+    # Anonymous users must present a valid token
+    return bool(task_token and verify_task_token(task_token, task_id, None))
+
+
 @csrf_exempt
 @require_http_methods(["POST"])
 def cancel_task(request):
@@ -71,11 +91,14 @@ def cancel_task(request):
     try:
         data = json.loads(request.body)
         task_id = data.get("task_id")
+        task_token = data.get("task_token")
 
         if not task_id:
             return JsonResponse(
                 {"error": "task_id is required"}, status=status.HTTP_400_BAD_REQUEST
             )
+        if not _authorize_task_request(request, task_id, task_token):
+            return JsonResponse({"error": "Unauthorized task access"}, status=403)
 
         # Get task result for logging
         task_result = AsyncResult(task_id, app=celery_app)
@@ -167,6 +190,7 @@ def mark_operation_abandoned(request):
         data = json.loads(request.body or b"{}")
         task_id = data.get("task_id")
         request_id = data.get("request_id")
+        task_token = data.get("task_token")
 
         if not task_id and not request_id:
             return JsonResponse(
@@ -174,6 +198,18 @@ def mark_operation_abandoned(request):
             )
 
         try:
+            if task_id and is_task_background(task_id):
+                return JsonResponse(
+                    {"status": "ok", "skipped": "background"}, status=200
+                )
+
+            if (
+                task_id
+                and task_token
+                and not _authorize_task_request(request, task_id, task_token)
+            ):
+                return JsonResponse({"error": "Unauthorized task access"}, status=403)
+
             from src.users.models import OperationRun
 
             qs = OperationRun.objects.exclude(
@@ -212,12 +248,15 @@ def mark_task_background(request):
 
         data = json.loads(request.body)
         task_id = data.get("task_id")
+        task_token = data.get("task_token")
 
         if not task_id:
             return JsonResponse(
                 {"error": "task_id is required"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+        if not _authorize_task_request(request, task_id, task_token):
+            return JsonResponse({"error": "Unauthorized task access"}, status=403)
 
         mark_task_as_background(task_id)
 

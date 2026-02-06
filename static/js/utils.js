@@ -22,11 +22,12 @@ function cancelCurrentOperation() {
         const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
             || document.querySelector('meta[name="csrf-token"]')?.content
             || _getCookieValue('csrftoken');
+        const taskToken = window.getTaskToken ? window.getTaskToken(taskId) : null;
 
         fetch('/api/cancel-task/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
-            body: JSON.stringify({ task_id: taskId }),
+            body: JSON.stringify({ task_id: taskId, task_token: taskToken }),
         }).catch(() => {});
 
         if (window.unregisterTaskForCancellation) {
@@ -691,6 +692,7 @@ async function submitAsyncConversion(options) {
         if (response.status === 202) {
             const data = await response.json();
             const taskId = data.task_id;
+            const taskToken = data.task_token;
 
             if (!taskId) {
                 throw new Error('No task ID received');
@@ -700,6 +702,11 @@ async function submitAsyncConversion(options) {
             window._currentTaskId = taskId;
             // Upload done — AbortController no longer needed
             window._currentAbortController = null;
+
+            // Register task token for secure cancellation (if available)
+            if (taskToken && window.registerTaskToken) {
+                window.registerTaskToken(taskId, taskToken);
+            }
 
             // Show "Continue in background" for premium users
             if (window.IS_PREMIUM) {
@@ -715,7 +722,7 @@ async function submitAsyncConversion(options) {
                         fetch('/api/task-background/', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken },
-                            body: JSON.stringify({ task_id: taskId }),
+                            body: JSON.stringify({ task_id: taskId, task_token: taskToken }),
                         }).catch(() => {});
                         // Unregister from auto-cancel
                         if (window.unregisterTaskForCancellation) {
@@ -734,7 +741,7 @@ async function submitAsyncConversion(options) {
 
             // Register task for automatic cancellation if user leaves page
             if (window.registerTaskForCancellation) {
-                window.registerTaskForCancellation(taskId);
+                window.registerTaskForCancellation(taskId, taskToken);
             }
 
             // Track abandonment for analytics if user leaves before completion
@@ -959,8 +966,9 @@ function trackOperationAbandon(taskId) {
     if (!taskId || !navigator.sendBeacon) return;
 
     try {
+        const taskToken = window.getTaskToken ? window.getTaskToken(taskId) : null;
         const blob = new Blob(
-            [JSON.stringify({ task_id: taskId })],
+            [JSON.stringify({ task_id: taskId, task_token: taskToken })],
             { type: 'application/json' }
         );
         const sent = navigator.sendBeacon('/api/operation-abandon/', blob);

@@ -8,6 +8,7 @@ import os
 import shutil
 import tempfile
 import time
+from collections.abc import Callable
 
 import fitz
 from django.core.cache import cache
@@ -32,7 +33,12 @@ def _get_pdf_hash(pdf_path: str) -> str:
     return sha256.hexdigest()
 
 
-def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str, context: dict = None) -> str:
+def _normalize_pdf_to_rgb(
+    pdf_path: str,
+    tmp_dir: str,
+    context: dict = None,
+    check_cancelled: Callable[[], None] | None = None,
+) -> str:
     """
     Re-render PDF pages to RGB-only PDF to avoid PyMuPDF pixmap PNG write errors
     (e.g., CMYK/spot colors).
@@ -85,6 +91,8 @@ def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str, context: dict = None) -> 
 
         page_count = src.page_count
         for idx, page in enumerate(src):
+            if callable(check_cancelled):
+                check_cancelled()
             # Use matrix for better quality and performance
             pix = page.get_pixmap(
                 alpha=False, colorspace=fitz.csRGB, matrix=fitz.Matrix(1, 1)
@@ -93,12 +101,21 @@ def _normalize_pdf_to_rgb(pdf_path: str, tmp_dir: str, context: dict = None) -> 
             rect = fitz.Rect(0, 0, pix.width, pix.height)
             new_page.insert_image(rect, stream=pix.tobytes("png"))
 
+            # Clean up pixmap memory after each page to prevent accumulation
+            del pix
+
             # Log progress for large PDFs
             if page_count > 10 and (idx + 1) % 10 == 0:
                 logger.debug(
                     f"RGB normalization progress: {idx + 1}/{page_count} pages",
                     extra={**context, "event": "rgb_normalization_progress"},
                 )
+
+            # Force garbage collection every 10 pages to prevent memory buildup
+            if (idx + 1) % 10 == 0:
+                import gc
+
+                gc.collect()
 
         out.save(rgb_path, garbage=4, deflate=True)
 
@@ -151,6 +168,7 @@ class OptimizedPDFToWordConverter:
         output_path: str = None,
         update_progress: callable = None,
         is_celery_task: bool = False,
+        check_cancelled: Callable[[], None] | None = None,
     ) -> tuple[str, str]:
         """
         Optimized PDF to DOCX conversion with parallel processing.
@@ -183,6 +201,9 @@ class OptimizedPDFToWordConverter:
         context["tmp_dir"] = tmp_dir
 
         try:
+            if callable(check_cancelled):
+                check_cancelled()
+
             # Check disk space
             disk_ok, disk_err = check_disk_space(tmp_dir, required_mb=200)
             if not disk_ok:
@@ -212,6 +233,9 @@ class OptimizedPDFToWordConverter:
                 for chunk in uploaded_file.chunks(chunk_size=4 * 1024 * 1024):
                     f.write(chunk)
 
+            if callable(check_cancelled):
+                check_cancelled()
+
             # Get page count
             import fitz
 
@@ -239,14 +263,24 @@ class OptimizedPDFToWordConverter:
                 if update_progress:
                     update_progress(50, "Starting OCR processing...")
                 ocr_text_content = await self._process_ocr_async(
-                    uploaded_file, context, ocr_language
+                    uploaded_file,
+                    context,
+                    ocr_language,
+                    check_cancelled=check_cancelled,
                 )
+
+            if callable(check_cancelled):
+                check_cancelled()
 
             # Perform optimized conversion
             if update_progress:
                 update_progress(70, "Converting to DOCX...")
             await self._perform_conversion_optimized(
-                pdf_path, docx_path, ocr_text_content, context
+                pdf_path,
+                docx_path,
+                ocr_text_content,
+                context,
+                check_cancelled=check_cancelled,
             )
 
             # Validate output
@@ -276,7 +310,11 @@ class OptimizedPDFToWordConverter:
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
     async def _process_ocr_async(
-        self, uploaded_file: UploadedFile, context: dict, ocr_language: str = "auto"
+        self,
+        uploaded_file: UploadedFile,
+        context: dict,
+        ocr_language: str = "auto",
+        check_cancelled: Callable[[], None] | None = None,
     ) -> str | None:
         """
         Process OCR with async optimization and memory management.
@@ -289,6 +327,9 @@ class OptimizedPDFToWordConverter:
             Extracted text or None if OCR failed
         """
         try:
+            if callable(check_cancelled):
+                check_cancelled()
+
             logger.info(
                 "Starting optimized OCR processing",
                 extra={**context, "event": "ocr_start"},
@@ -310,6 +351,9 @@ class OptimizedPDFToWordConverter:
                 user_language=user_language,
                 confidence_threshold=confidence_threshold,
             )
+
+            if callable(check_cancelled):
+                check_cancelled()
 
             # Limit text length to prevent memory issues
             if len(extracted_text) > self.max_text_length:
@@ -349,6 +393,7 @@ class OptimizedPDFToWordConverter:
         docx_path: str,
         ocr_text_content: str | None,
         context: dict,
+        check_cancelled: Callable[[], None] | None = None,
     ):
         """
         Perform optimized PDF to DOCX conversion with memory management.
@@ -365,7 +410,10 @@ class OptimizedPDFToWordConverter:
         if ocr_text_content:
             try:
                 pdf_to_convert = await self._create_ocr_pdf_async(
-                    ocr_text_content, docx_path, context
+                    ocr_text_content,
+                    docx_path,
+                    context,
+                    check_cancelled=check_cancelled,
                 )
             except Exception as e:
                 logger.warning(
@@ -375,10 +423,19 @@ class OptimizedPDFToWordConverter:
                 )
 
         # Perform conversion with optimized settings
-        await self._convert_with_pdf2docx_async(pdf_to_convert, docx_path, context)
+        await self._convert_with_pdf2docx_async(
+            pdf_to_convert,
+            docx_path,
+            context,
+            check_cancelled=check_cancelled,
+        )
 
     async def _create_ocr_pdf_async(
-        self, ocr_text_content: str, docx_path: str, context: dict
+        self,
+        ocr_text_content: str,
+        docx_path: str,
+        context: dict,
+        check_cancelled: Callable[[], None] | None = None,
     ) -> str:
         """
         Create OCR-enhanced PDF with extracted text using async processing.
@@ -403,6 +460,8 @@ class OptimizedPDFToWordConverter:
         doc = fitz.open()
         try:
             for i in range(0, len(words), self.words_per_page):
+                if callable(check_cancelled):
+                    check_cancelled()
                 page_words = words[i : i + self.words_per_page]
                 page_text = " ".join(page_words)
 
@@ -433,7 +492,11 @@ class OptimizedPDFToWordConverter:
         return ocr_pdf_path
 
     async def _convert_with_pdf2docx_async(
-        self, pdf_path: str, docx_path: str, context: dict
+        self,
+        pdf_path: str,
+        docx_path: str,
+        context: dict,
+        check_cancelled: Callable[[], None] | None = None,
     ):
         """
         Convert PDF to DOCX using pdf2docx with optimized settings.
@@ -465,6 +528,8 @@ class OptimizedPDFToWordConverter:
 
         # Try direct conversion first
         try:
+            if callable(check_cancelled):
+                check_cancelled()
             await loop.run_in_executor(None, _convert, pdf_path)
         except Exception as first_exc:
             msg = str(first_exc).lower()
@@ -479,7 +544,10 @@ class OptimizedPDFToWordConverter:
                 )
                 try:
                     rgb_pdf_path = _normalize_pdf_to_rgb(
-                        pdf_path, os.path.dirname(docx_path), context
+                        pdf_path,
+                        os.path.dirname(docx_path),
+                        context,
+                        check_cancelled=check_cancelled,
                     )
                     await loop.run_in_executor(None, _convert, rgb_pdf_path)
                     logger.info(
@@ -524,6 +592,9 @@ class OptimizedPDFToWordConverter:
                 None, repair_pdf, pdf_path, repaired_pdf_path
             )
 
+            if callable(check_cancelled):
+                check_cancelled()
+
             # Retry conversion with repaired PDF
             await loop.run_in_executor(None, _convert, repaired_path)
 
@@ -542,6 +613,7 @@ async def convert_pdf_to_docx_optimized(
     output_path: str = None,
     update_progress: callable = None,
     is_celery_task: bool = False,
+    check_cancelled: Callable[[], None] | None = None,
 ) -> tuple[str, str]:
     """
     Optimized PDF to DOCX conversion with parallel processing.
@@ -567,4 +639,5 @@ async def convert_pdf_to_docx_optimized(
         output_path=output_path,
         update_progress=update_progress,
         is_celery_task=is_celery_task,
+        check_cancelled=check_cancelled,
     )

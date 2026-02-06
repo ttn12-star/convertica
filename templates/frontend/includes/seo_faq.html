@@ -12,13 +12,14 @@
       {% if faq_title %}{{ faq_title }}{% else %}{% trans "Frequently Asked Questions" %}{% endif %}
     </h2>
 
-    <div class="space-y-3 sm:space-y-4" itemscope itemtype="https://schema.org/FAQPage">
+    {# Note: FAQPage JSON-LD schema is rendered in converter_generic.html / edit_pdf_generic.html #}
+    {# This template only renders the visual FAQ component without microdata to avoid schema duplication #}
+    <div class="space-y-3 sm:space-y-4">
       {% for item in faq %}
         <details class="group bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"
-                 {% if forloop.first %}open{% endif %}
-                 itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                 {% if forloop.first %}open{% endif %}>
           <summary class="cursor-pointer list-none p-4 sm:p-5 flex items-center justify-between gap-3 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-            <span class="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 pr-2" itemprop="name">
+            <span class="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 pr-2">
               {{ item.question }}
             </span>
             <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center text-gray-500 dark:text-gray-400 group-open:rotate-180 transition-transform duration-200">
@@ -27,9 +28,8 @@
               </svg>
             </span>
           </summary>
-          <div class="px-4 sm:px-5 pb-4 sm:pb-5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed border-t border-gray-200 dark:border-gray-700 pt-4"
-               itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <div itemprop="text">
+          <div class="px-4 sm:px-5 pb-4 sm:pb-5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed border-t border-gray-200 dark:border-gray-700 pt-4">
+            <div>
               {{ item.answer|safe }}
             </div>
           </div>

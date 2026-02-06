@@ -40,6 +40,7 @@ from .conversion_limits import (
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
 from .operation_run_middleware_utils import ensure_request_id
 from .spam_protection import validate_spam_protection
+from .task_tokens import create_task_token
 
 logger = get_logger(__name__)
 
@@ -443,10 +444,17 @@ class AsyncConversionAPIView(APIView, ABC):
                 },
             )
 
+            # Create signed task token for secure task control (cancel/background)
+            task_token = create_task_token(
+                task_id,
+                request.user.id if request.user.is_authenticated else None,
+            )
+
             # Return task ID immediately (fast response!)
             return Response(
                 {
                     "task_id": task_id,
+                    "task_token": task_token,
                     "status": "PENDING",
                     "message": "Conversion started. Poll /api/tasks/{task_id}/status/ for progress.",
                 },
@@ -504,14 +512,16 @@ class TaskStatusAPIView(APIView):
 
             elif result.status == "STARTED":
                 # Task has started
-                response_data["progress"] = 5
                 response_data["message"] = "Processing started..."
 
-            elif result.status == "REVOKED":
+            elif result.status in ("REVOKED", "IGNORED"):
                 # Task was cancelled by user
                 response_data["progress"] = 0
                 response_data["error"] = "Task was cancelled"
                 response_data["cancelled"] = True
+                # Normalize IGNORED to REVOKED so frontend handles it as cancelled
+                if result.status == "IGNORED":
+                    response_data["status"] = "REVOKED"
 
             return Response(response_data)
 

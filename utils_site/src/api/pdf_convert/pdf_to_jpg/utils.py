@@ -6,6 +6,7 @@ import os
 import shutil
 import tempfile
 import zipfile
+from collections.abc import Callable
 
 from asgiref.sync import async_to_sync
 from django.core.files.uploadedfile import UploadedFile
@@ -30,6 +31,7 @@ def convert_pdf_to_jpg(
     suffix: str = "_convertica",
     tmp_dir: str | None = None,
     context: dict | None = None,
+    check_cancelled: Callable[[], None] | None = None,
 ) -> tuple[str, str]:
     """
     Convert PDF to JPG using adaptive optimization.
@@ -49,6 +51,7 @@ def convert_pdf_to_jpg(
         suffix=suffix,
         tmp_dir=tmp_dir,
         context=context,
+        check_cancelled=check_cancelled,
     )
 
 
@@ -59,6 +62,7 @@ def convert_pdf_to_jpg_sequential(
     suffix: str = "_convertica",
     tmp_dir: str = None,
     context: dict = None,
+    check_cancelled: Callable[[], None] | None = None,
 ) -> tuple[str, str]:
     """Sequential PDF to JPG conversion (fallback implementation)."""
     if tmp_dir is None:
@@ -76,6 +80,8 @@ def convert_pdf_to_jpg_sequential(
     pdf_path = os.path.join(tmp_dir, safe_name)
     with open(pdf_path, "wb") as f:
         for chunk in uploaded_file.chunks(chunk_size=4 * 1024 * 1024):
+            if callable(check_cancelled):
+                check_cancelled()
             f.write(chunk)
 
     # Create ZIP for JPG files
@@ -161,6 +167,8 @@ def convert_pdf_to_jpg_sequential(
 
             images = []
             for i, src_path in enumerate(image_paths):
+                if callable(check_cancelled):
+                    check_cancelled()
                 page_num = page_indices[i] + 1
                 dst_path = os.path.join(tmp_dir, f"page_{page_num}.jpg")
                 if src_path != dst_path:
@@ -179,6 +187,8 @@ def convert_pdf_to_jpg_sequential(
             logger.warning("pdf2image not available, using placeholder images")
             images = []
             for page_idx in page_indices:
+                if callable(check_cancelled):
+                    check_cancelled()
                 try:
                     from PIL import Image, ImageDraw, ImageFont
 
@@ -219,6 +229,8 @@ def convert_pdf_to_jpg_sequential(
             # Fallback to placeholder images
             images = []
             for page_idx in page_indices:
+                if callable(check_cancelled):
+                    check_cancelled()
                 try:
                     from PIL import Image, ImageDraw, ImageFont
 
@@ -258,6 +270,8 @@ def convert_pdf_to_jpg_sequential(
         # Create ZIP archive
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
             for image_path in images:
+                if callable(check_cancelled):
+                    check_cancelled()
                 zipf.write(image_path, os.path.basename(image_path))
 
         return pdf_path, zip_path

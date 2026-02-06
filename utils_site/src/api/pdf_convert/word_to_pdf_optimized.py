@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import tempfile
 import uuid
+from collections.abc import Callable
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
@@ -64,6 +65,7 @@ class OptimizedWordToPDFConverter:
         suffix: str = "_convertica",
         context: dict = None,
         is_celery_task: bool = False,
+        check_cancelled: Callable[[], None] | None = None,
     ) -> tuple[str, str]:
         """
         Optimized Word to PDF conversion with advanced LibreOffice parameters.
@@ -102,6 +104,9 @@ class OptimizedWordToPDFConverter:
         context["tmp_dir"] = tmp_dir
 
         try:
+            if callable(check_cancelled):
+                check_cancelled()
+
             # Check disk space
             disk_ok, disk_err = check_disk_space(tmp_dir, required_mb=200)
             if not disk_ok:
@@ -141,14 +146,21 @@ class OptimizedWordToPDFConverter:
             await self._validate_magic_number_async(uploaded_file, context)
 
             # Save uploaded file
-            await self._save_uploaded_file_async(uploaded_file, docx_path, context)
+            await self._save_uploaded_file_async(
+                uploaded_file, docx_path, context, check_cancelled=check_cancelled
+            )
 
             # Validate Word file (temporarily disabled for testing)
             # await self._validate_word_file_async(docx_path, context)
 
             # Perform optimized LibreOffice conversion
             # LibreOffice handles orientation correctly, no need for post-processing
-            await self._convert_with_libreoffice_async(docx_path, pdf_path, context)
+            await self._convert_with_libreoffice_async(
+                docx_path, pdf_path, context, check_cancelled=check_cancelled
+            )
+
+            if callable(check_cancelled):
+                check_cancelled()
 
             # Validate output - LibreOffice creates PDF based on the input filename
             # It may create the file with the original name, without suffix, or with a modified name
@@ -220,7 +232,9 @@ class OptimizedWordToPDFConverter:
             # LibreOffice correctly handles orientation from Word documents
             # No post-processing needed - trust LibreOffice output
             # Only log orientation info for debugging if needed
-            await self._verify_pdf_orientation_consistency_async(pdf_path, context)
+            await self._verify_pdf_orientation_consistency_async(
+                pdf_path, context, check_cancelled=check_cancelled
+            )
 
             # Log file size for debugging
             file_size = os.path.getsize(pdf_path)
@@ -269,7 +283,11 @@ class OptimizedWordToPDFConverter:
         )
 
     async def _save_uploaded_file_async(
-        self, uploaded_file: UploadedFile, docx_path: str, context: dict
+        self,
+        uploaded_file: UploadedFile,
+        docx_path: str,
+        context: dict,
+        check_cancelled: Callable[[], None] | None = None,
     ):
         """Save uploaded file asynchronously with controlled chunks."""
 
@@ -277,6 +295,8 @@ class OptimizedWordToPDFConverter:
             try:
                 with open(docx_path, "wb") as f:
                     for chunk in uploaded_file.chunks(chunk_size=self.chunk_size):
+                        if callable(check_cancelled):
+                            check_cancelled()
                         f.write(chunk)
             except OSError as err:
                 raise StorageError(
@@ -313,7 +333,11 @@ class OptimizedWordToPDFConverter:
         )
 
     async def _convert_with_libreoffice_async(
-        self, docx_path: str, pdf_path: str, context: dict
+        self,
+        docx_path: str,
+        pdf_path: str,
+        context: dict,
+        check_cancelled: Callable[[], None] | None = None,
     ):
         """
         Perform LibreOffice conversion with optimization and retry logic.
@@ -430,6 +454,8 @@ class OptimizedWordToPDFConverter:
                 return cmd
 
             try:
+                if callable(check_cancelled):
+                    check_cancelled()
                 cmd = _build_cmd(use_infilter=True)
                 logger.info(
                     f"Running LibreOffice command: {' '.join(cmd)}",
@@ -605,6 +631,8 @@ class OptimizedWordToPDFConverter:
 
                     # Third attempt: simple PDF filter without advanced parameters
                     try:
+                        if callable(check_cancelled):
+                            check_cancelled()
                         simple_cmd = _build_cmd(
                             use_infilter=False, use_advanced_pdf=False
                         )
@@ -698,6 +726,8 @@ class OptimizedWordToPDFConverter:
 
         for attempt in range(self.max_retries + 1):
             try:
+                if callable(check_cancelled):
+                    check_cancelled()
                 success = await loop.run_in_executor(None, _convert)
                 if success:
                     logger.info(
@@ -967,7 +997,10 @@ class OptimizedWordToPDFConverter:
         await loop.run_in_executor(None, _fix_orientation)
 
     async def _verify_pdf_orientation_consistency_async(
-        self, pdf_path: str, context: dict
+        self,
+        pdf_path: str,
+        context: dict,
+        check_cancelled: Callable[[], None] | None = None,
     ):
         """
         Verify PDF orientation consistency across all pages.
@@ -996,6 +1029,8 @@ class OptimizedWordToPDFConverter:
 
                 orientations = []
                 for page_num, page in enumerate(reader.pages):
+                    if callable(check_cancelled):
+                        check_cancelled()
                     mediabox = page.mediabox
                     width = float(mediabox.width)
                     height = float(mediabox.height)
@@ -1065,6 +1100,7 @@ async def convert_word_to_pdf_optimized(
     suffix: str = "_convertica",
     context: dict = None,
     is_celery_task: bool = False,
+    check_cancelled: Callable[[], None] | None = None,
 ) -> tuple[str, str]:
     """
     Optimized Word to PDF conversion with parallel processing.
@@ -1083,4 +1119,5 @@ async def convert_word_to_pdf_optimized(
         suffix=suffix,
         context=context,
         is_celery_task=is_celery_task,
+        check_cancelled=check_cancelled,
     )
