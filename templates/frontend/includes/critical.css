@@ -570,6 +570,11 @@ body{max-width:100%;width:100%}
  html.dark .dark\:bg-blue-900\/30{background-color:rgba(30,58,138,.3)}
  .truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
  .max-w-md{max-width:28rem}
+.max-w-3xl{max-width:48rem}
+
+/* Converter/Editor forms - prevent CLS by reserving space */
+#converterForm,#editorForm{min-height:220px}
+@media(min-width:768px){#converterForm,#editorForm{min-height:320px}}
 
 /* Hidden on mobile */
 @media(max-width:767px){

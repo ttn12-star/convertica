@@ -318,18 +318,27 @@
     window.BG_NO_TASKS_TEXT = "{% filter escapejs %}{% trans 'No background tasks' %}{% endfilter %}";
     window.CONVERSION_TYPE = "{{ conversion_type|default:''|escapejs }}";
   </script>
-{# External JS files #}
+{# External JS files - pdf.js loaded with defer to improve LCP #}
   <script
     id="pdfjs-script"
     src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
     crossorigin="anonymous"
+    defer
     nonce="{{ csp_nonce }}">
   </script>
   <script nonce="{{ csp_nonce }}">
-    // Fallback to CDN if local PDF.js fails to load
+    // PDF.js setup - handles defer loading
     (function() {
       var script = document.getElementById('pdfjs-script');
+      var workerSrc = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
       if (script) {
+        // Set worker when pdf.js loads (defer script)
+        script.addEventListener('load', function() {
+          if (typeof pdfjsLib !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
+          }
+        });
+        // Fallback to CDN if local PDF.js fails to load
         script.addEventListener('error', function() {
           var fallback = document.createElement('script');
           fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
@@ -338,10 +347,6 @@
         });
       }
     })();
-    // Set PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
-    }
   </script>
   <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
   <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
