@@ -198,6 +198,7 @@ def generic_conversion_task(
             "suffix": "_convertica",
             "is_celery_task": True,
             "context": {},
+            "check_cancelled": lambda: check_task_cancelled(cancellation_id),
         }
 
         def _filter_kwargs_for_callable(func, provided_kwargs: dict) -> dict:

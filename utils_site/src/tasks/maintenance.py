@@ -393,17 +393,18 @@ def cleanup_old_operations(retention_days: int = 365):
                 "user_id",
                 "is_premium",
                 "created_at",
-                "completed_at",
+                "finished_at",
                 "duration_ms",
-                "file_size_bytes",
+                "input_size",
+                "output_size",
                 "error_message",
             ):
                 # Convert datetime to string for JSON serialization
                 op["created_at"] = (
                     op["created_at"].isoformat() if op["created_at"] else None
                 )
-                op["completed_at"] = (
-                    op["completed_at"].isoformat() if op["completed_at"] else None
+                op["finished_at"] = (
+                    op["finished_at"].isoformat() if op["finished_at"] else None
                 )
                 export_data.append(op)
 

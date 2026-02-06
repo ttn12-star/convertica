@@ -16,6 +16,8 @@
     let activeTasks = new Set();
     // Tasks moved to background (premium) — never auto-cancel these
     let backgroundTasks = new Set();
+    // Task tokens for secure cancellation
+    let taskTokens = new Map();
     let visibilityTimer = null;
     const VISIBILITY_TIMEOUT = 60000; // Cancel after 60 seconds of inactivity
 
@@ -41,11 +43,24 @@
      * Register a task for automatic cancellation
      * @param {string} taskId - Celery task ID
      */
-    window.registerTaskForCancellation = function(taskId) {
+    window.registerTaskForCancellation = function(taskId, taskToken) {
         if (taskId) {
             activeTasks.add(taskId);
+            if (taskToken) {
+                taskTokens.set(taskId, taskToken);
+            }
             console.log(`[Task Cancel] Registered task: ${taskId}`);
         }
+    };
+
+    window.registerTaskToken = function(taskId, taskToken) {
+        if (taskId && taskToken) {
+            taskTokens.set(taskId, taskToken);
+        }
+    };
+
+    window.getTaskToken = function(taskId) {
+        return taskTokens.get(taskId);
     };
 
     /**
@@ -56,6 +71,7 @@
         if (taskId) {
             activeTasks.delete(taskId);
             backgroundTasks.delete(taskId);
+            taskTokens.delete(taskId);
             console.log(`[Task Cancel] Unregistered task: ${taskId}`);
         }
     };
@@ -83,6 +99,7 @@
             const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
                 || document.querySelector('meta[name="csrf-token"]')?.content
                 || getCookie('csrftoken');
+            const taskToken = window.getTaskToken ? window.getTaskToken(taskId) : null;
 
             const response = await fetch('/api/cancel-task/', {
                 method: 'POST',
@@ -90,7 +107,7 @@
                     'Content-Type': 'application/json',
                     'X-CSRFToken': csrfToken,
                 },
-                body: JSON.stringify({ task_id: taskId }),
+                body: JSON.stringify({ task_id: taskId, task_token: taskToken }),
             });
 
             const data = await response.json();
@@ -135,8 +152,9 @@
                 || getCookie('csrftoken');
 
             tasksToCancel.forEach(taskId => {
+                const taskToken = window.getTaskToken ? window.getTaskToken(taskId) : null;
                 const blob = new Blob(
-                    [JSON.stringify({ task_id: taskId, csrfmiddlewaretoken: csrfToken })],
+                    [JSON.stringify({ task_id: taskId, task_token: taskToken, csrfmiddlewaretoken: csrfToken })],
                     { type: 'application/json' }
                 );
                 navigator.sendBeacon('/api/cancel-task/', blob);

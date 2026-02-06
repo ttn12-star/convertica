@@ -170,7 +170,7 @@ def convert_pdf_to_excel(
 
                 if headers:
                     headers = [
-                        str(h).strip() if h else f"Column {i+1}"
+                        str(h).strip() if h else f"Column {i + 1}"
                         for i, h in enumerate(headers)
                     ]
 
@@ -191,18 +191,27 @@ def convert_pdf_to_excel(
                 df.to_excel(writer, sheet_name=sheet_name, index=False)
 
             if image_pages:
-                images = convert_from_path(pdf_path_inner, dpi=150)
+                import gc
+
                 wb = writer.book
 
                 for idx in image_pages:
-                    if idx >= len(images):
+                    # Convert one page at a time to avoid memory issues
+                    # (instead of loading all pages into memory at once)
+                    page_images = convert_from_path(
+                        pdf_path_inner,
+                        dpi=150,
+                        first_page=idx + 1,
+                        last_page=idx + 1,
+                    )
+                    if not page_images:
                         continue
 
-                    img = images[idx]
-                    img_path = os.path.join(tmp_dir, f"page_{idx+1}.jpg")
+                    img = page_images[0]
+                    img_path = os.path.join(tmp_dir, f"page_{idx + 1}.jpg")
                     img.save(img_path, "JPEG", quality=85, optimize=True)
 
-                    ws = wb.create_sheet(title=f"Page {idx+1} Image"[:31])
+                    ws = wb.create_sheet(title=f"Page {idx + 1} Image"[:31])
                     xl_img = XLImage(img_path)
 
                     scale = min(1000 / img.width, 800 / img.height, 1.0)
@@ -211,6 +220,11 @@ def convert_pdf_to_excel(
 
                     ws.add_image(xl_img, "A1")
                     ws.column_dimensions["A"].width = min(xl_img.width / 7, 100)
+
+                    # Clean up memory after each page
+                    del img
+                    del page_images
+                    gc.collect()
 
         return output_path
 

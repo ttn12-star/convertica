@@ -134,6 +134,13 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
             # Exclude non-user operational webhooks to avoid noisy analytics.
             if request.path.startswith("/api/payments/webhook/"):
                 return None
+            # Exclude internal task-control endpoints from analytics.
+            if request.path in (
+                "/api/cancel-task/",
+                "/api/operation-abandon/",
+                "/api/task-background/",
+            ):
+                return None
 
             view_class = getattr(view_func, "view_class", None)
 

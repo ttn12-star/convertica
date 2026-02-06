@@ -31,8 +31,8 @@ keepalive = 5
 # Worker lifecycle
 # Restart workers after N requests to prevent memory leaks
 # Lower value = more frequent restarts = less memory accumulation
-max_requests = 100  # Aggressive restart to prevent OOM on 4GB server
-max_requests_jitter = 20  # Add randomness to prevent all workers restarting at once
+max_requests = 50  # More aggressive restart to prevent OOM on 4GB server
+max_requests_jitter = 10  # Add randomness to prevent all workers restarting at once
 
 # Use /dev/shm for worker heartbeat files (faster than disk)
 worker_tmp_dir = "/dev/shm"

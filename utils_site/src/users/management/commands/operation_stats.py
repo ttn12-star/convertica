@@ -50,7 +50,13 @@ class Command(BaseCommand):
             created_at__gte=cutoff_date, status="error"
         ).count()
         pending_ops = OperationRun.objects.filter(
-            created_at__gte=cutoff_date, status="pending"
+            created_at__gte=cutoff_date, status__in=["started", "queued", "running"]
+        ).count()
+        cancelled_ops = OperationRun.objects.filter(
+            created_at__gte=cutoff_date, status__in=["cancelled", "cancel_requested"]
+        ).count()
+        abandoned_ops = OperationRun.objects.filter(
+            created_at__gte=cutoff_date, status="abandoned"
         ).count()
 
         success_rate = (successful_ops / total_ops * 100) if total_ops > 0 else 0
@@ -60,6 +66,8 @@ class Command(BaseCommand):
         self.stdout.write(f"   Successful: {successful_ops} ({success_rate:.1f}%)")
         self.stdout.write(f"   Failed: {failed_ops}")
         self.stdout.write(f"   Pending: {pending_ops}")
+        self.stdout.write(f"   Cancelled: {cancelled_ops}")
+        self.stdout.write(f"   Abandoned: {abandoned_ops}")
 
         # Statistics by conversion type
         self.stdout.write("\n📄 By Conversion Type:")
@@ -72,6 +80,10 @@ class Command(BaseCommand):
                 total=Count("id"),
                 successful=Count("id", filter=Q(status="success")),
                 failed=Count("id", filter=Q(status="error")),
+                cancelled=Count(
+                    "id", filter=Q(status__in=["cancelled", "cancel_requested"])
+                ),
+                abandoned=Count("id", filter=Q(status="abandoned")),
             )
             .order_by("-total")
         )
@@ -82,10 +94,12 @@ class Command(BaseCommand):
             total = stat["total"]
             successful = stat["successful"]
             failed = stat["failed"]
+            cancelled = stat["cancelled"]
+            abandoned = stat["abandoned"]
             success_rate = (successful / total * 100) if total > 0 else 0
 
             self.stdout.write(
-                f"   {conv_type:30} | Total: {total:5} | Success: {successful:5} ({success_rate:5.1f}%) | Failed: {failed:4}"
+                f"   {conv_type:30} | Total: {total:5} | Success: {successful:5} ({success_rate:5.1f}%) | Failed: {failed:4} | Cancelled: {cancelled:4} | Abandoned: {abandoned:4}"
             )
 
             stats_data.append(
@@ -94,6 +108,8 @@ class Command(BaseCommand):
                     "total": total,
                     "successful": successful,
                     "failed": failed,
+                    "cancelled": cancelled,
+                    "abandoned": abandoned,
                     "success_rate": f"{success_rate:.1f}%",
                 }
             )
@@ -131,6 +147,8 @@ class Command(BaseCommand):
                     "total",
                     "successful",
                     "failed",
+                    "cancelled",
+                    "abandoned",
                     "success_rate",
                 ]
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
