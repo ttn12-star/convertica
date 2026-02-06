@@ -1,6 +1,8 @@
+import gc
 import os
 import re
 import tempfile
+from collections.abc import Callable
 
 import pandas as pd
 from django.core.files.uploadedfile import UploadedFile
@@ -57,6 +59,8 @@ def convert_pdf_to_excel(
     uploaded_file: UploadedFile,
     pages: str = "all",
     suffix: str = "_convertica",
+    check_cancelled: Callable[[], None] | None = None,
+    **kwargs,
 ) -> tuple[str, str]:
     tmp_dir = tempfile.mkdtemp(prefix="pdf_to_excel_")
 
@@ -79,12 +83,20 @@ def convert_pdf_to_excel(
 
     context.update({"pdf_path": pdf_path, "output_path": output_path})
 
+    # Check cancellation before starting
+    if callable(check_cancelled):
+        check_cancelled()
+
     try:
         with open(pdf_path, "wb") as f:
             for chunk in uploaded_file.chunks():
                 f.write(chunk)
     except OSError as err:
         raise StorageError(f"Failed to write PDF: {err}", context=context) from err
+
+    # Check cancellation after file write
+    if callable(check_cancelled):
+        check_cancelled()
 
     is_valid, validation_error = validate_pdf_file(pdf_path, context)
     if not is_valid:
@@ -126,6 +138,10 @@ def convert_pdf_to_excel(
             indices = page_indices if page_indices is not None else range(total_pages)
 
             for idx in indices:
+                # Check cancellation at the start of each page
+                if callable(check_cancelled):
+                    check_cancelled()
+
                 if idx < 0 or idx >= total_pages:
                     continue
 
@@ -191,11 +207,13 @@ def convert_pdf_to_excel(
                 df.to_excel(writer, sheet_name=sheet_name, index=False)
 
             if image_pages:
-                import gc
-
                 wb = writer.book
 
                 for idx in image_pages:
+                    # Check cancellation before processing each image page
+                    if callable(check_cancelled):
+                        check_cancelled()
+
                     # Convert one page at a time to avoid memory issues
                     # (instead of loading all pages into memory at once)
                     page_images = convert_from_path(

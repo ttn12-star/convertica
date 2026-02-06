@@ -1,4 +1,5 @@
 import os
+from collections.abc import Callable
 from io import BytesIO
 
 import fitz
@@ -21,6 +22,8 @@ def compress_pdf(
     uploaded_file: UploadedFile,
     compression_level: str = "medium",
     suffix: str = "_convertica",
+    check_cancelled: Callable[[], None] | None = None,
+    **kwargs,
 ) -> tuple[str, str]:
     """Compress PDF to reduce file size.
 
@@ -131,6 +134,9 @@ def compress_pdf(
             seen = set()
 
             for page in doc:
+                # Check cancellation at the start of each page
+                if callable(check_cancelled):
+                    check_cancelled()
                 for img in page.get_images(full=True):
                     xref = img[0]
                     if xref in seen:
@@ -218,10 +224,17 @@ def compress_pdf(
                         continue
 
         def _op(input_pdf_path: str, *, output_path: str, compression_level: str):
+            # Check cancellation before opening document
+            if callable(check_cancelled):
+                check_cancelled()
+
             doc = fitz.open(input_pdf_path)
             try:
                 if compression_level == "high":
                     for page in doc:
+                        # Check cancellation for each page
+                        if callable(check_cancelled):
+                            check_cancelled()
                         try:
                             page.set_links([])
                         except Exception:
