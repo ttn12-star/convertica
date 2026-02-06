@@ -572,7 +572,14 @@ body{max-width:100%;width:100%}
  .max-w-md{max-width:28rem}
 .max-w-3xl{max-width:48rem}
 
-/* Converter/Editor forms - prevent CLS by reserving space */
+/* Converter/Editor pages - prevent CLS by reserving space */
+/* Breadcrumbs */
+nav[aria-label]{min-height:24px}
+/* Header section with h1 */
+.max-w-3xl>.text-center,.max-w-4xl>.text-center{min-height:70px}
+@media(min-width:640px){.max-w-3xl>.text-center,.max-w-4xl>.text-center{min-height:90px}}
+@media(min-width:1024px){.max-w-3xl>.text-center,.max-w-4xl>.text-center{min-height:100px}}
+/* Forms */
 #converterForm,#editorForm{min-height:220px}
 @media(min-width:768px){#converterForm,#editorForm{min-height:320px}}
 
