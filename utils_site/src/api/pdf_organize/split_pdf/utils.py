@@ -1,6 +1,7 @@
 import os
 import time
 import zipfile
+from collections.abc import Callable
 from io import BytesIO
 
 import fitz
@@ -24,6 +25,8 @@ def split_pdf(
     split_type: str = "page",
     pages: str = None,
     suffix: str = "_convertica",
+    check_cancelled: Callable[[], None] | None = None,
+    **kwargs,
 ) -> tuple[str, str]:
     """Split PDF into multiple files.
 
@@ -97,6 +100,10 @@ def split_pdf(
                         page_nums = list(range(total_pages))
 
                     for page_num in page_nums:
+                        # Check cancellation for each page
+                        if callable(check_cancelled):
+                            check_cancelled()
+
                         if 0 <= page_num < total_pages:
                             writer = PdfWriter()
                             writer.add_page(reader.pages[page_num])
@@ -111,6 +118,10 @@ def split_pdf(
                         )
                     ranges = pages.split(",")
                     for idx, range_str in enumerate(ranges):
+                        # Check cancellation for each range
+                        if callable(check_cancelled):
+                            check_cancelled()
+
                         if "-" not in range_str:
                             continue
                         start, end = range_str.split("-", 1)
@@ -130,6 +141,10 @@ def split_pdf(
                     file_idx = 1
                     writer = PdfWriter()
                     for page_num in range(total_pages):
+                        # Check cancellation for each page
+                        if page_num % 10 == 0 and callable(check_cancelled):
+                            check_cancelled()
+
                         writer.add_page(reader.pages[page_num])
                         if (page_num + 1) % n == 0 or page_num == total_pages - 1:
                             name = f"{base}_part_{file_idx}{suffix}.pdf"
@@ -153,6 +168,10 @@ def split_pdf(
                         zip_path, "w", compression=zipfile.ZIP_DEFLATED
                     ) as zipf:
                         for page_idx in range(doc.page_count):
+                            # Check cancellation for each page
+                            if callable(check_cancelled):
+                                check_cancelled()
+
                             single = None
                             try:
                                 single = fitz.open()

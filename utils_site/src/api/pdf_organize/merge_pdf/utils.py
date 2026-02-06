@@ -1,4 +1,5 @@
 import os
+from collections.abc import Callable
 
 from django.core.files.uploadedfile import UploadedFile
 from PyPDF2 import PdfReader, PdfWriter
@@ -21,6 +22,8 @@ def merge_pdf(
     uploaded_files: list[UploadedFile],
     order: str = "upload",
     suffix: str = "_convertica",
+    check_cancelled: Callable[[], None] | None = None,
+    **kwargs,
 ) -> tuple[str, str]:
     """Merge multiple PDF files into one.
 
@@ -74,6 +77,10 @@ def merge_pdf(
                     return PdfReader(repaired, strict=False)
 
             for idx, pdf_path in enumerate(pdf_paths):
+                # Check cancellation before processing each file
+                if callable(check_cancelled):
+                    check_cancelled()
+
                 try:
                     reader = _open_reader(pdf_path)
 
@@ -93,6 +100,10 @@ def merge_pdf(
                             )
 
                     for page_num, page in enumerate(reader.pages):
+                        # Check cancellation periodically (every 10 pages)
+                        if page_num % 10 == 0 and callable(check_cancelled):
+                            check_cancelled()
+
                         try:
                             writer.add_page(page)
                         except Exception as page_err:
