@@ -44,42 +44,42 @@
       "tool": [
         {
           "@type": "HowToTool",
-          "name": "{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}"
+          "name": "{% filter escapejs %}{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}{% endfilter %}"
         }
       ],
       "supply": [
         {
           "@type": "HowToSupply",
-          "name": "{% trans 'URL or HTML content to convert' %}"
+          "name": "{% filter escapejs %}{% trans 'URL or HTML content to convert' %}{% endfilter %}"
         }
       ],
       "step": [
         {
           "@type": "HowToStep",
           "position": 1,
-          "name": "{% trans 'Enter URL or HTML' %}",
-          "text": "{% trans 'Paste a web page URL or enter HTML content directly' %}",
+          "name": "{% filter escapejs %}{% trans 'Enter URL or HTML' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Paste a web page URL or enter HTML content directly' %}{% endfilter %}",
           "url": "{{ site_current_url }}#input"
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "{% trans 'Configure Settings' %}",
-          "text": "{% trans 'Adjust page size, margins, and other PDF settings' %}",
+          "name": "{% filter escapejs %}{% trans 'Configure Settings' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Adjust page size, margins, and other PDF settings' %}{% endfilter %}",
           "url": "{{ site_current_url }}#settings"
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "{% trans 'Convert' %}",
-          "text": "{% trans 'Click the Convert button to generate your PDF' %}",
+          "name": "{% filter escapejs %}{% trans 'Convert' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Click the Convert button to generate your PDF' %}{% endfilter %}",
           "url": "{{ site_current_url }}#convert"
         },
         {
           "@type": "HowToStep",
           "position": 4,
-          "name": "{% trans 'Download' %}",
-          "text": "{% trans 'Download your PDF file instantly' %}",
+          "name": "{% filter escapejs %}{% trans 'Download' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Download your PDF file instantly' %}{% endfilter %}",
           "url": "{{ site_current_url }}#download"
         }
       ],
