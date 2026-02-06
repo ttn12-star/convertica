@@ -44,42 +44,42 @@
       "tool": [
         {
           "@type": "HowToTool",
-          "name": "{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}"
+          "name": "{% filter escapejs %}{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}{% endfilter %}"
         }
       ],
       "supply": [
         {
           "@type": "HowToSupply",
-          "name": "{% trans 'JPG, PNG, GIF or BMP images to convert' %}"
+          "name": "{% filter escapejs %}{% trans 'JPG, PNG, GIF or BMP images to convert' %}{% endfilter %}"
         }
       ],
       "step": [
         {
           "@type": "HowToStep",
           "position": 1,
-          "name": "{% trans 'Select Images' %}",
-          "text": "{% trans 'Click the Select images button or drag and drop your images' %}",
+          "name": "{% filter escapejs %}{% trans 'Select Images' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Click the Select images button or drag and drop your images' %}{% endfilter %}",
           "url": "{{ site_current_url }}#upload"
         },
         {
           "@type": "HowToStep",
           "position": 2,
-          "name": "{% trans 'Arrange Order' %}",
-          "text": "{% trans 'Add more images and arrange them in the desired order' %}",
+          "name": "{% filter escapejs %}{% trans 'Arrange Order' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Add more images and arrange them in the desired order' %}{% endfilter %}",
           "url": "{{ site_current_url }}#arrange"
         },
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "{% trans 'Convert' %}",
-          "text": "{% trans 'Click Convert to combine all images into one PDF' %}",
+          "name": "{% filter escapejs %}{% trans 'Convert' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Click Convert to combine all images into one PDF' %}{% endfilter %}",
           "url": "{{ site_current_url }}#convert"
         },
         {
           "@type": "HowToStep",
           "position": 4,
-          "name": "{% trans 'Download' %}",
-          "text": "{% trans 'Download your PDF file instantly' %}",
+          "name": "{% filter escapejs %}{% trans 'Download' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Download your PDF file instantly' %}{% endfilter %}",
           "url": "{{ site_current_url }}#download"
         }
       ],
