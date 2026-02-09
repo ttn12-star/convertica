@@ -824,7 +824,7 @@ CSRF_TRUSTED_ORIGINS = config(
     default="https://convertica.net,https://www.convertica.net",
     cast=Csv(),
 )
-CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_HTTPONLY = True
 CSRF_USE_SESSIONS = False
 # Cache Configuration
 # Using Redis for caching and session storage
