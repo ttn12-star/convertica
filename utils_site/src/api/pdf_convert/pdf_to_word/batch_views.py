@@ -28,6 +28,8 @@ logger = get_logger(__name__)
 class PDFToWordBatchAPIView(APIView):
     """Handle batch PDF → DOCX conversion requests."""
 
+    CONVERSION_TYPE = "PDF_TO_WORD_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @pdf_to_word_docs()
     def post(self, request: HttpRequest):

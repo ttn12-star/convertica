@@ -28,6 +28,8 @@ logger = get_logger(__name__)
 class UnlockPDFBatchAPIView(APIView):
     """Handle batch PDF unlock requests."""
 
+    CONVERSION_TYPE = "UNLOCK_PDF_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @unlock_pdf_docs()
     def post(self, request: HttpRequest):

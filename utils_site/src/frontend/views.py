@@ -4067,6 +4067,8 @@ def _get_sitemap_pages():
         {"url": "terms/", "priority": "0.6", "changefreq": "yearly"},
         {"url": "contact/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "faq/", "priority": "0.8", "changefreq": "monthly"},
+        {"url": "pricing/", "priority": "0.8", "changefreq": "monthly"},
+        {"url": "contribute/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "all-tools/", "priority": "0.9", "changefreq": "weekly"},
         {"url": "blog/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-to-word/", "priority": "0.8", "changefreq": "weekly"},

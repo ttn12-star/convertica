@@ -34,6 +34,7 @@ logger = get_logger(__name__)
 class MergePDFAPIView(APIView):
     """Handle PDF merge requests."""
 
+    CONVERSION_TYPE = "MERGE_PDF"
     MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
     parser_classes = [MultiPartParser, FormParser]
 
