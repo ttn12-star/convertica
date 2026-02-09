@@ -123,6 +123,8 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                     "config.php",
                     "admin.php",
                     "Invalid HTTP request line",
+                    "Invalid HTTP method",
+                    "Invalid request from ip",
                     "SSH-2.0",
                     "DisallowedHost",  # Host header attacks
                     "mstshash",  # RDP scanner
