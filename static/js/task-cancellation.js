@@ -22,20 +22,12 @@
     const VISIBILITY_TIMEOUT = 60000; // Cancel after 60 seconds of inactivity
 
     /**
-     * Get cookie value by name
+     * Get CSRF token from meta tag or hidden form input
      */
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
+    function getCSRFToken() {
+        return document.querySelector('meta[name="csrf-token"]')?.content
+            || document.querySelector('[name=csrfmiddlewaretoken]')?.value
+            || null;
         return cookieValue;
     }
 
@@ -96,9 +88,7 @@
     async function cancelTask(taskId) {
         try {
             // Get CSRF token from cookie or meta tag
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
-                || document.querySelector('meta[name="csrf-token"]')?.content
-                || getCookie('csrftoken');
+            const csrfToken = getCSRFToken();
             const taskToken = window.getTaskToken ? window.getTaskToken(taskId) : null;
 
             const response = await fetch('/api/cancel-task/', {
@@ -147,9 +137,7 @@
         const tasksToCancel = Array.from(activeTasks).filter(id => !backgroundTasks.has(id));
 
         if (tasksToCancel.length > 0 && navigator.sendBeacon) {
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
-                || document.querySelector('meta[name="csrf-token"]')?.content
-                || getCookie('csrftoken');
+            const csrfToken = getCSRFToken();
 
             tasksToCancel.forEach(taskId => {
                 const taskToken = window.getTaskToken ? window.getTaskToken(taskId) : null;

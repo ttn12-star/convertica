@@ -1,11 +1,8 @@
 (function () {
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) {
-            return parts.pop().split(';').shift();
-        }
-        return null;
+    function getCSRFToken() {
+        return document.querySelector('meta[name="csrf-token"]')?.content
+            || document.querySelector('[name=csrfmiddlewaretoken]')?.value
+            || null;
     }
 
     const oneTimeBtn = document.getElementById('supportTypeOneTime');
@@ -117,7 +114,7 @@
             return;
         }
 
-        const csrf = getCookie('csrftoken');
+        const csrf = getCSRFToken();
         if (!csrf) {
             showError('CSRF token not found. Please refresh the page.');
             return;

@@ -422,7 +422,7 @@
       fetch('{% url "users:cancel_subscription" %}', {
         method: 'POST',
         headers: {
-          'X-CSRFToken': getCookie('csrftoken'),
+          'X-CSRFToken': getCSRFToken(),
           'Content-Type': 'application/json',
         },
       })
@@ -452,7 +452,7 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRFToken': getCookie('csrftoken')
+          'X-CSRFToken': getCSRFToken()
         },
         body: JSON.stringify({
           'display_as_hero': true
@@ -476,7 +476,7 @@
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-CSRFToken': getCookie('csrftoken')
+          'X-CSRFToken': getCSRFToken()
         },
         body: JSON.stringify({
           'display_as_hero': isChecked
@@ -508,7 +508,7 @@
       fetch('/users/delete-account/', {
         method: 'POST',
         headers: {
-          'X-CSRFToken': getCookie('csrftoken'),
+          'X-CSRFToken': getCSRFToken(),
           'Content-Type': 'application/json',
         },
       })
@@ -526,19 +526,10 @@
       window.location.href = '/users/download-data/';
     }
 
-    function getCookie(name) {
-      let cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
-        }
-      }
-      return cookieValue;
+    function getCSRFToken() {
+      return document.querySelector('meta[name="csrf-token"]')?.content
+      || document.querySelector('[name=csrfmiddlewaretoken]')?.value
+      || '';
     }
   </script>
 

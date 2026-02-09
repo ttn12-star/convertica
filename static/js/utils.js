@@ -19,9 +19,7 @@ function cancelCurrentOperation() {
 
     // 1. Cancel async Celery task via API
     if (taskId) {
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
-            || document.querySelector('meta[name="csrf-token"]')?.content
-            || _getCookieValue('csrftoken');
+        const csrfToken = _getCSRFToken();
         const taskToken = window.getTaskToken ? window.getTaskToken(taskId) : null;
 
         fetch('/api/cancel-task/', {
@@ -51,10 +49,11 @@ function cancelCurrentOperation() {
     window._onCancelCallback = null;
 }
 
-/** @private cookie helper (duplicated from task-cancellation to keep utils standalone) */
-function _getCookieValue(name) {
-    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match ? decodeURIComponent(match[2]) : null;
+/** @private Get CSRF token from meta tag or hidden form input */
+function _getCSRFToken() {
+    return document.querySelector('meta[name="csrf-token"]')?.content
+        || document.querySelector('[name=csrfmiddlewaretoken]')?.value
+        || null;
 }
 
 /**
