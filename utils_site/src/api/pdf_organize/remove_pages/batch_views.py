@@ -27,6 +27,8 @@ logger = get_logger(__name__)
 class RemovePagesBatchAPIView(APIView):
     """Handle batch PDF page removal requests."""
 
+    CONVERSION_TYPE = "REMOVE_PAGES_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @remove_pages_docs()
     def post(self, request: HttpRequest):

@@ -34,6 +34,7 @@ logger = get_logger(__name__)
 class SplitPDFAPIView(APIView):
     """Handle PDF split requests."""
 
+    CONVERSION_TYPE = "SPLIT_PDF"
     MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
 
     def get_serializer_class(self):

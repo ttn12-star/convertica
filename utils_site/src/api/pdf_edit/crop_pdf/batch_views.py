@@ -28,6 +28,7 @@ logger = get_logger(__name__)
 class CropPDFBatchAPIView(APIView):
     """Handle batch PDF cropping requests for premium users."""
 
+    CONVERSION_TYPE = "CROP_PDF_BATCH"
     MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50 MB per file
     ALLOWED_EXTENSIONS = {".pdf"}
 

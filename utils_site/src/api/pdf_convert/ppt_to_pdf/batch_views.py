@@ -29,6 +29,8 @@ logger = get_logger(__name__)
 class PowerPointToPDFBatchAPIView(APIView):
     """Handle batch PowerPoint → PDF conversion requests."""
 
+    CONVERSION_TYPE = "PPT_TO_PDF_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @ppt_to_pdf_docs()
     def post(self, request: HttpRequest):

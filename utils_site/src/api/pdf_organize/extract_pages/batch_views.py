@@ -27,6 +27,8 @@ logger = get_logger(__name__)
 class ExtractPagesBatchAPIView(APIView):
     """Handle batch PDF page extraction requests."""
 
+    CONVERSION_TYPE = "EXTRACT_PAGES_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @extract_pages_docs()
     def post(self, request: HttpRequest):

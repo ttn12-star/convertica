@@ -27,6 +27,8 @@ logger = get_logger(__name__)
 class PDFToHTMLBatchAPIView(APIView):
     """Handle batch PDF → HTML conversion requests."""
 
+    CONVERSION_TYPE = "PDF_TO_HTML_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @pdf_to_html_docs()
     def post(self, request: HttpRequest):

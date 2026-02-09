@@ -28,6 +28,8 @@ logger = get_logger(__name__)
 class OrganizePDFBatchAPIView(APIView):
     """Handle batch PDF organization requests."""
 
+    CONVERSION_TYPE = "ORGANIZE_PDF_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @organize_pdf_docs()
     def post(self, request: HttpRequest):

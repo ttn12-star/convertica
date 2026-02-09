@@ -28,6 +28,8 @@ logger = get_logger(__name__)
 class SplitPDFBatchAPIView(APIView):
     """Handle batch PDF split requests."""
 
+    CONVERSION_TYPE = "SPLIT_PDF_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @split_pdf_docs()
     def post(self, request: HttpRequest):

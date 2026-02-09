@@ -29,6 +29,8 @@ logger = get_logger(__name__)
 class ExcelToPDFBatchAPIView(APIView):
     """Handle batch Excel → PDF conversion requests."""
 
+    CONVERSION_TYPE = "EXCEL_TO_PDF_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @excel_to_pdf_docs()
     def post(self, request: HttpRequest):

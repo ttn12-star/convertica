@@ -28,6 +28,8 @@ logger = get_logger(__name__)
 class ProtectPDFBatchAPIView(APIView):
     """Handle batch PDF protection requests."""
 
+    CONVERSION_TYPE = "PROTECT_PDF_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @protect_pdf_docs()
     def post(self, request: HttpRequest):

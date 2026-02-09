@@ -27,6 +27,8 @@ logger = get_logger(__name__)
 class CompressPDFBatchAPIView(APIView):
     """Handle batch PDF compression requests."""
 
+    CONVERSION_TYPE = "COMPRESS_PDF_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @compress_pdf_docs()
     def post(self, request: HttpRequest):

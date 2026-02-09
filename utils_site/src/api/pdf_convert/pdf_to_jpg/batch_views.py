@@ -28,6 +28,8 @@ logger = get_logger(__name__)
 class PDFToJPGBatchAPIView(APIView):
     """Handle batch PDF → JPG conversion requests."""
 
+    CONVERSION_TYPE = "PDF_TO_JPG_BATCH"
+
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
     @pdf_to_jpg_docs()
     def post(self, request: HttpRequest):
