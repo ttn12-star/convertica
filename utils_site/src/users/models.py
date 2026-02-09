@@ -30,7 +30,9 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
     # Legacy field - kept for backward compatibility
-    is_premium = models.BooleanField(default=False, verbose_name=_("Is Premium"))
+    is_premium = models.BooleanField(
+        default=False, db_index=True, verbose_name=_("Is Premium")
+    )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
 
     # Subscription tracking fields

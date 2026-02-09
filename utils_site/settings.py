@@ -638,7 +638,7 @@ STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET", default="")
 STRIPE_WEBHOOK_IP_WHITELIST_ENABLED = config(
     "STRIPE_WEBHOOK_IP_WHITELIST_ENABLED", default=True, cast=bool
 )
-# Stripe webhook IPs (updated Jan 2024, check https://stripe.com/docs/ips for latest)
+# Stripe webhook IPs (verified Feb 2026, check https://stripe.com/docs/ips for latest)
 STRIPE_WEBHOOK_IPS = [
     # Stripe webhook source IPs
     "3.18.12.63",

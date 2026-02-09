@@ -3,7 +3,6 @@ module.exports = {
   darkMode: 'class', // Enable dark mode with 'dark' class
   content: [
     './templates/**/*.html',
-    './myapp/templates/**/*.html',
     './static/js/**/*.js'
   ],
   // Safelist classes used in dynamic JS that Tailwind might miss
