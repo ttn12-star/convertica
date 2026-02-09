@@ -422,7 +422,9 @@ def download_data(request):
     }
 
     # Add payment history
-    payments = Payment.objects.filter(user=user).order_by("created_at")
+    payments = (
+        Payment.objects.filter(user=user).select_related("plan").order_by("created_at")
+    )
     total_amount = 0
     renewals = 0
 

@@ -680,6 +680,7 @@ def payment_success(request):
             Payment.objects.filter(
                 user=request.user, payment_id__icontains=session_id, status="completed"
             )
+            .select_related("plan")
             .order_by("-created_at")
             .first()
         )
@@ -726,6 +727,7 @@ def payment_success(request):
         # Check subscription
         subscription = (
             UserSubscription.objects.filter(user=request.user, status="active")
+            .select_related("plan")
             .order_by("-created_at")
             .first()
         )
@@ -1208,7 +1210,7 @@ def handle_invoice_payment_succeeded(invoice):
         ):
             return
 
-        subscription = UserSubscription.objects.get(
+        subscription = UserSubscription.objects.select_related("user", "plan").get(
             stripe_subscription_id=subscription_id
         )
 
@@ -1260,7 +1262,7 @@ def handle_invoice_payment_failed(invoice):
                 and stripe_subscription.metadata.get("kind") == "support"
             ):
                 return
-        subscription = UserSubscription.objects.get(
+        subscription = UserSubscription.objects.select_related("user").get(
             stripe_subscription_id=subscription_id
         )
 
@@ -1282,7 +1284,7 @@ def handle_subscription_deleted(subscription):
             and subscription.metadata.get("kind") == "support"
         ):
             return
-        user_subscription = UserSubscription.objects.get(
+        user_subscription = UserSubscription.objects.select_related("user").get(
             stripe_subscription_id=subscription.id
         )
         user_subscription.status = "canceled"

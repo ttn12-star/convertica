@@ -71,7 +71,7 @@ psutil==5.9.8
 pre-commit==3.7.1
 ruff==0.4.4
 isort==5.13.2
-sentry-sdk[django]
+sentry-sdk[django]==2.52.0
 # Stripe payment processing
 stripe==14.1.0
 # Django Channels - WebSocket support for real-time progress updates

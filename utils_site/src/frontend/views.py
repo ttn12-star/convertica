@@ -1,6 +1,7 @@
 # utils_site/src/frontend/views.py
 
 from datetime import datetime
+from functools import wraps
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -11,6 +12,27 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.vary import vary_on_cookie
 from django.views.generic import TemplateView
+
+
+def anonymous_cache_page(timeout):
+    """Cache page only for anonymous users.
+
+    Authenticated users always get fresh responses (needed for premium-specific content).
+    Anonymous users get cached responses for better performance.
+    """
+
+    def decorator(view_func):
+        cached_view = cache_page(timeout)(view_func)
+
+        @wraps(view_func)
+        def wrapper(request, *args, **kwargs):
+            if request.user.is_authenticated:
+                return view_func(request, *args, **kwargs)
+            return cached_view(request, *args, **kwargs)
+
+        return wrapper
+
+    return decorator
 
 
 def _get_related_tools(current_tool):
@@ -138,6 +160,8 @@ def _get_related_tools(current_tool):
     return result
 
 
+@vary_on_cookie
+@cache_page(60 * 60)
 def index_page(request):
     """Home page view."""
     from django.core.cache import cache
@@ -341,6 +365,7 @@ def _get_converter_context(
     }
 
 
+@anonymous_cache_page(60 * 60)
 def pdf_to_word_page(request):
     """PDF to Word conversion page."""
     context = _get_converter_context(
@@ -514,6 +539,7 @@ def pdf_to_word_page(request):
     return render(request, "frontend/pdf_convert/pdf_to_word.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def word_to_pdf_page(request):
     """Word to PDF conversion page."""
     context = _get_converter_context(
@@ -673,6 +699,7 @@ def word_to_pdf_page(request):
     return render(request, "frontend/pdf_convert/word_to_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def pdf_to_jpg_page(request):
     """PDF to JPG conversion page."""
     context = _get_converter_context(
@@ -827,6 +854,7 @@ def pdf_to_jpg_page(request):
     return render(request, "frontend/pdf_convert/pdf_to_jpg.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def jpg_to_pdf_page(request):
     """JPG to PDF conversion page."""
     context = _get_converter_context(
@@ -976,6 +1004,7 @@ def jpg_to_pdf_page(request):
     return render(request, "frontend/pdf_convert/jpg_to_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def rotate_pdf_page(request):
     """Rotate PDF page."""
     context = _get_converter_context(
@@ -1123,6 +1152,7 @@ def rotate_pdf_page(request):
     return render(request, "frontend/pdf_edit/rotate_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def add_page_numbers_page(request):
     """Add page numbers to PDF page."""
     context = _get_converter_context(
@@ -1267,6 +1297,7 @@ def add_page_numbers_page(request):
     return render(request, "frontend/pdf_edit/add_page_numbers.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def add_watermark_page(request):
     """Add watermark to PDF page."""
     context = _get_converter_context(
@@ -1403,6 +1434,7 @@ def add_watermark_page(request):
     return render(request, "frontend/pdf_edit/add_watermark.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def crop_pdf_page(request):
     """Crop PDF page."""
     context = _get_converter_context(
@@ -1540,6 +1572,7 @@ def crop_pdf_page(request):
     return render(request, "frontend/pdf_edit/crop_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def merge_pdf_page(request):
     """Merge PDF page."""
     context = _get_converter_context(
@@ -1698,6 +1731,7 @@ def merge_pdf_page(request):
     return render(request, "frontend/pdf_organize/merge_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def split_pdf_page(request):
     """Split PDF page."""
     context = _get_converter_context(
@@ -1847,6 +1881,7 @@ def split_pdf_page(request):
     return render(request, "frontend/pdf_organize/split_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def remove_pages_page(request):
     """Remove pages from PDF page."""
     context = _get_converter_context(
@@ -1985,6 +2020,7 @@ def remove_pages_page(request):
     return render(request, "frontend/pdf_organize/remove_pages.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def extract_pages_page(request):
     """Extract pages from PDF page."""
     context = _get_converter_context(
@@ -2126,6 +2162,7 @@ def extract_pages_page(request):
     return render(request, "frontend/pdf_organize/extract_pages.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def organize_pdf_page(request):
     """Organize PDF page."""
     context = _get_converter_context(
@@ -2262,6 +2299,7 @@ def organize_pdf_page(request):
     return render(request, "frontend/pdf_organize/organize_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def pdf_to_excel_page(request):
     """PDF to Excel conversion page."""
     context = _get_converter_context(
@@ -2436,6 +2474,7 @@ def pdf_to_excel_page(request):
     return render(request, "frontend/pdf_convert/pdf_to_excel.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def excel_to_pdf_page(request):
     """Excel to PDF conversion page."""
     context = _get_converter_context(
@@ -2591,6 +2630,7 @@ def excel_to_pdf_page(request):
     return render(request, "frontend/pdf_convert/excel_to_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def ppt_to_pdf_page(request):
     """PowerPoint to PDF conversion page."""
     context = _get_converter_context(
@@ -2743,6 +2783,7 @@ def ppt_to_pdf_page(request):
     return render(request, "frontend/pdf_convert/ppt_to_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def html_to_pdf_page(request):
     """HTML to PDF conversion page."""
     context = _get_converter_context(
@@ -2897,6 +2938,7 @@ def html_to_pdf_page(request):
     return render(request, "frontend/pdf_convert/html_to_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def pdf_to_ppt_page(request):
     """PDF to PowerPoint conversion page."""
     context = _get_converter_context(
@@ -3061,6 +3103,7 @@ def pdf_to_ppt_page(request):
     return render(request, "frontend/pdf_convert/pdf_to_ppt.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def pdf_to_html_page(request):
     """PDF to HTML conversion page."""
     context = _get_converter_context(
@@ -3227,6 +3270,7 @@ def pdf_to_html_page(request):
     return render(request, "frontend/pdf_convert/pdf_to_html.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def compress_pdf_page(request):
     """Compress PDF page."""
     context = _get_converter_context(
@@ -3387,6 +3431,7 @@ def compress_pdf_page(request):
     return render(request, "frontend/pdf_organize/compress_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def protect_pdf_page(request):
     """Protect PDF page."""
     context = _get_converter_context(
@@ -3549,6 +3594,7 @@ def protect_pdf_page(request):
     return render(request, "frontend/pdf_security/protect_pdf.html", context)
 
 
+@anonymous_cache_page(60 * 60)
 def unlock_pdf_page(request):
     """Unlock PDF page."""
     context = _get_converter_context(
@@ -3709,6 +3755,8 @@ def unlock_pdf_page(request):
     return render(request, "frontend/pdf_security/unlock_pdf.html", context)
 
 
+@vary_on_cookie
+@cache_page(60 * 60 * 24)
 def all_tools_page(request):
     """All Tools page - shows all PDF tools organized by categories."""
 
