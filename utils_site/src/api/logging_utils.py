@@ -243,8 +243,12 @@ def log_validation_error(
 def log_file_validation_error(
     logger: logging.Logger, reason: str, context: dict[str, Any], **additional_info: Any
 ):
-    """Log file validation errors (size, type, etc.)."""
-    logger.warning(
+    """Log file validation errors (size, type, etc.).
+
+    Uses INFO level because these are expected user errors (wrong file size/type),
+    not application bugs. This prevents them from cluttering Sentry.
+    """
+    logger.info(
         f"File validation failed: {reason}",
         extra={
             **context,
