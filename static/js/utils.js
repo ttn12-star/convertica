@@ -715,7 +715,7 @@ async function submitAsyncConversion(options) {
                     bgBtn.addEventListener('click', () => {
                         // Move task to background via background-tasks module
                         if (window.addBackgroundTask) {
-                            window.addBackgroundTask(taskId, window.CONVERSION_TYPE || '', originalFileName);
+                            window.addBackgroundTask(taskId, window.CONVERSION_TYPE || '', originalFileName, taskToken);
                         }
                         // Mark as background on server
                         fetch('/api/task-background/', {
@@ -765,11 +765,15 @@ async function submitAsyncConversion(options) {
                     updateProgress(95, 'Downloading result...');
 
                     // Download the result
+                    const resultHeaders = {
+                        'X-CSRFToken': csrfToken,
+                    };
+                    if (taskToken) {
+                        resultHeaders['X-Task-Token'] = taskToken;
+                    }
                     const resultResponse = await fetch(`/api/tasks/${taskId}/result/`, {
                         method: 'GET',
-                        headers: {
-                            'X-CSRFToken': csrfToken,
-                        },
+                        headers: resultHeaders,
                     });
 
                     if (!resultResponse.ok) {
@@ -799,9 +803,13 @@ async function submitAsyncConversion(options) {
 
                     // Cleanup task files after download
                     try {
+                        const cleanupHeaders = { 'X-CSRFToken': csrfToken };
+                        if (taskToken) {
+                            cleanupHeaders['X-Task-Token'] = taskToken;
+                        }
                         await fetch(`/api/tasks/${taskId}/result/`, {
                             method: 'DELETE',
-                            headers: { 'X-CSRFToken': csrfToken },
+                            headers: cleanupHeaders,
                         });
                     } catch (e) {
                         // Ignore cleanup errors
@@ -821,7 +829,7 @@ async function submitAsyncConversion(options) {
                     showError(errorMsg, errorContainerId);
                     if (onError) onError(errorMsg);
                 },
-            });
+            }, null, 300, taskToken);
 
         } else if (response.ok) {
             // Synchronous response - file is ready
@@ -886,7 +894,7 @@ async function submitAsyncConversion(options) {
  * @param {number} pollInterval - Polling interval in ms (default: 1000)
  * @param {number} maxAttempts - Maximum poll attempts (default: 600 = 10 minutes)
  */
-async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempts = 300) {
+async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempts = 300, taskToken = null) {
     // Use configured poll interval or default
     if (pollInterval === null) {
         pollInterval = (window.JS_SETTINGS && window.JS_SETTINGS.pollInterval) || 2500;
@@ -903,7 +911,13 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
         }
 
         try {
-            const response = await fetch(`/api/tasks/${taskId}/status/`);
+            const statusHeaders = {};
+            if (taskToken) {
+                statusHeaders['X-Task-Token'] = taskToken;
+            }
+            const response = await fetch(`/api/tasks/${taskId}/status/`, {
+                headers: statusHeaders,
+            });
             const data = await response.json();
 
             switch (data.status) {

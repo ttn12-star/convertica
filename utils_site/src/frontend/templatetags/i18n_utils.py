@@ -2,6 +2,8 @@
 Template tags for i18n utilities.
 """
 
+from urllib.parse import urlsplit
+
 from django import template
 from django.conf import settings
 
@@ -34,8 +36,9 @@ def remove_language_prefix(path):
     # Convert to string if not already
     path = str(path)
 
+    parsed = urlsplit(path)
     # Remove leading slash if present
-    path = path.lstrip("/")
+    path = parsed.path.lstrip("/")
 
     # Remove ALL language prefixes (in case of double prefixes like /en/pl/...)
     removed_any = True
@@ -52,6 +55,9 @@ def remove_language_prefix(path):
                 break
 
     # Return result
-    if not path:
-        return "/"
-    return "/" + path if not path.startswith("/") else path
+    cleaned_path = "/" + path if path else "/"
+    if parsed.query:
+        cleaned_path = f"{cleaned_path}?{parsed.query}"
+    if parsed.fragment:
+        cleaned_path = f"{cleaned_path}#{parsed.fragment}"
+    return cleaned_path

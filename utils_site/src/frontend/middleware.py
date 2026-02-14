@@ -103,7 +103,14 @@ class DoubleLanguagePrefixMiddleware:
                         corrected_path += f"?{query_string}"
 
                     logger.warning(
-                        f"Multiple language prefixes detected ({lang_prefix_count}): {path} -> redirecting to {corrected_path}"
+                        "Multiple language prefixes detected (%s): %s -> redirecting to %s | ip=%s referer=%s ua=%s query=%s",
+                        lang_prefix_count,
+                        path,
+                        corrected_path,
+                        request.META.get("REMOTE_ADDR", ""),
+                        request.META.get("HTTP_REFERER", ""),
+                        request.META.get("HTTP_USER_AGENT", ""),
+                        request.META.get("QUERY_STRING", ""),
                     )
 
                     # Create redirect response with noindex header

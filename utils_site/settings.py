@@ -424,11 +424,9 @@ AUTHENTICATION_BACKENDS = [
 
 # Allauth account settings
 ACCOUNT_ADAPTER = "src.users.account_adapter.CustomAccountAdapter"
-# Use legacy settings for allauth 0.63.x compatibility (pinned in requirements.txt)
-# These also work in newer versions (with deprecation warnings)
-ACCOUNT_AUTHENTICATION_METHOD = "email"  # Login using email (not username)
-ACCOUNT_USERNAME_REQUIRED = False  # Don't require username
-ACCOUNT_EMAIL_REQUIRED = True  # Email is required for registration
+# Allauth modern settings (v65+)
+ACCOUNT_LOGIN_METHODS = {"email"}  # Login using email (not username)
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"  # Require email verification before login
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
     "/users/profile/"  # Redirect after email confirmation (logged in users)
@@ -862,7 +860,7 @@ except ImportError:
 try:
     import django_redis
 
-    SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+    SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
     SESSION_CACHE_ALIAS = "default"
 except ImportError:
     # Fallback to database sessions if django-redis is not installed
