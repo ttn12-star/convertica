@@ -10,6 +10,30 @@ from typing import Any
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 
+try:
+    from prometheus_client import Counter, Histogram
+
+    CONVERSION_DURATION = Histogram(
+        "convertica_conversion_duration_seconds",
+        "Time spent processing a conversion",
+        ["conversion_type", "user_type"],
+        buckets=(0.5, 1, 2, 5, 10, 30, 60, 120, 300),
+    )
+    CONVERSION_TOTAL = Counter(
+        "convertica_conversions_total",
+        "Total number of conversions",
+        ["conversion_type", "user_type", "status"],
+    )
+    CONVERSION_FILE_SIZE = Histogram(
+        "convertica_conversion_input_size_bytes",
+        "Input file size in bytes",
+        ["conversion_type"],
+        buckets=(100_000, 500_000, 1_000_000, 5_000_000, 10_000_000, 50_000_000),
+    )
+    _PROMETHEUS_AVAILABLE = True
+except ImportError:
+    _PROMETHEUS_AVAILABLE = False
+
 
 def get_logger(name: str) -> logging.Logger:
     """Get a logger instance for a module."""
@@ -111,6 +135,25 @@ def log_conversion_success(
     }
     logger.info(f"{conversion_type} conversion completed successfully", extra=log_data)
 
+    user_type = "premium" if context.get("is_premium") else "free"
+
+    # Prometheus SLI metrics
+    if _PROMETHEUS_AVAILABLE:
+        CONVERSION_DURATION.labels(
+            conversion_type=conversion_type, user_type=user_type
+        ).observe(processing_time)
+        CONVERSION_TOTAL.labels(
+            conversion_type=conversion_type, user_type=user_type, status="success"
+        ).inc()
+        if "file_size_bytes" in log_data:
+            CONVERSION_FILE_SIZE.labels(conversion_type=conversion_type).observe(
+                log_data["file_size_bytes"]
+            )
+        elif "file_size_mb" in log_data:
+            CONVERSION_FILE_SIZE.labels(conversion_type=conversion_type).observe(
+                log_data["file_size_mb"] * 1_000_000
+            )
+
     # Send metrics to Sentry using Metrics API (non-blocking, async)
     try:
         from sentry_sdk import metrics
@@ -135,10 +178,8 @@ def log_conversion_success(
                 tags={"conversion_type": conversion_type},
             )
     except ImportError:
-        # Sentry not installed, skip
         pass
     except Exception:
-        # Don't fail if Sentry is down
         pass
 
 
@@ -195,6 +236,17 @@ def log_conversion_error(
         )
     else:
         log_method(f"{conversion_type} conversion failed: {error}", extra=log_data)
+
+    # Prometheus error counter
+    if _PROMETHEUS_AVAILABLE:
+        user_type = "premium" if context.get("is_premium") else "free"
+        CONVERSION_TOTAL.labels(
+            conversion_type=conversion_type, user_type=user_type, status="error"
+        ).inc()
+        if start_time:
+            CONVERSION_DURATION.labels(
+                conversion_type=conversion_type, user_type=user_type
+            ).observe(processing_time)
 
     # Explicitly send ERROR logs to Sentry
     if level in ("error", "exception"):

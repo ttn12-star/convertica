@@ -155,22 +155,26 @@ def worker_int(worker):
 def worker_abort(worker):
     """Called when a worker receives SIGABRT.
 
-    This usually happens when the worker timeout is exceeded.
+    This usually happens when the worker timeout is exceeded
+    (e.g. slow client opening connection without sending data).
     """
-    worker.log.error(f"Worker {worker.pid} was aborted (timeout or SIGABRT)")
+    worker.log.warning(f"Worker {worker.pid} was aborted (timeout or SIGABRT)")
 
-    # Try to log what the worker was doing
+    # Log only the main thread stack trace (skip sentry_sdk background threads)
     try:
         import threading
         import traceback
 
-        # Log all threads
-        for thread_id, frame in sys._current_frames().items():
-            worker.log.error(f"Thread {thread_id}:")
-            for line in traceback.format_stack(frame):
-                worker.log.error(line.strip())
+        main_thread_id = threading.main_thread().ident
+        frames = sys._current_frames()
+
+        if main_thread_id in frames:
+            stack = "".join(traceback.format_stack(frames[main_thread_id]))
+            worker.log.warning(f"Worker {worker.pid} main thread stack:\n{stack}")
+        else:
+            worker.log.warning(f"Worker {worker.pid}: main thread stack not available")
     except Exception as e:
-        worker.log.error(f"Failed to get stack trace: {e}")
+        worker.log.warning(f"Failed to get stack trace: {e}")
 
 
 def worker_exit(server, worker):
