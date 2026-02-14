@@ -26,6 +26,7 @@ from django.core.files.uploadedfile import UploadedFile
 from django.http import FileResponse, HttpRequest
 from django.urls import reverse
 from django.utils.text import get_valid_filename
+from django.utils.translation import gettext
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -85,18 +86,10 @@ def _extract_task_token(request: HttpRequest) -> str | None:
     return request.GET.get("task_token") or request.headers.get("X-Task-Token")
 
 
-def _get_request_ip(request: HttpRequest) -> str:
-    """Get best-effort client IP from request headers."""
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        return x_forwarded_for.split(",")[0].strip()
-    return request.META.get("REMOTE_ADDR", "")
-
-
 def _authorize_task_request(
     request: HttpRequest, task_id: str, task_token: str | None
 ) -> bool:
-    """Authorize task access by token, ownership, or same-IP fallback for anonymous users."""
+    """Authorize task access by token or ownership (no IP fallback)."""
     user = getattr(request, "user", None)
 
     if user is not None and getattr(user, "is_authenticated", False):
@@ -112,22 +105,7 @@ def _authorize_task_request(
         except Exception:
             return False
 
-    if task_token and verify_task_token(task_token, task_id, None):
-        return True
-
-    # Backward-compatible fallback for anonymous users without token:
-    # allow access only from the same source IP that created the task.
-    request_ip = _get_request_ip(request)
-    if not request_ip:
-        return False
-    try:
-        from src.users.models import OperationRun
-
-        return OperationRun.objects.filter(
-            task_id=task_id, remote_addr=request_ip
-        ).exists()
-    except Exception:
-        return False
+    return bool(task_token and verify_task_token(task_token, task_id, None))
 
 
 class AsyncConversionAPIView(APIView, ABC):
@@ -233,20 +211,39 @@ class AsyncConversionAPIView(APIView, ABC):
                 context,
             )
             payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
-            if request is not None and not self._is_premium_active(request):
-                if payments_enabled:
-                    return Response(
-                        {
-                            "error": (
-                                f"File too large ({file.size / (1024 * 1024):.1f} MB). "
-                                f"Upgrade to Premium for larger limits (up to {max_file_size / (1024 * 1024):.0f} MB for this operation)."
-                            )
-                        },
-                        status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            if (
+                request is not None
+                and not self._is_premium_active(request)
+                and payments_enabled
+            ):
+                response_data = {
+                    "error": gettext(
+                        "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. "
+                        "Upgrade to Premium for %(premium_mb).0f MB limit! "
+                        "Get 1-day Premium for just $1."
                     )
+                    % {
+                        "file_mb": file.size / (1024 * 1024),
+                        "free_mb": getattr(
+                            settings, "MAX_FILE_SIZE_FREE", max_file_size
+                        )
+                        / (1024 * 1024),
+                        "premium_mb": max_file_size / (1024 * 1024),
+                    },
+                }
+                try:
+                    response_data["upgrade_url"] = reverse("frontend:pricing")
+                except Exception:
+                    response_data["upgrade_url"] = "/pricing/"
+                response_data["upgrade_text"] = gettext("Upgrade to Premium")
+                return Response(
+                    response_data,
+                    status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                )
             return Response(
                 {
-                    "error": f"File too large. Maximum size is {max_file_size / (1024 * 1024):.0f} MB."
+                    "error": gettext("File too large. Maximum size is %(max_mb).0f MB.")
+                    % {"max_mb": max_file_size / (1024 * 1024)}
                 },
                 status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
             )
@@ -407,7 +404,7 @@ class AsyncConversionAPIView(APIView, ABC):
                             response_data["upgrade_url"] = reverse("frontend:pricing")
                         except Exception:
                             response_data["upgrade_url"] = "/pricing/"
-                        response_data["upgrade_text"] = "Upgrade to Premium"
+                        response_data["upgrade_text"] = gettext("Upgrade to Premium")
                     return Response(
                         response_data,
                         status=status.HTTP_400_BAD_REQUEST,

@@ -41,9 +41,10 @@ def submit_urls_to_indexnow(urls: list[str]) -> bool:
     Returns:
         True if submission was successful, False otherwise
     """
-    # Check if IndexNow is enabled
-    if not getattr(settings, "INDEXNOW_ENABLED", False):
-        logger.debug("IndexNow is disabled in settings")
+    # Check if IndexNow is enabled (skip in DEBUG/test environments)
+    if not getattr(settings, "INDEXNOW_ENABLED", False) or getattr(
+        settings, "DEBUG", False
+    ):
         return False
 
     # Get IndexNow key from settings
