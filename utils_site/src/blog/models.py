@@ -246,7 +246,7 @@ class Article(models.Model):
         url_name = tool_urls.get(self.relevant_tool)
         if url_name:
             try:
-                return reverse(url_name)
+                return reverse(f"frontend:{url_name}")
             except Exception:
                 return None
         return None

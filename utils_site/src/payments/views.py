@@ -34,23 +34,6 @@ def _ensure_stripe_sdk_ready():
         and getattr(stripe, "test_helpers", None) is not None
     ):
         return
-
-
-def _create_billing_portal_session(user: User, return_url: str | None = None):
-    """Create a Stripe Billing Portal session for an existing customer."""
-    _ensure_stripe_sdk_ready()
-    if not getattr(stripe, "billing_portal", None):
-        return None
-    if not user.stripe_customer_id:
-        return None
-    try:
-        return stripe.billing_portal.Session.create(
-            customer=user.stripe_customer_id,
-            return_url=return_url,
-        )
-    except Exception:
-        return None
-
     try:
         import importlib
 
@@ -73,6 +56,22 @@ def _create_billing_portal_session(user: User, return_url: str | None = None):
             importlib.import_module(module_name)
     except Exception:
         return
+
+
+def _create_billing_portal_session(user: User, return_url: str | None = None):
+    """Create a Stripe Billing Portal session for an existing customer."""
+    _ensure_stripe_sdk_ready()
+    if not getattr(stripe, "billing_portal", None):
+        return None
+    if not user.stripe_customer_id:
+        return None
+    try:
+        return stripe.billing_portal.Session.create(
+            customer=user.stripe_customer_id,
+            return_url=return_url,
+        )
+    except Exception:
+        return None
 
 
 def _past_due_grace_days() -> int:

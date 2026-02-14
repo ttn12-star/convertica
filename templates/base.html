@@ -16,7 +16,11 @@
     <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
     <meta name="author" content="Convertica">
-    <meta name="robots" content="{% block robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}">
+    {% if request.GET.lang %}
+      <meta name="robots" content="noindex, follow">
+    {% else %}
+      <meta name="robots" content="{% block robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}">
+    {% endif %}
     <meta name="language" content="{{ LANGUAGE_CODE }}">
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#2563eb">
@@ -53,10 +57,6 @@
       {% endif %}
     {% endwith %}
 
-    <!-- Prevent indexing of pages with lang parameter (duplicates) -->
-    {% if request.GET.lang %}
-      <meta name="robots" content="noindex, follow">
-    {% endif %}
     <!-- Preconnect to external domains (for analytics and CDN) -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>

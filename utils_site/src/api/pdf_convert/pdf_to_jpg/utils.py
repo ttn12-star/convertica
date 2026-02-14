@@ -182,87 +182,14 @@ def convert_pdf_to_jpg_sequential(
                             pass
                 images.append(dst_path)
 
-        except ImportError:
-            # Fallback: create placeholder images
-            logger.warning("pdf2image not available, using placeholder images")
-            images = []
-            for page_idx in page_indices:
-                if callable(check_cancelled):
-                    check_cancelled()
-                try:
-                    from PIL import Image, ImageDraw, ImageFont
-
-                    img_size = (
-                        int(8.27 * dpi),
-                        int(11.69 * dpi),
-                    )  # A4 size at given DPI
-                    image = Image.new("RGB", img_size, color="white")
-                    draw = ImageDraw.Draw(image)
-
-                    try:
-                        font = ImageFont.truetype(
-                            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48
-                        )
-                    except OSError:
-                        font = ImageFont.load_default()
-
-                    text = f"Page {page_idx + 1}"
-                    bbox = draw.textbbox((0, 0), text, font=font)
-                    text_width = bbox[2] - bbox[0]
-                    text_height = bbox[3] - bbox[1]
-                    x = (img_size[0] - text_width) // 2
-                    y = (img_size[1] - text_height) // 2
-                    draw.text((x, y), text, fill="black", font=font)
-
-                    image_name = f"page_{page_idx + 1}.jpg"
-                    image_path = os.path.join(tmp_dir, image_name)
-                    image.save(image_path, "JPEG", quality=85)
-                    images.append(image_path)
-
-                except Exception as e:
-                    logger.warning(
-                        f"Failed to create placeholder for page {page_idx + 1}: {e}"
-                    )
-                    continue
+        except ImportError as e:
+            logger.error("pdf2image not available: %s", e)
+            raise ConversionError(
+                "PDF to JPG conversion requires pdf2image and Poppler to be installed."
+            ) from e
         except Exception as e:
             logger.error(f"pdf2image conversion failed: {e}")
-            # Fallback to placeholder images
-            images = []
-            for page_idx in page_indices:
-                if callable(check_cancelled):
-                    check_cancelled()
-                try:
-                    from PIL import Image, ImageDraw, ImageFont
-
-                    img_size = (int(8.27 * dpi), int(11.69 * dpi))
-                    image = Image.new("RGB", img_size, color="white")
-                    draw = ImageDraw.Draw(image)
-
-                    try:
-                        font = ImageFont.truetype(
-                            "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 48
-                        )
-                    except OSError:
-                        font = ImageFont.load_default()
-
-                    text = f"Page {page_idx + 1}"
-                    bbox = draw.textbbox((0, 0), text, font=font)
-                    text_width = bbox[2] - bbox[0]
-                    text_height = bbox[3] - bbox[1]
-                    x = (img_size[0] - text_width) // 2
-                    y = (img_size[1] - text_height) // 2
-                    draw.text((x, y), text, fill="black", font=font)
-
-                    image_name = f"page_{page_idx + 1}.jpg"
-                    image_path = os.path.join(tmp_dir, image_name)
-                    image.save(image_path, "JPEG", quality=85)
-                    images.append(image_path)
-
-                except Exception as e2:
-                    logger.warning(
-                        f"Failed to create placeholder for page {page_idx + 1}: {e2}"
-                    )
-                    continue
+            raise ConversionError(f"Failed to convert PDF pages to images: {e}") from e
 
         if not images:
             raise ConversionError("No pages could be converted to images")

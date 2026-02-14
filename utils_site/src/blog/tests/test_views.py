@@ -71,6 +71,17 @@ class BlogViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Published Article")
 
+    def test_article_detail_relevant_tool_link_uses_frontend_namespace(self):
+        """Relevant tool CTA should render a valid frontend tool URL."""
+        self.published_article.relevant_tool = "pdf_to_word"
+        self.published_article.save(update_fields=["relevant_tool"])
+
+        response = self.client.get(
+            self._get_url_with_lang(f"blog/{self.published_article.slug}/"), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "/en/pdf-to-word/")
+
     def test_article_detail_404_for_draft(self):
         """Test that draft articles return 404."""
         response = self.client.get(

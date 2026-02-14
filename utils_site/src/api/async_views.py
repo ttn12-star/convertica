@@ -40,7 +40,7 @@ from .conversion_limits import (
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
 from .operation_run_middleware_utils import ensure_request_id
 from .spam_protection import validate_spam_protection
-from .task_tokens import create_task_token
+from .task_tokens import create_task_token, verify_task_token
 
 logger = get_logger(__name__)
 
@@ -78,6 +78,56 @@ def cleanup_task_files(task_id: str):
             logger.debug(f"Cleaned up task files: {task_id}")
         except Exception as e:
             logger.warning(f"Failed to cleanup task files {task_id}: {e}")
+
+
+def _extract_task_token(request: HttpRequest) -> str | None:
+    """Extract task token from query params or request headers."""
+    return request.GET.get("task_token") or request.headers.get("X-Task-Token")
+
+
+def _get_request_ip(request: HttpRequest) -> str:
+    """Get best-effort client IP from request headers."""
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    if x_forwarded_for:
+        return x_forwarded_for.split(",")[0].strip()
+    return request.META.get("REMOTE_ADDR", "")
+
+
+def _authorize_task_request(
+    request: HttpRequest, task_id: str, task_token: str | None
+) -> bool:
+    """Authorize task access by token, ownership, or same-IP fallback for anonymous users."""
+    user = getattr(request, "user", None)
+
+    if user is not None and getattr(user, "is_authenticated", False):
+        if task_token and (
+            verify_task_token(task_token, task_id, user.id)
+            or verify_task_token(task_token, task_id, None)
+        ):
+            return True
+        try:
+            from src.users.models import OperationRun
+
+            return OperationRun.objects.filter(task_id=task_id, user=user).exists()
+        except Exception:
+            return False
+
+    if task_token and verify_task_token(task_token, task_id, None):
+        return True
+
+    # Backward-compatible fallback for anonymous users without token:
+    # allow access only from the same source IP that created the task.
+    request_ip = _get_request_ip(request)
+    if not request_ip:
+        return False
+    try:
+        from src.users.models import OperationRun
+
+        return OperationRun.objects.filter(
+            task_id=task_id, remote_addr=request_ip
+        ).exists()
+    except Exception:
+        return False
 
 
 class AsyncConversionAPIView(APIView, ABC):
@@ -124,6 +174,20 @@ class AsyncConversionAPIView(APIView, ABC):
         """
         return {}
 
+    def _is_premium_active(self, request: HttpRequest) -> bool:
+        """Check whether request user has active premium subscription."""
+        return (
+            request.user.is_authenticated
+            and getattr(request.user, "is_premium", False)
+            and request.user.is_subscription_active()
+        )
+
+    def get_max_file_size(self, request: HttpRequest) -> int:
+        """Get max file size dynamically based on user and conversion type."""
+        from .conversion_limits import get_max_file_size_for_user
+
+        return get_max_file_size_for_user(request.user, self.CONVERSION_TYPE)
+
     def _is_json_serializable(self, obj) -> bool:
         """Check if object is JSON serializable."""
         try:
@@ -156,16 +220,33 @@ class AsyncConversionAPIView(APIView, ABC):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        # Check maximum file size
-        if file.size > self.MAX_UPLOAD_SIZE:
+        # Check maximum file size (dynamic based on user premium status)
+        request = getattr(self, "request", None)
+        max_file_size = self.MAX_UPLOAD_SIZE
+        if request is not None:
+            max_file_size = self.get_max_file_size(request)
+
+        if file.size > max_file_size:
             log_file_validation_error(
                 logger,
-                f"File size {file.size} exceeds maximum {self.MAX_UPLOAD_SIZE}",
+                f"File size {file.size} exceeds maximum {max_file_size}",
                 context,
             )
+            payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+            if request is not None and not self._is_premium_active(request):
+                if payments_enabled:
+                    return Response(
+                        {
+                            "error": (
+                                f"File too large ({file.size / (1024 * 1024):.1f} MB). "
+                                f"Upgrade to Premium for larger limits (up to {max_file_size / (1024 * 1024):.0f} MB for this operation)."
+                            )
+                        },
+                        status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                    )
             return Response(
                 {
-                    "error": f"File too large. Maximum size is {self.MAX_UPLOAD_SIZE / (1024 * 1024):.0f} MB."
+                    "error": f"File too large. Maximum size is {max_file_size / (1024 * 1024):.0f} MB."
                 },
                 status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
             )
@@ -251,11 +332,7 @@ class AsyncConversionAPIView(APIView, ABC):
             from django.utils import timezone
             from src.users.models import OperationRun
 
-            is_premium = (
-                request.user.is_authenticated
-                and getattr(request.user, "is_premium", False)
-                and request.user.is_subscription_active()
-            )
+            is_premium = self._is_premium_active(request)
 
             OperationRun.objects.update_or_create(
                 request_id=str(context.get("request_id") or ""),
@@ -325,11 +402,7 @@ class AsyncConversionAPIView(APIView, ABC):
                         "max_pages": max_pages,
                     }
                     payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
-                    if payments_enabled and not (
-                        request.user.is_authenticated
-                        and getattr(request.user, "is_premium", False)
-                        and request.user.is_subscription_active()
-                    ):
+                    if payments_enabled and not self._is_premium_active(request):
                         try:
                             response_data["upgrade_url"] = reverse("frontend:pricing")
                         except Exception:
@@ -391,10 +464,9 @@ class AsyncConversionAPIView(APIView, ABC):
             celery_task = self.get_celery_task()
 
             # Determine if user is premium for queue selection
-            is_premium = (
-                request.user.is_authenticated
-                and getattr(request.user, "is_premium", False)
-                and request.user.is_subscription_active()  # Call the method
+            is_premium = self._is_premium_active(request)
+            use_premium_queue = is_premium and getattr(
+                settings, "PAYMENTS_ENABLED", True
             )
 
             # Add required parameters
@@ -430,9 +502,7 @@ class AsyncConversionAPIView(APIView, ABC):
             result = celery_task.apply_async(
                 kwargs=filtered_kwargs,
                 task_id=task_id,
-                queue=(
-                    "premium" if is_premium else "regular"
-                ),  # Explicit queue selection
+                queue=("premium" if use_premium_queue else "regular"),
             )
 
             logger.info(
@@ -476,6 +546,10 @@ class TaskStatusAPIView(APIView):
     def get(self, request: HttpRequest, task_id: str):
         """Get task status and progress."""
         try:
+            task_token = _extract_task_token(request)
+            if not _authorize_task_request(request, task_id, task_token):
+                return Response({"error": "Unauthorized task access"}, status=403)
+
             result = AsyncResult(task_id)
 
             response_data = {
@@ -539,6 +613,10 @@ class TaskResultAPIView(APIView):
     def get(self, request: HttpRequest, task_id: str):
         """Download the conversion result."""
         try:
+            task_token = _extract_task_token(request)
+            if not _authorize_task_request(request, task_id, task_token):
+                return Response({"error": "Unauthorized task access"}, status=403)
+
             result = AsyncResult(task_id)
 
             if result.status != "SUCCESS":
@@ -598,6 +676,10 @@ class TaskResultAPIView(APIView):
     def delete(self, request: HttpRequest, task_id: str):
         """Clean up task files (called by client after download)."""
         try:
+            task_token = _extract_task_token(request)
+            if not _authorize_task_request(request, task_id, task_token):
+                return Response({"error": "Unauthorized task access"}, status=403)
+
             cleanup_task_files(task_id)
 
             # Forget the Celery result

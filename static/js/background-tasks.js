@@ -30,13 +30,23 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
     }
 
+    function resolveTaskToken(taskId, explicitToken = null) {
+        if (explicitToken) return explicitToken;
+        if (window.getTaskToken) {
+            const mappedToken = window.getTaskToken(taskId);
+            if (mappedToken) return mappedToken;
+        }
+        const task = getTasks().find((t) => t.taskId === taskId);
+        return task?.taskToken || null;
+    }
+
     // ─── Public API (exposed on window) ─────────────────────────────────
 
     /**
      * Add a task to background tracking.
      * Called when premium user clicks "Continue in background".
      */
-    function addBackgroundTask(taskId, conversionType, originalFilename) {
+    function addBackgroundTask(taskId, conversionType, originalFilename, taskToken = null) {
         if (!taskId) return;
         const tasks = getTasks();
         // Avoid duplicates
@@ -47,6 +57,7 @@
             conversionType: conversionType || '',
             originalFilename: originalFilename || '',
             outputFilename: '',
+            taskToken: resolveTaskToken(taskId, taskToken) || '',
             startedAt: Date.now(),
             status: 'processing', // processing | success | error
             error: '',
@@ -124,7 +135,18 @@
 
         for (const task of processing) {
             try {
-                const resp = await fetch(`/api/tasks/${task.taskId}/status/`);
+                const statusHeaders = {};
+                const taskToken = resolveTaskToken(task.taskId, task.taskToken);
+                if (taskToken) {
+                    statusHeaders['X-Task-Token'] = taskToken;
+                    if (task.taskToken !== taskToken) {
+                        task.taskToken = taskToken;
+                        changed = true;
+                    }
+                }
+                const resp = await fetch(`/api/tasks/${task.taskId}/status/`, {
+                    headers: statusHeaders,
+                });
                 if (!resp.ok) continue;
                 const data = await resp.json();
 
@@ -335,9 +357,14 @@
                 // Also cleanup server files
                 const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
                     || document.querySelector('meta[name="csrf-token"]')?.content || '';
+                const cleanupHeaders = { 'X-CSRFToken': csrfToken };
+                const taskToken = resolveTaskToken(btn.dataset.bgRemove);
+                if (taskToken) {
+                    cleanupHeaders['X-Task-Token'] = taskToken;
+                }
                 fetch(`/api/tasks/${btn.dataset.bgRemove}/result/`, {
                     method: 'DELETE',
-                    headers: { 'X-CSRFToken': csrfToken },
+                    headers: cleanupHeaders,
                 }).catch(() => {});
             });
         });
@@ -351,9 +378,14 @@
         try {
             const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
                 || document.querySelector('meta[name="csrf-token"]')?.content || '';
+            const taskToken = resolveTaskToken(taskId);
+            const resultHeaders = { 'X-CSRFToken': csrfToken };
+            if (taskToken) {
+                resultHeaders['X-Task-Token'] = taskToken;
+            }
 
             const resp = await fetch(`/api/tasks/${taskId}/result/`, {
-                headers: { 'X-CSRFToken': csrfToken },
+                headers: resultHeaders,
             });
 
             if (!resp.ok) {
@@ -382,9 +414,13 @@
 
             // Cleanup
             removeBackgroundTask(taskId);
+            const cleanupHeaders = { 'X-CSRFToken': csrfToken };
+            if (taskToken) {
+                cleanupHeaders['X-Task-Token'] = taskToken;
+            }
             fetch(`/api/tasks/${taskId}/result/`, {
                 method: 'DELETE',
-                headers: { 'X-CSRFToken': csrfToken },
+                headers: cleanupHeaders,
             }).catch(() => {});
 
         } catch (err) {

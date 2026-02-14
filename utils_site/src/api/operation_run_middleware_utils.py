@@ -174,7 +174,7 @@ def mark_error(
 
 def mark_http_error(*, request_id: str, error_message: str, duration_ms: int) -> None:
     try:
-        from django.db.models import Case, F, Value, When
+        from django.db.models import Case, CharField, F, TextField, Value, When
         from src.users.models import OperationRun
 
         if not request_id:
@@ -189,10 +189,12 @@ def mark_http_error(*, request_id: str, error_message: str, duration_ms: int) ->
             error_type=Case(
                 When(error_type="", then=Value("HttpError")),
                 default=F("error_type"),
+                output_field=CharField(),
             ),
             error_message=Case(
                 When(error_message="", then=Value(msg)),
                 default=F("error_message"),
+                output_field=TextField(),
             ),
         )
     except Exception:

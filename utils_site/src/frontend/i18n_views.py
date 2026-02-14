@@ -2,6 +2,8 @@
 Custom i18n views to prevent double language prefixes in URLs.
 """
 
+from urllib.parse import urlsplit
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import translate_url
@@ -18,7 +20,8 @@ def remove_all_language_prefixes(path):
     if not path:
         return path
 
-    path = str(path).lstrip("/")
+    parsed = urlsplit(str(path))
+    path = parsed.path.lstrip("/")
     languages = getattr(settings, "LANGUAGES", [])
     supported_codes = [code for code, _ in languages]
 
@@ -36,7 +39,12 @@ def remove_all_language_prefixes(path):
                 removed_any = True
                 break
 
-    return "/" + path if path else "/"
+    cleaned_path = "/" + path if path else "/"
+    if parsed.query:
+        cleaned_path = f"{cleaned_path}?{parsed.query}"
+    if parsed.fragment:
+        cleaned_path = f"{cleaned_path}#{parsed.fragment}"
+    return cleaned_path
 
 
 def set_language(request):

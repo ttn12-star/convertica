@@ -158,7 +158,118 @@ class TaskStatusIgnoredTests(TestCase):
         mock_result.result = {}
         mock_async.return_value = mock_result
 
-        response = self.client.get("/api/tasks/test-id/status/")
+        token = create_task_token("test-id", None)
+        response = self.client.get(
+            "/api/tasks/test-id/status/", HTTP_X_TASK_TOKEN=token
+        )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.get("status"), "REVOKED")
         self.assertTrue(response.data.get("cancelled"))
+
+
+@override_settings(
+    CACHES={
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        }
+    }
+)
+class TaskStatusResultAuthorizationTests(TestCase):
+    def setUp(self):
+        self.client = APIClient()
+        self.user = get_user_model().objects.create_user(
+            email="auth-owner@example.com", password="pass1234"
+        )
+        self.other_user = get_user_model().objects.create_user(
+            email="auth-other@example.com", password="pass1234"
+        )
+        self.user_task_id = "user-task-1"
+        self.anon_task_id = "anon-task-1"
+
+        OperationRun.objects.create(
+            conversion_type="pdf_to_word",
+            status="queued",
+            user=self.user,
+            task_id=self.user_task_id,
+            remote_addr="127.0.0.1",
+        )
+        OperationRun.objects.create(
+            conversion_type="pdf_to_word",
+            status="queued",
+            user=None,
+            task_id=self.anon_task_id,
+            remote_addr="127.0.0.1",
+        )
+
+    @patch("src.api.async_views.AsyncResult")
+    def test_status_anonymous_same_ip_allowed_without_token(self, mock_async):
+        mock_result = MagicMock()
+        mock_result.status = "PENDING"
+        mock_async.return_value = mock_result
+
+        response = self.client.get(f"/api/tasks/{self.anon_task_id}/status/")
+        self.assertEqual(response.status_code, 200)
+
+    @patch("src.api.async_views.AsyncResult")
+    def test_status_anonymous_different_ip_denied_without_token(self, mock_async):
+        mock_result = MagicMock()
+        mock_result.status = "PENDING"
+        mock_async.return_value = mock_result
+
+        response = self.client.get(
+            f"/api/tasks/{self.anon_task_id}/status/",
+            REMOTE_ADDR="10.0.0.1",
+        )
+        self.assertEqual(response.status_code, 403)
+
+    @patch("src.api.async_views.AsyncResult")
+    def test_status_anonymous_with_token_allowed_from_any_ip(self, mock_async):
+        mock_result = MagicMock()
+        mock_result.status = "PENDING"
+        mock_async.return_value = mock_result
+
+        token = create_task_token(self.anon_task_id, None)
+        response = self.client.get(
+            f"/api/tasks/{self.anon_task_id}/status/",
+            REMOTE_ADDR="10.0.0.1",
+            HTTP_X_TASK_TOKEN=token,
+        )
+        self.assertEqual(response.status_code, 200)
+
+    @patch("src.api.async_views.AsyncResult")
+    def test_status_authenticated_owner_allowed_without_token(self, mock_async):
+        mock_result = MagicMock()
+        mock_result.status = "PENDING"
+        mock_async.return_value = mock_result
+
+        self.client.force_login(self.user)
+        response = self.client.get(f"/api/tasks/{self.user_task_id}/status/")
+        self.assertEqual(response.status_code, 200)
+
+    @patch("src.api.async_views.AsyncResult")
+    def test_status_authenticated_other_user_denied_without_token(self, mock_async):
+        mock_result = MagicMock()
+        mock_result.status = "PENDING"
+        mock_async.return_value = mock_result
+
+        self.client.force_login(self.other_user)
+        response = self.client.get(f"/api/tasks/{self.user_task_id}/status/")
+        self.assertEqual(response.status_code, 403)
+
+    def test_result_authenticated_other_user_denied_without_token(self):
+        self.client.force_login(self.other_user)
+        response = self.client.get(f"/api/tasks/{self.user_task_id}/result/")
+        self.assertEqual(response.status_code, 403)
+
+    @patch("src.api.async_views.AsyncResult")
+    def test_result_anonymous_with_token_authorized(self, mock_async):
+        mock_result = MagicMock()
+        mock_result.status = "PENDING"
+        mock_async.return_value = mock_result
+
+        token = create_task_token(self.anon_task_id, None)
+        response = self.client.get(
+            f"/api/tasks/{self.anon_task_id}/result/",
+            HTTP_X_TASK_TOKEN=token,
+        )
+        self.assertEqual(response.status_code, 400)
