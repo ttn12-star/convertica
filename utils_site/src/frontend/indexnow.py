@@ -11,6 +11,8 @@ Supported search engines:
 """
 
 import logging
+import os
+import sys
 
 import requests
 from django.conf import settings
@@ -41,10 +43,20 @@ def submit_urls_to_indexnow(urls: list[str]) -> bool:
     Returns:
         True if submission was successful, False otherwise
     """
+    is_test_run = "test" in sys.argv or bool(os.environ.get("PYTEST_CURRENT_TEST"))
+
     # Check if IndexNow is enabled (skip in DEBUG/test environments)
-    if not getattr(settings, "INDEXNOW_ENABLED", False) or getattr(
-        settings, "DEBUG", False
+    if (
+        not getattr(settings, "INDEXNOW_ENABLED", False)
+        or getattr(settings, "DEBUG", False)
+        or is_test_run
     ):
+        if is_test_run:
+            logger.debug("IndexNow submission skipped in test run")
+        elif getattr(settings, "DEBUG", False):
+            logger.debug("IndexNow submission skipped in DEBUG mode")
+        else:
+            logger.debug("IndexNow is disabled in settings")
         return False
 
     # Get IndexNow key from settings
