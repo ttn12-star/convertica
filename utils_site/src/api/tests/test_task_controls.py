@@ -202,13 +202,13 @@ class TaskStatusResultAuthorizationTests(TestCase):
         )
 
     @patch("src.api.async_views.AsyncResult")
-    def test_status_anonymous_same_ip_allowed_without_token(self, mock_async):
+    def test_status_anonymous_same_ip_denied_without_token(self, mock_async):
         mock_result = MagicMock()
         mock_result.status = "PENDING"
         mock_async.return_value = mock_result
 
         response = self.client.get(f"/api/tasks/{self.anon_task_id}/status/")
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 403)
 
     @patch("src.api.async_views.AsyncResult")
     def test_status_anonymous_different_ip_denied_without_token(self, mock_async):
@@ -273,3 +273,7 @@ class TaskStatusResultAuthorizationTests(TestCase):
             HTTP_X_TASK_TOKEN=token,
         )
         self.assertEqual(response.status_code, 400)
+
+    def test_result_anonymous_without_token_denied(self):
+        response = self.client.get(f"/api/tasks/{self.anon_task_id}/result/")
+        self.assertEqual(response.status_code, 403)

@@ -1,6 +1,8 @@
 """Signals for blog models to automatically notify search engines via IndexNow."""
 
 import logging
+import os
+import sys
 
 from django.conf import settings
 from django.db.models.signals import post_save
@@ -30,9 +32,13 @@ def notify_indexnow_on_article_save(
     if instance.status != "published":
         return
 
-    # Skip if in DEBUG mode (optional - can be removed if you want to test)
+    # Skip if in DEBUG/test mode
+    is_test_run = "test" in sys.argv or bool(os.environ.get("PYTEST_CURRENT_TEST"))
     if getattr(settings, "DEBUG", False):
         logger.debug("IndexNow submission skipped in DEBUG mode")
+        return
+    if is_test_run:
+        logger.debug("IndexNow submission skipped in test run")
         return
 
     try:
