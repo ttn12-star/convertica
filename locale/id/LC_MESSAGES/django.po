@@ -12588,3 +12588,28 @@ msgstr "Menyiapkan unduhan..."
 #: templates/frontend/premium/compare_pdf.html
 msgid "Failed to download report ZIP."
 msgstr "Gagal mengunduh laporan ZIP."
+
+#. Compare PDF export UX wording
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review and export"
+msgstr "Tinjau dan ekspor"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review changes page-by-page. Export report files only if you need to share or archive them."
+msgstr "Tinjau perubahan per halaman. Ekspor file laporan hanya jika Anda perlu membagikan atau mengarsipkannya."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review page-by-page differences in your browser. Export Markdown/JSON and images only if needed."
+msgstr "Tinjau perbedaan per halaman langsung di browser Anda. Ekspor Markdown/JSON dan gambar hanya jika diperlukan."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Export Report"
+msgstr "Ekspor Laporan"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Preparing report export..."
+msgstr "Menyiapkan ekspor laporan..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Failed to export report."
+msgstr "Gagal mengekspor laporan."
