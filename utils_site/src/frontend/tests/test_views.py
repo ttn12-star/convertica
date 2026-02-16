@@ -380,8 +380,15 @@ class FrontendViewsTestCase(TestCase):
             self.assertIn(premium_link, all_tools_dropdown)
             self.assertNotIn(premium_link, mega_convert_dropdown)
 
-    def test_header_has_dedicated_premium_tools_submenu(self):
-        """Header should expose a dedicated Premium Tools submenu with direct links."""
+    def test_header_has_dedicated_premium_tools_submenu_for_premium_user(self):
+        """Premium users should see the dedicated Premium Tools submenu."""
+        premium_user = get_user_model().objects.create_user(
+            email="premium-menu@example.com",
+            password="testpass123",
+            is_premium=True,
+        )
+        self.client.force_login(premium_user)
+
         response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
         self.assertEqual(response.status_code, 200)
         html = response.content.decode("utf-8")
@@ -398,8 +405,24 @@ class FrontendViewsTestCase(TestCase):
         self.assertIn(reverse("frontend:pdf_to_markdown_page"), premium_dropdown)
         self.assertIn(reverse("frontend:compare_pdf_page"), premium_dropdown)
 
-    def test_index_page_shows_premium_tools_menu_when_enabled(self):
-        """Homepage header should include Premium Tools menu when payments are enabled."""
+    def test_header_hides_dedicated_premium_tools_submenu_for_non_premium_user(self):
+        """Anonymous users should not see the dedicated Premium Tools submenu."""
+        response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
+        self.assertEqual(response.status_code, 200)
+
+        html = response.content.decode("utf-8")
+        self.assertNotIn('id="premium-tools-menu-parent"', html)
+        self.assertNotIn('id="premium-tools-menu-dropdown"', html)
+
+    def test_index_page_shows_premium_tools_menu_for_premium_user_when_enabled(self):
+        """Premium users should see Premium Tools menu in the homepage header."""
+        premium_user = get_user_model().objects.create_user(
+            email="premium-index@example.com",
+            password="testpass123",
+            is_premium=True,
+        )
+        self.client.force_login(premium_user)
+
         response = self.client.get(self._get_url_with_lang(""), follow=True)
         self.assertEqual(response.status_code, 200)
 
