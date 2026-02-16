@@ -268,6 +268,68 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Premium", count=None, status_code=200)
 
+    def test_premium_tools_page_has_itemlist_schema(self):
+        """Premium catalog should expose ItemList schema for SEO."""
+        response = self.client.get(
+            self._get_url_with_lang("premium-tools/"), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '"@type": "ItemList"', status_code=200)
+        self.assertContains(
+            response, reverse("frontend:epub_to_pdf_page"), status_code=200
+        )
+        self.assertContains(
+            response, reverse("frontend:pdf_to_markdown_page"), status_code=200
+        )
+        self.assertContains(
+            response, reverse("frontend:compare_pdf_page"), status_code=200
+        )
+
+    def test_premium_landing_pages_have_seo_and_help_blocks(self):
+        """Premium landing pages should include canonical/meta blocks and help sections."""
+        expected_help_titles = {
+            "epub-to-pdf/": "How EPUB to PDF works",
+            "pdf-to-epub/": "How PDF to EPUB works",
+            "pdf-to-markdown/": "How PDF to Markdown works",
+            "compare-pdf/": "How Compare Two PDFs works",
+        }
+
+        for path, marker in expected_help_titles.items():
+            with self.subTest(path=path):
+                response = self.client.get(self._get_url_with_lang(path), follow=False)
+                self.assertEqual(response.status_code, 200)
+                self.assertContains(response, '<link rel="canonical"', status_code=200)
+                self.assertContains(
+                    response, '<meta property="og:title"', status_code=200
+                )
+                self.assertContains(
+                    response, '<meta property="twitter:title"', status_code=200
+                )
+                self.assertContains(
+                    response,
+                    'itemtype="https://schema.org/BreadcrumbList"',
+                    status_code=200,
+                )
+                self.assertContains(response, marker, status_code=200)
+                self.assertContains(response, "FAQ", status_code=200)
+
+    def test_all_tools_header_menu_lists_new_premium_links(self):
+        """All Tools menu should include direct links to new premium tools."""
+        response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response, reverse("frontend:epub_to_pdf_page"), status_code=200
+        )
+        self.assertContains(
+            response, reverse("frontend:pdf_to_epub_page"), status_code=200
+        )
+        self.assertContains(
+            response, reverse("frontend:pdf_to_markdown_page"), status_code=200
+        )
+        self.assertContains(
+            response, reverse("frontend:compare_pdf_page"), status_code=200
+        )
+
     def test_pricing_page_uses_monthly_yearly_and_custom_plans(self):
         """Pricing page should not expose legacy daily plan."""
         response = self.client.get(self._get_url_with_lang("pricing/"), follow=True)

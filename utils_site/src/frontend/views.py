@@ -3866,6 +3866,64 @@ def premium_tools_page(request):
         "page_description": page_description,
         "page_keywords": page_keywords,
         "is_premium_active": _is_premium_active_user(request),
+        "premium_tool_entities": [
+            {
+                "name": _("EPUB to PDF"),
+                "url": reverse("frontend:epub_to_pdf_page"),
+                "description": _(
+                    "Convert EPUB eBooks to PDF with premium rendering quality."
+                ),
+            },
+            {
+                "name": _("PDF to EPUB"),
+                "url": reverse("frontend:pdf_to_epub_page"),
+                "description": _(
+                    "Convert PDF files into EPUB for eReaders and mobile reading apps."
+                ),
+            },
+            {
+                "name": _("PDF to Markdown"),
+                "url": reverse("frontend:pdf_to_markdown_page"),
+                "description": _(
+                    "Extract structured Markdown from PDF documents, including headings and tables."
+                ),
+            },
+            {
+                "name": _("Compare Two PDFs"),
+                "url": reverse("frontend:compare_pdf_page"),
+                "description": _(
+                    "Generate visual diff outputs and detailed comparison reports for PDF revisions."
+                ),
+            },
+            {
+                "name": _("Scanned PDF to Word"),
+                "url": reverse("frontend:ocr_pdf_to_word_page"),
+                "description": _(
+                    "Convert scanned or image-based PDFs to editable DOCX with OCR."
+                ),
+            },
+            {
+                "name": _("Batch Converter Hub"),
+                "url": reverse("frontend:batch_converter_page"),
+                "description": _(
+                    "Run bulk conversions across supported premium workflows."
+                ),
+            },
+            {
+                "name": _("Saved Workflows"),
+                "url": reverse("frontend:premium_workflows_page"),
+                "description": _(
+                    "Store reusable conversion presets and relaunch them in one click."
+                ),
+            },
+            {
+                "name": _("Background Queue Center"),
+                "url": reverse("frontend:background_center_page"),
+                "description": _(
+                    "Track long-running premium tasks and download finished files."
+                ),
+            },
+        ],
     }
     return render(request, "frontend/premium_tools.html", context)
 
@@ -3897,6 +3955,27 @@ def epub_to_pdf_page(request):
         button_class="bg-amber-600 text-white hover:bg-amber-700",
     )
     context["related_tools"] = _get_related_tools("epub_to_pdf")
+    context["faq_title"] = _("EPUB to PDF FAQ")
+    context["page_faq"] = [
+        {
+            "question": _("Is EPUB to PDF available for free users?"),
+            "answer": _(
+                "EPUB to PDF conversion is a premium feature. You can open this page and review the workflow, but conversion requires an active premium subscription."
+            ),
+        },
+        {
+            "question": _("Will chapter structure be preserved in PDF output?"),
+            "answer": _(
+                "Yes, chapter order and text flow are preserved when source EPUB markup is valid. Complex custom styles may be simplified for better compatibility."
+            ),
+        },
+        {
+            "question": _("What file size and page limits apply?"),
+            "answer": _(
+                "Premium limits allow larger source files and significantly more pages than free tools. Exact limits are shown on the pricing page and enforced during upload."
+            ),
+        },
+    ]
     return render(request, "frontend/premium/epub_to_pdf.html", context)
 
 
@@ -3927,6 +4006,27 @@ def pdf_to_epub_page(request):
         button_class="bg-amber-600 text-white hover:bg-amber-700",
     )
     context["related_tools"] = _get_related_tools("pdf_to_epub")
+    context["faq_title"] = _("PDF to EPUB FAQ")
+    context["page_faq"] = [
+        {
+            "question": _("Can scanned PDFs be converted to EPUB?"),
+            "answer": _(
+                "Scanned PDFs should be OCR-processed first. Text-based PDFs produce much cleaner EPUB output with better chapter and paragraph detection."
+            ),
+        },
+        {
+            "question": _("Does the converter keep headings and sections?"),
+            "answer": _(
+                "Yes. The converter maps detected heading hierarchy and paragraphs into EPUB-friendly structure where possible."
+            ),
+        },
+        {
+            "question": _("Will images from PDF appear in EPUB?"),
+            "answer": _(
+                "Most embedded images are carried over. Very complex page layouts can be simplified to maintain reading compatibility in common eReader apps."
+            ),
+        },
+    ]
     return render(request, "frontend/premium/pdf_to_epub.html", context)
 
 
@@ -3959,6 +4059,27 @@ def pdf_to_markdown_page(request):
         button_class="bg-amber-600 text-white hover:bg-amber-700",
     )
     context["related_tools"] = _get_related_tools("pdf_to_markdown")
+    context["faq_title"] = _("PDF to Markdown FAQ")
+    context["page_faq"] = [
+        {
+            "question": _("Does PDF to Markdown preserve headings?"),
+            "answer": _(
+                "Yes. The converter detects heading levels from typography and document structure, then maps them to Markdown heading syntax."
+            ),
+        },
+        {
+            "question": _("Are tables exported as Markdown tables?"),
+            "answer": _(
+                "When table structure is detectable, tables are exported in Markdown-compatible format. Complex nested tables may be simplified."
+            ),
+        },
+        {
+            "question": _("Who can use PDF to Markdown?"),
+            "answer": _(
+                "PDF to Markdown is a premium feature. Free users can browse the page, while conversion endpoints require active premium access."
+            ),
+        },
+    ]
     return render(request, "frontend/premium/pdf_to_markdown.html", context)
 
 
@@ -3983,6 +4104,27 @@ def compare_pdf_page(request):
         "api_url": reverse("compare_pdf_api"),
         "is_premium": _is_premium_active_user(request),
         "related_tools": _get_related_tools("compare_pdf"),
+        "faq_title": _("Compare PDF FAQ"),
+        "page_faq": [
+            {
+                "question": _("What does Compare Two PDFs generate?"),
+                "answer": _(
+                    "The tool creates a ZIP package with visual page-by-page diff images and structured change reports (Markdown and JSON)."
+                ),
+            },
+            {
+                "question": _("Can I tune comparison sensitivity?"),
+                "answer": _(
+                    "Yes. Use the sensitivity slider to control how strictly visual differences are highlighted."
+                ),
+            },
+            {
+                "question": _("Is PDF compare available for free users?"),
+                "answer": _(
+                    "The comparison workflow is a premium feature. Landing pages are public, but API usage requires premium access."
+                ),
+            },
+        ],
     }
     return render(request, "frontend/premium/compare_pdf.html", context)
 
