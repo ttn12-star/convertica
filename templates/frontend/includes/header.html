@@ -737,7 +737,7 @@
             </div>
 
             {% if PAYMENTS_ENABLED %}
-              <div class="relative" id="premium-tools-menu-parent">
+              <div class="relative group" id="premium-tools-menu-parent">
                 <button id="premium-tools-menu-button"
                         aria-haspopup="menu"
                         aria-expanded="false"
@@ -754,7 +754,7 @@
                 </button>
 
                 <div id="premium-tools-menu-dropdown"
-                     class="absolute left-0 top-full mt-2 w-[360px] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition-all duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                     class="absolute right-0 top-full mt-2 w-[360px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                      aria-labelledby="premium-tools-menu-button"
                      role="menu">
                   <div class="p-5 bg-gradient-to-br from-white to-amber-50/40 dark:from-gray-800 dark:to-gray-900">
