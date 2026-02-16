@@ -886,6 +886,32 @@
                         </div>
                       </div>
                     </a>
+                    <div class="px-4 pb-2 space-y-1">
+                      <a href="{% url 'frontend:epub_to_pdf_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors text-xs"
+                         role="menuitem">
+                        <span>{% trans "EPUB to PDF" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:pdf_to_epub_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors text-xs"
+                         role="menuitem">
+                        <span>{% trans "PDF to EPUB" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:pdf_to_markdown_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors text-xs"
+                         role="menuitem">
+                        <span>{% trans "PDF to Markdown" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:compare_pdf_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors text-xs"
+                         role="menuitem">
+                        <span>{% trans "Compare Two PDFs" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                    </div>
                   {% endif %}
 
                   {% if PAYMENTS_ENABLED %}
@@ -1372,6 +1398,28 @@
           </svg>
           {% trans "Premium Tools" %}
         </a>
+        <div class="pl-4 space-y-1 pb-1">
+          <a href="{% url 'frontend:epub_to_pdf_page' %}"
+             class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors text-xs">
+            <span>{% trans "EPUB to PDF" %}</span>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+          </a>
+          <a href="{% url 'frontend:pdf_to_epub_page' %}"
+             class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors text-xs">
+            <span>{% trans "PDF to EPUB" %}</span>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+          </a>
+          <a href="{% url 'frontend:pdf_to_markdown_page' %}"
+             class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors text-xs">
+            <span>{% trans "PDF to Markdown" %}</span>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+          </a>
+          <a href="{% url 'frontend:compare_pdf_page' %}"
+             class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors text-xs">
+            <span>{% trans "Compare Two PDFs" %}</span>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+          </a>
+        </div>
       {% endif %}
       {% if PAYMENTS_ENABLED %}
         {% if user.is_authenticated %}
