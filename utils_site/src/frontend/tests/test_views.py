@@ -287,14 +287,34 @@ class FrontendViewsTestCase(TestCase):
 
     def test_premium_landing_pages_have_seo_and_help_blocks(self):
         """Premium landing pages should include canonical/meta blocks and help sections."""
-        expected_help_titles = {
-            "epub-to-pdf/": "How EPUB to PDF works",
-            "pdf-to-epub/": "How PDF to EPUB works",
-            "pdf-to-markdown/": "How PDF to Markdown works",
-            "compare-pdf/": "How Compare Two PDFs works",
+        expected_markers = {
+            "epub-to-pdf/": [
+                "How EPUB to PDF works",
+                "Convert EPUB to PDF with chapter-aware formatting",
+                "Why use EPUB to PDF in Premium?",
+                "Tips for Better EPUB to PDF Output",
+            ],
+            "pdf-to-epub/": [
+                "How PDF to EPUB works",
+                "Convert PDF to EPUB for eReader-ready publishing",
+                "Why use PDF to EPUB in Premium?",
+                "Tips for Better PDF to EPUB Output",
+            ],
+            "pdf-to-markdown/": [
+                "How PDF to Markdown works",
+                "Convert PDF to Markdown with heading and table structure",
+                "Why use PDF to Markdown in Premium?",
+                "Tips for Better PDF to Markdown Output",
+            ],
+            "compare-pdf/": [
+                "How Compare Two PDFs works",
+                "Compare PDF revisions with visual diffs and change reports",
+                "Why use Compare Two PDFs in Premium?",
+                "Tips for Better PDF Comparison Accuracy",
+            ],
         }
 
-        for path, marker in expected_help_titles.items():
+        for path, markers in expected_markers.items():
             with self.subTest(path=path):
                 response = self.client.get(self._get_url_with_lang(path), follow=False)
                 self.assertEqual(response.status_code, 200)
@@ -310,7 +330,8 @@ class FrontendViewsTestCase(TestCase):
                     'itemtype="https://schema.org/BreadcrumbList"',
                     status_code=200,
                 )
-                self.assertContains(response, marker, status_code=200)
+                for marker in markers:
+                    self.assertContains(response, marker, status_code=200)
                 self.assertContains(response, "FAQ", status_code=200)
 
     def test_all_tools_header_menu_lists_new_premium_links(self):

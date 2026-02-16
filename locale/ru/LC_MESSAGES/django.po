@@ -12389,3 +12389,171 @@ msgstr "Фоновые задачи"
 
 msgid "Background Tasks"
 msgstr "Фоновые задачи"
+
+msgid "Why use EPUB to PDF in Premium?"
+msgstr "Почему стоит использовать EPUB в PDF в Premium?"
+
+msgid "Chapter-aware conversion"
+msgstr "Преобразование с учетом глав"
+
+msgid "EPUB spine order and heading hierarchy are mapped into readable PDF flow."
+msgstr "Порядок разделов EPUB и иерархия заголовков преобразуются в удобную структуру PDF."
+
+msgid "Premium rendering quality"
+msgstr "Премиальное качество рендеринга"
+
+msgid "Designed for long-form eBooks with stable pagination and clean typography."
+msgstr "Оптимизировано для длинных eBook со стабильной пагинацией и аккуратной типографикой."
+
+msgid "Higher limits"
+msgstr "Повышенные лимиты"
+
+msgid "Handle larger files and longer books than standard free converters."
+msgstr "Обрабатывает более крупные файлы и длинные книги по сравнению с бесплатными конвертерами."
+
+msgid "Tips for Better EPUB to PDF Output"
+msgstr "Советы для лучшего результата EPUB в PDF"
+
+msgid "Use EPUB files with semantic headings for cleaner PDF chapter structure."
+msgstr "Используйте EPUB с семантическими заголовками для более чистой структуры глав в PDF."
+
+msgid "Embedded fonts improve consistency between original eBook and PDF output."
+msgstr "Встроенные шрифты повышают совпадение между исходной eBook и PDF."
+
+msgid "If layout looks dense, check source CSS and remove unnecessary overrides."
+msgstr "Если макет выглядит слишком плотным, проверьте исходный CSS и уберите лишние переопределения."
+
+msgid "For very large eBooks, split archives by volume for faster processing."
+msgstr "Для очень больших eBook делите архивы по томам для более быстрой обработки."
+
+msgid "Convert EPUB to PDF with chapter-aware formatting"
+msgstr "Конвертируйте EPUB в PDF с сохранением структуры глав"
+
+msgid "<p><strong>EPUB to PDF</strong> is ideal when you need printable, shareable, and archive-friendly versions of eBooks. The converter keeps chapter order and core text structure so the output remains comfortable to read offline.</p><p>Premium processing is tuned for larger eBook inputs and longer documents, making it suitable for manuals, educational content, and internal documentation.</p><p>For best quality, upload EPUB files with clean markup, consistent heading levels, and embedded fonts.</p>"
+msgstr "<p><strong>EPUB to PDF</strong> подходит, когда нужны печатные, удобные для обмена и архивирования версии электронных книг. Конвертер сохраняет порядок глав и базовую структуру текста, чтобы результат было комфортно читать офлайн.</p><p>Премиум-обработка оптимизирована для больших eBook и длинных документов, поэтому подходит для руководств, учебных материалов и внутренней документации.</p><p>Для лучшего качества загружайте EPUB с чистой разметкой, последовательной иерархией заголовков и встроенными шрифтами.</p>"
+
+msgid "Why use PDF to EPUB in Premium?"
+msgstr "Почему стоит использовать PDF в EPUB в Premium?"
+
+msgid "Reader-friendly reflow"
+msgstr "Адаптивный поток текста для ридеров"
+
+msgid "Transforms fixed PDF pages into EPUB text flow optimized for eReaders."
+msgstr "Преобразует фиксированные страницы PDF в поток EPUB, оптимизированный для eReader."
+
+msgid "Preserved structure"
+msgstr "Сохранение структуры"
+
+msgid "Detects headings and paragraphs to keep document hierarchy in EPUB."
+msgstr "Определяет заголовки и абзацы, чтобы сохранить иерархию документа в EPUB."
+
+msgid "Prepared for long reads"
+msgstr "Подходит для длительного чтения"
+
+msgid "Good fit for books, reports, and archives you want to read on mobile devices."
+msgstr "Хорошо подходит для книг, отчетов и архивов, которые вы читаете на мобильных устройствах."
+
+msgid "Tips for Better PDF to EPUB Output"
+msgstr "Советы для лучшего результата PDF в EPUB"
+
+msgid "Text-based PDFs convert more accurately than image-only scans."
+msgstr "Текстовые PDF конвертируются точнее, чем сканы из изображений."
+
+msgid "Remove decorative pages and heavy watermarks before conversion."
+msgstr "Удалите декоративные страницы и тяжелые водяные знаки перед конвертацией."
+
+msgid "Keep heading hierarchy clear in source PDFs to improve EPUB navigation."
+msgstr "Сохраняйте четкую иерархию заголовков в исходном PDF для лучшей навигации EPUB."
+
+msgid "If needed, run OCR first and then convert OCR output to EPUB."
+msgstr "При необходимости сначала запустите OCR, а затем конвертируйте результат в EPUB."
+
+msgid "Convert PDF to EPUB for eReader-ready publishing"
+msgstr "Конвертируйте PDF в EPUB для публикации, удобной для ридеров"
+
+msgid "<p><strong>PDF to EPUB</strong> helps convert static page layouts into flexible, reader-friendly eBook format. The output is easier to consume on phones, tablets, and dedicated eReaders.</p><p>Premium conversion focuses on preserving headings and paragraph logic so navigation remains predictable across reading apps.</p><p>For the cleanest EPUB result, use text-based PDFs or run OCR first on scanned files.</p>"
+msgstr "<p><strong>PDF to EPUB</strong> помогает преобразовать статичный макет страниц в гибкий и удобный для чтения формат eBook. Такой результат легче читать на телефонах, планшетах и специализированных ридерах.</p><p>Премиум-конвертация ориентирована на сохранение логики заголовков и абзацев, чтобы навигация оставалась предсказуемой в разных приложениях для чтения.</p><p>Для наиболее чистого EPUB используйте текстовые PDF или сначала применяйте OCR для сканированных файлов.</p>"
+
+msgid "Why use PDF to Markdown in Premium?"
+msgstr "Почему стоит использовать PDF в Markdown в Premium?"
+
+msgid "Heading hierarchy extraction"
+msgstr "Извлечение иерархии заголовков"
+
+msgid "Maps visual heading levels into Markdown syntax for clean document structure."
+msgstr "Преобразует визуальные уровни заголовков в синтаксис Markdown для чистой структуры документа."
+
+msgid "Table-aware export"
+msgstr "Экспорт с учетом таблиц"
+
+msgid "Converts detectable tables into Markdown-friendly rows and columns."
+msgstr "Преобразует распознанные таблицы в строки и столбцы формата Markdown."
+
+msgid "Docs and knowledge base ready"
+msgstr "Подходит для документации и баз знаний"
+
+msgid "Useful for wikis, README files, product docs, and migration pipelines."
+msgstr "Подходит для вики, README, продуктовой документации и миграционных пайплайнов."
+
+msgid "Tips for Better PDF to Markdown Output"
+msgstr "Советы для лучшего результата PDF в Markdown"
+
+msgid "Enable heading detection to preserve section structure in exported Markdown."
+msgstr "Включайте распознавание заголовков, чтобы сохранить структуру разделов в Markdown."
+
+msgid "Keep table extraction enabled for reports with tabular data."
+msgstr "Оставляйте извлечение таблиц включенным для отчетов с табличными данными."
+
+msgid "Run OCR first for scanned PDFs to improve text quality in Markdown."
+msgstr "Сначала запускайте OCR для сканированных PDF, чтобы повысить качество текста в Markdown."
+
+msgid "Review output in your editor and adjust edge cases like merged cells."
+msgstr "Проверяйте результат в редакторе и корректируйте сложные случаи, например объединенные ячейки."
+
+msgid "Convert PDF to Markdown with heading and table structure"
+msgstr "Конвертируйте PDF в Markdown с сохранением заголовков и таблиц"
+
+msgid "<p><strong>PDF to Markdown</strong> is useful when you need editable plain-text documentation from PDF sources. It helps transform reports, guides, and manuals into version-control friendly files.</p><p>Premium mode improves structure recovery by detecting headings and converting supported tables into Markdown format for downstream editing.</p><p>This workflow is especially practical for documentation teams moving content from PDFs into internal wikis and repositories.</p>"
+msgstr "<p><strong>PDF to Markdown</strong> полезен, когда нужно получить редактируемую текстовую документацию из PDF-источников. Он помогает превращать отчеты, инструкции и руководства в файлы, удобные для систем контроля версий.</p><p>Премиум-режим улучшает восстановление структуры: определяет заголовки и преобразует поддерживаемые таблицы в формат Markdown для дальнейшего редактирования.</p><p>Этот сценарий особенно практичен для команд документации, которые переносят контент из PDF во внутренние вики и репозитории.</p>"
+
+msgid "Compare PDF revisions with visual diffs and change reports"
+msgstr "Сравнивайте версии PDF с визуальными отличиями и отчетами об изменениях"
+
+msgid "<p><strong>Compare Two PDFs</strong> helps review document revisions using page-level visual overlays and exportable reports. It is useful for contracts, technical documentation, and regulated approval workflows.</p><p>The generated ZIP includes diff images and structured summaries so teams can track what changed without manually checking each page.</p><p>Use the sensitivity slider to control how strict visual detection should be for minor typography shifts versus major layout edits.</p>"
+msgstr "<p><strong>Compare Two PDFs</strong> помогает проверять ревизии документов с помощью визуальных наложений по страницам и экспортируемых отчетов. Это удобно для договоров, технической документации и регламентированных процессов согласования.</p><p>Сформированный ZIP содержит diff-изображения и структурированные сводки, чтобы команда могла отслеживать изменения без ручной проверки каждой страницы.</p><p>Используйте ползунок чувствительности, чтобы выбрать строгость детектирования для мелких типографических правок и крупных изменений макета.</p>"
+
+msgid "Why use Compare Two PDFs in Premium?"
+msgstr "Почему стоит использовать Compare Two PDFs в Premium?"
+
+msgid "Visual page diff"
+msgstr "Визуальный diff по страницам"
+
+msgid "Highlights changed zones on each page for faster manual review."
+msgstr "Подсвечивает измененные области на каждой странице для более быстрого ручного анализа."
+
+msgid "Machine-readable reports"
+msgstr "Машиночитаемые отчеты"
+
+msgid "Exports Markdown and JSON summaries for audit or automation workflows."
+msgstr "Экспортирует сводки в Markdown и JSON для аудита и автоматизации."
+
+msgid "Configurable sensitivity"
+msgstr "Настраиваемая чувствительность"
+
+msgid "Tune change detection to catch subtle edits or focus on large differences."
+msgstr "Настраивайте чувствительность, чтобы ловить мелкие правки или фокусироваться на крупных различиях."
+
+msgid "Tips for Better PDF Comparison Accuracy"
+msgstr "Советы для более точного сравнения PDF"
+
+msgid "Compare files with matching page size and orientation when possible."
+msgstr "По возможности сравнивайте файлы с одинаковым размером и ориентацией страниц."
+
+msgid "Use lower sensitivity for subtle text edits and higher values for layout changes."
+msgstr "Используйте более низкую чувствительность для мелких правок текста и более высокую — для изменений макета."
+
+msgid "Ensure both documents are fully rendered exports, not partial draft snapshots."
+msgstr "Убедитесь, что оба документа — полноценные экспортированные версии, а не частичные черновики."
+
+msgid "Review generated diff images together with report metrics for best decisions."
+msgstr "Для лучших выводов анализируйте diff-изображения вместе с метриками из отчета."

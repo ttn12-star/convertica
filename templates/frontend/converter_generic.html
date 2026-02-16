@@ -25,8 +25,8 @@
       "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
       "offers": {
         "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
+        "price": "{{ offer_price|default:'0' }}",
+        "priceCurrency": "{{ offer_currency|default:'USD' }}",
         "availability": "https://schema.org/InStock"
       },
       "inLanguage": "{{ LANGUAGE_CODE }}",
