@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (apiUrl.includes('jpg-to-pdf')) conversionType = 'jpg_to_pdf';
             else if (apiUrl.includes('epub-to-pdf')) conversionType = 'epub_to_pdf';
             else if (apiUrl.includes('pdf-to-epub')) conversionType = 'pdf_to_epub';
+            else if (apiUrl.includes('pdf-to-markdown')) conversionType = 'pdf_to_markdown';
             else if (apiUrl.includes('compress')) conversionType = 'compress_pdf';
         }
 
@@ -158,7 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'word_to_pdf',
             'pdf_to_excel',
             'epub_to_pdf',
-            'pdf_to_epub'
+            'pdf_to_epub',
+            'pdf_to_markdown'
         ];
         // Operations that use async for large files (> 5MB)
         const mediumOperations = ['pdf_to_jpg', 'compress_pdf'];

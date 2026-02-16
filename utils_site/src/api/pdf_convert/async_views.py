@@ -9,14 +9,35 @@ that are too large/complex to process on our limited server.
 """
 
 from django.conf import settings
+from django.http import HttpRequest
+from rest_framework import status
+from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
 
 from ..async_views import AsyncConversionAPIView
 from ..conversion_limits import MAX_FILE_SIZE_HEAVY, MAX_PDF_PAGES_HEAVY
+from ..premium_utils import is_premium_active
 from .pdf_to_excel.serializers import PDFToExcelSerializer
 from .pdf_to_jpg.serializers import PDFToJPGSerializer
+from .pdf_to_markdown.serializers import PDFToMarkdownSerializer
 from .pdf_to_word.serializers import PDFToWordSerializer
 from .word_to_pdf.serializers import WordToPDFSerializer
+
+
+def _premium_access_error(request: HttpRequest) -> Response:
+    """Build premium-required API response."""
+    payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+    if not request.user.is_authenticated:
+        if payments_enabled:
+            message = "This converter is available for premium users. Please log in and upgrade."
+        else:
+            message = "This converter is currently unavailable."
+    else:
+        if payments_enabled:
+            message = "This converter is available for premium users. Upgrade to Premium to continue."
+        else:
+            message = "This converter is currently unavailable."
+    return Response({"error": message}, status=status.HTTP_403_FORBIDDEN)
 
 
 class PDFToWordAsyncAPIView(AsyncConversionAPIView):
@@ -119,3 +140,35 @@ class PDFToJPGAsyncAPIView(AsyncConversionAPIView):
             "pages": validated_data.get("pages", "all"),
             "dpi": validated_data.get("dpi", 300),
         }
+
+
+class PDFToMarkdownAsyncAPIView(AsyncConversionAPIView):
+    """Async PDF to Markdown conversion.
+
+    Returns task_id immediately for progress polling.
+    """
+
+    MAX_UPLOAD_SIZE = MAX_FILE_SIZE_HEAVY  # 15 MB for heavy operations
+    ALLOWED_CONTENT_TYPES = {"application/pdf", "application/octet-stream"}
+    ALLOWED_EXTENSIONS = {".pdf"}
+    CONVERSION_TYPE = "pdf_to_markdown"
+    FILE_FIELD_NAME = "pdf_file"
+    VALIDATE_PDF_PAGES = True
+    MAX_PDF_PAGES = MAX_PDF_PAGES_HEAVY
+
+    def get_serializer_class(self):
+        return PDFToMarkdownSerializer
+
+    def get_celery_task(self):
+        return generic_conversion_task
+
+    def get_task_kwargs(self, validated_data: dict) -> dict:
+        return {
+            "detect_headings": validated_data.get("detect_headings", True),
+            "preserve_tables": validated_data.get("preserve_tables", True),
+        }
+
+    def post(self, request: HttpRequest):
+        if not is_premium_active(request.user):
+            return _premium_access_error(request)
+        return super().post(request)

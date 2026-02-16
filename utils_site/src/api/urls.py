@@ -11,9 +11,11 @@ from .epub_convert.async_views import EPUBToPDFAsyncAPIView, PDFToEPUBAsyncAPIVi
 from .epub_convert.views import EPUBToPDFAPIView, PDFToEPUBAPIView
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
+from .pdf_compare.views import ComparePDFAPIView
 from .pdf_convert.async_views import (
     PDFToExcelAsyncAPIView,
     PDFToJPGAsyncAPIView,
+    PDFToMarkdownAsyncAPIView,
     PDFToWordAsyncAPIView,
     WordToPDFAsyncAPIView,
 )
@@ -27,6 +29,7 @@ from .pdf_convert.pdf_to_html.batch_views import PDFToHTMLBatchAPIView
 from .pdf_convert.pdf_to_html.views import PDFToHTMLAPIView
 from .pdf_convert.pdf_to_jpg.batch_views import PDFToJPGBatchAPIView
 from .pdf_convert.pdf_to_jpg.views import PDFToJPGAPIView
+from .pdf_convert.pdf_to_markdown.views import PDFToMarkdownAPIView
 from .pdf_convert.pdf_to_ppt.batch_views import PDFToPowerPointBatchAPIView
 from .pdf_convert.pdf_to_ppt.views import PDFToPowerPointAPIView
 from .pdf_convert.pdf_to_word.batch_views import PDFToWordBatchAPIView
@@ -195,6 +198,12 @@ urlpatterns = [
     path("pdf-to-excel/", PDFToExcelAPIView.as_view(), name="pdf_to_excel_api"),
     path("pdf-to-ppt/", PDFToPowerPointAPIView.as_view(), name="pdf_to_ppt_api"),
     path("pdf-to-html/", PDFToHTMLAPIView.as_view(), name="pdf_to_html_api"),
+    path(
+        "pdf-to-markdown/",
+        PDFToMarkdownAPIView.as_view(),
+        name="pdf_to_markdown_api",
+    ),
+    path("compare-pdf/", ComparePDFAPIView.as_view(), name="compare_pdf_api"),
     # Async endpoints (for large files / heavy operations - avoids Cloudflare timeout)
     path(
         "pdf-to-word/async/",
@@ -215,6 +224,11 @@ urlpatterns = [
         "pdf-to-jpg/async/",
         PDFToJPGAsyncAPIView.as_view(),
         name="pdf_to_jpg_async_api",
+    ),
+    path(
+        "pdf-to-markdown/async/",
+        PDFToMarkdownAsyncAPIView.as_view(),
+        name="pdf_to_markdown_async_api",
     ),
     path(
         "epub-to-pdf/async/",

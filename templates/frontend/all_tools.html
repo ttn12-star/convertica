@@ -670,6 +670,46 @@
               </p>
             </a>
 
+            <a href="{% url 'frontend:pdf_to_markdown_page' %}"
+               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7m8-6l2 2 4-4"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "PDF to Markdown" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Premium beta tool for extracting Markdown with heading and table structure." %}
+              </p>
+            </a>
+
+            <a href="{% url 'frontend:compare_pdf_page' %}"
+               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "Compare Two PDFs" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Premium beta tool for visual PDF diffs with downloadable reports." %}
+              </p>
+            </a>
+
             <a href="{% url 'frontend:premium_tools_page' %}"
                class="group relative bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 text-white cursor-pointer">
               <div class="mb-4">

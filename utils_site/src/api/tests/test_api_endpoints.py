@@ -123,7 +123,9 @@ startxref
             "image.pdf", pdf_buf.getvalue(), content_type="application/pdf"
         )
 
-    def _create_test_text_pdf(self) -> SimpleUploadedFile:
+    def _create_test_text_pdf(
+        self, text: str = "Convertica test page for PDF to EPUB"
+    ) -> SimpleUploadedFile:
         from io import BytesIO
 
         from reportlab.lib.pagesizes import letter
@@ -131,7 +133,7 @@ startxref
 
         pdf_buf = BytesIO()
         c = canvas.Canvas(pdf_buf, pagesize=letter)
-        c.drawString(72, 720, "Convertica test page for PDF to EPUB")
+        c.drawString(72, 720, text)
         c.showPage()
         c.save()
         return SimpleUploadedFile(
@@ -204,8 +206,11 @@ startxref
             "/api/word-to-pdf/",
             "/api/epub-to-pdf/",
             "/api/pdf-to-epub/",
+            "/api/pdf-to-markdown/",
+            "/api/compare-pdf/",
             "/api/epub-to-pdf/async/",
             "/api/pdf-to-epub/async/",
+            "/api/pdf-to-markdown/async/",
         ]
 
         for endpoint in endpoints:
@@ -580,3 +585,150 @@ startxref
         self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
         self.assertTrue(response.data.get("task_id"))
         self.assertEqual(response.data.get("status"), "PENDING")
+
+    def test_pdf_to_markdown_requires_premium_and_succeeds_for_premium_user(self):
+        """PDF to Markdown endpoint should enforce premium and convert for premium users."""
+        endpoint = "/api/pdf-to-markdown/"
+
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.13",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        user_model = get_user_model()
+        free_user = user_model.objects.create_user(
+            email="pdfmd-free@example.com",
+            password="pass1234",
+        )
+        self.client.force_authenticate(user=free_user)
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.14",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        premium_user = user_model.objects.create_user(
+            email="pdfmd-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.15",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn("text/markdown", response["Content-Type"])
+        self.assertIn(".md", response.get("Content-Disposition", ""))
+
+    def test_pdf_to_markdown_async_requires_premium_and_starts_task(self):
+        """Async PDF to Markdown endpoint should enforce premium and return task metadata."""
+        endpoint = "/api/pdf-to-markdown/async/"
+
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.16",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        user_model = get_user_model()
+        free_user = user_model.objects.create_user(
+            email="pdfmd-async-free@example.com",
+            password="pass1234",
+        )
+        self.client.force_authenticate(user=free_user)
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.17",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        premium_user = user_model.objects.create_user(
+            email="pdfmd-async-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+        with patch(
+            "src.api.pdf_convert.async_views.generic_conversion_task.apply_async"
+        ) as mock_apply_async:
+            mock_apply_async.return_value = MagicMock(id="pdfmd-async-task")
+            response = self.client.post(
+                endpoint,
+                {"pdf_file": self._create_test_text_pdf()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.18",
+            )
+        self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+        self.assertTrue(response.data.get("task_id"))
+        self.assertEqual(response.data.get("status"), "PENDING")
+
+    def test_compare_pdf_requires_premium_and_returns_zip_for_premium_user(self):
+        """Compare PDF endpoint should enforce premium and return ZIP report."""
+        endpoint = "/api/compare-pdf/"
+
+        response = self.client.post(
+            endpoint,
+            {
+                "pdf_file_1": self._create_test_text_pdf("Version A"),
+                "pdf_file_2": self._create_test_text_pdf("Version B"),
+            },
+            format="multipart",
+            REMOTE_ADDR="127.0.0.19",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        user_model = get_user_model()
+        free_user = user_model.objects.create_user(
+            email="compare-free@example.com",
+            password="pass1234",
+        )
+        self.client.force_authenticate(user=free_user)
+        response = self.client.post(
+            endpoint,
+            {
+                "pdf_file_1": self._create_test_text_pdf("Version A"),
+                "pdf_file_2": self._create_test_text_pdf("Version B"),
+            },
+            format="multipart",
+            REMOTE_ADDR="127.0.0.20",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        premium_user = user_model.objects.create_user(
+            email="compare-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+        response = self.client.post(
+            endpoint,
+            {
+                "pdf_file_1": self._create_test_text_pdf("Version A"),
+                "pdf_file_2": self._create_test_text_pdf("Version B"),
+                "diff_threshold": 30,
+            },
+            format="multipart",
+            REMOTE_ADDR="127.0.0.21",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn("application/zip", response["Content-Type"])
+        self.assertIn(".zip", response.get("Content-Disposition", ""))
+
+        archive_bytes = b"".join(response.streaming_content)
+        archive = zipfile.ZipFile(io.BytesIO(archive_bytes))
+        names = set(archive.namelist())
+        self.assertIn("report.md", names)
+        self.assertIn("report.json", names)
+        self.assertTrue(any(name.endswith("_diff.png") for name in names))
