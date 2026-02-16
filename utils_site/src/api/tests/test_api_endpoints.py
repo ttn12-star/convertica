@@ -2,9 +2,12 @@
 Integration tests for API endpoints.
 """
 
+import io
 import os
 import tempfile
+import zipfile
 
+from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 from rest_framework import status
@@ -119,6 +122,78 @@ startxref
             "image.pdf", pdf_buf.getvalue(), content_type="application/pdf"
         )
 
+    def _create_test_text_pdf(self) -> SimpleUploadedFile:
+        from io import BytesIO
+
+        from reportlab.lib.pagesizes import letter
+        from reportlab.pdfgen import canvas
+
+        pdf_buf = BytesIO()
+        c = canvas.Canvas(pdf_buf, pagesize=letter)
+        c.drawString(72, 720, "Convertica test page for PDF to EPUB")
+        c.showPage()
+        c.save()
+        return SimpleUploadedFile(
+            "text.pdf", pdf_buf.getvalue(), content_type="application/pdf"
+        )
+
+    def _create_test_epub(self) -> SimpleUploadedFile:
+        epub_buffer = io.BytesIO()
+        with zipfile.ZipFile(epub_buffer, "w") as archive:
+            archive.writestr(
+                "mimetype",
+                "application/epub+zip",
+                compress_type=zipfile.ZIP_STORED,
+            )
+            archive.writestr(
+                "META-INF/container.xml",
+                """<?xml version="1.0" encoding="UTF-8"?>
+<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+  <rootfiles>
+    <rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/>
+  </rootfiles>
+</container>
+""",
+                compress_type=zipfile.ZIP_DEFLATED,
+            )
+            archive.writestr(
+                "OEBPS/content.opf",
+                """<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Convertica Test Book</dc:title>
+    <dc:language>en</dc:language>
+  </metadata>
+  <manifest>
+    <item id="chapter1" href="chapter1.xhtml" media-type="application/xhtml+xml"/>
+  </manifest>
+  <spine>
+    <itemref idref="chapter1"/>
+  </spine>
+</package>
+""",
+                compress_type=zipfile.ZIP_DEFLATED,
+            )
+            archive.writestr(
+                "OEBPS/chapter1.xhtml",
+                """<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head><title>Chapter 1</title></head>
+  <body>
+    <h1>Chapter 1</h1>
+    <p>Hello from test EPUB content.</p>
+  </body>
+</html>
+""",
+                compress_type=zipfile.ZIP_DEFLATED,
+            )
+
+        return SimpleUploadedFile(
+            "test.epub",
+            epub_buffer.getvalue(),
+            content_type="application/epub+zip",
+        )
+
     def test_conversion_endpoints_exist(self):
         """Test that all conversion endpoints exist and respond."""
         endpoints = [
@@ -126,6 +201,8 @@ startxref
             "/api/pdf-to-jpg/",
             "/api/jpg-to-pdf/",
             "/api/word-to-pdf/",
+            "/api/epub-to-pdf/",
+            "/api/pdf-to-epub/",
         ]
 
         for endpoint in endpoints:
@@ -318,3 +395,93 @@ startxref
         finally:
             if tmp_dir and os.path.isdir(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
+
+    def test_epub_to_pdf_requires_premium_and_succeeds_for_premium_user(self):
+        """EPUB to PDF endpoint should enforce premium and convert for active premium users."""
+        endpoint = "/api/epub-to-pdf/"
+
+        # Anonymous user
+        response = self.client.post(
+            endpoint,
+            {"epub_file": self._create_test_epub()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.1",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Authenticated non-premium user
+        user_model = get_user_model()
+        free_user = user_model.objects.create_user(
+            email="epub-free@example.com",
+            password="pass1234",
+        )
+        self.client.force_authenticate(user=free_user)
+        response = self.client.post(
+            endpoint,
+            {"epub_file": self._create_test_epub()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.2",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Premium user
+        premium_user = user_model.objects.create_user(
+            email="epub-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+        response = self.client.post(
+            endpoint,
+            {"epub_file": self._create_test_epub()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.3",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response["Content-Type"], "application/pdf")
+        self.assertIn(".pdf", response.get("Content-Disposition", ""))
+
+    def test_pdf_to_epub_requires_premium_and_succeeds_for_premium_user(self):
+        """PDF to EPUB endpoint should enforce premium and convert for active premium users."""
+        endpoint = "/api/pdf-to-epub/"
+
+        # Anonymous user
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.4",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Authenticated non-premium user
+        user_model = get_user_model()
+        free_user = user_model.objects.create_user(
+            email="pdfepub-free@example.com",
+            password="pass1234",
+        )
+        self.client.force_authenticate(user=free_user)
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.5",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Premium user
+        premium_user = user_model.objects.create_user(
+            email="pdfepub-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.6",
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn("application/epub+zip", response["Content-Type"])
+        self.assertIn(".epub", response.get("Content-Disposition", ""))

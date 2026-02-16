@@ -25,6 +25,8 @@ class FrontendViewsTestCase(TestCase):
             "pdf-to-epub/",
             "scanned-pdf-to-word/",
             "batch-converter/",
+            "premium/workflows/",
+            "premium/background-center/",
         )
 
     def _get_url_with_lang(self, path, lang_code=None):

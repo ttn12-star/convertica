@@ -1,0 +1,388 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+  <main class="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-950 text-gray-900 dark:text-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      {% include "frontend/includes/breadcrumbs.html" %}
+
+      <section class="mt-4 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-amber-200 dark:border-amber-800 p-6 sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h1 class="text-2xl sm:text-3xl font-extrabold">{% trans "Background Queue Center" %}</h1>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
+            {% trans "Premium Queue" %}
+          </span>
+        </div>
+
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+          {% trans "Manage conversion tasks sent to background mode: monitor progress, download ready files, and clean up queue history." %}
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+          <div class="rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50/60 dark:bg-blue-900/20 p-4">
+            <p class="text-xs uppercase tracking-wide font-semibold text-blue-700 dark:text-blue-300">{% trans "Active" %}</p>
+            <p class="text-2xl font-extrabold text-blue-800 dark:text-blue-200" id="queueActiveCount">0</p>
+          </div>
+          <div class="rounded-xl border border-green-200 dark:border-green-800 bg-green-50/60 dark:bg-green-900/20 p-4">
+            <p class="text-xs uppercase tracking-wide font-semibold text-green-700 dark:text-green-300">{% trans "Completed" %}</p>
+            <p class="text-2xl font-extrabold text-green-800 dark:text-green-200" id="queueCompletedCount">0</p>
+          </div>
+          <div class="rounded-xl border border-red-200 dark:border-red-800 bg-red-50/60 dark:bg-red-900/20 p-4">
+            <p class="text-xs uppercase tracking-wide font-semibold text-red-700 dark:text-red-300">{% trans "Failed" %}</p>
+            <p class="text-2xl font-extrabold text-red-800 dark:text-red-200" id="queueFailedCount">0</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-5">
+          <button type="button"
+                  id="queueRefreshBtn"
+                  class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+            {% trans "Refresh" %}
+          </button>
+          <button type="button"
+                  id="queueClearCompletedBtn"
+                  class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            {% trans "Clear Completed" %}
+          </button>
+          <button type="button"
+                  id="queueClearAllBtn"
+                  class="inline-flex items-center px-4 py-2 rounded-lg border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 font-semibold text-sm hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+            {% trans "Clear All" %}
+          </button>
+        </div>
+
+        <div id="queueEmptyState"
+             class="text-sm text-gray-600 dark:text-gray-300 py-10 text-center border border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
+          {% trans "No background tasks yet. Start a conversion and choose 'Continue in background'." %}
+        </div>
+
+        <div id="queueList" class="hidden space-y-3"></div>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="{% url 'frontend:batch_converter_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+            {% trans "Open Batch Converter" %}
+          </a>
+          <a href="{% url 'frontend:premium_tools_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            {% trans "Back to Premium Tools" %}
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+  <script nonce="{{ csp_nonce }}">
+    (function() {
+      const storageKey = 'convertica_bg_tasks';
+
+      const queueList = document.getElementById('queueList');
+      const queueEmptyState = document.getElementById('queueEmptyState');
+      const activeCountEl = document.getElementById('queueActiveCount');
+      const completedCountEl = document.getElementById('queueCompletedCount');
+      const failedCountEl = document.getElementById('queueFailedCount');
+
+      const refreshBtn = document.getElementById('queueRefreshBtn');
+      const clearCompletedBtn = document.getElementById('queueClearCompletedBtn');
+      const clearAllBtn = document.getElementById('queueClearAllBtn');
+
+      if (!queueList || !queueEmptyState) {
+        return;
+      }
+
+      function getCsrfToken() {
+        const metaToken = document.querySelector('meta[name="csrf-token"]');
+        if (metaToken && metaToken.content) {
+          return metaToken.content;
+        }
+        const inputToken = document.querySelector('[name=csrfmiddlewaretoken]');
+        return inputToken ? inputToken.value : '';
+      }
+
+      function getTasks() {
+        if (typeof window.getBackgroundTasks === 'function') {
+          return window.getBackgroundTasks() || [];
+        }
+
+        try {
+          const parsed = JSON.parse(localStorage.getItem(storageKey));
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+          return [];
+        }
+      }
+
+      function saveTasks(tasks) {
+        localStorage.setItem(storageKey, JSON.stringify(tasks));
+      }
+
+      function removeTask(taskId) {
+        if (typeof window.removeBackgroundTask === 'function') {
+          window.removeBackgroundTask(taskId);
+          return;
+        }
+        const filtered = getTasks().filter((item) => item.taskId !== taskId);
+        saveTasks(filtered);
+      }
+
+      function resolveTaskToken(task) {
+        if (task && task.taskToken) {
+          return task.taskToken;
+        }
+        if (typeof window.getTaskToken === 'function' && task && task.taskId) {
+          return window.getTaskToken(task.taskId) || '';
+        }
+        return '';
+      }
+
+      function conversionToolUrl(conversionType) {
+        const map = {
+          pdf_to_word: '{% url "frontend:pdf_to_word_page" %}',
+          word_to_pdf: '{% url "frontend:word_to_pdf_page" %}',
+          pdf_to_excel: '{% url "frontend:pdf_to_excel_page" %}',
+          pdf_to_jpg: '{% url "frontend:pdf_to_jpg_page" %}',
+          jpg_to_pdf: '{% url "frontend:jpg_to_pdf_page" %}',
+          epub_to_pdf: '{% url "frontend:epub_to_pdf_page" %}',
+          pdf_to_epub: '{% url "frontend:pdf_to_epub_page" %}',
+          compress_pdf: '{% url "frontend:compress_pdf_page" %}',
+          split_pdf: '{% url "frontend:split_pdf_page" %}',
+          merge_pdf: '{% url "frontend:merge_pdf_page" %}',
+        };
+        return map[conversionType] || '{% url "frontend:batch_converter_page" %}';
+      }
+
+      function statusTag(task) {
+        if (task.status === 'success') {
+          return '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">{% trans "Completed" %}</span>';
+        }
+        if (task.status === 'error') {
+          return '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">{% trans "Failed" %}</span>';
+        }
+        return '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">{% trans "Processing" %}</span>';
+      }
+
+      function formatDate(timestamp) {
+        if (!timestamp) {
+          return '-';
+        }
+        try {
+          return new Date(timestamp).toLocaleString();
+        } catch (_) {
+          return '-';
+        }
+      }
+
+      async function downloadTask(task) {
+        const headers = { 'X-CSRFToken': getCsrfToken() };
+        const taskToken = resolveTaskToken(task);
+        if (taskToken) {
+          headers['X-Task-Token'] = taskToken;
+        }
+
+        const response = await fetch(`/api/tasks/${task.taskId}/result/`, { headers: headers });
+        if (!response.ok) {
+          throw new Error('{% trans "Result is unavailable or expired." %}');
+        }
+
+        const blob = await response.blob();
+        const disposition = response.headers.get('content-disposition') || '';
+        let filename = task.outputFilename || task.originalFilename || 'convertica_file';
+
+        const match = disposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+        if (match && match[1]) {
+          filename = match[1].replace(/["']/g, '');
+        }
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(function() {
+          URL.revokeObjectURL(url);
+        }, 60000);
+
+        removeTask(task.taskId);
+
+        const cleanupHeaders = { 'X-CSRFToken': getCsrfToken() };
+        if (taskToken) {
+          cleanupHeaders['X-Task-Token'] = taskToken;
+        }
+
+        fetch(`/api/tasks/${task.taskId}/result/`, {
+          method: 'DELETE',
+          headers: cleanupHeaders,
+        }).catch(function() {});
+
+        render();
+      }
+
+      function renderCounts(tasks) {
+        const active = tasks.filter((item) => item.status === 'processing').length;
+        const completed = tasks.filter((item) => item.status === 'success').length;
+        const failed = tasks.filter((item) => item.status === 'error').length;
+
+        activeCountEl.textContent = String(active);
+        completedCountEl.textContent = String(completed);
+        failedCountEl.textContent = String(failed);
+      }
+
+      function buildTaskCard(task) {
+        const card = document.createElement('div');
+        card.className = 'rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50/60 dark:bg-gray-950/40 p-4';
+
+        const name = task.outputFilename || task.originalFilename || '{% trans "Unnamed file" %}';
+        const errorText = task.error || '{% trans "Task failed without details." %}';
+
+        const details = `
+          <div class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex flex-wrap gap-x-4 gap-y-1">
+            <span><strong>{% trans "Task ID" %}:</strong> ${task.taskId}</span>
+            <span><strong>{% trans "Started" %}:</strong> ${formatDate(task.startedAt)}</span>
+            <span><strong>{% trans "Type" %}:</strong> ${task.conversionType || '-'}</span>
+          </div>
+        `;
+
+        const errorBlock = task.status === 'error'
+          ? `<p class="text-xs text-red-600 dark:text-red-400 mt-2">${errorText}</p>`
+          : '';
+
+        card.innerHTML = `
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div class="min-w-0">
+              <p class="font-semibold text-sm sm:text-base text-gray-900 dark:text-gray-100 break-all">${name}</p>
+              ${statusTag(task)}
+              ${details}
+              ${errorBlock}
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button type="button"
+                      data-action="open"
+                      data-task-id="${task.taskId}"
+                      class="inline-flex items-center px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-xs font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                {% trans "Open Tool" %}
+              </button>
+              <button type="button"
+                      data-action="download"
+                      data-task-id="${task.taskId}"
+                      class="inline-flex items-center px-3 py-1.5 rounded-lg bg-green-600 hover:bg-green-700 text-white text-xs font-semibold transition-colors ${task.status === 'success' ? '' : 'opacity-40 cursor-not-allowed'}"
+                      ${task.status === 'success' ? '' : 'disabled'}>
+                {% trans "Download" %}
+              </button>
+              <button type="button"
+                      data-action="remove"
+                      data-task-id="${task.taskId}"
+                      class="inline-flex items-center px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 text-xs font-semibold hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+                {% trans "Remove" %}
+              </button>
+            </div>
+          </div>
+        `;
+
+        return card;
+      }
+
+      function render() {
+        const tasks = getTasks();
+        renderCounts(tasks);
+
+        if (!tasks.length) {
+          queueList.classList.add('hidden');
+          queueEmptyState.classList.remove('hidden');
+          queueList.innerHTML = '';
+          return;
+        }
+
+        queueEmptyState.classList.add('hidden');
+        queueList.classList.remove('hidden');
+        queueList.innerHTML = '';
+
+        const sorted = tasks.slice().sort(function(a, b) {
+          return (b.startedAt || 0) - (a.startedAt || 0);
+        });
+
+        sorted.forEach(function(task) {
+          queueList.appendChild(buildTaskCard(task));
+        });
+      }
+
+      queueList.addEventListener('click', async function(event) {
+        const button = event.target.closest('button[data-action][data-task-id]');
+        if (!button) {
+          return;
+        }
+
+        const action = button.dataset.action;
+        const taskId = button.dataset.taskId;
+        const task = getTasks().find((item) => item.taskId === taskId);
+        if (!task) {
+          return;
+        }
+
+        if (action === 'open') {
+          window.location.href = conversionToolUrl(task.conversionType || '');
+          return;
+        }
+
+        if (action === 'remove') {
+          removeTask(taskId);
+          render();
+          return;
+        }
+
+        if (action === 'download') {
+          if (task.status !== 'success') {
+            return;
+          }
+          button.disabled = true;
+          try {
+            await downloadTask(task);
+          } catch (error) {
+            button.disabled = false;
+            window.alert(error && error.message ? error.message : '{% trans "Unable to download file." %}');
+          }
+        }
+      });
+
+      refreshBtn.addEventListener('click', function() {
+        render();
+      });
+
+      clearCompletedBtn.addEventListener('click', function() {
+        const tasks = getTasks();
+        const rest = tasks.filter((item) => item.status !== 'success');
+        saveTasks(rest);
+        render();
+      });
+
+      clearAllBtn.addEventListener('click', function() {
+        if (!window.confirm('{% trans "Clear all queue items?" %}')) {
+          return;
+        }
+        localStorage.removeItem(storageKey);
+        render();
+      });
+
+      window.addEventListener('storage', function(event) {
+        if (event.key === storageKey) {
+          render();
+        }
+      });
+
+      render();
+    })();
+  </script>
+{% endblock %}

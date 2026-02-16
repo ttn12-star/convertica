@@ -7,6 +7,7 @@ from .cancel_task_view import (
     mark_operation_abandoned,
     mark_task_background,
 )
+from .epub_convert.views import EPUBToPDFAPIView, PDFToEPUBAPIView
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
 from .pdf_convert.async_views import (
@@ -80,6 +81,8 @@ urlpatterns = [
     path("excel-to-pdf/", ExcelToPDFAPIView.as_view(), name="excel_to_pdf_api"),
     path("ppt-to-pdf/", PowerPointToPDFAPIView.as_view(), name="ppt_to_pdf_api"),
     path("html-to-pdf/", HTMLToPDFAPIView.as_view(), name="html_to_pdf_api"),
+    path("epub-to-pdf/", EPUBToPDFAPIView.as_view(), name="epub_to_pdf_api"),
+    path("pdf-to-epub/", PDFToEPUBAPIView.as_view(), name="pdf_to_epub_api"),
     path("url-to-pdf/", URLToPDFAPIView.as_view(), name="url_to_pdf_api"),
     # Batch endpoints for premium users
     path(

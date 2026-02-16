@@ -1,0 +1,368 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+  <main class="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-950 text-gray-900 dark:text-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      {% include "frontend/includes/breadcrumbs.html" %}
+
+      <section class="mt-4 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-amber-200 dark:border-amber-800 p-6 sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h1 class="text-2xl sm:text-3xl font-extrabold">{% trans "Saved Workflows" %}</h1>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
+            {% trans "Premium Automation" %}
+          </span>
+        </div>
+
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+          {% trans "Save your frequent conversion setups as presets and reopen the right premium tool in one click." %}
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50/40 dark:bg-amber-900/10 p-5">
+            <h2 class="text-lg font-bold mb-4 text-gray-900 dark:text-gray-100">{% trans "Create Workflow" %}</h2>
+
+            <form id="workflowForm" class="space-y-4">
+              <input type="hidden" id="workflowEditId" value="">
+
+              <div>
+                <label for="workflowName" class="block text-sm font-semibold mb-1">{% trans "Preset Name" %}</label>
+                <input id="workflowName"
+                       type="text"
+                       maxlength="80"
+                       required
+                       class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                       placeholder="{% trans 'Example: Weekly Invoices to PDF' %}">
+              </div>
+
+              <div>
+                <label for="workflowTool" class="block text-sm font-semibold mb-1">{% trans "Tool" %}</label>
+                <select id="workflowTool"
+                        class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                  <option value="{% url 'frontend:batch_converter_page' %}">{% trans "Batch Converter Hub" %}</option>
+                  <option value="{% url 'frontend:ocr_pdf_to_word_page' %}">{% trans "Scanned PDF to Word" %}</option>
+                  <option value="{% url 'frontend:epub_to_pdf_page' %}">{% trans "EPUB to PDF" %}</option>
+                  <option value="{% url 'frontend:pdf_to_epub_page' %}">{% trans "PDF to EPUB" %}</option>
+                  <option value="{% url 'frontend:background_center_page' %}">{% trans "Background Queue Center" %}</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="workflowNotes" class="block text-sm font-semibold mb-1">{% trans "Notes" %}</label>
+                <textarea id="workflowNotes"
+                          rows="3"
+                          maxlength="240"
+                          class="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                          placeholder="{% trans 'Optional reminder: file type, target format, quality settings...' %}"></textarea>
+              </div>
+
+              <div class="flex flex-wrap gap-3">
+                <button type="submit"
+                        id="workflowSaveBtn"
+                        class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+                  {% trans "Save Workflow" %}
+                </button>
+                <button type="button"
+                        id="workflowResetBtn"
+                        class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+                  {% trans "Reset" %}
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="rounded-xl border border-dashed border-amber-300 dark:border-amber-700 p-5 bg-white/70 dark:bg-gray-950/40">
+            <h2 class="text-lg font-bold mb-3 text-gray-900 dark:text-gray-100">{% trans "Quick Presets" %}</h2>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+              {% trans "One-click templates you can add and customize." %}
+            </p>
+
+            <div class="space-y-3" id="quickPresetList">
+              <button type="button"
+                      data-name="{% trans 'eBook to Print PDF' %}"
+                      data-tool="{% url 'frontend:epub_to_pdf_page' %}"
+                      data-notes="{% trans 'Upload EPUB, convert to PDF, review margins for print.' %}"
+                      class="w-full text-left rounded-lg border border-amber-200 dark:border-amber-800 p-3 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
+                <span class="block font-semibold text-sm">{% trans "eBook to Print PDF" %}</span>
+                <span class="block text-xs text-gray-600 dark:text-gray-300">{% trans "EPUB to PDF" %}</span>
+              </button>
+
+              <button type="button"
+                      data-name="{% trans 'Archive to EPUB' %}"
+                      data-tool="{% url 'frontend:pdf_to_epub_page' %}"
+                      data-notes="{% trans 'Convert text-based PDFs to EPUB for reader apps.' %}"
+                      class="w-full text-left rounded-lg border border-amber-200 dark:border-amber-800 p-3 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
+                <span class="block font-semibold text-sm">{% trans "Archive to EPUB" %}</span>
+                <span class="block text-xs text-gray-600 dark:text-gray-300">{% trans "PDF to EPUB" %}</span>
+              </button>
+
+              <button type="button"
+                      data-name="{% trans 'Bulk Office Export' %}"
+                      data-tool="{% url 'frontend:batch_converter_page' %}"
+                      data-notes="{% trans 'Use batch converter for multi-file office exports.' %}"
+                      class="w-full text-left rounded-lg border border-amber-200 dark:border-amber-800 p-3 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
+                <span class="block font-semibold text-sm">{% trans "Bulk Office Export" %}</span>
+                <span class="block text-xs text-gray-600 dark:text-gray-300">{% trans "Batch Converter Hub" %}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 rounded-xl border border-gray-200 dark:border-gray-800 p-5 bg-gray-50/70 dark:bg-gray-950/40">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-gray-100">{% trans "Your Workflows" %}</h2>
+            <button type="button"
+                    id="workflowClearBtn"
+                    class="text-sm font-semibold text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors">
+              {% trans "Clear All" %}
+            </button>
+          </div>
+
+          <div id="workflowsEmptyState" class="text-sm text-gray-600 dark:text-gray-300 py-8 text-center border border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
+            {% trans "No saved workflows yet. Create your first preset above." %}
+          </div>
+
+          <div id="workflowsList" class="space-y-3 hidden"></div>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="{% url 'frontend:premium_tools_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+            {% trans "Back to Premium Tools" %}
+          </a>
+          <a href="{% url 'frontend:all_tools_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            {% trans "All Tools" %}
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+  <script nonce="{{ csp_nonce }}">
+    (function() {
+      const storageKey = 'convertica_premium_workflows_v1';
+      const form = document.getElementById('workflowForm');
+      const workflowsList = document.getElementById('workflowsList');
+      const emptyState = document.getElementById('workflowsEmptyState');
+      const editIdInput = document.getElementById('workflowEditId');
+      const nameInput = document.getElementById('workflowName');
+      const toolInput = document.getElementById('workflowTool');
+      const notesInput = document.getElementById('workflowNotes');
+      const saveBtn = document.getElementById('workflowSaveBtn');
+      const resetBtn = document.getElementById('workflowResetBtn');
+      const clearBtn = document.getElementById('workflowClearBtn');
+      const quickPresetList = document.getElementById('quickPresetList');
+
+      if (!form || !workflowsList || !emptyState || !nameInput || !toolInput || !notesInput) {
+        return;
+      }
+
+      function getWorkflows() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(storageKey));
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+          return [];
+        }
+      }
+
+      function saveWorkflows(workflows) {
+        localStorage.setItem(storageKey, JSON.stringify(workflows));
+      }
+
+      function toolLabelByUrl(url) {
+        const option = toolInput.querySelector(`option[value="${url}"]`);
+        return option ? option.textContent.trim() : url;
+      }
+
+      function resetForm() {
+        editIdInput.value = '';
+        nameInput.value = '';
+        notesInput.value = '';
+        if (toolInput.options.length > 0) {
+          toolInput.selectedIndex = 0;
+        }
+        saveBtn.textContent = '{% trans "Save Workflow" %}';
+      }
+
+      function setFormForEdit(workflow) {
+        editIdInput.value = workflow.id;
+        nameInput.value = workflow.name;
+        toolInput.value = workflow.toolUrl;
+        notesInput.value = workflow.notes || '';
+        saveBtn.textContent = '{% trans "Update Workflow" %}';
+        nameInput.focus();
+      }
+
+      function renderWorkflows() {
+        const workflows = getWorkflows();
+
+        if (!workflows.length) {
+          workflowsList.classList.add('hidden');
+          emptyState.classList.remove('hidden');
+          workflowsList.innerHTML = '';
+          return;
+        }
+
+        workflowsList.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+
+        workflowsList.innerHTML = '';
+        workflows.forEach((workflow) => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 p-4';
+
+          const topRow = document.createElement('div');
+          topRow.className = 'flex flex-wrap items-start justify-between gap-3';
+
+          const info = document.createElement('div');
+          info.className = 'min-w-0';
+
+          const title = document.createElement('h3');
+          title.className = 'font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base';
+          title.textContent = workflow.name;
+
+          const tool = document.createElement('p');
+          tool.className = 'text-xs text-gray-600 dark:text-gray-300 mt-0.5';
+          tool.textContent = toolLabelByUrl(workflow.toolUrl);
+
+          info.appendChild(title);
+          info.appendChild(tool);
+
+          if (workflow.notes) {
+            const notes = document.createElement('p');
+            notes.className = 'text-xs text-gray-500 dark:text-gray-400 mt-2';
+            notes.textContent = workflow.notes;
+            info.appendChild(notes);
+          }
+
+          const actions = document.createElement('div');
+          actions.className = 'flex flex-wrap gap-2';
+
+          const runBtn = document.createElement('button');
+          runBtn.type = 'button';
+          runBtn.className = 'inline-flex items-center px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold transition-colors';
+          runBtn.textContent = '{% trans "Open Tool" %}';
+          runBtn.addEventListener('click', function() {
+            window.location.href = workflow.toolUrl;
+          });
+
+          const editBtn = document.createElement('button');
+          editBtn.type = 'button';
+          editBtn.className = 'inline-flex items-center px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 text-xs font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors';
+          editBtn.textContent = '{% trans "Edit" %}';
+          editBtn.addEventListener('click', function() {
+            setFormForEdit(workflow);
+          });
+
+          const deleteBtn = document.createElement('button');
+          deleteBtn.type = 'button';
+          deleteBtn.className = 'inline-flex items-center px-3 py-1.5 rounded-lg border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 text-xs font-semibold hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors';
+          deleteBtn.textContent = '{% trans "Delete" %}';
+          deleteBtn.addEventListener('click', function() {
+            const filtered = getWorkflows().filter((item) => item.id !== workflow.id);
+            saveWorkflows(filtered);
+            if (editIdInput.value === workflow.id) {
+              resetForm();
+            }
+            renderWorkflows();
+          });
+
+          actions.appendChild(runBtn);
+          actions.appendChild(editBtn);
+          actions.appendChild(deleteBtn);
+
+          topRow.appendChild(info);
+          topRow.appendChild(actions);
+          wrapper.appendChild(topRow);
+          workflowsList.appendChild(wrapper);
+        });
+      }
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = nameInput.value.trim();
+        const toolUrl = toolInput.value;
+        const notes = notesInput.value.trim();
+
+        if (!name || !toolUrl) {
+          return;
+        }
+
+        const workflows = getWorkflows();
+        const editingId = editIdInput.value;
+
+        if (editingId) {
+          const updated = workflows.map((item) => {
+            if (item.id === editingId) {
+              return {
+                ...item,
+                name,
+                toolUrl,
+                notes,
+              };
+            }
+            return item;
+          });
+          saveWorkflows(updated);
+        } else {
+          workflows.unshift({
+            id: String(Date.now()),
+            name,
+            toolUrl,
+            notes,
+            createdAt: Date.now(),
+          });
+          saveWorkflows(workflows.slice(0, 40));
+        }
+
+        resetForm();
+        renderWorkflows();
+      });
+
+      resetBtn.addEventListener('click', function() {
+        resetForm();
+      });
+
+      clearBtn.addEventListener('click', function() {
+        const workflows = getWorkflows();
+        if (!workflows.length) {
+          return;
+        }
+        if (!window.confirm('{% trans "Delete all saved workflows?" %}')) {
+          return;
+        }
+        localStorage.removeItem(storageKey);
+        resetForm();
+        renderWorkflows();
+      });
+
+      quickPresetList.addEventListener('click', function(event) {
+        const button = event.target.closest('button[data-name][data-tool]');
+        if (!button) {
+          return;
+        }
+        nameInput.value = button.dataset.name || '';
+        toolInput.value = button.dataset.tool || toolInput.value;
+        notesInput.value = button.dataset.notes || '';
+        nameInput.focus();
+      });
+
+      renderWorkflows();
+    })();
+  </script>
+{% endblock %}

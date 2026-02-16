@@ -146,6 +146,20 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>',
             "gradient": "from-violet-500 to-violet-600",
         },
+        "epub_to_pdf": {
+            "name": _("EPUB to PDF"),
+            "url": "frontend:epub_to_pdf_page",
+            "description": _("Convert EPUB eBooks to PDF"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 12h10M7 17h6"/>',
+            "gradient": "from-amber-500 to-orange-600",
+        },
+        "pdf_to_epub": {
+            "name": _("PDF to EPUB"),
+            "url": "frontend:pdf_to_epub_page",
+            "description": _("Convert PDFs to EPUB eBooks"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h12M4 12h8m-8 5h12m4-10v10a2 2 0 01-2 2h-1"/>',
+            "gradient": "from-amber-500 to-orange-600",
+        },
     }
 
     # Define related tools for each tool
@@ -169,6 +183,8 @@ def _get_related_tools(current_tool):
         "html_to_pdf": ["merge_pdf", "compress_pdf", "protect_pdf"],
         "pdf_to_ppt": ["merge_pdf", "compress_pdf", "split_pdf"],
         "pdf_to_html": ["pdf_to_word", "compress_pdf", "split_pdf"],
+        "epub_to_pdf": ["pdf_to_epub", "pdf_to_word", "pdf_to_jpg"],
+        "pdf_to_epub": ["epub_to_pdf", "pdf_to_word", "compress_pdf"],
         "compress_pdf": ["merge_pdf", "split_pdf", "protect_pdf"],
         "protect_pdf": ["unlock_pdf", "compress_pdf", "merge_pdf"],
         "unlock_pdf": ["protect_pdf", "compress_pdf", "merge_pdf"],
@@ -3839,41 +3855,65 @@ def premium_tools_page(request):
 
 @anonymous_cache_page(60 * 60)
 def epub_to_pdf_page(request):
-    """Premium EPUB to PDF page (beta)."""
+    """Premium EPUB to PDF conversion page."""
     if not _is_premium_active_user(request):
         return _redirect_for_premium_access(request)
 
-    context = {
-        "page_title": _("EPUB to PDF (Premium Beta) - Convertica"),
-        "page_description": _(
-            "Premium EPUB to PDF conversion with early access. "
-            "This feature is currently in beta rollout for premium users."
+    context = _get_converter_context(
+        request,
+        page_title=_("EPUB to PDF Converter (Premium) - Convertica"),
+        page_description=_(
+            "Convert EPUB eBooks to PDF format with premium quality rendering. "
+            "Preserve text flow and structure for printing and sharing."
         ),
-        "page_keywords": (
+        page_keywords=(
             "epub to pdf premium, epub converter, ebook to pdf, "
-            "epub conversion beta, convert epub online"
+            "convert epub online, epub book to pdf"
         ),
-    }
+        page_subtitle=_("Convert EPUB books to printable PDF documents"),
+        header_text=_("EPUB to PDF Converter"),
+        file_input_name="epub_file",
+        file_accept=".epub",
+        api_url_name="epub_to_pdf_api",
+        replace_regex=r"\.epub$",
+        replace_to=".pdf",
+        button_text=_("Convert EPUB to PDF"),
+        select_file_message=_("Please select an EPUB file."),
+        button_class="bg-amber-600 text-white hover:bg-amber-700",
+    )
+    context["related_tools"] = _get_related_tools("epub_to_pdf")
     return render(request, "frontend/premium/epub_to_pdf.html", context)
 
 
 @anonymous_cache_page(60 * 60)
 def pdf_to_epub_page(request):
-    """Premium PDF to EPUB page (beta)."""
+    """Premium PDF to EPUB conversion page."""
     if not _is_premium_active_user(request):
         return _redirect_for_premium_access(request)
 
-    context = {
-        "page_title": _("PDF to EPUB (Premium Beta) - Convertica"),
-        "page_description": _(
-            "Premium PDF to EPUB conversion with early access. "
-            "This feature is currently in beta rollout for premium users."
+    context = _get_converter_context(
+        request,
+        page_title=_("PDF to EPUB Converter (Premium) - Convertica"),
+        page_description=_(
+            "Convert PDF documents to EPUB format for eReaders with premium tools. "
+            "Extract text and build chapter-based EPUB output."
         ),
-        "page_keywords": (
+        page_keywords=(
             "pdf to epub premium, pdf converter to ebook, "
-            "pdf epub conversion beta, convert pdf to epub online"
+            "convert pdf to epub online, pdf to ebook"
         ),
-    }
+        page_subtitle=_("Convert PDF files to eReader-friendly EPUB format"),
+        header_text=_("PDF to EPUB Converter"),
+        file_input_name="pdf_file",
+        file_accept=".pdf",
+        api_url_name="pdf_to_epub_api",
+        replace_regex=r"\.pdf$",
+        replace_to=".epub",
+        button_text=_("Convert PDF to EPUB"),
+        select_file_message=_("Please select a PDF file."),
+        button_class="bg-amber-600 text-white hover:bg-amber-700",
+    )
+    context["related_tools"] = _get_related_tools("pdf_to_epub")
     return render(request, "frontend/premium/pdf_to_epub.html", context)
 
 
@@ -3948,6 +3988,46 @@ def batch_converter_page(request):
         ],
     }
     return render(request, "frontend/premium/batch_converter.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def premium_workflows_page(request):
+    """Premium saved workflows page."""
+    if not _is_premium_active_user(request):
+        return _redirect_for_premium_access(request)
+
+    context = {
+        "page_title": _("Saved Workflows (Premium) - Convertica"),
+        "page_description": _(
+            "Create and reuse premium conversion presets with preconfigured "
+            "parameters for frequent tasks."
+        ),
+        "page_keywords": (
+            "premium workflows, conversion presets, saved converter settings, "
+            "ocr workflow presets, pdf automation"
+        ),
+    }
+    return render(request, "frontend/premium/workflows.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def background_center_page(request):
+    """Premium background queue center page."""
+    if not _is_premium_active_user(request):
+        return _redirect_for_premium_access(request)
+
+    context = {
+        "page_title": _("Background Queue Center (Premium) - Convertica"),
+        "page_description": _(
+            "Monitor premium background conversions, download completed files, "
+            "and manage queued tasks from one dashboard."
+        ),
+        "page_keywords": (
+            "background queue premium, conversion queue dashboard, "
+            "background pdf tasks, async conversion monitor"
+        ),
+    }
+    return render(request, "frontend/premium/background_center.html", context)
 
 
 @vary_on_cookie

@@ -28,6 +28,16 @@ urlpatterns = [
         name="ocr_pdf_to_word_page",
     ),
     path("batch-converter/", views.batch_converter_page, name="batch_converter_page"),
+    path(
+        "premium/workflows/",
+        views.premium_workflows_page,
+        name="premium_workflows_page",
+    ),
+    path(
+        "premium/background-center/",
+        views.background_center_page,
+        name="background_center_page",
+    ),
     # PDF Edit pages
     path("pdf-edit/rotate/", views.rotate_pdf_page, name="rotate_pdf_page"),
     path(
