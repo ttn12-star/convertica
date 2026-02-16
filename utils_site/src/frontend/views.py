@@ -3877,6 +3877,79 @@ def pdf_to_epub_page(request):
     return render(request, "frontend/premium/pdf_to_epub.html", context)
 
 
+@anonymous_cache_page(60 * 60)
+def ocr_pdf_to_word_page(request):
+    """Premium OCR flow for scanned PDF to Word."""
+    if not _is_premium_active_user(request):
+        return _redirect_for_premium_access(request)
+
+    context = {
+        "page_title": _("Scanned PDF to Word (OCR) - Convertica"),
+        "page_description": _(
+            "Convert scanned PDFs and image-based documents to editable Word "
+            "files with premium OCR tools."
+        ),
+        "page_keywords": (
+            "scanned pdf to word, ocr pdf to word, premium ocr converter, "
+            "image pdf to editable docx, extract text from scanned pdf"
+        ),
+        "ocr_converter_url": f"{reverse('frontend:pdf_to_word_page')}?ocr=1",
+    }
+    return render(request, "frontend/premium/ocr_pdf_to_word.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def batch_converter_page(request):
+    """Premium batch conversion hub page."""
+    if not _is_premium_active_user(request):
+        return _redirect_for_premium_access(request)
+
+    context = {
+        "page_title": _("Batch Converter Hub (Premium) - Convertica"),
+        "page_description": _(
+            "Convert multiple files in one run with premium batch conversion "
+            "workflows and background processing support."
+        ),
+        "page_keywords": (
+            "batch pdf converter premium, convert multiple files to pdf, "
+            "bulk document conversion, premium batch tools"
+        ),
+        "batch_tools": [
+            {
+                "name": _("PDF to Word"),
+                "description": _("Convert multiple PDFs to editable DOCX in one run."),
+                "url": reverse("frontend:pdf_to_word_page"),
+            },
+            {
+                "name": _("Word to PDF"),
+                "description": _("Export multiple DOC or DOCX files to PDF."),
+                "url": reverse("frontend:word_to_pdf_page"),
+            },
+            {
+                "name": _("PDF to JPG"),
+                "description": _("Generate image sets from multiple PDF files."),
+                "url": reverse("frontend:pdf_to_jpg_page"),
+            },
+            {
+                "name": _("JPG to PDF"),
+                "description": _("Bundle multiple images into one or more PDFs."),
+                "url": reverse("frontend:jpg_to_pdf_page"),
+            },
+            {
+                "name": _("Compress PDF"),
+                "description": _("Reduce size for multiple PDFs in one operation."),
+                "url": reverse("frontend:compress_pdf_page"),
+            },
+            {
+                "name": _("Add Watermark"),
+                "description": _("Apply one watermark preset across multiple PDFs."),
+                "url": reverse("frontend:add_watermark_page"),
+            },
+        ],
+    }
+    return render(request, "frontend/premium/batch_converter.html", context)
+
+
 @vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def about_page(request):

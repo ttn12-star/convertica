@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+  <main class="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-950 text-gray-900 dark:text-gray-100">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      {% include "frontend/includes/breadcrumbs.html" %}
+
+      <section class="mt-4 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-amber-200 dark:border-amber-800 p-6 sm:p-8">
+        <div class="flex items-center justify-between gap-3 mb-5">
+          <h1 class="text-2xl sm:text-3xl font-extrabold">{% trans "Scanned PDF to Word" %}</h1>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
+            {% trans "Premium OCR" %}
+          </span>
+        </div>
+
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+          {% trans "This premium workflow opens PDF to Word with OCR pre-enabled, so you can process scanned pages and image-based PDFs into editable text faster." %}
+        </p>
+
+        <div class="rounded-xl border border-dashed border-amber-300 dark:border-amber-700 p-5 bg-amber-50/50 dark:bg-amber-900/10">
+          <h2 class="text-lg font-bold mb-2">{% trans "Best for" %}</h2>
+          <p class="text-sm text-gray-700 dark:text-gray-300">
+            {% trans "Scanned contracts, photo-based documents, and PDFs where text cannot be selected." %}
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="{{ ocr_converter_url }}"
+             class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+            {% trans "Open OCR Converter" %}
+          </a>
+          <a href="{% url 'frontend:premium_tools_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            {% trans "Back to Premium Tools" %}
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+{% endblock %}

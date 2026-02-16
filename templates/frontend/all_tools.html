@@ -550,6 +550,46 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <a href="{% url 'frontend:ocr_pdf_to_word_page' %}"
+               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553 2.276A2 2 0 0121 14.066v3.868a2 2 0 01-1.447 1.79L15 22m0-12v12m0-12L9 7m6 3L9 13m0-6L4.447 4.724A2 2 0 003 6.514v3.868a2 2 0 001.447 1.79L9 14m0-7v7"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "Scanned PDF to Word" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Premium OCR workflow for converting image-based PDFs into editable DOCX." %}
+              </p>
+            </a>
+
+            <a href="{% url 'frontend:batch_converter_page' %}"
+               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "Batch Converter Hub" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Run multi-file conversions across supported premium tools." %}
+              </p>
+            </a>
+
             <a href="{% url 'frontend:epub_to_pdf_page' %}"
                class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
               <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">

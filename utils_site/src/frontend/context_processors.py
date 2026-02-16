@@ -394,6 +394,8 @@ def breadcrumbs(request):
             # Premium tools
             "frontend:epub_to_pdf_page": _("EPUB to PDF"),
             "frontend:pdf_to_epub_page": _("PDF to EPUB"),
+            "frontend:ocr_pdf_to_word_page": _("Scanned PDF to Word"),
+            "frontend:batch_converter_page": _("Batch Converter Hub"),
         }
 
         if view_name in breadcrumb_names:
