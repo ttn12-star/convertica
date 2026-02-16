@@ -140,6 +140,39 @@ startxref
             "text.pdf", pdf_buf.getvalue(), content_type="application/pdf"
         )
 
+    def _create_encrypted_test_pdf(
+        self, text: str = "Convertica encrypted PDF"
+    ) -> SimpleUploadedFile:
+        """Create password-protected PDF for API error handling tests."""
+        try:
+            from pypdf import PdfReader, PdfWriter
+        except ImportError:
+            try:
+                from PyPDF2 import PdfReader, PdfWriter
+            except ImportError as exc:
+                raise RuntimeError(
+                    "Neither pypdf nor PyPDF2 is available for encrypted PDF tests."
+                ) from exc
+
+        source_pdf = self._create_test_text_pdf(text)
+        source_buffer = io.BytesIO(source_pdf.read())
+
+        reader = PdfReader(source_buffer)
+        writer = PdfWriter()
+        for page in reader.pages:
+            writer.add_page(page)
+        writer.encrypt("secret123")
+
+        encrypted_buffer = io.BytesIO()
+        writer.write(encrypted_buffer)
+        encrypted_buffer.seek(0)
+
+        return SimpleUploadedFile(
+            "encrypted.pdf",
+            encrypted_buffer.getvalue(),
+            content_type="application/pdf",
+        )
+
     def _create_test_epub(self) -> SimpleUploadedFile:
         epub_buffer = io.BytesIO()
         with zipfile.ZipFile(epub_buffer, "w") as archive:
@@ -732,3 +765,32 @@ startxref
         self.assertIn("report.md", names)
         self.assertIn("report.json", names)
         self.assertTrue(any(name.endswith("_diff.png") for name in names))
+
+    def test_compare_pdf_returns_400_for_password_protected_input(self):
+        """Compare PDF endpoint should reject encrypted PDFs with clear error."""
+        endpoint = "/api/compare-pdf/"
+
+        premium_user = get_user_model().objects.create_user(
+            email="compare-encrypted-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+
+        try:
+            encrypted_pdf = self._create_encrypted_test_pdf()
+        except RuntimeError as exc:
+            self.skipTest(str(exc))
+
+        response = self.client.post(
+            endpoint,
+            {
+                "pdf_file_1": encrypted_pdf,
+                "pdf_file_2": self._create_test_text_pdf("Reference content"),
+            },
+            format="multipart",
+            REMOTE_ADDR="127.0.0.22",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("password", str(response.data.get("error", "")).lower())

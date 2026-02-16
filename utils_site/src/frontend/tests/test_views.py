@@ -6,7 +6,7 @@ from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import activate
@@ -327,6 +327,28 @@ class FrontendViewsTestCase(TestCase):
             response, reverse("frontend:pdf_to_markdown_page"), status_code=200
         )
         self.assertContains(
+            response, reverse("frontend:compare_pdf_page"), status_code=200
+        )
+
+    @override_settings(PAYMENTS_ENABLED=False)
+    def test_all_tools_hides_premium_links_when_payments_disabled(self):
+        """Premium links should be hidden from menus when payments are disabled."""
+        response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
+        self.assertEqual(response.status_code, 200)
+
+        self.assertNotContains(
+            response, reverse("frontend:premium_tools_page"), status_code=200
+        )
+        self.assertNotContains(
+            response, reverse("frontend:epub_to_pdf_page"), status_code=200
+        )
+        self.assertNotContains(
+            response, reverse("frontend:pdf_to_epub_page"), status_code=200
+        )
+        self.assertNotContains(
+            response, reverse("frontend:pdf_to_markdown_page"), status_code=200
+        )
+        self.assertNotContains(
             response, reverse("frontend:compare_pdf_page"), status_code=200
         )
 
