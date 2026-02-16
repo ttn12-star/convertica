@@ -104,64 +104,57 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Daily Plan -->
-        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:transform hover:scale-105 flex flex-col h-full">
+        <!-- Custom Plan -->
+        <div class="bg-white rounded-3xl p-8 border border-gray-200 shadow-lg hover:shadow-xl hover:border-emerald-400 transition-all duration-300 hover:transform hover:scale-105 flex flex-col h-full">
           <div class="text-center flex-grow">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mb-4">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-600 rounded-full mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2h-2m-10 0H5a2 2 0 01-2-2v-8a2 2 0 012-2h2m10 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0H7"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Daily Hero" %}</h3>
-            <div class="text-4xl font-bold text-blue-600 mb-4">
-              ${% if daily_plan %}{{ daily_plan.price|floatformat:"-2" }}{% else %}1{% endif %}
-              <span class="text-lg text-gray-600">/{% trans "day" %}</span>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "By Agreement" %}</h3>
+            <div class="text-4xl font-bold text-emerald-600 mb-4">
+              {% trans "Custom" %}
             </div>
-            <p class="text-gray-700 mb-6">{% trans "Perfect for quick transformations" %}</p>
+            <p class="text-gray-700 mb-6">{% trans "Need custom limits or team terms? We can prepare a tailored offer." %}</p>
           </div>
 
           <ul class="space-y-3 mb-8 flex-grow">
             <li class="flex items-center text-gray-700">
-              <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
-              {% trans "No daily conversion limits for 24 hours" %}
+              {% trans "Dedicated limits and throughput" %}
             </li>
             <li class="flex items-center text-gray-700">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
-              {% trans "Much higher page limits" %}
+              {% trans "Project-specific feature set" %}
             </li>
             <li class="flex items-center text-gray-700">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
-              {% trans "Priority processing" %}
+              {% trans "Priority support and onboarding" %}
             </li>
             <li class="flex items-center text-gray-700">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
-              {% trans "Ad-free experience" %}
+              {% trans "Invoice and custom agreement options" %}
             </li>
             <li class="flex items-center text-gray-700">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
-              {% trans "Batch processing (up to 10 files)" %}
+              {% trans "For teams and business workflows" %}
             </li>
           </ul>
 
-          {% if PAYMENTS_ENABLED %}
-            <button type="button" onclick="selectPlan('daily')" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 mt-auto">
-              {% trans "Become Daily Hero" %}
-            </button>
-          {% else %}
-            <button type="button" disabled class="w-full opacity-60 cursor-not-allowed bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-xl font-semibold mt-auto">
-              {% trans "Temporarily unavailable" %}
-            </button>
-          {% endif %}
+          <a href="{% url 'frontend:contact_page' %}" class="w-full text-center bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 px-6 rounded-xl font-semibold hover:from-emerald-600 hover:to-teal-700 transition-all duration-200 transform hover:scale-105 mt-auto">
+            {% trans "Request Terms" %}
+          </a>
         </div>
 
         <!-- Monthly Plan -->
@@ -264,10 +257,10 @@
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Yearly Hero" %}</h3>
             <div class="text-4xl font-bold text-purple-600 mb-4">
-              ${% if yearly_plan %}{{ yearly_plan.price|floatformat:"-2" }}{% else %}52{% endif %}
+              ${% if yearly_plan %}{{ yearly_plan.price|floatformat:"-2" }}{% else %}59{% endif %}
               <span class="text-lg text-gray-600">/{% trans "year" %}</span>
             </div>
-            <p class="text-gray-700 mb-6">{% trans "Save 28% with annual commitment" %}</p>
+            <p class="text-gray-700 mb-6">{% trans "Save with annual commitment" %}</p>
           </div>
 
           <ul class="space-y-3 mb-8 flex-grow">
@@ -300,12 +293,6 @@
                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
               </svg>
               {% trans "Hero badge" %}
-            </li>
-            <li class="flex items-center text-gray-700">
-              <svg class="w-5 h-5 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-              </svg>
-              {% trans "Advanced OCR features" %}
             </li>
           </ul>
 
@@ -767,8 +754,21 @@
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.setRequestHeader('X-CSRFToken', getCSRFToken());
 
+          const planSlugMap = {
+            monthly: 'monthly-hero',
+            yearly: 'yearly-hero'
+          };
+          const planSlug = planSlugMap[planType];
+
+          if (!planSlug) {
+            alert('Invalid plan selected');
+            button.disabled = false;
+            button.textContent = originalText;
+            return;
+          }
+
           const requestBody = JSON.stringify({
-            plan_slug: planType === 'daily' ? 'daily-hero' : planType === 'monthly' ? 'monthly-hero' : 'yearly-hero'
+            plan_slug: planSlug
           });
 
           xhr.onload = function() {

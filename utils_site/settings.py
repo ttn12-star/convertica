@@ -295,6 +295,7 @@ MIDDLEWARE = [
     "django.middleware.gzip.GZipMiddleware",  # Compress responses (HTML, JSON, CSS, JS) - must be first
     "src.api.middleware.FilterProxyRequestsMiddleware",  # Filter invalid hosts/proxy CONNECT - BEFORE SecurityMiddleware!
     "django.middleware.security.SecurityMiddleware",
+    "src.users.middleware.RuntimeSettingsMiddleware",  # Apply admin runtime settings overrides
     # WhiteNoise for static files (if enabled via USE_WHITENOISE env var)
     # Uncomment or use environment variable to enable
     # "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -981,11 +982,6 @@ CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default="True")
 
 # Subscription Pricing Configuration
 SUBSCRIPTION_PRICING = {
-    "daily": {
-        "price": config("DAILY_PRICE", default="1.00", cast=float),
-        "duration_days": 1,
-        "name": "Daily Hero Access",
-    },
     "monthly": {
         "price": config("MONTHLY_PRICE", default="6.00", cast=float),
         "duration_days": 30,
@@ -1003,7 +999,7 @@ VAPID_CLAIMS = {
 SUBSCRIPTION_PRICING.update(
     {
         "yearly": {
-            "price": config("YEARLY_PRICE", default="52.00", cast=float),
+            "price": config("YEARLY_PRICE", default="59.00", cast=float),
             "duration_days": 365,
             "name": "Yearly Hero Access",
         },

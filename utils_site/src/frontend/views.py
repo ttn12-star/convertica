@@ -4651,7 +4651,7 @@ class PricingPageView(TemplateView):
 
         plans = (
             SubscriptionPlan.objects.filter(
-                slug__in=["daily-hero", "monthly-hero", "yearly-hero"],
+                slug__in=["monthly-hero", "yearly-hero"],
                 is_active=True,
             )
             .only("slug", "price", "currency", "duration_days")
@@ -4659,7 +4659,6 @@ class PricingPageView(TemplateView):
         )
         plans_by_slug = {p.slug: p for p in plans}
 
-        context["daily_plan"] = plans_by_slug.get("daily-hero")
         context["monthly_plan"] = plans_by_slug.get("monthly-hero")
         context["yearly_plan"] = plans_by_slug.get("yearly-hero")
 

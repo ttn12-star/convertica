@@ -65,7 +65,7 @@ def can_use_batch_processing(user, file_count: int) -> tuple[bool, str | None]:
                     False,
                     "Free users can only process 1 file at a time. "
                     "Upgrade to Premium to process up to 10 files at once! "
-                    "Get 1-day Premium for just $1.",
+                    "Choose monthly or yearly Premium plans.",
                 )
             else:
                 return (

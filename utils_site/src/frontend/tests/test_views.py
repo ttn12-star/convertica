@@ -268,6 +268,16 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Premium", count=None, status_code=200)
 
+    def test_pricing_page_uses_monthly_yearly_and_custom_plans(self):
+        """Pricing page should not expose legacy daily plan."""
+        response = self.client.get(self._get_url_with_lang("pricing/"), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "monthly-hero")
+        self.assertContains(response, "yearly-hero")
+        self.assertContains(response, "By Agreement")
+        self.assertContains(response, "Request Terms")
+        self.assertNotContains(response, "daily-hero")
+
     def test_epub_pages_render_for_anonymous_users(self):
         """Premium landing pages should remain crawlable for anonymous users."""
         for path in self.premium_landing_paths:

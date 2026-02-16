@@ -1,5 +1,6 @@
 # pylint: skip-file
 import csv
+import json
 
 from allauth.socialaccount.models import SocialAccount
 from django.contrib import admin
@@ -14,6 +15,7 @@ from django.utils.safestring import mark_safe
 from .models import (
     OperationRun,
     Payment,
+    RuntimeSetting,
     StripeWebhookEvent,
     SubscriptionPlan,
     UserSubscription,
@@ -318,6 +320,38 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = ("stripe_price_id",)
+
+
+@admin.register(RuntimeSetting)
+class RuntimeSettingAdmin(admin.ModelAdmin):
+    """Admin for dynamic runtime settings."""
+
+    list_display = (
+        "key",
+        "is_active",
+        "updated_at",
+        "value_preview",
+    )
+    list_filter = ("is_active", "updated_at", "created_at")
+    search_fields = ("key", "description")
+    ordering = ("key",)
+    readonly_fields = ("created_at", "updated_at")
+
+    fieldsets = (
+        (
+            "Setting",
+            {"fields": ("key", "value", "is_active", "description")},
+        ),
+        ("Timestamps", {"fields": ("created_at", "updated_at")}),
+    )
+
+    def value_preview(self, obj):
+        value = json.dumps(obj.value, ensure_ascii=True)
+        if len(value) > 80:
+            value = f"{value[:77]}..."
+        return value
+
+    value_preview.short_description = "Value"
 
 
 @admin.register(Payment)

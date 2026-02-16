@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.cache import cache
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -355,6 +356,64 @@ class SubscriptionPlan(models.Model):
         elif self.duration_days == 365:
             return "year"
         return f"{self.duration_days} days"
+
+
+class RuntimeSetting(models.Model):
+    """Admin-configurable runtime setting override (non-secret only)."""
+
+    key = models.CharField(max_length=100, unique=True)
+    value = models.JSONField(default=dict)
+    description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["key"]
+        verbose_name = _("Runtime Setting")
+        verbose_name_plural = _("Runtime Settings")
+
+    def __str__(self):
+        return self.key
+
+    def clean(self):
+        normalized_key = (self.key or "").strip().upper()
+        if not normalized_key:
+            raise ValidationError({"key": _("Setting key cannot be empty.")})
+
+        from .runtime_settings import is_sensitive_setting_key
+
+        if is_sensitive_setting_key(normalized_key):
+            raise ValidationError(
+                {
+                    "key": _(
+                        "This setting key is considered secret and cannot be configured from admin."
+                    )
+                }
+            )
+
+        self.key = normalized_key
+
+    def save(self, *args, **kwargs):
+        from django.db import transaction
+
+        self.full_clean()
+        result = super().save(*args, **kwargs)
+
+        from .runtime_settings import refresh_runtime_settings
+
+        transaction.on_commit(refresh_runtime_settings)
+        return result
+
+    def delete(self, *args, **kwargs):
+        from django.db import transaction
+
+        result = super().delete(*args, **kwargs)
+
+        from .runtime_settings import refresh_runtime_settings
+
+        transaction.on_commit(refresh_runtime_settings)
+        return result
 
 
 class Payment(models.Model):
