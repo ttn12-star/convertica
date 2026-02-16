@@ -736,7 +736,7 @@
               </div>
             </div>
 
-            {% if PAYMENTS_ENABLED %}
+            {% if PAYMENTS_ENABLED and user.is_authenticated and user.is_premium_active %}
               <div class="relative group flex-shrink-0" id="premium-tools-menu-parent">
                 <button id="premium-tools-menu-button"
                         aria-haspopup="menu"
