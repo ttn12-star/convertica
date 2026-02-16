@@ -5,7 +5,7 @@ from functools import wraps
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
@@ -33,6 +33,30 @@ def anonymous_cache_page(timeout):
         return wrapper
 
     return decorator
+
+
+def _is_premium_active_user(request) -> bool:
+    """Check whether request user has active premium subscription."""
+    user = getattr(request, "user", None)
+    if user is None or not getattr(user, "is_authenticated", False):
+        return False
+
+    return bool(
+        getattr(user, "is_premium_active", False)
+        or (
+            getattr(user, "is_premium", False)
+            and hasattr(user, "is_subscription_active")
+            and user.is_subscription_active()
+        )
+    )
+
+
+def _redirect_for_premium_access(request):
+    """Redirect non-premium users to login or pricing for premium-only pages."""
+    if getattr(request, "user", None) is not None and request.user.is_authenticated:
+        return redirect("frontend:pricing")
+    login_url = reverse("users:login")
+    return redirect(f"{login_url}?next={request.path}")
 
 
 def _get_related_tools(current_tool):
@@ -3790,6 +3814,69 @@ def all_tools_page(request):
     return render(request, "frontend/all_tools.html", context)
 
 
+@anonymous_cache_page(60 * 60)
+def premium_tools_page(request):
+    """Premium tools catalog page."""
+    page_title = _("Premium Tools - Convertica")
+    page_description = _(
+        "Explore Convertica Premium tools and features: advanced conversion workflows, "
+        "higher limits, priority processing, and early access to new formats."
+    )
+    page_keywords = (
+        "premium pdf tools, advanced pdf converter, epub to pdf premium, "
+        "pdf to epub premium, batch conversion premium, ocr premium, "
+        "priority queue pdf conversion, background tasks pdf converter"
+    )
+
+    context = {
+        "page_title": page_title,
+        "page_description": page_description,
+        "page_keywords": page_keywords,
+        "is_premium_active": _is_premium_active_user(request),
+    }
+    return render(request, "frontend/premium_tools.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def epub_to_pdf_page(request):
+    """Premium EPUB to PDF page (beta)."""
+    if not _is_premium_active_user(request):
+        return _redirect_for_premium_access(request)
+
+    context = {
+        "page_title": _("EPUB to PDF (Premium Beta) - Convertica"),
+        "page_description": _(
+            "Premium EPUB to PDF conversion with early access. "
+            "This feature is currently in beta rollout for premium users."
+        ),
+        "page_keywords": (
+            "epub to pdf premium, epub converter, ebook to pdf, "
+            "epub conversion beta, convert epub online"
+        ),
+    }
+    return render(request, "frontend/premium/epub_to_pdf.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def pdf_to_epub_page(request):
+    """Premium PDF to EPUB page (beta)."""
+    if not _is_premium_active_user(request):
+        return _redirect_for_premium_access(request)
+
+    context = {
+        "page_title": _("PDF to EPUB (Premium Beta) - Convertica"),
+        "page_description": _(
+            "Premium PDF to EPUB conversion with early access. "
+            "This feature is currently in beta rollout for premium users."
+        ),
+        "page_keywords": (
+            "pdf to epub premium, pdf converter to ebook, "
+            "pdf epub conversion beta, convert pdf to epub online"
+        ),
+    }
+    return render(request, "frontend/premium/pdf_to_epub.html", context)
+
+
 @vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def about_page(request):
@@ -4118,6 +4205,7 @@ def _get_sitemap_pages():
         {"url": "pricing/", "priority": "0.8", "changefreq": "monthly"},
         {"url": "contribute/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "all-tools/", "priority": "0.9", "changefreq": "weekly"},
+        {"url": "premium-tools/", "priority": "0.7", "changefreq": "weekly"},
         {"url": "blog/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-to-word/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "word-to-pdf/", "priority": "0.8", "changefreq": "weekly"},

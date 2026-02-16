@@ -689,6 +689,16 @@
               </div>
             </div>
 
+            {% if PAYMENTS_ENABLED %}
+              <a href="{% url 'frontend:premium_tools_page' %}"
+                 class="hidden md:inline-flex items-center gap-1.5 text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm">
+                <span class="whitespace-nowrap">{% trans "Premium Tools" %}</span>
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                  PRO
+                </span>
+              </a>
+            {% endif %}
+
             <!-- More Menu (Desktop only) -->
             <div class="relative" id="more-menu-parent">
               <button id="more-menu-button"
@@ -759,6 +769,24 @@
                       </div>
                     </div>
                   </a>
+
+                  {% if PAYMENTS_ENABLED %}
+                    <a href="{% url 'frontend:premium_tools_page' %}"
+                       class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-700 dark:hover:text-amber-200 transition-all duration-200 border-l-4 border-transparent hover:border-amber-500"
+                       role="menuitem">
+                      <div class="flex items-center space-x-3 w-full">
+                        <div class="p-2 rounded-lg bg-gray-100 group-hover:bg-amber-100 transition-colors duration-200">
+                          <svg class="w-4 h-4 text-amber-600 group-hover:text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                          </svg>
+                        </div>
+                        <div class="flex-1 text-left">
+                          <div class="font-semibold text-gray-900 group-hover:text-amber-700 dark:group-hover:text-amber-200">{% trans "Premium Tools" %}</div>
+                          <div class="text-xs text-gray-500 group-hover:text-amber-600 dark:group-hover:text-amber-300">{% trans "Advanced and beta converters" %}</div>
+                        </div>
+                      </div>
+                    </a>
+                  {% endif %}
 
                   {% if PAYMENTS_ENABLED %}
                     <!-- Divider -->
@@ -955,6 +983,19 @@
       </svg>
       <span>{% trans "All Tools" %}</span>
     </a>
+
+    {% if PAYMENTS_ENABLED %}
+      <a href="{% url 'frontend:premium_tools_page' %}"
+         class="flex items-center justify-between space-x-2 w-full p-3 rounded-lg hover:bg-amber-50 text-left font-semibold text-gray-900 transition-colors">
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          <span>{% trans "Premium Tools" %}</span>
+        </span>
+        <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+      </a>
+    {% endif %}
 
   <!-- Mobile PDF Security Menu Toggle -->
     <button id="mobile-pdf-security-toggle"
@@ -1200,6 +1241,15 @@
         </svg>
         {% trans "Blog" %}
       </a>
+      {% if PAYMENTS_ENABLED %}
+        <a href="{% url 'frontend:premium_tools_page' %}"
+           class="flex items-center p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
+          <svg class="w-4 h-4 text-amber-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          {% trans "Premium Tools" %}
+        </a>
+      {% endif %}
       {% if PAYMENTS_ENABLED %}
         {% if user.is_authenticated %}
           <a href="{% url 'frontend:pricing' %}"
