@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-is-premium="{% if user.is_authenticated and user.is_premium_active %}true{% else %}false{% endif %}" class="scroll-smooth">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-is-premium="{% if user.is_authenticated and user.is_premium_active %}true{% else %}false{% endif %}" class="scroll-smooth css-loaded">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -85,9 +85,8 @@
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-700.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{% static 'fonts/poppins/poppins-v20-latin-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{% static 'fonts/poppins/poppins-v20-latin-700.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <!-- Load fonts CSS asynchronously (non-blocking) -->
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}" media="print" onload="this.media='all';this.onload=null">
-    <noscript><link rel="stylesheet" href="{% static 'css/fonts.css' %}"></noscript>
+    <!-- Load fonts CSS -->
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
 
     <!-- Google Fonts (DISABLED - using self-hosted for better performance) -->
     <!--
@@ -165,15 +164,10 @@
     <link rel="preload" href="{% static 'css/dark-mode-helpers.css' %}" as="style">
     <link rel="preload" href="{% static 'css/mobile-optimizations.css' %}" as="style">
 
-    <!-- Load full stylesheets asynchronously with fallback (non-blocking) -->
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}" media="print" onload="this.media='all';document.documentElement.classList.add('css-loaded');this.onload=null">
-    <noscript><link rel="stylesheet" href="{% static 'css/tailwind.css' %}"></noscript>
-
-    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}" media="print" onload="this.media='all';this.onload=null">
-    <noscript><link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}"></noscript>
-
-    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}" media="print" onload="this.media='all';this.onload=null">
-    <noscript><link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}"></noscript>
+    <!-- Load full stylesheets synchronously for stable rendering -->
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}">
 
     <!-- Custom Animations -->
     <style>
