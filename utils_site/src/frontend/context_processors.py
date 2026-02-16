@@ -384,12 +384,16 @@ def breadcrumbs(request):
             "frontend:unlock_pdf_page": _("Unlock PDF"),
             # Static pages
             "frontend:all_tools_page": _("All Tools"),
+            "frontend:premium_tools_page": _("Premium Tools"),
             "frontend:pricing": _("Pricing"),
             "frontend:about_page": _("About"),
             "frontend:faq_page": _("FAQ"),
             "frontend:contact_page": _("Contact"),
             "frontend:privacy_page": _("Privacy Policy"),
             "frontend:terms_page": _("Terms of Service"),
+            # Premium tools
+            "frontend:epub_to_pdf_page": _("EPUB to PDF"),
+            "frontend:pdf_to_epub_page": _("PDF to EPUB"),
         }
 
         if view_name in breadcrumb_names:

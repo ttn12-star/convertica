@@ -2,8 +2,13 @@
 Tests for frontend views.
 """
 
+from urllib.parse import parse_qs, urlparse
+
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
+from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import activate
 
 
@@ -242,3 +247,59 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check for FAQ structure
         self.assertContains(response, "Question", count=None, status_code=200)
+
+    def test_premium_tools_page_renders(self):
+        """Test that premium tools catalog page renders successfully."""
+        response = self.client.get(
+            self._get_url_with_lang("premium-tools/"), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Premium", count=None, status_code=200)
+
+    def test_premium_pages_redirect_anonymous_to_login(self):
+        """Anonymous users should be redirected to login for premium pages."""
+        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+            with self.subTest(path=path):
+                url = self._get_url_with_lang(path)
+                response = self.client.get(url, follow=False)
+                self.assertEqual(response.status_code, 302)
+
+                parsed = urlparse(response["Location"])
+                self.assertEqual(parsed.path, reverse("users:login"))
+                self.assertEqual(parse_qs(parsed.query).get("next"), [url])
+
+    def test_premium_pages_redirect_non_premium_user_to_pricing(self):
+        """Authenticated non-premium users should be redirected to pricing."""
+        user = get_user_model().objects.create_user(
+            email="non-premium-frontend@example.com",
+            password="pass1234",
+        )
+        self.client.force_login(user)
+        pricing_url = reverse("frontend:pricing")
+
+        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+            with self.subTest(path=path):
+                response = self.client.get(
+                    self._get_url_with_lang(path),
+                    follow=False,
+                )
+                self.assertEqual(response.status_code, 302)
+                self.assertEqual(response["Location"], pricing_url)
+
+    def test_premium_pages_render_for_premium_user(self):
+        """Premium users should access premium pages."""
+        premium_user = get_user_model().objects.create_user(
+            email="premium-frontend@example.com",
+            password="pass1234",
+            is_premium=True,
+            subscription_end_date=timezone.now() + timezone.timedelta(days=1),
+        )
+        self.client.force_login(premium_user)
+
+        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+            with self.subTest(path=path):
+                response = self.client.get(
+                    self._get_url_with_lang(path),
+                    follow=False,
+                )
+                self.assertEqual(response.status_code, 200)

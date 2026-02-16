@@ -8,6 +8,7 @@ app_name = "frontend"
 urlpatterns = [
     path("", views.index_page, name="index_page_lang"),
     path("all-tools/", views.all_tools_page, name="all_tools_page"),
+    path("premium-tools/", views.premium_tools_page, name="premium_tools_page"),
     # PDF Conversion pages
     path("pdf-to-word/", views.pdf_to_word_page, name="pdf_to_word_page"),
     path("word-to-pdf/", views.word_to_pdf_page, name="word_to_pdf_page"),
@@ -19,6 +20,8 @@ urlpatterns = [
     path("html-to-pdf/", views.html_to_pdf_page, name="html_to_pdf_page"),
     path("pdf-to-ppt/", views.pdf_to_ppt_page, name="pdf_to_ppt_page"),
     path("pdf-to-html/", views.pdf_to_html_page, name="pdf_to_html_page"),
+    path("epub-to-pdf/", views.epub_to_pdf_page, name="epub_to_pdf_page"),
+    path("pdf-to-epub/", views.pdf_to_epub_page, name="pdf_to_epub_page"),
     # PDF Edit pages
     path("pdf-edit/rotate/", views.rotate_pdf_page, name="rotate_pdf_page"),
     path(
