@@ -7,6 +7,7 @@ from .cancel_task_view import (
     mark_operation_abandoned,
     mark_task_background,
 )
+from .epub_convert.async_views import EPUBToPDFAsyncAPIView, PDFToEPUBAsyncAPIView
 from .epub_convert.views import EPUBToPDFAPIView, PDFToEPUBAPIView
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
@@ -214,6 +215,16 @@ urlpatterns = [
         "pdf-to-jpg/async/",
         PDFToJPGAsyncAPIView.as_view(),
         name="pdf_to_jpg_async_api",
+    ),
+    path(
+        "epub-to-pdf/async/",
+        EPUBToPDFAsyncAPIView.as_view(),
+        name="epub_to_pdf_async_api",
+    ),
+    path(
+        "pdf-to-epub/async/",
+        PDFToEPUBAsyncAPIView.as_view(),
+        name="pdf_to_epub_async_api",
     ),
     # PDF Edit endpoints
     path("pdf-edit/rotate/", RotatePDFAPIView.as_view(), name="rotate_pdf_api"),

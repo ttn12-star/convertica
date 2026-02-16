@@ -6,6 +6,7 @@ import io
 import os
 import tempfile
 import zipfile
+from unittest.mock import MagicMock, patch
 
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -203,6 +204,8 @@ startxref
             "/api/word-to-pdf/",
             "/api/epub-to-pdf/",
             "/api/pdf-to-epub/",
+            "/api/epub-to-pdf/async/",
+            "/api/pdf-to-epub/async/",
         ]
 
         for endpoint in endpoints:
@@ -485,3 +488,95 @@ startxref
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn("application/epub+zip", response["Content-Type"])
         self.assertIn(".epub", response.get("Content-Disposition", ""))
+
+    def test_epub_to_pdf_async_requires_premium_and_starts_task_for_premium_user(self):
+        """Async EPUB to PDF endpoint should enforce premium and return task metadata."""
+        endpoint = "/api/epub-to-pdf/async/"
+
+        response = self.client.post(
+            endpoint,
+            {"epub_file": self._create_test_epub()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.7",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        user_model = get_user_model()
+        free_user = user_model.objects.create_user(
+            email="epub-async-free@example.com",
+            password="pass1234",
+        )
+        self.client.force_authenticate(user=free_user)
+        response = self.client.post(
+            endpoint,
+            {"epub_file": self._create_test_epub()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.8",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        premium_user = user_model.objects.create_user(
+            email="epub-async-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+        with patch(
+            "src.api.epub_convert.async_views.generic_conversion_task.apply_async"
+        ) as mock_apply_async:
+            mock_apply_async.return_value = MagicMock(id="epub-async-task")
+            response = self.client.post(
+                endpoint,
+                {"epub_file": self._create_test_epub()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.9",
+            )
+        self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+        self.assertTrue(response.data.get("task_id"))
+        self.assertEqual(response.data.get("status"), "PENDING")
+
+    def test_pdf_to_epub_async_requires_premium_and_starts_task_for_premium_user(self):
+        """Async PDF to EPUB endpoint should enforce premium and return task metadata."""
+        endpoint = "/api/pdf-to-epub/async/"
+
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.10",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        user_model = get_user_model()
+        free_user = user_model.objects.create_user(
+            email="pdfepub-async-free@example.com",
+            password="pass1234",
+        )
+        self.client.force_authenticate(user=free_user)
+        response = self.client.post(
+            endpoint,
+            {"pdf_file": self._create_test_text_pdf()},
+            format="multipart",
+            REMOTE_ADDR="127.0.0.11",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        premium_user = user_model.objects.create_user(
+            email="pdfepub-async-premium@example.com",
+            password="pass1234",
+            is_premium=True,
+        )
+        self.client.force_authenticate(user=premium_user)
+        with patch(
+            "src.api.epub_convert.async_views.generic_conversion_task.apply_async"
+        ) as mock_apply_async:
+            mock_apply_async.return_value = MagicMock(id="pdfepub-async-task")
+            response = self.client.post(
+                endpoint,
+                {"pdf_file": self._create_test_text_pdf()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.12",
+            )
+        self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+        self.assertTrue(response.data.get("task_id"))
+        self.assertEqual(response.data.get("status"), "PENDING")

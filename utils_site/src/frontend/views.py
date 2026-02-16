@@ -3855,9 +3855,7 @@ def premium_tools_page(request):
 
 @anonymous_cache_page(60 * 60)
 def epub_to_pdf_page(request):
-    """Premium EPUB to PDF conversion page."""
-    if not _is_premium_active_user(request):
-        return _redirect_for_premium_access(request)
+    """EPUB to PDF conversion landing page (premium-gated API)."""
 
     context = _get_converter_context(
         request,
@@ -3887,9 +3885,7 @@ def epub_to_pdf_page(request):
 
 @anonymous_cache_page(60 * 60)
 def pdf_to_epub_page(request):
-    """Premium PDF to EPUB conversion page."""
-    if not _is_premium_active_user(request):
-        return _redirect_for_premium_access(request)
+    """PDF to EPUB conversion landing page (premium-gated API)."""
 
     context = _get_converter_context(
         request,
@@ -4359,6 +4355,8 @@ def _get_sitemap_pages():
         {"url": "contribute/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "all-tools/", "priority": "0.9", "changefreq": "weekly"},
         {"url": "premium-tools/", "priority": "0.7", "changefreq": "weekly"},
+        {"url": "epub-to-pdf/", "priority": "0.6", "changefreq": "monthly"},
+        {"url": "pdf-to-epub/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "blog/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-to-word/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "word-to-pdf/", "priority": "0.8", "changefreq": "weekly"},
