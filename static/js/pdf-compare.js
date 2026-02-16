@@ -1,9 +1,9 @@
 /**
  * Compare two PDFs:
- * 1) Send files to API (returns ZIP with report + images)
- * 2) Parse ZIP in browser via JSZip
+ * 1) Send files to API (returns an archive with report + images)
+ * 2) Parse the archive in browser via JSZip
  * 3) Render page-by-page visual report on screen
- * 4) Let user download the same ZIP on demand
+ * 4) Let user export the same report package on demand
  */
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('compareForm');
@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainImage = document.getElementById('compareMainImage');
     const mainEmpty = document.getElementById('compareMainEmpty');
     const mainLoading = document.getElementById('compareMainLoading');
+    const mainViewport = document.getElementById('compareMainViewport');
     const baseImage = document.getElementById('compareBaseImage');
     const updatedImage = document.getElementById('compareUpdatedImage');
     const pageMeta = document.getElementById('comparePageMeta');
@@ -159,6 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pageMeta) pageMeta.textContent = '';
         if (baseImage) baseImage.removeAttribute('src');
         if (updatedImage) updatedImage.removeAttribute('src');
+    }
+
+    function isPreviewVisible() {
+        return Boolean(
+            previewContainer
+            && !previewContainer.classList.contains('hidden')
+            && state.pages.length > 0
+        );
+    }
+
+    function isTypingContext(target) {
+        if (!target) return false;
+        const tag = (target.tagName || '').toLowerCase();
+        return tag === 'input' || tag === 'textarea' || tag === 'select' || target.isContentEditable;
     }
 
     function setMainLoading(isLoading) {
@@ -408,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (downloadButton) {
             downloadButton.disabled = false;
-            downloadButton.textContent = window.COMPARE_DOWNLOAD_REPORT_TEXT || 'Download ZIP Report';
+            downloadButton.textContent = window.COMPARE_DOWNLOAD_REPORT_TEXT || 'Export Report';
         }
 
         if (previewContainer) {
@@ -425,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const handle = await window.showSaveFilePicker({
                     suggestedName: filename,
                     types: [{
-                        description: 'ZIP archive',
+                        description: 'Comparison report archive',
                         accept: { 'application/zip': ['.zip'] },
                     }],
                 });
@@ -455,15 +470,15 @@ document.addEventListener('DOMContentLoaded', () => {
     async function handleReportDownload() {
         if (!state.archiveBlob || !state.archiveFilename || !downloadButton) return;
 
-        const originalText = window.COMPARE_DOWNLOAD_REPORT_TEXT || 'Download ZIP Report';
+        const originalText = window.COMPARE_DOWNLOAD_REPORT_TEXT || 'Export Report';
         downloadButton.disabled = true;
-        downloadButton.textContent = window.COMPARE_DOWNLOAD_IN_PROGRESS_TEXT || 'Preparing download...';
+        downloadButton.textContent = window.COMPARE_DOWNLOAD_IN_PROGRESS_TEXT || 'Preparing report export...';
 
         try {
             await saveBlob(state.archiveBlob, state.archiveFilename);
         } catch (error) {
             window.showError(
-                error.message || window.COMPARE_DOWNLOAD_FAILED_TEXT || 'Failed to download report ZIP.',
+                error.message || window.COMPARE_DOWNLOAD_FAILED_TEXT || 'Failed to export report.',
                 'converterResult'
             );
         } finally {
@@ -503,6 +518,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (downloadButton) {
         downloadButton.addEventListener('click', async () => {
             await handleReportDownload();
+        });
+    }
+
+    document.addEventListener('keydown', async (event) => {
+        if (!isPreviewVisible() || isTypingContext(event.target)) return;
+        if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+            event.preventDefault();
+            await selectPage(state.currentPageIndex + 1);
+            return;
+        }
+        if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+            event.preventDefault();
+            await selectPage(state.currentPageIndex - 1);
+        }
+    });
+
+    if (mainViewport) {
+        mainViewport.addEventListener('click', async (event) => {
+            if (!isPreviewVisible()) return;
+            const rect = mainViewport.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            if (clickX < rect.width / 2) {
+                await selectPage(state.currentPageIndex - 1);
+            } else {
+                await selectPage(state.currentPageIndex + 1);
+            }
         });
     }
 

@@ -12106,3 +12106,28 @@ msgstr "جارٍ تجهيز التنزيل..."
 #: templates/frontend/premium/compare_pdf.html
 msgid "Failed to download report ZIP."
 msgstr "فشل تنزيل تقرير ZIP."
+
+#. Compare PDF export UX wording
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review and export"
+msgstr "مراجعة وتصدير"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review changes page-by-page. Export report files only if you need to share or archive them."
+msgstr "راجع التغييرات صفحةً بصفحة. صدّر ملفات التقرير فقط إذا احتجت إلى مشاركتها أو أرشفتها."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review page-by-page differences in your browser. Export Markdown/JSON and images only if needed."
+msgstr "راجع الفروقات صفحةً بصفحة داخل المتصفح. صدّر Markdown/JSON والصور فقط عند الحاجة."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Export Report"
+msgstr "تصدير التقرير"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Preparing report export..."
+msgstr "جارٍ تجهيز تصدير التقرير..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Failed to export report."
+msgstr "فشل تصدير التقرير."

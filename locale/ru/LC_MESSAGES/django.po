@@ -12758,3 +12758,28 @@ msgstr "Подготовка скачивания..."
 #: templates/frontend/premium/compare_pdf.html
 msgid "Failed to download report ZIP."
 msgstr "Не удалось скачать ZIP-отчет."
+
+#. Compare PDF export UX wording
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review and export"
+msgstr "Просмотр и экспорт"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review changes page-by-page. Export report files only if you need to share or archive them."
+msgstr "Просматривайте изменения по страницам. Экспортируйте файлы отчета только если нужно поделиться или архивировать."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review page-by-page differences in your browser. Export Markdown/JSON and images only if needed."
+msgstr "Просматривайте отличия по страницам прямо в браузере. Экспортируйте Markdown/JSON и изображения только при необходимости."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Export Report"
+msgstr "Экспортировать отчет"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Preparing report export..."
+msgstr "Подготовка экспорта отчета..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Failed to export report."
+msgstr "Не удалось экспортировать отчет."

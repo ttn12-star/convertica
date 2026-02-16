@@ -52,8 +52,8 @@
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "{% filter escapejs %}{% trans 'Download report ZIP' %}{% endfilter %}",
-          "text": "{% filter escapejs %}{% trans 'Download visual diff images and structured report files.' %}{% endfilter %}"
+          "name": "{% filter escapejs %}{% trans 'Review and export' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Review changes page-by-page. Export report files only if you need to share or archive them.' %}{% endfilter %}"
         }
       ],
       "totalTime": "PT2M"
@@ -99,7 +99,7 @@
       <div class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
         <h2 class="text-sm font-semibold text-amber-800 mb-1">{% trans "Premium Feature" %}</h2>
         <p class="text-xs text-amber-700">
-          {% trans "Get a ZIP package with page-by-page visual diff images plus Markdown and JSON reports." %}
+          {% trans "Review page-by-page differences in your browser. Export Markdown/JSON and images only if needed." %}
         </p>
       </div>
 
@@ -177,7 +177,7 @@
             <button id="compareDownloadButton"
                     type="button"
                     class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-amber-600 text-white font-semibold hover:bg-amber-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
-              {% trans "Download ZIP Report" %}
+              {% trans "Export Report" %}
             </button>
           </div>
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
@@ -236,7 +236,8 @@
 
           <div class="mt-4 grid grid-cols-1 xl:grid-cols-12 gap-5">
             <div class="xl:col-span-8">
-              <div class="rounded-xl border border-gray-200 bg-gray-50 p-3 min-h-[320px] flex items-center justify-center relative overflow-hidden">
+              <div id="compareMainViewport"
+                   class="rounded-xl border border-gray-200 bg-gray-50 p-3 min-h-[320px] flex items-center justify-center relative overflow-hidden">
                 <div id="compareMainLoading"
                      class="hidden absolute inset-0 bg-white/70 backdrop-blur-[1px] items-center justify-center text-sm font-semibold text-gray-600">
                   {% trans "Loading page preview..." %}
@@ -323,9 +324,9 @@
     window.COMPARE_WORDS_ADDED_TEXT = "{% filter escapejs %}{% trans 'Words added' %}{% endfilter %}";
     window.COMPARE_WORDS_REMOVED_TEXT = "{% filter escapejs %}{% trans 'Words removed' %}{% endfilter %}";
     window.COMPARE_TEXT_SIMILARITY_TEXT = "{% filter escapejs %}{% trans 'Text similarity' %}{% endfilter %}";
-    window.COMPARE_DOWNLOAD_REPORT_TEXT = "{% filter escapejs %}{% trans 'Download ZIP Report' %}{% endfilter %}";
-    window.COMPARE_DOWNLOAD_IN_PROGRESS_TEXT = "{% filter escapejs %}{% trans 'Preparing download...' %}{% endfilter %}";
-    window.COMPARE_DOWNLOAD_FAILED_TEXT = "{% filter escapejs %}{% trans 'Failed to download report ZIP.' %}{% endfilter %}";
+    window.COMPARE_DOWNLOAD_REPORT_TEXT = "{% filter escapejs %}{% trans 'Export Report' %}{% endfilter %}";
+    window.COMPARE_DOWNLOAD_IN_PROGRESS_TEXT = "{% filter escapejs %}{% trans 'Preparing report export...' %}{% endfilter %}";
+    window.COMPARE_DOWNLOAD_FAILED_TEXT = "{% filter escapejs %}{% trans 'Failed to export report.' %}{% endfilter %}";
     window.COMPARE_LOADING_PAGE_TEXT = "{% filter escapejs %}{% trans 'Loading page preview...' %}{% endfilter %}";
   </script>
   <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>

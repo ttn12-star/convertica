@@ -12470,3 +12470,28 @@ msgstr "डाउनलोड तैयार किया जा रहा ह�
 #: templates/frontend/premium/compare_pdf.html
 msgid "Failed to download report ZIP."
 msgstr "ZIP रिपोर्ट डाउनलोड नहीं हो सकी।"
+
+#. Compare PDF export UX wording
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review and export"
+msgstr "समीक्षा और निर्यात"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review changes page-by-page. Export report files only if you need to share or archive them."
+msgstr "पेज-दर-पेज बदलाव देखें। रिपोर्ट फ़ाइलें केवल तभी निर्यात करें जब आपको उन्हें साझा या संग्रहित करना हो।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Review page-by-page differences in your browser. Export Markdown/JSON and images only if needed."
+msgstr "अपने ब्राउज़र में पेज-दर-पेज अंतर देखें। Markdown/JSON और छवियाँ केवल आवश्यकता होने पर निर्यात करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Export Report"
+msgstr "रिपोर्ट निर्यात करें"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Preparing report export..."
+msgstr "रिपोर्ट निर्यात तैयार किया जा रहा है..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Failed to export report."
+msgstr "रिपोर्ट निर्यात नहीं हो सका।"
