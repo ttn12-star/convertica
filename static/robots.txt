@@ -70,7 +70,6 @@ Disallow: /users/profile/
 Disallow: /users/account/
 Disallow: /users/manage-subscription/
 Disallow: /users/cancel-subscription/
-Allow: /users/premium/
 Disallow: /accounts/
 
 # Disallow payment pages (noindex)

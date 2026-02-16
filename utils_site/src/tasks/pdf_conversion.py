@@ -157,6 +157,14 @@ def generic_conversion_task(
                 "src.api.pdf_convert.jpg_to_pdf.utils",
                 "convert_jpg_to_pdf",
             ),
+            "epub_to_pdf": (
+                "src.api.epub_convert.utils",
+                "convert_epub_to_pdf",
+            ),
+            "pdf_to_epub": (
+                "src.api.epub_convert.utils",
+                "convert_pdf_to_epub",
+            ),
             "compress_pdf": ("src.api.pdf_organize.compress_pdf.utils", "compress_pdf"),
             "merge_pdf": ("src.api.pdf_organize.merge_pdf.utils", "merge_pdfs"),
             "split_pdf": ("src.api.pdf_organize.split_pdf.utils", "split_pdf"),
