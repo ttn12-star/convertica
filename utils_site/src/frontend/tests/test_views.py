@@ -370,6 +370,21 @@ class FrontendViewsTestCase(TestCase):
             response, reverse("frontend:compare_pdf_page"), status_code=200
         )
 
+    def test_compare_pdf_page_has_interactive_preview_blocks(self):
+        """Compare PDF page should include on-screen report preview UI and JSZip loader."""
+        response = self.client.get(
+            self._get_url_with_lang("compare-pdf/"), follow=False
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'id="comparisonPreview"', status_code=200)
+        self.assertContains(response, 'id="comparePageList"', status_code=200)
+        self.assertContains(response, 'id="compareDownloadButton"', status_code=200)
+        self.assertContains(
+            response,
+            "vendor/jszip/3.10.1/jszip.min.js",
+            status_code=200,
+        )
+
     @override_settings(PAYMENTS_ENABLED=False)
     def test_all_tools_hides_premium_links_when_payments_disabled(self):
         """Premium links should be hidden from menus when payments are disabled."""
