@@ -10,6 +10,77 @@
 {% block twitter_title %}{{ page_title }}{% endblock %}
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
+{% block structured_data %}
+  {{ block.super }}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "{{ header_text|default:page_title }}",
+      "description": "{{ page_description }}",
+      "url": "{{ site_current_url }}",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "6",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "inLanguage": "{{ LANGUAGE_CODE }}"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "{{ header_text|default:page_title }}",
+      "description": "{{ page_description }}",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "{% filter escapejs %}{% trans 'Upload two PDF files' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Select the base PDF and the comparison PDF.' %}{% endfilter %}"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "{% filter escapejs %}{% trans 'Set sensitivity' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Adjust diff sensitivity to control change detection strictness.' %}{% endfilter %}"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "{% filter escapejs %}{% trans 'Download report ZIP' %}{% endfilter %}",
+          "text": "{% filter escapejs %}{% trans 'Download visual diff images and structured report files.' %}{% endfilter %}"
+        }
+      ],
+      "totalTime": "PT2M"
+    }
+  </script>
+  {% if page_faq %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
     {% include "frontend/includes/breadcrumbs.html" %}
@@ -93,6 +164,22 @@
     <div id="loadingContainer" class="hidden mt-6"></div>
     <div id="downloadContainer" class="hidden mt-6"></div>
     <div id="converterResult" class="hidden mt-6"></div>
+
+    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-5 sm:p-7">
+      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900">
+        {% trans "How Compare Two PDFs works" %}
+      </h2>
+      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 leading-relaxed">
+        <li>{% trans "Upload the original PDF and the updated PDF version." %}</li>
+        <li>{% trans "Adjust diff sensitivity to match your review needs." %}</li>
+        <li>{% trans "Run comparison and download ZIP reports with visual overlays." %}</li>
+      </ol>
+      <p class="text-xs sm:text-sm text-gray-600 mt-4">
+        {% trans "Tip: Keep page sizes and orientation consistent for clearer visual diff output." %}
+      </p>
+    </div>
+
+    {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
 
     {% if related_tools %}
       {% include "frontend/includes/related_tools.html" with tools=related_tools %}

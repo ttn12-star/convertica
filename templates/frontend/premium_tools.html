@@ -10,10 +10,35 @@
 {% block twitter_title %}{{ page_title }}{% endblock %}
 {% block twitter_description %}{{ page_description }}{% endblock %}
 
+{% block structured_data %}
+  {{ block.super }}
+  {% if premium_tool_entities %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "{{ page_title }}",
+        "description": "{{ page_description }}",
+        "itemListElement": [
+          {% for tool in premium_tool_entities %}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.counter }},
+              "url": "{{ site_base_url }}{{ tool.url }}",
+              "name": "{{ tool.name|escapejs }}"
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <main class="bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-950 min-h-screen text-gray-900 dark:text-gray-100">
     <section class="py-12 sm:py-16 md:py-20 border-b border-amber-200/60 dark:border-amber-900/40">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl text-center">
+        {% include "frontend/includes/breadcrumbs.html" %}
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white text-sm font-semibold shadow-md mb-6">
           <span>{% trans "Premium" %}</span>
           <span class="opacity-80">·</span>
