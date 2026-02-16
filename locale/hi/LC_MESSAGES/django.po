@@ -12269,3 +12269,204 @@ msgstr "बैकग्राउंड कार्य"
 
 msgid "Background Tasks"
 msgstr "बैकग्राउंड कार्य"
+
+#. Compare PDF interactive viewer
+#: templates/frontend/premium/compare_pdf.html
+msgid "Upload two PDF files"
+msgstr "दो PDF फ़ाइलें अपलोड करें"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Select the base PDF and the comparison PDF."
+msgstr "मूल PDF और तुलना वाला PDF चुनें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Set sensitivity"
+msgstr "संवेदनशीलता सेट करें"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Adjust diff sensitivity to control change detection strictness."
+msgstr "परिवर्तन पहचान की सख्ती नियंत्रित करने के लिए डिफ़ संवेदनशीलता समायोजित करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download report ZIP"
+msgstr "ZIP रिपोर्ट डाउनलोड करें"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download visual diff images and structured report files."
+msgstr "विज़ुअल डिफ़ छवियाँ और संरचित रिपोर्ट फ़ाइलें डाउनलोड करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Premium Feature"
+msgstr "प्रीमियम फीचर"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Get a ZIP package with page-by-page visual diff images plus Markdown and JSON reports."
+msgstr "पेज-दर-पेज विज़ुअल डिफ़ छवियों के साथ Markdown और JSON रिपोर्ट वाला ZIP पैकेज प्राप्त करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base PDF"
+msgstr "मूल PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compare PDF"
+msgstr "तुलना PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Diff Sensitivity"
+msgstr "डिफ़ संवेदनशीलता"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Lower value catches smaller visual changes. Higher value highlights only major differences."
+msgstr "कम मान छोटे विज़ुअल बदलाव भी पकड़ता है। अधिक मान केवल बड़े अंतर को हाइलाइट करता है।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compare PDFs"
+msgstr "PDF की तुलना करें"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison Report"
+msgstr "तुलना रिपोर्ट"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download ZIP Report"
+msgstr "ZIP रिपोर्ट डाउनलोड करें"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Overall change"
+msgstr "कुल परिवर्तन"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Words added"
+msgstr "जोड़े गए शब्द"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Words removed"
+msgstr "हटाए गए शब्द"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Page 1 of 1"
+msgstr "पेज 1 में से 1"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Diff overlay"
+msgstr "अंतर ओवरले"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base"
+msgstr "मूल"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated"
+msgstr "अपडेटेड"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Loading page preview..."
+msgstr "पेज प्रीव्यू लोड हो रहा है..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "PDF page comparison preview"
+msgstr "PDF पेज तुलना प्रीव्यू"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Run comparison to preview page-by-page differences."
+msgstr "पेज-दर-पेज अंतर देखने के लिए तुलना चलाएँ।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Pages overview"
+msgstr "पेज अवलोकन"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base page"
+msgstr "मूल पेज"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base PDF page"
+msgstr "मूल PDF पेज"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated page"
+msgstr "अपडेटेड पेज"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated PDF page"
+msgstr "अपडेटेड PDF पेज"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "How Compare Two PDFs works"
+msgstr "Compare Two PDFs कैसे काम करता है"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Upload the original PDF and the updated PDF version."
+msgstr "मूल PDF और अपडेटेड PDF संस्करण अपलोड करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Adjust diff sensitivity to match your review needs."
+msgstr "अपनी समीक्षा आवश्यकताओं के अनुसार डिफ़ संवेदनशीलता समायोजित करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Run comparison, review page-by-page changes on screen, and download ZIP reports if needed."
+msgstr "तुलना चलाएँ, स्क्रीन पर पेज-दर-पेज बदलाव देखें, और जरूरत हो तो ZIP रिपोर्ट डाउनलोड करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Tip: Keep page sizes and orientation consistent for clearer visual diff output."
+msgstr "टिप: अधिक स्पष्ट विज़ुअल डिफ़ आउटपुट के लिए पेज आकार और ओरिएंटेशन समान रखें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison failed. Please try again."
+msgstr "तुलना विफल रही। कृपया फिर से प्रयास करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Please select two PDF files."
+msgstr "कृपया दो PDF फ़ाइलें चुनें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Could not read comparison archive. Please try again."
+msgstr "तुलना आर्काइव पढ़ा नहीं जा सका। कृपया फिर से प्रयास करें।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison report is incomplete. Please run the comparison again."
+msgstr "तुलना रिपोर्ट अधूरी है। कृपया तुलना फिर से चलाएँ।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "No pages found in comparison report."
+msgstr "तुलना रिपोर्ट में कोई पेज नहीं मिला।"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compared"
+msgstr "तुलना की गई"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Added in updated PDF"
+msgstr "अपडेटेड PDF में जोड़ा गया"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Missing in updated PDF"
+msgstr "अपडेटेड PDF में अनुपस्थित"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Status unknown"
+msgstr "स्थिति अज्ञात"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Changed pixels"
+msgstr "बदले हुए पिक्सेल"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Total pixels"
+msgstr "कुल पिक्सेल"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Visual change"
+msgstr "दृश्य परिवर्तन"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Text similarity"
+msgstr "टेक्स्ट समानता"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Preparing download..."
+msgstr "डाउनलोड तैयार किया जा रहा है..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Failed to download report ZIP."
+msgstr "ZIP रिपोर्ट डाउनलोड नहीं हो सकी।"
