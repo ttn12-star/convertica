@@ -396,6 +396,8 @@ def breadcrumbs(request):
             "frontend:pdf_to_epub_page": _("PDF to EPUB"),
             "frontend:ocr_pdf_to_word_page": _("Scanned PDF to Word"),
             "frontend:batch_converter_page": _("Batch Converter Hub"),
+            "frontend:premium_workflows_page": _("Saved Workflows"),
+            "frontend:background_center_page": _("Background Queue Center"),
         }
 
         if view_name in breadcrumb_names:
