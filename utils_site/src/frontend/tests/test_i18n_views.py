@@ -28,3 +28,26 @@ class I18nViewsTests(SimpleTestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response["Location"], "/es/?x=1")
+
+    @override_settings(ALLOWED_HOSTS=["testserver"])
+    def test_set_language_get_request_redirects_from_setlang_endpoint(self):
+        request = self.factory.get(
+            "/i18n/setlang/",
+            HTTP_HOST="convertica.net",
+        )
+        response = set_language(request)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/")
+
+    @override_settings(ALLOWED_HOSTS=["testserver"])
+    def test_set_language_invalid_lang_still_redirects_to_clean_next(self):
+        request = self.factory.post(
+            "/i18n/setlang/",
+            data={"language": "xx", "next": "/es/all-tools/?ref=header"},
+            HTTP_HOST="convertica.net",
+        )
+        response = set_language(request)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response["Location"], "/all-tools/?ref=header")
