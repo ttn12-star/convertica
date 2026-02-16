@@ -25,7 +25,7 @@
 
         <!-- All Tools Menu - Shows all functions (placed close to logo) -->
         <!-- Desktop: Dropdown menu (mobile version moved to right side) -->
-        <div class="relative ml-2 sm:ml-3 md:ml-4 lg:ml-6 mr-2 sm:mr-4 md:mr-8 lg:mr-16 flex-shrink-0 hidden md:block" id="all-tools-menu-parent">
+        <div class="relative ml-2 sm:ml-3 md:ml-4 lg:ml-6 mr-2 sm:mr-4 md:mr-5 lg:mr-6 flex-shrink-0 hidden md:block" id="all-tools-menu-parent">
 
           <!-- Desktop: Dropdown button (hidden on mobile) -->
           <a href="{% url 'frontend:all_tools_page' %}"
@@ -393,11 +393,11 @@
         </div>
 
         {% if PAYMENTS_ENABLED %}
-          <div class="relative group ml-2 sm:ml-3 md:ml-4 flex-shrink-0 hidden md:block" id="premium-tools-menu-parent">
+          <div class="relative hidden md:block flex-shrink-0 mr-2 lg:mr-3" id="premium-tools-menu-parent">
             <button id="premium-tools-menu-button"
                     aria-haspopup="menu"
                     aria-expanded="false"
-                    class="hidden md:flex items-center gap-1 text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                    class="flex items-center gap-1 text-gray-700 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
                     aria-controls="premium-tools-menu-dropdown"
                     aria-label="{% trans 'Premium tools' %}">
               <span class="whitespace-nowrap">{% trans "Premium Tools" %}</span>
@@ -410,7 +410,7 @@
             </button>
 
             <div id="premium-tools-menu-dropdown"
-                 class="absolute left-0 top-full mt-2 w-[360px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                 class="absolute right-0 top-full mt-2 w-[360px] max-w-[calc(100vw-2rem)] bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
                  aria-labelledby="premium-tools-menu-button"
                  role="menu">
               <div class="p-5 bg-gradient-to-br from-white to-amber-50/40 dark:from-gray-800 dark:to-gray-900">
@@ -1076,6 +1076,17 @@
           <span class="whitespace-nowrap">{% trans "All Tools" %}</span>
         </a>
       </div>
+
+      {% if PAYMENTS_ENABLED %}
+        <div class="md:hidden flex-shrink-0 mr-2">
+          <a href="{% url 'frontend:premium_tools_page' %}"
+             class="flex items-center justify-center gap-1 text-amber-800 bg-amber-100 hover:bg-amber-200 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 rounded-lg px-2.5 py-2 text-xs shadow-md"
+             aria-label="{% trans 'Premium tools' %}">
+            <span>{% trans "Premium" %}</span>
+            <span class="inline-flex items-center px-1 py-0.5 rounded bg-amber-200 text-amber-800 text-[10px] font-bold">PRO</span>
+          </a>
+        </div>
+      {% endif %}
 
       <!-- Mobile Hamburger -->
       <div class="md:hidden flex-shrink-0">

@@ -398,6 +398,16 @@ class FrontendViewsTestCase(TestCase):
         self.assertIn(reverse("frontend:pdf_to_markdown_page"), premium_dropdown)
         self.assertIn(reverse("frontend:compare_pdf_page"), premium_dropdown)
 
+    def test_index_page_shows_premium_tools_menu_when_enabled(self):
+        """Homepage header should include Premium Tools menu when payments are enabled."""
+        response = self.client.get(self._get_url_with_lang(""), follow=True)
+        self.assertEqual(response.status_code, 200)
+
+        html = response.content.decode("utf-8")
+        self.assertIn('id="premium-tools-menu-parent"', html)
+        self.assertIn('id="premium-tools-menu-dropdown"', html)
+        self.assertIn(reverse("frontend:premium_tools_page"), html)
+
     def test_compare_pdf_page_has_interactive_preview_blocks(self):
         """Compare PDF page should include on-screen report preview UI and JSZip loader."""
         response = self.client.get(

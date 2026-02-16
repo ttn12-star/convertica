@@ -3,7 +3,7 @@
  * Provides offline support and caching for static assets
  */
 
-const CACHE_VERSION = 'convertica-v4';
+const CACHE_VERSION = 'convertica-v5';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
