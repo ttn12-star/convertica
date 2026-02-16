@@ -12352,3 +12352,204 @@ msgstr "Zadania w tle"
 
 msgid "Background Tasks"
 msgstr "Zadania w tle"
+
+#. Compare PDF interactive viewer
+#: templates/frontend/premium/compare_pdf.html
+msgid "Upload two PDF files"
+msgstr "Prześlij dwa pliki PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Select the base PDF and the comparison PDF."
+msgstr "Wybierz bazowy plik PDF i plik PDF do porównania."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Set sensitivity"
+msgstr "Ustaw czułość"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Adjust diff sensitivity to control change detection strictness."
+msgstr "Dostosuj czułość różnic, aby kontrolować rygor wykrywania zmian."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download report ZIP"
+msgstr "Pobierz raport ZIP"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download visual diff images and structured report files."
+msgstr "Pobierz obrazy różnic wizualnych oraz ustrukturyzowane pliki raportu."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Premium Feature"
+msgstr "Funkcja premium"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Get a ZIP package with page-by-page visual diff images plus Markdown and JSON reports."
+msgstr "Pobierz pakiet ZIP z wizualnymi różnicami strona po stronie oraz raportami Markdown i JSON."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base PDF"
+msgstr "Bazowy PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compare PDF"
+msgstr "Porównywany PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Diff Sensitivity"
+msgstr "Czułość różnic"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Lower value catches smaller visual changes. Higher value highlights only major differences."
+msgstr "Niższa wartość wychwytuje mniejsze zmiany wizualne. Wyższa wartość podkreśla tylko duże różnice."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compare PDFs"
+msgstr "Porównaj pliki PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison Report"
+msgstr "Raport porównania"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download ZIP Report"
+msgstr "Pobierz raport ZIP"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Overall change"
+msgstr "Łączna zmiana"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Words added"
+msgstr "Dodane słowa"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Words removed"
+msgstr "Usunięte słowa"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Page 1 of 1"
+msgstr "Strona 1 z 1"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Diff overlay"
+msgstr "Nakładka różnic"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base"
+msgstr "Bazowy"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated"
+msgstr "Zaktualizowany"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Loading page preview..."
+msgstr "Ładowanie podglądu strony..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "PDF page comparison preview"
+msgstr "Podgląd porównania strony PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Run comparison to preview page-by-page differences."
+msgstr "Uruchom porównanie, aby zobaczyć różnice strona po stronie."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Pages overview"
+msgstr "Przegląd stron"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base page"
+msgstr "Strona bazowa"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base PDF page"
+msgstr "Strona bazowego PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated page"
+msgstr "Zaktualizowana strona"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated PDF page"
+msgstr "Strona zaktualizowanego PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "How Compare Two PDFs works"
+msgstr "Jak działa Compare Two PDFs"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Upload the original PDF and the updated PDF version."
+msgstr "Prześlij oryginalny PDF i zaktualizowaną wersję PDF."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Adjust diff sensitivity to match your review needs."
+msgstr "Dostosuj czułość porównania do swoich potrzeb."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Run comparison, review page-by-page changes on screen, and download ZIP reports if needed."
+msgstr "Uruchom porównanie, przejrzyj zmiany strona po stronie na ekranie i w razie potrzeby pobierz raporty ZIP."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Tip: Keep page sizes and orientation consistent for clearer visual diff output."
+msgstr "Wskazówka: zachowaj ten sam rozmiar i orientację stron, aby uzyskać czytelniejszy wynik porównania wizualnego."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison failed. Please try again."
+msgstr "Porównanie nie powiodło się. Spróbuj ponownie."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Please select two PDF files."
+msgstr "Wybierz dwa pliki PDF."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Could not read comparison archive. Please try again."
+msgstr "Nie udało się odczytać archiwum porównania. Spróbuj ponownie."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison report is incomplete. Please run the comparison again."
+msgstr "Raport porównania jest niekompletny. Uruchom porównanie ponownie."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "No pages found in comparison report."
+msgstr "W raporcie porównania nie znaleziono stron."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compared"
+msgstr "Porównano"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Added in updated PDF"
+msgstr "Dodano w zaktualizowanym PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Missing in updated PDF"
+msgstr "Brak w zaktualizowanym PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Status unknown"
+msgstr "Nieznany status"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Changed pixels"
+msgstr "Zmienione piksele"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Total pixels"
+msgstr "Łącznie pikseli"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Visual change"
+msgstr "Zmiana wizualna"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Text similarity"
+msgstr "Podobieństwo tekstu"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Preparing download..."
+msgstr "Przygotowywanie pobierania..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Failed to download report ZIP."
+msgstr "Nie udało się pobrać raportu ZIP."

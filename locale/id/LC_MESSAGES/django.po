@@ -12387,3 +12387,204 @@ msgstr "Tugas latar belakang"
 
 msgid "Background Tasks"
 msgstr "Tugas latar belakang"
+
+#. Compare PDF interactive viewer
+#: templates/frontend/premium/compare_pdf.html
+msgid "Upload two PDF files"
+msgstr "Unggah dua file PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Select the base PDF and the comparison PDF."
+msgstr "Pilih PDF dasar dan PDF pembanding."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Set sensitivity"
+msgstr "Atur sensitivitas"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Adjust diff sensitivity to control change detection strictness."
+msgstr "Sesuaikan sensitivitas perbedaan untuk mengontrol tingkat ketelitian deteksi perubahan."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download report ZIP"
+msgstr "Unduh laporan ZIP"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download visual diff images and structured report files."
+msgstr "Unduh gambar perbedaan visual dan file laporan terstruktur."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Premium Feature"
+msgstr "Fitur premium"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Get a ZIP package with page-by-page visual diff images plus Markdown and JSON reports."
+msgstr "Dapatkan paket ZIP berisi gambar perbedaan visual per halaman serta laporan Markdown dan JSON."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base PDF"
+msgstr "PDF dasar"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compare PDF"
+msgstr "PDF pembanding"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Diff Sensitivity"
+msgstr "Sensitivitas perbedaan"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Lower value catches smaller visual changes. Higher value highlights only major differences."
+msgstr "Nilai lebih rendah menangkap perubahan visual yang lebih kecil. Nilai lebih tinggi hanya menyorot perbedaan besar."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compare PDFs"
+msgstr "Bandingkan PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison Report"
+msgstr "Laporan perbandingan"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Download ZIP Report"
+msgstr "Unduh laporan ZIP"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Overall change"
+msgstr "Perubahan keseluruhan"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Words added"
+msgstr "Kata ditambahkan"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Words removed"
+msgstr "Kata dihapus"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Page 1 of 1"
+msgstr "Halaman 1 dari 1"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Diff overlay"
+msgstr "Overlay perbedaan"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base"
+msgstr "Dasar"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated"
+msgstr "Diperbarui"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Loading page preview..."
+msgstr "Memuat pratinjau halaman..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "PDF page comparison preview"
+msgstr "Pratinjau perbandingan halaman PDF"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Run comparison to preview page-by-page differences."
+msgstr "Jalankan perbandingan untuk melihat perbedaan per halaman."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Pages overview"
+msgstr "Ikhtisar halaman"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base page"
+msgstr "Halaman dasar"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Base PDF page"
+msgstr "Halaman PDF dasar"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated page"
+msgstr "Halaman diperbarui"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Updated PDF page"
+msgstr "Halaman PDF diperbarui"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "How Compare Two PDFs works"
+msgstr "Cara kerja Compare Two PDFs"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Upload the original PDF and the updated PDF version."
+msgstr "Unggah PDF asli dan versi PDF yang diperbarui."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Adjust diff sensitivity to match your review needs."
+msgstr "Sesuaikan sensitivitas perbedaan sesuai kebutuhan peninjauan Anda."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Run comparison, review page-by-page changes on screen, and download ZIP reports if needed."
+msgstr "Jalankan perbandingan, tinjau perubahan per halaman di layar, dan unduh laporan ZIP bila perlu."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Tip: Keep page sizes and orientation consistent for clearer visual diff output."
+msgstr "Tips: pertahankan ukuran dan orientasi halaman yang sama agar hasil perbandingan visual lebih jelas."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison failed. Please try again."
+msgstr "Perbandingan gagal. Silakan coba lagi."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Please select two PDF files."
+msgstr "Silakan pilih dua file PDF."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Could not read comparison archive. Please try again."
+msgstr "Arsip perbandingan tidak dapat dibaca. Silakan coba lagi."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Comparison report is incomplete. Please run the comparison again."
+msgstr "Laporan perbandingan tidak lengkap. Silakan jalankan perbandingan lagi."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "No pages found in comparison report."
+msgstr "Tidak ada halaman yang ditemukan dalam laporan perbandingan."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Compared"
+msgstr "Dibandingkan"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Added in updated PDF"
+msgstr "Ditambahkan pada PDF yang diperbarui"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Missing in updated PDF"
+msgstr "Hilang pada PDF yang diperbarui"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Status unknown"
+msgstr "Status tidak diketahui"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Changed pixels"
+msgstr "Piksel berubah"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Total pixels"
+msgstr "Total piksel"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Visual change"
+msgstr "Perubahan visual"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Text similarity"
+msgstr "Kemiripan teks"
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Preparing download..."
+msgstr "Menyiapkan unduhan..."
+
+#: templates/frontend/premium/compare_pdf.html
+msgid "Failed to download report ZIP."
+msgstr "Gagal mengunduh laporan ZIP."
