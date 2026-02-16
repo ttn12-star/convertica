@@ -20,6 +20,12 @@ class FrontendViewsTestCase(TestCase):
         self.client = Client()
         # Set default language for tests
         self.default_lang = settings.LANGUAGE_CODE
+        self.premium_only_paths = (
+            "epub-to-pdf/",
+            "pdf-to-epub/",
+            "scanned-pdf-to-word/",
+            "batch-converter/",
+        )
 
     def _get_url_with_lang(self, path, lang_code=None):
         """Get URL with language prefix."""
@@ -258,7 +264,7 @@ class FrontendViewsTestCase(TestCase):
 
     def test_premium_pages_redirect_anonymous_to_login(self):
         """Anonymous users should be redirected to login for premium pages."""
-        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+        for path in self.premium_only_paths:
             with self.subTest(path=path):
                 url = self._get_url_with_lang(path)
                 response = self.client.get(url, follow=False)
@@ -277,7 +283,7 @@ class FrontendViewsTestCase(TestCase):
         self.client.force_login(user)
         pricing_url = reverse("frontend:pricing")
 
-        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+        for path in self.premium_only_paths:
             with self.subTest(path=path):
                 response = self.client.get(
                     self._get_url_with_lang(path),
@@ -296,7 +302,7 @@ class FrontendViewsTestCase(TestCase):
         )
         self.client.force_login(premium_user)
 
-        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+        for path in self.premium_only_paths:
             with self.subTest(path=path):
                 response = self.client.get(
                     self._get_url_with_lang(path),

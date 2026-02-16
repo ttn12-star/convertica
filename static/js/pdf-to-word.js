@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const ocrEnabled = document.getElementById('ocrEnabled');
     const ocrLanguageSection = document.getElementById('ocrLanguageSection');
     const ocrLanguageSelect = document.getElementById('ocrLanguage');
+    const query = new URLSearchParams(window.location.search);
+    const shouldEnableOcrFromQuery = ['1', 'true', 'yes', 'on'].includes((query.get('ocr') || '').toLowerCase());
+    const requestedOcrLanguage = (query.get('ocr_lang') || '').trim().toLowerCase();
 
     console.log('OCR Debug: ocrEnabled found:', !!ocrEnabled);
     console.log('OCR Debug: ocrLanguageSection found:', !!ocrLanguageSection);
@@ -54,7 +57,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         ocrEnabled.addEventListener('change', updateLanguageVisibility);
 
-        // Set initial state
+        if (shouldEnableOcrFromQuery && !ocrEnabled.disabled) {
+            ocrEnabled.checked = true;
+        }
+
+        if (requestedOcrLanguage && !ocrLanguageSelect.disabled) {
+            const hasRequestedLanguage = Array.from(ocrLanguageSelect.options).some(
+                (option) => option.value.toLowerCase() === requestedOcrLanguage
+            );
+            if (hasRequestedLanguage) {
+                ocrLanguageSelect.value = requestedOcrLanguage;
+            }
+        }
+
+        // Set initial state after optional query presets
         updateLanguageVisibility();
     } else {
         console.log('OCR Debug: OCR language selection not available (user not premium)');

@@ -22,6 +22,12 @@ urlpatterns = [
     path("pdf-to-html/", views.pdf_to_html_page, name="pdf_to_html_page"),
     path("epub-to-pdf/", views.epub_to_pdf_page, name="epub_to_pdf_page"),
     path("pdf-to-epub/", views.pdf_to_epub_page, name="pdf_to_epub_page"),
+    path(
+        "scanned-pdf-to-word/",
+        views.ocr_pdf_to_word_page,
+        name="ocr_pdf_to_word_page",
+    ),
+    path("batch-converter/", views.batch_converter_page, name="batch_converter_page"),
     # PDF Edit pages
     path("pdf-edit/rotate/", views.rotate_pdf_page, name="rotate_pdf_page"),
     path(

@@ -17,7 +17,7 @@
       <div class="flex items-start space-x-3 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl">
         <input type="checkbox"
                id="ocrEnabled"
-               name="ocrEnabled"
+               name="ocr_enabled"
                value="true"
                class="mt-1 w-4 h-4 text-amber-600 border-gray-300 dark:border-gray-600 rounded focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"
                {% if not user.is_authenticated or not user.is_premium_active %}disabled{% endif %}>
