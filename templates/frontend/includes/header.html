@@ -490,6 +490,46 @@
                     </a>
                   </div>
                 </div>
+
+                {% if PAYMENTS_ENABLED %}
+                  <div class="border-t border-amber-100 mt-3 pt-4">
+                    <div class="flex items-center justify-between mb-2">
+                      <h6 class="font-bold text-gray-900 text-xs uppercase tracking-wide text-amber-700">
+                        {% trans "Premium Tools" %}
+                      </h6>
+                      <a href="{% url 'frontend:premium_tools_page' %}"
+                         class="text-[11px] font-semibold text-amber-700 hover:text-amber-800 transition-colors">
+                        {% trans "Open Catalog" %}
+                      </a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-sm">
+                      <a href="{% url 'frontend:epub_to_pdf_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors"
+                         role="menuitem">
+                        <span>{% trans "EPUB to PDF" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:pdf_to_epub_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors"
+                         role="menuitem">
+                        <span>{% trans "PDF to EPUB" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:pdf_to_markdown_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors"
+                         role="menuitem">
+                        <span>{% trans "PDF to Markdown" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:compare_pdf_page' %}"
+                         class="flex items-center justify-between p-2 rounded-lg hover:bg-amber-50 text-gray-700 hover:text-amber-700 transition-colors"
+                         role="menuitem">
+                        <span>{% trans "Compare Two PDFs" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                    </div>
+                  </div>
+                {% endif %}
               </div>
             </div>
 
@@ -995,6 +1035,29 @@
         </span>
         <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
       </a>
+
+      <div class="pl-4 space-y-1 pb-1">
+        <a href="{% url 'frontend:epub_to_pdf_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
+          <span>{% trans "EPUB to PDF" %}</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+        <a href="{% url 'frontend:pdf_to_epub_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
+          <span>{% trans "PDF to EPUB" %}</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+        <a href="{% url 'frontend:pdf_to_markdown_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
+          <span>{% trans "PDF to Markdown" %}</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+        <a href="{% url 'frontend:compare_pdf_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
+          <span>{% trans "Compare Two PDFs" %}</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+      </div>
     {% endif %}
 
   <!-- Mobile PDF Security Menu Toggle -->
