@@ -21,6 +21,10 @@ class HeaderNavigation {
     this.organizePdfDropdown = document.getElementById('organize-pdf-menu-dropdown');
     this.organizePdfButton = document.getElementById('organize-pdf-menu-button');
     this.organizePdfArrow = document.getElementById('organize-pdf-menu-arrow');
+    this.premiumToolsParent = document.getElementById('premium-tools-menu-parent');
+    this.premiumToolsDropdown = document.getElementById('premium-tools-menu-dropdown');
+    this.premiumToolsButton = document.getElementById('premium-tools-menu-button');
+    this.premiumToolsArrow = document.getElementById('premium-tools-menu-arrow');
     this.mobileEditPdfToggle = document.getElementById('mobile-edit-pdf-toggle');
     this.mobileEditPdfMenu = document.getElementById('mobile-edit-pdf-menu');
     this.mobileOrganizePdfToggle = document.getElementById('mobile-organize-pdf-toggle');
@@ -94,6 +98,20 @@ class HeaderNavigation {
       if (window.innerWidth < 768) {
         e.preventDefault();
         this.toggleOrganizePdfDesktop();
+      }
+    });
+
+    // Desktop premium tools menu (hover) - always attach, check width in methods
+    if (this.premiumToolsParent) {
+      this.premiumToolsParent.addEventListener('mouseenter', () => this.showPremiumTools());
+      this.premiumToolsParent.addEventListener('mouseleave', () => this.hidePremiumTools());
+    }
+
+    // Desktop premium tools menu (click for accessibility)
+    this.premiumToolsButton?.addEventListener('click', (e) => {
+      if (window.innerWidth >= 768) {
+        e.preventDefault();
+        this.togglePremiumToolsDesktop();
       }
     });
 
@@ -190,6 +208,7 @@ class HeaderNavigation {
     this.hideEditPdf();
     this.hideOrganizePdf();
     this.hideAllTools();
+    this.hidePremiumTools();
     this.megaDropdown.classList.remove('opacity-0', 'invisible');
     this.megaDropdown.classList.add('opacity-100', 'visible');
     this.megaParent.setAttribute('aria-expanded', 'true');
@@ -236,6 +255,7 @@ class HeaderNavigation {
     this.hideMega();
     this.hideOrganizePdf();
     this.hideAllTools();
+    this.hidePremiumTools();
     this.editPdfDropdown.classList.remove('opacity-0', 'invisible');
     this.editPdfDropdown.classList.add('opacity-100', 'visible');
     this.editPdfParent.setAttribute('aria-expanded', 'true');
@@ -283,6 +303,7 @@ class HeaderNavigation {
     this.hideMega();
     this.hideEditPdf();
     this.hideAllTools();
+    this.hidePremiumTools();
     this.organizePdfDropdown.classList.remove('opacity-0', 'invisible');
     this.organizePdfDropdown.classList.add('opacity-100', 'visible');
     this.organizePdfParent.setAttribute('aria-expanded', 'true');
@@ -356,6 +377,7 @@ class HeaderNavigation {
     this.hideMega();
     this.hideEditPdf();
     this.hideOrganizePdf();
+    this.hidePremiumTools();
 
     // Position menu to expand from button center
     const buttonRect = this.allToolsButton.getBoundingClientRect();
@@ -397,6 +419,42 @@ class HeaderNavigation {
     isVisible ? this.hideAllTools() : this.showAllTools();
   }
 
+  showPremiumTools() {
+    if (window.innerWidth < 768) return;
+    if (!this.premiumToolsDropdown || !this.premiumToolsParent || !this.premiumToolsButton) return;
+    // Hide other menus if open
+    this.hideMega();
+    this.hideEditPdf();
+    this.hideOrganizePdf();
+    this.hideAllTools();
+    this.hideMore();
+    this.premiumToolsDropdown.classList.remove('opacity-0', 'invisible');
+    this.premiumToolsDropdown.classList.add('opacity-100', 'visible');
+    this.premiumToolsParent.setAttribute('aria-expanded', 'true');
+    this.premiumToolsButton.setAttribute('aria-expanded', 'true');
+    if (this.premiumToolsArrow) {
+      this.premiumToolsArrow.classList.add('rotate-180');
+    }
+  }
+
+  hidePremiumTools() {
+    if (window.innerWidth < 768) return;
+    if (!this.premiumToolsDropdown || !this.premiumToolsParent || !this.premiumToolsButton) return;
+    this.premiumToolsDropdown.classList.remove('opacity-100', 'visible');
+    this.premiumToolsDropdown.classList.add('opacity-0', 'invisible');
+    this.premiumToolsParent.setAttribute('aria-expanded', 'false');
+    this.premiumToolsButton.setAttribute('aria-expanded', 'false');
+    if (this.premiumToolsArrow) {
+      this.premiumToolsArrow.classList.remove('rotate-180');
+    }
+  }
+
+  togglePremiumToolsDesktop() {
+    if (!this.premiumToolsDropdown) return;
+    const isVisible = !this.premiumToolsDropdown.classList.contains('invisible');
+    isVisible ? this.hidePremiumTools() : this.showPremiumTools();
+  }
+
   showMore() {
     if (window.innerWidth < 768) return;
     if (!this.moreDropdown || !this.moreParent || !this.moreButton) return;
@@ -405,6 +463,7 @@ class HeaderNavigation {
     this.hideEditPdf();
     this.hideOrganizePdf();
     this.hideAllTools();
+    this.hidePremiumTools();
     this.moreDropdown.classList.remove('opacity-0', 'invisible');
     this.moreDropdown.classList.add('opacity-100', 'visible');
     this.moreParent.setAttribute('aria-expanded', 'true');
@@ -489,6 +548,13 @@ class HeaderNavigation {
       this.hideAllTools();
     }
 
+    // Close desktop premium tools menu
+    if (this.premiumToolsDropdown &&
+        !this.premiumToolsParent.contains(e.target) &&
+        window.innerWidth >= 768) {
+      this.hidePremiumTools();
+    }
+
     // Close desktop more menu
     if (this.moreDropdown &&
         !this.moreParent.contains(e.target) &&
@@ -504,6 +570,7 @@ class HeaderNavigation {
       this.hideEditPdf();
       this.hideOrganizePdf();
       this.hideAllTools();
+      this.hidePremiumTools();
       this.hideMore();
     }
 

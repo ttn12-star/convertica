@@ -354,21 +354,49 @@ class FrontendViewsTestCase(TestCase):
                 self.assertNotContains(response, '"price": "0"', status_code=200)
 
     def test_all_tools_header_menu_lists_new_premium_links(self):
-        """All Tools menu should include direct links to new premium tools."""
+        """All Tools dropdown should include premium links, not Convert PDF dropdown."""
         response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(
-            response, reverse("frontend:epub_to_pdf_page"), status_code=200
+        html = response.content.decode("utf-8")
+
+        self.assertIn('id="all-tools-menu-dropdown"', html)
+        self.assertIn('id="mega-menu-dropdown"', html)
+
+        all_tools_dropdown = html.split('id="all-tools-menu-dropdown"', 1)[1].split(
+            'id="mega-menu-parent"', 1
+        )[0]
+        mega_convert_dropdown = html.split('id="mega-menu-dropdown"', 1)[1].split(
+            'id="edit-pdf-menu-parent"', 1
+        )[0]
+
+        premium_links = (
+            reverse("frontend:epub_to_pdf_page"),
+            reverse("frontend:pdf_to_epub_page"),
+            reverse("frontend:pdf_to_markdown_page"),
+            reverse("frontend:compare_pdf_page"),
         )
-        self.assertContains(
-            response, reverse("frontend:pdf_to_epub_page"), status_code=200
-        )
-        self.assertContains(
-            response, reverse("frontend:pdf_to_markdown_page"), status_code=200
-        )
-        self.assertContains(
-            response, reverse("frontend:compare_pdf_page"), status_code=200
-        )
+
+        for premium_link in premium_links:
+            self.assertIn(premium_link, all_tools_dropdown)
+            self.assertNotIn(premium_link, mega_convert_dropdown)
+
+    def test_header_has_dedicated_premium_tools_submenu(self):
+        """Header should expose a dedicated Premium Tools submenu with direct links."""
+        response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode("utf-8")
+
+        self.assertIn('id="premium-tools-menu-parent"', html)
+        self.assertIn('id="premium-tools-menu-dropdown"', html)
+
+        premium_dropdown = html.split('id="premium-tools-menu-dropdown"', 1)[1].split(
+            'id="more-menu-parent"', 1
+        )[0]
+        self.assertIn(reverse("frontend:premium_tools_page"), premium_dropdown)
+        self.assertIn(reverse("frontend:epub_to_pdf_page"), premium_dropdown)
+        self.assertIn(reverse("frontend:pdf_to_epub_page"), premium_dropdown)
+        self.assertIn(reverse("frontend:pdf_to_markdown_page"), premium_dropdown)
+        self.assertIn(reverse("frontend:compare_pdf_page"), premium_dropdown)
 
     def test_compare_pdf_page_has_interactive_preview_blocks(self):
         """Compare PDF page should include on-screen report preview UI and JSZip loader."""
@@ -390,6 +418,10 @@ class FrontendViewsTestCase(TestCase):
         """Premium links should be hidden from menus when payments are disabled."""
         response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
         self.assertEqual(response.status_code, 200)
+        html = response.content.decode("utf-8")
+
+        self.assertNotIn('id="premium-tools-menu-parent"', html)
+        self.assertNotIn('id="premium-tools-menu-dropdown"', html)
 
         self.assertNotContains(
             response, reverse("frontend:premium_tools_page"), status_code=200
