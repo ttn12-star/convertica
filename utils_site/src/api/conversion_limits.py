@@ -11,8 +11,16 @@ from typing import Any
 try:
     from pypdf import PdfReader
 
+    try:
+        from pypdf.errors import FileNotDecryptedError, PdfReadError
+    except ImportError:
+        FileNotDecryptedError = None
+        PdfReadError = None
+
     _pypdf_available = True
 except ImportError:
+    FileNotDecryptedError = None
+    PdfReadError = None
     _pypdf_available = False
 
 try:
@@ -26,6 +34,28 @@ except ImportError:
 from .logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+
+def _is_encrypted_pdf_error(exc: Exception) -> bool:
+    """Return True when exception indicates password-protected PDF."""
+    if FileNotDecryptedError is not None and isinstance(exc, FileNotDecryptedError):
+        return True
+
+    if PdfReadError is not None and isinstance(exc, PdfReadError):
+        error_text = str(exc).lower()
+        return (
+            "decrypt" in error_text
+            or "password" in error_text
+            or "encrypted" in error_text
+        )
+
+    error_text = str(exc).lower()
+    return (
+        "not been decrypted" in error_text
+        or "password-protected" in error_text
+        or "password protected" in error_text
+    )
+
 
 # ============================================================================
 # CONVERSION LIMITS - Now read from Django settings (configurable via .env)
@@ -337,9 +367,22 @@ def validate_pdf_pages(
 
         return True, None, page_count
 
-    except (ValueError, OSError) as e:
-        logger.warning("Failed to validate PDF pages: %s", e)
-        # If we can't read the PDF, let the conversion handle the error
+    except Exception as e:
+        if _is_encrypted_pdf_error(e):
+            logger.info("Rejected password-protected PDF during page validation: %s", e)
+            return (
+                False,
+                _("PDF is password-protected. Please unlock it and try again."),
+                0,
+            )
+
+        if isinstance(e, ValueError | OSError):
+            logger.warning("Failed to validate PDF pages: %s", e)
+            # If we can't read the PDF, let the conversion handle the error
+            return True, None, 0
+
+        logger.warning("Unexpected PDF validation error: %s", e)
+        # Preserve previous behavior for unknown parser errors.
         return True, None, 0
 
 
