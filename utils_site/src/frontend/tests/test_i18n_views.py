@@ -1,6 +1,6 @@
 """Tests for custom i18n views and URL cleanup helpers."""
 
-from django.test import RequestFactory, SimpleTestCase
+from django.test import RequestFactory, SimpleTestCase, override_settings
 from src.frontend.i18n_views import remove_all_language_prefixes, set_language
 
 
@@ -17,6 +17,7 @@ class I18nViewsTests(SimpleTestCase):
             "/pdf-edit/crop/",
         )
 
+    @override_settings(ALLOWED_HOSTS=["testserver"])
     def test_set_language_does_not_create_double_prefix_with_query(self):
         request = self.factory.post(
             "/i18n/setlang/",

@@ -5,6 +5,7 @@ Custom i18n views to prevent double language prefixes in URLs.
 from urllib.parse import urlsplit
 
 from django.conf import settings
+from django.core.exceptions import DisallowedHost
 from django.http import HttpResponseRedirect
 from django.urls import translate_url
 from django.utils.http import url_has_allowed_host_and_scheme
@@ -47,6 +48,17 @@ def remove_all_language_prefixes(path):
     return cleaned_path
 
 
+def _build_allowed_hosts(request) -> set[str]:
+    """Build allowed hosts for safe redirect validation without raising DisallowedHost."""
+    allowed_hosts = set(getattr(settings, "ALLOWED_HOSTS", []) or [])
+    try:
+        allowed_hosts.add(request.get_host())
+    except DisallowedHost:
+        # Invalid request host should not break language switching for relative URLs.
+        pass
+    return allowed_hosts
+
+
 def set_language(request):
     """
     Custom set_language view that prevents double language prefixes.
@@ -75,9 +87,10 @@ def set_language(request):
             next_url = remove_all_language_prefixes(next_url)
 
             # Validate next URL
+            allowed_hosts = _build_allowed_hosts(request)
             if next_url and url_has_allowed_host_and_scheme(
                 next_url,
-                allowed_hosts={request.get_host()},
+                allowed_hosts=allowed_hosts,
                 require_https=request.is_secure(),
             ):
                 # Add language prefix manually to ensure correct behavior
