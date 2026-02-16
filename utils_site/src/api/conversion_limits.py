@@ -31,41 +31,96 @@ logger = get_logger(__name__)
 # CONVERSION LIMITS - Now read from Django settings (configurable via .env)
 # ============================================================================
 
-try:
-    from django.conf import settings
+DEFAULT_MAX_PDF_PAGES = 30
+DEFAULT_MAX_PDF_PAGES_HEAVY = 30
+DEFAULT_MAX_PDF_PAGES_PREMIUM = 200
+DEFAULT_MAX_PDF_PAGES_HEAVY_PREMIUM = 100
+DEFAULT_MAX_FILE_SIZE = 25 * 1024 * 1024
+DEFAULT_MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024
+DEFAULT_MAX_FILE_SIZE_PREMIUM = 200 * 1024 * 1024
+DEFAULT_MAX_FILE_SIZE_HEAVY_PREMIUM = 100 * 1024 * 1024
 
-    # PDF page limits (free users)
-    MAX_PDF_PAGES = getattr(settings, "MAX_PDF_PAGES_FREE", 30)
-    MAX_PDF_PAGES_HEAVY = getattr(settings, "MAX_PDF_PAGES_HEAVY_FREE", 30)
+# Runtime values (can be reloaded from settings/admin overrides).
+MAX_PDF_PAGES = DEFAULT_MAX_PDF_PAGES
+MAX_PDF_PAGES_HEAVY = DEFAULT_MAX_PDF_PAGES_HEAVY
+MAX_PDF_PAGES_PREMIUM = DEFAULT_MAX_PDF_PAGES_PREMIUM
+MAX_PDF_PAGES_HEAVY_PREMIUM = DEFAULT_MAX_PDF_PAGES_HEAVY_PREMIUM
+MAX_FILE_SIZE = DEFAULT_MAX_FILE_SIZE
+MAX_FILE_SIZE_HEAVY = DEFAULT_MAX_FILE_SIZE_HEAVY
+MAX_FILE_SIZE_PREMIUM = DEFAULT_MAX_FILE_SIZE_PREMIUM
+MAX_FILE_SIZE_HEAVY_PREMIUM = DEFAULT_MAX_FILE_SIZE_HEAVY_PREMIUM
 
-    # PDF page limits (premium users)
-    MAX_PDF_PAGES_PREMIUM = getattr(settings, "MAX_PDF_PAGES_PREMIUM", 200)
-    MAX_PDF_PAGES_HEAVY_PREMIUM = getattr(settings, "MAX_PDF_PAGES_HEAVY_PREMIUM", 100)
 
-    # File size limits (free users)
-    MAX_FILE_SIZE = getattr(settings, "MAX_FILE_SIZE_FREE", 25 * 1024 * 1024)
-    MAX_FILE_SIZE_HEAVY = getattr(
-        settings, "MAX_FILE_SIZE_HEAVY_FREE", 15 * 1024 * 1024
+def _to_int(value: Any, fallback: int) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return fallback
+
+
+def reload_from_settings() -> None:
+    """Reload module-level conversion limits from Django settings."""
+    global MAX_PDF_PAGES
+    global MAX_PDF_PAGES_HEAVY
+    global MAX_PDF_PAGES_PREMIUM
+    global MAX_PDF_PAGES_HEAVY_PREMIUM
+    global MAX_FILE_SIZE
+    global MAX_FILE_SIZE_HEAVY
+    global MAX_FILE_SIZE_PREMIUM
+    global MAX_FILE_SIZE_HEAVY_PREMIUM
+
+    try:
+        from django.conf import settings
+    except ImportError:
+        return
+
+    MAX_PDF_PAGES = _to_int(
+        getattr(
+            settings,
+            "MAX_PDF_PAGES_FREE",
+            getattr(settings, "MAX_FREE_PDF_PAGES", DEFAULT_MAX_PDF_PAGES),
+        ),
+        DEFAULT_MAX_PDF_PAGES,
+    )
+    MAX_PDF_PAGES_HEAVY = _to_int(
+        getattr(settings, "MAX_PDF_PAGES_HEAVY_FREE", DEFAULT_MAX_PDF_PAGES_HEAVY),
+        DEFAULT_MAX_PDF_PAGES_HEAVY,
+    )
+    MAX_PDF_PAGES_PREMIUM = _to_int(
+        getattr(settings, "MAX_PDF_PAGES_PREMIUM", DEFAULT_MAX_PDF_PAGES_PREMIUM),
+        DEFAULT_MAX_PDF_PAGES_PREMIUM,
+    )
+    MAX_PDF_PAGES_HEAVY_PREMIUM = _to_int(
+        getattr(
+            settings,
+            "MAX_PDF_PAGES_HEAVY_PREMIUM",
+            DEFAULT_MAX_PDF_PAGES_HEAVY_PREMIUM,
+        ),
+        DEFAULT_MAX_PDF_PAGES_HEAVY_PREMIUM,
+    )
+    MAX_FILE_SIZE = _to_int(
+        getattr(settings, "MAX_FILE_SIZE_FREE", DEFAULT_MAX_FILE_SIZE),
+        DEFAULT_MAX_FILE_SIZE,
+    )
+    MAX_FILE_SIZE_HEAVY = _to_int(
+        getattr(settings, "MAX_FILE_SIZE_HEAVY_FREE", DEFAULT_MAX_FILE_SIZE_HEAVY),
+        DEFAULT_MAX_FILE_SIZE_HEAVY,
+    )
+    MAX_FILE_SIZE_PREMIUM = _to_int(
+        getattr(settings, "MAX_FILE_SIZE_PREMIUM", DEFAULT_MAX_FILE_SIZE_PREMIUM),
+        DEFAULT_MAX_FILE_SIZE_PREMIUM,
+    )
+    MAX_FILE_SIZE_HEAVY_PREMIUM = _to_int(
+        getattr(
+            settings,
+            "MAX_FILE_SIZE_HEAVY_PREMIUM",
+            DEFAULT_MAX_FILE_SIZE_HEAVY_PREMIUM,
+        ),
+        DEFAULT_MAX_FILE_SIZE_HEAVY_PREMIUM,
     )
 
-    # File size limits (premium users)
-    MAX_FILE_SIZE_PREMIUM = getattr(
-        settings, "MAX_FILE_SIZE_PREMIUM", 200 * 1024 * 1024
-    )
-    MAX_FILE_SIZE_HEAVY_PREMIUM = getattr(
-        settings, "MAX_FILE_SIZE_HEAVY_PREMIUM", 100 * 1024 * 1024
-    )
 
-except ImportError:
-    # Fallback values if Django settings not available
-    MAX_PDF_PAGES = 30
-    MAX_PDF_PAGES_HEAVY = 30
-    MAX_PDF_PAGES_PREMIUM = 200
-    MAX_PDF_PAGES_HEAVY_PREMIUM = 100
-    MAX_FILE_SIZE = 25 * 1024 * 1024
-    MAX_FILE_SIZE_HEAVY = 15 * 1024 * 1024
-    MAX_FILE_SIZE_PREMIUM = 200 * 1024 * 1024
-    MAX_FILE_SIZE_HEAVY_PREMIUM = 100 * 1024 * 1024
+reload_from_settings()
 
 # Timeout for conversion operations in seconds
 CONVERSION_TIMEOUT = 180  # 3 minutes max per conversion
@@ -252,7 +307,7 @@ def validate_pdf_pages(
                         False,
                         _(
                             "PDF has %(page_count)d pages (limit: %(max_pages)d). "
-                            "You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!"
+                            "You can split your file into smaller parts or upgrade to Premium to process larger files with much higher limits."
                         )
                         % {"page_count": page_count, "max_pages": MAX_PDF_PAGES},
                         page_count,

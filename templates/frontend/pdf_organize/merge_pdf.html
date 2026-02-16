@@ -144,7 +144,7 @@
     window.SELECT_AT_LEAST_2_FILES = "{% filter escapejs %}{% trans 'Please select at least 2 PDF files to merge.' %}{% endfilter %}";
     window.MAX_FREE_PDF_PAGES = {{ conversion_limits.max_free_pdf_pages }};
     {% if PAYMENTS_ENABLED %}
-      window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file into smaller parts or get a 1-day Premium subscription for just $1 to process larger files with much higher limits!' %}{% endfilter %}";
+      window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file into smaller parts or upgrade to Premium to process larger files with much higher limits.' %}{% endfilter %}";
       window.PREMIUM_LINK = "{% if user.is_authenticated %}{% url 'frontend:pricing' %}{% else %}{% url 'users:login' %}?next={% url 'frontend:pricing' %}{% endif %}";
     {% else %}
       window.PAGE_LIMIT_ERROR = "{% filter escapejs %}{% trans 'PDF has %(page_count)d pages (limit: %(max_pages)d). Please split your file into smaller parts.' %}{% endfilter %}";

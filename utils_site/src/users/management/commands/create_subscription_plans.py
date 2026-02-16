@@ -7,15 +7,16 @@ class Command(BaseCommand):
     help = "Create initial subscription plans"
 
     def handle(self, *args, **kwargs):
+        # Keep legacy daily plans unavailable.
+        daily_plan = SubscriptionPlan.objects.filter(slug="daily-hero").first()
+        if daily_plan and daily_plan.is_active:
+            daily_plan.is_active = False
+            daily_plan.save(update_fields=["is_active"])
+            self.stdout.write(
+                self.style.WARNING("Deactivated legacy plan: Daily Hero Access")
+            )
+
         plans_data = [
-            {
-                "name": _("Daily Hero Access"),
-                "slug": "daily-hero",
-                "description": "",
-                "price": 1.00,
-                "currency": "USD",
-                "duration_days": 1,
-            },
             {
                 "name": _("Monthly Hero Access"),
                 "slug": "monthly-hero",
@@ -28,7 +29,7 @@ class Command(BaseCommand):
                 "name": _("Yearly Hero Access"),
                 "slug": "yearly-hero",
                 "description": "",
-                "price": 52.00,
+                "price": 59.00,
                 "currency": "USD",
                 "duration_days": 365,
             },

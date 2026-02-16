@@ -199,7 +199,7 @@ class BaseConversionAPIView(APIView, ABC):
                     {
                         "error": _(
                             "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. "
-                            "Upgrade to Premium for %(premium_mb).0f MB limit! Get 1-day Premium for just $1."
+                            "Upgrade to Premium for %(premium_mb).0f MB limit."
                         )
                         % {
                             "file_mb": file.size / (1024 * 1024),

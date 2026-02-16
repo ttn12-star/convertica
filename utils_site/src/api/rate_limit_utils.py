@@ -292,7 +292,7 @@ def handle_rate_limit_exception(request, exception):
             message = (
                 "You've reached your rate limit. "
                 "Upgrade to Premium for 10x higher limits! "
-                "Only $4.99/month or $1/day."
+                "Plans start at $6/month."
             )
     else:
         message = (
