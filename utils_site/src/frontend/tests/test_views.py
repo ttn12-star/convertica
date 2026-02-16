@@ -334,6 +334,25 @@ class FrontendViewsTestCase(TestCase):
                     self.assertContains(response, marker, status_code=200)
                 self.assertContains(response, "FAQ", status_code=200)
 
+    def test_premium_landing_pages_schema_uses_premium_price(self):
+        """Premium converter pages should expose premium offer price in schema."""
+        premium_paths = (
+            "epub-to-pdf/",
+            "pdf-to-epub/",
+            "pdf-to-markdown/",
+            "compare-pdf/",
+        )
+
+        for path in premium_paths:
+            with self.subTest(path=path):
+                response = self.client.get(self._get_url_with_lang(path), follow=False)
+                self.assertEqual(response.status_code, 200)
+                self.assertContains(
+                    response, '"@type": "SoftwareApplication"', status_code=200
+                )
+                self.assertContains(response, '"price": "6"', status_code=200)
+                self.assertNotContains(response, '"price": "0"', status_code=200)
+
     def test_all_tools_header_menu_lists_new_premium_links(self):
         """All Tools menu should include direct links to new premium tools."""
         response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
