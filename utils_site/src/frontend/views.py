@@ -160,6 +160,20 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h12M4 12h8m-8 5h12m4-10v10a2 2 0 01-2 2h-1"/>',
             "gradient": "from-amber-500 to-orange-600",
         },
+        "pdf_to_markdown": {
+            "name": _("PDF to Markdown"),
+            "url": "frontend:pdf_to_markdown_page",
+            "description": _("Convert PDF to structured Markdown"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7m8-6l2 2 4-4"/>',
+            "gradient": "from-amber-500 to-orange-600",
+        },
+        "compare_pdf": {
+            "name": _("Compare Two PDFs"),
+            "url": "frontend:compare_pdf_page",
+            "description": _("Visual diff and change report for two PDFs"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',
+            "gradient": "from-amber-500 to-orange-600",
+        },
     }
 
     # Define related tools for each tool
@@ -185,6 +199,8 @@ def _get_related_tools(current_tool):
         "pdf_to_html": ["pdf_to_word", "compress_pdf", "split_pdf"],
         "epub_to_pdf": ["pdf_to_epub", "pdf_to_word", "pdf_to_jpg"],
         "pdf_to_epub": ["epub_to_pdf", "pdf_to_word", "compress_pdf"],
+        "pdf_to_markdown": ["pdf_to_word", "pdf_to_html", "compare_pdf"],
+        "compare_pdf": ["pdf_to_markdown", "compress_pdf", "split_pdf"],
         "compress_pdf": ["merge_pdf", "split_pdf", "protect_pdf"],
         "protect_pdf": ["unlock_pdf", "compress_pdf", "merge_pdf"],
         "unlock_pdf": ["protect_pdf", "compress_pdf", "merge_pdf"],
@@ -3840,7 +3856,8 @@ def premium_tools_page(request):
     )
     page_keywords = (
         "premium pdf tools, advanced pdf converter, epub to pdf premium, "
-        "pdf to epub premium, batch conversion premium, ocr premium, "
+        "pdf to epub premium, pdf to markdown premium, compare pdf premium, "
+        "batch conversion premium, ocr premium, "
         "priority queue pdf conversion, background tasks pdf converter"
     )
 
@@ -3911,6 +3928,63 @@ def pdf_to_epub_page(request):
     )
     context["related_tools"] = _get_related_tools("pdf_to_epub")
     return render(request, "frontend/premium/pdf_to_epub.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def pdf_to_markdown_page(request):
+    """PDF to Markdown conversion landing page (premium-gated API)."""
+
+    context = _get_converter_context(
+        request,
+        page_title=_("PDF to Markdown Converter (Premium) - Convertica"),
+        page_description=_(
+            "Convert PDF documents to Markdown with preserved heading structure and "
+            "table formatting. Ideal for docs, notes, and knowledge bases."
+        ),
+        page_keywords=(
+            "pdf to markdown premium, convert pdf to markdown, pdf markdown converter, "
+            "pdf to md with tables, pdf headings to markdown"
+        ),
+        page_subtitle=_(
+            "Extract clean Markdown with heading hierarchy and table blocks"
+        ),
+        header_text=_("PDF to Markdown Converter"),
+        file_input_name="pdf_file",
+        file_accept=".pdf",
+        api_url_name="pdf_to_markdown_api",
+        replace_regex=r"\.pdf$",
+        replace_to=".md",
+        button_text=_("Convert PDF to Markdown"),
+        select_file_message=_("Please select a PDF file."),
+        button_class="bg-amber-600 text-white hover:bg-amber-700",
+    )
+    context["related_tools"] = _get_related_tools("pdf_to_markdown")
+    return render(request, "frontend/premium/pdf_to_markdown.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def compare_pdf_page(request):
+    """Compare two PDF files with visual diff and report (premium-gated API)."""
+
+    context = {
+        "page_title": _("Compare Two PDFs (Premium) - Convertica"),
+        "page_description": _(
+            "Compare two PDF files with visual diff overlays and detailed change reports. "
+            "Download a ZIP package with per-page comparison assets."
+        ),
+        "page_keywords": (
+            "compare pdf files premium, pdf diff checker, visual pdf compare, "
+            "pdf change report, compare two pdf documents online"
+        ),
+        "page_subtitle": _(
+            "Upload two PDFs to generate a visual diff and downloadable report"
+        ),
+        "header_text": _("Compare Two PDFs"),
+        "api_url": reverse("compare_pdf_api"),
+        "is_premium": _is_premium_active_user(request),
+        "related_tools": _get_related_tools("compare_pdf"),
+    }
+    return render(request, "frontend/premium/compare_pdf.html", context)
 
 
 @anonymous_cache_page(60 * 60)
@@ -4357,6 +4431,8 @@ def _get_sitemap_pages():
         {"url": "premium-tools/", "priority": "0.7", "changefreq": "weekly"},
         {"url": "epub-to-pdf/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "pdf-to-epub/", "priority": "0.6", "changefreq": "monthly"},
+        {"url": "pdf-to-markdown/", "priority": "0.6", "changefreq": "monthly"},
+        {"url": "compare-pdf/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "blog/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-to-word/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "word-to-pdf/", "priority": "0.8", "changefreq": "weekly"},

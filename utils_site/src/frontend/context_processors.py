@@ -367,6 +367,8 @@ def breadcrumbs(request):
             "frontend:pdf_to_ppt_page": _("PDF to PowerPoint"),
             "frontend:html_to_pdf_page": _("HTML to PDF"),
             "frontend:pdf_to_html_page": _("PDF to HTML"),
+            "frontend:pdf_to_markdown_page": _("PDF to Markdown"),
+            "frontend:compare_pdf_page": _("Compare Two PDFs"),
             # PDF Edit
             "frontend:rotate_pdf_page": _("Rotate PDF"),
             "frontend:add_page_numbers_page": _("Add Page Numbers"),
@@ -453,6 +455,8 @@ def related_tools(request):
         "ppt_to_pdf": ["pdf_to_ppt", "word_to_pdf", "excel_to_pdf"],
         "pdf_to_html": ["html_to_pdf", "pdf_to_word", "pdf_to_excel"],
         "html_to_pdf": ["pdf_to_html", "word_to_pdf", "merge_pdf"],
+        "pdf_to_markdown": ["pdf_to_word", "pdf_to_html", "compare_pdf"],
+        "compare_pdf": ["pdf_to_markdown", "compress_pdf", "split_pdf"],
         "merge_pdf": ["split_pdf", "organize_pdf", "compress_pdf"],
         "split_pdf": ["merge_pdf", "extract_pages", "remove_pages"],
         "compress_pdf": ["pdf_to_jpg", "merge_pdf", "rotate_pdf"],
@@ -600,6 +604,18 @@ def related_tools(request):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',
             "gradient": "from-teal-500 to-teal-600",
             "description": _("Convert PDF to HTML"),
+        },
+        "pdf_to_markdown": {
+            "name": _("PDF to Markdown"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7m8-6l2 2 4-4"/>',
+            "gradient": "from-amber-500 to-orange-600",
+            "description": _("Convert PDF to structured Markdown"),
+        },
+        "compare_pdf": {
+            "name": _("Compare Two PDFs"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',
+            "gradient": "from-amber-500 to-orange-600",
+            "description": _("Visual diff and change report for two PDFs"),
         },
     }
 

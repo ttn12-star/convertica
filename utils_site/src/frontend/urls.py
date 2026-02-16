@@ -20,6 +20,12 @@ urlpatterns = [
     path("html-to-pdf/", views.html_to_pdf_page, name="html_to_pdf_page"),
     path("pdf-to-ppt/", views.pdf_to_ppt_page, name="pdf_to_ppt_page"),
     path("pdf-to-html/", views.pdf_to_html_page, name="pdf_to_html_page"),
+    path(
+        "pdf-to-markdown/",
+        views.pdf_to_markdown_page,
+        name="pdf_to_markdown_page",
+    ),
+    path("compare-pdf/", views.compare_pdf_page, name="compare_pdf_page"),
     path("epub-to-pdf/", views.epub_to_pdf_page, name="epub_to_pdf_page"),
     path("pdf-to-epub/", views.pdf_to_epub_page, name="pdf_to_epub_page"),
     path(

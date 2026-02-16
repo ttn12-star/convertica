@@ -165,6 +165,10 @@ def generic_conversion_task(
                 "src.api.epub_convert.utils",
                 "convert_pdf_to_epub",
             ),
+            "pdf_to_markdown": (
+                "src.api.pdf_convert.pdf_to_markdown.utils",
+                "convert_pdf_to_markdown",
+            ),
             "compress_pdf": ("src.api.pdf_organize.compress_pdf.utils", "compress_pdf"),
             "merge_pdf": ("src.api.pdf_organize.merge_pdf.utils", "merge_pdfs"),
             "split_pdf": ("src.api.pdf_organize.split_pdf.utils", "split_pdf"),

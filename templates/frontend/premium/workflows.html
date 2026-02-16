@@ -52,6 +52,8 @@
                   <option value="{% url 'frontend:ocr_pdf_to_word_page' %}">{% trans "Scanned PDF to Word" %}</option>
                   <option value="{% url 'frontend:epub_to_pdf_page' %}">{% trans "EPUB to PDF" %}</option>
                   <option value="{% url 'frontend:pdf_to_epub_page' %}">{% trans "PDF to EPUB" %}</option>
+                  <option value="{% url 'frontend:pdf_to_markdown_page' %}">{% trans "PDF to Markdown" %}</option>
+                  <option value="{% url 'frontend:compare_pdf_page' %}">{% trans "Compare Two PDFs" %}</option>
                   <option value="{% url 'frontend:background_center_page' %}">{% trans "Background Queue Center" %}</option>
                 </select>
               </div>
@@ -112,6 +114,15 @@
                       class="w-full text-left rounded-lg border border-amber-200 dark:border-amber-800 p-3 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
                 <span class="block font-semibold text-sm">{% trans "Bulk Office Export" %}</span>
                 <span class="block text-xs text-gray-600 dark:text-gray-300">{% trans "Batch Converter Hub" %}</span>
+              </button>
+
+              <button type="button"
+                      data-name="{% trans 'PDF Knowledge Base Draft' %}"
+                      data-tool="{% url 'frontend:pdf_to_markdown_page' %}"
+                      data-notes="{% trans 'Convert source PDF into Markdown with headings and tables for docs.' %}"
+                      class="w-full text-left rounded-lg border border-amber-200 dark:border-amber-800 p-3 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors">
+                <span class="block font-semibold text-sm">{% trans "PDF Knowledge Base Draft" %}</span>
+                <span class="block text-xs text-gray-600 dark:text-gray-300">{% trans "PDF to Markdown" %}</span>
               </button>
             </div>
           </div>

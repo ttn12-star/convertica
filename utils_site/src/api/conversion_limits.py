@@ -85,6 +85,8 @@ HEAVY_OPERATIONS = {
     "ppt_to_pdf",
     "html_to_pdf",
     "url_to_pdf",
+    "pdf_to_markdown",
+    "compare_pdf",
 }
 
 
@@ -623,6 +625,8 @@ def estimate_processing_time(file_size: int, page_count: int, operation: str) ->
         "ppt_to_pdf": 5,
         "html_to_pdf": 2,
         "url_to_pdf": 3,
+        "pdf_to_markdown": 2.5,
+        "compare_pdf": 4,
         "compress": 0.5,
         "merge": 0.2,
         "split": 0.2,
@@ -671,6 +675,8 @@ def get_timeout_for_operation(
         "ppt_to_pdf": "ppt_to_pdf",
         "html_to_pdf": "html_to_pdf",
         "url_to_pdf": "url_to_pdf",
+        "pdf_to_markdown": "pdf_to_markdown",
+        "compare_pdf": "compare_pdf",
         "jpg_to_pdf": "jpg_to_pdf",
         "unlock_pdf": "unlock_pdf",
         "protect_pdf": "protect_pdf",
@@ -686,6 +692,8 @@ def get_timeout_for_operation(
         "ppt_to_pdf",
         "html_to_pdf",
         "url_to_pdf",
+        "pdf_to_markdown",
+        "compare_pdf",
     }
 
     # Simple operations that should be quick

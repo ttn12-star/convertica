@@ -20,6 +20,12 @@ class FrontendViewsTestCase(TestCase):
         self.client = Client()
         # Set default language for tests
         self.default_lang = settings.LANGUAGE_CODE
+        self.premium_landing_paths = (
+            "epub-to-pdf/",
+            "pdf-to-epub/",
+            "pdf-to-markdown/",
+            "compare-pdf/",
+        )
         self.premium_only_paths = (
             "scanned-pdf-to-word/",
             "batch-converter/",
@@ -263,21 +269,21 @@ class FrontendViewsTestCase(TestCase):
         self.assertContains(response, "Premium", count=None, status_code=200)
 
     def test_epub_pages_render_for_anonymous_users(self):
-        """EPUB converter pages should remain crawlable for anonymous users."""
-        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+        """Premium landing pages should remain crawlable for anonymous users."""
+        for path in self.premium_landing_paths:
             with self.subTest(path=path):
                 response = self.client.get(self._get_url_with_lang(path), follow=False)
                 self.assertEqual(response.status_code, 200)
 
     def test_epub_pages_render_for_non_premium_users(self):
-        """EPUB converter pages should render for authenticated free users."""
+        """Premium landing pages should render for authenticated free users."""
         user = get_user_model().objects.create_user(
             email="free-epub-frontend@example.com",
             password="pass1234",
         )
         self.client.force_login(user)
 
-        for path in ("epub-to-pdf/", "pdf-to-epub/"):
+        for path in self.premium_landing_paths:
             with self.subTest(path=path):
                 response = self.client.get(self._get_url_with_lang(path), follow=False)
                 self.assertEqual(response.status_code, 200)

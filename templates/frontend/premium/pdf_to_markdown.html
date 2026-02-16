@@ -1,0 +1,38 @@
+{% extends "frontend/converter_generic.html" %}
+{% load i18n %}
+
+{% block edit_options %}
+  <div class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
+    <h3 class="text-sm font-semibold text-amber-800 mb-1">{% trans "Premium Feature" %}</h3>
+    <p class="text-xs text-amber-700">
+      {% trans "Heading levels are inferred from PDF typography. For best results, use text-based PDFs with clear heading hierarchy." %}
+    </p>
+  </div>
+
+  <div class="mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+    <label class="inline-flex items-center gap-2 text-sm text-gray-700">
+      <input type="checkbox" name="detect_headings" checked class="rounded border-gray-300 text-amber-600 focus:ring-amber-500">
+      <span>{% trans "Detect heading structure" %}</span>
+    </label>
+    <label class="inline-flex items-center gap-2 text-sm text-gray-700">
+      <input type="checkbox" name="preserve_tables" checked class="rounded border-gray-300 text-amber-600 focus:ring-amber-500">
+      <span>{% trans "Preserve tables as Markdown" %}</span>
+    </label>
+  </div>
+{% endblock %}
+
+{% block help_section %}
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900">
+      {% trans "How PDF to Markdown works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 leading-relaxed">
+      <li>{% trans "Upload a PDF document." %}</li>
+      <li>{% trans "Optionally keep heading detection and table extraction enabled." %}</li>
+      <li>{% trans "Convert and download a Markdown (.md) file." %}</li>
+    </ol>
+    <p class="text-xs sm:text-sm text-gray-600 mt-4">
+      {% trans "Tip: If source PDF is scanned images, run OCR first for better Markdown output." %}
+    </p>
+  </div>
+{% endblock %}

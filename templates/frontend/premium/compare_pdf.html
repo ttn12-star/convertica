@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load i18n static minified_static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block meta_title %}{{ page_title }}{% endblock %}
+{% block description %}{{ page_description }}{% endblock %}
+{% block keywords %}{{ page_keywords|default:"compare pdf files, pdf diff tool, visual pdf comparison" }}{% endblock %}
+{% block og_title %}{{ page_title }}{% endblock %}
+{% block og_description %}{{ page_description }}{% endblock %}
+{% block twitter_title %}{{ page_title }}{% endblock %}
+{% block twitter_description %}{{ page_description }}{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900">
+    {% include "frontend/includes/breadcrumbs.html" %}
+
+    <div class="text-center mb-8 sm:mb-10 pt-4 sm:pt-0">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900">{{ header_text }}</h1>
+      <p class="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">{{ page_subtitle }}</p>
+    </div>
+
+    <form id="compareForm"
+          method="post"
+          enctype="multipart/form-data"
+          class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
+      {% csrf_token %}
+
+      <div class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
+        <h2 class="text-sm font-semibold text-amber-800 mb-1">{% trans "Premium Feature" %}</h2>
+        <p class="text-xs text-amber-700">
+          {% trans "Get a ZIP package with page-by-page visual diff images plus Markdown and JSON reports." %}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
+        <div>
+          <label for="pdfFile1" class="block text-sm font-semibold text-gray-700 mb-2">
+            {% trans "Base PDF" %}
+          </label>
+          <input id="pdfFile1"
+                 type="file"
+                 name="pdf_file_1"
+                 accept=".pdf,application/pdf"
+                 required
+                 class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm file:mr-3 file:rounded-md file:border-0 file:bg-amber-600 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-amber-700">
+        </div>
+        <div>
+          <label for="pdfFile2" class="block text-sm font-semibold text-gray-700 mb-2">
+            {% trans "Compare PDF" %}
+          </label>
+          <input id="pdfFile2"
+                 type="file"
+                 name="pdf_file_2"
+                 accept=".pdf,application/pdf"
+                 required
+                 class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm file:mr-3 file:rounded-md file:border-0 file:bg-amber-600 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-amber-700">
+        </div>
+      </div>
+
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-2">
+          <label for="diffThreshold" class="text-sm font-semibold text-gray-700">
+            {% trans "Diff Sensitivity" %}
+          </label>
+          <span id="diffThresholdValue" class="text-sm font-semibold text-amber-700">32</span>
+        </div>
+        <input id="diffThreshold"
+               type="range"
+               name="diff_threshold"
+               min="5"
+               max="80"
+               value="32"
+               class="w-full accent-amber-600">
+        <p class="text-xs text-gray-500 mt-2">
+          {% trans "Lower value catches smaller visual changes. Higher value highlights only major differences." %}
+        </p>
+      </div>
+
+      <div class="text-center">
+        <button type="submit"
+                id="compareButton"
+                class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 bg-amber-600 text-white hover:bg-amber-700">
+          <span class="flex items-center justify-center space-x-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"></path>
+            </svg>
+            <span>{% trans "Compare PDFs" %}</span>
+          </span>
+        </button>
+      </div>
+    </form>
+
+    <div id="loadingContainer" class="hidden mt-6"></div>
+    <div id="downloadContainer" class="hidden mt-6"></div>
+    <div id="converterResult" class="hidden mt-6"></div>
+
+    {% if related_tools %}
+      {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script nonce="{{ csp_nonce }}">
+    window.COMPARE_API_URL = "{{ api_url|escapejs }}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.COMPARE_ERROR_MESSAGE = "{% filter escapejs %}{% trans 'Comparison failed. Please try again.' %}{% endfilter %}";
+    window.COMPARE_FILE_MESSAGE = "{% filter escapejs %}{% trans 'Please select two PDF files.' %}{% endfilter %}";
+  </script>
+  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/pdf-compare.js' %}" nonce="{{ csp_nonce }}"></script>
+{% endblock %}
