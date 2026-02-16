@@ -5,6 +5,7 @@ click==8.3.1
 Django==5.2.8
 daphne==4.0.0
 django-allauth==65.13.1
+tblib==3.2.1
 PyJWT==2.8.0
 django-tailwind==4.4.1
 djangorestframework==3.16.1

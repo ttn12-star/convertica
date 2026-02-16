@@ -6,6 +6,7 @@ from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.cache import cache
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
@@ -17,6 +18,9 @@ class FrontendViewsTestCase(TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
+        # Cached frontend pages (cache_page) can leak across tests and workers in CI.
+        # Ensure every test starts with a clean cache state.
+        cache.clear()
         self.client = Client()
         # Set default language for tests
         self.default_lang = settings.LANGUAGE_CODE
