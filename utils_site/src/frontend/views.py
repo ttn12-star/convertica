@@ -3954,6 +3954,54 @@ def epub_to_pdf_page(request):
         select_file_message=_("Please select an EPUB file."),
         button_class="bg-amber-600 text-white hover:bg-amber-700",
     )
+    context["offer_price"] = "6"
+    context["offer_currency"] = "USD"
+    context["benefits_title"] = _("Why use EPUB to PDF in Premium?")
+    context["page_benefits"] = [
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>',
+            "gradient": "from-amber-500 to-orange-600",
+            "title": _("Chapter-aware conversion"),
+            "description": _(
+                "EPUB spine order and heading hierarchy are mapped into readable PDF flow."
+            ),
+        },
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
+            "gradient": "from-blue-500 to-indigo-600",
+            "title": _("Premium rendering quality"),
+            "description": _(
+                "Designed for long-form eBooks with stable pagination and clean typography."
+            ),
+        },
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/>',
+            "gradient": "from-emerald-500 to-teal-600",
+            "title": _("Higher limits"),
+            "description": _(
+                "Handle larger files and longer books than standard free converters."
+            ),
+        },
+    ]
+    context["tips_title"] = _("Tips for Better EPUB to PDF Output")
+    context["page_tips"] = [
+        _("Use EPUB files with semantic headings for cleaner PDF chapter structure."),
+        _("Embedded fonts improve consistency between original eBook and PDF output."),
+        _("If layout looks dense, check source CSS and remove unnecessary overrides."),
+        _("For very large eBooks, split archives by volume for faster processing."),
+    ]
+    context["page_content_title"] = _(
+        "Convert EPUB to PDF with chapter-aware formatting"
+    )
+    context["page_content_body"] = _(
+        "<p><strong>EPUB to PDF</strong> is ideal when you need printable, shareable, "
+        "and archive-friendly versions of eBooks. The converter keeps chapter order and "
+        "core text structure so the output remains comfortable to read offline.</p>"
+        "<p>Premium processing is tuned for larger eBook inputs and longer documents, "
+        "making it suitable for manuals, educational content, and internal documentation.</p>"
+        "<p>For best quality, upload EPUB files with clean markup, consistent heading "
+        "levels, and embedded fonts.</p>"
+    )
     context["related_tools"] = _get_related_tools("epub_to_pdf")
     context["faq_title"] = _("EPUB to PDF FAQ")
     context["page_faq"] = [
@@ -4004,6 +4052,53 @@ def pdf_to_epub_page(request):
         button_text=_("Convert PDF to EPUB"),
         select_file_message=_("Please select a PDF file."),
         button_class="bg-amber-600 text-white hover:bg-amber-700",
+    )
+    context["offer_price"] = "6"
+    context["offer_currency"] = "USD"
+    context["benefits_title"] = _("Why use PDF to EPUB in Premium?")
+    context["page_benefits"] = [
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h12M4 12h8m-8 5h12m4-10v10a2 2 0 01-2 2h-1"/>',
+            "gradient": "from-amber-500 to-orange-600",
+            "title": _("Reader-friendly reflow"),
+            "description": _(
+                "Transforms fixed PDF pages into EPUB text flow optimized for eReaders."
+            ),
+        },
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h18v14H3V5zm3 3h12M6 11h10M6 14h7"/>',
+            "gradient": "from-blue-500 to-indigo-600",
+            "title": _("Preserved structure"),
+            "description": _(
+                "Detects headings and paragraphs to keep document hierarchy in EPUB."
+            ),
+        },
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m5-2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+            "gradient": "from-emerald-500 to-teal-600",
+            "title": _("Prepared for long reads"),
+            "description": _(
+                "Good fit for books, reports, and archives you want to read on mobile devices."
+            ),
+        },
+    ]
+    context["tips_title"] = _("Tips for Better PDF to EPUB Output")
+    context["page_tips"] = [
+        _("Text-based PDFs convert more accurately than image-only scans."),
+        _("Remove decorative pages and heavy watermarks before conversion."),
+        _("Keep heading hierarchy clear in source PDFs to improve EPUB navigation."),
+        _("If needed, run OCR first and then convert OCR output to EPUB."),
+    ]
+    context["page_content_title"] = _(
+        "Convert PDF to EPUB for eReader-ready publishing"
+    )
+    context["page_content_body"] = _(
+        "<p><strong>PDF to EPUB</strong> helps convert static page layouts into flexible, "
+        "reader-friendly eBook format. The output is easier to consume on phones, tablets, "
+        "and dedicated eReaders.</p>"
+        "<p>Premium conversion focuses on preserving headings and paragraph logic so "
+        "navigation remains predictable across reading apps.</p>"
+        "<p>For the cleanest EPUB result, use text-based PDFs or run OCR first on scanned files.</p>"
     )
     context["related_tools"] = _get_related_tools("pdf_to_epub")
     context["faq_title"] = _("PDF to EPUB FAQ")
@@ -4058,6 +4153,56 @@ def pdf_to_markdown_page(request):
         select_file_message=_("Please select a PDF file."),
         button_class="bg-amber-600 text-white hover:bg-amber-700",
     )
+    context["offer_price"] = "6"
+    context["offer_currency"] = "USD"
+    context["benefits_title"] = _("Why use PDF to Markdown in Premium?")
+    context["page_benefits"] = [
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7"/>',
+            "gradient": "from-amber-500 to-orange-600",
+            "title": _("Heading hierarchy extraction"),
+            "description": _(
+                "Maps visual heading levels into Markdown syntax for clean document structure."
+            ),
+        },
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18M7 3v18M12 3v18M17 3v18"/>',
+            "gradient": "from-blue-500 to-indigo-600",
+            "title": _("Table-aware export"),
+            "description": _(
+                "Converts detectable tables into Markdown-friendly rows and columns."
+            ),
+        },
+        {
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+            "gradient": "from-emerald-500 to-teal-600",
+            "title": _("Docs and knowledge base ready"),
+            "description": _(
+                "Useful for wikis, README files, product docs, and migration pipelines."
+            ),
+        },
+    ]
+    context["tips_title"] = _("Tips for Better PDF to Markdown Output")
+    context["page_tips"] = [
+        _(
+            "Enable heading detection to preserve section structure in exported Markdown."
+        ),
+        _("Keep table extraction enabled for reports with tabular data."),
+        _("Run OCR first for scanned PDFs to improve text quality in Markdown."),
+        _("Review output in your editor and adjust edge cases like merged cells."),
+    ]
+    context["page_content_title"] = _(
+        "Convert PDF to Markdown with heading and table structure"
+    )
+    context["page_content_body"] = _(
+        "<p><strong>PDF to Markdown</strong> is useful when you need editable plain-text "
+        "documentation from PDF sources. It helps transform reports, guides, and manuals "
+        "into version-control friendly files.</p>"
+        "<p>Premium mode improves structure recovery by detecting headings and converting "
+        "supported tables into Markdown format for downstream editing.</p>"
+        "<p>This workflow is especially practical for documentation teams moving content "
+        "from PDFs into internal wikis and repositories.</p>"
+    )
     context["related_tools"] = _get_related_tools("pdf_to_markdown")
     context["faq_title"] = _("PDF to Markdown FAQ")
     context["page_faq"] = [
@@ -4104,6 +4249,58 @@ def compare_pdf_page(request):
         "api_url": reverse("compare_pdf_api"),
         "is_premium": _is_premium_active_user(request),
         "related_tools": _get_related_tools("compare_pdf"),
+        "page_content_title": _(
+            "Compare PDF revisions with visual diffs and change reports"
+        ),
+        "page_content_body": _(
+            "<p><strong>Compare Two PDFs</strong> helps review document revisions using "
+            "page-level visual overlays and exportable reports. It is useful for contracts, "
+            "technical documentation, and regulated approval workflows.</p>"
+            "<p>The generated ZIP includes diff images and structured summaries so teams can "
+            "track what changed without manually checking each page.</p>"
+            "<p>Use the sensitivity slider to control how strict visual detection should be "
+            "for minor typography shifts versus major layout edits.</p>"
+        ),
+        "benefits_title": _("Why use Compare Two PDFs in Premium?"),
+        "page_benefits": [
+            {
+                "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',
+                "gradient": "from-amber-500 to-orange-600",
+                "title": _("Visual page diff"),
+                "description": _(
+                    "Highlights changed zones on each page for faster manual review."
+                ),
+            },
+            {
+                "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/>',
+                "gradient": "from-blue-500 to-indigo-600",
+                "title": _("Machine-readable reports"),
+                "description": _(
+                    "Exports Markdown and JSON summaries for audit or automation workflows."
+                ),
+            },
+            {
+                "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+                "gradient": "from-emerald-500 to-teal-600",
+                "title": _("Configurable sensitivity"),
+                "description": _(
+                    "Tune change detection to catch subtle edits or focus on large differences."
+                ),
+            },
+        ],
+        "tips_title": _("Tips for Better PDF Comparison Accuracy"),
+        "page_tips": [
+            _("Compare files with matching page size and orientation when possible."),
+            _(
+                "Use lower sensitivity for subtle text edits and higher values for layout changes."
+            ),
+            _(
+                "Ensure both documents are fully rendered exports, not partial draft snapshots."
+            ),
+            _(
+                "Review generated diff images together with report metrics for best decisions."
+            ),
+        ],
         "faq_title": _("Compare PDF FAQ"),
         "page_faq": [
             {

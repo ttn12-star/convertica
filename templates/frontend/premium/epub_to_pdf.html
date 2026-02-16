@@ -24,5 +24,8 @@
       {% trans "Tip: For best results, use EPUB files with clean chapter markup and standard fonts." %}
     </p>
   </div>
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
   {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
 {% endblock %}
