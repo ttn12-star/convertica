@@ -10,6 +10,7 @@ import os
 
 try:
     from celery import Celery
+    from celery.signals import task_prerun
     from django.conf import settings
 
     # Set the default Django settings module for the 'celery' program.
@@ -121,6 +122,17 @@ try:
 
         logger = logging.getLogger(__name__)
         logger.debug(f"Request: {self.request!r}")
+
+    @task_prerun.connect
+    def apply_runtime_settings_before_task(*args, **kwargs):
+        """Ensure admin runtime setting overrides are applied for worker tasks."""
+        try:
+            from src.users.runtime_settings import apply_runtime_settings
+
+            apply_runtime_settings()
+        except Exception:
+            # Keep task execution resilient if runtime settings are unavailable.
+            return
 
 except ImportError:
     # Celery is not installed, create a dummy app
