@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+from importlib import metadata
 from pathlib import Path
 
 from decouple import Csv, config
@@ -437,6 +438,19 @@ ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = (
     "/users/login/"  # Redirect after email confirmation (anonymous users)
 )
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # Auto-login after email confirmation
+
+# Legacy allauth compatibility for old Docker images (pre-v64 API).
+try:
+    _allauth_version = metadata.version("django-allauth")
+    _allauth_major = int(_allauth_version.split(".")[0])
+except Exception:
+    _allauth_major = 0
+
+if _allauth_major < 64:
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_UNIQUE_EMAIL = True
 
 # Allauth social account settings
 SOCIALACCOUNT_AUTO_SIGNUP = True
