@@ -127,7 +127,8 @@ jobs:
           fi
           pip install httpx
 
-      - name: Run bulk translations for all locales
+      - name: Resolve translation backend (remote or local self-hosted)
+        id: backend
         env:
           POQT_API_URL: ${{ secrets.POQT_API_URL }}
           POQT_API_KEY: ${{ secrets.POQT_API_KEY }}
@@ -135,11 +136,91 @@ jobs:
           L10N_QUALITY_API_URL: ${{ secrets.L10N_QUALITY_API_URL }}
           L10N_QUALITY_API_KEY: ${{ secrets.L10N_QUALITY_API_KEY }}
           L10N_QUALITY_DEV_BYPASS: ${{ secrets.L10N_QUALITY_DEV_BYPASS }}
+          AI_PRIMARY_API_KEY: ${{ secrets.AI_PRIMARY_API_KEY }}
+          AI_FALLBACK_API_KEY: ${{ secrets.AI_FALLBACK_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          resolved_url="${POQT_API_URL:-${L10N_QUALITY_API_URL:-}}"
+          resolved_key="${POQT_API_KEY:-${L10N_QUALITY_API_KEY:-}}"
+          resolved_bypass="${POQT_DEV_BYPASS:-${L10N_QUALITY_DEV_BYPASS:-}}"
+
+          if [ -n "$resolved_url" ]; then
+            echo "Using configured translation API: $resolved_url"
+            echo "api_url=$resolved_url" >> "$GITHUB_OUTPUT"
+            echo "api_key=$resolved_key" >> "$GITHUB_OUTPUT"
+            echo "dev_bypass=$resolved_bypass" >> "$GITHUB_OUTPUT"
+            echo "started_local_backend=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ -z "${AI_PRIMARY_API_KEY:-}" ] && [ -z "${AI_FALLBACK_API_KEY:-}" ]; then
+            echo "❌ No translation API URL configured and no AI keys for local self-hosted backend." >&2
+            echo "Set POQT_API_URL/L10N_QUALITY_API_URL or provide AI_PRIMARY_API_KEY." >&2
+            exit 1
+          fi
+
+          TOOL_DIR="$RUNNER_TEMP/l10n-quality-tool"
+          rm -rf "$TOOL_DIR"
+
+          if [ -d "/home/n_krivda/learning/po-all/l10n-quality-tool" ]; then
+            echo "Using local l10n-quality-tool from /home/n_krivda/learning/po-all/l10n-quality-tool"
+            cp -a /home/n_krivda/learning/po-all/l10n-quality-tool "$TOOL_DIR"
+          else
+            echo "Cloning l10n-quality-tool for local backend..."
+            git clone --depth 1 "https://x-access-token:${GITHUB_TOKEN}@github.com/ttn12-star/l10n-quality-tool.git" "$TOOL_DIR"
+          fi
+
+          {
+            echo "DEPLOYMENT_MODE=free"
+            echo "DEV_BYPASS_ENABLED=true"
+            echo "DEV_BYPASS_SECRET=ci-dev-bypass"
+            echo "AI_PRIMARY_API_KEY=${AI_PRIMARY_API_KEY:-}"
+            echo "AI_FALLBACK_API_KEY=${AI_FALLBACK_API_KEY:-}"
+            echo "POSTGRES_DB=poqt"
+            echo "POSTGRES_USER=poqt"
+            echo "POSTGRES_PASSWORD=poqt"
+          } > "$TOOL_DIR/.env"
+
+          docker compose -f "$TOOL_DIR/docker/docker-compose.yml" up -d --build redis postgres api worker
+
+          echo "Waiting for local translation backend..."
+          ready=0
+          for i in $(seq 1 60); do
+            if curl -fsS "http://127.0.0.1:18080/health" >/dev/null 2>&1; then
+              ready=1
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo "❌ Local translation backend did not become healthy in time." >&2
+            docker compose -f "$TOOL_DIR/docker/docker-compose.yml" logs api --tail=200 || true
+            exit 1
+          fi
+
+          echo "api_url=http://127.0.0.1:18080" >> "$GITHUB_OUTPUT"
+          echo "api_key=" >> "$GITHUB_OUTPUT"
+          echo "dev_bypass=ci-dev-bypass" >> "$GITHUB_OUTPUT"
+          echo "started_local_backend=1" >> "$GITHUB_OUTPUT"
+          echo "tool_dir=$TOOL_DIR" >> "$GITHUB_OUTPUT"
+
+      - name: Run bulk translations for all locales
+        env:
+          POQT_API_URL: ${{ steps.backend.outputs.api_url }}
+          POQT_API_KEY: ${{ steps.backend.outputs.api_key }}
+          POQT_DEV_BYPASS: ${{ steps.backend.outputs.dev_bypass }}
           L10N_TRANSLATE_DELAY: '0.5'
           SECRET_KEY: test-secret-key
           DEBUG: 'True'
         run: |
           ./scripts/translate_all_locales.sh
+
+      - name: Stop local translation backend
+        if: always() && steps.backend.outputs.started_local_backend == '1'
+        run: |
+          docker compose -f "${{ steps.backend.outputs.tool_dir }}/docker/docker-compose.yml" down -v || true
 
       - name: Commit and push translated files
         run: |

@@ -110,6 +110,10 @@ Required GitHub secrets for translation API:
 - `POQT_API_URL` (or `L10N_QUALITY_API_URL`)
 - `POQT_API_KEY` (or `L10N_QUALITY_API_KEY`) **or** `POQT_DEV_BYPASS` (or `L10N_QUALITY_DEV_BYPASS`)
 
+If API URL is not configured, CI can start self-hosted `l10n-quality-tool` on the runner (`http://127.0.0.1:18080`) and use dev-bypass automatically.  
+For that fallback mode, set at least:
+- `AI_PRIMARY_API_KEY` (and optionally `AI_FALLBACK_API_KEY`)
+
 ## 📝 Блог и SEO
 
 - **Многоязычный блог** - статьи на всех поддерживаемых языках
