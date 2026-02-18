@@ -95,6 +95,21 @@ Available in 7 languages with automatic language detection:
 
 Автоматическое определение языка пользователя, SEO-оптимизированный контент для каждого языка.
 
+### CI Auto-Translation (on demand)
+
+You can trigger bulk translation for all locale files directly from CI by adding `--translate`
+or `[translate]` to the commit message on `main`/`develop`.
+
+- Workflow job: `auto-translate` in `.github/workflows/ci.yml`
+- Script: `scripts/translate_all_locales.sh`
+- Files processed: `locale/*/LC_MESSAGES/django.po` (except `en`)
+- Result: updated `.po` files + `compilemessages` run + auto-commit back to the same branch
+- Runner behavior: if `/home/nkdev/learning/po-all/l10n-quality` exists (self-hosted), CI uses it first; otherwise it falls back to GitHub package source.
+
+Required GitHub secrets for translation API:
+- `POQT_API_URL` (or `L10N_QUALITY_API_URL`)
+- `POQT_API_KEY` (or `L10N_QUALITY_API_KEY`) **or** `POQT_DEV_BYPASS` (or `L10N_QUALITY_DEV_BYPASS`)
+
 ## 📝 Блог и SEO
 
 - **Многоязычный блог** - статьи на всех поддерживаемых языках

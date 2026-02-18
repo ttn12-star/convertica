@@ -1,4 +1,4 @@
-.PHONY: help build up down restart logs shell test migrate collectstatic build-static deploy deploy-prod restart-fast
+.PHONY: help build up down restart logs shell test migrate collectstatic build-static deploy deploy-prod restart-fast translate-locales
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -128,3 +128,6 @@ format: ## Format code with black
 check: ## Run all checks (black, ruff)
 	black --check .
 	ruff check .
+
+translate-locales: ## Bulk-translate locale/*/LC_MESSAGES/django.po via l10n-quality
+	./scripts/translate_all_locales.sh
