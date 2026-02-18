@@ -151,14 +151,20 @@ jobs:
             echo "api_url=$resolved_url" >> "$GITHUB_OUTPUT"
             echo "api_key=$resolved_key" >> "$GITHUB_OUTPUT"
             echo "dev_bypass=$resolved_bypass" >> "$GITHUB_OUTPUT"
+            echo "should_translate=1" >> "$GITHUB_OUTPUT"
             echo "started_local_backend=0" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           if [ -z "${AI_PRIMARY_API_KEY:-}" ] && [ -z "${AI_FALLBACK_API_KEY:-}" ]; then
-            echo "❌ No translation API URL configured and no AI keys for local self-hosted backend." >&2
-            echo "Set POQT_API_URL/L10N_QUALITY_API_URL or provide AI_PRIMARY_API_KEY." >&2
-            exit 1
+            echo "ℹ️ Skip auto-translate: no translation API URL and no AI keys for local self-hosted backend."
+            echo "To enable: set POQT_API_URL/L10N_QUALITY_API_URL or AI_PRIMARY_API_KEY."
+            echo "api_url=" >> "$GITHUB_OUTPUT"
+            echo "api_key=" >> "$GITHUB_OUTPUT"
+            echo "dev_bypass=" >> "$GITHUB_OUTPUT"
+            echo "should_translate=0" >> "$GITHUB_OUTPUT"
+            echo "started_local_backend=0" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
           TOOL_DIR="$RUNNER_TEMP/l10n-quality-tool"
@@ -203,10 +209,12 @@ jobs:
           echo "api_url=http://127.0.0.1:18080" >> "$GITHUB_OUTPUT"
           echo "api_key=" >> "$GITHUB_OUTPUT"
           echo "dev_bypass=ci-dev-bypass" >> "$GITHUB_OUTPUT"
+          echo "should_translate=1" >> "$GITHUB_OUTPUT"
           echo "started_local_backend=1" >> "$GITHUB_OUTPUT"
           echo "tool_dir=$TOOL_DIR" >> "$GITHUB_OUTPUT"
 
       - name: Run bulk translations for all locales
+        if: steps.backend.outputs.should_translate == '1'
         env:
           POQT_API_URL: ${{ steps.backend.outputs.api_url }}
           POQT_API_KEY: ${{ steps.backend.outputs.api_key }}
@@ -223,6 +231,7 @@ jobs:
           docker compose -f "${{ steps.backend.outputs.tool_dir }}/docker/docker-compose.yml" down -v || true
 
       - name: Commit and push translated files
+        if: steps.backend.outputs.should_translate == '1'
         run: |
           if [ -z "$(git status --porcelain -- locale)" ]; then
             echo "No translation updates to commit."
