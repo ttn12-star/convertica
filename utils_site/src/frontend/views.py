@@ -23,7 +23,9 @@ def anonymous_cache_page(timeout):
     """
 
     def decorator(view_func):
-        cached_view = vary_on_cookie(cache_page(timeout)(view_func))
+        # `cache_page` must wrap a view that already sets `Vary: Cookie`,
+        # otherwise cache keys won't include cookie-specific variants.
+        cached_view = cache_page(timeout)(vary_on_cookie(view_func))
 
         @wraps(view_func)
         def wrapper(request, *args, **kwargs):

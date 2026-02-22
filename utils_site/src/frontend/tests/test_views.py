@@ -8,6 +8,7 @@ from urllib.parse import parse_qs, urlparse
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
+from django.middleware.csrf import _does_token_match
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
@@ -472,7 +473,6 @@ class FrontendViewsTestCase(TestCase):
             prime_html,
         )
         self.assertIsNotNone(prime_token_match)
-        prime_token = prime_token_match.group(1)
 
         switch_client = Client(enforce_csrf_checks=True)
         switch_client.cookies["csrftoken"] = "b" * 32
@@ -486,7 +486,12 @@ class FrontendViewsTestCase(TestCase):
         )
         self.assertIsNotNone(token_match)
         csrf_token = token_match.group(1)
-        self.assertNotEqual(prime_token, csrf_token)
+        self.assertTrue(
+            _does_token_match(csrf_token, switch_client.cookies["csrftoken"].value)
+        )
+        self.assertFalse(
+            _does_token_match(csrf_token, prime_client.cookies["csrftoken"].value)
+        )
 
         set_language_response = switch_client.post(
             reverse("set_language"),
