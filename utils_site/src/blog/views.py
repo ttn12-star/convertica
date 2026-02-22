@@ -4,7 +4,8 @@ from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
-from django.utils.translation import get_language
+from django.utils.translation import get_language, get_language_info
+from django.utils.translation import gettext as _
 from django.views.decorators.cache import cache_page
 
 from .models import Article, ArticleCategory
@@ -13,6 +14,8 @@ from .models import Article, ArticleCategory
 def article_list(request):
     """Display list of published articles."""
     language_code = get_language()
+    language_info = get_language_info(language_code or "en")
+    language_label = language_info.get("name_local", language_code or "en")
 
     # Get published articles with optimized queries
     articles = (
@@ -140,8 +143,10 @@ def article_list(request):
         "current_category": category,
         "search_query": search_query,
         "language_code": language_code,
-        "page_title": "Blog - Convertica",
-        "page_description": "Read our articles about PDF tools, document conversion tips, and useful guides.",
+        "page_title": f"{_('Blog')} ({language_label}) - Convertica",
+        "page_description": _(
+            "Useful guides, tips, and articles about PDF tools and document management"
+        ),
     }
 
     return render(request, "blog/article_list.html", context)
