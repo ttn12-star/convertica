@@ -1305,7 +1305,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:151 utils_site/src/frontend/views.py:3871
 #| msgid "JPG to PDF"
 msgid "EPUB to PDF"
-msgstr "JPG na PDF"
+msgstr "EPUB na PDF"
 
 #: templates/frontend/all_tools.html:649
 msgid "Premium beta tool for converting eBooks to PDF format."
@@ -1322,7 +1322,7 @@ msgstr "Narzędzie beta premium do konwersji eBooków do formatu PDF."
 #: utils_site/src/frontend/views.py:158 utils_site/src/frontend/views.py:3878
 #| msgid "PDF to JPG"
 msgid "PDF to EPUB"
-msgstr "PDF na JPG"
+msgstr "PDF na EPUB"
 
 #: templates/frontend/all_tools.html:669
 msgid "Premium beta tool for converting PDFs to eReader-friendly EPUB."
@@ -5106,7 +5106,7 @@ msgstr ""
 #: templates/frontend/premium/epub_to_pdf.html:16
 #| msgid "How Compare Two PDFs works"
 msgid "How EPUB to PDF works"
-msgstr "Jak działa Compare Two PDFs"
+msgstr "Jak działa EPUB na PDF"
 
 #: templates/frontend/premium/epub_to_pdf.html:19
 msgid "Upload an EPUB file from your device."
@@ -5115,7 +5115,7 @@ msgstr "Prześlij plik EPUB ze swojego urządzenia."
 #: templates/frontend/premium/epub_to_pdf.html:20
 #| msgid "Click the Convert button and wait for processing to complete"
 msgid "Click Convert EPUB to PDF and wait for processing."
-msgstr "Kliknij przycisk Konwertuj i poczekaj na zakończenie przetwarzania"
+msgstr "Kliknij Konwertuj EPUB na PDF i poczekaj na przetwarzanie."
 
 #: templates/frontend/premium/epub_to_pdf.html:21
 msgid "Download the generated PDF and review formatting."
@@ -5129,8 +5129,8 @@ msgid ""
 "Tip: For best results, use EPUB files with clean chapter markup and standard"
 " fonts."
 msgstr ""
-"Dla najlepszych rezultatów używaj plików PDF z wyraźną treścią tekstową, a "
-"nie zeskanowanymi obrazami."
+"Wskazówka: dla najlepszych wyników używaj plików EPUB z czystym oznaczeniem "
+"rozdziałów i standardowymi czcionkami."
 
 #: templates/frontend/premium/ocr_pdf_to_word.html:22
 #| msgid "Premium"
@@ -5174,7 +5174,7 @@ msgstr ""
 #: templates/frontend/premium/pdf_to_epub.html:16
 #| msgid "How it works"
 msgid "How PDF to EPUB works"
-msgstr "Jak to działa"
+msgstr "Jak działa PDF na EPUB"
 
 #: templates/frontend/premium/pdf_to_epub.html:19
 #| msgid "Upload two PDF files"
@@ -5184,7 +5184,7 @@ msgstr "Prześlij dwa pliki PDF"
 #: templates/frontend/premium/pdf_to_epub.html:20
 #| msgid "Convert PDF to JPG"
 msgid "Click Convert PDF to EPUB."
-msgstr "Konwertuj PDF na JPG"
+msgstr "Kliknij Konwertuj PDF na EPUB."
 
 #: templates/frontend/premium/pdf_to_epub.html:21
 msgid "Download the EPUB file and open it in your eReader app."
@@ -5314,13 +5314,12 @@ msgstr "Prześlij EPUB, przekonwertuj na PDF, sprawdź marginesy do druku."
 #: templates/frontend/premium/workflows.html:106
 #| msgid "Archived"
 msgid "Archive to EPUB"
-msgstr "Zarchiwizowane"
+msgstr "Archiwum do EPUB"
 
 #: templates/frontend/premium/workflows.html:104
 #| msgid "Convert vector-based PDFs for crisp text and graphics"
 msgid "Convert text-based PDFs to EPUB for reader apps."
-msgstr ""
-"Konwertuj PDF-y oparte na grafice wektorowej dla wyraźnego tekstu i grafiki"
+msgstr "Konwertuj tekstowe pliki PDF do EPUB dla aplikacji czytników."
 
 #: templates/frontend/premium/workflows.html:111
 #: templates/frontend/premium/workflows.html:115
@@ -8218,12 +8217,12 @@ msgstr "Czy mogę wyodrębnić tabele z PDF do Excel?"
 #: utils_site/src/frontend/views.py:153
 #| msgid "Convert Excel to PDF"
 msgid "Convert EPUB eBooks to PDF"
-msgstr "Konwertuj Excel na PDF"
+msgstr "Konwertuj eBooki EPUB na PDF"
 
 #: utils_site/src/frontend/views.py:160
 #| msgid "Convert PDF tools"
 msgid "Convert PDFs to EPUB eBooks"
-msgstr "Narzędzia konwersji PDF"
+msgstr "Konwertuj pliki PDF na eBooki EPUB"
 
 #: utils_site/src/frontend/views.py:416
 msgid "Conversion failed. Please try again."
@@ -12490,7 +12489,7 @@ msgstr "Śledź długotrwałe zadania premium i pobieraj gotowe pliki."
 #: utils_site/src/frontend/views.py:3937
 #| msgid "PDF to PowerPoint - Convertica"
 msgid "EPUB to PDF Converter (Premium) - Convertica"
-msgstr "PDF na PowerPoint - Convertica"
+msgstr "EPUB na PDF - Convertica"
 
 #: utils_site/src/frontend/views.py:3939
 msgid ""
@@ -12503,22 +12502,22 @@ msgstr ""
 #: utils_site/src/frontend/views.py:3946
 #| msgid "Convert PDF to editable Word documents"
 msgid "Convert EPUB books to printable PDF documents"
-msgstr "Jak przekonwertować PDF na edytowalny dokument Word online za darmo"
+msgstr "Konwertuj książki EPUB na drukowalne dokumenty PDF"
 
 #: utils_site/src/frontend/views.py:3947
 #| msgid "JPG to PDF Converter"
 msgid "EPUB to PDF Converter"
-msgstr "Konwerter JPG na PDF"
+msgstr "Konwerter EPUB na PDF"
 
 #: utils_site/src/frontend/views.py:3953
 #| msgid "Convert URL to PDF"
 msgid "Convert EPUB to PDF"
-msgstr "Konwertuj URL na PDF"
+msgstr "Konwertuj EPUB na PDF"
 
 #: utils_site/src/frontend/views.py:3954
 #| msgid "Please select a PDF file."
 msgid "Please select an EPUB file."
-msgstr "Proszę wybrać plik PDF."
+msgstr "Proszę wybrać plik EPUB."
 
 #: utils_site/src/frontend/views.py:3959
 msgid "Why use EPUB to PDF in Premium?"
@@ -12560,7 +12559,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:3986
 #| msgid "Tips for Best Word to PDF Conversion"
 msgid "Tips for Better EPUB to PDF Output"
-msgstr "Word na PDF - Convertica"
+msgstr "Wskazówki dla lepszego wyniku EPUB na PDF"
 
 #: utils_site/src/frontend/views.py:3988
 msgid ""
@@ -12619,7 +12618,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:4006
 #| msgid "JPG to PDF"
 msgid "EPUB to PDF FAQ"
-msgstr "JPG na PDF"
+msgstr "FAQ EPUB na PDF"
 
 #: utils_site/src/frontend/views.py:4009
 msgid "Is EPUB to PDF available for free users?"
@@ -12664,7 +12663,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:4036
 #| msgid "PDF to PowerPoint - Convertica"
 msgid "PDF to EPUB Converter (Premium) - Convertica"
-msgstr "PDF na PowerPoint - Convertica"
+msgstr "PDF na EPUB - Convertica"
 
 #: utils_site/src/frontend/views.py:4038
 msgid ""
@@ -12682,12 +12681,12 @@ msgstr "Konwertuj pliki PDF na przyjazny dla czytników format EPUB"
 #: utils_site/src/frontend/views.py:4046
 #| msgid "PDF to JPG Converter"
 msgid "PDF to EPUB Converter"
-msgstr "Konwerter PDF na JPG"
+msgstr "Konwerter PDF na EPUB"
 
 #: utils_site/src/frontend/views.py:4052
 #| msgid "Convert PDF to JPG"
 msgid "Convert PDF to EPUB"
-msgstr "Konwertuj PDF na JPG"
+msgstr "Konwertuj PDF na EPUB"
 
 #: utils_site/src/frontend/views.py:4058
 msgid "Why use PDF to EPUB in Premium?"
@@ -12726,7 +12725,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:4085
 #| msgid "Tips for Best PDF to Word Conversion"
 msgid "Tips for Better PDF to EPUB Output"
-msgstr "PDF na Word - Convertica"
+msgstr "Wskazówki dla lepszego wyniku PDF na EPUB"
 
 #: utils_site/src/frontend/views.py:4087
 msgid "Text-based PDFs convert more accurately than image-only scans."
@@ -12754,7 +12753,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:4093
 #| msgid "Convert PDF content to HTML for web publishing."
 msgid "Convert PDF to EPUB for eReader-ready publishing"
-msgstr "Konwertuj zawartość PDF na HTML do publikacji internetowej."
+msgstr "Konwertuj PDF na EPUB do publikacji gotowej na eReader"
 
 #: utils_site/src/frontend/views.py:4096
 msgid ""
@@ -12777,12 +12776,12 @@ msgstr ""
 #: utils_site/src/frontend/views.py:4104
 #| msgid "PDF to JPG"
 msgid "PDF to EPUB FAQ"
-msgstr "PDF na JPG"
+msgstr "FAQ PDF na EPUB"
 
 #: utils_site/src/frontend/views.py:4107
 #| msgid "Can I convert scanned PDF documents to Excel?"
 msgid "Can scanned PDFs be converted to EPUB?"
-msgstr "Czy mogę przekonwertować PDF na JPG?"
+msgstr "Czy mogę przekonwertować PDF na EPUB?"
 
 #: utils_site/src/frontend/views.py:4109
 msgid ""
@@ -12809,7 +12808,7 @@ msgstr ""
 #: utils_site/src/frontend/views.py:4119
 #| msgid "Will images from my PDF be included in the HTML?"
 msgid "Will images from PDF appear in EPUB?"
-msgstr "Czy obrazy z mojego pliku PDF zostaną uwzględnione w HTML?"
+msgstr "Czy obrazy z PDF pojawią się w EPUB?"
 
 #: utils_site/src/frontend/views.py:4121
 msgid ""

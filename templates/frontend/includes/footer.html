@@ -174,8 +174,7 @@
           </div>
           <h4 class="font-extrabold text-lg text-white">{% trans "Language" %}</h4>
         </div>
-        <form method="post" action="{% url 'set_language' %}" class="mb-6">
-          {% csrf_token %}
+        <form method="get" action="{% url 'set_language' %}" class="mb-6">
           {% get_current_language as LANGUAGE_CODE %}
           {% get_available_languages as LANGUAGES %}
           {% with path_without_lang=request.path|remove_language_prefix %}

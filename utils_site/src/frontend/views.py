@@ -25,12 +25,15 @@ def anonymous_cache_page(timeout):
     def decorator(view_func):
         # `cache_page` must wrap a view that already sets `Vary: Cookie`,
         # otherwise cache keys won't include cookie-specific variants.
-        cached_view = cache_page(timeout)(vary_on_cookie(view_func))
+        # `ensure_csrf_cookie` must be outside cache to guarantee csrftoken
+        # on cache hits for anonymous visitors (language switch form uses POST).
+        cached_view = ensure_csrf_cookie(cache_page(timeout)(vary_on_cookie(view_func)))
+        uncached_view = ensure_csrf_cookie(view_func)
 
         @wraps(view_func)
         def wrapper(request, *args, **kwargs):
             if request.user.is_authenticated:
-                return view_func(request, *args, **kwargs)
+                return uncached_view(request, *args, **kwargs)
             return cached_view(request, *args, **kwargs)
 
         return wrapper
@@ -3813,6 +3816,7 @@ def unlock_pdf_page(request):
     return render(request, "frontend/pdf_security/unlock_pdf.html", context)
 
 
+@ensure_csrf_cookie
 @vary_on_cookie
 @cache_page(60 * 60 * 24)
 def all_tools_page(request):
@@ -4441,6 +4445,7 @@ def background_center_page(request):
     return render(request, "frontend/premium/background_center.html", context)
 
 
+@ensure_csrf_cookie
 @vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def about_page(request):
@@ -4464,6 +4469,7 @@ def about_page(request):
     return render(request, "frontend/about.html", context)
 
 
+@ensure_csrf_cookie
 @vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def privacy_page(request):
@@ -4486,6 +4492,7 @@ def privacy_page(request):
     return render(request, "frontend/privacy.html", context)
 
 
+@ensure_csrf_cookie
 @vary_on_cookie
 @cache_page(60 * 60 * 24 * 7)
 def terms_page(request):
@@ -4662,9 +4669,9 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
     return render(request, "frontend/contact.html", context)
 
 
+@ensure_csrf_cookie
 @vary_on_cookie
 @cache_page(60 * 60 * 24)
-@ensure_csrf_cookie
 def faq_page(request):
     """FAQ page with proper CSRF handling."""
     page_title = _("Frequently Asked Questions (FAQ) - Convertica")

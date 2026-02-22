@@ -1005,8 +1005,7 @@
           {% endif %}
 
         <!-- Language Switcher (Desktop only) -->
-          <form method="post" action="{% url 'set_language' %}" class="ml-2 lg:ml-4 flex-shrink-0 min-w-[100px] lg:min-w-[120px]">
-            {% csrf_token %}
+          <form method="get" action="{% url 'set_language' %}" class="ml-2 lg:ml-4 flex-shrink-0 min-w-[100px] lg:min-w-[120px]">
             {% get_current_language as LANGUAGE_CODE %}
             {% get_available_languages as LANGUAGES %}
             {% with path_without_lang=request.path|remove_language_prefix %}
@@ -1398,8 +1397,7 @@
 
   <!-- Mobile Language Switcher -->
     <div class="pt-4 border-t border-gray-200 mt-2">
-      <form method="post" action="{% url 'set_language' %}">
-        {% csrf_token %}
+      <form method="get" action="{% url 'set_language' %}">
         {% get_current_language as MOBILE_LANGUAGE_CODE %}
         {% get_available_languages as MOBILE_LANGUAGES %}
         {% with path_without_lang=request.path|remove_language_prefix %}

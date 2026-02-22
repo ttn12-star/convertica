@@ -8,7 +8,6 @@ from urllib.parse import parse_qs, urlparse
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.cache import cache
-from django.middleware.csrf import _does_token_match
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
@@ -461,48 +460,71 @@ class FrontendViewsTestCase(TestCase):
         self.assertIn('id="premium-tools-menu-parent"', second_html)
         self.assertIn(reverse("frontend:premium_tools_page"), second_html)
 
+    @override_settings(
+        CACHES={
+            "default": {
+                "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+                "LOCATION": "frontend-test-language-switch-home",
+            }
+        }
+    )
     def test_language_switch_works_with_cached_homepage(self):
-        """Language switch should keep valid CSRF when homepage is served from cache."""
+        """Language switch should work from cached homepage."""
+        cache.clear()
+
         prime_client = Client(enforce_csrf_checks=True)
-        prime_client.cookies["csrftoken"] = "a" * 32
         prime_response = prime_client.get(self._get_url_with_lang(""), follow=True)
         self.assertEqual(prime_response.status_code, 200)
-        prime_html = prime_response.content.decode("utf-8")
-        prime_token_match = re.search(
-            r'name="csrfmiddlewaretoken"\s+value="([^"]+)"',
-            prime_html,
-        )
-        self.assertIsNotNone(prime_token_match)
 
         switch_client = Client(enforce_csrf_checks=True)
-        switch_client.cookies["csrftoken"] = "b" * 32
         cached_response = switch_client.get(self._get_url_with_lang(""), follow=True)
         self.assertEqual(cached_response.status_code, 200)
 
-        html = cached_response.content.decode("utf-8")
-        token_match = re.search(
-            r'name="csrfmiddlewaretoken"\s+value="([^"]+)"',
-            html,
-        )
-        self.assertIsNotNone(token_match)
-        csrf_token = token_match.group(1)
-        self.assertTrue(
-            _does_token_match(csrf_token, switch_client.cookies["csrftoken"].value)
-        )
-        self.assertFalse(
-            _does_token_match(csrf_token, prime_client.cookies["csrftoken"].value)
-        )
-
-        set_language_response = switch_client.post(
+        set_language_response = switch_client.get(
             reverse("set_language"),
             {
                 "language": "ru",
                 "next": self._get_url_with_lang(""),
-                "csrfmiddlewaretoken": csrf_token,
             },
             HTTP_REFERER=f"http://testserver{self._get_url_with_lang('')}",
         )
         self.assertEqual(set_language_response.status_code, 302)
+        self.assertIn("/ru/", set_language_response.get("Location"))
+
+    @override_settings(
+        CACHES={
+            "default": {
+                "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+                "LOCATION": "frontend-test-language-switch-about",
+            }
+        }
+    )
+    def test_language_switch_works_with_cached_about_page(self):
+        """Language switch must work on cached static pages."""
+        cache.clear()
+
+        first_client = Client(enforce_csrf_checks=True)
+        first_response = first_client.get(
+            self._get_url_with_lang("about/"), follow=True
+        )
+        self.assertEqual(first_response.status_code, 200)
+
+        second_client = Client(enforce_csrf_checks=True)
+        second_response = second_client.get(
+            self._get_url_with_lang("about/"), follow=True
+        )
+        self.assertEqual(second_response.status_code, 200)
+
+        response = second_client.get(
+            reverse("set_language"),
+            {
+                "language": "ru",
+                "next": self._get_url_with_lang("about/"),
+            },
+            HTTP_REFERER=f"http://testserver{self._get_url_with_lang('about/')}",
+        )
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("/ru/about/", response.get("Location"))
 
     def test_more_menu_hides_hero_page_for_premium_user(self):
         """Dedicated Premium Tools users should not get duplicate Hero Page in More."""

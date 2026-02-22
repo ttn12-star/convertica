@@ -35,7 +35,8 @@ services:
       dockerfile: ci/Dockerfile
     # Fast startup: only migrate + server. Static files built separately via 'make build-static'
     command: >
-      sh -c "python manage.py migrate --noinput &&
+      sh -c "python manage.py compilemessages &&
+             python manage.py migrate --noinput &&
              gunicorn --config /app/ci/gunicorn.conf.py utils_site.wsgi:application"
     env_file:
       - .env

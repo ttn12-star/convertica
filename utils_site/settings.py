@@ -842,6 +842,11 @@ CSRF_COOKIE_HTTPONLY = True
 CSRF_USE_SESSIONS = False
 # Cache Configuration
 # Using Redis for caching and session storage
+cache_key_prefix = config(
+    "CACHE_KEY_PREFIX",
+    default=f"convertica:{config('SENTRY_RELEASE', default='dev')}",
+)
+
 try:
     import django_redis
 
@@ -856,7 +861,9 @@ try:
                 "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
                 "IGNORE_EXCEPTIONS": True,  # Don't fail if Redis is down
             },
-            "KEY_PREFIX": "convertica",
+            # Prefix cache keys by release to avoid serving stale HTML/translations
+            # from previous deployments on long-lived cache entries.
+            "KEY_PREFIX": cache_key_prefix,
             "TIMEOUT": 3600,  # Default timeout: 1 hour (cache cleared on deploy)
         }
     }
