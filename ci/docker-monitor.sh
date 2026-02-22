@@ -34,11 +34,23 @@ docker events --filter 'event=die' --filter 'event=start' --filter 'type=contain
                     # Get last 15 lines of logs before container died
                     last_logs=$(docker logs --tail 15 "$container" 2>&1 | head -c 1500 || echo "Could not retrieve logs")
 
+                    # Get extra state details for better diagnostics
+                    oom_killed=$(docker inspect --format '{{.State.OOMKilled}}' "$container" 2>/dev/null || echo "unknown")
+                    health_status=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$container" 2>/dev/null || echo "unknown")
+
                     # Determine exit reason
                     case "$exitcode" in
                         0)   exit_reason="Clean exit" ;;
                         1)   exit_reason="Application error" ;;
-                        137) exit_reason="OOM killed or SIGKILL (memory limit?)" ;;
+                        137)
+                            if [ "$oom_killed" = "true" ]; then
+                                exit_reason="OOM killed (kernel cgroup OOM)"
+                            elif [ "$health_status" = "unhealthy" ]; then
+                                exit_reason="SIGKILL by autoheal (container unhealthy)"
+                            else
+                                exit_reason="SIGKILL (manual kill or orchestrator restart)"
+                            fi
+                            ;;
                         139) exit_reason="Segmentation fault" ;;
                         143) exit_reason="SIGTERM (graceful shutdown)" ;;
                         *)   exit_reason="Exit code: $exitcode" ;;
@@ -49,6 +61,8 @@ docker events --filter 'event=die' --filter 'event=start' --filter 'type=contain
 📦 Container: <code>${container}</code>
 🕐 Time: ${timestamp}
 ⚠️ Reason: ${exit_reason}
+🧠 OOMKilled: ${oom_killed}
+❤️ Health: ${health_status}
 🖥️ Server: convertica.net
 
 <b>Last logs:</b>

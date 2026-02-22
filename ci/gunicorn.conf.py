@@ -30,9 +30,10 @@ keepalive = 5
 
 # Worker lifecycle
 # Restart workers after N requests to prevent memory leaks
-# Lower value = more frequent restarts = less memory accumulation
-max_requests = 50  # More aggressive restart to prevent OOM on 4GB server
-max_requests_jitter = 10  # Add randomness to prevent all workers restarting at once
+# Lower value = more frequent restarts, but too low increases churn and can hurt uptime.
+# Allow tuning from environment without code changes.
+max_requests = int(os.environ.get("GUNICORN_MAX_REQUESTS", 300))
+max_requests_jitter = int(os.environ.get("GUNICORN_MAX_REQUESTS_JITTER", 50))
 
 # Use /dev/shm for worker heartbeat files (faster than disk)
 worker_tmp_dir = "/dev/shm"

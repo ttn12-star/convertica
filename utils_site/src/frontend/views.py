@@ -19,10 +19,11 @@ def anonymous_cache_page(timeout):
 
     Authenticated users always get fresh responses (needed for premium-specific content).
     Anonymous users get cached responses for better performance.
+    Cache varies by cookie to keep CSRF tokens valid in cached templates.
     """
 
     def decorator(view_func):
-        cached_view = cache_page(timeout)(view_func)
+        cached_view = vary_on_cookie(cache_page(timeout)(view_func))
 
         @wraps(view_func)
         def wrapper(request, *args, **kwargs):
@@ -216,8 +217,7 @@ def _get_related_tools(current_tool):
     return result
 
 
-@vary_on_cookie
-@cache_page(60 * 60)
+@anonymous_cache_page(60 * 60)
 def index_page(request):
     """Home page view."""
     from django.core.cache import cache

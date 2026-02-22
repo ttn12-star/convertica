@@ -2,6 +2,7 @@
 Tests for frontend views.
 """
 
+import re
 from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
@@ -434,6 +435,134 @@ class FrontendViewsTestCase(TestCase):
         self.assertIn('id="premium-tools-menu-parent"', html)
         self.assertIn('id="premium-tools-menu-dropdown"', html)
         self.assertIn(reverse("frontend:premium_tools_page"), html)
+
+    def test_index_page_refreshes_header_when_user_becomes_premium(self):
+        """Authenticated homepage must not serve stale cached header after upgrade."""
+        user = get_user_model().objects.create_user(
+            email="upgraded-index@example.com",
+            password="testpass123",
+            is_premium=False,
+        )
+        self.client.force_login(user)
+
+        first_response = self.client.get(self._get_url_with_lang(""), follow=True)
+        self.assertEqual(first_response.status_code, 200)
+        first_html = first_response.content.decode("utf-8")
+        self.assertNotIn('id="premium-tools-menu-parent"', first_html)
+
+        user.is_premium = True
+        user.save(update_fields=["is_premium"])
+        cache.delete(f"user_subscription_status_{user.id}")
+
+        second_response = self.client.get(self._get_url_with_lang(""), follow=True)
+        self.assertEqual(second_response.status_code, 200)
+        second_html = second_response.content.decode("utf-8")
+        self.assertIn('id="premium-tools-menu-parent"', second_html)
+        self.assertIn(reverse("frontend:premium_tools_page"), second_html)
+
+    def test_language_switch_works_with_cached_homepage(self):
+        """Language switch should keep valid CSRF when homepage is served from cache."""
+        prime_client = Client(enforce_csrf_checks=True)
+        prime_client.cookies["csrftoken"] = "a" * 32
+        prime_response = prime_client.get(self._get_url_with_lang(""), follow=True)
+        self.assertEqual(prime_response.status_code, 200)
+        prime_html = prime_response.content.decode("utf-8")
+        prime_token_match = re.search(
+            r'name="csrfmiddlewaretoken"\s+value="([^"]+)"',
+            prime_html,
+        )
+        self.assertIsNotNone(prime_token_match)
+        prime_token = prime_token_match.group(1)
+
+        switch_client = Client(enforce_csrf_checks=True)
+        switch_client.cookies["csrftoken"] = "b" * 32
+        cached_response = switch_client.get(self._get_url_with_lang(""), follow=True)
+        self.assertEqual(cached_response.status_code, 200)
+
+        html = cached_response.content.decode("utf-8")
+        token_match = re.search(
+            r'name="csrfmiddlewaretoken"\s+value="([^"]+)"',
+            html,
+        )
+        self.assertIsNotNone(token_match)
+        csrf_token = token_match.group(1)
+        self.assertNotEqual(prime_token, csrf_token)
+
+        set_language_response = switch_client.post(
+            reverse("set_language"),
+            {
+                "language": "ru",
+                "next": self._get_url_with_lang(""),
+                "csrfmiddlewaretoken": csrf_token,
+            },
+            HTTP_REFERER=f"http://testserver{self._get_url_with_lang('')}",
+        )
+        self.assertEqual(set_language_response.status_code, 302)
+
+    def test_more_menu_hides_hero_page_for_premium_user(self):
+        """Dedicated Premium Tools users should not get duplicate Hero Page in More."""
+        premium_user = get_user_model().objects.create_user(
+            email="premium-more@example.com",
+            password="testpass123",
+            is_premium=True,
+        )
+        self.client.force_login(premium_user)
+
+        response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode("utf-8")
+
+        more_dropdown = html.split('id="more-menu-dropdown"', 1)[1].split(
+            'id="theme-toggle-btn"', 1
+        )[0]
+        self.assertNotIn(reverse("frontend:pricing"), more_dropdown)
+        self.assertIn(reverse("users:profile"), more_dropdown)
+
+    def test_more_menu_keeps_hero_page_for_non_premium_user(self):
+        """Non-premium users should still see Hero Page entry in More."""
+        user = get_user_model().objects.create_user(
+            email="free-more@example.com",
+            password="testpass123",
+        )
+        self.client.force_login(user)
+
+        response = self.client.get(self._get_url_with_lang("all-tools/"), follow=True)
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode("utf-8")
+
+        more_dropdown = html.split('id="more-menu-dropdown"', 1)[1].split(
+            'id="theme-toggle-btn"', 1
+        )[0]
+        self.assertIn(reverse("frontend:pricing"), more_dropdown)
+        self.assertIn(reverse("users:profile"), more_dropdown)
+
+    @override_settings(PAYMENTS_ENABLED=False)
+    def test_index_page_hides_premium_tools_when_payments_disabled(self):
+        """Homepage header must not render Premium Tools when payments are disabled."""
+        premium_user = get_user_model().objects.create_user(
+            email="premium-disabled-index@example.com",
+            password="testpass123",
+            is_premium=True,
+        )
+        self.client.force_login(premium_user)
+
+        response = self.client.get(self._get_url_with_lang(""), follow=True)
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode("utf-8")
+
+        header_html = html.split("<header", 1)[1].split("</header>", 1)[0]
+        self.assertNotIn('id="premium-tools-menu-parent"', header_html)
+        self.assertNotIn('id="premium-tools-menu-dropdown"', header_html)
+
+        premium_links = (
+            reverse("frontend:premium_tools_page"),
+            reverse("frontend:epub_to_pdf_page"),
+            reverse("frontend:pdf_to_epub_page"),
+            reverse("frontend:pdf_to_markdown_page"),
+            reverse("frontend:compare_pdf_page"),
+        )
+        for premium_link in premium_links:
+            self.assertNotIn(premium_link, header_html)
 
     def test_compare_pdf_page_has_interactive_preview_blocks(self):
         """Compare PDF page should include on-screen report preview UI and JSZip loader."""

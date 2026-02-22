@@ -44,6 +44,16 @@ services:
       - SENTRY_ENVIRONMENT=${SENTRY_ENVIRONMENT:-production}
       - SENTRY_RELEASE=${SENTRY_RELEASE}
       - SITE_DOMAIN=${SITE_DOMAIN:-convertica.net}
+      - GUNICORN_MAX_REQUESTS=${GUNICORN_MAX_REQUESTS:-300}
+      - GUNICORN_MAX_REQUESTS_JITTER=${GUNICORN_MAX_REQUESTS_JITTER:-50}
+    # In production web should be reachable only from nginx via internal network.
+    # Base compose binds web only to 127.0.0.1 for safety; keep direct exposure disabled.
+    expose:
+      - "8000"
+    volumes:
+      # Keep gunicorn config hot-reloadable via compose recreate without full image rebuild.
+      - ./ci/gunicorn.conf.py:/app/ci/gunicorn.conf.py:ro
+      - ./ci/web-healthcheck.sh:/app/ci/web-healthcheck.sh:ro
     deploy:
       resources:
         limits:
@@ -56,12 +66,13 @@ services:
     # Without this, container is killed when hitting memory limit even if host has swap
     memswap_limit: 2.5G
     healthcheck:
-      # Use /livez/ for liveness check (doesn't depend on DB/Redis)
-      # This prevents false unhealthy status when DB/Redis are slow
-      test: ["CMD", "curl", "-f", "http://localhost:8000/livez/"]
-      interval: 15s
-      timeout: 10s
-      retries: 3
+      # Liveness only: verify gunicorn accepts TCP connections.
+      # Avoid request-based checks here, because /livez can fail under worker saturation
+      # and trigger false autoheal restarts.
+      test: ["CMD-SHELL", "/bin/sh /app/ci/web-healthcheck.sh"]
+      interval: 30s
+      timeout: 5s
+      retries: 6
       start_period: 120s
     restart: always
     labels:
