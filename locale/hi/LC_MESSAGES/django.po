@@ -8177,8 +8177,8 @@ msgid "Tables, images, fonts, and layout stay intact after conversion"
 msgstr "टेबल, छवियाँ, फ़ॉन्ट और लेआउट रूपांतरण के बाद सुरक्षित रहते हैं"
 
 #: utils_site/src/frontend/views.py:494
-msgid "100% Free & Secure"
-msgstr "100% मुफ़्त और सुरक्षित"
+msgid "Completely Free & Secure"
+msgstr "पूरी तरह मुफ़्त और सुरक्षित"
 
 #: utils_site/src/frontend/views.py:496
 msgid ""
@@ -9379,9 +9379,11 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:1474
 #, python-format
-msgid "Use semi-transparent watermarks (30-50% opacity) for readability"
+msgid ""
+"Use semi-transparent watermarks (30 to 50 percent opacity) for readability"
 msgstr ""
-"पठनीयता के लिए अर्ध-पारदर्शी वॉटरमार्क (30-50% o अपारदर्शिता) का उपयोग करें"
+"बेहतर पठनीयता के लिए 30 से 50 प्रतिशत अपारदर्शिता वाले अर्ध-पारदर्शी "
+"वॉटरमार्क का उपयोग करें"
 
 #: utils_site/src/frontend/views.py:1475
 msgid "Position diagonal watermarks for document protection"
@@ -10480,8 +10482,8 @@ msgstr ""
 "नहीं करते हैं।"
 
 #: utils_site/src/frontend/views.py:2445
-msgid "100% Free Service"
-msgstr "100% F मुफ्त"
+msgid "Completely Free Service"
+msgstr "पूरी तरह मुफ़्त सेवा"
 
 #: utils_site/src/frontend/views.py:2447
 msgid ""

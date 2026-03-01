@@ -491,7 +491,7 @@ def pdf_to_word_page(request):
         {
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
             "gradient": "from-blue-500 to-blue-600",
-            "title": _("100% Free & Secure"),
+            "title": _("Completely Free & Secure"),
             "description": _(
                 "No registration, no watermarks. Files deleted immediately after conversion"
             ),
@@ -1471,7 +1471,7 @@ def add_watermark_page(request):
 
     # SEO Tips
     context["page_tips"] = [
-        _("Use semi-transparent watermarks (30-50% opacity) for readability"),
+        _("Use semi-transparent watermarks (30 to 50 percent opacity) for readability"),
         _("Position diagonal watermarks for document protection"),
         _("Use your company logo for professional branding"),
         _("Add 'CONFIDENTIAL' or 'DRAFT' text for document status"),
@@ -2442,7 +2442,7 @@ def pdf_to_excel_page(request):
         {
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',
             "gradient": "from-yellow-500 to-orange-500",
-            "title": _("100% Free Service"),
+            "title": _("Completely Free Service"),
             "description": _(
                 "Convert PDF to Excel completely free without watermarks, email "
                 "registration, or hidden fees. Perfect for invoices, reports, and financial data."

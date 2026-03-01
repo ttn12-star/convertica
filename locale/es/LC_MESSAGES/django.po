@@ -8258,8 +8258,8 @@ msgstr ""
 "conversión"
 
 #: utils_site/src/frontend/views.py:494
-msgid "100% Free & Secure"
-msgstr "100% gratis y seguro"
+msgid "Completely Free & Secure"
+msgstr "Completamente gratis y seguro"
 
 #: utils_site/src/frontend/views.py:496
 msgid ""
@@ -9482,9 +9482,11 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:1474
 #, python-format
-msgid "Use semi-transparent watermarks (30-50% opacity) for readability"
+msgid ""
+"Use semi-transparent watermarks (30 to 50 percent opacity) for readability"
 msgstr ""
-"Usa marcas de agua semitransparentes (30-50% oe opacidad) para legibilidad"
+"Usa marcas de agua semitransparentes con una opacidad del 30 al 50 por "
+"ciento para mejorar la legibilidad"
 
 #: utils_site/src/frontend/views.py:1475
 msgid "Position diagonal watermarks for document protection"
@@ -10607,8 +10609,8 @@ msgstr ""
 "necesario."
 
 #: utils_site/src/frontend/views.py:2445
-msgid "100% Free Service"
-msgstr "100% FGratis"
+msgid "Completely Free Service"
+msgstr "Servicio completamente gratuito"
 
 #: utils_site/src/frontend/views.py:2447
 msgid ""
