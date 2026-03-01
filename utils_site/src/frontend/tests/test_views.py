@@ -208,6 +208,31 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response["X-Robots-Tag"], "noindex, follow")
         self.assertNotContains(response, 'hreflang="x-default"', status_code=200)
 
+    def test_localized_homepages_self_canonicalize_with_root_x_default(self):
+        """Localized homepages should not canonicalize to the x-default root."""
+        response = self.client.get("/ru/", follow=False)
+        self.assertEqual(response.status_code, 200)
+
+        canonical = self._extract_canonical(response)
+        parsed = self._assert_absolute_url(canonical, "/ru/")
+        origin = f"{parsed.scheme}://{parsed.netloc}"
+
+        self.assertContains(
+            response,
+            f'rel="alternate" hreflang="en" href="{origin}/en/"',
+            status_code=200,
+        )
+        self.assertContains(
+            response,
+            f'rel="alternate" hreflang="ru" href="{origin}/ru/"',
+            status_code=200,
+        )
+        self.assertContains(
+            response,
+            f'rel="alternate" hreflang="x-default" href="{origin}/"',
+            status_code=200,
+        )
+
     def test_private_account_pages_are_noindex_without_canonical(self):
         """Account/auth pages should not emit indexable SEO signals."""
         response = self.client.get(
