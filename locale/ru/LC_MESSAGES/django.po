@@ -8137,7 +8137,7 @@ msgstr "Сообщение слишком длинное. Максимум 5000 
 
 #: utils_site/src/frontend/views.py:74
 msgid "Convert PDF to editable Word documents"
-msgstr "Как бесплатно конвертировать ПДФ в редактируемый Ворд документ онлайн"
+msgstr "Конвертируйте ПДФ в редактируемые документы Ворд"
 
 #: utils_site/src/frontend/views.py:81
 msgid "Convert Word documents to PDF format"
@@ -8149,7 +8149,7 @@ msgstr "Конвертируйте страницы ПДФ в высококач
 
 #: utils_site/src/frontend/views.py:95
 msgid "Convert images to PDF documents"
-msgstr "Конвертируйте HTML контент и веб-страницы в формат ПДФ"
+msgstr "Конвертируйте изображения в документы ПДФ"
 
 #: utils_site/src/frontend/views.py:102
 msgid "Combine multiple PDFs into one"
@@ -8165,11 +8165,11 @@ msgstr "Уменьшить размер ПДФ"
 
 #: utils_site/src/frontend/views.py:130
 msgid "Add password protection"
-msgstr "Удаляйте защиту паролем из вашего ПДФ"
+msgstr "Добавьте защиту паролем"
 
 #: utils_site/src/frontend/views.py:144
 msgid "Extract tables to Excel"
-msgstr "Могу ли я извлекать таблицы из ПДФ в Эксель?"
+msgstr "Извлекайте таблицы в Эксель"
 
 #: utils_site/src/frontend/views.py:158
 msgid "Convert EPUB eBooks to PDF"
@@ -8305,8 +8305,8 @@ msgid ""
 msgstr ""
 "Бесплатные пользователи могут конвертировать ПДФ-файлы до 50 страниц. Для "
 "больших документов вы можете сначала разделить их с помощью нашего "
-"инструмента «Разделить ПДФ» или перейти на Premium для увеличения лимита до 500 "
-"страниц на файл."
+"инструмента «Разделить ПДФ» или перейти на Premium для увеличения лимита до "
+"500 страниц на файл."
 
 #: utils_site/src/frontend/views.py:555
 msgid "Can I convert PDF to Word on my phone?"
