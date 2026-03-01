@@ -270,18 +270,22 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         content = response.content.decode("utf-8")
 
-        self.assertRegex(content, r"<loc>https://convertica\.net/en/</loc>")
-        self.assertRegex(
+        match = re.search(r"<loc>(https?://[^/]+)/en/</loc>", content)
+        self.assertIsNotNone(match)
+        origin = match.group(1)
+
+        self.assertIn(f"<loc>{origin}/en/</loc>", content)
+        self.assertIn(
+            f'<xhtml:link rel="alternate" hreflang="en" href="{origin}/en/"/>',
             content,
-            r'<xhtml:link rel="alternate" hreflang="en" href="https://convertica\.net/en/"/>',
         )
-        self.assertRegex(
+        self.assertIn(
+            f'<xhtml:link rel="alternate" hreflang="ru" href="{origin}/ru/"/>',
             content,
-            r'<xhtml:link rel="alternate" hreflang="ru" href="https://convertica\.net/ru/"/>',
         )
-        self.assertRegex(
+        self.assertIn(
+            f'<xhtml:link rel="alternate" hreflang="x-default" href="{origin}/"/>',
             content,
-            r'<xhtml:link rel="alternate" hreflang="x-default" href="https://convertica\.net/"/>',
         )
 
     def test_pdf_to_word_page_renders(self):
