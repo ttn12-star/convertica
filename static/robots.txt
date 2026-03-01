@@ -1,9 +1,13 @@
 User-agent: *
 Allow: /
 
-# Disallow URLs with query parameters (duplicates)
+# Duplicate URL variants and internal search/filter combinations
 Disallow: /*?lang=*
 Disallow: /*&lang=*
+Disallow: /*?q=*
+Disallow: /*&q=*
+Disallow: /*?category=*
+Disallow: /*&category=*
 
 # Disallow URLs with double language prefixes (malformed URLs)
 # These patterns block URLs like /es/ru/, /en/pl/, /ru/hi/, etc.
@@ -58,22 +62,21 @@ Disallow: /ar/id/
 Disallow: /ar/ar/
 
 # Disallow admin and API endpoints
-# Note: /admin/ will be dynamically replaced with actual ADMIN_URL_PATH in views.py
-Disallow: /admin/
+Disallow: /__ADMIN_PATH__/
 Disallow: /api/
 Disallow: /static/admin/
 
-# Disallow user authentication pages (but allow premium page for SEO)
-Disallow: /users/login/
-Disallow: /users/register/
-Disallow: /users/profile/
-Disallow: /users/account/
-Disallow: /users/manage-subscription/
-Disallow: /users/cancel-subscription/
+# Disallow user authentication and account pages
+Disallow: /users/
+Disallow: /*/users/
 Disallow: /accounts/
+Disallow: /*/accounts/
 
-# Disallow payment pages (noindex)
+# Disallow payment and post-conversion success pages
 Disallow: /payments/
+Disallow: /*/payments/
+Disallow: /contribute/success/
+Disallow: /*/contribute/success/
 
 # Allow pricing page for SEO
 Allow: /pricing/
@@ -83,5 +86,5 @@ Allow: /*/pricing/
 Allow: /static/
 Allow: /media/
 
-# Sitemap (URL will be dynamically replaced in views.py)
+# Sitemap
 Sitemap: https://convertica.net/sitemap.xml

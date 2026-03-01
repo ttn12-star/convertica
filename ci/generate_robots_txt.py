@@ -37,7 +37,7 @@ def generate_robots_txt():
                 content = f.read()
 
             # Replace placeholders
-            content = content.replace("/admin/", f"/{admin_path}/")
+            content = content.replace("/__ADMIN_PATH__/", f"/{admin_path}/")
             content = content.replace(
                 "https://convertica.net/sitemap.xml",
                 f"https://{site_domain}/sitemap.xml",
@@ -75,10 +75,30 @@ def generate_fallback_content(admin_path: str, site_domain: str) -> str:
     return f"""User-agent: *
 Allow: /
 
+# Duplicate URL variants and internal search/filter combinations
+Disallow: /*?lang=*
+Disallow: /*&lang=*
+Disallow: /*?q=*
+Disallow: /*&q=*
+Disallow: /*?category=*
+Disallow: /*&category=*
+
 # Disallow admin and API endpoints
 Disallow: /{admin_path}/
 Disallow: /api/
 Disallow: /static/admin/
+
+# Disallow user authentication and account pages
+Disallow: /users/
+Disallow: /*/users/
+Disallow: /accounts/
+Disallow: /*/accounts/
+
+# Disallow payment and post-conversion success pages
+Disallow: /payments/
+Disallow: /*/payments/
+Disallow: /contribute/success/
+Disallow: /*/contribute/success/
 
 # Allow static files
 Allow: /static/

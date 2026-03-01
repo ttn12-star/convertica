@@ -51,6 +51,24 @@ class FrontendViewsTestCase(TestCase):
             return f"/{lang_code}/{path}" if path else f"/{lang_code}/"
         return f"/{path}" if path else "/"
 
+    def _extract_canonical(self, response):
+        html = response.content.decode("utf-8")
+        match = re.search(r'<link rel="canonical" href="([^"]+)"', html)
+        return match.group(1) if match else None
+
+    def _extract_robots(self, response):
+        html = response.content.decode("utf-8")
+        match = re.search(r'<meta name="robots" content="([^"]+)"', html)
+        return match.group(1) if match else None
+
+    def _assert_absolute_url(self, url, expected_path, expected_query=None):
+        parsed = urlparse(url)
+        self.assertIn(parsed.scheme, {"http", "https"})
+        self.assertTrue(parsed.netloc)
+        self.assertEqual(parsed.path, expected_path)
+        self.assertEqual(parse_qs(parsed.query), expected_query or {})
+        return parsed
+
     def test_index_page_renders(self):
         """Test that index page renders successfully."""
         # Follow redirects since i18n_patterns redirects / to /en/
@@ -137,6 +155,82 @@ class FrontendViewsTestCase(TestCase):
         # Check for main pages (with language prefixes or without)
         # Sitemap should contain at least some URLs
         self.assertTrue(len(content) > 100)  # Sitemap should have content
+
+    def test_robots_txt_renders_and_blocks_private_sections(self):
+        """robots.txt should be available even without nginx and block private areas."""
+        response = self.client.get("/robots.txt", follow=False)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "text/plain; charset=utf-8")
+
+        content = response.content.decode("utf-8")
+        self.assertIn("Disallow: /accounts/", content)
+        self.assertIn("Disallow: /*/users/", content)
+        self.assertIn("Disallow: /*?q=*", content)
+        self.assertIn("Sitemap: https://", content)
+
+    def test_public_query_variants_are_noindex_with_clean_canonical(self):
+        """Tracking/query duplicates should not be indexable."""
+        response = self.client.get(
+            f"{self._get_url_with_lang('pdf-to-word/')}?utm_source=newsletter",
+            follow=False,
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._extract_robots(response), "noindex, follow")
+        canonical = self._extract_canonical(response)
+        self._assert_absolute_url(canonical, "/en/pdf-to-word/")
+        self.assertEqual(response["X-Robots-Tag"], "noindex, follow")
+        self.assertNotContains(response, 'hreflang="x-default"', status_code=200)
+
+    def test_blog_pagination_keeps_indexable_self_canonical(self):
+        """Page 2 of the blog should not collapse into page 1 canonical."""
+        response = self.client.get(f"{self._get_url_with_lang('blog/')}?page=2")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            self._extract_robots(response),
+            "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+        )
+        canonical = self._extract_canonical(response)
+        self._assert_absolute_url(canonical, "/en/blog/", {"page": ["2"]})
+        self.assertContains(
+            response,
+            f'hreflang="x-default" href="{canonical}"',
+            status_code=200,
+        )
+        self.assertNotIn("X-Robots-Tag", response)
+
+    def test_blog_search_is_noindex_and_canonicalizes_to_listing(self):
+        """Internal search should not be indexed."""
+        response = self.client.get(f"{self._get_url_with_lang('blog/')}?q=pdf")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._extract_robots(response), "noindex, follow")
+        canonical = self._extract_canonical(response)
+        self._assert_absolute_url(canonical, "/en/blog/")
+        self.assertEqual(response["X-Robots-Tag"], "noindex, follow")
+        self.assertNotContains(response, 'hreflang="x-default"', status_code=200)
+
+    def test_private_account_pages_are_noindex_without_canonical(self):
+        """Account/auth pages should not emit indexable SEO signals."""
+        response = self.client.get(
+            self._get_url_with_lang("users/login/"), follow=False
+        )
+        self.assertEqual(response.status_code, 200)
+        html = response.content.decode("utf-8")
+
+        self.assertEqual(html.count('<meta name="robots"'), 1)
+        self.assertEqual(self._extract_robots(response), "noindex, nofollow")
+        self.assertIsNone(self._extract_canonical(response))
+        self.assertEqual(response["X-Robots-Tag"], "noindex, nofollow")
+        self.assertNotIn('rel="alternate" hreflang=', html)
+
+    def test_404_pages_do_not_emit_canonical_or_hreflang(self):
+        """Error pages should stay out of the index entirely."""
+        response = self.client.get("/missing-seo-page/", follow=False)
+        self.assertEqual(response.status_code, 404)
+        html = response.content.decode("utf-8")
+
+        self.assertEqual(self._extract_robots(response), "noindex, nofollow")
+        self.assertIsNone(self._extract_canonical(response))
+        self.assertNotIn('rel="alternate" hreflang=', html)
 
     def test_pdf_to_word_page_renders(self):
         """Test that PDF to Word page renders successfully."""
