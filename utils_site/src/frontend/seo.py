@@ -53,7 +53,7 @@ def get_request_seo_context(request) -> dict:
     view_name, url_kwargs = _resolve_view(request)
     normalized_path = remove_all_language_prefixes(request.path)
     is_homepage = request.path == "/" or request.path in homepage_paths
-    canonical_path = "/" if is_homepage else request.path
+    canonical_path = request.path
 
     robots_meta = INDEX_ROBOTS
     hreflangs_enabled = True
@@ -157,7 +157,7 @@ def _build_hreflang_links(
     if is_homepage:
         hreflangs = []
         for code, _ in languages:
-            url = f"{base_url}/" if code == default_language else f"{base_url}/{code}/"
+            url = f"{base_url}/{code}/"
             hreflangs.append({"code": code, "url": url})
         hreflangs.append({"code": "x-default", "url": f"{base_url}/"})
         return hreflangs
