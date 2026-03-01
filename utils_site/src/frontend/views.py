@@ -4880,13 +4880,7 @@ def sitemap_lang(request, lang: str):
     for page in pages:
         page_url = page["url"]
         url = (
-            f"{base_url}/"
-            if page_url == "" and lang == default_language
-            else (
-                f"{base_url}/{lang}/"
-                if page_url == ""
-                else f"{base_url}/{lang}/{page_url}"
-            )
+            f"{base_url}/{lang}/" if page_url == "" else f"{base_url}/{lang}/{page_url}"
         )
 
         xml += "  <url>\n"
@@ -4897,13 +4891,9 @@ def sitemap_lang(request, lang: str):
 
         for alt_lang_code, _ in languages:
             alt_url = (
-                f"{base_url}/"
-                if page_url == "" and alt_lang_code == default_language
-                else (
-                    f"{base_url}/{alt_lang_code}/"
-                    if page_url == ""
-                    else f"{base_url}/{alt_lang_code}/{page_url}"
-                )
+                f"{base_url}/{alt_lang_code}/"
+                if page_url == ""
+                else f"{base_url}/{alt_lang_code}/{page_url}"
             )
             xml += (
                 f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>'

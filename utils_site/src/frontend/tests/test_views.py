@@ -257,6 +257,33 @@ class FrontendViewsTestCase(TestCase):
         self.assertIsNone(self._extract_canonical(response))
         self.assertNotIn('rel="alternate" hreflang=', html)
 
+    def test_double_language_prefixes_redirect_and_stay_out_of_index(self):
+        """Malformed URLs like /pl/pl/ should redirect once with noindex."""
+        response = self.client.get("/pl/pl/pdf-to-word/?utm_source=test", follow=False)
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response["Location"], "/pl/pdf-to-word/?utm_source=test")
+        self.assertEqual(response["X-Robots-Tag"], "noindex, nofollow")
+
+    def test_sitemap_homepage_uses_localized_loc_and_root_x_default(self):
+        """Homepage entries in the sitemap should align with page canonical signals."""
+        response = self.client.get("/sitemap-en.xml", follow=False)
+        self.assertEqual(response.status_code, 200)
+        content = response.content.decode("utf-8")
+
+        self.assertRegex(content, r"<loc>https://convertica\.net/en/</loc>")
+        self.assertRegex(
+            content,
+            r'<xhtml:link rel="alternate" hreflang="en" href="https://convertica\.net/en/"/>',
+        )
+        self.assertRegex(
+            content,
+            r'<xhtml:link rel="alternate" hreflang="ru" href="https://convertica\.net/ru/"/>',
+        )
+        self.assertRegex(
+            content,
+            r'<xhtml:link rel="alternate" hreflang="x-default" href="https://convertica\.net/"/>',
+        )
+
     def test_pdf_to_word_page_renders(self):
         """Test that PDF to Word page renders successfully."""
         response = self.client.get(self._get_url_with_lang("pdf-to-word/"), follow=True)
