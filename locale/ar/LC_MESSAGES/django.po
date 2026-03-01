@@ -7988,8 +7988,8 @@ msgid "Tables, images, fonts, and layout stay intact after conversion"
 msgstr "تبقى الجداول والصور والخطوط والتخطيط سليمة بعد التحويل"
 
 #: utils_site/src/frontend/views.py:494
-msgid "100% Free & Secure"
-msgstr "مجاني وآمن 100%"
+msgid "Completely Free & Secure"
+msgstr "مجاني وآمن بالكامل"
 
 #: utils_site/src/frontend/views.py:496
 msgid ""
@@ -9122,8 +9122,11 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:1474
 #, python-format
-msgid "Use semi-transparent watermarks (30-50% opacity) for readability"
-msgstr "استخدم علامات مائية شبه شفافة (شفافية 30-50% o) لسهولة القراءة"
+msgid ""
+"Use semi-transparent watermarks (30 to 50 percent opacity) for readability"
+msgstr ""
+"استخدم علامات مائية شبه شفافة بدرجة تعتيم من 30 إلى 50 بالمئة لتحسين قابلية "
+"القراءة"
 
 #: utils_site/src/frontend/views.py:1475
 msgid "Position diagonal watermarks for document protection"
@@ -10177,8 +10180,8 @@ msgstr ""
 "لفترة أطول من اللازم."
 
 #: utils_site/src/frontend/views.py:2445
-msgid "100% Free Service"
-msgstr "100% F مجاني"
+msgid "Completely Free Service"
+msgstr "خدمة مجانية بالكامل"
 
 #: utils_site/src/frontend/views.py:2447
 msgid ""

@@ -8215,8 +8215,8 @@ msgstr ""
 "Таблицы, изображения, шрифты и макет остаются нетронутыми после конвертации"
 
 #: utils_site/src/frontend/views.py:494
-msgid "100% Free & Secure"
-msgstr "100% бесплатно и безопасно"
+msgid "Completely Free & Secure"
+msgstr "Полностью бесплатно и безопасно"
 
 #: utils_site/src/frontend/views.py:496
 msgid ""
@@ -9448,10 +9448,11 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:1474
 #, python-format
-msgid "Use semi-transparent watermarks (30-50% opacity) for readability"
+msgid ""
+"Use semi-transparent watermarks (30 to 50 percent opacity) for readability"
 msgstr ""
-"Используйте полупрозрачные водяные знаки (30-50% o прозрачности) для "
-"удобочитаемости"
+"Используйте полупрозрачные водяные знаки с непрозрачностью от 30 до 50 "
+"процентов для лучшей читаемости"
 
 #: utils_site/src/frontend/views.py:1475
 msgid "Position diagonal watermarks for document protection"
@@ -10578,8 +10579,8 @@ msgstr ""
 "конвертации. Мы не храним ваши файлы дольше необходимого."
 
 #: utils_site/src/frontend/views.py:2445
-msgid "100% Free Service"
-msgstr "100% F Бесплатно"
+msgid "Completely Free Service"
+msgstr "Полностью бесплатный сервис"
 
 #: utils_site/src/frontend/views.py:2447
 msgid ""
