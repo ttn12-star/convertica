@@ -10,7 +10,7 @@ from django.views.decorators.http import require_http_methods
 from src.frontend.i18n_views import set_language
 from src.frontend.views import index_page, sitemap_index, sitemap_lang
 from src.frontend.views_indexnow import indexnow_key_file
-from src.frontend.views_seo import favicon_view
+from src.frontend.views_seo import favicon_view, robots_txt_view
 from src.payments.views import stripe_webhook
 
 from utils_site.swagger import schema_view
@@ -81,7 +81,8 @@ urlpatterns = [
         indexnow_key_file,
         name="indexnow_key",
     ),
-    # robots.txt is now served directly by nginx from staticfiles/
+    # robots.txt can be served by nginx, but Django keeps a fallback for app-only setups
+    path("robots.txt", robots_txt_view, name="robots_txt"),
     path("health/", health_check, name="health_check"),
     path("livez/", liveness_check, name="liveness_check"),
     # SEO - sitemaps should be accessible without language prefix

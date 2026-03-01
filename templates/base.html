@@ -16,11 +16,7 @@
     <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
     <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
     <meta name="author" content="Convertica">
-    {% if request.GET.lang %}
-      <meta name="robots" content="noindex, follow">
-    {% else %}
-      <meta name="robots" content="{% block robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock %}">
-    {% endif %}
+    <meta name="robots" content="{% block robots %}{{ robots_meta }}{% endblock %}">
     <meta name="language" content="{{ LANGUAGE_CODE }}">
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#2563eb">
@@ -28,8 +24,8 @@
     <meta name="csrf-token" content="{{ csrf_token }}">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ site_current_url }}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ canonical_url|default:site_current_url }}">
     <meta property="og:title" content="{% block og_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
@@ -41,21 +37,16 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{ site_current_url }}">
+    <meta property="twitter:url" content="{{ canonical_url|default:site_current_url }}">
     <meta property="twitter:title" content="{% block twitter_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
     <meta property="twitter:description" content="{% block twitter_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
     <meta property="twitter:image" content="{% block twitter_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
-    <!-- Canonical URL (without query parameters) -->
-    {% with default_home='/'|add:default_language_code|add:'/' %}
-      {% if request.path == '/' or request.path == default_home %}
-          <!-- For root homepage and default-language homepage, canonical points to root -->
-        <link rel="canonical" href="{{ site_base_url }}/">
-      {% else %}
-          <!-- For all other pages, canonical points to current URL without query parameters -->
-        <link rel="canonical" href="{{ site_base_url }}{{ request.path }}">
+    {% block canonical %}
+      {% if canonical_url %}
+        <link rel="canonical" href="{{ canonical_url }}">
       {% endif %}
-    {% endwith %}
+    {% endblock %}
 
     <!-- Preconnect to external domains (for analytics and CDN) -->
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
@@ -96,10 +87,11 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     -->
 
-    <!-- Hreflang -->
-    {% for link in hreflangs %}
-      <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
-    {% endfor %}
+    {% block hreflang_links %}
+      {% for link in hreflangs %}
+        <link rel="alternate" hreflang="{{ link.code }}" href="{{ link.url }}">
+      {% endfor %}
+    {% endblock %}
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">

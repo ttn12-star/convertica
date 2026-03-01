@@ -4,9 +4,9 @@
 {% block title %}{% trans "403 - Access Forbidden" %} | {% trans "Convertica" %}{% endblock %}
 {% block meta_title %}{% trans "403 - Access Forbidden" %}{% endblock %}
 {% block description %}{% trans "You don't have permission to access this resource." %}{% endblock %}
-{% block extra_head %}
-  <meta name="robots" content="noindex, nofollow">
-{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
+{% block canonical %}{% endblock %}
+{% block hreflang_links %}{% endblock %}
 
 {% block content %}
   <div class="min-h-[60vh] flex items-center justify-center px-4 py-16">

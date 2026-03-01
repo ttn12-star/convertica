@@ -6,8 +6,9 @@ import os
 
 from decouple import config
 from django.conf import settings
-from django.urls import Resolver404, resolve, reverse
-from django.utils.translation import get_language
+from django.urls import Resolver404, resolve
+
+from .seo import get_request_seo_context
 
 
 def turnstile_site_key(request):
@@ -37,209 +38,23 @@ def turnstile_site_key(request):
 
 
 def hreflang_links(request):
-    """
-    Generate hreflang links for SEO.
-    Works with Django's i18n_patterns for proper URL structure.
-
-    Django's i18n_patterns automatically adds language prefix to URLs.
-    This function generates proper hreflang tags for all available languages.
-    """
-    languages = getattr(settings, "LANGUAGES", [("en", "English")])
-    default_language = settings.LANGUAGE_CODE
-
-    hreflangs = []
-    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
-    if not getattr(settings, "DEBUG", False) and scheme == "http":
-        scheme = "https"
-    site_domain = config("SITE_DOMAIN", default=None)
-    base_url = f"{scheme}://{site_domain or request.get_host()}"
-
-    # Get current URL pattern name and kwargs
-    try:
-        match = resolve(request.path)
-        url_name = match.url_name
-        url_kwargs = match.kwargs
-    except (Resolver404, AttributeError):
-        url_name = None
-        url_kwargs = {}
-
-    homepage_paths = [f"/{code}/" for code, _ in languages]
-    if request.path == "/" or request.path in homepage_paths:
-        hreflangs = []
-        for code, _ in languages:
-            if code == default_language:
-                url = f"{base_url}/"
-            else:
-                url = f"{base_url}/{code}/"
-            hreflangs.append({"code": code, "url": url})
-        hreflangs.append({"code": "x-default", "url": f"{base_url}/"})
-        return {
-            "hreflangs": hreflangs,
-            "hreflang_homepage_paths": homepage_paths,
-            "default_language_code": default_language,
-        }
-
-    # Generate hreflang for each language
-    for code, _ in languages:
-        try:
-            if url_name:
-                # Use reverse to get proper URL for each language
-                # We need to temporarily activate the language to get correct URL
-                from django.utils.translation import activate
-
-                old_lang = get_language()
-                activate(code)
-
-                try:
-                    # Reverse the URL with the language context
-                    lang_url = reverse(url_name, kwargs=url_kwargs)
-                    # i18n_patterns adds language prefix automatically
-                    # Ensure proper encoding
-                    if isinstance(lang_url, bytes):
-                        lang_url = lang_url.decode("utf-8")
-                    url = f"{base_url}{lang_url}"
-                except Exception:
-                    # Fallback: construct URL manually
-                    current_path = request.path
-                    # Ensure current_path is a string, not bytes
-                    if isinstance(current_path, bytes):
-                        current_path = current_path.decode("utf-8")
-                    # Remove ALL language prefixes (in case of double prefixes)
-                    # Use a more robust approach to strip ALL language codes
-                    current_path_no_lang = current_path.lstrip("/")
-                    path_parts = current_path_no_lang.split("/")
-
-                    # Remove all leading language codes
-                    supported_lang_codes = [lang_code for lang_code, _ in languages]
-                    while path_parts and path_parts[0] in supported_lang_codes:
-                        path_parts.pop(0)
-
-                    # Reconstruct path without language prefixes
-                    if path_parts:
-                        current_path_no_lang = "/" + "/".join(path_parts)
-                    else:
-                        current_path_no_lang = "/"
-
-                    # Ensure trailing slash is preserved if it was in original
-                    if current_path.endswith("/") and not current_path_no_lang.endswith(
-                        "/"
-                    ):
-                        current_path_no_lang += "/"
-
-                    # Add new language prefix (Django i18n_patterns adds prefix for all languages)
-                    if current_path_no_lang == "/":
-                        lang_path = f"/{code}/"
-                    else:
-                        lang_path = f"/{code}{current_path_no_lang}"
-
-                    url = f"{base_url}{lang_path}"
-                finally:
-                    activate(old_lang)
-            else:
-                # No URL name, construct manually
-                current_path = request.path
-                # Ensure current_path is a string, not bytes
-                if isinstance(current_path, bytes):
-                    current_path = current_path.decode("utf-8")
-                # Remove ALL language prefixes (in case of double prefixes)
-                # Use a more robust approach to strip ALL language codes
-                current_path_no_lang = current_path.lstrip("/")
-                path_parts = current_path_no_lang.split("/")
-
-                # Remove all leading language codes
-                supported_lang_codes = [lang_code for lang_code, _ in languages]
-                while path_parts and path_parts[0] in supported_lang_codes:
-                    path_parts.pop(0)
-
-                # Reconstruct path without language prefixes
-                if path_parts:
-                    current_path_no_lang = "/" + "/".join(path_parts)
-                else:
-                    current_path_no_lang = "/"
-
-                # Ensure trailing slash is preserved if it was in original
-                if current_path.endswith("/") and not current_path_no_lang.endswith(
-                    "/"
-                ):
-                    current_path_no_lang += "/"
-
-                # Add new language prefix (Django i18n_patterns adds prefix for all languages)
-                if current_path_no_lang == "/":
-                    lang_path = f"/{code}/"
-                else:
-                    lang_path = f"/{code}{current_path_no_lang}"
-
-                url = f"{base_url}{lang_path}"
-
-        except Exception:
-            # Skip this language if we can't generate a proper URL
-            # Don't create URLs with ?lang= parameter as they create duplicates
-            continue
-
-        hreflangs.append({"code": code, "url": url})
-
-    # Add x-default pointing to root for homepage, default language for other pages
-    try:
-        # For homepage, x-default should point to root (/)
-        languages = getattr(settings, "LANGUAGES", [("en", "English")])
-        homepage_paths = [f"/{code}/" for code, _ in languages]
-
-        if request.path == "/" or request.path in homepage_paths:
-            default_url = f"{base_url}/"
-        else:
-            # For other pages, point to default language version
-            if url_name:
-                from django.utils.translation import activate
-
-                old_lang = get_language()
-                activate(default_language)
-
-                try:
-                    default_url_path = reverse(url_name, kwargs=url_kwargs)
-                    # Ensure proper encoding
-                    if isinstance(default_url_path, bytes):
-                        default_url_path = default_url_path.decode("utf-8")
-                except Exception:
-                    default_url_path = request.path
-                    # Ensure default_url_path is a string, not bytes
-                    if isinstance(default_url_path, bytes):
-                        default_url_path = default_url_path.decode("utf-8")
-                finally:
-                    activate(old_lang)
-            else:
-                default_url_path = request.path
-                # Ensure default_url_path is a string, not bytes
-                if isinstance(default_url_path, bytes):
-                    default_url_path = default_url_path.decode("utf-8")
-
-            default_url = f"{base_url}{default_url_path}"
-    except Exception:
-        default_url = f"{base_url}{request.path}"
-
-    hreflangs.append({"code": "x-default", "url": default_url})
-
-    # Also return list of homepage paths for canonical URL logic
-    languages = getattr(settings, "LANGUAGES", [("en", "English")])
-    homepage_paths = [f"/{code}/" for code, _ in languages]
-
+    """Expose hreflang data calculated from the shared SEO helper."""
+    seo = get_request_seo_context(request)
     return {
-        "hreflangs": hreflangs,
-        "hreflang_homepage_paths": homepage_paths,
-        "default_language_code": default_language,
+        "hreflangs": seo["hreflangs"],
+        "hreflang_homepage_paths": seo["hreflang_homepage_paths"],
+        "default_language_code": seo["default_language_code"],
     }
 
 
 def site_urls(request):
     """Generate site base URL and current URL for templates."""
-    scheme = request.META.get("HTTP_X_FORWARDED_PROTO", request.scheme)
-    if not getattr(settings, "DEBUG", False) and scheme == "http":
-        scheme = "https"
-
-    site_domain = config("SITE_DOMAIN", default=None)
-    base_url = f"{scheme}://{site_domain or request.get_host()}"
+    seo = get_request_seo_context(request)
     return {
-        "site_base_url": base_url,
-        "site_current_url": f"{base_url}{request.path}",
+        "site_base_url": seo["site_base_url"],
+        "site_current_url": seo["site_current_url"],
+        "canonical_url": seo["canonical_url"],
+        "robots_meta": seo["robots_meta"],
     }
 
 

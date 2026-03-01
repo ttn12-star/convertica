@@ -380,9 +380,9 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://connect.facebook.net "
             "https://cdnjs.cloudflare.com",
             # Styles: self, inline (for Tailwind and dynamic styles)
-            "style-src 'self' 'unsafe-inline' " "https://fonts.googleapis.com",
+            "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             # Fonts: self, Google Fonts
-            "font-src 'self' " "https://fonts.gstatic.com " "data:",
+            "font-src 'self' https://fonts.gstatic.com data:",
             # Images: self, data URIs, blob, common CDNs, Yandex Metrika, YouTube thumbnails
             "img-src 'self' data: blob: "
             "https://*.stripe.com "
@@ -418,9 +418,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://www.youtube-nocookie.com "
             "https://www.youtube.com",
             # Form actions: self only
-            "form-action 'self' "
-            "https://accounts.google.com "
-            "https://www.facebook.com",
+            "form-action 'self' https://accounts.google.com https://www.facebook.com",
             # Base URI: self only (prevents base tag injection)
             "base-uri 'self'",
             # Object sources: none (prevents Flash/plugins)
@@ -452,6 +450,18 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
                 'payment=(self "https://js.stripe.com"), '
                 "usb=()"
             )
+
+        if "X-Robots-Tag" not in response:
+            if getattr(response, "status_code", 200) >= 400:
+                response["X-Robots-Tag"] = "noindex, nofollow"
+            else:
+                content_type = response.get("Content-Type", "")
+                if content_type.startswith("text/html"):
+                    from src.frontend.seo import get_request_seo_context
+
+                    robots_meta = get_request_seo_context(request)["robots_meta"]
+                    if robots_meta.startswith("noindex"):
+                        response["X-Robots-Tag"] = robots_meta
 
         return response
 

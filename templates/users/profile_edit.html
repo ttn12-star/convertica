@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block extra_head %}
-  <meta name="robots" content="noindex, nofollow">
-{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
 
 {% block title %}{% trans "Edit Profile" %} - Convertica{% endblock %}
 

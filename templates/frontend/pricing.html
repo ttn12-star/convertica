@@ -1,28 +1,20 @@
 {% extends "base.html" %}
 {% load static i18n %}
 
+{% block title %}{% trans "Become a Convertica Hero" %} - Convertica{% endblock %}
+{% block meta_title %}{% trans "Convertica Premium - Unlimited PDF Conversion" %}{% endblock %}
+{% block description %}{% trans "Upgrade to Convertica Premium for unlimited PDF conversions, 200 pages per file, priority processing, batch conversion, and ad-free experience." %}{% endblock %}
+{% block og_type %}product{% endblock %}
+{% block og_title %}{% trans "Convertica Premium - Unlimited PDF Conversion" %}{% endblock %}
+{% block og_description %}{% trans "Unlimited conversions, priority processing, batch operations, and more. Upgrade to Premium today." %}{% endblock %}
+{% block twitter_title %}{% trans "Convertica Premium - Unlimited PDF Conversion" %}{% endblock %}
+{% block twitter_description %}{% trans "Unlimited conversions, priority processing, batch operations, and more." %}{% endblock %}
+
 {% block extra_head %}
-  <!-- SEO: Allow indexing for premium page -->
-  <meta name="robots" content="index, follow">
-  <meta name="description" content="{% trans 'Upgrade to Convertica Premium for unlimited PDF conversions, 200 pages per file, priority processing, batch conversion, and ad-free experience.' %}">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="{% trans 'Convertica Premium - Unlimited PDF Conversion' %}">
-  <meta property="og:description" content="{% trans 'Unlimited conversions, priority processing, batch operations, and more. Upgrade to Premium today.' %}">
-  <meta property="og:type" content="product">
-
-  <!-- Twitter -->
-  <meta name="twitter:title" content="{% trans 'Convertica Premium - Unlimited PDF Conversion' %}">
-  <meta name="twitter:description" content="{% trans 'Unlimited conversions, priority processing, batch operations, and more.' %}">
-
   {% if PAYMENTS_ENABLED %}
     <script src="https://js.stripe.com/v3/" nonce="{{ csp_nonce }}"></script>
   {% endif %}
 {% endblock %}
-
-{% block title %}{% trans "Become a Convertica Hero" %} - Convertica{% endblock %}
-
-{% block description %}{% trans "Upgrade to Convertica Premium for unlimited PDF conversions, 200 pages per file, priority processing, batch conversion, and ad-free experience." %}{% endblock %}
 
 {% block content %}
   <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900">
