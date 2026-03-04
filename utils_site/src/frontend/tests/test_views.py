@@ -69,6 +69,10 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(parse_qs(parsed.query), expected_query or {})
         return parsed
 
+    def _count_jsonld_type(self, response, schema_type):
+        html = response.content.decode("utf-8")
+        return len(re.findall(rf'"@type"\s*:\s*"{re.escape(schema_type)}"', html))
+
     def test_index_page_renders(self):
         """Test that index page renders successfully."""
         # Follow redirects since i18n_patterns redirects / to /en/
@@ -128,6 +132,31 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         # Check that FAQ content is present
         self.assertContains(response, "FAQ", count=None, status_code=200)
+
+    def test_key_pages_render_single_faqpage_schema(self):
+        """Key pages must expose exactly one FAQPage schema entity."""
+        faq_schema_paths = (
+            "",
+            "faq/",
+            "pdf-to-word/",
+            "word-to-pdf/",
+            "pdf-to-jpg/",
+            "jpg-to-pdf/",
+            "html-to-pdf/",
+            "compare-pdf/",
+            "pdf-organize/merge/",
+            "pdf-security/protect/",
+        )
+
+        for path in faq_schema_paths:
+            with self.subTest(path=path):
+                response = self.client.get(self._get_url_with_lang(path), follow=False)
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(
+                    self._count_jsonld_type(response, "FAQPage"),
+                    1,
+                    msg=f"Expected exactly one FAQPage schema on {path or '/'}",
+                )
 
     def test_sitemap_xml_renders(self):
         """Test that sitemap.xml renders successfully."""
