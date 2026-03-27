@@ -496,10 +496,23 @@ class AsyncConversionAPIView(APIView, ABC):
                             "Non-serializable kwarg %s: %s - %s", k, type(v), ve
                         )
 
+            # Determine target queue:
+            #   premium  → subscribed users (highest priority worker)
+            #   fast     → quick PDF-only ops (don't wait behind Word/Excel→PDF)
+            #   regular  → heavy multi-format conversions
+            from src.tasks.pdf_conversion import FAST_CONVERSION_TYPES
+
+            if use_premium_queue:
+                target_queue = "premium"
+            elif self.CONVERSION_TYPE in FAST_CONVERSION_TYPES:
+                target_queue = "fast"
+            else:
+                target_queue = "regular"
+
             result = celery_task.apply_async(
                 kwargs=filtered_kwargs,
                 task_id=task_id,
-                queue=("premium" if use_premium_queue else "regular"),
+                queue=target_queue,
             )
 
             logger.info(

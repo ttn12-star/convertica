@@ -7,6 +7,7 @@ to prevent blocking the main request/response cycle and Cloudflare timeouts.
 Tasks report progress via self.update_state() for real-time progress bars.
 """
 
+import hashlib
 import inspect
 import os
 import shutil
@@ -19,6 +20,49 @@ from src.api.cancel_task_view import clear_task_cancelled, is_task_cancelled
 from src.api.logging_utils import get_logger
 
 logger = get_logger(__name__)
+
+# Conversion types that complete quickly (PDF-only, no LibreOffice).
+# These are routed to the "fast" queue so they don't wait behind slow
+# Word/Excel→PDF tasks in the "regular" queue.
+FAST_CONVERSION_TYPES: frozenset[str] = frozenset(
+    {
+        "compress_pdf",
+        "split_pdf",
+        "merge_pdf",
+        "rotate_pdf",
+        "crop_pdf",
+        "add_watermark",
+        "add_page_numbers",
+        "organize_pdf",
+        "extract_pages",
+        "remove_pages",
+        "jpg_to_pdf",
+        "pdf_to_jpg",
+    }
+)
+
+# Maximum output file size (bytes) eligible for SHA-256 result caching.
+# Large files are not cached to avoid filling Redis.
+_CACHE_MAX_BYTES = 5 * 1024 * 1024  # 5 MB
+_CACHE_TTL = 86400  # 24 hours
+
+
+def _sha256_file(path: str) -> str:
+    """Return the hex SHA-256 digest of a file without loading it fully into RAM."""
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _cache_key(sha256: str, conversion_type: str, kwargs: dict) -> str:
+    """Stable cache key for a given input file + operation + parameters."""
+    # Exclude internal/runtime kwargs that don't affect the output.
+    excluded = {"suffix", "is_celery_task", "context", "check_cancelled", "is_premium"}
+    stable = {k: v for k, v in sorted(kwargs.items()) if k not in excluded}
+    params_hash = hashlib.md5(str(stable).encode()).hexdigest()[:8]
+    return f"conv_cache:{conversion_type}:{sha256}:{params_hash}"
 
 
 class TaskCancelledException(Exception):
@@ -132,6 +176,67 @@ def generic_conversion_task(
             input_fp.close()
             input_fp = None
             raise
+
+        # --- SHA-256 result cache (idempotent operations only) ---
+        # For FAST_CONVERSION_TYPES we check if an identical file+params combo
+        # was already converted recently and serve the cached output directly.
+        # Only small outputs (<5 MB) are cached to avoid bloating Redis.
+        cached_output: bytes | None = None
+        cache_key_str: str | None = None
+        if conversion_type in FAST_CONVERSION_TYPES:
+            try:
+                from django.core.cache import cache as django_cache
+
+                file_sha256 = _sha256_file(input_path)
+                cache_key_str = _cache_key(file_sha256, conversion_type, kwargs)
+                cached_output = django_cache.get(cache_key_str)
+                if cached_output is not None:
+                    logger.info(
+                        f"Cache hit for {conversion_type} (sha256={file_sha256[:12]}…)",
+                        extra={"event": "conversion_cache_hit"},
+                    )
+            except Exception as cache_exc:
+                logger.debug(f"Cache lookup skipped: {cache_exc}")
+                cached_output = None
+
+        if cached_output is not None:
+            # Write cached bytes to the task output directory and return.
+            import mimetypes
+
+            base_name = os.path.splitext(original_filename)[0]
+            ext_map = {
+                "pdf_to_jpg": ".zip",
+                "jpg_to_pdf": ".pdf",
+            }
+            out_ext = ext_map.get(conversion_type, ".pdf")
+            output_filename = f"{base_name}_convertica{out_ext}"
+            final_output_path = os.path.join(task_dir, output_filename)
+            with open(final_output_path, "wb") as fh:
+                fh.write(cached_output)
+            update_progress(self, 100, "Complete!", 5)
+            clear_task_cancelled(cancellation_id)
+            logger.info(f"Served {conversion_type} from cache: {final_output_path}")
+            # Record analytics
+            try:
+                from django.utils import timezone
+                from src.users.models import OperationRun
+
+                now = timezone.now()
+                duration_ms = int((time.time() - started_ts) * 1000)
+                OperationRun.objects.filter(task_id=cancellation_id).update(
+                    status="success",
+                    finished_at=now,
+                    duration_ms=duration_ms,
+                    output_size=len(cached_output),
+                )
+            except Exception:
+                pass
+            return {
+                "status": "success",
+                "output_path": final_output_path,
+                "output_filename": output_filename,
+                "conversion_type": conversion_type,
+            }
 
         # Step 3: Get the converter function based on conversion type
         update_progress(self, 25, "Preparing conversion...", 5)
@@ -334,6 +439,22 @@ def generic_conversion_task(
             final_output_path = output_path
 
         update_progress(self, 100, "Complete!", 5)
+
+        # --- Store result in SHA-256 cache for future identical requests ---
+        if cache_key_str is not None and conversion_type in FAST_CONVERSION_TYPES:
+            try:
+                out_size = os.path.getsize(final_output_path)
+                if out_size <= _CACHE_MAX_BYTES:
+                    from django.core.cache import cache as django_cache
+
+                    with open(final_output_path, "rb") as fh:
+                        django_cache.set(cache_key_str, fh.read(), timeout=_CACHE_TTL)
+                    logger.debug(
+                        f"Cached {conversion_type} result ({out_size} bytes, ttl={_CACHE_TTL}s)",
+                        extra={"event": "conversion_cache_store"},
+                    )
+            except Exception as cache_exc:
+                logger.debug(f"Cache store skipped: {cache_exc}")
 
         # Clear cancelled flag if task completed successfully
         clear_task_cancelled(cancellation_id)
