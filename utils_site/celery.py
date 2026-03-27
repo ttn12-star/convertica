@@ -66,9 +66,20 @@ try:
             # Telegram tasks to default queue
             "telegram.*": {"queue": "default"},
         },
-        # Queue definitions - regular gets priority
+        # Queue definitions.
+        # "fast" queue: PDF-only operations that complete in <15s (compress, split,
+        #   merge, rotate, crop, watermark, page numbers, extract/remove pages).
+        #   The regular worker listens to fast FIRST so these tasks don't wait
+        #   behind long Word→PDF / OCR conversions sitting in "regular".
+        # "regular" queue: heavy multi-format conversions (word_to_pdf, pdf_to_word,
+        #   pdf_to_excel, pdf_to_markdown, epub conversions, etc.)
+        # "premium" queue: same heavy operations but for subscribed users.
         task_default_queue="regular",
         task_queues={
+            "fast": {
+                "exchange": "fast",
+                "routing_key": "fast",
+            },
             "regular": {
                 "exchange": "regular",
                 "routing_key": "regular",

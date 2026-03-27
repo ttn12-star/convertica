@@ -3,15 +3,22 @@ services:
   db:
     image: postgres:16-alpine
     container_name: convertica_db
+    # Apply tuning via -c flags (env vars POSTGRES_* are NOT recognized by postgres).
+    # shared_buffers: 300MB (was 256MB) – more pages stay in memory.
+    # work_mem: 24MB (was 8MB) – faster sorts/hash joins per query.
+    # effective_cache_size: 768MB – planner hint for index vs. seq-scan.
+    command: >
+      postgres
+      -c shared_buffers=300MB
+      -c work_mem=24MB
+      -c maintenance_work_mem=64MB
+      -c effective_cache_size=768MB
+      -c checkpoint_completion_target=0.9
+      -c random_page_cost=1.1
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-convertica}
       POSTGRES_USER: ${POSTGRES_USER:-convertica}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
-      # PostgreSQL memory optimization for 4GB server
-      POSTGRES_SHARED_BUFFERS: 256MB
-      POSTGRES_WORK_MEM: 8MB
-      POSTGRES_MAINTENANCE_WORK_MEM: 128MB
-      POSTGRES_EFFECTIVE_CACHE_SIZE: 512MB
     volumes:
       - postgres_data:/var/lib/postgresql/data
     expose:
@@ -37,7 +44,12 @@ services:
   redis:
     image: redis:7-alpine
     container_name: convertica_redis
-    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme} --maxmemory 200mb --maxmemory-policy allkeys-lru
+    # maxmemory increased to 240mb (from 200mb) — stays within 256MB container limit.
+    # volatile-lru: evict only keys that have a TTL set (cache hits) rather than
+    # evicting Celery task results that have no TTL (broker list entries).
+    # NOTE: Celery result_expires=7200 sets a TTL on results, so they can still be
+    # evicted under heavy pressure, but at least broker queue entries are protected.
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-changeme} --maxmemory 240mb --maxmemory-policy volatile-lru
     volumes:
       - redis_data:/data
     expose:
@@ -153,21 +165,61 @@ services:
       - convertica_network
     restart: unless-stopped
 
+  # unoserver — keeps LibreOffice warm for fast office document conversions.
+  # Word/Excel/PPT → PDF conversions call this via HTTP instead of spawning a
+  # new LibreOffice subprocess (cold start ~10-15s) each time.
+  # Falls back automatically to subprocess if this service is unavailable.
+  unoserver:
+    image: ghcr.io/unoserver/unoserver:latest
+    container_name: convertica_unoserver
+    expose:
+      - "2003"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8'
+          memory: 750M
+        reservations:
+          cpus: '0.2'
+          memory: 300M
+    healthcheck:
+      # unoserver 2.x returns 200 on GET /
+      test: ["CMD-SHELL", "curl -sf http://localhost:2003/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s  # LibreOffice takes ~30-60s to warm up
+    labels:
+      - "autoheal=true"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+    networks:
+      - convertica_network
+    restart: unless-stopped
+
   # Celery Worker - optimized for 4GB server (2 vCPU)
+  # Memory reduced from 2.2G to 1.5G because LibreOffice now runs in unoserver,
+  # not as a subprocess inside the worker.
+  # Queues: fast (priority) → regular → maintenance → default
+  # "fast" queue handles quick PDF-only ops (compress, split, merge, rotate, etc.)
+  # so they don't wait behind long Word/Excel→PDF conversions in "regular".
   celery:
     build:
       context: .
       dockerfile: ci/Dockerfile
     container_name: convertica_celery
-    command: celery -A utils_site worker --loglevel=info --concurrency=2 --pool=prefork -Q regular,maintenance,default
+    command: celery -A utils_site worker --loglevel=info --concurrency=2 --pool=prefork -Q fast,regular,maintenance,default
     deploy:
       resources:
         limits:
-          cpus: '1.3'  # Optimized for 2 vCPU
-          memory: 2.2G  # Optimized for 4GB RAM
+          cpus: '1.3'
+          memory: 1.5G  # Reduced from 2.2G (no LibreOffice subprocess overhead)
         reservations:
-          cpus: '0.6'
-          memory: 1.1G
+          cpus: '0.5'
+          memory: 700M
     volumes:
       - ./logs:/app/logs
       - ./media:/app/media
@@ -176,7 +228,8 @@ services:
     environment:
       - CELERY_WORKER_POOL=prefork
       - CELERY_WORKER_MAX_MEMORY_PER_CHILD=300000000  # 300MB per worker
-      - CELERY_WORKER_MAX_TASKS_PER_CHILD=50  # Restart worker after 50 tasks
+      - CELERY_WORKER_MAX_TASKS_PER_CHILD=50
+      - UNOSERVER_URL=http://unoserver:2003
     depends_on:
       db:
         condition: service_healthy
@@ -223,6 +276,7 @@ services:
       - CELERY_WORKER_POOL=solo
       - CELERY_WORKER_MAX_MEMORY_PER_CHILD=200000000  # 200MB (reduced)
       - CELERY_WORKER_MAX_TASKS_PER_CHILD=50  # Increased for stability
+      - UNOSERVER_URL=http://unoserver:2003
     depends_on:
       db:
         condition: service_healthy

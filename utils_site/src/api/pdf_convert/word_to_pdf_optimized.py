@@ -342,11 +342,48 @@ class OptimizedWordToPDFConverter:
         """
         Perform LibreOffice conversion with optimization and retry logic.
 
+        Tries unoserver (warm LibreOffice HTTP daemon) first for speed,
+        then falls back to the direct LibreOffice subprocess.
+
         Args:
             docx_path: Path to input Word document
             pdf_path: Path to output PDF
             context: Logging context
         """
+        import asyncio as _asyncio
+
+        # --- Fast path: unoserver warm instance ---
+        def _try_unoserver() -> bool:
+            try:
+                from src.api.unoserver_client import convert_with_unoserver
+
+                filterin = (
+                    "MS Word 2007 XML"
+                    if docx_path.lower().endswith(".docx")
+                    else "MS Word 97"
+                )
+                return convert_with_unoserver(
+                    docx_path,
+                    pdf_path,
+                    filterin=filterin,
+                    filterout="pdf:writer_pdf_Export",
+                    timeout=self.timeout_seconds,
+                )
+            except Exception as exc:
+                logger.warning(
+                    f"unoserver attempt failed ({exc}), falling back to subprocess",
+                    extra={**context, "event": "unoserver_fallback"},
+                )
+                return False
+
+        loop = _asyncio.get_event_loop()
+        if callable(check_cancelled):
+            check_cancelled()
+        used_unoserver = await loop.run_in_executor(None, _try_unoserver)
+        if used_unoserver:
+            return
+
+        # --- Slow path: LibreOffice subprocess (original logic below) ---
 
         def _check_libreoffice():
             try:
