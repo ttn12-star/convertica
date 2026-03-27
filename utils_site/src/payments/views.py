@@ -273,9 +273,9 @@ def handle_subscription_updated(subscription_obj):
             period_start = int(defaults["current_period_start"].timestamp())
             period_end = int(defaults["current_period_end"].timestamp())
 
-        UserSubscription.objects.update_or_create(user=user, defaults=defaults)
-
-        _sync_user_from_subscription(user, stripe_status, period_start, period_end)
+        with transaction.atomic():
+            UserSubscription.objects.update_or_create(user=user, defaults=defaults)
+            _sync_user_from_subscription(user, stripe_status, period_start, period_end)
 
     except Exception as e:
         logger.error(f"Handle subscription updated error: {e}")
@@ -856,16 +856,32 @@ def stripe_webhook(request):
         logger.error(f"Webhook signature error: {e}")
         return HttpResponse("Invalid signature", status=400)
 
-    # DB-level idempotency: if event_id already exists, we already handled it.
+    # DB-level idempotency: check if we already saw this event.
+    # Use get_or_create to handle three cases:
+    #   1. Brand-new event → process it.
+    #   2. Already successfully processed (processed_at set) → skip.
+    #   3. Previous attempt failed (processed_at=None, processing=False) → re-process.
+    #   4. Currently being processed by another worker (processing=True) → skip.
     try:
-        webhook_event = StripeWebhookEvent.objects.create(
+        webhook_event, created = StripeWebhookEvent.objects.get_or_create(
             event_id=event.id,
-            event_type=getattr(event, "type", ""),
-            livemode=bool(getattr(event, "livemode", False)),
-            processing=True,
+            defaults={
+                "event_type": getattr(event, "type", ""),
+                "livemode": bool(getattr(event, "livemode", False)),
+                "processing": True,
+            },
         )
     except IntegrityError:
         return HttpResponse("OK")
+
+    if not created:
+        if webhook_event.processed_at is not None:
+            return HttpResponse("OK")
+        if webhook_event.processing:
+            return HttpResponse("OK")
+        # Previous attempt failed — allow retry
+        webhook_event.processing = True
+        webhook_event.save(update_fields=["processing"])
 
     try:
         # Handle the event
@@ -923,8 +939,30 @@ def handle_checkout_session_completed(session):
         plan_id = session.metadata.get("plan_id")
         payment_type = session.metadata.get("payment_type", "subscription")
 
-        user = User.objects.get(id=user_id)
-        plan = SubscriptionPlan.objects.get(id=plan_id)
+        if not user_id or not plan_id:
+            logger.error(
+                "Checkout session missing user_id or plan_id in metadata",
+                extra={"session_id": getattr(session, "id", None)},
+            )
+            return
+
+        try:
+            user = User.objects.get(id=user_id)
+        except User.DoesNotExist:
+            logger.error(
+                f"Checkout session references unknown user_id={user_id}",
+                extra={"session_id": getattr(session, "id", None)},
+            )
+            return
+
+        try:
+            plan = SubscriptionPlan.objects.get(id=plan_id)
+        except SubscriptionPlan.DoesNotExist:
+            logger.error(
+                f"Checkout session references unknown plan_id={plan_id}",
+                extra={"session_id": getattr(session, "id", None)},
+            )
+            return
         now = timezone.now()
 
         if payment_type == "one_time" and plan.duration_days == 1:
@@ -1021,11 +1059,11 @@ def handle_checkout_session_completed(session):
                 defaults["current_period_start"] = _dt_from_timestamp(period_start)
             if period_end:
                 defaults["current_period_end"] = _dt_from_timestamp(period_end)
-            UserSubscription.objects.update_or_create(user=user, defaults=defaults)
-
-            _sync_user_from_subscription(
-                user, effective_status, period_start, period_end
-            )
+            with transaction.atomic():
+                UserSubscription.objects.update_or_create(user=user, defaults=defaults)
+                _sync_user_from_subscription(
+                    user, effective_status, period_start, period_end
+                )
 
             if getattr(session, "payment_status", None) == "paid":
                 Payment.create_from_webhook(

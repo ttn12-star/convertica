@@ -507,7 +507,7 @@ class FrontendViewsTestCase(TestCase):
                     response, '<meta property="og:title"', status_code=200
                 )
                 self.assertContains(
-                    response, '<meta property="twitter:title"', status_code=200
+                    response, '<meta name="twitter:title"', status_code=200
                 )
                 self.assertContains(
                     response,
