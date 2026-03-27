@@ -201,11 +201,14 @@ def _get_client_ip(request):
     Returns:
         Client IP address string
     """
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(",")[0].strip()
-    else:
-        ip = request.META.get("REMOTE_ADDR")
+    # Prefer CF-Connecting-IP (set by Cloudflare, cannot be spoofed by clients).
+    # Fall back to the rightmost entry in X-Forwarded-For (last trusted proxy),
+    # then REMOTE_ADDR.
+    ip = (
+        request.META.get("HTTP_CF_CONNECTING_IP")
+        or request.META.get("HTTP_X_FORWARDED_FOR", "").split(",")[-1].strip()
+        or request.META.get("REMOTE_ADDR")
+    )
     return ip
 
 

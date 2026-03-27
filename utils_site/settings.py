@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+import sys
 from importlib import metadata
 from pathlib import Path
 
 from decouple import Csv, config
+
+TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
 
 # Sentry Error Tracking
 # Enabled by default in production (DEBUG=False)
@@ -703,7 +706,7 @@ LOGGING = {
     },
     "handlers": {
         "console": {
-            "level": "INFO",
+            "level": "WARNING" if TESTING else "INFO",
             "class": "logging.StreamHandler",
             "formatter": "structured",
         },
@@ -731,7 +734,7 @@ LOGGING = {
     "loggers": {
         "django": {
             "handlers": ["console", "file"],
-            "level": "INFO",
+            "level": "WARNING" if TESTING else "INFO",
             "propagate": False,
         },
         "django.request": {
@@ -741,12 +744,12 @@ LOGGING = {
         },
         "src.api": {
             "handlers": ["console", "file", "error_file"],
-            "level": "INFO",
+            "level": "WARNING" if TESTING else "INFO",
             "propagate": False,  # Avoid duplicate console logs (already handled here)
         },
         "src": {
             "handlers": ["console", "file"],
-            "level": "INFO",
+            "level": "WARNING" if TESTING else "INFO",
             "propagate": False,  # Avoid duplicate console logs (already handled here)
         },
         # Send ERROR and above to Sentry (via root logger)
@@ -776,17 +779,17 @@ LOGGING = {
         },
         "allauth": {
             "handlers": ["console", "file"],
-            "level": "DEBUG",
+            "level": "WARNING" if TESTING else "DEBUG",
             "propagate": False,
         },
         "allauth.account": {
             "handlers": ["console", "file"],
-            "level": "DEBUG",
+            "level": "WARNING" if TESTING else "DEBUG",
             "propagate": False,
         },
         "allauth.socialaccount": {
             "handlers": ["console", "file"],
-            "level": "DEBUG",
+            "level": "WARNING" if TESTING else "DEBUG",
             "propagate": False,
         },
     },

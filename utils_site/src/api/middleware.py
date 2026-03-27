@@ -55,12 +55,13 @@ class RateLimitMiddleware(MiddlewareMixin):
         if "/api/tasks/" in request.path and "/status/" in request.path:
             return None
 
-        # Get client IP
-        x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-        if x_forwarded_for:
-            ip = x_forwarded_for.split(",")[0].strip()
-        else:
-            ip = request.META.get("REMOTE_ADDR", "")
+        # Get client IP — prefer CF-Connecting-IP (set by Cloudflare, not spoofable)
+        # before falling back to X-Forwarded-For where the leftmost entry is user-controlled.
+        ip = (
+            request.META.get("HTTP_CF_CONNECTING_IP")
+            or request.META.get("HTTP_X_FORWARDED_FOR", "").split(",")[-1].strip()
+            or request.META.get("REMOTE_ADDR", "")
+        )
 
         # Rate limit key
         rate_limit_key = f"rate_limit:{ip}"

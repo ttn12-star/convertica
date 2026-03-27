@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libreoffice \
     libreoffice-writer \
     libreoffice-core \
+    default-jre-headless \
     && rm -rf /var/lib/apt/lists/*
 
 # Install common fonts to prevent layout reflow (missing fonts -> page splits)
@@ -127,6 +128,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libreoffice \
     libreoffice-writer \
     libreoffice-core \
+    default-jre-headless \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
