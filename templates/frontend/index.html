@@ -5,10 +5,10 @@
 {% block meta_title %}{% trans "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs" %}{% endblock %}
 {% block description %}{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}{% endblock %}
 {% block keywords %}{% trans "PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, PDF editor, PDF tools, online PDF converter, free PDF tools" %}{% endblock %}
-{% block og_title %}{% trans "Convertica – Online PDF ↔ Word Converter" %}{% endblock %}
-{% block og_description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. Convert documents instantly, no registration required." %}{% endblock %}
-{% block twitter_title %}{% trans "Convertica – Online PDF ↔ Word Converter" %}{% endblock %}
-{% block twitter_description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. Convert documents instantly, no registration required." %}{% endblock %}
+{% block og_title %}{% trans "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs" %}{% endblock %}
+{% block og_description %}{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}{% endblock %}
+{% block twitter_title %}{% trans "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs" %}{% endblock %}
+{% block twitter_description %}{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}{% endblock %}
 
 {% block structured_data %}
   <script type="application/ld+json">
@@ -20,7 +20,7 @@
       "description": "{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "{{ site_base_url }}/all-tools/",
+        "target": "{{ site_base_url }}/{{ LANGUAGE_CODE }}/all-tools/",
         "query-input": "required name=search_term_string"
       },
       "inLanguage": "{{ LANGUAGE_CODE }}"
