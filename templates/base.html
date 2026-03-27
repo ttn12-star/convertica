@@ -11,10 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Primary Meta Tags -->
-    <title>{% block title %}Convertica – Online PDF ↔ Word Converter{% endblock %}</title>
-    <meta name="title" content="{% block meta_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
-    <meta name="description" content="{% block description %}{% trans "Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required." %}{% endblock %}">
-    <meta name="keywords" content="{% block keywords %}{% trans "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, free converter" %}{% endblock %}">
+    <title>{% block title %}Convertica – Online PDF Tools{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}{{ page_title|default:_('Convertica – Online PDF Tools') }}{% endblock %}">
+    <meta name="description" content="{% block description %}{% trans "Free online PDF tools: convert, edit, merge, split, compress and secure PDFs. No registration required." %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% trans "PDF tools, PDF converter, PDF editor, merge PDF, split PDF, compress PDF, online converter, free PDF tools" %}{% endblock %}">
     <meta name="author" content="Convertica">
     <meta name="robots" content="{% block robots %}{{ robots_meta }}{% endblock %}">
     <meta name="language" content="{{ LANGUAGE_CODE }}">
@@ -26,8 +26,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="{% block og_type %}website{% endblock %}">
     <meta property="og:url" content="{{ canonical_url|default:site_current_url }}">
-    <meta property="og:title" content="{% block og_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ page_title|default:_('Convertica – Online PDF Tools') }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ page_description|default:_('Free online PDF tools: convert, edit, merge, split, compress and secure PDFs. No registration required.') }}{% endblock %}">
     <meta property="og:image" content="{% block og_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -38,8 +38,8 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="{{ canonical_url|default:site_current_url }}">
-    <meta name="twitter:title" content="{% block twitter_title %}{{ page_title|default:_('Convertica – Online PDF ↔ Word Converter') }}{% endblock %}">
-    <meta name="twitter:description" content="{% block twitter_description %}{{ page_description|default:_('Fast, simple and secure online PDF to Word and Word to PDF converter. No installations required.') }}{% endblock %}">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ page_title|default:_('Convertica – Online PDF Tools') }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ page_description|default:_('Free online PDF tools: convert, edit, merge, split, compress and secure PDFs. No registration required.') }}{% endblock %}">
     <meta name="twitter:image" content="{% block twitter_image %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endblock %}">
 
     {% block canonical %}
@@ -213,6 +213,75 @@
                 }{% if not forloop.last %},{% endif %}
               {% endfor %}
             ]
+          }
+        </script>
+      {% endif %}
+
+      {% if auto_generate_tool_schema %}
+        <!-- SoftwareApplication Schema (auto-generated for tool pages) -->
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "{{ header_text|default:page_title|escapejs }}",
+            "description": "{{ page_description|escapejs }}",
+            "url": "{{ site_current_url }}",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
+            "offers": {
+              "@type": "Offer",
+              "price": "{{ offer_price|default:'0' }}",
+              "priceCurrency": "{{ offer_currency|default:'USD' }}",
+              "availability": "https://schema.org/InStock"
+            },
+            "inLanguage": "{{ LANGUAGE_CODE }}",
+            "browserRequirements": "Requires JavaScript. Works on all modern browsers."
+          }
+        </script>
+
+        <!-- HowTo Schema (auto-generated for tool pages) -->
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "{{ header_text|default:page_title|escapejs }}",
+            "description": "{{ page_description|escapejs }}",
+            "tool": [
+              {
+                "@type": "HowToTool",
+                "name": "{% filter escapejs %}{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}{% endfilter %}"
+              }
+            ],
+            "supply": [
+              {
+                "@type": "HowToSupply",
+                "name": "{{ file_accept|upper|escapejs }} {% filter escapejs %}{% trans 'file' %}{% endfilter %}"
+              }
+            ],
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "{% filter escapejs %}{% trans 'Upload File' %}{% endfilter %}",
+                "text": "{% filter escapejs %}{% trans 'Click the upload button or drag and drop your file' %}{% endfilter %}",
+                "url": "{{ site_current_url }}#upload"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "{% filter escapejs %}{% trans 'Process' %}{% endfilter %}",
+                "text": "{% filter escapejs %}{% trans 'Click the button to start processing your file' %}{% endfilter %}",
+                "url": "{{ site_current_url }}#convert"
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "{% filter escapejs %}{% trans 'Download' %}{% endfilter %}",
+                "text": "{% filter escapejs %}{% trans 'Download your converted file instantly' %}{% endfilter %}",
+                "url": "{{ site_current_url }}#download"
+              }
+            ],
+            "totalTime": "PT2M"
           }
         </script>
       {% endif %}

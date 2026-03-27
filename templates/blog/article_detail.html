@@ -16,16 +16,23 @@
       "@type": "BlogPosting",
       "headline": "{{ article.get_title|escapejs }}",
       "description": "{{ article.get_excerpt|escapejs }}",
-      "image": "{% if article.featured_image %}{{ site_base_url }}{{ article.featured_image.url }}{% endif %}",
+      "url": "{{ site_current_url }}",
+      "image": {
+        "@type": "ImageObject",
+        "url": "{% if article.featured_image %}{{ site_base_url }}{{ article.featured_image.url }}{% else %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endif %}"
+      },
       "datePublished": "{{ article.published_at|date:'c' }}",
       "dateModified": "{{ article.updated_at|date:'c' }}",
+      "wordCount": {{ article.get_content|striptags|wordcount }},
       "author": {
         "@type": "Organization",
-        "name": "Convertica"
+        "name": "Convertica",
+        "url": "{{ site_base_url }}"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Convertica",
+        "url": "{{ site_base_url }}",
         "logo": {
           "@type": "ImageObject",
           "url": "{{ site_base_url }}{% static 'images/logo.png' %}"
@@ -35,7 +42,7 @@
         "@type": "WebPage",
         "@id": "{{ site_current_url }}"
       },
-      "inLanguage": "{{ language_code }}"
+      "inLanguage": "{{ language_code|default:LANGUAGE_CODE }}"
     }
   </script>
 {% endblock %}

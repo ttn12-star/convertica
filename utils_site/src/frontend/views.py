@@ -423,6 +423,9 @@ def _get_converter_context(
         "batch_enabled": batch_enabled,
         "batch_api_url": batch_api_url,
         "batch_field_name": batch_field_name,
+        # Signal base.html to auto-generate SoftwareApplication + HowTo schema.
+        # Set to False in specific views that define their own structured_data block.
+        "auto_generate_tool_schema": True,
     }
 
 
@@ -1062,6 +1065,7 @@ def jpg_to_pdf_page(request):
 
     # Related tools for internal linking
     context["related_tools"] = _get_related_tools("jpg_to_pdf")
+    context["auto_generate_tool_schema"] = False  # template has its own schema
     return render(request, "frontend/pdf_convert/jpg_to_pdf.html", context)
 
 
@@ -1492,6 +1496,7 @@ def add_watermark_page(request):
 
     # Related tools for internal linking
     context["related_tools"] = _get_related_tools("add_watermark")
+    context["auto_generate_tool_schema"] = False  # template has its own schema
     return render(request, "frontend/pdf_edit/add_watermark.html", context)
 
 
@@ -1630,6 +1635,7 @@ def crop_pdf_page(request):
 
     # Related tools for internal linking
     context["related_tools"] = _get_related_tools("crop_pdf")
+    context["auto_generate_tool_schema"] = False  # template has its own schema
     return render(request, "frontend/pdf_edit/crop_pdf.html", context)
 
 
@@ -2996,6 +3002,7 @@ def html_to_pdf_page(request):
 
     # Related tools for internal linking
     context["related_tools"] = _get_related_tools("html_to_pdf")
+    context["auto_generate_tool_schema"] = False  # template has its own schema
     return render(request, "frontend/pdf_convert/html_to_pdf.html", context)
 
 
@@ -4329,6 +4336,7 @@ def compare_pdf_page(request):
             },
         ],
     }
+    context["auto_generate_tool_schema"] = False  # template has its own schema
     return render(request, "frontend/premium/compare_pdf.html", context)
 
 
