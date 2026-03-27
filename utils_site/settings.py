@@ -792,6 +792,17 @@ LOGGING = {
             "level": "WARNING" if TESTING else "DEBUG",
             "propagate": False,
         },
+        # Suppress noisy library warnings during tests (pypdf, PyPDF2 xref warnings)
+        "pypdf": {
+            "handlers": ["console"],
+            "level": "CRITICAL" if TESTING else "WARNING",
+            "propagate": False,
+        },
+        "PyPDF2": {
+            "handlers": ["console"],
+            "level": "CRITICAL" if TESTING else "WARNING",
+            "propagate": False,
+        },
     },
     "root": {
         "handlers": ["console"],
