@@ -10,11 +10,12 @@ from unittest.mock import MagicMock, patch
 
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase, override_settings
+from django.test import TestCase, override_settings, tag
 from rest_framework import status
 from rest_framework.test import APIClient
 
 
+@tag("slow")
 @override_settings(
     CACHES={
         "default": {
