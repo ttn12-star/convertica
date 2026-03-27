@@ -76,14 +76,14 @@ logs: ## Show logs from all services
 shell: ## Open Django shell in web container
 	docker compose exec web python manage.py shell
 
-test: ## Run tests
+test: ## Run all tests (includes slow integration tests)
 	docker compose exec web python manage.py test --parallel=auto
 
-test-fast: ## Run tests with parallel execution (faster)
-	docker compose exec web python manage.py test --parallel=4 --verbosity=1
+test-fast: ## Run fast tests only (skips slow integration tests like LibreOffice conversions)
+	docker compose exec web python manage.py test --parallel=auto --exclude-tag=slow --verbosity=1
 
 test-single: ## Run tests without parallelization (for debugging)
-	docker compose exec web python manage.py test
+	docker compose exec web python manage.py test --exclude-tag=slow
 
 migrate: ## Run database migrations
 	docker compose exec web python manage.py migrate

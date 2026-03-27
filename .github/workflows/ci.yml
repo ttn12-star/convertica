@@ -344,8 +344,10 @@ jobs:
         # DATABASE_* and other env variables are inherited from job-level env
         # Using Django's manage.py test (not pytest) as it's the project's test runner
         # --parallel=auto enables parallel test execution for faster CI runs
+        # --exclude-tag=slow skips heavy integration tests (LibreOffice/PDF conversions)
+        # that take 1-2h and are covered by smoke tests in production
         run: |
-          coverage run --source='utils_site' manage.py test --parallel=auto --verbosity=2
+          coverage run --source='utils_site' manage.py test --parallel=auto --verbosity=2 --exclude-tag=slow
           coverage xml -o coverage.xml --ignore-errors
           coverage report --ignore-errors
 
