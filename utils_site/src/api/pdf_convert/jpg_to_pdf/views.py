@@ -7,7 +7,7 @@ from asgiref.sync import async_to_sync
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest, HttpResponse
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
@@ -100,6 +100,18 @@ class JPGToPDFAPIView(BaseConversionAPIView):
                         f.write(chunk)
 
                 # For high quality (>= 90), use original image directly if possible
+                try:
+                    img_check = Image.open(image_path)
+                    img_check.verify()
+                except (UnidentifiedImageError, OSError):
+                    return Response(
+                        {
+                            "error": f"File '{uploaded_file.name}' is not a valid image. "
+                            "Please upload JPEG/JPG files only."
+                        },
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
                 with Image.open(image_path) as img:
                     needs_conversion = img.mode in ("RGBA", "LA", "P")
 
