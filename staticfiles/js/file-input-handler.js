@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (window.PAGE_LIMIT_ERROR) {
             const message = window.PAGE_LIMIT_ERROR.replace('%(page_count)d', pageCount).replace('%(max_pages)d', maxPages);
-            const linkText = "get a 1-day Premium subscription for just $1";
+            const linkText = "upgrade to Premium";
 
             if (window.PREMIUM_LINK && message.includes(linkText)) {
                 const safeUrl = escapeHtml(window.PREMIUM_LINK);

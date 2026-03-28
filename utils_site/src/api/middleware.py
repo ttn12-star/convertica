@@ -407,6 +407,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://mc.yandex.com "
             "https://accounts.google.com "
             "wss://*.convertica.net "
+            "wss://mc.yandex.ru "
+            "wss://mc.yandex.com "
             "ws://localhost:* "
             "wss://localhost:*",
             # Frames: Stripe checkout, Turnstile, OAuth, YouTube
