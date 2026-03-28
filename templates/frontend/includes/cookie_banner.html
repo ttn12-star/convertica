@@ -6,7 +6,7 @@
     <div class="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4">
             <!-- Text Content -->
       <p class="text-xs sm:text-sm text-gray-600 text-center sm:text-left min-w-0">
-        {% trans "We use cookies to enhance your experience." %}
+        {% trans "We use cookies to enhance your experience and analyze traffic." %}
         <a href="{% url 'frontend:privacy_page' %}" class="text-blue-600 hover:text-blue-800 underline">{% trans "Privacy Policy" %}</a>
       </p>
 
@@ -14,7 +14,7 @@
       <div class="flex flex-row gap-2 flex-shrink-0">
         <button id="cookie-reject"
                 class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-all duration-200 text-xs whitespace-nowrap">
-          {% trans "Reject" %}
+          {% trans "Reject All" %}
         </button>
         <button id="cookie-manage"
                 class="px-3 py-1.5 bg-white border border-gray-300 hover:border-gray-400 text-gray-700 font-medium rounded-lg transition-all duration-200 text-xs whitespace-nowrap">

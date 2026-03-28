@@ -176,6 +176,9 @@ class TaskStatusIgnoredTests(TestCase):
 )
 class TaskStatusResultAuthorizationTests(TestCase):
     def setUp(self):
+        from django.core.cache import cache
+
+        cache.clear()
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
             email="auth-owner@example.com", password="pass1234"

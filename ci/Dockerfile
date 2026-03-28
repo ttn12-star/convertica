@@ -193,8 +193,9 @@ RUN chmod +x /app/scripts/compress_static.sh || true
 COPY --chown=appuser:appuser ci/gunicorn.conf.py /app/ci/gunicorn.conf.py
 
 # Create symlink for src module to make it importable from root
-# This allows Django to find 'src.frontend' and 'src.blog' apps
-RUN ln -s /app/utils_site/src /app/src
+# This allows Django to find 'src.frontend' and 'src.blog' apps.
+# Also remove any stale circular symlink that may have been left by older builds.
+RUN rm -f /app/utils_site/src/src && ln -s /app/utils_site/src /app/src
 
 # Switch to non-root user
 USER appuser
