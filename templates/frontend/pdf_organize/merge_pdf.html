@@ -162,6 +162,10 @@
     window.BG_TASK_ERROR_TEXT = "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}";
     window.BG_NO_TASKS_TEXT = "{% filter escapejs %}{% trans 'No background tasks' %}{% endfilter %}";
   </script>
+{% endblock %}
+
+{% block extra_js %}
+  <!-- window.* variables set inline above in edit_options -->
   <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
   <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
   <!-- Note: file-input-handler.js and pdf-editor.js are NOT loaded for merge page -->
