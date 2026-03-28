@@ -537,34 +537,24 @@ msgid "Home"
 msgstr "Home"
 
 #: templates/base.html:15 templates/base.html:29 templates/base.html:41
-#, fuzzy
-#| msgid "Convertica – Online PDF ↔ Word Converter"
 msgid "Convertica – Online PDF Tools"
-msgstr "Convertica – Online PDF ↔ Word Converter"
+msgstr "Convertica – Online PDF Tools"
 
 #: templates/base.html:16 templates/base.html:30 templates/base.html:42
-#, fuzzy
-#| msgid ""
-#| "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
-#| "rotate, add watermark, and more. Fast, secure, no registration required."
 msgid ""
 "Free online PDF tools: convert, edit, merge, split, compress and secure "
 "PDFs. No registration required."
 msgstr ""
-"Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, "
-"rotate, add watermark, and more. Fast, secure, no registration required."
+"Free online PDF tools: convert, edit, merge, split, compress and secure "
+"PDFs. No registration required."
 
 #: templates/base.html:17
-#, fuzzy
-#| msgid ""
-#| "PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate "
-#| "PDF, PDF editor, PDF tools, online PDF converter, free PDF tools"
 msgid ""
 "PDF tools, PDF converter, PDF editor, merge PDF, split PDF, compress PDF, "
 "online converter, free PDF tools"
 msgstr ""
-"PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, "
-"PDF editor, PDF tools, online PDF converter, free PDF tools"
+"PDF tools, PDF converter, PDF editor, merge PDF, split PDF, compress PDF, "
+"online converter, free PDF tools"
 
 #: templates/base.html:252 templates/frontend/converter_generic.html:47
 #: templates/frontend/edit_pdf_generic.html:47
@@ -582,22 +572,16 @@ msgid "Upload File"
 msgstr "Upload File"
 
 #: templates/base.html:266
-#, fuzzy
-#| msgid "Click the Select images button or drag and drop your images"
 msgid "Click the upload button or drag and drop your file"
-msgstr "Click the Select images button or drag and drop your images"
+msgstr "Click the upload button or drag and drop your file"
 
 #: templates/base.html:272
-#, fuzzy
-#| msgid "Processing"
 msgid "Process"
-msgstr "Processing"
+msgstr "Process"
 
 #: templates/base.html:273
-#, fuzzy
-#| msgid "Click the edit button to process your file"
 msgid "Click the button to start processing your file"
-msgstr "Click the edit button to process your file"
+msgstr "Click the button to start processing your file"
 
 #: templates/base.html:279 templates/frontend/converter_generic.html:74
 #: templates/frontend/pdf_convert/html_to_pdf.html:81
@@ -610,10 +594,8 @@ msgid "Download"
 msgstr "Download"
 
 #: templates/base.html:280
-#, fuzzy
-#| msgid "Download your PDF file instantly"
 msgid "Download your converted file instantly"
-msgstr "Download your PDF file instantly"
+msgstr "Download your converted file instantly"
 
 #: templates/blog/article_detail.html:221
 msgid "Categories"
@@ -2337,7 +2319,7 @@ msgstr "Breadcrumb"
 
 #: templates/frontend/includes/cookie_banner.html:9
 msgid "We use cookies to enhance your experience and analyze traffic."
-msgstr ""
+msgstr "We use cookies to enhance your experience and analyze traffic."
 
 #: templates/frontend/includes/cookie_banner.html:17
 msgid "Reject All"
@@ -2669,23 +2651,17 @@ msgid "Tips for Best Results"
 msgstr "Tips for Best Results"
 
 #: templates/frontend/includes/upload_area.html:46
-#, fuzzy
-#| msgid "Drag and drop your files here"
 msgid "Drop your files here"
-msgstr "Drag and drop your files here"
+msgstr "Drop your files here"
 
 #: templates/frontend/includes/upload_area.html:46
-#, fuzzy
-#| msgid "Drag and drop your file here"
 msgid "Drop your file here"
-msgstr "Drag and drop your file here"
+msgstr "Drop your file here"
 
 #: templates/frontend/includes/upload_area.html:48
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:154
-#, fuzzy
-#| msgid "More"
 msgid "or"
-msgstr "More"
+msgstr "or"
 
 #: templates/frontend/includes/upload_area.html:53
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:156
@@ -2694,10 +2670,8 @@ msgstr "Select file to upload"
 
 #: templates/frontend/includes/upload_area.html:57
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:160
-#, fuzzy
-#| msgid "Browse All Tools"
 msgid "Browse files"
-msgstr "Browse All Tools"
+msgstr "Browse files"
 
 #: templates/frontend/includes/upload_area.html:60
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:163
@@ -2829,26 +2803,20 @@ msgstr ""
 "installations required."
 
 #: templates/frontend/index.html:151
-#, fuzzy
-#| msgid "All PDF tools"
 msgid "21 PDF tools"
-msgstr "All PDF tools"
+msgstr "21 PDF tools"
 
 #: templates/frontend/index.html:155
-#, fuzzy
-#| msgid "Language"
 msgid "7 languages"
-msgstr "Language"
+msgstr "7 languages"
 
 #: templates/frontend/index.html:159
-#, fuzzy
-#| msgid "Complete Registration"
 msgid "No registration"
-msgstr "Complete Registration"
+msgstr "No registration"
 
 #: templates/frontend/index.html:163
 msgid "Files deleted instantly"
-msgstr ""
+msgstr "Files deleted instantly"
 
 #: templates/frontend/index.html:181
 msgid "Most requested PDF tools at your fingertips"
@@ -3100,10 +3068,8 @@ msgid "You can upload multiple images - they will be combined into one PDF"
 msgstr "You can upload multiple images - they will be combined into one PDF"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:153
-#, fuzzy
-#| msgid "Drag and drop your images here"
 msgid "Drop your images here"
-msgstr "Drag and drop your images here"
+msgstr "Drop your images here"
 
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:172
 msgid "Selected Images"
