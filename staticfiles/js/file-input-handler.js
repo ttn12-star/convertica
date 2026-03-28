@@ -519,7 +519,13 @@ document.addEventListener('DOMContentLoaded', () => {
             handleDrop(e);
         }, true);
 
-        // Remove click handler - drop zone is for drag & drop only
-        // Users should use the "Select file" button to browse files
+        // Click anywhere in the drop zone opens the file dialog
+        dropZone.addEventListener('click', (e) => {
+            // selectFileButton already calls stopPropagation, so this only fires
+            // when the user clicks the empty area outside the button
+            if (fileInput) {
+                setTimeout(() => { fileInput.click(); }, 0);
+            }
+        });
     }
 });
