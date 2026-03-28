@@ -101,7 +101,10 @@ try:
         worker_prefetch_multiplier=1,  # Process one task at a time (prevents task hoarding)
         worker_max_tasks_per_child=50,  # Aligned with docker-compose.prod.yml for memory stability
         worker_max_memory_per_child=250000,  # 250MB per worker child
-        worker_pool="solo",  # Use solo pool for memory efficiency on small servers
+        worker_pool="prefork",  # Default pool; docker-compose CLI --pool flag overrides per worker type
+        # Production regular worker: prefork (concurrency=2)
+        # Production premium worker: solo (concurrency=1)
+        # Dev workers: solo (concurrency=1)
         # Task execution settings
         task_acks_late=True,  # Acknowledge tasks after completion (allows task requeue on failure)
         task_reject_on_worker_lost=True,  # Reject tasks if worker dies

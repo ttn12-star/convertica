@@ -596,7 +596,20 @@ class OptimizedPDFToWordConverter:
                 check_cancelled()
 
             # Retry conversion with repaired PDF
-            await loop.run_in_executor(None, _convert, repaired_path)
+            try:
+                await loop.run_in_executor(None, _convert, repaired_path)
+            except Exception as repair_exc:
+                # FzErrorFormat (and similar fitz/MuPDF errors) indicate the PDF
+                # structure is too corrupted to process even after repair.
+                if isinstance(repair_exc, fitz.FzErrorFormat) or type(
+                    repair_exc
+                ).__name__.startswith("Fz"):
+                    raise ConversionError(
+                        "PDF file is too corrupted to convert. "
+                        "Please check the file or try re-saving it.",
+                        context=context,
+                    ) from repair_exc
+                raise
 
         logger.info(
             "PDF to DOCX conversion completed",
