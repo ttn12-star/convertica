@@ -294,8 +294,24 @@
 
     {% block extra_head %}{% endblock %}
 
+    <style>
+    /* Ripple click animation for buttons */
+      .btn-ripple { position: relative; overflow: hidden; }
+      .btn-ripple-wave {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.35);
+        transform: scale(0);
+        animation: btn-ripple-anim 0.55s ease-out forwards;
+        pointer-events: none;
+      }
+      @keyframes btn-ripple-anim {
+        to { transform: scale(4); opacity: 0; }
+      }
+    </style>
   </head>
   <body class="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased pt-24 sm:pt-24 md:pt-[72px]">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded focus:outline-none">{% trans "Skip to main content" %}</a>
     <script nonce="{{ csp_nonce }}">
       // Apply dark-mode class to body immediately if dark theme is enabled
       // This runs synchronously right after <body> tag to prevent white flash
@@ -349,7 +365,7 @@
       </div>
     {% endif %}
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
+    <main id="main-content" class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-100">
       {% block content %}{% endblock %}
     </main>
 
@@ -521,6 +537,32 @@
             }
           });
         }
+      })();
+    </script>
+    <script nonce="{{ csp_nonce }}">
+    /* Button ripple animation — fires on any button click */
+      (function(){
+        var SELECTORS = 'button:not([disabled]), a.group, [role="button"]';
+        document.addEventListener('click', function(e){
+          var el = e.target.closest(SELECTORS);
+          if(!el) return;
+        // Don't ripple on plain text links or nav items
+          var bg = getComputedStyle(el).backgroundColor;
+          if(bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') return;
+          el.classList.add('btn-ripple');
+          var rect = el.getBoundingClientRect();
+          var size = Math.max(rect.width, rect.height);
+          var wave = document.createElement('span');
+          wave.className = 'btn-ripple-wave';
+          wave.style.cssText = [
+            'width:' + size + 'px',
+            'height:' + size + 'px',
+            'left:' + (e.clientX - rect.left - size/2) + 'px',
+            'top:' + (e.clientY - rect.top - size/2) + 'px'
+          ].join(';');
+          el.appendChild(wave);
+          wave.addEventListener('animationend', function(){ wave.remove(); }, {once:true});
+        }, true);
       })();
     </script>
   </body>
