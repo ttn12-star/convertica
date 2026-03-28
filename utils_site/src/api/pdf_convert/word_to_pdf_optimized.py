@@ -566,6 +566,31 @@ class OptimizedWordToPDFConverter:
                 stdout_preview = (
                     e.stdout.decode(errors="replace")[:500] if e.stdout else ""
                 )
+
+                # LibreOffice sometimes exits non-zero only due to a harmless Java
+                # warning ("failed to launch javaldx"). If the output PDF was actually
+                # created, treat the conversion as successful.
+                _JAVA_WARNINGS = ("failed to launch javaldx", "java may not function")
+                if stderr_preview and all(
+                    w in stderr_preview.lower() for w in _JAVA_WARNINGS
+                ):
+                    output_dir = os.path.dirname(pdf_path)
+                    pdf_files = [
+                        f for f in os.listdir(output_dir) if f.lower().endswith(".pdf")
+                    ]
+                    if pdf_files:
+                        logger.warning(
+                            "LibreOffice exited non-zero due to javaldx warning but PDF "
+                            "was created; treating as success",
+                            extra={
+                                **context,
+                                "event": "conversion_javaldx_warning_ignored",
+                                "stderr_preview": stderr_preview[:500],
+                                "pdf_files": pdf_files,
+                            },
+                        )
+                        return True
+
                 logger.error(
                     f"LibreOffice conversion failed: {stderr_preview or 'Unknown error'}",
                     extra={

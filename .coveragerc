@@ -16,20 +16,13 @@ omit =
     */celery.py
     */admin.py
     */apps.py
-    */models.py
     */urls.py
-    */views.py
-    */forms.py
-    */serializers.py
     */permissions.py
     */filters.py
     */pagination.py
     */throttles.py
     */exceptions.py
-    */utils.py
-    */helpers.py
     */constants.py
-    */validators.py
     */signals.py
     */tasks.py
     */management/*

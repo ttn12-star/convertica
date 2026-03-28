@@ -153,7 +153,11 @@ class BasePDFProcessor:
             from PyPDF2 import PdfReader
 
             reader = PdfReader(path, strict=False)
-            if reader.is_encrypted and not allow_encrypted:
+            if reader.is_encrypted:
+                if allow_encrypted:
+                    # Output is password-protected as expected (e.g. protect_pdf).
+                    # Pages cannot be read without decryption — treat as valid.
+                    return
                 raise EncryptedPDFError(
                     "Output PDF is password-protected", context=self.context
                 )
