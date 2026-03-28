@@ -36,7 +36,7 @@ JS contract (unchanged from previous design):
   <div id="dropZone"
        class="relative border-2 border-dashed border-gray-300 hover:border-blue-400 rounded-2xl p-8 sm:p-12 text-center transition-all duration-300 group bg-gray-50 hover:bg-blue-50 cursor-pointer dark:bg-gray-900/30 dark:hover:bg-blue-900/20">
 
-    <div class="pointer-events-none">
+    <div>
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
         <svg class="w-9 h-9 sm:w-11 sm:h-11 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
@@ -46,7 +46,7 @@ JS contract (unchanged from previous design):
         {% if batch_enabled %}{% trans "Drop your files here" %}{% else %}{% trans "Drop your file here" %}{% endif %}
       </p>
       <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">{% trans "or" %}</p>
-      <div class="inline-flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-xl shadow-md text-sm sm:text-base pointer-events-auto"
+      <div class="inline-flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-8 rounded-xl shadow-md text-sm sm:text-base"
            id="selectFileButton"
            role="button"
            tabindex="0"
