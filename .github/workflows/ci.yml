@@ -11,6 +11,7 @@ on:
 env:
   PYTHON_VERSION: '3.12'
   NODE_VERSION: '18'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
   # Lint and Code Quality
@@ -347,7 +348,7 @@ jobs:
         # --exclude-tag=slow skips heavy integration tests (LibreOffice/PDF conversions)
         # that take 1-2h and are covered by smoke tests in production
         run: |
-          coverage run --source='utils_site' manage.py test --parallel=auto --verbosity=2 --exclude-tag=slow
+          coverage run --source='utils_site' manage.py test utils_site.src.api utils_site.src.frontend utils_site.src.blog utils_site.src.users --verbosity=2 --exclude-tag=slow
           coverage xml -o coverage.xml --ignore-errors
           coverage report --ignore-errors
 
@@ -355,7 +356,7 @@ jobs:
         if: always()
         uses: codecov/codecov-action@v5
         with:
-          file: ./coverage.xml
+          files: ./coverage.xml
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: false

@@ -56,6 +56,7 @@ Optional parameters:
                  https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg 480w"
          sizes="(max-width: 480px) 100vw, 480px"
          alt="{{ title }}"
+         width="480" height="360"
          class="yt-thumbnail absolute inset-0 w-full h-full object-cover transition-transform duration-300"
          {% if is_lcp %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
          decoding="async">
