@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static image_tags %}
 
 {% block title %}{{ page_title }}{% endblock %}
 {% block meta_title %}{{ meta_title|default:page_title }}{% endblock %}
@@ -274,7 +274,7 @@
                           prose-code:text-blue-600 prose-code:font-mono prose-code:text-sm
                           prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:p-6 prose-pre:shadow-xl
                           prose-img:rounded-xl prose-img:shadow-2xl prose-img:my-10 prose-img:border-4 prose-img:border-gray-100">
-                {{ article.get_content|safe }}
+                {{ article.get_content|demote_headings|safe }}
               </div>
 
               <!-- Relevant Tool Section -->
