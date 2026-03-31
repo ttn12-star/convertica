@@ -1,10 +1,20 @@
 """Template tags for optimized image loading."""
 
+import re
+
 from django import template
 from django.template.loader import render_to_string
 from django.templatetags.static import static
 
 register = template.Library()
+
+
+@register.filter(is_safe=True)
+def demote_headings(value):
+    """Demote <h1> tags to <h2> in article body content to avoid duplicate h1 on the page."""
+    value = re.sub(r"<h1(\s|>)", r"<h2\1", value, flags=re.IGNORECASE)
+    value = re.sub(r"</h1>", "</h2>", value, flags=re.IGNORECASE)
+    return value
 
 
 @register.inclusion_tag("frontend/includes/optimized_image.html")
