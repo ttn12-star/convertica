@@ -2857,7 +2857,7 @@ TOOL_CONFIGS = {
                 {
                     "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>',
                     "gradient": "from-green-500 to-green-600",
-                    "title": _("Reduce Up to 90%%"),
+                    "title": _("Reduce Up to 90%"),
                     "description": _(
                         "Significantly reduce PDF file size while maintaining readable quality"
                     ),
@@ -2892,7 +2892,7 @@ TOOL_CONFIGS = {
                 {
                     "question": _("How much can I reduce my PDF file size?"),
                     "answer": _(
-                        "Results vary depending on the content, but you can typically reduce PDF size by 50-90%%. "
+                        "Results vary depending on the content, but you can typically reduce PDF size by 50-90%. "
                         "PDFs with many images compress more than text-only documents. "
                         "Scanned documents usually achieve the best compression ratios."
                     ),
@@ -2948,7 +2948,7 @@ TOOL_CONFIGS = {
                 "<strong>email attachments, web uploads, and storage optimization</strong>.</p>"
                 "<p>The tool uses smart compression algorithms that optimize images and remove unnecessary "
                 "metadata while keeping text sharp and documents fully searchable. Most PDFs can be "
-                "reduced by <strong>50-90%%</strong> in size.</p>"
+                "reduced by <strong>50-90%</strong> in size.</p>"
                 "<p><strong>Common uses:</strong> Compress PDFs for email (under 25MB for Gmail), "
                 "reduce scanned document sizes, optimize PDFs for website upload, "
                 "shrink presentation exports, and prepare files for mobile viewing.</p>"
