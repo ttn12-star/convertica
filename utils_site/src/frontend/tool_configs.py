@@ -4040,6 +4040,7 @@ TOOL_CONFIGS = {
                     "Convert to TIFF for archiving or print workflows that require the highest fidelity."
                 ),
             ],
+            "benefits_title": _("Why Use Our Image Converter?"),
             "tips_title": _("Tips for Image Conversion"),
             "page_content_title": _("Convert images between formats online"),
             "page_content_body": _(

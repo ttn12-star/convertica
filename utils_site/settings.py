@@ -374,6 +374,7 @@ TEMPLATES = [
                 "src.frontend.context_processors.payments_enabled",
                 "src.frontend.context_processors.breadcrumbs",
                 "src.frontend.context_processors.related_tools",
+                "src.frontend.context_processors.site_settings",
             ],
         },
     },

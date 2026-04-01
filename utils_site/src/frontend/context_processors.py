@@ -62,6 +62,8 @@ def site_settings(request):
     """Add site-wide settings to template context."""
     from django.conf import settings
 
+    from .tool_configs import TOOL_CONFIGS
+
     return {
         "SITE_NAME": getattr(settings, "SITE_NAME", "Convertica"),
         "SITE_URL": getattr(settings, "SITE_URL", "https://convertica.net"),
@@ -69,6 +71,8 @@ def site_settings(request):
         "ADSENSE_PUBLISHER_ID": getattr(settings, "ADSENSE_PUBLISHER_ID", ""),
         "YANDEX_RSY_ID": getattr(settings, "YANDEX_RSY_ID", ""),
         "YANDEX_VERIFICATION": getattr(settings, "YANDEX_VERIFICATION", ""),
+        "tool_count": len(TOOL_CONFIGS),
+        "language_count": len(settings.LANGUAGES),
     }
 
 
@@ -293,145 +297,145 @@ def related_tools(request):
     tools_info = {
         "pdf_to_word": {
             "name": _("PDF to Word"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>',  # noqa: E501
             "gradient": "from-purple-500 to-purple-600",
             "description": _("Convert PDF to Word"),
         },
         "word_to_pdf": {
             "name": _("Word to PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',  # noqa: E501
             "gradient": "from-blue-500 to-blue-600",
             "description": _("Convert Word to PDF"),
         },
         "pdf_to_jpg": {
             "name": _("PDF to JPG"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>',  # noqa: E501
             "gradient": "from-rose-500 to-rose-600",
             "description": _("Convert PDF to JPG"),
         },
         "jpg_to_pdf": {
             "name": _("JPG to PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',  # noqa: E501
             "gradient": "from-pink-500 to-pink-600",
             "description": _("Convert JPG to PDF"),
         },
         "pdf_to_excel": {
             "name": _("PDF to Excel"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>',  # noqa: E501
             "gradient": "from-emerald-500 to-emerald-600",
             "description": _("Convert PDF to Excel"),
         },
         "excel_to_pdf": {
             "name": _("Excel to PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16v14H4V5zm4 0v14M4 9h16M4 13h16"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16v14H4V5zm4 0v14M4 9h16M4 13h16"/>',  # noqa: E501
             "gradient": "from-green-500 to-green-600",
             "description": _("Convert Excel to PDF"),
         },
         "merge_pdf": {
             "name": _("Merge PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>',  # noqa: E501
             "gradient": "from-green-500 to-green-600",
             "description": _("Merge multiple PDFs"),
         },
         "split_pdf": {
             "name": _("Split PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>',  # noqa: E501
             "gradient": "from-blue-500 to-blue-600",
             "description": _("Split PDF into parts"),
         },
         "compress_pdf": {
             "name": _("Compress PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>',  # noqa: E501
             "gradient": "from-orange-500 to-orange-600",
             "description": _("Reduce PDF size"),
         },
         "rotate_pdf": {
             "name": _("Rotate PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>',  # noqa: E501
             "gradient": "from-purple-500 to-purple-600",
             "description": _("Rotate PDF pages"),
         },
         "protect_pdf": {
             "name": _("Protect PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',  # noqa: E501
             "gradient": "from-red-500 to-red-600",
             "description": _("Password protect PDF"),
         },
         "unlock_pdf": {
             "name": _("Unlock PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>',  # noqa: E501
             "gradient": "from-green-500 to-green-600",
             "description": _("Remove PDF password"),
         },
         "organize_pdf": {
             "name": _("Organize PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"/>',  # noqa: E501
             "gradient": "from-teal-500 to-teal-600",
             "description": _("Reorder PDF pages"),
         },
         "extract_pages": {
             "name": _("Extract Pages"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',  # noqa: E501
             "gradient": "from-yellow-500 to-yellow-600",
             "description": _("Extract specific pages"),
         },
         "remove_pages": {
             "name": _("Remove Pages"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>',  # noqa: E501
             "gradient": "from-red-500 to-red-600",
             "description": _("Remove pages from PDF"),
         },
         "crop_pdf": {
             "name": _("Crop PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>',  # noqa: E501
             "gradient": "from-green-500 to-green-600",
             "description": _("Crop PDF pages"),
         },
         "add_watermark": {
             "name": _("Add Watermark"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',  # noqa: E501
             "gradient": "from-cyan-500 to-cyan-600",
             "description": _("Add watermark to PDF"),
         },
         "add_page_numbers": {
             "name": _("Add Page Numbers"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"/>',  # noqa: E501
             "gradient": "from-blue-500 to-blue-600",
             "description": _("Number PDF pages"),
         },
         "ppt_to_pdf": {
             "name": _("PowerPoint to PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v10H4V4zm6 16h4m-2-6v6"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v10H4V4zm6 16h4m-2-6v6"/>',  # noqa: E501
             "gradient": "from-orange-500 to-orange-600",
             "description": _("Convert PowerPoint to PDF"),
         },
         "pdf_to_ppt": {
             "name": _("PDF to PowerPoint"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v10H4V4zm6 16h4m-2-6v6"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v10H4V4zm6 16h4m-2-6v6"/>',  # noqa: E501
             "gradient": "from-amber-500 to-amber-600",
             "description": _("Convert PDF to PowerPoint"),
         },
         "html_to_pdf": {
             "name": _("HTML to PDF"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',  # noqa: E501
             "gradient": "from-purple-500 to-purple-600",
             "description": _("Convert HTML to PDF"),
         },
         "pdf_to_html": {
             "name": _("PDF to HTML"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>',  # noqa: E501
             "gradient": "from-teal-500 to-teal-600",
             "description": _("Convert PDF to HTML"),
         },
         "pdf_to_markdown": {
             "name": _("PDF to Markdown"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7m8-6l2 2 4-4"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7m8-6l2 2 4-4"/>',  # noqa: E501
             "gradient": "from-amber-500 to-orange-600",
             "description": _("Convert PDF to structured Markdown"),
         },
         "compare_pdf": {
             "name": _("Compare Two PDFs"),
-            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',  # noqa: E501
             "gradient": "from-amber-500 to-orange-600",
             "description": _("Visual diff and change report for two PDFs"),
         },
