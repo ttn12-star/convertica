@@ -125,9 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const ocrLanguageSelect = form.querySelector('select[name="ocr_language"]');
         if (ocrLanguageSelect) {
             formData.append('ocr_language', ocrLanguageSelect.value);
-            console.log('OCR Debug: Sending language:', ocrLanguageSelect.value);
-        } else {
-            console.log('OCR Debug: ocr_language select not found');
         }
 
         // Add Turnstile token if available
@@ -135,6 +132,41 @@ document.addEventListener('DOMContentLoaded', () => {
         if (turnstileResponse && turnstileResponse.value) {
             formData.append('turnstile_token', turnstileResponse.value);
         }
+
+        // Collect any remaining named form fields not already handled above
+        // (e.g. output_format, quality, max_width, max_height for image tools)
+        const alreadyAdded = new Set([
+            singleFieldName,
+            window.BATCH_FIELD_NAME || '',
+            'pages', 'dpi', 'ocr_enabled', 'ocr_language',
+            'turnstile_token', 'csrfmiddlewaretoken', 'website',
+        ]);
+        form.querySelectorAll('select, input[type="range"], input[type="number"], input[type="text"], input[type="hidden"], input[type="checkbox"]').forEach((el) => {
+            if (!el.name || alreadyAdded.has(el.name)) return;
+            if (el.type === 'checkbox') {
+                // Only send checked checkboxes; omitted → API uses its default (False)
+                if (el.checked) {
+                    formData.append(el.name, 'true');
+                    alreadyAdded.add(el.name);
+                }
+                return;
+            }
+            // For selects and other inputs, only append if there's a value
+            if (el.value !== '' && el.value !== undefined) {
+                formData.append(el.name, el.value);
+                alreadyAdded.add(el.name);
+            }
+        });
+
+        // Collect additional file inputs (e.g. signature_image for sign_pdf)
+        // Skip the main file input and batch field which are already handled
+        const mainFileIds = new Set(['fileInput', 'fileInputDrop']);
+        form.querySelectorAll('input[type="file"]').forEach((el) => {
+            if (!el.name || mainFileIds.has(el.id)) return;
+            if (el.files && el.files.length > 0) {
+                formData.append(el.name, el.files[0]);
+            }
+        });
 
 
         // Determine conversion type from API URL or page path

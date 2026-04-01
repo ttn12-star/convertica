@@ -70,3 +70,31 @@
     })();
   </script>
 {% endblock %}
+
+{% block help_section %}
+  <!-- How it works -->
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+      <li>{% trans "Select your image file using the button above or drag and drop it" %}</li>
+      <li>{% trans "Choose the output format from the dropdown (JPEG, PNG, WebP, etc.)" %}</li>
+      <li>{% trans "For JPEG or WebP, adjust the quality slider if needed" %}</li>
+      <li>{% trans "Click the Convert Image button to start conversion" %}</li>
+      <li>{% trans "Download your converted image file instantly" %}</li>
+    </ol>
+  </div>
+
+  <!-- SEO Content Block -->
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+  <!-- SEO Benefits -->
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+  <!-- SEO Tips -->
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+  <!-- SEO FAQ -->
+  {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+{% endblock %}
