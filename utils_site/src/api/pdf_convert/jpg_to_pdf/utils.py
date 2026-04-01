@@ -2,7 +2,7 @@ import os
 import tempfile
 
 from django.core.files.uploadedfile import UploadedFile
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
@@ -72,6 +72,15 @@ async def _convert_jpg_to_pdf_sequential(
 
     # Process image with quality control
     processed_path = image_path
+    try:
+        Image.open(image_path).verify()
+    except UnidentifiedImageError:
+        filename = os.path.basename(uploaded_file.name or image_path)
+        raise ValueError(
+            f"File '{filename}' is not a valid image. "
+            "Please upload image files (JPG, PNG, WebP) only. "
+            "If you want to convert PDF pages to images, use the 'PDF to JPG' tool instead."
+        )
     with Image.open(image_path) as image:
         needs_conversion = image.mode in ("RGBA", "LA", "P")
 

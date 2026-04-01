@@ -422,6 +422,30 @@ def crop_pdf_page(request):
 
 
 @anonymous_cache_page(60 * 60)
+def flatten_pdf_page(request):
+    """Flatten PDF page."""
+    return _render_tool_page(request, "flatten_pdf")
+
+
+@anonymous_cache_page(60 * 60)
+def sign_pdf_page(request):
+    """Sign PDF page."""
+    return _render_tool_page(request, "sign_pdf")
+
+
+@anonymous_cache_page(60 * 60)
+def optimize_image_page(request):
+    """Optimize image page."""
+    return _render_tool_page(request, "optimize_image")
+
+
+@anonymous_cache_page(60 * 60)
+def convert_image_page(request):
+    """Convert image page."""
+    return _render_tool_page(request, "convert_image")
+
+
+@anonymous_cache_page(60 * 60)
 def merge_pdf_page(request):
     """Merge PDF page."""
     return _render_tool_page(request, "merge_pdf")
@@ -615,6 +639,20 @@ def premium_tools_page(request):
                     "Track long-running premium tasks and download finished files."
                 ),
             },
+            {
+                "name": _("Sign PDF"),
+                "url": reverse("frontend:sign_pdf_page"),
+                "description": _(
+                    "Add your handwritten signature image to any PDF page. Choose position, size, and opacity. Apply to all pages at once."
+                ),
+            },
+            {
+                "name": _("PDF to Text"),
+                "url": reverse("frontend:pdf_to_text_page"),
+                "description": _(
+                    "Extract all text content from a PDF as a plain .txt file. Supports page numbering and layout preservation."
+                ),
+            },
         ],
     }
     return render(request, "frontend/premium_tools.html", context)
@@ -636,6 +674,12 @@ def pdf_to_epub_page(request):
 def pdf_to_markdown_page(request):
     """PDF to Markdown conversion landing page (premium-gated API)."""
     return _render_tool_page(request, "pdf_to_markdown")
+
+
+@anonymous_cache_page(60 * 60)
+def pdf_to_text_page(request):
+    """PDF to Text conversion page."""
+    return _render_tool_page(request, "pdf_to_text")
 
 
 @anonymous_cache_page(60 * 60)

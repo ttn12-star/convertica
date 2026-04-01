@@ -401,7 +401,7 @@ msgid "Download your converted file instantly"
 msgstr "Unduh file hasil konversi Anda seketika"
 
 msgid "Skip to main content"
-msgstr ""
+msgstr "Langsung ke konten utama"
 
 msgid "Categories"
 msgstr "Kategori"
@@ -6425,18 +6425,13 @@ msgstr ""
 msgid "JPG to PDF Online Free - Convert Images to PDF | Convertica"
 msgstr "JPG ke PDF Online Gratis - Konversi Gambar ke PDF | Convertica"
 
-#, fuzzy
-#| msgid ""
-#| "Merge PDF online free. Combine multiple PDF files into one document. Drag "
-#| "and drop to reorder, no watermark, no registration. Fast & secure PDF "
-#| "merger for all devices."
 msgid ""
 "Convert JPG to PDF online free. Merge multiple images into one PDF without "
 "compression. No watermark, no registration. Works on all devices."
 msgstr ""
-"Gabungkan PDF online gratis. Gabungkan beberapa file PDF menjadi satu "
-"dokumen. Seret dan lepas untuk mengurutkan ulang, tanpa watermark, tanpa "
-"pendaftaran. Penggabung PDF cepat & aman untuk semua perangkat."
+"Konversi JPG ke PDF online gratis. Gabungkan beberapa gambar menjadi "
+"satu PDF tanpa kompresi. Tanpa tanda air, tanpa registrasi. Bekerja di "
+"semua perangkat."
 
 msgid "Convert your JPG images to PDF format in seconds"
 msgstr "Konversi gambar JPG Anda ke format PDF dalam hitungan detik"
@@ -8924,8 +8919,6 @@ msgstr ""
 msgid "Reduce PDF file size without losing quality"
 msgstr "Kurangi ukuran file PDF tanpa kehilangan kualitas"
 
-#, fuzzy
-#| msgid "Reduce Up to 90%"
 msgid "Reduce Up to 90%"
 msgstr "Kurangi hingga 90%"
 
@@ -8955,11 +8948,6 @@ msgstr "Kompres PDF - Convertica"
 msgid "How much can I reduce my PDF file size?"
 msgstr "Bagaimana cara menggabungkan beberapa file PDF?"
 
-#, fuzzy
-#| msgid ""
-#| "Results vary depending on the content, but you can typically reduce PDF "
-#| "size by 50-90%. PDFs with many images compress more than text-only "
-#| "documents. Scanned documents usually achieve the best compression ratios."
 msgid ""
 "Results vary depending on the content, but you can typically reduce PDF size "
 "by 50-90%. PDFs with many images compress more than text-only documents. "
@@ -9047,18 +9035,6 @@ msgstr "Tips untuk Kompresi PDF"
 msgid "Compress PDF Online - Reduce File Size Instantly"
 msgstr "Kompres PDF Online - Kurangi Ukuran File Secara Instan"
 
-#, fuzzy
-#| msgid ""
-#| "<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
-#| "strong> reduces file size significantly while maintaining readable "
-#| "quality. Perfect for <strong>email attachments, web uploads, and storage "
-#| "optimization</strong>.</p><p>The tool uses smart compression algorithms "
-#| "that optimize images and remove unnecessary metadata while keeping text "
-#| "sharp and documents fully searchable. Most PDFs can be reduced by "
-#| "<strong>50-90%</strong> in size.</p><p><strong>Common uses:</strong> "
-#| "Compress PDFs for email (under 25MB for Gmail), reduce scanned document "
-#| "sizes, optimize PDFs for website upload, shrink presentation exports, and "
-#| "prepare files for mobile viewing.</p>"
 msgid ""
 "<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
 "strong> reduces file size significantly while maintaining readable quality. "
@@ -9424,17 +9400,14 @@ msgstr ""
 msgid "EPUB to PDF Converter (Premium) - Convertica"
 msgstr "EPUB ke PDF - Convertica"
 
-#, fuzzy
-#| msgid ""
-#| "Convert EPUB eBooks to PDF format with premium quality rendering. "
-#| "Preserve text flow and structure for printing and sharing."
 msgid ""
 "Convert EPUB eBooks to PDF online with premium quality rendering. Preserve "
 "chapter structure, text flow, and typography for printing and sharing. "
 "Higher limits for long books."
 msgstr ""
-"Konversi eBook EPUB ke format PDF dengan kualitas rendering premium. "
-"Pertahankan aliran teks dan struktur untuk pencetakan dan berbagi."
+"Konversi eBook EPUB ke PDF online dengan kualitas rendering premium. "
+"Pertahankan struktur bab, aliran teks, dan tipografi untuk pencetakan "
+"dan berbagi. Batas lebih tinggi untuk buku panjang."
 
 msgid "Convert EPUB books to printable PDF documents"
 msgstr "Konversi buku EPUB menjadi dokumen PDF yang siap cetak"
@@ -10325,6 +10298,371 @@ msgstr "Tampilan hero berhasil diperbarui"
 
 msgid "Invalid JSON"
 msgstr "JSON tidak valid"
+
+# ==================== flatten_pdf ====================
+msgid "Flatten PDF Online Free - Remove Form Fields | Convertica"
+msgstr "Ratakan PDF Online Gratis — Hapus Kolom Formulir | Convertica"
+
+msgid "Flatten PDF online free by removing interactive form fields, checkboxes, and annotations. Creates a static, non-editable PDF that preserves the original appearance. No registration required."
+msgstr "Ratakan PDF online gratis dengan menghapus kolom formulir interaktif, kotak centang, dan anotasi. Membuat PDF statis yang tidak dapat diedit dan mempertahankan tampilan asli. Tanpa registrasi."
+
+msgid "Remove interactive form fields and annotations from your PDF"
+msgstr "Hapus kolom formulir interaktif dan anotasi dari PDF Anda"
+
+msgid "Flatten PDF"
+msgstr "Ratakan PDF"
+
+msgid "Remove Form Fields"
+msgstr "Hapus Kolom Formulir"
+
+msgid "Strips all interactive form fields, checkboxes, radio buttons, and text inputs"
+msgstr "Menghapus semua kolom formulir interaktif, kotak centang, tombol radio, dan input teks"
+
+msgid "Appearance Preserved"
+msgstr "Tampilan Dipertahankan"
+
+msgid "Visual content stays identical - only interactive elements are removed"
+msgstr "Konten visual tetap identik — hanya elemen interaktif yang dihapus"
+
+msgid "Remove Annotations"
+msgstr "Hapus Anotasi"
+
+msgid "Clears comments, highlights, sticky notes, and all other annotations"
+msgstr "Menghapus komentar, sorotan, catatan tempel, dan semua anotasi lainnya"
+
+msgid "Fast flattening with immediate download"
+msgstr "Perataan cepat dengan unduhan langsung"
+
+msgid "What does flattening a PDF mean?"
+msgstr "Apa yang dimaksud dengan meratakan PDF?"
+
+msgid "Flattening a PDF removes all interactive elements such as form fields, checkboxes, and annotations, converting them into static content. The PDF looks identical but can no longer be filled out or edited."
+msgstr "Meratakan PDF menghapus semua elemen interaktif seperti kolom formulir, kotak centang, dan anotasi, mengubahnya menjadi konten statis. PDF terlihat identik tetapi tidak lagi dapat diisi atau diedit."
+
+msgid "Why would I need to flatten a PDF?"
+msgstr "Mengapa saya perlu meratakan PDF?"
+
+msgid "Flattening is useful when sharing forms that have been filled out, when you want to prevent further editing, or when sending a PDF to a printer or service that does not support interactive elements."
+msgstr "Perataan berguna saat berbagi formulir yang telah diisi, saat ingin mencegah pengeditan lebih lanjut, atau saat mengirim PDF ke printer atau layanan yang tidak mendukung elemen interaktif."
+
+msgid "Does flattening change the visual appearance?"
+msgstr "Apakah perataan mengubah tampilan visual?"
+
+msgid "No. The visual appearance is preserved exactly. Text, images, and layout remain unchanged — only the interactive layer is removed."
+msgstr "Tidak. Tampilan visual dipertahankan persis. Teks, gambar, dan tata letak tetap tidak berubah — hanya lapisan interaktif yang dihapus."
+
+msgid "Flatten PDF FAQ"
+msgstr "FAQ Perataan PDF"
+
+msgid "Fill out all form fields before flattening to lock in the entered values."
+msgstr "Isi semua kolom formulir sebelum meratakan untuk mengunci nilai yang dimasukkan."
+
+msgid "Use flattening before printing to ensure all content renders correctly."
+msgstr "Gunakan perataan sebelum mencetak untuk memastikan semua konten dirender dengan benar."
+
+msgid "Flatten PDFs before sharing to prevent recipients from modifying form data."
+msgstr "Ratakan PDF sebelum berbagi untuk mencegah penerima mengubah data formulir."
+
+msgid "Tips for Flattening PDFs"
+msgstr "Tips untuk Meratakan PDF"
+
+msgid "Flatten PDF to remove form fields and annotations"
+msgstr "Ratakan PDF untuk menghapus kolom formulir dan anotasi"
+
+msgid "<p><strong>Flatten PDF</strong> converts an interactive PDF into a static document by permanently embedding all form field values and removing annotation layers. The result is a clean, non-editable PDF that looks exactly like the original.</p><p>This is commonly needed when distributing completed forms, archiving documents, or preparing PDFs for printing where interactive elements may cause issues.</p>"
+msgstr "<p><strong>Ratakan PDF</strong> mengubah PDF interaktif menjadi dokumen statis dengan menanamkan semua nilai kolom formulir secara permanen dan menghapus lapisan anotasi. Hasilnya adalah PDF bersih yang tidak dapat diedit dan terlihat persis seperti aslinya.</p><p>Ini biasanya diperlukan saat mendistribusikan formulir yang telah diisi, mengarsipkan dokumen, atau mempersiapkan PDF untuk pencetakan di mana elemen interaktif dapat menimbulkan masalah.</p>"
+
+# ==================== sign_pdf ====================
+msgid "Sign PDF Online Free - Add Signature to PDF | Convertica"
+msgstr "Tanda Tangani PDF Online Gratis — Tambahkan Tanda Tangan ke PDF | Convertica"
+
+msgid "Add your signature to a PDF online free. Upload an image of your signature and place it anywhere on any page. No registration, no watermark. Works on Windows, Mac, Linux, iOS, Android."
+msgstr "Tambahkan tanda tangan Anda ke PDF online gratis. Unggah gambar tanda tangan Anda dan tempatkan di mana saja di halaman mana pun. Tanpa registrasi, tanpa watermark. Berfungsi di Windows, Mac, Linux, iOS, Android."
+
+msgid "Add your image signature to any PDF page"
+msgstr "Tambahkan tanda tangan gambar Anda ke halaman PDF mana pun"
+
+msgid "Sign PDF"
+msgstr "Tanda Tangani PDF"
+
+msgid "Image Signature"
+msgstr "Tanda Tangan Gambar"
+
+msgid "Upload any PNG or JPEG image of your handwritten signature and place it precisely on the PDF"
+msgstr "Unggah gambar PNG atau JPEG tanda tangan tulisan tangan Anda dan tempatkan dengan tepat di PDF"
+
+msgid "Flexible Placement"
+msgstr "Penempatan Fleksibel"
+
+msgid "Choose the exact position and page for your signature, or apply it to all pages at once"
+msgstr "Pilih posisi dan halaman yang tepat untuk tanda tangan Anda, atau terapkan ke semua halaman sekaligus"
+
+msgid "Files are processed in-memory and deleted immediately — your signature is never stored"
+msgstr "File diproses di memori dan dihapus segera — tanda tangan Anda tidak pernah disimpan"
+
+msgid "Signed PDF is ready for immediate download with no delays"
+msgstr "PDF yang ditandatangani siap untuk diunduh segera tanpa penundaan"
+
+msgid "What image formats are accepted for the signature?"
+msgstr "Format gambar apa yang diterima untuk tanda tangan?"
+
+msgid "You can upload a PNG or JPEG image of your handwritten signature. PNG with a transparent background works best so the signature blends naturally into the PDF."
+msgstr "Anda dapat mengunggah gambar PNG atau JPEG dari tanda tangan tulisan tangan Anda. PNG dengan latar belakang transparan bekerja paling baik agar tanda tangan berbaur secara alami ke dalam PDF."
+
+msgid "Can I sign all pages at once?"
+msgstr "Bisakah saya menandatangani semua halaman sekaligus?"
+
+msgid "Yes. Enable the 'Apply to all pages' option and your signature will be stamped on every page of the PDF at the same position."
+msgstr "Ya. Aktifkan opsi 'Terapkan ke semua halaman' dan tanda tangan Anda akan dicap di setiap halaman PDF pada posisi yang sama."
+
+msgid "Is this legally binding?"
+msgstr "Apakah ini mengikat secara hukum?"
+
+msgid "This tool adds a visual image signature to the PDF. For legally binding electronic signatures with audit trails and certificates, a dedicated e-signature service is recommended."
+msgstr "Alat ini menambahkan tanda tangan gambar visual ke PDF. Untuk tanda tangan elektronik yang mengikat secara hukum dengan jejak audit dan sertifikat, layanan e-tanda tangan khusus direkomendasikan."
+
+msgid "Sign PDF FAQ"
+msgstr "FAQ Tanda Tangan PDF"
+
+msgid "Use a PNG image with a transparent background for the cleanest signature result."
+msgstr "Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan paling bersih."
+
+msgid "Increase the signature width for large-format PDFs so it stays visible."
+msgstr "Perbesar lebar tanda tangan untuk PDF berformat besar agar tetap terlihat."
+
+msgid "Use the 'Apply to all pages' option to stamp every page in a contract at once."
+msgstr "Gunakan opsi 'Terapkan ke semua halaman' untuk mencap setiap halaman dalam kontrak sekaligus."
+
+msgid "Tips for Signing PDFs"
+msgstr "Tips untuk Menandatangani PDF"
+
+msgid "Add your signature to a PDF online"
+msgstr "Tambahkan tanda tangan Anda ke PDF secara online"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a handwritten signature image directly onto any page of a PDF document. Upload your signature as a PNG or JPEG, choose the position and page, and download the signed PDF in seconds.</p><p>No account required. Files are processed securely and deleted immediately after download. The signed PDF retains all original content and formatting.</p>"
+msgstr "<p><strong>Tanda Tangani PDF</strong> memungkinkan Anda menempatkan gambar tanda tangan tulisan tangan langsung ke halaman mana pun dari dokumen PDF. Unggah tanda tangan Anda sebagai PNG atau JPEG, pilih posisi dan halaman, dan unduh PDF yang ditandatangani dalam hitungan detik.</p><p>Tidak diperlukan akun. File diproses dengan aman dan dihapus segera setelah diunduh. PDF yang ditandatangani mempertahankan semua konten dan pemformatan asli.</p>"
+
+# ==================== optimize_image ====================
+msgid "Optimize Image Online Free - Compress JPEG PNG WebP | Convertica"
+msgstr "Optimalkan Gambar Online Gratis — Kompres JPEG PNG WebP | Convertica"
+
+msgid "Compress and optimize images online free. Reduce JPEG, PNG, and WebP file size without losing quality. Resize by max dimensions. No registration, no watermark."
+msgstr "Kompres dan optimalkan gambar online gratis. Kurangi ukuran file JPEG, PNG, dan WebP tanpa kehilangan kualitas. Ubah ukuran berdasarkan dimensi maksimum. Tanpa registrasi, tanpa watermark."
+
+msgid "Reduce image file size while preserving quality"
+msgstr "Kurangi ukuran file gambar sambil mempertahankan kualitas"
+
+msgid "Optimize Image"
+msgstr "Optimalkan Gambar"
+
+msgid "Please select an image file."
+msgstr "Silakan pilih file gambar."
+
+msgid "JPEG, PNG & WebP"
+msgstr "JPEG, PNG & WebP"
+
+msgid "Compress all major image formats with format-appropriate algorithms for maximum savings"
+msgstr "Kompres semua format gambar utama dengan algoritma yang sesuai format untuk penghematan maksimum"
+
+msgid "Resize on the Fly"
+msgstr "Ubah Ukuran Seketika"
+
+msgid "Optionally cap the maximum width or height while preserving the original aspect ratio"
+msgstr "Batasi secara opsional lebar atau tinggi maksimum sambil mempertahankan rasio aspek asli"
+
+msgid "Quality Control"
+msgstr "Kontrol Kualitas"
+
+msgid "Dial in the exact quality level (10-100) to balance file size and visual fidelity"
+msgstr "Setel tingkat kualitas yang tepat (10-100) untuk menyeimbangkan ukuran file dan kesetiaan visual"
+
+msgid "Optimized image is ready for immediate download"
+msgstr "Gambar yang dioptimalkan siap untuk diunduh segera"
+
+msgid "Which image formats can be optimized?"
+msgstr "Format gambar apa yang dapat dioptimalkan?"
+
+msgid "JPEG, PNG, WebP, and GIF files are supported. Each format is compressed using the most effective algorithm for that format."
+msgstr "File JPEG, PNG, WebP, dan GIF didukung. Setiap format dikompres menggunakan algoritma paling efektif untuk format tersebut."
+
+msgid "What quality setting should I use?"
+msgstr "Pengaturan kualitas apa yang harus saya gunakan?"
+
+msgid "85 is a good default that balances quality and file size. For web use, values between 70 and 85 typically give the best results. Use 90+ when quality is critical, such as for print assets."
+msgstr "85 adalah default yang baik yang menyeimbangkan kualitas dan ukuran file. Untuk penggunaan web, nilai antara 70 dan 85 biasanya memberikan hasil terbaik. Gunakan 90+ ketika kualitas sangat penting, seperti untuk aset cetak."
+
+msgid "Can I change the output format while optimizing?"
+msgstr "Bisakah saya mengubah format output saat mengoptimalkan?"
+
+msgid "Yes. You can optionally convert the image to JPEG, PNG, or WebP during optimization. Leave the format field empty to keep the original format."
+msgstr "Ya. Anda dapat secara opsional mengonversi gambar ke JPEG, PNG, atau WebP selama optimasi. Biarkan kolom format kosong untuk mempertahankan format asli."
+
+msgid "Image Optimization FAQ"
+msgstr "FAQ Optimasi Gambar"
+
+msgid "Use WebP output for the smallest file sizes when targeting modern web browsers."
+msgstr "Gunakan output WebP untuk ukuran file terkecil saat menargetkan browser web modern."
+
+msgid "Set a max width of 1920px for full-screen hero images to avoid serving oversized files."
+msgstr "Setel lebar maksimum 1920px untuk gambar hero layar penuh agar tidak menyajikan file yang terlalu besar."
+
+msgid "For thumbnails and previews, a quality of 70-75 is usually indistinguishable from the original."
+msgstr "Untuk thumbnail dan pratinjau, kualitas 70-75 biasanya tidak dapat dibedakan dari aslinya."
+
+msgid "Tips for Image Optimization"
+msgstr "Tips untuk Optimasi Gambar"
+
+msgid "Compress and optimize images online"
+msgstr "Kompres dan optimalkan gambar secara online"
+
+msgid "<p><strong>Optimize Image</strong> reduces the file size of your images by applying smart compression while keeping the visual quality you choose. Smaller images load faster, consume less bandwidth, and improve your website's performance and SEO.</p><p>Supports JPEG, PNG, WebP, and GIF. Optionally resize images by setting a maximum width or height — the aspect ratio is always preserved.</p>"
+msgstr "<p><strong>Optimalkan Gambar</strong> mengurangi ukuran file gambar Anda dengan menerapkan kompresi cerdas sambil menjaga kualitas visual yang Anda pilih. Gambar yang lebih kecil dimuat lebih cepat, mengonsumsi bandwidth lebih sedikit, dan meningkatkan kinerja dan SEO situs web Anda.</p><p>Mendukung JPEG, PNG, WebP, dan GIF. Secara opsional ubah ukuran gambar dengan menetapkan lebar atau tinggi maksimum — rasio aspek selalu dipertahankan.</p>"
+
+# ==================== convert_image ====================
+msgid "Convert Image Format Online Free - JPEG PNG WebP GIF BMP | Convertica"
+msgstr "Konversi Format Gambar Online Gratis — JPEG PNG WebP GIF BMP | Convertica"
+
+msgid "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF online free. Fast, lossless format conversion with quality control. No registration required."
+msgstr "Konversi gambar antara JPEG, PNG, WebP, GIF, BMP, dan TIFF online gratis. Konversi format cepat dan lossless dengan kontrol kualitas. Tanpa registrasi."
+
+msgid "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
+msgstr "Konversi gambar apa pun ke JPEG, PNG, WebP, GIF, BMP, atau TIFF"
+
+msgid "Convert Image"
+msgstr "Konversi Gambar"
+
+msgid "6 Output Formats"
+msgstr "6 Format Output"
+
+msgid "Convert to JPEG, PNG, WebP, GIF, BMP, or TIFF — all major image formats supported"
+msgstr "Konversi ke JPEG, PNG, WebP, GIF, BMP, atau TIFF — semua format gambar utama didukung"
+
+msgid "Lossless conversion for PNG/BMP/TIFF; adjustable quality for JPEG and WebP"
+msgstr "Konversi lossless untuk PNG/BMP/TIFF; kualitas yang dapat disesuaikan untuk JPEG dan WebP"
+
+msgid "Wide Input Support"
+msgstr "Dukungan Input Luas"
+
+msgid "Accepts JPEG, PNG, WebP, GIF, BMP, and TIFF as input — convert from any to any"
+msgstr "Menerima JPEG, PNG, WebP, GIF, BMP, dan TIFF sebagai input — konversi dari format apa pun ke format apa pun"
+
+msgid "Fast format conversion with immediate download"
+msgstr "Konversi format cepat dengan unduhan langsung"
+
+msgid "Which image formats are supported?"
+msgstr "Format gambar apa yang didukung?"
+
+msgid "Input formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. Output formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. You can convert between any combination of these formats."
+msgstr "Format input: JPEG, PNG, WebP, GIF, BMP, dan TIFF. Format output: JPEG, PNG, WebP, GIF, BMP, dan TIFF. Anda dapat mengonversi antara kombinasi format mana pun."
+
+msgid "Will converting to JPEG reduce image quality?"
+msgstr "Apakah mengonversi ke JPEG akan mengurangi kualitas gambar?"
+
+msgid "JPEG is a lossy format, so some quality reduction occurs during conversion. Use the quality slider to control the trade-off between file size and quality. A setting of 90 or above is nearly indistinguishable from the original."
+msgstr "JPEG adalah format lossy, sehingga beberapa pengurangan kualitas terjadi selama konversi. Gunakan slider kualitas untuk mengontrol trade-off antara ukuran file dan kualitas. Pengaturan 90 atau lebih hampir tidak dapat dibedakan dari aslinya."
+
+msgid "Does converting PNG to WebP keep transparency?"
+msgstr "Apakah mengonversi PNG ke WebP mempertahankan transparansi?"
+
+msgid "Yes. WebP supports transparency, so transparent PNG images convert to WebP with the alpha channel preserved. Converting to JPEG will fill transparent areas with white."
+msgstr "Ya. WebP mendukung transparansi, sehingga gambar PNG transparan dikonversi ke WebP dengan saluran alfa dipertahankan. Mengonversi ke JPEG akan mengisi area transparan dengan warna putih."
+
+msgid "Image Conversion FAQ"
+msgstr "FAQ Konversi Gambar"
+
+msgid "Convert PNG to WebP for the best balance of quality and file size on the web."
+msgstr "Konversi PNG ke WebP untuk keseimbangan terbaik antara kualitas dan ukuran file di web."
+
+msgid "Use PNG output when transparency must be preserved — it is the only lossless format that supports it (besides WebP)."
+msgstr "Gunakan output PNG ketika transparansi harus dipertahankan — ini adalah satu-satunya format lossless yang mendukungnya (selain WebP)."
+
+msgid "Convert to TIFF for archiving or print workflows that require the highest fidelity."
+msgstr "Konversi ke TIFF untuk alur kerja pengarsipan atau cetak yang memerlukan kesetiaan tertinggi."
+
+msgid "Tips for Image Conversion"
+msgstr "Tips untuk Konversi Gambar"
+
+msgid "Convert images between formats online"
+msgstr "Konversi gambar antar format secara online"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted immediately after download.</p>"
+msgstr "<p><strong>Konversi Gambar</strong> mengubah file gambar Anda dari satu format ke format lain secara instan. Baik Anda perlu mengonversi PNG ke WebP untuk pemuatan web yang lebih cepat, BMP ke JPEG untuk mengurangi ukuran file, atau GIF ke PNG untuk kualitas yang lebih baik, alat ini menangani semuanya.</p><p>Tidak diperlukan instalasi perangkat lunak. Semua konversi terjadi di server dan file Anda dihapus segera setelah diunduh.</p>"
+
+# ==================== pdf_to_text ====================
+msgid "PDF to Text Converter Online Free | Convertica"
+msgstr "Konverter PDF ke Teks Online Gratis | Convertica"
+
+msgid "Extract plain text from PDF online free. Convert PDF to TXT file instantly with optional page numbers and layout preservation. No registration required."
+msgstr "Ekstrak teks biasa dari PDF online gratis. Konversi PDF ke file TXT secara instan dengan nomor halaman opsional dan pemeliharaan tata letak. Tanpa registrasi."
+
+msgid "Extract plain text from your PDF in seconds"
+msgstr "Ekstrak teks biasa dari PDF Anda dalam hitungan detik"
+
+msgid "PDF to Text Converter"
+msgstr "Konverter PDF ke Teks"
+
+msgid "Extract Text"
+msgstr "Ekstrak Teks"
+
+msgid "Plain Text Output"
+msgstr "Output Teks Biasa"
+
+msgid "Extracts all text content from your PDF into a clean, portable .txt file"
+msgstr "Mengekstrak semua konten teks dari PDF Anda ke dalam file .txt yang bersih dan portabel"
+
+msgid "Page Number Dividers"
+msgstr "Pemisah Nomor Halaman"
+
+msgid "Optionally add page separators so you know where each page begins"
+msgstr "Secara opsional tambahkan pemisah halaman agar Anda tahu di mana setiap halaman dimulai"
+
+msgid "Layout Preservation"
+msgstr "Pemeliharaan Tata Letak"
+
+msgid "Option to preserve text positioning and column structure from the original"
+msgstr "Opsi untuk mempertahankan posisi teks dan struktur kolom dari aslinya"
+
+msgid "Fast text extraction with immediate download"
+msgstr "Ekstraksi teks cepat dengan unduhan langsung"
+
+msgid "What text formats can be extracted from a PDF?"
+msgstr "Format teks apa yang dapat diekstrak dari PDF?"
+
+msgid "All selectable text embedded in the PDF is extracted. Scanned PDFs or image-based PDFs without embedded text will produce empty or minimal output."
+msgstr "Semua teks yang dapat dipilih yang tertanam dalam PDF diekstrak. PDF yang dipindai atau PDF berbasis gambar tanpa teks tertanam akan menghasilkan output kosong atau minimal."
+
+msgid "What does the 'preserve layout' option do?"
+msgstr "Apa yang dilakukan opsi 'pertahankan tata letak'?"
+
+msgid "When enabled, the extractor tries to maintain the original text positioning and column structure of the PDF. This can help with multi-column documents but may add extra whitespace."
+msgstr "Ketika diaktifkan, ekstraktor mencoba mempertahankan posisi teks asli dan struktur kolom PDF. Ini dapat membantu dengan dokumen multi-kolom tetapi mungkin menambahkan spasi putih ekstra."
+
+msgid "Will the output include images or tables?"
+msgstr "Apakah output akan menyertakan gambar atau tabel?"
+
+msgid "No. Only plain text is extracted. Images are skipped, and table data is extracted as plain text rows without formatting."
+msgstr "Tidak. Hanya teks biasa yang diekstrak. Gambar dilewati, dan data tabel diekstrak sebagai baris teks biasa tanpa pemformatan."
+
+msgid "PDF to Text FAQ"
+msgstr "FAQ PDF ke Teks"
+
+msgid "Enable page numbers to easily navigate large extracted documents."
+msgstr "Aktifkan nomor halaman untuk menavigasi dokumen yang diekstrak dengan mudah."
+
+msgid "For multi-column PDFs, try enabling layout preservation for better results."
+msgstr "Untuk PDF multi-kolom, coba aktifkan pemeliharaan tata letak untuk hasil yang lebih baik."
+
+msgid "Scanned PDFs require OCR before text extraction — use our PDF to Word tool for that."
+msgstr "PDF yang dipindai memerlukan OCR sebelum ekstraksi teks — gunakan alat PDF ke Word kami untuk itu."
+
+msgid "Tips for PDF Text Extraction"
+msgstr "Tips untuk Ekstraksi Teks PDF"
+
+msgid "Extract plain text from PDF files"
+msgstr "Ekstrak teks biasa dari file PDF"
+
+msgid "<p><strong>PDF to Text</strong> extraction pulls all embedded text from your PDF and saves it as a plain UTF-8 encoded .txt file. This is ideal for data processing, indexing, archiving, or feeding content into other tools.</p><p>Text-based PDFs extract cleanly and quickly. For scanned documents, consider running OCR first to generate selectable text before using this tool.</p>"
+msgstr "<p><strong>PDF ke Teks</strong> mengekstrak semua teks tertanam dari PDF Anda dan menyimpannya sebagai file .txt biasa yang dikodekan UTF-8. Ini ideal untuk pemrosesan data, pengindeksan, pengarsipan, atau memasukkan konten ke alat lain.</p><p>PDF berbasis teks diekstrak dengan bersih dan cepat. Untuk dokumen yang dipindai, pertimbangkan untuk menjalankan OCR terlebih dahulu untuk menghasilkan teks yang dapat dipilih sebelum menggunakan alat ini.</p>"
 
 #~ msgid ""
 #~ "Convert JPG to PDF online free without compression. Merge multiple images "

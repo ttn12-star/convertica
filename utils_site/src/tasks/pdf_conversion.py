@@ -611,7 +611,15 @@ def generic_conversion_task(
 
         if any(
             msg in error_message.lower()
-            for msg in ["invalid", "corrupt", "password", "encrypted", "not found"]
+            for msg in [
+                "invalid",
+                "corrupt",
+                "password",
+                "encrypted",
+                "not found",
+                "not a valid image",
+                "please upload",
+            ]
         ):
             return {
                 "status": "error",

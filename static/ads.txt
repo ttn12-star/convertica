@@ -1,19 +1,18 @@
 # ads.txt for convertica.net
-# This file is used by advertising networks to verify authorized sellers
-# Format: <FIELD #1>, <FIELD #2>, <FIELD #3>, <FIELD #4>
-# FIELD #1: Domain name of the advertising system
-# FIELD #2: Publisher's Account ID
-# FIELD #3: Type of Account/Relationship (DIRECT or RESELLER)
-# FIELD #4: Certification Authority ID (optional)
+# Format: <ad-network-domain>, <publisher-account-id>, DIRECT, <certification-id>
+#
+# HOW TO ACTIVATE:
+# 1. Get your Publisher ID from Google AdSense (https://adsense.google.com)
+#    Format: ca-pub-XXXXXXXXXXXXXXXX
+# 2. Get your Partner ID from Yandex RSY (https://partner.yandex.ru)
+#    Format: numeric ID from your account
+# 3. Uncomment the relevant lines below and replace the placeholder IDs
+# 4. Set ADSENSE_PUBLISHER_ID=ca-pub-XXXXXXXXXXXXXXXX in .env
+# 5. Set YANDEX_RSY_ID=XXXXXX in .env
+# 6. Run: docker exec web python manage.py collectstatic --noinput
 
 # Google AdSense
-# Replace pub-0000000000000000 with your actual AdSense Publisher ID when ready
-# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
 
-# Yandex.Direct
-# Replace 000000 with your actual Yandex Direct ID when ready
-# yandex.ru, 000000, DIRECT
-
-# IMPORTANT: This file is prepared but not active yet
-# Uncomment and fill in your actual Publisher IDs when you're ready to monetize
-# Keep this file at https://convertica.net/ads.txt
+# Yandex RSY (Рекламная сеть Яндекса)
+# yandex.ru, XXXXXX, DIRECT

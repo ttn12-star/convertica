@@ -52,6 +52,19 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                 event["tags"]["error_type"] = "handled"
                 event["tags"]["user_error"] = "true"
 
+            # Drop user-caused file errors - these are not application bugs
+            # FileNotDecryptedError: user uploads an encrypted PDF to a tool that doesn't accept it
+            # UnidentifiedImageError: user uploads a non-image (e.g. PDF) to an image tool
+            # FzErrorFormat: user uploads a structurally corrupted PDF
+            if "exc_info" in hint:
+                exc_type = hint["exc_info"][0]
+                if exc_type and exc_type.__name__ in {
+                    "FileNotDecryptedError",
+                    "UnidentifiedImageError",
+                    "FzErrorFormat",
+                }:
+                    return None
+
             # Drop Gunicorn access logs - these are just successful HTTP requests, not errors
             if event.get("logger") == "gunicorn.access":
                 return None
@@ -175,6 +188,16 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                         return None
                     # SIGKILL (signal 9) might be OOM killer - keep those errors
                     # They indicate memory issues that need attention
+
+            # Drop LibreOffice javaldx warning events — this is a harmless "Java not
+            # available" notice that doesn't prevent conversion from succeeding.
+            # The conversion code already handles this gracefully; filter any that slip
+            # through as a safety net.
+            if "javaldx" in str(event.get("logentry", {}).get("message", "")):
+                return None
+            exc_values = event.get("exception", {}).get("values") or []
+            if exc_values and "javaldx" in str(exc_values[0].get("value", "")):
+                return None
 
             return event
 
@@ -1090,3 +1113,18 @@ INDEXNOW_KEY = config("INDEXNOW_KEY", default="")
 # Site base URL for IndexNow (fallback if not set elsewhere)
 if not hasattr(locals(), "SITE_BASE_URL"):
     SITE_BASE_URL = "https://convertica.net"
+
+# ============================================
+# Advertising / Monetization Configuration
+# ============================================
+# Google AdSense Publisher ID (format: ca-pub-XXXXXXXXXXXXXXXX)
+# Set in .env: ADSENSE_PUBLISHER_ID=ca-pub-XXXXXXXXXXXXXXXX
+ADSENSE_PUBLISHER_ID = config("ADSENSE_PUBLISHER_ID", default="")
+
+# Yandex RSY (Рекламная сеть Яндекса) Partner ID
+# Set in .env: YANDEX_RSY_ID=XXXXXX
+YANDEX_RSY_ID = config("YANDEX_RSY_ID", default="")
+
+# Yandex Webmaster site verification code
+# Set in .env: YANDEX_VERIFICATION=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+YANDEX_VERIFICATION = config("YANDEX_VERIFICATION", default="")

@@ -34,7 +34,7 @@ def validate_pdf_allow_encrypted(pdf_path: str, *, context: dict) -> None:
                 context=context,
             )
 
-        from PyPDF2 import PdfReader
+        from pypdf import PdfReader
 
         reader = PdfReader(pdf_path, strict=False)
         if len(reader.pages) == 0:
@@ -150,7 +150,7 @@ class BasePDFProcessor:
         """
 
         def _check(path: str) -> None:
-            from PyPDF2 import PdfReader
+            from pypdf import PdfReader
 
             reader = PdfReader(path, strict=False)
             if reader.is_encrypted:

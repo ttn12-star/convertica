@@ -12,7 +12,7 @@ from pathlib import Path
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from pdf2image import convert_from_path
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
 from src.exceptions import ConversionError

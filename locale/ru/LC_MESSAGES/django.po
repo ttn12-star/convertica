@@ -397,7 +397,7 @@ msgid "Download your converted file instantly"
 msgstr "Скачайте преобразованный файл мгновенно"
 
 msgid "Skip to main content"
-msgstr ""
+msgstr "Перейти к основному содержимому"
 
 msgid "Categories"
 msgstr "Категории"
@@ -6454,18 +6454,13 @@ msgid "JPG to PDF Online Free - Convert Images to PDF | Convertica"
 msgstr ""
 "JPG в ПДФ онлайн бесплатно — Конвертация изображений в ПДФ | Convertica"
 
-#, fuzzy
-#| msgid ""
-#| "Merge PDF online free. Combine multiple PDF files into one document. Drag "
-#| "and drop to reorder, no watermark, no registration. Fast & secure PDF "
-#| "merger for all devices."
 msgid ""
 "Convert JPG to PDF online free. Merge multiple images into one PDF without "
 "compression. No watermark, no registration. Works on all devices."
 msgstr ""
-"Объединение ПДФ онлайн бесплатно. Объедините несколько ПДФ-файлов в один "
-"документ. Перетаскивайте для изменения порядка, без водяных знаков, без "
-"регистрации. Быстрый и безопасный объединитель ПДФ для всех устройств."
+"Конвертируйте JPG в PDF онлайн бесплатно. Объединяйте несколько "
+"изображений в один PDF без сжатия. Без водяных знаков, без "
+"регистрации. Работает на всех устройствах."
 
 msgid "Convert your JPG images to PDF format in seconds"
 msgstr "Конвертируйте изображения JPG в формат ПДФ за секунды"
@@ -8994,8 +8989,6 @@ msgstr ""
 msgid "Reduce PDF file size without losing quality"
 msgstr "Уменьшайте размер файла ПДФ без потери качества"
 
-#, fuzzy
-#| msgid "Reduce Up to 90%"
 msgid "Reduce Up to 90%"
 msgstr "Уменьшение до 90%"
 
@@ -9025,11 +9018,6 @@ msgstr "Сжать ПДФ - Convertica"
 msgid "How much can I reduce my PDF file size?"
 msgstr "Как объединить несколько файлов ПДФ?"
 
-#, fuzzy
-#| msgid ""
-#| "Results vary depending on the content, but you can typically reduce PDF "
-#| "size by 50-90%. PDFs with many images compress more than text-only "
-#| "documents. Scanned documents usually achieve the best compression ratios."
 msgid ""
 "Results vary depending on the content, but you can typically reduce PDF size "
 "by 50-90%. PDFs with many images compress more than text-only documents. "
@@ -9124,18 +9112,6 @@ msgstr "Советы по сжатию ПДФ"
 msgid "Compress PDF Online - Reduce File Size Instantly"
 msgstr "Сжать ПДФ онлайн — мгновенно уменьшить размер файла"
 
-#, fuzzy
-#| msgid ""
-#| "<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
-#| "strong> reduces file size significantly while maintaining readable "
-#| "quality. Perfect for <strong>email attachments, web uploads, and storage "
-#| "optimization</strong>.</p><p>The tool uses smart compression algorithms "
-#| "that optimize images and remove unnecessary metadata while keeping text "
-#| "sharp and documents fully searchable. Most PDFs can be reduced by "
-#| "<strong>50-90%</strong> in size.</p><p><strong>Common uses:</strong> "
-#| "Compress PDFs for email (under 25MB for Gmail), reduce scanned document "
-#| "sizes, optimize PDFs for website upload, shrink presentation exports, and "
-#| "prepare files for mobile viewing.</p>"
 msgid ""
 "<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
 "strong> reduces file size significantly while maintaining readable quality. "
@@ -9502,17 +9478,14 @@ msgstr ""
 msgid "EPUB to PDF Converter (Premium) - Convertica"
 msgstr "EPUB в ПДФ - Convertica"
 
-#, fuzzy
-#| msgid ""
-#| "Convert EPUB eBooks to PDF format with premium quality rendering. "
-#| "Preserve text flow and structure for printing and sharing."
 msgid ""
 "Convert EPUB eBooks to PDF online with premium quality rendering. Preserve "
 "chapter structure, text flow, and typography for printing and sharing. "
 "Higher limits for long books."
 msgstr ""
-"Конвертируйте EPUB-книги в ПДФ с премиальным качеством рендеринга. "
-"Сохраняйте поток текста и структуру для печати и обмена."
+"Конвертируйте EPUB-книги в PDF онлайн с премиальным качеством "
+"рендеринга. Сохраняйте структуру глав, поток текста и типографику для "
+"печати и обмена. Повышенные лимиты для длинных книг."
 
 msgid "Convert EPUB books to printable PDF documents"
 msgstr "Конвертируйте EPUB-книги в печатные ПДФ-документы"
@@ -10836,3 +10809,368 @@ msgstr "Неверный JSON"
 
 #~ msgid "Preparing download..."
 #~ msgstr "Подготовка скачивания..."
+
+# ==================== flatten_pdf ====================
+msgid "Flatten PDF Online Free - Remove Form Fields | Convertica"
+msgstr "Сглаживание PDF онлайн бесплатно — Удалить поля форм и аннотации | Convertica"
+
+msgid "Flatten PDF online free by removing interactive form fields, checkboxes, and annotations. Creates a static, non-editable PDF that preserves the original appearance. No registration required."
+msgstr "Сгладьте PDF онлайн бесплатно, удалив интерактивные поля форм, флажки и аннотации. Создаёт статичный, нередактируемый PDF, сохраняющий исходный вид. Регистрация не требуется."
+
+msgid "Remove interactive form fields and annotations from your PDF"
+msgstr "Удалите интерактивные поля форм и аннотации из вашего PDF"
+
+msgid "Flatten PDF"
+msgstr "Сгладить PDF"
+
+msgid "Remove Form Fields"
+msgstr "Удалить поля форм"
+
+msgid "Strips all interactive form fields, checkboxes, radio buttons, and text inputs"
+msgstr "Удаляет все интерактивные поля форм, флажки, переключатели и текстовые поля"
+
+msgid "Appearance Preserved"
+msgstr "Внешний вид сохранён"
+
+msgid "Visual content stays identical - only interactive elements are removed"
+msgstr "Визуальное содержимое остаётся идентичным — удаляются только интерактивные элементы"
+
+msgid "Remove Annotations"
+msgstr "Удалить аннотации"
+
+msgid "Clears comments, highlights, sticky notes, and all other annotations"
+msgstr "Удаляет комментарии, выделения, заметки и все другие аннотации"
+
+msgid "Fast flattening with immediate download"
+msgstr "Быстрое сглаживание с мгновенной загрузкой"
+
+msgid "What does flattening a PDF mean?"
+msgstr "Что означает сглаживание PDF?"
+
+msgid "Flattening a PDF removes all interactive elements such as form fields, checkboxes, and annotations, converting them into static content. The PDF looks identical but can no longer be filled out or edited."
+msgstr "Сглаживание PDF удаляет все интерактивные элементы, такие как поля форм, флажки и аннотации, преобразуя их в статическое содержимое. PDF выглядит идентично, но его больше нельзя заполнять или редактировать."
+
+msgid "Why would I need to flatten a PDF?"
+msgstr "Зачем может понадобиться сглаживание PDF?"
+
+msgid "Flattening is useful when sharing forms that have been filled out, when you want to prevent further editing, or when sending a PDF to a printer or service that does not support interactive elements."
+msgstr "Сглаживание полезно при отправке заполненных форм, когда нужно предотвратить дальнейшее редактирование или при отправке PDF на принтер или в сервис, не поддерживающий интерактивные элементы."
+
+msgid "Does flattening change the visual appearance?"
+msgstr "Изменяет ли сглаживание внешний вид?"
+
+msgid "No. The visual appearance is preserved exactly. Text, images, and layout remain unchanged — only the interactive layer is removed."
+msgstr "Нет. Внешний вид сохраняется точно. Текст, изображения и макет остаются неизменными — удаляется только интерактивный слой."
+
+msgid "Flatten PDF FAQ"
+msgstr "Вопросы о сглаживании PDF"
+
+msgid "Fill out all form fields before flattening to lock in the entered values."
+msgstr "Заполните все поля формы перед сглаживанием, чтобы зафиксировать введённые значения."
+
+msgid "Use flattening before printing to ensure all content renders correctly."
+msgstr "Используйте сглаживание перед печатью, чтобы всё содержимое отображалось корректно."
+
+msgid "Flatten PDFs before sharing to prevent recipients from modifying form data."
+msgstr "Сглаживайте PDF перед отправкой, чтобы получатели не могли изменить данные формы."
+
+msgid "Tips for Flattening PDFs"
+msgstr "Советы по сглаживанию PDF"
+
+msgid "Flatten PDF to remove form fields and annotations"
+msgstr "Сгладьте PDF для удаления полей форм и аннотаций"
+
+msgid "<p><strong>Flatten PDF</strong> converts an interactive PDF into a static document by permanently embedding all form field values and removing annotation layers. The result is a clean, non-editable PDF that looks exactly like the original.</p><p>This is commonly needed when distributing completed forms, archiving documents, or preparing PDFs for printing where interactive elements may cause issues.</p>"
+msgstr "<p><strong>Сглаживание PDF</strong> преобразует интерактивный PDF в статический документ, навсегда встраивая значения всех полей форм и удаляя слои аннотаций. Результат — чистый нередактируемый PDF, выглядящий точно как оригинал.</p><p>Это обычно необходимо при распространении заполненных форм, архивировании документов или подготовке PDF к печати, где интерактивные элементы могут вызывать проблемы.</p>"
+
+# ==================== sign_pdf ====================
+msgid "Sign PDF Online Free - Add Signature to PDF | Convertica"
+msgstr "Подписать PDF онлайн бесплатно — Добавить подпись в PDF | Convertica"
+
+msgid "Add your signature to a PDF online free. Upload an image of your signature and place it anywhere on any page. No registration, no watermark. Works on Windows, Mac, Linux, iOS, Android."
+msgstr "Добавьте подпись в PDF онлайн бесплатно. Загрузите изображение подписи и разместите её в любом месте на любой странице. Без регистрации, без водяных знаков. Работает на Windows, Mac, Linux, iOS, Android."
+
+msgid "Add your image signature to any PDF page"
+msgstr "Добавьте изображение подписи на любую страницу PDF"
+
+msgid "Sign PDF"
+msgstr "Подписать PDF"
+
+msgid "Image Signature"
+msgstr "Подпись-изображение"
+
+msgid "Upload any PNG or JPEG image of your handwritten signature and place it precisely on the PDF"
+msgstr "Загрузите любое изображение PNG или JPEG вашей рукописной подписи и точно разместите её на PDF"
+
+msgid "Flexible Placement"
+msgstr "Гибкое размещение"
+
+msgid "Choose the exact position and page for your signature, or apply it to all pages at once"
+msgstr "Выберите точное положение и страницу для подписи или примените её ко всем страницам сразу"
+
+msgid "Files are processed in-memory and deleted immediately — your signature is never stored"
+msgstr "Файлы обрабатываются в памяти и удаляются немедленно — ваша подпись никогда не сохраняется"
+
+msgid "Signed PDF is ready for immediate download with no delays"
+msgstr "Подписанный PDF готов к немедленной загрузке без задержек"
+
+msgid "What image formats are accepted for the signature?"
+msgstr "Какие форматы изображений принимаются для подписи?"
+
+msgid "You can upload a PNG or JPEG image of your handwritten signature. PNG with a transparent background works best so the signature blends naturally into the PDF."
+msgstr "Вы можете загрузить PNG или JPEG вашей рукописной подписи. PNG с прозрачным фоном работает лучше всего, так как подпись естественно вписывается в PDF."
+
+msgid "Can I sign all pages at once?"
+msgstr "Можно ли подписать все страницы сразу?"
+
+msgid "Yes. Enable the 'Apply to all pages' option and your signature will be stamped on every page of the PDF at the same position."
+msgstr "Да. Включите опцию «Применить ко всем страницам», и ваша подпись будет размещена на каждой странице PDF в одном и том же положении."
+
+msgid "Is this legally binding?"
+msgstr "Имеет ли это юридическую силу?"
+
+msgid "This tool adds a visual image signature to the PDF. For legally binding electronic signatures with audit trails and certificates, a dedicated e-signature service is recommended."
+msgstr "Этот инструмент добавляет визуальную подпись-изображение в PDF. Для юридически обязывающих электронных подписей с журналами аудита и сертификатами рекомендуется использовать специализированный сервис электронной подписи."
+
+msgid "Sign PDF FAQ"
+msgstr "Вопросы о подписи PDF"
+
+msgid "Use a PNG image with a transparent background for the cleanest signature result."
+msgstr "Используйте изображение PNG с прозрачным фоном для наилучшего результата подписи."
+
+msgid "Increase the signature width for large-format PDFs so it stays visible."
+msgstr "Увеличьте ширину подписи для PDF большого формата, чтобы она оставалась видимой."
+
+msgid "Use the 'Apply to all pages' option to stamp every page in a contract at once."
+msgstr "Используйте опцию «Применить ко всем страницам», чтобы одновременно поставить печать на каждой странице контракта."
+
+msgid "Tips for Signing PDFs"
+msgstr "Советы по подписи PDF"
+
+msgid "Add your signature to a PDF online"
+msgstr "Добавьте подпись в PDF онлайн"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a handwritten signature image directly onto any page of a PDF document. Upload your signature as a PNG or JPEG, choose the position and page, and download the signed PDF in seconds.</p><p>No account required. Files are processed securely and deleted immediately after download. The signed PDF retains all original content and formatting.</p>"
+msgstr "<p><strong>Подписать PDF</strong> позволяет разместить изображение рукописной подписи прямо на любой странице PDF-документа. Загрузите подпись в формате PNG или JPEG, выберите положение и страницу, и скачайте подписанный PDF за секунды.</p><p>Учётная запись не требуется. Файлы обрабатываются безопасно и немедленно удаляются после загрузки. Подписанный PDF сохраняет всё исходное содержимое и форматирование.</p>"
+
+# ==================== optimize_image ====================
+msgid "Optimize Image Online Free - Compress JPEG PNG WebP | Convertica"
+msgstr "Сжатие и оптимизация изображений онлайн бесплатно — JPEG PNG WebP | Convertica"
+
+msgid "Compress and optimize images online free. Reduce JPEG, PNG, and WebP file size without losing quality. Resize by max dimensions. No registration, no watermark."
+msgstr "Сжимайте и оптимизируйте изображения онлайн бесплатно. Уменьшайте размер файлов JPEG, PNG и WebP без потери качества. Изменяйте размер по максимальным измерениям. Без регистрации, без водяных знаков."
+
+msgid "Reduce image file size while preserving quality"
+msgstr "Уменьшайте размер файла изображения, сохраняя качество"
+
+msgid "Optimize Image"
+msgstr "Оптимизировать изображение"
+
+msgid "Please select an image file."
+msgstr "Пожалуйста, выберите файл изображения."
+
+msgid "JPEG, PNG & WebP"
+msgstr "JPEG, PNG и WebP"
+
+msgid "Compress all major image formats with format-appropriate algorithms for maximum savings"
+msgstr "Сжимайте все основные форматы изображений с помощью подходящих алгоритмов для максимальной экономии"
+
+msgid "Resize on the Fly"
+msgstr "Изменение размера на лету"
+
+msgid "Optionally cap the maximum width or height while preserving the original aspect ratio"
+msgstr "При необходимости ограничьте максимальную ширину или высоту, сохраняя исходное соотношение сторон"
+
+msgid "Quality Control"
+msgstr "Контроль качества"
+
+msgid "Dial in the exact quality level (10-100) to balance file size and visual fidelity"
+msgstr "Установите точный уровень качества (10-100) для баланса размера файла и визуальной точности"
+
+msgid "Optimized image is ready for immediate download"
+msgstr "Оптимизированное изображение готово к немедленной загрузке"
+
+msgid "Which image formats can be optimized?"
+msgstr "Какие форматы изображений можно оптимизировать?"
+
+msgid "JPEG, PNG, WebP, and GIF files are supported. Each format is compressed using the most effective algorithm for that format."
+msgstr "Поддерживаются файлы JPEG, PNG, WebP и GIF. Каждый формат сжимается с использованием наиболее эффективного алгоритма."
+
+msgid "What quality setting should I use?"
+msgstr "Какой параметр качества следует использовать?"
+
+msgid "85 is a good default that balances quality and file size. For web use, values between 70 and 85 typically give the best results. Use 90+ when quality is critical, such as for print assets."
+msgstr "85 — хорошее значение по умолчанию, обеспечивающее баланс качества и размера файла. Для веба значения от 70 до 85 обычно дают наилучшие результаты. Используйте 90+ когда качество критично, например для печатных материалов."
+
+msgid "Can I change the output format while optimizing?"
+msgstr "Можно ли изменить выходной формат при оптимизации?"
+
+msgid "Yes. You can optionally convert the image to JPEG, PNG, or WebP during optimization. Leave the format field empty to keep the original format."
+msgstr "Да. При оптимизации можно конвертировать изображение в JPEG, PNG или WebP. Оставьте поле формата пустым, чтобы сохранить исходный формат."
+
+msgid "Image Optimization FAQ"
+msgstr "Вопросы об оптимизации изображений"
+
+msgid "Use WebP output for the smallest file sizes when targeting modern web browsers."
+msgstr "Используйте выходной формат WebP для наименьших размеров файлов при ориентации на современные веб-браузеры."
+
+msgid "Set a max width of 1920px for full-screen hero images to avoid serving oversized files."
+msgstr "Установите максимальную ширину 1920 пикселей для полноэкранных изображений, чтобы избежать слишком больших файлов."
+
+msgid "For thumbnails and previews, a quality of 70-75 is usually indistinguishable from the original."
+msgstr "Для миниатюр и предварительного просмотра качество 70-75 обычно неотличимо от оригинала."
+
+msgid "Tips for Image Optimization"
+msgstr "Советы по оптимизации изображений"
+
+msgid "Compress and optimize images online"
+msgstr "Сжимайте и оптимизируйте изображения онлайн"
+
+msgid "<p><strong>Optimize Image</strong> reduces the file size of your images by applying smart compression while keeping the visual quality you choose. Smaller images load faster, consume less bandwidth, and improve your website's performance and SEO.</p><p>Supports JPEG, PNG, WebP, and GIF. Optionally resize images by setting a maximum width or height — the aspect ratio is always preserved.</p>"
+msgstr "<p><strong>Оптимизация изображений</strong> уменьшает размер файлов изображений, применяя интеллектуальное сжатие при сохранении выбранного вами визуального качества. Меньшие изображения загружаются быстрее, потребляют меньше трафика и улучшают производительность и SEO вашего сайта.</p><p>Поддерживает JPEG, PNG, WebP и GIF. При необходимости изменяйте размер изображений, задав максимальную ширину или высоту — соотношение сторон всегда сохраняется.</p>"
+
+# ==================== convert_image ====================
+msgid "Convert Image Format Online Free - JPEG PNG WebP GIF BMP | Convertica"
+msgstr "Конвертер форматов изображений онлайн бесплатно — JPEG PNG WebP | Convertica"
+
+msgid "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF online free. Fast, lossless format conversion with quality control. No registration required."
+msgstr "Конвертируйте изображения между JPEG, PNG, WebP, GIF, BMP и TIFF онлайн бесплатно. Быстрая конвертация форматов с контролем качества. Регистрация не требуется."
+
+msgid "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
+msgstr "Конвертируйте любое изображение в JPEG, PNG, WebP, GIF, BMP или TIFF"
+
+msgid "Convert Image"
+msgstr "Конвертировать изображение"
+
+msgid "6 Output Formats"
+msgstr "6 выходных форматов"
+
+msgid "Convert to JPEG, PNG, WebP, GIF, BMP, or TIFF — all major image formats supported"
+msgstr "Конвертируйте в JPEG, PNG, WebP, GIF, BMP или TIFF — поддерживаются все основные форматы изображений"
+
+msgid "Lossless conversion for PNG/BMP/TIFF; adjustable quality for JPEG and WebP"
+msgstr "Конвертация без потерь для PNG/BMP/TIFF; регулируемое качество для JPEG и WebP"
+
+msgid "Wide Input Support"
+msgstr "Широкая поддержка входных форматов"
+
+msgid "Accepts JPEG, PNG, WebP, GIF, BMP, and TIFF as input — convert from any to any"
+msgstr "Принимает JPEG, PNG, WebP, GIF, BMP и TIFF на входе — конвертируйте из любого в любой"
+
+msgid "Fast format conversion with immediate download"
+msgstr "Быстрая конвертация формата с мгновенной загрузкой"
+
+msgid "Which image formats are supported?"
+msgstr "Какие форматы изображений поддерживаются?"
+
+msgid "Input formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. Output formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. You can convert between any combination of these formats."
+msgstr "Входные форматы: JPEG, PNG, WebP, GIF, BMP и TIFF. Выходные форматы: JPEG, PNG, WebP, GIF, BMP и TIFF. Можно конвертировать между любыми комбинациями этих форматов."
+
+msgid "Will converting to JPEG reduce image quality?"
+msgstr "Снизит ли конвертация в JPEG качество изображения?"
+
+msgid "JPEG is a lossy format, so some quality reduction occurs during conversion. Use the quality slider to control the trade-off between file size and quality. A setting of 90 or above is nearly indistinguishable from the original."
+msgstr "JPEG — формат с потерями, поэтому при конвертации происходит некоторое снижение качества. Используйте ползунок качества для управления соотношением размера файла и качества. Значение 90 и выше практически неотличимо от оригинала."
+
+msgid "Does converting PNG to WebP keep transparency?"
+msgstr "Сохраняется ли прозрачность при конвертации PNG в WebP?"
+
+msgid "Yes. WebP supports transparency, so transparent PNG images convert to WebP with the alpha channel preserved. Converting to JPEG will fill transparent areas with white."
+msgstr "Да. WebP поддерживает прозрачность, поэтому прозрачные PNG-изображения конвертируются в WebP с сохранением альфа-канала. При конвертации в JPEG прозрачные области заполняются белым цветом."
+
+msgid "Image Conversion FAQ"
+msgstr "Вопросы о конвертации изображений"
+
+msgid "Convert PNG to WebP for the best balance of quality and file size on the web."
+msgstr "Конвертируйте PNG в WebP для наилучшего баланса качества и размера файла в вебе."
+
+msgid "Use PNG output when transparency must be preserved — it is the only lossless format that supports it (besides WebP)."
+msgstr "Используйте выходной формат PNG, когда необходимо сохранить прозрачность — это единственный формат без потерь, поддерживающий её (кроме WebP)."
+
+msgid "Convert to TIFF for archiving or print workflows that require the highest fidelity."
+msgstr "Конвертируйте в TIFF для архивирования или рабочих процессов печати, требующих максимальной точности."
+
+msgid "Tips for Image Conversion"
+msgstr "Советы по конвертации изображений"
+
+msgid "Convert images between formats online"
+msgstr "Конвертируйте изображения между форматами онлайн"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted immediately after download.</p>"
+msgstr "<p><strong>Конвертер изображений</strong> мгновенно преобразует ваши файлы изображений из одного формата в другой. Нужно ли вам конвертировать PNG в WebP для более быстрой загрузки веб-страниц, BMP в JPEG для уменьшения размера файла или GIF в PNG для лучшего качества — этот инструмент справится со всем.</p><p>Установка программного обеспечения не требуется. Все конвертации происходят на сервере, а ваши файлы немедленно удаляются после загрузки.</p>"
+
+# ==================== pdf_to_text ====================
+msgid "PDF to Text Converter Online Free | Convertica"
+msgstr "Конвертер PDF в текст онлайн бесплатно | Convertica"
+
+msgid "Extract plain text from PDF online free. Convert PDF to TXT file instantly with optional page numbers and layout preservation. No registration required."
+msgstr "Извлекайте простой текст из PDF онлайн бесплатно. Мгновенно конвертируйте PDF в TXT-файл с опциональными номерами страниц и сохранением макета. Регистрация не требуется."
+
+msgid "Extract plain text from your PDF in seconds"
+msgstr "Извлекайте простой текст из PDF за секунды"
+
+msgid "PDF to Text Converter"
+msgstr "Конвертер PDF в текст"
+
+msgid "Extract Text"
+msgstr "Извлечь текст"
+
+msgid "Plain Text Output"
+msgstr "Вывод в виде простого текста"
+
+msgid "Extracts all text content from your PDF into a clean, portable .txt file"
+msgstr "Извлекает всё текстовое содержимое из PDF в чистый переносимый .txt-файл"
+
+msgid "Page Number Dividers"
+msgstr "Разделители номеров страниц"
+
+msgid "Optionally add page separators so you know where each page begins"
+msgstr "При необходимости добавляйте разделители страниц, чтобы знать, где начинается каждая страница"
+
+msgid "Layout Preservation"
+msgstr "Сохранение макета"
+
+msgid "Option to preserve text positioning and column structure from the original"
+msgstr "Опция сохранения расположения текста и структуры столбцов из оригинала"
+
+msgid "Fast text extraction with immediate download"
+msgstr "Быстрое извлечение текста с мгновенной загрузкой"
+
+msgid "What text formats can be extracted from a PDF?"
+msgstr "Какие текстовые форматы можно извлечь из PDF?"
+
+msgid "All selectable text embedded in the PDF is extracted. Scanned PDFs or image-based PDFs without embedded text will produce empty or minimal output."
+msgstr "Извлекается весь выделяемый текст, встроенный в PDF. Отсканированные PDF или PDF на основе изображений без встроенного текста дадут пустой или минимальный вывод."
+
+msgid "What does the 'preserve layout' option do?"
+msgstr "Что делает опция «сохранить макет»?"
+
+msgid "When enabled, the extractor tries to maintain the original text positioning and column structure of the PDF. This can help with multi-column documents but may add extra whitespace."
+msgstr "При включении экстрактор пытается сохранить исходное расположение текста и структуру столбцов PDF. Это может помочь с многоколоночными документами, но может добавить дополнительные пробелы."
+
+msgid "Will the output include images or tables?"
+msgstr "Будет ли вывод включать изображения или таблицы?"
+
+msgid "No. Only plain text is extracted. Images are skipped, and table data is extracted as plain text rows without formatting."
+msgstr "Нет. Извлекается только простой текст. Изображения пропускаются, а данные таблиц извлекаются как строки простого текста без форматирования."
+
+msgid "PDF to Text FAQ"
+msgstr "Вопросы о конвертации PDF в текст"
+
+msgid "Enable page numbers to easily navigate large extracted documents."
+msgstr "Включите номера страниц для удобной навигации по большим извлечённым документам."
+
+msgid "For multi-column PDFs, try enabling layout preservation for better results."
+msgstr "Для многоколоночных PDF попробуйте включить сохранение макета для лучших результатов."
+
+msgid "Scanned PDFs require OCR before text extraction — use our PDF to Word tool for that."
+msgstr "Отсканированные PDF требуют OCR перед извлечением текста — используйте для этого наш инструмент PDF в Word."
+
+msgid "Tips for PDF Text Extraction"
+msgstr "Советы по извлечению текста из PDF"
+
+msgid "Extract plain text from PDF files"
+msgstr "Извлекайте простой текст из PDF-файлов"
+
+msgid "<p><strong>PDF to Text</strong> extraction pulls all embedded text from your PDF and saves it as a plain UTF-8 encoded .txt file. This is ideal for data processing, indexing, archiving, or feeding content into other tools.</p><p>Text-based PDFs extract cleanly and quickly. For scanned documents, consider running OCR first to generate selectable text before using this tool.</p>"
+msgstr "<p><strong>Конвертация PDF в текст</strong> извлекает весь встроенный текст из PDF и сохраняет его в виде простого текстового файла .txt в кодировке UTF-8. Это идеально подходит для обработки данных, индексирования, архивирования или передачи содержимого в другие инструменты.</p><p>Текстовые PDF извлекаются чисто и быстро. Для отсканированных документов рассмотрите возможность предварительного запуска OCR для создания выделяемого текста перед использованием этого инструмента.</p>"

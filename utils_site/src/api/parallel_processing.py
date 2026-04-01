@@ -187,7 +187,7 @@ async def process_pdf_pages_parallel(
         try:
             from pypdf import PdfReader
         except ImportError:
-            from PyPDF2 import PdfReader
+            from pypdf import PdfReader
 
         with open(pdf_path, "rb") as f:
             pdf_reader = PdfReader(f)

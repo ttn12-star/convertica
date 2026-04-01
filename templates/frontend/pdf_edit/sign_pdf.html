@@ -1,0 +1,248 @@
+{% extends "frontend/converter_generic.html" %}
+{% load i18n static minified_static %}
+
+{% block edit_options %}
+  <div class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
+    <h3 class="text-sm font-semibold text-amber-800 mb-1">{% trans "Premium Feature" %}</h3>
+    <p class="text-xs text-amber-700">
+      {% trans "Sign PDF is a premium feature. Upgrade to Premium to add your handwritten signature to any PDF document." %}
+      {% if PAYMENTS_ENABLED %}
+        <a href="{% url 'frontend:pricing' %}" class="underline font-semibold">{% trans "Upgrade now" %}</a>
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- Sign PDF Options - hidden until file is selected -->
+  <div id="signPdfOptions" class="hidden mb-6">
+    <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+      <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Signature Settings" %}</h3>
+
+      <div class="space-y-5">
+
+        <!-- Signature Image Upload -->
+        <div>
+          <label for="signature_image" class="block text-sm font-semibold text-gray-700 mb-1">
+            {% trans "Upload Signature Image" %}
+          </label>
+          <p class="text-xs text-gray-500 mb-2">
+            {% trans "PNG with transparent background gives the best result. JPG is also accepted." %}
+          </p>
+          <div class="flex items-center space-x-3">
+            <input type="file"
+                   id="signature_image"
+                   name="signature_image"
+                   accept="image/*"
+                   class="hidden"
+                   required>
+            <button type="button"
+                    id="signatureImageButton"
+                    class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 text-sm">
+              {% trans "Choose Image" %}
+            </button>
+            <span id="signatureImageName" class="text-sm text-gray-600">
+              {% trans "No file chosen" %}
+            </span>
+          </div>
+        </div>
+
+        <!-- Position -->
+        <div>
+          <label for="position" class="block text-sm font-semibold text-gray-700 mb-2">
+            {% trans "Signature Position" %}
+          </label>
+          <select id="position"
+                  name="position"
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+            <option value="bottom-right" selected>{% trans "Bottom Right" %}</option>
+            <option value="bottom-left">{% trans "Bottom Left" %}</option>
+            <option value="bottom-center">{% trans "Bottom Center" %}</option>
+            <option value="top-right">{% trans "Top Right" %}</option>
+            <option value="top-left">{% trans "Top Left" %}</option>
+            <option value="center">{% trans "Center" %}</option>
+          </select>
+        </div>
+
+        <!-- Page Number -->
+        <div>
+          <label for="page_number" class="block text-sm font-semibold text-gray-700 mb-2">
+            {% trans "Page to Sign" %}
+          </label>
+          <input type="number"
+                 id="page_number"
+                 name="page_number"
+                 value="1"
+                 min="1"
+                 class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900">
+          <p class="mt-1 text-xs text-gray-500">
+            {% trans "Enter the page number where the signature will be placed (first page = 1)." %}
+          </p>
+        </div>
+
+        <!-- Signature Width Slider -->
+        <div>
+          <label for="signature_width" class="block text-sm font-semibold text-gray-700 mb-2">
+            {% trans "Signature Width" %}: <span id="signatureWidthValue">150</span> {% trans "pt" %}
+          </label>
+          <input type="range"
+                 id="signature_width"
+                 name="signature_width"
+                 min="50"
+                 max="400"
+                 value="150"
+                 step="10"
+                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+          <div class="flex justify-between text-xs text-gray-500 mt-1">
+            <span>50 {% trans "pt" %}</span>
+            <span>400 {% trans "pt" %}</span>
+          </div>
+        </div>
+
+        <!-- Opacity Slider -->
+        <div>
+          <label for="opacity" class="block text-sm font-semibold text-gray-700 mb-2">
+            {% trans "Opacity" %}: <span id="opacityValue">100%</span>
+          </label>
+          <input type="range"
+                 id="opacity"
+                 name="opacity"
+                 min="0.1"
+                 max="1.0"
+                 value="1.0"
+                 step="0.05"
+                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+          <div class="flex justify-between text-xs text-gray-500 mt-1">
+            <span>10%</span>
+            <span>100%</span>
+          </div>
+        </div>
+
+        <!-- All Pages (premium) -->
+        <div>
+          <label class="flex items-start space-x-3 cursor-pointer">
+            <input type="checkbox"
+                   id="all_pages"
+                   name="all_pages"
+                   value="true"
+                   class="mt-0.5 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+            <span class="text-sm text-gray-700">
+              {% trans "Apply signature to all pages" %}
+              {% if PAYMENTS_ENABLED %}
+                <span class="ml-1 inline-block px-1.5 py-0.5 text-xs font-semibold bg-amber-100 text-amber-800 rounded">
+                  {% trans "Premium" %}
+                </span>
+              {% endif %}
+            </span>
+          </label>
+          <p class="mt-1 ml-7 text-xs text-gray-500">
+            {% trans "When checked, the signature is added to every page of the PDF." %}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block help_section %}
+  <!-- How it works -->
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+      <li>{% trans "Select your PDF file using the button above or drag and drop it" %}</li>
+      <li>{% trans "Upload your signature image (PNG with a transparent background works best)" %}</li>
+      <li>{% trans "Choose the position and page where the signature should appear" %}</li>
+      <li>{% trans "Adjust the signature width and opacity using the sliders" %}</li>
+      <li>{% trans "Click the Sign PDF button to process your document" %}</li>
+      <li>{% trans "Download your signed PDF file" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+        <strong>{% trans "Tip:" %}</strong>
+        {% trans "Use a PNG image with a transparent background so the signature blends naturally into the document without a white box around it." %}
+      </p>
+    </div>
+  </div>
+
+  <!-- SEO Content Block -->
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+  <!-- SEO Benefits -->
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+  <!-- SEO Tips -->
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+  <!-- SEO FAQ -->
+  {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+{% endblock %}
+
+{% block extra_js %}
+  {{ block.super }}
+  <script nonce="{{ csp_nonce }}">
+    (function () {
+      // Show options section when a PDF is selected
+      var fileInput = document.getElementById('id_pdf_file') || document.querySelector('input[name="{{ file_input_name }}"]');
+      var signPdfOptions = document.getElementById('signPdfOptions');
+
+      function showOptions() {
+        if (signPdfOptions) {
+          signPdfOptions.classList.remove('hidden');
+        }
+      }
+
+      if (fileInput) {
+        fileInput.addEventListener('change', function () {
+          if (this.files && this.files.length > 0) {
+            showOptions();
+          }
+        });
+      }
+
+      // Also reveal options if a file is already present on page load
+      document.addEventListener('DOMContentLoaded', function () {
+        var fi = document.getElementById('id_pdf_file') || document.querySelector('input[name="{{ file_input_name }}"]');
+        if (fi && fi.files && fi.files.length > 0) {
+          showOptions();
+        }
+      });
+
+      // Signature image button
+      var sigBtn = document.getElementById('signatureImageButton');
+      var sigInput = document.getElementById('signature_image');
+      var sigName = document.getElementById('signatureImageName');
+
+      if (sigBtn && sigInput) {
+        sigBtn.addEventListener('click', function () {
+          sigInput.click();
+        });
+        sigInput.addEventListener('change', function () {
+          if (this.files && this.files.length > 0) {
+            sigName.textContent = this.files[0].name;
+          } else {
+            sigName.textContent = '{% filter escapejs %}{% trans "No file chosen" %}{% endfilter %}';
+          }
+        });
+      }
+
+      // Signature width slider display
+      var widthSlider = document.getElementById('signature_width');
+      var widthDisplay = document.getElementById('signatureWidthValue');
+      if (widthSlider && widthDisplay) {
+        widthSlider.addEventListener('input', function () {
+          widthDisplay.textContent = this.value;
+        });
+      }
+
+      // Opacity slider display
+      var opacitySlider = document.getElementById('opacity');
+      var opacityDisplay = document.getElementById('opacityValue');
+      if (opacitySlider && opacityDisplay) {
+        opacitySlider.addEventListener('input', function () {
+          opacityDisplay.textContent = Math.round(parseFloat(this.value) * 100) + '%';
+        });
+      }
+    })();
+  </script>
+{% endblock %}

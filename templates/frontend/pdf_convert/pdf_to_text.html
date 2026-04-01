@@ -1,0 +1,90 @@
+{% extends "frontend/converter_generic.html" %}
+{% load i18n static minified_static %}
+
+{% block edit_options %}
+  <div class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
+    <h3 class="text-sm font-semibold text-amber-800 mb-1">{% trans "Premium Feature" %}</h3>
+    <p class="text-xs text-amber-700">
+      {% trans "PDF to Text is a premium feature. Upgrade to Premium to extract plain text from any PDF document." %}
+      {% if PAYMENTS_ENABLED %}
+        <a href="{% url 'frontend:pricing' %}" class="underline font-semibold">{% trans "Upgrade now" %}</a>
+      {% endif %}
+    </p>
+  </div>
+
+  <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200 mt-6">
+    <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Extraction Options" %}</h3>
+
+    <div class="space-y-4">
+      <!-- Include Page Numbers -->
+      <div class="flex items-start space-x-3">
+        <div class="flex items-center h-5 mt-0.5">
+          <input type="checkbox"
+                 id="include_page_numbers"
+                 name="include_page_numbers"
+                 value="true"
+                 class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+        </div>
+        <div>
+          <label for="include_page_numbers" class="text-sm font-semibold text-gray-700 cursor-pointer">
+            {% trans "Include page numbers" %}
+          </label>
+          <p class="text-xs text-gray-500 mt-0.5">
+            {% trans "Add '--- Page N ---' dividers between pages in the output text" %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Preserve Layout -->
+      <div class="flex items-start space-x-3">
+        <div class="flex items-center h-5 mt-0.5">
+          <input type="checkbox"
+                 id="preserve_layout"
+                 name="preserve_layout"
+                 value="true"
+                 class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+        </div>
+        <div>
+          <label for="preserve_layout" class="text-sm font-semibold text-gray-700 cursor-pointer">
+            {% trans "Preserve text layout" %}
+          </label>
+          <p class="text-xs text-gray-500 mt-0.5">
+            {% trans "Try to preserve text positioning and column structure from the original PDF" %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block help_section %}
+  <!-- How it works -->
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+      <li>{% trans "Select your PDF file using the button above or drag and drop it into the zone" %}</li>
+      <li>{% trans "Optionally enable page numbers or layout preservation" %}</li>
+      <li>{% trans "Click the convert button to extract text from your PDF" %}</li>
+      <li>{% trans "Download your plain text (.txt) file" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+        <strong>{% trans "Note:" %}</strong> {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}Free users can extract text from PDF files with up to {{ max_pages }} pages. The extracted text is saved as a plain UTF-8 encoded .txt file.{% endblocktrans %}
+      </p>
+    </div>
+  </div>
+
+  <!-- SEO Content Block -->
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+  <!-- SEO Benefits -->
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+  <!-- SEO Tips -->
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+  <!-- SEO FAQ -->
+  {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+{% endblock %}
