@@ -61,7 +61,7 @@ def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
 
         # Try to read PDF structure with PyPDF2
         try:
-            from PyPDF2 import PdfReader
+            from pypdf import PdfReader
 
             reader = PdfReader(file_path)
 

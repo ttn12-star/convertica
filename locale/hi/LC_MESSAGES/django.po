@@ -394,7 +394,7 @@ msgid "Download your converted file instantly"
 msgstr "अपनी परिवर्तित फ़ाइल तुरंत डाउनलोड करें"
 
 msgid "Skip to main content"
-msgstr ""
+msgstr "मुख्य सामग्री पर जाएं"
 
 msgid "Categories"
 msgstr "श्रेणियाँ"
@@ -6201,18 +6201,13 @@ msgstr ""
 msgid "JPG to PDF Online Free - Convert Images to PDF | Convertica"
 msgstr "JPG से PDF ऑनलाइन मुफ़्त - छवियों को PDF में बदलें | Convertica"
 
-#, fuzzy
-#| msgid ""
-#| "Merge PDF online free. Combine multiple PDF files into one document. Drag "
-#| "and drop to reorder, no watermark, no registration. Fast & secure PDF "
-#| "merger for all devices."
 msgid ""
 "Convert JPG to PDF online free. Merge multiple images into one PDF without "
 "compression. No watermark, no registration. Works on all devices."
 msgstr ""
-"PDF ऑनलाइन मुफ्त मर्ज करें। कई PDF फाइलों को एक दस्तावेज में संयोजित करें। पुनः क्रमित करने "
-"के लिए खींचें और छोड़ें, कोई वॉटरमार्क नहीं, कोई पंजीकरण नहीं। सभी उपकरणों के लिए तेज़ और "
-"सुरक्षित PDF मर्जर।"
+"JPG को PDF में ऑनलाइन मुफ्त में बदलें। बिना संपीड़न के कई छवियों को एक "
+"PDF में मर्ज करें। कोई वॉटरमार्क नहीं, कोई पंजीकरण नहीं। सभी डिवाइस पर "
+"काम करता है।"
 
 msgid "Convert your JPG images to PDF format in seconds"
 msgstr "अपनी JPG छवियों को सेकंडों में PDF प्रारूप में बदलें"
@@ -8555,8 +8550,6 @@ msgstr ""
 msgid "Reduce PDF file size without losing quality"
 msgstr "गुणवत्ता खोए बिना PDF फ़ाइल आकार कम करें"
 
-#, fuzzy
-#| msgid "Reduce Up to 90%"
 msgid "Reduce Up to 90%"
 msgstr "90% तक कम करें"
 
@@ -8584,11 +8577,6 @@ msgstr "PDF संपीड़ित करें - Convertica"
 msgid "How much can I reduce my PDF file size?"
 msgstr "मैं कई PDF फ़ाइलों को कैसे मर्ज करूँ?"
 
-#, fuzzy
-#| msgid ""
-#| "Results vary depending on the content, but you can typically reduce PDF "
-#| "size by 50-90%. PDFs with many images compress more than text-only "
-#| "documents. Scanned documents usually achieve the best compression ratios."
 msgid ""
 "Results vary depending on the content, but you can typically reduce PDF size "
 "by 50-90%. PDFs with many images compress more than text-only documents. "
@@ -8672,18 +8660,6 @@ msgstr "PDF संपीड़न के लिए सुझाव"
 msgid "Compress PDF Online - Reduce File Size Instantly"
 msgstr "PDF ऑनलाइन संपीड़ित करें - फ़ाइल आकार तुरंत कम करें"
 
-#, fuzzy
-#| msgid ""
-#| "<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
-#| "strong> reduces file size significantly while maintaining readable "
-#| "quality. Perfect for <strong>email attachments, web uploads, and storage "
-#| "optimization</strong>.</p><p>The tool uses smart compression algorithms "
-#| "that optimize images and remove unnecessary metadata while keeping text "
-#| "sharp and documents fully searchable. Most PDFs can be reduced by "
-#| "<strong>50-90%</strong> in size.</p><p><strong>Common uses:</strong> "
-#| "Compress PDFs for email (under 25MB for Gmail), reduce scanned document "
-#| "sizes, optimize PDFs for website upload, shrink presentation exports, and "
-#| "prepare files for mobile viewing.</p>"
 msgid ""
 "<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
 "strong> reduces file size significantly while maintaining readable quality. "
@@ -9029,17 +9005,14 @@ msgstr ""
 msgid "EPUB to PDF Converter (Premium) - Convertica"
 msgstr "EPUB से PDF - Convertica"
 
-#, fuzzy
-#| msgid ""
-#| "Convert EPUB eBooks to PDF format with premium quality rendering. "
-#| "Preserve text flow and structure for printing and sharing."
 msgid ""
 "Convert EPUB eBooks to PDF online with premium quality rendering. Preserve "
 "chapter structure, text flow, and typography for printing and sharing. "
 "Higher limits for long books."
 msgstr ""
-"EPUB ईबुक्स को प्रीमियम गुणवत्ता वाले रेंडरिंग के साथ PDF प्रारूप में बदलें। प्रिंटिंग और साझा "
-"करने के लिए टेक्स्ट फ्लो और संरचना को संरक्षित रखें।"
+"EPUB ईबुक्स को ऑनलाइन प्रीमियम गुणवत्ता वाले रेंडरिंग के साथ PDF में "
+"बदलें। प्रिंटिंग और साझा करने के लिए अध्याय संरचना, टेक्स्ट फ्लो और "
+"टाइपोग्राफी सुरक्षित रखें। लंबी किताबों के लिए उच्च सीमाएं।"
 
 msgid "Convert EPUB books to printable PDF documents"
 msgstr "EPUB पुस्तकों को प्रिंट करने योग्य PDF दस्तावेज़ों में बदलें"
@@ -9868,6 +9841,371 @@ msgstr "हीरो प्रदर्शन सफलतापूर्वक 
 
 msgid "Invalid JSON"
 msgstr "अमान्य JSON"
+
+# ==================== flatten_pdf ====================
+msgid "Flatten PDF Online Free - Remove Form Fields | Convertica"
+msgstr "PDF Flatten करें ऑनलाइन मुफ्त — फॉर्म फ़ील्ड हटाएं | Convertica"
+
+msgid "Flatten PDF online free by removing interactive form fields, checkboxes, and annotations. Creates a static, non-editable PDF that preserves the original appearance. No registration required."
+msgstr "इंटरएक्टिव फॉर्म फ़ील्ड, चेकबॉक्स और एनोटेशन हटाकर PDF को ऑनलाइन मुफ्त में Flatten करें। एक स्थिर, गैर-संपादन योग्य PDF बनाता है जो मूल स्वरूप को सुरक्षित रखता है। कोई पंजीकरण आवश्यक नहीं।"
+
+msgid "Remove interactive form fields and annotations from your PDF"
+msgstr "अपने PDF से इंटरएक्टिव फॉर्म फ़ील्ड और एनोटेशन हटाएं"
+
+msgid "Flatten PDF"
+msgstr "PDF Flatten करें"
+
+msgid "Remove Form Fields"
+msgstr "फॉर्म फ़ील्ड हटाएं"
+
+msgid "Strips all interactive form fields, checkboxes, radio buttons, and text inputs"
+msgstr "सभी इंटरएक्टिव फॉर्म फ़ील्ड, चेकबॉक्स, रेडियो बटन और टेक्स्ट इनपुट हटाता है"
+
+msgid "Appearance Preserved"
+msgstr "स्वरूप सुरक्षित"
+
+msgid "Visual content stays identical - only interactive elements are removed"
+msgstr "दृश्य सामग्री समान रहती है — केवल इंटरएक्टिव तत्व हटाए जाते हैं"
+
+msgid "Remove Annotations"
+msgstr "एनोटेशन हटाएं"
+
+msgid "Clears comments, highlights, sticky notes, and all other annotations"
+msgstr "टिप्पणियां, हाइलाइट, स्टिकी नोट्स और अन्य सभी एनोटेशन साफ करता है"
+
+msgid "Fast flattening with immediate download"
+msgstr "तुरंत डाउनलोड के साथ तेज़ Flattening"
+
+msgid "What does flattening a PDF mean?"
+msgstr "PDF को Flatten करने का क्या मतलब है?"
+
+msgid "Flattening a PDF removes all interactive elements such as form fields, checkboxes, and annotations, converting them into static content. The PDF looks identical but can no longer be filled out or edited."
+msgstr "PDF को Flatten करने से फॉर्म फ़ील्ड, चेकबॉक्स और एनोटेशन जैसे सभी इंटरएक्टिव तत्व हट जाते हैं और वे स्थिर सामग्री में बदल जाते हैं। PDF बिल्कुल एक जैसा दिखता है लेकिन अब उसे भरा या संपादित नहीं किया जा सकता।"
+
+msgid "Why would I need to flatten a PDF?"
+msgstr "मुझे PDF को Flatten करने की आवश्यकता क्यों होगी?"
+
+msgid "Flattening is useful when sharing forms that have been filled out, when you want to prevent further editing, or when sending a PDF to a printer or service that does not support interactive elements."
+msgstr "Flattening उपयोगी होता है जब भरे हुए फॉर्म साझा करते हैं, जब आगे की संपादन रोकना चाहते हैं, या किसी प्रिंटर या सेवा को PDF भेजते समय जो इंटरएक्टिव तत्वों का समर्थन नहीं करती।"
+
+msgid "Does flattening change the visual appearance?"
+msgstr "क्या Flattening दृश्य स्वरूप बदलता है?"
+
+msgid "No. The visual appearance is preserved exactly. Text, images, and layout remain unchanged — only the interactive layer is removed."
+msgstr "नहीं। दृश्य स्वरूप बिल्कुल सुरक्षित रहता है। टेक्स्ट, छवियां और लेआउट अपरिवर्तित रहते हैं — केवल इंटरएक्टिव परत हटाई जाती है।"
+
+msgid "Flatten PDF FAQ"
+msgstr "PDF Flatten FAQ"
+
+msgid "Fill out all form fields before flattening to lock in the entered values."
+msgstr "दर्ज किए गए मूल्यों को लॉक करने के लिए Flatten करने से पहले सभी फॉर्म फ़ील्ड भरें।"
+
+msgid "Use flattening before printing to ensure all content renders correctly."
+msgstr "सभी सामग्री को सही ढंग से रेंडर करने के लिए प्रिंट करने से पहले Flattening का उपयोग करें।"
+
+msgid "Flatten PDFs before sharing to prevent recipients from modifying form data."
+msgstr "प्राप्तकर्ताओं को फॉर्म डेटा संशोधित करने से रोकने के लिए साझा करने से पहले PDF Flatten करें।"
+
+msgid "Tips for Flattening PDFs"
+msgstr "PDF Flatten करने के टिप्स"
+
+msgid "Flatten PDF to remove form fields and annotations"
+msgstr "फॉर्म फ़ील्ड और एनोटेशन हटाने के लिए PDF Flatten करें"
+
+msgid "<p><strong>Flatten PDF</strong> converts an interactive PDF into a static document by permanently embedding all form field values and removing annotation layers. The result is a clean, non-editable PDF that looks exactly like the original.</p><p>This is commonly needed when distributing completed forms, archiving documents, or preparing PDFs for printing where interactive elements may cause issues.</p>"
+msgstr "<p><strong>PDF Flatten</strong> एक इंटरएक्टिव PDF को स्थायी रूप से सभी फॉर्म फ़ील्ड मूल्यों को एम्बेड करके और एनोटेशन परतों को हटाकर एक स्थिर दस्तावेज़ में परिवर्तित करता है। परिणाम एक साफ, गैर-संपादन योग्य PDF है जो बिल्कुल मूल जैसा दिखता है।</p><p>यह आमतौर पर पूर्ण फॉर्म वितरित करते समय, दस्तावेज़ संग्रहीत करते समय, या PDF को प्रिंटिंग के लिए तैयार करते समय आवश्यक होता है जहां इंटरएक्टिव तत्व समस्याएं पैदा कर सकते हैं।</p>"
+
+# ==================== sign_pdf ====================
+msgid "Sign PDF Online Free - Add Signature to PDF | Convertica"
+msgstr "PDF पर ऑनलाइन हस्ताक्षर करें - PDF में हस्ताक्षर जोड़ें | Convertica"
+
+msgid "Add your signature to a PDF online free. Upload an image of your signature and place it anywhere on any page. No registration, no watermark. Works on Windows, Mac, Linux, iOS, Android."
+msgstr "PDF में अपना हस्ताक्षर ऑनलाइन मुफ्त में जोड़ें। अपने हस्ताक्षर की छवि अपलोड करें और इसे किसी भी पृष्ठ पर कहीं भी रखें। कोई पंजीकरण नहीं, कोई वॉटरमार्क नहीं। Windows, Mac, Linux, iOS, Android पर काम करता है।"
+
+msgid "Add your image signature to any PDF page"
+msgstr "किसी भी PDF पृष्ठ पर अपना छवि हस्ताक्षर जोड़ें"
+
+msgid "Sign PDF"
+msgstr "PDF साइन करें"
+
+msgid "Image Signature"
+msgstr "छवि हस्ताक्षर"
+
+msgid "Upload any PNG or JPEG image of your handwritten signature and place it precisely on the PDF"
+msgstr "अपने हस्तलिखित हस्ताक्षर की कोई भी PNG या JPEG छवि अपलोड करें और इसे PDF पर सटीक रूप से रखें"
+
+msgid "Flexible Placement"
+msgstr "लचीला स्थान"
+
+msgid "Choose the exact position and page for your signature, or apply it to all pages at once"
+msgstr "अपने हस्ताक्षर के लिए सटीक स्थिति और पृष्ठ चुनें, या इसे एक साथ सभी पृष्ठों पर लागू करें"
+
+msgid "Files are processed in-memory and deleted immediately — your signature is never stored"
+msgstr "फ़ाइलें मेमोरी में प्रोसेस होती हैं और तुरंत हटा दी जाती हैं — आपका हस्ताक्षर कभी संग्रहीत नहीं होता"
+
+msgid "Signed PDF is ready for immediate download with no delays"
+msgstr "हस्ताक्षरित PDF बिना किसी देरी के तुरंत डाउनलोड के लिए तैयार है"
+
+msgid "What image formats are accepted for the signature?"
+msgstr "हस्ताक्षर के लिए कौन से छवि प्रारूप स्वीकार किए जाते हैं?"
+
+msgid "You can upload a PNG or JPEG image of your handwritten signature. PNG with a transparent background works best so the signature blends naturally into the PDF."
+msgstr "आप अपने हस्तलिखित हस्ताक्षर की PNG या JPEG छवि अपलोड कर सकते हैं। पारदर्शी पृष्ठभूमि वाली PNG सबसे अच्छा काम करती है ताकि हस्ताक्षर PDF में स्वाभाविक रूप से मिल जाए।"
+
+msgid "Can I sign all pages at once?"
+msgstr "क्या मैं एक साथ सभी पृष्ठों पर हस्ताक्षर कर सकता हूं?"
+
+msgid "Yes. Enable the 'Apply to all pages' option and your signature will be stamped on every page of the PDF at the same position."
+msgstr "हां। 'सभी पृष्ठों पर लागू करें' विकल्प सक्षम करें और आपका हस्ताक्षर PDF के हर पृष्ठ पर एक ही स्थिति में मुहर लगा दिया जाएगा।"
+
+msgid "Is this legally binding?"
+msgstr "क्या यह कानूनी रूप से बाध्यकारी है?"
+
+msgid "This tool adds a visual image signature to the PDF. For legally binding electronic signatures with audit trails and certificates, a dedicated e-signature service is recommended."
+msgstr "यह टूल PDF में एक दृश्य छवि हस्ताक्षर जोड़ता है। ऑडिट ट्रेल्स और प्रमाणपत्रों के साथ कानूनी रूप से बाध्यकारी इलेक्ट्रॉनिक हस्ताक्षरों के लिए, एक समर्पित ई-सिग्नेचर सेवा की अनुशंसा की जाती है।"
+
+msgid "Sign PDF FAQ"
+msgstr "PDF साइन FAQ"
+
+msgid "Use a PNG image with a transparent background for the cleanest signature result."
+msgstr "सबसे साफ हस्ताक्षर परिणाम के लिए पारदर्शी पृष्ठभूमि वाली PNG छवि का उपयोग करें।"
+
+msgid "Increase the signature width for large-format PDFs so it stays visible."
+msgstr "बड़े प्रारूप की PDF के लिए हस्ताक्षर की चौड़ाई बढ़ाएं ताकि यह दृश्यमान रहे।"
+
+msgid "Use the 'Apply to all pages' option to stamp every page in a contract at once."
+msgstr "अनुबंध में एक बार में हर पृष्ठ पर मुहर लगाने के लिए 'सभी पृष्ठों पर लागू करें' विकल्प का उपयोग करें।"
+
+msgid "Tips for Signing PDFs"
+msgstr "PDF साइन करने के टिप्स"
+
+msgid "Add your signature to a PDF online"
+msgstr "ऑनलाइन PDF में अपना हस्ताक्षर जोड़ें"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a handwritten signature image directly onto any page of a PDF document. Upload your signature as a PNG or JPEG, choose the position and page, and download the signed PDF in seconds.</p><p>No account required. Files are processed securely and deleted immediately after download. The signed PDF retains all original content and formatting.</p>"
+msgstr "<p><strong>PDF साइन करें</strong> आपको PDF दस्तावेज़ के किसी भी पृष्ठ पर सीधे हस्तलिखित हस्ताक्षर छवि रखने देता है। अपने हस्ताक्षर को PNG या JPEG के रूप में अपलोड करें, स्थिति और पृष्ठ चुनें, और सेकंड में हस्ताक्षरित PDF डाउनलोड करें।</p><p>कोई खाता आवश्यक नहीं। फ़ाइलें सुरक्षित रूप से प्रोसेस होती हैं और डाउनलोड के तुरंत बाद हटा दी जाती हैं। हस्ताक्षरित PDF सभी मूल सामग्री और स्वरूपण बनाए रखती है।</p>"
+
+# ==================== optimize_image ====================
+msgid "Optimize Image Online Free - Compress JPEG PNG WebP | Convertica"
+msgstr "इमेज ऑनलाइन मुफ्त ऑप्टिमाइज़ करें — JPEG PNG WebP कंप्रेस करें | Convertica"
+
+msgid "Compress and optimize images online free. Reduce JPEG, PNG, and WebP file size without losing quality. Resize by max dimensions. No registration, no watermark."
+msgstr "छवियों को ऑनलाइन मुफ्त में कंप्रेस और ऑप्टिमाइज़ करें। गुणवत्ता खोए बिना JPEG, PNG और WebP फ़ाइल का आकार कम करें। अधिकतम आयामों द्वारा आकार बदलें। कोई पंजीकरण नहीं, कोई वॉटरमार्क नहीं।"
+
+msgid "Reduce image file size while preserving quality"
+msgstr "गुणवत्ता बनाए रखते हुए छवि फ़ाइल का आकार कम करें"
+
+msgid "Optimize Image"
+msgstr "इमेज ऑप्टिमाइज़ करें"
+
+msgid "Please select an image file."
+msgstr "कृपया एक छवि फ़ाइल चुनें।"
+
+msgid "JPEG, PNG & WebP"
+msgstr "JPEG, PNG और WebP"
+
+msgid "Compress all major image formats with format-appropriate algorithms for maximum savings"
+msgstr "अधिकतम बचत के लिए प्रारूप-उपयुक्त एल्गोरिदम के साथ सभी प्रमुख छवि प्रारूपों को कंप्रेस करें"
+
+msgid "Resize on the Fly"
+msgstr "तुरंत आकार बदलें"
+
+msgid "Optionally cap the maximum width or height while preserving the original aspect ratio"
+msgstr "मूल पहलू अनुपात बनाए रखते हुए वैकल्पिक रूप से अधिकतम चौड़ाई या ऊंचाई को सीमित करें"
+
+msgid "Quality Control"
+msgstr "गुणवत्ता नियंत्रण"
+
+msgid "Dial in the exact quality level (10-100) to balance file size and visual fidelity"
+msgstr "फ़ाइल आकार और दृश्य निष्ठा को संतुलित करने के लिए सटीक गुणवत्ता स्तर (10-100) सेट करें"
+
+msgid "Optimized image is ready for immediate download"
+msgstr "ऑप्टिमाइज़ की गई छवि तुरंत डाउनलोड के लिए तैयार है"
+
+msgid "Which image formats can be optimized?"
+msgstr "कौन से छवि प्रारूप ऑप्टिमाइज़ किए जा सकते हैं?"
+
+msgid "JPEG, PNG, WebP, and GIF files are supported. Each format is compressed using the most effective algorithm for that format."
+msgstr "JPEG, PNG, WebP और GIF फ़ाइलें समर्थित हैं। प्रत्येक प्रारूप को उस प्रारूप के लिए सबसे प्रभावी एल्गोरिदम का उपयोग करके कंप्रेस किया जाता है।"
+
+msgid "What quality setting should I use?"
+msgstr "मुझे कौन सा गुणवत्ता सेटिंग उपयोग करना चाहिए?"
+
+msgid "85 is a good default that balances quality and file size. For web use, values between 70 and 85 typically give the best results. Use 90+ when quality is critical, such as for print assets."
+msgstr "85 एक अच्छा डिफ़ॉल्ट है जो गुणवत्ता और फ़ाइल आकार को संतुलित करता है। वेब उपयोग के लिए, 70 और 85 के बीच के मान आमतौर पर सर्वोत्तम परिणाम देते हैं। जब गुणवत्ता महत्वपूर्ण हो, जैसे प्रिंट संपत्तियों के लिए, 90+ का उपयोग करें।"
+
+msgid "Can I change the output format while optimizing?"
+msgstr "क्या मैं ऑप्टिमाइज़ करते समय आउटपुट प्रारूप बदल सकता हूं?"
+
+msgid "Yes. You can optionally convert the image to JPEG, PNG, or WebP during optimization. Leave the format field empty to keep the original format."
+msgstr "हां। आप ऑप्टिमाइज़ेशन के दौरान वैकल्पिक रूप से छवि को JPEG, PNG या WebP में कनवर्ट कर सकते हैं। मूल प्रारूप रखने के लिए प्रारूप फ़ील्ड खाली छोड़ें।"
+
+msgid "Image Optimization FAQ"
+msgstr "इमेज ऑप्टिमाइज़ेशन FAQ"
+
+msgid "Use WebP output for the smallest file sizes when targeting modern web browsers."
+msgstr "आधुनिक वेब ब्राउज़र को लक्षित करते समय सबसे छोटे फ़ाइल आकार के लिए WebP आउटपुट का उपयोग करें।"
+
+msgid "Set a max width of 1920px for full-screen hero images to avoid serving oversized files."
+msgstr "अत्यधिक बड़ी फ़ाइलें परोसने से बचने के लिए फुल-स्क्रीन हीरो छवियों के लिए अधिकतम चौड़ाई 1920px सेट करें।"
+
+msgid "For thumbnails and previews, a quality of 70-75 is usually indistinguishable from the original."
+msgstr "थंबनेल और प्रीव्यू के लिए, 70-75 की गुणवत्ता आमतौर पर मूल से अप्रभेद्य होती है।"
+
+msgid "Tips for Image Optimization"
+msgstr "इमेज ऑप्टिमाइज़ेशन के टिप्स"
+
+msgid "Compress and optimize images online"
+msgstr "ऑनलाइन छवियां कंप्रेस और ऑप्टिमाइज़ करें"
+
+msgid "<p><strong>Optimize Image</strong> reduces the file size of your images by applying smart compression while keeping the visual quality you choose. Smaller images load faster, consume less bandwidth, and improve your website's performance and SEO.</p><p>Supports JPEG, PNG, WebP, and GIF. Optionally resize images by setting a maximum width or height — the aspect ratio is always preserved.</p>"
+msgstr "<p><strong>इमेज ऑप्टिमाइज़ करें</strong> आपकी छवियों के फ़ाइल आकार को स्मार्ट कंप्रेशन लागू करके कम करता है जबकि आपके द्वारा चुनी गई दृश्य गुणवत्ता बनाए रखता है। छोटी छवियां तेज़ी से लोड होती हैं, कम बैंडविड्थ का उपयोग करती हैं, और आपकी वेबसाइट के प्रदर्शन और SEO में सुधार करती हैं।</p><p>JPEG, PNG, WebP और GIF का समर्थन करता है। अधिकतम चौड़ाई या ऊंचाई सेट करके वैकल्पिक रूप से छवियों का आकार बदलें — पहलू अनुपात हमेशा संरक्षित रहता है।</p>"
+
+# ==================== convert_image ====================
+msgid "Convert Image Format Online Free - JPEG PNG WebP GIF BMP | Convertica"
+msgstr "इमेज फॉर्मेट ऑनलाइन मुफ्त कनवर्ट करें — JPEG PNG WebP GIF BMP | Convertica"
+
+msgid "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF online free. Fast, lossless format conversion with quality control. No registration required."
+msgstr "JPEG, PNG, WebP, GIF, BMP और TIFF के बीच ऑनलाइन मुफ्त में छवियां कनवर्ट करें। गुणवत्ता नियंत्रण के साथ तेज़, हानिरहित प्रारूप रूपांतरण। कोई पंजीकरण आवश्यक नहीं।"
+
+msgid "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
+msgstr "किसी भी छवि को JPEG, PNG, WebP, GIF, BMP या TIFF में कनवर्ट करें"
+
+msgid "Convert Image"
+msgstr "इमेज कनवर्ट करें"
+
+msgid "6 Output Formats"
+msgstr "6 आउटपुट प्रारूप"
+
+msgid "Convert to JPEG, PNG, WebP, GIF, BMP, or TIFF — all major image formats supported"
+msgstr "JPEG, PNG, WebP, GIF, BMP या TIFF में कनवर्ट करें — सभी प्रमुख छवि प्रारूप समर्थित"
+
+msgid "Lossless conversion for PNG/BMP/TIFF; adjustable quality for JPEG and WebP"
+msgstr "PNG/BMP/TIFF के लिए हानिरहित रूपांतरण; JPEG और WebP के लिए समायोज्य गुणवत्ता"
+
+msgid "Wide Input Support"
+msgstr "व्यापक इनपुट समर्थन"
+
+msgid "Accepts JPEG, PNG, WebP, GIF, BMP, and TIFF as input — convert from any to any"
+msgstr "JPEG, PNG, WebP, GIF, BMP और TIFF को इनपुट के रूप में स्वीकार करता है — किसी से किसी में कनवर्ट करें"
+
+msgid "Fast format conversion with immediate download"
+msgstr "तुरंत डाउनलोड के साथ तेज़ प्रारूप रूपांतरण"
+
+msgid "Which image formats are supported?"
+msgstr "कौन से छवि प्रारूप समर्थित हैं?"
+
+msgid "Input formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. Output formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. You can convert between any combination of these formats."
+msgstr "इनपुट प्रारूप: JPEG, PNG, WebP, GIF, BMP और TIFF। आउटपुट प्रारूप: JPEG, PNG, WebP, GIF, BMP और TIFF। आप इन प्रारूपों के किसी भी संयोजन के बीच कनवर्ट कर सकते हैं।"
+
+msgid "Will converting to JPEG reduce image quality?"
+msgstr "क्या JPEG में कनवर्ट करने से छवि गुणवत्ता कम होगी?"
+
+msgid "JPEG is a lossy format, so some quality reduction occurs during conversion. Use the quality slider to control the trade-off between file size and quality. A setting of 90 or above is nearly indistinguishable from the original."
+msgstr "JPEG एक हानिपूर्ण प्रारूप है, इसलिए रूपांतरण के दौरान कुछ गुणवत्ता में कमी होती है। फ़ाइल आकार और गुणवत्ता के बीच व्यापार को नियंत्रित करने के लिए गुणवत्ता स्लाइडर का उपयोग करें। 90 या उससे ऊपर की सेटिंग मूल से लगभग अप्रभेद्य है।"
+
+msgid "Does converting PNG to WebP keep transparency?"
+msgstr "क्या PNG को WebP में कनवर्ट करने पर पारदर्शिता बनी रहती है?"
+
+msgid "Yes. WebP supports transparency, so transparent PNG images convert to WebP with the alpha channel preserved. Converting to JPEG will fill transparent areas with white."
+msgstr "हां। WebP पारदर्शिता का समर्थन करता है, इसलिए पारदर्शी PNG छवियां WebP में अल्फा चैनल के साथ कनवर्ट होती हैं। JPEG में कनवर्ट करने पर पारदर्शी क्षेत्र सफेद रंग से भर जाएंगे।"
+
+msgid "Image Conversion FAQ"
+msgstr "इमेज कनवर्जन FAQ"
+
+msgid "Convert PNG to WebP for the best balance of quality and file size on the web."
+msgstr "वेब पर गुणवत्ता और फ़ाइल आकार के सर्वोत्तम संतुलन के लिए PNG को WebP में कनवर्ट करें।"
+
+msgid "Use PNG output when transparency must be preserved — it is the only lossless format that supports it (besides WebP)."
+msgstr "PNG आउटपुट का उपयोग करें जब पारदर्शिता संरक्षित होनी चाहिए — यह एकमात्र हानिरहित प्रारूप है जो इसका समर्थन करता है (WebP के अलावा)।"
+
+msgid "Convert to TIFF for archiving or print workflows that require the highest fidelity."
+msgstr "उच्चतम निष्ठा की आवश्यकता वाले अभिलेखागार या प्रिंट वर्कफ़्लो के लिए TIFF में कनवर्ट करें।"
+
+msgid "Tips for Image Conversion"
+msgstr "इमेज कनवर्जन के टिप्स"
+
+msgid "Convert images between formats online"
+msgstr "ऑनलाइन प्रारूपों के बीच छवियां कनवर्ट करें"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted immediately after download.</p>"
+msgstr "<p><strong>इमेज कनवर्ट करें</strong> आपकी छवि फ़ाइलों को एक प्रारूप से दूसरे में तुरंत बदलता है। चाहे आपको तेज़ वेब लोडिंग के लिए PNG को WebP में, फ़ाइल आकार कम करने के लिए BMP को JPEG में, या बेहतर गुणवत्ता के लिए GIF को PNG में कनवर्ट करना हो, यह टूल सब कुछ संभालता है।</p><p>कोई सॉफ़्टवेयर इंस्टॉलेशन आवश्यक नहीं। सभी रूपांतरण सर्वर पर होते हैं और आपकी फ़ाइलें डाउनलोड के तुरंत बाद हटा दी जाती हैं।</p>"
+
+# ==================== pdf_to_text ====================
+msgid "PDF to Text Converter Online Free | Convertica"
+msgstr "PDF से Text कनवर्टर ऑनलाइन मुफ्त | Convertica"
+
+msgid "Extract plain text from PDF online free. Convert PDF to TXT file instantly with optional page numbers and layout preservation. No registration required."
+msgstr "PDF से सादा टेक्स्ट ऑनलाइन मुफ्त में निकालें। वैकल्पिक पृष्ठ संख्याओं और लेआउट संरक्षण के साथ PDF को TXT फ़ाइल में तुरंत कनवर्ट करें। कोई पंजीकरण आवश्यक नहीं।"
+
+msgid "Extract plain text from your PDF in seconds"
+msgstr "सेकंड में अपने PDF से सादा टेक्स्ट निकालें"
+
+msgid "PDF to Text Converter"
+msgstr "PDF से Text कनवर्टर"
+
+msgid "Extract Text"
+msgstr "टेक्स्ट निकालें"
+
+msgid "Plain Text Output"
+msgstr "सादा टेक्स्ट आउटपुट"
+
+msgid "Extracts all text content from your PDF into a clean, portable .txt file"
+msgstr "आपके PDF से सभी टेक्स्ट सामग्री को एक साफ, पोर्टेबल .txt फ़ाइल में निकालता है"
+
+msgid "Page Number Dividers"
+msgstr "पृष्ठ संख्या विभाजक"
+
+msgid "Optionally add page separators so you know where each page begins"
+msgstr "वैकल्पिक रूप से पृष्ठ विभाजक जोड़ें ताकि आप जान सकें प्रत्येक पृष्ठ कहां शुरू होता है"
+
+msgid "Layout Preservation"
+msgstr "लेआउट संरक्षण"
+
+msgid "Option to preserve text positioning and column structure from the original"
+msgstr "मूल से टेक्स्ट स्थिति और कॉलम संरचना संरक्षित करने का विकल्प"
+
+msgid "Fast text extraction with immediate download"
+msgstr "तुरंत डाउनलोड के साथ तेज़ टेक्स्ट निष्कर्षण"
+
+msgid "What text formats can be extracted from a PDF?"
+msgstr "PDF से कौन से टेक्स्ट प्रारूप निकाले जा सकते हैं?"
+
+msgid "All selectable text embedded in the PDF is extracted. Scanned PDFs or image-based PDFs without embedded text will produce empty or minimal output."
+msgstr "PDF में एम्बेड किया गया सभी चयन योग्य टेक्स्ट निकाला जाता है। एम्बेड किए गए टेक्स्ट के बिना स्कैन किए गए PDF या छवि-आधारित PDF खाली या न्यूनतम आउटपुट देंगे।"
+
+msgid "What does the 'preserve layout' option do?"
+msgstr "'लेआउट संरक्षित करें' विकल्प क्या करता है?"
+
+msgid "When enabled, the extractor tries to maintain the original text positioning and column structure of the PDF. This can help with multi-column documents but may add extra whitespace."
+msgstr "सक्षम होने पर, एक्सट्रैक्टर PDF के मूल टेक्स्ट स्थिति और कॉलम संरचना को बनाए रखने की कोशिश करता है। यह बहु-स्तंभ दस्तावेज़ों के साथ मदद कर सकता है लेकिन अतिरिक्त व्हाइटस्पेस जोड़ सकता है।"
+
+msgid "Will the output include images or tables?"
+msgstr "क्या आउटपुट में छवियां या तालिकाएं शामिल होंगी?"
+
+msgid "No. Only plain text is extracted. Images are skipped, and table data is extracted as plain text rows without formatting."
+msgstr "नहीं। केवल सादा टेक्स्ट निकाला जाता है। छवियां छोड़ी जाती हैं, और तालिका डेटा को बिना स्वरूपण के सादे टेक्स्ट पंक्तियों के रूप में निकाला जाता है।"
+
+msgid "PDF to Text FAQ"
+msgstr "PDF से Text FAQ"
+
+msgid "Enable page numbers to easily navigate large extracted documents."
+msgstr "बड़े निकाले गए दस्तावेज़ों में आसानी से नेविगेट करने के लिए पृष्ठ संख्याएं सक्षम करें।"
+
+msgid "For multi-column PDFs, try enabling layout preservation for better results."
+msgstr "बहु-स्तंभ PDF के लिए, बेहतर परिणामों के लिए लेआउट संरक्षण सक्षम करने का प्रयास करें।"
+
+msgid "Scanned PDFs require OCR before text extraction — use our PDF to Word tool for that."
+msgstr "स्कैन किए गए PDF को टेक्स्ट निष्कर्षण से पहले OCR की आवश्यकता होती है — इसके लिए हमारे PDF से Word टूल का उपयोग करें।"
+
+msgid "Tips for PDF Text Extraction"
+msgstr "PDF टेक्स्ट निष्कर्षण के टिप्स"
+
+msgid "Extract plain text from PDF files"
+msgstr "PDF फ़ाइलों से सादा टेक्स्ट निकालें"
+
+msgid "<p><strong>PDF to Text</strong> extraction pulls all embedded text from your PDF and saves it as a plain UTF-8 encoded .txt file. This is ideal for data processing, indexing, archiving, or feeding content into other tools.</p><p>Text-based PDFs extract cleanly and quickly. For scanned documents, consider running OCR first to generate selectable text before using this tool.</p>"
+msgstr "<p><strong>PDF से Text</strong> निष्कर्षण आपके PDF से सभी एम्बेड किया गया टेक्स्ट निकालता है और इसे UTF-8 एन्कोडेड सादे .txt फ़ाइल के रूप में सहेजता है। यह डेटा प्रोसेसिंग, इंडेक्सिंग, अभिलेखागार या अन्य टूल में सामग्री फीड करने के लिए आदर्श है।</p><p>टेक्स्ट-आधारित PDF स्वच्छ और तेज़ी से निकालते हैं। स्कैन किए गए दस्तावेज़ों के लिए, इस टूल का उपयोग करने से पहले चयन योग्य टेक्स्ट उत्पन्न करने के लिए पहले OCR चलाने पर विचार करें।</p>"
 
 #~ msgid ""
 #~ "Convert JPG to PDF online free without compression. Merge multiple images "

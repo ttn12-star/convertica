@@ -609,10 +609,17 @@ def validate_file_for_operation(
         # For heavy operations, check PDF complexity (images, scans)
         if is_heavy and page_count > 10:
             total_images = 0
-            for _page_index in range(min(page_count, 5)):  # Check first 5 pages
-                # Note: pypdf doesn't have get_images() method like PyMuPDF
-                # This is a simplified check - image detection would need different approach
-                total_images += 0  # Placeholder
+            try:
+                import fitz  # PyMuPDF
+
+                doc = fitz.open(pdf_path)
+                for page_index in range(min(page_count, 5)):  # Check first 5 pages
+                    page = doc[page_index]
+                    image_list = page.get_images(full=False)
+                    total_images += len(image_list)
+                doc.close()
+            except Exception:
+                total_images = 0  # If detection fails, continue without warning
 
             # If PDF has many images, it's likely a scan - warn user
             avg_images_per_page = total_images / min(page_count, 5)

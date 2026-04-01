@@ -260,14 +260,6 @@ class OptimizationManager:
             )
             return await convert_word_to_pdf_optimized(uploaded_file, **filtered_kwargs)
 
-        # Temporarily disable optimized version due to validation issues
-        # if self.should_optimize("word_to_pdf", uploaded_file.size / (1024*1024)):
-        #     from .pdf_convert.word_to_pdf_optimized import convert_word_to_pdf_optimized
-        #     try:
-        #         return await convert_word_to_pdf_optimized(uploaded_file, **kwargs)
-        #     except Exception as e:
-        #         logger.warning(f"Optimized conversion failed: {e}")
-
         # Use fallback directly
         from .pdf_convert.word_to_pdf.utils import (
             convert_word_to_pdf as _convert_word_to_pdf_sync,

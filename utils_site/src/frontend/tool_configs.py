@@ -67,6 +67,26 @@ BATCH_API_MAP = {
         "field_name": "pdf_files",
     },
     "unlock_pdf_api": {"batch_url": "unlock_pdf_batch_api", "field_name": "pdf_files"},
+    "flatten_pdf_api": {
+        "batch_url": "flatten_pdf_batch_api",
+        "field_name": "pdf_files",
+    },
+    "pdf_to_text_api": {
+        "batch_url": "pdf_to_text_batch_api",
+        "field_name": "pdf_files",
+    },
+    "sign_pdf_api": {
+        "batch_url": "sign_pdf_batch_api",
+        "field_name": "pdf_files",
+    },
+    "optimize_image_api": {
+        "batch_url": "optimize_image_batch_api",
+        "field_name": "image_files",
+    },
+    "convert_image_api": {
+        "batch_url": "convert_image_batch_api",
+        "field_name": "image_files",
+    },
 }
 
 
@@ -230,6 +250,9 @@ TOOL_CONFIGS = {
                 "including English, Russian, German, French, Spanish, Chinese, Japanese, and Arabic.</p>"
             ),
         },
+        "extra": {
+            "how_to_time": "PT3M",
+        },
     },
     "word_to_pdf": {
         "template": "frontend/pdf_convert/word_to_pdf.html",
@@ -378,6 +401,9 @@ TOOL_CONFIGS = {
                 "online submissions, printing, and archiving. All hyperlinks, bookmarks, and table of contents "
                 "are preserved in the converted PDF.</p>"
             ),
+        },
+        "extra": {
+            "how_to_time": "PT3M",
         },
     },
     "pdf_to_jpg": {
@@ -667,6 +693,7 @@ TOOL_CONFIGS = {
         },
         "extra": {
             "auto_generate_tool_schema": False,
+            "how_to_time": "PT1M",
         },
     },
     "rotate_pdf": {
@@ -2060,6 +2087,9 @@ TOOL_CONFIGS = {
                 "Excel files in just a few clicks.</p>"
             ),
         },
+        "extra": {
+            "how_to_time": "PT3M",
+        },
     },
     "excel_to_pdf": {
         "template": "frontend/pdf_convert/excel_to_pdf.html",
@@ -2654,6 +2684,9 @@ TOOL_CONFIGS = {
                 "static PDF documents into dynamic PowerPoint presentations.</p>"
             ),
         },
+        "extra": {
+            "how_to_time": "PT3M",
+        },
     },
     "pdf_to_html": {
         "template": "frontend/pdf_convert/pdf_to_html.html",
@@ -2806,6 +2839,9 @@ TOOL_CONFIGS = {
                 "in a searchable, accessible format.</p>"
             ),
         },
+        "extra": {
+            "how_to_time": "PT3M",
+        },
     },
     "compress_pdf": {
         "template": "frontend/pdf_organize/compress_pdf.html",
@@ -2953,6 +2989,9 @@ TOOL_CONFIGS = {
                 "reduce scanned document sizes, optimize PDFs for website upload, "
                 "shrink presentation exports, and prepare files for mobile viewing.</p>"
             ),
+        },
+        "extra": {
+            "how_to_time": "PT1M",
         },
     },
     "protect_pdf": {
@@ -3109,6 +3148,9 @@ TOOL_CONFIGS = {
                 "<p>Perfect for businesses sharing confidential documents, individuals protecting "
                 "personal files, and anyone who needs to control who can access their PDF documents.</p>"
             ),
+        },
+        "extra": {
+            "how_to_time": "PT1M",
         },
     },
     "unlock_pdf": {
@@ -3568,6 +3610,551 @@ TOOL_CONFIGS = {
         "extra": {
             "offer_price": "6",
             "offer_currency": "USD",
+        },
+    },
+    "flatten_pdf": {
+        "template": "frontend/pdf_edit/flatten_pdf.html",
+        "converter_args": {
+            "page_title": _(
+                "Flatten PDF Online Free - Remove Form Fields | Convertica"
+            ),
+            "page_description": _(
+                "Flatten PDF online free by removing interactive form fields, checkboxes, "
+                "and annotations. Creates a static, non-editable PDF. No registration required."
+            ),
+            "page_keywords": (
+                "flatten PDF, flatten PDF online free, remove form fields PDF, "
+                "PDF flatten tool, remove annotations PDF, make PDF non-editable, "
+                "flatten fillable PDF, remove interactive PDF elements, "
+                "flatten PDF form, flatten PDF annotations, "
+                "flatten PDF free, flatten PDF no registration"
+            ),
+            "page_subtitle": _(
+                "Remove interactive form fields and annotations from your PDF"
+            ),
+            "header_text": _("Flatten PDF"),
+            "file_input_name": "pdf_file",
+            "file_accept": ".pdf",
+            "api_url_name": "flatten_pdf_api",
+            "replace_regex": r"\.pdf$",
+            "replace_to": ".pdf",
+            "button_text": _("Flatten PDF"),
+            "select_file_message": _("Please select a PDF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Remove Form Fields"),
+                    "description": _(
+                        "Strips all interactive form fields, checkboxes, radio buttons, and text inputs"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Appearance Preserved"),
+                    "description": _(
+                        "Visual content stays identical - only interactive elements are removed"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Remove Annotations"),
+                    "description": _(
+                        "Clears comments, highlights, sticky notes, and all other annotations"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Instant Processing"),
+                    "description": _("Fast flattening with immediate download"),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("What does flattening a PDF mean?"),
+                    "answer": _(
+                        "Flattening a PDF removes all interactive elements such as form fields, "
+                        "checkboxes, and annotations, converting them into static content. "
+                        "The PDF looks identical but can no longer be filled out or edited."
+                    ),
+                },
+                {
+                    "question": _("Why would I need to flatten a PDF?"),
+                    "answer": _(
+                        "Flattening is useful when sharing forms that have been filled out, "
+                        "when you want to prevent further editing, or when sending a PDF to "
+                        "a printer or service that does not support interactive elements."
+                    ),
+                },
+                {
+                    "question": _("Does flattening change the visual appearance?"),
+                    "answer": _(
+                        "No. The visual appearance is preserved exactly. Text, images, and "
+                        "layout remain unchanged — only the interactive layer is removed."
+                    ),
+                },
+            ],
+            "faq_title": _("Flatten PDF FAQ"),
+            "page_tips": [
+                _(
+                    "Fill out all form fields before flattening to lock in the entered values."
+                ),
+                _(
+                    "Use flattening before printing to ensure all content renders correctly."
+                ),
+                _(
+                    "Flatten PDFs before sharing to prevent recipients from modifying form data."
+                ),
+            ],
+            "tips_title": _("Tips for Flattening PDFs"),
+            "page_content_title": _(
+                "Flatten PDF to remove form fields and annotations"
+            ),
+            "page_content_body": _(
+                "<p><strong>Flatten PDF</strong> converts an interactive PDF into a static document "
+                "by permanently embedding all form field values and removing annotation layers. "
+                "The result is a clean, non-editable PDF that looks exactly like the original.</p>"
+                "<p>This is commonly needed when distributing completed forms, archiving documents, "
+                "or preparing PDFs for printing where interactive elements may cause issues.</p>"
+            ),
+        },
+        "extra": {
+            "how_to_time": "PT1M",
+        },
+    },
+    "sign_pdf": {
+        "template": "frontend/pdf_edit/sign_pdf.html",
+        "converter_args": {
+            "page_title": _(
+                "Sign PDF - Add Signature to PDF Online | Convertica Premium"
+            ),
+            "page_description": _(
+                "Add your handwritten signature to any PDF document. Premium feature: upload a PNG signature image, choose position and apply to all pages. Fast and secure."
+            ),
+            "page_keywords": (
+                "sign PDF online free, add signature to PDF, PDF signature tool, "
+                "sign PDF no registration, electronic signature PDF, "
+                "add image signature to PDF, PDF sign free, "
+                "sign PDF online without registration, PDF e-signature, "
+                "sign PDF document online, digital signature PDF free"
+            ),
+            "page_subtitle": _("Add your image signature to any PDF page"),
+            "header_text": _("Sign PDF"),
+            "file_input_name": "pdf_file",
+            "file_accept": ".pdf",
+            "api_url_name": "sign_pdf_api",
+            "replace_regex": r"\.pdf$",
+            "replace_to": "_signed.pdf",
+            "button_text": _("Sign PDF"),
+            "select_file_message": _("Please select a PDF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Image Signature"),
+                    "description": _(
+                        "Upload any PNG or JPEG image of your handwritten signature and place it precisely on the PDF"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Flexible Placement"),
+                    "description": _(
+                        "Choose the exact position and page for your signature, or apply it to all pages at once"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Privacy First"),
+                    "description": _(
+                        "Files are processed in-memory and deleted immediately — your signature is never stored"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Instant Download"),
+                    "description": _(
+                        "Signed PDF is ready for immediate download with no delays"
+                    ),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("What image formats are accepted for the signature?"),
+                    "answer": _(
+                        "You can upload a PNG or JPEG image of your handwritten signature. "
+                        "PNG with a transparent background works best so the signature blends naturally into the PDF."
+                    ),
+                },
+                {
+                    "question": _("Can I sign all pages at once?"),
+                    "answer": _(
+                        "Yes. Enable the 'Apply to all pages' option and your signature will be stamped "
+                        "on every page of the PDF at the same position."
+                    ),
+                },
+                {
+                    "question": _("Is this legally binding?"),
+                    "answer": _(
+                        "This tool adds a visual image signature to the PDF. For legally binding "
+                        "electronic signatures with audit trails and certificates, a dedicated "
+                        "e-signature service is recommended."
+                    ),
+                },
+            ],
+            "faq_title": _("Sign PDF FAQ"),
+            "page_tips": [
+                _(
+                    "Use a PNG image with a transparent background for the cleanest signature result."
+                ),
+                _(
+                    "Increase the signature width for large-format PDFs so it stays visible."
+                ),
+                _(
+                    "Use the 'Apply to all pages' option to stamp every page in a contract at once."
+                ),
+            ],
+            "tips_title": _("Tips for Signing PDFs"),
+            "page_content_title": _("Add your signature to a PDF online"),
+            "page_content_body": _(
+                "<p><strong>Sign PDF</strong> lets you place a handwritten signature image directly "
+                "onto any page of a PDF document. Upload your signature as a PNG or JPEG, choose the "
+                "position and page, and download the signed PDF in seconds.</p>"
+                "<p>No account required. Files are processed securely and deleted immediately after "
+                "download. The signed PDF retains all original content and formatting.</p>"
+            ),
+        },
+    },
+    "optimize_image": {
+        "template": "frontend/image_tools/optimize_image.html",
+        "converter_args": {
+            "page_title": _(
+                "Optimize Image Online Free - Compress JPEG PNG WebP | Convertica"
+            ),
+            "page_description": _(
+                "Compress and optimize images online free. Reduce JPEG, PNG, and WebP file size "
+                "without losing quality. Resize by max dimensions. No registration, no watermark."
+            ),
+            "page_keywords": (
+                "optimize image online free, compress image online, reduce image file size, "
+                "image optimizer free, compress JPEG online, compress PNG online, compress WebP, "
+                "image compression tool, reduce image size without losing quality, "
+                "image optimizer no registration, shrink image file size free"
+            ),
+            "page_subtitle": _("Reduce image file size while preserving quality"),
+            "header_text": _("Optimize Image"),
+            "file_input_name": "image_file",
+            "file_accept": ".jpg,.jpeg,.png,.webp,.gif",
+            "api_url_name": "optimize_image_api",
+            "replace_regex": r"\.(jpe?g|png|webp|gif)$",
+            "replace_to": "_optimized",
+            "button_text": _("Optimize Image"),
+            "select_file_message": _("Please select an image file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("JPEG, PNG & WebP"),
+                    "description": _(
+                        "Compress all major image formats with format-appropriate algorithms for maximum savings"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Resize on the Fly"),
+                    "description": _(
+                        "Optionally cap the maximum width or height while preserving the original aspect ratio"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Quality Control"),
+                    "description": _(
+                        "Dial in the exact quality level (10-100) to balance file size and visual fidelity"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Instant Download"),
+                    "description": _("Optimized image is ready for immediate download"),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("Which image formats can be optimized?"),
+                    "answer": _(
+                        "JPEG, PNG, WebP, and GIF files are supported. Each format is compressed "
+                        "using the most effective algorithm for that format."
+                    ),
+                },
+                {
+                    "question": _("What quality setting should I use?"),
+                    "answer": _(
+                        "85 is a good default that balances quality and file size. "
+                        "For web use, values between 70 and 85 typically give the best results. "
+                        "Use 90+ when quality is critical, such as for print assets."
+                    ),
+                },
+                {
+                    "question": _("Can I change the output format while optimizing?"),
+                    "answer": _(
+                        "Yes. You can optionally convert the image to JPEG, PNG, or WebP during optimization. "
+                        "Leave the format field empty to keep the original format."
+                    ),
+                },
+            ],
+            "faq_title": _("Image Optimization FAQ"),
+            "page_tips": [
+                _(
+                    "Use WebP output for the smallest file sizes when targeting modern web browsers."
+                ),
+                _(
+                    "Set a max width of 1920px for full-screen hero images to avoid serving oversized files."
+                ),
+                _(
+                    "For thumbnails and previews, a quality of 70-75 is usually indistinguishable from the original."
+                ),
+            ],
+            "tips_title": _("Tips for Image Optimization"),
+            "page_content_title": _("Compress and optimize images online"),
+            "page_content_body": _(
+                "<p><strong>Optimize Image</strong> reduces the file size of your images by applying "
+                "smart compression while keeping the visual quality you choose. Smaller images load "
+                "faster, consume less bandwidth, and improve your website's performance and SEO.</p>"
+                "<p>Supports JPEG, PNG, WebP, and GIF. Optionally resize images by setting a maximum "
+                "width or height — the aspect ratio is always preserved.</p>"
+            ),
+        },
+    },
+    "convert_image": {
+        "template": "frontend/image_tools/convert_image.html",
+        "converter_args": {
+            "page_title": _(
+                "Convert Image Format Online Free - JPEG PNG WebP GIF BMP | Convertica"
+            ),
+            "page_description": _(
+                "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF online free. "
+                "Fast, lossless format conversion with quality control. No registration required."
+            ),
+            "page_keywords": (
+                "convert image format online free, image converter online, "
+                "convert JPEG to PNG, convert PNG to WebP, convert image to JPEG, "
+                "image format converter free, convert WebP to PNG, convert BMP to JPEG, "
+                "online image converter no registration, image format conversion tool"
+            ),
+            "page_subtitle": _(
+                "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
+            ),
+            "header_text": _("Convert Image"),
+            "file_input_name": "image_file",
+            "file_accept": ".jpg,.jpeg,.png,.webp,.gif,.bmp,.tiff,.tif",
+            "api_url_name": "convert_image_api",
+            "replace_regex": r"\.(jpe?g|png|webp|gif|bmp|tiff?)$",
+            "replace_to": "",
+            "button_text": _("Convert Image"),
+            "select_file_message": _("Please select an image file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("6 Output Formats"),
+                    "description": _(
+                        "Convert to JPEG, PNG, WebP, GIF, BMP, or TIFF — all major image formats supported"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Quality Preserved"),
+                    "description": _(
+                        "Lossless conversion for PNG/BMP/TIFF; adjustable quality for JPEG and WebP"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Wide Input Support"),
+                    "description": _(
+                        "Accepts JPEG, PNG, WebP, GIF, BMP, and TIFF as input — convert from any to any"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Instant Conversion"),
+                    "description": _("Fast format conversion with immediate download"),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("Which image formats are supported?"),
+                    "answer": _(
+                        "Input formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. "
+                        "Output formats: JPEG, PNG, WebP, GIF, BMP, and TIFF. "
+                        "You can convert between any combination of these formats."
+                    ),
+                },
+                {
+                    "question": _("Will converting to JPEG reduce image quality?"),
+                    "answer": _(
+                        "JPEG is a lossy format, so some quality reduction occurs during conversion. "
+                        "Use the quality slider to control the trade-off between file size and quality. "
+                        "A setting of 90 or above is nearly indistinguishable from the original."
+                    ),
+                },
+                {
+                    "question": _("Does converting PNG to WebP keep transparency?"),
+                    "answer": _(
+                        "Yes. WebP supports transparency, so transparent PNG images convert to WebP "
+                        "with the alpha channel preserved. Converting to JPEG will fill transparent "
+                        "areas with white."
+                    ),
+                },
+            ],
+            "faq_title": _("Image Conversion FAQ"),
+            "page_tips": [
+                _(
+                    "Convert PNG to WebP for the best balance of quality and file size on the web."
+                ),
+                _(
+                    "Use PNG output when transparency must be preserved — it is the only lossless format that supports it (besides WebP)."
+                ),
+                _(
+                    "Convert to TIFF for archiving or print workflows that require the highest fidelity."
+                ),
+            ],
+            "tips_title": _("Tips for Image Conversion"),
+            "page_content_title": _("Convert images between formats online"),
+            "page_content_body": _(
+                "<p><strong>Convert Image</strong> transforms your image files from one format to another "
+                "instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG "
+                "to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p>"
+                "<p>No software installation required. All conversions happen on the server and your files "
+                "are deleted immediately after download.</p>"
+            ),
+        },
+    },
+    "pdf_to_text": {
+        "template": "frontend/pdf_convert/pdf_to_text.html",
+        "converter_args": {
+            "page_title": _(
+                "PDF to Text Converter - Extract Text from PDF | Convertica Premium"
+            ),
+            "page_description": _(
+                "Extract all text from PDF files as plain .txt. Premium feature: supports page number markers, layout preservation. Free trial available."
+            ),
+            "page_keywords": (
+                "PDF to text, convert PDF to text online free, extract text from PDF, "
+                "PDF to TXT, PDF text extractor, PDF to plain text, "
+                "extract text from PDF online, PDF to text converter, "
+                "PDF text extraction free, convert PDF to TXT no registration"
+            ),
+            "page_subtitle": _("Extract plain text from your PDF in seconds"),
+            "header_text": _("PDF to Text Converter"),
+            "file_input_name": "pdf_file",
+            "file_accept": ".pdf",
+            "api_url_name": "pdf_to_text_api",
+            "replace_regex": r"\.pdf$",
+            "replace_to": ".txt",
+            "button_text": _("Extract Text"),
+            "select_file_message": _("Please select a PDF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Plain Text Output"),
+                    "description": _(
+                        "Extracts all text content from your PDF into a clean, portable .txt file"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Page Number Dividers"),
+                    "description": _(
+                        "Optionally add page separators so you know where each page begins"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Layout Preservation"),
+                    "description": _(
+                        "Option to preserve text positioning and column structure from the original"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Instant Extraction"),
+                    "description": _("Fast text extraction with immediate download"),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("What text formats can be extracted from a PDF?"),
+                    "answer": _(
+                        "All selectable text embedded in the PDF is extracted. Scanned PDFs "
+                        "or image-based PDFs without embedded text will produce empty or minimal output."
+                    ),
+                },
+                {
+                    "question": _("What does the 'preserve layout' option do?"),
+                    "answer": _(
+                        "When enabled, the extractor tries to maintain the original text positioning "
+                        "and column structure of the PDF. This can help with multi-column documents "
+                        "but may add extra whitespace."
+                    ),
+                },
+                {
+                    "question": _("Will the output include images or tables?"),
+                    "answer": _(
+                        "No. Only plain text is extracted. Images are skipped, and table data "
+                        "is extracted as plain text rows without formatting."
+                    ),
+                },
+            ],
+            "faq_title": _("PDF to Text FAQ"),
+            "page_tips": [
+                _("Enable page numbers to easily navigate large extracted documents."),
+                _(
+                    "For multi-column PDFs, try enabling layout preservation for better results."
+                ),
+                _(
+                    "Scanned PDFs require OCR before text extraction — use our PDF to Word tool for that."
+                ),
+            ],
+            "tips_title": _("Tips for PDF Text Extraction"),
+            "page_content_title": _("Extract plain text from PDF files"),
+            "page_content_body": _(
+                "<p><strong>PDF to Text</strong> extraction pulls all embedded text from your PDF "
+                "and saves it as a plain UTF-8 encoded .txt file. This is ideal for data processing, "
+                "indexing, archiving, or feeding content into other tools.</p>"
+                "<p>Text-based PDFs extract cleanly and quickly. For scanned documents, consider "
+                "running OCR first to generate selectable text before using this tool.</p>"
+            ),
+        },
+        "extra": {
+            "how_to_time": "PT1M",
         },
     },
 }

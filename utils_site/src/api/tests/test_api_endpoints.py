@@ -149,7 +149,7 @@ startxref
             from pypdf import PdfReader, PdfWriter
         except ImportError:
             try:
-                from PyPDF2 import PdfReader, PdfWriter
+                from pypdf import PdfReader, PdfWriter
             except ImportError as exc:
                 raise RuntimeError(
                     "Neither pypdf nor PyPDF2 is available for encrypted PDF tests."
@@ -327,7 +327,7 @@ startxref
         import shutil
         import zipfile
 
-        from PyPDF2 import PdfReader
+        from pypdf import PdfReader
         from src.api.pdf_organize.split_pdf.utils import split_pdf
 
         pdf_file = self._create_test_pdf()
@@ -356,7 +356,7 @@ startxref
     def test_compress_pdf_levels_affect_output_size(self):
         import shutil
 
-        from PyPDF2 import PdfReader
+        from pypdf import PdfReader
         from src.api.pdf_organize.compress_pdf.utils import compress_pdf
 
         pdf_file_low = self._create_test_pdf_with_jpeg()
@@ -393,7 +393,7 @@ startxref
     def test_crop_pdf_fast_path_creates_cropped_pdf(self):
         import shutil
 
-        from PyPDF2 import PdfReader
+        from pypdf import PdfReader
         from src.api.pdf_edit.crop_pdf.utils import crop_pdf
 
         pdf_file = self._create_test_pdf()
@@ -424,7 +424,7 @@ startxref
     def test_merge_pdf_creates_pdf_with_expected_pages(self):
         import shutil
 
-        from PyPDF2 import PdfReader
+        from pypdf import PdfReader
         from src.api.pdf_organize.merge_pdf.utils import merge_pdf
 
         pdf1 = self._create_test_pdf()

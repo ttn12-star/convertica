@@ -379,6 +379,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://mc.yandex.com "
             "https://accounts.google.com "
             "https://connect.facebook.net "
+            "https://pagead2.googlesyndication.com "
+            "https://partner.googleadservices.com "
             "https://cdnjs.cloudflare.com",
             # Styles: self, inline (for Tailwind and dynamic styles)
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
@@ -394,7 +396,10 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://mc.yandex.ru "
             "https://mc.yandex.com "
             "https://i.ytimg.com "
-            "https://img.youtube.com",
+            "https://img.youtube.com "
+            "https://pagead2.googlesyndication.com "
+            "https://googleads.g.doubleclick.net "
+            "https://tpc.googlesyndication.com",
             # Connect: self, Stripe, Turnstile, WebSocket, analytics, Yandex Metrika
             "connect-src 'self' "
             "https://api.stripe.com "
@@ -411,7 +416,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "wss://mc.yandex.com "
             "ws://localhost:* "
             "wss://localhost:*",
-            # Frames: Stripe checkout, Turnstile, OAuth, YouTube
+            # Frames: Stripe checkout, Turnstile, OAuth, YouTube, AdSense
             "frame-src 'self' "
             "https://js.stripe.com "
             "https://hooks.stripe.com "
@@ -419,7 +424,9 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://accounts.google.com "
             "https://www.facebook.com "
             "https://www.youtube-nocookie.com "
-            "https://www.youtube.com",
+            "https://www.youtube.com "
+            "https://googleads.g.doubleclick.net "
+            "https://tpc.googlesyndication.com",
             # Form actions: self only
             "form-action 'self' https://accounts.google.com https://www.facebook.com",
             # Base URI: self only (prevents base tag injection)

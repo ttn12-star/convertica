@@ -11,6 +11,10 @@ from .epub_convert.async_views import EPUBToPDFAsyncAPIView, PDFToEPUBAsyncAPIVi
 from .epub_convert.views import EPUBToPDFAPIView, PDFToEPUBAPIView
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
+from .image_tools.convert_image.batch_views import ConvertImageBatchAPIView
+from .image_tools.convert_image.views import ConvertImageAPIView
+from .image_tools.optimize_image.batch_views import OptimizeImageBatchAPIView
+from .image_tools.optimize_image.views import OptimizeImageAPIView
 from .pdf_compare.views import ComparePDFAPIView
 from .pdf_convert.async_views import (
     PDFToExcelAsyncAPIView,
@@ -32,6 +36,8 @@ from .pdf_convert.pdf_to_jpg.views import PDFToJPGAPIView
 from .pdf_convert.pdf_to_markdown.views import PDFToMarkdownAPIView
 from .pdf_convert.pdf_to_ppt.batch_views import PDFToPowerPointBatchAPIView
 from .pdf_convert.pdf_to_ppt.views import PDFToPowerPointAPIView
+from .pdf_convert.pdf_to_text.batch_views import PDFToTextBatchAPIView
+from .pdf_convert.pdf_to_text.views import PDFToTextAPIView
 from .pdf_convert.pdf_to_word.batch_views import PDFToWordBatchAPIView
 from .pdf_convert.pdf_to_word.views import PDFToWordAPIView
 from .pdf_convert.ppt_to_pdf.batch_views import PowerPointToPDFBatchAPIView
@@ -44,7 +50,11 @@ from .pdf_edit.add_watermark.batch_views import AddWatermarkBatchAPIView
 from .pdf_edit.add_watermark.views import AddWatermarkAPIView
 from .pdf_edit.crop_pdf.batch_views import CropPDFBatchAPIView
 from .pdf_edit.crop_pdf.views import CropPDFAPIView
+from .pdf_edit.flatten_pdf.batch_views import FlattenPDFBatchAPIView
+from .pdf_edit.flatten_pdf.views import FlattenPDFAPIView
 from .pdf_edit.rotate_pdf.views import RotatePDFAPIView
+from .pdf_edit.sign_pdf.batch_views import SignPDFBatchAPIView
+from .pdf_edit.sign_pdf.views import SignPDFAPIView
 from .pdf_organize.async_views import CompressPDFAsyncAPIView
 from .pdf_organize.compress_pdf.batch_views import CompressPDFBatchAPIView
 from .pdf_organize.compress_pdf.views import CompressPDFAPIView
@@ -203,6 +213,12 @@ urlpatterns = [
         PDFToMarkdownAPIView.as_view(),
         name="pdf_to_markdown_api",
     ),
+    path("pdf-to-text/", PDFToTextAPIView.as_view(), name="pdf_to_text_api"),
+    path(
+        "pdf-to-text/batch/",
+        PDFToTextBatchAPIView.as_view(),
+        name="pdf_to_text_batch_api",
+    ),
     path("compare-pdf/", ComparePDFAPIView.as_view(), name="compare_pdf_api"),
     # Async endpoints (for large files / heavy operations - avoids Cloudflare timeout)
     path(
@@ -253,6 +269,16 @@ urlpatterns = [
         name="add_watermark_api",
     ),
     path("pdf-edit/crop/", CropPDFAPIView.as_view(), name="crop_pdf_api"),
+    path("pdf-edit/sign/", SignPDFAPIView.as_view(), name="sign_pdf_api"),
+    path(
+        "pdf-edit/sign/batch/", SignPDFBatchAPIView.as_view(), name="sign_pdf_batch_api"
+    ),
+    path("pdf-edit/flatten/", FlattenPDFAPIView.as_view(), name="flatten_pdf_api"),
+    path(
+        "pdf-edit/flatten/batch/",
+        FlattenPDFBatchAPIView.as_view(),
+        name="flatten_pdf_batch_api",
+    ),
     # PDF Organize endpoints
     path("pdf-organize/merge/", MergePDFAPIView.as_view(), name="merge_pdf_api"),
     path("pdf-organize/split/", SplitPDFAPIView.as_view(), name="split_pdf_api"),
@@ -280,4 +306,17 @@ urlpatterns = [
     # PDF Security endpoints
     path("pdf-security/protect/", ProtectPDFAPIView.as_view(), name="protect_pdf_api"),
     path("pdf-security/unlock/", UnlockPDFAPIView.as_view(), name="unlock_pdf_api"),
+    # Image tool endpoints
+    path("image/optimize/", OptimizeImageAPIView.as_view(), name="optimize_image_api"),
+    path(
+        "image/optimize/batch/",
+        OptimizeImageBatchAPIView.as_view(),
+        name="optimize_image_batch_api",
+    ),
+    path("image/convert/", ConvertImageAPIView.as_view(), name="convert_image_api"),
+    path(
+        "image/convert/batch/",
+        ConvertImageBatchAPIView.as_view(),
+        name="convert_image_batch_api",
+    ),
 ]

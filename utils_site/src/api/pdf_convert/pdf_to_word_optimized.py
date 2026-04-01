@@ -532,6 +532,42 @@ class OptimizedPDFToWordConverter:
                 check_cancelled()
             await loop.run_in_executor(None, _convert, pdf_path)
         except Exception as first_exc:
+            # FzErrorFormat on the first attempt means the PDF is structurally
+            # corrupted — attempt repair before giving up.
+            if isinstance(first_exc, fitz.FzErrorFormat) or type(
+                first_exc
+            ).__name__.startswith("Fz"):
+                logger.warning(
+                    "Direct conversion failed with FzErrorFormat, attempting repair",
+                    extra={
+                        **context,
+                        "event": "retry_with_repair_fz",
+                        "error": str(first_exc)[:200],
+                    },
+                )
+                tmp_dir = os.path.dirname(docx_path)
+                repaired_pdf_path = os.path.join(
+                    tmp_dir, f"repaired_{os.path.basename(pdf_path)}"
+                )
+                repaired_path = await loop.run_in_executor(
+                    None, repair_pdf, pdf_path, repaired_pdf_path
+                )
+                if callable(check_cancelled):
+                    check_cancelled()
+                try:
+                    await loop.run_in_executor(None, _convert, repaired_path)
+                    logger.info(
+                        "Repair succeeded after FzErrorFormat",
+                        extra={**context, "event": "retry_with_repair_fz_success"},
+                    )
+                    return
+                except Exception:
+                    raise ConversionError(
+                        "This PDF file appears to be corrupted or in an unsupported format. "
+                        "Please try with a different PDF file.",
+                        context=context,
+                    ) from first_exc
+
             msg = str(first_exc).lower()
             if "pixmap must be grayscale or rgb" in msg or "colorspace" in msg:
                 logger.warning(

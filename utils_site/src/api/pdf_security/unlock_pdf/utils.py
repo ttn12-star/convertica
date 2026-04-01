@@ -2,7 +2,7 @@ import os
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.translation import gettext as _
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,

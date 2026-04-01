@@ -29,7 +29,7 @@ except ImportError:
     )
 
 try:
-    from PyPDF2 import PdfReader, PdfWriter
+    from pypdf import PdfReader, PdfWriter
 
     PYPDF2_AVAILABLE = True
 except ImportError:
@@ -591,11 +591,15 @@ class OptimizedWordToPDFConverter:
                         )
                         return True
 
-                logger.error(
-                    f"LibreOffice conversion failed: {stderr_preview or 'Unknown error'}",
+                # First attempt failed — log as warning because a fallback
+                # conversion without --infilter will be attempted next.
+                # Only escalate to error if all attempts are exhausted.
+                logger.warning(
+                    f"LibreOffice first attempt failed (will retry without infilter): "
+                    f"{stderr_preview or 'Unknown error'}",
                     extra={
                         **context,
-                        "event": "conversion_error",
+                        "event": "conversion_first_attempt_failed",
                         "return_code": e.returncode,
                         "stdout_preview": stdout_preview,
                         "command": " ".join(getattr(e, "cmd", []) or []),
@@ -681,6 +685,30 @@ class OptimizedWordToPDFConverter:
                         if fallback_e.stderr
                         else ""
                     )
+
+                    # Check if fallback also failed only due to the harmless javaldx warning.
+                    if fallback_stderr_preview and all(
+                        w in fallback_stderr_preview.lower() for w in _JAVA_WARNINGS
+                    ):
+                        output_dir = os.path.dirname(pdf_path)
+                        pdf_files = [
+                            f
+                            for f in os.listdir(output_dir)
+                            if f.lower().endswith(".pdf")
+                        ]
+                        if pdf_files:
+                            logger.warning(
+                                "LibreOffice fallback exited non-zero due to javaldx "
+                                "warning but PDF was created; treating as success",
+                                extra={
+                                    **context,
+                                    "event": "conversion_javaldx_warning_ignored_fallback",
+                                    "stderr_preview": fallback_stderr_preview[:500],
+                                    "pdf_files": pdf_files,
+                                },
+                            )
+                            return True
+
                     logger.warning(
                         f"LibreOffice fallback conversion failed: {fallback_stderr_preview or 'Unknown error'}",
                         extra={
@@ -739,6 +767,40 @@ class OptimizedWordToPDFConverter:
                         subprocess.TimeoutExpired,
                         subprocess.CalledProcessError,
                     ) as simple_e:
+                        # One final check: if all three attempts failed only because of the
+                        # harmless javaldx Java warning, but the PDF was still produced, treat
+                        # the conversion as successful rather than raising to Sentry.
+                        if isinstance(simple_e, subprocess.CalledProcessError):
+                            simple_stderr_preview = (
+                                simple_e.stderr.decode(errors="replace")[:1000]
+                                if simple_e.stderr
+                                else ""
+                            )
+                            if simple_stderr_preview and all(
+                                w in simple_stderr_preview.lower()
+                                for w in _JAVA_WARNINGS
+                            ):
+                                output_dir = os.path.dirname(pdf_path)
+                                pdf_files = [
+                                    f
+                                    for f in os.listdir(output_dir)
+                                    if f.lower().endswith(".pdf")
+                                ]
+                                if pdf_files:
+                                    logger.warning(
+                                        "LibreOffice simple attempt exited non-zero due to "
+                                        "javaldx warning but PDF was created; treating as success",
+                                        extra={
+                                            **context,
+                                            "event": "conversion_javaldx_warning_ignored_simple",
+                                            "stderr_preview": simple_stderr_preview[
+                                                :500
+                                            ],
+                                            "pdf_files": pdf_files,
+                                        },
+                                    )
+                                    return True
+
                         logger.error(
                             f"All LibreOffice conversion attempts failed. Simple filter error: {simple_e}",
                             extra={**context, "event": "conversion_all_failed"},

@@ -14,7 +14,7 @@ from django.core.files.uploadedfile import UploadedFile
 try:
     from pypdf import PdfReader
 except ImportError:
-    from PyPDF2 import PdfReader
+    from pypdf import PdfReader
 
 from ....exceptions import ConversionError, InvalidPDFError, StorageError
 from ...file_validation import check_disk_space, sanitize_filename

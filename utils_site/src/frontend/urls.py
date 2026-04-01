@@ -25,6 +25,7 @@ urlpatterns = [
         views.pdf_to_markdown_page,
         name="pdf_to_markdown_page",
     ),
+    path("pdf-to-text/", views.pdf_to_text_page, name="pdf_to_text_page"),
     path("compare-pdf/", views.compare_pdf_page, name="compare_pdf_page"),
     path("epub-to-pdf/", views.epub_to_pdf_page, name="epub_to_pdf_page"),
     path("pdf-to-epub/", views.pdf_to_epub_page, name="pdf_to_epub_page"),
@@ -55,6 +56,11 @@ urlpatterns = [
         "pdf-edit/add-watermark/", views.add_watermark_page, name="add_watermark_page"
     ),
     path("pdf-edit/crop/", views.crop_pdf_page, name="crop_pdf_page"),
+    path("pdf-edit/flatten/", views.flatten_pdf_page, name="flatten_pdf_page"),
+    path("pdf-edit/sign/", views.sign_pdf_page, name="sign_pdf_page"),
+    # Image tool pages
+    path("image/optimize/", views.optimize_image_page, name="optimize_image_page"),
+    path("image/convert/", views.convert_image_page, name="convert_image_page"),
     # PDF Organize pages
     path("pdf-organize/merge/", views.merge_pdf_page, name="merge_pdf_page"),
     path("pdf-organize/split/", views.split_pdf_page, name="split_pdf_page"),

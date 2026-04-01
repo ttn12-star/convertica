@@ -66,6 +66,9 @@ def site_settings(request):
         "SITE_NAME": getattr(settings, "SITE_NAME", "Convertica"),
         "SITE_URL": getattr(settings, "SITE_URL", "https://convertica.net"),
         "VAPID_PUBLIC_KEY": getattr(settings, "VAPID_PUBLIC_KEY", ""),
+        "ADSENSE_PUBLISHER_ID": getattr(settings, "ADSENSE_PUBLISHER_ID", ""),
+        "YANDEX_RSY_ID": getattr(settings, "YANDEX_RSY_ID", ""),
+        "YANDEX_VERIFICATION": getattr(settings, "YANDEX_VERIFICATION", ""),
     }
 
 

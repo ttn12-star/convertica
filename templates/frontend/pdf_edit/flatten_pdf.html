@@ -1,0 +1,58 @@
+{% extends "frontend/edit_pdf_generic.html" %}
+{% load i18n %}
+
+{% block edit_options %}
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 sm:p-6">
+    <div class="flex items-start space-x-3">
+      <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <div>
+        <p class="text-sm font-semibold text-blue-800">{% trans "What does flattening do?" %}</p>
+        <p class="text-sm text-blue-700 mt-1">
+          {% trans "Flattening removes all interactive form fields, checkboxes, text inputs, and annotations from your PDF. The result is a static, non-editable document that looks identical but cannot be filled out or modified." %}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block help_section %}
+  <!-- How it works -->
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+      <li>{% trans "Select your PDF file using the button above or drag and drop it" %}</li>
+      <li>{% trans "Click the Flatten PDF button to start processing" %}</li>
+      <li>{% trans "All interactive form fields and annotations will be removed" %}</li>
+      <li>{% trans "Download your flattened static PDF file" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+        <strong>{% trans "Note:" %}</strong>
+        {% blocktrans with max_pages=conversion_limits.max_free_pdf_pages %}
+          PDF files with up to {{ max_pages }} pages are supported. The visual appearance of the PDF is preserved while all interactive elements are removed.
+        {% endblocktrans %}
+      </p>
+    </div>
+  </div>
+
+  <!-- SEO Content Block -->
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+  <!-- SEO Benefits -->
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+  <!-- SEO Tips -->
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+  <!-- SEO FAQ -->
+  {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+
+  <!-- Related Tools -->
+  {% if related_tools %}
+    {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+  {% endif %}
+{% endblock %}

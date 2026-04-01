@@ -26,7 +26,6 @@ python-docx==1.1.2
 olefile==0.47
 pydantic==2.12.5
 pydantic_core==2.41.5
-PyPDF2==3.0.1
 # PDF processing libraries
 pypdf==5.1.0
 PyMuPDF==1.24.12
@@ -34,8 +33,6 @@ PyMuPDF==1.24.12
 nltk==3.9.1
 # Async utilities
 aiofiles==24.1.0
-# Memory monitoring
-memory-profiler==0.61.0
 pyproject_hooks==1.2.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.1
@@ -55,7 +52,6 @@ pytesseract==0.3.13
 pytz==2025.2
 reportlab==4.2.5
 setuptools==80.9.0
-six==1.17.0
 sqlparse==0.5.4
 typing-inspection==0.4.2
 typing_extensions==4.15.0
@@ -67,8 +63,8 @@ gunicorn==21.2.0
 whitenoise==6.11.0
 requests==2.32.5
 # System monitoring
-psutil==5.9.8
-# Development tools (pre-commit)
+psutil==6.1.1
+# Development tools (pre-commit, linting) — move to dev-requirements.txt if separate env needed
 pre-commit==3.7.1
 ruff==0.4.4
 isort==5.13.2
