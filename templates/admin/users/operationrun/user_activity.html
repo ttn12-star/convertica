@@ -1,0 +1,143 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {{ site_title }}{% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_label|capfirst }}</a>
+    &rsaquo; <a href="{% url 'admin:users_operationrun_changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+    &rsaquo; {{ title }}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <style>
+    .filter-form {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .filter-form label {
+      font-weight: bold;
+    }
+    .filter-form input[type=number] {
+      width: 80px;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .filter-form button {
+      background: #417690;
+      color: white;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .filter-form button:hover {
+      background: #264653;
+    }
+    .activity-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .activity-table th,
+    .activity-table td {
+      border: 1px solid #ddd;
+      padding: 7px 10px;
+      text-align: right;
+    }
+    .activity-table th {
+      background-color: #79aec8;
+      color: white;
+      font-weight: bold;
+    }
+    .activity-table th:first-child,
+    .activity-table td:first-child {
+      text-align: left;
+    }
+    .activity-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .activity-table tr:hover {
+      background-color: #f1f1f1;
+    }
+    .nav-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #447e9b;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+    .result-count {
+      margin-bottom: 10px;
+      color: #666;
+      font-size: 13px;
+    }
+  </style>
+
+  <a href="{% url 'admin:users_operationrun_changelist' %}" class="nav-link">&larr; {% trans "Back to Operations List" %}</a>
+
+  <form method="get" class="filter-form">
+    <label for="min_ops">{% trans "Min operations:" %}</label>
+    <input type="number" id="min_ops" name="min_ops" value="{{ min_ops }}" min="1">
+    <button type="submit">{% trans "Filter" %}</button>
+  </form>
+
+  <p class="result-count">
+    {% blocktrans with count=users|length %}Showing top {{ count }} users (max 200) with at least {{ min_ops }} operation(s).{% endblocktrans %}
+  </p>
+
+  {% if users %}
+    <table class="activity-table">
+      <thead>
+        <tr>
+          <th>{% trans "Email" %}</th>
+          <th>{% trans "Total" %}</th>
+          <th>{% trans "Success" %}</th>
+          <th>{% trans "Errors" %}</th>
+          <th>{% trans "Success Rate" %}</th>
+          <th>{% trans "First Operation" %}</th>
+          <th>{% trans "Last Operation" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in users %}
+          <tr>
+            <td>
+              <a href="{% url 'admin:users_operationrun_changelist' %}?user__email={{ u.user__email }}">
+                {{ u.user__email }}
+              </a>
+            </td>
+            <td>{{ u.total }}</td>
+            <td>{{ u.success }}</td>
+            <td>
+              {% if u.error > 0 %}
+                <span style="color: #dc3545; font-weight: bold;">{{ u.error }}</span>
+              {% else %}
+                0
+              {% endif %}
+            </td>
+            <td>
+              {% if u.total > 0 %}
+                {% widthratio u.success u.total 100 %}%
+              {% else %}
+                —
+              {% endif %}
+            </td>
+            <td>{{ u.first_op|date:"d.m.Y H:i" }}</td>
+            <td>{{ u.last_op|date:"d.m.Y H:i" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>{% trans "No users found with the given filter." %}</p>
+  {% endif %}
+{% endblock %}

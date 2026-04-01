@@ -55,15 +55,25 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
             # Drop user-caused file errors - these are not application bugs
             # FileNotDecryptedError: user uploads an encrypted PDF to a tool that doesn't accept it
             # UnidentifiedImageError: user uploads a non-image (e.g. PDF) to an image tool
-            # FzErrorFormat: user uploads a structurally corrupted PDF
             if "exc_info" in hint:
                 exc_type = hint["exc_info"][0]
                 if exc_type and exc_type.__name__ in {
                     "FileNotDecryptedError",
                     "UnidentifiedImageError",
-                    "FzErrorFormat",
                 }:
                     return None
+
+            # FzErrorFormat: structurally corrupted PDF uploaded by user.
+            # Downgrade to info (don't alert) but keep in Sentry to track patterns
+            # and understand which file structures consistently fail.
+            if "exc_info" in hint:
+                exc_type = hint["exc_info"][0]
+                if exc_type and exc_type.__name__ == "FzErrorFormat":
+                    event["level"] = "info"
+                    event.setdefault("tags", {})
+                    event["tags"]["error_type"] = "handled"
+                    event["tags"]["user_error"] = "true"
+                    event["tags"]["file_error"] = "corrupted_pdf"
 
             # Drop Gunicorn access logs - these are just successful HTTP requests, not errors
             if event.get("logger") == "gunicorn.access":

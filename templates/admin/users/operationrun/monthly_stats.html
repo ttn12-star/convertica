@@ -157,7 +157,8 @@
       <h3 class="month-header">
         {{ month_data.month|date:"F Y" }}
         <span style="font-weight: normal; font-size: 14px; margin-left: 10px;">
-          ({{ month_data.totals.total }} operations, {{ month_data.totals.success_rate }}% success)
+          ({{ month_data.totals.total }} operations, {{ month_data.totals.success_rate }}% success
+          &mdash; {{ month_data.totals.unique_users }} registered users, {{ month_data.totals.unique_ips }} unique IPs)
         </span>
       </h3>
       <table class="stats-table">

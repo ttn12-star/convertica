@@ -3694,6 +3694,8 @@ msgid ""
 "Free users can extract text from PDF files with up to %(max_pages)s pages. "
 "The extracted text is saved as a plain UTF-8 encoded .txt file."
 msgstr ""
+"मुफ्त उपयोगकर्ता %(max_pages)s पृष्ठों तक की PDF फ़ाइलों से टेक्स्ट निकाल सकते हैं। "
+"निकाला गया टेक्स्ट एक सादी UTF-8 एन्कोडेड .txt फ़ाइल के रूप में सहेजा जाता है।"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
@@ -12870,6 +12872,8 @@ msgid ""
 "a PNG signature image, choose position and apply to all pages. Fast and "
 "secure."
 msgstr ""
+"किसी भी PDF दस्तावेज़ पर अपना हस्तलिखित हस्ताक्षर जोड़ें। प्रीमियम सुविधा: PNG हस्ताक्षर छवि "
+"अपलोड करें, स्थिति चुनें और सभी पृष्ठों पर लागू करें। तेज़ और सुरक्षित।"
 
 #: utils_site/src/frontend/tool_configs.py:3746
 msgid "Add your image signature to any PDF page"
@@ -13300,6 +13304,8 @@ msgid ""
 "Extract all text from PDF files as plain .txt. Premium feature: supports "
 "page number markers, layout preservation. Free trial available."
 msgstr ""
+"PDF फ़ाइलों से सभी टेक्स्ट को सादे .txt के रूप में निकालें। प्रीमियम सुविधा: पृष्ठ संख्या "
+"मार्कर, लेआउट संरक्षण का समर्थन करता है। निःशुल्क परीक्षण उपलब्ध।"
 
 #: utils_site/src/frontend/tool_configs.py:4070
 msgid "Extract plain text from your PDF in seconds"
@@ -13557,12 +13563,16 @@ msgid ""
 "Add your handwritten signature image to any PDF page. Choose position, size, "
 "and opacity. Apply to all pages at once."
 msgstr ""
+"किसी भी PDF पृष्ठ पर अपनी हस्तलिखित हस्ताक्षर छवि जोड़ें। स्थिति, आकार और अपारदर्शिता चुनें। "
+"एक साथ सभी पृष्ठों पर लागू करें।"
 
 #: utils_site/src/frontend/views.py:653
 msgid ""
 "Extract all text content from a PDF as a plain .txt file. Supports page "
 "numbering and layout preservation."
 msgstr ""
+"PDF से सभी टेक्स्ट सामग्री को एक सादी .txt फ़ाइल के रूप में निकालें। पृष्ठ क्रमांकन और "
+"लेआउट संरक्षण का समर्थन करता है।"
 
 #: utils_site/src/frontend/views.py:690
 msgid "Compare Two PDFs (Premium) - Convertica"

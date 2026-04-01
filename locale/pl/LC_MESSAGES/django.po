@@ -3751,6 +3751,8 @@ msgid ""
 "Free users can extract text from PDF files with up to %(max_pages)s pages. "
 "The extracted text is saved as a plain UTF-8 encoded .txt file."
 msgstr ""
+"Bezpłatni użytkownicy mogą wyodrębniać tekst z plików PDF o maksymalnie %(max_pages)s stronach. "
+"Wyodrębniony tekst jest zapisywany jako plik .txt w kodowaniu UTF-8."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
@@ -13341,6 +13343,8 @@ msgid ""
 "a PNG signature image, choose position and apply to all pages. Fast and "
 "secure."
 msgstr ""
+"Dodaj odręczny podpis do dowolnego dokumentu PDF. Funkcja premium: prześlij obraz podpisu PNG, "
+"wybierz pozycję i zastosuj na wszystkich stronach. Szybko i bezpiecznie."
 
 #: utils_site/src/frontend/tool_configs.py:3746
 msgid "Add your image signature to any PDF page"
@@ -13797,6 +13801,8 @@ msgid ""
 "Extract all text from PDF files as plain .txt. Premium feature: supports "
 "page number markers, layout preservation. Free trial available."
 msgstr ""
+"Wyodrębnij cały tekst z plików PDF jako plik .txt. Funkcja premium: obsługa znaczników numerów stron, "
+"zachowanie układu. Bezpłatna wersja próbna dostępna."
 
 #: utils_site/src/frontend/tool_configs.py:4070
 msgid "Extract plain text from your PDF in seconds"
@@ -14074,12 +14080,16 @@ msgid ""
 "Add your handwritten signature image to any PDF page. Choose position, size, "
 "and opacity. Apply to all pages at once."
 msgstr ""
+"Dodaj obraz odręcznego podpisu do dowolnej strony PDF. Wybierz pozycję, rozmiar "
+"i przezroczystość. Zastosuj na wszystkich stronach jednocześnie."
 
 #: utils_site/src/frontend/views.py:653
 msgid ""
 "Extract all text content from a PDF as a plain .txt file. Supports page "
 "numbering and layout preservation."
 msgstr ""
+"Wyodrębnij całą treść tekstową z PDF jako plik .txt. Obsługuje numerowanie stron "
+"i zachowanie układu dokumentu."
 
 #: utils_site/src/frontend/views.py:690
 msgid "Compare Two PDFs (Premium) - Convertica"
