@@ -3784,6 +3784,9 @@ msgid ""
 "Free users can extract text from PDF files with up to %(max_pages)s pages. "
 "The extracted text is saved as a plain UTF-8 encoded .txt file."
 msgstr ""
+"Los usuarios gratuitos pueden extraer texto de archivos PDF de hasta "
+"%(max_pages)s páginas. El texto extraído se guarda como un archivo .txt "
+"plano codificado en UTF-8."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
@@ -13468,6 +13471,9 @@ msgid ""
 "a PNG signature image, choose position and apply to all pages. Fast and "
 "secure."
 msgstr ""
+"Añade tu firma manuscrita a cualquier documento PDF. Función premium: sube "
+"una imagen PNG de tu firma, elige la posición y aplícala a todas las "
+"páginas. Rápido y seguro."
 
 #: utils_site/src/frontend/tool_configs.py:3746
 msgid "Add your image signature to any PDF page"
@@ -13926,6 +13932,9 @@ msgid ""
 "Extract all text from PDF files as plain .txt. Premium feature: supports "
 "page number markers, layout preservation. Free trial available."
 msgstr ""
+"Extrae todo el texto de archivos PDF como .txt plano. Función premium: "
+"admite marcadores de número de página y preservación del diseño. Prueba "
+"gratuita disponible."
 
 #: utils_site/src/frontend/tool_configs.py:4070
 msgid "Extract plain text from your PDF in seconds"
@@ -14211,12 +14220,16 @@ msgid ""
 "Add your handwritten signature image to any PDF page. Choose position, size, "
 "and opacity. Apply to all pages at once."
 msgstr ""
+"Añade tu imagen de firma manuscrita a cualquier página del PDF. Elige "
+"posición, tamaño y opacidad. Aplícala a todas las páginas de una vez."
 
 #: utils_site/src/frontend/views.py:653
 msgid ""
 "Extract all text content from a PDF as a plain .txt file. Supports page "
 "numbering and layout preservation."
 msgstr ""
+"Extrae todo el contenido de texto de un PDF como archivo .txt plano. "
+"Compatible con numeración de páginas y preservación del diseño."
 
 #: utils_site/src/frontend/views.py:690
 msgid "Compare Two PDFs (Premium) - Convertica"

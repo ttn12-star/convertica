@@ -248,16 +248,22 @@ def log_conversion_error(
                 conversion_type=conversion_type, user_type=user_type
             ).observe(processing_time)
 
-    # Explicitly send ERROR logs to Sentry
+    # Explicitly capture to Sentry with full context
     if level in ("error", "exception"):
         try:
             import sentry_sdk
 
-            sentry_sdk.logger.error(
-                f"{conversion_type} conversion failed: {error}",
-                exc_info=(level == "exception"),
-                extra=log_data,
-            )
+            with sentry_sdk.push_scope() as scope:
+                scope.set_tag("conversion_type", conversion_type)
+                scope.set_extra("error_type", error.__class__.__name__)
+                scope.set_extra("error_message", str(error))
+                if "file_size_mb" in log_data:
+                    scope.set_extra("file_size_mb", log_data["file_size_mb"])
+                if "uploaded_filename" in log_data:
+                    scope.set_extra("uploaded_filename", log_data["uploaded_filename"])
+                if hasattr(error, "context"):
+                    scope.set_extra("error_context", error.context)
+                sentry_sdk.capture_exception(error)
         except (ImportError, Exception):
             pass  # Sentry not available
 

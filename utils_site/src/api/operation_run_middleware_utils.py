@@ -1,9 +1,12 @@
 import functools
 import json
+import logging
 import time
 import uuid
 
 from django.utils import timezone
+
+logger = logging.getLogger("src.api.operation_run_tracking")
 
 
 def _safe_is_premium(request) -> bool:
@@ -118,7 +121,8 @@ def create_operation_run(
             defaults=defaults,
         )
         return request_id
-    except Exception:
+    except Exception as e:
+        logger.warning("OperationRun create failed: %s: %s", type(e).__name__, e)
         return None
 
 
@@ -133,8 +137,8 @@ def upsert_operation_run(*, request_id: str, defaults: dict) -> None:
             request_id=str(request_id),
             defaults=defaults,
         )
-    except Exception:
-        return
+    except Exception as e:
+        logger.warning("OperationRun upsert failed: %s: %s", type(e).__name__, e)
 
 
 def update_operation_run(*, request_id: str, **fields) -> None:
@@ -144,8 +148,8 @@ def update_operation_run(*, request_id: str, **fields) -> None:
         if not request_id:
             return
         OperationRun.objects.filter(request_id=str(request_id)).update(**fields)
-    except Exception:
-        return
+    except Exception as e:
+        logger.warning("OperationRun update failed: %s: %s", type(e).__name__, e)
 
 
 def mark_success(*, request_id: str, output_size: int | None, duration_ms: int) -> None:
@@ -197,8 +201,10 @@ def mark_http_error(*, request_id: str, error_message: str, duration_ms: int) ->
                 output_field=TextField(),
             ),
         )
-    except Exception:
-        return
+    except Exception as e:
+        logger.warning(
+            "OperationRun mark_http_error failed: %s: %s", type(e).__name__, e
+        )
 
 
 def track_operation_run(conversion_type: str):

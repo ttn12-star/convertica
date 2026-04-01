@@ -145,7 +145,12 @@ def compress_pdf(
 
                     try:
                         info = doc.extract_image(xref)
-                    except Exception:
+                    except Exception as e:
+                        logger.debug(
+                            "compress_pdf: skip image xref=%d — extract_image failed: %s",
+                            xref,
+                            e,
+                        )
                         continue
 
                     ext = (info.get("ext") or "").lower()
@@ -166,14 +171,25 @@ def compress_pdf(
                     try:
                         im = Image.open(BytesIO(img_bytes))
                         im.load()
-                    except Exception:
+                    except Exception as e:
+                        logger.debug(
+                            "compress_pdf: skip image xref=%d — PIL open failed: %s",
+                            xref,
+                            e,
+                        )
                         continue
 
                     # Skip images that are not RGB or grayscale to prevent color space issues
                     if im.mode not in {"RGB", "L", "CMYK"}:
                         try:
                             im = im.convert("RGB")
-                        except Exception:
+                        except Exception as e:
+                            logger.debug(
+                                "compress_pdf: skip image xref=%d mode=%s — convert to RGB failed: %s",
+                                xref,
+                                im.mode,
+                                e,
+                            )
                             continue
 
                     # Preserve CMYK images for print quality
@@ -207,7 +223,12 @@ def compress_pdf(
                     out = BytesIO()
                     try:
                         im.save(out, format="JPEG", quality=quality, optimize=True)
-                    except Exception:
+                    except Exception as e:
+                        logger.debug(
+                            "compress_pdf: skip image xref=%d — JPEG re-save failed: %s",
+                            xref,
+                            e,
+                        )
                         continue
 
                     new_bytes = out.getvalue()
@@ -220,7 +241,12 @@ def compress_pdf(
 
                     try:
                         doc.update_stream(xref, new_bytes)
-                    except Exception:
+                    except Exception as e:
+                        logger.debug(
+                            "compress_pdf: skip image xref=%d — update_stream failed: %s",
+                            xref,
+                            e,
+                        )
                         continue
 
         def _op(input_pdf_path: str, *, output_path: str, compression_level: str):

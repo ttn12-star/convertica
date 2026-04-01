@@ -286,18 +286,6 @@ class BaseConversionAPIView(APIView, ABC):
             )
 
         elif isinstance(error, InvalidPDFError):
-            # Mark as handled error in Sentry (expected user error, not bug)
-            try:
-                import sentry_sdk
-
-                with sentry_sdk.push_scope() as scope:
-                    scope.set_tag("error_type", "handled")
-                    scope.set_tag("user_error", "true")
-                    scope.set_tag("conversion_type", self.CONVERSION_TYPE)
-                    scope.level = "info"  # Lower severity since it's handled
-            except (ImportError, Exception):
-                pass  # Sentry not available or failed
-
             log_conversion_error(
                 logger,
                 self.CONVERSION_TYPE,
@@ -552,8 +540,8 @@ class BaseConversionAPIView(APIView, ABC):
                         duration_ms=duration_ms,
                         output_size=os.path.getsize(output_path),
                     )
-                except Exception:
-                    pass
+                except Exception as db_exc:
+                    logger.warning("OperationRun 'success' update failed: %s", db_exc)
 
             return response
 
@@ -574,8 +562,8 @@ class BaseConversionAPIView(APIView, ABC):
                         error_type=type(e).__name__,
                         error_message=str(e)[:2000],
                     )
-                except Exception:
-                    pass
+                except Exception as db_exc:
+                    logger.warning("OperationRun 'error' update failed: %s", db_exc)
             return self.handle_conversion_error(e, context, start_time)
 
         finally:
@@ -899,8 +887,8 @@ class BaseConversionAPIView(APIView, ABC):
                         error_type=type(e).__name__,
                         error_message=str(e)[:2000],
                     )
-                except Exception:
-                    pass
+                except Exception as db_exc:
+                    logger.warning("OperationRun 'error' update failed: %s", db_exc)
             return self.handle_conversion_error(e, context, start_time)
 
         except Exception as e:
@@ -920,8 +908,8 @@ class BaseConversionAPIView(APIView, ABC):
                         error_type=type(e).__name__,
                         error_message=str(e)[:2000],
                     )
-                except Exception:
-                    pass
+                except Exception as db_exc:
+                    logger.warning("OperationRun 'error' update failed: %s", db_exc)
             return self.handle_conversion_error(e, context, start_time)
 
         finally:

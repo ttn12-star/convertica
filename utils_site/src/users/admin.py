@@ -504,6 +504,11 @@ class OperationRunAdmin(admin.ModelAdmin):
                 self.admin_site.admin_view(self.monthly_stats_view),
                 name="users_operationrun_monthly_stats",
             ),
+            path(
+                "user-activity/",
+                self.admin_site.admin_view(self.user_activity_view),
+                name="users_operationrun_user_activity",
+            ),
         ]
         return custom_urls + urls
 
@@ -604,6 +609,17 @@ class OperationRunAdmin(admin.ModelAdmin):
             .order_by("-month", "conversion_type")
         )
 
+        # Unique users and IPs per month (separate query for correctness)
+        monthly_uniques = (
+            OperationRun.objects.annotate(month=TruncMonth("created_at"))
+            .values("month")
+            .annotate(
+                unique_users=Count("user", distinct=True, filter=Q(user__isnull=False)),
+                unique_ips=Count("remote_addr", distinct=True),
+            )
+        )
+        uniques_by_month = {row["month"]: row for row in monthly_uniques}
+
         # Organize data by month
         months_dict = defaultdict(
             lambda: {"operations": {}, "totals": defaultdict(int)}
@@ -646,6 +662,9 @@ class OperationRunAdmin(admin.ModelAdmin):
                 if totals["total"] > 0
                 else 0
             )
+            uniq = uniques_by_month.get(month, {})
+            totals["unique_users"] = uniq.get("unique_users", 0)
+            totals["unique_ips"] = uniq.get("unique_ips", 0)
             months_list.append(
                 {
                     "month": month,
@@ -679,6 +698,40 @@ class OperationRunAdmin(admin.ModelAdmin):
         }
 
         return render(request, "admin/users/operationrun/monthly_stats.html", context)
+
+    def user_activity_view(self, request):
+        """Top users by operation count, with min_ops filter."""
+        from django.db.models import Count, Max, Min, Q
+        from django.shortcuts import render
+
+        min_ops = request.GET.get("min_ops", "")
+        try:
+            min_ops_int = max(1, int(min_ops))
+        except (ValueError, TypeError):
+            min_ops_int = 1
+
+        qs = (
+            OperationRun.objects.filter(user__isnull=False)
+            .values("user__email", "user__id")
+            .annotate(
+                total=Count("id"),
+                success=Count("id", filter=Q(status="success")),
+                error=Count("id", filter=Q(status="error")),
+                first_op=Min("created_at"),
+                last_op=Max("created_at"),
+            )
+            .filter(total__gte=min_ops_int)
+            .order_by("-total")[:200]
+        )
+
+        context = {
+            **self.admin_site.each_context(request),
+            "title": "User Activity",
+            "users": list(qs),
+            "min_ops": min_ops_int,
+            "opts": self.model._meta,
+        }
+        return render(request, "admin/users/operationrun/user_activity.html", context)
 
 
 @admin.register(StripeWebhookEvent)

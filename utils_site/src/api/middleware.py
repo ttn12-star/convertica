@@ -3,11 +3,14 @@ API middleware for rate limiting and performance monitoring.
 """
 
 import base64
+import logging
 import os
 import time
 
 from django.http import JsonResponse
 from django.utils.deprecation import MiddlewareMixin
+
+op_tracking_logger = logging.getLogger("src.api.operation_run_tracking")
 
 
 class CSPNonceMiddleware(MiddlewareMixin):
@@ -169,8 +172,13 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
                 conversion_type=str(conversion_type),
                 status="running",
             )
-        except Exception:
-            pass
+        except Exception as e:
+            op_tracking_logger.warning(
+                "OperationRun tracking setup failed for %s: %s: %s",
+                request.path,
+                type(e).__name__,
+                e,
+            )
 
         return None
 
@@ -190,8 +198,10 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
                 error_message=str(exception)[:2000],
                 duration_ms=duration_ms,
             )
-        except Exception:
-            pass
+        except Exception as e:
+            op_tracking_logger.warning(
+                "OperationRun exception tracking failed: %s: %s", type(e).__name__, e
+            )
         return None
 
     def process_response(self, request, response):
@@ -244,8 +254,10 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
                     output_size=None,
                     duration_ms=duration_ms,
                 )
-        except Exception:
-            pass
+        except Exception as e:
+            op_tracking_logger.warning(
+                "OperationRun response tracking failed: %s: %s", type(e).__name__, e
+            )
 
         return response
 

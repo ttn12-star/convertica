@@ -131,6 +131,22 @@ def generic_conversion_task(
 
     started_ts = time.time()
 
+    # Set Sentry context so any error in this task includes file details
+    try:
+        import sentry_sdk
+
+        sentry_sdk.set_context(
+            "conversion",
+            {
+                "task_id": task_id,
+                "conversion_type": conversion_type,
+                "original_filename": original_filename,
+            },
+        )
+        sentry_sdk.set_tag("conversion_type", conversion_type)
+    except Exception as sentry_exc:
+        logger.debug("Failed to initialize Sentry context: %s", sentry_exc)
+
     # Mark task as running in analytics (best-effort)
     try:
         from django.utils import timezone
@@ -150,8 +166,8 @@ def generic_conversion_task(
             started_at=now,
             queue_wait_ms=queue_wait_ms,
         )
-    except Exception:
-        pass
+    except Exception as db_exc:
+        logger.warning("OperationRun 'running' update failed: %s", db_exc)
 
     try:
         # Check cancellation before starting
@@ -177,6 +193,36 @@ def generic_conversion_task(
             input_fp = None
             raise
 
+        # Compute SHA-256 once — used for both Sentry context and result cache.
+        file_sha256: str | None = None
+        try:
+            file_sha256 = _sha256_file(input_path)
+        except Exception as hash_exc:
+            logger.debug(
+                "SHA-256 calculation skipped for %s: %s", original_filename, hash_exc
+            )
+
+        # Update Sentry context with file details now that file is open
+        try:
+            import sentry_sdk
+
+            file_size = os.path.getsize(input_path)
+            sentry_sdk.set_context(
+                "conversion",
+                {
+                    "task_id": task_id,
+                    "conversion_type": conversion_type,
+                    "original_filename": original_filename,
+                    "file_size_bytes": file_size,
+                    "file_size_mb": round(file_size / (1024 * 1024), 2),
+                    "file_sha256": file_sha256,
+                },
+            )
+        except Exception as sentry_exc:
+            logger.debug(
+                "Failed to enrich Sentry context with file details: %s", sentry_exc
+            )
+
         # --- SHA-256 result cache (idempotent operations only) ---
         # For FAST_CONVERSION_TYPES we check if an identical file+params combo
         # was already converted recently and serve the cached output directly.
@@ -187,7 +233,8 @@ def generic_conversion_task(
             try:
                 from django.core.cache import cache as django_cache
 
-                file_sha256 = _sha256_file(input_path)
+                if file_sha256 is None:
+                    file_sha256 = _sha256_file(input_path)
                 cache_key_str = _cache_key(file_sha256, conversion_type, kwargs)
                 cached_output = django_cache.get(cache_key_str)
                 if cached_output is not None:
@@ -229,8 +276,10 @@ def generic_conversion_task(
                     duration_ms=duration_ms,
                     output_size=len(cached_output),
                 )
-            except Exception:
-                pass
+            except Exception as db_exc:
+                logger.warning(
+                    "OperationRun 'success' (cache hit) update failed: %s", db_exc
+                )
             return {
                 "status": "success",
                 "output_path": final_output_path,
@@ -479,8 +528,8 @@ def generic_conversion_task(
                 duration_ms=duration_ms,
                 output_size=out_size,
             )
-        except Exception:
-            pass
+        except Exception as db_exc:
+            logger.warning("OperationRun 'success' update failed: %s", db_exc)
 
         return {
             "status": "success",
@@ -495,8 +544,10 @@ def generic_conversion_task(
         try:
             if task_dir and os.path.isdir(task_dir):
                 shutil.rmtree(task_dir, ignore_errors=True)
-        except Exception:
-            pass
+        except Exception as rm_exc:
+            logger.debug(
+                "Cleanup failed for cancelled task %s: %s", cancellation_id, rm_exc
+            )
         # Use Ignore to not record as failure
         try:
             from django.utils import timezone
@@ -509,8 +560,8 @@ def generic_conversion_task(
                 finished_at=now,
                 duration_ms=duration_ms,
             )
-        except Exception:
-            pass
+        except Exception as db_exc:
+            logger.warning("OperationRun 'cancelled' update failed: %s", db_exc)
         raise Ignore()
 
     except SoftTimeLimitExceeded:
@@ -528,8 +579,12 @@ def generic_conversion_task(
             try:
                 if task_dir and os.path.isdir(task_dir):
                     shutil.rmtree(task_dir, ignore_errors=True)
-            except Exception:
-                pass
+            except Exception as rm_exc:
+                logger.debug(
+                    "Cleanup failed for soft-limit-cancelled task %s: %s",
+                    cancellation_id,
+                    rm_exc,
+                )
             try:
                 from django.utils import timezone
                 from src.users.models import OperationRun
@@ -541,8 +596,10 @@ def generic_conversion_task(
                     finished_at=now,
                     duration_ms=duration_ms,
                 )
-            except Exception:
-                pass
+            except Exception as db_exc:
+                logger.warning(
+                    "OperationRun 'cancelled' (soft limit) update failed: %s", db_exc
+                )
             raise Ignore()
 
         # Record timeout as error (best-effort)
@@ -559,8 +616,8 @@ def generic_conversion_task(
                 error_type="SoftTimeLimitExceeded",
                 error_message="Task exceeded time limit",
             )
-        except Exception:
-            pass
+        except Exception as db_exc:
+            logger.warning("OperationRun 'error' (timeout) update failed: %s", db_exc)
 
         return {
             "status": "error",
@@ -570,6 +627,22 @@ def generic_conversion_task(
 
     except Exception as exc:
         logger.error(f"Conversion {conversion_type} failed: {str(exc)}", exc_info=True)
+
+        # Explicitly capture to Sentry with full file context
+        try:
+            import sentry_sdk
+
+            with sentry_sdk.push_scope() as scope:
+                scope.set_tag("conversion_type", conversion_type)
+                scope.set_extra("original_filename", original_filename)
+                scope.set_extra("task_id", task_id)
+                try:
+                    scope.set_extra("file_size_bytes", os.path.getsize(input_path))
+                except Exception:
+                    pass
+                sentry_sdk.capture_exception(exc)
+        except Exception:
+            pass
 
         # Analytics error (best-effort)
         try:
@@ -585,8 +658,8 @@ def generic_conversion_task(
                 error_type=type(exc).__name__,
                 error_message=str(exc)[:2000],
             )
-        except Exception:
-            pass
+        except Exception as db_exc:
+            logger.warning("OperationRun 'error' update failed: %s", db_exc)
 
         # Don't retry for user errors (validation, etc.) or permanent PDF corruption
         error_message = str(exc)
