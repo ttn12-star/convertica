@@ -2354,22 +2354,19 @@ msgstr ""
 "menghubungi kami."
 
 #: templates/frontend/image_tools/convert_image.html:8
-#, fuzzy
 #| msgid "Conversion Questions"
 msgid "Conversion Options"
-msgstr "Pertanyaan Konversi"
+msgstr "Opsi Konversi"
 
 #: templates/frontend/image_tools/convert_image.html:14
-#, fuzzy
 #| msgid "Convert to PDF"
 msgid "Convert to"
-msgstr "Konversi ke PDF"
+msgstr "Konversi ke"
 
 #: templates/frontend/image_tools/convert_image.html:22
-#, fuzzy
 #| msgid "6 Output Formats"
 msgid "Select output format..."
-msgstr "6 Format Output"
+msgstr "Pilih format output..."
 
 #: templates/frontend/image_tools/convert_image.html:23
 msgid "photos, universal compatibility"
@@ -2397,36 +2394,31 @@ msgstr "kualitas tinggi, untuk cetak/arsip"
 
 #: templates/frontend/image_tools/convert_image.html:35
 #: templates/frontend/image_tools/optimize_image.html:14
-#, fuzzy
 #| msgid "No Quality Loss"
 msgid "Quality"
-msgstr "Tanpa Kehilangan Kualitas"
+msgstr "Kualitas"
 
 #: templates/frontend/image_tools/convert_image.html:46
-#, fuzzy
 #| msgid "Maximum quality"
 msgid "Output quality"
-msgstr "Kualitas maksimal"
+msgstr "Kualitas output"
 
 #: templates/frontend/image_tools/convert_image.html:49
 #: templates/frontend/image_tools/optimize_image.html:28
-#, fuzzy
 #| msgid "Smaller file size"
 msgid "Smallest file"
-msgstr "Ukuran file lebih kecil"
+msgstr "File terkecil"
 
 #: templates/frontend/image_tools/convert_image.html:50
 #: templates/frontend/image_tools/optimize_image.html:29
-#, fuzzy
 #| msgid "Very high quality"
 msgid "Best quality"
-msgstr "Kualitas sangat tinggi"
+msgstr "Kualitas terbaik"
 
 #: templates/frontend/image_tools/convert_image.html:81
-#, fuzzy
 #| msgid "Select your PDF file using the button above or drag and drop it"
 msgid "Select your image file using the button above or drag and drop it"
-msgstr "Pilih file PDF Anda menggunakan tombol di atas atau seret dan lepas"
+msgstr "Pilih file gambar menggunakan tombol di atas atau seret dan lepas"
 
 #: templates/frontend/image_tools/convert_image.html:82
 msgid "Choose the output format from the dropdown (JPEG, PNG, WebP, etc.)"
@@ -2437,67 +2429,59 @@ msgid "For JPEG or WebP, adjust the quality slider if needed"
 msgstr "Untuk JPEG atau WebP, sesuaikan slider kualitas jika perlu"
 
 #: templates/frontend/image_tools/convert_image.html:84
-#, fuzzy
 #| msgid "Click the Convert button to start PDF to Word conversion"
 msgid "Click the Convert Image button to start conversion"
-msgstr "Klik tombol konversi untuk memulai proses konversi PDF ke JPG"
+msgstr "Klik tombol Konversi Gambar untuk memulai konversi"
 
 #: templates/frontend/image_tools/convert_image.html:85
-#, fuzzy
 #| msgid "Download your converted file instantly"
 msgid "Download your converted image file instantly"
-msgstr "Unduh file hasil konversi Anda seketika"
+msgstr "Unduh file gambar hasil konversi seketika"
 
 #: templates/frontend/image_tools/optimize_image.html:8
-#, fuzzy
 #| msgid "Image Optimization FAQ"
 msgid "Optimization Options"
-msgstr "FAQ Optimasi Gambar"
+msgstr "Opsi Optimasi"
 
 #: templates/frontend/image_tools/optimize_image.html:25
-#, fuzzy
 #| msgid "Image Quality (DPI)"
 msgid "Image quality"
-msgstr "Kualitas Gambar (DPI)"
+msgstr "Kualitas gambar"
 
 #: templates/frontend/image_tools/optimize_image.html:32
 #, python-format
 msgid ""
 "85%% is recommended for most images. Lower values reduce file size more "
 "aggressively."
-msgstr ""
+msgstr "85%% direkomendasikan untuk sebagian besar gambar. Nilai lebih rendah mengurangi ukuran file lebih agresif."
 
 #: templates/frontend/image_tools/optimize_image.html:39
-#, fuzzy
 #| msgid "6 Output Formats"
 msgid "Output Format"
-msgstr "6 Format Output"
+msgstr "Format Output"
 
 #: templates/frontend/image_tools/optimize_image.html:45
 msgid "Keep original format"
 msgstr "Pertahankan format asli"
 
 #: templates/frontend/image_tools/optimize_image.html:46
-#, fuzzy
 #| msgid "Best for"
 msgid "best for photos"
-msgstr "Terbaik untuk"
+msgstr "terbaik untuk foto"
 
 #: templates/frontend/image_tools/optimize_image.html:47
 msgid "best for graphics / transparency"
 msgstr "terbaik untuk grafik / transparansi"
 
 #: templates/frontend/image_tools/optimize_image.html:48
-#, fuzzy
 #| msgid "Smaller file size"
 msgid "modern, smallest file size"
-msgstr "Ukuran file lebih kecil"
+msgstr "modern, ukuran file terkecil"
 
 #: templates/frontend/image_tools/optimize_image.html:55
-#, fuzzy
 #| msgid "Chinese (Traditional)"
 msgid "Resize (optional)"
-msgstr "Cina (Tradisional)"
+msgstr "Ubah ukuran (opsional)"
 
 #: templates/frontend/image_tools/optimize_image.html:59
 msgid "Max width in pixels"
@@ -2509,7 +2493,7 @@ msgstr "Lebar maks., mis. 1920"
 
 #: templates/frontend/image_tools/optimize_image.html:69
 msgid "Maximum width in pixels"
-msgstr ""
+msgstr "Lebar maksimum dalam piksel"
 
 #: templates/frontend/image_tools/optimize_image.html:74
 msgid "Max height in pixels"
@@ -2521,46 +2505,38 @@ msgstr "Tinggi maks., mis. 1080"
 
 #: templates/frontend/image_tools/optimize_image.html:84
 msgid "Maximum height in pixels"
-msgstr ""
+msgstr "Tinggi maksimum dalam piksel"
 
 #: templates/frontend/image_tools/optimize_image.html:90
 msgid ""
 "Leave blank to keep original dimensions. Aspect ratio is always preserved."
-msgstr ""
+msgstr "Biarkan kosong untuk mempertahankan dimensi asli. Rasio aspek selalu dipertahankan."
 
 #: templates/frontend/image_tools/optimize_image.html:103
-#, fuzzy
-#| msgid ""
-#| "Select your PDF file using the button above or drag and drop it into the "
-#| "zone"
 msgid ""
 "Select your image file using the button above or drag and drop it into the "
 "zone"
-msgstr ""
+msgstr "Pilih file gambar menggunakan tombol di atas atau seret ke zona"
 "Pilih file PDF Anda menggunakan tombol di atas atau seret dan lepas ke zona "
 "di bawah"
 
 #: templates/frontend/image_tools/optimize_image.html:104
-#, fuzzy, python-format
-#| msgid "Select image quality (85 is recommended)"
 msgid "Set the quality level (85%% is recommended for most images)"
-msgstr "Kualitas tinggi (direkomendasikan)"
+msgstr "Atur tingkat kualitas (85%% direkomendasikan untuk sebagian besar gambar)"
 
 #: templates/frontend/image_tools/optimize_image.html:105
 msgid "Optionally choose an output format or set maximum dimensions"
 msgstr "Opsional, pilih format keluaran atau atur dimensi maksimum"
 
 #: templates/frontend/image_tools/optimize_image.html:106
-#, fuzzy
 #| msgid "Click the edit button to process your file"
 msgid "Click the Optimize Image button to compress your image"
-msgstr "Klik tombol edit untuk memproses file Anda"
+msgstr "Klik tombol Optimalkan Gambar untuk mengompres gambar"
 
 #: templates/frontend/image_tools/optimize_image.html:107
-#, fuzzy
 #| msgid "Download your cropped PDF file"
 msgid "Download your optimized image file"
-msgstr "Unduh file PDF yang telah dipotong"
+msgstr "Unduh file gambar yang telah dioptimalkan"
 
 #: templates/frontend/includes/breadcrumbs.html:5
 msgid "Breadcrumb"
@@ -2767,10 +2743,9 @@ msgstr "Tanda Tangani PDF"
 
 #: templates/frontend/includes/header.html:339
 #: templates/frontend/includes/header.html:874
-#, fuzzy
 #| msgid "Advanced Tools"
 msgid "Image Tools"
-msgstr "Semua Alat"
+msgstr "Alat Gambar"
 
 #: templates/frontend/includes/header.html:350
 #: templates/frontend/includes/header.html:885
@@ -2799,10 +2774,9 @@ msgstr "Buka Katalog"
 #: templates/frontend/includes/header.html:1299
 #: templates/frontend/includes/header.html:1422
 #: utils_site/src/frontend/views.py:650
-#, fuzzy
 #| msgid "PDF to Text FAQ"
 msgid "PDF to Text"
-msgstr "FAQ PDF ke Teks"
+msgstr "PDF ke Teks"
 
 #: templates/frontend/includes/header.html:467
 msgid "Main navigation"
@@ -2851,14 +2825,12 @@ msgid "Page Management"
 msgstr "Manajemen Halaman"
 
 #: templates/frontend/includes/header.html:860
-#, fuzzy
 #| msgid "Image"
 msgid "Image tools"
-msgstr "Gambar"
+msgstr "Alat gambar"
 
 #: templates/frontend/includes/header.html:862
 #: templates/frontend/includes/header.html:1549
-#, fuzzy
 #| msgid "Image"
 msgid "Images"
 msgstr "Gambar"
@@ -3719,44 +3691,37 @@ msgstr "Fitur premium"
 msgid ""
 "PDF to Text is a premium feature. Upgrade to Premium to extract plain text "
 "from any PDF document."
-msgstr ""
+msgstr "PDF ke Teks adalah fitur Premium. Upgrade ke Premium untuk mengekstrak teks biasa dari PDF apa pun."
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:10
 #: templates/frontend/pdf_edit/sign_pdf.html:10
-#, fuzzy
 #| msgid "Upgrade Now"
 msgid "Upgrade now"
-msgstr "Tingkatkan Sekarang"
+msgstr "Upgrade sekarang"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:16
-#, fuzzy
 #| msgid "Rotation Settings"
 msgid "Extraction Options"
-msgstr "Pengaturan Rotasi"
+msgstr "Opsi Ekstraksi"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:30
-#, fuzzy
 #| msgid "Add Page Numbers"
 msgid "Include page numbers"
-msgstr "Tambahkan Nomor Halaman"
+msgstr "Sertakan nomor halaman"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:33
 msgid "Add '--- Page N ---' dividers between pages in the output text"
-msgstr ""
+msgstr "Tambahkan pembatas '--- Halaman N ---' antar halaman dalam teks output"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:49
-#, fuzzy
 #| msgid "Preserve Document Quality"
 msgid "Preserve text layout"
-msgstr "Pertahankan Kualitas Dokumen"
+msgstr "Pertahankan tata letak teks"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:52
-#, fuzzy
-#| msgid ""
-#| "Option to preserve text positioning and column structure from the original"
 msgid ""
 "Try to preserve text positioning and column structure from the original PDF"
-msgstr "Opsi untuk mempertahankan posisi teks dan struktur kolom dari aslinya"
+msgstr "Coba pertahankan posisi teks dan struktur kolom dari PDF asli"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:67
 #: templates/frontend/pdf_convert/pdf_to_word.html:98
@@ -3769,19 +3734,17 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:68
 msgid "Optionally enable page numbers or layout preservation"
-msgstr ""
+msgstr "Opsional aktifkan nomor halaman atau pelestarian tata letak"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:69
-#, fuzzy
 #| msgid "Click the Convert button to generate your PDF"
 msgid "Click the convert button to extract text from your PDF"
-msgstr "Klik tombol Potong untuk memproses PDF Anda"
+msgstr "Klik tombol konversi untuk mengekstrak teks dari PDF"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:70
-#, fuzzy
 #| msgid "Download your cleaned PDF file"
 msgid "Download your plain text (.txt) file"
-msgstr "Unduh file PDF yang telah diedit"
+msgstr "Unduh file teks biasa (.txt) Anda"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:74
 #, python-format
@@ -4486,61 +4449,43 @@ msgstr ""
 "pegangan untuk mengubah ukuran. Klik Potong PDF saat siap."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:11
-#, fuzzy
 #| msgid "What does flattening a PDF mean?"
 msgid "What does flattening do?"
-msgstr "Apa yang dimaksud dengan meratakan PDF?"
+msgstr "Apa yang dilakukan flattening?"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:13
-#, fuzzy
-#| msgid ""
-#| "Flattening a PDF removes all interactive elements such as form fields, "
-#| "checkboxes, and annotations, converting them into static content. The PDF "
-#| "looks identical but can no longer be filled out or edited."
 msgid ""
 "Flattening removes all interactive form fields, checkboxes, text inputs, and "
 "annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
-msgstr ""
+msgstr "Perataan menghapus semua bidang formulir interaktif, kotak centang, input teks, dan anotasi dari PDF Anda. Hasilnya adalah dokumen statis yang tidak dapat diedit, terlihat identik tetapi tidak dapat diisi atau dimodifikasi."
 "Meratakan PDF menghapus semua elemen interaktif seperti kolom formulir, "
 "kotak centang, dan anotasi, mengubahnya menjadi konten statis. PDF terlihat "
 "identik tetapi tidak lagi dapat diisi atau diedit."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:28
-#, fuzzy
 #| msgid "Click the button to start processing your file"
 msgid "Click the Flatten PDF button to start processing"
-msgstr "Klik tombol untuk mulai memproses file Anda"
+msgstr "Klik tombol Ratakan PDF untuk memulai pemrosesan"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:29
-#, fuzzy
 #| msgid "Remove interactive form fields and annotations from your PDF"
 msgid "All interactive form fields and annotations will be removed"
-msgstr "Hapus kolom formulir interaktif dan anotasi dari PDF Anda"
+msgstr "Semua kolom formulir interaktif dan anotasi akan dihapus"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:30
-#, fuzzy
 #| msgid "Download your cleaned PDF file"
 msgid "Download your flattened static PDF file"
-msgstr "Unduh file PDF yang telah diedit"
+msgstr "Unduh file PDF statis yang telah diratakan"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:35
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "          PDF files with up to %(max_pages)s pages are supported. "
-#| "Remaining pages are preserved in original order.\n"
-#| "        "
 msgid ""
 "\n"
 "          PDF files with up to %(max_pages)s pages are supported. The visual "
 "appearance of the PDF is preserved while all interactive elements are "
 "removed.\n"
 "        "
-msgstr ""
-"\n"
-"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih besar, "
-"silakan bagi menjadi beberapa bagian."
+msgstr "\n          File PDF hingga %(max_pages)s halaman didukung. Tampilan PDF dipertahankan sementara semua elemen interaktif dihapus.\n        "
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:6
 msgid "Rotation Settings"
@@ -4601,133 +4546,110 @@ msgstr ""
 msgid ""
 "Sign PDF is a premium feature. Upgrade to Premium to add your handwritten "
 "signature to any PDF document."
-msgstr ""
+msgstr "Tanda Tangani PDF adalah fitur Premium. Upgrade ke Premium untuk menambahkan tanda tangan tulisan tangan ke PDF apa pun."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:18
-#, fuzzy
 #| msgid "Configure Settings"
 msgid "Signature Settings"
-msgstr "Opsi lainnya"
+msgstr "Pengaturan Tanda Tangan"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:25
-#, fuzzy
 #| msgid "Featured Image"
 msgid "Upload Signature Image"
-msgstr "Gambar Unggulan"
+msgstr "Unggah Gambar Tanda Tangan"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:28
-#, fuzzy
-#| msgid ""
-#| "Use a PNG image with a transparent background for the cleanest signature "
-#| "result."
 msgid ""
 "PNG with transparent background gives the best result. JPG is also accepted."
-msgstr ""
+msgstr "PNG dengan latar belakang transparan memberikan hasil terbaik. JPG juga diterima."
 "Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan "
 "paling bersih."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:43
 #: templates/frontend/pdf_edit/sign_pdf.html:224
 msgid "No file chosen"
-msgstr ""
+msgstr "Tidak ada file yang dipilih"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:51
-#, fuzzy
 #| msgid "Customizable Position"
 msgid "Signature Position"
-msgstr "Sesuaikan"
+msgstr "Posisi Tanda Tangan"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:61
-#, fuzzy
 #| msgid "Top Center"
 msgid "Center"
-msgstr "Atas Tengah"
+msgstr "Tengah"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:68
-#, fuzzy
 #| msgid "Page Size"
 msgid "Page to Sign"
-msgstr "Ukuran Halaman"
+msgstr "Halaman untuk Ditandatangani"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:77
 msgid ""
 "Enter the page number where the signature will be placed (first page = 1)."
-msgstr ""
+msgstr "Masukkan nomor halaman tempat tanda tangan akan ditempatkan (halaman pertama = 1)."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:84
-#, fuzzy
 #| msgid "Image Signature"
 msgid "Signature Width"
-msgstr "Tanda Tangan Gambar"
+msgstr "Lebar Tanda Tangan"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:84
 #: templates/frontend/pdf_edit/sign_pdf.html:95
 #: templates/frontend/pdf_edit/sign_pdf.html:96
 msgid "pt"
-msgstr ""
+msgstr "pt"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:128
-#, fuzzy
 #| msgid "Apply crop to pages"
 msgid "Apply signature to all pages"
-msgstr "Terapkan potongan ke halaman"
+msgstr "Terapkan tanda tangan ke semua halaman"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:137
 msgid "When checked, the signature is added to every page of the PDF."
-msgstr ""
+msgstr "Jika dicentang, tanda tangan ditambahkan ke setiap halaman PDF."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:154
-#, fuzzy
-#| msgid ""
-#| "Use a PNG image with a transparent background for the cleanest signature "
-#| "result."
 msgid ""
 "Upload your signature image (PNG with a transparent background works best)"
-msgstr ""
+msgstr "Unggah gambar tanda tangan Anda (PNG dengan latar belakang transparan bekerja paling baik)"
 "Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan "
 "paling bersih."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:155
-#, fuzzy
 #| msgid ""
 #| "Choose the exact position and page for your signature, or apply it to all "
 #| "pages at once"
 msgid "Choose the position and page where the signature should appear"
-msgstr ""
+msgstr "Pilih posisi dan halaman tempat tanda tangan harus muncul"
 "Pilih posisi dan halaman yang tepat untuk tanda tangan Anda, atau terapkan "
 "ke semua halaman sekaligus"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:156
-#, fuzzy
 #| msgid "Customize color, opacity, and size using the sliders"
 msgid "Adjust the signature width and opacity using the sliders"
-msgstr "Sesuaikan warna, opasitas, dan ukuran menggunakan slider"
+msgstr "Sesuaikan lebar dan opasitas tanda tangan menggunakan slider"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:157
-#, fuzzy
 #| msgid "Click the edit button to process your file"
 msgid "Click the Sign PDF button to process your document"
-msgstr "Klik tombol edit untuk memproses file Anda"
+msgstr "Klik tombol Tanda Tangani PDF untuk memproses dokumen Anda"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:158
-#, fuzzy
 #| msgid "Download your cleaned PDF file"
 msgid "Download your signed PDF file"
-msgstr "Unduh file PDF yang telah diedit"
+msgstr "Unduh file PDF yang telah ditandatangani"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:162
 msgid "Tip:"
-msgstr ""
+msgstr "Tips:"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:163
-#, fuzzy
-#| msgid ""
-#| "Use a PNG image with a transparent background for the cleanest signature "
-#| "result."
 msgid ""
 "Use a PNG image with a transparent background so the signature blends "
 "naturally into the document without a white box around it."
-msgstr ""
+msgstr "Gunakan gambar PNG dengan latar belakang transparan agar tanda tangan menyatu secara alami ke dalam dokumen."
 "Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan "
 "paling bersih."
 
@@ -13251,15 +13173,10 @@ msgid "Flatten PDF Online Free - Remove Form Fields | Convertica"
 msgstr "Ratakan PDF Online Gratis — Hapus Kolom Formulir | Convertica"
 
 #: utils_site/src/frontend/tool_configs.py:3622
-#, fuzzy
-#| msgid ""
-#| "Flatten PDF online free by removing interactive form fields, checkboxes, "
-#| "and annotations. Creates a static, non-editable PDF that preserves the "
-#| "original appearance. No registration required."
 msgid ""
 "Flatten PDF online free by removing interactive form fields, checkboxes, and "
 "annotations. Creates a static, non-editable PDF. No registration required."
-msgstr ""
+msgstr "Ratakan PDF online gratis dengan menghapus bidang formulir interaktif, kotak centang, dan anotasi. Membuat PDF statis yang tidak dapat diedit. Tanpa registrasi."
 "Ratakan PDF online gratis dengan menghapus kolom formulir interaktif, kotak "
 "centang, dan anotasi. Membuat PDF statis yang tidak dapat diedit dan "
 "mempertahankan tampilan asli. Tanpa registrasi."
@@ -13390,10 +13307,9 @@ msgstr ""
 
 # ==================== sign_pdf ====================
 #: utils_site/src/frontend/tool_configs.py:3734
-#, fuzzy
 #| msgid "Sign PDF Online Free - Add Signature to PDF | Convertica"
 msgid "Sign PDF - Add Signature to PDF Online | Convertica Premium"
-msgstr ""
+msgstr "Tanda Tangani PDF - Tambahkan Tanda Tangan ke PDF Online | Convertica Premium"
 "Tanda Tangani PDF Online Gratis — Tambahkan Tanda Tangan ke PDF | Convertica"
 
 #: utils_site/src/frontend/tool_configs.py:3737
@@ -13441,10 +13357,9 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:3785
 #: utils_site/src/frontend/tool_configs.py:3893
-#, fuzzy
 #| msgid "Download"
 msgid "Instant Download"
-msgstr "Unduh"
+msgstr "Unduh Seketika"
 
 #: utils_site/src/frontend/tool_configs.py:3787
 msgid "Signed PDF is ready for immediate download with no delays"
@@ -13823,10 +13738,9 @@ msgstr ""
 "kesetiaan tertinggi."
 
 #: utils_site/src/frontend/tool_configs.py:4043
-#, fuzzy
 #| msgid "Tips for Image Conversion"
 msgid "Why Use Our Image Converter?"
-msgstr "Tips untuk Konversi Gambar"
+msgstr "Mengapa Menggunakan Konverter Gambar Kami?"
 
 #: utils_site/src/frontend/tool_configs.py:4044
 msgid "Tips for Image Conversion"
@@ -13853,10 +13767,9 @@ msgstr ""
 "terjadi di server dan file Anda dihapus segera setelah diunduh.</p>"
 
 #: utils_site/src/frontend/tool_configs.py:4059
-#, fuzzy
 #| msgid "PDF to JPG Converter - Extract Images from PDF Online"
 msgid "PDF to Text Converter - Extract Text from PDF | Convertica Premium"
-msgstr "Konverter PDF ke JPG - Ekstrak Gambar dari PDF Online"
+msgstr "Konverter PDF ke Teks - Ekstrak Teks dari PDF | Convertica Premium"
 
 #: utils_site/src/frontend/tool_configs.py:4062
 msgid ""
@@ -13907,10 +13820,9 @@ msgid ""
 msgstr "Opsi untuk mempertahankan posisi teks dan struktur kolom dari aslinya"
 
 #: utils_site/src/frontend/tool_configs.py:4109
-#, fuzzy
 #| msgid "Instant Protection"
 msgid "Instant Extraction"
-msgstr "Perlindungan Instan"
+msgstr "Ekstraksi Seketika"
 
 #: utils_site/src/frontend/tool_configs.py:4110
 msgid "Fast text extraction with immediate download"

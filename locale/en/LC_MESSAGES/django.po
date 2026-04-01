@@ -2340,22 +2340,19 @@ msgstr ""
 "If you couldn't find the answer you're looking for, feel free to contact us."
 
 #: templates/frontend/image_tools/convert_image.html:8
-#, fuzzy
 #| msgid "Conversion Questions"
 msgid "Conversion Options"
-msgstr "Conversion Questions"
+msgstr "Conversion Options"
 
 #: templates/frontend/image_tools/convert_image.html:14
-#, fuzzy
 #| msgid "Convert to PDF"
 msgid "Convert to"
-msgstr "Convert to PDF"
+msgstr "Convert to"
 
 #: templates/frontend/image_tools/convert_image.html:22
-#, fuzzy
 #| msgid "6 Output Formats"
 msgid "Select output format..."
-msgstr "6 Output Formats"
+msgstr "Select output format..."
 
 #: templates/frontend/image_tools/convert_image.html:23
 msgid "photos, universal compatibility"
@@ -2383,36 +2380,31 @@ msgstr "high quality, print/archival"
 
 #: templates/frontend/image_tools/convert_image.html:35
 #: templates/frontend/image_tools/optimize_image.html:14
-#, fuzzy
 #| msgid "No Quality Loss"
 msgid "Quality"
-msgstr "No Quality Loss"
+msgstr "Quality"
 
 #: templates/frontend/image_tools/convert_image.html:46
-#, fuzzy
 #| msgid "Maximum quality"
 msgid "Output quality"
-msgstr "Maximum quality"
+msgstr "Output quality"
 
 #: templates/frontend/image_tools/convert_image.html:49
 #: templates/frontend/image_tools/optimize_image.html:28
-#, fuzzy
 #| msgid "Smaller file size"
 msgid "Smallest file"
-msgstr "Smaller file size"
+msgstr "Smallest file"
 
 #: templates/frontend/image_tools/convert_image.html:50
 #: templates/frontend/image_tools/optimize_image.html:29
-#, fuzzy
 #| msgid "Very high quality"
 msgid "Best quality"
-msgstr "Very high quality"
+msgstr "Best quality"
 
 #: templates/frontend/image_tools/convert_image.html:81
-#, fuzzy
 #| msgid "Select your PDF file using the button above or drag and drop it"
 msgid "Select your image file using the button above or drag and drop it"
-msgstr "Select your PDF file using the button above or drag and drop it"
+msgstr "Select your image file using the button above or drag and drop it"
 
 #: templates/frontend/image_tools/convert_image.html:82
 msgid "Choose the output format from the dropdown (JPEG, PNG, WebP, etc.)"
@@ -2423,67 +2415,59 @@ msgid "For JPEG or WebP, adjust the quality slider if needed"
 msgstr "For JPEG or WebP, adjust the quality slider if needed"
 
 #: templates/frontend/image_tools/convert_image.html:84
-#, fuzzy
 #| msgid "Click the Convert button to start PDF to Word conversion"
 msgid "Click the Convert Image button to start conversion"
-msgstr "Click the Convert button to start PDF to Word conversion"
+msgstr "Click the Convert Image button to start conversion"
 
 #: templates/frontend/image_tools/convert_image.html:85
-#, fuzzy
 #| msgid "Download your converted file instantly"
 msgid "Download your converted image file instantly"
-msgstr "Download your converted file instantly"
+msgstr "Download your converted image file instantly"
 
 #: templates/frontend/image_tools/optimize_image.html:8
-#, fuzzy
 #| msgid "Image Optimization FAQ"
 msgid "Optimization Options"
-msgstr "Image Optimization FAQ"
+msgstr "Optimization Options"
 
 #: templates/frontend/image_tools/optimize_image.html:25
-#, fuzzy
 #| msgid "Image Quality (DPI)"
 msgid "Image quality"
-msgstr "Image Quality (DPI)"
+msgstr "Image quality"
 
 #: templates/frontend/image_tools/optimize_image.html:32
 #, python-format
 msgid ""
 "85%% is recommended for most images. Lower values reduce file size more "
 "aggressively."
-msgstr ""
+msgstr "85%% is recommended for most images. Lower values reduce file size more aggressively."
 
 #: templates/frontend/image_tools/optimize_image.html:39
-#, fuzzy
 #| msgid "6 Output Formats"
 msgid "Output Format"
-msgstr "6 Output Formats"
+msgstr "Output Format"
 
 #: templates/frontend/image_tools/optimize_image.html:45
 msgid "Keep original format"
 msgstr "Keep original format"
 
 #: templates/frontend/image_tools/optimize_image.html:46
-#, fuzzy
 #| msgid "Best for"
 msgid "best for photos"
-msgstr "Best for"
+msgstr "best for photos"
 
 #: templates/frontend/image_tools/optimize_image.html:47
 msgid "best for graphics / transparency"
 msgstr "best for graphics / transparency"
 
 #: templates/frontend/image_tools/optimize_image.html:48
-#, fuzzy
 #| msgid "Smaller file size"
 msgid "modern, smallest file size"
-msgstr "Smaller file size"
+msgstr "modern, smallest file size"
 
 #: templates/frontend/image_tools/optimize_image.html:55
-#, fuzzy
 #| msgid "Chinese (Traditional)"
 msgid "Resize (optional)"
-msgstr "Chinese (Traditional)"
+msgstr "Resize (optional)"
 
 #: templates/frontend/image_tools/optimize_image.html:59
 msgid "Max width in pixels"
@@ -2495,7 +2479,7 @@ msgstr "Max width, e.g. 1920"
 
 #: templates/frontend/image_tools/optimize_image.html:69
 msgid "Maximum width in pixels"
-msgstr ""
+msgstr "Maximum width in pixels"
 
 #: templates/frontend/image_tools/optimize_image.html:74
 msgid "Max height in pixels"
@@ -2507,45 +2491,37 @@ msgstr "Max height, e.g. 1080"
 
 #: templates/frontend/image_tools/optimize_image.html:84
 msgid "Maximum height in pixels"
-msgstr ""
+msgstr "Maximum height in pixels"
 
 #: templates/frontend/image_tools/optimize_image.html:90
 msgid ""
 "Leave blank to keep original dimensions. Aspect ratio is always preserved."
-msgstr ""
+msgstr "Leave blank to keep original dimensions. Aspect ratio is always preserved."
 
 #: templates/frontend/image_tools/optimize_image.html:103
-#, fuzzy
-#| msgid ""
-#| "Select your PDF file using the button above or drag and drop it into the "
-#| "zone"
 msgid ""
 "Select your image file using the button above or drag and drop it into the "
 "zone"
-msgstr ""
+msgstr "Select your image file using the button above or drag and drop it into the zone"
 "Select your PDF file using the button above or drag and drop it into the zone"
 
 #: templates/frontend/image_tools/optimize_image.html:104
-#, fuzzy, python-format
-#| msgid "Select image quality (85 is recommended)"
 msgid "Set the quality level (85%% is recommended for most images)"
-msgstr "Select image quality (85 is recommended)"
+msgstr "Set the quality level (85%% is recommended for most images)"
 
 #: templates/frontend/image_tools/optimize_image.html:105
 msgid "Optionally choose an output format or set maximum dimensions"
 msgstr ""
 
 #: templates/frontend/image_tools/optimize_image.html:106
-#, fuzzy
 #| msgid "Click the edit button to process your file"
 msgid "Click the Optimize Image button to compress your image"
-msgstr "Click the edit button to process your file"
+msgstr "Click the Optimize Image button to compress your image"
 
 #: templates/frontend/image_tools/optimize_image.html:107
-#, fuzzy
 #| msgid "Download your cropped PDF file"
 msgid "Download your optimized image file"
-msgstr "Download your cropped PDF file"
+msgstr "Download your optimized image file"
 
 #: templates/frontend/includes/breadcrumbs.html:5
 msgid "Breadcrumb"
@@ -2749,10 +2725,9 @@ msgstr "Sign PDF"
 
 #: templates/frontend/includes/header.html:339
 #: templates/frontend/includes/header.html:874
-#, fuzzy
 #| msgid "Advanced Tools"
 msgid "Image Tools"
-msgstr "Advanced Tools"
+msgstr "Image Tools"
 
 #: templates/frontend/includes/header.html:350
 #: templates/frontend/includes/header.html:885
@@ -2781,10 +2756,9 @@ msgstr "Open Catalog"
 #: templates/frontend/includes/header.html:1299
 #: templates/frontend/includes/header.html:1422
 #: utils_site/src/frontend/views.py:650
-#, fuzzy
 #| msgid "PDF to Text FAQ"
 msgid "PDF to Text"
-msgstr "PDF to Text FAQ"
+msgstr "PDF to Text"
 
 #: templates/frontend/includes/header.html:467
 msgid "Main navigation"
@@ -2833,17 +2807,15 @@ msgid "Page Management"
 msgstr "Page Management"
 
 #: templates/frontend/includes/header.html:860
-#, fuzzy
 #| msgid "Image"
 msgid "Image tools"
-msgstr "Image"
+msgstr "Image tools"
 
 #: templates/frontend/includes/header.html:862
 #: templates/frontend/includes/header.html:1549
-#, fuzzy
 #| msgid "Image"
 msgid "Images"
-msgstr "Image"
+msgstr "Images"
 
 #: templates/frontend/includes/header.html:912
 #: templates/frontend/includes/header.html:1219
@@ -3682,44 +3654,37 @@ msgstr "Premium Feature"
 msgid ""
 "PDF to Text is a premium feature. Upgrade to Premium to extract plain text "
 "from any PDF document."
-msgstr ""
+msgstr "PDF to Text is a premium feature. Upgrade to Premium to extract plain text from any PDF document."
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:10
 #: templates/frontend/pdf_edit/sign_pdf.html:10
-#, fuzzy
 #| msgid "Upgrade Now"
 msgid "Upgrade now"
-msgstr "Upgrade Now"
+msgstr "Upgrade now"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:16
-#, fuzzy
 #| msgid "Rotation Settings"
 msgid "Extraction Options"
-msgstr "Rotation Settings"
+msgstr "Extraction Options"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:30
-#, fuzzy
 #| msgid "Add Page Numbers"
 msgid "Include page numbers"
-msgstr "Add Page Numbers"
+msgstr "Include page numbers"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:33
 msgid "Add '--- Page N ---' dividers between pages in the output text"
-msgstr ""
+msgstr "Add '--- Page N ---' dividers between pages in the output text"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:49
-#, fuzzy
 #| msgid "Preserve Document Quality"
 msgid "Preserve text layout"
-msgstr "Preserve Document Quality"
+msgstr "Preserve text layout"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:52
-#, fuzzy
-#| msgid ""
-#| "Option to preserve text positioning and column structure from the original"
 msgid ""
 "Try to preserve text positioning and column structure from the original PDF"
-msgstr ""
+msgstr "Try to preserve text positioning and column structure from the original PDF"
 "Option to preserve text positioning and column structure from the original"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:67
@@ -3732,19 +3697,17 @@ msgstr ""
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:68
 msgid "Optionally enable page numbers or layout preservation"
-msgstr ""
+msgstr "Optionally enable page numbers or layout preservation"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:69
-#, fuzzy
 #| msgid "Click the Convert button to generate your PDF"
 msgid "Click the convert button to extract text from your PDF"
-msgstr "Click the Convert button to generate your PDF"
+msgstr "Click the convert button to extract text from your PDF"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:70
-#, fuzzy
 #| msgid "Download your cleaned PDF file"
 msgid "Download your plain text (.txt) file"
-msgstr "Download your cleaned PDF file"
+msgstr "Download your plain text (.txt) file"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:74
 #, python-format
@@ -4431,62 +4394,43 @@ msgstr ""
 "Crop PDF when ready."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:11
-#, fuzzy
 #| msgid "What does flattening a PDF mean?"
 msgid "What does flattening do?"
-msgstr "What does flattening a PDF mean?"
+msgstr "What does flattening do?"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:13
-#, fuzzy
-#| msgid ""
-#| "Flattening a PDF removes all interactive elements such as form fields, "
-#| "checkboxes, and annotations, converting them into static content. The PDF "
-#| "looks identical but can no longer be filled out or edited."
 msgid ""
 "Flattening removes all interactive form fields, checkboxes, text inputs, and "
 "annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
-msgstr ""
+msgstr "Flattening removes all interactive form fields, checkboxes, text inputs, and annotations from your PDF. The result is a static, non-editable document that looks identical but cannot be filled out or modified."
 "Flattening a PDF removes all interactive elements such as form fields, "
 "checkboxes, and annotations, converting them into static content. The PDF "
 "looks identical but can no longer be filled out or edited."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:28
-#, fuzzy
 #| msgid "Click the button to start processing your file"
 msgid "Click the Flatten PDF button to start processing"
-msgstr "Click the button to start processing your file"
+msgstr "Click the Flatten PDF button to start processing"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:29
-#, fuzzy
 #| msgid "Remove interactive form fields and annotations from your PDF"
 msgid "All interactive form fields and annotations will be removed"
-msgstr "Remove interactive form fields and annotations from your PDF"
+msgstr "All interactive form fields and annotations will be removed"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:30
-#, fuzzy
 #| msgid "Download your cleaned PDF file"
 msgid "Download your flattened static PDF file"
-msgstr "Download your cleaned PDF file"
+msgstr "Download your flattened static PDF file"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:35
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "          PDF files with up to %(max_pages)s pages are supported. "
-#| "Remaining pages are preserved in original order.\n"
-#| "        "
 msgid ""
 "\n"
 "          PDF files with up to %(max_pages)s pages are supported. The visual "
 "appearance of the PDF is preserved while all interactive elements are "
 "removed.\n"
 "        "
-msgstr ""
-"\n"
-"          PDF files with up to %(max_pages)s pages are supported. Remaining "
-"pages are preserved in original order.\n"
-"        "
+msgstr "\n          PDF files with up to %(max_pages)s pages are supported. The visual appearance of the PDF is preserved while all interactive elements are removed.\n        "
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:6
 msgid "Rotation Settings"
@@ -4545,133 +4489,110 @@ msgstr ""
 msgid ""
 "Sign PDF is a premium feature. Upgrade to Premium to add your handwritten "
 "signature to any PDF document."
-msgstr ""
+msgstr "Sign PDF is a premium feature. Upgrade to Premium to add your handwritten signature to any PDF document."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:18
-#, fuzzy
 #| msgid "Configure Settings"
 msgid "Signature Settings"
-msgstr "Configure Settings"
+msgstr "Signature Settings"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:25
-#, fuzzy
 #| msgid "Featured Image"
 msgid "Upload Signature Image"
-msgstr "Featured Image"
+msgstr "Upload Signature Image"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:28
-#, fuzzy
-#| msgid ""
-#| "Use a PNG image with a transparent background for the cleanest signature "
-#| "result."
 msgid ""
 "PNG with transparent background gives the best result. JPG is also accepted."
-msgstr ""
+msgstr "PNG with transparent background gives the best result. JPG is also accepted."
 "Use a PNG image with a transparent background for the cleanest signature "
 "result."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:43
 #: templates/frontend/pdf_edit/sign_pdf.html:224
 msgid "No file chosen"
-msgstr ""
+msgstr "No file chosen"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:51
-#, fuzzy
 #| msgid "Customizable Position"
 msgid "Signature Position"
-msgstr "Customizable Position"
+msgstr "Signature Position"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:61
-#, fuzzy
 #| msgid "Top Center"
 msgid "Center"
-msgstr "Top Center"
+msgstr "Center"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:68
-#, fuzzy
 #| msgid "Page Size"
 msgid "Page to Sign"
-msgstr "Page Size"
+msgstr "Page to Sign"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:77
 msgid ""
 "Enter the page number where the signature will be placed (first page = 1)."
-msgstr ""
+msgstr "Enter the page number where the signature will be placed (first page = 1)."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:84
-#, fuzzy
 #| msgid "Image Signature"
 msgid "Signature Width"
-msgstr "Image Signature"
+msgstr "Signature Width"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:84
 #: templates/frontend/pdf_edit/sign_pdf.html:95
 #: templates/frontend/pdf_edit/sign_pdf.html:96
 msgid "pt"
-msgstr ""
+msgstr "pt"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:128
-#, fuzzy
 #| msgid "Apply crop to pages"
 msgid "Apply signature to all pages"
-msgstr "Apply crop to pages"
+msgstr "Apply signature to all pages"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:137
 msgid "When checked, the signature is added to every page of the PDF."
-msgstr ""
+msgstr "When checked, the signature is added to every page of the PDF."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:154
-#, fuzzy
-#| msgid ""
-#| "Use a PNG image with a transparent background for the cleanest signature "
-#| "result."
 msgid ""
 "Upload your signature image (PNG with a transparent background works best)"
-msgstr ""
+msgstr "Upload your signature image (PNG with a transparent background works best)"
 "Use a PNG image with a transparent background for the cleanest signature "
 "result."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:155
-#, fuzzy
 #| msgid ""
 #| "Choose the exact position and page for your signature, or apply it to all "
 #| "pages at once"
 msgid "Choose the position and page where the signature should appear"
-msgstr ""
+msgstr "Choose the position and page where the signature should appear"
 "Choose the exact position and page for your signature, or apply it to all "
 "pages at once"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:156
-#, fuzzy
 #| msgid "Customize color, opacity, and size using the sliders"
 msgid "Adjust the signature width and opacity using the sliders"
-msgstr "Customize color, opacity, and size using the sliders"
+msgstr "Adjust the signature width and opacity using the sliders"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:157
-#, fuzzy
 #| msgid "Click the edit button to process your file"
 msgid "Click the Sign PDF button to process your document"
-msgstr "Click the edit button to process your file"
+msgstr "Click the Sign PDF button to process your document"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:158
-#, fuzzy
 #| msgid "Download your cleaned PDF file"
 msgid "Download your signed PDF file"
-msgstr "Download your cleaned PDF file"
+msgstr "Download your signed PDF file"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:162
 msgid "Tip:"
-msgstr ""
+msgstr "Tip:"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:163
-#, fuzzy
-#| msgid ""
-#| "Use a PNG image with a transparent background for the cleanest signature "
-#| "result."
 msgid ""
 "Use a PNG image with a transparent background so the signature blends "
 "naturally into the document without a white box around it."
-msgstr ""
+msgstr "Use a PNG image with a transparent background so the signature blends naturally into the document without a white box around it."
 "Use a PNG image with a transparent background for the cleanest signature "
 "result."
 
@@ -12944,15 +12865,10 @@ msgid "Flatten PDF Online Free - Remove Form Fields | Convertica"
 msgstr "Flatten PDF Online Free - Remove Form Fields | Convertica"
 
 #: utils_site/src/frontend/tool_configs.py:3622
-#, fuzzy
-#| msgid ""
-#| "Flatten PDF online free by removing interactive form fields, checkboxes, "
-#| "and annotations. Creates a static, non-editable PDF that preserves the "
-#| "original appearance. No registration required."
 msgid ""
 "Flatten PDF online free by removing interactive form fields, checkboxes, and "
 "annotations. Creates a static, non-editable PDF. No registration required."
-msgstr ""
+msgstr "Flatten PDF online free by removing interactive form fields, checkboxes, and annotations. Creates a static, non-editable PDF. No registration required."
 "Flatten PDF online free by removing interactive form fields, checkboxes, and "
 "annotations. Creates a static, non-editable PDF that preserves the original "
 "appearance. No registration required."
@@ -13080,10 +12996,9 @@ msgstr ""
 
 # ==================== sign_pdf ====================
 #: utils_site/src/frontend/tool_configs.py:3734
-#, fuzzy
 #| msgid "Sign PDF Online Free - Add Signature to PDF | Convertica"
 msgid "Sign PDF - Add Signature to PDF Online | Convertica Premium"
-msgstr "Sign PDF Online Free - Add Signature to PDF | Convertica"
+msgstr "Sign PDF - Add Signature to PDF Online | Convertica Premium"
 
 #: utils_site/src/frontend/tool_configs.py:3737
 msgid ""
@@ -13130,10 +13045,9 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:3785
 #: utils_site/src/frontend/tool_configs.py:3893
-#, fuzzy
 #| msgid "Download"
 msgid "Instant Download"
-msgstr "Download"
+msgstr "Instant Download"
 
 #: utils_site/src/frontend/tool_configs.py:3787
 msgid "Signed PDF is ready for immediate download with no delays"
@@ -13506,10 +13420,9 @@ msgstr ""
 "fidelity."
 
 #: utils_site/src/frontend/tool_configs.py:4043
-#, fuzzy
 #| msgid "Tips for Image Conversion"
 msgid "Why Use Our Image Converter?"
-msgstr "Tips for Image Conversion"
+msgstr "Why Use Our Image Converter?"
 
 #: utils_site/src/frontend/tool_configs.py:4044
 msgid "Tips for Image Conversion"
@@ -13536,10 +13449,9 @@ msgstr ""
 "immediately after download.</p>"
 
 #: utils_site/src/frontend/tool_configs.py:4059
-#, fuzzy
 #| msgid "PDF to JPG Converter - Extract Images from PDF Online"
 msgid "PDF to Text Converter - Extract Text from PDF | Convertica Premium"
-msgstr "PDF to JPG Converter - Extract Images from PDF Online"
+msgstr "PDF to Text Converter - Extract Text from PDF | Convertica Premium"
 
 #: utils_site/src/frontend/tool_configs.py:4062
 msgid ""
@@ -13588,10 +13500,9 @@ msgstr ""
 "Option to preserve text positioning and column structure from the original"
 
 #: utils_site/src/frontend/tool_configs.py:4109
-#, fuzzy
 #| msgid "Instant Protection"
 msgid "Instant Extraction"
-msgstr "Instant Protection"
+msgstr "Instant Extraction"
 
 #: utils_site/src/frontend/tool_configs.py:4110
 msgid "Fast text extraction with immediate download"
