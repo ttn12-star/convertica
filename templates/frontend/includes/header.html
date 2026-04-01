@@ -230,6 +230,28 @@
                       <span class="font-medium">{% trans "Add Watermark" %}</span>
                     </a>
                   </li>
+                  <li>
+                    <a href="{% url 'frontend:flatten_pdf_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-slate-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "Flatten PDF" %}</span>
+                    </a>
+                  </li>
+                  {% if PAYMENTS_ENABLED %}
+                    <li>
+                      <a href="{% url 'frontend:sign_pdf_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300"
+                         role="menuitem">
+                        <span class="font-medium">{% trans "Sign PDF" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                    </li>
+                  {% endif %}
                 </ul>
               </div>
 
@@ -312,6 +334,37 @@
                 </ul>
               </div>
 
+              <!-- Image Tools -->
+              <div class="min-w-0">
+                <h5 class="font-bold mb-3 text-gray-900 text-sm uppercase tracking-wide text-violet-600">{% trans "Image Tools" %}</h5>
+                <ul class="space-y-1.5 text-sm">
+                  <li>
+                    <a href="{% url 'frontend:optimize_image_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "Optimize Image" %}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'frontend:convert_image_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 dark:hover:bg-violet-900/30 hover:text-violet-600 dark:hover:text-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-fuchsia-100 rounded-lg flex items-center justify-center group-hover:bg-fuchsia-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "Convert Image" %}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
               <!-- PDF Security -->
               <div class="min-w-0">
                 <h5 class="font-bold mb-3 text-gray-900 text-sm uppercase tracking-wide text-red-600">{% trans "PDF Security" %}</h5>
@@ -382,6 +435,22 @@
                          class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
                         <span class="font-medium">{% trans "Compare Two PDFs" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'frontend:sign_pdf_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         role="menuitem">
+                        <span class="font-medium">{% trans "Sign PDF" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'frontend:pdf_to_text_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         role="menuitem">
+                        <span class="font-medium">{% trans "PDF to Text" %}</span>
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </li>
@@ -534,6 +603,22 @@
                       </div>
                       <span class="font-medium">{% trans "HTML to PDF" %}</span>
                     </a>
+
+                    {% if PAYMENTS_ENABLED %}
+                      <a href="{% url 'frontend:pdf_to_text_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300"
+                         role="menuitem">
+                        <div class="flex items-center space-x-2.5">
+                          <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                          </div>
+                          <span class="font-medium">{% trans "PDF to Text" %}</span>
+                        </div>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                    {% endif %}
                   </div>
                 </div>
 
@@ -589,6 +674,18 @@
                           <span class="font-medium">{% trans "Crop PDF" %}</span>
                         </a>
                       </li>
+                      <li>
+                        <a href="{% url 'frontend:flatten_pdf_page' %}"
+                           class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-purple-50 hover:text-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-200 text-gray-700 group"
+                           role="menuitem">
+                          <div class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-slate-200 transition-colors flex-shrink-0">
+                            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                          </div>
+                          <span class="font-medium">{% trans "Flatten PDF" %}</span>
+                        </a>
+                      </li>
                     </ul>
                   </div>
 
@@ -620,6 +717,23 @@
                           <span class="font-medium">{% trans "Add Watermark" %}</span>
                         </a>
                       </li>
+                      {% if PAYMENTS_ENABLED %}
+                        <li>
+                          <a href="{% url 'frontend:sign_pdf_page' %}"
+                             class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 hover:text-amber-700 transition-all duration-200 text-gray-700"
+                             role="menuitem">
+                            <div class="flex items-center space-x-2.5">
+                              <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                </svg>
+                              </div>
+                              <span class="font-medium">{% trans "Sign PDF" %}</span>
+                            </div>
+                            <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                          </a>
+                        </li>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -736,6 +850,58 @@
               </div>
             </div>
 
+        <!-- Images Menu -->
+            <div class="relative" id="images-menu-parent">
+              <button id="images-menu-button"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      class="flex items-center space-x-0.5 lg:space-x-1 text-gray-700 hover:text-violet-600 hover:bg-violet-50 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-violet-500 rounded-lg px-2 lg:px-3 py-1.5 lg:py-2 text-xs lg:text-sm"
+                      aria-controls="images-menu-dropdown"
+                      aria-label="{% trans 'Image tools' %}"
+                      aria-expanded="false">
+                <span class="whitespace-nowrap">{% trans "Images" %}</span>
+                <svg id="images-menu-arrow" class="ml-0.5 lg:ml-1 w-3.5 h-3.5 lg:w-4 lg:h-4 transition-transform duration-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+          <!-- Images Dropdown -->
+              <div id="images-menu-dropdown"
+                   class="absolute left-0 top-full mt-2 w-64 bg-white dark:bg-gray-800 shadow-2xl rounded-xl opacity-0 invisible transition-all duration-300 z-[60] border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-gray-100 overflow-hidden"
+                   aria-labelledby="images-menu-button"
+                   role="menu">
+                <div class="p-5 bg-gradient-to-br from-white to-violet-50/30 dark:from-gray-800 dark:to-gray-900">
+                  <h5 class="font-bold mb-3 text-gray-900 text-sm uppercase tracking-wide text-violet-600">{% trans "Image Tools" %}</h5>
+                  <ul class="space-y-1.5 text-sm">
+                    <li>
+                      <a href="{% url 'frontend:optimize_image_page' %}"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-violet-50 hover:text-violet-600 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-200 text-gray-700 group"
+                         role="menuitem">
+                        <div class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
+                          <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                          </svg>
+                        </div>
+                        <span class="font-medium">{% trans "Optimize Image" %}</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'frontend:convert_image_page' %}"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-fuchsia-50 hover:text-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-all duration-200 text-gray-700 group"
+                         role="menuitem">
+                        <div class="w-8 h-8 bg-fuchsia-100 rounded-lg flex items-center justify-center group-hover:bg-fuchsia-200 transition-colors flex-shrink-0">
+                          <svg class="w-5 h-5 text-fuchsia-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                          </svg>
+                        </div>
+                        <span class="font-medium">{% trans "Convert Image" %}</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
             {% if PAYMENTS_ENABLED and user.is_authenticated and user.is_premium_active %}
               <div class="relative group flex-shrink-0" id="premium-tools-menu-parent">
                 <button id="premium-tools-menu-button"
@@ -791,6 +957,18 @@
                          class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
                          role="menuitem">
                         <span class="font-medium">{% trans "Compare Two PDFs" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:sign_pdf_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
+                         role="menuitem">
+                        <span class="font-medium">{% trans "Sign PDF" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                      <a href="{% url 'frontend:pdf_to_text_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
+                         role="menuitem">
+                        <span class="font-medium">{% trans "PDF to Text" %}</span>
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </div>
@@ -1111,6 +1289,16 @@
           <span>{% trans "Compare Two PDFs" %}</span>
           <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
         </a>
+        <a href="{% url 'frontend:sign_pdf_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
+          <span>{% trans "Sign PDF" %}</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+        <a href="{% url 'frontend:pdf_to_text_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
+          <span>{% trans "PDF to Text" %}</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
       </div>
     {% endif %}
 
@@ -1224,6 +1412,18 @@
         </svg>
         {% trans "PDF to HTML" %}
       </a>
+      {% if PAYMENTS_ENABLED %}
+        <a href="{% url 'frontend:pdf_to_text_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
+          <div class="flex items-center">
+            <svg class="w-4 h-4 text-amber-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            {% trans "PDF to Text" %}
+          </div>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+      {% endif %}
     </div>
 
   <!-- Mobile Organize PDF Menu Toggle -->
@@ -1321,9 +1521,54 @@
         </svg>
         {% trans "Add Watermark" %}
       </a>
+      <a href="{% url 'frontend:flatten_pdf_page' %}"
+         class="flex items-center p-2.5 rounded-lg hover:bg-purple-50 text-gray-700 transition-colors">
+        <svg class="w-4 h-4 text-slate-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+        {% trans "Flatten PDF" %}
+      </a>
+      {% if PAYMENTS_ENABLED %}
+        <a href="{% url 'frontend:sign_pdf_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
+          <div class="flex items-center">
+            <svg class="w-4 h-4 text-amber-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+            </svg>
+            {% trans "Sign PDF" %}
+          </div>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+      {% endif %}
     </div>
 
+  <!-- Mobile Image Tools Menu Toggle -->
+    <button id="mobile-images-toggle"
+            class="flex items-center justify-between w-full p-3 rounded-lg hover:bg-violet-50 text-left font-semibold text-gray-900 transition-colors"
+            aria-expanded="false">
+      <span>{% trans "Images" %}</span>
+      <svg class="w-4 h-4 transition-transform text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
 
+  <!-- Mobile Image Tools Menu Items -->
+    <div id="mobile-images-menu" class="hidden pl-4 space-y-1">
+      <a href="{% url 'frontend:optimize_image_page' %}"
+         class="flex items-center p-2.5 rounded-lg hover:bg-violet-50 text-gray-700 transition-colors">
+        <svg class="w-4 h-4 text-violet-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+        {% trans "Optimize Image" %}
+      </a>
+      <a href="{% url 'frontend:convert_image_page' %}"
+         class="flex items-center p-2.5 rounded-lg hover:bg-fuchsia-50 text-gray-700 transition-colors">
+        <svg class="w-4 h-4 text-fuchsia-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+        </svg>
+        {% trans "Convert Image" %}
+      </a>
+    </div>
 
   <!-- Mobile More Menu Toggle -->
     <button id="mobile-more-toggle"

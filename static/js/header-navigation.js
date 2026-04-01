@@ -25,6 +25,12 @@ class HeaderNavigation {
     this.premiumToolsDropdown = document.getElementById('premium-tools-menu-dropdown');
     this.premiumToolsButton = document.getElementById('premium-tools-menu-button');
     this.premiumToolsArrow = document.getElementById('premium-tools-menu-arrow');
+    this.imagesParent = document.getElementById('images-menu-parent');
+    this.imagesDropdown = document.getElementById('images-menu-dropdown');
+    this.imagesButton = document.getElementById('images-menu-button');
+    this.imagesArrow = document.getElementById('images-menu-arrow');
+    this.mobileImagesToggle = document.getElementById('mobile-images-toggle');
+    this.mobileImagesMenu = document.getElementById('mobile-images-menu');
     this.mobileEditPdfToggle = document.getElementById('mobile-edit-pdf-toggle');
     this.mobileEditPdfMenu = document.getElementById('mobile-edit-pdf-menu');
     this.mobileOrganizePdfToggle = document.getElementById('mobile-organize-pdf-toggle');
@@ -114,6 +120,23 @@ class HeaderNavigation {
         this.togglePremiumToolsDesktop();
       }
     });
+
+    // Desktop images menu (hover) - always attach, check width in methods
+    if (this.imagesParent) {
+      this.imagesParent.addEventListener('mouseenter', () => this.showImages());
+      this.imagesParent.addEventListener('mouseleave', () => this.hideImages());
+    }
+
+    // Desktop images menu (click for accessibility)
+    this.imagesButton?.addEventListener('click', (e) => {
+      if (window.innerWidth < 768) {
+        e.preventDefault();
+        this.toggleImagesDesktop();
+      }
+    });
+
+    // Mobile images menu toggle
+    this.mobileImagesToggle?.addEventListener('click', () => this.toggleMobileImages());
 
     // Mobile organize PDF menu toggle
     this.mobileEditPdfToggle?.addEventListener('click', () => this.toggleMobileEditPdf());
@@ -209,6 +232,7 @@ class HeaderNavigation {
     this.hideOrganizePdf();
     this.hideAllTools();
     this.hidePremiumTools();
+    this.hideImages();
     this.megaDropdown.classList.remove('opacity-0', 'invisible');
     this.megaDropdown.classList.add('opacity-100', 'visible');
     this.megaParent.setAttribute('aria-expanded', 'true');
@@ -256,6 +280,7 @@ class HeaderNavigation {
     this.hideOrganizePdf();
     this.hideAllTools();
     this.hidePremiumTools();
+    this.hideImages();
     this.editPdfDropdown.classList.remove('opacity-0', 'invisible');
     this.editPdfDropdown.classList.add('opacity-100', 'visible');
     this.editPdfParent.setAttribute('aria-expanded', 'true');
@@ -304,6 +329,7 @@ class HeaderNavigation {
     this.hideEditPdf();
     this.hideAllTools();
     this.hidePremiumTools();
+    this.hideImages();
     this.organizePdfDropdown.classList.remove('opacity-0', 'invisible');
     this.organizePdfDropdown.classList.add('opacity-100', 'visible');
     this.organizePdfParent.setAttribute('aria-expanded', 'true');
@@ -378,6 +404,7 @@ class HeaderNavigation {
     this.hideEditPdf();
     this.hideOrganizePdf();
     this.hidePremiumTools();
+    this.hideImages();
 
     // Position menu to expand from button center
     const buttonRect = this.allToolsButton.getBoundingClientRect();
@@ -419,6 +446,56 @@ class HeaderNavigation {
     isVisible ? this.hideAllTools() : this.showAllTools();
   }
 
+  showImages() {
+    if (window.innerWidth < 768) return;
+    if (!this.imagesDropdown || !this.imagesParent || !this.imagesButton) return;
+    // Hide other menus if open
+    this.hideMega();
+    this.hideEditPdf();
+    this.hideOrganizePdf();
+    this.hideAllTools();
+    this.hidePremiumTools();
+    this.hideMore();
+    this.imagesDropdown.classList.remove('opacity-0', 'invisible');
+    this.imagesDropdown.classList.add('opacity-100', 'visible');
+    this.imagesParent.setAttribute('aria-expanded', 'true');
+    this.imagesButton.setAttribute('aria-expanded', 'true');
+    if (this.imagesArrow) {
+      this.imagesArrow.classList.add('rotate-180');
+    }
+  }
+
+  hideImages() {
+    if (window.innerWidth < 768) return;
+    if (!this.imagesDropdown || !this.imagesParent || !this.imagesButton) return;
+    this.imagesDropdown.classList.remove('opacity-100', 'visible');
+    this.imagesDropdown.classList.add('opacity-0', 'invisible');
+    this.imagesParent.setAttribute('aria-expanded', 'false');
+    this.imagesButton.setAttribute('aria-expanded', 'false');
+    if (this.imagesArrow) {
+      this.imagesArrow.classList.remove('rotate-180');
+    }
+  }
+
+  toggleImagesDesktop() {
+    if (!this.imagesDropdown) return;
+    const isVisible = !this.imagesDropdown.classList.contains('invisible');
+    isVisible ? this.hideImages() : this.showImages();
+  }
+
+  toggleMobileImages() {
+    if (!this.mobileImagesToggle || !this.mobileImagesMenu) return;
+    const isExpanded = this.mobileImagesToggle.getAttribute('aria-expanded') === 'true';
+    this.mobileImagesMenu.classList.toggle('hidden', isExpanded);
+    this.mobileImagesToggle.setAttribute('aria-expanded', !isExpanded);
+
+    // Rotate arrow icon
+    const arrow = this.mobileImagesToggle.querySelector('svg');
+    if (arrow) {
+      arrow.classList.toggle('rotate-180');
+    }
+  }
+
   showPremiumTools() {
     if (window.innerWidth < 768) return;
     if (!this.premiumToolsDropdown || !this.premiumToolsParent || !this.premiumToolsButton) return;
@@ -427,6 +504,7 @@ class HeaderNavigation {
     this.hideEditPdf();
     this.hideOrganizePdf();
     this.hideAllTools();
+    this.hideImages();
     this.hideMore();
     this.premiumToolsDropdown.classList.remove('opacity-0', 'invisible');
     this.premiumToolsDropdown.classList.add('opacity-100', 'visible');
@@ -464,6 +542,7 @@ class HeaderNavigation {
     this.hideOrganizePdf();
     this.hideAllTools();
     this.hidePremiumTools();
+    this.hideImages();
     this.moreDropdown.classList.remove('opacity-0', 'invisible');
     this.moreDropdown.classList.add('opacity-100', 'visible');
     this.moreParent.setAttribute('aria-expanded', 'true');
@@ -555,6 +634,14 @@ class HeaderNavigation {
       this.hidePremiumTools();
     }
 
+    // Close desktop images menu
+    if (this.imagesDropdown &&
+        this.imagesParent &&
+        !this.imagesParent.contains(e.target) &&
+        window.innerWidth >= 768) {
+      this.hideImages();
+    }
+
     // Close desktop more menu
     if (this.moreDropdown &&
         !this.moreParent.contains(e.target) &&
@@ -571,6 +658,7 @@ class HeaderNavigation {
       this.hideOrganizePdf();
       this.hideAllTools();
       this.hidePremiumTools();
+      this.hideImages();
       this.hideMore();
     }
 
