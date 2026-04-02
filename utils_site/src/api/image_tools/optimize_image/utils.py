@@ -4,6 +4,7 @@ Image optimization utility for reduce file size while maintaining quality.
 
 import io
 import os
+import shutil
 import tempfile
 
 from PIL import Image
@@ -95,6 +96,19 @@ def optimize_image(
     _save_optimized(img_copy, output_path, out_format, quality)
     img_copy.close()
 
+    input_size = os.path.getsize(input_path)
+    output_size = os.path.getsize(output_path)
+
+    # If no format conversion was requested and the result is not smaller,
+    # return the original — re-encoding at a different quality can inflate the file.
+    format_changed = bool(
+        output_format
+        and output_format.upper() in {k.upper() for k in FORMAT_EXTENSIONS}
+    )
+    if output_size >= input_size and not format_changed:
+        shutil.copy2(input_path, output_path)
+        output_size = input_size  # for logging
+
     logger.info(
         "Image optimized",
         extra={
@@ -102,6 +116,8 @@ def optimize_image(
             "output_path": output_path,
             "out_format": out_format,
             "quality": quality,
+            "input_size": input_size,
+            "output_size": output_size,
         },
     )
 
