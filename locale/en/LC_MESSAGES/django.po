@@ -2511,7 +2511,7 @@ msgstr "Set the quality level (85%% is recommended for most images)"
 
 #: templates/frontend/image_tools/optimize_image.html:105
 msgid "Optionally choose an output format or set maximum dimensions"
-msgstr ""
+msgstr "Optionally choose an output format or set maximum dimensions"
 
 #: templates/frontend/image_tools/optimize_image.html:106
 #| msgid "Click the edit button to process your file"
@@ -3714,7 +3714,7 @@ msgstr "Download your plain text (.txt) file"
 msgid ""
 "Free users can extract text from PDF files with up to %(max_pages)s pages. "
 "The extracted text is saved as a plain UTF-8 encoded .txt file."
-msgstr ""
+msgstr "Free users can extract text from PDF files with up to %(max_pages)s pages. The extracted text is saved as a plain UTF-8 encoded .txt file."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
@@ -13005,7 +13005,7 @@ msgid ""
 "Add your handwritten signature to any PDF document. Premium feature: upload "
 "a PNG signature image, choose position and apply to all pages. Fast and "
 "secure."
-msgstr ""
+msgstr "Add your handwritten signature to any PDF document. Premium feature: upload a PNG signature image, choose position and apply to all pages. Fast and secure."
 
 #: utils_site/src/frontend/tool_configs.py:3746
 msgid "Add your image signature to any PDF page"
@@ -13457,7 +13457,7 @@ msgstr "PDF to Text Converter - Extract Text from PDF | Convertica Premium"
 msgid ""
 "Extract all text from PDF files as plain .txt. Premium feature: supports "
 "page number markers, layout preservation. Free trial available."
-msgstr ""
+msgstr "Extract all text from PDF files as plain .txt. Premium feature: supports page number markers, layout preservation. Free trial available."
 
 #: utils_site/src/frontend/tool_configs.py:4070
 msgid "Extract plain text from your PDF in seconds"
@@ -13722,13 +13722,13 @@ msgstr "Track long-running premium tasks and download finished files."
 msgid ""
 "Add your handwritten signature image to any PDF page. Choose position, size, "
 "and opacity. Apply to all pages at once."
-msgstr ""
+msgstr "Add your handwritten signature image to any PDF page. Choose position, size, and opacity. Apply to all pages at once."
 
 #: utils_site/src/frontend/views.py:653
 msgid ""
 "Extract all text content from a PDF as a plain .txt file. Supports page "
 "numbering and layout preservation."
-msgstr ""
+msgstr "Extract all text content from a PDF as a plain .txt file. Supports page numbering and layout preservation."
 
 #: utils_site/src/frontend/views.py:690
 msgid "Compare Two PDFs (Premium) - Convertica"
