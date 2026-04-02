@@ -47,6 +47,7 @@ from .logging_utils import (
     log_file_validation_error,
     log_validation_error,
 )
+from .premium_utils import is_premium_active
 from .rate_limit_utils import combined_rate_limit
 from .spam_protection import validate_spam_protection
 
@@ -184,8 +185,6 @@ class BaseConversionAPIView(APIView, ABC):
             )
 
             # Check if user is premium for custom message
-            from .premium_utils import is_premium_active
-
             is_premium = is_premium_active(
                 request.user if hasattr(request, "user") else None
             )
@@ -726,11 +725,7 @@ class BaseConversionAPIView(APIView, ABC):
                     {"error": error_msg},
                     status=status.HTTP_403_FORBIDDEN,
                 )
-            elif not getattr(request.user, "is_premium", False) or not (
-                request.user.is_subscription_active()
-                if callable(getattr(request.user, "is_subscription_active", None))
-                else bool(getattr(request.user, "is_subscription_active", False))
-            ):
+            elif not is_premium_active(request.user):
                 logger.warning(
                     "OCR requested by non-premium user",
                     extra={**context, "event": "ocr_non_premium"},
@@ -988,9 +983,7 @@ class BaseConversionAPIView(APIView, ABC):
             # Show upgrade link if payments enabled and user is not premium
             # (either not authenticated or authenticated but not premium)
             if payments_enabled and (
-                not user
-                or not user.is_authenticated
-                or not getattr(user, "is_premium", False)
+                not user or not user.is_authenticated or not is_premium_active(user)
             ):
                 try:
                     response_data["upgrade_url"] = reverse("frontend:pricing")
