@@ -1,25 +1,24 @@
 annotated-types==0.7.0
 asgiref==3.11.0
-build==1.3.0
 click==8.3.1
-Django==5.2.8
-daphne==4.0.0
-django-allauth==65.13.1
+Django==5.2.12
+daphne==4.2.1
+django-allauth==65.15.1
 tblib==3.2.1
 PyJWT==2.8.0
 django-tailwind==4.4.1
-djangorestframework==3.16.1
+djangorestframework==3.17.1
 drf-yasg==1.21.11
-numpy==2.2.1
-scipy==1.14.1
-opencv-python==4.10.0.84
+numpy==2.4.4
+scipy==1.17.1
+opencv-python==4.13.0.92
 openpyxl==3.1.5
 packaging==25.0
 pandas==2.3.3
 pdf2docx==0.5.8
 pdf2image==1.17.0
 pdfplumber==0.11.4
-pillow==12.0.0
+pillow==12.2.0
 python-pptx==1.0.2
 # Word document processing
 python-docx==1.1.2
@@ -27,25 +26,24 @@ olefile==0.47
 pydantic==2.12.5
 pydantic_core==2.41.5
 # PDF processing libraries
-pypdf==5.1.0
-PyMuPDF==1.24.12
+pypdf==6.9.2
+PyMuPDF==1.27.2.2
 # Text processing
 nltk==3.9.1
 # Async utilities
 aiofiles==24.1.0
-pyproject_hooks==1.2.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.1
 python-decouple==3.8
 pytailwindcss==0.3.0
 # Celery for async task processing
-celery==5.4.0
+celery==5.6.3
 redis==5.2.0
-django-redis==5.4.0
+django-redis==6.0.0
 # Rate limiting
 django-ratelimit==4.1.0
 # Database connection pooling (for PostgreSQL)
-psycopg2-binary==2.9.10
+psycopg2-binary==2.9.11
 # Monitoring and metrics
 django-prometheus==2.4.1
 pytesseract==0.3.13
@@ -58,25 +56,21 @@ typing_extensions==4.15.0
 tzdata==2025.2
 wheel==0.45.1
 # Production WSGI server
-gunicorn==21.2.0
+gunicorn==25.3.0
 # Static files optimization (alternative to Nginx)
-whitenoise==6.11.0
+whitenoise==6.12.0
 requests==2.32.5
 # System monitoring
 psutil==6.1.1
-# Development tools (pre-commit, linting) — move to dev-requirements.txt if separate env needed
-pre-commit==3.7.1
-ruff==0.4.4
-isort==5.13.2
-sentry-sdk[django]==2.52.0
+sentry-sdk[django]==2.57.0
 # Stripe payment processing
-stripe==14.1.0
+stripe==15.0.1
 # Django Channels - WebSocket support for real-time progress updates
-channels==4.0.0
-channels-redis==4.1.0
+channels==4.3.2
+channels-redis==4.3.0
 # Web Push - Push notifications for PWA
 # Note: py_vapid 1.9.3 has broken tar file, pin to working version
 py-vapid==1.9.1
 pywebpush==1.14.0
 # Playwright - HTML/URL to PDF conversion
-playwright==1.48.0
+playwright==1.58.0
