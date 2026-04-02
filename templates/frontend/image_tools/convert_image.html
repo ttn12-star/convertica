@@ -68,6 +68,25 @@
       var sel = document.getElementById('outputFormatSelect');
       if (sel) toggleQualitySection(sel.value);
     })();
+
+    // Validate output format is selected before submitting
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('converterForm');
+      var formatSelect = document.getElementById('outputFormatSelect');
+      if (!form || !formatSelect) return;
+      form.addEventListener('submit', function(e) {
+        if (!formatSelect.value) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          var resultEl = document.getElementById('converterResult');
+          if (resultEl) {
+            resultEl.innerHTML = '<div class="bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm font-medium">{% filter escapejs %}{% trans "Please select an output format before converting." %}{% endfilter %}</div>';
+            resultEl.classList.remove('hidden');
+          }
+          formatSelect.focus();
+        }
+      }, true);
+    });
   </script>
 {% endblock %}
 

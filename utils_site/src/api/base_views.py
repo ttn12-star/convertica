@@ -642,14 +642,25 @@ class BaseConversionAPIView(APIView, ABC):
 
         if not serializer.is_valid():
             context = build_request_context(request)
-            # Log detailed validation errors
+            # Log detailed validation errors with received data keys for diagnostics
             error_details = dict(serializer.errors)
+            try:
+                received_keys = list(serializer_data.keys())
+            except Exception:
+                received_keys = []
             logger.warning(
-                f"Validation errors: {error_details}",
-                extra={**context, "validation_errors": error_details},
+                f"Validation errors: {error_details} | received keys: {received_keys}",
+                extra={
+                    **context,
+                    "validation_errors": error_details,
+                    "received_keys": received_keys,
+                },
             )
             log_validation_error(logger, serializer.errors, context)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Validation failed", "details": serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         # Get file from serializer
         file_field_name = self.FILE_FIELD_NAME

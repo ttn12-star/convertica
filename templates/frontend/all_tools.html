@@ -333,6 +333,47 @@
               {% trans "Protect your PDFs with text or image watermarks." %}
             </p>
           </a>
+
+                <!-- Flatten PDF -->
+          <a href="{% url 'frontend:flatten_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-indigo-200 hover:border-indigo-300 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-indigo-600 transition-colors">
+              {% trans "Flatten PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Flatten form fields and annotations into static content." %}
+            </p>
+          </a>
+
+          {% if PAYMENTS_ENABLED %}
+                <!-- Sign PDF - PRO -->
+            <a href="{% url 'frontend:sign_pdf_page' %}"
+               class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "Sign PDF" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Add your signature to PDF documents." %}
+              </p>
+            </a>
+          {% endif %}
         </div>
       </div>
     </section>
@@ -525,6 +566,63 @@
             </h3>
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
               {% trans "Remove password protection from your PDF documents." %}
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Images Section -->
+    <section class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-violet-50 to-fuchsia-50 text-gray-900 border-t border-gray-200">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="text-center mb-10 sm:mb-12 animate-fade-in">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-violet-500 to-fuchsia-600 rounded-2xl shadow-lg mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 text-gray-900">
+            {% trans "Images" %}
+          </h2>
+          <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
+            {% trans "Optimize and convert image files online" %}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+                <!-- Optimize Image -->
+          <a href="{% url 'frontend:optimize_image_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-violet-500 hover:border-violet-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-violet-600 transition-colors">
+              {% trans "Optimize Image" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Compress JPEG, PNG, and WebP images without losing quality." %}
+            </p>
+          </a>
+
+                <!-- Convert Image -->
+          <a href="{% url 'frontend:convert_image_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-fuchsia-500 hover:border-fuchsia-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-fuchsia-500 to-fuchsia-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-fuchsia-600 transition-colors">
+              {% trans "Convert Image" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF formats." %}
             </p>
           </a>
         </div>

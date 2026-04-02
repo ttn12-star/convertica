@@ -1265,6 +1265,13 @@ def _get_sitemap_pages():
         {"url": "pdf-organize/compress/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-security/protect/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-security/unlock/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "pdf-to-text/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "pdf-edit/flatten/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "pdf-edit/sign/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "image/optimize/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "image/convert/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "scanned-pdf-to-word/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "batch-converter/", "priority": "0.7", "changefreq": "monthly"},
     ]
 
 

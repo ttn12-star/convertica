@@ -136,7 +136,10 @@ class HeaderNavigation {
     });
 
     // Mobile images menu toggle
-    this.mobileImagesToggle?.addEventListener('click', () => this.toggleMobileImages());
+    this.mobileImagesToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.toggleMobileImages();
+    });
 
     // Mobile organize PDF menu toggle
     this.mobileEditPdfToggle?.addEventListener('click', () => this.toggleMobileEditPdf());
