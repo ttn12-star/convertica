@@ -3683,7 +3683,7 @@ msgstr "حمّل ملف النص العادي (.txt)"
 msgid ""
 "Free users can extract text from PDF files with up to %(max_pages)s pages. "
 "The extracted text is saved as a plain UTF-8 encoded .txt file."
-msgstr ""
+msgstr "يمكن للمستخدمين المجانيين استخراج النص من ملفات PDF التي تحتوي على ما يصل إلى %(max_pages)s صفحة. يتم حفظ النص المستخرج كملف .txt مشفر بـ UTF-8."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
@@ -12857,7 +12857,7 @@ msgid ""
 "Add your handwritten signature to any PDF document. Premium feature: upload "
 "a PNG signature image, choose position and apply to all pages. Fast and "
 "secure."
-msgstr ""
+msgstr "أضف توقيعك المكتوب بخط اليد إلى أي مستند PDF. ميزة مميزة: ارفع صورة توقيع PNG، اختر الموضع وطبّق على جميع الصفحات. سريع وآمن."
 
 #: utils_site/src/frontend/tool_configs.py:3746
 msgid "Add your image signature to any PDF page"
@@ -13281,7 +13281,7 @@ msgstr "محوّل PDF إلى نص - استخراج النص من PDF | Converti
 msgid ""
 "Extract all text from PDF files as plain .txt. Premium feature: supports "
 "page number markers, layout preservation. Free trial available."
-msgstr ""
+msgstr "استخرج جميع النصوص من ملفات PDF كملف .txt عادي. ميزة مميزة: يدعم علامات أرقام الصفحات والحفاظ على التخطيط. تجربة مجانية متاحة."
 
 #: utils_site/src/frontend/tool_configs.py:4070
 msgid "Extract plain text from your PDF in seconds"
@@ -13544,13 +13544,13 @@ msgstr "تتبع المهام المميزة طويلة الأمد وقم بتن
 msgid ""
 "Add your handwritten signature image to any PDF page. Choose position, size, "
 "and opacity. Apply to all pages at once."
-msgstr ""
+msgstr "أضف صورة توقيعك المكتوب بخط اليد إلى أي صفحة PDF. اختر الموضع والحجم والشفافية. تطبيق على جميع الصفحات دفعة واحدة."
 
 #: utils_site/src/frontend/views.py:653
 msgid ""
 "Extract all text content from a PDF as a plain .txt file. Supports page "
 "numbering and layout preservation."
-msgstr ""
+msgstr "استخرج جميع المحتوى النصي من PDF كملف .txt عادي. يدعم ترقيم الصفحات والحفاظ على تخطيط المستند."
 
 #: utils_site/src/frontend/views.py:690
 msgid "Compare Two PDFs (Premium) - Convertica"
