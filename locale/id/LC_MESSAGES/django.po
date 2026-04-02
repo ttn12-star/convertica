@@ -3751,7 +3751,7 @@ msgstr "Unduh file teks biasa (.txt) Anda"
 msgid ""
 "Free users can extract text from PDF files with up to %(max_pages)s pages. "
 "The extracted text is saved as a plain UTF-8 encoded .txt file."
-msgstr ""
+msgstr "Pengguna gratis dapat mengekstrak teks dari file PDF dengan hingga %(max_pages)s halaman. Teks yang diekstrak disimpan sebagai file .txt yang disandikan UTF-8."
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:26
 msgid "Enable OCR (Optical Character Recognition)"
@@ -13317,7 +13317,7 @@ msgid ""
 "Add your handwritten signature to any PDF document. Premium feature: upload "
 "a PNG signature image, choose position and apply to all pages. Fast and "
 "secure."
-msgstr ""
+msgstr "Tambahkan tanda tangan tulisan tangan Anda ke dokumen PDF apa pun. Fitur Premium: unggah gambar tanda tangan PNG, pilih posisi dan terapkan ke semua halaman. Cepat dan aman."
 
 #: utils_site/src/frontend/tool_configs.py:3746
 msgid "Add your image signature to any PDF page"
@@ -13775,7 +13775,7 @@ msgstr "Konverter PDF ke Teks - Ekstrak Teks dari PDF | Convertica Premium"
 msgid ""
 "Extract all text from PDF files as plain .txt. Premium feature: supports "
 "page number markers, layout preservation. Free trial available."
-msgstr ""
+msgstr "Ekstrak semua teks dari file PDF sebagai .txt biasa. Fitur Premium: mendukung penanda nomor halaman, pelestarian tata letak. Uji coba gratis tersedia."
 
 #: utils_site/src/frontend/tool_configs.py:4070
 msgid "Extract plain text from your PDF in seconds"
@@ -14049,13 +14049,13 @@ msgstr ""
 msgid ""
 "Add your handwritten signature image to any PDF page. Choose position, size, "
 "and opacity. Apply to all pages at once."
-msgstr ""
+msgstr "Tambahkan gambar tanda tangan tulisan tangan Anda ke halaman PDF mana pun. Pilih posisi, ukuran, dan opasitas. Terapkan ke semua halaman sekaligus."
 
 #: utils_site/src/frontend/views.py:653
 msgid ""
 "Extract all text content from a PDF as a plain .txt file. Supports page "
 "numbering and layout preservation."
-msgstr ""
+msgstr "Ekstrak semua konten teks dari PDF sebagai file .txt biasa. Mendukung penomoran halaman dan pelestarian tata letak."
 
 #: utils_site/src/frontend/views.py:690
 msgid "Compare Two PDFs (Premium) - Convertica"
