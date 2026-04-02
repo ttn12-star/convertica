@@ -554,7 +554,15 @@ MEDIA_URL = "/media/"
 # Use ManifestStaticFilesStorage for versioning (hash in filenames)
 # This allows long-term caching (365 days) while automatically invalidating
 # cache when files change (new hash = new filename)
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+# Django 4.2+ requires STORAGES dict; STATICFILES_STORAGE is ignored in Django 5.x
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
 
 # WhiteNoise configuration (alternative to Nginx for static files)
 # Enable by setting USE_WHITENOISE=True in environment
@@ -573,7 +581,9 @@ if USE_WHITENOISE:
 
     # WhiteNoise settings for optimized static file serving
     # Use ManifestStaticFilesStorage for versioning
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STORAGES["staticfiles"][
+        "BACKEND"
+    ] = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
     # Cache static files for 1 year
     WHITENOISE_MAX_AGE = 31536000  # 1 year in seconds
