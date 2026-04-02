@@ -779,9 +779,11 @@ class FrontendViewsTestCase(TestCase):
         self.assertContains(response, 'id="comparisonPreview"', status_code=200)
         self.assertContains(response, 'id="comparePageList"', status_code=200)
         self.assertContains(response, 'id="compareDownloadButton"', status_code=200)
+        # Use partial match: ManifestStaticFilesStorage adds a hash to the filename
+        # e.g. jszip.min.b5d02b3f0bf3.js — so check for the path prefix only
         self.assertContains(
             response,
-            "vendor/jszip/3.10.1/jszip.min.js",
+            "vendor/jszip/3.10.1/jszip.min",
             status_code=200,
         )
 
