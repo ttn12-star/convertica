@@ -5,26 +5,42 @@ Provides helper functions for checking premium status and applying
 premium-specific features like batch processing and unlimited limits.
 """
 
+from django.core.cache import cache
+
+_PREMIUM_CACHE_TTL = 60  # seconds — short, so a Stripe webhook flip propagates quickly
+
 
 def is_premium_active(user) -> bool:
     """Check if user has active premium subscription.
 
-    Args:
-        user: Django user object
+    Verifies both the is_premium flag (admin/Stripe-driven) and the
+    subscription_end_date via the model's is_subscription_active() method,
+    so an expired subscription that hasn't yet been reconciled by the
+    Stripe webhook does not silently grant premium.
 
-    Returns:
-        True if user has active premium subscription
+    Caches the result per-user for _PREMIUM_CACHE_TTL seconds to avoid
+    hitting the DB on every request — the cache is invalidated when the
+    User model is saved (see users/models.save).
     """
     if not user or not user.is_authenticated:
         return False
 
+    cache_key = f"user_premium_active:{user.pk}"
+    cached = cache.get(cache_key)
+    if cached is not None:
+        return bool(cached)
+
     if not hasattr(user, "is_premium") or not user.is_premium:
+        cache.set(cache_key, False, _PREMIUM_CACHE_TTL)
         return False
 
     if hasattr(user, "is_subscription_active"):
-        return user.is_subscription_active()
+        result = bool(user.is_subscription_active())
+    else:
+        result = False
 
-    return False
+    cache.set(cache_key, result, _PREMIUM_CACHE_TTL)
+    return result
 
 
 def get_max_batch_files(user) -> int:

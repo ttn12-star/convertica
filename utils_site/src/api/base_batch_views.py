@@ -152,11 +152,27 @@ class BaseBatchAPIView(APIView):
                     zip_name = self.get_zip_entry_name(original_name, output_path)
                     zipf.write(output_path, zip_name)
 
+            cleanup_targets = list(tmp_dirs_to_cleanup) + [tmp_dir]
+            tmp_dirs_to_cleanup = set()
+            tmp_dir = None  # ownership transferred to response.close()
+
+            fh = open(zip_path, "rb")  # noqa: SIM115 - lifetime owned by FileResponse
             response = FileResponse(
-                open(zip_path, "rb"),
+                fh,
                 as_attachment=True,
                 filename=self.OUTPUT_ZIP_FILENAME,
             )
+            original_close = response.close
+
+            def _close_and_cleanup(_targets=tuple(cleanup_targets)) -> None:
+                try:
+                    original_close()
+                finally:
+                    for d in _targets:
+                        if d and os.path.isdir(d):
+                            shutil.rmtree(d, ignore_errors=True)
+
+            response.close = _close_and_cleanup  # type: ignore[method-assign]
             response["Content-Type"] = "application/zip"
             response["X-Convertica-Batch-Count"] = str(len(output_files))
             response["X-Convertica-Duration-Ms"] = str(
@@ -165,6 +181,8 @@ class BaseBatchAPIView(APIView):
             return response
 
         finally:
+            # Only fires on the error path — success path defers cleanup to
+            # response.close() so the ZIP stream isn't yanked mid-flight.
             for d in tmp_dirs_to_cleanup:
                 shutil.rmtree(d, ignore_errors=True)
             if tmp_dir and os.path.exists(tmp_dir):

@@ -276,8 +276,18 @@ if not SECRET_KEY:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-# Comma-separated list of allowed hosts
+# Comma-separated list of allowed hosts.
+# In production an empty list silently lets every Host header through (Django
+# falls back to ['*'] when DEBUG=True; with DEBUG=False it 400s, but a misset
+# default + a missed env var has historically been a source of host-header
+# attacks). Refuse to start without explicit hosts when DEBUG is off.
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="", cast=Csv())
+if not ALLOWED_HOSTS and not DEBUG:
+    raise ValueError(
+        "ALLOWED_HOSTS must be set in production. "
+        "Configure ALLOWED_HOSTS env var with comma-separated domains "
+        "(e.g. 'convertica.net,www.convertica.net')."
+    )
 
 # Site URL for OAuth redirects (falls back to localhost for development)
 SITE_URL = config("SITE_URL", default="http://localhost:8003")
@@ -640,6 +650,14 @@ MAX_FILE_SIZE_HEAVY_PREMIUM = config(
     "MAX_FILE_SIZE_HEAVY_PREMIUM", default=100 * 1024 * 1024, cast=int
 )  # 100 MB
 
+# Absolute hard cap for PDF/Word parsing — defence-in-depth so a malformed or
+# malicious file never reaches PyPDF/fitz/zipfile if it slipped past higher
+# layers. Set above MAX_FILE_SIZE_PREMIUM so legitimate premium files always
+# parse, but small enough that a PDF bomb cannot exhaust worker memory.
+PARSE_MAX_FILE_SIZE = config(
+    "PARSE_MAX_FILE_SIZE", default=300 * 1024 * 1024, cast=int
+)  # 300 MB
+
 # Batch processing limits
 MAX_BATCH_FILES_FREE = config("MAX_BATCH_FILES_FREE", default=1, cast=int)
 MAX_BATCH_FILES_PREMIUM = config("MAX_BATCH_FILES_PREMIUM", default=10, cast=int)
@@ -898,6 +916,28 @@ CSRF_TRUSTED_ORIGINS = config(
 )
 CSRF_COOKIE_HTTPONLY = True
 CSRF_USE_SESSIONS = False
+
+# SameSite hardening — defends against CSRF via cross-origin link/form posts
+# even if a token leak slips through. "Lax" keeps top-level GET navigations
+# (search engines, social link previews) working; "Strict" would break OAuth
+# return flows. Override via env if a flow needs Strict/None.
+SESSION_COOKIE_SAMESITE = config("SESSION_COOKIE_SAMESITE", default="Lax")
+CSRF_COOKIE_SAMESITE = config("CSRF_COOKIE_SAMESITE", default="Lax")
+SESSION_COOKIE_HTTPONLY = True
+
+# Cap raw request body size so a hostile client can't tie up a worker
+# uploading a 1 GiB request, then time out. Multipart files are still
+# streamed to disk by FILE_UPLOAD_MAX_MEMORY_SIZE; the data cap below only
+# applies to non-file POST data. Nginx still enforces client_max_body_size.
+DATA_UPLOAD_MAX_MEMORY_SIZE = config(
+    "DATA_UPLOAD_MAX_MEMORY_SIZE", default=50 * 1024 * 1024, cast=int
+)  # 50 MB
+DATA_UPLOAD_MAX_NUMBER_FIELDS = config(
+    "DATA_UPLOAD_MAX_NUMBER_FIELDS", default=2000, cast=int
+)
+FILE_UPLOAD_MAX_MEMORY_SIZE = config(
+    "FILE_UPLOAD_MAX_MEMORY_SIZE", default=2 * 1024 * 1024, cast=int
+)  # 2 MB then spool to disk
 # Cache Configuration
 # Using Redis for caching and session storage
 cache_key_prefix = config(

@@ -149,7 +149,9 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      # --max-time bounds the curl probe itself so a hung Django doesn't
+      # consume the full container timeout before the orchestrator notices.
+      test: ["CMD", "curl", "-f", "--max-time", "5", "http://localhost:8000/health/"]
       interval: 30s
       timeout: 10s
       retries: 5

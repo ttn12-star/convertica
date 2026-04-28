@@ -361,6 +361,37 @@ class BaseConversionAPIView(APIView, ABC):
                     },
                 )
 
+    def _make_streaming_response(
+        self,
+        output_path: str,
+        cleanup_dirs: tuple[str, ...] | list[str] = (),
+        as_attachment: bool = False,
+        filename: str | None = None,
+    ) -> FileResponse:
+        """Build a FileResponse that cleans up temp dirs after the body is sent.
+
+        Django closes the response (and thus the file) once the WSGI/ASGI server
+        has finished streaming. Hooking rmtree to that close — instead of doing
+        it in a `finally` that fires before the body is fully written — keeps
+        the on-disk artefacts alive until they are no longer needed and avoids
+        races on filesystems where unlink during read isn't well-defined.
+        """
+        fh = open(output_path, "rb")  # noqa: SIM115 - lifetime owned by FileResponse
+        response = FileResponse(fh, as_attachment=as_attachment, filename=filename)
+        if cleanup_dirs:
+            original_close = response.close
+
+            def _close_and_cleanup() -> None:
+                try:
+                    original_close()
+                finally:
+                    for d in cleanup_dirs:
+                        if d and os.path.isdir(d):
+                            shutil.rmtree(d, ignore_errors=True)
+
+            response.close = _close_and_cleanup  # type: ignore[method-assign]
+        return response
+
     async def post_async(self, request: HttpRequest):
         """Async version of post method for optimized converters.
 
@@ -507,7 +538,12 @@ class BaseConversionAPIView(APIView, ABC):
 
             # Stream file
             output_filename = os.path.basename(output_path)
-            response = FileResponse(open(output_path, "rb"))
+            output_size = os.path.getsize(output_path)
+            cleanup_dirs = [tmp_dir] if tmp_dir else []
+            response = self._make_streaming_response(
+                output_path, cleanup_dirs=tuple(cleanup_dirs)
+            )
+            tmp_dir = None  # ownership transferred to response.close()
             response["Content-Disposition"] = encode_filename_for_header(
                 output_filename
             )
@@ -520,7 +556,7 @@ class BaseConversionAPIView(APIView, ABC):
                 context,
                 start_time,
                 output_filename=output_filename,
-                output_size_mb=round(os.path.getsize(output_path) / (1024 * 1024), 2),
+                output_size_mb=round(output_size / (1024 * 1024), 2),
             )
 
             # Update analytics (best-effort)
@@ -537,7 +573,7 @@ class BaseConversionAPIView(APIView, ABC):
                         status="success",
                         finished_at=now,
                         duration_ms=duration_ms,
-                        output_size=os.path.getsize(output_path),
+                        output_size=output_size,
                     )
                 except Exception as db_exc:
                     logger.warning("OperationRun 'success' update failed: %s", db_exc)
@@ -566,7 +602,8 @@ class BaseConversionAPIView(APIView, ABC):
             return self.handle_conversion_error(e, context, start_time)
 
         finally:
-            # Cleanup temporary directory
+            # Only fires on the error path — success path transfers ownership to
+            # response.close() so the body finishes streaming before cleanup.
             if tmp_dir and os.path.exists(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
@@ -858,7 +895,17 @@ class BaseConversionAPIView(APIView, ABC):
 
             # Stream file
             output_filename = os.path.basename(output_path)
-            response = FileResponse(open(output_path, "rb"))
+            output_size = os.path.getsize(output_path)
+            cleanup_dirs: list[str] = []
+            if tmp_dir:
+                cleanup_dirs.append(tmp_dir)
+            if validation_tmp_dir:
+                cleanup_dirs.append(validation_tmp_dir)
+            response = self._make_streaming_response(
+                output_path, cleanup_dirs=tuple(cleanup_dirs)
+            )
+            tmp_dir = None
+            validation_tmp_dir = None
             response["Content-Disposition"] = encode_filename_for_header(
                 output_filename
             )
@@ -871,7 +918,7 @@ class BaseConversionAPIView(APIView, ABC):
                 context,
                 start_time,
                 output_filename=output_filename,
-                output_size_mb=round(os.path.getsize(output_path) / (1024 * 1024), 2),
+                output_size_mb=round(output_size / (1024 * 1024), 2),
             )
 
             return response
