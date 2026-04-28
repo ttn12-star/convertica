@@ -247,6 +247,7 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
                     request_id=str(request_id),
                     error_message=msg,
                     duration_ms=duration_ms,
+                    status_code=int(status_code),
                 )
             else:
                 mark_success(

@@ -39,6 +39,13 @@ class APIEndpointsTestCase(TestCase):
 
     def setUp(self):
         """Set up test fixtures."""
+        from django.core.cache import cache
+
+        # is_premium_active and is_subscription_active cache by user.pk; without a
+        # cache wipe, a stale "not premium" entry from a prior test (whose user PK
+        # was reused after rollback) makes premium gates 403 here intermittently.
+        cache.clear()
+
         self.client = APIClient()
         self.temp_dir = tempfile.mkdtemp()
 

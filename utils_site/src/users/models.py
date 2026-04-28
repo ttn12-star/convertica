@@ -588,6 +588,9 @@ class OperationRun(models.Model):
         ("running", "running"),
         ("success", "success"),
         ("error", "error"),
+        # 4xx: request rejected by API (validation, unsupported file, premium gate, etc.).
+        # Kept separate from "error" so user-input failures don't dilute system success metrics.
+        ("rejected", "rejected"),
         ("cancel_requested", "cancel_requested"),
         ("cancelled", "cancelled"),
         ("abandoned", "abandoned"),
