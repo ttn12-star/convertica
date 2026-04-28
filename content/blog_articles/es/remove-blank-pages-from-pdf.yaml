@@ -1,0 +1,126 @@
+slug: remove-blank-pages-from-pdf
+title_es: "Cómo eliminar páginas en blanco o no deseadas de un PDF en menos de un minuto"
+meta_title_es: "Eliminar páginas en blanco de PDF gratis en línea | Convertica"
+meta_description_es: "Los escáneres meten páginas en blanco y los contratos llegan con páginas reservadas. Aprende la forma más rápida de borrarlas sin pagar por Adobe Acrobat ni instalar nada."
+meta_keywords_es: "eliminar páginas en blanco pdf, borrar páginas pdf, quitar páginas gratis, eliminador de páginas pdf, limpiar pdf"
+excerpt_es: "A los escáneres dúplex les encanta meter páginas en blanco cuando el original era a una sola cara. Quítalas en segundos sin pagar Adobe Acrobat."
+content_es: |
+  Abre un PDF salido de un escáner dúplex y a menudo encontrarás una página en blanco después de cada página real, porque el escáner ha capturado obediente el reverso de cada original a una sola cara. Abre una plantilla de contrato y puede que encuentres dos páginas en blanco reservadas «para firmas». Abre un documento unido y puede que encuentres páginas separadoras sobrantes de los archivos de origen. El sospechoso clásico es ese modelo Brother o Canon de oficina con alimentador automático que viene por defecto a doble cara aunque no se lo hayas pedido.
+
+  Quitarlas lleva segundos en un navegador. No necesitas Adobe Acrobat. No necesitas imprimir y volver a escanear. No necesitas teclear nada de nuevo. Solo necesitas una herramienta que te permita hacer clic en las páginas que no quieres y descargar lo que queda.
+
+  <figure><img src="/static/blog/images/tool-organize.jpg" alt="Herramienta de organización de PDF de Convertica mostrando miniaturas con páginas en blanco seleccionadas para eliminar" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>De dónde salen las páginas en blanco</h2>
+
+  Conocer la fuente ayuda a detectarlas más rápido:
+
+  <ul>
+    <li><strong>Escáneres dúplex sobre originales a una sola cara.</strong> El clásico. Una de cada dos páginas del resultado está vacía.</li>
+    <li><strong>Documentos de Word con saltos de sección.</strong> Los saltos configurados en «página impar siguiente» o «página par siguiente» insertan una en blanco cuando hace falta para mantener la paginación, y esa página en blanco sobrevive a la exportación a PDF.</li>
+    <li><strong>Plantillas de formularios con páginas reservadas.</strong> Muchas plantillas de contratos e informes traen páginas reservadas para «anexos», «apéndices» o firmas que puede que uses o no.</li>
+    <li><strong>PDF unidos a partir de fuentes desparejas.</strong> Combinar archivos en los que cada uno acababa en una página par deja páginas en blanco. Los informes anuales y los pitch decks son delincuentes habituales.</li>
+    <li><strong>Controladores de impresión.</strong> «Imprimir como PDF» con ciertos ajustes de impresora puede añadir una página de confirmación o de relleno al final. Los antiguos controladores universales de HP eran famosos por esto entre 2018 y 2020.</li>
+    <li><strong>Aplicaciones móviles de escaneo.</strong> Apps como CamScanner y Adobe Scan a veces insertan una página promocional «escaneado con [app]» en el plan gratuito, lo cual se siente menos como una función y más como una marca de agua contra la que tienes que pelear.</li>
+  </ul>
+
+  <h2>Paso a paso: eliminar páginas visualmente</h2>
+
+  Este es el enfoque correcto cuando no puedes predecir fácilmente qué páginas están en blanco sin mirarlas.
+
+  <figure><img src="/static/blog/images/tool-organize.jpg" alt="Hacer clic en las miniaturas de páginas en blanco del PDF para eliminarlas en una sola pasada" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre la herramienta para <a href="/es/pdf-edit/">eliminar páginas de PDF</a> y sube tu archivo.</li>
+    <li>Mira la cuadrícula de miniaturas. Las páginas en blanco son evidentes: cuadrados blancos sólidos sin texto ni imágenes. Las páginas con leve ruido de escáner aún tienen textura visible, así que se ven en gris claro en lugar de blanco puro.</li>
+    <li>Haz clic en las páginas que quieras borrar. La mayoría de las herramientas resaltan la selección con un borde de color o un icono de papelera.</li>
+    <li>Confirma y descarga el archivo limpio. Verifica que el número de páginas coincida con lo que esperabas.</li>
+  </ol>
+
+  Si además quieres reordenar o rotar de paso, hacer las tres cosas en una sola sesión es más rápido que ejecutar tres herramientas distintas. La vista combinada de <a href="/es/pdf-organize/">organizar páginas de PDF arrastrando y soltando</a> te permite borrar, arrastrar y rotar antes de exportar una sola vez.
+
+  <h2>Paso a paso: eliminar páginas por rango</h2>
+
+  Cuando ya conoces los números de página que quieres fuera, teclearlos es más rápido que hacer clic.
+
+  <ol>
+    <li>Sube el PDF.</li>
+    <li>Cambia al modo de rango (la mayoría de las herramientas alternan entre entrada visual y por rango).</li>
+    <li>Teclea tu rango con una lista separada por comas usando guiones para los tramos. <code>3, 7-9, 12</code> significa: borra la página 3, las páginas de la 7 a la 9 y la página 12. Las páginas fuera de esa lista se quedan.</li>
+    <li>Aplica y descarga.</li>
+  </ol>
+
+  <blockquote class="callout">Los números de página en esta sintaxis se refieren a páginas físicas, no a los números impresos del documento. Si tu contrato empieza a numerar en «1» en la tercera página física, tu «página 1» puede ser la página física 3.</blockquote>
+
+  Conviene saberlo: la mayoría de los campos de rango no aceptan rangos abiertos tipo <code>50-</code> con el sentido de «desde la 50 hasta el final». Tendrás que teclear la página final real (por ejemplo <code>50-78</code> para un archivo de 78 páginas). Contar una vez al principio te ahorra ciclos de «espera, eso no funcionó» después.
+
+  <h2>Eliminar frente a ocultar páginas</h2>
+
+  Algunas herramientas de PDF (y Adobe Acrobat) te permiten «ocultar» páginas en lugar de borrarlas. Las páginas ocultas no se muestran, pero los datos siguen existiendo en el archivo. Cualquiera que abra el archivo en otro visor, o que las desoculte, puede ver el contenido de nuevo.
+
+  Para material sensible, esto es un problema real. Si quitas una página de salario de un documento de RR. HH. ocultándola, la información salarial sigue viajando con el archivo. La eliminación permanente es la única respuesta segura cuando:
+
+  <ul>
+    <li>Las páginas contienen información confidencial que no debe llegar al destinatario.</li>
+    <li>Vas a compartir el archivo fuera de tu organización.</li>
+    <li>El archivo se puede archivar o reenviar.</li>
+    <li>El documento puede estar sujeto a solicitudes de e-discovery o de transparencia, donde el contenido oculto puede seguir siendo descubrible.</li>
+  </ul>
+
+  Las herramientas de eliminar páginas en navegador borran los datos de la página, no solo los ocultan. Verifícalo abriendo el resultado en un visor distinto: las páginas eliminadas deberían haber desaparecido, no estar invisibles. Una comprobación rápida de paranoia: abre el archivo limpio en cualquier editor de texto (sí, incluso el Bloc de notas) y busca una palabra única de la página que quitaste. Si no aparece, la página ha desaparecido de verdad.
+
+  <h2>Renumerar después de eliminar</h2>
+
+  La mayoría de los PDF no tienen números de página programáticos, solo el texto «1», «2», «3» horneado en cada página durante la exportación original. Eliminar páginas no renumera mágicamente lo que queda. Si tu documento tenía un pie numerado tipo «Página 5 de 12» en cada página, tras la eliminación puedes acabar con páginas que ponen 1, 2, 4, 6, 7 de 12, lo cual parece un error.
+
+  Dos opciones:
+
+  <ul>
+    <li><strong>Convive con ello</strong> en documentos internos donde los números impresos no importan demasiado.</li>
+    <li><strong>Renumera</strong> quitando el pie existente y añadiendo uno nuevo. Las herramientas que <a href="/es/pdf-edit/">añaden números de página nuevos</a> te permiten sobrescribir un encabezado o pie en todo el documento de una sola pasada.</li>
+  </ul>
+
+  Actualiza igualmente cualquier índice. Un índice que apunta a la «página 7» cuando tu nueva página 7 es lo que antes era la 9 frustra a cualquier lector. (Diría que esta es la segunda razón más habitual por la que alguien dice «este PDF está roto»: la primera es «el enlace del índice tampoco funciona».)
+
+  <h2>Limpieza masiva para archivos escaneados</h2>
+
+  Limpiar un escaneo de 200 páginas de clic en clic es desagradable. Dos trucos ayudan:
+
+  <h3>Detectar páginas en blanco a escala</h3>
+
+  Aumenta el tamaño de las miniaturas si la herramienta lo permite. Los rectángulos blancos saltan a la vista al instante. Para ruido de escáner muy leve, entrecierra los ojos un momento sobre los números de página; si no distingues nada de texto ni formas, está en blanco.
+
+  Algunas herramientas renderizan miniaturas a muy baja resolución para ahorrar ancho de banda. Si tus páginas en blanco no se ven obviamente blancas por culpa del dithering o de artefactos de compresión, cambia a la vista de miniatura grande (a menudo un botón etiquetado «Vista previa grande» o «Miniaturas detalladas») antes de revisar el archivo. El tiempo extra de renderizado vale más la pena que borrar una página real por error.
+
+  <h3>El atajo del escáner dúplex</h3>
+
+  Si escaneaste una pila de originales a una sola cara en un escáner dúplex, cada reverso está en blanco. Eso significa que quieres borrar todas las páginas físicas <strong>pares</strong> del PDF. Un rango tipo <code>2, 4, 6, 8, 10, ...</code> funciona, y la mayoría de las herramientas te permiten generar ese rango con una opción del tipo «borrar cada n páginas» o «páginas pares».
+
+  Confírmalo revisando los primeros resultados. Si tu escáner a veces voltea los originales o si la pila empezó con un reverso, el patrón quedará desfasado en uno y querrás borrar las páginas impares en su lugar. La serie Fujitsu ScanSnap es especialmente propensa a esto cuando el alimentador automático arrastra dos hojas a la vez: tu primera página acaba siendo el reverso del par y desfasa el patrón en el resto del documento.
+
+  Tras la limpieza, puede que el archivo se beneficie de partirlo en documentos más pequeños. La ruta de <a href="/es/pdf-organize/split/">dividir por capítulos en su lugar</a> funciona bien cuando has limpiado un archivo de 200 páginas que en realidad debería ser cinco documentos de 40.
+
+  <h2>Verifica antes de enviar</h2>
+
+  Antes de mandar un archivo limpio a otra persona, haz dos comprobaciones. Primero, confirma que el número de páginas es el esperado (210 páginas a la entrada, una de cada dos eliminada, 105 páginas a la salida). Segundo, recorre rápido el resultado para asegurarte de que no se ha colado ninguna página real en la limpieza. Casos límite a vigilar: las páginas de título de sección con muy poco texto pueden parecer casi en blanco en una miniatura y eliminarse por error. También las páginas que consisten en una sola imagen (un gráfico, una firma, un logo) cuando el renderizado de la miniatura ha escalado la imagen hasta volverla invisible.
+
+  <h2>FAQ</h2>
+
+  <h3>¿Cómo elimino páginas en blanco de un escaneo de 200 páginas automáticamente?</h3>
+  <p>Si las páginas en blanco siguen un patrón (una de cada dos en un escáner dúplex), usa el modo de rango y borra las páginas pares en una sola operación. Si están repartidas al azar, la cuadrícula visual de miniaturas es más rápida que cualquier regla porque puedes desplazarte rápido y hacer clic en cada cuadrado blanco.</p>
+
+  <h3>¿Eliminar páginas romperá la numeración?</h3>
+  <p>Si tu documento tiene números de página fijos en el pie (texto tipo «Página 5 de 12»), sí. Las páginas restantes mantienen sus números originales. O bien lo ignoras para uso interno, o quitas y vuelves a añadir los números de página en todo el archivo después de la limpieza.</p>
+
+  <h3>¿Puedo deshacer la eliminación de una página?</h3>
+  <p>La herramienta produce un archivo nuevo, así que tu original queda intacto en tu equipo. Si eliminaste páginas y descargaste el resultado, vuelve al PDF original si te has equivocado. Conserva siempre los originales hasta que hayas verificado la versión limpia.</p>
+
+  <h3>¿Por qué a veces «vuelven» las páginas eliminadas?</h3>
+  <p>Eso pasa cuando la herramienta solo ocultó las páginas en lugar de borrarlas, o cuando el archivo se abrió en un editor que restauró desde una revisión guardada. Usa una herramienta que elimine de verdad los datos de la página, y verifica que el tamaño final del archivo y el número de páginas coincidan con lo esperado.</p>
+
+  <h3>¿Puedo eliminar páginas de un PDF protegido con contraseña?</h3>
+  <p>Tendrás que aportar la contraseña primero. La mayoría de las herramientas en línea para eliminar páginas la piden al subir el archivo. Sin la contraseña no puedes modificar el archivo de forma legítima.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Deja de pasar páginas en blanco con el ratón. Abre la <a href="/es/pdf-edit/">herramienta para eliminar páginas de PDF</a>, haz clic en las miniaturas que no quieras y descarga una versión limpia en bastante menos de un minuto. Más rápido incluso que encontrar tu clave de licencia de Acrobat.</p>

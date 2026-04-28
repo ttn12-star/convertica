@@ -1,0 +1,92 @@
+slug: convert-excel-to-pdf-keep-formatting
+title_id: "Cara Mengonversi Excel ke PDF Tanpa Kehilangan Formatting, Header, atau Print Area"
+meta_title_id: "Excel ke PDF Tanpa Kehilangan Formatting | Convertica"
+meta_description_id: "Hindari bencana klasik 'spreadsheet terbelah jadi 8 halaman'. Atur print area, scale-to-fit, dan header berulang dengan benar sebelum mengonversi Excel ke PDF."
+meta_keywords_id: "excel ke pdf, xlsx ke pdf, spreadsheet ke pdf, cetak excel ke pdf, simpan excel sebagai pdf"
+excerpt_id: "Sebagian besar panduan Excel-ke-PDF melewatkan bagian yang sebenarnya penting: mengatur print area agar spreadsheet Anda tidak berakhir terpotong di delapan halaman canggung yang setengah kosong."
+content_id: |
+  Hampir semua orang pernah menerima email tersebut: workbook 12 tab dikonversi langsung ke PDF, dengan baris tersebar di sembilan halaman, kolom terpotong setengah, dan header yang hanya muncul di halaman satu. Solusinya bukan konverter yang lebih baik. Solusinya adalah dua puluh detik pengaturan di dalam Excel sebelum Anda menekan ekspor.
+
+  Panduan ini membahas langkah-langkah pengaturan yang memisahkan PDF yang bersih dan dapat dicetak dari bencana spreadsheet, plus alur unggah-dan-jalan ketika file Anda sudah dikonfigurasi dengan benar.
+
+  <h2>Mengapa Excel-ke-PDF sering gagal</h2>
+  <p>Excel tidak memperlakukan spreadsheet Anda sebagai "dokumen" seperti Word. Tidak ada halaman tetap. Grid pada dasarnya tak terbatas, dan ekspor PDF harus membuat keputusan tentang di mana memotongnya. Secara default, keputusan tersebut tidak bagus:</p>
+  <ul>
+    <li>Print area default adalah seluruh rentang yang digunakan, termasuk satu sel kesepian di kolom AZ yang pernah Anda ketik dan lupa.</li>
+    <li>Page break otomatis jatuh di mana pun matematika halaman mengatakannya, yang jarang sejalan dengan pengelompokan baris yang logis.</li>
+    <li>Baris header tidak akan berulang kecuali Anda memerintahkannya. Halaman 2 dan seterusnya bisa terlihat seperti dump data tanpa tabel.</li>
+    <li>Kolom tersembunyi tetap tercetak kecuali disembunyikan dengan benar, tergantung versi Excel.</li>
+  </ul>
+  <p>Hasilnya adalah PDF yang sama sekali tidak terlihat seperti spreadsheet rapi yang Anda lihat di layar.</p>
+
+  <h2>Persiapan Excel sebelum konversi</h2>
+  <p>Habiskan dua menit untuk empat pengaturan ini dan konversi sendiri menjadi sepele.</p>
+
+  <h3>1. Atur print area</h3>
+  <p>Pilih rentang persis yang Anda inginkan di PDF. Di Excel, buka <code>Page Layout &gt; Print Area &gt; Set Print Area</code>. Mulai saat ini, hanya rentang itu yang akan diekspor. Jika Anda juga memiliki sparkline kecil atau catatan di sebelah kanan yang tidak ingin dicetak, langkah tunggal ini menghapusnya.</p>
+
+  <h3>2. Skalakan agar muat satu halaman lebar</h3>
+  <p>Spreadsheet lebar adalah penyebab utama laporan "PDF terbelah di 8 halaman". Pada tab Page Layout, temukan grup Scale to Fit dan atur <code>Width: 1 page</code>, <code>Height: Automatic</code>. Hasilnya adalah PDF di mana setiap kolom muat secara horizontal dan data mengalir ke bawah melintasi sebanyak halaman yang dibutuhkan - itulah cara spreadsheet seharusnya dicetak.</p>
+  <p>Jika sheet Anda sangat lebar sehingga skalanya satu halaman membuat teks mikroskopis, itu pertanda Anda sebaiknya beralih ke orientasi landscape, atau memisahkan data menjadi dua PDF yang mencakup grup kolom berbeda.</p>
+
+  <h3>3. Ulangi baris header di setiap halaman</h3>
+  <p>Ini adalah satu langkah yang paling sering dilewatkan. Buka <code>Page Layout &gt; Print Titles</code> dan pada field <code>Rows to repeat at top</code>, klik baris 1 (atau baris mana pun yang menyusun header Anda). Sekarang setiap halaman PDF dimulai dengan label kolom yang sama. Pembaca tidak perlu lagi membalik kembali ke halaman satu untuk mengingat apa itu kolom F.</p>
+
+  <h3>4. Sembunyikan vs hapus kolom yang tidak Anda butuhkan</h3>
+  <p>Sembunyikan kolom yang mungkin Anda butuhkan nanti (klik kanan huruf kolom, Hide). Hapus kolom yang Anda yakini sampah. Kolom tersembunyi dikecualikan dari print area selama Anda mengatur print area setelah menyembunyikan. Jika Anda mengatur area dulu, baru menyembunyikan kolom, perilakunya bisa bervariasi menurut versi Excel - atur ulang print area setelah putaran sembunyi/tampilkan untuk amannya.</p>
+
+  <h2>Langkah demi langkah: konversi dengan Convertica</h2>
+  <p>Dengan spreadsheet sudah dikonfigurasi, konversi sebenarnya adalah bagian mudah. Anda dapat <a href="/id/word-to-pdf/">mengonversi Excel ke PDF</a> dalam tiga langkah:</p>
+  <ol>
+    <li><strong>Unggah file .xlsx.</strong> Seret dan jatuhkan ke kotak unggah. File .xls lama juga berfungsi.</li>
+    <li><strong>Pilih orientasi jika diminta.</strong> Portrait untuk data tinggi dan sempit; landscape untuk tabel lebar.</li>
+    <li><strong>Unduh PDF.</strong> Buka sekali untuk memastikan page break jatuh di tempat yang Anda harapkan, dan selesai.</li>
+  </ol>
+  <blockquote class="callout">Jika PDF masih terlihat salah, masalahnya hampir selalu di hulu di Excel - print area, skala, atau baris berulang - bukan di konverter. Buka kembali workbook, perbaiki pengaturan, dan ekspor ulang.</blockquote>
+
+  <h2>Workbook multi-sheet</h2>
+  <p>Workbook dengan lima tab memunculkan pertanyaan: apakah Anda ingin satu PDF per sheet, atau kelima sheet digabung dalam satu file?</p>
+  <ul>
+    <li><strong>Satu PDF per sheet</strong> tepat ketika setiap tab adalah deliverable mandiri - laporan terpisah untuk audiens terpisah. Penamaan menjadi penting; <code>YYYY-MM-DD_workbook_sheet-name.pdf</code> terbaca jelas di folder mana pun.</li>
+    <li><strong>Semua sheet dalam satu PDF</strong> tepat ketika tab-tab itu termasuk satu paket (cover, ringkasan, detail, lampiran). Jika konverter mengekspor setiap sheet secara terpisah, Anda dapat <a href="/id/pdf-organize/merge/">menggabungkan beberapa sheet menjadi satu PDF</a> sebagai langkah kedua.</li>
+  </ul>
+  <p>Apa pun caranya, atur print area di setiap sheet yang ingin Anda ekspor. Tab kosong akan mengekspor halaman kosong; tab dengan sel nyasar di kolom AZ akan mengekspor halaman hampir kosong dengan sel itu mengambang di ruang.</p>
+
+  <h2>Masalah formatting umum dan solusinya</h2>
+  <p>Jika output PDF Anda masih bermasalah, gejalanya biasanya menunjuk ke pengaturan Excel tertentu:</p>
+  <table>
+    <thead>
+      <tr><th>Gejala</th><th>Kemungkinan penyebab</th><th>Solusi</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Kolom paling kanan terpotong</td><td>Scale-to-fit tidak diatur ke 1 halaman lebar</td><td>Page Layout &gt; Width: 1 page</td></tr>
+      <tr><td>Tidak ada header di halaman 2 dan seterusnya</td><td>Print titles tidak dikonfigurasi</td><td>Page Layout &gt; Print Titles &gt; Rows to repeat at top</td></tr>
+      <tr><td>Halaman kosong acak di antara data</td><td>Sel nyasar atau region berformat di luar data terlihat</td><td>Atur ulang print area setelah menghapus yang nyasar</td></tr>
+      <tr><td>Formula menampilkan #REF! atau #NAME?</td><td>Referensi eksternal rusak</td><td>Copy &gt; Paste Values untuk memflat sebelum ekspor</td></tr>
+      <tr><td>Chart terpotong antar halaman</td><td>Page break otomatis memisah objek tertanam</td><td>Sisipkan page break manual di atas chart, atau pindahkan chart</td></tr>
+      <tr><td>Teks kecil tidak terbaca</td><td>Scale-to-fit terlalu agresif dipaksakan</td><td>Beralih ke landscape, atau pisah menjadi dua ekspor</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Kapan tetap di Excel dan kapan kirim PDF</h2>
+  <p>PDF adalah format yang tepat ketika file bersifat read-only - kuotasi, laporan tertandatangan, pengajuan pajak, paket dewan. PDF mempertahankan layout dengan persis, mencegah edit yang tidak disengaja, dan lebih mudah ditandatangani atau diberi watermark.</p>
+  <p>Excel adalah format yang tepat ketika penerima perlu memfilter, menyortir, atau menghitung ulang. Mengirim PDF dari sebuah model kepada seseorang yang perlu mengubah asumsi memaksa mereka mengetik ulang semuanya dari awal. Jika Anda sudah mengirim PDF dan penerima membutuhkan datanya kembali, Anda dapat <a href="/id/pdf-to-excel/">mengonversi PDF kembali ke Excel nanti</a>, tetapi perjalanan bolak-balik memperkenalkan kesalahan kecil dan adalah pengganti buruk untuk mengirim format yang benar sejak awal.</p>
+  <p>Default yang berguna: kirim PDF untuk catatan formal, lampirkan .xlsx terpisah jika penerima mungkin perlu mengedit. PDF adalah yang diarsipkan; .xlsx adalah file kerja.</p>
+
+  <h2>Satu pengecekan terakhir: ukuran file</h2>
+  <p>Output Excel-ke-PDF bisa mengejutkan besar, terutama dengan chart tertanam dan conditional formatting. Jika Anda mengirim hasilnya via email, jalankan melalui kompresor sebelum tekan kirim agar tidak ditolak batas mailbox penerima. <a href="/id/blog/compress-pdf-for-email-under-25mb/">Panduan kompres-untuk-email</a> menelusuri target ukuran realistis, dan <a href="/id/pdf-organize/compress/">alat kompres</a> menangani pengecilan sebenarnya.</p>
+
+  <h2>FAQ</h2>
+  <h3>Mengapa spreadsheet saya terbelah canggung di antara halaman?</h3>
+  <p>Hampir selalu karena print area terlalu lebar dan Scale to Fit tidak diatur. Buka Page Layout, atur Width ke 1 halaman, lalu ekspor ulang. Jika hasilnya kecil hingga tidak terbaca, beralih ke landscape atau pisah data ke dua PDF.</p>
+  <h3>Bisakah saya mengonversi semua sheet di workbook sekaligus?</h3>
+  <p>Bisa. Konverter menangani workbook multi-tab. Secara default, ia mengekspor setiap sheet yang berisi data ke dalam satu PDF tunggal. Jika Anda lebih suka satu PDF per sheet, konfigurasikan print area setiap sheet dan jalankan konversi sekali per tab, atau pisah hasilnya setelahnya.</p>
+  <h3>Apakah chart dan formula akan dikonversi dengan benar?</h3>
+  <p>Chart dikonversi sebagai objek visual - apa yang Anda lihat di Excel adalah yang Anda dapatkan di PDF. Formula dievaluasi ke nilai saat ini selama konversi. Referensi rusak (#REF!, #NAME?) akan muncul di PDF juga, jadi perbaiki di Excel terlebih dahulu atau paste-values untuk memflat.</p>
+  <h3>Bagaimana cara membuat header berulang di setiap halaman PDF?</h3>
+  <p>Di Excel, buka Page Layout &gt; Print Titles dan klik ke field "Rows to repeat at top", lalu pilih baris header Anda. Simpan dan ekspor ulang. Pengaturan ini per-sheet, jadi atur di setiap tab yang berencana Anda konversi.</p>
+  <h3>Mengapa PDF saya jauh lebih besar dari file Excel?</h3>
+  <p>PDF menanam font, chart yang dirasterisasi, dan objek halaman terpisah per halaman. Workbook 200 KB bisa menghasilkan PDF 3 MB tanpa ada yang salah. Jika ukuran adalah masalah untuk email, kompres PDF setelah konversi - data dan kualitas tetap sama, hanya storage yang menyusut.</p>
+
+  <h2>Coba sekarang</h2>
+  <p>Atur print area, atur scale-to-fit, atur print titles, lalu ekspor. Dua menit ekstra di dalam Excel menyelamatkan rasa malu spreadsheet delapan halaman terbelah. <a href="/id/word-to-pdf/">Buka alat Excel ke PDF →</a></p>

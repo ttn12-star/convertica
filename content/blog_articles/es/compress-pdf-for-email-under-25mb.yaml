@@ -1,0 +1,184 @@
+slug: compress-pdf-for-email-under-25mb
+title_es: "Cómo comprimir un PDF para enviarlo por correo (menos de 25 MB) sin perder calidad"
+meta_title_es: "Comprimir PDF para correo: menos de 25 MB en 2 minutos"
+meta_description_es: "Gmail, Outlook y Yahoo rechazan PDF de más de 20-25 MB. Tres formas fiables de reducir un PDF para correo, con tamaños orientativos por tipo de documento."
+meta_keywords_es: "comprimir pdf para correo, reducir tamaño pdf para email, pdf demasiado grande para correo, reducir pdf para gmail, pdf menos de 25mb"
+excerpt_es: "Gmail limita los adjuntos a 25 MB, Outlook a 20 MB, y un único contrato escaneado de 10 páginas puede superar ambos. Esta es la forma más rápida de reducirlo sin perder calidad."
+content_es: |
+  Los proveedores de correo siguen tratando los adjuntos grandes como un problema de 2010. Gmail rechaza cualquier envío de más de 25 MB, Outlook.com corta en 20 MB y la mayoría de los servidores Exchange corporativos son aún más estrictos. Un solo contrato escaneado de 12 páginas suele bastar para provocar el rebote, y el mensaje de error («Message could not be delivered. The attachment exceeds the allowed size») llega una hora después, cuando ya estás en otra cosa.
+
+  La buena noticia: casi cualquier PDF que supere el límite puede quedar dentro del cupo en menos de dos minutos si lo abordas bien. Esta guía cubre los tres métodos que realmente funcionan, las expectativas de tamaño por tipo de documento y el momento en que conviene rendirse con el correo y enviar un enlace en la nube. Usaremos el <a href="/es/pdf-organize/compress/">compresor de PDF gratuito</a> de Convertica para el paso a paso, pero los principios sirven para cualquier herramienta.
+
+  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Interfaz del compresor de PDF de Convertica con la zona de carga y las opciones de preajuste" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Los límites reales de los adjuntos de correo en 2026</h2>
+
+  Antes de comprimir nada, conviene saber a qué cifra apuntas. Los grandes proveedores publican límites algo distintos, y el techo práctico es más bajo que el oficial por la forma en que el correo transporta archivos binarios.
+
+  <table>
+    <thead>
+      <tr><th>Proveedor</th><th>Límite de envío</th><th>Límite de recepción</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Gmail</td><td>25 MB</td><td>50 MB</td></tr>
+      <tr><td>Outlook.com</td><td>20 MB</td><td>20 MB</td></tr>
+      <tr><td>Yahoo Mail</td><td>25 MB</td><td>25 MB</td></tr>
+      <tr><td>iCloud Mail</td><td>20 MB</td><td>20 MB</td></tr>
+      <tr><td>Exchange corporativo (típico)</td><td>10-25 MB</td><td>10-35 MB</td></tr>
+    </tbody>
+  </table>
+
+  Hay un detalle más que casi todo el mundo pasa por alto: los adjuntos de correo se codifican en base64 (un estándar MIME), lo que infla los datos binarios cerca de un 33% durante el tránsito. Un PDF de 20 MB en disco llega como unos 27 MB en la red. Si tu proveedor anuncia «25 MB», apunta a un archivo de menos de 18 MB en disco para ir sobre seguro.
+
+  <blockquote class="callout">Regla práctica: apunta a 15 MB en disco para cualquier correo de propósito general, y a 8 MB si el destinatario está en una red corporativa.</blockquote>
+
+  Algunos detalles concretos que conviene marcar, porque mucha gente los encuentra y supone que su archivo está bien:
+
+  <ul>
+    <li><strong>Listas de distribución.</strong> Mandar un PDF grande a una lista de 200 personas multiplica el peso de entrega, y muchos servidores corporativos lo cuentan contra tu cuota diaria o lo rechazan directamente.</li>
+    <li><strong>Cadenas de «responder a todos».</strong> Un adjunto que sobrevive a un salto puede rebotar igualmente en un «responder a todos» si cualquiera de los destinatarios tiene un buzón con un límite más estrecho. El hilo entero falla para todos.</li>
+    <li><strong>Operadores móviles.</strong> Algunas pasarelas de correo de operadores móviles aún imponen un techo de 10 MB en relés tipo MMS. Si tu destinatario lee el correo en un móvil básico o en un cliente antiguo, tenlo en cuenta.</li>
+    <li><strong>Retrasos del antivirus.</strong> Los adjuntos más grandes tardan más en escanearse en la pasarela del destinatario. Un mensaje «entregado» que no aparece en 20 minutos no está roto: está en cola.</li>
+  </ul>
+
+  <h2>Por qué un PDF acaba siendo enorme</h2>
+
+  La compresión funciona mejor cuando entiendes dónde están los bytes. Los PDF se hinchan por motivos previsibles:
+
+  <ul>
+    <li><strong>Escaneos de DPI alto.</strong> Un escáner dúplex configurado a 600 DPI a color produce 5-15 MB por página. La mayoría de los documentos solo necesitan 200 DPI en escala de grises, y el ojo no notará la diferencia a una distancia normal de lectura.</li>
+    <li><strong>Fuentes incrustadas y perfiles de color.</strong> Una exportación «Guardar como PDF/A» de archivo puede añadir 1-3 MB solo por subconjuntos de fuentes incrustadas y perfiles de color ICC que no necesitas para un correo. PDF/A está pensado para archivado, no para bandejas de entrada.</li>
+    <li><strong>Imágenes sin comprimir.</strong> Las imágenes pegadas desde Word o las capturas de pantalla guardadas como PNG dentro del PDF rara vez usan una compresión de imagen eficiente. Una sola captura 4K incrustada en bruto puede sumar 8 MB.</li>
+    <li><strong>Historial de revisiones oculto.</strong> «Guardar» en Acrobat añade actualizaciones incrementales en lugar de reescribir el archivo. Años de ediciones se acumulan como peso invisible: un contrato que arrancó en 200 KB puede acabar en 12 MB tras treinta cambios.</li>
+    <li><strong>Archivos incrustados.</strong> Algunos PDF llevan dentro hojas de cálculo o archivos zip adjuntos. Revisa el panel de adjuntos (el icono del clip en Acrobat) antes de comprimir; podrías estar transportando un Excel de 30 MB de polizón.</li>
+    <li><strong>Formularios con fondos de campo en mapa de bits.</strong> Los formularios oficiales suelen renderizar cada campo de entrada como una imagen pequeña independiente. Multiplica por 80 campos y obtienes un archivo sorprendentemente pesado.</li>
+  </ul>
+
+  Saber cuál de estas causas domina tu archivo te dice qué método de los siguientes ayudará más. Abre el archivo en cualquier lector y mira la primera página. Si es claramente una fotografía de papel, estás ante imágenes. Si el texto es nítido y se puede seleccionar, estás ante un PDF nativo digital que probablemente tiene sobrepeso por otra razón.
+
+  <h2>Método 1: comprimir el PDF (recomendado)</h2>
+
+  Para el 80% de los PDF que se pasan de tamaño, la compresión directa es la respuesta correcta. Reescribe el archivo con un manejo más inteligente de imágenes y fuentes sin cambiar el número de páginas ni el contenido del texto.
+
+  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Compresión de PDF paso a paso con selector de preajustes bajo, medio y alto" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre el <a href="/es/pdf-organize/compress/">compresor de PDF gratuito</a> de Convertica en cualquier navegador.</li>
+    <li>Arrastra tu PDF a la zona de carga, o haz clic para elegir el archivo.</li>
+    <li>Elige un preajuste: <strong>bajo</strong> (mejor calidad, reducción modesta), <strong>medio</strong> (recomendado) o <strong>alto</strong> (agresivo, para texto de relleno y documentos de referencia).</li>
+    <li>Espera a que se procese el archivo. Los escaneos grandes pueden tardar 20-40 segundos; los muy grandes (más de 200 páginas) pueden tardar uno o dos minutos.</li>
+    <li>Descarga la copia comprimida. El original queda intacto en tu equipo.</li>
+  </ol>
+
+  <h3>¿Qué preajuste deberías elegir?</h3>
+
+  Medio es el valor por defecto correcto. Reduce las imágenes a unos 150 DPI y elimina metadatos redundantes, lo que es invisible en pantalla y aún imprime con limpieza en A4. Usa el alto solo cuando el destinatario no necesite imprimir, y el bajo cuando el documento incluya diagramas o fotografías que deban mantenerse nítidos.
+
+  Un pequeño truco de teclado útil: cuando termina la subida, normalmente puedes pulsar Enter para confirmar el preajuste por defecto en lugar de ir al ratón. (En mi opinión, las herramientas web deberían venir en medio por defecto y saltarse el clic, pero los valores varían.)
+
+  <h3>Reducción de tamaño esperada por tipo de documento</h3>
+
+  Aquí es donde se caen la mayoría de los reclamos de marketing del estilo «¡hasta un 90% más pequeño!». Cifras honestas, basadas en lo que la compresión puede hacer realmente:
+
+  <table>
+    <thead>
+      <tr><th>Tipo de documento</th><th>Reducción típica</th><th>Ejemplo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>PDF solo de texto (exportado de Word, web)</td><td>80-95%</td><td>40 MB → 2-8 MB</td></tr>
+      <tr><td>Texto + fotos mixto</td><td>40-70%</td><td>30 MB → 9-18 MB</td></tr>
+      <tr><td>Escaneo puro (cada página es una imagen)</td><td>30-60%</td><td>50 MB → 20-35 MB</td></tr>
+      <tr><td>PDF ya comprimido</td><td>0-15%</td><td>Prueba otro método</td></tr>
+    </tbody>
+  </table>
+
+  Si tu PDF escaneado sigue por encima del límite tras la compresión media, salta al Método 3.
+
+  <h2>Método 2: dividir el PDF en partes más pequeñas</h2>
+
+  A veces el archivo necesita realmente mantener su calidad completa (pruebas legales, maquetas de diseño) y la compresión no basta. Dividir gana a comprimir cuando:
+
+  <ul>
+    <li>El destinatario pidió la calidad original.</li>
+    <li>Solo con la compresión llegas a 30 MB, no a 20 MB.</li>
+    <li>El PDF tiene fronteras naturales por secciones (capítulos, extractos mensuales, anexos del A al D).</li>
+    <li>Vas a enviar pruebas a un regulador que rechazará cualquier cosa que parezca recodificada.</li>
+  </ul>
+
+  Usa la herramienta de Convertica para <a href="/es/pdf-organize/split/">dividir un PDF en partes más pequeñas</a>, elige un rango de páginas o un número por parte y descarga las piezas. El truco está en nombrar las partes para que el destinatario las pueda recomponer sin liarse:
+
+  <pre><code>2026-04-28_propuesta_parte-1-de-3.pdf
+  2026-04-28_propuesta_parte-2-de-3.pdf
+  2026-04-28_propuesta_parte-3-de-3.pdf</code></pre>
+
+  Envía cada parte como un correo independiente con una nota corta: «Parte 1 de 3: el resto va en los dos siguientes correos.» El destinatario puede <a href="/es/pdf-organize/merge/">unir de nuevo las partes comprimidas</a> en un solo archivo cuando necesite archivarlo. Si te preocupa que pierda el segundo mensaje, manda todas las partes en el mismo hilo con asuntos numerados, así el orden de la bandeja las mantiene juntas.
+
+  Una rareza que conviene conocer: algunos filtros antispam corporativos marcan una ráfaga de tres correos casi idénticos como comportamiento sospechoso. Espacia los envíos 60 segundos, o manda primero un mensaje de aviso («en los próximos minutos llegarán tres partes») para mantener tranquila a la pasarela.
+
+  <h2>Método 3: convertir escaneos a un PDF basado en texto</h2>
+
+  Si tu archivo es un contrato escaneado, un fax o la foto de una página, los bytes son imágenes, no texto. Ningún preajuste de compresión deja un escaneo puro de 50 MB por debajo de 10 MB sin pérdida visible de calidad. La solución es ejecutar reconocimiento óptico de caracteres (OCR), que extrae las palabras y vuelve a exportar el documento como un PDF basado en texto.
+
+  Flujo de trabajo:
+
+  <ol>
+    <li>Ejecuta OCR sobre el escaneo para producir una versión en Word o en texto.</li>
+    <li>Verifica la precisión en la primera página: busca «rn» renderizado como «m», «1» renderizado como «l» y cualquier zona donde el reconocedor haya dudado.</li>
+    <li>Exporta de nuevo a PDF desde Word.</li>
+    <li>Comprime el archivo nuevo con el Método 1.</li>
+  </ol>
+
+  Un escaneo de 50 MB suele quedar en 1-2 MB después de este proceso, porque el texto ocupa una fracción mínima de los bytes que requerían las imágenes de página. La contrapartida es que la escritura a mano, las firmas y los sellos no sobreviven a la conversión, así que conserva el original si eso importa legalmente. Para pruebas judiciales o cualquier cosa que pueda necesitar autenticación, no sustituyas nunca la fuente por la versión OCR: envía las dos.
+
+  <h2>Calidad frente a tamaño: qué esperar</h2>
+
+  Sé honesto contigo mismo sobre lo que el destinatario necesita realmente:
+
+  <ul>
+    <li><strong>Lectura en pantalla.</strong> La compresión media es invisible. Úsala con tranquilidad.</li>
+    <li><strong>Impresión en papel de oficina estándar.</strong> Media sigue siendo válida. La alta empieza a notarse en las fotos.</li>
+    <li><strong>Impresión profesional o firma.</strong> Quédate con la compresión baja o conserva el original y manda un enlace en la nube.</li>
+    <li><strong>Pruebas legales o evidencias.</strong> No comprimas. La integridad del archivo importa más que la comodidad del correo, y la parte contraria puede usar la recodificación como argumento de credibilidad.</li>
+    <li><strong>Presentaciones judiciales por portales electrónicos.</strong> Muchos juzgados publican especificaciones exactas de PDF (PDF/A 1b, sin fuentes incrustadas más allá de las 14 estándar, máximo 35 MB). Ajústate a su especificación en lugar de improvisar.</li>
+  </ul>
+
+  <h2>Cuándo usar mejor un enlace en la nube</h2>
+
+  Si tu PDF supera los 100 MB de partida, o necesitas mandar varios archivos grandes de una sola vez, deja de pelear con el correo y pásate a un enlace. La mayoría de la gente ya tiene uno de estos:
+
+  <table>
+    <thead>
+      <tr><th>Servicio</th><th>Tamaño de subida gratuito</th><th>Notas</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Google Drive</td><td>15 GB gratuitos en total</td><td>El destinatario necesita los permisos del enlace configurados</td></tr>
+      <tr><td>WeTransfer (gratis)</td><td>2 GB por envío</td><td>El enlace caduca en 7 días</td></tr>
+      <tr><td>Dropbox</td><td>2 GB gratuitos en total</td><td>Enlaces de compartición persistentes</td></tr>
+      <tr><td>OneDrive</td><td>5 GB gratuitos</td><td>Mejor opción para destinatarios de Outlook</td></tr>
+    </tbody>
+  </table>
+
+  Una nota sobre privacidad: los enlaces en la nube crean una copia fuera de tu organización. Si el documento es sensible, protege el PDF con contraseña antes de subirlo y comparte la contraseña por un canal distinto. Configura los permisos del enlace en «personas concretas» en lugar de «cualquiera con el enlace», y pon una caducidad si la plataforma lo permite (Drive sí; Dropbox solo en planes de pago).
+
+  Para todo lo demás, mira <a href="/es/all-tools/">todas las herramientas de PDF</a> para compresión, división y protección en un mismo sitio.
+
+  <h2>FAQ</h2>
+
+  <h3>¿Por qué mi PDF sigue por encima de 25 MB después de comprimirlo?</h3>
+  <p>O bien el archivo es mayoritariamente imágenes escaneadas (el Método 1 se queda en torno al 60% de reducción en escaneos puros), o ya se comprimió una vez. Prueba el Método 3 para hacer OCR a los escaneos, o el Método 2 para dividirlo en dos correos. Si es un PDF nativo digital que no se reduce, revisa el panel de adjuntos por si lleva archivos incrustados de polizón.</p>
+
+  <h3>¿Comprimir un PDF reduce su calidad?</h3>
+  <p>La compresión media reduce las imágenes a unos 150 DPI, lo que es invisible a una distancia normal de lectura e imprime bien en A4. La compresión alta sí se nota en fotos y diagramas detallados. El texto no se ve afectado en ningún preajuste porque el texto vectorial no se reduce.</p>
+
+  <h3>¿Puedo comprimir un PDF protegido con contraseña?</h3>
+  <p>Tendrás que desbloquearlo primero con la contraseña que tengas, luego comprimirlo y, si hace falta, volver a protegerlo. Las herramientas de compresión no pueden leer el contenido de páginas cifradas, y eso es así por diseño: si cualquier herramienta pudiera, el cifrado no tendría sentido.</p>
+
+  <h3>¿Cuál es el tamaño seguro para un correo corporativo?</h3>
+  <p>Apunta a menos de 10 MB. Muchos servidores Exchange rechazan adjuntos de más de 10-15 MB, y el filtro antispam del destinatario puede sumar otro margen. Si dudas, comprime por debajo de 8 MB o usa un enlace en la nube.</p>
+
+  <h3>¿Podrá el destinatario imprimir mi PDF comprimido?</h3>
+  <p>Sí. Las compresiones media y baja conservan suficiente resolución para una impresión de oficina limpia. Si el documento se va a imprimir profesionalmente en gran formato (cualquier tamaño mayor que A3), quédate con el preajuste bajo o envía el original.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>La mayoría de los problemas de tipo «PDF demasiado grande para el correo» se resuelven en menos de un minuto con el preajuste medio. Suelta tu archivo en el compresor de Convertica y manda la copia ajustada con confianza. <a href="/es/pdf-organize/compress/">Abrir la herramienta de compresión de PDF →</a></p>

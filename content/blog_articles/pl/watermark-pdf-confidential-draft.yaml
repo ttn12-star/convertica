@@ -1,0 +1,147 @@
+slug: watermark-pdf-confidential-draft
+title_pl: "Jak dodać znak wodny CONFIDENTIAL lub DRAFT na PDF przed udostępnieniem"
+meta_title_pl: "Znak wodny Confidential lub Draft na PDF za darmo"
+meta_description_pl: "Oznacz PDF stemplem CONFIDENTIAL, DRAFT albo nazwą firmy ukośnie przez każdą stronę. Darmowe narzędzie w przeglądarce z przejrzystością i obrotem na profesjonalnym poziomie."
+meta_keywords_pl: "dodaj znak wodny pdf, znak wodny confidential pdf, znak wodny draft, stempel pdf, znak wodny pdf darmowy"
+excerpt_pl: "Wysyłasz draft kontraktu albo wrażliwą propozycję? Ukośny znak wodny na każdej stronie chroni cię prawnie i wizualnie - ale tylko jeśli ustawisz go poprawnie."
+content_pl: |
+  Znak wodny to miękka forma barierki ochronnej. Nie zatrzyma zdeterminowanego napastnika, ale robi trzy rzeczy kompetentnie: mówi czytelnikowi, że dokument nie jest finalny, czyni zrzut ekranu albo kserokopię oczywiście tropiącymi i zniechęca do odruchu „a ja sobie tylko prześlę dalej". Dla draftu kontraktu, wewnętrznej propozycji albo makiety projektowej to zwykle dokładnie ten poziom tarcia, który chcesz osiągnąć.
+
+  Ten poradnik prowadzi przez dodawanie znaku wodnego CONFIDENTIAL albo DRAFT do każdej strony PDF za pomocą narzędzia <a href="/pl/pdf-edit/add-watermark/">dodaj znak wodny do PDF</a> Convertica, z ustawieniami, które wyglądają profesjonalnie w praktyce. Pokrywa też część pomijaną przez większość artykułów: znak wodny to środek zniechęcający, nie szyfrowanie, i kiedy łączyć go z prawdziwą blokadą.
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Narzędzie znaku wodnego Convertica z kontrolą tekstu, przejrzystości i obrotu" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Kiedy faktycznie potrzebujesz znaku wodnego</h2>
+
+  Znaki wodne sygnalizują status. Używaj ich, gdy status dokumentu jest częścią jego znaczenia:
+
+  <ul>
+    <li><strong>Drafty kontraktów.</strong> Oznaczenie <code>DRAFT</code> na każdej stronie zapobiega temu, by wczesna wersja została pomylona z podpisanym finałem. (Wiele zespołów prawnych ma historię o „DRAFT" wysłanym do zakupów, podpisanym bez kroku zdjęcia znaku wodnego i kończącym jako wiążąca umowa.)</li>
+    <li><strong>Materiały objęte NDA.</strong> <code>CONFIDENTIAL</code> wzmacnia prawne usytuowanie dokumentu i czyni każdy wyciekły zrzut ekranu samoobciążającym.</li>
+    <li><strong>Materiały tylko wewnętrzne.</strong> <code>INTERNAL USE ONLY</code> na notatkach zarządu albo deckach strategicznych zmniejsza szansę przypadkowego przekazania dalej.</li>
+    <li><strong>Makiety dla fotografów i projektantów.</strong> Ukośny tekst przez każdą klatkę podglądu zniechęca klientów do użycia dostarczonego materiału przed zapłatą.</li>
+    <li><strong>Raporty przed zatwierdzeniem.</strong> <code>PENDING REVIEW</code> blokuje cytowanie draftów jako oficjalnych.</li>
+    <li><strong>Drafty pism procesowych.</strong> Oznaczenie pism <code>DRAFT - ATTORNEY WORK PRODUCT</code> nadaje im jaśniejszy status, jeśli przypadkowo opuszczą uprzywilejowany kanał.</li>
+  </ul>
+
+  <blockquote class="callout">Jeśli czytelnik mógłby pomylić twój plik z finałem, znak wodny należy mu się.</blockquote>
+
+  <h2>Znak wodny tekstowy vs obrazkowy</h2>
+
+  Masz do wyboru dwa formaty, czasem oba:
+
+  <table>
+    <thead>
+      <tr><th>Typ</th><th>Najlepszy do</th><th>Kompromis</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Znak wodny tekstowy</td><td>Słowa statusowe: DRAFT, CONFIDENTIAL, INTERNAL</td><td>Skromny, ale jednoznaczny i lekki</td></tr>
+      <tr><td>Znak wodny obrazkowy (logo)</td><td>Branding własności: logo firmy na makietach</td><td>Wygląda dopracowanie, zwiększa rozmiar pliku, potrzebuje czystego PNG z przezroczystością</td></tr>
+      <tr><td>Oba połączone</td><td>Wrażliwa praca dla klienta: logo plus DRAFT</td><td>Więcej konfiguracji, najsilniejszy sygnał</td></tr>
+    </tbody>
+  </table>
+
+  Tekst wystarcza, gdy komunikat jest proceduralny („to nie jest wersja finalna"). Logo jest właściwe, gdy komunikat dotyczy własności („ta grafika należy do nas, póki nie zapłacisz faktury"). Łączenie ich to przesada przy codziennych draftach, ale standard przy materiałach projektowych i fotograficznych.
+
+  Konkretna pułapka przy plikach logo: jeśli twój PNG z logo został wyeksportowany z białym prostokątem w tle zamiast prawdziwej przezroczystości alpha, znak wodny będzie siedział w widocznym białym pudełku na każdej stronie, co wygląda gorzej niż brak znaku wodnego. Otwórz PNG w czymś, co pokazuje przezroczystość (Preview na macOS, widok „kafelki" w IrfanView na Windows) i sprawdź, czy wokół logo jest wzór szachownicy, a nie biel.
+
+  <h2>Krok po kroku: dodaj tekstowy znak wodny</h2>
+
+  Ustawienia, które wyglądają profesjonalnie w praktyce:
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Ukośny znak wodny CONFIDENTIAL nałożony na każdą stronę PDF" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Otwórz narzędzie <a href="/pl/pdf-edit/add-watermark/">dodaj znak wodny do PDF</a> i wgraj plik.</li>
+    <li>Przełącz typ znaku wodnego na <strong>Tekst</strong>.</li>
+    <li>Wpisz tekst znaku wodnego. Użyj wielkich liter: <code>DRAFT</code>, <code>CONFIDENTIAL</code> albo nazwa twojej firmy.</li>
+    <li>Ustaw font na bezszeryfowy (Arial albo Helvetica) w dużym rozmiarze: 60-80 pt na A4.</li>
+    <li>Ustaw kolor na średni szary (około #888), tak by znak był czytelny na jasnych stronach bez czarnego bombardowania ciemnych obrazów.</li>
+    <li>Ustaw przejrzystość na <strong>30-40%</strong>. Poniżej 25% jest trudny do dostrzeżenia w druku, powyżej 50% przeszkadza w czytaniu treści pod spodem.</li>
+    <li>Ustaw obrót na <strong>45 stopni</strong> ukośnie. Pokrywa większy obszar strony niż tekst poziomy i jest ustaloną konwencją oznaczeń poufności.</li>
+    <li>Zastosuj do <strong>wszystkich stron</strong>, nie tylko pierwszej.</li>
+    <li>Zobacz podgląd. Jeśli znak wodny siedzi za tekstem, gotowe. Jeśli zakrywa krytyczną linię podpisu, zmniejsz przejrzystość do 25%.</li>
+    <li>Pobierz.</li>
+  </ol>
+
+  Warto sprawdzić jedną rzecz po pobraniu: otwórz plik w czytniku, którego prawdopodobnie używa odbiorca, nie tylko w tym, w którym dodawałeś znak wodny. Niektóre starsze wersje Foxit i Nitro Reader renderują znaki wodne nieco większe niż Acrobat, co potrafi wypchnąć ukośny tekst poza krawędź strony. Jeśli odbiorca jest na firmowej maszynie ze starszym czytnikiem PDF, to ta wersja decyduje, czy znak wodny wygląda dobrze.
+
+  <h2>Najlepsze praktyki dla wagi prawnej</h2>
+
+  Znak wodny ma większą wagę w sporze, gdy jest spójny i widoczny. Praktyczne reguły:
+
+  <ul>
+    <li><strong>Przejrzystość 30-40%.</strong> Czytelny na każdym tle, nadal wyraźnie nakładką.</li>
+    <li><strong>Ułożenie ukośne.</strong> Pokrywa większy obszar strony niż paski na górze albo dole i przeżywa kadrowanie zrzutów.</li>
+    <li><strong>Stosuj na każdej stronie.</strong> Znak wodny tylko na stronie 1 zaprasza do zrzutów części stron, które wyglądają na nieoznaczone.</li>
+    <li><strong>Trzymaj wzorzec bez znaku wodnego.</strong> Zawsze zachowaj oryginał osobno. Gdy umowa się zamyka i dokument staje się finalny, produkujesz czystą wersję, a nie usuwasz znak wodny z draftu.</li>
+    <li><strong>Standaryzuj brzmienie.</strong> Wybierz jedną frazę („DRAFT - NIE DO PODPISU" albo „CONFIDENTIAL") i używaj jej konsekwentnie. Niespójne oznaczenia wyglądają na doraźne i osłabiają sygnał.</li>
+    <li><strong>Datuj znak wodny.</strong> „DRAFT - 2026-04-28" jasno pokazuje, którą rewizję ktoś ogląda, i utrudnia argument „ale wersja, którą widziałem, mówiła co innego".</li>
+    <li><strong>Nie mieszaj wielkości liter.</strong> „Confidential" i „CONFIDENTIAL" w jednym zestawie dokumentów wyglądają, jakby jedno było draftem drugiego.</li>
+  </ul>
+
+  Dla dokumentów wielosekcyjnych możesz <a href="/pl/pdf-organize/merge/">scalić wiele draftów jako pierwszy krok</a> w jeden plik, a potem znakować raz całą paczkę — wyjście jest czystsze niż znakowanie każdej sekcji osobno.
+
+  <h2>Znaki wodne to nie szyfrowanie</h2>
+
+  To część, którą większość artykułów „jak dodać znak wodny do PDF" pomija, bo niewygodnie się o niej pisze. Znak wodny jest widocznym środkiem zniechęcającym. Nie:
+
+  <ul>
+    <li>Powstrzyma odbiorcy przed skopiowaniem tekstu z PDF.</li>
+    <li>Zatrzyma zrzutów ekranu, w tym zrzutów ze znakiem wodnym przyciętych do jednego akapitu.</li>
+    <li>Zaszyfruje treści pliku.</li>
+    <li>Zatrzyma zdeterminowanego przeciwnika z edytorem obrazu, który go usunie (powoli, niedokładnie).</li>
+    <li>Przeżyje porządnego OCR, który przepisze treść do świeżego dokumentu.</li>
+  </ul>
+
+  To, co znak wodny robi, to ustawia społeczny i prawny kontekst. Wyciekły draft bez znaku wodnego jest wiarygodnie niewinny. Wyciekły draft z napisem <code>CONFIDENTIAL</code> stemplowanym na każdej stronie jest jawnym naruszeniem dowolnego NDA, które odbiorca podpisał, a to rozróżnienie ma znaczenie, gdy prawnicy ważą szkody.
+
+  Dla naprawdę wrażliwych materiałów połącz znak wodny z prawdziwą ochroną: <a href="/pl/pdf-security/protect/">zaszyfruj dokument hasłem</a> z AES-256 i przekaż hasło innym kanałem niż plik. Znak wodny plus hasło to poziom obrony, którego większość zespołów prawnych i finansowych oczekuje przy materiałach na zarząd i niepodpisanych umowach komercyjnych. (Twierdzę, że nawet na tym poziomie ufasz odbiorcy. Nie ma kontroli technicznej, która powstrzyma zdeterminowanego insidera przed skopiowaniem ekranu telefonem. Znak wodny plus hasło to „dobra wiara plus środek zniechęcający", a nie „odporne na manipulację".)
+
+  <table>
+    <thead>
+      <tr><th>Poziom ryzyka</th><th>Rekomendowana ochrona</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Wewnętrzny draft krążący w małym zespole</td><td>Sam znak wodny</td></tr>
+      <tr><td>Zewnętrzny draft do kontrahenta pod NDA</td><td>Znak wodny + hasło</td></tr>
+      <tr><td>Materiały zarządu, niezapowiedziane M&A, dane płacowe</td><td>Znak wodny + hasło + bezpieczny kanał</td></tr>
+      <tr><td>Materiał publiczny do rozdania</td><td>Znak wodny niepotrzebny</td></tr>
+      <tr><td>Spersonalizowana makieta dla jednego nazwanego odbiorcy</td><td>Znak wodny z jego nazwiskiem + hasło</td></tr>
+    </tbody>
+  </table>
+
+  Ten ostatni wiersz wymaga komentarza. Jeśli zaznaczysz „Confidential - przygotowane dla Jana Kowalskiego, Acme Corp" zamiast ogólnego „CONFIDENTIAL", każdy wyciek z tej kopii jest przypisywalny do konkretnego odbiorcy. Fotografowie i redakcje przed publikacją używają tej techniki od dekad. Kosztuje dodatkowe trzydzieści sekund na odbiorcę i dramatycznie podnosi społeczny koszt wycieku.
+
+  <h2>Usuwanie własnego znaku wodnego później</h2>
+
+  Gdy umowa staje się finalna, potrzebujesz czystego pliku. Jest dokładnie jeden dobry sposób, by go uzyskać: ponownie eksportuj ze źródła.
+
+  <ol>
+    <li>Zachowaj wzorzec bez znaku wodnego sprzed uruchomienia narzędzia.</li>
+    <li>Gdy dokument zostanie zatwierdzony, oznacz wzorzec znakiem <code>FINAL</code> albo zdejmij znakowanie całkiem, w zależności od konwencji.</li>
+    <li>Dystrybuuj nową, czystą wersję, a nie wersję draftu „bez znaku wodnego".</li>
+  </ol>
+
+  Celowo nie oferujemy narzędzia do usuwania znaków wodnych z dokumentów, których nie posiadasz. Usuwanie znaków wodnych z cudzych PDF-ów niemal zawsze narusza prawa autorskie, NDA albo warunki nadawcy i nie chcemy tego ułatwiać.
+
+  <h2>FAQ</h2>
+
+  <h3>Jakiej przejrzystości użyć dla znaku wodnego CONFIDENTIAL?</h3>
+  <p>30-40% to słodki punkt. Czyta się czytelnie na jasnych tłach i przeżywa druk czarno-biały bez zasłaniania tekstu pod spodem. Poniżej 25% staje się niewidoczny na zatłoczonych stronach; powyżej 50% przeszkadza w czytaniu.</p>
+
+  <h3>Czy mogę dodać znak wodny tylko do wybranych stron?</h3>
+  <p>Tak, są ku temu uzasadnione powody (zwolniona okładka, niezaznakowane aneksy). Jednak częściowe znakowanie jest łatwiejsze do obejścia zrzutami ekranu, więc stosuj na każdej stronie, chyba że masz konkretny powód układowy.</p>
+
+  <h3>Czy znak wodny pojawi się na wydruku?</h3>
+  <p>Tak. Znak wodny jest częścią treści strony, nie nakładką czytnika, więc drukuje się dokładnie tak, jak wygląda na ekranie. Przy druku czarno-białym znaki w średnim szarym renderują się nieco ciemniej niż przewidywano; obniż przejrzystość o 5%, jeśli zamierzasz drukować. Niektóre sterowniki druku mają też opcję „pomiń znaki wodne" włączoną domyślnie na pewnych firmowych drukarkach — przetestuj przed dużym drukiem.</p>
+
+  <h3>Czy znakowanie wodne uniemożliwia skopiowanie PDF?</h3>
+  <p>Nie. Znak wodny to wyłącznie wizualny środek zniechęcający. Aby ograniczyć kopiowanie albo druk, połącz znak wodny z hasłem uprawnień, które wyłączy te akcje w zgodnych czytnikach.</p>
+
+  <h3>Czy mogę dodać obraz z logo zamiast tekstu?</h3>
+  <p>Tak. Użyj PNG z przezroczystym tłem dla najczystszego efektu. Umieść go ukośnie przy 30-40% przejrzystości z tej samej zasady pokrycia, co przy tekście. Znaki wodne z logo są standardową praktyką dla makiet projektowych i fotograficznych.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Stempluj draft, propozycję albo makietę jasnym oznaczeniem statusu w niecałą minutę i wysyłaj bez wątpienia, czy odbiorca potraktuje plik jak finał. <a href="/pl/pdf-edit/add-watermark/">Otwórz narzędzie znaku wodnego →</a> Przejrzyj resztę <a href="/pl/all-tools/">narzędzi do edycji PDF</a>, kiedy już tu jesteś.</p>

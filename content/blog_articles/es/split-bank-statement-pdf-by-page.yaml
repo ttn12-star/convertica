@@ -1,0 +1,138 @@
+slug: split-bank-statement-pdf-by-page
+title_es: "Cómo dividir el PDF de un extracto bancario en archivos mensuales o por transacción"
+meta_title_es: "Dividir extracto bancario PDF por mes o por página"
+meta_description_es: "¿Tienes un extracto anual de 60 páginas? Divídelo en PDF mensuales para impuestos, hipotecas o categorización de gastos, con una checklist de privacidad antes de compartir."
+meta_keywords_es: "dividir extracto bancario pdf, separar páginas pdf, dividir pdf por mes, extraer páginas extracto, divisor pdf gratis"
+excerpt_es: "A los bancos les gusta entregar un PDF gigante para todo el año. Dividirlo en bloques mensuales hace mucho más llevaderos la temporada fiscal, los trámites de hipoteca y la categorización de gastos."
+content_es: |
+  La mayoría de los bancos te dejan descargar «el año» como un único PDF. Cómodo para ellos, incómodo para ti en cuanto un asesor hipotecario te pide «solo los últimos tres meses» o tu contable necesita el T1 separado del T2. Resubir un archivo de 60 páginas cada vez filtra más detalle financiero del que querrías compartir, y hace doloroso categorizar transacciones en una hoja de cálculo: te tocará pasar nueve meses que no necesitas para ver lo que sí.
+
+  Dividir el archivo una sola vez en PDF mensuales bien nombrados resuelve los dos problemas. Esta guía cubre cuándo conviene <a href="/es/pdf-organize/split/">dividir PDF en línea</a> por rango de páginas frente a extraer páginas concretas, los pasos de privacidad que la mayoría de los tutoriales se saltan y una convención de nombres que hace que el resultado se pueda encontrar un año después.
+
+  <figure><img src="/static/blog/images/tool-split.jpg" alt="Herramienta de división de Convertica dividiendo el PDF de un extracto bancario en archivos mensuales" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Por qué dividir un extracto bancario</h2>
+
+  Dividir no es solo orden estético. Hay momentos concretos donde ahorra tiempo o protege información:
+
+  <ul>
+    <li><strong>Declaración de impuestos.</strong> Hacienda, el IRS y la mayoría de las autoridades fiscales nacionales esperan extractos por trimestre o por mes, sobre todo para IVA y autoempleo. El Schedule C del IRS, en particular, pide totales mensuales; mandar el año entero obliga a tu contable a reconstruirlos.</li>
+    <li><strong>Solicitudes de hipoteca y préstamos.</strong> Los prestamistas casi siempre piden los últimos tres o seis meses. Mandar el año completo es divulgar de más, y los analistas a veces usan información que no se les pidió para reforzar sus pegas.</li>
+    <li><strong>Categorización de gastos.</strong> Trabajar mes a mes en una hoja de cálculo es mucho menos propenso a errores que deslizarse por 48 páginas.</li>
+    <li><strong>Compartir de forma dirigida.</strong> Tu contable solo necesita los meses que está conciliando. Tu administrativo no necesita ver diciembre si la pregunta es de febrero.</li>
+    <li><strong>Reclamaciones a seguros.</strong> Una aseguradora que pide el periodo en torno a un incidente concreto solo necesita esa ventana, no todo tu historial financiero.</li>
+    <li><strong>Cuentas conjuntas en una separación.</strong> Si estás dividiendo finanzas con tu pareja, compartir solo el periodo común en lugar del archivo completo importa legalmente.</li>
+  </ul>
+
+  <blockquote class="callout">Un extracto bancario es uno de los documentos más sensibles de tu vida. Comparte la rebanada más pequeña que responda a la pregunta.</blockquote>
+
+  <h2>Tres estrategias de división</h2>
+
+  Antes de hacer clic en nada, decide qué enfoque encaja con tu extracto:
+
+  <table>
+    <thead>
+      <tr><th>Estrategia</th><th>Cuándo encaja</th><th>Esfuerzo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Rango de páginas fijo</td><td>Cada mes ocupa exactamente lo mismo (p. ej. 4 páginas)</td><td>Bajo</td></tr>
+      <tr><td>Por marcador o frontera de mes</td><td>El extracto tiene encabezados claros tipo «Marzo 2026» y un número de páginas desigual</td><td>Medio</td></tr>
+      <tr><td>Extraer páginas concretas</td><td>Solo necesitas uno o dos meses de los doce</td><td>Mínimo</td></tr>
+    </tbody>
+  </table>
+
+  La mayoría de los extractos bancarios para particulares caen en la segunda categoría: las páginas por mes varían porque hay más transacciones en algunos meses. Mira las páginas 1, 5, 9, 13 para confirmar el patrón antes de comprometerte con una regla de división. Los meses de fiestas (diciembre para cuentas británicas y estadounidenses, agosto para europeas) suelen llevar dos páginas más que la media; enero y febrero, dos menos. Cuenta con eso.
+
+  Las cuentas de empresa suelen imprimir una página de resumen aparte al final del mes. Decide si ese resumen pertenece al mes que resume (divídelo como la última página del rango de ese mes) o al mes siguiente (donde los extractos previos suelen vivir en el flujo de trabajo).
+
+  <h2>Paso a paso: dividir por rango de páginas</h2>
+
+  Cuando cada mes mide lo mismo, es un trabajo de 90 segundos:
+
+  <ol>
+    <li>Abre la herramienta de división en tu navegador y sube el extracto.</li>
+    <li>Selecciona <strong>dividir por rangos</strong>.</li>
+    <li>Introduce los rangos que coinciden con los meses: <code>1-4, 5-8, 9-12, 13-16, ...</code></li>
+    <li>Haz clic en dividir. La herramienta produce un PDF por rango y los empaqueta en un ZIP.</li>
+    <li>Descarga y descomprime. Cada parte es un PDF independiente.</li>
+    <li>Renombra las partes a <code>AAAA-MM_banco_4ultimosdigitos.pdf</code> (más sobre nombres abajo).</li>
+  </ol>
+
+  Truco: si la primera o última página es una portada o un resumen, exclúyela de los rangos o sepárala como su propio PDF de una página. Muchos bancos meten un inserto publicitario al final («¡presentamos nuestra nueva tarjeta de crédito!») que es puro ruido: tíralo antes incluso de abrir el archivo.
+
+  Pequeño atajo de teclado: en el campo de rangos, los rangos separados por comas no necesitan espacios, así que <code>1-4,5-8,9-12</code> funciona exactamente igual que la versión con espacios. Más rápido de teclear si estás tratando doce meses de una vez.
+
+  <h2>Paso a paso: extraer un solo mes</h2>
+
+  Cuando solo necesitas abril para una solicitud de préstamo, no dividas todo. Extrae solo esas páginas.
+
+  <ol>
+    <li>Abre el extracto en cualquier lector de PDF y desplázate para encontrar dónde empieza y termina abril. Anota los números de página (p. ej. 17-22).</li>
+    <li>Usa la opción de extracción de páginas en nuestro editor para <a href="/es/pdf-edit/">extraer páginas concretas</a>.</li>
+    <li>Introduce el rango, p. ej. <code>17-22</code>.</li>
+    <li>Descarga el PDF resultante.</li>
+    <li>Guárdalo con un nombre claro: <code>2026-04_banco_1234.pdf</code>.</li>
+  </ol>
+
+  Esto evita crear once archivos extra que no vas a usar y hace que solo el mes relevante salga de tu equipo. Si el prestamista pide «los últimos tres meses», haz tres extracciones de un mes y mándalas como tres archivos nombrados, en lugar de un único rango pegado. Los analistas leen archivos nombrados más rápido que rangos.
+
+  <h2>Checklist de privacidad antes de compartir</h2>
+
+  Dividir un extracto no lo hace automáticamente seguro de compartir. Un PDF mensual sigue conteniendo tu número de cuenta, saldo y cada transacción del periodo. Repasa esta checklist antes de adjuntarlo a cualquier correo:
+
+  <figure><img src="/static/blog/images/tool-protect.jpg" alt="Herramienta de protección con contraseña de Convertica usada antes de enviar extractos sensibles" width="1280" height="800" loading="lazy"></figure>
+
+  <ul>
+    <li><strong>Redacta las transacciones no relacionadas.</strong> Si el prestamista solo necesita ver el sueldo y el alquiler, tacha el resto. La redacción debe aplanar el PDF (sustituir píxeles), no solo cubrirlo con un rectángulo negro que cualquiera puede quitar con un editor de PDF gratuito en diez segundos.</li>
+    <li><strong>Confirma qué hay en la portada.</strong> Algunos bancos repiten el número de cuenta completo, el código de oficina y la dirección en cada portada mensual. Decide si ese nivel de detalle es necesario.</li>
+    <li><strong>Enmascara los dígitos centrales del número de cuenta.</strong> Muchas instituciones aceptan «XXXX XXXX 1234» como verificación sin la cadena completa.</li>
+    <li><strong>Revisa las descripciones de las transacciones por contexto personal.</strong> Una línea que ponga «Sesión de terapia - Dra. K» o «Clínica de salud reproductiva» puede llevar información que no querías compartir. Redacta la descripción, no solo el importe, cuando sea sensible.</li>
+    <li><strong>Protege con contraseña antes de enviar por correo.</strong> <a href="/es/pdf-security/protect/">Protege el resultado con contraseña</a> usando una contraseña fuerte y comparte esa contraseña por un canal aparte (mensaje de texto, Signal, llamada), nunca por el mismo correo.</li>
+  </ul>
+
+  <blockquote class="callout">El correo no está cifrado por defecto. Una contraseña en el PDF es la diferencia entre «privado» y «público si lo interceptan».</blockquote>
+
+  Conviene saber: la herramienta de «redactar» de Adobe Acrobat sí elimina el texto que hay debajo del rectángulo negro. La herramienta similar del lector gratuito Foxit solo pinta encima: el texto subyacente sigue siendo extraíble con una simple operación de copiar. Mucha gente lo aprende a las malas tras descubrir que su salario «redactado» es texto plano debajo del rectángulo. Si no estás seguro de que tu herramienta elimine los datos de verdad, copia un bloque redactado a un editor de texto y comprueba.
+
+  <h2>Cómo nombrar los archivos de salida</h2>
+
+  El nombre del archivo es lo que verás cuando esto reaparezca en una búsqueda el año que viene. Usa un formato que se ordene solo:
+
+  <pre><code>AAAA-MM_banco_4ultimosdigitos.pdf
+
+  2026-01_chase_4567.pdf
+  2026-02_chase_4567.pdf
+  2026-03_chase_4567.pdf
+  2026-04_chase_4567.pdf</code></pre>
+
+  Por qué funciona:
+
+  <ul>
+    <li>El año-mes ISO se ordena limpiamente en cualquier gestor de archivos y nube.</li>
+    <li>El nombre del banco en el medio ayuda cuando tienes cuentas en más de una institución.</li>
+    <li>Los últimos cuatro dígitos de la cuenta te permiten distinguir cuentas conjuntas, de empresa y personales sin abrir nada.</li>
+    <li>Sin espacios, sin barras, sin comillas: seguro entre sistemas operativos y herramientas de sincronización en la nube.</li>
+  </ul>
+
+  Si en algún momento necesitas recombinar meses para una presentación de fin de año, puedes <a href="/es/pdf-organize/merge/">unir más tarde si necesitas recombinarlos</a> en un único archivo. Nombrar la salida de la unión (p. ej. <code>2026_chase_4567_anual.pdf</code>) la mantiene ordenada junto a las rebanadas mensuales en cualquier listado de carpeta.
+
+  <h2>FAQ</h2>
+
+  <h3>¿Es seguro subir un extracto bancario a un divisor en línea?</h3>
+  <p>Usa una herramienta que procese los archivos en la sesión del navegador y los borre poco después. Convertica elimina las subidas tras una breve ventana de retención y nunca las comparte. Si aun así te incomoda, redacta los campos más sensibles localmente antes de subir, o usa una herramienta de escritorio para los archivos más sensibles.</p>
+
+  <h3>¿Puedo dividir un PDF de extracto bancario protegido con contraseña?</h3>
+  <p>Tendrás que desbloquearlo primero con tu propia contraseña, luego dividir y, opcionalmente, volver a proteger cada parte. La mayoría de los bancos emiten extractos cuya contraseña es parte de tu fecha de nacimiento o los últimos dígitos de la cuenta; el formato exacto suele estar impreso en tu paquete de bienvenida o disponible en la página de ayuda «cómo abrir tu extracto» del banco.</p>
+
+  <h3>¿Cómo divido por mes si no hay marcadores?</h3>
+  <p>Abre el archivo una vez y anota la página donde empieza cada mes. Luego usa dividir por rango con números de página explícitos. Lleva un minuto la primera vez y es reutilizable para cada futuro extracto del mismo banco si el diseño se mantiene.</p>
+
+  <h3>¿Dividir reducirá la calidad del archivo?</h3>
+  <p>No. Dividir es una operación estructural: copia los mismos bytes de página en un archivo nuevo. No hay recompresión, ni rasterización, ni pérdida de calidad respecto a la fuente.</p>
+
+  <h3>¿Puede el banco saber que dividí su extracto?</h3>
+  <p>El banco no puede, porque la división ocurre enteramente de tu lado. El destinatario sí puede notarlo por páginas faltantes o números de página si solo extraes una rebanada, por eso conviene decir explícitamente «solo abril, páginas 17-22» al enviar un extracto parcial. Los analistas no te tumbarán la solicitud por una entrega parcial, pero sí por una que parezca engañosa.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Una sesión de diez minutos hoy te ahorra un año de pescar dentro de un archivo de 60 páginas. Divide tu extracto, nombra bien las partes y te lo agradecerás en la temporada fiscal. <a href="/es/pdf-organize/split/">Abrir la herramienta de dividir PDF →</a></p>

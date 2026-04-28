@@ -1,0 +1,179 @@
+slug: convert-scanned-pdf-to-editable-word
+title_pl: "Jak skonwertować zeskanowany PDF na edytowalny dokument Word (z poradami OCR)"
+meta_title_pl: "Skanowany PDF do Worda za darmo | Convertica"
+meta_description_pl: "Zeskanowany PDF to po prostu obrazy tekstu. Dowiedz się, jak OCR zamienia go w edytowalny plik Word, jakiej dokładności oczekiwać i co poprawić, by był używalny."
+meta_keywords_pl: "zeskanowany pdf do worda, ocr pdf do worda, edytowalny pdf, pdf obraz do worda, konwersja skanu do docx"
+excerpt_pl: "Jeśli zaznaczanie tekstu w twoim PDF podświetla tylko pustą przestrzeń, masz zeskanowany PDF i potrzebujesz OCR, a nie zwykłego konwertera. Oto czego się spodziewać."
+content_pl: |
+  Spróbuj na PDF-ie, który masz przed sobą: kliknij i przeciągnij kursorem przez akapit, jakbyś chciał skopiować tekst. Jeśli kursor podświetla pojedyncze słowa, PDF jest cyfrowy i standardowy konwerter zadziała. Jeśli zaznacza wielki prostokąt wokół całej strony, masz skan, czyli każda strona jest w zasadzie zdjęciem kartki, a normalne narzędzie PDF-do-Word zwróci ci dokument Worda pełen obrazków, a nie tekstu.
+
+  W tym miejscu wchodzi OCR. Optyczne rozpoznawanie znaków odczytuje piksele i odtwarza je jako prawdziwe litery, słowa i akapity. Dobrze zrobione daje edytowalny .docx. Źle zrobione zostawia bełkot i godzinę poprawiania przecinków, spacji i pomyłek typu rn-zamiast-m. Różnica tkwi głównie w pliku źródłowym i kilku rzeczach, na które masz wpływ.
+
+  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Konwerter Convertica PDF do Word przyjmujący zeskanowany dokument do OCR" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Jak rozpoznać, czy twój PDF to skan</h2>
+
+  Trzy szybkie testy:
+
+  <ul>
+    <li><strong>Zaznaczanie tekstu.</strong> Spróbuj zaznaczyć pojedyncze słowo. Jeśli cała strona staje się jednym zaznaczalnym prostokątem, strona jest obrazem.</li>
+    <li><strong>Rozmiar pliku.</strong> 10-stronicowy tekstowy PDF waży zwykle 100-500 KB. 10-stronicowy zeskanowany PDF często waży 5-30 MB, bo każda strona to obraz w wysokiej rozdzielczości.</li>
+    <li><strong>Artefakty wizualne.</strong> Skany pokazują plamki, lekkie obroty, wyblakłe krawędzie i widoczną fakturę papieru. Born-digital PDF-y mają ostre litery z antyaliasowanymi krawędziami i bez tła z szumem.</li>
+    <li><strong>Kształt kursora.</strong> Najedź na tekst. Cyfrowy PDF zmienia kursor na pionową kreskę (I-beam) nad tekstem i strzałkę nad obrazami. Zeskanowany PDF wszędzie zostawia strzałkę — bo wszystko jest obrazem.</li>
+  </ul>
+
+  Istnieją też PDF-y hybrydowe, kiedy ktoś zeskanował kontrakt, a potem dokleił born-digital stronę z podpisem. OCR pomija stronę cyfrową (nie ma potrzeby) i przetwarza tylko skany. Zanim założysz, że cały duży plik jest jednego typu, zrób test z zaznaczaniem na kilku różnych stronach.
+
+  <h2>Co właściwie robi OCR</h2>
+
+  OCR to rozpoznawanie wzorców liter. Silnik patrzy na skupiska pikseli, porównuje je z modelem wytrenowanym na milionach obrazów glifów i wystawia najbardziej prawdopodobny znak razem z poziomem pewności. Nowoczesne silniki używają też kontekstu: jeśli z 80% pewnością kolejne słowo to „umowa", a trzecia litera waha się między „o" a „a", wybierze „o", bo „umowa" to istniejące słowo.
+
+  Dwa ustawienia decydują o dokładności mocniej niż cokolwiek innego:
+
+  <ul>
+    <li><strong>Język źródła.</strong> Model wytrenowany na angielskim, puszczony na francuskim dokumencie, pomyli akcentowane znaki i poplącze zwykłe słowa. Zawsze ustawiaj język wprost, jeśli narzędzie to umożliwia.</li>
+    <li><strong>DPI źródła.</strong> 300 DPI to praktyczna podłoga dla czystego OCR. Skany 200 DPI poradzą sobie z dużym drukiem, ale poległą na małych przypisach. Poniżej 150 dokładność leci na łeb na szyję.</li>
+  </ul>
+
+  Trzeci czynnik, o którym ludzie rzadko myślą: kontrast. OCR pracuje na różnicy między atramentem a tłem. Wyblakła kserokopia kserokopii może mieć nominalne 300 DPI i wciąż produkować papkę, bo kontrast jest za niski, by silnik znalazł krawędzie liter. Nowoczesne silniki radzą sobie z tym lepiej niż starsze, ale stare buildy Tesseracta (cokolwiek przed wersją 4.0 z 2018 roku) wciąż się duszą na słabym kontraście.
+
+  <h2>Krok po kroku: zeskanowany PDF do Worda</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Konwersja PDF-do-Word z OCR zamieniająca skan w edytowalny .docx" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Otwórz narzędzie <a href="/pl/pdf-to-word/">konwersji PDF do Word</a> i wgraj swój skan. Narzędzie samo wykrywa, że potrzeba OCR, kiedy zaznaczanie tekstu nic nie zwraca.</li>
+    <li>Wybierz język źródłowy, żeby silnik użył właściwego słownika. Polski, angielski, hiszpański, niemiecki, francuski, włoski, portugalski i rosyjski wyraźnie zachowują się lepiej, kiedy ustawisz je wprost.</li>
+    <li>Uruchom konwersję. 10-stronicowy skan zajmuje mniej więcej 30-90 sekund w zależności od złożoności obrazu. 100-stronicowe archiwum może zająć kilka minut.</li>
+    <li>Pobierz .docx i otwórz go w Wordzie. Sprawdź pierwszą stronę względem oryginalnego PDF-a, zanim zaufasz reszcie.</li>
+  </ol>
+
+  <blockquote class="callout">Zawsze zachowuj oryginalny zeskanowany PDF. Jeśli OCR poturbuje stronę, lepiej mieć z czym ją porównać, niż zgadywać, co miało być w nieczytelnym słowie.</blockquote>
+
+  Warto sprawdzić jedną rzecz, zanim zaufasz wynikowi: otwórz .docx w Wordzie i włącz znaczniki formatowania (Ctrl+Shift+8 w Windowsie, Cmd+8 w macOS). Jeśli widzisz mnóstwo znaczników akapitu na końcu każdej linii — bo OCR uznał, że każda wizualna linia to akapit — popraw to find-and-replace przed właściwą edycją. Naprawa jest prosta: zamień pojedyncze znaczniki akapitu na spację, a potem podwójne z powrotem na pojedyncze. (Twierdzę, że ta jedna sztuczka w Wordzie oszczędza więcej czasu niż dowolne ustawienie OCR.)
+
+  <h2>Realistyczne oczekiwania co do dokładności</h2>
+
+  Marketingowe „99% dokładności" zakłada czysty wydruk na białym papierze w 300 DPI. Dokumenty z prawdziwego życia są bardzo różne. Oto czego naprawdę się spodziewać:
+
+  <table>
+    <thead>
+      <tr>
+        <th>Typ dokumentu</th>
+        <th>Typowa dokładność OCR</th>
+        <th>Potrzebne poprawki</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Czysty drukowany tekst, nowoczesny dokument</td>
+        <td>95-99%</td>
+        <td>Minimalne, głównie interpunkcja</td>
+      </tr>
+      <tr>
+        <td>Dokument z faksu lub kserokopia</td>
+        <td>80-90%</td>
+        <td>Korekta strona po stronie</td>
+      </tr>
+      <tr>
+        <td>Stary maszynopis / druk sprzed 2000 r.</td>
+        <td>75-90%</td>
+        <td>Gruntowna korekta, zwłaszcza „1" vs „l"</td>
+      </tr>
+      <tr>
+        <td>Pismo odręczne</td>
+        <td>30-70%, bardzo zmienne</td>
+        <td>Często szybciej przepisać</td>
+      </tr>
+      <tr>
+        <td>Tabele z liczbami</td>
+        <td>Układ przeważnie poległ</td>
+        <td>Ręczne odtworzenie formatu</td>
+      </tr>
+      <tr>
+        <td>Wielokolumnowy układ gazety albo magazynu</td>
+        <td>Tekst dobrze, układ źle</td>
+        <td>Ręczne ułożenie w jednej kolumnie</td>
+      </tr>
+      <tr>
+        <td>Zdjęcie strony z telefonu (dobre światło)</td>
+        <td>85-95%</td>
+        <td>Najpierw przytnij i wyrównaj dla najlepszych efektów</td>
+      </tr>
+    </tbody>
+  </table>
+
+  Każdy, kto obiecuje 99% na dokumencie z faksu, albo go nie testował, albo coś sprzedaje. Ustaw oczekiwania na „będę musiał skorygować", nie na „mogę wysłać surowiec dalej".
+
+  Konkretna pułapka: numery faktur i kody referencyjne to miejsca, gdzie błędy OCR bolą najmocniej. Przeoczona cyfra w akapicie tekstu jest do wybaczenia; przeoczona cyfra w „Faktura 1023841" potrafi wpłacić pieniądze na zły rachunek. Zawsze konfrontuj numeryczne identyfikatory w wyniku OCR z oryginałem.
+
+  <h2>Przygotowanie przed OCR, które podnosi dokładność</h2>
+
+  Pięć minut przygotowania skraca poprawki po OCR o połowę:
+
+  <ul>
+    <li><strong>Obróć strony położone na boku.</strong> Silniki OCR zakładają tekst poziomy. Strona przekręcona o 90 stopni zwraca bełkot albo nic. Skorzystaj z narzędzia, żeby <a href="/pl/pdf-edit/rotate/">obrócić strony położone na boku</a> przed OCR.</li>
+    <li><strong>Przytnij nadmiarowe marginesy.</strong> Szerokie białe brzegi mylą analizator układu, który widzi w jednej kolumnie dwie. <a href="/pl/pdf-edit/">Przytnij marginesy</a> do miejsca, gdzie naprawdę zaczyna się tekst.</li>
+    <li><strong>Zwiększ kontrast.</strong> Wyblakłym skanom pomaga podbicie kontrastu w sterowniku skanera albo dowolnym edytorze obrazu przed ponownym zapisem do PDF. Czarny tekst na białym tle to złoty standard.</li>
+    <li><strong>Wyrównaj przekrzywienie (deskew).</strong> Strony przekrzywione nawet o 2-3 stopnie psują dokładność. Większość oprogramowania skanera ma opcję auto-deskew i warto ją włączyć.</li>
+    <li><strong>Zejdź z koloru na skalę szarości lub czarno-biały</strong> przy skanowaniu, jeśli możesz. Kolorowe odcienie (typowy żółtawy efekt biurowej kserokopiarki) przesuwają kontrast w sposób, który dezorientuje silnik.</li>
+    <li><strong>Usuń zszywki i zagniecenia przed skanowaniem.</strong> Brzmi oczywisto, ale złożone strony produkują zacienione linie, które OCR rozpoznaje jako podkreślenia albo krawędzie tabel.</li>
+  </ul>
+
+  <h2>Lista kontrolna porządków po OCR</h2>
+
+  Gdy .docx wyląduje, zrób kilka przejść find-and-replace, zanim na serio zaczniesz edytować. To najczęstsze błędy OCR w polskich dokumentach:
+
+  <ul>
+    <li><code>rn</code> często staje się <code>m</code> i odwrotnie. Szukaj „rn" oraz słów wyglądających jak „modern".</li>
+    <li><code>l</code> (małe L) mylone z <code>1</code> (jedynka). Szczególnie częste w numerach faktur i datach.</li>
+    <li><code>0</code> (zero) mylone z <code>O</code> (wielkie o) wewnątrz kodów i identyfikatorów.</li>
+    <li>Polskie znaki diakrytyczne tracone albo mylone: <code>ł</code> zamieniane na <code>t</code>, <code>ą</code> na <code>a</code>, <code>ę</code> na <code>e</code>. Zwłaszcza na słabszych skanach.</li>
+    <li>Cudzysłowy „smart" zamieniane na proste i odwrotnie, łamiąc cytaty.</li>
+    <li>Pauzy konwertowane na dwa łączniki albo łącznik-spacja-łącznik.</li>
+    <li>Nagłówki i stopki z każdej strony potrafią wlecieć inline jako tekst. Skasuj je raz i ustaw prawdziwy nagłówek Worda.</li>
+    <li>Listy punktowane renderowane jako zwykłe akapity z dosłownym „•" albo zabłąkanym „o" na początku.</li>
+    <li>Słowa łamane na końcu wiersza („handlu-/jąca" w sąsiednich wersach) przeżywają w Wordzie jako prawdziwe łączniki. Wyszukaj „- " (łącznik-spacja) i posprzątaj.</li>
+  </ul>
+
+  Tabele prawie zawsze trzeba odbudować ręcznie. Jeśli źródło zawiera dane, które i tak chcesz mieć w arkuszu, często szybciej <a href="/pl/pdf-to-excel/">wyciągnąć je do Excela</a> i pominąć Worda dla części liczbowych.
+
+  Osobny akapit dla podpisów i pieczątek: nie przeżywają OCR. Wchodzą jako małe osadzone obrazy, często przycięte, czasem całkiem zgubione. Jeśli wartość prawna dokumentu zależy od podpisu, twoja wersja Worda po OCR jest kopią roboczą, a nie autorytatywną. Trzymaj oryginalny PDF jako wersję kanoniczną.
+
+  <h2>Kiedy OCR się nie opłaca</h2>
+
+  Czasem właściwą odpowiedzią jest przepisanie zamiast OCR-i-poprawiania. Punkt opłacalności zależy od długości dokumentu i jakości źródła:
+
+  <ul>
+    <li><strong>Mniej niż jedna strona czystego druku:</strong> Przepisanie jest często szybsze niż OCR, pobieranie, otwieranie Worda i korekta.</li>
+    <li><strong>Od jednej do dziesięciu stron czystego druku:</strong> OCR wygrywa, nawet z poprawkami.</li>
+    <li><strong>Dziesięć i więcej stron słabej jakości faksu:</strong> OCR wygrywa czasowo, ale przejście korekty jest mozolne. Zaplanuj to jako prawdziwe zadanie, nie pięciominutową robotę.</li>
+    <li><strong>Cokolwiek odręcznego:</strong> Przepisz, chyba że dokument ma setki stron, a alternatywą jest „w ogóle nie mieć go cyfrowo".</li>
+    <li><strong>Dane liczbowe:</strong> Przepisanie liczb jest szybsze niż weryfikacja każdej cyfry z OCR, a krok weryfikacji jest obowiązkowy, kiedy dokładność ma znaczenie.</li>
+  </ul>
+
+  Jeszcze jedno o poufności: zeskanowana dokumentacja medyczna albo protokół przesłuchania, które puścisz przez serwis webowy, krótko zamieszka na cudzym serwerze, nawet jeśli ten serwer szybko ją skasuje. Dla dokumentów objętych RODO, danymi szczególnej kategorii albo tajemnicą adwokacką uruchamiaj OCR lokalnie — Tesseractem albo desktopowym narzędziem w stylu ABBYY FineReader. Pięciominutowy podatek na konfigurację jest wart spokoju ducha.
+
+  <h2>FAQ</h2>
+
+  <h3>Dlaczego mój dokument Worda po konwersji jest pusty?</h3>
+  <p>Niemal zawsze dlatego, że puściłeś konwerter bez OCR na zeskanowany PDF. Konwerter nie znalazł warstwy tekstowej, więc wyprodukował dokument Worda z osadzonymi obrazami stron, ale bez edytowalnego tekstu. Przepuść plik przez ścieżkę z OCR.</p>
+
+  <h3>Czy OCR poradzi sobie z odręcznymi notatkami?</h3>
+  <p>Czasem, słabo. OCR pisma odręcznego poprawił się dzięki modelom neuronowym, ale wciąż waha się od 30 do 70% dokładności na pismach z prawdziwego świata. Przy czymkolwiek istotnym przepisanie jest zwykle szybsze niż poprawianie wyniku OCR. Pismo „drukowane" (np. formularz wypełniony wielkimi literami) wychodzi znacznie lepiej niż pochyłe.</p>
+
+  <h3>Jakie języki obsługuje OCR?</h3>
+  <p>Większość silników, w tym ten używany przez Convertica, pokrywa wszystkie najważniejsze języki europejskie, łącznie z polskim, angielskim, hiszpańskim, francuskim, niemieckim, włoskim, portugalskim, rosyjskim i wieloma innymi. Dla znaków diakrytycznych albo pisma niełacińskiego ustaw język wprost. Dokumenty mieszane (polski z cytatem po angielsku) działają najlepiej, gdy ustawisz je na język dominujący.</p>
+
+  <h3>Dlaczego tabele wychodzą jako pomieszany tekst?</h3>
+  <p>OCR czyta od lewej do prawej, z góry na dół, a granice komórek tabel mącą ten ciąg. Liczby z wiersza 1 kolumny 3 mogą wylądować obok wiersza 2 kolumny 1. Dla danych tabelarycznych konwersja prosto do Excela i odbudowa tabeli tam są zwykle szybsze niż naprawa w Wordzie.</p>
+
+  <h3>Czy konwersja OCR jest poufna?</h3>
+  <p>Renomowane narzędzia przeglądarkowe przetwarzają plik w tymczasowej sesji i kasują go wkrótce po. Przeczytaj politykę prywatności narzędzia przed wgraniem wrażliwych dokumentów. Dla mocno poufnych materiałów rozważ OCR lokalny (Tesseract, ABBYY) zamiast jakiegokolwiek serwisu webowego.</p>
+
+  <h3>Ile trwa OCR 50-stronicowego skanu?</h3>
+  <p>Mniej więcej dwie do pięciu minut na dobrym serwisie, w zależności od rozdzielczości obrazu i obciążenia serwera. Skany w 600 DPI trwają zauważalnie dłużej niż w 300 DPI bez lepszego wyniku.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Przestań przepisywać. Wgraj swój skan do <a href="/pl/pdf-to-word/">konwertera PDF do Word</a>, ustaw język źródłowy, a minutę później będziesz już edytować w Wordzie. Tylko zaplanuj sobie szybkie przejście korekty, zanim wyślesz wynik dalej.</p>

@@ -1,0 +1,110 @@
+slug: pdf-to-word-vs-ocr-which-to-use
+title_es: "PDF a Word frente a OCR: qué herramienta usar (y por qué importa)"
+meta_title_es: "PDF a Word frente a OCR: guía de decisión | Convertica"
+meta_description_es: "Elegir mal la ruta de conversión te deja un Word en blanco o un texto ilegible. Aquí tienes cómo saber qué herramienta necesita realmente tu PDF."
+meta_keywords_es: "pdf a word vs ocr, ocr o convertir, pdf escaneado vs digital, métodos de conversión pdf, cuándo usar ocr"
+excerpt_es: "La conversión estándar de PDF a Word falla en silencio con documentos escaneados y te deja un archivo vacío sin mensaje de error. Saber la diferencia te ahorra una hora de pruebas confusas."
+content_es: |
+  Dos PDF que se ven idénticos en pantalla pueden necesitar herramientas totalmente distintas para convertirse. Uno se abre en Word con el texto, las fuentes y las tablas casi intactos. El otro se abre como una sola imagen del tamaño de la página, sin nada de texto seleccionable. La diferencia es invisible hasta que intentas usar el resultado, y la mayoría de la gente solo lo aprende tras perder veinte minutos con la herramienta equivocada.
+
+  Esta guía es la versión corta de esa lección. Al terminar sabrás identificar qué tipo de PDF tienes delante, qué ruta de conversión necesita y qué hacer si te equivocas al elegir.
+
+  <h2>Los dos tipos de PDF con los que te vas a topar</h2>
+  <p>Cualquier PDF del mundo cae en uno de estos tres cubos: digital, escaneado o híbrido (una mezcla de los dos).</p>
+  <h3>PDF digitales</h3>
+  <p>Se generan directamente desde una fuente digital: un archivo de Word, una página web, una exportación de InDesign, una herramienta de contabilidad. El texto del interior es texto real: caracteres, fuentes, estructuras de párrafo. Puedes seleccionar una frase, copiarla y pegarla en un chat. Suelen ser pequeños, se ven nítidos a cualquier nivel de zoom y se llevan bien con los conversores estándar.</p>
+  <h3>PDF escaneados</h3>
+  <p>Son fotografías de papel. Alguien pasó las páginas por un escáner, o las fotografió con el móvil, y guardó las imágenes dentro de un envoltorio PDF. No hay texto real en el archivo, solo imágenes de texto. Seleccionar «texto» con el cursor resalta un rectángulo, no letras. Los tamaños de archivo suelen ser mayores porque las imágenes ocupan más bytes que los caracteres.</p>
+  <h3>PDF híbridos</h3>
+  <p>Son habituales en flujos de trabajo reales: una plantilla de contrato digital con una página de firmas escaneada al final, o un archivo unido en el que algunas páginas vienen de Word y otras de una fotocopiadora. Cada página puede ser de su propio tipo.</p>
+
+  <h2>Cómo saber qué tipo tienes en dos segundos</h2>
+  <p>Abre el PDF e intenta seleccionar una palabra con el cursor. Hay tres resultados posibles:</p>
+  <ul>
+    <li><strong>La palabra se resalta letra por letra.</strong> PDF digital.</li>
+    <li><strong>Toda la página (o un bloque grande) se resalta como una sola forma, como si arrastraras un marco sobre una imagen.</strong> PDF escaneado.</li>
+    <li><strong>Algunas páginas se comportan como la opción 1 y otras como la opción 2.</strong> Híbrido.</li>
+  </ul>
+  <p>Esa prueba de dos segundos te ahorrará más tiempo que cualquier comparativa de funciones.</p>
+
+  <h2>PDF a Word estándar: cuándo funciona</h2>
+  <p>Para los PDF digitales, la ruta estándar de <a href="/es/pdf-to-word/">convertir PDF a Word</a> es la elección correcta. La herramienta lee el texto, las fuentes y las pistas estructurales incrustados y los reconstruye dentro de un archivo .docx. Lo que puedes esperar:</p>
+  <ul>
+    <li>Precisión cercana al 100% en el texto en sí: los caracteres ya son digitales, así que no hay que adivinar nada.</li>
+    <li>Formato preservado: fuentes, encabezados, negritas/cursivas, listas, tablas básicas.</li>
+    <li>Imágenes colocadas más o menos donde aparecían en la fuente.</li>
+    <li>Velocidad: un informe de 50 páginas se convierte en segundos.</li>
+  </ul>
+  <p>El 1-2% restante de problemas suele ser de diseño: un pie de página que se mete en un párrafo, una página de dos columnas que sale como una columna larga, una tabla compleja que se desplaza un poco. Una limpieza fácil, no una reescritura.</p>
+
+  <h2>Conversión con OCR: cuándo la necesitas</h2>
+  <p>Para los PDF escaneados, la conversión estándar parecerá funcionar y producirá un documento de Word sin nada de texto. La herramienta no encuentra texto que extraer porque no lo hay: solo imágenes. Necesitas OCR, reconocimiento óptico de caracteres, que mira las imágenes y reconstruye el texto reconociendo las formas de las letras.</p>
+  <p>Casos en los que el OCR es obligatorio:</p>
+  <ul>
+    <li>Cualquier documento que haya salido de un escáner o una fotocopiadora.</li>
+    <li>Fotos de páginas hechas con el móvil.</li>
+    <li>Faxes (sí, siguen siendo habituales en sanidad y en el ámbito legal).</li>
+    <li>PDF antiguos anteriores a 2005 aproximadamente: muchos venían escaneados por defecto.</li>
+    <li>Formularios oficiales recibidos como documentos impresos y luego escaneados.</li>
+  </ul>
+  <p>La conversión con OCR tarda más que la estándar (de segundos a minutos por página según la longitud) y nunca llega al 100% de precisión. El paso a paso más completo sobre ajustes de idioma y expectativas de calidad está en la <a href="/es/blog/convert-scanned-pdf-to-editable-word/">guía de PDF escaneado a Word editable</a>.</p>
+
+  <h2>Tabla de decisión comparativa</h2>
+  <table>
+    <thead>
+      <tr><th>Tipo de documento</th><th>Herramienta recomendada</th><th>Tiempo por 10 páginas</th><th>Precisión esperada</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>PDF digital (creado desde Word, web)</td><td>PDF a Word estándar</td><td>Segundos</td><td>98-100%</td></tr>
+      <tr><td>PDF escaneado, impresión limpia</td><td>Conversión con OCR</td><td>30-60 segundos</td><td>95-99%</td></tr>
+      <tr><td>Documento enviado por fax o fotocopiado</td><td>Conversión con OCR</td><td>1-2 minutos</td><td>80-90%</td></tr>
+      <tr><td>Foto de móvil de una página</td><td>Conversión con OCR (tras rotar/recortar)</td><td>1-2 minutos</td><td>85-95%</td></tr>
+      <tr><td>Notas escritas a mano</td><td>Sin opción fiable: teclear de nuevo</td><td>Manual</td><td>Variable</td></tr>
+      <tr><td>Tabla de PDF que necesitas como datos</td><td>PDF a Excel, no a Word</td><td>Segundos</td><td>90-99%</td></tr>
+    </tbody>
+  </table>
+  <p>La última fila importa más de lo que parece. Si tu objetivo es llevar filas y columnas de números a una hoja de cálculo, no conviertas a Word para luego copiar la tabla a Excel. <a href="/es/pdf-to-excel/">Extrae las tablas directamente a Excel</a>: la estructura se preserva con mucha más fiabilidad.</p>
+
+  <h2>PDF híbridos: un enfoque en dos pasadas</h2>
+  <p>Los documentos híbridos son el caso más complicado. Un contrato de 30 páginas que es digital salvo por las dos páginas de firmas escaneadas se puede pasar técnicamente entero por OCR, pero pagarás el peaje del tiempo del OCR en páginas que no lo necesitaban.</p>
+  <p>El enfoque más limpio cuando importa:</p>
+  <ol>
+    <li>Divide el PDF entre la sección digital y la escaneada.</li>
+    <li>Pasa la parte digital por la conversión estándar.</li>
+    <li>Pasa la parte escaneada por la conversión con OCR.</li>
+    <li>Vuelve a combinar las dos salidas en Word.</li>
+  </ol>
+  <p>Para la mayoría de los casos informales, basta con pasar el archivo entero por la conversión con OCR: las páginas digitales pasarán limpiamente porque ya tienen texto seleccionable, y las escaneadas se procesarán como toca.</p>
+
+  <h2>Qué hacer si te equivocas al elegir</h2>
+  <p>Los dos modos de fallo son fáciles de reconocer:</p>
+  <h3>Síntoma 1: documento de Word en blanco</h3>
+  <p>Has pasado un PDF escaneado por la conversión estándar. Abres el .docx y no hay nada dentro, o solo unos saltos de página sueltos. Vuelve a pasar el mismo archivo por la conversión con OCR: el texto está en las imágenes, no en los metadatos del archivo, así que el OCR es la única forma de extraerlo.</p>
+  <h3>Síntoma 2: texto ilegible</h3>
+  <p>El documento de Word contiene palabras tipo «rmaragnemt» o «1ngreso», o tiene caracteres de un alfabeto totalmente distinto. Esto es OCR funcionando con el ajuste de idioma incorrecto. Vuelve a ejecutarlo con el idioma de origen correcto seleccionado (español frente a inglés frente a alemán, etc.) y la precisión sube de golpe.</p>
+  <h3>Síntoma 3: el texto se extrae pero el diseño se destruye</h3>
+  <p>Es normal con diseños muy complejos (informes a varias columnas, páginas estilo revista). Tanto la conversión estándar como el OCR reconstruyen el texto de forma lineal y pueden no preservar una rejilla compleja. A veces la respuesta es aceptar el compromiso; a veces es copiar secciones individuales en lugar del documento entero.</p>
+
+  <h2>Coste, privacidad y tiempo de procesamiento</h2>
+  <p>La conversión estándar es esencialmente gratuita en términos de cómputo: se parece más a un parseo que a un análisis. El OCR es más caro: cada página pasa por un modelo de reconocimiento, por eso los escaneos de 50 páginas tardan claramente más que los PDF digitales de 50 páginas. En un plan gratuito puede significar una cola algo más larga para los trabajos de OCR. En un plan de pago puede contar de otro modo contra tu cuota.</p>
+  <p>La privacidad es la misma en ambas rutas —las subidas de archivos se cifran en tránsito y se procesan solo durante la conversión— pero si dudas, la sección de documentos sensibles de la guía de protección con contraseña cubre cuándo conviene añadir una contraseña al resultado antes de compartirlo.</p>
+
+  <h2>La regla de una línea</h2>
+  <blockquote class="callout">Si puedes seleccionar texto en el PDF, usa la conversión estándar. Si no puedes, usa OCR. Todo lo demás en esta guía es una nota al pie de esa única prueba.</blockquote>
+
+  <p>Puedes navegar por <a href="/es/all-tools/">todas las herramientas de conversión</a> si necesitas operaciones cercanas como dividir archivos híbridos o extraer tablas.</p>
+
+  <h2>FAQ</h2>
+  <h3>¿Cómo sé si mi PDF está escaneado o es digital?</h3>
+  <p>Intenta seleccionar texto con el cursor. Si se resaltan palabras sueltas, el PDF es digital. Si se resalta toda una página (o una región rectangular grande) como una sola forma, como una imagen, el PDF está escaneado.</p>
+  <h3>¿El OCR es más lento que la conversión normal?</h3>
+  <p>Sí, claramente. La conversión estándar es un parseo y se ejecuta en segundos; el OCR pasa cada página por un modelo de reconocimiento y tarda de segundos a minutos por página según la longitud y complejidad. Para un escaneo de 50 páginas, espera unos minutos en total.</p>
+  <h3>¿El OCR cuesta más créditos o procesamiento?</h3>
+  <p>Depende del modelo de precios de la plataforma. El OCR usa más cómputo, así que las plataformas que cobran por página o por minuto suelen tarifar el OCR más alto que la conversión estándar. En planes gratuitos suele significar una cola más larga en lugar de un precio diferente.</p>
+  <h3>¿Puedo ejecutar OCR sobre un PDF digital de todas formas?</h3>
+  <p>Puedes, pero no deberías. El resultado será ligeramente peor que con la conversión estándar (el OCR introduce pequeños errores de reconocimiento que no existen cuando el texto ya es digital) y tardará mucho más. Usa OCR solo cuando sea necesario.</p>
+  <h3>¿Por qué mi Word convertido no tiene nada de texto?</h3>
+  <p>El PDF está escaneado y usaste la conversión estándar. La conversión estándar no tiene nada que extraer porque no hay texto real en el archivo. Vuelve a pasar el mismo PDF por la conversión con OCR y el texto saldrá.</p>
+
+  <h2>Pruébalo ahora</h2>
+  <p>Haz la prueba de selección de dos segundos sobre tu PDF y luego elige la ruta correcta. <a href="/es/pdf-to-word/">Abrir el conversor de PDF a Word →</a></p>

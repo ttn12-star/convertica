@@ -1,0 +1,153 @@
+slug: merge-invoices-into-one-pdf-for-accounting
+title_es: "Cómo unir varias facturas en un solo PDF para contabilidad y notas de gastos"
+meta_title_es: "Unir facturas en un PDF para contabilidad"
+meta_description_es: "Contables, autónomos y equipos de finanzas: combina facturas, recibos y extractos del mes en un único PDF ordenado para presentar gastos limpios."
+meta_keywords_es: "unir facturas pdf, combinar recibos pdf, nota de gastos pdf, flujo contabilidad pdf, pdf factura mensual"
+excerpt_es: "Mandarle a tu contable 14 PDF de facturas sueltos es una forma rápida de perder recibos y quemar horas facturables. Así los unes en un solo archivo ordenado."
+content_es: |
+  Tu contable no te pidió 14 PDF sueltos. Te pidió «las facturas de este mes», y 14 PDF es lo que produce cada herramienta de sincronización en la nube, portal de proveedor y aplicación de comida a domicilio. Mandarlos como un montón suelto funciona, hasta que uno se pierde en un hilo, las fechas chocan en los nombres de archivo y te pasas una hora el próximo abril reconstruyendo el rastro de auditoría desde una búsqueda de correo medio rota.
+
+  La solución es pequeña y duradera: un PDF ordenado y fechado por mes. Esta guía cubre la convención de nombres que hace que <a href="/es/pdf-organize/merge/">unir PDF en línea</a> sea fiable, cómo manejar entradas mixtas de JPG y PDF y una rutina de cierre de mes que lleva unos diez minutos cuando lo has hecho dos veces.
+
+  <figure><img src="/static/blog/images/tool-merge.jpg" alt="Herramienta de unión de Convertica combinando varias facturas PDF en un solo archivo" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Por qué los contables prefieren un PDF a muchos</h2>
+
+  El software de contabilidad ha evolucionado, pero la entrega de documentos no. Casi cualquier contable, ya use QuickBooks, Xero o FreshBooks, prefiere un único archivo unificado porque:
+
+  <ul>
+    <li><strong>Se archiva limpiamente.</strong> Los sistemas de gestión documental indexan un archivo por periodo, no 47 adjuntos sueltos.</li>
+    <li><strong>La numeración de páginas sostiene el rastro de auditoría.</strong> «Ver página 12 de las facturas de abril» es una referencia real; «ver la factura del correo del día 17» no lo es.</li>
+    <li><strong>Es más fácil de reenviar.</strong> Un contable que entrega tus registros a un asesor fiscal adjunta un archivo, no una carpeta.</li>
+    <li><strong>Encaja con los flujos de adjuntos en QuickBooks y Xero.</strong> Ambos permiten adjuntar un PDF por asiento o transacción; hacer malabares con varios es una fricción que nadie quiere en el cierre de mes. (Sí, incluso hoy: Xero limitó los adjuntos por asiento a un archivo por entrada hasta 2024 y solo lo relajó en planes de pago.)</li>
+    <li><strong>Encaja con las solicitudes de e-discovery y auditoría fiscal.</strong> Cuando una autoridad fiscal pide «todas las facturas de abril», entregar un único archivo es mejor que explicar una carpeta.</li>
+  </ul>
+
+  <blockquote class="callout">Un PDF al mes con un buen nombre marca la diferencia entre un trabajo de archivo de 90 minutos y otro de 10.</blockquote>
+
+  <h2>Convención de nombres antes de unir</h2>
+
+  Ordena primero los archivos de origen y une después. La mayoría de las herramientas de unión en línea, incluida la nuestra, combinan los archivos en el orden en que los subes o por orden alfabético. Eso convierte el nombre del archivo en el volante.
+
+  Usa este formato para cada factura:
+
+  <pre><code>AAAA-MM-DD_proveedor_importe.pdf
+
+  2026-04-03_aws_142-50.pdf
+  2026-04-08_adobe_19-99.pdf
+  2026-04-11_material-oficina_88-30.pdf
+  2026-04-22_internet_45-00.pdf</code></pre>
+
+  Tres razones por las que funciona:
+
+  <ol>
+    <li><strong>La fecha ISO ordena correctamente</strong> en cualquier sistema operativo, sin importar la configuración regional.</li>
+    <li><strong>El proveedor en el medio</strong> te permite escanear visualmente «¿pagué AWS este mes?».</li>
+    <li><strong>El importe al final</strong> coincide con tu conciliación bancaria sin abrir el archivo.</li>
+  </ol>
+
+  Cómo gestionar duplicados: si un proveedor emite dos facturas en la misma fecha, añade una letra: <code>2026-04-03_aws_142-50_a.pdf</code> y <code>2026-04-03_aws_142-50_b.pdf</code>. La letra se ordena bajo la fecha y evita sobrescribir. Evita usar la hora como desempate; las marcas temporales de las facturas de proveedores son inconsistentes y pueden mentir sobre cuándo se facturó realmente el trabajo.
+
+  Otra costumbre que merece la pena cultivar: cuando guardas el archivo desde el portal de un proveedor, renómbralo antes de que salga de la carpeta de Descargas. Hacerlo en el momento de la recepción cuesta diez segundos. Hacerlo en el cierre de mes con treinta archivos a la vez se siente como una tarea pesada y te lo saltarás el segundo mes.
+
+  <h2>Paso a paso: unir facturas en el navegador</h2>
+
+  Una vez renombrados tus archivos:
+
+  <ol>
+    <li>Abre la herramienta de unión de Convertica en cualquier navegador. No hay que instalar nada ni iniciar sesión.</li>
+    <li>Arrastra todas las facturas de tu carpeta a la zona de carga a la vez. La herramienta respeta el orden de tus nombres de archivo.</li>
+    <li>Verifica el orden en la tira de miniaturas. Arrastra cualquier factura fuera de sitio al hueco correcto.</li>
+    <li>Haz clic en <strong>Unir</strong>. El resultado se descarga como un único PDF.</li>
+    <li>Renombra la salida para que coincida con el periodo: <code>2026-04_facturas_tunombre.pdf</code>.</li>
+  </ol>
+
+  Ese último renombrado importa. El archivo unido hereda un nombre genérico tipo <code>merged.pdf</code>, que es lo peor que puedes tener en una carpeta de Descargas dentro de seis meses. (Una vez me pasé quince minutos buscando un paquete concreto porque tres archivos «merged.pdf» distintos chocaron en la sincronización en la nube. Mucha gente se topa con esto el primer mes.)
+
+  <h2>Añadir una portada o índice</h2>
+
+  Para presentaciones de gastos más grandes (más de 20 facturas, o cualquier cosa que vaya a un equipo de finanzas en lugar de a tu propio contable), una portada compensa los dos minutos que cuesta. Una hoja de resumen sencilla funciona:
+
+  <table>
+    <thead>
+      <tr><th>Fecha</th><th>Proveedor</th><th>Importe</th><th>Página</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2026-04-03</td><td>AWS</td><td>142.50</td><td>1</td></tr>
+      <tr><td>2026-04-08</td><td>Adobe</td><td>19.99</td><td>2</td></tr>
+      <tr><td>2026-04-11</td><td>Staples</td><td>88.30</td><td>3</td></tr>
+    </tbody>
+  </table>
+
+  Guarda la tabla como PDF y ponla la primera en el orden de unión. Después de unir, puedes <a href="/es/pdf-edit/">añadir números de página al archivo unido</a> para que las referencias de la portada cuadren de verdad. Si estás armando un paquete trimestral para un equipo de finanzas, una hoja de resumen al inicio y una fila de totales que coincida con tu extracto bancario cierran el círculo de la pregunta de auditoría antes de que tengan que hacerla.
+
+  Truco: si usas Excel o Google Sheets para construir el resumen, guárdalo como PDF con el área de impresión en una página de ancho antes de unir. Un resumen que se desborda a la página 2 por un pie de página enorme es ruido visual.
+
+  <h2>Formatos mixtos: recibos en JPG y facturas en PDF</h2>
+
+  Aterricemos: al menos un tercio de los recibos de una pequeña empresa llegan como fotos. Cuentas de restaurante, recibos de taxi, tickets de papel de la ferretería, la cafetería de la esquina que imprime en papel térmico que se borra. La herramienta de unión solo acepta PDF, así que tienes una conversión previa de un solo paso antes de unir.
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf.jpg" alt="Conversor de JPG a PDF para convertir fotos de recibos del móvil en PDF que se pueden unir" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Agrupa todos tus recibos en JPG en una carpeta.</li>
+    <li><a href="/es/jpg-to-pdf/">Convierte los recibos JPG a PDF</a> en un solo lote. La herramienta produce un PDF por imagen (o un único PDF combinado si lo prefieres).</li>
+    <li>Renombra cada salida para que cumpla el formato AAAA-MM-DD_proveedor de arriba.</li>
+    <li>Suéltalos en la misma carpeta que tus facturas en PDF.</li>
+    <li>Une en orden cronológico.</li>
+  </ol>
+
+  Truco: cuando fotografíes un recibo de papel, sostén el móvil directamente encima y usa un fondo liso (una hoja A4 sobre la mesa funciona bien). La herramienta de JPG a PDF no recorta ni auto-rota; lo que fotografíes es lo que se incorpora a tu paquete contable. Evita el flash en recibos brillantes; un reflejo intenso borra justo la línea que necesitas capturar.
+
+  Otra rareza: las fotos HEIC de los iPhone más nuevos no son aceptadas por todas las herramientas de unión o conversión. Configura tu cámara de iOS en «Más compatible» (Ajustes &gt; Cámara &gt; Formatos) antes de una sesión de cierre de mes, o convierte HEIC a JPG en lote una vez al inicio de la sesión.
+
+  <h2>Flujo mensual para autónomos</h2>
+
+  La idea es que esto sea rutina, no heroico. Un cierre mensual viable:
+
+  <h3>Rutina de fin de mes (unos 10 minutos)</h3>
+
+  <ol>
+    <li><strong>El primer día del mes nuevo, por la mañana.</strong> Abre tu carpeta de «Facturas» del mes que acaba de cerrar.</li>
+    <li><strong>Coteja contra el banco.</strong> Abre tu extracto de cuenta de empresa. Lo que esté en el extracto y no en la carpeta, busca la factura que falta. Lo que esté en la carpeta y no en el extracto, márcalo para el mes siguiente.</li>
+    <li><strong>Renombra a AAAA-MM-DD_proveedor_importe.</strong> Dos minutos para 15 archivos.</li>
+    <li><strong>Convierte cualquier recibo en JPG.</strong> Un viaje por la herramienta de JPG a PDF.</li>
+    <li><strong>Une.</strong> Arrastra todo a la herramienta de unión, verifica el orden, descarga.</li>
+    <li><strong>Guarda el paquete</strong> como <code>2026-04_facturas_tunombre.pdf</code> en tu carpeta «Contabilidad/2026».</li>
+    <li><strong>Envía el correo al contable.</strong> Un solo adjunto, con una línea sobre cualquier cosa fuera de lo normal.</li>
+  </ol>
+
+  Bloquea esto en el calendario para la mañana del día 1 de cada mes. Quien haya intentado «hacerlo después» sabe que en cuanto te saltas un mes, el tercero se convierte en el doble de trabajo y el cierre del trimestre se vive con pánico. Aquí la disciplina importa más que las herramientas.
+
+  <h3>Copia de seguridad antes de unir</h3>
+
+  Conserva los originales. Siempre. El PDF unido es tu formato de entrega, no tu archivo de respaldo. Si un proveedor cuestiona un importe o tu contable necesita la versión sin redactar de una factura concreta, querrás el archivo fuente, no una página extraída de la unión.
+
+  La mayoría de las nubes versionan los archivos automáticamente; si la tuya no lo hace, copia la carpeta del mes a una subcarpeta «raw_originales» antes de empezar a renombrar. Establece una regla de retención simple: conserva los originales durante siete años (la ventana habitual de registros fiscales en la mayoría de las jurisdicciones) y conserva los paquetes unidos indefinidamente porque no cuestan nada.
+
+  <h3>Envío al contable</h3>
+
+  Si el PDF unido supera los 20 MB (común cuando tienes muchos recibos fotografiados), <a href="/es/pdf-organize/compress/">comprime el paquete final para correo</a> con el preajuste medio. Para paquetes sensibles (facturas que muestran tus datos bancarios, desglose de salarios o cualquier cosa cubierta por un NDA con un cliente), considera proteger el PDF con contraseña y compartir la contraseña por un canal distinto: un mensaje de texto, no el mismo hilo de correo.
+
+  Si tu contable usa un portal (Karbon, ClientHub o la vista de contable de QuickBooks Online), súbelo directamente allí en lugar de adjuntarlo al correo. Los portales suelen tener límites de tamaño más altos, versionado automático y un registro de auditoría que el correo no puede igualar.
+
+  <h2>FAQ</h2>
+
+  <h3>¿Unir facturas modifica los archivos originales?</h3>
+  <p>No. La herramienta de unión lee cada PDF de origen y escribe un nuevo archivo combinado. Tus originales siguen exactamente como te los entregaron, lo que importa si un proveedor o auditor pide la copia sin modificar.</p>
+
+  <h3>¿Cómo mantengo las facturas en orden cronológico?</h3>
+  <p>Renombra cada archivo con un prefijo AAAA-MM-DD antes de unir. La herramienta sigue el orden del nombre, así que una buena convención de nombres ordena por ti. Si te olvidas de renombrar, arrastra las miniaturas al orden correcto antes de pulsar unir.</p>
+
+  <h3>¿Puedo unir recibos JPG con facturas PDF?</h3>
+  <p>Convierte primero los archivos JPG a PDF con una herramienta de JPG a PDF y luego únelos junto a las facturas existentes en PDF. La mayoría de las herramientas de unión en línea (incluida la nuestra) solo aceptan PDF como entrada.</p>
+
+  <h3>¿Es seguro subir facturas con datos bancarios a una herramienta en línea?</h3>
+  <p>Usa una herramienta que procese los archivos durante la sesión y los borre poco después. Convertica elimina las subidas tras una breve ventana de retención. Para facturas especialmente sensibles, protege con contraseña el PDF unido antes de compartirlo y evita subirlo desde una red Wi-Fi pública donde la subida podría interceptarse.</p>
+
+  <h3>¿Cuántos PDF puedo unir a la vez?</h3>
+  <p>El techo práctico suele ser la memoria del navegador y el tamaño total de subida, no la herramienta. Para los paquetes típicos de cierre de mes con 10 a 50 facturas no llegarás a ningún límite. Para más de 200 archivos, divide en dos uniones y combina los resultados.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Convierte la pila de facturas de abril en un único archivo limpio que tu contable agradecerá de verdad. <a href="/es/pdf-organize/merge/">Abrir la herramienta de unir PDF →</a></p>
