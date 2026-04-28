@@ -892,6 +892,10 @@ jobs:
             echo "⏸️ Waiting 3 seconds for web container to stabilize..."
             sleep 3
 
+            # Step 6.7: Import blog articles from YAML (idempotent — safe to run on every deploy)
+            echo "📝 Importing blog articles from YAML files..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web python manage.py import_blog_articles || echo "⚠️ Blog import failed (non-critical)"
+
             # Step 7: Restart other services (with rollback on failure)
             echo "🔄 Restarting background workers..."
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml up -d --no-deps celery celery-beat; then
