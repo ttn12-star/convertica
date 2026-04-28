@@ -15,19 +15,86 @@
     "relevant_tool": "compress_pdf",
     "target_word_count": 1900,
     "outline": [
-      {"h2": "The real email attachment limits in 2026", "bullets": ["Gmail: 25 MB outgoing, 50 MB incoming", "Outlook.com: 20 MB", "Yahoo Mail: 25 MB", "Corporate Exchange servers often 10 MB", "Why MIME encoding inflates the file ~33% in transit"]},
-      {"h2": "What makes a PDF huge in the first place", "bullets": ["High-DPI scans (300+ DPI)", "Embedded fonts and color profiles", "Uncompressed images", "Hidden revision history", "Embedded files / attachments inside the PDF"]},
-      {"h2": "Method 1 - Compress the PDF (recommended)", "bullets": ["Step-by-step using Convertica compress", "Choosing low/medium/high preset", "Expected size reduction by document type"]},
-      {"h2": "Method 2 - Split the PDF into smaller chunks", "bullets": ["When splitting beats compressing", "Naming convention for parts", "Sending part 1 of 3"]},
-      {"h2": "Method 3 - Convert scans to text-based PDF", "bullets": ["When the file is essentially images", "OCR + re-export workflow"]},
-      {"h2": "Quality vs size: what to expect", "bullets": ["Text-only PDFs: 80-95% reduction", "Mixed: 40-70%", "Pure scans: 30-60%"]},
-      {"h2": "When to use a cloud link instead", "bullets": ["Drive, WeTransfer, Dropbox thresholds", "Privacy considerations"]}
+      {
+        "h2": "The real email attachment limits in 2026",
+        "bullets": [
+          "Gmail: 25 MB outgoing, 50 MB incoming",
+          "Outlook.com: 20 MB",
+          "Yahoo Mail: 25 MB",
+          "Corporate Exchange servers often 10 MB",
+          "Why MIME encoding inflates the file ~33% in transit"
+        ]
+      },
+      {
+        "h2": "What makes a PDF huge in the first place",
+        "bullets": [
+          "High-DPI scans (300+ DPI)",
+          "Embedded fonts and color profiles",
+          "Uncompressed images",
+          "Hidden revision history",
+          "Embedded files / attachments inside the PDF"
+        ]
+      },
+      {
+        "h2": "Method 1 - Compress the PDF (recommended)",
+        "bullets": [
+          "Step-by-step using Convertica compress",
+          "Choosing low/medium/high preset",
+          "Expected size reduction by document type"
+        ]
+      },
+      {
+        "h2": "Method 2 - Split the PDF into smaller chunks",
+        "bullets": [
+          "When splitting beats compressing",
+          "Naming convention for parts",
+          "Sending part 1 of 3"
+        ]
+      },
+      {
+        "h2": "Method 3 - Convert scans to text-based PDF",
+        "bullets": [
+          "When the file is essentially images",
+          "OCR + re-export workflow"
+        ]
+      },
+      {
+        "h2": "Quality vs size: what to expect",
+        "bullets": [
+          "Text-only PDFs: 80-95% reduction",
+          "Mixed: 40-70%",
+          "Pure scans: 30-60%"
+        ]
+      },
+      {
+        "h2": "When to use a cloud link instead",
+        "bullets": [
+          "Drive, WeTransfer, Dropbox thresholds",
+          "Privacy considerations"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "free PDF compressor", "url": "/en/pdf-organize/compress/", "where": "intro and method 1"},
-      {"anchor": "split a PDF into smaller parts", "url": "/en/pdf-organize/split/", "where": "method 2"},
-      {"anchor": "merge the compressed parts back", "url": "/en/pdf-organize/merge/", "where": "method 2 closing"},
-      {"anchor": "all PDF tools", "url": "/en/all-tools/", "where": "conclusion"}
+      {
+        "anchor": "free PDF compressor",
+        "url": "/en/pdf-organize/compress/",
+        "where": "intro and method 1"
+      },
+      {
+        "anchor": "split a PDF into smaller parts",
+        "url": "/en/pdf-organize/split/",
+        "where": "method 2"
+      },
+      {
+        "anchor": "merge the compressed parts back",
+        "url": "/en/pdf-organize/merge/",
+        "where": "method 2 closing"
+      },
+      {
+        "anchor": "all PDF tools",
+        "url": "/en/all-tools/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "Why is my PDF still over 25 MB after compressing?",
@@ -36,7 +103,8 @@
       "What's the safe file size for corporate email?",
       "Will the recipient be able to print my compressed PDF?"
     ],
-    "unique_angle": "We give exact size-reduction expectations by document type (scan vs text vs mixed) instead of vague 'up to 90%' marketing claims, plus a fallback split-and-send workflow."
+    "unique_angle": "We give exact size-reduction expectations by document type (scan vs text vs mixed) instead of vague 'up to 90%' marketing claims, plus a fallback split-and-send workflow.",
+    "status": "published"
   },
   {
     "slug": "merge-invoices-into-one-pdf-for-accounting",
@@ -54,18 +122,75 @@
     "relevant_tool": "merge_pdf",
     "target_word_count": 1700,
     "outline": [
-      {"h2": "Why accountants prefer one PDF over many", "bullets": ["Easier to archive in DMS", "Sequential page numbering for audit trail", "Faster to forward to bookkeeper", "Aligns with QuickBooks/Xero attachment workflows"]},
-      {"h2": "Naming convention before you merge", "bullets": ["YYYY-MM-DD_vendor_amount.pdf format", "Why filename order matters during merge", "Handling duplicates"]},
-      {"h2": "Step-by-step: merge invoices in browser", "bullets": ["Upload all invoices to Convertica merge", "Drag to reorder by date", "Download single combined PDF"]},
-      {"h2": "Adding a cover page or table of contents", "bullets": ["Optional summary sheet", "Page numbers for cross-reference"]},
-      {"h2": "Mixed formats: JPG receipts + PDF invoices", "bullets": ["Convert JPG to PDF first", "Then merge in chronological order"]},
-      {"h2": "Monthly workflow for freelancers", "bullets": ["End-of-month routine", "Backup before merging", "Sending to accountant"]}
+      {
+        "h2": "Why accountants prefer one PDF over many",
+        "bullets": [
+          "Easier to archive in DMS",
+          "Sequential page numbering for audit trail",
+          "Faster to forward to bookkeeper",
+          "Aligns with QuickBooks/Xero attachment workflows"
+        ]
+      },
+      {
+        "h2": "Naming convention before you merge",
+        "bullets": [
+          "YYYY-MM-DD_vendor_amount.pdf format",
+          "Why filename order matters during merge",
+          "Handling duplicates"
+        ]
+      },
+      {
+        "h2": "Step-by-step: merge invoices in browser",
+        "bullets": [
+          "Upload all invoices to Convertica merge",
+          "Drag to reorder by date",
+          "Download single combined PDF"
+        ]
+      },
+      {
+        "h2": "Adding a cover page or table of contents",
+        "bullets": [
+          "Optional summary sheet",
+          "Page numbers for cross-reference"
+        ]
+      },
+      {
+        "h2": "Mixed formats: JPG receipts + PDF invoices",
+        "bullets": [
+          "Convert JPG to PDF first",
+          "Then merge in chronological order"
+        ]
+      },
+      {
+        "h2": "Monthly workflow for freelancers",
+        "bullets": [
+          "End-of-month routine",
+          "Backup before merging",
+          "Sending to accountant"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "merge PDF online", "url": "/en/pdf-organize/merge/", "where": "intro"},
-      {"anchor": "convert JPG receipts to PDF", "url": "/en/jpg-to-pdf/", "where": "mixed formats section"},
-      {"anchor": "add page numbers across the merged file", "url": "/en/pdf-edit/", "where": "cover page section"},
-      {"anchor": "compress the final bundle for email", "url": "/en/pdf-organize/compress/", "where": "conclusion"}
+      {
+        "anchor": "merge PDF online",
+        "url": "/en/pdf-organize/merge/",
+        "where": "intro"
+      },
+      {
+        "anchor": "convert JPG receipts to PDF",
+        "url": "/en/jpg-to-pdf/",
+        "where": "mixed formats section"
+      },
+      {
+        "anchor": "add page numbers across the merged file",
+        "url": "/en/pdf-edit/",
+        "where": "cover page section"
+      },
+      {
+        "anchor": "compress the final bundle for email",
+        "url": "/en/pdf-organize/compress/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "Will merging invoices change the original files?",
@@ -74,7 +199,8 @@
       "Is it safe to upload invoices with bank details to an online tool?",
       "How many PDFs can I merge at once?"
     ],
-    "unique_angle": "Workflow-first guide written for freelancers and small bookkeepers, with naming conventions and audit-friendly structure rather than just 'click merge'."
+    "unique_angle": "Workflow-first guide written for freelancers and small bookkeepers, with naming conventions and audit-friendly structure rather than just 'click merge'.",
+    "status": "published"
   },
   {
     "slug": "split-bank-statement-pdf-by-page",
@@ -92,18 +218,76 @@
     "relevant_tool": "split_pdf",
     "target_word_count": 1700,
     "outline": [
-      {"h2": "Why split a bank statement at all", "bullets": ["Tax filing per quarter/month", "Mortgage and loan applications request specific months", "Expense categorization in spreadsheets", "Sharing one month with accountant without exposing the rest"]},
-      {"h2": "Three split strategies", "bullets": ["By fixed page range (e.g. every 4 pages)", "By bookmark / month boundary", "Extract only specific pages"]},
-      {"h2": "Step-by-step: split by page range", "bullets": ["Upload statement", "Define ranges 1-4, 5-8, etc.", "Download as ZIP"]},
-      {"h2": "Step-by-step: extract a single month", "bullets": ["Identify the month's pages", "Use extract pages tool", "Save with month-name filename"]},
-      {"h2": "Privacy checklist before sharing", "bullets": ["Redact unrelated transactions", "Confirm account number visibility", "Password-protect before email"]},
-      {"h2": "Naming the output files", "bullets": ["YYYY-MM_bank_statement.pdf", "Why this ordering helps cloud search"]}
+      {
+        "h2": "Why split a bank statement at all",
+        "bullets": [
+          "Tax filing per quarter/month",
+          "Mortgage and loan applications request specific months",
+          "Expense categorization in spreadsheets",
+          "Sharing one month with accountant without exposing the rest"
+        ]
+      },
+      {
+        "h2": "Three split strategies",
+        "bullets": [
+          "By fixed page range (e.g. every 4 pages)",
+          "By bookmark / month boundary",
+          "Extract only specific pages"
+        ]
+      },
+      {
+        "h2": "Step-by-step: split by page range",
+        "bullets": [
+          "Upload statement",
+          "Define ranges 1-4, 5-8, etc.",
+          "Download as ZIP"
+        ]
+      },
+      {
+        "h2": "Step-by-step: extract a single month",
+        "bullets": [
+          "Identify the month's pages",
+          "Use extract pages tool",
+          "Save with month-name filename"
+        ]
+      },
+      {
+        "h2": "Privacy checklist before sharing",
+        "bullets": [
+          "Redact unrelated transactions",
+          "Confirm account number visibility",
+          "Password-protect before email"
+        ]
+      },
+      {
+        "h2": "Naming the output files",
+        "bullets": [
+          "YYYY-MM_bank_statement.pdf",
+          "Why this ordering helps cloud search"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "split PDF online", "url": "/en/pdf-organize/split/", "where": "intro"},
-      {"anchor": "extract specific pages", "url": "/en/pdf-edit/", "where": "single month section"},
-      {"anchor": "password-protect the result", "url": "/en/pdf-security/protect/", "where": "privacy section"},
-      {"anchor": "merge later if you need to recombine", "url": "/en/pdf-organize/merge/", "where": "conclusion"}
+      {
+        "anchor": "split PDF online",
+        "url": "/en/pdf-organize/split/",
+        "where": "intro"
+      },
+      {
+        "anchor": "extract specific pages",
+        "url": "/en/pdf-edit/",
+        "where": "single month section"
+      },
+      {
+        "anchor": "password-protect the result",
+        "url": "/en/pdf-security/protect/",
+        "where": "privacy section"
+      },
+      {
+        "anchor": "merge later if you need to recombine",
+        "url": "/en/pdf-organize/merge/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "Is it safe to upload a bank statement to an online splitter?",
@@ -112,7 +296,8 @@
       "Will splitting reduce file quality?",
       "Can the bank tell I split their statement?"
     ],
-    "unique_angle": "Privacy-first walkthrough acknowledging the sensitivity of bank data, with a redaction and password-protect step iLovePDF-style guides skip."
+    "unique_angle": "Privacy-first walkthrough acknowledging the sensitivity of bank data, with a redaction and password-protect step iLovePDF-style guides skip.",
+    "status": "published"
   },
   {
     "slug": "watermark-pdf-confidential-draft",
@@ -130,18 +315,78 @@
     "relevant_tool": "add_watermark",
     "target_word_count": 1700,
     "outline": [
-      {"h2": "When you actually need a watermark", "bullets": ["Sharing draft contracts", "Sending NDA-protected docs", "Marking internal-only material", "Photographer/designer proofs"]},
-      {"h2": "Text vs image watermarks", "bullets": ["When text is enough", "When to use a logo", "Combining both"]},
-      {"h2": "Step-by-step: add a text watermark", "bullets": ["Upload PDF", "Choose text, font, opacity", "Set rotation to 45 degrees", "Preview and download"]},
-      {"h2": "Best practices for legal weight", "bullets": ["Use 30-40% opacity so text remains readable", "Diagonal placement covers more area", "Apply on every page, not just first", "Keep an unwatermarked master"]},
-      {"h2": "Watermarks are not encryption", "bullets": ["Why a watermark is a deterrent, not a lock", "Combine with password protection for sensitive docs"]},
-      {"h2": "Removing your own watermark later", "bullets": ["Keep the original", "Re-export from source", "Why we don't help remove others' watermarks"]}
+      {
+        "h2": "When you actually need a watermark",
+        "bullets": [
+          "Sharing draft contracts",
+          "Sending NDA-protected docs",
+          "Marking internal-only material",
+          "Photographer/designer proofs"
+        ]
+      },
+      {
+        "h2": "Text vs image watermarks",
+        "bullets": [
+          "When text is enough",
+          "When to use a logo",
+          "Combining both"
+        ]
+      },
+      {
+        "h2": "Step-by-step: add a text watermark",
+        "bullets": [
+          "Upload PDF",
+          "Choose text, font, opacity",
+          "Set rotation to 45 degrees",
+          "Preview and download"
+        ]
+      },
+      {
+        "h2": "Best practices for legal weight",
+        "bullets": [
+          "Use 30-40% opacity so text remains readable",
+          "Diagonal placement covers more area",
+          "Apply on every page, not just first",
+          "Keep an unwatermarked master"
+        ]
+      },
+      {
+        "h2": "Watermarks are not encryption",
+        "bullets": [
+          "Why a watermark is a deterrent, not a lock",
+          "Combine with password protection for sensitive docs"
+        ]
+      },
+      {
+        "h2": "Removing your own watermark later",
+        "bullets": [
+          "Keep the original",
+          "Re-export from source",
+          "Why we don't help remove others' watermarks"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "add watermark to PDF", "url": "/en/pdf-edit/add-watermark/", "where": "intro and step-by-step"},
-      {"anchor": "password-protect the document too", "url": "/en/pdf-security/protect/", "where": "watermarks-not-encryption section"},
-      {"anchor": "merge multiple draft pages first", "url": "/en/pdf-organize/merge/", "where": "use cases section"},
-      {"anchor": "all PDF editing tools", "url": "/en/all-tools/", "where": "conclusion"}
+      {
+        "anchor": "add watermark to PDF",
+        "url": "/en/pdf-edit/add-watermark/",
+        "where": "intro and step-by-step"
+      },
+      {
+        "anchor": "password-protect the document too",
+        "url": "/en/pdf-security/protect/",
+        "where": "watermarks-not-encryption section"
+      },
+      {
+        "anchor": "merge multiple draft pages first",
+        "url": "/en/pdf-organize/merge/",
+        "where": "use cases section"
+      },
+      {
+        "anchor": "all PDF editing tools",
+        "url": "/en/all-tools/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "What opacity should I use for a CONFIDENTIAL watermark?",
@@ -150,7 +395,8 @@
       "Does watermarking prevent copying the PDF?",
       "Can I add a logo image instead of text?"
     ],
-    "unique_angle": "Honest framing that a watermark is a deterrent, not security - we explicitly recommend pairing with password protection, which competitor articles avoid because it cannibalizes their watermark CTA."
+    "unique_angle": "Honest framing that a watermark is a deterrent, not security - we explicitly recommend pairing with password protection, which competitor articles avoid because it cannibalizes their watermark CTA.",
+    "status": "published"
   },
   {
     "slug": "rotate-pdf-pages-permanently",
@@ -168,18 +414,76 @@
     "relevant_tool": "rotate_pdf",
     "target_word_count": 1600,
     "outline": [
-      {"h2": "Why your rotation keeps disappearing", "bullets": ["Viewer-level vs file-level rotation", "Adobe Reader's view-only rotate", "What 'save as' actually does"]},
-      {"h2": "Step-by-step: rotate every page 90 degrees", "bullets": ["Upload PDF", "Select rotation direction", "Apply to all pages", "Download"]},
-      {"h2": "Step-by-step: rotate only specific pages", "bullets": ["Mixed-orientation scans", "Selecting pages 3, 7, 9", "Verifying the result"]},
-      {"h2": "Common scenarios", "bullets": ["Sideways scanned receipts", "Mobile photos converted to PDF", "Mixed landscape/portrait reports"]},
-      {"h2": "Verifying the rotation stuck", "bullets": ["Reopen in different viewer", "Email yourself a copy", "Print preview check"]},
-      {"h2": "Bulk rotation tips", "bullets": ["When to rotate before merging", "When to rotate after"]}
+      {
+        "h2": "Why your rotation keeps disappearing",
+        "bullets": [
+          "Viewer-level vs file-level rotation",
+          "Adobe Reader's view-only rotate",
+          "What 'save as' actually does"
+        ]
+      },
+      {
+        "h2": "Step-by-step: rotate every page 90 degrees",
+        "bullets": [
+          "Upload PDF",
+          "Select rotation direction",
+          "Apply to all pages",
+          "Download"
+        ]
+      },
+      {
+        "h2": "Step-by-step: rotate only specific pages",
+        "bullets": [
+          "Mixed-orientation scans",
+          "Selecting pages 3, 7, 9",
+          "Verifying the result"
+        ]
+      },
+      {
+        "h2": "Common scenarios",
+        "bullets": [
+          "Sideways scanned receipts",
+          "Mobile photos converted to PDF",
+          "Mixed landscape/portrait reports"
+        ]
+      },
+      {
+        "h2": "Verifying the rotation stuck",
+        "bullets": [
+          "Reopen in different viewer",
+          "Email yourself a copy",
+          "Print preview check"
+        ]
+      },
+      {
+        "h2": "Bulk rotation tips",
+        "bullets": [
+          "When to rotate before merging",
+          "When to rotate after"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "rotate PDF online", "url": "/en/pdf-edit/rotate/", "where": "intro"},
-      {"anchor": "merge them into a single file", "url": "/en/pdf-organize/merge/", "where": "bulk rotation section"},
-      {"anchor": "organize PDF pages", "url": "/en/pdf-organize/", "where": "specific pages section"},
-      {"anchor": "all PDF tools", "url": "/en/all-tools/", "where": "conclusion"}
+      {
+        "anchor": "rotate PDF online",
+        "url": "/en/pdf-edit/rotate/",
+        "where": "intro"
+      },
+      {
+        "anchor": "merge them into a single file",
+        "url": "/en/pdf-organize/merge/",
+        "where": "bulk rotation section"
+      },
+      {
+        "anchor": "organize PDF pages",
+        "url": "/en/pdf-organize/",
+        "where": "specific pages section"
+      },
+      {
+        "anchor": "all PDF tools",
+        "url": "/en/all-tools/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "Why does my PDF look correct in Chrome but sideways in Adobe?",
@@ -188,7 +492,8 @@
       "Why won't my rotation save in Adobe Reader free version?",
       "Can I rotate a password-protected PDF?"
     ],
-    "unique_angle": "Leads with the most common frustration (viewer-level vs file-level rotation) that most competitor articles skip entirely - they assume users know the difference."
+    "unique_angle": "Leads with the most common frustration (viewer-level vs file-level rotation) that most competitor articles skip entirely - they assume users know the difference.",
+    "status": "published"
   },
   {
     "slug": "convert-scanned-pdf-to-editable-word",
@@ -206,18 +511,78 @@
     "relevant_tool": "pdf_to_word",
     "target_word_count": 2000,
     "outline": [
-      {"h2": "How to tell if your PDF is scanned", "bullets": ["Try selecting text - if it highlights as a block, it's an image", "File size clue (scanned PDFs are larger)", "Visual artifacts of scanning"]},
-      {"h2": "What OCR actually does", "bullets": ["Optical Character Recognition basics", "Why language matters", "Why DPI matters (300+ ideal)"]},
-      {"h2": "Step-by-step: scanned PDF to Word", "bullets": ["Upload scan to Convertica", "Select source language for accuracy", "Download .docx", "Spot-check first page"]},
-      {"h2": "Realistic accuracy expectations", "bullets": ["Clean printed text: 95-99%", "Faxed/photocopied: 80-90%", "Handwriting: don't expect miracles", "Tables: usually need cleanup"]},
-      {"h2": "Pre-OCR cleanup that boosts accuracy", "bullets": ["Rotate sideways pages first", "Crop excess margins", "Increase contrast in source"]},
-      {"h2": "Post-OCR cleanup checklist", "bullets": ["Find/replace common OCR errors (rn -> m, l -> 1)", "Re-format tables", "Re-add headers and footers"]}
+      {
+        "h2": "How to tell if your PDF is scanned",
+        "bullets": [
+          "Try selecting text - if it highlights as a block, it's an image",
+          "File size clue (scanned PDFs are larger)",
+          "Visual artifacts of scanning"
+        ]
+      },
+      {
+        "h2": "What OCR actually does",
+        "bullets": [
+          "Optical Character Recognition basics",
+          "Why language matters",
+          "Why DPI matters (300+ ideal)"
+        ]
+      },
+      {
+        "h2": "Step-by-step: scanned PDF to Word",
+        "bullets": [
+          "Upload scan to Convertica",
+          "Select source language for accuracy",
+          "Download .docx",
+          "Spot-check first page"
+        ]
+      },
+      {
+        "h2": "Realistic accuracy expectations",
+        "bullets": [
+          "Clean printed text: 95-99%",
+          "Faxed/photocopied: 80-90%",
+          "Handwriting: don't expect miracles",
+          "Tables: usually need cleanup"
+        ]
+      },
+      {
+        "h2": "Pre-OCR cleanup that boosts accuracy",
+        "bullets": [
+          "Rotate sideways pages first",
+          "Crop excess margins",
+          "Increase contrast in source"
+        ]
+      },
+      {
+        "h2": "Post-OCR cleanup checklist",
+        "bullets": [
+          "Find/replace common OCR errors (rn -> m, l -> 1)",
+          "Re-format tables",
+          "Re-add headers and footers"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "convert PDF to Word", "url": "/en/pdf-to-word/", "where": "intro and step-by-step"},
-      {"anchor": "rotate sideways pages first", "url": "/en/pdf-edit/rotate/", "where": "pre-OCR cleanup"},
-      {"anchor": "crop the margins", "url": "/en/pdf-edit/", "where": "pre-OCR cleanup"},
-      {"anchor": "extract data into Excel instead", "url": "/en/pdf-to-excel/", "where": "tables section"}
+      {
+        "anchor": "convert PDF to Word",
+        "url": "/en/pdf-to-word/",
+        "where": "intro and step-by-step"
+      },
+      {
+        "anchor": "rotate sideways pages first",
+        "url": "/en/pdf-edit/rotate/",
+        "where": "pre-OCR cleanup"
+      },
+      {
+        "anchor": "crop the margins",
+        "url": "/en/pdf-edit/",
+        "where": "pre-OCR cleanup"
+      },
+      {
+        "anchor": "extract data into Excel instead",
+        "url": "/en/pdf-to-excel/",
+        "where": "tables section"
+      }
     ],
     "faq_questions": [
       "Why does my Word doc come out blank after conversion?",
@@ -227,7 +592,8 @@
       "Is OCR conversion confidential?",
       "How long does OCR take for a 50-page scan?"
     ],
-    "unique_angle": "We set realistic accuracy expectations by document type (clean print vs fax vs handwriting) and give specific OCR error find/replace tips, instead of pretending OCR is magic."
+    "unique_angle": "We set realistic accuracy expectations by document type (clean print vs fax vs handwriting) and give specific OCR error find/replace tips, instead of pretending OCR is magic.",
+    "status": "published"
   },
   {
     "slug": "password-protect-pdf-before-emailing",
@@ -245,18 +611,76 @@
     "relevant_tool": "protect_pdf",
     "target_word_count": 1700,
     "outline": [
-      {"h2": "Why email attachments need extra protection", "bullets": ["Email isn't end-to-end encrypted by default", "Forwarded mail leaks", "Shared inboxes"]},
-      {"h2": "Step-by-step: encrypt your PDF", "bullets": ["Upload to Convertica protect", "Set a strong password", "Confirm encryption level (AES-256)", "Download and verify"]},
-      {"h2": "How to share the password safely", "bullets": ["Send via SMS or messenger - never the same email", "Use a password manager share link", "Verbal handoff for in-person", "Why 'password is in the next email' isn't safe"]},
-      {"h2": "Choosing a password that won't be cracked", "bullets": ["Length over complexity", "Avoid recipient's name/birthday", "Generate with a manager"]},
-      {"h2": "Open password vs permissions password", "bullets": ["What each restricts", "When you need both"]},
-      {"h2": "What to do if you forget the password", "bullets": ["Keep your original", "Why we don't unlock without authorization"]}
+      {
+        "h2": "Why email attachments need extra protection",
+        "bullets": [
+          "Email isn't end-to-end encrypted by default",
+          "Forwarded mail leaks",
+          "Shared inboxes"
+        ]
+      },
+      {
+        "h2": "Step-by-step: encrypt your PDF",
+        "bullets": [
+          "Upload to Convertica protect",
+          "Set a strong password",
+          "Confirm encryption level (AES-256)",
+          "Download and verify"
+        ]
+      },
+      {
+        "h2": "How to share the password safely",
+        "bullets": [
+          "Send via SMS or messenger - never the same email",
+          "Use a password manager share link",
+          "Verbal handoff for in-person",
+          "Why 'password is in the next email' isn't safe"
+        ]
+      },
+      {
+        "h2": "Choosing a password that won't be cracked",
+        "bullets": [
+          "Length over complexity",
+          "Avoid recipient's name/birthday",
+          "Generate with a manager"
+        ]
+      },
+      {
+        "h2": "Open password vs permissions password",
+        "bullets": [
+          "What each restricts",
+          "When you need both"
+        ]
+      },
+      {
+        "h2": "What to do if you forget the password",
+        "bullets": [
+          "Keep your original",
+          "Why we don't unlock without authorization"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "password-protect a PDF", "url": "/en/pdf-security/protect/", "where": "intro and step-by-step"},
-      {"anchor": "unlock a PDF you own", "url": "/en/pdf-security/unlock/", "where": "forgot password section"},
-      {"anchor": "compress before encrypting", "url": "/en/pdf-organize/compress/", "where": "email tips section"},
-      {"anchor": "add a confidential watermark too", "url": "/en/pdf-edit/add-watermark/", "where": "extra protection section"}
+      {
+        "anchor": "password-protect a PDF",
+        "url": "/en/pdf-security/protect/",
+        "where": "intro and step-by-step"
+      },
+      {
+        "anchor": "unlock a PDF you own",
+        "url": "/en/pdf-security/unlock/",
+        "where": "forgot password section"
+      },
+      {
+        "anchor": "compress before encrypting",
+        "url": "/en/pdf-organize/compress/",
+        "where": "email tips section"
+      },
+      {
+        "anchor": "add a confidential watermark too",
+        "url": "/en/pdf-edit/add-watermark/",
+        "where": "extra protection section"
+      }
     ],
     "faq_questions": [
       "Is AES-256 encryption strong enough for legal documents?",
@@ -265,7 +689,8 @@
       "Will encryption change the PDF's file size?",
       "Can the recipient remove the password after opening?"
     ],
-    "unique_angle": "Half the article is about safe password sharing - the operational security step every other 'how to password protect PDF' guide ignores."
+    "unique_angle": "Half the article is about safe password sharing - the operational security step every other 'how to password protect PDF' guide ignores.",
+    "status": "published"
   },
   {
     "slug": "remove-blank-pages-from-pdf",
@@ -283,18 +708,73 @@
     "relevant_tool": "remove_pages",
     "target_word_count": 1500,
     "outline": [
-      {"h2": "Where blank pages come from", "bullets": ["Duplex scanners on single-sided originals", "Word docs with section breaks", "Form templates with placeholder pages", "PDFs merged from mismatched sources"]},
-      {"h2": "Step-by-step: remove pages visually", "bullets": ["Upload PDF", "Click thumbnails of pages to delete", "Confirm and download"]},
-      {"h2": "Step-by-step: remove pages by range", "bullets": ["When you know exact page numbers", "Range syntax (3, 7-9, 12)"]},
-      {"h2": "Removing vs hiding pages", "bullets": ["Why 'hidden' pages can resurface", "Permanent removal best practices"]},
-      {"h2": "Re-numbering after removal", "bullets": ["Add new page numbers if needed", "Update table of contents"]},
-      {"h2": "Bulk cleanup for scanned archives", "bullets": ["Spotting blanks visually", "Batch tip: remove every even page when scanner duplicated"]}
+      {
+        "h2": "Where blank pages come from",
+        "bullets": [
+          "Duplex scanners on single-sided originals",
+          "Word docs with section breaks",
+          "Form templates with placeholder pages",
+          "PDFs merged from mismatched sources"
+        ]
+      },
+      {
+        "h2": "Step-by-step: remove pages visually",
+        "bullets": [
+          "Upload PDF",
+          "Click thumbnails of pages to delete",
+          "Confirm and download"
+        ]
+      },
+      {
+        "h2": "Step-by-step: remove pages by range",
+        "bullets": [
+          "When you know exact page numbers",
+          "Range syntax (3, 7-9, 12)"
+        ]
+      },
+      {
+        "h2": "Removing vs hiding pages",
+        "bullets": [
+          "Why 'hidden' pages can resurface",
+          "Permanent removal best practices"
+        ]
+      },
+      {
+        "h2": "Re-numbering after removal",
+        "bullets": [
+          "Add new page numbers if needed",
+          "Update table of contents"
+        ]
+      },
+      {
+        "h2": "Bulk cleanup for scanned archives",
+        "bullets": [
+          "Spotting blanks visually",
+          "Batch tip: remove every even page when scanner duplicated"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "remove pages from PDF", "url": "/en/pdf-edit/", "where": "intro and step-by-step"},
-      {"anchor": "organize PDF pages with drag and drop", "url": "/en/pdf-organize/", "where": "visual removal section"},
-      {"anchor": "add fresh page numbers", "url": "/en/pdf-edit/", "where": "re-numbering section"},
-      {"anchor": "split into chapters instead", "url": "/en/pdf-organize/split/", "where": "alternatives section"}
+      {
+        "anchor": "remove pages from PDF",
+        "url": "/en/pdf-edit/",
+        "where": "intro and step-by-step"
+      },
+      {
+        "anchor": "organize PDF pages with drag and drop",
+        "url": "/en/pdf-organize/",
+        "where": "visual removal section"
+      },
+      {
+        "anchor": "add fresh page numbers",
+        "url": "/en/pdf-edit/",
+        "where": "re-numbering section"
+      },
+      {
+        "anchor": "split into chapters instead",
+        "url": "/en/pdf-organize/split/",
+        "where": "alternatives section"
+      }
     ],
     "faq_questions": [
       "How do I remove blank pages from a 200-page scan automatically?",
@@ -303,7 +783,8 @@
       "Why do removed pages sometimes 'come back'?",
       "Can I remove pages from a password-protected PDF?"
     ],
-    "unique_angle": "Addresses the duplex-scanner blank-page problem specifically with a 'remove every even page' bulk tip - a workflow no major competitor article calls out."
+    "unique_angle": "Addresses the duplex-scanner blank-page problem specifically with a 'remove every even page' bulk tip - a workflow no major competitor article calls out.",
+    "status": "published"
   },
   {
     "slug": "reorder-pdf-pages-drag-and-drop",
@@ -321,18 +802,73 @@
     "relevant_tool": "organize_pdf",
     "target_word_count": 1500,
     "outline": [
-      {"h2": "When you need to reorder pages", "bullets": ["Combined files in wrong order", "Appendix needs to come first", "Last-minute slide reshuffles", "Fixing scanner output"]},
-      {"h2": "Step-by-step: drag and drop reorder", "bullets": ["Upload PDF", "See thumbnails grid", "Drag pages into new order", "Download reorganized file"]},
-      {"h2": "Combined operations: reorder + delete + rotate", "bullets": ["Why the organize tool handles all three", "Saving one trip vs three"]},
-      {"h2": "Reordering before merging", "bullets": ["Why ordering source files first beats post-merge fixes"]},
-      {"h2": "Mobile vs desktop experience", "bullets": ["Touch reorder on tablet", "Keyboard shortcuts on desktop"]},
-      {"h2": "Saving the result correctly", "bullets": ["Why 'save as' creates a new file", "Naming conventions"]}
+      {
+        "h2": "When you need to reorder pages",
+        "bullets": [
+          "Combined files in wrong order",
+          "Appendix needs to come first",
+          "Last-minute slide reshuffles",
+          "Fixing scanner output"
+        ]
+      },
+      {
+        "h2": "Step-by-step: drag and drop reorder",
+        "bullets": [
+          "Upload PDF",
+          "See thumbnails grid",
+          "Drag pages into new order",
+          "Download reorganized file"
+        ]
+      },
+      {
+        "h2": "Combined operations: reorder + delete + rotate",
+        "bullets": [
+          "Why the organize tool handles all three",
+          "Saving one trip vs three"
+        ]
+      },
+      {
+        "h2": "Reordering before merging",
+        "bullets": [
+          "Why ordering source files first beats post-merge fixes"
+        ]
+      },
+      {
+        "h2": "Mobile vs desktop experience",
+        "bullets": [
+          "Touch reorder on tablet",
+          "Keyboard shortcuts on desktop"
+        ]
+      },
+      {
+        "h2": "Saving the result correctly",
+        "bullets": [
+          "Why 'save as' creates a new file",
+          "Naming conventions"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "organize PDF pages", "url": "/en/pdf-organize/", "where": "intro and step-by-step"},
-      {"anchor": "merge PDFs in the right order", "url": "/en/pdf-organize/merge/", "where": "before merging section"},
-      {"anchor": "rotate any sideways pages", "url": "/en/pdf-edit/rotate/", "where": "combined operations section"},
-      {"anchor": "split into sections after reordering", "url": "/en/pdf-organize/split/", "where": "conclusion"}
+      {
+        "anchor": "organize PDF pages",
+        "url": "/en/pdf-organize/",
+        "where": "intro and step-by-step"
+      },
+      {
+        "anchor": "merge PDFs in the right order",
+        "url": "/en/pdf-organize/merge/",
+        "where": "before merging section"
+      },
+      {
+        "anchor": "rotate any sideways pages",
+        "url": "/en/pdf-edit/rotate/",
+        "where": "combined operations section"
+      },
+      {
+        "anchor": "split into sections after reordering",
+        "url": "/en/pdf-organize/split/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "Can I reorder pages on my phone?",
@@ -341,7 +877,8 @@
       "Does reordering work on password-protected PDFs?",
       "Can I reorder and delete in one step?"
     ],
-    "unique_angle": "Frames the organize tool as a single-trip alternative to running merge + delete + rotate separately - positions Convertica's UX advantage over single-purpose competitor tools."
+    "unique_angle": "Frames the organize tool as a single-trip alternative to running merge + delete + rotate separately - positions Convertica's UX advantage over single-purpose competitor tools.",
+    "status": "published"
   },
   {
     "slug": "convert-excel-to-pdf-keep-formatting",
@@ -359,18 +896,76 @@
     "relevant_tool": "word_to_pdf",
     "target_word_count": 1900,
     "outline": [
-      {"h2": "Why Excel-to-PDF often goes wrong", "bullets": ["Default print area is the entire sheet", "Auto page breaks ignore logical groupings", "Headers don't repeat by default", "Hidden columns still print"]},
-      {"h2": "Pre-conversion Excel setup", "bullets": ["Set print area (Page Layout > Print Area)", "Scale to fit one page wide", "Repeat header rows", "Hide vs delete columns"]},
-      {"h2": "Step-by-step: convert with Convertica", "bullets": ["Upload .xlsx", "Choose orientation", "Download PDF"]},
-      {"h2": "Multi-sheet workbooks", "bullets": ["One PDF per sheet vs combined", "Naming conventions"]},
-      {"h2": "Common formatting issues and fixes", "bullets": ["Cut-off rightmost column - fix scale", "Missing headers on page 2 - set print titles", "Formulas showing as #REF - flatten first"]},
-      {"h2": "When to keep Excel and when to send PDF", "bullets": ["PDF for read-only / signatures", "Excel for further editing"]}
+      {
+        "h2": "Why Excel-to-PDF often goes wrong",
+        "bullets": [
+          "Default print area is the entire sheet",
+          "Auto page breaks ignore logical groupings",
+          "Headers don't repeat by default",
+          "Hidden columns still print"
+        ]
+      },
+      {
+        "h2": "Pre-conversion Excel setup",
+        "bullets": [
+          "Set print area (Page Layout > Print Area)",
+          "Scale to fit one page wide",
+          "Repeat header rows",
+          "Hide vs delete columns"
+        ]
+      },
+      {
+        "h2": "Step-by-step: convert with Convertica",
+        "bullets": [
+          "Upload .xlsx",
+          "Choose orientation",
+          "Download PDF"
+        ]
+      },
+      {
+        "h2": "Multi-sheet workbooks",
+        "bullets": [
+          "One PDF per sheet vs combined",
+          "Naming conventions"
+        ]
+      },
+      {
+        "h2": "Common formatting issues and fixes",
+        "bullets": [
+          "Cut-off rightmost column - fix scale",
+          "Missing headers on page 2 - set print titles",
+          "Formulas showing as #REF - flatten first"
+        ]
+      },
+      {
+        "h2": "When to keep Excel and when to send PDF",
+        "bullets": [
+          "PDF for read-only / signatures",
+          "Excel for further editing"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "convert Excel to PDF", "url": "/en/word-to-pdf/", "where": "intro and step-by-step"},
-      {"anchor": "convert PDF back to Excel later", "url": "/en/pdf-to-excel/", "where": "when-to-send section"},
-      {"anchor": "merge multiple sheets into one PDF", "url": "/en/pdf-organize/merge/", "where": "multi-sheet section"},
-      {"anchor": "compress the result for email", "url": "/en/pdf-organize/compress/", "where": "conclusion"}
+      {
+        "anchor": "convert Excel to PDF",
+        "url": "/en/word-to-pdf/",
+        "where": "intro and step-by-step"
+      },
+      {
+        "anchor": "convert PDF back to Excel later",
+        "url": "/en/pdf-to-excel/",
+        "where": "when-to-send section"
+      },
+      {
+        "anchor": "merge multiple sheets into one PDF",
+        "url": "/en/pdf-organize/merge/",
+        "where": "multi-sheet section"
+      },
+      {
+        "anchor": "compress the result for email",
+        "url": "/en/pdf-organize/compress/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "Why does my spreadsheet split awkwardly across pages?",
@@ -379,7 +974,8 @@
       "How do I make headers repeat on every PDF page?",
       "Why is my PDF much bigger than the Excel file?"
     ],
-    "unique_angle": "Half the article is pre-conversion Excel setup (print area, scale-to-fit, repeat headers) - the actual cause of bad output, which generic conversion guides skip."
+    "unique_angle": "Half the article is pre-conversion Excel setup (print area, scale-to-fit, repeat headers) - the actual cause of bad output, which generic conversion guides skip.",
+    "status": "published"
   },
   {
     "slug": "pdf-to-word-vs-ocr-which-to-use",
@@ -397,18 +993,75 @@
     "relevant_tool": "pdf_to_word",
     "target_word_count": 1600,
     "outline": [
-      {"h2": "The two kinds of PDF you'll meet", "bullets": ["Digital (text-based) - made from Word, web, etc.", "Scanned (image-based) - photos of paper", "How to tell in 2 seconds"]},
-      {"h2": "Standard PDF-to-Word: when it works", "bullets": ["Digital PDFs", "Preserves formatting, fonts, images", "Fast, near-100% accuracy"]},
-      {"h2": "OCR-powered conversion: when you need it", "bullets": ["Any scanned doc", "Faxes", "Photos of pages from your phone", "Older PDFs from pre-2005"]},
-      {"h2": "Side-by-side decision table", "bullets": ["Document type -> recommended tool", "Time expectation", "Accuracy expectation"]},
-      {"h2": "Hybrid PDFs (some scanned, some digital)", "bullets": ["Common in merged contracts", "Two-pass approach"]},
-      {"h2": "What to do if you pick wrong", "bullets": ["Symptom: blank Word doc - need OCR", "Symptom: garbled text - language setting wrong"]}
+      {
+        "h2": "The two kinds of PDF you'll meet",
+        "bullets": [
+          "Digital (text-based) - made from Word, web, etc.",
+          "Scanned (image-based) - photos of paper",
+          "How to tell in 2 seconds"
+        ]
+      },
+      {
+        "h2": "Standard PDF-to-Word: when it works",
+        "bullets": [
+          "Digital PDFs",
+          "Preserves formatting, fonts, images",
+          "Fast, near-100% accuracy"
+        ]
+      },
+      {
+        "h2": "OCR-powered conversion: when you need it",
+        "bullets": [
+          "Any scanned doc",
+          "Faxes",
+          "Photos of pages from your phone",
+          "Older PDFs from pre-2005"
+        ]
+      },
+      {
+        "h2": "Side-by-side decision table",
+        "bullets": [
+          "Document type -> recommended tool",
+          "Time expectation",
+          "Accuracy expectation"
+        ]
+      },
+      {
+        "h2": "Hybrid PDFs (some scanned, some digital)",
+        "bullets": [
+          "Common in merged contracts",
+          "Two-pass approach"
+        ]
+      },
+      {
+        "h2": "What to do if you pick wrong",
+        "bullets": [
+          "Symptom: blank Word doc - need OCR",
+          "Symptom: garbled text - language setting wrong"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "convert PDF to Word", "url": "/en/pdf-to-word/", "where": "standard conversion section"},
-      {"anchor": "scanned PDF to editable Word guide", "url": "/en/pdf-to-word/", "where": "OCR section"},
-      {"anchor": "extract tables to Excel instead", "url": "/en/pdf-to-excel/", "where": "decision table"},
-      {"anchor": "all conversion tools", "url": "/en/all-tools/", "where": "conclusion"}
+      {
+        "anchor": "convert PDF to Word",
+        "url": "/en/pdf-to-word/",
+        "where": "standard conversion section"
+      },
+      {
+        "anchor": "scanned PDF to editable Word guide",
+        "url": "/en/pdf-to-word/",
+        "where": "OCR section"
+      },
+      {
+        "anchor": "extract tables to Excel instead",
+        "url": "/en/pdf-to-excel/",
+        "where": "decision table"
+      },
+      {
+        "anchor": "all conversion tools",
+        "url": "/en/all-tools/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "How do I tell if my PDF is scanned or digital?",
@@ -417,7 +1070,8 @@
       "Can I run OCR on a digital PDF anyway?",
       "Why does my converted Word doc have no text at all?"
     ],
-    "unique_angle": "A decision guide rather than a tool pitch - we tell users when each path fails and how to recognize they picked wrong, which converts better than 'use our tool for everything'."
+    "unique_angle": "A decision guide rather than a tool pitch - we tell users when each path fails and how to recognize they picked wrong, which converts better than 'use our tool for everything'.",
+    "status": "published"
   },
   {
     "slug": "pdf-naming-conventions-best-practices",
@@ -435,19 +1089,84 @@
     "relevant_tool": "all_tools",
     "target_word_count": 1700,
     "outline": [
-      {"h2": "Why naming matters more than folders", "bullets": ["Search beats hierarchy at scale", "Cloud sync flattens folder structures anyway", "Filenames travel with the file when emailed"]},
-      {"h2": "The universal pattern", "bullets": ["YYYY-MM-DD_party_subject_version.pdf", "Why ISO date sorts correctly", "Why party-before-subject groups by client"]},
-      {"h2": "Patterns by document type", "bullets": ["Invoices: YYYY-MM-DD_vendor_amount_invoice.pdf", "Contracts: YYYY-MM-DD_counterparty_type_v01.pdf", "Bank statements: YYYY-MM_bank_account4digits.pdf", "Scans: YYYY-MM-DD_subject_scan.pdf"]},
-      {"h2": "Versioning that doesn't end in 'final_FINAL_v2'", "bullets": ["v01, v02 zero-padded", "_DRAFT and _SIGNED suffixes", "When to start a new file vs new version"]},
-      {"h2": "Characters to avoid", "bullets": ["No spaces (use underscores or hyphens)", "No / \\ : * ? \" < > |", "Keep under 100 characters"]},
-      {"h2": "Renaming a backlog without losing your weekend", "bullets": ["Bulk rename tools (PowerToys, Finder)", "Tackle 50 files a day", "Why merge + rename beats rename-each"]},
-      {"h2": "Naming + tooling: small wins compound", "bullets": ["Sortable filenames + cloud search = instant retrieval", "Consistent names survive re-shares"]}
+      {
+        "h2": "Why naming matters more than folders",
+        "bullets": [
+          "Search beats hierarchy at scale",
+          "Cloud sync flattens folder structures anyway",
+          "Filenames travel with the file when emailed"
+        ]
+      },
+      {
+        "h2": "The universal pattern",
+        "bullets": [
+          "YYYY-MM-DD_party_subject_version.pdf",
+          "Why ISO date sorts correctly",
+          "Why party-before-subject groups by client"
+        ]
+      },
+      {
+        "h2": "Patterns by document type",
+        "bullets": [
+          "Invoices: YYYY-MM-DD_vendor_amount_invoice.pdf",
+          "Contracts: YYYY-MM-DD_counterparty_type_v01.pdf",
+          "Bank statements: YYYY-MM_bank_account4digits.pdf",
+          "Scans: YYYY-MM-DD_subject_scan.pdf"
+        ]
+      },
+      {
+        "h2": "Versioning that doesn't end in 'final_FINAL_v2'",
+        "bullets": [
+          "v01, v02 zero-padded",
+          "_DRAFT and _SIGNED suffixes",
+          "When to start a new file vs new version"
+        ]
+      },
+      {
+        "h2": "Characters to avoid",
+        "bullets": [
+          "No spaces (use underscores or hyphens)",
+          "No / \\ : * ? \" < > |",
+          "Keep under 100 characters"
+        ]
+      },
+      {
+        "h2": "Renaming a backlog without losing your weekend",
+        "bullets": [
+          "Bulk rename tools (PowerToys, Finder)",
+          "Tackle 50 files a day",
+          "Why merge + rename beats rename-each"
+        ]
+      },
+      {
+        "h2": "Naming + tooling: small wins compound",
+        "bullets": [
+          "Sortable filenames + cloud search = instant retrieval",
+          "Consistent names survive re-shares"
+        ]
+      }
     ],
     "internal_links": [
-      {"anchor": "merge related files into one well-named PDF", "url": "/en/pdf-organize/merge/", "where": "renaming a backlog section"},
-      {"anchor": "split a misnamed mega-file into properly named pieces", "url": "/en/pdf-organize/split/", "where": "renaming a backlog section"},
-      {"anchor": "compress before archiving", "url": "/en/pdf-organize/compress/", "where": "naming + tooling section"},
-      {"anchor": "all PDF tools", "url": "/en/all-tools/", "where": "conclusion"}
+      {
+        "anchor": "merge related files into one well-named PDF",
+        "url": "/en/pdf-organize/merge/",
+        "where": "renaming a backlog section"
+      },
+      {
+        "anchor": "split a misnamed mega-file into properly named pieces",
+        "url": "/en/pdf-organize/split/",
+        "where": "renaming a backlog section"
+      },
+      {
+        "anchor": "compress before archiving",
+        "url": "/en/pdf-organize/compress/",
+        "where": "naming + tooling section"
+      },
+      {
+        "anchor": "all PDF tools",
+        "url": "/en/all-tools/",
+        "where": "conclusion"
+      }
     ],
     "faq_questions": [
       "Should I use hyphens or underscores in PDF filenames?",
@@ -456,6 +1175,140 @@
       "Should the version number go at the start or end?",
       "Do filename conventions affect SEO when PDFs are public?"
     ],
-    "unique_angle": "Concrete patterns by document type (invoice, contract, statement, scan) instead of abstract 'be consistent' advice - a reference users will bookmark and share with their team."
+    "unique_angle": "Concrete patterns by document type (invoice, contract, statement, scan) instead of abstract 'be consistent' advice - a reference users will bookmark and share with their team.",
+    "status": "published"
+  },
+  {
+    "slug": "convert-jpg-to-pdf-multiple-images",
+    "type": "how_to",
+    "primary_keyword": "convert jpg to pdf",
+    "status": "planned",
+    "relevant_tool": "jpg_to_pdf"
+  },
+  {
+    "slug": "extract-pages-from-pdf",
+    "type": "how_to",
+    "primary_keyword": "extract pages from pdf",
+    "status": "planned",
+    "relevant_tool": "split_pdf"
+  },
+  {
+    "slug": "pdf-to-excel-how-to",
+    "type": "how_to",
+    "primary_keyword": "pdf to excel",
+    "status": "planned",
+    "relevant_tool": "pdf_to_excel"
+  },
+  {
+    "slug": "reduce-pdf-file-size-without-losing-quality",
+    "type": "how_to",
+    "primary_keyword": "reduce pdf file size",
+    "status": "planned",
+    "relevant_tool": "compress_pdf"
+  },
+  {
+    "slug": "merge-pdf-files-free",
+    "type": "use_case",
+    "primary_keyword": "merge pdf files free",
+    "status": "planned",
+    "relevant_tool": "merge_pdf"
+  },
+  {
+    "slug": "convert-pdf-to-jpg-high-quality",
+    "type": "how_to",
+    "primary_keyword": "convert pdf to jpg",
+    "status": "planned",
+    "relevant_tool": "pdf_to_jpg"
+  },
+  {
+    "slug": "add-page-numbers-to-pdf",
+    "type": "how_to",
+    "primary_keyword": "add page numbers to pdf",
+    "status": "planned",
+    "relevant_tool": "organize_pdf"
+  },
+  {
+    "slug": "pdf-to-powerpoint-conversion",
+    "type": "how_to",
+    "primary_keyword": "pdf to powerpoint",
+    "status": "planned",
+    "relevant_tool": "all_tools"
+  },
+  {
+    "slug": "unlock-pdf-remove-password",
+    "type": "how_to",
+    "primary_keyword": "unlock pdf",
+    "status": "planned",
+    "relevant_tool": "protect_pdf"
+  },
+  {
+    "slug": "crop-pdf-pages",
+    "type": "how_to",
+    "primary_keyword": "crop pdf pages",
+    "status": "planned",
+    "relevant_tool": "organize_pdf"
+  },
+  {
+    "slug": "pdf-vs-word-which-format-to-use",
+    "type": "comparison",
+    "primary_keyword": "pdf vs word",
+    "status": "planned",
+    "relevant_tool": "all_tools"
+  },
+  {
+    "slug": "edit-pdf-without-acrobat",
+    "type": "how_to",
+    "primary_keyword": "edit pdf without acrobat",
+    "status": "planned",
+    "relevant_tool": "all_tools"
+  },
+  {
+    "slug": "sign-pdf-document-digitally",
+    "type": "how_to",
+    "primary_keyword": "sign pdf digitally",
+    "status": "planned",
+    "relevant_tool": "all_tools"
+  },
+  {
+    "slug": "pdf-accessibility-checklist",
+    "type": "best_practices",
+    "primary_keyword": "pdf accessibility",
+    "status": "planned",
+    "relevant_tool": "all_tools"
+  },
+  {
+    "slug": "pdf-compression-settings-explained",
+    "type": "guide",
+    "primary_keyword": "pdf compression settings",
+    "status": "planned",
+    "relevant_tool": "compress_pdf"
+  },
+  {
+    "slug": "how-to-ocr-a-pdf",
+    "type": "how_to",
+    "primary_keyword": "ocr pdf",
+    "status": "planned",
+    "relevant_tool": "pdf_to_word"
+  },
+  {
+    "slug": "batch-convert-word-to-pdf",
+    "type": "how_to",
+    "primary_keyword": "batch convert word to pdf",
+    "status": "planned",
+    "relevant_tool": "word_to_pdf"
+  },
+  {
+    "slug": "pdf-to-png-conversion",
+    "type": "how_to",
+    "primary_keyword": "pdf to png",
+    "status": "planned",
+    "relevant_tool": "pdf_to_jpg"
+  },
+  {
+    "slug": "repair-corrupted-pdf",
+    "type": "how_to",
+    "primary_keyword": "repair corrupted pdf",
+    "status": "planned",
+    "relevant_tool": "all_tools"
   }
 ]
