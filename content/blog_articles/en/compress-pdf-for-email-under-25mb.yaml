@@ -1,0 +1,215 @@
+slug: compress-pdf-for-email-under-25mb
+status: published
+category_slug: use-cases
+relevant_tool: compress_pdf
+title_en: "How to Compress a PDF to Send by Email (Under 25 MB) Without Losing Quality"
+meta_title_en: "Compress PDF for Email: Under 25 MB in 2 Minutes"
+meta_description_en: "Gmail, Outlook and Yahoo bounce PDFs over 20-25 MB. Here are three reliable ways to shrink a PDF for email, with size targets by document type and quality tips."
+meta_keywords_en: "compress pdf for email, reduce pdf size for email, pdf too big to email, shrink pdf for gmail, pdf under 25mb"
+excerpt_en: "Gmail caps attachments at 25 MB, Outlook at 20 MB, and a single scanned 10-page contract can blow past both. Here is the fastest way to slim it down without"
+ai_metadata:
+  topics:
+    - PDF compression
+    - email attachment limits
+    - file size reduction
+    - PDF for Gmail
+    - workflow for email
+  entities:
+    - Gmail
+    - Outlook
+    - Yahoo Mail
+    - Microsoft Exchange
+    - Convertica
+    - Google Drive
+    - WeTransfer
+    - Dropbox
+    - MIME
+  summary: "A practical guide to getting any PDF under common 20-25 MB email caps, covering compression presets, page splitting, and rescanning, with realistic size-reduction expectations by document type."
+  related_terms:
+    - reduce pdf size online
+    - shrink pdf for gmail
+    - pdf attachment too large
+    - compress scanned pdf
+    - email pdf size limit
+    - pdf under 10mb
+    - pdf size for outlook
+  reading_time_minutes: 9
+  target_audience: "Office workers, freelancers, students and anyone trying to email a PDF that bounced for being too large."
+content_en: |
+  Email providers still treat large attachments like a 2010 problem. Gmail refuses anything over 25 MB outbound, Outlook.com cuts off at 20 MB, and most corporate Exchange servers run tighter than that. A single scanned 12-page contract is often enough to trigger the bounce, and the failure message ("Message could not be delivered. The attachment exceeds the allowed size") arrives an hour later, after you've already moved on.
+
+  The good news: nearly every oversized PDF can be brought under the cap in under two minutes with the right approach. This guide covers the three methods that actually work, exact size expectations by document type, and when you should give up on email and send a cloud link instead. We'll use Convertica's <a href="/en/pdf-organize/compress/">free PDF compressor</a> for the walkthrough, but the principles apply to any tool.
+
+  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Convertica PDF compressor interface showing file upload and preset options" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>The real email attachment limits in 2026</h2>
+
+  Before you compress anything, it helps to know what you're aiming at. Major providers publish slightly different limits, and the practical ceiling is lower than the headline number because of how email transports binary files.
+
+  <table>
+    <thead>
+      <tr><th>Provider</th><th>Outgoing limit</th><th>Incoming limit</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Gmail</td><td>25 MB</td><td>50 MB</td></tr>
+      <tr><td>Outlook.com</td><td>20 MB</td><td>20 MB</td></tr>
+      <tr><td>Yahoo Mail</td><td>25 MB</td><td>25 MB</td></tr>
+      <tr><td>iCloud Mail</td><td>20 MB</td><td>20 MB</td></tr>
+      <tr><td>Corporate Exchange (typical)</td><td>10-25 MB</td><td>10-35 MB</td></tr>
+    </tbody>
+  </table>
+
+  There's one more catch most people miss: email attachments are encoded in base64 (a MIME standard), which inflates binary data by roughly 33% in transit. A 20 MB PDF on disk arrives as about 27 MB on the wire. If your provider lists "25 MB", aim for a file under 18 MB on disk to be safe.
+
+  <blockquote class="callout">Rule of thumb: target 15 MB on disk for any general-purpose email, and 8 MB if the recipient sits on a corporate network.</blockquote>
+
+  A few specific gotchas worth flagging, because many people hit them and assume their file is fine:
+
+  <ul>
+    <li><strong>Distribution lists.</strong> Mailing one big PDF to a 200-person list multiplies delivery weight, and many corporate mail servers count that against your daily quota or reject it outright.</li>
+    <li><strong>Reply-all chains.</strong> An attachment that survives one hop can still bounce on a reply-all if any single recipient runs a tighter mailbox limit. The whole thread fails for everyone.</li>
+    <li><strong>Mobile carriers.</strong> Some carrier mail gateways still enforce a 10 MB ceiling on incoming MMS-style relays. If your recipient reads mail on a feature phone or older mobile client, plan for that.</li>
+    <li><strong>Anti-virus delays.</strong> Larger attachments take longer to scan at the recipient's gateway. A "delivered" message that doesn't appear for 20 minutes isn't broken; it's queued.</li>
+  </ul>
+
+  <h2>What makes a PDF huge in the first place</h2>
+
+  Compression works best when you understand where the bytes are. PDFs balloon for predictable reasons:
+
+  <ul>
+    <li><strong>High-DPI scans.</strong> A duplex scanner set to 600 DPI color produces 5-15 MB per page. Most documents only need 200 DPI grayscale, and the eye won't tell the difference at normal reading distance.</li>
+    <li><strong>Embedded fonts and color profiles.</strong> A "Save as PDF/A" archival export can add 1-3 MB just for embedded font subsets and ICC color profiles you don't need for an email. PDF/A is built for archives, not inboxes.</li>
+    <li><strong>Uncompressed images.</strong> Pictures pasted from Word or screenshots saved as PNG inside the PDF rarely use efficient image compression. A single 4K screenshot embedded raw can add 8 MB.</li>
+    <li><strong>Hidden revision history.</strong> "Save" in Acrobat appends incremental updates instead of rewriting the file. Years of edits accumulate as invisible weight - a contract that started at 200 KB can sit at 12 MB after thirty edits.</li>
+    <li><strong>Embedded files.</strong> Some PDFs ship with attached spreadsheets or zip files inside them. Check the attachments panel (the paperclip icon in Acrobat) before you compress; you might be transporting a 30 MB Excel file as a passenger.</li>
+    <li><strong>Forms with bitmap field backgrounds.</strong> Government forms often render every input field as a separate small image. Multiply by 80 fields and you get a surprisingly chunky file.</li>
+  </ul>
+
+  Knowing which of these dominates your file tells you which method below will help most. Open the file in any reader and look at the first page. If it's clearly a photograph of paper, you're dealing with images. If the text is crisp and selectable, you're dealing with a born-digital PDF that probably has bloat for a different reason.
+
+  <h2>Method 1 - Compress the PDF (recommended)</h2>
+
+  For 80% of oversized PDFs, straight compression is the right answer. It rewrites the file with smarter image and font handling without changing the page count or text content.
+
+  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Step-by-step PDF compression with low, medium, and high preset selector" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Open Convertica's <a href="/en/pdf-organize/compress/">free PDF compressor</a> in any browser.</li>
+    <li>Drag your PDF onto the upload area, or click to pick the file.</li>
+    <li>Choose a preset: <strong>low</strong> (best quality, modest reduction), <strong>medium</strong> (recommended), or <strong>high</strong> (aggressive, for filler text and reference docs).</li>
+    <li>Wait for the file to process. Large scans can take 20-40 seconds; very large ones (200+ pages) can take a minute or two.</li>
+    <li>Download the compressed copy. The original stays untouched on your device.</li>
+  </ol>
+
+  <h3>Which preset should you pick?</h3>
+
+  Medium is the right default. It downsamples images to about 150 DPI and strips redundant metadata, which is invisible on a screen and still prints cleanly at A4. Use high only when the recipient doesn't need to print, and use low when the document includes diagrams or photographs that must stay sharp.
+
+  A small but useful keyboard habit: once the upload completes, you can usually press Enter to confirm the default preset rather than reaching for the mouse. (I'd argue browser tools should default to medium and skip the click, but defaults vary.)
+
+  <h3>Expected size reduction by document type</h3>
+
+  This is where most "up to 90% smaller!" marketing claims fall apart. Honest numbers, based on what compression can actually do:
+
+  <table>
+    <thead>
+      <tr><th>Document type</th><th>Typical reduction</th><th>Example</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Text-only PDF (exported from Word, web)</td><td>80-95%</td><td>40 MB → 2-8 MB</td></tr>
+      <tr><td>Mixed text + photos</td><td>40-70%</td><td>30 MB → 9-18 MB</td></tr>
+      <tr><td>Pure scan (every page is an image)</td><td>30-60%</td><td>50 MB → 20-35 MB</td></tr>
+      <tr><td>Already-compressed PDF</td><td>0-15%</td><td>Try a different method</td></tr>
+    </tbody>
+  </table>
+
+  If your scanned PDF is still over the cap after medium compression, jump to Method 3.
+
+  <h2>Method 2 - Split the PDF into smaller chunks</h2>
+
+  Sometimes the file genuinely needs to stay at full quality (legal exhibits, design proofs) and compression isn't enough. Splitting beats compressing when:
+
+  <ul>
+    <li>The recipient asked for the original quality.</li>
+    <li>Compression alone gets you to 30 MB, not 20 MB.</li>
+    <li>The PDF has natural section boundaries (chapters, monthly statements, exhibits A through D).</li>
+    <li>You're sending evidence to a regulator who'll reject anything that looks re-encoded.</li>
+  </ul>
+
+  Use Convertica's tool to <a href="/en/pdf-organize/split/">split a PDF into smaller parts</a>, choose a page range or count per part, and download the pieces. The trick is naming so the recipient can put them back together without confusion:
+
+  <pre><code>2026-04-28_proposal_part-1-of-3.pdf
+  2026-04-28_proposal_part-2-of-3.pdf
+  2026-04-28_proposal_part-3-of-3.pdf</code></pre>
+
+  Send each part as a separate email with a short note: "Part 1 of 3 - the rest is in the next two emails." The recipient can <a href="/en/pdf-organize/merge/">merge the compressed parts back</a> into a single file when they need to archive it. If you're worried they'll lose the second message, send all parts in the same thread with sequential subject lines so the inbox sort keeps them adjacent.
+
+  One quirk worth knowing: some corporate spam filters flag a burst of three near-identical emails as suspicious behaviour. Space the sends 60 seconds apart, or send the first as a heads-up message ("expect three parts in the next few minutes") to keep the gateway calm.
+
+  <h2>Method 3 - Convert scans to a text-based PDF</h2>
+
+  If your file is a scanned contract, fax, or photo-of-a-page, the bytes are images, not text. No compression preset gets a 50 MB pure scan under 10 MB without visible quality loss. The fix is to run optical character recognition (OCR), which extracts the words and re-exports the document as a text-based PDF.
+
+  Workflow:
+
+  <ol>
+    <li>Run OCR on the scan to produce a Word or text version.</li>
+    <li>Verify accuracy on the first page - look for "rn" rendered as "m", "1" rendered as "l", and any cluster where the recogniser hedged.</li>
+    <li>Re-export to PDF from Word.</li>
+    <li>Compress the new file with Method 1.</li>
+  </ol>
+
+  A 50 MB scan often comes out to 1-2 MB after this round trip because the text takes a tiny fraction of the bytes that the page images required. The trade-off is that handwriting, signatures, and stamps won't survive the conversion, so keep the original if those matter legally. For court exhibits or anything that may need authentication, never replace the source with the OCR'd version - send both.
+
+  <h2>Quality vs size: what to expect</h2>
+
+  Be honest with yourself about what the recipient actually needs:
+
+  <ul>
+    <li><strong>Reading on screen.</strong> Medium compression is invisible. Use it freely.</li>
+    <li><strong>Printing on standard office paper.</strong> Medium is still fine. High starts to show on photos.</li>
+    <li><strong>Professional printing or signing.</strong> Stick with low compression or keep the original and send a cloud link.</li>
+    <li><strong>Legal exhibits or evidence.</strong> Don't compress at all. File integrity matters more than email convenience, and opposing counsel can use re-encoding as a credibility argument.</li>
+    <li><strong>Court filings via e-filing portals.</strong> Many courts publish exact PDF specs (PDF/A 1b, no embedded fonts beyond core 14, max 35 MB). Match their spec rather than guessing.</li>
+  </ul>
+
+  <h2>When to use a cloud link instead</h2>
+
+  If your PDF is over 100 MB to start, or you need to send several large files in one go, stop fighting email and switch to a link. Most people already have one of these:
+
+  <table>
+    <thead>
+      <tr><th>Service</th><th>Free upload size</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Google Drive</td><td>15 GB total free</td><td>Recipient needs link permission set</td></tr>
+      <tr><td>WeTransfer (free)</td><td>2 GB per transfer</td><td>Link expires after 7 days</td></tr>
+      <tr><td>Dropbox</td><td>2 GB free total</td><td>Persistent share links</td></tr>
+      <tr><td>OneDrive</td><td>5 GB free</td><td>Best for Outlook recipients</td></tr>
+    </tbody>
+  </table>
+
+  One privacy note: cloud links create a copy outside your organisation. If the document is sensitive, password-protect the PDF before uploading and share the password through a different channel. Set link permissions to "specific people" rather than "anyone with link", and set an expiry if the platform supports it (Drive does; Dropbox does on paid plans).
+
+  For everything else, see <a href="/en/all-tools/">all PDF tools</a> for compression, splitting and protection in one place.
+
+  <h2>FAQ</h2>
+
+  <h3>Why is my PDF still over 25 MB after compressing?</h3>
+  <p>Either the file is mostly scanned images (Method 1 caps out around 60% reduction on pure scans) or it's already been compressed once. Try Method 3 to OCR the scans, or Method 2 to split it into two emails. If it's a born-digital PDF that won't shrink, check the attachments panel for embedded files riding along.</p>
+
+  <h3>Does compressing a PDF reduce its quality?</h3>
+  <p>Medium compression downsamples images to roughly 150 DPI, which is invisible at normal reading distance and prints fine on A4. High compression does show on photos and detailed diagrams. Text is unaffected at any preset because vector text isn't downsampled.</p>
+
+  <h3>Can I compress a password-protected PDF?</h3>
+  <p>You'll need to unlock it first using the password you own, then compress, then re-protect if needed. Compression tools can't read encrypted page contents, which is by design - if any tool could, the encryption wouldn't be meaningful.</p>
+
+  <h3>What is the safe file size for corporate email?</h3>
+  <p>Aim for under 10 MB. Many Exchange servers bounce attachments over 10-15 MB, and the recipient's spam filter may add another margin. If in doubt, compress to under 8 MB or use a cloud link.</p>
+
+  <h3>Will the recipient be able to print my compressed PDF?</h3>
+  <p>Yes. Medium and low compression preserve enough resolution for clean office printing. If the document will be professionally printed at large format (anything bigger than A3), stick with the low preset or send the original.</p>
+
+  <h2>Try it now</h2>
+
+  <p>Most "PDF too big to email" problems are solved in under a minute with the medium preset. Drop your file into Convertica's compressor and send the trimmed copy with confidence. <a href="/en/pdf-organize/compress/">Open the PDF compressor tool →</a></p>
