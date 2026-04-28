@@ -1,0 +1,110 @@
+slug: pdf-to-word-vs-ocr-which-to-use
+title_id: "PDF ke Word vs OCR: Alat Mana yang Harus Anda Gunakan (dan Mengapa Itu Penting)"
+meta_title_id: "PDF ke Word vs OCR - Panduan Keputusan | Convertica"
+meta_description_id: "Memilih jalur konversi yang salah memberi Anda dokumen Word kosong atau teks acak tak terbaca. Berikut cara mengetahui alat mana yang sebenarnya dibutuhkan PDF Anda."
+meta_keywords_id: "pdf ke word vs ocr, ocr atau konversi, pdf scan vs pdf digital, metode konversi pdf, kapan menggunakan ocr"
+excerpt_id: "Konversi PDF-ke-Word standar gagal diam-diam pada dokumen hasil scan, meninggalkan Anda dengan file kosong tanpa pesan kesalahan. Mengetahui perbedaannya menghemat satu jam troubleshooting bingung."
+content_id: |
+  Dua PDF yang terlihat identik di layar bisa membutuhkan alat yang sama sekali berbeda untuk dikonversi. Yang satu terbuka di Word dengan teks, font, dan tabel hampir utuh. Yang lain terbuka sebagai satu gambar seukuran halaman dengan nol teks yang dapat diseleksi. Perbedaannya tidak terlihat sampai Anda mencoba menggunakan hasilnya, dan kebanyakan orang baru mengetahuinya setelah membuang dua puluh menit pada alat yang salah.
+
+  Panduan ini adalah versi singkat dari pelajaran itu. Pada akhirnya Anda akan tahu cara mengidentifikasi jenis PDF yang Anda lihat, jalur konversi mana yang dibutuhkan, dan apa yang harus dilakukan ketika Anda salah memilih.
+
+  <h2>Dua jenis PDF yang akan Anda temui</h2>
+  <p>Setiap PDF di dunia masuk ke salah satu dari tiga ember: digital, hasil scan, atau hibrida (campuran keduanya).</p>
+  <h3>PDF digital</h3>
+  <p>Ini dibuat langsung dari sumber digital - file Word, halaman web, ekspor InDesign, alat akuntansi. Teks di dalamnya adalah teks nyata: karakter, font, struktur paragraf. Anda dapat memilih kalimat, menyalinnya, menempelkannya ke chat. Mereka biasanya kecil, dirender tajam pada level zoom mana pun, dan berperilaku baik dengan konverter standar.</p>
+  <h3>PDF hasil scan</h3>
+  <p>Ini adalah foto kertas. Seseorang memasukkan halaman melalui scanner, atau memotret dengan ponsel, dan menyimpan gambar di dalam wrapper PDF. Tidak ada teks sebenarnya di file - hanya gambar teks. Memilih "teks" dengan kursor menyorot persegi panjang, bukan huruf. Ukuran file biasanya lebih besar karena gambar memakan lebih banyak byte daripada karakter.</p>
+  <h3>PDF hibrida</h3>
+  <p>Ini umum di alur kerja nyata: template kontrak digital dengan halaman tanda tangan hasil scan ditambahkan, atau file gabungan di mana beberapa halaman dari Word dan yang lain dari mesin fotokopi. Setiap halaman bisa berjenis sendiri.</p>
+
+  <h2>Cara mengetahui jenisnya dalam dua detik</h2>
+  <p>Buka PDF dan coba pilih kata dengan kursor. Ada tiga kemungkinan hasil:</p>
+  <ul>
+    <li><strong>Kata tersorot huruf demi huruf.</strong> PDF digital.</li>
+    <li><strong>Seluruh halaman (atau blok besar) tersorot sebagai satu bentuk, seperti menyeret marquee di atas gambar.</strong> PDF hasil scan.</li>
+    <li><strong>Beberapa halaman berperilaku seperti opsi 1 dan yang lain seperti opsi 2.</strong> Hibrida.</li>
+  </ul>
+  <p>Tes dua detik itu akan menghemat lebih banyak waktu Anda daripada perbandingan fitur mana pun.</p>
+
+  <h2>PDF-ke-Word standar: kapan berhasil</h2>
+  <p>Untuk PDF digital, jalur <a href="/id/pdf-to-word/">konversi PDF ke Word</a> standar adalah pilihan yang tepat. Alat membaca teks tertanam, font, dan petunjuk struktural, dan membangunnya kembali di dalam file .docx. Harapkan:</p>
+  <ul>
+    <li>Akurasi mendekati 100% pada teks itu sendiri - karakter sudah digital, jadi tidak ada yang harus ditebak.</li>
+    <li>Formatting terjaga: font, heading, bold/italic, list, tabel dasar.</li>
+    <li>Gambar ditempatkan kira-kira di tempat mereka muncul di sumber.</li>
+    <li>Kecepatan: laporan 50 halaman dikonversi dalam beberapa detik.</li>
+  </ul>
+  <p>Sisa 1-2% masalah biasanya terkait layout: footer yang tertarik ke paragraf, halaman dua kolom yang keluar sebagai satu kolom panjang, tabel kompleks yang sedikit bergeser. Pembersihan mudah, bukan tulis ulang.</p>
+
+  <h2>Konversi bertenaga OCR: kapan Anda membutuhkannya</h2>
+  <p>Untuk PDF hasil scan, konversi standar akan tampak berhasil dan menghasilkan dokumen Word tanpa teks di dalamnya. Alat tidak menemukan teks untuk diekstraksi karena tidak ada - hanya gambar. Anda butuh OCR, optical character recognition, yang melihat gambar dan merekonstruksi teks dengan mengenali bentuk huruf.</p>
+  <p>Kasus di mana OCR wajib:</p>
+  <ul>
+    <li>Dokumen apa pun yang keluar dari scanner atau mesin fotokopi.</li>
+    <li>Foto halaman yang diambil dengan ponsel.</li>
+    <li>Fax (ya, masih umum di kesehatan dan hukum).</li>
+    <li>PDF lama dari sebelum sekitar 2005 - banyak yang dipindai secara default.</li>
+    <li>Formulir pemerintah yang diterima sebagai dokumen yang dicetak-lalu-discan.</li>
+  </ul>
+  <p>Konversi bertenaga OCR membutuhkan lebih lama daripada konversi standar (detik hingga menit per halaman tergantung panjang) dan tidak pernah persis 100% akurat. Penjelasan lebih dalam tentang pengaturan bahasa dan ekspektasi kualitas ada di <a href="/id/blog/convert-scanned-pdf-to-editable-word/">panduan PDF scan ke Word yang bisa diedit</a>.</p>
+
+  <h2>Tabel keputusan berdampingan</h2>
+  <table>
+    <thead>
+      <tr><th>Jenis dokumen</th><th>Alat yang direkomendasikan</th><th>Waktu per 10 halaman</th><th>Akurasi diharapkan</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>PDF digital (dibuat dari Word, web)</td><td>PDF ke Word standar</td><td>Detik</td><td>98-100%</td></tr>
+      <tr><td>PDF hasil scan, cetak bersih</td><td>Konversi bertenaga OCR</td><td>30-60 detik</td><td>95-99%</td></tr>
+      <tr><td>Dokumen fax atau fotokopi</td><td>Konversi bertenaga OCR</td><td>1-2 menit</td><td>80-90%</td></tr>
+      <tr><td>Foto ponsel halaman</td><td>Konversi bertenaga OCR (setelah putar/crop)</td><td>1-2 menit</td><td>85-95%</td></tr>
+      <tr><td>Catatan tulisan tangan</td><td>Tidak ada opsi andal - ketik ulang</td><td>Manual</td><td>Bervariasi</td></tr>
+      <tr><td>Tabel PDF yang Anda butuhkan sebagai data</td><td>PDF ke Excel, bukan Word</td><td>Detik</td><td>90-99%</td></tr>
+    </tbody>
+  </table>
+  <p>Baris terakhir lebih penting daripada yang dipikirkan orang. Jika tujuan Anda adalah mendapatkan baris dan kolom angka ke spreadsheet, jangan konversi ke Word lalu salin tabel ke Excel. <a href="/id/pdf-to-excel/">Ekstrak tabel ke Excel saja</a> langsung - struktur dipertahankan jauh lebih andal.</p>
+
+  <h2>PDF hibrida: pendekatan dua-pass</h2>
+  <p>Dokumen hibrida adalah kasus paling rumit. Kontrak 30 halaman yang digital kecuali dua halaman tanda tangan hasil scan secara teknis dapat dijalankan melalui OCR untuk seluruh file, tetapi Anda akan membayar pajak waktu OCR pada halaman yang tidak membutuhkannya.</p>
+  <p>Pendekatan yang lebih bersih ketika penting:</p>
+  <ol>
+    <li>Pisahkan PDF menjadi seksi digital dan seksi hasil scan.</li>
+    <li>Jalankan bagian digital melalui konversi standar.</li>
+    <li>Jalankan bagian hasil scan melalui konversi OCR.</li>
+    <li>Gabungkan kedua output kembali di Word.</li>
+  </ol>
+  <p>Untuk sebagian besar kasus santai, jalankan saja seluruh file melalui konversi OCR - halaman digital akan lewat dengan bersih karena sudah memiliki teks yang dapat diseleksi, dan halaman hasil scan akan diproses dengan benar.</p>
+
+  <h2>Apa yang harus dilakukan jika Anda salah memilih</h2>
+  <p>Dua mode kegagalan mudah dikenali:</p>
+  <h3>Gejala 1: dokumen Word kosong</h3>
+  <p>Anda menjalankan konversi standar pada PDF hasil scan. .docx terbuka dan tidak ada apa-apa di dalamnya, atau hanya beberapa page break nyasar. Jalankan ulang file yang sama melalui konversi OCR - teks ada di gambar, bukan di metadata file, jadi OCR adalah satu-satunya cara untuk mengekstraknya.</p>
+  <h3>Gejala 2: teks acak</h3>
+  <p>Dokumen Word berisi kata seperti "rmaragnemt" atau "1ncome", atau memiliki karakter dari alfabet yang sama sekali salah. Ini adalah OCR yang bekerja dengan pengaturan bahasa yang salah. Jalankan ulang dengan bahasa sumber yang benar dipilih (Inggris vs Spanyol vs Jerman dll.) dan akurasi melonjak drastis.</p>
+  <h3>Gejala 3: teks terekstrak tetapi layout hancur</h3>
+  <p>Ini normal untuk layout sangat berat (laporan multi-kolom, halaman gaya majalah). Baik konversi standar maupun OCR membangun ulang teks secara linear dan mungkin tidak mempertahankan grid kompleks. Kadang jawabannya adalah menerima trade-off; kadang menyalin bagian individual alih-alih seluruh dokumen.</p>
+
+  <h2>Biaya, privasi, dan waktu pemrosesan</h2>
+  <p>Konversi standar pada dasarnya gratis dalam istilah komputasi - lebih dekat ke parse daripada analisis. OCR lebih mahal: setiap halaman diproses melalui model pengenalan, itulah sebabnya scan 50 halaman membutuhkan jauh lebih lama daripada PDF digital 50 halaman. Pada tier gratis, ini mungkin berarti antrean sedikit lebih lama untuk pekerjaan OCR. Pada tier berbayar, mungkin dihitung berbeda terhadap kuota Anda.</p>
+  <p>Privasi sama di kedua jalur - unggahan file dienkripsi dalam transit dan diproses hanya selama durasi konversi - tetapi jika Anda ragu, bagian dokumen sensitif dari panduan password-protect membahas kapan Anda harus menambahkan kata sandi pada hasil sebelum berbagi.</p>
+
+  <h2>Aturan satu baris</h2>
+  <blockquote class="callout">Jika Anda dapat memilih teks di PDF, gunakan konversi standar. Jika tidak, gunakan OCR. Selebihnya di panduan ini adalah catatan kaki pada tes tunggal itu.</blockquote>
+
+  <p>Anda dapat menjelajahi <a href="/id/all-tools/">semua alat konversi</a> jika Anda memerlukan operasi terdekat seperti memisah file hibrida atau mengekstrak tabel.</p>
+
+  <h2>FAQ</h2>
+  <h3>Bagaimana cara saya tahu PDF saya hasil scan atau digital?</h3>
+  <p>Coba pilih teks dengan kursor. Jika kata individual tersorot, PDF adalah digital. Jika seluruh halaman (atau region persegi panjang besar) tersorot sebagai satu bentuk, seperti gambar, PDF adalah hasil scan.</p>
+  <h3>Apakah OCR lebih lambat dari konversi biasa?</h3>
+  <p>Ya, jauh lebih lambat. Konversi standar adalah parse dan berjalan dalam detik; OCR menjalankan setiap halaman melalui model pengenalan dan memakan detik-hingga-menit per halaman tergantung panjang dan kompleksitas. Untuk scan 50 halaman, harapkan beberapa menit total.</p>
+  <h3>Apakah OCR memakan lebih banyak kredit atau pemrosesan?</h3>
+  <p>Tergantung model harga platform. OCR menggunakan lebih banyak komputasi, jadi platform yang menagih per halaman atau per menit biasanya menetapkan harga OCR lebih tinggi daripada konversi standar. Pada tier gratis biasanya berarti antrean lebih panjang alih-alih harga berbeda.</p>
+  <h3>Bisakah saya menjalankan OCR pada PDF digital saja?</h3>
+  <p>Bisa, tetapi sebaiknya tidak. Hasilnya akan sedikit lebih buruk daripada konversi standar (OCR memperkenalkan kesalahan pengenalan kecil yang tidak ada ketika teks sudah digital), dan akan memakan waktu jauh lebih lama. Gunakan OCR hanya ketika Anda harus.</p>
+  <h3>Mengapa dokumen Word hasil konversi saya tidak ada teks sama sekali?</h3>
+  <p>PDF adalah hasil scan dan Anda menggunakan konversi standar. Konversi standar tidak punya apa-apa untuk diekstrak karena tidak ada teks sebenarnya di file. Jalankan ulang PDF yang sama melalui konversi bertenaga OCR dan teks akan muncul.</p>
+
+  <h2>Coba sekarang</h2>
+  <p>Jalankan tes seleksi dua detik pada PDF Anda, lalu pilih jalur yang tepat. <a href="/id/pdf-to-word/">Buka konverter PDF ke Word →</a></p>

@@ -1,0 +1,147 @@
+slug: watermark-pdf-confidential-draft
+title_es: "Cómo añadir una marca de agua 'CONFIDENCIAL' o 'BORRADOR' a un PDF antes de compartirlo"
+meta_title_es: "Añadir marca de agua confidencial o borrador al PDF gratis"
+meta_description_es: "Estampa un PDF con CONFIDENCIAL, BORRADOR o el nombre de tu empresa en diagonal en cada página. Herramienta web gratuita con opacidad y rotación profesionales."
+meta_keywords_es: "añadir marca de agua pdf, marca de agua confidencial pdf, marca de agua borrador, sellar pdf, marca de agua pdf gratis"
+excerpt_es: "¿Mandas un borrador de contrato o una propuesta sensible? Una marca de agua diagonal en cada página te protege legal y visualmente, pero solo si la configuras bien."
+content_es: |
+  Una marca de agua es una forma blanda de barrera. No detendrá a un actor malicioso decidido, pero hace tres cosas con eficacia: avisa al lector de que el documento no es definitivo, hace que cualquier captura de pantalla o fotocopia sea claramente rastreable y desincentiva el reflejo casual de «déjame reenviar esto sin más». Para un borrador de contrato, una propuesta interna o una maqueta de diseño, suele ser exactamente el nivel de fricción que quieres.
+
+  Esta guía recorre cómo añadir una marca de agua CONFIDENCIAL o BORRADOR a cada página de un PDF con la herramienta para <a href="/es/pdf-edit/add-watermark/">añadir marca de agua a PDF</a> de Convertica, con los ajustes que quedan profesionales en la práctica. También cubre la parte que la mayoría de los artículos se saltan: una marca de agua es un disuasorio, no cifrado, y cuándo conviene combinarla con un cierre real.
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Herramienta de marca de agua de Convertica con controles de texto, opacidad y rotación" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Cuándo necesitas una marca de agua de verdad</h2>
+
+  Las marcas de agua señalan estado. Úsalas cuando el estado del documento es parte de su significado:
+
+  <ul>
+    <li><strong>Borradores de contratos.</strong> Una marca <code>BORRADOR</code> en cada página evita que una versión temprana se confunda con la final firmada. (Muchos equipos legales tienen la anécdota de un «BORRADOR» que se mandó a compras, se firmó sin retirar la marca y acabó siendo el contrato vigente.)</li>
+    <li><strong>Materiales bajo NDA.</strong> <code>CONFIDENCIAL</code> refuerza la postura legal del documento y hace que cualquier captura filtrada sea autoincriminatoria.</li>
+    <li><strong>Material solo de uso interno.</strong> <code>USO INTERNO</code> en memos para el consejo o presentaciones de estrategia reduce la posibilidad de un reenvío accidental.</li>
+    <li><strong>Maquetas de fotógrafos y diseñadores.</strong> Texto en diagonal sobre cada vista previa desincentiva al cliente a usar el entregable antes de pagar.</li>
+    <li><strong>Informes pendientes de aprobación.</strong> <code>PENDIENTE DE REVISIÓN</code> evita que se citen borradores como oficiales.</li>
+    <li><strong>Borradores de litigio en fase de descubrimiento.</strong> Marcar los escritos como <code>BORRADOR - PRODUCTO DE TRABAJO DEL ABOGADO</code> les da un estatus más claro si salen accidentalmente de un canal protegido por secreto profesional.</li>
+  </ul>
+
+  <blockquote class="callout">Si un lector pudiera confundir tu archivo con la versión final, le toca una marca de agua.</blockquote>
+
+  <h2>Marca de agua de texto frente a imagen</h2>
+
+  Tienes dos formatos para elegir, a veces ambos:
+
+  <table>
+    <thead>
+      <tr><th>Tipo</th><th>Ideal para</th><th>Compromiso</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Marca de agua de texto</td><td>Palabras de estado: BORRADOR, CONFIDENCIAL, INTERNO</td><td>Sencilla, pero inconfundible y ligera</td></tr>
+      <tr><td>Marca de agua en imagen (logo)</td><td>Marcar la propiedad: logo de empresa en maquetas</td><td>Queda pulido, aumenta el tamaño del archivo, requiere un PNG transparente limpio</td></tr>
+      <tr><td>Las dos combinadas</td><td>Trabajo sensible con cliente: logo más BORRADOR</td><td>Más configuración, señal más fuerte</td></tr>
+    </tbody>
+  </table>
+
+  El texto basta cuando el mensaje es procedimental («esta no es la versión final»). Un logo es lo correcto cuando el mensaje es de propiedad («esta obra nos pertenece hasta que pagues la factura»). Combinarlos es excesivo para borradores cotidianos pero es lo estándar en entregables de diseño y fotografía.
+
+  Detalle concreto sobre los archivos de logo: si tu PNG de logo se exportó con un fondo blanco rectangular en lugar de transparencia alfa real, la marca de agua quedará dentro de un cuadro blanco visible en cada página, lo que se ve peor que no tenerla. Abre el PNG en cualquier visor de imágenes que muestre la transparencia (Vista Previa en macOS, la vista «mosaico» de IrfanView en Windows) y confirma que hay un patrón de tablero alrededor del logo, no blanco.
+
+  <h2>Paso a paso: añadir una marca de agua de texto</h2>
+
+  Ajustes que quedan profesionales en la práctica:
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Marca de agua diagonal CONFIDENCIAL aplicada a cada página de un PDF" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre la herramienta para <a href="/es/pdf-edit/add-watermark/">añadir marca de agua a PDF</a> y sube tu archivo.</li>
+    <li>Cambia el tipo de marca a <strong>Texto</strong>.</li>
+    <li>Teclea el texto de la marca. Usa mayúsculas: <code>BORRADOR</code>, <code>CONFIDENCIAL</code> o el nombre de tu empresa.</li>
+    <li>Define la fuente como una sans-serif (Arial o Helvetica) a un tamaño grande: 60-80 pt para A4.</li>
+    <li>Pon el color en un gris medio (alrededor de #888) para que la marca se lea sobre páginas claras sin tapar imágenes oscuras.</li>
+    <li>Pon la opacidad en <strong>30-40%</strong>. Por debajo del 25% cuesta verla impresa, por encima del 50% interfiere con el texto subyacente.</li>
+    <li>Pon la rotación en diagonal a <strong>45 grados</strong>. Cubre más superficie que un texto horizontal y es la convención establecida para marcas de confidencialidad.</li>
+    <li>Aplica a <strong>todas las páginas</strong>, no solo a la primera.</li>
+    <li>Vista previa del resultado. Si la marca queda detrás del texto, ya está. Si tapa una línea de firma crítica, baja la opacidad al 25%.</li>
+    <li>Descarga.</li>
+  </ol>
+
+  Vale la pena una comprobación rápida tras descargar: abre el archivo en el visor que probablemente vaya a usar tu destinatario, no solo en el que aplicaste la marca. Algunas versiones antiguas de Foxit y Nitro Reader renderizan las marcas de agua un poco más grandes que Acrobat, lo que puede empujar el texto en diagonal más allá del borde de la página. Si tu destinatario usa una máquina corporativa con un lector de PDF antiguo, esa es la versión que decide si la marca se ve bien.
+
+  <h2>Buenas prácticas para que tenga peso legal</h2>
+
+  Una marca de agua tiene más peso en una disputa cuando es coherente y visible. Reglas prácticas:
+
+  <ul>
+    <li><strong>30-40% de opacidad.</strong> Legible sobre cualquier fondo, pero claramente una superposición.</li>
+    <li><strong>Colocación diagonal.</strong> Cubre más superficie que las franjas superior o inferior y sobrevive al recorte de capturas.</li>
+    <li><strong>Aplica a cada página.</strong> Una marca solo en la página 1 invita a capturas parciales que parecen sin marcar.</li>
+    <li><strong>Conserva un máster sin marca.</strong> Guarda siempre el original aparte. Cuando el acuerdo se cierra y el documento pasa a definitivo, produces la versión limpia, no un trabajo de «quitar marca de agua».</li>
+    <li><strong>Estandariza el texto.</strong> Elige una frase («BORRADOR - NO PARA FIRMA» o «CONFIDENCIAL») y úsala con coherencia. Las marcas inconsistentes parecen improvisadas y debilitan la señal.</li>
+    <li><strong>Pon fecha a la marca.</strong> «BORRADOR - 2026-04-28» deja claro qué revisión está mirando alguien y desactiva el argumento de «pero la versión que vi decía otra cosa».</li>
+    <li><strong>No mezcles capitalización.</strong> «Confidencial» y «CONFIDENCIAL» en el mismo conjunto de documentos parecen una versión preliminar de la otra.</li>
+  </ul>
+
+  Para documentos de varias secciones, puedes <a href="/es/pdf-organize/merge/">unir antes varias páginas de borrador</a> en un único archivo y luego aplicar la marca una sola vez sobre todo el paquete: una salida más limpia que marcar cada sección por separado.
+
+  <h2>Las marcas de agua no son cifrado</h2>
+
+  Esta es la parte que la mayoría de los artículos «cómo poner una marca de agua a un PDF» se saltan porque es incómoda para la venta cruzada. Una marca de agua es un disuasorio visible. No:
+
+  <ul>
+    <li>Impide que el destinatario copie el texto del PDF.</li>
+    <li>Detiene las capturas de pantalla, incluidas las que se recortan a un párrafo conservando la marca.</li>
+    <li>Cifra el contenido del archivo.</li>
+    <li>Frena a un adversario decidido con software de edición de imagen para quitarla (lentamente, de forma imperfecta).</li>
+    <li>Sobrevive a un OCR de calidad que vuelva a teclear el cuerpo en un documento nuevo.</li>
+  </ul>
+
+  Lo que sí hace es fijar el contexto social y legal. Un borrador filtrado sin marca de agua es plausiblemente inocente. Un borrador filtrado con <code>CONFIDENCIAL</code> estampado en cada página es claramente una violación del NDA que firmó el destinatario, y esa distinción importa cuando los abogados sopesan los daños.
+
+  Para material genuinamente sensible, combina la marca con protección real: <a href="/es/pdf-security/protect/">protege también el documento con contraseña</a> con cifrado AES-256 y comparte la contraseña por un canal distinto al del archivo. Marca de agua más contraseña es el nivel de defensa que la mayoría de los equipos legales y financieros esperan para materiales del consejo y acuerdos comerciales sin firmar. (Diría que incluso a este nivel estás confiando en el destinatario. No hay control técnico que impida a un infiltrado decidido fotografiar la pantalla con un móvil. Marca más contraseña es «buena fe más disuasión», no «a prueba de manipulación».)
+
+  <table>
+    <thead>
+      <tr><th>Nivel de riesgo</th><th>Protección recomendada</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Borrador interno que circula en un equipo pequeño</td><td>Solo marca de agua</td></tr>
+      <tr><td>Borrador externo a una contraparte bajo NDA</td><td>Marca de agua + contraseña</td></tr>
+      <tr><td>Dossier para el consejo, M&A no anunciada, datos de nómina</td><td>Marca de agua + contraseña + canal seguro</td></tr>
+      <tr><td>Folleto público</td><td>No hace falta marca de agua</td></tr>
+      <tr><td>Maqueta personalizada para un destinatario nombrado</td><td>Marca de agua con su nombre + contraseña</td></tr>
+    </tbody>
+  </table>
+
+  Esa última fila merece una nota. Si pones la marca «Confidencial - preparado para Juan Pérez, Acme Corp» en lugar de un genérico «CONFIDENCIAL», cualquier filtración desde esa copia es rastreable a un destinatario concreto. Los fotógrafos y las redacciones previas a publicación llevan décadas usando esta técnica. Cuesta treinta segundos extra por destinatario y eleva enormemente el coste social de filtrar.
+
+  <h2>Quitar tu propia marca de agua después</h2>
+
+  Cuando el acuerdo pasa a definitivo, necesitas un archivo limpio. Hay exactamente una buena manera de conseguirlo: re-exportar desde la fuente.
+
+  <ol>
+    <li>Conserva el máster sin marca de agua de antes de pasar la herramienta de marca.</li>
+    <li>Cuando el documento se apruebe, márcalo con un sello <code>FINAL</code> o quita la marca por completo, según la convención.</li>
+    <li>Distribuye la nueva versión limpia, no una versión «con la marca quitada» del borrador.</li>
+  </ol>
+
+  No ofrecemos deliberadamente una herramienta para quitar marcas de agua de documentos que no te pertenecen. Quitar marcas de agua de PDF de terceros casi siempre viola derechos de autor, NDA o las condiciones del remitente original, y no queremos facilitar eso.
+
+  <h2>FAQ</h2>
+
+  <h3>¿Qué opacidad debería usar para una marca CONFIDENCIAL?</h3>
+  <p>El 30-40% es el punto dulce. Se lee con claridad sobre fondos claros y sobrevive a la impresión en blanco y negro sin tapar el texto subyacente. Por debajo del 25% se vuelve invisible en páginas con mucho contenido; por encima del 50% interfiere con la lectura.</p>
+
+  <h3>¿Puedo añadir la marca solo a páginas concretas?</h3>
+  <p>Sí, y hay razones válidas (portada exenta, anexos sin marcar). Dicho esto, una marca parcial es más fácil de derrotar con capturas, así que aplícala a todas las páginas salvo que tengas una razón concreta de diseño.</p>
+
+  <h3>¿Aparecerá la marca al imprimir?</h3>
+  <p>Sí. La marca es parte del contenido de la página, no una superposición del visor, así que se imprime tal y como aparece en pantalla. Para impresión en blanco y negro, las marcas en gris medio se renderizan algo más oscuras de lo esperado; baja la opacidad un 5% si vas a imprimir. Algunos controladores de impresión también tienen una opción «omitir marcas de agua» activada por defecto en ciertas impresoras corporativas: prueba antes de una tirada grande.</p>
+
+  <h3>¿La marca de agua impide copiar el PDF?</h3>
+  <p>No. Una marca de agua es solo un disuasorio visual. Para restringir la copia o la impresión, combina la marca con una contraseña de permisos que desactive esas acciones en visores que la respeten.</p>
+
+  <h3>¿Puedo añadir un logo en imagen en lugar de texto?</h3>
+  <p>Sí. Usa un PNG con fondo transparente para los resultados más limpios. Colócalo en diagonal con un 30-40% de opacidad por la misma lógica de cobertura que el texto. Las marcas de agua con logo son la práctica estándar en maquetas de diseño y fotografía.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Sella tu borrador, propuesta o maqueta con un indicador de estado claro en menos de un minuto y mándalo sin dudar de si el destinatario lo va a tomar como definitivo. <a href="/es/pdf-edit/add-watermark/">Abrir la herramienta de marca de agua →</a> Navega por el resto de <a href="/es/all-tools/">todas las herramientas de edición de PDF</a> ya que estás aquí.</p>

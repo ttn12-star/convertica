@@ -1,0 +1,122 @@
+slug: rotate-pdf-pages-permanently
+title_pl: "Jak obrócić strony PDF i zapisać zmianę na stałe (nie tylko w czytniku)"
+meta_title_pl: "Obróć PDF i zapisz na stałe - online | Convertica"
+meta_description_pl: "Adobe Reader 'obraca' PDF tylko w czytniku. Dowiedz się, jak obrócić strony trwale, by zmiana została po wysłaniu, mailu albo wydruku przez kogokolwiek."
+meta_keywords_pl: "obróć pdf na stałe, zapisz obrócony pdf, napraw pdf bokiem, obróć skanowany pdf, obrót pdf darmowo"
+excerpt_pl: "Jeśli kiedyś obróciłeś PDF w Adobe Reader, a po ponownym otwarciu strony wróciły do oryginału — to jest naprawa. Flaga orientacji strony siedzi w samym pliku."
+content_pl: |
+  Obrócisz PDF w Adobe Reader, zamkniesz plik, otworzysz ponownie i strony wracają tam, gdzie były. To moment, w którym większość ludzi uczy się, że są dwa zupełnie różne rodzaje obrotu i tylko jeden z nich faktycznie zmienia plik. Komunikat, który Adobe Reader pokazuje przy próbie zapisu obrotu — „this file has been rotated and you must use Adobe Acrobat to commit the change" — to jedno z tych cichych przebudzeń, które kosztuje popołudnie każdego, kto się go nie spodziewał.
+
+  Ten poradnik jest o tym rodzaju obrotu, który zostaje. Skończysz z PDF-em, który wygląda tak samo w Chrome, Preview, Acrobacie, na czyimś telefonie i na drukarce, która w końcu go wypluwa. Nikt po drodze nie będzie musiał obracać go sam.
+
+  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="Narzędzie Convertica do obracania PDF z siatką miniatur i kontrolą kierunku obrotu" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Dlaczego twój obrót ciągle znika</h2>
+
+  PDF-y trzymają flagę orientacji dla każdej strony wewnątrz struktury pliku. Kiedy „obracasz" w darmowym Adobe Reader, mówisz tylko czytnikowi, jak ma wyświetlić stronę na twoim ekranie w tej sesji. Flaga w pliku pozostaje nietknięta.
+
+  Trzy rzeczy dzieją się za kulisami:
+
+  <ul>
+    <li><strong>Obrót na poziomie czytnika</strong> zmienia renderowanie, nie dane. Zamknij dokument i nadpisanie znika.</li>
+    <li><strong>Obrót na poziomie pliku</strong> przepisuje wpis o orientacji strony. Każdy kolejny czytnik czyta nową wartość.</li>
+    <li><strong>„Zapisz jako" w darmowym Adobe Reader</strong> potrafi zapisać plik ponownie, ale nie utrwala obrotu z poziomu widoku. Ta funkcja jest zamknięta za płatnym Acrobatem.</li>
+  </ul>
+
+  <blockquote class="callout">Jeśli umiesz obrócić, ale zmiana znika po zamknięciu, niemal na pewno użyłeś obrotu na poziomie czytnika. Skorzystaj z narzędzia, które przepisuje orientację strony w samym pliku.</blockquote>
+
+  Zachowanie zmieniło się nieco w Adobe Reader DC od wersji 2019 i nowszych: przycisk obrotu jest teraz schowany pod Tools &gt; Organize Pages, gdzie wygląda, jakby miał utrwalić zmianę, ale nadal tego nie robi bez zapłaty. Darmowa wersja jawnie informuje w małym komunikacie w stopce, że „saving page rotations requires Acrobat Pro", czego wielu użytkowników nigdy nie czyta.
+
+  Najszybsza naprawa to przeglądarkowe narzędzie do obrotu, które rekoduje plik bezpośrednio. Możesz <a href="/pl/pdf-edit/rotate/">obrócić PDF online</a> w jakieś dziesięć sekund, niczego nie instalując.
+
+  <h2>Krok po kroku: obróć każdą stronę o 90 stopni</h2>
+
+  To właściwe podejście, gdy cały skan wyszedł bokiem albo ktoś przez przypadek wyeksportował poziomy raport jako pionowy.
+
+  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="Obrót każdej strony o 90 stopni zgodnie z ruchem wskazówek zegara w jednej akcji" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Otwórz narzędzie do obrotu i upuść do niego PDF. Pliki zostają w sesji wgrywania tylko tak długo, jak potrzeba do przetwarzania.</li>
+    <li>Wybierz kierunek. 90 stopni zgodnie z ruchem wskazówek zegara naprawia większość skanów położonych bokiem. 180 stopni obsługuje dokumenty do góry nogami z podajników, które chwyciły kartkę nie tą stroną.</li>
+    <li>Zastosuj do wszystkich stron. Narzędzie przepisuje flagę orientacji dla każdej strony w jednym przejściu.</li>
+    <li>Pobierz nowy plik. Otwórz go w dowolnym czytniku, by potwierdzić.</li>
+  </ol>
+
+  Zapisz wynik z czytelną nazwą typu <code>kontrakt_obrocony.pdf</code>, by przez pomyłkę nie nadpisać oryginału. Trzymanie oryginału to tania polisa ubezpieczeniowa, jeśli obrót poszedł w złą stronę — a obroty idące w złą stronę są najczęstszym zgłoszeniem typu „zmarnowałem dziesięć minut" od każdego, kto pierwszy raz używa narzędzia do obrotu. Dwa obroty zgodnie z ruchem wskazówek zegara równają się jednemu przeciwnemu, więc odzyskanie jest szybkie, ale tylko jeśli wciąż masz źródło.
+
+  <h2>Krok po kroku: obróć tylko wybrane strony</h2>
+
+  PDF-y o mieszanej orientacji są częste, gdy partia skanów zawiera zarówno listy w pionie, jak i poziomy arkusz, albo gdy ktoś scalił pliki z różnych źródeł.
+
+  <ol>
+    <li>Wgraj PDF. Spójrz na siatkę miniatur, by zidentyfikować, które strony są źle.</li>
+    <li>Wybierz strony po numerze. Większość narzędzi pozwala niezależnie obrócić strony 3, 7 i 9, a nie cały plik.</li>
+    <li>Ustaw kierunek obrotu na stronę, jeśli trzeba. Paragon zeskanowany do góry nogami na stronie 5 może potrzebować 180 stopni, a strona 7 — 90 zgodnie z zegarem.</li>
+    <li>Zastosuj i pobierz. Sprawdź, czy miniatury pokazują poprawioną orientację, zanim wyślesz plik dalej.</li>
+  </ol>
+
+  Jeśli często zmagasz się z obrotami strona po stronie, łatwiej <a href="/pl/pdf-organize/">zorganizować strony PDF</a> w jednym łączonym widoku, gdzie możesz obracać, usuwać i przestawiać przed eksportem.
+
+  Skrót klawiszowy wart poznania w naszym narzędziu (i większości przeglądarkowych): kiedy miniatura ma fokus, klawisze nawiasów kwadratowych często ją obracają. Prawy nawias zgodnie z zegarem, lewy przeciwnie. Niezuniwersalny we wszystkich narzędziach, ale wystarczająco częsty, by spróbować przed sięgnięciem po mysz.
+
+  <h2>Częste scenariusze</h2>
+
+  <h3>Zeskanowane paragony bokiem</h3>
+
+  Skanery płaskie i aplikacje aparatu telefonu często łapią małe paragony w złej orientacji. Obrót o 90 stopni zgodnie z zegarem zwykle je naprawia. Jeśli skanujesz stos o mieszanych orientacjach, zrób je naraz i obracaj per strona, zamiast przeskanowywać. Paragony termiczne (te, które blakną) są szczególnie podatne na wyjście pod 180 stopni, bo często stosuje się je drukiem do dołu dla ochrony.
+
+  <h3>Zdjęcia z telefonu skonwertowane do PDF</h3>
+
+  iOS i Android czasem kodują orientację zdjęcia w metadanych EXIF, których konwerter PDF nie czyta. Wynik to pionowe zdjęcie zapisane jako poziomy PDF. Obrót na poziomie pliku jest najczystszą naprawą. Warto wiedzieć: zrobiło się to wyraźnie gorsze koło iOS 14, kiedy Apple zmienił domyślny format zdjęć z JPEG na HEIC. Starsze narzędzia PDF, które zdejmują tagi orientacji HEIC podczas konwersji, produkują strony bokiem za każdym razem. Ustawienie aparatu z powrotem na „Most Compatible" przed strzelaniem rozwiązuje problem u źródła.
+
+  <h3>Mieszane raporty pionowe i poziome</h3>
+
+  Raporty roczne i pitch decki często łączą pionowe strony tekstu z poziomymi wykresami. Jeśli konwerter wymusił wszystko do pionu, możesz potrzebować obrócić strony z wykresami o 90 stopni, by czytały się dobrze przy przewijaniu albo druku poziomym. Decki inwestorskie zbudowane w PowerPoincie i wyeksportowane do PDF są częstym sprawcą; ścieżka „Drukuj do PDF" w PowerPoincie traktuje cały plik jako jedną orientację, a nie per slajd.
+
+  <h3>Formularze otrzymane jako faksy</h3>
+
+  Wiele formularzy medycznych i prawnych wciąż przychodzi faksem, co znaczy, że przeszły przez drukarkę, która mogła obrócić stronę, by zmieściła się na papierze. Blok podpisu kończący się na górze to wskazówka — obróć o 180, zapisz, wyślij z powrotem tym samym faksem, jeśli musisz.
+
+  <h2>Weryfikacja, że obrót się utrwalił</h2>
+
+  Zanim wyślesz plik, zrób 30-sekundową kontrolę zdrowego rozsądku:
+
+  <ul>
+    <li>Otwórz obrócony PDF w czytniku, którego nie używałeś do obrotu. Chrome, Preview na macOS i Edge czytają plik inaczej niż Acrobat.</li>
+    <li>Wyślij plik mailem do siebie i otwórz załącznik z telefonu. Czytniki mobilne respektują flagę orientacji na poziomie pliku i od razu pokażą, czy zmiana jest realna.</li>
+    <li>Zrób podgląd wydruku. Podgląd odzwierciedla orientację pliku, nie nadpisanie czytnika, więc podgląd bokiem oznacza, że obrót się nie zapisał.</li>
+    <li>Sprawdź panel miniatur w menedżerze plików. Zarówno Eksplorator Windows, jak i Finder macOS pokazują orientację z pliku w panelu podglądu. Jeśli miniatura tam zgadza się z oczekiwaniami, obrót został utrwalony.</li>
+  </ul>
+
+  Jeśli plik wygląda dobrze w jednym czytniku, a źle w innym, obrót był na poziomie czytnika. Puść plik ponownie przez narzędzie, które utrwala go na dysku.
+
+  <h2>Wskazówki do obrotu masowego</h2>
+
+  Kiedy zaraz będziesz łączyć kilka PDF-ów, popraw orientacje <strong>przed</strong> scaleniem. Inaczej będziesz musiał szukać obróconych stron w 200-stronicowej paczce, co jest dużo wolniejsze niż naprawa każdego pliku źródłowego osobno.
+
+  Odwrotna rada dotyczy skanów prosto z podajnika dwustronnego. Jeśli co druga strona wyszła do góry nogami, bo skaner odwrócił tył nie tak, najpierw obróć, a potem <a href="/pl/pdf-organize/merge/">scal je w jeden plik</a>. Oszczędzisz krok względem scalania i potem próby obracania co drugiej strony w połączonym PDF.
+
+  Jeszcze jedno: obrót nie zmienia podstawowych danych obrazu, tylko wpis o orientacji. Więc nie tracisz jakości, a rozmiar pliku zostaje praktycznie taki sam (plus-minus kilka bajtów na przepisane metadane). To czyni obrót bezpiecznym dla załączników sądowych i plików dowodowych, gdzie integralność strumienia bitów ma znaczenie — hash danych się zmieni, bo zmieniły się metadane, ale treść stron jest bajt-w-bajt identyczna.
+
+  Pułapka sterownika druku warta uwagi: niektóre korporacyjne drukarki ignorują flagę orientacji PDF i używają własnej logiki auto-obrotu opartej na najdłuższym ciągu tekstu. Jeśli twój obrócony PDF drukuje się bokiem z biurowej Konici albo Xeroxa, drukarka cię ogranicza. Sprawdź w oknie druku opcję „Auto-rotate" albo „Orientation: From file" i przełącz ją na ręczną.
+
+  <h2>FAQ</h2>
+
+  <h3>Dlaczego mój PDF wygląda dobrze w Chrome, ale bokiem w Adobe?</h3>
+  <p>Chrome czasem auto-koryguje orientację na podstawie heurystyk kierunku tekstu, podczas gdy Adobe respektuje dosłownie flagę orientacji w pliku. Jeśli oba czytniki się nie zgadzają, flaga z poziomu pliku jest zła, choć Chrome to ukrywa. Obróć plik prawidłowo, by oba czytniki się zgadzały.</p>
+
+  <h3>Czy mogę obrócić tylko jedną stronę w wielostronicowym PDF?</h3>
+  <p>Tak. Użyj narzędzia, które pozwala wybrać strony pojedynczo, albo otwórz plik w widoku organizacji stron. Wybierz strony do obrotu, ustaw kierunek na stronę i wyeksportuj. Strony, których nie zaznaczyłeś, zostają nietknięte.</p>
+
+  <h3>Czy obrót zmniejszy jakość PDF?</h3>
+  <p>Nie. Obrót zmienia tylko wpis o orientacji w metadanych pliku. Dane obrazu i tekstu nie są ponownie kodowane, więc nie ma utraty jakości, a rozmiar pliku jest praktycznie nienaruszony.</p>
+
+  <h3>Dlaczego mój obrót nie zapisuje się w darmowym Adobe Reader?</h3>
+  <p>Darmowy Adobe Reader obsługuje wyłącznie obrót na poziomie czytnika. Zapisanie pliku nie utrwala obrotu na dysku. Trwały obrót to funkcja płatnego Acrobata albo skorzystanie z darmowego narzędzia przeglądarkowego, które przepisuje flagę orientacji bezpośrednio.</p>
+
+  <h3>Czy mogę obrócić PDF chroniony hasłem?</h3>
+  <p>Najpierw musisz podać hasło. Większość narzędzi online prosi o nie po wgraniu zaszyfrowanego pliku. Bez hasła nie możesz legalnie zmodyfikować pliku. Jeśli to twój dokument i zapomniałeś hasła, to inny (i niefortunny) problem do rozwiązania.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Przestań walczyć z czytnikiem. Otwórz <a href="/pl/pdf-edit/rotate/">narzędzie do obrotu PDF</a> i utrwal orientację w pliku jednym przejściem albo przejrzyj <a href="/pl/all-tools/">wszystkie narzędzia PDF</a>, jeśli przy okazji potrzebujesz też scalić albo przestawić strony.</p>

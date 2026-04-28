@@ -1,0 +1,138 @@
+slug: split-bank-statement-pdf-by-page
+title_pl: "Jak podzielić wyciąg bankowy PDF na pliki miesięczne lub po transakcji"
+meta_title_pl: "Podziel wyciąg bankowy PDF po miesiącach"
+meta_description_pl: "Masz 60-stronicowy roczny wyciąg? Rozdziel go na PDF-y miesięczne do podatków, kredytu czy kategoryzacji wydatków, z listą kontrolną prywatności przed wysłaniem."
+meta_keywords_pl: "podziel wyciąg bankowy pdf, rozdziel strony pdf, podział pdf po miesiącach, wyciągnij strony z wyciągu, splitter pdf darmowy"
+excerpt_pl: "Banki lubią dostarczać jeden wielki PDF za rok. Podzielenie go na miesięczne kawałki dramatycznie ułatwia rozliczenie podatkowe, papierologię kredytową i kategoryzację wydatków."
+content_pl: |
+  Większość banków pozwala pobrać „cały rok" jako jeden PDF. Wygodne dla nich, niewygodne dla ciebie w momencie, gdy doradca kredytowy prosi „o ostatnie trzy miesiące" albo księgowy potrzebuje I kwartału oddzielonego od II. Ponowne wgrywanie 60-stronicowego pliku za każdym razem ujawnia więcej szczegółów finansowych, niż chcesz pokazywać, i robi z kategoryzacji transakcji w arkuszu mękę — będziesz przewijać dziewięć miesięcy, których nie potrzebujesz, by zobaczyć cokolwiek, co cię interesuje.
+
+  Podzielenie pliku raz, na właściwie nazwane PDF-y miesięczne, rozwiązuje oba problemy. Ten poradnik pokazuje, kiedy <a href="/pl/pdf-organize/split/">podzielić PDF online</a> według zakresu stron, a kiedy wyciągnąć konkretne strony, kroki ochrony prywatności pomijane przez większość tutoriali oraz konwencję nazewnictwa, dzięki której wynik znajdziesz po roku.
+
+  <figure><img src="/static/blog/images/tool-split.jpg" alt="Narzędzie Convertica dzielące wyciąg bankowy PDF na pliki miesięczne" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Po co w ogóle dzielić wyciąg bankowy</h2>
+
+  Dzielenie nie jest tylko schludnym porządkowaniem. Są konkretne momenty, w których oszczędza czas albo chroni informacje:
+
+  <ul>
+    <li><strong>Rozliczenia podatkowe.</strong> Urząd skarbowy oraz większość krajowych organów podatkowych oczekuje wyciągów kwartalnie lub miesięcznie, zwłaszcza dla VAT i samozatrudnienia. PIT-y rozliczane co miesiąc wymagają miesięcznych sum; wysłanie roku zmusza księgowego, by je odtworzył.</li>
+    <li><strong>Wnioski kredytowe i pożyczkowe.</strong> Banki niemal zawsze proszą o ostatnie trzy lub sześć miesięcy. Wysłanie pełnego roku to nadmiarowe ujawnienie, a analitycy potrafią użyć informacji, o które nie pytano, żeby uzasadnić swoje obiekcje.</li>
+    <li><strong>Kategoryzacja wydatków.</strong> Praca po jednym miesiącu w arkuszu jest znacznie mniej podatna na błędy niż przesuwanie się przez 48 stron.</li>
+    <li><strong>Ukierunkowane udostępnianie.</strong> Twojego księgowego interesują tylko miesiące, które uzgadnia. Twojej kadrowej nie musi widzieć grudnia, jeśli pytanie dotyczy lutego.</li>
+    <li><strong>Wnioski ubezpieczeniowe.</strong> Ubezpieczyciel proszący o okres wokół konkretnego zdarzenia potrzebuje tylko tego okna, a nie całej historii finansowej.</li>
+    <li><strong>Wspólne konta przy podziale majątku.</strong> Jeśli rozdzielasz finanse z partnerem, udostępnienie tylko okresu wspólnego, a nie całego pliku, ma znaczenie prawne.</li>
+  </ul>
+
+  <blockquote class="callout">Wyciąg bankowy to jeden z najbardziej wrażliwych dokumentów w twoim życiu. Udostępniaj najmniejszy wycinek, który odpowiada na pytanie.</blockquote>
+
+  <h2>Trzy strategie podziału</h2>
+
+  Zanim cokolwiek klikniesz, zdecyduj, które podejście pasuje do twojego wyciągu:
+
+  <table>
+    <thead>
+      <tr><th>Strategia</th><th>Kiedy pasuje</th><th>Wysiłek</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Stały zakres stron</td><td>Każdy miesiąc ma dokładnie tę samą długość (np. 4 strony)</td><td>Niski</td></tr>
+      <tr><td>Po zakładkach albo granicach miesiąca</td><td>Wyciąg ma czytelne nagłówki „Marzec 2026" i nierówną liczbę stron</td><td>Średni</td></tr>
+      <tr><td>Wyciągnij konkretne strony</td><td>Potrzebujesz tylko jednego albo dwóch miesięcy z dwunastu</td><td>Najniższy</td></tr>
+    </tbody>
+  </table>
+
+  Większość detalicznych wyciągów bankowych mieści się w drugiej kategorii: liczba stron na miesiąc się różni, bo w niektórych miesiącach jest więcej transakcji. Spójrz na strony 1, 5, 9, 13, by potwierdzić wzór, zanim zatwierdzisz regułę podziału. Miesiące świąteczne (grudzień dla kont brytyjskich i amerykańskich, sierpień dla europejskich) zwykle są o dwie strony dłuższe niż średnia; styczeń i luty krótsze. Zaplanuj to.
+
+  Konta firmowe często drukują osobną stronę z podsumowaniem końca miesiąca. Zdecyduj, czy to podsumowanie należy do miesiąca, który podsumowuje (włącz je jako ostatnią stronę zakresu tego miesiąca), czy do następnego (gdzie wyciągi sprzed niego zwykle żyją w workflow odbiorcy).
+
+  <h2>Krok po kroku: podział po zakresie stron</h2>
+
+  Kiedy każdy miesiąc ma tę samą długość, to robota na 90 sekund:
+
+  <ol>
+    <li>Otwórz narzędzie do podziału w przeglądarce i wgraj wyciąg.</li>
+    <li>Wybierz <strong>podział po zakresach</strong>.</li>
+    <li>Wpisz zakresy pasujące do miesięcy: <code>1-4, 5-8, 9-12, 13-16, ...</code></li>
+    <li>Kliknij podziel. Narzędzie produkuje jeden PDF na zakres i pakuje je w ZIP.</li>
+    <li>Pobierz i rozpakuj. Każda część to osobny PDF.</li>
+    <li>Zmień nazwy części na <code>YYYY-MM_bank_ostatnie4.pdf</code> (więcej o nazewnictwie poniżej).</li>
+  </ol>
+
+  Wskazówka: jeśli pierwsza albo ostatnia strona to okładka/podsumowanie, wyklucz ją z zakresów albo podziel jako osobny jednostronicowy PDF. Wiele banków dorzuca wkładkę reklamową na końcu („nasza nowa karta kredytowa!"), która jest czystym szumem — wytnij ją, zanim w ogóle otworzysz plik.
+
+  Drobny skrót: w polu zakresu zakresy oddzielone przecinkami nie wymagają spacji, więc <code>1-4,5-8,9-12</code> działa dokładnie tak samo jak wersja ze spacjami. Szybciej się pisze, gdy przerabiasz dwanaście miesięcy naraz.
+
+  <h2>Krok po kroku: wyciągnij pojedynczy miesiąc</h2>
+
+  Kiedy potrzebujesz tylko kwietnia do wniosku kredytowego, nie dziel wszystkiego. Wyciągnij tylko te strony.
+
+  <ol>
+    <li>Otwórz wyciąg w dowolnym czytniku PDF i przewiń, by znaleźć, gdzie kwiecień zaczyna się i kończy. Zanotuj numery stron (np. 17-22).</li>
+    <li>Skorzystaj z opcji wyciągania stron w naszym edytorze, by <a href="/pl/pdf-edit/">wyciągnąć konkretne strony</a>.</li>
+    <li>Wpisz zakres, np. <code>17-22</code>.</li>
+    <li>Pobierz powstały PDF.</li>
+    <li>Zapisz z czytelną nazwą: <code>2026-04_pko_1234.pdf</code>.</li>
+  </ol>
+
+  Pozwala to uniknąć tworzenia jedenastu dodatkowych plików, których nie użyjesz, i sprawia, że tylko właściwy miesiąc opuszcza twój komputer. Jeśli kredytodawca prosi „o trzy ostatnie miesiące", zrób trzy oddzielne wyciągi i wyślij jako trzy nazwane pliki, a nie jeden zbiorczy zakres. Analitycy parsują nazwane pliki szybciej niż zakresy.
+
+  <h2>Lista kontrolna prywatności przed udostępnieniem</h2>
+
+  Podzielenie wyciągu nie czyni go automatycznie bezpiecznym do udostępnienia. Miesięczny PDF wciąż zawiera twój numer rachunku, saldo i każdą transakcję z tego okresu. Przejdź przez tę listę, zanim dołączysz go do jakiegokolwiek maila:
+
+  <figure><img src="/static/blog/images/tool-protect.jpg" alt="Narzędzie Convertica do ochrony hasłem używane przed wysyłaniem wrażliwych wyciągów" width="1280" height="800" loading="lazy"></figure>
+
+  <ul>
+    <li><strong>Wymaż niezwiązane transakcje.</strong> Jeśli kredytodawca musi widzieć tylko pensję i czynsz, zatuszuj resztę. Redakcja musi spłaszczyć PDF (zamienić piksele), a nie tylko zakryć je czarnym prostokątem, który każdy z darmowym edytorem PDF zdejmie w dziesięć sekund.</li>
+    <li><strong>Sprawdź, co jest na stronie tytułowej.</strong> Niektóre banki powtarzają pełny numer rachunku, kod sortowania i adres na każdej miesięcznej okładce. Zdecyduj, czy ten poziom szczegółowości jest potrzebny.</li>
+    <li><strong>Zamaskuj środkowe cyfry numeru rachunku.</strong> Wiele instytucji akceptuje „XXXX XXXX 1234" do weryfikacji bez pełnego ciągu.</li>
+    <li><strong>Sprawdź opisy transakcji pod kątem osobistego kontekstu.</strong> Pozycja typu „Sesja terapeutyczna - dr K." albo „Klinika zdrowia reprodukcyjnego" niesie informacje, których nie chciałeś udostępniać. Wymaż opis, nie tylko kwotę, gdy jest wrażliwy.</li>
+    <li><strong>Zaszyfruj hasłem przed wysłaniem mailem.</strong> <a href="/pl/pdf-security/protect/">Zaszyfruj wynik hasłem</a> i przekaż hasło osobnym kanałem (SMS, Signal, telefon), nigdy tym samym mailem.</li>
+  </ul>
+
+  <blockquote class="callout">Mail nie jest domyślnie szyfrowany. Hasło na PDF to różnica między „prywatne" a „publiczne, jeśli zostanie przechwycone".</blockquote>
+
+  Warto wiedzieć: narzędzie „redakcji" Adobe Acrobat naprawdę usuwa tekst pod czarnym prostokątem. Podobnie wyglądające narzędzie w darmowym Foxit Reader tylko go zamalowuje — tekst pod spodem wciąż da się wyciągnąć prostym kopiowaniem. Wielu ludzi przekonało się o tym niezręczną drogą, gdy ich „zredagowana" pensja okazała się zwykłym tekstem pod prostokątem. Jeśli nie masz pewności, że twoje narzędzie naprawdę usuwa dane, skopiuj zredagowany blok do edytora tekstu i sprawdź.
+
+  <h2>Nazewnictwo plików wynikowych</h2>
+
+  Nazwa pliku to to, co zobaczysz, gdy plik wypłynie w wyszukiwaniu za rok. Użyj formatu, który sortuje się sam:
+
+  <pre><code>YYYY-MM_bank_ostatnie4.pdf
+
+  2026-01_pko_4567.pdf
+  2026-02_pko_4567.pdf
+  2026-03_pko_4567.pdf
+  2026-04_pko_4567.pdf</code></pre>
+
+  Dlaczego to działa:
+
+  <ul>
+    <li>ISO rok-miesiąc sortuje się czysto w każdym menedżerze plików i chmurowym dysku.</li>
+    <li>Nazwa banku w środku pomaga, gdy masz konta w więcej niż jednej instytucji.</li>
+    <li>Cztery ostatnie cyfry rachunku pozwalają odróżnić konta wspólne, firmowe i osobiste bez otwierania niczego.</li>
+    <li>Bez spacji, ukośników, cudzysłowów — bezpieczne dla systemów operacyjnych i narzędzi synchronizacji w chmurze.</li>
+  </ul>
+
+  Jeśli kiedyś będziesz musiał połączyć miesiące do rozliczenia rocznego, możesz <a href="/pl/pdf-organize/merge/">scalić je później z powrotem</a> w jeden plik. Nazwanie wyniku odwrotnie (np. <code>2026_pko_4567_caly-rok.pdf</code>) trzyma go posortowanym obok miesięcznych wycinków w listingu folderu.
+
+  <h2>FAQ</h2>
+
+  <h3>Czy bezpiecznie wgrać wyciąg bankowy do online'owego splittera?</h3>
+  <p>Korzystaj z narzędzia, które przetwarza pliki w sesji przeglądarki i kasuje je krótko po. Convertica usuwa pliki po krótkim oknie retencji i nigdy ich nie udostępnia. Jeśli wciąż nie czujesz się komfortowo, wymaż lokalnie najwrażliwsze pola przed wgraniem albo użyj narzędzia desktopowego dla najwrażliwszych plików.</p>
+
+  <h3>Czy mogę podzielić wyciąg bankowy chroniony hasłem?</h3>
+  <p>Najpierw musisz odblokować go swoim hasłem, podzielić, a potem opcjonalnie zaszyfrować każdą część ponownie. Większość banków wystawia wyciągi z hasłem opartym na dacie urodzenia albo ostatnich cyfrach rachunku; dokładny format jest zwykle wydrukowany w pakiecie powitalnym albo dostępny na stronie pomocy banku „jak otworzyć wyciąg".</p>
+
+  <h3>Jak podzielić po miesiącach, jeśli nie ma zakładek?</h3>
+  <p>Otwórz plik raz i zanotuj stronę, gdzie zaczyna się każdy miesiąc. Potem użyj podziału po zakresie z konkretnymi numerami stron. Zajmuje to minutę za pierwszym razem i można to powtórzyć dla każdego przyszłego wyciągu z tego samego banku, jeśli układ pozostanie spójny.</p>
+
+  <h3>Czy podział obniża jakość pliku?</h3>
+  <p>Nie. Podział to operacja strukturalna: kopiuje te same bajty stron do nowego pliku. Nie ma rekompresji, rasteryzacji ani utraty jakości względem źródła.</p>
+
+  <h3>Czy bank pozna, że podzieliłeś jego wyciąg?</h3>
+  <p>Bank nie pozna, bo podział dzieje się całkowicie po twojej stronie. Odbiorca może zauważyć po brakujących stronach albo numerach, jeśli wyciągasz tylko wycinek — dlatego należy wprost napisać „kwiecień, strony 17-22", wysyłając częściowy wyciąg. Analityk nie odrzuci ci wniosku za częściowe złożenie, ale odrzuci za takie, które wygląda na wprowadzające w błąd.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Jedna dziesięciominutowa sesja dziś oszczędzi ci roku łowienia w 60-stronicowym pliku. Podziel wyciąg, nazwij części prawidłowo, a podziękujesz sobie w czasie rozliczeń. <a href="/pl/pdf-organize/split/">Otwórz narzędzie do podziału PDF →</a></p>

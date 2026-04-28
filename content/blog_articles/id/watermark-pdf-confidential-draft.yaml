@@ -1,0 +1,147 @@
+slug: watermark-pdf-confidential-draft
+title_id: "Cara Menambahkan Watermark 'CONFIDENTIAL' atau 'DRAFT' pada PDF Sebelum Berbagi"
+meta_title_id: "Tambahkan Watermark Confidential atau Draft pada PDF Gratis"
+meta_description_id: "Stempel PDF dengan CONFIDENTIAL, DRAFT, atau nama perusahaan Anda secara diagonal di setiap halaman. Alat browser gratis, dengan opacity dan rotasi yang terlihat profesional."
+meta_keywords_id: "tambah watermark pdf, watermark confidential pdf, watermark draft, stempel pdf, watermark pdf gratis"
+excerpt_id: "Mengirim draft kontrak atau proposal sensitif? Watermark diagonal di setiap halaman melindungi Anda secara hukum dan visual, tetapi hanya jika Anda mengaturnya dengan benar."
+content_id: |
+  Watermark adalah bentuk pagar pengaman yang lunak. Tidak akan menghentikan aktor jahat yang bertekad, tetapi melakukan tiga hal dengan kompeten: memberi tahu pembaca dokumen belum final, membuat screen-grabbing atau fotokopi jelas dapat dilacak, dan menghalangi refleks "biar saya teruskan ini" yang santai. Untuk draft kontrak, proposal internal, atau proof desain, itu biasanya persis level friksi yang Anda inginkan.
+
+  Panduan ini menelusuri menambahkan watermark CONFIDENTIAL atau DRAFT ke setiap halaman PDF menggunakan alat <a href="/id/pdf-edit/add-watermark/">tambah watermark ke PDF</a> Convertica, dengan pengaturan yang terlihat profesional dalam praktik. Juga membahas bagian yang dilewatkan sebagian besar artikel: watermark adalah penangkal, bukan enkripsi, dan kapan menggabungkannya dengan kunci sungguhan.
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Alat watermark Convertica dengan kontrol teks, opacity, dan rotasi" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Kapan Anda benar-benar membutuhkan watermark</h2>
+
+  Watermark menandakan status. Gunakan ketika status dokumen adalah bagian dari maknanya:
+
+  <ul>
+    <li><strong>Draft kontrak.</strong> Tanda <code>DRAFT</code> di setiap halaman mencegah versi awal disalahkira sebagai final yang ditandatangani. (Banyak tim hukum punya cerita tentang "DRAFT" yang dikirim ke procurement, ditandatangani tanpa langkah penghapusan watermark, dan berakhir sebagai perjanjian operatif.)</li>
+    <li><strong>Material yang dilindungi NDA.</strong> <code>CONFIDENTIAL</code> memperkuat sikap hukum dokumen dan membuat screenshot bocor mana pun memberatkan diri sendiri.</li>
+    <li><strong>Material hanya internal.</strong> <code>INTERNAL USE ONLY</code> pada memo dewan atau deck strategi mengurangi kemungkinan penerusan tidak sengaja.</li>
+    <li><strong>Proof fotografer dan desainer.</strong> Teks diagonal di setiap frame preview menghalangi klien menggunakan deliverable sebelum pembayaran.</li>
+    <li><strong>Laporan pra-persetujuan.</strong> <code>PENDING REVIEW</code> menghentikan draft dikutip sebagai resmi.</li>
+    <li><strong>Draft litigasi tahap discovery.</strong> Menandai pleading <code>DRAFT - ATTORNEY WORK PRODUCT</code> memberi mereka status yang lebih jelas jika tidak sengaja meninggalkan saluran istimewa.</li>
+  </ul>
+
+  <blockquote class="callout">Jika pembaca dapat salah mengira file Anda adalah final, watermark milik di atasnya.</blockquote>
+
+  <h2>Watermark teks vs gambar</h2>
+
+  Anda memiliki dua format untuk dipilih, kadang keduanya:
+
+  <table>
+    <thead>
+      <tr><th>Jenis</th><th>Terbaik untuk</th><th>Kompromi</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Watermark teks</td><td>Kata status: DRAFT, CONFIDENTIAL, INTERNAL</td><td>Polos, tetapi tidak salah lagi dan ringan</td></tr>
+      <tr><td>Watermark gambar (logo)</td><td>Branding kepemilikan: logo perusahaan pada proof</td><td>Terlihat poles, meningkatkan ukuran file, butuh PNG transparan bersih</td></tr>
+      <tr><td>Keduanya digabung</td><td>Pekerjaan klien sensitif: logo plus DRAFT</td><td>Lebih banyak setup, sinyal terkuat</td></tr>
+    </tbody>
+  </table>
+
+  Teks cukup ketika pesan bersifat prosedural ("ini bukan versi final"). Logo tepat ketika pesan adalah kepemilikan ("karya seni ini milik kami sampai Anda membayar invoice"). Menggabungkannya berlebihan untuk draft sehari-hari tetapi standar untuk deliverable desain dan fotografi.
+
+  Jebakan spesifik pada file logo: jika logo PNG Anda diekspor dengan latar persegi panjang putih alih-alih transparansi alpha sejati, watermark akan duduk di dalam kotak putih terlihat di setiap halaman, yang terlihat lebih buruk daripada tanpa watermark sama sekali. Buka PNG di image viewer mana pun yang menampilkan transparansi (Preview di macOS, tampilan "tile" IrfanView di Windows) dan konfirmasi ada pola checkerboard di sekitar logo, bukan putih.
+
+  <h2>Langkah demi langkah: tambahkan watermark teks</h2>
+
+  Pengaturan yang terlihat profesional dalam praktik:
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Watermark CONFIDENTIAL diagonal diterapkan di setiap halaman PDF" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Buka alat <a href="/id/pdf-edit/add-watermark/">tambah watermark ke PDF</a> dan unggah file Anda.</li>
+    <li>Beralih jenis watermark ke <strong>Teks</strong>.</li>
+    <li>Ketik teks watermark. Gunakan huruf kapital: <code>DRAFT</code>, <code>CONFIDENTIAL</code>, atau nama perusahaan Anda.</li>
+    <li>Atur font ke sans-serif (Arial atau Helvetica) pada ukuran besar: 60-80 pt untuk A4.</li>
+    <li>Atur warna ke abu-abu menengah (sekitar #888) agar watermark terbaca pada halaman terang tanpa membombardir gambar gelap.</li>
+    <li>Atur opacity ke <strong>30-40%</strong>. Di bawah 25% menjadi sulit dilihat saat dicetak, di atas 50% mengganggu teks dasar.</li>
+    <li>Atur rotasi ke <strong>45 derajat</strong> diagonal. Ini menutupi lebih banyak area halaman daripada teks horizontal dan adalah konvensi mapan untuk tanda kerahasiaan.</li>
+    <li>Terapkan ke <strong>semua halaman</strong>, bukan hanya yang pertama.</li>
+    <li>Preview hasil. Jika watermark duduk di belakang teks, Anda selesai. Jika menutupi baris tanda tangan kritis, turunkan opacity ke 25%.</li>
+    <li>Unduh.</li>
+  </ol>
+
+  Patut pemeriksaan cepat setelah unduh: buka file di viewer yang kemungkinan akan digunakan penerima Anda, bukan hanya yang Anda gunakan untuk watermark. Beberapa versi lama Foxit dan Nitro Reader merender watermark sedikit lebih besar daripada Acrobat, yang dapat mendorong teks diagonal melewati tepi halaman. Jika penerima Anda di mesin perusahaan menjalankan pembaca PDF lama, itulah versi yang menentukan apakah watermark terlihat benar.
+
+  <h2>Praktik terbaik untuk bobot hukum</h2>
+
+  Watermark memiliki bobot lebih dalam sengketa ketika konsisten dan terlihat. Aturan praktis:
+
+  <ul>
+    <li><strong>Opacity 30-40%.</strong> Terbaca di latar mana pun, masih jelas overlay.</li>
+    <li><strong>Penempatan diagonal.</strong> Menutupi lebih banyak area halaman daripada strip atas atau bawah dan bertahan dari cropping screenshot.</li>
+    <li><strong>Terapkan ke setiap halaman.</strong> Watermark hanya di halaman 1 mengundang screenshot halaman parsial yang terlihat tidak ditandai.</li>
+    <li><strong>Simpan master tanpa watermark.</strong> Selalu simpan asli secara terpisah. Ketika kesepakatan tutup dan dokumen menjadi final, Anda menghasilkan versi bersih, bukan pekerjaan penghapusan watermark.</li>
+    <li><strong>Standardisasi kata-kata.</strong> Pilih satu frase ("DRAFT - NOT FOR EXECUTION" atau "CONFIDENTIAL") dan gunakan secara konsisten. Tanda yang tidak konsisten terlihat ad hoc dan melemahkan sinyal.</li>
+    <li><strong>Beri tanggal pada watermark.</strong> "DRAFT - 2026-04-28" membuat jelas revisi mana yang dilihat seseorang dan menghalangi argumen "tetapi versi yang saya lihat bilang sesuatu yang lain".</li>
+    <li><strong>Jangan campur kapitalisasi.</strong> "Confidential" dan "CONFIDENTIAL" pada set dokumen yang sama terlihat seperti yang satu adalah draft dari yang lain.</li>
+  </ul>
+
+  Untuk dokumen multi-seksi, Anda dapat <a href="/id/pdf-organize/merge/">menggabungkan beberapa halaman draft terlebih dahulu</a> menjadi satu file, lalu watermark sekali di seluruh bundel - output yang lebih bersih daripada watermark setiap seksi terpisah.
+
+  <h2>Watermark bukan enkripsi</h2>
+
+  Ini bagian yang dilewatkan sebagian besar artikel "cara watermark PDF" karena canggung untuk upsell. Watermark adalah penangkal terlihat. Tidak:
+
+  <ul>
+    <li>Mencegah penerima menyalin teks keluar dari PDF.</li>
+    <li>Menghentikan screenshot, termasuk screenshot watermark-dan-semua dipotong satu paragraf.</li>
+    <li>Mengenkripsi konten file.</li>
+    <li>Menghentikan adversary bertekad dengan software image editing dari menghapusnya (lambat, tidak sempurna).</li>
+    <li>Bertahan dari pass OCR berkualitas tinggi yang mengetik ulang body teks ke dokumen baru.</li>
+  </ul>
+
+  Yang dilakukannya adalah mengatur konteks sosial dan hukum. Draft tanpa watermark yang bocor secara plausible tidak bersalah. Draft dengan stempel <code>CONFIDENTIAL</code> di setiap halaman yang bocor jelas-jelas pelanggaran NDA mana pun yang ditandatangani penerima, dan perbedaan itu penting ketika pengacara menimbang ganti rugi.
+
+  Untuk material yang benar-benar sensitif, gabungkan watermark dengan perlindungan nyata: <a href="/id/pdf-security/protect/">lindungi dokumen dengan kata sandi juga</a> dengan enkripsi AES-256, dan bagikan kata sandi melalui saluran yang berbeda dari file. Watermark plus kata sandi adalah level pertahanan yang diharapkan sebagian besar tim hukum dan keuangan untuk material dewan dan perjanjian komersial yang belum ditandatangani. (Saya berpendapat bahkan pada level ini, Anda mempercayai penerima. Tidak ada kontrol teknis yang mencegah orang dalam yang bertekad menyalin layar dengan kamera ponsel. Watermark plus kata sandi adalah "iktikad baik plus penangkal", bukan "tahan-rusak".)
+
+  <table>
+    <thead>
+      <tr><th>Level risiko</th><th>Perlindungan yang direkomendasikan</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Draft internal beredar ke tim kecil</td><td>Watermark saja</td></tr>
+      <tr><td>Draft eksternal ke pihak lawan di bawah NDA</td><td>Watermark + kata sandi</td></tr>
+      <tr><td>Paket dewan, M&A belum diumumkan, data payroll</td><td>Watermark + kata sandi + saluran aman</td></tr>
+      <tr><td>Selebaran menghadap publik</td><td>Tidak butuh watermark</td></tr>
+      <tr><td>Proof yang dipersonalisasi untuk satu penerima yang dinamai</td><td>Watermark dengan nama mereka + kata sandi</td></tr>
+    </tbody>
+  </table>
+
+  Baris terakhir itu patut catatan. Jika Anda watermark "Confidential - prepared for John Smith, Acme Corp" alih-alih "CONFIDENTIAL" generik, kebocoran apa pun dari salinan itu dapat dilacak ke penerima tertentu. Fotografer dan ruang berita pra-publikasi telah menggunakan teknik ini selama puluhan tahun. Memakan tambahan tiga puluh detik per penerima dan secara dramatis menaikkan biaya sosial kebocoran.
+
+  <h2>Menghapus watermark Anda sendiri kemudian</h2>
+
+  Ketika kesepakatan menjadi final, Anda butuh file bersih. Ada persis satu cara baik untuk mendapatkannya: ekspor ulang dari sumber.
+
+  <ol>
+    <li>Simpan master tanpa watermark dari sebelum Anda menjalankan alat watermark.</li>
+    <li>Ketika dokumen disetujui, watermark master dengan tanda <code>FINAL</code> atau hapus watermark sepenuhnya, tergantung konvensi.</li>
+    <li>Distribusikan versi bersih baru, bukan versi "watermark dihapus" dari draft.</li>
+  </ol>
+
+  Kami sengaja tidak menawarkan alat untuk menghapus watermark dari dokumen yang bukan milik Anda. Penghapusan watermark pada PDF pihak ketiga hampir selalu melanggar hak cipta, NDA, atau ketentuan pengirim asli, dan kami tidak ingin membuatnya lebih mudah.
+
+  <h2>FAQ</h2>
+
+  <h3>Opacity apa yang harus saya gunakan untuk watermark CONFIDENTIAL?</h3>
+  <p>30-40% adalah sweet spot. Terbaca jelas di latar terang dan bertahan dari pencetakan hitam-putih tanpa mengaburkan teks dasar. Di bawah 25% menjadi tak terlihat di halaman sibuk; di atas 50% mengganggu pembacaan.</p>
+
+  <h3>Bisakah saya menambahkan watermark hanya pada halaman tertentu?</h3>
+  <p>Bisa, dan ada alasan yang valid (halaman cover dikecualikan, lampiran tidak ditandai). Namun, watermark parsial lebih mudah dikalahkan dengan screenshot, jadi terapkan ke setiap halaman kecuali Anda punya alasan layout spesifik.</p>
+
+  <h3>Apakah watermark akan muncul saat dicetak?</h3>
+  <p>Ya. Watermark adalah bagian dari konten halaman, bukan overlay viewer, jadi mencetak persis seperti yang muncul di layar. Untuk pencetakan hitam-putih, watermark abu-abu menengah dirender sedikit lebih gelap dari yang diharapkan; turunkan opacity 5% jika Anda berniat mencetak. Beberapa print driver juga memiliki opsi "skip watermarks" yang diaktifkan secara default pada printer enterprise tertentu - uji sebelum jalan cetak besar.</p>
+
+  <h3>Apakah watermark mencegah penyalinan PDF?</h3>
+  <p>Tidak. Watermark hanyalah penangkal visual. Untuk membatasi penyalinan atau pencetakan, gabungkan watermark dengan kata sandi permissions yang menonaktifkan tindakan tersebut di viewer yang patuh.</p>
+
+  <h3>Bisakah saya menambahkan gambar logo alih-alih teks?</h3>
+  <p>Bisa. Gunakan PNG latar transparan untuk hasil terbersih. Tempatkan secara diagonal pada opacity 30-40% untuk alasan cakupan yang sama dengan teks. Watermark logo adalah praktik standar untuk proof desain dan fotografi.</p>
+
+  <h2>Coba sekarang</h2>
+
+  <p>Stempel draft, proposal, atau proof Anda dengan tanda status yang jelas dalam waktu kurang dari semenit dan kirim tanpa menebak-nebak apakah penerima akan memperlakukannya sebagai final. <a href="/id/pdf-edit/add-watermark/">Buka alat watermark →</a> Jelajahi sisa <a href="/id/all-tools/">semua alat pengeditan PDF</a> sambil di sini.</p>

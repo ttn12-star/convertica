@@ -1,0 +1,110 @@
+slug: pdf-to-word-vs-ocr-which-to-use
+title_hi: "PDF to Word vs OCR: कौन सा Tool Use करें (और यह Matter क्यों करता है)"
+meta_title_hi: "PDF to Word vs OCR - Decision Guide | Convertica"
+meta_description_hi: "गलत conversion path choose करने से आपको blank Word doc या unreadable garbled text मिलता है। यहाँ है कैसे जानें कि आपके PDF को actually कौन सा tool चाहिए।"
+meta_keywords_hi: "pdf to word vs ocr, ocr or convert, scanned pdf vs digital pdf, pdf conversion methods, ocr कब use करें"
+excerpt_hi: "Standard PDF-to-Word conversion scanned documents पर silently fail होती है, आपको blank file देती है और कोई error message नहीं। Difference जानना confused troubleshooting का एक घंटा बचाता है।"
+content_hi: |
+  दो PDFs जो screen पर identical दिखते हैं convert करने के लिए completely different tools की ज़रूरत हो सकती है। एक Word में text, fonts, और tables लगभग intact के साथ open होता है। दूसरा zero selectable text के साथ single page-sized image के रूप में open होता है। Difference तब तक invisible है जब तक आप result use करने की कोशिश न करें, और ज़्यादातर लोग इसे गलत tool पर बीस minutes waste करने के बाद ही सीखते हैं।
+
+  यह guide उस lesson का short version है। End तक आप जानेंगे कि आप किस तरह का PDF देख रहे हैं identify कैसे करें, इसे कौन सा conversion path चाहिए, और जब आप गलत pick करें तो क्या करें।
+
+  <h2>दो तरह के PDF जो आपको मिलेंगे</h2>
+  <p>दुनिया में हर PDF तीन buckets में से एक में आता है: digital, scanned, या hybrid (दोनों का mix)।</p>
+  <h3>Digital PDFs</h3>
+  <p>ये directly digital source से बने होते हैं - Word file, web page, InDesign export, accounting tool। अंदर text real text है: characters, fonts, paragraph structures। आप sentence select कर सकते हैं, copy कर सकते हैं, chat में paste कर सकते हैं। ये usually small होते हैं, किसी भी zoom level पर crisply render होते हैं, और standard converters के साथ well behave करते हैं।</p>
+  <h3>Scanned PDFs</h3>
+  <p>ये paper की photographs हैं। किसी ने pages को scanner से fed किया, या phone से snap किया, और images को PDF wrapper के अंदर save किया। File में कोई actual text नहीं है - बस text की pictures। अपने cursor से "text" select करना rectangle highlight करता है, letters नहीं। File sizes usually larger होते हैं क्योंकि images characters से ज़्यादा bytes लेती हैं।</p>
+  <h3>Hybrid PDFs</h3>
+  <p>ये real workflows में common हैं: एक digital contract template जिसमें scanned signature page appended है, या एक merged file जहाँ कुछ pages Word से और कुछ copier से आए। हर page अपना type हो सकता है।</p>
+
+  <h2>दो seconds में कैसे बताएँ कि कौन सा type है</h2>
+  <p>PDF open करें और अपने cursor से एक word select करने की कोशिश करें। तीन possible outcomes हैं:</p>
+  <ul>
+    <li><strong>Word letter by letter highlight होता है.</strong> Digital PDF।</li>
+    <li><strong>पूरा page (या एक बड़ा block) एक shape के रूप में highlight होता है, जैसे image पर marquee dragging।</strong> Scanned PDF।</li>
+    <li><strong>कुछ pages option 1 की तरह behave करते हैं और कुछ option 2 की तरह।</strong> Hybrid।</li>
+  </ul>
+  <p>वो two-second test किसी भी feature comparison से ज़्यादा time बचाएगा।</p>
+
+  <h2>Standard PDF-to-Word: कब काम करता है</h2>
+  <p>Digital PDFs के लिए, standard <a href="/hi/pdf-to-word/">PDF को Word में convert</a> path right choice है। Tool embedded text, fonts, और structural cues read करता है, और उन्हें .docx file के अंदर rebuild करता है। Expect करें:</p>
+  <ul>
+    <li>Text पर खुद Near-100% accuracy - characters already digital हैं, इसलिए कुछ guess नहीं करना।</li>
+    <li>Preserved formatting: fonts, headings, bold/italic, lists, basic tables।</li>
+    <li>Images लगभग वहाँ placed जहाँ source में appear हुई थीं।</li>
+    <li>Speed: 50-page report seconds में convert होती है।</li>
+  </ul>
+  <p>Remaining 1-2% issues usually layout-related होते हैं: एक footer जो paragraph में pull हुआ, एक two-column page जो एक long column के रूप में आया, एक complex table जो थोड़ा drift हुआ। Easy cleanup, rewrite नहीं।</p>
+
+  <h2>OCR-powered conversion: कब चाहिए</h2>
+  <p>Scanned PDFs के लिए, standard conversion appear तो होगा work होगा लेकिन ऐसा Word document produce करेगा जिसमें कोई text नहीं। Tool को extract करने के लिए कोई text नहीं मिलता क्योंकि कुछ है ही नहीं - बस images. आपको OCR चाहिए, optical character recognition, जो images देखता है और letter shapes recognise करके text reconstruct करता है।</p>
+  <p>Cases जहाँ OCR mandatory है:</p>
+  <ul>
+    <li>कोई भी document जो scanner या copier से निकला।</li>
+    <li>Phone से ली गई pages की photos।</li>
+    <li>Faxes (हाँ, healthcare और legal में अब भी common)।</li>
+    <li>लगभग 2005 से पहले के पुराने PDFs - कई default scanned थे।</li>
+    <li>Government forms जो printed-then-scanned documents के रूप में received हुए।</li>
+  </ul>
+  <p>OCR-powered conversion standard conversion से ज़्यादा time लेती है (length पर depending पर per page seconds to minutes) और कभी quite 100% accurate नहीं होती। Language settings और quality expectations पर deeper walkthrough <a href="/hi/blog/convert-scanned-pdf-to-editable-word/">scanned PDF to editable Word guide</a> में है।</p>
+
+  <h2>Side-by-side decision table</h2>
+  <table>
+    <thead>
+      <tr><th>Document type</th><th>Recommended tool</th><th>Time per 10 pages</th><th>Expected accuracy</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Digital PDF (Word, web से बना)</td><td>Standard PDF to Word</td><td>Seconds</td><td>98-100%</td></tr>
+      <tr><td>Scanned PDF, clean print</td><td>OCR-powered conversion</td><td>30-60 seconds</td><td>95-99%</td></tr>
+      <tr><td>Faxed या photocopied document</td><td>OCR-powered conversion</td><td>1-2 minutes</td><td>80-90%</td></tr>
+      <tr><td>Page की Phone photo</td><td>OCR-powered conversion (rotating/cropping के बाद)</td><td>1-2 minutes</td><td>85-95%</td></tr>
+      <tr><td>Handwritten notes</td><td>कोई reliable option नहीं - retype करें</td><td>Manual</td><td>Variable</td></tr>
+      <tr><td>PDF table जो आप data के रूप में चाहें</td><td>PDF to Excel, Word नहीं</td><td>Seconds</td><td>90-99%</td></tr>
+    </tbody>
+  </table>
+  <p>Last row लोगों की सोच से ज़्यादा matter करती है। अगर आपका goal numbers की rows और columns को spreadsheet में लाना है, Word में convert करके फिर table को Excel में copy न करें। सीधे <a href="/hi/pdf-to-excel/">tables को Excel में extract</a> करें - structure बहुत reliably preserve होता है।</p>
+
+  <h2>Hybrid PDFs: एक two-pass approach</h2>
+  <p>Hybrid documents trickiest case हैं। एक 30-page contract जो digital है except दो scanned signature pages के technically पूरी file को OCR से run कर सकता है, लेकिन आप उन pages पर OCR time tax pay करेंगे जिन्हें ज़रूरत नहीं थी।</p>
+  <p>Cleaner approach जब matter करे:</p>
+  <ol>
+    <li>PDF को digital section और scanned section में split करें।</li>
+    <li>Digital part को standard conversion से run करें।</li>
+    <li>Scanned part को OCR conversion से run करें।</li>
+    <li>दोनों outputs को Word में वापस combine करें।</li>
+  </ol>
+  <p>ज़्यादातर casual cases के लिए, बस पूरी file OCR conversion से run करें - digital pages cleanly pass हो जाएँगे क्योंकि उनके पास already selectable text है, और scanned pages properly process होंगे।</p>
+
+  <h2>गलत pick करें तो क्या करें</h2>
+  <p>दो failure modes recognise करना easy है:</p>
+  <h3>Symptom 1: blank Word document</h3>
+  <p>आपने scanned PDF पर standard conversion run किया। .docx open हुआ और इसमें कुछ नहीं है, या बस कुछ stray page breaks हैं। Same file को OCR conversion से re-run करें - text images में है, file metadata में नहीं, इसलिए OCR ही extract करने का तरीका है।</p>
+  <h3>Symptom 2: garbled text</h3>
+  <p>Word document में "rmaragnemt" या "1ncome" जैसे words हैं, या entirely गलत alphabet के characters हैं। यह OCR गलत language setting से काम कर रहा है। Correct source language selected (English vs Spanish vs German etc.) के साथ re-run करें और accuracy dramatically jump करती है।</p>
+  <h3>Symptom 3: text extracted लेकिन layout destroyed</h3>
+  <p>यह very heavy layouts (multi-column reports, magazine-style pages) के लिए normal है। Standard conversion और OCR दोनों text linearly rebuild करते हैं और complex grid preserve नहीं कर सकते। कभी-कभी answer trade-off accept करना है; कभी-कभी पूरे document के बजाय individual sections copy करना है।</p>
+
+  <h2>Cost, privacy और processing time</h2>
+  <p>Standard conversion compute terms में essentially free है - यह analysis से ज़्यादा parse के closer है। OCR ज़्यादा expensive है: हर page recognition model से process होता है, यही reason है कि 50-page scans 50-page digital PDFs से noticeably लंबा time लेते हैं। Free tier पर, यह OCR jobs के लिए slightly लंबी queue मतलब हो सकता है। Paid tier पर, यह आपके quota में differently count हो सकता है।</p>
+  <p>Privacy दोनों paths पर same है - file uploads transit में encrypted और conversion की duration के लिए ही processed - लेकिन अगर आप fence पर हैं, password-protect guide का sensitive-document section cover करता है कि sharing से पहले result में password कब add करना चाहिए।</p>
+
+  <h2>The one-line rule</h2>
+  <blockquote class="callout">अगर आप PDF में text select कर सकते हैं, standard conversion use करें। अगर नहीं, OCR use करें। इस guide में बाक़ी सब उस single test पर footnote है।</blockquote>
+
+  <p>आप <a href="/hi/all-tools/">all conversion tools</a> browse कर सकते हैं अगर आपको adjacent operations चाहिए जैसे hybrid files split करना या tables extract करना।</p>
+
+  <h2>FAQ</h2>
+  <h3>कैसे बताऊँ कि मेरा PDF scanned है या digital?</h3>
+  <p>अपने cursor से text select करने की कोशिश करें। अगर individual words highlight होते हैं, PDF digital है। अगर पूरा page (या बड़ा rectangular region) एक shape के रूप में highlight होता है, image की तरह, PDF scanned है।</p>
+  <h3>क्या OCR regular conversion से slower है?</h3>
+  <p>हाँ, noticeably। Standard conversion parse है और seconds में run होती है; OCR हर page को recognition model से run करता है और length और complexity पर depending पर per page seconds-to-minutes लेता है। 50-page scan के लिए, total कुछ minutes expect करें।</p>
+  <h3>क्या OCR ज़्यादा credits या processing cost करता है?</h3>
+  <p>यह platform के pricing model पर depend करता है। OCR ज़्यादा compute use करता है, इसलिए per page या per minute charge करने वाले platforms usually OCR को standard conversion से higher price करते हैं। Free tiers पर यह usually different price के बजाय longer queue मतलब है।</p>
+  <h3>क्या मैं digital PDF पर OCR run कर सकता हूँ?</h3>
+  <p>कर सकते हैं, लेकिन करना नहीं चाहिए। Result standard conversion से थोड़ा worse होगा (OCR tiny recognition errors introduce करता है जो already digital text के साथ नहीं होते), और बहुत ज़्यादा time लेगा। OCR सिर्फ़ तब use करें जब करना ही पड़े।</p>
+  <h3>मेरे converted Word doc में बिल्कुल text क्यों नहीं है?</h3>
+  <p>PDF scanned है और आपने standard conversion use की। Standard conversion के पास extract करने को कुछ नहीं क्योंकि file में कोई actual text नहीं है। Same PDF को OCR-powered conversion से re-run करें और text आ जाएगा।</p>
+
+  <h2>अभी try करें</h2>
+  <p>अपने PDF पर two-second selection test run करें, फिर right path pick करें। <a href="/hi/pdf-to-word/">PDF to Word converter open करें →</a></p>

@@ -1,0 +1,122 @@
+slug: rotate-pdf-pages-permanently
+title_es: "Cómo rotar páginas de PDF y guardar el cambio de forma permanente (no solo en el visor)"
+meta_title_es: "Rotar PDF y guardar permanente, gratis en línea | Convertica"
+meta_description_es: "Adobe Reader 'rota' los PDF solo en el visor. Aprende a rotar páginas de forma permanente para que el cambio aguante al compartir, enviar o imprimir."
+meta_keywords_es: "rotar pdf permanente, guardar pdf rotado, arreglar pdf de lado, rotar pdf escaneado, rotación pdf gratis"
+excerpt_es: "Si alguna vez rotaste un PDF en Adobe Reader y volvió a su sitio al reabrirlo, esta es la solución. La marca de orientación de página vive dentro del propio archivo."
+content_es: |
+  Rota un PDF en Adobe Reader, cierra el archivo, vuélvelo a abrir y las páginas regresan a donde estaban. Ese momento es cuando la mayoría de la gente descubre que hay dos tipos de rotación completamente distintos, y solo uno de ellos cambia realmente el archivo. El mensaje de error que muestra Adobe Reader cuando intentas guardar la rotación —«este archivo se ha rotado y debe usar Adobe Acrobat para confirmar el cambio»— es uno de esos despertares discretamente desagradables que cuesta una tarde a quien no lo ve venir.
+
+  Esta guía es sobre el tipo que se queda. Acabarás con un PDF que se ve igual en Chrome, en Vista Previa, en Acrobat, en el móvil de alguien y en la impresora que finalmente lo escupa. Nadie río abajo tendrá que rotarlo por su cuenta.
+
+  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="Herramienta de rotación de PDF de Convertica con cuadrícula de miniaturas y controles de dirección" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Por qué tu rotación no para de desaparecer</h2>
+
+  Los PDF guardan una marca de orientación para cada página dentro de la estructura del archivo. Cuando «rotas» en la versión gratuita de Adobe Reader, solo le dices al visor cómo mostrar la página en tu pantalla durante esta sesión. La marca dentro del archivo no se toca.
+
+  Tres cosas están ocurriendo entre bastidores:
+
+  <ul>
+    <li><strong>La rotación a nivel de visor</strong> cambia el renderizado, no los datos. Cierras el documento y la sobrescritura desaparece.</li>
+    <li><strong>La rotación a nivel de archivo</strong> reescribe la entrada de orientación de la página. Cualquier visor a partir de entonces lee el nuevo valor.</li>
+    <li><strong>«Guardar como» en Adobe Reader gratuito</strong> puede volver a guardar el archivo, pero no confirma la rotación de solo visualización. Esa función está restringida a Acrobat de pago.</li>
+  </ul>
+
+  <blockquote class="callout">Si puedes rotar pero el cambio se esfuma al cerrar, casi seguro que usaste una rotación a nivel de visor. Usa una herramienta que reescriba la orientación de página dentro del propio archivo.</blockquote>
+
+  El comportamiento cambió ligeramente en Adobe Reader DC versiones 2019 y posteriores: el botón de rotar quedó enterrado en Herramientas &gt; Organizar páginas, donde parece que sí debería confirmar el cambio, pero sigue sin hacerlo si no pagas. La versión gratuita te avisa explícitamente en un mensaje pequeño al pie de que «guardar las rotaciones de página requiere Acrobat Pro», algo que mucha gente nunca lee.
+
+  La solución más rápida es un rotador en el navegador que recodifica el archivo directamente. Puedes <a href="/es/pdf-edit/rotate/">rotar PDF en línea</a> en unos diez segundos sin instalar nada.
+
+  <h2>Paso a paso: rotar todas las páginas 90 grados</h2>
+
+  Este es el enfoque correcto cuando un escaneo entero salió de lado, o cuando alguien exportó por error un informe horizontal como vertical.
+
+  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="Rotar todas las páginas 90 grados en sentido horario en una sola acción por lotes" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre la herramienta de rotación y suelta tu PDF dentro. Los archivos permanecen en la sesión de subida solo el tiempo necesario para procesarlos.</li>
+    <li>Elige una dirección. 90 grados en sentido horario arregla la mayoría de los escaneos de lado. 180 grados resuelve documentos al revés salidos de alimentadores automáticos que cogieron la página patas arriba.</li>
+    <li>Aplica a todas las páginas. La herramienta reescribe la marca de orientación de cada página en una sola pasada.</li>
+    <li>Descarga el archivo nuevo. Ábrelo en cualquier visor para confirmar.</li>
+  </ol>
+
+  Guarda el resultado con un nombre claro como <code>contrato_rotado.pdf</code> para no sobrescribir el original por error. Conservar el original es un seguro barato si la rotación fue al revés, y que la rotación vaya al revés es la queja más habitual del estilo «perdí diez minutos» de quien usa una herramienta de rotación por primera vez. Dos giros en sentido horario equivalen a uno en sentido antihorario, así que la recuperación es rápida, pero solo si aún tienes la fuente.
+
+  <h2>Paso a paso: rotar solo páginas concretas</h2>
+
+  Los PDF con orientaciones mixtas son habituales cuando un lote de escaneos contiene cartas verticales y una hoja de cálculo horizontal, o cuando alguien unió archivos de fuentes distintas.
+
+  <ol>
+    <li>Sube el PDF. Mira la cuadrícula de miniaturas para identificar qué páginas están mal.</li>
+    <li>Selecciona páginas por número. La mayoría de las herramientas te permiten rotar la página 3, 7 y 9 de forma independiente en lugar del archivo entero.</li>
+    <li>Define la dirección de rotación por página si hace falta. Un recibo escaneado al revés en la página 5 puede necesitar 180 grados, mientras que la página 7 necesita 90 en sentido horario.</li>
+    <li>Aplica y descarga. Verifica que las miniaturas muestran la orientación corregida antes de enviar el archivo.</li>
+  </ol>
+
+  Si te ves peleando mucho con rotaciones página a página, suele ser más fácil <a href="/es/pdf-organize/">organizar las páginas del PDF</a> en una vista combinada donde puedes rotar, eliminar y reordenar antes de exportar.
+
+  Atajo de teclado que vale la pena conocer en nuestra herramienta (y en la mayoría de las basadas en navegador): cuando una miniatura tiene el foco, las teclas de corchete suelen rotarla. Corchete derecho en sentido horario, corchete izquierdo en sentido antihorario. No es universal, pero es lo bastante común como para probarlo antes de echar mano del ratón.
+
+  <h2>Casos habituales</h2>
+
+  <h3>Recibos escaneados de lado</h3>
+
+  Los escáneres planos y las apps de cámara del móvil suelen capturar recibos pequeños en la orientación equivocada. Una rotación de 90 grados en sentido horario suele arreglarlos. Si escaneas una pila con orientaciones mixtas, hazlo todo de una vez y rota por página en lugar de volver a escanear. Los recibos en papel térmico (los que se borran) son especialmente propensos a salir 180 grados al revés porque a menudo se apilan con la cara impresa hacia abajo para protegerlos.
+
+  <h3>Fotos de móvil convertidas a PDF</h3>
+
+  iOS y Android a veces codifican la orientación de la foto en metadatos EXIF que el conversor de PDF ignora. El resultado es una foto vertical guardada como página de PDF horizontal. La rotación a nivel de archivo es la solución más limpia. Conviene saber que esto empeoró bastante alrededor de iOS 14, cuando Apple cambió el formato de foto por defecto de JPEG a HEIC. Las herramientas de PDF antiguas que descartan las etiquetas de orientación HEIC durante la conversión producen páginas de lado siempre. Volver a configurar la cámara en «Más compatible» antes de disparar resuelve el problema de raíz.
+
+  <h3>Informes con horizontal y vertical mezclados</h3>
+
+  Los informes anuales y los pitch decks suelen combinar páginas verticales de texto con gráficos horizontales. Si un conversor forzó todo a vertical, puede que necesites rotar las páginas de gráficos 90 grados para que se lean bien al desplazarse o al imprimirse en horizontal. Los pitch para inversores hechos en PowerPoint y exportados a PDF son delincuentes habituales; la ruta «Imprimir como PDF» de PowerPoint trata todo el archivo como una sola orientación en lugar de hacerlo por diapositiva.
+
+  <h3>Formularios recibidos por fax</h3>
+
+  Muchos formularios médicos y legales siguen llegando por fax, lo que significa que pasan por una impresora que puede haber rotado la página para que cupiera en el papel. Que el bloque de firma acabe arriba es una pista: rota 180, guarda y reenvía por la misma línea de fax si toca.
+
+  <h2>Verificar que la rotación se quedó</h2>
+
+  Antes de enviar el archivo, haz una comprobación de 30 segundos:
+
+  <ul>
+    <li>Vuelve a abrir el PDF rotado en un visor que no usaste para rotarlo. Chrome, Vista Previa de macOS y Edge leen el archivo de forma distinta a Acrobat.</li>
+    <li>Mándate el archivo por correo a ti mismo y abre el adjunto desde un móvil. Los visores móviles respetan la marca de orientación a nivel de archivo y mostrarán al instante si el cambio es real.</li>
+    <li>Lanza una vista previa de impresión. La vista previa refleja la orientación del archivo, no la sobrescritura del visor, así que una vista previa de lado significa que la rotación no se guardó.</li>
+    <li>Mira el panel de miniaturas en tu gestor de archivos. Tanto el Explorador de Windows como Finder de macOS muestran la orientación a nivel de archivo en su panel de vista previa. Si la miniatura allí coincide con lo que esperabas, la rotación se confirmó.</li>
+  </ul>
+
+  Si el archivo se ve bien en un visor pero mal en otro, la rotación era a nivel de visor. Vuelve a pasar el archivo por una herramienta que confirme en disco.
+
+  <h2>Consejos de rotación masiva</h2>
+
+  Cuando estés a punto de combinar varios PDF, arregla las orientaciones <strong>antes</strong> de unir. Si no, tendrás que identificar las páginas rotadas dentro de un paquete de 200 páginas, lo cual es mucho más lento que arreglar cada archivo de origen por separado.
+
+  El consejo inverso vale para escaneos directos de un alimentador dúplex. Si una de cada dos páginas salió cabeza abajo porque el escáner volteó mal el reverso, rota primero y luego <a href="/es/pdf-organize/merge/">úne en un único archivo</a>. Te ahorras un paso comparado con unir y luego intentar rotar páginas alternas dentro del PDF combinado.
+
+  Una cosa más: la rotación no cambia los datos de imagen subyacentes, solo la entrada de orientación. Así que no pierdes calidad y el tamaño del archivo se queda prácticamente igual (sumando o restando unos bytes por los metadatos reescritos). Eso hace que rotar sea seguro sobre pruebas legales y archivos de evidencias en los que importa la integridad del flujo de bytes subyacente: el hash del archivo cambiará porque cambiaron los metadatos, pero el contenido de la página es idéntico byte a byte.
+
+  Detalle de los controladores de impresión que vale la pena marcar: algunas impresoras corporativas ignoran la marca de orientación del PDF y usan su propia lógica de rotación automática basada en la cadena de texto más larga. Si tu PDF rotado se imprime de lado en la Konica o Xerox de la oficina, la impresora te está pasando por encima. Mira el cuadro de diálogo de impresión por una opción «Rotación automática» u «Orientación: Desde el archivo» y cámbiala a manual.
+
+  <h2>FAQ</h2>
+
+  <h3>¿Por qué mi PDF se ve correcto en Chrome pero de lado en Adobe?</h3>
+  <p>Chrome a veces autocorrige la orientación basándose en heurísticas de dirección de texto, mientras que Adobe respeta la marca literal de orientación de página del archivo. Si los dos visores no coinciden, la marca a nivel de archivo está mal aunque Chrome esconda el problema. Rota el archivo correctamente para que ambos visores coincidan.</p>
+
+  <h3>¿Puedo rotar solo una página en un PDF de varias páginas?</h3>
+  <p>Sí. Usa una herramienta que te permita seleccionar páginas individualmente, o abre el archivo en una vista de organizador de páginas. Elige las páginas que quieres rotar, escoge una dirección por página y exporta. Las páginas que no seleccionaste se quedan intactas.</p>
+
+  <h3>¿Rotar reducirá la calidad del PDF?</h3>
+  <p>No. La rotación solo cambia la entrada de orientación en los metadatos del archivo. Los datos de imagen y texto no se recodifican, así que no hay pérdida de calidad y el tamaño del archivo se queda esencialmente igual.</p>
+
+  <h3>¿Por qué mi rotación no se guarda en la versión gratuita de Adobe Reader?</h3>
+  <p>Adobe Reader gratuito solo admite la rotación a nivel de visor. Guardar el archivo no confirma la rotación en disco. La rotación permanente es una función de pago de Acrobat, o puedes usar una herramienta gratuita en navegador que reescriba la marca de orientación directamente.</p>
+
+  <h3>¿Puedo rotar un PDF protegido con contraseña?</h3>
+  <p>Tienes que aportar la contraseña primero. La mayoría de los rotadores en línea la piden cuando se sube un archivo cifrado. Si no tienes la contraseña, no puedes modificar el archivo de forma legítima. Si el documento es tuyo y olvidaste la contraseña, eso es un problema de recuperación distinto (y desafortunado).</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Deja de pelear con el visor. Abre la <a href="/es/pdf-edit/rotate/">herramienta de rotación de PDF</a> y confirma la orientación en el archivo de una pasada, o navega por <a href="/es/all-tools/">todas las herramientas de PDF</a> si además necesitas unir o reordenar de paso.</p>

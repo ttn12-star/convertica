@@ -1,0 +1,92 @@
+slug: convert-excel-to-pdf-keep-formatting
+title_pl: "Jak skonwertować Excel do PDF bez utraty formatowania, nagłówków i obszaru wydruku"
+meta_title_pl: "Excel do PDF bez utraty formatowania | Convertica"
+meta_description_pl: "Unikaj klasycznej katastrofy z arkuszem pociętym na 8 stron. Ustaw obszar wydruku, dopasowanie do strony i powtarzalne nagłówki przed eksportem do PDF."
+meta_keywords_pl: "excel do pdf, xlsx do pdf, arkusz do pdf, excel print to pdf, zapisz excel jako pdf"
+excerpt_pl: "Większość poradników pomija to, co naprawdę istotne: ustawienie obszaru wydruku, żeby arkusz nie skończył pocięty na osiem nieforemnych, w połowie pustych stron."
+content_pl: |
+  Niemal każdy dostał kiedyś takiego maila: 12-zakładkowy skoroszyt skonwertowany prosto do PDF, z wierszami rozłożonymi na dziewięciu stronach, kolumnami przeciętymi w połowie i nagłówkiem widocznym tylko na pierwszej stronie. Lekarstwem nie jest lepszy konwerter. Lekarstwem jest dwadzieścia sekund konfiguracji w Excelu, zanim w ogóle naciśniesz „eksportuj".
+
+  Ten poradnik pokazuje kroki konfiguracji, które oddzielają schludny, drukowalny PDF od arkuszowej katastrofy, oraz prostą ścieżkę „wgraj i gotowe", kiedy plik jest już dobrze przygotowany.
+
+  <h2>Dlaczego Excel-do-PDF często idzie nie tak</h2>
+  <p>Excel nie traktuje arkusza jak „dokumentu" w sensie, w jakim robi to Word. Nie ma stałej strony. Siatka jest praktycznie nieskończona, a eksport do PDF musi sam zdecydować, gdzie ją pociąć. Domyślnie te decyzje nie są zbyt mądre:</p>
+  <ul>
+    <li>Domyślny obszar wydruku obejmuje cały zakres używanych komórek, łącznie z samotną komórką w kolumnie AZ, do której kiedyś coś wpisałeś i zapomniałeś.</li>
+    <li>Automatyczne podziały stron lądują tam, gdzie podpowiada matematyka, co rzadko pokrywa się z logicznymi grupami wierszy.</li>
+    <li>Wiersze nagłówkowe nie powtarzają się, dopóki tego nie ustawisz. Strony 2 i kolejne wyglądają jak zrzut danych bez żadnej tabeli.</li>
+    <li>Ukryte kolumny zależnie od wersji Excela i tak potrafią się drukować, jeśli nie są ukryte porządnie.</li>
+  </ul>
+  <p>W efekcie PDF nijak nie przypomina tego elegancko skadrowanego arkusza, który widziałeś na ekranie.</p>
+
+  <h2>Konfiguracja Excela przed konwersją</h2>
+  <p>Poświęć dwie minuty na cztery ustawienia, a sama konwersja staje się trywialna.</p>
+
+  <h3>1. Ustaw obszar wydruku</h3>
+  <p>Zaznacz dokładnie ten zakres, który ma trafić do PDF. W Excelu wejdź w <code>Układ strony &gt; Obszar wydruku &gt; Ustaw obszar wydruku</code>. Od tej chwili wyeksportuje się wyłącznie ten zakres. Jeśli gdzieś z boku masz mały wykres przebiegu w czasie albo notatkę, której nie chcesz drukować, ten jeden krok ją wycina.</p>
+
+  <h3>2. Dopasuj szerokość do jednej strony</h3>
+  <p>Szerokie arkusze to przyczyna numer jeden raportów typu „PDF pocięty na 8 stron". W zakładce Układ strony znajdź sekcję Skaluj do dopasowania i ustaw <code>Szerokość: 1 strona</code>, <code>Wysokość: Automatycznie</code>. W efekcie każda kolumna mieści się poziomo, a dane płyną w dół przez tyle stron, ile potrzeba — czyli tak, jak arkusze powinny się drukować.</p>
+  <p>Jeśli arkusz jest tak szeroki, że dopasowanie do jednej strony robi tekst mikroskopijny, to znak, że trzeba przełączyć się na orientację poziomą albo podzielić dane na dwa PDF-y obejmujące różne grupy kolumn.</p>
+
+  <h3>3. Powtarzaj wiersze nagłówków na każdej stronie</h3>
+  <p>To absolutnie najczęściej pomijany krok. Otwórz <code>Układ strony &gt; Tytuły wydruku</code> i w polu <code>Wiersze powtarzane u góry</code> wskaż wiersz 1 (albo te wiersze, które stanowią twój nagłówek). Teraz każda strona PDF zaczyna się od tych samych etykiet kolumn. Czytelnik nie musi już wracać na stronę pierwszą, żeby przypomnieć sobie, czym była kolumna F.</p>
+
+  <h3>4. Ukryj zamiast usuwać kolumny, których nie potrzebujesz</h3>
+  <p>Kolumny, które mogą się jeszcze przydać, ukryj (prawy klik na literze kolumny, Ukryj). Te, o których wiesz, że są śmieciem, usuń. Ukryte kolumny są wykluczone z obszaru wydruku, o ile obszar ustawisz po ukryciu. Jeśli najpierw ustawisz obszar, a potem ukryjesz kolumny, zachowanie różni się między wersjami Excela — dla pewności ustaw obszar ponownie po każdej rundzie ukrywania/odkrywania.</p>
+
+  <h2>Krok po kroku: konwersja w Convertica</h2>
+  <p>Z arkuszem już skonfigurowanym sama konwersja jest łatwa. Możesz <a href="/pl/word-to-pdf/">skonwertować Excel do PDF</a> w trzech krokach:</p>
+  <ol>
+    <li><strong>Wgraj plik .xlsx.</strong> Przeciągnij i upuść do pola wgrywania. Starsze pliki .xls też działają.</li>
+    <li><strong>Wybierz orientację, jeśli zostaniesz o to zapytany.</strong> Pionowa do wysokich, wąskich danych; pozioma do szerokich tabel.</li>
+    <li><strong>Pobierz PDF.</strong> Otwórz go raz, żeby potwierdzić, że podziały stron wylądowały tam, gdzie się spodziewałeś — i gotowe.</li>
+  </ol>
+  <blockquote class="callout">Jeśli PDF nadal wygląda źle, problem prawie zawsze leży powyżej, w Excelu — obszar wydruku, skala albo wiersze powtarzane — a nie w konwerterze. Otwórz skoroszyt, popraw ustawienie i wyeksportuj jeszcze raz.</blockquote>
+
+  <h2>Skoroszyty z wieloma arkuszami</h2>
+  <p>Skoroszyt z pięcioma zakładkami stawia pytanie: chcesz jednego PDF-a na arkusz, czy wszystkich pięciu arkuszy zlepionych w jeden plik?</p>
+  <ul>
+    <li><strong>Jeden PDF na arkusz</strong> ma sens, kiedy każda zakładka jest osobnym dostarczeniem — innym raportem dla innej grupy odbiorców. Wtedy ważne staje się nazewnictwo; <code>YYYY-MM-DD_skoroszyt_nazwa-arkusza.pdf</code> czyta się czysto w każdym folderze.</li>
+    <li><strong>Wszystkie arkusze w jednym PDF</strong> ma sens, kiedy zakładki tworzą zestaw (okładka, podsumowanie, szczegóły, załącznik). Jeśli konwerter eksportuje każdy arkusz osobno, w drugim kroku możesz <a href="/pl/pdf-organize/merge/">scalić arkusze w jeden PDF</a>.</li>
+  </ul>
+  <p>Tak czy inaczej ustaw obszar wydruku na każdym arkuszu, który zamierzasz wyeksportować. Pusta zakładka wyeksportuje się jako pusta strona; taka, w której gdzieś w kolumnie AZ wisi pojedyncza komórka, da niemal pustą stronę z tą komórką unoszącą się w przestrzeni.</p>
+
+  <h2>Częste problemy z formatowaniem i jak je naprawić</h2>
+  <p>Jeśli wynikowy PDF wciąż ma usterki, objaw zwykle wskazuje na konkretne ustawienie Excela:</p>
+  <table>
+    <thead>
+      <tr><th>Objaw</th><th>Prawdopodobna przyczyna</th><th>Rozwiązanie</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Skrajna prawa kolumna jest ucięta</td><td>Skala-do-dopasowania nie jest ustawiona na 1 stronę szerokości</td><td>Układ strony &gt; Szerokość: 1 strona</td></tr>
+      <tr><td>Brak nagłówków od strony 2 wzwyż</td><td>Tytuły wydruku nieskonfigurowane</td><td>Układ strony &gt; Tytuły wydruku &gt; Wiersze powtarzane u góry</td></tr>
+      <tr><td>Losowe puste strony pomiędzy danymi</td><td>Zabłąkana komórka albo sformatowany obszar poza widocznymi danymi</td><td>Po usunięciu zbłąkanych komórek ustaw obszar wydruku ponownie</td></tr>
+      <tr><td>Formuły pokazują #ADR! albo #NAZWA?</td><td>Zerwane odwołania zewnętrzne</td><td>Kopiuj &gt; Wklej wartości, żeby spłaszczyć przed eksportem</td></tr>
+      <tr><td>Wykresy przecięte między stronami</td><td>Automatyczne podziały stron tnące osadzony obiekt</td><td>Wstaw ręczny podział strony nad wykresem albo przesuń wykres</td></tr>
+      <tr><td>Drobny, nieczytelny tekst</td><td>Skala-do-dopasowania zbyt agresywna</td><td>Przełącz na orientację poziomą albo podziel na dwa eksporty</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Kiedy zostawić Excela, a kiedy wysłać PDF</h2>
+  <p>PDF jest właściwym formatem, kiedy plik ma być tylko do odczytu — wyceny, podpisane raporty, deklaracje podatkowe, materiały na zarząd. PDF zachowuje układ co do piksela, blokuje przypadkowe edycje i łatwiej go podpisać czy oznaczyć znakiem wodnym.</p>
+  <p>Excel jest właściwym formatem, kiedy odbiorca musi filtrować, sortować albo przeliczać. Wysłanie PDF-a z modelem osobie, która ma zmienić jedno założenie, zmusza ją do przepisania wszystkiego od nowa. Jeśli wysłałeś już PDF, a odbiorca potrzebuje danych, możesz później <a href="/pl/pdf-to-excel/">przekonwertować PDF z powrotem do Excela</a>, ale taka wycieczka wprowadza drobne błędy i jest słabym substytutem wysłania właściwego formatu od razu.</p>
+  <p>Praktyczna zasada: PDF do oficjalnego rejestru, .xlsx dołączony osobno, jeśli odbiorca może chcieć edytować. PDF jest tym, co wędruje do archiwum; .xlsx jest plikiem roboczym.</p>
+
+  <h2>Jeszcze jedno przejście: rozmiar pliku</h2>
+  <p>Wynik Excel-do-PDF potrafi być zaskakująco duży, zwłaszcza z osadzonymi wykresami i formatowaniem warunkowym. Jeśli wysyłasz go mailem, przepuść przez kompresor przed wysyłką, żeby nie odbił się od limitu skrzynki odbiorcy. Poradnik <a href="/pl/blog/compress-pdf-for-email-under-25mb/">o kompresji do maila</a> przechodzi przez realistyczne cele rozmiarowe, a samo <a href="/pl/pdf-organize/compress/">narzędzie do kompresji</a> zajmuje się odchudzaniem.</p>
+
+  <h2>FAQ</h2>
+  <h3>Dlaczego mój arkusz dzieli się niezgrabnie między stronami?</h3>
+  <p>Niemal zawsze dlatego, że obszar wydruku jest za szeroki, a Skaluj do dopasowania nie zostało ustawione. Wejdź w Układ strony, ustaw Szerokość na 1 stronę i wyeksportuj ponownie. Jeśli wynik jest nieczytelnie mały, przełącz się na orientację poziomą albo podziel dane na dwa PDF-y.</p>
+  <h3>Czy mogę skonwertować wszystkie arkusze ze skoroszytu naraz?</h3>
+  <p>Tak. Konwerter obsługuje skoroszyty z wieloma zakładkami. Domyślnie eksportuje każdy arkusz z danymi do jednego PDF-a. Jeśli wolisz jeden PDF na arkusz, skonfiguruj obszar wydruku na każdej zakładce i uruchom konwersję raz na zakładkę albo podziel wynik później.</p>
+  <h3>Czy wykresy i formuły konwertują się prawidłowo?</h3>
+  <p>Wykresy konwertują się jako obiekty wizualne — to, co widzisz w Excelu, dostajesz w PDF. Formuły są obliczane do bieżących wartości w trakcie konwersji. Zerwane odwołania (#ADR!, #NAZWA?) pojawią się również w PDF, więc napraw je w Excelu albo wklej-wartości, żeby spłaszczyć.</p>
+  <h3>Jak sprawić, żeby nagłówki powtarzały się na każdej stronie PDF?</h3>
+  <p>W Excelu wejdź w Układ strony &gt; Tytuły wydruku, kliknij w pole „Wiersze powtarzane u góry" i zaznacz wiersz nagłówka. Zapisz i wyeksportuj ponownie. Ustawienie jest per arkusz, więc trzeba je ustawić na każdej zakładce, którą zamierzasz konwertować.</p>
+  <h3>Dlaczego mój PDF jest dużo większy niż plik Excela?</h3>
+  <p>PDF-y osadzają fonty, zrasteryzowane wykresy i osobny obiekt strony na każdą stronę. Skoroszyt 200 KB potrafi dać 3 MB PDF-a, mimo że nic złego się nie dzieje. Jeśli rozmiar przeszkadza w wysyłce mailem, skompresuj PDF po konwersji — dane i jakość zostają, kurczy się tylko zajętość.</p>
+
+  <h2>Wypróbuj teraz</h2>
+  <p>Ustaw obszar wydruku, ustaw skalę do dopasowania, ustaw tytuły wydruku, a potem eksportuj. Dwie dodatkowe minuty w Excelu oszczędzają wstydu z arkuszem pociętym na osiem stron. <a href="/pl/word-to-pdf/">Otwórz narzędzie Excel do PDF →</a></p>

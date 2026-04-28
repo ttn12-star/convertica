@@ -1,0 +1,92 @@
+slug: convert-excel-to-pdf-keep-formatting
+title_es: "Cómo convertir Excel a PDF sin perder el formato, los encabezados ni las áreas de impresión"
+meta_title_es: "Excel a PDF sin perder el formato | Convertica"
+meta_description_es: "Evita el clásico desastre de la 'hoja de cálculo cortada en 8 páginas'. Configura áreas de impresión, ajustar a página y encabezados repetidos antes de convertir Excel a PDF."
+meta_keywords_es: "excel a pdf, xlsx a pdf, hoja de cálculo a pdf, imprimir excel a pdf, guardar excel como pdf"
+excerpt_es: "La mayoría de las guías de Excel a PDF se saltan lo que de verdad importa: configurar el área de impresión para que tu hoja de cálculo no acabe partida en ocho páginas torpes y medio vacías."
+content_es: |
+  Casi todo el mundo ha recibido alguna vez ese correo: un libro de 12 pestañas convertido directamente a PDF, con filas desparramadas en nueve páginas, columnas cortadas a la mitad y un encabezado que solo aparece en la primera página. La solución no es un conversor mejor. La solución son veinte segundos de configuración dentro de Excel antes de pulsar exportar.
+
+  Esta guía cubre los pasos de preparación que separan un PDF limpio y listo para imprimir de un desastre de hoja de cálculo, además del flujo «sube y listo» cuando tu archivo ya está bien configurado.
+
+  <h2>Por qué Excel a PDF suele salir mal</h2>
+  <p>Excel no trata tu hoja de cálculo como un «documento» del modo en que lo hace Word. No hay una página fija. La cuadrícula es básicamente infinita, y la exportación a PDF tiene que decidir por dónde cortarla. Por defecto, esas decisiones no son buenas:</p>
+  <ul>
+    <li>El área de impresión por defecto es todo el rango usado, incluida una celda solitaria en la columna AZ que escribiste una vez y olvidaste.</li>
+    <li>Los saltos de página automáticos caen donde lo dictan los cálculos de la página, lo que rara vez coincide con agrupaciones lógicas de filas.</li>
+    <li>Las filas de encabezado no se repiten salvo que se lo indiques. De la página 2 en adelante puede parecer un volcado de datos sin tabla.</li>
+    <li>Las columnas ocultas siguen imprimiéndose si no están realmente ocultas, según la versión de Excel.</li>
+  </ul>
+  <p>El resultado es un PDF que no se parece en nada a la hoja de cálculo bien encuadrada que veías en pantalla.</p>
+
+  <h2>Preparación previa en Excel</h2>
+  <p>Dedica dos minutos a estos cuatro ajustes y la conversión en sí se vuelve trivial.</p>
+
+  <h3>1. Define el área de impresión</h3>
+  <p>Selecciona el rango exacto que quieres en el PDF. En Excel, ve a <code>Diseño de página &gt; Área de impresión &gt; Establecer área de impresión</code>. A partir de ese momento, solo se exportará ese rango. Si además tienes un minigráfico o una nota a la derecha que no quieres imprimir, este único paso lo elimina.</p>
+
+  <h3>2. Ajusta para que entre en una página de ancho</h3>
+  <p>Las hojas de cálculo anchas son la causa número uno de los reportes «PDF cortado en 8 páginas». En la pestaña Diseño de página, busca el grupo Ajustar área de impresión y pon <code>Ancho: 1 página</code>, <code>Alto: Automático</code>. El resultado es un PDF en el que cada columna entra horizontalmente y los datos fluyen hacia abajo en tantas páginas como hagan falta, que es como deberían imprimirse las hojas de cálculo.</p>
+  <p>Si tu hoja es tan ancha que ajustar a una página deja el texto microscópico, es señal de que conviene cambiar a orientación horizontal o dividir los datos en dos PDF que cubran grupos de columnas distintos.</p>
+
+  <h3>3. Repite las filas de encabezado en cada página</h3>
+  <p>Este es el paso que más se salta la gente. Abre <code>Diseño de página &gt; Imprimir títulos</code> y, en el campo <code>Filas para repetir en la parte superior</code>, haz clic en la fila 1 (o las filas que formen tu encabezado). Ahora cada página del PDF empieza con las mismas etiquetas de columna. Quien lo lea ya no tendrá que volver a la página uno para recordar qué era la columna F.</p>
+
+  <h3>4. Ocultar frente a borrar las columnas que no necesitas</h3>
+  <p>Oculta las columnas que puedas necesitar después (clic derecho en la letra de columna, Ocultar). Borra las columnas que estés seguro de que son basura. Las columnas ocultas quedan fuera del área de impresión siempre que definas el área de impresión después de ocultar. Si defines el área primero y luego ocultas columnas, el comportamiento puede variar según la versión de Excel: vuelve a definir el área de impresión tras cualquier ronda de ocultar/mostrar para ir sobre seguro.</p>
+
+  <h2>Paso a paso: convertir con Convertica</h2>
+  <p>Con la hoja de cálculo configurada, la conversión real es la parte fácil. Puedes <a href="/es/word-to-pdf/">convertir Excel a PDF</a> en tres pasos:</p>
+  <ol>
+    <li><strong>Sube el archivo .xlsx.</strong> Arrástralo y suéltalo en la zona de carga. Los archivos antiguos .xls también funcionan.</li>
+    <li><strong>Elige la orientación si te lo pide.</strong> Vertical para datos altos y estrechos; horizontal para tablas anchas.</li>
+    <li><strong>Descarga el PDF.</strong> Ábrelo una vez para confirmar que los saltos de página caen donde esperabas y listo.</li>
+  </ol>
+  <blockquote class="callout">Si el PDF sigue saliendo mal, el problema casi siempre está antes, en Excel —área de impresión, escala o filas a repetir—, no en el conversor. Vuelve a abrir el libro, corrige el ajuste y reexporta.</blockquote>
+
+  <h2>Libros con varias hojas</h2>
+  <p>Un libro con cinco pestañas plantea una pregunta: ¿quieres un PDF por hoja, o las cinco hojas concatenadas en un solo archivo?</p>
+  <ul>
+    <li><strong>Un PDF por hoja</strong> es lo correcto cuando cada pestaña es un entregable independiente: un informe distinto para audiencias distintas. La nomenclatura se vuelve importante; <code>AAAA-MM-DD_libro_nombre-de-hoja.pdf</code> se lee bien en cualquier carpeta.</li>
+    <li><strong>Todas las hojas en un solo PDF</strong> es lo correcto cuando las pestañas forman un paquete unitario (portada, resumen, detalle, anexo). Si el conversor exporta cada hoja por separado, puedes <a href="/es/pdf-organize/merge/">unir varias hojas en un PDF</a> en un segundo paso.</li>
+  </ul>
+  <p>En cualquier caso, define el área de impresión en cada hoja que pienses exportar. Una pestaña vacía exportará una página en blanco; una con una celda perdida en la columna AZ exportará una página casi vacía con esa celda flotando en el espacio.</p>
+
+  <h2>Problemas de formato habituales y cómo arreglarlos</h2>
+  <p>Si tu PDF de salida sigue dando problemas, el síntoma suele apuntar a un ajuste concreto de Excel:</p>
+  <table>
+    <thead>
+      <tr><th>Síntoma</th><th>Causa probable</th><th>Solución</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Se corta la columna de la derecha</td><td>Ajustar a página no está en 1 página de ancho</td><td>Diseño de página &gt; Ancho: 1 página</td></tr>
+      <tr><td>No hay encabezados de la página 2 en adelante</td><td>Imprimir títulos no está configurado</td><td>Diseño de página &gt; Imprimir títulos &gt; Filas para repetir en la parte superior</td></tr>
+      <tr><td>Páginas en blanco aleatorias entre los datos</td><td>Celda perdida o región con formato fuera de los datos visibles</td><td>Vuelve a definir el área de impresión tras borrar las celdas perdidas</td></tr>
+      <tr><td>Las fórmulas muestran #REF! o #NAME?</td><td>Referencias externas rotas</td><td>Copiar &gt; Pegar valores para aplanar antes de exportar</td></tr>
+      <tr><td>Los gráficos se cortan entre páginas</td><td>Saltos automáticos partiendo un objeto incrustado</td><td>Inserta un salto de página manual encima del gráfico, o muévelo</td></tr>
+      <tr><td>Texto diminuto e ilegible</td><td>Ajustar a página forzado en exceso</td><td>Cambia a horizontal, o divide en dos exportaciones</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Cuándo conservar Excel y cuándo enviar PDF</h2>
+  <p>PDF es el formato adecuado cuando el archivo es de solo lectura: presupuestos, informes firmados, declaraciones fiscales, dosieres para consejos. PDF conserva el diseño con exactitud, evita ediciones accidentales y es más fácil de firmar o marcar con marca de agua.</p>
+  <p>Excel es el formato adecuado cuando el destinatario necesita filtrar, ordenar o recalcular. Mandar un PDF de un modelo a alguien que necesita cambiar una hipótesis lo obliga a teclear todo de nuevo desde cero. Si ya enviaste un PDF y el destinatario necesita los datos de vuelta, puedes <a href="/es/pdf-to-excel/">convertir el PDF de nuevo a Excel más tarde</a>, pero el viaje de ida y vuelta introduce pequeños errores y es un mal sustituto de enviar el formato correcto la primera vez.</p>
+  <p>Un valor por defecto útil: manda el PDF para el registro formal y adjunta el .xlsx por separado si el destinatario puede necesitar editar. El PDF es lo que se archiva; el .xlsx es el archivo de trabajo.</p>
+
+  <h2>Una pasada más: el tamaño del archivo</h2>
+  <p>El resultado de Excel a PDF puede ser sorprendentemente grande, sobre todo con gráficos incrustados y formato condicional. Si vas a enviarlo por correo, pásalo por un compresor antes de pulsar enviar para que no rebote en el límite del buzón del destinatario. La <a href="/es/blog/compress-pdf-for-email-under-25mb/">guía para comprimir para correo</a> repasa objetivos de tamaño realistas, y la <a href="/es/pdf-organize/compress/">herramienta de compresión</a> se encarga de la reducción real.</p>
+
+  <h2>FAQ</h2>
+  <h3>¿Por qué mi hoja de cálculo se parte de forma extraña entre páginas?</h3>
+  <p>Casi siempre porque el área de impresión es demasiado ancha y Ajustar a página no está activado. Abre Diseño de página, pon Ancho en 1 página y reexporta. Si el resultado queda ilegible por pequeño, cambia a horizontal o divide los datos en dos PDF.</p>
+  <h3>¿Puedo convertir todas las hojas de un libro de una vez?</h3>
+  <p>Sí. El conversor maneja libros con varias pestañas. Por defecto exporta a un único PDF cada hoja que tenga datos. Si prefieres un PDF por hoja, configura el área de impresión de cada hoja y ejecuta la conversión una vez por pestaña, o divide el resultado después.</p>
+  <h3>¿Los gráficos y las fórmulas se convierten bien?</h3>
+  <p>Los gráficos se convierten como objetos visuales: lo que ves en Excel es lo que obtienes en el PDF. Las fórmulas se evalúan a sus valores actuales durante la conversión. Las referencias rotas (#REF!, #NAME?) también aparecerán en el PDF, así que arréglalas antes en Excel o pega valores para aplanarlas.</p>
+  <h3>¿Cómo hago que los encabezados se repitan en cada página del PDF?</h3>
+  <p>En Excel, ve a Diseño de página &gt; Imprimir títulos y haz clic en el campo «Filas para repetir en la parte superior»; luego selecciona tu fila o filas de encabezado. Guarda y reexporta. El ajuste es por hoja, así que aplícalo en cada pestaña que pienses convertir.</p>
+  <h3>¿Por qué mi PDF es mucho más grande que el archivo de Excel?</h3>
+  <p>Los PDF incrustan fuentes, gráficos rasterizados y un objeto de página separado por cada página. Un libro de 200 KB puede generar un PDF de 3 MB sin que nada esté mal. Si el tamaño es un problema para el correo, comprime el PDF después de la conversión: los datos y la calidad se mantienen, solo se reduce el almacenamiento.</p>
+
+  <h2>Pruébalo ahora</h2>
+  <p>Define tu área de impresión, ajusta la escala, configura los títulos de impresión y luego exporta. Dos minutos extra dentro de Excel te ahorran la vergüenza de la hoja cortada en ocho páginas. <a href="/es/word-to-pdf/">Abrir la herramienta de Excel a PDF →</a></p>

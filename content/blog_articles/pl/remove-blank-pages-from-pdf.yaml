@@ -1,0 +1,126 @@
+slug: remove-blank-pages-from-pdf
+title_pl: "Jak usunąć puste lub niepotrzebne strony z PDF w niecałą minutę"
+meta_title_pl: "Usuń puste strony PDF za darmo online | Convertica"
+meta_description_pl: "Skanery wstawiają puste strony, kontrakty mają strony zastępcze. Poznaj najszybszy sposób ich usunięcia bez kupowania Adobe Acrobat ani instalowania software'u."
+meta_keywords_pl: "usuń puste strony pdf, usuwanie stron pdf, usuń strony za darmo, oczyść pdf, edycja pdf"
+excerpt_pl: "Skanery dwustronne uwielbiają wstawiać puste strony tam, gdzie oryginał był jednostronny. Wytnij je w sekundy bez płacenia za Adobe Acrobat."
+content_pl: |
+  Otwórz PDF, który wyszedł ze skanera dwustronnego, a często znajdziesz pustą stronę po każdej prawdziwej, bo skaner sumiennie sfotografował tył każdego jednostronnego oryginału. Otwórz szablon kontraktu — możesz znaleźć dwie puste strony zarezerwowane „na podpisy". Otwórz scalony dokument — możesz znaleźć resztki stron-separatorów ze źródeł. Klasyczny winowajca to biurowy ADF Brothera albo Canona, który domyślnie skanuje dwustronnie, czy o to prosiłeś, czy nie.
+
+  Usunięcie ich zajmuje sekundy w przeglądarce. Nie potrzebujesz Adobe Acrobat. Nie musisz drukować i ponownie skanować. Nie musisz niczego przepisywać. Wystarczy narzędzie, które pozwala kliknąć strony, których nie chcesz, i pobrać to, co zostało.
+
+  <figure><img src="/static/blog/images/tool-organize.jpg" alt="Narzędzie Convertica do organizacji PDF z miniaturami i zaznaczonymi pustymi stronami do usunięcia" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Skąd biorą się puste strony</h2>
+
+  Znajomość źródła pomaga je szybciej wypatrzyć:
+
+  <ul>
+    <li><strong>Skanery dwustronne na jednostronnych oryginałach.</strong> Klasyk. Co druga strona w wyjściu jest pusta.</li>
+    <li><strong>Dokumenty Worda z podziałami sekcji.</strong> Podziały sekcji ustawione na „następna nieparzysta" albo „następna parzysta" wstawiają pustą stronę, by zachować paginację, a ta pusta strona przeżywa eksport do PDF.</li>
+    <li><strong>Szablony formularzy ze stronami zastępczymi.</strong> Wiele szablonów kontraktów i raportów ma strony zarezerwowane na „załączniki", „aneksy" albo podpisy, których realnie używasz lub nie.</li>
+    <li><strong>Scalone PDF-y z niepasujących źródeł.</strong> Łączenie plików, w których każdy kończył się na parzystej stronie, zostawia za sobą puste strony. Częstym sprawcą są raporty roczne i pitch decki.</li>
+    <li><strong>Sterowniki drukarki.</strong> „Drukuj do PDF" przy pewnych ustawieniach drukarki potrafi dorzucić stronę potwierdzenia albo wypełniacz na końcu. Starsze uniwersalne sterowniki HP były z tego znane w latach 2018-2020.</li>
+    <li><strong>Mobilne aplikacje skanujące.</strong> Aplikacje takie jak CamScanner i Adobe Scan czasem wstawiają stronę reklamową „zeskanowano w [aplikacji]" w darmowym tarafie, co przypomina raczej znak wodny do zwalczenia niż feature.</li>
+  </ul>
+
+  <h2>Krok po kroku: usuń strony wizualnie</h2>
+
+  To właściwe podejście, gdy nie potrafisz łatwo przewidzieć, które strony są puste, bez patrzenia.
+
+  <figure><img src="/static/blog/images/tool-organize.jpg" alt="Klikanie miniatur pustych stron PDF, by usunąć je w jednym przejściu" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Otwórz narzędzie do <a href="/pl/pdf-edit/">usuwania stron z PDF</a> i wgraj swój plik.</li>
+    <li>Spójrz na siatkę miniatur. Puste strony są oczywiste: jednolicie białe kafelki bez tekstu i obrazów. Strony z lekkim szumem skanera mają widoczną fakturę, więc pokażą się jako jasnoszare zamiast czysto białych.</li>
+    <li>Kliknij strony, które chcesz skasować. Większość narzędzi podświetla zaznaczenie kolorową ramką albo ikoną kosza.</li>
+    <li>Potwierdź i pobierz oczyszczony plik. Sprawdź, czy liczba stron zgadza się z twoimi oczekiwaniami.</li>
+  </ol>
+
+  Jeśli przy okazji chcesz też zmienić kolejność albo coś obrócić, zrobienie wszystkich trzech rzeczy w jednej sesji jest szybsze niż uruchamianie trzech osobnych narzędzi. Łączony widok <a href="/pl/pdf-organize/">organizacji PDF z drag-and-drop</a> pozwala usuwać, przeciągać i obracać przed jednym eksportem.
+
+  <h2>Krok po kroku: usuń strony po zakresie</h2>
+
+  Kiedy znasz już numery stron, które mają zniknąć, wpisanie ich jest szybsze niż klikanie.
+
+  <ol>
+    <li>Wgraj PDF.</li>
+    <li>Przełącz się na tryb zakresów (większość narzędzi przełącza między widokiem wizualnym a wpisywaniem zakresów).</li>
+    <li>Wpisz zakres jako listę oddzieloną przecinkami z łącznikami dla przedziałów. <code>3, 7-9, 12</code> oznacza: usuń stronę 3, strony 7-9 oraz stronę 12. Strony spoza listy zostają.</li>
+    <li>Zastosuj i pobierz.</li>
+  </ol>
+
+  <blockquote class="callout">Numery stron w tej składni dotyczą stron fizycznych, nie wydrukowanych numerów na dokumencie. Jeśli twój kontrakt zaczyna numerację od „1" na trzeciej fizycznej stronie, twoja „strona 1" może być fizyczną stroną 3.</blockquote>
+
+  Warto wiedzieć: większość pól zakresu nie akceptuje otwartych zakresów typu <code>50-</code>, oznaczających „wszystko od 50 do końca". Trzeba wpisać konkretny numer końcowy (np. <code>50-78</code> dla 78-stronicowego pliku). Policzenie raz na początku oszczędza późniejszych „chwila, to nie zadziałało".
+
+  <h2>Usuwanie vs ukrywanie stron</h2>
+
+  Kilka narzędzi PDF (oraz Adobe Acrobat) pozwala „ukryć" strony zamiast je skasować. Ukryte strony nie są wyświetlane, ale dane wciąż siedzą w pliku. Każdy, kto otworzy plik w innym czytniku albo odkryje strony, znów zobaczy treść.
+
+  Dla materiałów wrażliwych to realny problem. Jeśli usuniesz stronę z wynagrodzeniem z dokumentu HR przez ukrycie, informacje o pensji wciąż wędrują razem z plikiem. Trwałe usunięcie jest jedynym bezpiecznym rozwiązaniem, kiedy:
+
+  <ul>
+    <li>Strony zawierają poufne informacje, które nie mogą trafić do odbiorcy.</li>
+    <li>Udostępniasz plik poza swoją organizację.</li>
+    <li>Plik może zostać zarchiwizowany albo przekazany dalej.</li>
+    <li>Dokument może zostać objęty wnioskiem e-discovery albo o dostęp do informacji publicznej, gdzie ukryta zawartość wciąż może być odkryta.</li>
+  </ul>
+
+  Przeglądarkowe narzędzia do usuwania stron faktycznie kasują dane strony, a nie tylko je ukrywają. Sprawdź, otwierając wynik w innym czytniku; usunięte strony powinny zniknąć, a nie być niewidoczne. Szybki test paranoiczny: otwórz oczyszczony plik w dowolnym edytorze tekstu (tak, nawet Notatniku) i poszukaj unikalnego słowa ze strony, którą usunąłeś. Jeśli go nie ma, strona naprawdę zniknęła.
+
+  <h2>Renumeracja po usunięciu</h2>
+
+  Większość PDF-ów nie ma programowych numerów stron, tylko tekst „1", „2", „3" wypalony w każdej stronie podczas oryginalnego eksportu. Usunięcie stron nie zmienia magicznie numerów tych, które zostały. Jeśli twój dokument miał numerowaną stopkę „Strona 5 z 12" na każdej stronie, po usunięciu możesz mieć strony z numerami 1, 2, 4, 6, 7 z 12, co wygląda na popsute.
+
+  Dwie opcje:
+
+  <ul>
+    <li><strong>Pogódź się</strong> z tym przy wewnętrznych dokumentach, gdzie wydrukowane numery i tak nie mają znaczenia.</li>
+    <li><strong>Przenumeruj</strong> przez zdjęcie istniejącej stopki i dodanie świeżych. Narzędzia, które <a href="/pl/pdf-edit/">dodają świeże numery stron</a>, pozwalają nadpisać obszar nagłówka albo stopki w całym dokumencie jednym przejściem.</li>
+  </ul>
+
+  Tak samo aktualizuj spis treści. TOC wskazujący „strona 7", gdy nowa siódemka jest tym, co było dziewiątką, frustruje każdego czytelnika. (Twierdzę, że to drugi najczęstszy powód, dla którego współpracownik mówi „ten PDF jest popsuty" — pierwszym jest „link z TOC też nie działa".)
+
+  <h2>Masowe porządki w skanowanych archiwach</h2>
+
+  Czyszczenie 200-stronicowego skanu kliknięcie po kliknięciu jest nieprzyjemne. Pomagają dwie sztuczki:
+
+  <h3>Wypatrywanie pustych stron na skalę</h3>
+
+  Zwiększ rozmiar miniatur, jeśli narzędzie to obsługuje. Białe prostokąty rzucają się w oczy natychmiast. Przy bardzo lekkim szumie skanera spróbuj zmrużyć oczy nad numerami stron; jeśli nie jesteś w stanie odczytać żadnego tekstu ani kształtów, strona jest pusta.
+
+  Niektóre narzędzia renderują miniatury w bardzo niskiej rozdzielczości, by oszczędzić pasmo. Jeśli twoje puste strony nie są oczywiście białe przez dithering albo artefakty kompresji, przełącz się na większy widok miniatur (często przycisk „Duży podgląd" albo „Szczegółowe miniatury"), zanim zaczniesz przeglądać plik. Dodatkowy czas renderowania jest wart tego, by przez pomyłkę nie skasować prawdziwej strony.
+
+  <h3>Skrót dla skanera dwustronnego</h3>
+
+  Jeśli zeskanowałeś stos jednostronnych oryginałów na skanerze dwustronnym, każda strona-tył jest pusta. To znaczy, że chcesz usunąć każdą <strong>parzystą</strong> stronę fizyczną w PDF-ie. Zakres typu <code>2, 4, 6, 8, 10, ...</code> działa, a większość narzędzi pozwala wygenerować taki zakres opcją „usuń każdą n-tą stronę" albo „strony parzyste".
+
+  Sprawdź na pierwszych wynikach. Jeśli twój skaner czasem przewraca oryginały albo stos zaczął się od strony-tyłu, wzorzec będzie przesunięty o jeden i wtedy chcesz usuwać strony nieparzyste. Seria Fujitsu ScanSnap jest na to szczególnie podatna, gdy podajnik chwyta dwie kartki naraz — twoja pierwsza strona staje się tyłem pary i rozjeżdża wzór dla reszty dokumentu.
+
+  Po porządkach możesz uznać, że plik dobrze byłoby rozbić na mniejsze dokumenty. Ścieżka <a href="/pl/pdf-organize/split/">podziel na rozdziały</a> sprawdza się świetnie, gdy oczyściłeś 200-stronicowe archiwum, które realnie powinno być pięcioma 40-stronicowymi dokumentami.
+
+  <h2>Weryfikacja przed wysyłką</h2>
+
+  Zanim wyślesz oczyszczony plik komuś innemu, zrób dwa testy. Po pierwsze, potwierdź, że liczba stron jest taka, jakiej się spodziewałeś (210 stron na wejściu, każda druga usunięta, 105 stron na wyjściu). Po drugie, przewiń wynik szybko, by upewnić się, że nie zgarnęłaś przy okazji żadnej prawdziwej strony. Przypadki brzegowe warte uwagi: strony tytułowe sekcji z bardzo małą ilością tekstu mogą wyglądać niemal pusto na miniaturze i być przypadkiem skasowane. Tak samo strony złożone z pojedynczego obrazu (wykres, podpis, logo), gdy renderowanie miniatury skali obrazek do niewidocznego.
+
+  <h2>FAQ</h2>
+
+  <h3>Jak automatycznie usunąć puste strony z 200-stronicowego skanu?</h3>
+  <p>Jeśli puste strony układają się we wzór (co druga ze skanera dwustronnego), użyj trybu zakresów i usuń strony parzyste w jednej operacji. Jeśli są rozsiane losowo, wizualna siatka miniatur jest szybsza niż jakakolwiek reguła, bo można szybko przewijać i klikać każdy biały kafelek.</p>
+
+  <h3>Czy usuwanie stron rozwali numerację?</h3>
+  <p>Jeśli dokument ma na sztywno wypalone numery stron w stopce (tekst typu „Strona 5 z 12") — tak. Pozostałe strony zachowują swoje oryginalne numery. Albo zignoruj to do użytku wewnętrznego, albo zdejmij i ponownie dodaj numery stron na całym pliku po porządkach.</p>
+
+  <h3>Czy mogę cofnąć usunięcie strony?</h3>
+  <p>Narzędzie produkuje nowy plik, więc twój oryginał na komputerze pozostaje nietknięty. Jeśli usunąłeś strony i pobrałeś wynik, po prostu wróć do oryginalnego PDF, jeśli zrobiłeś błąd. Trzymaj oryginały, dopóki nie zweryfikujesz oczyszczonej wersji.</p>
+
+  <h3>Dlaczego usunięte strony czasem „wracają"?</h3>
+  <p>Tak się zdarza, gdy narzędzie tylko ukryło strony zamiast je skasować, albo plik został otwarty w edytorze, który przywrócił je z zapisanej rewizji. Używaj narzędzia, które naprawdę usuwa dane strony, i zweryfikuj, sprawdzając, czy końcowy rozmiar pliku i liczba stron zgadzają się z oczekiwaniami.</p>
+
+  <h3>Czy mogę usunąć strony z PDF chronionego hasłem?</h3>
+  <p>Najpierw musisz podać hasło. Większość narzędzi do usuwania stron poprosi o nie przy wgrywaniu. Bez hasła nie możesz legalnie modyfikować pliku.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Przestań przewijać puste strony. Otwórz <a href="/pl/pdf-edit/">narzędzie do usuwania stron PDF</a>, kliknij niechciane miniatury i pobierz czystą wersję w dobrze poniżej minuty. Szybciej, niż znajdziesz licencję Acrobata.</p>

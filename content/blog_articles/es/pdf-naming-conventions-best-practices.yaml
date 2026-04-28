@@ -1,0 +1,110 @@
+slug: pdf-naming-conventions-best-practices
+title_es: "Convenciones de nombres para PDF: guía práctica para autónomos, equipos y archivos"
+meta_title_es: "Convenciones de nombres para PDF que funcionan | Convertica"
+meta_description_es: "Deja de buscar 'final_v2_REAL_final.pdf'. Una convención de nombres simple y duradera para facturas, contratos, escaneos y archivos compartidos que aguanta años."
+meta_keywords_es: "convenciones nombres pdf, buenas prácticas nombres archivo, estándar nombres documentos, organizar archivos pdf, formato nombre pdf"
+excerpt_es: "La diferencia entre un archivo buscable y el temido «¿dónde guardé ese contrato?» es una sola regla de nombres aplicada con constancia durante dos semanas hasta que se asienta."
+content_es: |
+  Las carpetas te dan la ilusión de orden. Un nombre de archivo coherente te da localización real. La prueba es simple: abre tu carpeta de Descargas ahora mismo e intenta encontrar la factura del trimestre pasado de un proveedor concreto en menos de diez segundos. Si fallas, el problema no es la estructura de carpetas, son los nombres de archivo.
+
+  Esta es una guía de referencia para el tipo de convención de nombres que va dando frutos en silencio durante años. Nada complicado, nada que requiera una herramienta, solo unos cuantos patrones que puedes empezar a usar con el próximo archivo que guardes.
+
+  <h2>Por qué los nombres importan más que las carpetas</h2>
+  <p>Hay tres razones por las que los nombres de archivo ganan a escala:</p>
+  <ul>
+    <li><strong>La búsqueda gana a la jerarquía.</strong> Cuando pasas de unos cientos de archivos, ya no navegas: buscas. La búsqueda en la nube, la del sistema operativo y la del correo indexan primero los nombres de archivo. Un nombre descriptivo aparece al instante; uno genérico es invisible.</li>
+    <li><strong>La sincronización en la nube aplana las carpetas igualmente.</strong> Mueve un archivo entre carpetas de Drive y el enlace de compartición se puede romper. Reenvía un correo y el adjunto pierde su contexto de carpeta por completo. El nombre del archivo es el único metadato que viaja con el archivo.</li>
+    <li><strong>Los nombres de archivo sobreviven al compartir.</strong> Cuando le mandas un PDF a un cliente por correo, tu estructura de carpetas no llega. El destinatario guarda el archivo con el nombre con el que lo enviaste. Asegúrate de que ese nombre siga teniendo sentido fuera de contexto.</li>
+  </ul>
+
+  <h2>El patrón universal</h2>
+  <p>Un único patrón cubre el 80% de los casos:</p>
+  <pre><code>AAAA-MM-DD_parte_asunto_version.pdf</code></pre>
+  <p>Por ejemplo: <code>2026-04-12_acme-corp_contrato-servicios_v02.pdf</code>.</p>
+  <p>Tres razones por las que funciona año tras año:</p>
+  <ul>
+    <li><strong>La fecha ISO ordena correctamente.</strong> 2026-04-12 va después de 2026-04-11 alfabéticamente, lo que significa que orden alfabético = orden cronológico. Ningún sistema de archivos del mundo trata así 12/04/2026.</li>
+    <li><strong>La parte antes del asunto agrupa por cliente.</strong> Todos tus archivos de Acme se agrupan cuando se ordenan alfabéticamente por cualquier cosa después de la fecha.</li>
+    <li><strong>La versión al final</strong> hace que la última versión esté siempre al final de la ordenación. v01 va por encima de v02, que va por encima de v03.</li>
+  </ul>
+  <blockquote class="callout">Si no recuerdas nada más de esta guía, recuerda usar fechas ISO. El resto es el bonus.</blockquote>
+
+  <h2>Patrones por tipo de documento</h2>
+  <p>Los consejos genéricos se ignoran. Los patrones concretos por tipo de documento se guardan en favoritos. Estos son los que merece la pena fijar en la memoria muscular.</p>
+
+  <h3>Facturas</h3>
+  <pre><code>AAAA-MM-DD_proveedor_importe_factura.pdf</code></pre>
+  <p>Ejemplo: <code>2026-04-15_aws_142-30_factura.pdf</code>. El importe en el nombre del archivo hace que la auditoría y la conciliación sean varias veces más rápidas: tu contable no tiene que abrir cada archivo para ver los totales.</p>
+
+  <h3>Contratos</h3>
+  <pre><code>AAAA-MM-DD_contraparte_tipo-contrato_version.pdf</code></pre>
+  <p>Ejemplo: <code>2026-03-20_acme-corp_msa_v03.pdf</code>. Añade <code>_BORRADOR</code> o <code>_FIRMADO</code> como sufijo cuando el estado importa: <code>2026-03-20_acme-corp_msa_v03_FIRMADO.pdf</code>. La versión firmada se distingue al instante de los borradores en cualquier listado de carpeta.</p>
+
+  <h3>Extractos bancarios</h3>
+  <pre><code>AAAA-MM_banco_4ultimosdigitos.pdf</code></pre>
+  <p>Ejemplo: <code>2026-04_chase_4421.pdf</code>. Los extractos son mensuales, así que la fecha pierde el componente de día. Los últimos cuatro dígitos del número de cuenta desambiguan cuando tienes varias cuentas en el mismo banco sin exponer el número completo.</p>
+
+  <h3>Escaneos y recibos</h3>
+  <pre><code>AAAA-MM-DD_asunto_scan.pdf</code></pre>
+  <p>Ejemplo: <code>2026-04-22_comida-acme_scan.pdf</code>. El sufijo <code>_scan</code> avisa de que probablemente este archivo necesite OCR si en algún momento quieres el texto: contexto útil para tu yo del futuro.</p>
+
+  <h2>Versionado que no acaba en 'final_FINAL_v2'</h2>
+  <p>Todo el mundo tiene en alguna parte una carpeta con archivos llamados <code>contrato_final.pdf</code>, <code>contrato_final_v2.pdf</code>, <code>contrato_final_REAL_final.pdf</code> y <code>contrato_finalfinal.pdf</code>. La solución son dos reglas:</p>
+  <ul>
+    <li><strong>Usa números de versión rellenados con cero.</strong> v01, v02, v03, no v1, v2, v10. El relleno con cero mantiene las versiones bien ordenadas pasada la v09. v10 va antes de v9 alfabéticamente, pero v10 va correctamente después de v09.</li>
+    <li><strong>Los sufijos de estado van al final.</strong> <code>_BORRADOR</code>, <code>_FIRMADO</code>, <code>_FINAL</code>. La versión firmada es el registro canónico; todo lo anterior es borrador.</li>
+  </ul>
+  <h3>Cuándo abrir un archivo nuevo en lugar de una versión nueva</h3>
+  <p>Versión nueva: el mismo documento, ediciones y revisiones. Mismo nombre base, sube el <code>_vNN</code>.</p>
+  <p>Archivo nuevo: distinta contraparte, distinto asunto, distinta operación. No lo metas con calzador en la cadena de versiones. <code>2026-04_acme-corp_msa_v04.pdf</code> y <code>2026-05_beta-co_msa_v01.pdf</code> son archivos distintos, no las versiones 4 y 5 del mismo.</p>
+
+  <h2>Caracteres a evitar</h2>
+  <p>Distintos sistemas operativos y plataformas en la nube rechazan distintos caracteres. Quédate con el conjunto seguro y nunca toparás con un error de «nombre de archivo no válido» durante la sincronización:</p>
+  <ul>
+    <li><strong>Sin espacios.</strong> Usa guiones para separar palabras dentro de un campo y guiones bajos entre campos. <code>acme-corp_msa_v02.pdf</code> se lee mejor que <code>acme corp msa v02.pdf</code> y sobrevive a URL, terminales y sistemas antiguos.</li>
+    <li><strong>Sin caracteres especiales.</strong> Evita <code>/ \ : * ? " &lt; &gt; |</code>. Muchos están reservados por el sistema de archivos y provocan fallos silenciosos.</li>
+    <li><strong>Por debajo de 100 caracteres.</strong> Algunas herramientas de sincronización truncan o fallan en los límites de nombre, sobre todo combinados con rutas de carpetas profundas.</li>
+    <li><strong>Quédate con letras ASCII, dígitos, guion, guion bajo, punto.</strong> Los caracteres acentuados y los emoji pueden romperse en sitios inesperados (clientes de correo antiguos, servidores FTP, ciertos respaldos).</li>
+  </ul>
+
+  <h2>Renombrar el atraso sin perder el fin de semana</h2>
+  <p>Si lees esto con la carpeta de Descargas llena de <code>documento(3).pdf</code>, no lo vas a arreglar en una sola sesión. No lo intentes. El truco es hacer que los archivos de hoy estén limpios y atacar el atraso en pequeños lotes.</p>
+  <ol>
+    <li><strong>Empieza por los archivos nuevos.</strong> Usa la convención con cada PDF que guardes a partir de ahora. Dos semanas de constancia ganan a un fin de semana de limpieza.</li>
+    <li><strong>50 archivos viejos al día.</strong> Elige una carpeta. Renombra lo que esté claro. Salta lo que no. Mañana sigues.</li>
+    <li><strong>Usa herramientas de renombrado masivo.</strong> PowerToys (Windows) y Better Finder Rename o el renombrado por lotes integrado (macOS) gestionan patrones de buscar y reemplazar sobre muchos archivos a la vez. Renombrar 200 facturas para añadir un prefijo de fecha ISO es un trabajo de cinco minutos, no de una tarde.</li>
+    <li><strong>Une antes de renombrar cuando ayude.</strong> Si tienes doce recibos que pertenecen a una misma nota de gastos, <a href="/es/pdf-organize/merge/">une los archivos relacionados en un PDF bien nombrado</a> en lugar de renombrar cada uno por separado. Un buen nombre gana a doce mediocres.</li>
+    <li><strong>Divide un megaarchivo mal nombrado.</strong> Si tienes un único <code>escaneos.pdf</code> gigante con un año de recibos dentro, la respuesta es <a href="/es/pdf-organize/split/">dividir un megaarchivo mal nombrado en piezas bien nombradas</a> y renombrar las partes a medida que avanzas.</li>
+  </ol>
+
+  <h2>Nombres y herramientas: las pequeñas victorias suman</h2>
+  <p>Un nombre de archivo coherente trabaja más de lo que la gente espera cuando se combina con el resto de tus herramientas:</p>
+  <ul>
+    <li><strong>La búsqueda en la nube se vuelve recuperación instantánea.</strong> Teclear «2026-04 acme» en la búsqueda de Drive devuelve exactamente lo que querías, no una lista jerarquizada de suposiciones.</li>
+    <li><strong>El reenvío de correo queda limpio.</strong> El destinatario ve un nombre con sentido en lugar de <code>document.pdf</code>, lo que te hace parecer organizado sin esfuerzo.</li>
+    <li><strong>Las copias de seguridad se deduplican mejor.</strong> Los nombres con versión hacen evidente qué archivos son distintos y cuáles son solo regrabaciones del mismo.</li>
+    <li><strong>Archivar es más fácil.</strong> Antes de meter los archivos en almacenamiento a largo plazo, <a href="/es/pdf-organize/compress/">comprime antes de archivar</a> para ahorrar espacio y empareja el archivo más pequeño con su nombre descriptivo.</li>
+  </ul>
+
+  <h2>Plan de arranque de dos semanas</h2>
+  <p>Si quieres probarlo sin comprometerte con un proyecto:</p>
+  <ol>
+    <li><strong>Semana 1.</strong> Aplica el patrón universal (<code>AAAA-MM-DD_parte_asunto.pdf</code>) a cada archivo nuevo que guardes. No toques los antiguos.</li>
+    <li><strong>Semana 2.</strong> Añade patrones específicos por tipo (facturas, contratos, extractos). Dedica diez minutos al día a renombrar los 50 archivos más usados de tu carpeta de Descargas.</li>
+  </ol>
+  <p>Para el día quince, la búsqueda empezará a funcionar. Para el día treinta, la nueva convención es automática y el caos antiguo queda reducido a una cola larga de archivos que casi no abres de todos modos.</p>
+
+  <h2>FAQ</h2>
+  <h3>¿Debo usar guiones o guiones bajos en los nombres de PDF?</h3>
+  <p>Ambos, con tareas distintas. Usa guiones dentro de un campo para separar palabras (<code>acme-corp</code>) y guiones bajos entre campos (<code>2026-04-15_acme-corp_factura.pdf</code>). Esto hace visible la estructura de un vistazo y es también la convención que mejor parsean los buscadores para archivos públicos.</p>
+  <h3>¿Por qué fecha ISO (AAAA-MM-DD) y no DD/MM/AAAA?</h3>
+  <p>Porque con fechas ISO el orden alfabético coincide con el cronológico. 2026-04-15 va después de 2026-04-14 en cualquier sistema, en cualquier sitio. DD-MM-AAAA pone abril después de enero pero antes de marzo, lo cual es inservible. ISO es además el estándar internacional, así que funciona entre países.</p>
+  <h3>¿Cuánto debe medir un nombre de PDF?</h3>
+  <p>Apunta a 30-80 caracteres. Lo bastante largo para ser descriptivo, lo bastante corto para leerse en un listado de carpeta sin truncarse. El límite duro depende del sistema (suelen ser 255 caracteres), pero combinado con rutas profundas puedes tener problemas pasando de 200.</p>
+  <h3>¿El número de versión va al principio o al final?</h3>
+  <p>Al final. Poner v01, v02 al final mantiene intacto el orden por fecha y las variantes de versión se agrupan al final de cualquier grupo de documentos. <code>2026-04_acme_msa_v01.pdf</code>, <code>v02</code>, <code>v03</code> quedan unas junto a otras.</p>
+  <h3>¿Las convenciones de nombres afectan al SEO cuando los PDF son públicos?</h3>
+  <p>Sí, modestamente. Los buscadores leen los nombres de PDF como señal de posicionamiento, sobre todo en el slug de la URL. Un nombre descriptivo y con guiones como <code>2026-acme-msa.pdf</code> gana a <code>archivo_3242.pdf</code> en visibilidad. No metas palabras clave a presión: simplemente sé descriptivo.</p>
+
+  <h2>Pruébalo ahora</h2>
+  <p>Elige un tipo de documento que manejes cada semana —facturas, extractos, contratos— y renombra los próximos diez que guardes con el patrón correspondiente. El hábito cuesta diez segundos por archivo y se paga cada vez que buscas. <a href="/es/all-tools/">Abrir todas las herramientas de PDF →</a></p>
