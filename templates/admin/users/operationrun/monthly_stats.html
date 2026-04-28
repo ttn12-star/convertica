@@ -135,7 +135,11 @@
           </div>
           <div class="grand-stat">
             <span class="value">{{ grand_totals.error|default:0 }}</span>
-            <span class="label">Errors</span>
+            <span class="label">Errors (5xx)</span>
+          </div>
+          <div class="grand-stat">
+            <span class="value">{{ grand_totals.rejected|default:0 }}</span>
+            <span class="label">Rejected (4xx)</span>
           </div>
           <div class="grand-stat">
             <span class="value">{{ grand_totals.cancelled|default:0 }}</span>
@@ -145,9 +149,13 @@
             <span class="value">{{ grand_totals.abandoned|default:0 }}</span>
             <span class="label">Abandoned</span>
           </div>
-          <div class="grand-stat">
+          <div class="grand-stat" title="success / (success + error) — system reliability, excluding 4xx user-input rejects">
             <span class="value {% if grand_totals.success_rate >= 90 %}high{% elif grand_totals.success_rate >= 70 %}medium{% else %}low{% endif %}">{{ grand_totals.success_rate }}%</span>
-            <span class="label">Success Rate</span>
+            <span class="label">System Success Rate</span>
+          </div>
+          <div class="grand-stat" title="success / total — overall completion across all outcomes">
+            <span class="value">{{ grand_totals.completion_rate }}%</span>
+            <span class="label">Completion Rate</span>
           </div>
         </div>
       </div>
@@ -167,11 +175,12 @@
             <th>Operation Type</th>
             <th>Total</th>
             <th>Success</th>
-            <th>Errors</th>
+            <th title="5xx server errors and Celery exceptions">Errors</th>
+            <th title="4xx — validation, unsupported file, premium gate. User-input issues, not system failures.">Rejected</th>
             <th>Cancelled</th>
             <th>Abandoned</th>
             <th>In Progress</th>
-            <th>Success Rate</th>
+            <th title="success / (success + error) — system reliability">Success Rate</th>
           </tr>
         </thead>
         <tbody>
@@ -183,6 +192,7 @@
                   <td>{{ stats|get_item:conv_type|get_item:"total" }}</td>
                   <td>{{ stats|get_item:conv_type|get_item:"success" }}</td>
                   <td>{% with val=stats|get_item:conv_type|get_item:"error" %}{% if val > 0 %}<span style="color: #dc3545; font-weight: bold;">{{ val }}</span>{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
+                  <td>{% with val=stats|get_item:conv_type|get_item:"rejected" %}{% if val > 0 %}<span style="color: #b58900;">{{ val }}</span>{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
                   <td>{% with val=stats|get_item:conv_type|get_item:"cancelled" %}{% if val > 0 %}{{ val }}{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
                   <td>{% with val=stats|get_item:conv_type|get_item:"abandoned" %}{% if val > 0 %}{{ val }}{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
                   <td>{% with val=stats|get_item:conv_type|get_item:"other" %}{% if val > 0 %}{{ val }}{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
@@ -200,6 +210,7 @@
             <td>{{ month_data.totals.total }}</td>
             <td>{{ month_data.totals.success }}</td>
             <td>{{ month_data.totals.error }}</td>
+            <td>{{ month_data.totals.rejected }}</td>
             <td>{{ month_data.totals.cancelled }}</td>
             <td>{{ month_data.totals.abandoned }}</td>
             <td>{{ month_data.totals.other }}</td>

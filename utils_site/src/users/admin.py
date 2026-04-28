@@ -597,6 +597,7 @@ class OperationRunAdmin(admin.ModelAdmin):
                 total=Count("id"),
                 success=Count("id", filter=Q(status="success")),
                 error=Count("id", filter=Q(status="error")),
+                rejected=Count("id", filter=Q(status="rejected")),
                 cancelled=Count(
                     "id", filter=Q(status__in=["cancelled", "cancel_requested"])
                 ),
@@ -629,14 +630,24 @@ class OperationRunAdmin(admin.ModelAdmin):
             month_key = row["month"]
             conv_type = row["conversion_type"]
 
+            # System success rate: success / (success + error). Excludes rejected
+            # (4xx — user input issues, not system failures), cancelled, abandoned,
+            # and in-progress operations from the denominator.
+            system_attempts = row["success"] + row["error"]
             months_dict[month_key]["operations"][conv_type] = {
                 "total": row["total"],
                 "success": row["success"],
                 "error": row["error"],
+                "rejected": row["rejected"],
                 "cancelled": row["cancelled"],
                 "abandoned": row["abandoned"],
                 "other": row["other"],
                 "success_rate": (
+                    round(row["success"] / system_attempts * 100, 1)
+                    if system_attempts > 0
+                    else 0
+                ),
+                "completion_rate": (
                     round(row["success"] / row["total"] * 100, 1)
                     if row["total"] > 0
                     else 0
@@ -647,6 +658,7 @@ class OperationRunAdmin(admin.ModelAdmin):
             months_dict[month_key]["totals"]["total"] += row["total"]
             months_dict[month_key]["totals"]["success"] += row["success"]
             months_dict[month_key]["totals"]["error"] += row["error"]
+            months_dict[month_key]["totals"]["rejected"] += row["rejected"]
             months_dict[month_key]["totals"]["cancelled"] += row["cancelled"]
             months_dict[month_key]["totals"]["abandoned"] += row["abandoned"]
             months_dict[month_key]["totals"]["other"] += row["other"]
@@ -657,7 +669,13 @@ class OperationRunAdmin(admin.ModelAdmin):
             months_dict.items(), key=lambda x: x[0], reverse=True
         ):
             totals = data["totals"]
+            system_attempts = totals["success"] + totals["error"]
             totals["success_rate"] = (
+                round(totals["success"] / system_attempts * 100, 1)
+                if system_attempts > 0
+                else 0
+            )
+            totals["completion_rate"] = (
                 round(totals["success"] / totals["total"] * 100, 1)
                 if totals["total"] > 0
                 else 0
@@ -678,11 +696,18 @@ class OperationRunAdmin(admin.ModelAdmin):
             "total": sum(m["totals"]["total"] for m in months_list),
             "success": sum(m["totals"]["success"] for m in months_list),
             "error": sum(m["totals"]["error"] for m in months_list),
+            "rejected": sum(m["totals"]["rejected"] for m in months_list),
             "cancelled": sum(m["totals"]["cancelled"] for m in months_list),
             "abandoned": sum(m["totals"]["abandoned"] for m in months_list),
             "other": sum(m["totals"]["other"] for m in months_list),
         }
+        grand_system_attempts = grand_totals["success"] + grand_totals["error"]
         grand_totals["success_rate"] = (
+            round(grand_totals["success"] / grand_system_attempts * 100, 1)
+            if grand_system_attempts > 0
+            else 0
+        )
+        grand_totals["completion_rate"] = (
             round(grand_totals["success"] / grand_totals["total"] * 100, 1)
             if grand_totals["total"] > 0
             else 0

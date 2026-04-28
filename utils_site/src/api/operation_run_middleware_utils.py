@@ -38,15 +38,31 @@ def extract_error_message(response) -> str:
     return _extract_error_message(response)
 
 
+def _format_with_details(error_part: str, data: dict) -> str:
+    """Append `details` to error_part when present, so validation failures keep field info."""
+    details = data.get("details")
+    if not details:
+        return error_part
+    try:
+        details_str = json.dumps(details, ensure_ascii=False)[:1500]
+    except Exception:
+        details_str = str(details)[:1500]
+    return f"{error_part}: {details_str}" if error_part else details_str
+
+
+def _extract_from_dict(data: dict) -> str:
+    for key in ("error", "message", "detail"):
+        val = data.get(key)
+        if isinstance(val, str) and val.strip():
+            return _format_with_details(val.strip(), data)
+    return json.dumps(data)[:2000]
+
+
 def _extract_error_message(response) -> str:
     try:
         data = getattr(response, "data", None)
         if isinstance(data, dict):
-            for key in ("error", "message", "detail"):
-                val = data.get(key)
-                if isinstance(val, str) and val.strip():
-                    return val.strip()
-            return json.dumps(data)[:2000]
+            return _extract_from_dict(data)
     except Exception:
         pass
 
@@ -62,11 +78,7 @@ def _extract_error_message(response) -> str:
         try:
             obj = json.loads(content)
             if isinstance(obj, dict):
-                for key in ("error", "message", "detail"):
-                    val = obj.get(key)
-                    if isinstance(val, str) and val.strip():
-                        return val.strip()
-                return json.dumps(obj)[:2000]
+                return _extract_from_dict(obj)
         except Exception:
             pass
         return content.strip()[:2000]
@@ -176,7 +188,18 @@ def mark_error(
     )
 
 
-def mark_http_error(*, request_id: str, error_message: str, duration_ms: int) -> None:
+def mark_http_error(
+    *,
+    request_id: str,
+    error_message: str,
+    duration_ms: int,
+    status_code: int | None = None,
+) -> None:
+    """Mark operation as failed for an HTTP error response.
+
+    4xx → status="rejected" (user-input issue: validation, unsupported file, premium gate).
+    5xx (or unknown) → status="error" (server-side failure).
+    """
     try:
         from django.db.models import Case, CharField, F, TextField, Value, When
         from src.users.models import OperationRun
@@ -186,12 +209,16 @@ def mark_http_error(*, request_id: str, error_message: str, duration_ms: int) ->
 
         msg = str(error_message or "")[:2000]
 
+        is_client_error = status_code is not None and 400 <= int(status_code) < 500
+        new_status = "rejected" if is_client_error else "error"
+        default_error_type = "ClientError" if is_client_error else "HttpError"
+
         OperationRun.objects.filter(request_id=str(request_id)).update(
-            status="error",
+            status=new_status,
             finished_at=timezone.now(),
             duration_ms=duration_ms,
             error_type=Case(
-                When(error_type="", then=Value("HttpError")),
+                When(error_type="", then=Value(default_error_type)),
                 default=F("error_type"),
                 output_field=CharField(),
             ),
@@ -236,11 +263,11 @@ def track_operation_run(conversion_type: str):
                 status_code = getattr(response, "status_code", 200)
                 if status_code and int(status_code) >= 400:
                     msg = extract_error_message(response) or f"HTTP {status_code}"
-                    mark_error(
+                    mark_http_error(
                         request_id=request_id,
-                        error_type="HttpError",
                         error_message=msg,
                         duration_ms=duration_ms,
+                        status_code=int(status_code),
                     )
                 else:
                     mark_success(

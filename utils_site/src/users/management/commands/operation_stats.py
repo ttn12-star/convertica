@@ -49,6 +49,9 @@ class Command(BaseCommand):
         failed_ops = OperationRun.objects.filter(
             created_at__gte=cutoff_date, status="error"
         ).count()
+        rejected_ops = OperationRun.objects.filter(
+            created_at__gte=cutoff_date, status="rejected"
+        ).count()
         pending_ops = OperationRun.objects.filter(
             created_at__gte=cutoff_date, status__in=["started", "queued", "running"]
         ).count()
@@ -59,12 +62,17 @@ class Command(BaseCommand):
             created_at__gte=cutoff_date, status="abandoned"
         ).count()
 
-        success_rate = (successful_ops / total_ops * 100) if total_ops > 0 else 0
+        # System success rate ignores 4xx user-input rejects.
+        system_attempts = successful_ops + failed_ops
+        success_rate = (
+            (successful_ops / system_attempts * 100) if system_attempts > 0 else 0
+        )
 
         self.stdout.write("\n📈 Overall Statistics:")
         self.stdout.write(f"   Total Operations: {total_ops}")
         self.stdout.write(f"   Successful: {successful_ops} ({success_rate:.1f}%)")
-        self.stdout.write(f"   Failed: {failed_ops}")
+        self.stdout.write(f"   Failed (5xx): {failed_ops}")
+        self.stdout.write(f"   Rejected (4xx): {rejected_ops}")
         self.stdout.write(f"   Pending: {pending_ops}")
         self.stdout.write(f"   Cancelled: {cancelled_ops}")
         self.stdout.write(f"   Abandoned: {abandoned_ops}")
@@ -80,6 +88,7 @@ class Command(BaseCommand):
                 total=Count("id"),
                 successful=Count("id", filter=Q(status="success")),
                 failed=Count("id", filter=Q(status="error")),
+                rejected=Count("id", filter=Q(status="rejected")),
                 cancelled=Count(
                     "id", filter=Q(status__in=["cancelled", "cancel_requested"])
                 ),
@@ -94,12 +103,14 @@ class Command(BaseCommand):
             total = stat["total"]
             successful = stat["successful"]
             failed = stat["failed"]
+            rejected = stat["rejected"]
             cancelled = stat["cancelled"]
             abandoned = stat["abandoned"]
-            success_rate = (successful / total * 100) if total > 0 else 0
+            attempts = successful + failed
+            success_rate = (successful / attempts * 100) if attempts > 0 else 0
 
             self.stdout.write(
-                f"   {conv_type:30} | Total: {total:5} | Success: {successful:5} ({success_rate:5.1f}%) | Failed: {failed:4} | Cancelled: {cancelled:4} | Abandoned: {abandoned:4}"
+                f"   {conv_type:30} | Total: {total:5} | Success: {successful:5} ({success_rate:5.1f}%) | Failed: {failed:4} | Rejected: {rejected:4} | Cancelled: {cancelled:4} | Abandoned: {abandoned:4}"
             )
 
             stats_data.append(
@@ -108,6 +119,7 @@ class Command(BaseCommand):
                     "total": total,
                     "successful": successful,
                     "failed": failed,
+                    "rejected": rejected,
                     "cancelled": cancelled,
                     "abandoned": abandoned,
                     "success_rate": f"{success_rate:.1f}%",
@@ -147,6 +159,7 @@ class Command(BaseCommand):
                     "total",
                     "successful",
                     "failed",
+                    "rejected",
                     "cancelled",
                     "abandoned",
                     "success_rate",
