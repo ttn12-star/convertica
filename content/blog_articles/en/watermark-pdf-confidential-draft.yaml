@@ -1,0 +1,172 @@
+slug: watermark-pdf-confidential-draft
+status: published
+category_slug: use-cases
+relevant_tool: add_watermark
+title_en: "How to Add a 'CONFIDENTIAL' or 'DRAFT' Watermark to a PDF Before Sharing"
+meta_title_en: "Add Confidential or Draft Watermark to PDF Free"
+meta_description_en: "Stamp a PDF with CONFIDENTIAL, DRAFT or your company name diagonally across every page. Free browser tool, with opacity and rotation that looks professional."
+meta_keywords_en: "add watermark to pdf, confidential watermark pdf, draft watermark, stamp pdf, pdf watermark free"
+excerpt_en: "Sending a contract draft or sensitive proposal? A diagonal watermark across every page protects you legally and visually, but only if you set it up correctly"
+ai_metadata:
+  topics:
+    - PDF watermarking
+    - document confidentiality
+    - draft document handling
+    - legal document marking
+    - intellectual property
+  entities:
+    - Convertica
+    - NDA
+    - Adobe Acrobat
+    - copyright
+  summary: "How to add a CONFIDENTIAL or DRAFT watermark across every page of a PDF, including opacity and rotation settings, plus an honest note that watermarks are deterrents and should be paired with password protection on truly sensitive files."
+  related_terms:
+    - stamp pdf with text
+    - draft watermark pdf
+    - confidential mark pdf
+    - diagonal watermark
+    - text overlay pdf
+    - legal watermark
+  reading_time_minutes: 8
+  target_audience: "Lawyers, contract drafters, designers, photographers and consultants who circulate work-in-progress or sensitive PDFs."
+content_en: |
+  A watermark is a soft form of guard rail. It won't stop a determined bad actor, but it does three things competently: it tells the reader the document isn't final, it makes screen-grabbing or photocopying obviously traceable, and it discourages the casual "let me just forward this" reflex. For a draft contract, an internal proposal or a design proof, that's usually exactly the level of friction you want.
+
+  This guide walks through adding a CONFIDENTIAL or DRAFT watermark to every page of a PDF using Convertica's <a href="/en/pdf-edit/add-watermark/">add watermark to PDF</a> tool, with the settings that look professional in practice. It also covers the part most articles skip: a watermark is a deterrent, not encryption, and when to combine it with a real lock.
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Convertica watermark tool with text, opacity, and rotation controls" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>When you actually need a watermark</h2>
+
+  Watermarks signal status. Use them when the document's status is part of its meaning:
+
+  <ul>
+    <li><strong>Draft contracts.</strong> A <code>DRAFT</code> mark across every page prevents an early version being mistaken for the signed final. (Many legal teams have a story about a "DRAFT" being sent to procurement, getting signed without the watermark removal step, and ending up as the operative agreement.)</li>
+    <li><strong>NDA-protected materials.</strong> <code>CONFIDENTIAL</code> reinforces the legal posture of the document and makes any leaked screenshot self-incriminating.</li>
+    <li><strong>Internal-only material.</strong> <code>INTERNAL USE ONLY</code> on board memos or strategy decks reduces the chance of accidental forwarding.</li>
+    <li><strong>Photographer and designer proofs.</strong> Diagonal text across every preview frame discourages clients from using the deliverable before payment.</li>
+    <li><strong>Pre-approval reports.</strong> <code>PENDING REVIEW</code> stops drafts being cited as official.</li>
+    <li><strong>Discovery-stage litigation drafts.</strong> Marking pleadings <code>DRAFT - ATTORNEY WORK PRODUCT</code> gives them a clearer status if they accidentally leave a privileged channel.</li>
+  </ul>
+
+  <blockquote class="callout">If a reader could mistake your file for the final, a watermark belongs on it.</blockquote>
+
+  <h2>Text vs image watermarks</h2>
+
+  You have two formats to choose from, sometimes both:
+
+  <table>
+    <thead>
+      <tr><th>Type</th><th>Best for</th><th>Trade-off</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Text watermark</td><td>Status words: DRAFT, CONFIDENTIAL, INTERNAL</td><td>Plain, but unmistakable and lightweight</td></tr>
+      <tr><td>Image watermark (logo)</td><td>Branding ownership: company logo on proofs</td><td>Looks polished, increases file size, needs a clean transparent PNG</td></tr>
+      <tr><td>Both combined</td><td>Sensitive client work: logo plus DRAFT</td><td>More setup, strongest signal</td></tr>
+    </tbody>
+  </table>
+
+  Text is enough when the message is procedural ("this isn't the final version"). A logo is right when the message is ownership ("this artwork belongs to us until you pay the invoice"). Combining them is overkill for everyday drafts but standard for design and photography deliverables.
+
+  A specific gotcha on logo files: if your logo PNG was exported with a white rectangle background instead of true alpha transparency, the watermark will sit inside a visible white box on every page, which looks worse than no watermark at all. Open the PNG in any image viewer that shows transparency (Preview on macOS, the IrfanView "tile" view on Windows) and confirm there's a checkerboard pattern around the logo, not white.
+
+  <h2>Step-by-step: add a text watermark</h2>
+
+  Settings that look professional in practice:
+
+  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Diagonal CONFIDENTIAL watermark applied across every page of a PDF" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Open the <a href="/en/pdf-edit/add-watermark/">add watermark to PDF</a> tool and upload your file.</li>
+    <li>Switch the watermark type to <strong>Text</strong>.</li>
+    <li>Type the watermark text. Use uppercase: <code>DRAFT</code>, <code>CONFIDENTIAL</code>, or your company name.</li>
+    <li>Set the font to a sans-serif (Arial or Helvetica) at a large size: 60-80 pt for A4.</li>
+    <li>Set the colour to a mid-grey (around #888) so the watermark reads on light pages without black-bombing dark images.</li>
+    <li>Set opacity to <strong>30-40%</strong>. Below 25% it becomes hard to see when printed, above 50% it interferes with the underlying text.</li>
+    <li>Set rotation to <strong>45 degrees</strong> diagonal. This covers more page area than horizontal text and is the established convention for confidentiality marks.</li>
+    <li>Apply to <strong>all pages</strong>, not just the first.</li>
+    <li>Preview the result. If the watermark sits behind the text, you're done. If it covers a critical signature line, lower opacity to 25%.</li>
+    <li>Download.</li>
+  </ol>
+
+  Worth a quick check after download: open the file in the viewer your recipient is likely to use, not just the one you watermarked in. Some older versions of Foxit and Nitro Reader render watermarks slightly larger than Acrobat does, which can push the diagonal text past the edge of the page. If your recipient is on a corporate machine running an older PDF reader, that's the version that decides whether the watermark looks right.
+
+  <h2>Best practices for legal weight</h2>
+
+  A watermark has more weight in a dispute when it's consistent and visible. Practical rules:
+
+  <ul>
+    <li><strong>30-40% opacity.</strong> Readable against any background, still clearly an overlay.</li>
+    <li><strong>Diagonal placement.</strong> Covers more page area than top or bottom strips and survives cropping screenshots.</li>
+    <li><strong>Apply to every page.</strong> A watermark only on page 1 invites partial-page screenshots that look unmarked.</li>
+    <li><strong>Keep an unwatermarked master.</strong> Always save the original separately. When the deal closes and the document goes final, you produce the clean version, not a watermark-removal job.</li>
+    <li><strong>Standardise the wording.</strong> Pick one phrase ("DRAFT - NOT FOR EXECUTION" or "CONFIDENTIAL") and use it consistently. Inconsistent marks look ad hoc and weaken the signal.</li>
+    <li><strong>Date the watermark.</strong> "DRAFT - 2026-04-28" makes it obvious which revision someone is looking at and discourages the "but the version I saw said something else" argument.</li>
+    <li><strong>Don't mix capitalisation.</strong> "Confidential" and "CONFIDENTIAL" on the same document set look like one is a draft of the other.</li>
+  </ul>
+
+  For multi-section documents, you can <a href="/en/pdf-organize/merge/">merge multiple draft pages first</a> into a single file, then watermark once across the whole bundle - a cleaner output than watermarking each section separately.
+
+  <h2>Watermarks are not encryption</h2>
+
+  This is the part most "how to watermark a PDF" articles skip because it's awkward for the upsell. A watermark is a visible deterrent. It does not:
+
+  <ul>
+    <li>Prevent the recipient from copying the text out of the PDF.</li>
+    <li>Stop screenshots, including watermark-and-all screenshots cropped to one paragraph.</li>
+    <li>Encrypt the file contents.</li>
+    <li>Stop a determined adversary with image editing software from removing it (slowly, imperfectly).</li>
+    <li>Survive a high-quality OCR pass that retypes the body text into a fresh document.</li>
+  </ul>
+
+  What it does is set the social and legal context. A leaked unwatermarked draft is plausibly innocent. A leaked draft with <code>CONFIDENTIAL</code> stamped across every page is clearly a breach of whatever NDA the recipient signed, and that distinction matters when lawyers are weighing damages.
+
+  For genuinely sensitive material, combine the watermark with real protection: <a href="/en/pdf-security/protect/">password-protect the document too</a> with AES-256 encryption, and share the password through a different channel from the file. Watermark plus password is the level of defence most legal and finance teams expect for board materials and unsigned commercial agreements. (I'd argue that even at this level, you're trusting the recipient. There's no technical control that prevents a determined insider from copying a screen by phone camera. Watermark plus password is "good faith plus deterrent", not "tamper-proof".)
+
+  <table>
+    <thead>
+      <tr><th>Risk level</th><th>Recommended protection</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Internal draft circulating to a small team</td><td>Watermark only</td></tr>
+      <tr><td>External draft to a counterparty under NDA</td><td>Watermark + password</td></tr>
+      <tr><td>Board pack, unannounced M&A, payroll data</td><td>Watermark + password + secure channel</td></tr>
+      <tr><td>Public-facing handout</td><td>No watermark needed</td></tr>
+      <tr><td>Personalised proof for one named recipient</td><td>Watermark with their name + password</td></tr>
+    </tbody>
+  </table>
+
+  That last row is worth a note. If you watermark "Confidential - prepared for John Smith, Acme Corp" rather than a generic "CONFIDENTIAL", any leak from that copy is traceable to a specific recipient. Photographers and pre-publication news rooms have used this technique for decades. It costs an extra thirty seconds per recipient and dramatically raises the social cost of leaking.
+
+  <h2>Removing your own watermark later</h2>
+
+  When the deal goes final, you need a clean file. There's exactly one good way to get one: re-export from the source.
+
+  <ol>
+    <li>Keep the unwatermarked master from before you ran the watermark tool.</li>
+    <li>When the document is approved, watermark the master with a <code>FINAL</code> mark or remove watermarking entirely, depending on convention.</li>
+    <li>Distribute the new clean version, not a "watermark-removed" version of the draft.</li>
+  </ol>
+
+  We deliberately don't offer a tool to remove watermarks from documents you don't own. Watermark removal on third-party PDFs almost always violates copyright, NDAs or the original sender's terms, and we don't want to make that easier.
+
+  <h2>FAQ</h2>
+
+  <h3>What opacity should I use for a CONFIDENTIAL watermark?</h3>
+  <p>30-40% is the sweet spot. It reads clearly across light backgrounds and survives black-and-white printing without obscuring the underlying text. Below 25% it becomes invisible on busy pages; above 50% it interferes with reading.</p>
+
+  <h3>Can I add a watermark to only specific pages?</h3>
+  <p>Yes, and there are valid reasons (cover page exempt, appendices unmarked). That said, partial watermarking is easier to defeat with screenshots, so apply to every page unless you have a specific layout reason.</p>
+
+  <h3>Will the watermark show up when printed?</h3>
+  <p>Yes. The watermark is part of the page content, not a viewer overlay, so it prints exactly as it appears on screen. For black-and-white printing, mid-grey watermarks render slightly darker than expected; bump opacity down 5% if you intend to print. Some print drivers also have a "skip watermarks" option that's enabled by default on certain enterprise printers - test before a big print run.</p>
+
+  <h3>Does watermarking prevent copying the PDF?</h3>
+  <p>No. A watermark is a visual deterrent only. To restrict copying or printing, combine the watermark with a permissions password that disables those actions in compliant viewers.</p>
+
+  <h3>Can I add a logo image instead of text?</h3>
+  <p>Yes. Use a transparent-background PNG for cleanest results. Place it diagonally at 30-40% opacity for the same coverage rationale as text. Logo watermarks are standard practice for design and photography proofs.</p>
+
+  <h2>Try it now</h2>
+
+  <p>Stamp your draft, proposal or proof with a clear status mark in under a minute and send it without second-guessing whether the recipient will treat it as final. <a href="/en/pdf-edit/add-watermark/">Open the watermark tool →</a> Browse the rest of <a href="/en/all-tools/">all PDF editing tools</a> while you're here.</p>

@@ -1,0 +1,208 @@
+slug: convert-scanned-pdf-to-editable-word
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_word
+title_en: "How to Convert a Scanned PDF to an Editable Word Document (with OCR Tips)"
+meta_title_en: "Convert Scanned PDF to Editable Word Free | Convertica"
+meta_description_en: "A scanned PDF is just images of text. Learn how OCR turns it into an editable Word doc, what accuracy to expect, and the cleanup steps that make it usable."
+meta_keywords_en: "scanned pdf to word, ocr pdf to word, editable pdf, pdf image to word, convert scan to docx"
+excerpt_en: "If 'select text' in your PDF only highlights blank space, you have a scanned PDF, and you need OCR rather than a regular converter. Here is what to expect."
+ai_metadata:
+  topics:
+    - OCR
+    - scanned PDF conversion
+    - PDF to Word
+    - document digitization
+    - text recognition accuracy
+  entities:
+    - OCR
+    - Optical Character Recognition
+    - Microsoft Word
+    - Convertica
+    - Tesseract
+    - DPI
+    - docx
+    - faxed document
+  summary: "Walks through identifying a scanned versus digital PDF, running OCR to convert it to an editable Word document, and the realistic accuracy you can expect by source quality, plus pre- and post-OCR cleanup that meaningfully boosts results."
+  related_terms:
+    - ocr scanned document
+    - image pdf to docx
+    - editable word from scan
+    - ocr pdf free
+    - extract text from scan
+    - searchable pdf
+    - convert image pdf to word
+  reading_time_minutes: 10
+  target_audience: "Knowledge workers, paralegals, students, and anyone who has been handed a scanned contract, fax, or archived report and needs to actually edit it rather than retype it."
+content_en: |
+  Try this on the PDF in front of you: click and drag across a paragraph as if you were going to copy the text. If your cursor highlights individual words, the PDF is digital and a standard converter works. If it highlights a big rectangle around the whole page, you have a scan, which means each page is essentially a photograph of paper, and a normal PDF-to-Word tool will hand you back a Word document full of pictures, not text.
+
+  That's where OCR comes in. Optical character recognition reads the pixels and reconstructs them as actual letters, words, and paragraphs. Done well, you get an editable .docx. Done badly, you get garbled text and have to clean up commas, spaces, and rn-versus-m mistakes for an hour. The difference is mostly in the source file and a few things you can control.
+
+  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Convertica PDF to Word converter accepting a scanned document for OCR" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>How to tell if your PDF is scanned</h2>
+
+  Three quick checks:
+
+  <ul>
+    <li><strong>Text selection.</strong> Try to select a single word. If the entire page becomes one selectable rectangle, the page is an image.</li>
+    <li><strong>File size.</strong> A 10-page text PDF is usually 100 to 500 KB. A 10-page scanned PDF is often 5 to 30 MB because every page is a high-resolution image.</li>
+    <li><strong>Visual artifacts.</strong> Scans show speckle, slight rotation, faded edges, and visible paper texture. Born-digital PDFs have crisp letters with anti-aliased edges and no background noise.</li>
+    <li><strong>The cursor shape.</strong> Hover over text. A digital PDF flips your cursor to the I-beam over text and an arrow over images. A scanned PDF stays as an arrow everywhere - because everything is an image.</li>
+  </ul>
+
+  Hybrid PDFs exist too, where someone scanned a contract and then appended a born-digital signature page. OCR skips the digital page (no need) and processes only the scanned ones. Run the text-selection test on a few different pages of any large file before assuming the whole thing is one type.
+
+  <h2>What OCR actually does</h2>
+
+  OCR is pattern recognition for letterforms. The engine looks at clusters of pixels, compares them to a model trained on millions of glyph images, and emits a best-guess character along with a confidence score. Modern engines also use surrounding context: if it's 80% sure the next word is "agreement" and the third letter is ambiguous between "r" and "n", it picks "r" because "agreement" is a real word.
+
+  Two settings drive accuracy more than anything else:
+
+  <ul>
+    <li><strong>Source language.</strong> An English-trained model on a French document misreads accented characters and confuses common words. Always set the language explicitly when the tool offers it.</li>
+    <li><strong>Source DPI.</strong> 300 DPI is the practical floor for clean OCR. 200 DPI scans can work for big print but struggle with small footnotes. Below 150, accuracy collapses fast.</li>
+  </ul>
+
+  A third factor people don't think about often: contrast. OCR works on the difference between ink and background. A faded photocopy of a photocopy can have nominal 300 DPI resolution and still produce mush because the contrast ratio is too low for the recogniser to find letter edges. Modern engines handle this better than older ones, but old Tesseract builds (anything before version 4.0, released in 2018) still struggle on low-contrast input.
+
+  <h2>Step-by-step: scanned PDF to Word</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="OCR-powered PDF-to-Word conversion turning a scan into an editable .docx" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Open the <a href="/en/pdf-to-word/">convert PDF to Word</a> tool and upload your scan. The tool detects whether OCR is needed automatically when text selection returns empty.</li>
+    <li>Select the source language so the recognizer uses the right dictionary. English, Spanish, German, French, Italian, Portuguese, Russian, and Polish all behave noticeably better when set explicitly.</li>
+    <li>Run the conversion. A 10-page scan takes roughly 30 to 90 seconds depending on image complexity. A 100-page archive might run several minutes.</li>
+    <li>Download the .docx and open it in Word. Spot-check the first page against the original PDF before trusting the rest.</li>
+  </ol>
+
+  <blockquote class="callout">Always keep the original scanned PDF. If OCR mangles a page, you want to be able to compare it to the source rather than guess what the unreadable word should have been.</blockquote>
+
+  Worth checking once before you trust the output: open the .docx in Word and look at the formatting marks (toggle them with Ctrl+Shift+8 on Windows, Cmd+8 on macOS). If you see lots of paragraph marks at the end of every line - because OCR thought each visual line was a paragraph - you'll want to fix that with a find-and-replace before editing. The fix is simple: replace single paragraph marks with a space, then double paragraph marks back to single. (I'd argue this single Word trick saves more time than any OCR setting.)
+
+  <h2>Realistic accuracy expectations</h2>
+
+  Marketing claims of "99% accuracy" assume clean printed text on white paper at 300 DPI. Real-world documents vary wildly. Here is what to actually expect:
+
+  <table>
+    <thead>
+      <tr>
+        <th>Document type</th>
+        <th>Typical OCR accuracy</th>
+        <th>Cleanup needed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Clean printed text, modern document</td>
+        <td>95-99%</td>
+        <td>Minimal, mostly punctuation</td>
+      </tr>
+      <tr>
+        <td>Faxed or photocopied document</td>
+        <td>80-90%</td>
+        <td>Page-by-page proofreading</td>
+      </tr>
+      <tr>
+        <td>Old typewritten / pre-2000 print</td>
+        <td>75-90%</td>
+        <td>Heavy proofreading, especially for "1" vs "l"</td>
+      </tr>
+      <tr>
+        <td>Handwriting</td>
+        <td>30-70%, highly variable</td>
+        <td>Often faster to retype</td>
+      </tr>
+      <tr>
+        <td>Tables of numbers</td>
+        <td>Layout fails most of the time</td>
+        <td>Manual reformatting</td>
+      </tr>
+      <tr>
+        <td>Multi-column newspaper or magazine layout</td>
+        <td>Text right, layout wrong</td>
+        <td>Reflow into single column manually</td>
+      </tr>
+      <tr>
+        <td>Camera photo of a page (good lighting)</td>
+        <td>85-95%</td>
+        <td>Crop and deskew first for best results</td>
+      </tr>
+    </tbody>
+  </table>
+
+  Anyone promising 99% on a faxed document either hasn't tested it or is selling something. Set your expectations to "I'll need to proofread", not "I can ship this raw".
+
+  Specific gotcha: invoice numbers and reference codes are where OCR errors hurt most. A misread digit in a paragraph of body text is forgivable; a misread digit in "Invoice 1023841" can post a payment to the wrong account. Always cross-check numerical IDs in the OCR output against the original.
+
+  <h2>Pre-OCR cleanup that boosts accuracy</h2>
+
+  Five minutes of prep cuts post-OCR cleanup time in half:
+
+  <ul>
+    <li><strong>Rotate sideways pages.</strong> OCR engines assume horizontal text. A 90-degree-off page returns gibberish or nothing. Use a tool to <a href="/en/pdf-edit/rotate/">rotate sideways pages first</a> before OCR.</li>
+    <li><strong>Crop excess margins.</strong> Wide white borders confuse the layout analyzer into thinking your single column is two. <a href="/en/pdf-edit/">Crop the margins</a> down to where the text actually starts.</li>
+    <li><strong>Increase contrast.</strong> Faded scans benefit from a contrast boost in your scanner software or any image editor before re-saving as PDF. Pure black text on pure white background is the gold standard.</li>
+    <li><strong>Deskew.</strong> Pages tilted by even 2 to 3 degrees hurt accuracy. Most scanner software has an auto-deskew option, and it's worth running.</li>
+    <li><strong>Drop colour to grayscale or black-and-white</strong> before scanning if you can. Colour tints (the typical yellow-tinged office photocopier output) shift contrast in ways that throw off the recogniser.</li>
+    <li><strong>Remove staples and crinkles before scanning.</strong> Sounds obvious, but folded pages produce shadowed lines that OCR misreads as underscores or table borders.</li>
+  </ul>
+
+  <h2>Post-OCR cleanup checklist</h2>
+
+  Once the .docx lands, run a few find-and-replace passes before you start editing in earnest. These are the most common OCR errors across English documents:
+
+  <ul>
+    <li><code>rn</code> often becomes <code>m</code>, or vice versa. Search for "rn" and "modern" lookalikes.</li>
+    <li><code>l</code> (lowercase L) confused with <code>1</code> (one). Especially common in invoice numbers and dates.</li>
+    <li><code>0</code> (zero) confused with <code>O</code> (capital o) inside codes and IDs.</li>
+    <li>Smart quotes flipped to straight quotes or vice versa, breaking quotations.</li>
+    <li>Em dashes converted to two hyphens or hyphen-space-hyphen.</li>
+    <li>Headers and footers from every page may end up inline as text. Delete them once and lock down a real Word header instead.</li>
+    <li>Bulleted lists rendered as plain paragraphs prefixed with a literal "•" or a stray "o" character.</li>
+    <li>Hyphenated line-end words (mer-/chant on consecutive lines) sometimes survive into the Word doc as actual hyphens. Search for "- " (hyphen-space) and clean up.</li>
+  </ul>
+
+  Tables almost always need manual rebuilding. If the source contains data you'd rather have in a spreadsheet anyway, it might be faster to <a href="/en/pdf-to-excel/">extract data into Excel instead</a> and skip Word entirely for the numerical sections.
+
+  Worth a separate paragraph: signatures and stamps don't survive OCR. They come through as small embedded images, often clipped, sometimes lost entirely. If the legal value of the document depends on a signature, your OCR'd Word version is a working copy, not an authoritative copy. Keep the original PDF as the canonical record.
+
+  <h2>When OCR isn't worth it</h2>
+
+  Sometimes the right answer is to retype rather than OCR-and-clean. The break-even point depends on document length and source quality:
+
+  <ul>
+    <li><strong>Under one page of clean print:</strong> Retyping is often faster than running OCR, downloading, opening Word, and proofing.</li>
+    <li><strong>One to ten pages of clean print:</strong> OCR wins, even with cleanup.</li>
+    <li><strong>Ten or more pages of bad fax quality:</strong> OCR wins on time, but the cleanup pass can be tedious. Plan it as a real task, not a quick five-minute job.</li>
+    <li><strong>Anything handwritten:</strong> Retype unless the document is hundreds of pages and the alternative is "don't have it digitally at all".</li>
+    <li><strong>Numerical data:</strong> Retyping numbers is faster than verifying every digit of OCR output, and the verification step is mandatory if accuracy matters.</li>
+  </ul>
+
+  One more thing worth knowing about confidentiality: a scanned medical record or a deposition transcript that you OCR through a web service has now lived briefly on someone else's server, even if that server promptly deletes it. For documents covered by HIPAA, GDPR's special-category data, or attorney-client privilege, run OCR locally with Tesseract or a desktop tool like ABBYY FineReader. The five-minute setup tax is worth the peace of mind.
+
+  <h2>FAQ</h2>
+
+  <h3>Why does my Word doc come out blank after conversion?</h3>
+  <p>Almost always, you ran a non-OCR converter on a scanned PDF. The converter found no text layer, so it produced a Word doc with the page images embedded but no editable text. Re-run the file through an OCR-enabled conversion path.</p>
+
+  <h3>Can OCR handle handwritten notes?</h3>
+  <p>Sometimes, badly. Handwriting OCR has improved with neural models but still ranges from 30% to 70% accuracy on real-world handwriting. For anything important, retyping is usually faster than correcting OCR output. Block-printed handwriting (like a form filled in capitals) does much better than cursive.</p>
+
+  <h3>Which languages does OCR support?</h3>
+  <p>Most engines, including the one Convertica uses, cover all major European languages including English, Spanish, French, German, Italian, Portuguese, Russian, Polish, and many more. Set the source language explicitly for accented or non-Latin scripts. Mixed-language documents (English with quoted French passages) work best when set to the dominant language.</p>
+
+  <h3>Why are tables coming out as scrambled text?</h3>
+  <p>OCR reads left-to-right, top-to-bottom, and table cell boundaries confuse that flow. Numbers from row 1 column 3 may end up next to row 2 column 1. For tabular data, converting straight to Excel and rebuilding the table there is usually faster than fixing it in Word.</p>
+
+  <h3>Is OCR conversion confidential?</h3>
+  <p>Reputable browser-based tools process the file in a temporary session and delete it shortly after. Read the privacy policy of any tool before uploading sensitive documents. For highly confidential material, consider local OCR (Tesseract, ABBYY) instead of any web service.</p>
+
+  <h3>How long does OCR take for a 50-page scan?</h3>
+  <p>Roughly two to five minutes on a good service, depending on image resolution and server load. Scans at 600 DPI take noticeably longer than 300 DPI without producing better results.</p>
+
+  <h2>Try it now</h2>
+
+  <p>Stop retyping. Upload your scan to the <a href="/en/pdf-to-word/">PDF to Word converter</a>, set the source language, and you'll be editing in Word a minute later. Just plan for a quick proofreading pass before you ship the result.</p>

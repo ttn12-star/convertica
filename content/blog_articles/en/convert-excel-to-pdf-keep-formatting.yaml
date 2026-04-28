@@ -1,0 +1,120 @@
+slug: convert-excel-to-pdf-keep-formatting
+status: published
+category_slug: how-to-guides
+relevant_tool: word_to_pdf
+title_en: "How to Convert Excel to PDF Without Losing Formatting, Headers, or Print Areas"
+meta_title_en: "Excel to PDF Without Losing Formatting | Convertica"
+meta_description_en: "Avoid the classic 'spreadsheet sliced across 8 pages' disaster. Set print areas, scale-to-fit, and repeating headers correctly before converting Excel to PDF."
+meta_keywords_en: "excel to pdf, xlsx to pdf, spreadsheet to pdf, excel print to pdf, save excel as pdf"
+excerpt_en: "Most Excel-to-PDF guides skip the part that actually matters: setting print areas so your spreadsheet does not end up sliced across eight awkward, half-empty pages."
+ai_metadata:
+  topics:
+    - Excel to PDF conversion
+    - spreadsheet print setup
+    - print area configuration
+    - multi-sheet workbook export
+    - PDF formatting issues
+  entities:
+    - Microsoft Excel
+    - LibreOffice Calc
+    - Google Sheets
+    - Convertica
+    - PDF
+    - xlsx
+  summary: "How to set print area, scale-to-fit, and repeating headers in Excel before converting to PDF, with fixes for the most common formatting failures."
+  related_terms:
+    - xlsx to pdf converter
+    - excel print area
+    - scale to fit
+    - print titles
+    - repeating header rows
+    - workbook export pdf
+    - flatten formulas
+  reading_time_minutes: 9
+  target_audience: "Accountants, analysts, project managers and anyone who emails or prints spreadsheets and is tired of pages that cut columns in half."
+content_en: |
+  Almost everyone has received the email: a 12-tab workbook converted straight to PDF, with rows splayed across nine pages, columns cut in half, and a header that only appears on page one. The fix is not a better converter. The fix is twenty seconds of setup inside Excel before you ever press export.
+
+  This guide covers the setup steps that separate a clean, printable PDF from a spreadsheet disaster, plus the upload-and-go flow when your file is already configured correctly.
+
+  <h2>Why Excel-to-PDF often goes wrong</h2>
+  <p>Excel does not treat your spreadsheet as a "document" the way Word does. There is no fixed page. The grid is essentially infinite, and PDF export has to make decisions about where to slice it. By default, those decisions are not great:</p>
+  <ul>
+    <li>The default print area is the entire used range, including a lonely cell in column AZ that you typed once and forgot.</li>
+    <li>Automatic page breaks fall wherever the page math says they should, which rarely lines up with logical row groupings.</li>
+    <li>Header rows do not repeat unless you tell them to. Page 2 onwards can look like a tableless data dump.</li>
+    <li>Hidden columns still print unless they are properly hidden, depending on Excel version.</li>
+  </ul>
+  <p>The result is a PDF that looks nothing like the cleanly framed spreadsheet you saw on screen.</p>
+
+  <h2>Pre-conversion Excel setup</h2>
+  <p>Spend two minutes on these four settings and the conversion itself becomes trivial.</p>
+
+  <h3>1. Set the print area</h3>
+  <p>Select the exact range you want in the PDF. In Excel, go to <code>Page Layout &gt; Print Area &gt; Set Print Area</code>. From this point on, only that range will export. If you also have a tiny sparkline or note off to the right that you do not want printed, this single step removes it.</p>
+
+  <h3>2. Scale to fit one page wide</h3>
+  <p>Wide spreadsheets are the number one cause of "PDF sliced across 8 pages" reports. On the Page Layout tab, find the Scale to Fit group and set <code>Width: 1 page</code>, <code>Height: Automatic</code>. The result is a PDF where every column fits horizontally and the data flows down across as many pages as needed - which is how spreadsheets should print.</p>
+  <p>If your sheet is so wide that scaling to one page makes the text microscopic, that is a sign you should switch to landscape orientation, or split the data into two PDFs covering different column groups.</p>
+
+  <h3>3. Repeat header rows on every page</h3>
+  <p>This is the single most-skipped step. Open <code>Page Layout &gt; Print Titles</code> and in the <code>Rows to repeat at top</code> field, click row 1 (or whichever rows make up your header). Now every PDF page begins with the same column labels. Readers no longer have to flip back to page one to remember what column F was.</p>
+
+  <h3>4. Hide vs delete columns you do not need</h3>
+  <p>Hide columns you may need later (right-click column letter, Hide). Delete columns you are sure are scrap. Hidden columns are excluded from the print area as long as you set the print area after hiding. If you set the area first, then hide columns, behaviour can vary by Excel version - re-set the print area after any hide/unhide round to be safe.</p>
+
+  <h2>Step-by-step: convert with Convertica</h2>
+  <p>With the spreadsheet configured, the actual conversion is the easy part. You can <a href="/en/word-to-pdf/">convert Excel to PDF</a> in three steps:</p>
+  <ol>
+    <li><strong>Upload the .xlsx file.</strong> Drag and drop into the upload box. Older .xls files work too.</li>
+    <li><strong>Pick orientation if prompted.</strong> Portrait for tall, narrow data; landscape for wide tables.</li>
+    <li><strong>Download the PDF.</strong> Open it once to confirm the page breaks landed where you expected, and you're done.</li>
+  </ol>
+  <blockquote class="callout">If the PDF still looks wrong, the problem is almost always upstream in Excel - print area, scale, or repeat rows - not in the converter. Reopen the workbook, fix the setting, and re-export.</blockquote>
+
+  <h2>Multi-sheet workbooks</h2>
+  <p>A workbook with five tabs raises a question: do you want one PDF per sheet, or all five sheets concatenated into one file?</p>
+  <ul>
+    <li><strong>One PDF per sheet</strong> is right when each tab is a standalone deliverable - a separate report for separate audiences. Naming becomes important; <code>YYYY-MM-DD_workbook_sheet-name.pdf</code> reads cleanly in any folder.</li>
+    <li><strong>All sheets in one PDF</strong> is right when the tabs belong together as a packet (cover, summary, detail, appendix). If the converter exports each sheet separately, you can <a href="/en/pdf-organize/merge/">merge multiple sheets into one PDF</a> in a second step.</li>
+  </ul>
+  <p>Either way, set the print area on every sheet you intend to export. A blank tab will export a blank page; one with a stray cell in column AZ will export a near-empty page with that cell floating in space.</p>
+
+  <h2>Common formatting issues and fixes</h2>
+  <p>If your output PDF still has problems, the symptom usually points to a specific Excel setting:</p>
+  <table>
+    <thead>
+      <tr><th>Symptom</th><th>Likely cause</th><th>Fix</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Rightmost column is cut off</td><td>Scale-to-fit not set to 1 page wide</td><td>Page Layout &gt; Width: 1 page</td></tr>
+      <tr><td>No headers on page 2 onwards</td><td>Print titles not configured</td><td>Page Layout &gt; Print Titles &gt; Rows to repeat at top</td></tr>
+      <tr><td>Random blank pages between data</td><td>Stray cell or formatted region outside the visible data</td><td>Re-set print area after deleting strays</td></tr>
+      <tr><td>Formulas show #REF! or #NAME?</td><td>Broken external references</td><td>Copy &gt; Paste Values to flatten before export</td></tr>
+      <tr><td>Charts cut between pages</td><td>Auto page breaks splitting an embedded object</td><td>Insert manual page break above the chart, or move the chart</td></tr>
+      <tr><td>Tiny, unreadable text</td><td>Scale-to-fit forced too aggressively</td><td>Switch to landscape, or split into two exports</td></tr>
+    </tbody>
+  </table>
+
+  <h2>When to keep Excel and when to send PDF</h2>
+  <p>PDF is the right format when the file is read-only - quotes, signed reports, tax filings, board packs. PDF preserves layout exactly, prevents accidental edits, and is easier to sign or watermark.</p>
+  <p>Excel is the right format when the recipient needs to filter, sort, or recalculate. Sending a PDF of a model to someone who needs to change an assumption forces them to retype everything from scratch. If you have already shipped a PDF and the recipient needs the data back, you can <a href="/en/pdf-to-excel/">convert PDF back to Excel later</a>, but the round trip introduces small errors and is a poor substitute for sending the right format the first time.</p>
+  <p>A useful default: send the PDF for the formal record, attach the .xlsx separately if the recipient might need to edit. The PDF is what gets archived; the .xlsx is the working file.</p>
+
+  <h2>One more pass: file size</h2>
+  <p>Excel-to-PDF output can be surprisingly large, especially with embedded charts and conditional formatting. If you are emailing the result, run it through a compressor before hitting send so it doesn't bounce off the recipient's mailbox limit. The <a href="/en/blog/compress-pdf-for-email-under-25mb/">compress-for-email guide</a> walks through realistic size targets, and the <a href="/en/pdf-organize/compress/">compress tool</a> handles the actual shrinking.</p>
+
+  <h2>FAQ</h2>
+  <h3>Why does my spreadsheet split awkwardly across pages?</h3>
+  <p>Almost always because the print area is too wide and Scale to Fit is not set. Open Page Layout, set Width to 1 page, then re-export. If the result is unreadably small, switch to landscape or split the data across two PDFs.</p>
+  <h3>Can I convert all sheets in a workbook at once?</h3>
+  <p>Yes. The converter handles multi-tab workbooks. By default it exports every sheet that has data into a single PDF. If you would rather have one PDF per sheet, configure each sheet's print area and run the conversion once per tab, or split the result afterwards.</p>
+  <h3>Will charts and formulas convert correctly?</h3>
+  <p>Charts convert as visual objects - what you see in Excel is what you get in the PDF. Formulas are evaluated to their current values during conversion. Broken references (#REF!, #NAME?) will appear in the PDF too, so fix them in Excel first or paste-values to flatten.</p>
+  <h3>How do I make headers repeat on every PDF page?</h3>
+  <p>In Excel, go to Page Layout &gt; Print Titles and click into the "Rows to repeat at top" field, then select your header row(s). Save and re-export. The setting is per-sheet, so set it on every tab you plan to convert.</p>
+  <h3>Why is my PDF much bigger than the Excel file?</h3>
+  <p>PDFs embed fonts, rasterised charts, and a separate page object per page. A 200 KB workbook can produce a 3 MB PDF without anything being wrong. If the size is a problem for email, compress the PDF after conversion - the data and quality stay the same, just the storage shrinks.</p>
+
+  <h2>Try it now</h2>
+  <p>Set your print area, set scale-to-fit, set print titles, then export. Two extra minutes inside Excel saves the embarrassment of the eight-page sliced spreadsheet. <a href="/en/word-to-pdf/">Open the Excel to PDF tool →</a></p>

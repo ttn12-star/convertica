@@ -1,0 +1,164 @@
+slug: split-bank-statement-pdf-by-page
+status: published
+category_slug: use-cases
+relevant_tool: split_pdf
+title_en: "How to Split a Bank Statement PDF into Monthly or Per-Transaction Files"
+meta_title_en: "Split Bank Statement PDF by Month or Page"
+meta_description_en: "Got a 60-page annual bank statement? Split it into monthly PDFs for taxes, loan applications or expense categorization, with a privacy checklist before sharing."
+meta_keywords_en: "split bank statement pdf, separate pdf pages, divide pdf by month, extract pages from statement, pdf splitter free"
+excerpt_en: "Banks like to deliver one giant PDF for the year. Splitting it into monthly chunks makes tax season, loan paperwork and expense categorization dramatically"
+ai_metadata:
+  topics:
+    - bank statement management
+    - PDF splitting
+    - financial document privacy
+    - tax preparation
+    - loan applications
+  entities:
+    - Convertica
+    - HMRC
+    - IRS
+    - mortgage lender
+    - QuickBooks
+  summary: "A privacy-aware walkthrough of splitting an annual bank statement PDF into monthly files for taxes, loans, and bookkeeping, including redaction and password protection before sharing."
+  related_terms:
+    - extract pdf pages
+    - separate pdf by page
+    - bank statement to monthly pdf
+    - pdf splitter online
+    - divide pdf into parts
+    - statement extraction
+  reading_time_minutes: 8
+  target_audience: "Self-employed people, mortgage applicants, and anyone preparing financial paperwork who receives long combined bank statements."
+content_en: |
+  Most banks let you download "the year" as one PDF. Convenient for them, awkward for you the moment a mortgage broker asks for "just the last three months" or your accountant needs Q1 separated from Q2. Reuploading a 60-page file every time leaks more financial detail than you want to share, and it makes categorising transactions in a spreadsheet painful - you'll be scrolling past nine months you don't need to see anything you do.
+
+  Splitting the file once, into properly named monthly PDFs, solves both problems. This guide covers when to <a href="/en/pdf-organize/split/">split PDF online</a> by page range versus extracting specific pages, the privacy steps most tutorials skip, and a naming convention that makes the result findable a year later.
+
+  <figure><img src="/static/blog/images/tool-split.jpg" alt="Convertica split tool dividing a bank statement PDF into monthly files" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Why split a bank statement at all</h2>
+
+  Splitting isn't just tidy housekeeping. There are concrete moments where it saves time or protects information:
+
+  <ul>
+    <li><strong>Tax filing.</strong> HMRC, IRS and most national tax authorities expect statements per quarter or per month, especially for VAT/GST and self-assessment. The IRS Schedule C in particular asks for monthly totals; sending the year forces your accountant to reconstruct them.</li>
+    <li><strong>Mortgage and loan applications.</strong> Lenders almost always ask for the last three or six months. Sending the full year is over-disclosure, and underwriters sometimes use information that wasn't asked for to pad their objections.</li>
+    <li><strong>Expense categorisation.</strong> Working through a single month at a time in a spreadsheet is far less error-prone than sliding through 48 pages.</li>
+    <li><strong>Targeted sharing.</strong> Your accountant only needs the months they're reconciling. Your bookkeeper doesn't need to see December if the question is about February.</li>
+    <li><strong>Insurance claims.</strong> An insurer asking for the period around a specific incident only needs that window, not your entire financial history.</li>
+    <li><strong>Co-signed accounts in a separation.</strong> If you're dividing finances with a partner, sharing only the joint period rather than the full file matters legally.</li>
+  </ul>
+
+  <blockquote class="callout">A bank statement is one of the most sensitive documents in your life. Share the smallest slice that answers the question.</blockquote>
+
+  <h2>Three split strategies</h2>
+
+  Before you click anything, decide which approach matches your statement:
+
+  <table>
+    <thead>
+      <tr><th>Strategy</th><th>When it fits</th><th>Effort</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fixed page range</td><td>Each month is exactly the same length (e.g. 4 pages)</td><td>Low</td></tr>
+      <tr><td>By bookmark or month boundary</td><td>Statement has clear "March 2026" headers and uneven page counts</td><td>Medium</td></tr>
+      <tr><td>Extract specific pages</td><td>You only need one or two months out of twelve</td><td>Lowest</td></tr>
+    </tbody>
+  </table>
+
+  Most retail bank statements fall into the second category: pages per month vary because there are more transactions in some months. Look at pages 1, 5, 9, 13 to confirm the pattern before you commit to a split rule. Holiday months (December for UK and US accounts, August for European) usually run two pages longer than average; January and February run shorter. Plan for that.
+
+  Business accounts often print a separate end-of-month summary page. Decide whether that summary belongs with the month it summarises (split it as the last page of that month's range) or with the next month (where statements that pre-date it tend to live in their workflow).
+
+  <h2>Step-by-step: split by page range</h2>
+
+  When each month is the same length, this is a 90-second job:
+
+  <ol>
+    <li>Open the split tool in your browser and upload the statement.</li>
+    <li>Select <strong>split by ranges</strong>.</li>
+    <li>Enter ranges that match months: <code>1-4, 5-8, 9-12, 13-16, ...</code></li>
+    <li>Click split. The tool produces one PDF per range and bundles them as a ZIP.</li>
+    <li>Download and unzip. Each part is a separate PDF.</li>
+    <li>Rename the parts to <code>YYYY-MM_bank_account-last4.pdf</code> (more on naming below).</li>
+  </ol>
+
+  Tip: if the first or last page is a cover/summary, exclude it from the ranges or split it as its own one-page PDF. Many banks include a marketing insert at the end ("introducing our new credit card!") that's pure noise - drop it before you ever open the file.
+
+  A small keyboard shortcut: in the range field, ranges separated by commas don't need spaces, so <code>1-4,5-8,9-12</code> works exactly the same as the spaced version. Faster to type if you're working through twelve months at once.
+
+  <h2>Step-by-step: extract a single month</h2>
+
+  When you only need April for a loan application, don't split everything. Extract just those pages.
+
+  <ol>
+    <li>Open the statement in any PDF reader and scroll to find where April starts and ends. Note the page numbers (e.g. 17-22).</li>
+    <li>Use the page extraction option in our editor to <a href="/en/pdf-edit/">extract specific pages</a>.</li>
+    <li>Enter the range, e.g. <code>17-22</code>.</li>
+    <li>Download the resulting PDF.</li>
+    <li>Save with a clear filename: <code>2026-04_bank_account-1234.pdf</code>.</li>
+  </ol>
+
+  This avoids creating eleven extra files you won't use, and means only the relevant month leaves your computer. If the lender asks for "the most recent three months", do three single-month extractions and send them as three named files rather than one mashed-together range. Underwriters parse named files faster than ranges.
+
+  <h2>Privacy checklist before sharing</h2>
+
+  Splitting a statement doesn't automatically make it safe to share. A monthly PDF still contains your account number, balance, and every transaction in that period. Run through this checklist before you attach it to any email:
+
+  <figure><img src="/static/blog/images/tool-protect.jpg" alt="Convertica password-protect tool used before emailing sensitive statements" width="1280" height="800" loading="lazy"></figure>
+
+  <ul>
+    <li><strong>Redact unrelated transactions.</strong> If the lender only needs to see salary and rent, black out the rest. The redaction must flatten the PDF (replace pixels), not just cover them with a black box that can be removed by anyone with a free PDF editor and ten seconds.</li>
+    <li><strong>Confirm what's on the cover page.</strong> Some banks repeat the full account number, sort code and address on every monthly cover. Decide whether that level of detail is required.</li>
+    <li><strong>Mask middle digits of the account number.</strong> Many institutions accept "XXXX XXXX 1234" for verification without the full string.</li>
+    <li><strong>Check transaction descriptions for personal context.</strong> A line item reading "Therapy session - Dr. K" or "Reproductive Health Clinic" can carry information you didn't mean to share. Redact the description, not just the amount, when it's sensitive.</li>
+    <li><strong>Password-protect before email.</strong> <a href="/en/pdf-security/protect/">Password-protect the result</a> with a strong password and share that password through a separate channel (text, Signal, phone call), never the same email.</li>
+  </ul>
+
+  <blockquote class="callout">Email isn't encrypted by default. A password on the PDF is the difference between "private" and "public if intercepted".</blockquote>
+
+  Worth knowing: Adobe Acrobat's "redact" tool genuinely removes the text underneath the black box. The free Foxit reader's similar-looking tool only paints over it - the underlying text is still extractable with a simple copy operation. Many people have learned this the embarrassing way after their "redacted" salary turned out to be plain text under the rectangle. If you're not sure your tool truly removes data, copy a redacted block to a text editor and check.
+
+  <h2>Naming the output files</h2>
+
+  The filename is what you'll see when this resurfaces in a search next year. Use a format that sorts itself:
+
+  <pre><code>YYYY-MM_bank_account-last4.pdf
+
+  2026-01_chase_4567.pdf
+  2026-02_chase_4567.pdf
+  2026-03_chase_4567.pdf
+  2026-04_chase_4567.pdf</code></pre>
+
+  Why this works:
+
+  <ul>
+    <li>ISO year-month sorts cleanly in every file manager and cloud drive.</li>
+    <li>Bank name in the middle helps when you have accounts at more than one institution.</li>
+    <li>Last four digits of the account let you tell joint, business and personal accounts apart without opening anything.</li>
+    <li>No spaces, no slashes, no quotes - safe across operating systems and cloud sync tools.</li>
+  </ul>
+
+  If you ever need to recombine months for a year-end submission, you can <a href="/en/pdf-organize/merge/">merge later if you need to recombine</a> them back into a single file. Reverse-naming the output (e.g. <code>2026_chase_4567_full-year.pdf</code>) keeps it sorted next to the monthly slices in any folder listing.
+
+  <h2>FAQ</h2>
+
+  <h3>Is it safe to upload a bank statement to an online splitter?</h3>
+  <p>Use a tool that processes files in the browser session and deletes them shortly after. Convertica removes uploads after a short retention window and never shares them. If you're still uneasy, redact the most sensitive fields locally before uploading, or use a desktop tool for the most sensitive files.</p>
+
+  <h3>Can I split a password-protected bank statement PDF?</h3>
+  <p>You'll need to unlock it first using your own password, then split, then optionally re-protect each part. Most banks issue statements with the password being part of your date of birth or last digits of the account; the exact format is usually printed in your welcome pack or available on the bank's "open your statement" help page.</p>
+
+  <h3>How do I split by month if there are no bookmarks?</h3>
+  <p>Open the file once and note the page where each month starts. Then use split-by-range with explicit page numbers. It takes a minute the first time and is reusable for every future statement from the same bank if the layout stays consistent.</p>
+
+  <h3>Will splitting reduce file quality?</h3>
+  <p>No. Splitting is a structural operation: it copies the same page bytes into a new file. There's no recompression, no rasterisation, and no quality loss compared to the source.</p>
+
+  <h3>Can the bank tell I split their statement?</h3>
+  <p>The bank can't, because the split happens entirely on your side. The recipient may notice from missing pages or page numbers if you only extract a slice, which is why you should explicitly say "April only, pages 17-22" when sending a partial statement. Underwriters won't fail you for a partial submission, but they will fail you for one that looks deceptive.</p>
+
+  <h2>Try it now</h2>
+
+  <p>One ten-minute session today saves you a year of fishing through a 60-page file. Split your statement, name the parts properly, and you'll thank yourself at tax time. <a href="/en/pdf-organize/split/">Open the split PDF tool →</a></p>
