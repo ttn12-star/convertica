@@ -333,6 +333,12 @@ def _get_converter_context(
             batch_api_url = reverse(batch_entry["batch_url"])
             batch_field_name = batch_entry["field_name"]
 
+    # Surface effective file-size limits to the template so the upload widget
+    # can show the user "up to NN MB" instead of letting them upload, wait,
+    # then fail. Values are in megabytes for direct display.
+    free_mb = int(settings.MAX_FILE_SIZE_FREE / (1024 * 1024))
+    premium_mb = int(settings.MAX_FILE_SIZE_PREMIUM / (1024 * 1024))
+
     return {
         "page_title": page_title,
         "page_description": page_description,
@@ -352,6 +358,9 @@ def _get_converter_context(
         "batch_enabled": batch_enabled,
         "batch_api_url": batch_api_url,
         "batch_field_name": batch_field_name,
+        "max_file_size_mb_free": free_mb,
+        "max_file_size_mb_premium": premium_mb,
+        "max_file_size_mb_current": premium_mb if is_premium_active else free_mb,
         # Signal base.html to auto-generate SoftwareApplication + HowTo schema.
         # Set to False in specific views that define their own structured_data block.
         "auto_generate_tool_schema": True,

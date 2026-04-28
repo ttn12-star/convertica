@@ -184,10 +184,23 @@ def _log_rate_limit_usage(request, group):
         cache.add(anon_key, 0, timeout=3600)
         cache.incr(anon_key, 1)
 
-    # Log to file for analysis
+    # Log to file for analysis. Hash user_id and truncate IP to the /24 prefix
+    # so we keep enough signal to debug rate-limit issues but minimize PII in
+    # log files (GDPR / log retention concerns).
+    import hashlib
+
+    user_token = "anon"
+    if user_id is not None:
+        user_token = hashlib.sha256(str(user_id).encode()).hexdigest()[:10]
+    masked_ip = ip
+    if ip and "." in ip:
+        parts = ip.split(".")
+        if len(parts) == 4:
+            masked_ip = f"{parts[0]}.{parts[1]}.{parts[2]}.0"
+
     logger.info(
-        f"Rate limit usage: group={group}, user={user_id}, "
-        f"premium={is_premium}, ip={ip}, endpoint={request.path}"
+        f"Rate limit usage: group={group}, user={user_token}, "
+        f"premium={is_premium}, ip={masked_ip}, endpoint={request.path}"
     )
 
 

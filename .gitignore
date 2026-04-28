@@ -254,3 +254,6 @@ __marimo__/
 test_double_lang.py
 seo_audit.py
 tailwindcss-linux-x64
+
+# Playwright MCP local snapshots/screenshots
+.playwright-mcp/

@@ -612,12 +612,11 @@ def validate_file_for_operation(
             try:
                 import fitz  # PyMuPDF
 
-                doc = fitz.open(pdf_path)
-                for page_index in range(min(page_count, 5)):  # Check first 5 pages
-                    page = doc[page_index]
-                    image_list = page.get_images(full=False)
-                    total_images += len(image_list)
-                doc.close()
+                with fitz.open(pdf_path) as doc:
+                    for page_index in range(min(page_count, 5)):  # first 5 pages
+                        page = doc[page_index]
+                        image_list = page.get_images(full=False)
+                        total_images += len(image_list)
             except Exception:
                 total_images = 0  # If detection fails, continue without warning
 

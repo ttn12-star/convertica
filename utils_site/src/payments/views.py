@@ -805,15 +805,21 @@ def _get_client_ip(request) -> str:
 def _check_stripe_webhook_ip(request) -> bool:
     """Verify webhook request comes from Stripe IP addresses.
 
-    Returns True if IP check passes or is disabled.
+    Fail-closed: an empty allow-list with the check enabled is treated as
+    misconfiguration and rejects the request, instead of silently waving
+    everything through.
     """
     if not getattr(settings, "STRIPE_WEBHOOK_IP_WHITELIST_ENABLED", True):
         return True
 
     allowed_ips = getattr(settings, "STRIPE_WEBHOOK_IPS", [])
     if not allowed_ips:
-        # No IPs configured, skip check
-        return True
+        logger.error(
+            "Stripe webhook IP whitelist enabled but empty — rejecting request. "
+            "Set STRIPE_WEBHOOK_IPS or disable STRIPE_WEBHOOK_IP_WHITELIST_ENABLED.",
+            extra={"event": "stripe_webhook_misconfigured"},
+        )
+        return False
 
     client_ip = _get_client_ip(request)
     if client_ip in allowed_ips:
@@ -834,6 +840,17 @@ def _check_stripe_webhook_ip(request) -> bool:
 @require_http_methods(["POST"])
 def stripe_webhook(request):
     """Handle Stripe webhooks."""
+    # Refuse to accept webhooks at all if the signing secret isn't configured —
+    # otherwise construct_event would just always 400 with "Invalid signature",
+    # which is a less useful failure mode than telling ops the env is missing.
+    webhook_secret = getattr(settings, "STRIPE_WEBHOOK_SECRET", "")
+    if not webhook_secret:
+        logger.error(
+            "Stripe webhook called but STRIPE_WEBHOOK_SECRET is not configured",
+            extra={"event": "stripe_webhook_secret_missing"},
+        )
+        return HttpResponse("Webhook not configured", status=503)
+
     # IP whitelist check (additional layer on top of signature verification)
     if not _check_stripe_webhook_ip(request):
         return HttpResponse("Forbidden", status=403)
@@ -846,9 +863,7 @@ def stripe_webhook(request):
 
     try:
         _ensure_stripe_sdk_ready()
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
-        )
+        event = stripe.Webhook.construct_event(payload, sig_header, webhook_secret)
     except ValueError as e:
         logger.error(f"Webhook error: {e}")
         return HttpResponse("Invalid payload", status=400)

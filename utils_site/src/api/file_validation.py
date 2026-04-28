@@ -5,6 +5,8 @@ File validation utilities for conversion APIs.
 import os
 import shutil
 
+from django.conf import settings
+
 from .cache_utils import (
     cache_pdf_page_count,
     cache_pdf_validation,
@@ -19,6 +21,11 @@ logger = get_logger(__name__)
 PDF_MAGIC = b"%PDF"
 DOCX_MAGIC = b"PK\x03\x04"  # DOCX is a ZIP file
 DOC_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"  # OLE2 format (old .doc)
+
+# Macro-enabled office formats — disallowed because LibreOffice/unoserver
+# could execute embedded VBA on conversion. PARSE_MAX_FILE_SIZE caps any
+# parser entry point as a defence-in-depth ceiling.
+MACRO_ENABLED_EXTENSIONS = {".docm", ".dotm", ".xlsm", ".xltm", ".pptm", ".potm"}
 
 
 def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
@@ -49,6 +56,22 @@ def validate_pdf_file(file_path: str, context: dict) -> tuple[bool, str | None]:
 
         if file_size < 100:  # Minimum PDF size
             return False, "PDF file is too small to be valid"
+
+        # Defence-in-depth: refuse files exceeding the parse hard cap before
+        # invoking PyPDF/fitz, which would otherwise allocate proportional memory.
+        parse_cap = getattr(settings, "PARSE_MAX_FILE_SIZE", 300 * 1024 * 1024)
+        if file_size > parse_cap:
+            logger.warning(
+                "PDF rejected — exceeds PARSE_MAX_FILE_SIZE",
+                extra={
+                    **context,
+                    "file_size": file_size,
+                    "parse_cap": parse_cap,
+                    "event": "pdf_oversize_reject",
+                },
+            )
+            cache_pdf_validation(file_path, False, timeout=300)
+            return False, "PDF file is too large to process"
 
         # Check magic number
         with open(file_path, "rb") as f:
@@ -139,6 +162,37 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
         file_ext = os.path.splitext(file_path)[1].lower()
         is_docx = file_ext == ".docx"
         is_doc = file_ext == ".doc"
+
+        # Reject macro-enabled formats outright — LibreOffice can execute VBA
+        # during conversion, which would be RCE on the unoserver host.
+        if file_ext in MACRO_ENABLED_EXTENSIONS:
+            logger.warning(
+                "Macro-enabled office file rejected",
+                extra={
+                    **context,
+                    "file_ext": file_ext,
+                    "event": "macro_enabled_reject",
+                },
+            )
+            return (
+                False,
+                "Macro-enabled files (.docm/.xlsm/.pptm) are not supported. "
+                "Please save as .docx/.xlsx/.pptx without macros and try again.",
+            )
+
+        # Defence-in-depth size cap before zipfile/OLE parse.
+        parse_cap = getattr(settings, "PARSE_MAX_FILE_SIZE", 300 * 1024 * 1024)
+        if file_size > parse_cap:
+            logger.warning(
+                "Word file rejected — exceeds PARSE_MAX_FILE_SIZE",
+                extra={
+                    **context,
+                    "file_size": file_size,
+                    "parse_cap": parse_cap,
+                    "event": "word_oversize_reject",
+                },
+            )
+            return False, "Word file is too large to process"
 
         # Check magic number
         with open(file_path, "rb") as f:
@@ -280,6 +334,23 @@ def validate_word_file(file_path: str, context: dict) -> tuple[bool, str | None]
             exc_info=True,
         )
         return False, f"Error validating Word file: {str(e)}"
+
+
+def assert_parse_size(file_path: str, label: str = "file") -> None:
+    """Raise ValueError if file_path exceeds the parse hard cap.
+
+    Use immediately before invoking PyPDF/pikepdf/pypdfium2/fitz on a file
+    that did not flow through validate_pdf_file (e.g. inside a Celery task
+    operating on a path produced by an earlier step). It is cheap (one stat)
+    and prevents DoS via a tampered/oversized intermediate file.
+    """
+    try:
+        size = os.path.getsize(file_path)
+    except OSError:
+        return
+    cap = getattr(settings, "PARSE_MAX_FILE_SIZE", 300 * 1024 * 1024)
+    if size > cap:
+        raise ValueError(f"{label} ({size} bytes) exceeds parse cap ({cap} bytes)")
 
 
 def check_disk_space(path: str, required_mb: int = 100) -> tuple[bool, str | None]:

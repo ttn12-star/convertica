@@ -179,6 +179,12 @@ def generic_conversion_task(
         if not os.path.exists(input_path):
             raise FileNotFoundError(f"Input file not found: {input_path}")
 
+        # Defence-in-depth size cap: refuse huge intermediate files before any
+        # PDF/Office parser opens them in this worker. Cheap (one stat).
+        from src.api.file_validation import assert_parse_size
+
+        assert_parse_size(input_path, label=original_filename or "input")
+
         # Check cancellation before loading file
         check_task_cancelled(cancellation_id)
 

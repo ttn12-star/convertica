@@ -91,6 +91,10 @@ class User(AbstractUser):
         # Clear cache when subscription data changes (must happen BEFORE is_subscription_active())
         if getattr(self, "_subscription_changed", False):
             cache.delete(f"user_subscription_status_{self.id}")
+            # Also invalidate the premium-active cache used by api.premium_utils
+            # so a subscription flip propagates within the next request, not
+            # 60s later.
+            cache.delete(f"user_premium_active:{self.id}")
 
         super().save(*args, **kwargs)
 

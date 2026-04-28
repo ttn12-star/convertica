@@ -388,46 +388,90 @@ class HTMLToPDFConverter:
         """
         Validate URL for security (prevent SSRF).
 
+        Resolves the hostname through DNS and rejects any address that lands
+        in a private, loopback, link-local, multicast or otherwise-reserved
+        block. This blocks IPv6 equivalents, decimal/hex/octal IP literals,
+        cloud metadata endpoints (169.254.169.254) and most DNS-rebinding
+        bypasses of a naive prefix check.
+
         Args:
             url: URL to validate
 
         Returns:
             Tuple of (is_safe, error_message)
         """
+        import ipaddress
+        import socket
         from urllib.parse import urlparse
 
         try:
             parsed = urlparse(url)
-
-            # Only allow HTTP/HTTPS
-            if parsed.scheme not in ["http", "https"]:
-                return False, "Only HTTP and HTTPS URLs are allowed"
-
-            # Block private IP ranges and localhost
-            hostname = parsed.hostname
-            if hostname:
-                # Block localhost and private IPs
-                blocked_hosts = [
-                    "localhost",
-                    "127.0.0.1",
-                    "0.0.0.0",
-                    "10.",
-                    "172.",
-                    "192.168.",
-                    "169.254.",
-                ]
-
-                for blocked in blocked_hosts:
-                    if hostname.startswith(blocked):
-                        return (
-                            False,
-                            f"Access to {hostname} is not allowed for security reasons",
-                        )
-
-            return True, None
-
         except Exception as e:
             return False, f"Invalid URL format: {e}"
+
+        if parsed.scheme not in ("http", "https"):
+            return False, "Only HTTP and HTTPS URLs are allowed"
+
+        hostname = parsed.hostname
+        if not hostname:
+            return False, "URL must include a hostname"
+
+        # Reject explicit hostnames we never want to reach, regardless of DNS.
+        blocked_hostnames = {"localhost", "metadata.google.internal", "instance-data"}
+        if hostname.lower() in blocked_hostnames:
+            return False, f"Access to {hostname} is not allowed"
+
+        # Strip IPv6 brackets if present.
+        host_for_resolve = hostname.strip("[]")
+
+        try:
+            addr_infos = socket.getaddrinfo(
+                host_for_resolve, None, type=socket.SOCK_STREAM
+            )
+        except socket.gaierror as e:
+            return False, f"Hostname resolution failed: {e}"
+
+        if not addr_infos:
+            return False, "Hostname did not resolve to any address"
+
+        for info in addr_infos:
+            sockaddr = info[4]
+            ip_str = sockaddr[0]
+            # IPv6 link-local addresses can carry a zone id like "fe80::1%eth0".
+            ip_str = ip_str.split("%", 1)[0]
+            try:
+                ip_obj = ipaddress.ip_address(ip_str)
+            except ValueError:
+                return False, f"Resolved address is not a valid IP: {ip_str}"
+
+            if (
+                ip_obj.is_private
+                or ip_obj.is_loopback
+                or ip_obj.is_link_local
+                or ip_obj.is_multicast
+                or ip_obj.is_reserved
+                or ip_obj.is_unspecified
+            ):
+                return (
+                    False,
+                    f"Access to {hostname} ({ip_obj}) is not allowed",
+                )
+            # Block IPv4-mapped IPv6 (e.g. ::ffff:127.0.0.1) explicitly.
+            if isinstance(ip_obj, ipaddress.IPv6Address) and ip_obj.ipv4_mapped:
+                mapped = ip_obj.ipv4_mapped
+                if (
+                    mapped.is_private
+                    or mapped.is_loopback
+                    or mapped.is_link_local
+                    or mapped.is_reserved
+                    or mapped.is_unspecified
+                ):
+                    return (
+                        False,
+                        f"Access to {hostname} (mapped {mapped}) is not allowed",
+                    )
+
+        return True, None
 
 
 # Global converter instance

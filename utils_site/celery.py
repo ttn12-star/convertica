@@ -111,14 +111,20 @@ try:
         # Priority settings - premium tasks get higher priority
         task_default_priority=5,  # Default priority for regular tasks
         task_inherit_parent_priority=True,  # Child tasks inherit parent priority
-        # Result expiration - keep results for 2 hours for async download
-        result_expires=7200,  # Results expire after 2 hours
+        # Result expiration — bumped to 24h so users returning later in the
+        # day can still download their result instead of hitting a 404.
+        result_expires=86400,
         # Task time limits - reduced for memory stability
         task_time_limit=480,  # Hard time limit: 8 minutes (reduced from 10)
         task_soft_time_limit=420,  # Soft time limit: 7 minutes (reduced from 9)
-        # Retry settings - conservative for memory stability
-        task_default_retry_delay=60,  # 60 seconds between retries (increased)
-        task_max_retries=1,  # Maximum 1 retry (reduced from 2)
+        # Retry settings — exponential backoff with jitter avoids the thundering
+        # herd that fixed 60s delays would cause if unoserver/Stripe/SMTP is
+        # briefly unhealthy and many tasks retry at the same instant.
+        task_default_retry_delay=60,
+        task_max_retries=1,
+        task_retry_backoff=True,
+        task_retry_backoff_max=600,  # cap at 10 min
+        task_retry_jitter=True,
         # Monitoring
         worker_send_task_events=True,
         task_send_sent_event=True,
