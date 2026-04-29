@@ -957,8 +957,9 @@ def terms_page(request):
     """Terms of Service page."""
     page_title = _("Terms of Service - Convertica")
     page_description = _(
-        "Read Convertica's Terms of Service. "
-        "Understand the terms and conditions for using our PDF tools and services."
+        "Read Convertica's Terms of Service. Understand the terms, conditions, "
+        "and acceptable use policy for our free online PDF tools — conversion, "
+        "editing, merging, splitting, compression, and security features."
     )
     page_keywords = _(
         "terms of service, terms and conditions, " "user agreement, Convertica terms"

@@ -203,6 +203,8 @@ def breadcrumbs(request):
             "frontend:add_page_numbers_page": _("Add Page Numbers"),
             "frontend:add_watermark_page": _("Add Watermark"),
             "frontend:crop_pdf_page": _("Crop PDF"),
+            "frontend:flatten_pdf_page": _("Flatten PDF"),
+            "frontend:sign_pdf_page": _("Sign PDF"),
             # PDF Organize
             "frontend:merge_pdf_page": _("Merge PDF"),
             "frontend:split_pdf_page": _("Split PDF"),
@@ -213,6 +215,11 @@ def breadcrumbs(request):
             # PDF Security
             "frontend:protect_pdf_page": _("Protect PDF"),
             "frontend:unlock_pdf_page": _("Unlock PDF"),
+            # Other PDF
+            "frontend:pdf_to_text_page": _("PDF to Text"),
+            # Image tools
+            "frontend:optimize_image_page": _("Optimize Image"),
+            "frontend:convert_image_page": _("Convert Image"),
             # Static pages
             "frontend:all_tools_page": _("All Tools"),
             "frontend:premium_tools_page": _("Premium Tools"),
@@ -236,23 +243,21 @@ def breadcrumbs(request):
                 {"name": breadcrumb_names[view_name], "url": request.path}
             )
         else:
-            # Fallback: use path segments
-            parts = path.split("/")
-            current_path = ""
-            for part in parts:
-                if part:
-                    current_path += f"/{part}"
-                    name = part.replace("-", " ").title()
-                    breadcrumbs_list.append({"name": name, "url": current_path})
+            # Fallback: use path segments. Always render the leaf as a single
+            # crumb pointing at request.path — building intermediate parent
+            # paths (e.g. /en/pdf-edit) used to surface as 404s in Ahrefs
+            # because category roots have no view, and emitting `/en` (no
+            # trailing slash) caused a 301 hop.
+            parts = [p for p in path.split("/") if p]
+            if parts:
+                leaf = parts[-1].replace("-", " ").title()
+                breadcrumbs_list.append({"name": leaf, "url": request.path})
     except Resolver404:
-        # Fallback for unresolved URLs
-        parts = path.split("/")
-        current_path = ""
-        for part in parts:
-            if part:
-                current_path += f"/{part}"
-                name = part.replace("-", " ").title()
-                breadcrumbs_list.append({"name": name, "url": current_path})
+        # Same approach for unresolved URLs — only crumb the current page.
+        parts = [p for p in path.split("/") if p]
+        if parts:
+            leaf = parts[-1].replace("-", " ").title()
+            breadcrumbs_list.append({"name": leaf, "url": request.path})
 
     # Add position to each breadcrumb for visual display
     breadcrumb_items = []

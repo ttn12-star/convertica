@@ -78,6 +78,19 @@ Disallow: /*/payments/
 Disallow: /contribute/success/
 Disallow: /*/contribute/success/
 
+# Disallow premium-gated tools that 302-redirect anonymous visitors to login
+# (kept off the public crawl to avoid noisy 302→login chains in audits)
+Disallow: /scanned-pdf-to-word/
+Disallow: /*/scanned-pdf-to-word/
+Disallow: /batch-converter/
+Disallow: /*/batch-converter/
+Disallow: /premium/
+Disallow: /*/premium/
+
+# Disallow Cloudflare email-protection endpoint (404 on our plan, surfaces
+# as a broken link from any mailto: in the page)
+Disallow: /cdn-cgi/
+
 # Allow pricing page for SEO
 Allow: /pricing/
 Allow: /*/pricing/

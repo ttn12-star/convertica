@@ -8,8 +8,10 @@ PDF_SECURITY_CONFIGS = {
         "converter_args": {
             "page_title": _("Protect PDF with Password - Convertica"),
             "page_description": _(
-                "Protect PDF files with password encryption. "
-                "Secure your PDF documents with strong password protection."
+                "Protect PDF files with password encryption. Secure your PDF "
+                "documents with strong AES-256 password protection. Add owner "
+                "and user passwords, restrict printing and copying. No "
+                "registration required."
             ),
             "page_keywords": (
                 # Primary keywords

@@ -84,7 +84,11 @@
         <a href="{% url 'frontend:index_page_lang' %}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-8 rounded-lg transition duration-200">
           {% trans "Back to Home" %}
         </a>
-        <a href="mailto:support@convertica.com" class="border border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-3 px-8 rounded-lg transition duration-200">
+        <a href="#"
+           class="email-link border border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-3 px-8 rounded-lg transition duration-200"
+           data-email-user="info"
+           data-email-domain="convertica.net"
+           rel="noopener">
           {% trans "Contact Support" %}
         </a>
       </div>
