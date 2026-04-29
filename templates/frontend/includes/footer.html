@@ -209,13 +209,15 @@
 
     </div>
 
-    {# "As featured on" — bidirectional links to platforms where we're listed.
-       Helps Google's crawler discover the inbound side of the relationship
-       (some of these platforms — ProductHunt, AlternativeTo — block Ahrefs
-       and other crawlers behind Cloudflare, so backlinks from them only
-       become visible to search engines once Google itself crosses the link
-       in both directions). Plain text + nofollow on outgoing — pure
-       discovery aid, not a vote. #}
+    {% comment %}
+      "As featured on" — bidirectional links to platforms where we're listed.
+      Helps Google's crawler discover the inbound side of the relationship
+      (some of these platforms — ProductHunt, AlternativeTo — block Ahrefs
+      and other crawlers behind Cloudflare, so backlinks from them only
+      become visible to search engines once Google itself crosses the link
+      in both directions). Plain text + nofollow on outgoing — pure
+      discovery aid, not a vote.
+    {% endcomment %}
     <div class="mt-12 pt-8 border-t border-gray-700/50">
       <p class="text-center text-xs uppercase tracking-wide text-gray-500 mb-4">
         {% trans "Find us on" %}
