@@ -1,4 +1,5 @@
 from django.urls import path
+from django.views.generic import RedirectView
 
 from . import views
 from .views import PricingPageView, SupportPageView, SupportSuccessPageView
@@ -9,6 +10,30 @@ urlpatterns = [
     path("", views.index_page, name="index_page_lang"),
     path("all-tools/", views.all_tools_page, name="all_tools_page"),
     path("premium-tools/", views.premium_tools_page, name="premium_tools_page"),
+    # Category parent paths — used to 404 because they have no view; old blog
+    # posts and breadcrumb fragments link to /pdf-edit/, /pdf-organize/, /image/
+    # without a tool slug. Permanent redirect to /all-tools/ closes ~28 4xx
+    # references reported by Ahrefs.
+    path(
+        "pdf-edit/",
+        RedirectView.as_view(pattern_name="frontend:all_tools_page", permanent=True),
+    ),
+    path(
+        "pdf-organize/",
+        RedirectView.as_view(pattern_name="frontend:all_tools_page", permanent=True),
+    ),
+    path(
+        "image/",
+        RedirectView.as_view(pattern_name="frontend:all_tools_page", permanent=True),
+    ),
+    path(
+        "pdf-security/",
+        RedirectView.as_view(pattern_name="frontend:all_tools_page", permanent=True),
+    ),
+    path(
+        "pdf-convert/",
+        RedirectView.as_view(pattern_name="frontend:all_tools_page", permanent=True),
+    ),
     # PDF Conversion pages
     path("pdf-to-word/", views.pdf_to_word_page, name="pdf_to_word_page"),
     path("word-to-pdf/", views.word_to_pdf_page, name="word_to_pdf_page"),

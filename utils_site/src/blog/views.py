@@ -145,7 +145,9 @@ def article_list(request):
         "language_code": language_code,
         "page_title": f"{_('Blog')} ({language_label}) - Convertica",
         "page_description": _(
-            "Useful guides, tips, and articles about PDF tools and document management"
+            "Useful guides, tips, and articles about PDF tools and document "
+            "management. Learn how to convert, edit, merge, split, compress, "
+            "and secure PDF files online for free — no registration required."
         ),
     }
 

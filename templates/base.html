@@ -229,52 +229,9 @@
             "browserRequirements": "Requires JavaScript. Works on all modern browsers."
           }
         </script>
-
-        <!-- HowTo Schema (auto-generated for tool pages) -->
-        <script type="application/ld+json">
-          {
-            "@context": "https://schema.org",
-            "@type": "HowTo",
-            "name": "{{ header_text|default:page_title|escapejs }}",
-            "description": "{{ page_description|escapejs }}",
-            "tool": [
-              {
-                "@type": "HowToTool",
-                "name": "{% filter escapejs %}{% trans 'Web browser (Chrome, Firefox, Safari, Edge)' %}{% endfilter %}"
-              }
-            ],
-            "supply": [
-              {
-                "@type": "HowToSupply",
-                "name": "{{ file_accept|upper|escapejs }} {% filter escapejs %}{% trans 'file' %}{% endfilter %}"
-              }
-            ],
-            "step": [
-              {
-                "@type": "HowToStep",
-                "position": 1,
-                "name": "{% filter escapejs %}{% trans 'Upload File' %}{% endfilter %}",
-                "text": "{% filter escapejs %}{% trans 'Click the upload button or drag and drop your file' %}{% endfilter %}",
-                "url": "{{ site_current_url }}#upload"
-              },
-              {
-                "@type": "HowToStep",
-                "position": 2,
-                "name": "{% filter escapejs %}{% trans 'Process' %}{% endfilter %}",
-                "text": "{% filter escapejs %}{% trans 'Click the button to start processing your file' %}{% endfilter %}",
-                "url": "{{ site_current_url }}#convert"
-              },
-              {
-                "@type": "HowToStep",
-                "position": 3,
-                "name": "{% filter escapejs %}{% trans 'Download' %}{% endfilter %}",
-                "text": "{% filter escapejs %}{% trans 'Download your converted file instantly' %}{% endfilter %}",
-                "url": "{{ site_current_url }}#download"
-              }
-            ],
-            "totalTime": "{{ how_to_time|default:'PT2M' }}"
-          }
-        </script>
+        {# HowTo schema removed: Google deprecated HowTo rich results in Sep 2023
+           and Ahrefs flagged the markup as both schema.org and Google rich-results
+           validation errors on every tool page (~210/203 issues). #}
       {% endif %}
     {% endblock %}
     <!-- Cloudflare Turnstile (Anti-spam) -->
@@ -559,6 +516,24 @@
           el.appendChild(wave);
           wave.addEventListener('animationend', function(){ wave.remove(); }, {once:true});
         }, true);
+      })();
+    </script>
+
+    <script nonce="{{ csp_nonce }}">
+      // Decode email links without exposing mailto: in HTML — Cloudflare's
+      // Email Address Obfuscation rewrites mailto: into /cdn-cgi/l/email-protection
+      // which Ahrefs treats as 404 (the endpoint isn't enabled on our plan),
+      // generating ~500 broken-link warnings. Hand-rolled decoding sidesteps it.
+      (function () {
+        document.querySelectorAll('a.email-link').forEach(function (a) {
+          var u = a.dataset.emailUser;
+          var d = a.dataset.emailDomain;
+          if (!u || !d) return;
+          var addr = u + '@' + d;
+          a.setAttribute('href', 'mailto:' + addr);
+          var slot = a.querySelector('.email-link-text');
+          if (slot && !slot.textContent.trim()) slot.textContent = addr;
+        });
       })();
     </script>
   </body>
