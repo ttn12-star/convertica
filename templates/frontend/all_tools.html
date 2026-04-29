@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static seo_extras %}
 
-{% block title %}{{ page_title }}{% endblock %}
-{% block meta_title %}{{ page_title }}{% endblock %}
-{% block description %}{{ page_description }}{% endblock %}
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
 {% block keywords %}{{ page_keywords|default:"PDF tools, PDF converter, PDF editor" }}{% endblock %}
-{% block og_title %}{{ page_title }}{% endblock %}
-{% block og_description %}{{ page_description }}{% endblock %}
-{% block twitter_title %}{{ page_title }}{% endblock %}
-{% block twitter_description %}{{ page_description }}{% endblock %}
+{% block og_title %}{{ page_title|seo_title }}{% endblock %}
+{% block og_description %}{{ page_description|seo_meta }}{% endblock %}
+{% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
+{% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
 
 {% block content %}
   <div class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 min-h-screen text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/CollectionPage">
@@ -649,6 +649,7 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <a href="{% url 'frontend:ocr_pdf_to_word_page' %}"
+               rel="nofollow"
                class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
               <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
                 PRO
@@ -669,6 +670,7 @@
             </a>
 
             <a href="{% url 'frontend:batch_converter_page' %}"
+               rel="nofollow"
                class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
               <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
                 PRO

@@ -2503,7 +2503,6 @@ msgid ""
 "Select your image file using the button above or drag and drop it into the "
 "zone"
 msgstr "Select your image file using the button above or drag and drop it into the zone"
-"Select your PDF file using the button above or drag and drop it into the zone"
 
 #: templates/frontend/image_tools/optimize_image.html:104
 msgid "Set the quality level (85%% is recommended for most images)"
@@ -3685,7 +3684,6 @@ msgstr "Preserve text layout"
 msgid ""
 "Try to preserve text positioning and column structure from the original PDF"
 msgstr "Try to preserve text positioning and column structure from the original PDF"
-"Option to preserve text positioning and column structure from the original"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:67
 #: templates/frontend/pdf_convert/pdf_to_word.html:98
@@ -4404,9 +4402,6 @@ msgid ""
 "annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
 msgstr "Flattening removes all interactive form fields, checkboxes, text inputs, and annotations from your PDF. The result is a static, non-editable document that looks identical but cannot be filled out or modified."
-"Flattening a PDF removes all interactive elements such as form fields, "
-"checkboxes, and annotations, converting them into static content. The PDF "
-"looks identical but can no longer be filled out or edited."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:28
 #| msgid "Click the button to start processing your file"
@@ -4505,8 +4500,6 @@ msgstr "Upload Signature Image"
 msgid ""
 "PNG with transparent background gives the best result. JPG is also accepted."
 msgstr "PNG with transparent background gives the best result. JPG is also accepted."
-"Use a PNG image with a transparent background for the cleanest signature "
-"result."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:43
 #: templates/frontend/pdf_edit/sign_pdf.html:224
@@ -4557,8 +4550,6 @@ msgstr "When checked, the signature is added to every page of the PDF."
 msgid ""
 "Upload your signature image (PNG with a transparent background works best)"
 msgstr "Upload your signature image (PNG with a transparent background works best)"
-"Use a PNG image with a transparent background for the cleanest signature "
-"result."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:155
 #| msgid ""
@@ -4566,8 +4557,6 @@ msgstr "Upload your signature image (PNG with a transparent background works bes
 #| "pages at once"
 msgid "Choose the position and page where the signature should appear"
 msgstr "Choose the position and page where the signature should appear"
-"Choose the exact position and page for your signature, or apply it to all "
-"pages at once"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:156
 #| msgid "Customize color, opacity, and size using the sliders"
@@ -4593,8 +4582,6 @@ msgid ""
 "Use a PNG image with a transparent background so the signature blends "
 "naturally into the document without a white box around it."
 msgstr "Use a PNG image with a transparent background so the signature blends naturally into the document without a white box around it."
-"Use a PNG image with a transparent background for the cleanest signature "
-"result."
 
 #: templates/frontend/pdf_organize/compress_pdf.html:6
 msgid "Compression Settings"
@@ -12869,9 +12856,6 @@ msgid ""
 "Flatten PDF online free by removing interactive form fields, checkboxes, and "
 "annotations. Creates a static, non-editable PDF. No registration required."
 msgstr "Flatten PDF online free by removing interactive form fields, checkboxes, and annotations. Creates a static, non-editable PDF. No registration required."
-"Flatten PDF online free by removing interactive form fields, checkboxes, and "
-"annotations. Creates a static, non-editable PDF that preserves the original "
-"appearance. No registration required."
 
 #: utils_site/src/frontend/tool_configs.py:3633
 msgid "Remove interactive form fields and annotations from your PDF"

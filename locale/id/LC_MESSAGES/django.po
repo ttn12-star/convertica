@@ -2517,8 +2517,6 @@ msgid ""
 "Select your image file using the button above or drag and drop it into the "
 "zone"
 msgstr "Pilih file gambar menggunakan tombol di atas atau seret ke zona"
-"Pilih file PDF Anda menggunakan tombol di atas atau seret dan lepas ke zona "
-"di bawah"
 
 #: templates/frontend/image_tools/optimize_image.html:104
 msgid "Set the quality level (85%% is recommended for most images)"
@@ -4459,9 +4457,6 @@ msgid ""
 "annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
 msgstr "Perataan menghapus semua bidang formulir interaktif, kotak centang, input teks, dan anotasi dari PDF Anda. Hasilnya adalah dokumen statis yang tidak dapat diedit, terlihat identik tetapi tidak dapat diisi atau dimodifikasi."
-"Meratakan PDF menghapus semua elemen interaktif seperti kolom formulir, "
-"kotak centang, dan anotasi, mengubahnya menjadi konten statis. PDF terlihat "
-"identik tetapi tidak lagi dapat diisi atau diedit."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:28
 #| msgid "Click the button to start processing your file"
@@ -4562,8 +4557,6 @@ msgstr "Unggah Gambar Tanda Tangan"
 msgid ""
 "PNG with transparent background gives the best result. JPG is also accepted."
 msgstr "PNG dengan latar belakang transparan memberikan hasil terbaik. JPG juga diterima."
-"Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan "
-"paling bersih."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:43
 #: templates/frontend/pdf_edit/sign_pdf.html:224
@@ -4614,8 +4607,6 @@ msgstr "Jika dicentang, tanda tangan ditambahkan ke setiap halaman PDF."
 msgid ""
 "Upload your signature image (PNG with a transparent background works best)"
 msgstr "Unggah gambar tanda tangan Anda (PNG dengan latar belakang transparan bekerja paling baik)"
-"Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan "
-"paling bersih."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:155
 #| msgid ""
@@ -4623,8 +4614,6 @@ msgstr "Unggah gambar tanda tangan Anda (PNG dengan latar belakang transparan be
 #| "pages at once"
 msgid "Choose the position and page where the signature should appear"
 msgstr "Pilih posisi dan halaman tempat tanda tangan harus muncul"
-"Pilih posisi dan halaman yang tepat untuk tanda tangan Anda, atau terapkan "
-"ke semua halaman sekaligus"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:156
 #| msgid "Customize color, opacity, and size using the sliders"
@@ -4650,8 +4639,6 @@ msgid ""
 "Use a PNG image with a transparent background so the signature blends "
 "naturally into the document without a white box around it."
 msgstr "Gunakan gambar PNG dengan latar belakang transparan agar tanda tangan menyatu secara alami ke dalam dokumen."
-"Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan "
-"paling bersih."
 
 #: templates/frontend/pdf_organize/compress_pdf.html:6
 msgid "Compression Settings"
@@ -13177,9 +13164,6 @@ msgid ""
 "Flatten PDF online free by removing interactive form fields, checkboxes, and "
 "annotations. Creates a static, non-editable PDF. No registration required."
 msgstr "Ratakan PDF online gratis dengan menghapus bidang formulir interaktif, kotak centang, dan anotasi. Membuat PDF statis yang tidak dapat diedit. Tanpa registrasi."
-"Ratakan PDF online gratis dengan menghapus kolom formulir interaktif, kotak "
-"centang, dan anotasi. Membuat PDF statis yang tidak dapat diedit dan "
-"mempertahankan tampilan asli. Tanpa registrasi."
 
 #: utils_site/src/frontend/tool_configs.py:3633
 msgid "Remove interactive form fields and annotations from your PDF"
@@ -13310,7 +13294,6 @@ msgstr ""
 #| msgid "Sign PDF Online Free - Add Signature to PDF | Convertica"
 msgid "Sign PDF - Add Signature to PDF Online | Convertica Premium"
 msgstr "Tanda Tangani PDF - Tambahkan Tanda Tangan ke PDF Online | Convertica Premium"
-"Tanda Tangani PDF Online Gratis — Tambahkan Tanda Tangan ke PDF | Convertica"
 
 #: utils_site/src/frontend/tool_configs.py:3737
 msgid ""
@@ -13616,7 +13599,6 @@ msgstr ""
 #: utils_site/src/frontend/tool_configs.py:3948
 msgid "Convert Image Format Online Free - JPEG PNG WebP GIF BMP | Convertica"
 msgstr "Konverter Format Gambar Online Gratis — JPEG PNG WebP GIF BMP | Convertica"
-"Konversi Format Gambar Online Gratis — JPEG PNG WebP GIF BMP | Convertica"
 
 #: utils_site/src/frontend/tool_configs.py:3951
 msgid ""

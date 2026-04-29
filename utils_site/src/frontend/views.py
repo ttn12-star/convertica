@@ -1279,8 +1279,9 @@ def _get_sitemap_pages():
         {"url": "pdf-edit/sign/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/optimize/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/convert/", "priority": "0.7", "changefreq": "monthly"},
-        {"url": "scanned-pdf-to-word/", "priority": "0.7", "changefreq": "monthly"},
-        {"url": "batch-converter/", "priority": "0.7", "changefreq": "monthly"},
+        # NOTE: scanned-pdf-to-word/ and batch-converter/ are premium-gated and
+        # 302-redirect anonymous crawlers to /users/login/. Keeping them out of
+        # sitemap until they get public landing pages.
     ]
 
 

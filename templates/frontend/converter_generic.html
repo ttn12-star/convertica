@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% load i18n static minified_static %}
+{% load i18n static minified_static seo_extras %}
 
-{% block title %}{{ page_title }}{% endblock %}
-{% block meta_title %}{{ page_title }}{% endblock %}
-{% block description %}{{ page_description }}{% endblock %}
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
 {% block keywords %}{{ page_keywords|default:"PDF converter, Word converter, online converter, free converter" }}{% endblock %}
-{% block og_title %}{{ page_title }}{% endblock %}
-{% block og_description %}{{ page_description }}{% endblock %}
-{% block twitter_title %}{{ page_title }}{% endblock %}
-{% block twitter_description %}{{ page_description }}{% endblock %}
+{% block og_title %}{{ page_title|seo_title }}{% endblock %}
+{% block og_description %}{{ page_description|seo_meta }}{% endblock %}
+{% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
+{% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
 {# When a tool ships its own social card image (1200x630), it is set as
    `og_image_filename` in tool_configs. Falls back to the global Convertica
    card so social shares always look intentional. #}
