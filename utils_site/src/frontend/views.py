@@ -1423,7 +1423,7 @@ def sitemap_lang(request, lang: str):
             )
 
         default_url = (
-            f"{base_url}/"
+            f"{base_url}/{default_language}/"
             if page_url == ""
             else f"{base_url}/{default_language}/{page_url}"
         )

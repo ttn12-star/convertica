@@ -167,11 +167,18 @@ def _build_hreflang_links(
 
     is_homepage = request.path == "/" or request.path in homepage_paths
     if is_homepage:
+        # x-default points to the default-language homepage (e.g. /en/) rather
+        # than the bare "/" — bare "/" is itself non-canonical (it canonicalises
+        # to /<default-language>/), so Ahrefs flags hreflangs that target it as
+        # "Hreflang to non-canonical". The default-language URL is the
+        # equivalent canonical landing for users with no language preference.
         hreflangs = []
         for code, _ in languages:
             url = f"{base_url}/{code}/"
             hreflangs.append({"code": code, "url": url})
-        hreflangs.append({"code": "x-default", "url": f"{base_url}/"})
+        hreflangs.append(
+            {"code": "x-default", "url": f"{base_url}/{default_language}/"}
+        )
         return hreflangs
 
     if not view_name:
