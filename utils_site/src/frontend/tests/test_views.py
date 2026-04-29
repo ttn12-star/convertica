@@ -237,8 +237,12 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response["X-Robots-Tag"], "noindex, follow")
         self.assertNotContains(response, 'hreflang="x-default"', status_code=200)
 
-    def test_localized_homepages_self_canonicalize_with_root_x_default(self):
-        """Localized homepages should not canonicalize to the x-default root."""
+    def test_localized_homepages_self_canonicalize_with_default_lang_x_default(self):
+        """Localized homepages target x-default at /<default-language>/, not bare /.
+
+        Bare / is non-canonical (it canonicalises to /en/), so Ahrefs flags
+        hreflangs pointing at it as "Hreflang to non-canonical".
+        """
         response = self.client.get("/ru/", follow=False)
         self.assertEqual(response.status_code, 200)
 
@@ -257,6 +261,11 @@ class FrontendViewsTestCase(TestCase):
             status_code=200,
         )
         self.assertContains(
+            response,
+            f'rel="alternate" hreflang="x-default" href="{origin}/en/"',
+            status_code=200,
+        )
+        self.assertNotContains(
             response,
             f'rel="alternate" hreflang="x-default" href="{origin}/"',
             status_code=200,
@@ -293,8 +302,12 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response["Location"], "/pl/pdf-to-word/?utm_source=test")
         self.assertEqual(response["X-Robots-Tag"], "noindex, nofollow")
 
-    def test_sitemap_homepage_uses_localized_loc_and_root_x_default(self):
-        """Homepage entries in the sitemap should align with page canonical signals."""
+    def test_sitemap_homepage_uses_localized_loc_and_default_lang_x_default(self):
+        """Sitemap homepage entries align with page hreflangs: x-default → /en/.
+
+        Keeps sitemap and on-page hreflang signals identical so Ahrefs cannot
+        flag a "Hreflang to non-canonical" delta between the two.
+        """
         response = self.client.get("/sitemap-en.xml", follow=False)
         self.assertEqual(response.status_code, 200)
         content = response.content.decode("utf-8")
@@ -313,6 +326,10 @@ class FrontendViewsTestCase(TestCase):
             content,
         )
         self.assertIn(
+            f'<xhtml:link rel="alternate" hreflang="x-default" href="{origin}/en/"/>',
+            content,
+        )
+        self.assertNotIn(
             f'<xhtml:link rel="alternate" hreflang="x-default" href="{origin}/"/>',
             content,
         )
