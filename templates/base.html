@@ -220,7 +220,14 @@
       {% endif %}
 
       {% if auto_generate_tool_schema %}
-        <!-- SoftwareApplication Schema (auto-generated for tool pages) -->
+        {% comment %}
+          Single source of SoftwareApplication for tool pages. Generic per-tool
+          templates (converter_generic.html, edit_pdf_generic.html) used to emit
+          their own copy as well, which Ahrefs flagged as a schema.org and Google
+          rich-results validation issue ("duplicate" type on the same page).
+          The `image` field is included so Google has a thumbnail eligible for
+          rich-results: prefer the per-tool og card, fall back to the global one.
+        {% endcomment %}
         <script type="application/ld+json">
           {
             "@context": "https://schema.org",
@@ -230,6 +237,7 @@
             "url": "{{ site_current_url }}",
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
+            "image": "{% if og_image_filename %}{{ site_base_url }}{% static og_image_filename %}{% else %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endif %}",
             "offers": {
               "@type": "Offer",
               "price": "{{ offer_price|default:'0' }}",
