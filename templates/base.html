@@ -52,41 +52,27 @@
       {% endif %}
     {% endblock %}
 
-    <!-- Preconnect to external domains (for analytics and CDN) -->
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://challenges.cloudflare.com">
-    <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://mc.yandex.ru">
-    <link rel="preconnect" href="https://mc.yandex.ru" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
-    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
-    <!-- YouTube preconnect for pages with video tutorials -->
-    <link rel="dns-prefetch" href="https://i.ytimg.com">
-    <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.youtube-nocookie.com">
-    <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
-    <!-- Google AdSense preconnect (active only when Publisher ID is configured) -->
+    {% comment %}
+      Preconnect — kept ≤4 to satisfy Lighthouse warning. Analytics is deferred ~2s,
+      so preconnect adds nothing to LCP and was dropped. YouTube preconnect lives
+      in youtube_video.html (only on pages with the embed). cdnjs is a fallback
+      for pdf.js, used <1% of the time — DNS will resolve on demand.
+    {% endcomment %}
+    {% if turnstile_site_key %}
+      <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
+    {% endif %}
     {% if ADSENSE_PUBLISHER_ID %}
-      <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
       <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-      <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">
     {% endif %}
 
-    <!-- Note: CSS preloads moved below critical CSS section -->
-    <!-- Note: utils.js preload removed - it's only used on converter pages, not globally -->
-
-    <!-- Self-hosted fonts (300ms faster than Google Fonts CDN) -->
-    <!-- Preload critical fonts for better FCP and to prevent layout shifts -->
+    {% comment %}
+      Preload only the 2 LCP-critical fonts (body + bold). Other weights load on
+      demand via fonts.css with `font-display: swap` so they don't block FCP.
+      Inter 700 carries the H1 hero (font-extrabold synthesises from 700), so
+      it gets fetchpriority=high to win bandwidth on Slow 4G.
+    {% endcomment %}
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-500.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-600.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-700.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{% static 'fonts/poppins/poppins-v20-latin-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{% static 'fonts/poppins/poppins-v20-latin-700.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <!-- Load fonts CSS -->
+    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-700.woff2' %}" as="font" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
 
     <!-- Google Fonts (DISABLED - using self-hosted for better performance) -->
@@ -160,14 +146,16 @@
     <!-- Critical CSS - Inline for instant rendering without FOUC -->
     <style>{% include "frontend/includes/critical.css" %}</style>
 
-    <!-- Preload full stylesheets for faster loading -->
-    <link rel="preload" href="{% static 'css/tailwind.css' %}" as="style">
-    <link rel="preload" href="{% static 'css/dark-mode-helpers.css' %}" as="style">
-    <link rel="preload" href="{% static 'css/mobile-optimizations.css' %}" as="style">
-
-    <!-- Load full stylesheets synchronously for stable rendering -->
+    {% comment %}
+      Full stylesheets, synchronous for stable rendering. Redundant <link
+      rel=preload> tags were removed — they re-fetched the same files at the
+      same priority and saved nothing. dark-mode-helpers is premium-only (the
+      theme toggle is gated), so it ships only to logged-in premium visitors.
+    {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}">
+    {% if user.is_authenticated and user.is_premium_active %}
+      <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}">
+    {% endif %}
     <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}">
 
     <!-- Custom Animations -->

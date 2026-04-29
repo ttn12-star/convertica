@@ -6,7 +6,7 @@ import os
 
 from decouple import config
 from django.conf import settings
-from django.urls import Resolver404, resolve
+from django.urls import NoReverseMatch, Resolver404, resolve, reverse
 
 from .seo import get_request_seo_context
 
@@ -161,7 +161,14 @@ def breadcrumbs(request):
     """Generate breadcrumbs for BreadcrumbList Schema and visual display."""
     from django.utils.translation import gettext as _
 
-    breadcrumbs_list = [{"name": _("Home"), "url": "/"}]
+    # Use the language-prefixed home URL so the breadcrumb "Home" link points to
+    # the same href as the header/footer "Home" — otherwise Lighthouse's
+    # `identical-links-same-purpose` audit fires (`/` vs `/<lang>/`).
+    try:
+        home_url = reverse("frontend:index_page_lang")
+    except NoReverseMatch:
+        home_url = "/"
+    breadcrumbs_list = [{"name": _("Home"), "url": home_url}]
 
     # Get current path
     path = request.path.strip("/")
