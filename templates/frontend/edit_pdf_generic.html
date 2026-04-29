@@ -13,30 +13,15 @@
 {% block structured_data %}
   {{ block.super }}
 
-  <!-- SoftwareApplication Schema -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "{{ header_text|default:page_title }}",
-      "description": "{{ page_description }}",
-      "url": "{{ site_current_url }}",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      },
-      "inLanguage": "{{ LANGUAGE_CODE }}",
-      "browserRequirements": "Requires JavaScript. Works on all modern browsers."
-    }
-  </script>
-
   {% comment %}
-    HowTo schema removed: deprecated by Google in Sep 2023, no rich-result
-    value, and Ahrefs flagged the markup as schema validation errors.
+    SoftwareApplication is emitted once by base.html when auto_generate_tool_schema
+    is true (default for edit-tool pages). Emitting another copy here would
+    duplicate the schema and was the source of Ahrefs's
+    "Structured data has schema.org/Google rich results validation error"
+    findings on ~210 tool pages.
+
+    HowTo schema is also intentionally absent: Google deprecated HowTo rich
+    results in Sep 2023 and Ahrefs flagged remaining markup as invalid.
   {% endcomment %}
 
   {% if page_faq %}
