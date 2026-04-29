@@ -1374,7 +1374,7 @@ msgstr ""
 #: utils_site/src/frontend/context_processors.py:431
 #: utils_site/src/frontend/views.py:171 utils_site/src/frontend/views.py:601
 msgid "PDF to Markdown"
-msgstr "PDF إلى Word"
+msgstr "PDF إلى Markdown"
 
 #: templates/frontend/all_tools.html:689
 msgid ""
@@ -3801,7 +3801,7 @@ msgstr "كيفية تحويل PDF إلى مستند Word قابل للتحرير
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:99
 msgid "Click the Convert button to start PDF to Word conversion"
-msgstr "انقر على زر التحويل لبدء عملية تحويل PDF إلى JPG"
+msgstr "انقر على زر التحويل لبدء عملية تحويل PDF إلى Word"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:100
 msgid "Wait for conversion - text, tables, and formatting will be extracted"
@@ -8309,7 +8309,7 @@ msgstr "تحويل PDF إلى HTML"
 #: utils_site/src/frontend/context_processors.py:434
 #: utils_site/src/frontend/views.py:173
 msgid "Convert PDF to structured Markdown"
-msgstr "تحويل PDF إلى PowerPoint"
+msgstr "تحويل PDF إلى Markdown منظم"
 
 #: utils_site/src/frontend/context_processors.py:440
 #: utils_site/src/frontend/views.py:180
@@ -8830,7 +8830,7 @@ msgstr "تحويل سريع جدًا مع تنزيل فوري - لا وقت ان
 
 #: utils_site/src/frontend/tool_configs.py:498
 msgid "How do I convert a PDF to JPG?"
-msgstr "كيف يمكنني تحويل PDF إلى Word؟"
+msgstr "كيف يمكنني تحويل PDF إلى JPG؟"
 
 #: utils_site/src/frontend/tool_configs.py:500
 msgid ""
@@ -9005,9 +9005,7 @@ msgstr "كيف يمكنني تحويل الصور إلى PDF؟"
 msgid ""
 "Simply upload your JPG image file, click the Convert button, and download "
 "your PDF. The conversion happens instantly with no quality loss."
-msgstr ""
-"ما عليك سوى رفع ملف PDF الخاص بك، وانقر على تحويل، وقم بتنزيل مستند Word "
-"الخاص بك. لا حاجة للتسجيل، مجاني بالكامل."
+msgstr "ما عليك سوى رفع ملف صورة JPG الخاص بك، وانقر على زر التحويل، وقم بتنزيل ملف PDF. تتم عملية التحويل فورًا دون فقدان الجودة."
 
 #: utils_site/src/frontend/tool_configs.py:645
 msgid "Can I convert multiple JPG images to one PDF?"
@@ -10619,7 +10617,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2031
 msgid "Can I convert scanned PDF documents to Excel?"
-msgstr "هل يمكنني تحويل PDF إلى JPG؟"
+msgstr "هل يمكنني تحويل مستندات PDF الممسوحة ضوئيًا إلى Excel؟"
 
 #: utils_site/src/frontend/tool_configs.py:2033
 msgid ""
@@ -11011,7 +11009,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2313
 msgid "How do I convert PowerPoint to PDF online?"
-msgstr "كيف يمكنني تحويل Word إلى PDF؟"
+msgstr "كيف يمكنني تحويل PowerPoint إلى PDF عبر الإنترنت؟"
 
 #: utils_site/src/frontend/tool_configs.py:2315
 msgid ""
@@ -11410,7 +11408,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2616
 msgid "How do I convert a PDF to PowerPoint?"
-msgstr "كيف يمكنني تحويل PDF إلى Word؟"
+msgstr "كيف يمكنني تحويل PDF إلى PowerPoint؟"
 
 #: utils_site/src/frontend/tool_configs.py:2618
 msgid ""
@@ -11610,7 +11608,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2773
 msgid "How do I convert a PDF to HTML?"
-msgstr "كيف يمكنني تحويل PDF إلى Word؟"
+msgstr "كيف يمكنني تحويل PDF إلى HTML؟"
 
 #: utils_site/src/frontend/tool_configs.py:2775
 msgid ""
@@ -12577,7 +12575,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:3513
 msgid "PDF to Markdown Converter (Premium) - Convertica"
-msgstr "PDF إلى PowerPoint - كونفيرتيكا"
+msgstr "محول PDF إلى Markdown (Premium) - كونفيرتيكا"
 
 #: utils_site/src/frontend/tool_configs.py:3515
 msgid ""
@@ -12593,11 +12591,11 @@ msgstr "استخرج Markdown نظيفاً مع تسلسل هرمي للعناو
 
 #: utils_site/src/frontend/tool_configs.py:3525
 msgid "PDF to Markdown Converter"
-msgstr "محول PDF إلى Word"
+msgstr "محول PDF إلى Markdown"
 
 #: utils_site/src/frontend/tool_configs.py:3531
 msgid "Convert PDF to Markdown"
-msgstr "تحويل PDF إلى Word"
+msgstr "تحويل PDF إلى Markdown"
 
 #: utils_site/src/frontend/tool_configs.py:3540
 msgid "Heading hierarchy extraction"
@@ -12667,7 +12665,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:3583
 msgid "PDF to Markdown FAQ"
-msgstr "محول PDF إلى Word"
+msgstr "الأسئلة الشائعة حول PDF إلى Markdown"
 
 #: utils_site/src/frontend/tool_configs.py:3586
 msgid ""
@@ -12689,7 +12687,7 @@ msgstr "راجع المخرجات في محررك واضبط الحالات ال
 
 #: utils_site/src/frontend/tool_configs.py:3596
 msgid "Tips for Better PDF to Markdown Output"
-msgstr "PDF إلى Word - كونفيرتيكا"
+msgstr "نصائح للحصول على نتائج أفضل لـ PDF إلى Markdown"
 
 #: utils_site/src/frontend/tool_configs.py:3598
 msgid "Convert PDF to Markdown with heading and table structure"

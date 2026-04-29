@@ -1390,7 +1390,7 @@ msgstr "Alat beta premium untuk mengonversi PDF ke EPUB yang ramah eReader."
 #: utils_site/src/frontend/context_processors.py:431
 #: utils_site/src/frontend/views.py:171 utils_site/src/frontend/views.py:601
 msgid "PDF to Markdown"
-msgstr "PDF ke Word"
+msgstr "PDF ke Markdown"
 
 #: templates/frontend/all_tools.html:689
 msgid ""
@@ -3868,7 +3868,7 @@ msgstr "Cara Mengonversi PDF ke Dokumen Word yang Dapat Diedit Online Gratis"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:99
 msgid "Click the Convert button to start PDF to Word conversion"
-msgstr "Klik tombol konversi untuk memulai proses konversi PDF ke JPG"
+msgstr "Klik tombol konversi untuk memulai proses konversi PDF ke Word"
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:100
 msgid "Wait for conversion - text, tables, and formatting will be extracted"
@@ -8513,7 +8513,7 @@ msgstr "Konversi PDF ke HTML"
 #: utils_site/src/frontend/context_processors.py:434
 #: utils_site/src/frontend/views.py:173
 msgid "Convert PDF to structured Markdown"
-msgstr "Konversi PDF ke PowerPoint"
+msgstr "Konversi PDF ke Markdown terstruktur"
 
 #: utils_site/src/frontend/context_processors.py:440
 #: utils_site/src/frontend/views.py:180
@@ -9058,7 +9058,7 @@ msgstr "Konversi super cepat dengan unduhan instan - tanpa waktu tunggu"
 
 #: utils_site/src/frontend/tool_configs.py:498
 msgid "How do I convert a PDF to JPG?"
-msgstr "Bagaimana cara mengonversi PDF ke Word?"
+msgstr "Bagaimana cara mengonversi PDF ke JPG?"
 
 #: utils_site/src/frontend/tool_configs.py:500
 msgid ""
@@ -9242,9 +9242,7 @@ msgstr "Bagaimana cara mengonversi gambar ke PDF?"
 msgid ""
 "Simply upload your JPG image file, click the Convert button, and download "
 "your PDF. The conversion happens instantly with no quality loss."
-msgstr ""
-"Cukup unggah file PDF Anda, klik konversi, dan unduh dokumen Word Anda. "
-"Tanpa registrasi, sepenuhnya gratis."
+msgstr "Cukup unggah file gambar JPG Anda, klik tombol Konversi, dan unduh PDF Anda. Konversi terjadi secara instan tanpa kehilangan kualitas."
 
 #: utils_site/src/frontend/tool_configs.py:645
 msgid "Can I convert multiple JPG images to one PDF?"
@@ -10951,7 +10949,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2031
 msgid "Can I convert scanned PDF documents to Excel?"
-msgstr "Bisakah saya mengonversi PDF ke JPG?"
+msgstr "Bisakah saya mengonversi dokumen PDF yang dipindai ke Excel?"
 
 #: utils_site/src/frontend/tool_configs.py:2033
 msgid ""
@@ -11358,7 +11356,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2313
 msgid "How do I convert PowerPoint to PDF online?"
-msgstr "Bagaimana cara mengonversi Word ke PDF?"
+msgstr "Bagaimana cara mengonversi PowerPoint ke PDF secara online?"
 
 #: utils_site/src/frontend/tool_configs.py:2315
 msgid ""
@@ -11777,7 +11775,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2616
 msgid "How do I convert a PDF to PowerPoint?"
-msgstr "Bagaimana cara mengonversi PDF ke Word?"
+msgstr "Bagaimana cara mengonversi PDF ke PowerPoint?"
 
 #: utils_site/src/frontend/tool_configs.py:2618
 msgid ""
@@ -11985,7 +11983,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:2773
 msgid "How do I convert a PDF to HTML?"
-msgstr "Bagaimana cara mengonversi PDF ke Word?"
+msgstr "Bagaimana cara mengonversi PDF ke HTML?"
 
 #: utils_site/src/frontend/tool_configs.py:2775
 msgid ""
@@ -13009,7 +13007,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:3513
 msgid "PDF to Markdown Converter (Premium) - Convertica"
-msgstr "PDF ke PowerPoint - Convertica"
+msgstr "Konverter PDF ke Markdown (Premium) - Convertica"
 
 #: utils_site/src/frontend/tool_configs.py:3515
 msgid ""
@@ -13025,11 +13023,11 @@ msgstr "Ekstrak Markdown bersih dengan hierarki judul dan blok tabel"
 
 #: utils_site/src/frontend/tool_configs.py:3525
 msgid "PDF to Markdown Converter"
-msgstr "Konverter PDF ke Word"
+msgstr "Konverter PDF ke Markdown"
 
 #: utils_site/src/frontend/tool_configs.py:3531
 msgid "Convert PDF to Markdown"
-msgstr "Konversi PDF ke Word"
+msgstr "Konversi PDF ke Markdown"
 
 #: utils_site/src/frontend/tool_configs.py:3540
 msgid "Heading hierarchy extraction"
@@ -13103,7 +13101,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:3583
 msgid "PDF to Markdown FAQ"
-msgstr "Konverter PDF ke Word"
+msgstr "FAQ PDF ke Markdown"
 
 #: utils_site/src/frontend/tool_configs.py:3586
 msgid ""
@@ -13130,7 +13128,7 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs.py:3596
 msgid "Tips for Better PDF to Markdown Output"
-msgstr "PDF ke Word - Convertica"
+msgstr "Tips untuk Hasil PDF ke Markdown yang Lebih Baik"
 
 #: utils_site/src/frontend/tool_configs.py:3598
 msgid "Convert PDF to Markdown with heading and table structure"
