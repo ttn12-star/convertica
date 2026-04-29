@@ -58,22 +58,33 @@
       so preconnect adds nothing to LCP and was dropped. YouTube preconnect lives
       in youtube_video.html (only on pages with the embed). cdnjs is a fallback
       for pdf.js, used <1% of the time — DNS will resolve on demand.
+
+      Cloudflare Turnstile preconnect must match the same conditions as the
+      <script> tag in `extra_head` below — otherwise PSI flags it as "Unused
+      preconnect" on every page that loads `turnstile_site_key` from settings
+      without actually rendering the captcha widget (e.g. the homepage).
     {% endcomment %}
-    {% if turnstile_site_key %}
+    {% if turnstile_site_key %}{% if captcha_required or needs_turnstile %}
       <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
-    {% endif %}
+    {% endif %}{% endif %}
     {% if ADSENSE_PUBLISHER_ID %}
       <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
     {% endif %}
 
     {% comment %}
-      Preload only the 2 LCP-critical fonts (body + bold). Other weights load on
-      demand from @font-face rules now bundled into tailwind.css (font-display:
-      swap, so they don't block FCP). Inter 700 carries the H1 hero (font-
-      extrabold synthesises from 700), so it gets fetchpriority=high to win
-      bandwidth on Slow 4G.
+      Preload all four Inter weights that PSI reports as part of the critical
+      request chain on the homepage (400 hero subtitle, 500/600 sticky-nav
+      buttons + dropdown labels visible above the fold, 700 H1). Without the
+      500/600 preloads the browser had to wait for tailwind.css to parse before
+      discovering the @font-face rule, lengthening the critical chain to ~970 ms
+      (inter-500) and pushing LCP to 3.3 s on Moto-G-Power Slow 4G. font-display:
+      swap on every weight keeps fallback rendering immediate; the preloads only
+      compress the swap window. fetchpriority=high stays on 700 because it
+      carries the largest above-the-fold text (font-extrabold H1).
     {% endcomment %}
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-500.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-600.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-700.woff2' %}" as="font" type="font/woff2" crossorigin fetchpriority="high">
 
     {% block hreflang_links %}
@@ -229,9 +240,11 @@
             "browserRequirements": "Requires JavaScript. Works on all modern browsers."
           }
         </script>
-        {# HowTo schema removed: Google deprecated HowTo rich results in Sep 2023
-           and Ahrefs flagged the markup as both schema.org and Google rich-results
-           validation errors on every tool page (~210/203 issues). #}
+        {% comment %}
+          HowTo schema removed: Google deprecated HowTo rich results in Sep 2023
+          and Ahrefs flagged the markup as both schema.org and Google rich-results
+          validation errors on every tool page (~210/203 issues).
+        {% endcomment %}
       {% endif %}
     {% endblock %}
     <!-- Cloudflare Turnstile (Anti-spam) — loaded only on pages that actually

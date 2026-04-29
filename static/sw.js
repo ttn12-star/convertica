@@ -3,7 +3,7 @@
  * Provides offline support and caching for static assets
  */
 
-const CACHE_VERSION = 'convertica-v5';
+const CACHE_VERSION = 'convertica-v6';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -68,6 +68,14 @@ self.addEventListener('fetch', (event) => {
 
     // Skip non-GET requests
     if (request.method !== 'GET') {
+        return;
+    }
+
+    // Let cross-origin requests bypass the SW. Re-issuing a no-cors fetch
+    // through the SW for third-party CDNs (i.ytimg.com, googletagmanager, etc.)
+    // produces opaque responses and intermittent ERR_FAILED on some networks —
+    // we don't cache them anyway, so there is nothing to gain by intercepting.
+    if (url.origin !== self.location.origin) {
         return;
     }
 

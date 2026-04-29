@@ -9,9 +9,11 @@
 {% block og_description %}{{ page_description|seo_meta }}{% endblock %}
 {% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
 {% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
-{# When a tool ships its own social card image (1200x630), it is set as
-   `og_image_filename` in tool_configs. Falls back to the global Convertica
-   card so social shares always look intentional. #}
+{% comment %}
+  When a tool ships its own social card image (1200x630), it is set as
+  `og_image_filename` in tool_configs. Falls back to the global Convertica
+  card so social shares always look intentional.
+{% endcomment %}
 {% block og_image %}{% if og_image_filename %}{{ site_base_url }}{% static og_image_filename %}{% else %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endif %}{% endblock %}
 {% block twitter_image %}{% if og_image_filename %}{{ site_base_url }}{% static og_image_filename %}{% else %}{{ site_base_url }}{% static 'images/og-image.jpg' %}{% endif %}{% endblock %}
 {% block og_image_alt %}{{ page_title }}{% endblock %}
@@ -47,8 +49,10 @@
     }
   </script>
 
-  {# HowTo schema removed: deprecated by Google in Sep 2023, no rich-result
-     value, and Ahrefs flagged the markup as schema validation errors. #}
+  {% comment %}
+    HowTo schema removed: deprecated by Google in Sep 2023, no rich-result
+    value, and Ahrefs flagged the markup as schema validation errors.
+  {% endcomment %}
 
   {% if page_faq %}
   <!-- FAQPage Schema -->
