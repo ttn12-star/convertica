@@ -1483,6 +1483,37 @@ def sitemap_lang(request, lang: str):
 
         xml += "  </url>\n"
 
+    # Blog pagination pages: /<lang>/blog/?page=2..N. Each page is self-canonical
+    # (per test_blog_pagination_keeps_indexable_self_canonical) and indexable.
+    # Without sitemap entries Ahrefs flags them as "Indexable page not in sitemap".
+    # Page size mirrors Paginator(articles, 9) in src/blog/views.py:article_list.
+    blog_page_size = 9
+    total_published = published_articles.count()
+    blog_total_pages = (
+        (total_published + blog_page_size - 1) // blog_page_size
+        if total_published
+        else 0
+    )
+    for page_num in range(2, blog_total_pages + 1):
+        page_loc = f"{base_url}/{lang}/blog/?page={page_num}"
+        xml += "  <url>\n"
+        xml += f"    <loc>{page_loc}</loc>\n"
+        xml += f"    <lastmod>{current_date}</lastmod>\n"
+        xml += "    <changefreq>weekly</changefreq>\n"
+        xml += "    <priority>0.6</priority>\n"
+        for alt_lang_code, _ in languages:
+            alt_page_url = f"{base_url}/{alt_lang_code}/blog/?page={page_num}"
+            xml += (
+                f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" '
+                f'href="{alt_page_url}"/>\n'
+            )
+        default_page_url = f"{base_url}/{default_language}/blog/?page={page_num}"
+        xml += (
+            f'    <xhtml:link rel="alternate" hreflang="x-default" '
+            f'href="{default_page_url}"/>\n'
+        )
+        xml += "  </url>\n"
+
     activate(old_lang)
     xml += "</urlset>"
 
