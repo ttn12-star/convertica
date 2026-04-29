@@ -334,6 +334,53 @@ class FrontendViewsTestCase(TestCase):
             content,
         )
 
+    def test_sitemap_includes_blog_pagination_pages(self):
+        """Blog pagination URLs (?page=2..N) must appear in the sitemap.
+
+        Without sitemap entries Ahrefs flags them as "Indexable page not in
+        sitemap" because /<lang>/blog/?page=2 is self-canonical and indexable
+        per test_blog_pagination_keeps_indexable_self_canonical.
+        """
+        from src.blog.models import Article, ArticleCategory
+
+        category = ArticleCategory.objects.create(slug="sitemap-pagination-test")
+        # 19 articles → 9 per page → 3 pages → page=2 and page=3 expected.
+        for i in range(19):
+            Article.objects.create(
+                slug=f"sitemap-pagination-{i}",
+                title_en=f"Sitemap pagination test {i}",
+                content_en="<p>body</p>",
+                excerpt_en="x",
+                status="published",
+                published_at=timezone.now(),
+                category=category,
+            )
+
+        # Bypass the 24-hour sitemap cache populated by other tests/runs.
+        cache.clear()
+        response = self.client.get("/sitemap-en.xml", follow=False)
+        self.assertEqual(response.status_code, 200)
+        content = response.content.decode("utf-8")
+
+        match = re.search(r"<loc>(https?://[^/]+)/en/</loc>", content)
+        self.assertIsNotNone(match)
+        origin = match.group(1)
+
+        for page_num in (2, 3):
+            self.assertIn(f"<loc>{origin}/en/blog/?page={page_num}</loc>", content)
+            self.assertIn(
+                f'<xhtml:link rel="alternate" hreflang="ru" '
+                f'href="{origin}/ru/blog/?page={page_num}"/>',
+                content,
+            )
+            self.assertIn(
+                f'<xhtml:link rel="alternate" hreflang="x-default" '
+                f'href="{origin}/en/blog/?page={page_num}"/>',
+                content,
+            )
+        # ?page=1 must NOT appear — it's noindex (canonicalises to /blog/).
+        self.assertNotIn("/blog/?page=1<", content)
+
     def test_pdf_to_word_page_renders(self):
         """Test that PDF to Word page renders successfully."""
         response = self.client.get(self._get_url_with_lang("pdf-to-word/"), follow=True)
