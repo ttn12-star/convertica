@@ -51,8 +51,5 @@
   <!-- SEO FAQ -->
   {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
 
-  <!-- Related Tools -->
-  {% if related_tools %}
-    {% include "frontend/includes/related_tools.html" with tools=related_tools %}
-  {% endif %}
+  {# Related Tools rendered by parent edit_pdf_generic.html outside help_section #}
 {% endblock %}
