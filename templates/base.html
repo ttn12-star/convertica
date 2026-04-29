@@ -234,10 +234,14 @@
            validation errors on every tool page (~210/203 issues). #}
       {% endif %}
     {% endblock %}
-    <!-- Cloudflare Turnstile (Anti-spam) -->
-    {% if turnstile_site_key %}
+    <!-- Cloudflare Turnstile (Anti-spam) — loaded only on pages that actually
+         render a `.cf-turnstile` widget (captcha_required or `needs_turnstile`
+         flag from the view). Loading the script on every page surfaced as
+         "Page has redirected JavaScript" warnings in Ahrefs (~470 pages) and
+         was an unnecessary network hop on tool/blog pages without a form. -->
+    {% if turnstile_site_key %}{% if captcha_required or needs_turnstile %}
       <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer nonce="{{ csp_nonce }}"></script>
-    {% endif %}
+    {% endif %}{% endif %}
 
 
     {% block extra_head %}{% endblock %}

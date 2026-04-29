@@ -1123,6 +1123,9 @@ User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
         "page_keywords": page_keywords,
         "form": form,
         "message_sent": message_sent,
+        # Contact form always renders a Turnstile widget — opt in to loading
+        # the script (base.html otherwise skips it on non-form pages).
+        "needs_turnstile": True,
     }
 
     return render(request, "frontend/contact.html", context)
