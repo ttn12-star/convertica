@@ -67,21 +67,13 @@
 
     {% comment %}
       Preload only the 2 LCP-critical fonts (body + bold). Other weights load on
-      demand via fonts.css with `font-display: swap` so they don't block FCP.
-      Inter 700 carries the H1 hero (font-extrabold synthesises from 700), so
-      it gets fetchpriority=high to win bandwidth on Slow 4G.
+      demand from @font-face rules now bundled into tailwind.css (font-display:
+      swap, so they don't block FCP). Inter 700 carries the H1 hero (font-
+      extrabold synthesises from 700), so it gets fetchpriority=high to win
+      bandwidth on Slow 4G.
     {% endcomment %}
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-700.woff2' %}" as="font" type="font/woff2" crossorigin fetchpriority="high">
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-
-    <!-- Google Fonts (DISABLED - using self-hosted for better performance) -->
-    <!--
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    -->
 
     {% block hreflang_links %}
       {% for link in hreflangs %}
@@ -147,16 +139,16 @@
     <style>{% include "frontend/includes/critical.css" %}</style>
 
     {% comment %}
-      Full stylesheets, synchronous for stable rendering. Redundant <link
-      rel=preload> tags were removed — they re-fetched the same files at the
-      same priority and saved nothing. dark-mode-helpers is premium-only (the
-      theme toggle is gated), so it ships only to logged-in premium visitors.
+      Single render-blocking stylesheet. fonts.css and mobile-optimizations.css
+      are bundled into tailwind.css via @import in input.css (saves 2 RTTs on
+      Slow 4G — Lighthouse flagged "Render blocking requests ~600 ms" caused
+      by 3 sequential CSS requests). dark-mode-helpers is premium-only because
+      the theme toggle is gated, so it ships only to logged-in premium visitors.
     {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
     {% if user.is_authenticated and user.is_premium_active %}
       <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}">
     {% endif %}
-    <link rel="stylesheet" href="{% static 'css/mobile-optimizations.css' %}">
 
     <!-- Custom Animations -->
     <style>

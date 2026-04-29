@@ -53,6 +53,16 @@ module.exports = {
       width: {
         '1100': '1100px',
       },
+      fontFamily: {
+        // Make Inter the default sans (matches the bundled @font-face). Without
+        // this override Tailwind preflight set html { font-family: ui-sans-serif,
+        // system-ui, ... }, which beat any inline rule and meant the self-hosted
+        // Inter never actually rendered on screen.
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif',
+               '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"',
+               '"Noto Color Emoji"'],
+        poppins: ['Poppins', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [],
