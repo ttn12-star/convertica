@@ -11,6 +11,7 @@ from django.views.decorators.cache import cache_page
 from .models import Article, ArticleCategory
 
 
+@cache_page(60 * 30)  # 30 min — list pages rebuild after publishing
 def article_list(request):
     """Display list of published articles."""
     language_code = get_language()
@@ -154,7 +155,7 @@ def article_list(request):
     return render(request, "blog/article_list.html", context)
 
 
-@cache_page(600)  # Cache for 10 minutes
+@cache_page(60 * 60)  # 1 hour — anonymous content rarely changes
 def article_detail(request, slug):
     """Display single article."""
     language_code = get_language()
