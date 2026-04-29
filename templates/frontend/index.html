@@ -95,7 +95,12 @@
 {% endblock %}
 
 {% block content %}
-  <main class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 min-h-screen text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/WebPage">
+  {% comment %}
+    base.html already wraps the content block in a single <main id="main-content">,
+    so this template uses a <div> wrapper to avoid two <main> landmarks
+    (axe rules landmark-no-duplicate-main / landmark-unique).
+  {% endcomment %}
+  <div class="bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 min-h-screen text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/WebPage">
 
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-900 py-16 sm:py-24 md:py-32 overflow-hidden border-b border-gray-200 dark:border-gray-800">
@@ -650,5 +655,5 @@
         </section>
       {% endif %}
 
-    </main>
+    </div>
 {% endblock %}

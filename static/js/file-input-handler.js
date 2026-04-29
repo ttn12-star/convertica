@@ -44,10 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     async function ensurePdfJsLoaded() {
         if (typeof window.pdfjsLib !== 'undefined') return true;
 
-        const candidates = [
-            `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`,
-            `https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.js`,
-        ];
+        // Prefer the locally-hosted, fingerprinted bundle injected by the tool
+        // template; fall back to public CDNs only if the local copy 404s.
+        const candidates = [];
+        if (window.PDFJS_URL) candidates.push(window.PDFJS_URL);
+        candidates.push(`https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`);
+        candidates.push(`https://unpkg.com/pdfjs-dist@${PDFJS_VERSION}/build/pdf.min.js`);
 
         for (const src of candidates) {
             try {
@@ -62,7 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             if (!window.pdfjsLib.GlobalWorkerOptions.workerSrc) {
-                window.pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`;
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = window.PDFJS_WORKER_URL ||
+                    `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`;
             }
         } catch (e) {
             // ignore
