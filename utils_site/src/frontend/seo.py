@@ -68,8 +68,13 @@ def get_request_seo_context(request) -> dict:
         # content as /<default-lang>/, so canonicalize there to avoid the
         # duplicate-content "indexable page not in sitemap" warning Ahrefs
         # raises (the language-prefixed URL is the one we list in sitemaps).
+        # Suppress hreflangs in that case: Lighthouse fails the SEO audit
+        # ("rel=canonical points to another hreflang location") when the
+        # canonical target is also one of the page's own hreflang alternates,
+        # and the proper hreflang block already lives on /<lang>/ pages.
         if request.path == "/":
             canonical_url = f"{base_url}/{default_language}/"
+            hreflangs_enabled = False
         else:
             canonical_url = f"{base_url}{canonical_path}"
         canonical_query, robots_override = _get_canonical_query_and_robots(
