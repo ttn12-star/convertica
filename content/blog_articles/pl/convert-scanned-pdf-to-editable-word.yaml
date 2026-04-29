@@ -113,7 +113,7 @@ content_pl: |
 
   <ul>
     <li><strong>Obróć strony położone na boku.</strong> Silniki OCR zakładają tekst poziomy. Strona przekręcona o 90 stopni zwraca bełkot albo nic. Skorzystaj z narzędzia, żeby <a href="/pl/pdf-edit/rotate/">obrócić strony położone na boku</a> przed OCR.</li>
-    <li><strong>Przytnij nadmiarowe marginesy.</strong> Szerokie białe brzegi mylą analizator układu, który widzi w jednej kolumnie dwie. <a href="/pl/pdf-edit/">Przytnij marginesy</a> do miejsca, gdzie naprawdę zaczyna się tekst.</li>
+    <li><strong>Przytnij nadmiarowe marginesy.</strong> Szerokie białe brzegi mylą analizator układu, który widzi w jednej kolumnie dwie. <a href="/pl/pdf-edit/rotate/">Przytnij marginesy</a> do miejsca, gdzie naprawdę zaczyna się tekst.</li>
     <li><strong>Zwiększ kontrast.</strong> Wyblakłym skanom pomaga podbicie kontrastu w sterowniku skanera albo dowolnym edytorze obrazu przed ponownym zapisem do PDF. Czarny tekst na białym tle to złoty standard.</li>
     <li><strong>Wyrównaj przekrzywienie (deskew).</strong> Strony przekrzywione nawet o 2-3 stopnie psują dokładność. Większość oprogramowania skanera ma opcję auto-deskew i warto ją włączyć.</li>
     <li><strong>Zejdź z koloru na skalę szarości lub czarno-biały</strong> przy skanowaniu, jeśli możesz. Kolorowe odcienie (typowy żółtawy efekt biurowej kserokopiarki) przesuwają kontrast w sposób, który dezorientuje silnik.</li>

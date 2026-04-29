@@ -60,13 +60,13 @@ content_en: |
   <figure><img src="/static/blog/images/tool-organize.jpg" alt="Click thumbnails of blank PDF pages to remove them in one pass" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li>Open the <a href="/en/pdf-edit/">remove pages from PDF</a> tool and upload your file.</li>
+    <li>Open the <a href="/en/pdf-edit/rotate/">remove pages from PDF</a> tool and upload your file.</li>
     <li>Look at the thumbnail grid. Blanks are obvious: solid white tiles with no text or images. Pages with faint scanner noise still have visible texture, so they show as light gray rather than pure white.</li>
     <li>Click the pages you want to delete. Most tools highlight the selection with a colored border or trash icon.</li>
     <li>Confirm and download the cleaned-up file. Verify the page count matches what you expect.</li>
   </ol>
 
-  If you also want to reorder or rotate while you're at it, doing all three in one sitting is faster than running three separate tools. The combined <a href="/en/pdf-organize/">organize PDF pages with drag and drop</a> view lets you delete, drag, and rotate before exporting once.
+  If you also want to reorder or rotate while you're at it, doing all three in one sitting is faster than running three separate tools. The combined <a href="/en/pdf-organize/merge/">organize PDF pages with drag and drop</a> view lets you delete, drag, and rotate before exporting once.
 
   <h2>Step-by-step: remove pages by range</h2>
 
@@ -106,7 +106,7 @@ content_en: |
 
   <ul>
     <li><strong>Live with it</strong> for internal documents where the printed numbers don't really matter.</li>
-    <li><strong>Re-number</strong> by stripping the existing footer and adding fresh ones. Tools that <a href="/en/pdf-edit/">add fresh page numbers</a> let you overwrite a header or footer area across the whole document in one pass.</li>
+    <li><strong>Re-number</strong> by stripping the existing footer and adding fresh ones. Tools that <a href="/en/pdf-edit/rotate/">add fresh page numbers</a> let you overwrite a header or footer area across the whole document in one pass.</li>
   </ul>
 
   Update any table of contents the same way. A TOC pointing to "page 7" when your new page 7 is now what was page 9 frustrates every reader. (I'd argue this is the second-most-common reason a colleague says "this PDF is broken" - the first being "the link from the TOC doesn't work either".)
@@ -152,4 +152,4 @@ content_en: |
 
   <h2>Try it now</h2>
 
-  <p>Stop scrolling past blank pages. Open the <a href="/en/pdf-edit/">PDF page remover tool</a>, click the thumbnails you don't want, and download a clean version in well under a minute. Faster than even finding your Acrobat license key.</p>
+  <p>Stop scrolling past blank pages. Open the <a href="/en/pdf-edit/rotate/">PDF page remover tool</a>, click the thumbnails you don't want, and download a clean version in well under a minute. Faster than even finding your Acrobat license key.</p>
