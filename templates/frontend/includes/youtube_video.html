@@ -14,6 +14,13 @@ Optional parameters:
 
 {% load i18n %}
 
+{% comment %}
+  Preconnect only on pages that actually embed a YouTube facade (kept out of
+  base.html so global pages don't hit Lighthouse's >4 preconnect warning).
+{% endcomment %}
+<link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
+
 <style>
   .youtube-facade:hover .yt-thumbnail { transform: scale(1.05); }
   .youtube-facade:hover .yt-play-btn { transform: scale(1.1); background-color: #ef4444; }
@@ -48,14 +55,18 @@ Optional parameters:
        tabindex="0"
        aria-label="{% blocktrans with title=title %}Play video: {{ title }}{% endblocktrans %}">
 
-    <!-- Thumbnail with responsive srcset using guaranteed YouTube sizes -->
-    <!-- Note: sddefault.jpg and maxresdefault.jpg are NOT guaranteed for all videos -->
-    <!-- mqdefault.jpg (320x180) and hqdefault.jpg (480x360) always exist -->
+    {% comment %}
+      Thumbnail uses empty alt: the visible <p> below already exposes the title
+      to assistive tech, so duplicating it triggers axe `image-redundant-alt`.
+      mqdefault.jpg (320x180) and hqdefault.jpg (480x360) always exist; if a
+      video gets removed from YouTube the onerror swap shows a neutral fallback
+      so the page doesn't render a broken-image icon.
+    {% endcomment %}
     <img src="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg"
          srcset="https://i.ytimg.com/vi/{{ video_id }}/mqdefault.jpg 320w,
                  https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg 480w"
          sizes="(max-width: 480px) 100vw, 480px"
-         alt="{{ title }}"
+         alt=""
          width="480" height="360"
          class="yt-thumbnail absolute inset-0 w-full h-full object-cover transition-transform duration-300"
          {% if is_lcp %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
@@ -75,7 +86,7 @@ Optional parameters:
 
     <!-- Video title overlay -->
     <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
-      <p class="text-white text-sm sm:text-base font-medium truncate">{{ title }}</p>
+      <p class="text-white text-sm sm:text-base font-medium truncate" aria-hidden="true">{{ title }}</p>
     </div>
   </div>
 
@@ -86,6 +97,16 @@ Optional parameters:
 
 <script nonce="{{ csp_nonce }}">
   (function() {
+  // Replace broken thumbnails (e.g. video removed from YouTube) with a neutral
+  // placeholder so the LCP element doesn't render as a broken-image icon.
+    document.querySelectorAll('.youtube-facade .yt-thumbnail').forEach(function(img) {
+      img.addEventListener('error', function onErr() {
+        img.removeEventListener('error', onErr);
+        img.removeAttribute('srcset');
+        img.src = 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 480 360%22%3E%3Crect width=%22480%22 height=%22360%22 fill=%22%231f2937%22/%3E%3C/svg%3E';
+      }, { once: true });
+    });
+
   // Initialize YouTube facade lazy loading
     function initYouTubeFacade() {
       const facades = document.querySelectorAll('.youtube-facade:not([data-initialized])');
