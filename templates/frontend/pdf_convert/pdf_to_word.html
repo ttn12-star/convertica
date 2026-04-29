@@ -85,10 +85,14 @@
 
 {% block help_section %}
   {% comment %}
-    Video tutorial removed: source video lSXDJfxL5B4 was unpublished on YouTube,
-    producing a 404 thumbnail that doubled as the LCP element and pushed mobile
-    LCP over 2.5s. Restore the include with a real video_id when one is ready.
+    heading_level="h2" keeps the document outline contiguous (H1 hero → H2
+    video → H2 "How it works"); the default h4 produced an H1→H4 jump that
+    Lighthouse flagged as "Heading elements are not in a sequentially-
+    descending order".
   {% endcomment %}
+  {% with video_title=_("How to Convert PDF to Editable Word Document Online Free") %}
+    {% include "frontend/includes/youtube_video.html" with video_id="lSXDJfxL5B4" title=video_title heading_level="h2" is_lcp=True %}
+  {% endwith %}
 
   <!-- How it works -->
   <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
