@@ -181,36 +181,88 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',
             "gradient": "from-amber-500 to-orange-600",
         },
+        # Tools without a previous entry — they exist as views but didn't
+        # appear as a related-tool target anywhere, so other pages couldn't
+        # link back to them. Adding them here lets the relations map below
+        # surface them as incoming links from sibling tools.
+        "flatten_pdf": {
+            "name": _("Flatten PDF"),
+            "url": "frontend:flatten_pdf_page",
+            "description": _("Remove form fields and annotations"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>',
+            "gradient": "from-cyan-500 to-blue-600",
+        },
+        "sign_pdf": {
+            "name": _("Sign PDF"),
+            "url": "frontend:sign_pdf_page",
+            "description": _("Add an image signature to PDF pages"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>',
+            "gradient": "from-amber-500 to-orange-600",
+        },
+        "pdf_to_text": {
+            "name": _("PDF to Text"),
+            "url": "frontend:pdf_to_text_page",
+            "description": _("Extract plain text from a PDF document"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>',
+            "gradient": "from-slate-500 to-slate-600",
+        },
+        "optimize_image": {
+            "name": _("Optimize Image"),
+            "url": "frontend:optimize_image_page",
+            "description": _("Compress and resize JPEG/PNG/WebP images"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+            "gradient": "from-emerald-500 to-emerald-600",
+        },
+        "convert_image": {
+            "name": _("Convert Image"),
+            "url": "frontend:convert_image_page",
+            "description": _("Convert between JPEG, PNG, WebP, GIF and BMP"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+            "gradient": "from-pink-500 to-pink-600",
+        },
     }
 
-    # Define related tools for each tool
+    # Define related tools for each tool. Each tool gets 3 outgoing links;
+    # collectively the map ensures every tool appears as a related target on
+    # at least 2 sibling pages (closes Ahrefs' "only one dofollow incoming
+    # internal link" warnings on the long-tail tool pages).
     relations = {
-        "pdf_to_word": ["word_to_pdf", "pdf_to_excel", "merge_pdf"],
+        "pdf_to_word": ["word_to_pdf", "pdf_to_excel", "pdf_to_text"],
         "word_to_pdf": ["pdf_to_word", "merge_pdf", "compress_pdf"],
-        "pdf_to_jpg": ["jpg_to_pdf", "compress_pdf", "split_pdf"],
-        "jpg_to_pdf": ["pdf_to_jpg", "merge_pdf", "compress_pdf"],
-        "rotate_pdf": ["organize_pdf", "compress_pdf", "merge_pdf"],
-        "add_page_numbers": ["rotate_pdf", "organize_pdf", "merge_pdf"],
-        "add_watermark": ["protect_pdf", "compress_pdf", "merge_pdf"],
+        "pdf_to_jpg": ["jpg_to_pdf", "convert_image", "split_pdf"],
+        "jpg_to_pdf": ["pdf_to_jpg", "optimize_image", "convert_image"],
+        "rotate_pdf": ["organize_pdf", "crop_pdf", "flatten_pdf"],
+        "add_page_numbers": ["rotate_pdf", "organize_pdf", "add_watermark"],
+        "add_watermark": ["protect_pdf", "sign_pdf", "flatten_pdf"],
         "crop_pdf": ["rotate_pdf", "compress_pdf", "organize_pdf"],
         "merge_pdf": ["split_pdf", "compress_pdf", "organize_pdf"],
-        "split_pdf": ["merge_pdf", "compress_pdf", "organize_pdf"],
-        "remove_pages": ["split_pdf", "organize_pdf", "merge_pdf"],
-        "extract_pages": ["split_pdf", "merge_pdf", "organize_pdf"],
+        "split_pdf": ["merge_pdf", "extract_pages", "organize_pdf"],
+        "remove_pages": ["split_pdf", "organize_pdf", "extract_pages"],
+        "extract_pages": ["split_pdf", "merge_pdf", "remove_pages"],
         "organize_pdf": ["merge_pdf", "split_pdf", "rotate_pdf"],
-        "pdf_to_excel": ["pdf_to_word", "merge_pdf", "compress_pdf"],
+        "pdf_to_excel": ["pdf_to_word", "merge_pdf", "pdf_to_text"],
         "excel_to_pdf": ["pdf_to_excel", "merge_pdf", "compress_pdf"],
         "ppt_to_pdf": ["merge_pdf", "compress_pdf", "protect_pdf"],
-        "html_to_pdf": ["merge_pdf", "compress_pdf", "protect_pdf"],
+        "html_to_pdf": ["merge_pdf", "compress_pdf", "pdf_to_text"],
         "pdf_to_ppt": ["merge_pdf", "compress_pdf", "split_pdf"],
-        "pdf_to_html": ["pdf_to_word", "compress_pdf", "split_pdf"],
+        "pdf_to_html": ["pdf_to_word", "pdf_to_text", "split_pdf"],
         "epub_to_pdf": ["pdf_to_epub", "pdf_to_word", "pdf_to_jpg"],
-        "pdf_to_epub": ["epub_to_pdf", "pdf_to_word", "compress_pdf"],
-        "pdf_to_markdown": ["pdf_to_word", "pdf_to_html", "compare_pdf"],
+        "pdf_to_epub": ["epub_to_pdf", "pdf_to_word", "pdf_to_text"],
+        "pdf_to_markdown": ["pdf_to_word", "pdf_to_html", "pdf_to_text"],
         "compare_pdf": ["pdf_to_markdown", "compress_pdf", "split_pdf"],
-        "compress_pdf": ["merge_pdf", "split_pdf", "protect_pdf"],
-        "protect_pdf": ["unlock_pdf", "compress_pdf", "merge_pdf"],
+        "compress_pdf": ["merge_pdf", "optimize_image", "protect_pdf"],
+        "protect_pdf": ["unlock_pdf", "sign_pdf", "flatten_pdf"],
         "unlock_pdf": ["protect_pdf", "compress_pdf", "merge_pdf"],
+        # Below: tool keys that previously had no relations entry, so the
+        # related_tools block on their pages was empty. Each tool now points
+        # at three siblings to give every page at least three outgoing
+        # internal links — closes the "only one dofollow incoming internal
+        # link" warnings on these tool/category pairs.
+        "flatten_pdf": ["add_watermark", "rotate_pdf", "organize_pdf"],
+        "sign_pdf": ["add_watermark", "protect_pdf", "flatten_pdf"],
+        "pdf_to_text": ["pdf_to_word", "pdf_to_markdown", "split_pdf"],
+        "optimize_image": ["convert_image", "jpg_to_pdf", "compress_pdf"],
+        "convert_image": ["optimize_image", "jpg_to_pdf", "pdf_to_jpg"],
     }
 
     related_keys = relations.get(current_tool, [])
