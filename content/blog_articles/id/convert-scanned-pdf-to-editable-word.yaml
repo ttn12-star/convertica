@@ -113,7 +113,7 @@ content_id: |
 
   <ul>
     <li><strong>Putar halaman miring.</strong> Engine OCR mengasumsikan teks horizontal. Halaman miring 90 derajat mengembalikan ngawur atau tidak ada apa-apa. Gunakan alat untuk <a href="/id/pdf-edit/rotate/">memutar halaman miring terlebih dahulu</a> sebelum OCR.</li>
-    <li><strong>Crop margin berlebih.</strong> Border putih lebar membingungkan analyzer layout sehingga mengira kolom tunggal Anda adalah dua. <a href="/id/pdf-edit/">Crop marginnya</a> ke tempat teks sebenarnya dimulai.</li>
+    <li><strong>Crop margin berlebih.</strong> Border putih lebar membingungkan analyzer layout sehingga mengira kolom tunggal Anda adalah dua. <a href="/id/pdf-edit/rotate/">Crop marginnya</a> ke tempat teks sebenarnya dimulai.</li>
     <li><strong>Tingkatkan kontras.</strong> Scan memudar mendapat manfaat dari peningkatan kontras di software scanner Anda atau editor gambar mana pun sebelum disimpan ulang sebagai PDF. Teks hitam murni di atas latar putih murni adalah standar emas.</li>
     <li><strong>Deskew.</strong> Halaman miring bahkan 2 hingga 3 derajat saja merusak akurasi. Sebagian besar software scanner memiliki opsi auto-deskew, dan layak dijalankan.</li>
     <li><strong>Turunkan warna ke grayscale atau hitam-putih</strong> sebelum scan jika bisa. Tint warna (output fotokopi kantor tipikal yang kekuningan) menggeser kontras dengan cara yang membuat pengenal kacau.</li>

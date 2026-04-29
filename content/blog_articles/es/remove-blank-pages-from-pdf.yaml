@@ -31,13 +31,13 @@ content_es: |
   <figure><img src="/static/blog/images/tool-organize.jpg" alt="Hacer clic en las miniaturas de páginas en blanco del PDF para eliminarlas en una sola pasada" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li>Abre la herramienta para <a href="/es/pdf-edit/">eliminar páginas de PDF</a> y sube tu archivo.</li>
+    <li>Abre la herramienta para <a href="/es/pdf-edit/rotate/">eliminar páginas de PDF</a> y sube tu archivo.</li>
     <li>Mira la cuadrícula de miniaturas. Las páginas en blanco son evidentes: cuadrados blancos sólidos sin texto ni imágenes. Las páginas con leve ruido de escáner aún tienen textura visible, así que se ven en gris claro en lugar de blanco puro.</li>
     <li>Haz clic en las páginas que quieras borrar. La mayoría de las herramientas resaltan la selección con un borde de color o un icono de papelera.</li>
     <li>Confirma y descarga el archivo limpio. Verifica que el número de páginas coincida con lo que esperabas.</li>
   </ol>
 
-  Si además quieres reordenar o rotar de paso, hacer las tres cosas en una sola sesión es más rápido que ejecutar tres herramientas distintas. La vista combinada de <a href="/es/pdf-organize/">organizar páginas de PDF arrastrando y soltando</a> te permite borrar, arrastrar y rotar antes de exportar una sola vez.
+  Si además quieres reordenar o rotar de paso, hacer las tres cosas en una sola sesión es más rápido que ejecutar tres herramientas distintas. La vista combinada de <a href="/es/pdf-organize/merge/">organizar páginas de PDF arrastrando y soltando</a> te permite borrar, arrastrar y rotar antes de exportar una sola vez.
 
   <h2>Paso a paso: eliminar páginas por rango</h2>
 
@@ -77,7 +77,7 @@ content_es: |
 
   <ul>
     <li><strong>Convive con ello</strong> en documentos internos donde los números impresos no importan demasiado.</li>
-    <li><strong>Renumera</strong> quitando el pie existente y añadiendo uno nuevo. Las herramientas que <a href="/es/pdf-edit/">añaden números de página nuevos</a> te permiten sobrescribir un encabezado o pie en todo el documento de una sola pasada.</li>
+    <li><strong>Renumera</strong> quitando el pie existente y añadiendo uno nuevo. Las herramientas que <a href="/es/pdf-edit/rotate/">añaden números de página nuevos</a> te permiten sobrescribir un encabezado o pie en todo el documento de una sola pasada.</li>
   </ul>
 
   Actualiza igualmente cualquier índice. Un índice que apunta a la «página 7» cuando tu nueva página 7 es lo que antes era la 9 frustra a cualquier lector. (Diría que esta es la segunda razón más habitual por la que alguien dice «este PDF está roto»: la primera es «el enlace del índice tampoco funciona».)
@@ -123,4 +123,4 @@ content_es: |
 
   <h2>Pruébalo ahora</h2>
 
-  <p>Deja de pasar páginas en blanco con el ratón. Abre la <a href="/es/pdf-edit/">herramienta para eliminar páginas de PDF</a>, haz clic en las miniaturas que no quieras y descarga una versión limpia en bastante menos de un minuto. Más rápido incluso que encontrar tu clave de licencia de Acrobat.</p>
+  <p>Deja de pasar páginas en blanco con el ratón. Abre la <a href="/es/pdf-edit/rotate/">herramienta para eliminar páginas de PDF</a>, haz clic en las miniaturas que no quieras y descarga una versión limpia en bastante menos de un minuto. Más rápido incluso que encontrar tu clave de licencia de Acrobat.</p>

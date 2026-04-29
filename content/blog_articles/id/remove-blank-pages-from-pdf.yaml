@@ -31,13 +31,13 @@ content_id: |
   <figure><img src="/static/blog/images/tool-organize.jpg" alt="Klik thumbnail halaman PDF kosong untuk menghapusnya dalam satu pass" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li>Buka alat <a href="/id/pdf-edit/">hapus halaman dari PDF</a> dan unggah file Anda.</li>
+    <li>Buka alat <a href="/id/pdf-edit/rotate/">hapus halaman dari PDF</a> dan unggah file Anda.</li>
     <li>Lihat grid thumbnail. Kosong terlihat jelas: petak putih solid tanpa teks atau gambar. Halaman dengan noise scanner samar masih memiliki tekstur terlihat, jadi mereka tampak abu-abu terang alih-alih putih murni.</li>
     <li>Klik halaman yang ingin Anda hapus. Sebagian besar alat menyorot pilihan dengan border berwarna atau ikon tong sampah.</li>
     <li>Konfirmasi dan unduh file yang sudah dibersihkan. Verifikasi jumlah halaman cocok dengan yang Anda harapkan.</li>
   </ol>
 
-  Jika Anda juga ingin mengurutkan ulang atau memutar sambil di sini, melakukan ketiganya dalam satu sesi lebih cepat daripada menjalankan tiga alat terpisah. Tampilan gabungan <a href="/id/pdf-organize/">atur halaman PDF dengan drag and drop</a> memungkinkan Anda menghapus, menyeret, dan memutar sebelum mengekspor sekali.
+  Jika Anda juga ingin mengurutkan ulang atau memutar sambil di sini, melakukan ketiganya dalam satu sesi lebih cepat daripada menjalankan tiga alat terpisah. Tampilan gabungan <a href="/id/pdf-organize/merge/">atur halaman PDF dengan drag and drop</a> memungkinkan Anda menghapus, menyeret, dan memutar sebelum mengekspor sekali.
 
   <h2>Langkah demi langkah: hapus halaman berdasarkan rentang</h2>
 
@@ -77,7 +77,7 @@ content_id: |
 
   <ul>
     <li><strong>Hidup dengan itu</strong> untuk dokumen internal di mana nomor cetak tidak terlalu penting.</li>
-    <li><strong>Penomoran ulang</strong> dengan menghapus footer yang ada dan menambahkan yang baru. Alat yang <a href="/id/pdf-edit/">menambahkan nomor halaman baru</a> memungkinkan Anda menimpa area header atau footer di seluruh dokumen dalam satu pass.</li>
+    <li><strong>Penomoran ulang</strong> dengan menghapus footer yang ada dan menambahkan yang baru. Alat yang <a href="/id/pdf-edit/rotate/">menambahkan nomor halaman baru</a> memungkinkan Anda menimpa area header atau footer di seluruh dokumen dalam satu pass.</li>
   </ul>
 
   Perbarui daftar isi dengan cara yang sama. TOC yang menunjuk "halaman 7" ketika halaman 7 baru Anda sekarang adalah yang dulu halaman 9 menggemaskan setiap pembaca. (Saya berpendapat ini adalah alasan kedua paling umum kolega berkata "PDF ini rusak" - yang pertama "tautan dari TOC juga tidak berfungsi".)
@@ -123,4 +123,4 @@ content_id: |
 
   <h2>Coba sekarang</h2>
 
-  <p>Berhenti menggulir melewati halaman kosong. Buka <a href="/id/pdf-edit/">alat penghapus halaman PDF</a>, klik thumbnail yang tidak Anda inginkan, dan unduh versi bersih dalam jauh kurang dari semenit. Lebih cepat bahkan daripada menemukan kunci lisensi Acrobat Anda.</p>
+  <p>Berhenti menggulir melewati halaman kosong. Buka <a href="/id/pdf-edit/rotate/">alat penghapus halaman PDF</a>, klik thumbnail yang tidak Anda inginkan, dan unduh versi bersih dalam jauh kurang dari semenit. Lebih cepat bahkan daripada menemukan kunci lisensi Acrobat Anda.</p>

@@ -79,7 +79,7 @@ content_hi: |
     </tbody>
   </table>
 
-  Table को PDF के रूप में save करें और merge order में पहले रखें। Merging के बाद, आप <a href="/hi/pdf-edit/">merged file across page numbers add</a> कर सकते हैं ताकि cover-page references actually resolve हों। अगर आप finance team के लिए quarterly bundle बना रहे हैं, front पर one-page summary और bank statement से match होने वाली totals row audit question पर loop close कर देती है इससे पहले कि उन्हें ask करना पड़े।
+  Table को PDF के रूप में save करें और merge order में पहले रखें। Merging के बाद, आप <a href="/hi/pdf-edit/rotate/">merged file across page numbers add</a> कर सकते हैं ताकि cover-page references actually resolve हों। अगर आप finance team के लिए quarterly bundle बना रहे हैं, front पर one-page summary और bank statement से match होने वाली totals row audit question पर loop close कर देती है इससे पहले कि उन्हें ask करना पड़े।
 
   Pro tip: अगर आप summary build करने के लिए Excel या Google Sheets use कर रहे हैं, इसे एक page wide पर print area set करके PDF में save करें merging से पहले। एक summary जो oversized footer की वजह से page 2 पर flow होती है सिर्फ़ visual noise है।
 

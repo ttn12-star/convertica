@@ -31,13 +31,13 @@ content_pl: |
   <figure><img src="/static/blog/images/tool-organize.jpg" alt="Klikanie miniatur pustych stron PDF, by usunąć je w jednym przejściu" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li>Otwórz narzędzie do <a href="/pl/pdf-edit/">usuwania stron z PDF</a> i wgraj swój plik.</li>
+    <li>Otwórz narzędzie do <a href="/pl/pdf-edit/rotate/">usuwania stron z PDF</a> i wgraj swój plik.</li>
     <li>Spójrz na siatkę miniatur. Puste strony są oczywiste: jednolicie białe kafelki bez tekstu i obrazów. Strony z lekkim szumem skanera mają widoczną fakturę, więc pokażą się jako jasnoszare zamiast czysto białych.</li>
     <li>Kliknij strony, które chcesz skasować. Większość narzędzi podświetla zaznaczenie kolorową ramką albo ikoną kosza.</li>
     <li>Potwierdź i pobierz oczyszczony plik. Sprawdź, czy liczba stron zgadza się z twoimi oczekiwaniami.</li>
   </ol>
 
-  Jeśli przy okazji chcesz też zmienić kolejność albo coś obrócić, zrobienie wszystkich trzech rzeczy w jednej sesji jest szybsze niż uruchamianie trzech osobnych narzędzi. Łączony widok <a href="/pl/pdf-organize/">organizacji PDF z drag-and-drop</a> pozwala usuwać, przeciągać i obracać przed jednym eksportem.
+  Jeśli przy okazji chcesz też zmienić kolejność albo coś obrócić, zrobienie wszystkich trzech rzeczy w jednej sesji jest szybsze niż uruchamianie trzech osobnych narzędzi. Łączony widok <a href="/pl/pdf-organize/merge/">organizacji PDF z drag-and-drop</a> pozwala usuwać, przeciągać i obracać przed jednym eksportem.
 
   <h2>Krok po kroku: usuń strony po zakresie</h2>
 
@@ -77,7 +77,7 @@ content_pl: |
 
   <ul>
     <li><strong>Pogódź się</strong> z tym przy wewnętrznych dokumentach, gdzie wydrukowane numery i tak nie mają znaczenia.</li>
-    <li><strong>Przenumeruj</strong> przez zdjęcie istniejącej stopki i dodanie świeżych. Narzędzia, które <a href="/pl/pdf-edit/">dodają świeże numery stron</a>, pozwalają nadpisać obszar nagłówka albo stopki w całym dokumencie jednym przejściem.</li>
+    <li><strong>Przenumeruj</strong> przez zdjęcie istniejącej stopki i dodanie świeżych. Narzędzia, które <a href="/pl/pdf-edit/rotate/">dodają świeże numery stron</a>, pozwalają nadpisać obszar nagłówka albo stopki w całym dokumencie jednym przejściem.</li>
   </ul>
 
   Tak samo aktualizuj spis treści. TOC wskazujący „strona 7", gdy nowa siódemka jest tym, co było dziewiątką, frustruje każdego czytelnika. (Twierdzę, że to drugi najczęstszy powód, dla którego współpracownik mówi „ten PDF jest popsuty" — pierwszym jest „link z TOC też nie działa".)
@@ -123,4 +123,4 @@ content_pl: |
 
   <h2>Wypróbuj teraz</h2>
 
-  <p>Przestań przewijać puste strony. Otwórz <a href="/pl/pdf-edit/">narzędzie do usuwania stron PDF</a>, kliknij niechciane miniatury i pobierz czystą wersję w dobrze poniżej minuty. Szybciej, niż znajdziesz licencję Acrobata.</p>
+  <p>Przestań przewijać puste strony. Otwórz <a href="/pl/pdf-edit/rotate/">narzędzie do usuwania stron PDF</a>, kliknij niechciane miniatury i pobierz czystą wersję w dobrze poniżej minuty. Szybciej, niż znajdziesz licencję Acrobata.</p>

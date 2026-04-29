@@ -143,7 +143,7 @@ content_en: |
 
   <ul>
     <li><strong>Rotate sideways pages.</strong> OCR engines assume horizontal text. A 90-degree-off page returns gibberish or nothing. Use a tool to <a href="/en/pdf-edit/rotate/">rotate sideways pages first</a> before OCR.</li>
-    <li><strong>Crop excess margins.</strong> Wide white borders confuse the layout analyzer into thinking your single column is two. <a href="/en/pdf-edit/">Crop the margins</a> down to where the text actually starts.</li>
+    <li><strong>Crop excess margins.</strong> Wide white borders confuse the layout analyzer into thinking your single column is two. <a href="/en/pdf-edit/rotate/">Crop the margins</a> down to where the text actually starts.</li>
     <li><strong>Increase contrast.</strong> Faded scans benefit from a contrast boost in your scanner software or any image editor before re-saving as PDF. Pure black text on pure white background is the gold standard.</li>
     <li><strong>Deskew.</strong> Pages tilted by even 2 to 3 degrees hurt accuracy. Most scanner software has an auto-deskew option, and it's worth running.</li>
     <li><strong>Drop colour to grayscale or black-and-white</strong> before scanning if you can. Colour tints (the typical yellow-tinged office photocopier output) shift contrast in ways that throw off the recogniser.</li>

@@ -31,13 +31,13 @@ content_hi: |
   <figure><img src="/static/blog/images/tool-organize.jpg" alt="Blank PDF pages के thumbnails एक pass में remove करने के लिए click करें" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li><a href="/hi/pdf-edit/">PDF से pages remove</a> tool खोलें और अपनी file upload करें।</li>
+    <li><a href="/hi/pdf-edit/rotate/">PDF से pages remove</a> tool खोलें और अपनी file upload करें।</li>
     <li>Thumbnail grid देखें। Blanks obvious हैं: solid white tiles बिना text या images के। Faint scanner noise वाले pages अब भी visible texture रखते हैं, इसलिए वे pure white के बजाय light gray दिखाते हैं।</li>
     <li>उन pages पर click करें जिन्हें आप delete करना चाहते हैं। ज़्यादातर tools selection को colored border या trash icon से highlight करते हैं।</li>
     <li>Confirm करें और cleaned-up file download करें। Verify करें कि page count expected से match करता है।</li>
   </ol>
 
-  अगर आप साथ में reorder या rotate भी करना चाहते हैं, तीनों एक sitting में करना तीन separate tools run करने से faster है। Combined <a href="/hi/pdf-organize/">drag and drop से PDF pages organize</a> view आपको export करने से पहले delete, drag, और rotate करने देती है एक बार में।
+  अगर आप साथ में reorder या rotate भी करना चाहते हैं, तीनों एक sitting में करना तीन separate tools run करने से faster है। Combined <a href="/hi/pdf-organize/merge/">drag and drop से PDF pages organize</a> view आपको export करने से पहले delete, drag, और rotate करने देती है एक बार में।
 
   <h2>Step-by-step: range से pages remove करें</h2>
 
@@ -77,7 +77,7 @@ content_hi: |
 
   <ul>
     <li><strong>इसके साथ Live करें</strong> internal documents के लिए जहाँ printed numbers really matter नहीं करते।</li>
-    <li><strong>Re-number करें</strong> existing footer strip करके fresh ones add करके। Tools जो <a href="/hi/pdf-edit/">fresh page numbers add</a> करते हैं आपको पूरे document के header या footer area को एक pass में overwrite करने देते हैं।</li>
+    <li><strong>Re-number करें</strong> existing footer strip करके fresh ones add करके। Tools जो <a href="/hi/pdf-edit/rotate/">fresh page numbers add</a> करते हैं आपको पूरे document के header या footer area को एक pass में overwrite करने देते हैं।</li>
   </ul>
 
   Same way किसी भी table of contents को update करें। "page 7" को point करने वाला TOC जब आपका new page 7 अब वो है जो page 9 था हर reader को frustrate करता है। (मेरा कहना है यह दूसरा-most-common reason है जब colleague कहता है "यह PDF broken है" - पहला है "TOC से link भी काम नहीं करती"।)
@@ -123,4 +123,4 @@ content_hi: |
 
   <h2>अभी try करें</h2>
 
-  <p>Blank pages से past scrolling बंद करें। <a href="/hi/pdf-edit/">PDF page remover tool</a> open करें, unwanted thumbnails click करें, और एक minute से कम में clean version download करें। Acrobat license key find करने से भी faster।</p>
+  <p>Blank pages से past scrolling बंद करें। <a href="/hi/pdf-edit/rotate/">PDF page remover tool</a> open करें, unwanted thumbnails click करें, और एक minute से कम में clean version download करें। Acrobat license key find करने से भी faster।</p>
