@@ -56,7 +56,7 @@ JS contract (unchanged from previous design):
         </svg>
         <span>{% trans "Browse files" %}</span>
       </div>
-      <p class="text-gray-400 dark:text-gray-500 text-xs mt-4" id="fileInfo">
+      <p class="text-gray-600 dark:text-gray-400 text-xs mt-4" id="fileInfo">
         {{ file_accept|upper }}{% if max_file_size_mb_current %} &middot; {% blocktrans with size=max_file_size_mb_current %}up to {{ size }} MB{% endblocktrans %}{% endif %}{% if batch_enabled %} &middot; {% trans "up to 10 files" %}{% endif %}
       </p>
     </div>

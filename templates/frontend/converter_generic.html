@@ -250,38 +250,20 @@
     window.BG_NO_TASKS_TEXT = "{% filter escapejs %}{% trans 'No background tasks' %}{% endfilter %}";
     window.CONVERSION_TYPE = "{{ conversion_type|default:''|escapejs }}";
   </script>
-{# External JS files - pdf.js loaded with defer to improve LCP #}
-  <script
-    id="pdfjs-script"
-    src="{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}"
-    crossorigin="anonymous"
-    defer
-    nonce="{{ csp_nonce }}">
-  </script>
+  {% comment %}
+    pdf.js (320 KB) and pdf.worker (1 MB) used to load eagerly on every tool
+    page even though they are only needed to validate the user's PDF page
+    count. Path is exposed via window.PDFJS_URL/WORKER_URL so file-input-handler
+    can fetch it on-demand the moment the user picks a file. PSI's
+    "Reduce unused JavaScript ~221 KiB" finding came almost entirely from
+    these. CDN fallback is preserved inside ensurePdfJsLoaded().
+  {% endcomment %}
   <script nonce="{{ csp_nonce }}">
-    // PDF.js setup - handles defer loading
-    (function() {
-      var script = document.getElementById('pdfjs-script');
-      var workerSrc = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
-      if (script) {
-        // Set worker when pdf.js loads (defer script)
-        script.addEventListener('load', function() {
-          if (typeof pdfjsLib !== 'undefined' && !pdfjsLib.GlobalWorkerOptions.workerSrc) {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
-          }
-        });
-        // Fallback to CDN if local PDF.js fails to load
-        script.addEventListener('error', function() {
-          var fallback = document.createElement('script');
-          fallback.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
-          fallback.crossOrigin = 'anonymous';
-          document.head.appendChild(fallback);
-        });
-      }
-    })();
+    window.PDFJS_URL = "{% static 'vendor/pdfjs/3.11.174/pdf.min.js' %}";
+    window.PDFJS_WORKER_URL = "{% static 'vendor/pdfjs/3.11.174/pdf.worker.min.js' %}";
   </script>
-  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/converter.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}" defer></script>
+  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}" defer></script>
+  <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}" defer></script>
+  <script src="{% minified_static 'js/converter.js' %}" nonce="{{ csp_nonce }}" defer></script>
 {% endblock %}
