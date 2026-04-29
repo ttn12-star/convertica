@@ -2452,8 +2452,6 @@ msgstr "Para JPEG o WebP, ajusta el control deslizante de calidad si es necesari
 #| msgid "Click the Convert button to start PDF to Word conversion"
 msgid "Click the Convert Image button to start conversion"
 msgstr "Haz clic en el botón Convertir Imagen para iniciar la conversión"
-"Haz clic en el botón de convertir para iniciar el proceso de conversión de "
-"PDF a JPG"
 
 #: templates/frontend/image_tools/convert_image.html:85
 #| msgid "Download your converted file instantly"
@@ -3752,8 +3750,6 @@ msgstr "Preservar diseño del texto"
 msgid ""
 "Try to preserve text positioning and column structure from the original PDF"
 msgstr "Intentar preservar la posición del texto y la estructura de columnas del PDF original"
-"Opción para conservar el posicionamiento del texto y la estructura de "
-"columnas del original"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:67
 #: templates/frontend/pdf_convert/pdf_to_word.html:98
@@ -4498,9 +4494,6 @@ msgid ""
 "annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
 msgstr "El aplanado elimina todos los campos de formulario interactivos, casillas, campos de texto y anotaciones de tu PDF. El resultado es un documento estático, no editable, que parece idéntico pero no puede rellenarse ni modificarse."
-"Aplanar un PDF elimina todos los elementos interactivos como campos de "
-"formulario, casillas y anotaciones, convirtiéndolos en contenido estático. "
-"El PDF tiene el mismo aspecto pero ya no se puede rellenar ni editar."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:28
 #| msgid "Click the button to start processing your file"
@@ -4511,7 +4504,6 @@ msgstr "Haz clic en el botón Aplanar PDF para comenzar el procesamiento"
 #| msgid "Remove interactive form fields and annotations from your PDF"
 msgid "All interactive form fields and annotations will be removed"
 msgstr "Todos los campos de formulario interactivos y anotaciones serán eliminados"
-"Elimina los campos de formulario interactivos y las anotaciones de tu PDF"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:30
 #| msgid "Download your cleaned PDF file"
@@ -13325,9 +13317,6 @@ msgid ""
 "Flatten PDF online free by removing interactive form fields, checkboxes, and "
 "annotations. Creates a static, non-editable PDF. No registration required."
 msgstr "Aplana PDF en línea gratis eliminando campos de formulario interactivos, casillas y anotaciones. Crea un PDF estático no editable. Sin registro."
-"Aplana el PDF online gratis eliminando campos de formulario interactivos, "
-"casillas de verificación y anotaciones. Crea un PDF estático, no editable, "
-"que preserva la apariencia original. Sin registro."
 
 #: utils_site/src/frontend/tool_configs.py:3633
 msgid "Remove interactive form fields and annotations from your PDF"

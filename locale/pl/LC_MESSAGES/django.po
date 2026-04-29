@@ -2515,8 +2515,6 @@ msgid ""
 "Select your image file using the button above or drag and drop it into the "
 "zone"
 msgstr "Wybierz plik obrazu przyciskiem powyżej lub przeciągnij go do strefy"
-"Wybierz plik PDF za pomocą przycisku powyżej lub przeciągnij i upuść go w "
-"strefie poniżej"
 
 #: templates/frontend/image_tools/optimize_image.html:104
 msgid "Set the quality level (85%% is recommended for most images)"
@@ -4460,10 +4458,6 @@ msgid ""
 "annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
 msgstr "Spłaszczanie usuwa wszystkie interaktywne pola formularzy, pola wyboru, pola tekstowe i adnotacje z pliku PDF. Wynikiem jest statyczny, nieedytowalny dokument wyglądający identycznie, ale niemożliwy do wypełnienia ani modyfikacji."
-"Spłaszczanie PDF usuwa wszystkie elementy interaktywne, takie jak pola "
-"formularzy, pola wyboru i adnotacje, przekształcając je w statyczną "
-"zawartość. PDF wygląda identycznie, ale nie można go już wypełniać ani "
-"edytować."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:28
 #| msgid "Click the button to start processing your file"
@@ -4564,7 +4558,6 @@ msgstr "Prześlij obraz podpisu"
 msgid ""
 "PNG with transparent background gives the best result. JPG is also accepted."
 msgstr "PNG z przezroczystym tłem daje najlepszy wynik. JPG jest również akceptowany."
-"Użyj obrazu PNG z przezroczystym tłem, aby uzyskać najczystszy wynik podpisu."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:43
 #: templates/frontend/pdf_edit/sign_pdf.html:224
@@ -4615,7 +4608,6 @@ msgstr "Po zaznaczeniu podpis jest dodawany do każdej strony PDF."
 msgid ""
 "Upload your signature image (PNG with a transparent background works best)"
 msgstr "Prześlij obraz podpisu (PNG z przezroczystym tłem działa najlepiej)"
-"Użyj obrazu PNG z przezroczystym tłem, aby uzyskać najczystszy wynik podpisu."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:155
 #| msgid ""
@@ -4623,8 +4615,6 @@ msgstr "Prześlij obraz podpisu (PNG z przezroczystym tłem działa najlepiej)"
 #| "pages at once"
 msgid "Choose the position and page where the signature should appear"
 msgstr "Wybierz pozycję i stronę, na której ma się pojawić podpis"
-"Wybierz dokładną pozycję i stronę dla swojego podpisu lub zastosuj go do "
-"wszystkich stron jednocześnie"
 
 #: templates/frontend/pdf_edit/sign_pdf.html:156
 #| msgid "Customize color, opacity, and size using the sliders"
@@ -4650,7 +4640,6 @@ msgid ""
 "Use a PNG image with a transparent background so the signature blends "
 "naturally into the document without a white box around it."
 msgstr "Użyj obrazu PNG z przezroczystym tłem, aby podpis naturalnie wpisał się w dokument bez białego obramowania."
-"Użyj obrazu PNG z przezroczystym tłem, aby uzyskać najczystszy wynik podpisu."
 
 #: templates/frontend/pdf_organize/compress_pdf.html:6
 msgid "Compression Settings"
@@ -13197,9 +13186,6 @@ msgid ""
 "Flatten PDF online free by removing interactive form fields, checkboxes, and "
 "annotations. Creates a static, non-editable PDF. No registration required."
 msgstr "Spłaszcz PDF online za darmo, usuwając interaktywne pola formularzy, pola wyboru i adnotacje. Tworzy statyczny nieedytowalny PDF. Bez rejestracji."
-"Spłaszcz PDF online za darmo, usuwając interaktywne pola formularzy, pola "
-"wyboru i adnotacje. Tworzy statyczny, nieedytowalny PDF zachowujący "
-"oryginalny wygląd. Rejestracja nie jest wymagana."
 
 #: utils_site/src/frontend/tool_configs.py:3633
 msgid "Remove interactive form fields and annotations from your PDF"
@@ -13640,7 +13626,6 @@ msgstr ""
 #: utils_site/src/frontend/tool_configs.py:3948
 msgid "Convert Image Format Online Free - JPEG PNG WebP GIF BMP | Convertica"
 msgstr "Darmowy konwerter formatu obrazu online — JPEG PNG WebP GIF BMP | Convertica"
-"Konwertuj format obrazu online za darmo — JPEG PNG WebP GIF BMP | Convertica"
 
 #: utils_site/src/frontend/tool_configs.py:3951
 msgid ""

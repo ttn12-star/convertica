@@ -1,14 +1,14 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static seo_extras %}
 
-{% block title %}{% trans "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs" %}{% endblock %}
-{% block meta_title %}{% trans "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs" %}{% endblock %}
-{% block description %}{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}{% endblock %}
+{% block title %}{% blocktrans asvar t %}Convertica – Online PDF Tools: Convert, Edit & Organize PDFs{% endblocktrans %}{{ t|seo_title }}{% endblock %}
+{% block meta_title %}{% blocktrans asvar t %}Convertica – Online PDF Tools: Convert, Edit & Organize PDFs{% endblocktrans %}{{ t|seo_title }}{% endblock %}
+{% block description %}{% blocktrans asvar d %}Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required.{% endblocktrans %}{{ d|seo_meta }}{% endblock %}
 {% block keywords %}{% trans "PDF converter, PDF to Word, Word to PDF, merge PDF, split PDF, rotate PDF, PDF editor, PDF tools, online PDF converter, free PDF tools" %}{% endblock %}
-{% block og_title %}{% trans "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs" %}{% endblock %}
-{% block og_description %}{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}{% endblock %}
-{% block twitter_title %}{% trans "Convertica – Online PDF Tools: Convert, Edit & Organize PDFs" %}{% endblock %}
-{% block twitter_description %}{% trans "Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required." %}{% endblock %}
+{% block og_title %}{% blocktrans asvar t %}Convertica – Online PDF Tools: Convert, Edit & Organize PDFs{% endblocktrans %}{{ t|seo_title }}{% endblock %}
+{% block og_description %}{% blocktrans asvar d %}Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required.{% endblocktrans %}{{ d|seo_meta }}{% endblock %}
+{% block twitter_title %}{% blocktrans asvar t %}Convertica – Online PDF Tools: Convert, Edit & Organize PDFs{% endblocktrans %}{{ t|seo_title }}{% endblock %}
+{% block twitter_description %}{% blocktrans asvar d %}Free online PDF tools: Convert PDF to Word, Word to PDF, merge, split, rotate, add watermark, and more. Fast, secure, no registration required.{% endblocktrans %}{{ d|seo_meta }}{% endblock %}
 
 {% block structured_data %}
   <script type="application/ld+json">

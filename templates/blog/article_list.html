@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load i18n static %}
+{% load i18n static seo_extras %}
 
-{% block title %}{{ page_title }}{% endblock %}
-{% block meta_title %}{{ page_title }}{% endblock %}
-{% block description %}{{ page_description }}{% endblock %}
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
 {% block keywords %}{% trans "blog, articles, PDF guides, document tips, tutorials" %}{% endblock %}
 
 {% block extra_head %}
