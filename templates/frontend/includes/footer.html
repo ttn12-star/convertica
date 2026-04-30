@@ -208,32 +208,6 @@
       </div>
 
     </div>
-
-    {% comment %}
-      "As featured on" — bidirectional links to platforms where we're listed.
-      Helps Google's crawler discover the inbound side of the relationship
-      (some of these platforms — ProductHunt, AlternativeTo — block Ahrefs
-      and other crawlers behind Cloudflare, so backlinks from them only
-      become visible to search engines once Google itself crosses the link
-      in both directions). Plain text + nofollow on outgoing — pure
-      discovery aid, not a vote.
-    {% endcomment %}
-    <div class="mt-12 pt-8 border-t border-gray-700/50">
-      <p class="text-center text-xs uppercase tracking-wide text-gray-500 mb-4">
-        {% trans "Find us on" %}
-      </p>
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-        <a href="https://www.producthunt.com/products/convertica"
-           rel="noopener nofollow"
-           class="text-gray-400 hover:text-orange-400 transition-colors">Product Hunt</a>
-        <a href="https://alternativeto.net/software/convertica/about/"
-           rel="noopener nofollow"
-           class="text-gray-400 hover:text-blue-400 transition-colors">AlternativeTo</a>
-        <a href="https://www.saashub.com/convertica-alternatives"
-           rel="noopener nofollow"
-           class="text-gray-400 hover:text-cyan-400 transition-colors">SaaSHub</a>
-      </div>
-    </div>
   </div>
 
   <!-- Bottom Bar -->
