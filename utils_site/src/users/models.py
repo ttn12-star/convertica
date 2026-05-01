@@ -596,6 +596,41 @@ class Payment(models.Model):
             self.user.cancel_subscription()
 
     @classmethod
+    def record_completed(
+        cls,
+        *,
+        user,
+        plan,
+        amount,
+        external_payment_id,
+        provider,
+        processed_at=None,
+    ):
+        """Idempotent record of a completed payment.
+
+        Returns (payment, created). Skips subscription-activation side-effects
+        via _skip_subscription_sync (the webhook flow has already activated
+        premium via User.activate_premium — re-activation here would double-bill).
+        """
+        try:
+            existing = cls.objects.get(payment_id=external_payment_id)
+            return existing, False
+        except cls.DoesNotExist:
+            payment = cls(
+                user=user,
+                plan=plan,
+                amount=amount,
+                payment_id=external_payment_id,
+                payment_method=provider,
+                provider=provider,
+                status="completed",
+                processed_at=processed_at or timezone.now(),
+            )
+            payment._skip_subscription_sync = True
+            payment.save()
+            return payment, True
+
+    @classmethod
     def create_from_webhook(cls, payment_id, user, plan, amount, **extra_fields):
         """Create Payment from webhook without triggering subscription activation.
 
@@ -808,3 +843,33 @@ class UserSubscription(models.Model):
     def will_cancel(self):
         """Check if subscription will cancel at period end."""
         return self.cancel_at_period_end and self.is_active()
+
+    @classmethod
+    def upsert_from_event(
+        cls,
+        *,
+        user,
+        plan,
+        provider,
+        provider_subscription_id,
+        provider_customer_id,
+        status,
+        current_period_start,
+        current_period_end,
+        cancel_at_period_end=False,
+    ):
+        """Create or update a UserSubscription from a webhook event.
+
+        Returns (subscription, created).
+        """
+        defaults = {
+            "plan": plan,
+            "provider": provider,
+            "provider_subscription_id": provider_subscription_id,
+            "provider_customer_id": provider_customer_id,
+            "status": status,
+            "current_period_start": current_period_start,
+            "current_period_end": current_period_end,
+            "cancel_at_period_end": cancel_at_period_end,
+        }
+        return cls.objects.update_or_create(user=user, defaults=defaults)
