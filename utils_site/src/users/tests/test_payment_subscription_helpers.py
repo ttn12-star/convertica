@@ -1,0 +1,107 @@
+from datetime import timedelta
+from decimal import Decimal
+
+from django.test import TestCase
+from django.utils import timezone
+from src.users.models import Payment, SubscriptionPlan, User, UserSubscription
+
+
+class PaymentRecordCompletedTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(email="p@t.test", password="x")
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly",
+            slug="m",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def test_creates_payment_with_provider(self):
+        payment, created = Payment.record_completed(
+            user=self.user,
+            plan=self.plan,
+            amount=Decimal("7.99"),
+            external_payment_id="ls_order_42",
+            provider="lemonsqueezy",
+        )
+        self.assertTrue(created)
+        self.assertEqual(payment.status, "completed")
+        self.assertEqual(payment.provider, "lemonsqueezy")
+        self.assertEqual(payment.payment_method, "lemonsqueezy")
+        self.assertEqual(payment.payment_id, "ls_order_42")
+
+    def test_idempotent_on_same_external_id(self):
+        Payment.record_completed(
+            user=self.user,
+            plan=self.plan,
+            amount=Decimal("7.99"),
+            external_payment_id="ls_order_42",
+            provider="lemonsqueezy",
+        )
+        payment, created = Payment.record_completed(
+            user=self.user,
+            plan=self.plan,
+            amount=Decimal("7.99"),
+            external_payment_id="ls_order_42",
+            provider="lemonsqueezy",
+        )
+        self.assertFalse(created)
+        self.assertEqual(Payment.objects.count(), 1)
+
+
+class UserSubscriptionUpsertTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(email="s@t.test", password="x")
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly",
+            slug="m",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def test_creates_when_missing(self):
+        now = timezone.now()
+        sub, created = UserSubscription.upsert_from_event(
+            user=self.user,
+            plan=self.plan,
+            provider="lemonsqueezy",
+            provider_subscription_id="ls_sub_1",
+            provider_customer_id="ls_cust_1",
+            status="active",
+            current_period_start=now,
+            current_period_end=now + timedelta(days=30),
+            cancel_at_period_end=False,
+        )
+        self.assertTrue(created)
+        self.assertEqual(sub.status, "active")
+        self.assertEqual(sub.provider, "lemonsqueezy")
+
+    def test_updates_when_exists(self):
+        now = timezone.now()
+        UserSubscription.upsert_from_event(
+            user=self.user,
+            plan=self.plan,
+            provider="lemonsqueezy",
+            provider_subscription_id="ls_sub_1",
+            provider_customer_id="ls_cust_1",
+            status="active",
+            current_period_start=now,
+            current_period_end=now + timedelta(days=30),
+            cancel_at_period_end=False,
+        )
+        sub, created = UserSubscription.upsert_from_event(
+            user=self.user,
+            plan=self.plan,
+            provider="lemonsqueezy",
+            provider_subscription_id="ls_sub_1",
+            provider_customer_id="ls_cust_1",
+            status="cancelled",
+            current_period_start=now,
+            current_period_end=now + timedelta(days=30),
+            cancel_at_period_end=True,
+        )
+        self.assertFalse(created)
+        self.assertEqual(sub.status, "cancelled")
+        self.assertTrue(sub.cancel_at_period_end)
