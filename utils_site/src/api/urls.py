@@ -1,5 +1,4 @@
 from django.urls import path
-from src.payments.views import stripe_webhook
 
 from .async_views import TaskResultAPIView, TaskStatusAPIView
 from .cancel_task_view import (
@@ -76,8 +75,6 @@ from .user_info_view import UserInfoAPIView
 urlpatterns = [
     # User info endpoint
     path("user-info/", UserInfoAPIView.as_view(), name="user_info_api"),
-    # Stripe webhook endpoint (for Stripe CLI local testing)
-    path("payments/webhook/", stripe_webhook, name="api_stripe_webhook"),
     # Async task endpoints (for progress polling and result download)
     path(
         "tasks/<str:task_id>/status/", TaskStatusAPIView.as_view(), name="task_status"
