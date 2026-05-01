@@ -55,9 +55,18 @@ class User(AbstractUser):
         default=False, verbose_name=_("Display as Hero")
     )
 
-    # Stripe integration
-    stripe_customer_id = models.CharField(
-        max_length=100, blank=True, null=True, editable=False
+    payment_provider = models.CharField(
+        max_length=20,
+        blank=True,
+        default="",
+        choices=[
+            ("lemonsqueezy", "Lemon Squeezy"),
+            ("stripe", "Stripe"),
+        ],
+        editable=False,
+    )
+    provider_customer_id = models.CharField(
+        max_length=100, blank=True, default="", editable=False
     )
 
     username = models.CharField(max_length=150, blank=True, null=True)
@@ -273,10 +282,6 @@ class User(AbstractUser):
         self._subscription_changed = True
         self.save()
 
-    def get_stripe_customer_id(self):
-        """Get Stripe customer ID."""
-        return self.stripe_customer_id
-
     def cancel_subscription(self):
         """Cancel subscription immediately and reset streak."""
         self.subscription_end_date = timezone.now()
@@ -342,7 +347,9 @@ class SubscriptionPlan(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, default="USD")
     duration_days = models.IntegerField()
-    stripe_price_id = models.CharField(max_length=100, blank=True, null=True)
+    ls_variant_id = models.CharField(max_length=64, blank=True, default="")
+    ls_product_id = models.CharField(max_length=64, blank=True, default="")
+    is_lifetime = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -350,6 +357,8 @@ class SubscriptionPlan(models.Model):
         ordering = ["price"]
 
     def __str__(self):
+        if self.is_lifetime:
+            return f"{self.name} - ${self.price} (Lifetime)"
         return f"{self.name} - ${self.price}/{self.get_duration_display()}"
 
     def get_duration_display(self):
@@ -449,6 +458,9 @@ class Payment(models.Model):
     # Additional fields for better tracking
     payment_method = models.CharField(
         max_length=50, blank=True, null=True, verbose_name=_("Payment Method")
+    )
+    provider = models.CharField(
+        max_length=20, default="lemonsqueezy", verbose_name=_("Provider")
     )
     transaction_id = models.CharField(
         max_length=200, blank=True, null=True, verbose_name=_("Transaction ID")
@@ -689,8 +701,9 @@ class UserSubscription(models.Model):
         "User", on_delete=models.CASCADE, related_name="stripe_subscription"
     )
     plan = models.ForeignKey("SubscriptionPlan", on_delete=models.SET_NULL, null=True)
-    stripe_subscription_id = models.CharField(max_length=100, blank=True, null=True)
-    stripe_customer_id = models.CharField(max_length=100, blank=True, null=True)
+    provider = models.CharField(max_length=20, default="lemonsqueezy")
+    provider_subscription_id = models.CharField(max_length=100, blank=True, null=True)
+    provider_customer_id = models.CharField(max_length=100, blank=True, null=True)
     current_period_start = models.DateTimeField(null=True, blank=True)
     current_period_end = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=20, default="incomplete")
@@ -701,7 +714,8 @@ class UserSubscription(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=["user", "status"]),
-            models.Index(fields=["stripe_subscription_id"]),
+            models.Index(fields=["provider_subscription_id"]),
+            models.Index(fields=["provider", "status"]),
         ]
 
     def __str__(self):
