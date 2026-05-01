@@ -96,3 +96,55 @@ class LemonSqueezyClientTests(TestCase):
         client.cancel_subscription("sub_x")
         self.assertEqual(len(responses.calls), 1)
         self.assertEqual(responses.calls[0].request.method, "DELETE")
+
+    @responses.activate
+    def test_create_checkout_sends_bearer_token(self):
+        responses.post(
+            "https://api.lemonsqueezy.com/v1/checkouts",
+            json={"data": {"id": "ck_1", "attributes": {"url": "https://x"}}},
+            status=201,
+        )
+        client = LemonSqueezyClient(api_key="test_api_key")
+        client.create_checkout(
+            store_id="store_1",
+            variant_id="var_42",
+            custom_data={"user_id": "1", "plan_id": "2"},
+            success_url="https://convertica.net/payments/success/",
+        )
+        self.assertEqual(
+            responses.calls[0].request.headers["Authorization"],
+            "Bearer test_api_key",
+        )
+        self.assertEqual(
+            responses.calls[0].request.headers["Accept"],
+            "application/vnd.api+json",
+        )
+
+    @responses.activate
+    def test_request_raises_lemonsqueezy_error_on_4xx(self):
+        responses.get(
+            "https://api.lemonsqueezy.com/v1/subscriptions/sub_404",
+            json={"errors": [{"detail": "Not found"}]},
+            status=404,
+        )
+        from src.payments.lemonsqueezy import LemonSqueezyError
+
+        client = LemonSqueezyClient(api_key="test_api_key")
+        with self.assertRaises(LemonSqueezyError) as ctx:
+            client.get_subscription("sub_404")
+        self.assertIn("404", str(ctx.exception))
+
+    @responses.activate
+    def test_request_raises_lemonsqueezy_error_on_connection_error(self):
+        import requests as _requests
+
+        responses.get(
+            "https://api.lemonsqueezy.com/v1/subscriptions/sub_1",
+            body=_requests.exceptions.ConnectionError("boom"),
+        )
+        from src.payments.lemonsqueezy import LemonSqueezyError
+
+        client = LemonSqueezyClient(api_key="test_api_key")
+        with self.assertRaises(LemonSqueezyError) as ctx:
+            client.get_subscription("sub_1")
+        self.assertIn("transport error", str(ctx.exception))
