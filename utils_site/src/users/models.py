@@ -282,15 +282,90 @@ class User(AbstractUser):
         self._subscription_changed = True
         self.save()
 
-    def cancel_subscription(self):
-        """Cancel subscription immediately and reset streak."""
-        self.subscription_end_date = timezone.now()
-        self.consecutive_subscription_days = 0  # Reset streak on cancellation
+    def activate_premium(
+        self,
+        *,
+        plan,
+        period_start,
+        period_end,
+        provider,
+        provider_subscription_id,
+        provider_customer_id,
+    ):
+        """Activate or renew premium for a user.
+
+        period_end=None → lifetime (no end date).
+        For renewals on subscriptions, period_end should reflect the new
+        end (subsequent billing cycle), and we just set it directly.
+        """
+        if plan.is_lifetime or period_end is None:
+            self.subscription_start_date = period_start or timezone.now()
+            self.subscription_end_date = None
+        else:
+            if not self.subscription_start_date:
+                self.subscription_start_date = period_start or timezone.now()
+            self.subscription_end_date = period_end
+
+        self.is_premium = True
+        self.payment_provider = provider
+        if provider_customer_id:
+            self.provider_customer_id = provider_customer_id
+
         self._subscription_changed = True
-        self._skip_days_calculation = True  # Don't recalculate, keep 0
-        self.save()
-        # Clean up flag
+        self.save(
+            update_fields=[
+                "subscription_start_date",
+                "subscription_end_date",
+                "is_premium",
+                "payment_provider",
+                "provider_customer_id",
+                "consecutive_subscription_days",
+                "total_subscription_days",
+            ]
+        )
+
+    def deactivate_premium(self, *, reason: str):
+        """Revoke premium immediately.
+
+        reason in {"cancelled", "expired", "refunded", "disputed"}.
+        Streak is reset only when the cancellation was the user's choice
+        (cancelled) or due to refund/dispute. Natural expiration keeps streak
+        intact since the user paid in full for that period.
+        """
+        reset_streak = reason in {"cancelled", "refunded", "disputed"}
+        self.is_premium = False
+        self.subscription_end_date = timezone.now()
+        if reset_streak:
+            self.consecutive_subscription_days = 0
+        # Skip auto-recalculation so our explicit is_premium=False and
+        # streak value are not overwritten by _calculate_subscription_days
+        # (which uses cached is_subscription_active() from before this call).
+        self._skip_days_calculation = True
+        self._subscription_changed = True
+        self.save(
+            update_fields=[
+                "is_premium",
+                "subscription_end_date",
+                "consecutive_subscription_days",
+            ]
+        )
         self._skip_days_calculation = False
+
+    def apply_grace(self, *, until):
+        """Push subscription_end_date forward to a grace deadline (past_due)."""
+        self.subscription_end_date = until
+        self.is_premium = True
+        # Skip auto-recalculation so our explicit is_premium=True is not
+        # overwritten by _calculate_subscription_days (which may use stale
+        # cached is_subscription_active() from before this call).
+        self._skip_days_calculation = True
+        self._subscription_changed = True
+        self.save(update_fields=["subscription_end_date", "is_premium"])
+        self._skip_days_calculation = False
+
+    def cancel_subscription(self):
+        """Backward-compatible alias for deactivate_premium(reason='cancelled')."""
+        self.deactivate_premium(reason="cancelled")
 
     def is_hero(self):
         """Check if user qualifies as hero (premium user with display enabled)."""
