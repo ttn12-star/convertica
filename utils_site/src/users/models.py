@@ -579,6 +579,35 @@ class StripeWebhookEvent(models.Model):
         return f"{self.event_type or 'stripe_event'} - {self.event_id}"
 
 
+class WebhookEvent(models.Model):
+    """Provider-agnostic webhook event log for idempotent processing."""
+
+    provider = models.CharField(max_length=20)
+    event_id = models.CharField(max_length=255)
+    event_type = models.CharField(max_length=100, blank=True)
+    livemode = models.BooleanField(default=False)
+    processing = models.BooleanField(default=False)
+    processed_at = models.DateTimeField(null=True, blank=True)
+    last_error = models.TextField(blank=True)
+    raw_payload = models.JSONField(default=dict, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["provider", "event_id"], name="uniq_provider_event"
+            ),
+        ]
+        indexes = [
+            models.Index(fields=["provider", "event_type", "-created_at"]),
+            models.Index(fields=["processed_at"]),
+        ]
+
+    def __str__(self):
+        return f"{self.provider}:{self.event_type or 'event'} {self.event_id}"
+
+
 class OperationRun(models.Model):
     """Lightweight operational analytics for conversions and PDF tools."""
 
