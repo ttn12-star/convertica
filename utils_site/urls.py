@@ -11,7 +11,7 @@ from src.frontend.i18n_views import set_language
 from src.frontend.views import index_page, sitemap_index, sitemap_lang
 from src.frontend.views_indexnow import indexnow_key_file
 from src.frontend.views_seo import favicon_view, robots_txt_view
-from src.payments.views import stripe_webhook
+from src.payments.webhook import lemonsqueezy_webhook
 
 from utils_site.swagger import schema_view
 
@@ -68,7 +68,7 @@ def service_worker(request):
 urlpatterns = [
     path("api/", include("src.api.urls")),
     path("i18n/setlang/", set_language, name="set_language"),
-    path("payments/webhook/", stripe_webhook, name="stripe_webhook"),
+    path("payments/webhook/lemonsqueezy/", lemonsqueezy_webhook, name="ls_webhook"),
     path(
         "offline.html", lambda request: render(request, "offline.html"), name="offline"
     ),
