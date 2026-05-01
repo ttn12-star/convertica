@@ -81,6 +81,31 @@ class SubscriptionCreatedTests(HandlerTestCase):
         handle_subscription_created(payload)
         self.assertFalse(UserSubscription.objects.exists())
 
+    def test_falls_back_to_plan_duration_on_missing_renews_at(self):
+        payload = subscription_created_payload(
+            user_id=self.user.id,
+            plan_id=self.monthly.id,
+        )
+        # Simulate malformed renews_at
+        payload["data"]["attributes"]["renews_at"] = ""
+        handle_subscription_created(payload)
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.is_premium)
+        # Should NOT be lifetime — should be ~30 days from now
+        self.assertIsNotNone(self.user.subscription_end_date)
+        delta = self.user.subscription_end_date - timezone.now()
+        self.assertGreater(delta.days, 25)  # allow some skew
+        self.assertLess(delta.days, 35)
+
+    def test_handles_non_numeric_user_id(self):
+        payload = subscription_created_payload(
+            user_id="not-a-number",
+            plan_id=self.monthly.id,
+        )
+        # Should not raise
+        handle_subscription_created(payload)
+        self.assertFalse(UserSubscription.objects.exists())
+
 
 class SubscriptionUpdatedTests(HandlerTestCase):
     def test_updates_status_and_period(self):
@@ -137,6 +162,30 @@ class SubscriptionCancelledTests(HandlerTestCase):
         self.assertTrue(sub.cancel_at_period_end)
         self.user.refresh_from_db()
         self.assertTrue(self.user.is_premium)  # still premium until end
+
+    def test_tolerates_missing_plan_in_custom_data(self):
+        future = timezone.now() + timedelta(days=10)
+        UserSubscription.objects.create(
+            user=self.user,
+            plan=self.monthly,
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_1",
+            provider_customer_id="cust_1",
+            status="active",
+            current_period_end=future,
+        )
+        self.user.is_premium = True
+        self.user.subscription_end_date = future
+        self.user.save()
+        payload = subscription_cancelled_payload(
+            user_id=self.user.id,
+            plan_id=99999,  # missing
+            ends_at="2026-05-11T00:00:00.000000Z",
+        )
+        # Should not raise; should still mark cancel_at_period_end
+        handle_subscription_cancelled(payload)
+        sub = UserSubscription.objects.get(user=self.user)
+        self.assertTrue(sub.cancel_at_period_end)
 
 
 class SubscriptionExpiredTests(HandlerTestCase):
@@ -206,6 +255,46 @@ class SubscriptionPaymentFailedTests(HandlerTestCase):
         self.user.refresh_from_db()
         self.assertTrue(self.user.is_premium)  # still premium during grace
         self.assertGreater(self.user.subscription_end_date, timezone.now())
+
+
+class SubscriptionPausedTests(HandlerTestCase):
+    def test_paused_with_grace_keeps_streak(self):
+        from src.payments.handlers import handle_subscription_paused
+        from src.payments.tests.fixtures.ls_payloads import subscription_updated_payload
+
+        # Pre-existing subscription
+        UserSubscription.objects.create(
+            user=self.user,
+            plan=self.monthly,
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_1",
+            provider_customer_id="cust_1",
+            status="active",
+            current_period_end=timezone.now() + timedelta(days=15),
+        )
+        # subscription_start_date set 20 days ago so save()'s auto-calc
+        # produces consecutive_subscription_days == 21 (start..today inclusive),
+        # which is what we'll assert is preserved by deactivate_premium(expired).
+        start = timezone.now() - timedelta(days=20)
+        self.user.is_premium = True
+        self.user.subscription_start_date = start
+        self.user.subscription_end_date = timezone.now() + timedelta(days=15)
+        self.user.save()
+        self.user.refresh_from_db()
+        streak_before = self.user.consecutive_subscription_days
+        self.assertGreater(streak_before, 0)  # sanity check
+        payload = subscription_updated_payload(
+            user_id=self.user.id,
+            plan_id=self.monthly.id,
+            status="paused",
+        )
+        payload["meta"]["event_name"] = "subscription_paused"
+        with self.settings(PAYMENT_PAST_DUE_GRACE_DAYS=0):
+            handle_subscription_paused(payload)
+        self.user.refresh_from_db()
+        # Without grace, premium revoked, but streak preserved (reason=expired)
+        self.assertFalse(self.user.is_premium)
+        self.assertEqual(self.user.consecutive_subscription_days, streak_before)
 
 
 class SubscriptionPaymentRefundedTests(HandlerTestCase):

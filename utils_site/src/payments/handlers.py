@@ -26,12 +26,24 @@ def _custom_data(payload: dict) -> dict:
     return payload.get("meta", {}).get("custom_data", {}) or {}
 
 
+def _safe_int(value) -> int | None:
+    """Return int(value) or None if value is not coercible.
+
+    LS custom_data is stringly typed; defends against malformed/missing IDs."""
+    if value is None:
+        return None
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
 def _resolve_user_and_plan(
     payload: dict,
 ) -> tuple[User | None, SubscriptionPlan | None]:
     cd = _custom_data(payload)
-    user_id = cd.get("user_id")
-    plan_id = cd.get("plan_id")
+    user_id = _safe_int(cd.get("user_id"))
+    plan_id = _safe_int(cd.get("plan_id"))
     user = User.objects.filter(id=user_id).first() if user_id else None
     plan = SubscriptionPlan.objects.filter(id=plan_id).first() if plan_id else None
     if not user:
@@ -65,6 +77,31 @@ def _data_id(payload: dict) -> str:
     return str(payload.get("data", {}).get("id", "") or "")
 
 
+def _period_end_with_fallback(payload_period_end_iso, *, plan, period_start):
+    """Resolve period_end with safe fallback for non-lifetime plans.
+
+    If `payload_period_end_iso` parses successfully, return that datetime.
+    For non-lifetime plans, falling back to None would silently grant lifetime
+    premium — instead we fall back to period_start + plan.duration_days
+    and log a warning. For lifetime plans, None is the correct sentinel.
+    """
+    parsed = _parse_dt(payload_period_end_iso)
+    if parsed is not None:
+        return parsed
+    if plan.is_lifetime:
+        return None
+    fallback = period_start + timedelta(days=plan.duration_days)
+    logger.warning(
+        "LS webhook: missing/invalid period_end, falling back to plan duration",
+        extra={
+            "event": "ls_webhook_period_end_fallback",
+            "plan_id": plan.id,
+            "fallback_end": fallback.isoformat(),
+        },
+    )
+    return fallback
+
+
 # --- Subscription handlers ---
 
 
@@ -77,7 +114,11 @@ def handle_subscription_created(payload: dict) -> None:
     sub_id = _data_id(payload)
     customer_id = str(attrs.get("customer_id") or "")
     period_start = _parse_dt(attrs.get("created_at")) or timezone.now()
-    period_end = _parse_dt(attrs.get("renews_at"))
+    period_end = _period_end_with_fallback(
+        attrs.get("renews_at"),
+        plan=plan,
+        period_start=period_start,
+    )
     cancel_at_period_end = bool(attrs.get("cancelled"))
     status = attrs.get("status") or "active"
 
@@ -113,13 +154,19 @@ def handle_subscription_updated(payload: dict) -> None:
     customer_id = str(attrs.get("customer_id") or "")
     status = attrs.get("status") or "active"
     cancel_at_period_end = bool(attrs.get("cancelled"))
-    period_end = _parse_dt(attrs.get("ends_at")) or _parse_dt(attrs.get("renews_at"))
 
     sub_qs = UserSubscription.objects.filter(
         provider="lemonsqueezy", provider_subscription_id=sub_id
     )
     sub = sub_qs.first()
     period_start = sub.current_period_start if sub else timezone.now()
+
+    period_end_iso = attrs.get("ends_at") or attrs.get("renews_at")
+    period_end = _period_end_with_fallback(
+        period_end_iso,
+        plan=plan,
+        period_start=period_start,
+    )
 
     UserSubscription.upsert_from_event(
         user=user,
@@ -148,9 +195,13 @@ def handle_subscription_updated(payload: dict) -> None:
 
 @transaction.atomic
 def handle_subscription_cancelled(payload: dict) -> None:
-    """Mark cancel_at_period_end. Premium remains until period end."""
-    user, plan = _resolve_user_and_plan(payload)
-    if not user or not plan:
+    """Mark cancel_at_period_end. Premium remains until period end.
+
+    Tolerates missing plan — cancellation only updates status/period fields
+    on the existing UserSubscription row.
+    """
+    user, _plan = _resolve_user_and_plan(payload)
+    if not user:
         return
     attrs = _attrs(payload)
     sub_id = _data_id(payload)
@@ -201,7 +252,8 @@ def handle_subscription_paused(payload: dict) -> None:
     if grace_days > 0:
         user.apply_grace(until=timezone.now() + timedelta(days=grace_days))
     else:
-        user.deactivate_premium(reason="cancelled")
+        # Pause is temporary, preserve streak
+        user.deactivate_premium(reason="expired")
 
 
 @transaction.atomic
