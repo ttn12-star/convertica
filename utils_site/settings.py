@@ -739,6 +739,19 @@ STRIPE_WEBHOOK_IPS = [
 STRIPE_SUCCESS_URL = config("STRIPE_SUCCESS_URL", default="/payments/success/")
 STRIPE_CANCEL_URL = config("STRIPE_CANCEL_URL", default="/payments/cancel/")
 
+LEMONSQUEEZY_API_KEY = config("LEMONSQUEEZY_API_KEY", default="")
+LEMONSQUEEZY_STORE_ID = config("LEMONSQUEEZY_STORE_ID", default="")
+LEMONSQUEEZY_WEBHOOK_SECRET = config("LEMONSQUEEZY_WEBHOOK_SECRET", default="")
+LEMONSQUEEZY_API_BASE = config(
+    "LEMONSQUEEZY_API_BASE", default="https://api.lemonsqueezy.com/v1"
+)
+PAYMENT_PAST_DUE_GRACE_DAYS = config(
+    "PAYMENT_PAST_DUE_GRACE_DAYS",
+    default=str(config("STRIPE_PAST_DUE_GRACE_DAYS", default="0")),
+    cast=int,
+)
+KOFI_URL = config("KOFI_URL", default="")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
