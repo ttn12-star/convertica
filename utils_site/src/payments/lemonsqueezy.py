@@ -34,7 +34,17 @@ class LemonSqueezyClient:
 
     def _request(self, method: str, path: str, **kwargs) -> dict[str, Any]:
         url = f"{self._base_url}{path}"
-        resp = self._session.request(method, url, timeout=15, **kwargs)
+        try:
+            resp = self._session.request(method, url, timeout=15, **kwargs)
+        except requests.RequestException as exc:
+            logger.error(
+                "Lemon Squeezy transport error",
+                extra={"method": method, "path": path, "error": str(exc)[:200]},
+            )
+            raise LemonSqueezyError(
+                f"LS {method} {path} transport error: {exc}"
+            ) from exc
+
         if resp.status_code >= 400:
             logger.error(
                 "Lemon Squeezy API error",
