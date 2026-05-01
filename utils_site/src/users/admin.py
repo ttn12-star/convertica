@@ -304,7 +304,7 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
         "currency",
         "duration_days",
         "is_active",
-        "stripe_price_id",
+        "ls_variant_id",
     )
     list_filter = ("is_active", "currency", "duration_days")
     search_fields = ("name", "slug", "description")
@@ -314,12 +314,15 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
         ("Basic Info", {"fields": ("name", "slug", "description", "is_active")}),
         ("Pricing", {"fields": ("price", "currency", "duration_days")}),
         (
-            "Stripe Integration",
-            {"fields": ("stripe_price_id",), "classes": ("collapse",)},
+            "Provider Integration",
+            {
+                "fields": ("ls_variant_id", "ls_product_id", "is_lifetime"),
+                "classes": ("collapse",),
+            },
         ),
     )
 
-    readonly_fields = ("stripe_price_id",)
+    readonly_fields = ("ls_variant_id", "ls_product_id")
 
 
 @admin.register(RuntimeSetting)
@@ -405,14 +408,20 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
         "cancel_at_period_end",
     )
     list_filter = ("status", "cancel_at_period_end", "plan")
-    search_fields = ("user__email", "stripe_subscription_id")
+    search_fields = ("user__email", "provider_subscription_id")
     ordering = ("-created_at",)
 
     fieldsets = (
         ("Subscription Info", {"fields": ("user", "plan", "status")}),
         (
-            "Stripe Details",
-            {"fields": ("stripe_subscription_id", "stripe_customer_id")},
+            "Provider Details",
+            {
+                "fields": (
+                    "provider",
+                    "provider_subscription_id",
+                    "provider_customer_id",
+                )
+            },
         ),
         ("Period", {"fields": ("current_period_start", "current_period_end")}),
         ("Settings", {"fields": ("cancel_at_period_end",)}),
@@ -420,8 +429,8 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = (
-        "stripe_subscription_id",
-        "stripe_customer_id",
+        "provider_subscription_id",
+        "provider_customer_id",
         "created_at",
         "updated_at",
     )
