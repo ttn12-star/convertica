@@ -49,6 +49,49 @@ class PaymentRecordCompletedTests(TestCase):
         self.assertFalse(created)
         self.assertEqual(Payment.objects.count(), 1)
 
+    def test_handles_integrity_error_race(self):
+        """If another worker inserted the row between our get and save,
+        we should still return (existing, False) — not raise IntegrityError."""
+        from unittest.mock import patch
+
+        from django.db import IntegrityError
+
+        # First call succeeds normally.
+        first, created = Payment.record_completed(
+            user=self.user,
+            plan=self.plan,
+            amount=Decimal("7.99"),
+            external_payment_id="race_id",
+            provider="lemonsqueezy",
+        )
+        self.assertTrue(created)
+
+        # Simulate the race: ORM `get` claims DoesNotExist, but `save` then
+        # raises IntegrityError because the row was created by a racer.
+        # We monkeypatch `Payment.objects.get` to raise DoesNotExist on the
+        # first call (mimicking the empty-table observation), then return the
+        # real row.
+        original_get = Payment.objects.get
+        call_count = {"n": 0}
+
+        def fake_get(*args, **kwargs):
+            call_count["n"] += 1
+            if call_count["n"] == 1:
+                raise Payment.DoesNotExist
+            return original_get(*args, **kwargs)
+
+        with patch.object(Payment.objects, "get", side_effect=fake_get):
+            second, created = Payment.record_completed(
+                user=self.user,
+                plan=self.plan,
+                amount=Decimal("7.99"),
+                external_payment_id="race_id",
+                provider="lemonsqueezy",
+            )
+        self.assertFalse(created)
+        self.assertEqual(second.payment_id, "race_id")
+        self.assertEqual(Payment.objects.filter(payment_id="race_id").count(), 1)
+
 
 class UserSubscriptionUpsertTests(TestCase):
     def setUp(self):

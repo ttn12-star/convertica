@@ -611,24 +611,39 @@ class Payment(models.Model):
         Returns (payment, created). Skips subscription-activation side-effects
         via _skip_subscription_sync (the webhook flow has already activated
         premium via User.activate_premium — re-activation here would double-bill).
+
+        Race-safe: if two concurrent webhook deliveries pass the existence
+        check simultaneously, the loser catches IntegrityError and returns the
+        winner's row. The save runs inside a savepoint so an IntegrityError
+        does not poison an outer atomic block (TestCase, transaction.atomic).
         """
+        from django.db import IntegrityError, transaction
+
         try:
             existing = cls.objects.get(payment_id=external_payment_id)
             return existing, False
         except cls.DoesNotExist:
-            payment = cls(
-                user=user,
-                plan=plan,
-                amount=amount,
-                payment_id=external_payment_id,
-                payment_method=provider,
-                provider=provider,
-                status="completed",
-                processed_at=processed_at or timezone.now(),
-            )
-            payment._skip_subscription_sync = True
-            payment.save()
-            return payment, True
+            pass
+
+        payment = cls(
+            user=user,
+            plan=plan,
+            amount=amount,
+            payment_id=external_payment_id,
+            payment_method=provider,
+            provider=provider,
+            status="completed",
+            processed_at=processed_at or timezone.now(),
+        )
+        payment._skip_subscription_sync = True
+        try:
+            with transaction.atomic():
+                payment.save()
+        except IntegrityError:
+            # Lost the race — another worker just created this row.
+            existing = cls.objects.get(payment_id=external_payment_id)
+            return existing, False
+        return payment, True
 
     @classmethod
     def create_from_webhook(cls, payment_id, user, plan, amount, **extra_fields):
