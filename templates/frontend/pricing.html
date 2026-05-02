@@ -12,7 +12,7 @@
 
 {% block extra_head %}
   {% if PAYMENTS_ENABLED %}
-    <script src="https://js.stripe.com/v3/" nonce="{{ csp_nonce }}"></script>
+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer nonce="{{ csp_nonce }}"></script>
   {% endif %}
 {% endblock %}
 
@@ -298,6 +298,68 @@
             </button>
           {% endif %}
         </div>
+
+        <!-- Lifetime Plan -->
+        {% if lifetime_plan %}
+          <div class="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-3xl p-8 border-2 border-yellow-500 shadow-2xl hover:shadow-yellow-500/30 hover:border-yellow-400 transition-all duration-300 hover:transform hover:scale-105 relative flex flex-col h-full">
+            <div class="absolute top-4 right-4">
+              <span class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                {% trans "FOUNDER'S DEAL" %}
+              </span>
+            </div>
+            <div class="text-center flex-grow">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full mb-4">
+                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Lifetime Hero" %}</h3>
+              <div class="text-4xl font-bold text-yellow-600 mb-1">
+                ${{ lifetime_plan.price|floatformat:"-2" }}
+              </div>
+              <div class="text-sm text-gray-600 mb-4">{% trans "one-time payment" %}</div>
+              <p class="text-gray-700 mb-2 font-semibold">{% trans "Pay once, premium forever" %}</p>
+              <p class="text-sm text-yellow-700 mb-6">⚡ {% trans "Limited to first 100 customers" %}</p>
+            </div>
+
+            <ul class="space-y-3 mb-8 flex-grow">
+              <li class="flex items-center text-gray-700">
+                <svg class="w-5 h-5 text-yellow-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {% trans "All premium features forever" %}
+              </li>
+              <li class="flex items-center text-gray-700">
+                <svg class="w-5 h-5 text-yellow-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {% trans "Batch processing (up to 10 files)" %}
+              </li>
+              <li class="flex items-center text-gray-700">
+                <svg class="w-5 h-5 text-yellow-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {% trans "No recurring charges" %}
+              </li>
+              <li class="flex items-center text-gray-700">
+                <svg class="w-5 h-5 text-yellow-600 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+                {% trans "Lifetime hero status" %}
+              </li>
+            </ul>
+
+            {% if PAYMENTS_ENABLED %}
+              <button type="button" onclick="selectPlan('lifetime')" class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 px-6 rounded-xl font-bold hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 transform hover:scale-105 mt-auto">
+                {% trans "Become Lifetime Hero" %}
+              </button>
+            {% else %}
+              <button type="button" disabled class="w-full opacity-60 cursor-not-allowed bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 px-6 rounded-xl font-bold mt-auto">
+                {% trans "Temporarily unavailable" %}
+              </button>
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </div>
 
@@ -730,87 +792,73 @@
 
     {% if PAYMENTS_ENABLED %}
       <script nonce="{{ csp_nonce }}">
-      // Load Stripe
-        var stripe = Stripe('{{ stripe_publishable_key }}');
-
-        function selectPlan(planType) {
-        // Show loading state
+        async function selectPlan(planType) {
           const button = document.activeElement;
-          const originalText = button.textContent;
-          button.disabled = true;
-          button.textContent = '{% trans "Processing..." %}';
-
-        // Create checkout session
-          const xhr = new XMLHttpRequest();
-          xhr.open('POST', '{% url "payments:create_checkout_session" %}', true);
-          xhr.setRequestHeader('Content-Type', 'application/json');
-          xhr.setRequestHeader('X-CSRFToken', getCSRFToken());
+          const originalText = button ? button.textContent : '';
+          if (button) {
+            button.disabled = true;
+            button.textContent = '{% trans "Processing..." %}';
+          }
 
           const planSlugMap = {
             monthly: 'monthly-hero',
-            yearly: 'yearly-hero'
+            yearly: 'yearly-hero',
+            lifetime: 'lifetime-hero',
           };
           const planSlug = planSlugMap[planType];
 
           if (!planSlug) {
             alert('Invalid plan selected');
-            button.disabled = false;
-            button.textContent = originalText;
+            if (button) { button.disabled = false; button.textContent = originalText; }
             return;
           }
 
-          const requestBody = JSON.stringify({
-            plan_slug: planSlug
-          });
+          try {
+            const r = await fetch('{% url "payments:create_checkout_session" %}', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRFToken(),
+              },
+              body: JSON.stringify({ plan_slug: planSlug }),
+            });
+            const data = await r.json();
 
-          xhr.onload = function() {
-            if (xhr.status === 200) {
-              const data = JSON.parse(xhr.responseText);
-              if (data.session_id) {
-              // Redirect to Stripe Checkout
-                return stripe.redirectToCheckout({ sessionId: data.session_id });
-              } else {
-                alert('Error: No session ID returned');
-              }
-            } else {
-              let errorMessage = `Error ${xhr.status}: ${xhr.statusText}`;
-              try {
-                const errorData = JSON.parse(xhr.responseText);
-                if (errorData.portal_url) {
-                  window.location.href = errorData.portal_url;
-                  return;
-                }
-                if (errorData.manage_url) {
-                  window.location.href = errorData.manage_url;
-                  return;
-                }
-                errorMessage = errorData.error || errorMessage;
-              } catch (e) {
-              // Ignore JSON parse errors
-              }
-              alert(errorMessage);
+            if (!r.ok) {
+              if (data.portal_url) { window.location = data.portal_url; return; }
+              if (data.manage_url) { window.location = data.manage_url; return; }
+              alert(data.error || 'Checkout failed. Please try again.');
+              if (button) { button.disabled = false; button.textContent = originalText; }
+              return;
             }
 
-          // Reset button
-            button.disabled = false;
-            button.textContent = originalText;
-          };
-
-          xhr.onerror = function() {
+            if (window.LemonSqueezy && data.checkout_url) {
+              window.LemonSqueezy.Url.Open(data.checkout_url);
+            } else if (data.checkout_url) {
+              // lemon.js still loading (defer) — fall back to redirect
+              window.location = data.checkout_url;
+            } else {
+              alert('Checkout URL missing from response');
+            }
+          } catch (e) {
             alert('Request failed. Please try again.');
-            button.disabled = false;
-            button.textContent = originalText;
-          };
-
-          xhr.send(requestBody);
+          } finally {
+            if (button) { button.disabled = false; button.textContent = originalText; }
+          }
         }
+
+        window.addEventListener('message', function (ev) {
+          const evt = ev && ev.data && ev.data.event;
+          if (evt === 'Checkout.Success') {
+            window.location = '{% url "payments:payment_success" %}';
+          }
+        });
 
         function getCSRFToken() {
-          return document.querySelector('meta[name="csrf-token"]')?.content
-          || document.querySelector('[name=csrfmiddlewaretoken]')?.value
+          return (document.querySelector('meta[name="csrf-token"]') || {}).content
+          || (document.querySelector('[name=csrfmiddlewaretoken]') || {}).value
           || '';
         }
-
       </script>
     {% endif %}
 
