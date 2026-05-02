@@ -118,7 +118,7 @@ try:
         task_time_limit=480,  # Hard time limit: 8 minutes (reduced from 10)
         task_soft_time_limit=420,  # Soft time limit: 7 minutes (reduced from 9)
         # Retry settings — exponential backoff with jitter avoids the thundering
-        # herd that fixed 60s delays would cause if unoserver/Stripe/SMTP is
+        # herd that fixed 60s delays would cause if unoserver/SMTP is
         # briefly unhealthy and many tasks retry at the same instant.
         task_default_retry_delay=60,
         task_max_retries=1,
