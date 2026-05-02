@@ -1561,16 +1561,19 @@ class SupportPageView(TemplateView):
     template_name = "frontend/support.html"
 
     def get_context_data(self, **kwargs):
+        from django.conf import settings
+
         context = super().get_context_data(**kwargs)
         context["page_title"] = _("Contribute to Convertica")
         context["page_description"] = _(
-            "Contribute to the Convertica project with a one-time or monthly donation. "
-            "This does not unlock Premium features — it simply helps development. "
-            "Heroes are Premium subscribers; contributions here are support only."
+            "Support the Convertica project on Ko-fi — one-time or recurring "
+            "contributions go directly to development. This does not unlock "
+            "Premium features (Premium subscribers are 'Heroes')."
         )
         context["page_keywords"] = (
-            "convertica contribute, donate, contribution, support project"
+            "convertica contribute, donate, kofi, support project"
         )
+        context["kofi_url"] = settings.KOFI_URL
         return context
 
 
