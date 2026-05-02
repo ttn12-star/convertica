@@ -383,6 +383,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             # Host allowlist for trusted third-party scripts
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
             "https://app.lemonsqueezy.com "
+            "https://assets.lemonsqueezy.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
