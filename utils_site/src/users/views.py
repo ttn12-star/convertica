@@ -15,9 +15,10 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import UpdateView
+from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
 
 from .forms import CustomUserCreationForm, LoginForm
-from .models import Payment
+from .models import Payment, UserSubscription
 
 
 def user_login(request):
@@ -242,55 +243,26 @@ def account_status(request):
 
 @login_required
 def manage_subscription(request):
-    """Display subscription management page."""
-    # Use cached payment history
-    payments = Payment.get_user_payment_history(request.user.id)
-    return render(
-        request,
-        "users/manage_subscription.html",
-        {"user": request.user, "payments": payments},
+    """Redirect to Lemon Squeezy customer portal for current subscription.
+
+    If user has no active subscription or LS portal can't be resolved,
+    redirect to /pricing/ instead.
+    """
+    sub = (
+        UserSubscription.objects.filter(user=request.user)
+        .order_by("-updated_at", "-created_at")
+        .first()
     )
-
-
-@login_required
-@require_POST
-def cancel_subscription(request):
-    """Cancel user's subscription."""
-    user = request.user
-
-    if not user.is_subscription_active():
-        return JsonResponse(
-            {"success": False, "error": _("No active subscription to cancel")}
-        )
-
+    if not sub or not sub.provider_customer_id:
+        return redirect("frontend:pricing")
     try:
-        # Get user's Stripe subscription
-        from src.users.models import UserSubscription
-
-        user_subscription = UserSubscription.objects.filter(user=user).first()
-
-        if user_subscription and user_subscription.stripe_subscription_id:
-            # Cancel subscription in Stripe
-            import stripe
-            import stripe.apps
-            from django.conf import settings
-
-            stripe.api_key = settings.STRIPE_SECRET_KEY
-
-            # Cancel at period end (immediate=False) or immediately (immediate=True)
-            stripe.Subscription.delete(user_subscription.stripe_subscription_id)
-
-        # Cancel local subscription
-        user.cancel_subscription()
-
-        return JsonResponse(
-            {"success": True, "message": _("Subscription cancelled successfully")}
-        )
-
-    except Exception:
-        return JsonResponse(
-            {"success": False, "error": _("Failed to cancel subscription")}
-        )
+        customer = LemonSqueezyClient().get_customer(sub.provider_customer_id)
+        portal = (customer.get("urls") or {}).get("customer_portal", "")
+        if portal:
+            return redirect(portal)
+    except LemonSqueezyError:
+        pass
+    return redirect("frontend:pricing")
 
 
 @login_required
