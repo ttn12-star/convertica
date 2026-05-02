@@ -61,7 +61,6 @@ class User(AbstractUser):
         default="",
         choices=[
             ("lemonsqueezy", "Lemon Squeezy"),
-            ("stripe", "Stripe"),
         ],
         editable=False,
     )
@@ -414,7 +413,7 @@ class User(AbstractUser):
 
 
 class SubscriptionPlan(models.Model):
-    """Subscription plans for Stripe integration."""
+    """Subscription plans."""
 
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
@@ -534,6 +533,8 @@ class Payment(models.Model):
     payment_method = models.CharField(
         max_length=50, blank=True, null=True, verbose_name=_("Payment Method")
     )
+    # Lemon Squeezy is currently the only payment provider; new rows default
+    # to "lemonsqueezy" so callers can assume the provider field is populated.
     provider = models.CharField(
         max_length=20, default="lemonsqueezy", verbose_name=_("Provider")
     )
@@ -800,9 +801,11 @@ class UserSubscription(models.Model):
     """User subscription tracking."""
 
     user = models.OneToOneField(
-        "User", on_delete=models.CASCADE, related_name="stripe_subscription"
+        "User", on_delete=models.CASCADE, related_name="provider_subscription"
     )
     plan = models.ForeignKey("SubscriptionPlan", on_delete=models.SET_NULL, null=True)
+    # Lemon Squeezy is currently the only payment provider; new rows default
+    # to "lemonsqueezy" so callers can assume the provider field is populated.
     provider = models.CharField(max_length=20, default="lemonsqueezy")
     provider_subscription_id = models.CharField(max_length=100, blank=True, null=True)
     provider_customer_id = models.CharField(max_length=100, blank=True, null=True)
