@@ -19,8 +19,8 @@ _active_override_keys: set[str] = set()
 # Explicitly sensitive keys that must never be editable in admin.
 SENSITIVE_EXACT_KEYS = {
     "SECRET_KEY",
-    "STRIPE_SECRET_KEY",
-    "STRIPE_WEBHOOK_SECRET",
+    "LEMONSQUEEZY_API_KEY",
+    "LEMONSQUEEZY_WEBHOOK_SECRET",
     "TURNSTILE_SECRET_KEY",
     "DATABASE_PASSWORD",
     "EMAIL_HOST_PASSWORD",
