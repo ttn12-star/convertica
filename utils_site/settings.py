@@ -705,39 +705,8 @@ PATIENCE_MESSAGE_DELAY = config("PATIENCE_MESSAGE_DELAY", default=60, cast=int)
 # Polling interval for async task status (milliseconds)
 ASYNC_POLL_INTERVAL = config("ASYNC_POLL_INTERVAL", default=2500, cast=int)
 
-# Stripe Payment Settings
+# Payment Settings
 PAYMENTS_ENABLED = config("PAYMENTS_ENABLED", default="True", cast=bool)
-STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY", default="pk_test_...")
-STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY", default="")
-STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET", default="")
-
-# Stripe Webhook IP Whitelist
-# https://stripe.com/docs/ips - these are Stripe's webhook IP addresses
-# Set STRIPE_WEBHOOK_IP_WHITELIST_ENABLED=False to disable IP checking (signature is still verified)
-STRIPE_WEBHOOK_IP_WHITELIST_ENABLED = config(
-    "STRIPE_WEBHOOK_IP_WHITELIST_ENABLED", default=True, cast=bool
-)
-# Stripe webhook IPs (verified Feb 2026, check https://stripe.com/docs/ips for latest)
-STRIPE_WEBHOOK_IPS = [
-    # Stripe webhook source IPs
-    "3.18.12.63",
-    "3.130.192.231",
-    "13.235.14.237",
-    "13.235.122.149",
-    "18.211.135.69",
-    "35.154.171.200",
-    "52.15.183.38",
-    "54.88.130.119",
-    "54.88.130.237",
-    "54.187.174.169",
-    "54.187.205.235",
-    "54.187.216.72",
-    # Allow localhost for testing
-    "127.0.0.1",
-    "::1",
-]
-STRIPE_SUCCESS_URL = config("STRIPE_SUCCESS_URL", default="/payments/success/")
-STRIPE_CANCEL_URL = config("STRIPE_CANCEL_URL", default="/payments/cancel/")
 
 LEMONSQUEEZY_API_KEY = config("LEMONSQUEEZY_API_KEY", default="")
 LEMONSQUEEZY_STORE_ID = config("LEMONSQUEEZY_STORE_ID", default="")
@@ -745,11 +714,7 @@ LEMONSQUEEZY_WEBHOOK_SECRET = config("LEMONSQUEEZY_WEBHOOK_SECRET", default="")
 LEMONSQUEEZY_API_BASE = config(
     "LEMONSQUEEZY_API_BASE", default="https://api.lemonsqueezy.com/v1"
 )
-PAYMENT_PAST_DUE_GRACE_DAYS = config(
-    "PAYMENT_PAST_DUE_GRACE_DAYS",
-    default=str(config("STRIPE_PAST_DUE_GRACE_DAYS", default="0")),
-    cast=int,
-)
+PAYMENT_PAST_DUE_GRACE_DAYS = config("PAYMENT_PAST_DUE_GRACE_DAYS", default=0, cast=int)
 KOFI_URL = config("KOFI_URL", default="")
 
 # Default primary key field type
