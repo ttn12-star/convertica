@@ -372,21 +372,6 @@
   </div>
 
   <!-- Confirmation Modals -->
-  <div id="cancelModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white rounded-2xl p-8 max-w-md mx-4">
-      <h3 class="text-xl font-bold text-gray-900 mb-4">{% trans "Cancel Subscription?" %}</h3>
-      <p class="text-gray-600 mb-6">{% trans "Are you sure you want to cancel your subscription? You'll continue to have access until the end of your current billing period." %}</p>
-      <div class="flex gap-4">
-        <button onclick="closeCancelModal()" class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-lg font-medium hover:bg-gray-300 transition-colors">
-          {% trans "Keep Subscription" %}
-        </button>
-        <button onclick="confirmCancel()" class="flex-1 bg-red-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-red-700 transition-colors">
-          {% trans "Cancel Anyway" %}
-        </button>
-      </div>
-    </div>
-  </div>
-
   <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
     <div class="bg-white rounded-2xl p-8 max-w-md mx-4">
       <h3 class="text-xl font-bold text-red-900 mb-4">{% trans "Delete Account Forever?" %}</h3>
@@ -405,33 +390,6 @@
   <script nonce="{{ csp_nonce }}">
     function manageSubscription() {
       window.location.href = '/users/manage-subscription/';
-    }
-
-    function cancelSubscription() {
-      document.getElementById('cancelModal').style.display = 'flex';
-    }
-
-    function closeCancelModal() {
-      document.getElementById('cancelModal').style.display = 'none';
-    }
-
-    function confirmCancel() {
-      // Send request to cancel subscription
-      fetch('{% url "users:cancel_subscription" %}', {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': getCSRFToken(),
-          'Content-Type': 'application/json',
-        },
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            location.reload();
-          } else {
-            alert(data.error || 'Failed to cancel subscription');
-          }
-        });
     }
 
     function changePassword() {
