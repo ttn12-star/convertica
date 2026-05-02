@@ -19,6 +19,7 @@ from .models import (
     StripeWebhookEvent,
     SubscriptionPlan,
     UserSubscription,
+    WebhookEvent,
 )
 
 User = get_user_model()
@@ -303,11 +304,12 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
         "price",
         "currency",
         "duration_days",
+        "is_lifetime",
         "is_active",
         "ls_variant_id",
     )
-    list_filter = ("is_active", "currency", "duration_days")
-    search_fields = ("name", "slug", "description")
+    list_filter = ("is_active", "is_lifetime", "currency")
+    search_fields = ("name", "slug", "ls_variant_id", "ls_product_id")
     ordering = ("price",)
 
     fieldsets = (
@@ -365,11 +367,12 @@ class PaymentAdmin(admin.ModelAdmin):
         "user_email",
         "plan_name",
         "amount",
+        "provider",
         "status",
         "payment_method",
         "created_at",
     )
-    list_filter = ("status", "payment_method", "created_at", "plan")
+    list_filter = ("status", "provider", "payment_method", "created_at", "plan")
     search_fields = ("user__email", "payment_id", "transaction_id")
     ordering = ("-created_at",)
 
@@ -377,7 +380,14 @@ class PaymentAdmin(admin.ModelAdmin):
         ("Payment Info", {"fields": ("user", "plan", "amount", "status")}),
         (
             "Payment Details",
-            {"fields": ("payment_id", "payment_method", "transaction_id")},
+            {
+                "fields": (
+                    "provider",
+                    "payment_id",
+                    "payment_method",
+                    "transaction_id",
+                )
+            },
         ),
         ("Timestamps", {"fields": ("processed_at", "created_at", "updated_at")}),
     )
@@ -402,13 +412,17 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
     list_display = (
         "user_email",
         "plan_name",
+        "provider",
         "status",
-        "current_period_start",
         "current_period_end",
         "cancel_at_period_end",
     )
-    list_filter = ("status", "cancel_at_period_end", "plan")
-    search_fields = ("user__email", "provider_subscription_id")
+    list_filter = ("provider", "status", "cancel_at_period_end", "plan")
+    search_fields = (
+        "user__email",
+        "provider_subscription_id",
+        "provider_customer_id",
+    )
     ordering = ("-created_at",)
 
     fieldsets = (
@@ -429,8 +443,13 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = (
+        "provider",
         "provider_subscription_id",
         "provider_customer_id",
+        "current_period_start",
+        "current_period_end",
+        "status",
+        "cancel_at_period_end",
         "created_at",
         "updated_at",
     )
@@ -781,3 +800,35 @@ class StripeWebhookEventAdmin(admin.ModelAdmin):
     list_filter = ("event_type", "livemode", "processing", "created_at")
     search_fields = ("event_id",)
     readonly_fields = ("created_at", "updated_at")
+
+
+@admin.register(WebhookEvent)
+class WebhookEventAdmin(admin.ModelAdmin):
+    """Admin for provider-agnostic webhook event log."""
+
+    list_display = (
+        "provider",
+        "event_type",
+        "event_id",
+        "processed_at",
+        "created_at",
+    )
+    list_filter = ("provider", "event_type", "livemode")
+    search_fields = ("event_id",)
+    readonly_fields = (
+        "provider",
+        "event_id",
+        "event_type",
+        "livemode",
+        "processing",
+        "processed_at",
+        "last_error",
+        "raw_payload",
+        "created_at",
+        "updated_at",
+    )
+    ordering = ("-created_at",)
+
+    def has_add_permission(self, request):
+        # WebhookEvents are only created by webhook handler, never manually
+        return False
