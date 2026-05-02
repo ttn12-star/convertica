@@ -1021,15 +1021,6 @@ CELERY_BEAT_SCHEDULE = {
         "task": "user_cleanup.delete_unverified_accounts",
         "schedule": 86400,  # Every 24 hours
     },
-    # Retry failed Stripe webhooks every hour
-    "retry-failed-webhooks": {
-        "task": "maintenance.retry_failed_webhooks",
-        "schedule": 3600,  # Every hour
-        "kwargs": {
-            "max_age_hours": 24,  # Only retry events from last 24 hours
-            "max_retries": 3,  # Maximum 3 retry attempts
-        },
-    },
     # ⚠️ DISABLED: cleanup-old-operations - Keep all operation data permanently
     # If you need to cleanup old data, run manually:
     #   docker compose exec web python manage.py shell -c "from src.tasks.maintenance import cleanup_old_operations; cleanup_old_operations(retention_days=730)"

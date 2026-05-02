@@ -693,29 +693,6 @@ class Payment(models.Model):
         return history
 
 
-class StripeWebhookEvent(models.Model):
-    """Stripe webhook event log for idempotent processing."""
-
-    event_id = models.CharField(max_length=255, unique=True)
-    event_type = models.CharField(max_length=100, blank=True)
-    livemode = models.BooleanField(default=False)
-    processing = models.BooleanField(default=False)
-    processed_at = models.DateTimeField(null=True, blank=True)
-    last_error = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        indexes = [
-            models.Index(fields=["event_id"]),
-            models.Index(fields=["event_type", "-created_at"]),
-            models.Index(fields=["processed_at"]),
-        ]
-
-    def __str__(self):
-        return f"{self.event_type or 'stripe_event'} - {self.event_id}"
-
-
 class WebhookEvent(models.Model):
     """Provider-agnostic webhook event log for idempotent processing."""
 
