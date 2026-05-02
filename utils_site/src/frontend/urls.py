@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.generic import RedirectView
 
 from . import views
-from .views import PricingPageView, SupportPageView, SupportSuccessPageView
+from .views import PricingPageView, SupportPageView
 
 app_name = "frontend"
 
@@ -105,11 +105,6 @@ urlpatterns = [
     # Static pages
     path("pricing/", PricingPageView.as_view(), name="pricing"),
     path("contribute/", SupportPageView.as_view(), name="contribute"),
-    path(
-        "contribute/success/",
-        SupportSuccessPageView.as_view(),
-        name="contribute_success",
-    ),
     path("about/", views.about_page, name="about_page"),
     path("privacy/", views.privacy_page, name="privacy_page"),
     path("terms/", views.terms_page, name="terms_page"),
