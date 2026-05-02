@@ -1542,22 +1542,17 @@ class PricingPageView(TemplateView):
 
         plans = (
             SubscriptionPlan.objects.filter(
-                slug__in=["monthly-hero", "yearly-hero"],
+                slug__in=["monthly-hero", "yearly-hero", "lifetime-hero"],
                 is_active=True,
             )
-            .only("slug", "price", "currency", "duration_days")
+            .only("slug", "price", "currency", "duration_days", "is_lifetime")
             .all()
         )
         plans_by_slug = {p.slug: p for p in plans}
 
         context["monthly_plan"] = plans_by_slug.get("monthly-hero")
         context["yearly_plan"] = plans_by_slug.get("yearly-hero")
-
-        # Add Stripe publishable key for checkout
-        if bool(getattr(settings, "PAYMENTS_ENABLED", True)):
-            context["stripe_publishable_key"] = settings.STRIPE_PUBLISHABLE_KEY
-        else:
-            context["stripe_publishable_key"] = ""
+        context["lifetime_plan"] = plans_by_slug.get("lifetime-hero")
 
         return context
 
