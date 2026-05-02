@@ -16,7 +16,6 @@ from .models import (
     OperationRun,
     Payment,
     RuntimeSetting,
-    StripeWebhookEvent,
     SubscriptionPlan,
     UserSubscription,
     WebhookEvent,
@@ -785,21 +784,6 @@ class OperationRunAdmin(admin.ModelAdmin):
             "opts": self.model._meta,
         }
         return render(request, "admin/users/operationrun/user_activity.html", context)
-
-
-@admin.register(StripeWebhookEvent)
-class StripeWebhookEventAdmin(admin.ModelAdmin):
-    list_display = (
-        "event_type",
-        "event_id",
-        "livemode",
-        "processing",
-        "processed_at",
-        "created_at",
-    )
-    list_filter = ("event_type", "livemode", "processing", "created_at")
-    search_fields = ("event_id",)
-    readonly_fields = ("created_at", "updated_at")
 
 
 @admin.register(WebhookEvent)
