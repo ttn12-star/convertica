@@ -258,3 +258,6 @@ tailwindcss-linux-x64
 
 # Playwright MCP local snapshots/screenshots
 .playwright-mcp/
+
+# Local Playwright/E2E artifacts (videos, debug screenshots)
+tests/e2e/artifacts/
