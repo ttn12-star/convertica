@@ -88,7 +88,18 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
-    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-2} --pool=prefork --max-tasks-per-child=50 --max-memory-per-child=250000 -Q celery,default,maintenance,regular
+    # Queues consumed (all in one worker for low-resource droplets):
+    #   fast      — quick PDF-only ops (compress/split/merge/rotate/...)
+    #   regular   — heavy multi-format conversions (default queue)
+    #   premium   — same heavy ops for subscribed users
+    #   maintenance, default — scheduled/auxiliary tasks
+    # Trade-off vs the dedicated `celery-premium` service: this single worker
+    # round-robins across queues, so premium isn't strictly first ahead of
+    # regular at the queue-consumption level (priority field still used inside
+    # each queue). For dedicated premium isolation, run with the `premium`
+    # profile (`docker compose --profile premium up -d`) which adds
+    # `celery-premium` from the base compose file.
+    command: celery -A utils_site worker --loglevel=info --concurrency=${CELERY_CONCURRENCY:-2} --pool=prefork --max-tasks-per-child=50 --max-memory-per-child=250000 -Q fast,regular,premium,maintenance,default
     env_file:
       - .env
     environment:
