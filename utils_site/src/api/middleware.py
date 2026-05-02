@@ -383,6 +383,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             # Host allowlist for trusted third-party scripts
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
             "https://js.stripe.com "
+            "https://app.lemonsqueezy.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
@@ -402,6 +403,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             # Images: self, data URIs, blob, common CDNs, Yandex Metrika, YouTube thumbnails
             "img-src 'self' data: blob: "
             "https://*.stripe.com "
+            "https://*.lemonsqueezy.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
             "https://*.google.com "
@@ -416,6 +418,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             # Connect: self, Stripe, Turnstile, WebSocket, analytics, Yandex Metrika
             "connect-src 'self' "
             "https://api.stripe.com "
+            "https://api.lemonsqueezy.com "
+            "https://*.lemonsqueezy.com "
             "https://challenges.cloudflare.com "
             "https://www.google-analytics.com "
             "https://*.google-analytics.com "
@@ -433,6 +437,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "frame-src 'self' "
             "https://js.stripe.com "
             "https://hooks.stripe.com "
+            "https://app.lemonsqueezy.com "
+            "https://*.lemonsqueezy.com "
             "https://challenges.cloudflare.com "
             "https://accounts.google.com "
             "https://www.facebook.com "
@@ -470,7 +476,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
                 "gyroscope=(), "
                 "magnetometer=(), "
                 "microphone=(), "
-                'payment=(self "https://js.stripe.com"), '
+                'payment=(self "https://js.stripe.com" "https://app.lemonsqueezy.com"), '
                 "usb=()"
             )
 
