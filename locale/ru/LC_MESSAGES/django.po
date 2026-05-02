@@ -6006,10 +6006,9 @@ msgid "FOUNDER'S DEAL"
 msgstr "АКЦИЯ ОСНОВАТЕЛЯ"
 
 #: templates/frontend/pricing.html:316
-#, fuzzy
 #| msgid "Premium Hero"
 msgid "Lifetime Hero"
-msgstr "Премиум-герой"
+msgstr "Lifetime герой"
 
 #: templates/frontend/pricing.html:320
 msgid "one-time payment"
@@ -6024,10 +6023,9 @@ msgid "Limited to first 100 customers"
 msgstr "Только для первых 100 клиентов"
 
 #: templates/frontend/pricing.html:330
-#, fuzzy
 #| msgid "All premium features"
 msgid "All premium features forever"
-msgstr "Все премиум-функции"
+msgstr "Все премиум-функции навсегда"
 
 #: templates/frontend/pricing.html:336
 msgid "Batch processing (up to 10 files)"
@@ -6038,16 +6036,14 @@ msgid "No recurring charges"
 msgstr "Без повторяющихся списаний"
 
 #: templates/frontend/pricing.html:348
-#, fuzzy
 #| msgid "Hero status"
 msgid "Lifetime hero status"
-msgstr "Статус героя"
+msgstr "Статус Lifetime героя"
 
 #: templates/frontend/pricing.html:354
-#, fuzzy
 #| msgid "Become site hero"
 msgid "Become Lifetime Hero"
-msgstr "Станьте героем сайта"
+msgstr "Стать Lifetime героем"
 
 #: templates/frontend/pricing.html:370
 msgid "Become a Convertica hero and help us make the service better"
@@ -6527,10 +6523,9 @@ msgstr ""
 "свяжитесь с нами."
 
 #: templates/frontend/support.html:11
-#, fuzzy
 #| msgid "Want to Support Convertica?"
 msgid "Support Convertica"
-msgstr "Хотите поддержать Convertica?"
+msgstr "Поддержать Convertica"
 
 #: templates/frontend/support.html:13
 msgid ""
@@ -6563,10 +6558,9 @@ msgid ""
 msgstr ""
 
 #: templates/frontend/support.html:32
-#, fuzzy
 #| msgid "Support icon"
 msgid "Support on Ko-fi"
-msgstr "Значок поддержки"
+msgstr "Поддержать на Ko-fi"
 
 #: templates/frontend/support.html:35
 msgid "Opens Ko-fi in a new tab. Payments handled by Ko-fi, not Convertica."
@@ -6574,10 +6568,9 @@ msgstr ""
 "Открывает Ko-fi в новой вкладке. Платежи проводит Ko-fi, не Convertica."
 
 #: templates/frontend/support.html:40
-#, fuzzy
 #| msgid "Premium payments are temporarily unavailable."
 msgid "Donations are temporarily unavailable"
-msgstr "Премиум платежи временно недоступны."
+msgstr "Поддержка временно недоступна"
 
 #: templates/frontend/support.html:42
 #, fuzzy

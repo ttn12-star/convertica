@@ -5852,10 +5852,9 @@ msgid "FOUNDER'S DEAL"
 msgstr "عرض المؤسس"
 
 #: templates/frontend/pricing.html:316
-#, fuzzy
 #| msgid "Premium Hero"
 msgid "Lifetime Hero"
-msgstr "بطل Premium"
+msgstr "Lifetime Hero"
 
 #: templates/frontend/pricing.html:320
 msgid "one-time payment"
@@ -5870,10 +5869,9 @@ msgid "Limited to first 100 customers"
 msgstr "لأول 100 عميل فقط"
 
 #: templates/frontend/pricing.html:330
-#, fuzzy
 #| msgid "All premium features"
 msgid "All premium features forever"
-msgstr "جميع ميزات Premium"
+msgstr "جميع ميزات بريميوم إلى الأبد"
 
 #: templates/frontend/pricing.html:336
 msgid "Batch processing (up to 10 files)"
@@ -5884,16 +5882,14 @@ msgid "No recurring charges"
 msgstr "بدون رسوم متكررة"
 
 #: templates/frontend/pricing.html:348
-#, fuzzy
 #| msgid "Hero status"
 msgid "Lifetime hero status"
-msgstr "حالة البطل"
+msgstr "حالة Lifetime hero"
 
 #: templates/frontend/pricing.html:354
-#, fuzzy
 #| msgid "Become site hero"
 msgid "Become Lifetime Hero"
-msgstr "كن بطل الموقع"
+msgstr "كن Lifetime Hero"
 
 #: templates/frontend/pricing.html:370
 msgid "Become a Convertica hero and help us make the service better"
@@ -6343,10 +6339,9 @@ msgid ""
 msgstr "إذا كان لديك أي أسئلة حول سياسة الخصوصية هذه، يرجى الاتصال بنا."
 
 #: templates/frontend/support.html:11
-#, fuzzy
 #| msgid "Want to Support Convertica?"
 msgid "Support Convertica"
-msgstr "هل تريد دعم كونفيرتيكا؟"
+msgstr "ادعم Convertica"
 
 #: templates/frontend/support.html:13
 msgid ""
@@ -6378,10 +6373,9 @@ msgid ""
 msgstr ""
 
 #: templates/frontend/support.html:32
-#, fuzzy
 #| msgid "Support icon"
 msgid "Support on Ko-fi"
-msgstr "أيقونة الدعم"
+msgstr "ادعم على Ko-fi"
 
 #: templates/frontend/support.html:35
 msgid "Opens Ko-fi in a new tab. Payments handled by Ko-fi, not Convertica."
@@ -6389,10 +6383,9 @@ msgstr ""
 "يفتح Ko-fi في علامة تبويب جديدة. المدفوعات يديرها Ko-fi، وليس Convertica."
 
 #: templates/frontend/support.html:40
-#, fuzzy
 #| msgid "Premium payments are temporarily unavailable."
 msgid "Donations are temporarily unavailable"
-msgstr "مدفوعات Premium غير متوفرة مؤقتاً."
+msgstr "التبرعات غير متاحة مؤقتًا"
 
 #: templates/frontend/support.html:42
 #, fuzzy

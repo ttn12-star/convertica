@@ -5984,10 +5984,9 @@ msgid "FOUNDER'S DEAL"
 msgstr "संस्थापक की डील"
 
 #: templates/frontend/pricing.html:316
-#, fuzzy
 #| msgid "Premium Hero"
 msgid "Lifetime Hero"
-msgstr "प्रीमियम हीरो"
+msgstr "Lifetime Hero"
 
 #: templates/frontend/pricing.html:320
 msgid "one-time payment"
@@ -6002,10 +6001,9 @@ msgid "Limited to first 100 customers"
 msgstr "केवल पहले 100 ग्राहकों के लिए"
 
 #: templates/frontend/pricing.html:330
-#, fuzzy
 #| msgid "All premium features"
 msgid "All premium features forever"
-msgstr "सभी प्रीमियम सुविधाएँ"
+msgstr "सभी प्रीमियम सुविधाएँ हमेशा के लिए"
 
 #: templates/frontend/pricing.html:336
 msgid "Batch processing (up to 10 files)"
@@ -6016,16 +6014,14 @@ msgid "No recurring charges"
 msgstr "कोई आवर्ती शुल्क नहीं"
 
 #: templates/frontend/pricing.html:348
-#, fuzzy
 #| msgid "Hero status"
 msgid "Lifetime hero status"
-msgstr "हीरो स्थिति"
+msgstr "Lifetime hero स्थिति"
 
 #: templates/frontend/pricing.html:354
-#, fuzzy
 #| msgid "Become site hero"
 msgid "Become Lifetime Hero"
-msgstr "साइट हीरो बनें"
+msgstr "Lifetime Hero बनें"
 
 #: templates/frontend/pricing.html:370
 msgid "Become a Convertica hero and help us make the service better"
@@ -6500,10 +6496,9 @@ msgstr ""
 "करें।"
 
 #: templates/frontend/support.html:11
-#, fuzzy
 #| msgid "Want to Support Convertica?"
 msgid "Support Convertica"
-msgstr "Convertica का समर्थन करना चाहते हैं?"
+msgstr "Convertica का समर्थन करें"
 
 #: templates/frontend/support.html:13
 msgid ""
@@ -6535,10 +6530,9 @@ msgid ""
 msgstr ""
 
 #: templates/frontend/support.html:32
-#, fuzzy
 #| msgid "Support icon"
 msgid "Support on Ko-fi"
-msgstr "सहायता आइकन"
+msgstr "Ko-fi पर समर्थन करें"
 
 #: templates/frontend/support.html:35
 msgid "Opens Ko-fi in a new tab. Payments handled by Ko-fi, not Convertica."
@@ -6547,10 +6541,9 @@ msgstr ""
 "Convertica द्वारा नहीं।"
 
 #: templates/frontend/support.html:40
-#, fuzzy
 #| msgid "Premium payments are temporarily unavailable."
 msgid "Donations are temporarily unavailable"
-msgstr "प्रीमियम भुगतान अस्थायी रूप से अनुपलब्ध हैं।"
+msgstr "दान अस्थायी रूप से उपलब्ध नहीं हैं"
 
 #: templates/frontend/support.html:42
 #, fuzzy
