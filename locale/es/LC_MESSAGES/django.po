@@ -6045,10 +6045,9 @@ msgid "FOUNDER'S DEAL"
 msgstr "OFERTA DE FUNDADOR"
 
 #: templates/frontend/pricing.html:316
-#, fuzzy
 #| msgid "Premium Hero"
 msgid "Lifetime Hero"
-msgstr "Héroe Premium"
+msgstr "Lifetime Hero"
 
 #: templates/frontend/pricing.html:320
 msgid "one-time payment"
@@ -6063,10 +6062,9 @@ msgid "Limited to first 100 customers"
 msgstr "Limitado a los primeros 100 clientes"
 
 #: templates/frontend/pricing.html:330
-#, fuzzy
 #| msgid "All premium features"
 msgid "All premium features forever"
-msgstr "Todas las funciones premium"
+msgstr "Todas las funciones premium para siempre"
 
 #: templates/frontend/pricing.html:336
 msgid "Batch processing (up to 10 files)"
@@ -6077,16 +6075,14 @@ msgid "No recurring charges"
 msgstr "Sin cargos recurrentes"
 
 #: templates/frontend/pricing.html:348
-#, fuzzy
 #| msgid "Hero status"
 msgid "Lifetime hero status"
-msgstr "Estado de héroe"
+msgstr "Estado Lifetime hero"
 
 #: templates/frontend/pricing.html:354
-#, fuzzy
 #| msgid "Become site hero"
 msgid "Become Lifetime Hero"
-msgstr "Conviértete en héroe del sitio"
+msgstr "Conviértete en Lifetime Hero"
 
 #: templates/frontend/pricing.html:370
 msgid "Become a Convertica hero and help us make the service better"
@@ -6570,10 +6566,9 @@ msgstr ""
 "contáctanos."
 
 #: templates/frontend/support.html:11
-#, fuzzy
 #| msgid "Want to Support Convertica?"
 msgid "Support Convertica"
-msgstr "¿Quieres apoyar a Convertica?"
+msgstr "Apoya a Convertica"
 
 #: templates/frontend/support.html:13
 msgid ""
@@ -6606,10 +6601,9 @@ msgid ""
 msgstr ""
 
 #: templates/frontend/support.html:32
-#, fuzzy
 #| msgid "Support icon"
 msgid "Support on Ko-fi"
-msgstr "Icono de soporte"
+msgstr "Apoya en Ko-fi"
 
 #: templates/frontend/support.html:35
 msgid "Opens Ko-fi in a new tab. Payments handled by Ko-fi, not Convertica."
@@ -6618,10 +6612,9 @@ msgstr ""
 "Convertica."
 
 #: templates/frontend/support.html:40
-#, fuzzy
 #| msgid "Premium payments are temporarily unavailable."
 msgid "Donations are temporarily unavailable"
-msgstr "Los pagos premium están temporalmente no disponibles."
+msgstr "Las donaciones no están disponibles temporalmente"
 
 #: templates/frontend/support.html:42
 #, fuzzy

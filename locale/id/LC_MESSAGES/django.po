@@ -5990,10 +5990,9 @@ msgid "FOUNDER'S DEAL"
 msgstr "PENAWARAN PENDIRI"
 
 #: templates/frontend/pricing.html:316
-#, fuzzy
 #| msgid "Premium Hero"
 msgid "Lifetime Hero"
-msgstr "Hero Premium"
+msgstr "Lifetime Hero"
 
 #: templates/frontend/pricing.html:320
 msgid "one-time payment"
@@ -6008,10 +6007,9 @@ msgid "Limited to first 100 customers"
 msgstr "Hanya untuk 100 pelanggan pertama"
 
 #: templates/frontend/pricing.html:330
-#, fuzzy
 #| msgid "All premium features"
 msgid "All premium features forever"
-msgstr "Semua fitur premium"
+msgstr "Semua fitur premium selamanya"
 
 #: templates/frontend/pricing.html:336
 msgid "Batch processing (up to 10 files)"
@@ -6022,16 +6020,14 @@ msgid "No recurring charges"
 msgstr "Tanpa biaya berulang"
 
 #: templates/frontend/pricing.html:348
-#, fuzzy
 #| msgid "Hero status"
 msgid "Lifetime hero status"
-msgstr "Status hero"
+msgstr "Status Lifetime hero"
 
 #: templates/frontend/pricing.html:354
-#, fuzzy
 #| msgid "Become site hero"
 msgid "Become Lifetime Hero"
-msgstr "Menjadi pahlawan situs"
+msgstr "Jadi Lifetime Hero"
 
 #: templates/frontend/pricing.html:370
 msgid "Become a Convertica hero and help us make the service better"
@@ -6510,10 +6506,9 @@ msgstr ""
 " kami."
 
 #: templates/frontend/support.html:11
-#, fuzzy
 #| msgid "Want to Support Convertica?"
 msgid "Support Convertica"
-msgstr "Ingin Mendukung Convertica?"
+msgstr "Dukung Convertica"
 
 #: templates/frontend/support.html:13
 msgid ""
@@ -6546,10 +6541,9 @@ msgid ""
 msgstr ""
 
 #: templates/frontend/support.html:32
-#, fuzzy
 #| msgid "Support icon"
 msgid "Support on Ko-fi"
-msgstr "Ikon dukungan"
+msgstr "Dukung di Ko-fi"
 
 #: templates/frontend/support.html:35
 msgid "Opens Ko-fi in a new tab. Payments handled by Ko-fi, not Convertica."
@@ -6557,10 +6551,9 @@ msgstr ""
 "Membuka Ko-fi di tab baru. Pembayaran ditangani Ko-fi, bukan Convertica."
 
 #: templates/frontend/support.html:40
-#, fuzzy
 #| msgid "Premium payments are temporarily unavailable."
 msgid "Donations are temporarily unavailable"
-msgstr "Pembayaran premium sementara tidak tersedia."
+msgstr "Donasi sementara tidak tersedia"
 
 #: templates/frontend/support.html:42
 #, fuzzy
