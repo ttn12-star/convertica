@@ -131,3 +131,9 @@ check: ## Run all checks (black, ruff)
 
 translate-locales: ## Bulk-translate locale/*/LC_MESSAGES/django.po via l10n-quality
 	./scripts/translate_all_locales.sh
+
+playwright-e2e: ## Run local E2E suite (requires app running on localhost:8000)
+	@echo "Ensuring app is up..."
+	@until curl -sf http://localhost:8000/livez/ > /dev/null 2>&1; do echo "  waiting for /livez/..."; sleep 2; done
+	pytest tests/e2e -v
+.PHONY: playwright-e2e
