@@ -7,16 +7,16 @@ premium-specific features like batch processing and unlimited limits.
 
 from django.core.cache import cache
 
-_PREMIUM_CACHE_TTL = 60  # seconds — short, so a Stripe webhook flip propagates quickly
+_PREMIUM_CACHE_TTL = 60  # seconds — short, so a webhook flip propagates quickly
 
 
 def is_premium_active(user) -> bool:
     """Check if user has active premium subscription.
 
-    Verifies both the is_premium flag (admin/Stripe-driven) and the
+    Verifies both the is_premium flag (admin/webhook-driven) and the
     subscription_end_date via the model's is_subscription_active() method,
     so an expired subscription that hasn't yet been reconciled by the
-    Stripe webhook does not silently grant premium.
+    payment provider's webhook does not silently grant premium.
 
     Caches the result per-user for _PREMIUM_CACHE_TTL seconds to avoid
     hitting the DB on every request — the cache is invalidated when the

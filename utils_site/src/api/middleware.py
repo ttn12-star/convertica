@@ -382,7 +382,6 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             # 'unsafe-eval' is required by Google Tag Manager for dynamic code execution
             # Host allowlist for trusted third-party scripts
             "script-src 'self' 'unsafe-inline' 'unsafe-eval' "
-            "https://js.stripe.com "
             "https://app.lemonsqueezy.com "
             "https://challenges.cloudflare.com "
             "https://www.googletagmanager.com "
@@ -402,7 +401,6 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "font-src 'self' https://fonts.gstatic.com data:",
             # Images: self, data URIs, blob, common CDNs, Yandex Metrika, YouTube thumbnails
             "img-src 'self' data: blob: "
-            "https://*.stripe.com "
             "https://*.lemonsqueezy.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
@@ -415,9 +413,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://pagead2.googlesyndication.com "
             "https://googleads.g.doubleclick.net "
             "https://tpc.googlesyndication.com",
-            # Connect: self, Stripe, Turnstile, WebSocket, analytics, Yandex Metrika
+            # Connect: self, Lemon Squeezy, Turnstile, WebSocket, analytics, Yandex Metrika
             "connect-src 'self' "
-            "https://api.stripe.com "
             "https://api.lemonsqueezy.com "
             "https://*.lemonsqueezy.com "
             "https://challenges.cloudflare.com "
@@ -433,10 +430,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "wss://mc.yandex.com "
             "ws://localhost:* "
             "wss://localhost:*",
-            # Frames: Stripe checkout, Turnstile, OAuth, YouTube, AdSense
+            # Frames: Lemon Squeezy checkout, Turnstile, OAuth, YouTube, AdSense
             "frame-src 'self' "
-            "https://js.stripe.com "
-            "https://hooks.stripe.com "
             "https://app.lemonsqueezy.com "
             "https://*.lemonsqueezy.com "
             "https://challenges.cloudflare.com "
@@ -476,7 +471,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
                 "gyroscope=(), "
                 "magnetometer=(), "
                 "microphone=(), "
-                'payment=(self "https://js.stripe.com" "https://app.lemonsqueezy.com"), '
+                'payment=(self "https://app.lemonsqueezy.com"), '
                 "usb=()"
             )
 
