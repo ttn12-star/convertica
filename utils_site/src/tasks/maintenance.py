@@ -487,3 +487,29 @@ def update_statistics():
     except Exception as exc:
         logger.error(f"Statistics update failed: {str(exc)}", exc_info=True)
         return {"status": "error", "message": str(exc)}
+
+
+@shared_task(name="maintenance.detect_stuck_webhooks", queue="maintenance")
+def detect_stuck_webhooks():
+    """Log webhook events that haven't been processed within an hour.
+
+    Sentry will pick these up via the existing logging integration and the
+    daily Sentry auto-fix agent will surface them for triage.
+    """
+    from datetime import timedelta
+
+    # Local import to avoid circular imports with src.users.models at task
+    # registration time.
+    from src.users.models import WebhookEvent
+
+    threshold = timezone.now() - timedelta(hours=1)
+    stuck = WebhookEvent.objects.filter(
+        processed_at__isnull=True,
+        created_at__lt=threshold,
+    ).count()
+    if stuck > 0:
+        logger.error(
+            "Stuck webhook events detected",
+            extra={"event": "webhook_events_stuck", "count": stuck},
+        )
+    return {"stuck": stuck}
