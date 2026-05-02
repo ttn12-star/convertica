@@ -532,8 +532,7 @@ msgstr "Estadísticas"
 
 #: templates/admin/users/operationrun/change_list.html:12
 msgid "User Activity"
-msgstr ""
-
+msgstr "Actividad de usuarios"
 #: templates/admin/users/operationrun/change_list.html:17
 msgid "Export CSV"
 msgstr "Exportar CSV"
@@ -546,28 +545,24 @@ msgid "Home"
 msgstr "Inicio"
 
 #: templates/admin/users/operationrun/user_activity.html:85
-#, fuzzy
 #| msgid "Back to profile"
 msgid "Back to Operations List"
 msgstr "Volver al perfil"
 
 #: templates/admin/users/operationrun/user_activity.html:88
-#, fuzzy
 #| msgid "More options"
 msgid "Min operations:"
 msgstr "Más opciones"
 
 #: templates/admin/users/operationrun/user_activity.html:90
 msgid "Filter"
-msgstr ""
-
+msgstr "Filtro"
 #: templates/admin/users/operationrun/user_activity.html:94
 #, python-format
 msgid ""
 "Showing top %(count)s users (max 200) with at least %(min_ops)s "
 "operation(s)."
-msgstr ""
-
+msgstr "Mostrando los %(count)s usuarios principales (máx. 200) con al menos %(min_ops)s operación(es)."
 #: templates/admin/users/operationrun/user_activity.html:101
 #: templates/frontend/contact.html:67
 #: templates/frontend/includes/footer.html:164
@@ -577,41 +572,34 @@ msgid "Email"
 msgstr "Correo electrónico"
 
 #: templates/admin/users/operationrun/user_activity.html:102
-#, fuzzy
 #| msgid "Total Days"
 msgid "Total"
 msgstr "Días Totales"
 
 #: templates/admin/users/operationrun/user_activity.html:103
 msgid "Success"
-msgstr ""
-
+msgstr "Éxito"
 #: templates/admin/users/operationrun/user_activity.html:104
-#, fuzzy
 #| msgid "Error"
 msgid "Errors"
 msgstr "Error"
 
 #: templates/admin/users/operationrun/user_activity.html:105
 msgid "Success Rate"
-msgstr ""
-
+msgstr "Tasa de éxito"
 #: templates/admin/users/operationrun/user_activity.html:106
-#, fuzzy
 #| msgid "No registration"
 msgid "First Operation"
 msgstr "Sin registro"
 
 #: templates/admin/users/operationrun/user_activity.html:107
-#, fuzzy
 #| msgid "Layout Preservation"
 msgid "Last Operation"
 msgstr "Conservación del diseño"
 
 #: templates/admin/users/operationrun/user_activity.html:141
 msgid "No users found with the given filter."
-msgstr ""
-
+msgstr "No se encontraron usuarios con el filtro dado."
 #: templates/base.html:16 templates/base.html:34 templates/base.html:46
 msgid "Convertica – Online PDF Tools"
 msgstr "Convertica – Herramientas PDF en Línea"
@@ -1215,7 +1203,6 @@ msgid "Flatten PDF"
 msgstr "Aplanar PDF"
 
 #: templates/frontend/all_tools.html:351
-#, fuzzy
 #| msgid "Flatten PDF to remove form fields and annotations"
 msgid "Flatten form fields and annotations into static content."
 msgstr "Aplana el PDF para eliminar campos de formulario y anotaciones"
@@ -1235,7 +1222,6 @@ msgid "Sign PDF"
 msgstr "Firmar PDF"
 
 #: templates/frontend/all_tools.html:373
-#, fuzzy
 #| msgid "Add your signature to a PDF online"
 msgid "Add your signature to PDF documents."
 msgstr "Añade tu firma a un PDF en línea"
@@ -1349,7 +1335,6 @@ msgid "Images"
 msgstr "Imágenes"
 
 #: templates/frontend/all_tools.html:588
-#, fuzzy
 #| msgid "Compress and optimize images online"
 msgid "Optimize and convert image files online"
 msgstr "Comprime y optimiza imágenes en línea"
@@ -1366,7 +1351,6 @@ msgid "Optimize Image"
 msgstr "Optimizar imagen"
 
 #: templates/frontend/all_tools.html:607
-#, fuzzy
 #| msgid "Reduce PDF file size without losing quality."
 msgid "Compress JPEG, PNG, and WebP images without losing quality."
 msgstr "Reduce el tamaño del archivo PDF sin perder calidad."
@@ -1383,7 +1367,6 @@ msgid "Convert Image"
 msgstr "Convertir imagen"
 
 #: templates/frontend/all_tools.html:625
-#, fuzzy
 #| msgid "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
 msgid "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF formats."
 msgstr "Convierte cualquier imagen a JPEG, PNG, WebP, GIF, BMP o TIFF"
@@ -2488,7 +2471,6 @@ msgid "Best quality"
 msgstr "Mejor calidad"
 
 #: templates/frontend/image_tools/convert_image.html:83
-#, fuzzy
 #| msgid "Please select a reason for cancellation"
 msgid "Please select an output format before converting."
 msgstr "Por favor, selecciona una razón para la cancelación"
@@ -3003,8 +2985,7 @@ msgstr "Seleccionar archivos"
 #: templates/frontend/includes/upload_area.html:60
 #, python-format
 msgid "up to %(size)s MB"
-msgstr ""
-
+msgstr "hasta %(size)s MB"
 #: templates/frontend/includes/upload_area.html:60
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:112
 msgid "up to 10 files"
@@ -6574,21 +6555,18 @@ msgstr "Apoya a Convertica"
 msgid ""
 "If Convertica is useful to you, you can support its development with a one-"
 "time or recurring contribution on Ko-fi."
-msgstr "Si Convertica te resulta útil, puedes apoyar su desarrollo con una contribución única o recurrente en Ko-fi."
+msgstr ""
+"Si Convertica te resulta útil, puedes apoyar su desarrollo con una "
+"contribución única o recurrente en Ko-fi."
 
 #: templates/frontend/support.html:16
-#, fuzzy
-#| msgid ""
-#| "Heroes on Convertica are users who purchase a Premium subscription. "
-#| "Contributions here are for support only — think of it as becoming an "
-#| "invisible hero."
 msgid ""
 "Heroes on Convertica are users who purchase a Premium subscription. "
 "Contributions here are support only — they do not unlock Premium features."
 msgstr ""
 "Los Héroes en Convertica son usuarios que compran una suscripción Premium. "
-"Las contribuciones aquí son solo para apoyo — piénsalo como convertirte en "
-"un héroe invisible."
+"Las contribuciones aquí son solo de apoyo — no desbloquean funciones "
+"Premium."
 
 #: templates/frontend/support.html:25
 msgid "Buy me a coffee on Ko-fi"
@@ -6599,6 +6577,8 @@ msgid ""
 "Ko-fi lets you support the project with one-time or monthly contributions. "
 "No fees, no signup required for the donor."
 msgstr ""
+"Ko-fi te permite apoyar el proyecto con contribuciones únicas o mensuales. "
+"Sin comisiones, el donante no necesita registrarse."
 
 #: templates/frontend/support.html:32
 #| msgid "Support icon"
@@ -6617,17 +6597,12 @@ msgid "Donations are temporarily unavailable"
 msgstr "Las donaciones no están disponibles temporalmente"
 
 #: templates/frontend/support.html:42
-#, fuzzy
-#| msgid ""
-#| "Subscriptions and contributions are temporarily paused while we complete the"
-#| " business setup. The free tools remain fully available."
 msgid ""
 "We're setting up our Ko-fi page. Please check back soon. The free tools "
 "remain fully available."
 msgstr ""
-"Las suscripciones y contribuciones están temporalmente pausadas mientras "
-"completamos la configuración del negocio. Las herramientas gratuitas "
-"permanecen completamente disponibles."
+"Estamos configurando nuestra página de Ko-fi. Vuelve a consultar pronto. Las"
+" herramientas gratuitas siguen totalmente disponibles."
 
 #: templates/frontend/support.html:46
 msgid "Go to free tools"
@@ -8262,7 +8237,6 @@ msgid "Article"
 msgstr "Artículo"
 
 #: utils_site/src/blog/views.py:149
-#, fuzzy
 #| msgid ""
 #| "Free online PDF tools: convert, edit, merge, split, compress and secure "
 #| "PDFs. No registration required."
@@ -13504,7 +13478,6 @@ msgid "Protect PDF with Password - Convertica"
 msgstr "Proteger PDF con contraseña - Convertica"
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:11
-#, fuzzy
 #| msgid ""
 #| "Protect PDF files with password encryption. Secure your PDF documents with "
 #| "strong password protection."
@@ -13954,31 +13927,26 @@ msgid "Convert PDFs to EPUB eBooks"
 msgstr "Convierte PDFs a eBooks EPUB"
 
 #: utils_site/src/frontend/views.py:191
-#, fuzzy
 #| msgid "Flatten PDF to remove form fields and annotations"
 msgid "Remove form fields and annotations"
 msgstr "Aplana el PDF para eliminar campos de formulario y anotaciones"
 
 #: utils_site/src/frontend/views.py:198
-#, fuzzy
 #| msgid "Add your image signature to any PDF page"
 msgid "Add an image signature to PDF pages"
 msgstr "Añade tu firma de imagen a cualquier página del PDF"
 
 #: utils_site/src/frontend/views.py:205
-#, fuzzy
 #| msgid "Extract plain text from PDF files"
 msgid "Extract plain text from a PDF document"
 msgstr "Extrae texto plano de archivos PDF"
 
 #: utils_site/src/frontend/views.py:212
-#, fuzzy
 #| msgid "Compress and optimize images online"
 msgid "Compress and resize JPEG/PNG/WebP images"
 msgstr "Comprime y optimiza imágenes en línea"
 
 #: utils_site/src/frontend/views.py:219
-#, fuzzy
 #| msgid "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
 msgid "Convert between JPEG, PNG, WebP, GIF and BMP"
 msgstr "Convierte cualquier imagen a JPEG, PNG, WebP, GIF, BMP o TIFF"
@@ -14350,7 +14318,6 @@ msgstr ""
 "privacidad, privacidad Convertica"
 
 #: utils_site/src/frontend/views.py:1012
-#, fuzzy
 #| msgid ""
 #| "Read Convertica's Terms of Service. Understand the terms and conditions for "
 #| "using our PDF tools and services."
@@ -14427,7 +14394,6 @@ msgid "Contribute to Convertica"
 msgstr "Contribuir a Convertica"
 
 #: utils_site/src/frontend/views.py:1569
-#, fuzzy
 #| msgid ""
 #| "Contribute to the Convertica project with a one-time or monthly donation. "
 #| "This does not unlock Premium features — it simply helps development. Heroes "

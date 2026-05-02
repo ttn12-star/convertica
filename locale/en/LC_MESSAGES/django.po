@@ -223,13 +223,11 @@ msgstr "Click the button below to confirm your email address"
 #, python-format
 msgid ""
 "\n"
-"              Please confirm that <strong>%(email)s</strong> is your email "
-"address.\n"
+"              Please confirm that <strong>%(email)s</strong> is your email address.\n"
 "            "
 msgstr ""
 "\n"
-"              Please confirm that <strong>%(email)s</strong> is your email "
-"address.\n"
+"              Please confirm that <strong>%(email)s</strong> is your email address.\n"
 "            "
 
 #: templates/account/email_confirm.html:41
@@ -400,11 +398,11 @@ msgstr "Reset Email Sent!"
 #: templates/account/password_reset_done.html:36
 #, python-format
 msgid ""
-"We've sent an email to <strong>%(email)s</strong> with instructions to reset "
-"your password."
+"We've sent an email to <strong>%(email)s</strong> with instructions to reset"
+" your password."
 msgstr ""
-"We've sent an email to <strong>%(email)s</strong> with instructions to reset "
-"your password."
+"We've sent an email to <strong>%(email)s</strong> with instructions to reset"
+" your password."
 
 #: templates/account/password_reset_done.html:41
 msgid "Please note:"
@@ -529,8 +527,7 @@ msgstr "Monthly Statistics"
 
 #: templates/admin/users/operationrun/change_list.html:12
 msgid "User Activity"
-msgstr ""
-
+msgstr "User Activity"
 #: templates/admin/users/operationrun/change_list.html:17
 msgid "Export CSV"
 msgstr "Export CSV"
@@ -543,71 +540,61 @@ msgid "Home"
 msgstr "Home"
 
 #: templates/admin/users/operationrun/user_activity.html:85
-#, fuzzy
 #| msgid "Back to profile"
 msgid "Back to Operations List"
 msgstr "Back to profile"
 
 #: templates/admin/users/operationrun/user_activity.html:88
-#, fuzzy
 #| msgid "More options"
 msgid "Min operations:"
 msgstr "More options"
 
 #: templates/admin/users/operationrun/user_activity.html:90
 msgid "Filter"
-msgstr ""
-
+msgstr "Filter"
 #: templates/admin/users/operationrun/user_activity.html:94
 #, python-format
 msgid ""
-"Showing top %(count)s users (max 200) with at least %(min_ops)s operation(s)."
-msgstr ""
-
+"Showing top %(count)s users (max 200) with at least %(min_ops)s "
+"operation(s)."
+msgstr "Showing top %(count)s users (max 200) with at least %(min_ops)s operation(s)."
 #: templates/admin/users/operationrun/user_activity.html:101
 #: templates/frontend/contact.html:67
-#: templates/frontend/includes/footer.html:164 templates/users/profile.html:149
-#: templates/users/profile_edit.html:54 utils_site/src/users/forms.py:10
-#: utils_site/src/users/forms.py:31
+#: templates/frontend/includes/footer.html:164
+#: templates/users/profile.html:149 templates/users/profile_edit.html:54
+#: utils_site/src/users/forms.py:10 utils_site/src/users/forms.py:31
 msgid "Email"
 msgstr "Email"
 
 #: templates/admin/users/operationrun/user_activity.html:102
-#, fuzzy
 #| msgid "Total Days"
 msgid "Total"
 msgstr "Total Days"
 
 #: templates/admin/users/operationrun/user_activity.html:103
 msgid "Success"
-msgstr ""
-
+msgstr "Success"
 #: templates/admin/users/operationrun/user_activity.html:104
-#, fuzzy
 #| msgid "Error"
 msgid "Errors"
 msgstr "Error"
 
 #: templates/admin/users/operationrun/user_activity.html:105
 msgid "Success Rate"
-msgstr ""
-
+msgstr "Success Rate"
 #: templates/admin/users/operationrun/user_activity.html:106
-#, fuzzy
 #| msgid "No registration"
 msgid "First Operation"
 msgstr "No registration"
 
 #: templates/admin/users/operationrun/user_activity.html:107
-#, fuzzy
 #| msgid "Layout Preservation"
 msgid "Last Operation"
 msgstr "Layout Preservation"
 
 #: templates/admin/users/operationrun/user_activity.html:141
 msgid "No users found with the given filter."
-msgstr ""
-
+msgstr "No users found with the given filter."
 #: templates/base.html:16 templates/base.html:34 templates/base.html:46
 msgid "Convertica – Online PDF Tools"
 msgstr "Convertica – Online PDF Tools"
@@ -652,7 +639,8 @@ msgstr "Back to Blog"
 msgid "Popular Tools"
 msgstr "Popular Tools"
 
-#: templates/blog/article_detail.html:383 templates/frontend/all_tools.html:508
+#: templates/blog/article_detail.html:383
+#: templates/frontend/all_tools.html:508
 #: templates/frontend/includes/header.html:338
 #: templates/frontend/includes/header.html:820
 #: templates/frontend/includes/header.html:1488
@@ -665,7 +653,8 @@ msgstr "Popular Tools"
 msgid "Compress PDF"
 msgstr "Compress PDF"
 
-#: templates/blog/article_detail.html:392 templates/frontend/all_tools.html:272
+#: templates/blog/article_detail.html:392
+#: templates/frontend/all_tools.html:272
 #: templates/frontend/includes/header.html:194
 #: templates/frontend/includes/header.html:669
 #: templates/frontend/includes/header.html:1508
@@ -782,14 +771,14 @@ msgstr "Our Mission"
 msgid ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
-"PDF tools available online. We understand that your documents are important, "
-"and we're committed to ensuring that every interaction with our platform "
+"PDF tools available online. We understand that your documents are important,"
+" and we're committed to ensuring that every interaction with our platform "
 "exceeds your expectations."
 msgstr ""
 "At Convertica, we believe in the power of continuous improvement. Our "
 "mission is to provide you with the most reliable, fast, and user-friendly "
-"PDF tools available online. We understand that your documents are important, "
-"and we're committed to ensuring that every interaction with our platform "
+"PDF tools available online. We understand that your documents are important,"
+" and we're committed to ensuring that every interaction with our platform "
 "exceeds your expectations."
 
 #: templates/frontend/about.html:78
@@ -878,11 +867,11 @@ msgstr "PDF Organization"
 
 #: templates/frontend/about.html:129
 msgid ""
-"Merge, split, extract, remove, and organize pages. Manage your PDF documents "
-"efficiently."
+"Merge, split, extract, remove, and organize pages. Manage your PDF documents"
+" efficiently."
 msgstr ""
-"Merge, split, extract, remove, and organize pages. Manage your PDF documents "
-"efficiently."
+"Merge, split, extract, remove, and organize pages. Manage your PDF documents"
+" efficiently."
 
 #: templates/frontend/about.html:133 templates/frontend/all_tools.html:528
 #: templates/frontend/includes/header.html:377
@@ -1206,7 +1195,6 @@ msgid "Flatten PDF"
 msgstr "Flatten PDF"
 
 #: templates/frontend/all_tools.html:351
-#, fuzzy
 #| msgid "Flatten PDF to remove form fields and annotations"
 msgid "Flatten form fields and annotations into static content."
 msgstr "Flatten PDF to remove form fields and annotations"
@@ -1226,7 +1214,6 @@ msgid "Sign PDF"
 msgstr "Sign PDF"
 
 #: templates/frontend/all_tools.html:373
-#, fuzzy
 #| msgid "Add your signature to a PDF online"
 msgid "Add your signature to PDF documents."
 msgstr "Add your signature to a PDF online"
@@ -1340,7 +1327,6 @@ msgid "Images"
 msgstr "Images"
 
 #: templates/frontend/all_tools.html:588
-#, fuzzy
 #| msgid "Compress and optimize images online"
 msgid "Optimize and convert image files online"
 msgstr "Compress and optimize images online"
@@ -1357,7 +1343,6 @@ msgid "Optimize Image"
 msgstr "Optimize Image"
 
 #: templates/frontend/all_tools.html:607
-#, fuzzy
 #| msgid "Reduce PDF file size without losing quality."
 msgid "Compress JPEG, PNG, and WebP images without losing quality."
 msgstr "Reduce PDF file size without losing quality."
@@ -1374,7 +1359,6 @@ msgid "Convert Image"
 msgstr "Convert Image"
 
 #: templates/frontend/all_tools.html:625
-#, fuzzy
 #| msgid "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
 msgid "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF formats."
 msgstr "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
@@ -1543,9 +1527,11 @@ msgstr "Contact Us"
 
 #: templates/frontend/contact.html:47
 msgid ""
-"We're here to help! Get in touch with us for support, questions, or feedback."
+"We're here to help! Get in touch with us for support, questions, or "
+"feedback."
 msgstr ""
-"We're here to help! Get in touch with us for support, questions, or feedback."
+"We're here to help! Get in touch with us for support, questions, or "
+"feedback."
 
 #: templates/frontend/contact.html:63
 msgid "Email icon"
@@ -1651,11 +1637,11 @@ msgstr "Are my files safe?"
 
 #: templates/frontend/contact.html:267
 msgid ""
-"Yes! Your files are processed securely and automatically deleted immediately "
-"after processing. We never store your files permanently."
+"Yes! Your files are processed securely and automatically deleted immediately"
+" after processing. We never store your files permanently."
 msgstr ""
-"Yes! Your files are processed securely and automatically deleted immediately "
-"after processing. We never store your files permanently."
+"Yes! Your files are processed securely and automatically deleted immediately"
+" after processing. We never store your files permanently."
 
 #: templates/frontend/contact.html:272
 msgid "Is Convertica really free?"
@@ -1994,11 +1980,11 @@ msgstr "Edit another file"
 
 #: templates/frontend/edit_pdf_generic.html:156
 msgid ""
-"Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
-"\"Current page only\\\""
+"Please enter page numbers to remove, or select \\\"All pages\\\" or "
+"\\\"Current page only\\\""
 msgstr ""
-"Please enter page numbers to remove, or select \\\"All pages\\\" or \\"
-"\"Current page only\\\""
+"Please enter page numbers to remove, or select \\\"All pages\\\" or "
+"\\\"Current page only\\\""
 
 #: templates/frontend/faq.html:75
 msgid "Find answers to common questions about Convertica PDF tools"
@@ -2074,14 +2060,14 @@ msgstr "How do I convert PDF to Word without losing formatting?"
 msgid ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
-"engine preserves text formatting, images, tables, and layout. The conversion "
-"maintains fonts, colors, spacing, and structure of your original document. "
+"engine preserves text formatting, images, tables, and layout. The conversion"
+" maintains fonts, colors, spacing, and structure of your original document. "
 "All conversions are free and require no registration."
 msgstr ""
 "To convert PDF to Word without losing formatting, use Convertica's PDF to "
 "Word converter. Simply upload your PDF file, and our advanced conversion "
-"engine preserves text formatting, images, tables, and layout. The conversion "
-"maintains fonts, colors, spacing, and structure of your original document. "
+"engine preserves text formatting, images, tables, and layout. The conversion"
+" maintains fonts, colors, spacing, and structure of your original document. "
 "All conversions are free and require no registration."
 
 #: templates/frontend/faq.html:148 templates/frontend/index.html:38
@@ -2149,13 +2135,13 @@ msgstr "Can I extract tables from PDF to Excel?"
 
 #: templates/frontend/faq.html:192
 msgid ""
-"Yes, you can extract tables from PDF files and convert them to Excel format. "
-"Upload your PDF, and Convertica will extract all tables and save them in an "
-"Excel file."
+"Yes, you can extract tables from PDF files and convert them to Excel format."
+" Upload your PDF, and Convertica will extract all tables and save them in an"
+" Excel file."
 msgstr ""
-"Yes, you can extract tables from PDF files and convert them to Excel format. "
-"Upload your PDF, and Convertica will extract all tables and save them in an "
-"Excel file."
+"Yes, you can extract tables from PDF files and convert them to Excel format."
+" Upload your PDF, and Convertica will extract all tables and save them in an"
+" Excel file."
 
 #: templates/frontend/faq.html:201
 msgid "Editing & Organization"
@@ -2199,11 +2185,13 @@ msgstr "Can I split a PDF into separate files?"
 
 #: templates/frontend/faq.html:230
 msgid ""
-"Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
-"split it (by page range or every N pages), and download the resulting files."
+"Yes, you can split a PDF into separate files. Upload your PDF, choose how to"
+" split it (by page range or every N pages), and download the resulting "
+"files."
 msgstr ""
-"Yes, you can split a PDF into separate files. Upload your PDF, choose how to "
-"split it (by page range or every N pages), and download the resulting files."
+"Yes, you can split a PDF into separate files. Upload your PDF, choose how to"
+" split it (by page range or every N pages), and download the resulting "
+"files."
 
 #: templates/frontend/faq.html:236
 msgid "How do I compress PDF to under 1MB for email?"
@@ -2212,15 +2200,15 @@ msgstr "How do I compress PDF to under 1MB for email?"
 #: templates/frontend/faq.html:240
 msgid ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
-"Upload your PDF file, select the high compression level, and click compress. "
-"The tool will reduce the file size while maintaining acceptable quality for "
-"email attachments. You can preview the compressed file size before "
+"Upload your PDF file, select the high compression level, and click compress."
+" The tool will reduce the file size while maintaining acceptable quality for"
+" email attachments. You can preview the compressed file size before "
 "downloading."
 msgstr ""
 "To compress PDF to under 1MB for email, use Convertica's PDF compressor. "
-"Upload your PDF file, select the high compression level, and click compress. "
-"The tool will reduce the file size while maintaining acceptable quality for "
-"email attachments. You can preview the compressed file size before "
+"Upload your PDF file, select the high compression level, and click compress."
+" The tool will reduce the file size while maintaining acceptable quality for"
+" email attachments. You can preview the compressed file size before "
 "downloading."
 
 #: templates/frontend/faq.html:246
@@ -2274,13 +2262,13 @@ msgstr "Is my data secure?"
 
 #: templates/frontend/faq.html:288 utils_site/src/frontend/views.py:1243
 msgid ""
-"Yes, your data is secure. All files are processed securely and automatically "
-"deleted immediately after conversion. We do not store your files, and your "
+"Yes, your data is secure. All files are processed securely and automatically"
+" deleted immediately after conversion. We do not store your files, and your "
 "privacy is our top priority. You can also protect your PDFs with password "
 "encryption."
 msgstr ""
-"Yes, your data is secure. All files are processed securely and automatically "
-"deleted immediately after conversion. We do not store your files, and your "
+"Yes, your data is secure. All files are processed securely and automatically"
+" deleted immediately after conversion. We do not store your files, and your "
 "privacy is our top priority. You can also protect your PDFs with password "
 "encryption."
 
@@ -2304,12 +2292,12 @@ msgstr "Can I remove password protection from a PDF?"
 #: templates/frontend/faq.html:308
 msgid ""
 "Yes, if you know the password, you can unlock a protected PDF. Upload the "
-"protected PDF, enter the password, and click unlock. The password protection "
-"will be removed."
+"protected PDF, enter the password, and click unlock. The password protection"
+" will be removed."
 msgstr ""
 "Yes, if you know the password, you can unlock a protected PDF. Upload the "
-"protected PDF, enter the password, and click unlock. The password protection "
-"will be removed."
+"protected PDF, enter the password, and click unlock. The password protection"
+" will be removed."
 
 #: templates/frontend/faq.html:314
 msgid "Are my files stored on your servers?"
@@ -2449,7 +2437,6 @@ msgid "Best quality"
 msgstr "Best quality"
 
 #: templates/frontend/image_tools/convert_image.html:83
-#, fuzzy
 #| msgid "Please select a reason for cancellation"
 msgid "Please select an output format before converting."
 msgstr "Please select a reason for cancellation"
@@ -2596,12 +2583,12 @@ msgstr "Cookie Preferences"
 
 #: templates/frontend/includes/cookie_banner.html:34
 msgid ""
-"Manage your cookie preferences. You can enable or disable different types of "
-"cookies below. Essential cookies cannot be disabled as they are necessary "
+"Manage your cookie preferences. You can enable or disable different types of"
+" cookies below. Essential cookies cannot be disabled as they are necessary "
 "for the website to function."
 msgstr ""
-"Manage your cookie preferences. You can enable or disable different types of "
-"cookies below. Essential cookies cannot be disabled as they are necessary "
+"Manage your cookie preferences. You can enable or disable different types of"
+" cookies below. Essential cookies cannot be disabled as they are necessary "
 "for the website to function."
 
 #: templates/frontend/includes/cookie_banner.html:41
@@ -2908,8 +2895,9 @@ msgstr "Background Tasks"
 #: templates/frontend/premium_tools.html:95
 #: templates/frontend/premium_tools.html:112
 #: templates/frontend/premium_tools.html:129
-#: templates/users/cancel_subscription.html:135 templates/users/profile.html:98
-#: templates/users/profile.html:176 templates/users/profile_edit.html:176
+#: templates/users/cancel_subscription.html:135
+#: templates/users/profile.html:98 templates/users/profile.html:176
+#: templates/users/profile_edit.html:176
 msgid "Premium"
 msgstr "Premium"
 
@@ -2955,8 +2943,7 @@ msgstr "Browse files"
 #: templates/frontend/includes/upload_area.html:60
 #, python-format
 msgid "up to %(size)s MB"
-msgstr ""
-
+msgstr "up to %(size)s MB"
 #: templates/frontend/includes/upload_area.html:60
 #: templates/frontend/pdf_convert/jpg_to_pdf.html:112
 msgid "up to 10 files"
@@ -3008,27 +2995,27 @@ msgstr ""
 
 #: templates/frontend/index.html:41
 msgid ""
-"Simply upload your PDF file, click convert, and download your Word document. "
-"No registration required, completely free."
+"Simply upload your PDF file, click convert, and download your Word document."
+" No registration required, completely free."
 msgstr ""
-"Simply upload your PDF file, click convert, and download your Word document. "
-"No registration required, completely free."
+"Simply upload your PDF file, click convert, and download your Word document."
+" No registration required, completely free."
 
 #: templates/frontend/index.html:49
 msgid ""
-"Yes, Convertica is completely free. All PDF conversion and editing tools are "
-"available at no cost with no hidden fees."
+"Yes, Convertica is completely free. All PDF conversion and editing tools are"
+" available at no cost with no hidden fees."
 msgstr ""
-"Yes, Convertica is completely free. All PDF conversion and editing tools are "
-"available at no cost with no hidden fees."
+"Yes, Convertica is completely free. All PDF conversion and editing tools are"
+" available at no cost with no hidden fees."
 
 #: templates/frontend/index.html:57
 msgid ""
-"Yes, your data is secure. All files are processed securely and automatically "
-"deleted after conversion. We do not store your files."
+"Yes, your data is secure. All files are processed securely and automatically"
+" deleted after conversion. We do not store your files."
 msgstr ""
-"Yes, your data is secure. All files are processed securely and automatically "
-"deleted after conversion. We do not store your files."
+"Yes, your data is secure. All files are processed securely and automatically"
+" deleted after conversion. We do not store your files."
 
 #: templates/frontend/index.html:65
 msgid ""
@@ -3080,11 +3067,11 @@ msgstr "All-in-One PDF Tools"
 
 #: templates/frontend/index.html:122
 msgid ""
-"Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No "
-"installations required."
+"Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No"
+" installations required."
 msgstr ""
-"Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No "
-"installations required."
+"Convert, edit, merge, split, and organize PDFs. Fast, simple, and secure. No"
+" installations required."
 
 #: templates/frontend/index.html:157
 #, python-format
@@ -3159,15 +3146,18 @@ msgstr ""
 
 #: templates/frontend/index.html:548
 msgid "Quick answers to common questions. Need more? Visit the full FAQ page."
-msgstr "Quick answers to common questions. Need more? Visit the full FAQ page."
+msgstr ""
+"Quick answers to common questions. Need more? Visit the full FAQ page."
 
 #: templates/frontend/index.html:561
 msgid ""
 "Yes. Convertica is free to use — no registration required. Premium "
-"subscriptions are optional and provide higher limits and additional features."
+"subscriptions are optional and provide higher limits and additional "
+"features."
 msgstr ""
 "Yes. Convertica is free to use — no registration required. Premium "
-"subscriptions are optional and provide higher limits and additional features."
+"subscriptions are optional and provide higher limits and additional "
+"features."
 
 #: templates/frontend/index.html:573
 msgid ""
@@ -3203,11 +3193,11 @@ msgstr "View All Articles"
 
 #: templates/frontend/pdf_convert/excel_to_pdf.html:11
 msgid ""
-"Select your Excel file (XLS or XLSX) using the button above or drag and drop "
-"it"
+"Select your Excel file (XLS or XLSX) using the button above or drag and drop"
+" it"
 msgstr ""
-"Select your Excel file (XLS or XLSX) using the button above or drag and drop "
-"it"
+"Select your Excel file (XLS or XLSX) using the button above or drag and drop"
+" it"
 
 #: templates/frontend/pdf_convert/excel_to_pdf.html:14
 #: templates/frontend/pdf_convert/html_to_pdf.html:342
@@ -3453,11 +3443,13 @@ msgstr ""
 msgid ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. Text content will be extracted and formatted as "
-"HTML. Images from the PDF will be embedded as base64 for easy web publishing."
+"HTML. Images from the PDF will be embedded as base64 for easy web "
+"publishing."
 msgstr ""
 "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
 "users have higher limits. Text content will be extracted and formatted as "
-"HTML. Images from the PDF will be embedded as base64 for easy web publishing."
+"HTML. Images from the PDF will be embedded as base64 for easy web "
+"publishing."
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:6
 msgid "Page Selection"
@@ -3516,11 +3508,11 @@ msgstr "Maximum quality"
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:61
 msgid ""
-"Higher DPI = better quality but larger file size. 300 DPI is recommended for "
-"most uses."
+"Higher DPI = better quality but larger file size. 300 DPI is recommended for"
+" most uses."
 msgstr ""
-"Higher DPI = better quality but larger file size. 300 DPI is recommended for "
-"most uses."
+"Higher DPI = better quality but larger file size. 300 DPI is recommended for"
+" most uses."
 
 #: templates/frontend/pdf_convert/pdf_to_jpg.html:75
 #: templates/frontend/pdf_edit/add_page_numbers.html:213
@@ -3553,13 +3545,11 @@ msgstr "Download the ZIP archive with all JPG images"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Output is "
-"a ZIP archive with JPG images named by page number.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Output is a ZIP archive with JPG images named by page number.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Output is "
-"a ZIP archive with JPG images named by page number.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Output is a ZIP archive with JPG images named by page number.\n"
 "        "
 
 #: templates/frontend/pdf_convert/pdf_to_ppt.html:19
@@ -3647,9 +3637,11 @@ msgstr ""
 #: templates/frontend/pdf_convert/pdf_to_word.html:104
 #: templates/frontend/pdf_organize/split_pdf.html:78
 msgid ""
-"Select your PDF file using the button above or drag and drop it into the zone"
+"Select your PDF file using the button above or drag and drop it into the "
+"zone"
 msgstr ""
-"Select your PDF file using the button above or drag and drop it into the zone"
+"Select your PDF file using the button above or drag and drop it into the "
+"zone"
 
 #: templates/frontend/pdf_convert/pdf_to_text.html:68
 msgid "Optionally enable page numbers or layout preservation"
@@ -3802,48 +3794,42 @@ msgstr "Download your editable Word document (.docx)"
 #, python-format
 msgid ""
 "\n"
-"              PDF files with up to %(max_pages)s pages are supported for "
-"free users. For larger files, split them or upgrade to Premium.\n"
+"              PDF files with up to %(max_pages)s pages are supported for free users. For larger files, split them or upgrade to Premium.\n"
 "            "
 msgstr ""
 "\n"
-"              PDF files with up to %(max_pages)s pages are supported for "
-"free users. For larger files, split them or upgrade to Premium.\n"
+"              PDF files with up to %(max_pages)s pages are supported for free users. For larger files, split them or upgrade to Premium.\n"
 "            "
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:118
 #, python-format
 msgid ""
 "\n"
-"              PDF files with up to %(max_pages)s pages are supported. For "
-"larger files, please split them into smaller parts.\n"
+"              PDF files with up to %(max_pages)s pages are supported. For larger files, please split them into smaller parts.\n"
 "            "
 msgstr ""
 "\n"
-"              PDF files with up to %(max_pages)s pages are supported. For "
-"larger files, please split them into smaller parts.\n"
+"              PDF files with up to %(max_pages)s pages are supported. For larger files, please split them into smaller parts.\n"
 "            "
 
 #: templates/frontend/pdf_convert/pdf_to_word.html:124
 #, python-format
 msgid ""
 "\n"
-"            Premium users can process PDF files with up to %(max_pages)s "
-"pages.\n"
+"            Premium users can process PDF files with up to %(max_pages)s pages.\n"
 "          "
 msgstr ""
 "\n"
-"            Premium users can process PDF files with up to %(max_pages)s "
-"pages.\n"
+"            Premium users can process PDF files with up to %(max_pages)s pages.\n"
 "          "
 
 #: templates/frontend/pdf_convert/ppt_to_pdf.html:11
 msgid ""
-"Select your PowerPoint file (PPT or PPTX) using the button above or drag and "
-"drop it"
+"Select your PowerPoint file (PPT or PPTX) using the button above or drag and"
+" drop it"
 msgstr ""
-"Select your PowerPoint file (PPT or PPTX) using the button above or drag and "
-"drop it"
+"Select your PowerPoint file (PPT or PPTX) using the button above or drag and"
+" drop it"
 
 #: templates/frontend/pdf_convert/word_to_pdf.html:6
 msgid "How to Convert Word Document to PDF File Online Free"
@@ -3869,13 +3855,11 @@ msgstr "Download your PDF file - ready for sharing"
 #, python-format
 msgid ""
 "\n"
-"          Word documents with up to %(max_pages)s pages are supported. "
-"Formatting, fonts, images, and layout are preserved.\n"
+"          Word documents with up to %(max_pages)s pages are supported. Formatting, fonts, images, and layout are preserved.\n"
 "        "
 msgstr ""
 "\n"
-"          Word documents with up to %(max_pages)s pages are supported. "
-"Formatting, fonts, images, and layout are preserved.\n"
+"          Word documents with up to %(max_pages)s pages are supported. Formatting, fonts, images, and layout are preserved.\n"
 "        "
 
 #: templates/frontend/pdf_edit/add_page_numbers.html:9
@@ -4009,13 +3993,11 @@ msgstr "Download your numbered PDF file"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Page "
-"numbers are added according to your settings.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Page numbers are added according to your settings.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Page "
-"numbers are added according to your settings.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Page numbers are added according to your settings.\n"
 "        "
 
 #: templates/frontend/pdf_edit/add_watermark.html:189
@@ -4128,13 +4110,11 @@ msgstr "Download your watermarked PDF file"
 #, python-format
 msgid ""
 "\n"
-"            PDF files with up to %(max_pages)s pages are supported. "
-"Watermark applies to all or selected pages.\n"
+"            PDF files with up to %(max_pages)s pages are supported. Watermark applies to all or selected pages.\n"
 "          "
 msgstr ""
 "\n"
-"            PDF files with up to %(max_pages)s pages are supported. "
-"Watermark applies to all or selected pages.\n"
+"            PDF files with up to %(max_pages)s pages are supported. Watermark applies to all or selected pages.\n"
 "          "
 
 #: templates/frontend/pdf_edit/add_watermark.html:557
@@ -4160,13 +4140,13 @@ msgstr "Crop Your PDF"
 
 #: templates/frontend/pdf_edit/crop_pdf.html:158
 msgid ""
-"Click and drag on the PDF to select the crop area. The blue highlighted area "
-"will be kept. You can drag the selection box anywhere to move it, or use the "
-"corner/edge handles to resize it."
+"Click and drag on the PDF to select the crop area. The blue highlighted area"
+" will be kept. You can drag the selection box anywhere to move it, or use "
+"the corner/edge handles to resize it."
 msgstr ""
-"Click and drag on the PDF to select the crop area. The blue highlighted area "
-"will be kept. You can drag the selection box anywhere to move it, or use the "
-"corner/edge handles to resize it."
+"Click and drag on the PDF to select the crop area. The blue highlighted area"
+" will be kept. You can drag the selection box anywhere to move it, or use "
+"the corner/edge handles to resize it."
 
 #: templates/frontend/pdf_edit/crop_pdf.html:163
 msgid "Page:"
@@ -4256,13 +4236,11 @@ msgstr "Download your cropped PDF file"
 #, python-format
 msgid ""
 "\n"
-"            PDF files with up to %(max_pages)s pages are supported. Crop "
-"applies to all selected pages.\n"
+"            PDF files with up to %(max_pages)s pages are supported. Crop applies to all selected pages.\n"
 "          "
 msgstr ""
 "\n"
-"            PDF files with up to %(max_pages)s pages are supported. Crop "
-"applies to all selected pages.\n"
+"            PDF files with up to %(max_pages)s pages are supported. Crop applies to all selected pages.\n"
 "          "
 
 #: templates/frontend/pdf_edit/crop_pdf.html:394
@@ -4307,12 +4285,12 @@ msgstr "What does flattening do?"
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:13
 msgid ""
-"Flattening removes all interactive form fields, checkboxes, text inputs, and "
-"annotations from your PDF. The result is a static, non-editable document "
+"Flattening removes all interactive form fields, checkboxes, text inputs, and"
+" annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
 msgstr ""
-"Flattening removes all interactive form fields, checkboxes, text inputs, and "
-"annotations from your PDF. The result is a static, non-editable document "
+"Flattening removes all interactive form fields, checkboxes, text inputs, and"
+" annotations from your PDF. The result is a static, non-editable document "
 "that looks identical but cannot be filled out or modified."
 
 #: templates/frontend/pdf_edit/flatten_pdf.html:28
@@ -4331,15 +4309,11 @@ msgstr "Download your flattened static PDF file"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. The visual "
-"appearance of the PDF is preserved while all interactive elements are "
-"removed.\n"
+"          PDF files with up to %(max_pages)s pages are supported. The visual appearance of the PDF is preserved while all interactive elements are removed.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. The visual "
-"appearance of the PDF is preserved while all interactive elements are "
-"removed.\n"
+"          PDF files with up to %(max_pages)s pages are supported. The visual appearance of the PDF is preserved while all interactive elements are removed.\n"
 "        "
 
 #: templates/frontend/pdf_edit/rotate_pdf.html:6
@@ -4386,13 +4360,11 @@ msgstr "Download your rotated PDF file"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Rotation "
-"preserves all content and formatting.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Rotation preserves all content and formatting.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Rotation "
-"preserves all content and formatting.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Rotation preserves all content and formatting.\n"
 "        "
 
 #: templates/frontend/pdf_edit/sign_pdf.html:8
@@ -4548,13 +4520,11 @@ msgstr "Download your smaller PDF file"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Higher "
-"compression = smaller file size but may reduce image quality.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Higher compression = smaller file size but may reduce image quality.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Higher "
-"compression = smaller file size but may reduce image quality.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Higher compression = smaller file size but may reduce image quality.\n"
 "        "
 
 #: templates/frontend/pdf_organize/extract_pages.html:6
@@ -4568,11 +4538,11 @@ msgstr "Pages to Extract"
 
 #: templates/frontend/pdf_organize/extract_pages.html:22
 msgid ""
-"Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
-"(1-5)"
+"Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges"
+" (1-5)"
 msgstr ""
-"Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges "
-"(1-5)"
+"Enter page numbers to extract. Use comma-separated numbers (1,3,5) or ranges"
+" (1-5)"
 
 #: templates/frontend/pdf_organize/extract_pages.html:37
 msgid "Enter pages to extract (e.g., 1,3,5 or 1-5)"
@@ -4590,13 +4560,11 @@ msgstr "Download your new PDF with selected pages"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Extracted "
-"pages combine into one new PDF.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Extracted pages combine into one new PDF.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Extracted "
-"pages combine into one new PDF.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Extracted pages combine into one new PDF.\n"
 "        "
 
 #: templates/frontend/pdf_organize/merge_pdf.html:52
@@ -4633,9 +4601,11 @@ msgstr "Preview & Reorder Pages"
 
 #: templates/frontend/pdf_organize/merge_pdf.html:128
 msgid ""
-"Drag and drop to reorder files. The order shown here will be the merge order."
+"Drag and drop to reorder files. The order shown here will be the merge "
+"order."
 msgstr ""
-"Drag and drop to reorder files. The order shown here will be the merge order."
+"Drag and drop to reorder files. The order shown here will be the merge "
+"order."
 
 #: templates/frontend/pdf_organize/merge_pdf.html:138
 msgid "is not a PDF file. Skipping."
@@ -4756,13 +4726,11 @@ msgstr "Download your reorganized PDF file"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Drag and "
-"drop to reorder pages visually.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Drag and drop to reorder pages visually.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Drag and "
-"drop to reorder pages visually.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Drag and drop to reorder pages visually.\n"
 "        "
 
 #: templates/frontend/pdf_organize/remove_pages.html:6
@@ -4789,13 +4757,11 @@ msgstr "Download your cleaned PDF file"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Remaining "
-"pages are preserved in original order.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Remaining pages are preserved in original order.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Remaining "
-"pages are preserved in original order.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Remaining pages are preserved in original order.\n"
 "        "
 
 #: templates/frontend/pdf_organize/split_pdf.html:6
@@ -4829,11 +4795,11 @@ msgstr "Enter page numbers like '1,3,5' or leave empty for all pages"
 
 #: templates/frontend/pdf_organize/split_pdf.html:51
 msgid ""
-"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
-"pages"
+"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all"
+" pages"
 msgstr ""
-"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all "
-"pages"
+"Enter comma-separated page numbers (e.g., 1,3,5) or leave empty to split all"
+" pages"
 
 #: templates/frontend/pdf_organize/split_pdf.html:53
 msgid "Page Ranges"
@@ -4875,13 +4841,11 @@ msgstr "Download the ZIP archive containing all split PDF files"
 #, python-format
 msgid ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Output is "
-"a ZIP archive with all split files.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Output is a ZIP archive with all split files.\n"
 "        "
 msgstr ""
 "\n"
-"          PDF files with up to %(max_pages)s pages are supported. Output is "
-"a ZIP archive with all split files.\n"
+"          PDF files with up to %(max_pages)s pages are supported. Output is a ZIP archive with all split files.\n"
 "        "
 
 #: templates/frontend/pdf_security/protect_pdf.html:6
@@ -4937,11 +4901,11 @@ msgstr ""
 
 #: templates/frontend/pdf_security/protect_pdf.html:70
 msgid ""
-"Enter a password to protect your PDF file (required) and optionally set user/"
-"owner passwords"
+"Enter a password to protect your PDF file (required) and optionally set "
+"user/owner passwords"
 msgstr ""
-"Enter a password to protect your PDF file (required) and optionally set user/"
-"owner passwords"
+"Enter a password to protect your PDF file (required) and optionally set "
+"user/owner passwords"
 
 #: templates/frontend/pdf_security/protect_pdf.html:71
 msgid "Click the protect button to encrypt your PDF with password protection"
@@ -5358,11 +5322,11 @@ msgstr "Download the generated PDF and review formatting."
 
 #: templates/frontend/premium/epub_to_pdf.html:24
 msgid ""
-"Tip: For best results, use EPUB files with clean chapter markup and standard "
-"fonts."
+"Tip: For best results, use EPUB files with clean chapter markup and standard"
+" fonts."
 msgstr ""
-"Tip: For best results, use EPUB files with clean chapter markup and standard "
-"fonts."
+"Tip: For best results, use EPUB files with clean chapter markup and standard"
+" fonts."
 
 #: templates/frontend/premium/ocr_pdf_to_word.html:22
 msgid "Premium OCR"
@@ -5418,11 +5382,11 @@ msgstr "Download the EPUB file and open it in your eReader app."
 
 #: templates/frontend/premium/pdf_to_epub.html:24
 msgid ""
-"Tip: For cleaner EPUB output, remove unnecessary pages and watermarks before "
-"conversion."
+"Tip: For cleaner EPUB output, remove unnecessary pages and watermarks before"
+" conversion."
 msgstr ""
-"Tip: For cleaner EPUB output, remove unnecessary pages and watermarks before "
-"conversion."
+"Tip: For cleaner EPUB output, remove unnecessary pages and watermarks before"
+" conversion."
 
 #: templates/frontend/premium/pdf_to_markdown.html:8
 msgid ""
@@ -5470,11 +5434,11 @@ msgstr "Premium Automation"
 
 #: templates/frontend/premium/workflows.html:27
 msgid ""
-"Save your frequent conversion setups as presets and reopen the right premium "
-"tool in one click."
+"Save your frequent conversion setups as presets and reopen the right premium"
+" tool in one click."
 msgstr ""
-"Save your frequent conversion setups as presets and reopen the right premium "
-"tool in one click."
+"Save your frequent conversion setups as presets and reopen the right premium"
+" tool in one click."
 
 #: templates/frontend/premium/workflows.html:32
 msgid "Create Workflow"
@@ -5720,7 +5684,8 @@ msgstr ""
 "Upgrade to Premium today."
 
 #: templates/frontend/pricing.html:11
-msgid "Unlimited conversions, priority processing, batch operations, and more."
+msgid ""
+"Unlimited conversions, priority processing, batch operations, and more."
 msgstr ""
 "Unlimited conversions, priority processing, batch operations, and more."
 
@@ -5911,28 +5876,22 @@ msgstr "Become Yearly Hero"
 
 #: templates/frontend/pricing.html:307
 msgid "FOUNDER'S DEAL"
-msgstr ""
-
+msgstr "FOUNDER'S DEAL"
 #: templates/frontend/pricing.html:316
-#, fuzzy
 #| msgid "Premium Hero"
 msgid "Lifetime Hero"
 msgstr "Premium Hero"
 
 #: templates/frontend/pricing.html:320
 msgid "one-time payment"
-msgstr ""
-
+msgstr "one-time payment"
 #: templates/frontend/pricing.html:321
 msgid "Pay once, premium forever"
-msgstr ""
-
+msgstr "Pay once, premium forever"
 #: templates/frontend/pricing.html:322
 msgid "Limited to first 100 customers"
-msgstr ""
-
+msgstr "Limited to first 100 customers"
 #: templates/frontend/pricing.html:330
-#, fuzzy
 #| msgid "All premium features"
 msgid "All premium features forever"
 msgstr "All premium features"
@@ -5943,16 +5902,13 @@ msgstr "Batch processing (up to 10 files)"
 
 #: templates/frontend/pricing.html:342
 msgid "No recurring charges"
-msgstr ""
-
+msgstr "No recurring charges"
 #: templates/frontend/pricing.html:348
-#, fuzzy
 #| msgid "Hero status"
 msgid "Lifetime hero status"
 msgstr "Hero status"
 
 #: templates/frontend/pricing.html:354
-#, fuzzy
 #| msgid "Become site hero"
 msgid "Become Lifetime Hero"
 msgstr "Become site hero"
@@ -6024,9 +5980,11 @@ msgstr "Why Your Support Matters"
 
 #: templates/frontend/pricing.html:438
 msgid ""
-"This project exists because of heroes like you. We're completely transparent:"
+"This project exists because of heroes like you. We're completely "
+"transparent:"
 msgstr ""
-"This project exists because of heroes like you. We're completely transparent:"
+"This project exists because of heroes like you. We're completely "
+"transparent:"
 
 #: templates/frontend/pricing.html:447
 msgid "Ad-Free Experience"
@@ -6162,13 +6120,13 @@ msgstr "Files You Upload"
 
 #: templates/frontend/privacy.html:76
 msgid ""
-"When you use our PDF tools, you may upload files for processing. These files "
-"are temporarily stored on our servers only for the duration of the "
+"When you use our PDF tools, you may upload files for processing. These files"
+" are temporarily stored on our servers only for the duration of the "
 "conversion or editing process. Files are automatically deleted immediately "
 "after processing is complete, typically within minutes."
 msgstr ""
-"When you use our PDF tools, you may upload files for processing. These files "
-"are temporarily stored on our servers only for the duration of the "
+"When you use our PDF tools, you may upload files for processing. These files"
+" are temporarily stored on our servers only for the duration of the "
 "conversion or editing process. Files are automatically deleted immediately "
 "after processing is complete, typically within minutes."
 
@@ -6416,12 +6374,12 @@ msgid "Questions About Privacy?"
 msgstr "Questions About Privacy?"
 
 #: templates/frontend/privacy.html:216
-msgid "If you have any questions about this Privacy Policy, please contact us."
+msgid ""
+"If you have any questions about this Privacy Policy, please contact us."
 msgstr ""
 "If you have any questions about this Privacy Policy, please contact us."
 
 #: templates/frontend/support.html:11
-#, fuzzy
 #| msgid "Want to Support Convertica?"
 msgid "Support Convertica"
 msgstr "Want to Support Convertica?"
@@ -6430,10 +6388,8 @@ msgstr "Want to Support Convertica?"
 msgid ""
 "If Convertica is useful to you, you can support its development with a one-"
 "time or recurring contribution on Ko-fi."
-msgstr ""
-
+msgstr "If Convertica is useful to you, you can support its development with a one-time or recurring contribution on Ko-fi."
 #: templates/frontend/support.html:16
-#, fuzzy
 #| msgid ""
 #| "Heroes on Convertica are users who purchase a Premium subscription. "
 #| "Contributions here are for support only — think of it as becoming an "
@@ -6448,41 +6404,35 @@ msgstr ""
 
 #: templates/frontend/support.html:25
 msgid "Buy me a coffee on Ko-fi"
-msgstr ""
-
+msgstr "Buy me a coffee on Ko-fi"
 #: templates/frontend/support.html:28
 msgid ""
 "Ko-fi lets you support the project with one-time or monthly contributions. "
 "No fees, no signup required for the donor."
-msgstr ""
-
+msgstr "Ko-fi lets you support the project with one-time or monthly contributions. No fees, no signup required for the donor."
 #: templates/frontend/support.html:32
-#, fuzzy
 #| msgid "Support icon"
 msgid "Support on Ko-fi"
 msgstr "Support icon"
 
 #: templates/frontend/support.html:35
 msgid "Opens Ko-fi in a new tab. Payments handled by Ko-fi, not Convertica."
-msgstr ""
-
+msgstr "Opens Ko-fi in a new tab. Payments handled by Ko-fi, not Convertica."
 #: templates/frontend/support.html:40
-#, fuzzy
 #| msgid "Premium payments are temporarily unavailable."
 msgid "Donations are temporarily unavailable"
 msgstr "Premium payments are temporarily unavailable."
 
 #: templates/frontend/support.html:42
-#, fuzzy
 #| msgid ""
-#| "Subscriptions and contributions are temporarily paused while we complete "
-#| "the business setup. The free tools remain fully available."
+#| "Subscriptions and contributions are temporarily paused while we complete the"
+#| " business setup. The free tools remain fully available."
 msgid ""
 "We're setting up our Ko-fi page. Please check back soon. The free tools "
 "remain fully available."
 msgstr ""
-"Subscriptions and contributions are temporarily paused while we complete the "
-"business setup. The free tools remain fully available."
+"Subscriptions and contributions are temporarily paused while we complete the"
+" business setup. The free tools remain fully available."
 
 #: templates/frontend/support.html:46
 msgid "Go to free tools"
@@ -6498,11 +6448,11 @@ msgstr "Welcome to Convertica. These Terms of Service (\\"
 
 #: templates/frontend/terms.html:64
 msgid ""
-"If you disagree with any part of these Terms, then you may not access or use "
-"our Services."
+"If you disagree with any part of these Terms, then you may not access or use"
+" our Services."
 msgstr ""
-"If you disagree with any part of these Terms, then you may not access or use "
-"our Services."
+"If you disagree with any part of these Terms, then you may not access or use"
+" our Services."
 
 #: templates/frontend/terms.html:70
 msgid "Acceptance of Terms"
@@ -6524,11 +6474,11 @@ msgstr "Description of Services"
 
 #: templates/frontend/terms.html:82
 msgid ""
-"Convertica provides online PDF tools and services, including but not limited "
-"to:"
+"Convertica provides online PDF tools and services, including but not limited"
+" to:"
 msgstr ""
-"Convertica provides online PDF tools and services, including but not limited "
-"to:"
+"Convertica provides online PDF tools and services, including but not limited"
+" to:"
 
 #: templates/frontend/terms.html:85
 msgid ""
@@ -6582,7 +6532,8 @@ msgstr "Upload files that infringe on intellectual property rights"
 
 #: templates/frontend/terms.html:106
 msgid "Upload files that contain illegal, offensive, or inappropriate content"
-msgstr "Upload files that contain illegal, offensive, or inappropriate content"
+msgstr ""
+"Upload files that contain illegal, offensive, or inappropriate content"
 
 #: templates/frontend/terms.html:107
 msgid "Attempt to gain unauthorized access to our systems or networks"
@@ -6645,13 +6596,13 @@ msgstr "Processing Accuracy"
 #: templates/frontend/terms.html:137
 msgid ""
 "While we strive to provide accurate conversions and processing, we cannot "
-"guarantee that all files will be processed correctly or that the output will "
-"meet your specific requirements. You are responsible for verifying the "
+"guarantee that all files will be processed correctly or that the output will"
+" meet your specific requirements. You are responsible for verifying the "
 "accuracy of processed files."
 msgstr ""
 "While we strive to provide accurate conversions and processing, we cannot "
-"guarantee that all files will be processed correctly or that the output will "
-"meet your specific requirements. You are responsible for verifying the "
+"guarantee that all files will be processed correctly or that the output will"
+" meet your specific requirements. You are responsible for verifying the "
 "accuracy of processed files."
 
 #: templates/frontend/terms.html:145
@@ -6756,12 +6707,12 @@ msgstr "Errors or inaccuracies in processed files"
 
 #: templates/frontend/terms.html:196
 msgid ""
-"Our total liability for any claims arising from or related to the use of our "
-"Services shall not exceed the amount you paid to us (if any) in the twelve "
+"Our total liability for any claims arising from or related to the use of our"
+" Services shall not exceed the amount you paid to us (if any) in the twelve "
 "months preceding the claim, or $100, whichever is greater."
 msgstr ""
-"Our total liability for any claims arising from or related to the use of our "
-"Services shall not exceed the amount you paid to us (if any) in the twelve "
+"Our total liability for any claims arising from or related to the use of our"
+" Services shall not exceed the amount you paid to us (if any) in the twelve "
 "months preceding the claim, or $100, whichever is greater."
 
 #: templates/frontend/terms.html:202
@@ -6803,13 +6754,13 @@ msgstr "Termination"
 #: templates/frontend/terms.html:220
 msgid ""
 "We reserve the right to terminate or suspend your access to our Services "
-"immediately, without prior notice or liability, for any reason, including if "
-"you breach these Terms. Upon termination, your right to use the Services "
+"immediately, without prior notice or liability, for any reason, including if"
+" you breach these Terms. Upon termination, your right to use the Services "
 "will cease immediately."
 msgstr ""
 "We reserve the right to terminate or suspend your access to our Services "
-"immediately, without prior notice or liability, for any reason, including if "
-"you breach these Terms. Upon termination, your right to use the Services "
+"immediately, without prior notice or liability, for any reason, including if"
+" you breach these Terms. Upon termination, your right to use the Services "
 "will cease immediately."
 
 #: templates/frontend/terms.html:226
@@ -6842,15 +6793,15 @@ msgstr "Governing Law"
 
 #: templates/frontend/terms.html:241
 msgid ""
-"These Terms shall be governed by and construed in accordance with applicable "
-"laws, without regard to its conflict of law provisions. Any disputes arising "
-"from these Terms or your use of our Services shall be subject to the "
-"exclusive jurisdiction of the courts in the applicable jurisdiction."
+"These Terms shall be governed by and construed in accordance with applicable"
+" laws, without regard to its conflict of law provisions. Any disputes "
+"arising from these Terms or your use of our Services shall be subject to the"
+" exclusive jurisdiction of the courts in the applicable jurisdiction."
 msgstr ""
-"These Terms shall be governed by and construed in accordance with applicable "
-"laws, without regard to its conflict of law provisions. Any disputes arising "
-"from these Terms or your use of our Services shall be subject to the "
-"exclusive jurisdiction of the courts in the applicable jurisdiction."
+"These Terms shall be governed by and construed in accordance with applicable"
+" laws, without regard to its conflict of law provisions. Any disputes "
+"arising from these Terms or your use of our Services shall be subject to the"
+" exclusive jurisdiction of the courts in the applicable jurisdiction."
 
 #: templates/frontend/terms.html:247
 msgid "Questions About These Terms?"
@@ -7161,9 +7112,9 @@ msgstr "Already have an account?"
 msgid "← Sign up with email instead"
 msgstr "← Sign up with email instead"
 
-#: templates/users/account_status.html:6 templates/users/account_status.html:21
-#: templates/users/profile.html:163 templates/users/profile.html:238
-#: templates/users/profile_edit.html:186
+#: templates/users/account_status.html:6
+#: templates/users/account_status.html:21 templates/users/profile.html:163
+#: templates/users/profile.html:238 templates/users/profile_edit.html:186
 msgid "Account Status"
 msgstr "Account Status"
 
@@ -7603,20 +7554,20 @@ msgstr "Email Not Verified"
 #, python-format
 msgid ""
 "\n"
-"                      Your account will be automatically deleted in %(days)s "
-"days if not verified.\n"
+"                      Your account will be automatically deleted in %(days)s days if not verified.\n"
 "                    "
 msgstr ""
 "\n"
-"                      Your account will be automatically deleted in %(days)s "
-"days if not verified.\n"
+"                      Your account will be automatically deleted in %(days)s days if not verified.\n"
 "                    "
 
 #: templates/users/profile.html:32
 msgid ""
-"Your account is scheduled for deletion. Please verify your email immediately!"
+"Your account is scheduled for deletion. Please verify your email "
+"immediately!"
 msgstr ""
-"Your account is scheduled for deletion. Please verify your email immediately!"
+"Your account is scheduled for deletion. Please verify your email "
+"immediately!"
 
 #: templates/users/profile.html:44
 msgid "Send verification email"
@@ -7759,12 +7710,12 @@ msgstr "By creating an account, you agree to our"
 #: utils_site/src/api/async_views.py:221
 #, python-format
 msgid ""
-"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade "
-"to Premium for %(premium_mb).0f MB limit! Upgrade now to unlock higher "
+"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade"
+" to Premium for %(premium_mb).0f MB limit! Upgrade now to unlock higher "
 "limits."
 msgstr ""
-"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade "
-"to Premium for %(premium_mb).0f MB limit! Upgrade now to unlock higher "
+"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade"
+" to Premium for %(premium_mb).0f MB limit! Upgrade now to unlock higher "
 "limits."
 
 #: utils_site/src/api/async_views.py:245 utils_site/src/api/base_views.py:214
@@ -7783,11 +7734,11 @@ msgstr "File is too small to be valid."
 #: utils_site/src/api/base_views.py:200
 #, python-format
 msgid ""
-"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade "
-"to Premium for %(premium_mb).0f MB limit."
+"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade"
+" to Premium for %(premium_mb).0f MB limit."
 msgstr ""
-"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade "
-"to Premium for %(premium_mb).0f MB limit."
+"File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade"
+" to Premium for %(premium_mb).0f MB limit."
 
 #: utils_site/src/api/base_views.py:236
 #, python-format
@@ -7802,12 +7753,12 @@ msgstr "Only %(extensions)s files are allowed."
 #: utils_site/src/api/conversion_limits.py:339
 #, python-format
 msgid ""
-"PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file "
-"into smaller parts or upgrade to Premium to process larger files with much "
+"PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file"
+" into smaller parts or upgrade to Premium to process larger files with much "
 "higher limits."
 msgstr ""
-"PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file "
-"into smaller parts or upgrade to Premium to process larger files with much "
+"PDF has %(page_count)d pages (limit: %(max_pages)d). You can split your file"
+" into smaller parts or upgrade to Premium to process larger files with much "
 "higher limits."
 
 #: utils_site/src/api/conversion_limits.py:350
@@ -7822,11 +7773,11 @@ msgstr ""
 #: utils_site/src/api/conversion_limits.py:361
 #, python-format
 msgid ""
-"PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
-"your PDF into smaller parts."
+"PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split"
+" your PDF into smaller parts."
 msgstr ""
-"PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split "
-"your PDF into smaller parts."
+"PDF has %(page_count)d pages, maximum allowed is %(max_pages)d. Please split"
+" your PDF into smaller parts."
 
 #: utils_site/src/api/conversion_limits.py:375
 msgid "PDF is password-protected. Please unlock it and try again."
@@ -7939,11 +7890,11 @@ msgstr "SEO - English"
 
 #: utils_site/src/blog/admin.py:144
 msgid ""
-"Add translations for other languages using the tabs above. Each language has "
-"its own tab with all necessary fields."
+"Add translations for other languages using the tabs above. Each language has"
+" its own tab with all necessary fields."
 msgstr ""
-"Add translations for other languages using the tabs above. Each language has "
-"its own tab with all necessary fields."
+"Add translations for other languages using the tabs above. Each language has"
+" its own tab with all necessary fields."
 
 #: utils_site/src/blog/admin.py:149 utils_site/src/blog/models.py:130
 msgid "AI Metadata"
@@ -8047,11 +7998,11 @@ msgstr "Meta Keywords (English)"
 
 #: utils_site/src/blog/models.py:132
 msgid ""
-"Additional metadata for AI agents: topics, entities, summary, related_terms, "
-"etc."
+"Additional metadata for AI agents: topics, entities, summary, related_terms,"
+" etc."
 msgstr ""
-"Additional metadata for AI agents: topics, entities, summary, related_terms, "
-"etc."
+"Additional metadata for AI agents: topics, entities, summary, related_terms,"
+" etc."
 
 #: utils_site/src/blog/models.py:143
 msgid "Category"
@@ -8091,7 +8042,6 @@ msgid "Article"
 msgstr "Article"
 
 #: utils_site/src/blog/views.py:149
-#, fuzzy
 #| msgid ""
 #| "Free online PDF tools: convert, edit, merge, split, compress and secure "
 #| "PDFs. No registration required."
@@ -8381,7 +8331,8 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:90
 msgid "For very large eBooks, split archives by volume for faster processing."
-msgstr "For very large eBooks, split archives by volume for faster processing."
+msgstr ""
+"For very large eBooks, split archives by volume for faster processing."
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:93
 msgid "Tips for Better EPUB to PDF Output"
@@ -8393,21 +8344,21 @@ msgstr "Convert EPUB to PDF with chapter-aware formatting"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:98
 msgid ""
-"<p><strong>EPUB to PDF</strong> is ideal when you need printable, shareable, "
-"and archive-friendly versions of eBooks. The converter keeps chapter order "
-"and core text structure so the output remains comfortable to read offline.</"
-"p><p>Premium processing is tuned for larger eBook inputs and longer "
-"documents, making it suitable for manuals, educational content, and internal "
-"documentation.</p><p>For best quality, upload EPUB files with clean markup, "
-"consistent heading levels, and embedded fonts.</p>"
+"<p><strong>EPUB to PDF</strong> is ideal when you need printable, shareable,"
+" and archive-friendly versions of eBooks. The converter keeps chapter order "
+"and core text structure so the output remains comfortable to read "
+"offline.</p><p>Premium processing is tuned for larger eBook inputs and "
+"longer documents, making it suitable for manuals, educational content, and "
+"internal documentation.</p><p>For best quality, upload EPUB files with clean"
+" markup, consistent heading levels, and embedded fonts.</p>"
 msgstr ""
-"<p><strong>EPUB to PDF</strong> is ideal when you need printable, shareable, "
-"and archive-friendly versions of eBooks. The converter keeps chapter order "
-"and core text structure so the output remains comfortable to read offline.</"
-"p><p>Premium processing is tuned for larger eBook inputs and longer "
-"documents, making it suitable for manuals, educational content, and internal "
-"documentation.</p><p>For best quality, upload EPUB files with clean markup, "
-"consistent heading levels, and embedded fonts.</p>"
+"<p><strong>EPUB to PDF</strong> is ideal when you need printable, shareable,"
+" and archive-friendly versions of eBooks. The converter keeps chapter order "
+"and core text structure so the output remains comfortable to read "
+"offline.</p><p>Premium processing is tuned for larger eBook inputs and "
+"longer documents, making it suitable for manuals, educational content, and "
+"internal documentation.</p><p>For best quality, upload EPUB files with clean"
+" markup, consistent heading levels, and embedded fonts.</p>"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:115
 msgid "PDF to EPUB Converter (Premium) - Convertica"
@@ -8439,7 +8390,8 @@ msgstr "Reader-friendly reflow"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:142
 msgid "Transforms fixed PDF pages into EPUB text flow optimized for eReaders."
-msgstr "Transforms fixed PDF pages into EPUB text flow optimized for eReaders."
+msgstr ""
+"Transforms fixed PDF pages into EPUB text flow optimized for eReaders."
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:148
 msgid "Preserved structure"
@@ -8455,9 +8407,11 @@ msgstr "Prepared for long reads"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:158
 msgid ""
-"Good fit for books, reports, and archives you want to read on mobile devices."
+"Good fit for books, reports, and archives you want to read on mobile "
+"devices."
 msgstr ""
-"Good fit for books, reports, and archives you want to read on mobile devices."
+"Good fit for books, reports, and archives you want to read on mobile "
+"devices."
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:162
 msgid "Why use PDF to EPUB in Premium?"
@@ -8512,7 +8466,8 @@ msgid "Remove decorative pages and heavy watermarks before conversion."
 msgstr "Remove decorative pages and heavy watermarks before conversion."
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:188
-msgid "Keep heading hierarchy clear in source PDFs to improve EPUB navigation."
+msgid ""
+"Keep heading hierarchy clear in source PDFs to improve EPUB navigation."
 msgstr ""
 "Keep heading hierarchy clear in source PDFs to improve EPUB navigation."
 
@@ -8532,17 +8487,17 @@ msgstr "Convert PDF to EPUB for eReader-ready publishing"
 msgid ""
 "<p><strong>PDF to EPUB</strong> helps convert static page layouts into "
 "flexible, reader-friendly eBook format. The output is easier to consume on "
-"phones, tablets, and dedicated eReaders.</p><p>Premium conversion focuses on "
-"preserving headings and paragraph logic so navigation remains predictable "
-"across reading apps.</p><p>For the cleanest EPUB result, use text-based PDFs "
-"or run OCR first on scanned files.</p>"
+"phones, tablets, and dedicated eReaders.</p><p>Premium conversion focuses on"
+" preserving headings and paragraph logic so navigation remains predictable "
+"across reading apps.</p><p>For the cleanest EPUB result, use text-based PDFs"
+" or run OCR first on scanned files.</p>"
 msgstr ""
 "<p><strong>PDF to EPUB</strong> helps convert static page layouts into "
 "flexible, reader-friendly eBook format. The output is easier to consume on "
-"phones, tablets, and dedicated eReaders.</p><p>Premium conversion focuses on "
-"preserving headings and paragraph logic so navigation remains predictable "
-"across reading apps.</p><p>For the cleanest EPUB result, use text-based PDFs "
-"or run OCR first on scanned files.</p>"
+"phones, tablets, and dedicated eReaders.</p><p>Premium conversion focuses on"
+" preserving headings and paragraph logic so navigation remains predictable "
+"across reading apps.</p><p>For the cleanest EPUB result, use text-based PDFs"
+" or run OCR first on scanned files.</p>"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:211
 msgid "PDF to Markdown Converter (Premium) - Convertica"
@@ -8550,11 +8505,11 @@ msgstr "PDF to Markdown Converter (Premium) - Convertica"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:213
 msgid ""
-"Convert PDF documents to Markdown with preserved heading structure and table "
-"formatting. Ideal for docs, notes, and knowledge bases."
+"Convert PDF documents to Markdown with preserved heading structure and table"
+" formatting. Ideal for docs, notes, and knowledge bases."
 msgstr ""
-"Convert PDF documents to Markdown with preserved heading structure and table "
-"formatting. Ideal for docs, notes, and knowledge bases."
+"Convert PDF documents to Markdown with preserved heading structure and table"
+" formatting. Ideal for docs, notes, and knowledge bases."
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:221
 msgid "Extract clean Markdown with heading hierarchy and table blocks"
@@ -8574,9 +8529,11 @@ msgstr "Heading hierarchy extraction"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:240
 msgid ""
-"Maps visual heading levels into Markdown syntax for clean document structure."
+"Maps visual heading levels into Markdown syntax for clean document "
+"structure."
 msgstr ""
-"Maps visual heading levels into Markdown syntax for clean document structure."
+"Maps visual heading levels into Markdown syntax for clean document "
+"structure."
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:246
 msgid "Table-aware export"
@@ -8592,7 +8549,8 @@ msgstr "Docs and knowledge base ready"
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:256
 msgid "Useful for wikis, README files, product docs, and migration pipelines."
-msgstr "Useful for wikis, README files, product docs, and migration pipelines."
+msgstr ""
+"Useful for wikis, README files, product docs, and migration pipelines."
 
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:260
 msgid "Why use PDF to Markdown in Premium?"
@@ -8667,16 +8625,16 @@ msgstr "Convert PDF to Markdown with heading and table structure"
 #: utils_site/src/frontend/tool_configs/epub_and_other.py:299
 msgid ""
 "<p><strong>PDF to Markdown</strong> is useful when you need editable plain-"
-"text documentation from PDF sources. It helps transform reports, guides, and "
-"manuals into version-control friendly files.</p><p>Premium mode improves "
+"text documentation from PDF sources. It helps transform reports, guides, and"
+" manuals into version-control friendly files.</p><p>Premium mode improves "
 "structure recovery by detecting headings and converting supported tables "
 "into Markdown format for downstream editing.</p><p>This workflow is "
 "especially practical for documentation teams moving content from PDFs into "
 "internal wikis and repositories.</p>"
 msgstr ""
 "<p><strong>PDF to Markdown</strong> is useful when you need editable plain-"
-"text documentation from PDF sources. It helps transform reports, guides, and "
-"manuals into version-control friendly files.</p><p>Premium mode improves "
+"text documentation from PDF sources. It helps transform reports, guides, and"
+" manuals into version-control friendly files.</p><p>Premium mode improves "
 "structure recovery by detecting headings and converting supported tables "
 "into Markdown format for downstream editing.</p><p>This workflow is "
 "especially practical for documentation teams moving content from PDFs into "
@@ -8811,11 +8769,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:98
 msgid ""
-"For thumbnails and previews, a quality of 70-75 is usually indistinguishable "
-"from the original."
+"For thumbnails and previews, a quality of 70-75 is usually indistinguishable"
+" from the original."
 msgstr ""
-"For thumbnails and previews, a quality of 70-75 is usually indistinguishable "
-"from the original."
+"For thumbnails and previews, a quality of 70-75 is usually indistinguishable"
+" from the original."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:101
 msgid "Tips for Image Optimization"
@@ -8960,17 +8918,19 @@ msgstr "Image Conversion FAQ"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:202
 msgid ""
-"Convert PNG to WebP for the best balance of quality and file size on the web."
+"Convert PNG to WebP for the best balance of quality and file size on the "
+"web."
 msgstr ""
-"Convert PNG to WebP for the best balance of quality and file size on the web."
+"Convert PNG to WebP for the best balance of quality and file size on the "
+"web."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:205
 msgid ""
-"Use PNG output when transparency must be preserved — it is the only lossless "
-"format that supports it (besides WebP)."
+"Use PNG output when transparency must be preserved — it is the only lossless"
+" format that supports it (besides WebP)."
 msgstr ""
-"Use PNG output when transparency must be preserved — it is the only lossless "
-"format that supports it (besides WebP)."
+"Use PNG output when transparency must be preserved — it is the only lossless"
+" format that supports it (besides WebP)."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:208
 msgid ""
@@ -9015,12 +8975,12 @@ msgstr "PDF to Word Converter Online Free - No Registration | Convertica"
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:13
 msgid ""
 "Convert PDF to Word online free without losing formatting. Preserve tables, "
-"images & fonts. No registration, no watermark. Works on Windows, Mac, Linux, "
-"iOS, Android. Try now!"
+"images & fonts. No registration, no watermark. Works on Windows, Mac, Linux,"
+" iOS, Android. Try now!"
 msgstr ""
 "Convert PDF to Word online free without losing formatting. Preserve tables, "
-"images & fonts. No registration, no watermark. Works on Windows, Mac, Linux, "
-"iOS, Android. Try now!"
+"images & fonts. No registration, no watermark. Works on Windows, Mac, Linux,"
+" iOS, Android. Try now!"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:44
 msgid "Convert your PDF documents to editable Word format in seconds"
@@ -9074,15 +9034,15 @@ msgstr "Can I convert a scanned PDF to Word?"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:95
 msgid ""
-"Yes! Premium users can enable OCR (Optical Character Recognition) to convert "
-"scanned PDFs and image-based documents to editable Word format. OCR supports "
-"15+ languages including English, Russian, German, French, Spanish, Chinese, "
-"Japanese, and Arabic for accurate text recognition."
+"Yes! Premium users can enable OCR (Optical Character Recognition) to convert"
+" scanned PDFs and image-based documents to editable Word format. OCR "
+"supports 15+ languages including English, Russian, German, French, Spanish, "
+"Chinese, Japanese, and Arabic for accurate text recognition."
 msgstr ""
-"Yes! Premium users can enable OCR (Optical Character Recognition) to convert "
-"scanned PDFs and image-based documents to editable Word format. OCR supports "
-"15+ languages including English, Russian, German, French, Spanish, Chinese, "
-"Japanese, and Arabic for accurate text recognition."
+"Yes! Premium users can enable OCR (Optical Character Recognition) to convert"
+" scanned PDFs and image-based documents to editable Word format. OCR "
+"supports 15+ languages including English, Russian, German, French, Spanish, "
+"Chinese, Japanese, and Arabic for accurate text recognition."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:102
 msgid "Will my tables and formatting be preserved?"
@@ -9091,13 +9051,13 @@ msgstr "Will my tables and formatting be preserved?"
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:104
 msgid ""
 "Yes, our PDF to Word converter preserves tables, images, fonts, headers, "
-"footers, and complex layouts. The converted Word document will look as close "
-"to the original PDF as possible, maintaining text alignment and paragraph "
+"footers, and complex layouts. The converted Word document will look as close"
+" to the original PDF as possible, maintaining text alignment and paragraph "
 "spacing."
 msgstr ""
 "Yes, our PDF to Word converter preserves tables, images, fonts, headers, "
-"footers, and complex layouts. The converted Word document will look as close "
-"to the original PDF as possible, maintaining text alignment and paragraph "
+"footers, and complex layouts. The converted Word document will look as close"
+" to the original PDF as possible, maintaining text alignment and paragraph "
 "spacing."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:111
@@ -9188,29 +9148,29 @@ msgstr "Convert PDF to Word Online - Fast & Accurate"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:154
 msgid ""
-"<p>Need to edit a PDF document? Our <strong>free PDF to Word converter</"
-"strong> transforms your PDF files into fully editable Word documents (.docx) "
-"while preserving the original formatting, including tables, images, fonts, "
-"and layout.</p><p>Whether you're converting a <strong>resume, contract, "
-"invoice, or academic paper</strong>, Convertica ensures high-quality PDF to "
-"DOCX conversion. Unlike other tools, we maintain complex formatting elements "
-"like multi-column layouts, headers, footers, and embedded graphics.</"
-"p><p><strong>For scanned PDFs:</strong> Premium users can enable OCR "
-"(Optical Character Recognition) to extract text from image-based PDFs. Our "
-"OCR supports 15+ languages including English, Russian, German, French, "
-"Spanish, Chinese, Japanese, and Arabic.</p>"
+"<p>Need to edit a PDF document? Our <strong>free PDF to Word "
+"converter</strong> transforms your PDF files into fully editable Word "
+"documents (.docx) while preserving the original formatting, including "
+"tables, images, fonts, and layout.</p><p>Whether you're converting a "
+"<strong>resume, contract, invoice, or academic paper</strong>, Convertica "
+"ensures high-quality PDF to DOCX conversion. Unlike other tools, we maintain"
+" complex formatting elements like multi-column layouts, headers, footers, "
+"and embedded graphics.</p><p><strong>For scanned PDFs:</strong> Premium "
+"users can enable OCR (Optical Character Recognition) to extract text from "
+"image-based PDFs. Our OCR supports 15+ languages including English, Russian,"
+" German, French, Spanish, Chinese, Japanese, and Arabic.</p>"
 msgstr ""
-"<p>Need to edit a PDF document? Our <strong>free PDF to Word converter</"
-"strong> transforms your PDF files into fully editable Word documents (.docx) "
-"while preserving the original formatting, including tables, images, fonts, "
-"and layout.</p><p>Whether you're converting a <strong>resume, contract, "
-"invoice, or academic paper</strong>, Convertica ensures high-quality PDF to "
-"DOCX conversion. Unlike other tools, we maintain complex formatting elements "
-"like multi-column layouts, headers, footers, and embedded graphics.</"
-"p><p><strong>For scanned PDFs:</strong> Premium users can enable OCR "
-"(Optical Character Recognition) to extract text from image-based PDFs. Our "
-"OCR supports 15+ languages including English, Russian, German, French, "
-"Spanish, Chinese, Japanese, and Arabic.</p>"
+"<p>Need to edit a PDF document? Our <strong>free PDF to Word "
+"converter</strong> transforms your PDF files into fully editable Word "
+"documents (.docx) while preserving the original formatting, including "
+"tables, images, fonts, and layout.</p><p>Whether you're converting a "
+"<strong>resume, contract, invoice, or academic paper</strong>, Convertica "
+"ensures high-quality PDF to DOCX conversion. Unlike other tools, we maintain"
+" complex formatting elements like multi-column layouts, headers, footers, "
+"and embedded graphics.</p><p><strong>For scanned PDFs:</strong> Premium "
+"users can enable OCR (Optical Character Recognition) to extract text from "
+"image-based PDFs. Our OCR supports 15+ languages including English, Russian,"
+" German, French, Spanish, Chinese, Japanese, and Arabic.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:173
 msgid "Word to PDF Converter Free Online - Convert DOCX to PDF | Convertica"
@@ -9219,12 +9179,12 @@ msgstr "Word to PDF Converter Free Online - Convert DOCX to PDF | Convertica"
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:176
 msgid ""
 "Convert Word to PDF online free without losing formatting. Preserve fonts, "
-"images & layout. No registration, no watermark. Works on all devices. Fast & "
-"secure conversion."
+"images & layout. No registration, no watermark. Works on all devices. Fast &"
+" secure conversion."
 msgstr ""
 "Convert Word to PDF online free without losing formatting. Preserve fonts, "
-"images & layout. No registration, no watermark. Works on all devices. Fast & "
-"secure conversion."
+"images & layout. No registration, no watermark. Works on all devices. Fast &"
+" secure conversion."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:203
 msgid "Convert your Word documents to PDF format in seconds"
@@ -9277,7 +9237,8 @@ msgid "Universal Format"
 msgstr "Universal Format"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:244
-msgid "PDF works everywhere - share documents that look the same on any device"
+msgid ""
+"PDF works everywhere - share documents that look the same on any device"
 msgstr ""
 "PDF works everywhere - share documents that look the same on any device"
 
@@ -9305,13 +9266,13 @@ msgstr "Can I convert multiple Word files at once?"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:261
 msgid ""
-"Premium users can use batch conversion to convert multiple Word documents to "
-"PDF in one go. Simply select all your files and convert them simultaneously. "
-"Free users can convert files one at a time."
+"Premium users can use batch conversion to convert multiple Word documents to"
+" PDF in one go. Simply select all your files and convert them "
+"simultaneously. Free users can convert files one at a time."
 msgstr ""
-"Premium users can use batch conversion to convert multiple Word documents to "
-"PDF in one go. Simply select all your files and convert them simultaneously. "
-"Free users can convert files one at a time."
+"Premium users can use batch conversion to convert multiple Word documents to"
+" PDF in one go. Simply select all your files and convert them "
+"simultaneously. Free users can convert files one at a time."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:267
 msgid "Is the conversion free and without watermark?"
@@ -9350,12 +9311,12 @@ msgstr "Can I convert Word to PDF on my phone?"
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:285
 msgid ""
 "Yes! Convertica works on all mobile devices including iPhone, iPad, and "
-"Android. Open our website in your mobile browser, upload your Word document, "
-"and download the PDF. No app installation needed."
+"Android. Open our website in your mobile browser, upload your Word document,"
+" and download the PDF. No app installation needed."
 msgstr ""
 "Yes! Convertica works on all mobile devices including iPhone, iPad, and "
-"Android. Open our website in your mobile browser, upload your Word document, "
-"and download the PDF. No app installation needed."
+"Android. Open our website in your mobile browser, upload your Word document,"
+" and download the PDF. No app installation needed."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:291
 msgid "Word to PDF Converter - FAQ"
@@ -9377,9 +9338,11 @@ msgstr "Large documents with many images may take longer to convert"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:299
 msgid ""
-"If hyperlinks don't work in PDF, ensure they were active in the Word document"
+"If hyperlinks don't work in PDF, ensure they were active in the Word "
+"document"
 msgstr ""
-"If hyperlinks don't work in PDF, ensure they were active in the Word document"
+"If hyperlinks don't work in PDF, ensure they were active in the Word "
+"document"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:301
 msgid "Use 'Print Layout' view in Word to preview how the PDF will look"
@@ -9401,11 +9364,11 @@ msgid ""
 "fonts, images, and layout.</p><p>PDF is the universal standard for document "
 "sharing - your <strong>resume, contract, report, or thesis</strong> will "
 "look exactly the same whether opened on Windows, Mac, Linux, or mobile "
-"devices. Recipients don't need Microsoft Word to view your documents.</"
-"p><p><strong>Perfect for professionals:</strong> Convert Word documents to "
-"PDF for email attachments, online submissions, printing, and archiving. All "
-"hyperlinks, bookmarks, and table of contents are preserved in the converted "
-"PDF.</p>"
+"devices. Recipients don't need Microsoft Word to view your "
+"documents.</p><p><strong>Perfect for professionals:</strong> Convert Word "
+"documents to PDF for email attachments, online submissions, printing, and "
+"archiving. All hyperlinks, bookmarks, and table of contents are preserved in"
+" the converted PDF.</p>"
 msgstr ""
 "<p>Need to share a Word document that looks perfect on any device? Our "
 "<strong>free Word to PDF converter</strong> transforms your DOCX and DOC "
@@ -9413,11 +9376,11 @@ msgstr ""
 "fonts, images, and layout.</p><p>PDF is the universal standard for document "
 "sharing - your <strong>resume, contract, report, or thesis</strong> will "
 "look exactly the same whether opened on Windows, Mac, Linux, or mobile "
-"devices. Recipients don't need Microsoft Word to view your documents.</"
-"p><p><strong>Perfect for professionals:</strong> Convert Word documents to "
-"PDF for email attachments, online submissions, printing, and archiving. All "
-"hyperlinks, bookmarks, and table of contents are preserved in the converted "
-"PDF.</p>"
+"devices. Recipients don't need Microsoft Word to view your "
+"documents.</p><p><strong>Perfect for professionals:</strong> Convert Word "
+"documents to PDF for email attachments, online submissions, printing, and "
+"archiving. All hyperlinks, bookmarks, and table of contents are preserved in"
+" the converted PDF.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:325
 msgid "PDF to JPG Online Free - Convert PDF to Images | Convertica"
@@ -9487,12 +9450,12 @@ msgstr "How do I convert a PDF to JPG?"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:412
 msgid ""
-"Simply upload your PDF file, click the Convert button, and download your JPG "
-"images. All pages will be converted to separate high-quality JPG files and "
+"Simply upload your PDF file, click the Convert button, and download your JPG"
+" images. All pages will be converted to separate high-quality JPG files and "
 "packaged in a ZIP archive."
 msgstr ""
-"Simply upload your PDF file, click the Convert button, and download your JPG "
-"images. All pages will be converted to separate high-quality JPG files and "
+"Simply upload your PDF file, click the Convert button, and download your JPG"
+" images. All pages will be converted to separate high-quality JPG files and "
 "packaged in a ZIP archive."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:417
@@ -9528,12 +9491,12 @@ msgstr "Is there a limit on PDF file size?"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:433
 msgid ""
-"Free users can convert PDFs with up to a certain number of pages. For larger "
-"files, you can split them into smaller parts or upgrade to Premium for "
+"Free users can convert PDFs with up to a certain number of pages. For larger"
+" files, you can split them into smaller parts or upgrade to Premium for "
 "higher limits."
 msgstr ""
-"Free users can convert PDFs with up to a certain number of pages. For larger "
-"files, you can split them into smaller parts or upgrade to Premium for "
+"Free users can convert PDFs with up to a certain number of pages. For larger"
+" files, you can split them into smaller parts or upgrade to Premium for "
 "higher limits."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:438
@@ -9563,7 +9526,8 @@ msgid "Convert vector-based PDFs for crisp text and graphics"
 msgstr "Convert vector-based PDFs for crisp text and graphics"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:450
-msgid "For web use, JPG format offers good compression with acceptable quality"
+msgid ""
+"For web use, JPG format offers good compression with acceptable quality"
 msgstr ""
 "For web use, JPG format offers good compression with acceptable quality"
 
@@ -9580,22 +9544,22 @@ msgid ""
 "<p>Our free PDF to JPG converter transforms your PDF documents into high-"
 "quality JPG images with just a few clicks. Whether you need images for "
 "presentations, social media, websites, or printing, our tool delivers "
-"crystal-clear results.</p><p>The converter preserves the original quality of "
-"your PDF content, producing sharp images suitable for any purpose. Each page "
-"of your PDF becomes a separate JPG file, making it easy to use individual "
-"pages wherever you need them.</p><p>Perfect for extracting images from PDF "
-"documents, creating thumbnails, preparing content for social media, or "
-"converting PDF presentations into image slides.</p>"
+"crystal-clear results.</p><p>The converter preserves the original quality of"
+" your PDF content, producing sharp images suitable for any purpose. Each "
+"page of your PDF becomes a separate JPG file, making it easy to use "
+"individual pages wherever you need them.</p><p>Perfect for extracting images"
+" from PDF documents, creating thumbnails, preparing content for social "
+"media, or converting PDF presentations into image slides.</p>"
 msgstr ""
 "<p>Our free PDF to JPG converter transforms your PDF documents into high-"
 "quality JPG images with just a few clicks. Whether you need images for "
 "presentations, social media, websites, or printing, our tool delivers "
-"crystal-clear results.</p><p>The converter preserves the original quality of "
-"your PDF content, producing sharp images suitable for any purpose. Each page "
-"of your PDF becomes a separate JPG file, making it easy to use individual "
-"pages wherever you need them.</p><p>Perfect for extracting images from PDF "
-"documents, creating thumbnails, preparing content for social media, or "
-"converting PDF presentations into image slides.</p>"
+"crystal-clear results.</p><p>The converter preserves the original quality of"
+" your PDF content, producing sharp images suitable for any purpose. Each "
+"page of your PDF becomes a separate JPG file, making it easy to use "
+"individual pages wherever you need them.</p><p>Perfect for extracting images"
+" from PDF documents, creating thumbnails, preparing content for social "
+"media, or converting PDF presentations into image slides.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:473
 msgid "JPG to PDF Online Free - Convert Images to PDF | Convertica"
@@ -9628,7 +9592,8 @@ msgid "No Quality Loss"
 msgstr "No Quality Loss"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:520
-msgid "Convert JPG to PDF without compression - your images stay crystal clear"
+msgid ""
+"Convert JPG to PDF without compression - your images stay crystal clear"
 msgstr ""
 "Convert JPG to PDF without compression - your images stay crystal clear"
 
@@ -9638,7 +9603,8 @@ msgstr "Multiple Image Support"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:528
 msgid "Upload multiple JPG images and combine them into a single PDF document"
-msgstr "Upload multiple JPG images and combine them into a single PDF document"
+msgstr ""
+"Upload multiple JPG images and combine them into a single PDF document"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:536
 msgid "PDF works everywhere - share documents easily with anyone"
@@ -9784,12 +9750,12 @@ msgstr "Accurate Table Extraction"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:664
 msgid ""
-"Our advanced AI-powered engine accurately extracts tables from PDF documents "
-"and converts them to editable Excel spreadsheets with preserved cell "
+"Our advanced AI-powered engine accurately extracts tables from PDF documents"
+" and converts them to editable Excel spreadsheets with preserved cell "
 "structure and formatting."
 msgstr ""
-"Our advanced AI-powered engine accurately extracts tables from PDF documents "
-"and converts them to editable Excel spreadsheets with preserved cell "
+"Our advanced AI-powered engine accurately extracts tables from PDF documents"
+" and converts them to editable Excel spreadsheets with preserved cell "
 "structure and formatting."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:672
@@ -9822,11 +9788,11 @@ msgstr "Completely Free Service"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:692
 msgid ""
-"Convert PDF to Excel completely free without watermarks, email registration, "
-"or hidden fees. Perfect for invoices, reports, and financial data."
+"Convert PDF to Excel completely free without watermarks, email registration,"
+" or hidden fees. Perfect for invoices, reports, and financial data."
 msgstr ""
-"Convert PDF to Excel completely free without watermarks, email registration, "
-"or hidden fees. Perfect for invoices, reports, and financial data."
+"Convert PDF to Excel completely free without watermarks, email registration,"
+" or hidden fees. Perfect for invoices, reports, and financial data."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:699
 msgid "How do I convert a PDF with tables to Excel?"
@@ -9863,12 +9829,12 @@ msgstr "Can I convert scanned PDF documents to Excel?"
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:719
 msgid ""
 "Our converter works best with text-based PDF documents. For scanned PDFs, "
-"the quality of extraction depends on the scan quality. For best results, use "
-"PDFs that were created digitally or have clear, high-resolution scans."
+"the quality of extraction depends on the scan quality. For best results, use"
+" PDFs that were created digitally or have clear, high-resolution scans."
 msgstr ""
 "Our converter works best with text-based PDF documents. For scanned PDFs, "
-"the quality of extraction depends on the scan quality. For best results, use "
-"PDFs that were created digitally or have clear, high-resolution scans."
+"the quality of extraction depends on the scan quality. For best results, use"
+" PDFs that were created digitally or have clear, high-resolution scans."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:726
 msgid "Is there a limit on the number of PDF pages I can convert?"
@@ -9902,27 +9868,27 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:745
 msgid ""
-"For best results, use PDFs with clearly defined table borders and consistent "
-"formatting."
+"For best results, use PDFs with clearly defined table borders and consistent"
+" formatting."
 msgstr ""
-"For best results, use PDFs with clearly defined table borders and consistent "
-"formatting."
+"For best results, use PDFs with clearly defined table borders and consistent"
+" formatting."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:748
 msgid ""
-"If your PDF has multiple tables, they will each be placed on separate sheets "
-"in Excel."
+"If your PDF has multiple tables, they will each be placed on separate sheets"
+" in Excel."
 msgstr ""
-"If your PDF has multiple tables, they will each be placed on separate sheets "
-"in Excel."
+"If your PDF has multiple tables, they will each be placed on separate sheets"
+" in Excel."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:751
 msgid ""
-"Check the converted Excel file for any cells that may need manual adjustment "
-"after conversion."
+"Check the converted Excel file for any cells that may need manual adjustment"
+" after conversion."
 msgstr ""
-"Check the converted Excel file for any cells that may need manual adjustment "
-"after conversion."
+"Check the converted Excel file for any cells that may need manual adjustment"
+" after conversion."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:754
 msgid ""
@@ -9949,30 +9915,32 @@ msgid ""
 "<p>Converting PDF documents to Excel spreadsheets is essential for modern "
 "business workflows. Whether you're extracting financial data from invoices, "
 "analyzing reports, or importing data from PDF tables into your accounting "
-"software, our PDF to Excel converter makes the process simple and accurate.</"
-"p><p>Our advanced conversion technology uses intelligent table detection to "
-"identify rows, columns, and cell boundaries in your PDF documents. The "
-"extracted data is then formatted as a proper Excel spreadsheet, ready for "
-"editing, calculations, and analysis. This eliminates hours of manual data "
-"entry and reduces the risk of transcription errors.</p><p>Perfect for "
-"accountants, financial analysts, data entry professionals, and anyone who "
-"needs to work with data locked in PDF format. Convert bank statements, "
-"invoices, purchase orders, inventory lists, and any other tabular PDF "
-"documents to editable Excel files in just a few clicks.</p>"
+"software, our PDF to Excel converter makes the process simple and "
+"accurate.</p><p>Our advanced conversion technology uses intelligent table "
+"detection to identify rows, columns, and cell boundaries in your PDF "
+"documents. The extracted data is then formatted as a proper Excel "
+"spreadsheet, ready for editing, calculations, and analysis. This eliminates "
+"hours of manual data entry and reduces the risk of transcription "
+"errors.</p><p>Perfect for accountants, financial analysts, data entry "
+"professionals, and anyone who needs to work with data locked in PDF format. "
+"Convert bank statements, invoices, purchase orders, inventory lists, and any"
+" other tabular PDF documents to editable Excel files in just a few "
+"clicks.</p>"
 msgstr ""
 "<p>Converting PDF documents to Excel spreadsheets is essential for modern "
 "business workflows. Whether you're extracting financial data from invoices, "
 "analyzing reports, or importing data from PDF tables into your accounting "
-"software, our PDF to Excel converter makes the process simple and accurate.</"
-"p><p>Our advanced conversion technology uses intelligent table detection to "
-"identify rows, columns, and cell boundaries in your PDF documents. The "
-"extracted data is then formatted as a proper Excel spreadsheet, ready for "
-"editing, calculations, and analysis. This eliminates hours of manual data "
-"entry and reduces the risk of transcription errors.</p><p>Perfect for "
-"accountants, financial analysts, data entry professionals, and anyone who "
-"needs to work with data locked in PDF format. Convert bank statements, "
-"invoices, purchase orders, inventory lists, and any other tabular PDF "
-"documents to editable Excel files in just a few clicks.</p>"
+"software, our PDF to Excel converter makes the process simple and "
+"accurate.</p><p>Our advanced conversion technology uses intelligent table "
+"detection to identify rows, columns, and cell boundaries in your PDF "
+"documents. The extracted data is then formatted as a proper Excel "
+"spreadsheet, ready for editing, calculations, and analysis. This eliminates "
+"hours of manual data entry and reduces the risk of transcription "
+"errors.</p><p>Perfect for accountants, financial analysts, data entry "
+"professionals, and anyone who needs to work with data locked in PDF format. "
+"Convert bank statements, invoices, purchase orders, inventory lists, and any"
+" other tabular PDF documents to editable Excel files in just a few "
+"clicks.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:783
 msgid "Excel to PDF - Convertica"
@@ -10055,12 +10023,12 @@ msgstr "How do I convert Excel to PDF online?"
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:856
 msgid ""
 "Simply upload your Excel file (XLS or XLSX) using the button above, then "
-"click 'Convert to PDF'. Your spreadsheet will be converted to a high-quality "
-"PDF file that you can download immediately."
+"click 'Convert to PDF'. Your spreadsheet will be converted to a high-quality"
+" PDF file that you can download immediately."
 msgstr ""
 "Simply upload your Excel file (XLS or XLSX) using the button above, then "
-"click 'Convert to PDF'. Your spreadsheet will be converted to a high-quality "
-"PDF file that you can download immediately."
+"click 'Convert to PDF'. Your spreadsheet will be converted to a high-quality"
+" PDF file that you can download immediately."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:862
 msgid "Will my Excel formatting be preserved in the PDF?"
@@ -10096,11 +10064,11 @@ msgstr "What Excel formats are supported?"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:880
 msgid ""
-"We support both XLS (Excel 97-2003) and XLSX (Excel 2007 and later) formats. "
-"Simply upload your file and it will be converted to PDF automatically."
+"We support both XLS (Excel 97-2003) and XLSX (Excel 2007 and later) formats."
+" Simply upload your file and it will be converted to PDF automatically."
 msgstr ""
-"We support both XLS (Excel 97-2003) and XLSX (Excel 2007 and later) formats. "
-"Simply upload your file and it will be converted to PDF automatically."
+"We support both XLS (Excel 97-2003) and XLSX (Excel 2007 and later) formats."
+" Simply upload your file and it will be converted to PDF automatically."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:886
 msgid "Is there a file size limit for Excel to PDF conversion?"
@@ -10118,11 +10086,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:897
 msgid ""
-"Set your print area in Excel before converting to control which cells appear "
-"in the PDF."
+"Set your print area in Excel before converting to control which cells appear"
+" in the PDF."
 msgstr ""
-"Set your print area in Excel before converting to control which cells appear "
-"in the PDF."
+"Set your print area in Excel before converting to control which cells appear"
+" in the PDF."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:900
 msgid ""
@@ -10146,9 +10114,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:909
 msgid ""
-"Check print preview in Excel to see how your PDF will look before converting."
+"Check print preview in Excel to see how your PDF will look before "
+"converting."
 msgstr ""
-"Check print preview in Excel to see how your PDF will look before converting."
+"Check print preview in Excel to see how your PDF will look before "
+"converting."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:912
 msgid "Convert Excel Spreadsheets to Professional PDFs"
@@ -10163,11 +10133,11 @@ msgid ""
 "converter handles complex spreadsheets with ease, preserving all formatting "
 "elements including conditional formatting, data bars, charts, and images. "
 "Whether you're converting a simple data table or a complex financial model "
-"with multiple worksheets, the output PDF maintains professional quality.</"
-"p><p>Perfect for accountants sharing reports with clients, businesses "
-"sending invoices, analysts distributing data summaries, and anyone who needs "
-"to convert Excel files to a universal, non-editable format for secure "
-"distribution.</p>"
+"with multiple worksheets, the output PDF maintains professional "
+"quality.</p><p>Perfect for accountants sharing reports with clients, "
+"businesses sending invoices, analysts distributing data summaries, and "
+"anyone who needs to convert Excel files to a universal, non-editable format "
+"for secure distribution.</p>"
 msgstr ""
 "<p>Converting Excel spreadsheets to PDF format is essential for sharing "
 "financial reports, invoices, and business documents. PDF ensures your "
@@ -10176,11 +10146,11 @@ msgstr ""
 "converter handles complex spreadsheets with ease, preserving all formatting "
 "elements including conditional formatting, data bars, charts, and images. "
 "Whether you're converting a simple data table or a complex financial model "
-"with multiple worksheets, the output PDF maintains professional quality.</"
-"p><p>Perfect for accountants sharing reports with clients, businesses "
-"sending invoices, analysts distributing data summaries, and anyone who needs "
-"to convert Excel files to a universal, non-editable format for secure "
-"distribution.</p>"
+"with multiple worksheets, the output PDF maintains professional "
+"quality.</p><p>Perfect for accountants sharing reports with clients, "
+"businesses sending invoices, analysts distributing data summaries, and "
+"anyone who needs to convert Excel files to a universal, non-editable format "
+"for secure distribution.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:930
 msgid "PowerPoint to PDF - Convertica"
@@ -10241,19 +10211,19 @@ msgstr "Speaker Notes Optional"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:983
 msgid ""
-"Convert slides with or without speaker notes. Share clean presentations with "
-"clients or include notes for detailed documentation."
+"Convert slides with or without speaker notes. Share clean presentations with"
+" clients or include notes for detailed documentation."
 msgstr ""
-"Convert slides with or without speaker notes. Share clean presentations with "
-"clients or include notes for detailed documentation."
+"Convert slides with or without speaker notes. Share clean presentations with"
+" clients or include notes for detailed documentation."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:992
 msgid ""
-"Convert PowerPoint presentations to PDF in seconds. No software installation "
-"required - works directly in your browser on any device."
+"Convert PowerPoint presentations to PDF in seconds. No software installation"
+" required - works directly in your browser on any device."
 msgstr ""
-"Convert PowerPoint presentations to PDF in seconds. No software installation "
-"required - works directly in your browser on any device."
+"Convert PowerPoint presentations to PDF in seconds. No software installation"
+" required - works directly in your browser on any device."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:999
 msgid "How do I convert PowerPoint to PDF online?"
@@ -10289,12 +10259,12 @@ msgstr "Can I convert presentations with embedded videos?"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1017
 msgid ""
-"Embedded videos cannot be included in PDF files. Video frames will appear as "
-"static images in the converted PDF. Audio content is also not included in "
+"Embedded videos cannot be included in PDF files. Video frames will appear as"
+" static images in the converted PDF. Audio content is also not included in "
 "PDF output."
 msgstr ""
-"Embedded videos cannot be included in PDF files. Video frames will appear as "
-"static images in the converted PDF. Audio content is also not included in "
+"Embedded videos cannot be included in PDF files. Video frames will appear as"
+" static images in the converted PDF. Audio content is also not included in "
 "PDF output."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1023
@@ -10325,11 +10295,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1040
 msgid ""
-"Check your slide master and templates before converting to ensure consistent "
-"formatting."
+"Check your slide master and templates before converting to ensure consistent"
+" formatting."
 msgstr ""
-"Check your slide master and templates before converting to ensure consistent "
-"formatting."
+"Check your slide master and templates before converting to ensure consistent"
+" formatting."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1043
 msgid ""
@@ -10365,31 +10335,31 @@ msgstr "Convert PowerPoint Presentations to PDF"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1057
 msgid ""
-"<p>Converting PowerPoint presentations to PDF format ensures your slides can "
-"be viewed on any device without requiring PowerPoint software. PDF preserves "
-"your design, fonts, and layouts exactly as you created them, making it the "
-"preferred format for sharing presentations with clients, colleagues, or "
-"audiences.</p><p>Our PowerPoint to PDF converter handles complex "
-"presentations with multiple slides, embedded images, charts, and custom "
-"formatting. Whether you're converting a business proposal, educational "
-"lecture, or marketing pitch deck, the output PDF maintains professional "
-"quality and visual fidelity.</p><p>Perfect for businesses sharing proposals, "
-"educators distributing course materials, students submitting assignments, "
-"and anyone who needs to convert presentations to a universal format for easy "
-"viewing and printing.</p>"
+"<p>Converting PowerPoint presentations to PDF format ensures your slides can"
+" be viewed on any device without requiring PowerPoint software. PDF "
+"preserves your design, fonts, and layouts exactly as you created them, "
+"making it the preferred format for sharing presentations with clients, "
+"colleagues, or audiences.</p><p>Our PowerPoint to PDF converter handles "
+"complex presentations with multiple slides, embedded images, charts, and "
+"custom formatting. Whether you're converting a business proposal, "
+"educational lecture, or marketing pitch deck, the output PDF maintains "
+"professional quality and visual fidelity.</p><p>Perfect for businesses "
+"sharing proposals, educators distributing course materials, students "
+"submitting assignments, and anyone who needs to convert presentations to a "
+"universal format for easy viewing and printing.</p>"
 msgstr ""
-"<p>Converting PowerPoint presentations to PDF format ensures your slides can "
-"be viewed on any device without requiring PowerPoint software. PDF preserves "
-"your design, fonts, and layouts exactly as you created them, making it the "
-"preferred format for sharing presentations with clients, colleagues, or "
-"audiences.</p><p>Our PowerPoint to PDF converter handles complex "
-"presentations with multiple slides, embedded images, charts, and custom "
-"formatting. Whether you're converting a business proposal, educational "
-"lecture, or marketing pitch deck, the output PDF maintains professional "
-"quality and visual fidelity.</p><p>Perfect for businesses sharing proposals, "
-"educators distributing course materials, students submitting assignments, "
-"and anyone who needs to convert presentations to a universal format for easy "
-"viewing and printing.</p>"
+"<p>Converting PowerPoint presentations to PDF format ensures your slides can"
+" be viewed on any device without requiring PowerPoint software. PDF "
+"preserves your design, fonts, and layouts exactly as you created them, "
+"making it the preferred format for sharing presentations with clients, "
+"colleagues, or audiences.</p><p>Our PowerPoint to PDF converter handles "
+"complex presentations with multiple slides, embedded images, charts, and "
+"custom formatting. Whether you're converting a business proposal, "
+"educational lecture, or marketing pitch deck, the output PDF maintains "
+"professional quality and visual fidelity.</p><p>Perfect for businesses "
+"sharing proposals, educators distributing course materials, students "
+"submitting assignments, and anyone who needs to convert presentations to a "
+"universal format for easy viewing and printing.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1074
 msgid "HTML to PDF - Convertica"
@@ -10437,13 +10407,13 @@ msgstr "HTML Code to PDF"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1119
 msgid ""
-"Paste your HTML code directly and convert it to PDF. Perfect for developers, "
-"designers, and anyone working with HTML content that needs to be exported as "
-"a document."
+"Paste your HTML code directly and convert it to PDF. Perfect for developers,"
+" designers, and anyone working with HTML content that needs to be exported "
+"as a document."
 msgstr ""
-"Paste your HTML code directly and convert it to PDF. Perfect for developers, "
-"designers, and anyone working with HTML content that needs to be exported as "
-"a document."
+"Paste your HTML code directly and convert it to PDF. Perfect for developers,"
+" designers, and anyone working with HTML content that needs to be exported "
+"as a document."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1127
 msgid "Customizable Page Settings"
@@ -10459,11 +10429,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1138
 msgid ""
-"Our powerful rendering engine converts HTML and web pages to PDF quickly and "
-"accurately. CSS, JavaScript, and modern web features are supported."
+"Our powerful rendering engine converts HTML and web pages to PDF quickly and"
+" accurately. CSS, JavaScript, and modern web features are supported."
 msgstr ""
-"Our powerful rendering engine converts HTML and web pages to PDF quickly and "
-"accurately. CSS, JavaScript, and modern web features are supported."
+"Our powerful rendering engine converts HTML and web pages to PDF quickly and"
+" accurately. CSS, JavaScript, and modern web features are supported."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1145
 msgid "How do I convert a web page URL to PDF?"
@@ -10558,7 +10528,8 @@ msgstr ""
 "Use print-friendly CSS media queries in your HTML for optimal PDF output."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1195
-msgid "Adjust margins to leave space for binding if you plan to print the PDF."
+msgid ""
+"Adjust margins to leave space for binding if you plan to print the PDF."
 msgstr ""
 "Adjust margins to leave space for binding if you plan to print the PDF."
 
@@ -10584,8 +10555,8 @@ msgid ""
 "content including complex layouts, images, fonts, and CSS styling. The "
 "result is a professional PDF document that looks exactly like the original "
 "web page, ready for distribution or printing.</p><p>Perfect for developers "
-"creating PDF reports from HTML templates, marketers archiving web campaigns, "
-"researchers saving online articles, and anyone who needs to convert web "
+"creating PDF reports from HTML templates, marketers archiving web campaigns,"
+" researchers saving online articles, and anyone who needs to convert web "
 "content to a portable document format.</p>"
 msgstr ""
 "<p>Converting HTML content and web pages to PDF is essential for archiving, "
@@ -10596,8 +10567,8 @@ msgstr ""
 "content including complex layouts, images, fonts, and CSS styling. The "
 "result is a professional PDF document that looks exactly like the original "
 "web page, ready for distribution or printing.</p><p>Perfect for developers "
-"creating PDF reports from HTML templates, marketers archiving web campaigns, "
-"researchers saving online articles, and anyone who needs to convert web "
+"creating PDF reports from HTML templates, marketers archiving web campaigns,"
+" researchers saving online articles, and anyone who needs to convert web "
 "content to a portable document format.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1223
@@ -10660,11 +10631,11 @@ msgstr "Quick & Easy"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1295
 msgid ""
-"Convert your PDF to PowerPoint in seconds. No software installation required "
-"- works directly in your browser on any device."
+"Convert your PDF to PowerPoint in seconds. No software installation required"
+" - works directly in your browser on any device."
 msgstr ""
-"Convert your PDF to PowerPoint in seconds. No software installation required "
-"- works directly in your browser on any device."
+"Convert your PDF to PowerPoint in seconds. No software installation required"
+" - works directly in your browser on any device."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1302
 msgid "How do I convert a PDF to PowerPoint?"
@@ -10736,9 +10707,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1342
 msgid ""
-"PDFs with clear, simple layouts convert most accurately to PowerPoint slides."
+"PDFs with clear, simple layouts convert most accurately to PowerPoint "
+"slides."
 msgstr ""
-"PDFs with clear, simple layouts convert most accurately to PowerPoint slides."
+"PDFs with clear, simple layouts convert most accurately to PowerPoint "
+"slides."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1345
 msgid ""
@@ -10748,9 +10721,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1348
 msgid ""
-"After conversion, check each slide and adjust text boxes or images as needed."
+"After conversion, check each slide and adjust text boxes or images as "
+"needed."
 msgstr ""
-"After conversion, check each slide and adjust text boxes or images as needed."
+"After conversion, check each slide and adjust text boxes or images as "
+"needed."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1351
 msgid ""
@@ -10838,11 +10813,11 @@ msgstr "Images Embedded"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1434
 msgid ""
-"Images from your PDF are automatically converted and embedded as base64 data "
-"URLs, making your HTML file completely self-contained."
+"Images from your PDF are automatically converted and embedded as base64 data"
+" URLs, making your HTML file completely self-contained."
 msgstr ""
-"Images from your PDF are automatically converted and embedded as base64 data "
-"URLs, making your HTML file completely self-contained."
+"Images from your PDF are automatically converted and embedded as base64 data"
+" URLs, making your HTML file completely self-contained."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1441
 msgid "Text Extraction"
@@ -10928,12 +10903,12 @@ msgstr "Can I use the HTML on my website?"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1492
 msgid ""
-"Yes, the converted HTML can be directly uploaded to your website or imported "
-"into content management systems like WordPress, Drupal, or Joomla. You may "
+"Yes, the converted HTML can be directly uploaded to your website or imported"
+" into content management systems like WordPress, Drupal, or Joomla. You may "
 "want to add your own CSS styling for better integration."
 msgstr ""
-"Yes, the converted HTML can be directly uploaded to your website or imported "
-"into content management systems like WordPress, Drupal, or Joomla. You may "
+"Yes, the converted HTML can be directly uploaded to your website or imported"
+" into content management systems like WordPress, Drupal, or Joomla. You may "
 "want to add your own CSS styling for better integration."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1500
@@ -10946,11 +10921,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1503
 msgid ""
-"Add your own CSS stylesheet to the HTML for custom styling that matches your "
-"website."
+"Add your own CSS stylesheet to the HTML for custom styling that matches your"
+" website."
 msgstr ""
-"Add your own CSS stylesheet to the HTML for custom styling that matches your "
-"website."
+"Add your own CSS stylesheet to the HTML for custom styling that matches your"
+" website."
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1506
 msgid ""
@@ -10981,26 +10956,26 @@ msgstr "Convert PDF Documents to HTML for Web Publishing"
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1517
 msgid ""
 "<p>Converting PDF documents to HTML format opens up new possibilities for "
-"content distribution and web publishing. HTML is the standard format for web "
-"pages, making your content accessible to anyone with a web browser.</"
-"p><p>Our PDF to HTML converter extracts text, images, and basic formatting "
-"from your PDF and generates clean HTML code. This is perfect for migrating "
-"content to websites, creating web-accessible versions of documents, or "
-"extracting content for further editing.</p><p>Ideal for content managers "
-"publishing documents online, developers extracting content for web "
-"applications, and anyone who needs to make PDF content available on the web "
-"in a searchable, accessible format.</p>"
+"content distribution and web publishing. HTML is the standard format for web"
+" pages, making your content accessible to anyone with a web "
+"browser.</p><p>Our PDF to HTML converter extracts text, images, and basic "
+"formatting from your PDF and generates clean HTML code. This is perfect for "
+"migrating content to websites, creating web-accessible versions of "
+"documents, or extracting content for further editing.</p><p>Ideal for "
+"content managers publishing documents online, developers extracting content "
+"for web applications, and anyone who needs to make PDF content available on "
+"the web in a searchable, accessible format.</p>"
 msgstr ""
 "<p>Converting PDF documents to HTML format opens up new possibilities for "
-"content distribution and web publishing. HTML is the standard format for web "
-"pages, making your content accessible to anyone with a web browser.</"
-"p><p>Our PDF to HTML converter extracts text, images, and basic formatting "
-"from your PDF and generates clean HTML code. This is perfect for migrating "
-"content to websites, creating web-accessible versions of documents, or "
-"extracting content for further editing.</p><p>Ideal for content managers "
-"publishing documents online, developers extracting content for web "
-"applications, and anyone who needs to make PDF content available on the web "
-"in a searchable, accessible format.</p>"
+"content distribution and web publishing. HTML is the standard format for web"
+" pages, making your content accessible to anyone with a web "
+"browser.</p><p>Our PDF to HTML converter extracts text, images, and basic "
+"formatting from your PDF and generates clean HTML code. This is perfect for "
+"migrating content to websites, creating web-accessible versions of "
+"documents, or extracting content for further editing.</p><p>Ideal for "
+"content managers publishing documents online, developers extracting content "
+"for web applications, and anyone who needs to make PDF content available on "
+"the web in a searchable, accessible format.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1536
 msgid "PDF to Text Converter - Extract Text from PDF | Convertica Premium"
@@ -11132,19 +11107,19 @@ msgstr "Extract plain text from PDF files"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:1627
 msgid ""
-"<p><strong>PDF to Text</strong> extraction pulls all embedded text from your "
-"PDF and saves it as a plain UTF-8 encoded .txt file. This is ideal for data "
-"processing, indexing, archiving, or feeding content into other tools.</"
-"p><p>Text-based PDFs extract cleanly and quickly. For scanned documents, "
-"consider running OCR first to generate selectable text before using this "
-"tool.</p>"
+"<p><strong>PDF to Text</strong> extraction pulls all embedded text from your"
+" PDF and saves it as a plain UTF-8 encoded .txt file. This is ideal for data"
+" processing, indexing, archiving, or feeding content into other "
+"tools.</p><p>Text-based PDFs extract cleanly and quickly. For scanned "
+"documents, consider running OCR first to generate selectable text before "
+"using this tool.</p>"
 msgstr ""
-"<p><strong>PDF to Text</strong> extraction pulls all embedded text from your "
-"PDF and saves it as a plain UTF-8 encoded .txt file. This is ideal for data "
-"processing, indexing, archiving, or feeding content into other tools.</"
-"p><p>Text-based PDFs extract cleanly and quickly. For scanned documents, "
-"consider running OCR first to generate selectable text before using this "
-"tool.</p>"
+"<p><strong>PDF to Text</strong> extraction pulls all embedded text from your"
+" PDF and saves it as a plain UTF-8 encoded .txt file. This is ideal for data"
+" processing, indexing, archiving, or feeding content into other "
+"tools.</p><p>Text-based PDFs extract cleanly and quickly. For scanned "
+"documents, consider running OCR first to generate selectable text before "
+"using this tool.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:9
 msgid "Rotate PDF - Convertica"
@@ -11203,13 +11178,13 @@ msgstr "How do I rotate a PDF page?"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:87
 msgid ""
-"Upload your PDF file, select the rotation angle (90°, 180°, or 270°), choose "
-"which pages to rotate, and click the Rotate button. Your rotated PDF will be "
-"ready to download instantly."
+"Upload your PDF file, select the rotation angle (90°, 180°, or 270°), choose"
+" which pages to rotate, and click the Rotate button. Your rotated PDF will "
+"be ready to download instantly."
 msgstr ""
-"Upload your PDF file, select the rotation angle (90°, 180°, or 270°), choose "
-"which pages to rotate, and click the Rotate button. Your rotated PDF will be "
-"ready to download instantly."
+"Upload your PDF file, select the rotation angle (90°, 180°, or 270°), choose"
+" which pages to rotate, and click the Rotate button. Your rotated PDF will "
+"be ready to download instantly."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:93
 msgid "Can I rotate specific pages in a PDF?"
@@ -11261,7 +11236,8 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:123
 msgid "Preview your PDF before rotating to identify which pages need rotation"
-msgstr "Preview your PDF before rotating to identify which pages need rotation"
+msgstr ""
+"Preview your PDF before rotating to identify which pages need rotation"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:125
 msgid "Use 90° clockwise to rotate a landscape page to portrait"
@@ -11287,23 +11263,23 @@ msgstr "Rotate PDF Pages Online - Fix PDF Orientation"
 msgid ""
 "<p>Our free PDF rotation tool lets you quickly fix page orientation in any "
 "PDF document. Whether you have scanned documents that came out sideways, or "
-"pages that need to be turned upside down, our tool handles it all.</"
-"p><p>Choose from 90°, 180°, or 270° rotation angles and apply them to all "
-"pages, just the current page, or specific pages you select. The rotation is "
-"instant and preserves all your content perfectly.</p><p>Perfect for fixing "
-"scanned documents, rotating landscape pages to portrait, correcting "
-"improperly oriented PDFs, and preparing documents for printing or sharing.</"
-"p>"
+"pages that need to be turned upside down, our tool handles it "
+"all.</p><p>Choose from 90°, 180°, or 270° rotation angles and apply them to "
+"all pages, just the current page, or specific pages you select. The rotation"
+" is instant and preserves all your content perfectly.</p><p>Perfect for "
+"fixing scanned documents, rotating landscape pages to portrait, correcting "
+"improperly oriented PDFs, and preparing documents for printing or "
+"sharing.</p>"
 msgstr ""
 "<p>Our free PDF rotation tool lets you quickly fix page orientation in any "
 "PDF document. Whether you have scanned documents that came out sideways, or "
-"pages that need to be turned upside down, our tool handles it all.</"
-"p><p>Choose from 90°, 180°, or 270° rotation angles and apply them to all "
-"pages, just the current page, or specific pages you select. The rotation is "
-"instant and preserves all your content perfectly.</p><p>Perfect for fixing "
-"scanned documents, rotating landscape pages to portrait, correcting "
-"improperly oriented PDFs, and preparing documents for printing or sharing.</"
-"p>"
+"pages that need to be turned upside down, our tool handles it "
+"all.</p><p>Choose from 90°, 180°, or 270° rotation angles and apply them to "
+"all pages, just the current page, or specific pages you select. The rotation"
+" is instant and preserves all your content perfectly.</p><p>Perfect for "
+"fixing scanned documents, rotating landscape pages to portrait, correcting "
+"improperly oriented PDFs, and preparing documents for printing or "
+"sharing.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:148
 msgid "Add Page Numbers to PDF Online Free | Convertica"
@@ -11405,11 +11381,11 @@ msgstr "What number formats are available?"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:254
 msgid ""
-"You can use simple numbers (1, 2, 3), Roman numerals (i, ii, iii), or custom "
-"formats like 'Page 1 of N'. Choose the format that best fits your needs."
+"You can use simple numbers (1, 2, 3), Roman numerals (i, ii, iii), or custom"
+" formats like 'Page 1 of N'. Choose the format that best fits your needs."
 msgstr ""
-"You can use simple numbers (1, 2, 3), Roman numerals (i, ii, iii), or custom "
-"formats like 'Page 1 of N'. Choose the format that best fits your needs."
+"You can use simple numbers (1, 2, 3), Roman numerals (i, ii, iii), or custom"
+" formats like 'Page 1 of N'. Choose the format that best fits your needs."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:260
 msgid "Use bottom-center for most documents - it's the standard position"
@@ -11439,23 +11415,23 @@ msgstr "Add Page Numbers to PDF - Professional Document Numbering"
 msgid ""
 "<p>Our free PDF page numbering tool makes it easy to add professional page "
 "numbers to any PDF document. Whether you're preparing a thesis, business "
-"report, contract, or any multi-page document, proper page numbering improves "
-"navigation and professionalism.</p><p>Customize the position, font size, and "
-"format of your page numbers to match your document's style. You can place "
-"numbers at the top or bottom of pages, align them left, center, or right, "
-"and choose from various numbering formats.</p><p>Ideal for academic papers, "
-"legal documents, business reports, manuals, and any document that benefits "
-"from clear page numbering.</p>"
+"report, contract, or any multi-page document, proper page numbering improves"
+" navigation and professionalism.</p><p>Customize the position, font size, "
+"and format of your page numbers to match your document's style. You can "
+"place numbers at the top or bottom of pages, align them left, center, or "
+"right, and choose from various numbering formats.</p><p>Ideal for academic "
+"papers, legal documents, business reports, manuals, and any document that "
+"benefits from clear page numbering.</p>"
 msgstr ""
 "<p>Our free PDF page numbering tool makes it easy to add professional page "
 "numbers to any PDF document. Whether you're preparing a thesis, business "
-"report, contract, or any multi-page document, proper page numbering improves "
-"navigation and professionalism.</p><p>Customize the position, font size, and "
-"format of your page numbers to match your document's style. You can place "
-"numbers at the top or bottom of pages, align them left, center, or right, "
-"and choose from various numbering formats.</p><p>Ideal for academic papers, "
-"legal documents, business reports, manuals, and any document that benefits "
-"from clear page numbering.</p>"
+"report, contract, or any multi-page document, proper page numbering improves"
+" navigation and professionalism.</p><p>Customize the position, font size, "
+"and format of your page numbers to match your document's style. You can "
+"place numbers at the top or bottom of pages, align them left, center, or "
+"right, and choose from various numbering formats.</p><p>Ideal for academic "
+"papers, legal documents, business reports, manuals, and any document that "
+"benefits from clear page numbering.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:286
 msgid "Add Watermark to PDF Online Free | Convertica"
@@ -11464,13 +11440,13 @@ msgstr "Add Watermark to PDF Online Free | Convertica"
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:288
 msgid ""
 "Add watermark to PDF online free with text or image. Customize position, "
-"transparency, and size. Fast PDF watermarking tool with no watermark on tool "
-"itself. Perfect for document protection and branding. No registration "
+"transparency, and size. Fast PDF watermarking tool with no watermark on tool"
+" itself. Perfect for document protection and branding. No registration "
 "required."
 msgstr ""
 "Add watermark to PDF online free with text or image. Customize position, "
-"transparency, and size. Fast PDF watermarking tool with no watermark on tool "
-"itself. Perfect for document protection and branding. No registration "
+"transparency, and size. Fast PDF watermarking tool with no watermark on tool"
+" itself. Perfect for document protection and branding. No registration "
 "required."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:311
@@ -11597,20 +11573,20 @@ msgstr "Add Watermark to PDF - Protect Your Documents"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:401
 msgid ""
-"<p>Our free PDF watermark tool lets you add custom text or image watermarks. "
-"Protect your intellectual property, brand documents, or mark them as "
+"<p>Our free PDF watermark tool lets you add custom text or image watermarks."
+" Protect your intellectual property, brand documents, or mark them as "
 "confidential.</p><p>The visual editor shows exactly how your watermark will "
 "appear. Drag to position, adjust size and rotation - all with real-time "
-"preview.</p><p><strong>Common uses:</strong> Add company logos for branding, "
-"mark documents as 'DRAFT' or 'CONFIDENTIAL', add copyright notices, or "
+"preview.</p><p><strong>Common uses:</strong> Add company logos for branding,"
+" mark documents as 'DRAFT' or 'CONFIDENTIAL', add copyright notices, or "
 "include approval stamps and signatures on official documents.</p>"
 msgstr ""
-"<p>Our free PDF watermark tool lets you add custom text or image watermarks. "
-"Protect your intellectual property, brand documents, or mark them as "
+"<p>Our free PDF watermark tool lets you add custom text or image watermarks."
+" Protect your intellectual property, brand documents, or mark them as "
 "confidential.</p><p>The visual editor shows exactly how your watermark will "
 "appear. Drag to position, adjust size and rotation - all with real-time "
-"preview.</p><p><strong>Common uses:</strong> Add company logos for branding, "
-"mark documents as 'DRAFT' or 'CONFIDENTIAL', add copyright notices, or "
+"preview.</p><p><strong>Common uses:</strong> Add company logos for branding,"
+" mark documents as 'DRAFT' or 'CONFIDENTIAL', add copyright notices, or "
 "include approval stamps and signatures on official documents.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:417
@@ -11685,11 +11661,11 @@ msgstr "Will cropping reduce PDF quality?"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:503
 msgid ""
-"No, cropping only removes the area outside the selection. The content inside "
-"remains at its original quality."
+"No, cropping only removes the area outside the selection. The content inside"
+" remains at its original quality."
 msgstr ""
-"No, cropping only removes the area outside the selection. The content inside "
-"remains at its original quality."
+"No, cropping only removes the area outside the selection. The content inside"
+" remains at its original quality."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:508
 msgid "How do I remove margins from a PDF?"
@@ -11745,19 +11721,21 @@ msgstr "Crop PDF Pages - Remove Margins Online"
 msgid ""
 "<p>Our free PDF cropping tool lets you remove unwanted margins, borders, or "
 "content from your PDF pages. The visual editor makes it easy to select "
-"exactly what you want to keep.</p><p>Perfect for trimming scanned documents, "
-"removing white borders, or focusing on specific content areas in your PDFs.</"
-"p><p><strong>Common uses:</strong> Remove scanner margins from scanned "
-"documents, trim white space from exported slides, crop to focus on specific "
-"charts or images, or prepare PDFs for printing with custom page sizes.</p>"
+"exactly what you want to keep.</p><p>Perfect for trimming scanned documents,"
+" removing white borders, or focusing on specific content areas in your "
+"PDFs.</p><p><strong>Common uses:</strong> Remove scanner margins from "
+"scanned documents, trim white space from exported slides, crop to focus on "
+"specific charts or images, or prepare PDFs for printing with custom page "
+"sizes.</p>"
 msgstr ""
 "<p>Our free PDF cropping tool lets you remove unwanted margins, borders, or "
 "content from your PDF pages. The visual editor makes it easy to select "
-"exactly what you want to keep.</p><p>Perfect for trimming scanned documents, "
-"removing white borders, or focusing on specific content areas in your PDFs.</"
-"p><p><strong>Common uses:</strong> Remove scanner margins from scanned "
-"documents, trim white space from exported slides, crop to focus on specific "
-"charts or images, or prepare PDFs for printing with custom page sizes.</p>"
+"exactly what you want to keep.</p><p>Perfect for trimming scanned documents,"
+" removing white borders, or focusing on specific content areas in your "
+"PDFs.</p><p><strong>Common uses:</strong> Remove scanner margins from "
+"scanned documents, trim white space from exported slides, crop to focus on "
+"specific charts or images, or prepare PDFs for printing with custom page "
+"sizes.</p>"
 
 # ==================== flatten_pdf ====================
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:554
@@ -11766,11 +11744,11 @@ msgstr "Flatten PDF Online Free - Remove Form Fields | Convertica"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:557
 msgid ""
-"Flatten PDF online free by removing interactive form fields, checkboxes, and "
-"annotations. Creates a static, non-editable PDF. No registration required."
+"Flatten PDF online free by removing interactive form fields, checkboxes, and"
+" annotations. Creates a static, non-editable PDF. No registration required."
 msgstr ""
-"Flatten PDF online free by removing interactive form fields, checkboxes, and "
-"annotations. Creates a static, non-editable PDF. No registration required."
+"Flatten PDF online free by removing interactive form fields, checkboxes, and"
+" annotations. Creates a static, non-editable PDF. No registration required."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:568
 msgid "Remove interactive form fields and annotations from your PDF"
@@ -11794,7 +11772,8 @@ msgstr "Appearance Preserved"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:594
 msgid "Visual content stays identical - only interactive elements are removed"
-msgstr "Visual content stays identical - only interactive elements are removed"
+msgstr ""
+"Visual content stays identical - only interactive elements are removed"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:600
 msgid "Remove Annotations"
@@ -11859,7 +11838,8 @@ msgstr ""
 "Fill out all form fields before flattening to lock in the entered values."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:643
-msgid "Use flattening before printing to ensure all content renders correctly."
+msgid ""
+"Use flattening before printing to ensure all content renders correctly."
 msgstr ""
 "Use flattening before printing to ensure all content renders correctly."
 
@@ -11954,13 +11934,13 @@ msgstr "What image formats are accepted for the signature?"
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:730
 msgid ""
-"You can upload a PNG or JPEG image of your handwritten signature. PNG with a "
-"transparent background works best so the signature blends naturally into the "
-"PDF."
+"You can upload a PNG or JPEG image of your handwritten signature. PNG with a"
+" transparent background works best so the signature blends naturally into "
+"the PDF."
 msgstr ""
-"You can upload a PNG or JPEG image of your handwritten signature. PNG with a "
-"transparent background works best so the signature blends naturally into the "
-"PDF."
+"You can upload a PNG or JPEG image of your handwritten signature. PNG with a"
+" transparent background works best so the signature blends naturally into "
+"the PDF."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:735
 msgid "Can I sign all pages at once?"
@@ -11981,12 +11961,12 @@ msgstr "Is this legally binding?"
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:744
 msgid ""
 "This tool adds a visual image signature to the PDF. For legally binding "
-"electronic signatures with audit trails and certificates, a dedicated e-"
-"signature service is recommended."
+"electronic signatures with audit trails and certificates, a dedicated "
+"e-signature service is recommended."
 msgstr ""
 "This tool adds a visual image signature to the PDF. For legally binding "
-"electronic signatures with audit trails and certificates, a dedicated e-"
-"signature service is recommended."
+"electronic signatures with audit trails and certificates, a dedicated "
+"e-signature service is recommended."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:750
 msgid "Sign PDF FAQ"
@@ -12001,7 +11981,8 @@ msgstr ""
 "result."
 
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:756
-msgid "Increase the signature width for large-format PDFs so it stays visible."
+msgid ""
+"Increase the signature width for large-format PDFs so it stays visible."
 msgstr ""
 "Increase the signature width for large-format PDFs so it stays visible."
 
@@ -12025,17 +12006,17 @@ msgstr "Add your signature to a PDF online"
 msgid ""
 "<p><strong>Sign PDF</strong> lets you place a handwritten signature image "
 "directly onto any page of a PDF document. Upload your signature as a PNG or "
-"JPEG, choose the position and page, and download the signed PDF in seconds.</"
-"p><p>No account required. Files are processed securely and deleted "
-"immediately after download. The signed PDF retains all original content and "
-"formatting.</p>"
+"JPEG, choose the position and page, and download the signed PDF in "
+"seconds.</p><p>No account required. Files are processed securely and deleted"
+" immediately after download. The signed PDF retains all original content and"
+" formatting.</p>"
 msgstr ""
 "<p><strong>Sign PDF</strong> lets you place a handwritten signature image "
 "directly onto any page of a PDF document. Upload your signature as a PNG or "
-"JPEG, choose the position and page, and download the signed PDF in seconds.</"
-"p><p>No account required. Files are processed securely and deleted "
-"immediately after download. The signed PDF retains all original content and "
-"formatting.</p>"
+"JPEG, choose the position and page, and download the signed PDF in "
+"seconds.</p><p>No account required. Files are processed securely and deleted"
+" immediately after download. The signed PDF retains all original content and"
+" formatting.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:9
 msgid "Merge PDF Files Online Free - Combine PDFs | Convertica"
@@ -12044,12 +12025,12 @@ msgstr "Merge PDF Files Online Free - Combine PDFs | Convertica"
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:11
 msgid ""
 "Merge PDF online free. Combine multiple PDF files into one document. Drag "
-"and drop to reorder, no watermark, no registration. Fast & secure PDF merger "
-"for all devices."
+"and drop to reorder, no watermark, no registration. Fast & secure PDF merger"
+" for all devices."
 msgstr ""
 "Merge PDF online free. Combine multiple PDF files into one document. Drag "
-"and drop to reorder, no watermark, no registration. Fast & secure PDF merger "
-"for all devices."
+"and drop to reorder, no watermark, no registration. Fast & secure PDF merger"
+" for all devices."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:38
 msgid "Combine multiple PDF files into one document"
@@ -12102,12 +12083,12 @@ msgstr "How many PDF files can I merge at once?"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:88
 msgid ""
-"Free users can merge 2-10 PDF files in one operation. Simply select all your "
-"files, arrange them in the desired order using drag and drop, and click "
+"Free users can merge 2-10 PDF files in one operation. Simply select all your"
+" files, arrange them in the desired order using drag and drop, and click "
 "Merge. Premium users can merge even more files with higher page limits."
 msgstr ""
-"Free users can merge 2-10 PDF files in one operation. Simply select all your "
-"files, arrange them in the desired order using drag and drop, and click "
+"Free users can merge 2-10 PDF files in one operation. Simply select all your"
+" files, arrange them in the desired order using drag and drop, and click "
 "Merge. Premium users can merge even more files with higher page limits."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:94
@@ -12179,12 +12160,14 @@ msgstr ""
 "reorder"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:133
-msgid "For large projects, merge related chapters or sections separately first"
+msgid ""
+"For large projects, merge related chapters or sections separately first"
 msgstr ""
 "For large projects, merge related chapters or sections separately first"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:136
-msgid "Check page orientation - rotate pages if needed before or after merging"
+msgid ""
+"Check page orientation - rotate pages if needed before or after merging"
 msgstr ""
 "Check page orientation - rotate pages if needed before or after merging"
 
@@ -12194,9 +12177,11 @@ msgstr "Remove unnecessary pages before merging to keep file size small"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:140
 msgid ""
-"After merging, you can use our Split tool to extract specific pages if needed"
+"After merging, you can use our Split tool to extract specific pages if "
+"needed"
 msgstr ""
-"After merging, you can use our Split tool to extract specific pages if needed"
+"After merging, you can use our Split tool to extract specific pages if "
+"needed"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:143
 msgid "Tips for Merging PDF Files"
@@ -12215,9 +12200,9 @@ msgid ""
 "the desired order using drag and drop, and click Merge. Your combined PDF "
 "will be ready for download in seconds. All <strong>bookmarks, hyperlinks, "
 "and formatting</strong> are preserved.</p><p><strong>Use cases:</strong> "
-"Combine thesis chapters, merge scanned receipts, join contract pages, create "
-"document packages for clients, or organize lecture notes into a single file."
-"</p>"
+"Combine thesis chapters, merge scanned receipts, join contract pages, create"
+" document packages for clients, or organize lecture notes into a single "
+"file.</p>"
 msgstr ""
 "<p>Need to combine multiple PDF documents into a single file? Our "
 "<strong>free PDF merger</strong> lets you join 2-10 PDF files quickly and "
@@ -12226,9 +12211,9 @@ msgstr ""
 "the desired order using drag and drop, and click Merge. Your combined PDF "
 "will be ready for download in seconds. All <strong>bookmarks, hyperlinks, "
 "and formatting</strong> are preserved.</p><p><strong>Use cases:</strong> "
-"Combine thesis chapters, merge scanned receipts, join contract pages, create "
-"document packages for clients, or organize lecture notes into a single file."
-"</p>"
+"Combine thesis chapters, merge scanned receipts, join contract pages, create"
+" document packages for clients, or organize lecture notes into a single "
+"file.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:162
 msgid "Split PDF Online Free - Extract Pages from PDF | Convertica"
@@ -12237,10 +12222,12 @@ msgstr "Split PDF Online Free - Extract Pages from PDF | Convertica"
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:165
 msgid ""
 "Split PDF online free. Extract specific pages, split by ranges, or separate "
-"every page. No watermark, no registration. Fast PDF splitter for all devices."
+"every page. No watermark, no registration. Fast PDF splitter for all "
+"devices."
 msgstr ""
 "Split PDF online free. Extract specific pages, split by ranges, or separate "
-"every page. No watermark, no registration. Fast PDF splitter for all devices."
+"every page. No watermark, no registration. Fast PDF splitter for all "
+"devices."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:188
 msgid "Split your PDF into multiple files"
@@ -12267,7 +12254,8 @@ msgid "All split pages downloaded as a single ZIP file for convenience"
 msgstr "All split pages downloaded as a single ZIP file for convenience"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:229
-msgid "Files deleted immediately after processing. Your documents stay private"
+msgid ""
+"Files deleted immediately after processing. Your documents stay private"
 msgstr ""
 "Files deleted immediately after processing. Your documents stay private"
 
@@ -12309,12 +12297,12 @@ msgstr "Will splitting affect the quality of my PDF?"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:254
 msgid ""
-"No, splitting preserves the original quality. Pages are extracted exactly as "
-"they are in the original document, with no re-compression or quality loss. "
+"No, splitting preserves the original quality. Pages are extracted exactly as"
+" they are in the original document, with no re-compression or quality loss. "
 "All text, images, and formatting remain intact."
 msgstr ""
-"No, splitting preserves the original quality. Pages are extracted exactly as "
-"they are in the original document, with no re-compression or quality loss. "
+"No, splitting preserves the original quality. Pages are extracted exactly as"
+" they are in the original document, with no re-compression or quality loss. "
 "All text, images, and formatting remain intact."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:260
@@ -12377,25 +12365,25 @@ msgstr "Split PDF Online - Extract Pages Easily"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:289
 msgid ""
-"<p>Need to extract specific pages from a PDF? Our <strong>free PDF splitter</"
-"strong> lets you divide PDF documents by page ranges, extract individual "
-"pages, or split every page into separate files.</p><p>Perfect for "
-"<strong>extracting chapters from ebooks, separating invoices, splitting "
+"<p>Need to extract specific pages from a PDF? Our <strong>free PDF "
+"splitter</strong> lets you divide PDF documents by page ranges, extract "
+"individual pages, or split every page into separate files.</p><p>Perfect for"
+" <strong>extracting chapters from ebooks, separating invoices, splitting "
 "contracts, or preparing documents for printing</strong>. The original "
-"quality is preserved - no compression or quality loss.</"
-"p><p><strong>Flexible options:</strong> Enter page ranges (1-5, 10-15), "
-"individual pages (1, 3, 7), or split every page. All extracted pages "
-"download as a convenient ZIP file.</p>"
+"quality is preserved - no compression or quality "
+"loss.</p><p><strong>Flexible options:</strong> Enter page ranges (1-5, "
+"10-15), individual pages (1, 3, 7), or split every page. All extracted pages"
+" download as a convenient ZIP file.</p>"
 msgstr ""
-"<p>Need to extract specific pages from a PDF? Our <strong>free PDF splitter</"
-"strong> lets you divide PDF documents by page ranges, extract individual "
-"pages, or split every page into separate files.</p><p>Perfect for "
-"<strong>extracting chapters from ebooks, separating invoices, splitting "
+"<p>Need to extract specific pages from a PDF? Our <strong>free PDF "
+"splitter</strong> lets you divide PDF documents by page ranges, extract "
+"individual pages, or split every page into separate files.</p><p>Perfect for"
+" <strong>extracting chapters from ebooks, separating invoices, splitting "
 "contracts, or preparing documents for printing</strong>. The original "
-"quality is preserved - no compression or quality loss.</"
-"p><p><strong>Flexible options:</strong> Enter page ranges (1-5, 10-15), "
-"individual pages (1, 3, 7), or split every page. All extracted pages "
-"download as a convenient ZIP file.</p>"
+"quality is preserved - no compression or quality "
+"loss.</p><p><strong>Flexible options:</strong> Enter page ranges (1-5, "
+"10-15), individual pages (1, 3, 7), or split every page. All extracted pages"
+" download as a convenient ZIP file.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:304
 msgid "Remove Pages from PDF Online Free | Convertica"
@@ -12441,9 +12429,11 @@ msgstr "How do I remove pages from a PDF?"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:375
 msgid ""
-"Upload your PDF, select the pages you want to remove, and click Remove Pages."
+"Upload your PDF, select the pages you want to remove, and click Remove "
+"Pages."
 msgstr ""
-"Upload your PDF, select the pages you want to remove, and click Remove Pages."
+"Upload your PDF, select the pages you want to remove, and click Remove "
+"Pages."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:379
 msgid "Can I remove multiple pages at once?"
@@ -12529,18 +12519,18 @@ msgid ""
 "document. Perfect for removing blank pages, cover pages, or unnecessary "
 "content.</p><p>Simply upload your PDF, preview the pages using thumbnails, "
 "select the ones you want to remove, and download the cleaned-up document. "
-"The remaining pages maintain their original quality and formatting.</"
-"p><p><strong>Common uses:</strong> Remove blank pages from scanned "
-"documents, delete cover pages or advertisements, trim unnecessary "
+"The remaining pages maintain their original quality and "
+"formatting.</p><p><strong>Common uses:</strong> Remove blank pages from "
+"scanned documents, delete cover pages or advertisements, trim unnecessary "
 "appendices, or clean up exported presentations before sharing.</p>"
 msgstr ""
 "<p>Our free PDF page remover lets you delete unwanted pages from any PDF "
 "document. Perfect for removing blank pages, cover pages, or unnecessary "
 "content.</p><p>Simply upload your PDF, preview the pages using thumbnails, "
 "select the ones you want to remove, and download the cleaned-up document. "
-"The remaining pages maintain their original quality and formatting.</"
-"p><p><strong>Common uses:</strong> Remove blank pages from scanned "
-"documents, delete cover pages or advertisements, trim unnecessary "
+"The remaining pages maintain their original quality and "
+"formatting.</p><p><strong>Common uses:</strong> Remove blank pages from "
+"scanned documents, delete cover pages or advertisements, trim unnecessary "
 "appendices, or clean up exported presentations before sharing.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:430
@@ -12673,8 +12663,8 @@ msgstr "Extract Pages from PDF - Create Custom Documents"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:546
 msgid ""
-"<p>Our free PDF page extractor lets you select and extract specific pages to "
-"create a new PDF document. Perfect for extracting chapters, important "
+"<p>Our free PDF page extractor lets you select and extract specific pages to"
+" create a new PDF document. Perfect for extracting chapters, important "
 "sections, or creating custom document packages.</p><p>Select individual "
 "pages, ranges like '1-10', or combinations like '1-5, 8, 12-15'. The "
 "extracted pages are combined into a new PDF that you can download "
@@ -12683,8 +12673,8 @@ msgid ""
 "contract sections, create document excerpts for sharing, extract forms from "
 "multi-page documents, or prepare specific pages for printing.</p>"
 msgstr ""
-"<p>Our free PDF page extractor lets you select and extract specific pages to "
-"create a new PDF document. Perfect for extracting chapters, important "
+"<p>Our free PDF page extractor lets you select and extract specific pages to"
+" create a new PDF document. Perfect for extracting chapters, important "
 "sections, or creating custom document packages.</p><p>Select individual "
 "pages, ranges like '1-10', or combinations like '1-5, 8, 12-15'. The "
 "extracted pages are combined into a new PDF that you can download "
@@ -12737,11 +12727,11 @@ msgstr "How do I reorder pages in a PDF?"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:635
 msgid ""
-"Upload your PDF, drag and drop page thumbnails to rearrange them, then click "
-"Save."
+"Upload your PDF, drag and drop page thumbnails to rearrange them, then click"
+" Save."
 msgstr ""
-"Upload your PDF, drag and drop page thumbnails to rearrange them, then click "
-"Save."
+"Upload your PDF, drag and drop page thumbnails to rearrange them, then click"
+" Save."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:639
 msgid "Can I also delete pages while organizing?"
@@ -12771,11 +12761,11 @@ msgstr "Can I move multiple pages at once?"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:653
 msgid ""
-"Yes, you can select multiple pages and drag them together to a new position. "
-"This makes it easy to move entire sections of your document."
+"Yes, you can select multiple pages and drag them together to a new position."
+" This makes it easy to move entire sections of your document."
 msgstr ""
-"Yes, you can select multiple pages and drag them together to a new position. "
-"This makes it easy to move entire sections of your document."
+"Yes, you can select multiple pages and drag them together to a new position."
+" This makes it easy to move entire sections of your document."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:659
 msgid "Is there a limit on the number of pages I can organize?"
@@ -12891,12 +12881,12 @@ msgstr "How much can I reduce my PDF file size?"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:773
 msgid ""
-"Results vary depending on the content, but you can typically reduce PDF size "
-"by 50-90%. PDFs with many images compress more than text-only documents. "
+"Results vary depending on the content, but you can typically reduce PDF size"
+" by 50-90%. PDFs with many images compress more than text-only documents. "
 "Scanned documents usually achieve the best compression ratios."
 msgstr ""
-"Results vary depending on the content, but you can typically reduce PDF size "
-"by 50-90%. PDFs with many images compress more than text-only documents. "
+"Results vary depending on the content, but you can typically reduce PDF size"
+" by 50-90%. PDFs with many images compress more than text-only documents. "
 "Scanned documents usually achieve the best compression ratios."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:779
@@ -12906,12 +12896,12 @@ msgstr "Will compression affect text quality?"
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:781
 msgid ""
 "No, text remains sharp and readable. Our smart compression algorithm "
-"primarily optimizes images and removes unnecessary metadata while preserving "
-"text clarity. The document remains fully searchable and selectable."
+"primarily optimizes images and removes unnecessary metadata while preserving"
+" text clarity. The document remains fully searchable and selectable."
 msgstr ""
 "No, text remains sharp and readable. Our smart compression algorithm "
-"primarily optimizes images and removes unnecessary metadata while preserving "
-"text clarity. The document remains fully searchable and selectable."
+"primarily optimizes images and removes unnecessary metadata while preserving"
+" text clarity. The document remains fully searchable and selectable."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:787
 msgid "Can I compress a PDF to exactly 1MB for email?"
@@ -12947,12 +12937,12 @@ msgstr "Can I compress scanned documents?"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:805
 msgid ""
-"Yes! Scanned PDFs often benefit the most from compression since they contain "
-"large images. Our tool can significantly reduce the size of scanned "
+"Yes! Scanned PDFs often benefit the most from compression since they contain"
+" large images. Our tool can significantly reduce the size of scanned "
 "documents while keeping the content readable."
 msgstr ""
-"Yes! Scanned PDFs often benefit the most from compression since they contain "
-"large images. Our tool can significantly reduce the size of scanned "
+"Yes! Scanned PDFs often benefit the most from compression since they contain"
+" large images. Our tool can significantly reduce the size of scanned "
 "documents while keeping the content readable."
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:811
@@ -12992,37 +12982,36 @@ msgstr "Compress PDF Online - Reduce File Size Instantly"
 
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:824
 msgid ""
-"<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
-"strong> reduces file size significantly while maintaining readable quality. "
-"Perfect for <strong>email attachments, web uploads, and storage "
-"optimization</strong>.</p><p>The tool uses smart compression algorithms that "
-"optimize images and remove unnecessary metadata while keeping text sharp and "
-"documents fully searchable. Most PDFs can be reduced by <strong>50-90%</"
-"strong> in size.</p><p><strong>Common uses:</strong> Compress PDFs for email "
-"(under 25MB for Gmail), reduce scanned document sizes, optimize PDFs for "
-"website upload, shrink presentation exports, and prepare files for mobile "
-"viewing.</p>"
+"<p>Need to send a large PDF by email? Our <strong>free PDF "
+"compressor</strong> reduces file size significantly while maintaining "
+"readable quality. Perfect for <strong>email attachments, web uploads, and "
+"storage optimization</strong>.</p><p>The tool uses smart compression "
+"algorithms that optimize images and remove unnecessary metadata while "
+"keeping text sharp and documents fully searchable. Most PDFs can be reduced "
+"by <strong>50-90%</strong> in size.</p><p><strong>Common uses:</strong> "
+"Compress PDFs for email (under 25MB for Gmail), reduce scanned document "
+"sizes, optimize PDFs for website upload, shrink presentation exports, and "
+"prepare files for mobile viewing.</p>"
 msgstr ""
-"<p>Need to send a large PDF by email? Our <strong>free PDF compressor</"
-"strong> reduces file size significantly while maintaining readable quality. "
-"Perfect for <strong>email attachments, web uploads, and storage "
-"optimization</strong>.</p><p>The tool uses smart compression algorithms that "
-"optimize images and remove unnecessary metadata while keeping text sharp and "
-"documents fully searchable. Most PDFs can be reduced by <strong>50-90%</"
-"strong> in size.</p><p><strong>Common uses:</strong> Compress PDFs for email "
-"(under 25MB for Gmail), reduce scanned document sizes, optimize PDFs for "
-"website upload, shrink presentation exports, and prepare files for mobile "
-"viewing.</p>"
+"<p>Need to send a large PDF by email? Our <strong>free PDF "
+"compressor</strong> reduces file size significantly while maintaining "
+"readable quality. Perfect for <strong>email attachments, web uploads, and "
+"storage optimization</strong>.</p><p>The tool uses smart compression "
+"algorithms that optimize images and remove unnecessary metadata while "
+"keeping text sharp and documents fully searchable. Most PDFs can be reduced "
+"by <strong>50-90%</strong> in size.</p><p><strong>Common uses:</strong> "
+"Compress PDFs for email (under 25MB for Gmail), reduce scanned document "
+"sizes, optimize PDFs for website upload, shrink presentation exports, and "
+"prepare files for mobile viewing.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:9
 msgid "Protect PDF with Password - Convertica"
 msgstr "Protect PDF with Password - Convertica"
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:11
-#, fuzzy
 #| msgid ""
-#| "Protect PDF files with password encryption. Secure your PDF documents "
-#| "with strong password protection."
+#| "Protect PDF files with password encryption. Secure your PDF documents with "
+#| "strong password protection."
 msgid ""
 "Protect PDF files with password encryption. Secure your PDF documents with "
 "strong AES-256 password protection. Add owner and user passwords, restrict "
@@ -13140,19 +13129,21 @@ msgstr "Will I be able to open the protected PDF?"
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:126
 msgid ""
-"Yes, you can open the protected PDF in any PDF reader (Adobe Reader, Chrome, "
-"etc.) by entering the password. Make sure to save your password in a safe "
+"Yes, you can open the protected PDF in any PDF reader (Adobe Reader, Chrome,"
+" etc.) by entering the password. Make sure to save your password in a safe "
 "place!"
 msgstr ""
-"Yes, you can open the protected PDF in any PDF reader (Adobe Reader, Chrome, "
-"etc.) by entering the password. Make sure to save your password in a safe "
+"Yes, you can open the protected PDF in any PDF reader (Adobe Reader, Chrome,"
+" etc.) by entering the password. Make sure to save your password in a safe "
 "place!"
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:133
 msgid ""
-"Use a strong password with a mix of letters, numbers, and special characters."
+"Use a strong password with a mix of letters, numbers, and special "
+"characters."
 msgstr ""
-"Use a strong password with a mix of letters, numbers, and special characters."
+"Use a strong password with a mix of letters, numbers, and special "
+"characters."
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:136
 msgid ""
@@ -13174,11 +13165,11 @@ msgstr "Test opening the protected PDF to ensure you remember the password."
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:145
 msgid ""
-"For highly sensitive documents, consider additional security measures beyond "
-"encryption."
+"For highly sensitive documents, consider additional security measures beyond"
+" encryption."
 msgstr ""
-"For highly sensitive documents, consider additional security measures beyond "
-"encryption."
+"For highly sensitive documents, consider additional security measures beyond"
+" encryption."
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:149
 msgid "Secure Your PDF Documents with Password Protection"
@@ -13189,9 +13180,9 @@ msgid ""
 "<p>Password protecting your PDF documents is essential for maintaining "
 "confidentiality and controlling access to sensitive information. Whether "
 "you're sharing financial reports, legal documents, or personal files, "
-"password encryption ensures only authorized people can access your content.</"
-"p><p>Our PDF protection tool uses strong AES encryption to secure your "
-"documents. You can set a single password for all access, or configure "
+"password encryption ensures only authorized people can access your "
+"content.</p><p>Our PDF protection tool uses strong AES encryption to secure "
+"your documents. You can set a single password for all access, or configure "
 "separate user and owner passwords to control different levels of access - "
 "from viewing only to full editing rights.</p><p>Perfect for businesses "
 "sharing confidential documents, individuals protecting personal files, and "
@@ -13200,9 +13191,9 @@ msgstr ""
 "<p>Password protecting your PDF documents is essential for maintaining "
 "confidentiality and controlling access to sensitive information. Whether "
 "you're sharing financial reports, legal documents, or personal files, "
-"password encryption ensures only authorized people can access your content.</"
-"p><p>Our PDF protection tool uses strong AES encryption to secure your "
-"documents. You can set a single password for all access, or configure "
+"password encryption ensures only authorized people can access your "
+"content.</p><p>Our PDF protection tool uses strong AES encryption to secure "
+"your documents. You can set a single password for all access, or configure "
 "separate user and owner passwords to control different levels of access - "
 "from viewing only to full editing rights.</p><p>Perfect for businesses "
 "sharing confidential documents, individuals protecting personal files, and "
@@ -13252,11 +13243,11 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:231
 msgid ""
-"Unlocking doesn't affect your PDF content. All text, images, formatting, and "
-"document structure remain exactly the same."
+"Unlocking doesn't affect your PDF content. All text, images, formatting, and"
+" document structure remain exactly the same."
 msgstr ""
-"Unlocking doesn't affect your PDF content. All text, images, formatting, and "
-"document structure remain exactly the same."
+"Unlocking doesn't affect your PDF content. All text, images, formatting, and"
+" document structure remain exactly the same."
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:238
 msgid "Instant Unlocking"
@@ -13364,10 +13355,12 @@ msgstr ""
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:298
 msgid "Unlocked PDFs can be edited, printed, and shared without restrictions."
-msgstr "Unlocked PDFs can be edited, printed, and shared without restrictions."
+msgstr ""
+"Unlocked PDFs can be edited, printed, and shared without restrictions."
 
 #: utils_site/src/frontend/tool_configs/pdf_security.py:301
-msgid "Keep a backup of your original protected PDF in case you need it later."
+msgid ""
+"Keep a backup of your original protected PDF in case you need it later."
 msgstr ""
 "Keep a backup of your original protected PDF in case you need it later."
 
@@ -13446,31 +13439,26 @@ msgid "Convert PDFs to EPUB eBooks"
 msgstr "Convert PDFs to EPUB eBooks"
 
 #: utils_site/src/frontend/views.py:191
-#, fuzzy
 #| msgid "Flatten PDF to remove form fields and annotations"
 msgid "Remove form fields and annotations"
 msgstr "Flatten PDF to remove form fields and annotations"
 
 #: utils_site/src/frontend/views.py:198
-#, fuzzy
 #| msgid "Add your image signature to any PDF page"
 msgid "Add an image signature to PDF pages"
 msgstr "Add your image signature to any PDF page"
 
 #: utils_site/src/frontend/views.py:205
-#, fuzzy
 #| msgid "Extract plain text from PDF files"
 msgid "Extract plain text from a PDF document"
 msgstr "Extract plain text from PDF files"
 
 #: utils_site/src/frontend/views.py:212
-#, fuzzy
 #| msgid "Compress and optimize images online"
 msgid "Compress and resize JPEG/PNG/WebP images"
 msgstr "Compress and optimize images online"
 
 #: utils_site/src/frontend/views.py:219
-#, fuzzy
 #| msgid "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
 msgid "Convert between JPEG, PNG, WebP, GIF and BMP"
 msgstr "Convert any image to JPEG, PNG, WebP, GIF, BMP, or TIFF"
@@ -13559,11 +13547,11 @@ msgstr "Track long-running premium tasks and download finished files."
 
 #: utils_site/src/frontend/views.py:707
 msgid ""
-"Add your handwritten signature image to any PDF page. Choose position, size, "
-"and opacity. Apply to all pages at once."
+"Add your handwritten signature image to any PDF page. Choose position, size,"
+" and opacity. Apply to all pages at once."
 msgstr ""
-"Add your handwritten signature image to any PDF page. Choose position, size, "
-"and opacity. Apply to all pages at once."
+"Add your handwritten signature image to any PDF page. Choose position, size,"
+" and opacity. Apply to all pages at once."
 
 #: utils_site/src/frontend/views.py:714
 msgid ""
@@ -13579,11 +13567,11 @@ msgstr "Compare Two PDFs (Premium) - Convertica"
 
 #: utils_site/src/frontend/views.py:753
 msgid ""
-"Compare two PDF files with visual diff overlays and detailed change reports. "
-"Download a ZIP package with per-page comparison assets."
+"Compare two PDF files with visual diff overlays and detailed change reports."
+" Download a ZIP package with per-page comparison assets."
 msgstr ""
-"Compare two PDF files with visual diff overlays and detailed change reports. "
-"Download a ZIP package with per-page comparison assets."
+"Compare two PDF files with visual diff overlays and detailed change reports."
+" Download a ZIP package with per-page comparison assets."
 
 #: utils_site/src/frontend/views.py:761
 msgid "Upload two PDFs to generate a visual diff and downloadable report"
@@ -13597,19 +13585,21 @@ msgstr "Compare PDF revisions with visual diffs and change reports"
 msgid ""
 "<p><strong>Compare Two PDFs</strong> helps review document revisions using "
 "page-level visual overlays and exportable reports. It is useful for "
-"contracts, technical documentation, and regulated approval workflows.</"
-"p><p>The generated ZIP includes diff images and structured summaries so "
-"teams can track what changed without manually checking each page.</p><p>Use "
-"the sensitivity slider to control how strict visual detection should be for "
-"minor typography shifts versus major layout edits.</p>"
+"contracts, technical documentation, and regulated approval "
+"workflows.</p><p>The generated ZIP includes diff images and structured "
+"summaries so teams can track what changed without manually checking each "
+"page.</p><p>Use the sensitivity slider to control how strict visual "
+"detection should be for minor typography shifts versus major layout "
+"edits.</p>"
 msgstr ""
 "<p><strong>Compare Two PDFs</strong> helps review document revisions using "
 "page-level visual overlays and exportable reports. It is useful for "
-"contracts, technical documentation, and regulated approval workflows.</"
-"p><p>The generated ZIP includes diff images and structured summaries so "
-"teams can track what changed without manually checking each page.</p><p>Use "
-"the sensitivity slider to control how strict visual detection should be for "
-"minor typography shifts versus major layout edits.</p>"
+"contracts, technical documentation, and regulated approval "
+"workflows.</p><p>The generated ZIP includes diff images and structured "
+"summaries so teams can track what changed without manually checking each "
+"page.</p><p>Use the sensitivity slider to control how strict visual "
+"detection should be for minor typography shifts versus major layout "
+"edits.</p>"
 
 #: utils_site/src/frontend/views.py:779
 msgid "Why use Compare Two PDFs in Premium?"
@@ -13629,7 +13619,8 @@ msgstr "Machine-readable reports"
 
 #: utils_site/src/frontend/views.py:794
 msgid "Exports Markdown and JSON summaries for audit or automation workflows."
-msgstr "Exports Markdown and JSON summaries for audit or automation workflows."
+msgstr ""
+"Exports Markdown and JSON summaries for audit or automation workflows."
 
 #: utils_site/src/frontend/views.py:800
 msgid "Configurable sensitivity"
@@ -13667,9 +13658,11 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:816
 msgid ""
-"Review generated diff images together with report metrics for best decisions."
+"Review generated diff images together with report metrics for best "
+"decisions."
 msgstr ""
-"Review generated diff images together with report metrics for best decisions."
+"Review generated diff images together with report metrics for best "
+"decisions."
 
 #: utils_site/src/frontend/views.py:819
 msgid "Compare PDF FAQ"
@@ -13777,11 +13770,11 @@ msgstr "Background Queue Center (Premium) - Convertica"
 
 #: utils_site/src/frontend/views.py:947
 msgid ""
-"Monitor premium background conversions, download completed files, and manage "
-"queued tasks from one dashboard."
+"Monitor premium background conversions, download completed files, and manage"
+" queued tasks from one dashboard."
 msgstr ""
-"Monitor premium background conversions, download completed files, and manage "
-"queued tasks from one dashboard."
+"Monitor premium background conversions, download completed files, and manage"
+" queued tasks from one dashboard."
 
 #: utils_site/src/frontend/views.py:965
 msgid ""
@@ -13816,10 +13809,9 @@ msgstr ""
 "privacy policy, data protection, file security, privacy, Convertica privacy"
 
 #: utils_site/src/frontend/views.py:1012
-#, fuzzy
 #| msgid ""
-#| "Read Convertica's Terms of Service. Understand the terms and conditions "
-#| "for using our PDF tools and services."
+#| "Read Convertica's Terms of Service. Understand the terms and conditions for "
+#| "using our PDF tools and services."
 msgid ""
 "Read Convertica's Terms of Service. Understand the terms, conditions, and "
 "acceptable use policy for our free online PDF tools — conversion, editing, "
@@ -13836,11 +13828,11 @@ msgstr ""
 
 #: utils_site/src/frontend/views.py:1040
 msgid ""
-"Thank you! Your message has been sent successfully. We'll get back to you as "
-"soon as possible, usually within 24-48 hours."
+"Thank you! Your message has been sent successfully. We'll get back to you as"
+" soon as possible, usually within 24-48 hours."
 msgstr ""
-"Thank you! Your message has been sent successfully. We'll get back to you as "
-"soon as possible, usually within 24-48 hours."
+"Thank you! Your message has been sent successfully. We'll get back to you as"
+" soon as possible, usually within 24-48 hours."
 
 #: utils_site/src/frontend/views.py:1066
 msgid "Please complete the CAPTCHA verification."
@@ -13868,11 +13860,11 @@ msgstr "Frequently Asked Questions (FAQ) - Convertica"
 
 #: utils_site/src/frontend/views.py:1193
 msgid ""
-"Find answers to frequently asked questions about Convertica PDF tools. Learn "
-"how to convert, edit, and organize PDF files online for free."
+"Find answers to frequently asked questions about Convertica PDF tools. Learn"
+" how to convert, edit, and organize PDF files online for free."
 msgstr ""
-"Find answers to frequently asked questions about Convertica PDF tools. Learn "
-"how to convert, edit, and organize PDF files online for free."
+"Find answers to frequently asked questions about Convertica PDF tools. Learn"
+" how to convert, edit, and organize PDF files online for free."
 
 #: utils_site/src/frontend/views.py:1236
 msgid ""
@@ -13889,11 +13881,10 @@ msgid "Contribute to Convertica"
 msgstr "Contribute to Convertica"
 
 #: utils_site/src/frontend/views.py:1569
-#, fuzzy
 #| msgid ""
 #| "Contribute to the Convertica project with a one-time or monthly donation. "
-#| "This does not unlock Premium features — it simply helps development. "
-#| "Heroes are Premium subscribers; contributions here are support only."
+#| "This does not unlock Premium features — it simply helps development. Heroes "
+#| "are Premium subscribers; contributions here are support only."
 msgid ""
 "Support the Convertica project on Ko-fi — one-time or recurring "
 "contributions go directly to development. This does not unlock Premium "
@@ -13937,12 +13928,10 @@ msgstr "Yearly Hero Access"
 
 #: utils_site/src/users/management/commands/create_subscription_plans.py:41
 msgid "Lifetime Hero Access (Founder's Deal)"
-msgstr ""
-
+msgstr "Lifetime Hero Access (Founder's Deal)"
 #: utils_site/src/users/management/commands/create_subscription_plans.py:43
 msgid "One-time payment. Limited to first 100 customers."
-msgstr ""
-
+msgstr "One-time payment. Limited to first 100 customers."
 #: utils_site/src/users/models.py:14
 msgid "The Email must be set"
 msgstr "The Email must be set"
@@ -14011,8 +14000,7 @@ msgstr "Payment Method"
 
 #: utils_site/src/users/models.py:539
 msgid "Provider"
-msgstr ""
-
+msgstr "Provider"
 #: utils_site/src/users/models.py:542
 msgid "Transaction ID"
 msgstr "Transaction ID"
@@ -14110,11 +14098,9 @@ msgstr "Invalid JSON"
 #~ msgstr "file to convert"
 
 #~ msgid ""
-#~ "Click the Select file button or drag and drop your file into the upload "
-#~ "area"
+#~ "Click the Select file button or drag and drop your file into the upload area"
 #~ msgstr ""
-#~ "Click the Select file button or drag and drop your file into the upload "
-#~ "area"
+#~ "Click the Select file button or drag and drop your file into the upload area"
 
 #~ msgid "Convert"
 #~ msgstr "Convert"
@@ -14231,11 +14217,11 @@ msgstr "Invalid JSON"
 #~ msgstr "Review and export"
 
 #~ msgid ""
-#~ "Review changes page-by-page. Export report files only if you need to "
-#~ "share or archive them."
+#~ "Review changes page-by-page. Export report files only if you need to share "
+#~ "or archive them."
 #~ msgstr ""
-#~ "Review changes page-by-page. Export report files only if you need to "
-#~ "share or archive them."
+#~ "Review changes page-by-page. Export report files only if you need to share "
+#~ "or archive them."
 
 #~ msgid ""
 #~ "This is a donation to support the project and its developers. It does not "
@@ -14260,22 +14246,22 @@ msgstr "Invalid JSON"
 #~ msgstr "Proceed to secure payment"
 
 #~ msgid ""
-#~ "Payments are processed by Stripe. You can cancel monthly support anytime "
-#~ "in Stripe customer portal."
+#~ "Payments are processed by Stripe. You can cancel monthly support anytime in "
+#~ "Stripe customer portal."
 #~ msgstr ""
-#~ "Payments are processed by Stripe. You can cancel monthly support anytime "
-#~ "in Stripe customer portal."
+#~ "Payments are processed by Stripe. You can cancel monthly support anytime in "
+#~ "Stripe customer portal."
 
 #~ msgid "Why payments are paused"
 #~ msgstr "Why payments are paused"
 
 #~ msgid ""
-#~ "We’re temporarily pausing Premium subscriptions and contributions while "
-#~ "we complete the business setup. This helps us keep everything clean and "
+#~ "We’re temporarily pausing Premium subscriptions and contributions while we "
+#~ "complete the business setup. This helps us keep everything clean and "
 #~ "compliant."
 #~ msgstr ""
-#~ "We’re temporarily pausing Premium subscriptions and contributions while "
-#~ "we complete the business setup. This helps us keep everything clean and "
+#~ "We’re temporarily pausing Premium subscriptions and contributions while we "
+#~ "complete the business setup. This helps us keep everything clean and "
 #~ "compliant."
 
 #~ msgid "Good news: all free tools remain fully available."
@@ -14388,11 +14374,11 @@ msgstr "Invalid JSON"
 #~ "installations required."
 
 #~ msgid ""
-#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online "
-#~ "converter, free converter"
+#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
+#~ "free converter"
 #~ msgstr ""
-#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online "
-#~ "converter, free converter"
+#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
+#~ "free converter"
 
 #~ msgid "Upload icon"
 #~ msgstr "Upload icon"
@@ -14416,20 +14402,20 @@ msgstr "Invalid JSON"
 #~ msgstr "Select file to edit"
 
 #~ msgid ""
-#~ "We use cookies and similar technologies to enhance your browsing "
-#~ "experience, security, analytics, and to provide personalized content."
+#~ "We use cookies and similar technologies to enhance your browsing experience,"
+#~ " security, analytics, and to provide personalized content."
 #~ msgstr ""
-#~ "We use cookies and similar technologies to enhance your browsing "
-#~ "experience, security, analytics, and to provide personalized content."
+#~ "We use cookies and similar technologies to enhance your browsing experience,"
+#~ " security, analytics, and to provide personalized content."
 
 #~ msgid ""
-#~ "You can accept all cookies, reject non-essential cookies, or customize "
-#~ "your preferences. Essential cookies are required for the website to "
-#~ "function and cannot be disabled."
+#~ "You can accept all cookies, reject non-essential cookies, or customize your "
+#~ "preferences. Essential cookies are required for the website to function and "
+#~ "cannot be disabled."
 #~ msgstr ""
-#~ "You can accept all cookies, reject non-essential cookies, or customize "
-#~ "your preferences. Essential cookies are required for the website to "
-#~ "function and cannot be disabled."
+#~ "You can accept all cookies, reject non-essential cookies, or customize your "
+#~ "preferences. Essential cookies are required for the website to function and "
+#~ "cannot be disabled."
 
 #~ msgid "Select image(s)"
 #~ msgstr "Select image(s)"
@@ -14463,32 +14449,32 @@ msgstr "Invalid JSON"
 #~ "file size. 85 is recommended."
 
 #~ msgid ""
-#~ "Wait for the PDF to JPG conversion to complete - all selected pages will "
-#~ "be converted to JPG images"
+#~ "Wait for the PDF to JPG conversion to complete - all selected pages will be "
+#~ "converted to JPG images"
 #~ msgstr ""
-#~ "Wait for the PDF to JPG conversion to complete - all selected pages will "
-#~ "be converted to JPG images"
+#~ "Wait for the PDF to JPG conversion to complete - all selected pages will be "
+#~ "converted to JPG images"
 
 #, python-format
 #~ msgid ""
 #~ "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
-#~ "users have higher limits. For larger files, please split them into "
-#~ "smaller parts. The output will be a ZIP archive containing all converted "
-#~ "JPG images, named with page numbers (e.g., filename_page0001.jpg, "
+#~ "users have higher limits. For larger files, please split them into smaller "
+#~ "parts. The output will be a ZIP archive containing all converted JPG images,"
+#~ " named with page numbers (e.g., filename_page0001.jpg, "
 #~ "filename_page0002.jpg)."
 #~ msgstr ""
 #~ "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
-#~ "users have higher limits. For larger files, please split them into "
-#~ "smaller parts. The output will be a ZIP archive containing all converted "
-#~ "JPG images, named with page numbers (e.g., filename_page0001.jpg, "
+#~ "users have higher limits. For larger files, please split them into smaller "
+#~ "parts. The output will be a ZIP archive containing all converted JPG images,"
+#~ " named with page numbers (e.g., filename_page0001.jpg, "
 #~ "filename_page0002.jpg)."
 
 #~ msgid ""
-#~ "Wait for the PDF to Word conversion to complete - text and formatting "
-#~ "will be extracted from your PDF and converted to editable Word format"
+#~ "Wait for the PDF to Word conversion to complete - text and formatting will "
+#~ "be extracted from your PDF and converted to editable Word format"
 #~ msgstr ""
-#~ "Wait for the PDF to Word conversion to complete - text and formatting "
-#~ "will be extracted from your PDF and converted to editable Word format"
+#~ "Wait for the PDF to Word conversion to complete - text and formatting will "
+#~ "be extracted from your PDF and converted to editable Word format"
 
 #~ msgid ""
 #~ "Download your editable Word document (DOCX format) - your PDF has been "
@@ -14498,28 +14484,28 @@ msgstr "Invalid JSON"
 #~ "successfully converted to Word"
 
 #~ msgid ""
-#~ "Text-based PDFs work best - scanned PDFs (image-only) can be converted "
-#~ "with OCR for Premium users."
+#~ "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
+#~ "OCR for Premium users."
 #~ msgstr ""
-#~ "Text-based PDFs work best - scanned PDFs (image-only) can be converted "
-#~ "with OCR for Premium users."
+#~ "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
+#~ "OCR for Premium users."
 
 #~ msgid "Text-based PDFs work best."
 #~ msgstr "Text-based PDFs work best."
 
 #~ msgid ""
-#~ "Wait for the Word to PDF conversion to complete - formatting and layout "
-#~ "will be preserved when converting from Word to PDF"
+#~ "Wait for the Word to PDF conversion to complete - formatting and layout will"
+#~ " be preserved when converting from Word to PDF"
 #~ msgstr ""
-#~ "Wait for the Word to PDF conversion to complete - formatting and layout "
-#~ "will be preserved when converting from Word to PDF"
+#~ "Wait for the Word to PDF conversion to complete - formatting and layout will"
+#~ " be preserved when converting from Word to PDF"
 
 #~ msgid ""
-#~ "Download your PDF file - your Word document has been successfully "
-#~ "converted to PDF format"
+#~ "Download your PDF file - your Word document has been successfully converted "
+#~ "to PDF format"
 #~ msgstr ""
-#~ "Download your PDF file - your Word document has been successfully "
-#~ "converted to PDF format"
+#~ "Download your PDF file - your Word document has been successfully converted "
+#~ "to PDF format"
 
 #~ msgid ""
 #~ "Click the add page numbers button to process your PDF and add page numbers"
@@ -14535,13 +14521,13 @@ msgstr "Invalid JSON"
 #~ msgid ""
 #~ "PDF files with up to %(max_pages)s pages are supported for adding page "
 #~ "numbers. For larger files, please split them into smaller parts. The page "
-#~ "numbers will be added according to your selected position, format, and "
-#~ "font size."
+#~ "numbers will be added according to your selected position, format, and font "
+#~ "size."
 #~ msgstr ""
 #~ "PDF files with up to %(max_pages)s pages are supported for adding page "
 #~ "numbers. For larger files, please split them into smaller parts. The page "
-#~ "numbers will be added according to your selected position, format, and "
-#~ "font size."
+#~ "numbers will be added according to your selected position, format, and font "
+#~ "size."
 
 #~ msgid ""
 #~ "Choose the color and opacity using the sliders to customize your PDF "
@@ -14551,11 +14537,11 @@ msgstr "Invalid JSON"
 #~ "watermark"
 
 #~ msgid ""
-#~ "Click on the PDF to position the watermark, or drag it to move it "
-#~ "anywhere on the page"
+#~ "Click on the PDF to position the watermark, or drag it to move it anywhere "
+#~ "on the page"
 #~ msgstr ""
-#~ "Click on the PDF to position the watermark, or drag it to move it "
-#~ "anywhere on the page"
+#~ "Click on the PDF to position the watermark, or drag it to move it anywhere "
+#~ "on the page"
 
 #~ msgid ""
 #~ "Click the add watermark button to process your PDF and add the watermark"
@@ -14576,8 +14562,7 @@ msgstr "Invalid JSON"
 #~ "watermark will be applied to all pages or selected pages as specified."
 
 #~ msgid "Click the crop button to process your PDF and crop the selected area"
-#~ msgstr ""
-#~ "Click the crop button to process your PDF and crop the selected area"
+#~ msgstr "Click the crop button to process your PDF and crop the selected area"
 
 #~ msgid "Download your cropped PDF file using the download button"
 #~ msgstr "Download your cropped PDF file using the download button"
@@ -14585,12 +14570,12 @@ msgstr "Invalid JSON"
 #, python-format
 #~ msgid ""
 #~ "PDF files with up to %(max_pages)s pages are supported for cropping. For "
-#~ "larger files, please split them into smaller parts. The crop area you "
-#~ "select will be applied to all selected pages."
+#~ "larger files, please split them into smaller parts. The crop area you select"
+#~ " will be applied to all selected pages."
 #~ msgstr ""
 #~ "PDF files with up to %(max_pages)s pages are supported for cropping. For "
-#~ "larger files, please split them into smaller parts. The crop area you "
-#~ "select will be applied to all selected pages."
+#~ "larger files, please split them into smaller parts. The crop area you select"
+#~ " will be applied to all selected pages."
 
 #~ msgid ""
 #~ "Click the rotate button to process your PDF and rotate the selected pages"
@@ -14604,18 +14589,18 @@ msgstr "Invalid JSON"
 #~ msgstr "Download your compressed PDF file using the download button"
 
 #~ msgid ""
-#~ "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or "
-#~ "1-5 to extract pages from PDF)"
+#~ "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5"
+#~ " to extract pages from PDF)"
 #~ msgstr ""
-#~ "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or "
-#~ "1-5 to extract pages from PDF)"
+#~ "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5"
+#~ " to extract pages from PDF)"
 
 #~ msgid ""
-#~ "Click the extract button to process your PDF and extract the selected "
-#~ "pages into a new PDF file"
+#~ "Click the extract button to process your PDF and extract the selected pages "
+#~ "into a new PDF file"
 #~ msgstr ""
-#~ "Click the extract button to process your PDF and extract the selected "
-#~ "pages into a new PDF file"
+#~ "Click the extract button to process your PDF and extract the selected pages "
+#~ "into a new PDF file"
 
 #~ msgid ""
 #~ "Download your extracted PDF file containing only the selected pages using "
@@ -14626,32 +14611,28 @@ msgstr "Invalid JSON"
 
 #, python-format
 #~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for extracting "
-#~ "pages. For larger files, please split them into smaller parts. The "
-#~ "extracted pages will be combined into a single new PDF file."
+#~ "PDF files with up to %(max_pages)s pages are supported for extracting pages."
+#~ " For larger files, please split them into smaller parts. The extracted pages"
+#~ " will be combined into a single new PDF file."
 #~ msgstr ""
-#~ "PDF files with up to %(max_pages)s pages are supported for extracting "
-#~ "pages. For larger files, please split them into smaller parts. The "
-#~ "extracted pages will be combined into a single new PDF file."
+#~ "PDF files with up to %(max_pages)s pages are supported for extracting pages."
+#~ " For larger files, please split them into smaller parts. The extracted pages"
+#~ " will be combined into a single new PDF file."
 
 #~ msgid ""
-#~ "Download your merged PDF file containing all pages from all selected "
-#~ "files using the download button"
+#~ "Download your merged PDF file containing all pages from all selected files "
+#~ "using the download button"
 #~ msgstr ""
-#~ "Download your merged PDF file containing all pages from all selected "
-#~ "files using the download button"
+#~ "Download your merged PDF file containing all pages from all selected files "
+#~ "using the download button"
 
-#~ msgid ""
-#~ "Preview all pages and drag them to reorder pages in your PDF document"
-#~ msgstr ""
-#~ "Preview all pages and drag them to reorder pages in your PDF document"
+#~ msgid "Preview all pages and drag them to reorder pages in your PDF document"
+#~ msgstr "Preview all pages and drag them to reorder pages in your PDF document"
 
 #~ msgid "Choose operation: reorder pages manually or sort pages automatically"
-#~ msgstr ""
-#~ "Choose operation: reorder pages manually or sort pages automatically"
+#~ msgstr "Choose operation: reorder pages manually or sort pages automatically"
 
-#~ msgid ""
-#~ "Click the organize button to process your PDF and reorganize the pages"
+#~ msgid "Click the organize button to process your PDF and reorganize the pages"
 #~ msgstr ""
 #~ "Click the organize button to process your PDF and reorganize the pages"
 
@@ -14664,26 +14645,26 @@ msgstr "Invalid JSON"
 
 #, python-format
 #~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for organizing. "
-#~ "For larger files, please split them into smaller parts. You can drag and "
-#~ "drop pages to reorder them visually."
+#~ "PDF files with up to %(max_pages)s pages are supported for organizing. For "
+#~ "larger files, please split them into smaller parts. You can drag and drop "
+#~ "pages to reorder them visually."
 #~ msgstr ""
-#~ "PDF files with up to %(max_pages)s pages are supported for organizing. "
-#~ "For larger files, please split them into smaller parts. You can drag and "
-#~ "drop pages to reorder them visually."
+#~ "PDF files with up to %(max_pages)s pages are supported for organizing. For "
+#~ "larger files, please split them into smaller parts. You can drag and drop "
+#~ "pages to reorder them visually."
 
 #~ msgid "Download your PDF file with pages removed using the download button"
 #~ msgstr "Download your PDF file with pages removed using the download button"
 
 #, python-format
 #~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for removing "
-#~ "pages. For larger files, please split them into smaller parts. The "
-#~ "remaining pages will be preserved in their original order."
+#~ "PDF files with up to %(max_pages)s pages are supported for removing pages. "
+#~ "For larger files, please split them into smaller parts. The remaining pages "
+#~ "will be preserved in their original order."
 #~ msgstr ""
-#~ "PDF files with up to %(max_pages)s pages are supported for removing "
-#~ "pages. For larger files, please split them into smaller parts. The "
-#~ "remaining pages will be preserved in their original order."
+#~ "PDF files with up to %(max_pages)s pages are supported for removing pages. "
+#~ "For larger files, please split them into smaller parts. The remaining pages "
+#~ "will be preserved in their original order."
 
 #~ msgid ""
 #~ "The output will be a ZIP archive containing all split PDF files. You can "
@@ -14705,26 +14686,26 @@ msgstr "Invalid JSON"
 #~ msgstr "Become Daily Hero"
 
 #~ msgid ""
-#~ "Convert PDF to Word online free without losing formatting. Fast PDF to "
-#~ "DOCX converter with no email required, unlimited conversions, high-"
-#~ "quality output. Perfect for documents, resumes, and business files. No "
-#~ "registration needed."
+#~ "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
+#~ "converter with no email required, unlimited conversions, high-quality "
+#~ "output. Perfect for documents, resumes, and business files. No registration "
+#~ "needed."
 #~ msgstr ""
-#~ "Convert PDF to Word online free without losing formatting. Fast PDF to "
-#~ "DOCX converter with no email required, unlimited conversions, high-"
-#~ "quality output. Perfect for documents, resumes, and business files. No "
-#~ "registration needed."
+#~ "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
+#~ "converter with no email required, unlimited conversions, high-quality "
+#~ "output. Perfect for documents, resumes, and business files. No registration "
+#~ "needed."
 
 #~ msgid ""
-#~ "Convert Word to PDF online free without losing formatting. Fast DOCX to "
-#~ "PDF converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No "
-#~ "registration needed."
+#~ "Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
+#~ "converter with no email required, unlimited conversions, high-quality "
+#~ "output. Perfect for documents, resumes, and business files. No registration "
+#~ "needed."
 #~ msgstr ""
-#~ "Convert Word to PDF online free without losing formatting. Fast DOCX to "
-#~ "PDF converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No "
-#~ "registration needed."
+#~ "Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
+#~ "converter with no email required, unlimited conversions, high-quality "
+#~ "output. Perfect for documents, resumes, and business files. No registration "
+#~ "needed."
 
 #~ msgid "PDF to JPG - Convertica"
 #~ msgstr "PDF to JPG - Convertica"
@@ -14745,22 +14726,22 @@ msgstr "Invalid JSON"
 #~ "merger with drag and drop. No registration required."
 
 #~ msgid ""
-#~ "Split PDF online free by pages, ranges, or bookmarks. Extract specific "
-#~ "pages from PDF, remove pages, divide PDF into multiple files. Fast PDF "
-#~ "splitter with no watermark. No registration required."
+#~ "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages"
+#~ " from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
+#~ "with no watermark. No registration required."
 #~ msgstr ""
-#~ "Split PDF online free by pages, ranges, or bookmarks. Extract specific "
-#~ "pages from PDF, remove pages, divide PDF into multiple files. Fast PDF "
-#~ "splitter with no watermark. No registration required."
+#~ "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages"
+#~ " from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
+#~ "with no watermark. No registration required."
 
 #~ msgid ""
 #~ "Compress PDF online free to reduce file size fast. PDF compressor with no "
-#~ "watermark, compress PDF to under 1MB for email, reduce PDF file size "
-#~ "without losing quality. Best PDF compression tool 2025."
+#~ "watermark, compress PDF to under 1MB for email, reduce PDF file size without"
+#~ " losing quality. Best PDF compression tool 2025."
 #~ msgstr ""
 #~ "Compress PDF online free to reduce file size fast. PDF compressor with no "
-#~ "watermark, compress PDF to under 1MB for email, reduce PDF file size "
-#~ "without losing quality. Best PDF compression tool 2025."
+#~ "watermark, compress PDF to under 1MB for email, reduce PDF file size without"
+#~ " losing quality. Best PDF compression tool 2025."
 
 #~ msgid "Daily Hero Access"
 #~ msgstr "Daily Hero Access"
@@ -14775,23 +14756,23 @@ msgstr "Invalid JSON"
 #~ msgstr "Preparing download..."
 
 #~ msgid ""
-#~ "Add your signature to a PDF online free. Upload an image of your "
-#~ "signature and place it anywhere on any page. No registration, no "
-#~ "watermark. Works on Windows, Mac, Linux, iOS, Android."
+#~ "Add your signature to a PDF online free. Upload an image of your signature "
+#~ "and place it anywhere on any page. No registration, no watermark. Works on "
+#~ "Windows, Mac, Linux, iOS, Android."
 #~ msgstr ""
-#~ "Add your signature to a PDF online free. Upload an image of your "
-#~ "signature and place it anywhere on any page. No registration, no "
-#~ "watermark. Works on Windows, Mac, Linux, iOS, Android."
+#~ "Add your signature to a PDF online free. Upload an image of your signature "
+#~ "and place it anywhere on any page. No registration, no watermark. Works on "
+#~ "Windows, Mac, Linux, iOS, Android."
 
 # ==================== pdf_to_text ====================
 #~ msgid "PDF to Text Converter Online Free | Convertica"
 #~ msgstr "PDF to Text Converter Online Free | Convertica"
 
 #~ msgid ""
-#~ "Extract plain text from PDF online free. Convert PDF to TXT file "
-#~ "instantly with optional page numbers and layout preservation. No "
-#~ "registration required."
+#~ "Extract plain text from PDF online free. Convert PDF to TXT file instantly "
+#~ "with optional page numbers and layout preservation. No registration "
+#~ "required."
 #~ msgstr ""
-#~ "Extract plain text from PDF online free. Convert PDF to TXT file "
-#~ "instantly with optional page numbers and layout preservation. No "
-#~ "registration required."
+#~ "Extract plain text from PDF online free. Convert PDF to TXT file instantly "
+#~ "with optional page numbers and layout preservation. No registration "
+#~ "required."
