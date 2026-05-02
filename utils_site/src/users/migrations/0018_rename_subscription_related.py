@@ -8,18 +8,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0017_drop_stripe_webhook_event'),
+        ("users", "0017_drop_stripe_webhook_event"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='payment_provider',
-            field=models.CharField(blank=True, choices=[('lemonsqueezy', 'Lemon Squeezy')], default='', editable=False, max_length=20),
+            model_name="user",
+            name="payment_provider",
+            field=models.CharField(
+                blank=True,
+                choices=[("lemonsqueezy", "Lemon Squeezy")],
+                default="",
+                editable=False,
+                max_length=20,
+            ),
         ),
         migrations.AlterField(
-            model_name='usersubscription',
-            name='user',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='provider_subscription', to=settings.AUTH_USER_MODEL),
+            model_name="usersubscription",
+            name="user",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="provider_subscription",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

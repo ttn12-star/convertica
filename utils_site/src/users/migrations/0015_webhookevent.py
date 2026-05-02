@@ -6,28 +6,48 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0014_operationrun_status_rejected'),
+        ("users", "0014_operationrun_status_rejected"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='WebhookEvent',
+            name="WebhookEvent",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('provider', models.CharField(max_length=20)),
-                ('event_id', models.CharField(max_length=255)),
-                ('event_type', models.CharField(blank=True, max_length=100)),
-                ('livemode', models.BooleanField(default=False)),
-                ('processing', models.BooleanField(default=False)),
-                ('processed_at', models.DateTimeField(blank=True, null=True)),
-                ('last_error', models.TextField(blank=True)),
-                ('raw_payload', models.JSONField(blank=True, default=dict)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("provider", models.CharField(max_length=20)),
+                ("event_id", models.CharField(max_length=255)),
+                ("event_type", models.CharField(blank=True, max_length=100)),
+                ("livemode", models.BooleanField(default=False)),
+                ("processing", models.BooleanField(default=False)),
+                ("processed_at", models.DateTimeField(blank=True, null=True)),
+                ("last_error", models.TextField(blank=True)),
+                ("raw_payload", models.JSONField(blank=True, default=dict)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
             options={
-                'indexes': [models.Index(fields=['provider', 'event_type', '-created_at'], name='users_webho_provide_bb4d08_idx'), models.Index(fields=['processed_at'], name='users_webho_process_bb385c_idx')],
-                'constraints': [models.UniqueConstraint(fields=('provider', 'event_id'), name='uniq_provider_event')],
+                "indexes": [
+                    models.Index(
+                        fields=["provider", "event_type", "-created_at"],
+                        name="users_webho_provide_bb4d08_idx",
+                    ),
+                    models.Index(
+                        fields=["processed_at"], name="users_webho_process_bb385c_idx"
+                    ),
+                ],
+                "constraints": [
+                    models.UniqueConstraint(
+                        fields=("provider", "event_id"), name="uniq_provider_event"
+                    )
+                ],
             },
         ),
     ]

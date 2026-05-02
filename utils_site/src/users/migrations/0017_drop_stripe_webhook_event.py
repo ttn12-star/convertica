@@ -6,11 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0016_provider_fields'),
+        ("users", "0016_provider_fields"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='StripeWebhookEvent',
+            name="StripeWebhookEvent",
         ),
     ]

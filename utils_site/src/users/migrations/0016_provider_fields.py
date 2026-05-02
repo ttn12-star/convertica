@@ -6,73 +6,88 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0015_webhookevent'),
+        ("users", "0015_webhookevent"),
     ]
 
     operations = [
         migrations.RemoveIndex(
-            model_name='usersubscription',
-            name='users_users_stripe__6a311a_idx',
+            model_name="usersubscription",
+            name="users_users_stripe__6a311a_idx",
         ),
         migrations.RenameField(
-            model_name='usersubscription',
-            old_name='stripe_customer_id',
-            new_name='provider_customer_id',
+            model_name="usersubscription",
+            old_name="stripe_customer_id",
+            new_name="provider_customer_id",
         ),
         migrations.RenameField(
-            model_name='usersubscription',
-            old_name='stripe_subscription_id',
-            new_name='provider_subscription_id',
+            model_name="usersubscription",
+            old_name="stripe_subscription_id",
+            new_name="provider_subscription_id",
         ),
         migrations.RemoveField(
-            model_name='subscriptionplan',
-            name='stripe_price_id',
+            model_name="subscriptionplan",
+            name="stripe_price_id",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='stripe_customer_id',
+            model_name="user",
+            name="stripe_customer_id",
         ),
         migrations.AddField(
-            model_name='payment',
-            name='provider',
-            field=models.CharField(default='lemonsqueezy', max_length=20, verbose_name='Provider'),
+            model_name="payment",
+            name="provider",
+            field=models.CharField(
+                default="lemonsqueezy", max_length=20, verbose_name="Provider"
+            ),
         ),
         migrations.AddField(
-            model_name='subscriptionplan',
-            name='is_lifetime',
+            model_name="subscriptionplan",
+            name="is_lifetime",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='subscriptionplan',
-            name='ls_product_id',
-            field=models.CharField(blank=True, default='', max_length=64),
+            model_name="subscriptionplan",
+            name="ls_product_id",
+            field=models.CharField(blank=True, default="", max_length=64),
         ),
         migrations.AddField(
-            model_name='subscriptionplan',
-            name='ls_variant_id',
-            field=models.CharField(blank=True, default='', max_length=64),
+            model_name="subscriptionplan",
+            name="ls_variant_id",
+            field=models.CharField(blank=True, default="", max_length=64),
         ),
         migrations.AddField(
-            model_name='user',
-            name='payment_provider',
-            field=models.CharField(blank=True, choices=[('lemonsqueezy', 'Lemon Squeezy'), ('stripe', 'Stripe')], default='', editable=False, max_length=20),
+            model_name="user",
+            name="payment_provider",
+            field=models.CharField(
+                blank=True,
+                choices=[("lemonsqueezy", "Lemon Squeezy"), ("stripe", "Stripe")],
+                default="",
+                editable=False,
+                max_length=20,
+            ),
         ),
         migrations.AddField(
-            model_name='user',
-            name='provider_customer_id',
-            field=models.CharField(blank=True, default='', editable=False, max_length=100),
+            model_name="user",
+            name="provider_customer_id",
+            field=models.CharField(
+                blank=True, default="", editable=False, max_length=100
+            ),
         ),
         migrations.AddField(
-            model_name='usersubscription',
-            name='provider',
-            field=models.CharField(default='lemonsqueezy', max_length=20),
+            model_name="usersubscription",
+            name="provider",
+            field=models.CharField(default="lemonsqueezy", max_length=20),
         ),
         migrations.AddIndex(
-            model_name='usersubscription',
-            index=models.Index(fields=['provider_subscription_id'], name='users_users_provide_28df36_idx'),
+            model_name="usersubscription",
+            index=models.Index(
+                fields=["provider_subscription_id"],
+                name="users_users_provide_28df36_idx",
+            ),
         ),
         migrations.AddIndex(
-            model_name='usersubscription',
-            index=models.Index(fields=['provider', 'status'], name='users_users_provide_c85075_idx'),
+            model_name="usersubscription",
+            index=models.Index(
+                fields=["provider", "status"], name="users_users_provide_c85075_idx"
+            ),
         ),
     ]
