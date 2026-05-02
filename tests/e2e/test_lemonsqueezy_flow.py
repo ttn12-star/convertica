@@ -44,8 +44,8 @@ def _post_signed_webhook(app_url: str, payload: dict) -> requests.Response:
 
 
 def test_pricing_page_renders(page, app_url):
-    page.goto(f"{app_url}/pricing/")
-    page.wait_for_load_state("networkidle", timeout=10000)
+    page.goto(f"{app_url}/pricing/", wait_until="domcontentloaded")
+    page.wait_for_selector("text=/Monthly Hero/", timeout=10000)
     assert "Convertica" in page.title() or "Hero" in page.title()
     # Lifetime card is conditional on lifetime_plan being seeded; check Monthly + Yearly always.
     assert page.locator("text=/Monthly Hero/").first.is_visible()
@@ -102,9 +102,8 @@ def test_pricing_subscribe_button_calls_create_checkout(page, app_url):
     """Clicking Subscribe Monthly should hit /payments/create-checkout/ and
     receive a 503 (no LS configured locally) or 200 (if LS configured).
     Either way, the request must FIRE — proves the JS wiring is correct."""
-    page.goto(f"{app_url}/pricing/")
-    # Wait for the page to settle
-    page.wait_for_load_state("networkidle", timeout=10000)
+    page.goto(f"{app_url}/pricing/", wait_until="domcontentloaded")
+    page.wait_for_selector("text=/Monthly Hero/", timeout=10000)
     # Find the Subscribe Monthly button (matches multiple possible labels)
     button = page.locator(
         "button[onclick*='monthly'], button:has-text('Monthly Hero'), "
