@@ -292,3 +292,348 @@ class PremiumFeaturesDictTests(TestCase):
         self.assertTrue(features["priority_queue"])
         self.assertTrue(features["api_access"])
         self.assertTrue(features["no_ads"])
+
+
+# ---------------------------------------------------------------------------
+# A1. File size limit
+# ---------------------------------------------------------------------------
+
+
+@override_settings(PAYMENTS_ENABLED=True)
+class FileSizeLimitTests(TestCase):
+    """Verify get_max_file_size_for_user returns correct limit per user state.
+
+    Covers premium gate #2 (file size cap) — the limit drives both the
+    Nginx-level `client_max_body_size` selection and the in-Django
+    validate_file_for_operation check in base_views.
+    """
+
+    def setUp(self):
+        cache.clear()  # purge stale user_premium_active:{pk} keys
+        self.user = User.objects.create_user(email="size@t.test", password="p")
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly Size",
+            slug="monthly-size",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def test_anonymous_user_gets_free_limit(self):
+        from django.contrib.auth.models import AnonymousUser
+        from src.api.conversion_limits import MAX_FILE_SIZE, get_max_file_size_for_user
+
+        self.assertEqual(get_max_file_size_for_user(AnonymousUser()), MAX_FILE_SIZE)
+
+    def test_authenticated_free_user_gets_free_limit(self):
+        from src.api.conversion_limits import MAX_FILE_SIZE, get_max_file_size_for_user
+
+        self.assertEqual(get_max_file_size_for_user(self.user), MAX_FILE_SIZE)
+
+    def test_premium_user_gets_premium_limit(self):
+        from src.api.conversion_limits import (
+            MAX_FILE_SIZE_PREMIUM,
+            get_max_file_size_for_user,
+        )
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_size",
+            provider_customer_id="cust_size",
+        )
+        self.assertEqual(get_max_file_size_for_user(self.user), MAX_FILE_SIZE_PREMIUM)
+
+    def test_premium_user_with_heavy_operation_gets_heavy_premium_limit(self):
+        # `compress_pdf` is NOT in HEAVY_OPERATIONS (compress is a simple op),
+        # so we use `pdf_to_word` which IS heavy.
+        from src.api.conversion_limits import (
+            HEAVY_OPERATIONS,
+            MAX_FILE_SIZE_HEAVY_PREMIUM,
+            get_max_file_size_for_user,
+        )
+
+        # Sanity: verify our chosen op is actually heavy.
+        self.assertIn("pdf_to_word", HEAVY_OPERATIONS)
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_heavy",
+            provider_customer_id="cust_heavy",
+        )
+        self.assertEqual(
+            get_max_file_size_for_user(self.user, operation="pdf_to_word"),
+            MAX_FILE_SIZE_HEAVY_PREMIUM,
+        )
+
+    def test_expired_premium_falls_back_to_free_limit(self):
+        from src.api.conversion_limits import MAX_FILE_SIZE, get_max_file_size_for_user
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now - timedelta(days=40),
+            period_end=now - timedelta(days=10),  # expired
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_exp",
+            provider_customer_id="cust_exp",
+        )
+        self.assertFalse(self.user.is_subscription_active())
+        self.assertEqual(get_max_file_size_for_user(self.user), MAX_FILE_SIZE)
+
+
+# ---------------------------------------------------------------------------
+# A2. Page-count limit
+# ---------------------------------------------------------------------------
+
+
+@override_settings(PAYMENTS_ENABLED=True)
+class PageCountLimitTests(TestCase):
+    """Verify get_max_pages_for_user returns correct page cap per user state.
+
+    Covers premium gate #3 (PDF page count). Per-operation overrides come
+    from `settings.PREMIUM_PAGE_LIMITS`.
+    """
+
+    def setUp(self):
+        cache.clear()
+        self.user = User.objects.create_user(email="pages@t.test", password="p")
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly Pages",
+            slug="monthly-pages",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def test_anonymous_user_gets_free_pages(self):
+        from django.contrib.auth.models import AnonymousUser
+        from src.api.conversion_limits import MAX_PDF_PAGES, get_max_pages_for_user
+
+        self.assertEqual(get_max_pages_for_user(AnonymousUser()), MAX_PDF_PAGES)
+
+    def test_authenticated_free_user_gets_free_pages(self):
+        from src.api.conversion_limits import MAX_PDF_PAGES, get_max_pages_for_user
+
+        self.assertEqual(get_max_pages_for_user(self.user), MAX_PDF_PAGES)
+
+    def test_premium_user_gets_premium_pages(self):
+        from src.api.conversion_limits import (
+            MAX_PDF_PAGES_PREMIUM,
+            get_max_pages_for_user,
+        )
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_pages",
+            provider_customer_id="cust_pages",
+        )
+        self.assertEqual(get_max_pages_for_user(self.user), MAX_PDF_PAGES_PREMIUM)
+
+    @override_settings(PREMIUM_PAGE_LIMITS={"pdf_to_word": 500})
+    def test_premium_user_per_operation_override_wins(self):
+        from src.api.conversion_limits import get_max_pages_for_user
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_override",
+            provider_customer_id="cust_override",
+        )
+        # Override returns the configured value directly, NOT the global premium cap.
+        self.assertEqual(
+            get_max_pages_for_user(self.user, operation="pdf_to_word"),
+            500,
+        )
+
+
+# ---------------------------------------------------------------------------
+# A3. OCR gate
+# ---------------------------------------------------------------------------
+
+
+@override_settings(PAYMENTS_ENABLED=True)
+class OCRGateTests(TestCase):
+    """Verify the OCR-only-for-premium gate at /api/pdf-to-word/.
+
+    The gate lives in `BaseConversionAPIView.post` and short-circuits with
+    HTTP 403 + 'OCR is a premium feature' before any PDF parsing if the
+    request includes `ocr_enabled=true` and the user isn't premium.
+
+    We send a minimal fake PDF — premium path will fail later (real OCR
+    needs a real PDF) but the gate runs *before* validation, so all we
+    assert for premium is "not 403 with the OCR message".
+    """
+
+    OCR_URL = "/api/pdf-to-word/"
+
+    def setUp(self):
+        cache.clear()
+        self.client = Client()
+        self.user = User.objects.create_user(email="ocr@t.test", password="p")
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly OCR",
+            slug="monthly-ocr",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def _post_ocr(self) -> Client.response_class:
+        return self.client.post(
+            self.OCR_URL,
+            data={
+                "pdf_file": _fake_pdf("ocr.pdf"),
+                "ocr_enabled": "true",
+            },
+            format="multipart",
+        )
+
+    def test_anonymous_user_blocked_with_ocr_message_or_auth(self):
+        """Anon: either OCR gate (403 + OCR message) or DRF auth layer (403).
+
+        Both outcomes mean OCR is correctly denied for unauthenticated users.
+        """
+        response = self._post_ocr()
+        self.assertEqual(response.status_code, 403)
+
+    def test_free_user_blocked_with_ocr_premium_message(self):
+        self.client.force_login(self.user)
+        response = self._post_ocr()
+        self.assertEqual(response.status_code, 403)
+        body = response.json()
+        self.assertIn("OCR is a premium feature", body.get("error", ""))
+
+    def test_premium_user_passes_ocr_gate(self):
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_ocr",
+            provider_customer_id="cust_ocr",
+        )
+        self.client.force_login(self.user)
+        response = self._post_ocr()
+        # Gate passed — downstream may 400/500 because the fake PDF can't be
+        # OCRd, but it must NOT be a 403 with the OCR-premium message.
+        if response.status_code == 403:
+            body = response.json()
+            self.assertNotIn(
+                "OCR is a premium feature",
+                body.get("error", ""),
+                f"Premium user incorrectly blocked by OCR gate: {body}",
+            )
+
+    def test_is_premium_active_unit_for_ocr_decision(self):
+        """Direct unit test of the helper that drives the OCR gate.
+
+        If the view-level integration above ever changes URL/serializer
+        shape, this unit test still encodes the contract: free users
+        return False, premium users return True.
+        """
+        from src.api.premium_utils import is_premium_active
+
+        # Free user.
+        self.assertFalse(is_premium_active(self.user))
+
+        # Activate premium.
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_unit",
+            provider_customer_id="cust_unit",
+        )
+        # Cache is per-user, cleared in setUp; no need to clear again here.
+        self.assertTrue(is_premium_active(self.user))
+
+
+# ---------------------------------------------------------------------------
+# A4. Priority queue routing
+# ---------------------------------------------------------------------------
+
+
+class PriorityQueueTests(TestCase):
+    """Trivial unit tests for src.api.task_utils.
+
+    Covers premium gate #5 — premium users land on the 'premium' Celery
+    queue with priority 9; free users on 'regular' with priority 5.
+    """
+
+    def test_free_user_routes_to_regular_queue(self):
+        from src.api.task_utils import get_task_queue
+
+        self.assertEqual(get_task_queue(is_premium=False), "regular")
+
+    def test_premium_user_routes_to_premium_queue(self):
+        from src.api.task_utils import get_task_queue
+
+        self.assertEqual(get_task_queue(is_premium=True), "premium")
+
+    def test_free_user_priority_is_five(self):
+        from src.api.task_utils import get_task_priority
+
+        self.assertEqual(get_task_priority(is_premium=False), 5)
+
+    def test_premium_user_priority_is_nine(self):
+        from src.api.task_utils import get_task_priority
+
+        self.assertEqual(get_task_priority(is_premium=True), 9)
+
+
+# ---------------------------------------------------------------------------
+# A5. Settings-level limits exposed
+# ---------------------------------------------------------------------------
+
+
+class SettingsLimitsExposedTests(TestCase):
+    """Smoke-test that premium-superior settings are non-zero & > free.
+
+    Catches the "env var typo silently makes premium worse than free"
+    failure mode — covers gates #2, #3, #6.
+    """
+
+    def test_html_to_pdf_premium_chars_positive_and_above_free(self):
+        from django.conf import settings
+
+        self.assertGreater(settings.HTML_TO_PDF_MAX_CHARS_PREMIUM, 0)
+        self.assertGreater(
+            settings.HTML_TO_PDF_MAX_CHARS_PREMIUM,
+            settings.HTML_TO_PDF_MAX_CHARS_FREE,
+        )
+
+    def test_max_file_size_premium_positive_and_above_free(self):
+        from django.conf import settings
+
+        self.assertGreater(settings.MAX_FILE_SIZE_PREMIUM, 0)
+        self.assertGreater(
+            settings.MAX_FILE_SIZE_PREMIUM,
+            settings.MAX_FILE_SIZE_FREE,
+        )
+
+    def test_max_pdf_pages_premium_positive_and_above_free(self):
+        from django.conf import settings
+
+        self.assertGreater(settings.MAX_PDF_PAGES_PREMIUM, 0)
+        self.assertGreater(
+            settings.MAX_PDF_PAGES_PREMIUM,
+            settings.MAX_PDF_PAGES_FREE,
+        )
