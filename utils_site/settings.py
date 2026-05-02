@@ -1021,6 +1021,11 @@ CELERY_BEAT_SCHEDULE = {
         "task": "user_cleanup.delete_unverified_accounts",
         "schedule": 86400,  # Every 24 hours
     },
+    # Detect webhook events stuck without processing for over an hour
+    "detect-stuck-webhooks": {
+        "task": "maintenance.detect_stuck_webhooks",
+        "schedule": 3600,  # Every hour
+    },
     # ⚠️ DISABLED: cleanup-old-operations - Keep all operation data permanently
     # If you need to cleanup old data, run manually:
     #   docker compose exec web python manage.py shell -c "from src.tasks.maintenance import cleanup_old_operations; cleanup_old_operations(retention_days=730)"
