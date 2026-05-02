@@ -1575,16 +1575,3 @@ class SupportPageView(TemplateView):
         )
         context["kofi_url"] = settings.KOFI_URL
         return context
-
-
-class SupportSuccessPageView(TemplateView):
-    template_name = "frontend/support_success.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["page_title"] = _("Thank you for your contribution")
-        context["page_description"] = _(
-            "Thank you for contributing to Convertica. Your support helps us keep improving the service."
-        )
-        context["page_keywords"] = "convertica contribute success, thank you"
-        return context
