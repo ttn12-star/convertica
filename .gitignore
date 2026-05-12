@@ -261,3 +261,9 @@ tailwindcss-linux-x64
 
 # Local Playwright/E2E artifacts (videos, debug screenshots)
 tests/e2e/artifacts/
+
+# Stray screenshots in repo root — these belong in the vault, not the repo.
+# Includes ad-hoc Playwright captures (e.g. ls-*.png from LS dashboard setup).
+/*.png
+/*.jpg
+/*.jpeg
