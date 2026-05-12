@@ -197,6 +197,10 @@ COPY --chown=appuser:appuser ci/gunicorn.conf.py /app/ci/gunicorn.conf.py
 # Also remove any stale circular symlink that may have been left by older builds.
 RUN rm -f /app/utils_site/src/src && ln -s /app/utils_site/src /app/src
 
+# Compile .po → .mo for all locales so Django serves translations.
+# Uses msgfmt directly (gettext) — independent of Django settings at build time.
+RUN find /app/locale -name 'django.po' -execdir msgfmt django.po -o django.mo \;
+
 # Switch to non-root user
 USER appuser
 
