@@ -37,6 +37,16 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         # Filter handled errors - don't send InvalidPDFError as unhandled exceptions
         # These are expected user errors (corrupted files), not bugs
         def before_send(event, hint):
+            # Lazy import: avoids dragging src.api.* into module load time of
+            # settings.py (which runs before Django apps are ready).
+            from src.api.sentry_filters import is_pdf2docx_page_skip_noise
+
+            # Drop pdf2docx "Ignore page N due to making/parsing page error"
+            # logs. The library recovers internally (skips the page and
+            # continues); these are not actionable bugs.
+            if is_pdf2docx_page_skip_noise(event):
+                return None
+
             logentry = event.get("logentry") or {}
             logentry_message = logentry.get("message") or ""
             logentry_params = logentry.get("params") or []
