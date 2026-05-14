@@ -543,7 +543,10 @@ class OptimizedWordToPDFConverter:
 
                 # Check if PDF was actually created
                 if not pdf_files:
-                    logger.error(
+                    # Intermediate failure of the first attempt — a fallback
+                    # (no-infilter) is attempted next. Only the final, post-
+                    # retry failure should escalate to Sentry as an error.
+                    logger.warning(
                         "LibreOffice completed successfully but no PDF file was created",
                         extra={**context, "event": "no_pdf_created"},
                     )
@@ -660,7 +663,9 @@ class OptimizedWordToPDFConverter:
 
                     # Check if PDF was created
                     if not pdf_files:
-                        logger.error(
+                        # Intermediate: a third (simple-filter) attempt
+                        # follows. Final fail is reported below.
+                        logger.warning(
                             "LibreOffice fallback completed but no PDF file was created",
                             extra={**context, "event": "no_pdf_created_fallback"},
                         )
@@ -668,7 +673,10 @@ class OptimizedWordToPDFConverter:
 
                     return fallback_process.returncode == 0
                 except subprocess.TimeoutExpired as fallback_timeout:
-                    logger.error(
+                    # Intermediate: the raised ConversionError is caught by
+                    # the outer retry loop in _convert_with_libreoffice_async;
+                    # final failure is logged there at error level.
+                    logger.warning(
                         f"LibreOffice fallback conversion timed out after {self.timeout_seconds} seconds",
                         extra={
                             **context,
@@ -801,7 +809,12 @@ class OptimizedWordToPDFConverter:
                                     )
                                     return True
 
-                        logger.error(
+                        # Intermediate inside _convert (all 3 internal filter
+                        # attempts failed). The raised ConversionError is
+                        # caught and possibly retried by the outer
+                        # _convert_with_libreoffice_async loop; the
+                        # post-retry final failure escalates to error there.
+                        logger.warning(
                             f"All LibreOffice conversion attempts failed. Simple filter error: {simple_e}",
                             extra={**context, "event": "conversion_all_failed"},
                         )
