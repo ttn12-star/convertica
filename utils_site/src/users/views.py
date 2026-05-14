@@ -86,17 +86,13 @@ def user_register(request):
 
             # Send email verification
             from allauth.account.models import EmailAddress
-            from allauth.account.utils import send_email_confirmation
 
-            # Create EmailAddress object for the user
-            EmailAddress.objects.get_or_create(
+            email_address, _created = EmailAddress.objects.get_or_create(
                 user=user,
                 email=user.email,
                 defaults={"primary": True, "verified": False},
             )
-
-            # Send verification email
-            send_email_confirmation(request, user, signup=True)
+            email_address.send_confirmation(request, signup=True)
 
             # Show success message and redirect to login
             messages.success(
@@ -166,7 +162,6 @@ def user_profile(request):
 @require_POST
 def resend_confirmation_email(request):
     from allauth.account.models import EmailAddress
-    from allauth.account.utils import send_email_confirmation
 
     if EmailAddress.objects.filter(
         user=request.user,
@@ -176,13 +171,12 @@ def resend_confirmation_email(request):
         messages.info(request, _("Your email is already verified."))
         return redirect("users:profile")
 
-    EmailAddress.objects.get_or_create(
+    email_address, _created = EmailAddress.objects.get_or_create(
         user=request.user,
         email=request.user.email,
         defaults={"primary": True, "verified": False},
     )
-
-    send_email_confirmation(request, request.user, signup=False)
+    email_address.send_confirmation(request, signup=False)
     return redirect("users:profile")
 
 
