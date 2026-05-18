@@ -206,7 +206,7 @@ msgstr "Ini biasanya masalah sementara. Jika berlanjut, silakan"
 
 #: templates/503.html:4 templates/503.html:5
 msgid "503 - Service Unavailable"
-msgstr ""
+msgstr "503 - Layanan Tidak Tersedia"
 
 #: templates/503.html:6
 msgid ""
@@ -222,7 +222,7 @@ msgstr "Donasi sementara tidak tersedia"
 #: templates/503.html:36
 msgid ""
 "We couldn't send your email right now. Please try again in a few minutes."
-msgstr ""
+msgstr "Kami belum bisa mengirim email Anda sekarang. Silakan coba lagi dalam beberapa menit."
 
 #: templates/503.html:60
 msgid "If this keeps happening, please"
