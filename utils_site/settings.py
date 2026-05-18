@@ -369,6 +369,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "src.api.middleware.OperationRunTrackingMiddleware",  # DB analytics for all operations
     "allauth.account.middleware.AccountMiddleware",
+    "src.users.middleware.EmailDeliveryErrorMiddleware",  # Render 503 instead of 500 on SMTP failures (must wrap allauth views)
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "src.api.middleware.SecurityHeadersMiddleware",  # Add CSP and other security headers
@@ -1073,6 +1074,9 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
 EMAIL_USE_SSL = config("EMAIL_USE_SSL", default=False, cast=bool)
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
+# Bound the SMTP socket so an unreachable host fails fast (~20s) instead of
+# tying up a gunicorn worker for the full default 10-minute system timeout.
+EMAIL_TIMEOUT = config("EMAIL_TIMEOUT", default=20, cast=int)
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@convertica.net")
 CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 
