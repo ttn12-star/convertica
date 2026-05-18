@@ -208,7 +208,7 @@ msgstr "This is usually a temporary issue. If it persists, please"
 
 #: templates/503.html:4 templates/503.html:5
 msgid "503 - Service Unavailable"
-msgstr ""
+msgstr "503 - Service Unavailable"
 
 #: templates/503.html:6
 msgid ""
@@ -224,7 +224,7 @@ msgstr "Premium payments are temporarily unavailable."
 #: templates/503.html:36
 msgid ""
 "We couldn't send your email right now. Please try again in a few minutes."
-msgstr ""
+msgstr "We couldn't send your email right now. Please try again in a few minutes."
 
 #: templates/503.html:60
 msgid "If this keeps happening, please"

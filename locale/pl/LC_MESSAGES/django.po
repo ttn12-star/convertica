@@ -205,7 +205,7 @@ msgstr "Zazwyczaj jest to problem tymczasowy. Jeśli się utrzymuje, prosimy"
 
 #: templates/503.html:4 templates/503.html:5
 msgid "503 - Service Unavailable"
-msgstr ""
+msgstr "503 - Usługa niedostępna"
 
 #: templates/503.html:6
 msgid ""
@@ -221,7 +221,7 @@ msgstr "Wsparcie jest tymczasowo niedostępne"
 #: templates/503.html:36
 msgid ""
 "We couldn't send your email right now. Please try again in a few minutes."
-msgstr ""
+msgstr "Nie udało się teraz wysłać Twojego e-maila. Spróbuj ponownie za kilka minut."
 
 #: templates/503.html:60
 msgid "If this keeps happening, please"

@@ -207,7 +207,7 @@ msgstr "هذه عادةً مشكلة مؤقتة. إذا استمرت، يرجى"
 
 #: templates/503.html:4 templates/503.html:5
 msgid "503 - Service Unavailable"
-msgstr ""
+msgstr "503 - الخدمة غير متاحة"
 
 #: templates/503.html:6
 msgid ""
@@ -223,7 +223,7 @@ msgstr "التبرعات غير متاحة مؤقتًا"
 #: templates/503.html:36
 msgid ""
 "We couldn't send your email right now. Please try again in a few minutes."
-msgstr ""
+msgstr "تعذّر إرسال بريدك الإلكتروني الآن. يرجى المحاولة مرة أخرى بعد بضع دقائق."
 
 #: templates/503.html:60
 msgid "If this keeps happening, please"
