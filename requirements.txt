@@ -72,3 +72,9 @@ py-vapid==1.9.1
 pywebpush==1.14.0
 # Playwright - HTML/URL to PDF conversion
 playwright==1.58.0
+
+# django-anymail - HTTP API email backend (used for SendGrid so we don't
+# depend on outbound SMTP, which DigitalOcean droplets block by default).
+# Activates when SENDGRID_API_KEY is set; otherwise the project falls back
+# to the SMTP backend (useful for local development with console output).
+django-anymail[sendgrid]==15.0
