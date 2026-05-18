@@ -220,6 +220,13 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
             "gradient": "from-pink-500 to-pink-600",
         },
+        "heic_to_jpg": {
+            "name": _("HEIC to JPG"),
+            "url": "frontend:heic_to_jpg_page",
+            "description": _("Convert iPhone HEIC photos to JPG, PNG, or PDF"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>',
+            "gradient": "from-rose-500 to-pink-600",
+        },
     }
 
     # Define related tools for each tool. Each tool gets 3 outgoing links;
@@ -261,8 +268,9 @@ def _get_related_tools(current_tool):
         "flatten_pdf": ["add_watermark", "rotate_pdf", "organize_pdf"],
         "sign_pdf": ["add_watermark", "protect_pdf", "flatten_pdf"],
         "pdf_to_text": ["pdf_to_word", "pdf_to_markdown", "split_pdf"],
-        "optimize_image": ["convert_image", "jpg_to_pdf", "compress_pdf"],
-        "convert_image": ["optimize_image", "jpg_to_pdf", "pdf_to_jpg"],
+        "optimize_image": ["convert_image", "heic_to_jpg", "jpg_to_pdf"],
+        "convert_image": ["optimize_image", "heic_to_jpg", "jpg_to_pdf"],
+        "heic_to_jpg": ["convert_image", "optimize_image", "jpg_to_pdf"],
     }
 
     related_keys = relations.get(current_tool, [])
@@ -507,6 +515,12 @@ def convert_image_page(request):
 
 
 @anonymous_cache_page(60 * 60)
+def heic_to_jpg_page(request):
+    """HEIC to JPG/PNG/PDF conversion landing page (premium-gated API)."""
+    return _render_tool_page(request, "heic_to_jpg")
+
+
+@anonymous_cache_page(60 * 60)
 def merge_pdf_page(request):
     """Merge PDF page."""
     return _render_tool_page(request, "merge_pdf")
@@ -712,6 +726,13 @@ def premium_tools_page(request):
                 "url": reverse("frontend:pdf_to_text_page"),
                 "description": _(
                     "Extract all text content from a PDF as a plain .txt file. Supports page numbering and layout preservation."
+                ),
+            },
+            {
+                "name": _("HEIC to JPG"),
+                "url": reverse("frontend:heic_to_jpg_page"),
+                "description": _(
+                    "Convert Apple HEIC and HEIF photos from iPhone or iPad to JPG, PNG, or PDF. Batch up to 10 files."
                 ),
             },
         ],
@@ -1335,6 +1356,7 @@ def _get_sitemap_pages():
         {"url": "pdf-edit/sign/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/optimize/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/convert/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "image/heic-to-jpg/", "priority": "0.7", "changefreq": "monthly"},
         # NOTE: scanned-pdf-to-word/ and batch-converter/ are premium-gated and
         # 302-redirect anonymous crawlers to /users/login/. Keeping them out of
         # sitemap until they get public landing pages.

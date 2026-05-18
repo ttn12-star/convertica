@@ -220,4 +220,127 @@ IMAGE_TOOLS_CONFIGS = {
             ),
         },
     },
+    "heic_to_jpg": {
+        "template": "frontend/image_tools/heic_to_jpg.html",
+        "converter_args": {
+            "page_title": _(
+                "HEIC to JPG Converter - Convert iPhone HEIC Photos to JPG, PNG, PDF | Convertica Premium"
+            ),
+            "page_description": _(
+                "Convert Apple HEIC and HEIF photos from your iPhone or iPad to JPG, PNG, or PDF online. "
+                "Premium feature with batch conversion. Keeps original quality. No watermark."
+            ),
+            "page_keywords": (
+                "HEIC to JPG, HEIC to JPEG, HEIC to PNG, HEIC to PDF, HEIF converter, "
+                "convert HEIC online, iPhone photo converter, convert iPhone HEIC to JPG, "
+                "open HEIC on Windows, HEIC to JPG batch, HEIC converter free trial, "
+                "HEIC to JPG no watermark, premium HEIC converter, "
+                "Apple photo format converter, iOS HEIC to JPG online"
+            ),
+            "page_subtitle": _(
+                "Turn iPhone HEIC photos into universally compatible JPG, PNG, or PDF"
+            ),
+            "header_text": _("HEIC to JPG Converter"),
+            "file_input_name": "image_file",
+            "file_accept": ".heic,.heif",
+            "api_url_name": "convert_heic_api",
+            "replace_regex": r"\.(heic|heif)$",
+            "replace_to": "_convertica",
+            "button_text": _("Convert HEIC"),
+            "select_file_message": _("Please select a HEIC or HEIF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("iPhone & iPad Photos"),
+                    "description": _(
+                        "Decode the HEIC and HEIF formats that Apple devices use by default — open them anywhere"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+                    "gradient": "from-fuchsia-500 to-pink-600",
+                    "title": _("3 Output Formats"),
+                    "description": _(
+                        "Convert to JPG for universal compatibility, PNG for lossless quality, or PDF for printing and sharing"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>',
+                    "gradient": "from-amber-500 to-orange-600",
+                    "title": _("Batch Conversion"),
+                    "description": _(
+                        "Upload up to 10 HEIC photos at once and download them as a single ZIP — premium only"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Original Quality"),
+                    "description": _(
+                        "Premium pipeline preserves every detail — adjustable JPEG quality, fully lossless PNG"
+                    ),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("Why do iPhone photos arrive as HEIC files?"),
+                    "answer": _(
+                        "Since iOS 11 (2017), Apple devices save photos in the HEIC / HEIF format by default. "
+                        "It produces smaller files at the same quality, but most non-Apple software — including "
+                        "Windows, older versions of Office, and many websites — cannot open it. Converting "
+                        "HEIC to JPG or PNG makes the photo universally viewable."
+                    ),
+                },
+                {
+                    "question": _("Should I convert HEIC to JPG, PNG, or PDF?"),
+                    "answer": _(
+                        "Choose JPG for general use, sharing, and uploads — it is the most universally supported "
+                        "photo format. Choose PNG if you need lossless quality with no compression artifacts. "
+                        "Choose PDF when you need to print, archive, or email the photo as a document."
+                    ),
+                },
+                {
+                    "question": _("Is the HEIC converter free?"),
+                    "answer": _(
+                        "The HEIC converter is a premium feature. Premium users can convert single files and "
+                        "process up to 10 HEIC photos at once in batch mode. Upgrade to Premium to unlock it "
+                        "alongside our other advanced tools."
+                    ),
+                },
+            ],
+            "faq_title": _("HEIC Converter FAQ"),
+            "page_tips": [
+                _(
+                    "Convert HEIC to JPG when uploading photos to social networks, job-application portals, or older websites."
+                ),
+                _(
+                    "Use PNG output when you need a transparent or pixel-perfect copy — for example, when editing further in a graphics app."
+                ),
+                _(
+                    "Choose PDF to send an iPhone photo as a printable document — handy for receipts, IDs, or scanned paperwork."
+                ),
+            ],
+            "benefits_title": _("Why Use Our HEIC Converter?"),
+            "tips_title": _("Tips for Converting HEIC Photos"),
+            "page_content_title": _(
+                "Convert HEIC and HEIF photos to JPG, PNG, or PDF online"
+            ),
+            "page_content_body": _(
+                "<p><strong>HEIC to JPG</strong> conversion turns the High-Efficiency Image Container files "
+                "that iPhones and iPads create by default into formats every device can open. "
+                "Apple's HEIC format is excellent for storage but causes friction whenever you need to upload, "
+                "email, or print the photo on non-Apple platforms.</p>"
+                "<p>This premium tool decodes HEIC and HEIF files and re-encodes them to <strong>JPG</strong> "
+                "(maximum compatibility), <strong>PNG</strong> (lossless quality), or <strong>PDF</strong> "
+                "(printable document). Quality settings, batch processing of up to 10 files at once, and "
+                "ZIP downloads are all included with Premium.</p>"
+            ),
+        },
+        "extra": {
+            "how_to_time": "PT1M",
+        },
+    },
 }
