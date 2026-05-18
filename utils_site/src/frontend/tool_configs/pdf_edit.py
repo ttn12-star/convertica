@@ -669,16 +669,19 @@ PDF_EDIT_CONFIGS = {
                 "Sign PDF - Add Signature to PDF Online | Convertica Premium"
             ),
             "page_description": _(
-                "Add your handwritten signature to any PDF document. Premium feature: upload a PNG signature image, choose position and apply to all pages. Fast and secure."
+                "Sign any PDF online: draw with the mouse, type your name in a handwriting font, or upload a signature image. Click on the page to place it, drag to position, resize with handles. Premium feature."
             ),
             "page_keywords": (
                 "sign PDF online free, add signature to PDF, PDF signature tool, "
                 "sign PDF no registration, electronic signature PDF, "
+                "draw signature on PDF, type signature on PDF, "
                 "add image signature to PDF, PDF sign free, "
                 "sign PDF online without registration, PDF e-signature, "
                 "sign PDF document online, digital signature PDF free"
             ),
-            "page_subtitle": _("Add your image signature to any PDF page"),
+            "page_subtitle": _(
+                "Draw, type, or upload your signature — place it anywhere on the PDF"
+            ),
             "header_text": _("Sign PDF"),
             "file_input_name": "pdf_file",
             "file_accept": ".pdf",
@@ -693,17 +696,17 @@ PDF_EDIT_CONFIGS = {
                 {
                     "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>',
                     "gradient": "from-blue-500 to-blue-600",
-                    "title": _("Image Signature"),
+                    "title": _("Draw, Type or Upload"),
                     "description": _(
-                        "Upload any PNG or JPEG image of your handwritten signature and place it precisely on the PDF"
+                        "Three ways to create a signature: draw it with the mouse or finger, type your name in a handwriting font, or upload a PNG/JPG image"
                     ),
                 },
                 {
                     "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>',
                     "gradient": "from-purple-500 to-purple-600",
-                    "title": _("Flexible Placement"),
+                    "title": _("Visual Placement"),
                     "description": _(
-                        "Choose the exact position and page for your signature, or apply it to all pages at once"
+                        "Click on the PDF preview to drop your signature, drag to fine-tune position, and pull the corner handle to resize"
                     ),
                 },
                 {
@@ -725,17 +728,36 @@ PDF_EDIT_CONFIGS = {
             ],
             "page_faq": [
                 {
-                    "question": _("What image formats are accepted for the signature?"),
+                    "question": _("How do I create a signature?"),
                     "answer": _(
-                        "You can upload a PNG or JPEG image of your handwritten signature. "
-                        "PNG with a transparent background works best so the signature blends naturally into the PDF."
+                        "Three ways: draw it on the canvas with your mouse or finger, type your "
+                        "name and we render it in a handwriting font, or upload a PNG/JPG image. "
+                        "PNG with a transparent background gives the cleanest result for uploads."
                     ),
                 },
                 {
-                    "question": _("Can I sign all pages at once?"),
+                    "question": _("Can I place the signature anywhere on the page?"),
                     "answer": _(
-                        "Yes. Enable the 'Apply to all pages' option and your signature will be stamped "
-                        "on every page of the PDF at the same position."
+                        "Yes. After creating your signature, click anywhere on the PDF preview to "
+                        "drop it there. Drag it around to fine-tune the position, or pull the "
+                        "corner handle to resize. You can place multiple signatures on the same "
+                        "page or different pages."
+                    ),
+                },
+                {
+                    "question": _("Can I sign multiple pages of a long contract?"),
+                    "answer": _(
+                        "Yes. Use the page selector above the preview to switch pages, then click "
+                        "to drop a signature on each one. Every placement is saved and applied "
+                        "when you press Sign PDF."
+                    ),
+                },
+                {
+                    "question": _("Will my signature be saved for next time?"),
+                    "answer": _(
+                        "If you drew or typed your signature, the last version is saved locally "
+                        "in your browser (never sent to the server), so you can re-use it on the "
+                        "next visit with one click. Uploaded images are not saved for privacy."
                     ),
                 },
                 {
@@ -750,23 +772,25 @@ PDF_EDIT_CONFIGS = {
             "faq_title": _("Sign PDF FAQ"),
             "page_tips": [
                 _(
-                    "Use a PNG image with a transparent background for the cleanest signature result."
+                    "For the cleanest look, draw your signature directly or upload a PNG with a transparent background."
                 ),
                 _(
-                    "Increase the signature width for large-format PDFs so it stays visible."
+                    "Click on the PDF preview to drop the signature exactly where you want it; drag and resize without re-uploading."
                 ),
                 _(
-                    "Use the 'Apply to all pages' option to stamp every page in a contract at once."
+                    "To sign every page of a contract, switch pages with the selector and drop the signature on each one — your placements are remembered."
                 ),
             ],
             "tips_title": _("Tips for Signing PDFs"),
-            "page_content_title": _("Add your signature to a PDF online"),
+            "page_content_title": _("Sign a PDF online — draw, type, or upload"),
             "page_content_body": _(
-                "<p><strong>Sign PDF</strong> lets you place a handwritten signature image directly "
-                "onto any page of a PDF document. Upload your signature as a PNG or JPEG, choose the "
-                "position and page, and download the signed PDF in seconds.</p>"
-                "<p>No account required. Files are processed securely and deleted immediately after "
-                "download. The signed PDF retains all original content and formatting.</p>"
+                "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a PDF. "
+                "Draw it with the mouse or finger, type your name in a handwriting-style font, "
+                "or upload a PNG/JPG of your hand-signed paper. Click on the preview to drop the "
+                "signature, drag to position, and pull the corner handle to resize.</p>"
+                "<p>Multiple signatures on multiple pages are supported, so a long contract can "
+                "be signed once at the bottom of every page. Files are processed in-memory and "
+                "deleted immediately after download; your signature stays local to your browser.</p>"
             ),
         },
     },
