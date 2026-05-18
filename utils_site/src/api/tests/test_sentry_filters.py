@@ -21,7 +21,10 @@ import re
 from pathlib import Path
 
 from django.test import SimpleTestCase
-from src.api.sentry_filters import is_pdf2docx_page_skip_noise
+from src.api.sentry_filters import (
+    is_celery_hard_timeout_cascade,
+    is_pdf2docx_page_skip_noise,
+)
 
 
 class Pdf2docxNoiseFilterTests(SimpleTestCase):
@@ -72,6 +75,76 @@ class Pdf2docxNoiseFilterTests(SimpleTestCase):
         # events). The filter must not crash, and must not drop them.
         self.assertFalse(is_pdf2docx_page_skip_noise({"logger": "root"}))
         self.assertFalse(is_pdf2docx_page_skip_noise({}))
+
+
+class CeleryHardTimeoutCascadeFilterTests(SimpleTestCase):
+    """Single hard-timeout fires three Sentry events (CONVERTICA-53/54/55).
+
+    These checks make sure all three legs of that cascade are recognised so
+    ``before_send`` can collapse them to zero, while bare SIGKILL / OOM /
+    unrelated celery logs are preserved.
+    """
+
+    def test_drops_time_limit_exceeded_exception(self):
+        class TimeLimitExceeded(Exception):
+            pass
+
+        hint = {"exc_info": (TimeLimitExceeded, TimeLimitExceeded(480), None)}
+        self.assertTrue(is_celery_hard_timeout_cascade({}, hint))
+
+    def test_drops_celery_worker_request_hard_time_limit_log(self):
+        event = {
+            "logger": "celery.worker.request",
+            "logentry": {
+                "message": (
+                    "Hard time limit (480s) exceeded for "
+                    "pdf_conversion.generic_conversion[abc]"
+                ),
+            },
+        }
+        self.assertTrue(is_celery_hard_timeout_cascade(event, {}))
+
+    def test_drops_multiprocessing_forkpoolworker_sigkill(self):
+        event = {
+            "logger": "multiprocessing",
+            "logentry": {
+                "message": (
+                    "Process 'ForkPoolWorker-2' pid:21 exited with "
+                    "'signal 9 (SIGKILL)'"
+                ),
+            },
+        }
+        self.assertTrue(is_celery_hard_timeout_cascade(event, {}))
+
+    def test_keeps_unrelated_sigkill_from_multiprocessing(self):
+        # A SIGKILL that isn't a ForkPoolWorker (e.g. an arbitrary spawned
+        # child process) might indicate OOM or external crash — keep it.
+        event = {
+            "logger": "multiprocessing",
+            "logentry": {
+                "message": "Process 'SomeOtherWorker' exited with 'signal 9 (SIGKILL)'",
+            },
+        }
+        self.assertFalse(is_celery_hard_timeout_cascade(event, {}))
+
+    def test_keeps_unrelated_celery_errors(self):
+        event = {
+            "logger": "celery.worker.request",
+            "logentry": {"message": "Task failed: connection reset"},
+        }
+        self.assertFalse(is_celery_hard_timeout_cascade(event, {}))
+
+    def test_keeps_unrelated_root_exceptions(self):
+        # A vanilla ValueError must not get swallowed.
+        hint = {"exc_info": (ValueError, ValueError("oops"), None)}
+        self.assertFalse(is_celery_hard_timeout_cascade({}, hint))
+
+    def test_handles_missing_hint_and_logentry(self):
+        # Defensive: the filter must never KeyError-out on minimal events.
+        self.assertFalse(is_celery_hard_timeout_cascade({}, {}))
+        self.assertFalse(
+            is_celery_hard_timeout_cascade({"logger": "celery.worker.request"}, {})
+        )
 
 
 class LibreOfficeIntermediateLogLevelTests(SimpleTestCase):

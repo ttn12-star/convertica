@@ -24,3 +24,52 @@ def is_pdf2docx_page_skip_noise(event: dict) -> bool:
     logentry = event.get("logentry") or {}
     message = str(logentry.get("message") or event.get("message") or "")
     return any(token in message for token in _PDF2DOCX_PAGE_NOISE_TOKENS)
+
+
+def is_celery_hard_timeout_cascade(event: dict, hint: dict) -> bool:
+    """Return True if event belongs to the Celery hard-timeout cascade.
+
+    When a Celery task exceeds its hard time limit, three separate events
+    surface in Sentry from three different loggers describing the *same*
+    enforced shutdown:
+
+    1. ``billiard.exceptions.TimeLimitExceeded`` exception — Celery's own
+       signal that the worker terminated the task. Handled by Celery's
+       request layer; it's not an unhandled exception in our code.
+    2. ``celery.worker.request`` ERROR log: "Hard time limit (Ns)
+       exceeded for <task>[...]" — the same enforcement, logged.
+    3. ``multiprocessing`` ERROR log: "Process 'ForkPoolWorker-N' pid:M
+       exited with 'signal 9 (SIGKILL)'" — billiard SIGKILL'ing the
+       worker pid that ran the timed-out task.
+
+    Together these triple every Celery hard-timeout occurrence into three
+    Sentry issues. They are operational signals, not bugs — drop them so
+    real exceptions stay visible.
+
+    Bare SIGKILL events from ``multiprocessing`` that *aren't* the
+    ForkPoolWorker pattern are kept on purpose: they may indicate the
+    OOM killer or an external crash worth investigating.
+    """
+    # 1) The exception itself, captured via Celery's request handler.
+    exc_info = hint.get("exc_info") if hint else None
+    if exc_info:
+        exc_type = exc_info[0]
+        if exc_type and exc_type.__name__ == "TimeLimitExceeded":
+            return True
+
+    logger_name = event.get("logger") or ""
+    logentry = event.get("logentry") or {}
+    message = str(logentry.get("message") or event.get("message") or "")
+    params = logentry.get("params") or []
+    full_message = message + " " + " ".join(str(p) for p in params)
+
+    # 2) Celery's own log line about the enforcement.
+    if logger_name == "celery.worker.request" and "Hard time limit" in full_message:
+        return True
+
+    # 3) billiard SIGKILL'ing the ForkPoolWorker that ran the task.
+    return (
+        logger_name == "multiprocessing"
+        and "ForkPoolWorker" in full_message
+        and ("signal 9" in full_message or "SIGKILL" in full_message)
+    )

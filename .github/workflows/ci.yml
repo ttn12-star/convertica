@@ -512,6 +512,13 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: ${{ secrets.DEPLOY_SSH_PORT || 22 }}
+          # Default is 10m; the deploy script does pull + build (nginx +
+          # web + celery + celery-beat) + healthcheck wait + DB backup +
+          # migrations + collectstatic + static rebuild. That regularly
+          # crosses 10 min, after which the SSH action kills the
+          # connection and reports failure even though the deploy on the
+          # server completes fine. Give it real headroom.
+          command_timeout: 25m
           script: |
             set -e
             echo "🚀 Starting deployment..."
