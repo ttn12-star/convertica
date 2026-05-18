@@ -12,9 +12,34 @@ from django.urls import reverse
 
 logger = logging.getLogger(__name__)
 
+# django-anymail isn't a hard dependency (the adapter still works on plain
+# SMTP backends in dev), so import the exception lazily; if anymail isn't
+# installed, AnymailError is set to a sentinel that ``isinstance(..., ...)``
+# can never match.
+try:
+    from anymail.exceptions import AnymailError
+except ImportError:  # pragma: no cover - anymail is in requirements.txt
+
+    class AnymailError(Exception):  # type: ignore[no-redef]
+        """Sentinel placeholder when django-anymail is not installed."""
+
+
+# Exceptions we treat as "email infrastructure failed for reasons unrelated
+# to user input or our own bug" — these get downgraded from 500 to 503.
+# SMTP path: OSError (network unreachable / connection refused / timeout) +
+# smtplib.SMTPException (auth failure / server reject).
+# HTTP API path (SendGrid via django-anymail): AnymailError covers both
+# AnymailRequestsAPIError (4xx/5xx response from the ESP) and
+# AnymailAPIError / AnymailRequestsAPIError / AnymailConnectionError.
+_EMAIL_DELIVERY_EXCEPTIONS: tuple[type[BaseException], ...] = (
+    OSError,
+    smtplib.SMTPException,
+    AnymailError,
+)
+
 
 class EmailDeliveryError(Exception):
-    """Raised when SMTP delivery fails for infra reasons.
+    """Raised when email delivery fails for infra reasons.
 
     Caught by ``EmailDeliveryErrorMiddleware`` to render a 503 page instead
     of a 500 white screen. The message is user-safe (no internal details).
@@ -45,13 +70,14 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         """
         try:
             return super().send_mail(template_prefix, email, context)
-        except (OSError, smtplib.SMTPException) as exc:
+        except _EMAIL_DELIVERY_EXCEPTIONS as exc:
             logger.warning(
                 "Email delivery failed: %s",
                 exc,
                 extra={
                     "event": "email_delivery_failed",
                     "email_template": template_prefix,
+                    "email_backend": getattr(settings, "EMAIL_BACKEND", ""),
                     "email_host": getattr(settings, "EMAIL_HOST", ""),
                     "email_port": getattr(settings, "EMAIL_PORT", ""),
                 },

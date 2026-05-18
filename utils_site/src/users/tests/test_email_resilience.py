@@ -72,6 +72,27 @@ class CustomAccountAdapterSendMailTests(SimpleTestCase):
         ):
             adapter.send_mail("account/email/password_reset_key", "x@y", {})
 
+    def test_anymail_error_is_translated(self):
+        # When SendGrid (or any anymail-backed ESP) returns 4xx/5xx, the
+        # backend raises AnymailRequestsAPIError, which is *not* an OSError
+        # and *not* an SMTPException. Without this catch, signup/password
+        # reset on prod fall back to 500 white pages. CONVERTICA-50/51 fix
+        # would silently regress for the new HTTP-API transport.
+        from anymail.exceptions import AnymailRequestsAPIError
+
+        adapter = self._adapter()
+        boom = AnymailRequestsAPIError(
+            "SendGrid API response 401 (Unauthorized): Maximum credits exceeded",
+        )
+        with (
+            mock.patch.object(
+                CustomAccountAdapter.__mro__[1], "send_mail", side_effect=boom
+            ),
+            self.assertLogs("src.users.account_adapter", level="WARNING"),
+            self.assertRaises(EmailDeliveryError),
+        ):
+            adapter.send_mail("account/email/email_confirmation", "x@y", {})
+
     def test_successful_send_passes_through(self):
         adapter = self._adapter()
         with mock.patch.object(
