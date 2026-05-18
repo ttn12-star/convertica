@@ -822,9 +822,29 @@
               },
               body: JSON.stringify({ plan_slug: planSlug }),
             });
+
+            // Backend always returns JSON. Anything else (e.g. WAF/login page
+            // HTML, a 502 gateway page) is a transport-level failure we surface
+            // explicitly instead of crashing on r.json() and falling through to
+            // the catch-all "Request failed" alert.
+            const contentType = r.headers.get('Content-Type') || '';
+            if (!contentType.includes('application/json')) {
+              if (r.status === 401 || r.status === 403) {
+                window.location = '{% url "users:login" %}?next={% url "frontend:pricing" %}';
+                return;
+              }
+              alert('{% filter escapejs %}{% trans "Checkout service is temporarily unavailable. Please try again in a moment." %}{% endfilter %}');
+              if (button) { button.disabled = false; button.textContent = originalText; }
+              return;
+            }
+
             const data = await r.json();
 
             if (!r.ok) {
+              if (r.status === 401 && data.login_url) {
+                window.location = data.login_url;
+                return;
+              }
               if (data.portal_url) { window.location = data.portal_url; return; }
               if (data.manage_url) { window.location = data.manage_url; return; }
               alert(data.error || 'Checkout failed. Please try again.');
