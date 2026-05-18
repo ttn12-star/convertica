@@ -221,17 +221,20 @@
 
       {% if auto_generate_tool_schema %}
         {% comment %}
-          Single source of SoftwareApplication for tool pages. Generic per-tool
+          Single source of WebApplication for tool pages. Generic per-tool
           templates (converter_generic.html, edit_pdf_generic.html) used to emit
           their own copy as well, which Ahrefs flagged as a schema.org and Google
           rich-results validation issue ("duplicate" type on the same page).
           The `image` field is included so Google has a thumbnail eligible for
           rich-results: prefer the per-tool og card, fall back to the global one.
+          @type is WebApplication (subclass of SoftwareApplication) because
+          `browserRequirements` is only valid on WebApplication — Ahrefs flagged
+          it as "Unexpected property for SoftwareApplication" on ~210 pages.
         {% endcomment %}
         <script type="application/ld+json">
           {
             "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
+            "@type": "WebApplication",
             "name": "{{ header_text|default:page_title|escapejs }}",
             "description": "{{ page_description|escapejs }}",
             "url": "{{ site_current_url }}",
