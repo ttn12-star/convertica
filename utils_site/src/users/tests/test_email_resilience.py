@@ -19,10 +19,13 @@ from __future__ import annotations
 import smtplib
 from unittest import mock
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.test import RequestFactory, SimpleTestCase, override_settings
 from src.users.account_adapter import CustomAccountAdapter, EmailDeliveryError
 from src.users.middleware import EmailDeliveryErrorMiddleware
+
+from utils_site.settings import _default_email_backend
 
 
 @override_settings(EMAIL_HOST="smtp.example.test", EMAIL_PORT=587)
@@ -118,3 +121,48 @@ class EmailDeliveryErrorMiddlewareTests(SimpleTestCase):
         self.assertIsNone(
             self.middleware.process_exception(request, RuntimeError("nope"))
         )
+
+
+class EmailBackendSelectionTests(SimpleTestCase):
+    """Guard the SENDGRID_API_KEY → SendGrid backend toggle.
+
+    Prod runs on DigitalOcean which blocks outbound SMTP; the only reliable
+    transport is the SendGrid HTTP API. The toggle must be unambiguous so
+    that simply setting SENDGRID_API_KEY in the prod ``.env`` flips the
+    project to API delivery without code changes.
+    """
+
+    def test_sendgrid_when_api_key_set(self):
+        self.assertEqual(
+            _default_email_backend(debug=False, sendgrid_api_key="SG.test"),
+            "anymail.backends.sendgrid.EmailBackend",
+        )
+
+    def test_sendgrid_wins_even_in_debug(self):
+        # Once a key is provisioned, we want it used everywhere — otherwise
+        # local "works for me" testing would silently use a different backend
+        # than prod.
+        self.assertEqual(
+            _default_email_backend(debug=True, sendgrid_api_key="SG.test"),
+            "anymail.backends.sendgrid.EmailBackend",
+        )
+
+    def test_console_in_debug_without_sendgrid(self):
+        self.assertEqual(
+            _default_email_backend(debug=True, sendgrid_api_key=""),
+            "django.core.mail.backends.console.EmailBackend",
+        )
+
+    def test_smtp_fallback_in_prod_without_sendgrid(self):
+        # Preserves legacy SMTP behaviour as a fallback; in DO prod it will
+        # 503 via CustomAccountAdapter, which is still better than a 500.
+        self.assertEqual(
+            _default_email_backend(debug=False, sendgrid_api_key=""),
+            "django.core.mail.backends.smtp.EmailBackend",
+        )
+
+    def test_anymail_app_is_installed(self):
+        # django-anymail must be on INSTALLED_APPS for its backend to load;
+        # otherwise EmailBackend import would crash gunicorn boot. This
+        # guards against a future "let's clean up unused apps" regression.
+        self.assertIn("anymail", settings.INSTALLED_APPS)
