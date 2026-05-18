@@ -179,6 +179,21 @@ class UserAdmin(BaseUserAdmin):
         obj._admin_manual_edit = True
         # Ensure cached subscription status is cleared after admin edits
         obj._subscription_changed = True
+
+        # Honor the is_premium checkbox even when subscription_end_date is a
+        # stale past timestamp (left over from an expired subscription).
+        # Without this, ticking is_premium in admin keeps `is_subscription_active()`
+        # returning False — `if not end_date: status = is_premium` only fires when
+        # end_date is null — so every premium gate stays shut.
+        # Clearing the past end_date promotes the user to "manual premium without
+        # end date", which `is_subscription_active` treats as active.
+        if (
+            obj.is_premium
+            and obj.subscription_end_date
+            and obj.subscription_end_date < timezone.now()
+        ):
+            obj.subscription_end_date = None
+
         super().save_model(request, obj, form, change)
         # Clean up the flag after save
         if hasattr(obj, "_admin_manual_edit"):

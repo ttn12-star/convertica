@@ -90,11 +90,23 @@ class CreateCheckoutSessionTests(TestCase):
             )
         self.assertEqual(r.status_code, 503)
 
-    def test_redirects_unauthenticated(self):
+    def test_unauthenticated_returns_json_401_with_login_url(self):
+        """Anon must get JSON 401 + login_url, never an HTML login redirect.
+
+        The pricing-page JS calls `await r.json()` straight after fetch().
+        If the backend used `@login_required`, anon callers would receive a
+        302 to /accounts/login/ which renders HTML — `r.json()` then throws
+        and the user sees a generic "Request failed. Please try again."
+        alert instead of being routed to login.
+        """
         anon = Client()
         r = anon.post(
             self.url,
             data=json.dumps({"plan_slug": "monthly"}),
             content_type="application/json",
         )
-        self.assertIn(r.status_code, (302, 401, 403))
+        self.assertEqual(r.status_code, 401)
+        self.assertEqual(r["Content-Type"], "application/json")
+        body = r.json()
+        self.assertIn("login_url", body)
+        self.assertTrue(body["login_url"].endswith("/pricing/"))

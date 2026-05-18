@@ -22,10 +22,28 @@ def _client() -> LemonSqueezyClient:
     return LemonSqueezyClient()
 
 
-@login_required
 @require_http_methods(["POST"])
 def create_checkout_session(request):
-    """Generate a Lemon Squeezy hosted checkout URL for the requested plan."""
+    """Generate a Lemon Squeezy hosted checkout URL for the requested plan.
+
+    Always returns JSON so the front-end fetch() helper can render a clean
+    error/redirect — `@login_required` would 302 to the login page (HTML),
+    which crashes `await r.json()` on the client and surfaces a useless
+    "Request failed" alert.
+    """
+    if not request.user.is_authenticated:
+        login_url = (
+            request.build_absolute_uri(settings.LOGIN_URL)
+            + f"?next={request.build_absolute_uri(reverse('frontend:pricing'))}"
+        )
+        return JsonResponse(
+            {
+                "error": "Please log in to subscribe.",
+                "login_url": login_url,
+            },
+            status=401,
+        )
+
     if not getattr(settings, "PAYMENTS_ENABLED", True):
         return JsonResponse(
             {"error": "Payments are temporarily unavailable."}, status=503
