@@ -28,9 +28,9 @@ except ImportError:  # pragma: no cover - anymail is in requirements.txt
 # to user input or our own bug" — these get downgraded from 500 to 503.
 # SMTP path: OSError (network unreachable / connection refused / timeout) +
 # smtplib.SMTPException (auth failure / server reject).
-# HTTP API path (SendGrid via django-anymail): AnymailError covers both
-# AnymailRequestsAPIError (4xx/5xx response from the ESP) and
-# AnymailAPIError / AnymailRequestsAPIError / AnymailConnectionError.
+# HTTP API path (Brevo via django-anymail): AnymailError covers
+# AnymailRequestsAPIError (4xx/5xx response from the ESP) and the lower-
+# level AnymailAPIError / AnymailConnectionError variants too.
 _EMAIL_DELIVERY_EXCEPTIONS: tuple[type[BaseException], ...] = (
     OSError,
     smtplib.SMTPException,

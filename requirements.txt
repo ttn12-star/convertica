@@ -73,8 +73,10 @@ pywebpush==1.14.0
 # Playwright - HTML/URL to PDF conversion
 playwright==1.58.0
 
-# django-anymail - HTTP API email backend (used for SendGrid so we don't
-# depend on outbound SMTP, which DigitalOcean droplets block by default).
-# Activates when SENDGRID_API_KEY is set; otherwise the project falls back
-# to the SMTP backend (useful for local development with console output).
-django-anymail[sendgrid]==15.0
+# django-anymail - HTTP API email backend (Brevo, formerly Sendinblue).
+# DigitalOcean droplets block outbound SMTP by default, so transactional
+# email goes through Brevo's HTTPS API instead. Free tier is 300/day,
+# enough for signup + password-reset for our current scale.
+# Activates when BREVO_API_KEY is set; otherwise falls back to SMTP
+# (useful for local dev with console output).
+django-anymail[brevo]==15.0
