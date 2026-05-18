@@ -369,6 +369,19 @@
                       <span class="font-medium">{% trans "Convert Image" %}</span>
                     </a>
                   </li>
+                  <li>
+                    <a href="{% url 'frontend:heic_to_jpg_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 dark:hover:bg-rose-900/30 hover:text-rose-600 dark:hover:text-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "HEIC to JPG" %}</span>
+                      <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                    </a>
+                  </li>
                 </ul>
               </div>
 
@@ -902,6 +915,19 @@
                           </svg>
                         </div>
                         <span class="font-medium">{% trans "Convert Image" %}</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'frontend:heic_to_jpg_page' %}"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-rose-50 hover:text-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-all duration-200 text-gray-700 group"
+                         role="menuitem">
+                        <div class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center group-hover:bg-rose-200 transition-colors flex-shrink-0">
+                          <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                          </svg>
+                        </div>
+                        <span class="font-medium">{% trans "HEIC to JPG" %}</span>
+                        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </li>
                   </ul>
@@ -1574,6 +1600,14 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
         </svg>
         {% trans "Convert Image" %}
+      </a>
+      <a href="{% url 'frontend:heic_to_jpg_page' %}"
+         class="flex items-center p-2.5 rounded-lg hover:bg-rose-50 text-gray-700 transition-colors">
+        <svg class="w-4 h-4 text-rose-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+        </svg>
+        {% trans "HEIC to JPG" %}
+        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
       </a>
     </div>
 

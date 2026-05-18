@@ -80,4 +80,8 @@ BATCH_API_MAP = BATCH_API_MAP = {
         "batch_url": "convert_image_batch_api",
         "field_name": "image_files",
     },
+    "convert_heic_api": {
+        "batch_url": "convert_heic_batch_api",
+        "field_name": "image_files",
+    },
 }

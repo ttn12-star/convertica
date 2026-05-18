@@ -10,6 +10,8 @@ from .epub_convert.async_views import EPUBToPDFAsyncAPIView, PDFToEPUBAsyncAPIVi
 from .epub_convert.views import EPUBToPDFAPIView, PDFToEPUBAPIView
 from .html_convert.batch_views import HTMLToPDFBatchAPIView
 from .html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
+from .image_tools.convert_heic.batch_views import ConvertHEICBatchAPIView
+from .image_tools.convert_heic.views import ConvertHEICAPIView
 from .image_tools.convert_image.batch_views import ConvertImageBatchAPIView
 from .image_tools.convert_image.views import ConvertImageAPIView
 from .image_tools.optimize_image.batch_views import OptimizeImageBatchAPIView
@@ -315,5 +317,16 @@ urlpatterns = [
         "image/convert/batch/",
         ConvertImageBatchAPIView.as_view(),
         name="convert_image_batch_api",
+    ),
+    # HEIC converter (premium)
+    path(
+        "image/heic-convert/",
+        ConvertHEICAPIView.as_view(),
+        name="convert_heic_api",
+    ),
+    path(
+        "image/heic-convert/batch/",
+        ConvertHEICBatchAPIView.as_view(),
+        name="convert_heic_batch_api",
     ),
 ]

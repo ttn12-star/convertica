@@ -60,6 +60,11 @@ def _signed_webhook_post(client: Client, payload: dict) -> TestCase.client.respo
     LEMONSQUEEZY_WEBHOOK_SECRET=WEBHOOK_SECRET,
     MAX_BATCH_FILES_FREE=1,
     MAX_BATCH_FILES_PREMIUM=10,
+    # Otherwise the global 10/h IP rate-limit tally accumulates across the six
+    # test methods in this class and the later cases get short-circuited at the
+    # rate-limit layer before reaching the premium gate, surfacing as
+    # `assertIn("Upgrade to Premium", body["error"])` failures.
+    RATELIMIT_ENABLE=False,
 )
 class PremiumGatingViaCropBatchTests(TestCase):
     """Premium gating exercised through the crop-pdf batch endpoint.
@@ -466,7 +471,7 @@ class PageCountLimitTests(TestCase):
 # ---------------------------------------------------------------------------
 
 
-@override_settings(PAYMENTS_ENABLED=True)
+@override_settings(PAYMENTS_ENABLED=True, RATELIMIT_ENABLE=False)
 class OCRGateTests(TestCase):
     """Verify the OCR-only-for-premium gate at /api/pdf-to-word/.
 
