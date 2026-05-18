@@ -823,14 +823,27 @@
               body: JSON.stringify({ plan_slug: planSlug }),
             });
 
-            // Backend always returns JSON. Anything else (e.g. WAF/login page
-            // HTML, a 502 gateway page) is a transport-level failure we surface
-            // explicitly instead of crashing on r.json() and falling through to
-            // the catch-all "Request failed" alert.
+            // Backend always returns JSON. Anything else (e.g. CSRF 403 HTML
+            // page from Django's middleware, a Cloudflare 502, or a stale
+            // login redirect) is a transport-level failure we surface
+            // explicitly instead of crashing on r.json() and falling through
+            // to the catch-all "Request failed" alert.
             const contentType = r.headers.get('Content-Type') || '';
             if (!contentType.includes('application/json')) {
-              if (r.status === 401 || r.status === 403) {
+              if (r.status === 401) {
+                // Anonymous user — go to login then back to pricing.
                 window.location = '{% url "users:login" %}?next={% url "frontend:pricing" %}';
+                return;
+              }
+              if (r.status === 403) {
+                // CSRF rejected the request. The pricing page is supposed to
+                // set the csrftoken cookie via @ensure_csrf_cookie; if it
+                // didn't (proxy stripped Set-Cookie, cookie expired mid-session),
+                // reloading the page picks up a fresh token and the next click
+                // succeeds. Telling the user to retry is friendlier than
+                // bouncing an authenticated user to /login/.
+                alert('{% filter escapejs %}{% trans "Your session expired. Refreshing the page…" %}{% endfilter %}');
+                window.location.reload();
                 return;
               }
               alert('{% filter escapejs %}{% trans "Checkout service is temporarily unavailable. Please try again in a moment." %}{% endfilter %}');

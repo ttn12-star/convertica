@@ -7,6 +7,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -1548,8 +1549,18 @@ def sitemap_xml(request):
     return sitemap_index(request)
 
 
+@method_decorator(ensure_csrf_cookie, name="dispatch")
 class PricingPageView(TemplateView):
-    """Pricing page for Convertica Premium with all plans and Heroes Hall."""
+    """Pricing page for Convertica Premium with all plans and Heroes Hall.
+
+    `ensure_csrf_cookie` is required: without it the page can be served
+    from Cloudflare's edge cache with no `Set-Cookie: csrftoken=...`
+    header, leaving the visitor's browser empty-handed. The pricing-page
+    JS then POSTs `/payments/create-checkout/` with an empty
+    `X-CSRFToken`, Django's CSRF middleware 403s with an HTML page, and
+    `await r.json()` throws — the user sees a generic "Request failed"
+    alert. Forcing the cookie on every render is the smallest correct fix.
+    """
 
     template_name = "frontend/pricing.html"
 
