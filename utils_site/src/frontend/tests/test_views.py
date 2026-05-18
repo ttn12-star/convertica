@@ -596,7 +596,7 @@ class FrontendViewsTestCase(TestCase):
                 response = self.client.get(self._get_url_with_lang(path), follow=False)
                 self.assertEqual(response.status_code, 200)
                 self.assertContains(
-                    response, '"@type": "SoftwareApplication"', status_code=200
+                    response, '"@type": "WebApplication"', status_code=200
                 )
                 self.assertContains(response, '"price": "6"', status_code=200)
                 self.assertNotContains(response, '"price": "0"', status_code=200)
