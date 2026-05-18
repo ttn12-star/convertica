@@ -1070,17 +1070,17 @@ API_RATE_LIMIT = {
 #
 # Backend selection (in priority order):
 #   1. Explicit EMAIL_BACKEND env var — always wins (useful for tests/dev).
-#   2. SENDGRID_API_KEY set → SendGrid HTTP API via django-anymail.
+#   2. BREVO_API_KEY set → Brevo HTTP API via django-anymail.
 #      DigitalOcean droplets block outbound SMTP by default, so the API
 #      path (HTTPS :443) is the only reliable transport on prod.
 #   3. DEBUG=True → console backend.
 #   4. Fallback → SMTP backend (legacy/local relay).
-SENDGRID_API_KEY = str(config("SENDGRID_API_KEY", default=""))
+BREVO_API_KEY = str(config("BREVO_API_KEY", default=""))
 
 
-def _default_email_backend(*, debug: bool, sendgrid_api_key: str) -> str:
-    if sendgrid_api_key:
-        return "anymail.backends.sendgrid.EmailBackend"
+def _default_email_backend(*, debug: bool, brevo_api_key: str) -> str:
+    if brevo_api_key:
+        return "anymail.backends.brevo.EmailBackend"
     if debug:
         return "django.core.mail.backends.console.EmailBackend"
     return "django.core.mail.backends.smtp.EmailBackend"
@@ -1088,14 +1088,13 @@ def _default_email_backend(*, debug: bool, sendgrid_api_key: str) -> str:
 
 EMAIL_BACKEND = config(
     "EMAIL_BACKEND",
-    default=_default_email_backend(debug=DEBUG, sendgrid_api_key=SENDGRID_API_KEY),
+    default=_default_email_backend(debug=DEBUG, brevo_api_key=BREVO_API_KEY),
 )
 
-# django-anymail per-ESP config. SendGrid only needs the API key; we also
-# default to the API endpoint (override via SENDGRID_API_URL if SendGrid EU
-# region or a custom subaccount is needed later).
+# django-anymail per-ESP config. Brevo only needs the API key; override
+# BREVO_API_URL if a dedicated IP / region endpoint is provisioned later.
 ANYMAIL = {
-    "SENDGRID_API_KEY": SENDGRID_API_KEY,
+    "BREVO_API_KEY": BREVO_API_KEY,
 }
 
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")

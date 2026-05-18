@@ -145,40 +145,40 @@ class EmailDeliveryErrorMiddlewareTests(SimpleTestCase):
 
 
 class EmailBackendSelectionTests(SimpleTestCase):
-    """Guard the SENDGRID_API_KEY → SendGrid backend toggle.
+    """Guard the BREVO_API_KEY → Brevo backend toggle.
 
     Prod runs on DigitalOcean which blocks outbound SMTP; the only reliable
-    transport is the SendGrid HTTP API. The toggle must be unambiguous so
-    that simply setting SENDGRID_API_KEY in the prod ``.env`` flips the
-    project to API delivery without code changes.
+    transport is Brevo's HTTP API. The toggle must be unambiguous so that
+    simply setting BREVO_API_KEY in the prod ``.env`` flips the project to
+    API delivery without code changes.
     """
 
-    def test_sendgrid_when_api_key_set(self):
+    def test_brevo_when_api_key_set(self):
         self.assertEqual(
-            _default_email_backend(debug=False, sendgrid_api_key="SG.test"),
-            "anymail.backends.sendgrid.EmailBackend",
+            _default_email_backend(debug=False, brevo_api_key="xkeysib-test"),
+            "anymail.backends.brevo.EmailBackend",
         )
 
-    def test_sendgrid_wins_even_in_debug(self):
+    def test_brevo_wins_even_in_debug(self):
         # Once a key is provisioned, we want it used everywhere — otherwise
         # local "works for me" testing would silently use a different backend
         # than prod.
         self.assertEqual(
-            _default_email_backend(debug=True, sendgrid_api_key="SG.test"),
-            "anymail.backends.sendgrid.EmailBackend",
+            _default_email_backend(debug=True, brevo_api_key="xkeysib-test"),
+            "anymail.backends.brevo.EmailBackend",
         )
 
-    def test_console_in_debug_without_sendgrid(self):
+    def test_console_in_debug_without_brevo(self):
         self.assertEqual(
-            _default_email_backend(debug=True, sendgrid_api_key=""),
+            _default_email_backend(debug=True, brevo_api_key=""),
             "django.core.mail.backends.console.EmailBackend",
         )
 
-    def test_smtp_fallback_in_prod_without_sendgrid(self):
+    def test_smtp_fallback_in_prod_without_brevo(self):
         # Preserves legacy SMTP behaviour as a fallback; in DO prod it will
         # 503 via CustomAccountAdapter, which is still better than a 500.
         self.assertEqual(
-            _default_email_backend(debug=False, sendgrid_api_key=""),
+            _default_email_backend(debug=False, brevo_api_key=""),
             "django.core.mail.backends.smtp.EmailBackend",
         )
 
