@@ -39,12 +39,23 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
         def before_send(event, hint):
             # Lazy import: avoids dragging src.api.* into module load time of
             # settings.py (which runs before Django apps are ready).
-            from src.api.sentry_filters import is_pdf2docx_page_skip_noise
+            from src.api.sentry_filters import (
+                is_celery_hard_timeout_cascade,
+                is_pdf2docx_page_skip_noise,
+            )
 
             # Drop pdf2docx "Ignore page N due to making/parsing page error"
             # logs. The library recovers internally (skips the page and
             # continues); these are not actionable bugs.
             if is_pdf2docx_page_skip_noise(event):
+                return None
+
+            # Drop the 3-event cascade Celery emits when a task hits its
+            # hard time limit (TimeLimitExceeded exception, the
+            # "Hard time limit (Ns) exceeded" celery.worker.request log,
+            # and the multiprocessing SIGKILL log for the ForkPoolWorker).
+            # All three describe the same enforced shutdown.
+            if is_celery_hard_timeout_cascade(event, hint or {}):
                 return None
 
             logentry = event.get("logentry") or {}
