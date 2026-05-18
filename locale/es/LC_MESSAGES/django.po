@@ -2545,7 +2545,7 @@ msgstr "Función Premium"
 msgid ""
 "HEIC to JPG is a premium feature. Upgrade to Premium to convert iPhone HEIC "
 "photos to JPG, PNG, or PDF — single files or batches of up to 10."
-msgstr ""
+msgstr "HEIC a JPG es una función Premium. Actualiza a Premium para convertir las fotos HEIC del iPhone a JPG, PNG o PDF — archivos individuales o lotes de hasta 10."
 
 #: templates/frontend/image_tools/heic_to_jpg.html:11
 #: templates/frontend/pdf_convert/pdf_to_text.html:10
@@ -2568,7 +2568,7 @@ msgstr "Calidad JPEG"
 #: templates/frontend/image_tools/heic_to_jpg.html:85
 msgid ""
 "Select your HEIC or HEIF file using the button above or drag and drop it"
-msgstr "Selecciona tu archivo PDF usando el botón de arriba o arrástralo"
+msgstr "Selecciona tu archivo HEIC o HEIF con el botón de arriba o arrástralo y suéltalo"
 
 #: templates/frontend/image_tools/heic_to_jpg.html:86
 msgid "Pick the output format: JPG (default), PNG, or PDF"
@@ -5914,7 +5914,7 @@ msgstr "Herramientas Premium de imagen"
 msgid ""
 "Convert Apple HEIC and HEIF photos from iPhone or iPad to JPG, PNG, or PDF — "
 "batch up to 10 files."
-msgstr ""
+msgstr "Convierte fotos Apple HEIC y HEIF del iPhone o iPad a JPG, PNG o PDF — lote de hasta 10 archivos."
 
 #: templates/frontend/pricing.html:5 templates/frontend/pricing.html:8
 #: templates/frontend/pricing.html:10
@@ -9108,14 +9108,14 @@ msgstr ""
 msgid ""
 "HEIC to JPG Converter - Convert iPhone HEIC Photos to JPG, PNG, PDF | "
 "Convertica Premium"
-msgstr "Convertidor de PDF a Texto - Extraer texto de PDF | Convertica Premium"
+msgstr "Convertidor HEIC a JPG - Convierte fotos HEIC del iPhone a JPG, PNG, PDF | Convertica Premium"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:230
 msgid ""
 "Convert Apple HEIC and HEIF photos from your iPhone or iPad to JPG, PNG, or "
 "PDF online. Premium feature with batch conversion. Keeps original quality. "
 "No watermark."
-msgstr ""
+msgstr "Convierte fotos Apple HEIC y HEIF de tu iPhone o iPad a JPG, PNG o PDF online. Función Premium con conversión por lotes. Conserva la calidad original. Sin marca de agua."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:241
 msgid "Turn iPhone HEIC photos into universally compatible JPG, PNG, or PDF"
@@ -9141,7 +9141,7 @@ msgstr "Fotos de iPhone y iPad"
 msgid ""
 "Decode the HEIC and HEIF formats that Apple devices use by default — open "
 "them anywhere"
-msgstr ""
+msgstr "Decodifica los formatos HEIC y HEIF que usan los dispositivos Apple por defecto — ábrelos donde quieras"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:265
 msgid "3 Output Formats"
@@ -9151,7 +9151,7 @@ msgstr "3 formatos de salida"
 msgid ""
 "Convert to JPG for universal compatibility, PNG for lossless quality, or PDF "
 "for printing and sharing"
-msgstr ""
+msgstr "Convierte a JPG para compatibilidad universal, PNG para calidad sin pérdidas o PDF para imprimir y compartir"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:273
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:386
@@ -9162,7 +9162,7 @@ msgstr "Conversión por lotes"
 msgid ""
 "Upload up to 10 HEIC photos at once and download them as a single ZIP — "
 "premium only"
-msgstr ""
+msgstr "Sube hasta 10 fotos HEIC a la vez y descárgalas en un único ZIP — solo Premium"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:281
 msgid "Original Quality"
@@ -9172,7 +9172,7 @@ msgstr "Calidad original"
 msgid ""
 "Premium pipeline preserves every detail — adjustable JPEG quality, fully "
 "lossless PNG"
-msgstr ""
+msgstr "El procesado Premium conserva cada detalle: calidad JPEG ajustable, PNG totalmente sin pérdidas"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:289
 msgid "Why do iPhone photos arrive as HEIC files?"
@@ -9185,7 +9185,7 @@ msgid ""
 "software — including Windows, older versions of Office, and many websites — "
 "cannot open it. Converting HEIC to JPG or PNG makes the photo universally "
 "viewable."
-msgstr ""
+msgstr "Desde iOS 11 (2017), los dispositivos Apple guardan las fotos en formato HEIC / HEIF por defecto. Es más compacto con la misma calidad, pero la mayoría del software no-Apple — incluido Windows, versiones antiguas de Office y muchas webs — no puede abrirlo. Convertir HEIC a JPG o PNG hace que la foto se vea en cualquier sitio."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:298
 msgid "Should I convert HEIC to JPG, PNG, or PDF?"
@@ -9197,7 +9197,7 @@ msgid ""
 "universally supported photo format. Choose PNG if you need lossless quality "
 "with no compression artifacts. Choose PDF when you need to print, archive, "
 "or email the photo as a document."
-msgstr ""
+msgstr "Elige JPG para uso general, compartir y subir — es el formato fotográfico más universalmente compatible. Elige PNG si necesitas calidad sin pérdidas y sin artefactos de compresión. Elige PDF cuando quieras imprimir, archivar o enviar la foto como documento."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:306
 msgid "Is the HEIC converter free?"
@@ -9208,7 +9208,7 @@ msgid ""
 "The HEIC converter is a premium feature. Premium users can convert single "
 "files and process up to 10 HEIC photos at once in batch mode. Upgrade to "
 "Premium to unlock it alongside our other advanced tools."
-msgstr ""
+msgstr "El convertidor HEIC es una función Premium. Los usuarios Premium pueden convertir archivos individuales y procesar hasta 10 fotos HEIC a la vez en modo lote. Actualiza a Premium para desbloquearlo junto con el resto de herramientas avanzadas."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:314
 msgid "HEIC Converter FAQ"
@@ -9218,19 +9218,19 @@ msgstr "Preguntas frecuentes del convertidor HEIC"
 msgid ""
 "Convert HEIC to JPG when uploading photos to social networks, job-"
 "application portals, or older websites."
-msgstr ""
+msgstr "Convierte HEIC a JPG cuando subas fotos a redes sociales, portales de empleo o sitios antiguos."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:320
 msgid ""
 "Use PNG output when you need a transparent or pixel-perfect copy — for "
 "example, when editing further in a graphics app."
-msgstr ""
+msgstr "Usa PNG cuando necesites una copia con transparencia o pixel-perfect — por ejemplo, para seguir editando en un programa gráfico."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:323
 msgid ""
 "Choose PDF to send an iPhone photo as a printable document — handy for "
 "receipts, IDs, or scanned paperwork."
-msgstr ""
+msgstr "Elige PDF para enviar una foto del iPhone como documento imprimible — útil para recibos, DNI o escaneos."
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:326
 msgid "Why Use Our HEIC Converter?"
@@ -9255,7 +9255,7 @@ msgid ""
 "strong> (lossless quality), or <strong>PDF</strong> (printable document). "
 "Quality settings, batch processing of up to 10 files at once, and ZIP "
 "downloads are all included with Premium.</p>"
-msgstr ""
+msgstr "<p>La conversión <strong>HEIC a JPG</strong> transforma los archivos High-Efficiency Image Container que crean los iPhone y iPad por defecto en formatos que cualquier dispositivo puede abrir. El formato HEIC de Apple es excelente para almacenar, pero da problemas al subir, enviar o imprimir la foto en plataformas no-Apple.</p><p>Esta herramienta Premium decodifica los archivos HEIC y HEIF y los recodifica como <strong>JPG</strong> (máxima compatibilidad), <strong>PNG</strong> (calidad sin pérdidas) o <strong>PDF</strong> (documento imprimible). Los ajustes de calidad, el procesamiento por lotes de hasta 10 archivos y la descarga en ZIP están incluidos en Premium.</p>"
 
 #: utils_site/src/frontend/tool_configs/pdf_convert.py:10
 msgid "PDF to Word Converter Online Free - No Registration | Convertica"
@@ -14074,7 +14074,7 @@ msgstr ""
 msgid ""
 "Convert Apple HEIC and HEIF photos from iPhone or iPad to JPG, PNG, or PDF. "
 "Batch up to 10 files."
-msgstr ""
+msgstr "Convierte fotos Apple HEIC y HEIF del iPhone o iPad a JPG, PNG o PDF. Lote de hasta 10 archivos."
 
 #: utils_site/src/frontend/views.py:772
 msgid "Compare Two PDFs (Premium) - Convertica"
