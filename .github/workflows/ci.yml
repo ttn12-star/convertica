@@ -909,12 +909,24 @@ jobs:
               echo "⚠️ Failed to restart celery services, but web is healthy - continuing..."
             fi
 
-            # Step 8: Reload nginx gracefully (no downtime)
-            echo "🔄 Reloading nginx (graceful reload)..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T nginx nginx -s reload 2>/dev/null || {
-              echo "   Nginx reload failed, restarting..."
-              docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
-            }
+            # Step 8: Pick up new nginx.conf.
+            #
+            # Why restart instead of `nginx -s reload`:
+            # `git reset --hard` replaces ./ci/nginx.conf with a fresh inode
+            # while the running nginx container's bind-mount stays attached
+            # to the OLD (now-orphaned) inode. SIGHUP then re-reads the
+            # orphaned file = no-op. We hit exactly this on the prod box
+            # (container Up 3 months while host file kept changing). Verified
+            # via `ls -li` inside vs. outside the container — different inodes.
+            # `restart` re-binds the mount to the current inode.
+            # Downtime is ~2-3s; nginx returns 502 briefly, acceptable.
+            echo "🔄 Validating nginx config..."
+            if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T nginx nginx -t; then
+              echo "❌ nginx config invalid — leaving previous config running"
+              exit 1
+            fi
+            echo "✅ nginx config valid; restarting container to re-bind mount..."
+            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml restart nginx
 
             # Step 9: Clean up old stopped containers (only if new ones are healthy)
             echo "🧹 Cleaning up old stopped containers..."
