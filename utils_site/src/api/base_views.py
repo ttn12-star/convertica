@@ -103,6 +103,11 @@ class BaseConversionAPIView(APIView, ABC):
     # Whether file upload is required (False for URL/HTML conversions)
     FILE_FIELD_REQUIRED = True
 
+    @combined_rate_limit(group="api_conversion", ip_rate="30/h", methods=["POST"])
+    def dispatch(self, request: HttpRequest, *args, **kwargs):
+        """Dispatch request with rate limiting applied before routing to post/get/etc."""
+        return super().dispatch(request, *args, **kwargs)
+
     def get_serializer_class(self):
         """Get serializer class. Override in subclasses."""
         raise NotImplementedError("Subclasses must implement get_serializer_class()")
@@ -607,7 +612,7 @@ class BaseConversionAPIView(APIView, ABC):
             if tmp_dir and os.path.exists(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
-    @combined_rate_limit(group="api_conversion", ip_rate="100/h", methods=["POST"])
+    @combined_rate_limit(group="api_conversion", ip_rate="30/h", methods=["POST"])
     def post(self, request: HttpRequest):
         """Handle POST request for file conversion.
 
