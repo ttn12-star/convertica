@@ -167,6 +167,18 @@ class User(AbstractUser):
         return status
 
     @property
+    def subscription_plan(self):
+        """Return the SubscriptionPlan of the currently-active subscription, or None.
+
+        Used by APIKey quota enforcement to look up the per-plan quota
+        ceiling. Returns None if the user has no active subscription.
+        """
+        sub = getattr(self, "provider_subscription", None)
+        if sub and self.is_subscription_active():
+            return sub.plan
+        return None
+
+    @property
     def is_premium_active(self) -> bool:
         """True only when the user is premium AND the subscription is currently active."""
         return bool(self.is_premium and self.is_subscription_active())
