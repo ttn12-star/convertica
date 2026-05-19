@@ -16,6 +16,7 @@ import sys
 from importlib import metadata
 from pathlib import Path
 
+from celery.schedules import crontab
 from decouple import Csv, config
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
@@ -1077,6 +1078,11 @@ CELERY_BEAT_SCHEDULE = {
     #     "schedule": 86400,  # Every 24 hours
     #     "kwargs": {"retention_days": 730},  # Keep operations for 2 years (was 365)
     # },
+    # Reset API key monthly usage counters on the 1st of every month at 00:01 UTC
+    "api-quota-monthly-reset": {
+        "task": "api_quota.reset_monthly",
+        "schedule": crontab(minute=1, hour=0, day_of_month=1),
+    },
 }
 
 # Rate Limiting Configuration
