@@ -1341,14 +1341,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': window.CSRF_TOKEN
-                },
-                body: formData,
-                signal: abortController.signal
-            });
+            const _wmInit = await (window.ConvertiaWebToken
+                ? window.ConvertiaWebToken.attachToken({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN },
+                    signal: abortController.signal,
+                  })
+                : Promise.resolve({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN },
+                    signal: abortController.signal,
+                  }));
+            const response = await fetch(apiUrl, _wmInit);
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));

@@ -238,14 +238,18 @@ document.addEventListener('DOMContentLoaded', () => {
         window._currentAbortController = abortController;
 
         try {
-            const response = await fetch(window.API_URL, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': window.CSRF_TOKEN || ''
-                },
-                signal: abortController.signal
-            });
+            const _jpgInit = await (window.ConvertiaWebToken
+                ? window.ConvertiaWebToken.attachToken({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN || '' },
+                    signal: abortController.signal,
+                  })
+                : Promise.resolve({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN || '' },
+                    signal: abortController.signal,
+                  }));
+            const response = await fetch(window.API_URL, _jpgInit);
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
