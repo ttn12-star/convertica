@@ -612,7 +612,6 @@ class BaseConversionAPIView(APIView, ABC):
             if tmp_dir and os.path.exists(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
-    @combined_rate_limit(group="api_conversion", ip_rate="30/h", methods=["POST"])
     def post(self, request: HttpRequest):
         """Handle POST request for file conversion.
 
