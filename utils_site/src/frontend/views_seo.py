@@ -27,7 +27,6 @@ def favicon_view(request):  # noqa: ARG001
 def robots_txt_view(request):  # noqa: ARG001
     """Serve robots.txt with environment-aware sitemap and admin URLs."""
     robots_path = find("robots.txt")
-    admin_path = getattr(settings, "ADMIN_URL_PATH", "admin")
     site_domain = config("SITE_DOMAIN", default=request.get_host())
 
     if robots_path:
@@ -36,7 +35,6 @@ def robots_txt_view(request):  # noqa: ARG001
     else:
         content = _fallback_robots_content()
 
-    content = content.replace("/__ADMIN_PATH__/", f"/{admin_path}/")
     content = content.replace(
         "https://convertica.net/sitemap.xml",
         f"https://{site_domain}/sitemap.xml",
@@ -62,8 +60,7 @@ Disallow: /*&q=*
 Disallow: /*?category=*
 Disallow: /*&category=*
 
-# Disallow admin and API endpoints
-Disallow: /__ADMIN_PATH__/
+# Disallow API endpoints and static admin assets
 Disallow: /api/
 Disallow: /static/admin/
 

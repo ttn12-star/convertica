@@ -61,8 +61,9 @@ Disallow: /ar/es/
 Disallow: /ar/id/
 Disallow: /ar/ar/
 
-# Disallow admin and API endpoints
-Disallow: /__ADMIN_PATH__/
+# Disallow API endpoints and static admin assets
+# (real admin is hidden behind an obscured path + IP whitelist;
+# we don't advertise it in robots.txt)
 Disallow: /api/
 Disallow: /static/admin/
 
@@ -79,9 +80,10 @@ Disallow: /contribute/success/
 Disallow: /*/contribute/success/
 
 # Disallow premium-gated tools that 302-redirect anonymous visitors to login
-# (kept off the public crawl to avoid noisy 302→login chains in audits)
-Disallow: /scanned-pdf-to-word/
-Disallow: /*/scanned-pdf-to-word/
+# (kept off the public crawl to avoid noisy 302→login chains in audits).
+# /scanned-pdf-to-word/ is intentionally NOT blocked: OCR is a high-CPC
+# keyword we want indexed. The landing page must serve crawlable anonymous
+# content; the actual conversion remains premium-gated at the app layer.
 Disallow: /batch-converter/
 Disallow: /*/batch-converter/
 Disallow: /premium/

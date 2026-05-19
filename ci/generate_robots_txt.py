@@ -13,9 +13,7 @@ from pathlib import Path
 
 
 def generate_robots_txt():
-    """Generate robots.txt with dynamic ADMIN_URL_PATH and SITE_DOMAIN."""
-    # Get environment variables
-    admin_path = os.environ.get("ADMIN_URL_PATH", "admin")
+    """Generate robots.txt with dynamic SITE_DOMAIN."""
     site_domain = os.environ.get("SITE_DOMAIN", "convertica.net")
 
     # Paths
@@ -31,13 +29,11 @@ def generate_robots_txt():
         if not template_path.exists():
             print(f"Warning: Template not found at {template_path}")
             # Create fallback robots.txt
-            content = generate_fallback_content(admin_path, site_domain)
+            content = generate_fallback_content(site_domain)
         else:
             with open(template_path, encoding="utf-8") as f:
                 content = f.read()
 
-            # Replace placeholders
-            content = content.replace("/__ADMIN_PATH__/", f"/{admin_path}/")
             content = content.replace(
                 "https://convertica.net/sitemap.xml",
                 f"https://{site_domain}/sitemap.xml",
@@ -52,7 +48,6 @@ def generate_robots_txt():
             f.write(content)
 
         print(f"✅ Generated robots.txt at {output_path}")
-        print(f"   Admin path: /{admin_path}/")
         print(f"   Sitemap: https://{site_domain}/sitemap.xml")
         return 0
 
@@ -60,7 +55,7 @@ def generate_robots_txt():
         print(f"❌ Error generating robots.txt: {e}", file=sys.stderr)
         # Create fallback anyway to ensure robots.txt exists
         try:
-            content = generate_fallback_content(admin_path, site_domain)
+            content = generate_fallback_content(site_domain)
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(content)
             print(f"⚠️  Created fallback robots.txt at {output_path}")
@@ -70,7 +65,7 @@ def generate_robots_txt():
         return 0
 
 
-def generate_fallback_content(admin_path: str, site_domain: str) -> str:
+def generate_fallback_content(site_domain: str) -> str:
     """Generate fallback robots.txt content."""
     return f"""User-agent: *
 Allow: /
@@ -83,8 +78,7 @@ Disallow: /*&q=*
 Disallow: /*?category=*
 Disallow: /*&category=*
 
-# Disallow admin and API endpoints
-Disallow: /{admin_path}/
+# Disallow API endpoints and static admin assets
 Disallow: /api/
 Disallow: /static/admin/
 
