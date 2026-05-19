@@ -154,7 +154,13 @@ class CaptchaRequirementMiddleware:
         referer = request.META.get("HTTP_REFERER", "")
         origin = request.META.get("HTTP_ORIGIN", "")
         has_first_party_referer = any(
-            (referer.startswith(o) or origin.startswith(o)) for o in allowed_origins
+            (
+                referer == o
+                or referer.startswith(o + "/")
+                or origin == o
+                or origin.startswith(o + "/")
+            )
+            for o in allowed_origins
         )
         if not has_first_party_referer and not settings.DEBUG:
             if hasattr(request, "session"):
