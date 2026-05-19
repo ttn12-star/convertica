@@ -423,6 +423,13 @@ class SubscriptionPlan(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, default="USD")
     duration_days = models.IntegerField()
+    api_quota_per_month = models.PositiveIntegerField(
+        default=0,
+        help_text=_(
+            "Monthly /api/v1 call quota for subscribers of this plan. "
+            "0 = no API access."
+        ),
+    )
     ls_variant_id = models.CharField(max_length=64, blank=True, default="")
     ls_product_id = models.CharField(max_length=64, blank=True, default="")
     is_lifetime = models.BooleanField(default=False)
