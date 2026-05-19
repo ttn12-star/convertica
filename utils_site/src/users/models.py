@@ -57,6 +57,13 @@ class User(AbstractUser):
         default=False, verbose_name=_("Display as Hero")
     )
 
+    webhook_secret = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        help_text=_("Per-user HMAC secret for signing outbound webhook callbacks."),
+    )
+
     payment_provider = models.CharField(
         max_length=20,
         blank=True,
@@ -856,6 +863,12 @@ class APIKey(models.Model):
         The plaintext is returned ONCE; the DB only stores the hash.
         """
         import hashlib
+
+        # Ensure the user has a webhook signing secret (created on first
+        # key issue — never displayed in the dashboard; users sign with it).
+        if not user.webhook_secret:
+            user.webhook_secret = secrets.token_urlsafe(32)
+            user.save(update_fields=["webhook_secret"])
 
         # cvk_live_<12 char prefix><32 char secret>
         prefix = secrets.token_urlsafe(9)[:12].replace("-", "x").replace("_", "y")
