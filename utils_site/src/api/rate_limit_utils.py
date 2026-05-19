@@ -7,7 +7,9 @@ import logging
 from functools import wraps
 
 from django.core.cache import cache
+from django.http import JsonResponse
 from django_ratelimit.decorators import ratelimit
+from django_ratelimit.exceptions import Ratelimited
 
 logger = logging.getLogger(__name__)
 
@@ -131,7 +133,22 @@ def combined_rate_limit(group="api", ip_rate="100/h", methods=None):
             except Exception as e:
                 logger.error(f"Error logging rate limit usage: {e}")
 
-            return limited(request, *remaining_args, **kwargs)
+            try:
+                return limited(request, *remaining_args, **kwargs)
+            except Ratelimited:
+                return JsonResponse(
+                    {
+                        "error": "Rate limit exceeded",
+                        "message": (
+                            "Rate limit exceeded. "
+                            "Please sign in for higher limits or upgrade to Premium for unlimited access!"
+                            if not (request and request.user.is_authenticated)
+                            else "You've reached your rate limit. Upgrade to Premium for 10x higher limits!"
+                        ),
+                        "retry_after": 3600,
+                    },
+                    status=429,
+                )
 
         return wrapper
 
