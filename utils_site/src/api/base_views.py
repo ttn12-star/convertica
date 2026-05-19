@@ -105,7 +105,15 @@ class BaseConversionAPIView(APIView, ABC):
 
     @combined_rate_limit(group="api_conversion", ip_rate="30/h", methods=["POST"])
     def dispatch(self, request: HttpRequest, *args, **kwargs):
-        """Dispatch request with rate limiting applied before routing to post/get/etc."""
+        """Apply rate limiting at the `dispatch` layer, not on `post`.
+
+        Many subclasses override `post` and do NOT call `super().post()`
+        (e.g. JPGToPDFAPIView). A decorator on `post` is dead code for
+        those views. Putting it on `dispatch` ensures the limit fires for
+        every conversion request regardless of how the subclass routes.
+        Decorating `post` instead would also double-count when a subclass
+        DOES call `super().post()`.
+        """
         return super().dispatch(request, *args, **kwargs)
 
     def get_serializer_class(self):
