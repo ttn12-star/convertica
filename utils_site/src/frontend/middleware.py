@@ -135,12 +135,37 @@ class CaptchaRequirementMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        response = self.get_response(request)
-
         # Only track CAPTCHA requirement for API calls.
         # Avoid creating/modifying sessions for anonymous users just browsing pages.
+        # This check is done PRE-response so we can short-circuit and save backend work.
         if not request.path.startswith("/api/"):
-            return response
+            return self.get_response(request)
+
+        # Origin/Referer gate: legitimate web traffic always carries a Referer
+        # from convertica.net (browsers attach it automatically on form POST and
+        # fetch() unless an explicit no-referrer policy is set, which we don't).
+        # Calls without it are almost always scripts (curl, python-requests, …).
+        # Demand CAPTCHA immediately — no 3-fails grace.
+        allowed_origins = (
+            "https://convertica.net",
+            "http://convertica.net",  # for local dev/probes
+            f"https://{getattr(settings, 'SITE_DOMAIN', 'convertica.net')}",
+        )
+        referer = request.META.get("HTTP_REFERER", "")
+        origin = request.META.get("HTTP_ORIGIN", "")
+        has_first_party_referer = any(
+            (referer.startswith(o) or origin.startswith(o)) for o in allowed_origins
+        )
+        if not has_first_party_referer and not settings.DEBUG:
+            if hasattr(request, "session"):
+                request.session["captcha_required"] = True
+                logger.info(
+                    "CAPTCHA required (origin gate: ref=%r orig=%r)",
+                    referer,
+                    origin,
+                )
+
+        response = self.get_response(request)
 
         # Get client IP for IP-based tracking (works even without session)
         x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
