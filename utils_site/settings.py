@@ -375,6 +375,7 @@ MIDDLEWARE = [
     "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
     "src.frontend.middleware.DoubleLanguagePrefixMiddleware",  # Redirect URLs with double language prefixes (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
+    "src.api.middleware.LegacyAPIDeprecationMiddleware",  # Deprecation headers + 410 for legacy /api/* after 2026-07-01
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
     "src.api.middleware.CSPNonceMiddleware",  # Generate CSP nonce for each request
     "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware

@@ -6,8 +6,10 @@ import base64
 import logging
 import os
 import time
+from datetime import UTC, datetime
+from datetime import timezone as dt_timezone
 
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.deprecation import MiddlewareMixin
 
 op_tracking_logger = logging.getLogger("src.api.operation_run_tracking")
@@ -339,6 +341,46 @@ class FilterProxyRequestsMiddleware(MiddlewareMixin):
             return HttpResponseBadRequest(b"", content_type="text/plain")
 
         return None
+
+
+# Set to the date we cut legacy /api/* off. Until that date, requests get
+# warning headers; after, they get 410.
+LEGACY_API_SUNSET = datetime(2026, 7, 1, tzinfo=UTC)
+
+
+class LegacyAPIDeprecationMiddleware(MiddlewareMixin):
+    """Add Deprecation/Sunset headers on /api/<tool>/ legacy paths.
+
+    After LEGACY_API_SUNSET, return 410 Gone instead of proxying to the
+    view. Tool-polling endpoints (/api/tasks/) and /api/docs/ are NOT
+    affected — those stay alive.
+    """
+
+    def __call__(self, request):
+        path = request.path
+        # Match /api/<tool>/ but NOT /api/v1/<tool>/, /api/tasks/<id>/...,
+        # /api/docs/, /api/docs.json, or other non-tool admin paths
+        is_legacy_tool = (
+            path.startswith("/api/")
+            and not path.startswith("/api/v1/")
+            and not path.startswith("/api/tasks/")
+            and not path.startswith("/api/docs")
+        )
+        if is_legacy_tool:
+            now = datetime.now(UTC)
+            if now > LEGACY_API_SUNSET:
+                return HttpResponse(
+                    "Legacy /api/* removed. Use /api/v1/* with API key "
+                    "auth — see https://convertica.net/api/docs/",
+                    status=410,
+                    content_type="text/plain",
+                )
+        response = self.get_response(request)
+        if is_legacy_tool:
+            response["Deprecation"] = "true"
+            response["Sunset"] = LEGACY_API_SUNSET.strftime("%a, %d %b %Y %H:%M:%S GMT")
+            response["Link"] = '</api/docs/>; rel="successor-version"'
+        return response
 
 
 class SecurityHeadersMiddleware(MiddlewareMixin):
