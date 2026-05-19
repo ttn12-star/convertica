@@ -15,7 +15,6 @@ from rest_framework import status
 from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
 
-from ...auth.permissions import IsAuthenticatedOrWebToken
 from ...base_views import BaseConversionAPIView
 from .decorators import jpg_to_pdf_docs
 from .serializers import JPGToPDFSerializer
@@ -23,7 +22,6 @@ from .utils import convert_jpg_to_pdf
 
 
 class JPGToPDFAPIView(BaseConversionAPIView):
-    permission_classes = [IsAuthenticatedOrWebToken]
     """Handle JPG/JPEG → PDF conversion requests.
 
     Supports both single and multiple image files.
