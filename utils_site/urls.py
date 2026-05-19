@@ -67,6 +67,7 @@ def service_worker(request):
 
 
 urlpatterns = [
+    path("api/v1/", include("src.api.v1_urls")),
     path("api/", include("src.api.urls")),
     path("i18n/setlang/", set_language, name="set_language"),
     path("payments/webhook/lemonsqueezy/", lemonsqueezy_webhook, name="ls_webhook"),
