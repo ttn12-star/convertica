@@ -1232,3 +1232,23 @@ YANDEX_RSY_ID = config("YANDEX_RSY_ID", default="")
 # Yandex Webmaster site verification code
 # Set in .env: YANDEX_VERIFICATION=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 YANDEX_VERIFICATION = config("YANDEX_VERIFICATION", default="")
+
+# ============================================
+# Django REST Framework — explicit auth chain
+# ============================================
+# Order matters: API key checked first (so `cvk_live_*` Authorization
+# headers never accidentally get passed to web-token auth), then web
+# token (browser JWT), then session (for the dashboard and any logged-in
+# views that hit DRF endpoints).
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "src.api.auth.APIKeyAuthentication",
+        "src.api.auth.WebTokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        # Per-view override required where needed; default open keeps
+        # anon homepage flow working until Phase 3 cut-over.
+        "rest_framework.permissions.AllowAny",
+    ],
+}
