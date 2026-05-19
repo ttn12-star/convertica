@@ -142,6 +142,16 @@ urlpatterns += [
     path("accounts/", include("allauth.urls")),
 ]
 
+# Public API documentation (production)
+urlpatterns += [
+    path(
+        "api/docs/", schema_view.with_ui("swagger", cache_timeout=300), name="api_docs"
+    ),
+    path(
+        "api/docs.json", schema_view.without_ui(cache_timeout=300), name="api_docs_json"
+    ),
+]
+
 if settings.DEBUG:
     urlpatterns += [
         path(
