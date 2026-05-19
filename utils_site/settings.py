@@ -23,10 +23,7 @@ TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
 # Sentry Error Tracking
 # Enabled by default in production (DEBUG=False)
 # Set SENTRY_DSN="" to disable
-SENTRY_DSN = config(
-    "SENTRY_DSN",
-    default="https://b3fdb00de949875598b3a1e9e5a54de0@o4510504663973888.ingest.de.sentry.io/4510504665940048",
-)
+SENTRY_DSN = config("SENTRY_DSN", default="")
 if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
     try:
         import sentry_sdk
@@ -243,8 +240,8 @@ if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
                 CeleryIntegration(),
                 RedisIntegration(),
             ],
-            # Send user info (IP, etc.) for debugging
-            send_default_pii=True,
+            # GDPR: do not auto-attach IP/user data; only what we explicitly tag.
+            send_default_pii=False,
             # Enable sending logs to Sentry (only ERROR and above to avoid spam)
             enable_logs=True,
             # Capture 10% of transactions for performance monitoring (free plan)
@@ -514,6 +511,23 @@ ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = (
     "/users/login/"  # Redirect after email confirmation (anonymous users)
 )
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # Auto-login after email confirmation
+
+# Brute-force / abuse limits for allauth endpoints (v65 syntax).
+# Without these, allauth ships no rate limit and our CAPTCHA middleware
+# only covers /api/. Numbers are conservative defaults — legitimate users
+# rarely hit them; bots and credential-stuffing do.
+ACCOUNT_RATE_LIMITS = {
+    "login_failed": "5/5m",
+    "login": "30/m/ip",
+    "signup": "5/h/ip",
+    "send_email": "10/h/ip",
+    "change_password": "5/h/user",
+    "manage_email": "10/h/user",
+    "reset_password": "5/h/ip",
+    "reset_password_email": "5/h/ip",
+    "reset_password_from_key": "10/m/ip",
+    "confirm_email": "1/3m/key",
+}
 
 # Legacy allauth compatibility for old Docker images (pre-v64 API).
 try:

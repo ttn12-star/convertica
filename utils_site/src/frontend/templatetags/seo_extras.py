@@ -36,7 +36,14 @@ def seo_title(value, max_len: int = 60) -> str:
 
     Google shows ~60 chars in SERP. If the input has a trailing `| <Brand>`
     or `- <Brand>` suffix, we keep it and shorten only the body so that the
-    brand stays visible. Trailing word boundary cuts.
+    brand stays visible.
+
+    When the body itself contains a sub-clause boundary (` - ` / ` — `),
+    prefer cutting at that boundary instead of mid-phrase. Otherwise the
+    word-boundary cut leaves grammatically broken fragments like
+    "PDF to Word Converter Online Free - No | Convertica" (chopped at "No",
+    dropping "Registration" from "No Registration"). The boundary cut yields
+    "PDF to Word Converter Online Free | Convertica" instead.
     """
     if not value:
         return value
@@ -55,9 +62,19 @@ def seo_title(value, max_len: int = 60) -> str:
         # Brand suffix too long for budget; fall back to plain trim.
         return seo_meta(str(value).strip(), max_len)
     if len(text) > budget:
-        cut = text[:budget]
-        last_space = cut.rfind(" ")
-        if last_space >= budget * 0.6:
-            cut = cut[:last_space]
-        text = cut.rstrip(_TRAILING_PUNCT)
+        # Try cutting at the last sub-clause boundary that still fits.
+        clause_cut = None
+        for sub_sep in (" — ", " - "):
+            sub_idx = text.rfind(sub_sep, 0, budget + 1)
+            if sub_idx >= budget * 0.5:
+                clause_cut = sub_idx
+                break
+        if clause_cut is not None:
+            text = text[:clause_cut].rstrip(_TRAILING_PUNCT)
+        else:
+            cut = text[:budget]
+            last_space = cut.rfind(" ")
+            if last_space >= budget * 0.6:
+                cut = cut[:last_space]
+            text = cut.rstrip(_TRAILING_PUNCT)
     return text + suffix

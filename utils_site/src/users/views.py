@@ -15,12 +15,15 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic import UpdateView
+from django_ratelimit.decorators import ratelimit
 from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
 
 from .forms import CustomUserCreationForm, LoginForm
 from .models import Payment, UserSubscription
 
 
+@ratelimit(key="ip", rate="10/m", method="POST", block=True)
+@ratelimit(key="ip", rate="50/h", method="POST", block=True)
 def user_login(request):
     """Handle user login."""
     if request.user.is_authenticated:
@@ -74,6 +77,8 @@ def user_login(request):
     return render(request, "users/login.html", {"form": form})
 
 
+@ratelimit(key="ip", rate="5/m", method="POST", block=True)
+@ratelimit(key="ip", rate="20/h", method="POST", block=True)
 def user_register(request):
     """Handle user registration with email verification."""
     if request.user.is_authenticated:
@@ -160,6 +165,7 @@ def user_profile(request):
 
 @login_required
 @require_POST
+@ratelimit(key="user", rate="5/h", block=True)
 def resend_confirmation_email(request):
     from allauth.account.models import EmailAddress
 
@@ -182,6 +188,7 @@ def resend_confirmation_email(request):
 
 @login_required
 @require_POST
+@ratelimit(key="user", rate="5/h", block=True)
 def send_password_reset_email(request):
     from allauth.account.forms import ResetPasswordForm
 

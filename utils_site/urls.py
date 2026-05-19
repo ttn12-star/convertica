@@ -7,6 +7,7 @@ from django.shortcuts import render
 from django.urls import include, path
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
+from django.views.generic import RedirectView
 from src.frontend.i18n_views import set_language
 from src.frontend.views import index_page, sitemap_index, sitemap_lang
 from src.frontend.views_indexnow import indexnow_key_file
@@ -94,6 +95,31 @@ urlpatterns = [
     # Homepage - accessible without language prefix for SEO
     path("", index_page, name="index_page"),
 ]
+
+# Marketing-style aliases — match competitor URL patterns and recover
+# old backlinks that didn't include a /<lang>/ prefix. 301 to the canonical
+# /en/<canonical>/ so search engines consolidate ranking signal.
+# Aliases live outside i18n_patterns so the leading locale segment from
+# referrers is not duplicated.
+_MARKETING_ALIASES = {
+    "sign-pdf": "/en/pdf-edit/sign/",
+    "merge-pdf": "/en/pdf-organize/merge/",
+    "split-pdf": "/en/pdf-organize/split/",
+    "compress-pdf": "/en/pdf-organize/compress/",
+    "rotate-pdf": "/en/pdf-edit/rotate/",
+    "watermark-pdf": "/en/pdf-edit/add-watermark/",
+    "crop-pdf": "/en/pdf-edit/crop/",
+    "unlock-pdf": "/en/pdf-security/unlock/",
+    "protect-pdf": "/en/pdf-security/protect/",
+}
+for _alias, _target in _MARKETING_ALIASES.items():
+    urlpatterns.append(
+        path(
+            f"{_alias}/",
+            RedirectView.as_view(url=_target, permanent=True),
+            name=f"alias_{_alias.replace('-', '_')}",
+        )
+    )
 
 # Prometheus metrics endpoint (only if django-prometheus is installed)
 try:

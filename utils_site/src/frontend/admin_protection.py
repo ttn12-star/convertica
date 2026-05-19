@@ -11,20 +11,19 @@ logger = logging.getLogger(__name__)
 
 
 def get_client_ip(request: HttpRequest) -> str:
-    """Get client IP address from request."""
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(",")[0].strip()
-    else:
-        ip = request.META.get("REMOTE_ADDR", "")
+    """Get client IP address from request.
 
-    # Log for debugging
-    logger.debug(
-        f"Client IP detection - X-Forwarded-For: {x_forwarded_for}, "
-        f"REMOTE_ADDR: {request.META.get('REMOTE_ADDR', '')}, "
-        f"Final IP: {ip}"
+    Prefers CF-Connecting-IP (Cloudflare-set, not client-controlled).
+    Falls back to the **rightmost** XFF entry (the last trusted proxy that
+    added itself), not the leftmost — leftmost is attacker-controlled and
+    historically allowed admin-whitelist bypass via spoofed
+    "X-Forwarded-For: 127.0.0.1, <real>".
+    """
+    ip = (
+        request.META.get("HTTP_CF_CONNECTING_IP")
+        or request.META.get("HTTP_X_FORWARDED_FOR", "").split(",")[-1].strip()
+        or request.META.get("REMOTE_ADDR", "")
     )
-
     return ip
 
 
@@ -68,15 +67,12 @@ class AdminIPWhitelistMiddleware:
             # Check if IP is whitelisted
             if client_ip not in whitelist:
                 logger.warning(
-                    f"Admin access denied - IP {client_ip} not in whitelist {whitelist}. "
+                    f"Admin access denied - IP {client_ip} not in whitelist. "
                     f"REMOTE_ADDR: {request.META.get('REMOTE_ADDR', 'N/A')}, "
                     f"X-Forwarded-For: {request.META.get('HTTP_X_FORWARDED_FOR', 'N/A')}"
                 )
                 return HttpResponseForbidden(
-                    f"<h1>403 Forbidden</h1>"
-                    f"<p>Access to admin panel is restricted.</p>"
-                    f"<p>Your IP: {client_ip}</p>"
-                    f"<p>Whitelist: {', '.join(whitelist)}</p>",
+                    "<h1>404 Not Found</h1>",
                     content_type="text/html",
                 )
 
@@ -102,8 +98,9 @@ def admin_ip_required(view_func: Callable) -> Callable:
         if whitelist:
             client_ip = get_client_ip(request)
             if client_ip not in whitelist:
+                logger.warning(f"Admin view denied - IP {client_ip} not in whitelist")
                 return HttpResponseForbidden(
-                    "<h1>403 Forbidden</h1><p>Access denied.</p>",
+                    "<h1>404 Not Found</h1>",
                     content_type="text/html",
                 )
 
