@@ -3,7 +3,11 @@
 from django.urls import path
 from src.api.auth.views import web_token_view
 
+# Import the view classes from their existing locations
+from src.api.pdf_convert.jpg_to_pdf.views import JPGToPDFAPIView
+
 urlpatterns = [
     path("auth/web-token", web_token_view, name="v1_web_token"),
-    # Tool endpoints added in Task P3-2.
+    # Tool endpoints — Phase 3 sweep
+    path("jpg-to-pdf/", JPGToPDFAPIView.as_view(), name="v1_jpg_to_pdf"),
 ]
