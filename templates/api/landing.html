@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Convertica API — PDF Conversion API for Developers" %} | Convertica{% endblock %}
+
+{% block description %}{% trans "Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI docs, HMAC-signed webhooks. Bundled with Convertica subscriptions." %}{% endblock %}
+
+{% block content %}
+  <div class="max-w-5xl mx-auto py-12 px-4">
+
+    <section class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{% trans "Convertica API" %}</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">{% trans "Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI docs, HMAC-signed webhooks." %}</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/api/docs/" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold">{% trans "View API docs" %}</a>
+        <a href="{% url 'frontend:pricing' %}" class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg font-semibold">{% trans "See pricing" %}</a>
+      </div>
+    </section>
+
+    <section class="grid md:grid-cols-3 gap-6 mb-16">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+        <h3 class="font-semibold text-lg mb-2">{% trans "Monthly" %}</h3>
+        <p class="text-3xl font-bold">$7<span class="text-base font-normal text-gray-500">/mo</span></p>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=monthly_quota %}{{ quota }} API call per month{% plural %}{{ quota }} API calls per month{% endblocktrans %}</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border border-blue-500">
+        <h3 class="font-semibold text-lg mb-2">{% trans "Yearly" %}</h3>
+        <p class="text-3xl font-bold">$79<span class="text-base font-normal text-gray-500">/yr</span></p>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=yearly_quota %}{{ quota }} API call per month{% plural %}{{ quota }} API calls per month{% endblocktrans %}</p>
+        <p class="text-sm text-blue-600 mt-1">{% trans "Best value" %}</p>
+      </div>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
+        <h3 class="font-semibold text-lg mb-2">{% trans "Lifetime" %}</h3>
+        <p class="text-3xl font-bold">$129<span class="text-base font-normal text-gray-500">{% trans "once" %}</span></p>
+        <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=lifetime_quota %}{{ quota }} API call per month forever{% plural %}{{ quota }} API calls per month forever{% endblocktrans %}</p>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4">{% trans "Quick start" %}</h2>
+
+      <h3 class="font-semibold mt-6 mb-2">{% trans "1. Issue a key in your dashboard" %}</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-3">{% blocktrans %}Go to <a href="/users/api-keys/" class="text-blue-600 underline">your API Keys dashboard</a> and create a named key. The full key is shown once — copy it immediately.{% endblocktrans %}</p>
+
+      <h3 class="font-semibold mt-6 mb-2">{% trans "2. Make a request" %}</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-3">{% trans "curl example — convert a PDF to Word:" %}</p>
+    <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>curl -X POST https://convertica.net/api/v1/pdf-to-word/ \
+  -H "Authorization: Bearer cvk_live_xxxxxxxxxxxxxxxx" \
+  -F "pdf_file=@input.pdf" \
+  -o output.docx</code></pre>
+
+      <h3 class="font-semibold mt-6 mb-2">{% trans "Python example" %}</h3>
+    <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>import requests
+r = requests.post(
+    "https://convertica.net/api/v1/pdf-to-word/",
+    headers={"Authorization": "Bearer cvk_live_xxxxxxxxxxxxxxxx"},
+    files={"pdf_file": open("input.pdf", "rb")},
+)
+with open("output.docx", "wb") as f:
+    f.write(r.content)</code></pre>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4">{% trans "What you get" %}</h2>
+      <ul class="grid md:grid-cols-2 gap-3 text-gray-700 dark:text-gray-200">
+        <li>{% trans "30+ conversion endpoints: PDF↔Word, Excel, PPT, JPG, PNG, HTML, EPUB, Markdown" %}</li>
+        <li>{% trans "PDF edit: merge, split, rotate, watermark, sign, compress, crop, flatten" %}</li>
+        <li>{% trans "Image: optimize, convert, HEIC→JPG/PNG" %}</li>
+        <li>{% trans "Sync (small files) and async (large files) modes" %}</li>
+        <li>{% trans "Opt-in HMAC-signed webhook callbacks for async results" %}</li>
+        <li>{% trans "OpenAPI 3 documentation" %}</li>
+        <li>{% trans "Sub-200ms median, EU edge" %}</li>
+        <li>{% trans "Same backend as convertica.net — battle-tested" %}</li>
+      </ul>
+    </section>
+
+    <section class="text-center">
+      <h2 class="text-2xl font-bold mb-4">{% trans "Ready to start?" %}</h2>
+      <a href="{% url 'frontend:pricing' %}" class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-lg">{% trans "Subscribe and get your API key" %}</a>
+    </section>
+
+  </div>
+{% endblock %}
