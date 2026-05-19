@@ -49,3 +49,16 @@ class WebTokenTest(TestCase):
         )
         with self.assertRaises(AuthenticationFailed):
             self.auth.authenticate(request)
+
+    def test_ip_mismatch_rejected(self):
+        # The IP fingerprint is the security-critical claim of this class —
+        # a stolen token must NOT authenticate from a different IP.
+        token = mint_web_token(scope=["pdf-to-word"], ip="1.2.3.4")
+        request = self.factory.post(
+            "/api/v1/pdf-to-word/",
+            HTTP_AUTHORIZATION=f"Bearer {token}",
+            REMOTE_ADDR="9.9.9.9",
+        )
+        with self.assertRaises(AuthenticationFailed) as ctx:
+            self.auth.authenticate(request)
+        self.assertIn("different IP", str(ctx.exception.detail))
