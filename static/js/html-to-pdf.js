@@ -146,13 +146,17 @@ class HTMLToPDFConverter {
         this.updateProgress(10, 'Converting HTML to PDF...');
 
         try {
-            const response = await fetch('/api/html-to-pdf/', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': this.htmlContentForm.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            });
+            const _htmlCsrf = this.htmlContentForm.querySelector('[name=csrfmiddlewaretoken]').value;
+            const _htmlInit = await (window.ConvertiaWebToken
+                ? window.ConvertiaWebToken.attachToken({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': _htmlCsrf },
+                  })
+                : Promise.resolve({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': _htmlCsrf },
+                  }));
+            const response = await fetch('/api/html-to-pdf/', _htmlInit);
 
             if (!response.ok) {
                 // Handle error response (JSON)
@@ -200,13 +204,17 @@ class HTMLToPDFConverter {
         this.updateProgress(10, 'Fetching web page...');
 
         try {
-            const response = await fetch('/api/url-to-pdf/', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': this.urlForm.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            });
+            const _urlCsrf = this.urlForm.querySelector('[name=csrfmiddlewaretoken]').value;
+            const _urlInit = await (window.ConvertiaWebToken
+                ? window.ConvertiaWebToken.attachToken({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': _urlCsrf },
+                  })
+                : Promise.resolve({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': _urlCsrf },
+                  }));
+            const response = await fetch('/api/url-to-pdf/', _urlInit);
 
             if (!response.ok) {
                 // Handle error response (JSON)

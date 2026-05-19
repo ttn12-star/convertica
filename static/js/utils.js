@@ -678,14 +678,20 @@ async function submitAsyncConversion(options) {
 
     try {
         // Submit the conversion request
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': csrfToken,
-            },
-            body: formData,
-            signal: abortController.signal,
-        });
+        const _fetchInit = await (window.ConvertiaWebToken
+            ? window.ConvertiaWebToken.attachToken({
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrfToken },
+                body: formData,
+                signal: abortController.signal,
+              })
+            : Promise.resolve({
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrfToken },
+                body: formData,
+                signal: abortController.signal,
+              }));
+        const response = await fetch(apiUrl, _fetchInit);
 
         // Check if this is an async response (202 Accepted with task_id)
         if (response.status === 202) {

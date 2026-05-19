@@ -679,12 +679,18 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch(window.API_URL, {
-                method: 'POST',
-                headers: { 'X-CSRFToken': window.CSRF_TOKEN },
-                body: formData,
-                signal: abortController.signal,
-            });
+            const _signInit = await (window.ConvertiaWebToken
+                ? window.ConvertiaWebToken.attachToken({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN },
+                    signal: abortController.signal,
+                  })
+                : Promise.resolve({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN },
+                    signal: abortController.signal,
+                  }));
+            const response = await fetch(window.API_URL, _signInit);
             if (!response.ok) {
                 const errData = await response.json().catch(() => ({}));
                 throw new Error(errData.error || errData.detail || 'Signing failed.');
