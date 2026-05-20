@@ -11,11 +11,6 @@ from drf_yasg.utils import swagger_auto_schema
 def excel_to_pdf_docs() -> Callable:
     """Decorator providing Swagger documentation for Excel to PDF API."""
 
-    excel_file_schema = openapi.Schema(
-        type=openapi.TYPE_FILE,
-        description="Excel file (.xls or .xlsx) to convert to PDF",
-    )
-
     response_schema = openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
@@ -51,12 +46,8 @@ def excel_to_pdf_docs() -> Callable:
                 description="Excel file to convert",
             ),
         ],
-        request_body=openapi.Schema(
-            type=openapi.TYPE_OBJECT,
-            properties={
-                "excel_file": excel_file_schema,
-            },
-        ),
+        request_body=None,
+        consumes=["multipart/form-data"],
         responses={
             200: openapi.Response(
                 description="Conversion successful",

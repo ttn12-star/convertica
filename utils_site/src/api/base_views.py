@@ -20,6 +20,7 @@ from django.urls import reverse
 from django.utils.text import get_valid_filename
 from django.utils.translation import gettext as _
 from rest_framework import status
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from src.exceptions import (
@@ -65,6 +66,8 @@ class BaseConversionAPIView(APIView, ABC):
     - Logging
     - Temporary file cleanup
     """
+
+    parser_classes = [MultiPartParser, FormParser]
 
     # Override these in subclasses
     MAX_UPLOAD_SIZE = getattr(

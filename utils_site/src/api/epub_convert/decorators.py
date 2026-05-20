@@ -19,6 +19,8 @@ def epub_to_pdf_docs():
                 required=True,
             ),
         ],
+        request_body=None,
+        consumes=["multipart/form-data"],
         responses={
             200: openapi.Response(
                 description="PDF file",
@@ -47,6 +49,8 @@ def pdf_to_epub_docs():
                 required=True,
             ),
         ],
+        request_body=None,
+        consumes=["multipart/form-data"],
         responses={
             200: openapi.Response(
                 description="EPUB file",
