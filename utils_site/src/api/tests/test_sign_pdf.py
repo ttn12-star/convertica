@@ -195,6 +195,9 @@ class SignPDFViewTests(TestCase):
     def setUp(self):
         cache.clear()
         self.client = Client()
+        # Browser-shaped Referer satisfies CaptchaRequirementMiddleware so the
+        # spam-protection gate doesn't reject test requests with 400 captcha_required.
+        self.client.defaults["HTTP_REFERER"] = "https://convertica.net/"
         self.user = User.objects.create_user(email="sign@t.test", password="passw0rd!")
         self.sig_uri = _make_signature_data_uri()
         self.signatures_json = json.dumps(
