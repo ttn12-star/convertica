@@ -27,13 +27,21 @@
         // window.turnstile.getResponse() if the Turnstile JS is loaded.
         // Empty string is fine on dev / pages without Turnstile — the
         // backend returns success when no secret is configured.
-        const turnstileToken = (
-            (window.turnstile &&
-             typeof window.turnstile.getResponse === 'function' &&
-             window.turnstile.getResponse()) ||
-            window.turnstileResponse ||
-            ''
-        );
+        //
+        // getResponse() throws TurnstileError when called before a widget
+        // is rendered into the DOM (race on slow networks, ad-blocker
+        // stripping the script, automated tests, CSP refusal). Swallow
+        // here so the mint attempt still goes out — the backend cleanly
+        // returns 400 turnstile_token required, which the caller can handle.
+        let turnstileToken = '';
+        try {
+            if (window.turnstile && typeof window.turnstile.getResponse === 'function') {
+                turnstileToken = window.turnstile.getResponse() || '';
+            }
+        } catch (e) {
+            // No widget rendered yet — fall through to the window global.
+        }
+        turnstileToken = turnstileToken || window.turnstileResponse || '';
 
         const scope = [window.toolSlug || '*'];
 
