@@ -537,6 +537,33 @@ def generic_conversion_task(
         except Exception as db_exc:
             logger.warning("OperationRun 'success' update failed: %s", db_exc)
 
+        # Opt-in webhook callback for API users (passed in via kwargs from
+        # the view layer when an active API key call sets these). Don't
+        # block the task on delivery failure — just log.
+        webhook_url = kwargs.get("webhook_url")
+        api_key_user_id = kwargs.get("api_key_user_id")
+        if webhook_url and api_key_user_id:
+            try:
+                from datetime import timedelta
+
+                from django.utils import timezone as _tz
+                from src.api.webhook_delivery import deliver
+                from src.users.models import User
+
+                user = User.objects.get(pk=api_key_user_id)
+                deliver(
+                    webhook_url=webhook_url,
+                    payload={
+                        "task_id": task_id,
+                        "status": "success",
+                        "download_url": f"https://convertica.net/api/v1/tasks/{task_id}/result/",
+                        "expires_at": (_tz.now() + timedelta(hours=1)).isoformat(),
+                    },
+                    user=user,
+                )
+            except Exception as webhook_exc:
+                logger.warning("webhook delivery raised, ignoring: %s", webhook_exc)
+
         return {
             "status": "success",
             "output_path": final_output_path,

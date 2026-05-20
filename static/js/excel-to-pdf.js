@@ -197,13 +197,17 @@ class ExcelToPDFConverter {
             this.updateProgress(10, 'Preparing batch conversion...');
 
             try {
-                const response = await fetch('/api/excel-to-pdf/batch/', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': this.form.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                });
+                const _xlsBatchCsrf = this.form.querySelector('[name=csrfmiddlewaretoken]').value;
+                const _xlsBatchInit = await (window.ConvertiaWebToken
+                    ? window.ConvertiaWebToken.attachToken({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _xlsBatchCsrf },
+                      })
+                    : Promise.resolve({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _xlsBatchCsrf },
+                      }));
+                const response = await fetch('/api/excel-to-pdf/batch/', _xlsBatchInit);
 
                 const result = await response.json();
 
@@ -224,13 +228,17 @@ class ExcelToPDFConverter {
             this.updateProgress(10, 'Converting Excel to PDF...');
 
             try {
-                const response = await fetch('/api/excel-to-pdf/', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': this.form.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                });
+                const _xlsCsrf = this.form.querySelector('[name=csrfmiddlewaretoken]').value;
+                const _xlsInit = await (window.ConvertiaWebToken
+                    ? window.ConvertiaWebToken.attachToken({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _xlsCsrf },
+                      })
+                    : Promise.resolve({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _xlsCsrf },
+                      }));
+                const response = await fetch('/api/excel-to-pdf/', _xlsInit);
 
                 const result = await response.json();
 

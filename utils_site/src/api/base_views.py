@@ -20,6 +20,7 @@ from django.urls import reverse
 from django.utils.text import get_valid_filename
 from django.utils.translation import gettext as _
 from rest_framework import status
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from src.exceptions import (
@@ -66,6 +67,8 @@ class BaseConversionAPIView(APIView, ABC):
     - Temporary file cleanup
     """
 
+    parser_classes = [MultiPartParser, FormParser]
+
     # Override these in subclasses
     MAX_UPLOAD_SIZE = getattr(
         settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024
@@ -105,7 +108,15 @@ class BaseConversionAPIView(APIView, ABC):
 
     @combined_rate_limit(group="api_conversion", ip_rate="30/h", methods=["POST"])
     def dispatch(self, request: HttpRequest, *args, **kwargs):
-        """Dispatch request with rate limiting applied before routing to post/get/etc."""
+        """Apply rate limiting at the `dispatch` layer, not on `post`.
+
+        Many subclasses override `post` and do NOT call `super().post()`
+        (e.g. JPGToPDFAPIView). A decorator on `post` is dead code for
+        those views. Putting it on `dispatch` ensures the limit fires for
+        every conversion request regardless of how the subclass routes.
+        Decorating `post` instead would also double-count when a subclass
+        DOES call `super().post()`.
+        """
         return super().dispatch(request, *args, **kwargs)
 
     def get_serializer_class(self):
@@ -612,7 +623,6 @@ class BaseConversionAPIView(APIView, ABC):
             if tmp_dir and os.path.exists(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
-    @combined_rate_limit(group="api_conversion", ip_rate="30/h", methods=["POST"])
     def post(self, request: HttpRequest):
         """Handle POST request for file conversion.
 

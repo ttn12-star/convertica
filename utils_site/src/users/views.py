@@ -19,7 +19,7 @@ from django_ratelimit.decorators import ratelimit
 from src.payments.lemonsqueezy import LemonSqueezyClient, LemonSqueezyError
 
 from .forms import CustomUserCreationForm, LoginForm
-from .models import Payment, UserSubscription
+from .models import APIKey, Payment, UserSubscription
 
 
 @ratelimit(key="ip", rate="10/m", method="POST", block=True)
@@ -438,3 +438,66 @@ def download_data(request):
     )
     response["Content-Type"] = "application/json; charset=utf-8"
     return response
+
+
+@login_required
+def api_keys_dashboard(request):
+    """List user's API keys + create/revoke entry points."""
+    has_quota = (
+        request.user.is_subscription_active()
+        and request.user.subscription_plan
+        and request.user.subscription_plan.api_quota_per_month > 0
+    )
+    keys = request.user.api_keys.filter(revoked_at__isnull=True).order_by("-created_at")
+    quota = request.user.subscription_plan.api_quota_per_month if has_quota else 0
+    return render(
+        request,
+        "users/api_keys.html",
+        {
+            "has_quota": has_quota,
+            "keys": keys,
+            "quota": quota,
+            # Carry-through from POST create (one-time plaintext display)
+            "fresh_plaintext": request.session.pop("fresh_api_key_plaintext", None),
+            "fresh_prefix": request.session.pop("fresh_api_key_prefix", None),
+        },
+    )
+
+
+@login_required
+@require_POST
+@ratelimit(key="user", rate="10/h", block=True)
+def api_key_create(request):
+    if not (
+        request.user.is_subscription_active()
+        and request.user.subscription_plan
+        and request.user.subscription_plan.api_quota_per_month > 0
+    ):
+        messages.error(request, _("Your plan does not include API access."))
+        return redirect("users:api_keys")
+    name = (request.POST.get("name") or "").strip()[:64]
+    if not name:
+        messages.error(request, _("Please name your key (e.g. 'production-server-a')."))
+        return redirect("users:api_keys")
+    if APIKey.objects.filter(user=request.user, revoked_at__isnull=True).count() >= 10:
+        messages.error(
+            request, _("Maximum 10 active keys per user. Revoke unused first.")
+        )
+        return redirect("users:api_keys")
+    key, plaintext = APIKey.issue(user=request.user, name=name, scope=["*"])
+    request.session["fresh_api_key_plaintext"] = plaintext
+    request.session["fresh_api_key_prefix"] = key.prefix
+    return redirect("users:api_keys")
+
+
+@login_required
+@require_POST
+def api_key_revoke(request, pk):
+    try:
+        key = APIKey.objects.get(pk=pk, user=request.user)
+    except APIKey.DoesNotExist:
+        messages.error(request, _("Key not found."))
+        return redirect("users:api_keys")
+    key.revoke()
+    messages.success(request, _("API key revoked."))
+    return redirect("users:api_keys")

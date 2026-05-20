@@ -572,13 +572,16 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append('diff_threshold', thresholdInput?.value || '32');
 
         try {
-            const response = await fetch(window.COMPARE_API_URL, {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': window.CSRF_TOKEN || '',
-                },
-                body: formData,
-            });
+            const _compareInit = await (window.ConvertiaWebToken
+                ? window.ConvertiaWebToken.attachToken({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN || '' },
+                  })
+                : Promise.resolve({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': window.CSRF_TOKEN || '' },
+                  }));
+            const response = await fetch(window.COMPARE_API_URL, _compareInit);
 
             if (!response.ok) {
                 let apiError = window.COMPARE_ERROR_MESSAGE || 'Comparison failed.';

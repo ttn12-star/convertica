@@ -784,15 +784,18 @@ async function generatePreview(fileData, index) {
         window._currentAbortController = abortController;
 
         try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': csrfToken,
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                signal: abortController.signal
-            });
+            const _mergeInit = await (window.ConvertiaWebToken
+                ? window.ConvertiaWebToken.attachToken({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': csrfToken, 'X-Requested-With': 'XMLHttpRequest' },
+                    signal: abortController.signal,
+                  })
+                : Promise.resolve({
+                    method: 'POST', body: formData,
+                    headers: { 'X-CSRFToken': csrfToken, 'X-Requested-With': 'XMLHttpRequest' },
+                    signal: abortController.signal,
+                  }));
+            const response = await fetch(apiUrl, _mergeInit);
 
             const blob = await response.blob();
 

@@ -197,13 +197,17 @@ class PowerPointToPDFConverter {
             this.updateProgress(10, 'Preparing batch conversion...');
 
             try {
-                const response = await fetch('/api/ppt-to-pdf/batch/', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': this.form.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                });
+                const _pptBatchCsrf = this.form.querySelector('[name=csrfmiddlewaretoken]').value;
+                const _pptBatchInit = await (window.ConvertiaWebToken
+                    ? window.ConvertiaWebToken.attachToken({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _pptBatchCsrf },
+                      })
+                    : Promise.resolve({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _pptBatchCsrf },
+                      }));
+                const response = await fetch('/api/ppt-to-pdf/batch/', _pptBatchInit);
 
                 const result = await response.json();
 
@@ -224,13 +228,17 @@ class PowerPointToPDFConverter {
             this.updateProgress(10, 'Converting PowerPoint to PDF...');
 
             try {
-                const response = await fetch('/api/ppt-to-pdf/', {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': this.form.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                });
+                const _pptCsrf = this.form.querySelector('[name=csrfmiddlewaretoken]').value;
+                const _pptInit = await (window.ConvertiaWebToken
+                    ? window.ConvertiaWebToken.attachToken({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _pptCsrf },
+                      })
+                    : Promise.resolve({
+                        method: 'POST', body: formData,
+                        headers: { 'X-CSRFToken': _pptCsrf },
+                      }));
+                const response = await fetch('/api/ppt-to-pdf/', _pptInit);
 
                 const result = await response.json();
 

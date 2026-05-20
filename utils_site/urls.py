@@ -9,7 +9,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_http_methods
 from django.views.generic import RedirectView
 from src.frontend.i18n_views import set_language
-from src.frontend.views import index_page, sitemap_index, sitemap_lang
+from src.frontend.views import api_landing, index_page, sitemap_index, sitemap_lang
 from src.frontend.views_indexnow import indexnow_key_file
 from src.frontend.views_seo import favicon_view, robots_txt_view
 from src.payments.webhook import lemonsqueezy_webhook
@@ -67,6 +67,8 @@ def service_worker(request):
 
 
 urlpatterns = [
+    path("api/", api_landing, name="api_landing"),
+    path("api/v1/", include("src.api.v1_urls")),
     path("api/", include("src.api.urls")),
     path("i18n/setlang/", set_language, name="set_language"),
     path("payments/webhook/lemonsqueezy/", lemonsqueezy_webhook, name="ls_webhook"),
@@ -139,6 +141,16 @@ urlpatterns += i18n_patterns(
 # Add allauth URLs outside i18n_patterns
 urlpatterns += [
     path("accounts/", include("allauth.urls")),
+]
+
+# Public API documentation (production)
+urlpatterns += [
+    path(
+        "api/docs/", schema_view.with_ui("swagger", cache_timeout=300), name="api_docs"
+    ),
+    path(
+        "api/docs.json", schema_view.without_ui(cache_timeout=300), name="api_docs_json"
+    ),
 ]
 
 if settings.DEBUG:

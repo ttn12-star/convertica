@@ -38,6 +38,8 @@ def compare_pdf_docs():
                 default=32,
             ),
         ],
+        request_body=None,
+        consumes=["multipart/form-data"],
         responses={
             200: openapi.Response(
                 description="ZIP archive with visual diffs and reports",

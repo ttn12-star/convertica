@@ -600,13 +600,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: formData
-                });
+                const _organizeInit = await (window.ConvertiaWebToken
+                    ? window.ConvertiaWebToken.attachToken({
+                        method: 'POST', body: formData,
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                      })
+                    : Promise.resolve({
+                        method: 'POST', body: formData,
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                      }));
+                const response = await fetch(apiUrl, _organizeInit);
 
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));

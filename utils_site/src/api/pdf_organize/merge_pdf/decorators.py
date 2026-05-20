@@ -40,6 +40,7 @@ def merge_pdf_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # disable auto-detect (manual params use multipart/form-data)
             responses={
                 200: openapi.Response(
                     description="Merged PDF file.",
