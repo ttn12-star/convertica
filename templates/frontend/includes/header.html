@@ -474,6 +474,14 @@
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </li>
+                    <li>
+                      <a href="{% url 'api_landing' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         role="menuitem">
+                        <span class="font-medium">{% trans "Developer API" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">API</span>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               {% endif %}
@@ -1004,6 +1012,12 @@
                         <span class="font-medium">{% trans "PDF to Text" %}</span>
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
+                      <a href="{% url 'api_landing' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
+                         role="menuitem">
+                        <span class="font-medium">{% trans "Developer API" %}</span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">API</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1331,6 +1345,11 @@
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
           <span>{% trans "PDF to Text" %}</span>
           <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+        <a href="{% url 'api_landing' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
+          <span>{% trans "Developer API" %}</span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">API</span>
         </a>
       </div>
     {% endif %}

@@ -6,17 +6,49 @@
 {% block description %}{% trans "Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI docs, HMAC-signed webhooks. Bundled with Convertica subscriptions." %}{% endblock %}
 
 {% block content %}
-  <div class="max-w-5xl mx-auto py-12 px-4">
+  <div class="max-w-6xl mx-auto py-12 px-4">
 
+    <!-- Hero -->
     <section class="text-center mb-16">
+      <span class="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wide">
+        {% trans "Premium feature" %}
+      </span>
       <h1 class="text-4xl md:text-5xl font-bold mb-4">{% trans "Convertica API" %}</h1>
-      <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">{% trans "Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI docs, HMAC-signed webhooks." %}</p>
+      <p class="text-xl text-gray-600 dark:text-gray-300 mb-3 max-w-3xl mx-auto">
+        {% trans "Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI docs, HMAC-signed webhooks." %}
+      </p>
+      <p class="text-base text-gray-500 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+        {% trans "Same engine that powers convertica.net, exposed as a stable HTTPS API. Bundled with any Convertica subscription — no separate billing." %}
+      </p>
       <div class="flex flex-wrap gap-3 justify-center">
         <a href="/api/docs/" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold">{% trans "View API docs" %}</a>
         <a href="{% url 'frontend:pricing' %}" class="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg font-semibold">{% trans "See pricing" %}</a>
       </div>
     </section>
 
+    <!-- Why Convertica API -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6 text-center">{% trans "Why Convertica API" %}</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div class="w-10 h-10 mb-3 bg-blue-100 text-blue-700 rounded-lg flex items-center justify-center font-bold">⚡</div>
+          <h3 class="font-semibold text-lg mb-2">{% trans "Production-grade" %}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">{% trans "Same backend that processes user uploads on convertica.net every day. Battle-tested on millions of conversions." %}</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div class="w-10 h-10 mb-3 bg-green-100 text-green-700 rounded-lg flex items-center justify-center font-bold">⌁</div>
+          <h3 class="font-semibold text-lg mb-2">{% trans "30+ endpoints in one API" %}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">{% trans "PDF↔Word/Excel/PPT/JPG/PNG, merge, split, rotate, crop, sign, watermark, compress, OCR, HEIC, EPUB — one base URL, one key." %}</p>
+        </div>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div class="w-10 h-10 mb-3 bg-amber-100 text-amber-700 rounded-lg flex items-center justify-center font-bold">€</div>
+          <h3 class="font-semibold text-lg mb-2">{% trans "Bundled, not extra" %}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300">{% trans "Any active Convertica subscription includes API access at no extra cost. Pay once, use the web UI and the API." %}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing tiers -->
     <section class="grid md:grid-cols-3 gap-6 mb-16">
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
         <h3 class="font-semibold text-lg mb-2">{% trans "Monthly" %}</h3>
@@ -36,6 +68,7 @@
       </div>
     </section>
 
+    <!-- Quick start -->
     <section class="mb-16">
       <h2 class="text-2xl font-bold mb-4">{% trans "Quick start" %}</h2>
 
@@ -58,8 +91,67 @@ r = requests.post(
 )
 with open("output.docx", "wb") as f:
     f.write(r.content)</code></pre>
+
+      <h3 class="font-semibold mt-6 mb-2">{% trans "Node.js example" %}</h3>
+    <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>import fs from "node:fs";
+import { request } from "undici";
+const form = new FormData();
+form.set("pdf_file", new Blob([fs.readFileSync("input.pdf")]), "input.pdf");
+const r = await request("https://convertica.net/api/v1/pdf-to-word/", {
+  method: "POST",
+  headers: { Authorization: "Bearer cvk_live_xxxxxxxxxxxxxxxx" },
+  body: form,
+});
+fs.writeFileSync("output.docx", Buffer.from(await r.body.arrayBuffer()));</code></pre>
     </section>
 
+    <!-- Authentication -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4">{% trans "Authentication" %}</h2>
+      <p class="text-gray-700 dark:text-gray-200 mb-3">{% trans "Send your API key as a Bearer token in the Authorization header. Keys are tied to your subscription — revoke and rotate any time from the dashboard." %}</p>
+      <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-200 text-sm">
+        <li>{% trans "Up to 10 active keys per account, with optional named scope" %}</li>
+        <li>{% trans "Prefix shown in dashboard for easy identification (full key shown only at creation)" %}</li>
+        <li>{% trans "Per-key monthly quota tied to the subscription tier — counter resets on the 1st" %}</li>
+        <li>{% trans "Hashed at rest; if a key leaks, revoke it and issue a new one in seconds" %}</li>
+      </ul>
+    </section>
+
+    <!-- Webhooks -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4">{% trans "Async webhooks" %}</h2>
+      <p class="text-gray-700 dark:text-gray-200 mb-3">{% trans "Large jobs return a task ID and run in background. Either poll the task endpoint, or set a callback URL and let Convertica push the result." %}</p>
+    <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>curl -X POST https://convertica.net/api/v1/pdf-to-word/ \
+  -H "Authorization: Bearer cvk_live_xxxxxxxxxxxxxxxx" \
+  -F "pdf_file=@large.pdf" \
+  -F "callback_url=https://yourapp.example/convertica-hook"</code></pre>
+      <p class="text-gray-600 dark:text-gray-300 mt-3 text-sm">{% trans "Webhook payloads are signed with HMAC-SHA256 using the secret shown in your dashboard. Verify the X-Convertica-Signature header before trusting the body." %}</p>
+    </section>
+
+    <!-- Limits / rate-limiting -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-4">{% trans "Limits and rate-limiting" %}</h2>
+      <div class="grid md:grid-cols-2 gap-6 text-sm">
+        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h3 class="font-semibold mb-2">{% trans "Per-key monthly quota" %}</h3>
+          <p class="text-gray-700 dark:text-gray-200">{% trans "Counted per successful request. 429 returned when the quota is exhausted, with X-RateLimit headers indicating remaining calls and reset time." %}</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h3 class="font-semibold mb-2">{% trans "Burst limit" %}</h3>
+          <p class="text-gray-700 dark:text-gray-200">{% trans "Soft per-IP burst protection prevents accidental loops. Keep concurrent in-flight requests at a sensible level and retry on 429 with exponential back-off." %}</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h3 class="font-semibold mb-2">{% trans "File size and pages" %}</h3>
+          <p class="text-gray-700 dark:text-gray-200">{% trans "Per-endpoint limits match the premium web UI. See the OpenAPI spec for exact numbers — they grow with your plan tier." %}</p>
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h3 class="font-semibold mb-2">{% trans "Legacy /api/ deprecation" %}</h3>
+          <p class="text-gray-700 dark:text-gray-200">{% trans "Old unauthenticated /api/* endpoints carry Deprecation + Sunset headers and stop responding after 2026-07-01. Migrate to /api/v1/." %}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What you get -->
     <section class="mb-16">
       <h2 class="text-2xl font-bold mb-4">{% trans "What you get" %}</h2>
       <ul class="grid md:grid-cols-2 gap-3 text-gray-700 dark:text-gray-200">
@@ -74,9 +166,41 @@ with open("output.docx", "wb") as f:
       </ul>
     </section>
 
-    <section class="text-center">
-      <h2 class="text-2xl font-bold mb-4">{% trans "Ready to start?" %}</h2>
-      <a href="{% url 'frontend:pricing' %}" class="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-lg">{% trans "Subscribe and get your API key" %}</a>
+    <!-- FAQ -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-bold mb-6">{% trans "Frequently asked questions" %}</h2>
+      <div class="space-y-4">
+        <details class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">{% trans "Do I need a separate subscription for the API?" %}</summary>
+          <p class="mt-2 text-gray-700 dark:text-gray-200 text-sm">{% trans "No. Any active Convertica subscription — Monthly, Yearly, or Lifetime — includes API access with the per-tier quota. Web UI and API share the same key pool." %}</p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">{% trans "What happens when I hit my monthly quota?" %}</summary>
+          <p class="mt-2 text-gray-700 dark:text-gray-200 text-sm">{% trans "The API returns HTTP 429 with X-RateLimit-Reset indicating the next reset. The counter resets on the 1st of every month; upgrade the plan tier any time for a higher quota." %}</p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">{% trans "How are API keys stored?" %}</summary>
+          <p class="mt-2 text-gray-700 dark:text-gray-200 text-sm">{% trans "We store only a SHA-256 hash and a short prefix. The full plaintext key is shown exactly once at creation — if you lose it, revoke and issue a new one." %}</p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">{% trans "Can I use the API for batch jobs and automation?" %}</summary>
+          <p class="mt-2 text-gray-700 dark:text-gray-200 text-sm">{% trans "Yes — async mode with webhook callbacks is exactly the pattern. Fire-and-forget the request with callback_url, get the signed result delivered when it is ready." %}</p>
+        </details>
+        <details class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+          <summary class="font-semibold cursor-pointer">{% trans "Is there a free tier?" %}</summary>
+          <p class="mt-2 text-gray-700 dark:text-gray-200 text-sm">{% trans "The unauthenticated legacy /api/* endpoints still answer until 2026-07-01 with strict per-IP limits and no SLA. For anything beyond hobby use, the paid /api/v1/ is the supported path." %}</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="text-center bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-2xl p-10">
+      <h2 class="text-2xl md:text-3xl font-bold mb-3">{% trans "Ready to start?" %}</h2>
+      <p class="mb-6 text-blue-100 max-w-2xl mx-auto">{% trans "Pick a plan, create your first key in the dashboard, and ship your first conversion in under five minutes." %}</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="{% url 'frontend:pricing' %}" class="inline-block px-8 py-4 bg-white text-blue-700 rounded-lg font-semibold text-lg hover:bg-blue-50">{% trans "Subscribe and get your API key" %}</a>
+        <a href="/api/docs/" class="inline-block px-8 py-4 border border-white text-white rounded-lg font-semibold text-lg hover:bg-white/10">{% trans "Browse the OpenAPI spec" %}</a>
+      </div>
     </section>
 
   </div>
