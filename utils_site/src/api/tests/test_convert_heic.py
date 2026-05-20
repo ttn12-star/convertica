@@ -117,6 +117,9 @@ class ConvertHEICAPITests(TestCase):
     def setUp(self):
         cache.clear()
         self.client = APIClient()
+        # Browser-shaped Referer satisfies CaptchaRequirementMiddleware so the
+        # spam-protection gate doesn't reject test requests with 400 captcha_required.
+        self.client.defaults["HTTP_REFERER"] = "https://convertica.net/"
         self.free_user = User.objects.create_user(
             email="heic_free@t.test", password="passw0rd!"
         )
