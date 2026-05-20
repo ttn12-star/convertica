@@ -30,6 +30,7 @@ from src.users.models import User
 # so the verify-first wall is exercised faithfully.
 
 
+@override_settings(RATELIMIT_ENABLE=False)
 class RegistrationFlowTests(TestCase):
     """Signup → unverified → cannot-login → verify → login → profile."""
 
