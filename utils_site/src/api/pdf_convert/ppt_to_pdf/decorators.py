@@ -11,11 +11,6 @@ from drf_yasg.utils import swagger_auto_schema
 def ppt_to_pdf_docs() -> Callable:
     """Decorator providing Swagger documentation for PowerPoint to PDF API."""
 
-    ppt_file_schema = openapi.Schema(
-        type=openapi.TYPE_FILE,
-        description="PowerPoint file (.ppt or .pptx) to convert to PDF",
-    )
-
     response_schema = openapi.Schema(
         type=openapi.TYPE_OBJECT,
         properties={
@@ -51,12 +46,8 @@ def ppt_to_pdf_docs() -> Callable:
                 description="PowerPoint file to convert",
             ),
         ],
-        request_body=openapi.Schema(
-            type=openapi.TYPE_OBJECT,
-            properties={
-                "ppt_file": ppt_file_schema,
-            },
-        ),
+        request_body=None,
+        consumes=["multipart/form-data"],
         responses={
             200: openapi.Response(
                 description="Conversion successful",

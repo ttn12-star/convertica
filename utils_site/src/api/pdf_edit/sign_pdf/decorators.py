@@ -59,6 +59,7 @@ def sign_pdf_docs() -> Callable:
                     required=True,
                 ),
             ],
+            request_body=None,  # disable auto-detect (manual params use multipart/form-data)
             responses={
                 200: openapi.Response(
                     description="Signed PDF file.",
@@ -139,6 +140,7 @@ def sign_pdf_batch_docs() -> Callable:
                     required=False,
                 ),
             ],
+            request_body=None,  # disable auto-detect (manual params use multipart/form-data)
             responses={
                 200: openapi.Response(
                     description="ZIP archive of signed PDFs.",

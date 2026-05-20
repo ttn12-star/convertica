@@ -35,6 +35,8 @@ def pdf_to_markdown_docs():
                 default=True,
             ),
         ],
+        request_body=None,  # disable auto-detect (manual params use multipart/form-data)
+        consumes=["multipart/form-data"],
         responses={
             200: openapi.Response(
                 description="Markdown file",
