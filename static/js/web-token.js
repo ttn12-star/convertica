@@ -20,28 +20,35 @@
     let _expiresAt = 0;
     let _inflight = null;   // de-duplicate concurrent refresh calls
 
-    async function _refresh() {
-        // Turnstile widget is rendered on tool pages via base.html when
-        // turnstile_site_key is set.  The response token is in
-        // window.turnstileResponse (set by widget callback) OR we call
-        // window.turnstile.getResponse() if the Turnstile JS is loaded.
-        // Empty string is fine on dev / pages without Turnstile — the
-        // backend returns success when no secret is configured.
-        //
-        // getResponse() throws TurnstileError when called before a widget
-        // is rendered into the DOM (race on slow networks, ad-blocker
-        // stripping the script, automated tests, CSP refusal). Swallow
-        // here so the mint attempt still goes out — the backend cleanly
-        // returns 400 turnstile_token required, which the caller can handle.
-        let turnstileToken = '';
+    function _readTurnstileToken() {
+        // Read Turnstile response from either the widget JS API or the
+        // global set by the widget callback. Both can be absent — most
+        // tool pages don't render the widget, so we'll just have nothing
+        // to send, and getToken() will skip the mint entirely instead of
+        // hitting the backend with an empty token (every such mint became
+        // a `v1_web_token rejected` row in admin operationrun logs).
         try {
             if (window.turnstile && typeof window.turnstile.getResponse === 'function') {
-                turnstileToken = window.turnstile.getResponse() || '';
+                const t = window.turnstile.getResponse();
+                if (t) return t;
             }
         } catch (e) {
             // No widget rendered yet — fall through to the window global.
         }
-        turnstileToken = turnstileToken || window.turnstileResponse || '';
+        return window.turnstileResponse || '';
+    }
+
+    async function _refresh() {
+        const turnstileToken = _readTurnstileToken();
+        if (!turnstileToken) {
+            // No Turnstile token available — backend would only return 400
+            // turnstile_token required, so skip the mint entirely. Caller
+            // will fetch without an Authorization header (legacy / session
+            // / API key auth paths still cover that case).
+            _token = null;
+            _expiresAt = 0;
+            return null;
+        }
 
         const scope = [window.toolSlug || '*'];
 
@@ -52,8 +59,12 @@
         });
 
         if (!r.ok) {
-            console.warn('[ConvertiaWebToken] fetch failed', r.status);
-            throw new Error('web-token fetch failed: ' + r.status);
+            console.warn('[ConvertiaWebToken] mint failed', r.status);
+            // Best-effort: don't throw — let the caller proceed without a
+            // bearer token, the conversion endpoint has other auth paths.
+            _token = null;
+            _expiresAt = 0;
+            return null;
         }
 
         const data = await r.json();
@@ -64,7 +75,7 @@
     }
 
     /**
-     * Returns a valid JWT string, fetching/refreshing as needed.
+     * Returns a valid JWT string when one can be minted, or null.
      * Multiple simultaneous callers share a single in-flight request.
      */
     async function getToken() {
@@ -75,19 +86,23 @@
     }
 
     /**
-     * Returns a copy of `init` with an Authorization: Bearer header merged in.
-     * Preserves all existing headers (including X-CSRFToken).
-     *
-     * Usage:
-     *   const init = await window.ConvertiaWebToken.attachToken({
-     *       method: 'POST', body: formData
-     *   });
-     *   const r = await fetch(url, init);
+     * Returns a copy of `init` with an Authorization: Bearer header merged in
+     * when a web token is available. If no token can be minted (no Turnstile
+     * widget on the page, or mint endpoint refused), the init is returned
+     * unchanged so the caller's fetch still goes out — relying on whichever
+     * other auth path (session, API key, legacy Referer/captcha cookie) the
+     * server side accepts.
      */
     async function attachToken(init) {
         init = init || {};
-        const token = await getToken();
-        // Merge into a plain headers object so we don't disturb existing keys.
+        let token = null;
+        try {
+            token = await getToken();
+        } catch (e) {
+            // Network glitch / unexpected error — fall through.
+            token = null;
+        }
+        if (!token) return init;
         const headers = Object.assign({}, init.headers || {});
         headers['Authorization'] = 'Bearer ' + token;
         return Object.assign({}, init, { headers: headers });
