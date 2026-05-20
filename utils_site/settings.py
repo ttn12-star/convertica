@@ -24,7 +24,16 @@ TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
 # Sentry Error Tracking
 # Enabled by default in production (DEBUG=False)
 # Set SENTRY_DSN="" to disable
-SENTRY_DSN = config("SENTRY_DSN", default="")
+# Default is the convertica project DSN — kept here as a fallback so a
+# missing env var on prod doesn't silently blackhole every error report
+# (which is what happened between v2.2.40 and v2.2.48 — the DSN was
+# stripped from /opt/convertica/.env on a prior deploy and Sentry went
+# dark for ~2 days before anyone noticed). Sentry DSNs are public
+# identifiers, not secrets — they ship with every frontend SDK by design.
+SENTRY_DSN = config(
+    "SENTRY_DSN",
+    default="https://b3fdb00de949875598b3a1e9e5a54de0@o4510504663973888.ingest.de.sentry.io/4510504665940048",
+)
 if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
     try:
         import sentry_sdk
