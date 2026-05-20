@@ -499,6 +499,9 @@ class OCRGateTests(TestCase):
         )
 
     def _post_ocr(self) -> Client.response_class:
+        # Browser-shaped Referer to satisfy the CAPTCHA origin gate
+        # (CaptchaRequirementMiddleware flips captcha_required when the request
+        # arrives without a convertica.net Referer or Origin).
         return self.client.post(
             self.OCR_URL,
             data={
@@ -506,6 +509,7 @@ class OCRGateTests(TestCase):
                 "ocr_enabled": "true",
             },
             format="multipart",
+            HTTP_REFERER="https://convertica.net/",
         )
 
     def test_anonymous_user_blocked_with_ocr_message_or_auth(self):
