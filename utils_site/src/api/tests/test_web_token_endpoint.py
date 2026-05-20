@@ -4,7 +4,13 @@ from django.test import TestCase, override_settings
 from rest_framework.test import APIClient
 
 
-@override_settings(TURNSTILE_SECRET_KEY="test-secret", DEBUG=False)
+@override_settings(
+    TURNSTILE_SECRET_KEY="test-secret",
+    DEBUG=False,
+    # Tests share the Redis ratelimit cache; disable so the new per-IP cap
+    # on web_token_view doesn't leak across cases and 403 the test client.
+    RATELIMIT_ENABLE=False,
+)
 class WebTokenEndpointTest(TestCase):
     def setUp(self):
         self.client = APIClient()
@@ -33,3 +39,32 @@ class WebTokenEndpointTest(TestCase):
     def test_missing_turnstile_returns_400(self):
         r = self.client.post("/api/v1/auth/web-token", {}, format="json")
         self.assertEqual(r.status_code, 400)
+
+
+@override_settings(
+    TURNSTILE_SECRET_KEY="test-secret",
+    DEBUG=False,
+    RATELIMIT_ENABLE=True,
+    CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
+)
+class WebTokenRateLimitTest(TestCase):
+    """The mint endpoint must rate-limit per IP so a burst loop can't drain
+    Turnstile quota or pin workers. Legit flow needs ~1 mint per 14 min."""
+
+    def setUp(self):
+        from django.core.cache import cache
+
+        cache.clear()
+        self.client = APIClient()
+
+    def test_21st_mint_in_a_minute_blocked(self):
+        # 20/m cap → 21st request from the same IP gets blocked.
+        for _ in range(20):
+            r = self.client.post("/api/v1/auth/web-token", {}, format="json")
+            # 400 turnstile_token required is the expected response while
+            # under cap (rate-limit doesn't kick in yet).
+            self.assertIn(r.status_code, (400, 403))
+        r = self.client.post("/api/v1/auth/web-token", {}, format="json")
+        self.assertEqual(
+            r.status_code, 429, "21st mint within a minute must be rate-limited"
+        )
