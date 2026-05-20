@@ -5,12 +5,16 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="My API",
+        title="Convertica API",
         default_version="v1",
-        description="API documentation for my project",
-        terms_of_service="https://www.example.com/terms/",
-        contact=openapi.Contact(email="info@convertica.net"),
-        license=openapi.License(name="BSD License"),
+        description=(
+            "Programmatic access to 30+ PDF/image conversion tools. "
+            "Authentication via API key (issued in your dashboard at "
+            "https://convertica.net/users/api-keys/). "
+            "Subscription required."
+        ),
+        contact=openapi.Contact(email="support@convertica.net"),
+        license=openapi.License(name="Proprietary"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),

@@ -16,6 +16,7 @@ import sys
 from importlib import metadata
 from pathlib import Path
 
+from celery.schedules import crontab
 from decouple import Csv, config
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
@@ -374,6 +375,7 @@ MIDDLEWARE = [
     "src.frontend.admin_protection.AdminIPWhitelistMiddleware",  # Admin IP protection (must be early)
     "src.frontend.middleware.DoubleLanguagePrefixMiddleware",  # Redirect URLs with double language prefixes (must be early)
     "src.api.middleware.RateLimitMiddleware",  # Rate limiting for API
+    "src.api.middleware.LegacyAPIDeprecationMiddleware",  # Deprecation headers + 410 for legacy /api/* after 2026-07-01
     "src.api.middleware.PerformanceMonitoringMiddleware",  # Performance monitoring
     "src.api.middleware.CSPNonceMiddleware",  # Generate CSP nonce for each request
     "django.contrib.sessions.middleware.SessionMiddleware",  # Must be before CaptchaRequirementMiddleware
@@ -1077,6 +1079,11 @@ CELERY_BEAT_SCHEDULE = {
     #     "schedule": 86400,  # Every 24 hours
     #     "kwargs": {"retention_days": 730},  # Keep operations for 2 years (was 365)
     # },
+    # Reset API key monthly usage counters on the 1st of every month at 00:01 UTC
+    "api-quota-monthly-reset": {
+        "task": "api_quota.reset_monthly",
+        "schedule": crontab(minute=1, hour=0, day_of_month=1),
+    },
 }
 
 # Rate Limiting Configuration
@@ -1232,3 +1239,23 @@ YANDEX_RSY_ID = config("YANDEX_RSY_ID", default="")
 # Yandex Webmaster site verification code
 # Set in .env: YANDEX_VERIFICATION=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 YANDEX_VERIFICATION = config("YANDEX_VERIFICATION", default="")
+
+# ============================================
+# Django REST Framework — explicit auth chain
+# ============================================
+# Order matters: API key checked first (so `cvk_live_*` Authorization
+# headers never accidentally get passed to web-token auth), then web
+# token (browser JWT), then session (for the dashboard and any logged-in
+# views that hit DRF endpoints).
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "src.api.auth.APIKeyAuthentication",
+        "src.api.auth.WebTokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        # Per-view override required where needed; default open keeps
+        # anon homepage flow working until Phase 3 cut-over.
+        "rest_framework.permissions.AllowAny",
+    ],
+}

@@ -35,8 +35,10 @@ def get_user_rate_limit(group, request):
         "api_batch": "50/h",
         "api_auth": "50/h",
     }
+    # IP bucket (ip_rate= on @combined_rate_limit) is what actually fires for anon users;
+    # these per-user fallbacks apply only to non-IP-keyed scenarios.
     anonymous_rates = {
-        "api_conversion": "100/h",
+        "api_conversion": "30/h",
         "api_batch": "0/h",
         "api_auth": "20/h",
     }
@@ -135,20 +137,8 @@ def combined_rate_limit(group="api", ip_rate="100/h", methods=None):
 
             try:
                 return limited(request, *remaining_args, **kwargs)
-            except Ratelimited:
-                return JsonResponse(
-                    {
-                        "error": "Rate limit exceeded",
-                        "message": (
-                            "Rate limit exceeded. "
-                            "Please sign in for higher limits or upgrade to Premium for unlimited access!"
-                            if not (request and request.user.is_authenticated)
-                            else "You've reached your rate limit. Upgrade to Premium for 10x higher limits!"
-                        ),
-                        "retry_after": 3600,
-                    },
-                    status=429,
-                )
+            except Ratelimited as e:
+                return handle_rate_limit_exception(request, e)
 
         return wrapper
 
@@ -309,7 +299,6 @@ def handle_rate_limit_exception(request, exception):
     Returns:
         JSON response with rate limit error
     """
-    from django.http import JsonResponse
 
     # Determine which limit was hit
     limit_type = "ip" if "ip" in str(exception) else "user"

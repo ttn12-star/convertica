@@ -1,3 +1,5 @@
+import secrets
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.core.cache import cache
 from django.core.exceptions import ValidationError
@@ -53,6 +55,13 @@ class User(AbstractUser):
     # Hero display settings
     display_as_hero = models.BooleanField(
         default=False, verbose_name=_("Display as Hero")
+    )
+
+    webhook_secret = models.CharField(
+        max_length=64,
+        blank=True,
+        default="",
+        help_text=_("Per-user HMAC secret for signing outbound webhook callbacks."),
     )
 
     payment_provider = models.CharField(
@@ -163,6 +172,18 @@ class User(AbstractUser):
         # Cache for 5 minutes
         cache.set(cache_key, status, 300)
         return status
+
+    @property
+    def subscription_plan(self):
+        """Return the SubscriptionPlan of the currently-active subscription, or None.
+
+        Used by APIKey quota enforcement to look up the per-plan quota
+        ceiling. Returns None if the user has no active subscription.
+        """
+        sub = getattr(self, "provider_subscription", None)
+        if sub and self.is_subscription_active():
+            return sub.plan
+        return None
 
     @property
     def is_premium_active(self) -> bool:
@@ -421,6 +442,13 @@ class SubscriptionPlan(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, default="USD")
     duration_days = models.IntegerField()
+    api_quota_per_month = models.PositiveIntegerField(
+        default=0,
+        help_text=_(
+            "Monthly /api/v1 call quota for subscribers of this plan. "
+            "0 = no API access."
+        ),
+    )
     ls_variant_id = models.CharField(max_length=64, blank=True, default="")
     ls_product_id = models.CharField(max_length=64, blank=True, default="")
     is_lifetime = models.BooleanField(default=False)
@@ -795,6 +823,72 @@ class OperationRun(models.Model):
 
     def __str__(self):
         return f"{self.conversion_type} ({self.status})"
+
+
+class APIKey(models.Model):
+    """Long-lived API key. One user can have multiple.
+
+    Storage: only the SHA-256 hash of the full secret is kept. The
+    `prefix` (first 12 chars after the `cvk_live_` namespace tag) is
+    indexed and shown in the dashboard for identification — never the
+    full key.
+    """
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="api_keys")
+    name = models.CharField(max_length=64, help_text=_("User-set label"))
+    prefix = models.CharField(max_length=20, unique=True, db_index=True)
+    key_hash = models.CharField(max_length=64, db_index=True)
+    scope = models.JSONField(default=list, help_text=_('Tool slugs or ["*"]'))
+    usage_this_month = models.PositiveIntegerField(default=0)
+    usage_reset_at = models.DateTimeField(auto_now_add=True)
+    last_used_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    revoked_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [models.Index(fields=["user", "-created_at"])]
+
+    def __str__(self):
+        return f"{self.user.email} :: {self.name} ({self.prefix}…)"
+
+    @property
+    def is_active(self):
+        return self.revoked_at is None
+
+    @classmethod
+    def issue(cls, *, user, name, scope):
+        """Generate a new key. Returns (instance, plaintext_secret).
+
+        The plaintext is returned ONCE; the DB only stores the hash.
+        """
+        import hashlib
+
+        # Ensure the user has a webhook signing secret (created on first
+        # key issue — never displayed in the dashboard; users sign with it).
+        if not user.webhook_secret:
+            user.webhook_secret = secrets.token_urlsafe(32)
+            user.save(update_fields=["webhook_secret"])
+
+        # cvk_live_<12 char prefix><32 char secret>
+        prefix = secrets.token_urlsafe(9)[:12].replace("-", "x").replace("_", "y")
+        secret = secrets.token_urlsafe(32)
+        plaintext = f"cvk_live_{prefix}{secret}"
+        key_hash = hashlib.sha256(plaintext.encode()).hexdigest()
+        instance = cls.objects.create(
+            user=user,
+            name=name,
+            prefix=prefix,
+            key_hash=key_hash,
+            scope=scope,
+        )
+        return instance, plaintext
+
+    def revoke(self):
+        from django.utils import timezone
+
+        self.revoked_at = timezone.now()
+        self.save(update_fields=["revoked_at"])
 
 
 class UserSubscription(models.Model):

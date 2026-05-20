@@ -1608,3 +1608,16 @@ class SupportPageView(TemplateView):
         )
         context["kofi_url"] = settings.KOFI_URL
         return context
+
+
+def api_landing(request):
+    """Public marketing landing for the paid API tier."""
+    return render(
+        request,
+        "api/landing.html",
+        {
+            "monthly_quota": 1_000,
+            "yearly_quota": 10_000,
+            "lifetime_quota": 10_000,
+        },
+    )

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "API Keys" %} | Convertica{% endblock %}
+{% block content %}
+  <div class="max-w-4xl mx-auto py-12 px-4">
+    <h1 class="text-3xl font-bold mb-6">{% trans "API Keys" %}</h1>
+
+    {% if not has_quota %}
+      <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-300 rounded-lg p-6 mb-6">
+        <p class="font-semibold">{% trans "Subscribe to unlock API access" %}</p>
+        <p class="text-sm mt-2">{% blocktrans %}API access is included with Monthly, Yearly, and Lifetime Hero plans. View pricing to subscribe.{% endblocktrans %}</p>
+        <a href="{% url 'frontend:pricing' %}" class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded">{% trans "View pricing" %}</a>
+      </div>
+    {% else %}
+      <p class="mb-4 text-gray-600 dark:text-gray-400">
+        {% blocktrans count quota=quota %}Your plan includes {{ quota }} API call per month.{% plural %}Your plan includes {{ quota }} API calls per month.{% endblocktrans %}
+      </p>
+
+      {% if messages %}
+        {% for message in messages %}
+          <div class="mb-4 p-4 rounded-lg {% if message.tags == 'error' %}bg-red-50 dark:bg-red-900/20 border border-red-300 text-red-700 dark:text-red-300{% else %}bg-green-50 dark:bg-green-900/20 border border-green-300 text-green-700 dark:text-green-300{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {% if fresh_plaintext %}
+        <div class="bg-green-50 dark:bg-green-900/20 border border-green-400 rounded-lg p-4 mb-6">
+          <p class="font-semibold mb-2">{% trans "Your new API key — copy it now, it won't be shown again:" %}</p>
+          <code class="block bg-gray-100 dark:bg-gray-900 p-3 rounded font-mono text-sm break-all select-all">{{ fresh_plaintext }}</code>
+        </div>
+      {% endif %}
+
+      <form method="post" action="{% url 'users:api_key_create' %}" class="mb-8 flex gap-2">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="{% trans 'Key name (e.g. production-server-a)' %}" maxlength="64" required class="flex-1 border rounded px-3 py-2 dark:bg-gray-800">
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">{% trans "Create key" %}</button>
+      </form>
+
+      {% if keys %}
+        <table class="w-full text-sm">
+          <thead><tr><th class="text-left py-2">{% trans "Name" %}</th><th>{% trans "Prefix" %}</th><th>{% trans "Used" %}</th><th>{% trans "Last used" %}</th><th></th></tr></thead>
+          <tbody>
+            {% for key in keys %}
+              <tr class="border-t">
+                <td class="py-2">{{ key.name }}</td>
+                <td class="font-mono">cvk_live_{{ key.prefix }}…</td>
+                <td>{{ key.usage_this_month }} / {{ quota }}</td>
+                <td>{{ key.last_used_at|default:"—" }}</td>
+                <td>
+                  <form method="post" action="{% url 'users:api_key_revoke' key.pk %}" onsubmit="return confirm('{% trans 'Revoke this key?' %}')">
+                    {% csrf_token %}
+                    <button class="text-red-600">{% trans "Revoke" %}</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="text-gray-500">{% trans "No API keys yet." %}</p>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}
