@@ -199,6 +199,17 @@ def mark_http_error(
 
     4xx → status="rejected" (user-input issue: validation, unsupported file, premium gate).
     5xx (or unknown) → status="error" (server-side failure).
+
+    The default error_type label is only used when the view returned an
+    error response WITHOUT going through the BaseConversionAPIView catch
+    blocks (which set the real exception class name first). For 5xx that
+    means the view bypassed normal exception handling — typically OOM
+    SIGKILL, signal handler, or a hand-rolled error response — so the
+    label "ServerError" is the most we can say. We also log a warning so
+    the gap is visible in app logs / Sentry breadcrumbs and not silently
+    masquerading as a generic HttpError (which used to suggest a stray
+    third-party googleapiclient/httpx exception that wasn't actually the
+    culprit).
     """
     try:
         from django.db.models import Case, CharField, F, TextField, Value, When
@@ -211,9 +222,9 @@ def mark_http_error(
 
         is_client_error = status_code is not None and 400 <= int(status_code) < 500
         new_status = "rejected" if is_client_error else "error"
-        default_error_type = "ClientError" if is_client_error else "HttpError"
+        default_error_type = "ClientError" if is_client_error else "ServerError"
 
-        OperationRun.objects.filter(request_id=str(request_id)).update(
+        updated = OperationRun.objects.filter(request_id=str(request_id)).update(
             status=new_status,
             finished_at=timezone.now(),
             duration_ms=duration_ms,
@@ -228,6 +239,28 @@ def mark_http_error(
                 output_field=TextField(),
             ),
         )
+
+        # If we hit the default ServerError for a 5xx, the view returned an
+        # error response without populating error_type — surface that so we
+        # can find and fix the missing exception path.
+        if updated and not is_client_error:
+            try:
+                row = (
+                    OperationRun.objects.filter(request_id=str(request_id))
+                    .only("error_type", "conversion_type")
+                    .first()
+                )
+                if row and row.error_type == default_error_type:
+                    logger.warning(
+                        "5xx with no explicit error_type — view bypassed "
+                        "BaseConversionAPIView catch: conversion_type=%s "
+                        "status_code=%s msg=%s",
+                        row.conversion_type,
+                        status_code,
+                        msg[:200],
+                    )
+            except Exception:
+                pass
     except Exception as e:
         logger.warning(
             "OperationRun mark_http_error failed: %s: %s", type(e).__name__, e
