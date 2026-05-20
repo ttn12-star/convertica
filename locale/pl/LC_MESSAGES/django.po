@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-18 20:23+0000\n"
+"POT-Creation-Date: 2026-05-19 15:32+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
 "Language-Team: pl\n"
@@ -620,6 +620,158 @@ msgstr "Zachowanie Układu"
 msgid "No users found with the given filter."
 msgstr "Nie znaleziono użytkowników dla podanego filtra."
 
+#: templates/api/landing.html:4
+msgid "Convertica API — PDF Conversion API for Developers"
+msgstr "Convertica API — API do konwersji PDF dla programistów"
+
+#: templates/api/landing.html:6
+msgid ""
+"Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI"
+" docs, HMAC-signed webhooks. Bundled with Convertica subscriptions."
+msgstr ""
+"Programowy dostęp do ponad 30 narzędzi do konwersji PDF i obrazów. JSON API,"
+" dokumentacja OpenAPI, webhooki z podpisem HMAC. W zestawie z subskrypcjami "
+"Convertica."
+
+#: templates/api/landing.html:12
+msgid "Convertica API"
+msgstr "Convertica API"
+
+#: templates/api/landing.html:13
+msgid ""
+"Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI"
+" docs, HMAC-signed webhooks."
+msgstr ""
+"Programowy dostęp do ponad 30 narzędzi do konwersji PDF i obrazów. JSON API,"
+" dokumentacja OpenAPI, webhooki z podpisem HMAC."
+
+#: templates/api/landing.html:15
+msgid "View API docs"
+msgstr "Zobacz dokumentację API"
+
+#: templates/api/landing.html:16
+msgid "See pricing"
+msgstr "Zobacz cennik"
+
+#: templates/api/landing.html:22
+msgid "Monthly"
+msgstr "Miesięczny"
+
+#: templates/api/landing.html:24 templates/api/landing.html:29
+#, python-format
+msgid "%(quota)s API call per month"
+msgid_plural "%(quota)s API calls per month"
+msgstr[0] "%(quota)s wywołanie API miesięcznie"
+msgstr[1] "%(quota)s wywołania API miesięcznie"
+msgstr[2] "%(quota)s wywołań API miesięcznie"
+
+#: templates/api/landing.html:27
+msgid "Yearly"
+msgstr "Rocznie"
+
+#: templates/api/landing.html:30
+msgid "Best value"
+msgstr "Najlepsza wartość"
+
+#: templates/api/landing.html:33
+msgid "Lifetime"
+msgstr "Dożywotni"
+
+#: templates/api/landing.html:34
+msgid "once"
+msgstr "jednorazowo"
+
+#: templates/api/landing.html:35
+#, python-format
+msgid "%(quota)s API call per month forever"
+msgid_plural "%(quota)s API calls per month forever"
+msgstr[0] "%(quota)s wywołanie API miesięcznie na zawsze"
+msgstr[1] "%(quota)s wywołania API miesięcznie na zawsze"
+msgstr[2] "%(quota)s wywołań API miesięcznie na zawsze"
+
+#: templates/api/landing.html:40
+msgid "Quick start"
+msgstr "Szybki start"
+
+#: templates/api/landing.html:42
+msgid "1. Issue a key in your dashboard"
+msgstr "1. Wygeneruj klucz w panelu"
+
+#: templates/api/landing.html:43
+msgid ""
+"Go to <a href=\"/users/api-keys/\" class=\"text-blue-600 underline\">your "
+"API Keys dashboard</a> and create a named key. The full key is shown once — "
+"copy it immediately."
+msgstr ""
+"Przejdź do <a href=\"/users/api-keys/\" class=\"text-blue-600 "
+"underline\">panelu kluczy API</a> i utwórz nazwany klucz. Pełny klucz jest "
+"wyświetlany jednorazowo — skopiuj go natychmiast."
+
+#: templates/api/landing.html:45
+msgid "2. Make a request"
+msgstr "2. Wykonaj zapytanie"
+
+#: templates/api/landing.html:46
+msgid "curl example — convert a PDF to Word:"
+msgstr "Przykład curl — konwertuj PDF na Word:"
+
+#: templates/api/landing.html:52
+msgid "Python example"
+msgstr "Przykład w Pythonie"
+
+#: templates/api/landing.html:64
+msgid "What you get"
+msgstr "Co otrzymujesz"
+
+#: templates/api/landing.html:66
+msgid ""
+"30+ conversion endpoints: PDF↔Word, Excel, PPT, JPG, PNG, HTML, EPUB, "
+"Markdown"
+msgstr ""
+"Ponad 30 punktów końcowych konwersji: PDF↔Word, Excel, PPT, JPG, PNG, HTML, "
+"EPUB, Markdown"
+
+#: templates/api/landing.html:67
+msgid ""
+"PDF edit: merge, split, rotate, watermark, sign, compress, crop, flatten"
+msgstr ""
+"Edycja PDF: scalanie, dzielenie, obracanie, znak wodny, podpis, kompresja, "
+"przycinanie, spłaszczanie"
+
+#: templates/api/landing.html:68
+msgid "Image: optimize, convert, HEIC→JPG/PNG"
+msgstr "Obrazy: optymalizacja, konwersja, HEIC→JPG/PNG"
+
+#: templates/api/landing.html:69
+msgid "Sync (small files) and async (large files) modes"
+msgstr "Tryby synchroniczny (małe pliki) i asynchroniczny (duże pliki)"
+
+#: templates/api/landing.html:70
+msgid "Opt-in HMAC-signed webhook callbacks for async results"
+msgstr ""
+"Opcjonalne wywołania zwrotne webhook z podpisem HMAC dla wyników "
+"asynchronicznych"
+
+#: templates/api/landing.html:71
+msgid "OpenAPI 3 documentation"
+msgstr "Dokumentacja OpenAPI 3"
+
+#: templates/api/landing.html:72
+msgid "Sub-200ms median, EU edge"
+msgstr "Mediana poniżej 200 ms, węzeł w UE"
+
+#: templates/api/landing.html:73
+msgid "Same backend as convertica.net — battle-tested"
+msgstr "Ten sam backend co convertica.net — sprawdzony w boju"
+
+#: templates/api/landing.html:78
+msgid "Ready to start?"
+msgstr "Gotowy do rozpoczęcia?"
+
+#: templates/api/landing.html:79
+msgid "Subscribe and get your API key"
+msgstr "Subskrybuj i uzyskaj klucz API"
+
 #: templates/base.html:16 templates/base.html:34 templates/base.html:46
 msgid "Convertica – Online PDF Tools"
 msgstr "Convertica – Narzędzia PDF Online"
@@ -706,7 +858,6 @@ msgstr "blog, artykuły, przewodniki PDF, porady dokumentowe, samouczki"
 #: templates/frontend/includes/footer.html:228
 #: templates/frontend/includes/header.html:1078
 #: templates/frontend/includes/header.html:1645
-#: utils_site/src/blog/views.py:147
 msgid "Blog"
 msgstr "Blog"
 
@@ -968,7 +1119,7 @@ msgstr ""
 "weryfikacji e-mail, bez kłopotów."
 
 #: templates/frontend/about.html:198 templates/frontend/pricing.html:390
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:713
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:715
 msgid "Privacy First"
 msgstr "Prywatność na pierwszym miejscu"
 
@@ -1237,8 +1388,8 @@ msgstr "Spłaszcz PDF, aby usunąć pola formularzy i adnotacje"
 #: templates/frontend/includes/header.html:1327
 #: templates/frontend/includes/header.html:1571
 #: utils_site/src/frontend/context_processors.py:207
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:683
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:689
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:685
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:691
 #: utils_site/src/frontend/views.py:197 utils_site/src/frontend/views.py:719
 msgid "Sign PDF"
 msgstr "Podpisz PDF"
@@ -4574,8 +4725,6 @@ msgid "Rendered in a handwriting-style font (Caveat)."
 msgstr "Renderowane czcionką ręcznie pisaną (Caveat)."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:164
-#| msgid ""
-#| "PNG with transparent background gives the best result. JPG is also accepted."
 msgid ""
 "PNG with transparent background gives the cleanest result. JPG is also "
 "accepted."
@@ -4886,7 +5035,7 @@ msgstr ""
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:319
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:450
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:577
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:690
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:692
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:196
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:342
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:468
@@ -5208,13 +5357,13 @@ msgstr "Aktywna"
 
 #: templates/frontend/premium/background_center.html:36
 #: templates/frontend/premium/background_center.html:169
-#: templates/users/account_status.html:286 utils_site/src/users/models.py:511
+#: templates/users/account_status.html:286 utils_site/src/users/models.py:539
 msgid "Completed"
 msgstr "Zakończona"
 
 #: templates/frontend/premium/background_center.html:40
 #: templates/frontend/premium/background_center.html:172
-#: templates/users/account_status.html:294 utils_site/src/users/models.py:512
+#: templates/users/account_status.html:294 utils_site/src/users/models.py:540
 msgid "Failed"
 msgstr "Nieudana"
 
@@ -6321,8 +6470,6 @@ msgid "Your session expired. Refreshing the page…"
 msgstr "Sesja wygasła. Odświeżanie strony…"
 
 #: templates/frontend/pricing.html:849
-#| msgid ""
-#| "Email service is temporarily unavailable. Please try again in a few minutes."
 msgid ""
 "Checkout service is temporarily unavailable. Please try again in a moment."
 msgstr ""
@@ -7215,7 +7362,7 @@ msgid "Plan Information"
 msgstr "Informacje o planie"
 
 #: templates/payments/success.html:29 templates/users/account_status.html:271
-#: utils_site/src/users/models.py:518
+#: utils_site/src/users/models.py:546
 msgid "Plan"
 msgstr "Plan"
 
@@ -7224,7 +7371,7 @@ msgid "Price"
 msgstr "Cena"
 
 #: templates/payments/success.html:37 templates/users/account_status.html:273
-#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:527
+#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:555
 msgid "Status"
 msgstr "Status"
 
@@ -7521,19 +7668,19 @@ msgstr "Historia płatności"
 msgid "Date"
 msgstr "Data"
 
-#: templates/users/account_status.html:272 utils_site/src/users/models.py:521
+#: templates/users/account_status.html:272 utils_site/src/users/models.py:549
 msgid "Amount"
 msgstr "Kwota"
 
-#: templates/users/account_status.html:274 utils_site/src/users/models.py:530
+#: templates/users/account_status.html:274 utils_site/src/users/models.py:558
 msgid "Payment ID"
 msgstr "ID płatności"
 
-#: templates/users/account_status.html:290 utils_site/src/users/models.py:510
+#: templates/users/account_status.html:290 utils_site/src/users/models.py:538
 msgid "Pending"
 msgstr "Oczekująca"
 
-#: templates/users/account_status.html:298 utils_site/src/users/models.py:513
+#: templates/users/account_status.html:298 utils_site/src/users/models.py:541
 msgid "Refunded"
 msgstr "Zwrócona"
 
@@ -7600,6 +7747,75 @@ msgstr "Zachowaj konto"
 #: templates/users/account_status.html:384
 msgid "Delete Forever"
 msgstr "Usuń na zawsze"
+
+#: templates/users/api_keys.html:3 templates/users/api_keys.html:6
+msgid "API Keys"
+msgstr "Klucze API"
+
+#: templates/users/api_keys.html:10
+msgid "Subscribe to unlock API access"
+msgstr "Subskrybuj, aby odblokować dostęp do API"
+
+#: templates/users/api_keys.html:11
+msgid ""
+"API access is included with Monthly, Yearly, and Lifetime Hero plans. View "
+"pricing to subscribe."
+msgstr ""
+"Dostęp do API jest zawarty w planach Miesięczny, Roczny i Lifetime Hero. "
+"Zobacz cennik, aby subskrybować."
+
+#: templates/users/api_keys.html:12
+msgid "View pricing"
+msgstr "Zobacz cennik"
+
+#: templates/users/api_keys.html:16
+#, python-format
+msgid "Your plan includes %(quota)s API call per month."
+msgid_plural "Your plan includes %(quota)s API calls per month."
+msgstr[0] "Twój plan obejmuje %(quota)s wywołanie API miesięcznie."
+msgstr[1] "Twój plan obejmuje %(quota)s wywołania API miesięcznie."
+msgstr[2] "Twój plan obejmuje %(quota)s wywołań API miesięcznie."
+
+#: templates/users/api_keys.html:29
+msgid "Your new API key — copy it now, it won't be shown again:"
+msgstr ""
+"Twój nowy klucz API — skopiuj go teraz, nie zostanie pokazany ponownie:"
+
+#: templates/users/api_keys.html:36
+msgid "Key name (e.g. production-server-a)"
+msgstr "Nazwa klucza (np. production-server-a)"
+
+#: templates/users/api_keys.html:37
+msgid "Create key"
+msgstr "Utwórz klucz"
+
+#: templates/users/api_keys.html:42
+msgid "Name"
+msgstr "Nazwa"
+
+#: templates/users/api_keys.html:42
+msgid "Prefix"
+msgstr "Prefiks"
+
+#: templates/users/api_keys.html:42
+msgid "Used"
+msgstr "Użyto"
+
+#: templates/users/api_keys.html:42
+msgid "Last used"
+msgstr "Ostatnio używany"
+
+#: templates/users/api_keys.html:51
+msgid "Revoke this key?"
+msgstr "Cofnąć ten klucz?"
+
+#: templates/users/api_keys.html:53
+msgid "Revoke"
+msgstr "Cofnij"
+
+#: templates/users/api_keys.html:61
+msgid "No API keys yet."
+msgstr "Brak jeszcze kluczy API."
 
 #: templates/users/login.html:6 templates/users/login.html:114
 msgid "Sign In"
@@ -7702,7 +7918,7 @@ msgid "Upgrade Now"
 msgstr "Przejdź na wyższy plan teraz"
 
 #: templates/users/profile.html:217 templates/users/profile_edit.html:6
-#: templates/users/profile_edit.html:19 utils_site/src/users/views.py:214
+#: templates/users/profile_edit.html:19 utils_site/src/users/views.py:221
 msgid "Edit Profile"
 msgstr "Edytuj profil"
 
@@ -7742,7 +7958,7 @@ msgstr "Nazwisko"
 msgid "Hero Settings"
 msgstr "Ustawienia Bohatera"
 
-#: templates/users/profile_edit.html:109 utils_site/src/users/models.py:55
+#: templates/users/profile_edit.html:109 utils_site/src/users/models.py:57
 msgid "Display as Hero"
 msgstr "Wyświetlaj jako Bohatera"
 
@@ -7801,20 +8017,20 @@ msgstr ""
 "MB. Przejdź na Premium, aby uzyskać limit %(premium_mb).0f MB! Kup 1-dniowe "
 "Premium za jedynie 1$."
 
-#: utils_site/src/api/async_views.py:245 utils_site/src/api/base_views.py:214
+#: utils_site/src/api/async_views.py:245 utils_site/src/api/base_views.py:227
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
 msgstr "Plik zbyt duży. Maksymalny rozmiar to %(max_mb).0f MB."
 
-#: utils_site/src/api/base_views.py:159
+#: utils_site/src/api/base_views.py:172
 msgid "File is empty. Please upload a valid file."
 msgstr "Plik jest pusty. Prześlij prawidłowy plik."
 
-#: utils_site/src/api/base_views.py:171
+#: utils_site/src/api/base_views.py:184
 msgid "File is too small to be valid."
 msgstr "Plik jest zbyt mały, aby był prawidłowy."
 
-#: utils_site/src/api/base_views.py:200
+#: utils_site/src/api/base_views.py:213
 #, python-format
 msgid ""
 "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade"
@@ -7824,12 +8040,12 @@ msgstr ""
 "MB. Przejdź na Premium, aby uzyskać limit %(premium_mb).0f MB! Kup 1-dniowe "
 "Premium za jedynie 1$."
 
-#: utils_site/src/api/base_views.py:236
+#: utils_site/src/api/base_views.py:249
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
 msgstr "Nieobsługiwany typ zawartości: %(content_type)s"
 
-#: utils_site/src/api/base_views.py:255
+#: utils_site/src/api/base_views.py:268
 #, python-format
 msgid "Only %(extensions)s files are allowed."
 msgstr "Dozwolone są tylko pliki %(extensions)s."
@@ -8107,12 +8323,12 @@ msgstr "Wybierz najbardziej powiązane narzędzie dla tego artykułu"
 msgid "Published At"
 msgstr "Opublikowano"
 
-#: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:37
-#: utils_site/src/users/models.py:547
+#: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:39
+#: utils_site/src/users/models.py:575
 msgid "Created At"
 msgstr "Utworzono"
 
-#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:548
+#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:576
 msgid "Updated At"
 msgstr "Zaktualizowano"
 
@@ -8813,7 +9029,7 @@ msgstr ""
 "wierność wizualną"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:61
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:721
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:723
 msgid "Instant Download"
 msgstr "Natychmiastowe pobieranie"
 
@@ -12327,20 +12543,15 @@ msgstr ""
 "pisaną lub prześlij obraz podpisu. Kliknij stronę, aby go umieścić, "
 "przeciągnij, aby ustawić, zmień rozmiar uchwytami. Funkcja premium."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:682
-#| msgid ""
-#| "Sign PDF is a premium feature. Draw, type, or upload your signature and "
-#| "place it anywhere on the document."
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:683
 msgid "Draw, type, or upload your signature — place it anywhere on the PDF"
 msgstr "Narysuj, wpisz lub prześlij podpis — umieść go w dowolnym miejscu PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:697
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:699
 msgid "Draw, Type or Upload"
 msgstr "Narysuj, wpisz lub prześlij"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:699
-#| msgid ""
-#| "Draw your signature, type it in a handwriting font, or upload an image"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:701
 msgid ""
 "Three ways to create a signature: draw it with the mouse or finger, type "
 "your name in a handwriting font, or upload a PNG/JPG image"
@@ -12348,15 +12559,11 @@ msgstr ""
 "Trzy sposoby utworzenia podpisu: narysuj myszą lub palcem, wpisz imię "
 "czcionką ręcznie pisaną lub prześlij obraz PNG/JPG"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:705
-#| msgid "Flexible Placement"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:707
 msgid "Visual Placement"
 msgstr "Wizualne umieszczanie"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:707
-#| msgid ""
-#| "Click anywhere on the page to drop your signature. Drag to position, use the"
-#| " bottom-right handle to resize."
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:709
 msgid ""
 "Click on the PDF preview to drop your signature, drag to fine-tune position,"
 " and pull the corner handle to resize"
@@ -12364,7 +12571,7 @@ msgstr ""
 "Kliknij podgląd PDF, aby umieścić podpis, przeciągnij, aby precyzyjnie "
 "ustawić, i pociągnij narożny uchwyt, aby zmienić rozmiar"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:715
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:717
 msgid ""
 "Files are processed in-memory and deleted immediately — your signature is "
 "never stored"
@@ -12372,16 +12579,15 @@ msgstr ""
 "Pliki są przetwarzane w pamięci i natychmiast usuwane — Twój podpis nigdy "
 "nie jest przechowywany"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:723
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:725
 msgid "Signed PDF is ready for immediate download with no delays"
 msgstr "Podpisany PDF jest gotowy do natychmiastowego pobrania bez opóźnień"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:729
-#| msgid "How do I rotate a PDF page?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:731
 msgid "How do I create a signature?"
 msgstr "Jak utworzyć podpis?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:731
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:733
 msgid ""
 "Three ways: draw it on the canvas with your mouse or finger, type your name "
 "and we render it in a handwriting font, or upload a PNG/JPG image. PNG with "
@@ -12391,13 +12597,11 @@ msgstr ""
 "wyrenderujemy je czcionką ręcznie pisaną; lub prześlij plik PNG/JPG. Dla "
 "przesyłanego obrazu najlepszy efekt daje PNG z przezroczystym tłem."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:737
-#| msgid ""
-#| "Click and drag inside the blue box to move it anywhere on the page"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:739
 msgid "Can I place the signature anywhere on the page?"
 msgstr "Czy mogę umieścić podpis w dowolnym miejscu strony?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:739
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:741
 msgid ""
 "Yes. After creating your signature, click anywhere on the PDF preview to "
 "drop it there. Drag it around to fine-tune the position, or pull the corner "
@@ -12409,12 +12613,11 @@ msgstr ""
 "uchwyt, aby zmienić rozmiar. Można umieścić wiele podpisów na tej samej lub "
 "różnych stronach."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:746
-#| msgid "Can I crop multiple pages at once?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:748
 msgid "Can I sign multiple pages of a long contract?"
 msgstr "Czy mogę podpisać wiele stron długiej umowy?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:748
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:750
 msgid ""
 "Yes. Use the page selector above the preview to switch pages, then click to "
 "drop a signature on each one. Every placement is saved and applied when you "
@@ -12424,12 +12627,11 @@ msgstr ""
 "aby umieszczać podpisy na każdej z nich. Wszystkie umiejscowienia są "
 "zapisywane i stosowane po naciśnięciu „Podpisz PDF”."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:754
-#| msgid "Will my fonts be preserved in the PDF?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:756
 msgid "Will my signature be saved for next time?"
 msgstr "Czy mój podpis zostanie zapisany na następny raz?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:756
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:758
 msgid ""
 "If you drew or typed your signature, the last version is saved locally in "
 "your browser (never sent to the server), so you can re-use it on the next "
@@ -12440,11 +12642,11 @@ msgstr ""
 "jej użyć ponownie jednym kliknięciem. Przesłane obrazy nie są zapisywane ze "
 "względu na prywatność."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:762
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:764
 msgid "Is this legally binding?"
 msgstr "Czy to jest prawnie wiążące?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:764
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:766
 msgid ""
 "This tool adds a visual image signature to the PDF. For legally binding "
 "electronic signatures with audit trails and certificates, a dedicated "
@@ -12454,13 +12656,11 @@ msgstr ""
 "podpisów elektronicznych ze śladami audytu i certyfikatami zalecana jest "
 "dedykowana usługa e-podpisu."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:770
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:772
 msgid "Sign PDF FAQ"
 msgstr "FAQ Podpisywania PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:773
-#| msgid ""
-#| "Upload your signature image (PNG with a transparent background works best)"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:775
 msgid ""
 "For the cleanest look, draw your signature directly or upload a PNG with a "
 "transparent background."
@@ -12468,7 +12668,7 @@ msgstr ""
 "Aby uzyskać najczystszy wygląd, narysuj podpis bezpośrednio lub prześlij PNG"
 " z przezroczystym tłem."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:776
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:778
 msgid ""
 "Click on the PDF preview to drop the signature exactly where you want it; "
 "drag and resize without re-uploading."
@@ -12476,7 +12676,7 @@ msgstr ""
 "Kliknij podgląd PDF, aby umieścić podpis dokładnie tam, gdzie chcesz; "
 "przeciągnij i zmień rozmiar bez ponownego przesyłania."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:779
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:781
 msgid ""
 "To sign every page of a contract, switch pages with the selector and drop "
 "the signature on each one — your placements are remembered."
@@ -12484,15 +12684,15 @@ msgstr ""
 "Aby podpisać każdą stronę umowy, przełączaj strony selektorem i umieszczaj "
 "podpis na każdej z nich — wszystkie pozycje są zapamiętywane."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:782
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:784
 msgid "Tips for Signing PDFs"
 msgstr "Wskazówki dotyczące podpisywania PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:783
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:785
 msgid "Sign a PDF online — draw, type, or upload"
 msgstr "Podpisz PDF online — narysuj, wpisz lub prześlij"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:785
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:787
 msgid ""
 "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a "
 "PDF. Draw it with the mouse or finger, type your name in a handwriting-style"
@@ -14504,106 +14704,127 @@ msgstr "Dostęp Lifetime Hero (Oferta Założycieli)"
 msgid "One-time payment. Limited to first 100 customers."
 msgstr "Jednorazowa płatność. Tylko dla pierwszych 100 klientów."
 
-#: utils_site/src/users/models.py:14
+#: utils_site/src/users/models.py:16
 msgid "The Email must be set"
 msgstr "E-mail musi być ustawiony"
 
-#: utils_site/src/users/models.py:25
+#: utils_site/src/users/models.py:27
 msgid "Superuser must have is_staff=True."
 msgstr "Superużytkownik musi mieć is_staff=True."
 
-#: utils_site/src/users/models.py:27
+#: utils_site/src/users/models.py:29
 msgid "Superuser must have is_superuser=True."
 msgstr "Superużytkownik musi mieć is_superuser=True."
 
-#: utils_site/src/users/models.py:32
+#: utils_site/src/users/models.py:34
 msgid "email address"
 msgstr "adres e-mail"
 
-#: utils_site/src/users/models.py:35
+#: utils_site/src/users/models.py:37
 msgid "Is Premium"
 msgstr "Czy jest Premium"
 
-#: utils_site/src/users/models.py:41
+#: utils_site/src/users/models.py:43
 msgid "Subscription Start Date"
 msgstr "Data rozpoczęcia subskrypcji"
 
-#: utils_site/src/users/models.py:44
+#: utils_site/src/users/models.py:46
 msgid "Subscription End Date"
 msgstr "Data zakończenia subskrypcji"
 
-#: utils_site/src/users/models.py:47
+#: utils_site/src/users/models.py:49
 msgid "Total Subscription Days"
 msgstr "Łączna liczba dni subskrypcji"
 
-#: utils_site/src/users/models.py:50
+#: utils_site/src/users/models.py:52
 msgid "Consecutive Subscription Days"
 msgstr "Kolejne dni subskrypcji"
 
-#: utils_site/src/users/models.py:83 utils_site/src/users/models.py:516
+#: utils_site/src/users/models.py:64
+msgid "Per-user HMAC secret for signing outbound webhook callbacks."
+msgstr ""
+"Tajny HMAC dla użytkownika do podpisywania wychodzących wywołań zwrotnych "
+"webhook."
+
+#: utils_site/src/users/models.py:92 utils_site/src/users/models.py:544
 msgid "User"
 msgstr "Użytkownik"
 
-#: utils_site/src/users/models.py:84
+#: utils_site/src/users/models.py:93
 msgid "Users"
 msgstr "Użytkownicy"
 
-#: utils_site/src/users/models.py:460
+#: utils_site/src/users/models.py:448
+msgid ""
+"Monthly /api/v1 call quota for subscribers of this plan. 0 = no API access."
+msgstr ""
+"Miesięczny limit wywołań /api/v1 dla subskrybentów tego planu. 0 = brak "
+"dostępu do API."
+
+#: utils_site/src/users/models.py:488
 msgid "Runtime Setting"
 msgstr "Ustawienia obrotu"
 
-#: utils_site/src/users/models.py:461
+#: utils_site/src/users/models.py:489
 msgid "Runtime Settings"
 msgstr "Ustawienia obrotu"
 
-#: utils_site/src/users/models.py:469
+#: utils_site/src/users/models.py:497
 msgid "Setting key cannot be empty."
 msgstr "Hasło nie może być puste"
 
-#: utils_site/src/users/models.py:477
+#: utils_site/src/users/models.py:505
 msgid ""
 "This setting key is considered secret and cannot be configured from admin."
 msgstr ""
 "Ten klucz ustawienia jest uważany za tajny i nie można go skonfigurować z "
 "poziomu administratora."
 
-#: utils_site/src/users/models.py:534
+#: utils_site/src/users/models.py:562
 msgid "Payment Method"
 msgstr "Metoda płatności"
 
-#: utils_site/src/users/models.py:539
+#: utils_site/src/users/models.py:567
 msgid "Provider"
 msgstr "Dostawca"
 
-#: utils_site/src/users/models.py:542
+#: utils_site/src/users/models.py:570
 msgid "Transaction ID"
 msgstr "ID transakcji"
 
-#: utils_site/src/users/models.py:545
+#: utils_site/src/users/models.py:573
 msgid "Processed At"
 msgstr "Przetworzono"
 
-#: utils_site/src/users/models.py:551
+#: utils_site/src/users/models.py:579
 msgid "Payment"
 msgstr "Płatność"
 
-#: utils_site/src/users/models.py:552
+#: utils_site/src/users/models.py:580
 msgid "Payments"
 msgstr "Płatności"
 
-#: utils_site/src/users/views.py:53
+#: utils_site/src/users/models.py:838
+msgid "User-set label"
+msgstr "Etykieta ustawiona przez użytkownika"
+
+#: utils_site/src/users/models.py:841
+msgid "Tool slugs or [\"*\"]"
+msgstr "Slugi narzędzi lub [\"*\"]"
+
+#: utils_site/src/users/views.py:56
 msgid "Please verify your email address before signing in."
 msgstr "Proszę zweryfikuj swój adres e-mail przed zalogowaniem."
 
-#: utils_site/src/users/views.py:63
+#: utils_site/src/users/views.py:66
 msgid "Account is disabled"
 msgstr "Konto jest wyłączone"
 
-#: utils_site/src/users/views.py:69
+#: utils_site/src/users/views.py:72
 msgid "Invalid email or password"
 msgstr "Nieprawidłowy e-mail lub hasło"
 
-#: utils_site/src/users/views.py:101
+#: utils_site/src/users/views.py:106
 msgid ""
 "Registration successful! Please check your email to verify your account "
 "before logging in."
@@ -14611,1047 +14832,61 @@ msgstr ""
 "Rejestracja udana! Proszę sprawdzić swój e-mail, aby zweryfikować konto "
 "przed zalogowaniem."
 
-#: utils_site/src/users/views.py:125
+#: utils_site/src/users/views.py:130
 msgid "You have been successfully logged out."
 msgstr "Zostałeś pomyślnie wylogowany."
 
-#: utils_site/src/users/views.py:171
+#: utils_site/src/users/views.py:177
 msgid "Your email is already verified."
 msgstr "Twój e-mail jest już zweryfikowany."
 
-#: utils_site/src/users/views.py:193
+#: utils_site/src/users/views.py:200
 msgid "Password reset email sent. Please check your inbox and spam folder."
 msgstr ""
 "E-mail resetowania hasła wysłany. Proszę sprawdzić skrzynkę odbiorczą i "
 "folder spam."
 
-#: utils_site/src/users/views.py:196
+#: utils_site/src/users/views.py:203
 msgid "Unable to send password reset email."
 msgstr "Nie można wysłać e-maila resetowania hasła."
 
-#: utils_site/src/users/views.py:207
+#: utils_site/src/users/views.py:214
 msgid "Profile updated successfully!"
 msgstr "Profil zaktualizowany pomyślnie!"
 
-#: utils_site/src/users/views.py:276
+#: utils_site/src/users/views.py:283
 msgid "Account deleted successfully"
 msgstr "Konto usunięte pomyślnie"
 
-#: utils_site/src/users/views.py:287
+#: utils_site/src/users/views.py:294
 msgid "Method not allowed"
 msgstr "Metoda niedozwolona"
 
-#: utils_site/src/users/views.py:307
+#: utils_site/src/users/views.py:314
 msgid "Hero display updated successfully"
 msgstr "Wyświetlanie bohatera zaktualizowane pomyślnie"
 
-#: utils_site/src/users/views.py:312
+#: utils_site/src/users/views.py:319
 msgid "Invalid JSON"
 msgstr "Nieprawidłowy JSON"
 
-#~ msgid ""
-#~ "Add your handwritten signature to any PDF document. Premium feature: upload "
-#~ "a PNG signature image, choose position and apply to all pages. Fast and "
-#~ "secure."
-#~ msgstr ""
-#~ "Dodaj odręczny podpis do dowolnego dokumentu PDF. Funkcja premium: prześlij "
-#~ "obraz podpisu PNG, wybierz pozycję i zastosuj na wszystkich stronach. Szybko"
-#~ " i bezpiecznie."
-
-#~ msgid "Add your image signature to any PDF page"
-#~ msgstr "Dodaj podpis obrazowy do dowolnej strony PDF"
-
-#~ msgid "Image Signature"
-#~ msgstr "Podpis Obrazowy"
-
-#~ msgid ""
-#~ "Upload any PNG or JPEG image of your handwritten signature and place it "
-#~ "precisely on the PDF"
-#~ msgstr ""
-#~ "Prześlij dowolny obraz PNG lub JPEG swojego odręcznego podpisu i umieść go "
-#~ "precyzyjnie na PDF"
-
-#~ msgid ""
-#~ "Choose the exact position and page for your signature, or apply it to all "
-#~ "pages at once"
-#~ msgstr ""
-#~ "Wybierz dokładną pozycję i stronę dla swojego podpisu lub zastosuj go do "
-#~ "wszystkich stron jednocześnie"
-
-#~ msgid "What image formats are accepted for the signature?"
-#~ msgstr "Jakie formaty obrazów są akceptowane dla podpisu?"
-
-#~ msgid ""
-#~ "You can upload a PNG or JPEG image of your handwritten signature. PNG with a"
-#~ " transparent background works best so the signature blends naturally into "
-#~ "the PDF."
-#~ msgstr ""
-#~ "Możesz przesłać obraz PNG lub JPEG swojego odręcznego podpisu. PNG z "
-#~ "przezroczystym tłem działa najlepiej, dzięki czemu podpis naturalnie wtapia "
-#~ "się w PDF."
-
-#~ msgid "Can I sign all pages at once?"
-#~ msgstr "Czy mogę podpisać wszystkie strony jednocześnie?"
-
-#~ msgid ""
-#~ "Yes. Enable the 'Apply to all pages' option and your signature will be "
-#~ "stamped on every page of the PDF at the same position."
-#~ msgstr ""
-#~ "Tak. Włącz opcję 'Zastosuj do wszystkich stron', a Twój podpis zostanie "
-#~ "ostemplowany na każdej stronie PDF w tej samej pozycji."
-
-#~ msgid ""
-#~ "Use a PNG image with a transparent background for the cleanest signature "
-#~ "result."
-#~ msgstr ""
-#~ "Użyj obrazu PNG z przezroczystym tłem, aby uzyskać najczystszy wynik "
-#~ "podpisu."
-
-#~ msgid ""
-#~ "Increase the signature width for large-format PDFs so it stays visible."
-#~ msgstr ""
-#~ "Zwiększ szerokość podpisu dla PDF w dużym formacie, aby pozostał widoczny."
-
-#~ msgid ""
-#~ "Use the 'Apply to all pages' option to stamp every page in a contract at "
-#~ "once."
-#~ msgstr ""
-#~ "Użyj opcji 'Zastosuj do wszystkich stron', aby jednocześnie ostemplować "
-#~ "każdą stronę umowy."
-
-#~ msgid "Add your signature to a PDF online"
-#~ msgstr "Dodaj swój podpis do PDF online"
-
-#~ msgid ""
-#~ "<p><strong>Sign PDF</strong> lets you place a handwritten signature image "
-#~ "directly onto any page of a PDF document. Upload your signature as a PNG or "
-#~ "JPEG, choose the position and page, and download the signed PDF in "
-#~ "seconds.</p><p>No account required. Files are processed securely and deleted"
-#~ " immediately after download. The signed PDF retains all original content and"
-#~ " formatting.</p>"
-#~ msgstr ""
-#~ "<p><strong>Podpisz PDF</strong> pozwala umieścić obraz odręcznego podpisu "
-#~ "bezpośrednio na dowolnej stronie dokumentu PDF. Prześlij swój podpis jako "
-#~ "PNG lub JPEG, wybierz pozycję i stronę, a następnie pobierz podpisany PDF w "
-#~ "kilka sekund.</p><p>Nie wymagane jest konto. Pliki są przetwarzane "
-#~ "bezpiecznie i natychmiast usuwane po pobraniu. Podpisany PDF zachowuje całą "
-#~ "oryginalną zawartość i formatowanie.</p>"
-
-#~ msgid "Signature Settings"
-#~ msgstr "Ustawienia podpisu"
-
-#~ msgid "Upload Signature Image"
-#~ msgstr "Prześlij obraz podpisu"
-
-#~ msgid "Signature Position"
-#~ msgstr "Pozycja podpisu"
-
-#~ msgid "Center"
-#~ msgstr "Środek"
-
-#~ msgid "Page to Sign"
-#~ msgstr "Strona do podpisania"
-
-#~ msgid ""
-#~ "Enter the page number where the signature will be placed (first page = 1)."
-#~ msgstr ""
-#~ "Wprowadź numer strony, na której zostanie umieszczony podpis (pierwsza "
-#~ "strona = 1)."
-
-#~ msgid "Signature Width"
-#~ msgstr "Szerokość podpisu"
-
-#~ msgid "pt"
-#~ msgstr "pt"
-
-#~ msgid "Apply signature to all pages"
-#~ msgstr "Zastosuj podpis na wszystkich stronach"
-
-#~ msgid "When checked, the signature is added to every page of the PDF."
-#~ msgstr "Po zaznaczeniu podpis jest dodawany do każdej strony PDF."
-
-#~ msgid "Choose the position and page where the signature should appear"
-#~ msgstr "Wybierz pozycję i stronę, na której ma się pojawić podpis"
-
-#~ msgid "Adjust the signature width and opacity using the sliders"
-#~ msgstr "Dostosuj szerokość i przezroczystość podpisu za pomocą suwaków"
-
-#~ msgid "Click the Sign PDF button to process your document"
-#~ msgstr "Kliknij przycisk Podpisz PDF, aby przetworzyć dokument"
-
-#~ msgid "Download your signed PDF file"
-#~ msgstr "Pobierz podpisany plik PDF"
-
-#~ msgid ""
-#~ "Use a PNG image with a transparent background so the signature blends "
-#~ "naturally into the document without a white box around it."
-#~ msgstr ""
-#~ "Użyj obrazu PNG z przezroczystym tłem, aby podpis naturalnie wpisał się w "
-#~ "dokument bez białego obramowania."
-
-#~ msgid "Cancel Subscription?"
-#~ msgstr "Anulować subskrypcję?"
-
-#~ msgid ""
-#~ "Are you sure you want to cancel your subscription? You'll continue to have "
-#~ "access until the end of your current billing period."
-#~ msgstr ""
-#~ "Czy na pewno chcesz anulować swoją subskrypcję? Będziesz mieć dostęp do "
-#~ "końca bieżącego okresu rozliczeniowego."
-
-#~ msgid "Keep Subscription"
-#~ msgstr "Zachowaj subskrypcję"
-
-#~ msgid "Cancel Anyway"
-#~ msgstr "Anuluj mimo to"
-
-#~ msgid "Cancel Subscription"
-#~ msgstr "Anuluj subskrypcję"
-
-#~ msgid "We're sorry to see you go"
-#~ msgstr "Szkoda, że odchodzisz"
-
-#~ msgid "Before you go, please tell us why:"
-#~ msgstr "Zanim odejdziesz, proszę powiedz nam dlaczego:"
-
-#~ msgid "Reason for cancellation"
-#~ msgstr "Powód anulowania"
-
-#~ msgid "Too expensive"
-#~ msgstr "Zbyt drogie"
-
-#~ msgid "The cost is more than I can afford"
-#~ msgstr "Koszt przekracza moje możliwości"
-
-#~ msgid "Not using enough"
-#~ msgstr "Nie używam wystarczająco"
-
-#~ msgid "I don't use the service frequently enough"
-#~ msgstr "Nie korzystam z usługi wystarczająco często"
-
-#~ msgid "Missing features"
-#~ msgstr "Brakujące funkcje"
-
-#~ msgid "I need features that aren't available"
-#~ msgstr "Potrzebuję funkcji, które nie są dostępne"
-
-#~ msgid "Technical issues"
-#~ msgstr "Problemy techniczne"
-
-#~ msgid "I'm experiencing problems with the service"
-#~ msgstr "Doświadczam problemów z usługą"
-
-#~ msgid "Found alternative"
-#~ msgstr "Znalazłem alternatywę"
-
-#~ msgid "I'm switching to a different service"
-#~ msgstr "Przechodzę na inną usługę"
-
-#~ msgid "Other reason"
-#~ msgstr "Inny powód"
-
-#~ msgid "Something else"
-#~ msgstr "Coś innego"
-
-#~ msgid "Additional comments (optional)"
-#~ msgstr "Dodatkowe komentarze (opcjonalnie)"
-
-#~ msgid "Tell us more about your experience..."
-#~ msgstr "Opowiedz nam więcej o swoim doświadczeniu..."
-
-#~ msgid "Before you cancel, consider these options:"
-#~ msgstr "Zanim anulujesz, rozważ te opcje:"
-
-#~ msgid "Switch to a lower tier plan"
-#~ msgstr "Przejdź na niższy plan"
-
-#~ msgid "Pause subscription for 3 months"
-#~ msgstr "Wstrzymaj subskrypcję na 3 miesiące"
-
-#~ msgid "Apply a discount for next renewal"
-#~ msgstr "Zastosuj zniżkę na kolejne odnowienie"
-
-#~ msgid "Current Subscription Details"
-#~ msgstr "Szczegóły bieżącej subskrypcji"
-
-#~ msgid "Next billing date"
-#~ msgstr "Data następnej płatności"
-
-#~ msgid "Not available"
-#~ msgstr "Nie dostępne"
-
-#~ msgid "Access until"
-#~ msgstr "Dostęp do"
-
-#~ msgid "Hero status"
-#~ msgstr "Status bohatera"
-
-#~ msgid "Hidden"
-#~ msgstr "Ukryty"
-
-#~ msgid "Proceed with Cancellation"
-#~ msgstr "Przejdź do anulowania"
-
-#~ msgid "What happens after cancellation?"
-#~ msgstr "Co się stanie po anulowaniu?"
-
-#~ msgid "Continue using premium features"
-#~ msgstr "Kontynuuj korzystanie z funkcji premium"
-
-#~ msgid ""
-#~ "You'll keep access to all premium features until the end of your current "
-#~ "billing period."
-#~ msgstr ""
-#~ "Zachowasz dostęp do wszystkich funkcji premium do końca bieżącego okresu "
-#~ "rozliczeniowego."
-
-#~ msgid "Hero status remains"
-#~ msgstr "Status bohatera pozostaje"
-
-#~ msgid ""
-#~ "Your hero status and ranking will be preserved during the remaining period."
-#~ msgstr ""
-#~ "Twój status bohatera i ranking zostaną zachowane podczas pozostałego okresu."
-
-#~ msgid "Data is preserved"
-#~ msgstr "Dane są zachowane"
-
-#~ msgid "All your data and conversions. and settings will be saved."
-#~ msgstr "Wszystkie Twoje dane, konwersje i ustawienia zostaną zapisane."
-
-#~ msgid "Can re-subscribe anytime"
-#~ msgstr "Możesz ponownie zasubskrybować w dowolnym momencie"
-
-#~ msgid "You can always come back and upgrade to premium again."
-#~ msgstr "Zawsze możesz wrócić i ponownie przejść na premium."
-
-#~ msgid "Please select a reason for cancellation"
-#~ msgstr "Proszę wybrać powód anulowania"
-
-#~ msgid "Web browser (Chrome, Firefox, Safari, Edge)"
-#~ msgstr "Przeglądarka internetowa (Chrome, Firefox, Safari, Edge)"
-
-#~ msgid "file"
-#~ msgstr "plik"
-
-#~ msgid "Upload File"
-#~ msgstr "Prześlij plik"
-
-#~ msgid "Click the upload button or drag and drop your file"
-#~ msgstr "Kliknij przycisk prześlij lub przeciągnij i upuść swój plik"
-
-#~ msgid "Process"
-#~ msgstr "Przetwórz"
-
-#~ msgid "Click the button to start processing your file"
-#~ msgstr "Kliknij przycisk, aby rozpocząć przetwarzanie pliku"
-
-#~ msgid "file to convert"
-#~ msgstr "Wybierz plik do konwersji"
-
-#~ msgid ""
-#~ "Click the Select file button or drag and drop your file into the upload area"
-#~ msgstr "Kliknij przycisk przesyłania lub przeciągnij i upuść swój plik"
-
-#~ msgid "Click the Convert button and wait for processing to complete"
-#~ msgstr "Kliknij przycisk Konwertuj i poczekaj na zakończenie przetwarzania"
-
-#~ msgid "Download your converted file instantly - no email required"
-#~ msgstr "Natychmiast pobierz swój przekonwertowany plik"
-
-#~ msgid "PDF file to edit"
-#~ msgstr "Wybierz plik do edycji"
-
-#~ msgid "Select your PDF file using the upload button or drag and drop"
-#~ msgstr "Wybierz plik PDF używając przycisku powyżej lub przeciągnij i upuść"
-
-#~ msgid "Configure Options"
-#~ msgstr "Więcej opcji"
-
-#~ msgid "Adjust settings as needed for your task"
-#~ msgstr "Dostosuj ustawienia zgodnie z potrzebami zadania"
-
-#~ msgid "Process & Download"
-#~ msgstr "Pobierz"
-
-#~ msgid "Click the button to process and download your edited PDF"
-#~ msgstr "Kliknij przycisk Przytnij, aby przetworzyć swój PDF"
-
-#~ msgid "URL or HTML content to convert"
-#~ msgstr "Adres URL lub treść HTML do konwersji"
-
-#~ msgid "Enter URL or HTML"
-#~ msgstr "Konwertuj PDF na HTML"
-
-#~ msgid "Paste a web page URL or enter HTML content directly"
-#~ msgstr ""
-#~ "Wklej adres URL strony internetowej lub wprowadź treść HTML bezpośrednio"
-
-#~ msgid "Configure Settings"
-#~ msgstr "Więcej opcji"
-
-#~ msgid "Adjust page size, margins, and other PDF settings"
-#~ msgstr "Dostosuj rozmiar strony, marginesy i inne ustawienia PDF"
-
-#~ msgid "Click the Convert button to generate your PDF"
-#~ msgstr "Kliknij przycisk Przytnij, aby przetworzyć swój PDF"
-
-#~ msgid "Download your PDF file instantly"
-#~ msgstr "Pobierz swój plik PDF"
-
-#~ msgid "JPG, PNG, GIF or BMP images to convert"
-#~ msgstr "Obrazy JPG, PNG, GIF lub BMP do konwersji"
-
-#~ msgid "Select Images"
-#~ msgstr "Wybrane obrazy"
-
-#~ msgid "Click the Select images button or drag and drop your images"
-#~ msgstr "Kliknij przycisk przesyłania lub przeciągnij i upuść swój plik"
-
-#~ msgid "Arrange Order"
-#~ msgstr "Uporządkuj kolejność"
-
-#~ msgid "Add more images and arrange them in the desired order"
-#~ msgstr ""
-#~ "Podejrzyj wszystkie pliki PDF i przeciągaj je, aby zmienić kolejność "
-#~ "łączenia"
-
-#~ msgid "Select your PDF file to add watermark"
-#~ msgstr "Wybierz swój plik PDF, aby dodać znak wodny"
-
-#~ msgid "Configure Watermark"
-#~ msgstr "Skonfiguruj znak wodny"
-
-#~ msgid "Enter text or upload image, adjust color and opacity"
-#~ msgstr "Wprowadź tekst lub prześlij obraz, dostosuj kolor i przezroczystość"
-
-#~ msgid "Drag the watermark to position it on the page"
-#~ msgstr "Przeciągnij znak wodny, aby ustawić go na stronie"
-
-#~ msgid "Apply"
-#~ msgstr "Zastosuj"
-
-#~ msgid "Click Add Watermark button to process"
-#~ msgstr "Kliknij przycisk Dodaj znak wodny, aby przetworzyć"
-
-#~ msgid "Select your PDF file to crop"
-#~ msgstr "Wybierz swój plik PDF do przycięcia"
-
-#~ msgid "Select Area"
-#~ msgstr "Wybierz obszar"
-
-#~ msgid "Click and drag to select the crop area on the PDF"
-#~ msgstr "Kliknij i przeciągnij, aby wybrać obszar przycinania na PDF"
-
-#~ msgid "Crop"
-#~ msgstr "Przytnij"
-
-#~ msgid "Click the Crop button to process your PDF"
-#~ msgstr "Kliknij przycisk Przytnij, aby przetworzyć swój PDF"
-
-#~ msgid "Upload two PDF files"
-#~ msgstr "Prześlij dwa pliki PDF"
-
-#~ msgid "Select the base PDF and the comparison PDF."
-#~ msgstr "Wybierz bazowy plik PDF i plik PDF do porównania."
-
-#~ msgid "Set sensitivity"
-#~ msgstr "Ustaw czułość"
-
-#~ msgid "Adjust diff sensitivity to control change detection strictness."
-#~ msgstr "Dostosuj czułość różnic, aby kontrolować rygor wykrywania zmian."
-
-#~ msgid "Review and export"
-#~ msgstr "Przegląd i eksport"
-
-#~ msgid ""
-#~ "Review changes page-by-page. Export report files only if you need to share "
-#~ "or archive them."
-#~ msgstr ""
-#~ "Przeglądaj zmiany strona po stronie. Eksportuj pliki raportu tylko, gdy "
-#~ "chcesz je udostępnić lub zarchiwizować."
-
-#~ msgid ""
-#~ "This is a donation to support the project and its developers. It does not "
-#~ "unlock Premium features."
-#~ msgstr ""
-#~ "To darowizna na wsparcie projektu i jego deweloperów. Nie odblokowuje "
-#~ "funkcji Premium."
-
-#~ msgid "Contribution type"
-#~ msgstr "Typ wkładu"
-
-#~ msgid "One-time"
-#~ msgstr "Jednorazowy"
-
-#~ msgid "Monthly"
-#~ msgstr "Miesięczny"
-
-#~ msgid "Currency"
-#~ msgstr "Waluta"
-
-#~ msgid "Proceed to secure payment"
-#~ msgstr "Przejdź do bezpiecznej płatności"
-
-#~ msgid ""
-#~ "Payments are processed by Stripe. You can cancel monthly support anytime in "
-#~ "Stripe customer portal."
-#~ msgstr ""
-#~ "Płatności są przetwarzane przez Stripe. Możesz anulować wsparcie miesięczne "
-#~ "w dowolnym momencie w portalu klienta Stripe."
-
-#~ msgid "Why payments are paused"
-#~ msgstr "Dlaczego płatności są wstrzymane"
-
-#~ msgid ""
-#~ "We’re temporarily pausing Premium subscriptions and contributions while we "
-#~ "complete the business setup. This helps us keep everything clean and "
-#~ "compliant."
-#~ msgstr ""
-#~ "Tymczasowo wstrzymujemy subskrypcje Premium i wkłady, podczas gdy ukończymy "
-#~ "konfigurację biznesową. Pomaga nam to utrzymać wszystko w porządku i zgodnie"
-#~ " z przepisami."
-
-#~ msgid "Good news: all free tools remain fully available."
-#~ msgstr ""
-#~ "Dobra wiadomość: wszystkie darmowe narzędzia pozostają w pełni dostępne."
-
-#~ msgid "Thank you!"
-#~ msgstr "Dziękujemy!"
-
-#~ msgid "Your support helps us keep improving Convertica."
-#~ msgstr "Twoje wsparcie pomaga nam ciągle ulepszać Convertica."
-
-#~ msgid ""
-#~ "Premium features and Hero status are part of the subscription plans. This "
-#~ "contribution is support only — thank you for being an invisible hero."
-#~ msgstr ""
-#~ "Funkcje Premium i status Bohatera są częścią planów subskrypcyjnych. Ten "
-#~ "wkład to tylko wsparcie — dziękujemy za bycie niewidzialnym bohaterem."
-
-#~ msgid "Support again"
-#~ msgstr "Wesprzyj ponownie"
-
-#~ msgid "Back to Pricing"
-#~ msgstr "Powrót do Cen"
-
-#~ msgid "Note: this support payment does not unlock Premium features."
-#~ msgstr "Uwaga: ta płatność wsparcia nie odblokowuje funkcji Premium."
-
-#~ msgid "Update your subscription plan and billing information"
-#~ msgstr "Zaktualizuj swój plan subskrypcyjny i informacje rozliczeniowe"
-
-#~ msgid "Premium Plan"
-#~ msgstr "Plan Premium"
-
-#~ msgid "Much higher limits and premium features"
-#~ msgstr "Znacznie wyższe limity i funkcje premium"
-
-#~ msgid "Free Plan"
-#~ msgstr "Plan Darmowy"
-
-#~ msgid "Basic features with limitations"
-#~ msgstr "Podstawowe funkcje z ograniczeniami"
-
-#~ msgid "Much higher page and file size limits"
-#~ msgstr "Znacznie wyższe limity stron i rozmiarów plików"
-
-#~ msgid "Priority processing"
-#~ msgstr "Priorytetowe przetwarzanie"
-
-#~ msgid "Hero status & ranking"
-#~ msgstr "Status bohatera i ranking"
-
-#~ msgid "Priority support and custom solutions on request"
-#~ msgstr "Priorytetowe wsparcie i niestandardowe rozwiązania na życzenie"
-
-#~ msgid "Limited conversions per day"
-#~ msgstr "Ograniczone konwersje dziennie"
-
-#~ msgid "Standard processing"
-#~ msgstr "Standardowe przetwarzanie"
-
-#~ msgid "Expires"
-#~ msgstr "Wygasa"
-
-#~ msgid "Billing History"
-#~ msgstr "Historia rozliczeń"
-
-#~ msgid ""
-#~ "Billing history will be available once payment processing is implemented."
-#~ msgstr ""
-#~ "Historia rozliczeń będzie dostępna po wdrożeniu przetwarzania płatności."
-
-#~ msgid "Failed to cancel subscription"
-#~ msgstr "Nie udało się anulować subskrypcji"
-
-#~ msgid "An error occurred while canceling subscription"
-#~ msgstr "Wystąpił błąd podczas anulowania subskrypcji"
-
-#~ msgid "Thank you for your contribution"
-#~ msgstr "Dziękujemy za Twój wkład"
-
-#~ msgid ""
-#~ "Thank you for contributing to Convertica. Your support helps us keep "
-#~ "improving the service."
-#~ msgstr ""
-#~ "Dziękujemy za wsparcie Convertica. Twoje wsparcie pomaga nam ciągle ulepszać"
-#~ " usługę."
-
-#~ msgid "No active subscription to cancel"
-#~ msgstr "Brak aktywnej subskrypcji do anulowania"
-
-#~ msgid "Subscription cancelled successfully"
-#~ msgstr "Subskrypcja anulowana pomyślnie"
-
-#~ msgid ""
-#~ "Add your signature to a PDF online free. Upload an image of your signature "
-#~ "and place it anywhere on any page. No registration, no watermark. Works on "
-#~ "Windows, Mac, Linux, iOS, Android."
-#~ msgstr ""
-#~ "Dodaj swój podpis do PDF online za darmo. Prześlij obraz swojego podpisu i "
-#~ "umieść go w dowolnym miejscu na dowolnej stronie. Bez rejestracji, bez znaku"
-#~ " wodnego. Działa na Windows, Mac, Linux, iOS, Android."
-
-# ==================== pdf_to_text ====================
-#~ msgid "PDF to Text Converter Online Free | Convertica"
-#~ msgstr "Konwerter PDF na Tekst Online Za Darmo | Convertica"
-
-#~ msgid ""
-#~ "Extract plain text from PDF online free. Convert PDF to TXT file instantly "
-#~ "with optional page numbers and layout preservation. No registration "
-#~ "required."
-#~ msgstr ""
-#~ "Wyodrębnij zwykły tekst z PDF online za darmo. Konwertuj PDF do pliku TXT "
-#~ "natychmiast z opcjonalnymi numerami stron i zachowaniem układu. Rejestracja "
-#~ "nie jest wymagana."
-
-#~ msgid ""
-#~ "Convert JPG to PDF online free without compression. Merge multiple images "
-#~ "into one PDF, combine photos to PDF, create PDF from images with high "
-#~ "resolution. Perfect for documents, receipts, homework, and university "
-#~ "submissions. No watermark, unlimited conversions."
-#~ msgstr ""
-#~ "Konwertuj JPG na PDF online za darmo bez kompresji. Połącz wiele obrazów w "
-#~ "jeden PDF, scal zdjęcia do PDF, twórz PDF z obrazów o wysokiej "
-#~ "rozdzielczości. Idealne do dokumentów, paragonów, zadań domowych i zgłoszeń "
-#~ "uniwersyteckich. Bez znaku wodnego, nieograniczone konwersje."
-
-#~ msgid ""
-#~ "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
-#~ "installations required."
-#~ msgstr ""
-#~ "Szybki, prosty i bezpieczny konwerter online PDF na Word i Word na PDF. "
-#~ "Konwertuj dokumenty natychmiast, bez rejestracji."
-
-#~ msgid ""
-#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
-#~ "free converter"
-#~ msgstr ""
-#~ "PDF na Word, PDF na DOCX, konwertuj PDF, konwerter PDF, konwerter Word, "
-#~ "konwerter PDF online"
-
-#~ msgid "Upload icon"
-#~ msgstr "Ikona przesyłania"
-
-#~ msgid "Select files to convert (multiple)"
-#~ msgstr "Wybierz pliki do konwersji (wiele)"
-
-#~ msgid "Select file to convert"
-#~ msgstr "Wybierz plik do konwersji"
-
-#~ msgid "Use the button above to browse files"
-#~ msgstr "Użyj przycisku powyżej, aby przeglądać pliki"
-
-#~ msgid "files"
-#~ msgstr "pliki"
-
-#~ msgid "Select files to edit (multiple)"
-#~ msgstr "Wybierz pliki do edycji (wiele)"
-
-#~ msgid "Select file to edit"
-#~ msgstr "Wybierz plik do edycji"
-
-#~ msgid ""
-#~ "We use cookies and similar technologies to enhance your browsing experience,"
-#~ " security, analytics, and to provide personalized content."
-#~ msgstr ""
-#~ "Używamy plików cookie i podobnych technologii w celu poprawy Twojego "
-#~ "doświadczenia przeglądania, bezpieczeństwa, analityki oraz dostarczania "
-#~ "spersonalizowanych treści."
-
-#~ msgid ""
-#~ "You can accept all cookies, reject non-essential cookies, or customize your "
-#~ "preferences. Essential cookies are required for the website to function and "
-#~ "cannot be disabled."
-#~ msgstr ""
-#~ "Możesz zaakceptować wszystkie pliki cookie, odrzucić nieistotne pliki cookie"
-#~ " lub dostosować swoje preferencje. Niezbędne pliki cookie są wymagane do "
-#~ "działania witryny i nie można ich wyłączyć."
-
-#~ msgid "Select image(s)"
-#~ msgstr "Wybierz obraz(y)"
-
-#~ msgid "multiple files supported"
-#~ msgstr "obsługiwane wiele plików"
-
-#~ msgid "Select files to watermark (multiple)"
-#~ msgstr "Wybierz pliki do dodania znaku wodnego (wiele)"
-
-#~ msgid "Select file to watermark"
-#~ msgstr "Wybierz plik do znaku wodnego"
-
-#~ msgid "Select files to crop (multiple)"
-#~ msgstr "Wybierz pliki do przycięcia (wiele)"
-
-#~ msgid "Select file to crop"
-#~ msgstr "Wybierz plik do przycięcia"
-
-#~ msgid "Daily Hero"
-#~ msgstr "Bohater Dzienny"
-
-#~ msgid "day"
-#~ msgstr "dzień"
-
-#~ msgid "Perfect for quick transformations"
-#~ msgstr "Idealny do szybkich przekształceń"
-
-#~ msgid "No daily conversion limits for 24 hours"
-#~ msgstr "Brak dziennych limitów konwersji przez 24 godziny"
-
-#~ msgid "Become Daily Hero"
-#~ msgstr "Zostań Bohaterem Dzennym"
-
-#~ msgid "Daily Hero Access"
-#~ msgstr "Dostęp Dziennika Bohatera"
-
-#~ msgid "Select your PDF file to edit"
-#~ msgstr "Wybierz swój plik PDF do edycji"
-
-#~ msgid "Apply your changes and click the Edit button"
-#~ msgstr "Zastosuj swoje zmiany i kliknij przycisk Edytuj"
-
-#~ msgid ""
-#~ "Select image quality (60-95): higher quality = better clarity but larger "
-#~ "file size. 85 is recommended."
-#~ msgstr ""
-#~ "Wybierz jakość obrazu (60-95): wyższa jakość = lepsza przejrzystość, ale "
-#~ "większy rozmiar pliku. Zalecane jest 85."
-
-#~ msgid ""
-#~ "Wait for the PDF to JPG conversion to complete - all selected pages will be "
-#~ "converted to JPG images"
-#~ msgstr ""
-#~ "Poczekaj na zakończenie konwersji PDF na JPG - wszystkie wybrane strony "
-#~ "zostaną przekonwertowane na obrazy JPG"
-
-#, python-format
-#~ msgid ""
-#~ "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
-#~ "users have higher limits. For larger files, please split them into smaller "
-#~ "parts. The output will be a ZIP archive containing all converted JPG images,"
-#~ " named with page numbers (e.g., filename_page0001.jpg, "
-#~ "filename_page0002.jpg)."
-#~ msgstr ""
-#~ "Użytkownicy darmowi mogą konwertować pliki PDF do %(max_pages)s stron. "
-#~ "Użytkownicy Premium mają wyższe limity. Większe pliki należy podzielić na "
-#~ "mniejsze części. Wynikiem będzie archiwum ZIP zawierające wszystkie "
-#~ "przekonwertowane obrazy JPG, nazwane numerami stron (np. "
-#~ "filename_page0001.jpg, filename_page0002.jpg)."
-
-#~ msgid ""
-#~ "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#~ "conversion)"
-#~ msgstr ""
-#~ "Kliknij przycisk konwersji, aby rozpocząć konwersję PDF na Word (konwersja "
-#~ "PDF na DOCX)"
-
-#~ msgid ""
-#~ "Wait for the PDF to Word conversion to complete - text and formatting will "
-#~ "be extracted from your PDF and converted to editable Word format"
-#~ msgstr ""
-#~ "Poczekaj na zakończenie konwersji PDF na Word - tekst i formatowanie zostaną"
-#~ " wyodrębnione z Twojego PDF i przekonwertowane na edytowalny format Word"
-
-#~ msgid ""
-#~ "Download your editable Word document (DOCX format) - your PDF has been "
-#~ "successfully converted to Word"
-#~ msgstr ""
-#~ "Pobierz edytowalny dokument Word (format DOCX) - Twój PDF został pomyślnie "
-#~ "przekonwertowany na Word"
-
-#~ msgid ""
-#~ "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
-#~ "OCR for Premium users."
-#~ msgstr ""
-#~ "PDF oparte na tekście działają najlepiej - zeskanowane PDF (tylko obrazy) "
-#~ "mogą być konwertowane z OCR dla użytkowników Premium."
-
-#~ msgid "Text-based PDFs work best."
-#~ msgstr "PDF oparte na tekście działają najlepiej."
-
-#~ msgid ""
-#~ "Wait for the Word to PDF conversion to complete - formatting and layout will"
-#~ " be preserved when converting from Word to PDF"
-#~ msgstr ""
-#~ "Poczekaj na zakończenie konwersji Word na PDF - formatowanie i układ zostaną"
-#~ " zachowane podczas konwersji z Word na PDF"
-
-#~ msgid ""
-#~ "Download your PDF file - your Word document has been successfully converted "
-#~ "to PDF format"
-#~ msgstr ""
-#~ "Pobierz swój plik PDF - twój dokument Word został pomyślnie przekonwertowany"
-#~ " na format PDF"
-
-#~ msgid ""
-#~ "Click the add page numbers button to process your PDF and add page numbers"
-#~ msgstr ""
-#~ "Kliknij przycisk dodawania numerów stron, aby przetworzyć PDF i dodać numery"
-#~ " stron"
-
-#~ msgid ""
-#~ "Download your PDF file with page numbers added using the download button"
-#~ msgstr ""
-#~ "Pobierz plik PDF z dodanymi numerami stron za pomocą przycisku pobierania"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for adding page "
-#~ "numbers. For larger files, please split them into smaller parts. The page "
-#~ "numbers will be added according to your selected position, format, and font "
-#~ "size."
-#~ msgstr ""
-#~ "Pliki PDF do %(max_pages)s stron są obsługiwane przy dodawaniu numerów "
-#~ "stron. Większe pliki należy podzielić na mniejsze części. Numery stron "
-#~ "zostaną dodane zgodnie z wybraną pozycją, formatem i rozmiarem czcionki."
-
-#~ msgid ""
-#~ "Choose the color and opacity using the sliders to customize your PDF "
-#~ "watermark"
-#~ msgstr ""
-#~ "Wybierz kolor i przezroczystość za pomocą suwaków, aby dostosować znak wodny"
-#~ " PDF"
-
-#~ msgid ""
-#~ "Click on the PDF to position the watermark, or drag it to move it anywhere "
-#~ "on the page"
-#~ msgstr ""
-#~ "Kliknij na PDF, aby ustawić znak wodny, lub przeciągnij go, aby przenieść go"
-#~ " w dowolne miejsce na stronie"
-
-#~ msgid ""
-#~ "Click the add watermark button to process your PDF and add the watermark"
-#~ msgstr ""
-#~ "Kliknij przycisk dodaj znak wodny, aby przetworzyć PDF i dodać znak wodny"
-
-#~ msgid "Download your watermarked PDF file using the download button"
-#~ msgstr "Pobierz plik PDF ze znakiem wodnym za pomocą przycisku pobierania"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for adding "
-#~ "watermarks. For larger files, please split them into smaller parts. The "
-#~ "watermark will be applied to all pages or selected pages as specified."
-#~ msgstr ""
-#~ "Pliki PDF do %(max_pages)s stron są obsługiwane przy dodawaniu znaków "
-#~ "wodnych. Większe pliki należy podzielić na mniejsze części. Znak wodny "
-#~ "zostanie zastosowany do wszystkich stron lub wybranych stron, zgodnie z "
-#~ "określeniem."
-
-#~ msgid "Click the crop button to process your PDF and crop the selected area"
-#~ msgstr ""
-#~ "Kliknij przycisk przycinania, aby przetworzyć PDF i przyciąć wybrany obszar"
-
-#~ msgid "Download your cropped PDF file using the download button"
-#~ msgstr "Pobierz przycięty plik PDF za pomocą przycisku pobierania"
-
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for cropping. For "
-#~ "larger files, please split them into smaller parts. The crop area you select"
-#~ " will be applied to all selected pages."
-#~ msgstr ""
-#~ "Pliki PDF do %(max_pages)s stron są obsługiwane przy przycinaniu. Większe "
-#~ "pliki należy podzielić na mniejsze części. Obszar przycinania, który "
-#~ "wybierzesz, zostanie zastosowany do wszystkich wybranych stron."
-
-#~ msgid ""
-#~ "Click the rotate button to process your PDF and rotate the selected pages"
-#~ msgstr ""
-#~ "Kliknij przycisk obracania, aby przetworzyć PDF i obrócić wybrane strony"
-
-#~ msgid "Download your rotated PDF file using the download button"
-#~ msgstr "Pobierz obrócony plik PDF za pomocą przycisku pobierania"
-
-#~ msgid "Download your compressed PDF file using the download button"
-#~ msgstr "Pobierz skompresowany plik PDF za pomocą przycisku pobierania"
-
-#~ msgid ""
-#~ "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5"
-#~ " to extract pages from PDF)"
-#~ msgstr ""
-#~ "Wprowadź numery stron, które chcesz wyodrębnić z PDF (np. 1,3,5 lub 1-5 do "
-#~ "wyodrębniania stron z PDF)"
-
-#~ msgid ""
-#~ "Click the extract button to process your PDF and extract the selected pages "
-#~ "into a new PDF file"
-#~ msgstr ""
-#~ "Kliknij przycisk wyodrębniania, aby przetworzyć PDF i wyodrębnić wybrane "
-#~ "strony do nowego pliku PDF"
-
-#~ msgid ""
-#~ "Download your extracted PDF file containing only the selected pages using "
-#~ "the download button"
-#~ msgstr ""
-#~ "Pobierz wyodrębniony plik PDF zawierający tylko wybrane strony za pomocą "
-#~ "przycisku pobierania"
-
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for extracting pages."
-#~ " For larger files, please split them into smaller parts. The extracted pages"
-#~ " will be combined into a single new PDF file."
-#~ msgstr ""
-#~ "Pliki PDF do %(max_pages)s stron są obsługiwane przy wyodrębnianiu stron. "
-#~ "Większe pliki należy podzielić na mniejsze części. Wyodrębnione strony "
-#~ "zostaną połączone w jeden nowy plik PDF."
-
-#~ msgid ""
-#~ "Download your merged PDF file containing all pages from all selected files "
-#~ "using the download button"
-#~ msgstr ""
-#~ "Pobierz połączony plik PDF zawierający wszystkie strony ze wszystkich "
-#~ "wybranych plików za pomocą przycisku pobierania"
-
-#~ msgid "Preview all pages and drag them to reorder pages in your PDF document"
-#~ msgstr ""
-#~ "Podejrzyj wszystkie strony i przeciągaj je, aby zmienić kolejność stron w "
-#~ "dokumencie PDF"
-
-#~ msgid "Choose operation: reorder pages manually or sort pages automatically"
-#~ msgstr ""
-#~ "Wybierz operację: zmień kolejność stron ręcznie lub sortuj strony "
-#~ "automatycznie"
-
-#~ msgid "Click the organize button to process your PDF and reorganize the pages"
-#~ msgstr ""
-#~ "Kliknij przycisk organizacji, aby przetworzyć PDF i zreorganizować strony"
-
-#~ msgid ""
-#~ "Download your reorganized PDF file with pages in the new order using the "
-#~ "download button"
-#~ msgstr ""
-#~ "Pobierz zreorganizowany plik PDF ze stronami w nowej kolejności za pomocą "
-#~ "przycisku pobierania"
-
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for organizing. For "
-#~ "larger files, please split them into smaller parts. You can drag and drop "
-#~ "pages to reorder them visually."
-#~ msgstr ""
-#~ "Pliki PDF do %(max_pages)s stron są obsługiwane przy organizowaniu. Większe "
-#~ "pliki należy podzielić na mniejsze części. Możesz przeciągać i upuszczać "
-#~ "strony, aby zmieniać ich kolejność wizualnie."
-
-#~ msgid "Download your PDF file with pages removed using the download button"
-#~ msgstr "Pobierz plik PDF z usuniętymi stronami za pomocą przycisku pobierania"
-
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for removing pages. "
-#~ "For larger files, please split them into smaller parts. The remaining pages "
-#~ "will be preserved in their original order."
-#~ msgstr ""
-#~ "Pliki PDF do %(max_pages)s stron są obsługiwane przy usuwaniu stron. Większe"
-#~ " pliki należy podzielić na mniejsze części. Pozostałe strony zostaną "
-#~ "zachowane w oryginalnej kolejności."
-
-#~ msgid ""
-#~ "The output will be a ZIP archive containing all split PDF files. You can "
-#~ "split your PDF by individual pages, by page ranges, or every N pages."
-#~ msgstr ""
-#~ "Wynikiem będzie archiwum ZIP zawierające wszystkie podzielone pliki PDF. "
-#~ "Możesz podzielić PDF po poszczególnych stronach, według zakresów stron lub "
-#~ "co N stron."
-
-#~ msgid ""
-#~ "Welcome to Convertica. These Terms of Service (\"Terms\") govern your use of"
-#~ " our website and services (collectively, \"Services\")."
-#~ msgstr ""
-#~ "Witamy w Convertica. Niniejsze Warunki korzystania (\"Warunki\") regulują "
-#~ "Twoje korzystanie z naszej witryny i usług (łącznie \"Usługi\")."
-
-#~ msgid ""
-#~ "Our Services are provided \"as is\" and \"as available\" without any "
-#~ "warranties of any kind, either express or implied, including but not limited"
-#~ " to:"
-#~ msgstr ""
-#~ "Nasze Usługi są świadczone \"tak jak są\" i \"dostępne\" bez jakichkolwiek "
-#~ "gwarancji, wyraźnych lub dorozumianych, w tym, ale nie ograniczając się do:"
-
-#~ msgid ""
-#~ "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
-#~ "converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No registration "
-#~ "needed."
-#~ msgstr ""
-#~ "Konwertuj PDF na Word online za darmo bez utraty formatowania. Szybki "
-#~ "konwerter PDF na DOCX bez wymaganego e-maila, nieograniczone konwersje, "
-#~ "wysokiej jakości wynik. Idealne dla dokumentów, CV i plików biznesowych. Bez"
-#~ " rejestracji."
-
-#~ msgid ""
-#~ "Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
-#~ "converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No registration "
-#~ "needed."
-#~ msgstr ""
-#~ "Konwertuj Word na PDF online za darmo bez utraty formatowania. Szybki "
-#~ "konwerter DOCX na PDF bez wymaganego e-maila, nieograniczone konwersje, "
-#~ "wysokiej jakości wynik. Idealne dla dokumentów, CV i plików biznesowych. Bez"
-#~ " rejestracji."
-
-#~ msgid "PDF to JPG - Convertica"
-#~ msgstr "PDF na JPG - Convertica"
-
-#~ msgid "JPG to PDF - Convertica"
-#~ msgstr "JPG na PDF - Convertica"
-
-#~ msgid ""
-#~ "Merge PDF online free without watermark. Combine two PDFs into one, merge "
-#~ "multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
-#~ "merger with drag and drop. No registration required."
-#~ msgstr ""
-#~ "Połącz PDF online za darmo bez znaku wodnego. Połącz dwa PDF w jeden, scal "
-#~ "wiele plików PDF szybko, zachowaj zakładki i jakość. Nieograniczony łączenie"
-#~ " PDF z przeciąganiem i upuszczaniem. Bez rejestracji."
-
-#~ msgid ""
-#~ "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages"
-#~ " from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
-#~ "with no watermark. No registration required."
-#~ msgstr ""
-#~ "Podziel PDF online za darmo według stron, zakresów lub zakładek. Wyodrębnij "
-#~ "konkretne strony z PDF, usuń strony, podziel PDF na wiele plików. Szybki "
-#~ "dzielnik PDF bez znaku wodnego. Bez rejestracji."
-
-#~ msgid ""
-#~ "Compress PDF online free to reduce file size fast. PDF compressor with no "
-#~ "watermark, compress PDF to under 1MB for email, reduce PDF file size without"
-#~ " losing quality. Best PDF compression tool 2025."
-#~ msgstr ""
-#~ "Kompresuj PDF online za darmo, aby szybko zmniejszyć rozmiar pliku. "
-#~ "Kompresor PDF bez znaku wodnego, kompresuj PDF do poniżej 1MB dla e-maila, "
-#~ "zmniejsz rozmiar pliku PDF bez utraty jakości. Najlepsze narzędzie do "
-#~ "kompresji PDF 2025."
-
-#~ msgid "Download report ZIP"
-#~ msgstr "Pobierz raport ZIP"
-
-#~ msgid "Download visual diff images and structured report files."
-#~ msgstr "Pobierz obrazy różnic wizualnych oraz ustrukturyzowane pliki raportu."
-
-#~ msgid "Download ZIP Report"
-#~ msgstr "Pobierz raport ZIP"
-
-#~ msgid "Preparing download..."
-#~ msgstr "Przygotowywanie pobierania..."
+#: utils_site/src/users/views.py:476
+msgid "Your plan does not include API access."
+msgstr "Twój plan nie obejmuje dostępu do API."
+
+#: utils_site/src/users/views.py:480
+msgid "Please name your key (e.g. 'production-server-a')."
+msgstr "Proszę nazwać swój klucz (np. 'production-server-a')."
+
+#: utils_site/src/users/views.py:484
+msgid "Maximum 10 active keys per user. Revoke unused first."
+msgstr ""
+"Maksymalnie 10 aktywnych kluczy na użytkownika. Najpierw cofnij nieużywane."
+
+#: utils_site/src/users/views.py:499
+msgid "Key not found."
+msgstr "Klucz nie znaleziony."
+
+#: utils_site/src/users/views.py:502
+msgid "API key revoked."
+msgstr "Klucz API cofnięty."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-18 20:23+0000\n"
+"POT-Creation-Date: 2026-05-19 15:32+0000\n"
 "PO-Revision-Date: 2024-01-01 12:00+0000\n"
 "Last-Translator: Auto Generated\n"
 "Language-Team: id\n"
@@ -627,6 +627,151 @@ msgstr "Pemeliharaan Tata Letak"
 msgid "No users found with the given filter."
 msgstr "Tidak ada pengguna yang ditemukan dengan filter ini."
 
+#: templates/api/landing.html:4
+msgid "Convertica API — PDF Conversion API for Developers"
+msgstr "Convertica API — API Konversi PDF untuk Pengembang"
+
+#: templates/api/landing.html:6
+msgid ""
+"Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI"
+" docs, HMAC-signed webhooks. Bundled with Convertica subscriptions."
+msgstr ""
+"Akses terprogram ke 30+ alat konversi PDF dan gambar. JSON API, dokumentasi "
+"OpenAPI, webhook bertanda HMAC. Dibundel dengan langganan Convertica."
+
+#: templates/api/landing.html:12
+msgid "Convertica API"
+msgstr "Convertica API"
+
+#: templates/api/landing.html:13
+msgid ""
+"Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI"
+" docs, HMAC-signed webhooks."
+msgstr ""
+"Akses terprogram ke 30+ alat konversi PDF dan gambar. JSON API, dokumentasi "
+"OpenAPI, webhook bertanda HMAC."
+
+#: templates/api/landing.html:15
+msgid "View API docs"
+msgstr "Lihat dokumen API"
+
+#: templates/api/landing.html:16
+msgid "See pricing"
+msgstr "Lihat harga"
+
+#: templates/api/landing.html:22
+msgid "Monthly"
+msgstr "Bulanan"
+
+#: templates/api/landing.html:24 templates/api/landing.html:29
+#, python-format
+msgid "%(quota)s API call per month"
+msgid_plural "%(quota)s API calls per month"
+msgstr[0] "%(quota)s panggilan API per bulan"
+
+#: templates/api/landing.html:27
+msgid "Yearly"
+msgstr "Tahunan"
+
+#: templates/api/landing.html:30
+msgid "Best value"
+msgstr "Nilai terbaik"
+
+#: templates/api/landing.html:33
+msgid "Lifetime"
+msgstr "Seumur hidup"
+
+#: templates/api/landing.html:34
+msgid "once"
+msgstr "sekali"
+
+#: templates/api/landing.html:35
+#, python-format
+msgid "%(quota)s API call per month forever"
+msgid_plural "%(quota)s API calls per month forever"
+msgstr[0] "%(quota)s panggilan API per bulan selamanya"
+
+#: templates/api/landing.html:40
+msgid "Quick start"
+msgstr "Mulai cepat"
+
+#: templates/api/landing.html:42
+msgid "1. Issue a key in your dashboard"
+msgstr "1. Terbitkan kunci di dasbor Anda"
+
+#: templates/api/landing.html:43
+msgid ""
+"Go to <a href=\"/users/api-keys/\" class=\"text-blue-600 underline\">your "
+"API Keys dashboard</a> and create a named key. The full key is shown once — "
+"copy it immediately."
+msgstr ""
+"Buka <a href=\"/users/api-keys/\" class=\"text-blue-600 underline\">dasbor "
+"Kunci API Anda</a> dan buat kunci bernama. Kunci lengkap ditampilkan sekali "
+"— salin segera."
+
+#: templates/api/landing.html:45
+msgid "2. Make a request"
+msgstr "2. Buat permintaan"
+
+#: templates/api/landing.html:46
+msgid "curl example — convert a PDF to Word:"
+msgstr "Contoh curl — konversi PDF ke Word:"
+
+#: templates/api/landing.html:52
+msgid "Python example"
+msgstr "Contoh Python"
+
+#: templates/api/landing.html:64
+msgid "What you get"
+msgstr "Apa yang Anda dapatkan"
+
+#: templates/api/landing.html:66
+msgid ""
+"30+ conversion endpoints: PDF↔Word, Excel, PPT, JPG, PNG, HTML, EPUB, "
+"Markdown"
+msgstr ""
+"30+ titik akhir konversi: PDF↔Word, Excel, PPT, JPG, PNG, HTML, EPUB, "
+"Markdown"
+
+#: templates/api/landing.html:67
+msgid ""
+"PDF edit: merge, split, rotate, watermark, sign, compress, crop, flatten"
+msgstr ""
+"Edit PDF: gabung, pisah, putar, watermark, tanda tangan, kompres, potong, "
+"ratakan"
+
+#: templates/api/landing.html:68
+msgid "Image: optimize, convert, HEIC→JPG/PNG"
+msgstr "Gambar: optimalkan, konversi, HEIC→JPG/PNG"
+
+#: templates/api/landing.html:69
+msgid "Sync (small files) and async (large files) modes"
+msgstr "Mode sinkron (file kecil) dan asinkron (file besar)"
+
+#: templates/api/landing.html:70
+msgid "Opt-in HMAC-signed webhook callbacks for async results"
+msgstr "Panggilan balik webhook bertanda HMAC opsional untuk hasil asinkron"
+
+#: templates/api/landing.html:71
+msgid "OpenAPI 3 documentation"
+msgstr "Dokumentasi OpenAPI 3"
+
+#: templates/api/landing.html:72
+msgid "Sub-200ms median, EU edge"
+msgstr "Median di bawah 200ms, edge UE"
+
+#: templates/api/landing.html:73
+msgid "Same backend as convertica.net — battle-tested"
+msgstr "Backend yang sama dengan convertica.net — teruji di lapangan"
+
+#: templates/api/landing.html:78
+msgid "Ready to start?"
+msgstr "Siap memulai?"
+
+#: templates/api/landing.html:79
+msgid "Subscribe and get your API key"
+msgstr "Berlangganan dan dapatkan kunci API Anda"
+
 #: templates/base.html:16 templates/base.html:34 templates/base.html:46
 msgid "Convertica – Online PDF Tools"
 msgstr "Convertica – Alat PDF Online"
@@ -713,7 +858,6 @@ msgstr "blog, artikel, panduan PDF, tips dokumen, tutorial"
 #: templates/frontend/includes/footer.html:228
 #: templates/frontend/includes/header.html:1078
 #: templates/frontend/includes/header.html:1645
-#: utils_site/src/blog/views.py:147
 msgid "Blog"
 msgstr "Blog"
 
@@ -973,7 +1117,7 @@ msgstr ""
 "tanpa repot."
 
 #: templates/frontend/about.html:198 templates/frontend/pricing.html:390
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:713
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:715
 msgid "Privacy First"
 msgstr "Privasi Diutamakan"
 
@@ -1242,8 +1386,8 @@ msgstr "Ratakan PDF untuk menghapus kolom formulir dan anotasi"
 #: templates/frontend/includes/header.html:1327
 #: templates/frontend/includes/header.html:1571
 #: utils_site/src/frontend/context_processors.py:207
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:683
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:689
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:685
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:691
 #: utils_site/src/frontend/views.py:197 utils_site/src/frontend/views.py:719
 msgid "Sign PDF"
 msgstr "Tanda Tangani PDF"
@@ -4571,8 +4715,6 @@ msgid "Rendered in a handwriting-style font (Caveat)."
 msgstr "Ditampilkan dengan font gaya tulisan tangan (Caveat)."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:164
-#| msgid ""
-#| "PNG with transparent background gives the best result. JPG is also accepted."
 msgid ""
 "PNG with transparent background gives the cleanest result. JPG is also "
 "accepted."
@@ -4888,7 +5030,7 @@ msgstr ""
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:319
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:450
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:577
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:690
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:692
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:196
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:342
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:468
@@ -5219,13 +5361,13 @@ msgstr "Aktif"
 
 #: templates/frontend/premium/background_center.html:36
 #: templates/frontend/premium/background_center.html:169
-#: templates/users/account_status.html:286 utils_site/src/users/models.py:511
+#: templates/users/account_status.html:286 utils_site/src/users/models.py:539
 msgid "Completed"
 msgstr "Selesai"
 
 #: templates/frontend/premium/background_center.html:40
 #: templates/frontend/premium/background_center.html:172
-#: templates/users/account_status.html:294 utils_site/src/users/models.py:512
+#: templates/users/account_status.html:294 utils_site/src/users/models.py:540
 msgid "Failed"
 msgstr "Gagal"
 
@@ -6332,8 +6474,6 @@ msgid "Your session expired. Refreshing the page…"
 msgstr "Sesi Anda berakhir. Memuat ulang halaman…"
 
 #: templates/frontend/pricing.html:849
-#| msgid ""
-#| "Email service is temporarily unavailable. Please try again in a few minutes."
 msgid ""
 "Checkout service is temporarily unavailable. Please try again in a moment."
 msgstr ""
@@ -7217,7 +7357,7 @@ msgid "Plan Information"
 msgstr "Informasi Paket"
 
 #: templates/payments/success.html:29 templates/users/account_status.html:271
-#: utils_site/src/users/models.py:518
+#: utils_site/src/users/models.py:546
 msgid "Plan"
 msgstr "Paket"
 
@@ -7226,7 +7366,7 @@ msgid "Price"
 msgstr "Harga"
 
 #: templates/payments/success.html:37 templates/users/account_status.html:273
-#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:527
+#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:555
 msgid "Status"
 msgstr "Status"
 
@@ -7521,19 +7661,19 @@ msgstr "Riwayat Pembayaran"
 msgid "Date"
 msgstr "Tanggal"
 
-#: templates/users/account_status.html:272 utils_site/src/users/models.py:521
+#: templates/users/account_status.html:272 utils_site/src/users/models.py:549
 msgid "Amount"
 msgstr "Jumlah"
 
-#: templates/users/account_status.html:274 utils_site/src/users/models.py:530
+#: templates/users/account_status.html:274 utils_site/src/users/models.py:558
 msgid "Payment ID"
 msgstr "ID Pembayaran"
 
-#: templates/users/account_status.html:290 utils_site/src/users/models.py:510
+#: templates/users/account_status.html:290 utils_site/src/users/models.py:538
 msgid "Pending"
 msgstr "Tertunda"
 
-#: templates/users/account_status.html:298 utils_site/src/users/models.py:513
+#: templates/users/account_status.html:298 utils_site/src/users/models.py:541
 msgid "Refunded"
 msgstr "Dikembalikan"
 
@@ -7600,6 +7740,72 @@ msgstr "Pertahankan Akun"
 #: templates/users/account_status.html:384
 msgid "Delete Forever"
 msgstr "Hapus Selamanya"
+
+#: templates/users/api_keys.html:3 templates/users/api_keys.html:6
+msgid "API Keys"
+msgstr "Kunci API"
+
+#: templates/users/api_keys.html:10
+msgid "Subscribe to unlock API access"
+msgstr "Berlangganan untuk membuka akses API"
+
+#: templates/users/api_keys.html:11
+msgid ""
+"API access is included with Monthly, Yearly, and Lifetime Hero plans. View "
+"pricing to subscribe."
+msgstr ""
+"Akses API disertakan dengan paket Bulanan, Tahunan, dan Hero Seumur Hidup. "
+"Lihat harga untuk berlangganan."
+
+#: templates/users/api_keys.html:12
+msgid "View pricing"
+msgstr "Lihat harga"
+
+#: templates/users/api_keys.html:16
+#, python-format
+msgid "Your plan includes %(quota)s API call per month."
+msgid_plural "Your plan includes %(quota)s API calls per month."
+msgstr[0] "Paket Anda mencakup %(quota)s panggilan API per bulan."
+
+#: templates/users/api_keys.html:29
+msgid "Your new API key — copy it now, it won't be shown again:"
+msgstr "Kunci API baru Anda — salin sekarang, tidak akan ditampilkan lagi:"
+
+#: templates/users/api_keys.html:36
+msgid "Key name (e.g. production-server-a)"
+msgstr "Nama kunci (mis. production-server-a)"
+
+#: templates/users/api_keys.html:37
+msgid "Create key"
+msgstr "Buat kunci"
+
+#: templates/users/api_keys.html:42
+msgid "Name"
+msgstr "Nama"
+
+#: templates/users/api_keys.html:42
+msgid "Prefix"
+msgstr "Awalan"
+
+#: templates/users/api_keys.html:42
+msgid "Used"
+msgstr "Digunakan"
+
+#: templates/users/api_keys.html:42
+msgid "Last used"
+msgstr "Terakhir digunakan"
+
+#: templates/users/api_keys.html:51
+msgid "Revoke this key?"
+msgstr "Cabut kunci ini?"
+
+#: templates/users/api_keys.html:53
+msgid "Revoke"
+msgstr "Cabut"
+
+#: templates/users/api_keys.html:61
+msgid "No API keys yet."
+msgstr "Belum ada kunci API."
 
 #: templates/users/login.html:6 templates/users/login.html:114
 msgid "Sign In"
@@ -7701,7 +7907,7 @@ msgid "Upgrade Now"
 msgstr "Tingkatkan Sekarang"
 
 #: templates/users/profile.html:217 templates/users/profile_edit.html:6
-#: templates/users/profile_edit.html:19 utils_site/src/users/views.py:214
+#: templates/users/profile_edit.html:19 utils_site/src/users/views.py:221
 msgid "Edit Profile"
 msgstr "Edit Profil"
 
@@ -7741,7 +7947,7 @@ msgstr "Nama Belakang"
 msgid "Hero Settings"
 msgstr "Pengaturan Hero"
 
-#: templates/users/profile_edit.html:109 utils_site/src/users/models.py:55
+#: templates/users/profile_edit.html:109 utils_site/src/users/models.py:57
 msgid "Display as Hero"
 msgstr "Tampilkan sebagai Hero"
 
@@ -7800,20 +8006,20 @@ msgstr ""
 "MB. Tingkatkan ke Premium untuk batasan %(premium_mb).0f MB! Dapatkan "
 "Premium 1-hari hanya dengan $1."
 
-#: utils_site/src/api/async_views.py:245 utils_site/src/api/base_views.py:214
+#: utils_site/src/api/async_views.py:245 utils_site/src/api/base_views.py:227
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
 msgstr "File terlalu besar. Ukuran maksimum adalah %(max_mb).0f MB."
 
-#: utils_site/src/api/base_views.py:159
+#: utils_site/src/api/base_views.py:172
 msgid "File is empty. Please upload a valid file."
 msgstr "File kosong. Harap unggah file yang valid."
 
-#: utils_site/src/api/base_views.py:171
+#: utils_site/src/api/base_views.py:184
 msgid "File is too small to be valid."
 msgstr "File terlalu kecil untuk menjadi valid."
 
-#: utils_site/src/api/base_views.py:200
+#: utils_site/src/api/base_views.py:213
 #, python-format
 msgid ""
 "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade"
@@ -7823,12 +8029,12 @@ msgstr ""
 "MB. Tingkatkan ke Premium untuk batasan %(premium_mb).0f MB! Dapatkan "
 "Premium 1-hari hanya dengan $1."
 
-#: utils_site/src/api/base_views.py:236
+#: utils_site/src/api/base_views.py:249
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
 msgstr "Tipe konten tidak didukung: %(content_type)s"
 
-#: utils_site/src/api/base_views.py:255
+#: utils_site/src/api/base_views.py:268
 #, python-format
 msgid "Only %(extensions)s files are allowed."
 msgstr "Hanya file %(extensions)s yang diizinkan."
@@ -8113,12 +8319,12 @@ msgstr "Pilih alat yang paling relevan untuk artikel ini"
 msgid "Published At"
 msgstr "Diterbitkan Pada"
 
-#: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:37
-#: utils_site/src/users/models.py:547
+#: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:39
+#: utils_site/src/users/models.py:575
 msgid "Created At"
 msgstr "Dibuat Pada"
 
-#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:548
+#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:576
 msgid "Updated At"
 msgstr "Diperbarui Pada"
 
@@ -8815,7 +9021,7 @@ msgstr ""
 "dan kesetiaan visual"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:61
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:721
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:723
 msgid "Instant Download"
 msgstr "Unduh Seketika"
 
@@ -12309,21 +12515,16 @@ msgstr ""
 "halaman untuk menempatkannya, seret untuk memposisikan, ubah ukuran dengan "
 "pegangan. Fitur premium."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:682
-#| msgid ""
-#| "Sign PDF is a premium feature. Draw, type, or upload your signature and "
-#| "place it anywhere on the document."
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:683
 msgid "Draw, type, or upload your signature — place it anywhere on the PDF"
 msgstr ""
 "Gambar, ketik, atau unggah tanda tangan — tempatkan di mana saja pada PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:697
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:699
 msgid "Draw, Type or Upload"
 msgstr "Gambar, Ketik, atau Unggah"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:699
-#| msgid ""
-#| "Draw your signature, type it in a handwriting font, or upload an image"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:701
 msgid ""
 "Three ways to create a signature: draw it with the mouse or finger, type "
 "your name in a handwriting font, or upload a PNG/JPG image"
@@ -12331,15 +12532,11 @@ msgstr ""
 "Tiga cara membuat tanda tangan: gambar dengan mouse atau jari, ketik nama "
 "Anda dalam font tulisan tangan, atau unggah gambar PNG/JPG"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:705
-#| msgid "Flexible Placement"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:707
 msgid "Visual Placement"
 msgstr "Penempatan Visual"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:707
-#| msgid ""
-#| "Click anywhere on the page to drop your signature. Drag to position, use the"
-#| " bottom-right handle to resize."
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:709
 msgid ""
 "Click on the PDF preview to drop your signature, drag to fine-tune position,"
 " and pull the corner handle to resize"
@@ -12347,7 +12544,7 @@ msgstr ""
 "Klik pratinjau PDF untuk menempatkan tanda tangan, seret untuk menyesuaikan "
 "posisi, dan tarik pegangan sudut untuk mengubah ukuran"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:715
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:717
 msgid ""
 "Files are processed in-memory and deleted immediately — your signature is "
 "never stored"
@@ -12355,16 +12552,15 @@ msgstr ""
 "File diproses di memori dan dihapus segera — tanda tangan Anda tidak pernah "
 "disimpan"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:723
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:725
 msgid "Signed PDF is ready for immediate download with no delays"
 msgstr "PDF yang ditandatangani siap untuk diunduh segera tanpa penundaan"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:729
-#| msgid "How do I rotate a PDF page?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:731
 msgid "How do I create a signature?"
 msgstr "Bagaimana cara membuat tanda tangan?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:731
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:733
 msgid ""
 "Three ways: draw it on the canvas with your mouse or finger, type your name "
 "and we render it in a handwriting font, or upload a PNG/JPG image. PNG with "
@@ -12375,13 +12571,11 @@ msgstr ""
 "Untuk unggahan, PNG dengan latar belakang transparan memberikan hasil paling"
 " bersih."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:737
-#| msgid ""
-#| "Click and drag inside the blue box to move it anywhere on the page"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:739
 msgid "Can I place the signature anywhere on the page?"
 msgstr "Bisakah saya menempatkan tanda tangan di mana saja pada halaman?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:739
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:741
 msgid ""
 "Yes. After creating your signature, click anywhere on the PDF preview to "
 "drop it there. Drag it around to fine-tune the position, or pull the corner "
@@ -12393,12 +12587,11 @@ msgstr ""
 "untuk mengubah ukuran. Anda dapat menempatkan beberapa tanda tangan pada "
 "halaman yang sama atau berbeda."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:746
-#| msgid "Can I crop multiple pages at once?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:748
 msgid "Can I sign multiple pages of a long contract?"
 msgstr "Bisakah saya menandatangani beberapa halaman dari kontrak panjang?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:748
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:750
 msgid ""
 "Yes. Use the page selector above the preview to switch pages, then click to "
 "drop a signature on each one. Every placement is saved and applied when you "
@@ -12408,12 +12601,11 @@ msgstr ""
 "klik untuk meletakkan tanda tangan pada setiap halaman. Semua penempatan "
 "disimpan dan diterapkan saat Anda menekan Sign PDF."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:754
-#| msgid "Will my fonts be preserved in the PDF?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:756
 msgid "Will my signature be saved for next time?"
 msgstr "Apakah tanda tangan saya disimpan untuk lain kali?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:756
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:758
 msgid ""
 "If you drew or typed your signature, the last version is saved locally in "
 "your browser (never sent to the server), so you can re-use it on the next "
@@ -12424,11 +12616,11 @@ msgstr ""
 "Anda dapat menggunakannya kembali dengan satu klik pada kunjungan "
 "berikutnya. Gambar yang diunggah tidak disimpan demi privasi."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:762
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:764
 msgid "Is this legally binding?"
 msgstr "Apakah ini mengikat secara hukum?"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:764
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:766
 msgid ""
 "This tool adds a visual image signature to the PDF. For legally binding "
 "electronic signatures with audit trails and certificates, a dedicated "
@@ -12438,13 +12630,11 @@ msgstr ""
 "elektronik yang mengikat secara hukum dengan jejak audit dan sertifikat, "
 "layanan e-tanda tangan khusus direkomendasikan."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:770
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:772
 msgid "Sign PDF FAQ"
 msgstr "FAQ Tanda Tangan PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:773
-#| msgid ""
-#| "Upload your signature image (PNG with a transparent background works best)"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:775
 msgid ""
 "For the cleanest look, draw your signature directly or upload a PNG with a "
 "transparent background."
@@ -12452,7 +12642,7 @@ msgstr ""
 "Untuk tampilan paling bersih, gambar tanda tangan langsung atau unggah PNG "
 "dengan latar belakang transparan."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:776
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:778
 msgid ""
 "Click on the PDF preview to drop the signature exactly where you want it; "
 "drag and resize without re-uploading."
@@ -12460,7 +12650,7 @@ msgstr ""
 "Klik pratinjau PDF untuk meletakkan tanda tangan tepat di tempat yang Anda "
 "inginkan; seret dan ubah ukurannya tanpa mengunggah ulang."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:779
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:781
 msgid ""
 "To sign every page of a contract, switch pages with the selector and drop "
 "the signature on each one — your placements are remembered."
@@ -12468,15 +12658,15 @@ msgstr ""
 "Untuk menandatangani setiap halaman kontrak, ganti halaman dengan pemilih "
 "dan letakkan tanda tangan pada masing-masing — semua penempatan diingat."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:782
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:784
 msgid "Tips for Signing PDFs"
 msgstr "Tips untuk Menandatangani PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:783
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:785
 msgid "Sign a PDF online — draw, type, or upload"
 msgstr "Tanda tangani PDF online — gambar, ketik, atau unggah"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:785
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:787
 msgid ""
 "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a "
 "PDF. Draw it with the mouse or finger, type your name in a handwriting-style"
@@ -14478,106 +14668,127 @@ msgstr "Akses Lifetime Hero (Penawaran Pendiri)"
 msgid "One-time payment. Limited to first 100 customers."
 msgstr "Pembayaran sekali. Hanya untuk 100 pelanggan pertama."
 
-#: utils_site/src/users/models.py:14
+#: utils_site/src/users/models.py:16
 msgid "The Email must be set"
 msgstr "Email harus diatur"
 
-#: utils_site/src/users/models.py:25
+#: utils_site/src/users/models.py:27
 msgid "Superuser must have is_staff=True."
 msgstr "Superuser harus memiliki is_staff=True."
 
-#: utils_site/src/users/models.py:27
+#: utils_site/src/users/models.py:29
 msgid "Superuser must have is_superuser=True."
 msgstr "Superuser harus memiliki is_superuser=True."
 
-#: utils_site/src/users/models.py:32
+#: utils_site/src/users/models.py:34
 msgid "email address"
 msgstr "alamat email"
 
-#: utils_site/src/users/models.py:35
+#: utils_site/src/users/models.py:37
 msgid "Is Premium"
 msgstr "Apakah Premium"
 
-#: utils_site/src/users/models.py:41
+#: utils_site/src/users/models.py:43
 msgid "Subscription Start Date"
 msgstr "Tanggal Mulai Langganan"
 
-#: utils_site/src/users/models.py:44
+#: utils_site/src/users/models.py:46
 msgid "Subscription End Date"
 msgstr "Tanggal Berakhir Langganan"
 
-#: utils_site/src/users/models.py:47
+#: utils_site/src/users/models.py:49
 msgid "Total Subscription Days"
 msgstr "Total Hari Langganan"
 
-#: utils_site/src/users/models.py:50
+#: utils_site/src/users/models.py:52
 msgid "Consecutive Subscription Days"
 msgstr "Hari Langganan Berturut-turut"
 
-#: utils_site/src/users/models.py:83 utils_site/src/users/models.py:516
+#: utils_site/src/users/models.py:64
+msgid "Per-user HMAC secret for signing outbound webhook callbacks."
+msgstr ""
+"Rahasia HMAC per pengguna untuk menandatangani panggilan balik webhook "
+"keluar."
+
+#: utils_site/src/users/models.py:92 utils_site/src/users/models.py:544
 msgid "User"
 msgstr "Pengguna"
 
-#: utils_site/src/users/models.py:84
+#: utils_site/src/users/models.py:93
 msgid "Users"
 msgstr "Pengguna"
 
-#: utils_site/src/users/models.py:460
+#: utils_site/src/users/models.py:448
+msgid ""
+"Monthly /api/v1 call quota for subscribers of this plan. 0 = no API access."
+msgstr ""
+"Kuota panggilan /api/v1 bulanan untuk pelanggan paket ini. 0 = tidak ada "
+"akses API."
+
+#: utils_site/src/users/models.py:488
 msgid "Runtime Setting"
 msgstr "Pengaturan Rotasi"
 
-#: utils_site/src/users/models.py:461
+#: utils_site/src/users/models.py:489
 msgid "Runtime Settings"
 msgstr "Pengaturan Rotasi"
 
-#: utils_site/src/users/models.py:469
+#: utils_site/src/users/models.py:497
 msgid "Setting key cannot be empty."
 msgstr "Kata sandi tidak boleh kosong"
 
-#: utils_site/src/users/models.py:477
+#: utils_site/src/users/models.py:505
 msgid ""
 "This setting key is considered secret and cannot be configured from admin."
 msgstr ""
 "Kunci pengaturan ini dianggap rahasia dan tidak dapat dikonfigurasi dari "
 "admin."
 
-#: utils_site/src/users/models.py:534
+#: utils_site/src/users/models.py:562
 msgid "Payment Method"
 msgstr "Metode Pembayaran"
 
-#: utils_site/src/users/models.py:539
+#: utils_site/src/users/models.py:567
 msgid "Provider"
 msgstr "Penyedia"
 
-#: utils_site/src/users/models.py:542
+#: utils_site/src/users/models.py:570
 msgid "Transaction ID"
 msgstr "ID Transaksi"
 
-#: utils_site/src/users/models.py:545
+#: utils_site/src/users/models.py:573
 msgid "Processed At"
 msgstr "Diproses Pada"
 
-#: utils_site/src/users/models.py:551
+#: utils_site/src/users/models.py:579
 msgid "Payment"
 msgstr "Pembayaran"
 
-#: utils_site/src/users/models.py:552
+#: utils_site/src/users/models.py:580
 msgid "Payments"
 msgstr "Pembayaran"
 
-#: utils_site/src/users/views.py:53
+#: utils_site/src/users/models.py:838
+msgid "User-set label"
+msgstr "Label yang ditetapkan pengguna"
+
+#: utils_site/src/users/models.py:841
+msgid "Tool slugs or [\"*\"]"
+msgstr "Slug alat atau [\"*\"]"
+
+#: utils_site/src/users/views.py:56
 msgid "Please verify your email address before signing in."
 msgstr "Harap verifikasi alamat email Anda sebelum masuk."
 
-#: utils_site/src/users/views.py:63
+#: utils_site/src/users/views.py:66
 msgid "Account is disabled"
 msgstr "Akun dinonaktifkan"
 
-#: utils_site/src/users/views.py:69
+#: utils_site/src/users/views.py:72
 msgid "Invalid email or password"
 msgstr "Email atau kata sandi tidak valid"
 
-#: utils_site/src/users/views.py:101
+#: utils_site/src/users/views.py:106
 msgid ""
 "Registration successful! Please check your email to verify your account "
 "before logging in."
@@ -14585,1125 +14796,62 @@ msgstr ""
 "Pendaftaran berhasil! Harap periksa email Anda untuk memverifikasi akun "
 "sebelum masuk."
 
-#: utils_site/src/users/views.py:125
+#: utils_site/src/users/views.py:130
 msgid "You have been successfully logged out."
 msgstr "Anda telah berhasil keluar."
 
-#: utils_site/src/users/views.py:171
+#: utils_site/src/users/views.py:177
 msgid "Your email is already verified."
 msgstr "Email Anda sudah diverifikasi."
 
-#: utils_site/src/users/views.py:193
+#: utils_site/src/users/views.py:200
 msgid "Password reset email sent. Please check your inbox and spam folder."
 msgstr ""
 "Email reset kata sandi terkirim. Harap periksa kotak masuk dan folder spam "
 "Anda."
 
-#: utils_site/src/users/views.py:196
+#: utils_site/src/users/views.py:203
 msgid "Unable to send password reset email."
 msgstr "Tidak dapat mengirim email reset kata sandi."
 
-#: utils_site/src/users/views.py:207
+#: utils_site/src/users/views.py:214
 msgid "Profile updated successfully!"
 msgstr "Profil berhasil diperbarui!"
 
-#: utils_site/src/users/views.py:276
+#: utils_site/src/users/views.py:283
 msgid "Account deleted successfully"
 msgstr "Akun berhasil dihapus"
 
-#: utils_site/src/users/views.py:287
+#: utils_site/src/users/views.py:294
 msgid "Method not allowed"
 msgstr "Metode tidak diizinkan"
 
-#: utils_site/src/users/views.py:307
+#: utils_site/src/users/views.py:314
 msgid "Hero display updated successfully"
 msgstr "Tampilan hero berhasil diperbarui"
 
-#: utils_site/src/users/views.py:312
+#: utils_site/src/users/views.py:319
 msgid "Invalid JSON"
 msgstr "JSON tidak valid"
 
-#~ msgid ""
-#~ "Add your handwritten signature to any PDF document. Premium feature: upload "
-#~ "a PNG signature image, choose position and apply to all pages. Fast and "
-#~ "secure."
-#~ msgstr ""
-#~ "Tambahkan tanda tangan tulisan tangan Anda ke dokumen PDF apa pun. Fitur "
-#~ "Premium: unggah gambar tanda tangan PNG, pilih posisi dan terapkan ke semua "
-#~ "halaman. Cepat dan aman."
-
-#~ msgid "Add your image signature to any PDF page"
-#~ msgstr "Tambahkan tanda tangan gambar Anda ke halaman PDF mana pun"
-
-#~ msgid "Image Signature"
-#~ msgstr "Tanda Tangan Gambar"
-
-#~ msgid ""
-#~ "Upload any PNG or JPEG image of your handwritten signature and place it "
-#~ "precisely on the PDF"
-#~ msgstr ""
-#~ "Unggah gambar PNG atau JPEG tanda tangan tulisan tangan Anda dan tempatkan "
-#~ "dengan tepat di PDF"
-
-#~ msgid ""
-#~ "Choose the exact position and page for your signature, or apply it to all "
-#~ "pages at once"
-#~ msgstr ""
-#~ "Pilih posisi dan halaman yang tepat untuk tanda tangan Anda, atau terapkan "
-#~ "ke semua halaman sekaligus"
-
-#~ msgid "What image formats are accepted for the signature?"
-#~ msgstr "Format gambar apa yang diterima untuk tanda tangan?"
-
-#~ msgid ""
-#~ "You can upload a PNG or JPEG image of your handwritten signature. PNG with a"
-#~ " transparent background works best so the signature blends naturally into "
-#~ "the PDF."
-#~ msgstr ""
-#~ "Anda dapat mengunggah gambar PNG atau JPEG dari tanda tangan tulisan tangan "
-#~ "Anda. PNG dengan latar belakang transparan bekerja paling baik agar tanda "
-#~ "tangan berbaur secara alami ke dalam PDF."
-
-#~ msgid "Can I sign all pages at once?"
-#~ msgstr "Bisakah saya menandatangani semua halaman sekaligus?"
-
-#~ msgid ""
-#~ "Yes. Enable the 'Apply to all pages' option and your signature will be "
-#~ "stamped on every page of the PDF at the same position."
-#~ msgstr ""
-#~ "Ya. Aktifkan opsi 'Terapkan ke semua halaman' dan tanda tangan Anda akan "
-#~ "dicap di setiap halaman PDF pada posisi yang sama."
-
-#~ msgid ""
-#~ "Use a PNG image with a transparent background for the cleanest signature "
-#~ "result."
-#~ msgstr ""
-#~ "Gunakan gambar PNG dengan latar belakang transparan untuk hasil tanda tangan"
-#~ " paling bersih."
-
-#~ msgid ""
-#~ "Increase the signature width for large-format PDFs so it stays visible."
-#~ msgstr ""
-#~ "Perbesar lebar tanda tangan untuk PDF berformat besar agar tetap terlihat."
-
-#~ msgid ""
-#~ "Use the 'Apply to all pages' option to stamp every page in a contract at "
-#~ "once."
-#~ msgstr ""
-#~ "Gunakan opsi 'Terapkan ke semua halaman' untuk mencap setiap halaman dalam "
-#~ "kontrak sekaligus."
-
-#~ msgid "Add your signature to a PDF online"
-#~ msgstr "Tambahkan tanda tangan Anda ke PDF secara online"
-
-#~ msgid ""
-#~ "<p><strong>Sign PDF</strong> lets you place a handwritten signature image "
-#~ "directly onto any page of a PDF document. Upload your signature as a PNG or "
-#~ "JPEG, choose the position and page, and download the signed PDF in "
-#~ "seconds.</p><p>No account required. Files are processed securely and deleted"
-#~ " immediately after download. The signed PDF retains all original content and"
-#~ " formatting.</p>"
-#~ msgstr ""
-#~ "<p><strong>Tanda Tangani PDF</strong> memungkinkan Anda menempatkan gambar "
-#~ "tanda tangan tulisan tangan langsung ke halaman mana pun dari dokumen PDF. "
-#~ "Unggah tanda tangan Anda sebagai PNG atau JPEG, pilih posisi dan halaman, "
-#~ "dan unduh PDF yang ditandatangani dalam hitungan detik.</p><p>Tidak "
-#~ "diperlukan akun. File diproses dengan aman dan dihapus segera setelah "
-#~ "diunduh. PDF yang ditandatangani mempertahankan semua konten dan pemformatan"
-#~ " asli.</p>"
-
-#~ msgid "Signature Settings"
-#~ msgstr "Pengaturan Tanda Tangan"
-
-#~ msgid "Upload Signature Image"
-#~ msgstr "Unggah Gambar Tanda Tangan"
-
-#~ msgid "Signature Position"
-#~ msgstr "Posisi Tanda Tangan"
-
-#~ msgid "Center"
-#~ msgstr "Tengah"
-
-#~ msgid "Page to Sign"
-#~ msgstr "Halaman untuk Ditandatangani"
-
-#~ msgid ""
-#~ "Enter the page number where the signature will be placed (first page = 1)."
-#~ msgstr ""
-#~ "Masukkan nomor halaman tempat tanda tangan akan ditempatkan (halaman pertama"
-#~ " = 1)."
-
-#~ msgid "Signature Width"
-#~ msgstr "Lebar Tanda Tangan"
-
-#~ msgid "pt"
-#~ msgstr "pt"
-
-#~ msgid "Apply signature to all pages"
-#~ msgstr "Terapkan tanda tangan ke semua halaman"
-
-#~ msgid "When checked, the signature is added to every page of the PDF."
-#~ msgstr "Jika dicentang, tanda tangan ditambahkan ke setiap halaman PDF."
-
-#~ msgid "Choose the position and page where the signature should appear"
-#~ msgstr "Pilih posisi dan halaman tempat tanda tangan harus muncul"
-
-#~ msgid "Adjust the signature width and opacity using the sliders"
-#~ msgstr "Sesuaikan lebar dan opasitas tanda tangan menggunakan slider"
-
-#~ msgid "Click the Sign PDF button to process your document"
-#~ msgstr "Klik tombol Tanda Tangani PDF untuk memproses dokumen Anda"
-
-#~ msgid "Download your signed PDF file"
-#~ msgstr "Unduh file PDF yang telah ditandatangani"
-
-#~ msgid ""
-#~ "Use a PNG image with a transparent background so the signature blends "
-#~ "naturally into the document without a white box around it."
-#~ msgstr ""
-#~ "Gunakan gambar PNG dengan latar belakang transparan agar tanda tangan "
-#~ "menyatu secara alami ke dalam dokumen."
-
-#~ msgid "Cancel Subscription?"
-#~ msgstr "Batalkan Langganan?"
-
-#~ msgid ""
-#~ "Are you sure you want to cancel your subscription? You'll continue to have "
-#~ "access until the end of your current billing period."
-#~ msgstr ""
-#~ "Apakah Anda yakin ingin membatalkan langganan Anda? Anda akan tetap memiliki"
-#~ " akses hingga akhir periode penagihan saat ini."
-
-#~ msgid "Keep Subscription"
-#~ msgstr "Pertahankan Langganan"
-
-#~ msgid "Cancel Anyway"
-#~ msgstr "Tetap Batalkan"
-
-#~ msgid "Cancel Subscription"
-#~ msgstr "Batalkan Langganan"
-
-#~ msgid "We're sorry to see you go"
-#~ msgstr "Kami sedih melihat Anda pergi"
-
-#~ msgid "Before you go, please tell us why:"
-#~ msgstr "Sebelum Anda pergi, beri tahu kami alasannya:"
-
-#~ msgid "Reason for cancellation"
-#~ msgstr "Alasan pembatalan"
-
-#~ msgid "Too expensive"
-#~ msgstr "Terlalu mahal"
-
-#~ msgid "The cost is more than I can afford"
-#~ msgstr "Biayanya lebih dari yang bisa saya tanggung"
-
-#~ msgid "Not using enough"
-#~ msgstr "Tidak cukup sering digunakan"
-
-#~ msgid "I don't use the service frequently enough"
-#~ msgstr "Saya tidak menggunakan layanan ini cukup sering"
-
-#~ msgid "Missing features"
-#~ msgstr "Fitur yang kurang"
-
-#~ msgid "I need features that aren't available"
-#~ msgstr "Saya membutuhkan fitur yang tidak tersedia"
-
-#~ msgid "Technical issues"
-#~ msgstr "Masalah teknis"
-
-#~ msgid "I'm experiencing problems with the service"
-#~ msgstr "Saya mengalami masalah dengan layanan ini"
-
-#~ msgid "Found alternative"
-#~ msgstr "Menemukan alternatif"
-
-#~ msgid "I'm switching to a different service"
-#~ msgstr "Saya beralih ke layanan lain"
-
-#~ msgid "Other reason"
-#~ msgstr "Alasan lain"
-
-#~ msgid "Something else"
-#~ msgstr "Hal lain"
-
-#~ msgid "Additional comments (optional)"
-#~ msgstr "Komentar tambahan (opsional)"
-
-#~ msgid "Tell us more about your experience..."
-#~ msgstr "Ceritakan lebih banyak tentang pengalaman Anda..."
-
-#~ msgid "Before you cancel, consider these options:"
-#~ msgstr "Sebelum membatalkan, pertimbangkan opsi ini:"
-
-#~ msgid "Switch to a lower tier plan"
-#~ msgstr "Beralih ke paket yang lebih rendah"
-
-#~ msgid "Pause subscription for 3 months"
-#~ msgstr "Jeda langganan selama 3 bulan"
-
-#~ msgid "Apply a discount for next renewal"
-#~ msgstr "Terapkan diskon untuk perpanjangan berikutnya"
-
-#~ msgid "Current Subscription Details"
-#~ msgstr "Detail Langganan Saat Ini"
-
-#~ msgid "Next billing date"
-#~ msgstr "Tanggal penagihan berikutnya"
-
-#~ msgid "Not available"
-#~ msgstr "Tidak tersedia"
-
-#~ msgid "Access until"
-#~ msgstr "Akses hingga"
-
-#~ msgid "Hero status"
-#~ msgstr "Status hero"
-
-#~ msgid "Hidden"
-#~ msgstr "Tersembunyi"
-
-#~ msgid "Proceed with Cancellation"
-#~ msgstr "Lanjutkan Pembatalan"
-
-#~ msgid "What happens after cancellation?"
-#~ msgstr "Apa yang terjadi setelah pembatalan?"
-
-#~ msgid "Continue using premium features"
-#~ msgstr "Terus gunakan fitur premium"
-
-#~ msgid ""
-#~ "You'll keep access to all premium features until the end of your current "
-#~ "billing period."
-#~ msgstr ""
-#~ "Anda akan tetap memiliki akses ke semua fitur premium hingga akhir periode "
-#~ "penagihan saat ini."
-
-#~ msgid "Hero status remains"
-#~ msgstr "Status hero tetap ada"
-
-#~ msgid ""
-#~ "Your hero status and ranking will be preserved during the remaining period."
-#~ msgstr ""
-#~ "Status hero dan peringkat Anda akan dipertahankan selama periode yang "
-#~ "tersisa."
-
-#~ msgid "Data is preserved"
-#~ msgstr "Data dipertahankan"
-
-#~ msgid "All your data and conversions. and settings will be saved."
-#~ msgstr "Semua data, konversi, dan pengaturan Anda akan disimpan."
-
-#~ msgid "Can re-subscribe anytime"
-#~ msgstr "Dapat berlangganan kembali kapan saja"
-
-#~ msgid "You can always come back and upgrade to premium again."
-#~ msgstr "Anda selalu dapat kembali dan meningkatkan ke premium lagi."
-
-#~ msgid "Please select a reason for cancellation"
-#~ msgstr "Silakan pilih alasan pembatalan"
-
-#~ msgid "Web browser (Chrome, Firefox, Safari, Edge)"
-#~ msgstr "Peramban web (Chrome, Firefox, Safari, Edge)"
-
-#~ msgid "file"
-#~ msgstr "file"
-
-#~ msgid "Upload File"
-#~ msgstr "Unggah File"
-
-#~ msgid "Click the upload button or drag and drop your file"
-#~ msgstr "Klik tombol unggah atau seret dan lepas file Anda"
-
-#~ msgid "Process"
-#~ msgstr "Proses"
-
-#~ msgid "Click the button to start processing your file"
-#~ msgstr "Klik tombol untuk mulai memproses file Anda"
-
-#~ msgid "file to convert"
-#~ msgstr "Pilih file untuk dikonversi"
-
-#~ msgid ""
-#~ "Click the Select file button or drag and drop your file into the upload area"
-#~ msgstr "Klik tombol unggah atau seret dan lepas file Anda"
-
-#~ msgid "Click the Convert button and wait for processing to complete"
-#~ msgstr "Klik tombol Konversi dan tunggu hingga pemrosesan selesai"
-
-#~ msgid "Download your converted file instantly - no email required"
-#~ msgstr "Unduh file yang dikonversi Anda secara instan"
-
-#~ msgid "PDF file to edit"
-#~ msgstr "Pilih file untuk diedit"
-
-#~ msgid "Select your PDF file using the upload button or drag and drop"
-#~ msgstr "Pilih file PDF Anda menggunakan tombol di atas atau seret dan lepas"
-
-#~ msgid "Configure Options"
-#~ msgstr "Opsi lainnya"
-
-#~ msgid "Adjust settings as needed for your task"
-#~ msgstr "Sesuaikan pengaturan sesuai kebutuhan tugas Anda"
-
-#~ msgid "Process & Download"
-#~ msgstr "Unduh"
-
-#~ msgid "Click the button to process and download your edited PDF"
-#~ msgstr "Klik tombol Potong untuk memproses PDF Anda"
-
-#~ msgid "URL or HTML content to convert"
-#~ msgstr "URL atau konten HTML untuk dikonversi"
-
-#~ msgid "Enter URL or HTML"
-#~ msgstr "Konversi PDF ke HTML"
-
-#~ msgid "Paste a web page URL or enter HTML content directly"
-#~ msgstr "Tempel URL halaman web atau masukkan konten HTML langsung"
-
-#~ msgid "Configure Settings"
-#~ msgstr "Opsi lainnya"
-
-#~ msgid "Adjust page size, margins, and other PDF settings"
-#~ msgstr "Sesuaikan ukuran halaman, margin, dan pengaturan PDF lainnya"
-
-#~ msgid "Click the Convert button to generate your PDF"
-#~ msgstr "Klik tombol Potong untuk memproses PDF Anda"
-
-#~ msgid "Download your PDF file instantly"
-#~ msgstr "Unduh file PDF Anda"
-
-#~ msgid "JPG, PNG, GIF or BMP images to convert"
-#~ msgstr "Gambar JPG, PNG, GIF atau BMP untuk dikonversi"
-
-#~ msgid "Select Images"
-#~ msgstr "Gambar yang Dipilih"
-
-#~ msgid "Click the Select images button or drag and drop your images"
-#~ msgstr "Klik tombol unggah atau seret dan lepas file Anda"
-
-#~ msgid "Arrange Order"
-#~ msgstr "Atur Urutan"
-
-#~ msgid "Add more images and arrange them in the desired order"
-#~ msgstr ""
-#~ "Pratinjau semua file PDF dan seret untuk mengurutkan ulang urutan "
-#~ "penggabungan"
-
-#~ msgid "Select your PDF file to add watermark"
-#~ msgstr "Pilih file PDF Anda untuk menambahkan watermark"
-
-#~ msgid "Configure Watermark"
-#~ msgstr "Konfigurasi Watermark"
-
-#~ msgid "Enter text or upload image, adjust color and opacity"
-#~ msgstr "Masukkan teks atau unggah gambar, sesuaikan warna dan opacity"
-
-#~ msgid "Drag the watermark to position it on the page"
-#~ msgstr "Seret watermark untuk memposisikannya di halaman"
-
-#~ msgid "Apply"
-#~ msgstr "Terapkan"
-
-#~ msgid "Click Add Watermark button to process"
-#~ msgstr "Klik tombol Tambah Watermark untuk memproses"
-
-#~ msgid "Select your PDF file to crop"
-#~ msgstr "Pilih file PDF Anda untuk dipotong"
-
-#~ msgid "Select Area"
-#~ msgstr "Pilih Area"
-
-#~ msgid "Click and drag to select the crop area on the PDF"
-#~ msgstr "Klik dan seret untuk memilih area potong pada PDF"
-
-#~ msgid "Crop"
-#~ msgstr "Potong"
-
-#~ msgid "Click the Crop button to process your PDF"
-#~ msgstr "Klik tombol Potong untuk memproses PDF Anda"
-
-#~ msgid "Upload two PDF files"
-#~ msgstr "Unggah dua file PDF"
-
-#~ msgid "Select the base PDF and the comparison PDF."
-#~ msgstr "Pilih PDF dasar dan PDF pembanding."
-
-#~ msgid "Set sensitivity"
-#~ msgstr "Atur sensitivitas"
-
-#~ msgid "Adjust diff sensitivity to control change detection strictness."
-#~ msgstr ""
-#~ "Sesuaikan sensitivitas perbedaan untuk mengontrol tingkat ketelitian deteksi"
-#~ " perubahan."
-
-#~ msgid "Review and export"
-#~ msgstr "Tinjau dan ekspor"
-
-#~ msgid ""
-#~ "Review changes page-by-page. Export report files only if you need to share "
-#~ "or archive them."
-#~ msgstr ""
-#~ "Tinjau perubahan per halaman. Ekspor file laporan hanya jika Anda perlu "
-#~ "membagikan atau mengarsipkannya."
-
-#~ msgid ""
-#~ "This is a donation to support the project and its developers. It does not "
-#~ "unlock Premium features."
-#~ msgstr ""
-#~ "Ini adalah donasi untuk mendukung proyek dan pengembangnya. Ini tidak "
-#~ "membuka kunci fitur Premium."
-
-#~ msgid "Contribution type"
-#~ msgstr "Jenis kontribusi"
-
-#~ msgid "One-time"
-#~ msgstr "Sekali waktu"
-
-#~ msgid "Monthly"
-#~ msgstr "Bulanan"
-
-#~ msgid "Currency"
-#~ msgstr "Mata uang"
-
-#~ msgid "Proceed to secure payment"
-#~ msgstr "Lanjutkan ke pembayaran aman"
-
-#~ msgid ""
-#~ "Payments are processed by Stripe. You can cancel monthly support anytime in "
-#~ "Stripe customer portal."
-#~ msgstr ""
-#~ "Pembayaran diproses oleh Stripe. Anda dapat membatalkan dukungan bulanan "
-#~ "kapan saja di portal pelanggan Stripe."
-
-#~ msgid "Why payments are paused"
-#~ msgstr "Mengapa pembayaran dijeda"
-
-#~ msgid ""
-#~ "We’re temporarily pausing Premium subscriptions and contributions while we "
-#~ "complete the business setup. This helps us keep everything clean and "
-#~ "compliant."
-#~ msgstr ""
-#~ "Kami sementara menjeda langganan Premium dan kontribusi sementara kami "
-#~ "menyelesaikan persiapan bisnis. Ini membantu kami menjaga semuanya bersih "
-#~ "dan sesuai."
-
-#~ msgid "Good news: all free tools remain fully available."
-#~ msgstr "Kabar baik: semua alat gratis tetap tersedia sepenuhnya."
-
-#~ msgid "Thank you!"
-#~ msgstr "Terima kasih!"
-
-#~ msgid "Your support helps us keep improving Convertica."
-#~ msgstr "Dukungan Anda membantu kami terus meningkatkan Convertica."
-
-#~ msgid ""
-#~ "Premium features and Hero status are part of the subscription plans. This "
-#~ "contribution is support only — thank you for being an invisible hero."
-#~ msgstr ""
-#~ "Fitur premium dan status Pahlawan adalah bagian dari paket langganan. "
-#~ "Kontribusi ini hanya untuk dukungan — terima kasih telah menjadi pahlawan "
-#~ "tak terlihat."
-
-#~ msgid "Support again"
-#~ msgstr "Dukung lagi"
-
-#~ msgid "Back to Pricing"
-#~ msgstr "Kembali ke Harga"
-
-#~ msgid "Note: this support payment does not unlock Premium features."
-#~ msgstr "Catatan: pembayaran dukungan ini tidak membuka kunci fitur Premium."
-
-#~ msgid "Update your subscription plan and billing information"
-#~ msgstr "Perbarui paket langganan dan informasi penagihan Anda"
-
-#~ msgid "Premium Plan"
-#~ msgstr "Paket Premium"
-
-#~ msgid "Much higher limits and premium features"
-#~ msgstr "Batasan jauh lebih tinggi dan fitur premium"
-
-#~ msgid "Free Plan"
-#~ msgstr "Paket Gratis"
-
-#~ msgid "Basic features with limitations"
-#~ msgstr "Fitur dasar dengan batasan"
-
-#~ msgid "Much higher page and file size limits"
-#~ msgstr "Batasan halaman dan ukuran file jauh lebih tinggi"
-
-#~ msgid "Priority processing"
-#~ msgstr "Pemrosesan prioritas"
-
-#~ msgid "Hero status & ranking"
-#~ msgstr "Status & peringkat hero"
-
-#~ msgid "Priority support and custom solutions on request"
-#~ msgstr "Dukungan prioritas dan solusi kustom sesuai permintaan"
-
-#~ msgid "Limited conversions per day"
-#~ msgstr "Konversi terbatas per hari"
-
-#~ msgid "Standard processing"
-#~ msgstr "Pemrosesan standar"
-
-#~ msgid "Expires"
-#~ msgstr "Kedaluwarsa"
-
-#~ msgid "Billing History"
-#~ msgstr "Riwayat Penagihan"
-
-#~ msgid ""
-#~ "Billing history will be available once payment processing is implemented."
-#~ msgstr ""
-#~ "Riwayat penagihan akan tersedia setelah pemrosesan pembayaran "
-#~ "diimplementasikan."
-
-#~ msgid "Failed to cancel subscription"
-#~ msgstr "Gagal membatalkan langganan"
-
-#~ msgid "An error occurred while canceling subscription"
-#~ msgstr "Terjadi kesalahan saat membatalkan langganan"
-
-#~ msgid "Thank you for your contribution"
-#~ msgstr "Terima kasih atas kontribusi Anda"
-
-#~ msgid ""
-#~ "Thank you for contributing to Convertica. Your support helps us keep "
-#~ "improving the service."
-#~ msgstr ""
-#~ "Terima kasih telah berkontribusi pada Convertica. Dukungan Anda membantu "
-#~ "kami terus meningkatkan layanan."
-
-#~ msgid "No active subscription to cancel"
-#~ msgstr "Tidak ada langganan aktif untuk dibatalkan"
-
-#~ msgid "Subscription cancelled successfully"
-#~ msgstr "Langganan berhasil dibatalkan"
-
-#~ msgid ""
-#~ "Add your signature to a PDF online free. Upload an image of your signature "
-#~ "and place it anywhere on any page. No registration, no watermark. Works on "
-#~ "Windows, Mac, Linux, iOS, Android."
-#~ msgstr ""
-#~ "Tambahkan tanda tangan Anda ke PDF online gratis. Unggah gambar tanda tangan"
-#~ " Anda dan tempatkan di mana saja di halaman mana pun. Tanpa registrasi, "
-#~ "tanpa watermark. Berfungsi di Windows, Mac, Linux, iOS, Android."
-
-# ==================== pdf_to_text ====================
-#~ msgid "PDF to Text Converter Online Free | Convertica"
-#~ msgstr "Konverter PDF ke Teks Online Gratis | Convertica"
-
-#~ msgid ""
-#~ "Extract plain text from PDF online free. Convert PDF to TXT file instantly "
-#~ "with optional page numbers and layout preservation. No registration "
-#~ "required."
-#~ msgstr ""
-#~ "Ekstrak teks biasa dari PDF online gratis. Konversi PDF ke file TXT secara "
-#~ "instan dengan nomor halaman opsional dan pemeliharaan tata letak. Tanpa "
-#~ "registrasi."
-
-#~ msgid ""
-#~ "Convert JPG to PDF online free without compression. Merge multiple images "
-#~ "into one PDF, combine photos to PDF, create PDF from images with high "
-#~ "resolution. Perfect for documents, receipts, homework, and university "
-#~ "submissions. No watermark, unlimited conversions."
-#~ msgstr ""
-#~ "Konversi JPG ke PDF online gratis tanpa kompresi. Gabungkan beberapa gambar "
-#~ "menjadi satu PDF, gabungkan foto ke PDF, buat PDF dari gambar dengan "
-#~ "resolusi tinggi. Sempurna untuk dokumen, tanda terima, pekerjaan rumah, dan "
-#~ "pengajuan universitas. Tanpa watermark, konversi tanpa batas."
-
-#~ msgid ""
-#~ "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
-#~ "installations required."
-#~ msgstr ""
-#~ "Konverter online PDF ke Word dan Word ke PDF yang cepat, sederhana, dan "
-#~ "aman. Konversi dokumen secara instan, tanpa registrasi."
-
-#~ msgid ""
-#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
-#~ "free converter"
-#~ msgstr ""
-#~ "PDF ke Word, PDF ke DOCX, konversi PDF, konverter PDF, konverter Word, "
-#~ "konverter PDF online"
-
-#~ msgid "Upload icon"
-#~ msgstr "Ikon unggah"
-
-#~ msgid "Select files to convert (multiple)"
-#~ msgstr "Pilih file untuk dikonversi (beberapa)"
-
-#~ msgid "Select file to convert"
-#~ msgstr "Pilih file untuk dikonversi"
-
-#~ msgid "Use the button above to browse files"
-#~ msgstr "Gunakan tombol di atas untuk menjelajahi file"
-
-#~ msgid "files"
-#~ msgstr "file"
-
-#~ msgid "Select files to edit (multiple)"
-#~ msgstr "Pilih file untuk diedit (beberapa)"
-
-#~ msgid "Select file to edit"
-#~ msgstr "Pilih file untuk diedit"
-
-#~ msgid ""
-#~ "We use cookies and similar technologies to enhance your browsing experience,"
-#~ " security, analytics, and to provide personalized content."
-#~ msgstr ""
-#~ "Kami menggunakan cookie dan teknologi serupa untuk meningkatkan pengalaman "
-#~ "penelusuran Anda, keamanan, analitik, dan untuk menyediakan konten yang "
-#~ "dipersonalisasi."
-
-#~ msgid ""
-#~ "You can accept all cookies, reject non-essential cookies, or customize your "
-#~ "preferences. Essential cookies are required for the website to function and "
-#~ "cannot be disabled."
-#~ msgstr ""
-#~ "Anda dapat menerima semua cookie, menolak cookie non-esensial, atau "
-#~ "menyesuaikan preferensi Anda. Cookie esensial diperlukan agar situs web "
-#~ "berfungsi dan tidak dapat dinonaktifkan."
-
-#~ msgid "Select image(s)"
-#~ msgstr "Pilih gambar"
-
-#~ msgid "multiple files supported"
-#~ msgstr "mendukung banyak file"
-
-#~ msgid "Select files to watermark (multiple)"
-#~ msgstr "Pilih file untuk watermark (beberapa)"
-
-#~ msgid "Select file to watermark"
-#~ msgstr "Pilih file untuk watermark"
-
-#~ msgid "Select files to crop (multiple)"
-#~ msgstr "Pilih file untuk dipotong (beberapa)"
-
-#~ msgid "Select file to crop"
-#~ msgstr "Pilih file untuk dipotong"
-
-#~ msgid "Daily Hero"
-#~ msgstr "Pahlawan Harian"
-
-#~ msgid "day"
-#~ msgstr "hari"
-
-#~ msgid "Perfect for quick transformations"
-#~ msgstr "Sempurna untuk transformasi cepat"
-
-#~ msgid "No daily conversion limits for 24 hours"
-#~ msgstr "Tidak ada batas konversi harian selama 24 jam"
-
-#~ msgid "Become Daily Hero"
-#~ msgstr "Menjadi Pahlawan Harian"
-
-#~ msgid "Daily Hero Access"
-#~ msgstr "Akses Hero Harian"
-
-#~ msgid "Select your PDF file to edit"
-#~ msgstr "Pilih file PDF Anda untuk diedit"
-
-#~ msgid "Apply your changes and click the Edit button"
-#~ msgstr "Terapkan perubahan Anda dan klik tombol Edit"
-
-#~ msgid ""
-#~ "Select image quality (60-95): higher quality = better clarity but larger "
-#~ "file size. 85 is recommended."
-#~ msgstr ""
-#~ "Pilih kualitas gambar (60-95): kualitas lebih tinggi = kejelasan lebih baik "
-#~ "tetapi ukuran file lebih besar. 85 direkomendasikan."
-
-#~ msgid ""
-#~ "Wait for the PDF to JPG conversion to complete - all selected pages will be "
-#~ "converted to JPG images"
-#~ msgstr ""
-#~ "Tunggu hingga konversi PDF ke JPG selesai - semua halaman yang dipilih akan "
-#~ "dikonversi menjadi gambar JPG"
-
-#, python-format
-#~ msgid ""
-#~ "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
-#~ "users have higher limits. For larger files, please split them into smaller "
-#~ "parts. The output will be a ZIP archive containing all converted JPG images,"
-#~ " named with page numbers (e.g., filename_page0001.jpg, "
-#~ "filename_page0002.jpg)."
-#~ msgstr ""
-#~ "Pengguna gratis dapat mengonversi file PDF hingga %(max_pages)s halaman. "
-#~ "Pengguna premium memiliki batas lebih tinggi. Untuk file yang lebih besar, "
-#~ "silakan bagi menjadi beberapa bagian. Output akan berupa arsip ZIP yang "
-#~ "berisi semua gambar JPG yang dikonversi, dinamai dengan nomor halaman (mis.,"
-#~ " filename_page0001.jpg, filename_page0002.jpg)."
-
-#~ msgid ""
-#~ "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#~ "conversion)"
-#~ msgstr ""
-#~ "Klik tombol konversi untuk memulai konversi PDF ke Word (konversi PDF ke "
-#~ "DOCX)"
-
-#~ msgid ""
-#~ "Wait for the PDF to Word conversion to complete - text and formatting will "
-#~ "be extracted from your PDF and converted to editable Word format"
-#~ msgstr ""
-#~ "Tunggu hingga konversi PDF ke Word selesai - teks dan pemformatan akan "
-#~ "diekstrak dari PDF Anda dan dikonversi ke format Word yang dapat diedit"
-
-#~ msgid ""
-#~ "Download your editable Word document (DOCX format) - your PDF has been "
-#~ "successfully converted to Word"
-#~ msgstr ""
-#~ "Unduh dokumen Word yang dapat diedit (format DOCX) - PDF Anda telah berhasil"
-#~ " dikonversi ke Word"
-
-#~ msgid ""
-#~ "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
-#~ "OCR for Premium users."
-#~ msgstr ""
-#~ "PDF berbasis teks memberikan hasil terbaik - PDF yang dipindai (hanya "
-#~ "gambar) dapat dikonversi dengan OCR untuk pengguna premium."
-
-#~ msgid "Text-based PDFs work best."
-#~ msgstr "PDF berbasis teks memberikan hasil terbaik."
-
-#~ msgid ""
-#~ "Click the convert button to start converting PowerPoint to PDF (PPTX to PDF "
-#~ "conversion)"
-#~ msgstr ""
-#~ "Klik tombol konversi untuk memulai konversi PowerPoint ke PDF (konversi PPTX"
-#~ " ke PDF)"
-
-#~ msgid ""
-#~ "Wait for the PowerPoint to PDF conversion to complete - slides will be "
-#~ "converted to PDF pages preserving layout and formatting"
-#~ msgstr ""
-#~ "Tunggu hingga konversi PowerPoint ke PDF selesai - slide akan dikonversi "
-#~ "menjadi halaman PDF dengan mempertahankan tata letak dan pemformatan"
-
-#~ msgid ""
-#~ "Download your PDF file - your PowerPoint presentation has been successfully "
-#~ "converted to PDF format"
-#~ msgstr ""
-#~ "Unduh file PDF Anda - presentasi PowerPoint Anda telah berhasil dikonversi "
-#~ "ke format PDF"
-
-#, python-format
-#~ msgid ""
-#~ "PowerPoint files with up to %(max_pages)s slides are supported. For larger "
-#~ "files, please split them into smaller parts. The conversion preserves "
-#~ "animations, transitions, and slide layouts."
-#~ msgstr ""
-#~ "File PowerPoint hingga %(max_pages)s slide didukung. Untuk file yang lebih "
-#~ "besar, silakan bagi menjadi beberapa bagian. Konversi mempertahankan "
-#~ "animasi, transisi, dan tata letak slide."
-
-#~ msgid ""
-#~ "Wait for the Word to PDF conversion to complete - formatting and layout will"
-#~ " be preserved when converting from Word to PDF"
-#~ msgstr ""
-#~ "Tunggu hingga konversi Word ke PDF selesai - pemformatan dan tata letak akan"
-#~ " dipertahankan saat mengonversi dari Word ke PDF"
-
-#~ msgid ""
-#~ "Download your PDF file - your Word document has been successfully converted "
-#~ "to PDF format"
-#~ msgstr ""
-#~ "Unduh file PDF Anda - dokumen Word Anda telah berhasil dikonversi ke format "
-#~ "PDF"
-
-#~ msgid ""
-#~ "Click the add page numbers button to process your PDF and add page numbers"
-#~ msgstr ""
-#~ "Klik tombol tambah nomor halaman untuk memproses PDF Anda dan menambahkan "
-#~ "nomor halaman"
-
-#~ msgid ""
-#~ "Download your PDF file with page numbers added using the download button"
-#~ msgstr ""
-#~ "Unduh file PDF Anda dengan nomor halaman yang ditambahkan menggunakan tombol"
-#~ " unduh"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for adding page "
-#~ "numbers. For larger files, please split them into smaller parts. The page "
-#~ "numbers will be added according to your selected position, format, and font "
-#~ "size."
-#~ msgstr ""
-#~ "File PDF dengan hingga %(max_pages)s halaman didukung untuk penambahan nomor"
-#~ " halaman. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian."
-#~ " Nomor halaman akan ditambahkan sesuai posisi, format, dan ukuran font yang "
-#~ "Anda pilih."
-
-#~ msgid ""
-#~ "Choose the color and opacity using the sliders to customize your PDF "
-#~ "watermark"
-#~ msgstr ""
-#~ "Pilih warna dan opacity menggunakan slider untuk menyesuaikan watermark PDF "
-#~ "Anda"
-
-#~ msgid ""
-#~ "Click on the PDF to position the watermark, or drag it to move it anywhere "
-#~ "on the page"
-#~ msgstr ""
-#~ "Klik pada PDF untuk memposisikan watermark, atau seret untuk memindahkannya "
-#~ "ke mana saja di halaman"
-
-#~ msgid ""
-#~ "Click the add watermark button to process your PDF and add the watermark"
-#~ msgstr ""
-#~ "Klik tombol tambah watermark untuk memproses PDF Anda dan menambahkan "
-#~ "watermark"
-
-#~ msgid "Download your watermarked PDF file using the download button"
-#~ msgstr "Unduh file PDF berwatermark Anda menggunakan tombol unduh"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for adding "
-#~ "watermarks. For larger files, please split them into smaller parts. The "
-#~ "watermark will be applied to all pages or selected pages as specified."
-#~ msgstr ""
-#~ "File PDF dengan hingga %(max_pages)s halaman didukung untuk menambahkan "
-#~ "watermark. Untuk file yang lebih besar, silakan bagi menjadi beberapa "
-#~ "bagian. Watermark akan diterapkan ke semua halaman atau halaman yang dipilih"
-#~ " seperti yang ditentukan."
-
-#~ msgid "Click the crop button to process your PDF and crop the selected area"
-#~ msgstr ""
-#~ "Klik tombol potong untuk memproses PDF Anda dan memotong area yang dipilih"
-
-#~ msgid "Download your cropped PDF file using the download button"
-#~ msgstr "Unduh file PDF yang telah dipotong menggunakan tombol unduh"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for cropping. For "
-#~ "larger files, please split them into smaller parts. The crop area you select"
-#~ " will be applied to all selected pages."
-#~ msgstr ""
-#~ "File PDF dengan hingga %(max_pages)s halaman didukung untuk dipotong. Untuk "
-#~ "file yang lebih besar, silakan bagi menjadi beberapa bagian. Area potong "
-#~ "yang Anda pilih akan diterapkan ke semua halaman yang dipilih."
-
-#~ msgid ""
-#~ "Click the rotate button to process your PDF and rotate the selected pages"
-#~ msgstr ""
-#~ "Klik tombol putar untuk memproses PDF Anda dan memutar halaman yang dipilih"
-
-#~ msgid "Download your rotated PDF file using the download button"
-#~ msgstr "Unduh file PDF yang telah diputar menggunakan tombol unduh"
-
-#~ msgid "Download your compressed PDF file using the download button"
-#~ msgstr "Unduh file PDF yang dikompresi menggunakan tombol unduh"
-
-#~ msgid ""
-#~ "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5"
-#~ " to extract pages from PDF)"
-#~ msgstr ""
-#~ "Masukkan nomor halaman yang ingin Anda ekstrak dari PDF Anda (mis., 1,3,5 "
-#~ "atau 1-5 untuk mengekstrak halaman dari PDF)"
-
-#~ msgid ""
-#~ "Click the extract button to process your PDF and extract the selected pages "
-#~ "into a new PDF file"
-#~ msgstr ""
-#~ "Klik tombol ekstrak untuk memproses PDF Anda dan mengekstrak halaman yang "
-#~ "dipilih ke file PDF baru"
-
-#~ msgid ""
-#~ "Download your extracted PDF file containing only the selected pages using "
-#~ "the download button"
-#~ msgstr ""
-#~ "Unduh file PDF yang diekstrak Anda yang hanya berisi halaman yang dipilih "
-#~ "menggunakan tombol unduh"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for extracting pages."
-#~ " For larger files, please split them into smaller parts. The extracted pages"
-#~ " will be combined into a single new PDF file."
-#~ msgstr ""
-#~ "File PDF dengan hingga %(max_pages)s halaman didukung untuk mengekstrak "
-#~ "halaman. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. "
-#~ "Halaman yang diekstrak akan digabungkan menjadi satu file PDF baru."
-
-#~ msgid ""
-#~ "Download your merged PDF file containing all pages from all selected files "
-#~ "using the download button"
-#~ msgstr ""
-#~ "Unduh file PDF yang digabungkan Anda yang berisi semua halaman dari semua "
-#~ "file yang dipilih menggunakan tombol unduh"
-
-#~ msgid "Preview all pages and drag them to reorder pages in your PDF document"
-#~ msgstr ""
-#~ "Pratinjau semua halaman dan seret untuk mengurutkan ulang halaman dalam "
-#~ "dokumen PDF Anda"
-
-#~ msgid "Choose operation: reorder pages manually or sort pages automatically"
-#~ msgstr ""
-#~ "Pilih operasi: urutkan ulang halaman secara manual atau urutkan halaman "
-#~ "secara otomatis"
-
-#~ msgid "Click the organize button to process your PDF and reorganize the pages"
-#~ msgstr "Klik tombol atur untuk memproses PDF Anda dan mengatur ulang halaman"
-
-#~ msgid ""
-#~ "Download your reorganized PDF file with pages in the new order using the "
-#~ "download button"
-#~ msgstr ""
-#~ "Unduh file PDF yang diatur ulang Anda dengan halaman dalam urutan baru "
-#~ "menggunakan tombol unduh"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for organizing. For "
-#~ "larger files, please split them into smaller parts. You can drag and drop "
-#~ "pages to reorder them visually."
-#~ msgstr ""
-#~ "File PDF dengan hingga %(max_pages)s halaman didukung untuk diatur. Untuk "
-#~ "file yang lebih besar, silakan bagi menjadi beberapa bagian. Anda dapat "
-#~ "menyeret dan melepas halaman untuk mengurutkannya ulang secara visual."
-
-#~ msgid "Download your PDF file with pages removed using the download button"
-#~ msgstr ""
-#~ "Unduh file PDF Anda dengan halaman yang dihapus menggunakan tombol unduh"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for removing pages. "
-#~ "For larger files, please split them into smaller parts. The remaining pages "
-#~ "will be preserved in their original order."
-#~ msgstr ""
-#~ "File PDF dengan hingga %(max_pages)s halaman didukung untuk menghapus "
-#~ "halaman. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. "
-#~ "Halaman yang tersisa akan dipertahankan dalam urutan aslinya."
-
-#~ msgid ""
-#~ "The output will be a ZIP archive containing all split PDF files. You can "
-#~ "split your PDF by individual pages, by page ranges, or every N pages."
-#~ msgstr ""
-#~ "Output akan berupa arsip ZIP yang berisi semua file PDF yang dipisahkan. "
-#~ "Anda dapat memisahkan PDF Anda berdasarkan halaman individual, rentang "
-#~ "halaman, atau setiap N halaman."
-
-#~ msgid ""
-#~ "Our Services are provided \"as is\" and \"as available\" without warranties "
-#~ "of any kind."
-#~ msgstr ""
-#~ "Layanan kami disediakan \"sebagaimana adanya\" dan \"sebagaimana tersedia\" "
-#~ "tanpa jaminan apa pun."
-
-#~ msgid "Insufficient funds in your account"
-#~ msgstr "Dana tidak mencukupi di akun Anda"
-
-#~ msgid "Card expiration or incorrect details"
-#~ msgstr "Kedaluwarsa kartu atau detail yang salah"
-
-#~ msgid "Bank or card issuer restrictions"
-#~ msgstr "Pembatasan bank atau penerbit kartu"
-
-#~ msgid "Temporary network issues"
-#~ msgstr "Masalah jaringan sementara"
-
-#~ msgid "What to Do Next"
-#~ msgstr "Apa yang Harus Dilakukan Selanjutnya"
-
-#~ msgid "Check your payment details and try again"
-#~ msgstr "Periksa detail pembayaran Anda dan coba lagi"
-
-#~ msgid "Contact your bank or card issuer"
-#~ msgstr "Hubungi bank atau penerbit kartu Anda"
-
-#~ msgid "Try a different payment method"
-#~ msgstr "Coba metode pembayaran yang berbeda"
-
-#~ msgid "Wait a few minutes and retry"
-#~ msgstr "Tunggu beberapa menit dan coba lagi"
-
-#~ msgid "Your Card Was Not Charged"
-#~ msgstr "Kartu Anda Tidak Dikenakan Biaya"
-
-#~ msgid ""
-#~ "Rest assured that no money was taken from your account. The payment was not "
-#~ "processed successfully."
-#~ msgstr ""
-#~ "Tenang, tidak ada uang yang diambil dari akun Anda. Pembayaran tidak "
-#~ "berhasil diproses."
-
-#~ msgid "Need Help?"
-#~ msgstr "Butuh Bantuan?"
-
-#~ msgid ""
-#~ "If you continue to experience issues, please contact our support team for "
-#~ "assistance."
-#~ msgstr ""
-#~ "Jika Anda terus mengalami masalah, silakan hubungi tim dukungan kami untuk "
-#~ "bantuan."
-
-#~ msgid ""
-#~ "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
-#~ "converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No registration "
-#~ "needed."
-#~ msgstr ""
-#~ "Konversi PDF ke Word online gratis tanpa kehilangan pemformatan. Konverter "
-#~ "PDF ke DOCX cepat tanpa email, konversi tanpa batas, output berkualitas "
-#~ "tinggi. Sempurna untuk dokumen, resume, dan file bisnis. Tanpa registrasi."
-
-#~ msgid ""
-#~ "Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
-#~ "converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No registration "
-#~ "needed."
-#~ msgstr ""
-#~ "Konversi Word ke PDF online gratis tanpa kehilangan pemformatan. Konverter "
-#~ "DOCX ke PDF cepat tanpa email, konversi tanpa batas, output berkualitas "
-#~ "tinggi. Sempurna untuk dokumen, resume, dan file bisnis. Tanpa registrasi."
-
-#~ msgid "PDF to JPG - Convertica"
-#~ msgstr "PDF ke JPG - Convertica"
-
-#~ msgid "JPG to PDF - Convertica"
-#~ msgstr "JPG ke PDF - Convertica"
-
-#~ msgid ""
-#~ "Merge PDF online free without watermark. Combine two PDFs into one, merge "
-#~ "multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
-#~ "merger with drag and drop. No registration required."
-#~ msgstr ""
-#~ "Gabungkan PDF online gratis tanpa watermark. Gabungkan dua PDF menjadi satu,"
-#~ " gabungkan beberapa file PDF dengan cepat, pertahankan bookmark dan "
-#~ "kualitas. Penggabung PDF tanpa batas dengan drag and drop. Tanpa registrasi."
-
-#~ msgid ""
-#~ "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages"
-#~ " from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
-#~ "with no watermark. No registration required."
-#~ msgstr ""
-#~ "Pisahkan PDF online gratis berdasarkan halaman, rentang, atau bookmark. "
-#~ "Ekstrak halaman tertentu dari PDF, hapus halaman, bagi PDF menjadi beberapa "
-#~ "file. Pemecah PDF cepat tanpa watermark. Tanpa registrasi."
-
-#~ msgid ""
-#~ "Compress PDF online free to reduce file size fast. PDF compressor with no "
-#~ "watermark, compress PDF to under 1MB for email, reduce PDF file size without"
-#~ " losing quality. Best PDF compression tool 2025."
-#~ msgstr ""
-#~ "Kompres PDF online gratis untuk mengurangi ukuran file dengan cepat. "
-#~ "Kompresor PDF tanpa watermark, kompres PDF di bawah 1MB untuk email, kurangi"
-#~ " ukuran file PDF tanpa kehilangan kualitas. Alat kompresi PDF terbaik 2025."
-
-#~ msgid "Download report ZIP"
-#~ msgstr "Unduh laporan ZIP"
-
-#~ msgid "Download visual diff images and structured report files."
-#~ msgstr "Unduh gambar perbedaan visual dan file laporan terstruktur."
-
-#~ msgid "Download ZIP Report"
-#~ msgstr "Unduh laporan ZIP"
-
-#~ msgid "Preparing download..."
-#~ msgstr "Menyiapkan unduhan..."
+#: utils_site/src/users/views.py:476
+msgid "Your plan does not include API access."
+msgstr "Paket Anda tidak menyertakan akses API."
+
+#: utils_site/src/users/views.py:480
+msgid "Please name your key (e.g. 'production-server-a')."
+msgstr "Harap beri nama kunci Anda (mis. 'production-server-a')."
+
+#: utils_site/src/users/views.py:484
+msgid "Maximum 10 active keys per user. Revoke unused first."
+msgstr ""
+"Maksimal 10 kunci aktif per pengguna. Cabut yang tidak digunakan terlebih "
+"dahulu."
+
+#: utils_site/src/users/views.py:499
+msgid "Key not found."
+msgstr "Kunci tidak ditemukan."
+
+#: utils_site/src/users/views.py:502
+msgid "API key revoked."
+msgstr "Kunci API dicabut."

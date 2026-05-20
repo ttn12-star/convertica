@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Convertica\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-18 20:23+0000\n"
+"POT-Creation-Date: 2026-05-19 15:32+0000\n"
 "PO-Revision-Date: 2026-01-04 12:00+0000\n"
 "Last-Translator: Convertica Localization Team <localization@convertica.net>\n"
 "Language-Team: Arabic\n"
@@ -620,6 +620,159 @@ msgstr "الحفاظ على التخطيط"
 msgid "No users found with the given filter."
 msgstr "لم يتم العثور على مستخدمين باستخدام التصفية الحالية."
 
+#: templates/api/landing.html:4
+msgid "Convertica API — PDF Conversion API for Developers"
+msgstr "Convertica API — واجهة برمجة تطبيقات تحويل PDF للمطورين"
+
+#: templates/api/landing.html:6
+msgid ""
+"Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI"
+" docs, HMAC-signed webhooks. Bundled with Convertica subscriptions."
+msgstr ""
+"وصول برمجي إلى أكثر من 30 أداة لتحويل PDF والصور. واجهة برمجة تطبيقات JSON، "
+"مستندات OpenAPI، خطافات ويب موقعة بـ HMAC. مرفقة باشتراكات Convertica."
+
+#: templates/api/landing.html:12
+msgid "Convertica API"
+msgstr "Convertica API"
+
+#: templates/api/landing.html:13
+msgid ""
+"Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI"
+" docs, HMAC-signed webhooks."
+msgstr ""
+"وصول برمجي إلى أكثر من 30 أداة لتحويل PDF والصور. واجهة برمجة تطبيقات JSON، "
+"مستندات OpenAPI، خطافات ويب موقعة بـ HMAC."
+
+#: templates/api/landing.html:15
+msgid "View API docs"
+msgstr "عرض وثائق API"
+
+#: templates/api/landing.html:16
+msgid "See pricing"
+msgstr "عرض الأسعار"
+
+#: templates/api/landing.html:22
+msgid "Monthly"
+msgstr "شهري"
+
+#: templates/api/landing.html:24 templates/api/landing.html:29
+#, python-format
+msgid "%(quota)s API call per month"
+msgid_plural "%(quota)s API calls per month"
+msgstr[0] "%(quota)s مكالمة API شهريًا"
+msgstr[1] "%(quota)s مكالمات API شهريًا"
+msgstr[2] "%(quota)s مكالمة API شهريًا"
+msgstr[3] "%(quota)s مكالمات API شهريًا"
+msgstr[4] "%(quota)s مكالمة API شهريًا"
+msgstr[5] "%(quota)s مكالمات API شهريًا"
+
+#: templates/api/landing.html:27
+msgid "Yearly"
+msgstr "سنويًا"
+
+#: templates/api/landing.html:30
+msgid "Best value"
+msgstr "أفضل قيمة"
+
+#: templates/api/landing.html:33
+msgid "Lifetime"
+msgstr "مدى الحياة"
+
+#: templates/api/landing.html:34
+msgid "once"
+msgstr "مرة واحدة"
+
+#: templates/api/landing.html:35
+#, python-format
+msgid "%(quota)s API call per month forever"
+msgid_plural "%(quota)s API calls per month forever"
+msgstr[0] "%(quota)s مكالمة API شهريًا إلى الأبد"
+msgstr[1] "%(quota)s مكالمات API شهريًا إلى الأبد"
+msgstr[2] "%(quota)s مكالمة API شهريًا إلى الأبد"
+msgstr[3] "%(quota)s مكالمات API شهريًا إلى الأبد"
+msgstr[4] "%(quota)s مكالمة API شهريًا إلى الأبد"
+msgstr[5] "%(quota)s مكالمات API شهريًا إلى الأبد"
+
+#: templates/api/landing.html:40
+msgid "Quick start"
+msgstr "بداية سريعة"
+
+#: templates/api/landing.html:42
+msgid "1. Issue a key in your dashboard"
+msgstr "1. إصدار مفتاح في لوحة التحكم الخاصة بك"
+
+#: templates/api/landing.html:43
+msgid ""
+"Go to <a href=\"/users/api-keys/\" class=\"text-blue-600 underline\">your "
+"API Keys dashboard</a> and create a named key. The full key is shown once — "
+"copy it immediately."
+msgstr ""
+"انتقل إلى <a href=\"/users/api-keys/\" class=\"text-blue-600 "
+"underline\">لوحة تحكم مفاتيح API الخاصة بك</a> وأنشئ مفتاحًا مسمى. يظهر "
+"المفتاح الكامل مرة واحدة — انسخه فورًا."
+
+#: templates/api/landing.html:45
+msgid "2. Make a request"
+msgstr "2. تقديم طلب"
+
+#: templates/api/landing.html:46
+msgid "curl example — convert a PDF to Word:"
+msgstr "مثال curl — تحويل PDF إلى Word:"
+
+#: templates/api/landing.html:52
+msgid "Python example"
+msgstr "مثال بايثون"
+
+#: templates/api/landing.html:64
+msgid "What you get"
+msgstr "ما ستحصل عليه"
+
+#: templates/api/landing.html:66
+msgid ""
+"30+ conversion endpoints: PDF↔Word, Excel, PPT, JPG, PNG, HTML, EPUB, "
+"Markdown"
+msgstr ""
+"أكثر من 30 نقطة نهاية للتحويل: PDF↔Word، Excel، PPT، JPG، PNG، HTML، EPUB، "
+"Markdown"
+
+#: templates/api/landing.html:67
+msgid ""
+"PDF edit: merge, split, rotate, watermark, sign, compress, crop, flatten"
+msgstr "تحرير PDF: دمج، تقسيم، تدوير، علامة مائية، توقيع، ضغط، قص، تسطيح"
+
+#: templates/api/landing.html:68
+msgid "Image: optimize, convert, HEIC→JPG/PNG"
+msgstr "الصور: تحسين، تحويل، HEIC→JPG/PNG"
+
+#: templates/api/landing.html:69
+msgid "Sync (small files) and async (large files) modes"
+msgstr "أوضاع متزامنة (ملفات صغيرة) وغير متزامنة (ملفات كبيرة)"
+
+#: templates/api/landing.html:70
+msgid "Opt-in HMAC-signed webhook callbacks for async results"
+msgstr "استدعاءات خطاف ويب موقعة بـ HMAC اختيارية للنتائج غير المتزامنة"
+
+#: templates/api/landing.html:71
+msgid "OpenAPI 3 documentation"
+msgstr "توثيق OpenAPI 3"
+
+#: templates/api/landing.html:72
+msgid "Sub-200ms median, EU edge"
+msgstr "متوسط أقل من 200 مللي ثانية، حافة الاتحاد الأوروبي"
+
+#: templates/api/landing.html:73
+msgid "Same backend as convertica.net — battle-tested"
+msgstr "نفس الخلفية المستخدمة في convertica.net — مجربة في المعارك"
+
+#: templates/api/landing.html:78
+msgid "Ready to start?"
+msgstr "هل أنت مستعد للبدء؟"
+
+#: templates/api/landing.html:79
+msgid "Subscribe and get your API key"
+msgstr "اشترك واحصل على مفتاح API الخاص بك"
+
 #: templates/base.html:16 templates/base.html:34 templates/base.html:46
 msgid "Convertica – Online PDF Tools"
 msgstr "Convertica – أدوات PDF عبر الإنترنت"
@@ -706,7 +859,6 @@ msgstr "مدونة، مقالات، أدلة PDF، نصائح المستندات
 #: templates/frontend/includes/footer.html:228
 #: templates/frontend/includes/header.html:1078
 #: templates/frontend/includes/header.html:1645
-#: utils_site/src/blog/views.py:147
 msgid "Blog"
 msgstr "المدونة"
 
@@ -954,7 +1106,7 @@ msgstr ""
 "ولا عناء."
 
 #: templates/frontend/about.html:198 templates/frontend/pricing.html:390
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:713
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:715
 msgid "Privacy First"
 msgstr "الخصوصية أولاً"
 
@@ -1221,8 +1373,8 @@ msgstr "سطّح PDF لإزالة حقول النماذج والتعليقات"
 #: templates/frontend/includes/header.html:1327
 #: templates/frontend/includes/header.html:1571
 #: utils_site/src/frontend/context_processors.py:207
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:683
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:689
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:685
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:691
 #: utils_site/src/frontend/views.py:197 utils_site/src/frontend/views.py:719
 msgid "Sign PDF"
 msgstr "توقيع PDF"
@@ -4475,8 +4627,6 @@ msgid "Rendered in a handwriting-style font (Caveat)."
 msgstr "يُعرض بخط يشبه خط اليد (Caveat)."
 
 #: templates/frontend/pdf_edit/sign_pdf.html:164
-#| msgid ""
-#| "PNG with transparent background gives the best result. JPG is also accepted."
 msgid ""
 "PNG with transparent background gives the cleanest result. JPG is also "
 "accepted."
@@ -4772,7 +4922,7 @@ msgstr ""
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:319
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:450
 #: utils_site/src/frontend/tool_configs/pdf_edit.py:577
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:690
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:692
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:196
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:342
 #: utils_site/src/frontend/tool_configs/pdf_organize.py:468
@@ -5089,13 +5239,13 @@ msgstr "نشط"
 
 #: templates/frontend/premium/background_center.html:36
 #: templates/frontend/premium/background_center.html:169
-#: templates/users/account_status.html:286 utils_site/src/users/models.py:511
+#: templates/users/account_status.html:286 utils_site/src/users/models.py:539
 msgid "Completed"
 msgstr "مكتمل"
 
 #: templates/frontend/premium/background_center.html:40
 #: templates/frontend/premium/background_center.html:172
-#: templates/users/account_status.html:294 utils_site/src/users/models.py:512
+#: templates/users/account_status.html:294 utils_site/src/users/models.py:540
 msgid "Failed"
 msgstr "فشل"
 
@@ -6171,8 +6321,6 @@ msgid "Your session expired. Refreshing the page…"
 msgstr "انتهت جلستك. جارٍ إعادة تحميل الصفحة…"
 
 #: templates/frontend/pricing.html:849
-#| msgid ""
-#| "Email service is temporarily unavailable. Please try again in a few minutes."
 msgid ""
 "Checkout service is temporarily unavailable. Please try again in a moment."
 msgstr "خدمة الدفع غير متاحة مؤقتًا. يُرجى المحاولة مرة أخرى بعد قليل."
@@ -7015,7 +7163,7 @@ msgid "Plan Information"
 msgstr "معلومات الخطة"
 
 #: templates/payments/success.html:29 templates/users/account_status.html:271
-#: utils_site/src/users/models.py:518
+#: utils_site/src/users/models.py:546
 msgid "Plan"
 msgstr "الخطة"
 
@@ -7024,7 +7172,7 @@ msgid "Price"
 msgstr "السعر"
 
 #: templates/payments/success.html:37 templates/users/account_status.html:273
-#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:527
+#: utils_site/src/blog/models.py:185 utils_site/src/users/models.py:555
 msgid "Status"
 msgstr "الحالة"
 
@@ -7318,19 +7466,19 @@ msgstr "سجل المدفوعات"
 msgid "Date"
 msgstr "التاريخ"
 
-#: templates/users/account_status.html:272 utils_site/src/users/models.py:521
+#: templates/users/account_status.html:272 utils_site/src/users/models.py:549
 msgid "Amount"
 msgstr "المبلغ"
 
-#: templates/users/account_status.html:274 utils_site/src/users/models.py:530
+#: templates/users/account_status.html:274 utils_site/src/users/models.py:558
 msgid "Payment ID"
 msgstr "معرف الدفع"
 
-#: templates/users/account_status.html:290 utils_site/src/users/models.py:510
+#: templates/users/account_status.html:290 utils_site/src/users/models.py:538
 msgid "Pending"
 msgstr "قيد الانتظار"
 
-#: templates/users/account_status.html:298 utils_site/src/users/models.py:513
+#: templates/users/account_status.html:298 utils_site/src/users/models.py:541
 msgid "Refunded"
 msgstr "تم الاسترداد"
 
@@ -7397,6 +7545,77 @@ msgstr "احتفظ بالحساب"
 #: templates/users/account_status.html:384
 msgid "Delete Forever"
 msgstr "حذف إلى الأبد"
+
+#: templates/users/api_keys.html:3 templates/users/api_keys.html:6
+msgid "API Keys"
+msgstr "مفاتيح API"
+
+#: templates/users/api_keys.html:10
+msgid "Subscribe to unlock API access"
+msgstr "اشترك لفتح الوصول إلى API"
+
+#: templates/users/api_keys.html:11
+msgid ""
+"API access is included with Monthly, Yearly, and Lifetime Hero plans. View "
+"pricing to subscribe."
+msgstr ""
+"يتضمن الوصول إلى واجهة برمجة التطبيقات (API) خطط Monthly وYearly وLifetime "
+"Hero. اطلع على الأسعار للاشتراك."
+
+#: templates/users/api_keys.html:12
+msgid "View pricing"
+msgstr "عرض الأسعار"
+
+#: templates/users/api_keys.html:16
+#, python-format
+msgid "Your plan includes %(quota)s API call per month."
+msgid_plural "Your plan includes %(quota)s API calls per month."
+msgstr[0] "خطتك تتضمن %(quota)s مكالمة API شهريًا."
+msgstr[1] "خطتك تتضمن %(quota)s مكالمات API شهريًا."
+msgstr[2] "خطتك تتضمن %(quota)s مكالمة API شهريًا."
+msgstr[3] "خطتك تتضمن %(quota)s مكالمات API شهريًا."
+msgstr[4] "خطتك تتضمن %(quota)s مكالمة API شهريًا."
+msgstr[5] "خطتك تتضمن %(quota)s مكالمات API شهريًا."
+
+#: templates/users/api_keys.html:29
+msgid "Your new API key — copy it now, it won't be shown again:"
+msgstr "مفتاح API الجديد الخاص بك — انسخه الآن، لن يظهر مرة أخرى:"
+
+#: templates/users/api_keys.html:36
+msgid "Key name (e.g. production-server-a)"
+msgstr "اسم المفتاح (مثل: production-server-a)"
+
+#: templates/users/api_keys.html:37
+msgid "Create key"
+msgstr "إنشاء مفتاح"
+
+#: templates/users/api_keys.html:42
+msgid "Name"
+msgstr "الاسم"
+
+#: templates/users/api_keys.html:42
+msgid "Prefix"
+msgstr "البادئة"
+
+#: templates/users/api_keys.html:42
+msgid "Used"
+msgstr "مُستخدم"
+
+#: templates/users/api_keys.html:42
+msgid "Last used"
+msgstr "آخر استخدام"
+
+#: templates/users/api_keys.html:51
+msgid "Revoke this key?"
+msgstr "إلغاء هذا المفتاح؟"
+
+#: templates/users/api_keys.html:53
+msgid "Revoke"
+msgstr "إلغاء"
+
+#: templates/users/api_keys.html:61
+msgid "No API keys yet."
+msgstr "لا توجد مفاتيح API بعد."
 
 #: templates/users/login.html:6 templates/users/login.html:114
 msgid "Sign In"
@@ -7497,7 +7716,7 @@ msgid "Upgrade Now"
 msgstr "الترقية الآن"
 
 #: templates/users/profile.html:217 templates/users/profile_edit.html:6
-#: templates/users/profile_edit.html:19 utils_site/src/users/views.py:214
+#: templates/users/profile_edit.html:19 utils_site/src/users/views.py:221
 msgid "Edit Profile"
 msgstr "تحرير الملف الشخصي"
 
@@ -7537,7 +7756,7 @@ msgstr "اسم العائلة"
 msgid "Hero Settings"
 msgstr "إعدادات البطل"
 
-#: templates/users/profile_edit.html:109 utils_site/src/users/models.py:55
+#: templates/users/profile_edit.html:109 utils_site/src/users/models.py:57
 msgid "Display as Hero"
 msgstr "عرض كبطل"
 
@@ -7596,20 +7815,20 @@ msgstr ""
 "%(free_mb).0f ميجابايت. ترقِ إلى Premium للحد %(premium_mb).0f ميجابايت! "
 "احصل على Premium ليوم واحد مقابل 1 دولار فقط."
 
-#: utils_site/src/api/async_views.py:245 utils_site/src/api/base_views.py:214
+#: utils_site/src/api/async_views.py:245 utils_site/src/api/base_views.py:227
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
 msgstr "الملف كبير جداً. الحد الأقصى للحجم هو %(max_mb).0f ميجابايت."
 
-#: utils_site/src/api/base_views.py:159
+#: utils_site/src/api/base_views.py:172
 msgid "File is empty. Please upload a valid file."
 msgstr "الملف فارغ. يرجى تحميل ملف صالح."
 
-#: utils_site/src/api/base_views.py:171
+#: utils_site/src/api/base_views.py:184
 msgid "File is too small to be valid."
 msgstr "الملف صغير جداً ليكون صالحاً."
 
-#: utils_site/src/api/base_views.py:200
+#: utils_site/src/api/base_views.py:213
 #, python-format
 msgid ""
 "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. Upgrade"
@@ -7619,12 +7838,12 @@ msgstr ""
 "%(free_mb).0f ميجابايت. ترقِ إلى Premium للحد %(premium_mb).0f ميجابايت! "
 "احصل على Premium ليوم واحد مقابل 1 دولار فقط."
 
-#: utils_site/src/api/base_views.py:236
+#: utils_site/src/api/base_views.py:249
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
 msgstr "نوع المحتوى غير مدعوم: %(content_type)s"
 
-#: utils_site/src/api/base_views.py:255
+#: utils_site/src/api/base_views.py:268
 #, python-format
 msgid "Only %(extensions)s files are allowed."
 msgstr "يُسمح فقط بملفات %(extensions)s."
@@ -7903,12 +8122,12 @@ msgstr "اختر الأداة الأكثر صلة بهذا المقال"
 msgid "Published At"
 msgstr "تاريخ النشر"
 
-#: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:37
-#: utils_site/src/users/models.py:547
+#: utils_site/src/blog/models.py:190 utils_site/src/users/models.py:39
+#: utils_site/src/users/models.py:575
 msgid "Created At"
 msgstr "إنشاء حساب"
 
-#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:548
+#: utils_site/src/blog/models.py:191 utils_site/src/users/models.py:576
 msgid "Updated At"
 msgstr "تم التحديث في"
 
@@ -8577,7 +8796,7 @@ msgstr ""
 "اضبط مستوى الجودة الدقيق (10-100) لتحقيق توازن بين حجم الملف والدقة المرئية"
 
 #: utils_site/src/frontend/tool_configs/image_tools.py:61
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:721
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:723
 msgid "Instant Download"
 msgstr "تنزيل فوري"
 
@@ -11887,20 +12106,15 @@ msgstr ""
 "صورة توقيع. انقر على الصفحة لإسقاطه، اسحب لتعديل الموضع، وغيّر الحجم "
 "بالمقابض. ميزة مميزة."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:682
-#| msgid ""
-#| "Sign PDF is a premium feature. Draw, type, or upload your signature and "
-#| "place it anywhere on the document."
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:683
 msgid "Draw, type, or upload your signature — place it anywhere on the PDF"
 msgstr "ارسم توقيعك أو اكتبه أو ارفعه — ضعه في أي مكان على PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:697
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:699
 msgid "Draw, Type or Upload"
 msgstr "ارسم أو اكتب أو ارفع"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:699
-#| msgid ""
-#| "Draw your signature, type it in a handwriting font, or upload an image"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:701
 msgid ""
 "Three ways to create a signature: draw it with the mouse or finger, type "
 "your name in a handwriting font, or upload a PNG/JPG image"
@@ -11908,15 +12122,11 @@ msgstr ""
 "ثلاث طرق لإنشاء التوقيع: ارسمه بالماوس أو الإصبع، أو اكتب اسمك بخط يدوي، أو "
 "ارفع صورة PNG/JPG"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:705
-#| msgid "Flexible Placement"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:707
 msgid "Visual Placement"
 msgstr "وضع مرئي"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:707
-#| msgid ""
-#| "Click anywhere on the page to drop your signature. Drag to position, use the"
-#| " bottom-right handle to resize."
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:709
 msgid ""
 "Click on the PDF preview to drop your signature, drag to fine-tune position,"
 " and pull the corner handle to resize"
@@ -11924,22 +12134,21 @@ msgstr ""
 "انقر على معاينة PDF لإسقاط توقيعك، واسحب لضبط الموضع، واسحب مقبض الزاوية "
 "لتغيير الحجم"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:715
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:717
 msgid ""
 "Files are processed in-memory and deleted immediately — your signature is "
 "never stored"
 msgstr "تُعالج الملفات في الذاكرة وتُحذف فورًا — لا يُخزَّن توقيعك أبدًا"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:723
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:725
 msgid "Signed PDF is ready for immediate download with no delays"
 msgstr "PDF الموقّع جاهز للتنزيل الفوري بدون تأخير"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:729
-#| msgid "How do I rotate a PDF page?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:731
 msgid "How do I create a signature?"
 msgstr "كيف أنشئ توقيعًا؟"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:731
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:733
 msgid ""
 "Three ways: draw it on the canvas with your mouse or finger, type your name "
 "and we render it in a handwriting font, or upload a PNG/JPG image. PNG with "
@@ -11948,13 +12157,11 @@ msgstr ""
 "ثلاث طرق: ارسم على اللوحة بالماوس أو الإصبع؛ اكتب اسمك ونعرضه بخط يشبه خط "
 "اليد؛ أو ارفع صورة PNG/JPG. عند الرفع، يعطي PNG ذو خلفية شفافة أنظف نتيجة."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:737
-#| msgid ""
-#| "Click and drag inside the blue box to move it anywhere on the page"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:739
 msgid "Can I place the signature anywhere on the page?"
 msgstr "هل يمكنني وضع التوقيع في أي مكان على الصفحة؟"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:739
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:741
 msgid ""
 "Yes. After creating your signature, click anywhere on the PDF preview to "
 "drop it there. Drag it around to fine-tune the position, or pull the corner "
@@ -11965,12 +12172,11 @@ msgstr ""
 "لضبط الموضع، أو اسحب مقبض الزاوية لتغيير الحجم. يمكنك وضع توقيعات متعددة على"
 " نفس الصفحة أو على صفحات مختلفة."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:746
-#| msgid "Can I crop multiple pages at once?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:748
 msgid "Can I sign multiple pages of a long contract?"
 msgstr "هل يمكنني توقيع عدة صفحات من عقد طويل؟"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:748
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:750
 msgid ""
 "Yes. Use the page selector above the preview to switch pages, then click to "
 "drop a signature on each one. Every placement is saved and applied when you "
@@ -11979,12 +12185,11 @@ msgstr ""
 "نعم. استخدم محدد الصفحات أعلى المعاينة للتبديل بين الصفحات، ثم انقر لإسقاط "
 "توقيع على كل واحدة. تُحفظ جميع المواضع وتُطبَّق عند الضغط على Sign PDF."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:754
-#| msgid "Will my fonts be preserved in the PDF?"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:756
 msgid "Will my signature be saved for next time?"
 msgstr "هل سيُحفظ توقيعي لاستخدامه لاحقًا؟"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:756
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:758
 msgid ""
 "If you drew or typed your signature, the last version is saved locally in "
 "your browser (never sent to the server), so you can re-use it on the next "
@@ -11994,11 +12199,11 @@ msgstr ""
 "الخادم) لتتمكن من إعادة استخدامه بنقرة واحدة في الزيارة التالية. لا تُحفظ "
 "الصور المرفوعة حفاظًا على الخصوصية."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:762
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:764
 msgid "Is this legally binding?"
 msgstr "هل هذا ملزم قانونيًا؟"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:764
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:766
 msgid ""
 "This tool adds a visual image signature to the PDF. For legally binding "
 "electronic signatures with audit trails and certificates, a dedicated "
@@ -12008,19 +12213,17 @@ msgstr ""
 " قانونيًا مع مسارات التدقيق والشهادات، يُوصى باستخدام خدمة توقيع إلكتروني "
 "مخصصة."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:770
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:772
 msgid "Sign PDF FAQ"
 msgstr "أسئلة شائعة حول توقيع PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:773
-#| msgid ""
-#| "Upload your signature image (PNG with a transparent background works best)"
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:775
 msgid ""
 "For the cleanest look, draw your signature directly or upload a PNG with a "
 "transparent background."
 msgstr "للحصول على أنظف مظهر، ارسم التوقيع مباشرةً أو ارفع PNG بخلفية شفافة."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:776
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:778
 msgid ""
 "Click on the PDF preview to drop the signature exactly where you want it; "
 "drag and resize without re-uploading."
@@ -12028,7 +12231,7 @@ msgstr ""
 "انقر على معاينة PDF لإسقاط التوقيع بالضبط في المكان المطلوب؛ اسحبه وغيّر "
 "حجمه دون إعادة الرفع."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:779
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:781
 msgid ""
 "To sign every page of a contract, switch pages with the selector and drop "
 "the signature on each one — your placements are remembered."
@@ -12036,15 +12239,15 @@ msgstr ""
 "لتوقيع كل صفحة من العقد، بدّل الصفحات باستخدام المحدد وضع التوقيع على كل "
 "واحدة — تُحفظ جميع المواضع."
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:782
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:784
 msgid "Tips for Signing PDFs"
 msgstr "نصائح لتوقيع ملفات PDF"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:783
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:785
 msgid "Sign a PDF online — draw, type, or upload"
 msgstr "وقّع PDF عبر الإنترنت — ارسم أو اكتب أو ارفع"
 
-#: utils_site/src/frontend/tool_configs/pdf_edit.py:785
+#: utils_site/src/frontend/tool_configs/pdf_edit.py:787
 msgid ""
 "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a "
 "PDF. Draw it with the mouse or finger, type your name in a handwriting-style"
@@ -13945,104 +14148,122 @@ msgstr "وصول Lifetime Hero (عرض المؤسس)"
 msgid "One-time payment. Limited to first 100 customers."
 msgstr "دفعة واحدة. لأول 100 عميل فقط."
 
-#: utils_site/src/users/models.py:14
+#: utils_site/src/users/models.py:16
 msgid "The Email must be set"
 msgstr "يجب تعيين البريد الإلكتروني"
 
-#: utils_site/src/users/models.py:25
+#: utils_site/src/users/models.py:27
 msgid "Superuser must have is_staff=True."
 msgstr "يجب أن يكون لدى المستخدم الفائق is_staff=True."
 
-#: utils_site/src/users/models.py:27
+#: utils_site/src/users/models.py:29
 msgid "Superuser must have is_superuser=True."
 msgstr "يجب أن يكون لدى المستخدم الفائق is_superuser=True."
 
-#: utils_site/src/users/models.py:32
+#: utils_site/src/users/models.py:34
 msgid "email address"
 msgstr "عنوان البريد الإلكتروني"
 
-#: utils_site/src/users/models.py:35
+#: utils_site/src/users/models.py:37
 msgid "Is Premium"
 msgstr "هل هو مميز"
 
-#: utils_site/src/users/models.py:41
+#: utils_site/src/users/models.py:43
 msgid "Subscription Start Date"
 msgstr "تاريخ بدء الاشتراك"
 
-#: utils_site/src/users/models.py:44
+#: utils_site/src/users/models.py:46
 msgid "Subscription End Date"
 msgstr "تاريخ انتهاء الاشتراك"
 
-#: utils_site/src/users/models.py:47
+#: utils_site/src/users/models.py:49
 msgid "Total Subscription Days"
 msgstr "إجمالي أيام الاشتراك"
 
-#: utils_site/src/users/models.py:50
+#: utils_site/src/users/models.py:52
 msgid "Consecutive Subscription Days"
 msgstr "أيام الاشتراك المتتالية"
 
-#: utils_site/src/users/models.py:83 utils_site/src/users/models.py:516
+#: utils_site/src/users/models.py:64
+msgid "Per-user HMAC secret for signing outbound webhook callbacks."
+msgstr "سر HMAC لكل مستخدم لتوقيع استدعاءات رد الاتصال الصادرة للويب هوك."
+
+#: utils_site/src/users/models.py:92 utils_site/src/users/models.py:544
 msgid "User"
 msgstr "المستخدم"
 
-#: utils_site/src/users/models.py:84
+#: utils_site/src/users/models.py:93
 msgid "Users"
 msgstr "المستخدمون"
 
-#: utils_site/src/users/models.py:460
+#: utils_site/src/users/models.py:448
+msgid ""
+"Monthly /api/v1 call quota for subscribers of this plan. 0 = no API access."
+msgstr ""
+"حصة استدعاءات /api/v1 الشهرية لمشتركي هذه الخطة. 0 = لا يوجد وصول إلى API."
+
+#: utils_site/src/users/models.py:488
 msgid "Runtime Setting"
 msgstr "إعدادات التدوير"
 
-#: utils_site/src/users/models.py:461
+#: utils_site/src/users/models.py:489
 msgid "Runtime Settings"
 msgstr "إعدادات التدوير"
 
-#: utils_site/src/users/models.py:469
+#: utils_site/src/users/models.py:497
 msgid "Setting key cannot be empty."
 msgstr "كلمة المرور لا يمكن أن تكون فارغة"
 
-#: utils_site/src/users/models.py:477
+#: utils_site/src/users/models.py:505
 msgid ""
 "This setting key is considered secret and cannot be configured from admin."
 msgstr "يعتبر مفتاح هذا الإعداد سريًا ولا يمكن تكوينه من المسؤول."
 
-#: utils_site/src/users/models.py:534
+#: utils_site/src/users/models.py:562
 msgid "Payment Method"
 msgstr "طريقة الدفع"
 
-#: utils_site/src/users/models.py:539
+#: utils_site/src/users/models.py:567
 msgid "Provider"
 msgstr "المزوّد"
 
-#: utils_site/src/users/models.py:542
+#: utils_site/src/users/models.py:570
 msgid "Transaction ID"
 msgstr "معرف المعاملة"
 
-#: utils_site/src/users/models.py:545
+#: utils_site/src/users/models.py:573
 msgid "Processed At"
 msgstr "تم المعالجة في"
 
-#: utils_site/src/users/models.py:551
+#: utils_site/src/users/models.py:579
 msgid "Payment"
 msgstr "الدفع"
 
-#: utils_site/src/users/models.py:552
+#: utils_site/src/users/models.py:580
 msgid "Payments"
 msgstr "المدفوعات"
 
-#: utils_site/src/users/views.py:53
+#: utils_site/src/users/models.py:838
+msgid "User-set label"
+msgstr "تسمية يحددها المستخدم"
+
+#: utils_site/src/users/models.py:841
+msgid "Tool slugs or [\"*\"]"
+msgstr "أدوات slugs أو [\"*\"]"
+
+#: utils_site/src/users/views.py:56
 msgid "Please verify your email address before signing in."
 msgstr "يرجى التحقق من عنوان بريدك الإلكتروني قبل تسجيل الدخول."
 
-#: utils_site/src/users/views.py:63
+#: utils_site/src/users/views.py:66
 msgid "Account is disabled"
 msgstr "الحساب معطل"
 
-#: utils_site/src/users/views.py:69
+#: utils_site/src/users/views.py:72
 msgid "Invalid email or password"
 msgstr "بريد إلكتروني أو كلمة مرور غير صالحة"
 
-#: utils_site/src/users/views.py:101
+#: utils_site/src/users/views.py:106
 msgid ""
 "Registration successful! Please check your email to verify your account "
 "before logging in."
@@ -14050,997 +14271,62 @@ msgstr ""
 "التسجيل ناجح! يرجى التحقق من بريدك الإلكتروني للتحقق من حسابك قبل تسجيل "
 "الدخول."
 
-#: utils_site/src/users/views.py:125
+#: utils_site/src/users/views.py:130
 msgid "You have been successfully logged out."
 msgstr "لقد تم تسجيل خروجك بنجاح."
 
-#: utils_site/src/users/views.py:171
+#: utils_site/src/users/views.py:177
 msgid "Your email is already verified."
 msgstr "بريدك الإلكتروني مُتحقق منه بالفعل."
 
-#: utils_site/src/users/views.py:193
+#: utils_site/src/users/views.py:200
 msgid "Password reset email sent. Please check your inbox and spam folder."
 msgstr ""
 "تم إرسال بريد إعادة تعيين كلمة المرور. يرجى التحقق من صندوق الوارد ومجلد "
 "الرسائل غير المرغوب فيها."
 
-#: utils_site/src/users/views.py:196
+#: utils_site/src/users/views.py:203
 msgid "Unable to send password reset email."
 msgstr "تعذر إرسال بريد إعادة تعيين كلمة المرور."
 
-#: utils_site/src/users/views.py:207
+#: utils_site/src/users/views.py:214
 msgid "Profile updated successfully!"
 msgstr "تم تحديث الملف الشخصي بنجاح!"
 
-#: utils_site/src/users/views.py:276
+#: utils_site/src/users/views.py:283
 msgid "Account deleted successfully"
 msgstr "تم حذف الحساب بنجاح"
 
-#: utils_site/src/users/views.py:287
+#: utils_site/src/users/views.py:294
 msgid "Method not allowed"
 msgstr "الطريقة غير مسموح بها"
 
-#: utils_site/src/users/views.py:307
+#: utils_site/src/users/views.py:314
 msgid "Hero display updated successfully"
 msgstr "تم تحديث عرض البطل بنجاح"
 
-#: utils_site/src/users/views.py:312
+#: utils_site/src/users/views.py:319
 msgid "Invalid JSON"
 msgstr "JSON غير صالح"
 
-#~ msgid ""
-#~ "Add your handwritten signature to any PDF document. Premium feature: upload "
-#~ "a PNG signature image, choose position and apply to all pages. Fast and "
-#~ "secure."
-#~ msgstr ""
-#~ "أضف توقيعك المكتوب بخط اليد إلى أي مستند PDF. ميزة مميزة: ارفع صورة توقيع "
-#~ "PNG، اختر الموضع وطبّق على جميع الصفحات. سريع وآمن."
-
-#~ msgid "Add your image signature to any PDF page"
-#~ msgstr "أضف توقيع صورتك إلى أي صفحة PDF"
-
-#~ msgid "Image Signature"
-#~ msgstr "توقيع صورة"
-
-#~ msgid ""
-#~ "Upload any PNG or JPEG image of your handwritten signature and place it "
-#~ "precisely on the PDF"
-#~ msgstr "ارفع أي صورة PNG أو JPEG لتوقيعك المكتوب بخط اليد وضعها بدقة على PDF"
-
-#~ msgid ""
-#~ "Choose the exact position and page for your signature, or apply it to all "
-#~ "pages at once"
-#~ msgstr ""
-#~ "اختر الموضع الدقيق والصفحة لتوقيعك، أو طبّقه على جميع الصفحات دفعة واحدة"
-
-#~ msgid "What image formats are accepted for the signature?"
-#~ msgstr "ما تنسيقات الصور المقبولة للتوقيع؟"
-
-#~ msgid ""
-#~ "You can upload a PNG or JPEG image of your handwritten signature. PNG with a"
-#~ " transparent background works best so the signature blends naturally into "
-#~ "the PDF."
-#~ msgstr ""
-#~ "يمكنك رفع صورة PNG أو JPEG لتوقيعك المكتوب بخط اليد. تعمل PNG بخلفية شفافة "
-#~ "بشكل أفضل حتى يندمج التوقيع بشكل طبيعي في PDF."
-
-#~ msgid "Can I sign all pages at once?"
-#~ msgstr "هل يمكنني التوقيع على جميع الصفحات دفعة واحدة؟"
-
-#~ msgid ""
-#~ "Yes. Enable the 'Apply to all pages' option and your signature will be "
-#~ "stamped on every page of the PDF at the same position."
-#~ msgstr ""
-#~ "نعم. فعّل خيار «تطبيق على جميع الصفحات» وسيُختم توقيعك على كل صفحة من PDF في"
-#~ " نفس الموضع."
-
-#~ msgid ""
-#~ "Use a PNG image with a transparent background for the cleanest signature "
-#~ "result."
-#~ msgstr "استخدم صورة PNG بخلفية شفافة للحصول على أنظف نتيجة للتوقيع."
-
-#~ msgid ""
-#~ "Increase the signature width for large-format PDFs so it stays visible."
-#~ msgstr "زد عرض التوقيع لملفات PDF كبيرة الحجم حتى يبقى مرئيًا."
-
-#~ msgid ""
-#~ "Use the 'Apply to all pages' option to stamp every page in a contract at "
-#~ "once."
-#~ msgstr ""
-#~ "استخدم خيار «تطبيق على جميع الصفحات» لختم كل صفحة في العقد دفعة واحدة."
-
-#~ msgid "Add your signature to a PDF online"
-#~ msgstr "أضف توقيعك إلى PDF عبر الإنترنت"
-
-#~ msgid ""
-#~ "<p><strong>Sign PDF</strong> lets you place a handwritten signature image "
-#~ "directly onto any page of a PDF document. Upload your signature as a PNG or "
-#~ "JPEG, choose the position and page, and download the signed PDF in "
-#~ "seconds.</p><p>No account required. Files are processed securely and deleted"
-#~ " immediately after download. The signed PDF retains all original content and"
-#~ " formatting.</p>"
-#~ msgstr ""
-#~ "<p><strong>توقيع PDF</strong> يتيح لك وضع صورة التوقيع المكتوب بخط اليد "
-#~ "مباشرةً على أي صفحة من مستند PDF. ارفع توقيعك بصيغة PNG أو JPEG، واختر "
-#~ "الموضع والصفحة، ونزّل PDF الموقّع في ثوانٍ.</p><p>لا حاجة لحساب. تُعالج "
-#~ "الملفات بأمان وتُحذف فورًا بعد التنزيل. يحتفظ PDF الموقّع بجميع المحتوى "
-#~ "والتنسيق الأصليين.</p>"
-
-#~ msgid "Signature Settings"
-#~ msgstr "إعدادات التوقيع"
-
-#~ msgid "Upload Signature Image"
-#~ msgstr "رفع صورة التوقيع"
-
-#~ msgid "Signature Position"
-#~ msgstr "موضع التوقيع"
-
-#~ msgid "Center"
-#~ msgstr "الوسط"
-
-#~ msgid "Page to Sign"
-#~ msgstr "الصفحة للتوقيع"
-
-#~ msgid ""
-#~ "Enter the page number where the signature will be placed (first page = 1)."
-#~ msgstr "أدخل رقم الصفحة التي سيتم وضع التوقيع فيها (الصفحة الأولى = 1)."
-
-#~ msgid "Signature Width"
-#~ msgstr "عرض التوقيع"
-
-#~ msgid "pt"
-#~ msgstr "نقطة"
-
-#~ msgid "Apply signature to all pages"
-#~ msgstr "تطبيق التوقيع على جميع الصفحات"
-
-#~ msgid "When checked, the signature is added to every page of the PDF."
-#~ msgstr "عند التحقق، يتم إضافة التوقيع إلى كل صفحة من PDF."
-
-#~ msgid "Choose the position and page where the signature should appear"
-#~ msgstr "اختر الموضع والصفحة التي يجب أن يظهر فيها التوقيع"
-
-#~ msgid "Adjust the signature width and opacity using the sliders"
-#~ msgstr "اضبط عرض التوقيع وشفافيته باستخدام شرائط التمرير"
-
-#~ msgid "Click the Sign PDF button to process your document"
-#~ msgstr "انقر فوق زر توقيع PDF لمعالجة مستندك"
-
-#~ msgid "Download your signed PDF file"
-#~ msgstr "حمّل ملف PDF الموقّع"
-
-#~ msgid ""
-#~ "Use a PNG image with a transparent background so the signature blends "
-#~ "naturally into the document without a white box around it."
-#~ msgstr ""
-#~ "استخدم صورة PNG بخلفية شفافة حتى يندمج التوقيع بشكل طبيعي في المستند بدون "
-#~ "مربع أبيض."
-
-#~ msgid "Cancel Subscription?"
-#~ msgstr "إلغاء الاشتراك؟"
-
-#~ msgid ""
-#~ "Are you sure you want to cancel your subscription? You'll continue to have "
-#~ "access until the end of your current billing period."
-#~ msgstr ""
-#~ "هل أنت متأكد أنك تريد إلغاء اشتراكك؟ ستستمر في الوصول حتى نهاية فترة الفوترة"
-#~ " الحالية."
-
-#~ msgid "Keep Subscription"
-#~ msgstr "احتفظ بالاشتراك"
-
-#~ msgid "Cancel Anyway"
-#~ msgstr "إلغاء على أي حال"
-
-#~ msgid "Cancel Subscription"
-#~ msgstr "إلغاء الاشتراك"
-
-#~ msgid "We're sorry to see you go"
-#~ msgstr "نأسف لرؤيتك تغادر"
-
-#~ msgid "Before you go, please tell us why:"
-#~ msgstr "قبل أن تغادر، يرجى إخبارنا بالسبب:"
-
-#~ msgid "Reason for cancellation"
-#~ msgstr "سبب الإلغاء"
-
-#~ msgid "Too expensive"
-#~ msgstr "مكلف جداً"
-
-#~ msgid "The cost is more than I can afford"
-#~ msgstr "التكلفة أكثر مما أستطيع تحمله"
-
-#~ msgid "Not using enough"
-#~ msgstr "لا أستخدمه بما يكفي"
-
-#~ msgid "I don't use the service frequently enough"
-#~ msgstr "لا أستخدم الخدمة بشكل متكرر بما يكفي"
-
-#~ msgid "Missing features"
-#~ msgstr "ميزات مفقودة"
-
-#~ msgid "I need features that aren't available"
-#~ msgstr "أحتاج إلى ميزات غير متوفرة"
-
-#~ msgid "Technical issues"
-#~ msgstr "مشاكل فنية"
-
-#~ msgid "I'm experiencing problems with the service"
-#~ msgstr "أواجه مشاكل مع الخدمة"
-
-#~ msgid "Found alternative"
-#~ msgstr "وجدت بديلاً"
-
-#~ msgid "I'm switching to a different service"
-#~ msgstr "أنتقل إلى خدمة مختلفة"
-
-#~ msgid "Other reason"
-#~ msgstr "سبب آخر"
-
-#~ msgid "Something else"
-#~ msgstr "شيء آخر"
-
-#~ msgid "Additional comments (optional)"
-#~ msgstr "تعليقات إضافية (اختياري)"
-
-#~ msgid "Tell us more about your experience..."
-#~ msgstr "أخبرنا المزيد عن تجربتك..."
-
-#~ msgid "Before you cancel, consider these options:"
-#~ msgstr "قبل الإلغاء، ضع في اعتبارك هذه الخيارات:"
-
-#~ msgid "Switch to a lower tier plan"
-#~ msgstr "التبديل إلى خطة ذات مستوى أدنى"
-
-#~ msgid "Pause subscription for 3 months"
-#~ msgstr "إيقاف الاشتراك لمدة 3 أشهر"
-
-#~ msgid "Apply a discount for next renewal"
-#~ msgstr "تطبيق خصم على التجديد التالي"
-
-#~ msgid "Current Subscription Details"
-#~ msgstr "تفاصيل الاشتراك الحالي"
-
-#~ msgid "Next billing date"
-#~ msgstr "تاريخ الفوترة التالي"
-
-#~ msgid "Not available"
-#~ msgstr "غير متاح"
-
-#~ msgid "Access until"
-#~ msgstr "الوصول حتى"
-
-#~ msgid "Hero status"
-#~ msgstr "حالة البطل"
-
-#~ msgid "Hidden"
-#~ msgstr "مخفي"
-
-#~ msgid "Proceed with Cancellation"
-#~ msgstr "المتابعة مع الإلغاء"
-
-#~ msgid "What happens after cancellation?"
-#~ msgstr "ماذا يحدث بعد الإلغاء؟"
-
-#~ msgid "Continue using premium features"
-#~ msgstr "الاستمرار في استخدام ميزات Premium"
-
-#~ msgid ""
-#~ "You'll keep access to all premium features until the end of your current "
-#~ "billing period."
-#~ msgstr "ستحتفظ بالوصول إلى جميع ميزات Premium حتى نهاية فترة الفوترة الحالية."
-
-#~ msgid "Hero status remains"
-#~ msgstr "حالة البطل تبقى"
-
-#~ msgid ""
-#~ "Your hero status and ranking will be preserved during the remaining period."
-#~ msgstr "سيتم الحفاظ على حالة البطل ورتبتك خلال الفترة المتبقية."
-
-#~ msgid "Data is preserved"
-#~ msgstr "البيانات محفوظة"
-
-#~ msgid "All your data and conversions. and settings will be saved."
-#~ msgstr "جميع بياناتك وتحويلاتك. والإعدادات سيتم حفظها."
-
-#~ msgid "Can re-subscribe anytime"
-#~ msgstr "يمكن إعادة الاشتراك في أي وقت"
-
-#~ msgid "You can always come back and upgrade to premium again."
-#~ msgstr "يمكنك دائماً العودة والترقية إلى Premium مرة أخرى."
-
-#~ msgid "Please select a reason for cancellation"
-#~ msgstr "يرجى تحديد سبب للإلغاء"
-
-#~ msgid "Web browser (Chrome, Firefox, Safari, Edge)"
-#~ msgstr "متصفح الويب (Chrome، Firefox، Safari، Edge)"
-
-#~ msgid "file"
-#~ msgstr "ملف"
-
-#~ msgid "Upload File"
-#~ msgstr "رفع ملف"
-
-#~ msgid "Click the upload button or drag and drop your file"
-#~ msgstr "انقر زر التحميل أو اسحب ملفك وأفلته"
-
-#~ msgid "Process"
-#~ msgstr "معالجة"
-
-#~ msgid "Click the button to start processing your file"
-#~ msgstr "انقر الزر لبدء معالجة ملفك"
-
-#~ msgid "file to convert"
-#~ msgstr "حدد الملف للتحويل"
-
-#~ msgid ""
-#~ "Click the Select file button or drag and drop your file into the upload area"
-#~ msgstr "انقر على زر الرفع أو اسحب ملفك وأفلته"
-
-#~ msgid "Click the Convert button and wait for processing to complete"
-#~ msgstr "انقر على زر التحويل وانتظر حتى تكتمل المعالجة"
-
-#~ msgid "Download your converted file instantly - no email required"
-#~ msgstr "قم بتنزيل ملفك المحول على الفور"
-
-#~ msgid "PDF file to edit"
-#~ msgstr "حدد الملف للتحرير"
-
-#~ msgid "Select your PDF file using the upload button or drag and drop"
-#~ msgstr "حدد ملف PDF الخاص بك باستخدام الزر أعلاه أو اسحبه وأفلته"
-
-#~ msgid "Configure Options"
-#~ msgstr "المزيد من الخيارات"
-
-#~ msgid "Adjust settings as needed for your task"
-#~ msgstr "اضبط الإعدادات حسب الحاجة لمهمتك"
-
-#~ msgid "Process & Download"
-#~ msgstr "تنزيل"
-
-#~ msgid "Click the button to process and download your edited PDF"
-#~ msgstr "انقر على زر القص لمعالجة ملف PDF الخاص بك"
-
-#~ msgid "URL or HTML content to convert"
-#~ msgstr "رابط URL أو محتوى HTML للتحويل"
-
-#~ msgid "Enter URL or HTML"
-#~ msgstr "تحويل PDF إلى HTML"
-
-#~ msgid "Paste a web page URL or enter HTML content directly"
-#~ msgstr "الصق رابط صفحة ويب أو أدخل محتوى HTML مباشرة"
-
-#~ msgid "Configure Settings"
-#~ msgstr "المزيد من الخيارات"
-
-#~ msgid "Adjust page size, margins, and other PDF settings"
-#~ msgstr "اضبط حجم الصفحة، الهوامش، وإعدادات PDF الأخرى"
-
-#~ msgid "Click the Convert button to generate your PDF"
-#~ msgstr "انقر على زر القص لمعالجة ملف PDF الخاص بك"
-
-#~ msgid "Download your PDF file instantly"
-#~ msgstr "قم بتنزيل ملف PDF الخاص بك"
-
-#~ msgid "JPG, PNG, GIF or BMP images to convert"
-#~ msgstr "صور JPG، PNG، GIF أو BMP للتحويل"
-
-#~ msgid "Select Images"
-#~ msgstr "الصور المحددة"
-
-#~ msgid "Click the Select images button or drag and drop your images"
-#~ msgstr "انقر على زر الرفع أو اسحب ملفك وأفلته"
-
-#~ msgid "Arrange Order"
-#~ msgstr "ترتيب الترتيب"
-
-#~ msgid "Add more images and arrange them in the desired order"
-#~ msgstr "قم بمعاينة جميع ملفات PDF واسحبها لإعادة ترتيب ترتيب الدمج"
-
-#~ msgid "Select your PDF file to add watermark"
-#~ msgstr "حدد ملف PDF الخاص بك لإضافة علامة مائية"
-
-#~ msgid "Configure Watermark"
-#~ msgstr "تكوين العلامة المائية"
-
-#~ msgid "Enter text or upload image, adjust color and opacity"
-#~ msgstr "أدخل نصاً أو ارفع صورة، وضبط اللون والشفافية"
-
-#~ msgid "Drag the watermark to position it on the page"
-#~ msgstr "اسحب العلامة المائية لوضعها على الصفحة"
-
-#~ msgid "Apply"
-#~ msgstr "تطبيق"
-
-#~ msgid "Click Add Watermark button to process"
-#~ msgstr "انقر على زر إضافة علامة مائية للمعالجة"
-
-#~ msgid "Select your PDF file to crop"
-#~ msgstr "حدد ملف PDF الخاص بك للقص"
-
-#~ msgid "Select Area"
-#~ msgstr "اختر المنطقة"
-
-#~ msgid "Click and drag to select the crop area on the PDF"
-#~ msgstr "انقر واسحب لتحديد منطقة القص على ملف PDF"
-
-#~ msgid "Crop"
-#~ msgstr "قص"
-
-#~ msgid "Click the Crop button to process your PDF"
-#~ msgstr "انقر على زر القص لمعالجة ملف PDF الخاص بك"
-
-#~ msgid "Upload two PDF files"
-#~ msgstr "ارفع ملفي PDF"
-
-#~ msgid "Select the base PDF and the comparison PDF."
-#~ msgstr "اختر ملف PDF الأساسي وملف PDF للمقارنة."
-
-#~ msgid "Set sensitivity"
-#~ msgstr "ضبط الحساسية"
-
-#~ msgid "Adjust diff sensitivity to control change detection strictness."
-#~ msgstr "اضبط حساسية الفروقات للتحكم في دقة اكتشاف التغييرات."
-
-#~ msgid "Review and export"
-#~ msgstr "مراجعة وتصدير"
-
-#~ msgid ""
-#~ "Review changes page-by-page. Export report files only if you need to share "
-#~ "or archive them."
-#~ msgstr ""
-#~ "راجع التغييرات صفحةً بصفحة. صدّر ملفات التقرير فقط إذا احتجت إلى مشاركتها أو"
-#~ " أرشفتها."
-
-#~ msgid ""
-#~ "This is a donation to support the project and its developers. It does not "
-#~ "unlock Premium features."
-#~ msgstr "هذه تبرع لدعم المشروع ومطوريه. لا يفتح ميزات Premium."
-
-#~ msgid "Contribution type"
-#~ msgstr "نوع المساهمة"
-
-#~ msgid "One-time"
-#~ msgstr "مرة واحدة"
-
-#~ msgid "Monthly"
-#~ msgstr "شهري"
-
-#~ msgid "Currency"
-#~ msgstr "العملة"
-
-#~ msgid "Proceed to secure payment"
-#~ msgstr "المتابعة إلى الدفع الآمن"
-
-#~ msgid ""
-#~ "Payments are processed by Stripe. You can cancel monthly support anytime in "
-#~ "Stripe customer portal."
-#~ msgstr ""
-#~ "يتم معالجة المدفوعات بواسطة Stripe. يمكنك إلغاء الدعم الشهري في أي وقت من "
-#~ "خلال بوابة عملاء Stripe."
-
-#~ msgid "Why payments are paused"
-#~ msgstr "لماذا المدفوعات متوقفة"
-
-#~ msgid ""
-#~ "We’re temporarily pausing Premium subscriptions and contributions while we "
-#~ "complete the business setup. This helps us keep everything clean and "
-#~ "compliant."
-#~ msgstr ""
-#~ "نوقف اشتراكات Premium والمساهمات مؤقتاً بينما نكمل إعداد الأعمال. هذا "
-#~ "يساعدنا في الحفاظ على كل شيء نظيف ومتوافق."
-
-#~ msgid "Good news: all free tools remain fully available."
-#~ msgstr "أخبار سارة: جميع الأدوات المجانية تظل متاحة بالكامل."
-
-#~ msgid "Thank you!"
-#~ msgstr "شكراً لك!"
-
-#~ msgid "Your support helps us keep improving Convertica."
-#~ msgstr "دعمك يساعدنا في الاستمرار في تحسين كونفيرتيكا."
-
-#~ msgid ""
-#~ "Premium features and Hero status are part of the subscription plans. This "
-#~ "contribution is support only — thank you for being an invisible hero."
-#~ msgstr ""
-#~ "ميزات Premium وحالة البطل جزء من خطط الاشتراك. هذه المساهمة للدعم فقط - "
-#~ "شكراً لك لكونك بطلاً غير مرئي."
-
-#~ msgid "Support again"
-#~ msgstr "ادعم مرة أخرى"
-
-#~ msgid "Back to Pricing"
-#~ msgstr "العودة إلى التسعير"
-
-#~ msgid "Note: this support payment does not unlock Premium features."
-#~ msgstr "ملاحظة: دفعة الدعم هذه لا تفتح ميزات Premium."
-
-#~ msgid "Update your subscription plan and billing information"
-#~ msgstr "تحديث خطة اشتراكك ومعلومات الفوترة"
-
-#~ msgid "Premium Plan"
-#~ msgstr "خطة Premium"
-
-#~ msgid "Much higher limits and premium features"
-#~ msgstr "حدود أعلى بكثير وميزات مميزة"
-
-#~ msgid "Free Plan"
-#~ msgstr "الخطة المجانية"
-
-#~ msgid "Basic features with limitations"
-#~ msgstr "ميزات أساسية مع قيود"
-
-#~ msgid "Much higher page and file size limits"
-#~ msgstr "حدود صفحات وحجم ملف أعلى بكثير"
-
-#~ msgid "Priority processing"
-#~ msgstr "معالجة أولوية"
-
-#~ msgid "Hero status & ranking"
-#~ msgstr "حالة البطل والترتيب"
-
-#~ msgid "Priority support and custom solutions on request"
-#~ msgstr "دعم أولوية وحلول مخصصة عند الطلب"
-
-#~ msgid "Limited conversions per day"
-#~ msgstr "تحويلات محدودة يومياً"
-
-#~ msgid "Standard processing"
-#~ msgstr "معالجة قياسية"
-
-#~ msgid "Expires"
-#~ msgstr "ينتهي"
-
-#~ msgid "Billing History"
-#~ msgstr "سجل الفواتير"
-
-#~ msgid ""
-#~ "Billing history will be available once payment processing is implemented."
-#~ msgstr "سيكون سجل الفواتير متاحاً بمجرد تنفيذ معالجة الدفع."
-
-#~ msgid "Failed to cancel subscription"
-#~ msgstr "فشل إلغاء الاشتراك"
-
-#~ msgid "An error occurred while canceling subscription"
-#~ msgstr "حدث خطأ أثناء إلغاء الاشتراك"
-
-#~ msgid "Thank you for your contribution"
-#~ msgstr "شكراً لك على مساهمتك"
-
-#~ msgid ""
-#~ "Thank you for contributing to Convertica. Your support helps us keep "
-#~ "improving the service."
-#~ msgstr ""
-#~ "شكراً لك على المساهمة في كونفيرتيكا. دعمك يساعدنا في الاستمرار في تحسين "
-#~ "الخدمة."
-
-#~ msgid "No active subscription to cancel"
-#~ msgstr "لا يوجد اشتراك نشط للإلغاء"
-
-#~ msgid "Subscription cancelled successfully"
-#~ msgstr "تم إلغاء الاشتراك بنجاح"
-
-#~ msgid ""
-#~ "Add your signature to a PDF online free. Upload an image of your signature "
-#~ "and place it anywhere on any page. No registration, no watermark. Works on "
-#~ "Windows, Mac, Linux, iOS, Android."
-#~ msgstr ""
-#~ "أضف توقيعك إلى PDF عبر الإنترنت مجانًا. ارفع صورة توقيعك وضعها في أي مكان "
-#~ "على أي صفحة. بدون تسجيل، بدون علامة مائية. يعمل على Windows وMac وLinux وiOS"
-#~ " وAndroid."
-
-# ==================== pdf_to_text ====================
-#~ msgid "PDF to Text Converter Online Free | Convertica"
-#~ msgstr "محول PDF إلى نص مجانًا عبر الإنترنت | Convertica"
-
-#~ msgid ""
-#~ "Extract plain text from PDF online free. Convert PDF to TXT file instantly "
-#~ "with optional page numbers and layout preservation. No registration "
-#~ "required."
-#~ msgstr ""
-#~ "استخرج النص العادي من PDF عبر الإنترنت مجانًا. حوّل PDF إلى ملف TXT فورًا مع"
-#~ " أرقام الصفحات الاختيارية والحفاظ على التخطيط. لا حاجة للتسجيل."
-
-#~ msgid ""
-#~ "Convert JPG to PDF online free without compression. Merge multiple images "
-#~ "into one PDF, combine photos to PDF, create PDF from images with high "
-#~ "resolution. Perfect for documents, receipts, homework, and university "
-#~ "submissions. No watermark, unlimited conversions."
-#~ msgstr ""
-#~ "قم بتحويل JPG إلى PDF عبر الإنترنت مجاناً بدون ضغط. دمج صور متعددة في ملف "
-#~ "PDF واحد، جمع الصور في PDF، إنشاء PDF من الصور بدقة عالية. مثالي للمستندات "
-#~ "والإيصالات والواجبات المنزلية وتقديمات الجامعة. بدون علامة مائية، تحويلات "
-#~ "غير محدودة."
-
-#~ msgid ""
-#~ "Fast, simple and secure online PDF to Word and Word to PDF converter. No "
-#~ "installations required."
-#~ msgstr ""
-#~ "محول PDF إلى Word وWord إلى PDF عبر الإنترنت سريع وبسيط وآمن. لا حاجة إلى "
-#~ "تثبيت."
-
-#~ msgid ""
-#~ "PDF to Word, Word to PDF, PDF converter, DOCX converter, online converter, "
-#~ "free converter"
-#~ msgstr ""
-#~ "PDF إلى Word، Word إلى PDF، محول PDF، محول DOCX، محول عبر الإنترنت، محول "
-#~ "مجاني"
-
-#~ msgid "Upload icon"
-#~ msgstr "أيقونة الرفع"
-
-#~ msgid "Select files to convert (multiple)"
-#~ msgstr "حدد الملفات للتحويل (متعددة)"
-
-#~ msgid "Select file to convert"
-#~ msgstr "حدد الملف للتحويل"
-
-#~ msgid "Use the button above to browse files"
-#~ msgstr "استخدم الزر أعلاه لتصفح الملفات"
-
-#~ msgid "files"
-#~ msgstr "ملفات"
-
-#~ msgid "Select files to edit (multiple)"
-#~ msgstr "حدد الملفات للتحرير (متعددة)"
-
-#~ msgid "Select file to edit"
-#~ msgstr "حدد الملف للتحرير"
-
-#~ msgid ""
-#~ "We use cookies and similar technologies to enhance your browsing experience,"
-#~ " security, analytics, and to provide personalized content."
-#~ msgstr ""
-#~ "نستخدم ملفات تعريف الارتباط والتقنيات المماثلة لتعزيز تجربة التصفح الخاصة "
-#~ "بك، والأمان، والتحليلات، وتقديم محتوى مخصص."
-
-#~ msgid ""
-#~ "You can accept all cookies, reject non-essential cookies, or customize your "
-#~ "preferences. Essential cookies are required for the website to function and "
-#~ "cannot be disabled."
-#~ msgstr ""
-#~ "يمكنك قبول جميع ملفات تعريف الارتباط، أو رفض ملفات تعريف الارتباط غير "
-#~ "الضرورية، أو تخصيص تفضيلاتك. ملفات تعريف الارتباط الأساسية مطلوبة لكي يعمل "
-#~ "الموقع ولا يمكن تعطيلها."
-
-#~ msgid "Select image(s)"
-#~ msgstr "اختر صورة (صور)"
-
-#~ msgid "multiple files supported"
-#~ msgstr "يدعم ملفات متعددة"
-
-#~ msgid "Select files to watermark (multiple)"
-#~ msgstr "حدد الملفات لوضع علامة مائية (متعددة)"
-
-#~ msgid "Select file to watermark"
-#~ msgstr "حدد الملف لوضع علامة مائية"
-
-#~ msgid "Select files to crop (multiple)"
-#~ msgstr "حدد الملفات للقص (متعددة)"
-
-#~ msgid "Select file to crop"
-#~ msgstr "حدد الملف للقص"
-
-#~ msgid "Daily Hero"
-#~ msgstr "بطل يومي"
-
-#~ msgid "day"
-#~ msgstr "يوم"
-
-#~ msgid "Perfect for quick transformations"
-#~ msgstr "مثالي للتحويلات السريعة"
-
-#~ msgid "No daily conversion limits for 24 hours"
-#~ msgstr "لا توجد حدود للتحويل اليومي لمدة 24 ساعة"
-
-#~ msgid "Become Daily Hero"
-#~ msgstr "كن بطلاً يومياً"
-
-#~ msgid "Daily Hero Access"
-#~ msgstr "وصول البطل اليومي"
-
-#~ msgid "Select your PDF file to edit"
-#~ msgstr "حدد ملف PDF الخاص بك للتحرير"
-
-#~ msgid "Apply your changes and click the Edit button"
-#~ msgstr "طبّق تغييراتك وانقر على زر التحرير"
-
-#~ msgid ""
-#~ "Select image quality (60-95): higher quality = better clarity but larger "
-#~ "file size. 85 is recommended."
-#~ msgstr ""
-#~ "اختر جودة الصورة (60-95): الجودة الأعلى = وضوح أفضل ولكن حجم ملف أكبر. يُوصى"
-#~ " بـ 85."
-
-#~ msgid ""
-#~ "Wait for the PDF to JPG conversion to complete - all selected pages will be "
-#~ "converted to JPG images"
-#~ msgstr ""
-#~ "انتظر حتى يكتمل تحويل PDF إلى JPG - سيتم تحويل جميع الصفحات المحددة إلى صور "
-#~ "JPG"
-
-#, python-format
-#~ msgid ""
-#~ "Free users can convert PDF files with up to %(max_pages)s pages. Premium "
-#~ "users have higher limits. For larger files, please split them into smaller "
-#~ "parts. The output will be a ZIP archive containing all converted JPG images,"
-#~ " named with page numbers (e.g., filename_page0001.jpg, "
-#~ "filename_page0002.jpg)."
-#~ msgstr ""
-#~ "يمكن للمستخدمين المجانيين تحويل ملفات PDF التي تصل إلى %(max_pages)s صفحة. "
-#~ "للمستخدمين المميزين حدود أعلى. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. "
-#~ "سيكون الإخراج عبارة عن أرشيف ZIP يحتوي على جميع صور JPG المحولة، مسماة "
-#~ "بأرقام الصفحات (مثل filename_page0001.jpg، filename_page0002.jpg)."
-
-#~ msgid ""
-#~ "Click the convert button to start converting PDF to Word (PDF to DOCX "
-#~ "conversion)"
-#~ msgstr "انقر على زر التحويل لبدء تحويل PDF إلى Word (تحويل PDF إلى DOCX)"
-
-#~ msgid ""
-#~ "Wait for the PDF to Word conversion to complete - text and formatting will "
-#~ "be extracted from your PDF and converted to editable Word format"
-#~ msgstr ""
-#~ "انتظر حتى يكتمل تحويل PDF إلى Word - سيتم استخراج النص والتنسيق من ملف PDF "
-#~ "الخاص بك وتحويلهما إلى تنسيق Word قابل للتحرير"
-
-#~ msgid ""
-#~ "Download your editable Word document (DOCX format) - your PDF has been "
-#~ "successfully converted to Word"
-#~ msgstr ""
-#~ "قم بتنزيل مستند Word القابل للتحرير (تنسيق DOCX) - تم تحويل ملف PDF الخاص بك"
-#~ " بنجاح إلى Word"
-
-#~ msgid ""
-#~ "Text-based PDFs work best - scanned PDFs (image-only) can be converted with "
-#~ "OCR for Premium users."
-#~ msgstr ""
-#~ "تعمل ملفات PDF المستندة إلى النص بشكل أفضل - يمكن تحويل ملفات PDF الممسوحة "
-#~ "ضوئياً (صور فقط) باستخدام OCR للمستخدمين المميزين."
-
-#~ msgid "Text-based PDFs work best."
-#~ msgstr "تعمل ملفات PDF المستندة إلى النص بشكل أفضل."
-
-#~ msgid ""
-#~ "Wait for the Word to PDF conversion to complete - formatting and layout will"
-#~ " be preserved when converting from Word to PDF"
-#~ msgstr ""
-#~ "انتظر حتى يكتمل تحويل Word إلى PDF - سيتم الحفاظ على التنسيق والتخطيط عند "
-#~ "التحويل من Word إلى PDF"
-
-#~ msgid ""
-#~ "Download your PDF file - your Word document has been successfully converted "
-#~ "to PDF format"
-#~ msgstr ""
-#~ "قم بتنزيل ملف PDF الخاص بك - تم تحويل مستند Word الخاص بك بنجاح إلى تنسيق "
-#~ "PDF"
-
-#~ msgid ""
-#~ "Click the add page numbers button to process your PDF and add page numbers"
-#~ msgstr ""
-#~ "انقر على زر إضافة أرقام الصفحات لمعالجة ملف PDF الخاص بك وإضافة أرقام "
-#~ "الصفحات"
-
-#~ msgid ""
-#~ "Download your PDF file with page numbers added using the download button"
-#~ msgstr "قم بتنزيل ملف PDF الخاص بك مع إضافة أرقام الصفحات باستخدام زر التنزيل"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for adding page "
-#~ "numbers. For larger files, please split them into smaller parts. The page "
-#~ "numbers will be added according to your selected position, format, and font "
-#~ "size."
-#~ msgstr ""
-#~ "يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة لإضافة أرقام الصفحات. "
-#~ "للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. ستتم إضافة أرقام الصفحات وفقاً "
-#~ "للموضع والتنسيق وحجم الخط الذي حددته."
-
-#~ msgid ""
-#~ "Choose the color and opacity using the sliders to customize your PDF "
-#~ "watermark"
-#~ msgstr ""
-#~ "اختر اللون والشفافية باستخدام أشرطة التمرير لتخصيص علامتك المائية على PDF"
-
-#~ msgid ""
-#~ "Click on the PDF to position the watermark, or drag it to move it anywhere "
-#~ "on the page"
-#~ msgstr ""
-#~ "انقر على ملف PDF لوضع العلامة المائية، أو اسحبها لتحريكها إلى أي مكان على "
-#~ "الصفحة"
-
-#~ msgid ""
-#~ "Click the add watermark button to process your PDF and add the watermark"
-#~ msgstr ""
-#~ "انقر على زر إضافة العلامة المائية لمعالجة ملف PDF الخاص بك وإضافة العلامة "
-#~ "المائية"
-
-#~ msgid "Download your watermarked PDF file using the download button"
-#~ msgstr "قم بتنزيل ملف PDF المميز بالعلامة المائية باستخدام زر التنزيل"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for adding "
-#~ "watermarks. For larger files, please split them into smaller parts. The "
-#~ "watermark will be applied to all pages or selected pages as specified."
-#~ msgstr ""
-#~ "يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة لإضافة العلامات المائية. "
-#~ "للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. سيتم تطبيق العلامة المائية على "
-#~ "جميع الصفحات أو الصفحات المحددة كما هو محدد."
-
-#~ msgid "Click the crop button to process your PDF and crop the selected area"
-#~ msgstr "انقر على زر القص لمعالجة ملف PDF الخاص بك وقطع المنطقة المحددة"
-
-#~ msgid "Download your cropped PDF file using the download button"
-#~ msgstr "قم بتنزيل ملف PDF المقطوع باستخدام زر التنزيل"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for cropping. For "
-#~ "larger files, please split them into smaller parts. The crop area you select"
-#~ " will be applied to all selected pages."
-#~ msgstr ""
-#~ "يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة للقص. للملفات الأكبر، يرجى"
-#~ " تقسيمها إلى أجزاء أصغر. سيتم تطبيق منطقة القص التي تختارها على جميع الصفحات"
-#~ " المحددة."
-
-#~ msgid ""
-#~ "Click the rotate button to process your PDF and rotate the selected pages"
-#~ msgstr "انقر على زر التدوير لمعالجة ملف PDF الخاص بك وتدوير الصفحات المحددة"
-
-#~ msgid "Download your rotated PDF file using the download button"
-#~ msgstr "قم بتنزيل ملف PDF المدور باستخدام زر التنزيل"
-
-#~ msgid "Download your compressed PDF file using the download button"
-#~ msgstr "قم بتنزيل ملف PDF المضغوط باستخدام زر التنزيل"
-
-#~ msgid ""
-#~ "Enter the page numbers you want to extract from your PDF (e.g., 1,3,5 or 1-5"
-#~ " to extract pages from PDF)"
-#~ msgstr ""
-#~ "أدخل أرقام الصفحات التي تريد استخراجها من ملف PDF الخاص بك (مثل 1,3,5 أو 1-5"
-#~ " لاستخراج صفحات من PDF)"
-
-#~ msgid ""
-#~ "Click the extract button to process your PDF and extract the selected pages "
-#~ "into a new PDF file"
-#~ msgstr ""
-#~ "انقر على زر الاستخراج لمعالجة ملف PDF الخاص بك واستخراج الصفحات المحددة إلى "
-#~ "ملف PDF جديد"
-
-#~ msgid ""
-#~ "Download your extracted PDF file containing only the selected pages using "
-#~ "the download button"
-#~ msgstr ""
-#~ "قم بتنزيل ملف PDF المستخرج الذي يحتوي فقط على الصفحات المحددة باستخدام زر "
-#~ "التنزيل"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for extracting pages."
-#~ " For larger files, please split them into smaller parts. The extracted pages"
-#~ " will be combined into a single new PDF file."
-#~ msgstr ""
-#~ "يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة لاستخراج الصفحات. للملفات "
-#~ "الأكبر، يرجى تقسيمها إلى أجزاء أصغر. سيتم دمج الصفحات المستخرجة في ملف PDF "
-#~ "جديد واحد."
-
-#~ msgid ""
-#~ "Download your merged PDF file containing all pages from all selected files "
-#~ "using the download button"
-#~ msgstr ""
-#~ "قم بتنزيل ملف PDF المدمج الذي يحتوي على جميع الصفحات من جميع الملفات المحددة"
-#~ " باستخدام زر التنزيل"
-
-#~ msgid "Preview all pages and drag them to reorder pages in your PDF document"
-#~ msgstr ""
-#~ "قم بمعاينة جميع الصفحات واسحبها لإعادة ترتيب الصفحات في مستند PDF الخاص بك"
-
-#~ msgid "Choose operation: reorder pages manually or sort pages automatically"
-#~ msgstr "اختر العملية: إعادة ترتيب الصفحات يدوياً أو فرز الصفحات تلقائياً"
-
-#~ msgid "Click the organize button to process your PDF and reorganize the pages"
-#~ msgstr "انقر على زر التنظيم لمعالجة ملف PDF الخاص بك وإعادة تنظيم الصفحات"
-
-#~ msgid ""
-#~ "Download your reorganized PDF file with pages in the new order using the "
-#~ "download button"
-#~ msgstr ""
-#~ "قم بتنزيل ملف PDF المعاد تنظيمه مع الصفحات بالترتيب الجديد باستخدام زر "
-#~ "التنزيل"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for organizing. For "
-#~ "larger files, please split them into smaller parts. You can drag and drop "
-#~ "pages to reorder them visually."
-#~ msgstr ""
-#~ "يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة للتنظيم. للملفات الأكبر، "
-#~ "يرجى تقسيمها إلى أجزاء أصغر. يمكنك سحب الصفحات وإفلاتها لإعادة ترتيبها "
-#~ "بصرياً."
-
-#~ msgid "Download your PDF file with pages removed using the download button"
-#~ msgstr "قم بتنزيل ملف PDF الخاص بك مع إزالة الصفحات باستخدام زر التنزيل"
-
-#, python-format
-#~ msgid ""
-#~ "PDF files with up to %(max_pages)s pages are supported for removing pages. "
-#~ "For larger files, please split them into smaller parts. The remaining pages "
-#~ "will be preserved in their original order."
-#~ msgstr ""
-#~ "يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة لإزالة الصفحات. للملفات "
-#~ "الأكبر، يرجى تقسيمها إلى أجزاء أصغر. سيتم الاحتفاظ بالصفحات المتبقية "
-#~ "بالترتيب الأصلي."
-
-#~ msgid ""
-#~ "The output will be a ZIP archive containing all split PDF files. You can "
-#~ "split your PDF by individual pages, by page ranges, or every N pages."
-#~ msgstr ""
-#~ "سيكون الإخراج عبارة عن أرشيف ZIP يحتوي على جميع ملفات PDF المقسمة. يمكنك "
-#~ "تقسيم ملف PDF الخاص بك حسب الصفحات الفردية، أو نطاقات الصفحات، أو كل N "
-#~ "صفحات."
-
-#~ msgid ""
-#~ "Convert PDF to Word online free without losing formatting. Fast PDF to DOCX "
-#~ "converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No registration "
-#~ "needed."
-#~ msgstr ""
-#~ "قم بتحويل PDF إلى Word عبر الإنترنت مجاناً دون فقدان التنسيق. محول PDF إلى "
-#~ "DOCX سريع لا يتطلب بريداً إلكترونياً، تحويلات غير محدودة، إخراج عالي الجودة."
-#~ " مثالي للمستندات والسير الذاتية وملفات الأعمال. لا حاجة للتسجيل."
-
-#~ msgid ""
-#~ "Convert Word to PDF online free without losing formatting. Fast DOCX to PDF "
-#~ "converter with no email required, unlimited conversions, high-quality "
-#~ "output. Perfect for documents, resumes, and business files. No registration "
-#~ "needed."
-#~ msgstr ""
-#~ "قم بتحويل Word إلى PDF عبر الإنترنت مجاناً دون فقدان التنسيق. محول DOCX إلى "
-#~ "PDF سريع لا يتطلب بريداً إلكترونياً، تحويلات غير محدودة، إخراج عالي الجودة. "
-#~ "مثالي للمستندات والسير الذاتية وملفات الأعمال. لا حاجة للتسجيل."
-
-#~ msgid "PDF to JPG - Convertica"
-#~ msgstr "PDF إلى JPG - كونفيرتيكا"
-
-#~ msgid "JPG to PDF - Convertica"
-#~ msgstr "JPG إلى PDF - كونفيرتيكا"
-
-#~ msgid ""
-#~ "Merge PDF online free without watermark. Combine two PDFs into one, merge "
-#~ "multiple PDF files fast, preserve bookmarks and quality. Unlimited PDF "
-#~ "merger with drag and drop. No registration required."
-#~ msgstr ""
-#~ "دمج PDF عبر الإنترنت مجاناً بدون علامة مائية. اجمع ملفين PDF في ملف واحد، "
-#~ "دمج ملفات PDF متعددة بسرعة، الحفاظ على الإشارات المرجعية والجودة. أداة دمج "
-#~ "PDF غير محدودة مع السحب والإفلات. لا حاجة للتسجيل."
-
-#~ msgid ""
-#~ "Split PDF online free by pages, ranges, or bookmarks. Extract specific pages"
-#~ " from PDF, remove pages, divide PDF into multiple files. Fast PDF splitter "
-#~ "with no watermark. No registration required."
-#~ msgstr ""
-#~ "تقسيم PDF عبر الإنترنت مجاناً حسب الصفحات أو النطاقات أو الإشارات المرجعية. "
-#~ "استخراج صفحات محددة من PDF، إزالة الصفحات، تقسيم PDF إلى ملفات متعددة. أداة "
-#~ "تقسيم PDF سريعة بدون علامة مائية. لا حاجة للتسجيل."
-
-#~ msgid ""
-#~ "Compress PDF online free to reduce file size fast. PDF compressor with no "
-#~ "watermark, compress PDF to under 1MB for email, reduce PDF file size without"
-#~ " losing quality. Best PDF compression tool 2025."
-#~ msgstr ""
-#~ "ضغط PDF عبر الإنترنت مجاناً لتقليل حجم الملف بسرعة. أداة ضغط PDF بدون علامة "
-#~ "مائية، ضغط PDF إلى أقل من 1 ميجابايت للبريد الإلكتروني، تقليل حجم ملف PDF "
-#~ "دون فقدان الجودة. أفضل أداة ضغط PDF 2025."
-
-#~ msgid "Download report ZIP"
-#~ msgstr "تنزيل تقرير ZIP"
-
-#~ msgid "Download visual diff images and structured report files."
-#~ msgstr "نزّل صور الفروقات المرئية وملفات التقرير المنظَّمة."
-
-#~ msgid "Download ZIP Report"
-#~ msgstr "تنزيل تقرير ZIP"
-
-#~ msgid "Preparing download..."
-#~ msgstr "جارٍ تجهيز التنزيل..."
+#: utils_site/src/users/views.py:476
+msgid "Your plan does not include API access."
+msgstr "لا تتضمن خطتك الوصول إلى واجهة برمجة التطبيقات (API)."
+
+#: utils_site/src/users/views.py:480
+msgid "Please name your key (e.g. 'production-server-a')."
+msgstr "يرجى تسمية مفتاحك (مثل: 'production-server-a')."
+
+#: utils_site/src/users/views.py:484
+msgid "Maximum 10 active keys per user. Revoke unused first."
+msgstr ""
+"الحد الأقصى 10 مفاتيح نشطة لكل مستخدم. قم بإلغاء المفاتيح غير المستخدمة "
+"أولاً."
+
+#: utils_site/src/users/views.py:499
+msgid "Key not found."
+msgstr "المفتاح غير موجود."
+
+#: utils_site/src/users/views.py:502
+msgid "API key revoked."
+msgstr "تم إلغاء مفتاح API."
