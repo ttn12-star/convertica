@@ -534,9 +534,11 @@ class OptimizedPDFToWordConverter:
         except Exception as first_exc:
             # FzErrorFormat on the first attempt means the PDF is structurally
             # corrupted — attempt repair before giving up.
-            if isinstance(first_exc, fitz.FzErrorFormat) or type(
-                first_exc
-            ).__name__.startswith("Fz"):
+            # PyMuPDF >=1.26 moved FzErrorFormat into fitz.mupdf, so a direct
+            # fitz.FzErrorFormat lookup would raise AttributeError here. Match
+            # by class name instead, matching the convention used in
+            # settings.py and src/tasks/pdf_conversion.py.
+            if type(first_exc).__name__.startswith("Fz"):
                 logger.warning(
                     "Direct conversion failed with FzErrorFormat, attempting repair",
                     extra={
@@ -637,9 +639,8 @@ class OptimizedPDFToWordConverter:
             except Exception as repair_exc:
                 # FzErrorFormat (and similar fitz/MuPDF errors) indicate the PDF
                 # structure is too corrupted to process even after repair.
-                if isinstance(repair_exc, fitz.FzErrorFormat) or type(
-                    repair_exc
-                ).__name__.startswith("Fz"):
+                # See note above on the FzErrorFormat namespace change.
+                if type(repair_exc).__name__.startswith("Fz"):
                     raise ConversionError(
                         "PDF file is too corrupted to convert. "
                         "Please check the file or try re-saving it.",
