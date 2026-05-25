@@ -675,6 +675,11 @@ class OperationRunAdmin(admin.ModelAdmin):
             # System success rate: success / (success + error). Excludes rejected
             # (4xx — user input issues, not system failures), cancelled, abandoned,
             # and in-progress operations from the denominator.
+            # When success+error == 0 (e.g. an op that only ever hit a 4xx reject
+            # gate), the metric is undefined — return None so the template can
+            # render "—" instead of a misleading 0% that wouldn't actually drag
+            # the month/grand total down (those use the same formula and also
+            # exclude rejected from their denominator).
             system_attempts = row["success"] + row["error"]
             months_dict[month_key]["operations"][conv_type] = {
                 "total": row["total"],
@@ -687,12 +692,12 @@ class OperationRunAdmin(admin.ModelAdmin):
                 "success_rate": (
                     round(row["success"] / system_attempts * 100, 1)
                     if system_attempts > 0
-                    else 0
+                    else None
                 ),
                 "completion_rate": (
                     round(row["success"] / row["total"] * 100, 1)
                     if row["total"] > 0
-                    else 0
+                    else None
                 ),
             }
 
@@ -715,12 +720,12 @@ class OperationRunAdmin(admin.ModelAdmin):
             totals["success_rate"] = (
                 round(totals["success"] / system_attempts * 100, 1)
                 if system_attempts > 0
-                else 0
+                else None
             )
             totals["completion_rate"] = (
                 round(totals["success"] / totals["total"] * 100, 1)
                 if totals["total"] > 0
-                else 0
+                else None
             )
             uniq = uniques_by_month.get(month, {})
             totals["unique_users"] = uniq.get("unique_users", 0)
@@ -747,12 +752,12 @@ class OperationRunAdmin(admin.ModelAdmin):
         grand_totals["success_rate"] = (
             round(grand_totals["success"] / grand_system_attempts * 100, 1)
             if grand_system_attempts > 0
-            else 0
+            else None
         )
         grand_totals["completion_rate"] = (
             round(grand_totals["success"] / grand_totals["total"] * 100, 1)
             if grand_totals["total"] > 0
-            else 0
+            else None
         )
 
         context = {

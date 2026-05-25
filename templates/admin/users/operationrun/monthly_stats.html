@@ -150,11 +150,19 @@
             <span class="label">Abandoned</span>
           </div>
           <div class="grand-stat" title="success / (success + error) — system reliability, excluding 4xx user-input rejects">
-            <span class="value {% if grand_totals.success_rate >= 90 %}high{% elif grand_totals.success_rate >= 70 %}medium{% else %}low{% endif %}">{{ grand_totals.success_rate }}%</span>
+            {% if grand_totals.success_rate is None %}
+              <span class="value" title="No system attempts (success + error) recorded">&mdash;</span>
+            {% else %}
+              <span class="value {% if grand_totals.success_rate >= 90 %}high{% elif grand_totals.success_rate >= 70 %}medium{% else %}low{% endif %}">{{ grand_totals.success_rate }}%</span>
+            {% endif %}
             <span class="label">System Success Rate</span>
           </div>
           <div class="grand-stat" title="success / total — overall completion across all outcomes">
-            <span class="value">{{ grand_totals.completion_rate }}%</span>
+            {% if grand_totals.completion_rate is None %}
+              <span class="value">&mdash;</span>
+            {% else %}
+              <span class="value">{{ grand_totals.completion_rate }}%</span>
+            {% endif %}
             <span class="label">Completion Rate</span>
           </div>
         </div>
@@ -165,7 +173,8 @@
       <h3 class="month-header">
         {{ month_data.month|date:"F Y" }}
         <span style="font-weight: normal; font-size: 14px; margin-left: 10px;">
-          ({{ month_data.totals.total }} operations, {{ month_data.totals.success_rate }}% success
+          ({{ month_data.totals.total }} operations,
+          {% if month_data.totals.success_rate is None %}n/a{% else %}{{ month_data.totals.success_rate }}%{% endif %} success
           &mdash; {{ month_data.totals.unique_users }} registered users, {{ month_data.totals.unique_ips }} unique IPs)
         </span>
       </h3>
@@ -198,7 +207,11 @@
                   <td>{% with val=stats|get_item:conv_type|get_item:"other" %}{% if val > 0 %}{{ val }}{% else %}<span class="empty-cell">0</span>{% endif %}{% endwith %}</td>
                   <td>
                     {% with rate=stats|get_item:conv_type|get_item:"success_rate" %}
-                      <span class="success-rate {% if rate >= 90 %}high{% elif rate >= 70 %}medium{% else %}low{% endif %}">{{ rate }}%</span>
+                      {% if rate is None %}
+                        <span class="empty-cell" title="No system attempts (success + error) recorded — only 4xx rejects / cancels / abandons">&mdash;</span>
+                      {% else %}
+                        <span class="success-rate {% if rate >= 90 %}high{% elif rate >= 70 %}medium{% else %}low{% endif %}">{{ rate }}%</span>
+                      {% endif %}
                     {% endwith %}
                   </td>
                 </tr>
@@ -214,7 +227,13 @@
             <td>{{ month_data.totals.cancelled }}</td>
             <td>{{ month_data.totals.abandoned }}</td>
             <td>{{ month_data.totals.other }}</td>
-            <td>{{ month_data.totals.success_rate }}%</td>
+            <td>
+              {% if month_data.totals.success_rate is None %}
+                <span title="No system attempts (success + error) this month">&mdash;</span>
+              {% else %}
+                {{ month_data.totals.success_rate }}%
+              {% endif %}
+            </td>
           </tr>
         </tbody>
       </table>
