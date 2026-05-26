@@ -265,9 +265,12 @@ class OptimizedWordToPDFConverter:
                 header = uploaded_file.read(16)
                 uploaded_file.seek(0)
 
-                # Lenient: allow .doc/.docx even if magic missing, but warn
+                # Lenient: allow .doc/.docx even if magic missing. This is an
+                # intentional pass-through (extension+size already vetted), so
+                # log at info — historically captured as a Sentry warning even
+                # though no remediation is possible from the warning alone.
                 if not (header.startswith(DOCX_MAGIC) or header.startswith(DOC_MAGIC)):
-                    logger.warning(
+                    logger.info(
                         "Word magic number missing, allowing based on extension/size",
                         extra={**context, "event": "word_magic_missing"},
                     )

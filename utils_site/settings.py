@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 import sys
+import warnings
 from importlib import metadata
 from pathlib import Path
 
@@ -20,6 +21,17 @@ from celery.schedules import crontab
 from decouple import Csv, config
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
+
+# Silence known-noisy third-party warnings.warn() calls so they don't reach
+# Sentry's Logs dataset as actionable-looking WARN entries. Each entry is
+# scoped to one specific message we've classified as informational.
+#   - pypdf emits this for every PDF whose /CreationDate metadata is a unix
+#     timestamp instead of the PDF-spec D:YYYYMMDDHHMMSS string. Library
+#     handles it correctly; we have no remediation.
+warnings.filterwarnings(
+    "ignore",
+    message=r"'created' timestamp seems very low; regarding as unix timestamp",
+)
 
 # Sentry Error Tracking
 # Enabled by default in production (DEBUG=False)
@@ -871,6 +883,16 @@ LOGGING = {
             "level": "CRITICAL",
             "propagate": False,
         },
+        # CSRF Referer-check failures on POSTs without Referer header. In
+        # practice this is bot/scanner noise hitting `/` and similar — every
+        # event was flagged WARNING in Sentry Logs but isn't actionable
+        # (legit users go through forms with Referer; attackers don't get
+        # past the missing CSRF token anyway). Suppress like DisallowedHost.
+        "django.security.csrf": {
+            "handlers": [],
+            "level": "CRITICAL",
+            "propagate": False,
+        },
         "allauth": {
             "handlers": ["console", "file"],
             "level": "WARNING" if TESTING else "DEBUG",
@@ -895,6 +917,16 @@ LOGGING = {
         "PyPDF2": {
             "handlers": ["console"],
             "level": "CRITICAL" if TESTING else "WARNING",
+            "propagate": False,
+        },
+        # pdf2docx emits a WARNING for every scanned PDF ("Words count: 0...
+        # It might be a scanned pdf, which is not supported yet."). That's
+        # not actionable from our side — the user uploaded image-only
+        # content; we already surface a clear error to them. Send to file
+        # for forensics, never to Sentry.
+        "pdf2docx": {
+            "handlers": ["file"],
+            "level": "ERROR" if TESTING else "WARNING",
             "propagate": False,
         },
     },
