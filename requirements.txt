@@ -76,6 +76,8 @@ py-vapid==1.9.1
 pywebpush==1.14.0
 # Playwright - HTML/URL to PDF conversion
 playwright==1.58.0
+# AES-encrypted ZIP support (Protect ZIP / Unlock ZIP tools)
+pyzipper==0.3.6
 
 # django-anymail - HTTP API email backend (Brevo, formerly Sendinblue).
 # DigitalOcean droplets block outbound SMTP by default, so transactional
