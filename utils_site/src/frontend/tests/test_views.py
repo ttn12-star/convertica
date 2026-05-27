@@ -954,3 +954,19 @@ class FrontendViewsTestCase(TestCase):
                     follow=False,
                 )
                 self.assertEqual(response.status_code, 200)
+
+
+class ArchiveToolPageTests(TestCase):
+    def test_protect_zip_page_renders_with_seo_blocks(self):
+        resp = self.client.get(reverse("frontend:protect_zip_page"))
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        self.assertIn("Password Protect ZIP", html)
+        self.assertIn("AES", html)  # benefit/FAQ/how-it-works copy present
+        self.assertIn("7-Zip", html)  # the honesty note about opening AES zips
+
+    def test_unlock_zip_page_renders(self):
+        resp = self.client.get(reverse("frontend:unlock_zip_page"))
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        self.assertIn("Unlock ZIP", html)
