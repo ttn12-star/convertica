@@ -1,0 +1,85 @@
+slug: how-to-extract-text-from-an-image
+status: published
+category_slug: how-to-guides
+relevant_tool: image_to_text
+title_es: "Cómo extraer texto de una imagen (OCR gratuito, sin reescribir)"
+meta_title_es: "Imagen a texto online gratis — extrae texto con OCR | Convertica"
+meta_description_es: "Convierte una foto, captura de pantalla o escáner en texto editable con OCR gratuito. Aprende cómo funciona, qué afecta la precisión y cómo manejar fotos HEIC del iPhone y 17 idiomas."
+meta_keywords_es: "imagen a texto, extraer texto de imagen, foto a texto, captura de pantalla a texto, ocr online gratis, imagen a texto, jpg a texto"
+excerpt_es: "El texto que necesitas está atrapado en una imagen — una captura de pantalla, una página fotografiada, un recibo. El OCR lee los píxeles y te devuelve texto editable. Así se hace bien."
+content_es: |
+  Puedes ver las palabras, pero no puedes seleccionarlas. Están bloqueadas dentro de una imagen — una captura de pantalla de una diapositiva, la foto de una página impresa, un recibo escaneado, una tarjeta de presentación. Reescribir es la opción obvia y la peor. El reconocimiento óptico de caracteres (OCR) lo hace por ti: lee los píxeles, reconoce las formas de las letras y te devuelve texto que puedes copiar, editar y buscar.
+
+  Esta guía muestra cómo extraer texto de una imagen con una herramienta gratuita en el navegador, qué hace que el resultado sea limpio o ilegible, y cómo manejar los casos complicados como fotos HEIC del iPhone y texto en idiomas distintos al inglés.
+
+  <h2>Cuándo necesitas OCR (y cuándo no)</h2>
+
+  Si ya puedes resaltar palabras individuales con el cursor, el texto está "activo" — simplemente cópialo, no necesitas OCR. Necesitas OCR cuando las palabras son parte de la imagen en sí:
+
+  <ul>
+    <li><strong>Capturas de pantalla</strong> de texto que no puedes seleccionar (un fotograma de un vídeo, un chat, un cuadro de error).</li>
+    <li><strong>Fotos</strong> de una página impresa, una pizarra, un letrero o una diapositiva.</li>
+    <li><strong>Escaneos y faxes</strong> guardados como JPG, PNG o TIFF.</li>
+    <li><strong>Recibos y tarjetas de presentación</strong> que quieres archivar como texto.</li>
+  </ul>
+
+  <h2>Cómo extraer texto de una imagen</h2>
+
+  <ol>
+    <li>Abre la herramienta <a href="/es/image/to-text/">Imagen a texto</a> y sube tu imagen (JPG, PNG, WebP, HEIC, BMP, TIFF o GIF). Puedes arrastrarla directamente a la página.</li>
+    <li>Elige el idioma del texto o déjalo en <strong>Detección automática</strong>. Establecer el idioma explícitamente ayuda mucho para texto en otros idiomas o con caracteres acentuados.</li>
+    <li>Haz clic en <strong>Extraer texto</strong>. El texto reconocido aparece en la página en pocos segundos.</li>
+    <li>Usa <strong>Copiar</strong> para tomarlo, o <strong>Descargar .txt</strong> para guardarlo como archivo de texto. Siempre dale una revisión rápida antes de usarlo.</li>
+  </ol>
+
+  <p>No se instala nada y el archivo se procesa en una sesión temporal y luego se elimina — pero consulta la nota de confidencialidad en las preguntas frecuentes para documentos sensibles.</p>
+
+  <h2>Qué afecta realmente la precisión</h2>
+
+  La calidad del OCR está determinada principalmente por la imagen que proporciones. Tres cosas son las más importantes:
+
+  <ul>
+    <li><strong>Nitidez.</strong> El texto nítido y enfocado se lee limpiamente. El desenfoque de movimiento y las fotos de teléfono fuera de foco son la causa número uno de resultados ilegibles.</li>
+    <li><strong>Contraste.</strong> El OCR trabaja con la diferencia entre la tinta y el fondo. Una fotocopia desvaída o una foto con poca luz da al reconocedor demasiado poco con qué trabajar, incluso a alta resolución.</li>
+    <li><strong>Idioma.</strong> Un modelo entrenado en inglés lee mal los caracteres acentuados y las palabras desconocidas. Elige el idioma correcto en lugar de Automático siempre que lo sepas.</li>
+  </ul>
+
+  <p>La resolución también ayuda: busca que el texto tenga al menos unos pocos cientos de píxeles de altura por línea. Para escaneos, 300 DPI es el mínimo cómodo. Las notas al pie pequeñas en una foto de baja resolución son donde la precisión falla.</p>
+
+  <h2>Fotos del iPhone (HEIC) y otros formatos</h2>
+
+  <p>Las fotos directamente de un iPhone o iPad moderno suelen ser <strong>HEIC/HEIF</strong>, no JPG. No necesitas convertirlas primero — sube el HEIC y la herramienta lo decodifica directamente. JPG, PNG, WebP, BMP, TIFF y GIF funcionan de la misma manera. Para un TIFF multipágina o un GIF animado, se usa el primer fotograma.</p>
+
+  <h2>Consejos para un resultado limpio</h2>
+
+  <ul>
+    <li>Llena el encuadre con el texto y recorta fondos, manos y bordes de la mesa — el desorden confunde la detección del diseño.</li>
+    <li>Fotografía de frente. Una página fotografiada en ángulo deforma las letras y reduce la precisión; la herramienta corrige una inclinación leve, pero de frente es lo mejor.</li>
+    <li>Evita el reflejo y las sombras. Una luz uniforme y difusa es mejor que una ventana brillante o el flash del teléfono.</li>
+    <li>Para diseños de varias columnas, espera el texto en orden de lectura en lugar de columnas reconstruidas.</li>
+    <li>Revisa los sospechosos habituales: 0/O, 1/l/I, rn/m y puntuación extraña.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Es realmente gratis?</h3>
+  <p>Sí. Extraer texto de una sola imagen es gratuito, sin registro y sin marca de agua en el resultado.</p>
+
+  <h3>¿Qué idiomas están disponibles?</h3>
+  <p>17 idiomas: inglés, ruso, alemán, francés, español, italiano, portugués, polaco, turco, ucraniano, hindi, indonesio, árabe, chino (simplificado y tradicional), japonés y coreano — más detección automática. Para textos acentuados o alfabetos no latinos, establece el idioma explícitamente para obtener la mejor precisión.</p>
+
+  <h3>¿Puede leer escritura a mano?</h3>
+  <p>A veces, y no de forma fiable. El OCR está entrenado en texto impreso; la precisión con la escritura a mano varía mucho y la cursiva es la peor. Las letras de molde — como un formulario rellenado a mano — se leen mucho mejor que la escritura unida.</p>
+
+  <h3>¿Por qué hay texto incorrecto o que falta?</h3>
+  <p>Casi siempre es la imagen de origen: desenfoque, bajo contraste, texto pequeño o idioma incorrecto. Vuelve a fotografiar con más nitidez y mejor iluminación, elige el idioma correcto y el resultado suele mejorar drásticamente.</p>
+
+  <h3>¿Es confidencial?</h3>
+  <p>La imagen se procesa en una sesión temporal y se elimina poco después. Aun así, lee la política de privacidad antes de subir material sensible. Para documentos altamente confidenciales — historiales médicos, archivos legales privilegiados — prefiere el OCR local (como Tesseract) a cualquier servicio web.</p>
+
+  <h3>¿Puedo obtener el texto como documento Word?</h3>
+  <p>Esta herramienta devuelve texto plano que puedes pegar en cualquier lugar. Si necesitas específicamente un <em>PDF</em> escaneado convertido en un archivo Word con formato, usa el conversor <a href="/es/pdf-to-word/">PDF a Word</a> con OCR.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Deja de reescribir. Arrastra tu captura de pantalla o foto a la herramienta <a href="/es/image/to-text/">Imagen a texto</a>, elige el idioma y tendrás texto editable en segundos — solo dale una revisión rápida antes de usarlo.</p>

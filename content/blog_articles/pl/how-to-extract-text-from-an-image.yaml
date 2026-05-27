@@ -1,0 +1,85 @@
+slug: how-to-extract-text-from-an-image
+status: published
+category_slug: how-to-guides
+relevant_tool: image_to_text
+title_pl: "Jak wyodrębnić tekst z obrazu (darmowy OCR, bez przepisywania)"
+meta_title_pl: "Obraz na tekst online za darmo — wyodrębnij tekst przez OCR | Convertica"
+meta_description_pl: "Zamień zdjęcie, zrzut ekranu lub skan na edytowalny tekst za pomocą darmowego OCR. Dowiedz się, jak to działa, co wpływa na dokładność i jak obsługiwać zdjęcia iPhone HEIC oraz 17 języków."
+meta_keywords_pl: "obraz na tekst, wyodrębnij tekst z obrazu, zdjęcie na tekst, zrzut ekranu na tekst, ocr online za darmo, obrazek na tekst, jpg na tekst"
+excerpt_pl: "Potrzebny tekst jest uwięziony w obrazku — zrzucie ekranu, sfotografowanej stronie, paragonie. OCR czyta piksele i zwraca edytowalny tekst. Oto jak robić to skutecznie."
+content_pl: |
+  Widzisz słowa, ale nie możesz ich zaznaczyć. Są uwięzione w obrazie — zrzut ekranu slajdu, zdjęcie drukowanej strony, zeskanowany paragon, wizytówka. Przepisanie to oczywista opcja i zarazem najgorsza. Optyczne rozpoznawanie znaków (OCR) robi to za ciebie: odczytuje piksele, rozpoznaje kształty liter i zwraca tekst, który możesz skopiować, edytować i przeszukiwać.
+
+  Ten przewodnik pokazuje, jak wyciągnąć tekst z obrazu za pomocą darmowego narzędzia w przeglądarce, co sprawia, że wynik jest czysty lub zniekształcony, oraz jak radzić sobie z trudniejszymi przypadkami — zdjęciami HEIC z iPhone'a i tekstem w językach innych niż angielski.
+
+  <h2>Kiedy potrzebujesz OCR (a kiedy nie)</h2>
+
+  Jeśli możesz już zaznaczać poszczególne słowa kursorem, tekst jest „żywy" — po prostu go skopiuj, OCR nie jest potrzebny. OCR jest potrzebny, gdy słowa są częścią samego obrazu:
+
+  <ul>
+    <li><strong>Zrzuty ekranu</strong> tekstu, którego nie można zaznaczyć (klatka z wideo, czat, okno błędu).</li>
+    <li><strong>Zdjęcia</strong> drukowanej strony, tablicy, szyldu lub slajdu.</li>
+    <li><strong>Skany i faksy</strong> zapisane jako JPG, PNG lub TIFF.</li>
+    <li><strong>Paragony i wizytówki</strong>, które chcesz zachować jako tekst.</li>
+  </ul>
+
+  <h2>Jak wyodrębnić tekst z obrazu</h2>
+
+  <ol>
+    <li>Otwórz narzędzie <a href="/pl/image/to-text/">Obraz na tekst</a> i wgraj swój obraz (JPG, PNG, WebP, HEIC, BMP, TIFF lub GIF). Możesz przeciągnąć go bezpośrednio na stronę.</li>
+    <li>Wybierz język tekstu lub zostaw <strong>Automatyczne wykrywanie</strong>. Jawne ustawienie języka bardzo pomaga w przypadku tekstu w językach innych niż angielski lub z znakami diakrytycznymi.</li>
+    <li>Kliknij <strong>Wyodrębnij tekst</strong>. Rozpoznany tekst pojawi się na stronie w ciągu kilku sekund.</li>
+    <li>Użyj <strong>Kopiuj</strong>, żeby go pobrać, lub <strong>Pobierz .txt</strong>, żeby zapisać jako plik tekstowy. Zawsze szybko sprawdź wynik przed użyciem.</li>
+  </ol>
+
+  <p>Nic nie jest instalowane, plik jest przetwarzany w tymczasowej sesji, a następnie usuwany — jednak w przypadku wrażliwych dokumentów przeczytaj uwagę o poufności w FAQ.</p>
+
+  <h2>Co naprawdę wpływa na dokładność</h2>
+
+  Jakość OCR zależy głównie od przesłanego obrazu. Trzy rzeczy mają największe znaczenie:
+
+  <ul>
+    <li><strong>Ostrość.</strong> Wyraźny, ostry tekst jest odczytywany czysto. Rozmycie ruchu i nieostre zdjęcia z telefonu to główna przyczyna zniekształceń na wyjściu.</li>
+    <li><strong>Kontrast.</strong> OCR działa na różnicy między drukiem a tłem. Wyblakła kserokopia lub zdjęcie przy słabym oświetleniu daje rozpoznawaczowi zbyt mało do pracy, nawet przy wysokiej rozdzielczości.</li>
+    <li><strong>Język.</strong> Model wytrenowany na języku angielskim błędnie odczytuje znaki diakrytyczne i nieznane słowa. Wybierz właściwy język zamiast Automatycznego, gdy tylko go znasz.</li>
+  </ul>
+
+  <p>Rozdzielczość też ma znaczenie: dąż do tego, żeby tekst w wierszu miał co najmniej kilkaset pikseli wysokości. Przy skanach 300 DPI to wygodna dolna granica. Małe przypisy na zdjęciu o niskiej rozdzielczości — tu właśnie dokładność się sypie.</p>
+
+  <h2>Zdjęcia z iPhone'a (HEIC) i inne formaty</h2>
+
+  <p>Zdjęcia bezpośrednio z nowoczesnego iPhone'a lub iPada są zwykle w formacie <strong>HEIC/HEIF</strong>, a nie JPG. Nie musisz ich wcześniej konwertować — wgraj HEIC, a narzędzie zdekoduje go bezpośrednio. JPG, PNG, WebP, BMP, TIFF i GIF działają tak samo. W przypadku wielostronicowego TIFF lub animowanego GIF używana jest pierwsza klatka.</p>
+
+  <h2>Wskazówki dla czystego wyniku</h2>
+
+  <ul>
+    <li>Wypełnij kadr tekstem i przytnij tło, dłonie i krawędzie stołu — zbędne elementy mylą wykrywanie układu.</li>
+    <li>Fotografuj prosto. Strona sfotografowana pod kątem zniekształca litery i obniża dokładność; narzędzie prostuje lekkie przekrzywienie, ale najlepsze jest zdjęcie prostopadle.</li>
+    <li>Unikaj odblasków i cieni. Równomierne, rozproszone światło jest lepsze niż jasne okno lub lampka błyskowa.</li>
+    <li>W przypadku układów wielokolumnowych oczekuj tekstu w kolejności czytania, a nie zrekonstruowanych kolumn.</li>
+    <li>Sprawdź typowe błędy: 0/O, 1/l/I, rn/m oraz zbędne znaki interpunkcyjne.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Czy to naprawdę jest za darmo?</h3>
+  <p>Tak. Wyodrębnianie tekstu z jednego obrazu jest bezpłatne, bez rejestracji i bez znaku wodnego na wyniku.</p>
+
+  <h3>Jakie języki są obsługiwane?</h3>
+  <p>17 języków: angielski, rosyjski, niemiecki, francuski, hiszpański, włoski, portugalski, polski, turecki, ukraiński, hindi, indonezyjski, arabski, chiński (uproszczony i tradycyjny), japoński i koreański — plus automatyczne wykrywanie. W przypadku tekstu z diakrytykami lub niełacińskich pism ustaw język jawnie, aby uzyskać najlepszą dokładność.</p>
+
+  <h3>Czy potrafi odczytać pismo odręczne?</h3>
+  <p>Czasami, ale niepewnie. OCR jest wytrenowany na tekście drukowanym; dokładność dla pisma odręcznego jest bardzo zróżnicowana, a kursywa wypada najgorzej. Drukowane wielkie litery — jak formularz wypełniony ręcznie — są odczytywane znacznie lepiej niż pismo łączone.</p>
+
+  <h3>Dlaczego część tekstu jest błędna lub brakuje jej?</h3>
+  <p>Prawie zawsze winny jest obraz źródłowy: rozmycie, niski kontrast, mały tekst lub błędnie ustawiony język. Zrób ostrzejsze zdjęcie przy lepszym oświetleniu, wybierz właściwy język — i wynik zazwyczaj drastycznie się poprawia.</p>
+
+  <h3>Czy to jest poufne?</h3>
+  <p>Obraz jest przetwarzany w tymczasowej sesji i wkrótce usuwany. Jednak przed przesłaniem wrażliwych materiałów przeczytaj politykę prywatności. W przypadku ściśle poufnych dokumentów — dokumentacji medycznej, chronionych prawnie plików — preferuj lokalny OCR (np. Tesseract) zamiast jakiejkolwiek usługi internetowej.</p>
+
+  <h3>Czy mogę otrzymać tekst jako dokument Word?</h3>
+  <p>To narzędzie zwraca zwykły tekst, który możesz wkleić w dowolne miejsce. Jeśli potrzebujesz zeskanowanego <em>PDF</em> jako sformatowanego pliku Word, skorzystaj z konwertera <a href="/pl/pdf-to-word/">PDF na Word</a> z obsługą OCR.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Przestań przepisywać. Upuść zrzut ekranu lub zdjęcie do narzędzia <a href="/pl/image/to-text/">Obraz na tekst</a>, wybierz język — i za kilka sekund będziesz mieć edytowalny tekst. Tylko szybko go sprawdź przed użyciem.</p>
