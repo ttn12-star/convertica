@@ -724,6 +724,11 @@ PARSE_MAX_FILE_SIZE = config(
     "PARSE_MAX_FILE_SIZE", default=300 * 1024 * 1024, cast=int
 )  # 300 MB
 
+# --- Archive (ZIP) safety guards (defence-in-depth against zip bombs) ---
+ARCHIVE_MAX_MEMBERS = 2000  # max number of files inside an uploaded ZIP
+ARCHIVE_MAX_MEMBER_UNCOMPRESSED = 200 * 1024 * 1024  # 200 MB per member
+ARCHIVE_MAX_TOTAL_UNCOMPRESSED = 500 * 1024 * 1024  # 500 MB total uncompressed
+
 # Batch processing limits
 MAX_BATCH_FILES_FREE = config("MAX_BATCH_FILES_FREE", default=1, cast=int)
 MAX_BATCH_FILES_PREMIUM = config("MAX_BATCH_FILES_PREMIUM", default=10, cast=int)

@@ -84,4 +84,12 @@ BATCH_API_MAP = BATCH_API_MAP = {
         "batch_url": "convert_heic_batch_api",
         "field_name": "image_files",
     },
+    "protect_zip_api": {
+        "batch_url": "protect_zip_batch_api",
+        "field_name": "archive_files",
+    },
+    "unlock_zip_api": {
+        "batch_url": "unlock_zip_batch_api",
+        "field_name": "archive_files",
+    },
 }
