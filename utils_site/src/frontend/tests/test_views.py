@@ -11,7 +11,7 @@ from django.core.cache import cache
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import activate
+from django.utils.translation import activate, deactivate
 
 
 class FrontendViewsTestCase(TestCase):
@@ -957,6 +957,14 @@ class FrontendViewsTestCase(TestCase):
 
 
 class ArchiveToolPageTests(TestCase):
+    def setUp(self):
+        # Pin the active language so reverse() and rendering are deterministic
+        # regardless of language state leaked by earlier tests in the suite.
+        activate("en")
+
+    def tearDown(self):
+        deactivate()
+
     def test_protect_zip_page_renders_with_seo_blocks(self):
         resp = self.client.get(reverse("frontend:protect_zip_page"))
         self.assertEqual(resp.status_code, 200)
