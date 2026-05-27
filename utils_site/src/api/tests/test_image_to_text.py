@@ -162,3 +162,14 @@ class ImageToTextRenderTests(TestCase):
         # Tool-specific controls are present:
         self.assertIn(b"ocrLanguageSelect", resp.content)
         self.assertIn(b"ocrResultPanel", resp.content)
+
+
+class ImageToTextNavTests(TestCase):
+    def setUp(self):
+        cache.clear()
+        self.client = Client()
+
+    def test_link_in_all_tools(self):
+        resp = self.client.get("/en/all-tools/", follow=True)
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b"/image/to-text/", resp.content)
