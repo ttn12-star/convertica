@@ -12,6 +12,7 @@ class UnlockZipBatchAPIView(BaseBatchAPIView):
     """Handle batch Unlock ZIP requests (premium)."""
 
     CONVERSION_TYPE = "UNLOCK_ZIP_BATCH"
+    FILE_FIELD_NAME = "archive_files"
     TMP_PREFIX = "unlock_zip_batch_"
     OUTPUT_ZIP_FILENAME = "unlocked_archives.zip"
     VALIDATE_PDF_PAGES = False

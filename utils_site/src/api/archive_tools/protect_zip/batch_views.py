@@ -12,6 +12,7 @@ class ProtectZipBatchAPIView(BaseBatchAPIView):
     """Handle batch Protect ZIP requests (premium)."""
 
     CONVERSION_TYPE = "PROTECT_ZIP_BATCH"
+    FILE_FIELD_NAME = "archive_files"
     TMP_PREFIX = "protect_zip_batch_"
     OUTPUT_ZIP_FILENAME = "protected_archives.zip"
     VALIDATE_PDF_PAGES = False

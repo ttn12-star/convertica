@@ -12,6 +12,7 @@ from src.exceptions import (
     InvalidArchiveError,
     InvalidPDFError,
 )
+from src.users.models import User
 
 
 def _plain_zip_upload(files, name="docs.zip"):
@@ -194,3 +195,53 @@ class ProtectUnlockZipAPITests(TestCase):
         )
         unlock_body = self._read_response(unlock_resp)
         self.assertEqual(unlock_resp.status_code, 200, unlock_body[:500])
+
+
+@override_settings(
+    RATELIMIT_ENABLE=False,
+    CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
+)
+class ZipBatchFieldNameTests(TestCase):
+    """Batch endpoints must read the 'archive_files' field (the BATCH_API_MAP /
+    frontend field name), not the inherited base default 'pdf_files'. A free
+    user with a single file passes the premium gate, so 200 here proves both the
+    FILE_FIELD_NAME wiring and that batch processing runs end-to-end."""
+
+    def setUp(self):
+        cache.clear()
+        self.client = Client()
+        self.client.defaults["HTTP_REFERER"] = "https://convertica.net/"
+        self.user = User.objects.create_user(
+            email="zipbatch@t.test", password="passw0rd!"
+        )
+        self.client.force_login(self.user)
+
+    @staticmethod
+    def _body(resp):
+        if getattr(resp, "streaming", False):
+            return b"".join(resp.streaming_content)
+        return resp.content
+
+    def test_protect_batch_accepts_archive_files_field(self):
+        raw = _plain_zip_upload({"a.txt": b"hi"}).read()
+        f = SimpleUploadedFile("a.zip", raw, content_type="application/zip")
+        resp = self.client.post(
+            "/api/archive/protect/batch/",
+            data={"archive_files": [f], "password": "s3cret!"},
+            format="multipart",
+        )
+        body = self._body(resp)
+        # Before FILE_FIELD_NAME was set this 400'd with "Use 'pdf_files'".
+        self.assertEqual(resp.status_code, 200, body[:400])
+        self.assertEqual(resp["Content-Type"], "application/zip")
+
+    def test_unlock_batch_accepts_archive_files_field(self):
+        raw = _aes_zip_upload({"a.txt": b"hi"}, password=b"s3cret!").read()
+        f = SimpleUploadedFile("enc.zip", raw, content_type="application/zip")
+        resp = self.client.post(
+            "/api/archive/unlock/batch/",
+            data={"archive_files": [f], "password": "s3cret!"},
+            format="multipart",
+        )
+        body = self._body(resp)
+        self.assertEqual(resp.status_code, 200, body[:400])
