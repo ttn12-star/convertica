@@ -683,6 +683,24 @@
             </p>
           </a>
 
+                <!-- Image to Text (OCR) -->
+          <a href="{% url 'frontend:image_to_text_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-violet-500 hover:border-violet-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-violet-500 to-violet-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-violet-600 transition-colors">
+              {% trans "Image to Text" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Extract editable text from photos, screenshots, and scans with OCR." %}
+            </p>
+          </a>
+
                 <!-- HEIC to JPG (Premium) -->
           <a href="{% url 'frontend:heic_to_jpg_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-rose-500 hover:border-rose-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
