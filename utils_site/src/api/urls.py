@@ -18,6 +18,7 @@ from .image_tools.convert_heic.batch_views import ConvertHEICBatchAPIView
 from .image_tools.convert_heic.views import ConvertHEICAPIView
 from .image_tools.convert_image.batch_views import ConvertImageBatchAPIView
 from .image_tools.convert_image.views import ConvertImageAPIView
+from .image_tools.image_to_text.views import ImageToTextAPIView
 from .image_tools.optimize_image.batch_views import OptimizeImageBatchAPIView
 from .image_tools.optimize_image.views import OptimizeImageAPIView
 from .pdf_compare.views import ComparePDFAPIView
@@ -346,5 +347,10 @@ urlpatterns = [
         "image/heic-convert/batch/",
         ConvertHEICBatchAPIView.as_view(),
         name="convert_heic_batch_api",
+    ),
+    path(
+        "image/to-text/",
+        ImageToTextAPIView.as_view(),
+        name="image_to_text_api",
     ),
 ]

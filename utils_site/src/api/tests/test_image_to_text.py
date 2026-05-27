@@ -85,3 +85,41 @@ class RunImageOCRTests(TestCase):
             body = fh.read()
         self.assertIn("Invoice 2026", body)
         self.assertIn("Thanks", body)
+
+
+@override_settings(
+    RATELIMIT_ENABLE=False,
+    CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
+)
+class ImageToTextAPITests(TestCase):
+    URL = "/api/image/to-text/"
+
+    def setUp(self):
+        cache.clear()
+        self.client = Client()
+        # Browser-shaped Referer satisfies the captcha/spam middleware.
+        self.client.defaults["HTTP_REFERER"] = "https://convertica.net/"
+
+    @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
+    def test_anonymous_user_gets_text_plain(self, _mock):
+        upload = SimpleUploadedFile("photo.png", _png_bytes(), content_type="image/png")
+        resp = self.client.post(self.URL, data={"image_file": upload})
+        self.assertEqual(resp.status_code, 200)
+        self.assertTrue(resp["Content-Type"].startswith("text/plain"))
+        body = (
+            b"".join(resp.streaming_content)
+            if hasattr(resp, "streaming_content")
+            else resp.content
+        )
+        self.assertIn(b"Invoice 2026", body)
+
+    def test_unsupported_extension_rejected(self):
+        bad = SimpleUploadedFile(
+            "doc.pdf", b"%PDF-1.4 x", content_type="application/pdf"
+        )
+        resp = self.client.post(self.URL, data={"image_file": bad})
+        self.assertEqual(resp.status_code, 400)
+
+    def test_get_not_allowed(self):
+        resp = self.client.get(self.URL)
+        self.assertEqual(resp.status_code, 405)
