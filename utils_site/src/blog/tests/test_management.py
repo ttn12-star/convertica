@@ -292,7 +292,7 @@ class ImporterRealCorpusTests(TestCase):
             stdout=out,
         )
 
-        self.assertEqual(Article.objects.count(), 13)
+        self.assertEqual(Article.objects.count(), 14)
         # Every imported article must be wired to a category.
         for article in Article.objects.all():
             self.assertIsNotNone(article.category)
