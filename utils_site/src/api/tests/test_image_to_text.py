@@ -176,3 +176,93 @@ class ImageToTextNavTests(TestCase):
         resp = self.client.get("/en/all-tools/", follow=True)
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b"/image/to-text/", resp.content)
+
+
+@override_settings(
+    RATELIMIT_ENABLE=False,
+    IMAGE_TO_TEXT_FREE_DAILY=2,
+    CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
+)
+class ImageToTextLimitsTests(TestCase):
+    """Free-tier limits (size + daily count) and premium .docx export."""
+
+    URL = "/api/image/to-text/"
+
+    def setUp(self):
+        from rest_framework.test import APIClient
+
+        cache.clear()
+        self.client = APIClient()
+        self.client.defaults["HTTP_REFERER"] = "https://convertica.net/"
+
+    def _png(self, name="p.png"):
+        return SimpleUploadedFile(
+            name, _png_bytes(size=(200, 80)), content_type="image/png"
+        )
+
+    def _premium_user(self):
+        from datetime import timedelta
+
+        from django.utils import timezone
+        from src.users.models import User
+
+        u = User.objects.create_user(email="itt_prem@t.test", password="passw0rd!")
+        u.is_premium = True
+        u.subscription_end_date = timezone.now() + timedelta(days=30)
+        u.save()
+        cache.delete(f"user_premium_active:{u.pk}")
+        return u
+
+    @patch(
+        "src.api.spam_protection.check_minimum_time_between_requests",
+        return_value=(True, None),
+    )
+    @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
+    def test_free_daily_limit_then_429(self, _ocr, _timing):
+        # _timing patch disables the 2s anti-burst cooldown so we can fire the
+        # daily quota back-to-back.
+        for _i in range(2):  # IMAGE_TO_TEXT_FREE_DAILY=2
+            r = self.client.post(self.URL, data={"image_file": self._png()})
+            self.assertEqual(r.status_code, 200)
+        r = self.client.post(self.URL, data={"image_file": self._png()})
+        self.assertEqual(r.status_code, 429)
+        self.assertIn("Premium", r.json().get("error", ""))
+
+    def test_free_docx_blocked_with_upsell(self):
+        r = self.client.post(
+            self.URL, data={"image_file": self._png(), "output_format": "docx"}
+        )
+        self.assertEqual(r.status_code, 403)
+        self.assertIn("Premium", r.json().get("error", ""))
+
+    @override_settings(IMAGE_TO_TEXT_FREE_MAX_BYTES=100)
+    def test_free_oversize_blocked(self):
+        r = self.client.post(self.URL, data={"image_file": self._png()})
+        self.assertEqual(r.status_code, 413)
+        self.assertIn("Premium", r.json().get("error", ""))
+
+    @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
+    def test_premium_docx_download(self, _m):
+        self.client.force_authenticate(self._premium_user())
+        r = self.client.post(
+            self.URL, data={"image_file": self._png(), "output_format": "docx"}
+        )
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("wordprocessingml", r["Content-Type"])
+        body = (
+            b"".join(r.streaming_content)
+            if hasattr(r, "streaming_content")
+            else r.content
+        )
+        self.assertEqual(body[:2], b"PK")  # .docx is a zip container
+
+    @patch(
+        "src.api.spam_protection.check_minimum_time_between_requests",
+        return_value=(True, None),
+    )
+    @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
+    def test_premium_has_no_daily_limit(self, _ocr, _timing):
+        self.client.force_authenticate(self._premium_user())
+        for _i in range(4):  # well over the free daily cap of 2
+            r = self.client.post(self.URL, data={"image_file": self._png()})
+            self.assertEqual(r.status_code, 200)

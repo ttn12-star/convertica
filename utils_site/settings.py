@@ -716,6 +716,17 @@ MAX_FILE_SIZE_HEAVY_PREMIUM = config(
     "MAX_FILE_SIZE_HEAVY_PREMIUM", default=100 * 1024 * 1024, cast=int
 )  # 100 MB
 
+# Image to Text (OCR) free-tier limits. Free users get a small per-image cap
+# (almost every photo/screenshot/scan fits) and a daily extraction count;
+# premium lifts both and unlocks .docx export. Tuned to stay generous for
+# casual/SEO traffic while giving power users a reason to upgrade.
+IMAGE_TO_TEXT_FREE_MAX_BYTES = config(
+    "IMAGE_TO_TEXT_FREE_MAX_BYTES", default=3 * 1024 * 1024, cast=int
+)  # 3 MB
+IMAGE_TO_TEXT_FREE_DAILY = config(
+    "IMAGE_TO_TEXT_FREE_DAILY", default=5, cast=int
+)  # extractions per day for free users
+
 # Absolute hard cap for PDF/Word parsing — defence-in-depth so a malformed or
 # malicious file never reaches PyPDF/fitz/zipfile if it slipped past higher
 # layers. Set above MAX_FILE_SIZE_PREMIUM so legitimate premium files always
