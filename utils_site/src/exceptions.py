@@ -40,3 +40,18 @@ class InvalidPDFError(ConversionError):
 
 class StorageError(ConversionError):
     """Raised when file system / storage operations fail."""
+
+
+class EncryptedArchiveError(EncryptedPDFError):
+    """Raised for archive password problems (already protected / wrong password).
+
+    Subclasses EncryptedPDFError so the API base view returns HTTP 400 with the
+    message shown verbatim to the user.
+    """
+
+
+class InvalidArchiveError(InvalidPDFError):
+    """Raised when an uploaded archive is invalid/corrupt or exceeds safety guards.
+
+    Subclasses InvalidPDFError so the API base view returns HTTP 400.
+    """
