@@ -148,3 +148,17 @@ class ImageToTextPageRouteTests(TestCase):
         resp = self.client.get("/sitemap-en.xml")
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b"/image/to-text/", resp.content)
+
+
+class ImageToTextRenderTests(TestCase):
+    def setUp(self):
+        cache.clear()
+        self.client = Client()
+
+    def test_page_renders_english(self):
+        resp = self.client.get("/en/image/to-text/", follow=True)
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b"Image to Text", resp.content)
+        # Tool-specific controls are present:
+        self.assertIn(b"ocrLanguageSelect", resp.content)
+        self.assertIn(b"ocrResultPanel", resp.content)
