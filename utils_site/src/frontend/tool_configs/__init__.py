@@ -13,9 +13,11 @@ pdf_organize.py    – Merge, split, compress, …
 pdf_security.py    – Protect / unlock
 epub_and_other.py  – EPUB, Markdown, …
 image_tools.py     – Optimize / convert images
+archive_tools.py   – Protect / unlock ZIP
 """
 
 from ._batch_api_map import BATCH_API_MAP
+from .archive_tools import ARCHIVE_TOOLS_CONFIGS
 from .epub_and_other import EPUB_AND_OTHER_CONFIGS
 from .image_tools import IMAGE_TOOLS_CONFIGS
 from .pdf_convert import PDF_CONVERT_CONFIGS
@@ -30,6 +32,7 @@ TOOL_CONFIGS = {
     **PDF_SECURITY_CONFIGS,
     **EPUB_AND_OTHER_CONFIGS,
     **IMAGE_TOOLS_CONFIGS,
+    **ARCHIVE_TOOLS_CONFIGS,
 }
 
 __all__ = ["BATCH_API_MAP", "TOOL_CONFIGS"]
