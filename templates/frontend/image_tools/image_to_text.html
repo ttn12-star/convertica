@@ -82,8 +82,10 @@
 {% endblock %}
 
 {% block extra_js %}
-{# Config script: same window.* vars the shared upload helpers expect, minus the
-   converter.js download flow. file-input-handler.js drives the upload widget. #}
+{% comment %}
+  Config script: same window.* vars the shared upload helpers expect, minus the
+  converter.js download flow. file-input-handler.js drives the upload widget.
+{% endcomment %}
   <script nonce="{{ csp_nonce }}">
     window.API_URL = "{{ api_url|escapejs }}";
     window.CSRF_TOKEN = "{{ csrf_token }}";

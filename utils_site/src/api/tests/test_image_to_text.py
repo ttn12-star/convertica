@@ -162,6 +162,9 @@ class ImageToTextRenderTests(TestCase):
         # Tool-specific controls are present:
         self.assertIn(b"ocrLanguageSelect", resp.content)
         self.assertIn(b"ocrResultPanel", resp.content)
+        # The extra_js {% comment %} block must not leak into rendered output
+        # (a multi-line {# #} comment would render as visible text).
+        self.assertNotIn(b"Config script", resp.content)
 
 
 class ImageToTextNavTests(TestCase):
