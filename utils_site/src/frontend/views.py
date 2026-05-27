@@ -522,6 +522,12 @@ def heic_to_jpg_page(request):
 
 
 @anonymous_cache_page(60 * 60)
+def image_to_text_page(request):
+    """Image to Text (OCR) landing page."""
+    return _render_tool_page(request, "image_to_text")
+
+
+@anonymous_cache_page(60 * 60)
 def merge_pdf_page(request):
     """Merge PDF page."""
     return _render_tool_page(request, "merge_pdf")
@@ -1370,6 +1376,7 @@ def _get_sitemap_pages():
         {"url": "image/optimize/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/convert/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/heic-to-jpg/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "image/to-text/", "priority": "0.8", "changefreq": "monthly"},
         # NOTE: scanned-pdf-to-word/ and batch-converter/ are premium-gated and
         # 302-redirect anonymous crawlers to /users/login/. Keeping them out of
         # sitemap until they get public landing pages.
