@@ -43,11 +43,14 @@ def run_image_ocr(
         # First frame to RGB (covers animated GIF / multi-page TIFF / palette / CMYK).
         rgb = img.convert("RGB")
 
-    text = extract_text_from_image(
-        rgb,
-        user_language=language,
-        confidence_threshold=confidence_threshold,
-    )
+    try:
+        text = extract_text_from_image(
+            rgb,
+            user_language=language,
+            confidence_threshold=confidence_threshold,
+        )
+    finally:
+        rgb.close()  # release the converted-image buffer (mirrors convert_heic)
 
     base_name = os.path.splitext(safe_name)[0]
     output_path = os.path.join(tmp_dir, f"{base_name}.txt")
