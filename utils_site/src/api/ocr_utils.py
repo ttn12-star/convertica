@@ -276,6 +276,68 @@ def preprocess_image_for_ocr(image: Image.Image, adaptive: bool = True) -> Image
     return image
 
 
+def _reconstruct_text_from_ocr_data(data: dict, confidence_threshold: int = 60) -> str:
+    """Rebuild line/paragraph-aware text from a pytesseract image_to_data DICT.
+
+    Keeps only words whose confidence >= threshold. Words on the same
+    (block_num, par_num, line_num) are joined with single spaces; lines within a
+    paragraph are joined with "\\n"; a change of (block_num, par_num) inserts a
+    blank line (paragraph break).
+    """
+    n = len(data.get("text", []))
+    lines: dict[tuple[int, int, int], list[str]] = {}
+    order: list[tuple[int, int, int]] = []
+
+    for i in range(n):
+        word = (data["text"][i] or "").strip()
+        if not word:
+            continue
+        try:
+            conf = int(float(data["conf"][i]))
+        except (ValueError, TypeError):
+            conf = -1
+        if conf < confidence_threshold:
+            continue
+        key = (data["block_num"][i], data["par_num"][i], data["line_num"][i])
+        if key not in lines:
+            lines[key] = []
+            order.append(key)
+        lines[key].append(word)
+
+    parts: list[str] = []
+    prev_par: tuple[int, int] | None = None
+    for block, par, _line in order:
+        cur_par = (block, par)
+        if prev_par is not None and cur_par != prev_par:
+            parts.append("")  # paragraph break -> blank line after "\n".join
+        parts.append(" ".join(lines[(block, par, _line)]))
+        prev_par = cur_par
+
+    return "\n".join(parts)
+
+
+def extract_text_from_image(
+    image: Image.Image,
+    user_language: str = "auto",
+    confidence_threshold: int = 60,
+) -> str:
+    """Run OCR on a single PIL image and return line-aware text.
+
+    Reuses the adaptive preprocessing and language mapping used by the PDF OCR
+    path. Returns an empty string when no word clears the confidence threshold.
+    """
+    ocr_lang = get_ocr_language_code(user_language)
+    processed = preprocess_image_for_ocr(image)
+    # PSM 6 = uniform block of text; OEM 1 = LSTM engine only.
+    ocr_data = pytesseract.image_to_data(
+        processed,
+        lang=ocr_lang,
+        config=r"--oem 1 --psm 6",
+        output_type=pytesseract.Output.DICT,
+    )
+    return _reconstruct_text_from_ocr_data(ocr_data, confidence_threshold)
+
+
 async def extract_text_from_pdf_async(
     uploaded_file: UploadedFile,
     dpi: int = 300,  # Tesseract recommends 300-400 DPI for optimal OCR quality
@@ -384,72 +446,25 @@ def extract_text_from_pdf(
                 f"Failed to convert PDF to images: {e}", context=context
             ) from e
 
-        # Extract text from each page with preprocessing and confidence filtering
+        # Extract text from each page, reusing the single-image OCR core.
         extracted_texts = []
-        # Tesseract config: PSM 6 = uniform block of text, OEM 1 = LSTM engine only
-        tesseract_config = r"--oem 1 --psm 6"
-        # Use provided confidence_threshold parameter
-
         for i, image in enumerate(images):
             try:
-                # Preprocess image for better OCR quality
-                processed_image = preprocess_image_for_ocr(image)
-
-                # Extract text with confidence data
-                ocr_data = pytesseract.image_to_data(
-                    processed_image,
-                    lang=ocr_lang,
-                    config=tesseract_config,
-                    output_type=pytesseract.Output.DICT,
+                page_text = extract_text_from_image(
+                    image,
+                    user_language=user_language,
+                    confidence_threshold=confidence_threshold,
                 )
-
-                # Filter by confidence and reconstruct text
-                filtered_words = []
-                low_confidence_count = 0
-                total_words = 0
-
-                for j, word in enumerate(ocr_data["text"]):
-                    if word.strip():  # Non-empty word
-                        total_words += 1
-                        conf = (
-                            int(ocr_data["conf"][j])
-                            if ocr_data["conf"][j] != "-1"
-                            else 0
-                        )
-
-                        if conf >= confidence_threshold:
-                            filtered_words.append(word)
-                        else:
-                            low_confidence_count += 1
-
-                # Join words with spaces, preserving line breaks
-                text = " ".join(filtered_words)
-
-                # Log confidence statistics
-                if total_words > 0:
-                    filtered_percentage = (low_confidence_count / total_words) * 100
-                    logger.debug(
-                        f"Page {i+1}: filtered {low_confidence_count}/{total_words} words ({filtered_percentage:.1f}%)",
-                        extra={
-                            "event": "ocr_confidence_filter",
-                            "page": i + 1,
-                            "total_words": total_words,
-                            "filtered_words": low_confidence_count,
-                            "threshold": confidence_threshold,
-                        },
-                    )
-
-                extracted_texts.append(text)
-                context[f"page_{i}_text_length"] = len(text)
-                context[f"page_{i}_filtered_words"] = low_confidence_count
+                extracted_texts.append(page_text)
+                context[f"page_{i}_text_length"] = len(page_text)
             except Exception as e:
                 logger.warning(
                     f"OCR failed for page {i+1}",
                     extra={**context, "page": i + 1, "error": str(e)[:200]},
                 )
-                extracted_texts.append("")  # Add empty text for failed page
+                extracted_texts.append("")  # keep page alignment
 
-        # Combine all text
+        # Combine all pages
         full_text = "\n\n".join(extracted_texts)
         context["total_text_length"] = len(full_text)
 
