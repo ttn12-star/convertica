@@ -123,3 +123,28 @@ class ImageToTextAPITests(TestCase):
     def test_get_not_allowed(self):
         resp = self.client.get(self.URL)
         self.assertEqual(resp.status_code, 405)
+
+
+class ImageToTextConfigTests(TestCase):
+    def test_tool_config_registered(self):
+        from src.frontend.tool_configs import TOOL_CONFIGS
+
+        cfg = TOOL_CONFIGS["image_to_text"]
+        self.assertEqual(cfg["template"], "frontend/image_tools/image_to_text.html")
+        self.assertEqual(cfg["converter_args"]["api_url_name"], "image_to_text_api")
+        self.assertEqual(cfg["converter_args"]["file_input_name"], "image_file")
+
+
+class ImageToTextPageRouteTests(TestCase):
+    def setUp(self):
+        cache.clear()
+        self.client = Client()
+
+    def test_url_reversal(self):
+        url = reverse("frontend:image_to_text_page")
+        self.assertTrue(url.endswith("/image/to-text/"), url)
+
+    def test_page_in_sitemap(self):
+        resp = self.client.get("/sitemap-en.xml")
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b"/image/to-text/", resp.content)

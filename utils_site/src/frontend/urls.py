@@ -87,6 +87,7 @@ urlpatterns = [
     path("image/optimize/", views.optimize_image_page, name="optimize_image_page"),
     path("image/convert/", views.convert_image_page, name="convert_image_page"),
     path("image/heic-to-jpg/", views.heic_to_jpg_page, name="heic_to_jpg_page"),
+    path("image/to-text/", views.image_to_text_page, name="image_to_text_page"),
     # PDF Organize pages
     path("pdf-organize/merge/", views.merge_pdf_page, name="merge_pdf_page"),
     path("pdf-organize/split/", views.split_pdf_page, name="split_pdf_page"),

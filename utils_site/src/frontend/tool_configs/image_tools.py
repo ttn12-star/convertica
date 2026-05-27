@@ -343,4 +343,129 @@ IMAGE_TOOLS_CONFIGS = {
             "how_to_time": "PT1M",
         },
     },
+    "image_to_text": {
+        "template": "frontend/image_tools/image_to_text.html",
+        "converter_args": {
+            "page_title": _(
+                "Image to Text Online Free - Extract Text from Photos (OCR) | Convertica"
+            ),
+            "page_description": _(
+                "Extract text from images online free with OCR. Convert JPG, PNG, "
+                "WebP, HEIC, BMP, TIFF photos and screenshots to editable text. "
+                "17 languages, no registration, no watermark."
+            ),
+            "page_keywords": (
+                "image to text, photo to text, jpg to text, png to text, "
+                "picture to text, extract text from image, screenshot to text, "
+                "scanned document to text, ocr online free, image to text converter, "
+                "convert image to text, free ocr"
+            ),
+            "page_subtitle": _("Extract editable text from any image in seconds"),
+            "header_text": _("Image to Text"),
+            "file_input_name": "image_file",
+            "file_accept": ".jpg,.jpeg,.png,.webp,.gif,.bmp,.tiff,.tif,.heic,.heif",
+            "api_url_name": "image_to_text_api",
+            "replace_regex": r"\.(jpe?g|png|webp|gif|bmp|tiff?|heic|heif)$",
+            "replace_to": ".txt",
+            "button_text": _("Extract Text"),
+            "select_file_message": _("Please select an image file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>',
+                    "gradient": "from-violet-500 to-violet-600",
+                    "title": _("Accurate OCR"),
+                    "description": _(
+                        "Adaptive preprocessing and confidence filtering for clean, readable text"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("17 Languages + Auto"),
+                    "description": _(
+                        "Recognize text in 17 languages or let auto-detection pick the best match"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Any Image, Even iPhone HEIC"),
+                    "description": _(
+                        "JPG, PNG, WebP, HEIC, BMP, TIFF, and GIF — including iPhone photos"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Free & Private"),
+                    "description": _(
+                        "No registration, no watermark. Files are deleted right after processing"
+                    ),
+                },
+            ],
+            "benefits_title": _("Why Use Our Image to Text Converter?"),
+            "page_faq": [
+                {
+                    "question": _("How do I extract text from an image?"),
+                    "answer": _(
+                        "Upload your image (JPG, PNG, HEIC, etc.), pick the language or leave it on "
+                        "Auto, and click Extract Text. The recognized text appears on the page — copy "
+                        "it or download it as a .txt file."
+                    ),
+                },
+                {
+                    "question": _("Which languages are supported?"),
+                    "answer": _(
+                        "17 languages including English, Russian, German, French, Spanish, Italian, "
+                        "Portuguese, Polish, Turkish, Ukrainian, Hindi, Indonesian, Arabic, Chinese "
+                        "(Simplified and Traditional), Japanese, and Korean — plus automatic detection."
+                    ),
+                },
+                {
+                    "question": _("Can it read iPhone HEIC photos?"),
+                    "answer": _(
+                        "Yes. HEIC and HEIF photos from iPhone and iPad are supported directly — no "
+                        "need to convert them to JPG first."
+                    ),
+                },
+                {
+                    "question": _("Is it really free?"),
+                    "answer": _(
+                        "Yes, extracting text from a single image is completely free with no "
+                        "registration and no watermark."
+                    ),
+                },
+                {
+                    "question": _("Why is some text missing or wrong?"),
+                    "answer": _(
+                        "OCR works best on sharp, high-contrast images. Blurry photos, handwriting, or "
+                        "low-resolution scans reduce accuracy. Use a clear, well-lit image and select "
+                        "the correct language for the best results."
+                    ),
+                },
+            ],
+            "faq_title": _("Image to Text - FAQ"),
+            "page_tips": [
+                _("Use a sharp, well-lit image — OCR accuracy drops on blurry photos"),
+                _("Select the correct language instead of Auto when you know it"),
+                _("Crop out backgrounds so only the text remains for cleaner results"),
+                _(
+                    "For multi-column layouts, expect text in reading order, not columns"
+                ),
+                _("Scanned documents work best at 300 DPI or higher"),
+            ],
+            "tips_title": _("Tips for Best Text Recognition"),
+            "page_content_title": _("Extract text from images online with OCR"),
+            "page_content_body": _(
+                "<p><strong>Image to Text</strong> uses OCR (Optical Character Recognition) to turn "
+                "photos, screenshots, and scanned documents into editable text. Upload a JPG, PNG, "
+                "WebP, HEIC, BMP, TIFF, or GIF and get the text back instantly.</p>"
+                "<p>Perfect for copying text from a screenshot, digitizing a receipt or business card, "
+                "or pulling a quote out of a photographed page. Recognition supports 17 languages with "
+                "automatic detection, and your files are deleted right after processing.</p>"
+            ),
+        },
+    },
 }
