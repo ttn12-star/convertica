@@ -71,3 +71,17 @@ class ExtractTextFromPdfRefactorTests(TestCase):
         _path, text = extract_text_from_pdf(uploaded, user_language="en")
         self.assertIn("Invoice 2026", text)
         self.assertIn("Thanks", text)
+
+
+class RunImageOCRTests(TestCase):
+    @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
+    def test_writes_txt_with_extracted_text(self, _mock):
+        from src.api.image_tools.image_to_text.utils import run_image_ocr
+
+        upload = SimpleUploadedFile("photo.png", _png_bytes(), content_type="image/png")
+        input_path, output_path = run_image_ocr(upload, language="en")
+        self.assertTrue(output_path.endswith(".txt"))
+        with open(output_path, encoding="utf-8") as fh:
+            body = fh.read()
+        self.assertIn("Invoice 2026", body)
+        self.assertIn("Thanks", body)
