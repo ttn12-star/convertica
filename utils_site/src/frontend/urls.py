@@ -103,6 +103,8 @@ urlpatterns = [
     # PDF Security pages
     path("pdf-security/protect/", views.protect_pdf_page, name="protect_pdf_page"),
     path("pdf-security/unlock/", views.unlock_pdf_page, name="unlock_pdf_page"),
+    path("archive/protect/", views.protect_zip_page, name="protect_zip_page"),
+    path("archive/unlock/", views.unlock_zip_page, name="unlock_zip_page"),
     # Static pages
     path("pricing/", PricingPageView.as_view(), name="pricing"),
     path("contribute/", SupportPageView.as_view(), name="contribute"),

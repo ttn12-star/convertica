@@ -1,0 +1,43 @@
+{% extends "frontend/edit_pdf_generic.html" %}
+{% load i18n %}
+
+{% block edit_options %}
+  <div class="bg-gray-50 rounded-xl p-5 sm:p-6 border border-gray-200">
+    <h3 class="text-lg font-bold mb-4 text-gray-900">{% trans "Unlock ZIP Settings" %}</h3>
+    <div class="space-y-4">
+      <div>
+        <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+          {% trans "ZIP Password" %} <span class="text-red-500">*</span>
+        </label>
+        <input type="password" id="password" name="password" required minlength="1" maxlength="128"
+               placeholder="{% trans 'Enter the password to unlock the ZIP' %}"
+               class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white text-gray-900">
+        <p class="mt-1.5 text-xs text-gray-500">
+          {% trans "Enter the password that was used to protect the archive. The password will be removed from the output ZIP." %}
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block help_section %}
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20 border border-teal-200 dark:border-teal-800 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">{% trans "How it works" %}</h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+      <li>{% trans "Select your password-protected ZIP file using the button above or drag and drop it into the zone below" %}</li>
+      <li>{% trans "Enter the password that was used to protect the archive" %}</li>
+      <li>{% trans "Click the unlock button to remove the password from your ZIP" %}</li>
+      <li>{% trans "Download your unlocked ZIP (without password) using the download button" %}</li>
+    </ol>
+    <div class="mt-4 pt-4 border-t border-teal-200 dark:border-teal-700">
+      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+        <strong>{% trans "Note:" %}</strong> {% trans "You must know the correct password. This tool removes the password from an archive you can already open — it does not crack or bypass unknown passwords." %}
+      </p>
+    </div>
+  </div>
+
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+  {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+{% endblock %}

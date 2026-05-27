@@ -605,6 +605,18 @@ def unlock_pdf_page(request):
     return _render_tool_page(request, "unlock_pdf")
 
 
+@anonymous_cache_page(60 * 60)
+def protect_zip_page(request):
+    """Password Protect ZIP page."""
+    return _render_tool_page(request, "protect_zip")
+
+
+@anonymous_cache_page(60 * 60)
+def unlock_zip_page(request):
+    """Unlock ZIP page."""
+    return _render_tool_page(request, "unlock_zip")
+
+
 def all_tools_page(request):
     """All Tools page - shows all PDF tools organized by categories."""
 
