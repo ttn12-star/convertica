@@ -50,7 +50,7 @@
                style="position: fixed;"
                aria-labelledby="all-tools-menu-button"
                role="menu">
-            <div class="grid grid-cols-1 sm:grid-cols-2 {% if PAYMENTS_ENABLED %}lg:grid-cols-6{% else %}lg:grid-cols-5{% endif %} gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+            <div class="grid grid-cols-1 sm:grid-cols-2 {% if PAYMENTS_ENABLED %}lg:grid-cols-7{% else %}lg:grid-cols-6{% endif %} gap-4 sm:gap-6 p-4 sm:p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <!-- Convert PDF -->
               <div class="min-w-0">
                 <h5 class="font-bold mb-3 text-gray-900 text-sm uppercase tracking-wide text-blue-600">{% trans "Convert PDF" %}</h5>
@@ -411,6 +411,37 @@
                         </svg>
                       </div>
                       <span class="font-medium">{% trans "Unlock PDF" %}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Archive Tools -->
+              <div class="min-w-0">
+                <h5 class="font-bold mb-3 text-gray-900 text-sm uppercase tracking-wide text-teal-600">{% trans "Archive Tools" %}</h5>
+                <ul class="space-y-1.5 text-sm">
+                  <li>
+                    <a href="{% url 'frontend:protect_zip_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-200 text-gray-700 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "Password Protect ZIP" %}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'frontend:unlock_zip_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-teal-50 hover:text-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-200 text-gray-700 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center group-hover:bg-teal-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "Unlock ZIP" %}</span>
                     </a>
                   </li>
                 </ul>
@@ -1379,6 +1410,34 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
         </svg>
         {% trans "Unlock PDF" %}
+      </a>
+    </div>
+
+  <!-- Mobile Archive Tools Menu Toggle -->
+    <button id="mobile-archive-tools-toggle"
+            class="flex items-center justify-between w-full p-3 rounded-lg hover:bg-teal-50 text-left font-semibold text-gray-900 transition-colors"
+            aria-expanded="false">
+      <span>{% trans "Archive Tools" %}</span>
+      <svg class="w-4 h-4 transition-transform text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+
+  <!-- Mobile Archive Tools Menu Items -->
+    <div id="mobile-archive-tools-menu" class="hidden pl-4 space-y-1">
+      <a href="{% url 'frontend:protect_zip_page' %}"
+         class="flex items-center p-2.5 rounded-lg hover:bg-teal-50 text-gray-700 transition-colors">
+        <svg class="w-4 h-4 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+        </svg>
+        {% trans "Password Protect ZIP" %}
+      </a>
+      <a href="{% url 'frontend:unlock_zip_page' %}"
+         class="flex items-center p-2.5 rounded-lg hover:bg-teal-50 text-gray-700 transition-colors">
+        <svg class="w-4 h-4 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path>
+        </svg>
+        {% trans "Unlock ZIP" %}
       </a>
     </div>
 
