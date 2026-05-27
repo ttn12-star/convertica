@@ -172,6 +172,8 @@ class Article(models.Model):
             ("extract_pages", "Extract Pages"),
             ("remove_pages", "Remove Pages"),
             ("add_page_numbers", "Add Page Numbers"),
+            ("protect_zip", "Password Protect ZIP"),
+            ("unlock_zip", "Unlock ZIP"),
             ("all_tools", "All Tools"),
         ],
         blank=True,
@@ -240,6 +242,8 @@ class Article(models.Model):
             "extract_pages": "extract_pages_page",
             "remove_pages": "remove_pages_page",
             "add_page_numbers": "add_page_numbers_page",
+            "protect_zip": "protect_zip_page",
+            "unlock_zip": "unlock_zip_page",
             "all_tools": "all_tools_page",
         }
 
@@ -274,6 +278,8 @@ class Article(models.Model):
             "extract_pages": "Extract Pages",
             "remove_pages": "Remove Pages",
             "add_page_numbers": "Add Page Numbers",
+            "protect_zip": "Password Protect ZIP",
+            "unlock_zip": "Unlock ZIP",
             "all_tools": "All Tools",
         }
 

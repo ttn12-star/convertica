@@ -11,7 +11,7 @@ from django.core.cache import cache
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import activate
+from django.utils.translation import activate, deactivate
 
 
 class FrontendViewsTestCase(TestCase):
@@ -954,3 +954,27 @@ class FrontendViewsTestCase(TestCase):
                     follow=False,
                 )
                 self.assertEqual(response.status_code, 200)
+
+
+class ArchiveToolPageTests(TestCase):
+    def setUp(self):
+        # Pin the active language so reverse() and rendering are deterministic
+        # regardless of language state leaked by earlier tests in the suite.
+        activate("en")
+
+    def tearDown(self):
+        deactivate()
+
+    def test_protect_zip_page_renders_with_seo_blocks(self):
+        resp = self.client.get(reverse("frontend:protect_zip_page"))
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        self.assertIn("Password Protect ZIP", html)
+        self.assertIn("AES", html)  # benefit/FAQ/how-it-works copy present
+        self.assertIn("7-Zip", html)  # the honesty note about opening AES zips
+
+    def test_unlock_zip_page_renders(self):
+        resp = self.client.get(reverse("frontend:unlock_zip_page"))
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        self.assertIn("Unlock ZIP", html)
