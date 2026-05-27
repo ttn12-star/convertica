@@ -37,6 +37,8 @@ class HeaderNavigation {
     this.mobileOrganizePdfMenu = document.getElementById('mobile-organize-pdf-menu');
     this.mobilePdfSecurityToggle = document.getElementById('mobile-pdf-security-toggle');
     this.mobilePdfSecurityMenu = document.getElementById('mobile-pdf-security-menu');
+    this.mobileArchiveToolsToggle = document.getElementById('mobile-archive-tools-toggle');
+    this.mobileArchiveToolsMenu = document.getElementById('mobile-archive-tools-menu');
     this.allToolsParent = document.getElementById('all-tools-menu-parent');
     this.allToolsDropdown = document.getElementById('all-tools-menu-dropdown');
     this.allToolsButton = document.getElementById('all-tools-menu-button');
@@ -145,6 +147,7 @@ class HeaderNavigation {
     this.mobileEditPdfToggle?.addEventListener('click', () => this.toggleMobileEditPdf());
     this.mobileOrganizePdfToggle?.addEventListener('click', () => this.toggleMobileOrganizePdf());
     this.mobilePdfSecurityToggle?.addEventListener('click', () => this.toggleMobilePdfSecurity());
+    this.mobileArchiveToolsToggle?.addEventListener('click', () => this.toggleMobileArchiveTools());
 
     // Desktop all tools menu (hover) - always attach, check width in methods
     if (this.allToolsParent) {
@@ -381,6 +384,19 @@ class HeaderNavigation {
 
     // Rotate arrow icon
     const arrow = this.mobilePdfSecurityToggle.querySelector('svg');
+    if (arrow) {
+      arrow.classList.toggle('rotate-180');
+    }
+  }
+
+  toggleMobileArchiveTools() {
+    if (!this.mobileArchiveToolsToggle || !this.mobileArchiveToolsMenu) return;
+    const isExpanded = this.mobileArchiveToolsToggle.getAttribute('aria-expanded') === 'true';
+    this.mobileArchiveToolsMenu.classList.toggle('hidden', isExpanded);
+    this.mobileArchiveToolsToggle.setAttribute('aria-expanded', !isExpanded);
+
+    // Rotate arrow icon
+    const arrow = this.mobileArchiveToolsToggle.querySelector('svg');
     if (arrow) {
       arrow.classList.toggle('rotate-180');
     }
