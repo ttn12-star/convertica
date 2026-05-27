@@ -1,5 +1,9 @@
 from django.urls import path
 
+from .archive_tools.protect_zip.batch_views import ProtectZipBatchAPIView
+from .archive_tools.protect_zip.views import ProtectZipAPIView
+from .archive_tools.unlock_zip.batch_views import UnlockZipBatchAPIView
+from .archive_tools.unlock_zip.views import UnlockZipAPIView
 from .async_views import TaskResultAPIView, TaskStatusAPIView
 from .cancel_task_view import (
     cancel_task,
@@ -202,6 +206,17 @@ urlpatterns = [
         UnlockPDFBatchAPIView.as_view(),
         name="unlock_pdf_batch_api",
     ),
+    # Archive tools batch endpoints
+    path(
+        "archive/protect/batch/",
+        ProtectZipBatchAPIView.as_view(),
+        name="protect_zip_batch_api",
+    ),
+    path(
+        "archive/unlock/batch/",
+        UnlockZipBatchAPIView.as_view(),
+        name="unlock_zip_batch_api",
+    ),
     path("pdf-to-jpg/", PDFToJPGAPIView.as_view(), name="pdf_to_jpg_api"),
     path("jpg-to-pdf/", JPGToPDFAPIView.as_view(), name="jpg_to_pdf_api"),
     path("pdf-to-excel/", PDFToExcelAPIView.as_view(), name="pdf_to_excel_api"),
@@ -305,6 +320,9 @@ urlpatterns = [
     # PDF Security endpoints
     path("pdf-security/protect/", ProtectPDFAPIView.as_view(), name="protect_pdf_api"),
     path("pdf-security/unlock/", UnlockPDFAPIView.as_view(), name="unlock_pdf_api"),
+    # Archive tools endpoints
+    path("archive/protect/", ProtectZipAPIView.as_view(), name="protect_zip_api"),
+    path("archive/unlock/", UnlockZipAPIView.as_view(), name="unlock_zip_api"),
     # Image tool endpoints
     path("image/optimize/", OptimizeImageAPIView.as_view(), name="optimize_image_api"),
     path(
