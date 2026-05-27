@@ -1,0 +1,105 @@
+{% extends "frontend/converter_generic.html" %}
+{% load i18n static minified_static %}
+
+{% block edit_options %}
+  <div class="mb-6 space-y-5 bg-gray-50 rounded-xl p-5 border border-gray-200">
+    <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+      {% trans "OCR Options" %}
+    </h3>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2" for="ocrLanguageSelect">
+        {% trans "Language" %}
+      </label>
+      <select id="ocrLanguageSelect" name="language"
+              class="w-full sm:w-auto min-w-[260px] px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 bg-white text-gray-900 text-sm">
+        <option value="auto" selected>{% trans "Auto-detect" %}</option>
+        <option value="en">{% trans "English" %}</option>
+        <option value="ru">{% trans "Russian" %}</option>
+        <option value="de">{% trans "German" %}</option>
+        <option value="fr">{% trans "French" %}</option>
+        <option value="es">{% trans "Spanish" %}</option>
+        <option value="it">{% trans "Italian" %}</option>
+        <option value="pt">{% trans "Portuguese" %}</option>
+        <option value="pl">{% trans "Polish" %}</option>
+        <option value="tr">{% trans "Turkish" %}</option>
+        <option value="uk">{% trans "Ukrainian" %}</option>
+        <option value="hi">{% trans "Hindi" %}</option>
+        <option value="id">{% trans "Indonesian" %}</option>
+        <option value="ar">{% trans "Arabic" %}</option>
+        <option value="zh-cn">{% trans "Chinese (Simplified)" %}</option>
+        <option value="zh-tw">{% trans "Chinese (Traditional)" %}</option>
+        <option value="ja">{% trans "Japanese" %}</option>
+        <option value="ko">{% trans "Korean" %}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Text result panel (populated by image-to-text.js) -->
+  <div id="ocrResultPanel" class="hidden mt-6">
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+        {% trans "Extracted Text" %}
+      </h3>
+      <span id="ocrCounts" class="text-xs text-gray-400"></span>
+    </div>
+    <textarea id="ocrResultText" readonly rows="12"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 text-sm font-mono"></textarea>
+    <div class="flex flex-wrap gap-3 mt-3">
+      <button type="button" id="ocrCopyBtn"
+              class="px-4 py-2 rounded-lg bg-violet-600 text-white text-sm font-medium hover:bg-violet-700">
+        {% trans "Copy" %}
+      </button>
+      <button type="button" id="ocrDownloadBtn"
+              class="px-4 py-2 rounded-lg bg-gray-100 text-gray-800 text-sm font-medium hover:bg-gray-200">
+        {% trans "Download .txt" %}
+      </button>
+    </div>
+  </div>
+
+  <!-- Empty state (no text detected) -->
+  <div id="ocrEmptyState" class="hidden mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-800 text-sm">
+    {% trans "No text was detected in this image. Try a sharper, higher-contrast image and make sure the correct language is selected." %}
+  </div>
+{% endblock %}
+
+{% block help_section %}
+  <div class="mt-8 sm:mt-10 bg-gradient-to-br from-violet-50 to-blue-50 dark:from-violet-900/20 dark:to-blue-900/20 border border-violet-200 dark:border-violet-800 rounded-xl p-5 sm:p-7">
+    <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+      {% trans "How it works" %}
+    </h2>
+    <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+      <li>{% trans "Upload your image using the button above or drag and drop it" %}</li>
+      <li>{% trans "Choose the language, or leave it on Auto-detect" %}</li>
+      <li>{% trans "Click Extract Text to run OCR" %}</li>
+      <li>{% trans "Copy the recognized text or download it as a .txt file" %}</li>
+    </ol>
+  </div>
+
+  {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+  {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+  {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+  {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+{% endblock %}
+
+{% block extra_js %}
+{# Config script: same window.* vars the shared upload helpers expect, minus the
+   converter.js download flow. file-input-handler.js drives the upload widget. #}
+  <script nonce="{{ csp_nonce }}">
+    window.API_URL = "{{ api_url|escapejs }}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name|escapejs }}";
+    window.BATCH_ENABLED = false;
+    window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
+    window.REPLACE_TO = "{{ replace_to|escapejs }}";
+    window.ERROR_MESSAGE = "{{ error_message|default:'Text extraction failed. Please try again.'|escapejs }}";
+    window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
+    window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Extracting text...' %}{% endfilter %}";
+    window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, running OCR on your image' %}{% endfilter %}";
+    window.OCR_COPY_DONE = "{% filter escapejs %}{% trans 'Copied!' %}{% endfilter %}";
+    window.OCR_COUNTS_TPL = "{% filter escapejs %}{% trans '%(words)s words, %(chars)s characters' %}{% endfilter %}";
+  </script>
+  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}" defer></script>
+  <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}" defer></script>
+  <script src="{% minified_static 'js/image-to-text.js' %}" nonce="{{ csp_nonce }}" defer></script>
+{% endblock %}
