@@ -1,0 +1,85 @@
+slug: how-to-extract-text-from-an-image
+status: published
+category_slug: how-to-guides
+relevant_tool: image_to_text
+title_hi: "Image से Text कैसे Extract करें (Free OCR, बिना Retyping के)"
+meta_title_hi: "Image to Text Online Free — OCR से Text Extract करें | Convertica"
+meta_description_hi: "Free OCR से photo, screenshot, या scan को editable text में बदलें। जानें यह कैसे काम करता है, accuracy को क्या affect करता है, और iPhone HEIC photos और 17 languages को कैसे handle करें।"
+meta_keywords_hi: "image to text, image से text extract करें, photo to text, screenshot to text, ocr online free, picture to text, jpg to text"
+excerpt_hi: "आपको जो text चाहिए वह किसी picture में फंसा है — screenshot, photographed page, receipt। OCR pixels पढ़ता है और editable text वापस देता है। इसे सही तरीके से करने का तरीका यहाँ है।"
+content_hi: |
+  आप शब्द देख सकते हैं, लेकिन उन्हें select नहीं कर सकते। वे एक image में lock हैं — slide का screenshot, printed page की photo, scanned receipt, business card। Retyping obvious option है और सबसे बुरा भी। Optical character recognition (OCR) यह आपके लिए करता है: pixels पढ़ता है, letterforms पहचानता है, और text वापस देता है जिसे आप copy, edit और search कर सकते हैं।
+
+  यह guide दिखाती है कि free browser tool से image से text कैसे निकालें, result clean बनाम garbled क्यों होता है, और awkward cases जैसे iPhone HEIC photos और non-English text को कैसे handle करें।
+
+  <h2>OCR कब चाहिए (और कब नहीं)</h2>
+
+  अगर आप पहले से cursor से individual words highlight कर सकते हैं, text "live" है — बस copy करें, OCR की ज़रूरत नहीं। OCR तब चाहिए जब words image का ही हिस्सा हों:
+
+  <ul>
+    <li><strong>Screenshots</strong> ऐसे text के जिसे select नहीं किया जा सकता (video frame, chat, error dialog)।</li>
+    <li><strong>Photos</strong> किसी printed page, whiteboard, sign, या slide की।</li>
+    <li><strong>Scans और faxes</strong> जो JPG, PNG, या TIFF के रूप में save हैं।</li>
+    <li><strong>Receipts और business cards</strong> जिन्हें आप text के रूप में file करना चाहते हैं।</li>
+  </ul>
+
+  <h2>Image से text कैसे extract करें</h2>
+
+  <ol>
+    <li><a href="/hi/image/to-text/">Image to Text</a> tool खोलें और अपनी image upload करें (JPG, PNG, WebP, HEIC, BMP, TIFF, या GIF)। आप इसे सीधे page पर drag कर सकते हैं।</li>
+    <li>Text की language choose करें, या इसे <strong>Auto-detect</strong> पर छोड़ दें। Language explicitly set करना non-English या accented text के लिए बहुत help करता है।</li>
+    <li><strong>Extract Text</strong> पर click करें। Recognised text कुछ seconds में page पर appear होता है।</li>
+    <li>इसे grab करने के लिए <strong>Copy</strong> use करें, या plain text file के रूप में save करने के लिए <strong>Download .txt</strong>। इस पर भरोसा करने से पहले हमेशा quick proofread करें।</li>
+  </ol>
+
+  <p>कुछ भी install नहीं होता और file temporary session में process होती है, फिर delete हो जाती है — लेकिन sensitive documents के लिए FAQ में confidentiality note देखें।</p>
+
+  <h2>Accuracy को actually क्या affect करता है</h2>
+
+  OCR quality mostly उस image से decide होती है जो आप feed करते हैं। तीन चीज़ें सबसे ज़्यादा matter करती हैं:
+
+  <ul>
+    <li><strong>Sharpness.</strong> Crisp, in-focus text cleanly पढ़ता है। Motion blur और out-of-focus phone shots garbled output का number-one cause हैं।</li>
+    <li><strong>Contrast.</strong> OCR ink और background के बीच difference पर काम करता है। Faded photocopy या low-light photo recogniser को काम करने के लिए बहुत कम देती है, even high resolution पर भी।</li>
+    <li><strong>Language.</strong> English-trained model accented characters और unfamiliar words misread करता है। जब भी पता हो, Auto की जगह correct language choose करें।</li>
+  </ul>
+
+  <p>Resolution भी help करती है: aim करें कि text एक line में कम से कम कुछ सौ pixels tall हो। Scans के लिए, 300 DPI comfortable floor है। Low-resolution photo में छोटे footnotes — यहीं accuracy टूटती है।</p>
+
+  <h2>iPhone photos (HEIC) और other formats</h2>
+
+  <p>Modern iPhone या iPad से सीधे आई photos usually <strong>HEIC/HEIF</strong> होती हैं, JPG नहीं। आपको पहले उन्हें convert करने की ज़रूरत नहीं — HEIC upload करें और tool इसे directly decode करता है। JPG, PNG, WebP, BMP, TIFF, और GIF सभी same way से काम करते हैं। Multi-page TIFF या animated GIF के लिए, first frame use होता है।</p>
+
+  <h2>Clean result के लिए tips</h2>
+
+  <ul>
+    <li>Frame को text से भरें और backgrounds, hands, और table edges crop out करें — clutter layout detection को confuse करती है।</li>
+    <li>Straight shoot करें। किसी angle पर photographed page letters को keystone करता है और accuracy कम करता है; tool mild skew straighten करता है, लेकिन flat-on best है।</li>
+    <li>Glare और shadows avoid करें। Even, diffuse light bright window या phone flash से better है।</li>
+    <li>Multi-column layouts के लिए, reconstructed columns के बजाय reading order में text expect करें।</li>
+    <li>Usual suspects proofread करें: 0/O, 1/l/I, rn/m, और stray punctuation।</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>क्या यह सच में free है?</h3>
+  <p>हाँ। Single image से text extract करना free है, बिना registration और output पर बिना watermark के।</p>
+
+  <h3>कौन सी languages supported हैं?</h3>
+  <p>17 languages, जिनमें English, Russian, German, French, Spanish, Italian, Portuguese, Polish, Turkish, Ukrainian, Hindi, Indonesian, Arabic, Chinese (Simplified और Traditional), Japanese, और Korean शामिल हैं — plus automatic detection। Accented या non-Latin scripts के लिए, best accuracy के लिए language explicitly set करें।</p>
+
+  <h3>क्या यह handwriting पढ़ सकता है?</h3>
+  <p>कभी-कभी, और reliably नहीं। OCR printed type पर trained है; handwriting accuracy widely range करती है और cursive सबसे worst करता है। Block capitals — जैसे hand से भरा form — joined-up writing से बहुत better पढ़ते हैं।</p>
+
+  <h3>कुछ text wrong या missing क्यों है?</h3>
+  <p>Almost हमेशा source image: blur, low contrast, small text, या wrong language setting। Sharper और better lit re-shoot करें, correct language choose करें, और result usually dramatically improve होता है।</p>
+
+  <h3>क्या यह confidential है?</h3>
+  <p>Image temporary session में process होती है और shortly after delete होती है। फिर भी, sensitive material upload करने से पहले privacy policy पढ़ें। Highly confidential documents — medical records, privileged legal files — के लिए किसी भी web service पर local OCR (जैसे Tesseract) prefer करें।</p>
+
+  <h3>क्या मैं text Word document के रूप में पा सकता हूँ?</h3>
+  <p>यह tool plain text return करता है जिसे आप कहीं भी paste कर सकते हैं। अगर आपको specifically scanned <em>PDF</em> को formatted Word file में बदलना है, तो OCR के साथ <a href="/hi/pdf-to-word/">PDF to Word</a> converter use करें।</p>
+
+  <h2>अभी try करें</h2>
+
+  <p>Retyping बंद करें। अपना screenshot या photo <a href="/hi/image/to-text/">Image to Text</a> tool में drop करें, language choose करें, और seconds में editable text मिलेगा — बस use करने से पहले quick proofread दें।</p>

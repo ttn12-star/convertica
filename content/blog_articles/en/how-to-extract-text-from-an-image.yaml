@@ -1,0 +1,112 @@
+slug: how-to-extract-text-from-an-image
+status: published
+category_slug: how-to-guides
+relevant_tool: image_to_text
+title_en: "How to Extract Text from an Image (Free OCR, No Retyping)"
+meta_title_en: "Image to Text Online Free - Extract Text with OCR | Convertica"
+meta_description_en: "Turn a photo, screenshot, or scan into editable text with free OCR. Learn how it works, what affects accuracy, and how to handle iPhone HEIC photos and 17 languages."
+meta_keywords_en: "image to text, extract text from image, photo to text, screenshot to text, ocr online free, picture to text, jpg to text"
+excerpt_en: "The text you need is stuck inside a picture - a screenshot, a photographed page, a receipt. OCR reads the pixels and hands you back editable text. Here is how to do it well."
+ai_metadata:
+  topics:
+    - OCR
+    - image to text
+    - text extraction
+    - screenshot to text
+    - document digitization
+  entities:
+    - OCR
+    - Optical Character Recognition
+    - HEIC
+    - Tesseract
+    - Convertica
+    - JPG
+    - PNG
+    - DPI
+  summary: "Explains when you need OCR rather than copy-paste, how to extract text from an image with a free browser tool, what source factors drive accuracy (sharpness, contrast, language, DPI), how iPhone HEIC and other formats are handled, and practical cleanup tips, with an FAQ."
+  related_terms:
+    - extract text from photo
+    - jpg to text converter
+    - picture to text
+    - screenshot to text
+    - ocr image free
+    - scanned image to text
+    - convert image to editable text
+  reading_time_minutes: 7
+  target_audience: "Students, office workers, and anyone holding a screenshot, photographed document, receipt, or business card who needs the words as editable text instead of retyping them."
+content_en: |
+  You can see the words, but you can't select them. They're locked inside a picture - a screenshot of a slide, a photo of a printed page, a scanned receipt, a business card. Retyping is the obvious option and the worst one. Optical character recognition (OCR) does it for you: it reads the pixels, recognises the letterforms, and hands back text you can copy, edit, and search.
+
+  This guide shows how to pull text out of an image with a free browser tool, what makes the result clean versus garbled, and how to handle the awkward cases like iPhone HEIC photos and non-English text.
+
+  <h2>When you need OCR (and when you don't)</h2>
+
+  If you can already highlight individual words with your cursor, the text is "live" - just copy it, no OCR needed. You need OCR when the words are part of the image itself:
+
+  <ul>
+    <li><strong>Screenshots</strong> of text you can't select (a video frame, a chat, an error dialog).</li>
+    <li><strong>Photos</strong> of a printed page, a whiteboard, a sign, or a slide.</li>
+    <li><strong>Scans and faxes</strong> saved as JPG, PNG, or TIFF.</li>
+    <li><strong>Receipts and business cards</strong> you want to file as text.</li>
+  </ul>
+
+  <h2>How to extract text from an image</h2>
+
+  <ol>
+    <li>Open the <a href="/en/image/to-text/">Image to Text</a> tool and upload your image (JPG, PNG, WebP, HEIC, BMP, TIFF, or GIF). You can drag it straight onto the page.</li>
+    <li>Pick the language of the text, or leave it on <strong>Auto-detect</strong>. Setting the language explicitly helps a lot for non-English or accented text.</li>
+    <li>Click <strong>Extract Text</strong>. The recognised text appears on the page within a couple of seconds.</li>
+    <li>Use <strong>Copy</strong> to grab it, or <strong>Download .txt</strong> to save it as a plain text file. Always give it a quick proofread before you rely on it.</li>
+  </ol>
+
+  <p>Nothing is installed and the file is processed in a temporary session, then deleted - but see the confidentiality note in the FAQ for sensitive documents.</p>
+
+  <h2>What actually affects accuracy</h2>
+
+  OCR quality is mostly decided by the image you feed it. Three things matter most:
+
+  <ul>
+    <li><strong>Sharpness.</strong> Crisp, in-focus text reads cleanly. Motion blur and out-of-focus phone shots are the number-one cause of garbled output.</li>
+    <li><strong>Contrast.</strong> OCR works on the difference between ink and background. A faded photocopy or a low-light photo gives the recogniser too little to work with, even at high resolution.</li>
+    <li><strong>Language.</strong> An English-trained model misreads accented characters and unfamiliar words. Choose the correct language instead of Auto whenever you know it.</li>
+  </ul>
+
+  <p>Resolution helps too: aim for text that's at least a few hundred pixels tall across a line. For scans, 300 DPI is the comfortable floor. Tiny footnotes in a low-resolution photo are where accuracy falls apart.</p>
+
+  <h2>iPhone photos (HEIC) and other formats</h2>
+
+  <p>Photos straight from a modern iPhone or iPad are usually <strong>HEIC/HEIF</strong>, not JPG. You don't need to convert them first - upload the HEIC and the tool decodes it directly. JPG, PNG, WebP, BMP, TIFF, and GIF all work the same way. For a multi-page TIFF or an animated GIF, the first frame is used.</p>
+
+  <h2>Tips for a clean result</h2>
+
+  <ul>
+    <li>Fill the frame with the text and crop out backgrounds, hands, and table edges - clutter confuses the layout detection.</li>
+    <li>Shoot straight on. A page photographed at an angle keystones the letters and lowers accuracy; the tool straightens mild skew, but flat-on is best.</li>
+    <li>Avoid glare and shadows. Even, diffuse light beats a bright window or a phone flash.</li>
+    <li>For multi-column layouts, expect the text in reading order rather than reconstructed columns.</li>
+    <li>Proofread the usual suspects: 0/O, 1/l/I, rn/m, and stray punctuation.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Is it really free?</h3>
+  <p>Yes. Extracting text from a single image is free, with no registration and no watermark on the output.</p>
+
+  <h3>Which languages are supported?</h3>
+  <p>17 languages, including English, Russian, German, French, Spanish, Italian, Portuguese, Polish, Turkish, Ukrainian, Hindi, Indonesian, Arabic, Chinese (Simplified and Traditional), Japanese, and Korean - plus automatic detection. For accented or non-Latin scripts, set the language explicitly for the best accuracy.</p>
+
+  <h3>Can it read handwriting?</h3>
+  <p>Sometimes, and not reliably. OCR is trained on printed type; handwriting accuracy ranges widely and cursive does worst. Block capitals - like a form filled in by hand - read far better than joined-up writing.</p>
+
+  <h3>Why is some text wrong or missing?</h3>
+  <p>Almost always the source image: blur, low contrast, small text, or the wrong language setting. Re-shoot sharper and better lit, choose the correct language, and the result usually improves dramatically.</p>
+
+  <h3>Is it confidential?</h3>
+  <p>The image is processed in a temporary session and deleted shortly after. Still, read the privacy policy before uploading sensitive material. For highly confidential documents - medical records, privileged legal files - prefer local OCR (such as Tesseract) over any web service.</p>
+
+  <h3>Can I get the text as a Word document?</h3>
+  <p>This tool returns plain text you can paste anywhere. If you specifically need a scanned <em>PDF</em> turned into a formatted Word file, use the <a href="/en/pdf-to-word/">PDF to Word</a> converter with OCR instead.</p>
+
+  <h2>Try it now</h2>
+
+  <p>Stop retyping. Drop your screenshot or photo into the <a href="/en/image/to-text/">Image to Text</a> tool, pick the language, and you'll have editable text in seconds - just give it a quick proofread before you use it.</p>
