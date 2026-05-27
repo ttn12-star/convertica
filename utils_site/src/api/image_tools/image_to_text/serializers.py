@@ -34,3 +34,9 @@ class ImageToTextSerializer(serializers.Serializer):
         max_value=100,
         help_text="Minimum per-word OCR confidence to keep (0-100, default 60).",
     )
+    output_format = serializers.ChoiceField(
+        required=False,
+        default="txt",
+        choices=["txt", "docx"],
+        help_text="Output format: 'txt' (default, free) or 'docx' (Word, premium).",
+    )
