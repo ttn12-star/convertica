@@ -53,6 +53,12 @@ django-prometheus==2.4.1
 pytesseract==0.3.13
 pytz==2025.2
 reportlab==4.2.5
+# reportlab pulls chardet unpinned; pip resolves it to 7.x, which is outside
+# requests' supported range (chardet<6) and trips a RequestsDependencyWarning
+# on every web/celery startup. requests uses charset_normalizer on py3 and
+# never needs chardet, so pin to the last <6 release: satisfies reportlab,
+# silences the warning, no functional change.
+chardet==5.2.0
 setuptools==80.9.0
 sqlparse==0.5.4
 typing-inspection==0.4.2
