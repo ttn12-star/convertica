@@ -5,7 +5,7 @@ import os
 import tempfile
 import zipfile
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
@@ -63,6 +63,10 @@ def generate_favicon(image_file) -> tuple[str, str]:
 
     with Image.open(raster_path) as img:
         src = img.convert("RGBA")
+
+    # Favicons/app icons are square. Center-crop/scale the source to a 512px square
+    # so every generated icon is square and the largest (512) is always available.
+    src = ImageOps.fit(src, (512, 512))
 
     assets_dir = os.path.join(tmp_dir, "assets")
     os.makedirs(assets_dir, exist_ok=True)
