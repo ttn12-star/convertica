@@ -400,3 +400,31 @@ class OrderRefundedLifetimeTests(HandlerTestCase):
         handle_order_refunded(payload)
         self.user.refresh_from_db()
         self.assertFalse(self.user.is_premium)
+
+
+class RefundReconciliationLoggingTests(HandlerTestCase):
+    def test_refund_with_no_matching_payment_logs_warning(self):
+        # Sec-6: refund revokes premium even if no Payment row matches; that
+        # gap must be visible in logs for reconciliation.
+        from src.payments.handlers import handle_order_refunded
+        from src.payments.tests.fixtures.ls_payloads import order_refunded_payload
+
+        self.user.is_premium = True
+        self.user.save()
+        payload = order_refunded_payload(user_id=self.user.id, plan_id=self.lifetime.id)
+        with self.assertLogs("src.payments.handlers", level="WARNING") as cm:
+            handle_order_refunded(payload)
+        self.assertTrue(any("matched no Payment row" in m for m in cm.output))
+
+
+class ZeroAmountPaymentLoggingTests(HandlerTestCase):
+    def test_zero_amount_paid_plan_logs_warning(self):
+        # Sec-7: a $0 completed payment for a paid plan is suspicious; log it.
+        from src.payments.handlers import handle_order_created
+        from src.payments.tests.fixtures.ls_payloads import order_created_payload
+
+        payload = order_created_payload(user_id=self.user.id, plan_id=self.lifetime.id)
+        payload["data"]["attributes"]["total"] = 0
+        with self.assertLogs("src.payments.handlers", level="WARNING") as cm:
+            handle_order_created(payload)
+        self.assertTrue(any("non-positive amount" in m for m in cm.output))
