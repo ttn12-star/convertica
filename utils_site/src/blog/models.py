@@ -362,8 +362,10 @@ class Article(models.Model):
         from django.db.models import F
 
         Article.objects.filter(id=self.id).update(view_count=F("view_count") + 1)
-        # Refresh instance from database
-        self.refresh_from_db(fields=["view_count"])
+        # Keep the in-memory value roughly consistent without a second SELECT
+        # (no caller reads an exact post-increment count; the extra query per
+        # detail render was pure overhead).
+        self.view_count = (self.view_count or 0) + 1
 
     def get_ai_topics(self):
         """Get AI-identified topics for this article."""
