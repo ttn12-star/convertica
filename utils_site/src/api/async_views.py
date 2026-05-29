@@ -550,6 +550,59 @@ class AsyncConversionAPIView(APIView, ABC):
             )
 
 
+def build_task_status_payload(task_id: str, celery_status: str, info) -> dict:
+    """Map a Celery (status, result) pair to the status-endpoint payload.
+
+    Crucially, a task that hits the soft time limit or fails a
+    validation/corruption check RETURNS ``{"status": "error", ...}`` rather than
+    raising, so Celery records it as SUCCESS. Without this, the endpoint told
+    the user "Conversion complete" and the result download then 404'd. Treat a
+    SUCCESS whose result dict says ``status == "error"`` as a failure.
+    """
+    payload = {"task_id": task_id, "status": celery_status}
+
+    if celery_status == "PROGRESS":
+        info = info or {}
+        payload["progress"] = info.get("progress", 0)
+        payload["current_step"] = info.get("current_step", "")
+        payload["total_steps"] = info.get("total_steps", 0)
+
+    elif celery_status == "SUCCESS":
+        info = info or {}
+        if isinstance(info, dict) and info.get("status") == "error":
+            # Task returned an error dict (timeout / corruption / validation).
+            payload["status"] = "FAILURE"
+            payload["progress"] = 0
+            payload["error"] = info.get("error") or "Conversion failed"
+        else:
+            payload["progress"] = 100
+            payload["output_filename"] = (
+                info.get("output_filename", "") if isinstance(info, dict) else ""
+            )
+            payload["message"] = "Conversion complete. Download your file."
+
+    elif celery_status == "FAILURE":
+        payload["progress"] = 0
+        payload["error"] = str(info) if info else "Conversion failed"
+
+    elif celery_status == "PENDING":
+        payload["progress"] = 0
+        payload["message"] = "Waiting in queue..."
+
+    elif celery_status == "STARTED":
+        payload["message"] = "Processing started..."
+
+    elif celery_status in ("REVOKED", "IGNORED"):
+        payload["progress"] = 0
+        payload["error"] = "Task was cancelled"
+        payload["cancelled"] = True
+        # Normalize IGNORED to REVOKED so frontend handles it as cancelled
+        if celery_status == "IGNORED":
+            payload["status"] = "REVOKED"
+
+    return payload
+
+
 class TaskStatusAPIView(APIView):
     """Check status of an async conversion task."""
 
@@ -561,52 +614,9 @@ class TaskStatusAPIView(APIView):
                 return Response({"error": "Unauthorized task access"}, status=403)
 
             result = AsyncResult(task_id)
-
-            response_data = {
-                "task_id": task_id,
-                "status": result.status,
-            }
-
-            # Add progress info if available
-            if result.status == "PROGRESS":
-                # Task is reporting progress
-                info = result.info or {}
-                response_data["progress"] = info.get("progress", 0)
-                response_data["current_step"] = info.get("current_step", "")
-                response_data["total_steps"] = info.get("total_steps", 0)
-
-            elif result.status == "SUCCESS":
-                # Task completed successfully
-                info = result.result or {}
-                response_data["progress"] = 100
-                response_data["output_filename"] = info.get("output_filename", "")
-                response_data["message"] = "Conversion complete. Download your file."
-
-            elif result.status == "FAILURE":
-                # Task failed
-                response_data["progress"] = 0
-                response_data["error"] = (
-                    str(result.result) if result.result else "Conversion failed"
-                )
-
-            elif result.status == "PENDING":
-                # Task is waiting to be processed
-                response_data["progress"] = 0
-                response_data["message"] = "Waiting in queue..."
-
-            elif result.status == "STARTED":
-                # Task has started
-                response_data["message"] = "Processing started..."
-
-            elif result.status in ("REVOKED", "IGNORED"):
-                # Task was cancelled by user
-                response_data["progress"] = 0
-                response_data["error"] = "Task was cancelled"
-                response_data["cancelled"] = True
-                # Normalize IGNORED to REVOKED so frontend handles it as cancelled
-                if result.status == "IGNORED":
-                    response_data["status"] = "REVOKED"
-
+            response_data = build_task_status_payload(
+                task_id, result.status, result.result
+            )
             return Response(response_data)
 
         except Exception as e:
