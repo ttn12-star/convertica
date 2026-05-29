@@ -884,10 +884,13 @@ def compare_pdf_page(request):
 
 @anonymous_cache_page(60 * 60)
 def ocr_pdf_to_word_page(request):
-    """Premium OCR flow for scanned PDF to Word."""
-    if not _is_premium_active_user(request):
-        return _redirect_for_premium_access(request)
+    """Public landing for the scanned-PDF-to-Word (OCR) flow.
 
+    Serves a crawlable 200 to everyone (scanned-pdf-to-word is a high-CPC
+    keyword we want indexed — see static/robots.txt). Premium gating happens
+    on the conversion action itself at the API layer, not on this landing
+    page; redirecting anonymous crawlers here made the page un-indexable.
+    """
     context = {
         "page_title": _("Scanned PDF to Word (OCR) - Convertica"),
         "page_description": _(
@@ -1377,9 +1380,13 @@ def _get_sitemap_pages():
         {"url": "image/convert/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/heic-to-jpg/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/to-text/", "priority": "0.8", "changefreq": "monthly"},
-        # NOTE: scanned-pdf-to-word/ and batch-converter/ are premium-gated and
-        # 302-redirect anonymous crawlers to /users/login/. Keeping them out of
-        # sitemap until they get public landing pages.
+        {"url": "archive/protect/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "archive/unlock/", "priority": "0.7", "changefreq": "monthly"},
+        # scanned-pdf-to-word/ now serves a public 200 landing (OCR is a
+        # high-CPC keyword); the conversion action stays premium-gated.
+        {"url": "scanned-pdf-to-word/", "priority": "0.7", "changefreq": "monthly"},
+        # NOTE: batch-converter/ is still premium-gated and 302-redirects
+        # anonymous crawlers, so it stays out of the sitemap.
     ]
 
 

@@ -30,9 +30,10 @@ class FrontendViewsTestCase(TestCase):
             "pdf-to-epub/",
             "pdf-to-markdown/",
             "compare-pdf/",
+            # Public 200 landing; conversion action is premium-gated at the API.
+            "scanned-pdf-to-word/",
         )
         self.premium_only_paths = (
-            "scanned-pdf-to-word/",
             "batch-converter/",
             "premium/workflows/",
             "premium/background-center/",
