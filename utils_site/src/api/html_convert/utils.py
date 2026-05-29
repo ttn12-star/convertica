@@ -224,6 +224,28 @@ class HTMLToPDFConverter:
         except Exception as e:
             raise StorageError(f"Failed to save HTML content: {e}", context=context)
 
+    async def _route_guard(self, route) -> None:
+        """Abort any request whose target is not a public http(s) host.
+
+        Installed via ``page.route("**/*", ...)`` so it fires for the initial
+        navigation, every redirect hop, and every sub-resource (img/iframe/
+        fetch/xhr). This closes the SSRF/local-file gaps the one-time
+        pre-navigation check can't cover: redirect-to-internal, DNS rebinding,
+        embedded ``http://169.254.169.254/...`` resources, and ``file://``
+        reads. Reuses the same DNS-resolving allow-list as ``_validate_url``.
+        """
+        request_url = route.request.url
+        is_safe, reason = self._validate_url(request_url)
+        if is_safe:
+            await route.continue_()
+        else:
+            logger.warning(
+                "Blocked unsafe request during conversion: %s (%s)",
+                request_url,
+                reason,
+            )
+            await route.abort()
+
     async def _convert_with_playwright_async(
         self, html_path: str, pdf_path: str, context: dict, **options
     ) -> None:
@@ -242,13 +264,15 @@ class HTMLToPDFConverter:
                 async with async_playwright() as p:
                     browser = await p.chromium.launch(headless=True)
                     page = await browser.new_page()
+                    # Block SSRF / file:// reads on every request & sub-resource.
+                    await page.route("**/*", self._route_guard)
 
                     try:
-                        # Load HTML file
-                        await page.goto(f"file://{html_path}")
-
-                        # Wait for page to load
-                        await page.wait_for_load_state("networkidle")
+                        # Render the HTML directly (no file:// origin, so the
+                        # document can't read local files via fetch/iframe).
+                        with open(html_path, encoding="utf-8") as fh:
+                            html_markup = fh.read()
+                        await page.set_content(html_markup, wait_until="networkidle")
 
                         # Default PDF options
                         pdf_options = {
@@ -321,6 +345,9 @@ class HTMLToPDFConverter:
                 async with async_playwright() as p:
                     browser = await p.chromium.launch(headless=True)
                     page = await browser.new_page()
+                    # Re-validate every request, redirect and sub-resource so a
+                    # redirect or embedded resource can't reach internal hosts.
+                    await page.route("**/*", self._route_guard)
 
                     try:
                         # Navigate to URL
