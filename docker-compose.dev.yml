@@ -49,6 +49,15 @@ services:
       - .env
     ports:
       - "8003:8003"
+    # Dev runserver listens on 8003; override the base healthcheck (which
+    # targets 8000) so the container reports healthy instead of permanently
+    # "unhealthy".
+    healthcheck:
+      test: ["CMD", "curl", "-f", "--max-time", "5", "http://localhost:8003/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
     deploy:
       resources:
         limits:
