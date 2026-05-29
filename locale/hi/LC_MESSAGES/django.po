@@ -12476,3 +12476,54 @@ msgstr ""
 "रसीद या बिज़नेस कार्ड को डिजिटाइज़ करने, या फ़ोटो खींचे गए पेज से कोट "
 "निकालने के लिए एकदम सही। पहचान स्वचालित पहचान के साथ 17 भाषाओं का समर्थन "
 "करती है, और आपकी फ़ाइलें प्रसंस्करण के तुरंत बाद हटा दी जाती हैं।</p>"
+
+msgid "Please enter HTML content to convert"
+msgstr "कृपया कन्वर्ट करने के लिए HTML सामग्री दर्ज करें"
+
+msgid "Converting HTML to PDF..."
+msgstr "HTML को PDF में बदला जा रहा है..."
+
+msgid "Processing PDF..."
+msgstr "PDF प्रोसेस किया जा रहा है..."
+
+msgid "Conversion completed!"
+msgstr "रूपांतरण पूर्ण हुआ!"
+
+msgid "Please enter a URL to convert"
+msgstr "कृपया कन्वर्ट करने के लिए एक URL दर्ज करें"
+
+msgid "Fetching web page..."
+msgstr "वेब पेज प्राप्त किया जा रहा है..."
+
+msgid "Starting conversion..."
+msgstr "रूपांतरण शुरू हो रहा है..."
+
+msgid ""
+"HTML contains <script> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML में <script> टैग हैं जिन्हें सुरक्षा कारणों से प्रोसेस नहीं किया जा "
+"सकता"
+
+msgid ""
+"HTML contains javascript: event handlers which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML में javascript: इवेंट हैंडलर हैं जिन्हें सुरक्षा कारणों से प्रोसेस नहीं"
+" किया जा सकता"
+
+msgid "HTML contains vbscript: which cannot be processed for security reasons"
+msgstr ""
+"HTML में vbscript: है जिसे सुरक्षा कारणों से प्रोसेस नहीं किया जा सकता"
+
+msgid ""
+"HTML contains <iframe> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML में <iframe> टैग हैं जिन्हें सुरक्षा कारणों से प्रोसेस नहीं किया जा "
+"सकता"
+
+msgid ""
+"HTML contains <object> or <embed> tags which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML में <object> या <embed> टैग हैं जिन्हें सुरक्षा कारणों से प्रोसेस नहीं "
+"किया जा सकता"

@@ -12629,3 +12629,55 @@ msgstr ""
 "извлечения цитаты из сфотографированной страницы. Распознавание поддерживает"
 " 17 языков с автоматическим определением, а ваши файлы удаляются сразу после"
 " обработки.</p>"
+
+msgid "Please enter HTML content to convert"
+msgstr "Пожалуйста, введите HTML-содержимое для конвертации"
+
+msgid "Converting HTML to PDF..."
+msgstr "Конвертация HTML в ПДФ..."
+
+msgid "Processing PDF..."
+msgstr "Обработка ПДФ..."
+
+msgid "Conversion completed!"
+msgstr "Конвертация завершена!"
+
+msgid "Please enter a URL to convert"
+msgstr "Пожалуйста, введите URL для конвертации"
+
+msgid "Fetching web page..."
+msgstr "Загрузка веб-страницы..."
+
+msgid "Starting conversion..."
+msgstr "Начинаем конвертацию..."
+
+msgid ""
+"HTML contains <script> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML содержит теги <script>, которые нельзя обработать из соображений "
+"безопасности"
+
+msgid ""
+"HTML contains javascript: event handlers which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML содержит обработчики событий javascript:, которые нельзя обработать из "
+"соображений безопасности"
+
+msgid "HTML contains vbscript: which cannot be processed for security reasons"
+msgstr ""
+"HTML содержит vbscript:, который нельзя обработать из соображений "
+"безопасности"
+
+msgid ""
+"HTML contains <iframe> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML содержит теги <iframe>, которые нельзя обработать из соображений "
+"безопасности"
+
+msgid ""
+"HTML contains <object> or <embed> tags which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML содержит теги <object> или <embed>, которые нельзя обработать из "
+"соображений безопасности"

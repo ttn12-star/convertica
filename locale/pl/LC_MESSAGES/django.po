@@ -12565,3 +12565,55 @@ msgstr ""
 "ekranu, digitalizacji paragonu lub wizytówki albo wyodrębniania cytatu ze "
 "sfotografowanej strony. Rozpoznawanie obsługuje 17 języków z automatycznym "
 "wykrywaniem, a Twoje pliki są usuwane natychmiast po przetworzeniu.</p>"
+
+msgid "Please enter HTML content to convert"
+msgstr "Wprowadź treść HTML do konwersji"
+
+msgid "Converting HTML to PDF..."
+msgstr "Konwertowanie HTML na PDF..."
+
+msgid "Processing PDF..."
+msgstr "Przetwarzanie PDF..."
+
+msgid "Conversion completed!"
+msgstr "Konwersja zakończona!"
+
+msgid "Please enter a URL to convert"
+msgstr "Wprowadź adres URL do konwersji"
+
+msgid "Fetching web page..."
+msgstr "Pobieranie strony internetowej..."
+
+msgid "Starting conversion..."
+msgstr "Rozpoczynanie konwersji..."
+
+msgid ""
+"HTML contains <script> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML zawiera znaczniki <script>, których nie można przetworzyć ze względów "
+"bezpieczeństwa"
+
+msgid ""
+"HTML contains javascript: event handlers which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML zawiera procedury obsługi zdarzeń javascript:, których nie można "
+"przetworzyć ze względów bezpieczeństwa"
+
+msgid "HTML contains vbscript: which cannot be processed for security reasons"
+msgstr ""
+"HTML zawiera vbscript:, którego nie można przetworzyć ze względów "
+"bezpieczeństwa"
+
+msgid ""
+"HTML contains <iframe> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML zawiera znaczniki <iframe>, których nie można przetworzyć ze względów "
+"bezpieczeństwa"
+
+msgid ""
+"HTML contains <object> or <embed> tags which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML zawiera znaczniki <object> lub <embed>, których nie można przetworzyć "
+"ze względów bezpieczeństwa"

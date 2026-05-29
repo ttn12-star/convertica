@@ -12531,3 +12531,52 @@ msgstr ""
 "kartu nama, atau mengambil kutipan dari halaman yang difoto. Pengenalan "
 "mendukung 17 bahasa dengan deteksi otomatis, dan file Anda akan dihapus "
 "segera setelah diproses.</p>"
+
+msgid "Please enter HTML content to convert"
+msgstr "Silakan masukkan konten HTML untuk dikonversi"
+
+msgid "Converting HTML to PDF..."
+msgstr "Mengonversi HTML ke PDF..."
+
+msgid "Processing PDF..."
+msgstr "Memproses PDF..."
+
+msgid "Conversion completed!"
+msgstr "Konversi selesai!"
+
+msgid "Please enter a URL to convert"
+msgstr "Silakan masukkan URL untuk dikonversi"
+
+msgid "Fetching web page..."
+msgstr "Mengambil halaman web..."
+
+msgid "Starting conversion..."
+msgstr "Memulai konversi..."
+
+msgid ""
+"HTML contains <script> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML berisi tag <script> yang tidak dapat diproses karena alasan keamanan"
+
+msgid ""
+"HTML contains javascript: event handlers which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML berisi penangan peristiwa javascript: yang tidak dapat diproses karena "
+"alasan keamanan"
+
+msgid "HTML contains vbscript: which cannot be processed for security reasons"
+msgstr ""
+"HTML berisi vbscript: yang tidak dapat diproses karena alasan keamanan"
+
+msgid ""
+"HTML contains <iframe> tags which cannot be processed for security reasons"
+msgstr ""
+"HTML berisi tag <iframe> yang tidak dapat diproses karena alasan keamanan"
+
+msgid ""
+"HTML contains <object> or <embed> tags which cannot be processed for "
+"security reasons"
+msgstr ""
+"HTML berisi tag <object> atau <embed> yang tidak dapat diproses karena "
+"alasan keamanan"
