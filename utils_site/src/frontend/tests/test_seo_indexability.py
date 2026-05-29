@@ -37,3 +37,22 @@ class SitemapCoverageTests(TestCase):
         ):
             with self.subTest(url=expected):
                 self.assertIn(expected, urls)
+
+    def test_every_sitemap_url_serves_an_indexable_200(self):
+        """C5 guard: every advertised sitemap URL must serve a real 200 page.
+
+        The hand-maintained _get_sitemap_pages() list is the root cause of the
+        C1/C2 drift (a sitemap entry pointing at a redirect/404, or a live tool
+        missing). This asserts no entry is stale or non-indexable; a redirect
+        (301/302) or 404 fails the test.
+        """
+        for page in _get_sitemap_pages():
+            url = f"/en/{page['url']}"
+            with self.subTest(url=url):
+                resp = self.client.get(url)
+                self.assertEqual(
+                    resp.status_code,
+                    200,
+                    f"{url} returned {resp.status_code} (stale/redirecting "
+                    "sitemap entry or broken page)",
+                )
