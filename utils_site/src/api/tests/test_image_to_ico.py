@@ -35,3 +35,19 @@ class ImageToICOTests(TestCase):
         _, output_path = image_to_ico(_png_upload())
         with Image.open(output_path) as ico:
             self.assertEqual(set(ico.ico.sizes()), {(16, 16), (32, 32), (48, 48)})
+
+    def test_non_square_input_yields_square_frames_at_all_sizes(self):
+        from src.api.image_tools.image_to_ico.utils import image_to_ico
+
+        # A wide 200x80 source must still produce every requested size, each square.
+        _, output_path = image_to_ico(_png_upload(size=(200, 80)), sizes=(16, 32, 48))
+        with Image.open(output_path) as ico:
+            self.assertEqual(set(ico.ico.sizes()), {(16, 16), (32, 32), (48, 48)})
+
+    def test_small_input_is_upscaled_to_requested_sizes(self):
+        from src.api.image_tools.image_to_ico.utils import image_to_ico
+
+        # A 20x20 source smaller than the requested 64 must still embed a 64 frame.
+        _, output_path = image_to_ico(_png_upload(size=(20, 20)), sizes=(16, 32, 64))
+        with Image.open(output_path) as ico:
+            self.assertEqual(set(ico.ico.sizes()), {(16, 16), (32, 32), (64, 64)})

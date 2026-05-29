@@ -3,7 +3,7 @@
 import os
 import tempfile
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
@@ -40,6 +40,12 @@ def image_to_ico(image_file, sizes=DEFAULT_SIZES) -> tuple[str, str]:
 
     with Image.open(raster_path) as img:
         src = img.convert("RGBA")
+
+    # Favicons are square. Center-crop/scale the source to a square canvas at the
+    # largest requested size so Pillow can emit every requested frame as a proper
+    # square (it will not upscale a smaller source, nor keep non-square frames).
+    max_px = max(sizes)
+    src = ImageOps.fit(src, (max_px, max_px))
 
     base_name = os.path.splitext(safe_name)[0]
     output_path = os.path.join(tmp_dir, f"{base_name}.ico")

@@ -958,7 +958,7 @@ IMAGE_TOOLS_CONFIGS = {
             "faq_title": _("Favicon Generator FAQ"),
             "page_tips": [
                 _(
-                    "Upload a 512×512 px or larger square image — the generator scales down, never up."
+                    "Upload a 512×512 px or larger square image for the sharpest icons — smaller or non-square sources are scaled and cropped to fit."
                 ),
                 _(
                     "Use a simple, bold design: intricate logos become unrecognizable at 16×16 px."

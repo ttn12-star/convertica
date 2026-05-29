@@ -54,3 +54,15 @@ class GenerateFaviconTests(TestCase):
             io.BytesIO(zf.read("apple-touch-icon.png"))
         ) as img:
             self.assertEqual(img.size, (180, 180))
+
+    def test_non_square_source_produces_square_icons(self):
+        from src.api.image_tools.generate_favicon.utils import generate_favicon
+
+        # A wide 600x200 source must still yield square, undistorted icons and a
+        # multi-resolution favicon.ico.
+        _, output_path = generate_favicon(_png_upload(size=(600, 200)))
+        with zipfile.ZipFile(output_path) as zf:
+            with Image.open(io.BytesIO(zf.read("android-chrome-512x512.png"))) as png:
+                self.assertEqual(png.size, (512, 512))
+            with Image.open(io.BytesIO(zf.read("favicon.ico"))) as ico:
+                self.assertEqual(set(ico.ico.sizes()), {(16, 16), (32, 32), (48, 48)})
