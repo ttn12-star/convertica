@@ -88,6 +88,16 @@ urlpatterns = [
     path("image/convert/", views.convert_image_page, name="convert_image_page"),
     path("image/heic-to-jpg/", views.heic_to_jpg_page, name="heic_to_jpg_page"),
     path("image/to-text/", views.image_to_text_page, name="image_to_text_page"),
+    path(
+        "image/favicon-generator/",
+        views.favicon_generator_page,
+        name="favicon_generator_page",
+    ),
+    path("image/png-to-ico/", views.png_to_ico_page, name="png_to_ico_page"),
+    path("image/jpg-to-ico/", views.jpg_to_ico_page, name="jpg_to_ico_page"),
+    path("image/svg-to-ico/", views.svg_to_ico_page, name="svg_to_ico_page"),
+    path("image/webp-to-ico/", views.webp_to_ico_page, name="webp_to_ico_page"),
+    path("image/ico-to-png/", views.ico_to_png_page, name="ico_to_png_page"),
     # PDF Organize pages
     path("pdf-organize/merge/", views.merge_pdf_page, name="merge_pdf_page"),
     path("pdf-organize/split/", views.split_pdf_page, name="split_pdf_page"),
