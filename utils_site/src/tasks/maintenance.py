@@ -303,22 +303,33 @@ def cleanup_async_temp_files(max_age_seconds: int = 3600):
 
 
 @shared_task(name="maintenance.cleanup_stuck_operations", queue="maintenance")
-def cleanup_stuck_operations(max_age_hours: int = 24):
+def cleanup_stuck_operations(
+    max_age_minutes: int = 60, max_age_hours: int | None = None
+):
     """
     Clean up stuck OperationRun records.
 
     Marks operations stuck in 'running' or 'started' status as 'abandoned'
-    if they are older than max_age_hours.
+    once they are older than ``max_age_minutes``. The conversion hard time
+    limit is 8 minutes, so a row still 'running' after ~1h is definitively
+    stuck (e.g. the worker was OOM-SIGKILLed before its except/finally could
+    update the row). The old 24h window left such rows — and the user's
+    progress bar — hung for a full day.
 
     Args:
-        max_age_hours: Maximum age in hours before marking as abandoned (default: 24)
+        max_age_minutes: Minutes before marking as abandoned (default: 60).
+        max_age_hours: Deprecated; if given, overrides max_age_minutes
+            (kept so an in-flight beat schedule passing hours still works).
     """
     try:
         from datetime import timedelta
 
         from src.users.models import OperationRun
 
-        cutoff_time = timezone.now() - timedelta(hours=max_age_hours)
+        if max_age_hours is not None:
+            max_age_minutes = max_age_hours * 60
+
+        cutoff_time = timezone.now() - timedelta(minutes=max_age_minutes)
 
         stuck_operations = OperationRun.objects.filter(
             status__in=["running", "started"], created_at__lt=cutoff_time
@@ -336,7 +347,7 @@ def cleanup_stuck_operations(max_age_hours: int = 24):
             extra={
                 "event": "cleanup_stuck_operations",
                 "updated_count": updated_count,
-                "max_age_hours": max_age_hours,
+                "max_age_minutes": max_age_minutes,
             },
         )
 

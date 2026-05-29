@@ -1110,13 +1110,13 @@ CELERY_BEAT_SCHEDULE = {
         "task": "maintenance.update_subscription_daily",
         "schedule": 86400,  # Every 24 hours
     },
-    # Mark stuck operations as abandoned (but don't delete them)
+    # Mark stuck operations as abandoned (but don't delete them).
+    # Conversion hard time limit is 8 min, so 60 min ⇒ definitively stuck
+    # (e.g. OOM-SIGKILLed worker that never updated the row).
     "cleanup-stuck-operations": {
         "task": "maintenance.cleanup_stuck_operations",
-        "schedule": 3600,  # Every hour
-        "kwargs": {
-            "max_age_hours": 24
-        },  # Mark as abandoned after 24 hours (not 1 hour!)
+        "schedule": 1800,  # Every 30 minutes
+        "kwargs": {"max_age_minutes": 60},
     },
     # Delete unverified accounts older than 30 days (runs daily)
     "delete-unverified-accounts-daily": {
