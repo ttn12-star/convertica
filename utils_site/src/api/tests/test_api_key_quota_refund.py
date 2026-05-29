@@ -22,14 +22,21 @@ class _Base(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(email="dev2@x.com", password="p")
         self.plan = SubscriptionPlan.objects.create(
-            name="Yearly", slug="yearly-hero", price=79,
-            duration_days=365, api_quota_per_month=100,
+            name="Yearly",
+            slug="yearly-hero",
+            price=79,
+            duration_days=365,
+            api_quota_per_month=100,
         )
         self.user.activate_subscription(self.plan)
         now = timezone.now()
         UserSubscription.objects.create(
-            user=self.user, plan=self.plan, provider="test", status="active",
-            current_period_start=now, current_period_end=now + timedelta(days=365),
+            user=self.user,
+            plan=self.plan,
+            provider="test",
+            status="active",
+            current_period_start=now,
+            current_period_end=now + timedelta(days=365),
         )
         self.key, self.plaintext = APIKey.issue(user=self.user, name="ci", scope=["*"])
         self.rf = RequestFactory()
@@ -41,14 +48,19 @@ class _Base(TestCase):
 
 class AuthChargeMarkerTests(_Base):
     def test_authenticate_charges_and_marks_request(self):
-        req = self.rf.post("/api/v1/pdf-to-word/", HTTP_AUTHORIZATION=f"Bearer {self.plaintext}")
+        req = self.rf.post(
+            "/api/v1/pdf-to-word/", HTTP_AUTHORIZATION=f"Bearer {self.plaintext}"
+        )
         self.auth.authenticate(req)
         self.assertEqual(self._usage(), 1)
         self.assertEqual(getattr(req, "_cvk_api_key_charge", None), self.key.pk)
 
     def test_options_preflight_is_not_metered(self):
-        req = self.rf.generic("OPTIONS", "/api/v1/pdf-to-word/",
-                              HTTP_AUTHORIZATION=f"Bearer {self.plaintext}")
+        req = self.rf.generic(
+            "OPTIONS",
+            "/api/v1/pdf-to-word/",
+            HTTP_AUTHORIZATION=f"Bearer {self.plaintext}",
+        )
         self.auth.authenticate(req)
         self.assertEqual(self._usage(), 0)
 
