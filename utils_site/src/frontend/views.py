@@ -528,6 +528,36 @@ def image_to_text_page(request):
 
 
 @anonymous_cache_page(60 * 60)
+def favicon_generator_page(request):
+    return _render_tool_page(request, "generate_favicon")
+
+
+@anonymous_cache_page(60 * 60)
+def png_to_ico_page(request):
+    return _render_tool_page(request, "png_to_ico")
+
+
+@anonymous_cache_page(60 * 60)
+def jpg_to_ico_page(request):
+    return _render_tool_page(request, "jpg_to_ico")
+
+
+@anonymous_cache_page(60 * 60)
+def svg_to_ico_page(request):
+    return _render_tool_page(request, "svg_to_ico")
+
+
+@anonymous_cache_page(60 * 60)
+def webp_to_ico_page(request):
+    return _render_tool_page(request, "webp_to_ico")
+
+
+@anonymous_cache_page(60 * 60)
+def ico_to_png_page(request):
+    return _render_tool_page(request, "ico_to_png")
+
+
+@anonymous_cache_page(60 * 60)
 def merge_pdf_page(request):
     """Merge PDF page."""
     return _render_tool_page(request, "merge_pdf")
