@@ -18,6 +18,9 @@ from .image_tools.convert_heic.batch_views import ConvertHEICBatchAPIView
 from .image_tools.convert_heic.views import ConvertHEICAPIView
 from .image_tools.convert_image.batch_views import ConvertImageBatchAPIView
 from .image_tools.convert_image.views import ConvertImageAPIView
+from .image_tools.generate_favicon.views import GenerateFaviconAPIView
+from .image_tools.ico_to_png.views import ICOToPNGAPIView
+from .image_tools.image_to_ico.views import ImageToICOAPIView
 from .image_tools.image_to_text.views import ImageToTextAPIView
 from .image_tools.optimize_image.batch_views import OptimizeImageBatchAPIView
 from .image_tools.optimize_image.views import OptimizeImageAPIView
@@ -353,4 +356,11 @@ urlpatterns = [
         ImageToTextAPIView.as_view(),
         name="image_to_text_api",
     ),
+    path("image/to-ico/", ImageToICOAPIView.as_view(), name="image_to_ico_api"),
+    path(
+        "image/favicon/",
+        GenerateFaviconAPIView.as_view(),
+        name="generate_favicon_api",
+    ),
+    path("image/ico-to-png/", ICOToPNGAPIView.as_view(), name="ico_to_png_api"),
 ]
