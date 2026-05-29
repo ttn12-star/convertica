@@ -31,7 +31,6 @@ class APIKeyQuotaRefundMiddleware(MiddlewareMixin):
         if key_pk is not None and getattr(response, "status_code", 200) >= 400:
             try:
                 from django.db.models import F
-
                 from src.users.models import APIKey
 
                 APIKey.objects.filter(pk=key_pk).update(
