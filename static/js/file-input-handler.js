@@ -335,13 +335,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Button click handler
     // Note: Don't preventDefault to allow other handlers to work
     if (selectFileButton && fileInput) {
-        selectFileButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+        const openPicker = () => {
             // Small delay to ensure input is ready (fixes double-click issue)
             setTimeout(() => {
                 fileInput.click();
             }, 0);
+        };
+        selectFileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openPicker();
+        });
+        // selectFileButton is a <div role="button" tabindex="0">, so it needs
+        // explicit keyboard activation (Enter/Space) to be reachable without a
+        // mouse (WCAG 2.1.1).
+        selectFileButton.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                openPicker();
+            }
         });
     }
 

@@ -191,8 +191,35 @@ class HeaderNavigation {
     // Close menus on outside click
     document.addEventListener('click', (e) => this.outsideClick(e));
 
+    // Close any open menu on Escape and return focus to its trigger (WCAG
+    // 2.1.2 — keyboard users must be able to dismiss the dropdowns/menus).
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Esc') this.closeAllMenus();
+    });
+
     // Handle window resize
     window.addEventListener('resize', () => this.handleResize());
+  }
+
+  closeAllMenus() {
+    // Desktop dropdowns
+    this.hideMega();
+    this.hideEditPdf();
+    this.hideOrganizePdf();
+    this.hideAllTools();
+    this.hidePremiumTools();
+    this.hideImages();
+    this.hideMore();
+    // Mobile slide-out menu
+    if (this.mobileMenu && !this.mobileMenu.classList.contains('hidden')) {
+      this.mobileMenu.classList.add('hidden');
+      this.mobileBtn?.setAttribute('aria-expanded', 'false');
+      if (this.menuIconOpen && this.menuIconClose) {
+        this.menuIconOpen.classList.remove('hidden');
+        this.menuIconClose.classList.add('hidden');
+      }
+      this.mobileBtn?.focus();
+    }
   }
 
   toggleMobile() {
