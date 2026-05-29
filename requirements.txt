@@ -23,6 +23,12 @@ pillow==12.2.0
 # Adds a Pillow plugin that decodes Apple HEIC/HEIF photos so we can re-encode
 # them to JPG/PNG/PDF.
 pillow-heif==1.3.0
+# SVG rasterization for the svg-to-ico page and SVG input to the favicon
+# generator. Pure-Python; reuses the already-pinned reportlab. No system libs.
+svglib==1.5.1
+# C-extension renderPM backend svglib needs for PNG rasterization. Ships as a
+# standalone manylinux wheel; no extra system libraries required.
+rl-renderPM==4.0.3
 python-pptx==1.0.2
 # Word document processing
 python-docx==1.1.2
