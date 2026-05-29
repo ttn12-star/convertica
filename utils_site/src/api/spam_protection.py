@@ -10,6 +10,7 @@ from django.http import HttpRequest
 from rest_framework import status
 from rest_framework.response import Response
 
+from .client_ip import get_client_ip
 from .logging_utils import build_request_context, get_logger
 
 logger = get_logger(__name__)
@@ -166,12 +167,9 @@ def check_rate_limit_by_ip(
     Returns:
         Tuple of (is_allowed, error_message)
     """
-    # Get client IP
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(",")[0].strip()
-    else:
-        ip = request.META.get("REMOTE_ADDR", "unknown")
+    # Get client IP (trusted: CF-Connecting-IP / rightmost XFF, never the
+    # spoofable leftmost XFF entry).
+    ip = get_client_ip(request) or "unknown"
 
     cache_key = f"{key_prefix}:{ip}"
 
@@ -213,12 +211,9 @@ def check_minimum_time_between_requests(
     Returns:
         Tuple of (is_allowed, error_message)
     """
-    # Get client IP
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(",")[0].strip()
-    else:
-        ip = request.META.get("REMOTE_ADDR", "unknown")
+    # Get client IP (trusted: CF-Connecting-IP / rightmost XFF, never the
+    # spoofable leftmost XFF entry).
+    ip = get_client_ip(request) or "unknown"
 
     cache_key = f"{key_prefix}:{ip}"
     current_time = time.time()
@@ -272,12 +267,9 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
             {"error": "Invalid request"}, status=status.HTTP_400_BAD_REQUEST
         )
 
-    # Get client IP once for all checks (used multiple times below)
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    if x_forwarded_for:
-        remote_ip = x_forwarded_for.split(",")[0].strip()
-    else:
-        remote_ip = request.META.get("REMOTE_ADDR", "unknown")
+    # Get client IP once for all checks (used multiple times below). Trusted:
+    # CF-Connecting-IP / rightmost XFF, never the spoofable leftmost XFF entry.
+    remote_ip = get_client_ip(request) or "unknown"
 
     # 2. Check if CAPTCHA is required (check BEFORE rate limit to prevent bypass)
     # We need to check both session-based and IP-based rate limiting
