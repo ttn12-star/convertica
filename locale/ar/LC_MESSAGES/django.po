@@ -11955,3 +11955,46 @@ msgstr ""
 "واحصل على النص فورًا.</p><p>مثالي لنسخ النص من لقطة شاشة، أو رقمنة إيصال أو "
 "بطاقة عمل، أو استخراج اقتباس من صفحة مصورة. يدعم التعرف 17 لغة مع الكشف "
 "التلقائي، ويتم حذف ملفاتك فور المعالجة.</p>"
+
+msgid "Please enter HTML content to convert"
+msgstr "يرجى إدخال محتوى HTML للتحويل"
+
+msgid "Converting HTML to PDF..."
+msgstr "جارٍ تحويل HTML إلى PDF..."
+
+msgid "Processing PDF..."
+msgstr "جارٍ معالجة PDF..."
+
+msgid "Conversion completed!"
+msgstr "اكتمل التحويل!"
+
+msgid "Please enter a URL to convert"
+msgstr "يرجى إدخال رابط URL للتحويل"
+
+msgid "Fetching web page..."
+msgstr "جارٍ جلب صفحة الويب..."
+
+msgid "Starting conversion..."
+msgstr "جارٍ بدء التحويل..."
+
+msgid ""
+"HTML contains <script> tags which cannot be processed for security reasons"
+msgstr "يحتوي HTML على وسوم <script> لا يمكن معالجتها لأسباب أمنية"
+
+msgid ""
+"HTML contains javascript: event handlers which cannot be processed for "
+"security reasons"
+msgstr ""
+"يحتوي HTML على معالجات أحداث javascript: لا يمكن معالجتها لأسباب أمنية"
+
+msgid "HTML contains vbscript: which cannot be processed for security reasons"
+msgstr "يحتوي HTML على vbscript: لا يمكن معالجته لأسباب أمنية"
+
+msgid ""
+"HTML contains <iframe> tags which cannot be processed for security reasons"
+msgstr "يحتوي HTML على وسوم <iframe> لا يمكن معالجتها لأسباب أمنية"
+
+msgid ""
+"HTML contains <object> or <embed> tags which cannot be processed for "
+"security reasons"
+msgstr "يحتوي HTML على وسوم <object> أو <embed> لا يمكن معالجتها لأسباب أمنية"

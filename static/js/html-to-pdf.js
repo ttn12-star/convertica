@@ -3,6 +3,13 @@
  * Handles HTML content and URL conversion with progress tracking.
  */
 
+// Localized UI string with English fallback. window.HTML2PDF_I18N is populated
+// by the template via {% trans %}, so every language renders correctly even if
+// a key is missing.
+function t(key, fallback) {
+    return (window.HTML2PDF_I18N && window.HTML2PDF_I18N[key]) || fallback;
+}
+
 class HTMLToPDFConverter {
     constructor() {
         this.htmlContentForm = document.getElementById('htmlContentForm');
@@ -121,7 +128,7 @@ class HTMLToPDFConverter {
 
         const htmlContent = document.getElementById('htmlContent').value.trim();
         if (!htmlContent) {
-            this.showError('Please enter HTML content to convert');
+            this.showError(t('noHtml', 'Please enter HTML content to convert'));
             return;
         }
 
@@ -143,7 +150,7 @@ class HTMLToPDFConverter {
 
         const formData = new FormData(this.htmlContentForm);
 
-        this.updateProgress(10, 'Converting HTML to PDF...');
+        this.updateProgress(10, t('converting', 'Converting HTML to PDF...'));
 
         try {
             const _htmlCsrf = this.htmlContentForm.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -161,11 +168,11 @@ class HTMLToPDFConverter {
             if (!response.ok) {
                 // Handle error response (JSON)
                 const result = await response.json();
-                throw new Error(result.error || 'Conversion failed');
+                throw new Error(result.error || t('failed', 'Conversion failed'));
             }
 
             // Handle success response (PDF file)
-            this.updateProgress(50, 'Processing PDF...');
+            this.updateProgress(50, t('processing', 'Processing PDF...'));
             const blob = await response.blob();
 
             // Get filename from Content-Disposition header
@@ -184,7 +191,7 @@ class HTMLToPDFConverter {
             const url = window.URL.createObjectURL(blob);
             this._lastObjectUrl = url;
 
-            this.updateProgress(100, 'Conversion completed!');
+            this.updateProgress(100, t('done', 'Conversion completed!'));
             this.showResult({ download_url: url, filename: filename });
         } catch (error) {
             this.showError(error.message);
@@ -197,14 +204,14 @@ class HTMLToPDFConverter {
 
         const url = document.getElementById('url').value.trim();
         if (!url) {
-            this.showError('Please enter a URL to convert');
+            this.showError(t('noUrl', 'Please enter a URL to convert'));
             return;
         }
 
         this.showProgress();
         const formData = new FormData(this.urlForm);
 
-        this.updateProgress(10, 'Fetching web page...');
+        this.updateProgress(10, t('fetching', 'Fetching web page...'));
 
         try {
             const _urlCsrf = this.urlForm.querySelector('[name=csrfmiddlewaretoken]').value;
@@ -222,11 +229,11 @@ class HTMLToPDFConverter {
             if (!response.ok) {
                 // Handle error response (JSON)
                 const result = await response.json();
-                throw new Error(result.error || 'Conversion failed');
+                throw new Error(result.error || t('failed', 'Conversion failed'));
             }
 
             // Handle success response (PDF file)
-            this.updateProgress(50, 'Processing PDF...');
+            this.updateProgress(50, t('processing', 'Processing PDF...'));
             const blob = await response.blob();
 
             // Get filename from Content-Disposition header
@@ -245,7 +252,7 @@ class HTMLToPDFConverter {
             const url = window.URL.createObjectURL(blob);
             this._lastObjectUrl = url;
 
-            this.updateProgress(100, 'Conversion completed!');
+            this.updateProgress(100, t('done', 'Conversion completed!'));
             this.showResult({ download_url: url, filename: filename });
         } catch (error) {
             this.showError(error.message);
@@ -259,31 +266,31 @@ class HTMLToPDFConverter {
 
         // Check for script tags
         if (/<script[\s>]/i.test(htmlContent)) {
-            this.showError('HTML contains <script> tags which cannot be processed for security reasons');
+            this.showError(t('errScript', 'HTML contains <script> tags which cannot be processed for security reasons'));
             return false;
         }
 
         // Check for javascript: in attributes (but not in text content)
         if (/\son\w+\s*=|href\s*=\s*["']javascript:/i.test(htmlContent)) {
-            this.showError('HTML contains javascript: event handlers which cannot be processed for security reasons');
+            this.showError(t('errJs', 'HTML contains javascript: event handlers which cannot be processed for security reasons'));
             return false;
         }
 
         // Check for vbscript:
         if (/vbscript:/i.test(htmlContent)) {
-            this.showError('HTML contains vbscript: which cannot be processed for security reasons');
+            this.showError(t('errVbs', 'HTML contains vbscript: which cannot be processed for security reasons'));
             return false;
         }
 
         // Check for iframes (often used for XSS)
         if (/<iframe[\s>]/i.test(htmlContent)) {
-            this.showError('HTML contains <iframe> tags which cannot be processed for security reasons');
+            this.showError(t('errIframe', 'HTML contains <iframe> tags which cannot be processed for security reasons'));
             return false;
         }
 
         // Check for object/embed tags
         if (/<(object|embed)[\s>]/i.test(htmlContent)) {
-            this.showError('HTML contains <object> or <embed> tags which cannot be processed for security reasons');
+            this.showError(t('errObject', 'HTML contains <object> or <embed> tags which cannot be processed for security reasons'));
             return false;
         }
 
@@ -293,7 +300,7 @@ class HTMLToPDFConverter {
     showProgress() {
         this.progressSection.classList.remove('hidden');
         this.resultSection.classList.add('hidden');
-        this.updateProgress(0, 'Starting conversion...');
+        this.updateProgress(0, t('starting', 'Starting conversion...'));
 
         // Disable form buttons
         this.htmlContentForm.querySelector('button[type="submit"]').disabled = true;
@@ -378,7 +385,7 @@ class HTMLToPDFConverter {
         // Reset progress bar
         this.progressBar.style.width = '0%';
         this.progressPercent.textContent = '0%';
-        this.progressMessage.textContent = 'Please wait while we convert your content to PDF...';
+        this.progressMessage.textContent = t('wait', 'Please wait while we convert your content to PDF...');
 
         // Remove character counter
         const counter = document.querySelector('.char-counter');

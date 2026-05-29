@@ -365,5 +365,26 @@
 {% endblock %}
 
 {% block extra_js %}
+  {# Localized UI strings for html-to-pdf.js (it reads these with English #}
+  {# fallbacks, so every language is correct). escapejs safely encodes the #}
+  {# angle brackets in the security messages. #}
+  <script nonce="{{ csp_nonce }}">
+    window.HTML2PDF_I18N = {
+      noHtml: "{% filter escapejs %}{% trans 'Please enter HTML content to convert' %}{% endfilter %}",
+      converting: "{% filter escapejs %}{% trans 'Converting HTML to PDF...' %}{% endfilter %}",
+      processing: "{% filter escapejs %}{% trans 'Processing PDF...' %}{% endfilter %}",
+      done: "{% filter escapejs %}{% trans 'Conversion completed!' %}{% endfilter %}",
+      noUrl: "{% filter escapejs %}{% trans 'Please enter a URL to convert' %}{% endfilter %}",
+      fetching: "{% filter escapejs %}{% trans 'Fetching web page...' %}{% endfilter %}",
+      starting: "{% filter escapejs %}{% trans 'Starting conversion...' %}{% endfilter %}",
+      wait: "{% filter escapejs %}{% trans 'Please wait while we convert your content to PDF...' %}{% endfilter %}",
+      failed: "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}",
+      errScript: "{% filter escapejs %}{% trans 'HTML contains <script> tags which cannot be processed for security reasons' %}{% endfilter %}",
+      errJs: "{% filter escapejs %}{% trans 'HTML contains javascript: event handlers which cannot be processed for security reasons' %}{% endfilter %}",
+      errVbs: "{% filter escapejs %}{% trans 'HTML contains vbscript: which cannot be processed for security reasons' %}{% endfilter %}",
+      errIframe: "{% filter escapejs %}{% trans 'HTML contains <iframe> tags which cannot be processed for security reasons' %}{% endfilter %}",
+      errObject: "{% filter escapejs %}{% trans 'HTML contains <object> or <embed> tags which cannot be processed for security reasons' %}{% endfilter %}"
+    };
+  </script>
   <script src="{% static 'js/html-to-pdf.js' %}" defer nonce="{{ csp_nonce }}"></script>
 {% endblock %}

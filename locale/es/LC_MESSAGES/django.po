@@ -12722,3 +12722,54 @@ msgstr ""
 "extraer una cita de una página fotografiada. El reconocimiento admite 17 "
 "idiomas con detección automática, y tus archivos se eliminan justo después "
 "del procesamiento.</p>"
+
+msgid "Please enter HTML content to convert"
+msgstr "Por favor introduce contenido HTML para convertir"
+
+msgid "Converting HTML to PDF..."
+msgstr "Convirtiendo HTML a PDF..."
+
+msgid "Processing PDF..."
+msgstr "Procesando PDF..."
+
+msgid "Conversion completed!"
+msgstr "¡Conversión completada!"
+
+msgid "Please enter a URL to convert"
+msgstr "Por favor introduce una URL para convertir"
+
+msgid "Fetching web page..."
+msgstr "Obteniendo la página web..."
+
+msgid "Starting conversion..."
+msgstr "Iniciando conversión..."
+
+msgid ""
+"HTML contains <script> tags which cannot be processed for security reasons"
+msgstr ""
+"El HTML contiene etiquetas <script> que no se pueden procesar por motivos de"
+" seguridad"
+
+msgid ""
+"HTML contains javascript: event handlers which cannot be processed for "
+"security reasons"
+msgstr ""
+"El HTML contiene controladores de eventos javascript: que no se pueden "
+"procesar por motivos de seguridad"
+
+msgid "HTML contains vbscript: which cannot be processed for security reasons"
+msgstr ""
+"El HTML contiene vbscript: que no se puede procesar por motivos de seguridad"
+
+msgid ""
+"HTML contains <iframe> tags which cannot be processed for security reasons"
+msgstr ""
+"El HTML contiene etiquetas <iframe> que no se pueden procesar por motivos de"
+" seguridad"
+
+msgid ""
+"HTML contains <object> or <embed> tags which cannot be processed for "
+"security reasons"
+msgstr ""
+"El HTML contiene etiquetas <object> o <embed> que no se pueden procesar por "
+"motivos de seguridad"
