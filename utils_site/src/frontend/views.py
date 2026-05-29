@@ -1515,15 +1515,11 @@ def sitemap_lang(request, lang: str):
             else current_date
         )
 
-        activate(lang)
-        try:
-            article_url = article.get_absolute_url()
-            if isinstance(article_url, bytes):
-                article_url = article_url.decode("utf-8")
-        except Exception:
-            article_url = f"/{lang}/blog/{article.slug}/"
-
-        full_url = f"{base_url}{article_url}"
+        # The blog detail URL is /<lang>/blog/<slug>/ — the slug and the "blog/"
+        # prefix are locale-independent, only the language prefix differs. Build
+        # it directly instead of activate()+reverse() per article × per locale
+        # (which swapped the translation catalog 2 + N_langs times per article).
+        full_url = f"{base_url}/{lang}/blog/{article.slug}/"
 
         xml += "  <url>\n"
         xml += f"    <loc>{full_url}</loc>\n"
@@ -1534,23 +1530,11 @@ def sitemap_lang(request, lang: str):
         for alt_lang_code, _ in languages:
             if alt_lang_code not in available_langs:
                 continue
-            activate(alt_lang_code)
-            try:
-                alt_url = article.get_absolute_url()
-                if isinstance(alt_url, bytes):
-                    alt_url = alt_url.decode("utf-8")
-            except Exception:
-                alt_url = f"/{alt_lang_code}/blog/{article.slug}/"
-            xml += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{base_url}{alt_url}"/>\n'
+            alt_url = f"{base_url}/{alt_lang_code}/blog/{article.slug}/"
+            xml += f'    <xhtml:link rel="alternate" hreflang="{alt_lang_code}" href="{alt_url}"/>\n'
 
-        activate(default_language)
-        try:
-            default_url = article.get_absolute_url()
-            if isinstance(default_url, bytes):
-                default_url = default_url.decode("utf-8")
-        except Exception:
-            default_url = f"/{default_language}/blog/{article.slug}/"
-        xml += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{base_url}{default_url}"/>\n'
+        default_url = f"{base_url}/{default_language}/blog/{article.slug}/"
+        xml += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{default_url}"/>\n'
 
         xml += "  </url>\n"
 
@@ -1559,7 +1543,9 @@ def sitemap_lang(request, lang: str):
     # Without sitemap entries Ahrefs flags them as "Indexable page not in sitemap".
     # Page size mirrors Paginator(articles, 9) in src/blog/views.py:article_list.
     blog_page_size = 9
-    total_published = published_articles.count()
+    # len() reuses the queryset's result cache (already evaluated by the loop
+    # above) instead of issuing a second COUNT(*) query.
+    total_published = len(published_articles)
     blog_total_pages = (
         (total_published + blog_page_size - 1) // blog_page_size
         if total_published
