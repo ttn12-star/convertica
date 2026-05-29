@@ -5,6 +5,7 @@ Optimized Word to PDF conversion with parallel processing and memory management.
 import asyncio
 import os
 import shutil
+import signal
 import subprocess
 import tempfile
 import uuid
@@ -17,6 +18,45 @@ from src.api.logging_utils import get_logger
 from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 logger = get_logger(__name__)
+
+
+def _run_libreoffice(
+    cmd: list[str], env: dict, timeout: float
+) -> subprocess.CompletedProcess:
+    """Run a LibreOffice command, killing the whole process group on timeout.
+
+    ``subprocess.run(timeout=...)`` kills only the direct child. LibreOffice
+    forks a detached ``soffice.bin`` that survives that kill, holds the
+    per-conversion ``UserInstallation`` profile lock, and makes subsequent
+    conversions hang. Launching with ``start_new_session=True`` puts the whole
+    LibreOffice process tree in its own group so a timeout can ``killpg`` it.
+
+    Preserves ``subprocess.run(check=True)`` semantics: raises
+    ``CalledProcessError`` on non-zero exit and ``TimeoutExpired`` on timeout
+    (after the group has been killed and reaped).
+    """
+    proc = subprocess.Popen(
+        cmd,
+        env=env,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        start_new_session=True,
+    )
+    try:
+        stdout, stderr = proc.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            proc.kill()
+        proc.communicate()  # reap the (now-killed) process group
+        raise
+    if proc.returncode != 0:
+        raise subprocess.CalledProcessError(
+            proc.returncode, cmd, output=stdout, stderr=stderr
+        )
+    return subprocess.CompletedProcess(cmd, proc.returncode, stdout, stderr)
+
 
 try:
     from docx import Document
@@ -502,14 +542,7 @@ class OptimizedWordToPDFConverter:
                     extra={**context, "event": "conversion_command"},
                 )
 
-                process = subprocess.run(
-                    cmd,
-                    env=env,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    timeout=self.timeout_seconds,
-                    check=True,
-                )
+                process = _run_libreoffice(cmd, env, self.timeout_seconds)
 
                 # Log LibreOffice output for debugging
                 stdout_output = (
@@ -619,13 +652,8 @@ class OptimizedWordToPDFConverter:
                         extra={**context, "event": "conversion_fallback_command"},
                     )
 
-                    fallback_process = subprocess.run(
-                        fallback_cmd,
-                        env=env,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE,
-                        timeout=self.timeout_seconds,
-                        check=True,
+                    fallback_process = _run_libreoffice(
+                        fallback_cmd, env, self.timeout_seconds
                     )
 
                     # Log fallback output
@@ -742,13 +770,8 @@ class OptimizedWordToPDFConverter:
                             extra={**context, "event": "conversion_simple_pdf_command"},
                         )
 
-                        simple_process = subprocess.run(
-                            simple_cmd,
-                            env=env,
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE,
-                            timeout=self.timeout_seconds,
-                            check=True,
+                        simple_process = _run_libreoffice(
+                            simple_cmd, env, self.timeout_seconds
                         )
 
                         output_dir = os.path.dirname(pdf_path)
