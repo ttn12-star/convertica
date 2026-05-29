@@ -162,7 +162,11 @@ class CaptchaRequirementMiddleware:
             )
             for o in allowed_origins
         )
-        if not has_first_party_referer and not settings.DEBUG:
+        if (
+            not has_first_party_referer
+            and not settings.DEBUG
+            and not getattr(settings, "TESTING", False)
+        ):
             if hasattr(request, "session"):
                 request.session["captcha_required"] = True
                 logger.info(
@@ -192,7 +196,11 @@ class CaptchaRequirementMiddleware:
                     request.session["failed_attempts"] = failed_attempts
 
                     # Require CAPTCHA after 3 failed attempts (skip in DEBUG mode)
-                    if failed_attempts >= 3 and not settings.DEBUG:
+                    if (
+                        failed_attempts >= 3
+                        and not settings.DEBUG
+                        and not getattr(settings, "TESTING", False)
+                    ):
                         request.session["captcha_required"] = True
                         logger.info(
                             f"CAPTCHA required for IP {ip} (session-based) after {request.session['failed_attempts']} failed attempts"
@@ -218,7 +226,11 @@ class CaptchaRequirementMiddleware:
                     cache.set(ip_failed_key, ip_failed_count, 3600)  # 1 hour TTL
 
                     # Require CAPTCHA after 3 failed attempts (same as session-based)
-                    if ip_failed_count >= 3 and not settings.DEBUG:
+                    if (
+                        ip_failed_count >= 3
+                        and not settings.DEBUG
+                        and not getattr(settings, "TESTING", False)
+                    ):
                         cache.set(ip_captcha_key, True, 3600)  # Remember for 1 hour
                         logger.info(
                             f"CAPTCHA required for IP {ip} (IP-based) after {ip_failed_count} failed attempts"

@@ -2,7 +2,9 @@ from django.test import RequestFactory, TestCase, override_settings
 from src.frontend.middleware import CaptchaRequirementMiddleware
 
 
-@override_settings(DEBUG=False)
+# TESTING=False so these production-gate assertions aren't short-circuited by
+# the test-runner CAPTCHA bypass (the gate is inert under settings.TESTING).
+@override_settings(DEBUG=False, TESTING=False)
 class CaptchaOriginGateTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
