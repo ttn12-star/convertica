@@ -15,6 +15,33 @@ from django.utils.deprecation import MiddlewareMixin
 op_tracking_logger = logging.getLogger("src.api.operation_run_tracking")
 
 
+class APIKeyQuotaRefundMiddleware(MiddlewareMixin):
+    """Refund the API-key quota unit charged at authentication on failure.
+
+    APIKeyAuthentication charges one quota unit per authenticated request
+    (race-safe). Without a refund, a request that ends non-2xx (validation
+    400, oversize 413, rate-limit 429, server 500) still burns a paid monthly
+    unit. APIKeyAuthentication marks the request with ``_cvk_api_key_charge``;
+    here we refund that unit when the response is non-2xx so customers are only
+    billed for conversions that actually ran.
+    """
+
+    def process_response(self, request, response):
+        key_pk = getattr(request, "_cvk_api_key_charge", None)
+        if key_pk is not None and getattr(response, "status_code", 200) >= 400:
+            try:
+                from django.db.models import F
+
+                from src.users.models import APIKey
+
+                APIKey.objects.filter(pk=key_pk).update(
+                    usage_this_month=F("usage_this_month") - 1
+                )
+            except Exception:
+                pass  # best-effort; never break the response on a refund error
+        return response
+
+
 class CSPNonceMiddleware(MiddlewareMixin):
     """
     Middleware to generate a unique nonce for Content Security Policy.

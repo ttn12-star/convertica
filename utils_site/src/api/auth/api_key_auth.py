@@ -68,11 +68,21 @@ class APIKeyAuthentication(BaseAuthentication):
                 f"API quota exhausted ({key.usage_this_month}/{quota} this month)"
             )
 
+        # CORS preflight carries no real work — never meter it.
+        if request.method == "OPTIONS":
+            return (user, key)
+
         # F() ensures concurrent calls don't lose counts.
         APIKey.objects.filter(pk=key.pk).update(
             usage_this_month=F("usage_this_month") + 1,
             last_used_at=timezone.now(),
         )
         key.refresh_from_db(fields=["usage_this_month"])
+
+        # Mark the underlying request so APIKeyQuotaRefundMiddleware can refund
+        # this unit if the request ultimately fails (non-2xx) — customers must
+        # not be billed for rejected/errored conversions.
+        django_request = getattr(request, "_request", request)
+        django_request._cvk_api_key_charge = key.pk
 
         return (user, key)
