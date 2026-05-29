@@ -1390,6 +1390,17 @@ def _get_sitemap_pages():
     ]
 
 
+def _sitemap_static_lastmod() -> str:
+    """Stable <lastmod> for static/tool pages.
+
+    Using datetime.now() on every regeneration made every URL claim to change
+    daily, so Google stopped trusting the signal. Return a fixed date that is
+    bumped (via the SITEMAP_STATIC_LASTMOD setting) only when tool pages /
+    templates change materially. Blog articles keep their real updated_at.
+    """
+    return getattr(settings, "SITEMAP_STATIC_LASTMOD", "2026-05-29")
+
+
 def sitemap_index(request):
     """Generate sitemap index pointing to language-specific sitemaps."""
 
@@ -1401,7 +1412,7 @@ def sitemap_index(request):
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
 
     base_url = _get_sitemap_base_url(request)
-    current_date = datetime.now().strftime("%Y-%m-%d")
+    static_lastmod = _sitemap_static_lastmod()
     languages = getattr(settings, "LANGUAGES", [("en", "English")])
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -1410,7 +1421,7 @@ def sitemap_index(request):
     for lang_code, _ in languages:
         xml += "  <sitemap>\n"
         xml += f"    <loc>{base_url}/sitemap-{lang_code}.xml</loc>\n"
-        xml += f"    <lastmod>{current_date}</lastmod>\n"
+        xml += f"    <lastmod>{static_lastmod}</lastmod>\n"
         xml += "  </sitemap>\n"
 
     xml += "</sitemapindex>"
@@ -1441,6 +1452,7 @@ def sitemap_lang(request, lang: str):
 
     base_url = _get_sitemap_base_url(request)
     current_date = datetime.now().strftime("%Y-%m-%d")
+    static_lastmod = _sitemap_static_lastmod()
     default_language = settings.LANGUAGE_CODE
     old_lang = get_language()
     pages = _get_sitemap_pages()
@@ -1456,7 +1468,7 @@ def sitemap_lang(request, lang: str):
 
         xml += "  <url>\n"
         xml += f"    <loc>{url}</loc>\n"
-        xml += f"    <lastmod>{current_date}</lastmod>\n"
+        xml += f"    <lastmod>{static_lastmod}</lastmod>\n"
         xml += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
         xml += f'    <priority>{page["priority"]}</priority>\n'
 
@@ -1547,7 +1559,7 @@ def sitemap_lang(request, lang: str):
         page_loc = f"{base_url}/{lang}/blog/?page={page_num}"
         xml += "  <url>\n"
         xml += f"    <loc>{page_loc}</loc>\n"
-        xml += f"    <lastmod>{current_date}</lastmod>\n"
+        xml += f"    <lastmod>{static_lastmod}</lastmod>\n"
         xml += "    <changefreq>weekly</changefreq>\n"
         xml += "    <priority>0.6</priority>\n"
         for alt_lang_code, _ in languages:
