@@ -88,6 +88,29 @@ def _cache_key(sha256: str, conversion_type: str, kwargs: dict) -> str:
     return f"conv_cache:{conversion_type}:{sha256}:{params_hash}"
 
 
+_USER_ERROR_TOKENS = (
+    "invalid",
+    "corrupt",
+    "password",
+    "encrypted",
+    "not a valid image",
+    "please upload",
+)
+
+
+def _is_user_input_error(exc: BaseException) -> bool:
+    """Whether ``exc`` is a user-fixable input error (don't retry; show message).
+
+    A missing INPUT file (``FileNotFoundError``) is an internal/transient
+    condition — never classify it here, or the task won't retry and the raw
+    message (which embeds the internal input path) leaks to the user.
+    """
+    if isinstance(exc, FileNotFoundError):
+        return False
+    msg = str(exc).lower()
+    return any(token in msg for token in _USER_ERROR_TOKENS)
+
+
 class TaskCancelledException(Exception):
     """Raised when a task has been cancelled by the user."""
 
@@ -753,18 +776,7 @@ def generic_conversion_task(
                 "conversion_type": conversion_type,
             }
 
-        if any(
-            msg in error_message.lower()
-            for msg in [
-                "invalid",
-                "corrupt",
-                "password",
-                "encrypted",
-                "not found",
-                "not a valid image",
-                "please upload",
-            ]
-        ):
+        if _is_user_input_error(exc):
             return {
                 "status": "error",
                 "error": error_message,

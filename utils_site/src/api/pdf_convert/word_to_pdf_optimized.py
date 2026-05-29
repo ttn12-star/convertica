@@ -20,6 +20,29 @@ from src.exceptions import ConversionError, InvalidPDFError, StorageError
 logger = get_logger(__name__)
 
 
+def _validate_output_pdf(pdf_path: str, context: dict | None = None) -> None:
+    """Raise ConversionError if the produced PDF is empty, unreadable, or 0-page.
+
+    LibreOffice/unoserver can report success yet leave a truncated/partial PDF
+    on disk; a bare ``size == 0`` check passes a 50-byte broken file. Confirm it
+    opens and has at least one page so a corrupt result fails (and is retried)
+    instead of being handed to the user.
+    """
+    if os.path.getsize(pdf_path) == 0:
+        raise ConversionError("Output PDF file is empty", context=context)
+    if PYPDF2_AVAILABLE:
+        try:
+            page_count = len(PdfReader(pdf_path).pages)
+        except ConversionError:
+            raise
+        except Exception as exc:
+            raise ConversionError(
+                "Output PDF is invalid or truncated", context=context
+            ) from exc
+        if page_count < 1:
+            raise ConversionError("Output PDF has no pages", context=context)
+
+
 def _run_libreoffice(
     cmd: list[str], env: dict, timeout: float
 ) -> subprocess.CompletedProcess:
@@ -280,8 +303,7 @@ class OptimizedWordToPDFConverter:
             file_size = os.path.getsize(pdf_path)
             logger.info(f"PDF file created with size: {file_size} bytes", extra=context)
 
-            if file_size == 0:
-                raise ConversionError("Output PDF file is empty", context=context)
+            _validate_output_pdf(pdf_path, context)
 
             logger.info(
                 "Word to PDF conversion completed successfully",
