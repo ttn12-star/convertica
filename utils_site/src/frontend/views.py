@@ -1496,11 +1496,19 @@ def sitemap_lang(request, lang: str):
 
     published_articles = (
         Article.objects.filter(status="published")
-        .only("slug", "updated_at")
+        .only("slug", "updated_at", "translations")
         .order_by("-published_at")
     )
 
     for article in published_articles:
+        # Languages this article actually exists in: the English base always
+        # counts; others only if present in the translations JSON. Emitting
+        # hreflang/sitemap entries for untranslated languages made Google see
+        # English content under a /xx/ URL as duplicate-without-canonical.
+        available_langs = {default_language} | set(article.translations or {})
+        if lang not in available_langs:
+            continue
+
         lastmod = (
             article.updated_at.strftime("%Y-%m-%d")
             if article.updated_at
@@ -1524,6 +1532,8 @@ def sitemap_lang(request, lang: str):
         xml += "    <priority>0.7</priority>\n"
 
         for alt_lang_code, _ in languages:
+            if alt_lang_code not in available_langs:
+                continue
             activate(alt_lang_code)
             try:
                 alt_url = article.get_absolute_url()
