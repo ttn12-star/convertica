@@ -269,6 +269,15 @@ def handle_subscription_payment_success(payload: dict) -> None:
     attrs = _attrs(payload)
     order_id = str(attrs.get("order_id") or _data_id(payload))
     amount_cents = int(attrs.get("total") or 0)
+    if amount_cents <= 0:
+        logger.warning(
+            "Paid-plan payment recorded with non-positive amount",
+            extra={
+                "event": "payment_zero_amount",
+                "order_id": order_id,
+                "plan_id": plan.id,
+            },
+        )
     Payment.record_completed(
         user=user,
         plan=plan,
@@ -305,9 +314,18 @@ def handle_subscription_payment_refunded(payload: dict) -> None:
         return
     attrs = _attrs(payload)
     order_id = str(attrs.get("order_id") or _data_id(payload))
-    Payment.objects.filter(payment_id=order_id).update(
+    updated = Payment.objects.filter(payment_id=order_id).update(
         status="refunded", processed_at=timezone.now()
     )
+    if not updated:
+        logger.warning(
+            "Refund webhook matched no Payment row — reconciliation gap",
+            extra={
+                "event": "refund_no_payment_match",
+                "order_id": order_id,
+                "user_id": user.id,
+            },
+        )
     user.deactivate_premium(reason="refunded")
 
 
@@ -323,6 +341,15 @@ def handle_order_created(payload: dict) -> None:
     order_id = _data_id(payload)
     customer_id = str(attrs.get("customer_id") or "")
     amount_cents = int(attrs.get("total") or 0)
+    if amount_cents <= 0:
+        logger.warning(
+            "Paid-plan payment recorded with non-positive amount",
+            extra={
+                "event": "payment_zero_amount",
+                "order_id": order_id,
+                "plan_id": plan.id,
+            },
+        )
 
     Payment.record_completed(
         user=user,
@@ -351,7 +378,16 @@ def handle_order_refunded(payload: dict) -> None:
     if not user:
         return
     order_id = _data_id(payload)
-    Payment.objects.filter(payment_id=order_id).update(
+    updated = Payment.objects.filter(payment_id=order_id).update(
         status="refunded", processed_at=timezone.now()
     )
+    if not updated:
+        logger.warning(
+            "Refund webhook matched no Payment row — reconciliation gap",
+            extra={
+                "event": "refund_no_payment_match",
+                "order_id": order_id,
+                "user_id": user.id,
+            },
+        )
     user.deactivate_premium(reason="refunded")
