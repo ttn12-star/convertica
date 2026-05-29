@@ -12,6 +12,7 @@ Lookup flow:
 """
 
 import hashlib
+import hmac
 
 from django.db.models import F
 from django.utils import timezone
@@ -44,7 +45,7 @@ class APIKeyAuthentication(BaseAuthentication):
             raise AuthenticationFailed("Unknown API key")
 
         expected = hashlib.sha256(token.encode()).hexdigest()
-        if key.key_hash != expected:
+        if not hmac.compare_digest(key.key_hash, expected):
             # Same prefix collision is astronomically rare, but treat as
             # unauthenticated either way.
             raise AuthenticationFailed("Invalid API key")
