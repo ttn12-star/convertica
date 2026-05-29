@@ -178,8 +178,11 @@ class HTMLToPDFConverter {
                 }
             }
 
-            // Create download link
+            // Create download link. Revoke the previous conversion's object
+            // URL first so blobs don't accumulate in memory across a session.
+            if (this._lastObjectUrl) window.URL.revokeObjectURL(this._lastObjectUrl);
             const url = window.URL.createObjectURL(blob);
+            this._lastObjectUrl = url;
 
             this.updateProgress(100, 'Conversion completed!');
             this.showResult({ download_url: url, filename: filename });
@@ -236,8 +239,11 @@ class HTMLToPDFConverter {
                 }
             }
 
-            // Create download link
+            // Create download link. Revoke the previous conversion's object
+            // URL first so blobs don't accumulate in memory across a session.
+            if (this._lastObjectUrl) window.URL.revokeObjectURL(this._lastObjectUrl);
             const url = window.URL.createObjectURL(blob);
+            this._lastObjectUrl = url;
 
             this.updateProgress(100, 'Conversion completed!');
             this.showResult({ download_url: url, filename: filename });
