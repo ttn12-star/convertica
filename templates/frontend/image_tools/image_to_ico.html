@@ -1,0 +1,31 @@
+{% extends "frontend/converter_generic.html" %}
+{% load i18n %}
+
+{% block edit_options %}
+  <div class="mb-6 bg-gray-50 rounded-xl p-5 border border-gray-200">
+    <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">{% trans "Icon sizes" %}</h3>
+    <div class="flex flex-wrap gap-3">
+      <label class="inline-flex items-center gap-2"><input type="checkbox" class="ico-size accent-amber-600" value="16" checked> 16px</label>
+      <label class="inline-flex items-center gap-2"><input type="checkbox" class="ico-size accent-amber-600" value="32" checked> 32px</label>
+      <label class="inline-flex items-center gap-2"><input type="checkbox" class="ico-size accent-amber-600" value="48" checked> 48px</label>
+      <label class="inline-flex items-center gap-2"><input type="checkbox" class="ico-size accent-amber-600" value="64"> 64px</label>
+      <label class="inline-flex items-center gap-2"><input type="checkbox" class="ico-size accent-amber-600" value="128"> 128px</label>
+      <label class="inline-flex items-center gap-2"><input type="checkbox" class="ico-size accent-amber-600" value="256"> 256px</label>
+    </div>
+    <input type="hidden" name="sizes" id="icoSizesInput" value="16,32,48">
+  </div>
+  <script nonce="{{ csp_nonce }}">
+    (function () {
+      var boxes = document.querySelectorAll('.ico-size');
+      var hidden = document.getElementById('icoSizesInput');
+      function sync() {
+        var vals = [];
+        boxes.forEach(function (b) { if (b.checked) { vals.push(b.value); } });
+        if (!vals.length) { vals = ['16', '32', '48']; }
+        hidden.value = vals.join(',');
+      }
+      boxes.forEach(function (b) { b.addEventListener('change', sync); });
+      sync();
+    })();
+  </script>
+{% endblock %}
