@@ -245,3 +245,47 @@ class ZipBatchFieldNameTests(TestCase):
         )
         body = self._body(resp)
         self.assertEqual(resp.status_code, 200, body[:400])
+
+
+class ReadMemberCappedTests(TestCase):
+    """A3: zip-bomb guard must count ACTUAL decompressed bytes, not the
+    attacker-controlled declared size, and abort streaming before a member
+    is fully expanded into RAM."""
+
+    def _zip_with_member(self, name, data):
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+            z.writestr(name, data)
+        buf.seek(0)
+        return zipfile.ZipFile(buf)
+
+    def test_rejects_member_exceeding_per_member_cap(self):
+        from src.api.archive_tools.protect_zip.utils import read_member_capped
+
+        zin = self._zip_with_member("big.txt", b"A" * 100_000)
+        zi = zin.infolist()[0]
+        with self.assertRaises(InvalidArchiveError):
+            read_member_capped(
+                zin, zi, max_member=10_000, max_remaining=10**9, context={}
+            )
+
+    def test_rejects_member_exceeding_remaining_total(self):
+        from src.api.archive_tools.protect_zip.utils import read_member_capped
+
+        zin = self._zip_with_member("big.txt", b"A" * 100_000)
+        zi = zin.infolist()[0]
+        with self.assertRaises(InvalidArchiveError):
+            read_member_capped(
+                zin, zi, max_member=10**9, max_remaining=10_000, context={}
+            )
+
+    def test_returns_bytes_within_limits(self):
+        from src.api.archive_tools.protect_zip.utils import read_member_capped
+
+        payload = b"A" * 100_000
+        zin = self._zip_with_member("ok.txt", payload)
+        zi = zin.infolist()[0]
+        out = read_member_capped(
+            zin, zi, max_member=10**6, max_remaining=10**6, context={}
+        )
+        self.assertEqual(out, payload)

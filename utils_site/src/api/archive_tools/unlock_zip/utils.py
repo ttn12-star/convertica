@@ -4,6 +4,7 @@ import tempfile
 import zipfile
 
 import pyzipper
+from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.translation import gettext as _
 from src.exceptions import (
@@ -14,7 +15,11 @@ from src.exceptions import (
 )
 
 from ...logging_utils import get_logger
-from ..protect_zip.utils import ENCRYPTED_FLAG, guard_against_zip_bomb
+from ..protect_zip.utils import (
+    ENCRYPTED_FLAG,
+    guard_against_zip_bomb,
+    read_member_capped,
+)
 
 logger = get_logger(__name__)
 
@@ -64,11 +69,21 @@ def unlock_zip(
                 with zipfile.ZipFile(
                     output_path, "w", compression=zipfile.ZIP_DEFLATED
                 ) as zout:
+                    max_member = getattr(
+                        settings, "ARCHIVE_MAX_MEMBER_UNCOMPRESSED", 200 * 1024 * 1024
+                    )
+                    remaining = getattr(
+                        settings, "ARCHIVE_MAX_TOTAL_UNCOMPRESSED", 500 * 1024 * 1024
+                    )
                     for zi in infos:
                         if zi.is_dir():
                             zout.writestr(zi.filename, b"")
                             continue
-                        zout.writestr(zi.filename, zin.read(zi.filename))
+                        data = read_member_capped(
+                            zin, zi, max_member, remaining, context
+                        )
+                        remaining -= len(data)
+                        zout.writestr(zi.filename, data)
         except (RuntimeError, zipfile.BadZipFile) as e:
             raise EncryptedArchiveError(
                 _("Incorrect password. Please check the password and try again."),

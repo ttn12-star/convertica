@@ -49,6 +49,35 @@ def guard_against_zip_bomb(infos, context: dict) -> None:
         )
 
 
+def read_member_capped(zin, zi, max_member, max_remaining, context: dict) -> bytes:
+    """Decompress one ZIP member, aborting if its ACTUAL size exceeds limits.
+
+    ``guard_against_zip_bomb`` only checks the declared ``file_size`` from the
+    central directory, which an attacker controls. A crafted member can declare
+    a small size yet expand far beyond it; ``zin.read(name)`` would happily
+    decompress the whole thing into RAM and OOM-kill the worker. Streaming with
+    a running byte count stops decompression as soon as the real output crosses
+    the per-member or remaining-total cap.
+    """
+    cap = min(max_member, max_remaining)
+    out = bytearray()
+    # Open by name (not the ZipInfo object): callers may pass a ZipInfo from a
+    # different ZipFile used only for inspection (e.g. unlock_zip checks the
+    # archive with a plain zipfile, then reads members from a pyzipper handle).
+    with zin.open(zi.filename) as src:
+        while True:
+            chunk = src.read(1024 * 1024)
+            if not chunk:
+                break
+            out.extend(chunk)
+            if len(out) > cap:
+                raise InvalidArchiveError(
+                    _("Archive contents are too large to process."),
+                    context=context,
+                )
+    return bytes(out)
+
+
 def protect_zip(
     uploaded_file: UploadedFile, password: str, suffix: str = "_convertica"
 ) -> tuple[str, str]:
@@ -92,11 +121,21 @@ def protect_zip(
                 ) as zout:
                     zout.setpassword(password.encode("utf-8"))
                     zout.setencryption(pyzipper.WZ_AES, nbits=256)
+                    max_member = getattr(
+                        settings, "ARCHIVE_MAX_MEMBER_UNCOMPRESSED", 200 * 1024 * 1024
+                    )
+                    remaining = getattr(
+                        settings, "ARCHIVE_MAX_TOTAL_UNCOMPRESSED", 500 * 1024 * 1024
+                    )
                     for zi in infos:
                         if zi.is_dir():
                             zout.writestr(zi.filename, b"")
                             continue
-                        zout.writestr(zi.filename, zin.read(zi.filename))
+                        data = read_member_capped(
+                            zin, zi, max_member, remaining, context
+                        )
+                        remaining -= len(data)
+                        zout.writestr(zi.filename, data)
         except zipfile.BadZipFile as e:
             raise InvalidArchiveError(
                 _("The uploaded file is not a valid ZIP archive."), context=context
