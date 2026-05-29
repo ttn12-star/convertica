@@ -229,7 +229,10 @@ services:
       - .env
     environment:
       - CELERY_WORKER_POOL=prefork
-      - CELERY_WORKER_MAX_MEMORY_PER_CHILD=300000000  # 300MB per worker
+      # NOTE: the worker command above hardcodes its flags and does NOT read
+      # these CELERY_WORKER_* env vars. The real per-child memory cap is
+      # worker_max_memory_per_child=250000 (250MB) in utils_site/celery.py;
+      # max-tasks/pool are set on the `command:` line. Kept only as docs.
       - CELERY_WORKER_MAX_TASKS_PER_CHILD=50
       - UNOSERVER_URL=http://unoserver:2003
     depends_on:
@@ -276,8 +279,9 @@ services:
       - .env
     environment:
       - CELERY_WORKER_POOL=solo
-      - CELERY_WORKER_MAX_MEMORY_PER_CHILD=200000000  # 200MB (reduced)
-      - CELERY_WORKER_MAX_TASKS_PER_CHILD=50  # Increased for stability
+      # NOTE: not read by the hardcoded worker command above; real per-child
+      # memory cap is worker_max_memory_per_child=250000 in celery.py.
+      - CELERY_WORKER_MAX_TASKS_PER_CHILD=50
       - UNOSERVER_URL=http://unoserver:2003
     depends_on:
       db:
