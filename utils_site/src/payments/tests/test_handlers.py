@@ -86,8 +86,12 @@ class SubscriptionCreatedTests(HandlerTestCase):
             user_id=self.user.id,
             plan_id=self.monthly.id,
         )
-        # Simulate malformed renews_at
+        # Simulate malformed renews_at. created_at must be ~now (a real
+        # subscription_created arrives immediately); the fixture hardcodes a
+        # fixed past date, which made this test time-fragile (the fallback
+        # period_start + 30d drifts into the past as the wall clock advances).
         payload["data"]["attributes"]["renews_at"] = ""
+        payload["data"]["attributes"]["created_at"] = timezone.now().isoformat()
         handle_subscription_created(payload)
         self.user.refresh_from_db()
         self.assertTrue(self.user.is_premium)
@@ -255,6 +259,35 @@ class SubscriptionPaymentFailedTests(HandlerTestCase):
         self.user.refresh_from_db()
         self.assertTrue(self.user.is_premium)  # still premium during grace
         self.assertGreater(self.user.subscription_end_date, timezone.now())
+
+
+@override_settings(PAYMENT_PAST_DUE_GRACE_DAYS=0)
+class SubscriptionPaymentFailedNoGraceTests(HandlerTestCase):
+    def test_single_failed_payment_does_not_revoke_premium(self):
+        # Sec-5: Lemon Squeezy retries failed charges (dunning) for days; a
+        # single payment_failed must NOT cut off a paying customer. Revocation
+        # happens later via subscription_expired.
+        UserSubscription.objects.create(
+            user=self.user,
+            plan=self.monthly,
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_1",
+            provider_customer_id="cust_1",
+            status="active",
+            current_period_end=timezone.now() + timedelta(days=10),
+        )
+        self.user.is_premium = True
+        self.user.subscription_end_date = timezone.now() + timedelta(days=10)
+        self.user.save()
+        handle_subscription_payment_failed(
+            subscription_payment_failed_payload(
+                user_id=self.user.id, plan_id=self.monthly.id
+            )
+        )
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.is_premium)  # kept through dunning
+        sub = UserSubscription.objects.get(provider_subscription_id="sub_1")
+        self.assertEqual(sub.status, "past_due")
 
 
 class SubscriptionPausedTests(HandlerTestCase):

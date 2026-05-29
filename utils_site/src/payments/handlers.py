@@ -291,8 +291,11 @@ def handle_subscription_payment_failed(payload: dict) -> None:
     grace_days = int(getattr(settings, "PAYMENT_PAST_DUE_GRACE_DAYS", 0) or 0)
     if grace_days > 0:
         user.apply_grace(until=timezone.now() + timedelta(days=grace_days))
-    else:
-        user.deactivate_premium(reason="expired")
+    # Without an explicit grace window we still keep premium active through
+    # Lemon Squeezy's dunning retries (a failed charge is retried for days).
+    # The actual revocation happens on subscription_expired — mirroring
+    # handle_subscription_cancelled. Revoking on a single failed payment would
+    # cut off a paying customer mid-period before LS retries succeed.
 
 
 @transaction.atomic
