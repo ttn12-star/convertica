@@ -220,6 +220,12 @@ def breadcrumbs(request):
             # Image tools
             "frontend:optimize_image_page": _("Optimize Image"),
             "frontend:convert_image_page": _("Convert Image"),
+            "frontend:favicon_generator_page": _("Favicon Generator"),
+            "frontend:png_to_ico_page": _("PNG to ICO"),
+            "frontend:jpg_to_ico_page": _("JPG to ICO"),
+            "frontend:svg_to_ico_page": _("SVG to ICO"),
+            "frontend:webp_to_ico_page": _("WebP to ICO"),
+            "frontend:ico_to_png_page": _("ICO to PNG"),
             # Static pages
             "frontend:all_tools_page": _("All Tools"),
             "frontend:premium_tools_page": _("Premium Tools"),
