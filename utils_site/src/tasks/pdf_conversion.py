@@ -9,6 +9,7 @@ Tasks report progress via self.update_state() for real-time progress bars.
 
 import hashlib
 import inspect
+import json
 import os
 import shutil
 import time
@@ -78,7 +79,12 @@ def _cache_key(sha256: str, conversion_type: str, kwargs: dict) -> str:
     # Exclude internal/runtime kwargs that don't affect the output.
     excluded = {"suffix", "is_celery_task", "context", "check_cancelled", "is_premium"}
     stable = {k: v for k, v in sorted(kwargs.items()) if k not in excluded}
-    params_hash = hashlib.md5(str(stable).encode()).hexdigest()[:8]
+    # Stable JSON (sorted keys, str fallback for non-JSON types) hashed with
+    # SHA-256. 16 hex chars (64 bits) makes a same-input collision — which would
+    # serve another user's cached output — astronomically unlikely, vs the old
+    # 32-bit md5(str(dict))[:8].
+    serialized = json.dumps(stable, sort_keys=True, default=str)
+    params_hash = hashlib.sha256(serialized.encode()).hexdigest()[:16]
     return f"conv_cache:{conversion_type}:{sha256}:{params_hash}"
 
 
