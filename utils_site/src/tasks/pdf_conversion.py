@@ -41,10 +41,27 @@ FAST_CONVERSION_TYPES: frozenset[str] = frozenset(
     }
 )
 
+# FAST conversions whose output is a multi-file archive rather than a single
+# PDF. Everything else in FAST_CONVERSION_TYPES emits a single ``.pdf``.
+_ZIP_OUTPUT_TYPES: frozenset[str] = frozenset({"pdf_to_jpg", "split_pdf"})
+
 # Maximum output file size (bytes) eligible for SHA-256 result caching.
 # Large files are not cached to avoid filling Redis.
 _CACHE_MAX_BYTES = 5 * 1024 * 1024  # 5 MB
 _CACHE_TTL = 86400  # 24 hours
+
+
+def _cached_output_ext(conversion_type: str) -> str:
+    """Output file extension to use when serving a FAST conversion from cache.
+
+    Fresh cache entries store their real extension alongside the bytes (taken
+    from the actual output path), so this is only the fallback for legacy
+    bytes-only entries written before that change. ``pdf_to_jpg``/``split_pdf``
+    emit a ZIP; every other FAST type emits a single PDF. Historically this
+    fallback defaulted unknown types to ``.pdf``, which served ``split_pdf``
+    ZIP bytes under a ``.pdf`` name — a corrupt download.
+    """
+    return ".zip" if conversion_type in _ZIP_OUTPUT_TYPES else ".pdf"
 
 
 def _sha256_file(path: str) -> str:
@@ -256,12 +273,18 @@ def generic_conversion_task(
             # Write cached bytes to the task output directory and return.
             import mimetypes
 
+            # Fresh entries are stored as {"ext": ..., "data": ...} so the
+            # served extension matches the original output exactly; legacy
+            # entries are raw bytes and fall back to the per-type extension.
+            if isinstance(cached_output, dict):
+                out_ext = cached_output.get("ext") or _cached_output_ext(
+                    conversion_type
+                )
+                cached_output = cached_output.get("data") or b""
+            else:
+                out_ext = _cached_output_ext(conversion_type)
+
             base_name = os.path.splitext(original_filename)[0]
-            ext_map = {
-                "pdf_to_jpg": ".zip",
-                "jpg_to_pdf": ".pdf",
-            }
-            out_ext = ext_map.get(conversion_type, ".pdf")
             output_filename = f"{base_name}_convertica{out_ext}"
             final_output_path = os.path.join(task_dir, output_filename)
             with open(final_output_path, "wb") as fh:
@@ -502,8 +525,17 @@ def generic_conversion_task(
                 if out_size <= _CACHE_MAX_BYTES:
                     from django.core.cache import cache as django_cache
 
+                    # Store the real output extension with the bytes so cache
+                    # hits serve the correct filename (e.g. split_pdf → .zip).
                     with open(final_output_path, "rb") as fh:
-                        django_cache.set(cache_key_str, fh.read(), timeout=_CACHE_TTL)
+                        django_cache.set(
+                            cache_key_str,
+                            {
+                                "ext": os.path.splitext(final_output_path)[1],
+                                "data": fh.read(),
+                            },
+                            timeout=_CACHE_TTL,
+                        )
                     logger.debug(
                         f"Cached {conversion_type} result ({out_size} bytes, ttl={_CACHE_TTL}s)",
                         extra={"event": "conversion_cache_store"},
