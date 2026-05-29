@@ -24,6 +24,20 @@ from .models import (
 User = get_user_model()
 
 
+def analytics_window_start(request, default_months: int = 12):
+    """Start of the analytics window for the OperationRun admin reports.
+
+    Defaults to ~``default_months`` ago so the unbounded aggregations over the
+    high-volume OperationRun table stay bounded (and the (status, -created_at)
+    indexes apply). ``?all=1`` returns None to scan the full history on demand.
+    """
+    from datetime import timedelta
+
+    if request.GET.get("all") in ("1", "true", "yes"):
+        return None
+    return timezone.now() - timedelta(days=30 * default_months)
+
+
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     """Custom User admin with social account integration."""
@@ -624,16 +638,24 @@ class OperationRunAdmin(admin.ModelAdmin):
         from django.db.models.functions import TruncMonth
         from django.shortcuts import render
 
+        # Bound the scan to a recent window by default (?all=1 to expand).
+        since = analytics_window_start(request)
+        base = (
+            OperationRun.objects.all()
+            if since is None
+            else OperationRun.objects.filter(created_at__gte=since)
+        )
+
         # Get all unique conversion types
         conversion_types = (
-            OperationRun.objects.values_list("conversion_type", flat=True)
+            base.values_list("conversion_type", flat=True)
             .distinct()
             .order_by("conversion_type")
         )
 
         # Aggregate data by month and conversion_type
         monthly_data = (
-            OperationRun.objects.annotate(month=TruncMonth("created_at"))
+            base.annotate(month=TruncMonth("created_at"))
             .values("month", "conversion_type")
             .annotate(
                 total=Count("id"),
@@ -654,7 +676,7 @@ class OperationRunAdmin(admin.ModelAdmin):
 
         # Unique users and IPs per month (separate query for correctness)
         monthly_uniques = (
-            OperationRun.objects.annotate(month=TruncMonth("created_at"))
+            base.annotate(month=TruncMonth("created_at"))
             .values("month")
             .annotate(
                 unique_users=Count("user", distinct=True, filter=Q(user__isnull=False)),
@@ -782,9 +804,14 @@ class OperationRunAdmin(admin.ModelAdmin):
         except (ValueError, TypeError):
             min_ops_int = 1
 
-        qs = (
+        since = analytics_window_start(request)
+        base = (
             OperationRun.objects.filter(user__isnull=False)
-            .values("user__email", "user__id")
+            if since is None
+            else OperationRun.objects.filter(user__isnull=False, created_at__gte=since)
+        )
+        qs = (
+            base.values("user__email", "user__id")
             .annotate(
                 total=Count("id"),
                 success=Count("id", filter=Q(status="success")),
