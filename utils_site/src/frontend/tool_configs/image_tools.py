@@ -442,11 +442,26 @@ IMAGE_TOOLS_CONFIGS = {
                         "produces the sharpest favicon frames."
                     ),
                 },
+                {
+                    "question": _("How do I add the favicon.ico to my website?"),
+                    "answer": _(
+                        "Place the favicon.ico file in your website's root directory (the same folder as "
+                        "index.html). Modern browsers will find it automatically. You can also declare it "
+                        'explicitly with <link rel="icon" href="/favicon.ico"> in your HTML <head>.'
+                    ),
+                },
+                {
+                    "question": _("Is my uploaded PNG kept private?"),
+                    "answer": _(
+                        "Yes. All processing happens on the server and your PNG file is deleted immediately "
+                        "after you download the ICO. We do not store, inspect, or share your images."
+                    ),
+                },
             ],
             "faq_title": _("PNG to ICO FAQ"),
             "page_tips": [
                 _(
-                    "Start with a square PNG — non-square images are cropped to a square before conversion."
+                    "Start with a square PNG — non-square images are center-cropped to a square before conversion."
                 ),
                 _(
                     "Use a 256×256 or 512×512 px source for the sharpest 16 and 32 px favicon frames."
@@ -454,19 +469,29 @@ IMAGE_TOOLS_CONFIGS = {
                 _(
                     "Keep transparency in your PNG to get a clean favicon on any browser background color."
                 ),
+                _(
+                    "Test your favicon at 16×16 px before publishing — details that look fine at full size "
+                    "can become muddy at tab size."
+                ),
             ],
             "benefits_title": _("Why Use Our PNG to ICO Converter?"),
             "tips_title": _("Tips for PNG to ICO Conversion"),
             "page_content_title": _("Convert PNG images to ICO favicon format online"),
             "page_content_body": _(
                 "<p><strong>PNG to ICO</strong> converts your PNG graphic into a proper multi-resolution "
-                "favicon.ico file that browsers and operating systems expect. A single ICO file contains "
-                "16×16, 32×32, and 48×48 px variants, so your site icon always looks sharp — whether it "
-                "appears in a browser tab, the address bar, bookmarks, or a Windows desktop shortcut.</p>"
-                "<p>No design software needed. Upload any square PNG, click Convert, and get a "
+                "favicon.ico file that browsers and operating systems expect. PNG is the ideal source "
+                "format for favicon creation because it supports full alpha transparency and lossless "
+                "compression — meaning your icon's crisp edges and transparent background carry over "
+                "perfectly into every embedded ICO frame.</p>"
+                "<p>A single ICO file contains 16×16, 32×32, and 48×48 px variants, so your site icon "
+                "always looks sharp — whether it appears in a browser tab, the address bar, bookmarks, "
+                "or a Windows desktop shortcut. Non-square images are automatically center-cropped to "
+                "square before scaling, so you get predictable results regardless of input dimensions.</p>"
+                "<p>No design software needed. Upload any PNG, click Convert, and get a "
                 "standards-compliant favicon.ico ready to drop into your website's root directory. "
-                "Transparency is fully preserved and your file is deleted from our servers immediately "
-                "after you download it.</p>"
+                "Simply place it alongside your index.html and browsers will detect it automatically. "
+                "Your file is deleted from our servers immediately after you download it — fully free, "
+                "no account required.</p>"
             ),
         },
     },
@@ -565,17 +590,37 @@ IMAGE_TOOLS_CONFIGS = {
                         "source instead."
                     ),
                 },
+                {
+                    "question": _(
+                        "Can I use a product photo or portrait as a favicon?"
+                    ),
+                    "answer": _(
+                        "You can, but complex photos rarely read well at 16×16 px. For best results, "
+                        "use a simple logo, monogram, or symbol rather than a detailed photograph. "
+                        "Crop tightly to the subject so it fills the icon frame."
+                    ),
+                },
+                {
+                    "question": _("Is my uploaded JPEG kept private?"),
+                    "answer": _(
+                        "Yes. Your JPEG is processed entirely on the server and deleted immediately "
+                        "after you download the ICO file. We do not retain, store, or share your images."
+                    ),
+                },
             ],
             "faq_title": _("JPG to ICO FAQ"),
             "page_tips": [
                 _(
-                    "Crop your JPEG to a square before uploading — the converter works best with square images."
+                    "Crop your JPEG to a square before uploading — non-square images are center-cropped automatically."
                 ),
                 _(
                     "Use a high-resolution JPEG (at least 256×256 px) for sharp favicon frames at all sizes."
                 ),
                 _(
-                    "If your design has a transparent background, convert your image to PNG first for best results."
+                    "If your design requires a transparent background, convert the image to PNG first for best results."
+                ),
+                _(
+                    "Simplify your logo before converting — thin lines and fine text disappear at 16×16 px."
                 ),
             ],
             "benefits_title": _("Why Use Our JPG to ICO Converter?"),
@@ -583,13 +628,19 @@ IMAGE_TOOLS_CONFIGS = {
             "page_content_title": _("Convert JPEG images to ICO favicon format online"),
             "page_content_body": _(
                 "<p><strong>JPG to ICO</strong> converts JPEG photos and logos into a properly formatted "
-                "favicon.ico file containing 16×16, 32×32, and 48×48 px icon frames. Whether you have a "
-                "product photo, brand logo, or any JPEG graphic, you can turn it into a website favicon "
-                "in seconds — no design software required.</p>"
+                "favicon.ico file containing 16×16, 32×32, and 48×48 px icon frames. JPEG is the most "
+                "common photo format on the web, and with this tool you can take any brand logo, "
+                "product image, or photograph and turn it into a website favicon in seconds — no design "
+                "software required.</p>"
                 "<p>The converter applies high-quality Lanczos resampling to produce sharp results at "
-                "every embedded size. Simply upload your JPEG, click Convert, and download a "
-                "standards-compliant ICO file ready to place in your website's root folder. Your source "
-                "image is deleted from our servers immediately after the download.</p>"
+                "every embedded size. Because JPEG does not support transparency, the solid background "
+                "of your image will be preserved in the ICO. If you need a favicon with a see-through "
+                "background, consider using a PNG source instead. Non-square JPEGs are automatically "
+                "center-cropped to square before scaling.</p>"
+                "<p>Simply upload your JPEG, click Convert, and download a standards-compliant ICO file "
+                "ready to place in your website's root folder. Drop it alongside your index.html and "
+                "browsers will pick it up as the site favicon immediately. Your source image is deleted "
+                "from our servers right after the download — fully free, no account needed.</p>"
             ),
         },
     },
@@ -688,6 +739,23 @@ IMAGE_TOOLS_CONFIGS = {
                         "with any browser tab color."
                     ),
                 },
+                {
+                    "question": _(
+                        "Does the converter support SVG files with external fonts or images?"
+                    ),
+                    "answer": _(
+                        "The converter renders self-contained SVGs reliably. SVGs that reference external "
+                        "fonts or linked bitmap images may not render those resources. For best results, "
+                        "embed all fonts as paths and inline any images before uploading."
+                    ),
+                },
+                {
+                    "question": _("Is my SVG file kept private?"),
+                    "answer": _(
+                        "Yes. Your SVG is processed on the server and deleted immediately after you "
+                        "download the ICO. We do not store or share your files."
+                    ),
+                },
             ],
             "faq_title": _("SVG to ICO FAQ"),
             "page_tips": [
@@ -700,6 +768,9 @@ IMAGE_TOOLS_CONFIGS = {
                 _(
                     "Keep the design simple — intricate details look muddy at 16×16 px, so test the smallest size."
                 ),
+                _(
+                    "Convert text to outlines (paths) in your SVG editor before uploading to avoid missing-font issues."
+                ),
             ],
             "benefits_title": _("Why Use Our SVG to ICO Converter?"),
             "tips_title": _("Tips for SVG to ICO Conversion"),
@@ -711,11 +782,17 @@ IMAGE_TOOLS_CONFIGS = {
                 "multi-resolution favicon.ico. Because SVG stores artwork as mathematical shapes rather "
                 "than pixels, the converter renders each embedded size — 16×16, 32×32, and 48×48 px — "
                 "from the original vector outlines, producing sharper results than downscaling a bitmap "
-                "image would.</p>"
+                "image would. This is the single biggest advantage of using SVG as your favicon source: "
+                "every pixel at every size is drawn fresh from the vector geometry.</p>"
                 "<p>This is the ideal workflow for designers who already have their brand logo as an SVG: "
                 "no need to export a large PNG first. Simply upload the SVG, click Convert, and download "
-                "a browser-ready favicon.ico. Transparency is fully preserved and your file is deleted "
-                "immediately after download.</p>"
+                "a browser-ready favicon.ico. SVGs with transparent backgrounds produce ICO frames with "
+                "full alpha transparency, so your favicon looks perfect on light and dark browser themes "
+                "alike.</p>"
+                "<p>The tool works with any standards-compliant SVG. For best results, use a square "
+                "viewBox, convert text to outlines, and keep the design simple enough to read at 16×16 px. "
+                "Your file is deleted from our servers immediately after download — free, instant, "
+                "no registration required.</p>"
             ),
         },
     },
@@ -812,18 +889,37 @@ IMAGE_TOOLS_CONFIGS = {
                         "output ICO file."
                     ),
                 },
+                {
+                    "question": _("What sizes does the converted ICO contain?"),
+                    "answer": _(
+                        "The output ICO embeds three frames: 16×16 px (browser tab), 32×32 px "
+                        "(taskbar and bookmarks), and 48×48 px (Windows desktop shortcut icon). "
+                        "All three are generated automatically from your WebP source."
+                    ),
+                },
+                {
+                    "question": _("Is my uploaded WebP file kept private?"),
+                    "answer": _(
+                        "Yes. Your WebP is processed on the server and deleted immediately after you "
+                        "download the ICO. No files are stored, logged, or shared."
+                    ),
+                },
             ],
             "faq_title": _("WebP to ICO FAQ"),
             "page_tips": [
                 _(
-                    "Use a lossless WebP source for the clearest favicon frames — lossy WebP artifacts "
-                    "become more visible at small icon sizes."
+                    "Use a lossless WebP source for the clearest favicon frames — lossy WebP compression "
+                    "artifacts become more visible at small icon sizes."
                 ),
                 _(
                     "Start with a square WebP image at 256×256 px or larger for the best downscaling results."
                 ),
                 _(
                     "If your WebP has a transparent background, the ICO will too — great for dark-mode browser tabs."
+                ),
+                _(
+                    "Non-square WebP images are center-cropped to square automatically — crop manually first "
+                    "if you need precise control over which part of the image appears in the icon."
                 ),
             ],
             "benefits_title": _("Why Use Our WebP to ICO Converter?"),
@@ -832,13 +928,18 @@ IMAGE_TOOLS_CONFIGS = {
             "page_content_body": _(
                 "<p><strong>WebP to ICO</strong> converts Google's modern WebP image format into a "
                 "standards-compliant favicon.ico file. WebP is widely used for its excellent compression "
-                "and transparency support, but the ICO format is still required by many browsers, operating "
-                "systems, and site generators when you specify a favicon. This tool bridges that gap in "
-                "seconds.</p>"
+                "and full transparency support, but the ICO format is still required by browsers, "
+                "operating systems, and many site generators when specifying a favicon. This tool "
+                "bridges that gap in seconds, with no software to install.</p>"
                 "<p>The converter decodes your WebP — including lossless WebP and WebP with alpha "
                 "transparency — and embeds three icon sizes (16×16, 32×32, and 48×48 px) into a single "
-                "ICO container. Your source file is deleted from our servers immediately after you download "
-                "the result.</p>"
+                "ICO container. Non-square images are automatically center-cropped to square before "
+                "scaling, so the output frames are always correctly proportioned. Animated WebP is "
+                "accepted, and the first frame is used for the conversion.</p>"
+                "<p>Upload your WebP, click Convert, and receive a favicon.ico ready to drop into your "
+                "website's root directory. Place it alongside your index.html and every browser will "
+                "detect it as your site icon automatically. Your source file is deleted from our servers "
+                "immediately after you download the result — free, private, no account needed.</p>"
             ),
         },
     },
@@ -954,17 +1055,38 @@ IMAGE_TOOLS_CONFIGS = {
                         "is smaller than 512×512 px, as upscaling reduces quality."
                     ),
                 },
+                {
+                    "question": _("What is the site.webmanifest file used for?"),
+                    "answer": _(
+                        "site.webmanifest is the Web App Manifest file that Progressive Web Apps (PWAs) "
+                        "use to define their icons, name, and display settings. Browsers read it when a "
+                        "user installs your site as an app on Android or desktop. The generated manifest "
+                        "references the 192×192 and 512×512 PNG icons included in the ZIP."
+                    ),
+                },
+                {
+                    "question": _("Are my uploaded images kept private?"),
+                    "answer": _(
+                        "Yes. Your image is processed on the server and all files — both the uploaded "
+                        "source and the generated ZIP — are deleted immediately after you download. "
+                        "No images are stored or shared."
+                    ),
+                },
             ],
             "faq_title": _("Favicon Generator FAQ"),
             "page_tips": [
                 _(
-                    "Upload a 512×512 px or larger square image for the sharpest icons — smaller or non-square sources are scaled and cropped to fit."
+                    "Upload a 512×512 px or larger square image for the sharpest icons — smaller or non-square sources are scaled and center-cropped to fit."
                 ),
                 _(
                     "Use a simple, bold design: intricate logos become unrecognizable at 16×16 px."
                 ),
                 _(
                     "Place all generated files in your site's root directory so browsers can find them automatically."
+                ),
+                _(
+                    "After uploading the files, paste the HTML snippet from snippet.html into your site's "
+                    "<head> so every browser and device finds the right icon."
                 ),
             ],
             "benefits_title": _("Why Use Our Favicon Generator?"),
@@ -976,14 +1098,21 @@ IMAGE_TOOLS_CONFIGS = {
                 "<p><strong>Favicon Generator</strong> creates everything your website needs to display "
                 "a professional icon — in one click. Instead of manually creating a dozen different files "
                 "for different browsers and devices, upload a single image and receive a ZIP containing "
-                "favicon.ico, ten PNG sizes from 16 to 512 px, an apple-touch-icon at the exact 180×180 px "
-                "Apple requires, PWA manifest icons at 192×192 and 512×512 px, a ready-made "
-                "site.webmanifest, and an HTML snippet you can copy straight into your &lt;head&gt;.</p>"
+                "favicon.ico (with 16×16, 32×32, and 48×48 frames), ten PNG sizes from 16 to 512 px, "
+                "an apple-touch-icon at the exact 180×180 px Apple requires, PWA manifest icons at "
+                "192×192 and 512×512 px, a ready-made site.webmanifest, and an HTML snippet you can "
+                "copy straight into your &lt;head&gt;.</p>"
                 "<p>Modern websites need more than a single favicon.ico: iOS home-screen bookmarks use "
                 "the apple-touch-icon PNG, Progressive Web Apps read icons from the web manifest, and "
                 "high-DPI displays benefit from larger PNG variants. This generator produces the entire "
                 "set in seconds, so you never have to guess which files or sizes a particular platform "
-                "expects.</p>"
+                "expects. SVG sources give the sharpest results because each size is rasterized directly "
+                "from the vector outlines.</p>"
+                "<p>To install, extract the ZIP into your website's root directory and paste the "
+                "provided HTML tags from snippet.html into the &lt;head&gt; of every page. That's all — "
+                "your site will show a crisp, correctly sized icon in every browser tab, home-screen "
+                "bookmark, and PWA install prompt. Fully free, no registration, files deleted after "
+                "download.</p>"
             ),
         },
     },
@@ -1080,12 +1209,39 @@ IMAGE_TOOLS_CONFIGS = {
                         "Because PNG is lossless, no quality is lost during the extraction."
                     ),
                 },
+                {
+                    "question": _(
+                        "Is alpha transparency preserved when extracting from ICO?"
+                    ),
+                    "answer": _(
+                        "Yes. ICO files store alpha channel information in each frame, and the extractor "
+                        "carries that transparency into the output PNG. The result is a clean PNG with no "
+                        "artificial white or colored background added around the icon shape."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Can I use the extracted PNG to regenerate a full favicon package?"
+                    ),
+                    "answer": _(
+                        "Absolutely. Once you have the PNG, you can upload it to the Favicon Generator "
+                        "tool to produce a complete package: favicon.ico, all PNG sizes, apple-touch-icon, "
+                        "PWA icons, site.webmanifest, and the HTML snippet."
+                    ),
+                },
+                {
+                    "question": _("Is my ICO file kept private?"),
+                    "answer": _(
+                        "Yes. Your ICO file is processed entirely on the server and deleted immediately "
+                        "after you download the PNG. We do not store or share your files."
+                    ),
+                },
             ],
             "faq_title": _("ICO to PNG FAQ"),
             "page_tips": [
                 _(
                     "If the extracted PNG looks small, the ICO may only contain low-resolution frames — "
-                    "try finding the original source image instead."
+                    "try finding the original source image for a higher-quality version."
                 ),
                 _(
                     "Use the extracted PNG as a source to regenerate a full favicon package with our Favicon Generator."
@@ -1094,6 +1250,10 @@ IMAGE_TOOLS_CONFIGS = {
                     "Check that the output PNG has transparency before placing it on a colored background — "
                     "most ICO favicons use alpha transparency."
                 ),
+                _(
+                    "After extracting, open the PNG in an image editor to clean up or resize it before "
+                    "using it in other design projects."
+                ),
             ],
             "benefits_title": _("Why Use Our ICO to PNG Converter?"),
             "tips_title": _("Tips for ICO to PNG Conversion"),
@@ -1101,14 +1261,20 @@ IMAGE_TOOLS_CONFIGS = {
             "page_content_body": _(
                 "<p><strong>ICO to PNG</strong> opens an ICO icon file and extracts the largest "
                 "embedded frame as a standard PNG image. ICO files are multi-resolution containers "
-                "used for website favicons and Windows application icons, but most image editors and "
-                "websites don't accept ICO directly. Converting to PNG gives you a universally "
-                "compatible image you can use anywhere.</p>"
+                "used for website favicons and Windows application icons — they can hold several sizes "
+                "in one file (commonly 16×16, 32×32, 48×48, and up to 256×256 px). Most image editors, "
+                "design tools, and websites don't accept ICO directly, so converting to PNG gives you "
+                "a universally compatible image you can use anywhere.</p>"
                 "<p>The extractor automatically selects the highest-resolution frame available in the "
                 "ICO and preserves full alpha transparency in the output PNG. This is useful when you "
                 "need to recover the original artwork from a favicon, resize or re-use an icon in a "
-                "design project, or inspect what sizes are stored inside an ICO file. Your ICO file "
-                "is deleted from our servers immediately after you download the PNG.</p>"
+                "design project, or inspect what sizes are stored inside an ICO file. Because PNG is "
+                "a lossless format, no quality is introduced during extraction — what is stored in the "
+                "ICO frame is exactly what you get.</p>"
+                "<p>A common workflow is to extract the PNG here and then upload it to the Favicon "
+                "Generator to produce a complete, modern favicon package with all required sizes, "
+                "apple-touch-icon, PWA icons, and manifest. Your ICO file is deleted from our servers "
+                "immediately after you download the PNG — fully free, no account required.</p>"
             ),
         },
     },
