@@ -5,6 +5,22 @@ business logic. Refer to https://docs.lemonsqueezy.com/help/webhooks for the
 exact shape.
 """
 
+from datetime import timedelta
+
+from django.utils import timezone
+
+
+def _future_renews_at() -> str:
+    """A LS-shaped renewal timestamp ~30 days out.
+
+    Must be in the future relative to wall-clock now: the webhook handler maps
+    ``renews_at`` to ``subscription_end_date`` and ``is_subscription_active()``
+    compares it against ``timezone.now()``. A hardcoded date silently expired
+    (e.g. 2026-06-01) and time-bombed premium-activation tests once that day
+    passed; deriving it from now keeps the fixture evergreen.
+    """
+    return (timezone.now() + timedelta(days=30)).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+
 
 def subscription_created_payload(
     *,
@@ -32,7 +48,7 @@ def subscription_created_payload(
                 "user_email": "u@t.test",
                 "status": "active",
                 "cancelled": False,
-                "renews_at": ends_at or "2026-06-01T00:00:00.000000Z",
+                "renews_at": ends_at or _future_renews_at(),
                 "ends_at": None,
                 "trial_ends_at": None,
                 "created_at": "2026-05-01T00:00:00.000000Z",
