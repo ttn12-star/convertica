@@ -352,28 +352,6 @@
             </p>
           </a>
 
-          {% if PAYMENTS_ENABLED %}
-                <!-- Sign PDF - PRO -->
-            <a href="{% url 'frontend:sign_pdf_page' %}"
-               class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
-              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
-                PRO
-              </div>
-              <div class="mb-4">
-                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                  </svg>
-                </div>
-              </div>
-              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
-                {% trans "Sign PDF" %}
-              </h3>
-              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                {% trans "Add your signature to PDF documents." %}
-              </p>
-            </a>
-          {% endif %}
         </div>
       </div>
     </section>
@@ -701,27 +679,6 @@
             </p>
           </a>
 
-                <!-- HEIC to JPG (Premium) -->
-          <a href="{% url 'frontend:heic_to_jpg_page' %}"
-             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-rose-500 hover:border-rose-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
-            <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
-              PRO
-            </div>
-            <div class="mb-4">
-              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-rose-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-            </div>
-            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-rose-600 transition-colors">
-              {% trans "HEIC to JPG" %}
-            </h3>
-            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-              {% trans "Convert Apple HEIC and HEIF photos from iPhone to JPG, PNG, or PDF." %}
-            </p>
-          </a>
-
                 <!-- Favicon Generator -->
           <a href="{% url 'frontend:favicon_generator_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-amber-500 hover:border-amber-600 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
@@ -1014,6 +971,46 @@
               </h3>
               <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                 {% trans "Premium beta tool for visual PDF diffs with downloadable reports." %}
+              </p>
+            </a>
+
+            <a href="{% url 'frontend:sign_pdf_page' %}"
+               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "Sign PDF" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Add your signature to PDF documents." %}
+              </p>
+            </a>
+
+            <a href="{% url 'frontend:heic_to_jpg_page' %}"
+               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "HEIC to JPG" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Convert Apple HEIC and HEIF photos from iPhone to JPG, PNG, or PDF." %}
               </p>
             </a>
 
