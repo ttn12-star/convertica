@@ -405,6 +405,21 @@
                       <span class="font-medium">{% trans "Compress PDF" %}</span>
                     </a>
                   </li>
+                  {% if PAYMENTS_ENABLED %}
+                    <li>
+                      <a href="{% url 'frontend:compare_pdf_page' %}"
+                         class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-green-50 dark:hover:bg-green-900/30 hover:text-green-600 dark:hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         role="menuitem">
+                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
+                          <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                          </svg>
+                        </div>
+                        <span class="font-medium">{% trans "Compare Two PDFs" %}</span>
+                        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                      </a>
+                    </li>
+                  {% endif %}
                 </ul>
               </div>
 
@@ -1106,6 +1121,21 @@
                           <span class="font-medium">{% trans "Extract Pages" %}</span>
                         </a>
                       </li>
+                      {% if PAYMENTS_ENABLED %}
+                        <li>
+                          <a href="{% url 'frontend:compare_pdf_page' %}"
+                             class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-700 group"
+                             role="menuitem">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
+                              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                              </svg>
+                            </div>
+                            <span class="font-medium">{% trans "Compare Two PDFs" %}</span>
+                            <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+                          </a>
+                        </li>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
@@ -1919,6 +1949,18 @@
         </svg>
         {% trans "Compress PDF" %}
       </a>
+      {% if PAYMENTS_ENABLED %}
+        <a href="{% url 'frontend:compare_pdf_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-green-50 text-gray-700 transition-colors">
+          <div class="flex items-center">
+            <svg class="w-4 h-4 text-blue-600 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            {% trans "Compare Two PDFs" %}
+          </div>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
+      {% endif %}
     </div>
   <!-- Mobile Edit PDF Menu Toggle -->
     <button id="mobile-edit-pdf-toggle"
