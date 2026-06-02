@@ -1429,6 +1429,7 @@ def _get_sitemap_pages():
         {"url": "contribute/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "all-tools/", "priority": "0.9", "changefreq": "weekly"},
         {"url": "premium-tools/", "priority": "0.7", "changefreq": "weekly"},
+        {"url": "api/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "epub-to-pdf/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "pdf-to-epub/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "pdf-to-markdown/", "priority": "0.6", "changefreq": "monthly"},
