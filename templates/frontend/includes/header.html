@@ -1776,18 +1776,28 @@
     </a>
 
     {% if PAYMENTS_ENABLED %}
-      <a href="{% url 'frontend:premium_tools_page' %}"
-         class="flex items-center justify-between space-x-2 w-full p-3 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-start font-semibold text-gray-900 dark:text-gray-100 transition-colors">
+      <button id="mobile-premium-toggle"
+              aria-controls="mobile-premium-menu"
+              aria-expanded="false"
+              class="flex items-center justify-between w-full p-3 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-start font-semibold text-gray-900 dark:text-gray-100 transition-colors">
         <span class="flex items-center gap-2">
           <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
           <span>{% trans "Premium Tools" %}</span>
+          <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
         </span>
-        <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
-      </a>
+        <svg class="mobile-premium-arrow w-4 h-4 transition-transform text-gray-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
 
-      <div class="ps-4 space-y-1 pb-1">
+      <div id="mobile-premium-menu" class="hidden ps-4 space-y-1 pb-1">
+        <a href="{% url 'frontend:premium_tools_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-semibold transition-colors">
+          <span>{% trans "Open Catalog" %}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </a>
         <a href="{% url 'frontend:epub_to_pdf_page' %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
           <span class="flex items-center min-w-0">

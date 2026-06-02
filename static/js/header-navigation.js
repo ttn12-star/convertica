@@ -39,6 +39,8 @@ class HeaderNavigation {
     this.mobilePdfSecurityMenu = document.getElementById('mobile-pdf-security-menu');
     this.mobileArchiveToolsToggle = document.getElementById('mobile-archive-tools-toggle');
     this.mobileArchiveToolsMenu = document.getElementById('mobile-archive-tools-menu');
+    this.mobilePremiumToggle = document.getElementById('mobile-premium-toggle');
+    this.mobilePremiumMenu = document.getElementById('mobile-premium-menu');
     this.allToolsParent = document.getElementById('all-tools-menu-parent');
     this.allToolsDropdown = document.getElementById('all-tools-menu-dropdown');
     this.allToolsButton = document.getElementById('all-tools-menu-button');
@@ -148,6 +150,7 @@ class HeaderNavigation {
     this.mobileOrganizePdfToggle?.addEventListener('click', () => this.toggleMobileOrganizePdf());
     this.mobilePdfSecurityToggle?.addEventListener('click', () => this.toggleMobilePdfSecurity());
     this.mobileArchiveToolsToggle?.addEventListener('click', () => this.toggleMobileArchiveTools());
+    this.mobilePremiumToggle?.addEventListener('click', () => this.toggleMobilePremium());
 
     // Desktop all tools menu (hover) - always attach, check width in methods
     if (this.allToolsParent) {
@@ -424,6 +427,19 @@ class HeaderNavigation {
 
     // Rotate arrow icon
     const arrow = this.mobileArchiveToolsToggle.querySelector('svg');
+    if (arrow) {
+      arrow.classList.toggle('rotate-180');
+    }
+  }
+
+  toggleMobilePremium() {
+    if (!this.mobilePremiumToggle || !this.mobilePremiumMenu) return;
+    const isExpanded = this.mobilePremiumToggle.getAttribute('aria-expanded') === 'true';
+    this.mobilePremiumMenu.classList.toggle('hidden', isExpanded);
+    this.mobilePremiumToggle.setAttribute('aria-expanded', !isExpanded);
+
+    // Rotate the chevron (not the leading lightning icon)
+    const arrow = this.mobilePremiumToggle.querySelector('.mobile-premium-arrow');
     if (arrow) {
       arrow.classList.toggle('rotate-180');
     }
