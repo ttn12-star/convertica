@@ -135,6 +135,15 @@ button {
     }
 }
 
+/* All Tools mega-menu Premium column: the 7-column grid is narrow, so allow the
+   premium item labels to wrap instead of truncating (avoids ambiguous "PDF to …").
+   Only the premium column uses .truncate inside this dropdown, so this is scoped. */
+#all-tools-menu-dropdown .truncate {
+    overflow: visible;
+    white-space: normal;
+    text-overflow: clip;
+}
+
 /* Mobile-specific utility classes */
 @media (max-width: 768px) {
     /* Hide on mobile */
