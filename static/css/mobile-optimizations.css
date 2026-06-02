@@ -127,6 +127,12 @@ button {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+
+    /* Neutralize card hover lift and icon scale for reduced-motion users */
+    .hover\:-translate-y-2:hover,
+    .group:hover .group-hover\:scale-110 {
+        transform: none !important;
+    }
 }
 
 /* Mobile-specific utility classes */
