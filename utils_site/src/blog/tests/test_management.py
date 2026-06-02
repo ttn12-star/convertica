@@ -285,6 +285,8 @@ class ImporterRealCorpusTests(TestCase):
         if not list((source / "en").glob("*.yaml")):
             self.skipTest("No EN YAML files in corpus")
 
+        expected_count = len(list((source / "en").glob("*.yaml")))
+
         out = StringIO()
         call_command(
             "import_blog_articles",
@@ -292,7 +294,9 @@ class ImporterRealCorpusTests(TestCase):
             stdout=out,
         )
 
-        self.assertEqual(Article.objects.count(), 14)
+        # One Article per EN base YAML — derived so adding articles never
+        # silently breaks this smoke test.
+        self.assertEqual(Article.objects.count(), expected_count)
         # Every imported article must be wired to a category.
         for article in Article.objects.all():
             self.assertIsNotNone(article.category)
