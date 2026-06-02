@@ -1,0 +1,91 @@
+slug: convert-pdf-to-jpg-and-back
+title_hi: "Quality खोए बिना PDF को JPG में (और JPG को वापस PDF में) कैसे Convert करें"
+meta_title_hi: "PDF to JPG और वापस - Free, No Quality Loss | Convertica"
+meta_description_hi: "PDF को JPG images में convert करें और photos से एक PDF rebuild करें, सही तरीके से। Resolution settings, कब इसके बजाय PNG pick करें, और multi-page order intact कैसे रखें।"
+meta_keywords_hi: "pdf to jpg, jpg to pdf, pdf को image में convert करें, pdf to jpg free, images to pdf, pdf to jpg high quality"
+excerpt_hi: "PDF को JPG में और वापस convert करना trivial लगता है जब तक text blurry न हो जाए या आपके pages गलत order में न निकलें। Fix दो settings हैं जो ज़्यादातर tools hide करते हैं: बाहर जाते resolution, और वापस आते page order।"
+content_hi: |
+  PDF को JPGs में बदलने की दो रोज़मर्रा वजहें हैं: आप एक single page वहाँ post करना चाहते हैं जहाँ सिर्फ़ images allowed हैं - एक marketplace listing, एक social post, एक chat app - या आपको एक page को एक slide या document में picture के रूप में drop करना है। और एक equally common reverse trip है: आपके पास phone photos या scans का ढेर है और आपको उन्हें पंद्रह separate attachments के बजाय एक tidy PDF के रूप में चाहिए।
+
+  दोनों directions free हैं और seconds लेती हैं। एक crisp result को एक blurry, out-of-order mess से जो अलग करता है वह दो settings हैं जिन्हें ज़्यादातर converters छुपा देते हैं। उन्हें सही करें और आप फिर कभी इसके बारे में नहीं सोचेंगे।
+
+  <figure><img src="/static/blog/images/tool-pdf-to-jpg-hero.jpg" alt="Convertica PDF to JPG converter file upload area के साथ" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>PDF to JPG: resolution का decision</h2>
+
+  जब आप एक PDF page को JPG में export करते हैं, tool page को एक chosen resolution पर एक bitmap के रूप में render करता है, जो DPI (dots per inch) में measured है। यह single number तय करता है कि आपका text sharp रहता है या mush बन जाता है।
+
+  <ul>
+    <li><strong>72-96 DPI</strong> - screen-only। एक thumbnail या quick preview के लिए ठीक, small text वाली किसी भी चीज़ के लिए too soft।</li>
+    <li><strong>150 DPI</strong> - screens पर sharing के लिए sweet spot। Text एक phone या monitor पर cleanly read होता है और file light रहती है।</li>
+    <li><strong>300 DPI</strong> - print quality। इसे use करें अगर image print होगी या zoom की जाएगी। Files बड़ी होती हैं, लेकिन text और fine lines crisp रहती हैं।</li>
+  </ul>
+
+  <blockquote class="callout">अगर आपका JPG blurry दिखता है, आपने almost certainly too low DPI पर export किया। Screens के लिए 150 पर या print के लिए 300 पर re-export करें - आप एक low-resolution image को बाद में sharpen नहीं कर सकते।</blockquote>
+
+  एक multi-page PDF हर page के लिए एक JPG बन जाती है। पहले से तय करें कि आपको हर page चाहिए या सिर्फ़ एक - एक 40-page report को 40 images में export करना जब आपको सिर्फ़ page 3 चाहिए था, यहाँ सबसे common time-waster है। ज़्यादातर tools converting से पहले आपको एक page range pick करने देते हैं।
+
+  <h2>JPG या PNG? यह आपके सोचने से ज़्यादा matter करता है</h2>
+
+  JPG और PNG differently compress करते हैं, और documents के लिए यह difference visible है। JPG lossy compression use करता है जो photographs के लिए बढ़िया है लेकिन white पर sharp black text के आसपास faint "halos" create करता है - exactly वो content जिससे ज़्यादातर documents बने होते हैं। PNG lossless है और text edges को razor-clean रखता है।
+
+  <figure><img src="/static/blog/images/tool-pdf-to-jpg-options.jpg" alt="PDF to JPG output options जिनमें page range और resolution शामिल हैं" width="1280" height="800" loading="lazy"></figure>
+
+  Practical rule: अगर page ज़्यादातर text या line art है (contracts, invoices, diagrams), PNG prefer करें। अगर यह ज़्यादातर एक photograph या rich graphic है, JPG बिना किसी visible loss के बहुत छोटी file देता है। जब एक tool सिर्फ़ JPG output करता है, text halos compensate करने के लिए DPI एक notch ऊपर bump करें।
+
+  <h2>JPG वापस PDF में: order रखें</h2>
+
+  Images से एक PDF rebuild करना वो जगह है जहाँ चीज़ें quietly गलत होती हैं। Trap filename ordering है। अगर आपके photos <code>IMG_2, IMG_10, IMG_1</code> named हैं, कई tools उन्हें alphabetically sort करते हैं, जो <code>IMG_10</code> को <code>IMG_2</code> के पहले रख देता है। आपके pages shuffle हो जाते हैं।
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="Convertica JPG to PDF tool कई images को एक document में combine करने के लिए" width="1280" height="800" loading="lazy"></figure>
+
+  बिना surprises के <a href="/hi/jpg-to-pdf/">images को एक PDF में combine</a> करने के लिए:
+
+  <ol>
+    <li>सभी images को एक-एक करके नहीं, एक साथ upload करें।</li>
+    <li>Export करने से पहले preview में order check करें। जो भी sequence से बाहर landed हुई, उन thumbnails को fix करने के लिए drag करें।</li>
+    <li>अगर images vary करती हैं तो एक consistent page size set करें - नहीं तो एक portrait scan और एक landscape photo mismatched pages produce करते हैं।</li>
+    <li>Export करें, फिर confirm करने के लिए result एक बार scroll करें कि sequence correctly read होती है।</li>
+  </ol>
+
+  यह receipts के ढेर, एक multi-page contract जिसे आपने photograph किया, या एक बच्चे के homework को एक single file में बदलने का fast तरीका है जिसे एक teacher या accountant actually खोल सके।
+
+  <h2>Common scenarios</h2>
+
+  <h3>एक PDF page को marketplace या social app पर post करना</h3>
+  <p>Listings और social platforms PDFs reject करते हैं लेकिन images accept करते हैं। जो page आपको चाहिए सिर्फ़ उसे 150 DPI पर JPG के रूप में export करें, और यह किसी भी photo की तरह upload होता है। बहुत सारे text वाले flyer के लिए, PNG use करें ताकि जब कोई zoom in करे तब small print legible रहे।</p>
+
+  <h3>एक document की phone photos को PDF में बदलना</h3>
+  <p>हर page को even light में photograph करें, उन्हें एक साथ upload करें, preview में order fix करें, और export करें। अगर photos बड़ी हैं, resulting PDF heavy हो सकती है - इसे email-friendly बनाने के लिए बाद में <a href="/hi/pdf-organize/compress/">PDF compress</a> करें।</p>
+
+  <h3>एक scan को ऐसी app से भेजना जो सिर्फ़ images लेती है</h3>
+  <p>कुछ chat और upload forms JPG accept करते हैं लेकिन PDF नहीं। हर page को 150 DPI पर JPG में convert करें और images भेजें, या बाद में rebuild करें अगर recipient को एक single document चाहिए।</p>
+
+  <h2>Quality और file-size tips</h2>
+
+  <ul>
+    <li>PDF → JPG → PDF जाना हर बार content को re-compress करता है। एक file को बार-बार round-trip न करें; original PDF रखें और ज़रूरत के अनुसार उससे images export करें।</li>
+    <li>Phone से सीधे आने वाली photos अक्सर 4000 pixels wide होती हैं - एक document की ज़रूरत से कहीं ज़्यादा। उन्हें पहले एक PDF में convert करना, फिर compress करना, usually बिना किसी visible loss के file को dramatically shrink कर देता है।</li>
+    <li>अगर आपने scans से एक PDF rebuild किया और अब text search या copy करना है, उस पर OCR run करें - text की images तब तक searchable नहीं होतीं जब तक आप ऐसा न करें।</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>मैं quality खोए बिना PDF को JPG में कैसे convert करूँ?</h3>
+  <p>Print के लिए 300 DPI पर या screens के लिए 150 DPI पर export करें। PDF-to-JPG में quality loss too low resolution choose करने से आता है, conversion से नहीं। Text-heavy pages के लिए, PNG edges को JPG से बेहतर preserve करता है।</p>
+
+  <h3>Documents के लिए कौन बेहतर है, JPG या PNG?</h3>
+  <p>Text और line art के लिए PNG, क्योंकि इसका lossless compression edges sharp रखता है। Photographs के लिए JPG, क्योंकि यह continuous-tone images पर बिना किसी visible loss के बहुत छोटी files produce करता है।</p>
+
+  <h3>मैं कई JPGs को सही order में एक PDF में कैसे combine करूँ?</h3>
+  <p>सभी images को एक साथ upload करें, फिर export करने से पहले preview में thumbnails check और drag करें। Filename order पर भरोसा न करें - alphabetical sorting IMG_10 को IMG_2 के पहले रखती है और आपके pages scramble कर देती है।</p>
+
+  <h3>Photos से बनाने के बाद मेरा PDF इतना huge क्यों है?</h3>
+  <p>Phone photos बहुत high resolution होती हैं, इसलिए उनसे बनी एक PDF वह size inherit करती है। Finished PDF को compress करें, या अगर आपको print resolution नहीं चाहिए तो converting से पहले images को downscale करें।</p>
+
+  <h3>क्या मैं एक PDF का सिर्फ़ एक page एक image में convert कर सकता हूँ?</h3>
+  <p>हाँ। Converting से पहले एक page range set करें ताकि पूरे document के हर page की एक image के बजाय आपको सिर्फ़ ज़रूरी page मिले।</p>
+
+  <h2>अभी try करें</h2>
+
+  <p>Images की ओर जा रहे हैं? <a href="/hi/pdf-to-jpg/">PDF to JPG tool</a> खोलें। एक document पर वापस आ रहे हैं? सब कुछ order में combine करने के लिए <a href="/hi/jpg-to-pdf/">JPG to PDF</a> use करें - या बाक़ी workflow के लिए <a href="/hi/all-tools/">all PDF tools</a> browse करें।</p>

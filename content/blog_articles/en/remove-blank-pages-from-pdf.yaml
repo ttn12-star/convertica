@@ -1,4 +1,5 @@
 slug: remove-blank-pages-from-pdf
+cover_image: blog/images/cover-remove-blank-pages-from-pdf.jpg
 status: published
 category_slug: how-to-guides
 relevant_tool: remove_pages
@@ -38,7 +39,7 @@ content_en: |
 
   Removing them takes seconds in a browser. You don't need Adobe Acrobat. You don't need to print and re-scan. You don't need to retype anything. You just need a tool that lets you click the pages you don't want and download what is left.
 
-  <figure><img src="/static/blog/images/tool-organize.jpg" alt="Convertica organize PDF tool showing thumbnails with blank pages selected for removal" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-remove-pages-hero.jpg" alt="Convertica organize PDF tool showing thumbnails with blank pages selected for removal" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Where blank pages come from</h2>
 
@@ -57,7 +58,7 @@ content_en: |
 
   This is the right approach when you can't easily predict which pages are blank without looking.
 
-  <figure><img src="/static/blog/images/tool-organize.jpg" alt="Click thumbnails of blank PDF pages to remove them in one pass" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-remove-pages-options.jpg" alt="Click thumbnails of blank PDF pages to remove them in one pass" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Open the <a href="/en/pdf-edit/rotate/">remove pages from PDF</a> tool and upload your file.</li>

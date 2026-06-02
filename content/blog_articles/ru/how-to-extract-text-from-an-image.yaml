@@ -14,6 +14,8 @@ content_ru: |
 
   <h2>Когда нужен OCR (а когда нет)</h2>
 
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Экран загрузки инструмента Convertica «Изображение в текст» (OCR)" width="1280" height="800" loading="lazy"></figure>
+
   Если вы уже можете выделять отдельные слова курсором, текст «живой» — просто скопируйте его, OCR не нужен. OCR нужен, когда слова являются частью самого изображения:
 
   <ul>
@@ -24,6 +26,8 @@ content_ru: |
   </ul>
 
   <h2>Как извлечь текст из изображения</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-options.jpg" alt="Опции извлечения текста из изображения с помощью OCR" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Откройте инструмент <a href="/ru/image/to-text/">«Изображение в текст»</a> и загрузите своё изображение (JPG, PNG, WebP, HEIC, BMP, TIFF или GIF). Можно перетащить прямо на страницу.</li>

@@ -10,6 +10,8 @@ content_hi: |
   यह उस तरह की naming convention के लिए reference guide है जो years तक quietly pay off करती है। कुछ fancy नहीं, कोई tool नहीं चाहिए, बस कुछ patterns जिन्हें आप अगली file save करते समय use करना शुरू कर सकते हैं।
 
   <h2>Folders से ज़्यादा Naming क्यों matter करता है</h2>
+
+  <figure><img src="/static/blog/images/tool-all-tools-hero.jpg" alt="सभी Convertica PDF tools एक ही जगह पर" width="1280" height="800" loading="lazy"></figure>
   <p>Filenames scale पर जीतने के तीन reasons हैं:</p>
   <ul>
     <li><strong>Search hierarchy को beat करता है.</strong> कुछ hundred files cross करने के बाद, आप browse नहीं करते - आप search करते हैं। Cloud storage search, OS search, और email search सब filenames पहले index करते हैं। Descriptive name instantly मिलता है; generic वाला invisible है।</li>

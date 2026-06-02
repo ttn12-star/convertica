@@ -1,4 +1,5 @@
 slug: split-bank-statement-pdf-by-page
+cover_image: blog/images/cover-split-bank-statement-pdf-by-page.jpg
 status: published
 category_slug: use-cases
 relevant_tool: split_pdf
@@ -35,7 +36,7 @@ content_en: |
 
   Splitting the file once, into properly named monthly PDFs, solves both problems. This guide covers when to <a href="/en/pdf-organize/split/">split PDF online</a> by page range versus extracting specific pages, the privacy steps most tutorials skip, and a naming convention that makes the result findable a year later.
 
-  <figure><img src="/static/blog/images/tool-split.jpg" alt="Convertica split tool dividing a bank statement PDF into monthly files" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-hero.jpg" alt="Convertica split tool dividing a bank statement PDF into monthly files" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Why split a bank statement at all</h2>
 
@@ -106,7 +107,7 @@ content_en: |
 
   Splitting a statement doesn't automatically make it safe to share. A monthly PDF still contains your account number, balance, and every transaction in that period. Run through this checklist before you attach it to any email:
 
-  <figure><img src="/static/blog/images/tool-protect.jpg" alt="Convertica password-protect tool used before emailing sensitive statements" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-options.jpg" alt="Convertica password-protect tool used before emailing sensitive statements" width="1280" height="800" loading="lazy"></figure>
 
   <ul>
     <li><strong>Redact unrelated transactions.</strong> If the lender only needs to see salary and rent, black out the rest. The redaction must flatten the PDF (replace pixels), not just cover them with a black box that can be removed by anyone with a free PDF editor and ten seconds.</li>

@@ -9,7 +9,7 @@ content_pl: |
 
   W tym miejscu wchodzi OCR. Optyczne rozpoznawanie znaków odczytuje piksele i odtwarza je jako prawdziwe litery, słowa i akapity. Dobrze zrobione daje edytowalny .docx. Źle zrobione zostawia bełkot i godzinę poprawiania przecinków, spacji i pomyłek typu rn-zamiast-m. Różnica tkwi głównie w pliku źródłowym i kilku rzeczach, na które masz wpływ.
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Konwerter Convertica PDF do Word przyjmujący zeskanowany dokument do OCR" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Konwerter Convertica PDF do Word przyjmujący zeskanowany dokument do OCR" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Jak rozpoznać, czy twój PDF to skan</h2>
 
@@ -39,7 +39,7 @@ content_pl: |
 
   <h2>Krok po kroku: zeskanowany PDF do Worda</h2>
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Konwersja PDF-do-Word z OCR zamieniająca skan w edytowalny .docx" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-options.jpg" alt="Konwersja PDF-do-Word z OCR zamieniająca skan w edytowalny .docx" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Otwórz narzędzie <a href="/pl/pdf-to-word/">konwersji PDF do Word</a> i wgraj swój skan. Narzędzie samo wykrywa, że potrzeba OCR, kiedy zaznaczanie tekstu nic nie zwraca.</li>

@@ -9,7 +9,7 @@ content_pl: |
 
   Dobra wiadomość: praktycznie każdy zbyt ciężki PDF da się zmieścić w limicie w niecałe dwie minuty, jeśli wiadomo, jak się do tego zabrać. W tym poradniku znajdziesz trzy metody, które naprawdę działają, realistyczne oczekiwania co do rozmiaru zależnie od typu dokumentu oraz moment, w którym warto odpuścić maila i wysłać link z chmury. W przykładach wykorzystamy <a href="/pl/pdf-organize/compress/">darmowy kompresor PDF od Convertica</a>, ale zasady stosują się do każdego narzędzia.
 
-  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Interfejs kompresora PDF Convertica z polem przesyłania pliku i wyborem presetu" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-compress-hero.jpg" alt="Interfejs kompresora PDF Convertica z polem przesyłania pliku i wyborem presetu" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Realne limity załączników w 2026 roku</h2>
 
@@ -60,7 +60,7 @@ content_pl: |
 
   Dla 80% przeważających PDF-ów zwykła kompresja jest właściwą odpowiedzią. Przepisuje plik z mądrzejszą obsługą obrazów i fontów, nie ruszając ani liczby stron, ani treści tekstu.
 
-  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Krok po kroku kompresja PDF z wyborem presetu: low, medium, high" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="Krok po kroku kompresja PDF z wyborem presetu: low, medium, high" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Otwórz <a href="/pl/pdf-organize/compress/">darmowy kompresor PDF</a> Convertica w dowolnej przeglądarce.</li>

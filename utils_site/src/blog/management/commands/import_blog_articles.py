@@ -11,9 +11,12 @@ Layout expected on disk:
 
 Base YAML fields (`en`):
 
-    slug, status, category_slug, relevant_tool,
+    slug, status, category_slug, relevant_tool, cover_image,
     title_en, meta_title_en, meta_description_en, meta_keywords_en,
     excerpt_en, ai_metadata (dict), content_en (HTML).
+
+`cover_image` is a static-relative path (e.g. "blog/images/cover-foo.jpg")
+served from /static/; it is preferred over the /media/-backed featured_image.
 
 Translation YAML fields (`<lang>` other than `en`):
 
@@ -197,6 +200,7 @@ class Command(BaseCommand):
             "relevant_tool": relevant_tool,
             "category": category,
             "status": status,
+            "cover_image": (data.get("cover_image") or "").strip() or None,
         }
 
         article = Article.objects.filter(slug=slug).first()

@@ -1,4 +1,5 @@
 slug: rotate-pdf-pages-permanently
+cover_image: blog/images/cover-rotate-pdf-pages-permanently.jpg
 status: published
 category_slug: how-to-guides
 relevant_tool: rotate_pdf
@@ -38,7 +39,7 @@ content_en: |
 
   This guide is about the kind that sticks. You'll end up with a PDF that looks the same in Chrome, Preview, Acrobat, on someone's phone, and on the printer that finally spits it out. No one downstream will need to rotate it themselves.
 
-  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="Convertica rotate PDF tool with thumbnail grid and rotation direction controls" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-rotate-hero.jpg" alt="Convertica rotate PDF tool with thumbnail grid and rotation direction controls" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Why your rotation keeps disappearing</h2>
 
@@ -62,7 +63,7 @@ content_en: |
 
   This is the right approach when an entire scan came out sideways, or when someone exported a landscape report as portrait by accident.
 
-  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="Rotate every page 90 degrees clockwise in one batch action" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-rotate-options.jpg" alt="Rotate every page 90 degrees clockwise in one batch action" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Open the rotate tool and drop your PDF in. Files stay on the upload session only as long as needed for processing.</li>

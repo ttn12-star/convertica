@@ -9,7 +9,7 @@ content_hi: |
 
   File को एक बार, properly named monthly PDFs में split करना दोनों problems solve करता है। यह guide cover करती है कि कब page range के बजाय specific pages extract करते हुए <a href="/hi/pdf-organize/split/">PDF online split</a> करें, privacy steps जो ज़्यादातर tutorials skip करते हैं, और एक naming convention जो result को साल बाद findable बनाती है।
 
-  <figure><img src="/static/blog/images/tool-split.jpg" alt="Convertica split tool जो bank statement PDF को monthly files में divide कर रहा है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-hero.jpg" alt="Convertica split tool जो bank statement PDF को monthly files में divide कर रहा है" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Bank statement क्यों split करें</h2>
 
@@ -80,7 +80,7 @@ content_hi: |
 
   Statement splitting automatically इसे share करने के लिए safe नहीं बनाती। एक monthly PDF अब भी आपका account number, balance, और उस period में हर transaction रखता है। किसी भी email में attach करने से पहले इस checklist के through जाएँ:
 
-  <figure><img src="/static/blog/images/tool-protect.jpg" alt="Sensitive statements emailing से पहले Convertica password-protect tool used" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-options.jpg" alt="Sensitive statements emailing से पहले Convertica password-protect tool used" width="1280" height="800" loading="lazy"></figure>
 
   <ul>
     <li><strong>Unrelated transactions redact करें.</strong> अगर lender को सिर्फ़ salary और rent देखना है, बाक़ी black out करें। Redaction को PDF flatten करना (pixels replace) चाहिए, सिर्फ़ उन्हें black box से cover नहीं करना जिसे कोई भी free PDF editor और दस seconds वाला remove कर सकता है।</li>

@@ -10,6 +10,8 @@ content_pl: |
   Ten poradnik pokazuje kroki konfiguracji, które oddzielają schludny, drukowalny PDF od arkuszowej katastrofy, oraz prostą ścieżkę „wgraj i gotowe", kiedy plik jest już dobrze przygotowany.
 
   <h2>Dlaczego Excel-do-PDF często idzie nie tak</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Konwerter Convertica Excel na PDF z obszarem wgrywania pliku" width="1280" height="800" loading="lazy"></figure>
   <p>Excel nie traktuje arkusza jak „dokumentu" w sensie, w jakim robi to Word. Nie ma stałej strony. Siatka jest praktycznie nieskończona, a eksport do PDF musi sam zdecydować, gdzie ją pociąć. Domyślnie te decyzje nie są zbyt mądre:</p>
   <ul>
     <li>Domyślny obszar wydruku obejmuje cały zakres używanych komórek, łącznie z samotną komórką w kolumnie AZ, do której kiedyś coś wpisałeś i zapomniałeś.</li>
@@ -36,6 +38,8 @@ content_pl: |
   <p>Kolumny, które mogą się jeszcze przydać, ukryj (prawy klik na literze kolumny, Ukryj). Te, o których wiesz, że są śmieciem, usuń. Ukryte kolumny są wykluczone z obszaru wydruku, o ile obszar ustawisz po ukryciu. Jeśli najpierw ustawisz obszar, a potem ukryjesz kolumny, zachowanie różni się między wersjami Excela — dla pewności ustaw obszar ponownie po każdej rundzie ukrywania/odkrywania.</p>
 
   <h2>Krok po kroku: konwersja w Convertica</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Kroki i opcje konwersji Excela na PDF w Convertica" width="1280" height="800" loading="lazy"></figure>
   <p>Z arkuszem już skonfigurowanym sama konwersja jest łatwa. Możesz <a href="/pl/word-to-pdf/">skonwertować Excel do PDF</a> w trzech krokach:</p>
   <ol>
     <li><strong>Wgraj plik .xlsx.</strong> Przeciągnij i upuść do pola wgrywania. Starsze pliki .xls też działają.</li>

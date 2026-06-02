@@ -14,6 +14,8 @@ content_pl: |
 
   <h2>Kiedy potrzebujesz OCR (a kiedy nie)</h2>
 
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Ekran wgrywania narzędzia Convertica Obraz na Tekst OCR" width="1280" height="800" loading="lazy"></figure>
+
   Jeśli możesz już zaznaczać poszczególne słowa kursorem, tekst jest „żywy" — po prostu go skopiuj, OCR nie jest potrzebny. OCR jest potrzebny, gdy słowa są częścią samego obrazu:
 
   <ul>
@@ -24,6 +26,8 @@ content_pl: |
   </ul>
 
   <h2>Jak wyodrębnić tekst z obrazu</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-options.jpg" alt="Opcje wyodrębniania tekstu z obrazu za pomocą OCR" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Otwórz narzędzie <a href="/pl/image/to-text/">Obraz na tekst</a> i wgraj swój obraz (JPG, PNG, WebP, HEIC, BMP, TIFF lub GIF). Możesz przeciągnąć go bezpośrednio na stronę.</li>

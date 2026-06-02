@@ -1,4 +1,5 @@
 slug: convert-scanned-pdf-to-editable-word
+cover_image: blog/images/cover-convert-scanned-pdf-to-editable-word.jpg
 status: published
 category_slug: how-to-guides
 relevant_tool: pdf_to_word
@@ -39,7 +40,7 @@ content_en: |
 
   That's where OCR comes in. Optical character recognition reads the pixels and reconstructs them as actual letters, words, and paragraphs. Done well, you get an editable .docx. Done badly, you get garbled text and have to clean up commas, spaces, and rn-versus-m mistakes for an hour. The difference is mostly in the source file and a few things you can control.
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Convertica PDF to Word converter accepting a scanned document for OCR" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Convertica PDF to Word converter accepting a scanned document for OCR" width="1280" height="800" loading="lazy"></figure>
 
   <h2>How to tell if your PDF is scanned</h2>
 
@@ -69,7 +70,7 @@ content_en: |
 
   <h2>Step-by-step: scanned PDF to Word</h2>
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="OCR-powered PDF-to-Word conversion turning a scan into an editable .docx" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-options.jpg" alt="OCR-powered PDF-to-Word conversion turning a scan into an editable .docx" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Open the <a href="/en/pdf-to-word/">convert PDF to Word</a> tool and upload your scan. The tool detects whether OCR is needed automatically when text selection returns empty.</li>

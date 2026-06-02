@@ -28,6 +28,8 @@ content_hi: |
   <p>वो two-second test किसी भी feature comparison से ज़्यादा time बचाएगा।</p>
 
   <h2>Standard PDF-to-Word: कब काम करता है</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Editable documents के लिए Convertica PDF to Word converter" width="1280" height="800" loading="lazy"></figure>
   <p>Digital PDFs के लिए, standard <a href="/hi/pdf-to-word/">PDF को Word में convert</a> path right choice है। Tool embedded text, fonts, और structural cues read करता है, और उन्हें .docx file के अंदर rebuild करता है। Expect करें:</p>
   <ul>
     <li>Text पर खुद Near-100% accuracy - characters already digital हैं, इसलिए कुछ guess नहीं करना।</li>
@@ -38,6 +40,8 @@ content_hi: |
   <p>Remaining 1-2% issues usually layout-related होते हैं: एक footer जो paragraph में pull हुआ, एक two-column page जो एक long column के रूप में आया, एक complex table जो थोड़ा drift हुआ। Easy cleanup, rewrite नहीं।</p>
 
   <h2>OCR-powered conversion: कब चाहिए</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Convertica OCR tool एक scanned image को text में बदलते हुए" width="1280" height="800" loading="lazy"></figure>
   <p>Scanned PDFs के लिए, standard conversion appear तो होगा work होगा लेकिन ऐसा Word document produce करेगा जिसमें कोई text नहीं। Tool को extract करने के लिए कोई text नहीं मिलता क्योंकि कुछ है ही नहीं - बस images. आपको OCR चाहिए, optical character recognition, जो images देखता है और letter shapes recognise करके text reconstruct करता है।</p>
   <p>Cases जहाँ OCR mandatory है:</p>
   <ul>

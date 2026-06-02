@@ -1,0 +1,91 @@
+slug: add-page-numbers-to-pdf
+title_es: "Cómo añadir números de página a un PDF (y saltarte la portada)"
+meta_title_es: "Añadir números de página a un PDF - Gratis en línea | Convertica"
+meta_description_es: "Añade números de página a cualquier PDF en segundos: elige posición y formato, empieza desde cualquier número y sáltate la portada para que la numeración empiece donde debe."
+meta_keywords_es: "añadir números de página a pdf, numerar páginas pdf, numeración de páginas pdf, numeración bates pdf, números de página pdf gratis, saltar numeración de portada"
+excerpt_es: "Los números de página parecen triviales hasta que has combinado cinco documentos en un paquete de 60 páginas sin forma de referenciar nada. Aquí tienes cómo añadirlos con limpieza, y cómo empezar a numerar después de la portada, no en ella."
+content_es: |
+  Combinas una carta de presentación, un currículum y tres documentos de referencia en un único PDF para una candidatura, lo envías, y la persona que revisa te responde por correo: «¿Puedes indicarme dónde mencionas el presupuesto?». No hay número de página al que apuntar. Los números de página parecen una ocurrencia tardía de formato justo hasta el momento en que alguien necesita referenciar una página concreta de un documento largo, y entonces su ausencia es genuinamente molesta.
+
+  Añadirlos a un PDF existente lleva unos veinte segundos. Las únicas decisiones que merece la pena pensar son dónde van los números, qué formato adoptan y si la portada debe contarse. Esta guía cubre las tres, además de la variante del mundo legal (numeración Bates) y el caso del paquete combinado donde los números de página importan más.
+
+  <figure><img src="/static/blog/images/tool-page-numbers-hero.jpg" alt="Herramienta de añadir números de página de Convertica con la zona de subida de archivos" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Por qué añadir números después de que el PDF exista</h2>
+
+  Si redactaste el documento en Word o Google Docs, podrías haber añadido los números allí. Pero no es de ahí de donde vienen la mayoría de los problemas de numeración. Vienen de PDF que no escribiste o que no puedes reeditar con facilidad:
+
+  <ul>
+    <li>Un paquete que <a href="/es/pdf-organize/merge/">combinaste a partir de varios archivos</a>, cada uno con su propia numeración o sin ninguna.</li>
+    <li>Un documento escaneado que solo existe como PDF.</li>
+    <li>Un archivo que te envió otra persona y que necesita referencias consistentes antes de una reunión.</li>
+  </ul>
+
+  En todos estos casos, no es práctico reeditar la fuente, así que estampas los números sobre el PDF terminado. Eso es justamente lo que hace una herramienta de numeración de páginas: añade una capa de texto en un margen sin tocar el contenido de la página.
+
+  <h2>Paso a paso: numerar un PDF</h2>
+
+  <figure><img src="/static/blog/images/tool-page-numbers-options.jpg" alt="Opciones de números de página, incluyendo posición, formato y número inicial" width="1280" height="800" loading="lazy"></figure>
+
+  Para <a href="/es/pdf-edit/add-page-numbers/">añadir números de página en línea</a>:
+
+  <ol>
+    <li>Sube el PDF. Una vista previa muestra dónde caerán los números.</li>
+    <li>Elige una posición: abajo en el centro es la opción segura por defecto; abajo a la derecha le va bien a documentos que se encuadernarán por la izquierda.</li>
+    <li>Elige un formato. Un simple «1» es lo más limpio; «Página 1 de 20» le dice al lector cuánto queda; «1 de 20» es el término medio compacto.</li>
+    <li>Define el número inicial y la primera página a numerar (ver más abajo).</li>
+    <li>Aplica y descarga. Desplázate una vez para confirmar que los números quedan despejados del texto existente.</li>
+  </ol>
+
+  <h2>La cuestión de la portada</h2>
+
+  El error más habitual es numerar la portada. Una página de título o un índice normalmente no debería mostrar un «1»: la numeración debería empezar en la primera página de contenido. Las herramientas resuelven esto con dos ajustes separados que la gente suele confundir:
+
+  <ul>
+    <li><strong>Primera página a numerar</strong>: le dice a la herramienta que se salte estampar un número en la página 1 (la portada) y empiece a imprimir desde la página 2.</li>
+    <li><strong>Número inicial</strong>: le dice a la herramienta qué valor imprimir primero. Ponlo en 1 para que la primera página de contenido diga «1», no «2».</li>
+  </ul>
+
+  <blockquote class="callout">Para tener una portada sin número y un contenido que empieza en «1»: sáltate la primera página y pon el número inicial en 1. Ajusta ambos: cambiar solo uno es por lo que la gente acaba con el contenido empezando en la página 2.</blockquote>
+
+  La misma lógica se extiende a documentos con varias páginas de material preliminar. Un informe con una portada y un índice de dos páginas podría saltarse las tres primeras páginas y empezar el recuento impreso en 1 en la página cuatro.
+
+  <h2>Numeración Bates para documentos legales</h2>
+
+  Los bufetes de abogados usan una variante más estricta llamada numeración Bates: un identificador único y secuencial estampado en cada página a lo largo de todo un conjunto de documentos, a menudo con un prefijo como <code>SMITH-000123</code>. Existe para que cualquier página individual de una producción de prueba documental pueda referenciarse sin ambigüedad, incluso entre miles de páginas de archivos distintos. Si estás preparando pruebas o un conjunto de descubrimiento, busca una opción de prefijo y un número de ancho fijo (ceros a la izquierda) para que los identificadores se ordenen y referencien con limpieza. Para documentos cotidianos, la numeración simple es todo lo que necesitas.
+
+  <h2>Numerar un paquete combinado</h2>
+
+  Los números de página se ganan su sueldo sobre todo en documentos combinados. El orden correcto de las operaciones importa: <strong>combina primero, numera después</strong>. Si numeras los archivos individuales y luego los combinas, obtienes tres «página 1» en un mismo paquete. Al numerar después de combinar, todo el documento lleva una única secuencia continua de principio a fin.
+
+  Si más adelante insertas o quitas una página, vuelve a ejecutar la numeración en lugar de editar los números estampados: la herramienta renumerará todo el archivo de forma consistente, mientras que un arreglo manual deja un hueco.
+
+  <h2>Mantener los números legibles</h2>
+
+  <ul>
+    <li><strong>Cuida el margen.</strong> Si el documento ya tiene texto de pie de página, coloca los números en una esquina para que no se solapen.</li>
+    <li><strong>Adapta el tono.</strong> Una fuente pequeña y neutra del mismo color que el cuerpo del texto parece deliberada; un número grande en negrita parece pegado.</li>
+    <li><strong>Revisa las páginas horizontales.</strong> En un archivo de orientación mixta, confirma que el número sigue cayendo en un sitio sensato en las páginas rotadas.</li>
+    <li><strong>Deja espacio para la encuadernación.</strong> Si el documento se va a imprimir y encuadernar, mantén los números lejos del borde de encuadernación.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>¿Cómo añado números de página a un PDF gratis?</h3>
+  <p>Sube el archivo a una herramienta de numeración de páginas, elige posición y formato, define el número inicial y descarga. Añade una capa de texto en el margen sin cambiar el contenido de la página, y no necesita software ni cuenta.</p>
+
+  <h3>¿Cómo empiezo a numerar después de la portada?</h3>
+  <p>Pon la «primera página a numerar» en la página 2 para que la portada quede en blanco, y pon el «número inicial» en 1 para que tu primera página de contenido diga «1». Ajusta ambos ajustes: cambiar solo uno deja el contenido empezando en «2».</p>
+
+  <h3>¿Puedo mostrar «Página 1 de 20» en lugar de solo «1»?</h3>
+  <p>Sí. La mayoría de las herramientas ofrecen un formato que incluye el total de páginas. «Página X de Y» resulta útil en documentos largos porque le dice al lector cuánto queda.</p>
+
+  <h3>¿Debo numerar antes o después de combinar los archivos?</h3>
+  <p>Después. Combina primero los documentos en un único PDF y luego numera el archivo combinado para que lleve una única secuencia continua. Numerar antes de combinar produce varios «página 1».</p>
+
+  <h3>¿Qué es la numeración Bates?</h3>
+  <p>Un esquema de numeración legal que estampa un identificador único y secuencial —a menudo con un prefijo y ceros a la izquierda, como SMITH-000123— en cada página a lo largo de un conjunto de documentos, para que cualquier página pueda referenciarse sin ambigüedad. Usa una herramienta con opción de prefijo y ancho fijo para ello.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Abre la <a href="/es/pdf-edit/add-page-numbers/">herramienta de añadir números de página</a>, define tu posición y página inicial, y estampa una secuencia limpia en segundos. ¿Construyes primero un paquete? <a href="/es/pdf-organize/merge/">Combina tus archivos</a> y luego numera, o navega por <a href="/es/all-tools/">todas las herramientas de PDF</a>.</p>

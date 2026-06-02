@@ -1,0 +1,91 @@
+slug: convert-pdf-to-jpg-and-back
+title_pl: "Jak skonwertować PDF na JPG (i JPG z powrotem na PDF) bez utraty jakości"
+meta_title_pl: "PDF na JPG i z powrotem - za darmo, bez utraty jakości | Convertica"
+meta_description_pl: "Skonwertuj PDF na obrazy JPG i odbuduj PDF ze zdjęć, w prawidłowy sposób. Ustawienia rozdzielczości, kiedy wybrać zamiast tego PNG i jak zachować kolejność stron."
+meta_keywords_pl: "pdf na jpg, jpg na pdf, konwersja pdf na obraz, pdf na jpg za darmo, obrazy na pdf, pdf na jpg wysoka jakość"
+excerpt_pl: "Konwersja PDF na JPG i z powrotem brzmi trywialnie, dopóki tekst nie zrobi się rozmyty albo strony nie wyjdą w złej kolejności. Naprawa to dwa ustawienia, które większość narzędzi chowa: rozdzielczość przy wyjściu i kolejność stron przy powrocie."
+content_pl: |
+  Są dwa codzienne powody, by zamienić PDF w pliki JPG: chcesz opublikować pojedynczą stronę tam, gdzie dozwolone są tylko obrazy — ogłoszenie na giełdzie, post w social mediach, czat — albo musisz wrzucić stronę do slajdu czy dokumentu jako zdjęcie. I jest równie częsta podróż powrotna: masz stos zdjęć z telefonu albo skanów i potrzebujesz, żeby dotarły jako jeden schludny PDF, a nie piętnaście osobnych załączników.
+
+  Oba kierunki są darmowe i zajmują sekundy. To, co dzieli ostry wynik od rozmytego bałaganu w złej kolejności, to dwa ustawienia, które większość konwerterów chowa. Ustaw je dobrze, a już nigdy nie będziesz o tym myśleć.
+
+  <figure><img src="/static/blog/images/tool-pdf-to-jpg-hero.jpg" alt="Konwerter Convertica PDF na JPG z obszarem wgrywania pliku" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>PDF na JPG: decyzja o rozdzielczości</h2>
+
+  Gdy eksportujesz stronę PDF do JPG, narzędzie renderuje stronę jako bitmapę w wybranej rozdzielczości, mierzonej w DPI (punkty na cal). Ta jedna liczba decyduje, czy twój tekst pozostanie ostry, czy zamieni się w papkę.
+
+  <ul>
+    <li><strong>72-96 DPI</strong> — tylko ekran. W porządku do miniatury albo szybkiego podglądu, za miękkie do czegokolwiek z małym tekstem.</li>
+    <li><strong>150 DPI</strong> — złoty środek do udostępniania na ekranach. Tekst czyta się czysto na telefonie albo monitorze, a plik zostaje lekki.</li>
+    <li><strong>300 DPI</strong> — jakość druku. Użyj tego, jeśli obraz będzie drukowany albo powiększany. Pliki robią się większe, ale tekst i cienkie linie pozostają ostre.</li>
+  </ul>
+
+  <blockquote class="callout">Jeśli twój JPG wygląda na rozmyty, niemal na pewno wyeksportowałeś w zbyt niskim DPI. Wyeksportuj ponownie w 150 do ekranów albo 300 do druku — nie da się wyostrzyć obrazu o niskiej rozdzielczości po fakcie.</blockquote>
+
+  Wielostronicowy PDF staje się jednym JPG na stronę. Zdecyduj z góry, czy chcesz każdą stronę, czy tylko jedną — eksport 40-stronicowego raportu do 40 obrazów, gdy potrzebowałeś tylko strony 3, to tu najczęstszy pożeracz czasu. Większość narzędzi pozwala wybrać zakres stron przed konwersją.
+
+  <h2>JPG czy PNG? To ma większe znaczenie, niż myślisz</h2>
+
+  JPG i PNG kompresują się inaczej, a w przypadku dokumentów różnica jest widoczna. JPG używa kompresji stratnej, świetnej do fotografii, ale tworzącej delikatne „aureole" wokół ostrego czarnego tekstu na bieli — dokładnie tej treści, z której składa się większość dokumentów. PNG jest bezstratny i utrzymuje krawędzie tekstu idealnie czyste.
+
+  <figure><img src="/static/blog/images/tool-pdf-to-jpg-options.jpg" alt="Opcje wyjściowe PDF na JPG, w tym zakres stron i rozdzielczość" width="1280" height="800" loading="lazy"></figure>
+
+  Praktyczna zasada: jeśli strona to głównie tekst albo grafika liniowa (umowy, faktury, diagramy), wybierz PNG. Jeśli to głównie fotografia albo bogata grafika, JPG daje dużo mniejszy plik bez widocznej straty. Gdy narzędzie wypuszcza tylko JPG, podbij DPI o oczko, by zrekompensować aureole wokół tekstu.
+
+  <h2>JPG z powrotem na PDF: zachowaj kolejność</h2>
+
+  Odbudowywanie PDF z obrazów to miejsce, gdzie po cichu wszystko idzie nie tak. Pułapką jest sortowanie po nazwie pliku. Jeśli twoje zdjęcia nazywają się <code>IMG_2, IMG_10, IMG_1</code>, wiele narzędzi sortuje je alfabetycznie, co stawia <code>IMG_10</code> przed <code>IMG_2</code>. Twoje strony kończą poprzestawiane.
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="Narzędzie Convertica JPG na PDF do łączenia wielu obrazów w jeden dokument" width="1280" height="800" loading="lazy"></figure>
+
+  Aby <a href="/pl/jpg-to-pdf/">połączyć obrazy w jeden PDF</a> bez niespodzianek:
+
+  <ol>
+    <li>Wgraj wszystkie obrazy naraz, a nie po jednym.</li>
+    <li>Sprawdź kolejność w podglądzie przed eksportem. Przeciągnij miniatury, by poprawić te, które trafiły poza kolejność.</li>
+    <li>Ustaw spójny rozmiar strony, jeśli obrazy się różnią — inaczej pionowy skan i poziome zdjęcie dadzą niepasujące strony.</li>
+    <li>Wyeksportuj, a potem raz przewiń wynik, by potwierdzić, że kolejność czyta się prawidłowo.</li>
+  </ol>
+
+  To szybki sposób, by zamienić stos paragonów, wielostronicową umowę, którą sfotografowałeś, albo pracę domową dziecka w jeden plik, który nauczyciel czy księgowy faktycznie otworzy.
+
+  <h2>Częste scenariusze</h2>
+
+  <h3>Publikowanie jednej strony PDF na giełdzie albo w aplikacji społecznościowej</h3>
+  <p>Ogłoszenia i platformy społecznościowe odrzucają PDF, ale przyjmują obrazy. Wyeksportuj tylko potrzebną stronę w 150 DPI jako JPG, a wgra się jak każde zdjęcie. Do ulotki z dużą ilością tekstu użyj PNG, by drobny druk pozostał czytelny, gdy ktoś przybliży.</p>
+
+  <h3>Zamiana zdjęć dokumentu z telefonu w PDF</h3>
+  <p>Sfotografuj każdą stronę w równym świetle, wgraj je razem, popraw kolejność w podglądzie i wyeksportuj. Jeśli zdjęcia są duże, powstały PDF może być ciężki — <a href="/pl/pdf-organize/compress/">skompresuj PDF</a> potem, by nadawał się do maila.</p>
+
+  <h3>Wysyłanie skanu przez aplikację, która przyjmuje tylko obrazy</h3>
+  <p>Niektóre czaty i formularze przyjmują JPG, ale nie PDF. Skonwertuj każdą stronę na JPG w 150 DPI i wyślij obrazy albo odbuduj później, jeśli odbiorca potrzebuje jednego dokumentu.</p>
+
+  <h2>Wskazówki o jakości i rozmiarze pliku</h2>
+
+  <ul>
+    <li>Przejście PDF → JPG → PDF ponownie kompresuje treść za każdym razem. Nie rób kółek z plikiem wielokrotnie; trzymaj oryginalny PDF i eksportuj z niego obrazy w razie potrzeby.</li>
+    <li>Zdjęcia prosto z telefonu mają często 4000 pikseli szerokości — dużo więcej, niż dokument potrzebuje. Skonwertowanie ich najpierw na PDF, a potem kompresja zwykle dramatycznie zmniejsza plik bez widocznej straty.</li>
+    <li>Jeśli odbudowałeś PDF ze skanów i teraz potrzebujesz przeszukać albo skopiować tekst, puść na nim OCR — obrazy tekstu nie są przeszukiwalne, dopóki tego nie zrobisz.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Jak skonwertować PDF na JPG bez utraty jakości?</h3>
+  <p>Eksportuj w 300 DPI do druku albo 150 DPI do ekranów. Utrata jakości w PDF na JPG bierze się z wyboru zbyt niskiej rozdzielczości, nie z samej konwersji. Dla stron z dużą ilością tekstu PNG zachowuje krawędzie lepiej niż JPG.</p>
+
+  <h3>Co jest lepsze do dokumentów, JPG czy PNG?</h3>
+  <p>PNG do tekstu i grafiki liniowej, bo jego bezstratna kompresja utrzymuje ostre krawędzie. JPG do fotografii, bo daje dużo mniejsze pliki bez widocznej straty na obrazach o ciągłej tonacji.</p>
+
+  <h3>Jak połączyć kilka JPG w jeden PDF w prawidłowej kolejności?</h3>
+  <p>Wgraj wszystkie obrazy razem, a potem sprawdź i przeciągnij miniatury w podglądzie przed eksportem. Nie polegaj na kolejności nazw plików — sortowanie alfabetyczne stawia IMG_10 przed IMG_2 i miesza twoje strony.</p>
+
+  <h3>Dlaczego mój PDF jest ogromny po zrobieniu go ze zdjęć?</h3>
+  <p>Zdjęcia z telefonu mają bardzo wysoką rozdzielczość, więc PDF z nich zbudowany dziedziczy ten rozmiar. Skompresuj gotowy PDF albo zmniejsz obrazy przed konwersją, jeśli nie potrzebujesz rozdzielczości do druku.</p>
+
+  <h3>Czy mogę skonwertować tylko jedną stronę PDF na obraz?</h3>
+  <p>Tak. Ustaw zakres stron przed konwersją, by dostać tylko potrzebną stronę zamiast jednego obrazu na stronę w całym dokumencie.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Wychodzisz do obrazów? Otwórz <a href="/pl/pdf-to-jpg/">narzędzie PDF na JPG</a>. Wracasz do dokumentu? Użyj <a href="/pl/jpg-to-pdf/">JPG na PDF</a>, by połączyć wszystko po kolei — albo przejrzyj <a href="/pl/all-tools/">wszystkie narzędzia PDF</a> do reszty procesu.</p>

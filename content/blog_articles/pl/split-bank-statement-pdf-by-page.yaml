@@ -9,7 +9,7 @@ content_pl: |
 
   Podzielenie pliku raz, na właściwie nazwane PDF-y miesięczne, rozwiązuje oba problemy. Ten poradnik pokazuje, kiedy <a href="/pl/pdf-organize/split/">podzielić PDF online</a> według zakresu stron, a kiedy wyciągnąć konkretne strony, kroki ochrony prywatności pomijane przez większość tutoriali oraz konwencję nazewnictwa, dzięki której wynik znajdziesz po roku.
 
-  <figure><img src="/static/blog/images/tool-split.jpg" alt="Narzędzie Convertica dzielące wyciąg bankowy PDF na pliki miesięczne" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-hero.jpg" alt="Narzędzie Convertica dzielące wyciąg bankowy PDF na pliki miesięczne" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Po co w ogóle dzielić wyciąg bankowy</h2>
 
@@ -80,7 +80,7 @@ content_pl: |
 
   Podzielenie wyciągu nie czyni go automatycznie bezpiecznym do udostępnienia. Miesięczny PDF wciąż zawiera twój numer rachunku, saldo i każdą transakcję z tego okresu. Przejdź przez tę listę, zanim dołączysz go do jakiegokolwiek maila:
 
-  <figure><img src="/static/blog/images/tool-protect.jpg" alt="Narzędzie Convertica do ochrony hasłem używane przed wysyłaniem wrażliwych wyciągów" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-options.jpg" alt="Narzędzie Convertica do ochrony hasłem używane przed wysyłaniem wrażliwych wyciągów" width="1280" height="800" loading="lazy"></figure>
 
   <ul>
     <li><strong>Wymaż niezwiązane transakcje.</strong> Jeśli kredytodawca musi widzieć tylko pensję i czynsz, zatuszuj resztę. Redakcja musi spłaszczyć PDF (zamienić piksele), a nie tylko zakryć je czarnym prostokątem, który każdy z darmowym edytorem PDF zdejmie w dziesięć sekund.</li>
