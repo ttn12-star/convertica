@@ -9,7 +9,7 @@ content_hi: |
 
   यहाँ OCR आता है। Optical character recognition pixels read करता है और उन्हें actual letters, words, और paragraphs के रूप में reconstruct करता है। अच्छे से किया जाए तो आपको editable .docx मिलता है। बुरे से किया जाए तो garbled text मिलता है और आपको एक घंटे commas, spaces, और rn-versus-m mistakes clean up करनी पड़ती हैं। फ़र्क ज़्यादातर source file में है और कुछ चीज़ों में जिन्हें आप control कर सकते हैं।
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Convertica PDF to Word converter जो OCR के लिए scanned document accept कर रहा है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Convertica PDF to Word converter जो OCR के लिए scanned document accept कर रहा है" width="1280" height="800" loading="lazy"></figure>
 
   <h2>कैसे बताएँ कि आपका PDF scanned है</h2>
 
@@ -39,7 +39,7 @@ content_hi: |
 
   <h2>Step-by-step: scanned PDF to Word</h2>
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="OCR-powered PDF-to-Word conversion जो scan को editable .docx में बदल रही है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-options.jpg" alt="OCR-powered PDF-to-Word conversion जो scan को editable .docx में बदल रही है" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li><a href="/hi/pdf-to-word/">PDF को Word में convert</a> tool खोलें और अपना scan upload करें। Tool automatically detect करता है कि OCR ज़रूरी है जब text selection empty return करती है।</li>

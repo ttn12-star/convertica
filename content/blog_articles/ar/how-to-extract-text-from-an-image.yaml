@@ -14,6 +14,8 @@ content_ar: |
 
   <h2>متى تحتاج إلى OCR (ومتى لا تحتاج)</h2>
 
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="شاشة رفع أداة OCR لتحويل الصورة إلى نص من Convertica" width="1280" height="800" loading="lazy"></figure>
+
   إذا كنت تستطيع بالفعل تحديد كلمات فردية بالمؤشر، فالنص "حي" — فقط انسخه، لا حاجة لـ OCR. تحتاج إلى OCR عندما تكون الكلمات جزءا من الصورة نفسها:
 
   <ul>
@@ -24,6 +26,8 @@ content_ar: |
   </ul>
 
   <h2>كيفية استخراج النص من صورة</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-options.jpg" alt="خيارات استخراج النص من صورة باستخدام OCR" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>افتح أداة <a href="/ar/image/to-text/">الصورة إلى نص</a> وارفع صورتك (JPG, PNG, WebP, HEIC, BMP, TIFF, أو GIF). يمكنك سحبها مباشرة إلى الصفحة.</li>

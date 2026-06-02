@@ -1,4 +1,5 @@
 slug: convert-excel-to-pdf-keep-formatting
+cover_image: blog/images/cover-convert-excel-to-pdf-keep-formatting.jpg
 status: published
 category_slug: how-to-guides
 relevant_tool: word_to_pdf
@@ -38,6 +39,8 @@ content_en: |
   This guide covers the setup steps that separate a clean, printable PDF from a spreadsheet disaster, plus the upload-and-go flow when your file is already configured correctly.
 
   <h2>Why Excel-to-PDF often goes wrong</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Convertica Excel to PDF converter with the file upload area" width="1280" height="800" loading="lazy"></figure>
   <p>Excel does not treat your spreadsheet as a "document" the way Word does. There is no fixed page. The grid is essentially infinite, and PDF export has to make decisions about where to slice it. By default, those decisions are not great:</p>
   <ul>
     <li>The default print area is the entire used range, including a lonely cell in column AZ that you typed once and forgot.</li>
@@ -64,6 +67,8 @@ content_en: |
   <p>Hide columns you may need later (right-click column letter, Hide). Delete columns you are sure are scrap. Hidden columns are excluded from the print area as long as you set the print area after hiding. If you set the area first, then hide columns, behaviour can vary by Excel version - re-set the print area after any hide/unhide round to be safe.</p>
 
   <h2>Step-by-step: convert with Convertica</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Excel to PDF conversion steps and options on Convertica" width="1280" height="800" loading="lazy"></figure>
   <p>With the spreadsheet configured, the actual conversion is the easy part. You can <a href="/en/word-to-pdf/">convert Excel to PDF</a> in three steps:</p>
   <ol>
     <li><strong>Upload the .xlsx file.</strong> Drag and drop into the upload box. Older .xls files work too.</li>

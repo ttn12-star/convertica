@@ -9,7 +9,7 @@ content_ru: |
 
   Здесь и нужен OCR. Оптическое распознавание читает пиксели и реконструирует их как настоящие буквы, слова и абзацы. Сделанный аккуратно — даёт редактируемый .docx. Сделанный плохо — даёт мешанину, и вы час правите запятые, пробелы и спутанные «н»/«и». Разница в основном в исходном файле и в нескольких вещах, которые вы можете контролировать.
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="Конвертер PDF в Word (Пдф в Ворд) от Convertica принимает отсканированный документ для OCR" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Конвертер PDF в Word (Пдф в Ворд) от Convertica принимает отсканированный документ для OCR" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Как понять, что у вас сканированный Пдф</h2>
 
@@ -39,7 +39,7 @@ content_ru: |
 
   <h2>Пошагово: сканированный PDF в Word</h2>
 
-  <figure><img src="/static/blog/images/tool-pdf-to-word.jpg" alt="OCR-конвертация PDF в Word превращает скан в редактируемый .docx" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-pdf-to-word-options.jpg" alt="OCR-конвертация PDF в Word превращает скан в редактируемый .docx" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Откройте инструмент <a href="/ru/pdf-to-word/">конвертации PDF в Word</a> и загрузите свой скан. Инструмент сам определяет, нужен ли OCR — по тому, что выделение текста ничего не возвращает.</li>

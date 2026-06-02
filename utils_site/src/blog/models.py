@@ -151,6 +151,20 @@ class Article(models.Model):
         verbose_name=_("Featured Image"),
     )
 
+    # Cover image as a static-relative path (e.g. "blog/images/cover-foo.jpg").
+    # Stored in /static/ (git-tracked + served by nginx/WhiteNoise) instead of
+    # the /media/-backed featured_image, so covers ship with the repo on deploy.
+    cover_image = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        verbose_name=_("Cover Image (static path)"),
+        help_text=_(
+            "Static-relative path under STATIC_URL, e.g. 'blog/images/cover-foo.jpg'. "
+            "Preferred over Featured Image; ships with the repo."
+        ),
+    )
+
     # Relevant tool for this article
     relevant_tool = models.CharField(
         max_length=50,
@@ -218,6 +232,23 @@ class Article(models.Model):
     def get_absolute_url(self):
         """Get absolute URL for the article."""
         return reverse("blog:article_detail", kwargs={"slug": self.slug})
+
+    @property
+    def cover_image_url(self):
+        """Resolved cover URL.
+
+        Prefers the static-path ``cover_image`` (resolved through staticfiles so
+        it picks up the hashed name under ManifestStaticFilesStorage), then falls
+        back to the /media/-backed ``featured_image``. Returns None when neither
+        is set so templates can render the gradient placeholder.
+        """
+        if self.cover_image:
+            from django.templatetags.static import static
+
+            return static(self.cover_image)
+        if self.featured_image:
+            return self.featured_image.url
+        return None
 
     def get_relevant_tool_url(self):
         """Get URL for the relevant tool."""

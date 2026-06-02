@@ -28,6 +28,8 @@ content_pl: |
   <p>Ten dwusekundowy test oszczędzi ci więcej czasu niż jakiekolwiek porównanie funkcji.</p>
 
   <h2>Standardowa konwersja PDF-do-Word: kiedy działa</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Konwerter Convertica PDF na Word do edytowalnych dokumentów" width="1280" height="800" loading="lazy"></figure>
   <p>Dla cyfrowych PDF-ów standardowa ścieżka <a href="/pl/pdf-to-word/">konwersja PDF do Word</a> jest właściwym wyborem. Narzędzie czyta osadzony tekst, fonty i wskazówki strukturalne i odbudowuje je w pliku .docx. Czego się spodziewać:</p>
   <ul>
     <li>Niemal 100% dokładności samego tekstu — znaki są już cyfrowe, więc niczego nie trzeba zgadywać.</li>
@@ -38,6 +40,8 @@ content_pl: |
   <p>Pozostałe 1-2% problemów to zwykle sprawy układu: stopka wciągnięta do akapitu, dwukolumnowa strona wyrzucona jako jedna długa kolumna, skomplikowana tabela lekko rozjechana. Do szybkiej poprawy, nie do napisania od nowa.</p>
 
   <h2>Konwersja z OCR: kiedy jest potrzebna</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Narzędzie OCR Convertica zamieniające zeskanowany obraz w tekst" width="1280" height="800" loading="lazy"></figure>
   <p>Dla skanowanych PDF-ów standardowa konwersja będzie udawała, że działa, i wyprodukuje dokument Worda bez żadnego tekstu. Narzędzie nie znajduje tekstu do wyciągnięcia, bo go nie ma — same obrazy. Potrzebujesz OCR, optycznego rozpoznawania znaków, które patrzy na obrazy i odtwarza tekst, rozpoznając kształty liter.</p>
   <p>Przypadki, w których OCR jest obowiązkowy:</p>
   <ul>

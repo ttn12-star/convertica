@@ -14,6 +14,8 @@ content_hi: |
 
   <h2>OCR कब चाहिए (और कब नहीं)</h2>
 
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Convertica Image to Text OCR tool का upload screen" width="1280" height="800" loading="lazy"></figure>
+
   अगर आप पहले से cursor से individual words highlight कर सकते हैं, text "live" है — बस copy करें, OCR की ज़रूरत नहीं। OCR तब चाहिए जब words image का ही हिस्सा हों:
 
   <ul>
@@ -24,6 +26,8 @@ content_hi: |
   </ul>
 
   <h2>Image से text कैसे extract करें</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-options.jpg" alt="OCR से किसी image से text extract करने के options" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li><a href="/hi/image/to-text/">Image to Text</a> tool खोलें और अपनी image upload करें (JPG, PNG, WebP, HEIC, BMP, TIFF, या GIF)। आप इसे सीधे page पर drag कर सकते हैं।</li>

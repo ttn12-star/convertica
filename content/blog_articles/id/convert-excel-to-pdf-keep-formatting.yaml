@@ -10,6 +10,8 @@ content_id: |
   Panduan ini membahas langkah-langkah pengaturan yang memisahkan PDF yang bersih dan dapat dicetak dari bencana spreadsheet, plus alur unggah-dan-jalan ketika file Anda sudah dikonfigurasi dengan benar.
 
   <h2>Mengapa Excel-ke-PDF sering gagal</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Konverter Excel ke PDF Convertica dengan area unggah file" width="1280" height="800" loading="lazy"></figure>
   <p>Excel tidak memperlakukan spreadsheet Anda sebagai "dokumen" seperti Word. Tidak ada halaman tetap. Grid pada dasarnya tak terbatas, dan ekspor PDF harus membuat keputusan tentang di mana memotongnya. Secara default, keputusan tersebut tidak bagus:</p>
   <ul>
     <li>Print area default adalah seluruh rentang yang digunakan, termasuk satu sel kesepian di kolom AZ yang pernah Anda ketik dan lupa.</li>
@@ -36,6 +38,8 @@ content_id: |
   <p>Sembunyikan kolom yang mungkin Anda butuhkan nanti (klik kanan huruf kolom, Hide). Hapus kolom yang Anda yakini sampah. Kolom tersembunyi dikecualikan dari print area selama Anda mengatur print area setelah menyembunyikan. Jika Anda mengatur area dulu, baru menyembunyikan kolom, perilakunya bisa bervariasi menurut versi Excel - atur ulang print area setelah putaran sembunyi/tampilkan untuk amannya.</p>
 
   <h2>Langkah demi langkah: konversi dengan Convertica</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Langkah dan opsi konversi Excel ke PDF di Convertica" width="1280" height="800" loading="lazy"></figure>
   <p>Dengan spreadsheet sudah dikonfigurasi, konversi sebenarnya adalah bagian mudah. Anda dapat <a href="/id/word-to-pdf/">mengonversi Excel ke PDF</a> dalam tiga langkah:</p>
   <ol>
     <li><strong>Unggah file .xlsx.</strong> Seret dan jatuhkan ke kotak unggah. File .xls lama juga berfungsi.</li>

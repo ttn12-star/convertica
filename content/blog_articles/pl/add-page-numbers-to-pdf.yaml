@@ -1,0 +1,91 @@
+slug: add-page-numbers-to-pdf
+title_pl: "Jak dodać numery stron do PDF (i pominąć stronę tytułową)"
+meta_title_pl: "Dodaj numery stron do PDF - online za darmo | Convertica"
+meta_description_pl: "Dodaj numery stron do dowolnego PDF w sekundy: wybierz pozycję i format, zacznij od dowolnej liczby i pomiń stronę tytułową, by numeracja zaczęła się tam, gdzie powinna."
+meta_keywords_pl: "dodaj numery stron do pdf, numeruj strony pdf, numeracja stron pdf, numeracja batesa pdf, numery stron pdf za darmo, pomiń numerację strony tytułowej"
+excerpt_pl: "Numery stron wydają się trywialne, dopóki nie scalisz pięciu dokumentów w 60-stronicową paczkę bez sposobu, by się do czegokolwiek odwołać. Oto jak dodać je czysto — i jak zacząć numerację po stronie tytułowej, a nie na niej."
+content_pl: |
+  Scalasz list motywacyjny, CV i trzy dokumenty referencyjne w jeden PDF do aplikacji, wysyłasz go, a rekruter odpisuje: „Czy możesz wskazać, gdzie wspominasz o budżecie?". Nie ma numeru strony, na który można wskazać. Numery stron wydają się formatowaniem po fakcie aż do chwili, gdy ktoś potrzebuje odwołać się do konkretnej strony w długim dokumencie — i wtedy ich brak jest naprawdę irytujący.
+
+  Dodanie ich do istniejącego PDF zajmuje jakieś dwadzieścia sekund. Jedyne decyzje warte przemyślenia to gdzie idą numery, jaki przyjmują format i czy stronę tytułową należy liczyć. Ten poradnik obejmuje wszystkie trzy, plus wariant ze świata prawniczego (numeracja Batesa) i przypadek scalonej paczki, gdzie numery stron mają największe znaczenie.
+
+  <figure><img src="/static/blog/images/tool-page-numbers-hero.jpg" alt="Narzędzie Convertica do dodawania numerów stron z obszarem wgrywania pliku" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Po co dodawać numery, gdy PDF już istnieje</h2>
+
+  Jeśli napisałeś dokument w Wordzie albo Google Docs, mogłeś dodać numery tam. Ale nie stamtąd biorą się problemy z numeracją. Biorą się z PDF-ów, których nie napisałeś albo których nie da się łatwo edytować ponownie:
+
+  <ul>
+    <li>Paczka, którą <a href="/pl/pdf-organize/merge/">scaliłeś z kilku plików</a>, każdy z własną numeracją albo żadną.</li>
+    <li>Zeskanowany dokument, który istnieje tylko jako PDF.</li>
+    <li>Plik, który ktoś inny ci przysłał, a który potrzebuje spójnych odwołań przed spotkaniem.</li>
+  </ul>
+
+  We wszystkich tych przypadkach źródła nie da się praktycznie edytować ponownie, więc zamiast tego stemplujesz numery na gotowym PDF. Dokładnie to robi narzędzie do numerowania stron — dodaje warstwę tekstu na marginesie, nie dotykając treści strony.
+
+  <h2>Krok po kroku: ponumeruj PDF</h2>
+
+  <figure><img src="/static/blog/images/tool-page-numbers-options.jpg" alt="Opcje numerów stron, w tym pozycja, format i liczba początkowa" width="1280" height="800" loading="lazy"></figure>
+
+  Aby <a href="/pl/pdf-edit/add-page-numbers/">dodać numery stron online</a>:
+
+  <ol>
+    <li>Wgraj PDF. Podgląd pokazuje, gdzie wylądują numery.</li>
+    <li>Wybierz pozycję — dół-środek to bezpieczne ustawienie domyślne; dół-prawo pasuje do dokumentów, które będą oprawiane po lewej.</li>
+    <li>Wybierz format. Zwykła „1" jest najczystsza; „Strona 1 z 20" mówi czytelnikowi, ile zostało; „1 z 20" to zwarty złoty środek.</li>
+    <li>Ustaw liczbę początkową i pierwszą stronę do numerowania (patrz niżej).</li>
+    <li>Zastosuj i pobierz. Przewiń raz, by potwierdzić, że numery siedzą z dala od istniejącego tekstu.</li>
+  </ol>
+
+  <h2>Kwestia strony tytułowej</h2>
+
+  Najczęstszy błąd to numerowanie strony tytułowej. Strona tytułowa albo spis treści zwykle nie powinny pokazywać „1" — numeracja powinna zacząć się na pierwszej stronie treści. Narzędzia obsługują to dwoma osobnymi ustawieniami, które ludzie często mylą:
+
+  <ul>
+    <li><strong>Pierwsza strona do numerowania</strong> — mówi narzędziu, by pominęło stemplowanie numeru na stronie 1 (tytułowej) i zaczęło drukować od strony 2.</li>
+    <li><strong>Liczba początkowa</strong> — mówi narzędziu, jaką wartość wydrukować jako pierwszą. Ustaw na 1, by pierwsza strona treści pokazywała „1", a nie „2".</li>
+  </ul>
+
+  <blockquote class="callout">By uzyskać stronę tytułową bez numeru i treść zaczynającą się od „1": pomiń pierwszą stronę i ustaw liczbę początkową na 1. Dostosuj oba — zmiana tylko jednego to powód, dla którego ludzie kończą z treścią zaczynającą się od strony 2.</blockquote>
+
+  Ta sama logika rozciąga się na dokumenty z kilkoma stronami wstępnymi. Raport ze stroną tytułową i dwustronicowym spisem treści może pominąć pierwsze trzy strony i zacząć drukowany licznik od 1 na stronie czwartej.
+
+  <h2>Numeracja Batesa dla dokumentów prawniczych</h2>
+
+  Kancelarie prawne używają surowszego wariantu zwanego numeracją Batesa — unikalnego, sekwencyjnego identyfikatora ostemplowanego na każdej stronie w całym zestawie dokumentów, często z prefiksem typu <code>SMITH-000123</code>. Istnieje po to, by każdą pojedynczą stronę w postępowaniu dowodowym dało się odwołać jednoznacznie, nawet wśród tysięcy stron z różnych plików. Jeśli przygotowujesz załączniki albo zestaw dowodowy, poszukaj opcji prefiksu i liczby o stałej szerokości (zera wiodące), by identyfikatory sortowały się i odwoływały czysto. Do codziennych dokumentów zwykła numeracja w zupełności wystarczy.
+
+  <h2>Numerowanie scalonej paczki</h2>
+
+  Numery stron zarabiają na siebie najbardziej na scalonych dokumentach. Właściwa kolejność operacji ma znaczenie: <strong>najpierw scal, potem numeruj</strong>. Jeśli ponumerujesz pojedyncze pliki, a potem je scalisz, dostaniesz trzy „strony 1" w jednej paczce. Numerując po scaleniu, cały dokument niesie jedną ciągłą sekwencję od przodu do tyłu.
+
+  Jeśli później wstawisz albo usuniesz stronę, ponownie uruchom numerację, zamiast edytować ostemplowane numery — narzędzie spójnie przenumeruje cały plik, podczas gdy ręczna poprawka zostawia lukę.
+
+  <h2>Utrzymanie czytelności numerów</h2>
+
+  <ul>
+    <li><strong>Uważaj na margines.</strong> Jeśli dokument ma już tekst w stopce, umieść numery w rogu, by się nie nakładały.</li>
+    <li><strong>Dopasuj ton.</strong> Mała, neutralna czcionka w tym samym kolorze co tekst główny wygląda celowo; duży, pogrubiony numer wygląda na doczepiony.</li>
+    <li><strong>Sprawdź strony poziome.</strong> W pliku o mieszanej orientacji potwierdź, że numer nadal ląduje w sensownym miejscu na obróconych stronach.</li>
+    <li><strong>Zostaw miejsce na oprawę.</strong> Jeśli dokument będzie drukowany i oprawiany, trzymaj numery z dala od krawędzi oprawy.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Jak dodać numery stron do PDF za darmo?</h3>
+  <p>Wgraj plik do narzędzia do numerowania stron, wybierz pozycję i format, ustaw liczbę początkową i pobierz. Dodaje warstwę tekstu na marginesie bez zmiany treści strony i nie wymaga oprogramowania ani konta.</p>
+
+  <h3>Jak zacząć numerację po stronie tytułowej?</h3>
+  <p>Ustaw „pierwszą stronę do numerowania" na stronę 2, by strona tytułowa została pusta, i ustaw „liczbę początkową" na 1, by pierwsza strona treści pokazywała „1". Dostosuj oba ustawienia — zmiana tylko jednego zostawia treść zaczynającą się od „2".</p>
+
+  <h3>Czy mogę pokazać „Strona 1 z 20" zamiast samej „1"?</h3>
+  <p>Tak. Większość narzędzi oferuje format zawierający całkowitą liczbę stron. „Strona X z Y" jest pomocna w długich dokumentach, bo mówi czytelnikowi, ile zostało.</p>
+
+  <h3>Powinienem numerować przed czy po scaleniu plików?</h3>
+  <p>Po. Najpierw scal dokumenty w jeden PDF, a potem ponumeruj połączony plik, by niósł jedną ciągłą sekwencję. Numerowanie przed scaleniem daje wiele „stron 1".</p>
+
+  <h3>Czym jest numeracja Batesa?</h3>
+  <p>Prawniczy schemat numeracji, który stempluje unikalny sekwencyjny identyfikator — często z prefiksem i zerami wiodącymi, jak SMITH-000123 — na każdej stronie w całym zestawie dokumentów, by każdą stronę dało się odwołać jednoznacznie. Użyj do tego narzędzia z opcją prefiksu i stałej szerokości.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Otwórz <a href="/pl/pdf-edit/add-page-numbers/">narzędzie do dodawania numerów stron</a>, ustaw pozycję i stronę początkową i ostempluj czystą sekwencję w sekundy. Najpierw budujesz paczkę? <a href="/pl/pdf-organize/merge/">Scal swoje pliki</a>, potem numeruj — albo przejrzyj <a href="/pl/all-tools/">wszystkie narzędzia PDF</a>.</p>

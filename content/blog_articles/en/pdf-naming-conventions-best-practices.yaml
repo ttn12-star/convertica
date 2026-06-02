@@ -1,4 +1,5 @@
 slug: pdf-naming-conventions-best-practices
+cover_image: blog/images/cover-pdf-naming-conventions-best-practices.jpg
 status: published
 category_slug: best-practices
 relevant_tool: all_tools
@@ -39,6 +40,8 @@ content_en: |
   This is a reference guide for the kind of naming convention that quietly pays off for years. Nothing fancy, nothing requiring a tool, just a few patterns you can start using on the next file you save.
 
   <h2>Why naming matters more than folders</h2>
+
+  <figure><img src="/static/blog/images/tool-all-tools-hero.jpg" alt="All Convertica PDF tools in one place" width="1280" height="800" loading="lazy"></figure>
   <p>There are three reasons filenames win at scale:</p>
   <ul>
     <li><strong>Search beats hierarchy.</strong> Once you cross a few hundred files, you do not browse - you search. Cloud storage search, OS search, and email search all index filenames first. A descriptive name is found instantly; a generic one is invisible.</li>

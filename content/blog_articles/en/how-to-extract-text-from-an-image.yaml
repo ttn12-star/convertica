@@ -1,4 +1,5 @@
 slug: how-to-extract-text-from-an-image
+cover_image: blog/images/cover-how-to-extract-text-from-an-image.jpg
 status: published
 category_slug: how-to-guides
 relevant_tool: image_to_text
@@ -41,6 +42,8 @@ content_en: |
 
   <h2>When you need OCR (and when you don't)</h2>
 
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Convertica Image to Text OCR tool upload screen" width="1280" height="800" loading="lazy"></figure>
+
   If you can already highlight individual words with your cursor, the text is "live" - just copy it, no OCR needed. You need OCR when the words are part of the image itself:
 
   <ul>
@@ -51,6 +54,8 @@ content_en: |
   </ul>
 
   <h2>How to extract text from an image</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-options.jpg" alt="Options for extracting text from an image with OCR" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Open the <a href="/en/image/to-text/">Image to Text</a> tool and upload your image (JPG, PNG, WebP, HEIC, BMP, TIFF, or GIF). You can drag it straight onto the page.</li>

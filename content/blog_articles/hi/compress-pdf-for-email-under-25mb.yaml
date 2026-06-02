@@ -9,7 +9,7 @@ content_hi: |
 
   अच्छी खबर: सही approach से लगभग हर oversized PDF को दो मिनट से कम में cap के नीचे लाया जा सकता है। यह guide तीन methods cover करती है जो असल में काम करती हैं, document type के हिसाब से exact size expectations, और कब आपको email छोड़कर cloud link भेजनी चाहिए। हम walkthrough के लिए Convertica के <a href="/hi/pdf-organize/compress/">free PDF compressor</a> का इस्तेमाल करेंगे, लेकिन principles किसी भी tool पर apply होते हैं।
 
-  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Convertica PDF compressor interface जो file upload और preset options दिखा रहा है" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-compress-hero.jpg" alt="Convertica PDF compressor interface जो file upload और preset options दिखा रहा है" width="1280" height="800" loading="lazy"></figure>
 
   <h2>2026 में email attachments के असली limits</h2>
 
@@ -60,7 +60,7 @@ content_hi: |
 
   80% oversized PDFs के लिए, सीधा compression सही answer है। यह file को smarter image और font handling के साथ rewrite करता है, page count या text content बदले बिना।
 
-  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Step-by-step PDF compression जो low, medium और high preset selector के साथ" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="Step-by-step PDF compression जो low, medium और high preset selector के साथ" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>किसी भी browser में Convertica का <a href="/hi/pdf-organize/compress/">free PDF compressor</a> open करें।</li>

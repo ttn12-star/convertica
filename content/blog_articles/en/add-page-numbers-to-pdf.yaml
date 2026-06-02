@@ -1,0 +1,117 @@
+slug: add-page-numbers-to-pdf
+cover_image: blog/images/cover-add-page-numbers-to-pdf.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: add_page_numbers
+title_en: "How to Add Page Numbers to a PDF (and Skip the Cover Page)"
+meta_title_en: "Add Page Numbers to a PDF - Free Online | Convertica"
+meta_description_en: "Add page numbers to any PDF in seconds: choose position and format, start from any number, and skip the cover page so numbering begins where it should."
+meta_keywords_en: "add page numbers to pdf, number pdf pages, pdf page numbering, bates numbering pdf, page numbers pdf free, skip cover page numbering"
+excerpt_en: "Page numbers seem trivial until you've merged five documents into a 60-page bundle with no way to reference anything. Here is how to add them cleanly - and how to start numbering after the cover, not on it."
+ai_metadata:
+  topics:
+    - PDF page numbering
+    - document formatting
+    - Bates numbering
+    - merged document organisation
+    - PDF headers and footers
+  entities:
+    - PDF
+    - Convertica
+    - Bates numbering
+    - Microsoft Word
+  summary: "Walks through adding page numbers to an existing PDF: choosing position and number format, starting from a custom value, and excluding the cover or table-of-contents pages, with notes on Bates numbering for legal use and numbering merged bundles."
+  related_terms:
+    - number pages in pdf
+    - add footer to pdf
+    - pdf page x of y
+    - bates stamp pdf
+    - start page numbers from page 2
+    - page numbers after merging pdf
+  reading_time_minutes: 7
+  target_audience: "Students submitting reports, professionals assembling merged bundles or contracts, and legal or admin staff who need consistent, referenceable page numbers on a finished PDF."
+content_en: |
+  You merge a cover letter, a CV, and three reference documents into one PDF for an application, send it off, and the reviewer emails back: "Can you point me to where you mention the budget?" There's no page number to point to. Page numbers feel like a formatting afterthought right up until the moment someone needs to reference a specific page in a long document - and then their absence is genuinely annoying.
+
+  Adding them to an existing PDF takes about twenty seconds. The only decisions worth thinking about are where the numbers go, what format they take, and whether the cover page should be counted. This guide covers all three, plus the legal-world variant (Bates numbering) and the merged-bundle case where page numbers matter most.
+
+  <figure><img src="/static/blog/images/tool-page-numbers-hero.jpg" alt="Convertica add page numbers tool with the file upload area" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Why add numbers after the PDF exists</h2>
+
+  If you authored the document in Word or Google Docs, you could have added numbers there. But that's not where most numbering problems come from. They come from PDFs you didn't write or can't easily re-edit:
+
+  <ul>
+    <li>A bundle you <a href="/en/pdf-organize/merge/">merged from several files</a>, each with its own numbering or none at all.</li>
+    <li>A scanned document that exists only as a PDF.</li>
+    <li>A file someone else sent you that needs consistent references before a meeting.</li>
+  </ul>
+
+  In all of these, the source isn't practical to re-edit, so you stamp numbers onto the finished PDF instead. That's exactly what a page-numbering tool does - it adds a text layer in a margin without touching the page content.
+
+  <h2>Step-by-step: number a PDF</h2>
+
+  <figure><img src="/static/blog/images/tool-page-numbers-options.jpg" alt="Page number options including position, format, and starting number" width="1280" height="800" loading="lazy"></figure>
+
+  To <a href="/en/pdf-edit/add-page-numbers/">add page numbers online</a>:
+
+  <ol>
+    <li>Upload the PDF. A preview shows where numbers will land.</li>
+    <li>Choose a position - bottom-centre is the safe default; bottom-right suits documents that will be bound on the left.</li>
+    <li>Pick a format. A plain "1" is cleanest; "Page 1 of 20" tells the reader how much is left; "1 of 20" is the compact middle ground.</li>
+    <li>Set the starting number and the first page to number (see below).</li>
+    <li>Apply and download. Scroll through once to confirm the numbers sit clear of the existing text.</li>
+  </ol>
+
+  <h2>The cover-page question</h2>
+
+  The most common mistake is numbering the cover. A title page or a table of contents usually shouldn't show a "1" - numbering should start on the first content page. Tools handle this with two separate settings that people often confuse:
+
+  <ul>
+    <li><strong>First page to number</strong> - tells the tool to skip stamping a number on page 1 (the cover) and begin printing from page 2.</li>
+    <li><strong>Starting number</strong> - tells the tool what value to print first. Set it to 1 so the first content page reads "1", not "2".</li>
+  </ul>
+
+  <blockquote class="callout">To get a cover with no number and content that starts at "1": skip the first page, and set the starting number to 1. Adjust both - changing only one is why people end up with content beginning at page 2.</blockquote>
+
+  The same logic extends to documents with several front-matter pages. A report with a cover and a two-page contents section might skip the first three pages and start the printed count at 1 on page four.
+
+  <h2>Bates numbering for legal documents</h2>
+
+  Law firms use a stricter variant called Bates numbering - a unique, sequential identifier stamped on every page across an entire set of documents, often with a prefix like <code>SMITH-000123</code>. It exists so that any single page in a discovery production can be referenced unambiguously, even across thousands of pages from different files. If you're preparing exhibits or a discovery set, look for a prefix option and a fixed-width number (leading zeros) so the identifiers sort and reference cleanly. For everyday documents, plain numbering is all you need.
+
+  <h2>Numbering a merged bundle</h2>
+
+  Page numbers earn their keep most on merged documents. The right order of operations matters: <strong>merge first, then number</strong>. If you number the individual files and then merge them, you get three "page 1"s in one bundle. By numbering after the merge, the whole document carries one continuous sequence from front to back.
+
+  If you later insert or remove a page, re-run the numbering rather than editing the stamped numbers - the tool will renumber the whole file consistently, where a manual fix leaves a gap.
+
+  <h2>Keeping numbers readable</h2>
+
+  <ul>
+    <li><strong>Mind the margin.</strong> If the document already has footer text, place numbers in a corner so they don't overlap.</li>
+    <li><strong>Match the tone.</strong> A small, neutral font in the same colour as the body text looks deliberate; a large bold number looks bolted on.</li>
+    <li><strong>Check landscape pages.</strong> In a mixed-orientation file, confirm the number still lands in a sensible spot on rotated pages.</li>
+    <li><strong>Leave room for binding.</strong> If the document will be printed and bound, keep numbers away from the binding edge.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>How do I add page numbers to a PDF for free?</h3>
+  <p>Upload the file to a page-numbering tool, choose position and format, set the starting number, and download. It adds a text layer in the margin without changing the page content, and needs no software or account.</p>
+
+  <h3>How do I start numbering after the cover page?</h3>
+  <p>Set the "first page to number" to page 2 so the cover stays blank, and set the "starting number" to 1 so your first content page reads "1". Adjust both settings - changing only one leaves the content starting at "2".</p>
+
+  <h3>Can I show "Page 1 of 20" instead of just "1"?</h3>
+  <p>Yes. Most tools offer a format that includes the total page count. "Page X of Y" is helpful in long documents because it tells the reader how much remains.</p>
+
+  <h3>Should I number before or after merging files?</h3>
+  <p>After. Merge the documents into one PDF first, then number the combined file so it carries a single continuous sequence. Numbering before merging produces multiple "page 1"s.</p>
+
+  <h3>What is Bates numbering?</h3>
+  <p>A legal numbering scheme that stamps a unique sequential identifier - often with a prefix and leading zeros, like SMITH-000123 - on every page across a document set, so any page can be referenced unambiguously. Use a tool with a prefix and fixed-width option for it.</p>
+
+  <h2>Try it now</h2>
+
+  <p>Open the <a href="/en/pdf-edit/add-page-numbers/">add page numbers tool</a>, set your position and starting page, and stamp a clean sequence in seconds. Building a bundle first? <a href="/en/pdf-organize/merge/">Merge your files</a>, then number - or browse <a href="/en/all-tools/">all PDF tools</a>.</p>

@@ -9,7 +9,7 @@ content_es: |
 
   Dividir el archivo una sola vez en PDF mensuales bien nombrados resuelve los dos problemas. Esta guía cubre cuándo conviene <a href="/es/pdf-organize/split/">dividir PDF en línea</a> por rango de páginas frente a extraer páginas concretas, los pasos de privacidad que la mayoría de los tutoriales se saltan y una convención de nombres que hace que el resultado se pueda encontrar un año después.
 
-  <figure><img src="/static/blog/images/tool-split.jpg" alt="Herramienta de división de Convertica dividiendo el PDF de un extracto bancario en archivos mensuales" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-hero.jpg" alt="Herramienta de división de Convertica dividiendo el PDF de un extracto bancario en archivos mensuales" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Por qué dividir un extracto bancario</h2>
 
@@ -80,7 +80,7 @@ content_es: |
 
   Dividir un extracto no lo hace automáticamente seguro de compartir. Un PDF mensual sigue conteniendo tu número de cuenta, saldo y cada transacción del periodo. Repasa esta checklist antes de adjuntarlo a cualquier correo:
 
-  <figure><img src="/static/blog/images/tool-protect.jpg" alt="Herramienta de protección con contraseña de Convertica usada antes de enviar extractos sensibles" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-split-options.jpg" alt="Herramienta de protección con contraseña de Convertica usada antes de enviar extractos sensibles" width="1280" height="800" loading="lazy"></figure>
 
   <ul>
     <li><strong>Redacta las transacciones no relacionadas.</strong> Si el prestamista solo necesita ver el sueldo y el alquiler, tacha el resto. La redacción debe aplanar el PDF (sustituir píxeles), no solo cubrirlo con un rectángulo negro que cualquiera puede quitar con un editor de PDF gratuito en diez segundos.</li>

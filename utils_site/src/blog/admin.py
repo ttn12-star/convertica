@@ -155,7 +155,7 @@ class ArticleAdmin(admin.ModelAdmin):
                 ),
             },
         ),
-        (_("Media"), {"fields": ("featured_image", "preview_image")}),
+        (_("Media"), {"fields": ("cover_image", "featured_image", "preview_image")}),
         (
             _("Statistics"),
             {
@@ -166,11 +166,11 @@ class ArticleAdmin(admin.ModelAdmin):
     )
 
     def preview_image(self, obj):
-        """Display preview of featured image."""
-        if obj.featured_image:
+        """Display preview of the resolved cover (static cover_image or media featured_image)."""
+        if obj.cover_image_url:
             return format_html(
                 '<img src="{}" style="max-width: 200px; max-height: 200px;" />',
-                obj.featured_image.url,
+                obj.cover_image_url,
             )
         return _("No image")
 

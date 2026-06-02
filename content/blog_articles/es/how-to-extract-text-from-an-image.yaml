@@ -14,6 +14,8 @@ content_es: |
 
   <h2>Cuándo necesitas OCR (y cuándo no)</h2>
 
+  <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Pantalla de subida de la herramienta OCR de imagen a texto de Convertica" width="1280" height="800" loading="lazy"></figure>
+
   Si ya puedes resaltar palabras individuales con el cursor, el texto está "activo" — simplemente cópialo, no necesitas OCR. Necesitas OCR cuando las palabras son parte de la imagen en sí:
 
   <ul>
@@ -24,6 +26,8 @@ content_es: |
   </ul>
 
   <h2>Cómo extraer texto de una imagen</h2>
+
+  <figure><img src="/static/blog/images/tool-image-to-text-options.jpg" alt="Opciones para extraer texto de una imagen con OCR" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Abre la herramienta <a href="/es/image/to-text/">Imagen a texto</a> y sube tu imagen (JPG, PNG, WebP, HEIC, BMP, TIFF o GIF). Puedes arrastrarla directamente a la página.</li>

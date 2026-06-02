@@ -1,4 +1,5 @@
 slug: compress-pdf-for-email-under-25mb
+cover_image: blog/images/cover-compress-pdf-for-email-under-25mb.jpg
 status: published
 category_slug: use-cases
 relevant_tool: compress_pdf
@@ -40,7 +41,7 @@ content_en: |
 
   The good news: nearly every oversized PDF can be brought under the cap in under two minutes with the right approach. This guide covers the three methods that actually work, exact size expectations by document type, and when you should give up on email and send a cloud link instead. We'll use Convertica's <a href="/en/pdf-organize/compress/">free PDF compressor</a> for the walkthrough, but the principles apply to any tool.
 
-  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Convertica PDF compressor interface showing file upload and preset options" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-compress-hero.jpg" alt="Convertica PDF compressor interface showing file upload and preset options" width="1280" height="800" loading="lazy"></figure>
 
   <h2>The real email attachment limits in 2026</h2>
 
@@ -91,7 +92,7 @@ content_en: |
 
   For 80% of oversized PDFs, straight compression is the right answer. It rewrites the file with smarter image and font handling without changing the page count or text content.
 
-  <figure><img src="/static/blog/images/tool-compress.jpg" alt="Step-by-step PDF compression with low, medium, and high preset selector" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="Step-by-step PDF compression with low, medium, and high preset selector" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Open Convertica's <a href="/en/pdf-organize/compress/">free PDF compressor</a> in any browser.</li>

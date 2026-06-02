@@ -10,6 +10,8 @@ content_hi: |
   यह guide उन setup steps को cover करती है जो clean, printable PDF को spreadsheet disaster से अलग करते हैं, साथ ही जब आपकी file already correctly configured है तो upload-and-go flow भी।
 
   <h2>Excel-to-PDF अक्सर गलत क्यों जाता है</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Convertica Excel to PDF converter file upload area के साथ" width="1280" height="800" loading="lazy"></figure>
   <p>Excel आपकी spreadsheet को "document" की तरह treat नहीं करता जैसे Word करता है। कोई fixed page नहीं है। Grid essentially infinite है, और PDF export को decisions लेनी पड़ती हैं कि कहाँ slice करना है। Default में, वो decisions great नहीं हैं:</p>
   <ul>
     <li>Default print area पूरा used range है, including column AZ में एक lonely cell जो आपने एक बार type किया था और भूल गए।</li>
@@ -36,6 +38,8 @@ content_hi: |
   <p>उन columns को hide करें जिनकी आपको बाद में ज़रूरत हो सकती है (column letter पर right-click, Hide)। उन columns को delete करें जिनके बारे में sure हैं कि scrap हैं। Hidden columns print area से excluded होते हैं अगर आप hide करने के बाद print area set करें। अगर आप पहले area set करते हैं, फिर columns hide करते हैं, behaviour Excel version से vary हो सकता है - safe रहने के लिए किसी भी hide/unhide round के बाद print area फिर से set करें।</p>
 
   <h2>Step-by-step: Convertica से convert करें</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Convertica पर Excel to PDF conversion steps और options" width="1280" height="800" loading="lazy"></figure>
   <p>Spreadsheet configured होने के साथ, actual conversion easy part है। आप तीन steps में <a href="/hi/word-to-pdf/">Excel को PDF में convert</a> कर सकते हैं:</p>
   <ol>
     <li><strong>.xlsx file upload करें.</strong> Upload box में drag and drop करें। पुरानी .xls files भी काम करती हैं।</li>

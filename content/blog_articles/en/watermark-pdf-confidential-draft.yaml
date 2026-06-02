@@ -1,4 +1,5 @@
 slug: watermark-pdf-confidential-draft
+cover_image: blog/images/cover-watermark-pdf-confidential-draft.jpg
 status: published
 category_slug: use-cases
 relevant_tool: add_watermark
@@ -34,7 +35,7 @@ content_en: |
 
   This guide walks through adding a CONFIDENTIAL or DRAFT watermark to every page of a PDF using Convertica's <a href="/en/pdf-edit/add-watermark/">add watermark to PDF</a> tool, with the settings that look professional in practice. It also covers the part most articles skip: a watermark is a deterrent, not encryption, and when to combine it with a real lock.
 
-  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Convertica watermark tool with text, opacity, and rotation controls" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-watermark-hero.jpg" alt="Convertica watermark tool with text, opacity, and rotation controls" width="1280" height="800" loading="lazy"></figure>
 
   <h2>When you actually need a watermark</h2>
 
@@ -74,7 +75,7 @@ content_en: |
 
   Settings that look professional in practice:
 
-  <figure><img src="/static/blog/images/tool-watermark.jpg" alt="Diagonal CONFIDENTIAL watermark applied across every page of a PDF" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-watermark-options.jpg" alt="Diagonal CONFIDENTIAL watermark applied across every page of a PDF" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Open the <a href="/en/pdf-edit/add-watermark/">add watermark to PDF</a> tool and upload your file.</li>

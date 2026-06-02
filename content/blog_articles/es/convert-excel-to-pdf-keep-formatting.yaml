@@ -10,6 +10,8 @@ content_es: |
   Esta guía cubre los pasos de preparación que separan un PDF limpio y listo para imprimir de un desastre de hoja de cálculo, además del flujo «sube y listo» cuando tu archivo ya está bien configurado.
 
   <h2>Por qué Excel a PDF suele salir mal</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Conversor de Excel a PDF de Convertica con la zona de subida de archivos" width="1280" height="800" loading="lazy"></figure>
   <p>Excel no trata tu hoja de cálculo como un «documento» del modo en que lo hace Word. No hay una página fija. La cuadrícula es básicamente infinita, y la exportación a PDF tiene que decidir por dónde cortarla. Por defecto, esas decisiones no son buenas:</p>
   <ul>
     <li>El área de impresión por defecto es todo el rango usado, incluida una celda solitaria en la columna AZ que escribiste una vez y olvidaste.</li>
@@ -36,6 +38,8 @@ content_es: |
   <p>Oculta las columnas que puedas necesitar después (clic derecho en la letra de columna, Ocultar). Borra las columnas que estés seguro de que son basura. Las columnas ocultas quedan fuera del área de impresión siempre que definas el área de impresión después de ocultar. Si defines el área primero y luego ocultas columnas, el comportamiento puede variar según la versión de Excel: vuelve a definir el área de impresión tras cualquier ronda de ocultar/mostrar para ir sobre seguro.</p>
 
   <h2>Paso a paso: convertir con Convertica</h2>
+
+  <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Pasos y opciones de conversión de Excel a PDF en Convertica" width="1280" height="800" loading="lazy"></figure>
   <p>Con la hoja de cálculo configurada, la conversión real es la parte fácil. Puedes <a href="/es/word-to-pdf/">convertir Excel a PDF</a> en tres pasos:</p>
   <ol>
     <li><strong>Sube el archivo .xlsx.</strong> Arrástralo y suéltalo en la zona de carga. Los archivos antiguos .xls también funcionan.</li>

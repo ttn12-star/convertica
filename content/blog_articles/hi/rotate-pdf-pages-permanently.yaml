@@ -9,7 +9,7 @@ content_hi: |
 
   यह guide उस तरह के बारे में है जो stick करता है। आप ऐसे PDF के साथ end होंगे जो Chrome, Preview, Acrobat, किसी के phone पर, और जो printer आख़िर में spit out करे उस पर same दिखता है। Downstream किसी को इसे खुद rotate करने की ज़रूरत नहीं होगी।
 
-  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="Convertica rotate PDF tool thumbnail grid और rotation direction controls के साथ" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-rotate-hero.jpg" alt="Convertica rotate PDF tool thumbnail grid और rotation direction controls के साथ" width="1280" height="800" loading="lazy"></figure>
 
   <h2>आपका rotation गायब क्यों होता रहता है</h2>
 
@@ -33,7 +33,7 @@ content_hi: |
 
   यह right approach है जब पूरा scan sideways आया, या जब किसी ने accidentally landscape report को portrait के रूप में export किया।
 
-  <figure><img src="/static/blog/images/tool-rotate.jpg" alt="हर page को 90 degrees clockwise एक batch action में rotate करें" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-rotate-options.jpg" alt="हर page को 90 degrees clockwise एक batch action में rotate करें" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
     <li>Rotate tool खोलें और अपना PDF drop करें। Files upload session पर processing के लिए ज़रूरत तक ही stay करती हैं।</li>
