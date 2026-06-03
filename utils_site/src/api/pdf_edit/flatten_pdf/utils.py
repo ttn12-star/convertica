@@ -70,17 +70,16 @@ def flatten_pdf(
 
         try:
             doc = fitz.open(input_path)
-            for page in doc:
-                # Flatten content streams
-                page.clean_contents()
-                # Remove widget annotations (form fields)
-                widgets = list(page.widgets())
-                for widget in widgets:
-                    page.delete_widget(widget)
-                # Remove other annotations
-                annots = list(page.annots())
-                for annot in annots:
-                    page.delete_annot(annot)
+            # bake() flattens interactive form fields (widgets) and annotations
+            # into the static page content while PRESERVING their visual
+            # appearance — filled-in form values and annotation marks stay
+            # visible, the document just becomes non-editable. This matches the
+            # tool's promise that the flattened PDF "looks identical".
+            #
+            # The previous approach (delete_widget / delete_annot) stripped the
+            # interactive layer together with its appearance, silently dropping
+            # any value the user had typed into the form.
+            doc.bake()
 
             doc.save(
                 output_path,
