@@ -361,6 +361,19 @@
 
     {% block extra_js %}{% endblock %}
 
+    <!-- Post-conversion tool rating form (renders only after a conversion, on any tool) -->
+    <script nonce="{{ csp_nonce }}">
+      window.RATING_ENABLED = true;
+      window.RATING_API_URL = "{% url 'v1_feedback' %}";
+      window.RATING_PROMPT = "{% filter escapejs %}{% trans 'How was the result?' %}{% endfilter %}";
+      window.RATING_SUBPROMPT = "{% filter escapejs %}{% trans 'Your feedback helps us improve this tool' %}{% endfilter %}";
+      window.RATING_COMMENT_GOOD = "{% filter escapejs %}{% trans 'What did you like? (optional)' %}{% endfilter %}";
+      window.RATING_COMMENT_BAD = "{% filter escapejs %}{% trans 'What went wrong?' %}{% endfilter %}";
+      window.RATING_SUBMIT = "{% filter escapejs %}{% trans 'Submit feedback' %}{% endfilter %}";
+      window.RATING_THANKS = "{% filter escapejs %}{% trans 'Thank you for your feedback!' %}{% endfilter %}";
+    </script>
+    <script src="{% minified_static 'js/rating-form.js' %}" defer nonce="{{ csp_nonce }}"></script>
+
     <!-- Theme Toggle Script (Premium Dark Mode) -->
     <script src="{% minified_static 'js/theme-toggle.js' %}" defer nonce="{{ csp_nonce }}"></script>
 

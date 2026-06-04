@@ -541,6 +541,15 @@ async function showDownloadButton(blob, originalFileName, containerId = 'downloa
         }
     }
 
+    // Post-conversion rating form (unobtrusive; never blocks the download).
+    // Consume the token after rendering so a later token-less download (e.g. a
+    // batch zip, which carries no X-Convertica-Feedback-Token) can't reuse a
+    // stale token and mis-attribute a rating to the previous operation.
+    if (window.RATING_ENABLED && window.renderRatingForm && window._lastFeedbackToken) {
+        window.renderRatingForm(container, window._lastFeedbackToken, window.CONVERSION_TYPE || '');
+    }
+    window._lastFeedbackToken = null;
+
     // Cleanup blob URL after 10 minutes
     setTimeout(() => {
         URL.revokeObjectURL(blobUrl);
@@ -556,6 +565,8 @@ function hideDownload(containerId = 'downloadContainer') {
     if (container) {
         container.classList.add('hidden');
     }
+    // Drop any stale feedback token when the download UI is torn down.
+    window._lastFeedbackToken = null;
 }
 
 /**
