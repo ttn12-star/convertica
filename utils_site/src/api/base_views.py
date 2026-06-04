@@ -806,7 +806,6 @@ class BaseConversionAPIView(APIView, ABC):
 
         tmp_dir = None
         start_time = None
-        op_run_id = None
         validation_tmp_dir = None
 
         try:
@@ -939,45 +938,9 @@ class BaseConversionAPIView(APIView, ABC):
             return response
 
         except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError) as e:
-            if op_run_id:
-                try:
-                    from django.utils import timezone
-                    from src.users.models import OperationRun
-
-                    now = timezone.now()
-                    duration_ms = None
-                    if start_time:
-                        duration_ms = int((time.time() - start_time) * 1000)
-                    OperationRun.objects.filter(request_id=op_run_id).update(
-                        status="error",
-                        finished_at=now,
-                        duration_ms=duration_ms,
-                        error_type=type(e).__name__,
-                        error_message=str(e)[:2000],
-                    )
-                except Exception as db_exc:
-                    logger.warning("OperationRun 'error' update failed: %s", db_exc)
             return self.handle_conversion_error(e, context, start_time)
 
         except Exception as e:
-            if op_run_id:
-                try:
-                    from django.utils import timezone
-                    from src.users.models import OperationRun
-
-                    now = timezone.now()
-                    duration_ms = None
-                    if start_time:
-                        duration_ms = int((time.time() - start_time) * 1000)
-                    OperationRun.objects.filter(request_id=op_run_id).update(
-                        status="error",
-                        finished_at=now,
-                        duration_ms=duration_ms,
-                        error_type=type(e).__name__,
-                        error_message=str(e)[:2000],
-                    )
-                except Exception as db_exc:
-                    logger.warning("OperationRun 'error' update failed: %s", db_exc)
             return self.handle_conversion_error(e, context, start_time)
 
         finally:

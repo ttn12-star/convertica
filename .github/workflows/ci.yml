@@ -344,11 +344,12 @@ jobs:
       - name: Run tests with coverage
         # DATABASE_* and other env variables are inherited from job-level env
         # Using Django's manage.py test (not pytest) as it's the project's test runner
-        # --parallel=auto enables parallel test execution for faster CI runs
+        # NB: tests run serially (no --parallel) — the suite shares an in-process
+        # cache under TESTING, so serial execution avoids cross-worker cache races.
         # --exclude-tag=slow skips heavy integration tests (LibreOffice/PDF conversions)
         # that take 1-2h and are covered by smoke tests in production
         run: |
-          coverage run --source='utils_site' manage.py test utils_site.src.api utils_site.src.frontend utils_site.src.blog utils_site.src.users --verbosity=2 --exclude-tag=slow
+          coverage run --source='utils_site' manage.py test utils_site.src.api utils_site.src.frontend utils_site.src.blog utils_site.src.users utils_site.src.payments --verbosity=2 --exclude-tag=slow
           coverage xml -o coverage.xml --ignore-errors
           coverage report --ignore-errors
 

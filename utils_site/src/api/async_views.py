@@ -40,6 +40,7 @@ from .conversion_limits import (
 )
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
 from .operation_run_middleware_utils import ensure_request_id
+from .premium_utils import ocr_premium_gate_message
 from .spam_protection import validate_spam_protection
 from .task_tokens import create_task_token, verify_task_token
 
@@ -159,6 +160,28 @@ class AsyncConversionAPIView(APIView, ABC):
             and getattr(request.user, "is_premium", False)
             and request.user.is_subscription_active()
         )
+
+    def check_ocr_premium(
+        self, request: HttpRequest, validated_data: dict, context: dict[str, Any]
+    ) -> Response | None:
+        """Gate OCR behind premium on the async path (mirrors the sync path).
+
+        Returns a 403 Response if a non-premium user requested OCR, else None.
+        Checked before file validation so it applies regardless of file shape.
+        """
+        if not validated_data.get("ocr_enabled", False):
+            return None
+
+        payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+        error_msg = ocr_premium_gate_message(request.user, payments_enabled)
+        if error_msg:
+            log_file_validation_error(
+                logger,
+                "OCR requested by non-premium user (async)",
+                context,
+            )
+            return Response({"error": error_msg}, status=status.HTTP_403_FORBIDDEN)
+        return None
 
     def get_max_file_size(self, request: HttpRequest) -> int:
         """Get max file size dynamically based on user and conversion type."""
@@ -314,6 +337,12 @@ class AsyncConversionAPIView(APIView, ABC):
         # Build context
         ensure_request_id(request)
         context = build_request_context(request, uploaded_file=uploaded_file)
+
+        # OCR is premium-only — gate before file validation so it applies
+        # regardless of file shape (parity with the sync path).
+        ocr_error = self.check_ocr_premium(request, serializer.validated_data, context)
+        if ocr_error is not None:
+            return ocr_error
 
         # Basic validation
         validation_error = self.validate_file_basic(uploaded_file, context)

@@ -132,7 +132,9 @@ class SubscriptionUpdatedTests(HandlerTestCase):
             plan_id=self.monthly.id,
             cancelled=True,
             status="active",
-            ends_at="2026-06-15T00:00:00.000000Z",
+            ends_at=(timezone.now() + timedelta(days=20)).strftime(
+                "%Y-%m-%dT%H:%M:%S.000000Z"
+            ),
         )
         handle_subscription_updated(payload)
         sub = UserSubscription.objects.get(user=self.user)
@@ -159,7 +161,7 @@ class SubscriptionCancelledTests(HandlerTestCase):
         payload = subscription_cancelled_payload(
             user_id=self.user.id,
             plan_id=self.monthly.id,
-            ends_at="2026-05-11T00:00:00.000000Z",
+            ends_at=future.strftime("%Y-%m-%dT%H:%M:%S.000000Z"),
         )
         handle_subscription_cancelled(payload)
         sub = UserSubscription.objects.get(user=self.user)
@@ -184,7 +186,7 @@ class SubscriptionCancelledTests(HandlerTestCase):
         payload = subscription_cancelled_payload(
             user_id=self.user.id,
             plan_id=99999,  # missing
-            ends_at="2026-05-11T00:00:00.000000Z",
+            ends_at=future.strftime("%Y-%m-%dT%H:%M:%S.000000Z"),
         )
         # Should not raise; should still mark cancel_at_period_end
         handle_subscription_cancelled(payload)

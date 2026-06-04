@@ -196,6 +196,12 @@ def update_subscription_daily():
                 ["consecutive_subscription_days", "is_premium"],
                 batch_size=500,
             )
+            # bulk_update bypasses User.save(), so the per-user premium caches
+            # aren't invalidated. Delete them explicitly, otherwise an expired
+            # user keeps premium behaviour until the short cache TTL lapses.
+            for user in users_to_update_expired:
+                cache.delete(f"user_premium_active:{user.id}")
+                cache.delete(f"user_subscription_status_{user.id}")
 
         cache.delete("site_heroes")
         cache.delete("top_subscribers_10")
