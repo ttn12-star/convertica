@@ -39,23 +39,32 @@ class FeedbackAPIView(APIView):
             return _ok()
 
         kind, value = resolved
-        if kind == "r":
-            qs = OperationRun.objects.filter(request_id=value)
+        if kind == "t":
+            # Async path: token references a tracked OperationRun by task_id.
+            op = (
+                OperationRun.objects.filter(task_id=value)
+                .order_by("-created_at")
+                .first()
+            )
+            if op is None or op.status != "success":
+                return _ok()
+            tool_slug = op.conversion_type
+            operation_run = op
         else:
-            qs = OperationRun.objects.filter(task_id=value)
-        op = qs.order_by("-created_at").first()
-        if op is None or op.status != "success":
-            return _ok()
+            # Sync path ("s"): no OperationRun is recorded; the token carries the
+            # tool slug directly. Minting on the success response is the proof.
+            tool_slug = value
+            operation_run = None
 
         try:
             # atomic() so a duplicate (unique constraint) rolls back only this
             # savepoint instead of poisoning the surrounding transaction.
             with transaction.atomic():
                 ToolRating.objects.create(
-                    tool_slug=op.conversion_type,
+                    tool_slug=tool_slug,
                     rating=data["rating"],
                     comment=(data.get("comment") or "").strip(),
-                    operation_run=op,
+                    operation_run=operation_run,
                     user=request.user if request.user.is_authenticated else None,
                     session_key=getattr(request.session, "session_key", "") or "",
                     lang=getattr(request, "LANGUAGE_CODE", "") or "",

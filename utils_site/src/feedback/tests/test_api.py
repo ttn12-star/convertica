@@ -10,9 +10,9 @@ class FeedbackAPITests(TestCase):
     def setUp(self):
         self.client = Client()
         self.op = OperationRun.objects.create(
-            conversion_type="pdf_to_word", status="success", request_id="req-1"
+            conversion_type="pdf_to_word", status="success", task_id="task-1"
         )
-        self.token = create_feedback_token(request_id="req-1")
+        self.token = create_feedback_token(task_id="task-1")
 
     def test_five_star_no_comment_accepted(self):
         resp = self.client.post(URL, {"feedback_token": self.token, "rating": 5})
@@ -35,6 +35,14 @@ class FeedbackAPITests(TestCase):
         self.assertEqual(resp.status_code, 201)
         self.assertEqual(ToolRating.objects.get().comment, "Tables broke")
 
+    def test_sync_slug_token_accepted_without_operation(self):
+        token = create_feedback_token(tool_slug="rotate_pdf")
+        resp = self.client.post(URL, {"feedback_token": token, "rating": 5})
+        self.assertEqual(resp.status_code, 201)
+        rating = ToolRating.objects.get()
+        self.assertEqual(rating.tool_slug, "rotate_pdf")
+        self.assertIsNone(rating.operation_run_id)
+
     def test_forged_token_silently_ignored(self):
         resp = self.client.post(URL, {"feedback_token": "forged", "rating": 5})
         self.assertEqual(resp.status_code, 200)
@@ -42,9 +50,9 @@ class FeedbackAPITests(TestCase):
 
     def test_non_success_operation_ignored(self):
         OperationRun.objects.create(
-            conversion_type="merge_pdf", status="error", request_id="req-2"
+            conversion_type="merge_pdf", status="error", task_id="task-2"
         )
-        token = create_feedback_token(request_id="req-2")
+        token = create_feedback_token(task_id="task-2")
         resp = self.client.post(URL, {"feedback_token": token, "rating": 5})
         self.assertEqual(resp.status_code, 200)
         self.assertFalse(ToolRating.objects.exists())
