@@ -13,6 +13,7 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
 from .models import (
+    APIKey,
     OperationRun,
     Payment,
     RuntimeSetting,
@@ -268,6 +269,63 @@ class SocialAccountInline(admin.TabularInline):
         return False
 
 
+class UserSubscriptionInline(admin.StackedInline):
+    """Read-only view of the user's subscription on the user page.
+
+    Subscriptions are driven by the payment-provider webhooks, so this is
+    informational only — edit via the dedicated UserSubscription admin if ever
+    needed.
+    """
+
+    model = UserSubscription
+    fk_name = "user"
+    extra = 0
+    can_delete = False
+    verbose_name = "Subscription (read-only - managed by webhooks)"
+    verbose_name_plural = "Subscription (read-only - managed by webhooks)"
+    fields = (
+        "plan",
+        "provider",
+        "status",
+        "current_period_start",
+        "current_period_end",
+        "cancel_at_period_end",
+    )
+    readonly_fields = fields
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+
+class PaymentInline(admin.TabularInline):
+    """Read-only list of the user's payments on the user page."""
+
+    model = Payment
+    fk_name = "user"
+    extra = 0
+    can_delete = False
+    verbose_name_plural = "Payments (read-only)"
+    ordering = ("-created_at",)
+    fields = (
+        "created_at",
+        "amount",
+        "status",
+        "provider",
+        "payment_method",
+        "payment_id",
+    )
+    readonly_fields = fields
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+
 class SocialAccountAdmin(admin.ModelAdmin):
     """Custom SocialAccount admin with user information."""
 
@@ -355,7 +413,7 @@ except admin.sites.NotRegistered:
 admin.site.register(SocialAccount, SocialAccountAdmin)
 
 # Add SocialAccount inline to User admin
-UserAdmin.inlines = [SocialAccountInline]
+UserAdmin.inlines = [UserSubscriptionInline, PaymentInline, SocialAccountInline]
 
 
 @admin.register(SubscriptionPlan)
@@ -439,6 +497,7 @@ class PaymentAdmin(admin.ModelAdmin):
     list_filter = ("status", "provider", "payment_method", "created_at", "plan")
     search_fields = ("user__email", "payment_id", "transaction_id")
     ordering = ("-created_at",)
+    list_select_related = ("user", "plan")
 
     fieldsets = (
         ("Payment Info", {"fields": ("user", "plan", "amount", "status")}),
@@ -488,6 +547,7 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
         "provider_customer_id",
     )
     ordering = ("-created_at",)
+    list_select_related = ("user", "plan")
 
     fieldsets = (
         ("Subscription Info", {"fields": ("user", "plan", "status")}),
@@ -532,18 +592,14 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
 @admin.register(OperationRun)
 class OperationRunAdmin(admin.ModelAdmin):
     change_list_template = "admin/users/operationrun/change_list.html"
+    # Trimmed to the columns worth scanning in a list; request_id / task_id /
+    # path / per-phase timestamps remain searchable and on the detail page.
     list_display = (
+        "created_at",
         "conversion_type",
         "status",
         "is_premium",
         "user_email",
-        "request_id",
-        "task_id",
-        "path",
-        "created_at",
-        "queued_at",
-        "started_at",
-        "finished_at",
         "duration_s",
         "queue_wait_s",
         "error_type",
@@ -907,3 +963,68 @@ class WebhookEventAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         # WebhookEvents are only created by webhook handler, never manually
         return False
+
+
+@admin.register(APIKey)
+class APIKeyAdmin(admin.ModelAdmin):
+    """Admin for developer API keys.
+
+    Keys are issued through the API with a one-time secret, so they can't be
+    created here. The stored value is a SHA-256 hash and is never shown. Use
+    this to review usage and to revoke a key (set ``revoked_at``).
+    """
+
+    list_display = (
+        "name",
+        "user_email",
+        "prefix",
+        "scope",
+        "usage_this_month",
+        "last_used_at",
+        "status_display",
+        "created_at",
+    )
+    list_filter = ("scope", "created_at")
+    search_fields = ("name", "prefix", "user__email")
+    ordering = ("-created_at",)
+    list_select_related = ("user",)
+
+    fields = (
+        "user",
+        "name",
+        "prefix",
+        "scope",
+        "usage_this_month",
+        "usage_reset_at",
+        "last_used_at",
+        "created_at",
+        "revoked_at",
+    )
+    # Everything except name/scope/revoked_at is system-managed. key_hash is
+    # intentionally never exposed.
+    readonly_fields = (
+        "user",
+        "prefix",
+        "usage_this_month",
+        "usage_reset_at",
+        "last_used_at",
+        "created_at",
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+    def user_email(self, obj):
+        if obj.user_id:
+            url = reverse("admin:users_user_change", args=[obj.user_id])
+            return format_html('<a href="{}">{}</a>', url, obj.user.email)
+        return "—"
+
+    user_email.short_description = "User"
+
+    def status_display(self, obj):
+        if obj.revoked_at:
+            return mark_safe('<span style="color:#ff6b6b;">Revoked</span>')
+        return mark_safe('<span style="color:#51cf66;">Active</span>')
+
+    status_display.short_description = "Status"
