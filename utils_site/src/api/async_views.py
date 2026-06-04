@@ -40,7 +40,7 @@ from .conversion_limits import (
 )
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
 from .operation_run_middleware_utils import ensure_request_id
-from .premium_utils import ocr_premium_gate_message
+from .premium_utils import is_premium_active, ocr_premium_gate_message
 from .spam_protection import validate_spam_protection
 from .task_tokens import create_task_token, verify_task_token
 
@@ -154,12 +154,12 @@ class AsyncConversionAPIView(APIView, ABC):
         return {}
 
     def _is_premium_active(self, request: HttpRequest) -> bool:
-        """Check whether request user has active premium subscription."""
-        return (
-            request.user.is_authenticated
-            and getattr(request.user, "is_premium", False)
-            and request.user.is_subscription_active()
-        )
+        """Check whether request user has active premium subscription.
+
+        Delegates to the shared, cached premium_utils.is_premium_active so the
+        sync, batch and async paths all agree on what "premium" means.
+        """
+        return is_premium_active(request.user)
 
     def check_ocr_premium(
         self, request: HttpRequest, validated_data: dict, context: dict[str, Any]
