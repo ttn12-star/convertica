@@ -791,9 +791,6 @@ async function submitAsyncConversion(options) {
                         throw new Error('Failed to download result');
                     }
 
-                    // Feedback token (async path: bound to this operation's task).
-                    window._lastFeedbackToken = resultResponse.headers.get('X-Convertica-Feedback-Token') || null;
-
                     const blob = await resultResponse.blob();
                     const filename = result.output_filename || originalFileName;
 
@@ -848,9 +845,6 @@ async function submitAsyncConversion(options) {
         } else if (response.ok) {
             // Synchronous response - file is ready
             updateProgress(95, 'Downloading...');
-
-            // Feedback token (sync path: carries the tool slug).
-            window._lastFeedbackToken = response.headers.get('X-Convertica-Feedback-Token') || null;
 
             const blob = await response.blob();
             const contentDisposition = response.headers.get('content-disposition');

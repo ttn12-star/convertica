@@ -5,6 +5,25 @@
 (function () {
     'use strict';
 
+    // Universal capture: record the feedback token from ANY conversion response,
+    // regardless of which per-tool flow issued the fetch (converter.js,
+    // pdf-editor.js, merge, image tools, …). They all use window.fetch and all
+    // render via window.showDownloadButton, which then reads window._lastFeedbackToken.
+    if (window.fetch && !window.fetch.__ratingWrapped) {
+        const origFetch = window.fetch;
+        const wrapped = function () {
+            return origFetch.apply(this, arguments).then(function (resp) {
+                try {
+                    const t = resp && resp.headers && resp.headers.get('X-Convertica-Feedback-Token');
+                    if (t) window._lastFeedbackToken = t;
+                } catch (e) { /* opaque/cross-origin response — ignore */ }
+                return resp;
+            });
+        };
+        wrapped.__ratingWrapped = true;
+        window.fetch = wrapped;
+    }
+
     function alreadyRated(token) {
         try { return sessionStorage.getItem('rated:' + token) === '1'; }
         catch (e) { return false; }
