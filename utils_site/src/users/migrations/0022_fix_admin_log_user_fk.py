@@ -23,17 +23,23 @@ constraints this way, so it is a no-op there.
 
 from django.db import migrations
 
+# NB: no literal '%' anywhere — this SQL is passed through psycopg's mogrify,
+# which would treat '%' as a parameter placeholder and fail at compose time.
+# The FK is located by its column (conkey -> pg_attribute) instead of a LIKE.
 FIX_SQL = r"""
 DO $$
 DECLARE
     cname text;
 BEGIN
-    -- Drop the existing FK on django_admin_log.user_id, whatever it points at.
-    SELECT conname INTO cname
-      FROM pg_constraint
-     WHERE conrelid = 'django_admin_log'::regclass
-       AND contype = 'f'
-       AND conname LIKE 'django_admin_log_user_id_%';
+    -- Find the existing FK on django_admin_log.user_id, whatever it references.
+    SELECT con.conname INTO cname
+      FROM pg_constraint con
+      JOIN pg_attribute att
+        ON att.attrelid = con.conrelid
+       AND att.attnum = ANY (con.conkey)
+     WHERE con.conrelid = 'django_admin_log'::regclass
+       AND con.contype = 'f'
+       AND att.attname = 'user_id';
 
     IF cname IS NOT NULL THEN
         EXECUTE 'ALTER TABLE django_admin_log DROP CONSTRAINT ' || quote_ident(cname);
