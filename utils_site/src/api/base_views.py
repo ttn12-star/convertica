@@ -925,6 +925,14 @@ class BaseConversionAPIView(APIView, ABC):
             )
             response["Content-Type"] = self.get_output_content_type(output_path)
 
+            # Feedback token (sync path has no OperationRun, so carry the slug).
+            if getattr(self, "CONVERSION_TYPE", ""):
+                from src.feedback.tokens import create_feedback_token
+
+                response["X-Convertica-Feedback-Token"] = create_feedback_token(
+                    tool_slug=self.CONVERSION_TYPE
+                )
+
             # Log success
             log_conversion_success(
                 logger,
