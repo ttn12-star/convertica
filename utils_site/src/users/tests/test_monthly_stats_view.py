@@ -81,17 +81,27 @@ class MonthlyStatsViewTests(TestCase):
         self.assertEqual(row["error"], 1)
         self.assertEqual(row["success_rate"], 0.0)
 
-    def test_mixed_row_keeps_numeric_rate(self):
-        """Rejected events still don't dilute success_rate for a normal row."""
+    def test_abandoned_counts_as_failure_but_rejected_cancelled_dont(self):
+        """'abandoned' (OOM/stuck worker death) IS a system failure and dilutes
+        success_rate; rejected (4xx) and cancelled (user) still don't."""
         self._make("pdf_to_word", "success", n=66)
         self._make("pdf_to_word", "error", n=2)
+        self._make("pdf_to_word", "abandoned", n=4)
         self._make("pdf_to_word", "rejected", n=4)
         self._make("pdf_to_word", "cancelled", n=6)
-        self._make("pdf_to_word", "abandoned", n=4)
         resp = self.client.get(self.url)
         row = self._row(resp, "pdf_to_word")
-        # success / (success + error) = 66 / 68 = 97.06% -> 97.1
-        self.assertEqual(row["success_rate"], 97.1)
+        # success / (success + error + abandoned) = 66 / 72 = 91.67 -> 91.7
+        self.assertEqual(row["success_rate"], 91.7)
+
+    def test_abandoned_dilutes_month_and_grand_totals(self):
+        """Abandoned failures must also drag the month and grand totals down."""
+        self._make("pdf_to_word", "success", n=8)
+        self._make("compress_pdf", "abandoned", n=2)
+        resp = self.client.get(self.url)
+        # 8 / (8 + 0 + 2) = 80.0
+        self.assertEqual(self._totals(resp)["success_rate"], 80.0)
+        self.assertEqual(self._grand(resp)["success_rate"], 80.0)
 
     def test_month_total_unchanged_by_all_rejected_rows(self):
         """All-rejected rows must not move the month-total success_rate."""
