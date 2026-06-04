@@ -793,6 +793,14 @@ class OperationRun(models.Model):
     duration_ms = models.IntegerField(null=True, blank=True)
     queue_wait_ms = models.IntegerField(null=True, blank=True)
 
+    # Peak resident-set size (MB) of the worker process while this operation
+    # ran, sampled by a background thread. Populated only for operations that
+    # FINISH — a task SIGKILLed by the OOM killer never reaches the recording
+    # step (CONVERTICA-59). So this measures how close completed conversions of
+    # each type get to the worker memory ceiling, the data needed to decide
+    # worker concurrency / isolation rather than guessing.
+    peak_rss_mb = models.IntegerField(null=True, blank=True)
+
     error_type = models.CharField(max_length=120, blank=True)
     error_message = models.TextField(blank=True)
 
