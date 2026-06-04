@@ -1,4 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
+from rest_framework.test import APIClient
 from src.feedback.models import ToolRating
 from src.feedback.tokens import create_feedback_token
 from src.users.models import OperationRun
@@ -64,3 +66,15 @@ class FeedbackAPITests(TestCase):
         )
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(ToolRating.objects.count(), 1)
+
+    def test_authenticated_rating_is_linked_to_user(self):
+        user = get_user_model().objects.create_user(
+            email="rater@example.com", password="pw12345!"
+        )
+        api = APIClient()
+        api.force_authenticate(user=user)
+        resp = api.post(URL, {"feedback_token": self.token, "rating": 5})
+        self.assertEqual(resp.status_code, 201)
+        rating = ToolRating.objects.get()
+        self.assertEqual(rating.user_id, user.id)
+        self.assertEqual(rating.operation_run_id, self.op.id)
