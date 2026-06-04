@@ -31,8 +31,14 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 black==24.4.2 isort mypy  # black version must match pre-commit
+          pip install flake8 black==24.4.2 isort mypy ruff==0.15.8  # versions match pre-commit / dev-requirements
           pip install -r requirements.txt
+
+      - name: Run ruff
+        run: |
+          # Enforce the ruleset configured in ruff.toml (B, C4, UP, SIM, E, W, F).
+          # Verified clean repo-wide before enabling this gate.
+          ruff check .
 
       - name: Run flake8
         run: |
@@ -353,7 +359,9 @@ jobs:
         run: |
           coverage run --source='utils_site' manage.py test utils_site.src.api utils_site.src.frontend utils_site.src.blog utils_site.src.users utils_site.src.payments --verbosity=2 --exclude-tag=slow
           coverage xml -o coverage.xml --ignore-errors
-          coverage report --ignore-errors
+          # Floor well below the current ~50% so a real regression (toward zero)
+          # fails CI, without being brittle to per-run variance.
+          coverage report --ignore-errors --fail-under=45
 
       - name: Upload coverage to Codecov
         if: always()
