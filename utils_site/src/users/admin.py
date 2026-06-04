@@ -2,10 +2,11 @@
 import csv
 import json
 
-from allauth.socialaccount.models import SocialAccount
+from allauth.socialaccount.models import SocialAccount, SocialToken
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import Group
 from django.http import HttpResponse
 from django.urls import path, reverse
 from django.utils import timezone
@@ -598,7 +599,7 @@ class OperationRunAdmin(admin.ModelAdmin):
         "created_at",
         "conversion_type",
         "status",
-        "is_premium",
+        "premium_badge",
         "user_email",
         "duration_s",
         "queue_wait_s",
@@ -647,6 +648,21 @@ class OperationRunAdmin(admin.ModelAdmin):
 
     queue_wait_s.short_description = "Queue wait (s)"
     queue_wait_s.admin_order_field = "queue_wait_ms"
+
+    def premium_badge(self, obj):
+        # A gold pill (not the default tiny boolean tick) so premium runs are
+        # obvious at a glance; the changelist template also tints the whole row.
+        if obj.is_premium:
+            return format_html(
+                '<span class="premium-badge" style="display:inline-block;'
+                "padding:1px 8px;border-radius:10px;font-size:11px;"
+                "font-weight:700;color:#7a5200;background:#ffd54a;"
+                'border:1px solid #e0a800;">★ PREMIUM</span>'
+            )
+        return format_html('<span style="color:#999;">free</span>')
+
+    premium_badge.short_description = "Premium"
+    premium_badge.admin_order_field = "is_premium"
 
     def get_urls(self):
         urls = super().get_urls()
@@ -797,15 +813,19 @@ class OperationRunAdmin(admin.ModelAdmin):
             month_key = row["month"]
             conv_type = row["conversion_type"]
 
-            # System success rate: success / (success + error). Excludes rejected
-            # (4xx — user input issues, not system failures), cancelled, abandoned,
-            # and in-progress operations from the denominator.
-            # When success+error == 0 (e.g. an op that only ever hit a 4xx reject
-            # gate), the metric is undefined — return None so the template can
-            # render "—" instead of a misleading 0% that wouldn't actually drag
-            # the month/grand total down (those use the same formula and also
-            # exclude rejected from their denominator).
-            system_attempts = row["success"] + row["error"]
+            # System success rate: success / (success + error + abandoned).
+            # "abandoned" is a SYSTEM failure — the worker was OOM-SIGKILLed or
+            # otherwise died before its except/finally could record an outcome,
+            # and the stuck-operation reaper marked the row abandoned
+            # (CONVERTICA-59). Excluding it (the old formula) hid these failures
+            # and inflated the success rate. Still excluded: rejected (4xx user
+            # input), cancelled/cancel_requested (user-initiated), and
+            # in-progress — none are system failures.
+            # When the denominator is 0 (e.g. an op that only ever hit a 4xx
+            # reject gate), the metric is undefined — return None so the template
+            # renders "—" instead of a misleading 0%. Month and grand totals use
+            # the same formula.
+            system_attempts = row["success"] + row["error"] + row["abandoned"]
             months_dict[month_key]["operations"][conv_type] = {
                 "total": row["total"],
                 "success": row["success"],
@@ -841,7 +861,8 @@ class OperationRunAdmin(admin.ModelAdmin):
             months_dict.items(), key=lambda x: x[0], reverse=True
         ):
             totals = data["totals"]
-            system_attempts = totals["success"] + totals["error"]
+            # Same definition as per-conv-type: abandoned counts as a failure.
+            system_attempts = totals["success"] + totals["error"] + totals["abandoned"]
             totals["success_rate"] = (
                 round(totals["success"] / system_attempts * 100, 1)
                 if system_attempts > 0
@@ -873,7 +894,9 @@ class OperationRunAdmin(admin.ModelAdmin):
             "abandoned": sum(m["totals"]["abandoned"] for m in months_list),
             "other": sum(m["totals"]["other"] for m in months_list),
         }
-        grand_system_attempts = grand_totals["success"] + grand_totals["error"]
+        grand_system_attempts = (
+            grand_totals["success"] + grand_totals["error"] + grand_totals["abandoned"]
+        )
         grand_totals["success_rate"] = (
             round(grand_totals["success"] / grand_system_attempts * 100, 1)
             if grand_system_attempts > 0
@@ -1031,3 +1054,20 @@ class APIKeyAdmin(admin.ModelAdmin):
         return mark_safe('<span style="color:#51cf66;">Active</span>')
 
     status_display.short_description = "Status"
+
+
+# --- Declutter the admin index --------------------------------------------
+# Hide auto-registered models that have no admin workflow here, so the index
+# only lists things we actually manage. Loaded after allauth/auth in
+# INSTALLED_APPS, so these are already registered by the time this runs.
+#   - Group: no group-based permissions are used (flat superuser model).
+#   - SocialToken: per-user OAuth tokens, created/refreshed by allauth
+#     programmatically and never edited by hand.
+# Kept on purpose: SocialApp (holds the Google/Facebook OAuth credentials that
+# social login reads from the DB), EmailAddress (support: verification state),
+# and Site (allauth links SocialApp to it; SITE_ID is pinned).
+for _decluttered_model in (Group, SocialToken):
+    try:
+        admin.site.unregister(_decluttered_model)
+    except admin.sites.NotRegistered:
+        pass
