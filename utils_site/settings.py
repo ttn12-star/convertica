@@ -359,6 +359,7 @@ INSTALLED_APPS = [
     "src.frontend",
     "src.blog",
     "src.users",
+    "src.feedback",
 ]
 
 # Optional apps (graceful degradation if not installed)
