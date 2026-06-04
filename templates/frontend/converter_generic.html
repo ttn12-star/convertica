@@ -188,6 +188,15 @@
     window.BG_TASK_ERROR_TEXT = "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}";
     window.BG_NO_TASKS_TEXT = "{% filter escapejs %}{% trans 'No background tasks' %}{% endfilter %}";
     window.CONVERSION_TYPE = "{{ conversion_type|default:''|escapejs }}";
+    /* Post-conversion tool rating form */
+    window.RATING_ENABLED = true;
+    window.RATING_API_URL = "{% url 'v1_feedback' %}";
+    window.RATING_PROMPT = "{% filter escapejs %}{% trans 'How was the result?' %}{% endfilter %}";
+    window.RATING_SUBPROMPT = "{% filter escapejs %}{% trans 'Your feedback helps us improve this tool' %}{% endfilter %}";
+    window.RATING_COMMENT_GOOD = "{% filter escapejs %}{% trans 'What did you like? (optional)' %}{% endfilter %}";
+    window.RATING_COMMENT_BAD = "{% filter escapejs %}{% trans 'What went wrong?' %}{% endfilter %}";
+    window.RATING_SUBMIT = "{% filter escapejs %}{% trans 'Submit feedback' %}{% endfilter %}";
+    window.RATING_THANKS = "{% filter escapejs %}{% trans 'Thank you for your feedback!' %}{% endfilter %}";
   </script>
   {% comment %}
     pdf.js (320 KB) and pdf.worker (1 MB) used to load eagerly on every tool
@@ -205,4 +214,5 @@
   <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}" defer></script>
   <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}" defer></script>
   <script src="{% minified_static 'js/converter.js' %}" nonce="{{ csp_nonce }}" defer></script>
+  <script src="{% minified_static 'js/rating-form.js' %}" nonce="{{ csp_nonce }}" defer></script>
 {% endblock %}
