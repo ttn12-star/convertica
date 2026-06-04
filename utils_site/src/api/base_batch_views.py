@@ -30,6 +30,7 @@ from django.conf import settings
 from django.http import FileResponse, HttpRequest
 from django.utils.translation import gettext as _
 from rest_framework import status
+from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -46,6 +47,12 @@ logger = get_logger(__name__)
 
 class BaseBatchAPIView(APIView):
     """Base class for batch conversion views (multiple files → ZIP)."""
+
+    # Batch endpoints only ever accept multipart file uploads. Mirror
+    # BaseConversionAPIView and drop the default JSONParser: with JSONParser
+    # present, drf-yasg infers a JSON request body that conflicts with the
+    # IN_FORM file parameters and breaks /api/docs/ schema generation.
+    parser_classes = [MultiPartParser, FormParser]
 
     # ── Required class attributes (set in each subclass) ────────────────────
     CONVERSION_TYPE: str = ""

@@ -72,14 +72,26 @@ class UserAdmin(BaseUserAdmin):
         (
             "Subscription",
             {
+                "description": (
+                    "<b>Premium unlocks:</b> larger upload size & page limits, OCR, "
+                    "HEIC conversion, batch processing (multiple files at once), "
+                    "priority queue, no ads and API access.<br>"
+                    "<b>To grant premium:</b> tick <code>is_premium</code> and set "
+                    "<code>subscription_end_date</code> to a future date — or leave it "
+                    "blank for manual premium with no expiry. A past end date is "
+                    "treated as expired (auto-cleared on save when is_premium is on).<br>"
+                    "<b>Effective premium (live)</b> below shows whether this user is "
+                    "actually premium right now."
+                ),
                 "fields": (
                     "is_premium",
+                    "effective_premium",
                     "subscription_start_date",
                     "subscription_end_date",
                     "consecutive_subscription_days",
                     "total_subscription_days",
                     "display_as_hero",
-                )
+                ),
             },
         ),
         (
@@ -98,9 +110,33 @@ class UserAdmin(BaseUserAdmin):
     )
 
     readonly_fields = (
+        "effective_premium",
         "consecutive_subscription_days",
         "total_subscription_days",
     )
+
+    def effective_premium(self, obj):
+        """Show whether the user is ACTUALLY premium right now (live check).
+
+        Premium gates use `is_premium AND is_subscription_active()`, so the
+        `is_premium` checkbox alone is not enough — this row makes the real
+        state obvious in the admin.
+        """
+        if obj is None or obj.pk is None:
+            return mark_safe('<span style="color:#868e96;">—</span>')
+        if obj.is_premium and obj.is_subscription_active():
+            return mark_safe(
+                '<b style="color:#51cf66;">✓ ACTIVE</b> — premium gates are open'
+            )
+        if obj.is_premium and not obj.is_subscription_active():
+            return mark_safe(
+                '<b style="color:#ff6b6b;">✗ EXPIRED</b> — is_premium is set but the '
+                "subscription end date is in the past. Set a future date or clear it, "
+                "then save."
+            )
+        return mark_safe('<span style="color:#868e96;">Free</span>')
+
+    effective_premium.short_description = "Effective premium (live)"
 
     add_fieldsets = (
         (
@@ -524,6 +560,14 @@ class OperationRunAdmin(admin.ModelAdmin):
     )
     readonly_fields = ("created_at", "updated_at")
     list_select_related = ("user",)
+
+    def lookup_allowed(self, lookup, value, request=None):
+        # Permit filtering operations by user email (changelist links use
+        # ?user__email=…); without this Django raises DisallowedModelAdminLookup
+        # and the page 500s.
+        if lookup == "user__email":
+            return True
+        return super().lookup_allowed(lookup, value, request)
 
     def user_email(self, obj):
         return obj.user.email if obj.user else "Anonymous"
