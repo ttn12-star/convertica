@@ -429,6 +429,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (previewContainer) {
             previewContainer.classList.remove('hidden');
             previewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Post-conversion rating form (compare renders its own results UI
+            // rather than window.showDownloadButton, so attach it here).
+            if (window.RATING_ENABLED && window.renderRatingForm && window._lastFeedbackToken) {
+                window.renderRatingForm(previewContainer, window._lastFeedbackToken);
+            }
+            window._lastFeedbackToken = null;
         }
 
         await renderActivePage();

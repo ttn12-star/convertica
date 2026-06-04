@@ -56,6 +56,10 @@ class FeedbackAPIView(APIView):
             tool_slug = value
             operation_run = None
 
+        # Normalize slug casing so e.g. "MERGE_PDF" and "pdf_to_word" group
+        # consistently in admin (CONVERSION_TYPE values are mixed-case).
+        tool_slug = (tool_slug or "").lower()
+
         try:
             # atomic() so a duplicate (unique constraint) rolls back only this
             # savepoint instead of poisoning the surrounding transaction.
