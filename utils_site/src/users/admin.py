@@ -602,6 +602,7 @@ class OperationRunAdmin(admin.ModelAdmin):
         "user_email",
         "duration_s",
         "queue_wait_s",
+        "peak_rss_mb",
         "error_type",
     )
     list_filter = ("conversion_type", "status", "is_premium", "created_at")
@@ -691,6 +692,7 @@ class OperationRunAdmin(admin.ModelAdmin):
                 "queue_wait_s",
                 "input_size",
                 "output_size",
+                "peak_rss_mb",
                 "remote_addr",
                 "path",
                 "error_type",
@@ -722,6 +724,7 @@ class OperationRunAdmin(admin.ModelAdmin):
                     ),
                     obj.input_size,
                     obj.output_size,
+                    obj.peak_rss_mb,
                     obj.remote_addr,
                     obj.path,
                     obj.error_type,

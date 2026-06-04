@@ -12,6 +12,7 @@ import inspect
 import json
 import os
 import shutil
+import threading
 import time
 
 from celery import shared_task
@@ -134,6 +135,66 @@ def update_progress(task, progress: int, current_step: str = "", total_steps: in
     )
 
 
+class _PeakRSSSampler:
+    """Background sampler of the worker process's peak resident-set size.
+
+    The CONVERTICA-59 incident was an OOM SIGKILL, not a time-limit hit, and
+    because the prefork children share one container memory cgroup a single
+    heavy conversion can OOM-kill a sibling. To make the worker concurrency /
+    isolation decision from data instead of guesses, each conversion records
+    its peak RSS (high-water mark) into ``OperationRun.peak_rss_mb``.
+
+    A daemon thread polls every ``interval`` seconds and keeps the maximum.
+    Measurement is strictly best-effort: any failure leaves ``peak_mb`` at
+    ``None`` and never disturbs the conversion. A task that is itself SIGKILLed
+    never reaches the recording step, so peaks are captured only for
+    conversions that finish — exactly the population that shows how close each
+    type runs to the memory ceiling.
+    """
+
+    def __init__(self, interval: float = 0.5) -> None:
+        self._interval = interval
+        self._peak_bytes = 0
+        self._stop = threading.Event()
+        self._thread: threading.Thread | None = None
+        self._proc = None
+
+    def start(self) -> None:
+        try:
+            import psutil
+
+            self._proc = psutil.Process()
+            self._peak_bytes = self._proc.memory_info().rss
+            self._thread = threading.Thread(
+                target=self._run, name="peak-rss-sampler", daemon=True
+            )
+            self._thread.start()
+        except Exception:
+            self._proc = None
+
+    def _run(self) -> None:
+        while not self._stop.wait(self._interval):
+            try:
+                rss = self._proc.memory_info().rss
+            except Exception:
+                return
+            if rss > self._peak_bytes:
+                self._peak_bytes = rss
+
+    def stop(self) -> None:
+        self._stop.set()
+        thread = self._thread
+        if thread is not None:
+            thread.join(timeout=1.0)
+            self._thread = None
+
+    @property
+    def peak_mb(self) -> int | None:
+        if self._proc is None:
+            return None
+        return int(self._peak_bytes / (1024 * 1024))
+
+
 @shared_task(
     bind=True,
     name="pdf_conversion.generic_conversion",
@@ -218,6 +279,12 @@ def generic_conversion_task(
         )
     except Exception as db_exc:
         logger.warning("OperationRun 'running' update failed: %s", db_exc)
+
+    # Sample peak worker memory across the whole conversion (best-effort).
+    # This is the data behind the worker concurrency / isolation decision
+    # (CONVERTICA-59 follow-up) — see _PeakRSSSampler.
+    peak_sampler = _PeakRSSSampler()
+    peak_sampler.start()
 
     try:
         # Check cancellation before starting
@@ -791,6 +858,19 @@ def generic_conversion_task(
         raise self.retry(exc=exc, countdown=30, max_retries=2)
 
     finally:
+        # Record the peak RSS for this run. A single extra UPDATE keyed by
+        # task_id so we don't have to thread the value through every exit path.
+        peak_sampler.stop()
+        try:
+            peak_mb = peak_sampler.peak_mb
+            if peak_mb is not None:
+                from src.users.models import OperationRun
+
+                OperationRun.objects.filter(task_id=cancellation_id).update(
+                    peak_rss_mb=peak_mb
+                )
+        except Exception as peak_exc:
+            logger.debug("OperationRun peak_rss_mb update skipped: %s", peak_exc)
         try:
             if input_fp is not None:
                 input_fp.close()
