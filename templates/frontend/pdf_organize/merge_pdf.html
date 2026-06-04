@@ -133,6 +133,11 @@
   </div>
 
   <script nonce="{{ csp_nonce }}">
+    // API endpoint — merge_pdf.html overrides extra_js (no block.super), so the
+    // window.API_URL that edit_pdf_generic normally sets is dropped. Without this
+    // the merge form falls back to form.action (the page URL) and never hits the
+    // API: no real merge, no OperationRun analytics, no feedback token.
+    window.API_URL = "{{ api_url|escapejs }}";
     // Merge PDF translations
     window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
     window.FILE_NOT_PDF = "{% filter escapejs %}{% trans 'is not a PDF file. Skipping.' %}{% endfilter %}";
