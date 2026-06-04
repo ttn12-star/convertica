@@ -1,0 +1,43 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <div id="content-main">
+    <h1>Per-tool quality (worst first)</h1>
+    <table>
+      <thead><tr><th>Tool</th><th>Avg&nbsp;★</th><th>Ratings</th></tr></thead>
+      <tbody>
+        {% for row in per_tool %}
+          <tr>
+            <td>{{ row.tool_slug }}</td>
+            <td>{{ row.avg|floatformat:2 }}</td>
+            <td>{{ row.n }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="3">No ratings yet.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2 style="margin-top:2em;">Recent low ratings (≤3★)</h2>
+    <table>
+      <thead><tr><th>When</th><th>Tool</th><th>★</th><th>Comment</th><th>Operation</th></tr></thead>
+      <tbody>
+        {% for r in recent_low %}
+          <tr>
+            <td>{{ r.created_at }}</td>
+            <td>{{ r.tool_slug }}</td>
+            <td>{{ r.rating }}</td>
+            <td>{{ r.comment }}</td>
+            <td>
+              {% if r.operation_run_id %}
+                <a href="{% url 'admin:users_operationrun_change' r.operation_run_id %}">#{{ r.operation_run_id }}</a>
+              {% else %}—{% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="5">No low ratings — nice.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
