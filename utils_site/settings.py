@@ -387,7 +387,10 @@ except ImportError:
 
 
 MIDDLEWARE = [
-    "django.middleware.gzip.GZipMiddleware",  # Compress responses (HTML, JSON, CSS, JS) - must be first
+    # NB: response compression is handled by nginx (gzip + brotli, gzip_proxied
+    # any) in front of the app — see ci/nginx.conf. Django's GZipMiddleware was
+    # removed to avoid double-compression CPU on the web container and the
+    # BREACH risk of gzipping responses that reflect user input.
     "src.api.middleware.FilterProxyRequestsMiddleware",  # Filter invalid hosts/proxy CONNECT - BEFORE SecurityMiddleware!
     "django.middleware.security.SecurityMiddleware",
     "src.users.middleware.RuntimeSettingsMiddleware",  # Apply admin runtime settings overrides
