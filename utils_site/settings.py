@@ -1058,6 +1058,23 @@ except ImportError:
         }
     }
 
+if TESTING:
+    # Unit tests must NOT share the production Redis cache: the suite runs
+    # against Redis DB 1, so per-test state (premium flags, rate-limit tallies,
+    # sessions) leaks between tests and across concurrent runs — the documented
+    # premium-gating flakiness. An isolated in-process cache fixes it; tests
+    # that need a clean slate still call cache.clear().
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+            "LOCATION": "convertica-test-cache",
+        }
+    }
+    # django-ratelimit rejects LocMemCache as "not shared" (E003). Under the
+    # single-process test runner that multi-worker concern doesn't apply, and
+    # rate limiting is disabled in the test classes that don't exercise it.
+    SILENCED_SYSTEM_CHECKS = ["django_ratelimit.E003", "django_ratelimit.W001"]
+
 # Session backend using Redis (if available)
 try:
     import django_redis

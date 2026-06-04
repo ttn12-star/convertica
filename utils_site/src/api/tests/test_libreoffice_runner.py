@@ -15,10 +15,11 @@ import sys
 import tempfile
 import time
 
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, tag
 from src.api.pdf_convert.word_to_pdf_optimized import _run_libreoffice
 
 
+@tag("slow")  # spawns real subprocesses and asserts a 2.5s wall-clock timeout
 class LibreOfficeRunnerTests(SimpleTestCase):
     def test_returns_completed_process_on_success(self):
         result = _run_libreoffice(

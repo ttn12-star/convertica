@@ -85,3 +85,24 @@ docker-compose.override.yml
 # OS
 Thumbs.db
 .DS_Store
+
+# Root-level screenshots / review artifacts (NOT app assets — those live in
+# static/). Leading "/" anchors to the build-context root so static/images/*
+# is unaffected. These ~3.5 MB of PNG/JPEG only bloat every image layer.
+/*.png
+/*.jpeg
+/*.jpg
+
+# Local-only Tailwind CLI binary (~42 MB). The image builds CSS via
+# pytailwindcss; this committed binary is a dev convenience only.
+/tailwindcss-linux-x64
+
+# One-off operator/dev scripts not used at runtime
+/check_prod_data.py
+/create_admin.py
+/create_pwa_icons.py
+/seo_audit.py
+
+# Celery beat schedule / worker log artifacts
+/celerybeat-schedule
+/celery_worker.log

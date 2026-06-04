@@ -16,6 +16,7 @@ class CropPDFBatchAPIView(BaseBatchAPIView):
     CONVERSION_TYPE = "CROP_PDF_BATCH"
     TMP_PREFIX = "crop_batch_"
     OUTPUT_ZIP_FILENAME = "cropped_pdfs.zip"
+    VALIDATE_PDF_PAGES = False  # Parity with single CropPDFAPIView
 
     def get_post_params(self, request):
         x = float(request.POST.get("x", 0))

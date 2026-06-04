@@ -26,13 +26,20 @@ import time
 import zipfile
 from abc import abstractmethod
 
+from django.conf import settings
 from django.http import FileResponse, HttpRequest
+from django.utils.translation import gettext as _
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from .conversion_limits import get_max_file_size_for_user, validate_pdf_pages
 from .logging_utils import build_request_context, get_logger, log_conversion_start
-from .premium_utils import can_use_batch_processing
+from .premium_utils import (
+    can_use_batch_processing,
+    is_premium_active,
+    ocr_premium_gate_message,
+)
 
 logger = get_logger(__name__)
 
@@ -45,6 +52,11 @@ class BaseBatchAPIView(APIView):
     FILE_FIELD_NAME: str = "pdf_files"
     TMP_PREFIX: str = "batch_"
     OUTPUT_ZIP_FILENAME: str = "batch_output.zip"
+
+    # Mirror BaseConversionAPIView: validate PDF page count for PDF inputs.
+    # Set False on tools whose single-file counterpart sets VALIDATE_PDF_PAGES
+    # = False, so batch enforcement stays in parity (no over-enforcement).
+    VALIDATE_PDF_PAGES: bool = True
 
     # ── Hooks (override as needed) ───────────────────────────────────────────
 
@@ -79,6 +91,105 @@ class BaseBatchAPIView(APIView):
         """
         return os.path.basename(output_path)
 
+    # ── Premium-limit parity with the single-file path ───────────────────────
+    #
+    # The batch endpoint must enforce the same per-file premium limits as
+    # BaseConversionAPIView. Without this, a free user can route one oversized /
+    # long / OCR-flagged file through /batch/ and bypass the size cap, the PDF
+    # page cap and the OCR-premium gate that the single endpoint applies.
+
+    def _operation_key(self) -> str:
+        """Normalise CONVERSION_TYPE to the single-path operation key.
+
+        Batch views use a `<OP>_BATCH` CONVERSION_TYPE, but HEAVY_OPERATIONS
+        and PREMIUM_PAGE_LIMITS are keyed on the bare lowercase op (e.g.
+        ``pdf_to_word``). Strip the suffix so heavy/limit lookups match.
+        """
+        key = (self.CONVERSION_TYPE or "").lower()
+        if key.endswith("_batch"):
+            key = key[: -len("_batch")]
+        return key
+
+    def _is_pdf_file(self, uploaded_file) -> bool:
+        """Check if the uploaded file is a PDF (mirrors BaseConversionAPIView)."""
+        name = getattr(uploaded_file, "name", "") or ""
+        content_type = getattr(uploaded_file, "content_type", "") or ""
+        return name.lower().endswith(".pdf") or "pdf" in content_type.lower()
+
+    def check_ocr_premium(self, request: HttpRequest, params: dict) -> Response | None:
+        """Gate OCR behind premium for the batch path (request-level param).
+
+        Returns a 403 Response if OCR was requested by a non-premium user,
+        else None. Messages mirror BaseConversionAPIView.post.
+        """
+        ocr_enabled = params.get("ocr_enabled", False)
+        if isinstance(ocr_enabled, str):
+            ocr_enabled = ocr_enabled.lower() == "true"
+        if not ocr_enabled:
+            return None
+
+        payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
+        error_msg = ocr_premium_gate_message(request.user, payments_enabled)
+        if error_msg:
+            return Response({"error": error_msg}, status=status.HTTP_403_FORBIDDEN)
+
+        return None
+
+    def validate_premium_limits(
+        self, uploaded_file, request: HttpRequest
+    ) -> Response | None:
+        """Validate one file's size and (for PDFs) page count against the
+        requesting user's premium tier. Returns an error Response or None.
+        """
+        operation = self._operation_key()
+        user = request.user
+
+        # File-size cap (mirrors BaseConversionAPIView.validate_file_basic).
+        max_file_size = get_max_file_size_for_user(user, operation)
+        if uploaded_file.size > max_file_size:
+            is_premium = is_premium_active(user)
+            free_limit = settings.MAX_FILE_SIZE_FREE
+            premium_limit = settings.MAX_FILE_SIZE_PREMIUM
+            if not is_premium and uploaded_file.size > free_limit:
+                error = _(
+                    "File too large (%(file_mb).1f MB). Free users: max "
+                    "%(free_mb).0f MB. Upgrade to Premium for %(premium_mb).0f MB limit."
+                ) % {
+                    "file_mb": uploaded_file.size / (1024 * 1024),
+                    "free_mb": free_limit / (1024 * 1024),
+                    "premium_mb": premium_limit / (1024 * 1024),
+                }
+            else:
+                error = _("File too large. Maximum size is %(max_mb).0f MB.") % {
+                    "max_mb": max_file_size / (1024 * 1024)
+                }
+            return Response(
+                {"error": error}, status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE
+            )
+
+        # PDF page-count cap (mirrors BaseConversionAPIView.validate_pdf_page_count).
+        if self.VALIDATE_PDF_PAGES and self._is_pdf_file(uploaded_file):
+            fd, tmp_path = tempfile.mkstemp(suffix=".pdf", prefix="batch_pagecheck_")
+            try:
+                with os.fdopen(fd, "wb") as f:
+                    for chunk in uploaded_file.chunks():
+                        f.write(chunk)
+                is_valid, error_message, _page_count = validate_pdf_pages(
+                    tmp_path, user=user, operation=operation
+                )
+            finally:
+                if os.path.exists(tmp_path):
+                    os.remove(tmp_path)
+                # Rewind so convert_single re-reads the file from the start.
+                uploaded_file.seek(0)
+
+            if not is_valid:
+                return Response(
+                    {"error": error_message}, status=status.HTTP_400_BAD_REQUEST
+                )
+
+        return None
+
     # ── Core batch logic (call from subclass post()) ─────────────────────────
 
     def _process_batch(self, request: HttpRequest) -> Response:
@@ -105,6 +216,13 @@ class BaseBatchAPIView(APIView):
                 return Response({"error": error_msg}, status=status.HTTP_403_FORBIDDEN)
 
             params = self.get_post_params(request)
+
+            # Premium parity: OCR is a premium-only feature on the single path;
+            # gate it here too (request-level param) before doing any work.
+            ocr_error = self.check_ocr_premium(request, params)
+            if ocr_error is not None:
+                return ocr_error
+
             log_conversion_start(logger, self.CONVERSION_TYPE, context)
 
             tmp_dir = tempfile.mkdtemp(prefix=self.TMP_PREFIX)
@@ -120,6 +238,12 @@ class BaseBatchAPIView(APIView):
                             "input_filename": uploaded_file.name,
                         },
                     )
+
+                    # Premium parity: enforce per-file size + PDF page caps
+                    # against the requesting user's tier, like the single path.
+                    limit_error = self.validate_premium_limits(uploaded_file, request)
+                    if limit_error is not None:
+                        return limit_error
 
                     is_valid, err = self.validate_single(uploaded_file, params)
                     if not is_valid:

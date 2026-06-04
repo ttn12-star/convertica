@@ -16,6 +16,7 @@ class FlattenPDFBatchAPIView(BaseBatchAPIView):
     CONVERSION_TYPE = "FLATTEN_PDF_BATCH"
     TMP_PREFIX = "flatten_batch_"
     OUTPUT_ZIP_FILENAME = "flattened_pdfs.zip"
+    VALIDATE_PDF_PAGES = False  # Parity with single FlattenPDFAPIView
 
     def convert_single(self, uploaded_file, context, **params):
         input_path, output_path = flatten_pdf(

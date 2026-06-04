@@ -43,6 +43,30 @@ def is_premium_active(user) -> bool:
     return result
 
 
+def ocr_premium_gate_message(user, payments_enabled: bool) -> str | None:
+    """Return an OCR-denial message, or None if the user may use OCR.
+
+    OCR is a premium-only feature. The same gate is applied on the sync,
+    batch and async conversion paths; centralising the wording here keeps
+    them from drifting apart. Messages mirror BaseConversionAPIView.post.
+    """
+    if user.is_authenticated and is_premium_active(user):
+        return None
+
+    if not user.is_authenticated:
+        return (
+            "OCR is a premium feature. Please log in and upgrade to Premium."
+            if payments_enabled
+            else "OCR feature is not available. Please log in to use this feature."
+        )
+
+    return (
+        "OCR is a premium feature. Upgrade to Premium to enable OCR processing."
+        if payments_enabled
+        else "OCR feature is not available at this time."
+    )
+
+
 def get_max_batch_files(user) -> int:
     """Get maximum number of files allowed in batch processing.
 
@@ -50,11 +74,13 @@ def get_max_batch_files(user) -> int:
         user: Django user object
 
     Returns:
-        Maximum batch size (10 for premium, 1 for free)
+        Maximum batch size, read from settings (premium vs free).
     """
+    from django.conf import settings
+
     if is_premium_active(user):
-        return 10  # Premium users can process up to 10 files at once
-    return 1  # Free users can only process 1 file at a time
+        return getattr(settings, "MAX_BATCH_FILES_PREMIUM", 10)
+    return getattr(settings, "MAX_BATCH_FILES_FREE", 1)
 
 
 def can_use_batch_processing(user, file_count: int) -> tuple[bool, str | None]:

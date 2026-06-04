@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import hashlib
 import hmac
+import io
 import json
 from datetime import timedelta
 from decimal import Decimal
@@ -38,6 +39,22 @@ def _fake_pdf(name: str = "x.pdf") -> SimpleUploadedFile:
         b"%PDF-1.4\n%minimal\n",
         content_type="application/pdf",
     )
+
+
+def _real_pdf(pages: int = 3, name: str = "multi.pdf") -> SimpleUploadedFile:
+    """A genuinely parseable multi-page PDF, so page-count validation runs.
+
+    The cheap `_fake_pdf` is unparseable, which makes `validate_pdf_pages`
+    bail out as "can't read, allow" — useless for asserting the page cap.
+    """
+    from pypdf import PdfWriter
+
+    writer = PdfWriter()
+    for _ in range(pages):
+        writer.add_blank_page(width=72, height=72)
+    buf = io.BytesIO()
+    writer.write(buf)
+    return SimpleUploadedFile(name, buf.getvalue(), content_type="application/pdf")
 
 
 WEBHOOK_SECRET = "premium-gating-test-secret-32chars-or-more"
@@ -549,6 +566,45 @@ class OCRGateTests(TestCase):
                 f"Premium user incorrectly blocked by OCR gate: {body}",
             )
 
+    # ---- Async path OCR gate parity --------------------------------------
+
+    ASYNC_OCR_URL = "/api/pdf-to-word/async/"
+
+    def _post_async_ocr(self):
+        return self.client.post(
+            self.ASYNC_OCR_URL,
+            data={"pdf_file": _fake_pdf("ocr.pdf"), "ocr_enabled": "true"},
+            format="multipart",
+            HTTP_REFERER="https://convertica.net/",
+        )
+
+    def test_free_user_blocked_with_ocr_premium_message_async(self):
+        """OCR via the async endpoint must be premium-gated too (403)."""
+        self.client.force_login(self.user)
+        response = self._post_async_ocr()
+        self.assertEqual(response.status_code, 403)
+        self.assertIn("OCR is a premium feature", response.json().get("error", ""))
+
+    def test_premium_user_passes_ocr_gate_async(self):
+        """Premium user must NOT be blocked by the async OCR gate."""
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_ocr_async",
+            provider_customer_id="cust_ocr_async",
+        )
+        self.client.force_login(self.user)
+        response = self._post_async_ocr()
+        # Gate passed — fake PDF may fail downstream, but must not be the
+        # OCR-premium 403.
+        if response.status_code == 403:
+            self.assertNotIn(
+                "OCR is a premium feature", response.json().get("error", "")
+            )
+
     def test_is_premium_active_unit_for_ocr_decision(self):
         """Direct unit test of the helper that drives the OCR gate.
 
@@ -646,3 +702,237 @@ class SettingsLimitsExposedTests(TestCase):
             settings.MAX_PDF_PAGES_PREMIUM,
             settings.MAX_PDF_PAGES_FREE,
         )
+
+
+# ---------------------------------------------------------------------------
+# A5a. get_max_batch_files honours settings (not hardcoded 1/10)
+# ---------------------------------------------------------------------------
+
+
+@override_settings(MAX_BATCH_FILES_FREE=1, MAX_BATCH_FILES_PREMIUM=3)
+class GetMaxBatchFilesSettingsTests(TestCase):
+    """get_max_batch_files must read the configured limits, so the advertised
+    cap (get_premium_features, which reads settings) and the enforced cap can't
+    diverge when an admin tunes the env var.
+    """
+
+    def setUp(self):
+        cache.clear()
+        self.user = User.objects.create_user(email="mbf@t.test", password="p")
+        self.plan = SubscriptionPlan.objects.create(
+            name="MBF",
+            slug="mbf",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def test_free_user_uses_settings_free_limit(self):
+        from src.api.premium_utils import get_max_batch_files
+
+        self.assertEqual(get_max_batch_files(self.user), 1)
+
+    def test_premium_user_uses_settings_premium_limit(self):
+        from src.api.premium_utils import get_max_batch_files
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_mbf",
+            provider_customer_id="cust_mbf",
+        )
+        self.assertEqual(get_max_batch_files(self.user), 3)
+
+
+# ---------------------------------------------------------------------------
+# A5b. Daily expiry sweep invalidates the premium cache
+# ---------------------------------------------------------------------------
+
+
+@override_settings(PAYMENTS_ENABLED=True)
+class DailyExpirySweepCacheTests(TestCase):
+    """The daily subscription task flips is_premium=False via bulk_update,
+    which bypasses User.save() and therefore its cache invalidation. The task
+    must delete the premium caches itself, or an expired user keeps premium
+    behaviour until the short TTL lapses.
+    """
+
+    def setUp(self):
+        cache.clear()
+        self.user = User.objects.create_user(email="sweep@t.test", password="p")
+        # Reproduce the genuine stale state: is_premium=True in the DB while the
+        # end date is already in the past. This only arises WITHOUT a save()
+        # (time elapsed since the last write) — exactly what the daily sweep is
+        # for — so we bypass save()'s normalisation via .update().
+        User.objects.filter(pk=self.user.pk).update(
+            is_premium=True,
+            subscription_start_date=timezone.now() - timedelta(days=31),
+            subscription_end_date=timezone.now() - timedelta(days=1),
+        )
+
+    def test_sweep_clears_stale_premium_cache_for_expired_user(self):
+        from src.tasks.maintenance import update_subscription_daily
+
+        # Caches still say premium (as they would right after expiry).
+        cache.set(f"user_premium_active:{self.user.pk}", True, 300)
+        cache.set(f"user_subscription_status_{self.user.pk}", True, 300)
+
+        update_subscription_daily()
+
+        self.user.refresh_from_db()
+        self.assertFalse(self.user.is_premium)
+        self.assertIsNone(cache.get(f"user_premium_active:{self.user.pk}"))
+        self.assertIsNone(cache.get(f"user_subscription_status_{self.user.pk}"))
+
+
+# ---------------------------------------------------------------------------
+# A6. Batch path per-file limit parity (size / pages / OCR)
+# ---------------------------------------------------------------------------
+
+
+@override_settings(PAYMENTS_ENABLED=True, RATELIMIT_ENABLE=False)
+class BatchPerFileLimitParityTests(TestCase):
+    """Batch endpoints must enforce the SAME per-file premium limits as the
+    single-file path.
+
+    Access model (product decision): free users keep 1-file batch, but the
+    batch path must not be a loophole around the size cap, the PDF page cap,
+    or the OCR-premium gate that the single endpoint enforces. A free user
+    routing one oversized / long / OCR-flagged file through /batch/ must be
+    rejected exactly as the single endpoint would reject it.
+    """
+
+    CROP_BATCH = "/api/pdf-edit/crop/batch/"
+    WORD_BATCH = "/api/pdf-to-word/batch/"
+    TEXT_BATCH = "/api/pdf-to-text/batch/"
+    REFERER = "https://convertica.net/"
+
+    def setUp(self):
+        cache.clear()  # purge stale user_premium_active:{pk} keys
+        self.client = Client()
+        self.user = User.objects.create_user(
+            email="batchgate@t.test", password="passw0rd!"
+        )
+        self.assertFalse(self.user.is_premium)
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly Batch",
+            slug="monthly-batch",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def _go_premium(self):
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_batch",
+            provider_customer_id="cust_batch",
+        )
+
+    def _crop_data(self, files):
+        return {
+            "pdf_files": files,
+            "x": "0",
+            "y": "0",
+            "width": "10",
+            "height": "10",
+            "pages": "all",
+        }
+
+    # ---- OCR gate parity --------------------------------------------------
+
+    def test_free_user_ocr_via_batch_blocked(self):
+        """Free user requesting OCR through the batch endpoint → 403."""
+        self.client.force_login(self.user)
+        resp = self.client.post(
+            self.WORD_BATCH,
+            data={"pdf_files": [_fake_pdf("o.pdf")], "ocr_enabled": "true"},
+            format="multipart",
+            HTTP_REFERER=self.REFERER,
+        )
+        self.assertEqual(resp.status_code, 403)
+        self.assertIn("OCR is a premium feature", resp.json().get("error", ""))
+
+    def test_premium_user_ocr_via_batch_passes_gate(self):
+        """Premium user must NOT be blocked by the batch OCR gate."""
+        self._go_premium()
+        self.client.force_login(self.user)
+        resp = self.client.post(
+            self.WORD_BATCH,
+            data={"pdf_files": [_fake_pdf("o.pdf")], "ocr_enabled": "true"},
+            format="multipart",
+            HTTP_REFERER=self.REFERER,
+        )
+        # Gate passed — the fake PDF may fail downstream, but it must not be a
+        # 403 with the OCR-premium message.
+        if resp.status_code == 403:
+            self.assertNotIn("OCR is a premium feature", resp.json().get("error", ""))
+
+    # ---- File-size cap parity --------------------------------------------
+
+    @override_settings(MAX_FILE_SIZE_FREE=100)
+    def test_free_user_oversized_file_via_batch_rejected(self):
+        """Free user posting a file over the free size cap to /batch/ → 413."""
+        big = SimpleUploadedFile(
+            "big.pdf", b"%PDF-1.4\n" + b"x" * 500, content_type="application/pdf"
+        )
+        self.client.force_login(self.user)
+        resp = self.client.post(
+            self.CROP_BATCH,
+            data=self._crop_data([big]),
+            format="multipart",
+            HTTP_REFERER=self.REFERER,
+        )
+        self.assertEqual(resp.status_code, 413)
+
+    @override_settings(MAX_FILE_SIZE_FREE=100)
+    def test_premium_user_large_file_via_batch_passes_size_gate(self):
+        """Premium user above the *free* cap still passes (premium cap higher)."""
+        self._go_premium()
+        self.client.force_login(self.user)
+        big = SimpleUploadedFile(
+            "big.pdf", b"%PDF-1.4\n" + b"x" * 500, content_type="application/pdf"
+        )
+        resp = self.client.post(
+            self.CROP_BATCH,
+            data=self._crop_data([big]),
+            format="multipart",
+            HTTP_REFERER=self.REFERER,
+        )
+        self.assertNotEqual(resp.status_code, 413)
+
+    # ---- Page-count cap parity -------------------------------------------
+
+    @override_settings(MAX_PDF_PAGES_FREE=1)
+    def test_free_user_too_many_pages_via_batch_rejected(self):
+        """Free user posting a PDF over the free page cap to /batch/ → 400."""
+        self.client.force_login(self.user)
+        resp = self.client.post(
+            self.TEXT_BATCH,
+            data={"pdf_files": [_real_pdf(pages=3)]},
+            format="multipart",
+            HTTP_REFERER=self.REFERER,
+        )
+        self.assertEqual(resp.status_code, 400)
+
+    # ---- Regression: Option B (free 1-file batch stays allowed) ----------
+
+    def test_free_user_single_in_limit_file_passes_gates(self):
+        """A free user's single in-limit file must still clear the premium
+        gates (it may fail later on the unparseable fake PDF, but it must not
+        be rejected as 403/413 — that would break free 1-file batch)."""
+        self.client.force_login(self.user)
+        resp = self.client.post(
+            self.CROP_BATCH,
+            data=self._crop_data([_fake_pdf("ok.pdf")]),
+            format="multipart",
+            HTTP_REFERER=self.REFERER,
+        )
+        self.assertNotIn(resp.status_code, (403, 413))

@@ -16,6 +16,7 @@ class RemovePagesBatchAPIView(BaseBatchAPIView):
     CONVERSION_TYPE = "REMOVE_PAGES_BATCH"
     TMP_PREFIX = "remove_batch_"
     OUTPUT_ZIP_FILENAME = "removed_pages.zip"
+    VALIDATE_PDF_PAGES = False  # Parity with single RemovePagesAPIView
 
     def get_post_params(self, request):
         return {"pages": request.POST.get("pages", "")}
