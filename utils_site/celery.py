@@ -108,7 +108,14 @@ try:
         # Dev workers: solo (concurrency=1)
         # Task execution settings
         task_acks_late=True,  # Acknowledge tasks after completion (allows task requeue on failure)
-        task_reject_on_worker_lost=True,  # Reject tasks if worker dies
+        # Do NOT requeue a task whose worker died abruptly (SIGKILL/OOM).
+        # reject_on_worker_lost=True re-delivers such a task to the broker, so
+        # an OOM-inducing conversion gets retried forever — each attempt
+        # re-kills a worker. That poison-pill loop is exactly what produced the
+        # 23 back-to-back WorkerLostError SIGKILLs in CONVERTICA-59. With False
+        # the killed task is acknowledged (failed once) and the stuck-operation
+        # reaper marks it failed for the user; the worker pool stays healthy.
+        task_reject_on_worker_lost=False,
         # Priority settings - premium tasks get higher priority
         task_default_priority=5,  # Default priority for regular tasks
         task_inherit_parent_priority=True,  # Child tasks inherit parent priority
