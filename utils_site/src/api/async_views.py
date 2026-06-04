@@ -709,6 +709,13 @@ class TaskResultAPIView(APIView):
             )
             response["Content-Type"] = content_type
 
+            # Feedback token bound to this operation (resolved via task_id).
+            from src.feedback.tokens import create_feedback_token
+
+            response["X-Convertica-Feedback-Token"] = create_feedback_token(
+                task_id=task_id
+            )
+
             # Schedule cleanup after download (delayed)
             # Note: Actual cleanup happens via maintenance task
             logger.info(f"Serving result for task {task_id}: {output_filename}")

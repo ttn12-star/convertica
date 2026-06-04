@@ -40,12 +40,15 @@ from src.api.pdf_organize.remove_pages.views import RemovePagesAPIView
 from src.api.pdf_organize.split_pdf.views import SplitPDFAPIView
 from src.api.pdf_security.protect_pdf.views import ProtectPDFAPIView
 from src.api.pdf_security.unlock_pdf.views import UnlockPDFAPIView
+from src.feedback.views import FeedbackAPIView
 
 # Shorthand to keep each route terse.
 _perm = {"permission_classes": [IsAuthenticatedOrWebToken]}
 
 urlpatterns = [
     path("auth/web-token", web_token_view, name="v1_web_token"),
+    # Tool feedback (anonymous-friendly; signed feedback_token is the abuse gate)
+    path("feedback/", FeedbackAPIView.as_view(), name="v1_feedback"),
     # PDF convert endpoints
     path("pdf-to-word/", PDFToWordAPIView.as_view(**_perm), name="v1_pdf_to_word"),
     path("word-to-pdf/", WordToPDFAPIView.as_view(**_perm), name="v1_word_to_pdf"),
