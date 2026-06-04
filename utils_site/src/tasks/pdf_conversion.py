@@ -143,7 +143,11 @@ def update_progress(task, progress: int, current_step: str = "", total_steps: in
     soft_time_limit=420,  # 7 minutes soft limit (reduced for 4GB server)
     time_limit=480,  # 8 minutes hard limit (reduced for 4GB server)
     acks_late=True,  # Acknowledge after completion (allows task revocation)
-    reject_on_worker_lost=True,  # Don't requeue if worker dies
+    # False = do NOT requeue when the worker is killed mid-task (SIGKILL/OOM).
+    # Requeuing would re-run the same oversized job and re-kill the worker —
+    # an unbounded poison-pill loop (CONVERTICA-59). The old value was True
+    # despite the "Don't requeue" comment: the flag and the intent disagreed.
+    reject_on_worker_lost=False,
 )
 def generic_conversion_task(
     self,
