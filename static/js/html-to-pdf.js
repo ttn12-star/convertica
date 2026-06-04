@@ -339,6 +339,13 @@ class HTMLToPDFConverter {
             // Set download link attributes
             this.downloadLink.href = result.download_url;
             this.downloadLink.download = filename;
+
+            // Post-conversion rating form (this tool renders its own download
+            // UI rather than window.showDownloadButton, so attach it here).
+            if (window.RATING_ENABLED && window.renderRatingForm && window._lastFeedbackToken) {
+                window.renderRatingForm(this.resultSection, window._lastFeedbackToken);
+            }
+            window._lastFeedbackToken = null;
         }
     }
 
