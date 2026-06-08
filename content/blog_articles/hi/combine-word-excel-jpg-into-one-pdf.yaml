@@ -1,0 +1,86 @@
+slug: combine-word-excel-jpg-into-one-pdf
+title_hi: "Word, Excel, और JPG Files को एक PDF में कैसे Combine करें"
+meta_title_hi: "Word, Excel & JPG को एक PDF में Combine करें - Step by Step | Convertica"
+meta_description_hi: "एक job application, एक expense report, एक property pack: documents हमेशा Word, Excel, और photos का mix होते हैं। यहाँ है उन्हें एक clean PDF में, सही order में जोड़ने का reliable तरीका।"
+meta_keywords_hi: "combine files into one pdf, merge word excel jpg to pdf, multiple files into one pdf, combine documents into pdf, make one pdf from different files, assemble pdf packet"
+excerpt_hi: "असल दुनिया के document packets कभी एक file type नहीं होते। Word में एक CV, JPG में एक certificate, Excel में एक budget - सबको एक tidy PDF के रूप में पहुँचना है। Trick एक simple two-stage rule है: पहले सब कुछ PDF में convert करें, फिर order में merge करें।"
+content_hi: |
+  असल ज़िंदगी में जो documents matter करते हैं वे लगभग कभी एक file type share नहीं करते। एक job application है Word में एक CV, Excel में एक portfolio summary, और JPG के रूप में एक scanned certificate। एक rental application है एक ID photo, एक pay slip, और एक reference letter। एक expense claim है एक spreadsheet plus receipt photos का एक folder। Recipient को एक चीज़ चाहिए: एक single, clean PDF जिसे वे खोल सकें, scroll कर सकें, और file कर सकें।
+
+  उन टुकड़ों को साथ जोड़ना fiddly लगता है, लेकिन यह एक rule को follow करता है जो कभी नहीं बदलता: पहले सब कुछ PDF में convert करें, फिर PDFs को उस order में merge करें जो आप चाहते हैं। उस sequence को सही कर लें और बाक़ी mechanical है। यह guide पूरे packet को loose files से एक finished document तक walk करती है।
+
+  <h2>"पहले convert, फिर merge" rule क्यों है</h2>
+  <p>यह सोचने का मन करता है कि एक ऐसा tool ढूँढें जो एक Word file, एक spreadsheet, और तीन photos को निगल कर एक PDF उगल दे। वह approach fragile है: हर format की अपनी quirks हैं - एक spreadsheet जो page से overflow होती है, एक photo जो sideways आती है - और एक single black-box converter उन problems को तब तक छुपाता है जब तक final file ग़लत न हो जाए।</p>
+  <p>हर file को अपने अलग से PDF में convert करना आपको check करने देता है कि वह packet में जुड़ने से पहले सही दिखती है। PDF अकेला ऐसा format भी है जो cleanly merge होता है: एक बार सब कुछ PDF हो जाए, combining एक lossless copy है, re-render नहीं। इसलिए workflow हमेशा दो stages की है।</p>
+
+  <h2>Stage 1: हर file को एक PDF में बदलें</h2>
+  <p>हर file type को उसकी अपनी शर्तों पर handle करें।</p>
+
+  <h3>Word documents</h3>
+
+  <figure><img src="/static/blog/images/tool-word-to-pdf.jpg" alt="Combine करने से पहले एक Word document को PDF में convert करना" width="1280" height="800" loading="lazy"></figure>
+  <p>एक .docx या .doc सीधे <a href="/hi/word-to-pdf/">Office to PDF</a> tool से formatting intact के साथ गुज़र जाती है - fonts, headings, page breaks सब बच जाते हैं। यह आसान वाला है: जो आप Word में देखते हैं वही PDF में आता है।</p>
+
+  <h3>Excel spreadsheets</h3>
+  <p>Spreadsheets trap हैं। एक wide sheet जो Excel में ठीक दिखती है, PDF बनते ही आठ pages में फैल सकती है, एक single table को बीच से काटते हुए। Convert करने से पहले, print area set करें और Excel के अंदर "Fit Sheet on One Page" (या scale to fit width) on करें, फिर उसी <a href="/hi/word-to-pdf/">Office to PDF</a> tool से चलाएँ। Print setup पर आप जो दो minutes ख़र्च करते हैं वही एक tidy one-page table और एक sliced mess के बीच का फ़र्क़ है। पूरा layout playbook <a href="/hi/blog/convert-excel-to-pdf-keep-formatting/">Excel to PDF guide</a> में है।</p>
+
+  <h3>JPG और photos</h3>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="JPG photos को PDF pages में convert करना" width="1280" height="800" loading="lazy"></figure>
+  <p>Photos और scanned images <a href="/hi/jpg-to-pdf/">JPG to PDF</a> से गुज़रती हैं, जो हर image को एक PDF page में wrap कर देता है। अगर आपके पास कई images हैं जो साथ की हैं - मान लीजिए एक scanned certificate के चार pages - आप उन्हें एक ही pass में एक single multi-page PDF में convert कर सकते हैं, जो बाद में एक merge step बचाता है।</p>
+
+  <h2>Stage 2: PDFs को order में merge करें</h2>
+
+  <figure><img src="/static/blog/images/tool-merge-hero.jpg" alt="Converted PDFs को सही order में एक document में merge करना" width="1280" height="800" loading="lazy"></figure>
+  <p>अब हर टुकड़ा PDF होने के साथ, <a href="/hi/pdf-organize/merge/">Merge PDF</a> tool खोलें, सारी files add करें, और उन्हें उस sequence में drag करें जो आप चाहते हैं। Order इस stage की पूरी बात है - एक hiring manager पहले CV expect करता है, फिर supporting documents; एक accountant receipts से पहले summary sheet expect करता है। Order यहाँ set करें और merged file एक deliberately assembled document की तरह पढ़ती है, न कि एक random ढेर की तरह।</p>
+  <p>अगर आपको merge करने के बाद ही पता चले कि order ग़लत है, तो दोबारा शुरू करने की ज़रूरत नहीं - <a href="/hi/pdf-organize/organize/">Organize PDF</a> tool आपको combined file में pages को जगह पर drag करने देता है।</p>
+
+  <h2>Stage 3: finishing touches</h2>
+  <p>तीन quick passes एक functional merge को एक polished packet में बदल देते हैं:</p>
+  <ul>
+    <li><strong>Sideways pages ठीक करें.</strong> एक phone photo अक्सर rotated import होती है। <a href="/hi/pdf-edit/rotate/">Page को permanently rotate करें</a> ताकि recipient को अपना सिर टेढ़ा न करना पड़े।</li>
+    <li><strong>Page numbers add करें.</strong> कुछ pages से ज़्यादा किसी भी चीज़ के लिए, <a href="/hi/pdf-edit/add-page-numbers/">page numbers</a> एक multi-document packet को एक coherent file जैसा महसूस कराते हैं और reference करना आसान बना देते हैं ("page 4 देखें")।</li>
+    <li><strong>Email के लिए shrink करें.</strong> Photo-heavy packets size में फूल जाते हैं। अगर यह भेजने के लिए बहुत बड़ा है, <a href="/hi/pdf-organize/compress/">final PDF को compress करें</a> एक email-friendly size तक।</li>
+  </ul>
+
+  <h2>Common scenarios, mapped</h2>
+  <table>
+    <thead>
+      <tr><th>आप क्या assemble कर रहे हैं</th><th>टुकड़े</th><th>Recommended order</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Job application</td><td>CV (Word), cover letter (Word), certificates (JPG)</td><td>Cover letter → CV → certificates</td></tr>
+      <tr><td>Expense report</td><td>Summary (Excel), receipt photos (JPG)</td><td>Summary sheet → receipts date order में</td></tr>
+      <tr><td>Rental / loan application</td><td>Form (Word), pay slips (JPG/PDF), ID (JPG)</td><td>Form → ID → pay slips</td></tr>
+      <tr><td>Project handover</td><td>Report (Word), budget (Excel), screenshots (JPG)</td><td>Report → budget → screenshots</td></tr>
+      <tr><td>Property pack</td><td>Listing (Word), floor plan (JPG), costs (Excel)</td><td>Listing → floor plan → costs</td></tr>
+    </tbody>
+  </table>
+
+  <h2>बचने लायक pitfalls</h2>
+  <p><strong>Excel print setup skip करना.</strong> यह एक ugly packet की सबसे common वजह है। Spreadsheet convert करने से पहले हमेशा print area set करें और fit-to-page on करें।</p>
+  <p><strong>Reading order के बजाय upload order में merge करना.</strong> Merge tool वही order रखता है जो आप arrange करते हैं, वह नहीं जिसमें आपने files add कीं। Export करने से पहले हमेशा reading sequence में drag करें।</p>
+  <p><strong>यह भूलना कि file बड़ी हो जाती है.</strong> हर photo एक megabyte या ज़्यादा add कर सकती है। एक five-photo packet आसानी से एक email limit पार कर सकता है - आख़िर में compress करें, पहले नहीं, ताकि आप सिर्फ़ एक बार compress करें।</p>
+  <p><strong>Final file का नाम "document.pdf" रखना.</strong> Packet को एक clear नाम दें जैसे <code>Smith-Application-2026.pdf</code>। इसकी reasoning और एक पूरा naming system <a href="/hi/blog/pdf-naming-conventions-best-practices/">PDF naming conventions guide</a> में है।</p>
+
+  <h2>Accounting और invoices के लिए एक note</h2>
+  <p>अगर आपका packet ख़ासतौर पर invoices या financial statements हैं जो bookkeeping के लिए bundle हो रहे हैं, तो एक tailored walkthrough है - इसमें यह भी कि एक consistent order और एक clean audit trail कैसे रखें - <a href="/hi/blog/merge-invoices-into-one-pdf-for-accounting/">merge invoices for accounting guide</a> में।</p>
+
+  <blockquote class="callout">पूरा काम दो stages का है: हर file को उसके अपने PDF में convert करें, फिर उन PDFs को reading order में merge करें। बाक़ी सब - rotating, numbering, compressing - उसके ऊपर optional polish है।</blockquote>
+
+  <h2>FAQ</h2>
+  <h3>क्या मैं एक Word file और एक JPG को सीधे एक PDF में combine कर सकता हूँ?</h3>
+  <p>एक step में reliably नहीं। Word file को PDF में और JPG को PDF में अलग-अलग convert करें, फिर दोनों PDFs को merge करें। यह two-stage approach आपको layout और order पर control देता है और surprises से बचाता है।</p>
+  <h3>मैं अपनी files को सही order में कैसे रखूँ?</h3>
+  <p>Merge tool में, export करने से पहले files को उस sequence में drag करें जो आप चाहते हैं - output arranged order को follow करता है, उस order को नहीं जिसमें आपने उन्हें add किया। अगर आपको बाद में कोई गलती दिखे, combined file में pages को इधर-उधर drag करने के लिए organize tool use करें।</p>
+  <h3>मेरी Excel sheet PDF में कई pages में क्यों टूट जाती है?</h3>
+  <p>Print area set नहीं है। Convert करने से पहले, Excel में print area define करें और "Fit Sheet on One Page" या scale-to-fit-width enable करें, फिर convert करें। यह एक wide table को एक single page पर रखता है।</p>
+  <h3>मेरा combined PDF email करने के लिए बहुत बड़ा है। मैं क्या करूँ?</h3>
+  <p>Photo-heavy packets तेज़ी से बड़े हो जाते हैं। Finished PDF को last step के तौर पर एक compressor से चलाएँ ताकि वह आपके email provider की limit के नीचे आ जाए (Gmail के लिए लगभग 25 MB, Outlook के लिए 20 MB)।</p>
+  <h3>मेरा एक scanned page sideways है - मैं इसे कैसे ठीक करूँ?</h3>
+  <p>Phone photos अक्सर rotated import होती हैं। Page को permanently turn करने के लिए rotate tool use करें ताकि यह सही orientation में save हो, सिर्फ़ current view के लिए नहीं।</p>
+  <h3>क्या मैं कई images को एक-एक करके merge करने के बजाय एक PDF के रूप में add कर सकता हूँ?</h3>
+  <p>हाँ। JPG to PDF tool एक साथ कई images ले सकता है और एक single multi-page PDF produce कर सकता है, जो grouped images जैसे एक multi-page certificate के लिए आपका एक अलग merge step बचाता है।</p>
+
+  <h2>अभी try करें</h2>
+  <p>अपनी loose files convert करें, फिर उन्हें सही order में साथ लाएँ। <a href="/hi/pdf-organize/merge/">Merge PDF tool खोलें →</a></p>

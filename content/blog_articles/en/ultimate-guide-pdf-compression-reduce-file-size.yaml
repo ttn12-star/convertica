@@ -1,0 +1,179 @@
+slug: ultimate-guide-pdf-compression-reduce-file-size
+cover_image: blog/images/cover-ultimate-guide-pdf-compression-reduce-file-size.jpg
+status: published
+category_slug: pdf-guides
+relevant_tool: compress_pdf
+title_en: 'Ultimate Guide to PDF Compression: How to Reduce File Size Without Losing Quality'
+meta_title_en: 'PDF Compression Guide: Reduce File Size | Convertica'
+meta_description_en: How PDF compression really works, how small you can realistically get a file, and which preset to pick for email, printing or archiving without losing quality.
+meta_keywords_en: "compress pdf, reduce pdf file size, pdf compression, shrink pdf, pdf optimizer, downsample pdf images, compress scanned pdf"
+excerpt_en: A 40 MB report and a 40 MB scan compress completely differently. Here is what is really eating your bytes, how downsampling works, and which preset fits each job.
+ai_metadata:
+  topics:
+    - PDF compression
+    - reduce PDF file size
+    - image downsampling
+    - lossless vs lossy compression
+    - choosing a compression preset
+  entities:
+    - PDF
+    - Convertica
+    - JPEG
+    - DPI
+    - PDF/A
+    - Acrobat
+  summary: "A practical guide to PDF compression that explains the difference between lossless structural optimization and lossy image downsampling, gives realistic size-reduction ranges by document type, and maps quality targets to use cases like email, printing and archiving."
+  related_terms:
+    - compress pdf online
+    - shrink pdf file
+    - reduce pdf size for email
+    - image downsampling dpi
+    - lossless pdf optimization
+    - compress scanned pdf
+    - pdf file too large
+  reading_time_minutes: 8
+  target_audience: "Office workers, students, freelancers and anyone who needs a PDF small enough to email, upload or archive without obviously degrading it."
+content_en: |
+  Two PDFs that both read "40 MB" in your file manager can be wildly different problems. One is a text report exported from Word that will drop to 3 MB in a single pass. The other is a stack of 600 DPI colour scans that fights you down to 28 MB and looks worse for it. "Compress PDF" is a single button, but what happens behind it depends entirely on what is inside the file.
+
+  This guide explains how PDF compression actually works, what realistically shrinks and what doesn't, and how to pick the right setting for the job instead of guessing. We'll use Convertica's <a href="/en/pdf-organize/compress/">free PDF compressor</a> for the examples, but the logic applies to any tool that does the job honestly.
+
+  <figure><img src="/static/blog/images/tool-compress-hero.jpg" alt="Convertica PDF compressor with a file uploaded and the compression preset selector" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Where the bytes actually live</h2>
+
+  Before you can shrink a PDF, it helps to know what is taking up the room. A PDF is a container, and the weight is rarely spread evenly:
+
+  <ul>
+    <li><strong>Images dominate almost every large file.</strong> A single full-page 300 DPI colour photo is around 2-4 MB on its own. A scanned document is nothing <em>but</em> images, one per page, which is why scans balloon so fast.</li>
+    <li><strong>Text is tiny.</strong> The actual characters and layout of a 50-page report add up to a few hundred kilobytes. Real text is the cheapest thing in a PDF.</li>
+    <li><strong>Embedded fonts add up.</strong> A handful of subset fonts is fine; a full embedded font family with every glyph can quietly add a megabyte or two.</li>
+    <li><strong>Invisible cruft.</strong> Revision history from repeated "Save" operations in Acrobat, unused objects, oversized colour profiles, and embedded files (yes, a PDF can carry a spreadsheet inside it) all ride along unseen.</li>
+  </ul>
+
+  The single most useful habit before compressing: open the file and try to select text on the first page. If words highlight letter by letter, you have a born-digital PDF and your weight is probably fonts, embedded images, or cruft. If the whole page highlights as one rectangle, you have a scan, and your weight is images, full stop. That one test predicts almost everything about how much you'll save.
+
+  <h2>How PDF compression actually works</h2>
+
+  There are two fundamentally different mechanisms at play, and good tools use both. Understanding the split is what separates "why did nothing happen?" from "why does my scan look muddy now?"
+
+  <h3>Lossless optimization (free quality)</h3>
+
+  Some of the savings cost you nothing. A compressor can rewrite the file structure without touching a single visible pixel:
+
+  <ul>
+    <li>Deflate (zip-style) compression on text and content streams, which packs repetitive data tightly.</li>
+    <li>Removing unused objects, orphaned pages and stale revision history.</li>
+    <li>Subsetting fonts so only the glyphs you actually use are embedded.</li>
+    <li>Deduplicating identical images that appear on multiple pages (a logo in a footer, for instance).</li>
+  </ul>
+
+  On a born-digital text PDF, lossless optimization alone often does most of the work. Nothing degrades; the file is just packed smarter.
+
+  <h3>Lossy image downsampling (where quality goes)</h3>
+
+  The big reductions come from the images, and they are lossy by nature. Two things happen:
+
+  <ul>
+    <li><strong>Downsampling</strong> drops the resolution. A 600 DPI scan downsampled to 150 DPI keeps a quarter of the pixels in each direction, so roughly one-sixteenth of the data. That is where the dramatic size drops come from.</li>
+    <li><strong>Re-encoding</strong> recompresses each image as JPEG at a chosen quality level, throwing away fine detail the eye barely registers.</li>
+  </ul>
+
+  This is why text-heavy PDFs and image-heavy PDFs behave so differently. There is no resolution to throw away in vector text, so a text PDF that's already lean simply won't shrink much. A scan, on the other hand, is all throwable resolution, which is both why it compresses so much and why it's the one that can end up looking muddy.
+
+  <blockquote class="callout">Key idea: lossless optimization is always safe and usually modest. The big numbers come from downsampling images, and that is the only step that can visibly cost you quality.</blockquote>
+
+  <h2>Compression presets, in plain terms</h2>
+
+  Most tools, Convertica included, hide the maths behind a few presets. Here's what they actually do under the hood.
+
+  <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="Compression preset selector showing low, medium and high options in the Convertica tool" width="1280" height="800" loading="lazy"></figure>
+
+  <ul>
+    <li><strong>Low.</strong> Lossless optimization plus light image re-encoding, with little or no downsampling. Best quality, smallest savings. Use it when sharpness is non-negotiable.</li>
+    <li><strong>Medium (the sensible default).</strong> Downsamples images to roughly 150 DPI and re-encodes at a balanced JPEG quality. Invisible on screen, prints cleanly at A4, and handles most real-world files.</li>
+    <li><strong>High.</strong> Downsamples harder (around 96-120 DPI) and compresses images more aggressively. Great for getting something under a stubborn limit when the recipient only reads on screen and never prints.</li>
+  </ul>
+
+  Medium is the right starting point about nine times out of ten. Reach for low only when diagrams or photos must stay crisp, and reach for high only when you're fighting a hard size cap and on-screen reading is the only goal.
+
+  <h2>Which setting for which job</h2>
+
+  Match the preset to what the document is actually for, not to how small you can technically make it.
+
+  <table>
+    <thead>
+      <tr><th>Quality target / use case</th><th>Recommended preset</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Reading on screen, sharing a draft</td><td>Medium or High</td><td>Screen resolution is forgiving; downsampling is invisible.</td></tr>
+      <tr><td>Emailing under a 20-25 MB cap</td><td>Medium first, then High</td><td>Medium clears most files; escalate only if it doesn't.</td></tr>
+      <tr><td>Office printing on A4 / Letter</td><td>Medium</td><td>150 DPI prints cleanly on a standard laser printer.</td></tr>
+      <tr><td>Photos, diagrams, design proofs</td><td>Low</td><td>Preserves fine detail and gradients that aggressive JPEG ruins.</td></tr>
+      <tr><td>Professional / large-format printing</td><td>Low or keep original</td><td>Print shops need 300 DPI; downsampling shows up at size.</td></tr>
+      <tr><td>Legal exhibits, signed contracts</td><td>Don't compress</td><td>File integrity matters more than size; re-encoding can be challenged.</td></tr>
+      <tr><td>Long-term archive (PDF/A)</td><td>Low, or none</td><td>Archives are meant to preserve fidelity, not save space.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How small can you realistically get?</h2>
+
+  This is where most "up to 99% smaller!" claims fall apart. Compression can only throw away what's redundant, so the realistic range depends entirely on what's inside. Honest numbers:
+
+  <table>
+    <thead>
+      <tr><th>Document type</th><th>Typical reduction</th><th>Example</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Text-only PDF (exported from Word, web)</td><td>70-95%</td><td>40 MB → 2-12 MB</td></tr>
+      <tr><td>Mixed text + photos</td><td>40-70%</td><td>30 MB → 9-18 MB</td></tr>
+      <tr><td>Pure scan (every page is an image)</td><td>30-60%</td><td>50 MB → 20-35 MB</td></tr>
+      <tr><td>Already-compressed PDF</td><td>0-15%</td><td>You're at the floor; split instead</td></tr>
+    </tbody>
+  </table>
+
+  Two things follow from this table. First, if a file barely shrinks, it isn't broken; it was probably already optimized, and there's simply nothing left to remove. Second, a pure scan has a floor: no preset gets a 50 MB scan under 10 MB without visible damage, because the data <em>is</em> the picture. When you hit that wall, stop compressing and change tactics.
+
+  <h2>When compression isn't the answer</h2>
+
+  Compression is one tool, not the only one. Two common situations call for a different move:
+
+  <ul>
+    <li><strong>The file must stay at full quality but is over the limit.</strong> Don't degrade it; <a href="/en/pdf-organize/split/">split the PDF into smaller parts</a> by page range and send or upload them separately. This keeps every pixel intact, which matters for design proofs, exhibits and anything a regulator will scrutinize. See the worked example in our guide to <a href="/en/blog/split-bank-statement-pdf-by-page/">splitting a bank statement PDF by page</a>.</li>
+    <li><strong>You're combining many small PDFs and the total is the problem.</strong> Sometimes the right order is to <a href="/en/pdf-organize/merge/">merge the files into one PDF</a> first, then compress the combined document once, so shared resources like fonts are deduplicated across the whole set. Our walkthrough on <a href="/en/blog/merge-invoices-into-one-pdf-for-accounting/">merging invoices into one PDF for accounting</a> shows the pattern.</li>
+  </ul>
+
+  And if the whole reason you're compressing is a bounced email, the dedicated playbook (real provider limits, the base64 surcharge, when to send a cloud link) lives in <a href="/en/blog/compress-pdf-for-email-under-25mb/">how to compress a PDF for email under 25 MB</a>.
+
+  <h2>A repeatable workflow</h2>
+
+  Put together, the fast path looks like this:
+
+  <ol>
+    <li>Run the text-selection test to learn whether you're dealing with a digital file or a scan.</li>
+    <li>Try Medium first. For most files you're done here.</li>
+    <li>If it's still too big and it's a scan, accept that you're near the floor: split it, or re-OCR and re-export to a text-based PDF, rather than cranking quality into the ground.</li>
+    <li>If it's still too big and it's born-digital, check for embedded files and revision-history bloat before assuming the preset failed.</li>
+    <li>Always keep the original. Compression is one-way for the discarded detail, and you may need the full-quality copy later.</li>
+  </ol>
+
+  <h2>FAQ</h2>
+
+  <h3>Why did my PDF barely get smaller?</h3>
+  <p>Most likely it was already optimized, or it's a born-digital text PDF with little image data to downsample. Compression removes redundancy; if there's none left, there's nothing to save. Check the attachments panel too, in case an embedded file is inflating the size.</p>
+
+  <h3>Does compressing a PDF lose quality?</h3>
+  <p>Only the image part can. Text and vector graphics are repacked losslessly and stay pixel-perfect. Images are downsampled and re-encoded, which is invisible at Medium for on-screen and office use, and starts to show at High on photos and detailed diagrams.</p>
+
+  <h3>Can I compress the same PDF twice to make it even smaller?</h3>
+  <p>Rarely worth it. The first pass already removed the redundancy; a second pass mostly re-encodes already-degraded images, adding artefacts for almost no size gain. If one pass isn't enough, split the file or re-OCR a scan instead.</p>
+
+  <h3>Why is my scanned PDF still huge after compression?</h3>
+  <p>A scan is pure image data, so it has a hard floor (roughly 30-60% reduction). To go further, run OCR to turn the pages into real text and re-export to a text-based PDF, then compress that. A 50 MB scan can drop to 1-2 MB this way, but handwriting and signatures won't survive, so keep the original.</p>
+
+  <h3>Is online PDF compression safe for sensitive documents?</h3>
+  <p>Uploads are encrypted in transit and processed only for the duration of the job. For genuinely confidential files, password-protect the PDF after compressing and share the password through a separate channel, or split the file and keep it on your own machine.</p>
+
+  <h2>Try it now</h2>
+
+  <p>Run the text-selection test, start with the Medium preset, and check the result against what the document is actually for. <a href="/en/pdf-organize/compress/">Open the PDF compressor tool →</a></p>

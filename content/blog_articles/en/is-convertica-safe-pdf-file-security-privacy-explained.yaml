@@ -1,0 +1,143 @@
+slug: is-convertica-safe-pdf-file-security-privacy-explained
+cover_image: blog/images/cover-is-convertica-safe-pdf-file-security-privacy-explained.jpg
+status: published
+category_slug: security-privacy
+relevant_tool: protect_pdf
+title_en: "Is Convertica Safe? PDF File Security & Privacy, Explained Honestly"
+meta_title_en: "Is Convertica Safe? PDF Security & Privacy | Convertica"
+meta_description_en: "What actually happens to a PDF you upload to Convertica: encrypted transfer, processing only for the conversion, automatic deletion, and no account required."
+meta_keywords_en: "is convertica safe, pdf security, pdf privacy, secure pdf converter, online pdf tool privacy, https file upload, automatic file deletion, vet online pdf tool"
+excerpt_en: "A straight answer about what happens to your file when you upload it, why no account is needed, and how to vet any online PDF tool before you trust it with something sensitive."
+ai_metadata:
+  topics:
+    - online PDF tool safety
+    - file privacy in transit
+    - automatic file deletion
+    - vetting web-based document tools
+    - when to password-protect a PDF
+  entities:
+    - Convertica
+    - PDF
+    - HTTPS
+    - TLS
+    - AES-256
+  summary: "An honest explanation of how Convertica handles uploaded files: transfer over an encrypted HTTPS connection, processing only for the duration of the conversion, automatic deletion shortly after, no sign-up, and no selling or sharing of files. Includes a practical checklist for vetting any online PDF tool and guidance on when the user should add their own password."
+  related_terms:
+    - is convertica safe
+    - secure pdf converter
+    - encrypted file upload
+    - delete files after conversion
+    - no account pdf tool
+    - https tls in transit
+    - password protect sensitive pdf
+    - privacy checklist online tool
+  reading_time_minutes: 8
+  target_audience: "Anyone about to upload a contract, payslip, ID scan, medical record, or other sensitive document to a free online PDF tool and wanting to know, honestly, whether that's safe and how to check."
+content_en: |
+  "Is this safe?" is the right question to ask before you drop a contract, a payslip, or a scan of your passport into any website. You should ask it of Convertica, and you should ask it of every other online tool too. This page answers it honestly: what happens to your file, what we do and don't do with it, and how you can verify the answer yourself instead of taking anyone's word for it.
+
+  No vague "your privacy matters to us" filler. Just the actual mechanics.
+
+  <figure><img src="/static/blog/images/tool-pdf-protect-hero.jpg" alt="Convertica PDF tools shown over an encrypted HTTPS connection" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>What happens to your file when you upload it</h2>
+
+  When you pick a file and start a conversion, here is the lifecycle, start to finish:
+
+  <ol>
+    <li>Your file leaves your device and travels to our server over an encrypted connection (HTTPS).</li>
+    <li>A working copy lands on the server purely so the conversion engine has something to read.</li>
+    <li>The tool does its job — converts, compresses, merges, protects, whatever you asked for.</li>
+    <li>You download the result.</li>
+    <li>The uploaded file and the generated result are removed automatically a short time later.</li>
+  </ol>
+
+  That's the whole story. There is no step where a person opens your document, no step where it gets filed into a permanent library, and no step where its contents are read for advertising or analytics. Files are handled by software, for the length of the job, and then cleaned up.
+
+  We keep this general rather than quoting an exact number of minutes, because the practical answer is the one that matters: your file isn't meant to stick around, and it doesn't. Holding onto thousands of strangers' documents would cost us storage money and buy us nothing.
+
+  <h2>Encryption in transit: the HTTPS part</h2>
+
+  The single most important technical fact is that the upload and the download both happen over HTTPS. That's the same transport-layer encryption (TLS) your bank's website uses. In plain terms, the bytes of your file are scrambled while they travel between your device and the server, so someone sniffing traffic on the coffee-shop Wi-Fi or sitting on the network in between sees ciphertext, not your document.
+
+  You can confirm this yourself in two seconds: look at the address bar. If the URL starts with <code>https://</code> and the browser shows a padlock, the connection is encrypted. If it ever shows <code>http://</code> with no <strong>s</strong>, stop and don't upload anything sensitive — to us or to anyone.
+
+  One honest caveat worth understanding: HTTPS protects the file <em>in transit</em>. It is not the same as end-to-end encryption where only you hold the key. The server has to read the file to convert it — unavoidable for any server-side tool. What protects you on that side is the second half of the story: the file is processed and then deleted, not retained.
+
+  <h2>Automatic deletion, not indefinite storage</h2>
+
+  The reassuring part isn't a promise; it's the design. Convertica is built around throwaway, short-lived files:
+
+  <ul>
+    <li>The uploaded original exists only long enough to be processed.</li>
+    <li>The converted result exists only long enough for you to download it.</li>
+    <li>Both are removed automatically afterward — you don't have to click anything to make that happen.</li>
+    <li>We don't build a searchable archive of your documents, and we don't make hidden backups of them to keep around.</li>
+  </ul>
+
+  This is also why there's no "my files" page on Convertica: there's no library to show you, because nothing is being kept. If that ever feels like a missing feature, it's actually the privacy guarantee doing its job.
+
+  <h2>No account, no profile, no tracking of your documents</h2>
+
+  You don't create an account to use the free tools, and that's intentional. No sign-up means:
+
+  <ul>
+    <li>No email or password to hand over before converting a file.</li>
+    <li>No personal profile that ties a document back to your identity.</li>
+    <li>No conversion history saved against a "you".</li>
+    <li>No analysis of what's inside your documents to build a profile or sell to anyone.</li>
+  </ul>
+
+  We don't sell or share your files. Our model is simple and boring on purpose: the core tools are free, and people who want more (bigger files, batch jobs, no waiting) can pay for premium. The money comes from that, not from your documents.
+
+  <h2>When YOU should add a password anyway</h2>
+
+  Here's the part most "is it safe" pages skip, because it puts some responsibility back on you. Encryption in transit and automatic deletion cover the upload-and-process moment. They do nothing about where your file goes <em>after</em> you download it — the email you attach it to, the shared drive you drop it in, the colleague you forward it to.
+
+  For genuinely sensitive material, add your own password so the protection travels <em>with the file</em>:
+
+  <ul>
+    <li>Contracts, NDAs, and signed agreements.</li>
+    <li>Payslips, bank statements, and tax documents.</li>
+    <li>Scans of IDs, passports, or medical records.</li>
+    <li>Anything you'd be uncomfortable seeing forwarded to the wrong inbox.</li>
+  </ul>
+
+  Use the <a href="/en/pdf-security/protect/">password-protect a PDF</a> tool to lock the file with AES-256 before you share it. Now even if the file ends up somewhere it shouldn't, it's unreadable without the key. When the document has done its job and you need to edit it again, you can <a href="/en/pdf-security/unlock/">remove the password from a PDF you own</a>. For the full workflow — including the most common mistake, which is emailing the password in the same message as the file — see <a href="/en/blog/password-protect-pdf-before-emailing/">how to password-protect a PDF before emailing it</a>. If you're packaging several files together, the same logic applies to archives: here's <a href="/en/blog/how-to-password-protect-a-zip-file/">how to password-protect a ZIP file</a>.
+
+  <h2>How to vet any online PDF tool (including this one)</h2>
+
+  Don't trust a safety claim because the page says "secure" in a nice font. Run this quick checklist on any tool before you upload something you care about — it takes under a minute and works on every site, not just ours.
+
+  <ul>
+    <li><strong>Check for HTTPS.</strong> Padlock in the address bar, URL starts with <code>https://</code>. No padlock, no upload.</li>
+    <li><strong>Find the deletion policy.</strong> A trustworthy tool states, somewhere reachable, that uploaded files are deleted after processing. Vague or absent? Treat that as "kept indefinitely" and act accordingly.</li>
+    <li><strong>See whether an account is forced.</strong> Being made to register and verify an email before a simple conversion ties the file to your identity. A no-account option is a privacy point in the tool's favour.</li>
+    <li><strong>Read what they say about selling or sharing data.</strong> The privacy policy should say plainly that files aren't sold or handed to third parties. If you can't find that statement, assume the opposite.</li>
+    <li><strong>Match sensitivity to method.</strong> For truly confidential documents, the safest option is often a tool that processes the file in your browser, or simply password-protecting the file before it leaves your device.</li>
+  </ul>
+
+  <blockquote class="callout">The one habit that protects you everywhere: for anything sensitive, password-protect the file <em>before</em> you upload or share it. Then the tool's policies, the email server's retention, and the recipient's habits all matter a lot less, because the file is unreadable without the key you control.</blockquote>
+
+  You can see the full set of operations Convertica offers on the <a href="/en/all-tools/">all tools</a> page — convert, compress, merge, split, protect, unlock, and more.
+
+  <h2>FAQ</h2>
+
+  <h3>Is Convertica safe to use for confidential documents?</h3>
+  <p>For most documents, yes: files are uploaded over an encrypted HTTPS connection, processed only for the conversion, and deleted automatically afterward, with no account and no selling of your data. For genuinely confidential material, add a layer you control — password-protect the file before you upload or share it — so it stays protected wherever it goes next.</p>
+
+  <h3>Does Convertica store my files after conversion?</h3>
+  <p>No. The uploaded file and the converted result are removed automatically a short time after the job finishes. There's no document library, no permanent archive, and no hidden backup kept around. That's why there's no "my files" history on the site.</p>
+
+  <h3>Do I need an account to use Convertica?</h3>
+  <p>No. The core tools work without signing up. There's no email or password required to convert a file, and nothing ties a document back to a personal profile. Premium plans exist for higher limits and batch processing, but they're optional.</p>
+
+  <h3>Is my file encrypted while it uploads?</h3>
+  <p>The connection is. Uploads and downloads run over HTTPS, the same TLS transport encryption banks use, so the file is scrambled while it travels between your device and the server. That's encryption <em>in transit</em>. The server still reads the file to convert it, which is normal for any server-side tool — your protection on that side is automatic deletion. For end-to-end privacy, password-protect the file yourself first.</p>
+
+  <h3>How do I check whether any online PDF tool is trustworthy?</h3>
+  <p>Look for HTTPS (padlock in the address bar), find a stated policy that files are deleted after processing, prefer tools that don't force you to create an account, and read whether they sell or share data. When in doubt with sensitive files, password-protect them before uploading so the tool's policy matters less.</p>
+
+  <h2>Try it now</h2>
+
+  <p>The safest move with a sensitive document takes one step: lock it before you share it. Open the <a href="/en/pdf-security/protect/">PDF protection tool</a>, add a strong password, and your file stays unreadable to anyone without the key — on our servers, in your email, and everywhere it travels after.</p>

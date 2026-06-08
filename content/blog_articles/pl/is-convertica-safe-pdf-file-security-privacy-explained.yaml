@@ -1,0 +1,114 @@
+slug: is-convertica-safe-pdf-file-security-privacy-explained
+title_pl: "Czy Convertica jest bezpieczna? Uczciwie o bezpieczeństwie i prywatności plików PDF"
+meta_title_pl: "Czy Convertica jest bezpieczna? Prywatność PDF | Convertica"
+meta_description_pl: "Co naprawdę dzieje się z plikiem PDF wysłanym do Convertica: szyfrowany transfer, przetwarzanie tylko na czas konwersji i automatyczne usuwanie."
+meta_keywords_pl: "czy convertica jest bezpieczna, bezpieczeństwo pdf, prywatność pdf, bezpieczny konwerter pdf, prywatność narzędzia pdf online, przesyłanie plików przez https, automatyczne usuwanie plików, jak sprawdzić narzędzie pdf online"
+excerpt_pl: "Prosta odpowiedź: co dzieje się z plikiem po przesłaniu, dlaczego konto nie jest potrzebne i jak sprawdzić dowolne narzędzie PDF online, zanim powierzysz mu coś wrażliwego."
+content_pl: |
+  „Czy to bezpieczne?” to właściwe pytanie, zanim wrzucisz na stronę umowę, pasek wypłaty czy skan paszportu. Zadaj je Convertice — i zadaj je też każdemu innemu narzędziu online. Ta strona odpowiada uczciwie: co dzieje się z Twoim plikiem, co z nim robimy, a czego nie, i jak samodzielnie zweryfikować tę odpowiedź zamiast wierzyć komukolwiek na słowo.
+
+  Bez mglistego „Twoja prywatność jest dla nas ważna”. Tylko konkretny mechanizm.
+
+  <figure><img src="/static/blog/images/tool-pdf-protect-hero.jpg" alt="Narzędzia PDF Convertica przesyłane przez szyfrowane połączenie HTTPS" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Co dzieje się z plikiem po przesłaniu</h2>
+
+  Gdy wybierzesz plik i rozpoczniesz konwersję, oto cały cykl jego życia, od początku do końca:
+
+  <ol>
+    <li>Plik opuszcza Twoje urządzenie i wędruje na nasz serwer przez szyfrowane połączenie (HTTPS).</li>
+    <li>Kopia robocza ląduje na serwerze wyłącznie po to, by silnik konwersji miał co odczytać.</li>
+    <li>Narzędzie wykonuje swoje zadanie — konwertuje, kompresuje, łączy, zabezpiecza, cokolwiek zleciłeś.</li>
+    <li>Pobierasz wynik.</li>
+    <li>Przesłany plik i wygenerowany rezultat są automatycznie usuwane po krótkim czasie.</li>
+  </ol>
+
+  To cała historia. Nie ma etapu, na którym człowiek otwiera Twój dokument, nie ma etapu, na którym trafia on do stałego archiwum, i nie ma etapu, na którym jego treść jest odczytywana pod kątem reklam czy analityki. Plikami zajmuje się oprogramowanie, przez czas trwania zadania, a potem są sprzątane.
+
+  Celowo opisujemy to ogólnie, a nie podajemy dokładnej liczby minut, bo liczy się odpowiedź praktyczna: Twój plik nie ma u nas pozostawać — i nie pozostaje. Przechowywanie tysięcy cudzych dokumentów kosztowałoby nas pieniądze za miejsce i nie dawało nic w zamian, więc tego nie robimy.
+
+  <h2>Szyfrowanie w transmisji: część o HTTPS</h2>
+
+  Najważniejszy fakt techniczny: zarówno wysyłka, jak i pobieranie odbywają się przez HTTPS. To to samo szyfrowanie warstwy transportowej (TLS), którego używa strona Twojego banku. Mówiąc prosto, bajty Twojego pliku są zaszyfrowane, gdy wędrują między urządzeniem a serwerem, więc ktoś podsłuchujący ruch w kawiarnianym Wi-Fi albo siedzący w sieci po drodze widzi szyfrogram, a nie Twój dokument.
+
+  Możesz to sprawdzić sam w dwie sekundy: spójrz na pasek adresu. Jeśli URL zaczyna się od <code>https://</code>, a przeglądarka pokazuje kłódkę — połączenie jest szyfrowane. Jeśli kiedykolwiek zobaczysz <code>http://</code> bez <strong>s</strong> — zatrzymaj się i nie przesyłaj niczego wrażliwego, ani do nas, ani do nikogo innego.
+
+  Jeden uczciwy zastrzeżenie warte zrozumienia: HTTPS chroni plik <em>w transmisji</em>. To nie to samo co szyfrowanie end-to-end, w którym klucz masz tylko Ty. Serwer musi móc odczytać plik, by go skonwertować — dla każdego narzędzia działającego po stronie serwera jest to nieuniknione. Po stronie serwera chroni Cię druga połowa historii: plik jest przetwarzany, a potem usuwany, a nie przechowywany.
+
+  <h2>Automatyczne usuwanie, a nie bezterminowe przechowywanie</h2>
+
+  Uspokajająca część to nie obietnica, lecz sam projekt. Convertica jest zbudowana wokół jednorazowych, krótko żyjących plików:
+
+  <ul>
+    <li>Przesłany oryginał istnieje tylko tak długo, jak trzeba go przetworzyć.</li>
+    <li>Skonwertowany wynik istnieje tylko tak długo, byś zdążył go pobrać.</li>
+    <li>Oba są usuwane automatycznie później — nie musisz niczego klikać, by to się stało.</li>
+    <li>Nie budujemy przeszukiwalnego archiwum Twoich dokumentów ani nie robimy ich ukrytych kopii zapasowych do trzymania.</li>
+  </ul>
+
+  Dlatego też w Convertice nie ma strony „moje pliki”: nie ma biblioteki do pokazania, bo nic nie jest przechowywane. Jeśli kiedyś wyda Ci się to brakującą funkcją — to w istocie działa gwarancja prywatności.
+
+  <h2>Bez konta, bez profilu, bez śledzenia dokumentów</h2>
+
+  Aby korzystać z darmowych narzędzi, nie zakładasz konta — i to celowo. Brak rejestracji oznacza:
+
+  <ul>
+    <li>Brak e-maila czy hasła do podania, zanim skonwertujesz plik.</li>
+    <li>Brak osobistego profilu wiążącego dokument z Twoją tożsamością.</li>
+    <li>Brak historii konwersji zapisanej przy „Tobie”.</li>
+    <li>Brak analizy tego, co jest w Twoich dokumentach, w celu budowy profilu czy sprzedaży komukolwiek.</li>
+  </ul>
+
+  Nie sprzedajemy ani nie udostępniamy Twoich plików. Nasz model jest prosty i celowo nudny: podstawowe narzędzia są darmowe, a kto chce więcej (większe pliki, zadania wsadowe, brak czekania) — może zapłacić za premium. Pieniądze pochodzą stąd, nie z Twoich dokumentów.
+
+  <h2>Kiedy TY i tak powinieneś dodać hasło</h2>
+
+  Oto część, którą większość stron „czy to bezpieczne” pomija, bo przerzuca trochę odpowiedzialności z powrotem na Ciebie. Szyfrowanie w transmisji i automatyczne usuwanie obejmują moment przesyłania i przetwarzania. Nie robią nic z tym, dokąd plik trafia <em>po</em> pobraniu — z e-mailem, do którego go załączysz, dyskiem współdzielonym, na który go wrzucisz, kolegą, któremu go prześlesz.
+
+  Dla naprawdę wrażliwych materiałów dodaj własne hasło, by ochrona podróżowała <em>razem z plikiem</em>:
+
+  <ul>
+    <li>Umowy, NDA i podpisane porozumienia.</li>
+    <li>Paski wypłat, wyciągi bankowe i dokumenty podatkowe.</li>
+    <li>Skany dowodów, paszportów czy dokumentacji medycznej.</li>
+    <li>Wszystko, co byłoby Ci niezręcznie zobaczyć przesłane do niewłaściwej skrzynki.</li>
+  </ul>
+
+  Skorzystaj z narzędzia do <a href="/pl/pdf-security/protect/">zabezpieczania PDF hasłem</a>, by zamknąć plik szyfrowaniem AES-256, zanim go udostępnisz. Teraz, nawet jeśli plik wyląduje tam, gdzie nie powinien, bez klucza jest nieczytelny. Gdy dokument spełni swoje zadanie i znów trzeba go edytować, możesz <a href="/pl/pdf-security/unlock/">usunąć hasło z własnego PDF</a>. Pełny scenariusz — w tym najczęstszy błąd, czyli wysłanie hasła w tej samej wiadomości co plik — opisuje artykuł <a href="/pl/blog/password-protect-pdf-before-emailing/">jak zabezpieczyć PDF hasłem przed wysłaniem e-mailem</a>. Jeśli pakujesz kilka plików razem, ta sama logika dotyczy archiwów: oto <a href="/pl/blog/how-to-password-protect-a-zip-file/">jak zabezpieczyć hasłem plik ZIP</a>.
+
+  <h2>Jak sprawdzić dowolne narzędzie PDF online (w tym to)</h2>
+
+  Nie ufaj zapewnieniu o bezpieczeństwie tylko dlatego, że strona pisze „secure” ładną czcionką. Przejdź tę krótką listę kontrolną na dowolnym narzędziu, zanim wyślesz coś, na czym Ci zależy — zajmuje to mniej niż minutę i działa na każdej stronie, nie tylko naszej.
+
+  <ul>
+    <li><strong>Sprawdź HTTPS.</strong> Kłódka w pasku adresu, URL zaczyna się od <code>https://</code>. Brak kłódki — brak wysyłki.</li>
+    <li><strong>Znajdź politykę usuwania.</strong> Godne zaufania narzędzie gdzieś w dostępnym miejscu deklaruje, że przesłane pliki są usuwane po przetworzeniu. Mglisto albo wcale? Traktuj to jak „przechowywane bezterminowo” i działaj odpowiednio.</li>
+    <li><strong>Zobacz, czy wymuszane jest konto.</strong> Zmuszanie do rejestracji i potwierdzenia e-maila przed prostą konwersją wiąże plik z Twoją tożsamością. Opcja bez konta to punkt dla narzędzia na rzecz prywatności.</li>
+    <li><strong>Przeczytaj, co mówią o sprzedaży lub udostępnianiu danych.</strong> Polityka prywatności powinna jasno mówić, że pliki nie są sprzedawane ani przekazywane stronom trzecim. Nie możesz znaleźć takiego zdania? Zakładaj odwrotnie.</li>
+    <li><strong>Dopasuj wrażliwość do metody.</strong> Dla naprawdę poufnych dokumentów najbezpieczniejsze często bywa narzędzie przetwarzające plik w przeglądarce albo po prostu zabezpieczenie pliku hasłem, zanim opuści urządzenie.</li>
+  </ul>
+
+  <blockquote class="callout">Jeden nawyk, który chroni Cię wszędzie: dla wszystkiego wrażliwego zabezpieczaj plik hasłem <em>zanim</em> go prześlesz lub udostępnisz. Wtedy polityki narzędzia, czas przechowywania na serwerze pocztowym i nawyki odbiorcy znaczą znacznie mniej, bo plik jest nieczytelny bez klucza, który kontrolujesz.</blockquote>
+
+  Pełen zestaw operacji oferowanych przez Convertikę zobaczysz na stronie <a href="/pl/all-tools/">wszystkich narzędzi</a> — konwersja, kompresja, łączenie, dzielenie, zabezpieczanie, odblokowywanie i więcej.
+
+  <h2>FAQ</h2>
+
+  <h3>Czy Convertica jest bezpieczna do poufnych dokumentów?</h3>
+  <p>Dla większości dokumentów tak: pliki są przesyłane przez szyfrowane połączenie HTTPS, przetwarzane tylko na czas konwersji i potem usuwane automatycznie, bez konta i bez sprzedaży Twoich danych. Dla naprawdę poufnych materiałów dodaj warstwę, którą kontrolujesz — zabezpiecz plik hasłem przed przesłaniem lub udostępnieniem — by pozostawał chroniony wszędzie, dokąd trafi dalej.</p>
+
+  <h3>Czy Convertica przechowuje moje pliki po konwersji?</h3>
+  <p>Nie. Przesłany plik i skonwertowany wynik są usuwane automatycznie po krótkim czasie od zakończenia zadania. Nie ma biblioteki dokumentów, stałego archiwum ani ukrytej kopii zapasowej. Dlatego na stronie nie ma historii „moje pliki”.</p>
+
+  <h3>Czy potrzebuję konta, by korzystać z Convertiki?</h3>
+  <p>Nie. Podstawowe narzędzia działają bez rejestracji. Do konwersji pliku nie trzeba e-maila ani hasła i nic nie wiąże dokumentu z osobistym profilem. Plany premium istnieją dla wyższych limitów i przetwarzania wsadowego, ale są opcjonalne.</p>
+
+  <h3>Czy mój plik jest szyfrowany podczas przesyłania?</h3>
+  <p>Połączenie jest. Wysyłka i pobieranie idą przez HTTPS, to samo szyfrowanie transportowe TLS, którego używają banki, więc plik jest zaszyfrowany, gdy wędruje między urządzeniem a serwerem. To szyfrowanie <em>w transmisji</em>. Serwer i tak odczytuje plik, by go skonwertować, co jest normalne dla każdego narzędzia po stronie serwera — Twoją ochroną po tej stronie jest automatyczne usuwanie. Dla prywatności end-to-end najpierw sam zabezpiecz plik hasłem.</p>
+
+  <h3>Jak sprawdzić, czy dowolnemu narzędziu PDF online można zaufać?</h3>
+  <p>Szukaj HTTPS (kłódka w pasku adresu), znajdź zadeklarowaną politykę, że pliki są usuwane po przetworzeniu, preferuj narzędzia, które nie zmuszają do zakładania konta, i czytaj, czy sprzedają lub udostępniają dane. W razie wątpliwości przy wrażliwych plikach zabezpiecz je hasłem przed przesłaniem, by polityka narzędzia znaczyła mniej.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Najbezpieczniejszy ruch z wrażliwym dokumentem to jeden krok: zamknij go, zanim go udostępnisz. Otwórz <a href="/pl/pdf-security/protect/">narzędzie do ochrony PDF</a>, dodaj silne hasło, a Twój plik pozostanie nieczytelny dla każdego bez klucza — na naszych serwerach, w Twojej poczcie i wszędzie, dokąd powędruje dalej.</p>

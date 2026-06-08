@@ -46,6 +46,10 @@ ICONS = {
     "pencil": f'<path {P} d="M4 20h4L19 9a2 2 0 0 0 0-2.8l-1.2-1.2a2 2 0 0 0-2.8 0L4 16v4Z"/><path {P} d="M13.5 6.5 17.5 10.5"/>',
     "image": f'<rect {P} x="3" y="5" width="18" height="14" rx="2"/><circle {P} cx="8.5" cy="10" r="1.5"/><path {P} d="m4 18 5-5 4 4 3-3 4 4"/>',
     "hash": f'<path {P} d="M9 4 7 20M17 4l-2 16M5 9h15M4 15h15"/>',
+    "layers": f'<path {P} d="m12 3 9 5-9 5-9-5 9-5Z"/><path {P} d="m3 13 9 5 9-5M3 13l9 5 9-5"/>',
+    "badge": f'<path {P} d="M12 3 4 6v6c0 4.4 3.4 7.6 8 9 4.6-1.4 8-4.6 8-9V6l-8-3Z"/><path {P} d="m9 12 2 2 4-4"/>',
+    "rocket": f'<path {P} d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2a3 3 0 0 0-3-3Z"/><path {P} d="M9 11a16 16 0 0 1 8-8c2 0 3 1 3 3a16 16 0 0 1-8 8l-3-3Z"/><circle {P} cx="14.5" cy="9.5" r="1.3"/>',
+    "star": f'<path {P} d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.9 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3Z"/>',
 }
 
 # --- per-article cover spec: (display title, kicker, gradient stops, accent, icon) ---
@@ -169,6 +173,84 @@ COVERS = {
         ("#4f46e5", "#7c3aed"),
         "#c7d2fe",
         "hash",
+    ),
+    "free-adobe-acrobat-alternatives-2026": (
+        "Free Adobe Acrobat\nAlternatives",
+        "COMPARISON · 2026",
+        ("#b91c1c", "#7c3aed"),
+        "#fca5a5",
+        "badge",
+    ),
+    "combine-word-excel-jpg-into-one-pdf": (
+        "Combine Files\ninto One PDF",
+        "WORD · EXCEL · JPG",
+        ("#0d9488", "#4338ca"),
+        "#5eead4",
+        "layers",
+    ),
+    # reconstructed orphan articles
+    "complete-guide-pdf-to-word-conversion": (
+        "PDF to Word:\nComplete Guide",
+        "PDF → WORD",
+        ("#4338ca", "#2563eb"),
+        "#a5b4fc",
+        "word",
+    ),
+    "ultimate-guide-pdf-compression-reduce-file-size": (
+        "PDF Compression\nFull Guide",
+        "COMPRESS PDF",
+        ("#1d4ed8", "#0891b2"),
+        "#67e8f9",
+        "compress",
+    ),
+    "pdf-to-jpg-converter-online-free": (
+        "PDF to JPG\nFree Online",
+        "PDF → JPG",
+        ("#059669", "#16a34a"),
+        "#86efac",
+        "image",
+    ),
+    "word-to-pdf-converter-online-free-2025": (
+        "Word to PDF\nFree Online",
+        "WORD → PDF",
+        ("#4f46e5", "#7c3aed"),
+        "#c7d2fe",
+        "doc",
+    ),
+    "smallpdf-alternative-free-pdf-converter": (
+        "Smallpdf\nAlternative",
+        "COMPARISON",
+        ("#7c3aed", "#2563eb"),
+        "#c4b5fd",
+        "scale",
+    ),
+    "ilovepdf-alternative-free-pdf-tools-2025": (
+        "iLovePDF\nAlternative",
+        "COMPARISON · 2025",
+        ("#e11d48", "#db2777"),
+        "#fbcfe8",
+        "scale",
+    ),
+    "is-convertica-safe-pdf-file-security-privacy-explained": (
+        "Is Convertica\nSafe?",
+        "SECURITY · PRIVACY",
+        ("#334155", "#2563eb"),
+        "#93c5fd",
+        "lock",
+    ),
+    "convertica-launch-update-testing-phase-upcoming-features": (
+        "Launch Update &\nWhat's Coming",
+        "PRODUCT NEWS",
+        ("#0d9488", "#0284c7"),
+        "#5eead4",
+        "rocket",
+    ),
+    "convertica-major-release-premium-heroes-new-features-upgrades": (
+        "Major Release:\nNew Features",
+        "PRODUCT NEWS",
+        ("#d97706", "#ea580c"),
+        "#fcd34d",
+        "star",
     ),
 }
 

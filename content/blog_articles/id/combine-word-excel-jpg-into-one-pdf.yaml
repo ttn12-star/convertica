@@ -1,0 +1,86 @@
+slug: combine-word-excel-jpg-into-one-pdf
+title_id: "Cara Menggabungkan File Word, Excel, dan JPG menjadi Satu PDF"
+meta_title_id: "Gabungkan Word, Excel & JPG menjadi Satu PDF - Langkah demi Langkah | Convertica"
+meta_description_id: "Lamaran kerja, laporan pengeluaran, paket properti: dokumennya selalu campuran Word, Excel, dan foto. Berikut cara andal merakitnya menjadi satu PDF yang rapi, dalam urutan yang benar."
+meta_keywords_id: "gabungkan file menjadi satu pdf, merge word excel jpg ke pdf, beberapa file menjadi satu pdf, gabungkan dokumen menjadi pdf, buat satu pdf dari file berbeda, rakit paket pdf"
+excerpt_id: "Paket dokumen di dunia nyata tidak pernah satu jenis file. CV dalam Word, sertifikat sebagai JPG, anggaran dalam Excel - semua harus tiba sebagai satu PDF yang rapi. Triknya adalah aturan dua tahap sederhana: konversi semuanya ke PDF dulu, lalu gabungkan dalam urutan."
+content_id: |
+  Dokumen yang penting dalam kehidupan nyata hampir tidak pernah berbagi satu jenis file. Lamaran kerja adalah CV dalam Word, ringkasan portofolio dalam Excel, dan sertifikat hasil scan sebagai JPG. Aplikasi sewa adalah foto KTP, slip gaji, dan surat referensi. Klaim pengeluaran adalah spreadsheet ditambah folder foto kuitansi. Penerima menginginkan satu hal: satu PDF tunggal yang rapi yang dapat mereka buka, gulir, dan arsipkan.
+
+  Menjahit potongan-potongan itu terlihat rumit, tetapi mengikuti satu aturan yang tidak pernah berubah: konversi semuanya ke PDF dulu, lalu gabungkan PDF dalam urutan yang Anda inginkan. Dapatkan urutan itu dengan benar dan sisanya bersifat mekanis. Panduan ini menelusuri seluruh paket dari file lepas hingga dokumen jadi.
+
+  <h2>Mengapa "konversi dulu, gabungkan kemudian" adalah aturannya</h2>
+  <p>Menggoda untuk mencari satu alat yang menelan file Word, spreadsheet, dan tiga foto lalu memuntahkan PDF. Pendekatan itu rapuh: setiap format punya keanehannya sendiri - spreadsheet yang meluap ke luar halaman, foto yang masuk dalam posisi menyamping - dan satu konverter kotak hitam menyembunyikan masalah itu sampai file akhirnya salah.</p>
+  <p>Mengonversi setiap file ke PDF secara terpisah memungkinkan Anda memeriksa bahwa tampilannya benar sebelum bergabung ke paket. PDF juga satu-satunya format yang menggabung dengan bersih: begitu semuanya menjadi PDF, penggabungan adalah penyalinan tanpa kehilangan, bukan render ulang. Jadi alur kerjanya selalu dua tahap.</p>
+
+  <h2>Tahap 1: ubah setiap file menjadi PDF</h2>
+  <p>Tangani setiap jenis file sesuai karakternya masing-masing.</p>
+
+  <h3>Dokumen Word</h3>
+
+  <figure><img src="/static/blog/images/tool-word-to-pdf.jpg" alt="Mengonversi dokumen Word ke PDF sebelum menggabungkan" width="1280" height="800" loading="lazy"></figure>
+  <p>File .docx atau .doc langsung melewati alat <a href="/id/word-to-pdf/">Office ke PDF</a> dengan formatting utuh - font, heading, page break semua bertahan. Ini yang mudah: apa yang Anda lihat di Word itulah yang mendarat di PDF.</p>
+
+  <h3>Spreadsheet Excel</h3>
+  <p>Spreadsheet adalah jebakannya. Lembar lebar yang terlihat baik di Excel bisa terpencar ke delapan halaman begitu menjadi PDF, memotong satu tabel di tengah. Sebelum mengonversi, atur area cetak dan aktifkan "Fit Sheet on One Page" (atau skala agar muat lebar) di dalam Excel, lalu jalankan melalui alat <a href="/id/word-to-pdf/">Office ke PDF</a> yang sama. Dua menit yang Anda habiskan untuk pengaturan cetak adalah perbedaan antara tabel satu halaman yang rapi dan kekacauan yang teriris. Panduan layout lengkapnya ada di <a href="/id/blog/convert-excel-to-pdf-keep-formatting/">panduan Excel ke PDF</a>.</p>
+
+  <h3>JPG dan foto</h3>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="Mengonversi foto JPG menjadi halaman PDF" width="1280" height="800" loading="lazy"></figure>
+  <p>Foto dan gambar hasil scan melewati <a href="/id/jpg-to-pdf/">JPG ke PDF</a>, yang membungkus setiap gambar dalam satu halaman PDF. Jika Anda punya beberapa gambar yang menjadi satu kesatuan - misalnya empat halaman sertifikat hasil scan - Anda dapat mengonversinya menjadi satu PDF multi-halaman dalam satu langkah, yang menghemat langkah penggabungan nantinya.</p>
+
+  <h2>Tahap 2: gabungkan PDF dalam urutan</h2>
+
+  <figure><img src="/static/blog/images/tool-merge-hero.jpg" alt="Menggabungkan PDF hasil konversi menjadi satu dokumen dalam urutan yang benar" width="1280" height="800" loading="lazy"></figure>
+  <p>Dengan setiap potongan kini menjadi PDF, buka alat <a href="/id/pdf-organize/merge/">Gabungkan PDF</a>, tambahkan semua file, dan seret ke dalam urutan yang Anda inginkan. Urutan adalah inti dari tahap ini - seorang manajer perekrutan mengharapkan CV dulu, lalu dokumen pendukung; seorang akuntan mengharapkan lembar ringkasan sebelum kuitansi. Atur urutannya di sini dan file gabungan terbaca seperti dokumen yang dirakit dengan sengaja alih-alih tumpukan acak.</p>
+  <p>Jika Anda baru menyadari urutannya salah setelah penggabungan, Anda tidak harus mulai dari awal - alat <a href="/id/pdf-organize/organize/">Atur PDF</a> memungkinkan Anda menyeret halaman ke tempatnya di file gabungan.</p>
+
+  <h2>Tahap 3: sentuhan akhir</h2>
+  <p>Tiga langkah cepat mengubah penggabungan fungsional menjadi paket yang dipoles:</p>
+  <ul>
+    <li><strong>Perbaiki halaman menyamping.</strong> Foto ponsel sering terimpor dalam posisi terputar. <a href="/id/pdf-edit/rotate/">Putar halaman secara permanen</a> agar penerima tidak perlu memiringkan kepala.</li>
+    <li><strong>Tambahkan nomor halaman.</strong> Untuk apa pun yang lebih panjang dari beberapa halaman, <a href="/id/pdf-edit/add-page-numbers/">nomor halaman</a> membuat paket multi-dokumen terasa seperti satu file yang koheren dan memudahkan referensi ("lihat halaman 4").</li>
+    <li><strong>Kecilkan untuk email.</strong> Paket yang penuh foto membengkak ukurannya. Jika terlalu besar untuk dikirim, <a href="/id/pdf-organize/compress/">kompres PDF akhir</a> hingga ke ukuran yang ramah email.</li>
+  </ul>
+
+  <h2>Skenario umum, dipetakan</h2>
+  <table>
+    <thead>
+      <tr><th>Apa yang Anda rakit</th><th>Potongannya</th><th>Urutan yang disarankan</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lamaran kerja</td><td>CV (Word), surat lamaran (Word), sertifikat (JPG)</td><td>Surat lamaran → CV → sertifikat</td></tr>
+      <tr><td>Laporan pengeluaran</td><td>Ringkasan (Excel), foto kuitansi (JPG)</td><td>Lembar ringkasan → kuitansi sesuai urutan tanggal</td></tr>
+      <tr><td>Aplikasi sewa / pinjaman</td><td>Formulir (Word), slip gaji (JPG/PDF), KTP (JPG)</td><td>Formulir → KTP → slip gaji</td></tr>
+      <tr><td>Serah terima proyek</td><td>Laporan (Word), anggaran (Excel), tangkapan layar (JPG)</td><td>Laporan → anggaran → tangkapan layar</td></tr>
+      <tr><td>Paket properti</td><td>Listing (Word), denah lantai (JPG), biaya (Excel)</td><td>Listing → denah lantai → biaya</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Jebakan yang harus dihindari</h2>
+  <p><strong>Melewatkan pengaturan cetak Excel.</strong> Ini adalah penyebab paling umum dari paket yang jelek. Selalu atur area cetak dan fit-to-page sebelum mengonversi spreadsheet.</p>
+  <p><strong>Menggabungkan dalam urutan unggah alih-alih urutan baca.</strong> Alat penggabungan mempertahankan urutan yang Anda susun, bukan urutan saat Anda menambahkan file. Selalu seret ke urutan baca sebelum mengekspor.</p>
+  <p><strong>Lupa bahwa file menjadi besar.</strong> Setiap foto bisa menambah satu megabita atau lebih. Paket lima foto dapat dengan mudah melampaui batas email - kompres di akhir, bukan sebelumnya, agar Anda hanya mengompres sekali.</p>
+  <p><strong>Menamai file akhir "document.pdf".</strong> Beri paket nama yang jelas seperti <code>Smith-Application-2026.pdf</code>. Alasannya dan sistem penamaan lengkap ada di <a href="/id/blog/pdf-naming-conventions-best-practices/">panduan konvensi penamaan PDF</a>.</p>
+
+  <h2>Catatan untuk akuntansi dan faktur</h2>
+  <p>Jika paket Anda secara khusus adalah faktur atau laporan keuangan yang dikumpulkan untuk pembukuan, ada panduan yang disesuaikan - termasuk cara menjaga urutan yang konsisten dan jejak audit yang bersih - di <a href="/id/blog/merge-invoices-into-one-pdf-for-accounting/">panduan menggabungkan faktur untuk akuntansi</a>.</p>
+
+  <blockquote class="callout">Seluruh pekerjaannya adalah dua tahap: konversi setiap file menjadi PDF-nya sendiri, lalu gabungkan PDF-PDF itu dalam urutan baca. Selebihnya - memutar, menomori, mengompres - adalah pemolesan opsional di atasnya.</blockquote>
+
+  <h2>FAQ</h2>
+  <h3>Bisakah saya menggabungkan file Word dan JPG menjadi satu PDF secara langsung?</h3>
+  <p>Tidak dalam satu langkah dengan andal. Konversi file Word ke PDF dan JPG ke PDF secara terpisah, lalu gabungkan kedua PDF. Pendekatan dua tahap ini memberi Anda kendali atas layout dan urutan serta menghindari kejutan.</p>
+  <h3>Bagaimana cara menjaga file saya dalam urutan yang benar?</h3>
+  <p>Di alat penggabungan, seret file ke dalam urutan yang Anda inginkan sebelum mengekspor - output mengikuti urutan yang disusun, bukan urutan saat Anda menambahkannya. Jika Anda menyadari kesalahan setelahnya, gunakan alat atur untuk menyeret halaman di file gabungan.</p>
+  <h3>Mengapa lembar Excel saya terpecah ke banyak halaman di PDF?</h3>
+  <p>Area cetak belum diatur. Sebelum mengonversi, tentukan area cetak di Excel dan aktifkan "Fit Sheet on One Page" atau skala-agar-muat-lebar, lalu konversi. Ini menjaga tabel lebar tetap di satu halaman.</p>
+  <h3>PDF gabungan saya terlalu besar untuk dikirim email. Apa yang harus saya lakukan?</h3>
+  <p>Paket yang penuh foto cepat membesar. Jalankan PDF jadi melalui kompresor sebagai langkah terakhir untuk membawanya di bawah batas penyedia email Anda (sekitar 25 MB untuk Gmail, 20 MB untuk Outlook).</p>
+  <h3>Salah satu halaman scan saya menyamping - bagaimana cara memperbaikinya?</h3>
+  <p>Foto ponsel sering terimpor dalam posisi terputar. Gunakan alat putar untuk memutar halaman secara permanen sehingga tersimpan dalam orientasi yang benar, bukan hanya untuk tampilan saat ini.</p>
+  <h3>Bisakah saya menambahkan beberapa gambar sebagai satu PDF alih-alih menggabungkannya satu per satu?</h3>
+  <p>Bisa. Alat JPG ke PDF dapat mengambil beberapa gambar sekaligus dan menghasilkan satu PDF multi-halaman, yang menghemat langkah penggabungan terpisah untuk gambar yang dikelompokkan seperti sertifikat multi-halaman.</p>
+
+  <h2>Coba sekarang</h2>
+  <p>Konversi file lepas Anda, lalu satukan dalam urutan yang benar. <a href="/id/pdf-organize/merge/">Buka alat Gabungkan PDF →</a></p>

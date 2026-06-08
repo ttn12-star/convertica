@@ -1,0 +1,114 @@
+slug: combine-word-excel-jpg-into-one-pdf
+cover_image: blog/images/cover-combine-word-excel-jpg-into-one-pdf.jpg
+status: published
+category_slug: use-cases
+relevant_tool: merge_pdf
+title_en: "How to Combine Word, Excel, and JPG Files into One PDF"
+meta_title_en: "Combine Word, Excel & JPG into One PDF - Step by Step | Convertica"
+meta_description_en: "A job application, an expense report, a property pack: the documents are always a mix of Word, Excel, and photos. Here is the reliable way to assemble them into one clean PDF, in the right order."
+meta_keywords_en: "combine files into one pdf, merge word excel jpg to pdf, multiple files into one pdf, combine documents into pdf, make one pdf from different files, assemble pdf packet"
+excerpt_en: "Real-world document packets are never one file type. A CV in Word, a certificate as a JPG, a budget in Excel - all need to arrive as one tidy PDF. The trick is a simple two-stage rule: convert everything to PDF first, then merge in order."
+ai_metadata:
+  topics:
+    - combining mixed file types
+    - assembling a PDF packet
+    - Word and Excel to PDF
+    - images to PDF
+    - merging documents
+  entities:
+    - PDF
+    - Microsoft Word
+    - Microsoft Excel
+    - JPG
+    - Convertica
+    - Google Drive
+  summary: "A step-by-step guide to assembling a single PDF from a mix of Word documents, Excel spreadsheets, and JPG images, using a convert-then-merge workflow, with scenario examples and fixes for the common ordering, layout, and file-size pitfalls."
+  related_terms:
+    - merge pdf files
+    - office to pdf
+    - jpg to pdf
+    - document packet
+    - pdf page order
+    - reduce pdf size
+  reading_time_minutes: 8
+  target_audience: "Job seekers, freelancers, students, and administrative staff who need to bundle several different file types - a CV, a spreadsheet, scanned certificates, photos - into a single professional PDF for submission or sharing."
+content_en: |
+  The documents that matter in real life almost never share a file type. A job application is a CV in Word, a portfolio summary in Excel, and a scanned certificate as a JPG. A rental application is an ID photo, a pay slip, and a reference letter. An expense claim is a spreadsheet plus a folder of receipt photos. The recipient wants one thing: a single, clean PDF they can open, scroll, and file.
+
+  Stitching those pieces together looks fiddly, but it follows one rule that never changes: convert everything to PDF first, then merge the PDFs in the order you want. Get that sequence right and the rest is mechanical. This guide walks the whole packet from loose files to a finished document.
+
+  <h2>Why "convert first, merge second" is the rule</h2>
+  <p>It is tempting to look for one tool that swallows a Word file, a spreadsheet, and three photos and spits out a PDF. That approach is fragile: every format has its own quirks - a spreadsheet that overflows the page, a photo that comes in sideways - and a single black-box converter hides those problems until the final file is wrong.</p>
+  <p>Converting each file to PDF on its own lets you check it looks right before it joins the packet. A PDF is also the only format that merges cleanly: once everything is a PDF, combining is a lossless copy, not a re-render. So the workflow is always two stages.</p>
+
+  <h2>Stage 1: turn each file into a PDF</h2>
+  <p>Handle each file type on its own terms.</p>
+
+  <h3>Word documents</h3>
+
+  <figure><img src="/static/blog/images/tool-word-to-pdf.jpg" alt="Converting a Word document to PDF before combining" width="1280" height="800" loading="lazy"></figure>
+  <p>A .docx or .doc goes straight through the <a href="/en/word-to-pdf/">Office to PDF</a> tool with formatting intact - fonts, headings, page breaks all survive. This is the easy one: what you see in Word is what lands in the PDF.</p>
+
+  <h3>Excel spreadsheets</h3>
+  <p>Spreadsheets are the trap. A wide sheet that looks fine in Excel can spill across eight pages once it becomes a PDF, splitting a single table down the middle. Before converting, set the print area and turn on "Fit Sheet on One Page" (or scale to fit width) inside Excel, then run it through the same <a href="/en/word-to-pdf/">Office to PDF</a> tool. The two minutes you spend on print setup is the difference between a tidy one-page table and a sliced mess. The full layout playbook is in the <a href="/en/blog/convert-excel-to-pdf-keep-formatting/">Excel to PDF guide</a>.</p>
+
+  <h3>JPG and photos</h3>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="Converting JPG photos to PDF pages" width="1280" height="800" loading="lazy"></figure>
+  <p>Photos and scanned images go through <a href="/en/jpg-to-pdf/">JPG to PDF</a>, which wraps each image in a PDF page. If you have several images that belong together - say four pages of a scanned certificate - you can convert them into a single multi-page PDF in one pass, which saves a merge step later.</p>
+
+  <h2>Stage 2: merge the PDFs in order</h2>
+
+  <figure><img src="/static/blog/images/tool-merge-hero.jpg" alt="Merging converted PDFs into one document in the right order" width="1280" height="800" loading="lazy"></figure>
+  <p>With every piece now a PDF, open the <a href="/en/pdf-organize/merge/">Merge PDF</a> tool, add all the files, and drag them into the sequence you want. Order is the whole point of this stage - a hiring manager expects the CV first, then supporting documents; an accountant expects the summary sheet before the receipts. Set the order here and the merged file reads like a deliberately assembled document instead of a random pile.</p>
+  <p>If you only realise the order is wrong after merging, you do not have to start over - the <a href="/en/pdf-organize/organize/">Organize PDF</a> tool lets you drag pages into place in the combined file.</p>
+
+  <h2>Stage 3: the finishing touches</h2>
+  <p>Three quick passes turn a functional merge into a polished packet:</p>
+  <ul>
+    <li><strong>Fix sideways pages.</strong> A phone photo often imports rotated. <a href="/en/pdf-edit/rotate/">Rotate the page permanently</a> so the recipient is not tilting their head.</li>
+    <li><strong>Add page numbers.</strong> For anything longer than a few pages, <a href="/en/pdf-edit/add-page-numbers/">page numbers</a> make a multi-document packet feel like one coherent file and make it easy to reference ("see page 4").</li>
+    <li><strong>Shrink it for email.</strong> Photo-heavy packets balloon in size. If it is too big to send, <a href="/en/pdf-organize/compress/">compress the final PDF</a> down to an email-friendly size.</li>
+  </ul>
+
+  <h2>Common scenarios, mapped</h2>
+  <table>
+    <thead>
+      <tr><th>What you're assembling</th><th>The pieces</th><th>Recommended order</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Job application</td><td>CV (Word), cover letter (Word), certificates (JPG)</td><td>Cover letter → CV → certificates</td></tr>
+      <tr><td>Expense report</td><td>Summary (Excel), receipt photos (JPG)</td><td>Summary sheet → receipts in date order</td></tr>
+      <tr><td>Rental / loan application</td><td>Form (Word), pay slips (JPG/PDF), ID (JPG)</td><td>Form → ID → pay slips</td></tr>
+      <tr><td>Project handover</td><td>Report (Word), budget (Excel), screenshots (JPG)</td><td>Report → budget → screenshots</td></tr>
+      <tr><td>Property pack</td><td>Listing (Word), floor plan (JPG), costs (Excel)</td><td>Listing → floor plan → costs</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Pitfalls to avoid</h2>
+  <p><strong>Skipping the Excel print setup.</strong> This is the single most common cause of an ugly packet. Always set the print area and fit-to-page before converting a spreadsheet.</p>
+  <p><strong>Merging in upload order instead of reading order.</strong> The merge tool keeps the order you arrange, not the order you added files. Always drag into reading sequence before you export.</p>
+  <p><strong>Forgetting the file gets big.</strong> Each photo can add a megabyte or more. A five-photo packet can easily exceed an email limit - compress at the end, not before, so you only compress once.</p>
+  <p><strong>Naming the final file "document.pdf".</strong> Give the packet a clear name like <code>Smith-Application-2026.pdf</code>. The reasoning and a full naming system are in the <a href="/en/blog/pdf-naming-conventions-best-practices/">PDF naming conventions guide</a>.</p>
+
+  <h2>A note for accounting and invoices</h2>
+  <p>If your packet is specifically invoices or financial statements being bundled for bookkeeping, there is a tailored walkthrough - including how to keep a consistent order and a clean audit trail - in the <a href="/en/blog/merge-invoices-into-one-pdf-for-accounting/">merge invoices for accounting guide</a>.</p>
+
+  <blockquote class="callout">The whole job is two stages: convert every file to its own PDF, then merge those PDFs in reading order. Everything else - rotating, numbering, compressing - is optional polish on top of that.</blockquote>
+
+  <h2>FAQ</h2>
+  <h3>Can I combine a Word file and a JPG into one PDF directly?</h3>
+  <p>Not in one step reliably. Convert the Word file to PDF and the JPG to PDF separately, then merge the two PDFs. This two-stage approach gives you control over layout and order and avoids surprises.</p>
+  <h3>How do I keep my files in the right order?</h3>
+  <p>In the merge tool, drag the files into the sequence you want before exporting - the output follows the arranged order, not the order you added them. If you notice a mistake afterwards, use the organize tool to drag pages around in the combined file.</p>
+  <h3>Why does my Excel sheet break across many pages in the PDF?</h3>
+  <p>The print area is not set. Before converting, define the print area in Excel and enable "Fit Sheet on One Page" or scale-to-fit-width, then convert. This keeps a wide table on a single page.</p>
+  <h3>My combined PDF is too big to email. What do I do?</h3>
+  <p>Photo-heavy packets get large fast. Run the finished PDF through a compressor as the last step to bring it under your email provider's limit (around 25 MB for Gmail, 20 MB for Outlook).</p>
+  <h3>One of my scanned pages is sideways - how do I fix it?</h3>
+  <p>Phone photos often import rotated. Use the rotate tool to turn the page permanently so it saves in the correct orientation, not just for the current view.</p>
+  <h3>Can I add several images as one PDF instead of merging them one by one?</h3>
+  <p>Yes. The JPG to PDF tool can take multiple images at once and produce a single multi-page PDF, which saves you a separate merge step for grouped images like a multi-page certificate.</p>
+
+  <h2>Try it now</h2>
+  <p>Convert your loose files, then bring them together in the right order. <a href="/en/pdf-organize/merge/">Open the Merge PDF tool →</a></p>

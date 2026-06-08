@@ -1,0 +1,114 @@
+slug: is-convertica-safe-pdf-file-security-privacy-explained
+title_es: "¿Es seguro Convertica? Seguridad y privacidad de tus archivos PDF, con honestidad"
+meta_title_es: "¿Es seguro Convertica? Privacidad de PDF | Convertica"
+meta_description_es: "Qué le pasa de verdad a un PDF que subes a Convertica: transferencia cifrada, procesamiento solo durante la conversión y eliminación automática después."
+meta_keywords_es: "es seguro convertica, seguridad pdf, privacidad pdf, convertidor pdf seguro, privacidad herramienta pdf online, subida de archivos por https, eliminación automática de archivos, cómo evaluar una herramienta pdf online"
+excerpt_es: "Una respuesta directa: qué le pasa a tu archivo cuando lo subes, por qué no hace falta cuenta y cómo evaluar cualquier herramienta PDF online antes de confiarle algo sensible."
+content_es: |
+  «¿Esto es seguro?» es la pregunta correcta antes de soltar un contrato, una nómina o el escaneo de tu pasaporte en cualquier sitio web. Háztela con Convertica, y háztela también con cualquier otra herramienta online. Esta página la responde con honestidad: qué le pasa a tu archivo, qué hacemos y qué no hacemos con él, y cómo verificar tú mismo la respuesta en lugar de creer en la palabra de nadie.
+
+  Sin el vago relleno de «tu privacidad nos importa». Solo la mecánica real.
+
+  <figure><img src="/static/blog/images/tool-pdf-protect-hero.jpg" alt="Herramientas PDF de Convertica sobre una conexión cifrada HTTPS" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Qué le pasa a tu archivo cuando lo subes</h2>
+
+  Cuando eliges un archivo e inicias una conversión, este es su ciclo de vida, de principio a fin:
+
+  <ol>
+    <li>Tu archivo sale de tu dispositivo y viaja a nuestro servidor por una conexión cifrada (HTTPS).</li>
+    <li>Una copia de trabajo llega al servidor solo para que el motor de conversión tenga algo que leer.</li>
+    <li>La herramienta hace su trabajo: convierte, comprime, fusiona, protege, lo que hayas pedido.</li>
+    <li>Descargas el resultado.</li>
+    <li>El archivo subido y el resultado generado se eliminan automáticamente poco después.</li>
+  </ol>
+
+  Esa es toda la historia. No hay un paso en el que una persona abra tu documento, ni un paso en el que se archive en una biblioteca permanente, ni un paso en el que se lea su contenido para publicidad o analítica. De los archivos se encarga el software, durante el tiempo del trabajo, y luego se limpian.
+
+  Describimos esto de forma general a propósito, en vez de citar un número exacto de minutos, porque la respuesta que importa es la práctica: tu archivo no está pensado para quedarse, y no se queda. Guardar miles de documentos de desconocidos nos costaría dinero en almacenamiento y no nos aportaría nada, así que no lo hacemos.
+
+  <h2>Cifrado en tránsito: la parte de HTTPS</h2>
+
+  El dato técnico más importante es que tanto la subida como la descarga ocurren por HTTPS. Es el mismo cifrado de capa de transporte (TLS) que usa la web de tu banco. En términos llanos, los bytes de tu archivo van revueltos mientras viajan entre tu dispositivo y el servidor, así que quien espíe el tráfico en el Wi-Fi de la cafetería o esté en la red por el camino ve texto cifrado, no tu documento.
+
+  Puedes confirmarlo tú mismo en dos segundos: mira la barra de direcciones. Si la URL empieza por <code>https://</code> y el navegador muestra un candado, la conexión está cifrada. Si alguna vez ves <code>http://</code> sin la <strong>s</strong>, detente y no subas nada sensible, ni a nosotros ni a nadie.
+
+  Una salvedad honesta que conviene entender: HTTPS protege el archivo <em>en tránsito</em>. No es lo mismo que el cifrado de extremo a extremo, donde solo tú tienes la clave. El servidor tiene que poder leer el archivo para convertirlo: eso es inevitable en cualquier herramienta del lado del servidor. Lo que te protege en el lado del servidor es la segunda mitad de la historia: el archivo se procesa y luego se elimina, no se conserva.
+
+  <h2>Eliminación automática, no almacenamiento indefinido</h2>
+
+  La parte tranquilizadora no es una promesa, es el diseño. Convertica está construida en torno a archivos efímeros y de vida corta:
+
+  <ul>
+    <li>El original subido existe solo el tiempo necesario para procesarlo.</li>
+    <li>El resultado convertido existe solo el tiempo necesario para que lo descargues.</li>
+    <li>Ambos se eliminan automáticamente después: no tienes que pulsar nada para que ocurra.</li>
+    <li>No construimos un archivo buscable de tus documentos ni hacemos copias de seguridad ocultas para conservarlos.</li>
+  </ul>
+
+  Por eso tampoco hay una página de «mis archivos» en Convertica: no hay biblioteca que mostrar, porque no se guarda nada. Si alguna vez te parece una función que falta, en realidad es la garantía de privacidad haciendo su trabajo.
+
+  <h2>Sin cuenta, sin perfil, sin rastreo de tus documentos</h2>
+
+  No creas una cuenta para usar las herramientas gratuitas, y eso es intencionado. No registrarse significa:
+
+  <ul>
+    <li>Ningún correo ni contraseña que entregar antes de convertir un archivo.</li>
+    <li>Ningún perfil personal que vincule un documento con tu identidad.</li>
+    <li>Ningún historial de conversiones guardado contra un «tú».</li>
+    <li>Ningún análisis de lo que hay dentro de tus documentos para crear un perfil o venderlo a alguien.</li>
+  </ul>
+
+  No vendemos ni compartimos tus archivos. Nuestro modelo es simple y aburrido a propósito: las herramientas básicas son gratis, y quien quiere más (archivos más grandes, trabajos por lotes, sin esperas) puede pagar por la versión premium. El dinero sale de ahí, no de tus documentos.
+
+  <h2>Cuándo deberías añadir TÚ una contraseña</h2>
+
+  Esta es la parte que la mayoría de las páginas de «¿es seguro?» se saltan, porque te devuelve algo de responsabilidad. El cifrado en tránsito y la eliminación automática cubren el momento de subir y procesar. No hacen nada con respecto a dónde va tu archivo <em>después</em> de descargarlo: el correo al que lo adjuntas, la unidad compartida donde lo dejas, el colega al que se lo reenvías.
+
+  Para material realmente sensible, añade tu propia contraseña para que la protección viaje <em>con el archivo</em>:
+
+  <ul>
+    <li>Contratos, acuerdos de confidencialidad y documentos firmados.</li>
+    <li>Nóminas, extractos bancarios y documentos fiscales.</li>
+    <li>Escaneos de documentos de identidad, pasaportes o historiales médicos.</li>
+    <li>Cualquier cosa que te incomodaría ver reenviada a la bandeja equivocada.</li>
+  </ul>
+
+  Usa la herramienta de <a href="/es/pdf-security/protect/">proteger un PDF con contraseña</a> para cerrar el archivo con cifrado AES-256 antes de compartirlo. Ahora, aunque el archivo acabe donde no debe, queda ilegible sin la clave. Cuando el documento ha cumplido su función y necesitas volver a editarlo, puedes <a href="/es/pdf-security/unlock/">quitar la contraseña de un PDF que sea tuyo</a>. El flujo completo, incluido el error más común —enviar la contraseña en el mismo mensaje que el archivo—, está en <a href="/es/blog/password-protect-pdf-before-emailing/">cómo proteger un PDF con contraseña antes de enviarlo por correo</a>. Si empaquetas varios archivos juntos, la misma lógica aplica a los archivos comprimidos: aquí tienes <a href="/es/blog/how-to-password-protect-a-zip-file/">cómo proteger con contraseña un archivo ZIP</a>.
+
+  <h2>Cómo evaluar cualquier herramienta PDF online (incluida esta)</h2>
+
+  No te fíes de una afirmación de seguridad solo porque la página ponga «secure» en una tipografía bonita. Pasa esta lista rápida por cualquier herramienta antes de subir algo que te importe: lleva menos de un minuto y funciona en cualquier sitio, no solo en el nuestro.
+
+  <ul>
+    <li><strong>Comprueba el HTTPS.</strong> Candado en la barra de direcciones, URL que empieza por <code>https://</code>. Sin candado, no subas.</li>
+    <li><strong>Busca la política de eliminación.</strong> Una herramienta fiable indica, en algún lugar accesible, que los archivos subidos se eliminan tras procesarlos. ¿Vago o ausente? Trátalo como «se conserva indefinidamente» y actúa en consecuencia.</li>
+    <li><strong>Mira si te obligan a tener cuenta.</strong> Que te obliguen a registrarte y verificar un correo antes de una simple conversión vincula el archivo con tu identidad. La opción sin cuenta es un punto a favor de la herramienta en cuanto a privacidad.</li>
+    <li><strong>Lee qué dicen sobre vender o compartir datos.</strong> La política de privacidad debería decir con claridad que los archivos no se venden ni se entregan a terceros. ¿No encuentras esa frase? Asume lo contrario.</li>
+    <li><strong>Ajusta la sensibilidad al método.</strong> Para documentos realmente confidenciales, lo más seguro suele ser una herramienta que procese el archivo en tu navegador, o simplemente proteger el archivo con contraseña antes de que salga de tu dispositivo.</li>
+  </ul>
+
+  <blockquote class="callout">El único hábito que te protege en todas partes: para cualquier cosa sensible, protege el archivo con contraseña <em>antes</em> de subirlo o compartirlo. Entonces las políticas de la herramienta, la retención del servidor de correo y los hábitos del destinatario importan mucho menos, porque el archivo es ilegible sin la clave que tú controlas.</blockquote>
+
+  Puedes ver todas las operaciones que ofrece Convertica en la página de <a href="/es/all-tools/">todas las herramientas</a>: convertir, comprimir, fusionar, dividir, proteger, desbloquear y más.
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Es seguro usar Convertica para documentos confidenciales?</h3>
+  <p>Para la mayoría de los documentos, sí: los archivos se suben por una conexión cifrada HTTPS, se procesan solo durante la conversión y se eliminan automáticamente después, sin cuenta y sin venta de tus datos. Para material realmente confidencial, añade una capa que controles tú —protege el archivo con contraseña antes de subirlo o compartirlo— para que siga protegido a donde sea que vaya después.</p>
+
+  <h3>¿Convertica almacena mis archivos tras la conversión?</h3>
+  <p>No. El archivo subido y el resultado convertido se eliminan automáticamente poco después de terminar el trabajo. No hay biblioteca de documentos, ni archivo permanente, ni copia de seguridad oculta. Por eso no hay un historial de «mis archivos» en el sitio.</p>
+
+  <h3>¿Necesito una cuenta para usar Convertica?</h3>
+  <p>No. Las herramientas básicas funcionan sin registrarse. No hace falta correo ni contraseña para convertir un archivo, y nada vincula un documento con un perfil personal. Existen planes premium para límites más altos y procesamiento por lotes, pero son opcionales.</p>
+
+  <h3>¿Mi archivo está cifrado mientras se sube?</h3>
+  <p>La conexión lo está. Las subidas y descargas van por HTTPS, el mismo cifrado de transporte TLS que usan los bancos, así que el archivo va revuelto mientras viaja entre tu dispositivo y el servidor. Eso es cifrado <em>en tránsito</em>. El servidor sigue leyendo el archivo para convertirlo, lo cual es normal en cualquier herramienta del lado del servidor; tu protección en ese lado es la eliminación automática. Para privacidad de extremo a extremo, protege tú mismo el archivo con contraseña primero.</p>
+
+  <h3>¿Cómo compruebo si una herramienta PDF online es de fiar?</h3>
+  <p>Busca HTTPS (candado en la barra de direcciones), encuentra una política declarada de que los archivos se eliminan tras procesarse, prefiere herramientas que no te obliguen a crear cuenta y lee si venden o comparten datos. Ante la duda con archivos sensibles, protégelos con contraseña antes de subirlos para que la política de la herramienta importe menos.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>El movimiento más seguro con un documento sensible es un solo paso: ciérralo antes de compartirlo. Abre la <a href="/es/pdf-security/protect/">herramienta de protección de PDF</a>, añade una contraseña fuerte y tu archivo seguirá siendo ilegible para cualquiera sin la clave: en nuestros servidores, en tu correo y a donde sea que viaje después.</p>

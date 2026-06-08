@@ -1,0 +1,114 @@
+slug: is-convertica-safe-pdf-file-security-privacy-explained
+title_id: "Apakah Convertica Aman? Keamanan & Privasi File PDF, Dijelaskan dengan Jujur"
+meta_title_id: "Apakah Convertica Aman? Privasi PDF | Convertica"
+meta_description_id: "Apa yang sebenarnya terjadi pada PDF yang Anda unggah ke Convertica: transfer terenkripsi, pemrosesan hanya selama konversi, dan penghapusan otomatis."
+meta_keywords_id: "apakah convertica aman, keamanan pdf, privasi pdf, konverter pdf aman, privasi alat pdf online, unggah file lewat https, penghapusan file otomatis, cara menilai alat pdf online"
+excerpt_id: "Jawaban lugas: apa yang terjadi pada file Anda saat diunggah, kenapa tidak perlu akun, dan cara menilai alat PDF online mana pun sebelum mempercayakan sesuatu yang sensitif."
+content_id: |
+  "Apakah ini aman?" adalah pertanyaan yang tepat sebelum Anda menjatuhkan kontrak, slip gaji, atau pindaian paspor ke situs web mana pun. Tanyakan itu pada Convertica, dan tanyakan juga pada setiap alat online lainnya. Halaman ini menjawabnya dengan jujur: apa yang terjadi pada file Anda, apa yang kami lakukan dan tidak lakukan terhadapnya, dan bagaimana Anda bisa memverifikasi jawabannya sendiri alih-alih percaya begitu saja pada siapa pun.
+
+  Tanpa pengisi samar "privasi Anda penting bagi kami". Hanya mekanisme yang sebenarnya.
+
+  <figure><img src="/static/blog/images/tool-pdf-protect-hero.jpg" alt="Alat PDF Convertica melalui koneksi HTTPS terenkripsi" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Apa yang terjadi pada file Anda saat diunggah</h2>
+
+  Saat Anda memilih file dan memulai konversi, inilah siklus hidupnya dari awal sampai akhir:
+
+  <ol>
+    <li>File Anda meninggalkan perangkat dan berjalan ke server kami melalui koneksi terenkripsi (HTTPS).</li>
+    <li>Salinan kerja mendarat di server semata-mata agar mesin konversi punya sesuatu untuk dibaca.</li>
+    <li>Alat melakukan tugasnya — mengonversi, mengompres, menggabungkan, melindungi, apa pun yang Anda minta.</li>
+    <li>Anda mengunduh hasilnya.</li>
+    <li>File yang diunggah dan hasil yang dihasilkan dihapus secara otomatis tak lama kemudian.</li>
+  </ol>
+
+  Itulah keseluruhan ceritanya. Tidak ada tahap di mana seseorang membuka dokumen Anda, tidak ada tahap di mana ia disimpan ke perpustakaan permanen, dan tidak ada tahap di mana isinya dibaca untuk iklan atau analitik. File ditangani oleh perangkat lunak, selama tugas berlangsung, lalu dibersihkan.
+
+  Kami sengaja menjelaskan ini secara umum, bukan menyebut jumlah menit yang pasti, karena jawaban yang penting adalah yang praktis: file Anda memang tidak dimaksudkan untuk menetap, dan ia tidak menetap. Menyimpan ribuan dokumen orang asing akan memakan biaya penyimpanan dan tidak memberi kami apa pun, jadi kami tidak melakukannya.
+
+  <h2>Enkripsi saat transit: bagian HTTPS</h2>
+
+  Fakta teknis yang paling penting adalah bahwa unggahan dan unduhan sama-sama terjadi melalui HTTPS. Itu enkripsi lapisan transport (TLS) yang sama dengan yang digunakan situs bank Anda. Sederhananya, byte file Anda diacak saat berjalan antara perangkat dan server, jadi siapa pun yang mengintai lalu lintas di Wi-Fi kafe atau berada di jaringan di sepanjang jalan melihat teks tersandi, bukan dokumen Anda.
+
+  Anda bisa memastikannya sendiri dalam dua detik: lihat bilah alamat. Jika URL diawali <code>https://</code> dan peramban menampilkan gembok, koneksi terenkripsi. Jika suatu saat Anda melihat <code>http://</code> tanpa <strong>s</strong>, berhentilah dan jangan mengunggah apa pun yang sensitif — ke kami maupun ke siapa pun.
+
+  Satu catatan jujur yang perlu dipahami: HTTPS melindungi file <em>saat transit</em>. Itu bukan hal yang sama dengan enkripsi ujung-ke-ujung di mana hanya Anda yang memegang kunci. Server harus bisa membaca file untuk mengonversinya — itu tak terhindarkan bagi alat sisi server mana pun. Yang melindungi Anda di sisi server adalah paruh kedua cerita: file diproses lalu dihapus, bukan disimpan.
+
+  <h2>Penghapusan otomatis, bukan penyimpanan tanpa batas</h2>
+
+  Bagian yang menenangkan bukanlah janji, melainkan desainnya. Convertica dibangun di sekitar file sekali pakai yang berumur pendek:
+
+  <ul>
+    <li>Berkas asli yang diunggah hanya ada selama dibutuhkan untuk diproses.</li>
+    <li>Hasil konversi hanya ada selama Anda perlu mengunduhnya.</li>
+    <li>Keduanya dihapus otomatis setelahnya — Anda tidak perlu mengeklik apa pun untuk itu.</li>
+    <li>Kami tidak membangun arsip dokumen Anda yang bisa dicari, dan tidak membuat cadangan tersembunyi untuk disimpan.</li>
+  </ul>
+
+  Itulah sebabnya tidak ada halaman "file saya" di Convertica: tidak ada perpustakaan untuk ditampilkan, karena tidak ada yang disimpan. Jika suatu saat itu terasa seperti fitur yang hilang, sebenarnya itulah jaminan privasi yang sedang bekerja.
+
+  <h2>Tanpa akun, tanpa profil, tanpa pelacakan dokumen</h2>
+
+  Anda tidak membuat akun untuk memakai alat gratis, dan itu disengaja. Tanpa pendaftaran berarti:
+
+  <ul>
+    <li>Tidak ada email atau kata sandi yang harus diserahkan sebelum mengonversi file.</li>
+    <li>Tidak ada profil pribadi yang mengaitkan dokumen dengan identitas Anda.</li>
+    <li>Tidak ada riwayat konversi yang disimpan atas nama "Anda".</li>
+    <li>Tidak ada analisis isi dokumen Anda untuk membangun profil atau menjualnya ke siapa pun.</li>
+  </ul>
+
+  Kami tidak menjual atau membagikan file Anda. Model kami sederhana dan sengaja membosankan: alat inti gratis, dan yang ingin lebih (file lebih besar, tugas massal, tanpa antre) bisa membayar premium. Uang datang dari sana, bukan dari dokumen Anda.
+
+  <h2>Kapan ANDA tetap perlu menambahkan kata sandi</h2>
+
+  Inilah bagian yang sering dilewatkan kebanyakan halaman "apakah aman", karena ia mengembalikan sebagian tanggung jawab kepada Anda. Enkripsi saat transit dan penghapusan otomatis menutup momen mengunggah dan memproses. Keduanya tidak berbuat apa-apa terhadap ke mana file Anda pergi <em>setelah</em> diunduh — email tempat Anda melampirkannya, drive bersama tempat Anda menaruhnya, kolega yang Anda kirimi.
+
+  Untuk materi yang benar-benar sensitif, tambahkan kata sandi Anda sendiri agar perlindungan ikut berjalan <em>bersama file</em>:
+
+  <ul>
+    <li>Kontrak, NDA, dan perjanjian yang ditandatangani.</li>
+    <li>Slip gaji, rekening koran, dan dokumen pajak.</li>
+    <li>Pindaian KTP, paspor, atau rekam medis.</li>
+    <li>Apa pun yang membuat Anda tidak nyaman bila terlihat diteruskan ke kotak masuk yang salah.</li>
+  </ul>
+
+  Gunakan alat <a href="/id/pdf-security/protect/">lindungi PDF dengan kata sandi</a> untuk mengunci file dengan enkripsi AES-256 sebelum Anda membagikannya. Kini, sekalipun file berakhir di tempat yang seharusnya tidak, ia tak terbaca tanpa kunci. Saat dokumen sudah selesai tugasnya dan Anda perlu menyuntingnya lagi, Anda bisa <a href="/id/pdf-security/unlock/">menghapus kata sandi dari PDF milik Anda</a>. Alur lengkapnya — termasuk kesalahan paling umum, yaitu mengirim kata sandi dalam pesan yang sama dengan file — ada di <a href="/id/blog/password-protect-pdf-before-emailing/">cara melindungi PDF dengan kata sandi sebelum mengirim email</a>. Jika Anda mengemas beberapa file sekaligus, logika yang sama berlaku untuk arsip: ini <a href="/id/blog/how-to-password-protect-a-zip-file/">cara melindungi file ZIP dengan kata sandi</a>.
+
+  <h2>Cara menilai alat PDF online mana pun (termasuk yang ini)</h2>
+
+  Jangan percaya klaim keamanan hanya karena halaman menulis "secure" dengan font yang cantik. Jalankan daftar periksa singkat ini pada alat mana pun sebelum mengunggah sesuatu yang Anda pedulikan — butuh kurang dari satu menit dan berlaku di setiap situs, bukan hanya milik kami.
+
+  <ul>
+    <li><strong>Periksa HTTPS.</strong> Gembok di bilah alamat, URL diawali <code>https://</code>. Tidak ada gembok, jangan unggah.</li>
+    <li><strong>Cari kebijakan penghapusan.</strong> Alat tepercaya menyatakan, di suatu tempat yang dapat dijangkau, bahwa file yang diunggah dihapus setelah diproses. Samar atau tidak ada? Anggap "disimpan tanpa batas" dan bertindaklah sesuai itu.</li>
+    <li><strong>Lihat apakah akun dipaksakan.</strong> Dipaksa mendaftar dan memverifikasi email sebelum konversi sederhana mengaitkan file dengan identitas Anda. Opsi tanpa akun adalah nilai plus alat untuk privasi.</li>
+    <li><strong>Baca apa kata mereka soal menjual atau membagikan data.</strong> Kebijakan privasi seharusnya menyatakan dengan jelas bahwa file tidak dijual atau diserahkan ke pihak ketiga. Tidak menemukan pernyataan itu? Anggap sebaliknya.</li>
+    <li><strong>Sesuaikan tingkat sensitivitas dengan metode.</strong> Untuk dokumen yang benar-benar rahasia, opsi teraman sering kali adalah alat yang memproses file di peramban Anda, atau sekadar melindungi file dengan kata sandi sebelum ia meninggalkan perangkat.</li>
+  </ul>
+
+  <blockquote class="callout">Satu kebiasaan yang melindungi Anda di mana saja: untuk apa pun yang sensitif, lindungi file dengan kata sandi <em>sebelum</em> Anda mengunggah atau membagikannya. Maka kebijakan alat, masa retensi server email, dan kebiasaan penerima jauh lebih tidak penting, karena file tak terbaca tanpa kunci yang Anda kendalikan.</blockquote>
+
+  Anda bisa melihat seluruh operasi yang ditawarkan Convertica di halaman <a href="/id/all-tools/">semua alat</a> — konversi, kompres, gabung, pisah, lindungi, buka kunci, dan lainnya.
+
+  <h2>FAQ</h2>
+
+  <h3>Apakah Convertica aman dipakai untuk dokumen rahasia?</h3>
+  <p>Untuk sebagian besar dokumen, ya: file diunggah melalui koneksi HTTPS terenkripsi, diproses hanya selama konversi, lalu dihapus otomatis sesudahnya, tanpa akun dan tanpa menjual data Anda. Untuk materi yang benar-benar rahasia, tambahkan lapisan yang Anda kendalikan — lindungi file dengan kata sandi sebelum mengunggah atau membagikannya — agar ia tetap terlindungi ke mana pun ia pergi berikutnya.</p>
+
+  <h3>Apakah Convertica menyimpan file saya setelah konversi?</h3>
+  <p>Tidak. File yang diunggah dan hasil konversi dihapus otomatis tak lama setelah tugas selesai. Tidak ada perpustakaan dokumen, tidak ada arsip permanen, dan tidak ada cadangan tersembunyi yang disimpan. Itu sebabnya tidak ada riwayat "file saya" di situs.</p>
+
+  <h3>Apakah saya perlu akun untuk memakai Convertica?</h3>
+  <p>Tidak. Alat inti berfungsi tanpa pendaftaran. Tidak perlu email atau kata sandi untuk mengonversi file, dan tidak ada yang mengaitkan dokumen dengan profil pribadi. Paket premium tersedia untuk batas lebih tinggi dan pemrosesan massal, tetapi bersifat opsional.</p>
+
+  <h3>Apakah file saya terenkripsi saat diunggah?</h3>
+  <p>Koneksinya iya. Unggahan dan unduhan berjalan melalui HTTPS, enkripsi transport TLS yang sama dengan yang dipakai bank, jadi file diacak saat berjalan antara perangkat dan server. Itu enkripsi <em>saat transit</em>. Server tetap membaca file untuk mengonversinya, yang wajar bagi alat sisi server mana pun — perlindungan Anda di sisi itu adalah penghapusan otomatis. Untuk privasi ujung-ke-ujung, lindungi sendiri file dengan kata sandi lebih dulu.</p>
+
+  <h3>Bagaimana cara memeriksa apakah alat PDF online layak dipercaya?</h3>
+  <p>Cari HTTPS (gembok di bilah alamat), temukan kebijakan tertulis bahwa file dihapus setelah diproses, utamakan alat yang tidak memaksa Anda membuat akun, dan baca apakah mereka menjual atau membagikan data. Bila ragu dengan file sensitif, lindungi dengan kata sandi sebelum mengunggah agar kebijakan alat lebih tidak penting.</p>
+
+  <h2>Coba sekarang</h2>
+
+  <p>Langkah teraman dengan dokumen sensitif hanya satu: kunci sebelum dibagikan. Buka <a href="/id/pdf-security/protect/">alat proteksi PDF</a>, tambahkan kata sandi yang kuat, dan file Anda tetap tak terbaca oleh siapa pun tanpa kunci — di server kami, di email Anda, dan ke mana pun ia berjalan setelahnya.</p>
