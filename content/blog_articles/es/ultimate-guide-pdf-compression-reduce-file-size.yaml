@@ -1,0 +1,150 @@
+slug: ultimate-guide-pdf-compression-reduce-file-size
+title_es: "Guía completa de compresión de PDF: cómo reducir el tamaño del archivo sin perder calidad"
+meta_title_es: "Compresión de PDF: reduce el tamaño | Convertica"
+meta_description_es: "Cómo funciona realmente la compresión de PDF, hasta dónde puedes reducir un archivo y qué preajuste elegir para correo, impresión o archivo sin perder calidad."
+meta_keywords_es: "comprimir pdf, reducir tamaño pdf, compresión de pdf, optimizar pdf, reducir peso pdf, submuestreo de imágenes pdf, comprimir pdf escaneado"
+excerpt_es: "Un informe de 40 MB y un escaneo de 40 MB se comprimen de formas muy distintas. Esto es lo que de verdad ocupa los bytes, cómo funciona el submuestreo y qué preajuste va con cada tarea."
+content_es: |
+  Dos archivos PDF que en tu gestor de archivos marcan ambos «40 MB» pueden ser problemas completamente distintos. Uno es un informe de texto exportado desde Word que bajará a 3 MB en una sola pasada. El otro es una pila de escaneos en color a 600 PPP que a duras penas llega a 28 MB y, encima, se ve peor. «Comprimir PDF» es un solo botón, pero lo que ocurre detrás depende por completo de lo que hay dentro del archivo.
+
+  Esta guía explica cómo funciona de verdad la compresión de PDF, qué se reduce realmente y qué no, y cómo elegir el ajuste adecuado para cada tarea en lugar de adivinar. En los ejemplos usaremos el <a href="/es/pdf-organize/compress/">compresor de PDF gratuito de Convertica</a>, pero la lógica vale para cualquier herramienta honesta.
+
+  <figure><img src="/static/blog/images/tool-compress-hero.jpg" alt="Compresor de PDF de Convertica con un archivo subido y el selector de preajuste de compresión" width="1280" height="800" loading="lazy"></figure>
+
+  <h2>Dónde están realmente los bytes</h2>
+
+  Antes de reducir un PDF, conviene saber qué ocupa el espacio. Un PDF es un contenedor, y el peso rara vez se reparte por igual:
+
+  <ul>
+    <li><strong>Las imágenes dominan casi todos los archivos grandes.</strong> Una sola foto en color a página completa a 300 PPP pesa por sí sola unos 2-4 MB. Un documento escaneado es <em>solo</em> imágenes, una por página, por eso los escaneos se inflan tan rápido.</li>
+    <li><strong>El texto es diminuto.</strong> Los caracteres y la maquetación de un informe de 50 páginas suman unos pocos cientos de kilobytes. El texto real es lo más barato que hay en un PDF.</li>
+    <li><strong>Las fuentes incrustadas se acumulan.</strong> Un puñado de fuentes en subconjunto no pasa nada; una familia completa con todos los glifos añade en silencio uno o dos megabytes.</li>
+    <li><strong>Lastre invisible.</strong> El historial de revisiones de los repetidos «Guardar» en Acrobat, los objetos sin usar, los perfiles de color sobredimensionados y los archivos incrustados (sí, un PDF puede llevar una hoja de cálculo dentro) viajan con el archivo sin que lo veas.</li>
+  </ul>
+
+  El hábito más útil antes de comprimir: abre el archivo e intenta seleccionar texto en la primera página. Si las palabras se resaltan letra a letra, tienes un PDF nativo digital, y su peso está probablemente en las fuentes, las imágenes incrustadas o el lastre. Si toda la página se resalta como un solo rectángulo, tienes un escaneo, y su peso son imágenes, punto. Esa única prueba predice casi todo sobre cuánto vas a ahorrar.
+
+  <h2>Cómo funciona de verdad la compresión de PDF</h2>
+
+  Hay dos mecanismos fundamentalmente distintos en juego, y las buenas herramientas usan ambos. Entender esta división separa el «¿por qué no pasó nada?» del «¿por qué mi escaneo se ve ahora borroso?».
+
+  <h3>Optimización sin pérdidas (calidad gratis)</h3>
+
+  Parte del ahorro no te cuesta nada. Un compresor puede reescribir la estructura del archivo sin tocar un solo píxel visible:
+
+  <ul>
+    <li>Compresión Deflate (tipo zip) en el texto y los flujos de contenido, que empaqueta los datos repetitivos de forma compacta.</li>
+    <li>Eliminación de objetos sin usar, páginas huérfanas e historial de revisiones obsoleto.</li>
+    <li>Subconjunto de fuentes: solo se incrustan los glifos que realmente usas.</li>
+    <li>Deduplicación de imágenes idénticas que aparecen en varias páginas (un logotipo en un pie de página, por ejemplo).</li>
+  </ul>
+
+  En un PDF de texto nativo digital, la optimización sin pérdidas por sí sola hace a menudo la mayor parte del trabajo. Nada se degrada; el archivo simplemente queda empaquetado con más inteligencia.
+
+  <h3>Compresión con pérdidas: submuestreo de imágenes (donde se va la calidad)</h3>
+
+  Las grandes reducciones vienen de las imágenes, y son con pérdidas por naturaleza. Ocurren dos cosas:
+
+  <ul>
+    <li>El <strong>submuestreo</strong> baja la resolución. Un escaneo a 600 PPP reducido a 150 PPP conserva una cuarta parte de los píxeles en cada dirección, es decir, alrededor de una dieciseisava parte de los datos. De ahí salen las caídas drásticas de tamaño.</li>
+    <li>La <strong>recodificación</strong> vuelve a comprimir cada imagen como JPEG a un nivel de calidad elegido, descartando detalles finos que el ojo apenas registra.</li>
+  </ul>
+
+  Por eso los PDF cargados de texto y los cargados de imágenes se comportan tan distinto. En el texto vectorial no hay resolución que tirar, así que un PDF de texto ya ligero simplemente no encoge mucho. El escaneo, en cambio, es pura resolución «desechable», y por eso comprime tanto y es el que puede acabar borroso.
+
+  <blockquote class="callout">Idea clave: la optimización sin pérdidas siempre es segura y normalmente modesta. Las cifras grandes vienen del submuestreo de imágenes, y ese es el único paso que puede costarte calidad de forma visible.</blockquote>
+
+  <h2>Los preajustes de compresión, en palabras llanas</h2>
+
+  La mayoría de herramientas, Convertica incluida, esconden las matemáticas tras unos pocos preajustes. Esto es lo que hacen de verdad por dentro.
+
+  <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="Selector de preajuste de compresión con las opciones bajo, medio y alto en la herramienta de Convertica" width="1280" height="800" loading="lazy"></figure>
+
+  <ul>
+    <li><strong>Bajo.</strong> Optimización sin pérdidas más una recodificación ligera de imágenes, con poco o ningún submuestreo. Mejor calidad, menor ahorro. Úsalo cuando la nitidez no sea negociable.</li>
+    <li><strong>Medio (el valor por defecto sensato).</strong> Submuestrea las imágenes a unos 150 PPP y recodifica a un nivel JPEG equilibrado. Invisible en pantalla, imprime limpio en A4 y resuelve la mayoría de los archivos reales.</li>
+    <li><strong>Alto.</strong> Submuestrea con más fuerza (unos 96-120 PPP) y comprime las imágenes de forma más agresiva. Ideal para colar algo bajo un límite terco cuando el destinatario solo lee en pantalla y nunca imprime.</li>
+  </ul>
+
+  Medio es el punto de partida correcto unas nueve de cada diez veces. Recurre a bajo solo cuando los diagramas o las fotos deban quedar nítidos, y a alto solo cuando estés peleando contra un límite de tamaño rígido y el único objetivo sea leer en pantalla.
+
+  <h2>Qué ajuste para qué tarea</h2>
+
+  Ajusta el preajuste a para qué sirve realmente el documento, no a lo pequeño que técnicamente puedes dejarlo.
+
+  <table>
+    <thead>
+      <tr><th>Objetivo de calidad / caso de uso</th><th>Preajuste recomendado</th><th>Por qué</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Leer en pantalla, enviar un borrador</td><td>Medio o alto</td><td>La resolución de pantalla perdona; el submuestreo es invisible.</td></tr>
+      <tr><td>Enviar por correo bajo un límite de 20-25 MB</td><td>Primero medio, luego alto</td><td>Medio resuelve casi todos; sube solo si no basta.</td></tr>
+      <tr><td>Impresión de oficina en A4 / Carta</td><td>Medio</td><td>150 PPP imprime limpio en una láser normal.</td></tr>
+      <tr><td>Fotos, diagramas, pruebas de diseño</td><td>Bajo</td><td>Conserva detalles finos y degradados que el JPEG agresivo arruina.</td></tr>
+      <tr><td>Impresión profesional / gran formato</td><td>Bajo u original</td><td>Las imprentas necesitan 300 PPP; el submuestreo se nota al tamaño.</td></tr>
+      <tr><td>Anexos legales, contratos firmados</td><td>No comprimir</td><td>La integridad del archivo importa más que el tamaño; la recodificación puede impugnarse.</td></tr>
+      <tr><td>Archivo a largo plazo (PDF/A)</td><td>Bajo o ninguno</td><td>Los archivos buscan preservar la fidelidad, no ahorrar espacio.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>¿Hasta dónde puedes reducir de verdad?</h2>
+
+  Aquí es donde se derrumban las promesas tipo «¡un 99% más pequeño!». La compresión solo puede tirar lo que es redundante, así que el rango real depende por completo de lo que hay dentro. Cifras honestas:
+
+  <table>
+    <thead>
+      <tr><th>Tipo de documento</th><th>Reducción típica</th><th>Ejemplo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Solo texto (exportado de Word, web)</td><td>70-95%</td><td>40 MB → 2-12 MB</td></tr>
+      <tr><td>Mixto: texto + fotos</td><td>40-70%</td><td>30 MB → 9-18 MB</td></tr>
+      <tr><td>Escaneo puro (cada página es una imagen)</td><td>30-60%</td><td>50 MB → 20-35 MB</td></tr>
+      <tr><td>PDF ya comprimido</td><td>0-15%</td><td>Estás en el suelo; mejor divídelo</td></tr>
+    </tbody>
+  </table>
+
+  De esta tabla se siguen dos cosas. Primero, si un archivo apenas encoge, no está roto: probablemente ya estaba optimizado y, sencillamente, no queda nada que quitar. Segundo, un escaneo puro tiene un suelo: ningún preajuste deja un escaneo de 50 MB por debajo de 10 MB sin daño visible, porque los datos <em>son</em> la imagen. Cuando choques con ese muro, deja de comprimir y cambia de táctica.
+
+  <h2>Cuándo la compresión no es la respuesta</h2>
+
+  La compresión es una herramienta, no la única. Dos situaciones frecuentes piden otra jugada:
+
+  <ul>
+    <li><strong>El archivo debe quedar en plena calidad pero supera el límite.</strong> No lo degrades: <a href="/es/pdf-organize/split/">divide el PDF en partes más pequeñas</a> por rango de páginas y envíalas o súbelas por separado. Así cada píxel queda intacto, lo que importa en pruebas de diseño, anexos y todo lo que escudriñe un regulador. Tienes un ejemplo resuelto en nuestra guía sobre <a href="/es/blog/split-bank-statement-pdf-by-page/">dividir por páginas un PDF de extracto bancario</a>.</li>
+    <li><strong>Estás combinando muchos PDF pequeños y el problema es el total.</strong> A veces el orden correcto es primero <a href="/es/pdf-organize/merge/">unir los archivos en un solo PDF</a> y luego comprimir una vez el documento combinado, para que recursos compartidos como las fuentes se dedupliquen en todo el conjunto. Mostramos el patrón en el artículo sobre <a href="/es/blog/merge-invoices-into-one-pdf-for-accounting/">unir facturas en un solo PDF para contabilidad</a>.</li>
+  </ul>
+
+  Y si todo el motivo de comprimir es un correo rebotado, la guía dedicada (límites reales de los proveedores, el recargo de base64, cuándo enviar un enlace en la nube) está en el artículo <a href="/es/blog/compress-pdf-for-email-under-25mb/">cómo comprimir un PDF para correo por debajo de 25 MB</a>.
+
+  <h2>Un flujo de trabajo repetible</h2>
+
+  Juntándolo todo, la ruta rápida es así:
+
+  <ol>
+    <li>Haz la prueba de selección de texto para saber si tienes un archivo digital o un escaneo.</li>
+    <li>Prueba primero el medio. Para la mayoría de archivos, aquí terminas.</li>
+    <li>Si sigue siendo grande y es un escaneo, asume que estás cerca del suelo: divídelo, o vuelve a pasarlo por OCR y reexpórtalo a un PDF de texto, en vez de hundir la calidad.</li>
+    <li>Si sigue siendo grande y es nativo digital, revisa los archivos incrustados y el lastre del historial de revisiones antes de dar por fallido el preajuste.</li>
+    <li>Conserva siempre el original. La compresión es de ida para el detalle descartado, y quizá necesites la copia en plena calidad más adelante.</li>
+  </ol>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Por qué mi PDF apenas se redujo?</h3>
+  <p>Lo más probable es que ya estuviera optimizado, o que sea un PDF de texto nativo digital con pocos datos de imagen que submuestrear. La compresión elimina la redundancia; si no queda, no hay nada que ahorrar. Revisa también el panel de adjuntos, por si un archivo incrustado está inflando el tamaño.</p>
+
+  <h3>¿Comprimir un PDF pierde calidad?</h3>
+  <p>Solo puede perderla la parte de imágenes. El texto y los gráficos vectoriales se reempaquetan sin pérdidas y quedan perfectos al píxel. Las imágenes se submuestrean y recodifican: invisible en medio para pantalla y oficina, y empieza a notarse en alto en fotos y diagramas detallados.</p>
+
+  <h3>¿Puedo comprimir el mismo PDF dos veces para hacerlo aún más pequeño?</h3>
+  <p>Rara vez merece la pena. La primera pasada ya quitó la redundancia; la segunda sobre todo recodifica imágenes ya degradadas, añadiendo artefactos por casi ninguna ganancia de tamaño. Si una pasada no basta, divide el archivo o vuelve a pasar el escaneo por OCR.</p>
+
+  <h3>¿Por qué mi PDF escaneado sigue siendo enorme tras comprimir?</h3>
+  <p>Un escaneo son datos de imagen puros, así que tiene un suelo firme (más o menos 30-60% de reducción). Para ir más allá, pasa OCR para convertir las páginas en texto real y reexporta a un PDF de texto, y luego comprímelo. Un escaneo de 50 MB puede bajar así a 1-2 MB, pero la escritura a mano y las firmas no sobreviven, así que conserva el original.</p>
+
+  <h3>¿Es seguro comprimir PDF en línea con documentos confidenciales?</h3>
+  <p>Las subidas se cifran en tránsito y solo se procesan durante la tarea. Para archivos de verdad confidenciales, protege el PDF con contraseña tras comprimir y comparte la contraseña por un canal distinto, o divide el archivo y guárdalo en tu propio equipo.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Haz la prueba de selección de texto, empieza por el preajuste medio y compara el resultado con para qué sirve realmente el documento. <a href="/es/pdf-organize/compress/">Abre la herramienta de compresión de PDF →</a></p>

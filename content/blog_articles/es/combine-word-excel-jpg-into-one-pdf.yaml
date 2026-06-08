@@ -1,0 +1,86 @@
+slug: combine-word-excel-jpg-into-one-pdf
+title_es: "Cómo combinar archivos Word, Excel y JPG en un solo PDF"
+meta_title_es: "Combinar Word, Excel y JPG en un PDF | Convertica"
+meta_description_es: "Una candidatura, un informe de gastos, un dossier de propiedad: los documentos siempre son una mezcla de Word, Excel y fotos. Aquí tienes la forma fiable de reunirlos en un solo PDF limpio y en el orden correcto."
+meta_keywords_es: "combinar archivos en un pdf, unir word excel jpg a pdf, varios archivos en un pdf, combinar documentos en pdf, hacer un pdf de archivos distintos, montar un dossier pdf"
+excerpt_es: "Los dossieres de documentos del mundo real nunca son de un solo tipo de archivo. Un CV en Word, un certificado en JPG, un presupuesto en Excel: todos tienen que llegar como un único PDF ordenado. El truco es una regla simple en dos fases: convierte todo a PDF primero y luego une en orden."
+content_es: |
+  Los documentos que importan en la vida real casi nunca comparten el mismo tipo de archivo. Una candidatura es un CV en Word, un resumen de portafolio en Excel y un certificado escaneado en JPG. Una solicitud de alquiler es una foto del DNI, una nómina y una carta de recomendación. Un informe de gastos es una hoja de cálculo más una carpeta de fotos de recibos. El destinatario quiere una sola cosa: un PDF único y limpio que pueda abrir, recorrer y archivar.
+
+  Coser esas piezas parece engorroso, pero sigue una regla que nunca cambia: convierte todo a PDF primero y luego une los PDF en el orden que quieras. Acierta con esa secuencia y el resto es mecánico. Esta guía recorre todo el dossier, desde los archivos sueltos hasta el documento terminado.
+
+  <h2>Por qué la regla es «convierte primero, une después»</h2>
+  <p>Es tentador buscar una sola herramienta que se trague un archivo de Word, una hoja de cálculo y tres fotos y escupa un PDF. Ese enfoque es frágil: cada formato tiene sus propias manías —una hoja de cálculo que se desborda de la página, una foto que llega de lado— y un único conversor de caja negra esconde esos problemas hasta que el archivo final está mal.</p>
+  <p>Convertir cada archivo a PDF por separado te deja comprobar que se ve bien antes de que se sume al dossier. Un PDF es además el único formato que se une de forma limpia: una vez que todo es PDF, combinar es una copia sin pérdida, no un nuevo renderizado. Por eso el flujo de trabajo siempre tiene dos fases.</p>
+
+  <h2>Fase 1: convierte cada archivo en un PDF</h2>
+  <p>Trata cada tipo de archivo según sus propias condiciones.</p>
+
+  <h3>Documentos de Word</h3>
+
+  <figure><img src="/static/blog/images/tool-word-to-pdf.jpg" alt="Convertir un documento de Word a PDF antes de combinarlo" width="1280" height="800" loading="lazy"></figure>
+  <p>Un .docx o un .doc pasa directo por la herramienta <a href="/es/word-to-pdf/">Office a PDF</a> con el formato intacto: fuentes, encabezados y saltos de página sobreviven todos. Este es el fácil: lo que ves en Word es lo que aterriza en el PDF.</p>
+
+  <h3>Hojas de cálculo de Excel</h3>
+  <p>Las hojas de cálculo son la trampa. Una hoja ancha que se ve bien en Excel puede desparramarse por ocho páginas al convertirse en PDF, partiendo una sola tabla por la mitad. Antes de convertir, define el área de impresión y activa «Ajustar hoja en una página» (o escalar para ajustar al ancho) dentro de Excel, y luego pásala por la misma herramienta <a href="/es/word-to-pdf/">Office a PDF</a>. Los dos minutos que dedicas a la configuración de impresión son la diferencia entre una tabla ordenada de una página y un desastre troceado. El manual de diseño completo está en la <a href="/es/blog/convert-excel-to-pdf-keep-formatting/">guía de Excel a PDF</a>.</p>
+
+  <h3>JPG y fotos</h3>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="Convertir fotos JPG en páginas de PDF" width="1280" height="800" loading="lazy"></figure>
+  <p>Las fotos y las imágenes escaneadas pasan por <a href="/es/jpg-to-pdf/">JPG a PDF</a>, que envuelve cada imagen en una página de PDF. Si tienes varias imágenes que van juntas —digamos cuatro páginas de un certificado escaneado— puedes convertirlas en un solo PDF de varias páginas de una pasada, lo que te ahorra un paso de unión más adelante.</p>
+
+  <h2>Fase 2: une los PDF en orden</h2>
+
+  <figure><img src="/static/blog/images/tool-merge-hero.jpg" alt="Unir los PDF convertidos en un solo documento en el orden correcto" width="1280" height="800" loading="lazy"></figure>
+  <p>Con cada pieza ya en PDF, abre la herramienta <a href="/es/pdf-organize/merge/">Unir PDF</a>, añade todos los archivos y arrástralos a la secuencia que quieras. El orden es justo de lo que va esta fase: un responsable de selección espera primero el CV y luego los documentos de apoyo; un contable espera la hoja resumen antes que los recibos. Fija el orden aquí y el archivo unido se lee como un documento montado a propósito en lugar de un montón al azar.</p>
+  <p>Si solo te das cuenta de que el orden está mal después de unir, no tienes que empezar de cero: la herramienta <a href="/es/pdf-organize/organize/">Organizar PDF</a> te deja arrastrar páginas a su sitio dentro del archivo combinado.</p>
+
+  <h2>Fase 3: los toques finales</h2>
+  <p>Tres pasadas rápidas convierten una unión funcional en un dossier pulido:</p>
+  <ul>
+    <li><strong>Arregla las páginas de lado.</strong> Una foto de móvil suele importarse rotada. <a href="/es/pdf-edit/rotate/">Rota la página de forma permanente</a> para que el destinatario no tenga que ladear la cabeza.</li>
+    <li><strong>Añade números de página.</strong> Para cualquier cosa más larga que unas pocas páginas, los <a href="/es/pdf-edit/add-page-numbers/">números de página</a> hacen que un dossier de varios documentos se sienta como un único archivo coherente y facilitan citarlo («ver página 4»).</li>
+    <li><strong>Redúcelo para el correo.</strong> Los dossieres con muchas fotos se inflan. Si es demasiado grande para enviarlo, <a href="/es/pdf-organize/compress/">comprime el PDF final</a> hasta un tamaño apto para correo.</li>
+  </ul>
+
+  <h2>Escenarios habituales, mapeados</h2>
+  <table>
+    <thead>
+      <tr><th>Lo que estás montando</th><th>Las piezas</th><th>Orden recomendado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Candidatura de empleo</td><td>CV (Word), carta de presentación (Word), certificados (JPG)</td><td>Carta de presentación → CV → certificados</td></tr>
+      <tr><td>Informe de gastos</td><td>Resumen (Excel), fotos de recibos (JPG)</td><td>Hoja resumen → recibos por fecha</td></tr>
+      <tr><td>Solicitud de alquiler / préstamo</td><td>Formulario (Word), nóminas (JPG/PDF), DNI (JPG)</td><td>Formulario → DNI → nóminas</td></tr>
+      <tr><td>Traspaso de proyecto</td><td>Informe (Word), presupuesto (Excel), capturas (JPG)</td><td>Informe → presupuesto → capturas</td></tr>
+      <tr><td>Dossier de propiedad</td><td>Anuncio (Word), plano (JPG), costes (Excel)</td><td>Anuncio → plano → costes</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Errores que evitar</h2>
+  <p><strong>Saltarte la configuración de impresión de Excel.</strong> Es la causa más común de un dossier feo. Define siempre el área de impresión y el ajuste a página antes de convertir una hoja de cálculo.</p>
+  <p><strong>Unir en orden de subida en lugar de en orden de lectura.</strong> La herramienta de unión mantiene el orden en que colocas los archivos, no el orden en que los añadiste. Arrástralos siempre a la secuencia de lectura antes de exportar.</p>
+  <p><strong>Olvidar que el archivo se vuelve grande.</strong> Cada foto puede sumar un megabyte o más. Un dossier de cinco fotos puede superar fácilmente un límite de correo: comprime al final, no antes, para comprimir una sola vez.</p>
+  <p><strong>Llamar al archivo final «document.pdf».</strong> Dale al dossier un nombre claro como <code>Garcia-Candidatura-2026.pdf</code>. El razonamiento y un sistema de nombres completo están en la <a href="/es/blog/pdf-naming-conventions-best-practices/">guía de convenciones de nombres para PDF</a>.</p>
+
+  <h2>Una nota para contabilidad y facturas</h2>
+  <p>Si tu dossier son específicamente facturas o estados financieros que se agrupan para contabilidad, hay un recorrido a medida —incluido cómo mantener un orden coherente y un registro de auditoría limpio— en la <a href="/es/blog/merge-invoices-into-one-pdf-for-accounting/">guía para unir facturas para contabilidad</a>.</p>
+
+  <blockquote class="callout">Todo el trabajo son dos fases: convierte cada archivo en su propio PDF y luego une esos PDF en orden de lectura. Todo lo demás —rotar, numerar, comprimir— es pulido opcional encima de eso.</blockquote>
+
+  <h2>FAQ</h2>
+  <h3>¿Puedo combinar un archivo de Word y un JPG en un PDF directamente?</h3>
+  <p>No de forma fiable en un solo paso. Convierte el archivo de Word a PDF y el JPG a PDF por separado, y luego une los dos PDF. Este enfoque en dos fases te da control sobre el diseño y el orden y evita sorpresas.</p>
+  <h3>¿Cómo mantengo mis archivos en el orden correcto?</h3>
+  <p>En la herramienta de unión, arrastra los archivos a la secuencia que quieras antes de exportar: la salida sigue el orden que colocas, no el orden en que los añadiste. Si notas un error después, usa la herramienta de organización para arrastrar páginas dentro del archivo combinado.</p>
+  <h3>¿Por qué mi hoja de Excel se parte en muchas páginas en el PDF?</h3>
+  <p>El área de impresión no está definida. Antes de convertir, define el área de impresión en Excel y activa «Ajustar hoja en una página» o escalar para ajustar al ancho, y luego convierte. Esto mantiene una tabla ancha en una sola página.</p>
+  <h3>Mi PDF combinado es demasiado grande para enviarlo por correo. ¿Qué hago?</h3>
+  <p>Los dossieres con muchas fotos crecen rápido. Pasa el PDF terminado por un compresor como último paso para bajarlo por debajo del límite de tu proveedor de correo (alrededor de 25 MB en Gmail, 20 MB en Outlook).</p>
+  <h3>Una de mis páginas escaneadas está de lado: ¿cómo la arreglo?</h3>
+  <p>Las fotos de móvil suelen importarse rotadas. Usa la herramienta de rotación para girar la página de forma permanente y que se guarde en la orientación correcta, no solo para la vista actual.</p>
+  <h3>¿Puedo añadir varias imágenes como un solo PDF en lugar de unirlas una a una?</h3>
+  <p>Sí. La herramienta JPG a PDF puede tomar varias imágenes a la vez y producir un único PDF de varias páginas, lo que te ahorra un paso de unión aparte para imágenes agrupadas como un certificado de varias páginas.</p>
+
+  <h2>Pruébalo ahora</h2>
+  <p>Convierte tus archivos sueltos y luego reúnelos en el orden correcto. <a href="/es/pdf-organize/merge/">Abrir la herramienta Unir PDF →</a></p>
