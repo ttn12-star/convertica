@@ -192,7 +192,22 @@ def convert_pdf_to_jpg_sequential(
             raise ConversionError(f"Failed to convert PDF pages to images: {e}") from e
 
         if not images:
-            raise ConversionError("No pages could be converted to images")
+            # pdf2image returned an empty list WITHOUT raising. This happens when
+            # poppler's own page count (pdfinfo) disagrees with pypdf's: the
+            # first_page/last_page range — derived above from pypdf's total_pages
+            # — gets clamped down to poppler's count, collapses to empty, and
+            # convert_from_path silently returns [] (pdf2image.py:172-173). The
+            # file is one poppler cannot rasterize (malformed / unsupported), not
+            # a transient system fault. Raise InvalidPDFError so the Celery task
+            # classifies it as user input (_is_user_input_error) and does NOT
+            # retry — retrying a deterministically-unrenderable PDF only
+            # amplified the same failure into Sentry (CONVERTICA-5D).
+            raise InvalidPDFError(
+                "The PDF could not be rendered to images. It may be invalid, "
+                "corrupted, or use unsupported features — try re-saving it "
+                "(Print to PDF) and upload again.",
+                context=parse_context,
+            )
 
         # Create ZIP archive
         with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
