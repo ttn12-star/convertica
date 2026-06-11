@@ -9,6 +9,8 @@ import smtplib
 from allauth.account.adapter import DefaultAccountAdapter
 from django.conf import settings
 from django.urls import reverse
+from kombu.exceptions import OperationalError as KombuOperationalError
+from src.tasks.email import send_account_email
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +37,8 @@ _EMAIL_DELIVERY_EXCEPTIONS: tuple[type[BaseException], ...] = (
     OSError,
     smtplib.SMTPException,
     AnymailError,
+    # Broker (Redis) unreachable when handing the send off to Celery.
+    KombuOperationalError,
 )
 
 
@@ -57,19 +61,36 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         return reverse("users:login")
 
     def send_mail(self, template_prefix, email, context):
-        """Translate SMTP/network failures into ``EmailDeliveryError``.
+        """Render in-request, deliver via Celery, 503 on infra failure.
 
         Allauth flows (signup, password reset, resend-confirmation) all funnel
-        through ``send_mail``. When the SMTP server is unreachable, default
-        behaviour is to bubble ``OSError``/``SMTPException`` up as an
-        unhandled exception, which Django renders as a 500 with no useful
-        info for the user, and Sentry escalates as a real error.
+        through ``send_mail``. Rendering stays synchronous so template/context
+        bugs still surface as 500s, but delivery is handed to the
+        ``email.send_account_email`` task: ESP latency or an outage no longer
+        ties up a gunicorn worker (EMAIL_TIMEOUT is 20s), and transient
+        failures are retried in the background instead of erroring the user.
+
+        Infra failures — broker unreachable, or SMTP/ESP errors propagating
+        from an inline (eager-mode) send — are translated into the controlled
+        ``EmailDeliveryError`` so the middleware renders a 503, not a 500.
 
         See CONVERTICA-50/51 (May 2026) — SMTP host briefly unreachable from
         prod containers; every email-sending request 500'd for live users.
         """
+        msg = self.render_mail(template_prefix, email, context)
+        html_body = None
+        for alternative in getattr(msg, "alternatives", None) or ():
+            if alternative[1] == "text/html":
+                html_body = alternative[0]
+
         try:
-            return super().send_mail(template_prefix, email, context)
+            return send_account_email.delay(
+                subject=msg.subject,
+                body=msg.body,
+                from_email=msg.from_email,
+                to=list(msg.to),
+                html_body=html_body,
+            )
         except _EMAIL_DELIVERY_EXCEPTIONS as exc:
             logger.warning(
                 "Email delivery failed: %s",

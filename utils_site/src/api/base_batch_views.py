@@ -33,6 +33,7 @@ from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from src.exceptions import ConversionError
 
 from .conversion_limits import get_max_file_size_for_user, validate_pdf_pages
 from .logging_utils import build_request_context, get_logger, log_conversion_start
@@ -234,6 +235,7 @@ class BaseBatchAPIView(APIView):
 
             tmp_dir = tempfile.mkdtemp(prefix=self.TMP_PREFIX)
             output_files: list[tuple[str, str]] = []
+            failed_files: list[tuple[str, str]] = []  # (name, user-safe reason)
 
             for idx, uploaded_file in enumerate(files):
                 try:
@@ -270,10 +272,24 @@ class BaseBatchAPIView(APIView):
                         f"Failed to process {uploaded_file.name}: {e}",
                         extra={**context, "file_index": idx, "error": str(e)},
                     )
+                    # ConversionError messages are written to be user-facing
+                    # (same contract as the single-file path); anything else
+                    # stays generic so internals don't leak into the manifest.
+                    reason = (
+                        str(e).strip()
+                        if isinstance(e, ConversionError) and str(e).strip()
+                        else "conversion failed"
+                    )
+                    failed_files.append(
+                        (uploaded_file.name or f"file_{idx + 1}", reason)
+                    )
 
             if not output_files:
                 return Response(
-                    {"error": "Failed to process any files"},
+                    {
+                        "error": "Failed to process any files",
+                        "failed_files": [name for name, _reason in failed_files],
+                    },
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
 
@@ -282,6 +298,13 @@ class BaseBatchAPIView(APIView):
                 for original_name, output_path in output_files:
                     zip_name = self.get_zip_entry_name(original_name, output_path)
                     zipf.write(output_path, zip_name)
+                if failed_files:
+                    # Name the dropped files inside the archive itself — the
+                    # warning toast is easy to miss, the ZIP is what's kept.
+                    manifest = "".join(
+                        f"{name}: {reason}\n" for name, reason in failed_files
+                    )
+                    zipf.writestr("conversion_errors.txt", manifest)
 
             cleanup_targets = list(tmp_dirs_to_cleanup) + [tmp_dir]
             tmp_dirs_to_cleanup = set()
@@ -306,6 +329,8 @@ class BaseBatchAPIView(APIView):
             response.close = _close_and_cleanup  # type: ignore[method-assign]
             response["Content-Type"] = "application/zip"
             response["X-Convertica-Batch-Count"] = str(len(output_files))
+            # converter.js reads this to warn the user about dropped files.
+            response["X-Convertica-Batch-Failed-Count"] = str(len(failed_files))
             response["X-Convertica-Duration-Ms"] = str(
                 int((time.time() - start_time) * 1000)
             )

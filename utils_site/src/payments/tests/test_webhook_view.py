@@ -1,10 +1,12 @@
 import hashlib
 import hmac
 import json
+from datetime import timedelta
 from decimal import Decimal
 
-from django.test import Client, TestCase, override_settings
+from django.test import Client, RequestFactory, TestCase, override_settings
 from django.urls import reverse
+from django.utils import timezone
 from src.payments.tests.fixtures.ls_payloads import (
     order_created_payload,
     subscription_created_payload,
@@ -87,6 +89,54 @@ class WebhookViewTests(TestCase):
         # Both calls succeed, but only one UserSubscription, one WebhookEvent.
         self.assertEqual(UserSubscription.objects.filter(user=self.user).count(), 1)
         self.assertEqual(WebhookEvent.objects.count(), 1)
+
+    def _event_row_for(self, payload, **overrides):
+        """Create the WebhookEvent row the view would have for this payload."""
+        from src.payments.webhook import _build_event_id
+
+        event_id = _build_event_id(payload, RequestFactory().post(self.url))
+        fields = {
+            "provider": "lemonsqueezy",
+            "event_id": event_id,
+            "event_type": payload["meta"]["event_name"],
+            "raw_payload": payload,
+        }
+        fields.update(overrides)
+        return WebhookEvent.objects.create(**fields)
+
+    def test_stale_processing_event_is_reclaimed(self):
+        """A worker killed mid-handler (OOM/SIGKILL) leaves processing=True
+        forever; the LS retry must be able to reclaim and finish the event."""
+        payload = subscription_created_payload(
+            user_id=self.user.id,
+            plan_id=self.plan.id,
+        )
+        evt = self._event_row_for(payload, processing=True)
+        WebhookEvent.objects.filter(pk=evt.pk).update(
+            updated_at=timezone.now() - timedelta(minutes=30)
+        )
+
+        r = signed_post(self.client, self.url, payload)
+
+        self.assertEqual(r.status_code, 200)
+        evt.refresh_from_db()
+        self.assertIsNotNone(evt.processed_at)
+        self.assertTrue(UserSubscription.objects.filter(user=self.user).exists())
+
+    def test_fresh_processing_event_is_not_double_processed(self):
+        """While another worker is actively on the event, skip — LS retries."""
+        payload = subscription_created_payload(
+            user_id=self.user.id,
+            plan_id=self.plan.id,
+        )
+        evt = self._event_row_for(payload, processing=True)
+
+        r = signed_post(self.client, self.url, payload)
+
+        self.assertEqual(r.status_code, 200)
+        evt.refresh_from_db()
+        self.assertIsNone(evt.processed_at)
+        self.assertFalse(UserSubscription.objects.filter(user=self.user).exists())
 
     def test_handles_order_created_lifetime(self):
         lifetime = SubscriptionPlan.objects.create(

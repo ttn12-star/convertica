@@ -30,7 +30,13 @@ from src.users.models import User
 # so the verify-first wall is exercised faithfully.
 
 
-@override_settings(RATELIMIT_ENABLE=False)
+@override_settings(
+    RATELIMIT_ENABLE=False,
+    # Account emails are delivered via the email.send_account_email Celery
+    # task; run it inline so signup doesn't try to reach a real broker.
+    CELERY_TASK_ALWAYS_EAGER=True,
+    CELERY_TASK_EAGER_PROPAGATES=True,
+)
 class RegistrationFlowTests(TestCase):
     """Signup → unverified → cannot-login → verify → login → profile."""
 
@@ -152,7 +158,11 @@ class RegistrationFlowTests(TestCase):
         self.assertEqual(response.url, profile_url)
 
 
-@override_settings(ACCOUNT_EMAIL_VERIFICATION="mandatory")
+@override_settings(
+    ACCOUNT_EMAIL_VERIFICATION="mandatory",
+    CELERY_TASK_ALWAYS_EAGER=True,
+    CELERY_TASK_EAGER_PROPAGATES=True,
+)
 class SignupFormValidationTests(TestCase):
     """Smoke-check that the allauth signup endpoint actually validates input.
 

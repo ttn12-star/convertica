@@ -8,9 +8,10 @@ from __future__ import annotations
 
 import json
 import logging
+from datetime import timedelta
 
 from django.conf import settings
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 from django.http import HttpResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
@@ -20,6 +21,11 @@ from src.payments.webhook_security import verify_lemonsqueezy_signature
 from src.users.models import WebhookEvent
 
 logger = logging.getLogger(__name__)
+
+# A processing=True row older than this means the worker died mid-handler
+# (OOM/SIGKILL — no except block ever ran); let the LS retry reclaim it.
+# Handlers only do a few DB writes, so minutes of "processing" is impossible.
+STALE_PROCESSING_WINDOW = timedelta(minutes=10)
 
 EVENT_DISPATCH = {
     "subscription_created": h.handle_subscription_created,
@@ -115,14 +121,21 @@ def lemonsqueezy_webhook(request):
         return HttpResponse("OK")
 
     if not created:
-        if evt.processed_at is not None:
-            return HttpResponse("OK")
-        if evt.processing:
-            # Another worker is currently processing — let LS retry later.
-            return HttpResponse("OK")
-        # Previous attempt failed — allow retry
-        evt.processing = True
-        evt.save(update_fields=["processing"])
+        # Atomic claim: lock the row so two workers retrying the same failed
+        # event can't both flip processing False→True and run the handler.
+        with transaction.atomic():
+            evt = WebhookEvent.objects.select_for_update().get(pk=evt.pk)
+            if evt.processed_at is not None:
+                return HttpResponse("OK")
+            if (
+                evt.processing
+                and evt.updated_at > timezone.now() - STALE_PROCESSING_WINDOW
+            ):
+                # Another worker is currently processing — let LS retry later.
+                return HttpResponse("OK")
+            # Previous attempt failed (or its worker died) — claim and retry.
+            evt.processing = True
+            evt.save(update_fields=["processing", "updated_at"])
 
     try:
         handler(payload)
