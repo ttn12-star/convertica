@@ -14110,3 +14110,156 @@ msgstr "Terima kasih atas masukan Anda!"
 
 msgid "Too many files. Maximum is %(max_files)d images per request."
 msgstr "Terlalu banyak berkas. Maksimum %(max_files)d gambar per permintaan."
+
+msgid "Can I print an EPUB after converting it to PDF?"
+msgstr "Bisakah saya mencetak EPUB setelah mengonversinya ke PDF?"
+
+msgid "Yes. PDF is a fixed-layout format, so the converted ebook gets stable page breaks and prints the same way on any printer — something EPUB readers cannot guarantee because EPUB text reflows with the screen size."
+msgstr "Ya. PDF adalah format dengan tata letak tetap, sehingga ebook hasil konversi memiliki pemisah halaman yang stabil dan tercetak sama di printer mana pun — sesuatu yang tidak bisa dijamin pembaca EPUB karena teks EPUB menyesuaikan diri dengan ukuran layar."
+
+msgid "Do DRM-protected EPUB files work?"
+msgstr "Apakah berkas EPUB yang dilindungi DRM dapat diproses?"
+
+msgid "No. Books protected with DRM (for example, some store-bought titles) are encrypted and cannot be opened by any converter. Only DRM-free EPUB files can be converted to PDF."
+msgstr "Tidak. Buku yang dilindungi DRM (misalnya sebagian judul yang dibeli di toko) terenkripsi dan tidak dapat dibuka oleh konverter mana pun. Hanya berkas EPUB bebas DRM yang dapat dikonversi ke PDF."
+
+msgid "Can I read the converted EPUB on a Kindle?"
+msgstr "Bisakah saya membaca EPUB hasil konversi di Kindle?"
+
+msgid "Yes. Modern Kindle devices and the Send to Kindle service accept EPUB files directly, and the format also works in Apple Books, Google Play Books, Kobo, and most reading apps."
+msgstr "Ya. Perangkat Kindle modern dan layanan Send to Kindle menerima berkas EPUB secara langsung, dan format ini juga berfungsi di Apple Books, Google Play Books, Kobo, dan sebagian besar aplikasi baca."
+
+msgid "Why convert a PDF to EPUB instead of reading the PDF?"
+msgstr "Mengapa mengonversi PDF ke EPUB alih-alih membaca PDF-nya?"
+
+msgid "EPUB text reflows to fit the screen, so you can change the font size and read comfortably on a phone or e-reader. A PDF keeps a fixed page layout that forces zooming and panning on small displays."
+msgstr "Teks EPUB menyesuaikan diri dengan layar, sehingga Anda bisa mengubah ukuran huruf dan membaca dengan nyaman di ponsel atau e-reader. PDF mempertahankan tata letak halaman tetap yang memaksa zoom dan geser di layar kecil."
+
+msgid "What can I do with the Markdown output?"
+msgstr "Apa yang bisa saya lakukan dengan keluaran Markdown?"
+
+msgid "Markdown is the native format of GitHub readmes, documentation sites, note apps like Obsidian and Notion, and static site generators — and it is also the cleanest way to feed PDF content to AI tools and LLM pipelines."
+msgstr "Markdown adalah format asli readme GitHub, situs dokumentasi, aplikasi catatan seperti Obsidian dan Notion, serta generator situs statis — sekaligus cara terbersih untuk memasukkan konten PDF ke alat AI dan pipeline LLM."
+
+msgid "Is the output compatible with GitHub and Obsidian?"
+msgstr "Apakah hasilnya kompatibel dengan GitHub dan Obsidian?"
+
+msgid "Yes. The converter produces standard Markdown with conventional headings, lists, and table syntax, so the file renders correctly on GitHub and imports cleanly into Obsidian, Notion, and similar editors."
+msgstr "Ya. Konverter menghasilkan Markdown standar dengan sintaks judul, daftar, dan tabel yang lazim, sehingga berkas tampil benar di GitHub dan terimpor mulus ke Obsidian, Notion, dan editor serupa."
+
+msgid "How much smaller will my image get?"
+msgstr "Seberapa kecil ukuran gambar saya nantinya?"
+
+msgid "It depends on the source. Photos straight from a camera or phone often shrink by half or more at quality 80-85, while images that were already compressed see smaller gains. Screenshots and graphics usually compress best as PNG or WebP."
+msgstr "Tergantung sumbernya. Foto langsung dari kamera atau ponsel sering menyusut setengah atau lebih pada kualitas 80-85, sedangkan gambar yang sudah terkompresi mendapat penghematan lebih kecil. Tangkapan layar dan grafik biasanya paling baik dikompresi sebagai PNG atau WebP."
+
+msgid "Why should I compress images before uploading them to a website?"
+msgstr "Mengapa saya perlu mengompresi gambar sebelum mengunggahnya ke situs web?"
+
+msgid "Smaller images load faster, improve Core Web Vitals scores, and use less bandwidth on mobile. Since page speed is a ranking signal, optimized images directly help SEO without any visible quality loss at sensible settings."
+msgstr "Gambar yang lebih kecil dimuat lebih cepat, meningkatkan skor Core Web Vitals, dan menghemat kuota di ponsel. Karena kecepatan halaman adalah sinyal peringkat, gambar yang dioptimalkan langsung membantu SEO tanpa kehilangan kualitas yang terlihat pada pengaturan yang wajar."
+
+msgid "Which format is best for a website: JPEG, PNG, or WebP?"
+msgstr "Format mana yang terbaik untuk situs web: JPEG, PNG, atau WebP?"
+
+msgid "Use WebP when you can — it is 25-35 percent smaller than JPEG at the same quality and supports transparency. Choose JPEG for maximum compatibility with photos, and PNG when you need lossless quality or transparency in older browsers."
+msgstr "Gunakan WebP bila memungkinkan — ukurannya 25-35 persen lebih kecil dari JPEG pada kualitas yang sama dan mendukung transparansi. Pilih JPEG untuk kompatibilitas maksimum dengan foto, dan PNG saat Anda butuh kualitas lossless atau transparansi di peramban lama."
+
+msgid "Will converting change my image dimensions?"
+msgstr "Apakah konversi akan mengubah dimensi gambar saya?"
+
+msgid "No. Conversion changes only how the pixels are encoded — the width and height stay exactly the same. If you also want to shrink the dimensions, use the Optimize Image tool with a maximum size."
+msgstr "Tidak. Konversi hanya mengubah cara piksel dikodekan — lebar dan tinggi tetap sama persis. Jika Anda juga ingin memperkecil dimensi, gunakan alat Optimalkan Gambar dengan ukuran maksimum."
+
+msgid "How do I open iPhone HEIC photos on Windows?"
+msgstr "Bagaimana cara membuka foto HEIC iPhone di Windows?"
+
+msgid "Windows cannot open HEIC files without paid codec extensions. The fastest fix is to convert the photo to JPG right in the browser — the converted file opens in any version of Windows, in office software, and on every website."
+msgstr "Windows tidak dapat membuka berkas HEIC tanpa ekstensi codec berbayar. Solusi tercepat adalah mengonversi foto ke JPG langsung di peramban — berkas hasil konversi terbuka di semua versi Windows, di perangkat lunak kantor, dan di setiap situs web."
+
+msgid "Does converting HEIC to JPG lose quality?"
+msgstr "Apakah mengonversi HEIC ke JPG mengurangi kualitas?"
+
+msgid "The conversion re-encodes the photo, but at high quality settings the difference is not visible to the eye. The JPG will be somewhat larger than the original HEIC, because HEIC compresses more efficiently — that is exactly why Apple uses it."
+msgstr "Konversi mengodekan ulang foto, tetapi pada pengaturan kualitas tinggi perbedaannya tidak terlihat mata. Berkas JPG akan sedikit lebih besar daripada HEIC aslinya, karena HEIC mengompresi lebih efisien — itulah persisnya alasan Apple menggunakannya."
+
+msgid "Can I make my iPhone shoot JPG instead of HEIC?"
+msgstr "Bisakah iPhone saya memotret dalam JPG alih-alih HEIC?"
+
+msgid "Yes: Settings, then Camera, then Formats, and select Most Compatible. Keep in mind HEIC photos take roughly half the storage space, so many people keep HEIC on the phone and convert individual photos only when sharing requires JPG."
+msgstr "Bisa: Pengaturan, lalu Kamera, lalu Format, dan pilih Paling Kompatibel. Ingat, foto HEIC memakan sekitar setengah ruang penyimpanan, jadi banyak orang mempertahankan HEIC di ponsel dan hanya mengonversi foto tertentu saat berbagi memerlukan JPG."
+
+msgid "Can I extract text from a scanned PDF?"
+msgstr "Bisakah saya mengekstrak teks dari PDF hasil pindaian?"
+
+msgid "Not with this tool — scanned pages are images and contain no selectable text. For scans and photographed documents, use our Scanned PDF to Word tool: its OCR engine recognizes the text and returns an editable file."
+msgstr "Tidak dengan alat ini — halaman pindaian adalah gambar dan tidak berisi teks yang dapat dipilih. Untuk pindaian dan dokumen yang difoto, gunakan alat PDF Pindaian ke Word kami: mesin OCR-nya mengenali teks dan mengembalikan berkas yang dapat diedit."
+
+msgid "When is plain text better than Word output?"
+msgstr "Kapan teks polos lebih baik daripada keluaran Word?"
+
+msgid "Plain text is ideal when you need raw content without any styling: pasting into scripts and code, indexing, word counting, translation tools, or feeding documents to AI models. If you need to keep fonts and formatting, convert PDF to Word instead."
+msgstr "Teks polos ideal saat Anda butuh konten mentah tanpa gaya apa pun: menempel ke skrip dan kode, pengindeksan, penghitungan kata, alat penerjemahan, atau memasukkan dokumen ke model AI. Jika perlu mempertahankan huruf dan format, konversikan PDF ke Word saja."
+
+msgid "Can a flattened PDF be edited again?"
+msgstr "Bisakah PDF yang sudah diratakan diedit lagi?"
+
+msgid "Form fields and annotations become part of the page content, so they can no longer be clicked or changed as interactive elements. Keep a copy of the original PDF if you expect to update the form answers later."
+msgstr "Bidang formulir dan anotasi menjadi bagian dari konten halaman, sehingga tidak lagi dapat diklik atau diubah sebagai elemen interaktif. Simpan salinan PDF asli jika Anda berencana memperbarui jawaban formulir nanti."
+
+msgid "Should I flatten a PDF before printing or submitting it?"
+msgstr "Haruskah saya meratakan PDF sebelum mencetak atau mengirimkannya?"
+
+msgid "Yes, it is good practice. Print services and many document portals ignore interactive layers, which can make filled-in answers disappear from the output. Flattening bakes everything into the page so what you see is exactly what gets printed or submitted."
+msgstr "Ya, itu praktik yang baik. Layanan cetak dan banyak portal dokumen mengabaikan lapisan interaktif, sehingga jawaban yang sudah diisi bisa hilang dari hasil akhir. Meratakan menanamkan semuanya ke halaman sehingga yang Anda lihat persis seperti yang dicetak atau dikirim."
+
+msgid "Scanned PDF to Word FAQ"
+msgstr "Tanya jawab PDF Pindaian ke Word"
+
+msgid "What is OCR and when do I need it?"
+msgstr "Apa itu OCR dan kapan saya membutuhkannya?"
+
+msgid "OCR (optical character recognition) reads the text printed on scanned pages and photos and turns it into real, editable characters. If you cannot select or copy text in your PDF, the pages are images — and OCR is the only way to convert them into an editable Word document."
+msgstr "OCR (pengenalan karakter optik) membaca teks yang tercetak pada halaman pindaian dan foto lalu mengubahnya menjadi karakter asli yang dapat diedit. Jika Anda tidak bisa memilih atau menyalin teks di PDF Anda, halamannya adalah gambar — dan OCR satu-satunya cara mengubahnya menjadi dokumen Word yang dapat diedit."
+
+msgid "Which languages does the OCR recognize?"
+msgstr "Bahasa apa saja yang dikenali OCR?"
+
+msgid "The OCR engine supports 17 languages, including English, Spanish, German, French, Italian, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic, Hindi, Indonesian, Chinese, Japanese, and Korean, with automatic language detection for mixed-language documents."
+msgstr "Mesin OCR mendukung 17 bahasa, termasuk Inggris, Spanyol, Jerman, Prancis, Italia, Portugis, Polandia, Rusia, Ukraina, Turki, Arab, Hindi, Indonesia, Tionghoa, Jepang, dan Korea, dengan deteksi bahasa otomatis untuk dokumen campuran."
+
+msgid "How accurate is scanned PDF to Word conversion?"
+msgstr "Seberapa akurat konversi PDF pindaian ke Word?"
+
+msgid "Accuracy depends mostly on the source. Clean scans of printed text at around 300 DPI convert with very high accuracy, while low-resolution photos, skewed pages, and handwriting reduce recognition quality. Re-scanning at a higher resolution is the single best way to improve results."
+msgstr "Akurasi terutama bergantung pada sumbernya. Pindaian bersih teks cetak sekitar 300 DPI terkonversi dengan akurasi sangat tinggi, sedangkan foto resolusi rendah, halaman miring, dan tulisan tangan menurunkan kualitas pengenalan. Memindai ulang pada resolusi lebih tinggi adalah cara terbaik memperbaiki hasil."
+
+msgid "Is the scanned PDF to Word converter free?"
+msgstr "Apakah konverter PDF pindaian ke Word gratis?"
+
+msgid "OCR conversion is a premium feature. If your PDF already contains selectable text, you do not need OCR — the regular PDF to Word converter handles text-based files for free."
+msgstr "Konversi OCR adalah fitur premium. Jika PDF Anda sudah berisi teks yang dapat dipilih, Anda tidak memerlukan OCR — konverter PDF ke Word biasa menangani berkas berbasis teks secara gratis."
+
+msgid "Will the document formatting be preserved?"
+msgstr "Apakah format dokumen akan dipertahankan?"
+
+msgid "Recognized text is exported as an editable Word document organized into paragraphs. Simple letters and contracts come out close to the original; documents with complex tables or multi-column layouts may need light touch-ups afterwards, which is normal for OCR output."
+msgstr "Teks yang dikenali diekspor sebagai dokumen Word yang dapat diedit dan tersusun dalam paragraf. Surat dan kontrak sederhana keluar mendekati aslinya; dokumen dengan tabel kompleks atau tata letak multikolom mungkin perlu perapian ringan setelahnya, hal yang wajar untuk hasil OCR."
+
+msgid "How Scanned PDF to Word Works"
+msgstr "Cara Kerja PDF Pindaian ke Word"
+
+msgid "Upload your scanned PDF — a contract, an invoice, a book chapter, or a photographed document. Pages where text cannot be selected are exactly what this tool is for."
+msgstr "Unggah PDF pindaian Anda — kontrak, faktur, bab buku, atau dokumen yang difoto. Halaman yang teksnya tidak dapat dipilih adalah persis sasaran alat ini."
+
+msgid "The OCR engine analyzes every page, recognizes the printed text in 17 supported languages, and reconstructs it as real, editable characters."
+msgstr "Mesin OCR menganalisis setiap halaman, mengenali teks cetak dalam 17 bahasa yang didukung, dan menyusunnya kembali sebagai karakter asli yang dapat diedit."
+
+msgid "Download the resulting Word document and edit it like any other file: fix dates, update names, copy paragraphs, or reuse the content entirely."
+msgstr "Unduh dokumen Word yang dihasilkan dan edit seperti berkas lainnya: perbaiki tanggal, perbarui nama, salin paragraf, atau gunakan kembali seluruh isinya."
+
+msgid "Why Convert Scans Online Instead of Retyping?"
+msgstr "Mengapa Mengonversi Pindaian Secara Online Alih-alih Mengetik Ulang?"
+
+msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
+msgstr "Mengetik ulang kontrak pindaian sepuluh halaman memakan waktu berjam-jam dan menimbulkan salah ketik; OCR menyelesaikan pekerjaan yang sama dalam waktu kurang dari satu menit. Tidak ada yang perlu dipasang — konverter berjalan di peramban pada Windows, macOS, Linux, dan ponsel, serta menangani dokumen multihalaman sekali jalan. Karena pengenalan terjadi di server kami, laptop berdaya rendah atau ponsel pun dapat memproses pindaian besar."

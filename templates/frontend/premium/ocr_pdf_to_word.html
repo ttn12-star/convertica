@@ -10,6 +10,30 @@
 {% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
 {% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
 
+{% block structured_data %}
+  {{ block.super }}
+  {% if page_faq %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   <div class="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-950 text-gray-900 dark:text-gray-100">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
@@ -45,6 +69,41 @@
           </a>
         </div>
       </section>
+
+      <!-- How it works -->
+      <section class="mt-8 sm:mt-10">
+        <h2 class="text-lg sm:text-xl font-bold mb-5">{% trans "How Scanned PDF to Word Works" %}</h2>
+        <ol class="space-y-4">
+          <li class="flex gap-4 items-start">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-amber-500 text-white font-bold text-sm flex items-center justify-center">1</span>
+            <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              {% trans "Upload your scanned PDF — a contract, an invoice, a book chapter, or a photographed document. Pages where text cannot be selected are exactly what this tool is for." %}
+            </p>
+          </li>
+          <li class="flex gap-4 items-start">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-amber-500 text-white font-bold text-sm flex items-center justify-center">2</span>
+            <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              {% trans "The OCR engine analyzes every page, recognizes the printed text in 17 supported languages, and reconstructs it as real, editable characters." %}
+            </p>
+          </li>
+          <li class="flex gap-4 items-start">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-amber-500 text-white font-bold text-sm flex items-center justify-center">3</span>
+            <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+              {% trans "Download the resulting Word document and edit it like any other file: fix dates, update names, copy paragraphs, or reuse the content entirely." %}
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- Why OCR here -->
+      <section class="mt-8 sm:mt-10 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-8">
+        <h2 class="text-lg sm:text-xl font-bold mb-3">{% trans "Why Convert Scans Online Instead of Retyping?" %}</h2>
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+          {% trans "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans." %}
+        </p>
+      </section>
+
+      {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
     </div>
   </div>
 {% endblock %}

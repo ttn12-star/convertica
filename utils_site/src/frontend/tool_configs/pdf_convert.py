@@ -1610,6 +1610,18 @@ PDF_CONVERT_CONFIGS = {
                         "is extracted as plain text rows without formatting."
                     ),
                 },
+                {
+                    "question": _("Can I extract text from a scanned PDF?"),
+                    "answer": _(
+                        "Not with this tool — scanned pages are images and contain no selectable text. For scans and photographed documents, use our Scanned PDF to Word tool: its OCR engine recognizes the text and returns an editable file."
+                    ),
+                },
+                {
+                    "question": _("When is plain text better than Word output?"),
+                    "answer": _(
+                        "Plain text is ideal when you need raw content without any styling: pasting into scripts and code, indexing, word counting, translation tools, or feeding documents to AI models. If you need to keep fonts and formatting, convert PDF to Word instead."
+                    ),
+                },
             ],
             "faq_title": _("PDF to Text FAQ"),
             "page_tips": [

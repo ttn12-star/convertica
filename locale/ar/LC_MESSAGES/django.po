@@ -13458,3 +13458,156 @@ msgstr "شكرًا على ملاحظاتك!"
 
 msgid "Too many files. Maximum is %(max_files)d images per request."
 msgstr "عدد الملفات كبير جدًا. الحد الأقصى هو %(max_files)d صورة لكل طلب."
+
+msgid "Can I print an EPUB after converting it to PDF?"
+msgstr "هل يمكنني طباعة ملف EPUB بعد تحويله إلى PDF؟"
+
+msgid "Yes. PDF is a fixed-layout format, so the converted ebook gets stable page breaks and prints the same way on any printer — something EPUB readers cannot guarantee because EPUB text reflows with the screen size."
+msgstr "نعم. صيغة PDF ذات تخطيط ثابت، لذا يحصل الكتاب المحوَّل على فواصل صفحات ثابتة ويُطبع بالشكل نفسه على أي طابعة — وهو ما لا تضمنه قارئات EPUB لأن نص EPUB يُعاد تدفقه حسب حجم الشاشة."
+
+msgid "Do DRM-protected EPUB files work?"
+msgstr "هل تعمل ملفات EPUB المحمية بإدارة الحقوق الرقمية (DRM)؟"
+
+msgid "No. Books protected with DRM (for example, some store-bought titles) are encrypted and cannot be opened by any converter. Only DRM-free EPUB files can be converted to PDF."
+msgstr "لا. الكتب المحمية بإدارة الحقوق الرقمية (مثل بعض الكتب المشتراة من المتاجر) مشفّرة ولا يمكن لأي محوِّل فتحها. يمكن تحويل ملفات EPUB الخالية من DRM فقط إلى PDF."
+
+msgid "Can I read the converted EPUB on a Kindle?"
+msgstr "هل يمكنني قراءة ملف EPUB المحوَّل على جهاز كيندل (Kindle)؟"
+
+msgid "Yes. Modern Kindle devices and the Send to Kindle service accept EPUB files directly, and the format also works in Apple Books, Google Play Books, Kobo, and most reading apps."
+msgstr "نعم. تقبل أجهزة كيندل الحديثة وخدمة Send to Kindle ملفات EPUB مباشرة، كما تعمل الصيغة في Apple Books وGoogle Play Books وKobo ومعظم تطبيقات القراءة."
+
+msgid "Why convert a PDF to EPUB instead of reading the PDF?"
+msgstr "لماذا أحوِّل PDF إلى EPUB بدلاً من قراءة ملف PDF نفسه؟"
+
+msgid "EPUB text reflows to fit the screen, so you can change the font size and read comfortably on a phone or e-reader. A PDF keeps a fixed page layout that forces zooming and panning on small displays."
+msgstr "يُعاد تدفق نص EPUB ليناسب الشاشة، فيمكنك تغيير حجم الخط والقراءة بارتياح على الهاتف أو القارئ الإلكتروني. أما PDF فيحافظ على تخطيط صفحة ثابت يفرض التكبير والتمرير على الشاشات الصغيرة."
+
+msgid "What can I do with the Markdown output?"
+msgstr "ماذا أفعل بمخرجات ماركداون (Markdown)؟"
+
+msgid "Markdown is the native format of GitHub readmes, documentation sites, note apps like Obsidian and Notion, and static site generators — and it is also the cleanest way to feed PDF content to AI tools and LLM pipelines."
+msgstr "ماركداون هو الصيغة الأصلية لملفات readme على GitHub ومواقع التوثيق وتطبيقات الملاحظات مثل Obsidian وNotion ومولِّدات المواقع الثابتة — وهو أيضاً أنظف طريقة لتمرير محتوى PDF إلى أدوات الذكاء الاصطناعي وخطوط معالجة النماذج اللغوية."
+
+msgid "Is the output compatible with GitHub and Obsidian?"
+msgstr "هل المخرجات متوافقة مع GitHub وObsidian؟"
+
+msgid "Yes. The converter produces standard Markdown with conventional headings, lists, and table syntax, so the file renders correctly on GitHub and imports cleanly into Obsidian, Notion, and similar editors."
+msgstr "نعم. ينتج المحوِّل ماركداون قياسياً بصيغة العناوين والقوائم والجداول المتعارف عليها، لذا يُعرض الملف بشكل صحيح على GitHub ويُستورد بسلاسة إلى Obsidian وNotion والمحررات المشابهة."
+
+msgid "How much smaller will my image get?"
+msgstr "إلى أي مدى سيصغر حجم صورتي؟"
+
+msgid "It depends on the source. Photos straight from a camera or phone often shrink by half or more at quality 80-85, while images that were already compressed see smaller gains. Screenshots and graphics usually compress best as PNG or WebP."
+msgstr "يعتمد ذلك على المصدر. الصور القادمة مباشرة من الكاميرا أو الهاتف غالباً ما يتقلص حجمها إلى النصف أو أكثر عند جودة 80-85، بينما الصور المضغوطة مسبقاً تحقق مكاسب أقل. لقطات الشاشة والرسوميات تُضغط عادةً بأفضل شكل بصيغة PNG أو WebP."
+
+msgid "Why should I compress images before uploading them to a website?"
+msgstr "لماذا أضغط الصور قبل رفعها إلى موقع إلكتروني؟"
+
+msgid "Smaller images load faster, improve Core Web Vitals scores, and use less bandwidth on mobile. Since page speed is a ranking signal, optimized images directly help SEO without any visible quality loss at sensible settings."
+msgstr "الصور الأصغر تُحمَّل أسرع وتحسِّن نتائج Core Web Vitals وتستهلك بيانات أقل على الجوال. ولأن سرعة الصفحة من إشارات الترتيب، تساعد الصور المحسَّنة تحسين محركات البحث مباشرة دون فقدان جودة ملحوظ عند إعدادات معقولة."
+
+msgid "Which format is best for a website: JPEG, PNG, or WebP?"
+msgstr "أي صيغة أفضل لموقع إلكتروني: JPEG أم PNG أم WebP؟"
+
+msgid "Use WebP when you can — it is 25-35 percent smaller than JPEG at the same quality and supports transparency. Choose JPEG for maximum compatibility with photos, and PNG when you need lossless quality or transparency in older browsers."
+msgstr "استخدم WebP متى استطعت — فهو أصغر من JPEG بنسبة 25-35 بالمئة عند الجودة نفسها ويدعم الشفافية. اختر JPEG لأقصى توافق مع الصور الفوتوغرافية، وPNG عندما تحتاج جودة دون فقدان أو شفافية في المتصفحات الأقدم."
+
+msgid "Will converting change my image dimensions?"
+msgstr "هل سيغيّر التحويل أبعاد صورتي؟"
+
+msgid "No. Conversion changes only how the pixels are encoded — the width and height stay exactly the same. If you also want to shrink the dimensions, use the Optimize Image tool with a maximum size."
+msgstr "لا. يغيّر التحويل طريقة ترميز البكسلات فقط — يبقى العرض والارتفاع كما هما تماماً. إذا أردت تقليص الأبعاد أيضاً، استخدم أداة تحسين الصورة مع تحديد حجم أقصى."
+
+msgid "How do I open iPhone HEIC photos on Windows?"
+msgstr "كيف أفتح صور HEIC من آيفون على ويندوز؟"
+
+msgid "Windows cannot open HEIC files without paid codec extensions. The fastest fix is to convert the photo to JPG right in the browser — the converted file opens in any version of Windows, in office software, and on every website."
+msgstr "لا يستطيع ويندوز فتح ملفات HEIC دون إضافات ترميز مدفوعة. أسرع حل هو تحويل الصورة إلى JPG مباشرة في المتصفح — يُفتح الملف المحوَّل في أي إصدار من ويندوز وفي برامج المكتب وعلى كل المواقع."
+
+msgid "Does converting HEIC to JPG lose quality?"
+msgstr "هل يفقد تحويل HEIC إلى JPG الجودة؟"
+
+msgid "The conversion re-encodes the photo, but at high quality settings the difference is not visible to the eye. The JPG will be somewhat larger than the original HEIC, because HEIC compresses more efficiently — that is exactly why Apple uses it."
+msgstr "يعيد التحويل ترميز الصورة، لكن عند إعدادات جودة عالية لا يُرى الفرق بالعين. سيكون ملف JPG أكبر قليلاً من HEIC الأصلي، لأن HEIC يضغط بكفاءة أعلى — ولهذا السبب تحديداً تستخدمه آبل."
+
+msgid "Can I make my iPhone shoot JPG instead of HEIC?"
+msgstr "هل يمكنني جعل آيفون يلتقط الصور بصيغة JPG بدلاً من HEIC؟"
+
+msgid "Yes: Settings, then Camera, then Formats, and select Most Compatible. Keep in mind HEIC photos take roughly half the storage space, so many people keep HEIC on the phone and convert individual photos only when sharing requires JPG."
+msgstr "نعم: الإعدادات، ثم الكاميرا، ثم التنسيقات، واختر الأكثر توافقاً. تذكّر أن صور HEIC تشغل نصف مساحة التخزين تقريباً، لذا يبقي كثيرون على HEIC في الهاتف ويحوّلون صوراً بعينها فقط عندما تتطلب المشاركة صيغة JPG."
+
+msgid "Can I extract text from a scanned PDF?"
+msgstr "هل يمكنني استخراج النص من ملف PDF ممسوح ضوئياً؟"
+
+msgid "Not with this tool — scanned pages are images and contain no selectable text. For scans and photographed documents, use our Scanned PDF to Word tool: its OCR engine recognizes the text and returns an editable file."
+msgstr "ليس بهذه الأداة — فالصفحات الممسوحة ضوئياً صورٌ لا تحتوي نصاً قابلاً للتحديد. للمستندات الممسوحة والمصوّرة استخدم أداتنا «PDF ممسوح إلى Word»: يتعرف محرك OCR فيها على النص ويعيد ملفاً قابلاً للتحرير."
+
+msgid "When is plain text better than Word output?"
+msgstr "متى يكون النص العادي أفضل من مخرجات Word؟"
+
+msgid "Plain text is ideal when you need raw content without any styling: pasting into scripts and code, indexing, word counting, translation tools, or feeding documents to AI models. If you need to keep fonts and formatting, convert PDF to Word instead."
+msgstr "النص العادي مثالي عندما تحتاج المحتوى الخام دون أي تنسيق: اللصق في السكربتات والشيفرة، أو الفهرسة، أو عدّ الكلمات، أو أدوات الترجمة، أو تمرير المستندات لنماذج الذكاء الاصطناعي. إذا أردت الاحتفاظ بالخطوط والتنسيق فحوِّل PDF إلى Word بدلاً من ذلك."
+
+msgid "Can a flattened PDF be edited again?"
+msgstr "هل يمكن تحرير ملف PDF المسطّح مرة أخرى؟"
+
+msgid "Form fields and annotations become part of the page content, so they can no longer be clicked or changed as interactive elements. Keep a copy of the original PDF if you expect to update the form answers later."
+msgstr "تصبح حقول النماذج والتعليقات جزءاً من محتوى الصفحة، فلا يعود بالإمكان النقر عليها أو تغييرها كعناصر تفاعلية. احتفظ بنسخة من ملف PDF الأصلي إذا كنت تتوقع تحديث إجابات النموذج لاحقاً."
+
+msgid "Should I flatten a PDF before printing or submitting it?"
+msgstr "هل أسطّح ملف PDF قبل طباعته أو تقديمه؟"
+
+msgid "Yes, it is good practice. Print services and many document portals ignore interactive layers, which can make filled-in answers disappear from the output. Flattening bakes everything into the page so what you see is exactly what gets printed or submitted."
+msgstr "نعم، هذه ممارسة جيدة. تتجاهل خدمات الطباعة وكثير من بوابات المستندات الطبقات التفاعلية، ما قد يجعل الإجابات المعبأة تختفي من الناتج. يدمج التسطيح كل شيء في الصفحة بحيث يكون ما تراه هو بالضبط ما يُطبع أو يُقدَّم."
+
+msgid "Scanned PDF to Word FAQ"
+msgstr "أسئلة شائعة: PDF ممسوح إلى Word"
+
+msgid "What is OCR and when do I need it?"
+msgstr "ما هو التعرف الضوئي على الحروف (OCR) ومتى أحتاجه؟"
+
+msgid "OCR (optical character recognition) reads the text printed on scanned pages and photos and turns it into real, editable characters. If you cannot select or copy text in your PDF, the pages are images — and OCR is the only way to convert them into an editable Word document."
+msgstr "يقرأ التعرف الضوئي على الحروف (OCR) النص المطبوع على الصفحات الممسوحة والصور ويحوّله إلى حروف حقيقية قابلة للتحرير. إذا تعذّر عليك تحديد النص أو نسخه في ملف PDF فالصفحات صور — وOCR هو السبيل الوحيد لتحويلها إلى مستند Word قابل للتحرير."
+
+msgid "Which languages does the OCR recognize?"
+msgstr "ما اللغات التي يتعرف عليها OCR؟"
+
+msgid "The OCR engine supports 17 languages, including English, Spanish, German, French, Italian, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic, Hindi, Indonesian, Chinese, Japanese, and Korean, with automatic language detection for mixed-language documents."
+msgstr "يدعم محرك OCR سبع عشرة لغة، منها الإنجليزية والإسبانية والألمانية والفرنسية والإيطالية والبرتغالية والبولندية والروسية والأوكرانية والتركية والعربية والهندية والإندونيسية والصينية واليابانية والكورية، مع اكتشاف تلقائي للغة في المستندات متعددة اللغات."
+
+msgid "How accurate is scanned PDF to Word conversion?"
+msgstr "ما مدى دقة تحويل PDF الممسوح إلى Word؟"
+
+msgid "Accuracy depends mostly on the source. Clean scans of printed text at around 300 DPI convert with very high accuracy, while low-resolution photos, skewed pages, and handwriting reduce recognition quality. Re-scanning at a higher resolution is the single best way to improve results."
+msgstr "تعتمد الدقة في الأساس على المصدر. تتحول النسخ الممسوحة النظيفة للنص المطبوع بدقة نحو 300 نقطة في البوصة بدقة عالية جداً، بينما تقلل الصور منخفضة الدقة والصفحات المائلة والكتابة اليدوية جودة التعرف. إعادة المسح بدقة أعلى هي أفضل وسيلة لتحسين النتيجة."
+
+msgid "Is the scanned PDF to Word converter free?"
+msgstr "هل محوِّل PDF الممسوح إلى Word مجاني؟"
+
+msgid "OCR conversion is a premium feature. If your PDF already contains selectable text, you do not need OCR — the regular PDF to Word converter handles text-based files for free."
+msgstr "تحويل OCR ميزة مدفوعة. إذا كان ملف PDF يحتوي بالفعل نصاً قابلاً للتحديد فلا تحتاج إلى OCR — يتعامل محوِّل PDF إلى Word العادي مع الملفات النصية مجاناً."
+
+msgid "Will the document formatting be preserved?"
+msgstr "هل سيُحافظ على تنسيق المستند؟"
+
+msgid "Recognized text is exported as an editable Word document organized into paragraphs. Simple letters and contracts come out close to the original; documents with complex tables or multi-column layouts may need light touch-ups afterwards, which is normal for OCR output."
+msgstr "يُصدَّر النص المتعرف عليه كمستند Word قابل للتحرير منظم في فقرات. تخرج الرسائل والعقود البسيطة قريبة من الأصل؛ أما المستندات ذات الجداول المعقدة أو الأعمدة المتعددة فقد تحتاج لمسات خفيفة لاحقاً، وهذا طبيعي لمخرجات OCR."
+
+msgid "How Scanned PDF to Word Works"
+msgstr "كيف يعمل تحويل PDF الممسوح إلى Word"
+
+msgid "Upload your scanned PDF — a contract, an invoice, a book chapter, or a photographed document. Pages where text cannot be selected are exactly what this tool is for."
+msgstr "ارفع ملف PDF الممسوح — عقداً أو فاتورة أو فصلاً من كتاب أو مستنداً مصوّراً. الصفحات التي يتعذر تحديد النص فيها هي بالضبط ما صُممت هذه الأداة لأجله."
+
+msgid "The OCR engine analyzes every page, recognizes the printed text in 17 supported languages, and reconstructs it as real, editable characters."
+msgstr "يحلل محرك OCR كل صفحة ويتعرف على النص المطبوع بسبع عشرة لغة مدعومة ويعيد بناءه كحروف حقيقية قابلة للتحرير."
+
+msgid "Download the resulting Word document and edit it like any other file: fix dates, update names, copy paragraphs, or reuse the content entirely."
+msgstr "نزِّل مستند Word الناتج وحرِّره كأي ملف آخر: صحِّح التواريخ، وحدِّث الأسماء، وانسخ الفقرات، أو أعد استخدام المحتوى بالكامل."
+
+msgid "Why Convert Scans Online Instead of Retyping?"
+msgstr "لماذا تحويل المستندات الممسوحة عبر الإنترنت بدلاً من إعادة كتابتها؟"
+
+msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
+msgstr "تستغرق إعادة كتابة عقد ممسوح من عشر صفحات ساعات وتُدخل أخطاء مطبعية؛ بينما ينجز OCR المهمة نفسها في أقل من دقيقة. لا حاجة لتثبيت أي شيء — يعمل المحوِّل في المتصفح على ويندوز وماك ولينكس والجوال، ويعالج المستندات متعددة الصفحات في مرة واحدة. ولأن التعرف يجري على خوادمنا، يستطيع حتى حاسوب محمول ضعيف أو هاتف معالجة مسوحات كبيرة."

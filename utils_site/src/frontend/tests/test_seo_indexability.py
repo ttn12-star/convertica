@@ -26,6 +26,23 @@ class ScannedPdfToWordIndexabilityTests(TestCase):
         response = self.client.get("/en/scanned-pdf-to-word/")
         self.assertEqual(response.status_code, 200)
 
+    def test_scanned_pdf_to_word_has_faq_content_and_schema(self):
+        """The high-CPC OCR landing must carry indexable depth, not just a CTA.
+
+        Guards the SEO content block: FAQ items (with FAQPage JSON-LD) and
+        the how-it-works section. A template refactor that silently drops
+        them would turn the page thin again.
+        """
+        activate("en")
+        response = self.client.get("/en/scanned-pdf-to-word/")
+        self.assertEqual(response.status_code, 200)
+        body = response.content.decode("utf-8")
+        self.assertIn('"@type": "FAQPage"', body)
+        self.assertIn("What is OCR and when do I need it?", body)
+        self.assertIn("How Scanned PDF to Word Works", body)
+        # BreadcrumbList from base.html must survive the block override.
+        self.assertIn('"@type": "BreadcrumbList"', body)
+
 
 class SitemapCoverageTests(TestCase):
     def test_sitemap_includes_live_zip_tools_and_ocr_landing(self):

@@ -14227,3 +14227,156 @@ msgstr "Спасибо за ваш отзыв!"
 
 msgid "Too many files. Maximum is %(max_files)d images per request."
 msgstr "Слишком много файлов. Максимум — %(max_files)d изображений за один запрос."
+
+msgid "Can I print an EPUB after converting it to PDF?"
+msgstr "Можно ли распечатать EPUB после конвертации в PDF?"
+
+msgid "Yes. PDF is a fixed-layout format, so the converted ebook gets stable page breaks and prints the same way on any printer — something EPUB readers cannot guarantee because EPUB text reflows with the screen size."
+msgstr "Да. PDF (пдф) — формат с фиксированной вёрсткой, поэтому у сконвертированной книги появляются стабильные разрывы страниц, и она печатается одинаково на любом принтере. Читалки EPUB этого не гарантируют: текст в них перетекает под размер экрана."
+
+msgid "Do DRM-protected EPUB files work?"
+msgstr "Работают ли EPUB-файлы с DRM-защитой?"
+
+msgid "No. Books protected with DRM (for example, some store-bought titles) are encrypted and cannot be opened by any converter. Only DRM-free EPUB files can be converted to PDF."
+msgstr "Нет. Книги с DRM-защитой (например, некоторые купленные в магазинах) зашифрованы, и ни один конвертер не может их открыть. В PDF конвертируются только EPUB-файлы без DRM."
+
+msgid "Can I read the converted EPUB on a Kindle?"
+msgstr "Можно ли читать сконвертированный EPUB на Kindle?"
+
+msgid "Yes. Modern Kindle devices and the Send to Kindle service accept EPUB files directly, and the format also works in Apple Books, Google Play Books, Kobo, and most reading apps."
+msgstr "Да. Современные устройства Kindle и сервис Send to Kindle принимают EPUB напрямую; формат также работает в Apple Books, Google Play Books, Kobo и большинстве приложений для чтения."
+
+msgid "Why convert a PDF to EPUB instead of reading the PDF?"
+msgstr "Зачем конвертировать PDF в EPUB, если можно читать сам PDF?"
+
+msgid "EPUB text reflows to fit the screen, so you can change the font size and read comfortably on a phone or e-reader. A PDF keeps a fixed page layout that forces zooming and panning on small displays."
+msgstr "Текст EPUB перетекает под размер экрана: можно менять размер шрифта и комфортно читать на телефоне или электронной книге. PDF (пдф) сохраняет фиксированную вёрстку страницы, из-за чего на маленьких экранах приходится масштабировать и прокручивать."
+
+msgid "What can I do with the Markdown output?"
+msgstr "Что можно делать с результатом в Markdown?"
+
+msgid "Markdown is the native format of GitHub readmes, documentation sites, note apps like Obsidian and Notion, and static site generators — and it is also the cleanest way to feed PDF content to AI tools and LLM pipelines."
+msgstr "Markdown — родной формат для readme на GitHub, сайтов документации, заметочников вроде Obsidian и Notion и генераторов статических сайтов. А ещё это самый чистый способ передать содержимое PDF в AI-инструменты и LLM-пайплайны."
+
+msgid "Is the output compatible with GitHub and Obsidian?"
+msgstr "Совместим ли результат с GitHub и Obsidian?"
+
+msgid "Yes. The converter produces standard Markdown with conventional headings, lists, and table syntax, so the file renders correctly on GitHub and imports cleanly into Obsidian, Notion, and similar editors."
+msgstr "Да. Конвертер выдаёт стандартный Markdown с привычным синтаксисом заголовков, списков и таблиц, поэтому файл корректно отображается на GitHub и без проблем импортируется в Obsidian, Notion и похожие редакторы."
+
+msgid "How much smaller will my image get?"
+msgstr "Насколько меньше станет моё изображение?"
+
+msgid "It depends on the source. Photos straight from a camera or phone often shrink by half or more at quality 80-85, while images that were already compressed see smaller gains. Screenshots and graphics usually compress best as PNG or WebP."
+msgstr "Зависит от исходника. Фотографии прямо с камеры или телефона при качестве 80-85 часто ужимаются вдвое и сильнее, а уже сжатые изображения дают меньший выигрыш. Скриншоты и графика обычно лучше всего сжимаются в PNG или WebP."
+
+msgid "Why should I compress images before uploading them to a website?"
+msgstr "Зачем сжимать изображения перед загрузкой на сайт?"
+
+msgid "Smaller images load faster, improve Core Web Vitals scores, and use less bandwidth on mobile. Since page speed is a ranking signal, optimized images directly help SEO without any visible quality loss at sensible settings."
+msgstr "Лёгкие изображения быстрее загружаются, улучшают показатели Core Web Vitals и экономят мобильный трафик. Поскольку скорость страницы — фактор ранжирования, оптимизированные картинки напрямую помогают SEO, а при разумных настройках потери качества не видны."
+
+msgid "Which format is best for a website: JPEG, PNG, or WebP?"
+msgstr "Какой формат лучше для сайта: JPEG, PNG или WebP?"
+
+msgid "Use WebP when you can — it is 25-35 percent smaller than JPEG at the same quality and supports transparency. Choose JPEG for maximum compatibility with photos, and PNG when you need lossless quality or transparency in older browsers."
+msgstr "Если можете — используйте WebP: при том же качестве он на 25-35 процентов меньше JPEG и поддерживает прозрачность. JPEG берите для максимальной совместимости с фото, а PNG — когда нужны качество без потерь или прозрачность в старых браузерах."
+
+msgid "Will converting change my image dimensions?"
+msgstr "Изменит ли конвертация размеры изображения?"
+
+msgid "No. Conversion changes only how the pixels are encoded — the width and height stay exactly the same. If you also want to shrink the dimensions, use the Optimize Image tool with a maximum size."
+msgstr "Нет. Конвертация меняет только способ кодирования пикселей — ширина и высота остаются прежними. Если нужно уменьшить и размеры, воспользуйтесь инструментом «Оптимизировать изображение» с ограничением максимального размера."
+
+msgid "How do I open iPhone HEIC photos on Windows?"
+msgstr "Как открыть HEIC-фото с айфона на Windows?"
+
+msgid "Windows cannot open HEIC files without paid codec extensions. The fastest fix is to convert the photo to JPG right in the browser — the converted file opens in any version of Windows, in office software, and on every website."
+msgstr "Windows не открывает HEIC-файлы без платных кодеков. Самое быстрое решение — сконвертировать фото в JPG прямо в браузере: полученный файл откроется в любой версии Windows, в офисных программах и на любом сайте."
+
+msgid "Does converting HEIC to JPG lose quality?"
+msgstr "Теряется ли качество при конвертации HEIC в JPG?"
+
+msgid "The conversion re-encodes the photo, but at high quality settings the difference is not visible to the eye. The JPG will be somewhat larger than the original HEIC, because HEIC compresses more efficiently — that is exactly why Apple uses it."
+msgstr "Конвертация перекодирует фото, но при высоких настройках качества разница на глаз не видна. JPG получится несколько больше исходного HEIC, потому что HEIC сжимает эффективнее — именно поэтому Apple его и использует."
+
+msgid "Can I make my iPhone shoot JPG instead of HEIC?"
+msgstr "Можно ли заставить айфон снимать в JPG вместо HEIC?"
+
+msgid "Yes: Settings, then Camera, then Formats, and select Most Compatible. Keep in mind HEIC photos take roughly half the storage space, so many people keep HEIC on the phone and convert individual photos only when sharing requires JPG."
+msgstr "Да: «Настройки» → «Камера» → «Форматы» → «Наиболее совместимые». Но учтите: HEIC-фото занимают примерно вдвое меньше места, поэтому многие оставляют HEIC на телефоне и конвертируют отдельные снимки только тогда, когда для отправки нужен JPG."
+
+msgid "Can I extract text from a scanned PDF?"
+msgstr "Можно ли извлечь текст из отсканированного PDF?"
+
+msgid "Not with this tool — scanned pages are images and contain no selectable text. For scans and photographed documents, use our Scanned PDF to Word tool: its OCR engine recognizes the text and returns an editable file."
+msgstr "Этим инструментом — нет: отсканированные страницы являются изображениями и не содержат выделяемого текста. Для сканов и сфотографированных документов используйте наш инструмент «Скан PDF в Word (ворд)»: его OCR-движок распознаёт текст и возвращает редактируемый файл."
+
+msgid "When is plain text better than Word output?"
+msgstr "Когда простой текст лучше, чем файл Word?"
+
+msgid "Plain text is ideal when you need raw content without any styling: pasting into scripts and code, indexing, word counting, translation tools, or feeding documents to AI models. If you need to keep fonts and formatting, convert PDF to Word instead."
+msgstr "Простой текст идеален, когда нужно «голое» содержимое без оформления: вставка в скрипты и код, индексация, подсчёт слов, инструменты перевода или передача документов AI-моделям. Если нужно сохранить шрифты и форматирование — конвертируйте PDF (пдф) в Word (ворд)."
+
+msgid "Can a flattened PDF be edited again?"
+msgstr "Можно ли снова редактировать «сплющенный» PDF?"
+
+msgid "Form fields and annotations become part of the page content, so they can no longer be clicked or changed as interactive elements. Keep a copy of the original PDF if you expect to update the form answers later."
+msgstr "Поля форм и аннотации становятся частью содержимого страницы, поэтому их больше нельзя кликать и менять как интерактивные элементы. Сохраните копию исходного PDF, если планируете позже обновлять ответы в форме."
+
+msgid "Should I flatten a PDF before printing or submitting it?"
+msgstr "Стоит ли «сплющивать» PDF перед печатью или отправкой?"
+
+msgid "Yes, it is good practice. Print services and many document portals ignore interactive layers, which can make filled-in answers disappear from the output. Flattening bakes everything into the page so what you see is exactly what gets printed or submitted."
+msgstr "Да, это хорошая практика. Типографии и многие порталы документов игнорируют интерактивные слои, из-за чего заполненные ответы могут пропасть из результата. Сплющивание «вшивает» всё в страницу: что видите — то и будет напечатано или отправлено."
+
+msgid "Scanned PDF to Word FAQ"
+msgstr "Скан PDF в Word — вопросы и ответы"
+
+msgid "What is OCR and when do I need it?"
+msgstr "Что такое OCR и когда он нужен?"
+
+msgid "OCR (optical character recognition) reads the text printed on scanned pages and photos and turns it into real, editable characters. If you cannot select or copy text in your PDF, the pages are images — and OCR is the only way to convert them into an editable Word document."
+msgstr "OCR (оптическое распознавание символов) читает текст на отсканированных страницах и фотографиях и превращает его в настоящие редактируемые символы. Если в вашем PDF (пдф) нельзя выделить или скопировать текст — страницы являются картинками, и только OCR превратит их в редактируемый документ Word (ворд)."
+
+msgid "Which languages does the OCR recognize?"
+msgstr "Какие языки распознаёт OCR?"
+
+msgid "The OCR engine supports 17 languages, including English, Spanish, German, French, Italian, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic, Hindi, Indonesian, Chinese, Japanese, and Korean, with automatic language detection for mixed-language documents."
+msgstr "OCR-движок поддерживает 17 языков, включая английский, испанский, немецкий, французский, итальянский, португальский, польский, русский, украинский, турецкий, арабский, хинди, индонезийский, китайский, японский и корейский, с автоматическим определением языка в смешанных документах."
+
+msgid "How accurate is scanned PDF to Word conversion?"
+msgstr "Насколько точна конвертация скана PDF в Word?"
+
+msgid "Accuracy depends mostly on the source. Clean scans of printed text at around 300 DPI convert with very high accuracy, while low-resolution photos, skewed pages, and handwriting reduce recognition quality. Re-scanning at a higher resolution is the single best way to improve results."
+msgstr "Точность зависит прежде всего от исходника. Чистые сканы печатного текста с разрешением около 300 DPI распознаются с очень высокой точностью, а фото в низком разрешении, перекошенные страницы и рукописный текст её снижают. Лучший способ улучшить результат — пересканировать документ в более высоком разрешении."
+
+msgid "Is the scanned PDF to Word converter free?"
+msgstr "Бесплатен ли конвертер скана PDF в Word?"
+
+msgid "OCR conversion is a premium feature. If your PDF already contains selectable text, you do not need OCR — the regular PDF to Word converter handles text-based files for free."
+msgstr "OCR-конвертация — премиум-функция. Если в вашем PDF уже есть выделяемый текст, OCR не нужен: обычный конвертер PDF в Word обрабатывает текстовые файлы бесплатно."
+
+msgid "Will the document formatting be preserved?"
+msgstr "Сохранится ли форматирование документа?"
+
+msgid "Recognized text is exported as an editable Word document organized into paragraphs. Simple letters and contracts come out close to the original; documents with complex tables or multi-column layouts may need light touch-ups afterwards, which is normal for OCR output."
+msgstr "Распознанный текст выгружается как редактируемый документ Word, разбитый на абзацы. Простые письма и договоры получаются близко к оригиналу; документам со сложными таблицами или многоколоночной вёрсткой может понадобиться лёгкая доводка — для OCR это нормально."
+
+msgid "How Scanned PDF to Word Works"
+msgstr "Как работает конвертация скана PDF в Word"
+
+msgid "Upload your scanned PDF — a contract, an invoice, a book chapter, or a photographed document. Pages where text cannot be selected are exactly what this tool is for."
+msgstr "Загрузите отсканированный PDF — договор, счёт, главу книги или сфотографированный документ. Страницы, где текст нельзя выделить, — именно то, для чего создан этот инструмент."
+
+msgid "The OCR engine analyzes every page, recognizes the printed text in 17 supported languages, and reconstructs it as real, editable characters."
+msgstr "OCR-движок анализирует каждую страницу, распознаёт печатный текст на 17 поддерживаемых языках и восстанавливает его в виде настоящих редактируемых символов."
+
+msgid "Download the resulting Word document and edit it like any other file: fix dates, update names, copy paragraphs, or reuse the content entirely."
+msgstr "Скачайте полученный документ Word и редактируйте его как любой другой файл: исправляйте даты, обновляйте имена, копируйте абзацы или используйте содержимое целиком."
+
+msgid "Why Convert Scans Online Instead of Retyping?"
+msgstr "Зачем конвертировать сканы онлайн, а не перепечатывать?"
+
+msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
+msgstr "Перепечатка десятистраничного отсканированного договора занимает часы и добавляет опечатки; OCR делает ту же работу меньше чем за минуту. Устанавливать ничего не нужно — конвертер работает в браузере на Windows, macOS, Linux и мобильных устройствах и обрабатывает многостраничные документы за один проход. Распознавание выполняется на наших серверах, поэтому даже слабый ноутбук или телефон справится с большими сканами."

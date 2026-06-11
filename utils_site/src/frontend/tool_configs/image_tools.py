@@ -85,6 +85,20 @@ IMAGE_TOOLS_CONFIGS = {
                         "Leave the format field empty to keep the original format."
                     ),
                 },
+                {
+                    "question": _("How much smaller will my image get?"),
+                    "answer": _(
+                        "It depends on the source. Photos straight from a camera or phone often shrink by half or more at quality 80-85, while images that were already compressed see smaller gains. Screenshots and graphics usually compress best as PNG or WebP."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Why should I compress images before uploading them to a website?"
+                    ),
+                    "answer": _(
+                        "Smaller images load faster, improve Core Web Vitals scores, and use less bandwidth on mobile. Since page speed is a ranking signal, optimized images directly help SEO without any visible quality loss at sensible settings."
+                    ),
+                },
             ],
             "faq_title": _("Image Optimization FAQ"),
             "page_tips": [
@@ -193,6 +207,20 @@ IMAGE_TOOLS_CONFIGS = {
                         "Yes. WebP supports transparency, so transparent PNG images convert to WebP "
                         "with the alpha channel preserved. Converting to JPEG will fill transparent "
                         "areas with white."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Which format is best for a website: JPEG, PNG, or WebP?"
+                    ),
+                    "answer": _(
+                        "Use WebP when you can — it is 25-35 percent smaller than JPEG at the same quality and supports transparency. Choose JPEG for maximum compatibility with photos, and PNG when you need lossless quality or transparency in older browsers."
+                    ),
+                },
+                {
+                    "question": _("Will converting change my image dimensions?"),
+                    "answer": _(
+                        "No. Conversion changes only how the pixels are encoded — the width and height stay exactly the same. If you also want to shrink the dimensions, use the Optimize Image tool with a maximum size."
                     ),
                 },
             ],
@@ -308,6 +336,24 @@ IMAGE_TOOLS_CONFIGS = {
                         "The HEIC converter is a premium feature. Premium users can convert single files and "
                         "process up to 10 HEIC photos at once in batch mode. Upgrade to Premium to unlock it "
                         "alongside our other advanced tools."
+                    ),
+                },
+                {
+                    "question": _("How do I open iPhone HEIC photos on Windows?"),
+                    "answer": _(
+                        "Windows cannot open HEIC files without paid codec extensions. The fastest fix is to convert the photo to JPG right in the browser — the converted file opens in any version of Windows, in office software, and on every website."
+                    ),
+                },
+                {
+                    "question": _("Does converting HEIC to JPG lose quality?"),
+                    "answer": _(
+                        "The conversion re-encodes the photo, but at high quality settings the difference is not visible to the eye. The JPG will be somewhat larger than the original HEIC, because HEIC compresses more efficiently — that is exactly why Apple uses it."
+                    ),
+                },
+                {
+                    "question": _("Can I make my iPhone shoot JPG instead of HEIC?"),
+                    "answer": _(
+                        "Yes: Settings, then Camera, then Formats, and select Most Compatible. Keep in mind HEIC photos take roughly half the storage space, so many people keep HEIC on the phone and convert individual photos only when sharing requires JPG."
                     ),
                 },
             ],
