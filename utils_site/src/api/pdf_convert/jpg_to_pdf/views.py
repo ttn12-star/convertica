@@ -6,7 +6,8 @@ import tempfile
 from asgiref.sync import async_to_sync
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
-from django.http import HttpRequest, HttpResponse
+from django.http import FileResponse, HttpRequest
+from django.utils.translation import gettext as _
 from PIL import Image, UnidentifiedImageError
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
@@ -16,6 +17,7 @@ from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
 
 from ...base_views import BaseConversionAPIView
+from ...logging_utils import build_request_context
 from .decorators import jpg_to_pdf_docs
 from .serializers import JPGToPDFSerializer
 from .utils import convert_jpg_to_pdf
@@ -38,6 +40,10 @@ class JPGToPDFAPIView(BaseConversionAPIView):
     ALLOWED_EXTENSIONS = {".jpg", ".jpeg"}
     CONVERSION_TYPE = "JPG_TO_PDF"
     FILE_FIELD_NAME = "image_file"
+    # The multi-file branch renders each image into the PDF synchronously in
+    # the request cycle, so an unbounded count would let one request hog a
+    # gunicorn worker. Generous for real users (frontend imposes no limit).
+    MAX_MULTI_IMAGE_FILES = 50
 
     def get_serializer_class(self):
         return JPGToPDFSerializer
@@ -75,6 +81,17 @@ class JPGToPDFAPIView(BaseConversionAPIView):
         if len(uploaded_files) == 1:
             return async_to_sync(self.post_async)(request)
 
+        if len(uploaded_files) > self.MAX_MULTI_IMAGE_FILES:
+            return Response(
+                {
+                    "error": _(
+                        "Too many files. Maximum is %(max_files)d images per request."
+                    )
+                    % {"max_files": self.MAX_MULTI_IMAGE_FILES}
+                },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         # Get quality parameter from request (default 85)
         try:
             quality_value = int(request.data.get("quality", 85))
@@ -93,6 +110,15 @@ class JPGToPDFAPIView(BaseConversionAPIView):
             available_height = page_height - (2 * margin)
 
             for idx, uploaded_file in enumerate(uploaded_files):
+                # The multi-file branch bypasses post_async, so apply the same
+                # per-file size/type validation the single-file path gets.
+                validation_error = self.validate_file_basic(
+                    uploaded_file,
+                    build_request_context(request, uploaded_file=uploaded_file),
+                )
+                if validation_error:
+                    return validation_error
+
                 safe_name = os.path.basename(uploaded_file.name or f"image_{idx}.jpg")
                 image_path = os.path.join(tmp_dir, safe_name)
                 with open(image_path, "wb") as f:
@@ -159,14 +185,16 @@ class JPGToPDFAPIView(BaseConversionAPIView):
 
             c.save()
 
-            with open(pdf_path, "rb") as fp:
-                pdf_bytes = fp.read()
-
-            response = HttpResponse(pdf_bytes, content_type="application/pdf")
-            response["Content-Disposition"] = (
-                'attachment; filename="merged_convertica.pdf"'
+            # Stream from disk instead of buffering the merged PDF in worker
+            # memory. The finally-block rmtree only unlinks the path; the open
+            # fd keeps the bytes readable until the response is fully sent.
+            fh = open(pdf_path, "rb")  # noqa: SIM115 - lifetime owned by FileResponse
+            return FileResponse(
+                fh,
+                content_type="application/pdf",
+                as_attachment=True,
+                filename="merged_convertica.pdf",
             )
-            return response
         finally:
             try:
                 import shutil

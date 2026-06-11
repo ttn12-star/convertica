@@ -14224,3 +14224,6 @@ msgstr "Отправить отзыв"
 
 msgid "Thank you for your feedback!"
 msgstr "Спасибо за ваш отзыв!"
+
+msgid "Too many files. Maximum is %(max_files)d images per request."
+msgstr "Слишком много файлов. Максимум — %(max_files)d изображений за один запрос."

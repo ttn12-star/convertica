@@ -71,6 +71,15 @@ class BlogViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Published Article")
 
+    def test_article_detail_og_image_alt_uses_article_title(self):
+        """Social cards should describe the article, not the generic site alt."""
+        response = self.client.get(
+            self._get_url_with_lang(f"blog/{self.published_article.slug}/"), follow=True
+        )
+        self.assertContains(
+            response, 'property="og:image:alt" content="Published Article"'
+        )
+
     def test_article_detail_relevant_tool_link_uses_frontend_namespace(self):
         """Relevant tool CTA should render a valid frontend tool URL."""
         self.published_article.relevant_tool = "pdf_to_word"
