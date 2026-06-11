@@ -42,6 +42,8 @@ TOOLS = {
     "jpg-to-pdf": "jpg-to-pdf/",
     "sign": "pdf-edit/sign/",
     "crop": "pdf-edit/crop/",
+    "heic-to-jpg": "image/heic-to-jpg/",
+    "convert-image": "image/convert/",
 }
 
 # crop boxes in CSS px (content column is centered ~258..1022 at 1280 wide)

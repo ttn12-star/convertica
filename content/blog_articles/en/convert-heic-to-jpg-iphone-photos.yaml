@@ -1,0 +1,121 @@
+slug: convert-heic-to-jpg-iphone-photos
+cover_image: blog/images/cover-convert-heic-to-jpg-iphone-photos.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: heic_to_jpg
+title_en: "How to Convert HEIC to JPG: Open iPhone Photos Anywhere"
+meta_title_en: "Convert HEIC to JPG Online - Open iPhone Photos on Windows | Convertica"
+meta_description_en: "iPhone photos arrive as HEIC and Windows won't open them. Learn what HEIC is, three ways to get a JPG (including two free ones built into your iPhone), and when a converter is faster."
+meta_keywords_en: "heic to jpg, convert heic to jpg, open heic on windows, iphone photos heic, heic converter, heic to jpeg, what is heic"
+excerpt_en: "Someone sends you a photo from their iPhone and Windows shrugs at it. The file is HEIC - Apple's space-saving format. Here is what it is and the fastest ways to turn it into a JPG that opens everywhere."
+ai_metadata:
+  topics:
+    - HEIC
+    - HEIC to JPG conversion
+    - iPhone photos
+    - image formats
+    - Windows compatibility
+  entities:
+    - HEIC
+    - HEIF
+    - JPG
+    - JPEG
+    - iPhone
+    - Apple
+    - Windows
+    - Convertica
+  summary: "Explains what the HEIC format is and why iPhones use it, why Windows and many websites cannot open it, three ways to get a JPG (iPhone camera setting, native share-sheet trick, and an online converter), quality and file-size trade-offs, and an FAQ covering metadata, quality loss, and batch conversion."
+  related_terms:
+    - open heic file
+    - heic file converter
+    - iphone photo format
+    - change heic to jpg
+    - heic not opening windows
+    - convert apple photos to jpg
+  reading_time_minutes: 6
+  target_audience: "Anyone who received or shot iPhone photos in HEIC and needs them as JPG for Windows, office software, web uploads, or printing services."
+content_en: |
+  Someone AirDrops you vacation photos, or you copy pictures from an iPhone to a Windows laptop, and the files refuse to open. The extension is <strong>.heic</strong>, the thumbnail is blank, and the photo viewer suggests buying a codec. Nothing is broken - you've just met Apple's photo format. This guide explains what HEIC is, why your iPhone uses it, and the three practical ways to get a normal JPG out of it.
+
+  <h2>What is HEIC and why does your iPhone use it?</h2>
+
+  <p>HEIC (High Efficiency Image Container, based on the HEIF standard) has been the default camera format on iPhones since iOS 11 in 2017. Apple picked it for one reason: at the same visual quality, a HEIC photo takes roughly half the storage of a JPG. Across a camera roll with thousands of photos, that's a serious amount of space - which is why your phone shoots HEIC unless you tell it otherwise.</p>
+
+  <p>The catch is compatibility. JPG has been everywhere for thirty years; HEIC has not. Windows needs paid codec extensions to open it, older Android devices struggle, many websites and government portals reject it at upload, and most printing kiosks have never heard of it.</p>
+
+  <h2>Method 1 - Convert online (works for files you already have)</h2>
+
+  <figure><img src="/static/blog/images/tool-heic-to-jpg-hero.jpg" alt="Convertica HEIC to JPG converter upload screen" width="1280" height="800" loading="lazy"></figure>
+
+  <p>When the HEIC file is already on your computer - emailed to you, copied from a phone, downloaded from a cloud album - converting it in the browser is the shortest path:</p>
+
+  <ol>
+    <li>Open the <a href="/en/image/heic-to-jpg/">HEIC to JPG</a> converter and upload your .heic or .heif file (up to 25 MB).</li>
+    <li>Pick the output: <strong>JPG</strong> for universal compatibility, <strong>PNG</strong> if you need lossless quality, or <strong>PDF</strong> if the photo has to travel as a document.</li>
+    <li>Download the converted file. It opens in any version of Windows, every office suite, and uploads anywhere.</li>
+  </ol>
+
+  <figure><img src="/static/blog/images/tool-heic-to-jpg-options.jpg" alt="Output format options in the HEIC to JPG converter" width="1280" height="800" loading="lazy"></figure>
+
+  <p>The converter is part of Convertica's premium toolset, and premium users can batch-convert up to 10 HEIC photos at once - useful when a whole album needs to become JPGs. If you only occasionally bump into a single HEIC, the two free methods below might be all you need.</p>
+
+  <h2>Method 2 - Tell your iPhone to shoot JPG (free, for future photos)</h2>
+
+  <p>If HEIC keeps getting in your way, switch the camera format on the phone itself:</p>
+
+  <ol>
+    <li>Open <strong>Settings</strong> and go to <strong>Camera</strong>.</li>
+    <li>Tap <strong>Formats</strong>.</li>
+    <li>Select <strong>Most Compatible</strong> instead of High Efficiency.</li>
+  </ol>
+
+  <p>From now on the camera saves JPGs directly. The trade-off is honest: your photos will take roughly twice the storage, and 48 MP ProRAW-adjacent modes on newer iPhones may be limited. Many people leave HEIC on for the space savings and convert individual photos only when something demands a JPG.</p>
+
+  <h2>Method 3 - The built-in share trick (free, one photo at a time)</h2>
+
+  <p>Two quiet behaviours of iOS can save you a conversion entirely:</p>
+
+  <ul>
+    <li><strong>Email and many messengers convert automatically.</strong> Share a photo through Mail and it usually arrives as JPG, not HEIC.</li>
+    <li><strong>Copy-paste converts too.</strong> If you select photos in the Photos app, tap Share, then <strong>Copy Photos</strong>, and paste them into a folder or document, iOS hands over JPGs.</li>
+  </ul>
+
+  <p>There's also a setting that fixes USB transfers: <strong>Settings &gt; Photos &gt; Transfer to Mac or PC &gt; Automatic</strong>. With that enabled, photos copied over a cable arrive in a compatible format even if they're stored as HEIC on the phone.</p>
+
+  <h2>Will converting HEIC to JPG lose quality?</h2>
+
+  <p>Technically the photo is re-encoded, so some recompression happens. In practice, at a high quality setting the difference is invisible - you will not find it without zooming to pixels and comparing side by side. Two things are worth knowing:</p>
+
+  <ul>
+    <li>The JPG will be <strong>larger</strong> than the HEIC it came from - often close to double. That's not added quality; it's just JPG being a less efficient compressor. It is exactly why Apple switched away from it.</li>
+    <li>If the photo is going to be edited heavily afterwards, convert to <strong>PNG</strong> instead. PNG is lossless, so repeated saves won't stack compression artifacts.</li>
+  </ul>
+
+  <h2>Which output should you pick: JPG, PNG, or PDF?</h2>
+
+  <ul>
+    <li><strong>JPG</strong> - the default answer. Smallest of the three, opens everywhere, right for photos going to the web, chat, or office documents.</li>
+    <li><strong>PNG</strong> - lossless and bigger. Pick it for screenshots-of-photos workflows, heavy editing, or when an upload form insists on PNG.</li>
+    <li><strong>PDF</strong> - when the photo must behave like a document: an insurance claim, a receipt, a signed page photographed with the phone. If you have several photos that belong in one document, convert them with the <a href="/en/jpg-to-pdf/">JPG to PDF</a> tool instead - it merges multiple images into a single PDF.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Why does Windows ask me to pay to open HEIC?</h3>
+  <p>Microsoft ships the HEVC video codec that HEIC depends on as a paid add-on, so a fresh Windows install can't decode the format. Converting the file to JPG sidesteps the whole problem - nothing to install, nothing to buy.</p>
+
+  <h3>Does conversion keep the photo's metadata?</h3>
+  <p>The image itself converts cleanly. Some metadata (location, camera settings) may not survive the trip, so if EXIF data matters for your use case, check the converted file before deleting the original.</p>
+
+  <h3>Can I convert a whole album at once?</h3>
+  <p>Premium users can upload up to 10 HEIC files per batch and get a ZIP back. For hundreds of photos, the better move is the iPhone-side fix: set the camera to Most Compatible, or use the automatic USB transfer setting, so the photos never need converting at all.</p>
+
+  <h3>What's the difference between HEIC and HEIF?</h3>
+  <p>HEIF is the standard; HEIC is the specific flavour Apple uses (HEIF container with HEVC compression). For converting purposes they behave the same, and the tool accepts both extensions.</p>
+
+  <h3>Is HEIC better than JPG?</h3>
+  <p>As a storage format, yes - same quality at about half the size, plus support for 10-bit colour and live photos. As an exchange format, no - the world still speaks JPG. The sensible setup is HEIC on the phone, JPG for sharing, which is exactly what the methods above give you.</p>
+
+  <h2>Try it now</h2>
+
+  <p>If a HEIC file is sitting on your desktop right now refusing to open, drop it into the <a href="/en/image/heic-to-jpg/">HEIC to JPG converter</a>, pick JPG, and you're done in seconds. And if this happens to you weekly, spend one of those seconds flipping your iPhone camera to Most Compatible - future you will be grateful.</p>

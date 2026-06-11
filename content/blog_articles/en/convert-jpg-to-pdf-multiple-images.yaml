@@ -1,0 +1,104 @@
+slug: convert-jpg-to-pdf-multiple-images
+cover_image: blog/images/cover-convert-jpg-to-pdf-multiple-images.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: jpg_to_pdf
+title_en: "How to Convert JPG to PDF: Combine Multiple Images into One File"
+meta_title_en: "Convert JPG to PDF Online Free - Merge Multiple Images | Convertica"
+meta_description_en: "Turn one photo or a whole stack of JPGs into a single PDF, free and in the browser. Page order, quality settings, file-size tips, and what to do with scans and receipts."
+meta_keywords_en: "jpg to pdf, convert jpg to pdf, combine images into one pdf, multiple jpg to pdf, photos to pdf, image to pdf converter, merge jpg to pdf"
+excerpt_en: "A photographed contract, a stack of receipts, scanned pages saved as images - sooner or later they all need to become one tidy PDF. Here is how to do it free, in the right order, at the right quality."
+ai_metadata:
+  topics:
+    - JPG to PDF conversion
+    - combining images into PDF
+    - document digitization
+    - PDF creation
+  entities:
+    - JPG
+    - JPEG
+    - PDF
+    - A4
+    - Convertica
+  summary: "Step-by-step guide to converting a single JPG or up to 50 images into one PDF in the browser: upload order controls page order, quality slider trades size for fidelity, with use cases (receipts, photographed documents, portfolios), file-size guidance, and an FAQ on limits, formats, and scanned text."
+  related_terms:
+    - photos to pdf free
+    - combine jpg files into pdf
+    - picture to pdf converter
+    - scan to pdf
+    - turn images into pdf document
+    - jpg to pdf no watermark
+  reading_time_minutes: 6
+  target_audience: "Students submitting photographed assignments, freelancers invoicing with receipts, and office workers who need photographed or scanned pages delivered as one professional PDF."
+content_en: |
+  Phones turned everyone into a scanner operator: a photographed contract here, three receipts there, a whiteboard from the last meeting. The problem is delivery. Nobody wants to receive eleven loose JPGs in an email thread - they want one PDF, pages in order, that prints correctly. This guide shows how to get exactly that, free, without installing anything.
+
+  <h2>Convert one JPG - or merge up to 50 into a single PDF</h2>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="Convertica JPG to PDF converter upload screen" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Open the <a href="/en/jpg-to-pdf/">JPG to PDF</a> converter and add your images. One file gives you a one-page PDF; multiple files are merged into a single document, one image per page, up to 50 images per request.</li>
+    <li><strong>Order matters:</strong> images become pages in the order you add them. Name files <em>01.jpg, 02.jpg, 03.jpg</em> before selecting them and the page order takes care of itself.</li>
+    <li>Set the quality slider if you need to (more on that below), then click <strong>Convert</strong>.</li>
+    <li>Download the finished PDF - no watermark, no registration.</li>
+  </ol>
+
+  <p>Each image is placed on an A4 page, centered with proper margins, so the result looks like a document rather than a photo dump. Portrait and landscape photos both fit automatically - the image is scaled to the page, never cropped.</p>
+
+  <h2>Picking the right quality setting</h2>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-options.jpg" alt="Quality options in the JPG to PDF converter" width="1280" height="800" loading="lazy"></figure>
+
+  <p>The quality control (60-95, default 85) decides how much the images are recompressed inside the PDF:</p>
+
+  <ul>
+    <li><strong>85 (default)</strong> - right for nearly everything. Documents stay readable, photos stay clean, file size stays reasonable.</li>
+    <li><strong>90+</strong> - for photos that must survive close inspection: portfolio work, product shots, anything that may be printed large. At 90 and above the converter also skips recompressing images that are already clean JPGs, preserving the original pixels.</li>
+    <li><strong>60-75</strong> - for email-friendly output when the source photos are huge. Ten phone photos at 12 MP can easily make a 30 MB PDF at high quality; dropping the slider tames it.</li>
+  </ul>
+
+  <p>If the PDF still comes out too heavy for an attachment limit, run it through <a href="/en/pdf-organize/compress/">Compress PDF</a> afterwards - the combination of moderate quality plus compression gets most photo PDFs under typical email caps.</p>
+
+  <h2>What people actually use this for</h2>
+
+  <ul>
+    <li><strong>Expense reports.</strong> A month of paper receipts photographed and merged into one PDF files far better than a folder of loose images - and accounting will thank you.</li>
+    <li><strong>Photographed documents.</strong> A contract or form shot page by page with a phone becomes a single, ordered, printable document.</li>
+    <li><strong>Assignments and applications.</strong> Many portals accept exactly one file. Ten photographed pages, one upload field - this is the fix.</li>
+    <li><strong>Portfolios and mood boards.</strong> A curated set of images in fixed order, immune to chat apps recompressing and reshuffling them.</li>
+    <li><strong>Archiving.</strong> PDF pages with a date in the filename beat a camera roll for finding that one receipt two years later.</li>
+  </ul>
+
+  <h2>Getting clean results from phone photos</h2>
+
+  <ul>
+    <li>Shoot documents straight-on and fill the frame - the image is placed on the page as-is, so a skewed photo stays skewed.</li>
+    <li>Even, diffuse light beats flash. Glare on glossy paper is the most common reason a photographed page is unreadable in print.</li>
+    <li>Crop clutter (table edges, fingers) before converting; the page should contain the document, not the scene around it.</li>
+    <li>iPhone photos in HEIC format? Convert them to JPG first with the <a href="/en/image/heic-to-jpg/">HEIC to JPG</a> tool, then merge.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Is it really free? Any watermark?</h3>
+  <p>Converting JPGs to PDF is free, with no watermark and no registration. Free-tier file-size limits apply per image; premium raises them.</p>
+
+  <h3>How many images can I merge at once?</h3>
+  <p>Up to 50 images per request, each becoming one page of the resulting PDF. Need more? Split the batch and merge the resulting PDFs with the <a href="/en/pdf-organize/merge/">Merge PDF</a> tool.</p>
+
+  <h3>Can I change the page order after uploading?</h3>
+  <p>Pages follow the order the images were added. The reliable habit is numbering the filenames before you select them. If a finished PDF needs reshuffling, the <a href="/en/pdf-organize/organize/">Organize PDF</a> tool does drag-and-drop reordering.</p>
+
+  <h3>Does it work with PNG or other formats?</h3>
+  <p>This tool takes JPG/JPEG. For PNG, WebP, or other formats, either convert them to JPG first with the <a href="/en/image/convert/">Convert Image</a> tool, or - for a single image - convert it directly to PDF there.</p>
+
+  <h3>Will the text in my photographed document be searchable?</h3>
+  <p>No - the PDF contains pictures of text, not text. If you need to search, copy, or edit the words, run the result through the <a href="/en/scanned-pdf-to-word/">Scanned PDF to Word</a> OCR tool, which recognizes the text and returns an editable file.</p>
+
+  <h3>Is my data safe?</h3>
+  <p>Files are processed for the conversion and cleaned up by scheduled maintenance shortly afterwards. As with any online service, check the privacy policy before uploading highly sensitive material.</p>
+
+  <h2>Try it now</h2>
+
+  <p>Grab that folder of photographed pages, number the files, and drop them into the <a href="/en/jpg-to-pdf/">JPG to PDF</a> converter. Thirty seconds later you'll have the thing everybody actually wanted: one file, pages in order, ready to send.</p>

@@ -84,10 +84,48 @@
       hyphens: auto;
     }
 
+    /* Tailwind preflight strips list and table styling; restore it for
+       article HTML (otherwise bullets vanish and tables collapse to 1px). */
+    .article-content ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .article-content ol {
+      list-style: decimal;
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .article-content ul li,
+    .article-content ol li {
+      margin: 0.5rem 0;
+    }
+
     .article-content ul li::marker,
     .article-content ol li::marker {
       color: #3b82f6;
       font-weight: bold;
+    }
+
+    .article-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .article-content th,
+    .article-content td {
+      border: 1px solid #dbeafe;
+      padding: 0.6rem 0.9rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .article-content thead th {
+      background: linear-gradient(to right, #eff6ff, #f0f9ff);
     }
 
     .article-content blockquote {

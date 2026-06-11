@@ -1,0 +1,103 @@
+slug: webp-vs-jpeg-vs-png-best-image-format
+status: published
+category_slug: comparisons
+relevant_tool: convert_image
+title_id: "WebP vs JPEG vs PNG: Format Gambar Mana yang Harus Kamu Pakai?"
+meta_title_id: "WebP vs JPEG vs PNG - Format Gambar Terbaik | Convertica"
+meta_description_id: "WebP 25-35% lebih kecil dari JPEG, PNG lossless, JPEG terbuka di mana saja. Perbandingan praktis dengan tabel keputusan dan kapan tiap format unggul."
+meta_keywords_id: "webp vs jpeg, webp vs png, format gambar terbaik untuk web, jpeg vs png, perbandingan format gambar, konversi format gambar, format webp"
+excerpt_id: "Tiga format mencakup hampir semua gambar di web, dan salah pilih bisa merugikan ukuran file, kualitas, atau kompatibilitas. Inilah perbedaan nyata WebP, JPEG, dan PNG — plus aturan sederhana untuk memilih."
+content_id: |
+  Hampir setiap gambar yang akan kamu unggah berjalan dalam salah satu dari tiga kontainer: JPEG, PNG, atau WebP. Sekilas ketiganya tampak bisa saling menggantikan — gambar tetaplah gambar — tetapi di balik layar mereka membuat kompromi yang sangat berbeda, dan pilihan yang salah diam-diam membebanimu: logo yang buram, tangkapan layar 4 MB, foto yang ditolak sistem lama. Perbandingan ini menjernihkan untuk apa sebenarnya tiap format dibuat.
+
+  <h2>Jawaban singkatnya</h2>
+
+  <ul>
+    <li><strong>WebP</strong> - default untuk situs web. 25-35% lebih kecil daripada JPEG pada kualitas yang sama, mendukung transparansi dan animasi. Gunakan setiap kali kamu mengendalikan tempat gambar ditampilkan.</li>
+    <li><strong>JPEG</strong> - default untuk foto yang berpindah tangan. Setiap perangkat, program, dan formulir unggah sejak era 1990-an menerimanya. Gunakan saat kompatibilitas lebih penting daripada kilobyte terakhir.</li>
+    <li><strong>PNG</strong> - default untuk grafik yang harus presisi piksel. Lossless, dengan transparansi yang bersih. Gunakan untuk logo, tangkapan layar UI, bagan, dan apa pun yang punya tepi tajam dan teks.</li>
+  </ul>
+
+  <h2>Perbandingan berdampingan</h2>
+
+  <table>
+    <thead>
+      <tr><th></th><th>WebP</th><th>JPEG</th><th>PNG</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Kompresi</strong></td><td>Lossy atau lossless</td><td>Lossy</td><td>Lossless</td></tr>
+      <tr><td><strong>Ukuran foto tipikal</strong></td><td>Paling kecil</td><td>Sedang</td><td>Paling besar (sering 5-10x JPEG)</td></tr>
+      <tr><td><strong>Transparansi</strong></td><td>Ya</td><td>Tidak (diisi warna putih)</td><td>Ya</td></tr>
+      <tr><td><strong>Animasi</strong></td><td>Ya</td><td>Tidak</td><td>Tidak (APNG jarang)</td></tr>
+      <tr><td><strong>Dukungan browser</strong></td><td>Semua browser modern</td><td>Universal</td><td>Universal</td></tr>
+      <tr><td><strong>Perangkat / perangkat lunak lama</strong></td><td>Kadang ditolak</td><td>Selalu diterima</td><td>Hampir selalu diterima</td></tr>
+      <tr><td><strong>Paling cocok untuk</strong></td><td>Halaman web, toko online</td><td>Foto untuk dibagikan, email, layanan cetak</td><td>Logo, tangkapan layar, grafik dengan teks</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Mengapa ukuran file lebih penting dari kelihatannya</h2>
+
+  <p>Gambar biasanya menjadi muatan terberat di sebuah halaman. Mengecilkannya adalah kemenangan performa yang paling mudah: halaman dimuat lebih cepat, skor <strong>Core Web Vitals</strong> membaik, dan pengunjung seluler membakar lebih sedikit kuota. Kecepatan halaman adalah sinyal peringkat, jadi bagi pemilik situs pilihan format diam-diam juga merupakan keputusan SEO.</p>
+
+  <p>Gambaran konkret angkanya: foto 12 megapiksel tipikal berukuran sekitar 2-4 MB sebagai JPEG kualitas tinggi, 1,5-3 MB sebagai WebP pada kualitas visual yang sama, dan 15-25 MB sebagai PNG. Angka PNG itu bukan salah ketik — penyimpanan foto secara lossless luar biasa mahal, dan itulah alasan PNG adalah format yang keliru untuk fotografi.</p>
+
+  <h2>Kapan JPEG masih menjadi pilihan tepat</h2>
+
+  <p>WebP menang soal ukuran, tetapi JPEG punya satu keunggulan tak terkalahkan: tiga puluh tahun dukungan universal. Pilih JPEG saat gambar keluar dari kendalimu:</p>
+
+  <ul>
+    <li>Melampirkan foto ke email atau dokumen yang mungkin dibuka seseorang di perangkat lunak lama.</li>
+    <li>Mengunggah ke portal pemerintah, lamaran kerja, dan formulir dengan daftar tipe file yang ketat.</li>
+    <li>Mengirim foto ke layanan cetak atau kios foto.</li>
+    <li>Berbagi dengan orang yang perangkatnya sama sekali tidak kamu ketahui.</li>
+  </ul>
+
+  <p>Lampiran WebP yang tidak bisa dibuka penerimanya menghemat 30% dari nol.</p>
+
+  <h2>Kapan PNG adalah satu-satunya jawaban yang benar</h2>
+
+  <p>Kompresi lossy bekerja dengan membuang detail yang dimaafkan mata pada foto — tetapi mata tidak memaafkannya pada grafik. Teks yang dikompresi JPEG menumbuhkan halo buram; batas warna yang tajam menjadi luntur. Gunakan PNG untuk:</p>
+
+  <ul>
+    <li><strong>Logo dan ikon</strong>, terutama yang ditempatkan di atas latar berwarna (kamu butuh transparansinya).</li>
+    <li><strong>Tangkapan layar UI</strong> yang memuat teks — dokumentasi, laporan bug, tutorial.</li>
+    <li><strong>Bagan, diagram, dan pixel art</strong> dengan tepi keras dan warna datar.</li>
+    <li>Gambar apa pun yang akan <strong>diedit dan disimpan ulang berkali-kali</strong> — lossless berarti tidak ada degradasi antargenerasi.</li>
+  </ul>
+
+  <h2>Cara mengonversi antar format</h2>
+
+  <figure><img src="/static/blog/images/tool-convert-image-hero.jpg" alt="Layar unggah konverter format gambar Convertica" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Berganti format hanya butuh hitungan detik dan tidak ada yang perlu diinstal:</p>
+
+  <ol>
+    <li>Buka alat <a href="/id/image/convert/">Konversi Gambar</a> dan unggah file JPEG, PNG, WebP, GIF, BMP, atau TIFF.</li>
+    <li>Pilih format tujuan dan, untuk JPEG atau WebP, tingkat kualitas (90 adalah default yang aman).</li>
+    <li>Unduh hasilnya. Dimensi piksel tetap persis sama — hanya enkodenya yang berubah.</li>
+  </ol>
+
+  <figure><img src="/static/blog/images/tool-convert-image-options.jpg" alt="Opsi format dan kualitas di konverter gambar" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Mengonversi PNG bertransparansi ke WebP mempertahankan saluran alfa; mengonversinya ke JPEG mengisi area transparan dengan warna putih — jadi logo-ke-JPEG biasanya sebuah kesalahan. Jika tujuanmu murni file yang lebih kecil dalam format yang <em>sama</em>, alat <a href="/id/image/optimize/">Optimalkan Gambar</a> mengompresi di tempat dan juga bisa membatasi dimensinya.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Apakah kualitas WebP lebih rendah daripada JPEG?</h3>
+  <p>Tidak — pada pengaturan yang sebanding WebP mempertahankan kualitas visual yang sama dalam file yang lebih kecil. Kompresornya hanya lebih baru dan lebih cerdas daripada milik JPEG yang berasal dari 1992. Kualitas ditentukan oleh tingkat yang kamu pilih, bukan oleh nama formatnya.</p>
+
+  <h3>Mengapa sebagian situs menolak unggahan WebP saya?</h3>
+  <p>Validasi unggahan mereka lebih tua daripada popularitas WebP dan hanya mengizinkan JPEG dan PNG. Konversikan ke JPEG untuk unggahan itu — pekerjaan sepuluh detik — dan tetap pakai WebP untuk situsmu sendiri.</p>
+
+  <h3>Haruskah saya mengonversi JPEG yang sudah ada ke WebP?</h3>
+  <p>Untuk situs yang kamu kelola — ya, biasanya itu kemenangan kecepatan halaman termurah yang tersedia. Enkode ulang dari sumber berkualitas tertinggi yang kamu miliki, bukan dari salinan yang sudah dikompresi berat, agar artefak tidak menumpuk.</p>
+
+  <h3>Bagaimana dengan GIF?</h3>
+  <p>Untuk animasi, WebP (atau file video sungguhan) mengalahkan GIF dalam ukuran dan kedalaman warna. Untuk gambar statis, batas 256 warna GIF menjadikannya yang terburuk dari keempatnya — format ini bertahan terutama karena kebiasaan dan tradisi meme.</p>
+
+  <h3>Berapa pengaturan kualitas terbaik untuk JPEG dan WebP?</h3>
+  <p>80-85 untuk penggunaan web — titik manis di mana artefak tak terlihat pada ukuran tampilan normal. 90+ saat gambar mungkin diedit lagi atau dilihat dari dekat. Di bawah 70, penghematan terus bertambah tetapi begitu pula bercak yang terlihat, terutama di langit dan gradasi.</p>
+
+  <h2>Pilih sekali, konversi saat perlu</h2>
+
+  <p>Aturan praktisnya muat dalam satu baris: <strong>WebP untuk situs webmu, JPEG untuk foto yang berpindah tangan, PNG untuk grafik dengan tepi tajam.</strong> Dan saat sebuah gambar datang dalam format yang salah untuk tugasnya, alat <a href="/id/image/convert/">Konversi Gambar</a> membereskannya dalam satu klik — gratis, tanpa registrasi, dimensi tak tersentuh.</p>
