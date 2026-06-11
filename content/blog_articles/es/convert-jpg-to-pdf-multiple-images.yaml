@@ -1,0 +1,81 @@
+slug: convert-jpg-to-pdf-multiple-images
+status: published
+category_slug: how-to-guides
+relevant_tool: jpg_to_pdf
+title_es: "Cómo convertir JPG a PDF: combina varias imágenes en un solo archivo"
+meta_title_es: "Convertir JPG a PDF gratis — une varias imágenes | Convertica"
+meta_description_es: "Convierte una foto o una pila de JPG en un solo PDF, gratis y en el navegador. Orden de páginas, ajustes de calidad, tamaño de archivo y qué hacer con escaneos."
+meta_keywords_es: "jpg a pdf, convertir jpg a pdf, combinar imágenes en un pdf, varios jpg a pdf, fotos a pdf, conversor de imagen a pdf, unir jpg en pdf"
+excerpt_es: "Un contrato fotografiado, una pila de recibos, páginas escaneadas guardadas como imágenes — tarde o temprano todo eso necesita convertirse en un PDF ordenado. Así se hace gratis, en el orden correcto y con la calidad correcta."
+content_es: |
+  Los teléfonos convirtieron a todo el mundo en operador de escáner: un contrato fotografiado por aquí, tres recibos por allá, la pizarra de la última reunión. El problema es la entrega. Nadie quiere recibir once JPG sueltos en un hilo de correo — quieren un solo PDF, con las páginas en orden, que se imprima correctamente. Esta guía muestra cómo conseguir exactamente eso, gratis y sin instalar nada.
+
+  <h2>Convierte un JPG — o une hasta 50 en un solo PDF</h2>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="Pantalla de subida del conversor JPG a PDF de Convertica" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre el conversor <a href="/es/jpg-to-pdf/">JPG a PDF</a> y añade tus imágenes. Un archivo te da un PDF de una página; varios archivos se combinan en un solo documento, una imagen por página, hasta 50 imágenes por solicitud.</li>
+    <li><strong>El orden importa:</strong> las imágenes se convierten en páginas en el orden en que las añades. Nombra los archivos <em>01.jpg, 02.jpg, 03.jpg</em> antes de seleccionarlos y el orden de las páginas se resuelve solo.</li>
+    <li>Ajusta el control de calidad si lo necesitas (más sobre eso abajo) y haz clic en <strong>Convertir</strong>.</li>
+    <li>Descarga el PDF terminado — sin marca de agua, sin registro.</li>
+  </ol>
+
+  <p>Cada imagen se coloca en una página A4, centrada y con márgenes adecuados, de modo que el resultado parece un documento y no un volcado de fotos. Las fotos verticales y horizontales encajan automáticamente — la imagen se escala a la página, nunca se recorta.</p>
+
+  <h2>Elegir el ajuste de calidad correcto</h2>
+
+  <figure><img src="/static/blog/images/tool-jpg-to-pdf-options.jpg" alt="Opciones de calidad en el conversor JPG a PDF" width="1280" height="800" loading="lazy"></figure>
+
+  <p>El control de calidad (60-95, por defecto 85) decide cuánto se recomprimen las imágenes dentro del PDF:</p>
+
+  <ul>
+    <li><strong>85 (por defecto)</strong> — adecuado para casi todo. Los documentos siguen legibles, las fotos se mantienen limpias, el tamaño del archivo se queda en lo razonable.</li>
+    <li><strong>90+</strong> — para fotos que deben resistir una inspección de cerca: trabajo de portafolio, fotos de producto, cualquier cosa que pueda imprimirse en grande. A partir de 90, el conversor además omite recomprimir imágenes que ya son JPG limpios, conservando los píxeles originales.</li>
+    <li><strong>60-75</strong> — para una salida apta para correo cuando las fotos de origen son enormes. Diez fotos de teléfono a 12 MP pueden generar fácilmente un PDF de 30 MB en calidad alta; bajar el control lo doma.</li>
+  </ul>
+
+  <p>Si el PDF aún sale demasiado pesado para el límite de un adjunto, pásalo después por <a href="/es/pdf-organize/compress/">Comprimir PDF</a> — la combinación de calidad moderada más compresión deja la mayoría de los PDF de fotos por debajo de los topes habituales del correo.</p>
+
+  <h2>Para qué lo usa la gente realmente</h2>
+
+  <ul>
+    <li><strong>Informes de gastos.</strong> Un mes de recibos de papel fotografiados y unidos en un solo PDF se archiva mucho mejor que una carpeta de imágenes sueltas — y contabilidad te lo agradecerá.</li>
+    <li><strong>Documentos fotografiados.</strong> Un contrato o formulario fotografiado página por página con el teléfono se convierte en un único documento ordenado e imprimible.</li>
+    <li><strong>Tareas y solicitudes.</strong> Muchos portales aceptan exactamente un archivo. Diez páginas fotografiadas, un solo campo de subida — esta es la solución.</li>
+    <li><strong>Portafolios y mood boards.</strong> Un conjunto curado de imágenes en orden fijo, inmune a que las apps de chat las recompriman y las desordenen.</li>
+    <li><strong>Archivado.</strong> Páginas de PDF con la fecha en el nombre del archivo ganan al carrete de la cámara cuando hay que encontrar ese recibo dos años después.</li>
+  </ul>
+
+  <h2>Cómo lograr resultados limpios con fotos de teléfono</h2>
+
+  <ul>
+    <li>Fotografía los documentos de frente y llena el encuadre — la imagen se coloca en la página tal cual, así que una foto torcida se queda torcida.</li>
+    <li>La luz uniforme y difusa gana al flash. El reflejo en papel brillante es la razón más común de que una página fotografiada sea ilegible al imprimir.</li>
+    <li>Recorta el desorden (bordes de mesa, dedos) antes de convertir; la página debe contener el documento, no la escena alrededor.</li>
+    <li>¿Fotos del iPhone en formato HEIC? Conviértelas primero a JPG con la herramienta <a href="/es/image/heic-to-jpg/">HEIC a JPG</a> y luego únelas.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Es realmente gratis? ¿Hay marca de agua?</h3>
+  <p>Convertir JPG a PDF es gratuito, sin marca de agua y sin registro. Los límites de tamaño de archivo del plan gratuito se aplican por imagen; premium los amplía.</p>
+
+  <h3>¿Cuántas imágenes puedo unir a la vez?</h3>
+  <p>Hasta 50 imágenes por solicitud, cada una convertida en una página del PDF resultante. ¿Necesitas más? Divide el lote y une los PDF resultantes con la herramienta <a href="/es/pdf-organize/merge/">Unir PDF</a>.</p>
+
+  <h3>¿Puedo cambiar el orden de las páginas después de subir?</h3>
+  <p>Las páginas siguen el orden en que se añadieron las imágenes. El hábito fiable es numerar los nombres de archivo antes de seleccionarlos. Si un PDF terminado necesita reordenarse, la herramienta <a href="/es/pdf-organize/organize/">Organizar PDF</a> permite reordenar arrastrando y soltando.</p>
+
+  <h3>¿Funciona con PNG u otros formatos?</h3>
+  <p>Esta herramienta acepta JPG/JPEG. Para PNG, WebP u otros formatos, conviértelos primero a JPG con la herramienta <a href="/es/image/convert/">Convertir imagen</a>, o — para una sola imagen — conviértela allí directamente a PDF.</p>
+
+  <h3>¿El texto de mi documento fotografiado será buscable?</h3>
+  <p>No — el PDF contiene imágenes del texto, no texto. Si necesitas buscar, copiar o editar las palabras, pasa el resultado por la herramienta OCR <a href="/es/scanned-pdf-to-word/">PDF escaneado a Word</a>, que reconoce el texto y devuelve un archivo editable.</p>
+
+  <h3>¿Mis datos están seguros?</h3>
+  <p>Los archivos se procesan para la conversión y un mantenimiento programado los elimina poco después. Como con cualquier servicio online, revisa la política de privacidad antes de subir material altamente sensible.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Toma esa carpeta de páginas fotografiadas, numera los archivos y suéltalos en el conversor <a href="/es/jpg-to-pdf/">JPG a PDF</a>. Treinta segundos después tendrás lo que todos querían en realidad: un archivo, páginas en orden, listo para enviar.</p>

@@ -1,0 +1,103 @@
+slug: webp-vs-jpeg-vs-png-best-image-format
+status: published
+category_slug: comparisons
+relevant_tool: convert_image
+title_es: "WebP vs JPEG vs PNG: ¿qué formato de imagen deberías usar?"
+meta_title_es: "WebP vs JPEG vs PNG — mejor formato de imagen | Convertica"
+meta_description_es: "WebP es 25-35% más pequeño que JPEG, PNG no pierde calidad, JPEG abre en todas partes. Comparación práctica con tabla de decisión y cuándo gana cada formato."
+meta_keywords_es: "webp vs jpeg, webp vs png, mejor formato de imagen para web, jpeg vs png, comparación de formatos de imagen, convertir formato de imagen, formato webp"
+excerpt_es: "Tres formatos cubren casi todas las imágenes de la web, y elegir mal te cuesta tamaño de archivo, calidad o compatibilidad. Así se diferencian realmente WebP, JPEG y PNG — y una regla simple para elegir."
+content_es: |
+  Casi todas las imágenes que vas a subir en tu vida viajan en uno de tres contenedores: JPEG, PNG o WebP. Parecen intercambiables — la foto es la foto — pero por dentro hacen concesiones muy distintas, y la elección equivocada te cuesta algo en silencio: un logo borroso, una captura de pantalla de 4 MB, una foto que un sistema antiguo se niega a aceptar. Esta comparación aclara para qué sirve realmente cada formato.
+
+  <h2>La respuesta corta</h2>
+
+  <ul>
+    <li><strong>WebP</strong> — el predeterminado para sitios web. 25-35% más pequeño que JPEG con la misma calidad, soporta transparencia y animación. Úsalo siempre que controles dónde se muestra la imagen.</li>
+    <li><strong>JPEG</strong> — el predeterminado para fotos que viajan. Todos los dispositivos, programas y formularios de subida desde los años noventa lo aceptan. Úsalo cuando la compatibilidad importa más que el último kilobyte.</li>
+    <li><strong>PNG</strong> — el predeterminado para gráficos pixel-perfect. Sin pérdida, con transparencia limpia. Úsalo para logos, capturas de interfaz, gráficas y cualquier cosa con bordes nítidos y texto.</li>
+  </ul>
+
+  <h2>Comparación lado a lado</h2>
+
+  <table>
+    <thead>
+      <tr><th></th><th>WebP</th><th>JPEG</th><th>PNG</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Compresión</strong></td><td>Con o sin pérdida</td><td>Con pérdida</td><td>Sin pérdida</td></tr>
+      <tr><td><strong>Tamaño típico de una foto</strong></td><td>El más pequeño</td><td>Medio</td><td>El más grande (a menudo 5-10x JPEG)</td></tr>
+      <tr><td><strong>Transparencia</strong></td><td>Sí</td><td>No (rellena con blanco)</td><td>Sí</td></tr>
+      <tr><td><strong>Animación</strong></td><td>Sí</td><td>No</td><td>No (APNG es raro)</td></tr>
+      <tr><td><strong>Soporte en navegadores</strong></td><td>Todos los navegadores modernos</td><td>Universal</td><td>Universal</td></tr>
+      <tr><td><strong>Software / dispositivos antiguos</strong></td><td>A veces rechazado</td><td>Siempre aceptado</td><td>Casi siempre aceptado</td></tr>
+      <tr><td><strong>Ideal para</strong></td><td>Páginas web, tiendas online</td><td>Fotos para compartir, correo, servicios de impresión</td><td>Logos, capturas de pantalla, gráficos con texto</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Por qué el tamaño del archivo importa más de lo que parece</h2>
+
+  <p>Las imágenes suelen ser lo más pesado de una página. Reducirlas es la mejora de rendimiento más fácil que existe: las páginas cargan más rápido, las puntuaciones de <strong>Core Web Vitals</strong> mejoran y los visitantes móviles gastan menos datos. La velocidad de la página es una señal de posicionamiento, así que para el dueño de un sitio la elección de formato es, en silencio, también una decisión de SEO.</p>
+
+  <p>Para tener una idea concreta de los números: una foto típica de 12 megapíxeles ronda los 2-4 MB como JPEG de alta calidad, 1.5-3 MB como WebP con la misma calidad visual, y 15-25 MB como PNG. Esa cifra de PNG no es un error — almacenar fotos sin pérdida es enormemente caro, y por eso PNG es el formato equivocado para fotografías.</p>
+
+  <h2>Cuándo JPEG sigue siendo la decisión correcta</h2>
+
+  <p>WebP gana en tamaño, pero JPEG tiene una ventaja imbatible: treinta años de soporte universal. Elige JPEG cuando la imagen sale de tu control:</p>
+
+  <ul>
+    <li>Al adjuntar fotos a correos o documentos que alguien podría abrir en software antiguo.</li>
+    <li>Al subir a portales gubernamentales, solicitudes de empleo y formularios con listas estrictas de tipos de archivo.</li>
+    <li>Al enviar fotos a un servicio de impresión o a un quiosco de fotos.</li>
+    <li>Al compartir con personas de cuyos dispositivos no sabes nada.</li>
+  </ul>
+
+  <p>Un adjunto WebP que el destinatario no puede abrir te ahorra el 30% de nada.</p>
+
+  <h2>Cuándo PNG es la única respuesta correcta</h2>
+
+  <p>La compresión con pérdida funciona descartando detalle que el ojo perdona en una foto — pero el ojo no lo perdona en los gráficos. El texto comprimido en JPEG cría halos borrosos; los límites de color nítidos se emborronan. Usa PNG para:</p>
+
+  <ul>
+    <li><strong>Logos e iconos</strong>, sobre todo los que van sobre fondos de color (necesitas la transparencia).</li>
+    <li><strong>Capturas de interfaz</strong> que incluyen texto — documentación, reportes de errores, tutoriales.</li>
+    <li><strong>Gráficas, diagramas y pixel art</strong> con bordes duros y colores planos.</li>
+    <li>Cualquier imagen que se vaya a <strong>editar y volver a guardar repetidamente</strong> — sin pérdida significa sin degradación generacional.</li>
+  </ul>
+
+  <h2>Cómo convertir entre formatos</h2>
+
+  <figure><img src="/static/blog/images/tool-convert-image-hero.jpg" alt="Pantalla de subida del conversor de formatos de imagen de Convertica" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Cambiar de formato toma segundos y no hay que instalar nada:</p>
+
+  <ol>
+    <li>Abre la herramienta <a href="/es/image/convert/">Convertir imagen</a> y sube un archivo JPEG, PNG, WebP, GIF, BMP o TIFF.</li>
+    <li>Elige el formato de destino y, para JPEG o WebP, un nivel de calidad (90 es un valor seguro por defecto).</li>
+    <li>Descarga el resultado. Las dimensiones en píxeles se mantienen exactamente iguales — solo cambia la codificación.</li>
+  </ol>
+
+  <figure><img src="/static/blog/images/tool-convert-image-options.jpg" alt="Opciones de formato y calidad en el conversor de imágenes" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Convertir PNG con transparencia a WebP conserva el canal alfa; convertirlos a JPEG rellena las zonas transparentes con blanco — así que pasar un logo a JPEG suele ser un error. Si tu objetivo es solo un archivo más pequeño en el <em>mismo</em> formato, la herramienta <a href="/es/image/optimize/">Optimizar imagen</a> comprime sin cambiar de formato y también puede limitar las dimensiones.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿WebP tiene menor calidad que JPEG?</h3>
+  <p>No — con ajustes comparables, WebP conserva la misma calidad visual en un archivo más pequeño. Su compresor simplemente es más nuevo y más inteligente que el de JPEG, que data de 1992. La calidad la determina el nivel que elijas, no el nombre del formato.</p>
+
+  <h3>¿Por qué algunos sitios rechazan mi WebP al subirlo?</h3>
+  <p>Su validación de subida es anterior a la popularidad de WebP y solo admite JPEG y PNG. Convierte a JPEG para esa subida — es un trabajo de diez segundos — y mantén WebP para tu propio sitio.</p>
+
+  <h3>¿Debería convertir mis JPEG existentes a WebP?</h3>
+  <p>Para un sitio que administras — sí, suele ser la mejora de velocidad más barata disponible. Recodifica desde la fuente de mayor calidad que tengas, en lugar de desde una copia ya muy comprimida, para que los artefactos no se acumulen.</p>
+
+  <h3>¿Y qué hay de GIF?</h3>
+  <p>Para animación, WebP (o un archivo de vídeo de verdad) supera a GIF en tamaño y profundidad de color. Para imágenes estáticas, el límite de 256 colores de GIF lo convierte en el peor de los cuatro — sobrevive sobre todo por costumbre y por tradición memera.</p>
+
+  <h3>¿Cuál es el mejor ajuste de calidad para JPEG y WebP?</h3>
+  <p>80-85 para uso web — el punto dulce donde los artefactos son invisibles a tamaños de visualización normales. 90+ cuando la imagen se vaya a editar de nuevo o a mirar de cerca. Por debajo de 70 el ahorro sigue creciendo, pero también las manchas visibles, sobre todo en cielos y degradados.</p>
+
+  <h2>Elige una vez, convierte cuando haga falta</h2>
+
+  <p>La regla práctica cabe en una línea: <strong>WebP para tu sitio web, JPEG para fotos que viajan, PNG para gráficos con bordes.</strong> Y cuando una imagen llega en el formato equivocado para la tarea, la herramienta <a href="/es/image/convert/">Convertir imagen</a> lo arregla en un clic — gratis, sin registro y sin tocar las dimensiones.</p>

@@ -252,6 +252,27 @@ COVERS = {
         "#fcd34d",
         "star",
     ),
+    "convert-heic-to-jpg-iphone-photos": (
+        "HEIC to JPG:\niPhone Photos",
+        "IMAGE · IPHONE",
+        ("#0ea5e9", "#6366f1"),
+        "#bae6fd",
+        "image",
+    ),
+    "webp-vs-jpeg-vs-png-best-image-format": (
+        "WebP vs JPEG\nvs PNG",
+        "COMPARISON · WEB",
+        ("#059669", "#0d9488"),
+        "#a7f3d0",
+        "scale",
+    ),
+    "convert-jpg-to-pdf-multiple-images": (
+        "JPG to PDF:\nMany Images, One File",
+        "PDF · IMAGE",
+        ("#7c3aed", "#c026d3"),
+        "#e9d5ff",
+        "layers",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()
