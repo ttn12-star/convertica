@@ -354,7 +354,12 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
-    "allauth.socialaccount.providers.facebook",
+    # Facebook login is not launched: the button is commented out in the
+    # templates and prod has no Facebook SocialApp, so a routed
+    # /accounts/facebook/login/ just 500s with SocialApp.DoesNotExist on any
+    # bot hit (CONVERTICA-5E). Re-add the provider together with its SocialApp
+    # credentials when Facebook login actually ships.
+    # "allauth.socialaccount.providers.facebook",
     # Note: hCaptcha is used via JavaScript widget and direct API calls, not as Django app
     "src.frontend",
     "src.blog",
