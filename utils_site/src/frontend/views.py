@@ -997,6 +997,39 @@ def ocr_pdf_to_word_page(request):
             "image pdf to editable docx, extract text from scanned pdf"
         ),
         "ocr_converter_url": f"{reverse('frontend:pdf_to_word_page')}?ocr=1",
+        "faq_title": _("Scanned PDF to Word FAQ"),
+        "page_faq": [
+            {
+                "question": _("What is OCR and when do I need it?"),
+                "answer": _(
+                    "OCR (optical character recognition) reads the text printed on scanned pages and photos and turns it into real, editable characters. If you cannot select or copy text in your PDF, the pages are images — and OCR is the only way to convert them into an editable Word document."
+                ),
+            },
+            {
+                "question": _("Which languages does the OCR recognize?"),
+                "answer": _(
+                    "The OCR engine supports 17 languages, including English, Spanish, German, French, Italian, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic, Hindi, Indonesian, Chinese, Japanese, and Korean, with automatic language detection for mixed-language documents."
+                ),
+            },
+            {
+                "question": _("How accurate is scanned PDF to Word conversion?"),
+                "answer": _(
+                    "Accuracy depends mostly on the source. Clean scans of printed text at around 300 DPI convert with very high accuracy, while low-resolution photos, skewed pages, and handwriting reduce recognition quality. Re-scanning at a higher resolution is the single best way to improve results."
+                ),
+            },
+            {
+                "question": _("Is the scanned PDF to Word converter free?"),
+                "answer": _(
+                    "OCR conversion is a premium feature. If your PDF already contains selectable text, you do not need OCR — the regular PDF to Word converter handles text-based files for free."
+                ),
+            },
+            {
+                "question": _("Will the document formatting be preserved?"),
+                "answer": _(
+                    "Recognized text is exported as an editable Word document organized into paragraphs. Simple letters and contracts come out close to the original; documents with complex tables or multi-column layouts may need light touch-ups afterwards, which is normal for OCR output."
+                ),
+            },
+        ],
     }
     return render(request, "frontend/premium/ocr_pdf_to_word.html", context)
 

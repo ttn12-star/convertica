@@ -74,6 +74,18 @@ EPUB_AND_OTHER_CONFIGS = {
                         "Premium limits allow larger source files and significantly more pages than free tools. Exact limits are shown on the pricing page and enforced during upload."
                     ),
                 },
+                {
+                    "question": _("Can I print an EPUB after converting it to PDF?"),
+                    "answer": _(
+                        "Yes. PDF is a fixed-layout format, so the converted ebook gets stable page breaks and prints the same way on any printer — something EPUB readers cannot guarantee because EPUB text reflows with the screen size."
+                    ),
+                },
+                {
+                    "question": _("Do DRM-protected EPUB files work?"),
+                    "answer": _(
+                        "No. Books protected with DRM (for example, some store-bought titles) are encrypted and cannot be opened by any converter. Only DRM-free EPUB files can be converted to PDF."
+                    ),
+                },
             ],
             "faq_title": _("EPUB to PDF FAQ"),
             "page_tips": [
@@ -179,6 +191,20 @@ EPUB_AND_OTHER_CONFIGS = {
                         "Most embedded images are carried over. Very complex page layouts can be simplified to maintain reading compatibility in common eReader apps."
                     ),
                 },
+                {
+                    "question": _("Can I read the converted EPUB on a Kindle?"),
+                    "answer": _(
+                        "Yes. Modern Kindle devices and the Send to Kindle service accept EPUB files directly, and the format also works in Apple Books, Google Play Books, Kobo, and most reading apps."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Why convert a PDF to EPUB instead of reading the PDF?"
+                    ),
+                    "answer": _(
+                        "EPUB text reflows to fit the screen, so you can change the font size and read comfortably on a phone or e-reader. A PDF keeps a fixed page layout that forces zooming and panning on small displays."
+                    ),
+                },
             ],
             "faq_title": _("PDF to EPUB FAQ"),
             "page_tips": [
@@ -275,6 +301,18 @@ EPUB_AND_OTHER_CONFIGS = {
                     "question": _("Who can use PDF to Markdown?"),
                     "answer": _(
                         "PDF to Markdown is a premium feature. Free users can browse the page, while conversion endpoints require active premium access."
+                    ),
+                },
+                {
+                    "question": _("What can I do with the Markdown output?"),
+                    "answer": _(
+                        "Markdown is the native format of GitHub readmes, documentation sites, note apps like Obsidian and Notion, and static site generators — and it is also the cleanest way to feed PDF content to AI tools and LLM pipelines."
+                    ),
+                },
+                {
+                    "question": _("Is the output compatible with GitHub and Obsidian?"),
+                    "answer": _(
+                        "Yes. The converter produces standard Markdown with conventional headings, lists, and table syntax, so the file renders correctly on GitHub and imports cleanly into Obsidian, Notion, and similar editors."
                     ),
                 },
             ],

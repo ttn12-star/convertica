@@ -633,6 +633,20 @@ PDF_EDIT_CONFIGS = {
                         "layout remain unchanged — only the interactive layer is removed."
                     ),
                 },
+                {
+                    "question": _("Can a flattened PDF be edited again?"),
+                    "answer": _(
+                        "Form fields and annotations become part of the page content, so they can no longer be clicked or changed as interactive elements. Keep a copy of the original PDF if you expect to update the form answers later."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Should I flatten a PDF before printing or submitting it?"
+                    ),
+                    "answer": _(
+                        "Yes, it is good practice. Print services and many document portals ignore interactive layers, which can make filled-in answers disappear from the output. Flattening bakes everything into the page so what you see is exactly what gets printed or submitted."
+                    ),
+                },
             ],
             "faq_title": _("Flatten PDF FAQ"),
             "page_tips": [
