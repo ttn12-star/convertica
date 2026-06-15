@@ -530,3 +530,32 @@ def detect_stuck_webhooks():
             extra={"event": "webhook_events_stuck", "count": stuck},
         )
     return {"stuck": stuck}
+
+
+@shared_task(name="maintenance.submit_sitemap_indexnow", queue="maintenance")
+def submit_sitemap_indexnow():
+    """Bulk-submit every sitemap URL to IndexNow once a day.
+
+    The per-article post_save signal only pings blog articles (one language
+    each); tool pages and non-default language variants are never submitted,
+    so Bing Webmaster Tools flags them as "not submitted via IndexNow". This
+    daily sweep covers the whole sitemap (all tools + all 7 languages).
+
+    No-op when IndexNow is disabled/unconfigured (e.g. dev), so the beat task
+    never errors there.
+    """
+    if not getattr(settings, "INDEXNOW_ENABLED", False) or not getattr(
+        settings, "INDEXNOW_KEY", ""
+    ):
+        logger.info("IndexNow disabled or key missing; skipping sitemap submit")
+        return {"skipped": True}
+
+    from django.core.management import call_command
+
+    try:
+        call_command("submit_sitemap_indexnow")
+        logger.info("Submitted sitemap URLs to IndexNow")
+        return {"submitted": True}
+    except Exception as e:
+        logger.warning("IndexNow sitemap submit failed: %s: %s", type(e).__name__, e)
+        return {"submitted": False, "error": str(e)}

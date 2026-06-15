@@ -1169,6 +1169,13 @@ CELERY_BEAT_SCHEDULE = {
         "task": "api_quota.reset_monthly",
         "schedule": crontab(minute=1, hour=0, day_of_month=1),
     },
+    # Submit the full sitemap to IndexNow daily. The per-article signal only
+    # pings blog articles (one language each); this sweep covers tool pages and
+    # all 7 language variants so Bing/IndexNow see every URL.
+    "submit-sitemap-indexnow-daily": {
+        "task": "maintenance.submit_sitemap_indexnow",
+        "schedule": crontab(minute=30, hour=3),  # daily at 03:30 UTC, off-peak
+    },
 }
 
 # Rate Limiting Configuration
