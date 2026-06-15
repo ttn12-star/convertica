@@ -629,6 +629,75 @@ function updateProgress(targetProgress, message = null) {
 }
 
 /**
+ * Render a Cloudflare Turnstile widget on demand.
+ *
+ * The widget is normally server-rendered only when CAPTCHA is already required
+ * at page load. When the requirement is triggered mid-session (e.g. rate-based,
+ * signalled by `captcha_required: true` in a 4xx body), the loaded page has no
+ * widget — so we lazy-load the Turnstile script and render one into
+ * #turnstile-container. Turnstile injects its own `cf-turnstile-response` hidden
+ * input, which the form submit code already reads on the next attempt.
+ *
+ * @returns {boolean} true if a widget exists or is being rendered, false if it
+ *   cannot be rendered (no site key / no container).
+ */
+function ensureTurnstileWidget() {
+    const siteKey = window.TURNSTILE_SITE_KEY || '';
+    const container = document.getElementById('turnstile-container');
+    if (!siteKey || !container) return false;
+
+    // Already rendered (server-side or a previous on-demand render) — just
+    // bring it into view so the user notices it.
+    if (container.querySelector('iframe, .cf-turnstile')) {
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return true;
+    }
+
+    const doRender = () => {
+        if (!window.turnstile || typeof window.turnstile.render !== 'function') return;
+        try {
+            // Spacing is applied only when a widget is actually present so the
+            // empty container adds no gap on the page.
+            container.classList.add('my-6');
+            window.turnstile.render(container, {
+                sitekey: siteKey,
+                theme: 'light',
+                size: 'normal',
+                callback: window.onTurnstileSuccess || undefined,
+            });
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (e) {
+            if (typeof console !== 'undefined' && console.error) {
+                console.error('Turnstile render failed:', e);
+            }
+        }
+    };
+
+    if (window.turnstile && typeof window.turnstile.render === 'function') {
+        doRender();
+        return true;
+    }
+
+    // Lazy-load the Turnstile API (explicit render mode) once.
+    let script = document.getElementById('cf-turnstile-script');
+    if (!script) {
+        script = document.createElement('script');
+        script.id = 'cf-turnstile-script';
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.defer = true;
+        // Carry a CSP nonce if the page uses one (harmless under 'unsafe-inline').
+        const nonced = document.querySelector('script[nonce]');
+        if (nonced && nonced.nonce) script.nonce = nonced.nonce;
+        script.addEventListener('load', doRender, { once: true });
+        document.head.appendChild(script);
+    } else {
+        script.addEventListener('load', doRender, { once: true });
+    }
+    return true;
+}
+
+/**
  * Submit form as async task and poll for progress
  * This avoids Cloudflare timeout issues for long operations
  *
@@ -876,15 +945,23 @@ async function submitAsyncConversion(options) {
         } else {
             // Error response
             let errorMsg = 'Conversion failed';
+            let captchaRequired = false;
             try {
                 const errorData = await response.json();
                 errorMsg = errorData.error || errorData.detail || errorMsg;
+                captchaRequired = errorData.captcha_required === true;
             } catch (e) {
                 // Couldn't parse error JSON
             }
 
             hideLoading(loadingContainerId);
             showError(errorMsg, errorContainerId);
+            // CAPTCHA can be required mid-session (rate-based) on a page that
+            // loaded without a widget. Render one on demand so the "complete the
+            // CAPTCHA" message is actionable instead of a dead end.
+            if (captchaRequired) {
+                ensureTurnstileWidget();
+            }
             if (onError) onError(errorMsg);
         }
 
@@ -1022,6 +1099,7 @@ if (typeof window !== 'undefined') {
     window.hideDownload = hideDownload;
     window.updateProgress = updateProgress;
     window.submitAsyncConversion = submitAsyncConversion;
+    window.ensureTurnstileWidget = ensureTurnstileWidget;
     window.pollTaskStatus = pollTaskStatus;
     window.trackOperationAbandon = trackOperationAbandon;
     window.cancelCurrentOperation = cancelCurrentOperation;

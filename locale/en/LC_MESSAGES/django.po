@@ -13838,3 +13838,21 @@ msgstr "Why Convert Scans Online Instead of Retyping?"
 
 msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
 msgstr "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
+
+msgid "Service temporarily unavailable. Please wait a moment and try again."
+msgstr "Service temporarily unavailable. Please wait a moment and try again."
+
+msgid "Too many requests. Please try again in %(seconds)d seconds."
+msgstr "Too many requests. Please try again in %(seconds)d seconds."
+
+msgid "Please wait %(seconds)d seconds between requests."
+msgstr "Please wait %(seconds)d seconds between requests."
+
+msgid "Invalid request"
+msgstr "Invalid request"
+
+msgid "CAPTCHA verification required. Please complete the CAPTCHA and try again."
+msgstr "CAPTCHA verification required. Please complete the CAPTCHA and try again."
+
+msgid "CAPTCHA verification failed. Please try again."
+msgstr "CAPTCHA verification failed. Please try again."

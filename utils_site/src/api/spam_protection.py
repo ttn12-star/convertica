@@ -7,6 +7,7 @@ import time
 from django.conf import settings
 from django.core.cache import cache
 from django.http import HttpRequest
+from django.utils.translation import gettext as _
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -102,7 +103,7 @@ def _check_fallback_rate_limit(request, remote_ip: str) -> tuple[bool, str | Non
                     "event": "fallback_rate_limit_exceeded",
                 },
             )
-            return False, (
+            return False, _(
                 "Service temporarily unavailable. "
                 "Please wait a moment and try again."
             )
@@ -186,7 +187,9 @@ def check_rate_limit_by_ip(
                     "window": window,
                 },
             )
-            return False, f"Too many requests. Please try again in {window} seconds."
+            return False, _(
+                "Too many requests. Please try again in %(seconds)d seconds."
+            ) % {"seconds": window}
 
         # Increment counter
         cache.set(cache_key, current_count + 1, window)
@@ -233,7 +236,9 @@ def check_minimum_time_between_requests(
                         "min_seconds": min_seconds,
                     },
                 )
-                return False, f"Please wait {min_seconds} seconds between requests."
+                return False, _("Please wait %(seconds)d seconds between requests.") % {
+                    "seconds": min_seconds
+                }
 
         # Update last request time
         cache.set(cache_key, current_time, min_seconds * 2)
@@ -264,7 +269,7 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
     # 1. Check honeypot
     if not check_honeypot(request):
         return Response(
-            {"error": "Invalid request"}, status=status.HTTP_400_BAD_REQUEST
+            {"error": _("Invalid request")}, status=status.HTTP_400_BAD_REQUEST
         )
 
     # Get client IP once for all checks (used multiple times below). Trusted:
@@ -362,7 +367,17 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
         )
         return Response(
             {
-                "error": "CAPTCHA verification required. Please complete the CAPTCHA and try again."
+                "error": _(
+                    "CAPTCHA verification required. "
+                    "Please complete the CAPTCHA and try again."
+                ),
+                # Signal the frontend to render the Turnstile widget on demand.
+                # The widget is only server-rendered when captcha_required is
+                # already true at page load; when the requirement is triggered
+                # mid-session (rate-based), the loaded page has no widget, so the
+                # client must render one itself instead of showing a dead-end
+                # "complete the CAPTCHA" message with no CAPTCHA present.
+                "captcha_required": True,
             },
             status=status.HTTP_400_BAD_REQUEST,
         )
@@ -389,7 +404,11 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
                 "Turnstile verification failed", extra={**context, "ip": remote_ip}
             )
             return Response(
-                {"error": "CAPTCHA verification failed. Please try again."},
+                {
+                    "error": _("CAPTCHA verification failed. Please try again."),
+                    # Keep the widget visible so the user can retry verification.
+                    "captcha_required": True,
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
         else:

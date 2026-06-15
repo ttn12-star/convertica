@@ -14380,3 +14380,21 @@ msgstr "Зачем конвертировать сканы онлайн, а не
 
 msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
 msgstr "Перепечатка десятистраничного отсканированного договора занимает часы и добавляет опечатки; OCR делает ту же работу меньше чем за минуту. Устанавливать ничего не нужно — конвертер работает в браузере на Windows, macOS, Linux и мобильных устройствах и обрабатывает многостраничные документы за один проход. Распознавание выполняется на наших серверах, поэтому даже слабый ноутбук или телефон справится с большими сканами."
+
+msgid "Service temporarily unavailable. Please wait a moment and try again."
+msgstr "Сервис временно недоступен. Подождите немного и попробуйте снова."
+
+msgid "Too many requests. Please try again in %(seconds)d seconds."
+msgstr "Слишком много запросов. Повторите попытку через %(seconds)d секунд."
+
+msgid "Please wait %(seconds)d seconds between requests."
+msgstr "Подождите %(seconds)d секунд между запросами."
+
+msgid "Invalid request"
+msgstr "Некорректный запрос"
+
+msgid "CAPTCHA verification required. Please complete the CAPTCHA and try again."
+msgstr "Требуется проверка CAPTCHA. Пройдите CAPTCHA и попробуйте снова."
+
+msgid "CAPTCHA verification failed. Please try again."
+msgstr "Проверка CAPTCHA не пройдена. Попробуйте снова."
