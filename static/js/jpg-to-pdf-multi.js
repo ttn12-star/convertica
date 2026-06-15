@@ -253,6 +253,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
+                // CAPTCHA can be required mid-session; render a widget on demand
+                // so the web-token mint can read turnstile.getResponse() on retry
+                // instead of dead-ending with no CAPTCHA on the page.
+                if (errorData && errorData.captcha_required && window.ensureTurnstileWidget) {
+                    window.ensureTurnstileWidget();
+                }
                 throw new Error(errorData.error || window.ERROR_MESSAGE || 'Conversion failed');
             }
 

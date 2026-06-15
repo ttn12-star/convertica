@@ -693,6 +693,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(window.API_URL, _signInit);
             if (!response.ok) {
                 const errData = await response.json().catch(() => ({}));
+                // CAPTCHA can be required mid-session; render a widget on demand
+                // so the web-token mint can read turnstile.getResponse() on retry
+                // instead of dead-ending with no CAPTCHA on the page.
+                if (errData && errData.captcha_required && window.ensureTurnstileWidget) {
+                    window.ensureTurnstileWidget();
+                }
                 throw new Error(errData.error || errData.detail || 'Signing failed.');
             }
             const blob = await response.blob();

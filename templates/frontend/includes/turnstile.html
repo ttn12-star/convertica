@@ -1,0 +1,21 @@
+{% comment %}
+  Shared Cloudflare Turnstile mount point for tool pages that don't extend
+  converter_generic.html. The container is always present so utils.js
+  (ensureTurnstileWidget) can render a widget on demand when CAPTCHA becomes
+  required mid-session; the widget is server-rendered here only when the
+  requirement is already known at page load. window.TURNSTILE_SITE_KEY lets the
+  on-demand renderer find the key without loading the Turnstile script on every
+  page. No data-callback: every tool's JS reads the cf-turnstile-response hidden
+  input that Turnstile injects, so a page-specific callback isn't required.
+{% endcomment %}
+<div class="flex justify-center" id="turnstile-container">
+  {% if turnstile_site_key and captcha_required %}
+    <div class="cf-turnstile my-6"
+         data-sitekey="{{ turnstile_site_key }}"
+         data-theme="light"
+         data-size="normal"></div>
+  {% endif %}
+</div>
+{% if turnstile_site_key %}
+  <script nonce="{{ csp_nonce }}">window.TURNSTILE_SITE_KEY = "{{ turnstile_site_key|escapejs }}";</script>
+{% endif %}
