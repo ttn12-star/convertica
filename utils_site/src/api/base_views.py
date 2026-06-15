@@ -770,9 +770,13 @@ class BaseConversionAPIView(APIView, ABC):
                     extra={**context, "event": "ocr_unauthorized"},
                 )
                 if payments_enabled:
-                    error_msg = "OCR is a premium feature. Please log in and upgrade to Premium."
+                    error_msg = _(
+                        "OCR is a premium feature. Please log in and upgrade to Premium."
+                    )
                 else:
-                    error_msg = "OCR feature is not available. Please log in to use this feature."
+                    error_msg = _(
+                        "OCR feature is not available. Please log in to use this feature."
+                    )
                 return Response(
                     {"error": error_msg},
                     status=status.HTTP_403_FORBIDDEN,
@@ -783,9 +787,11 @@ class BaseConversionAPIView(APIView, ABC):
                     extra={**context, "event": "ocr_non_premium"},
                 )
                 if payments_enabled:
-                    error_msg = "OCR is a premium feature. Upgrade to Premium to enable OCR processing."
+                    error_msg = _(
+                        "OCR is a premium feature. Upgrade to Premium to enable OCR processing."
+                    )
                 else:
-                    error_msg = "OCR feature is not available at this time."
+                    error_msg = _("OCR feature is not available at this time.")
                 return Response(
                     {"error": error_msg},
                     status=status.HTTP_403_FORBIDDEN,

@@ -6,6 +6,7 @@ premium-specific features like batch processing and unlimited limits.
 """
 
 from django.core.cache import cache
+from django.utils.translation import gettext as _
 
 _PREMIUM_CACHE_TTL = 60  # seconds — short, so a webhook flip propagates quickly
 
@@ -55,15 +56,15 @@ def ocr_premium_gate_message(user, payments_enabled: bool) -> str | None:
 
     if not user.is_authenticated:
         return (
-            "OCR is a premium feature. Please log in and upgrade to Premium."
+            _("OCR is a premium feature. Please log in and upgrade to Premium.")
             if payments_enabled
-            else "OCR feature is not available. Please log in to use this feature."
+            else _("OCR feature is not available. Please log in to use this feature.")
         )
 
     return (
-        "OCR is a premium feature. Upgrade to Premium to enable OCR processing."
+        _("OCR is a premium feature. Upgrade to Premium to enable OCR processing.")
         if payments_enabled
-        else "OCR feature is not available at this time."
+        else _("OCR feature is not available at this time.")
     )
 
 
