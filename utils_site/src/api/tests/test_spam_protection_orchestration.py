@@ -44,3 +44,31 @@ class ValidateSpamProtectionTests(SimpleTestCase):
         )
         self.assertIsNotNone(resp)
         self.assertEqual(resp.status_code, 400)
+
+    def test_captcha_required_response_carries_flag(self):
+        # The frontend renders the Turnstile widget on demand off this flag;
+        # without it a mid-session CAPTCHA requirement is a dead end.
+        cache.set("captcha_required_ip:5.6.7.8", True, 3600)
+        resp = validate_spam_protection(
+            self.rf.post("/api/pdf-to-word/", {}, REMOTE_ADDR="5.6.7.8")
+        )
+        self.assertEqual(resp.status_code, 400)
+        self.assertIs(resp.data.get("captcha_required"), True)
+        self.assertIn("error", resp.data)
+
+    def test_captcha_required_message_is_localized(self):
+        # spam_protection messages must be translatable (wrapped in gettext),
+        # otherwise non-English users get an English-only CAPTCHA error.
+        from django.utils import translation
+
+        cache.set("captcha_required_ip:5.6.7.8", True, 3600)
+        with translation.override("ru"):
+            resp = validate_spam_protection(
+                self.rf.post("/api/pdf-to-word/", {}, REMOTE_ADDR="5.6.7.8")
+            )
+        self.assertEqual(resp.status_code, 400)
+        # Russian translation must differ from the English source string.
+        self.assertNotIn(
+            "CAPTCHA verification required. Please complete", str(resp.data["error"])
+        )
+        self.assertIn("CAPTCHA", str(resp.data["error"]))

@@ -14490,3 +14490,21 @@ msgstr "¿Por qué convertir escaneos en línea en lugar de volver a escribirlos
 
 msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
 msgstr "Volver a escribir un contrato escaneado de diez páginas lleva horas e introduce erratas; el OCR hace el mismo trabajo en menos de un minuto. No hay nada que instalar: el conversor funciona en el navegador en Windows, macOS, Linux y móvil, y procesa documentos de varias páginas de una sola pasada. Como el reconocimiento ocurre en nuestros servidores, hasta un portátil modesto o un teléfono puede procesar escaneos grandes."
+
+msgid "Service temporarily unavailable. Please wait a moment and try again."
+msgstr "Servicio temporalmente no disponible. Espera un momento e inténtalo de nuevo."
+
+msgid "Too many requests. Please try again in %(seconds)d seconds."
+msgstr "Demasiadas solicitudes. Inténtalo de nuevo en %(seconds)d segundos."
+
+msgid "Please wait %(seconds)d seconds between requests."
+msgstr "Espera %(seconds)d segundos entre solicitudes."
+
+msgid "Invalid request"
+msgstr "Solicitud no válida"
+
+msgid "CAPTCHA verification required. Please complete the CAPTCHA and try again."
+msgstr "Se requiere verificación CAPTCHA. Completa el CAPTCHA e inténtalo de nuevo."
+
+msgid "CAPTCHA verification failed. Please try again."
+msgstr "La verificación CAPTCHA falló. Inténtalo de nuevo."

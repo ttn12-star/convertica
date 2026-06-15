@@ -14263,3 +14263,21 @@ msgstr "Mengapa Mengonversi Pindaian Secara Online Alih-alih Mengetik Ulang?"
 
 msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
 msgstr "Mengetik ulang kontrak pindaian sepuluh halaman memakan waktu berjam-jam dan menimbulkan salah ketik; OCR menyelesaikan pekerjaan yang sama dalam waktu kurang dari satu menit. Tidak ada yang perlu dipasang — konverter berjalan di peramban pada Windows, macOS, Linux, dan ponsel, serta menangani dokumen multihalaman sekali jalan. Karena pengenalan terjadi di server kami, laptop berdaya rendah atau ponsel pun dapat memproses pindaian besar."
+
+msgid "Service temporarily unavailable. Please wait a moment and try again."
+msgstr "Layanan untuk sementara tidak tersedia. Tunggu sebentar dan coba lagi."
+
+msgid "Too many requests. Please try again in %(seconds)d seconds."
+msgstr "Terlalu banyak permintaan. Coba lagi dalam %(seconds)d detik."
+
+msgid "Please wait %(seconds)d seconds between requests."
+msgstr "Tunggu %(seconds)d detik di antara permintaan."
+
+msgid "Invalid request"
+msgstr "Permintaan tidak valid"
+
+msgid "CAPTCHA verification required. Please complete the CAPTCHA and try again."
+msgstr "Verifikasi CAPTCHA diperlukan. Selesaikan CAPTCHA dan coba lagi."
+
+msgid "CAPTCHA verification failed. Please try again."
+msgstr "Verifikasi CAPTCHA gagal. Silakan coba lagi."

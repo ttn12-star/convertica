@@ -14322,3 +14322,21 @@ msgstr "Po co konwertować skany online zamiast przepisywać?"
 
 msgid "Retyping a ten-page scanned contract takes hours and introduces typos; OCR does the same job in under a minute. There is nothing to install — the converter runs in the browser on Windows, macOS, Linux, and mobile, and handles multi-page documents in one pass. Because recognition happens on our servers, even a low-powered laptop or phone can process large scans."
 msgstr "Przepisywanie dziesięciostronicowej zeskanowanej umowy zajmuje godziny i wprowadza literówki; OCR wykonuje tę samą pracę w niecałą minutę. Nie trzeba niczego instalować — konwerter działa w przeglądarce na Windows, macOS, Linuksie i urządzeniach mobilnych i obsługuje wielostronicowe dokumenty za jednym razem. Rozpoznawanie odbywa się na naszych serwerach, więc nawet słaby laptop czy telefon poradzi sobie z dużymi skanami."
+
+msgid "Service temporarily unavailable. Please wait a moment and try again."
+msgstr "Usługa jest chwilowo niedostępna. Poczekaj chwilę i spróbuj ponownie."
+
+msgid "Too many requests. Please try again in %(seconds)d seconds."
+msgstr "Zbyt wiele żądań. Spróbuj ponownie za %(seconds)d sekund."
+
+msgid "Please wait %(seconds)d seconds between requests."
+msgstr "Odczekaj %(seconds)d sekund między żądaniami."
+
+msgid "Invalid request"
+msgstr "Nieprawidłowe żądanie"
+
+msgid "CAPTCHA verification required. Please complete the CAPTCHA and try again."
+msgstr "Wymagana weryfikacja CAPTCHA. Wykonaj CAPTCHA i spróbuj ponownie."
+
+msgid "CAPTCHA verification failed. Please try again."
+msgstr "Weryfikacja CAPTCHA nie powiodła się. Spróbuj ponownie."

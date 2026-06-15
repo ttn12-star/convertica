@@ -87,17 +87,20 @@
         <!-- Honeypot field (hidden from users, filled by bots) -->
       <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <!-- Cloudflare Turnstile (Anti-spam) - Only show if required (after failed attempts) -->
-      {% if turnstile_site_key and captcha_required %}
-        <div class="flex justify-center my-6" id="turnstile-container">
-          <div class="cf-turnstile"
+        <!-- Cloudflare Turnstile (Anti-spam). The container is always present so
+             the client can render a widget on demand when CAPTCHA becomes
+             required mid-session; the widget is server-rendered here only when
+             the requirement is already known at page load. -->
+      <div class="flex justify-center" id="turnstile-container">
+        {% if turnstile_site_key and captcha_required %}
+          <div class="cf-turnstile my-6"
                data-sitekey="{{ turnstile_site_key }}"
                data-theme="light"
                data-size="normal"
                data-callback="onTurnstileSuccess">
           </div>
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
 
         <!-- Submit Button -->
       <div class="text-center mt-8">
@@ -188,6 +191,11 @@
     window.BG_TASK_ERROR_TEXT = "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}";
     window.BG_NO_TASKS_TEXT = "{% filter escapejs %}{% trans 'No background tasks' %}{% endfilter %}";
     window.CONVERSION_TYPE = "{{ conversion_type|default:''|escapejs }}";
+    {# Exposed unconditionally (not only when captcha_required at load) so the
+       client can render Turnstile on demand if the requirement is triggered
+       mid-session — otherwise the user hits a dead-end "complete the CAPTCHA"
+       message with no widget on the page. #}
+    window.TURNSTILE_SITE_KEY = "{{ turnstile_site_key|default:''|escapejs }}";
   </script>
   {% comment %}
     pdf.js (320 KB) and pdf.worker (1 MB) used to load eagerly on every tool
