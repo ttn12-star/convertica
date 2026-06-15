@@ -10,7 +10,9 @@ from datetime import UTC, datetime
 from datetime import timezone as dt_timezone
 
 from django.http import HttpResponse, JsonResponse
+from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
+from django.utils.translation import gettext as _
 
 op_tracking_logger = logging.getLogger("src.api.operation_run_tracking")
 
@@ -103,13 +105,16 @@ class RateLimitMiddleware(MiddlewareMixin):
 
             # Check limit (100 requests per minute)
             if current_count >= 100:
-                return JsonResponse(
-                    {
-                        "error": "Rate limit exceeded",
-                        "message": "Too many requests. Please try again later.",
-                    },
-                    status=429,
-                )
+                # This middleware runs before LocaleMiddleware, so the active
+                # locale isn't set yet — resolve the user's language from the
+                # request (Accept-Language / cookie) so the 429 is localized.
+                lang = translation.get_language_from_request(request)
+                with translation.override(lang):
+                    payload = {
+                        "error": _("Rate limit exceeded"),
+                        "message": _("Too many requests. Please try again later."),
+                    }
+                return JsonResponse(payload, status=429)
 
             # Increment counter
             cache.set(rate_limit_key, current_count + 1, 60)  # 60 seconds TTL
