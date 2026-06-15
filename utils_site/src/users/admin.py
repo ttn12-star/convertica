@@ -12,6 +12,7 @@ from django.urls import path, reverse
 from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.utils.text import Truncator
 
 from .models import (
     APIKey,
@@ -605,6 +606,7 @@ class OperationRunAdmin(admin.ModelAdmin):
         "queue_wait_s",
         "peak_rss_mb",
         "error_type",
+        "error_summary",
     )
     list_filter = ("conversion_type", "status", "is_premium", "created_at")
     date_hierarchy = "created_at"
@@ -663,6 +665,19 @@ class OperationRunAdmin(admin.ModelAdmin):
 
     premium_badge.short_description = "Premium"
     premium_badge.admin_order_field = "is_premium"
+
+    def error_summary(self, obj):
+        # The actual reason lives in error_message even when error_type is the
+        # generic "ClientError" (4xx validation/gate). Surface a truncated copy
+        # here so rejected rows are diagnosable at a glance without opening each
+        # record; full text stays on the detail page.
+        msg = (obj.error_message or "").strip()
+        if not msg:
+            return "-"
+        return Truncator(msg).chars(80)
+
+    error_summary.short_description = "Error message"
+    error_summary.admin_order_field = "error_message"
 
     def get_urls(self):
         urls = super().get_urls()
