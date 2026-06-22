@@ -140,14 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const blob = await response.blob();
 
             if (!response.ok) {
-                // Try to parse error message
+                // Surface the backend message; keep generic only if body isn't JSON.
+                // (throw must stay OUTSIDE the try, or the catch swallows the parsed message)
+                let errorMsg = window.ERROR_MESSAGE || 'Editing failed';
                 try {
-                    const errorData = await blob.text();
-                    const errorJson = JSON.parse(errorData);
-                    throw new Error(errorJson.error || window.ERROR_MESSAGE);
-                } catch {
-                    throw new Error(window.ERROR_MESSAGE || 'Editing failed');
-                }
+                    errorMsg = JSON.parse(await blob.text()).error || errorMsg;
+                } catch { /* non-JSON error body — keep generic */ }
+                throw new Error(errorMsg);
             }
 
             // Success - show download button
