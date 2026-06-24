@@ -191,10 +191,18 @@
     window.BG_TASK_ERROR_TEXT = "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}";
     window.BG_NO_TASKS_TEXT = "{% filter escapejs %}{% trans 'No background tasks' %}{% endfilter %}";
     window.CONVERSION_TYPE = "{{ conversion_type|default:''|escapejs }}";
-    {# Exposed unconditionally (not only when captcha_required at load) so the
+    {% comment %}
+       Exposed unconditionally (not only when captcha_required at load) so the
        client can render Turnstile on demand if the requirement is triggered
        mid-session — otherwise the user hits a dead-end "complete the CAPTCHA"
-       message with no widget on the page. #}
+       message with no widget on the page.
+
+       Keep this a comment-tag block, NOT a hash comment: Django's hash comment
+       is single-line only, so a multi-line one is emitted verbatim into this
+       <script> and becomes a JS syntax error that aborts the whole block —
+       leaving window.API_URL undefined and breaking every tool ("Conversion
+       failed", POST to .../undefined -> 404).
+    {% endcomment %}
     window.TURNSTILE_SITE_KEY = "{{ turnstile_site_key|default:''|escapejs }}";
   </script>
   {% comment %}
