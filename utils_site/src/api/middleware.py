@@ -100,11 +100,20 @@ class RateLimitMiddleware(MiddlewareMixin):
         rate_limit_key = f"rate_limit:{ip}"
 
         try:
-            # Get current count
-            current_count = cache.get(rate_limit_key, 0)
+            # Atomic count for a fixed 60s window. `cache.add` only seeds the
+            # key when absent (starts a window); `cache.incr` is atomic, so
+            # concurrent same-IP requests (the norm behind Cloudflare) can't
+            # lose increments or keep re-setting the TTL the way the old
+            # get-then-set did. incr raises if the key expired mid-call — re-seed.
+            cache.add(rate_limit_key, 0, 60)
+            try:
+                current_count = cache.incr(rate_limit_key)
+            except ValueError:
+                cache.add(rate_limit_key, 0, 60)
+                current_count = cache.incr(rate_limit_key)
 
             # Check limit (100 requests per minute)
-            if current_count >= 100:
+            if current_count > 100:
                 # This middleware runs before LocaleMiddleware, so the active
                 # locale isn't set yet — resolve the user's language from the
                 # request (Accept-Language / cookie) so the 429 is localized.
@@ -115,9 +124,6 @@ class RateLimitMiddleware(MiddlewareMixin):
                         "message": _("Too many requests. Please try again later."),
                     }
                 return JsonResponse(payload, status=429)
-
-            # Increment counter
-            cache.set(rate_limit_key, current_count + 1, 60)  # 60 seconds TTL
         except Exception:
             # If cache fails, allow request (graceful degradation)
             pass

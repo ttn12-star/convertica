@@ -876,6 +876,20 @@ def generic_conversion_task(
                 input_fp.close()
         except Exception:
             pass
+        # Remove the converter's working dir. Most converters mkdtemp() in the
+        # system /tmp and return an output path inside it; without this the dir
+        # (source copy + intermediates + output) leaks on every async job until
+        # /tmp fills and all conversions fail with ENOSPC. The result has
+        # already been copied into task_dir by now, so only the temp dir is
+        # dropped. task_dir itself (where pdf_to_word writes directly) is never
+        # touched — it's swept later by cleanup_async_temp_files.
+        try:
+            if output_path:
+                conv_dir = os.path.dirname(output_path)
+                if conv_dir and conv_dir != task_dir and os.path.isdir(conv_dir):
+                    shutil.rmtree(conv_dir, ignore_errors=True)
+        except Exception as tmp_exc:
+            logger.debug("Converter temp-dir cleanup skipped: %s", tmp_exc)
 
 
 # Legacy tasks for backwards compatibility - updated to use new queues
