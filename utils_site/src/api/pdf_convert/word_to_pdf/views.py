@@ -6,7 +6,6 @@ from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 from rest_framework import status
 from rest_framework.response import Response
-from src.tasks.pdf_conversion import convert_word_to_pdf_task
 
 from ...base_views import BaseConversionAPIView
 from .decorators import word_to_pdf_docs
@@ -31,10 +30,6 @@ class WordToPDFAPIView(BaseConversionAPIView):
 
     def get_docs_decorator(self):
         return word_to_pdf_docs
-
-    def get_celery_task(self):
-        """Get the Celery task function to execute."""
-        return convert_word_to_pdf_task
 
     def get(self, request: HttpRequest):
         """Handle GET request - return method not allowed."""

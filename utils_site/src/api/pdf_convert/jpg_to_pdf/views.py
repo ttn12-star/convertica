@@ -14,7 +14,6 @@ from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 from rest_framework import status
 from rest_framework.response import Response
-from src.tasks.pdf_conversion import generic_conversion_task
 
 from ...base_views import BaseConversionAPIView
 from ...logging_utils import build_request_context
@@ -50,10 +49,6 @@ class JPGToPDFAPIView(BaseConversionAPIView):
 
     def get_docs_decorator(self):
         return jpg_to_pdf_docs
-
-    def get_celery_task(self):
-        """Get the Celery task function to execute."""
-        return generic_conversion_task
 
     def get(self, request: HttpRequest):
         """Handle GET request - return method not allowed."""
