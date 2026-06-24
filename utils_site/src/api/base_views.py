@@ -866,8 +866,11 @@ class BaseConversionAPIView(APIView, ABC):
                 )
                 transaction.set_tag("conversion_type", self.CONVERSION_TYPE)
                 transaction.set_data("file_size_mb", context.get("file_size_mb", 0))
-            except (ImportError, Exception):
+            except ImportError:
+                transaction = None  # Sentry not installed
+            except Exception as sentry_exc:
                 transaction = None
+                logger.debug("Sentry start_transaction failed: %s", sentry_exc)
 
             # Perform conversion WITH TIMEOUT
             try:

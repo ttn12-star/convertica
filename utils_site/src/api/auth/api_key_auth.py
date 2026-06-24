@@ -77,7 +77,10 @@ class APIKeyAuthentication(BaseAuthentication):
             usage_this_month=F("usage_this_month") + 1,
             last_used_at=timezone.now(),
         )
-        key.refresh_from_db(fields=["usage_this_month"])
+        # Reflect the increment on the in-memory object without a second round
+        # trip — refresh_from_db here was a wasted query (the quota gate above
+        # already ran against the pre-increment value).
+        key.usage_this_month += 1
 
         # Mark the underlying request so APIKeyQuotaRefundMiddleware can refund
         # this unit if the request ultimately fails (non-2xx) — customers must
