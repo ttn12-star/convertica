@@ -119,9 +119,14 @@ try:
         # Priority settings - premium tasks get higher priority
         task_default_priority=5,  # Default priority for regular tasks
         task_inherit_parent_priority=True,  # Child tasks inherit parent priority
-        # Result expiration — bumped to 24h so users returning later in the
-        # day can still download their result instead of hitting a 404.
-        result_expires=86400,
+        # Result expiration MUST match the output-file lifetime, otherwise the
+        # status endpoint reports SUCCESS for hours after cleanup_async_temp_files
+        # (max_age 1h) has deleted the file, and the result endpoint 404s — the
+        # exact dead-end a longer TTL was meant to avoid. The webhook also
+        # advertises expires_at = now+1h. Keep all three at 1h. (To genuinely
+        # let users download later, raise cleanup_async_temp_files max_age too,
+        # under a disk budget — not just this value.)
+        result_expires=3600,
         # Task time limits - reduced for memory stability
         task_time_limit=480,  # Hard time limit: 8 minutes (reduced from 10)
         task_soft_time_limit=420,  # Soft time limit: 7 minutes (reduced from 9)
