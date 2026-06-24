@@ -956,6 +956,30 @@ class FrontendViewsTestCase(TestCase):
                 )
                 self.assertEqual(response.status_code, 200)
 
+    def test_tool_config_script_has_no_leaked_template_comment(self):
+        """The converter config <script> must define window.API_URL and never
+        leak a raw Django comment into JS.
+
+        A multi-line ``{# #}`` (single-line-only in Django) was emitted verbatim
+        into the config <script>, making it a JS syntax error that aborted the
+        whole block — window.API_URL stayed undefined and EVERY tool failed with
+        a generic "Conversion failed" (POST went to ``.../undefined`` → 404).
+        Guards that regression on the shared converter_generic.html template.
+        """
+        resp = self.client.get(self._get_url_with_lang("pdf-to-word/"))
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        # Isolate the config script block that sets window.API_URL.
+        idx = html.find("window.API_URL")
+        self.assertNotEqual(idx, -1, "config script must define window.API_URL")
+        script_start = html.rfind("<script", 0, idx)
+        script_end = html.find("</script>", idx)
+        block = html[script_start:script_end]
+        # No raw Django comment/tag delimiters may survive into the JS.
+        self.assertNotIn("{#", block)
+        self.assertNotIn("{%", block)
+        self.assertIn("window.TURNSTILE_SITE_KEY", block)
+
 
 class ArchiveToolPageTests(TestCase):
     def setUp(self):
