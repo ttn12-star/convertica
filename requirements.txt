@@ -11,12 +11,19 @@ djangorestframework==3.17.1
 drf-yasg==1.21.11
 numpy==2.4.4
 scipy==1.17.1
-opencv-python==4.13.0.92
+# Headless build: pdf2docx only needs cv2's array ops, never the GUI/X11
+# bindings. The GUI build drags in libGL/libglib (extra image size + attack
+# surface) for code that's never imported.
+opencv-python-headless==4.13.0.92
 openpyxl==3.1.5
 packaging==25.0
 pandas==2.3.3
 pdf2docx==0.5.8
 pdf2image==1.17.0
+# Pinned explicitly (transitive via pdf2docx) — it parses font tables from
+# untrusted user PDFs. <4.43 had an XXE in OT-SVG subsetting; keep the floor
+# on a patched line instead of whatever PyPI resolves at build time.
+fonttools>=4.61.0
 pdfplumber==0.11.4
 pillow==12.2.0
 # HEIC/HEIF support for the premium HEIC converter (image_tools.convert_heic).

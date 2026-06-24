@@ -37,8 +37,15 @@ def verify_turnstile(token: str, remote_ip: str | None = None) -> bool | str:
 
     secret = getattr(settings, "TURNSTILE_SECRET_KEY", None)
     if not secret:
-        logger.warning("Turnstile not configured, skipping verification")
-        return True
+        # Fail CLOSED: with DEBUG=False a missing secret is a misconfiguration,
+        # not a reason to silently disable the CAPTCHA gate. (DEBUG already
+        # returned True above, so local dev is unaffected.) Mirrors the
+        # fail-fast SECRET_KEY/ALLOWED_HOSTS convention.
+        logger.error(
+            "TURNSTILE_SECRET_KEY not configured in production — "
+            "failing verification closed"
+        )
+        return False
 
     # When Turnstile is configured, an empty token means the user did not
     # complete the challenge, so we must fail verification.

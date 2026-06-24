@@ -130,6 +130,90 @@ def cleanup_temp_files():
         return {"status": "error", "message": str(exc)}
 
 
+# Prefixes of the working dirs that converters create via tempfile.mkdtemp()
+# in the system temp dir. generic_conversion_task now removes the output dir
+# of each finished job, but a SIGKILL/OOM mid-job (or a converter that makes
+# several temp dirs) can still leak. This sweep is the backstop that keeps the
+# system /tmp from filling and taking all conversions down with ENOSPC.
+_CONVERTER_TMP_PREFIXES = (
+    "pdf2docx_",
+    "pdf2docx_opt_",
+    "ocr_",
+    "ocr_pdf_",
+    "searchable_pdf_",
+    "pdf_to_ppt_",
+    "pdf_to_text_",
+    "pdf2jpg_",
+    "pdf_to_jpg_",
+    "jpg2pdf_",
+    "flatten_pdf_",
+    "epub_to_pdf_",
+    "pdf_to_epub_",
+    "unlock_zip_",
+    "protect_zip_",
+    "pdf_validate_",
+    "batch_pagecheck_",
+    "batch_",
+)
+
+
+@shared_task(name="maintenance.cleanup_system_tmp", queue="maintenance")
+def cleanup_system_tmp(max_age_seconds: int = 3600):
+    """Sweep leaked converter working dirs/files from the system temp dir.
+
+    Removes top-level entries in ``tempfile.gettempdir()`` whose name starts
+    with a known converter prefix and which are older than ``max_age_seconds``
+    (default 1h, well past the 8-min hard task limit, so a still-running job is
+    never touched). Best-effort: per-entry failures are logged, not raised.
+    """
+    import os
+    import tempfile
+
+    tmp_root = tempfile.gettempdir()
+    now = time.time()
+    cleaned = 0
+    freed = 0
+    try:
+        for name in os.listdir(tmp_root):
+            if not name.startswith(_CONVERTER_TMP_PREFIXES):
+                continue
+            path = os.path.join(tmp_root, name)
+            try:
+                age = now - os.path.getmtime(path)
+                if age <= max_age_seconds:
+                    continue
+                if os.path.isdir(path):
+                    # sum size best-effort, then drop the whole dir
+                    for root, _dirs, files in os.walk(path):
+                        for fn in files:
+                            try:
+                                freed += os.path.getsize(os.path.join(root, fn))
+                            except OSError:
+                                pass
+                    shutil.rmtree(path, ignore_errors=True)
+                else:
+                    freed += os.path.getsize(path)
+                    os.unlink(path)
+                cleaned += 1
+            except Exception as e:
+                logger.warning("Failed to sweep temp entry %s: %s", path, e)
+    except Exception as exc:
+        logger.error("System /tmp sweep failed: %s", exc, exc_info=True)
+        return {"status": "error", "message": str(exc)}
+
+    if cleaned:
+        logger.info(
+            "System /tmp sweep: removed %d leaked entries, %.2f MB freed",
+            cleaned,
+            freed / (1024 * 1024),
+        )
+    return {
+        "status": "success",
+        "cleaned": cleaned,
+        "size_freed_mb": round(freed / (1024 * 1024), 2),
+    }
+
+
 @shared_task(name="maintenance.update_subscription_daily", queue="maintenance")
 def update_subscription_daily():
     """

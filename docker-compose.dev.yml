@@ -72,7 +72,7 @@ services:
     build:
       context: .
       dockerfile: ci/Dockerfile
-    command: celery -A utils_site worker --loglevel=info --concurrency=1 --pool=solo -Q premium,regular,maintenance,default
+    command: celery -A utils_site worker --loglevel=info --concurrency=1 --pool=solo -Q fast,premium,regular,maintenance,default
     volumes:
       - .:/app  # Mount source code for hot reload
       - ./logs:/app/logs
