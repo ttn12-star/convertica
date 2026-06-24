@@ -471,8 +471,9 @@ class AsyncConversionAPIView(APIView, ABC):
 
             task_kwargs.update(self.get_task_kwargs(serializer.validated_data))
 
-            # Log final kwargs for debugging
-            logger.info("Final task kwargs: %s", task_kwargs)
+            # DEBUG, not INFO: kwargs can carry user-supplied values (filenames,
+            # params) and this fires on every conversion — keep it out of prod logs.
+            logger.debug("Final task kwargs: %s", task_kwargs)
 
             # Filter any remaining non-serializable objects from get_task_kwargs
             filtered_kwargs = {}
@@ -506,15 +507,14 @@ class AsyncConversionAPIView(APIView, ABC):
                 }
             )
 
-            # Log filtered kwargs for debugging
-            logger.info("Filtered kwargs before Celery: %s", filtered_kwargs)
+            # DEBUG, not INFO (per-request, may contain user values).
+            logger.debug("Filtered kwargs before Celery: %s", filtered_kwargs)
 
-            # Final serialization test
+            # Final serialization safety net before handing off to Celery.
             try:
                 import json
 
                 json.dumps(filtered_kwargs)
-                logger.info("JSON serialization test passed")
             except Exception as e:
                 logger.error("JSON serialization failed: %s", e)
                 for k, v in filtered_kwargs.items():
