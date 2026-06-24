@@ -8,7 +8,23 @@ from __future__ import annotations
 
 from django.core.cache import cache
 from django.test import RequestFactory, SimpleTestCase, override_settings
-from src.api.spam_protection import check_honeypot, validate_spam_protection
+from src.api.spam_protection import (
+    check_honeypot,
+    validate_spam_protection,
+    verify_turnstile,
+)
+
+
+class TurnstileFailClosedTests(SimpleTestCase):
+    @override_settings(DEBUG=False, TURNSTILE_SECRET_KEY="")
+    def test_missing_secret_fails_closed_in_production(self):
+        # A missing secret in production must NOT silently disable the gate.
+        self.assertFalse(verify_turnstile("any-token"))
+
+    @override_settings(DEBUG=True, TURNSTILE_SECRET_KEY="")
+    def test_debug_mode_still_bypasses(self):
+        # Local dev (DEBUG) is intentionally exempt.
+        self.assertTrue(verify_turnstile(""))
 
 
 class HoneypotTests(SimpleTestCase):

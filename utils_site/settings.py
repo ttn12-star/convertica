@@ -1128,6 +1128,14 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": 1800,  # Every 30 minutes
         "kwargs": {"max_age_seconds": 3600},  # Clean files older than 1 hour
     },
+    # Sweep leaked converter working dirs from the system /tmp every 30 min
+    # (backstop for jobs SIGKILLed/OOM'd before generic_conversion_task's
+    # own cleanup runs — otherwise /tmp fills and conversions ENOSPC).
+    "cleanup-system-tmp": {
+        "task": "maintenance.cleanup_system_tmp",
+        "schedule": 1800,  # Every 30 minutes
+        "kwargs": {"max_age_seconds": 3600},
+    },
     # Memory cleanup every 15 minutes (for 4GB servers)
     "memory-cleanup": {
         "task": "maintenance.memory_cleanup",
