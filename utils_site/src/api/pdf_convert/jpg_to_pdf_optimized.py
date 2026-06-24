@@ -335,21 +335,41 @@ async def convert_jpg_to_pdf_optimized(
         if input_filename.lower().endswith(".zip"):
             import zipfile
 
+            from django.conf import settings
+            from src.api.archive_tools.protect_zip.utils import (
+                guard_against_zip_bomb,
+                read_member_capped,
+            )
+
+            # Cap members and per-member/total decompressed size so a zip bomb
+            # can't OOM the worker. (The validated API endpoint only accepts
+            # .jpg/.jpeg, so this branch is defence-in-depth for any other
+            # caller — previously it did an uncapped source.read() per member.)
+            max_member = getattr(
+                settings, "ARCHIVE_MAX_MEMBER_UNCOMPRESSED", 200 * 1024 * 1024
+            )
+            remaining = getattr(
+                settings, "ARCHIVE_MAX_TOTAL_UNCOMPRESSED", 500 * 1024 * 1024
+            )
+
             image_paths = []
 
             with zipfile.ZipFile(input_path, "r") as zip_ref:
+                guard_against_zip_bomb(zip_ref.filelist, context)
                 for file_info in zip_ref.filelist:
                     if file_info.filename.lower().endswith(
                         (".jpg", ".jpeg", ".png", ".bmp", ".gif")
                     ):
+                        data = read_member_capped(
+                            zip_ref, file_info, max_member, remaining, context
+                        )
+                        remaining -= len(data)
                         # Extract image
                         extracted_path = os.path.join(
                             temp_dir, os.path.basename(file_info.filename)
                         )
-                        with zip_ref.open(file_info) as source, open(
-                            extracted_path, "wb"
-                        ) as target:
-                            target.write(source.read())
+                        with open(extracted_path, "wb") as target:
+                            target.write(data)
                         image_paths.append(extracted_path)
         else:
             # Single image file
