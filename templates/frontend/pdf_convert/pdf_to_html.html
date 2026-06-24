@@ -1,12 +1,13 @@
 {% extends "frontend/converter_generic.html" %}
 {% load i18n static minified_static %}
 
-{% block scripts %}
-  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/converter.js' %}" nonce="{{ csp_nonce }}"></script>
-{% endblock %}
+{% comment %}
+  converter_generic.html defines no scripts block, so this override emitted
+  nothing — the converter JS it listed is already loaded by the parent's
+  extra_js (which ALSO sets window.API_URL / pdf.js config this block lacked).
+  Kept as a dead block it was a trap: renaming the parent block would silently
+  revive a broken half-config. Removed.
+{% endcomment %}
 
 {% block help_section %}
   <!-- How it works -->
