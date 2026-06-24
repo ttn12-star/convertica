@@ -264,8 +264,11 @@ def log_conversion_error(
                 if hasattr(error, "context"):
                     scope.set_extra("error_context", error.context)
                 sentry_sdk.capture_exception(error)
-        except (ImportError, Exception):
-            pass  # Sentry not available
+        except ImportError:
+            pass  # Sentry not installed
+        except Exception as sentry_exc:
+            # Don't let a Sentry hiccup mask the original conversion error.
+            logger.debug("Sentry capture_exception failed: %s", sentry_exc)
 
     # Send error metrics to Sentry
     try:
@@ -279,9 +282,10 @@ def log_conversion_error(
                 "error_type": error.__class__.__name__,
             },
         )
-    except (ImportError, Exception):
-        # Don't fail if Sentry is unavailable
-        pass
+    except ImportError:
+        pass  # Sentry not installed
+    except Exception as metrics_exc:
+        logger.debug("Sentry metrics emit failed: %s", metrics_exc)
 
 
 def log_validation_error(

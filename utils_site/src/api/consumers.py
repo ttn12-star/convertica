@@ -8,6 +8,8 @@ import logging
 
 from channels.generic.websocket import AsyncWebsocketConsumer
 
+from .ws_auth import ws_token_ok as _ws_token_ok
+
 logger = logging.getLogger(__name__)
 
 
@@ -31,6 +33,16 @@ class ConversionConsumer(AsyncWebsocketConsumer):
         """Handle WebSocket connection."""
         self.task_id = self.scope["url_route"]["kwargs"]["task_id"]
         self.room_group_name = f"conversion_{self.task_id}"
+
+        # Reject unless a valid signed task token is presented — otherwise anyone
+        # who learns the task_id could subscribe and read the download URL.
+        if not _ws_token_ok(self.scope, self.task_id):
+            logger.warning(
+                "WS conversion rejected (bad/absent task token): task_id=%s",
+                self.task_id,
+            )
+            await self.close(code=4403)
+            return
 
         # Join room group
         await self.channel_layer.group_add(self.room_group_name, self.channel_name)
@@ -171,6 +183,16 @@ class BatchConversionConsumer(AsyncWebsocketConsumer):
         """Handle WebSocket connection."""
         self.batch_id = self.scope["url_route"]["kwargs"]["batch_id"]
         self.room_group_name = f"batch_{self.batch_id}"
+
+        # Same token gate as the single-file channel — batch_completed carries a
+        # download_url, so a bare batch_id must not be enough to subscribe.
+        if not _ws_token_ok(self.scope, self.batch_id):
+            logger.warning(
+                "WS batch rejected (bad/absent task token): batch_id=%s",
+                self.batch_id,
+            )
+            await self.close(code=4403)
+            return
 
         # Join room group
         await self.channel_layer.group_add(self.room_group_name, self.channel_name)
