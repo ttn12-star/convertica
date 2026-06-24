@@ -854,7 +854,27 @@ def generic_conversion_task(
                 "conversion_type": conversion_type,
             }
 
-        # Retry for transient errors
+        # Don't retry resource-exhaustion failures. Re-running the SAME oversized
+        # job on the same 1.5G/concurrency=2 cgroup just re-OOMs and can SIGKILL
+        # a sibling task — a bounded replay of the CONVERTICA-59 poison pattern.
+        # MemoryError is the in-process signal (an actual OOM-SIGKILL never
+        # reaches this handler — the worker dies and reject_on_worker_lost=False
+        # already stops requeue).
+        if isinstance(exc, MemoryError):
+            logger.error(
+                "Conversion %s hit MemoryError — not retrying (OOM poison guard)",
+                conversion_type,
+            )
+            return {
+                "status": "error",
+                "error": (
+                    "This file needs more memory than the server allows. "
+                    "Try a smaller file, fewer pages, or split it first."
+                ),
+                "conversion_type": conversion_type,
+            }
+
+        # Retry for genuinely transient errors only.
         raise self.retry(exc=exc, countdown=30, max_retries=2)
 
     finally:

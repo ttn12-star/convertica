@@ -343,6 +343,12 @@ def cleanup_async_temp_files(max_age_seconds: int = 3600):
 
         # Import background task checker
         from src.api.cancel_task_view import is_task_background
+        from src.users.models import OperationRun
+
+        # Statuses that mean the task is still in flight — its dir must NOT be
+        # deleted out from under it. cleanup_stuck_operations flips genuinely
+        # stuck rows to 'abandoned' after ~1h, so this can't pin a dir forever.
+        _ACTIVE_STATUSES = {"started", "queued", "running"}
 
         # Iterate through task directories
         skipped_bg = 0
@@ -351,9 +357,31 @@ def cleanup_async_temp_files(max_age_seconds: int = 3600):
                 continue
 
             try:
-                # Skip background tasks (premium users' tasks still in progress)
+                # Skip background tasks (premium users' tasks still in progress).
+                # is_task_background reads a Redis-cache-only flag with
+                # IGNORE_EXCEPTIONS, so a Redis blip silently returns False —
+                # also consult the DURABLE OperationRun status so a Redis outage
+                # can't delete a still-running premium job's files.
                 task_id = task_dir.name
                 if is_task_background(task_id):
+                    skipped_bg += 1
+                    continue
+                try:
+                    status_val = (
+                        OperationRun.objects.filter(task_id=task_id)
+                        .values_list("status", flat=True)
+                        .first()
+                    )
+                except Exception as db_exc:
+                    # DB unavailable: fail safe — don't delete what we can't vet.
+                    logger.warning(
+                        "OperationRun status check failed for %s, skipping: %s",
+                        task_id,
+                        db_exc,
+                    )
+                    skipped_bg += 1
+                    continue
+                if status_val in _ACTIVE_STATUSES:
                     skipped_bg += 1
                     continue
 
