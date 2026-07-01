@@ -380,9 +380,13 @@ class FilterProxyRequestsMiddleware(MiddlewareMixin):
         return None
 
 
-# Set to the date we cut legacy /api/* off. Until that date, requests get
-# warning headers; after, they get 410.
-LEGACY_API_SUNSET = datetime(2026, 7, 1, tzinfo=UTC)
+# Date we cut legacy /api/* off: until then requests get warning headers, after
+# they get 410.
+# WARNING: the site frontend itself still POSTs to /api/<tool>/ (window.API_URL),
+# NOT /api/v1/*. The 2026-07-01 value fired and 410'd every converter in prod
+# (~14h outage). Keep this far in the future until the frontend is migrated off
+# legacy paths; do NOT re-arm without migrating window.API_URL first.
+LEGACY_API_SUNSET = datetime(2099, 1, 1, tzinfo=UTC)
 
 
 class LegacyAPIDeprecationMiddleware(MiddlewareMixin):
