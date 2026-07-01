@@ -6,7 +6,7 @@ PDF_EDIT_CONFIGS = {
     "rotate_pdf": {
         "template": "frontend/pdf_edit/rotate_pdf.html",
         "converter_args": {
-            "page_title": _("Rotate PDF - Convertica"),
+            "page_title": _("Rotate PDF Online Free - Rotate PDF Pages | Convertica"),
             "page_description": _(
                 "Rotate PDF pages online free by 90, 180, or 270 degrees. "
                 "Fast PDF rotation tool with no watermark, batch rotation, "

@@ -611,7 +611,9 @@ PDF_CONVERT_CONFIGS = {
     "pdf_to_excel": {
         "template": "frontend/pdf_convert/pdf_to_excel.html",
         "converter_args": {
-            "page_title": _("PDF to Excel - Convertica"),
+            "page_title": _(
+                "PDF to Excel Converter Online Free - Convert PDF to XLSX | Convertica"
+            ),
             "page_description": _(
                 "Convert PDF to Excel online free with accurate table extraction. "
                 "Extract tables from PDF and convert to XLSX format. "
@@ -780,7 +782,9 @@ PDF_CONVERT_CONFIGS = {
     "excel_to_pdf": {
         "template": "frontend/pdf_convert/excel_to_pdf.html",
         "converter_args": {
-            "page_title": _("Excel to PDF - Convertica"),
+            "page_title": _(
+                "Excel to PDF Converter Online Free - Convert XLSX to PDF | Convertica"
+            ),
             "page_description": _(
                 "Convert Excel to PDF online free with high quality. "
                 "Convert XLS and XLSX spreadsheets to PDF format. "
@@ -927,7 +931,9 @@ PDF_CONVERT_CONFIGS = {
     "ppt_to_pdf": {
         "template": "frontend/pdf_convert/ppt_to_pdf.html",
         "converter_args": {
-            "page_title": _("PowerPoint to PDF - Convertica"),
+            "page_title": _(
+                "PowerPoint to PDF Converter Online Free - PPT to PDF | Convertica"
+            ),
             "page_description": _(
                 "Convert PowerPoint to PDF online free with high quality. "
                 "Convert PPT and PPTX presentations to PDF format. "
@@ -1071,7 +1077,9 @@ PDF_CONVERT_CONFIGS = {
     "html_to_pdf": {
         "template": "frontend/pdf_convert/html_to_pdf.html",
         "converter_args": {
-            "page_title": _("HTML to PDF - Convertica"),
+            "page_title": _(
+                "HTML to PDF Converter Online Free - Webpage to PDF | Convertica"
+            ),
             "page_description": _(
                 "Convert HTML to PDF online free with high quality. "
                 "Convert HTML content and web pages to PDF format. "
@@ -1220,7 +1228,9 @@ PDF_CONVERT_CONFIGS = {
     "pdf_to_ppt": {
         "template": "frontend/pdf_convert/pdf_to_ppt.html",
         "converter_args": {
-            "page_title": _("PDF to PowerPoint - Convertica"),
+            "page_title": _(
+                "PDF to PowerPoint Converter Online Free - PDF to PPTX | Convertica"
+            ),
             "page_description": _(
                 "Convert PDF to PowerPoint online free with high quality. "
                 "Extract PDF pages and convert to PPTX presentation format. "
@@ -1377,7 +1387,9 @@ PDF_CONVERT_CONFIGS = {
     "pdf_to_html": {
         "template": "frontend/pdf_convert/pdf_to_html.html",
         "converter_args": {
-            "page_title": _("PDF to HTML - Convertica"),
+            "page_title": _(
+                "PDF to HTML Converter Online Free - PDF to Webpage | Convertica"
+            ),
             "page_description": _(
                 "Convert PDF to HTML online free with text extraction. "
                 "Extract content from PDF and convert to HTML format. "
