@@ -6,7 +6,9 @@ PDF_SECURITY_CONFIGS = {
     "protect_pdf": {
         "template": "frontend/pdf_security/protect_pdf.html",
         "converter_args": {
-            "page_title": _("Protect PDF with Password - Convertica"),
+            "page_title": _(
+                "Protect PDF with Password Online Free - Encrypt PDF | Convertica"
+            ),
             "page_description": _(
                 "Protect PDF files with password encryption. Secure your PDF "
                 "documents with strong AES-256 password protection. Add owner "
@@ -167,7 +169,9 @@ PDF_SECURITY_CONFIGS = {
     "unlock_pdf": {
         "template": "frontend/pdf_security/unlock_pdf.html",
         "converter_args": {
-            "page_title": _("Unlock PDF - Remove Password - Convertica"),
+            "page_title": _(
+                "Unlock PDF Online Free - Remove PDF Password | Convertica"
+            ),
             "page_description": _(
                 "Unlock PDF online free. "
                 "Remove password protection from PDF files with the correct password. "
