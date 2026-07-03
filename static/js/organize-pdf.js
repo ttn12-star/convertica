@@ -246,8 +246,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const arrayBuffer = await file.arrayBuffer();
             pdfDoc = await window.pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
-            // Universal page count validation
-            const isValid = await window.validatePdfPageLimit(file);
+            // Universal page count validation. file-input-handler.js (which
+            // defines the helper) is not loaded on this page, so guard like
+            // page-number-preview.js does; the server enforces limits anyway.
+            const isValid = typeof window.validatePdfPageLimit === 'function'
+                ? await window.validatePdfPageLimit(file)
+                : true;
             if (!isValid) {
                 if (pdfPreviewSection) {
                     pdfPreviewSection.classList.add('hidden');
