@@ -3,7 +3,6 @@
 import re
 
 from django import template
-from django.template.loader import render_to_string
 from django.templatetags.static import static
 
 register = template.Library()

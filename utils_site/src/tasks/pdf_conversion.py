@@ -371,7 +371,6 @@ def generic_conversion_task(
 
         if cached_output is not None:
             # Write cached bytes to the task output directory and return.
-            import mimetypes
 
             # Fresh entries are stored as {"ext": ..., "data": ...} so the
             # served extension matches the original output exactly; legacy

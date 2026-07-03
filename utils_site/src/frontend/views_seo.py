@@ -1,7 +1,6 @@
 """SEO-related views for favicon, robots.txt, etc."""
 
 from decouple import config
-from django.conf import settings
 from django.contrib.staticfiles.finders import find
 from django.http import FileResponse, HttpResponse, HttpResponseNotFound
 from django.views.decorators.cache import cache_page

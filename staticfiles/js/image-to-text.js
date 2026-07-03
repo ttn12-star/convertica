@@ -63,6 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
     async function errorMessageFrom(resp) {
         try {
             const data = await resp.json();
+            // CAPTCHA can be required mid-session; render a widget on demand so
+            // the "complete the CAPTCHA" message is actionable, not a dead end.
+            if (data && data.captcha_required && window.ensureTurnstileWidget) {
+                window.ensureTurnstileWidget();
+            }
             if (data && data.error) return data.error;
         } catch (_) { /* non-JSON body */ }
         return window.ERROR_MESSAGE;

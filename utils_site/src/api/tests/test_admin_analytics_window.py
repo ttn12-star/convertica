@@ -7,8 +7,6 @@ indexes apply and the admin page stays fast, with ?all=1 to expand.
 
 from __future__ import annotations
 
-from datetime import timedelta
-
 from django.test import RequestFactory, SimpleTestCase
 from django.utils import timezone
 from src.users.admin import analytics_window_start

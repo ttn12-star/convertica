@@ -1,5 +1,4 @@
 from datetime import UTC, datetime
-from datetime import timezone as dt_tz
 from unittest.mock import patch
 
 from django.test import TestCase, override_settings

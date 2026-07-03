@@ -7,7 +7,6 @@ import logging
 import os
 import time
 from datetime import UTC, datetime
-from datetime import timezone as dt_timezone
 
 from django.http import HttpResponse, JsonResponse
 from django.utils import translation

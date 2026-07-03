@@ -54,8 +54,6 @@ class PaymentRecordCompletedTests(TestCase):
         we should still return (existing, False) — not raise IntegrityError."""
         from unittest.mock import patch
 
-        from django.db import IntegrityError
-
         # First call succeeds normally.
         first, created = Payment.record_completed(
             user=self.user,

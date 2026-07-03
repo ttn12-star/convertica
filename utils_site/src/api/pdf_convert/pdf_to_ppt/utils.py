@@ -14,7 +14,7 @@ from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
-from src.exceptions import ConversionError
+from src.exceptions import ConversionError, StorageError
 
 logger = get_logger(__name__)
 
@@ -68,9 +68,11 @@ def convert_pdf_to_ppt(
     output_path = None
 
     try:
-        # Check disk space
-        required_space = uploaded_file.size * 5  # Estimate
-        check_disk_space(required_space, context)
+        # Check disk space (estimate output ~5x input)
+        required_mb = max(1, (uploaded_file.size * 5) // (1024 * 1024))
+        disk_ok, disk_error = check_disk_space(tmp_dir, required_mb=required_mb)
+        if not disk_ok:
+            raise StorageError(disk_error or "Insufficient disk space", context=context)
 
         # Save uploaded file
         safe_filename = sanitize_filename(get_valid_filename(uploaded_file.name))
