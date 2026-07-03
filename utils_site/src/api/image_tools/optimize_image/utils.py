@@ -2,7 +2,6 @@
 Image optimization utility for reduce file size while maintaining quality.
 """
 
-import io
 import os
 import shutil
 import tempfile

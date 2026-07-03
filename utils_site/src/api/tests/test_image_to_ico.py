@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import io
-import os
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase

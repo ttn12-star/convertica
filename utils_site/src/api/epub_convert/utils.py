@@ -45,13 +45,27 @@ def _strip_html_to_text(content: str) -> str:
     return _normalize_whitespace(cleaned)
 
 
+def _safe_fromstring(data: bytes):
+    """Parse XML, rejecting any DOCTYPE.
+
+    ElementTree expands internal entities (billion-laughs DoS) and the XML here
+    is attacker-controlled zip content. EPUB container.xml / .opf never carry a
+    DOCTYPE, so refusing one closes the entity-expansion vector with no new dep.
+    """
+    if b"<!DOCTYPE" in data or b"<!ENTITY" in data:
+        raise ConversionError(
+            "Invalid EPUB structure: XML document type declarations are not allowed."
+        )
+    return ET.fromstring(data)
+
+
 def _parse_epub_structure(epub_path: str) -> tuple[list[str], str]:
     """Read EPUB and return ordered chapter texts and title."""
     with zipfile.ZipFile(epub_path, "r") as epub:
         opf_path = None
         if "META-INF/container.xml" in epub.namelist():
             container_xml = epub.read("META-INF/container.xml")
-            root = ET.fromstring(container_xml)
+            root = _safe_fromstring(container_xml)
             rootfile = root.find(".//{*}rootfile")
             if rootfile is not None:
                 opf_path = rootfile.attrib.get("full-path")
@@ -63,7 +77,7 @@ def _parse_epub_structure(epub_path: str) -> tuple[list[str], str]:
             opf_path = opf_candidates[0]
 
         opf_data = epub.read(opf_path)
-        opf_root = ET.fromstring(opf_data)
+        opf_root = _safe_fromstring(opf_data)
         ns = {"opf": opf_root.tag.split("}")[0].strip("{")}
 
         title_node = opf_root.find(".//{*}title")

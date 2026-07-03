@@ -12,7 +12,6 @@ from src.payments.handlers import (
     handle_subscription_payment_failed,
     handle_subscription_payment_refunded,
     handle_subscription_payment_success,
-    handle_subscription_resumed,
     handle_subscription_updated,
 )
 from src.payments.tests.fixtures.ls_payloads import (

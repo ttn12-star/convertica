@@ -10,7 +10,7 @@ from rest_framework.response import Response
 from ...base_views import BaseConversionAPIView
 from .decorators import convert_image_docs
 from .serializers import ConvertImageSerializer
-from .utils import EXTENSIONS, convert_image
+from .utils import convert_image
 
 
 class ConvertImageAPIView(BaseConversionAPIView):

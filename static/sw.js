@@ -13,7 +13,6 @@ const STATIC_ASSETS = [
     '/static/css/tailwind.css',
     '/static/js/utils.js',
     '/static/js/task-cancellation.js',
-    '/static/js/websocket-progress.js',
     '/static/images/logo-56.webp',
     '/static/images/logo-56.png',
     '/offline.html',

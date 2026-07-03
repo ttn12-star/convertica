@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from django.test import TestCase
 from django.utils import timezone
-from src.users.models import Payment, SubscriptionPlan, User, UserSubscription
+from src.users.models import SubscriptionPlan, User
 
 
 class ActivatePremiumTests(TestCase):

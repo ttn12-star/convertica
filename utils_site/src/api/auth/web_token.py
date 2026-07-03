@@ -9,7 +9,6 @@ another IP).
 
 import hashlib
 import time
-from typing import Optional
 
 import jwt
 from django.conf import settings
