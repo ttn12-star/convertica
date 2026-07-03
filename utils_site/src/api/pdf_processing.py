@@ -37,6 +37,12 @@ def validate_pdf_allow_encrypted(pdf_path: str, *, context: dict) -> None:
         from pypdf import PdfReader
 
         reader = PdfReader(pdf_path, strict=False)
+        if reader.is_encrypted:
+            # Counting pages needs the password (pypdf raises
+            # FileNotDecryptedError on user-password files). The unlock flow
+            # decrypts with the user's password right after and fails cleanly
+            # there if it's wrong — the header check above is enough here.
+            return
         if len(reader.pages) == 0:
             raise InvalidPDFError("PDF has no pages", context=context)
     except (EncryptedPDFError, InvalidPDFError):

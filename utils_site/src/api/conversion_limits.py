@@ -369,6 +369,15 @@ def validate_pdf_pages(
 
     except Exception as e:
         if _is_encrypted_pdf_error(e):
+            if operation == "unlock_pdf":
+                # Encrypted input is the unlock tool's whole purpose — don't
+                # bounce it here; the view checks the password and fails with
+                # a clear error if it's wrong. Page count can't be read without
+                # the password, so the limit is enforced by timeout instead.
+                logger.info(
+                    "Encrypted PDF passed to unlock despite page validation: %s", e
+                )
+                return True, None, 0
             logger.info("Rejected password-protected PDF during page validation: %s", e)
             return (
                 False,
