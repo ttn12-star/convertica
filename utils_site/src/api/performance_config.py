@@ -23,8 +23,14 @@ class PerformanceConfig:
         self.config = self._determine_config()
 
     def _get_total_memory_gb(self) -> float:
-        """Get total system memory in GB."""
-        # Check for explicit environment variable first
+        """Get the memory budget (GB) that should drive the performance tier.
+
+        Prefers the container cgroup limit over host RAM: psutil.virtual_memory()
+        reports the whole HOST (e.g. 4 GB) while the worker container is capped
+        far lower (1.5 GB, ~750 MB per prefork child). Using host RAM picked a
+        too-generous tier and defeated the OOM safety margin (CONVERTICA-59).
+        """
+        # Explicit override wins (set to the per-worker budget in prod).
         env_memory = os.environ.get("SERVER_MEMORY_GB")
         if env_memory:
             try:
@@ -33,10 +39,43 @@ class PerformanceConfig:
                 logger.warning("Invalid SERVER_MEMORY_GB value: %s", env_memory)
 
         try:
-            memory = psutil.virtual_memory()
-            return memory.total / (1024**3)  # Convert bytes to GB
+            host_gb = psutil.virtual_memory().total / (1024**3)
         except Exception:
-            return 4.0  # Default fallback for 4GB dev server
+            host_gb = 4.0  # Default fallback for 4GB dev server
+
+        cgroup_gb = self._cgroup_limit_gb()
+        if cgroup_gb is not None:
+            return min(cgroup_gb, host_gb)
+        return host_gb
+
+    @staticmethod
+    def _cgroup_limit_gb() -> float | None:
+        """Container memory limit in GB from cgroup v2 then v1.
+
+        Returns None when there is no limit (bare host, "max", or an unlimited
+        sentinel), so the caller falls back to host RAM.
+        """
+        for path in (
+            "/sys/fs/cgroup/memory.max",  # cgroup v2
+            "/sys/fs/cgroup/memory/memory.limit_in_bytes",  # cgroup v1
+        ):
+            try:
+                with open(path) as fh:
+                    raw = fh.read().strip()
+            except OSError:
+                continue
+            if raw == "max":
+                return None
+            try:
+                gb = int(raw) / (1024**3)
+            except ValueError:
+                continue
+            # cgroup v1 "unlimited" is a huge sentinel (~8 EB); anything above a
+            # plausible container size means "no real limit".
+            if gb <= 0 or gb > 1024:
+                return None
+            return gb
+        return None
 
     def _determine_config(self) -> dict[str, any]:
         """Determine configuration based on available resources."""
