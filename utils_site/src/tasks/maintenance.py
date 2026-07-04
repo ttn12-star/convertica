@@ -135,22 +135,47 @@ def cleanup_temp_files():
 # of each finished job, but a SIGKILL/OOM mid-job (or a converter that makes
 # several temp dirs) can still leak. This sweep is the backstop that keeps the
 # system /tmp from filling and taking all conversions down with ENOSPC.
+# Matched by startswith(), so a short prefix (e.g. "ocr_") also covers
+# "ocr_pdf_", and "jpg2pdf_" covers "jpg2pdf_multi_". Keep this in sync with the
+# prefixes converters pass to tempfile.mkdtemp() — a missing prefix means that
+# tool's leaked dirs are never swept. (grep: mkdtemp(prefix= across src/api.)
 _CONVERTER_TMP_PREFIXES = (
-    "pdf2docx_",
-    "pdf2docx_opt_",
-    "ocr_",
-    "ocr_pdf_",
-    "searchable_pdf_",
+    # pdf -> office/text/image
+    "pdf2docx_",  # also pdf2docx_opt_
+    "pdf_to_excel_",
+    "pdf_to_html_",
+    "pdf_to_markdown_",
     "pdf_to_ppt_",
     "pdf_to_text_",
-    "pdf2jpg_",
-    "pdf_to_jpg_",
-    "jpg2pdf_",
-    "flatten_pdf_",
-    "epub_to_pdf_",
     "pdf_to_epub_",
+    "pdf2jpg_",
+    # office/html/image -> pdf
+    "doc2pdf_opt_",
+    "excel2pdf_",
+    "ppt2pdf_",
+    "html2pdf_",
+    "url2pdf_",
+    "jpg2pdf_",  # also jpg2pdf_multi_
+    "epub_to_pdf_",
+    # ocr
+    "ocr_",  # also ocr_pdf_
+    "searchable_pdf_",
+    "image_to_text_",
+    # image tools
+    "convert_heic_",
+    "convert_img_",
+    "optimize_img_",
+    "favicon_",
+    "ico2png_",
+    "img2ico_",
+    # pdf edit / organize / compare
+    "flatten_pdf_",
+    "compare_pdf_",
+    "pdf_compare_validate_",
+    # archive
     "unlock_zip_",
     "protect_zip_",
+    # validation / batch scratch
     "pdf_validate_",
     "batch_pagecheck_",
     "batch_",
