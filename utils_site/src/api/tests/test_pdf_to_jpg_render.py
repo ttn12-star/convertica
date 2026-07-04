@@ -100,3 +100,15 @@ class PdfToJpgEmptyRenderTests(SimpleTestCase):
 
         zips = [f for f in os.listdir(self.tmp_dir) if f.endswith(".zip")]
         self.assertEqual(zips, [], f"stray zip left behind: {zips}")
+
+    def test_malformed_page_input_raises_invalid_not_500(self):
+        """Bad `pages` strings must raise InvalidPDFError (→4xx), never a bare
+        ValueError (→500) or an index-(-1) render. Valid forms still parse."""
+        for bad in ("1-", "-5", "1-5-9", "abc", "a-b", ""):
+            uploaded = SimpleUploadedFile(
+                "foto1.pdf", _MINIMAL_PDF, content_type="application/pdf"
+            )
+            with self.assertRaises(InvalidPDFError, msg=f"pages={bad!r}"):
+                convert_pdf_to_jpg_sequential(
+                    uploaded, pages=bad, dpi=72, tmp_dir=self.tmp_dir
+                )

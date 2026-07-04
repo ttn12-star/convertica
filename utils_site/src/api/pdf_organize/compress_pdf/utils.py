@@ -1,4 +1,5 @@
 import os
+import shutil
 from collections.abc import Callable
 from io import BytesIO
 
@@ -288,6 +289,11 @@ def compress_pdf(
                         _save_with_fallback(doc2, output_path, _save_kwargs("low"))
                     finally:
                         doc2.close()
+                # Last resort: an already-optimized PDF can still grow on
+                # re-save even at "low". Never hand back a file bigger than the
+                # input — copy the original so "compress" never inflates.
+                if in_size > 0 and os.path.getsize(output_path) >= in_size:
+                    shutil.copyfile(input_pdf_path, output_path)
             except Exception:
                 pass
 
