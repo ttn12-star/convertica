@@ -46,7 +46,7 @@ SENTRY_DSN = config(
     "SENTRY_DSN",
     default="https://b3fdb00de949875598b3a1e9e5a54de0@o4510504663973888.ingest.de.sentry.io/4510504665940048",
 )
-if SENTRY_DSN and not config("DEBUG", default=True, cast=bool):
+if SENTRY_DSN and not config("DEBUG", default=False, cast=bool):
     try:
         import sentry_sdk
         from sentry_sdk.integrations.celery import CeleryIntegration
@@ -301,7 +301,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load from environment variable - REQUIRED in production
 _default_secret_key = (
     "django-insecure-dev-only-key-do-not-use-in-production-abc123"
-    if config("DEBUG", default=True, cast=bool)
+    if config("DEBUG", default=False, cast=bool)
     else ""
 )
 SECRET_KEY = config("SECRET_KEY", default=_default_secret_key)
@@ -314,7 +314,7 @@ if not SECRET_KEY:
     )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=True, cast=bool)
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 # Comma-separated list of allowed hosts.
 # In production an empty list silently lets every Host header through (Django
@@ -487,6 +487,11 @@ if DATABASE_ENGINE == "postgresql":
             "HOST": config("DATABASE_HOST", default="localhost"),
             "PORT": config("DATABASE_PORT", default="5432"),
             "CONN_MAX_AGE": 300,  # Connection pooling: reuse for 5 min (reduces connection churn)
+            # Validate a pooled connection before reuse. Without this a
+            # connection dropped server-side (idle timeout, Postgres restart)
+            # stays in the pool for up to CONN_MAX_AGE and surfaces as an
+            # OperationalError on the next request that reuses it.
+            "CONN_HEALTH_CHECKS": True,
             "OPTIONS": {
                 "connect_timeout": 10,
             },
