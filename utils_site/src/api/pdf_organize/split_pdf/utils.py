@@ -96,6 +96,14 @@ def split_pdf(
                             for p in pages.split(",")
                             if p.strip().isdigit()
                         ]
+                        # A non-empty selection that parses to nothing (e.g. a
+                        # range "2-3" passed to page mode, or all-non-numeric)
+                        # must fail — otherwise written==0 drops to the PyMuPDF
+                        # fallback below, which splits the WHOLE document.
+                        if not page_nums:
+                            raise InvalidPDFError(
+                                f"No valid page numbers in selection: {pages}"
+                            )
                     else:
                         page_nums = list(range(total_pages))
 
@@ -125,8 +133,16 @@ def split_pdf(
                         if "-" not in range_str:
                             continue
                         start, end = range_str.split("-", 1)
-                        start_page = max(0, int(start.strip()) - 1)
-                        end_page = min(total_pages, int(end.strip()))
+                        start, end = start.strip(), end.strip()
+                        # Non-numeric bounds ("a-b") would raise ValueError→500.
+                        if not (start.isdigit() and end.isdigit()):
+                            continue
+                        start_page = max(0, int(start) - 1)
+                        end_page = min(total_pages, int(end))
+                        # Reversed ("5-1") or out-of-range ("99-100") ranges give
+                        # an empty page set; don't write a 0-page PDF into the zip.
+                        if end_page <= start_page:
+                            continue
                         writer = PdfWriter()
                         for page_num in range(start_page, end_page):
                             writer.add_page(reader.pages[page_num])
@@ -155,7 +171,17 @@ def split_pdf(
                 else:
                     raise ConversionError("Invalid split_type", context=context)
 
-            # Fallback to PyMuPDF splitting if PyPDF2 produced nothing
+            # Fallback to PyMuPDF splitting if PyPDF2 produced nothing.
+            # This fallback splits EVERY page, so it is only correct when the
+            # intent was "split all pages". For explicit range/every_n
+            # selections (or a page selection, already guarded above) that
+            # matched nothing, splitting the whole document would be wrong —
+            # fail with a clear error instead.
+            if written == 0 and not (split_type == "page" and not pages):
+                raise InvalidPDFError(
+                    f"No pages matched the requested split "
+                    f"(type={split_type}, pages={pages!r})"
+                )
             if written == 0:
                 logger.warning(
                     "PyPDF2 produced no output, falling back to PyMuPDF",

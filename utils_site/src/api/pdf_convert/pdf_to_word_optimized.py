@@ -15,6 +15,7 @@ from django.core.cache import cache
 from django.core.files.uploadedfile import UploadedFile
 from pdf2docx import Converter
 from src.api.file_validation import check_disk_space, sanitize_filename
+from src.api.font_utils import unicode_font_file
 from src.api.logging_utils import get_logger
 from src.api.ocr_utils import extract_text_from_pdf_async
 from src.api.pdf_utils import repair_pdf
@@ -456,6 +457,16 @@ class OptimizedPDFToWordConverter:
         # Split text into pages and process in batches
         words = ocr_text_content.split()
 
+        # Unicode font so OCR'd Cyrillic/Arabic text isn't rendered as tofu in
+        # the intermediate PDF (and therefore garbage in the final DOCX). Falls
+        # back to helvetica if no system TTF is present.
+        ocr_font_file = unicode_font_file()
+        font_kwargs = (
+            {"fontname": "ocrfont", "fontfile": ocr_font_file}
+            if ocr_font_file
+            else {"fontname": "helvetica"}
+        )
+
         # Process pages in batches to control memory
         doc = fitz.open()
         try:
@@ -469,7 +480,7 @@ class OptimizedPDFToWordConverter:
                 rect = fitz.Rect(50, 50, 545, 792)  # Margins
 
                 page.insert_textbox(
-                    rect, page_text, fontsize=11, fontname="helvetica", align=0
+                    rect, page_text, fontsize=11, align=0, **font_kwargs
                 )
 
                 # Force garbage collection periodically

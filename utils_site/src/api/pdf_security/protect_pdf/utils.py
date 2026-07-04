@@ -30,7 +30,6 @@ def protect_pdf(
         password: Password for both user and owner (if user_password/owner_password not provided)
         user_password: User password (optional, uses password if not provided)
         owner_password: Owner password (optional, uses password if not provided)
-        permissions: PDF permissions (bit flags), -1 for all permissions
         suffix: Suffix for output filename
 
     Returns:
@@ -112,10 +111,12 @@ def protect_pdf(
                     writer.add_metadata(reader.metadata)
             except Exception:
                 pass
+            # AES-256, not the pypdf default RC4-128. RC4 is cryptographically
+            # broken; "password protected" must mean real encryption.
             writer.encrypt(
                 user_password=user_pwd,
                 owner_password=owner_pwd,
-                use_128bit=True,
+                algorithm="AES-256",
             )
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)

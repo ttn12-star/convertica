@@ -19,6 +19,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
+from src.api.font_utils import register_unicode_font
 from src.api.logging_utils import get_logger
 from src.exceptions import ConversionError
 
@@ -161,11 +162,13 @@ def convert_epub_to_pdf(
             bottomMargin=18 * mm,
         )
 
+        # Unicode font so non-Latin ebooks (Cyrillic etc.) don't render as tofu.
+        font_regular, font_bold = register_unicode_font()
         styles = getSampleStyleSheet()
         title_style = ParagraphStyle(
             "BookTitle",
             parent=styles["Title"],
-            fontName="Helvetica-Bold",
+            fontName=font_bold,
             fontSize=20,
             leading=24,
             spaceAfter=14,
@@ -173,7 +176,7 @@ def convert_epub_to_pdf(
         heading_style = ParagraphStyle(
             "ChapterHeading",
             parent=styles["Heading2"],
-            fontName="Helvetica-Bold",
+            fontName=font_bold,
             fontSize=14,
             leading=18,
             spaceBefore=8,
@@ -182,7 +185,7 @@ def convert_epub_to_pdf(
         body_style = ParagraphStyle(
             "BodyTextCompact",
             parent=styles["BodyText"],
-            fontName="Helvetica",
+            fontName=font_regular,
             fontSize=10.5,
             leading=14,
             spaceAfter=7,

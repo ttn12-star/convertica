@@ -14,6 +14,7 @@ from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from src.api.file_validation import check_disk_space, sanitize_filename
 from src.api.logging_utils import get_logger
+from src.api.pdf_convert.word_to_pdf_optimized import _validate_output_pdf
 from src.exceptions import ConversionError, StorageError
 
 logger = get_logger(__name__)
@@ -109,12 +110,11 @@ class PowerPointToPDFConverter:
             if libreoffice_output != pdf_path and os.path.exists(libreoffice_output):
                 os.rename(libreoffice_output, pdf_path)
 
-            # Validate output
-            if not os.path.exists(pdf_path):
-                raise ConversionError(
-                    "LibreOffice conversion failed - no output file generated",
-                    context=context,
-                )
+            # Validate output. LibreOffice/unoserver can report success yet
+            # leave a 0-byte or truncated PDF on disk; an exists-only check
+            # would hand that broken file to the user. Confirm it opens and has
+            # at least one page.
+            _validate_output_pdf(pdf_path, context)
 
             logger.info(
                 "PowerPoint to PDF conversion completed successfully",

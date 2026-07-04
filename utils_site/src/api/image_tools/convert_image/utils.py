@@ -6,7 +6,7 @@ Converts between JPEG, PNG, WebP, GIF, BMP, and TIFF formats using Pillow.
 import os
 import tempfile
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
@@ -74,9 +74,12 @@ def convert_image(
     output_filename = f"{base_name}_converted{out_ext}"
     output_path = os.path.join(tmp_dir, output_filename)
 
-    # Open and convert
+    # Open and convert. exif_transpose bakes in the camera's EXIF orientation
+    # so portrait phone photos aren't saved sideways (PNG/WebP drop EXIF, so
+    # the rotation has to be applied to pixels here); it returns a standalone
+    # copy, detached from the file handle.
     with Image.open(input_path) as img:
-        img_copy = img.copy()
+        img_copy = ImageOps.exif_transpose(img)
 
     _save_converted(img_copy, output_path, fmt, quality)
     img_copy.close()

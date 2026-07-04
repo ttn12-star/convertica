@@ -102,6 +102,19 @@ def convert_with_unoserver(
                         out.write(chunk)
                         response_size += len(chunk)
 
+        # A 200 with an empty/truncated body writes a 0-byte output that the
+        # exists-only checks downstream would hand to the user as "success".
+        # Treat it as a failure so the caller falls back to the subprocess path.
+        if response_size == 0:
+            logger.warning(
+                "unoserver returned an empty body, treating as failure",
+                extra={
+                    "event": "unoserver_empty_response",
+                    "input": os.path.basename(input_path),
+                },
+            )
+            return False
+
         logger.info(
             "unoserver conversion successful",
             extra={

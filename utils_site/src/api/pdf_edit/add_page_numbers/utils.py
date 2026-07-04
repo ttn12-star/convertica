@@ -12,6 +12,7 @@ from src.exceptions import (
     StorageError,
 )
 
+from ...font_utils import register_unicode_font
 from ...logging_utils import get_logger
 from ...pdf_processing import BasePDFProcessor
 
@@ -21,7 +22,12 @@ logger = get_logger(__name__)
 def get_page_position(
     position: str, page_width: float, page_height: float, font_size: int
 ):
-    """Calculate x, y coordinates for page number based on position."""
+    """Return (x, y, anchor) for the page number.
+
+    ``anchor`` is left/center/right so the caller can use the matching
+    reportlab draw call — the old code left-anchored everything at ``width/2``
+    (so "center" wasn't centred) and guessed the right-edge width as
+    ``font_size*2`` (long labels overflowed the page)."""
     margin = 0.5 * inch
 
     if "top" in position:
@@ -30,13 +36,10 @@ def get_page_position(
         y = margin
 
     if "left" in position:
-        x = margin
-    elif "right" in position:
-        x = page_width - margin - (font_size * 2)  # Approximate width
-    else:  # center
-        x = page_width / 2
-
-    return x, y
+        return margin, y, "left"
+    if "right" in position:
+        return page_width - margin, y, "right"
+    return page_width / 2, y, "center"
 
 
 def add_page_numbers(
@@ -95,6 +98,7 @@ def add_page_numbers(
             reader = PdfReader(input_pdf_path)
             writer = PdfWriter()
             total_pages = len(reader.pages)
+            font_regular, _ = register_unicode_font()
 
             for page_num in range(total_pages):
                 page = reader.pages[page_num]
@@ -103,13 +107,22 @@ def add_page_numbers(
 
                 packet = BytesIO()
                 can = canvas.Canvas(packet, pagesize=(page_width, page_height))
-                x, y = get_page_position(position, page_width, page_height, font_size)
+                x, y, anchor = get_page_position(
+                    position, page_width, page_height, font_size
+                )
 
                 page_number = start_number + page_num
                 text = format_str.format(page=page_number, total=total_pages)
 
-                can.setFont("Helvetica", font_size)
-                can.drawString(x, y, text)
+                # Unicode font so localized formats ("Страница {page}") render
+                # instead of tofu; anchor-aware draw so center/right are correct.
+                can.setFont(font_regular, font_size)
+                if anchor == "center":
+                    can.drawCentredString(x, y, text)
+                elif anchor == "right":
+                    can.drawRightString(x, y, text)
+                else:
+                    can.drawString(x, y, text)
                 can.save()
 
                 packet.seek(0)

@@ -13,6 +13,7 @@ from ....exceptions import (
     StorageError,
 )
 from ...file_validation import check_disk_space, sanitize_filename, validate_output_file
+from ...font_utils import unicode_font_file
 from ...logging_utils import get_logger
 from ...optimization_manager import optimization_manager
 from ...pdf_utils import repair_pdf
@@ -252,6 +253,16 @@ async def _convert_pdf_to_docx_sequential(
                     words = ocr_text_content.split()
                     words_per_page = 300  # Reduced for memory optimization
 
+                    # Unicode font so OCR'd non-Latin text isn't rendered as
+                    # tofu in the intermediate PDF (→ garbage DOCX). Falls back
+                    # to helvetica if no system TTF is present.
+                    ocr_font_file = unicode_font_file()
+                    font_kwargs = (
+                        {"fontname": "ocrfont", "fontfile": ocr_font_file}
+                        if ocr_font_file
+                        else {"fontname": "helvetica"}
+                    )
+
                     for i in range(0, len(words), words_per_page):
                         page_words = words[i : i + words_per_page]
                         page_text = " ".join(page_words)
@@ -262,7 +273,7 @@ async def _convert_pdf_to_docx_sequential(
 
                         # Insert text
                         page.insert_textbox(
-                            rect, page_text, fontsize=11, fontname="helvetica", align=0
+                            rect, page_text, fontsize=11, align=0, **font_kwargs
                         )
 
                         # Force garbage collection after each page

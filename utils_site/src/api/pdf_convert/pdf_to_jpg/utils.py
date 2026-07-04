@@ -111,15 +111,22 @@ def convert_pdf_to_jpg_sequential(
         if total_pages == 0:
             raise InvalidPDFError("PDF file has no pages")
 
-        # Determine which pages to convert
+        # Determine which pages to convert. Malformed user input ("1-", "-5",
+        # "1-5-9", "abc", "0-3") must yield a clean 4xx, not an uncaught
+        # ValueError → 500, and must not index page -1.
         if pages == "all":
             page_indices = list(range(total_pages))
         elif "-" in pages:
-            # Range like "1-5"
-            start, end = map(int, pages.split("-"))
+            parts = pages.split("-")
+            if len(parts) != 2 or not (parts[0].isdigit() and parts[1].isdigit()):
+                raise InvalidPDFError(f"Invalid page range: {pages}")
+            start, end = int(parts[0]), int(parts[1])
+            start = max(start, 1)  # clamp so start-1 never goes to index -1
             page_indices = list(range(start - 1, min(end, total_pages)))
         else:
             # Single page
+            if not pages.isdigit():
+                raise InvalidPDFError(f"Invalid page number: {pages}")
             page_num = int(pages) - 1
             if 0 <= page_num < total_pages:
                 page_indices = [page_num]

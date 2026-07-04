@@ -6,7 +6,7 @@ import os
 import shutil
 import tempfile
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
@@ -56,6 +56,11 @@ def optimize_image(
     with Image.open(input_path) as img:
         # Detect original format
         original_format = img.format or "JPEG"
+
+        # Respect the camera's EXIF orientation before resizing/saving so
+        # portrait phone photos aren't emitted sideways. Read format first —
+        # exif_transpose drops the .format attribute.
+        img = ImageOps.exif_transpose(img)
 
         # Determine output format
         if output_format and output_format.upper() in FORMAT_EXTENSIONS:
