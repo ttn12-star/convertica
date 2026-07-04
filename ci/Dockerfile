@@ -131,6 +131,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     default-jre-headless \
     && rm -rf /var/lib/apt/lists/*
 
+# Unicode fonts for PDF generation (reportlab/fitz). DejaVu = Latin/Cyrillic;
+# Noto core adds Arabic + Devanagari (+ many scripts), small (~15MB). CJK
+# (fonts-noto-cjk, ~100MB) is intentionally omitted: not a target audience and
+# src.api.font_utils falls back to DejaVu gracefully. Add it if CJK demand appears.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    fonts-dejavu-core \
+    fonts-noto-core \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libnss3 \
     libnspr4 \

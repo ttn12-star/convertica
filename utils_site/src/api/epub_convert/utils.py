@@ -15,11 +15,12 @@ from xml.sax.saxutils import escape
 import fitz
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
+from reportlab.lib.enums import TA_LEFT, TA_RIGHT
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
-from src.api.font_utils import register_unicode_font
+from src.api.font_utils import detect_script, register_font_for_script, shape_rtl
 from src.api.logging_utils import get_logger
 from src.exceptions import ConversionError
 
@@ -162,8 +163,18 @@ def convert_epub_to_pdf(
             bottomMargin=18 * mm,
         )
 
-        # Unicode font so non-Latin ebooks (Cyrillic etc.) don't render as tofu.
-        font_regular, font_bold = register_unicode_font()
+        # Pick the font from the book's dominant script so non-Latin ebooks
+        # (Cyrillic/Arabic/CJK/Devanagari) render real glyphs, not tofu.
+        sample_text = book_title + "\n" + "\n".join(chapter_texts[:3])
+        script = detect_script(sample_text)
+        font_regular, font_bold = register_font_for_script(script)
+        is_rtl = script == "arabic"
+        align = TA_RIGHT if is_rtl else TA_LEFT
+
+        def _fmt(text: str) -> str:
+            # Shape Arabic (join + RTL reorder) before escaping; no-op otherwise.
+            return escape(shape_rtl(text))
+
         styles = getSampleStyleSheet()
         title_style = ParagraphStyle(
             "BookTitle",
@@ -172,6 +183,7 @@ def convert_epub_to_pdf(
             fontSize=20,
             leading=24,
             spaceAfter=14,
+            alignment=align,
         )
         heading_style = ParagraphStyle(
             "ChapterHeading",
@@ -181,6 +193,7 @@ def convert_epub_to_pdf(
             leading=18,
             spaceBefore=8,
             spaceAfter=8,
+            alignment=align,
         )
         body_style = ParagraphStyle(
             "BodyTextCompact",
@@ -189,16 +202,17 @@ def convert_epub_to_pdf(
             fontSize=10.5,
             leading=14,
             spaceAfter=7,
+            alignment=align,
         )
 
-        story = [Paragraph(escape(book_title), title_style), Spacer(1, 8)]
+        story = [Paragraph(_fmt(book_title), title_style), Spacer(1, 8)]
         for index, chapter in enumerate(chapter_texts, start=1):
-            story.append(Paragraph(escape(f"Chapter {index}"), heading_style))
+            story.append(Paragraph(_fmt(f"Chapter {index}"), heading_style))
             for paragraph in chapter.split("\n\n"):
                 para = paragraph.strip()
                 if not para:
                     continue
-                story.append(Paragraph(escape(para), body_style))
+                story.append(Paragraph(_fmt(para), body_style))
             story.append(Spacer(1, 6))
 
         doc.build(story)

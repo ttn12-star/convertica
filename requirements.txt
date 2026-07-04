@@ -105,3 +105,9 @@ pyzipper==0.3.6
 # Activates when BREVO_API_KEY is set; otherwise falls back to SMTP
 # (useful for local dev with console output).
 django-anymail[brevo]==15.0
+
+# Arabic text shaping for PDF generation (reportlab has no shaping engine):
+# reshape contextual letter forms + reorder RTL so Arabic renders correctly
+# instead of as disconnected/backwards glyphs. Used by src.api.font_utils.
+arabic-reshaper==3.0.0
+python-bidi==0.4.2
