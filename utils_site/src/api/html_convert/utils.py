@@ -224,6 +224,50 @@ class HTMLToPDFConverter:
         except Exception as e:
             raise StorageError(f"Failed to save HTML content: {e}", context=context)
 
+    def _first_safe_ip(self, hostname: str) -> str | None:
+        """Resolve ``hostname`` and return its first public IP string, or None
+        if it fails to resolve or lands on a blocked (private/loopback/
+        link-local/...) address. Used to pin Chromium's DNS to the vetted IP so
+        it can't be rebound to an internal host between our check and its own
+        resolution (the validate-then-connect TOCTOU)."""
+        import ipaddress
+        import socket
+
+        host = (hostname or "").strip("[]")
+        if not host:
+            return None
+        try:
+            infos = socket.getaddrinfo(host, None, type=socket.SOCK_STREAM)
+        except socket.gaierror:
+            return None
+        for info in infos:
+            ip_str = info[4][0].split("%", 1)[0]
+            try:
+                ip = ipaddress.ip_address(ip_str)
+            except ValueError:
+                continue
+            if (
+                ip.is_private
+                or ip.is_loopback
+                or ip.is_link_local
+                or ip.is_multicast
+                or ip.is_reserved
+                or ip.is_unspecified
+            ):
+                return None
+            if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped:
+                m = ip.ipv4_mapped
+                if (
+                    m.is_private
+                    or m.is_loopback
+                    or m.is_link_local
+                    or m.is_reserved
+                    or m.is_unspecified
+                ):
+                    return None
+            return ip_str
+        return None
+
     async def _route_guard(self, route) -> None:
         """Abort any request whose target is not a public http(s) host.
 
@@ -339,11 +383,22 @@ class HTMLToPDFConverter:
                 context=context,
             )
 
+        # Pin the entry host to its vetted public IP so Chromium can't be
+        # DNS-rebound to an internal target between validation and its own
+        # resolution. Subresources on other hosts stay covered by _route_guard.
+        from urllib.parse import urlparse
+
+        _host = urlparse(url).hostname
+        _pin_ip = self._first_safe_ip(_host) if _host else None
+        _launch_args = (
+            [f"--host-resolver-rules=MAP {_host} {_pin_ip}"] if _pin_ip else []
+        )
+
         # Perform conversion with retries
         for attempt in range(self.max_retries + 1):
             try:
                 async with async_playwright() as p:
-                    browser = await p.chromium.launch(headless=True)
+                    browser = await p.chromium.launch(headless=True, args=_launch_args)
                     page = await browser.new_page()
                     # Re-validate every request, redirect and sub-resource so a
                     # redirect or embedded resource can't reach internal hosts.
