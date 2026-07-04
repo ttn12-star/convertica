@@ -256,7 +256,7 @@ async def _convert_pdf_to_docx_sequential(
                     # Unicode font so OCR'd non-Latin text isn't rendered as
                     # tofu in the intermediate PDF (→ garbage DOCX). Falls back
                     # to helvetica if no system TTF is present.
-                    ocr_font_file = unicode_font_file()
+                    ocr_font_file = unicode_font_file(ocr_text_content)
                     font_kwargs = (
                         {"fontname": "ocrfont", "fontfile": ocr_font_file}
                         if ocr_font_file
