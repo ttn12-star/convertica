@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n seo_extras %}
 
-{% block title %}{% trans "Convertica API — PDF Conversion API for Developers" %} | Convertica{% endblock %}
+{% block title %}{% trans "Convertica API — PDF Conversion API for Developers" %}{% endblock %}
 
-{% block description %}{% trans "Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI docs, HMAC-signed webhooks. Bundled with Convertica subscriptions." %}{% endblock %}
+{% block description %}{% trans "Programmatic access to 30+ PDF and image conversion tools. JSON API, OpenAPI docs, HMAC-signed webhooks. Bundled with Convertica subscriptions." as api_desc %}{{ api_desc|seo_meta }}{% endblock %}
 
 {% block content %}
   <div class="max-w-6xl mx-auto py-12 px-4">
