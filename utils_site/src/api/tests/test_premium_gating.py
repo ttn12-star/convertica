@@ -632,6 +632,70 @@ class OCRGateTests(TestCase):
 
 
 # ---------------------------------------------------------------------------
+# A3b. CAPTCHA exemption for premium users
+# ---------------------------------------------------------------------------
+
+
+@override_settings(PAYMENTS_ENABLED=True, DEBUG=False)
+class CaptchaPremiumExemptionTests(TestCase):
+    """A premium user must never be gated behind a CAPTCHA by the spam layer.
+
+    Reproduces the reported symptom: an IP flagged for CAPTCHA (via prior
+    failed attempts / origin gate) blocks a paying user with a dead-end
+    "complete the CAPTCHA" error and no widget. validate_spam_protection must
+    exempt premium users; free users on the same flagged IP must still be
+    gated.
+    """
+
+    FLAGGED_IP = "9.9.9.9"
+
+    def setUp(self):
+        from django.test import RequestFactory
+
+        cache.clear()
+        self.rf = RequestFactory()
+        self.user = User.objects.create_user(email="cap@t.test", password="p")
+        self.plan = SubscriptionPlan.objects.create(
+            name="Monthly Cap",
+            slug="monthly-cap",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+
+    def _flagged_request(self, user):
+        # IP previously flagged for CAPTCHA, no turnstile token supplied.
+        cache.set(f"captcha_required_ip:{self.FLAGGED_IP}", True, 3600)
+        req = self.rf.post("/api/archive/protect/", {}, REMOTE_ADDR=self.FLAGGED_IP)
+        req.user = user
+        return req
+
+    def test_free_user_on_flagged_ip_is_gated(self):
+        from src.api.spam_protection import validate_spam_protection
+
+        resp = validate_spam_protection(self._flagged_request(self.user))
+        self.assertIsNotNone(resp)
+        self.assertEqual(resp.status_code, 400)
+        self.assertTrue(resp.data.get("captcha_required"))
+
+    def test_premium_user_on_flagged_ip_is_exempt(self):
+        from src.api.spam_protection import validate_spam_protection
+
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_cap",
+            provider_customer_id="cust_cap",
+        )
+        resp = validate_spam_protection(self._flagged_request(self.user))
+        # None == request allowed through (no CAPTCHA gate for premium).
+        self.assertIsNone(resp)
+
+
+# ---------------------------------------------------------------------------
 # A4. Priority queue routing
 # ---------------------------------------------------------------------------
 
