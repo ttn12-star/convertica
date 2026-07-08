@@ -146,11 +146,14 @@ def article_list(request):
     # Paginated pages (2+) get a distinct title/description so they don't
     # trip "duplicate title / meta description" audits. Reuses the already
     # translated "Page" msgid — no new l10n strings. Pages self-canonicalize
-    # to ?page=N, so differentiating text is all that's needed.
+    # to ?page=N, so differentiating text is all that's needed. The marker is
+    # PREFIXED on the description: the base text is >155 chars and the
+    # seo_meta filter truncates from the end, so a suffix marker would be
+    # cut off and the descriptions would still collide.
     if page_obj.number > 1:
         page_marker = f"{_('Page')} {page_obj.number}"
         page_title = f"{_('Blog')} ({language_label}) - {page_marker} - Convertica"
-        page_description = f"{page_description} — {page_marker}"
+        page_description = f"{page_marker} — {page_description}"
 
     context = {
         "page_obj": page_obj,
