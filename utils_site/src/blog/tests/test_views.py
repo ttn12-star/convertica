@@ -124,8 +124,12 @@ class BlogViewsTestCase(TestCase):
         # Check if pagination is present (if implemented)
         # This test will pass even if pagination is not implemented
 
-    def test_paginated_pages_have_distinct_titles(self):
-        """Page 2+ must not reuse page 1's <title> (duplicate-title SEO audit)."""
+    def test_paginated_pages_have_distinct_title_and_description(self):
+        """Page 2+ must not reuse page 1's <title> or meta description.
+
+        The description marker must survive the seo_meta 155-char truncation,
+        so it is prefixed (not appended) — this test guards that.
+        """
         import re
 
         for i in range(15):  # >9 per page -> at least 2 pages
@@ -139,15 +143,20 @@ class BlogViewsTestCase(TestCase):
                 published_at=timezone.now(),
             )
 
-        def title_of(url):
+        def tags_of(url):
             html = self.client.get(url, follow=True).content.decode()
-            m = re.search(r"<title>(.*?)</title>", html, re.S)
-            return m.group(1).strip() if m else ""
+            title = re.search(r"<title>(.*?)</title>", html, re.S)
+            desc = re.search(r'<meta name="description" content="([^"]*)"', html)
+            return (
+                title.group(1).strip() if title else "",
+                desc.group(1).strip() if desc else "",
+            )
 
-        t1 = title_of(self._get_url_with_lang("blog/"))
-        t2 = title_of(self._get_url_with_lang("blog/") + "?page=2")
-        self.assertTrue(t1 and t2)
-        self.assertNotEqual(t1, t2)
+        t1, d1 = tags_of(self._get_url_with_lang("blog/"))
+        t2, d2 = tags_of(self._get_url_with_lang("blog/") + "?page=2")
+        self.assertTrue(t1 and t2 and d1 and d2)
+        self.assertNotEqual(t1, t2, "paginated <title> must differ")
+        self.assertNotEqual(d1, d2, "paginated meta description must differ")
         self.assertNotIn("Page 2", t1)
         self.assertIn("2", t2)
 
