@@ -111,8 +111,7 @@ def _check_fallback_rate_limit(request, remote_ip: str) -> tuple[bool, str | Non
                 },
             )
             return False, _(
-                "Service temporarily unavailable. "
-                "Please wait a moment and try again."
+                "Service temporarily unavailable. Please wait a moment and try again."
             )
 
         # Increment counter with 60-second window
@@ -350,22 +349,34 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
                 f"Error setting IP-based CAPTCHA requirement: {str(e)}", exc_info=True
             )
 
-    # Now actually check and increment rate limit
-    is_allowed, error_msg = check_rate_limit_by_ip(
-        request,
-        limit=20,  # 20 requests per minute for file uploads
-        window=60,
-        key_prefix="file_upload_spam",
-    )
-    if not is_allowed:
-        return Response({"error": error_msg}, status=status.HTTP_429_TOO_MANY_REQUESTS)
+    # Premium exemption (mirrors the CAPTCHA skip above): these IP-based file-upload
+    # guards exist to bound anonymous/abusive traffic. They are NOT premium-aware, so
+    # for a paying user they cap throughput far below the advertised per-user limit
+    # and — being keyed on IP — let users behind one NAT/CGNAT throttle each other.
+    # Premium users are still bounded by their per-user hourly limit (api_conversion
+    # 10000/h) enforced in rate_limit_utils, so skipping these here is safe.
+    if not is_premium:
+        # Now actually check and increment rate limit
+        is_allowed, error_msg = check_rate_limit_by_ip(
+            request,
+            limit=20,  # 20 requests per minute for file uploads
+            window=60,
+            key_prefix="file_upload_spam",
+        )
+        if not is_allowed:
+            return Response(
+                {"error": error_msg}, status=status.HTTP_429_TOO_MANY_REQUESTS
+            )
 
-    # 4. Check minimum time between requests
-    is_allowed, error_msg = check_minimum_time_between_requests(
-        request, min_seconds=2  # At least 2 seconds between requests
-    )
-    if not is_allowed:
-        return Response({"error": error_msg}, status=status.HTTP_429_TOO_MANY_REQUESTS)
+        # 4. Check minimum time between requests
+        is_allowed, error_msg = check_minimum_time_between_requests(
+            request,
+            min_seconds=2,  # At least 2 seconds between requests
+        )
+        if not is_allowed:
+            return Response(
+                {"error": error_msg}, status=status.HTTP_429_TOO_MANY_REQUESTS
+            )
 
     # 5. Verify Turnstile (if required or token provided)
     turnstile_token = None
