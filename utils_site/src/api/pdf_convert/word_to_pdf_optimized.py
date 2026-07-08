@@ -166,6 +166,14 @@ class OptimizedWordToPDFConverter:
         tmp_dir = tempfile.mkdtemp(prefix="doc2pdf_opt_")
         context["tmp_dir"] = tmp_dir
 
+        # On success the caller (sync/async view) still needs to stream the output
+        # PDF, which lives inside tmp_dir — so we must NOT delete tmp_dir here on the
+        # happy path (that left the returned pdf_path dangling → the view's
+        # os.path.getsize 500'd). Mirror jpg_to_pdf: leave the dir for the caller to
+        # stream and let the periodic reaper (cleanup_system_tmp sweeps the
+        # "doc2pdf_opt_" prefix) reclaim it. Only clean up here on failure.
+        conversion_succeeded = False
+
         try:
             if callable(check_cancelled):
                 check_cancelled()
@@ -310,11 +318,18 @@ class OptimizedWordToPDFConverter:
                 extra={**context, "event": "conversion_success"},
             )
 
+            conversion_succeeded = True
             return docx_path, pdf_path
 
         finally:
-            # Cleanup temporary directory (skip for Celery tasks - they handle cleanup)
-            if not is_celery_task and os.path.exists(tmp_dir):
+            # Skip cleanup for Celery tasks (they handle it) and on the success path
+            # (the caller streams pdf_path from tmp_dir; the reaper sweeps it later).
+            # Only reclaim eagerly when the conversion failed.
+            if (
+                not is_celery_task
+                and not conversion_succeeded
+                and os.path.exists(tmp_dir)
+            ):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
     async def _validate_magic_number_async(

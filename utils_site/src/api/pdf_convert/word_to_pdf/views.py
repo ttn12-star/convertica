@@ -43,13 +43,21 @@ class WordToPDFAPIView(BaseConversionAPIView):
         """Handle POST request with Swagger documentation."""
         return async_to_sync(self.post_async)(request)
 
-    def perform_conversion(
+    async def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
     ) -> tuple[str, str]:
-        """Perform Word to PDF conversion."""
+        """Perform Word to PDF conversion.
+
+        Must be an async coroutine: the base ``post_async`` awaits
+        ``perform_conversion`` inside a running event loop, so this awaits the
+        async converter directly. The previous version was a sync method that
+        called ``async_to_sync(convert_word_to_pdf)`` — a nested async_to_sync in
+        the loop thread — which raised "cannot use AsyncToSync in the same thread
+        as an async event loop" and 500'd every request. Mirrors jpg_to_pdf.
+        """
         from src.api.pdf_convert.word_to_pdf.utils import convert_word_to_pdf
 
-        docx_path, pdf_path = async_to_sync(convert_word_to_pdf)(
+        docx_path, pdf_path = await convert_word_to_pdf(
             uploaded_file, suffix="_convertica"
         )
         return docx_path, pdf_path

@@ -113,20 +113,30 @@ def combined_rate_limit(group="api", ip_rate="100/h", methods=None):
                 return func(req, *a, **kw)
 
             # Apply rate limits to a callable where request is the first argument.
+            # The inner user_or_ip limit already differentiates anonymous /
+            # authenticated / premium via get_user_rate_limit. The outer key="ip"
+            # bucket is an extra abuse guard that must bind ONLY anonymous callers:
+            # applied to everyone it caps authenticated & premium users far below
+            # their advertised per-user limits (e.g. api_conversion ip_rate=30/h
+            # would override the 10000/h premium rate, and a shared NAT/CGNAT IP
+            # would make paying users throttle each other).
+            user = getattr(request, "user", None)
+            is_authenticated = bool(getattr(user, "is_authenticated", False))
+
             limited = ratelimit(
-                key="ip",
-                rate=ip_rate,
+                key="user_or_ip",
+                rate=get_user_rate_limit,
+                group=group,
                 method=method_str,
                 block=True,
-            )(
-                ratelimit(
-                    key="user_or_ip",
-                    rate=get_user_rate_limit,
-                    group=group,
+            )(call_original)
+            if not is_authenticated:
+                limited = ratelimit(
+                    key="ip",
+                    rate=ip_rate,
                     method=method_str,
                     block=True,
-                )(call_original)
-            )
+                )(limited)
 
             # Log rate limit hits (best-effort, should never break the request)
             try:
