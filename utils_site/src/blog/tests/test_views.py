@@ -124,6 +124,33 @@ class BlogViewsTestCase(TestCase):
         # Check if pagination is present (if implemented)
         # This test will pass even if pagination is not implemented
 
+    def test_paginated_pages_have_distinct_titles(self):
+        """Page 2+ must not reuse page 1's <title> (duplicate-title SEO audit)."""
+        import re
+
+        for i in range(15):  # >9 per page -> at least 2 pages
+            Article.objects.create(
+                title_en=f"Paginated {i}",
+                slug=f"paginated-{i}",
+                excerpt_en=f"Excerpt {i}",
+                content_en=f"Content {i}",
+                status="published",
+                category=self.category,
+                published_at=timezone.now(),
+            )
+
+        def title_of(url):
+            html = self.client.get(url, follow=True).content.decode()
+            m = re.search(r"<title>(.*?)</title>", html, re.S)
+            return m.group(1).strip() if m else ""
+
+        t1 = title_of(self._get_url_with_lang("blog/"))
+        t2 = title_of(self._get_url_with_lang("blog/") + "?page=2")
+        self.assertTrue(t1 and t2)
+        self.assertNotEqual(t1, t2)
+        self.assertNotIn("Page 2", t1)
+        self.assertIn("2", t2)
+
     def test_article_list_filtering_by_category(self):
         """Test that article list can be filtered by category."""
         # Create another category

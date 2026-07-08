@@ -137,6 +137,21 @@ def article_list(request):
         categories = ArticleCategory.objects.all()
         cache.set(categories_cache_key, categories, 3600)  # Cache for 1 hour
 
+    page_title = f"{_('Blog')} ({language_label}) - Convertica"
+    page_description = _(
+        "Useful guides, tips, and articles about PDF tools and document "
+        "management. Learn how to convert, edit, merge, split, compress, "
+        "and secure PDF files online for free — no registration required."
+    )
+    # Paginated pages (2+) get a distinct title/description so they don't
+    # trip "duplicate title / meta description" audits. Reuses the already
+    # translated "Page" msgid — no new l10n strings. Pages self-canonicalize
+    # to ?page=N, so differentiating text is all that's needed.
+    if page_obj.number > 1:
+        page_marker = f"{_('Page')} {page_obj.number}"
+        page_title = f"{_('Blog')} ({language_label}) - {page_marker} - Convertica"
+        page_description = f"{page_description} — {page_marker}"
+
     context = {
         "page_obj": page_obj,
         "articles": page_obj,
@@ -144,12 +159,8 @@ def article_list(request):
         "current_category": category,
         "search_query": search_query,
         "language_code": language_code,
-        "page_title": f"{_('Blog')} ({language_label}) - Convertica",
-        "page_description": _(
-            "Useful guides, tips, and articles about PDF tools and document "
-            "management. Learn how to convert, edit, merge, split, compress, "
-            "and secure PDF files online for free — no registration required."
-        ),
+        "page_title": page_title,
+        "page_description": page_description,
     }
 
     return render(request, "blog/article_list.html", context)
