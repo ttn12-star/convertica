@@ -222,7 +222,7 @@ def crop_pdf(
                             )
 
                         logger.debug(
-                            ("Cropping page %d: x=%.2f, y=%.2f, " "w=%.2f, h=%.2f"),
+                            ("Cropping page %d: x=%.2f, y=%.2f, w=%.2f, h=%.2f"),
                             page_num + 1,
                             crop_x,
                             crop_y,
@@ -246,11 +246,25 @@ def crop_pdf(
             can.save()
 
         except Exception as e:
+            from pypdf.errors import PyPdfError
+
             error_context = {
                 **context,
                 "error_type": type(e).__name__,
                 "error_message": str(e),
             }
+            # A pypdf parse error means the upload is corrupt/truncated — that's
+            # bad input (400), not a server fault. Log it at warning and surface
+            # it as InvalidPDFError so both single and batch paths return 4xx
+            # instead of a Sentry-alerting 500.
+            if isinstance(e, PyPdfError):
+                logger.warning(
+                    "Failed to crop PDF: invalid input",
+                    extra={**error_context, "event": "crop_error"},
+                )
+                raise InvalidPDFError(
+                    f"Failed to crop PDF: {e}", context=error_context
+                ) from e
             logger.error(
                 "Failed to crop PDF",
                 extra={**error_context, "event": "crop_error"},

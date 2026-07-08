@@ -21,7 +21,7 @@ from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.utils import timezone
-from src.exceptions import ConversionError
+from src.exceptions import ConversionError, InvalidPDFError
 from src.users.models import SubscriptionPlan, User
 
 
@@ -130,3 +130,18 @@ class BatchPartialFailureTests(TestCase):
         payload = response.json()
         self.assertIn("error", payload)
         self.assertEqual(payload.get("failed_files"), ["bad.pdf"])
+
+    @patch(
+        "src.api.pdf_edit.crop_pdf.batch_views.CropPDFBatchAPIView.convert_single",
+        lambda self, uploaded_file, context, **params: (_ for _ in ()).throw(
+            InvalidPDFError("corrupt upload")
+        ),
+    )
+    def test_all_failed_user_input_returns_400_not_500(self):
+        # A batch where every file is bad input (e.g. corrupt PDF) is a client
+        # error, not a server outage — mirrors the single-file path's 400 and
+        # keeps it out of Sentry's 5xx alerting.
+        response = self._post_batch(["bad.pdf"])
+
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json().get("failed_files"), ["bad.pdf"])

@@ -33,7 +33,7 @@ from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from src.exceptions import ConversionError
+from src.exceptions import ConversionError, EncryptedPDFError, InvalidPDFError
 
 from .conversion_limits import get_max_file_size_for_user, validate_pdf_pages
 from .logging_utils import build_request_context, get_logger, log_conversion_start
@@ -236,6 +236,12 @@ class BaseBatchAPIView(APIView):
             tmp_dir = tempfile.mkdtemp(prefix=self.TMP_PREFIX)
             output_files: list[tuple[str, str]] = []
             failed_files: list[tuple[str, str]] = []  # (name, user-safe reason)
+            # Mirrors the single-file path contract (handle_conversion_error):
+            # bad input (Encrypted/InvalidPDF) is a 400, anything else a 500.
+            # Stays True only while every failure is user-input; flips on the
+            # first server-side failure so an all-failed batch reports 4xx vs 5xx
+            # correctly instead of blanket-500 (which alerts Sentry as an outage).
+            all_failures_user_input = True
 
             for idx, uploaded_file in enumerate(files):
                 try:
@@ -268,7 +274,13 @@ class BaseBatchAPIView(APIView):
                     output_files.append((uploaded_file.name, output_path))
 
                 except Exception as e:
-                    logger.error(
+                    is_user_input = isinstance(e, EncryptedPDFError | InvalidPDFError)
+                    if not is_user_input:
+                        all_failures_user_input = False
+                    # User-input failures (bad/encrypted PDF) are expected and
+                    # logged at warning; genuine server faults stay at error.
+                    log = logger.warning if is_user_input else logger.error
+                    log(
                         f"Failed to process {uploaded_file.name}: {e}",
                         extra={**context, "file_index": idx, "error": str(e)},
                     )
@@ -290,7 +302,11 @@ class BaseBatchAPIView(APIView):
                         "error": "Failed to process any files",
                         "failed_files": [name for name, _reason in failed_files],
                     },
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                    status=(
+                        status.HTTP_400_BAD_REQUEST
+                        if all_failures_user_input
+                        else status.HTTP_500_INTERNAL_SERVER_ERROR
+                    ),
                 )
 
             zip_path = os.path.join(tmp_dir, self.OUTPUT_ZIP_FILENAME)
