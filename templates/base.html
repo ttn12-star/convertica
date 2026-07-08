@@ -22,7 +22,10 @@
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#2563eb">
     <meta name="format-detection" content="telephone=no">
-    <meta name="csrf-token" content="{{ csrf_token }}">
+    {# csrf-token meta forces a csrftoken cookie + Vary:Cookie, which makes the
+       page uncacheable at the CDN. Read-only pages (e.g. blog) with no CSRF
+       POST override this block to empty so they stay edge-cacheable. #}
+    {% block csrf_meta %}<meta name="csrf-token" content="{{ csrf_token }}">{% endblock %}
 
     <!-- Ad Network Verification -->
     {% if ADSENSE_PUBLISHER_ID %}<meta name="google-adsense-account" content="{{ ADSENSE_PUBLISHER_ID }}">{% endif %}

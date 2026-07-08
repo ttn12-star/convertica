@@ -3,6 +3,8 @@
 
 {% block title %}{{ page_title|seo_title }}{% endblock %}
 {% block meta_title %}{{ meta_title|default:page_title|seo_title }}{% endblock %}
+{# read-only page: no CSRF POST -> drop the csrf-token meta so it stays edge-cacheable #}
+{% block csrf_meta %}{% endblock %}
 {% block description %}{{ meta_description|default:page_description|seo_meta }}{% endblock %}
 {% block keywords %}{{ meta_keywords }}{% endblock %}
 {% block og_title %}{{ article.get_title }}{% endblock %}

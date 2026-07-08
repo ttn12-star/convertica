@@ -5,6 +5,8 @@
 {% block meta_title %}{{ page_title|seo_title }}{% endblock %}
 {% block description %}{{ page_description|seo_meta }}{% endblock %}
 {% block keywords %}{% trans "blog, articles, PDF guides, document tips, tutorials" %}{% endblock %}
+{# read-only page: no CSRF POST -> drop the csrf-token meta so it stays edge-cacheable #}
+{% block csrf_meta %}{% endblock %}
 
 {% block extra_head %}
   {% if page_obj.has_previous %}
