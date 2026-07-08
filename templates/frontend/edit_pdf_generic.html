@@ -92,6 +92,15 @@
           </span>
         </button>
       </div>
+
+      {% comment %}
+        Turnstile mount so ensureTurnstileWidget() (utils.js) can render a
+        widget on demand when CAPTCHA is triggered mid-session. Without it the
+        edit-tool family (protect/unlock ZIP, crop, …) shows a dead-end
+        "complete the CAPTCHA" error with no widget — converter_generic.html
+        already carries this mount; edit_pdf_generic did not.
+      {% endcomment %}
+      {% include "frontend/includes/turnstile.html" %}
     </form>
 
     <!-- Loading Container -->
