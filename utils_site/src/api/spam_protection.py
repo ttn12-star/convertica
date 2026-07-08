@@ -279,6 +279,16 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
             {"error": _("Invalid request")}, status=status.HTTP_400_BAD_REQUEST
         )
 
+    # Premium exemption: paying, authenticated customers are never gated behind
+    # a CAPTCHA. This skips only the CAPTCHA requirement — the honeypot above
+    # and the (generous) IP rate/timing limits below still run as basic server
+    # protection. Once a premium user is let through, the request returns 2xx,
+    # which clears any sticky captcha_required flag the middleware had set
+    # (see CaptchaRequirementMiddleware's reset-on-success path).
+    from .premium_utils import is_premium_active
+
+    is_premium = is_premium_active(getattr(request, "user", None))
+
     # Get client IP once for all checks (used multiple times below). Trusted:
     # CF-Connecting-IP / rightmost XFF, never the spoofable leftmost XFF entry.
     remote_ip = get_client_ip(request) or "unknown"
@@ -288,29 +298,31 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
     # This prevents bypassing CAPTCHA by disabling cookies
     captcha_required = False
 
-    # Check session-based CAPTCHA requirement (if session exists)
-    if hasattr(request, "session"):
-        captcha_required = request.session.get("captcha_required", False)
+    if not is_premium:
+        # Check session-based CAPTCHA requirement (if session exists)
+        if hasattr(request, "session"):
+            captcha_required = request.session.get("captcha_required", False)
 
-    # Also check IP-based CAPTCHA requirement (for cookie-less spam protection)
-    if not captcha_required:
-        ip_captcha_key = f"captcha_required_ip:{remote_ip}"
-        try:
-            ip_requires_captcha = cache.get(ip_captcha_key, False)
-            if ip_requires_captcha:
-                captcha_required = True
-                logger.info(
-                    "CAPTCHA required for IP due to previous failures",
-                    extra={
-                        **context,
-                        "ip": remote_ip,
-                        "reason": "ip_based_tracking",
-                    },
+        # Also check IP-based CAPTCHA requirement (for cookie-less spam protection)
+        if not captcha_required:
+            ip_captcha_key = f"captcha_required_ip:{remote_ip}"
+            try:
+                ip_requires_captcha = cache.get(ip_captcha_key, False)
+                if ip_requires_captcha:
+                    captcha_required = True
+                    logger.info(
+                        "CAPTCHA required for IP due to previous failures",
+                        extra={
+                            **context,
+                            "ip": remote_ip,
+                            "reason": "ip_based_tracking",
+                        },
+                    )
+            except Exception as e:
+                logger.error(
+                    f"Error checking IP-based CAPTCHA requirement: {str(e)}",
+                    exc_info=True,
                 )
-        except Exception as e:
-            logger.error(
-                f"Error checking IP-based CAPTCHA requirement: {str(e)}", exc_info=True
-            )
 
     # 3. Check rate limit (stricter for file uploads)
     # Check rate limit BEFORE incrementing to see if we're approaching limit
@@ -319,7 +331,7 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
 
     # If approaching limit (>= 14 out of 20), require CAPTCHA if not already required
     # This provides proactive protection
-    if not captcha_required and rate_limit_count_before >= 14:
+    if not is_premium and not captcha_required and rate_limit_count_before >= 14:
         captcha_required = True
         ip_captcha_key = f"captcha_required_ip:{remote_ip}"
         try:
