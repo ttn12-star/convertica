@@ -1003,3 +1003,53 @@ class ArchiveToolPageTests(TestCase):
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
         self.assertIn("Unlock ZIP", html)
+
+
+@override_settings(ADSENSE_PUBLISHER_ID="ca-pub-test-0001")
+class AdFreeGatingTests(TestCase):
+    """ "Ad-free experience" premium promise: the AdSense script must load for
+    anonymous/free users and be suppressed for active-premium users."""
+
+    HOME = "/en/"
+
+    def setUp(self):
+        cache.clear()
+        self.client = Client()
+        self.User = get_user_model()
+
+    def _premium(self, email):
+        from datetime import timedelta
+        from decimal import Decimal
+
+        from src.users.models import SubscriptionPlan
+
+        u = self.User.objects.create_user(email=email, password="x")
+        plan = SubscriptionPlan.objects.create(
+            name="M",
+            slug="m-ad",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+        u.activate_premium(
+            plan=plan,
+            period_start=timezone.now(),
+            period_end=timezone.now() + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="s",
+            provider_customer_id="c",
+        )
+        return u
+
+    def test_anonymous_sees_ads(self):
+        self.assertContains(self.client.get(self.HOME), "adsbygoogle.js")
+
+    def test_free_user_sees_ads(self):
+        self.client.force_login(
+            self.User.objects.create_user(email="free@t.test", password="x")
+        )
+        self.assertContains(self.client.get(self.HOME), "adsbygoogle.js")
+
+    def test_premium_user_no_ads(self):
+        self.client.force_login(self._premium("prem@t.test"))
+        self.assertNotContains(self.client.get(self.HOME), "adsbygoogle.js")

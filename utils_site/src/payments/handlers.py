@@ -337,6 +337,18 @@ def handle_order_created(payload: dict) -> None:
     user, plan = _resolve_user_and_plan(payload)
     if not user or not plan:
         return
+    # A subscription purchase ALSO fires order_created (LS wraps the first
+    # invoice in an order). Recording a Payment here would double-count it:
+    # subscription_payment_success already records the charge under a different
+    # id, and record_completed can't dedupe across the two keys. order_created
+    # is only authoritative for one-time / lifetime orders.
+    if not plan.is_lifetime:
+        logger.info(
+            "LS order_created for subscription plan — skipping (handled by "
+            "subscription_* events)",
+            extra={"event": "ls_order_created_subscription_skip", "plan_id": plan.id},
+        )
+        return
     attrs = _attrs(payload)
     order_id = _data_id(payload)
     customer_id = str(attrs.get("customer_id") or "")

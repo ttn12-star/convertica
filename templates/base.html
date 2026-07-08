@@ -68,7 +68,7 @@
     {% if turnstile_site_key %}{% if captcha_required or needs_turnstile %}
       <link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
     {% endif %}{% endif %}
-    {% if ADSENSE_PUBLISHER_ID %}
+    {% if ADSENSE_PUBLISHER_ID and not user.is_premium_active %}
       <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
     {% endif %}
 
@@ -287,8 +287,8 @@
       }
     </style>
 
-    {% if ADSENSE_PUBLISHER_ID %}
-    <!-- Google AdSense Auto Ads -->
+    {% if ADSENSE_PUBLISHER_ID and not user.is_premium_active %}
+    <!-- Google AdSense Auto Ads — suppressed for premium ("Ad-free experience") -->
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_PUBLISHER_ID }}" crossorigin="anonymous"></script>
     {% endif %}
   </head>

@@ -379,6 +379,48 @@ class OrderCreatedLifetimeTests(HandlerTestCase):
         self.assertEqual(Payment.objects.filter(user=self.user).count(), 1)
 
 
+class OrderCreatedSubscriptionNoDoublePaymentTests(HandlerTestCase):
+    """A subscription purchase must yield exactly ONE Payment row.
+
+    LS fires BOTH `order_created` AND `subscription_payment_success` on the
+    first charge of a subscription. `order_created` keys its Payment on the
+    order id; `subscription_payment_success` keys on the invoice/order_id from
+    the subscription-invoice object — a DIFFERENT key — so `record_completed`
+    can't dedupe them and two Payment rows appear for one real charge.
+    `handle_order_created` must therefore skip subscription (non-lifetime)
+    plans; the subscription_* events are the source of truth for those.
+    """
+
+    def test_order_created_for_subscription_plan_records_no_payment(self):
+        payload = order_created_payload(
+            user_id=self.user.id,
+            plan_id=self.monthly.id,  # subscription plan (not lifetime)
+            order_id="ord_sub_first",
+        )
+        handle_order_created(payload)
+        self.assertEqual(Payment.objects.filter(user=self.user).count(), 0)
+
+    def test_subscription_first_purchase_records_single_payment(self):
+        uid, pid = self.user.id, self.monthly.id
+        # Real first-purchase event sequence for a subscription plan.
+        handle_subscription_created(
+            subscription_created_payload(user_id=uid, plan_id=pid)
+        )
+        handle_order_created(
+            order_created_payload(user_id=uid, plan_id=pid, order_id="ord_sub_first")
+        )
+        handle_subscription_payment_success(
+            subscription_payment_success_payload(
+                user_id=uid, plan_id=pid, order_id="inv_order_ref"
+            )
+        )
+        # Exactly one Payment — the authoritative subscription charge.
+        self.assertEqual(Payment.objects.filter(user=self.user).count(), 1)
+        # Premium still granted (via subscription_created), not lost by the skip.
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.is_premium)
+
+
 class OrderRefundedLifetimeTests(HandlerTestCase):
     def test_revokes_premium(self):
         # Pre-create

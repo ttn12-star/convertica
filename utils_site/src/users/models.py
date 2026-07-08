@@ -401,10 +401,15 @@ class User(AbstractUser):
             return cached_heroes
 
         now = timezone.now()
+        # Active hero = opted-in AND premium AND (lifetime [no end date] OR
+        # a still-future end date). Lifetime buyers have subscription_end_date
+        # NULL and must still appear; requiring is_premium also drops refunded
+        # users whose future end date lingers after deactivation.
         heroes = cls.objects.filter(
+            models.Q(subscription_end_date__isnull=True)
+            | models.Q(subscription_end_date__gte=now),
             display_as_hero=True,
-            subscription_end_date__isnull=False,
-            subscription_end_date__gte=now,
+            is_premium=True,
         ).order_by("-consecutive_subscription_days")
 
         # Cache for 1 minute to ensure heroes disappear quickly after subscription expiry
@@ -422,10 +427,12 @@ class User(AbstractUser):
             return cached_top
 
         now = timezone.now()
+        # Same active-hero condition as get_heroes (lifetime included).
         top = cls.objects.filter(
+            models.Q(subscription_end_date__isnull=True)
+            | models.Q(subscription_end_date__gte=now),
             display_as_hero=True,
-            subscription_end_date__isnull=False,
-            subscription_end_date__gte=now,
+            is_premium=True,
         ).order_by("-consecutive_subscription_days")[:limit]
 
         # Cache for 5 minutes
