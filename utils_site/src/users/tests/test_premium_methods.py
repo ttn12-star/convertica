@@ -1,6 +1,7 @@
 from datetime import timedelta
 from decimal import Decimal
 
+from django.core.cache import cache
 from django.test import TestCase
 from django.utils import timezone
 from src.users.models import SubscriptionPlan, User
@@ -129,3 +130,77 @@ class ApplyGraceTests(TestCase):
         u.refresh_from_db()
         self.assertEqual(u.subscription_end_date, grace_until)
         self.assertTrue(u.is_premium)
+
+
+class GetHeroesTests(TestCase):
+    """The heroes wall (get_heroes / get_top_subscribers) must show every
+    currently-active opted-in premium user, INCLUDING lifetime buyers
+    (subscription_end_date is NULL), and must exclude expired/refunded users.
+    """
+
+    def setUp(self):
+        cache.clear()
+        self.monthly = SubscriptionPlan.objects.create(
+            name="M",
+            slug="m-hero",
+            price=Decimal("7.99"),
+            currency="USD",
+            duration_days=30,
+        )
+        self.lifetime = SubscriptionPlan.objects.create(
+            name="L",
+            slug="l-hero",
+            price=Decimal("129.00"),
+            currency="USD",
+            duration_days=0,
+            is_lifetime=True,
+        )
+
+    def _hero(self, email, plan, end, opt_in=True):
+        u = User.objects.create_user(email=email, password="x")
+        u.activate_premium(
+            plan=plan,
+            period_start=timezone.now(),
+            period_end=end,
+            provider="lemonsqueezy",
+            provider_subscription_id="s_" + email,
+            provider_customer_id="c_" + email,
+        )
+        u.display_as_hero = opt_in
+        u.save()
+        return u
+
+    def _hero_emails(self):
+        cache.delete("site_heroes")
+        cache.delete("top_subscribers_10")
+        return [h.email for h in User.get_heroes()]
+
+    def test_annual_opted_in_appears(self):
+        self._hero("a@t.test", self.monthly, timezone.now() + timedelta(days=365))
+        self.assertIn("a@t.test", self._hero_emails())
+
+    def test_lifetime_opted_in_appears(self):
+        # Regression: lifetime buyers have subscription_end_date=None and were
+        # wrongly excluded by the old subscription_end_date__isnull=False filter.
+        self._hero("lt@t.test", self.lifetime, None)
+        emails = self._hero_emails()
+        self.assertIn("lt@t.test", emails)
+        self.assertIn("lt@t.test", [u.email for u in User.get_top_subscribers(10)])
+
+    def test_not_opted_in_hidden(self):
+        self._hero(
+            "no@t.test",
+            self.monthly,
+            timezone.now() + timedelta(days=365),
+            opt_in=False,
+        )
+        self.assertNotIn("no@t.test", self._hero_emails())
+
+    def test_refunded_hidden(self):
+        u = self._hero("ref@t.test", self.monthly, timezone.now() + timedelta(days=365))
+        u.deactivate_premium(reason="refunded")
+        self.assertNotIn("ref@t.test", self._hero_emails())
+
+    def test_expired_hidden(self):
+        self._hero("exp@t.test", self.monthly, timezone.now() - timedelta(days=1))
+        self.assertNotIn("exp@t.test", self._hero_emails())

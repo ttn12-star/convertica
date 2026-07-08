@@ -227,6 +227,13 @@ class ProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         self.request.user.display_as_hero = display_as_hero
         self.request.user.save()
 
+        # Bust the heroes caches so the change shows immediately (the AJAX
+        # toggle endpoint does this too; the plain form save must match).
+        from django.core.cache import cache
+
+        cache.delete("site_heroes")
+        cache.delete("top_subscribers_10")
+
         return super().form_valid(form)
 
 
