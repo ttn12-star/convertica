@@ -160,6 +160,22 @@ class BlogViewsTestCase(TestCase):
         self.assertNotIn("Page 2", t1)
         self.assertIn("2", t2)
 
+    def test_blog_pages_omit_csrf_token_so_cdn_can_cache(self):
+        """Read-only blog pages must not set a csrftoken cookie / csrf-token meta.
+
+        The csrf-token meta pulls in a Set-Cookie + Vary:Cookie, which makes the
+        response uncacheable at the CDN (the blog pages are the ones that 5XX'd
+        under crawl load). Tool pages still get it (checked elsewhere).
+        """
+        for url in (
+            self._get_url_with_lang("blog/"),
+            self._get_url_with_lang(f"blog/{self.published_article.slug}/"),
+        ):
+            resp = self.client.get(url, follow=True)
+            self.assertEqual(resp.status_code, 200)
+            self.assertNotIn("csrftoken", resp.cookies, f"{url} set a csrftoken cookie")
+            self.assertNotContains(resp, 'name="csrf-token"')
+
     def test_article_list_filtering_by_category(self):
         """Test that article list can be filtered by category."""
         # Create another category
