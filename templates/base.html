@@ -22,7 +22,7 @@
     <meta name="revisit-after" content="7 days">
     <meta name="theme-color" content="#2563eb">
     <meta name="format-detection" content="telephone=no">
-    {# csrf-token meta sets a csrftoken cookie + Vary:Cookie (CDN-uncacheable); read-only pages (blog) override this block empty to stay edge-cacheable. Keep single-line: multi-line {# #} is not stripped by Django. #}
+    {# csrf-token meta sets a csrftoken cookie so read-only blog pages override this block empty to stay CDN-cacheable #}
     {% block csrf_meta %}<meta name="csrf-token" content="{{ csrf_token }}">{% endblock %}
 
     <!-- Ad Network Verification -->
