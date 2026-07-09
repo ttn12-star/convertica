@@ -6,9 +6,9 @@ from django.http import HttpRequest
 from rest_framework import status
 from rest_framework.response import Response
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import convert_image_docs
 from .utils import convert_image
 
 
@@ -39,7 +39,9 @@ class ConvertImageBatchAPIView(BaseBatchAPIView):
         return os.path.basename(output_path)
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @convert_image_docs()
+    @batch_premium_docs(
+        summary="Convert Image (batch, premium)", file_field="image_files"
+    )
     def post(self, request: HttpRequest):
         # output_format is required for image conversion
         output_format = request.POST.get("output_format", "").upper()

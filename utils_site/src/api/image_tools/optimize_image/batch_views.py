@@ -4,9 +4,9 @@ import os
 
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import optimize_image_docs
 from .utils import optimize_image
 
 
@@ -56,6 +56,8 @@ class OptimizeImageBatchAPIView(BaseBatchAPIView):
         return os.path.basename(output_path)
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @optimize_image_docs()
+    @batch_premium_docs(
+        summary="Optimize Image (batch, premium)", file_field="image_files"
+    )
     def post(self, request: HttpRequest):
         return self._process_batch(request)

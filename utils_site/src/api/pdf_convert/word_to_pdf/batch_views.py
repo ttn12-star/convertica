@@ -5,9 +5,9 @@ import os
 from asgiref.sync import async_to_sync
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import word_to_pdf_docs
 from .utils import convert_word_to_pdf
 
 
@@ -29,6 +29,6 @@ class WordToPDFBatchAPIView(BaseBatchAPIView):
         return f"{os.path.splitext(original_name)[0]}_convertica.pdf"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @word_to_pdf_docs()
+    @batch_premium_docs(summary="Word To Pdf (batch, premium)", file_field="word_files")
     def post(self, request: HttpRequest):
         return self._process_batch(request)

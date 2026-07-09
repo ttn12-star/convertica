@@ -2,9 +2,9 @@
 
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import split_pdf_docs
 from .utils import split_pdf
 
 
@@ -33,6 +33,6 @@ class SplitPDFBatchAPIView(BaseBatchAPIView):
         return f"{original_name.rsplit('.', 1)[0]}_split.zip"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @split_pdf_docs()
+    @batch_premium_docs(summary="Split Pdf (batch, premium)", file_field="pdf_files")
     def post(self, request: HttpRequest):
         return self._process_batch(request)
