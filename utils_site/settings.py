@@ -1283,6 +1283,16 @@ SUBSCRIPTION_PRICING.update(
 TELEGRAM_BOT_TOKEN = config("TELEGRAM_BOT_TOKEN", default="", cast=str)
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID", default="", cast=str)
 
+# Dedicated bot for contact-form submissions. Kept separate from the shared
+# TELEGRAM_* bot, which also carries ci/docker-monitor.sh container alerts and
+# must stay on its own chat. Falls back to the shared bot if left unset (dev).
+CONTACT_TELEGRAM_BOT_TOKEN = config(
+    "CONTACT_TELEGRAM_BOT_TOKEN", default=TELEGRAM_BOT_TOKEN, cast=str
+)
+CONTACT_TELEGRAM_CHAT_ID = config(
+    "CONTACT_TELEGRAM_CHAT_ID", default=TELEGRAM_CHAT_ID, cast=str
+)
+
 
 # Django Channels Configuration (WebSocket support)
 try:

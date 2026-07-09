@@ -3,6 +3,7 @@ Tests for frontend views.
 """
 
 import re
+from unittest.mock import patch
 from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
@@ -500,6 +501,39 @@ class FrontendViewsTestCase(TestCase):
         # Check for email in structured data
         self.assertContains(
             response, "info@convertica.net", count=None, status_code=200
+        )
+
+    @override_settings(CONTACT_TELEGRAM_ENABLED=True)
+    @patch("src.api.spam_protection.verify_turnstile", return_value=True)
+    @patch("src.tasks.email.send_contact_form_email.delay")
+    @patch("src.tasks.telegram_service.send_telegram_message.delay")
+    def test_contact_form_posts_to_both_telegram_and_email(
+        self, mock_telegram, mock_email, _mock_turnstile
+    ):
+        """A submission fans out to both the contact bot and email (not either/or)."""
+        response = self.client.post(
+            self._get_url_with_lang("contact/"),
+            {
+                "name": "Jane",
+                "email": "jane@example.com",
+                "subject": "Hello",
+                "message": "Test message",
+                "privacy": "on",
+            },
+        )
+        # Redirects to ?sent=1 on success.
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("sent=1", response["Location"])
+        mock_telegram.assert_called_once()
+        mock_email.assert_called_once()
+        # Telegram goes to the dedicated contact bot, not the shared alert bot.
+        self.assertEqual(
+            mock_telegram.call_args.kwargs.get("bot_token"),
+            settings.CONTACT_TELEGRAM_BOT_TOKEN,
+        )
+        self.assertEqual(
+            mock_email.call_args.kwargs.get("recipient_email"),
+            settings.CONTACT_EMAIL,
         )
 
     def test_faq_page_has_questions(self):
