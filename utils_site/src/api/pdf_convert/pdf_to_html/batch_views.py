@@ -4,9 +4,9 @@ import os
 
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import pdf_to_html_docs
 from .utils import convert_pdf_to_html
 
 
@@ -27,6 +27,6 @@ class PDFToHTMLBatchAPIView(BaseBatchAPIView):
         return f"{os.path.splitext(original_name)[0]}_convertica.html"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @pdf_to_html_docs()
+    @batch_premium_docs(summary="Pdf To Html (batch, premium)", file_field="pdf_files")
     def post(self, request: HttpRequest):
         return self._process_batch(request)

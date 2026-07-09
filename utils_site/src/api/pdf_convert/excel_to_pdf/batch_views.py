@@ -5,9 +5,9 @@ import os
 from asgiref.sync import async_to_sync
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import excel_to_pdf_docs
 from .utils import convert_excel_to_pdf, validate_excel_file
 
 
@@ -36,6 +36,8 @@ class ExcelToPDFBatchAPIView(BaseBatchAPIView):
         return os.path.basename(output_path) or f"{base_name}_convertica.pdf"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @excel_to_pdf_docs()
+    @batch_premium_docs(
+        summary="Excel To Pdf (batch, premium)", file_field="excel_files"
+    )
     def post(self, request: HttpRequest):
         return self._process_batch(request)

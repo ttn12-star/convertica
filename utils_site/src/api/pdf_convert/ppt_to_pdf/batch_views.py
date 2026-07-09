@@ -5,9 +5,9 @@ import os
 from asgiref.sync import async_to_sync
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import ppt_to_pdf_docs
 from .utils import convert_ppt_to_pdf, validate_ppt_file
 
 
@@ -36,6 +36,6 @@ class PowerPointToPDFBatchAPIView(BaseBatchAPIView):
         return os.path.basename(output_path) or f"{base_name}_convertica.pdf"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @ppt_to_pdf_docs()
+    @batch_premium_docs(summary="Ppt To Pdf (batch, premium)", file_field="ppt_files")
     def post(self, request: HttpRequest):
         return self._process_batch(request)

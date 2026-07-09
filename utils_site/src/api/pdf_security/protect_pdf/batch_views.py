@@ -4,9 +4,9 @@ import os
 
 from django.http import HttpRequest
 from src.api.base_batch_views import BaseBatchAPIView
+from src.api.batch_docs import batch_premium_docs
 from src.api.rate_limit_utils import combined_rate_limit
 
-from .decorators import protect_pdf_docs
 from .utils import protect_pdf
 
 
@@ -34,6 +34,6 @@ class ProtectPDFBatchAPIView(BaseBatchAPIView):
         return f"{os.path.splitext(original_name)[0]}_protected.pdf"
 
     @combined_rate_limit(group="api_batch", ip_rate="10/h", methods=["POST"])
-    @protect_pdf_docs()
+    @batch_premium_docs(summary="Protect Pdf (batch, premium)", file_field="pdf_files")
     def post(self, request: HttpRequest):
         return self._process_batch(request)
