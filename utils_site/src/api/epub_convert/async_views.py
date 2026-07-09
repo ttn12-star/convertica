@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.http import HttpRequest
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
@@ -9,6 +10,15 @@ from src.tasks.pdf_conversion import generic_conversion_task
 from ..async_views import AsyncConversionAPIView
 from ..premium_utils import is_premium_active
 from .serializers import EPUBToPDFSerializer, PDFToEPUBSerializer
+
+# Shared response docs for the premium async conversion endpoints. Behaviour was
+# always gated (403) / validated (400/413); this just makes the schema match.
+_ASYNC_RESPONSES = {
+    202: "Conversion task accepted (poll /api/tasks/<id>/status/).",
+    400: "Bad request - invalid file or parameters.",
+    403: "Premium subscription required.",
+    413: "File too large.",
+}
 
 
 def _premium_access_error(request: HttpRequest) -> Response:
@@ -47,6 +57,11 @@ class EPUBToPDFAsyncAPIView(AsyncConversionAPIView):
     def get_celery_task(self):
         return generic_conversion_task
 
+    @swagger_auto_schema(
+        operation_summary="EPUB to PDF (async, premium)",
+        tags=["PDF Conversion"],
+        responses=_ASYNC_RESPONSES,
+    )
     def post(self, request: HttpRequest):
         if not is_premium_active(request.user):
             return _premium_access_error(request)
@@ -69,6 +84,11 @@ class PDFToEPUBAsyncAPIView(AsyncConversionAPIView):
     def get_celery_task(self):
         return generic_conversion_task
 
+    @swagger_auto_schema(
+        operation_summary="PDF to EPUB (async, premium)",
+        tags=["PDF Conversion"],
+        responses=_ASYNC_RESPONSES,
+    )
     def post(self, request: HttpRequest):
         if not is_premium_active(request.user):
             return _premium_access_error(request)

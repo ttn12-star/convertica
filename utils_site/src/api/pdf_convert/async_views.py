@@ -10,6 +10,7 @@ that are too large/complex to process on our limited server.
 
 from django.conf import settings
 from django.http import HttpRequest
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
@@ -168,6 +169,16 @@ class PDFToMarkdownAsyncAPIView(AsyncConversionAPIView):
             "preserve_tables": validated_data.get("preserve_tables", True),
         }
 
+    @swagger_auto_schema(
+        operation_summary="PDF to Markdown (async, premium)",
+        tags=["PDF Conversion"],
+        responses={
+            202: "Conversion task accepted (poll /api/tasks/<id>/status/).",
+            400: "Bad request - invalid file or parameters.",
+            403: "Premium subscription required.",
+            413: "File too large.",
+        },
+    )
     def post(self, request: HttpRequest):
         if not is_premium_active(request.user):
             return _premium_access_error(request)

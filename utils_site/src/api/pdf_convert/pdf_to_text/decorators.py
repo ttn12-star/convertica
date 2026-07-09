@@ -43,6 +43,7 @@ def pdf_to_text_docs():
                 schema=openapi.Schema(type=openapi.TYPE_FILE),
             ),
             400: "Bad request - invalid file or parameters",
+            403: "Premium subscription required",
             413: "File too large",
             500: "Conversion failed",
         },

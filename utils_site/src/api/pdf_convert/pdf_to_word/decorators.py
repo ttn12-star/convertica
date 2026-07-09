@@ -41,6 +41,7 @@ def pdf_to_word_docs() -> Callable:
                     },
                 ),
                 400: "Bad request.",
+                403: "Premium subscription required (OCR mode).",
                 413: "File too large.",
                 500: "Internal server error.",
             },
