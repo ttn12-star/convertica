@@ -100,6 +100,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // "Browse files" button opens the native picker. This page overrides
+    // extra_js and does NOT load file-input-handler.js (which normally wires
+    // this on other tools), so replicate that wiring here. Without it the
+    // button was a no-op and only drag & drop worked.
+    if (selectFileButton && fileInput) {
+        const openPicker = () => setTimeout(() => fileInput.click(), 0);
+        selectFileButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openPicker();
+        });
+        // selectFileButton is a <div role="button" tabindex="0">, so it needs
+        // explicit keyboard activation (Enter/Space) for accessibility.
+        selectFileButton.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                openPicker();
+            }
+        });
+    }
+
     // Drag and drop handlers for dropZone
     if (dropZone) {
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
