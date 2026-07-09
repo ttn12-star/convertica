@@ -56,6 +56,23 @@ class HeaderNavigation {
     this.menuIconOpen = document.getElementById('menu-icon-open');
     this.menuIconClose = document.getElementById('menu-icon-close');
 
+    // Priority+ overflow nav
+    this.rowEl = this.header?.querySelector('.container > div');
+    this.leftCluster = this.rowEl?.querySelector(':scope > div');
+    this.navEl = document.querySelector('header nav[aria-label]');
+    this.moreToolsParent = document.getElementById('more-tools-menu-parent');
+    this.moreToolsButton = document.getElementById('more-tools-menu-button');
+    this.moreToolsDropdown = document.getElementById('more-tools-menu-dropdown');
+    this.moreToolsSlots = document.getElementById('more-tools-menu-slots');
+    this.moreToolsArrow = document.getElementById('more-tools-menu-arrow');
+    // Category menus that may collapse into the bucket, in visual (DOM) order.
+    // Drop order (first to overflow) is the reverse: Premium → … → Convert.
+    this.overflowCategories = [
+      'mega-menu-parent', 'edit-pdf-menu-parent', 'organize-pdf-menu-parent',
+      'images-menu-parent', 'premium-tools-menu-parent',
+    ].map((id) => document.getElementById(id)).filter(Boolean);
+    this._pendingRaf = null;
+
     this.init();
   }
 
@@ -202,6 +219,57 @@ class HeaderNavigation {
 
     // Handle window resize
     window.addEventListener('resize', () => this.handleResize());
+
+    // --- Priority+ overflow nav ---
+    // Bucket trigger (hover + click), mirrors the other desktop menus.
+    if (this.moreToolsParent) {
+      this.moreToolsParent.addEventListener('mouseenter', () => this.showMoreTools());
+      this.moreToolsParent.addEventListener('mouseleave', () => this.hideMoreTools());
+    }
+    this.moreToolsButton?.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.toggleMoreToolsDesktop();
+    });
+    // When a category lives in the bucket, its trigger toggles an accordion
+    // instead of the normal dropdown. Capture-phase so it wins over the
+    // category's own click handler without editing that handler.
+    this.overflowCategories.forEach((cat) => {
+      const btn = cat.querySelector(':scope > button');
+      if (!btn) return;
+      btn.addEventListener('click', (e) => {
+        if (cat.classList.contains('nav-overflowed')) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          this.toggleAccordion(cat);
+        }
+      }, true);
+    });
+    // Recompute what fits whenever the row OR the nav's own box resizes
+    // (rAF-debounced). Observing the nav matters at breakpoints/font swaps:
+    // those change the nav's content width without changing the row width, so
+    // a row-only observer would miss them. recomputeOverflow is idempotent for
+    // a given width, so our own item moves settle in one extra cycle (no loop).
+    if (window.ResizeObserver) {
+      this._ro = new ResizeObserver(() => this.scheduleOverflowRecompute());
+      // Observe every element whose width feeds the collision test: the row
+      // (viewport), the nav content, the "All Tools" button (its label toggles
+      // at the lg breakpoint) and the logo (font swap). A breakpoint/font change
+      // can widen All Tools or the logo without changing the row or nav width,
+      // so observing only the row would miss it. None of these are resized by
+      // our own item moves, so there is no observer feedback loop.
+      const logo = this.header?.querySelector('a[itemprop="url"]');
+      [this.rowEl, this.navEl, this.allToolsParent, logo].forEach((el) => {
+        if (el) this._ro.observe(el);
+      });
+    }
+    this.scheduleOverflowRecompute();
+    // Belt-and-suspenders for late reflows (fonts, icons, breakpoint styles)
+    // that a ResizeObserver might not attribute to an observed element.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => this.scheduleOverflowRecompute());
+    }
+    window.addEventListener('load', () => this.scheduleOverflowRecompute());
+    [150, 500, 1000].forEach((t) => setTimeout(() => this.scheduleOverflowRecompute(), t));
   }
 
   closeAllMenus() {
@@ -213,6 +281,7 @@ class HeaderNavigation {
     this.hidePremiumTools();
     this.hideImages();
     this.hideMore();
+    this.hideMoreTools();
     // Mobile slide-out menu
     if (this.mobileMenu && !this.mobileMenu.classList.contains('hidden')) {
       this.mobileMenu.classList.add('hidden');
@@ -262,6 +331,7 @@ class HeaderNavigation {
 
   showMega() {
     if (window.innerWidth < 768) return;
+    if (this.megaParent?.classList.contains('nav-overflowed')) return;
     if (!this.megaDropdown || !this.megaParent || !this.megaButton) return;
     // Hide other menus if open
     this.hideEditPdf();
@@ -280,6 +350,7 @@ class HeaderNavigation {
 
   hideMega() {
     if (window.innerWidth < 768) return;
+    if (this.megaParent?.classList.contains('nav-overflowed')) return;
     if (!this.megaDropdown || !this.megaParent || !this.megaButton) return;
     this.megaDropdown.classList.remove('opacity-100', 'visible');
     this.megaDropdown.classList.add('opacity-0', 'invisible');
@@ -310,6 +381,7 @@ class HeaderNavigation {
 
   showEditPdf() {
     if (window.innerWidth < 768) return;
+    if (this.editPdfParent?.classList.contains('nav-overflowed')) return;
     if (!this.editPdfDropdown || !this.editPdfParent || !this.editPdfButton) return;
     // Hide other menus if open
     this.hideMega();
@@ -328,6 +400,7 @@ class HeaderNavigation {
 
   hideEditPdf() {
     if (window.innerWidth < 768) return;
+    if (this.editPdfParent?.classList.contains('nav-overflowed')) return;
     if (!this.editPdfDropdown || !this.editPdfParent || !this.editPdfButton) return;
     this.editPdfDropdown.classList.remove('opacity-100', 'visible');
     this.editPdfDropdown.classList.add('opacity-0', 'invisible');
@@ -359,6 +432,7 @@ class HeaderNavigation {
 
   showOrganizePdf() {
     if (window.innerWidth < 768) return;
+    if (this.organizePdfParent?.classList.contains('nav-overflowed')) return;
     if (!this.organizePdfDropdown || !this.organizePdfParent || !this.organizePdfButton) return;
     // Hide other menus if open
     this.hideMega();
@@ -377,6 +451,7 @@ class HeaderNavigation {
 
   hideOrganizePdf() {
     if (window.innerWidth < 768) return;
+    if (this.organizePdfParent?.classList.contains('nav-overflowed')) return;
     if (!this.organizePdfDropdown || !this.organizePdfParent || !this.organizePdfButton) return;
     this.organizePdfDropdown.classList.remove('opacity-100', 'visible');
     this.organizePdfDropdown.classList.add('opacity-0', 'invisible');
@@ -510,6 +585,7 @@ class HeaderNavigation {
 
   showImages() {
     if (window.innerWidth < 768) return;
+    if (this.imagesParent?.classList.contains('nav-overflowed')) return;
     if (!this.imagesDropdown || !this.imagesParent || !this.imagesButton) return;
     // Hide other menus if open
     this.hideMega();
@@ -529,6 +605,7 @@ class HeaderNavigation {
 
   hideImages() {
     if (window.innerWidth < 768) return;
+    if (this.imagesParent?.classList.contains('nav-overflowed')) return;
     if (!this.imagesDropdown || !this.imagesParent || !this.imagesButton) return;
     this.imagesDropdown.classList.remove('opacity-100', 'visible');
     this.imagesDropdown.classList.add('opacity-0', 'invisible');
@@ -560,6 +637,7 @@ class HeaderNavigation {
 
   showPremiumTools() {
     if (window.innerWidth < 768) return;
+    if (this.premiumToolsParent?.classList.contains('nav-overflowed')) return;
     if (!this.premiumToolsDropdown || !this.premiumToolsParent || !this.premiumToolsButton) return;
     // Hide other menus if open
     this.hideMega();
@@ -579,6 +657,7 @@ class HeaderNavigation {
 
   hidePremiumTools() {
     if (window.innerWidth < 768) return;
+    if (this.premiumToolsParent?.classList.contains('nav-overflowed')) return;
     if (!this.premiumToolsDropdown || !this.premiumToolsParent || !this.premiumToolsButton) return;
     this.premiumToolsDropdown.classList.remove('opacity-100', 'visible');
     this.premiumToolsDropdown.classList.add('opacity-0', 'invisible');
@@ -710,6 +789,14 @@ class HeaderNavigation {
         window.innerWidth >= 768) {
       this.hideMore();
     }
+
+    // Close desktop More tools bucket
+    if (this.moreToolsDropdown &&
+        this.moreToolsParent &&
+        !this.moreToolsParent.contains(e.target) &&
+        window.innerWidth >= 768) {
+      this.hideMoreTools();
+    }
   }
 
   handleResize() {
@@ -728,6 +815,152 @@ class HeaderNavigation {
     if (this.mobileMenu && !this.mobileMenu.classList.contains('hidden')) {
       this.updateMobileMenuPosition();
     }
+
+    // Recompute Priority+ overflow after a width change.
+    this.scheduleOverflowRecompute();
+  }
+
+  // ---- Priority+ overflow bucket ("More tools") ----
+
+  showMoreTools() {
+    if (window.innerWidth < 768) return;
+    if (!this.moreToolsDropdown || !this.moreToolsParent || !this.moreToolsButton) return;
+    this.hideMega();
+    this.hideEditPdf();
+    this.hideOrganizePdf();
+    this.hideAllTools();
+    this.hidePremiumTools();
+    this.hideImages();
+    this.hideMore();
+    this.moreToolsDropdown.classList.remove('opacity-0', 'invisible');
+    this.moreToolsDropdown.classList.add('opacity-100', 'visible');
+    this.moreToolsParent.setAttribute('aria-expanded', 'true');
+    this.moreToolsButton.setAttribute('aria-expanded', 'true');
+    this.moreToolsArrow?.classList.add('rotate-180');
+  }
+
+  hideMoreTools() {
+    if (window.innerWidth < 768) return;
+    if (!this.moreToolsDropdown || !this.moreToolsParent || !this.moreToolsButton) return;
+    this.moreToolsDropdown.classList.remove('opacity-100', 'visible');
+    this.moreToolsDropdown.classList.add('opacity-0', 'invisible');
+    this.moreToolsParent.setAttribute('aria-expanded', 'false');
+    this.moreToolsButton.setAttribute('aria-expanded', 'false');
+    this.moreToolsArrow?.classList.remove('rotate-180');
+  }
+
+  toggleMoreToolsDesktop() {
+    if (!this.moreToolsDropdown) return;
+    const isVisible = !this.moreToolsDropdown.classList.contains('invisible');
+    isVisible ? this.hideMoreTools() : this.showMoreTools();
+  }
+
+  // Accordion inside the bucket for a collapsed category.
+  toggleAccordion(cat) {
+    const dd = cat.querySelector(':scope > [id$="-menu-dropdown"]');
+    if (!dd) return;
+    const isOpen = !dd.classList.contains('hidden');
+    dd.classList.toggle('hidden', isOpen);
+    cat.classList.toggle('open', !isOpen);
+    const btn = cat.querySelector(':scope > button');
+    btn?.setAttribute('aria-expanded', String(!isOpen));
+  }
+
+  _makeAccordion(cat) {
+    cat.classList.add('nav-overflowed');
+    cat.classList.remove('open');
+    const dd = cat.querySelector(':scope > [id$="-menu-dropdown"]');
+    dd?.classList.add('hidden');
+  }
+
+  _unmakeAccordion(cat) {
+    cat.classList.remove('nav-overflowed', 'open');
+    const dd = cat.querySelector(':scope > [id$="-menu-dropdown"]');
+    if (dd) {
+      dd.classList.remove('hidden', 'opacity-100', 'visible');
+      dd.classList.add('opacity-0', 'invisible');
+    }
+    cat.querySelector(':scope > button')?.setAttribute('aria-expanded', 'false');
+  }
+
+  // Does the nav physically collide with the "All Tools" button? The nav lives
+  // in a flex-1 wrapper and, when too wide, overflows toward All Tools — that is
+  // the visible collision. getBoundingClientRect is direction-agnostic (RTL ok).
+  _navCollides() {
+    const anchor = this.allToolsParent || this.leftCluster;
+    if (!anchor || !this.navEl) return false;
+    const a = anchor.getBoundingClientRect();
+    const b = this.navEl.getBoundingClientRect();
+    if (a.width === 0 || b.width === 0) return false;
+    const GAP = 8;
+    const overlap = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+    return overlap > -GAP;
+  }
+
+  _resetCategoriesHome() {
+    // Move any overflowed category back into the bar, before the bucket,
+    // in visual order (so the original order is preserved).
+    this.overflowCategories.forEach((cat) => {
+      if (cat.parentElement === this.moreToolsSlots) {
+        this._unmakeAccordion(cat);
+        this.navEl.insertBefore(cat, this.moreToolsParent);
+      }
+    });
+  }
+
+  _moveToOverflow(cat) {
+    this._makeAccordion(cat);
+    this.moreToolsSlots.appendChild(cat);
+  }
+
+  scheduleOverflowRecompute() {
+    if (this._pendingRaf) return;
+    this._pendingRaf = requestAnimationFrame(() => {
+      this._pendingRaf = null;
+      this.recomputeOverflow();
+    });
+  }
+
+  recomputeOverflow() {
+    if (!this.navEl || !this.moreToolsParent || !this.moreToolsSlots) return;
+
+    // Remember which accordions the user had expanded, so a later recompute
+    // (resize, font swap, settle tick) doesn't collapse them under the user.
+    const openIds = new Set(
+      this.overflowCategories.filter((c) => c.classList.contains('open')).map((c) => c.id),
+    );
+
+    // Always start from the fully-expanded bar.
+    this._resetCategoriesHome();
+    this.moreToolsParent.classList.add('hidden');
+
+    // Below md the mobile hamburger owns navigation.
+    if (window.innerWidth < 768) return;
+
+    // Drop from the right until the bar no longer collides with the logo cluster.
+    const dropOrder = this.overflowCategories.slice().reverse();
+    let moved = 0;
+    for (const cat of dropOrder) {
+      if (!this._navCollides()) break;
+      if (moved === 0) this.moreToolsParent.classList.remove('hidden');
+      this._moveToOverflow(cat);
+      moved += 1;
+    }
+
+    if (moved === 0) {
+      this.moreToolsParent.classList.add('hidden');
+      return;
+    }
+    // Re-order the bucket contents into natural (visual) order top-to-bottom,
+    // and restore any accordion the user had expanded before this recompute.
+    this.overflowCategories.forEach((cat) => {
+      if (cat.parentElement !== this.moreToolsSlots) return;
+      this.moreToolsSlots.appendChild(cat);
+      if (openIds.has(cat.id)) {
+        cat.querySelector(':scope > [id$="-menu-dropdown"]')?.classList.remove('hidden');
+        cat.classList.add('open');
+      }
+    });
   }
 }
 
