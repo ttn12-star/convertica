@@ -703,12 +703,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const blob = await response.blob();
             window.hideLoading && window.hideLoading('loadingContainer');
-            const cd = response.headers.get('content-disposition') || '';
-            let downloadName = selectedFile.name.replace(/\.pdf$/i, '') + '_signed.pdf';
-            const m = cd.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
-            if (m && m[1]) downloadName = m[1].replace(/['"]/g, '');
+            // Pass the ORIGINAL filename: showDownloadButton applies
+            // REPLACE_REGEX/REPLACE_TO ("_signed.pdf") itself. Passing an already
+            // renamed name produced a double suffix ("_signed_signed.pdf").
             window.showDownloadButton && window.showDownloadButton(
-                blob, downloadName, 'downloadContainer',
+                blob, selectedFile.name, 'downloadContainer',
                 {
                     successTitle: window.SUCCESS_TITLE || 'Signing Complete!',
                     downloadButtonText: window.DOWNLOAD_BUTTON_TEXT || 'Download File',

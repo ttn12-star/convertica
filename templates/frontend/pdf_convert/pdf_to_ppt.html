@@ -1,12 +1,8 @@
 {% extends "frontend/converter_generic.html" %}
 {% load i18n static minified_static %}
 
-{% block scripts %}
-  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
-  <script src="{% minified_static 'js/converter.js' %}" nonce="{{ csp_nonce }}"></script>
-{% endblock %}
+{# Scripts (utils, task-cancellation, file-input-handler, converter) come from #}
+{# converter_generic's extra_js block; this page needs no extra JS of its own. #}
 
 {% block help_section %}
   <!-- How it works -->
