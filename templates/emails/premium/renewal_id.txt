@@ -1,0 +1,14 @@
+{% autoescape off %}Terima kasih telah memperpanjang Convertica Premium
+
+{% if greeting_name %}Hai {{ greeting_name }},{% else %}Hai,{% endif %}
+
+Terima kasih telah memperpanjang langganan Convertica Premium Anda. Kami sungguh senang Anda tetap bersama kami, dan kami tidak menganggap dukungan Anda sebagai hal yang biasa saja.
+
+Ada yang tidak berjalan sebagaimana mestinya? Cukup kirim email ke kami di {{ support_email }} dan kami akan memperbaikinya secepat mungkin.
+
+Ingin Convertica bisa melakukan lebih banyak lagi? Tulis ke alamat yang sama — kami membaca setiap permintaan dan mungkin akan menghadirkannya di rilis mendatang.
+
+Sekali lagi terima kasih,
+Tim Convertica
+{{ site_url }}
+{% endautoescape %}

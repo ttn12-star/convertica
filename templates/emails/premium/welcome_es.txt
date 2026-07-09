@@ -1,0 +1,24 @@
+{% autoescape off %}Te damos la bienvenida a Convertica Premium 🎉
+
+{% if greeting_name %}Hola {{ greeting_name }}:{% else %}Hola:{% endif %}
+
+Gracias por suscribirte a Convertica Premium. Tu apoyo significa mucho para nosotros: es lo que mantiene las herramientas rápidas, limpias y en constante mejora.
+
+Lo que acabas de desbloquear:
+• Todas las herramientas y funciones Premium ya están a tu disposición
+• Procesamiento por lotes: convierte y edita muchos archivos a la vez
+• Acceso a la API para automatizar tu trabajo
+• Tema oscuro en todo el sitio
+• Sin anuncios, en ninguna parte
+
+¿Quieres aparecer en el tablón de Hero? Abre tu perfil y activa «Mostrar como Héroe»: tu apoyo se mostrará directamente en el sitio.
+{{ profile_url }}
+
+¿Algo no funciona como esperabas? Escríbenos a {{ support_email }} y lo solucionaremos lo antes posible.
+
+¿Te gustaría que Convertica hiciera algo más? Escríbenos a la misma dirección: leemos cada solicitud y puede que la incluyamos en una futura versión.
+
+Gracias de nuevo por acompañarnos,
+El equipo de Convertica
+{{ site_url }}
+{% endautoescape %}

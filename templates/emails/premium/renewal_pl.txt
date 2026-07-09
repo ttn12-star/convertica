@@ -1,0 +1,14 @@
+{% autoescape off %}Dziękujemy za odnowienie Convertica Premium
+
+{% if greeting_name %}Cześć {{ greeting_name }},{% else %}Dzień dobry,{% endif %}
+
+Dziękujemy za odnowienie subskrypcji Convertica Premium. Bardzo się cieszymy, że z nami zostajesz, i nie traktujemy Twojego wsparcia jako czegoś oczywistego.
+
+Coś nie działa tak, jak powinno? Napisz do nas na {{ support_email }}, a naprawimy to najszybciej, jak się da.
+
+Chciałbyś, żeby Convertica potrafiła coś więcej? Napisz na ten sam adres — czytamy każdą prośbę i być może wprowadzimy to w jednej z kolejnych wersji.
+
+Jeszcze raz dziękujemy,
+Zespół Convertica
+{{ site_url }}
+{% endautoescape %}

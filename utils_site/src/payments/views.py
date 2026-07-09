@@ -118,6 +118,10 @@ def create_checkout_session(request):
             custom_data={
                 "user_id": str(user.id),
                 "plan_id": str(plan.id),
+                # Language the user is browsing in right now — authoritative
+                # source for the localized welcome email sent from the webhook,
+                # which has no request/session to read the locale from.
+                "locale": getattr(request, "LANGUAGE_CODE", "en") or "en",
             },
             success_url=success_url,
             email=user.email,
