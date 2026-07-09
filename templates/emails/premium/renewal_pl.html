@@ -1,0 +1,11 @@
+{% extends "emails/premium/base_renewal.html" %}
+{% block preheader %}Twój Premium został odnowiony — dziękujemy, że z nami zostajesz.{% endblock %}
+{% block heading %}Dziękujemy za odnowienie 💙{% endblock %}
+{% block greeting_named %}Cześć {{ greeting_name }},{% endblock %}
+{% block greeting_neutral %}Dzień dobry,{% endblock %}
+{% block lead %}Dziękujemy za odnowienie subskrypcji Convertica Premium. Bardzo się cieszymy, że z nami zostajesz, i nie traktujemy Twojego wsparcia jako czegoś oczywistego.{% endblock %}
+{% block note_support %}<b>Coś nie działa tak, jak powinno?</b> Napisz do nas na <a href="mailto:{{ support_email }}">{{ support_email }}</a>, a naprawimy to najszybciej, jak się da.{% endblock %}
+{% block note_feature %}Chciałbyś, żeby Convertica potrafiła coś więcej? Napisz na ten sam adres — czytamy każdą prośbę i być może wprowadzimy to w jednej z kolejnych wersji.{% endblock %}
+{% block signoff %}Jeszcze raz dziękujemy,{% endblock %}
+{% block team %}Zespół Convertica{% endblock %}
+{% block footer %}Otrzymujesz tę wiadomość, ponieważ odnowiłeś subskrypcję Convertica Premium.{% endblock %}

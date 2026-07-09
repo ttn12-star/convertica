@@ -78,6 +78,26 @@ def _resolve_next_url(request) -> str:
     return next_url
 
 
+def set_language_cookie(response, lang_code):
+    """Persist the chosen language in the LocaleMiddleware cookie.
+
+    LocaleMiddleware checks this cookie before the Accept-Language header, so
+    setting it makes the choice stick on the next visit — including a fresh
+    device, when we replay a logged-in user's stored preference on login.
+    """
+    response.set_cookie(
+        settings.LANGUAGE_COOKIE_NAME,
+        lang_code,
+        max_age=getattr(settings, "LANGUAGE_COOKIE_AGE", 365 * 24 * 60 * 60),
+        path=getattr(settings, "LANGUAGE_COOKIE_PATH", "/"),
+        domain=getattr(settings, "LANGUAGE_COOKIE_DOMAIN", None),
+        secure=getattr(settings, "LANGUAGE_COOKIE_SECURE", False),
+        httponly=getattr(settings, "LANGUAGE_COOKIE_HTTPONLY", False),
+        samesite=getattr(settings, "LANGUAGE_COOKIE_SAMESITE", "Lax"),
+    )
+    return response
+
+
 def set_language(request):
     """
     Custom set_language view that prevents double language prefixes.
@@ -97,6 +117,17 @@ def set_language(request):
 
         activate(lang_code)
 
+        # Remember an explicit choice on the account so we can restore it on a
+        # different device at login (the cookie alone doesn't travel).
+        user = getattr(request, "user", None)
+        if (
+            user is not None
+            and getattr(user, "is_authenticated", False)
+            and user.preferred_language != lang_code
+        ):
+            user.preferred_language = lang_code
+            user.save(update_fields=["preferred_language"])
+
         # For default language keep URL without language prefix.
         if lang_code == settings.LANGUAGE_CODE:
             final_url = next_url
@@ -106,43 +137,7 @@ def set_language(request):
             )
 
         response = HttpResponseRedirect(final_url)
-
-        # LocaleMiddleware checks cookie before Accept-Language header.
-        response.set_cookie(
-            settings.LANGUAGE_COOKIE_NAME,
-            lang_code,
-            max_age=(
-                settings.LANGUAGE_COOKIE_AGE
-                if hasattr(settings, "LANGUAGE_COOKIE_AGE")
-                else 365 * 24 * 60 * 60
-            ),
-            path=(
-                settings.LANGUAGE_COOKIE_PATH
-                if hasattr(settings, "LANGUAGE_COOKIE_PATH")
-                else "/"
-            ),
-            domain=(
-                settings.LANGUAGE_COOKIE_DOMAIN
-                if hasattr(settings, "LANGUAGE_COOKIE_DOMAIN")
-                else None
-            ),
-            secure=(
-                settings.LANGUAGE_COOKIE_SECURE
-                if hasattr(settings, "LANGUAGE_COOKIE_SECURE")
-                else False
-            ),
-            httponly=(
-                settings.LANGUAGE_COOKIE_HTTPONLY
-                if hasattr(settings, "LANGUAGE_COOKIE_HTTPONLY")
-                else False
-            ),
-            samesite=(
-                settings.LANGUAGE_COOKIE_SAMESITE
-                if hasattr(settings, "LANGUAGE_COOKIE_SAMESITE")
-                else "Lax"
-            ),
-        )
-        return response
+        return set_language_cookie(response, lang_code)
 
     # Always redirect away from setlang endpoint, even if language is missing/invalid.
     return HttpResponseRedirect(next_url)

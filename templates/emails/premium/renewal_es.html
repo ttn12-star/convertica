@@ -1,0 +1,11 @@
+{% extends "emails/premium/base_renewal.html" %}
+{% block preheader %}Tu Premium se ha renovado: gracias por seguir con nosotros.{% endblock %}
+{% block heading %}Gracias por renovar 💙{% endblock %}
+{% block greeting_named %}Hola {{ greeting_name }}:{% endblock %}
+{% block greeting_neutral %}Hola:{% endblock %}
+{% block lead %}Gracias por renovar tu suscripción a Convertica Premium. Nos alegra mucho que sigas con nosotros y no damos tu apoyo por sentado.{% endblock %}
+{% block note_support %}<b>¿Algo no funciona como esperabas?</b> Escríbenos a <a href="mailto:{{ support_email }}">{{ support_email }}</a> y lo solucionaremos lo antes posible.{% endblock %}
+{% block note_feature %}¿Te gustaría que Convertica hiciera algo más? Escríbenos a la misma dirección: leemos cada solicitud y puede que la incluyamos en una futura versión.{% endblock %}
+{% block signoff %}Gracias de nuevo,{% endblock %}
+{% block team %}El equipo de Convertica{% endblock %}
+{% block footer %}Recibes este correo porque has renovado Convertica Premium.{% endblock %}

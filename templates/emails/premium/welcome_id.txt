@@ -1,0 +1,24 @@
+{% autoescape off %}Selamat datang di Convertica Premium 🎉
+
+{% if greeting_name %}Hai {{ greeting_name }},{% else %}Hai,{% endif %}
+
+Terima kasih telah berlangganan Convertica Premium. Dukungan Anda sangat berarti bagi kami — itulah yang membuat semua tools tetap cepat, rapi, dan terus menjadi lebih baik.
+
+Yang kini terbuka untuk Anda:
+• Semua tools dan fitur Premium kini terbuka untuk Anda
+• Pemrosesan batch — konversi dan edit banyak berkas sekaligus
+• Akses API untuk mengotomatiskan alur kerja Anda
+• Tema gelap di seluruh situs
+• Tanpa iklan, di mana pun
+
+Ingin tampil di papan Hero? Buka profil Anda dan aktifkan «Tampilkan sebagai Hero» — dukungan Anda akan ditampilkan langsung di situs.
+{{ profile_url }}
+
+Ada yang tidak berjalan sebagaimana mestinya? Cukup kirim email ke kami di {{ support_email }} dan kami akan memperbaikinya secepat mungkin.
+
+Ingin Convertica bisa melakukan lebih banyak lagi? Tulis ke alamat yang sama — kami membaca setiap permintaan dan mungkin akan menghadirkannya di rilis mendatang.
+
+Sekali lagi terima kasih telah bersama kami,
+Tim Convertica
+{{ site_url }}
+{% endautoescape %}
