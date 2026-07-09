@@ -21,15 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitButton = form.querySelector('button[type="submit"]');
     const resultContainer = document.getElementById('converterResult');
 
-    // Create loading animation container
-    const loadingContainer = document.createElement('div');
-    loadingContainer.id = 'loadingContainer';
-    loadingContainer.className = 'hidden mt-6';
+    // Reuse the static containers rendered by the template when present so we
+    // don't inject a second element with a duplicate id; fall back to creating
+    // them for pages that ship no static container.
+    const loadingContainer = document.getElementById('loadingContainer')
+        || Object.assign(document.createElement('div'), { id: 'loadingContainer', className: 'hidden mt-6' });
 
-    // Create download button container
-    const downloadContainer = document.createElement('div');
-    downloadContainer.id = 'downloadContainer';
-    downloadContainer.className = 'hidden mt-6';
+    const downloadContainer = document.getElementById('downloadContainer')
+        || Object.assign(document.createElement('div'), { id: 'downloadContainer', className: 'hidden mt-6' });
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();

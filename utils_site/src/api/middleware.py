@@ -530,6 +530,10 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "base-uri 'self'",
             # Object sources: none (prevents Flash/plugins)
             "object-src 'none'",
+            # Workers: self + blob (pdf.js instantiates its worker from a blob URL
+            # for the Sign PDF / page-count preview; without this it falls back to
+            # a main-thread fake worker and logs a CSP violation).
+            "worker-src 'self' blob:",
             # Upgrade insecure requests in production
             "upgrade-insecure-requests" if not self._is_debug() else "",
         ]
