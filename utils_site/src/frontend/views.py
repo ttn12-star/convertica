@@ -1268,6 +1268,9 @@ def contact_page(request):
 
             telegram_enabled = getattr(settings, "CONTACT_TELEGRAM_ENABLED", False)
 
+            # Deliver every submission to both channels: the dedicated
+            # contact Telegram bot (@converticamailbot) and email. They fail
+            # independently — one being misconfigured never drops the other.
             if telegram_enabled:
                 from src.tasks.telegram_service import send_telegram_message
 
@@ -1286,22 +1289,21 @@ def contact_page(request):
 
                 send_telegram_message.delay(
                     text=telegram_message,
+                    bot_token=getattr(settings, "CONTACT_TELEGRAM_BOT_TOKEN", None),
+                    chat_id=getattr(settings, "CONTACT_TELEGRAM_CHAT_ID", None),
                 )
 
-            else:
-                from src.tasks.email import send_contact_form_email
+            from src.tasks.email import send_contact_form_email
 
-                recipient_email = getattr(
-                    settings, "CONTACT_EMAIL", "info@convertica.net"
-                )
-                from_email = getattr(
-                    settings,
-                    "DEFAULT_FROM_EMAIL",
-                    f"noreply@{request.get_host()}",
-                )
+            recipient_email = getattr(settings, "CONTACT_EMAIL", "info@convertica.net")
+            from_email = getattr(
+                settings,
+                "DEFAULT_FROM_EMAIL",
+                f"noreply@{request.get_host()}",
+            )
 
-                email_subject = f"[Convertica Contact] {subject}"
-                email_body = f"""New contact form submission from Convertica website:
+            email_subject = f"[Convertica Contact] {subject}"
+            email_body = f"""New contact form submission from Convertica website:
 
 Name: {name}
 Email: {email}
@@ -1316,14 +1318,14 @@ IP Address: {user_ip}
 User Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}
 """
 
-                send_contact_form_email.delay(
-                    subject=email_subject,
-                    message=email_body,
-                    from_email=from_email,
-                    recipient_email=recipient_email,
-                    user_email=email,
-                    user_ip=user_ip,
-                )
+            send_contact_form_email.delay(
+                subject=email_subject,
+                message=email_body,
+                from_email=from_email,
+                recipient_email=recipient_email,
+                user_email=email,
+                user_ip=user_ip,
+            )
 
             return redirect(f"{request.path}?sent=1")
 
