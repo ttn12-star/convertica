@@ -1,0 +1,14 @@
+{% autoescape off %}Thanks for renewing Convertica Premium
+
+{% if greeting_name %}Hi {{ greeting_name }},{% else %}Hi there,{% endif %}
+
+Thank you for renewing your Convertica Premium subscription. We're really glad you're staying with us, and we don't take your support for granted.
+
+Something not working as expected? Just email us at {{ support_email }} and we'll fix it as fast as we can.
+
+Wish Convertica did something more? Write to the same address — we read every request and may build it into a future release.
+
+Thanks again,
+The Convertica Team
+{{ site_url }}
+{% endautoescape %}

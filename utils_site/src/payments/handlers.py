@@ -14,6 +14,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
+from src.tasks.email import send_premium_email
 from src.users.models import Payment, SubscriptionPlan, User, UserSubscription
 
 logger = logging.getLogger(__name__)
@@ -75,6 +76,43 @@ def _attrs(payload: dict) -> dict:
 
 def _data_id(payload: dict) -> str:
     return str(payload.get("data", {}).get("id", "") or "")
+
+
+def _resolve_email_lang(payload: dict, user: User) -> str:
+    """Pick the locale for a transactional email.
+
+    Priority: checkout custom_data.locale (what the user was browsing in when
+    they paid) → the user's stored preferred_language → site default. Only
+    languages we actually ship are accepted; anything else falls back.
+    """
+    supported = {code for code, _ in settings.LANGUAGES}
+    cd = _custom_data(payload)
+    for candidate in (cd.get("locale"), getattr(user, "preferred_language", "")):
+        if candidate in supported:
+            return candidate
+    return settings.LANGUAGE_CODE
+
+
+def _maybe_send_welcome(user: User, lang: str) -> None:
+    """Enqueue the onboarding email exactly once per user, ever.
+
+    Race-safe: the conditional UPDATE claims the send atomically, so concurrent
+    webhook deliveries (or a re-subscribe) can't double-send. The enqueue runs
+    on_commit — if the surrounding handler transaction rolls back, no email
+    goes out and the claim is undone with it.
+    """
+    claimed = User.objects.filter(
+        id=user.id, welcome_email_sent_at__isnull=True
+    ).update(welcome_email_sent_at=timezone.now())
+    if claimed:
+        transaction.on_commit(
+            lambda: send_premium_email.delay(user.id, "welcome", lang)
+        )
+
+
+def _send_renewal(user: User, lang: str) -> None:
+    """Enqueue the short 'thanks for renewing' email (on commit)."""
+    transaction.on_commit(lambda: send_premium_email.delay(user.id, "renewal", lang))
 
 
 def _period_end_with_fallback(payload_period_end_iso, *, plan, period_start):
@@ -142,6 +180,7 @@ def handle_subscription_created(payload: dict) -> None:
             provider_subscription_id=sub_id,
             provider_customer_id=customer_id,
         )
+        _maybe_send_welcome(user, _resolve_email_lang(payload, user))
 
 
 @transaction.atomic
@@ -266,6 +305,10 @@ def handle_subscription_payment_success(payload: dict) -> None:
     user, plan = _resolve_user_and_plan(payload)
     if not user or not plan:
         return
+    # A completed payment already on file means this success event is a renewal
+    # (the first cycle records its Payment right below, so at that point none
+    # exists yet). Checked BEFORE recording so the current charge isn't counted.
+    is_renewal = Payment.objects.filter(user=user, status="completed").exists()
     attrs = _attrs(payload)
     order_id = str(attrs.get("order_id") or _data_id(payload))
     amount_cents = int(attrs.get("total") or 0)
@@ -285,6 +328,8 @@ def handle_subscription_payment_success(payload: dict) -> None:
         external_payment_id=order_id,
         provider="lemonsqueezy",
     )
+    if is_renewal:
+        _send_renewal(user, _resolve_email_lang(payload, user))
 
 
 @transaction.atomic
@@ -382,6 +427,8 @@ def handle_order_created(payload: dict) -> None:
         provider_subscription_id="",
         provider_customer_id=customer_id,
     )
+    # Lifetime is a one-time purchase (no renewals) — only the welcome applies.
+    _maybe_send_welcome(user, _resolve_email_lang(payload, user))
 
 
 @transaction.atomic

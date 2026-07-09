@@ -1,0 +1,20 @@
+{% extends "emails/premium/base_welcome.html" %}
+{% block preheader %}Премиум активен — рассказываем, что теперь открыто.{% endblock %}
+{% block heading %}Всё готово — добро пожаловать в Premium 🎉{% endblock %}
+{% block greeting_named %}Здравствуйте, {{ greeting_name }}!{% endblock %}
+{% block greeting_neutral %}Здравствуйте!{% endblock %}
+{% block lead %}Спасибо, что оформили подписку Convertica Premium. Для нас это очень важно — именно ваша поддержка помогает делать инструменты быстрее, удобнее и чище.{% endblock %}
+{% block card_head %}Что теперь открыто{% endblock %}
+{% block point1 %}Все премиум-инструменты и возможности теперь доступны{% endblock %}
+{% block point2 %}Пакетная обработка — много файлов за раз{% endblock %}
+{% block point3 %}Доступ к API для автоматизации ваших сценариев{% endblock %}
+{% block point4 %}Тёмная тема на всём сайте{% endblock %}
+{% block point5 %}Никакой рекламы{% endblock %}
+{% block hero %}Хотите попасть на доску Hero? Откройте профиль и включите «Показывать как героя» — и ваша поддержка будет видна прямо на сайте.{% endblock %}
+{% block cta_label %}Открыть профиль{% endblock %}
+{% block cta_sub %}Затем включите «Показывать как героя», чтобы попасть на доску.{% endblock %}
+{% block note_support %}<b>Что-то работает не так?</b> Просто напишите нам на <a href="mailto:{{ support_email }}">{{ support_email }}</a>, и мы починим это как можно быстрее.{% endblock %}
+{% block note_feature %}Не хватает какой-то возможности? Напишите на тот же адрес — мы читаем каждое обращение и, возможно, добавим это в одном из будущих обновлений.{% endblock %}
+{% block signoff %}Ещё раз спасибо, что вы с нами,{% endblock %}
+{% block team %}Команда Convertica{% endblock %}
+{% block footer %}Вы получили это письмо, потому что оформили подписку Convertica Premium.{% endblock %}

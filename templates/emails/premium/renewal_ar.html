@@ -1,0 +1,11 @@
+{% extends "emails/premium/base_renewal.html" %}
+{% block preheader %}تم تجديد اشتراك Premium الخاص بك — شكرًا لبقائك معنا.{% endblock %}
+{% block heading %}شكرًا لتجديد اشتراكك 💙{% endblock %}
+{% block greeting_named %}مرحبًا {{ greeting_name }}،{% endblock %}
+{% block greeting_neutral %}مرحبًا،{% endblock %}
+{% block lead %}شكرًا لتجديدك اشتراك Convertica Premium. يسعدنا حقًا بقاؤك معنا، ونحن لا نعتبر دعمك أمرًا مسلَّمًا به.{% endblock %}
+{% block note_support %}<b>هل هناك شيء لا يعمل كما ينبغي؟</b> راسلنا فقط على <a href="mailto:{{ support_email }}">{{ support_email }}</a> وسنصلحه بأسرع ما يمكن.{% endblock %}
+{% block note_feature %}هل تتمنى أن تقدّم Convertica المزيد؟ راسلنا على العنوان نفسه — نقرأ كل طلب، وقد نضيفه في إصدار قادم.{% endblock %}
+{% block signoff %}شكرًا لك مجددًا،{% endblock %}
+{% block team %}فريق Convertica{% endblock %}
+{% block footer %}لقد وصلك هذا البريد لأنك جدّدت اشتراك Convertica Premium.{% endblock %}

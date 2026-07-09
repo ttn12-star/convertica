@@ -1,0 +1,11 @@
+{% extends "emails/premium/base_renewal.html" %}
+{% block preheader %}आपका Premium रिन्यू हो गया है — हमारे साथ बने रहने के लिए धन्यवाद।{% endblock %}
+{% block heading %}रिन्यू करने के लिए धन्यवाद 💙{% endblock %}
+{% block greeting_named %}नमस्ते {{ greeting_name }},{% endblock %}
+{% block greeting_neutral %}नमस्ते,{% endblock %}
+{% block lead %}अपना Convertica Premium सब्सक्रिप्शन रिन्यू करने के लिए धन्यवाद। हमें बहुत खुशी है कि आप हमारे साथ बने हुए हैं, और आपके साथ को हम हल्के में नहीं लेते।{% endblock %}
+{% block note_support %}<b>कुछ उम्मीद के मुताबिक काम नहीं कर रहा?</b> बस हमें <a href="mailto:{{ support_email }}">{{ support_email }}</a> पर ईमेल करें और हम जितनी जल्दी हो सके इसे ठीक कर देंगे।{% endblock %}
+{% block note_feature %}चाहते हैं कि Convertica कुछ और भी करे? इसी पते पर लिखें — हम हर सुझाव पढ़ते हैं और हो सकता है उसे किसी आने वाले अपडेट में शामिल कर दें।{% endblock %}
+{% block signoff %}एक बार फिर धन्यवाद,{% endblock %}
+{% block team %}Convertica टीम{% endblock %}
+{% block footer %}आपको यह ईमेल इसलिए मिल रहा है क्योंकि आपने Convertica Premium रिन्यू किया है।{% endblock %}

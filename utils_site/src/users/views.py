@@ -58,7 +58,20 @@ def user_login(request):
                             },
                         )
                     auth_login(request, user)
-                    return redirect("users:profile")
+                    response = redirect("users:profile")
+                    # Restore the user's saved site language on this device so
+                    # a fresh browser opens in their language, not the one the
+                    # Accept-Language header happens to guess.
+                    from django.conf import settings
+                    from django.utils import translation
+                    from src.frontend.i18n_views import set_language_cookie
+
+                    lang = user.preferred_language
+                    if lang and lang in dict(settings.LANGUAGES):
+                        request.session["django_language"] = lang
+                        translation.activate(lang)
+                        set_language_cookie(response, lang)
+                    return response
                 else:
                     return render(
                         request,

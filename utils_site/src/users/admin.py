@@ -53,6 +53,7 @@ class UserAdmin(BaseUserAdmin):
         "subscription_status",
         "subscription_rank",
         "consecutive_days",
+        "preferred_language",
         "is_active",
         "is_staff",
         "date_joined",
@@ -63,6 +64,7 @@ class UserAdmin(BaseUserAdmin):
         "is_staff",
         "is_superuser",
         "is_premium",
+        "preferred_language",
         "date_joined",
         "socialaccount__provider",
     )
@@ -71,7 +73,10 @@ class UserAdmin(BaseUserAdmin):
 
     fieldsets = (
         (None, {"fields": ("email", "username", "password")}),
-        ("Personal info", {"fields": ("first_name", "last_name")}),
+        (
+            "Personal info",
+            {"fields": ("first_name", "last_name", "preferred_language")},
+        ),
         (
             "Subscription",
             {
@@ -94,6 +99,7 @@ class UserAdmin(BaseUserAdmin):
                     "consecutive_subscription_days",
                     "total_subscription_days",
                     "display_as_hero",
+                    "welcome_email_sent_at",
                 ),
             },
         ),
@@ -116,6 +122,7 @@ class UserAdmin(BaseUserAdmin):
         "effective_premium",
         "consecutive_subscription_days",
         "total_subscription_days",
+        "welcome_email_sent_at",
     )
 
     def effective_premium(self, obj):

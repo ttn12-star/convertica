@@ -1,0 +1,14 @@
+{% autoescape off %}Gracias por renovar Convertica Premium
+
+{% if greeting_name %}Hola {{ greeting_name }}:{% else %}Hola:{% endif %}
+
+Gracias por renovar tu suscripción a Convertica Premium. Nos alegra mucho que sigas con nosotros y no damos tu apoyo por sentado.
+
+¿Algo no funciona como esperabas? Escríbenos a {{ support_email }} y lo solucionaremos lo antes posible.
+
+¿Te gustaría que Convertica hiciera algo más? Escríbenos a la misma dirección: leemos cada solicitud y puede que la incluyamos en una futura versión.
+
+Gracias de nuevo,
+El equipo de Convertica
+{{ site_url }}
+{% endautoescape %}
