@@ -91,6 +91,77 @@ def send_account_email(
 
 
 @shared_task(
+    name="email.send_premium_email",
+    queue="default",
+    bind=True,
+    max_retries=3,
+    soft_time_limit=60,
+    time_limit=90,
+)
+def send_premium_email(self, user_id: int, kind: str, lang: str = ""):
+    """Render and send a localized premium email (welcome / renewal).
+
+    Runs off the webhook request: the handler only enqueues (user_id, kind,
+    lang), so ESP latency never ties up the webhook response. The email body
+    lives in per-language templates ``emails/premium/{kind}_{lang}.txt`` whose
+    first line is the subject. Rendering happens here (deterministic; a template
+    bug fails fast to Sentry), then delivery reuses the vetted
+    ``send_account_email`` task so retries/backoff are handled in one place.
+    """
+    from django.conf import settings
+    from django.template.loader import render_to_string
+    from django.urls import NoReverseMatch, reverse
+    from django.utils import translation
+    from src.users.models import User
+
+    if kind not in ("welcome", "renewal"):
+        logger.error("send_premium_email: unknown kind %r", kind)
+        return
+
+    user = User.objects.filter(id=user_id).first()
+    if not user:
+        logger.warning("send_premium_email: user %s no longer exists", user_id)
+        return
+
+    supported = {code for code, _label in settings.LANGUAGES}
+    lang = lang if lang in supported else settings.LANGUAGE_CODE
+    greeting_name = (getattr(user, "first_name", "") or user.username or "").strip()
+    site_url = settings.SITE_URL.rstrip("/")
+
+    with translation.override(lang):
+        try:
+            profile_url = site_url + reverse("users:profile")
+        except NoReverseMatch:  # pragma: no cover - profile route always exists
+            profile_url = site_url + "/users/profile/"
+        context = {
+            "greeting_name": greeting_name,
+            "site_url": site_url,
+            "profile_url": profile_url,
+            "support_email": getattr(
+                settings, "CONTACT_EMAIL", settings.DEFAULT_FROM_EMAIL
+            ),
+            "email_lang": lang,
+            "rtl": lang == "ar",
+        }
+        text = render_to_string(f"emails/premium/{kind}_{lang}.txt", context)
+        html_body = render_to_string(f"emails/premium/{kind}_{lang}.html", context)
+
+    subject, _sep, body = text.partition("\n")
+    send_account_email.delay(
+        subject=subject.strip(),
+        body=body.strip("\n"),
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[user.email],
+        html_body=html_body,
+    )
+    logger.info(
+        "Premium %s email queued",
+        kind,
+        extra={"event": "premium_email_queued", "user_id": user_id, "lang": lang},
+    )
+
+
+@shared_task(
     name="email.send_contact_form",
     queue="default",
     bind=True,

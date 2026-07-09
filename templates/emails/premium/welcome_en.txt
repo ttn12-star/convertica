@@ -1,0 +1,24 @@
+{% autoescape off %}Welcome to Convertica Premium 🎉
+
+{% if greeting_name %}Hi {{ greeting_name }},{% else %}Hi there,{% endif %}
+
+Thank you for subscribing to Convertica Premium. Your support means a lot — it's what keeps the tools fast, clean, and getting better.
+
+What's now unlocked:
+• All Premium tools and features are now open to you
+• Batch processing — convert and edit many files at once
+• API access to automate your workflows
+• Dark theme across the whole site
+• No ads, anywhere
+
+Want to appear on the Hero board? Open your profile and turn on “Display as Hero” — your support will be shown right on the site.
+{{ profile_url }}
+
+Something not working as expected? Just email us at {{ support_email }} and we'll fix it as fast as we can.
+
+Wish Convertica did something more? Write to the same address — we read every request and may build it into a future release.
+
+Thanks again for being with us,
+The Convertica Team
+{{ site_url }}
+{% endautoescape %}

@@ -57,6 +57,19 @@ class User(AbstractUser):
         default=False, verbose_name=_("Display as Hero")
     )
 
+    # Site language the user last chose (empty = never chose explicitly).
+    # Persisted on language switch, restored via cookie on login (cross-device)
+    # and used as the fallback locale for transactional emails sent from
+    # webhook context where there is no request.
+    preferred_language = models.CharField(
+        max_length=10, blank=True, default="", verbose_name=_("Preferred Language")
+    )
+    # Set once, when the first premium-activation welcome email is sent.
+    # Guards against re-sending the onboarding email on renewals/re-subscribe.
+    welcome_email_sent_at = models.DateTimeField(
+        null=True, blank=True, editable=False, verbose_name=_("Welcome Email Sent At")
+    )
+
     webhook_secret = models.CharField(
         max_length=64,
         blank=True,

@@ -1,0 +1,11 @@
+{% extends "emails/premium/base_renewal.html" %}
+{% block preheader %}Подписка продлена — спасибо, что остаётесь с нами.{% endblock %}
+{% block heading %}Спасибо за продление 💙{% endblock %}
+{% block greeting_named %}Здравствуйте, {{ greeting_name }}!{% endblock %}
+{% block greeting_neutral %}Здравствуйте!{% endblock %}
+{% block lead %}Спасибо, что продлили подписку Convertica Premium. Мы очень рады, что вы остаётесь с нами, и правда ценим вашу поддержку.{% endblock %}
+{% block note_support %}<b>Что-то работает не так?</b> Просто напишите нам на <a href="mailto:{{ support_email }}">{{ support_email }}</a>, и мы починим это как можно быстрее.{% endblock %}
+{% block note_feature %}Не хватает какой-то возможности? Напишите на тот же адрес — мы читаем каждое обращение и, возможно, добавим это в одном из будущих обновлений.{% endblock %}
+{% block signoff %}Ещё раз спасибо,{% endblock %}
+{% block team %}Команда Convertica{% endblock %}
+{% block footer %}Вы получили это письмо, потому что продлили подписку Convertica Premium.{% endblock %}

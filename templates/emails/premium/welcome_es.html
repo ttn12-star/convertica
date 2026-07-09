@@ -1,0 +1,20 @@
+{% extends "emails/premium/base_welcome.html" %}
+{% block preheader %}Tu Premium ya está activo: esto es todo lo que desbloquea.{% endblock %}
+{% block heading %}Todo listo: bienvenido a Premium 🎉{% endblock %}
+{% block greeting_named %}Hola {{ greeting_name }}:{% endblock %}
+{% block greeting_neutral %}Hola:{% endblock %}
+{% block lead %}Gracias por suscribirte a Convertica Premium. Tu apoyo significa mucho para nosotros: es lo que mantiene las herramientas rápidas, limpias y en constante mejora.{% endblock %}
+{% block card_head %}Lo que acabas de desbloquear{% endblock %}
+{% block point1 %}Todas las herramientas y funciones Premium ya están a tu disposición{% endblock %}
+{% block point2 %}Procesamiento por lotes: convierte y edita muchos archivos a la vez{% endblock %}
+{% block point3 %}Acceso a la API para automatizar tu trabajo{% endblock %}
+{% block point4 %}Tema oscuro en todo el sitio{% endblock %}
+{% block point5 %}Sin anuncios, en ninguna parte{% endblock %}
+{% block hero %}¿Quieres aparecer en el tablón de Hero? Abre tu perfil y activa «Mostrar como Héroe»: tu apoyo se mostrará directamente en el sitio.{% endblock %}
+{% block cta_label %}Abrir tu perfil{% endblock %}
+{% block cta_sub %}Después activa «Mostrar como Héroe» para unirte al tablón.{% endblock %}
+{% block note_support %}<b>¿Algo no funciona como esperabas?</b> Escríbenos a <a href="mailto:{{ support_email }}">{{ support_email }}</a> y lo solucionaremos lo antes posible.{% endblock %}
+{% block note_feature %}¿Te gustaría que Convertica hiciera algo más? Escríbenos a la misma dirección: leemos cada solicitud y puede que la incluyamos en una futura versión.{% endblock %}
+{% block signoff %}Gracias de nuevo por acompañarnos,{% endblock %}
+{% block team %}El equipo de Convertica{% endblock %}
+{% block footer %}Recibes este correo porque te has suscrito a Convertica Premium.{% endblock %}

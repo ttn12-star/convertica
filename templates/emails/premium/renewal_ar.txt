@@ -1,0 +1,14 @@
+{% autoescape off %}شكرًا لتجديدك اشتراك Convertica Premium
+
+{% if greeting_name %}مرحبًا {{ greeting_name }}،{% else %}مرحبًا،{% endif %}
+
+شكرًا لتجديدك اشتراك Convertica Premium. يسعدنا حقًا بقاؤك معنا، ونحن لا نعتبر دعمك أمرًا مسلَّمًا به.
+
+هل هناك شيء لا يعمل كما ينبغي؟ راسلنا فقط على {{ support_email }} وسنصلحه بأسرع ما يمكن.
+
+هل تتمنى أن تقدّم Convertica المزيد؟ راسلنا على العنوان نفسه — نقرأ كل طلب، وقد نضيفه في إصدار قادم.
+
+شكرًا لك مجددًا،
+فريق Convertica
+{{ site_url }}
+{% endautoescape %}

@@ -1,0 +1,24 @@
+{% autoescape off %}Witamy w Convertica Premium 🎉
+
+{% if greeting_name %}Cześć {{ greeting_name }},{% else %}Dzień dobry,{% endif %}
+
+Dziękujemy za wykupienie Convertica Premium. Twoje wsparcie wiele dla nas znaczy — to dzięki niemu narzędzia są szybkie, przejrzyste i wciąż się rozwijają.
+
+Co masz teraz odblokowane:
+• Wszystkie narzędzia i funkcje Premium są już dla Ciebie dostępne
+• Przetwarzanie wsadowe — konwertuj i edytuj wiele plików naraz
+• Dostęp do API do automatyzacji Twoich procesów
+• Ciemny motyw na całej stronie
+• Żadnych reklam, nigdzie
+
+Chcesz pojawić się na tablicy Hero? Otwórz swój profil i włącz opcję „Wyświetlaj jako Bohatera” — Twoje wsparcie zostanie pokazane bezpośrednio na stronie.
+{{ profile_url }}
+
+Coś nie działa tak, jak powinno? Napisz do nas na {{ support_email }}, a naprawimy to najszybciej, jak się da.
+
+Chciałbyś, żeby Convertica potrafiła coś więcej? Napisz na ten sam adres — czytamy każdą prośbę i być może wprowadzimy to w jednej z kolejnych wersji.
+
+Jeszcze raz dziękujemy, że jesteś z nami,
+Zespół Convertica
+{{ site_url }}
+{% endautoescape %}
