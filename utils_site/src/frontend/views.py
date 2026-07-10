@@ -941,7 +941,11 @@ def pdf_to_text_page(request):
 def compare_pdf_page(request):
     """Compare two PDF files with visual diff and report (premium-gated API)."""
 
+    # ponytail: кастомный лендинг — картинка только в og:image/JSON-LD,
+    # in-page embed если станет нужен
+    _shots = _tool_screenshot_paths("compare_pdf")
     context = {
+        **({"og_image_filename": _shots[1]} if _shots else {}),
         "page_title": _("Compare Two PDFs (Premium) - Convertica"),
         "page_description": _(
             "Compare two PDF files with visual diff overlays and detailed change reports. "
@@ -1045,7 +1049,11 @@ def ocr_pdf_to_word_page(request):
     on the conversion action itself at the API layer, not on this landing
     page; redirecting anonymous crawlers here made the page un-indexable.
     """
+    # ponytail: кастомный лендинг — картинка только в og:image/JSON-LD,
+    # in-page embed если станет нужен
+    _shots = _tool_screenshot_paths("ocr_pdf_to_word")
     context = {
+        **({"og_image_filename": _shots[1]} if _shots else {}),
         "page_title": _("Scanned PDF to Word (OCR) - Convertica"),
         "page_description": _(
             "Convert scanned PDFs and image-based documents to editable Word "
