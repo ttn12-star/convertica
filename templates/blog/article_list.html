@@ -80,12 +80,17 @@
               <article class="bg-white rounded-2xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col">
                 {% if article.cover_image_url %}
                   <div class="w-full h-48 overflow-hidden">
-                    <img src="{{ article.cover_image_url }}"
-                         alt="{{ article.get_title }}"
-                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                         width="400" height="192"
-                         loading="lazy"
-                         decoding="async">
+                    <picture>
+                      {% if article.cover_image_webp_url %}
+                        <source srcset="{{ article.cover_image_webp_url }}" type="image/webp">
+                      {% endif %}
+                      <img src="{{ article.cover_image_url }}"
+                           alt="{{ article.get_title }}"
+                           class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                           width="400" height="192"
+                           loading="lazy"
+                           decoding="async">
+                    </picture>
                   </div>
                 {% else %}
                   <div class="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
