@@ -558,6 +558,38 @@
         </div>
       </section>
 
+    <!-- Tools-in-action marquee: CSS-only infinite scroll (zero JS).
+         Below the fold + lazy images, so LCP/CLS are untouched. -->
+      <style>
+        .tool-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+        .tool-marquee-track{display:flex;width:max-content;animation:tool-marquee 55s linear infinite}
+        .tool-marquee-half{display:flex;gap:1.5rem;padding-right:1.5rem}
+        .tool-marquee:hover .tool-marquee-track{animation-play-state:paused}
+        @keyframes tool-marquee{to{transform:translateX(-50%)}}
+        @media (prefers-reduced-motion: reduce){
+          .tool-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+          .tool-marquee-track{animation:none}
+          .tool-marquee-half[aria-hidden]{display:none}
+        }
+      </style>
+      <section class="py-12 sm:py-16 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl mb-8 text-center">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
+            {% trans "See our tools in action" %}
+          </h2>
+        </div>
+        <div class="tool-marquee" aria-label="{% trans 'See our tools in action' %}">
+          <div class="tool-marquee-track">
+            <div class="tool-marquee-half">
+              {% include "frontend/includes/tool_marquee_cards.html" %}
+            </div>
+            <div class="tool-marquee-half" aria-hidden="true" inert>
+              {% include "frontend/includes/tool_marquee_cards.html" %}
+            </div>
+          </div>
+        </div>
+      </section>
+
     <!-- FAQ Section -->
       <section class="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
