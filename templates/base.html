@@ -369,7 +369,7 @@
     <script src="{% minified_static 'js/language-detection.js' %}" defer nonce="{{ csp_nonce }}"></script>
 
     <!-- Web-token client — lazily mints a short-lived JWT for /api/* POSTs -->
-    <script src="{% static 'js/web-token.js' %}" defer nonce="{{ csp_nonce }}"></script>
+    <script src="{% minified_static 'js/web-token.js' %}" defer nonce="{{ csp_nonce }}"></script>
 
     {% block extra_js %}{% endblock %}
 
