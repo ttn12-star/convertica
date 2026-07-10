@@ -80,6 +80,35 @@ class BlogViewsTestCase(TestCase):
             response, 'property="og:image:alt" content="Published Article"'
         )
 
+    def test_article_detail_serves_webp_picture(self):
+        """Covers render as <picture> with a WebP source when a .webp sibling exists."""
+        # fresh slug: earlier tests may have primed the page cache for the shared article
+        article = Article.objects.create(
+            title_en="Webp Cover Article",
+            slug="webp-cover-article",
+            excerpt_en="x",
+            content_en="x",
+            status="published",
+            category=self.category,
+            published_at=timezone.now(),
+            cover_image="blog/images/tool-word-to-pdf.jpg",
+        )
+
+        response = self.client.get(
+            self._get_url_with_lang(f"blog/{article.slug}/"), follow=True
+        )
+        self.assertContains(response, "tool-word-to-pdf.webp")
+        self.assertContains(
+            response,
+            '<source srcset="/static/blog/images/tool-word-to-pdf.webp" type="image/webp">',
+            html=False,
+        )
+        # og:image must stay JPG for messenger compatibility
+        self.assertNotContains(
+            response,
+            'property="og:image" content="https://convertica.net/static/blog/images/tool-word-to-pdf.webp"',
+        )
+
     def test_article_detail_relevant_tool_link_uses_frontend_namespace(self):
         """Relevant tool CTA should render a valid frontend tool URL."""
         self.published_article.relevant_tool = "pdf_to_word"
