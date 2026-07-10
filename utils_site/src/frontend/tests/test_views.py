@@ -114,10 +114,12 @@ class FrontendViewsTestCase(TestCase):
         self.assertContains(response, 'loading="lazy"')
         # regression guards: converter config must stay intact
         self.assertContains(response, "window.API_URL")
-        # og:image switches to the tool screenshot (JPG for messengers)
-        self.assertContains(
-            response,
-            'property="og:image" content="https://convertica.net/static/images/tools/pdf-to-word.jpg',
+        # og:image switches to the tool screenshot (JPG for messengers);
+        # domain and static-hash agnostic — site_base_url differs in CI
+        self.assertRegex(
+            response.content.decode(),
+            r'property="og:image" content="[^"]*/static/images/tools/'
+            r'pdf-to-word[^"]*\.jpg"',
         )
 
     def test_about_page_renders(self):
