@@ -1,0 +1,59 @@
+{% load i18n static %}
+{% comment %}
+  Styled tool screenshot (below the fold, lazy) + zero-dependency lightbox.
+  Requires `tool_screenshot` / `tool_screenshot_jpg` in context (set by
+  _render_tool_page). Click opens a native <dialog> in-page (animated in/out,
+  closes on X, backdrop click or Esc); without JS the anchor falls back to
+  opening the full-size image in a new tab.
+{% endcomment %}
+{% if tool_screenshot %}
+  <style>
+    .tool-shot-dialog{border:0;padding:0;background:transparent;max-width:min(94vw,1200px);width:100%;overflow:visible}
+    .tool-shot-dialog::backdrop{background:rgba(15,23,42,.75);backdrop-filter:blur(4px)}
+    .tool-shot-dialog[open]{animation:tool-shot-in .22s ease-out}
+    .tool-shot-dialog.closing{animation:tool-shot-out .18s ease-in forwards}
+    @keyframes tool-shot-in{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+    @keyframes tool-shot-out{to{transform:scale(.94);opacity:0}}
+    .tool-shot-close{position:absolute;top:-12px;right:-12px;width:36px;height:36px;border-radius:9999px;
+      background:#fff;color:#1e293b;font-size:22px;line-height:1;font-weight:700;border:0;cursor:pointer;
+      box-shadow:0 4px 14px rgba(15,23,42,.35);z-index:1}
+    .tool-shot-close:hover{background:#f1f5f9}
+  </style>
+  <a id="tool-shot-open" href="{% static tool_screenshot %}" target="_blank" rel="noopener"
+     class="block cursor-zoom-in"
+     title="{{ header_text }} — {% trans 'interface screenshot' %}">
+    <picture>
+      <source srcset="{% static tool_screenshot %}" type="image/webp">
+      <img src="{% static tool_screenshot_jpg %}"
+           alt="{{ header_text }} — {% trans 'interface screenshot' %}"
+           width="1200" height="750"
+           loading="lazy" decoding="async"
+           class="mt-8 rounded-xl shadow-lg w-full h-auto border border-blue-100 dark:border-blue-900 hover:shadow-xl transition-shadow">
+    </picture>
+  </a>
+  <dialog id="tool-shot-dialog" class="tool-shot-dialog" aria-label="{{ header_text }} — {% trans 'interface screenshot' %}">
+    <div style="position:relative">
+      <button type="button" id="tool-shot-close" class="tool-shot-close" aria-label="{% trans 'Close' %}">&times;</button>
+      {# same URL as the inline embed — served from browser cache, no extra load #}
+      <img src="{% static tool_screenshot %}" alt="{{ header_text }} — {% trans 'interface screenshot' %}"
+           width="1200" height="750" loading="lazy" decoding="async"
+           class="rounded-xl w-full h-auto shadow-2xl">
+    </div>
+  </dialog>
+  <script nonce="{{ csp_nonce }}">
+    (function () {
+      var open = document.getElementById('tool-shot-open');
+      var dlg = document.getElementById('tool-shot-dialog');
+      if (!open || !dlg || typeof dlg.showModal !== 'function') return;
+      function animatedClose() {
+        if (dlg.classList.contains('closing')) return;
+        dlg.classList.add('closing');
+        setTimeout(function () { dlg.classList.remove('closing'); dlg.close(); }, 170);
+      }
+      open.addEventListener('click', function (e) { e.preventDefault(); dlg.showModal(); });
+      document.getElementById('tool-shot-close').addEventListener('click', animatedClose);
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) animatedClose(); });
+      dlg.addEventListener('cancel', function (e) { e.preventDefault(); animatedClose(); });
+    })();
+  </script>
+{% endif %}

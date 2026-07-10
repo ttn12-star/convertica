@@ -250,6 +250,8 @@
     {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
     {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
 
+    {% include "frontend/includes/tool_screenshot.html" %}
+
     {% if related_tools %}
       {% include "frontend/includes/related_tools.html" with tools=related_tools %}
     {% endif %}
