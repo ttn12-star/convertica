@@ -350,6 +350,28 @@ def _get_related_tools(current_tool):
     return result
 
 
+#: homepage marquee cards: (url_name, screenshot slug, translated label).
+#: Labels reuse existing .po msgids; slugs match static/images/tools/<slug>-card.webp.
+TOOL_MARQUEE_ITEMS = [
+    ("frontend:pdf_to_word_page", "pdf-to-word", _("PDF to Word")),
+    ("frontend:word_to_pdf_page", "word-to-pdf", _("Word to PDF")),
+    ("frontend:merge_pdf_page", "pdf-organize-merge", _("Merge PDF")),
+    ("frontend:split_pdf_page", "pdf-organize-split", _("Split PDF")),
+    ("frontend:compress_pdf_page", "pdf-organize-compress", _("Compress PDF")),
+    ("frontend:pdf_to_jpg_page", "pdf-to-jpg", _("PDF to JPG")),
+    ("frontend:jpg_to_pdf_page", "jpg-to-pdf", _("JPG to PDF")),
+    ("frontend:rotate_pdf_page", "pdf-edit-rotate", _("Rotate PDF")),
+    ("frontend:excel_to_pdf_page", "excel-to-pdf", _("Excel to PDF")),
+    ("frontend:ppt_to_pdf_page", "ppt-to-pdf", _("PowerPoint to PDF")),
+    ("frontend:add_watermark_page", "pdf-edit-add-watermark", _("Add Watermark")),
+    (
+        "frontend:add_page_numbers_page",
+        "pdf-edit-add-page-numbers",
+        _("Add Page Numbers"),
+    ),
+]
+
+
 @anonymous_cache_page(60 * 60)
 def index_page(request):
     """Home page view."""
@@ -395,6 +417,7 @@ def index_page(request):
         "page_keywords": page_keywords,
         "latest_articles": latest_articles,
         "video": TOOL_VIDEOS.get("homepage"),
+        "tool_marquee_items": TOOL_MARQUEE_ITEMS,
     }
     return render(request, "frontend/index.html", context)
 
