@@ -13,6 +13,8 @@
 {% block structured_data %}
   {{ block.super }}
 
+  {% include "frontend/includes/video_jsonld.html" %}
+
   <!-- WebApplication Schema -->
   <script type="application/ld+json">
     {
@@ -173,6 +175,11 @@
 
     <!-- Result Message (for errors) -->
     <div id="converterResult" class="hidden mt-6"></div>
+
+    <!-- Video Tutorial -->
+    {% if video %}
+      {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=page_title heading_level="h2" %}
+    {% endif %}
 
     <!-- Help Section -->
     <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">

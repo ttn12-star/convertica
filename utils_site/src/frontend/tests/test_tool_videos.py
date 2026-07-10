@@ -61,6 +61,21 @@ class ToolVideoRenderTests(TestCase):
             obj["embedUrl"], "https://www.youtube-nocookie.com/embed/ozMzrlVOTvQ"
         )
 
+    def test_bespoke_template_tool_renders_video(self):
+        # crop_pdf/add_watermark/jpg_to_pdf have hand-written templates that
+        # extend base.html directly (not the generic), so the video must be
+        # wired into them too — regression guard for that gap.
+        for path, vid in (
+            ("/pdf-edit/crop/", "GfvVwZyu-h0"),
+            ("/pdf-edit/add-watermark/", "s0OG8dU8G0o"),
+            ("/jpg-to-pdf/", "vx_Mrk4DkMw"),
+        ):
+            resp = self.client.get(path, follow=True)
+            self.assertEqual(resp.status_code, 200, path)
+            html = resp.content.decode()
+            self.assertIn(f'data-video-id="{vid}"', html, path)
+            self.assertIn("VideoObject", html, path)
+
     def test_tool_page_without_video_renders_neither(self):
         resp = self.client.get("/pdf-edit/sign/", follow=True)
         self.assertEqual(resp.status_code, 200)
