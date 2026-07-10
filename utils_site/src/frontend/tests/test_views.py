@@ -201,6 +201,23 @@ class FrontendViewsTestCase(TestCase):
         # Sitemap should contain at least some URLs
         self.assertTrue(len(content) > 100)  # Sitemap should have content
 
+    def test_sitemap_lang_has_image_entries(self):
+        """Per-language sitemaps annotate tool pages with their screenshot."""
+        import xml.etree.ElementTree as ET
+
+        response = self.client.get("/sitemap-en.xml", follow=True)
+        self.assertEqual(response.status_code, 200)
+        content = response.content.decode("utf-8")
+        self.assertIn(
+            'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"', content
+        )
+        self.assertIn("<image:loc>", content)
+        self.assertIn("images/tools/pdf-to-word.jpg", content)
+        # must stay well-formed XML with the extra namespace
+        root = ET.fromstring(response.content)
+        ns = {"image": "http://www.google.com/schemas/sitemap-image/1.1"}
+        self.assertGreater(len(root.findall(".//image:image/image:loc", ns)), 20)
+
     def test_robots_txt_renders_and_blocks_private_sections(self):
         """robots.txt should be available even without nginx and block private areas."""
         response = self.client.get("/robots.txt", follow=False)

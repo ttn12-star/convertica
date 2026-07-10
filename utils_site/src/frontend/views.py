@@ -1487,6 +1487,24 @@ def _get_sitemap_base_url(request):
     return f"{scheme}://{request.get_host()}"
 
 
+def _sitemap_page_image(page_url: str, base_url: str) -> str | None:
+    """Absolute URL of the styled screenshot for a sitemap page, or None.
+
+    Same slug convention as scripts/gen_tool_screenshots.py:
+    'pdf-organize/merge/' -> images/tools/pdf-organize-merge.jpg.
+    JPG variant on purpose — maximum image-crawler compatibility.
+    """
+    if not page_url:
+        return None
+    from django.contrib.staticfiles import finders
+    from django.templatetags.static import static as static_url
+
+    rel = f"images/tools/{page_url.rstrip('/').replace('/', '-')}.jpg"
+    if finders.find(rel):
+        return f"{base_url}{static_url(rel)}"
+    return None
+
+
 def _get_sitemap_pages():
     """Get list of pages for sitemap."""
     return [
@@ -1618,7 +1636,7 @@ def sitemap_lang(request, lang: str):
 
         raise Http404("Invalid language")
 
-    cache_key = f"sitemap_{lang}_v2"
+    cache_key = f"sitemap_{lang}_v3"  # v3: image:image entries added
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
@@ -1631,7 +1649,11 @@ def sitemap_lang(request, lang: str):
     pages = _get_sitemap_pages()
 
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+    xml += (
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"'
+        ' xmlns:xhtml="http://www.w3.org/1999/xhtml"'
+        ' xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
+    )
 
     for page in pages:
         page_url = page["url"]
@@ -1644,6 +1666,11 @@ def sitemap_lang(request, lang: str):
         xml += f"    <lastmod>{static_lastmod}</lastmod>\n"
         xml += f'    <changefreq>{page["changefreq"]}</changefreq>\n'
         xml += f'    <priority>{page["priority"]}</priority>\n'
+        image_loc = _sitemap_page_image(page_url, base_url)
+        if image_loc:
+            xml += (
+                f"    <image:image><image:loc>{image_loc}</image:loc></image:image>\n"
+            )
 
         for alt_lang_code, _ in languages:
             alt_url = (
@@ -1669,7 +1696,7 @@ def sitemap_lang(request, lang: str):
 
     published_articles = (
         Article.objects.filter(status="published")
-        .only("slug", "updated_at", "translations")
+        .only("slug", "updated_at", "translations", "cover_image", "featured_image")
         .order_by("-published_at")
     )
 
@@ -1699,6 +1726,12 @@ def sitemap_lang(request, lang: str):
         xml += f"    <lastmod>{lastmod}</lastmod>\n"
         xml += "    <changefreq>monthly</changefreq>\n"
         xml += "    <priority>0.7</priority>\n"
+        cover = article.cover_image_url
+        if cover and cover.startswith("/"):
+            xml += (
+                f"    <image:image><image:loc>{base_url}{cover}</image:loc>"
+                "</image:image>\n"
+            )
 
         for alt_lang_code, _ in languages:
             if alt_lang_code not in available_langs:
