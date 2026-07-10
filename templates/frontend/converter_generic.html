@@ -156,14 +156,19 @@
 
     {% block tool_screenshot %}
       {% if tool_screenshot %}
-        <picture>
-          <source srcset="{% static tool_screenshot %}" type="image/webp">
-          <img src="{% static tool_screenshot_jpg %}"
-               alt="{{ header_text }} — {% trans 'interface screenshot' %}"
-               width="1200" height="750"
-               loading="lazy" decoding="async"
-               class="mt-8 rounded-xl shadow-lg w-full h-auto border border-blue-100 dark:border-blue-900">
-        </picture>
+        {# zero-JS zoom: the anchor opens the full-size image in a new tab #}
+        <a href="{% static tool_screenshot %}" target="_blank" rel="noopener"
+           class="block cursor-zoom-in"
+           title="{{ header_text }} — {% trans 'interface screenshot' %}">
+          <picture>
+            <source srcset="{% static tool_screenshot %}" type="image/webp">
+            <img src="{% static tool_screenshot_jpg %}"
+                 alt="{{ header_text }} — {% trans 'interface screenshot' %}"
+                 width="1200" height="750"
+                 loading="lazy" decoding="async"
+                 class="mt-8 rounded-xl shadow-lg w-full h-auto border border-blue-100 dark:border-blue-900 hover:shadow-xl transition-shadow">
+          </picture>
+        </a>
       {% endif %}
     {% endblock %}
 

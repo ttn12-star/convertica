@@ -128,6 +128,45 @@ def pdf_chords():
     return path
 
 
+def pdf_voyager():
+    path = OUT / "voyager_golden_record_tracklist.pdf"
+    c = canvas.Canvas(str(path), pagesize=A4)
+    _page_frame(c, "Voyager Golden Record — tracklist (draft)", INDIGO)
+    _body_lines(
+        c,
+        [
+            "01. Greetings in 55 languages",
+            "02. Sounds of Earth (wind, thunder, birds)",
+            "03. That one really good song (TBD)",
+            "",
+            "Note: will leave the solar system before this converts.",
+            "Status: 24 billion km away, still no wifi.",
+        ],
+    )
+    c.showPage()
+    c.save()
+    return path
+
+
+def pdf_principia():
+    path = OUT / "principia_notes_draft.pdf"
+    c = canvas.Canvas(str(path), pagesize=A4)
+    _page_frame(c, "Principia — margin notes (do not lose)", VIOLET)
+    _body_lines(
+        c,
+        [
+            "Law 1: A file at rest stays at rest until dragged & dropped.",
+            "Law 2: F = m x a (files = many x annotations)",
+            "Law 3: Every conversion has an equal and opposite download.",
+            "",
+            "Reminder: apples fall DOWN. Investigate.",
+        ],
+    )
+    c.showPage()
+    c.save()
+    return path
+
+
 def docx_rickroll():
     from docx import Document
 
@@ -323,6 +362,8 @@ if __name__ == "__main__":
         pdf_titan_plan(),
         pdf_chapters(),
         pdf_chords(),
+        pdf_voyager(),
+        pdf_principia(),
         docx_rickroll(),
         xlsx_totoro(),
         pptx_daft(),

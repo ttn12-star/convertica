@@ -84,6 +84,8 @@ DEMO_BY_EXT = {
         "plan_to_defeat_titans_v2_FINAL.pdf",
         "chapter_67_storyboard.pdf",
         "hallelujah_chords.pdf",
+        "voyager_golden_record_tracklist.pdf",
+        "principia_notes_draft.pdf",
     ],
     ".docx": ["never_gonna_give_you_up.docx"],
     ".doc": ["never_gonna_give_you_up.docx"],
@@ -119,15 +121,49 @@ PREVIEW_TOOLS = {
 
 CLIP = {"x": 216, "y": 96, "width": 848, "height": 560}
 
-# gradient pairs rotated per tool so the set feels varied but on-brand
-GRADIENTS = [
-    ("#4f46e5", "#7c3aed"),
-    ("#4338ca", "#9333ea"),
-    ("#2563eb", "#7c3aed"),
-    ("#3730a3", "#6d28d9"),
-    ("#1d4ed8", "#8b5cf6"),
-    ("#4f46e5", "#a855f7"),
-]
+# gradient palette keyed by tool category (URL prefix) — each category gets
+# its own hue family so the set reads varied-but-systematic; index rotates
+# within the family for extra variety.
+GRADIENTS_BY_CATEGORY = {
+    "convert": [  # top-level converters: brand blues/violets
+        ("#4f46e5", "#7c3aed"),
+        ("#2563eb", "#7c3aed"),
+        ("#1d4ed8", "#8b5cf6"),
+        ("#4338ca", "#9333ea"),
+    ],
+    "pdf-edit": [  # editing: deep violets/fuchsia
+        ("#7c3aed", "#c026d3"),
+        ("#6d28d9", "#db2777"),
+        ("#9333ea", "#e879f9"),
+    ],
+    "pdf-organize": [  # organizing: teal/cyan
+        ("#0d9488", "#0891b2"),
+        ("#0e7490", "#2563eb"),
+        ("#059669", "#06b6d4"),
+    ],
+    "pdf-security": [  # security: emerald/green
+        ("#059669", "#16a34a"),
+        ("#047857", "#65a30d"),
+    ],
+    "image": [  # image tools: warm sunset
+        ("#ea580c", "#e11d48"),
+        ("#f59e0b", "#ef4444"),
+        ("#e11d48", "#a21caf"),
+        ("#d97706", "#db2777"),
+    ],
+    "archive": [  # archives: amber/bronze
+        ("#b45309", "#92400e"),
+        ("#d97706", "#b91c1c"),
+    ],
+}
+
+
+def gradient_for(path: str, idx: int) -> tuple[str, str]:
+    family = GRADIENTS_BY_CATEGORY.get(
+        path.split("/")[0], GRADIENTS_BY_CATEGORY["convert"]
+    )
+    return family[idx % len(family)]
+
 
 # small ORIGINAL doodles (no third-party characters) rotated per tool
 DOODLES = [
@@ -159,6 +195,47 @@ DOODLES = [
       <path d="M12 44 c-4 -10 -2 -20 4 -26 l-2 -10 8 6 c4 -2 8 -2 12 0 l8 -6 -2 10 c6 6 8 16 4 26 Z" fill="rgba(255,255,255,.75)"/>
       <circle cx="22" cy="30" r="2.4" fill="#1e1b4b"/><circle cx="34" cy="30" r="2.4" fill="#1e1b4b"/>
       <path d="M26 36 q2 2 4 0" stroke="#1e1b4b" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>""",
+    # pixel heart
+    """<svg width="44" height="40" viewBox="0 0 44 40" fill="none">
+      <path d="M6 6h8v4h4v4h8V10h4V6h8v8h-4v4h-4v4h-4v4h-4v4h-4v-4h-4v-4h-4v-4H6v-4H2V6h4Z" fill="rgba(255,255,255,.8)"/></svg>""",
+    # little UFO with beam
+    """<svg width="60" height="56" viewBox="0 0 60 56" fill="none">
+      <ellipse cx="30" cy="18" rx="22" ry="8" fill="rgba(255,255,255,.8)"/>
+      <ellipse cx="30" cy="12" rx="10" ry="7" fill="rgba(255,255,255,.55)"/>
+      <path d="M22 24 L16 52 H44 L38 24 Z" fill="rgba(255,255,255,.18)"/>
+      <circle cx="18" cy="18" r="2" fill="#1e1b4b"/><circle cx="30" cy="20" r="2" fill="#1e1b4b"/><circle cx="42" cy="18" r="2" fill="#1e1b4b"/></svg>""",
+    # coffee cup with steam
+    """<svg width="44" height="52" viewBox="0 0 44 52" fill="none">
+      <path d="M10 20 h22 v14 a10 10 0 0 1 -10 10 h-2 a10 10 0 0 1 -10 -10 Z" fill="rgba(255,255,255,.8)"/>
+      <path d="M32 24 h4 a5 5 0 0 1 0 10 h-4" stroke="rgba(255,255,255,.8)" stroke-width="3" fill="none"/>
+      <path d="M17 6 q3 4 0 8 M25 4 q3 5 0 10" stroke="rgba(255,255,255,.6)" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>""",
+    # ringed planet
+    """<svg width="64" height="52" viewBox="0 0 64 52" fill="none">
+      <circle cx="32" cy="26" r="14" fill="rgba(255,255,255,.8)"/>
+      <ellipse cx="32" cy="28" rx="28" ry="8" stroke="rgba(255,255,255,.7)" stroke-width="3" fill="none" transform="rotate(-14 32 28)"/>
+      <circle cx="27" cy="22" r="2.5" fill="rgba(30,27,75,.35)"/><circle cx="37" cy="30" r="3.5" fill="rgba(30,27,75,.25)"/></svg>""",
+    # little rocket
+    """<svg width="44" height="60" viewBox="0 0 44 60" fill="none">
+      <path d="M22 2 c8 8 10 20 6 32 h-12 c-4 -12 -2 -24 6 -32 Z" fill="rgba(255,255,255,.85)"/>
+      <circle cx="22" cy="20" r="4.5" fill="rgba(30,27,75,.6)"/>
+      <path d="M16 34 l-8 10 8 -2 Z M28 34 l8 10 -8 -2 Z" fill="rgba(255,255,255,.6)"/>
+      <path d="M20 44 q2 8 2 12 q0 -4 2 -12" stroke="rgba(255,214,10,.9)" stroke-width="3" fill="none" stroke-linecap="round"/></svg>""",
+    # telescope
+    """<svg width="60" height="52" viewBox="0 0 60 52" fill="none">
+      <rect x="8" y="14" width="36" height="10" rx="5" fill="rgba(255,255,255,.8)" transform="rotate(-18 26 19)"/>
+      <path d="M26 26 L18 48 M28 26 L36 48" stroke="rgba(255,255,255,.7)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="52" cy="8" r="2" fill="#fff"/><circle cx="44" cy="4" r="1.4" fill="rgba(255,255,255,.7)"/></svg>""",
+    # atom
+    """<svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+      <ellipse cx="28" cy="28" rx="24" ry="9" stroke="rgba(255,255,255,.7)" stroke-width="2.5" fill="none"/>
+      <ellipse cx="28" cy="28" rx="24" ry="9" stroke="rgba(255,255,255,.7)" stroke-width="2.5" fill="none" transform="rotate(60 28 28)"/>
+      <ellipse cx="28" cy="28" rx="24" ry="9" stroke="rgba(255,255,255,.7)" stroke-width="2.5" fill="none" transform="rotate(120 28 28)"/>
+      <circle cx="28" cy="28" r="4" fill="rgba(255,214,10,.95)"/></svg>""",
+    # lab flask
+    """<svg width="44" height="56" viewBox="0 0 44 56" fill="none">
+      <path d="M18 4 h8 v16 l10 24 a5 5 0 0 1 -5 8 H13 a5 5 0 0 1 -5 -8 l10 -24 Z" fill="rgba(255,255,255,.8)"/>
+      <path d="M12 38 h20 l4 8 a4 4 0 0 1 -4 6 H12 a4 4 0 0 1 -4 -6 Z" fill="rgba(124,58,237,.55)"/>
+      <circle cx="20" cy="42" r="2" fill="#fff"/><circle cx="27" cy="46" r="1.5" fill="#fff"/></svg>""",
 ]
 
 # small text easter egg shown as a floating chip, rotated per tool
@@ -169,14 +246,88 @@ CHIPS = [
     "one more time",
     "level 67",
     "hello there",
+    "no watermarks, only vibes",
+    "6 to 7 seconds",
+    "achievement unlocked",
+    "it's dangerous to convert alone",
+    "42 — the answer",
+    "E = mc\u00b2 approved",
+    "houston, no problems found",
+    "one small step for PDF",
+    "may the files be with you",
+    "elementary, my dear PDF",
+    "eureka!",
+    "second star to the right",
+    "per aspera ad PDF",
+    "great scott, that was fast",
 ]
+
+
+# per-tool conversion badge: "PDF -> DOCX" for converters, action word otherwise
+FMT = {
+    "pdf": "PDF",
+    "word": "DOCX",
+    "jpg": "JPG",
+    "excel": "XLSX",
+    "ppt": "PPTX",
+    "html": "HTML",
+    "markdown": "MD",
+    "text": "TXT",
+    "epub": "EPUB",
+    "heic": "HEIC",
+    "png": "PNG",
+    "svg": "SVG",
+    "webp": "WEBP",
+    "ico": "ICO",
+}
+BADGE_OVERRIDES = {
+    "compare-pdf": ("PDF", "PDF"),
+    "scanned-pdf-to-word": ("SCAN", "DOCX"),
+    "image-to-text": ("IMG", "TXT"),
+    "image-convert": ("IMG", "ANY"),
+    "image-optimize": ("OPTIMIZE",),
+    "image-favicon-generator": ("FAVICON",),
+}
+
+
+def badge_parts(slug: str) -> tuple[str, ...]:
+    if slug in BADGE_OVERRIDES:
+        return BADGE_OVERRIDES[slug]
+    last = slug.split("-")
+    if "to" in last:
+        i = last.index("to")
+        a = FMT.get("-".join(last[:i]).split("-")[-1], last[i - 1].upper())
+        b = FMT.get(last[i + 1], last[i + 1].upper())
+        return (a, b)
+    action = slug.rsplit("-", 1)[-1] if slug.count("-") else slug
+    words = {
+        "merge": "MERGE",
+        "split": "SPLIT",
+        "compress": "COMPRESS",
+        "rotate": "ROTATE",
+        "crop": "CROP",
+        "flatten": "FLATTEN",
+        "sign": "SIGN",
+        "organize": "REORDER",
+        "pages": "PAGES",
+        "watermark": "WATERMARK",
+        "numbers": "PAGE No",
+        "protect": "PROTECT",
+        "unlock": "UNLOCK",
+        "remove": "REMOVE",
+        "extract": "EXTRACT",
+    }
+    for key in reversed(slug.split("-")):
+        if key in words:
+            return (words[key],)
+    return (action.upper(),)
 
 
 def slug_of(path: str) -> str:
     return path.rstrip("/").replace("/", "-")
 
 
-def pick_demo_files(accept: str, multiple: bool) -> list[Path]:
+def pick_demo_files(accept: str, multiple: bool, idx: int = 0) -> list[Path]:
     exts = [
         a.strip().lower()
         for a in (accept or "").split(",")
@@ -184,18 +335,22 @@ def pick_demo_files(accept: str, multiple: bool) -> list[Path]:
     ]
     files: list[Path] = []
     for ext in exts:
-        for name in DEMO_BY_EXT.get(ext, []):
+        pool = DEMO_BY_EXT.get(ext, [])
+        pool = pool[idx % len(pool) :] + pool[: idx % len(pool)] if pool else pool
+        for name in pool:
             p = DEMO / name
             if p.exists() and p not in files:
                 files.append(p)
     if not files:  # unknown/empty accept -> PDFs are the site's lingua franca
-        files = [DEMO / n for n in DEMO_BY_EXT[".pdf"]]
+        pool = DEMO_BY_EXT[".pdf"]
+        pool = pool[idx % len(pool) :] + pool[: idx % len(pool)]
+        files = [DEMO / n for n in pool]
     if not multiple:
         return files[:1]
     return files[:3]
 
 
-def capture(page, path: str) -> bytes | None:
+def capture(page, path: str, idx: int = 0) -> bytes | None:
     slug = slug_of(path)
     try:
         page.goto(BASE + path, wait_until="networkidle", timeout=60000)
@@ -226,7 +381,7 @@ def capture(page, path: str) -> bytes | None:
         inp = inputs.nth(i)
         accept = inp.get_attribute("accept") or ""
         multiple = inp.get_attribute("multiple") is not None
-        files = pick_demo_files(accept, multiple)
+        files = pick_demo_files(accept, multiple, idx)
         try:
             inp.set_input_files([str(f) for f in files])
             staged = True
@@ -275,11 +430,30 @@ def capture(page, path: str) -> bytes | None:
 
 def compose(page, raw_png: bytes, path: str, idx: int) -> bytes:
     b64 = base64.b64encode(raw_png).decode()
-    g1, g2 = GRADIENTS[idx % len(GRADIENTS)]
+    g1, g2 = gradient_for(path, idx)
     doodle_a = DOODLES[idx % len(DOODLES)]
     doodle_b = DOODLES[(idx + 3) % len(DOODLES)]
     chip = CHIPS[idx % len(CHIPS)]
+    tilt = (-1.2, 0.0, 1.2)[idx % 3]
+    # three blob layouts so backgrounds don't all share the same geometry
+    blob_css = (
+        ".b1 { width:420px; height:420px; background:#fff; top:-160px; left:-120px; opacity:.16; }"
+        " .b2 { width:520px; height:520px; bottom:-220px; right:-140px; filter:blur(90px); opacity:.55; }",
+        ".b1 { width:360px; height:360px; background:#fff; bottom:-140px; left:-100px; opacity:.14; }"
+        " .b2 { width:560px; height:560px; top:-260px; right:-160px; filter:blur(95px); opacity:.5; }",
+        ".b1 { width:300px; height:300px; background:#fff; top:40%; left:-160px; opacity:.15; }"
+        " .b2 { width:480px; height:480px; bottom:-200px; right:30%; filter:blur(90px); opacity:.45; }",
+    )[idx % 3]
     url_label = "convertica.net/" + path.rstrip("/")
+    parts = badge_parts(slug_of(path))
+    if len(parts) == 2:
+        badge_html = (
+            f'<span class="pill">{parts[0]}</span>'
+            '<span class="barrow">&#10142;</span>'
+            f'<span class="pill">{parts[1]}</span>'
+        )
+    else:
+        badge_html = f'<span class="pill">{parts[0]}</span>'
     html = f"""<!doctype html><html><head><style>
       * {{ margin:0; box-sizing:border-box; }}
       body {{ width:1200px; height:750px; overflow:hidden;
@@ -287,13 +461,13 @@ def compose(page, raw_png: bytes, path: str, idx: int) -> bytes:
       .bg {{ position:relative; width:1200px; height:750px;
             background:linear-gradient(135deg,{g1} 0%,{g2} 100%); }}
       .blob {{ position:absolute; border-radius:50%; filter:blur(70px); opacity:.5; }}
-      .b1 {{ width:420px; height:420px; background:#fff; top:-160px; left:-120px; opacity:.16; }}
-      .b2 {{ width:520px; height:520px; background:{g2}; bottom:-220px; right:-140px;
-            filter:blur(90px); opacity:.55; }}
+      .b2 {{ background:{g2}; }}
+      {blob_css}
       .dots {{ position:absolute; inset:0;
         background-image:radial-gradient(rgba(255,255,255,.14) 1.5px, transparent 1.5px);
         background-size:26px 26px; }}
-      .card {{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      .card {{ position:absolute; left:50%; top:50%;
+        transform:translate(-50%,-50%) rotate({tilt}deg);
         width:940px; border-radius:18px; overflow:hidden;
         box-shadow:0 30px 70px rgba(20,16,60,.45), 0 8px 24px rgba(20,16,60,.35); }}
       .chrome {{ height:44px; background:#eef2f7; display:flex; align-items:center;
@@ -308,15 +482,22 @@ def compose(page, raw_png: bytes, path: str, idx: int) -> bytes:
       .d1 {{ left:38px; bottom:46px; transform:rotate(-8deg); }}
       .d2 {{ right:42px; top:52px; transform:rotate(10deg); }}
       .chip {{ position:absolute; right:96px; bottom:26px; z-index:3;
-        background:rgba(255,255,255,.2); border:1px solid rgba(255,255,255,.45);
+        background:rgba(15,23,42,.55); border:1px solid rgba(255,255,255,.35);
         backdrop-filter:blur(6px); color:#fff; white-space:nowrap;
         font-size:15px; font-weight:700; padding:7px 14px; border-radius:999px;
         box-shadow:0 6px 18px rgba(20,16,60,.35); }}
+      .badge {{ position:absolute; left:88px; top:22px; z-index:4;
+        display:flex; align-items:center; gap:10px; transform:rotate(-2deg); }}
+      .badge .pill {{ background:#fff; color:{g1}; font-weight:800; font-size:21px;
+        letter-spacing:.05em; padding:9px 16px; border-radius:13px;
+        box-shadow:0 10px 26px rgba(15,10,50,.35); }}
+      .badge .barrow {{ color:#fff; font-size:26px;
+        text-shadow:0 2px 10px rgba(15,10,50,.4); }}
     </style></head><body>
       <div class="bg">
         <div class="dots"></div>
         <div class="blob b1"></div><div class="blob b2"></div>
-        <div class="doodle d1">{doodle_a}</div>
+        <div class="badge">{badge_html}</div>\n        <div class="doodle d1">{doodle_a}</div>
         <div class="doodle d2">{doodle_b}</div>
         <div class="card">
           <div class="chrome">
@@ -365,7 +546,7 @@ def main(argv: list[str]) -> int:
         )
         for idx, path in enumerate(paths):
             slug = slug_of(path)
-            raw = capture(cap_page, path)
+            raw = capture(cap_page, path, idx)
             if raw is None:
                 continue
             final = compose(compose_page, raw, path, idx)
