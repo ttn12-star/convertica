@@ -73,19 +73,17 @@
     {% endif %}
 
     {% comment %}
-      Preload all four Inter weights that PSI reports as part of the critical
-      request chain on the homepage (400 hero subtitle, 500/600 sticky-nav
-      buttons + dropdown labels visible above the fold, 700 H1). Without the
-      500/600 preloads the browser had to wait for tailwind.css to parse before
-      discovering the @font-face rule, lengthening the critical chain to ~970 ms
-      (inter-500) and pushing LCP to 3.3 s on Moto-G-Power Slow 4G. font-display:
-      swap on every weight keeps fallback rendering immediate; the preloads only
-      compress the swap window. fetchpriority=high stays on 700 because it
-      carries the largest above-the-fold text (font-extrabold H1).
+      Preload only the two Inter weights carrying the largest above-the-fold
+      text on the critical path: 400 (hero subtitle — the LCP text) and 700
+      (font-extrabold H1). On Slow-4G the four font files (~116 KB) are the bulk
+      of the critical bytes and bandwidth-starve each other, delaying LCP;
+      dropping the 500/600 preloads frees ~58 KB so 400/700 arrive sooner.
+      500/600 (sticky-nav buttons/labels) still load via the @font-face in
+      tailwind.css — the inline metrics-matched "Inter Fallback" below renders
+      them with an identical footprint until they swap in, so the later swap
+      causes no layout shift (CLS stays 0). fetchpriority=high on 400 + 700.
     {% endcomment %}
-    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-regular.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-500.woff2' %}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-600.woff2' %}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-regular.woff2' %}" as="font" type="font/woff2" crossorigin fetchpriority="high">
     <link rel="preload" href="{% static 'fonts/inter/inter-v13-latin_cyrillic-700.woff2' %}" as="font" type="font/woff2" crossorigin fetchpriority="high">
 
     {% block hreflang_links %}
