@@ -1,0 +1,123 @@
+# Per-tool YouTube tutorial videos (channel @Convertica-p4m, UC53pPAN3wswJxZ4rkqm7lXw).
+#
+# Rendered as a lazy "facade" embed on each tool page + emitted as VideoObject
+# JSON-LD for video rich results (see templates/frontend/includes/youtube_video.html
+# and video_jsonld.html). A tool with no entry here simply shows no video, so
+# new videos can be added incrementally as they are published — no code change.
+#
+# Schema (all fields required):
+#   <tool_key>:            # must match a key in TOOL_CONFIGS, or "homepage"
+#     video_id: <11-char YouTube id>
+#     upload_date: <ISO 8601, from the video's YouTube uploadDate>
+#     duration: <ISO 8601 duration, e.g. PT1M38S>
+#
+# The video title/description shown to users and search engines are reused from
+# the tool's own translated page_title / page_description, so nothing here is
+# language-specific.
+
+homepage:
+  video_id: 53XxE5XBP24
+  upload_date: "2026-07-06T11:31:42+00:00"
+  duration: PT2M26S
+
+# --- pdf_convert ---
+word_to_pdf:
+  video_id: ozMzrlVOTvQ
+  upload_date: "2026-01-11T03:13:56-08:00"
+  duration: PT1M38S
+pdf_to_word:
+  video_id: lSXDJfxL5B4
+  upload_date: "2026-01-09T11:01:03-08:00"
+  duration: PT1M32S
+pdf_to_jpg:
+  video_id: nvg3Q2gxB5A
+  upload_date: "2026-06-19T15:00:26-07:00"
+  duration: PT1M22S
+jpg_to_pdf:
+  video_id: vx_Mrk4DkMw
+  upload_date: "2026-06-22T07:00:07-07:00"
+  duration: PT1M10S
+pdf_to_excel:
+  video_id: s7w0iWeXRpk
+  upload_date: "2026-06-24T07:00:32-07:00"
+  duration: PT1M3S
+excel_to_pdf:
+  video_id: Sn91jLujPOY
+  upload_date: "2026-06-25T07:00:37-07:00"
+  duration: PT1M1S
+ppt_to_pdf:
+  video_id: gyiprmsjNNI
+  upload_date: "2026-06-26T07:00:00-07:00"
+  duration: PT1M0S
+pdf_to_ppt:
+  video_id: 1rif0_VzFeQ
+  upload_date: "2026-06-27T07:00:30-07:00"
+  duration: PT1M2S
+pdf_to_text:
+  video_id: m3LRIZNij3c
+  upload_date: "2026-07-02T14:00:11+00:00"
+  duration: PT1M22S
+
+# --- pdf_organize ---
+merge_pdf:
+  video_id: xypy-5Tkvko
+  upload_date: "2026-01-12T07:45:29-08:00"
+  duration: PT1M49S
+compress_pdf:
+  video_id: Seci2T90o2g
+  upload_date: "2026-06-21T07:00:40-07:00"
+  duration: PT1M9S
+split_pdf:
+  video_id: xThFqd8sVIw
+  upload_date: "2026-06-23T07:00:29-07:00"
+  duration: PT1M4S
+remove_pages:
+  video_id: Tl7duGmLGNI
+  upload_date: "2026-07-04T14:00:28+00:00"
+  duration: PT1M0S
+extract_pages:
+  video_id: vUuLxn717r4
+  upload_date: "2026-07-05T14:00:21+00:00"
+  duration: PT1M9S
+organize_pdf:
+  video_id: gPGwrJIJ2yc
+  upload_date: "2026-07-06T14:00:17+00:00"
+  duration: PT1M10S
+
+# --- pdf_edit ---
+rotate_pdf:
+  video_id: _lrUSUQlTZQ
+  upload_date: "2026-06-28T07:00:23-07:00"
+  duration: PT0M58S
+add_page_numbers:
+  video_id: 9e-Q0EQx5q0
+  upload_date: "2026-06-29T14:00:20+00:00"
+  duration: PT0M57S
+add_watermark:
+  video_id: s0OG8dU8G0o
+  upload_date: "2026-06-30T14:00:31+00:00"
+  duration: PT0M56S
+crop_pdf:
+  video_id: GfvVwZyu-h0
+  upload_date: "2026-07-01T14:00:11+00:00"
+  duration: PT0M56S
+flatten_pdf:
+  video_id: fhQl17-yQIY
+  upload_date: "2026-07-03T14:00:38+00:00"
+  duration: PT1M18S
+
+# --- pdf_security ---
+protect_pdf:
+  video_id: aRIe9FLQfcM
+  upload_date: "2026-07-07T14:00:20+00:00"
+  duration: PT1M8S
+
+# --- epub_and_other ---
+epub_to_pdf:
+  video_id: Ae0B5E1jQNs
+  upload_date: "2026-07-08T14:00:13+00:00"
+  duration: PT1M6S
+pdf_to_epub:
+  video_id: jGLeL7QxkF8
+  upload_date: "2026-07-09T14:00:39+00:00"
+  duration: PT1M9S

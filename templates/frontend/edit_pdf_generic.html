@@ -45,6 +45,8 @@
       }
     </script>
   {% endif %}
+
+  {% include "frontend/includes/video_jsonld.html" %}
 {% endblock %}
 
 {% block content %}
@@ -111,6 +113,14 @@
 
     <!-- Result Message (for errors) -->
     <div id="editorResult" class="hidden mt-6"></div>
+
+    <!-- Video Tutorial (separate block so tool templates that override
+         help_section still get the video automatically) -->
+    {% block video_tutorial %}
+      {% if video %}
+        {% include "frontend/includes/youtube_video.html" with video_id=video.video_id title=page_title heading_level="h2" %}
+      {% endif %}
+    {% endblock %}
 
     <!-- Help Section -->
     {% block help_section %}
