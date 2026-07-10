@@ -1,0 +1,78 @@
+"""Tests for per-tool tutorial video embedding (tool_videos.yaml → page)."""
+
+import json
+import re
+
+from django.core.cache import cache
+from django.test import Client, TestCase
+from src.frontend.tool_videos import TOOL_VIDEOS, _load
+
+
+def _video_jsonld(html: str) -> dict:
+    """Extract and parse the VideoObject JSON-LD from a rendered page."""
+    for block in re.findall(
+        r'<script type="application/ld\+json">(.*?)</script>', html, re.S
+    ):
+        if "VideoObject" in block:
+            return json.loads(block)  # raises if the template emitted invalid JSON
+    raise AssertionError("no VideoObject JSON-LD on page")
+
+
+class ToolVideoLoaderTests(TestCase):
+    """The YAML loader and its defensive gating."""
+
+    def test_known_entries_present_and_shaped(self):
+        # A seeded tool and the homepage must load with a video id + upload date.
+        for key in ("word_to_pdf", "homepage"):
+            self.assertIn(key, TOOL_VIDEOS)
+            self.assertTrue(TOOL_VIDEOS[key]["video_id"])
+            self.assertTrue(TOOL_VIDEOS[key]["upload_date"])
+
+    def test_tool_without_video_is_absent(self):
+        # Gating: a tool with no YAML entry must not resolve to a video.
+        self.assertIsNone(TOOL_VIDEOS.get("sign_pdf"))
+
+    def test_malformed_entries_are_dropped(self):
+        # One bad edit must not 500 every page: entries missing video_id / not a
+        # dict are skipped, valid ones survive. _load reads the real file, so we
+        # can only assert it returns a clean dict of well-formed entries.
+        loaded = _load()
+        self.assertTrue(
+            all(isinstance(v, dict) and v.get("video_id") for v in loaded.values())
+        )
+
+
+class ToolVideoRenderTests(TestCase):
+    """The video facade + VideoObject JSON-LD reach the rendered page."""
+
+    def setUp(self):
+        cache.clear()  # anonymous_cache_page can leak pages across tests
+        self.client = Client()
+
+    def test_tool_page_with_video_renders_facade_and_jsonld(self):
+        resp = self.client.get("/word-to-pdf/", follow=True)
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        self.assertIn('data-video-id="ozMzrlVOTvQ"', html)
+        self.assertIn("youtube-facade", html)
+        obj = _video_jsonld(html)
+        self.assertEqual(obj["duration"], "PT1M38S")
+        self.assertEqual(
+            obj["embedUrl"], "https://www.youtube-nocookie.com/embed/ozMzrlVOTvQ"
+        )
+
+    def test_tool_page_without_video_renders_neither(self):
+        resp = self.client.get("/pdf-edit/sign/", follow=True)
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        self.assertNotIn("youtube-facade", html)
+        self.assertNotIn("VideoObject", html)
+
+    def test_homepage_renders_overview_video(self):
+        resp = self.client.get("/", follow=True)
+        self.assertEqual(resp.status_code, 200)
+        html = resp.content.decode()
+        self.assertIn('data-video-id="53XxE5XBP24"', html)
+        self.assertIn("See Convertica in action", html)
+        obj = _video_jsonld(html)  # asserts valid JSON + presence
+        self.assertEqual(obj["duration"], "PT2M26S")

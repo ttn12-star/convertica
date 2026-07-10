@@ -1,0 +1,24 @@
+{% comment %}
+VideoObject JSON-LD for a tool/homepage tutorial video — drives video rich
+results in search (Google/Bing). No VideoObject existed before this.
+
+Requires context:
+  - video: {video_id, upload_date, duration} (from tool_videos.yaml)
+  - page_title / page_description  (reused as name/description, already translated)
+Optional overrides (e.g. homepage): video_name, video_desc.
+{% endcomment %}
+{% if video.video_id %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "{{ video_name|default:page_title|escapejs }}",
+      "description": "{{ video_desc|default:page_description|striptags|escapejs }}",
+      "thumbnailUrl": ["https://i.ytimg.com/vi/{{ video.video_id|escapejs }}/hqdefault.jpg"],
+      "uploadDate": "{{ video.upload_date|escapejs }}",
+      {% if video.duration %}"duration": "{{ video.duration|escapejs }}",{% endif %}
+      "embedUrl": "https://www.youtube-nocookie.com/embed/{{ video.video_id|escapejs }}",
+      "contentUrl": "https://www.youtube.com/watch?v={{ video.video_id|escapejs }}"
+    }
+  </script>
+{% endif %}

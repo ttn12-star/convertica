@@ -14,6 +14,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.vary import vary_on_cookie
 from django.views.generic import TemplateView
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
+from src.frontend.tool_videos import TOOL_VIDEOS
 
 
 def anonymous_cache_page(timeout):
@@ -393,6 +394,7 @@ def index_page(request):
         "page_description": page_description,
         "page_keywords": page_keywords,
         "latest_articles": latest_articles,
+        "video": TOOL_VIDEOS.get("homepage"),
     }
     return render(request, "frontend/index.html", context)
 
@@ -503,6 +505,7 @@ def _render_tool_page(request, tool_key: str) -> HttpResponse:
     context = _get_converter_context(request, **config["converter_args"])
     context.update(config["seo"])
     context["related_tools"] = _get_related_tools(tool_key)
+    context["video"] = TOOL_VIDEOS.get(tool_key)
     if "extra" in config:
         context.update(config["extra"])
     return render(request, config["template"], context)
