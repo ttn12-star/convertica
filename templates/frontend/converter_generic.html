@@ -154,6 +154,19 @@
       </div>
     {% endblock %}
 
+    {% block tool_screenshot %}
+      {% if tool_screenshot %}
+        <picture>
+          <source srcset="{% static tool_screenshot %}" type="image/webp">
+          <img src="{% static tool_screenshot_jpg %}"
+               alt="{{ header_text }} — {% trans 'interface screenshot' %}"
+               width="1200" height="750"
+               loading="lazy" decoding="async"
+               class="mt-8 rounded-xl shadow-lg w-full h-auto border border-blue-100 dark:border-blue-900">
+        </picture>
+      {% endif %}
+    {% endblock %}
+
     <!-- Related Tools -->
     {% if related_tools %}
       {% include "frontend/includes/related_tools.html" with tools=related_tools %}

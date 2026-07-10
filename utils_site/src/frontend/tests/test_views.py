@@ -106,6 +106,20 @@ class FrontendViewsTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "tools", count=None, status_code=200)
 
+    def test_tool_page_has_screenshot_image(self):
+        """Tool pages embed their styled screenshot (lazy, below the fold)."""
+        response = self.client.get(self._get_url_with_lang("pdf-to-word/"), follow=True)
+        self.assertContains(response, "images/tools/pdf-to-word.webp")
+        self.assertContains(response, "images/tools/pdf-to-word.jpg")
+        self.assertContains(response, 'loading="lazy"')
+        # regression guards: converter config must stay intact
+        self.assertContains(response, "window.API_URL")
+        # og:image switches to the tool screenshot (JPG for messengers)
+        self.assertContains(
+            response,
+            'property="og:image" content="https://convertica.net/static/images/tools/pdf-to-word.jpg',
+        )
+
     def test_about_page_renders(self):
         """Test that about page renders successfully."""
         response = self.client.get(self._get_url_with_lang("about/"), follow=True)
