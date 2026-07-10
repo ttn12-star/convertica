@@ -159,6 +159,19 @@
       the theme toggle is gated, so it ships only to logged-in premium visitors.
     {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    {% comment %}
+      Metrics-matched fallback for Inter (Arial, size-adjusted to Inter's
+      footprint). Inline + after tailwind.css so it wins the html font stack.
+      Before Inter loads, text renders in this fallback with ~identical metrics,
+      so the font-display:swap causes no reflow — Lighthouse then counts the
+      early fallback paint as LCP instead of the late swap, cutting text LCP on
+      Slow-4G site-wide (homepage LCP element is the Inter hero <p>). Metrics
+      are the standard capsize/fontaine values for Inter over Arial.
+    {% endcomment %}
+    <style>
+      @font-face{font-family:'Inter Fallback';src:local('Arial');ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%;size-adjust:107.12%}
+      html{font-family:'Inter','Inter Fallback',ui-sans-serif,system-ui,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji'}
+    </style>
     {% if user.is_authenticated and user.is_premium_active %}
       <link rel="stylesheet" href="{% static 'css/dark-mode-helpers.css' %}">
     {% endif %}
