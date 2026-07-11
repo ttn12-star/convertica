@@ -145,12 +145,11 @@ msgstr "503 - Layanan Tidak Tersedia"
 msgid ""
 "Email service is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
-"Server sementara tidak tersedia atau kelebihan beban. Silakan coba lagi "
-"dalam beberapa saat. Kami sedang berusaha memulihkan layanan secepat "
-"mungkin."
+"Layanan email sementara tidak tersedia. Silakan coba lagi dalam beberapa "
+"menit."
 
 msgid "Email service temporarily unavailable"
-msgstr "Donasi sementara tidak tersedia"
+msgstr "Layanan email sementara tidak tersedia"
 
 msgid ""
 "We couldn't send your email right now. Please try again in a few minutes."
@@ -372,7 +371,7 @@ msgid "Cancel and return to account"
 msgstr "Batal dan kembali ke akun"
 
 msgid "Monthly Statistics"
-msgstr "Statistik"
+msgstr "Statistik Bulanan"
 
 msgid "User Activity"
 msgstr "Aktivitas pengguna"
@@ -384,10 +383,10 @@ msgid "Home"
 msgstr "Beranda"
 
 msgid "Back to Operations List"
-msgstr "Kembali ke profil"
+msgstr "Kembali ke Daftar Operasi"
 
 msgid "Min operations:"
-msgstr "Opsi lainnya"
+msgstr "Operasi min.:"
 
 msgid "Filter"
 msgstr "Filter"
@@ -404,7 +403,7 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Total"
-msgstr "Total Hari"
+msgstr "Total"
 
 msgid "Success"
 msgstr "Sukses"
@@ -416,10 +415,10 @@ msgid "Success Rate"
 msgstr "Tingkat keberhasilan"
 
 msgid "First Operation"
-msgstr "Tanpa pendaftaran"
+msgstr "Operasi Pertama"
 
 msgid "Last Operation"
-msgstr "Pemeliharaan Tata Letak"
+msgstr "Operasi Terakhir"
 
 msgid "No users found with the given filter."
 msgstr "Tidak ada pengguna yang ditemukan dengan filter ini."
@@ -456,7 +455,7 @@ msgstr ""
 "penagihan terpisah."
 
 msgid "View API docs"
-msgstr "Lihat dokumen API"
+msgstr "Lihat dokumentasi API"
 
 msgid "See pricing"
 msgstr "Lihat harga"
@@ -472,7 +471,7 @@ msgid ""
 "Battle-tested on millions of conversions."
 msgstr ""
 "Backend yang sama yang memproses unggahan pengguna di convertica.net setiap "
-"hari. Teruji dalam pertempuran pada jutaan konversi."
+"hari. Telah teruji pada jutaan konversi."
 
 msgid "30+ endpoints in one API"
 msgstr "30+ titik akhir dalam satu API"
@@ -586,9 +585,9 @@ msgid ""
 "Large jobs return a task ID and run in background. Either poll the task "
 "endpoint, or set a callback URL and let Convertica push the result."
 msgstr ""
-"Pekerjaan besar mengembalikan ID tugas dan berjalan di latar belakang. Baik "
-"polling titik akhir tugas, atau atur URL panggilan balik dan biarkan "
-"Convertica mendorong hasilnya."
+"Pekerjaan besar mengembalikan ID tugas dan berjalan di latar belakang. "
+"Lakukan polling ke titik akhir tugas, atau atur URL panggilan balik dan "
+"biarkan Convertica mengirimkan hasilnya."
 
 msgid ""
 "Webhook payloads are signed with HMAC-SHA256 using the secret shown in your "
@@ -620,9 +619,9 @@ msgid ""
 "flight requests at a sensible level and retry on 429 with exponential back-"
 "off."
 msgstr ""
-"Perlindungan lonjakan per-IP lunak mencegah perulangan yang tidak disengaja."
-" Jaga permintaan bersamaan dalam penerbangan pada tingkat yang wajar dan "
-"coba lagi pada 429 dengan back-off eksponensial."
+"Perlindungan lonjakan per-IP yang lunak mencegah perulangan yang tidak "
+"disengaja. Jaga jumlah permintaan bersamaan yang sedang berjalan pada "
+"tingkat yang wajar dan coba lagi pada 429 dengan back-off eksponensial."
 
 msgid "File size and pages"
 msgstr "Ukuran file dan halaman"
@@ -977,7 +976,7 @@ msgstr "Ikon centang"
 
 #, python-format
 msgid "100%% Free"
-msgstr "100%%Gratis"
+msgstr "100%% Gratis"
 
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
@@ -1135,13 +1134,13 @@ msgid "Flatten PDF"
 msgstr "Ratakan PDF"
 
 msgid "Flatten form fields and annotations into static content."
-msgstr "Ratakan PDF untuk menghapus kolom formulir dan anotasi"
+msgstr "Ratakan kolom formulir dan anotasi menjadi konten statis."
 
 msgid "Sign PDF"
 msgstr "Tanda Tangani PDF"
 
 msgid "Add your signature to PDF documents."
-msgstr "Tambahkan tanda tangan Anda ke PDF secara online"
+msgstr "Tambahkan tanda tangan Anda ke dokumen PDF."
 
 msgid "Organize PDF"
 msgstr "Atur PDF"
@@ -1192,19 +1191,19 @@ msgid "Images"
 msgstr "Gambar"
 
 msgid "Optimize and convert image files online"
-msgstr "Kompres dan optimalkan gambar secara online"
+msgstr "Optimalkan dan konversi file gambar secara online"
 
 msgid "Optimize Image"
 msgstr "Optimalkan Gambar"
 
 msgid "Compress JPEG, PNG, and WebP images without losing quality."
-msgstr "Kurangi ukuran file PDF tanpa kehilangan kualitas."
+msgstr "Kompres gambar JPEG, PNG, dan WebP tanpa kehilangan kualitas."
 
 msgid "Convert Image"
 msgstr "Konversi Gambar"
 
 msgid "Convert images between JPEG, PNG, WebP, GIF, BMP, and TIFF formats."
-msgstr "Konversi gambar apa pun ke JPEG, PNG, WebP, GIF, BMP, atau TIFF"
+msgstr "Konversi gambar antara format JPEG, PNG, WebP, GIF, BMP, dan TIFF."
 
 msgid "HEIC to JPG"
 msgstr "HEIC ke JPG"
@@ -1213,7 +1212,7 @@ msgid "Convert Apple HEIC and HEIF photos from iPhone to JPG, PNG, or PDF."
 msgstr "Ubah foto Apple HEIC dan HEIF dari iPhone menjadi JPG, PNG, atau PDF."
 
 msgid "Premium Tools"
-msgstr "Hero Premium"
+msgstr "Alat Premium"
 
 msgid "Advanced and beta converters for premium users"
 msgstr "Konverter lanjutan dan beta untuk pengguna premium"
@@ -1224,8 +1223,8 @@ msgstr "PDF Hasil Pindai ke Word"
 msgid ""
 "Premium OCR workflow for converting image-based PDFs into editable DOCX."
 msgstr ""
-"Ekstrak teks dari PDF yang dipindai dan gambar. Konversi PDF berbasis gambar"
-" menjadi teks yang dapat diedit."
+"Alur kerja OCR premium untuk mengonversi PDF berbasis gambar menjadi DOCX "
+"yang dapat diedit."
 
 msgid "Batch Converter Hub"
 msgstr "Pusat Konversi Batch"
@@ -1446,9 +1445,8 @@ msgid ""
 "much higher limits."
 msgstr ""
 "PDF memiliki %%(page_count)d halaman (batas: %%(max_pages)d). Anda dapat "
-"membagi file Anda menjadi bagian yang lebih kecil atau mendapatkan langganan"
-" Premium 1-hari hanya dengan $1 untuk memproses file yang lebih besar dengan"
-" batas yang jauh lebih tinggi!"
+"membagi file menjadi bagian yang lebih kecil atau tingkatkan ke Premium "
+"untuk memproses file yang lebih besar dengan batas yang jauh lebih tinggi."
 
 #, python-format
 msgid ""
@@ -1493,7 +1491,7 @@ msgid "Task running in background"
 msgstr "Tugas berjalan di latar belakang"
 
 msgid "File is ready!"
-msgstr "Berkas siap!"
+msgstr "File siap!"
 
 msgid "Conversion failed"
 msgstr "Konversi gagal"
@@ -1914,7 +1912,7 @@ msgid "Best quality"
 msgstr "Kualitas terbaik"
 
 msgid "Please select an output format before converting."
-msgstr "Silakan pilih alasan pembatalan"
+msgstr "Silakan pilih format keluaran sebelum mengonversi."
 
 msgid "Select your image file using the button above or drag and drop it"
 msgstr "Pilih file gambar menggunakan tombol di atas atau seret dan lepas"
@@ -1957,8 +1955,8 @@ msgstr "Kualitas JPEG"
 msgid ""
 "Select your HEIC or HEIF file using the button above or drag and drop it"
 msgstr ""
-"Pilih berkas HEIC atau HEIF Anda lewat tombol di atas atau seret dan "
-"letakkan"
+"Pilih file HEIC atau HEIF Anda menggunakan tombol di atas atau seret dan "
+"lepas"
 
 msgid "Pick the output format: JPG (default), PNG, or PDF"
 msgstr "Pilih format keluaran: JPG (default), PNG, atau PDF"
@@ -1983,8 +1981,8 @@ msgid ""
 "85%% is recommended for most images. Lower values reduce file size more "
 "aggressively."
 msgstr ""
-"85%%direkomendasikan untuk sebagian besar gambar. Nilai lebih rendah "
-"mengurangi ukuran file lebih agresif."
+"85%% disarankan untuk sebagian besar gambar. Nilai lebih rendah mengurangi "
+"ukuran file lebih agresif."
 
 msgid "Output Format"
 msgstr "Format Output"
@@ -2036,7 +2034,7 @@ msgstr "Pilih file gambar menggunakan tombol di atas atau seret ke zona"
 #, python-format
 msgid "Set the quality level (85%% is recommended for most images)"
 msgstr ""
-"Atur tingkat kualitas (85%%direkomendasikan untuk sebagian besar gambar)"
+"Atur tingkat kualitas (85%% direkomendasikan untuk sebagian besar gambar)"
 
 msgid "Optionally choose an output format or set maximum dimensions"
 msgstr "Opsional, pilih format keluaran atau atur dimensi maksimum"
@@ -2226,10 +2224,10 @@ msgid "Image tools"
 msgstr "Alat gambar"
 
 msgid "Premium tools"
-msgstr "Hero Premium"
+msgstr "Alat Premium"
 
 msgid "Advanced and beta converters"
-msgstr "Fitur OCR lanjutan"
+msgstr "Konverter lanjutan dan beta"
 
 msgid "More options"
 msgstr "Opsi lainnya"
@@ -2433,7 +2431,7 @@ msgid "Files deleted instantly"
 msgstr "File dihapus seketika"
 
 msgid "Most requested PDF tools at your fingertips"
-msgstr "Alat PDF paling diminta di ujung jari Anda"
+msgstr "Alat PDF paling diminta dalam genggaman Anda"
 
 msgid "Try it"
 msgstr "Coba"
@@ -2460,7 +2458,7 @@ msgstr ""
 "orang"
 
 msgid "Manage and organize your PDF documents with powerful tools"
-msgstr "Kelola dan atur dokumen PDF Anda dengan alat yang powerful"
+msgstr "Kelola dan atur dokumen PDF Anda dengan alat yang canggih"
 
 msgid "Free PDF Tools - Convert, Edit & Organize"
 msgstr "Alat PDF Gratis - Konversi, Edit & Atur"
@@ -2578,8 +2576,8 @@ msgstr "Tempel HTML Anda atau masukkan URL"
 
 msgid "You can upload multiple images - they will be combined into one PDF"
 msgstr ""
-"Anda dapat mengunggah beberapa gambar - mereka akan digabungkan menjadi satu"
-" PDF"
+"Anda dapat mengunggah beberapa gambar - semuanya akan digabungkan menjadi "
+"satu PDF"
 
 msgid "Drop your images here"
 msgstr "Seret dan lepas gambar Anda di sini"
@@ -2626,7 +2624,7 @@ msgid "Remove unwanted images by clicking the X button"
 msgstr "Hapus gambar yang tidak diinginkan dengan mengklik tombol X"
 
 msgid "Select image quality (85 is recommended)"
-msgstr "Kualitas tinggi (direkomendasikan)"
+msgstr "Pilih kualitas gambar (85 direkomendasikan)"
 
 msgid "Click Convert to combine all images into one PDF"
 msgstr ""
@@ -2960,7 +2958,7 @@ msgid "Wait for conversion - text, tables, and formatting will be extracted"
 msgstr "Tunggu konversi - teks, tabel, dan pemformatan akan diekstraksi"
 
 msgid "Download your editable Word document (.docx)"
-msgstr "Unduh file PDF yang telah diedit"
+msgstr "Unduh dokumen Word (.docx) yang dapat diedit"
 
 #, python-format
 msgid ""
@@ -3112,10 +3110,10 @@ msgstr ""
 " saat ini, atau halaman tertentu"
 
 msgid "Click Add Page Numbers to process your PDF"
-msgstr "Klik tombol Potong untuk memproses PDF Anda"
+msgstr "Klik tombol Tambah Nomor Halaman untuk memproses PDF Anda"
 
 msgid "Download your numbered PDF file"
-msgstr "Unduh file PDF yang telah dikonversi"
+msgstr "Unduh file PDF Anda yang telah diberi nomor halaman"
 
 #, python-format
 msgid ""
@@ -3297,7 +3295,7 @@ msgid "When 'all' is selected, crop applies to all pages"
 msgstr "Ketika 'semua' dipilih, potong diterapkan ke semua halaman"
 
 msgid "Click and drag to select the area you want to keep"
-msgstr "Klik dan seret untuk memilih area potong pada PDF"
+msgstr "Klik dan seret untuk memilih area yang ingin Anda pertahankan"
 
 msgid "Resize the selection using corner or edge handles"
 msgstr ""
@@ -3306,8 +3304,8 @@ msgstr ""
 
 msgid "Choose pages to crop: all, current, or specific pages"
 msgstr ""
-"Pilih halaman mana yang akan diputar: semua halaman, hanya halaman saat ini,"
-" atau halaman tertentu"
+"Pilih halaman mana yang akan dipotong: semua halaman, hanya halaman saat "
+"ini, atau halaman tertentu"
 
 msgid "Click Crop PDF to process"
 msgstr "Klik tombol Potong untuk memproses PDF Anda"
@@ -3322,7 +3320,7 @@ msgid ""
 "          "
 msgstr ""
 "\n"
-"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian."
+"File PDF hingga %(max_pages)s halaman didukung. Potongan diterapkan ke semua halaman yang dipilih."
 
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
@@ -3413,10 +3411,10 @@ msgstr ""
 " atau halaman tertentu"
 
 msgid "Click Rotate to process your PDF"
-msgstr "Klik tombol Potong untuk memproses PDF Anda"
+msgstr "Klik tombol Putar untuk memproses PDF Anda"
 
 msgid "Download your rotated PDF file"
-msgstr "Unduh file PDF yang telah dipotong"
+msgstr "Unduh file PDF yang telah diputar"
 
 #, python-format
 msgid ""
@@ -3425,7 +3423,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"File PDF dengan hingga %(max_pages)s halaman didukung untuk diputar. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. Rotasi mempertahankan semua konten dan pemformatan."
+"File PDF hingga %(max_pages)s halaman didukung. Rotasi mempertahankan semua konten dan pemformatan."
 
 msgid ""
 "Sign PDF is a premium feature. Draw, type, or upload your signature and "
@@ -3451,7 +3449,7 @@ msgid "Draw"
 msgstr "Gambar"
 
 msgid "Type"
-msgstr "Tipe"
+msgstr "Ketik"
 
 msgid "Upload"
 msgstr "Unggah"
@@ -3573,7 +3571,7 @@ msgstr ""
 "tinggi mengurangi ukuran file lebih banyak tetapi memakan waktu lebih lama."
 
 msgid "Select your PDF file using the button above"
-msgstr "Pilih 2-10 file PDF untuk digabungkan menggunakan tombol di atas"
+msgstr "Pilih file PDF Anda menggunakan tombol di atas"
 
 msgid "Choose compression level: Low, Medium, or High"
 msgstr ""
@@ -3584,7 +3582,7 @@ msgid "Click Compress to reduce your PDF file size"
 msgstr "Klik tombol kompres untuk mengurangi ukuran file PDF Anda"
 
 msgid "Download your smaller PDF file"
-msgstr "Unduh file PDF Anda"
+msgstr "Unduh file PDF Anda yang lebih kecil"
 
 #, python-format
 msgid ""
@@ -3593,7 +3591,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"File PDF dengan hingga %(max_pages)s halaman didukung untuk kompresi. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian. Kompresi yang lebih tinggi mengurangi ukuran file lebih banyak tetapi mungkin sedikit mengurangi kualitas gambar."
+"File PDF hingga %(max_pages)s halaman didukung. Kompresi lebih tinggi = ukuran file lebih kecil tetapi dapat mengurangi kualitas gambar."
 
 msgid "Extract Pages Settings"
 msgstr "Pengaturan Ekstraksi Halaman"
@@ -3624,7 +3622,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian."
+"File PDF hingga %(max_pages)s halaman didukung. Halaman yang diekstrak digabungkan menjadi satu PDF baru."
 
 msgid "Merge Settings"
 msgstr "Pengaturan Penggabungan"
@@ -3687,8 +3685,8 @@ msgstr "Pilih 2-10 file PDF untuk digabungkan menggunakan tombol di atas"
 
 msgid "Drag and drop to reorder files in the desired merge order"
 msgstr ""
-"Seret dan lepas untuk mengurutkan ulang file. Urutan yang ditampilkan di "
-"sini akan menjadi urutan penggabungan."
+"Seret dan lepas untuk mengurutkan ulang file sesuai urutan penggabungan yang"
+" diinginkan"
 
 msgid "Click Merge to combine all PDF files into one document"
 msgstr ""
@@ -3696,7 +3694,7 @@ msgstr ""
 "dokumen"
 
 msgid "Download your merged PDF containing all pages"
-msgstr "Unduh file PDF yang telah diedit"
+msgstr "Unduh file PDF gabungan yang berisi semua halaman"
 
 msgid ""
 "You can merge 2-10 PDF files at once. Pages will be combined in the order "
@@ -3729,9 +3727,7 @@ msgid "Failed to organize PDF"
 msgstr "Gagal mengatur PDF"
 
 msgid "Preview pages and drag them to reorder"
-msgstr ""
-"Pratinjau semua file PDF dan seret untuk mengurutkan ulang urutan "
-"penggabungan"
+msgstr "Pratinjau halaman dan seret untuk mengurutkannya ulang"
 
 msgid "Arrange pages in your desired order"
 msgstr "Atur halaman dalam urutan yang Anda inginkan"
@@ -3740,7 +3736,7 @@ msgid "Click Organize PDF to save the new order"
 msgstr "Klik Atur PDF untuk menyimpan urutan baru"
 
 msgid "Download your reorganized PDF file"
-msgstr "Unduh file PDF yang telah diedit"
+msgstr "Unduh file PDF Anda yang telah disusun ulang"
 
 #, python-format
 msgid ""
@@ -3749,7 +3745,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian."
+"File PDF hingga %(max_pages)s halaman didukung. Seret dan lepas untuk mengurutkan ulang halaman secara visual."
 
 msgid "Remove Pages Settings"
 msgstr "Pengaturan Hapus Halaman"
@@ -3768,7 +3764,7 @@ msgstr ""
 "yang dipilih"
 
 msgid "Download your cleaned PDF file"
-msgstr "Unduh file PDF yang telah diedit"
+msgstr "Unduh file PDF Anda yang telah dibersihkan"
 
 #, python-format
 msgid ""
@@ -3777,7 +3773,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian."
+"File PDF hingga %(max_pages)s halaman didukung. Halaman yang tersisa dipertahankan dalam urutan aslinya."
 
 msgid "Split Settings"
 msgstr "Pengaturan Pemisahan"
@@ -3849,7 +3845,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"File PDF hingga %(max_pages)s halaman didukung. Untuk file yang lebih besar, silakan bagi menjadi beberapa bagian."
+"File PDF hingga %(max_pages)s halaman didukung. Hasilnya berupa arsip ZIP berisi semua file yang dipisahkan."
 
 msgid "Password Protection Settings"
 msgstr "Pengaturan Perlindungan Kata Sandi"
@@ -3965,7 +3961,7 @@ msgstr ""
 "harus mengetahui kata sandi yang benar untuk membuka kunci PDF."
 
 msgid "Premium Queue"
-msgstr "Fitur premium"
+msgstr "Antrean Premium"
 
 msgid ""
 "Manage conversion tasks sent to background mode: monitor progress, download "
@@ -3987,7 +3983,7 @@ msgid "Refresh"
 msgstr "Segarkan"
 
 msgid "Clear Completed"
-msgstr "Selesai"
+msgstr "Bersihkan yang Selesai"
 
 msgid "Clear All"
 msgstr "Hapus Semua"
@@ -4000,10 +3996,10 @@ msgstr ""
 " belakang'."
 
 msgid "Open Batch Converter"
-msgstr "Konversi PDF"
+msgstr "Buka Konverter Batch"
 
 msgid "Back to Premium Tools"
-msgstr "Kembali ke Profil"
+msgstr "Kembali ke Alat Premium"
 
 msgid "Processing"
 msgstr "Memproses..."
@@ -4012,7 +4008,7 @@ msgid "Result is unavailable or expired."
 msgstr "Hasil tidak tersedia atau kedaluwarsa."
 
 msgid "Unnamed file"
-msgstr "Hapus file"
+msgstr "File tanpa nama"
 
 msgid "Task failed without details."
 msgstr "Tugas gagal tanpa detail."
@@ -4024,22 +4020,22 @@ msgid "Started"
 msgstr "Dimulai"
 
 msgid "Open Tool"
-msgstr "Alat Terkait"
+msgstr "Buka Alat"
 
 msgid "Download"
 msgstr "Unduh"
 
 msgid "Remove"
-msgstr "Hapus file"
+msgstr "Hapus"
 
 msgid "Unable to download file."
-msgstr "Gagal mengunduh laporan ZIP."
+msgstr "Gagal mengunduh file."
 
 msgid "Clear all queue items?"
 msgstr "Hapus semua item antrean?"
 
 msgid "Premium Batch"
-msgstr "Paket Premium"
+msgstr "Batch Premium"
 
 msgid ""
 "Choose a converter below, upload multiple files at once, and keep long jobs "
@@ -4221,7 +4217,7 @@ msgstr ""
 "font standar."
 
 msgid "Premium OCR"
-msgstr "Premium"
+msgstr "OCR Premium"
 
 msgid ""
 "This premium workflow opens PDF to Word with OCR pre-enabled, so you can "
@@ -4242,7 +4238,7 @@ msgstr ""
 "dapat dipilih."
 
 msgid "Open OCR Converter"
-msgstr "Konverter Excel ke PDF"
+msgstr "Buka Konverter OCR"
 
 msgid ""
 "PDF to EPUB works best with text-based PDFs. Scanned/image-only PDFs should "
@@ -4255,7 +4251,7 @@ msgid "How PDF to EPUB works"
 msgstr "Cara kerja PDF ke EPUB"
 
 msgid "Upload a PDF file."
-msgstr "Unggah dua file PDF"
+msgstr "Unggah file PDF."
 
 msgid "Click Convert PDF to EPUB."
 msgstr "Klik Konversi PDF ke EPUB."
@@ -4304,7 +4300,7 @@ msgstr ""
 "dahulu untuk keluaran Markdown yang lebih baik."
 
 msgid "Premium Automation"
-msgstr "Paket Premium"
+msgstr "Otomatisasi Premium"
 
 msgid ""
 "Save your frequent conversion setups as presets and reopen the right premium"
@@ -4317,7 +4313,7 @@ msgid "Create Workflow"
 msgstr "Buat Alur Kerja"
 
 msgid "Preset Name"
-msgstr "Nama Depan"
+msgstr "Nama Preset"
 
 msgid "Example: Weekly Invoices to PDF"
 msgstr "Contoh: Faktur Mingguan ke PDF"
@@ -4326,7 +4322,7 @@ msgid "Tool"
 msgstr "Alat"
 
 msgid "Notes"
-msgstr "Catatan:"
+msgstr "Catatan"
 
 msgid "Optional reminder: file type, target format, quality settings..."
 msgstr "Pengingat opsional: tipe file, format target, pengaturan kualitas..."
@@ -4338,13 +4334,13 @@ msgid "Reset"
 msgstr "Atur Ulang"
 
 msgid "Quick Presets"
-msgstr "Pemilihan Halaman"
+msgstr "Preset Cepat"
 
 msgid "One-click templates you can add and customize."
 msgstr "Template satu klik yang dapat Anda tambahkan dan sesuaikan."
 
 msgid "eBook to Print PDF"
-msgstr "Kembali ke Harga"
+msgstr "eBook ke PDF Cetak"
 
 msgid "Upload EPUB, convert to PDF, review margins for print."
 msgstr "Unggah EPUB, konversi ke PDF, tinjau margin untuk cetak."
@@ -4381,29 +4377,29 @@ msgid "Edit"
 msgstr "Edit"
 
 msgid "Delete"
-msgstr "Hapus Akun"
+msgstr "Hapus"
 
 msgid "Delete all saved workflows?"
 msgstr "Hapus semua alur kerja yang disimpan?"
 
 msgid "Advanced Tools"
-msgstr "Semua Alat"
+msgstr "Alat Lanjutan"
 
 msgid ""
 "Advanced conversion workflows with higher limits, priority processing, and "
 "early access to new formats."
 msgstr ""
-"Proses file yang lebih besar dengan batas yang jauh lebih tinggi, pemrosesan"
-" prioritas, dan fitur premium"
+"Alur kerja konversi lanjutan dengan batas lebih tinggi, pemrosesan "
+"prioritas, dan akses awal ke format baru."
 
 msgid "Your Premium subscription is active"
-msgstr "Tidak ada langganan aktif untuk dibatalkan"
+msgstr "Langganan Premium Anda aktif"
 
 msgid "Unlock Premium Access"
 msgstr "Buka Akses Premium"
 
 msgid "Premium Workflows"
-msgstr "Hero Premium"
+msgstr "Alur Kerja Premium"
 
 msgid "OCR"
 msgstr "OCR"
@@ -4412,8 +4408,8 @@ msgid ""
 "Convert image-based PDFs to editable DOCX with OCR language controls and "
 "premium limits."
 msgstr ""
-"Ekstrak teks dari PDF yang dipindai dan gambar. Konversi PDF berbasis gambar"
-" menjadi teks yang dapat diedit."
+"Konversi PDF berbasis gambar menjadi DOCX yang dapat diedit dengan kontrol "
+"bahasa OCR dan batas premium."
 
 msgid "Batch"
 msgstr "Batch"
@@ -4426,7 +4422,7 @@ msgstr ""
 "panjang dalam mode latar belakang."
 
 msgid "Automation"
-msgstr "Informasi Akun"
+msgstr "Otomatisasi"
 
 msgid ""
 "Create reusable presets for frequent conversions and launch tools faster."
@@ -4454,10 +4450,10 @@ msgstr ""
 "webhook, dan dokumen OpenAPI."
 
 msgid "Premium Conversion Beta"
-msgstr "Konversi PDF"
+msgstr "Beta Konversi Premium"
 
 msgid "Premium Beta"
-msgstr "Hero Premium"
+msgstr "Beta Premium"
 
 msgid "EPUB"
 msgstr "EPUB"
@@ -4573,7 +4569,7 @@ msgid "By Agreement"
 msgstr "Berdasarkan Perjanjian"
 
 msgid "Custom"
-msgstr "Sesuaikan"
+msgstr "Kustom"
 
 msgid "Need custom limits or team terms? We can prepare a tailored offer."
 msgstr ""
@@ -4584,10 +4580,10 @@ msgid "Dedicated limits and throughput"
 msgstr "Batas dan throughput khusus"
 
 msgid "Project-specific feature set"
-msgstr "Ekstrak halaman tertentu"
+msgstr "Set fitur khusus per proyek"
 
 msgid "Priority support and onboarding"
-msgstr "Dukungan prioritas"
+msgstr "Dukungan prioritas dan onboarding"
 
 msgid "Invoice and custom agreement options"
 msgstr "Opsi faktur dan perjanjian kustom"
@@ -4596,7 +4592,7 @@ msgid "For teams and business workflows"
 msgstr "Untuk tim dan alur kerja bisnis"
 
 msgid "Request Terms"
-msgstr "Perubahan Ketentuan"
+msgstr "Minta Ketentuan"
 
 msgid "MOST POPULAR"
 msgstr "PALING POPULER"
@@ -4674,7 +4670,7 @@ msgid "Lifetime Hero"
 msgstr "Lifetime Hero"
 
 msgid "one-time payment"
-msgstr "pembayaran sekali"
+msgstr "pembayaran satu kali"
 
 msgid "Pay once, premium forever"
 msgstr "Bayar sekali, premium selamanya"
@@ -4958,7 +4954,7 @@ msgid ""
 "protect your information, we cannot guarantee absolute security."
 msgstr ""
 "Namun, tidak ada metode transmisi melalui Internet atau penyimpanan "
-"elektronik yang 100%%aman. Meskipun kami berusaha menggunakan cara yang "
+"elektronik yang 100%% aman. Meskipun kami berusaha menggunakan cara yang "
 "dapat diterima secara komersial untuk melindungi informasi Anda, kami tidak "
 "dapat menjamin keamanan absolut."
 
@@ -5426,8 +5422,8 @@ msgid ""
 msgstr ""
 "Kami berhak untuk memodifikasi atau mengganti Ketentuan ini kapan saja. Jika"
 " revisi bersifat material, kami akan memberikan pemberitahuan setidaknya 30 "
-"hari sebelum ketentuan baru berlaku. Apa yang constitutes perubahan material"
-" akan ditentukan berdasarkan kebijaksanaan kami sendiri."
+"hari sebelum ketentuan baru berlaku. Apa yang merupakan perubahan material "
+"akan ditentukan berdasarkan kebijaksanaan kami sendiri."
 
 msgid ""
 "By continuing to access or use our Services after any revisions become "
@@ -6047,8 +6043,8 @@ msgid ""
 "limits."
 msgstr ""
 "File terlalu besar (%(file_mb).1f MB). Pengguna gratis: maks %(free_mb).0f "
-"MB. Tingkatkan ke Premium untuk batasan %(premium_mb).0f MB! Dapatkan "
-"Premium 1-hari hanya dengan $1."
+"MB. Tingkatkan ke Premium untuk batasan %(premium_mb).0f MB! Tingkatkan "
+"sekarang untuk membuka batasan yang lebih tinggi."
 
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
@@ -6066,8 +6062,7 @@ msgid ""
 " to Premium for %(premium_mb).0f MB limit."
 msgstr ""
 "File terlalu besar (%(file_mb).1f MB). Pengguna gratis: maks %(free_mb).0f "
-"MB. Tingkatkan ke Premium untuk batasan %(premium_mb).0f MB! Dapatkan "
-"Premium 1-hari hanya dengan $1."
+"MB. Tingkatkan ke Premium untuk batasan %(premium_mb).0f MB."
 
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
@@ -6084,9 +6079,8 @@ msgid ""
 "higher limits."
 msgstr ""
 "PDF memiliki %(page_count)d halaman (batas: %(max_pages)d). Anda dapat "
-"membagi file menjadi bagian yang lebih kecil atau mendapatkan langganan "
-"Premium 1-hari hanya dengan $1 untuk memproses file yang lebih besar dengan "
-"batasan yang jauh lebih tinggi!"
+"membagi file menjadi bagian yang lebih kecil atau meningkatkan ke Premium "
+"untuk memproses file yang lebih besar dengan batasan yang jauh lebih tinggi."
 
 #, python-format
 msgid ""
@@ -6105,9 +6099,7 @@ msgstr ""
 "%(max_pages)d. Silakan bagi PDF Anda menjadi bagian yang lebih kecil."
 
 msgid "PDF is password-protected. Please unlock it and try again."
-msgstr ""
-"PDF tidak dilindungi kata sandi. PDF ini tidak memerlukan kata sandi untuk "
-"dibuka."
+msgstr "PDF dilindungi kata sandi. Silakan buka kuncinya dan coba lagi."
 
 #, python-format
 msgid ""
@@ -11636,7 +11628,7 @@ msgid "Lifetime Hero Access (Founder's Deal)"
 msgstr "Akses Lifetime Hero (Penawaran Pendiri)"
 
 msgid "One-time payment. Limited to first 100 customers."
-msgstr "Pembayaran sekali. Hanya untuk 100 pelanggan pertama."
+msgstr "Pembayaran satu kali. Hanya untuk 100 pelanggan pertama."
 
 msgid "The Email must be set"
 msgstr "Email harus diatur"
@@ -11683,13 +11675,13 @@ msgstr ""
 "akses API."
 
 msgid "Runtime Setting"
-msgstr "Pengaturan Rotasi"
+msgstr "Pengaturan Runtime"
 
 msgid "Runtime Settings"
-msgstr "Pengaturan Rotasi"
+msgstr "Pengaturan Runtime"
 
 msgid "Setting key cannot be empty."
-msgstr "Kata sandi tidak boleh kosong"
+msgstr "Kunci pengaturan tidak boleh kosong."
 
 msgid ""
 "This setting key is considered secret and cannot be configured from admin."
@@ -12673,8 +12665,8 @@ msgstr ""
 "32×32, dan 48×48 px. Baik Anda memiliki foto produk, logo merek, atau grafik"
 " JPEG apa pun, Anda dapat mengubahnya menjadi favicon situs web dalam "
 "hitungan detik — tanpa memerlukan perangkat lunak desain.</p><p>Konverter "
-"menerapkan resampling Lanczos berkualitas tinggi untuk menghasilkan hasil "
-"yang tajam di setiap ukuran yang disematkan. Cukup unggah JPEG Anda, klik "
+"menerapkan resampling Lanczos berkualitas tinggi untuk memberikan hasil yang"
+" tajam di setiap ukuran yang disematkan. Cukup unggah JPEG Anda, klik "
 "Convert, dan unduh file ICO yang sesuai standar yang siap ditempatkan di "
 "folder root situs web Anda. Gambar sumber Anda akan dihapus dari server kami"
 " segera setelah pengunduhan.</p>"
@@ -14300,8 +14292,14 @@ msgstr "Teks yang dikenali diekspor sebagai dokumen Word yang dapat diedit dan t
 msgid "How Scanned PDF to Word Works"
 msgstr "Cara Kerja PDF Pindaian ke Word"
 
-msgid "Upload your scanned PDF — a contract, an invoice, a book chapter, or a photographed document. Pages where text cannot be selected are exactly what this tool is for."
-msgstr "Unggah PDF pindaian Anda — kontrak, faktur, bab buku, atau dokumen yang difoto. Halaman yang teksnya tidak dapat dipilih adalah persis sasaran alat ini."
+msgid ""
+"Upload your scanned PDF — a contract, an invoice, a book chapter, or a "
+"photographed document. Pages where text cannot be selected are exactly what "
+"this tool is for."
+msgstr ""
+"Unggah PDF pindaian Anda — kontrak, faktur, bab buku, atau dokumen yang "
+"difoto. Halaman yang teksnya tidak dapat dipilih justru menjadi sasaran alat"
+" ini."
 
 msgid "The OCR engine analyzes every page, recognizes the printed text in 17 supported languages, and reconstructs it as real, editable characters."
 msgstr "Mesin OCR menganalisis setiap halaman, mengenali teks cetak dalam 17 bahasa yang didukung, dan menyusunnya kembali sebagai karakter asli yang dapat diedit."

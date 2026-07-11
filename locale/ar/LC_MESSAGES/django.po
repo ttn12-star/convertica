@@ -20,7 +20,7 @@ msgid "400 - Bad Request"
 msgstr "400 - طلب غير صالح"
 
 msgid "Convertica"
-msgstr "كونفيرتيكا"
+msgstr "Convertica"
 
 msgid "The request could not be understood by the server."
 msgstr "تعذر على الخادم فهم الطلب."
@@ -144,11 +144,11 @@ msgstr "503 - الخدمة غير متاحة"
 msgid ""
 "Email service is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
-"الخادم غير متاح مؤقتاً أو محمّل بشكل زائد. يرجى المحاولة مرة أخرى بعد قليل. "
-"نحن نعمل على استعادة الخدمة في أسرع وقت ممكن."
+"خدمة البريد الإلكتروني غير متاحة مؤقتاً. يرجى المحاولة مرة أخرى بعد بضع "
+"دقائق."
 
 msgid "Email service temporarily unavailable"
-msgstr "التبرعات غير متاحة مؤقتًا"
+msgstr "خدمة البريد الإلكتروني غير متاحة مؤقتاً"
 
 msgid ""
 "We couldn't send your email right now. Please try again in a few minutes."
@@ -378,10 +378,10 @@ msgid "Home"
 msgstr "الرئيسية"
 
 msgid "Back to Operations List"
-msgstr "العودة إلى الملف الشخصي"
+msgstr "العودة إلى قائمة العمليات"
 
 msgid "Min operations:"
-msgstr "المزيد من الخيارات"
+msgstr "الحد الأدنى للعمليات:"
 
 msgid "Filter"
 msgstr "تصفية"
@@ -397,22 +397,22 @@ msgid "Email"
 msgstr "البريد الإلكتروني"
 
 msgid "Total"
-msgstr "إجمالي الأيام"
+msgstr "الإجمالي"
 
 msgid "Success"
 msgstr "نجاح"
 
 msgid "Errors"
-msgstr "خطأ"
+msgstr "الأخطاء"
 
 msgid "Success Rate"
 msgstr "معدل النجاح"
 
 msgid "First Operation"
-msgstr "لا تسجيل مطلوب"
+msgstr "أول عملية"
 
 msgid "Last Operation"
-msgstr "الحفاظ على التخطيط"
+msgstr "آخر عملية"
 
 msgid "No users found with the given filter."
 msgstr "لم يتم العثور على مستخدمين باستخدام التصفية الحالية."
@@ -673,7 +673,7 @@ msgid "Sub-200ms median, EU edge"
 msgstr "متوسط أقل من 200 مللي ثانية، حافة الاتحاد الأوروبي"
 
 msgid "Same backend as convertica.net — battle-tested"
-msgstr "نفس الخلفية المستخدمة في convertica.net — مجربة في المعارك"
+msgstr "نفس الواجهة الخلفية المستخدمة في convertica.net — مُختبَرة ميدانياً"
 
 msgid "Frequently asked questions"
 msgstr "الأسئلة المتكررة"
@@ -1115,13 +1115,13 @@ msgid "Flatten PDF"
 msgstr "تسطيح PDF"
 
 msgid "Flatten form fields and annotations into static content."
-msgstr "سطّح PDF لإزالة حقول النماذج والتعليقات"
+msgstr "سطّح حقول النماذج والتعليقات إلى محتوى ثابت."
 
 msgid "Sign PDF"
 msgstr "توقيع PDF"
 
 msgid "Add your signature to PDF documents."
-msgstr "أضف توقيعك إلى PDF عبر الإنترنت"
+msgstr "أضف توقيعك إلى مستندات PDF."
 
 msgid "Organize PDF"
 msgstr "تنظيم PDF"
@@ -1172,13 +1172,13 @@ msgid "Images"
 msgstr "الصور"
 
 msgid "Optimize and convert image files online"
-msgstr "اضغط الصور وحسّنها عبر الإنترنت"
+msgstr "حسّن وحوّل ملفات الصور عبر الإنترنت"
 
 msgid "Optimize Image"
 msgstr "تحسين الصورة"
 
 msgid "Compress JPEG, PNG, and WebP images without losing quality."
-msgstr "قلل حجم ملف PDF دون فقدان الجودة."
+msgstr "اضغط صور JPEG وPNG وWebP دون فقدان الجودة."
 
 msgid "Convert Image"
 msgstr "تحويل الصورة"
@@ -1193,7 +1193,7 @@ msgid "Convert Apple HEIC and HEIF photos from iPhone to JPG, PNG, or PDF."
 msgstr "حوّل صور Apple HEIC و HEIF من iPhone إلى JPG أو PNG أو PDF."
 
 msgid "Premium Tools"
-msgstr "بطل Premium"
+msgstr "الأدوات المميزة"
 
 msgid "Advanced and beta converters for premium users"
 msgstr "محولات متقدمة ونسخ تجريبية للمستخدمين المميزين"
@@ -1204,8 +1204,7 @@ msgstr "PDF ممسوح ضوئيًا إلى Word"
 msgid ""
 "Premium OCR workflow for converting image-based PDFs into editable DOCX."
 msgstr ""
-"استخراج النص من ملفات PDF الممسوحة ضوئياً والصور. تحويل ملفات PDF المستندة "
-"إلى الصور إلى نص قابل للتحرير."
+"سير عمل OCR مميز لتحويل ملفات PDF المستندة إلى الصور إلى DOCX قابل للتحرير."
 
 msgid "Batch Converter Hub"
 msgstr "مركز التحويل الدفعي"
@@ -1230,7 +1229,7 @@ msgid ""
 "Monitor and manage all premium background tasks with quick download and "
 "cleanup actions."
 msgstr ""
-"راقب وادفع جميع مهام الخلفية المميزة مع إجراءات التنزيل السريع والتنظيف."
+"راقب وأدر جميع مهام الخلفية المميزة مع إجراءات التنزيل السريع والتنظيف."
 
 msgid "EPUB to PDF"
 msgstr "EPUB إلى PDF"
@@ -1415,8 +1414,8 @@ msgid ""
 "much higher limits."
 msgstr ""
 "يحتوي ملف PDF على %%(page_count)d صفحة (الحد: %%(max_pages)d). يمكنك تقسيم "
-"ملفك إلى أجزاء أصغر أو الحصول على اشتراك Premium لمدة يوم واحد مقابل 1 دولار"
-" فقط لمعالجة ملفات أكبر بحدود أعلى بكثير!"
+"ملفك إلى أجزاء أصغر أو الترقية إلى Premium لمعالجة ملفات أكبر بحدود أعلى "
+"بكثير."
 
 #, python-format
 msgid ""
@@ -1869,7 +1868,7 @@ msgid "Best quality"
 msgstr "أفضل جودة"
 
 msgid "Please select an output format before converting."
-msgstr "يرجى تحديد سبب للإلغاء"
+msgstr "يرجى تحديد تنسيق الإخراج قبل التحويل."
 
 msgid "Select your image file using the button above or drag and drop it"
 msgstr "حدد ملف الصورة باستخدام الزر أعلاه أو اسحبه وأفلته"
@@ -1934,7 +1933,7 @@ msgstr "جودة الصورة"
 msgid ""
 "85%% is recommended for most images. Lower values reduce file size more "
 "aggressively."
-msgstr "يُنصح بـ 85%% لمعظم الصور. القيم الأقل تقلل حجم الملف بشكل أكثر."
+msgstr "يُنصح بـ 85%% لمعظم الصور. القيم الأقل تقلل حجم الملف بشكل أكبر."
 
 msgid "Output Format"
 msgstr "تنسيق الإخراج"
@@ -2170,10 +2169,10 @@ msgid "Image tools"
 msgstr "أدوات الصور"
 
 msgid "Premium tools"
-msgstr "بطل Premium"
+msgstr "الأدوات المميزة"
 
 msgid "Advanced and beta converters"
-msgstr "ميزات OCR متقدمة"
+msgstr "محولات متقدمة وتجريبية"
 
 msgid "More options"
 msgstr "المزيد من الخيارات"
@@ -2203,7 +2202,7 @@ msgid "Your account settings"
 msgstr "إعدادات حسابك"
 
 msgid "Sign in to access premium"
-msgstr "سجل الدخول للوصول إلى المميزات المميزة"
+msgstr "سجل الدخول للوصول إلى الميزات المميزة"
 
 msgid "Sign in to your account"
 msgstr "سجل الدخول إلى حسابك"
@@ -2561,7 +2560,7 @@ msgid "Remove unwanted images by clicking the X button"
 msgstr "قم بإزالة الصور غير المرغوب فيها عن طريق النقر على زر X"
 
 msgid "Select image quality (85 is recommended)"
-msgstr "جودة عالية (موصى به)"
+msgstr "حدد جودة الصورة (يوصى بـ 85)"
 
 msgid "Click Convert to combine all images into one PDF"
 msgstr "انقر على زر التحويل لدمج جميع الصور في ملف PDF واحد"
@@ -2710,7 +2709,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. الناتج هو أرشيف ZIP يحتوي على صور JPG مسماة حسب رقم الصفحة."
 
 msgid ""
 "Click the convert button to start converting PDF to PowerPoint (PDF to PPTX "
@@ -2882,7 +2881,7 @@ msgid "Wait for conversion - text, tables, and formatting will be extracted"
 msgstr "انتظر التحويل - سيتم استخراج النصوص، الجداول، والتنسيق"
 
 msgid "Download your editable Word document (.docx)"
-msgstr "قم بتنزيل ملف PDF المحرر"
+msgstr "قم بتنزيل مستند Word القابل للتحرير (.docx)"
 
 #, python-format
 msgid ""
@@ -3031,10 +3030,10 @@ msgstr ""
 " أو صفحات محددة"
 
 msgid "Click Add Page Numbers to process your PDF"
-msgstr "انقر على زر القص لمعالجة ملف PDF الخاص بك"
+msgstr "انقر على زر إضافة أرقام الصفحات لمعالجة ملف PDF الخاص بك"
 
 msgid "Download your numbered PDF file"
-msgstr "قم بتنزيل ملف PDF المحول"
+msgstr "قم بتنزيل ملف PDF المرقّم"
 
 #, python-format
 msgid ""
@@ -3043,7 +3042,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. تُضاف أرقام الصفحات وفقاً لإعداداتك."
 
 msgid "Visual Watermark Editor"
 msgstr "محرر العلامة المائية المرئي"
@@ -3132,7 +3131,7 @@ msgid ""
 "          "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. تُطبَّق العلامة المائية على جميع الصفحات أو الصفحات المحددة."
 
 msgid "Failed to load PDF file. Please try again."
 msgstr "فشل تحميل ملف PDF. يرجى المحاولة مرة أخرى."
@@ -3213,14 +3212,13 @@ msgstr "غيّر حجم التحديد عن طريق سحب الزوايا أو 
 
 msgid "Choose pages to crop: all, current, or specific pages"
 msgstr ""
-"حدد الصفحات المراد تدويرها: جميع الصفحات، أو الصفحة الحالية فقط، أو صفحات "
-"محددة"
+"حدد الصفحات المراد قصها: جميع الصفحات، أو الصفحة الحالية فقط، أو صفحات محددة"
 
 msgid "Click Crop PDF to process"
 msgstr "انقر على زر القص لمعالجة ملف PDF الخاص بك"
 
 msgid "Download your cropped PDF file"
-msgstr "قم بتنزيل ملف PDF المقطوع"
+msgstr "قم بتنزيل ملف PDF المقصوص"
 
 #, python-format
 msgid ""
@@ -3229,7 +3227,7 @@ msgid ""
 "          "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. ينطبق القص على جميع الصفحات المحددة."
 
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
@@ -3263,7 +3261,7 @@ msgstr ""
 "الحجم. انقر على \"قص PDF\" عندما تكون مستعداً."
 
 msgid "What does flattening do?"
-msgstr "ماذا يفعل التسوية؟"
+msgstr "ماذا تفعل التسوية؟"
 
 msgid ""
 "Flattening removes all interactive form fields, checkboxes, text inputs, and"
@@ -3320,10 +3318,10 @@ msgstr ""
 "محددة"
 
 msgid "Click Rotate to process your PDF"
-msgstr "انقر على زر القص لمعالجة ملف PDF الخاص بك"
+msgstr "انقر على زر التدوير لمعالجة ملف PDF الخاص بك"
 
 msgid "Download your rotated PDF file"
-msgstr "قم بتنزيل ملف PDF المقطوع"
+msgstr "قم بتنزيل ملف PDF المُدوَّر"
 
 #, python-format
 msgid ""
@@ -3332,7 +3330,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة للتدوير. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. يحافظ التدوير على جميع المحتويات والتنسيق."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. يحافظ التدوير على جميع المحتويات والتنسيق."
 
 msgid ""
 "Sign PDF is a premium feature. Draw, type, or upload your signature and "
@@ -3358,7 +3356,7 @@ msgid "Draw"
 msgstr "ارسم"
 
 msgid "Type"
-msgstr "النوع"
+msgstr "اكتب"
 
 msgid "Upload"
 msgstr "ارفع"
@@ -3470,7 +3468,7 @@ msgstr ""
 " يستغرق وقتاً أطول."
 
 msgid "Select your PDF file using the button above"
-msgstr "حدد 2-10 ملفات PDF للدمج باستخدام الزر أعلاه"
+msgstr "حدد ملف PDF الخاص بك باستخدام الزر أعلاه"
 
 msgid "Choose compression level: Low, Medium, or High"
 msgstr "اختر مستوى الضغط (منخفض، متوسط، أو مرتفع) لضغط حجم ملف PDF"
@@ -3488,7 +3486,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة للضغط. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر. يقلل الضغط الأعلى حجم الملف أكثر ولكن قد يقلل جودة الصورة قليلاً."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. يقلل الضغط الأعلى حجم الملف أكثر لكنه قد يقلل جودة الصورة."
 
 msgid "Extract Pages Settings"
 msgstr "إعدادات استخراج الصفحات"
@@ -3519,7 +3517,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. تُجمع الصفحات المستخرجة في ملف PDF جديد واحد."
 
 msgid "Merge Settings"
 msgstr "إعدادات الدمج"
@@ -3583,7 +3581,7 @@ msgid "Click Merge to combine all PDF files into one document"
 msgstr "انقر على زر الدمج لدمج جميع ملفات PDF في مستند واحد"
 
 msgid "Download your merged PDF containing all pages"
-msgstr "قم بتنزيل ملف PDF المحرر"
+msgstr "قم بتنزيل ملف PDF المدمج الذي يحتوي على جميع الصفحات"
 
 msgid ""
 "You can merge 2-10 PDF files at once. Pages will be combined in the order "
@@ -3614,7 +3612,7 @@ msgid "Failed to organize PDF"
 msgstr "فشل تنظيم PDF"
 
 msgid "Preview pages and drag them to reorder"
-msgstr "قم بمعاينة جميع ملفات PDF واسحبها لإعادة ترتيب ترتيب الدمج"
+msgstr "قم بمعاينة الصفحات واسحبها لإعادة ترتيبها"
 
 msgid "Arrange pages in your desired order"
 msgstr "رتب الصفحات بالترتيب المطلوب"
@@ -3623,7 +3621,7 @@ msgid "Click Organize PDF to save the new order"
 msgstr "انقر على تنظيم PDF لحفظ الترتيب الجديد"
 
 msgid "Download your reorganized PDF file"
-msgstr "قم بتنزيل ملف PDF المحرر"
+msgstr "قم بتنزيل ملف PDF المُعاد تنظيمه"
 
 #, python-format
 msgid ""
@@ -3632,7 +3630,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. اسحب وأفلت لإعادة ترتيب الصفحات بصريًا."
 
 msgid "Remove Pages Settings"
 msgstr "إعدادات إزالة الصفحات"
@@ -3650,7 +3648,7 @@ msgstr ""
 "انقر على زر إزالة الصفحات لمعالجة ملف PDF الخاص بك وحذف الصفحات المحددة"
 
 msgid "Download your cleaned PDF file"
-msgstr "قم بتنزيل ملف PDF المحرر"
+msgstr "قم بتنزيل ملف PDF المُنظَّف"
 
 #, python-format
 msgid ""
@@ -3659,7 +3657,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. يتم الحفاظ على الصفحات المتبقية بترتيبها الأصلي."
 
 msgid "Split Settings"
 msgstr "إعدادات التقسيم"
@@ -3728,7 +3726,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. للملفات الأكبر، يرجى تقسيمها إلى أجزاء أصغر."
+"يتم دعم ملفات PDF التي تصل إلى %(max_pages)s صفحة. الناتج أرشيف ZIP يحتوي على جميع الملفات المقسمة."
 
 msgid "Password Protection Settings"
 msgstr "إعدادات حماية كلمة المرور"
@@ -3836,7 +3834,7 @@ msgstr ""
 "قفل PDF."
 
 msgid "Premium Queue"
-msgstr "ميزة بريميوم"
+msgstr "قائمة انتظار Premium"
 
 msgid ""
 "Manage conversion tasks sent to background mode: monitor progress, download "
@@ -3858,7 +3856,7 @@ msgid "Refresh"
 msgstr "تحديث"
 
 msgid "Clear Completed"
-msgstr "مكتمل"
+msgstr "مسح المكتملة"
 
 msgid "Clear All"
 msgstr "مسح الكل"
@@ -3870,10 +3868,10 @@ msgstr ""
 "لا توجد مهام خلفية حتى الآن. ابدأ تحويلاً واختر 'المتابعة في الخلفية'."
 
 msgid "Open Batch Converter"
-msgstr "تحويل PDF"
+msgstr "فتح محوّل الدُفعات"
 
 msgid "Back to Premium Tools"
-msgstr "العودة إلى الملف الشخصي"
+msgstr "العودة إلى أدوات Premium"
 
 msgid "Processing"
 msgstr "جارٍ المعالجة..."
@@ -3882,7 +3880,7 @@ msgid "Result is unavailable or expired."
 msgstr "النتيجة غير متاحة أو انتهت صلاحيتها."
 
 msgid "Unnamed file"
-msgstr "إزالة الملف"
+msgstr "ملف بدون اسم"
 
 msgid "Task failed without details."
 msgstr "فشلت المهمة بدون تفاصيل."
@@ -3894,22 +3892,22 @@ msgid "Started"
 msgstr "بدأ"
 
 msgid "Open Tool"
-msgstr "الأداة ذات الصلة"
+msgstr "فتح الأداة"
 
 msgid "Download"
 msgstr "تنزيل"
 
 msgid "Remove"
-msgstr "إزالة الملف"
+msgstr "إزالة"
 
 msgid "Unable to download file."
-msgstr "فشل تنزيل تقرير ZIP."
+msgstr "تعذّر تنزيل الملف."
 
 msgid "Clear all queue items?"
 msgstr "مسح جميع عناصر قائمة الانتظار؟"
 
 msgid "Premium Batch"
-msgstr "خطة Premium"
+msgstr "دفعات Premium"
 
 msgid ""
 "Choose a converter below, upload multiple files at once, and keep long jobs "
@@ -4089,7 +4087,7 @@ msgstr ""
 "قياسية."
 
 msgid "Premium OCR"
-msgstr "مميز"
+msgstr "OCR مميز"
 
 msgid ""
 "This premium workflow opens PDF to Word with OCR pre-enabled, so you can "
@@ -4110,7 +4108,7 @@ msgstr ""
 " تحديد النص."
 
 msgid "Open OCR Converter"
-msgstr "محول Excel إلى PDF"
+msgstr "فتح محوّل OCR"
 
 msgid ""
 "PDF to EPUB works best with text-based PDFs. Scanned/image-only PDFs should "
@@ -4123,7 +4121,7 @@ msgid "How PDF to EPUB works"
 msgstr "كيف يعمل PDF إلى EPUB"
 
 msgid "Upload a PDF file."
-msgstr "ارفع ملفي PDF"
+msgstr "ارفع ملف PDF."
 
 msgid "Click Convert PDF to EPUB."
 msgstr "انقر على تحويل PDF إلى EPUB."
@@ -4171,7 +4169,7 @@ msgstr ""
 "أولاً للحصول على إخراج Markdown أفضل."
 
 msgid "Premium Automation"
-msgstr "خطة Premium"
+msgstr "أتمتة Premium"
 
 msgid ""
 "Save your frequent conversion setups as presets and reopen the right premium"
@@ -4184,16 +4182,16 @@ msgid "Create Workflow"
 msgstr "إنشاء سير عمل"
 
 msgid "Preset Name"
-msgstr "الاسم الأول"
+msgstr "اسم الإعداد المسبق"
 
 msgid "Example: Weekly Invoices to PDF"
 msgstr "مثال: فواتير أسبوعية إلى PDF"
 
 msgid "Tool"
-msgstr "الأدوات"
+msgstr "الأداة"
 
 msgid "Notes"
-msgstr "ملاحظة:"
+msgstr "ملاحظات"
 
 msgid "Optional reminder: file type, target format, quality settings..."
 msgstr "تذكير اختياري: نوع الملف، التنسيق المستهدف، إعدادات الجودة..."
@@ -4205,13 +4203,13 @@ msgid "Reset"
 msgstr "إعادة تعيين"
 
 msgid "Quick Presets"
-msgstr "اختيار الصفحة"
+msgstr "إعدادات مسبقة سريعة"
 
 msgid "One-click templates you can add and customize."
 msgstr "قوالب بنقرة واحدة يمكنك إضافتها وتخصيصها."
 
 msgid "eBook to Print PDF"
-msgstr "العودة إلى التسعير"
+msgstr "كتاب إلكتروني إلى PDF للطباعة"
 
 msgid "Upload EPUB, convert to PDF, review margins for print."
 msgstr "رفع EPUB، تحويل إلى PDF، مراجعة الهوامش للطباعة."
@@ -4247,27 +4245,29 @@ msgid "Edit"
 msgstr "تحرير"
 
 msgid "Delete"
-msgstr "حذف الحساب"
+msgstr "حذف"
 
 msgid "Delete all saved workflows?"
 msgstr "حذف جميع سير العمل المحفوظة؟"
 
 msgid "Advanced Tools"
-msgstr "جميع الأدوات"
+msgstr "أدوات متقدمة"
 
 msgid ""
 "Advanced conversion workflows with higher limits, priority processing, and "
 "early access to new formats."
-msgstr "معالجة ملفات أكبر بحدود أعلى بكثير، ومعالجة ذات أولوية، وميزات مميزة"
+msgstr ""
+"سير عمل تحويل متقدم بحدود أعلى، ومعالجة ذات أولوية، ووصول مبكر إلى التنسيقات"
+" الجديدة."
 
 msgid "Your Premium subscription is active"
-msgstr "لا يوجد اشتراك نشط للإلغاء"
+msgstr "اشتراكك في Premium نشط"
 
 msgid "Unlock Premium Access"
 msgstr "فتح الوصول المميز"
 
 msgid "Premium Workflows"
-msgstr "بطل Premium"
+msgstr "سير عمل Premium"
 
 msgid "OCR"
 msgstr "OCR"
@@ -4276,8 +4276,8 @@ msgid ""
 "Convert image-based PDFs to editable DOCX with OCR language controls and "
 "premium limits."
 msgstr ""
-"استخراج النص من ملفات PDF الممسوحة ضوئياً والصور. تحويل ملفات PDF المستندة "
-"إلى الصور إلى نص قابل للتحرير."
+"حوّل ملفات PDF القائمة على الصور إلى DOCX قابل للتحرير مع التحكم في لغة OCR "
+"وحدود Premium."
 
 msgid "Batch"
 msgstr "دفعة"
@@ -4290,7 +4290,7 @@ msgstr ""
 "وضع الخلفية."
 
 msgid "Automation"
-msgstr "معلومات الحساب"
+msgstr "الأتمتة"
 
 msgid ""
 "Create reusable presets for frequent conversions and launch tools faster."
@@ -4316,10 +4316,10 @@ msgstr ""
 "وخطافات الويب، ووثائق OpenAPI."
 
 msgid "Premium Conversion Beta"
-msgstr "تحويل PDF"
+msgstr "تحويل بريميوم (بيتا)"
 
 msgid "Premium Beta"
-msgstr "بطل Premium"
+msgstr "بريميوم (بيتا)"
 
 msgid "EPUB"
 msgstr "EPUB"
@@ -4428,7 +4428,7 @@ msgid "By Agreement"
 msgstr "بموجب اتفاق"
 
 msgid "Custom"
-msgstr "تخصيص"
+msgstr "مخصّص"
 
 msgid "Need custom limits or team terms? We can prepare a tailored offer."
 msgstr "هل تحتاج إلى حدود مخصصة أو شروط فريق؟ يمكننا إعداد عرض مخصص."
@@ -4437,7 +4437,7 @@ msgid "Dedicated limits and throughput"
 msgstr "حدود وإنتاجية مخصصة"
 
 msgid "Project-specific feature set"
-msgstr "استخراج صفحات محددة"
+msgstr "مجموعة ميزات خاصة بالمشروع"
 
 msgid "Priority support and onboarding"
 msgstr "دعم أولوية"
@@ -4449,7 +4449,7 @@ msgid "For teams and business workflows"
 msgstr "للفرق وسير عمل الأعمال"
 
 msgid "Request Terms"
-msgstr "تغييرات الشروط"
+msgstr "طلب الشروط"
 
 msgid "MOST POPULAR"
 msgstr "الأكثر شعبية"
@@ -4503,7 +4503,7 @@ msgid "year"
 msgstr "سنة"
 
 msgid "Save with annual commitment"
-msgstr "وفر 28% مع الالتزام السنوي"
+msgstr "وفّر مع الالتزام السنوي"
 
 msgid "Everything in Monthly, plus:"
 msgstr "كل شيء في الشهري، بالإضافة إلى:"
@@ -4524,7 +4524,7 @@ msgid "FOUNDER'S DEAL"
 msgstr "عرض المؤسس"
 
 msgid "Lifetime Hero"
-msgstr "Lifetime Hero"
+msgstr "بطل مدى الحياة"
 
 msgid "one-time payment"
 msgstr "دفعة واحدة"
@@ -4545,10 +4545,10 @@ msgid "No recurring charges"
 msgstr "بدون رسوم متكررة"
 
 msgid "Lifetime hero status"
-msgstr "حالة Lifetime hero"
+msgstr "حالة بطل مدى الحياة"
 
 msgid "Become Lifetime Hero"
-msgstr "كن Lifetime Hero"
+msgstr "كن بطل مدى الحياة"
 
 msgid "Become a Convertica hero and help us make the service better"
 msgstr "كن بطلاً لكونفيرتيكا وساعدنا في جعل الخدمة أفضل"
@@ -4613,7 +4613,7 @@ msgid "Servers & Development"
 msgstr "الخوادم والتطوير"
 
 msgid "Your support powers our infrastructure and improvements"
-msgstr "دعمك يزود بنيتنا التحتية وتحسيناتنا بالطاقة"
+msgstr "دعمك يشغّل بنيتنا التحتية ويدعم تحسيناتنا"
 
 msgid "Community Driven"
 msgstr "مدفوع من المجتمع"
@@ -4750,7 +4750,7 @@ msgid "Process and convert your files as requested"
 msgstr "معالجة وتحويل ملفاتك كما هو مطلوب"
 
 msgid "Improve and optimize our services"
-msgstr "تحسين وتحسين خدماتنا"
+msgstr "تحسين خدماتنا وتطويرها"
 
 msgid "Monitor and analyze usage patterns"
 msgstr "مراقبة وتحليل أنماط الاستخدام"
@@ -4795,7 +4795,7 @@ msgstr ""
 "ضمان الأمان المطلق."
 
 msgid "Data Retention"
-msgstr "احتفاظ البيانات"
+msgstr "الاحتفاظ بالبيانات"
 
 msgid ""
 "We retain your uploaded files only for the time necessary to complete the "
@@ -4964,7 +4964,7 @@ msgid "Terms of Service - Convertica"
 msgstr "شروط الخدمة - Convertica"
 
 msgid "Welcome to Convertica. These Terms of Service (\\"
-msgstr "مرحباً بك في كونفيرتيكا. شروط الخدمة هذه (\\"
+msgstr "مرحباً بك في Convertica. شروط الخدمة هذه (\\"
 
 msgid ""
 "If you disagree with any part of these Terms, then you may not access or use"
@@ -4981,7 +4981,7 @@ msgid ""
 "read, understood, and agree to be bound by these Terms and our Privacy "
 "Policy. If you do not agree to these Terms, you must not use our Services."
 msgstr ""
-"من خلال الوصول إلى خدمات كونفيرتيكا أو استخدامها، فإنك تقر بأنك قد قرأت "
+"من خلال الوصول إلى خدمات Convertica أو استخدامها، فإنك تقر بأنك قد قرأت "
 "وفهمت وتوافق على الالتزام بهذه الشروط وسياسة الخصوصية الخاصة بنا. إذا كنت لا"
 " توافق على هذه الشروط، فلا يجوز لك استخدام خدماتنا."
 
@@ -4992,7 +4992,7 @@ msgid ""
 "Convertica provides online PDF tools and services, including but not limited"
 " to:"
 msgstr ""
-"توفر كونفيرتيكا أدوات وخدمات PDF عبر الإنترنت، بما في ذلك على سبيل المثال لا"
+"توفر Convertica أدوات وخدمات PDF عبر الإنترنت، بما في ذلك على سبيل المثال لا"
 " الحصر:"
 
 msgid ""
@@ -5107,8 +5107,8 @@ msgid ""
 msgstr ""
 "جميع المحتويات والميزات والوظائف الخاصة بخدماتنا، بما في ذلك على سبيل المثال"
 " لا الحصر النصوص والرسومات والشعارات والرموز والصور والبرمجيات، هي ملكية "
-"حصرية لكونفيرتيكا ومحمية بموجب قوانين حقوق النشر والعلامات التجارية والملكية"
-" الفكرية الدولية الأخرى."
+"حصرية لـ Convertica ومحمية بموجب قوانين حقوق النشر والعلامات التجارية "
+"والملكية الفكرية الدولية الأخرى."
 
 msgid "Your Content"
 msgstr "محتواك"
@@ -5157,7 +5157,7 @@ msgid ""
 "incidental, special, consequential, or punitive damages, including but not "
 "limited to:"
 msgstr ""
-"إلى الحد الأقصى المسموح به بموجب القانون، لا تتحمل كونفيرتيكا وشركاتها "
+"إلى الحد الأقصى المسموح به بموجب القانون، لا تتحمل Convertica وشركاتها "
 "التابعة ومسؤوليها وموظفيها ووكلائها أي أضرار غير مباشرة أو عرضية أو خاصة أو "
 "تبعية أو عقابية، بما في ذلك على سبيل المثال لا الحصر:"
 
@@ -5191,7 +5191,7 @@ msgid ""
 "damages, obligations, losses, liabilities, costs, or debt, and expenses "
 "(including attorney's fees) arising from:"
 msgstr ""
-"توافق على تعويض كونفيرتيكا وشركاتها التابعة ومسؤوليها وموظفيها ووكلائها "
+"توافق على تعويض Convertica وشركاتها التابعة ومسؤوليها وموظفيها ووكلائها "
 "والدفاع عنها وإبراء ذمتها من ومن ضد أي مطالبات أو أضرار أو التزامات أو خسائر"
 " أو مسؤوليات أو تكاليف أو ديون ونفقات (بما في ذلك أتعاب المحاماة) الناشئة "
 "عن:"
@@ -5289,7 +5289,7 @@ msgid ""
 "You haven't been charged. You can try subscribing again anytime when you're "
 "ready."
 msgstr ""
-"لم يتم تحميلك أي رسوم. يمكنك محاولة الاشتراك مرة أخرى في أي وقت عندما تكون "
+"لم تُخصم منك أي رسوم. يمكنك محاولة الاشتراك مرة أخرى في أي وقت عندما تكون "
 "مستعداً."
 
 msgid "Still Interested?"
@@ -5305,7 +5305,7 @@ msgid "Larger file size support"
 msgstr "دعم حجم ملف أكبر"
 
 msgid "Priority processing speeds"
-msgstr "سرعات معالجة أولوية"
+msgstr "سرعات معالجة ذات أولوية"
 
 msgid "Advanced PDF tools and features"
 msgstr "أدوات وميزات PDF متقدمة"
@@ -5393,7 +5393,7 @@ msgid "Process larger files and more documents"
 msgstr "معالجة ملفات أكبر والمزيد من المستندات"
 
 msgid "Enjoy priority processing speeds"
-msgstr "استمتع بسرعات معالجة أولوية"
+msgstr "استمتع بسرعات معالجة ذات أولوية"
 
 msgid "Start Using Premium Features"
 msgstr "ابدأ باستخدام ميزات Premium"
@@ -5438,7 +5438,7 @@ msgid "Sign In with Google"
 msgstr "تسجيل الدخول باستخدام Google"
 
 msgid "Welcome to Convertica"
-msgstr "مرحباً بك في كونفيرتيكا"
+msgstr "مرحباً بك في Convertica"
 
 msgid "Sign in with your Google account"
 msgstr "تسجيل الدخول باستخدام حساب Google الخاص بك"
@@ -5462,7 +5462,7 @@ msgid "Sign Up with Google"
 msgstr "التسجيل باستخدام Google"
 
 msgid "Join Convertica"
-msgstr "انضم إلى كونفيرتيكا"
+msgstr "انضم إلى Convertica"
 
 msgid "Create your account with Google"
 msgstr "أنشئ حسابك باستخدام Google"
@@ -5471,7 +5471,7 @@ msgid "Create Account with Google"
 msgstr "إنشاء حساب باستخدام Google"
 
 msgid "Get instant access to all Convertica features"
-msgstr "احصل على وصول فوري إلى جميع ميزات كونفيرتيكا"
+msgstr "احصل على وصول فوري إلى جميع ميزات Convertica"
 
 msgid "Complete Registration"
 msgstr "إكمال التسجيل"
@@ -5516,7 +5516,7 @@ msgid "Total Days as Hero"
 msgstr "إجمالي الأيام كبطل"
 
 msgid "Current Streak"
-msgstr "سلسلة الحالية"
+msgstr "السلسلة الحالية"
 
 msgid "Hero Ranks"
 msgstr "رتب الأبطال"
@@ -5850,7 +5850,7 @@ msgid ""
 msgstr ""
 "الملف كبير جداً (%(file_mb).1f ميجابايت). المستخدمون المجانيون: الحد الأقصى "
 "%(free_mb).0f ميجابايت. ترقِ إلى Premium للحد %(premium_mb).0f ميجابايت! "
-"احصل على Premium ليوم واحد مقابل 1 دولار فقط."
+"ترقِ الآن لفتح حدود أعلى."
 
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
@@ -5868,8 +5868,7 @@ msgid ""
 " to Premium for %(premium_mb).0f MB limit."
 msgstr ""
 "الملف كبير جداً (%(file_mb).1f ميجابايت). المستخدمون المجانيون: الحد الأقصى "
-"%(free_mb).0f ميجابايت. ترقِ إلى Premium للحد %(premium_mb).0f ميجابايت! "
-"احصل على Premium ليوم واحد مقابل 1 دولار فقط."
+"%(free_mb).0f ميجابايت. ترقِ إلى Premium للحد %(premium_mb).0f ميجابايت."
 
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
@@ -5885,9 +5884,9 @@ msgid ""
 " into smaller parts or upgrade to Premium to process larger files with much "
 "higher limits."
 msgstr ""
-"PDF يحتوي على %(page_count)d صفحة (الحد: %(max_pages)d). يمكنك تقسيم ملفك "
-"إلى أجزاء أصغر أو الحصول على اشتراك Premium ليوم واحد مقابل 1 دولار فقط "
-"لمعالجة ملفات أكبر بحدود أعلى بكثير!"
+"يحتوي ملف PDF على %(page_count)d صفحة (الحد: %(max_pages)d). يمكنك تقسيم "
+"ملفك إلى أجزاء أصغر أو الترقية إلى Premium لمعالجة ملفات أكبر بحدود أعلى "
+"بكثير."
 
 #, python-format
 msgid ""
@@ -5906,7 +5905,7 @@ msgstr ""
 "يرجى تقسيم ملف PDF الخاص بك إلى أجزاء أصغر."
 
 msgid "PDF is password-protected. Please unlock it and try again."
-msgstr "ملف PDF غير محمي بكلمة مرور. لا يتطلب ملف PDF هذا كلمة مرور لفتحه."
+msgstr "ملف PDF محمي بكلمة مرور. يرجى إلغاء قفله والمحاولة مرة أخرى."
 
 #, python-format
 msgid ""
@@ -5963,10 +5962,10 @@ msgid "Incorrect password. Please check the password and try again."
 msgstr "كلمة مرور غير صحيحة. يرجى التحقق من كلمة المرور والمحاولة مرة أخرى."
 
 msgid "Basic Information"
-msgstr "معلومات الخطة"
+msgstr "المعلومات الأساسية"
 
 msgid "Translations"
-msgstr "معرف المعاملة"
+msgstr "الترجمات"
 
 msgid "Add translations for other languages using the tabs above."
 msgstr "أضف الترجمات للغات الأخرى باستخدام علامات التبويب أعلاه."
@@ -5975,7 +5974,7 @@ msgid "Metadata"
 msgstr "البيانات الوصفية"
 
 msgid "No translations"
-msgstr "معرف المعاملة"
+msgstr "لا توجد ترجمات"
 
 msgid "No valid translations"
 msgstr "لا توجد ترجمات صالحة"
@@ -5984,13 +5983,13 @@ msgid "Empty translations"
 msgstr "ترجمات فارغة"
 
 msgid "Articles"
-msgstr "جميع المقالات"
+msgstr "المقالات"
 
 msgid "English Content"
-msgstr "الإنجليزية"
+msgstr "المحتوى الإنجليزي"
 
 msgid "SEO - English"
-msgstr "الإنجليزية"
+msgstr "SEO - الإنجليزية"
 
 msgid ""
 "Add translations for other languages using the tabs above. Each language has"
@@ -6010,19 +6009,19 @@ msgstr ""
 "بشكل أفضل."
 
 msgid "Media"
-msgstr "متوسط"
+msgstr "الوسائط"
 
 msgid "Statistics"
-msgstr "الحالة"
+msgstr "الإحصائيات"
 
 msgid "No image"
-msgstr "صورة"
+msgstr "لا توجد صورة"
 
 msgid "Preview"
-msgstr "السابق"
+msgstr "معاينة"
 
 msgid "Name (English)"
-msgstr "الإنجليزية"
+msgstr "الاسم (الإنجليزية)"
 
 msgid "Slug"
 msgstr "الرابط الدال"
@@ -6035,7 +6034,7 @@ msgstr ""
 "\"...\"}, ...}"
 
 msgid "Description (English)"
-msgstr "وصف الخدمات"
+msgstr "الوصف (الإنجليزية)"
 
 msgid "Article Category"
 msgstr "فئة المقال"
@@ -6047,13 +6046,13 @@ msgid "Draft"
 msgstr "مسودة"
 
 msgid "Published"
-msgstr "البولندية"
+msgstr "منشور"
 
 msgid "Archived"
 msgstr "مؤرشف"
 
 msgid "Title (English)"
-msgstr "الإنجليزية"
+msgstr "العنوان (الإنجليزية)"
 
 msgid "Content (English)"
 msgstr "المحتوى (الإنجليزية)"
@@ -6085,10 +6084,10 @@ msgstr ""
 "ذات صلة، إلخ."
 
 msgid "Category"
-msgstr "التصنيفات"
+msgstr "التصنيف"
 
 msgid "Featured Image"
-msgstr "الصور المحددة"
+msgstr "الصورة المميزة"
 
 msgid "Relevant Tool"
 msgstr "الأداة ذات الصلة"
@@ -6100,7 +6099,7 @@ msgid "Published At"
 msgstr "تاريخ النشر"
 
 msgid "Created At"
-msgstr "إنشاء حساب"
+msgstr "تاريخ الإنشاء"
 
 msgid "Updated At"
 msgstr "تم التحديث في"
@@ -6109,7 +6108,7 @@ msgid "View Count"
 msgstr "عدد المشاهدات"
 
 msgid "Article"
-msgstr "جميع المقالات"
+msgstr "مقال"
 
 msgid ""
 "Useful guides, tips, and articles about PDF tools and document management. "
@@ -11150,13 +11149,13 @@ msgstr ""
 "حصة استدعاءات /api/v1 الشهرية لمشتركي هذه الخطة. 0 = لا يوجد وصول إلى API."
 
 msgid "Runtime Setting"
-msgstr "إعدادات التدوير"
+msgstr "إعداد وقت التشغيل"
 
 msgid "Runtime Settings"
-msgstr "إعدادات التدوير"
+msgstr "إعدادات وقت التشغيل"
 
 msgid "Setting key cannot be empty."
-msgstr "كلمة المرور لا يمكن أن تكون فارغة"
+msgstr "مفتاح الإعداد لا يمكن أن يكون فارغًا."
 
 msgid ""
 "This setting key is considered secret and cannot be configured from admin."
@@ -11172,7 +11171,7 @@ msgid "Transaction ID"
 msgstr "معرف المعاملة"
 
 msgid "Processed At"
-msgstr "تم المعالجة في"
+msgstr "تمت المعالجة في"
 
 msgid "Payment"
 msgstr "الدفع"
@@ -12122,10 +12121,10 @@ msgstr ""
 "مباشرة إلى أيقونة مفضلة متعددة الدقة favicon.ico. نظرًا لأن SVG يخزن العمل "
 "الفني كأشكال رياضية بدلاً من البكسلات، فإن المحوّل يعرض كل حجم مضمّن — 16×16"
 " و32×32 و48×48 بكسل — من الخطوط المتجهة الأصلية، مما ينتج نتائج أكثر حدة من "
-"تصغير صورة نقطية.</p><p>هذه هي سير العمل المثالية للمصممين الذين لديهم "
-"بالفعل شعار علامتهم التجارية بصيغة SVG: لا حاجة لتصدير PNG كبير أولاً. ما "
-"عليك سوى رفع SVG، والنقر على تحويل، وتنزيل favicon.ico جاهز للمتصفح. يتم "
-"الحفاظ على الشفافية بالكامل ويتم حذف ملفك فور التنزيل.</p>"
+"تصغير صورة نقطية.</p><p>هذا هو سير العمل المثالي للمصممين الذين لديهم بالفعل"
+" شعار علامتهم التجارية بصيغة SVG: لا حاجة لتصدير PNG كبير أولاً. ما عليك سوى"
+" رفع SVG، والنقر على تحويل، وتنزيل favicon.ico جاهز للمتصفح. يتم الحفاظ على "
+"الشفافية بالكامل ويتم حذف ملفك فور التنزيل.</p>"
 
 msgid ""
 "<p><strong>WebP to ICO</strong> converts Google's modern WebP image format "
