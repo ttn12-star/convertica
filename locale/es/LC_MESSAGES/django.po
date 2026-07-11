@@ -146,12 +146,11 @@ msgstr "503 - Servicio no disponible"
 msgid ""
 "Email service is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
-"El servidor no está disponible temporalmente o está sobrecargado. Por favor,"
-" inténtalo de nuevo en unos momentos. Estamos trabajando para restaurar el "
-"servicio lo más rápido posible."
+"El servicio de correo electrónico no está disponible temporalmente. "
+"Inténtalo de nuevo en unos minutos."
 
 msgid "Email service temporarily unavailable"
-msgstr "Las donaciones no están disponibles temporalmente"
+msgstr "El servicio de correo electrónico no está disponible temporalmente"
 
 msgid ""
 "We couldn't send your email right now. Please try again in a few minutes."
@@ -373,7 +372,7 @@ msgid "Cancel and return to account"
 msgstr "Cancelar y volver a la cuenta"
 
 msgid "Monthly Statistics"
-msgstr "Estadísticas"
+msgstr "Estadísticas mensuales"
 
 msgid "User Activity"
 msgstr "Actividad de usuarios"
@@ -385,13 +384,13 @@ msgid "Home"
 msgstr "Inicio"
 
 msgid "Back to Operations List"
-msgstr "Volver al perfil"
+msgstr "Volver a la lista de operaciones"
 
 msgid "Min operations:"
-msgstr "Más opciones"
+msgstr "Operaciones mín.:"
 
 msgid "Filter"
-msgstr "Filtro"
+msgstr "Filtrar"
 
 #, python-format
 msgid ""
@@ -405,22 +404,22 @@ msgid "Email"
 msgstr "Correo electrónico"
 
 msgid "Total"
-msgstr "Días Totales"
+msgstr "Total"
 
 msgid "Success"
 msgstr "Éxito"
 
 msgid "Errors"
-msgstr "Error"
+msgstr "Errores"
 
 msgid "Success Rate"
 msgstr "Tasa de éxito"
 
 msgid "First Operation"
-msgstr "Sin registro"
+msgstr "Primera operación"
 
 msgid "Last Operation"
-msgstr "Conservación del diseño"
+msgstr "Última operación"
 
 msgid "No users found with the given filter."
 msgstr "No se encontraron usuarios con el filtro dado."
@@ -484,7 +483,7 @@ msgid ""
 "compress, OCR, HEIC, EPUB — one base URL, one key."
 msgstr ""
 "PDF↔Word/Excel/PPT/JPG/PNG, fusionar, dividir, rotar, recortar, firmar, "
-"marcar de agua, comprimir, OCR, HEIC, EPUB: una URL base, una clave."
+"marca de agua, comprimir, OCR, HEIC, EPUB: una URL base, una clave."
 
 msgid "Bundled, not extra"
 msgstr "Incluido, no adicional"
@@ -664,7 +663,7 @@ msgstr ""
 msgid ""
 "PDF edit: merge, split, rotate, watermark, sign, compress, crop, flatten"
 msgstr ""
-"Edición de PDF: fusionar, dividir, rotar, marcar agua, firmar, comprimir, "
+"Edición de PDF: fusionar, dividir, rotar, marca de agua, firmar, comprimir, "
 "recortar, aplanar"
 
 msgid "Image: optimize, convert, HEIC→JPG/PNG"
@@ -684,7 +683,7 @@ msgid "Sub-200ms median, EU edge"
 msgstr "Mediana inferior a 200 ms, edge en la UE"
 
 msgid "Same backend as convertica.net — battle-tested"
-msgstr "Mismo backend que convertica.net — probado en batalla"
+msgstr "Mismo backend que convertica.net — probado en producción"
 
 msgid "Frequently asked questions"
 msgstr "Preguntas frecuentes"
@@ -983,7 +982,7 @@ msgstr "Icono de marca de verificación"
 
 #, python-format
 msgid "100%% Free"
-msgstr "100%%Gratis"
+msgstr "100%% Gratis"
 
 msgid ""
 "All our tools are completely free to use. No hidden fees, no subscriptions, "
@@ -1143,13 +1142,13 @@ msgid "Flatten PDF"
 msgstr "Aplanar PDF"
 
 msgid "Flatten form fields and annotations into static content."
-msgstr "Aplana el PDF para eliminar campos de formulario y anotaciones"
+msgstr "Aplana campos de formulario y anotaciones en contenido estático."
 
 msgid "Sign PDF"
 msgstr "Firmar PDF"
 
 msgid "Add your signature to PDF documents."
-msgstr "Añade tu firma a un PDF en línea"
+msgstr "Añade tu firma a documentos PDF."
 
 msgid "Organize PDF"
 msgstr "Organizar PDF"
@@ -1200,13 +1199,13 @@ msgid "Images"
 msgstr "Imágenes"
 
 msgid "Optimize and convert image files online"
-msgstr "Comprime y optimiza imágenes en línea"
+msgstr "Optimiza y convierte archivos de imagen en línea"
 
 msgid "Optimize Image"
 msgstr "Optimizar imagen"
 
 msgid "Compress JPEG, PNG, and WebP images without losing quality."
-msgstr "Reduce el tamaño del archivo PDF sin perder calidad."
+msgstr "Comprime imágenes JPEG, PNG y WebP sin perder calidad."
 
 msgid "Convert Image"
 msgstr "Convertir imagen"
@@ -1221,7 +1220,7 @@ msgid "Convert Apple HEIC and HEIF photos from iPhone to JPG, PNG, or PDF."
 msgstr "Convierte fotos Apple HEIC y HEIF del iPhone a JPG, PNG o PDF."
 
 msgid "Premium Tools"
-msgstr "Héroe Premium"
+msgstr "Herramientas Premium"
 
 msgid "Advanced and beta converters for premium users"
 msgstr "Conversores avanzados y beta para usuarios premium"
@@ -1232,8 +1231,8 @@ msgstr "PDF escaneado a Word"
 msgid ""
 "Premium OCR workflow for converting image-based PDFs into editable DOCX."
 msgstr ""
-"Extrae texto de PDFs escaneados e imágenes. Convierte PDFs basados en "
-"imágenes en texto editable."
+"Flujo de trabajo OCR premium para convertir PDFs basados en imágenes en DOCX"
+" editable."
 
 msgid "Batch Converter Hub"
 msgstr "Centro de Conversión por Lotes"
@@ -1462,9 +1461,8 @@ msgid ""
 "much higher limits."
 msgstr ""
 "El PDF tiene %%(page_count)d páginas (límite: %%(max_pages)d). Puedes "
-"dividir tu archivo en partes más pequeñas o conseguir una suscripción "
-"Premium de 1 día por solo $1 para procesar archivos más grandes con límites "
-"mucho más altos."
+"dividir tu archivo en partes más pequeñas o actualizar a Premium para "
+"procesar archivos más grandes con límites mucho más altos."
 
 #, python-format
 msgid ""
@@ -1938,7 +1936,7 @@ msgid "Best quality"
 msgstr "Mejor calidad"
 
 msgid "Please select an output format before converting."
-msgstr "Por favor, selecciona una razón para la cancelación"
+msgstr "Por favor, selecciona un formato de salida antes de convertir."
 
 msgid "Select your image file using the button above or drag and drop it"
 msgstr "Selecciona tu imagen usando el botón de arriba o arrástrala"
@@ -2254,10 +2252,10 @@ msgid "Image tools"
 msgstr "Herramientas de imagen"
 
 msgid "Premium tools"
-msgstr "Héroe Premium"
+msgstr "Herramientas premium"
 
 msgid "Advanced and beta converters"
-msgstr "Funciones avanzadas de OCR"
+msgstr "Conversores avanzados y beta"
 
 msgid "More options"
 msgstr "Más opciones"
@@ -2658,7 +2656,7 @@ msgid "Remove unwanted images by clicking the X button"
 msgstr "Elimina imágenes no deseadas haciendo clic en el botón X"
 
 msgid "Select image quality (85 is recommended)"
-msgstr "Alta calidad (recomendado)"
+msgstr "Selecciona la calidad de imagen (se recomienda 85)"
 
 msgid "Click Convert to combine all images into one PDF"
 msgstr ""
@@ -2820,7 +2818,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. El resultado es un archivo ZIP con imágenes JPG nombradas según el número de página."
 
 msgid ""
 "Click the convert button to start converting PDF to PowerPoint (PDF to PPTX "
@@ -3003,7 +3001,7 @@ msgid "Wait for conversion - text, tables, and formatting will be extracted"
 msgstr "Espera la conversión: se extraerán texto, tablas y formato"
 
 msgid "Download your editable Word document (.docx)"
-msgstr "Descarga tu archivo PDF editado"
+msgstr "Descarga tu documento Word editable (.docx)"
 
 #, python-format
 msgid ""
@@ -3156,10 +3154,10 @@ msgstr ""
 "actual o páginas específicas"
 
 msgid "Click Add Page Numbers to process your PDF"
-msgstr "Haz clic en el botón Recortar para procesar tu PDF"
+msgstr "Haz clic en Agregar números de página para procesar tu PDF"
 
 msgid "Download your numbered PDF file"
-msgstr "Descarga tu archivo PDF convertido"
+msgstr "Descarga tu archivo PDF numerado"
 
 #, python-format
 msgid ""
@@ -3168,7 +3166,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. Los números de página se agregan según tu configuración."
 
 msgid "Visual Watermark Editor"
 msgstr "Editor visual de marca de agua"
@@ -3261,7 +3259,7 @@ msgid ""
 "          "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. La marca de agua se aplica a todas las páginas o a las seleccionadas."
 
 msgid "Failed to load PDF file. Please try again."
 msgstr "No se pudo cargar el archivo PDF. Por favor, inténtalo de nuevo."
@@ -3344,17 +3342,14 @@ msgstr ""
 "Cuando se selecciona 'todos', el recorte se aplica a todas las páginas"
 
 msgid "Click and drag to select the area you want to keep"
-msgstr "Haz clic y arrastra para seleccionar el área de recorte en el PDF"
+msgstr "Haz clic y arrastra para seleccionar el área que quieres conservar"
 
 msgid "Resize the selection using corner or edge handles"
-msgstr ""
-"Cambia el tamaño de la selección arrastrando las esquinas o los bordes para "
-"ajustar el área de recorte"
+msgstr "Cambia el tamaño de la selección usando las esquinas o los bordes"
 
 msgid "Choose pages to crop: all, current, or specific pages"
 msgstr ""
-"Selecciona qué páginas rotar: todas las páginas, solo la página actual o "
-"páginas específicas"
+"Elige qué páginas recortar: todas, la página actual o páginas específicas"
 
 msgid "Click Crop PDF to process"
 msgstr "Haz clic en el botón Recortar para procesar tu PDF"
@@ -3369,7 +3364,7 @@ msgid ""
 "          "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. El recorte se aplica a todas las páginas seleccionadas."
 
 msgid ""
 "Crop area ready! Drag the box to move it, drag from outside to create a new "
@@ -3462,10 +3457,10 @@ msgstr ""
 "páginas específicas"
 
 msgid "Click Rotate to process your PDF"
-msgstr "Haz clic en el botón Recortar para procesar tu PDF"
+msgstr "Haz clic en el botón Rotar para procesar tu PDF"
 
 msgid "Download your rotated PDF file"
-msgstr "Descarga tu archivo PDF recortado"
+msgstr "Descarga tu archivo PDF rotado"
 
 #, python-format
 msgid ""
@@ -3474,7 +3469,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas para rotar. Para archivos más grandes, divídelos en partes más pequeñas. La rotación preserva todo el contenido y formato."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. La rotación conserva todo el contenido y el formato."
 
 msgid ""
 "Sign PDF is a premium feature. Draw, type, or upload your signature and "
@@ -3500,7 +3495,7 @@ msgid "Draw"
 msgstr "Dibujar"
 
 msgid "Type"
-msgstr "Tipo"
+msgstr "Escribir"
 
 msgid "Upload"
 msgstr "Subir"
@@ -3619,7 +3614,7 @@ msgstr ""
 "reduce más el tamaño del archivo pero tarda más."
 
 msgid "Select your PDF file using the button above"
-msgstr "Selecciona 2-10 archivos PDF para combinar usando el botón de arriba"
+msgstr "Selecciona tu archivo PDF con el botón de arriba"
 
 msgid "Choose compression level: Low, Medium, or High"
 msgstr ""
@@ -3631,7 +3626,7 @@ msgstr ""
 "Haz clic en el botón de comprimir para reducir el tamaño de tu archivo PDF"
 
 msgid "Download your smaller PDF file"
-msgstr "Descarga tu archivo PDF"
+msgstr "Descarga tu archivo PDF más pequeño"
 
 #, python-format
 msgid ""
@@ -3640,7 +3635,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas para compresión. Para archivos más grandes, divídelos en partes más pequeñas. Una compresión más alta reduce más el tamaño del archivo pero puede reducir ligeramente la calidad de imagen."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. Una compresión más alta reduce más el tamaño del archivo, pero puede reducir la calidad de la imagen."
 
 msgid "Extract Pages Settings"
 msgstr "Configuración de extracción de páginas"
@@ -3662,7 +3657,7 @@ msgid "Click Extract Pages to create a new PDF"
 msgstr "Haz clic en Extraer páginas para crear un nuevo PDF"
 
 msgid "Download your new PDF with selected pages"
-msgstr "Descarga tu archivo PDF"
+msgstr "Descarga tu nuevo PDF con las páginas seleccionadas"
 
 #, python-format
 msgid ""
@@ -3671,7 +3666,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. Las páginas extraídas se combinan en un nuevo PDF."
 
 msgid "Merge Settings"
 msgstr "Configuración de combinación"
@@ -3733,8 +3728,8 @@ msgstr "Selecciona 2-10 archivos PDF para combinar usando el botón de arriba"
 
 msgid "Drag and drop to reorder files in the desired merge order"
 msgstr ""
-"Arrastra y suelta para reordenar archivos. El orden mostrado aquí será el "
-"orden de combinación."
+"Arrastra y suelta para reordenar los archivos en el orden de combinación "
+"deseado"
 
 msgid "Click Merge to combine all PDF files into one document"
 msgstr ""
@@ -3742,7 +3737,7 @@ msgstr ""
 "documento"
 
 msgid "Download your merged PDF containing all pages"
-msgstr "Descarga tu archivo PDF editado"
+msgstr "Descarga tu PDF combinado con todas las páginas"
 
 msgid ""
 "You can merge 2-10 PDF files at once. Pages will be combined in the order "
@@ -3775,9 +3770,7 @@ msgid "Failed to organize PDF"
 msgstr "Error al organizar PDF"
 
 msgid "Preview pages and drag them to reorder"
-msgstr ""
-"Previsualiza todos los archivos PDF y arrástralos para reordenar el orden de"
-" combinación"
+msgstr "Previsualiza las páginas y arrástralas para reordenarlas"
 
 msgid "Arrange pages in your desired order"
 msgstr "Organiza las páginas en el orden deseado"
@@ -3786,7 +3779,7 @@ msgid "Click Organize PDF to save the new order"
 msgstr "Haz clic en Organizar PDF para guardar el nuevo orden"
 
 msgid "Download your reorganized PDF file"
-msgstr "Descarga tu archivo PDF editado"
+msgstr "Descarga tu archivo PDF reorganizado"
 
 #, python-format
 msgid ""
@@ -3795,7 +3788,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. Arrastra y suelta para reordenar las páginas visualmente."
 
 msgid "Remove Pages Settings"
 msgstr "Configuración de eliminación de páginas"
@@ -3823,7 +3816,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. Las páginas restantes se conservan en su orden original."
 
 msgid "Split Settings"
 msgstr "Configuración de división"
@@ -3895,7 +3888,7 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"Se admiten archivos PDF con hasta %(max_pages)s páginas. Para archivos más grandes, divídelos en partes más pequeñas."
+"Se admiten archivos PDF con hasta %(max_pages)s páginas. El resultado es un archivo ZIP con todos los archivos divididos."
 
 msgid "Password Protection Settings"
 msgstr "Configuración de protección con contraseña"
@@ -4011,7 +4004,7 @@ msgstr ""
 "la contraseña correcta para desbloquear el PDF."
 
 msgid "Premium Queue"
-msgstr "Función premium"
+msgstr "Cola premium"
 
 msgid ""
 "Manage conversion tasks sent to background mode: monitor progress, download "
@@ -4034,7 +4027,7 @@ msgid "Refresh"
 msgstr "Actualizar"
 
 msgid "Clear Completed"
-msgstr "Completado"
+msgstr "Limpiar completadas"
 
 msgid "Clear All"
 msgstr "Limpiar todo"
@@ -4047,10 +4040,10 @@ msgstr ""
 " en segundo plano'."
 
 msgid "Open Batch Converter"
-msgstr "Conversión de PDF"
+msgstr "Abrir convertidor por lotes"
 
 msgid "Back to Premium Tools"
-msgstr "Volver al perfil"
+msgstr "Volver a herramientas premium"
 
 msgid "Processing"
 msgstr "Procesando..."
@@ -4059,7 +4052,7 @@ msgid "Result is unavailable or expired."
 msgstr "El resultado no está disponible o ha caducado."
 
 msgid "Unnamed file"
-msgstr "Eliminar archivo"
+msgstr "Archivo sin nombre"
 
 msgid "Task failed without details."
 msgstr "La tarea falló sin detalles."
@@ -4071,22 +4064,22 @@ msgid "Started"
 msgstr "Comenzado"
 
 msgid "Open Tool"
-msgstr "Herramienta relevante"
+msgstr "Abrir herramienta"
 
 msgid "Download"
 msgstr "Descargar"
 
 msgid "Remove"
-msgstr "Eliminar archivo"
+msgstr "Quitar"
 
 msgid "Unable to download file."
-msgstr "No se pudo descargar el informe ZIP."
+msgstr "No se pudo descargar el archivo."
 
 msgid "Clear all queue items?"
 msgstr "¿Eliminar todos los elementos de la cola?"
 
 msgid "Premium Batch"
-msgstr "Plan Premium"
+msgstr "Lote premium"
 
 msgid ""
 "Choose a converter below, upload multiple files at once, and keep long jobs "
@@ -4270,7 +4263,7 @@ msgstr ""
 " limpio y fuentes estándar."
 
 msgid "Premium OCR"
-msgstr "Premium"
+msgstr "OCR premium"
 
 msgid ""
 "This premium workflow opens PDF to Word with OCR pre-enabled, so you can "
@@ -4291,7 +4284,7 @@ msgstr ""
 "se puede seleccionar."
 
 msgid "Open OCR Converter"
-msgstr "Convertidor de Excel a PDF"
+msgstr "Abrir convertidor OCR"
 
 msgid ""
 "PDF to EPUB works best with text-based PDFs. Scanned/image-only PDFs should "
@@ -4304,7 +4297,7 @@ msgid "How PDF to EPUB works"
 msgstr "Cómo funciona PDF a EPUB"
 
 msgid "Upload a PDF file."
-msgstr "Sube dos archivos PDF"
+msgstr "Sube un archivo PDF."
 
 msgid "Click Convert PDF to EPUB."
 msgstr "Haz clic en Convertir PDF a EPUB."
@@ -4355,7 +4348,7 @@ msgstr ""
 "una mejor salida Markdown."
 
 msgid "Premium Automation"
-msgstr "Plan Premium"
+msgstr "Automatización premium"
 
 msgid ""
 "Save your frequent conversion setups as presets and reopen the right premium"
@@ -4368,16 +4361,16 @@ msgid "Create Workflow"
 msgstr "Crear flujo de trabajo"
 
 msgid "Preset Name"
-msgstr "Nombre"
+msgstr "Nombre del preajuste"
 
 msgid "Example: Weekly Invoices to PDF"
 msgstr "Ejemplo: Facturas semanales a PDF"
 
 msgid "Tool"
-msgstr "Herramientas"
+msgstr "Herramienta"
 
 msgid "Notes"
-msgstr "Nota:"
+msgstr "Notas"
 
 msgid "Optional reminder: file type, target format, quality settings..."
 msgstr ""
@@ -4391,13 +4384,13 @@ msgid "Reset"
 msgstr "Restablecer"
 
 msgid "Quick Presets"
-msgstr "Selección de páginas"
+msgstr "Preajustes rápidos"
 
 msgid "One-click templates you can add and customize."
 msgstr "Plantillas de un clic que puedes añadir y personalizar."
 
 msgid "eBook to Print PDF"
-msgstr "Volver a Precios"
+msgstr "eBook a PDF para imprimir"
 
 msgid "Upload EPUB, convert to PDF, review margins for print."
 msgstr "Subir EPUB, convertir a PDF, revisar márgenes para impresión."
@@ -4438,29 +4431,29 @@ msgid "Edit"
 msgstr "Editar"
 
 msgid "Delete"
-msgstr "Eliminar Cuenta"
+msgstr "Eliminar"
 
 msgid "Delete all saved workflows?"
 msgstr "¿Eliminar todos los flujos de trabajo guardados?"
 
 msgid "Advanced Tools"
-msgstr "Todas las herramientas"
+msgstr "Herramientas avanzadas"
 
 msgid ""
 "Advanced conversion workflows with higher limits, priority processing, and "
 "early access to new formats."
 msgstr ""
-"Procesa archivos más grandes con límites mucho más altos, procesamiento "
-"prioritario y funciones premium"
+"Flujos de trabajo de conversión avanzados con límites más altos, "
+"procesamiento prioritario y acceso anticipado a nuevos formatos."
 
 msgid "Your Premium subscription is active"
-msgstr "No hay suscripción activa para cancelar"
+msgstr "Tu suscripción Premium está activa"
 
 msgid "Unlock Premium Access"
 msgstr "Desbloquear acceso premium"
 
 msgid "Premium Workflows"
-msgstr "Héroe Premium"
+msgstr "Flujos de trabajo premium"
 
 msgid "OCR"
 msgstr "OCR"
@@ -4469,8 +4462,8 @@ msgid ""
 "Convert image-based PDFs to editable DOCX with OCR language controls and "
 "premium limits."
 msgstr ""
-"Extrae texto de PDFs escaneados e imágenes. Convierte PDFs basados en "
-"imágenes en texto editable."
+"Convierte PDFs basados en imágenes a DOCX editable con controles de idioma "
+"de OCR y límites premium."
 
 msgid "Batch"
 msgstr "Lote"
@@ -4483,7 +4476,7 @@ msgstr ""
 "continúa trabajos largos en modo en segundo plano."
 
 msgid "Automation"
-msgstr "Información de la Cuenta"
+msgstr "Automatización"
 
 msgid ""
 "Create reusable presets for frequent conversions and launch tools faster."
@@ -4511,10 +4504,10 @@ msgstr ""
 " con claves API, webhooks y documentación OpenAPI."
 
 msgid "Premium Conversion Beta"
-msgstr "Conversión de PDF"
+msgstr "Beta de conversión premium"
 
 msgid "Premium Beta"
-msgstr "Héroe Premium"
+msgstr "Beta Premium"
 
 msgid "EPUB"
 msgstr "EPUB"
@@ -4631,7 +4624,7 @@ msgid "By Agreement"
 msgstr "Por Acuerdo"
 
 msgid "Custom"
-msgstr "Personalizar"
+msgstr "Personalizado"
 
 msgid "Need custom limits or team terms? We can prepare a tailored offer."
 msgstr ""
@@ -4642,10 +4635,10 @@ msgid "Dedicated limits and throughput"
 msgstr "Límites y capacidad de procesamiento dedicados"
 
 msgid "Project-specific feature set"
-msgstr "Extraer páginas específicas"
+msgstr "Conjunto de funciones específico del proyecto"
 
 msgid "Priority support and onboarding"
-msgstr "Soporte prioritario"
+msgstr "Soporte prioritario e incorporación"
 
 msgid "Invoice and custom agreement options"
 msgstr "Opciones de factura y acuerdo personalizado"
@@ -4654,7 +4647,7 @@ msgid "For teams and business workflows"
 msgstr "Para equipos y flujos de trabajo empresariales"
 
 msgid "Request Terms"
-msgstr "Cambios en los términos"
+msgstr "Solicitar condiciones"
 
 msgid "MOST POPULAR"
 msgstr "MÁS POPULAR"
@@ -4729,7 +4722,7 @@ msgid "FOUNDER'S DEAL"
 msgstr "OFERTA DE FUNDADOR"
 
 msgid "Lifetime Hero"
-msgstr "Lifetime Hero"
+msgstr "Héroe Vitalicio"
 
 msgid "one-time payment"
 msgstr "pago único"
@@ -4750,10 +4743,10 @@ msgid "No recurring charges"
 msgstr "Sin cargos recurrentes"
 
 msgid "Lifetime hero status"
-msgstr "Estado Lifetime hero"
+msgstr "Estado de héroe vitalicio"
 
 msgid "Become Lifetime Hero"
-msgstr "Conviértete en Lifetime Hero"
+msgstr "Conviértete en Héroe Vitalicio"
 
 msgid "Become a Convertica hero and help us make the service better"
 msgstr ""
@@ -5021,7 +5014,7 @@ msgid ""
 "protect your information, we cannot guarantee absolute security."
 msgstr ""
 "Sin embargo, ningún método de transmisión a través de Internet o "
-"almacenamiento electrónico es 100%%eguro. Si bien nos esforzamos por usar "
+"almacenamiento electrónico es 100%% seguro. Si bien nos esforzamos por usar "
 "medios comercialmente aceptables para proteger tu información, no podemos "
 "garantizar una seguridad absoluta."
 
@@ -5419,7 +5412,7 @@ msgid ""
 "limited to:"
 msgstr ""
 "En la máxima medida permitida por la ley, Convertica y sus afiliados, "
-"oficiales, empleados y agentes no serán responsables por ningún daño "
+"funcionarios, empleados y agentes no serán responsables por ningún daño "
 "indirecto, incidental, especial, consecuente o punitivo, incluyendo pero no "
 "limitándose a:"
 
@@ -5567,7 +5560,7 @@ msgid "Still Interested?"
 msgstr "¿Aún interesado?"
 
 msgid "Here are some reasons to upgrade to premium:"
-msgstr "Aquí hay algunas razones para actualizar a premium:"
+msgstr "Aquí tienes algunas razones para pasar a premium:"
 
 msgid "Much higher limits for PDF processing"
 msgstr "Límites mucho más altos para procesamiento de PDF"
@@ -6122,7 +6115,7 @@ msgid ""
 msgstr ""
 "Archivo demasiado grande (%(file_mb).1f MB). Usuarios gratis: máximo "
 "%(free_mb).0f MB. ¡Actualiza a Premium para un límite de %(premium_mb).0f "
-"MB! Obtén 1 día de Premium por solo $1."
+"MB! Actualiza ahora para desbloquear límites más altos."
 
 #, python-format
 msgid "File too large. Maximum size is %(max_mb).0f MB."
@@ -6140,8 +6133,7 @@ msgid ""
 " to Premium for %(premium_mb).0f MB limit."
 msgstr ""
 "Archivo demasiado grande (%(file_mb).1f MB). Usuarios gratis: máximo "
-"%(free_mb).0f MB. ¡Actualiza a Premium para un límite de %(premium_mb).0f "
-"MB! Obtén 1 día de Premium por solo $1."
+"%(free_mb).0f MB. Actualiza a Premium para un límite de %(premium_mb).0f MB."
 
 #, python-format
 msgid "Unsupported content-type: %(content_type)s"
@@ -6158,8 +6150,8 @@ msgid ""
 "higher limits."
 msgstr ""
 "El PDF tiene %(page_count)d páginas (límite: %(max_pages)d). Puedes dividir "
-"tu archivo en partes más pequeñas u obtener una suscripción Premium de 1 día"
-" por solo $1 para procesar archivos más grandes con límites mucho más altos."
+"tu archivo en partes más pequeñas o actualizar a Premium para procesar "
+"archivos más grandes con límites mucho más altos."
 
 #, python-format
 msgid ""
@@ -6179,8 +6171,8 @@ msgstr ""
 
 msgid "PDF is password-protected. Please unlock it and try again."
 msgstr ""
-"El PDF no está protegido con contraseña. Este PDF no requiere una contraseña"
-" para abrir."
+"El PDF está protegido con contraseña. Por favor, desbloquéalo e inténtalo de"
+" nuevo."
 
 #, python-format
 msgid ""
@@ -11814,7 +11806,7 @@ msgid "Yearly Hero Access"
 msgstr "Acceso Héroe Anual"
 
 msgid "Lifetime Hero Access (Founder's Deal)"
-msgstr "Acceso Lifetime Hero (Oferta de Fundador)"
+msgstr "Acceso Héroe Vitalicio (Oferta de Fundador)"
 
 msgid "One-time payment. Limited to first 100 customers."
 msgstr "Pago único. Limitado a los primeros 100 clientes."
@@ -11864,13 +11856,13 @@ msgstr ""
 "acceso a la API."
 
 msgid "Runtime Setting"
-msgstr "Configuración de rotación"
+msgstr "Configuración en tiempo de ejecución"
 
 msgid "Runtime Settings"
-msgstr "Configuración de rotación"
+msgstr "Configuraciones en tiempo de ejecución"
 
 msgid "Setting key cannot be empty."
-msgstr "La contraseña no puede estar vacía"
+msgstr "La clave de configuración no puede estar vacía."
 
 msgid ""
 "This setting key is considered secret and cannot be configured from admin."
@@ -12843,7 +12835,7 @@ msgstr ""
 " imagen universalmente compatible que puedes usar en cualquier "
 "lugar.</p><p>El extractor selecciona automáticamente el marco de mayor "
 "resolución disponible en el ICO y conserva la transparencia alfa completa en"
-" el PNG de salida. Esto es útil cuando necesitas recuperar la obra de arte "
+" el PNG de salida. Esto es útil cuando necesitas recuperar el diseño "
 "original de un favicon, redimensionar o reutilizar un icono en un proyecto "
 "de diseño, o inspeccionar qué tamaños están almacenados dentro de un archivo"
 " ICO. Tu archivo ICO se elimina de nuestros servidores inmediatamente "
@@ -12907,7 +12899,7 @@ msgid ""
 msgstr ""
 "<p><strong>SVG a ICO</strong> rasteriza tu gráfico vectorial escalable "
 "directamente en un favicon.ico de múltiples resoluciones. Debido a que SVG "
-"almacena la obra de arte como formas matemáticas en lugar de píxeles, el "
+"almacena el diseño como formas matemáticas en lugar de píxeles, el "
 "convertidor renderiza cada tamaño incrustado (16×16, 32×32 y 48×48 px) a "
 "partir de los contornos vectoriales originales, produciendo resultados más "
 "nítidos que reducir la escala de una imagen de mapa de bits.</p><p>Este es "
