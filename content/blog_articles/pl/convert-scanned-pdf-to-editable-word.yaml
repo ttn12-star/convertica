@@ -18,11 +18,11 @@ content_pl: |
   <ul>
     <li><strong>Zaznaczanie tekstu.</strong> Spróbuj zaznaczyć pojedyncze słowo. Jeśli cała strona staje się jednym zaznaczalnym prostokątem, strona jest obrazem.</li>
     <li><strong>Rozmiar pliku.</strong> 10-stronicowy tekstowy PDF waży zwykle 100-500 KB. 10-stronicowy zeskanowany PDF często waży 5-30 MB, bo każda strona to obraz w wysokiej rozdzielczości.</li>
-    <li><strong>Artefakty wizualne.</strong> Skany pokazują plamki, lekkie obroty, wyblakłe krawędzie i widoczną fakturę papieru. Born-digital PDF-y mają ostre litery z antyaliasowanymi krawędziami i bez tła z szumem.</li>
+    <li><strong>Artefakty wizualne.</strong> Skany pokazują plamki, lekkie obroty, wyblakłe krawędzie i widoczną fakturę papieru. Natywnie cyfrowe PDF-y mają ostre litery z antyaliasowanymi krawędziami i bez tła z szumem.</li>
     <li><strong>Kształt kursora.</strong> Najedź na tekst. Cyfrowy PDF zmienia kursor na pionową kreskę (I-beam) nad tekstem i strzałkę nad obrazami. Zeskanowany PDF wszędzie zostawia strzałkę — bo wszystko jest obrazem.</li>
   </ul>
 
-  Istnieją też PDF-y hybrydowe, kiedy ktoś zeskanował kontrakt, a potem dokleił born-digital stronę z podpisem. OCR pomija stronę cyfrową (nie ma potrzeby) i przetwarza tylko skany. Zanim założysz, że cały duży plik jest jednego typu, zrób test z zaznaczaniem na kilku różnych stronach.
+  Istnieją też PDF-y hybrydowe, kiedy ktoś zeskanował kontrakt, a potem dokleił natywnie cyfrową stronę z podpisem. OCR pomija stronę cyfrową (nie ma potrzeby) i przetwarza tylko skany. Zanim założysz, że cały duży plik jest jednego typu, zrób test z zaznaczaniem na kilku różnych stronach.
 
   <h2>Co właściwie robi OCR</h2>
 
@@ -32,7 +32,7 @@ content_pl: |
 
   <ul>
     <li><strong>Język źródła.</strong> Model wytrenowany na angielskim, puszczony na francuskim dokumencie, pomyli akcentowane znaki i poplącze zwykłe słowa. Zawsze ustawiaj język wprost, jeśli narzędzie to umożliwia.</li>
-    <li><strong>DPI źródła.</strong> 300 DPI to praktyczna podłoga dla czystego OCR. Skany 200 DPI poradzą sobie z dużym drukiem, ale poległą na małych przypisach. Poniżej 150 dokładność leci na łeb na szyję.</li>
+    <li><strong>DPI źródła.</strong> 300 DPI to praktyczna podłoga dla czystego OCR. Skany 200 DPI poradzą sobie z dużym drukiem, ale polegną na małych przypisach. Poniżej 150 dokładność leci na łeb na szyję.</li>
   </ul>
 
   Trzeci czynnik, o którym ludzie rzadko myślą: kontrast. OCR pracuje na różnicy między atramentem a tłem. Wyblakła kserokopia kserokopii może mieć nominalne 300 DPI i wciąż produkować papkę, bo kontrast jest za niski, by silnik znalazł krawędzie liter. Nowoczesne silniki radzą sobie z tym lepiej niż starsze, ale stare buildy Tesseracta (cokolwiek przed wersją 4.0 z 2018 roku) wciąż się duszą na słabym kontraście.
@@ -50,7 +50,7 @@ content_pl: |
 
   <blockquote class="callout">Zawsze zachowuj oryginalny zeskanowany PDF. Jeśli OCR poturbuje stronę, lepiej mieć z czym ją porównać, niż zgadywać, co miało być w nieczytelnym słowie.</blockquote>
 
-  Warto sprawdzić jedną rzecz, zanim zaufasz wynikowi: otwórz .docx w Wordzie i włącz znaczniki formatowania (Ctrl+Shift+8 w Windowsie, Cmd+8 w macOS). Jeśli widzisz mnóstwo znaczników akapitu na końcu każdej linii — bo OCR uznał, że każda wizualna linia to akapit — popraw to find-and-replace przed właściwą edycją. Naprawa jest prosta: zamień pojedyncze znaczniki akapitu na spację, a potem podwójne z powrotem na pojedyncze. (Twierdzę, że ta jedna sztuczka w Wordzie oszczędza więcej czasu niż dowolne ustawienie OCR.)
+  Warto sprawdzić jedną rzecz, zanim zaufasz wynikowi: otwórz .docx w Wordzie i włącz znaczniki formatowania (Ctrl+Shift+8 w Windowsie, Cmd+8 w macOS). Jeśli widzisz mnóstwo znaczników akapitu na końcu każdej linii — bo OCR uznał, że każda wizualna linia to akapit — popraw to funkcją Znajdź i zamień przed właściwą edycją. Naprawa jest prosta: zamień pojedyncze znaczniki akapitu na spację, a potem podwójne z powrotem na pojedyncze. (Twierdzę, że ta jedna sztuczka w Wordzie oszczędza więcej czasu niż dowolne ustawienie OCR.)
 
   <h2>Realistyczne oczekiwania co do dokładności</h2>
 
@@ -105,7 +105,7 @@ content_pl: |
 
   Każdy, kto obiecuje 99% na dokumencie z faksu, albo go nie testował, albo coś sprzedaje. Ustaw oczekiwania na „będę musiał skorygować", nie na „mogę wysłać surowiec dalej".
 
-  Konkretna pułapka: numery faktur i kody referencyjne to miejsca, gdzie błędy OCR bolą najmocniej. Przeoczona cyfra w akapicie tekstu jest do wybaczenia; przeoczona cyfra w „Faktura 1023841" potrafi wpłacić pieniądze na zły rachunek. Zawsze konfrontuj numeryczne identyfikatory w wyniku OCR z oryginałem.
+  Konkretna pułapka: numery faktur i kody referencyjne to miejsca, gdzie błędy OCR bolą najmocniej. Przeoczona cyfra w akapicie tekstu jest do wybaczenia; przeoczona cyfra w „Faktura 1023841" potrafi posłać pieniądze na zły rachunek. Zawsze konfrontuj numeryczne identyfikatory w wyniku OCR z oryginałem.
 
   <h2>Przygotowanie przed OCR, które podnosi dokładność</h2>
 
@@ -113,7 +113,7 @@ content_pl: |
 
   <ul>
     <li><strong>Obróć strony położone na boku.</strong> Silniki OCR zakładają tekst poziomy. Strona przekręcona o 90 stopni zwraca bełkot albo nic. Skorzystaj z narzędzia, żeby <a href="/pl/pdf-edit/rotate/">obrócić strony położone na boku</a> przed OCR.</li>
-    <li><strong>Przytnij nadmiarowe marginesy.</strong> Szerokie białe brzegi mylą analizator układu, który widzi w jednej kolumnie dwie. <a href="/pl/pdf-edit/rotate/">Przytnij marginesy</a> do miejsca, gdzie naprawdę zaczyna się tekst.</li>
+    <li><strong>Przytnij nadmiarowe marginesy.</strong> Szerokie białe brzegi mylą analizator układu, który widzi w jednej kolumnie dwie. <a href="/pl/pdf-edit/crop/">Przytnij marginesy</a> do miejsca, gdzie naprawdę zaczyna się tekst.</li>
     <li><strong>Zwiększ kontrast.</strong> Wyblakłym skanom pomaga podbicie kontrastu w sterowniku skanera albo dowolnym edytorze obrazu przed ponownym zapisem do PDF. Czarny tekst na białym tle to złoty standard.</li>
     <li><strong>Wyrównaj przekrzywienie (deskew).</strong> Strony przekrzywione nawet o 2-3 stopnie psują dokładność. Większość oprogramowania skanera ma opcję auto-deskew i warto ją włączyć.</li>
     <li><strong>Zejdź z koloru na skalę szarości lub czarno-biały</strong> przy skanowaniu, jeśli możesz. Kolorowe odcienie (typowy żółtawy efekt biurowej kserokopiarki) przesuwają kontrast w sposób, który dezorientuje silnik.</li>
@@ -122,7 +122,7 @@ content_pl: |
 
   <h2>Lista kontrolna porządków po OCR</h2>
 
-  Gdy .docx wyląduje, zrób kilka przejść find-and-replace, zanim na serio zaczniesz edytować. To najczęstsze błędy OCR w polskich dokumentach:
+  Gdy .docx wyląduje, zrób kilka przejść funkcją Znajdź i zamień, zanim na serio zaczniesz edytować. To najczęstsze błędy OCR w polskich dokumentach:
 
   <ul>
     <li><code>rn</code> często staje się <code>m</code> i odwrotnie. Szukaj „rn" oraz słów wyglądających jak „modern".</li>

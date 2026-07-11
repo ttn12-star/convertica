@@ -50,7 +50,7 @@ content_id: |
     <li><strong>Pengkodean ulang</strong> mengompresi ulang tiap gambar sebagai JPEG pada tingkat kualitas pilihan, membuang detail halus yang nyaris tak ditangkap mata.</li>
   </ul>
 
-  Inilah sebabnya PDF padat teks dan padat gambar berperilaku begitu berbeda. Tidak ada resolusi untuk dibuang dari teks vektor, jadi PDF teks yang sudah ramping memang tidak akan banyak menyusut. Hasil scan, sebaliknya, seluruhnya adalah resolusi yang "bisa dibuang", itulah sebabnya ia begitu mengompresi banyak dan justru ialah yang bisa berakhir buram.
+  Inilah sebabnya PDF padat teks dan padat gambar berperilaku begitu berbeda. Tidak ada resolusi untuk dibuang dari teks vektor, jadi PDF teks yang sudah ramping memang tidak akan banyak menyusut. Hasil scan, sebaliknya, seluruhnya adalah resolusi yang "bisa dibuang", itulah sebabnya ia bisa menyusut begitu banyak dan justru ialah yang bisa berakhir buram.
 
   <blockquote class="callout">Gagasan utama: optimasi lossless selalu aman dan biasanya sederhana. Angka besar berasal dari downsampling gambar, dan itulah satu-satunya langkah yang bisa secara terlihat mengorbankan kualitas Anda.</blockquote>
 
@@ -66,7 +66,7 @@ content_id: |
     <li><strong>Tinggi.</strong> Men-downsample lebih keras (sekitar 96-120 DPI) dan mengompresi gambar lebih agresif. Bagus untuk meloloskan sesuatu di bawah batas yang keras kepala saat penerima hanya membaca di layar dan tak pernah mencetak.</li>
   </ul>
 
-  Sedang adalah titik awal yang tepat kira-kira sembilan dari sepuluh kali. Raih rendah hanya saat diagram atau foto harus tetap tajam, dan raih tinggi hanya saat Anda bertarung dengan batas ukuran yang keras dan satu-satunya tujuan adalah membaca di layar.
+  Sedang adalah titik awal yang tepat kira-kira sembilan dari sepuluh kali. Pilih rendah hanya saat diagram atau foto harus tetap tajam, dan pilih tinggi hanya saat Anda bertarung dengan batas ukuran yang keras dan satu-satunya tujuan adalah membaca di layar.
 
   <h2>Pengaturan mana untuk tugas mana</h2>
 
@@ -123,7 +123,7 @@ content_id: |
   <ol>
     <li>Jalankan tes seleksi teks untuk tahu apakah Anda berurusan dengan file digital atau hasil scan.</li>
     <li>Coba sedang dulu. Untuk sebagian besar file, di sinilah selesai.</li>
-    <li>Jika masih terlalu besar dan ini hasil scan, terima bahwa Anda dekat dasar: pecah, atau OCR ulang dan ekspor ulang ke PDF berbasis teks, alih-alih menjebloskan kualitas ke tanah.</li>
+    <li>Jika masih terlalu besar dan ini hasil scan, terima bahwa Anda dekat dasar: pecah, atau OCR ulang dan ekspor ulang ke PDF berbasis teks, alih-alih menghancurkan kualitasnya.</li>
     <li>Jika masih terlalu besar dan ini digital asli, periksa file tertanam dan beban riwayat revisi sebelum menyimpulkan presetnya gagal.</li>
     <li>Selalu simpan file asli. Kompresi bersifat searah untuk detail yang dibuang, dan Anda mungkin butuh salinan kualitas penuh nanti.</li>
   </ol>
@@ -134,7 +134,7 @@ content_id: |
   <p>Kemungkinan besar ia sudah dioptimasi, atau ini PDF teks digital asli dengan sedikit data gambar untuk di-downsample. Kompresi membuang redundansi; jika tak ada lagi, tak ada yang bisa dihemat. Periksa juga panel lampiran, kalau-kalau ada file tertanam yang membengkakkan ukuran.</p>
 
   <h3>Apakah mengompresi PDF menurunkan kualitas?</h3>
-  <p>Hanya bagian gambar yang bisa turun. Teks dan grafik vektor dikemas ulang secara lossless dan tetap sempurna per piksel. Gambar di-downsample dan dikode ulang; tak terlihat pada sedang untuk layar dan kantor, dan mulai tampak pada tinggi pada foto serta diagram berdetail.</p>
+  <p>Hanya bagian gambar yang bisa turun. Teks dan grafik vektor dikemas ulang secara lossless dan tetap sempurna per piksel. Gambar di-downsample dan dikode ulang; tak terlihat pada sedang untuk layar dan kantor, dan mulai tampak pada preset tinggi untuk foto serta diagram berdetail.</p>
 
   <h3>Bisakah saya mengompresi PDF yang sama dua kali agar lebih kecil lagi?</h3>
   <p>Jarang sepadan. Proses pertama sudah membuang redundansi; proses kedua kebanyakan hanya mengkode ulang gambar yang sudah turun, menambah artefak dengan nyaris tanpa pengurangan ukuran. Jika sekali proses belum cukup, pecah file atau OCR ulang hasil scannya.</p>

@@ -113,7 +113,7 @@ content_es: |
 
   <ul>
     <li><strong>Rota las páginas que estén de lado.</strong> Los motores de OCR asumen texto horizontal. Una página girada 90 grados devuelve galimatías o nada. Usa una herramienta para <a href="/es/pdf-edit/rotate/">rotar primero las páginas de lado</a> antes del OCR.</li>
-    <li><strong>Recorta los márgenes excesivos.</strong> Los bordes blancos anchos confunden al analizador de diseño y le hacen creer que tu única columna son dos. <a href="/es/pdf-edit/rotate/">Recorta los márgenes</a> hasta donde realmente empiece el texto.</li>
+    <li><strong>Recorta los márgenes excesivos.</strong> Los bordes blancos anchos confunden al analizador de diseño y le hacen creer que tu única columna son dos. <a href="/es/pdf-edit/crop/">Recorta los márgenes</a> hasta donde realmente empiece el texto.</li>
     <li><strong>Aumenta el contraste.</strong> Los escaneos desvaídos se benefician de un aumento de contraste en el software del escáner o en cualquier editor de imagen antes de volver a guardarlos como PDF. Texto en negro puro sobre fondo blanco puro es el ideal.</li>
     <li><strong>Endereza la imagen.</strong> Páginas inclinadas incluso 2 o 3 grados perjudican la precisión. La mayoría del software de escáner tiene una opción de enderezado automático y vale la pena ejecutarla.</li>
     <li><strong>Pasa de color a escala de grises o blanco y negro</strong> antes de escanear si puedes. Los tintes de color (la salida típica amarillenta de la fotocopiadora de oficina) desplazan el contraste de formas que despistan al reconocedor.</li>
@@ -162,7 +162,7 @@ content_es: |
   <p>A veces, mal. El OCR de escritura a mano ha mejorado con modelos neuronales pero sigue moviéndose entre el 30% y el 70% de precisión sobre escritura real. Para cualquier cosa importante, teclear de nuevo suele ser más rápido que corregir el resultado del OCR. La letra de imprenta (como un formulario rellenado en mayúsculas) sale mucho mejor que la cursiva.</p>
 
   <h3>¿Qué idiomas admite el OCR?</h3>
-  <p>La mayoría de los motores, incluido el que usa Convertica, cubren todos los grandes idiomas europeos, entre ellos inglés, español, francés, alemán, italiano, portugués, ruso, polaco y muchos más. Define el idioma de origen de forma explícita para alfabetos con tildes o no latinos. Los documentos multilingües (inglés con pasajes citados en francés) funcionan mejor cuando se ajustan al idioma dominante.</p>
+  <p>La mayoría de los motores, incluido el que usa Convertica, cubren todos los principales idiomas europeos, entre ellos inglés, español, francés, alemán, italiano, portugués, ruso, polaco y muchos más. Define el idioma de origen de forma explícita para alfabetos con tildes o no latinos. Los documentos multilingües (inglés con pasajes citados en francés) funcionan mejor cuando se ajustan al idioma dominante.</p>
 
   <h3>¿Por qué las tablas salen como texto desordenado?</h3>
   <p>El OCR lee de izquierda a derecha y de arriba abajo, y los bordes de celda confunden ese flujo. Los números de la fila 1 columna 3 pueden acabar junto a los de la fila 2 columna 1. Para datos tabulares, convertir directamente a Excel y reconstruir la tabla allí suele ser más rápido que arreglarlo en Word.</p>

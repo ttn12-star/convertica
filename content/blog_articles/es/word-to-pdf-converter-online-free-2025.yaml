@@ -59,7 +59,7 @@ content_es: |
       <tr><td>Se corta el borde derecho o el pie de página</td><td>El tamaño de página o los márgenes de Word difieren del papel objetivo</td><td>Configura Diseño de página &gt; Tamaño y Márgenes en Word antes de exportar</td></tr>
       <tr><td>Cuadros o signos de interrogación en lugar de letras</td><td>Faltan glifos para una escritura no latina</td><td>Usa una fuente que contenga la escritura (p. ej. una familia Unicode completa)</td></tr>
       <tr><td>Los hipervínculos ya no son clicables</td><td>Los enlaces eran texto plano, no hipervínculos reales</td><td>Inserta hipervínculos correctos en Word antes de convertir</td></tr>
-      <tr><td>Se ven cambios de control o comentarios</td><td>Quedaron marcas de revisión en el origen</td><td>Acepta los cambios y elimina los comentarios antes de exportar</td></tr>
+      <tr><td>Se ven marcas de control de cambios o comentarios</td><td>Quedaron marcas de revisión en el origen</td><td>Acepta los cambios y elimina los comentarios antes de exportar</td></tr>
     </tbody>
   </table>
 

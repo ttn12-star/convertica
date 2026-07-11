@@ -47,7 +47,7 @@ content_pl: |
 
   <ul>
     <li><strong>Skany w wysokim DPI.</strong> Skaner dwustronny ustawiony na 600 DPI w kolorze produkuje 5-15 MB na stronę. Większości dokumentów wystarczy 200 DPI w odcieniach szarości — przy normalnym czytaniu różnicy nie widać.</li>
-    <li><strong>Zaszyte fonty i profile kolorów.</strong> Eksport „Save as PDF/A" potrafi dorzucić 1-3 MB na podzbiory fontów i profile ICC, których do maila nie potrzebujesz. PDF/A powstał do archiwów, nie do skrzynek odbiorczych.</li>
+    <li><strong>Osadzone fonty i profile kolorów.</strong> Eksport „Save as PDF/A" potrafi dorzucić 1-3 MB na podzbiory fontów i profile ICC, których do maila nie potrzebujesz. PDF/A powstał do archiwów, nie do skrzynek odbiorczych.</li>
     <li><strong>Nieskompresowane obrazy.</strong> Zdjęcia wklejone z Worda albo zrzuty ekranu zapisane jako PNG w środku PDF-a rzadko korzystają z efektywnej kompresji obrazu. Jeden surowy zrzut 4K osadzony w pliku łatwo dorzuca 8 MB.</li>
     <li><strong>Ukryta historia zmian.</strong> „Zapisz" w Acrobacie dokleja przyrostowe aktualizacje zamiast przepisać plik od zera. Lata edycji odkładają się jako niewidzialny balast — kontrakt, który zaczynał z 200 KB, po trzydziestu poprawkach waży 12 MB.</li>
     <li><strong>Pliki dołączone wewnątrz PDF.</strong> Niektóre PDF-y wożą w sobie arkusze albo archiwa zip. Zanim skompresujesz, zajrzyj do panelu załączników (ikona spinacza w Acrobacie) — może się okazać, że razem z PDF-em ciągniesz 30 MB Excela.</li>
@@ -58,7 +58,7 @@ content_pl: |
 
   <h2>Metoda 1 — Skompresuj PDF (rekomendowane)</h2>
 
-  Dla 80% przeważających PDF-ów zwykła kompresja jest właściwą odpowiedzią. Przepisuje plik z mądrzejszą obsługą obrazów i fontów, nie ruszając ani liczby stron, ani treści tekstu.
+  Dla jakichś 80% typowych PDF-ów zwykła kompresja jest właściwą odpowiedzią. Przepisuje plik z mądrzejszą obsługą obrazów i fontów, nie ruszając ani liczby stron, ani treści tekstu.
 
   <figure><img src="/static/blog/images/tool-compress-options.jpg" alt="Krok po kroku kompresja PDF z wyborem presetu: low, medium, high" width="1280" height="800" loading="lazy"></figure>
 
@@ -128,7 +128,7 @@ content_pl: |
     <li>Skompresuj nowy plik Metodą 1.</li>
   </ol>
 
-  Skan o objętości 50 MB po takim rundzie często schodzi do 1-2 MB, bo tekst zajmuje ułamek tego, co ważyły obrazy stron. Cena tego rozwiązania: ręczne dopiski, podpisy i pieczątki nie przeżyją konwersji, więc jeśli mają znaczenie prawne — zatrzymaj oryginał. Przy dowodach sądowych i wszystkim, co może wymagać uwierzytelnienia, nigdy nie zastępuj źródła wersją po OCR — wysyłaj obie.
+  Skan o objętości 50 MB po takiej rundzie często schodzi do 1-2 MB, bo tekst zajmuje ułamek tego, co ważyły obrazy stron. Cena tego rozwiązania: ręczne dopiski, podpisy i pieczątki nie przeżyją konwersji, więc jeśli mają znaczenie prawne — zatrzymaj oryginał. Przy dowodach sądowych i wszystkim, co może wymagać uwierzytelnienia, nigdy nie zastępuj źródła wersją po OCR — wysyłaj obie.
 
   <h2>Jakość a rozmiar: czego się spodziewać</h2>
 

@@ -11,15 +11,15 @@ content_id: |
 
   <figure><img src="/static/blog/images/tool-split-hero.jpg" alt="Alat pisah Convertica membagi PDF laporan bank menjadi file bulanan" width="1280" height="800" loading="lazy"></figure>
 
-  <h2>Mengapa memisah laporan bank sama sekali</h2>
+  <h2>Mengapa harus repot memisah laporan bank</h2>
 
   Memisah bukan hanya kerapian. Ada momen konkret di mana itu menghemat waktu atau melindungi informasi:
 
   <ul>
-    <li><strong>Pengajuan pajak.</strong> HMRC, IRS, dan sebagian besar otoritas pajak nasional mengharapkan laporan per kuartal atau per bulan, terutama untuk VAT/GST dan self-assessment. IRS Schedule C khususnya meminta total bulanan; mengirim setahun memaksa akuntan Anda merekonstruksi mereka.</li>
+    <li><strong>Pengajuan pajak.</strong> HMRC, IRS, dan sebagian besar otoritas pajak nasional mengharapkan laporan per kuartal atau per bulan, terutama untuk VAT/GST dan self-assessment. IRS Schedule C khususnya meminta total bulanan; mengirim setahun memaksa akuntan Anda merekonstruksinya.</li>
     <li><strong>Aplikasi hipotek dan pinjaman.</strong> Pemberi pinjaman hampir selalu meminta tiga atau enam bulan terakhir. Mengirim setahun penuh adalah pengungkapan berlebihan, dan underwriter kadang menggunakan informasi yang tidak diminta untuk memperkuat keberatan mereka.</li>
-    <li><strong>Kategorisasi pengeluaran.</strong> Bekerja melalui satu bulan demi satu di spreadsheet jauh kurang rentan kesalahan daripada menggeser melalui 48 halaman.</li>
-    <li><strong>Berbagi tertarget.</strong> Akuntan Anda hanya butuh bulan yang sedang mereka rekonsiliasi. Pembukuan Anda tidak perlu melihat Desember jika pertanyaan tentang Februari.</li>
+    <li><strong>Kategorisasi pengeluaran.</strong> Bekerja melalui satu bulan demi satu di spreadsheet jauh kurang rentan kesalahan daripada menggulir 48 halaman.</li>
+    <li><strong>Berbagi tertarget.</strong> Akuntan Anda hanya butuh bulan yang sedang mereka rekonsiliasi. Petugas pembukuan Anda tidak perlu melihat Desember jika pertanyaannya tentang Februari.</li>
     <li><strong>Klaim asuransi.</strong> Asuransi yang meminta periode di sekitar insiden tertentu hanya membutuhkan window itu, bukan seluruh sejarah keuangan Anda.</li>
     <li><strong>Rekening bersama dalam perpisahan.</strong> Jika Anda membagi keuangan dengan pasangan, berbagi hanya periode bersama alih-alih file lengkap penting secara hukum.</li>
   </ul>
@@ -41,7 +41,7 @@ content_id: |
     </tbody>
   </table>
 
-  Sebagian besar laporan bank ritel masuk kategori kedua: halaman per bulan bervariasi karena ada lebih banyak transaksi di beberapa bulan. Lihat halaman 1, 5, 9, 13 untuk mengonfirmasi pola sebelum Anda berkomitmen pada aturan pemisahan. Bulan liburan (Desember untuk rekening UK dan AS, Agustus untuk Eropa) biasanya berjalan dua halaman lebih panjang dari rata-rata; Januari dan Februari berjalan lebih pendek. Rencanakan untuk itu.
+  Sebagian besar laporan bank ritel masuk kategori kedua: halaman per bulan bervariasi karena ada lebih banyak transaksi di beberapa bulan. Lihat halaman 1, 5, 9, 13 untuk mengonfirmasi pola sebelum Anda berkomitmen pada aturan pemisahan. Bulan liburan (Desember untuk rekening UK dan AS, Agustus untuk Eropa) biasanya dua halaman lebih panjang dari rata-rata; Januari dan Februari lebih pendek. Rencanakan untuk itu.
 
   Rekening bisnis sering mencetak halaman ringkasan akhir bulan terpisah. Putuskan apakah ringkasan itu termasuk dengan bulan yang dirangkumnya (pisah sebagai halaman terakhir rentang bulan itu) atau dengan bulan berikutnya (di mana laporan yang mendahuluinya cenderung tinggal dalam alur kerja mereka).
 
@@ -58,7 +58,7 @@ content_id: |
     <li>Ubah nama bagian ke <code>YYYY-MM_bank_account-last4.pdf</code> (lebih lanjut tentang penamaan di bawah).</li>
   </ol>
 
-  Tip: jika halaman pertama atau terakhir adalah cover/ringkasan, kecualikan dari rentang atau pisah sebagai PDF satu-halaman tersendiri. Banyak bank menyertakan sisipan pemasaran di akhir ("memperkenalkan kartu kredit baru kami!") yang adalah noise murni - buang sebelum Anda membuka file.
+  Tip: jika halaman pertama atau terakhir adalah cover/ringkasan, kecualikan dari rentang atau pisah sebagai PDF satu-halaman tersendiri. Banyak bank menyertakan sisipan pemasaran di akhir ("memperkenalkan kartu kredit baru kami!") yang murni gangguan - buang sebelum Anda membuka file.
 
   Pintasan keyboard kecil: di field rentang, rentang yang dipisah koma tidak butuh spasi, jadi <code>1-4,5-8,9-12</code> berfungsi persis sama dengan versi berspasi. Lebih cepat diketik jika Anda mengerjakan dua belas bulan sekaligus.
 
@@ -68,7 +68,7 @@ content_id: |
 
   <ol>
     <li>Buka laporan di pembaca PDF mana pun dan gulir untuk menemukan di mana April mulai dan berakhir. Catat nomor halaman (mis. 17-22).</li>
-    <li>Gunakan opsi ekstraksi halaman di editor kami untuk <a href="/id/pdf-edit/rotate/">mengekstrak halaman tertentu</a>.</li>
+    <li>Gunakan opsi ekstraksi halaman di editor kami untuk <a href="/id/pdf-organize/extract-pages/">mengekstrak halaman tertentu</a>.</li>
     <li>Masukkan rentang, mis. <code>17-22</code>.</li>
     <li>Unduh PDF yang dihasilkan.</li>
     <li>Simpan dengan nama file yang jelas: <code>2026-04_bank_account-1234.pdf</code>.</li>
@@ -83,11 +83,11 @@ content_id: |
   <figure><img src="/static/blog/images/tool-split-options.jpg" alt="Alat lindungi kata sandi Convertica digunakan sebelum mengirim email laporan sensitif" width="1280" height="800" loading="lazy"></figure>
 
   <ul>
-    <li><strong>Redaksi transaksi tidak terkait.</strong> Jika pemberi pinjaman hanya perlu melihat gaji dan sewa, hitamkan sisanya. Redaksi harus meratakan PDF (mengganti piksel), bukan hanya menutupinya dengan kotak hitam yang dapat dihilangkan oleh siapa pun dengan editor PDF gratis dan sepuluh detik.</li>
+    <li><strong>Sensor transaksi yang tidak terkait.</strong> Jika pemberi pinjaman hanya perlu melihat gaji dan sewa, hitamkan sisanya. Penyensoran harus meratakan PDF (mengganti piksel), bukan hanya menutupinya dengan kotak hitam yang dapat dihilangkan oleh siapa pun dengan editor PDF gratis dan sepuluh detik.</li>
     <li><strong>Konfirmasi apa yang ada di halaman cover.</strong> Beberapa bank mengulang nomor rekening lengkap, sort code, dan alamat di setiap cover bulanan. Putuskan apakah level detail itu diperlukan.</li>
     <li><strong>Sembunyikan digit tengah nomor rekening.</strong> Banyak institusi menerima "XXXX XXXX 1234" untuk verifikasi tanpa string lengkap.</li>
-    <li><strong>Periksa deskripsi transaksi untuk konteks pribadi.</strong> Item baris yang membaca "Sesi terapi - Dr. K" atau "Klinik Kesehatan Reproduksi" dapat membawa informasi yang tidak Anda maksudkan untuk dibagikan. Redaksi deskripsi, bukan hanya jumlah, ketika sensitif.</li>
-    <li><strong>Lindungi kata sandi sebelum email.</strong> <a href="/id/pdf-security/protect/">Lindungi hasil dengan kata sandi</a> yang kuat dan bagikan kata sandi itu melalui saluran terpisah (teks, Signal, panggilan telepon), bukan email yang sama.</li>
+    <li><strong>Periksa deskripsi transaksi untuk konteks pribadi.</strong> Item baris yang membaca "Sesi terapi - Dr. K" atau "Klinik Kesehatan Reproduksi" dapat membawa informasi yang tidak Anda maksudkan untuk dibagikan. Sensor deskripsinya, bukan hanya jumlahnya, saat sensitif.</li>
+    <li><strong>Lindungi dengan kata sandi sebelum email.</strong> <a href="/id/pdf-security/protect/">Lindungi hasil dengan kata sandi</a> yang kuat dan bagikan kata sandi itu melalui saluran terpisah (teks, Signal, panggilan telepon), bukan email yang sama.</li>
   </ul>
 
   <blockquote class="callout">Email tidak dienkripsi secara default. Kata sandi pada PDF adalah perbedaan antara "pribadi" dan "publik jika dicegat".</blockquote>
@@ -114,12 +114,12 @@ content_id: |
     <li>Tanpa spasi, tanpa slash, tanpa kutipan - aman lintas sistem operasi dan alat sinkronisasi cloud.</li>
   </ul>
 
-  Jika Anda pernah perlu menggabungkan kembali bulan untuk pengajuan akhir tahun, Anda dapat <a href="/id/pdf-organize/merge/">menggabungkan kemudian jika Anda perlu menggabungkan kembali</a> mereka menjadi satu file. Penamaan terbalik output (mis. <code>2026_chase_4567_full-year.pdf</code>) menjaganya terurut di sebelah irisan bulanan di daftar folder mana pun.
+  Jika suatu saat Anda perlu menyatukan kembali bulan-bulan untuk pengajuan akhir tahun, Anda dapat <a href="/id/pdf-organize/merge/">menggabungkannya kembali</a> menjadi satu file. Penamaan terbalik output (mis. <code>2026_chase_4567_full-year.pdf</code>) menjaganya terurut di sebelah irisan bulanan di daftar folder mana pun.
 
   <h2>FAQ</h2>
 
   <h3>Apakah aman mengunggah laporan bank ke pemisah online?</h3>
-  <p>Gunakan alat yang memproses file dalam sesi browser dan menghapusnya tak lama setelahnya. Convertica menghapus unggahan setelah window retensi singkat dan tidak pernah membagikan mereka. Jika Anda masih tidak nyaman, redaksi field paling sensitif secara lokal sebelum mengunggah, atau gunakan alat desktop untuk file paling sensitif.</p>
+  <p>Gunakan alat yang memproses file dalam sesi browser dan menghapusnya tak lama setelahnya. Convertica menghapus unggahan setelah window retensi singkat dan tidak pernah membagikannya. Jika Anda masih tidak nyaman, sensor field paling sensitif secara lokal sebelum mengunggah, atau gunakan alat desktop untuk file paling sensitif.</p>
 
   <h3>Bisakah saya memisah PDF laporan bank yang dilindungi kata sandi?</h3>
   <p>Anda perlu membukanya terlebih dahulu menggunakan kata sandi Anda sendiri, lalu pisah, lalu opsional lindungi kembali setiap bagian. Sebagian besar bank menerbitkan laporan dengan kata sandi yang merupakan bagian tanggal lahir Anda atau digit terakhir rekening; format pasti biasanya tercetak di paket selamat datang Anda atau tersedia di halaman bantuan "buka laporan Anda" bank.</p>
@@ -131,7 +131,7 @@ content_id: |
   <p>Tidak. Pemisahan adalah operasi struktural: menyalin byte halaman yang sama ke file baru. Tidak ada rekompresi, tidak ada rasterisasi, dan tidak ada kehilangan kualitas dibandingkan dengan sumber.</p>
 
   <h3>Bisakah bank tahu saya memisah laporan mereka?</h3>
-  <p>Bank tidak bisa, karena pemisahan terjadi sepenuhnya di sisi Anda. Penerima mungkin memperhatikan dari halaman atau nomor halaman yang hilang jika Anda hanya mengekstrak irisan, itulah sebabnya Anda harus secara eksplisit mengatakan "April saja, halaman 17-22" saat mengirim laporan parsial. Underwriter tidak akan menggagalkan Anda karena pengajuan parsial, tetapi mereka akan menggagalkan Anda karena yang terlihat menipu.</p>
+  <p>Bank tidak bisa, karena pemisahan terjadi sepenuhnya di sisi Anda. Penerima mungkin memperhatikan dari halaman atau nomor halaman yang hilang jika Anda hanya mengekstrak irisan, itulah sebabnya Anda harus secara eksplisit mengatakan "April saja, halaman 17-22" saat mengirim laporan parsial. Underwriter tidak akan menggagalkan Anda karena pengajuan parsial, tetapi mereka akan menggagalkan Anda karena sesuatu yang tampak seperti penipuan.</p>
 
   <h2>Coba sekarang</h2>
 

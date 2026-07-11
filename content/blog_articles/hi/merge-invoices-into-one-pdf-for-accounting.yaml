@@ -3,11 +3,11 @@ title_hi: "Multiple Invoices को Accounting और Expense Reports के ल
 meta_title_hi: "Accounting के लिए Invoices को एक PDF में Merge करें"
 meta_description_hi: "Bookkeepers, freelancers और finance teams: clean expense submissions के लिए monthly invoices, receipts और statements को एक ordered PDF में combine करें।"
 meta_keywords_hi: "merge invoices pdf, receipts pdf combine, expense report pdf, accounting pdf workflow, monthly invoice pdf"
-excerpt_hi: "अपने accountant को 14 अलग-अलग invoice PDFs submit करना receipts खोने और billable hours जलाने का सबसे fast तरीका है। यहाँ है इन्हें एक ordered file में bundle करने का तरीक़ा।"
+excerpt_hi: "अपने accountant को 14 अलग-अलग invoice PDFs submit करना receipts खोने और billable hours जलाने का सबसे तेज़ तरीका है। यहाँ है इन्हें एक ordered file में bundle करने का तरीक़ा।"
 content_hi: |
-  आपके accountant ने 14 अलग PDFs नहीं माँगे। उन्होंने "इस महीने की invoices" माँगी, और 14 PDFs वो है जो हर cloud sync tool, supplier portal और food-delivery app produce करता है। उन्हें loose bundle की तरह send करना काम करता है, जब तक एक thread में lost हो जाए, dates filenames पर collide कर जाएँ, और आप अगले April में आधे-टूटे email search से audit trail reconstruct करने में एक घंटा बिताएँ।
+  आपके accountant ने 14 अलग PDFs नहीं माँगे। उन्होंने "इस महीने की invoices" माँगी, और 14 PDFs वही हैं जो हर cloud sync tool, supplier portal और food-delivery app produce करता है। उन्हें loose bundle की तरह send करना तब तक काम करता है, जब तक कि कोई एक किसी thread में खो न जाए, dates filenames पर आपस में collide न कर जाएँ, और आप अगले April में आधे-टूटे email search से audit trail reconstruct करने में एक घंटा न बिता दें।
 
-  Fix small और durable है: per month एक ordered, dated PDF। यह guide उस naming convention को cover करती है जो <a href="/hi/pdf-organize/merge/">PDF online merge</a> को reliable बनाती है, mixed JPG और PDF inputs कैसे handle करें, और एक month-end routine जो दो बार करने के बाद लगभग दस minutes लेता है।
+  Fix छोटा और durable है: per month एक ordered, dated PDF। यह guide उस naming convention को cover करती है जो <a href="/hi/pdf-organize/merge/">PDF online merge</a> को reliable बनाती है, mixed JPG और PDF inputs कैसे handle करें, और एक month-end routine जो दो बार करने के बाद लगभग दस minutes लेता है।
 
   <figure><img src="/static/blog/images/tool-merge-hero.jpg" alt="Convertica merge tool जो multiple invoice PDFs को एक file में combine कर रहा है" width="1280" height="800" loading="lazy"></figure>
 
@@ -18,7 +18,7 @@ content_hi: |
   <ul>
     <li><strong>यह cleanly archive होता है.</strong> Document management systems per period एक file index करते हैं, 47 floating attachments नहीं।</li>
     <li><strong>Page numbering audit trail support करती है.</strong> "April invoices के page 12 देखें" real reference है; "17th को email से invoice देखें" नहीं है।</li>
-    <li><strong>इसे forward करना easier है.</strong> Bookkeeper आपके records को tax preparer को handing करते समय एक file attach करता है, folder नहीं।</li>
+    <li><strong>इसे forward करना easier है.</strong> Bookkeeper आपके records को tax preparer को सौंपते समय एक file attach करता है, folder नहीं।</li>
     <li><strong>यह QuickBooks और Xero में attachment workflows के साथ align होता है.</strong> दोनों per journal entry या transaction एक PDF attach करना support करते हैं; multiple juggle करना friction है जो month-end पर कोई नहीं चाहता। (हाँ, आज भी: Xero ने 2024 तक journal-entry attachments को per entry one file पर capped रखा था और सिर्फ़ paid tiers के लिए relax किया।)</li>
     <li><strong>यह e-discovery और tax audit requests से cleanly map होता है.</strong> जब tax authority "सभी April invoices" माँगे, single file देना folder explain करने से बेहतर है।</li>
   </ul>
@@ -41,14 +41,14 @@ content_hi: |
   यह काम करने के तीन reasons:
 
   <ol>
-    <li><strong>ISO date correctly sort होता है</strong> किसी भी operating system में, locale से regardless।</li>
+    <li><strong>ISO date correctly sort होता है</strong> किसी भी operating system में, locale चाहे कुछ भी हो।</li>
     <li><strong>Vendor middle में</strong> आपको "क्या मैंने इस महीने AWS को pay किया था?" के लिए visually scan करने देता है।</li>
     <li><strong>Amount end में</strong> आपके bank reconciliation से match होता है file open किए बिना।</li>
   </ol>
 
-  Duplicates handle करना: अगर supplier same date पर दो invoices issue करता है, letter append करें: <code>2026-04-03_aws_142-50_a.pdf</code> और <code>2026-04-03_aws_142-50_b.pdf</code>. Letter date के नीचे sort होता है और overwriting avoid करता है। Time को tie-breaker की तरह use करने से बचें; suppliers के invoice timestamps inconsistent हैं और lie कर सकते हैं कि work actually कब billed हुआ था।
+  Duplicates handle करना: अगर supplier same date पर दो invoices issue करता है, letter append करें: <code>2026-04-03_aws_142-50_a.pdf</code> और <code>2026-04-03_aws_142-50_b.pdf</code>. Letter date के नीचे sort होता है और overwriting avoid करता है। Time को tie-breaker की तरह use करने से बचें; suppliers के invoice timestamps inconsistent हैं और इस बारे में गुमराह कर सकते हैं कि work actually कब billed हुआ था।
 
-  एक और habit बनाने योग्य: जब आप vendor portal से file save करें, इसे Downloads folder से ever निकलने से पहले rename करें। Receipt के moment पर करना दस seconds लेता है। Month-end पर तीस files के लिए एक साथ करना chore लगता है और आप दूसरे महीने skip कर देंगे।
+  एक और habit बनाने योग्य: जब आप vendor portal से file save करें, इसे Downloads folder से निकलने से पहले ही rename करें। Receipt के moment पर करना दस seconds लेता है। Month-end पर तीस files के लिए एक साथ करना chore लगता है और आप दूसरे महीने skip कर देंगे।
 
   <h2>Step-by-step: browser में invoices merge करें</h2>
 
@@ -62,7 +62,7 @@ content_hi: |
     <li>Output को period match करने के लिए rename करें: <code>2026-04_invoices_yourname.pdf</code>.</li>
   </ol>
 
-  वो last rename matter करता है। Merged file generic name inherit करती है जैसे <code>merged.pdf</code>, जो छह महीने बाद Downloads folder में रखने की worst possible चीज़ है। (मैंने एक बार fifteen minutes specific bundle hunt करने में बिताए क्योंकि तीन अलग "merged.pdf" files cloud sync में collide हो गई थीं। बहुत लोग इसे first month पर hit करते हैं।)
+  वो last rename matter करता है। Merged file generic name inherit करती है जैसे <code>merged.pdf</code>, जो छह महीने बाद Downloads folder में रखने की worst possible चीज़ है। (मैंने एक बार fifteen minutes specific bundle hunt करने में बिताए क्योंकि तीन अलग "merged.pdf" files cloud sync में collide हो गई थीं। बहुत-से लोग पहले ही महीने में इससे टकराते हैं।)
 
   <h2>Cover page या table of contents add करना</h2>
 
@@ -79,7 +79,7 @@ content_hi: |
     </tbody>
   </table>
 
-  Table को PDF के रूप में save करें और merge order में पहले रखें। Merging के बाद, आप <a href="/hi/pdf-edit/rotate/">merged file across page numbers add</a> कर सकते हैं ताकि cover-page references actually resolve हों। अगर आप finance team के लिए quarterly bundle बना रहे हैं, front पर one-page summary और bank statement से match होने वाली totals row audit question पर loop close कर देती है इससे पहले कि उन्हें ask करना पड़े।
+  Table को PDF के रूप में save करें और merge order में पहले रखें। Merging के बाद, आप <a href="/hi/pdf-edit/add-page-numbers/">पूरे merged file में page numbers add</a> कर सकते हैं ताकि cover-page references actually resolve हों। अगर आप finance team के लिए quarterly bundle बना रहे हैं, front पर one-page summary और bank statement से match होने वाली totals row audit question पर loop close कर देती है इससे पहले कि उन्हें ask करना पड़े।
 
   Pro tip: अगर आप summary build करने के लिए Excel या Google Sheets use कर रहे हैं, इसे एक page wide पर print area set करके PDF में save करें merging से पहले। एक summary जो oversized footer की वजह से page 2 पर flow होती है सिर्फ़ visual noise है।
 

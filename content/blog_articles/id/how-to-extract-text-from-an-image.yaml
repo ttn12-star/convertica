@@ -8,7 +8,7 @@ meta_description_id: "Ubah foto, tangkapan layar, atau scan menjadi teks yang da
 meta_keywords_id: "gambar ke teks, ekstrak teks dari gambar, foto ke teks, tangkapan layar ke teks, ocr online gratis, gambar ke teks, jpg ke teks"
 excerpt_id: "Teks yang kamu butuhkan terjebak di dalam gambar — tangkapan layar, halaman yang difoto, struk. OCR membaca piksel dan mengembalikan teks yang dapat diedit. Begini cara melakukannya dengan benar."
 content_id: |
-  Kamu bisa melihat kata-katanya, tapi tidak bisa memilihnya. Semuanya terkunci di dalam gambar — tangkapan layar slide, foto halaman cetak, struk yang dipindai, kartu nama. Mengetik ulang adalah pilihan yang paling jelas sekaligus paling buruk. Pengenalan karakter optis (OCR) melakukannya untukmu: membaca piksel, mengenali bentuk huruf, dan mengembalikan teks yang bisa kamu salin, edit, dan cari.
+  Kamu bisa melihat kata-katanya, tapi tidak bisa memilihnya. Semuanya terkunci di dalam gambar — tangkapan layar slide, foto halaman cetak, struk yang dipindai, kartu nama. Mengetik ulang adalah pilihan yang paling jelas sekaligus paling buruk. Pengenalan karakter optik (OCR) melakukannya untukmu: membaca piksel, mengenali bentuk huruf, dan mengembalikan teks yang bisa kamu salin, edit, dan cari.
 
   Panduan ini menunjukkan cara menarik teks dari gambar menggunakan alat gratis di browser, apa yang membuat hasilnya bersih atau kacau, serta cara menangani kasus yang lebih sulit seperti foto HEIC dari iPhone dan teks non-Inggris.
 
@@ -31,7 +31,7 @@ content_id: |
 
   <ol>
     <li>Buka alat <a href="/id/image/to-text/">Gambar ke Teks</a> dan unggah gambarmu (JPG, PNG, WebP, HEIC, BMP, TIFF, atau GIF). Kamu bisa langsung menariknya ke halaman.</li>
-    <li>Pilih bahasa teks, atau biarkan di <strong>Deteksi otomatis</strong>. Menetapkan bahasa secara eksplisit sangat membantu untuk teks non-Inggris atau dengan karakter aksen.</li>
+    <li>Pilih bahasa teks, atau biarkan di <strong>Deteksi otomatis</strong>. Menetapkan bahasa secara eksplisit sangat membantu untuk teks non-Inggris atau yang memuat karakter beraksen.</li>
     <li>Klik <strong>Ekstrak Teks</strong>. Teks yang dikenali muncul di halaman dalam beberapa detik.</li>
     <li>Gunakan <strong>Salin</strong> untuk mengambilnya, atau <strong>Unduh .txt</strong> untuk menyimpannya sebagai file teks biasa. Selalu lakukan pengecekan cepat sebelum menggunakannya.</li>
   </ol>
@@ -43,24 +43,24 @@ content_id: |
   Kualitas OCR sebagian besar ditentukan oleh gambar yang kamu berikan. Tiga hal paling penting:
 
   <ul>
-    <li><strong>Ketajaman.</strong> Teks yang tajam dan fokus terbaca dengan bersih. Blur gerakan dan foto ponsel yang tidak fokus adalah penyebab utama hasil yang kacau.</li>
+    <li><strong>Ketajaman.</strong> Teks yang tajam dan fokus terbaca dengan bersih. Blur akibat gerakan dan foto ponsel yang tidak fokus adalah penyebab utama hasil yang kacau.</li>
     <li><strong>Kontras.</strong> OCR bekerja berdasarkan perbedaan antara tinta dan latar belakang. Fotokopi yang pudar atau foto dalam kondisi cahaya rendah memberikan terlalu sedikit informasi bagi pengenalan, bahkan pada resolusi tinggi sekalipun.</li>
-    <li><strong>Bahasa.</strong> Model yang dilatih dalam bahasa Inggris salah membaca karakter beraksen dan kata-kata yang tidak familiar. Pilih bahasa yang benar alih-alih Otomatis kapanpun kamu mengetahuinya.</li>
+    <li><strong>Bahasa.</strong> Model yang dilatih dalam bahasa Inggris salah membaca karakter beraksen dan kata-kata yang tidak familiar. Pilih bahasa yang benar alih-alih Otomatis kapan pun kamu mengetahuinya.</li>
   </ul>
 
-  <p>Resolusi juga membantu: usahakan teks memiliki tinggi setidaknya beberapa ratus piksel per baris. Untuk scan, 300 DPI adalah batas bawah yang nyaman. Catatan kaki kecil pada foto resolusi rendah adalah tempat di mana akurasi runtuh.</p>
+  <p>Resolusi juga membantu: usahakan teks memiliki tinggi setidaknya beberapa ratus piksel per baris. Untuk scan, 300 DPI adalah batas bawah yang nyaman. Pada teks catatan kaki kecil di foto resolusi rendah, di situlah akurasi runtuh.</p>
 
   <h2>Foto iPhone (HEIC) dan format lainnya</h2>
 
-  <p>Foto langsung dari iPhone atau iPad modern biasanya berformat <strong>HEIC/HEIF</strong>, bukan JPG. Kamu tidak perlu mengonversinya terlebih dahulu — unggah HEIC dan alat ini mendekodinya secara langsung. JPG, PNG, WebP, BMP, TIFF, dan GIF semuanya bekerja dengan cara yang sama. Untuk TIFF multi-halaman atau GIF animasi, frame pertama yang digunakan.</p>
+  <p>Foto langsung dari iPhone atau iPad modern biasanya berformat <strong>HEIC/HEIF</strong>, bukan JPG. Kamu tidak perlu mengonversinya terlebih dahulu — unggah HEIC dan alat ini mendekodinya secara langsung. JPG, PNG, WebP, BMP, TIFF, dan GIF semuanya bekerja dengan cara yang sama. Untuk TIFF multihalaman atau GIF animasi, hanya frame pertama yang digunakan.</p>
 
   <h2>Tips untuk hasil yang bersih</h2>
 
   <ul>
     <li>Isi bingkai dengan teks dan potong latar belakang, tangan, dan tepi meja — kekacauan membingungkan deteksi tata letak.</li>
     <li>Foto dari depan secara lurus. Halaman yang difoto dari sudut miring mendistorsi huruf dan menurunkan akurasi; alat ini meluruskan kemiringan ringan, tetapi foto langsung dari depan adalah yang terbaik.</li>
-    <li>Hindari silau dan bayangan. Cahaya merata dan difus lebih baik dari jendela yang terang atau flash ponsel.</li>
-    <li>Untuk tata letak multi-kolom, harapkan teks dalam urutan baca, bukan kolom yang direkonstruksi.</li>
+    <li>Hindari silau dan bayangan. Cahaya merata dan difus lebih baik daripada jendela yang terang atau flash ponsel.</li>
+    <li>Untuk tata letak multikolom, harapkan teks dalam urutan baca, bukan kolom yang direkonstruksi.</li>
     <li>Periksa tersangka biasa: 0/O, 1/l/I, rn/m, dan tanda baca yang tidak sesuai.</li>
   </ul>
 

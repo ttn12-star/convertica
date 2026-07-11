@@ -19,8 +19,8 @@ content_id: |
     <li><strong>Scanner duplex pada dokumen asli satu sisi.</strong> Klasik. Setiap halaman lain di output kosong.</li>
     <li><strong>Dokumen Word dengan section break.</strong> Section break diatur ke "next odd page" atau "next even page" menyisipkan kosong saat dibutuhkan untuk mempertahankan paginasi, dan kosong itu bertahan dari ekspor ke PDF.</li>
     <li><strong>Template formulir dengan halaman placeholder.</strong> Banyak template kontrak dan laporan datang dengan halaman yang dicadangkan untuk "lampiran", "addendum", atau tanda tangan yang mungkin Anda gunakan atau tidak.</li>
-    <li><strong>PDF gabungan dari sumber yang tidak cocok.</strong> Menggabungkan file di mana setiap berakhir di batas halaman genap meninggalkan kosong di belakangnya. Laporan tahunan dan pitch deck adalah pelaku umum.</li>
-    <li><strong>Print driver.</strong> "Print to PDF" dengan pengaturan printer tertentu dapat menambahkan halaman konfirmasi atau halaman padding di akhir. Driver print universal HP lama terkenal akan ini sekitar 2018-2020.</li>
+    <li><strong>PDF gabungan dari sumber yang tidak cocok.</strong> Menggabungkan file yang masing-masing berakhir di batas halaman genap meninggalkan kosong di belakangnya. Laporan tahunan dan pitch deck adalah pelaku umum.</li>
+    <li><strong>Print driver.</strong> "Print to PDF" dengan pengaturan printer tertentu dapat menambahkan halaman konfirmasi atau halaman padding di akhir. Driver print universal HP lama terkenal karena ini sekitar 2018-2020.</li>
     <li><strong>Aplikasi scanner mobile.</strong> Aplikasi seperti CamScanner dan Adobe Scan kadang menyisipkan halaman promosi "scanned with [app]" pada tier gratis, yang lebih terasa seperti watermark yang harus Anda lawan daripada fitur.</li>
   </ul>
 
@@ -31,13 +31,13 @@ content_id: |
   <figure><img src="/static/blog/images/tool-remove-pages-options.jpg" alt="Klik thumbnail halaman PDF kosong untuk menghapusnya dalam satu pass" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li>Buka alat <a href="/id/pdf-edit/rotate/">hapus halaman dari PDF</a> dan unggah file Anda.</li>
-    <li>Lihat grid thumbnail. Kosong terlihat jelas: petak putih solid tanpa teks atau gambar. Halaman dengan noise scanner samar masih memiliki tekstur terlihat, jadi mereka tampak abu-abu terang alih-alih putih murni.</li>
+    <li>Buka alat <a href="/id/pdf-organize/remove-pages/">hapus halaman dari PDF</a> dan unggah file Anda.</li>
+    <li>Lihat grid thumbnail. Kosong terlihat jelas: petak putih solid tanpa teks atau gambar. Halaman dengan noise scanner yang samar masih memiliki tekstur yang terlihat, jadi tampak abu-abu terang alih-alih putih murni.</li>
     <li>Klik halaman yang ingin Anda hapus. Sebagian besar alat menyorot pilihan dengan border berwarna atau ikon tong sampah.</li>
     <li>Konfirmasi dan unduh file yang sudah dibersihkan. Verifikasi jumlah halaman cocok dengan yang Anda harapkan.</li>
   </ol>
 
-  Jika Anda juga ingin mengurutkan ulang atau memutar sambil di sini, melakukan ketiganya dalam satu sesi lebih cepat daripada menjalankan tiga alat terpisah. Tampilan gabungan <a href="/id/pdf-organize/merge/">atur halaman PDF dengan drag and drop</a> memungkinkan Anda menghapus, menyeret, dan memutar sebelum mengekspor sekali.
+  Jika Anda juga ingin mengurutkan ulang atau memutar sambil di sini, melakukan ketiganya dalam satu sesi lebih cepat daripada menjalankan tiga alat terpisah. Tampilan gabungan <a href="/id/pdf-organize/organize/">atur halaman PDF dengan drag and drop</a> memungkinkan Anda menghapus, menyeret, dan memutar sebelum mengekspor sekali.
 
   <h2>Langkah demi langkah: hapus halaman berdasarkan rentang</h2>
 
@@ -46,7 +46,7 @@ content_id: |
   <ol>
     <li>Unggah PDF.</li>
     <li>Beralih ke mode rentang (sebagian besar alat toggle antara entri visual dan rentang).</li>
-    <li>Ketik rentang Anda menggunakan daftar dipisah koma dengan hyphen untuk span. <code>3, 7-9, 12</code> berarti: hapus halaman 3, halaman 7 hingga 9, dan halaman 12. Halaman di luar daftar itu tetap.</li>
+    <li>Ketik rentang Anda menggunakan daftar dipisah koma dengan tanda hubung untuk rentang. <code>3, 7-9, 12</code> berarti: hapus halaman 3, halaman 7 hingga 9, dan halaman 12. Halaman di luar daftar itu tetap.</li>
     <li>Terapkan dan unduh.</li>
   </ol>
 
@@ -77,10 +77,10 @@ content_id: |
 
   <ul>
     <li><strong>Hidup dengan itu</strong> untuk dokumen internal di mana nomor cetak tidak terlalu penting.</li>
-    <li><strong>Penomoran ulang</strong> dengan menghapus footer yang ada dan menambahkan yang baru. Alat yang <a href="/id/pdf-edit/rotate/">menambahkan nomor halaman baru</a> memungkinkan Anda menimpa area header atau footer di seluruh dokumen dalam satu pass.</li>
+    <li><strong>Penomoran ulang</strong> dengan menghapus footer yang ada dan menambahkan yang baru. Alat yang <a href="/id/pdf-edit/add-page-numbers/">menambahkan nomor halaman baru</a> memungkinkan Anda menimpa area header atau footer di seluruh dokumen dalam satu pass.</li>
   </ul>
 
-  Perbarui daftar isi dengan cara yang sama. TOC yang menunjuk "halaman 7" ketika halaman 7 baru Anda sekarang adalah yang dulu halaman 9 menggemaskan setiap pembaca. (Saya berpendapat ini adalah alasan kedua paling umum kolega berkata "PDF ini rusak" - yang pertama "tautan dari TOC juga tidak berfungsi".)
+  Perbarui daftar isi dengan cara yang sama. TOC yang menunjuk "halaman 7" ketika halaman 7 baru Anda sekarang adalah yang dulu halaman 9 membuat frustrasi setiap pembaca. (Saya berpendapat ini adalah alasan kedua paling umum kolega berkata "PDF ini rusak" - yang pertama "tautan dari TOC juga tidak berfungsi".)
 
   <h2>Pembersihan massal untuk arsip hasil scan</h2>
 
@@ -96,7 +96,7 @@ content_id: |
 
   Jika Anda men-scan tumpukan dokumen asli satu sisi pada scanner duplex, setiap sisi belakang adalah kosong. Itu berarti Anda ingin menghapus setiap halaman fisik <strong>bernomor genap</strong> di PDF. Rentang seperti <code>2, 4, 6, 8, 10, ...</code> berfungsi, dan sebagian besar alat memungkinkan Anda menghasilkan rentang itu dengan opsi "delete every nth page" atau "even pages".
 
-  Konfirmasi dengan memeriksa beberapa hasil pertama. Jika scanner Anda kadang membalik dokumen asli atau jika tumpukan dimulai dengan sisi belakang, pola akan bergeser satu dan Anda akan ingin menghapus setiap halaman ganjil sebagai gantinya. Seri Fujitsu ScanSnap sangat rentan terhadap ini ketika auto-feeder mengambil dua lembar sekaligus - halaman pertama Anda menjadi belakang dari pasangan, melempar pola untuk sisa dokumen.
+  Konfirmasi dengan memeriksa beberapa hasil pertama. Jika scanner Anda kadang membalik dokumen asli atau jika tumpukan dimulai dengan sisi belakang, pola akan bergeser satu dan Anda akan ingin menghapus setiap halaman ganjil sebagai gantinya. Seri Fujitsu ScanSnap sangat rentan terhadap ini ketika auto-feeder mengambil dua lembar sekaligus - halaman pertama Anda menjadi belakang dari pasangan, mengacaukan pola untuk sisa dokumen.
 
   Setelah pembersihan, Anda mungkin menemukan file akan diuntungkan dengan dipecah menjadi dokumen lebih kecil. Rute <a href="/id/pdf-organize/split/">pisah menjadi bab saja</a> bekerja baik ketika Anda membersihkan arsip 200 halaman yang seharusnya menjadi lima dokumen 40 halaman.
 
@@ -123,4 +123,4 @@ content_id: |
 
   <h2>Coba sekarang</h2>
 
-  <p>Berhenti menggulir melewati halaman kosong. Buka <a href="/id/pdf-edit/rotate/">alat penghapus halaman PDF</a>, klik thumbnail yang tidak Anda inginkan, dan unduh versi bersih dalam jauh kurang dari semenit. Lebih cepat bahkan daripada menemukan kunci lisensi Acrobat Anda.</p>
+  <p>Berhenti menggulir melewati halaman kosong. Buka <a href="/id/pdf-organize/remove-pages/">alat penghapus halaman PDF</a>, klik thumbnail yang tidak Anda inginkan, dan unduh versi bersih dalam jauh kurang dari semenit. Lebih cepat bahkan daripada menemukan kunci lisensi Acrobat Anda.</p>

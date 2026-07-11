@@ -90,8 +90,8 @@ content_pl: |
   <p>To normalne dla bardzo ciężkich układów (raporty wielokolumnowe, magazynowe rozkładówki). Zarówno standardowa konwersja, jak i OCR odbudowują tekst liniowo i nie zawsze zachowują złożoną siatkę. Czasem odpowiedzią jest zaakceptowanie kompromisu; czasem skopiowanie konkretnych sekcji zamiast całego dokumentu.</p>
 
   <h2>Koszt, prywatność i czas przetwarzania</h2>
-  <p>Standardowa konwersja jest praktycznie darmowa obliczeniowo — bliżej jej do parsowania niż do analizy. OCR jest droższy: każda strona przechodzi przez model rozpoznawania, dlatego 50-stronicowe skany zajmują zauważalnie dłużej niż 50-stronicowe PDF-y cyfrowe. Na darmowym tarafie może to oznaczać nieco dłuższą kolejkę dla zadań OCR. Na tarafie płatnym — inny rachunek limitu.</p>
-  <p>Prywatność jest taka sama na obu ścieżkach — wgrywki są szyfrowane w transporcie i przetwarzane tylko przez czas konwersji — ale jeśli się wahasz, sekcja o dokumentach wrażliwych w poradniku o ochronie hasłem omawia, kiedy warto dorzucić hasło do wyniku przed udostępnieniem.</p>
+  <p>Standardowa konwersja jest praktycznie darmowa obliczeniowo — bliżej jej do parsowania niż do analizy. OCR jest droższy: każda strona przechodzi przez model rozpoznawania, dlatego 50-stronicowe skany zajmują zauważalnie dłużej niż 50-stronicowe PDF-y cyfrowe. W darmowym planie może to oznaczać nieco dłuższą kolejkę dla zadań OCR. W planie płatnym — inne rozliczenie limitu.</p>
+  <p>Prywatność jest taka sama na obu ścieżkach — przesyłane pliki są szyfrowane podczas transmisji i przetwarzane tylko przez czas konwersji — ale jeśli się wahasz, sekcja o dokumentach wrażliwych w poradniku o ochronie hasłem omawia, kiedy warto dorzucić hasło do wyniku przed udostępnieniem.</p>
 
   <h2>Reguła w jednej linii</h2>
   <blockquote class="callout">Jeśli da się zaznaczyć tekst w PDF-ie, użyj standardowej konwersji. Jeśli się nie da, użyj OCR. Wszystko inne w tym poradniku to przypis do tego jednego testu.</blockquote>
@@ -104,7 +104,7 @@ content_pl: |
   <h3>Czy OCR jest wolniejszy od zwykłej konwersji?</h3>
   <p>Tak, zauważalnie. Standardowa konwersja jest parsowaniem i działa w sekundach; OCR puszcza każdą stronę przez model rozpoznawania i zajmuje sekundy-do-minut na stronę zależnie od długości i złożoności. Dla 50-stronicowego skanu spodziewaj się kilku minut całości.</p>
   <h3>Czy OCR kosztuje więcej kredytów lub przetwarzania?</h3>
-  <p>Zależy od modelu cenowego platformy. OCR zużywa więcej mocy obliczeniowej, więc platformy rozliczające się od strony albo minuty zwykle wyceniają OCR wyżej niż konwersję standardową. Na darmowych tarafach to zwykle oznacza dłuższą kolejkę, a nie inną cenę.</p>
+  <p>Zależy od modelu cenowego platformy. OCR zużywa więcej mocy obliczeniowej, więc platformy rozliczające się od strony albo minuty zwykle wyceniają OCR wyżej niż konwersję standardową. Na darmowych planach to zwykle oznacza dłuższą kolejkę, a nie inną cenę.</p>
   <h3>Czy mogę uruchomić OCR na cyfrowym PDF mimo wszystko?</h3>
   <p>Możesz, ale nie powinieneś. Wynik będzie nieco gorszy niż standardowa konwersja (OCR wprowadza drobne błędy rozpoznawania, których nie ma, gdy tekst jest już cyfrowy) i potrwa znacznie dłużej. Używaj OCR tylko wtedy, gdy musisz.</p>
   <h3>Dlaczego mój skonwertowany dokument Worda nie ma w ogóle tekstu?</h3>

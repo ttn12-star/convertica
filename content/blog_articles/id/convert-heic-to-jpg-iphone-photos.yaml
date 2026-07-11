@@ -60,7 +60,7 @@ content_id: |
   <p>Secara teknis foto dienkode ulang, jadi terjadi sedikit rekompresi. Dalam praktiknya, pada pengaturan kualitas tinggi perbedaannya tak terlihat — kamu tidak akan menemukannya tanpa zoom sampai level piksel dan membandingkan berdampingan. Dua hal yang patut diketahui:</p>
 
   <ul>
-    <li>JPG akan <strong>lebih besar</strong> daripada HEIC asalnya — sering kali mendekati dua kali lipat. Itu bukan kualitas tambahan; itu sekadar JPG yang merupakan kompresor kurang efisien. Persis itulah alasan Apple meninggalkannya.</li>
+    <li>JPG akan <strong>lebih besar</strong> daripada HEIC asalnya — sering kali mendekati dua kali lipat. Itu bukan kualitas tambahan; itu semata karena JPG memang kompresor yang kurang efisien. Persis itulah alasan Apple meninggalkannya.</li>
     <li>Jika foto akan banyak diedit setelahnya, konversi ke <strong>PNG</strong> saja. PNG bersifat lossless, sehingga penyimpanan berulang tidak akan menumpuk artefak kompresi.</li>
   </ul>
 

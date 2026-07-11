@@ -3,9 +3,9 @@ title_hi: "Bank Statement PDF को Monthly या Per-Transaction Files मे
 meta_title_hi: "Bank Statement PDF को Month या Page से Split करें"
 meta_description_hi: "60-page annual bank statement है? Taxes, loan applications या expense categorization के लिए monthly PDFs में split करें, sharing से पहले privacy checklist के साथ।"
 meta_keywords_hi: "split bank statement pdf, pdf pages separate करें, pdf को month से divide करें, statement से pages extract करें, pdf splitter free"
-excerpt_hi: "Banks year के लिए एक giant PDF deliver करना पसंद करते हैं। इसे monthly chunks में splitting tax season, loan paperwork और expense categorization को dramatically easier बनाती है।"
+excerpt_hi: "Banks पूरे साल को एक ही giant PDF के रूप में deliver करना पसंद करते हैं। इसे monthly chunks में split करना tax season, loan paperwork और expense categorization को dramatically easier बना देता है।"
 content_hi: |
-  ज़्यादातर banks आपको "साल" को एक PDF के रूप में download करने देते हैं। उनके लिए convenient, आपके लिए awkward वो moment जब mortgage broker "बस last तीन महीने" माँगे या आपके accountant को Q1 Q2 से separated चाहिए। हर बार 60-page file reuploading आपके चाहने से ज़्यादा financial detail leak करता है, और spreadsheet में transactions categorising painful बनाता है - आप उन नौ महीनों से past scroll कर रहे होंगे जो आपको कुछ भी देखने के लिए नहीं चाहिए।
+  ज़्यादातर banks आपको "साल" को एक PDF के रूप में download करने देते हैं। उनके लिए convenient, पर आपके लिए तब awkward हो जाता है जब mortgage broker "बस last तीन महीने" माँगे या आपके accountant को Q1 Q2 से अलग करके चाहिए। हर बार पूरी 60-page file दोबारा upload करना ज़रूरत से ज़्यादा financial detail leak करता है, और spreadsheet में transactions categorise करना painful बना देता है - आपको उन नौ महीनों को scroll करके पार करना पड़ता है जिन्हें देखने की आपको कोई ज़रूरत ही नहीं।
 
   File को एक बार, properly named monthly PDFs में split करना दोनों problems solve करता है। यह guide cover करती है कि कब page range के बजाय specific pages extract करते हुए <a href="/hi/pdf-organize/split/">PDF online split</a> करें, privacy steps जो ज़्यादातर tutorials skip करते हैं, और एक naming convention जो result को साल बाद findable बनाती है।
 
@@ -16,15 +16,15 @@ content_hi: |
   Splitting सिर्फ़ tidy housekeeping नहीं है। Concrete moments हैं जहाँ यह time बचाती है या information protect करती है:
 
   <ul>
-    <li><strong>Tax filing.</strong> HMRC, IRS और ज़्यादातर national tax authorities per quarter या per month statements expect करती हैं, especially VAT/GST और self-assessment के लिए। IRS Schedule C particularly monthly totals माँगती है; year भेजना आपके accountant को उन्हें reconstruct करने पर force करता है।</li>
-    <li><strong>Mortgage और loan applications.</strong> Lenders लगभग हमेशा last three या six months माँगते हैं। पूरा साल भेजना over-disclosure है, और underwriters कभी-कभी ऐसी information use करते हैं जो माँगी ही नहीं गई थी अपने objections को pad करने के लिए।</li>
+    <li><strong>Tax filing.</strong> HMRC, IRS और ज़्यादातर national tax authorities per quarter या per month statements expect करती हैं, especially VAT/GST और self-assessment के लिए। IRS Schedule C ख़ासकर monthly totals माँगती है; पूरा साल भेजना आपके accountant को उन्हें reconstruct करने पर मजबूर कर देता है।</li>
+    <li><strong>Mortgage और loan applications.</strong> Lenders लगभग हमेशा last three या six months माँगते हैं। पूरा साल भेजना over-disclosure है, और underwriters कभी-कभी बिना माँगी गई information का इस्तेमाल अपने objections बढ़ाने के लिए कर लेते हैं।</li>
     <li><strong>Expense categorisation.</strong> Spreadsheet में एक बार में एक month काम करना 48 pages से sliding करने से कहीं कम error-prone है।</li>
     <li><strong>Targeted sharing.</strong> आपके accountant को सिर्फ़ वो months चाहिए जो वो reconcile कर रहे हैं। आपके bookkeeper को December देखने की ज़रूरत नहीं अगर question February के बारे में है।</li>
     <li><strong>Insurance claims.</strong> Specific incident के around period माँगने वाले insurer को सिर्फ़ वो window चाहिए, आपकी पूरी financial history नहीं।</li>
     <li><strong>Separation में Co-signed accounts.</strong> अगर आप partner के साथ finances divide कर रहे हैं, full file के बजाय सिर्फ़ joint period share करना legally matter करता है।</li>
   </ul>
 
-  <blockquote class="callout">Bank statement आपकी ज़िंदगी के सबसे sensitive documents में से एक है। सबसे smaller slice share करें जो question का जवाब दे।</blockquote>
+  <blockquote class="callout">Bank statement आपकी ज़िंदगी के सबसे sensitive documents में से एक है। सबसे छोटा slice share करें जो question का जवाब दे।</blockquote>
 
   <h2>तीन split strategies</h2>
 
@@ -58,9 +58,9 @@ content_hi: |
     <li>Parts को <code>YYYY-MM_bank_account-last4.pdf</code> में rename करें (naming पर more नीचे)।</li>
   </ol>
 
-  Tip: अगर first या last page cover/summary है, इसे ranges से exclude करें या इसे अपने one-page PDF के रूप में split करें। कई banks end पर marketing insert include करते हैं ("introducing our new credit card!") जो pure noise है - इसे ever open करने से पहले drop करें।
+  Tip: अगर first या last page cover/summary है, इसे ranges से exclude करें या इसे अपने one-page PDF के रूप में split करें। कई banks end पर marketing insert include करते हैं ("introducing our new credit card!") जो pure noise है - इसे open करने से पहले ही drop कर दें।
 
-  एक small keyboard shortcut: range field में, commas से separated ranges को spaces की ज़रूरत नहीं, इसलिए <code>1-4,5-8,9-12</code> spaced version की तरह exactly काम करती है। एक साथ बारह months के through काम कर रहे हैं तो type करना faster है।
+  एक small keyboard shortcut: range field में, commas से separated ranges को spaces की ज़रूरत नहीं, इसलिए <code>1-4,5-8,9-12</code> spaced version की तरह ही काम करती है। एक साथ बारह months पर काम करते समय type करना faster हो जाता है।
 
   <h2>Step-by-step: एक month extract करें</h2>
 
@@ -68,13 +68,13 @@ content_hi: |
 
   <ol>
     <li>Statement को किसी भी PDF reader में open करें और find करने के लिए scroll करें कि April कहाँ शुरू और end होता है। Page numbers note करें (e.g. 17-22)।</li>
-    <li>हमारे editor में page extraction option use करें <a href="/hi/pdf-edit/rotate/">specific pages extract</a> करने के लिए।</li>
+    <li>हमारे editor में page extraction option use करें <a href="/hi/pdf-organize/extract-pages/">specific pages extract</a> करने के लिए।</li>
     <li>Range enter करें, e.g. <code>17-22</code>।</li>
     <li>Resulting PDF download करें।</li>
     <li>Clear filename के साथ save करें: <code>2026-04_bank_account-1234.pdf</code>।</li>
   </ol>
 
-  यह eleven extra files create करने से बचता है जिनकी आप use नहीं करेंगे, और मतलब सिर्फ़ relevant month आपके computer से leave करता है। अगर lender "most recent three months" माँगे, तीन single-month extractions करें और उन्हें तीन named files के रूप में भेजें एक mashed-together range के बजाय। Underwriters named files को ranges से faster parse करते हैं।
+  यह eleven extra files create करने से बचाता है जिनकी आप use नहीं करेंगे, और इसका मतलब है कि सिर्फ़ relevant month ही आपके computer से बाहर जाता है। अगर lender "most recent three months" माँगे, तो तीन single-month extractions करें और एक mashed-together range के बजाय उन्हें तीन named files के रूप में भेजें। Underwriters named files को ranges से faster parse करते हैं।
 
   <h2>Sharing से पहले Privacy checklist</h2>
 
@@ -83,16 +83,16 @@ content_hi: |
   <figure><img src="/static/blog/images/tool-split-options.jpg" alt="Sensitive statements emailing से पहले Convertica password-protect tool used" width="1280" height="800" loading="lazy"></figure>
 
   <ul>
-    <li><strong>Unrelated transactions redact करें.</strong> अगर lender को सिर्फ़ salary और rent देखना है, बाक़ी black out करें। Redaction को PDF flatten करना (pixels replace) चाहिए, सिर्फ़ उन्हें black box से cover नहीं करना जिसे कोई भी free PDF editor और दस seconds वाला remove कर सकता है।</li>
+    <li><strong>Unrelated transactions redact करें.</strong> अगर lender को सिर्फ़ salary और rent देखना है, बाक़ी black out करें। Redaction को PDF flatten करना (pixels replace) चाहिए, सिर्फ़ उन्हें black box से cover नहीं करना जिसे कोई भी free PDF editor दस seconds में remove कर सकता है।</li>
     <li><strong>Cover page पर क्या है confirm करें.</strong> कुछ banks हर monthly cover पर full account number, sort code और address repeat करते हैं। Decide करें कि उस level का detail required है या नहीं।</li>
     <li><strong>Account number के middle digits mask करें.</strong> कई institutions verification के लिए "XXXX XXXX 1234" accept करते हैं full string के बिना।</li>
-    <li><strong>Personal context के लिए transaction descriptions check करें.</strong> "Therapy session - Dr. K" या "Reproductive Health Clinic" reading line item ऐसी information carry कर सकती है जो आपने share करने का मतलब नहीं था। जब sensitive हो description redact करें, सिर्फ़ amount नहीं।</li>
+    <li><strong>Personal context के लिए transaction descriptions check करें.</strong> "Therapy session - Dr. K" या "Reproductive Health Clinic" जैसी line item ऐसी information दे सकती है जो आप share नहीं करना चाहते थे। जब sensitive हो, तो सिर्फ़ amount नहीं, description भी redact करें।</li>
     <li><strong>Email से पहले Password-protect करें.</strong> <a href="/hi/pdf-security/protect/">Result को password-protect</a> करें strong password के साथ और वो password अलग channel से share करें (text, Signal, phone call), कभी same email से नहीं।</li>
   </ul>
 
   <blockquote class="callout">Email default में encrypted नहीं है। PDF पर password "private" और "intercept होने पर public" के बीच का difference है।</blockquote>
 
-  जानने योग्य: Adobe Acrobat का "redact" tool genuinely black box के नीचे text remove कर देता है। Free Foxit reader का similar-looking tool सिर्फ़ इसके ऊपर paint करता है - underlying text अब भी simple copy operation से extractable है। कई लोगों ने यह embarrassing way सीखा जब उनकी "redacted" salary rectangle के नीचे plain text निकली। अगर आप sure नहीं कि आपका tool truly data remove करता है, redacted block को text editor में copy करें और check करें।
+  जानने योग्य: Adobe Acrobat का "redact" tool genuinely black box के नीचे text remove कर देता है। Free Foxit reader का similar-looking tool सिर्फ़ इसके ऊपर paint करता है - underlying text अब भी simple copy operation से extractable है। कई लोगों ने यह बात शर्मनाक तरीके से सीखी जब उनकी "redacted" salary rectangle के नीचे plain text निकल आई। अगर आप sure नहीं कि आपका tool truly data remove करता है, redacted block को text editor में copy करें और check करें।
 
   <h2>Output files को Naming</h2>
 
@@ -114,7 +114,7 @@ content_hi: |
     <li>कोई spaces नहीं, slashes नहीं, quotes नहीं - operating systems और cloud sync tools के पार safe।</li>
   </ul>
 
-  अगर आपको कभी year-end submission के लिए months recombine करने की ज़रूरत हो, आप <a href="/hi/pdf-organize/merge/">बाद में merge कर सकते हैं अगर recombine करना हो</a> उन्हें वापस single file में। Output को reverse-naming (e.g. <code>2026_chase_4567_full-year.pdf</code>) इसे किसी भी folder listing में monthly slices के बगल में sorted रखता है।
+  अगर आपको कभी year-end submission के लिए months recombine करने की ज़रूरत हो, तो आप <a href="/hi/pdf-organize/merge/">बाद में उन्हें वापस single file में merge कर सकते हैं</a>। Output को reverse-naming (e.g. <code>2026_chase_4567_full-year.pdf</code>) इसे किसी भी folder listing में monthly slices के बगल में sorted रखता है।
 
   <h2>FAQ</h2>
 

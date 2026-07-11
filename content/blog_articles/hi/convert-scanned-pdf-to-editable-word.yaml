@@ -1,7 +1,7 @@
 slug: convert-scanned-pdf-to-editable-word
 title_hi: "Scanned PDF को Editable Word Document में कैसे Convert करें (OCR Tips के साथ)"
 meta_title_hi: "Scanned PDF को Editable Word में Convert करें Free | Convertica"
-meta_description_hi: "एक scanned PDF सिर्फ़ text की images है। Sीखें कि OCR इसे editable Word doc में कैसे बदलता है, क्या accuracy expect करें, और कौन से cleanup steps इसे usable बनाते हैं।"
+meta_description_hi: "एक scanned PDF सिर्फ़ text की images है। सीखें कि OCR इसे editable Word doc में कैसे बदलता है, क्या accuracy expect करें, और कौन से cleanup steps इसे usable बनाते हैं।"
 meta_keywords_hi: "scanned pdf to word, ocr pdf to word, editable pdf, pdf image to word, scan को docx convert करें"
 excerpt_hi: "अगर आपके PDF में 'select text' सिर्फ़ blank space highlight करता है, आपके पास scanned PDF है, और आपको regular converter के बजाय OCR चाहिए। यहाँ है क्या expect करें।"
 content_hi: |
@@ -50,7 +50,7 @@ content_hi: |
 
   <blockquote class="callout">हमेशा original scanned PDF रखें। अगर OCR कोई page mangle करता है, आप source से compare कर सकें इसके लिए, unreadable word क्या होना चाहिए था इसका guess न करें।</blockquote>
 
-  Output पर भरोसा करने से पहले एक बार check करने योग्य: .docx को Word में open करें और formatting marks देखें (Windows पर Ctrl+Shift+8, macOS पर Cmd+8 से toggle करें)। अगर आप हर line के end पर lots of paragraph marks देखते हैं - क्योंकि OCR ने सोचा कि हर visual line एक paragraph है - editing से पहले find-and-replace से इसे fix करें। Fix simple है: single paragraph marks को space से replace करें, फिर double paragraph marks को वापस single में। (मेरा कहना है यह single Word trick किसी भी OCR setting से ज़्यादा time बचाती है।)
+  Output पर भरोसा करने से पहले एक बार check करने योग्य: .docx को Word में open करें और formatting marks देखें (Windows पर Ctrl+Shift+8, macOS पर Cmd+8 से toggle करें)। अगर आप हर line के end पर lots of paragraph marks देखते हैं - क्योंकि OCR ने सोचा कि हर visual line एक paragraph है - editing से पहले find-and-replace से इसे fix करें। Fix simple है: single paragraph marks को space से replace करें, फिर double paragraph marks को वापस single में। (मेरी मानें तो यह अकेली Word trick किसी भी OCR setting से ज़्यादा time बचाती है।)
 
   <h2>Realistic accuracy expectations</h2>
 
@@ -86,7 +86,7 @@ content_hi: |
         <td>अक्सर retype करना faster</td>
       </tr>
       <tr>
-        <td>Numbers की Tables</td>
+        <td>Numbers वाली Tables</td>
         <td>Layout ज़्यादातर समय fail होता है</td>
         <td>Manual reformatting</td>
       </tr>
@@ -113,7 +113,7 @@ content_hi: |
 
   <ul>
     <li><strong>Sideways pages rotate करें.</strong> OCR engines horizontal text assume करते हैं। 90-degree-off page gibberish या nothing return करता है। OCR से पहले <a href="/hi/pdf-edit/rotate/">sideways pages पहले rotate करने</a> के लिए tool use करें।</li>
-    <li><strong>Excess margins crop करें.</strong> Wide white borders layout analyzer को confuse करते हैं कि आपका single column दो हैं। Text actually जहाँ शुरू होता है वहाँ तक <a href="/hi/pdf-edit/rotate/">margins crop करें</a>।</li>
+    <li><strong>Excess margins crop करें.</strong> Wide white borders layout analyzer को confuse करते हैं कि आपका single column दो हैं। Text actually जहाँ शुरू होता है वहाँ तक <a href="/hi/pdf-edit/crop/">margins crop करें</a>।</li>
     <li><strong>Contrast बढ़ाएँ.</strong> Faded scans को PDF के रूप में re-saving से पहले scanner software या किसी image editor में contrast boost से benefit होता है। Pure white background पर pure black text gold standard है।</li>
     <li><strong>Deskew.</strong> 2 to 3 degrees से tilt pages भी accuracy hurt करते हैं। ज़्यादातर scanner software में auto-deskew option है, और यह run करने योग्य है।</li>
     <li><strong>Scanning से पहले colour को grayscale या black-and-white पर drop करें</strong> अगर कर सकें। Colour tints (typical yellow-tinged office photocopier output) contrast को ऐसे shift करते हैं जो recogniser को throw off करता है।</li>
@@ -130,7 +130,7 @@ content_hi: |
     <li><code>0</code> (zero) <code>O</code> (capital o) के साथ codes और IDs के अंदर confused।</li>
     <li>Smart quotes straight quotes में या vice versa flipped, quotations breaking।</li>
     <li>Em dashes दो hyphens या hyphen-space-hyphen में converted।</li>
-    <li>हर page से Headers और footers inline text के रूप में end हो सकते हैं। उन्हें एक बार delete करें और real Word header lock down करें।</li>
+    <li>हर page से Headers और footers inline text के रूप में आ सकते हैं। उन्हें एक बार delete करें और real Word header lock down करें।</li>
     <li>Bulleted lists plain paragraphs के रूप में rendered जो literal "•" या stray "o" character से prefixed हैं।</li>
     <li>Hyphenated line-end words (consecutive lines पर mer-/chant) कभी-कभी actual hyphens के रूप में Word doc में survive करते हैं। "- " (hyphen-space) के लिए search करें और clean up करें।</li>
   </ul>

@@ -9,13 +9,13 @@ content_pl: |
 
   To jest przewodnik referencyjny po takich konwencjach nazewnictwa, które po cichu zwracają się latami. Nic wymyślnego, niczego nie trzeba instalować — kilka wzorców, których możesz zacząć używać od następnego zapisanego pliku.
 
-  <h2>Dlaczego nazewnictwo waży więcej niż foldery</h2>
+  <h2>Dlaczego nazewnictwo znaczy więcej niż foldery</h2>
 
   <figure><img src="/static/blog/images/tool-all-tools-hero.jpg" alt="Wszystkie narzędzia PDF Convertica w jednym miejscu" width="1280" height="800" loading="lazy"></figure>
   <p>Trzy powody, dla których nazwy plików wygrywają na skalę:</p>
   <ul>
     <li><strong>Wyszukiwanie bije hierarchię.</strong> Po przekroczeniu kilkuset plików nie przeglądasz — szukasz. Wyszukiwarka chmurowa, systemowa i mailowa indeksują nazwy plików jako pierwsze. Opisowa nazwa znajduje się w mig; ogólna jest niewidzialna.</li>
-    <li><strong>Synchronizacja w chmurze i tak spłaszcza foldery.</strong> Przesuń plik między folderami w Drive i link udostępnienia może się popsuć. Przekaż maila dalej i załącznik traci kontekst folderu kompletnie. Nazwa pliku to jedyna metadana, która podróżuje razem z plikiem.</li>
+    <li><strong>Synchronizacja w chmurze i tak spłaszcza foldery.</strong> Przesuń plik między folderami w Drive i link udostępnienia może się popsuć. Przekaż maila dalej i załącznik traci kontekst folderu kompletnie. Nazwa pliku to jedyne metadane, które podróżują razem z plikiem.</li>
     <li><strong>Nazwy przeżywają udostępnianie.</strong> Kiedy wysyłasz PDF klientowi, twoja struktura folderów nigdzie nie idzie. Odbiorca zapisuje plik z taką nazwą, jaką wysłałeś. Niech ta nazwa nadal ma sens poza kontekstem.</li>
   </ul>
 
@@ -26,7 +26,7 @@ content_pl: |
   <p>Trzy powody, dla których to działa rok po roku:</p>
   <ul>
     <li><strong>Data ISO sortuje się prawidłowo.</strong> 2026-04-12 sortuje się alfabetycznie po 2026-04-11, co znaczy, że alfabetyczne = chronologiczne. Żaden system plików na świecie nie traktuje tak 04/12/2026.</li>
-    <li><strong>Strona przed tematem grupuje po kliencie.</strong> Wszystkie pliki Acme klastrują się razem przy sortowaniu alfabetycznym po czymkolwiek po dacie.</li>
+    <li><strong>Strona przed tematem grupuje po kliencie.</strong> Wszystkie pliki Acme grupują się razem przy sortowaniu alfabetycznym po czymkolwiek po dacie.</li>
     <li><strong>Wersja na końcu</strong> oznacza, że najnowsza wersja zawsze siedzi na dole sortu. v01 jest nad v02, v02 nad v03.</li>
   </ul>
   <blockquote class="callout">Jeśli z tego poradnika zapamiętasz tylko jedną rzecz, niech to będzie używanie dat ISO. Reszta to dodatek.</blockquote>
@@ -104,7 +104,7 @@ content_pl: |
   <h3>Jak długa powinna być nazwa pliku PDF?</h3>
   <p>Cel to 30-80 znaków. Wystarczająco długo, by była opisowa, na tyle krótko, by mieściła się w listingu folderu bez przycięcia. Twardy limit zależy od systemu (często 255 znaków), ale w połączeniu z głębokimi ścieżkami można wpaść w problemy powyżej 200.</p>
   <h3>Numer wersji na początku czy na końcu?</h3>
-  <p>Na końcu. Umieszczenie v01, v02 na końcu zachowuje sortowanie po dacie nienaruszone, a warianty wersji klastrują się razem na dole grupy dokumentów. <code>2026-04_acme_umowa_v01.pdf</code>, <code>v02</code>, <code>v03</code> wszystkie siedzą obok siebie.</p>
+  <p>Na końcu. Umieszczenie v01, v02 na końcu zachowuje sortowanie po dacie nienaruszone, a warianty wersji grupują się razem na dole grupy dokumentów. <code>2026-04_acme_umowa_v01.pdf</code>, <code>v02</code>, <code>v03</code> wszystkie siedzą obok siebie.</p>
   <h3>Czy konwencje nazewnictwa wpływają na SEO publicznych PDF-ów?</h3>
   <p>Tak, umiarkowanie. Wyszukiwarki czytają nazwy plików PDF jako sygnał rankingowy, zwłaszcza w slug URL. Opisowa nazwa z łącznikami typu <code>2026-acme-umowa.pdf</code> bije <code>file_3242.pdf</code> w wykrywalności. Nie upychaj słów kluczowych — bądź po prostu opisowy.</p>
 

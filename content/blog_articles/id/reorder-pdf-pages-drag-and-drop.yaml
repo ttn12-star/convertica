@@ -12,7 +12,7 @@ content_id: |
   <figure><img src="/static/blog/images/tool-organize-hero.jpg" alt="Alat organize PDF Convertica dengan grid thumbnail untuk pengaturan ulang drag-and-drop" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Kapan Anda benar-benar perlu mengatur ulang halaman</h2>
-  <p>Pengaturan ulang adalah salah satu tugas yang duduk diam di latar belakang sampai tiba-tiba mendesak. Kasus paling umum mengejutkan mirip lintas industri:</p>
+  <p>Pengaturan ulang adalah salah satu tugas yang duduk diam di latar belakang sampai tiba-tiba mendesak. Kasus paling umum ternyata mirip di berbagai industri:</p>
   <ul>
     <li>Dua atau tiga file digabung dan sekarang lampiran berada di depan surat pengantar.</li>
     <li>Scanner mengeluarkan halaman dari feeder dalam urutan yang sedikit berbeda dari yang diharapkan (halaman kedua menyelipkan dirinya ke lembar berikutnya, mode kegagalan auto-feeder klasik).</li>
@@ -21,7 +21,7 @@ content_id: |
     <li>Banyak sumber kontrak digabung dalam urutan abjad alih-alih urutan logis.</li>
     <li>Akuntan mengembalikan paket pajak dengan koreksi, dan Anda perlu menyisipkan halaman revisi di tempat yang lama.</li>
   </ul>
-  <p>Dalam setiap kasus, solusi tercepat adalah <a href="/id/pdf-organize/merge/">mengatur halaman PDF</a> secara visual alih-alih membangun kembali file dari awal.</p>
+  <p>Dalam setiap kasus, solusi tercepat adalah <a href="/id/pdf-organize/organize/">mengatur halaman PDF</a> secara visual alih-alih membangun kembali file dari awal.</p>
 
   <h2>Langkah demi langkah: pengaturan ulang drag and drop</h2>
   <p>Alurnya sengaja dibuat mirip dengan menyusun ulang slide di PowerPoint atau Keynote, jadi Anda dapat meminjam memori otot yang sudah Anda miliki.</p>
@@ -30,11 +30,11 @@ content_id: |
 
   <ol>
     <li><strong>Unggah PDF.</strong> Buka alat organize dan jatuhkan file ke kotak unggah. Apa pun dari kontrak 3 halaman hingga laporan 200 halaman bekerja.</li>
-    <li><strong>Tunggu grid thumbnail.</strong> Setiap halaman dirender sebagai petak preview kecil, dinomori dalam urutan saat ini. File lebih besar memakan beberapa detik untuk merender setiap halaman; itu adalah alat mengekstraksi dan merasterisasi thumbnail, bukan lag.</li>
+    <li><strong>Tunggu grid thumbnail.</strong> Setiap halaman dirender sebagai petak preview kecil, dinomori dalam urutan saat ini. File lebih besar memakan beberapa detik untuk merender setiap halaman; itu berarti alat sedang mengekstraksi dan merasterisasi thumbnail, bukan lag.</li>
     <li><strong>Seret halaman ke posisi baru.</strong> Klik dan tahan thumbnail, seret antara dua petak lain, dan lepas. Nomor diperbarui langsung sehingga Anda dapat melihat urutan baru.</li>
     <li><strong>Terapkan dan unduh.</strong> Klik tombol aksi dan alat membangun ulang PDF dalam urutan baru. Output adalah file segar - asli Anda dibiarkan sendiri.</li>
   </ol>
-  <blockquote class="callout">Jika Anda salah meletakkan halaman, seret lagi. Tidak ada save-yet, jadi tidak ada yang permanen sampai Anda klik unduh.</blockquote>
+  <blockquote class="callout">Jika Anda salah meletakkan halaman, seret lagi. Belum ada yang tersimpan, jadi tidak ada yang permanen sampai Anda klik unduh.</blockquote>
 
   <h3>Apa yang sebenarnya ditampilkan thumbnail</h3>
   <p>Thumbnail dirender pada resolusi rendah untuk menjaga halaman tetap responsif, jadi teks sangat kecil mungkin tidak terbaca di preview. Itu diharapkan. Anda melihat thumbnail untuk mengidentifikasi halaman, bukan untuk membacanya. Jika dua halaman terlihat identik pada ukuran thumbnail (situasi umum dengan halaman judul bab atau pemisah seksi yang berulang), hover atau ketuk untuk memperbesar.</p>
@@ -52,11 +52,11 @@ content_id: |
   <p>Melakukannya dalam satu perjalanan berarti satu file akhir, dinamai sekali, tanpa setengah jadi yang menyumbat folder Downloads Anda.</p>
 
   <h2>Mengatur ulang sebelum menggabungkan lebih baik daripada memperbaiki sesudahnya</h2>
-  <p>Jika Anda akan menggabungkan beberapa PDF menjadi satu, ambil sepuluh detik untuk meletakkan file sumber dalam urutan yang tepat di layar gabung terlebih dahulu. Alat gabung mengonkatkan file dalam urutan Anda mendaftarnya, jadi Anda dapat <a href="/id/pdf-organize/merge/">menggabungkan PDF dalam urutan yang tepat</a> dengan menyeret petak file ke urutan sebelum Anda menekan tombol gabung.</p>
+  <p>Jika Anda akan menggabungkan beberapa PDF menjadi satu, ambil sepuluh detik untuk meletakkan file sumber dalam urutan yang tepat di layar gabung terlebih dahulu. Alat gabung menyambung file sesuai urutan Anda mendaftarnya, jadi Anda dapat <a href="/id/pdf-organize/merge/">menggabungkan PDF dalam urutan yang tepat</a> dengan menyeret petak file ke urutan sebelum Anda menekan tombol gabung.</p>
   <p>Memperbaiki urutan setelah penggabungan baik-baik saja - drag-and-drop reorder di atas melakukannya - tetapi Anda akan memindahkan lebih banyak halaman. Untuk output 20 halaman dibangun dari tiga sumber 7 halaman, mengurutkan ketiga sumber terlebih dahulu berarti tiga aksi seret alih-alih potensi sembilan belas. Prinsipnya sama dengan yang dipegang percetakan selama puluhan tahun: kumpulkan sebelum menjilid, bukan setelah.</p>
 
   <h3>Satu kali atur ulang, banyak revisi</h3>
-  <p>Jika Anda mengerjakan dokumen yang melalui beberapa siklus review, atur ulang sekali di awal ketika logika seksi sudah ditetapkan, lalu lakukan semua edit kemudian di tempat. Mengatur ulang setiap revisi mengundang drift kumulatif; dokumen berakhir dalam urutan hibrida yang tidak diminta secara spesifik oleh siapa pun.</p>
+  <p>Jika Anda mengerjakan dokumen yang melalui beberapa siklus review, atur ulang sekali di awal ketika logika seksi sudah ditetapkan, lalu lakukan semua edit kemudian di tempat. Mengatur ulang setiap revisi mengundang pergeseran kumulatif; dokumen berakhir dalam urutan hibrida yang tidak diminta secara spesifik oleh siapa pun.</p>
 
   <h2>Pengalaman mobile vs desktop</h2>
   <p>Mengatur ulang halaman PDF adalah salah satu dari sedikit tugas pengeditan yang benar-benar berfungsi di ponsel. Anda menyeret petak besar, bukan memilih teks kecil, jadi layar sentuh dalam beberapa hal lebih baik daripada mouse. (Saya berpendapat ini adalah kasus langka di mana versi iPad lebih menyenangkan daripada versi desktop, bahkan pada layar 27 inci.)</p>
@@ -93,13 +93,13 @@ content_id: |
   <h3>Bisakah saya mengatur ulang halaman di ponsel saya?</h3>
   <p>Ya. Grid thumbnail ramah sentuh: long-press halaman untuk mengangkatnya, seret dengan jari, dan lepas di tempat baru. iOS Safari, Chrome di Android, dan browser tablet semua didukung. Anda mungkin ingin memutar ponsel ke landscape untuk lebih banyak ruang grid.</p>
   <h3>Apakah pengaturan ulang akan mengubah nomor halaman secara otomatis?</h3>
-  <p>Tidak. Nomor halaman terlihat yang dipanggang ke konten halaman tetap di tempat mereka digambar - pengaturan ulang hanya mengubah urutan halaman fisik, bukan teks pada mereka. Jika Anda butuh halaman dengan nomor baru, jalankan file melalui alat nomor halaman setelahnya.</p>
+  <p>Tidak. Nomor halaman terlihat yang dipanggang ke konten halaman tetap di posisi asalnya - pengaturan ulang hanya mengubah urutan halaman fisik, bukan teks di dalamnya. Jika Anda butuh halaman dengan nomor baru, jalankan file melalui alat nomor halaman setelahnya.</p>
   <h3>Bisakah saya batalkan jika saya menyeret halaman ke tempat yang salah?</h3>
-  <p>Seret lagi ke posisi yang benar. Tidak ada yang dikomit ke disk sampai Anda klik tombol unduh, jadi seluruh sesi efektifnya draft yang dapat Anda edit ulang dengan bebas. Menutup tab browser meninggalkan sesi sepenuhnya; tidak ada state auto-save untuk dipulihkan.</p>
+  <p>Seret lagi ke posisi yang benar. Tidak ada yang dikomit ke disk sampai Anda klik tombol unduh, jadi seluruh sesi pada dasarnya adalah draf yang bisa Anda edit ulang dengan bebas. Menutup tab browser meninggalkan sesi sepenuhnya; tidak ada state auto-save untuk dipulihkan.</p>
   <h3>Apakah pengaturan ulang berfungsi pada PDF yang dilindungi kata sandi?</h3>
   <p>Tidak langsung - alat perlu membaca konten halaman untuk merender thumbnail. Buka kunci PDF terlebih dahulu jika Anda memilikinya, atur ulang, lalu lindungi kembali hasilnya. Jika dokumen bukan milik Anda, minta pemilik salinan tidak terkunci.</p>
   <h3>Bisakah saya mengatur ulang dan menghapus dalam satu langkah?</h3>
   <p>Ya. Alat organize mengekspos kedua aksi pada grid thumbnail yang sama, jadi Anda dapat menyeret halaman ke urutan yang tepat dan klik ikon tong sampah pada halaman yang ingin Anda buang. Kedua perubahan diterapkan ke file output tunggal.</p>
 
   <h2>Coba sekarang</h2>
-  <p>Berhenti mencetak dan men-scan ulang untuk memperbaiki urutan halaman. Unggah PDF Anda, seret halaman ke tempat seharusnya sejak awal, dan unduh file bersih dalam waktu kurang dari semenit. <a href="/id/pdf-organize/merge/">Buka alat organize PDF →</a></p>
+  <p>Berhenti mencetak dan men-scan ulang untuk memperbaiki urutan halaman. Unggah PDF Anda, seret halaman ke tempat seharusnya sejak awal, dan unduh file bersih dalam waktu kurang dari semenit. <a href="/id/pdf-organize/organize/">Buka alat organize PDF →</a></p>

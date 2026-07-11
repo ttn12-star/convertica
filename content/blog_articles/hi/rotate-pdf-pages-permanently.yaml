@@ -1,13 +1,13 @@
 slug: rotate-pdf-pages-permanently
 title_hi: "PDF Pages को कैसे Rotate करें और Change को Permanently Save करें (सिर्फ़ Viewer में नहीं)"
 meta_title_hi: "PDF Rotate और Permanently Save - Free Online | Convertica"
-meta_description_hi: "Adobe Reader PDFs को सिर्फ़ viewer में 'rotate' करता है। Pages को permanently rotate करना सीखें ताकि change shared, emailed, या किसी से printed होने पर stick करे।"
+meta_description_hi: "Adobe Reader PDFs को सिर्फ़ viewer में 'rotate' करता है। Pages को permanently rotate करना सीखें ताकि change shared, emailed या printed होने पर भी बना रहे।"
 meta_keywords_hi: "rotate pdf permanently, rotated pdf save करें, sideways pdf fix करें, scanned pdf rotate करें, pdf rotation free"
-excerpt_hi: "अगर आपने कभी Adobe Reader में PDF rotate किया है सिर्फ़ reopen करने पर वापस snap होते देखने के लिए, यह fix है। Page-orientation flag file के अंदर रहता है।"
+excerpt_hi: "अगर आपने कभी Adobe Reader में PDF rotate किया और reopen करते ही उसे वापस snap होते देखा, तो यह उसका fix है। Page-orientation flag file के अंदर रहता है।"
 content_hi: |
-  Adobe Reader में PDF rotate करें, file close करें, फिर open करें, और pages वापस वहाँ snap हो जाते हैं जहाँ शुरू हुए थे। उस moment पर ज़्यादातर लोग सीखते हैं कि दो completely different तरह के rotation होते हैं, और सिर्फ़ एक file को actually change करता है। Adobe Reader जो error message दिखाता है जब आप rotation save करने की कोशिश करते हैं - "this file has been rotated and you must use Adobe Acrobat to commit the change" - उन quiet rude awakenings में से एक है जो किसी को भी afternoon cost करता है जो इसे आते नहीं देखता।
+  Adobe Reader में PDF rotate करें, file close करें, फिर open करें, और pages वापस वहाँ snap हो जाते हैं जहाँ शुरू हुए थे। उसी पल ज़्यादातर लोगों को पता चलता है कि rotation दो बिलकुल अलग तरह के होते हैं, और उनमें से सिर्फ़ एक ही file को actually change करता है। Adobe Reader जो error message दिखाता है जब आप rotation save करने की कोशिश करते हैं - "this file has been rotated and you must use Adobe Acrobat to commit the change" - उन quiet rude awakenings में से एक है जो पहले से न भाँप पाने वाले किसी भी इंसान की पूरी afternoon बर्बाद कर देता है।
 
-  यह guide उस तरह के बारे में है जो stick करता है। आप ऐसे PDF के साथ end होंगे जो Chrome, Preview, Acrobat, किसी के phone पर, और जो printer आख़िर में spit out करे उस पर same दिखता है। Downstream किसी को इसे खुद rotate करने की ज़रूरत नहीं होगी।
+  यह guide उस तरह के बारे में है जो stick करता है। आपके पास ऐसा PDF होगा जो Chrome, Preview, Acrobat, किसी के phone पर, और आख़िर में जो printer उसे छापे उस पर भी same दिखता है। Downstream किसी को इसे खुद rotate करने की ज़रूरत नहीं होगी।
 
   <figure><img src="/static/blog/images/tool-rotate-hero.jpg" alt="Convertica rotate PDF tool thumbnail grid और rotation direction controls के साथ" width="1280" height="800" loading="lazy"></figure>
 
@@ -25,7 +25,7 @@ content_hi: |
 
   <blockquote class="callout">अगर आप rotate कर सकते हैं लेकिन closing के बाद change vanish हो जाता है, आपने almost certainly viewer-level rotate use किया। ऐसा tool use करें जो page orientation को file में खुद rewrite करे।</blockquote>
 
-  Adobe Reader DC versions 2019 और बाद में behaviour थोड़ा shift हुआ: rotate button अब Tools &gt; Organize Pages के नीचे buried है, जहाँ ऐसा लगता है कि change commit होना चाहिए लेकिन तब तक नहीं होगा जब तक आप pay न करें। Free version explicitly small footer message में बताता है कि "saving page rotations requires Acrobat Pro", जिसे कई users कभी read नहीं करते।
+  Adobe Reader DC versions 2019 और बाद में behaviour थोड़ा shift हुआ: rotate button अब Tools &gt; Organize Pages के नीचे buried है, जहाँ ऐसा लगता है कि change commit होना चाहिए लेकिन तब तक नहीं होगा जब तक आप pay न करें। Free version एक छोटे footer message में explicitly बताता है कि "saving page rotations requires Acrobat Pro", जिसे कई users कभी read नहीं करते।
 
   Fastest fix एक browser-based rotator है जो file को directly re-encode करता है। आप कुछ install किए बिना <a href="/hi/pdf-edit/rotate/">PDF online rotate</a> लगभग दस seconds में कर सकते हैं।
 
@@ -42,7 +42,7 @@ content_hi: |
     <li>New file download करें। किसी भी viewer में open करके confirm करें।</li>
   </ol>
 
-  Result को clear filename जैसे <code>contract_rotated.pdf</code> से save करें ताकि आप mistakenly original overwrite न करें। Original रखना cheap insurance है अगर rotation गलत direction में गया - और rotations गलत direction में जाना rotate tool पहली बार use करने वाले से सबसे common "मैंने दस minutes waste किए" report है। दो clockwise turns एक counter-clockwise turn के बराबर है, इसलिए recovery fast है, लेकिन सिर्फ़ अगर आपके पास source है।
+  Result को clear filename जैसे <code>contract_rotated.pdf</code> से save करें ताकि आप mistakenly original overwrite न करें। Original रखना cheap insurance है अगर rotation गलत direction में चला जाए - और गलत direction में rotate होना rotate tool पहली बार use करने वालों की सबसे common "मैंने दस minutes waste किए" शिकायत है। दो clockwise turns एक counter-clockwise turn के बराबर है, इसलिए recovery fast है, लेकिन सिर्फ़ अगर आपके पास source है।
 
   <h2>Step-by-step: सिर्फ़ specific pages rotate करें</h2>
 
@@ -55,27 +55,27 @@ content_hi: |
     <li>Apply करें और download करें। File ship करने से पहले thumbnails corrected orientation दिखा रहे हैं verify करें।</li>
   </ol>
 
-  अगर आप अक्सर page-by-page rotations से fight करते हैं, अक्सर एक combined view में <a href="/hi/pdf-organize/merge/">PDF pages organize</a> करना easier है जहाँ आप exporting से पहले rotate, delete, और reorder कर सकते हैं।
+  अगर आप अक्सर page-by-page rotations से fight करते हैं, अक्सर एक combined view में <a href="/hi/pdf-organize/organize/">PDF pages organize</a> करना easier है जहाँ आप exporting से पहले rotate, delete, और reorder कर सकते हैं।
 
-  Keyboard shortcut जानने योग्य हमारे tool में (और ज़्यादातर browser-based वालों में): एक बार thumbnail focus में हो, bracket keys अक्सर इसे rotate करती हैं। Right bracket clockwise, left bracket counter-clockwise. Tools के पार universal नहीं, लेकिन इतना common है कि mouse के लिए reach करने से पहले try करना worth है।
+  हमारे tool में (और ज़्यादातर browser-based वालों में) एक keyboard shortcut जानने लायक है: एक बार thumbnail focus में आ जाए, तो bracket keys अक्सर इसे rotate कर देती हैं। Right bracket clockwise, left bracket counter-clockwise. Tools के पार universal नहीं, लेकिन इतना common है कि mouse के लिए reach करने से पहले try करना worth है।
 
   <h2>Common scenarios</h2>
 
   <h3>Sideways scanned receipts</h3>
 
-  Flatbed scanners और phone-camera apps अक्सर small receipts को गलत orientation में capture करते हैं। 90-degree clockwise rotation usually उन्हें fix करती है। अगर आप mixed orientations के साथ stack scan करें, सबको एक साथ करें और rescanning के बजाय per page rotate करें। Thermal-paper receipts (जो fade होती हैं) particularly 180 degrees off आने प्रवण हैं क्योंकि उन्हें protection के लिए print-side down stack किया जाता है।
+  Flatbed scanners और phone-camera apps अक्सर small receipts को गलत orientation में capture करते हैं। 90-degree clockwise rotation usually उन्हें fix करती है। अगर आप mixed orientations के साथ stack scan करें, सबको एक साथ करें और rescanning के बजाय per page rotate करें। Thermal-paper receipts (जो fade हो जाती हैं) ख़ासकर 180 degrees off आती हैं क्योंकि उन्हें protection के लिए print-side down stack किया जाता है।
 
   <h3>Mobile photos PDF में convert</h3>
 
-  iOS और Android कभी-कभी photo orientation को EXIF metadata में encode करते हैं जिसे PDF converter ignore करता है। Result एक portrait photo है जो landscape PDF page के रूप में saved है। File-level rotation cleanest fix है। जानने योग्य: यह iOS 14 के around noticeably worse हुआ, जब Apple ने default photo format को JPEG से HEIC में change किया। पुराने PDF tools जो conversion के दौरान HEIC orientation tags strip करते हैं हर बार sideways pages produce करते हैं। Camera को shooting से पहले "Most Compatible" पर वापस set करने से source पर problem solve होती है।
+  iOS और Android कभी-कभी photo orientation को EXIF metadata में encode करते हैं जिसे PDF converter ignore करता है। Result एक portrait photo है जो landscape PDF page के रूप में saved है। File-level rotation cleanest fix है। एक बात जानने लायक: iOS 14 के आसपास यह noticeably worse हो गया, जब Apple ने default photo format को JPEG से HEIC में change किया। पुराने PDF tools जो conversion के दौरान HEIC orientation tags strip करते हैं हर बार sideways pages produce करते हैं। Camera को shooting से पहले "Most Compatible" पर वापस set करने से source पर problem solve होती है।
 
   <h3>Mixed landscape और portrait reports</h3>
 
-  Annual reports और pitch decks अक्सर portrait text pages को landscape charts के साथ combine करते हैं। अगर converter ने सब कुछ portrait force किया, आपको chart pages को 90 degrees rotate करना पड़ सकता है ताकि वे landscape में scrolled या printed होने पर correctly read हों। PowerPoint में built और PDF में exported investor decks common offender हैं; PowerPoint का "Print to PDF" path पूरी file को per slide के बजाय एक orientation के रूप में treat करता है।
+  Annual reports और pitch decks अक्सर portrait text pages को landscape charts के साथ combine करते हैं। अगर converter ने सब कुछ portrait force किया, आपको chart pages को 90 degrees rotate करना पड़ सकता है ताकि वे landscape में scrolled या printed होने पर correctly read हों। PowerPoint में बने और PDF में export किए गए investor decks common offenders हैं; PowerPoint का "Print to PDF" path पूरी file को per slide के बजाय एक ही orientation के रूप में treat करता है।
 
   <h3>Faxes के रूप में received forms</h3>
 
-  कई medical और legal forms आज भी fax से आते हैं, मतलब वो एक printer से pass होते हैं जो page को paper में fit करने के लिए rotate कर सकता है। Signature block top पर ending होना clue है - 180 rotate करें, save करें, ज़रूरत हो तो same fax line से वापस भेजें।
+  कई medical और legal forms आज भी fax से आते हैं, मतलब वो एक printer से pass होते हैं जो page को paper में fit करने के लिए rotate कर सकता है। Signature block का top पर आ जाना एक clue है - 180 rotate करें, save करें, ज़रूरत हो तो same fax line से वापस भेजें।
 
   <h2>Verifying कि rotation stuck</h2>
 

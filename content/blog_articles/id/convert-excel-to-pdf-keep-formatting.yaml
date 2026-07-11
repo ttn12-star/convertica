@@ -29,7 +29,7 @@ content_id: |
 
   <h3>2. Skalakan agar muat satu halaman lebar</h3>
   <p>Spreadsheet lebar adalah penyebab utama laporan "PDF terbelah di 8 halaman". Pada tab Page Layout, temukan grup Scale to Fit dan atur <code>Width: 1 page</code>, <code>Height: Automatic</code>. Hasilnya adalah PDF di mana setiap kolom muat secara horizontal dan data mengalir ke bawah melintasi sebanyak halaman yang dibutuhkan - itulah cara spreadsheet seharusnya dicetak.</p>
-  <p>Jika sheet Anda sangat lebar sehingga skalanya satu halaman membuat teks mikroskopis, itu pertanda Anda sebaiknya beralih ke orientasi landscape, atau memisahkan data menjadi dua PDF yang mencakup grup kolom berbeda.</p>
+  <p>Jika sheet Anda sangat lebar sehingga menyusutkannya ke satu halaman membuat teksnya jadi mikroskopis, itu pertanda Anda sebaiknya beralih ke orientasi landscape, atau memisahkan data menjadi dua PDF yang mencakup grup kolom berbeda.</p>
 
   <h3>3. Ulangi baris header di setiap halaman</h3>
   <p>Ini adalah satu langkah yang paling sering dilewatkan. Buka <code>Page Layout &gt; Print Titles</code> dan pada field <code>Rows to repeat at top</code>, klik baris 1 (atau baris mana pun yang menyusun header Anda). Sekarang setiap halaman PDF dimulai dengan label kolom yang sama. Pembaca tidak perlu lagi membalik kembali ke halaman satu untuk mengingat apa itu kolom F.</p>
@@ -40,7 +40,7 @@ content_id: |
   <h2>Langkah demi langkah: konversi dengan Convertica</h2>
 
   <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Langkah dan opsi konversi Excel ke PDF di Convertica" width="1280" height="800" loading="lazy"></figure>
-  <p>Dengan spreadsheet sudah dikonfigurasi, konversi sebenarnya adalah bagian mudah. Anda dapat <a href="/id/word-to-pdf/">mengonversi Excel ke PDF</a> dalam tiga langkah:</p>
+  <p>Dengan spreadsheet sudah dikonfigurasi, konversi sebenarnya adalah bagian mudah. Anda dapat <a href="/id/excel-to-pdf/">mengonversi Excel ke PDF</a> dalam tiga langkah:</p>
   <ol>
     <li><strong>Unggah file .xlsx.</strong> Seret dan jatuhkan ke kotak unggah. File .xls lama juga berfungsi.</li>
     <li><strong>Pilih orientasi jika diminta.</strong> Portrait untuk data tinggi dan sempit; landscape untuk tabel lebar.</li>
@@ -66,15 +66,15 @@ content_id: |
       <tr><td>Kolom paling kanan terpotong</td><td>Scale-to-fit tidak diatur ke 1 halaman lebar</td><td>Page Layout &gt; Width: 1 page</td></tr>
       <tr><td>Tidak ada header di halaman 2 dan seterusnya</td><td>Print titles tidak dikonfigurasi</td><td>Page Layout &gt; Print Titles &gt; Rows to repeat at top</td></tr>
       <tr><td>Halaman kosong acak di antara data</td><td>Sel nyasar atau region berformat di luar data terlihat</td><td>Atur ulang print area setelah menghapus yang nyasar</td></tr>
-      <tr><td>Formula menampilkan #REF! atau #NAME?</td><td>Referensi eksternal rusak</td><td>Copy &gt; Paste Values untuk memflat sebelum ekspor</td></tr>
+      <tr><td>Formula menampilkan #REF! atau #NAME?</td><td>Referensi eksternal rusak</td><td>Copy &gt; Paste Values untuk meratakan jadi nilai sebelum ekspor</td></tr>
       <tr><td>Chart terpotong antar halaman</td><td>Page break otomatis memisah objek tertanam</td><td>Sisipkan page break manual di atas chart, atau pindahkan chart</td></tr>
       <tr><td>Teks kecil tidak terbaca</td><td>Scale-to-fit terlalu agresif dipaksakan</td><td>Beralih ke landscape, atau pisah menjadi dua ekspor</td></tr>
     </tbody>
   </table>
 
   <h2>Kapan tetap di Excel dan kapan kirim PDF</h2>
-  <p>PDF adalah format yang tepat ketika file bersifat read-only - kuotasi, laporan tertandatangan, pengajuan pajak, paket dewan. PDF mempertahankan layout dengan persis, mencegah edit yang tidak disengaja, dan lebih mudah ditandatangani atau diberi watermark.</p>
-  <p>Excel adalah format yang tepat ketika penerima perlu memfilter, menyortir, atau menghitung ulang. Mengirim PDF dari sebuah model kepada seseorang yang perlu mengubah asumsi memaksa mereka mengetik ulang semuanya dari awal. Jika Anda sudah mengirim PDF dan penerima membutuhkan datanya kembali, Anda dapat <a href="/id/pdf-to-excel/">mengonversi PDF kembali ke Excel nanti</a>, tetapi perjalanan bolak-balik memperkenalkan kesalahan kecil dan adalah pengganti buruk untuk mengirim format yang benar sejak awal.</p>
+  <p>PDF adalah format yang tepat ketika file bersifat read-only - penawaran harga, laporan yang sudah ditandatangani, pengajuan pajak, materi rapat dewan. PDF mempertahankan layout dengan persis, mencegah edit yang tidak disengaja, dan lebih mudah ditandatangani atau diberi watermark.</p>
+  <p>Excel adalah format yang tepat ketika penerima perlu memfilter, menyortir, atau menghitung ulang. Mengirim PDF dari sebuah model kepada seseorang yang perlu mengubah asumsi memaksa mereka mengetik ulang semuanya dari awal. Jika Anda sudah mengirim PDF dan penerima membutuhkan datanya kembali, Anda dapat <a href="/id/pdf-to-excel/">mengonversi PDF kembali ke Excel nanti</a>, tetapi perjalanan bolak-balik menimbulkan kesalahan kecil dan merupakan pengganti buruk untuk mengirim format yang benar sejak awal.</p>
   <p>Default yang berguna: kirim PDF untuk catatan formal, lampirkan .xlsx terpisah jika penerima mungkin perlu mengedit. PDF adalah yang diarsipkan; .xlsx adalah file kerja.</p>
 
   <h2>Satu pengecekan terakhir: ukuran file</h2>
@@ -86,11 +86,11 @@ content_id: |
   <h3>Bisakah saya mengonversi semua sheet di workbook sekaligus?</h3>
   <p>Bisa. Konverter menangani workbook multi-tab. Secara default, ia mengekspor setiap sheet yang berisi data ke dalam satu PDF tunggal. Jika Anda lebih suka satu PDF per sheet, konfigurasikan print area setiap sheet dan jalankan konversi sekali per tab, atau pisah hasilnya setelahnya.</p>
   <h3>Apakah chart dan formula akan dikonversi dengan benar?</h3>
-  <p>Chart dikonversi sebagai objek visual - apa yang Anda lihat di Excel adalah yang Anda dapatkan di PDF. Formula dievaluasi ke nilai saat ini selama konversi. Referensi rusak (#REF!, #NAME?) akan muncul di PDF juga, jadi perbaiki di Excel terlebih dahulu atau paste-values untuk memflat.</p>
+  <p>Chart dikonversi sebagai objek visual - apa yang Anda lihat di Excel adalah yang Anda dapatkan di PDF. Formula dievaluasi ke nilai saat ini selama konversi. Referensi rusak (#REF!, #NAME?) akan muncul di PDF juga, jadi perbaiki di Excel terlebih dahulu atau paste-values untuk meratakannya menjadi nilai.</p>
   <h3>Bagaimana cara membuat header berulang di setiap halaman PDF?</h3>
   <p>Di Excel, buka Page Layout &gt; Print Titles dan klik ke field "Rows to repeat at top", lalu pilih baris header Anda. Simpan dan ekspor ulang. Pengaturan ini per-sheet, jadi atur di setiap tab yang berencana Anda konversi.</p>
   <h3>Mengapa PDF saya jauh lebih besar dari file Excel?</h3>
-  <p>PDF menanam font, chart yang dirasterisasi, dan objek halaman terpisah per halaman. Workbook 200 KB bisa menghasilkan PDF 3 MB tanpa ada yang salah. Jika ukuran adalah masalah untuk email, kompres PDF setelah konversi - data dan kualitas tetap sama, hanya storage yang menyusut.</p>
+  <p>PDF menanam font, chart yang dirasterisasi, dan objek halaman terpisah per halaman. Workbook 200 KB bisa menghasilkan PDF 3 MB tanpa ada yang salah. Jika ukuran adalah masalah untuk email, kompres PDF setelah konversi - data dan kualitas tetap sama, hanya ukuran filenya yang menyusut.</p>
 
   <h2>Coba sekarang</h2>
-  <p>Atur print area, atur scale-to-fit, atur print titles, lalu ekspor. Dua menit ekstra di dalam Excel menyelamatkan rasa malu spreadsheet delapan halaman terbelah. <a href="/id/word-to-pdf/">Buka alat Excel ke PDF →</a></p>
+  <p>Atur print area, atur scale-to-fit, atur print titles, lalu ekspor. Dua menit ekstra di dalam Excel menyelamatkan rasa malu spreadsheet delapan halaman terbelah. <a href="/id/excel-to-pdf/">Buka alat Excel ke PDF →</a></p>

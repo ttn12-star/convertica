@@ -57,7 +57,7 @@ content_pl: |
   <ol>
     <li>Otwórz narzędzie Convertica do scalania w dowolnej przeglądarce. Nic nie trzeba instalować, nic nie trzeba logować.</li>
     <li>Przeciągnij wszystkie faktury z folderu na pole wgrywania jednocześnie. Narzędzie zachowa kolejność z nazw plików.</li>
-    <li>Sprawdź kolejność na pasku miniatur. Przeciągnij fakturę nie na swoim miejscu w odpowiednie miejsce.</li>
+    <li>Sprawdź kolejność na pasku miniatur. Przeciągnij źle umieszczoną fakturę na właściwe miejsce.</li>
     <li>Kliknij <strong>Scal</strong>. Wynik pobiera się jako jeden PDF.</li>
     <li>Zmień nazwę pliku wynikowego, by pasowała do okresu: <code>2026-04_faktury_imie-nazwisko.pdf</code>.</li>
   </ol>
@@ -79,7 +79,7 @@ content_pl: |
     </tbody>
   </table>
 
-  Zapisz tabelę jako PDF i ustaw ją na początku kolejności scalania. Po scaleniu możesz <a href="/pl/pdf-edit/rotate/">dodać numerację stron na całym pliku</a>, żeby odwołania ze strony tytułowej rzeczywiście trafiały. Jeśli składasz pakiet kwartalny dla działu finansów, jednostronicowe podsumowanie z przodu plus wiersz sum, który pasuje do twojego wyciągu bankowego, zamyka pętlę audytową, zanim ktokolwiek zdąży zapytać.
+  Zapisz tabelę jako PDF i ustaw ją na początku kolejności scalania. Po scaleniu możesz <a href="/pl/pdf-edit/add-page-numbers/">dodać numerację stron na całym pliku</a>, żeby odwołania ze strony tytułowej rzeczywiście trafiały. Jeśli składasz pakiet kwartalny dla działu finansów, jednostronicowe podsumowanie z przodu plus wiersz sum, który pasuje do twojego wyciągu bankowego, zamyka pętlę audytową, zanim ktokolwiek zdąży zapytać.
 
   Pro tip: jeśli budujesz podsumowanie w Excelu albo Google Sheets, zapisz je do PDF z obszarem wydruku ustawionym na jedną stronę szerokości przed scalaniem. Podsumowanie spływające na drugą stronę przez za dużą stopkę to po prostu wizualny szum.
 
@@ -92,7 +92,7 @@ content_pl: |
   <ol>
     <li>Zgrupuj wszystkie paragony JPG w jednym folderze.</li>
     <li><a href="/pl/jpg-to-pdf/">Skonwertuj paragony JPG do PDF</a> w jednej partii. Narzędzie produkuje jeden PDF na obraz (albo jeden łączony PDF, jeśli wolisz).</li>
-    <li>Zmień nazwę każdego wyniku na format YYYY-MM-DD dostawca powyżej.</li>
+    <li>Zmień nazwę każdego wyniku według formatu YYYY-MM-DD_dostawca opisanego powyżej.</li>
     <li>Wrzuć je do tego samego folderu, co faktury PDF.</li>
     <li>Scal w porządku chronologicznym.</li>
   </ol>

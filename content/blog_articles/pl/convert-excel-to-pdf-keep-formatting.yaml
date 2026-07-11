@@ -40,7 +40,7 @@ content_pl: |
   <h2>Krok po kroku: konwersja w Convertica</h2>
 
   <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Kroki i opcje konwersji Excela na PDF w Convertica" width="1280" height="800" loading="lazy"></figure>
-  <p>Z arkuszem już skonfigurowanym sama konwersja jest łatwa. Możesz <a href="/pl/word-to-pdf/">skonwertować Excel do PDF</a> w trzech krokach:</p>
+  <p>Z arkuszem już skonfigurowanym sama konwersja jest łatwa. Możesz <a href="/pl/excel-to-pdf/">skonwertować Excel do PDF</a> w trzech krokach:</p>
   <ol>
     <li><strong>Wgraj plik .xlsx.</strong> Przeciągnij i upuść do pola wgrywania. Starsze pliki .xls też działają.</li>
     <li><strong>Wybierz orientację, jeśli zostaniesz o to zapytany.</strong> Pionowa do wysokich, wąskich danych; pozioma do szerokich tabel.</li>
@@ -51,7 +51,7 @@ content_pl: |
   <h2>Skoroszyty z wieloma arkuszami</h2>
   <p>Skoroszyt z pięcioma zakładkami stawia pytanie: chcesz jednego PDF-a na arkusz, czy wszystkich pięciu arkuszy zlepionych w jeden plik?</p>
   <ul>
-    <li><strong>Jeden PDF na arkusz</strong> ma sens, kiedy każda zakładka jest osobnym dostarczeniem — innym raportem dla innej grupy odbiorców. Wtedy ważne staje się nazewnictwo; <code>YYYY-MM-DD_skoroszyt_nazwa-arkusza.pdf</code> czyta się czysto w każdym folderze.</li>
+    <li><strong>Jeden PDF na arkusz</strong> ma sens, kiedy każda zakładka jest osobnym materiałem — innym raportem dla innej grupy odbiorców. Wtedy ważne staje się nazewnictwo; <code>YYYY-MM-DD_skoroszyt_nazwa-arkusza.pdf</code> czyta się czysto w każdym folderze.</li>
     <li><strong>Wszystkie arkusze w jednym PDF</strong> ma sens, kiedy zakładki tworzą zestaw (okładka, podsumowanie, szczegóły, załącznik). Jeśli konwerter eksportuje każdy arkusz osobno, w drugim kroku możesz <a href="/pl/pdf-organize/merge/">scalić arkusze w jeden PDF</a>.</li>
   </ul>
   <p>Tak czy inaczej ustaw obszar wydruku na każdym arkuszu, który zamierzasz wyeksportować. Pusta zakładka wyeksportuje się jako pusta strona; taka, w której gdzieś w kolumnie AZ wisi pojedyncza komórka, da niemal pustą stronę z tą komórką unoszącą się w przestrzeni.</p>
@@ -93,4 +93,4 @@ content_pl: |
   <p>PDF-y osadzają fonty, zrasteryzowane wykresy i osobny obiekt strony na każdą stronę. Skoroszyt 200 KB potrafi dać 3 MB PDF-a, mimo że nic złego się nie dzieje. Jeśli rozmiar przeszkadza w wysyłce mailem, skompresuj PDF po konwersji — dane i jakość zostają, kurczy się tylko zajętość.</p>
 
   <h2>Wypróbuj teraz</h2>
-  <p>Ustaw obszar wydruku, ustaw skalę do dopasowania, ustaw tytuły wydruku, a potem eksportuj. Dwie dodatkowe minuty w Excelu oszczędzają wstydu z arkuszem pociętym na osiem stron. <a href="/pl/word-to-pdf/">Otwórz narzędzie Excel do PDF →</a></p>
+  <p>Ustaw obszar wydruku, ustaw skalę do dopasowania, ustaw tytuły wydruku, a potem eksportuj. Dwie dodatkowe minuty w Excelu oszczędzają wstydu z arkuszem pociętym na osiem stron. <a href="/pl/excel-to-pdf/">Otwórz narzędzie Excel do PDF →</a></p>

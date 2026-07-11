@@ -29,7 +29,7 @@ content_hi: |
     <li><strong>Subject से पहले Party</strong> client से group करता है। आपकी सभी Acme files date के बाद की किसी भी चीज़ से alphabetically sort होने पर together cluster करती हैं।</li>
     <li><strong>End में Version</strong> मतलब latest version हमेशा sort के bottom पर बैठता है। v01 v02 के ऊपर है, जो v03 के ऊपर है।</li>
   </ul>
-  <blockquote class="callout">अगर इस guide से कुछ नहीं याद रहे, ISO dates use करना याद रखें। बाक़ी सब gravy है।</blockquote>
+  <blockquote class="callout">अगर इस guide से कुछ नहीं याद रहे, ISO dates use करना याद रखें। बाक़ी सब तो ऊपर से मिला bonus है।</blockquote>
 
   <h2>Document type के हिसाब से Patterns</h2>
   <p>Generic advice ignore हो जाती है। Document type के specific patterns bookmarked हो जाते हैं। यहाँ वो हैं जो muscle memory में commit करने worth हैं।</p>
@@ -58,12 +58,12 @@ content_hi: |
   </ul>
   <h3>कब new file vs new version शुरू करें</h3>
   <p>New version: same document, edits और revisions। Same base name, bumped <code>_vNN</code>.</p>
-  <p>New file: different counterparty, different subject, different transaction. Version chain में shoehorn न करें। <code>2026-04_acme-corp_msa_v04.pdf</code> और <code>2026-05_beta-co_msa_v01.pdf</code> different files हैं, same की version 4 और version 5 नहीं।</p>
+  <p>New file: different counterparty, different subject, different transaction. इन्हें version chain में ज़बरदस्ती न ठूँसें। <code>2026-04_acme-corp_msa_v04.pdf</code> और <code>2026-05_beta-co_msa_v01.pdf</code> different files हैं, same की version 4 और version 5 नहीं।</p>
 
   <h2>Avoid करने वाले Characters</h2>
   <p>Different operating systems और cloud platforms different characters reject करते हैं। Safe set पर stick करें और आप sync के दौरान कभी "filename invalid" error में नहीं पड़ेंगे:</p>
   <ul>
-    <li><strong>कोई spaces नहीं.</strong> Field के अंदर word separation के लिए hyphens use करें, fields के बीच underscores। <code>acme-corp_msa_v02.pdf</code> <code>acme corp msa v02.pdf</code> से better पढ़ता है और URLs, terminals, और पुराने systems survive करता है।</li>
+    <li><strong>कोई spaces नहीं.</strong> Field के अंदर word separation के लिए hyphens use करें, fields के बीच underscores। <code>acme-corp_msa_v02.pdf</code> <code>acme corp msa v02.pdf</code> से better पढ़ता है और URLs, terminals तथा पुराने systems में बचा रहता है।</li>
     <li><strong>कोई special characters नहीं.</strong> Avoid करें <code>/ \ : * ? " &lt; &gt; |</code>. इनमें से कई filesystem द्वारा reserved हैं और silent failures cause करते हैं।</li>
     <li><strong>100 characters के नीचे रहें.</strong> कुछ sync tools filename limits पर truncate या fail होते हैं, especially deep folder paths के साथ।</li>
     <li><strong>ASCII letters, digits, hyphen, underscore, period पर stick करें.</strong> Accented characters और emoji unexpected places में break हो सकते हैं (पुराने email clients, FTP servers, certain backups)।</li>

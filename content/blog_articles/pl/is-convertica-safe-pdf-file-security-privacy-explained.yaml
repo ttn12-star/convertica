@@ -33,7 +33,7 @@ content_pl: |
 
   Możesz to sprawdzić sam w dwie sekundy: spójrz na pasek adresu. Jeśli URL zaczyna się od <code>https://</code>, a przeglądarka pokazuje kłódkę — połączenie jest szyfrowane. Jeśli kiedykolwiek zobaczysz <code>http://</code> bez <strong>s</strong> — zatrzymaj się i nie przesyłaj niczego wrażliwego, ani do nas, ani do nikogo innego.
 
-  Jeden uczciwy zastrzeżenie warte zrozumienia: HTTPS chroni plik <em>w transmisji</em>. To nie to samo co szyfrowanie end-to-end, w którym klucz masz tylko Ty. Serwer musi móc odczytać plik, by go skonwertować — dla każdego narzędzia działającego po stronie serwera jest to nieuniknione. Po stronie serwera chroni Cię druga połowa historii: plik jest przetwarzany, a potem usuwany, a nie przechowywany.
+  Jedno uczciwe zastrzeżenie warte zrozumienia: HTTPS chroni plik <em>w transmisji</em>. To nie to samo co szyfrowanie end-to-end, w którym klucz masz tylko Ty. Serwer musi móc odczytać plik, by go skonwertować — dla każdego narzędzia działającego po stronie serwera jest to nieuniknione. Po stronie serwera chroni Cię druga połowa historii: plik jest przetwarzany, a potem usuwany, a nie przechowywany.
 
   <h2>Automatyczne usuwanie, a nie bezterminowe przechowywanie</h2>
 
