@@ -5,7 +5,7 @@ meta_description_hi: "एक job application, एक expense report, एक prop
 meta_keywords_hi: "combine files into one pdf, merge word excel jpg to pdf, multiple files into one pdf, combine documents into pdf, make one pdf from different files, assemble pdf packet"
 excerpt_hi: "असल दुनिया के document packets कभी एक file type नहीं होते। Word में एक CV, JPG में एक certificate, Excel में एक budget - सबको एक tidy PDF के रूप में पहुँचना है। Trick एक simple two-stage rule है: पहले सब कुछ PDF में convert करें, फिर order में merge करें।"
 content_hi: |
-  असल ज़िंदगी में जो documents matter करते हैं वे लगभग कभी एक file type share नहीं करते। एक job application है Word में एक CV, Excel में एक portfolio summary, और JPG के रूप में एक scanned certificate। एक rental application है एक ID photo, एक pay slip, और एक reference letter। एक expense claim है एक spreadsheet plus receipt photos का एक folder। Recipient को एक चीज़ चाहिए: एक single, clean PDF जिसे वे खोल सकें, scroll कर सकें, और file कर सकें।
+  असल ज़िंदगी में जो documents matter करते हैं वे लगभग कभी एक file type share नहीं करते। एक job application है Word में एक CV, Excel में एक portfolio summary, और JPG के रूप में एक scanned certificate। एक rental application है एक ID photo, एक pay slip, और एक reference letter। एक expense claim है एक spreadsheet और receipt photos का एक folder। Recipient को एक चीज़ चाहिए: एक single, clean PDF जिसे वे खोल सकें, scroll कर सकें, और file कर सकें।
 
   उन टुकड़ों को साथ जोड़ना fiddly लगता है, लेकिन यह एक rule को follow करता है जो कभी नहीं बदलता: पहले सब कुछ PDF में convert करें, फिर PDFs को उस order में merge करें जो आप चाहते हैं। उस sequence को सही कर लें और बाक़ी mechanical है। यह guide पूरे packet को loose files से एक finished document तक walk करती है।
 
@@ -27,12 +27,12 @@ content_hi: |
   <h3>JPG और photos</h3>
 
   <figure><img src="/static/blog/images/tool-jpg-to-pdf-hero.jpg" alt="JPG photos को PDF pages में convert करना" width="1280" height="800" loading="lazy"></figure>
-  <p>Photos और scanned images <a href="/hi/jpg-to-pdf/">JPG to PDF</a> से गुज़रती हैं, जो हर image को एक PDF page में wrap कर देता है। अगर आपके पास कई images हैं जो साथ की हैं - मान लीजिए एक scanned certificate के चार pages - आप उन्हें एक ही pass में एक single multi-page PDF में convert कर सकते हैं, जो बाद में एक merge step बचाता है।</p>
+  <p>Photos और scanned images <a href="/hi/jpg-to-pdf/">JPG to PDF</a> से गुज़रती हैं, जो हर image को एक PDF page में wrap कर देता है। अगर आपके पास कई images हैं जो आपस में जुड़ी हैं - मान लीजिए एक scanned certificate के चार pages - आप उन्हें एक ही pass में एक single multi-page PDF में convert कर सकते हैं, जो बाद में एक merge step बचाता है।</p>
 
   <h2>Stage 2: PDFs को order में merge करें</h2>
 
   <figure><img src="/static/blog/images/tool-merge-hero.jpg" alt="Converted PDFs को सही order में एक document में merge करना" width="1280" height="800" loading="lazy"></figure>
-  <p>अब हर टुकड़ा PDF होने के साथ, <a href="/hi/pdf-organize/merge/">Merge PDF</a> tool खोलें, सारी files add करें, और उन्हें उस sequence में drag करें जो आप चाहते हैं। Order इस stage की पूरी बात है - एक hiring manager पहले CV expect करता है, फिर supporting documents; एक accountant receipts से पहले summary sheet expect करता है। Order यहाँ set करें और merged file एक deliberately assembled document की तरह पढ़ती है, न कि एक random ढेर की तरह।</p>
+  <p>अब हर टुकड़ा PDF होने के साथ, <a href="/hi/pdf-organize/merge/">Merge PDF</a> tool खोलें, सारी files add करें, और उन्हें उस sequence में drag करें जो आप चाहते हैं। Order इस stage की पूरी बात है - एक hiring manager पहले CV expect करता है, फिर supporting documents; एक accountant receipts से पहले summary sheet expect करता है। Order यहाँ set करें और merged file एक deliberately assembled document जैसी लगती है, न कि एक random ढेर की तरह।</p>
   <p>अगर आपको merge करने के बाद ही पता चले कि order ग़लत है, तो दोबारा शुरू करने की ज़रूरत नहीं - <a href="/hi/pdf-organize/organize/">Organize PDF</a> tool आपको combined file में pages को जगह पर drag करने देता है।</p>
 
   <h2>Stage 3: finishing touches</h2>

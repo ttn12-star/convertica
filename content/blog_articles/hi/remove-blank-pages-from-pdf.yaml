@@ -9,7 +9,7 @@ content_hi: |
 
   उन्हें remove करना browser में seconds लेता है। आपको Adobe Acrobat नहीं चाहिए। आपको print और re-scan नहीं करना। आपको कुछ retype नहीं करना। आपको बस एक tool चाहिए जो आपको unwanted pages click करने दे और जो बचे वो download करने दे।
 
-  <figure><img src="/static/blog/images/tool-remove-pages-hero.jpg" alt="Convertica organize PDF tool जो thumbnails दिखा रहा है blank pages के साथ removal के लिए selected" width="1280" height="800" loading="lazy"></figure>
+  <figure><img src="/static/blog/images/tool-remove-pages-hero.jpg" alt="Convertica organize PDF tool जिसमें removal के लिए selected blank page thumbnails दिख रहे हैं" width="1280" height="800" loading="lazy"></figure>
 
   <h2>Blank pages कहाँ से आते हैं</h2>
 
@@ -21,7 +21,7 @@ content_hi: |
     <li><strong>Placeholder pages वाले Form templates.</strong> कई contract और report templates "exhibits", "appendices", या signatures के लिए reserved pages के साथ ship होते हैं जो आप शायद use करें या नहीं।</li>
     <li><strong>Mismatched sources से Merged PDFs.</strong> ऐसी files combine करना जहाँ हर एक even-page boundary पर ख़त्म हुई blanks behind छोड़ देती है। Annual reports और pitch decks common offenders हैं।</li>
     <li><strong>Print drivers.</strong> Certain printer settings के साथ "Print to PDF" end पर confirmation page या padding page append कर सकता है। पुराने HP universal print drivers 2018-2020 around इसके लिए notorious थे।</li>
-    <li><strong>Mobile scanner apps.</strong> CamScanner और Adobe Scan जैसे apps कभी-कभी free tier पर "scanned with [app]" promotional page insert करते हैं, जो feature से कम और watermark से ज़्यादा लगता है जिसके against आपको fight करनी है।</li>
+    <li><strong>Mobile scanner apps.</strong> CamScanner और Adobe Scan जैसे apps कभी-कभी free tier पर "scanned with [app]" promotional page insert करते हैं, जो feature से कम और ऐसे watermark से ज़्यादा लगता है जिसके ख़िलाफ़ आपको लड़ना पड़ता है।</li>
   </ul>
 
   <h2>Step-by-step: pages को visually remove करें</h2>
@@ -31,13 +31,13 @@ content_hi: |
   <figure><img src="/static/blog/images/tool-remove-pages-options.jpg" alt="Blank PDF pages के thumbnails एक pass में remove करने के लिए click करें" width="1280" height="800" loading="lazy"></figure>
 
   <ol>
-    <li><a href="/hi/pdf-edit/rotate/">PDF से pages remove</a> tool खोलें और अपनी file upload करें।</li>
+    <li><a href="/hi/pdf-organize/remove-pages/">PDF से pages remove</a> tool खोलें और अपनी file upload करें।</li>
     <li>Thumbnail grid देखें। Blanks obvious हैं: solid white tiles बिना text या images के। Faint scanner noise वाले pages अब भी visible texture रखते हैं, इसलिए वे pure white के बजाय light gray दिखाते हैं।</li>
     <li>उन pages पर click करें जिन्हें आप delete करना चाहते हैं। ज़्यादातर tools selection को colored border या trash icon से highlight करते हैं।</li>
     <li>Confirm करें और cleaned-up file download करें। Verify करें कि page count expected से match करता है।</li>
   </ol>
 
-  अगर आप साथ में reorder या rotate भी करना चाहते हैं, तीनों एक sitting में करना तीन separate tools run करने से faster है। Combined <a href="/hi/pdf-organize/merge/">drag and drop से PDF pages organize</a> view आपको export करने से पहले delete, drag, और rotate करने देती है एक बार में।
+  अगर आप साथ में reorder या rotate भी करना चाहते हैं, तीनों एक sitting में करना तीन separate tools run करने से faster है। Combined <a href="/hi/pdf-organize/organize/">drag and drop से PDF pages organize</a> view आपको export करने से पहले delete, drag, और rotate करने देती है एक बार में।
 
   <h2>Step-by-step: range से pages remove करें</h2>
 
@@ -52,7 +52,7 @@ content_hi: |
 
   <blockquote class="callout">इस syntax में page numbers physical pages को refer करते हैं, document पर printed page numbers को नहीं। अगर आपका contract तीसरे physical page पर "1" से numbering शुरू करता है, आपका "page 1" physical page 3 हो सकता है।</blockquote>
 
-  जानने योग्य: ज़्यादातर range fields <code>50-</code> जैसे open-ended ranges accept नहीं करते मतलब "50 से end तक सब कुछ"। आपको actual end-page type करना होगा (e.g. 78-page file के लिए <code>50-78</code>)। Start में एक बार count करना बाद में "रुको, यह काम नहीं किया" cycles बचाता है।
+  जानने योग्य: ज़्यादातर range fields <code>50-</code> जैसी open-ended ranges accept नहीं करतीं - यानी "50 से end तक सब कुछ"। आपको actual end-page type करना होगा (e.g. 78-page file के लिए <code>50-78</code>)। Start में एक बार count करना बाद में "रुको, यह काम नहीं किया" cycles बचाता है।
 
   <h2>Removing vs hiding pages</h2>
 
@@ -77,7 +77,7 @@ content_hi: |
 
   <ul>
     <li><strong>इसके साथ Live करें</strong> internal documents के लिए जहाँ printed numbers really matter नहीं करते।</li>
-    <li><strong>Re-number करें</strong> existing footer strip करके fresh ones add करके। Tools जो <a href="/hi/pdf-edit/rotate/">fresh page numbers add</a> करते हैं आपको पूरे document के header या footer area को एक pass में overwrite करने देते हैं।</li>
+    <li><strong>Re-number करें</strong> existing footer strip करके fresh ones add करके। Tools जो <a href="/hi/pdf-edit/add-page-numbers/">fresh page numbers add</a> करते हैं आपको पूरे document के header या footer area को एक pass में overwrite करने देते हैं।</li>
   </ul>
 
   Same way किसी भी table of contents को update करें। "page 7" को point करने वाला TOC जब आपका new page 7 अब वो है जो page 9 था हर reader को frustrate करता है। (मेरा कहना है यह दूसरा-most-common reason है जब colleague कहता है "यह PDF broken है" - पहला है "TOC से link भी काम नहीं करती"।)
@@ -88,15 +88,15 @@ content_hi: |
 
   <h3>Scale पर blanks spot करना</h3>
 
-  Tool support करे तो thumbnail size बढ़ाएँ। White rectangles instantly jump out करते हैं। Very faint scanner noise के लिए, page numbers पर briefly squint करें; अगर आप कोई text या shapes नहीं बता पाएँ, यह blank है।
+  Tool support करे तो thumbnail size बढ़ाएँ। White rectangles instantly jump out करते हैं। Very faint scanner noise के लिए, page को ध्यान से देखें; अगर आप कोई text या shapes नहीं बता पाएँ, यह blank है।
 
-  कुछ tools bandwidth save करने के लिए very low resolution पर thumbnails render करते हैं। अगर आपके blanks dithering या compression artifacts की वजह से obviously white नहीं हैं, file scan करने से पहले larger thumbnail view (अक्सर "Large preview" या "Detailed thumbnails" labelled button) पर switch करें। Real page mistakenly delete न करने के लिए extra render time worth है।
+  कुछ tools bandwidth save करने के लिए very low resolution पर thumbnails render करते हैं। अगर आपके blanks dithering या compression artifacts की वजह से obviously white नहीं हैं, file scan करने से पहले larger thumbnail view (अक्सर "Large preview" या "Detailed thumbnails" labelled button) पर switch करें। Real page mistakenly delete न करने के लिए extra render time इसके लायक है।
 
   <h3>The duplex-scanner shortcut</h3>
 
   अगर आपने duplex scanner पर single-sided originals का stack scan किया, हर back side blank है। मतलब आप PDF में हर <strong>even-numbered</strong> physical page delete करना चाहते हैं। <code>2, 4, 6, 8, 10, ...</code> जैसी range काम करती है, और ज़्यादातर tools आपको "delete every nth page" या "even pages" option से वो range generate करने देते हैं।
 
-  First few results check करके confirm करें। अगर आपका scanner कभी-कभी originals flip करता है या stack back side से शुरू हुआ, pattern एक से off होगा और आप every odd page delete करना चाहेंगे। Fujitsu ScanSnap series इसके लिए particularly prone है जब auto-feeder एक साथ दो sheets grab करता है - आपका first page pair का back बन जाता है, बाक़ी document के लिए pattern को off करते हुए।
+  First few results check करके confirm करें। अगर आपका scanner कभी-कभी originals flip करता है या stack back side से शुरू हुआ, pattern एक से off होगा और आप every odd page delete करना चाहेंगे। Fujitsu ScanSnap series इसके लिए particularly prone है जब auto-feeder एक साथ दो sheets grab करता है - आपका first page pair का back बन जाता है, जिससे बाक़ी document का pattern बिगड़ जाता है।
 
   Cleanup के बाद, आप पाएँ कि file को छोटे documents में breakdown करने से benefit मिलेगा। <a href="/hi/pdf-organize/split/">chapters में split</a> route अच्छा काम करता है जब आपने 200-page archive clean किया जो really five 40-page documents होने चाहिए।
 
@@ -123,4 +123,4 @@ content_hi: |
 
   <h2>अभी try करें</h2>
 
-  <p>Blank pages से past scrolling बंद करें। <a href="/hi/pdf-edit/rotate/">PDF page remover tool</a> open करें, unwanted thumbnails click करें, और एक minute से कम में clean version download करें। Acrobat license key find करने से भी faster।</p>
+  <p>Blank pages से past scrolling बंद करें। <a href="/hi/pdf-organize/remove-pages/">PDF page remover tool</a> open करें, unwanted thumbnails click करें, और एक minute से कम में clean version download करें। Acrobat license key find करने से भी faster।</p>

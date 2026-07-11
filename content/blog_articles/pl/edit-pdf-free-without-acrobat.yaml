@@ -23,7 +23,7 @@ content_pl: |
     <li><strong>Przepisywanie tekstu głównego</strong> — faktyczna zmiana słów w akapicie, który napisał ktoś inny.</li>
   </ul>
 
-  <blockquote class="callout">Pierwsze cztery są szybkie i darmowe w dowolnej przeglądarce. Tylko piąta — przepisywanie cudzego tekstu głównego wewnątrz PDF — jest naprawdę trudna, a nawet wtedy istnieje darmowa droga, która bije płacenie za Acrobata.</blockquote>
+  <blockquote class="callout">Pierwsze cztery są szybkie i darmowe w dowolnej przeglądarce. Tylko piąta — przepisywanie cudzego tekstu głównego wewnątrz PDF — jest naprawdę trudna, a nawet wtedy istnieje darmowa droga, która przebija płacenie za Acrobata.</blockquote>
 
   <h2>Edycja stron: zmiana kolejności, obrót, usuwanie</h2>
 
@@ -59,7 +59,7 @@ content_pl: |
 
   <h2>Ta trudna: przepisywanie tekstu głównego</h2>
 
-  Zmiana faktycznych słów w akapicie, który napisał ktoś inny, to jedyne zadanie zasługujące na reputację „tu potrzebujesz Acrobata". PDF-y nie przechowują tekstu jako edytowalnych akapitów; przechowują rozmieszczone glify, więc podmiana słowa oznacza przepływ wszystkiego wokół niego od nowa. Darmowe edytory tekstu w PDF istnieją, ale poległy w chwili, gdy czcionka nie jest osadzona albo układ jest skomplikowany, a wynik często wygląda na widocznie połatany.
+  Zmiana faktycznych słów w akapicie, który napisał ktoś inny, to jedyne zadanie zasługujące na reputację „tu potrzebujesz Acrobata". PDF-y nie przechowują tekstu jako edytowalnych akapitów; przechowują rozmieszczone glify, więc podmiana słowa oznacza przepływ wszystkiego wokół niego od nowa. Darmowe edytory tekstu w PDF istnieją, ale polegną w chwili, gdy czcionka nie jest osadzona albo układ jest skomplikowany, a wynik często wygląda na widocznie połatany.
 
   Jest lepsza darmowa droga dla wszystkiego ponad poprawkę jednego słowa: <a href="/pl/pdf-to-word/">skonwertuj PDF do Worda</a>, edytuj tekst porządnie w prawdziwym edytorze tekstu, gdzie przepływ jest automatyczny, a potem wyeksportuj z powrotem do PDF. Dostajesz czystą, natywną edycję zamiast walki z narzędziem łatającym glif po glifie. Jedno zastrzeżenie dotyczy zeskanowanych dokumentów — jeśli PDF jest obrazem tekstu, podczas konwersji potrzebujesz OCR, by w ogóle był jakiś tekst do edycji.
 

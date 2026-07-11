@@ -48,7 +48,7 @@ content_es: |
   <ul>
     <li><strong>Quita primero la contraseña.</strong> El conversor no puede leer un PDF cifrado. Si conoces la contraseña, desbloquéalo; la herramienta rechazará un archivo protegido en lugar de convertirlo a medias.</li>
     <li><strong>Comprueba si es un escaneo.</strong> Intenta seleccionar una palabra con el cursor. Si se resaltan letras individuales, es un PDF digital y la conversión estándar funciona. Si toda la página se resalta como un bloque, como una imagen, es un escaneo y necesita OCR (más sobre esto enseguida).</li>
-    <li><strong>Usa la fuente de mejor calidad que tengas.</strong> Si te enviaron una copia comprimida o reguardada, el original casi siempre se convierte mejor. Los PDF reaplanados y recomprimidos pierden las pistas estructurales en las que se apoya el conversor.</li>
+    <li><strong>Usa la fuente de mejor calidad que tengas.</strong> Si te enviaron una copia comprimida o vuelta a guardar, el original casi siempre se convierte mejor. Los PDF reaplanados y recomprimidos pierden las pistas estructurales en las que se apoya el conversor.</li>
     <li><strong>Decide si de verdad quieres Word.</strong> Si tu objetivo real es trabajar con los números de una tabla, Word es el destino equivocado; salta a la sección de hojas de cálculo.</li>
   </ul>
 

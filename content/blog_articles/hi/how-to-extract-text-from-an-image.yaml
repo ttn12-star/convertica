@@ -40,11 +40,11 @@ content_hi: |
 
   <h2>Accuracy को actually क्या affect करता है</h2>
 
-  OCR quality mostly उस image से decide होती है जो आप feed करते हैं। तीन चीज़ें सबसे ज़्यादा matter करती हैं:
+  OCR quality mostly उस image पर तय होती है जो आप feed करते हैं। तीन चीज़ें सबसे ज़्यादा matter करती हैं:
 
   <ul>
     <li><strong>Sharpness.</strong> Crisp, in-focus text cleanly पढ़ता है। Motion blur और out-of-focus phone shots garbled output का number-one cause हैं।</li>
-    <li><strong>Contrast.</strong> OCR ink और background के बीच difference पर काम करता है। Faded photocopy या low-light photo recogniser को काम करने के लिए बहुत कम देती है, even high resolution पर भी।</li>
+    <li><strong>Contrast.</strong> OCR ink और background के बीच difference पर काम करता है। Faded photocopy या low-light photo recogniser को काम करने के लिए बहुत कम देती है, high resolution पर भी।</li>
     <li><strong>Language.</strong> English-trained model accented characters और unfamiliar words misread करता है। जब भी पता हो, Auto की जगह correct language choose करें।</li>
   </ul>
 
@@ -73,7 +73,7 @@ content_hi: |
   <p>17 languages, जिनमें English, Russian, German, French, Spanish, Italian, Portuguese, Polish, Turkish, Ukrainian, Hindi, Indonesian, Arabic, Chinese (Simplified और Traditional), Japanese, और Korean शामिल हैं — plus automatic detection। Accented या non-Latin scripts के लिए, best accuracy के लिए language explicitly set करें।</p>
 
   <h3>क्या यह handwriting पढ़ सकता है?</h3>
-  <p>कभी-कभी, और reliably नहीं। OCR printed type पर trained है; handwriting accuracy widely range करती है और cursive सबसे worst करता है। Block capitals — जैसे hand से भरा form — joined-up writing से बहुत better पढ़ते हैं।</p>
+  <p>कभी-कभी, और reliably नहीं। OCR printed type पर trained है; handwriting accuracy काफ़ी अलग-अलग होती है और cursive सबसे ख़राब पढ़ा जाता है। Block capitals — जैसे hand से भरा form — joined-up writing से बहुत better पढ़ते हैं।</p>
 
   <h3>कुछ text wrong या missing क्यों है?</h3>
   <p>Almost हमेशा source image: blur, low contrast, small text, या wrong language setting। Sharper और better lit re-shoot करें, correct language choose करें, और result usually dramatically improve होता है।</p>

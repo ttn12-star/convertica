@@ -64,7 +64,7 @@ content_pl: |
   <h2>Wskazówki o jakości i rozmiarze pliku</h2>
 
   <ul>
-    <li>Przejście PDF → JPG → PDF ponownie kompresuje treść za każdym razem. Nie rób kółek z plikiem wielokrotnie; trzymaj oryginalny PDF i eksportuj z niego obrazy w razie potrzeby.</li>
+    <li>Przejście PDF → JPG → PDF ponownie kompresuje treść za każdym razem. Nie przepuszczaj pliku w kółko przez kolejne konwersje; trzymaj oryginalny PDF i eksportuj z niego obrazy w razie potrzeby.</li>
     <li>Zdjęcia prosto z telefonu mają często 4000 pikseli szerokości — dużo więcej, niż dokument potrzebuje. Skonwertowanie ich najpierw na PDF, a potem kompresja zwykle dramatycznie zmniejsza plik bez widocznej straty.</li>
     <li>Jeśli odbudowałeś PDF ze skanów i teraz potrzebujesz przeszukać albo skopiować tekst, puść na nim OCR — obrazy tekstu nie są przeszukiwalne, dopóki tego nie zrobisz.</li>
   </ul>

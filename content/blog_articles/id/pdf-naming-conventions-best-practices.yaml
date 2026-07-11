@@ -25,14 +25,14 @@ content_id: |
   <p>Sebagai contoh: <code>2026-04-12_acme-corp_service-agreement_v02.pdf</code>.</p>
   <p>Tiga alasan ini berhasil tahun demi tahun:</p>
   <ul>
-    <li><strong>Tanggal ISO terurut dengan benar.</strong> 2026-04-12 terurut setelah 2026-04-11 secara abjad, yang berarti abjad = kronologis. Tidak ada filesystem di dunia yang memperlakukan 04/12/2026 seperti itu.</li>
+    <li><strong>Tanggal ISO terurut dengan benar.</strong> 2026-04-12 terurut setelah 2026-04-11 secara abjad, yang berarti abjad = kronologis. Tidak ada filesystem di dunia yang mengurutkan 04/12/2026 secara kronologis.</li>
     <li><strong>Pihak sebelum subjek mengelompokkan berdasarkan klien.</strong> Semua file Acme Anda berkumpul ketika diurutkan secara abjad menurut apa pun setelah tanggal.</li>
     <li><strong>Versi di akhir</strong> berarti versi terbaru selalu duduk di bawah pengurutan. v01 di atas v02, yang di atas v03.</li>
   </ul>
   <blockquote class="callout">Jika Anda tidak ingat apa pun lagi dari panduan ini, ingat untuk menggunakan tanggal ISO. Selebihnya hanyalah pelengkap.</blockquote>
 
   <h2>Pola berdasarkan jenis dokumen</h2>
-  <p>Saran generik diabaikan. Pola konkret berdasarkan jenis dokumen ditandai. Berikut yang patut dijadikan memori otot.</p>
+  <p>Saran generik diabaikan. Pola konkret berdasarkan jenis dokumen justru melekat. Berikut yang patut dijadikan memori otot.</p>
 
   <h3>Invoice</h3>
   <pre><code>YYYY-MM-DD_vendor_amount_invoice.pdf</code></pre>

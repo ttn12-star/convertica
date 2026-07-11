@@ -32,7 +32,7 @@ content_hi: |
   <figure><img src="/static/blog/images/tool-pdf-to-word-hero.jpg" alt="Editable documents के लिए Convertica PDF to Word converter" width="1280" height="800" loading="lazy"></figure>
   <p>Digital PDFs के लिए, standard <a href="/hi/pdf-to-word/">PDF को Word में convert</a> path right choice है। Tool embedded text, fonts, और structural cues read करता है, और उन्हें .docx file के अंदर rebuild करता है। Expect करें:</p>
   <ul>
-    <li>Text पर खुद Near-100% accuracy - characters already digital हैं, इसलिए कुछ guess नहीं करना।</li>
+    <li>Text पर ही Near-100% accuracy - characters already digital हैं, इसलिए guess करने को कुछ है ही नहीं।</li>
     <li>Preserved formatting: fonts, headings, bold/italic, lists, basic tables।</li>
     <li>Images लगभग वहाँ placed जहाँ source में appear हुई थीं।</li>
     <li>Speed: 50-page report seconds में convert होती है।</li>
@@ -42,7 +42,7 @@ content_hi: |
   <h2>OCR-powered conversion: कब चाहिए</h2>
 
   <figure><img src="/static/blog/images/tool-image-to-text-hero.jpg" alt="Convertica OCR tool एक scanned image को text में बदलते हुए" width="1280" height="800" loading="lazy"></figure>
-  <p>Scanned PDFs के लिए, standard conversion appear तो होगा work होगा लेकिन ऐसा Word document produce करेगा जिसमें कोई text नहीं। Tool को extract करने के लिए कोई text नहीं मिलता क्योंकि कुछ है ही नहीं - बस images. आपको OCR चाहिए, optical character recognition, जो images देखता है और letter shapes recognise करके text reconstruct करता है।</p>
+  <p>Scanned PDFs के लिए, standard conversion देखने में तो काम करती लगेगी लेकिन ऐसा Word document produce करेगी जिसमें कोई text नहीं होगा। Tool को extract करने के लिए कोई text नहीं मिलता क्योंकि कुछ है ही नहीं - बस images. आपको OCR चाहिए, optical character recognition, जो images देखता है और letter shapes recognise करके text reconstruct करता है।</p>
   <p>Cases जहाँ OCR mandatory है:</p>
   <ul>
     <li>कोई भी document जो scanner या copier से निकला।</li>
@@ -51,7 +51,7 @@ content_hi: |
     <li>लगभग 2005 से पहले के पुराने PDFs - कई default scanned थे।</li>
     <li>Government forms जो printed-then-scanned documents के रूप में received हुए।</li>
   </ul>
-  <p>OCR-powered conversion standard conversion से ज़्यादा time लेती है (length पर depending पर per page seconds to minutes) और कभी quite 100% accurate नहीं होती। Language settings और quality expectations पर deeper walkthrough <a href="/hi/blog/convert-scanned-pdf-to-editable-word/">scanned PDF to editable Word guide</a> में है।</p>
+  <p>OCR-powered conversion standard conversion से ज़्यादा time लेती है (length के आधार पर per page seconds से minutes) और कभी पूरी तरह 100% accurate नहीं होती। Language settings और quality expectations पर deeper walkthrough <a href="/hi/blog/convert-scanned-pdf-to-editable-word/">scanned PDF to editable Word guide</a> में है।</p>
 
   <h2>Side-by-side decision table</h2>
   <table>
@@ -70,7 +70,7 @@ content_hi: |
   <p>Last row लोगों की सोच से ज़्यादा matter करती है। अगर आपका goal numbers की rows और columns को spreadsheet में लाना है, Word में convert करके फिर table को Excel में copy न करें। सीधे <a href="/hi/pdf-to-excel/">tables को Excel में extract</a> करें - structure बहुत reliably preserve होता है।</p>
 
   <h2>Hybrid PDFs: एक two-pass approach</h2>
-  <p>Hybrid documents trickiest case हैं। एक 30-page contract जो digital है except दो scanned signature pages के technically पूरी file को OCR से run कर सकता है, लेकिन आप उन pages पर OCR time tax pay करेंगे जिन्हें ज़रूरत नहीं थी।</p>
+  <p>Hybrid documents trickiest case हैं। एक 30-page contract जो दो scanned signature pages को छोड़कर digital है, technically पूरी file को OCR से run कर सकता है, लेकिन आप उन pages पर OCR time tax pay करेंगे जिन्हें ज़रूरत नहीं थी।</p>
   <p>Cleaner approach जब matter करे:</p>
   <ol>
     <li>PDF को digital section और scanned section में split करें।</li>
@@ -90,8 +90,8 @@ content_hi: |
   <p>यह very heavy layouts (multi-column reports, magazine-style pages) के लिए normal है। Standard conversion और OCR दोनों text linearly rebuild करते हैं और complex grid preserve नहीं कर सकते। कभी-कभी answer trade-off accept करना है; कभी-कभी पूरे document के बजाय individual sections copy करना है।</p>
 
   <h2>Cost, privacy और processing time</h2>
-  <p>Standard conversion compute terms में essentially free है - यह analysis से ज़्यादा parse के closer है। OCR ज़्यादा expensive है: हर page recognition model से process होता है, यही reason है कि 50-page scans 50-page digital PDFs से noticeably लंबा time लेते हैं। Free tier पर, यह OCR jobs के लिए slightly लंबी queue मतलब हो सकता है। Paid tier पर, यह आपके quota में differently count हो सकता है।</p>
-  <p>Privacy दोनों paths पर same है - file uploads transit में encrypted और conversion की duration के लिए ही processed - लेकिन अगर आप fence पर हैं, password-protect guide का sensitive-document section cover करता है कि sharing से पहले result में password कब add करना चाहिए।</p>
+  <p>Standard conversion compute terms में essentially free है - यह analysis से ज़्यादा एक parse जैसी है। OCR ज़्यादा expensive है: हर page recognition model से process होता है, यही reason है कि 50-page scans 50-page digital PDFs से noticeably लंबा time लेते हैं। Free tier पर, इसका मतलब OCR jobs के लिए थोड़ी लंबी queue हो सकता है। Paid tier पर, यह आपके quota में differently count हो सकता है।</p>
+  <p>Privacy दोनों paths पर same है - file uploads transit में encrypted और conversion की duration के लिए ही processed - लेकिन अगर आप असमंजस में हैं, password-protect guide का sensitive-document section cover करता है कि sharing से पहले result में password कब add करना चाहिए।</p>
 
   <h2>The one-line rule</h2>
   <blockquote class="callout">अगर आप PDF में text select कर सकते हैं, standard conversion use करें। अगर नहीं, OCR use करें। इस guide में बाक़ी सब उस single test पर footnote है।</blockquote>

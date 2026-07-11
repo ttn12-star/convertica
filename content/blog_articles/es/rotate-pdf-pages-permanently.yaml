@@ -7,7 +7,7 @@ excerpt_es: "Si alguna vez rotaste un PDF en Adobe Reader y volvió a su sitio a
 content_es: |
   Rota un PDF en Adobe Reader, cierra el archivo, vuélvelo a abrir y las páginas regresan a donde estaban. Ese momento es cuando la mayoría de la gente descubre que hay dos tipos de rotación completamente distintos, y solo uno de ellos cambia realmente el archivo. El mensaje de error que muestra Adobe Reader cuando intentas guardar la rotación —«este archivo se ha rotado y debe usar Adobe Acrobat para confirmar el cambio»— es uno de esos despertares discretamente desagradables que cuesta una tarde a quien no lo ve venir.
 
-  Esta guía es sobre el tipo que se queda. Acabarás con un PDF que se ve igual en Chrome, en Vista Previa, en Acrobat, en el móvil de alguien y en la impresora que finalmente lo escupa. Nadie río abajo tendrá que rotarlo por su cuenta.
+  Esta guía es sobre el tipo que se queda. Acabarás con un PDF que se ve igual en Chrome, en Vista Previa, en Acrobat, en el móvil de alguien y en la impresora que finalmente lo escupa. Nadie que reciba el archivo después tendrá que rotarlo por su cuenta.
 
   <figure><img src="/static/blog/images/tool-rotate-hero.jpg" alt="Herramienta de rotación de PDF de Convertica con cuadrícula de miniaturas y controles de dirección" width="1280" height="800" loading="lazy"></figure>
 
@@ -55,7 +55,7 @@ content_es: |
     <li>Aplica y descarga. Verifica que las miniaturas muestran la orientación corregida antes de enviar el archivo.</li>
   </ol>
 
-  Si te ves peleando mucho con rotaciones página a página, suele ser más fácil <a href="/es/pdf-organize/merge/">organizar las páginas del PDF</a> en una vista combinada donde puedes rotar, eliminar y reordenar antes de exportar.
+  Si te ves peleando mucho con rotaciones página a página, suele ser más fácil <a href="/es/pdf-organize/organize/">organizar las páginas del PDF</a> en una vista combinada donde puedes rotar, eliminar y reordenar antes de exportar.
 
   Atajo de teclado que vale la pena conocer en nuestra herramienta (y en la mayoría de las basadas en navegador): cuando una miniatura tiene el foco, las teclas de corchete suelen rotarla. Corchete derecho en sentido horario, corchete izquierdo en sentido antihorario. No es universal, pero es lo bastante común como para probarlo antes de echar mano del ratón.
 
@@ -71,7 +71,7 @@ content_es: |
 
   <h3>Informes con horizontal y vertical mezclados</h3>
 
-  Los informes anuales y los pitch decks suelen combinar páginas verticales de texto con gráficos horizontales. Si un conversor forzó todo a vertical, puede que necesites rotar las páginas de gráficos 90 grados para que se lean bien al desplazarse o al imprimirse en horizontal. Los pitch para inversores hechos en PowerPoint y exportados a PDF son delincuentes habituales; la ruta «Imprimir como PDF» de PowerPoint trata todo el archivo como una sola orientación en lugar de hacerlo por diapositiva.
+  Los informes anuales y los pitch decks suelen combinar páginas verticales de texto con gráficos horizontales. Si un conversor forzó todo a vertical, puede que necesites rotar las páginas de gráficos 90 grados para que se lean bien al desplazarse o al imprimirse en horizontal. Los pitch para inversores hechos en PowerPoint y exportados a PDF son sospechosos habituales; la ruta «Imprimir como PDF» de PowerPoint trata todo el archivo como una sola orientación en lugar de hacerlo por diapositiva.
 
   <h3>Formularios recibidos por fax</h3>
 
@@ -94,7 +94,7 @@ content_es: |
 
   Cuando estés a punto de combinar varios PDF, arregla las orientaciones <strong>antes</strong> de unir. Si no, tendrás que identificar las páginas rotadas dentro de un paquete de 200 páginas, lo cual es mucho más lento que arreglar cada archivo de origen por separado.
 
-  El consejo inverso vale para escaneos directos de un alimentador dúplex. Si una de cada dos páginas salió cabeza abajo porque el escáner volteó mal el reverso, rota primero y luego <a href="/es/pdf-organize/merge/">úne en un único archivo</a>. Te ahorras un paso comparado con unir y luego intentar rotar páginas alternas dentro del PDF combinado.
+  El consejo inverso vale para escaneos directos de un alimentador dúplex. Si una de cada dos páginas salió cabeza abajo porque el escáner volteó mal el reverso, rota primero y luego <a href="/es/pdf-organize/merge/">une en un único archivo</a>. Te ahorras un paso comparado con unir y luego intentar rotar páginas alternas dentro del PDF combinado.
 
   Una cosa más: la rotación no cambia los datos de imagen subyacentes, solo la entrada de orientación. Así que no pierdes calidad y el tamaño del archivo se queda prácticamente igual (sumando o restando unos bytes por los metadatos reescritos). Eso hace que rotar sea seguro sobre pruebas legales y archivos de evidencias en los que importa la integridad del flujo de bytes subyacente: el hash del archivo cambiará porque cambiaron los metadatos, pero el contenido de la página es idéntico byte a byte.
 

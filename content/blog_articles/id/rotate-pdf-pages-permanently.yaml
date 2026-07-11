@@ -5,9 +5,9 @@ meta_description_id: "Adobe Reader 'memutar' PDF hanya di viewer. Pelajari cara 
 meta_keywords_id: "putar pdf permanen, simpan pdf yang diputar, perbaiki pdf miring, putar pdf scan, rotasi pdf gratis"
 excerpt_id: "Jika Anda pernah memutar PDF di Adobe Reader hanya untuk kembali saat dibuka, ini solusinya. Flag orientasi halaman tinggal di dalam file itu sendiri."
 content_id: |
-  Putar PDF di Adobe Reader, tutup file, buka kembali, dan halaman kembali ke awal. Saat itulah kebanyakan orang belajar bahwa ada dua jenis rotasi yang sama sekali berbeda, dan hanya salah satunya yang sebenarnya mengubah file. Pesan kesalahan yang ditampilkan Adobe Reader saat Anda mencoba menyimpan rotasi - "this file has been rotated and you must use Adobe Acrobat to commit the change" - adalah salah satu kebangkitan kasar yang sunyi yang memakan satu sore bagi siapa pun yang tidak melihatnya datang.
+  Putar PDF di Adobe Reader, tutup file, buka kembali, dan halaman kembali ke awal. Saat itulah kebanyakan orang belajar bahwa ada dua jenis rotasi yang sama sekali berbeda, dan hanya salah satunya yang sebenarnya mengubah file. Pesan kesalahan yang ditampilkan Adobe Reader saat Anda mencoba menyimpan rotasi - "this file has been rotated and you must use Adobe Acrobat to commit the change" - adalah salah satu kejutan pahit yang diam-diam menghabiskan waktu satu sore bagi siapa pun yang tidak menduganya.
 
-  Panduan ini tentang jenis yang menempel. Anda akan berakhir dengan PDF yang terlihat sama di Chrome, Preview, Acrobat, di ponsel seseorang, dan di printer yang akhirnya mengeluarkannya. Tidak ada di hilir yang perlu memutarnya sendiri.
+  Panduan ini tentang jenis yang menempel. Anda akan berakhir dengan PDF yang terlihat sama di Chrome, Preview, Acrobat, di ponsel seseorang, dan di printer yang akhirnya mengeluarkannya. Tak seorang pun setelah Anda perlu memutarnya lagi.
 
   <figure><img src="/static/blog/images/tool-rotate-hero.jpg" alt="Alat putar PDF Convertica dengan grid thumbnail dan kontrol arah rotasi" width="1280" height="800" loading="lazy"></figure>
 
@@ -20,12 +20,12 @@ content_id: |
   <ul>
     <li><strong>Rotasi level viewer</strong> mengubah rendering, bukan data. Tutup dokumen dan override hilang.</li>
     <li><strong>Rotasi level file</strong> menulis ulang entri orientasi halaman. Setiap viewer setelahnya membaca nilai baru.</li>
-    <li><strong>"Save As" di Adobe Reader gratis</strong> dapat menyimpan file lagi, tetapi tidak mengkomit rotasi view-only. Fitur itu dikunci di balik Acrobat berbayar.</li>
+    <li><strong>"Save As" di Adobe Reader gratis</strong> dapat menyimpan file lagi, tetapi tidak menyimpan rotasi view-only secara permanen. Fitur itu dikunci di balik Acrobat berbayar.</li>
   </ul>
 
   <blockquote class="callout">Jika Anda dapat memutar tetapi perubahan menghilang setelah ditutup, Anda hampir pasti menggunakan rotasi level viewer. Gunakan alat yang menulis ulang orientasi halaman di file itu sendiri.</blockquote>
 
-  Perilakunya bergeser sedikit di Adobe Reader DC versi 2019 dan setelahnya: tombol putar sekarang terkubur di bawah Tools &gt; Organize Pages, di mana terlihat seperti seharusnya mengkomit perubahan tetapi masih tidak akan kecuali Anda membayar. Versi gratis secara eksplisit memberi tahu Anda di pesan footer kecil bahwa "saving page rotations requires Acrobat Pro", yang banyak pengguna tidak pernah baca.
+  Perilakunya bergeser sedikit di Adobe Reader DC versi 2019 dan setelahnya: tombol putar sekarang terkubur di bawah Tools &gt; Organize Pages, di mana tombol itu terlihat seolah seharusnya menyimpan perubahan secara permanen, tetapi tetap tidak akan menyimpannya kecuali Anda membayar. Versi gratis secara eksplisit memberi tahu Anda di pesan footer kecil bahwa "saving page rotations requires Acrobat Pro", yang banyak pengguna tidak pernah baca.
 
   Solusi tercepat adalah rotator berbasis browser yang mengkodekan ulang file langsung. Anda dapat <a href="/id/pdf-edit/rotate/">memutar PDF online</a> dalam sekitar sepuluh detik tanpa menginstal apa pun.
 
@@ -38,11 +38,11 @@ content_id: |
   <ol>
     <li>Buka alat putar dan jatuhkan PDF Anda. File tetap di sesi unggah hanya selama dibutuhkan untuk pemrosesan.</li>
     <li>Pilih arah. 90 derajat searah jarum jam memperbaiki sebagian besar scan miring. 180 derajat menangani dokumen terbalik dari auto-feeder yang mengambil halaman dengan sisi salah.</li>
-    <li>Terapkan ke semua halaman. Alat menulis ulang flag orientasi untuk setiap halaman dalam satu pass.</li>
+    <li>Terapkan ke semua halaman. Alat menulis ulang flag orientasi untuk setiap halaman dalam sekali proses.</li>
     <li>Unduh file baru. Buka di viewer mana pun untuk konfirmasi.</li>
   </ol>
 
-  Simpan hasilnya dengan nama file yang jelas seperti <code>contract_rotated.pdf</code> agar Anda tidak menimpa asli secara tidak sengaja. Menjaga asli adalah asuransi murah jika rotasi salah arah - dan rotasi salah arah adalah laporan "saya membuang sepuluh menit" paling umum dari siapa pun yang menggunakan alat putar untuk pertama kali. Dua putaran searah jarum jam sama dengan satu putaran berlawanan arah jarum jam, jadi pemulihan cepat, tetapi hanya jika Anda masih memiliki sumber.
+  Simpan hasilnya dengan nama file yang jelas seperti <code>contract_rotated.pdf</code> agar Anda tidak menimpa asli secara tidak sengaja. Menjaga asli adalah asuransi murah jika rotasi salah arah - dan rotasi salah arah adalah keluhan "saya buang sepuluh menit" yang paling sering terdengar dari siapa pun yang menggunakan alat putar untuk pertama kali. Dua putaran searah jarum jam sama dengan satu putaran berlawanan arah jarum jam, jadi pemulihan cepat, tetapi hanya jika Anda masih memiliki sumber.
 
   <h2>Langkah demi langkah: putar hanya halaman tertentu</h2>
 
@@ -55,7 +55,7 @@ content_id: |
     <li>Terapkan dan unduh. Verifikasi thumbnail menunjukkan orientasi yang dikoreksi sebelum Anda mengirim file.</li>
   </ol>
 
-  Jika Anda menemukan diri Anda berjuang dengan rotasi halaman demi halaman banyak, sering lebih mudah untuk <a href="/id/pdf-organize/merge/">mengatur halaman PDF</a> dalam satu tampilan gabungan di mana Anda dapat memutar, menghapus, dan mengatur ulang sebelum mengekspor.
+  Jika Anda menemukan diri Anda berjuang dengan rotasi halaman demi halaman banyak, sering lebih mudah untuk <a href="/id/pdf-organize/organize/">mengatur halaman PDF</a> dalam satu tampilan gabungan di mana Anda dapat memutar, menghapus, dan mengatur ulang sebelum mengekspor.
 
   Pintasan keyboard yang patut diketahui di alat kami (dan sebagian besar yang berbasis browser): setelah thumbnail memiliki fokus, tombol bracket sering memutarnya. Bracket kanan searah jarum jam, bracket kiri berlawanan arah jarum jam. Tidak universal lintas alat, tetapi cukup umum sehingga patut dicoba sebelum meraih mouse.
 
@@ -65,7 +65,7 @@ content_id: |
 
   Scanner flatbed dan aplikasi kamera ponsel sering menangkap kuitansi kecil dalam orientasi yang salah. Rotasi 90 derajat searah jarum jam biasanya memperbaikinya. Jika Anda memindai tumpukan dengan orientasi campuran, lakukan semuanya sekaligus dan putar per halaman alih-alih memindai ulang. Kuitansi kertas thermal (jenis yang memudar) sangat rentan keluar 180 derajat salah karena sering ditumpuk dengan sisi cetak ke bawah untuk perlindungan.
 
-  <h3>Foto mobile dikonversi ke PDF</h3>
+  <h3>Foto ponsel dikonversi ke PDF</h3>
 
   iOS dan Android kadang mengkodekan orientasi foto di metadata EXIF yang diabaikan konverter PDF. Hasilnya adalah foto portrait disimpan sebagai halaman PDF landscape. Rotasi level file adalah solusi paling bersih. Patut diketahui: ini menjadi jauh lebih buruk sekitar iOS 14, ketika Apple mengubah format foto default dari JPEG ke HEIC. Alat PDF lama yang menghapus tag orientasi HEIC selama konversi menghasilkan halaman miring setiap saat. Mengatur kamera kembali ke "Most Compatible" sebelum memotret memecahkan masalah di sumbernya.
 
@@ -79,16 +79,16 @@ content_id: |
 
   <h2>Memverifikasi rotasi melekat</h2>
 
-  Sebelum Anda mengirim file, lakukan pemeriksaan kewarasan 30 detik:
+  Sebelum Anda mengirim file, lakukan pemeriksaan cepat 30 detik:
 
   <ul>
     <li>Buka kembali PDF yang diputar di viewer yang tidak Anda gunakan untuk memutarnya. Chrome, Preview di macOS, dan Edge semua membaca file berbeda dari Acrobat.</li>
     <li>Email file ke diri sendiri dan buka lampiran dari ponsel. Viewer mobile menghormati flag orientasi level file dan akan langsung menunjukkan apakah perubahan nyata.</li>
     <li>Jalankan print preview. Preview mencerminkan orientasi file, bukan override viewer, jadi preview miring berarti rotasi tidak tersimpan.</li>
-    <li>Periksa panel thumbnail di file manager Anda. Baik Windows Explorer maupun macOS Finder menunjukkan orientasi level file di panel preview mereka. Jika thumbnail di sana cocok dengan yang Anda harapkan, rotasi telah dikomit.</li>
+    <li>Periksa panel thumbnail di file manager Anda. Baik Windows Explorer maupun macOS Finder menunjukkan orientasi level file di panel preview mereka. Jika thumbnail di sana cocok dengan yang Anda harapkan, rotasi telah tersimpan permanen.</li>
   </ul>
 
-  Jika file terlihat benar di satu viewer tetapi salah di yang lain, rotasi adalah level viewer. Jalankan ulang file melalui alat yang mengkomit ke disk.
+  Jika file terlihat benar di satu viewer tetapi salah di yang lain, rotasi adalah level viewer. Jalankan ulang file melalui alat yang menyimpannya permanen ke disk.
 
   <h2>Tips rotasi massal</h2>
 
@@ -96,9 +96,9 @@ content_id: |
 
   Saran terbalik berlaku untuk scan langsung dari feeder duplex. Jika setiap halaman lain keluar terbalik karena scanner membalik sisi belakang dengan salah, putar dulu, lalu <a href="/id/pdf-organize/merge/">gabungkan menjadi satu file</a>. Anda akan menghemat satu langkah dibandingkan dengan menggabung lalu mencoba memutar halaman alternatif di dalam PDF gabungan.
 
-  Satu hal lagi: rotasi tidak mengubah data gambar yang mendasarinya, hanya entri orientasi. Jadi Anda tidak kehilangan kualitas, dan ukuran file tetap efektifnya sama (kurang lebih beberapa byte untuk metadata yang ditulis ulang). Itu membuat rotasi aman dijalankan pada bukti hukum dan file evidence di mana integritas bitstream dasar penting - hash data akan berubah karena metadata berubah, tetapi konten halaman identik byte demi byte.
+  Satu hal lagi: rotasi tidak mengubah data gambar yang mendasarinya, hanya entri orientasi. Jadi Anda tidak kehilangan kualitas, dan ukuran file tetap efektifnya sama (kurang lebih beberapa byte untuk metadata yang ditulis ulang). Itu membuat rotasi aman dijalankan pada bukti hukum dan file barang bukti di mana integritas bitstream dasar penting - hash data akan berubah karena metadata berubah, tetapi konten halaman identik byte demi byte.
 
-  Jebakan print-driver yang patut diperhatikan: beberapa printer enterprise mengabaikan flag orientasi PDF dan menggunakan logika auto-rotate mereka sendiri berdasarkan run teks terpanjang. Jika PDF Anda yang sudah diputar dicetak miring dari Konica atau Xerox kantor, printer membatalkan Anda. Periksa dialog cetak untuk opsi "Auto-rotate" atau "Orientation: From file" dan ubah ke manual.
+  Jebakan print-driver yang patut diperhatikan: beberapa printer enterprise mengabaikan flag orientasi PDF dan menggunakan logika auto-rotate mereka sendiri berdasarkan run teks terpanjang. Jika PDF Anda yang sudah diputar dicetak miring dari Konica atau Xerox kantor, printer-lah yang menimpa pengaturan Anda. Periksa dialog cetak untuk opsi "Auto-rotate" atau "Orientation: From file" dan ubah ke manual.
 
   <h2>FAQ</h2>
 
@@ -115,8 +115,8 @@ content_id: |
   <p>Adobe Reader gratis hanya mendukung rotasi level viewer. Menyimpan file tidak mengkomit rotasi ke disk. Rotasi permanen adalah fitur Acrobat berbayar, atau Anda dapat menggunakan alat berbasis browser gratis yang menulis ulang flag orientasi langsung.</p>
 
   <h3>Bisakah saya memutar PDF yang dilindungi kata sandi?</h3>
-  <p>Anda perlu memberikan kata sandi terlebih dahulu. Sebagian besar rotator online meminta kata sandi ketika file terenkripsi diunggah. Jika Anda tidak memiliki kata sandi, Anda tidak bisa secara legitimate memodifikasi file. Jika Anda memiliki dokumen dan lupa kata sandi, itu adalah masalah pemulihan yang berbeda (dan tidak menguntungkan).</p>
+  <p>Anda perlu memberikan kata sandi terlebih dahulu. Sebagian besar rotator online meminta kata sandi ketika file terenkripsi diunggah. Jika Anda tidak memiliki kata sandi, Anda tidak bisa secara legitimate memodifikasi file. Jika Anda memiliki dokumen dan lupa kata sandi, itu adalah masalah pemulihan yang berbeda (dan bukan yang menyenangkan).</p>
 
   <h2>Coba sekarang</h2>
 
-  <p>Berhenti melawan viewer. Buka <a href="/id/pdf-edit/rotate/">alat putar PDF</a> dan komit orientasi ke file dalam satu pass, atau jelajahi <a href="/id/all-tools/">semua alat PDF</a> jika Anda juga perlu menggabungkan atau mengatur ulang sambil di sini.</p>
+  <p>Berhenti melawan viewer. Buka <a href="/id/pdf-edit/rotate/">alat putar PDF</a> dan simpan orientasi ke file secara permanen dalam sekali proses, atau jelajahi <a href="/id/all-tools/">semua alat PDF</a> jika Anda juga perlu menggabungkan atau mengatur ulang sambil di sini.</p>

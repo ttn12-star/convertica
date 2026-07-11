@@ -28,7 +28,7 @@ content_es: |
   <p>Selecciona el rango exacto que quieres en el PDF. En Excel, ve a <code>Diseño de página &gt; Área de impresión &gt; Establecer área de impresión</code>. A partir de ese momento, solo se exportará ese rango. Si además tienes un minigráfico o una nota a la derecha que no quieres imprimir, este único paso lo elimina.</p>
 
   <h3>2. Ajusta para que entre en una página de ancho</h3>
-  <p>Las hojas de cálculo anchas son la causa número uno de los reportes «PDF cortado en 8 páginas». En la pestaña Diseño de página, busca el grupo Ajustar área de impresión y pon <code>Ancho: 1 página</code>, <code>Alto: Automático</code>. El resultado es un PDF en el que cada columna entra horizontalmente y los datos fluyen hacia abajo en tantas páginas como hagan falta, que es como deberían imprimirse las hojas de cálculo.</p>
+  <p>Las hojas de cálculo anchas son la causa número uno de las quejas «PDF cortado en 8 páginas». En la pestaña Diseño de página, busca el grupo Ajustar área de impresión y pon <code>Ancho: 1 página</code>, <code>Alto: Automático</code>. El resultado es un PDF en el que cada columna entra horizontalmente y los datos fluyen hacia abajo en tantas páginas como hagan falta, que es como deberían imprimirse las hojas de cálculo.</p>
   <p>Si tu hoja es tan ancha que ajustar a una página deja el texto microscópico, es señal de que conviene cambiar a orientación horizontal o dividir los datos en dos PDF que cubran grupos de columnas distintos.</p>
 
   <h3>3. Repite las filas de encabezado en cada página</h3>
@@ -40,7 +40,7 @@ content_es: |
   <h2>Paso a paso: convertir con Convertica</h2>
 
   <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Pasos y opciones de conversión de Excel a PDF en Convertica" width="1280" height="800" loading="lazy"></figure>
-  <p>Con la hoja de cálculo configurada, la conversión real es la parte fácil. Puedes <a href="/es/word-to-pdf/">convertir Excel a PDF</a> en tres pasos:</p>
+  <p>Con la hoja de cálculo configurada, la conversión real es la parte fácil. Puedes <a href="/es/excel-to-pdf/">convertir Excel a PDF</a> en tres pasos:</p>
   <ol>
     <li><strong>Sube el archivo .xlsx.</strong> Arrástralo y suéltalo en la zona de carga. Los archivos antiguos .xls también funcionan.</li>
     <li><strong>Elige la orientación si te lo pide.</strong> Vertical para datos altos y estrechos; horizontal para tablas anchas.</li>
@@ -73,7 +73,7 @@ content_es: |
   </table>
 
   <h2>Cuándo conservar Excel y cuándo enviar PDF</h2>
-  <p>PDF es el formato adecuado cuando el archivo es de solo lectura: presupuestos, informes firmados, declaraciones fiscales, dosieres para consejos. PDF conserva el diseño con exactitud, evita ediciones accidentales y es más fácil de firmar o marcar con marca de agua.</p>
+  <p>PDF es el formato adecuado cuando el archivo es de solo lectura: presupuestos, informes firmados, declaraciones fiscales, dosieres para consejos de administración. PDF conserva el diseño con exactitud, evita ediciones accidentales y es más fácil de firmar o marcar con marca de agua.</p>
   <p>Excel es el formato adecuado cuando el destinatario necesita filtrar, ordenar o recalcular. Mandar un PDF de un modelo a alguien que necesita cambiar una hipótesis lo obliga a teclear todo de nuevo desde cero. Si ya enviaste un PDF y el destinatario necesita los datos de vuelta, puedes <a href="/es/pdf-to-excel/">convertir el PDF de nuevo a Excel más tarde</a>, pero el viaje de ida y vuelta introduce pequeños errores y es un mal sustituto de enviar el formato correcto la primera vez.</p>
   <p>Un valor por defecto útil: manda el PDF para el registro formal y adjunta el .xlsx por separado si el destinatario puede necesitar editar. El PDF es lo que se archiva; el .xlsx es el archivo de trabajo.</p>
 
@@ -93,4 +93,4 @@ content_es: |
   <p>Los PDF incrustan fuentes, gráficos rasterizados y un objeto de página separado por cada página. Un libro de 200 KB puede generar un PDF de 3 MB sin que nada esté mal. Si el tamaño es un problema para el correo, comprime el PDF después de la conversión: los datos y la calidad se mantienen, solo se reduce el almacenamiento.</p>
 
   <h2>Pruébalo ahora</h2>
-  <p>Define tu área de impresión, ajusta la escala, configura los títulos de impresión y luego exporta. Dos minutos extra dentro de Excel te ahorran la vergüenza de la hoja cortada en ocho páginas. <a href="/es/word-to-pdf/">Abrir la herramienta de Excel a PDF →</a></p>
+  <p>Define tu área de impresión, ajusta la escala, configura los títulos de impresión y luego exporta. Dos minutos extra dentro de Excel te ahorran la vergüenza de la hoja cortada en ocho páginas. <a href="/es/excel-to-pdf/">Abrir la herramienta de Excel a PDF →</a></p>

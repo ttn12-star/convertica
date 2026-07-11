@@ -10,9 +10,9 @@ content_id: |
   Panduan ini adalah versi singkat dari pelajaran itu. Pada akhirnya Anda akan tahu cara mengidentifikasi jenis PDF yang Anda lihat, jalur konversi mana yang dibutuhkan, dan apa yang harus dilakukan ketika Anda salah memilih.
 
   <h2>Dua jenis PDF yang akan Anda temui</h2>
-  <p>Setiap PDF di dunia masuk ke salah satu dari tiga ember: digital, hasil scan, atau hibrida (campuran keduanya).</p>
+  <p>Setiap PDF di dunia masuk ke salah satu dari tiga kategori: digital, hasil scan, atau hibrida (campuran keduanya).</p>
   <h3>PDF digital</h3>
-  <p>Ini dibuat langsung dari sumber digital - file Word, halaman web, ekspor InDesign, alat akuntansi. Teks di dalamnya adalah teks nyata: karakter, font, struktur paragraf. Anda dapat memilih kalimat, menyalinnya, menempelkannya ke chat. Mereka biasanya kecil, dirender tajam pada level zoom mana pun, dan berperilaku baik dengan konverter standar.</p>
+  <p>Ini dibuat langsung dari sumber digital - file Word, halaman web, ekspor InDesign, alat akuntansi. Teks di dalamnya adalah teks nyata: karakter, font, struktur paragraf. Anda dapat memilih kalimat, menyalinnya, menempelkannya ke chat. File-file ini biasanya kecil, dirender tajam pada tingkat zoom mana pun, dan berperilaku baik dengan konverter standar.</p>
   <h3>PDF hasil scan</h3>
   <p>Ini adalah foto kertas. Seseorang memasukkan halaman melalui scanner, atau memotret dengan ponsel, dan menyimpan gambar di dalam wrapper PDF. Tidak ada teks sebenarnya di file - hanya gambar teks. Memilih "teks" dengan kursor menyorot persegi panjang, bukan huruf. Ukuran file biasanya lebih besar karena gambar memakan lebih banyak byte daripada karakter.</p>
   <h3>PDF hibrida</h3>
@@ -33,7 +33,7 @@ content_id: |
   <p>Untuk PDF digital, jalur <a href="/id/pdf-to-word/">konversi PDF ke Word</a> standar adalah pilihan yang tepat. Alat membaca teks tertanam, font, dan petunjuk struktural, dan membangunnya kembali di dalam file .docx. Harapkan:</p>
   <ul>
     <li>Akurasi mendekati 100% pada teks itu sendiri - karakter sudah digital, jadi tidak ada yang harus ditebak.</li>
-    <li>Formatting terjaga: font, heading, bold/italic, list, tabel dasar.</li>
+    <li>Format terjaga: font, heading, bold/italic, list, tabel dasar.</li>
     <li>Gambar ditempatkan kira-kira di tempat mereka muncul di sumber.</li>
     <li>Kecepatan: laporan 50 halaman dikonversi dalam beberapa detik.</li>
   </ul>

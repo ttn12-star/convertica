@@ -31,7 +31,7 @@ content_es: |
 
   <figure><img src="/static/blog/images/tool-pdf-to-jpg-options.jpg" alt="Opciones de salida de PDF a JPG, incluyendo rango de páginas y resolución" width="1280" height="800" loading="lazy"></figure>
 
-  La regla práctica: si la página es mayormente texto o dibujo lineal (contratos, facturas, diagramas), prefiere PNG. Si es mayormente una fotografía o un gráfico rico, JPG da un archivo mucho más pequeño sin pérdida visible. Cuando una herramienta solo exporta JPG, sube un punto el DPI para compensar los halos del texto.
+  La regla práctica: si la página es mayormente texto o dibujo lineal (contratos, facturas, diagramas), prefiere PNG. Si es mayormente una fotografía o un gráfico rico, JPG da un archivo mucho más pequeño sin pérdida visible. Cuando una herramienta solo exporta JPG, sube un poco el DPI para compensar los halos del texto.
 
   <h2>JPG de vuelta a PDF: mantén el orden</h2>
 

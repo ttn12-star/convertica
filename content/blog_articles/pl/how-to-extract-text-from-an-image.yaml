@@ -31,7 +31,7 @@ content_pl: |
 
   <ol>
     <li>Otwórz narzędzie <a href="/pl/image/to-text/">Obraz na tekst</a> i wgraj swój obraz (JPG, PNG, WebP, HEIC, BMP, TIFF lub GIF). Możesz przeciągnąć go bezpośrednio na stronę.</li>
-    <li>Wybierz język tekstu lub zostaw <strong>Automatyczne wykrywanie</strong>. Jawne ustawienie języka bardzo pomaga w przypadku tekstu w językach innych niż angielski lub z znakami diakrytycznymi.</li>
+    <li>Wybierz język tekstu lub zostaw <strong>Automatyczne wykrywanie</strong>. Jawne ustawienie języka bardzo pomaga w przypadku tekstu w językach innych niż angielski lub ze znakami diakrytycznymi.</li>
     <li>Kliknij <strong>Wyodrębnij tekst</strong>. Rozpoznany tekst pojawi się na stronie w ciągu kilku sekund.</li>
     <li>Użyj <strong>Kopiuj</strong>, żeby go pobrać, lub <strong>Pobierz .txt</strong>, żeby zapisać jako plik tekstowy. Zawsze szybko sprawdź wynik przed użyciem.</li>
   </ol>
@@ -44,7 +44,7 @@ content_pl: |
 
   <ul>
     <li><strong>Ostrość.</strong> Wyraźny, ostry tekst jest odczytywany czysto. Rozmycie ruchu i nieostre zdjęcia z telefonu to główna przyczyna zniekształceń na wyjściu.</li>
-    <li><strong>Kontrast.</strong> OCR działa na różnicy między drukiem a tłem. Wyblakła kserokopia lub zdjęcie przy słabym oświetleniu daje rozpoznawaczowi zbyt mało do pracy, nawet przy wysokiej rozdzielczości.</li>
+    <li><strong>Kontrast.</strong> OCR działa na różnicy między drukiem a tłem. Wyblakła kserokopia lub zdjęcie przy słabym oświetleniu daje algorytmowi OCR zbyt mało do pracy, nawet przy wysokiej rozdzielczości.</li>
     <li><strong>Język.</strong> Model wytrenowany na języku angielskim błędnie odczytuje znaki diakrytyczne i nieznane słowa. Wybierz właściwy język zamiast Automatycznego, gdy tylko go znasz.</li>
   </ul>
 

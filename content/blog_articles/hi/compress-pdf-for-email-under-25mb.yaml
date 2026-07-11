@@ -3,7 +3,7 @@ title_hi: "PDF को Email से भेजने के लिए कैसे
 meta_title_hi: "Email के लिए PDF Compress: 25 MB से कम 2 मिनट में"
 meta_description_hi: "Gmail, Outlook और Yahoo 20-25 MB से बड़े PDF को bounce कर देते हैं। Email के लिए PDF छोटा करने के तीन भरोसेमंद तरीके, document type के हिसाब से size targets और quality tips।"
 meta_keywords_hi: "email के लिए pdf compress, email के लिए pdf size कम करें, pdf email के लिए बहुत बड़ा, gmail के लिए pdf shrink, 25mb से कम pdf"
-excerpt_hi: "Gmail attachment 25 MB पर cap करता है, Outlook 20 MB पर, और एक scanned 10-page contract दोनों limits पार कर सकता है। यहाँ है इसे जल्दी छोटा करने का सबसे fast तरीका बिना quality खोए।"
+excerpt_hi: "Gmail attachment 25 MB पर cap करता है, Outlook 20 MB पर, और एक scanned 10-page contract दोनों limits पार कर सकता है। यहाँ है इसे बिना quality खोए सबसे तेज़ी से छोटा करने का तरीका।"
 content_hi: |
   Email providers आज भी बड़े attachments को 2010 की समस्या की तरह treat करते हैं। Gmail outbound में 25 MB से ऊपर कुछ भी refuse कर देता है, Outlook.com 20 MB पर cut off कर देता है, और ज़्यादातर corporate Exchange servers इससे भी सख्त चलते हैं। एक scanned 12-page contract अक्सर bounce trigger करने के लिए काफी होता है, और failure message ("Message could not be delivered. The attachment exceeds the allowed size") एक घंटे बाद आता है, जब आप पहले ही आगे बढ़ चुके होते हैं।
 
@@ -28,7 +28,7 @@ content_hi: |
     </tbody>
   </table>
 
-  एक और catch है जो ज़्यादातर लोग miss करते हैं: email attachments base64 (एक MIME standard) में encode होते हैं, जो transit में binary data को लगभग 33% inflate कर देता है। एक 20 MB PDF disk पर wire पर लगभग 27 MB बनकर पहुँचता है। अगर आपके provider ने "25 MB" लिखा है, safe रहने के लिए disk पर 18 MB से कम file aim करें।
+  एक और catch है जो ज़्यादातर लोग miss करते हैं: email attachments base64 (एक MIME standard) में encode होते हैं, जो transit में binary data को लगभग 33% inflate कर देता है। disk पर रखा एक 20 MB PDF wire पर लगभग 27 MB बनकर पहुँचता है। अगर आपके provider ने "25 MB" लिखा है, safe रहने के लिए disk पर 18 MB से कम file aim करें।
 
   <blockquote class="callout">Rule of thumb: किसी भी general-purpose email के लिए disk पर 15 MB target करें, और 8 MB अगर recipient corporate network पर बैठा है।</blockquote>
 

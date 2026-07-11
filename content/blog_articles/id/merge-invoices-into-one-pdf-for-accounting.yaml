@@ -1,9 +1,9 @@
 slug: merge-invoices-into-one-pdf-for-accounting
 title_id: "Cara Menggabungkan Beberapa Invoice menjadi Satu PDF untuk Akuntansi dan Laporan Pengeluaran"
 meta_title_id: "Gabungkan Invoice menjadi Satu PDF untuk Akuntansi"
-meta_description_id: "Pembukuan, freelancer, dan tim keuangan: gabungkan invoice bulanan, kuitansi, dan laporan menjadi satu PDF terurut untuk pengajuan pengeluaran yang rapi."
+meta_description_id: "Juru pembukuan, freelancer, dan tim keuangan: gabungkan invoice bulanan, kuitansi, dan laporan menjadi satu PDF terurut untuk pengajuan pengeluaran yang rapi."
 meta_keywords_id: "gabungkan invoice pdf, gabungkan kuitansi pdf, pdf laporan pengeluaran, alur akuntansi pdf, pdf invoice bulanan"
-excerpt_id: "Mengirim 14 PDF invoice terpisah ke akuntan adalah cara cepat kehilangan kuitansi dan membakar jam billable. Berikut cara membundel mereka menjadi satu file terurut."
+excerpt_id: "Mengirim 14 PDF invoice terpisah ke akuntan adalah cara cepat kehilangan kuitansi dan membakar jam billable. Berikut cara membundelnya menjadi satu file terurut."
 content_id: |
   Akuntan Anda tidak meminta 14 PDF terpisah. Mereka meminta "invoice bulan ini", dan 14 PDF adalah yang dihasilkan setiap alat sinkron cloud, portal supplier, dan aplikasi pengantaran makanan. Mengirimnya sebagai bundel longgar berhasil, sampai satu hilang di thread, tanggal bertabrakan di nama file, dan Anda menghabiskan satu jam April depan merekonstruksi audit trail dari pencarian email yang setengah rusak.
 
@@ -18,8 +18,8 @@ content_id: |
   <ul>
     <li><strong>Mengarsip dengan rapi.</strong> Sistem manajemen dokumen mengindeks satu file per periode, bukan 47 lampiran mengambang.</li>
     <li><strong>Penomoran halaman mendukung audit trail.</strong> "Lihat halaman 12 invoice April" adalah referensi nyata; "lihat invoice dari email tanggal 17" tidak.</li>
-    <li><strong>Lebih mudah diteruskan.</strong> Pembukuan yang menyerahkan catatan Anda ke penyusun pajak melampirkan satu file, bukan folder.</li>
-    <li><strong>Selaras dengan alur lampiran di QuickBooks dan Xero.</strong> Keduanya mendukung melampirkan satu PDF per entri jurnal atau transaksi; menyulap banyak adalah friksi yang tidak diinginkan siapa pun di akhir bulan. (Ya, bahkan hari ini: Xero membatasi lampiran entri jurnal pada satu file per entri hingga 2024 dan baru melonggarkannya untuk paket berbayar.)</li>
+    <li><strong>Lebih mudah diteruskan.</strong> Juru pembukuan yang menyerahkan catatan Anda ke penyusun pajak melampirkan satu file, bukan folder.</li>
+    <li><strong>Selaras dengan alur lampiran di QuickBooks dan Xero.</strong> Keduanya mendukung melampirkan satu PDF per entri jurnal atau transaksi; mengurus banyak file sekaligus adalah friksi yang tidak diinginkan siapa pun di akhir bulan. (Ya, bahkan hari ini: Xero membatasi lampiran entri jurnal pada satu file per entri hingga 2024 dan baru melonggarkannya untuk paket berbayar.)</li>
     <li><strong>Memetakan dengan rapi ke permintaan e-discovery dan audit pajak.</strong> Ketika otoritas pajak meminta "semua invoice April", menyerahkan satu file lebih baik daripada menjelaskan folder.</li>
   </ul>
 
@@ -27,7 +27,7 @@ content_id: |
 
   <h2>Konvensi penamaan sebelum Anda menggabungkan</h2>
 
-  Urutkan file sumber dulu, gabungkan kemudian. Sebagian besar alat gabung online, termasuk milik kami, menggabungkan file dalam urutan Anda mengunggah atau dalam urutan abjad. Itu menjadikan nama file sebagai roda kemudi.
+  Urutkan file sumber dulu, gabungkan kemudian. Sebagian besar alat gabung online, termasuk milik kami, menggabungkan file dalam urutan Anda mengunggah atau dalam urutan abjad. Itu menjadikan nama file sebagai kemudinya.
 
   Gunakan format ini untuk setiap invoice:
 
@@ -48,7 +48,7 @@ content_id: |
 
   Menangani duplikat: jika supplier menerbitkan dua invoice pada tanggal yang sama, tambahkan huruf: <code>2026-04-03_aws_142-50_a.pdf</code> dan <code>2026-04-03_aws_142-50_b.pdf</code>. Huruf terurut di bawah tanggal dan menghindari overwrite. Hindari menggunakan waktu sebagai pemecah seri; timestamp invoice supplier tidak konsisten dan bisa berbohong tentang kapan pekerjaan sebenarnya ditagih.
 
-  Satu kebiasaan lagi yang patut dibangun: ketika Anda menyimpan file dari portal vendor, ubah namanya sebelum sempat keluar dari folder Downloads. Melakukannya saat penerimaan butuh sepuluh detik. Melakukannya di akhir bulan untuk tiga puluh file sekaligus terasa seperti pekerjaan dan Anda akan melewatkannya bulan kedua.
+  Satu kebiasaan lagi yang patut dibangun: ketika Anda menyimpan file dari portal vendor, ubah namanya sebelum sempat keluar dari folder Downloads. Melakukannya begitu file masuk butuh sepuluh detik. Melakukannya di akhir bulan untuk tiga puluh file sekaligus terasa seperti pekerjaan dan Anda akan melewatkannya bulan kedua.
 
   <h2>Langkah demi langkah: gabungkan invoice di browser</h2>
 
@@ -57,16 +57,16 @@ content_id: |
   <ol>
     <li>Buka alat gabung Convertica di browser mana pun. Tidak ada yang perlu diinstal, tidak perlu login.</li>
     <li>Seret setiap file invoice dari folder Anda ke area unggah sekaligus. Alat menjaga urutan nama file Anda.</li>
-    <li>Verifikasi urutan di strip thumbnail. Seret invoice yang salah tempat ke slot yang tepat.</li>
+    <li>Verifikasi urutan di deretan thumbnail. Seret invoice yang salah tempat ke slot yang tepat.</li>
     <li>Klik <strong>Gabung</strong>. Hasilnya diunduh sebagai satu PDF.</li>
     <li>Ubah nama output agar cocok dengan periode: <code>2026-04_invoices_namaanda.pdf</code>.</li>
   </ol>
 
-  Penggantian nama terakhir itu penting. File hasil gabung mewarisi nama generik seperti <code>merged.pdf</code>, yang merupakan hal terburuk untuk dimiliki di folder Downloads enam bulan dari sekarang. (Saya pernah menghabiskan lima belas menit memburu bundel tertentu karena tiga file "merged.pdf" berbeda bertabrakan di sinkron cloud. Banyak orang mengalaminya di bulan pertama mereka.)
+  Penggantian nama terakhir itu penting. File hasil gabung mewarisi nama generik seperti <code>merged.pdf</code>, yang merupakan hal terburuk yang bisa ada di folder Downloads enam bulan lagi. (Saya pernah menghabiskan lima belas menit memburu bundel tertentu karena tiga file "merged.pdf" berbeda bertabrakan di sinkron cloud. Banyak orang mengalaminya di bulan pertama mereka.)
 
   <h2>Menambahkan halaman cover atau daftar isi</h2>
 
-  Untuk pengajuan pengeluaran lebih besar (20+ invoice, atau apa pun yang ditujukan ke tim keuangan daripada pembukuan Anda sendiri), halaman cover membayar kembali dua menit yang dibutuhkannya. Lembar ringkasan sederhana berfungsi:
+  Untuk pengajuan pengeluaran lebih besar (20+ invoice, atau apa pun yang ditujukan ke tim keuangan daripada juru pembukuan Anda sendiri), halaman cover sepadan dengan dua menit yang dibutuhkannya. Lembar ringkasan sederhana berfungsi:
 
   <table>
     <thead>
@@ -79,13 +79,13 @@ content_id: |
     </tbody>
   </table>
 
-  Simpan tabel sebagai PDF dan letakkan pertama dalam urutan gabung. Setelah menggabungkan, Anda dapat <a href="/id/pdf-edit/rotate/">menambahkan nomor halaman di seluruh file gabungan</a> agar referensi halaman cover benar-benar terselesaikan. Jika Anda membangun bundel triwulanan untuk tim keuangan, ringkasan satu halaman di depan dan baris total yang cocok dengan laporan bank menutup pertanyaan audit sebelum mereka harus bertanya.
+  Simpan tabel sebagai PDF dan letakkan pertama dalam urutan gabung. Setelah menggabungkan, Anda dapat <a href="/id/pdf-edit/add-page-numbers/">menambahkan nomor halaman di seluruh file gabungan</a> agar referensi halaman cover benar-benar terselesaikan. Jika Anda membangun bundel triwulanan untuk tim keuangan, ringkasan satu halaman di depan dan baris total yang cocok dengan laporan bank menutup pertanyaan audit sebelum mereka harus bertanya.
 
   Tip pro: jika Anda menggunakan Excel atau Google Sheets untuk membangun ringkasan, simpan ke PDF menggunakan print area diatur ke satu halaman lebar sebelum menggabungkan. Ringkasan yang mengalir ke halaman 2 karena footer berlebihan hanya kebisingan visual.
 
   <h2>Format campuran: kuitansi JPG dan invoice PDF</h2>
 
-  Pemeriksaan realitas: setidaknya sepertiga kuitansi usaha kecil tiba sebagai foto. Tagihan restoran, kuitansi taksi, kertas slip toko hardware, deli di sudut yang mencetak di kertas thermal yang memudar. Alat gabung hanya menerima PDF, jadi Anda memiliki konversi satu langkah sebelum gabung.
+  Faktanya: setidaknya sepertiga kuitansi usaha kecil tiba sebagai foto. Tagihan restoran, kuitansi taksi, kertas slip toko hardware, deli di sudut yang mencetak di kertas thermal yang memudar. Alat gabung hanya menerima PDF, jadi ada satu langkah konversi sebelum gabung.
 
   <figure><img src="/static/blog/images/tool-merge-options.jpg" alt="Konverter JPG ke PDF untuk mengubah foto kuitansi dari ponsel menjadi PDF yang bisa digabung" width="1280" height="800" loading="lazy"></figure>
 
@@ -97,9 +97,9 @@ content_id: |
     <li>Gabungkan dalam urutan kronologis.</li>
   </ol>
 
-  Tip: ketika Anda memotret kuitansi kertas, pegang ponsel langsung di atas dan gunakan latar polos (selembar A4 di meja berfungsi dengan baik). Alat JPG-ke-PDF tidak akan crop atau auto-rotate; apa yang Anda foto adalah yang akan terikat ke bundel akuntansi Anda. Hindari flash pada kuitansi mengkilap; pantulan panas menghapus baris yang sebenarnya perlu Anda tangkap.
+  Tip: ketika Anda memotret kuitansi kertas, pegang ponsel langsung di atas dan gunakan latar polos (selembar A4 di meja berfungsi dengan baik). Alat JPG-ke-PDF tidak akan memangkas atau memutar otomatis; apa yang Anda foto adalah yang akan terikat ke bundel akuntansi Anda. Hindari flash pada kuitansi mengkilap; silaunya menghapus baris yang sebenarnya perlu Anda tangkap.
 
-  Kekhasan lain: foto HEIC dari iPhone yang lebih baru tidak diterima oleh setiap alat gabung atau konversi. Atur kamera iOS Anda ke "Most Compatible" (Settings &gt; Camera &gt; Formats) sebelum sesi pemotretan akhir bulan, atau konversi batch HEIC ke JPG sekali di awal sesi.
+  Kekhasan lain: foto HEIC dari iPhone yang lebih baru belum tentu diterima oleh semua alat gabung atau konversi. Atur kamera iOS Anda ke "Most Compatible" (Settings &gt; Camera &gt; Formats) sebelum sesi pemotretan akhir bulan, atau konversi batch HEIC ke JPG sekali di awal sesi.
 
   <h2>Alur kerja bulanan untuk freelancer</h2>
 
@@ -123,7 +123,7 @@ content_id: |
 
   Simpan yang asli. Selalu. PDF gabungan adalah format penyerahan Anda, bukan arsip. Jika supplier mempersengketakan jumlah atau akuntan butuh versi tidak diredaksi dari satu invoice, Anda ingin file sumber, bukan halaman yang diekstraksi dari hasil gabung.
 
-  Sebagian besar drive cloud memberi versi file secara otomatis; jika milik Anda tidak, salin folder bulan ke subfolder "raw_originals" sebelum mulai mengubah nama. Tetapkan aturan retensi sederhana: simpan asli selama tujuh tahun (window catatan pajak standar di sebagian besar yurisdiksi), simpan bundel gabungan tanpa batas waktu karena tidak makan tempat.
+  Sebagian besar drive cloud memberi versi file secara otomatis; jika milik Anda tidak, salin folder bulan ke subfolder "raw_originals" sebelum mulai mengubah nama. Tetapkan aturan retensi sederhana: simpan asli selama tujuh tahun (rentang penyimpanan catatan pajak standar di sebagian besar yurisdiksi), simpan bundel gabungan tanpa batas waktu karena tidak makan tempat.
 
   <h3>Mengirim ke akuntan</h3>
 
@@ -143,7 +143,7 @@ content_id: |
   <p>Konversi file JPG ke PDF terlebih dahulu menggunakan alat JPG-ke-PDF, lalu gabung berdampingan dengan invoice PDF yang ada. Sebagian besar alat gabung online (termasuk milik kami) hanya menerima PDF sebagai input.</p>
 
   <h3>Apakah aman mengunggah invoice dengan detail bank ke alat online?</h3>
-  <p>Gunakan alat yang memproses file dalam sesi dan menghapusnya tak lama setelahnya. Convertica menghapus unggahan setelah window retensi singkat. Untuk invoice yang sangat sensitif, lindungi PDF gabungan dengan kata sandi sebelum berbagi, dan hindari mengunggah dari jaringan Wi-Fi publik di mana unggahan bisa disadap.</p>
+  <p>Gunakan alat yang memproses file dalam sesi dan menghapusnya tak lama setelahnya. Convertica menghapus unggahan setelah masa retensi singkat. Untuk invoice yang sangat sensitif, lindungi PDF gabungan dengan kata sandi sebelum berbagi, dan hindari mengunggah dari jaringan Wi-Fi publik di mana unggahan bisa disadap.</p>
 
   <h3>Berapa banyak PDF yang bisa saya gabungkan sekaligus?</h3>
   <p>Plafon praktis biasanya memori browser dan total ukuran unggah, bukan alatnya. Untuk bundel akhir bulan tipikal 10-50 invoice, Anda tidak akan mencapai batas apa pun. Untuk 200+ file, pisah menjadi dua gabung dan satukan hasilnya.</p>

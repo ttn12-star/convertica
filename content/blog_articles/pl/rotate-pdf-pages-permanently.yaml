@@ -55,19 +55,19 @@ content_pl: |
     <li>Zastosuj i pobierz. Sprawdź, czy miniatury pokazują poprawioną orientację, zanim wyślesz plik dalej.</li>
   </ol>
 
-  Jeśli często zmagasz się z obrotami strona po stronie, łatwiej <a href="/pl/pdf-organize/merge/">zorganizować strony PDF</a> w jednym łączonym widoku, gdzie możesz obracać, usuwać i przestawiać przed eksportem.
+  Jeśli często zmagasz się z obrotami strona po stronie, łatwiej <a href="/pl/pdf-organize/organize/">zorganizować strony PDF</a> w jednym łączonym widoku, gdzie możesz obracać, usuwać i przestawiać przed eksportem.
 
-  Skrót klawiszowy wart poznania w naszym narzędziu (i większości przeglądarkowych): kiedy miniatura ma fokus, klawisze nawiasów kwadratowych często ją obracają. Prawy nawias zgodnie z zegarem, lewy przeciwnie. Niezuniwersalny we wszystkich narzędziach, ale wystarczająco częsty, by spróbować przed sięgnięciem po mysz.
+  Skrót klawiszowy wart poznania w naszym narzędziu (i większości przeglądarkowych): kiedy miniatura ma fokus, klawisze nawiasów kwadratowych często ją obracają. Prawy nawias zgodnie z zegarem, lewy przeciwnie. Nie jest to uniwersalne we wszystkich narzędziach, ale wystarczająco częste, by spróbować przed sięgnięciem po mysz.
 
   <h2>Częste scenariusze</h2>
 
   <h3>Zeskanowane paragony bokiem</h3>
 
-  Skanery płaskie i aplikacje aparatu telefonu często łapią małe paragony w złej orientacji. Obrót o 90 stopni zgodnie z zegarem zwykle je naprawia. Jeśli skanujesz stos o mieszanych orientacjach, zrób je naraz i obracaj per strona, zamiast przeskanowywać. Paragony termiczne (te, które blakną) są szczególnie podatne na wyjście pod 180 stopni, bo często stosuje się je drukiem do dołu dla ochrony.
+  Skanery płaskie i aplikacje aparatu telefonu często łapią małe paragony w złej orientacji. Obrót o 90 stopni zgodnie z zegarem zwykle je naprawia. Jeśli skanujesz stos o mieszanych orientacjach, zrób je naraz i obracaj per strona, zamiast przeskanowywać. Paragony termiczne (te, które blakną) są szczególnie podatne na obrót o 180 stopni, bo często podaje się je drukiem do dołu dla ochrony.
 
   <h3>Zdjęcia z telefonu skonwertowane do PDF</h3>
 
-  iOS i Android czasem kodują orientację zdjęcia w metadanych EXIF, których konwerter PDF nie czyta. Wynik to pionowe zdjęcie zapisane jako poziomy PDF. Obrót na poziomie pliku jest najczystszą naprawą. Warto wiedzieć: zrobiło się to wyraźnie gorsze koło iOS 14, kiedy Apple zmienił domyślny format zdjęć z JPEG na HEIC. Starsze narzędzia PDF, które zdejmują tagi orientacji HEIC podczas konwersji, produkują strony bokiem za każdym razem. Ustawienie aparatu z powrotem na „Most Compatible" przed strzelaniem rozwiązuje problem u źródła.
+  iOS i Android czasem kodują orientację zdjęcia w metadanych EXIF, których konwerter PDF nie czyta. Wynik to pionowe zdjęcie zapisane jako poziomy PDF. Obrót na poziomie pliku jest najczystszą naprawą. Warto wiedzieć: zrobiło się to wyraźnie gorsze koło iOS 14, kiedy Apple zmienił domyślny format zdjęć z JPEG na HEIC. Starsze narzędzia PDF, które zdejmują tagi orientacji HEIC podczas konwersji, produkują strony bokiem za każdym razem. Ustawienie aparatu z powrotem na „Most Compatible" przed robieniem zdjęć rozwiązuje problem u źródła.
 
   <h3>Mieszane raporty pionowe i poziome</h3>
 

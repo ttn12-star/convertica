@@ -5,7 +5,7 @@ meta_description_hi: "Classic 'spreadsheet 8 pages पर slice' disaster से
 meta_keywords_hi: "excel to pdf, xlsx to pdf, spreadsheet to pdf, excel print to pdf, excel को pdf save करें"
 excerpt_hi: "ज़्यादातर Excel-to-PDF guides वो हिस्सा skip कर देती हैं जो असल में matter करता है: print areas set करना ताकि आपकी spreadsheet आठ awkward, half-empty pages पर slice न हो जाए।"
 content_hi: |
-  लगभग सबने वो email receive किया है: एक 12-tab workbook सीधे PDF में convert किया गया, rows नौ pages पर splayed, columns half में cut, और एक header जो सिर्फ़ page one पर appear होता है। Fix एक better converter नहीं है। Fix है Excel के अंदर export press करने से पहले बीस seconds का setup।
+  लगभग सबने वो email receive किया है: एक 12-tab workbook सीधे PDF में convert किया गया, rows नौ pages पर बिखरी हुई, columns बीच से कटे हुए, और एक header जो सिर्फ़ page one पर appear होता है। Fix एक better converter नहीं है। Fix है Excel के अंदर export press करने से पहले बीस seconds का setup।
 
   यह guide उन setup steps को cover करती है जो clean, printable PDF को spreadsheet disaster से अलग करते हैं, साथ ही जब आपकी file already correctly configured है तो upload-and-go flow भी।
 
@@ -14,7 +14,7 @@ content_hi: |
   <figure><img src="/static/blog/images/tool-excel-to-pdf-hero.jpg" alt="Convertica Excel to PDF converter file upload area के साथ" width="1280" height="800" loading="lazy"></figure>
   <p>Excel आपकी spreadsheet को "document" की तरह treat नहीं करता जैसे Word करता है। कोई fixed page नहीं है। Grid essentially infinite है, और PDF export को decisions लेनी पड़ती हैं कि कहाँ slice करना है। Default में, वो decisions great नहीं हैं:</p>
   <ul>
-    <li>Default print area पूरा used range है, including column AZ में एक lonely cell जो आपने एक बार type किया था और भूल गए।</li>
+    <li>Default print area पूरा used range होता है — इसमें column AZ की वह अकेली cell भी आ जाती है जो आपने कभी type की थी और भूल गए।</li>
     <li>Automatic page breaks वहाँ गिरते हैं जहाँ page math कहता है, जो बहुत कम logical row groupings के साथ line up करता है।</li>
     <li>Header rows repeat नहीं होते जब तक आप उन्हें बताएँ नहीं। Page 2 onwards tableless data dump जैसा लग सकता है।</li>
     <li>Hidden columns properly hidden न हों तो आज भी print होते हैं, Excel version पर निर्भर करता है।</li>
@@ -28,7 +28,7 @@ content_hi: |
   <p>Exact range select करें जो आप PDF में चाहते हैं। Excel में, <code>Page Layout &gt; Print Area &gt; Set Print Area</code> पर जाएँ। इस point से, सिर्फ़ वो range export होगी। अगर आपके पास right side पर कोई tiny sparkline या note है जो आप print नहीं करना चाहते, यह single step उसे remove कर देता है।</p>
 
   <h3>2. एक page wide पर scale to fit करें</h3>
-  <p>Wide spreadsheets "PDF 8 pages पर slice" reports का number one cause हैं। Page Layout tab पर, Scale to Fit group खोजें और set करें <code>Width: 1 page</code>, <code>Height: Automatic</code>. Result एक PDF है जहाँ हर column horizontally fit होता है और data ज़रूरत के मुताबिक pages पर नीचे flow होता है - जो spreadsheets को कैसे print होना चाहिए।</p>
+  <p>Wide spreadsheets "PDF 8 pages पर slice" reports का number one cause हैं। Page Layout tab पर, Scale to Fit group खोजें और set करें <code>Width: 1 page</code>, <code>Height: Automatic</code>. Result एक PDF है जहाँ हर column horizontally fit होता है और data ज़रूरत के मुताबिक pages पर नीचे flow होता है - spreadsheets को असल में इसी तरह print होना चाहिए।</p>
   <p>अगर आपका sheet इतना wide है कि एक page पर scaling text microscopic बना देती है, यह एक sign है कि आपको landscape orientation पर switch करना चाहिए, या data को different column groups cover करने वाले दो PDFs में split करना चाहिए।</p>
 
   <h3>3. हर page पर header rows repeat करें</h3>
@@ -40,7 +40,7 @@ content_hi: |
   <h2>Step-by-step: Convertica से convert करें</h2>
 
   <figure><img src="/static/blog/images/tool-excel-to-pdf-options.jpg" alt="Convertica पर Excel to PDF conversion steps और options" width="1280" height="800" loading="lazy"></figure>
-  <p>Spreadsheet configured होने के साथ, actual conversion easy part है। आप तीन steps में <a href="/hi/word-to-pdf/">Excel को PDF में convert</a> कर सकते हैं:</p>
+  <p>Spreadsheet configured होने के साथ, actual conversion easy part है। आप तीन steps में <a href="/hi/excel-to-pdf/">Excel को PDF में convert</a> कर सकते हैं:</p>
   <ol>
     <li><strong>.xlsx file upload करें.</strong> Upload box में drag and drop करें। पुरानी .xls files भी काम करती हैं।</li>
     <li><strong>Prompt हो तो orientation pick करें.</strong> Tall, narrow data के लिए Portrait; wide tables के लिए landscape।</li>
@@ -49,7 +49,7 @@ content_hi: |
   <blockquote class="callout">अगर PDF अब भी wrong दिख रहा है, problem लगभग हमेशा upstream Excel में है - print area, scale, या repeat rows - converter में नहीं। Workbook reopen करें, setting fix करें, और re-export करें।</blockquote>
 
   <h2>Multi-sheet workbooks</h2>
-  <p>पाँच tabs वाला workbook एक question raise करता है: क्या आप per sheet एक PDF चाहते हैं, या पाँचों sheets एक file में concatenated?</p>
+  <p>पाँच tabs वाला workbook एक question raise करता है: क्या आप per sheet एक PDF चाहते हैं, या पाँचों sheets एक ही file में जुड़ी हुई?</p>
   <ul>
     <li><strong>Per sheet एक PDF</strong> तब right है जब हर tab standalone deliverable है - separate audiences के लिए separate report। Naming important बन जाता है; <code>YYYY-MM-DD_workbook_sheet-name.pdf</code> किसी भी folder में cleanly read होता है।</li>
     <li><strong>सभी sheets एक PDF में</strong> तब right है जब tabs एक packet के रूप में belong करते हैं (cover, summary, detail, appendix)। अगर converter हर sheet अलग export करता है, आप second step में <a href="/hi/pdf-organize/merge/">multiple sheets को एक PDF में merge</a> कर सकते हैं।</li>
@@ -93,4 +93,4 @@ content_hi: |
   <p>PDFs fonts embed करते हैं, charts को rasterise करते हैं, और per page एक separate page object होता है। एक 200 KB workbook बिना कुछ wrong हुए 3 MB PDF produce कर सकता है। अगर size email के लिए problem है, conversion के बाद PDF compress करें - data और quality same रहती है, सिर्फ़ storage shrink होता है।</p>
 
   <h2>अभी try करें</h2>
-  <p>अपना print area set करें, scale-to-fit set करें, print titles set करें, फिर export करें। Excel के अंदर दो extra minutes आठ-page sliced spreadsheet की embarrassment से बचाते हैं। <a href="/hi/word-to-pdf/">Excel to PDF tool open करें →</a></p>
+  <p>अपना print area set करें, scale-to-fit set करें, print titles set करें, फिर export करें। Excel के अंदर दो extra minutes आठ-page sliced spreadsheet की embarrassment से बचाते हैं। <a href="/hi/excel-to-pdf/">Excel to PDF tool open करें →</a></p>

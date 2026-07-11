@@ -30,11 +30,11 @@ content_id: |
   Untuk <a href="/id/pdf-edit/add-page-numbers/">menambahkan nomor halaman online</a>:
 
   <ol>
-    <li>Unggah PDF. Pratinjau menunjukkan di mana nomor akan jatuh.</li>
+    <li>Unggah PDF. Pratinjau menunjukkan di mana nomor akan muncul.</li>
     <li>Pilih posisi - bawah-tengah adalah default yang aman; bawah-kanan cocok untuk dokumen yang akan dijilid di sisi kiri.</li>
     <li>Pilih format. "1" polos paling bersih; "Page 1 of 20" memberi tahu pembaca seberapa banyak yang tersisa; "1 of 20" adalah jalan tengah yang ringkas.</li>
     <li>Atur nomor awal dan halaman pertama yang dinomori (lihat di bawah).</li>
-    <li>Terapkan dan unduh. Gulir sekali untuk memastikan nomor berada jelas dari teks yang ada.</li>
+    <li>Terapkan dan unduh. Gulir sekali untuk memastikan nomor tidak menimpa teks yang ada.</li>
   </ol>
 
   <h2>Pertanyaan halaman sampul</h2>
@@ -42,11 +42,11 @@ content_id: |
   Kesalahan paling umum adalah menomori sampul. Halaman judul atau daftar isi biasanya tidak boleh menampilkan "1" - penomoran harus dimulai di halaman konten pertama. Alat menanganinya dengan dua pengaturan terpisah yang sering membuat orang bingung:
 
   <ul>
-    <li><strong>Halaman pertama yang dinomori</strong> - memberi tahu alat untuk melewati penstempelan nomor pada halaman 1 (sampul) dan mulai mencetak dari halaman 2.</li>
+    <li><strong>Halaman pertama yang dinomori</strong> - memberi tahu alat untuk melewati penomoran halaman 1 (sampul) dan mulai mencetak dari halaman 2.</li>
     <li><strong>Nomor awal</strong> - memberi tahu alat nilai apa yang dicetak pertama. Atur ke 1 agar halaman konten pertama terbaca "1", bukan "2".</li>
   </ul>
 
-  <blockquote class="callout">Untuk mendapatkan sampul tanpa nomor dan konten yang dimulai dari "1": lewati halaman pertama, dan atur nomor awal ke 1. Sesuaikan keduanya - mengubah hanya satu adalah alasan orang berakhir dengan konten yang mulai di halaman 2.</blockquote>
+  <blockquote class="callout">Untuk mendapatkan sampul tanpa nomor dan konten yang dimulai dari "1": lewati halaman pertama, dan atur nomor awal ke 1. Sesuaikan keduanya - mengubah hanya satu membuat konten mulai dari halaman 2.</blockquote>
 
   Logika yang sama meluas ke dokumen dengan beberapa halaman pembuka. Laporan dengan sampul dan bagian daftar isi dua halaman mungkin melewati tiga halaman pertama dan mulai hitungan cetak di 1 pada halaman empat.
 
@@ -65,7 +65,7 @@ content_id: |
   <ul>
     <li><strong>Perhatikan margin.</strong> Jika dokumen sudah punya teks footer, letakkan nomor di sudut agar tidak tumpang tindih.</li>
     <li><strong>Sesuaikan nada.</strong> Font kecil dan netral dengan warna sama seperti teks isi terlihat disengaja; nomor tebal besar terlihat seperti ditempelkan.</li>
-    <li><strong>Periksa halaman landscape.</strong> Dalam file orientasi campuran, pastikan nomor tetap jatuh di tempat yang masuk akal pada halaman yang diputar.</li>
+    <li><strong>Periksa halaman landscape.</strong> Dalam file orientasi campuran, pastikan nomor tetap berada di tempat yang masuk akal pada halaman yang diputar.</li>
     <li><strong>Sisakan ruang untuk penjilidan.</strong> Jika dokumen akan dicetak dan dijilid, jauhkan nomor dari tepi penjilidan.</li>
   </ul>
 
