@@ -287,6 +287,20 @@ COVERS = {
         "#6ee7b7",
         "table",
     ),
+    "sign-pdf-document-digitally": (
+        "Sign a PDF\nWithout Printing",
+        "EDIT PDF · SIGN",
+        ("#4338ca", "#7c3aed"),
+        "#c4b5fd",
+        "pencil",
+    ),
+    "pdf-to-powerpoint-conversion": (
+        "PDF to PowerPoint:\nEditable Slides",
+        "PDF → PPT",
+        ("#ea580c", "#db2777"),
+        "#fdba74",
+        "layers",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()

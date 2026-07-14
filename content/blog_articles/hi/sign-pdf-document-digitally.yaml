@@ -1,0 +1,72 @@
+slug: sign-pdf-document-digitally
+status: published
+category_slug: how-to-guides
+relevant_tool: sign_pdf
+title_hi: "PDF को बिना Print किए कैसे Sign करें"
+meta_title_hi: "PDF ko Sign kaise kare Online Free (बिना Print किए) | Convertica"
+meta_description_hi: "कोई form sign करना है और वह PDF है। जानें बिना print और scan किए PDF पर online signature कैसे लगाएँ, असली digital signature क्या होता है, और आपको वह कब चाहिए।"
+meta_keywords_hi: "pdf ko sign kaise kare, pdf par signature, sign pdf online, pdf में signature कैसे लगाएँ, electronic signature pdf, digital signature pdf, e-sign pdf, sign pdf free"
+excerpt_hi: "Inbox में एक form PDF की तरह आता है और उस पर आपका signature चाहिए। उसे print करना, pen से sign करना, और वापस scan करना धीमा रास्ता है। यहाँ जानें PDF को screen पर ही कैसे sign करें, और drawn signature तथा असली digital signature में क्या फ़र्क़ है।"
+content_hi: |
+  Inbox में एक form PDF की तरह आ गिरता है: rental agreement, consent form, offer letter, या contract। उस पर आपका signature चाहिए। पुराना तरीका तकलीफ़देह है: print करो, pen से sign करो, वापस scan करो, और दुआ करो कि scan टेढ़ा न हो। आप यह पूरा झंझट छोड़कर file को screen पर ही sign कर सकते हैं। यह guide वही तरीका बताती है, और "digital signature" के बारे में लोग जो एक ग़लती करते हैं उसे भी साफ़ कर देती है।
+
+  <h2>दो चीज़ें जिन्हें "signature" कहते हैं, पर वे एक नहीं हैं</h2>
+
+  <p>कुछ भी sign करने से पहले यह जान लेना काम आता है कि इनमें से असल में आपको किसकी ज़रूरत है, क्योंकि दोनों अलग-अलग problem हल करती हैं।</p>
+
+  <ul>
+    <li><strong>Electronic signature</strong> page पर रखी आपके signature की एक तस्वीर है: typed, mouse या उंगली से drawn, या image के रूप में uploaded। यह sign करने की मंशा दिखाती है और लगभग हर रोज़मर्रा के form, lease, या internal approval को यही चाहिए।</li>
+    <li><strong>Digital signature</strong> एक certificate से जुड़ी cryptographic मुहर है। यह सिर्फ़ आपका नाम नहीं दिखाती, बल्कि गणित से साबित करती है कि sign किसने किया और file उसके बाद बदली नहीं है। Banks, सरकारें, और कुछ legal filings को यही मज़बूत किस्म चाहिए।</li>
+  </ul>
+
+  <p>Inbox में आने वाले ज़्यादातर documents के लिए electronic signature बिलकुल वही है जो माँगा जा रहा है। अगर किसी document को ख़ास तौर पर certified digital signature चाहिए, तो वह ऐसा साफ़ लिखा होगा, और आमतौर पर किसी specific provider या सरकारी portal की तरफ़ इशारा करेगा।</p>
+
+  <h2>PDF को screen पर sign करें (रोज़मर्रा का तरीका)</h2>
+
+  <figure><img src="/static/blog/images/tool-sign-hero.jpg" alt="Convertica Sign PDF tool, sign करने के लिए तैयार document के साथ" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li><a href="/hi/pdf-edit/sign/">Sign PDF</a> tool खोलें और अपनी file upload करें।</li>
+    <li>अपना signature बनाएँ: उसे type करके कोई handwriting style चुनें, mouse या उंगली से draw करें, या अपने असली signature की photo upload करें।</li>
+    <li>उसे page पर सही जगह रखें, size adjust करें, और अगर form को चाहिए तो date या अपने initials जोड़ें।</li>
+    <li>Signed PDF download करें। यह वापस भेजने के लिए तैयार है, और हर जगह एक जैसी खुलती है।</li>
+  </ol>
+
+  <figure><img src="/static/blog/images/tool-sign-options.jpg" alt="Sign PDF tool में signature के options: type, draw, या upload" width="1280" height="800" loading="lazy"></figure>
+
+  <p>पूरे काम में एक मिनट से भी कम लगता है, और uploaded file कुछ देर बाद server से हटा दी जाती है, जो तब मायने रखता है जब document कोई फ़ालतू file नहीं बल्कि contract हो।</p>
+
+  <h2>साफ़-सुथरा signature पाना</h2>
+
+  <p>कुछ छोटी बातें on-screen signature को भद्दा नहीं, सही दिखाती हैं:</p>
+
+  <ul>
+    <li><strong>Phone या tablet पर draw करना mouse से बेहतर है।</strong> उंगली या stylus, mouse pointer घसीटने के मुक़ाबले कहीं ज़्यादा natural line देते हैं।</li>
+    <li><strong>अगर signature की photo upload कर रहे हैं,</strong> तो सादे सफ़ेद कागज़ पर गहरी स्याही से sign करें, फिर tight crop करें। साफ़, high-contrast image page पर कहीं बेहतर बैठती है।</li>
+    <li><strong>Size को line से match कराएँ।</strong> पूरे form पर फैला हुआ बड़ा signature अटपटा लगता है। उसे signature line पर करीने से बैठने लायक resize करें।</li>
+  </ul>
+
+  <h2>Signed file को बदले जाने से बचाएँ</h2>
+
+  <p>एक बार document sign हो जाने पर आप आमतौर पर नहीं चाहते कि बाद में कोई उसे edit करे। Electronic signature एक image है, इसलिए वह अपने-आप file को lock नहीं करती। अगर document sensitive है, तो उस पर password लगाएँ ताकि उसे बदला या ग़लत व्यक्ति द्वारा खोला न जा सके: भेजने से पहले उसे <a href="/hi/pdf-security/protect/">Protect PDF</a> tool से गुज़ारें। अगर आप नियमित रूप से signed contracts email करते हैं, तो हमारी guide <a href="/hi/blog/password-protect-pdf-before-emailing/">emailing से पहले PDF को password से protect करना</a> इसे सुरक्षित ढंग से करने का तरीका बताती है।</p>
+
+  <h2>FAQ</h2>
+
+  <h3>क्या electronic signature क़ानूनी रूप से मान्य है?</h3>
+  <p>ज़्यादातर देशों में electronic signature रोज़मर्रा के agreements के लिए क़ानूनी तौर पर मान्य है, और US ESIGN Act तथा EU eIDAS regulation जैसे क़ानून इसका समर्थन करते हैं। कुछ ख़ास documents (कुछ property, court, या notarized filings) को मज़बूत certified digital signature चाहिए। ऐसा होने पर document या माँगने वाला पक्ष आपको बता देगा।</p>
+
+  <h3>Electronic और digital signature में फ़र्क़ फिर से क्या है?</h3>
+  <p>Electronic signature मंशा दिखाती है, page पर आपके signature की तस्वीर। Digital signature पहचान और file के अपरिवर्तित होने का cryptographic सबूत जोड़ती है। रोज़मर्रा के forms को पहली चाहिए; regulated filings को कभी-कभी दूसरी।</p>
+
+  <h3>क्या मैं PDF को अपने phone पर sign कर सकता हूँ?</h3>
+  <p>हाँ, और अक्सर यही सबसे अच्छा तरीका है, क्योंकि आप उंगली से natural दिखने वाला signature draw कर सकते हैं। Tool को अपने phone browser में खोलें, draw करें, रखें, और download करें, किसी app की ज़रूरत नहीं।</p>
+
+  <h3>क्या sign करने से बाक़ी document बदल जाएगा?</h3>
+  <p>नहीं। आपका signature page पर एक element की तरह जोड़ा जाता है। मौजूदा text, layout, और बाक़ी pages बिलकुल वैसे ही रहते हैं जैसे थे।</p>
+
+  <h3>क्या मुझे कुछ print करना पड़ेगा?</h3>
+  <p>नहीं। Screen पर sign करने का मक़सद ही यही है कि print और scan पूरी तरह छूट जाए। आप PDF upload करते हैं, signature जोड़ते हैं, और तैयार file download कर लेते हैं।</p>
+
+  <h2>अभी try करें</h2>
+
+  <p>अगर कोई form आपके inbox में signature का इंतज़ार करता पड़ा है, तो <a href="/hi/pdf-edit/sign/">Sign PDF</a> tool खोलें, अपना signature जोड़ें, और एक मिनट में वापस भेज दें। और अगर signed copy गोपनीय है, तो उसे outbox से निकलने से पहले <a href="/hi/pdf-security/protect/">Protect PDF</a> से lock कर दें।</p>

@@ -1,0 +1,72 @@
+slug: sign-pdf-document-digitally
+status: published
+category_slug: how-to-guides
+relevant_tool: sign_pdf
+title_es: "Cómo firmar un PDF sin imprimirlo"
+meta_title_es: "Cómo firmar un PDF online gratis (sin imprimir) | Convertica"
+meta_description_es: "Te llega un formulario en PDF para firmar. Así puedes añadir tu firma online sin imprimir ni escanear, qué es realmente una firma digital y cuándo la necesitas."
+meta_keywords_es: "firmar pdf, cómo firmar un pdf, firmar pdf online, añadir firma a pdf, firma electrónica pdf, firma digital pdf, firmar pdf gratis"
+excerpt_es: "Un formulario aterriza en tu bandeja de entrada como PDF y necesita tu firma. Imprimirlo, firmarlo con bolígrafo y volver a escanearlo es el camino lento. Aquí verás cómo firmar un PDF en pantalla y la diferencia entre una firma dibujada y una firma digital de verdad."
+content_es: |
+  Un formulario aparece en tu bandeja de entrada como PDF: un contrato de alquiler, un consentimiento, una oferta de trabajo, un acuerdo. Necesita tu firma. La rutina de siempre es incómoda: imprimirlo, firmarlo con bolígrafo, volver a escanearlo y cruzar los dedos para que el escaneo salga derecho. Puedes saltarte todo eso y firmar el archivo directamente en pantalla. Esta guía te muestra cómo, y aclara el punto que casi todo el mundo malinterpreta sobre las "firmas digitales".
+
+  <h2>Dos cosas que se llaman "firma" y no son lo mismo</h2>
+
+  <p>Antes de firmar nada, conviene saber cuál de las dos necesitas de verdad, porque resuelven problemas distintos.</p>
+
+  <ul>
+    <li><strong>Una firma electrónica</strong> es una imagen de tu firma colocada sobre la página: escrita a máquina, dibujada con el ratón o el dedo, o subida como imagen. Muestra la intención de firmar y es lo que piden casi todos los formularios, contratos de arrendamiento o aprobaciones internas del día a día.</li>
+    <li><strong>Una firma digital</strong> es un sello criptográfico ligado a un certificado. No solo muestra tu nombre: demuestra matemáticamente quién firmó y que el archivo no ha cambiado desde entonces. Bancos, administraciones públicas y ciertos trámites legales exigen este tipo más fuerte.</li>
+  </ul>
+
+  <p>Para la inmensa mayoría de documentos que caen en tu bandeja de entrada, una firma electrónica es exactamente lo que se pide. Si un documento requiere específicamente una firma digital certificada, lo indicará, y normalmente te remitirá a un proveedor concreto o a un portal oficial.</p>
+
+  <h2>Firmar un PDF en pantalla (la forma de cada día)</h2>
+
+  <figure><img src="/static/blog/images/tool-sign-hero.jpg" alt="Herramienta Firmar PDF de Convertica con un documento listo para firmar" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre la herramienta <a href="/es/pdf-edit/sign/">Firmar PDF</a> y sube tu archivo.</li>
+    <li>Crea tu firma: escríbela y elige un estilo de caligrafía, dibújala con el ratón o el dedo, o sube una foto de tu firma real.</li>
+    <li>Colócala donde corresponda en la página, ajusta su tamaño y añade la fecha o tus iniciales si el formulario lo pide.</li>
+    <li>Descarga el PDF firmado. Está listo para reenviar y se abre igual en cualquier parte.</li>
+  </ol>
+
+  <figure><img src="/static/blog/images/tool-sign-options.jpg" alt="Opciones de firma: escribir, dibujar o subir en la herramienta Firmar PDF" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Todo el proceso lleva menos de un minuto, y el archivo subido se elimina del servidor tras un breve intervalo, algo que importa cuando el documento es un contrato y no un papel cualquiera.</p>
+
+  <h2>Cómo conseguir una firma limpia</h2>
+
+  <p>Unos pocos detalles hacen que una firma en pantalla se vea bien en lugar de torpe:</p>
+
+  <ul>
+    <li><strong>Dibujar en el móvil o la tableta gana al ratón.</strong> Un dedo o un lápiz óptico dan un trazo mucho más natural que arrastrar el puntero del ratón.</li>
+    <li><strong>Si subes una foto de tu firma,</strong> fírmala con tinta oscura sobre papel blanco liso y luego recórtala ajustada. Una imagen limpia y de alto contraste queda mucho mejor sobre la página.</li>
+    <li><strong>Ajusta el tamaño a la línea.</strong> Una firma enorme desparramada por el formulario queda mal. Redúcela para que se asiente con orden sobre la línea de firma.</li>
+  </ul>
+
+  <h2>Evita que el archivo firmado se pueda modificar</h2>
+
+  <p>Una vez firmado un documento, normalmente no quieres que nadie lo edite después. Una firma electrónica es una imagen, así que por sí sola no bloquea el archivo. Si el documento es sensible, añade una contraseña para que no pueda alterarse ni abrirlo la persona equivocada: pásalo por la herramienta <a href="/es/pdf-security/protect/">Proteger PDF</a> antes de enviarlo. Si envías contratos firmados por correo con frecuencia, nuestra guía sobre <a href="/es/blog/password-protect-pdf-before-emailing/">proteger con contraseña un PDF antes de enviarlo</a> explica cómo hacerlo de forma segura.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Es válida legalmente una firma electrónica?</h3>
+  <p>En la mayoría de los países la firma electrónica está reconocida legalmente para acuerdos cotidianos, y leyes como la ESIGN Act de Estados Unidos o el reglamento eIDAS de la Unión Europea lo respaldan. Algunos documentos concretos (ciertos trámites de propiedad, judiciales o notariales) exigen una firma digital certificada más fuerte. Cuando sea el caso, el propio documento o quien te lo pide te lo indicará.</p>
+
+  <h3>¿Cuál es otra vez la diferencia entre firma electrónica y firma digital?</h3>
+  <p>Una firma electrónica muestra la intención: una imagen de tu firma sobre la página. Una firma digital añade una prueba criptográfica de identidad y de que el archivo no ha cambiado. Los formularios del día a día necesitan la primera; los trámites regulados a veces necesitan la segunda.</p>
+
+  <h3>¿Puedo firmar un PDF desde el móvil?</h3>
+  <p>Sí, y a menudo es la mejor manera, porque puedes dibujar tu firma con el dedo y darle un aspecto natural. Abre la herramienta en el navegador del móvil, dibuja, coloca y descarga, sin necesidad de ninguna app.</p>
+
+  <h3>¿Firmar cambia el resto del documento?</h3>
+  <p>No. Tu firma se añade como un elemento sobre la página. El texto existente, la maquetación y las demás páginas quedan exactamente igual que estaban.</p>
+
+  <h3>¿Necesito imprimir algo?</h3>
+  <p>No. La idea de firmar en pantalla es saltarse por completo la impresión y el escaneo. Subes el PDF, añades tu firma y descargas un archivo terminado.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Si tienes un formulario esperando firma en tu bandeja de entrada, abre la herramienta <a href="/es/pdf-edit/sign/">Firmar PDF</a>, añade tu firma y reenvíalo en un minuto. Y si la copia firmada es confidencial, bloquéala con <a href="/es/pdf-security/protect/">Proteger PDF</a> antes de que salga de tu bandeja de salida.</p>

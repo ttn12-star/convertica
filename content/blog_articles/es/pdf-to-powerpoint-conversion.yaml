@@ -1,0 +1,74 @@
+slug: pdf-to-powerpoint-conversion
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_ppt
+title_es: "Cómo convertir un PDF de nuevo en un PowerPoint editable"
+meta_title_es: "PDF a PowerPoint: convierte a diapositivas editables gratis | Convertica"
+meta_description_es: "Te enviaron unas diapositivas en PDF y ahora tienes que editarlas. Así conviertes un PDF a PowerPoint para volver a editar las diapositivas, cuándo sale limpio y cómo arreglar el resto."
+meta_keywords_es: "pdf a powerpoint, convertir pdf a ppt, pdf a pptx, pdf a diapositivas, editar diapositivas pdf, pdf a presentación, convertir pdf a powerpoint gratis"
+excerpt_es: "Un compañero te manda una presentación en PDF y te pide que ajustes un par de diapositivas. Los PDF no se editan, así que lo necesitas de vuelta en PowerPoint. Aquí verás cómo convertirlo, cuándo el resultado sale limpio y qué hacer con las diapositivas que necesitan un retoque."
+content_es: |
+  Un compañero te pasa una presentación, pero llega como PDF, y ahora tienes que cambiar dos cifras y sustituir un logo. Los PDF están hechos para verse igual en todas partes, no para editarse, así que no puedes hacer clic en una diapositiva y ponerte a escribir. Convertir el PDF de nuevo a PowerPoint te devuelve diapositivas editables. Aquí verás cómo hacerlo, con una mirada honesta a cuándo el resultado sale limpio y cuándo necesita algo de arreglo.
+
+  <h2>Por qué un PDF no es editable de entrada</h2>
+
+  <p>Cuando alguien exporta una presentación de PowerPoint a PDF, las diapositivas se aplanan en páginas fijas. El texto, las formas y las imágenes quedan congelados en su sitio para que el archivo se vea idéntico en cualquier pantalla. Eso es estupendo para compartir y pésimo para editar. Una conversión de vuelta a PowerPoint intenta revertir ese aplanamiento: reconstruye cada página como una diapositiva y convierte los elementos congelados de nuevo en cuadros de texto e imágenes que puedes mover y cambiar.</p>
+
+  <h2>Un solo factor decide cómo de limpio será el resultado</h2>
+
+  <p>No todos los PDF se convierten igual, y todo depende de cómo se creó el PDF.</p>
+
+  <ul>
+    <li><strong>Un PDF exportado desde PowerPoint (o Keynote, o Google Slides)</strong> se convierte bien. El texto es texto real y seleccionable, así que vuelve como cuadros de texto editables y la maquetación se mantiene cerca del original.</li>
+    <li><strong>Un PDF escaneado o una foto de las diapositivas</strong> es una imagen. No hay texto real que recuperar, así que la conversión depende del OCR y el resultado necesita más limpieza. Cuenta con arreglar el formato a mano.</li>
+    <li><strong>Un PDF muy diseñado</strong> con fuentes personalizadas y maquetaciones complejas se convertirá, pero es posible que las fuentes cambien y los elementos se desplacen, porque el conversor solo puede reconstruir con lo que tiene disponible.</li>
+  </ul>
+
+  <p>La prueba rápida es la de siempre: intenta seleccionar una línea de texto en el PDF. Si se resalta, vas por buen camino.</p>
+
+  <h2>Convertir el PDF a PowerPoint</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-ppt.jpg" alt="Conversor de PDF a PowerPoint de Convertica con un archivo listo para convertir" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre el conversor <a href="/es/pdf-to-ppt/">PDF a PowerPoint</a> y sube tu archivo (hasta 25 MB).</li>
+    <li>Deja que lo procese. Cada página del PDF se convierte en una diapositiva.</li>
+    <li>Descarga el PPTX y ábrelo en PowerPoint, Keynote o Google Slides. Las diapositivas ya son editables.</li>
+  </ol>
+
+  <p>Los archivos subidos se eliminan del servidor tras un breve intervalo, algo que conviene saber si la presentación es interna o para un cliente.</p>
+
+  <h2>Arreglar las diapositivas después de la conversión</h2>
+
+  <p>Incluso una buena conversión necesita a veces un repaso ligero, sobre todo en presentaciones muy diseñadas:</p>
+
+  <ul>
+    <li><strong>Cambios de fuente.</strong> Si una fuente personalizada no estaba incrustada, PowerPoint la sustituye por la más parecida. Vuelve a aplicar la fuente de tu marca desde el patrón de diapositivas y se propaga a todas.</li>
+    <li><strong>Elementos desplazados.</strong> Un logo o un cuadro de texto puede quedar unos píxeles fuera de sitio. Arrástralo de vuelta a su lugar: el contenido está todo ahí, solo hay que alinearlo.</li>
+    <li><strong>Texto como imagen.</strong> En presentaciones escaneadas, parte del texto puede volver como imagen en lugar de texto editable. Vuelve a escribir encima los fragmentos que necesites cambiar.</li>
+  </ul>
+
+  <h2>Cuándo no deberías convertir</h2>
+
+  <p>Si solo necesitas mostrar las diapositivas, no editarlas, convertir es trabajo innecesario. Un PDF se presenta bien por sí solo. Y si solo quieres meter una diapositiva en otro documento como imagen, convertir el PDF a imágenes con la herramienta <a href="/es/pdf-to-jpg/">PDF a JPG</a> es más sencillo que dar toda la vuelta por PowerPoint. Convierte a PowerPoint solo cuando de verdad necesitas editar.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Volverán las animaciones y las transiciones?</h3>
+  <p>No. Un PDF es un conjunto de páginas estáticas sin datos de movimiento, así que las animaciones y transiciones no se pueden recuperar: nunca se guardaron. Obtienes diapositivas estáticas editables, que es lo que necesita la mayoría de las ediciones. Si las animaciones importan, pídele al remitente el PPTX original.</p>
+
+  <h3>¿Puedo convertir una presentación escaneada a PowerPoint?</h3>
+  <p>Sí, el conversor usa OCR para leer el texto, pero la precisión depende de la calidad del escaneo y el resultado necesita una revisión cuidadosa. Una presentación exportada directamente desde PowerPoint siempre se convertirá más limpia que un escaneo.</p>
+
+  <h3>¿Por qué cambiaron mis fuentes?</h3>
+  <p>Si la fuente original no estaba incrustada en el PDF, no está en el archivo para recuperarla, así que PowerPoint sustituye por una parecida. Volver a aplicar tu fuente en PowerPoint lo arregla enseguida.</p>
+
+  <h3>¿Hay un límite de tamaño de archivo?</h3>
+  <p>Un solo archivo puede pesar hasta 25 MB, lo que cubre la mayoría de las presentaciones. Si un PDF con muchas imágenes pesa más, comprimirlo primero suele dejarlo por debajo del límite sin perjudicar las diapositivas.</p>
+
+  <h3>¿Necesito tener PowerPoint instalado?</h3>
+  <p>Para convertir, no. La conversión se ejecuta en tu navegador y te da un archivo PPTX, que se abre en PowerPoint, Keynote, Google Slides o LibreOffice Impress.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Si una presentación que necesitas editar está atascada como PDF, súbela al conversor <a href="/es/pdf-to-ppt/">PDF a PowerPoint</a> y abre las diapositivas editables que te devuelve. Y cuando termines y necesites compartirla otra vez como archivo fijo, <a href="/es/ppt-to-pdf/">PowerPoint a PDF</a> cierra el círculo.</p>
