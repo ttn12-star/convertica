@@ -1,0 +1,74 @@
+slug: pdf-to-powerpoint-conversion
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_ppt
+title_hi: "PDF को वापस Editable PowerPoint में कैसे बदलें"
+meta_title_hi: "PDF to PowerPoint: Free में Editable Slides पाएँ | Convertica"
+meta_description_hi: "किसी ने slides PDF में भेज दीं और अब आपको उन्हें edit करना है। जानें PDF ko PowerPoint me convert kaise kare ताकि slides फिर editable हो जाएँ, यह कब साफ़ काम करता है, और बाक़ी को कैसे ठीक करें।"
+meta_keywords_hi: "pdf to powerpoint, pdf ko powerpoint me convert kare, convert pdf to ppt, pdf to pptx, pdf से slides, pdf slides edit करें, convert pdf to powerpoint free"
+excerpt_hi: "कोई colleague deck को PDF की तरह भेजता है और दो slides ठीक करने को कहता है। PDFs editable नहीं होतीं, इसलिए आपको वह वापस PowerPoint में चाहिए। यहाँ जानें उसे कैसे convert करें, result कब साफ़ आता है, और जिन slides को थोड़ी मरम्मत चाहिए उनका क्या करें।"
+content_hi: |
+  कोई colleague एक slide deck भेजता है, पर वह PDF की तरह आती है, और अब आपको दो numbers बदलने और एक logo swap करना है। PDFs इसलिए बनी हैं कि हर जगह एक जैसी दिखें, edit होने के लिए नहीं, इसलिए आप बस किसी slide पर click करके type नहीं कर सकते। PDF को वापस PowerPoint में convert करने से आपको फिर editable slides मिल जाती हैं। यहाँ जानें यह कैसे करें, और साथ में एक ईमानदार नज़र कि result कब साफ़ आता है और कब उसे थोड़ा सँवारना पड़ता है।
+
+  <h2>PDF पहली जगह editable क्यों नहीं होती</h2>
+
+  <p>जब कोई PowerPoint deck को PDF में export करता है, तो slides fixed pages में flatten हो जाती हैं। Text, shapes, और images अपनी जगह जम जाते हैं ताकि file किसी भी screen पर एक जैसी दिखे। यह sharing के लिए बढ़िया और editing के लिए बेकार है। PowerPoint में वापस conversion उसी flattening को उलटने की कोशिश करता है: यह हर page को एक slide की तरह फिर बनाता है और जमे हुए elements को वापस उन text boxes तथा images में बदलता है जिन्हें आप हिला और बदल सकते हैं।</p>
+
+  <h2>एक ही चीज़ तय करती है कि result कितना साफ़ होगा</h2>
+
+  <p>सभी PDFs एक जैसी convert नहीं होतीं, और बात इस पर आती है कि PDF बनी कैसे थी।</p>
+
+  <ul>
+    <li><strong>PowerPoint (या Keynote, या Google Slides) से export की गई PDF</strong> अच्छी convert होती है। Text असली, selectable text होता है, इसलिए वह editable text boxes के रूप में वापस आता है और layout original के क़रीब रहता है।</li>
+    <li><strong>Scanned PDF या slides की photo</strong> एक image है। recover करने लायक कोई असली text नहीं होता, इसलिए conversion OCR पर टिकता है और result को ज़्यादा सफ़ाई चाहिए। formatting को हाथ से ठीक करने की उम्मीद रखें।</li>
+    <li><strong>भारी design वाली PDF</strong>, custom fonts और पेचीदा layouts के साथ, convert तो होगी, पर fonts बदल सकते हैं और elements खिसक सकते हैं, क्योंकि converter जो उपलब्ध है उसी से दोबारा बना सकता है।</li>
+  </ul>
+
+  <p>झटपट test हमेशा वही है: PDF में text की एक line select करने की कोशिश करें। अगर वह highlight होती है, तो आप अच्छी हालत में हैं।</p>
+
+  <h2>PDF को PowerPoint में convert करें</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-ppt.jpg" alt="Convertica PDF to PowerPoint converter, convert करने के लिए तैयार file के साथ" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li><a href="/hi/pdf-to-ppt/">PDF to PowerPoint</a> converter खोलें और अपनी file upload करें (25 MB तक)।</li>
+    <li>उसे process होने दें। हर PDF page एक slide बन जाता है।</li>
+    <li>PPTX download करें और उसे PowerPoint, Keynote, या Google Slides में खोलें। Slides अब editable हैं।</li>
+  </ol>
+
+  <p>Uploaded files कुछ देर बाद server से हटा दी जाती हैं, जो जानने लायक है अगर deck कोई internal या client presentation हो।</p>
+
+  <h2>Conversion के बाद slides को ठीक करना</h2>
+
+  <p>अच्छी conversion को भी कभी-कभी हल्की मरम्मत चाहिए, ख़ासकर design-heavy decks पर:</p>
+
+  <ul>
+    <li><strong>Font swaps।</strong> अगर कोई custom font embed नहीं था, तो PowerPoint सबसे मिलता-जुलता match रख देता है। slide master से अपना brand font दोबारा लगाएँ और वह पूरे deck में बह जाता है।</li>
+    <li><strong>खिसके हुए elements।</strong> कोई logo या text box कुछ pixels इधर-उधर बैठ सकता है। उसे वापस अपनी जगह drag करें; content पूरा वहीं है, बस align करना है।</li>
+    <li><strong>Image के रूप में text।</strong> Scanned decks पर कुछ text editable text की जगह तस्वीर के रूप में वापस आ सकता है। जो हिस्सा बदलना है उसे ऊपर से दोबारा type कर दें।</li>
+  </ul>
+
+  <h2>कब convert करना ही नहीं चाहिए</h2>
+
+  <p>अगर आपको slides सिर्फ़ दिखानी हैं, edit नहीं करनी, तो convert करना बेकार का काम है। PDF अपने-आप साफ़ present होती है। और अगर आप किसी एक slide को तस्वीर की तरह किसी दूसरे document में डालना चाहते हैं, तो PDF को <a href="/hi/pdf-to-jpg/">PDF to JPG</a> tool से images में convert करना पूरे PowerPoint चक्कर से आसान है। PowerPoint में तभी convert करें जब आपको सच में edit करना हो।</p>
+
+  <h2>FAQ</h2>
+
+  <h3>क्या animations और transitions वापस आएँगे?</h3>
+  <p>नहीं। PDF static pages का एक सेट है जिसमें कोई motion data नहीं होता, इसलिए animations और transitions recover नहीं हो सकते, वे कभी store ही नहीं हुए थे। आपको editable static slides मिलती हैं, और ज़्यादातर edits को यही चाहिए। अगर animations ज़रूरी हैं, तो भेजने वाले से original PPTX माँग लें।</p>
+
+  <h3>क्या मैं scanned deck को PowerPoint में convert कर सकता हूँ?</h3>
+  <p>हाँ, converter text पढ़ने के लिए OCR use करता है, पर accuracy scan quality पर निर्भर करती है और result को ध्यान से review करना पड़ता है। सीधे PowerPoint से export किया deck हमेशा किसी scan से ज़्यादा साफ़ convert होगा।</p>
+
+  <h3>मेरे fonts क्यों बदल गए?</h3>
+  <p>अगर original font PDF में embed नहीं था, तो वह file में है ही नहीं कि recover हो, इसलिए PowerPoint कोई मिलता-जुलता font रख देता है। PowerPoint में अपना font दोबारा लगाने से यह झटपट ठीक हो जाता है।</p>
+
+  <h3>क्या file size की कोई limit है?</h3>
+  <p>एक file 25 MB तक हो सकती है, जो ज़्यादातर decks को cover कर लेती है। अगर कोई image-heavy PDF इससे बड़ी है, तो उसे पहले compress करना आमतौर पर slides को नुक़सान पहुँचाए बिना उसे limit के नीचे ले आता है।</p>
+
+  <h3>क्या मेरे पास PowerPoint installed होना चाहिए?</h3>
+  <p>Convert करने के लिए नहीं। Conversion आपके browser में चलता है और आपको एक PPTX file देता है, जो PowerPoint, Keynote, Google Slides, या LibreOffice Impress में खुलती है।</p>
+
+  <h2>अभी try करें</h2>
+
+  <p>अगर कोई deck जिसे आपको edit करना है PDF में फँसा है, तो उसे <a href="/hi/pdf-to-ppt/">PDF to PowerPoint</a> converter में upload करें और वापस आने वाली editable slides खोलें। और जब काम पूरा हो जाए और उसे फिर एक fixed file की तरह share करना हो, तो <a href="/hi/ppt-to-pdf/">PowerPoint to PDF</a> चक्र पूरा कर देता है।</p>
