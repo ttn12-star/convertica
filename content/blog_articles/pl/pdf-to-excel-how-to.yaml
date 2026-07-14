@@ -1,0 +1,76 @@
+slug: pdf-to-excel-how-to
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_excel
+title_pl: "Jak przekonwertować PDF na Excel i odzyskać swoje tabele"
+meta_title_pl: "PDF na Excel: konwersja tabel do arkusza za darmo | Convertica"
+meta_description_pl: "Kopiowanie tabeli z PDF zamienia ją w bałagan. Oto jak przekonwertować PDF na Excel, żeby wiersze i kolumny trafiły do prawdziwych komórek, plus jak radzić sobie ze skanami i rozjechanymi kolumnami."
+meta_keywords_pl: "pdf na excel, konwersja pdf na excel, pdf na xlsx, wyodrębnij tabelę z pdf, tabela z pdf do excela, pdf na arkusz, pdf na csv, skan pdf na excel"
+excerpt_pl: "Potrzebujesz liczb z PDF w arkuszu, ale kopiuj-wklej wrzuca wszystko do jednej rozsypanej kolumny. Oto jak przekonwertować PDF na Excel, żeby wiersze i kolumny wylądowały tam, gdzie ich miejsce, łącznie z tym, co zrobić ze skanami."
+content_pl: |
+  Dostawca przysyła cennik jako PDF. Bank eksportuje wyciągi w PDF. Do skrzynki wpada raport z dokładnie tą tabelą, której potrzebujesz, zamkniętą w dokumencie, którego nie da się edytować. Zaznaczasz tabelę, kopiujesz ją, wklejasz do Excela, a wszystko zapada się w jedną kolumnę zlepionego tekstu. Poprawna konwersja PDF-a wkłada te wiersze i kolumny z powrotem do prawdziwych komórek. Oto jak to zrobić i jak poradzić sobie z plikami, które się bronią.
+
+  <h2>Dlaczego kopiuj-wklej zamienia tabelę w bałagan</h2>
+
+  <p>PDF tak naprawdę nie przechowuje tabeli. Przechowuje tekst w stałych miejscach na stronie oraz linie narysowane wokół niego, które twoje oko czyta jako siatkę. Gdy kopiujesz, zgarniasz tekst w kolejności czytania, ale tracisz siatkę, więc kolumny zlewają się w jedno, a liczby ustawiają się przy złych etykietach. Poprawna konwersja działa inaczej: patrzy, gdzie leży każda wartość, odtwarza kolumny i buduje na nowo prawdziwy arkusz, w którym każda liczba trafia do własnej komórki.</p>
+
+  <h2>Najpierw sprawdź, jaki masz PDF</h2>
+
+  <p>Ta jedna kontrola przesądza o wszystkim, co dalej, więc warto poświęcić na nią dziesięć sekund. Otwórz PDF i spróbuj kursorem zaznaczyć pojedynczą liczbę.</p>
+
+  <ul>
+    <li><strong>Jeśli tekst się podświetla,</strong> masz PDF natywny. Dane to prawdziwy, zaznaczalny tekst, a konwersja będzie czysta i dokładna.</li>
+    <li><strong>Jeśli nic się nie podświetla, a strona zachowuje się jak obrazek,</strong> masz PDF ze skanu. Tabela jest obrazem, więc liczby trzeba najpierw odczytać przez OCR (optyczne rozpoznawanie znaków), zanim staną się komórkami. To wciąż działa, wymaga tylko dodatkowego kroku rozpoznawania i uważniejszego spojrzenia na wynik.</li>
+  </ul>
+
+  <h2>Przekonwertuj PDF na Excel</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-excel.jpg" alt="Konwerter PDF na Excel w Convertica z dokumentem gotowym do konwersji" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Otwórz konwerter <a href="/pl/pdf-to-excel/">PDF na Excel</a> i wgraj swój plik (do 25 MB).</li>
+    <li>Poczekaj, aż go przetworzy. Przy PDF-ie natywnym idzie szybko. Przy skanie najpierw odczytuje tekst, więc trwa to trochę dłużej.</li>
+    <li>Pobierz plik XLSX i otwórz go w Excelu, Arkuszach Google lub LibreOffice Calc. Twoje wiersze i kolumny są teraz edytowalnymi komórkami, które możesz sortować, filtrować i sumować.</li>
+  </ol>
+
+  <p>Wgrane pliki są usuwane z serwera po krótkim czasie, co ma znaczenie, gdy tabela to wyciąg bankowy albo lista płac.</p>
+
+  <h2>Porządki po konwersji</h2>
+
+  <p>Nawet dobra konwersja czasem wymaga lekkiej ręki, zwłaszcza przy gęstych lub skanowanych tabelach. Kilka szybkich poprawek załatwia prawie wszystko:</p>
+
+  <ul>
+    <li><strong>Sklejone kolumny.</strong> Jeśli dwie kolumny wylądowały w jednej, zaznacz ją i użyj w Excelu Dane, a potem Tekst jako kolumny, żeby rozdzielić je z powrotem po spacji lub przecinku.</li>
+    <li><strong>Liczby zapisane jako tekst.</strong> Jeśli kolumna nie chce się sumować, Excel traktuje ją jak tekst. Zaznacz ją i użyj małej ikony ostrzeżenia albo Dane, a potem formatu liczbowego, żeby zamienić ją z powrotem na prawdziwe liczby.</li>
+    <li><strong>Dodatkowy wiersz nagłówka.</strong> Powtórzone nagłówki stron potrafią wcisnąć się w tabele wielostronicowe. Usuń zbędne wiersze i gotowe.</li>
+    <li><strong>Pliki skanowane.</strong> Zawsze wyrywkowo sprawdzaj konwersję ze skanu. OCR może odczytać rozmazaną ósemkę jako trójkę, więc przejrzyj wzrokiem każdą kolumnę, zanim zaufasz sumom.</li>
+  </ul>
+
+  <h2>XLSX czy CSV: co wybrać?</h2>
+
+  <p>XLSX to właściwy domyślny wybór. Zachowuje formatowanie, wiele arkuszy i wszystko, co typowe dla Excela, i to jego większość osób ma na myśli, mówiąc „arkusz”. Po CSV sięgaj tylko wtedy, gdy importujesz dane gdzie indziej, do programu księgowego, bazy danych czy aplikacji webowej, które oczekują zwykłego pliku z wartościami rozdzielonymi przecinkami. CSV jest lżejszy i wszędzie akceptowany, ale trzyma same surowe wartości, bez formatowania i formuł. Jeśli sam otwierasz wynik w Excelu, zostań przy XLSX.</p>
+
+  <h2>Prawdziwy przykład: zamiana wyciągów w coś, co da się zsumować</h2>
+
+  <p>Załóżmy, że prowadzisz księgowość małej firmy, a każdy wyciąg od dostawcy przychodzi jako PDF. Przepisywanie ich jest wolne i prosi się o literówki, a jedna błędna cyfra rozjeżdża całe uzgodnienie. Konwersja każdego wyciągu na Excel daje ci zamiast tego kolumny, które możesz sumować, filtrować po dacie i wklejać wprost do swojego arkusza księgowego. To, co było godziną uważnego przepisywania, staje się paroma minutami konwersji i szybkim sprawdzeniem. Jeśli twój obieg pracy biegnie też w drugą stronę i musisz wysłać arkusz jako stały dokument, konwerter <a href="/pl/excel-to-pdf/">Excel na PDF</a> zamyka pętlę.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Czy moje formuły przetrwają konwersję?</h3>
+  <p>Nie i tak ma być. PDF trzyma tylko wyliczone wartości, a nie formuły, które za nimi stoją, więc z powrotem dostajesz liczby w takiej postaci, w jakiej się wyświetlały. Jeśli potrzebujesz żywych formuł, odbuduj je w Excelu na przekonwertowanych danych, co i tak jest znacznie szybsze niż przepisywanie wszystkiego.</p>
+
+  <h3>Czy mogę przekonwertować skan PDF na Excel?</h3>
+  <p>Tak. Konwerter odczytuje tekst przez OCR i odbudowuje tabelę z tego, co rozpozna. Dokładność zależy od tego, jak czysty jest skan, więc ostry, prosty skan konwertuje się dobrze, a blady lub przekrzywiony wymaga więcej sprawdzania. Zawsze przejrzyj wynik ze skanu, zanim zaczniesz polegać na liczbach.</p>
+
+  <h3>A co, jeśli PDF ma kilka tabel albo wiele stron?</h3>
+  <p>Tabele wielostronicowe konwertują się bez problemu i ciągną się dalej w arkuszu. Gdy dokument mieści kilka różnych tabel, przejrzyj wynik i rozdziel je na osobne arkusze lub zakresy, jeśli chcesz trzymać je oddzielnie.</p>
+
+  <h3>Czy jest limit rozmiaru pliku?</h3>
+  <p>Pojedynczy plik może mieć do 25 MB, co obejmuje większość wyciągów i raportów. Jeśli skan PDF jest większy, wcześniejsza kompresja zwykle sprowadza go poniżej limitu bez szkody dla tekstu.</p>
+
+  <h3>Czy muszę coś instalować?</h3>
+  <p>Nie. Konwersja działa w twojej przeglądarce, więc nie ma czego pobierać ani konfigurować. Potrzebujesz tylko PDF-a i programu do arkuszy, którego i tak używasz, żeby otworzyć wynik.</p>
+
+  <h2>Wypróbuj teraz</h2>
+
+  <p>Jeśli tabela, której potrzebujesz, utknęła właśnie w jakimś PDF, wgraj go do konwertera <a href="/pl/pdf-to-excel/">PDF na Excel</a> i otwórz arkusz, który wróci. A gdy kiedyś przyda ci się droga odwrotna, zamiana gotowego arkusza w schludny, nieedytowalny dokument, <a href="/pl/excel-to-pdf/">Excel na PDF</a> ogarnia tę stronę równie szybko.</p>

@@ -1,0 +1,76 @@
+slug: pdf-to-excel-how-to
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_excel
+title_hi: "PDF को Excel में कैसे Convert करें और अपनी Tables वापस पाएँ"
+meta_title_hi: "PDF to Excel: Tables को Spreadsheet में बदलें Free | Convertica"
+meta_description_hi: "PDF से table copy-paste करते ही सब गड्डमड्ड हो जाता है। जानें PDF ko Excel me convert kaise kare ताकि rows और columns असली cells में उतरें, plus scanned files और बिगड़े columns का fix।"
+meta_keywords_hi: "pdf to excel, pdf ko excel me convert kare, pdf to xlsx, extract table from pdf, pdf table to excel, pdf to spreadsheet, pdf to csv, scanned pdf to excel"
+excerpt_hi: "आपको PDF के numbers spreadsheet में चाहिए, पर copy-paste सब कुछ एक बेतरतीब column में उड़ेल देता है। यहाँ जानें PDF ko Excel me convert kaise kare ताकि आपके rows और columns वहीं पहुँचें जहाँ उन्हें होना चाहिए, scanned files का क्या करें यह भी।"
+content_hi: |
+  एक supplier price list PDF के रूप में भेजता है। आपका bank statements PDF में export करता है। एक report आपके inbox में आती है जिसमें ठीक वही table है जो आपको चाहिए, पर एक ऐसे document के अंदर बंद जिसे आप edit नहीं कर सकते। आप table select करते हैं, copy करते हैं, Excel में paste करते हैं, और सब कुछ एक-दूसरे से जुड़े text के एक अकेले column में ढह जाता है। PDF को ठीक से convert करना उन rows और columns को वापस असली cells में डाल देता है। यहाँ जानें यह कैसे करें, और जो files पलटकर लड़ती हैं उन्हें कैसे संभालें।
+
+  <h2>Copy-paste किसी table को गड़बड़ में क्यों बदल देता है</h2>
+
+  <p>एक PDF दरअसल table store करती ही नहीं है। वह page पर fixed positions पर text store करती है, साथ में उनके इर्द-गिर्द खिंची lines, जिन्हें आपकी आँख एक grid की तरह पढ़ती है। जब आप copy करते हैं, तो text reading order में पकड़ में आ जाता है पर grid खो जाती है, इसलिए columns एक-दूसरे में घुल जाते हैं और numbers ग़लत labels के साथ line में लग जाते हैं। एक सही conversion अलग तरह काम करती है: वह देखती है कि हर value कहाँ बैठी है, columns को दोबारा बनाती है, और एक असली spreadsheet फिर से खड़ा करती है जहाँ हर number अपनी ख़ुद की cell में उतरता है।</p>
+
+  <h2>पहले जाँचें कि आपके पास किस तरह की PDF है</h2>
+
+  <p>यह एक जाँच आगे की सारी बातें तय कर देती है, इसलिए इस पर दस seconds लगाना सही है। PDF खोलें और अपने cursor से कोई एक number select करने की कोशिश करें।</p>
+
+  <ul>
+    <li><strong>अगर text highlight होता है,</strong> तो आपके पास native PDF है। Data असली, selectable text है, और conversion साफ़ व accurate होगी।</li>
+    <li><strong>अगर कुछ highlight नहीं होता और page किसी picture की तरह behave करता है,</strong> तो आपके पास scanned PDF है। Table एक image है, इसलिए numbers को cells बनने से पहले OCR (optical character recognition) से पढ़ना पड़ता है। यह फिर भी काम करता है, बस इसमें recognition का एक extra step और result पर थोड़ी और नज़र चाहिए।</li>
+  </ul>
+
+  <h2>PDF को Excel में convert करें</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-excel.jpg" alt="Convertica PDF to Excel converter, convert के लिए तैयार एक document के साथ" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li><a href="/hi/pdf-to-excel/">PDF to Excel</a> converter खोलें और अपनी file upload करें (25 MB तक)।</li>
+    <li>उसे process होने दें। Native PDF के लिए यह जल्दी होता है। Scanned के लिए वह पहले text पढ़ता है, जिसमें थोड़ा और वक़्त लगता है।</li>
+    <li>XLSX file download करें और उसे Excel, Google Sheets, या LibreOffice Calc में खोलें। आपके rows और columns अब editable cells हैं जिन्हें आप sort, filter, और total कर सकते हैं।</li>
+  </ol>
+
+  <p>आपकी upload की गई files थोड़ी देर बाद server से हटा दी जाती हैं, जो तब मायने रखता है जब सवाल में मौजूद table कोई bank statement या payroll report हो।</p>
+
+  <h2>Conversion के बाद सफ़ाई</h2>
+
+  <p>एक अच्छी conversion को भी कभी-कभी हल्के हाथ की ज़रूरत पड़ती है, ख़ासकर घनी या scanned tables पर। कुछ झटपट fixes लगभग हर चीज़ संभाल लेते हैं:</p>
+
+  <ul>
+    <li><strong>जुड़े हुए columns।</strong> अगर दो columns एक में उतर गए, तो उसे select करें और Excel के Data, फिर Text to Columns से उन्हें space या comma पर वापस अलग कर दें।</li>
+    <li><strong>Text की तरह store हुए numbers।</strong> अगर कोई column sum नहीं होता, तो Excel उसे text मान रहा है। उसे select करें, और छोटे warning icon या Data, फिर number format से उन्हें वापस असली numbers में बदल दें।</li>
+    <li><strong>एक extra header row।</strong> Multi-page tables में दोहराए गए page headers अंदर घुस सकते हैं। भटकी हुई rows delete करें और काम हो गया।</li>
+    <li><strong>Scanned files।</strong> Scanned conversion को हमेशा spot-check करें। OCR किसी धुँधले 8 को 3 पढ़ सकता है, इसलिए totals पर भरोसा करने से पहले हर column पर नज़र डाल लें।</li>
+  </ul>
+
+  <h2>XLSX या CSV: कौन सा चुनें?</h2>
+
+  <p>XLSX सही default है। यह formatting, कई sheets, और Excel से जुड़ी हर चीज़ रखता है, और spreadsheet से ज़्यादातर लोगों का यही मतलब होता है। CSV की तरफ़ सिर्फ़ तब जाएँ जब आप data कहीं और import कर रहे हों, कोई accounting package, database, या web app, जो एक सादा comma-separated file की उम्मीद करता है। CSV हल्का और सब जगह स्वीकार्य है, पर उसमें सिर्फ़ raw values होती हैं, न कोई formatting न formulas। अगर आप result को ख़ुद Excel में खोल रहे हैं, तो XLSX पर ही रहें।</p>
+
+  <h2>एक असली उदाहरण: statements को ऐसी चीज़ में बदलना जिसे आप total कर सकें</h2>
+
+  <p>मान लीजिए आप किसी छोटे business के books संभालते हैं और हर supplier statement PDF के रूप में आता है। उन्हें दोबारा type करना धीमा है और typos को न्योता देता है, और एक ग़लत digit पूरी reconciliation बिगाड़ देती है। इसके बजाय हर statement को Excel में convert करना आपको ऐसे columns देता है जिन्हें आप sum कर सकते हैं, date से filter कर सकते हैं, और सीधे अपनी accounting sheet में paste कर सकते हैं। जो एक घंटे की सावधान typing थी, वह कुछ मिनटों की conversion और एक झटपट जाँच बन जाती है। अगर आपका workflow उल्टी तरफ़ भी चलता है और आपको कोई sheet एक fixed document के रूप में भेजनी हो, तो <a href="/hi/excel-to-pdf/">Excel to PDF</a> converter इस loop को पूरा कर देता है।</p>
+
+  <h2>FAQ</h2>
+
+  <h3>क्या मेरे formulas conversion में बचेंगे?</h3>
+  <p>नहीं, और यह अपेक्षित है। एक PDF सिर्फ़ calculated values रखती है, उनके पीछे के formulas नहीं, इसलिए आपको वापस numbers ही मिलते हैं जैसे वे दिखते थे। अगर आपको live formulas चाहिए, तो converted data के ऊपर उन्हें Excel में दोबारा बना लें, जो फिर भी सब कुछ retype करने से कहीं तेज़ है।</p>
+
+  <h3>क्या मैं scanned PDF को Excel में convert कर सकता हूँ?</h3>
+  <p>हाँ। Converter OCR से text पढ़ता है और जो पहचानता है उससे table दोबारा खड़ा करता है। Accuracy इस पर निर्भर करती है कि scan कितना साफ़ है, इसलिए एक sharp, सीधा scan अच्छे से convert होता है जबकि धुँधले या तिरछे scan को ज़्यादा जाँच चाहिए। figures पर भरोसा करने से पहले scanned result को हमेशा review करें।</p>
+
+  <h3>अगर PDF में कई tables या कई pages हों तो?</h3>
+  <p>Multi-page tables ठीक से convert होती हैं और sheet पर आगे तक चलती रहती हैं। जब किसी document में कई अलग tables हों, तो output review करें और अगर उन्हें अलग रखना है तो अलग sheets या ranges में बाँट दें।</p>
+
+  <h3>क्या file size की कोई limit है?</h3>
+  <p>एक अकेली file 25 MB तक हो सकती है, जो ज़्यादातर statements और reports को कवर कर लेता है। अगर कोई scanned PDF उससे बड़ी है, तो उसे पहले compress करना आमतौर पर text को नुक़सान पहुँचाए बिना उसे limit के नीचे ले आता है।</p>
+
+  <h3>क्या मुझे कुछ install करना पड़ेगा?</h3>
+  <p>नहीं। Conversion आपके browser में चलती है, इसलिए न कुछ download करना है न set up। आपको बस PDF चाहिए और वह spreadsheet program जो आप result खोलने के लिए पहले से use करते हैं।</p>
+
+  <h2>अभी try करें</h2>
+
+  <p>अगर आपको चाहिए कोई table अभी किसी PDF के अंदर फँसा है, तो उसे <a href="/hi/pdf-to-excel/">PDF to Excel</a> converter में upload करें और जो spreadsheet वापस आए उसे खोलें। और अगर आपको कभी उल्टा चाहिए, यानी किसी तैयार sheet को एक साफ़-सुथरे, न बदले जा सकने वाले document में बदलना, तो <a href="/hi/excel-to-pdf/">Excel to PDF</a> उस तरफ़ को भी उतनी ही जल्दी संभाल देता है।</p>

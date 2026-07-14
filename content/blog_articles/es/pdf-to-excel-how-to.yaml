@@ -1,0 +1,76 @@
+slug: pdf-to-excel-how-to
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_excel
+title_es: "Cómo convertir un PDF a Excel y recuperar tus tablas"
+meta_title_es: "PDF a Excel: convertir tablas a una hoja de cálculo gratis | Convertica"
+meta_description_es: "Copiar y pegar una tabla desde un PDF la convierte en un revoltijo. Cómo convertir un PDF a Excel para que las filas y columnas caigan en celdas reales, más cómo arreglar escaneos y columnas revueltas."
+meta_keywords_es: "pdf a excel, convertir pdf a excel, pdf a xlsx, extraer tablas de un pdf, tabla de pdf a excel, pdf a hoja de cálculo, pdf a csv, pdf escaneado a excel"
+excerpt_es: "Necesitas los números de un PDF en una hoja de cálculo, pero copiar y pegar lo vuelca todo en una columna revuelta. Así se convierte un PDF a Excel para que tus filas y columnas acaben donde deben, incluido qué hacer con los archivos escaneados."
+content_es: |
+  Un proveedor te manda una lista de precios en PDF. Tu banco exporta los extractos como PDF. Un informe llega a tu bandeja de entrada con justo la tabla que necesitas, encerrada en un documento que no puedes editar. Seleccionas la tabla, la copias, la pegas en Excel y todo se derrumba en una sola columna de texto pegado. Convertir el PDF como es debido devuelve esas filas y columnas a celdas reales. Aquí tienes cómo hacerlo, y cómo lidiar con los archivos que se resisten.
+
+  <h2>Por qué copiar y pegar convierte una tabla en un caos</h2>
+
+  <p>Un PDF en realidad no guarda una tabla. Guarda texto en posiciones fijas de la página, más líneas dibujadas alrededor que tu ojo lee como una cuadrícula. Cuando copias, tomas el texto en orden de lectura pero pierdes la cuadrícula, así que las columnas se funden unas con otras y los números quedan alineados con las etiquetas equivocadas. Una conversión de verdad funciona distinto: mira dónde se sitúa cada valor, reconstruye las columnas y rearma una hoja de cálculo real donde cada número cae en su propia celda.</p>
+
+  <h2>Primero, comprueba qué tipo de PDF tienes</h2>
+
+  <p>Esta única comprobación decide todo lo que viene después, así que vale diez segundos. Abre el PDF e intenta seleccionar un solo número con el cursor.</p>
+
+  <ul>
+    <li><strong>Si el texto se resalta,</strong> tienes un PDF nativo. Los datos son texto real y seleccionable, y la conversión será limpia y precisa.</li>
+    <li><strong>Si no se resalta nada y la página se comporta como una imagen,</strong> tienes un PDF escaneado. La tabla es una imagen, así que los números hay que leerlos con OCR (reconocimiento óptico de caracteres) antes de que puedan convertirse en celdas. Eso también funciona, solo que necesita el paso extra de reconocimiento y una mirada más atenta al resultado.</li>
+  </ul>
+
+  <h2>Convierte el PDF a Excel</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-excel.jpg" alt="Conversor PDF a Excel de Convertica con un documento listo para convertir" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre el conversor <a href="/es/pdf-to-excel/">PDF a Excel</a> y sube tu archivo (hasta 25 MB).</li>
+    <li>Deja que lo procese. Para un PDF nativo es rápido. Para uno escaneado, primero lee el texto, lo que lleva algo más de tiempo.</li>
+    <li>Descarga el archivo XLSX y ábrelo en Excel, Google Sheets o LibreOffice Calc. Tus filas y columnas son ahora celdas editables que puedes ordenar, filtrar y sumar.</li>
+  </ol>
+
+  <p>Los archivos que subes se eliminan del servidor tras un intervalo corto, algo que importa cuando la tabla en cuestión es un extracto bancario o una nómina.</p>
+
+  <h2>La limpieza después de la conversión</h2>
+
+  <p>Incluso una buena conversión a veces necesita un retoque ligero, sobre todo en tablas densas o escaneadas. Unos pocos arreglos rápidos resuelven casi todo:</p>
+
+  <ul>
+    <li><strong>Columnas fusionadas.</strong> Si dos columnas cayeron en una, selecciónala y usa Datos, luego Texto en columnas de Excel para volver a separarlas por un espacio o una coma.</li>
+    <li><strong>Números guardados como texto.</strong> Si una columna no suma, Excel la está tratando como texto. Selecciónala y usa el pequeño icono de advertencia o Datos, luego el formato de número, para convertirla de nuevo en números reales.</li>
+    <li><strong>Una fila de encabezado de más.</strong> Los encabezados de página repetidos pueden colarse en tablas de varias páginas. Borra las filas sueltas y listo.</li>
+    <li><strong>Archivos escaneados.</strong> Revisa siempre por encima una conversión escaneada. El OCR puede leer mal un 8 borroso como un 3, así que echa un vistazo a cada columna antes de fiarte de los totales.</li>
+  </ul>
+
+  <h2>XLSX o CSV: ¿cuál elegir?</h2>
+
+  <p>XLSX es la opción por defecto correcta. Conserva el formato, las varias hojas y cualquier cosa propia de Excel, y es lo que la mayoría de la gente entiende por una hoja de cálculo. Recurre a CSV solo cuando vayas a importar los datos a otro sitio (un paquete de contabilidad, una base de datos, una aplicación web) que espere un archivo plano separado por comas. CSV es más ligero y de aceptación universal, pero solo guarda los valores en bruto, sin formato ni fórmulas. Si vas a abrir el resultado tú mismo en Excel, quédate con XLSX.</p>
+
+  <h2>Un ejemplo real: convertir extractos en algo que puedas sumar</h2>
+
+  <p>Supón que llevas la contabilidad de una pequeña empresa y cada extracto de proveedor llega como PDF. Volver a teclearlos es lento e invita a erratas, y un solo dígito mal descuadra una conciliación. Convertir cada extracto a Excel te da, en cambio, columnas que puedes sumar, filtrar por fecha y pegar directamente en tu hoja de contabilidad. Lo que era una hora de mecanografía cuidadosa se vuelve un par de minutos de conversión y una comprobación rápida. Si tu flujo de trabajo va también en sentido contrario y necesitas enviar una hoja como documento fijo, el conversor <a href="/es/excel-to-pdf/">Excel a PDF</a> cierra el círculo.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Sobrevivirán mis fórmulas a la conversión?</h3>
+  <p>No, y es lo esperable. Un PDF solo contiene los valores calculados, no las fórmulas que hay detrás, así que lo que recuperas son los números tal como aparecían. Si necesitas fórmulas vivas, reconstrúyelas en Excel sobre los datos convertidos, que sigue siendo mucho más rápido que teclearlo todo de nuevo.</p>
+
+  <h3>¿Puedo convertir un PDF escaneado a Excel?</h3>
+  <p>Sí. El conversor lee el texto con OCR y rearma la tabla a partir de lo que reconoce. La precisión depende de lo limpio que esté el escaneo, así que un escaneo nítido y recto se convierte bien, mientras que uno tenue o torcido necesita más revisión. Revisa siempre un resultado escaneado antes de fiarte de las cifras.</p>
+
+  <h3>¿Qué pasa si el PDF tiene varias tablas o muchas páginas?</h3>
+  <p>Las tablas de varias páginas se convierten bien y continúan a lo largo de la hoja. Cuando un documento contiene varias tablas distintas, revisa el resultado y sepáralas en hojas o rangos aparte si quieres mantenerlas separadas.</p>
+
+  <h3>¿Hay un límite de tamaño de archivo?</h3>
+  <p>Un solo archivo puede pesar hasta 25 MB, lo que cubre la mayoría de extractos e informes. Si un PDF escaneado supera ese tamaño, comprimirlo primero suele dejarlo por debajo del límite sin dañar el texto.</p>
+
+  <h3>¿Necesito instalar algo?</h3>
+  <p>No. La conversión se ejecuta en tu navegador, así que no hay nada que descargar ni configurar. Solo necesitas el PDF y el programa de hojas de cálculo que ya usas para abrir el resultado.</p>
+
+  <h2>Pruébalo ahora</h2>
+
+  <p>Si una tabla que necesitas está atascada dentro de un PDF ahora mismo, súbela al conversor <a href="/es/pdf-to-excel/">PDF a Excel</a> y abre la hoja de cálculo que te devuelve. Y si alguna vez necesitas lo contrario, convertir una hoja terminada en un documento ordenado y no editable, <a href="/es/excel-to-pdf/">Excel a PDF</a> se ocupa de ese lado con la misma rapidez.</p>

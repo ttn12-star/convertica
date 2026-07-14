@@ -1,0 +1,101 @@
+slug: pdf-to-excel-how-to
+cover_image: blog/images/cover-pdf-to-excel-how-to.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_excel
+title_en: "How to Convert a PDF to Excel and Get Your Tables Back"
+meta_title_en: "PDF to Excel: Convert Tables to a Spreadsheet Free | Convertica"
+meta_description_en: "Copy-pasting a table from a PDF turns it into a jumble. Here is how to convert a PDF to Excel so the rows and columns land in real cells, plus how to fix scanned files and messy columns."
+meta_keywords_en: "pdf to excel, convert pdf to excel, pdf to xlsx, extract table from pdf, pdf table to excel, pdf to spreadsheet, pdf to csv, scanned pdf to excel"
+excerpt_en: "You need the numbers from a PDF in a spreadsheet, but copy-paste dumps everything into one messy column. Here is how to convert a PDF to Excel so your rows and columns end up where they belong, including what to do with scanned files."
+ai_metadata:
+  topics:
+    - PDF to Excel conversion
+    - extracting tables from PDF
+    - spreadsheets
+    - OCR for scanned tables
+  entities:
+    - PDF
+    - Excel
+    - XLSX
+    - CSV
+    - OCR
+    - spreadsheet
+    - Convertica
+  summary: "Explains why copy-pasting a PDF table breaks, the difference between native-text PDFs and scanned ones and why it decides your whole approach, step by step conversion of a PDF to Excel with an online tool, how to clean up merged or shifted columns afterwards, when a CSV is a better target than XLSX, a practical accounting use case, and an FAQ on formulas, scanned documents, and multi-page tables."
+  related_terms:
+    - extract data from pdf
+    - pdf table to spreadsheet
+    - convert bank statement to excel
+    - scanned pdf to spreadsheet
+    - pdf numbers to excel
+    - copy pdf table to excel
+  reading_time_minutes: 7
+  target_audience: "Anyone who receives data in PDF form, invoices, statements, reports, price lists, and needs it as an editable Excel spreadsheet without retyping it by hand."
+content_en: |
+  A supplier sends a price list as a PDF. Your bank exports statements as PDFs. A report lands in your inbox with exactly the table you need, locked inside a document you cannot edit. You select the table, copy it, paste it into Excel, and everything collapses into a single column of run-together text. Converting the PDF properly puts those rows and columns back into real cells. Here is how to do it, and how to handle the files that fight back.
+
+  <h2>Why copy-paste turns a table into a mess</h2>
+
+  <p>A PDF does not really store a table. It stores text at fixed positions on a page, plus lines drawn around them that your eye reads as a grid. When you copy, you grab the text in reading order but lose the grid, so columns melt into one another and numbers line up with the wrong labels. A proper conversion works differently: it looks at where each value sits, reconstructs the columns, and rebuilds an actual spreadsheet where every number lands in its own cell.</p>
+
+  <h2>First, check what kind of PDF you have</h2>
+
+  <p>This one check decides everything that follows, so it is worth ten seconds. Open the PDF and try to select a single number with your cursor.</p>
+
+  <ul>
+    <li><strong>If the text highlights,</strong> you have a native PDF. The data is real, selectable text, and conversion will be clean and accurate.</li>
+    <li><strong>If nothing highlights and the page behaves like a picture,</strong> you have a scanned PDF. The table is an image, so the numbers have to be read with OCR (optical character recognition) before they can become cells. That still works, it just needs the extra recognition step and a closer look at the result.</li>
+  </ul>
+
+  <h2>Convert the PDF to Excel</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-excel.jpg" alt="Convertica PDF to Excel converter with a document ready to convert" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Open the <a href="/en/pdf-to-excel/">PDF to Excel</a> converter and upload your file (up to 25 MB).</li>
+    <li>Let it process. For a native PDF this is quick. For a scanned one it reads the text first, which takes a little longer.</li>
+    <li>Download the XLSX file and open it in Excel, Google Sheets, or LibreOffice Calc. Your rows and columns are now editable cells you can sort, filter, and total.</li>
+  </ol>
+
+  <p>Files you upload are removed from the server after a short window, which matters when the table in question is a bank statement or a payroll report.</p>
+
+  <h2>Cleaning up after the conversion</h2>
+
+  <p>Even a good conversion sometimes needs a light touch, especially on dense or scanned tables. A few quick fixes handle almost everything:</p>
+
+  <ul>
+    <li><strong>Merged columns.</strong> If two columns landed in one, select it and use Excel's Data, then Text to Columns to split them back apart on a space or comma.</li>
+    <li><strong>Numbers stored as text.</strong> If a column will not sum, Excel is treating it as text. Select it, and use the small warning icon or Data, then the number format, to convert it back to real numbers.</li>
+    <li><strong>An extra header row.</strong> Repeated page headers can slip in on multi-page tables. Delete the stray rows and you are done.</li>
+    <li><strong>Scanned files.</strong> Always spot-check a scanned conversion. OCR can misread a smudged 8 as a 3, so glance down each column before you trust the totals.</li>
+  </ul>
+
+  <h2>XLSX or CSV: which should you pick?</h2>
+
+  <p>XLSX is the right default. It keeps formatting, multiple sheets, and anything Excel-specific, and it is what most people mean by a spreadsheet. Reach for CSV only when you are importing the data somewhere else, an accounting package, a database, a web app, that expects a plain comma-separated file. CSV is lighter and universally accepted, but it holds just the raw values, with no formatting or formulas. If you are opening the result yourself in Excel, stay with XLSX.</p>
+
+  <h2>A real example: turning statements into something you can total</h2>
+
+  <p>Say you keep the books for a small business and every supplier statement arrives as a PDF. Retyping them is slow and invites typos, and a single wrong digit throws off a reconciliation. Converting each statement to Excel instead gives you columns you can sum, filter by date, and paste straight into your accounting sheet. What was an hour of careful typing becomes a couple of minutes of conversion and a quick check. If your workflow runs the other way too and you need to send a sheet as a fixed document, the <a href="/en/excel-to-pdf/">Excel to PDF</a> converter closes the loop.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Will my formulas survive the conversion?</h3>
+  <p>No, and that is expected. A PDF only holds the calculated values, not the formulas behind them, so what you get back are the numbers as they appeared. If you need live formulas, rebuild them in Excel on top of the converted data, which is still far faster than retyping everything.</p>
+
+  <h3>Can I convert a scanned PDF to Excel?</h3>
+  <p>Yes. The converter reads the text with OCR and rebuilds the table from what it recognizes. Accuracy depends on how clean the scan is, so a sharp, straight scan converts well while a faint or skewed one needs more checking. Always review a scanned result before relying on the figures.</p>
+
+  <h3>What if the PDF has several tables or many pages?</h3>
+  <p>Multi-page tables convert fine and continue across the sheet. When a document holds several different tables, review the output and split them onto separate sheets or ranges if you want them kept apart.</p>
+
+  <h3>Is there a limit on file size?</h3>
+  <p>A single file can be up to 25 MB, which covers most statements and reports. If a scanned PDF is larger than that, compressing it first usually brings it under the limit without hurting the text.</p>
+
+  <h3>Do I need to install anything?</h3>
+  <p>No. The conversion runs in your browser, so there is nothing to download or set up. You need only the PDF and the spreadsheet program you already use to open the result.</p>
+
+  <h2>Try it now</h2>
+
+  <p>If a table you need is stuck inside a PDF right now, upload it to the <a href="/en/pdf-to-excel/">PDF to Excel</a> converter and open the spreadsheet that comes back. And if you ever need the reverse, turning a finished sheet into a tidy, uneditable document, <a href="/en/excel-to-pdf/">Excel to PDF</a> handles that side just as quickly.</p>

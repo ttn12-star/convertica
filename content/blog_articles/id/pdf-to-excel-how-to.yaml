@@ -1,0 +1,76 @@
+slug: pdf-to-excel-how-to
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_excel
+title_id: "Cara Mengubah PDF ke Excel dan Mendapatkan Tabelmu Kembali"
+meta_title_id: "PDF ke Excel: Ubah Tabel Jadi Spreadsheet Gratis | Convertica"
+meta_description_id: "Menyalin tabel dari PDF membuatnya berantakan. Ini cara mengubah PDF ke Excel agar baris dan kolom masuk ke sel sungguhan, plus cara memperbaiki file scan dan kolom kacau."
+meta_keywords_id: "PDF ke Excel, cara mengubah PDF ke Excel, PDF ke XLSX, ekstrak tabel dari PDF, tabel PDF ke Excel, PDF ke spreadsheet, PDF ke CSV, PDF scan ke Excel"
+excerpt_id: "Kamu butuh angka dari sebuah PDF di dalam spreadsheet, tapi salin-tempel membuang semuanya ke satu kolom yang berantakan. Inilah cara mengubah PDF ke Excel agar baris dan kolommu berakhir di tempat yang seharusnya, termasuk cara menangani file hasil scan."
+content_id: |
+  Seorang pemasok mengirim daftar harga sebagai PDF. Bankmu mengekspor laporan rekening sebagai PDF. Sebuah laporan mendarat di kotak masukmu dengan persis tabel yang kamu butuhkan, terkunci di dalam dokumen yang tidak bisa kamu edit. Kamu pilih tabelnya, salin, tempel ke Excel, dan semuanya runtuh menjadi satu kolom teks yang menyatu berantakan. Mengonversi PDF dengan benar mengembalikan baris dan kolom itu ke sel yang sesungguhnya. Inilah caranya, dan cara menangani file-file yang membandel.
+
+  <h2>Mengapa salin-tempel mengubah tabel menjadi berantakan</h2>
+
+  <p>Sebuah PDF sebenarnya tidak menyimpan tabel. Ia menyimpan teks pada posisi tetap di halaman, plus garis-garis di sekitarnya yang dibaca matamu sebagai kisi. Saat kamu menyalin, kamu menangkap teksnya dalam urutan baca tapi kehilangan kisinya, sehingga kolom-kolom meleleh menyatu dan angka berbaris dengan label yang salah. Konversi yang benar bekerja secara berbeda: ia melihat di mana setiap nilai berada, menyusun ulang kolomnya, dan membangun kembali spreadsheet sungguhan tempat setiap angka mendarat di selnya sendiri.</p>
+
+  <h2>Pertama, periksa jenis PDF yang kamu miliki</h2>
+
+  <p>Satu pemeriksaan ini menentukan segala hal berikutnya, jadi sepadan dengan sepuluh detik waktumu. Buka PDF-nya dan coba pilih satu angka dengan kursormu.</p>
+
+  <ul>
+    <li><strong>Jika teksnya tersorot,</strong> berarti kamu punya PDF asli (native). Datanya adalah teks nyata yang bisa dipilih, dan konversinya akan bersih dan akurat.</li>
+    <li><strong>Jika tidak ada yang tersorot dan halaman berperilaku seperti gambar,</strong> berarti kamu punya PDF hasil scan. Tabelnya adalah gambar, sehingga angkanya harus dibaca dengan OCR (pengenalan karakter optik) sebelum bisa menjadi sel. Itu tetap bisa dilakukan, hanya butuh langkah pengenalan tambahan dan pemeriksaan hasil yang lebih teliti.</li>
+  </ul>
+
+  <h2>Ubah PDF ke Excel</h2>
+
+  <figure><img src="/static/blog/images/tool-pdf-to-excel.jpg" alt="Konverter PDF ke Excel Convertica dengan dokumen yang siap dikonversi" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Buka konverter <a href="/id/pdf-to-excel/">PDF ke Excel</a> dan unggah file-mu (hingga 25 MB).</li>
+    <li>Biarkan diproses. Untuk PDF asli ini cepat. Untuk PDF hasil scan, teksnya dibaca lebih dulu, jadi butuh waktu sedikit lebih lama.</li>
+    <li>Unduh file XLSX dan buka di Excel, Google Sheets, atau LibreOffice Calc. Baris dan kolommu kini menjadi sel yang bisa diedit, diurutkan, difilter, dan dijumlahkan.</li>
+  </ol>
+
+  <p>File yang kamu unggah dihapus dari server setelah jangka waktu singkat, hal yang penting saat tabel yang dimaksud berupa laporan rekening bank atau laporan gaji.</p>
+
+  <h2>Merapikan hasil setelah konversi</h2>
+
+  <p>Bahkan konversi yang baik kadang butuh sentuhan ringan, terutama pada tabel yang padat atau hasil scan. Beberapa perbaikan cepat mengatasi hampir semuanya:</p>
+
+  <ul>
+    <li><strong>Kolom yang menyatu.</strong> Jika dua kolom mendarat menjadi satu, pilih kolom itu lalu gunakan menu Data, kemudian Text to Columns pada Excel untuk memisahkannya kembali berdasarkan spasi atau koma.</li>
+    <li><strong>Angka tersimpan sebagai teks.</strong> Jika sebuah kolom tidak mau dijumlahkan, Excel memperlakukannya sebagai teks. Pilih kolomnya, lalu gunakan ikon peringatan kecil atau menu Data, kemudian format angka, untuk mengubahnya kembali menjadi angka sungguhan.</li>
+    <li><strong>Baris judul berlebih.</strong> Judul halaman yang berulang bisa menyelinap masuk pada tabel banyak halaman. Hapus baris nyasar itu dan selesai.</li>
+    <li><strong>File hasil scan.</strong> Selalu periksa ulang konversi hasil scan secara acak. OCR bisa salah membaca angka 8 yang buram sebagai 3, jadi lihat setiap kolom sebelum kamu memercayai totalnya.</li>
+  </ul>
+
+  <h2>XLSX atau CSV: mana yang sebaiknya kamu pilih?</h2>
+
+  <p>XLSX adalah pilihan default yang tepat. Ia menyimpan format, banyak lembar, dan segala hal khas Excel, serta inilah yang dimaksud kebanyakan orang dengan spreadsheet. Pilih CSV hanya saat kamu mengimpor datanya ke tempat lain (paket akuntansi, basis data, aplikasi web) yang mengharapkan file polos dipisahkan koma. CSV lebih ringan dan diterima secara universal, tapi ia hanya menyimpan nilai mentah, tanpa format atau rumus. Jika kamu membuka hasilnya sendiri di Excel, tetaplah pada XLSX.</p>
+
+  <h2>Contoh nyata: mengubah laporan rekening menjadi sesuatu yang bisa dijumlahkan</h2>
+
+  <p>Misalkan kamu memegang pembukuan sebuah usaha kecil dan setiap laporan dari pemasok datang sebagai PDF. Mengetiknya ulang itu lambat dan mengundang salah ketik, dan satu digit yang keliru mengacaukan rekonsiliasi. Mengonversi tiap laporan ke Excel justru memberimu kolom yang bisa dijumlahkan, difilter berdasarkan tanggal, dan ditempel langsung ke lembar akuntansimu. Yang tadinya satu jam mengetik dengan hati-hati berubah menjadi beberapa menit konversi plus pemeriksaan singkat. Jika alur kerjamu juga berjalan ke arah sebaliknya dan kamu perlu mengirim lembar sebagai dokumen yang tetap, konverter <a href="/id/excel-to-pdf/">Excel ke PDF</a> menutup lingkarannya.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Apakah rumus saya bertahan setelah konversi?</h3>
+  <p>Tidak, dan itu memang wajar. Sebuah PDF hanya menyimpan nilai hasil hitungan, bukan rumus di baliknya, jadi yang kamu dapatkan kembali adalah angka seperti yang tampak. Jika kamu butuh rumus yang hidup, bangun kembali di Excel di atas data hasil konversi, yang tetap jauh lebih cepat daripada mengetik ulang semuanya.</p>
+
+  <h3>Bisakah saya mengubah PDF hasil scan ke Excel?</h3>
+  <p>Bisa. Konverter membaca teksnya dengan OCR dan membangun ulang tabel dari apa yang dikenalinya. Akurasinya bergantung pada seberapa bersih scan-nya, jadi scan yang tajam dan lurus terkonversi dengan baik sementara yang pudar atau miring butuh pemeriksaan lebih. Selalu periksa hasil scan sebelum mengandalkan angkanya.</p>
+
+  <h3>Bagaimana jika PDF punya beberapa tabel atau banyak halaman?</h3>
+  <p>Tabel banyak halaman terkonversi dengan baik dan berlanjut di sepanjang lembar. Saat sebuah dokumen memuat beberapa tabel berbeda, periksa hasilnya lalu pisahkan ke lembar atau rentang tersendiri jika kamu ingin memisahkannya.</p>
+
+  <h3>Apakah ada batas ukuran file?</h3>
+  <p>Satu file bisa hingga 25 MB, yang mencakup sebagian besar laporan rekening dan laporan lainnya. Jika PDF hasil scan lebih besar dari itu, memampatkannya lebih dulu biasanya membawanya di bawah batas tanpa merusak teksnya.</p>
+
+  <h3>Apakah saya perlu menginstal sesuatu?</h3>
+  <p>Tidak. Konversi berjalan di browser-mu, jadi tidak ada yang perlu diunduh atau dipasang. Kamu hanya butuh PDF-nya dan program spreadsheet yang sudah kamu pakai untuk membuka hasilnya.</p>
+
+  <h2>Coba sekarang</h2>
+
+  <p>Jika ada tabel yang kamu butuhkan sedang terjebak di dalam PDF saat ini, unggah ke konverter <a href="/id/pdf-to-excel/">PDF ke Excel</a> dan buka spreadsheet yang kembali kepadamu. Dan jika suatu saat kamu butuh yang sebaliknya, mengubah lembar yang sudah jadi menjadi dokumen rapi yang tak bisa diedit, <a href="/id/excel-to-pdf/">Excel ke PDF</a> menangani sisi itu sama cepatnya.</p>
