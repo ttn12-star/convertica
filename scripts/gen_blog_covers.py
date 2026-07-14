@@ -273,6 +273,20 @@ COVERS = {
         "#e9d5ff",
         "layers",
     ),
+    "unlock-pdf-remove-password": (
+        "Unlock a PDF,\nRemove a Password",
+        "PDF · SECURITY",
+        ("#334155", "#2563eb"),
+        "#93c5fd",
+        "lock",
+    ),
+    "pdf-to-excel-how-to": (
+        "PDF to Excel:\nKeep Your Tables",
+        "PDF → EXCEL",
+        ("#059669", "#0d9488"),
+        "#6ee7b7",
+        "table",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()
