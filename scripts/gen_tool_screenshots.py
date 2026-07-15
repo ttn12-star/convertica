@@ -66,7 +66,6 @@ TOOL_PATHS = [
     "image/svg-to-ico/",
     "image/webp-to-ico/",
     "image/ico-to-png/",
-    "image/password-protect-image/",
     "pdf-organize/merge/",
     "pdf-organize/split/",
     "pdf-organize/remove-pages/",
@@ -77,6 +76,7 @@ TOOL_PATHS = [
     "pdf-security/unlock/",
     "archive/protect/",
     "archive/unlock/",
+    "image/password-protect-image/",
 ]
 
 # demo file per extension; multi-file tools get the list
