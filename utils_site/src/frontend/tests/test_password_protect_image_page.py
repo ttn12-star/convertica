@@ -3,6 +3,7 @@
 from django.core.cache import cache
 from django.test import Client, TestCase
 from django.urls import reverse
+from django.utils import translation
 
 
 class PasswordProtectImagePageTestCase(TestCase):
@@ -13,9 +14,9 @@ class PasswordProtectImagePageTestCase(TestCase):
         self.client = Client()
 
     def test_page_renders_with_expected_content(self):
-        response = self.client.get(
-            reverse("frontend:password_protect_image_page"), follow=True
-        )
+        with translation.override("en"):
+            url = reverse("frontend:password_protect_image_page")
+            response = self.client.get(url, follow=True)
         self.assertEqual(response.status_code, 200)
 
         html = response.content.decode("utf-8")
