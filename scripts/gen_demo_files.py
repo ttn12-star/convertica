@@ -248,6 +248,75 @@ def _doodle_image(size, bg1, bg2, caption):
     return img
 
 
+def image_vault_dossier():
+    """password-protect-image easter egg: a mock 'classified dossier' photo.
+    Invented codename, no real org/person/artwork — titles/labels only."""
+    w, h = 1200, 900
+    img = Image.new("RGB", (w, h))
+    dr = ImageDraw.Draw(img)
+    top, bottom = (17, 24, 39), (127, 29, 29)  # near-black -> deep red
+    for y in range(h):
+        t = y / h
+        rgb = tuple(int(a + (b - a) * t) for a, b in zip(top, bottom, strict=False))
+        dr.line([(0, y), (w, y)], fill=rgb)
+    # padlock silhouette (original, blobby on purpose)
+    cx, cy = w * 0.5, h * 0.5
+    body_w, body_h = 260, 190
+    dr.rounded_rectangle(
+        [cx - body_w / 2, cy, cx + body_w / 2, cy + body_h],
+        radius=24,
+        fill=(255, 214, 10),
+    )
+    dr.arc(
+        [cx - 110, cy - 190, cx + 110, cy + 30],
+        start=180,
+        end=360,
+        fill=(255, 214, 10),
+        width=26,
+    )
+    dr.ellipse(
+        [cx - 22, cy + body_h * 0.28, cx + 22, cy + body_h * 0.28 + 44],
+        fill=(30, 27, 75),
+    )
+    dr.rectangle(
+        [cx - 9, cy + body_h * 0.28 + 22, cx + 9, cy + body_h * 0.75],
+        fill=(30, 27, 75),
+    )
+    try:
+        font_big = ImageFont.truetype(
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 54
+        )
+        font_small = ImageFont.truetype(
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 28
+        )
+    except OSError:
+        font_big = font_small = ImageFont.load_default()
+    dr.text(
+        (w * 0.5, h * 0.13),
+        "CONFIDENTIAL",
+        fill=(255, 255, 255),
+        font=font_big,
+        anchor="mm",
+    )
+    dr.text(
+        (w * 0.5, h * 0.13 + 56),
+        "Project Nightingale · do not distribute",
+        fill=(255, 214, 10),
+        font=font_small,
+        anchor="mm",
+    )
+    dr.text(
+        (w * 0.5, h * 0.89),
+        "eyes only · password required",
+        fill=(255, 255, 255),
+        font=font_small,
+        anchor="mm",
+    )
+    path = OUT / "project_nightingale_dossier.jpg"
+    img.save(path, quality=90)
+    return path
+
+
 def images():
     paths = []
     duck = _doodle_image(
@@ -272,6 +341,9 @@ def images():
     ico = _doodle_image((256, 256), (79, 70, 229), (124, 58, 237), "")
     p = OUT / "not_a_moon_favicon.ico"
     ico.save(p, sizes=[(16, 16), (32, 32), (48, 48), (64, 64), (128, 128), (256, 256)])
+    paths.append(p)
+
+    p = image_vault_dossier()
     paths.append(p)
 
     # HEIC can't be written by Pillow; the picker only shows the name, the
