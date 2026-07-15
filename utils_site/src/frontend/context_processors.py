@@ -226,6 +226,7 @@ def breadcrumbs(request):
             "frontend:svg_to_ico_page": _("SVG to ICO"),
             "frontend:webp_to_ico_page": _("WebP to ICO"),
             "frontend:ico_to_png_page": _("ICO to PNG"),
+            "frontend:password_protect_image_page": _("Password Protect Image"),
             # Static pages
             "frontend:all_tools_page": _("All Tools"),
             "frontend:premium_tools_page": _("Premium Tools"),
