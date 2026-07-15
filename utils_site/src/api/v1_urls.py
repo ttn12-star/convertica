@@ -139,7 +139,7 @@ urlpatterns = [
         name="v1_convert_heic",
     ),
     path(
-        "image-tools/password-protect-image/",
+        "image/password-protect/",
         PasswordProtectImageAPIView.as_view(**_perm),
         name="v1_password_protect_image",
     ),
