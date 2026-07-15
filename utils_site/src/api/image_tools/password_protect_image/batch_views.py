@@ -19,10 +19,15 @@ class PasswordProtectImageBatchAPIView(BaseBatchAPIView):
     OUTPUT_ZIP_FILENAME = "protected_images.zip"
 
     def get_post_params(self, request):
+        try:
+            quality = int(request.POST.get("quality", 85))
+        except (TypeError, ValueError):
+            quality = 85
         return {
             "password": request.POST.get("password", ""),
             "user_password": request.POST.get("user_password"),
             "owner_password": request.POST.get("owner_password"),
+            "quality": quality,
         }
 
     def convert_single(self, uploaded_file, context, **params):
