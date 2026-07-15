@@ -793,6 +793,7 @@ def get_timeout_for_operation(
         "jpg_to_pdf": "jpg_to_pdf",
         "unlock_pdf": "unlock_pdf",
         "protect_pdf": "protect_pdf",
+        "password_protect_image": "password_protect_image",
     }
     op = op_map.get(op, op)
 
@@ -829,6 +830,7 @@ def get_timeout_for_operation(
         "add_page_numbers",
         "unlock_pdf",
         "protect_pdf",
+        "password_protect_image",
     }
 
     if op in heavy_operations:
