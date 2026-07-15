@@ -59,6 +59,10 @@ BATCH_API_MAP = BATCH_API_MAP = {
         "batch_url": "protect_pdf_batch_api",
         "field_name": "pdf_files",
     },
+    "password_protect_image_api": {
+        "batch_url": "password_protect_image_batch_api",
+        "field_name": "image_files",
+    },
     "unlock_pdf_api": {"batch_url": "unlock_pdf_batch_api", "field_name": "pdf_files"},
     "flatten_pdf_api": {
         "batch_url": "flatten_pdf_batch_api",

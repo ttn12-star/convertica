@@ -24,6 +24,10 @@ from .image_tools.image_to_ico.views import ImageToICOAPIView
 from .image_tools.image_to_text.views import ImageToTextAPIView
 from .image_tools.optimize_image.batch_views import OptimizeImageBatchAPIView
 from .image_tools.optimize_image.views import OptimizeImageAPIView
+from .image_tools.password_protect_image.batch_views import (
+    PasswordProtectImageBatchAPIView,
+)
+from .image_tools.password_protect_image.views import PasswordProtectImageAPIView
 from .pdf_compare.views import ComparePDFAPIView
 from .pdf_convert.async_views import (
     PDFToExcelAsyncAPIView,
@@ -210,6 +214,11 @@ urlpatterns = [
         UnlockPDFBatchAPIView.as_view(),
         name="unlock_pdf_batch_api",
     ),
+    path(
+        "password-protect-image/batch/",
+        PasswordProtectImageBatchAPIView.as_view(),
+        name="password_protect_image_batch_api",
+    ),
     # Archive tools batch endpoints
     path(
         "archive/protect/batch/",
@@ -324,6 +333,11 @@ urlpatterns = [
     # PDF Security endpoints
     path("pdf-security/protect/", ProtectPDFAPIView.as_view(), name="protect_pdf_api"),
     path("pdf-security/unlock/", UnlockPDFAPIView.as_view(), name="unlock_pdf_api"),
+    path(
+        "password-protect-image/",
+        PasswordProtectImageAPIView.as_view(),
+        name="password_protect_image_api",
+    ),
     # Archive tools endpoints
     path("archive/protect/", ProtectZipAPIView.as_view(), name="protect_zip_api"),
     path("archive/unlock/", UnlockZipAPIView.as_view(), name="unlock_zip_api"),

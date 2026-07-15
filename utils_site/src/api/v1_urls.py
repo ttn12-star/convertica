@@ -14,6 +14,7 @@ from src.api.html_convert.views import HTMLToPDFAPIView, URLToPDFAPIView
 from src.api.image_tools.convert_heic.views import ConvertHEICAPIView
 from src.api.image_tools.convert_image.views import ConvertImageAPIView
 from src.api.image_tools.optimize_image.views import OptimizeImageAPIView
+from src.api.image_tools.password_protect_image.views import PasswordProtectImageAPIView
 from src.api.pdf_compare.views import ComparePDFAPIView
 from src.api.pdf_convert.excel_to_pdf.views import ExcelToPDFAPIView
 from src.api.pdf_convert.jpg_to_pdf.views import JPGToPDFAPIView
@@ -136,5 +137,10 @@ urlpatterns = [
         "image/heic-convert/",
         ConvertHEICAPIView.as_view(**_perm),
         name="v1_convert_heic",
+    ),
+    path(
+        "image-tools/password-protect-image/",
+        PasswordProtectImageAPIView.as_view(**_perm),
+        name="v1_password_protect_image",
     ),
 ]
