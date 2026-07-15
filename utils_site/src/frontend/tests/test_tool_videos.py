@@ -42,19 +42,28 @@ class ToolVideoLoaderTests(TestCase):
         )
 
 
+def _embed(vid: str) -> str:
+    """The crawlable player marker: a real iframe pointing at the embed URL.
+
+    A server-rendered <iframe> (not a click-to-load facade) is what makes the
+    video indexable — Googlebot must find a player without executing JS.
+    """
+    return f'src="https://www.youtube-nocookie.com/embed/{vid}?rel=0"'
+
+
 class ToolVideoRenderTests(TestCase):
-    """The video facade + VideoObject JSON-LD reach the rendered page."""
+    """The video iframe + VideoObject JSON-LD reach the rendered page."""
 
     def setUp(self):
         cache.clear()  # anonymous_cache_page can leak pages across tests
         self.client = Client()
 
-    def test_tool_page_with_video_renders_facade_and_jsonld(self):
+    def test_tool_page_with_video_renders_iframe_and_jsonld(self):
         resp = self.client.get("/word-to-pdf/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
-        self.assertIn('data-video-id="ozMzrlVOTvQ"', html)
-        self.assertIn("youtube-facade", html)
+        self.assertIn(_embed("ozMzrlVOTvQ"), html)
+        self.assertIn('loading="lazy"', html)  # off the critical path
         obj = _video_jsonld(html)
         self.assertEqual(obj["duration"], "PT1M38S")
         self.assertEqual(
@@ -73,21 +82,21 @@ class ToolVideoRenderTests(TestCase):
             resp = self.client.get(path, follow=True)
             self.assertEqual(resp.status_code, 200, path)
             html = resp.content.decode()
-            self.assertIn(f'data-video-id="{vid}"', html, path)
+            self.assertIn(_embed(vid), html, path)
             self.assertIn("VideoObject", html, path)
 
     def test_tool_page_without_video_renders_neither(self):
         resp = self.client.get("/pdf-edit/sign/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
-        self.assertNotIn("youtube-facade", html)
+        self.assertNotIn("youtube-nocookie.com/embed/", html)
         self.assertNotIn("VideoObject", html)
 
     def test_homepage_renders_overview_video(self):
         resp = self.client.get("/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
-        self.assertIn('data-video-id="53XxE5XBP24"', html)
+        self.assertIn(_embed("53XxE5XBP24"), html)
         self.assertIn("See Convertica in action", html)
         obj = _video_jsonld(html)  # asserts valid JSON + presence
         self.assertEqual(obj["duration"], "PT2M26S")
