@@ -98,6 +98,11 @@ urlpatterns = [
     path("image/svg-to-ico/", views.svg_to_ico_page, name="svg_to_ico_page"),
     path("image/webp-to-ico/", views.webp_to_ico_page, name="webp_to_ico_page"),
     path("image/ico-to-png/", views.ico_to_png_page, name="ico_to_png_page"),
+    path(
+        "image/password-protect-image/",
+        views.password_protect_image_page,
+        name="password_protect_image_page",
+    ),
     # PDF Organize pages
     path("pdf-organize/merge/", views.merge_pdf_page, name="merge_pdf_page"),
     path("pdf-organize/split/", views.split_pdf_page, name="split_pdf_page"),
