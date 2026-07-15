@@ -121,3 +121,25 @@ pdf_to_epub:
   video_id: jGLeL7QxkF8
   upload_date: "2026-07-09T14:00:39+00:00"
   duration: PT1M9S
+pdf_to_markdown:
+  video_id: 26qWomUxNmU
+  upload_date: "2026-07-10T07:00:29-07:00"
+  duration: PT1M8S
+
+# --- image_tools ---
+optimize_image:
+  video_id: 9ya6smR5amg
+  upload_date: "2026-07-11T07:00:07-07:00"
+  duration: PT1M12S
+convert_image:
+  video_id: LtFrOaYoJFg
+  upload_date: "2026-07-12T07:00:06-07:00"
+  duration: PT1M5S
+heic_to_jpg:
+  video_id: dbWRb2FL0GM
+  upload_date: "2026-07-13T07:00:04-07:00"
+  duration: PT1M6S
+image_to_text:
+  video_id: OIppnR2edD0
+  upload_date: "2026-07-14T07:00:17-07:00"
+  duration: PT1M5S

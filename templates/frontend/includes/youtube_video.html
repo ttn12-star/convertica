@@ -1,31 +1,31 @@
 {% comment %}
-YouTube Video Component with Lazy Loading
+YouTube tutorial embed — native lazy-loaded iframe.
+
+We use a real <iframe loading="lazy"> (not a click-to-load facade) so the video
+player is present in the rendered HTML: Googlebot finds it without executing JS
+or clicking, which is required for the video to be indexed ("prominent video").
+Native lazy-loading keeps it off the critical path — the iframe only loads as it
+approaches the viewport, and the video sits below the fold, so most users who
+don't scroll down never pay for it.
 
 Usage:
-{% include "frontend/includes/youtube_video.html" with video_id="YOUR_VIDEO_ID" title="Video Title" %}
+{% include "frontend/includes/youtube_video.html" with video_id="ID" title="Title" %}
 
 Optional parameters:
 - video_id: YouTube video ID (required)
-- title: Video title for accessibility and display (required)
-- aspect_ratio: "16:9" (default) or "4:3"
+- title: Video title for the iframe/heading accessibility (required)
+- aspect_ratio: "16/9" (default) or "4/3"
 - heading_level: "h2", "h3", "h4" (default: "h4" for proper heading order)
-- is_lcp: true/false - if true, removes lazy loading for LCP optimization
+- hide_heading: True to suppress the built-in heading (page supplies its own)
 {% endcomment %}
 
 {% load i18n %}
 
 {% comment %}
-  Preconnect only on pages that actually embed a YouTube facade (kept out of
+  Preconnect only on pages that actually embed a YouTube iframe (kept out of
   base.html so global pages don't hit Lighthouse's >4 preconnect warning).
 {% endcomment %}
-<link rel="preconnect" href="https://i.ytimg.com" crossorigin>
 <link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
-
-<style>
-  .youtube-facade:hover .yt-thumbnail { transform: scale(1.05); }
-  .youtube-facade:hover .yt-play-btn { transform: scale(1.1); background-color: #ef4444; }
-  .youtube-facade:hover .yt-overlay { background-color: rgba(0,0,0,0.3) !important; }
-</style>
 
 <div class="youtube-video-wrapper mt-6 sm:mt-8">
   {# Built-in heading; hide it with hide_heading=True when the page supplies its own (e.g. homepage). #}
@@ -51,108 +51,15 @@ Optional parameters:
     {% endif %}
   {% endif %}
 
-  <div class="youtube-facade relative w-full rounded-xl overflow-hidden shadow-lg bg-gray-900 cursor-pointer group"
-       style="aspect-ratio: {{ aspect_ratio|default:'16/9' }};"
-       data-video-id="{{ video_id }}"
-       role="button"
-       tabindex="0"
-       aria-label="{% blocktrans with title=title %}Play video: {{ title }}{% endblocktrans %}">
-
-    {% comment %}
-      Thumbnail alt mirrors the video title for SEO (Ahrefs flags empty alt as
-      "Missing alt text"). The visible <p> below sets aria-hidden="true", so
-      screen readers don't get duplicate content from the parent aria-label.
-      mqdefault.jpg (320x180) and hqdefault.jpg (480x360) always exist; if a
-      video gets removed from YouTube the onerror swap shows a neutral fallback
-      so the page doesn't render a broken-image icon.
-    {% endcomment %}
-    <img src="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg"
-         srcset="https://i.ytimg.com/vi/{{ video_id }}/mqdefault.jpg 320w,
-                 https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg 480w"
-         sizes="(max-width: 480px) 100vw, 480px"
-         alt="{{ title }}"
-         width="480" height="360"
-         class="yt-thumbnail absolute inset-0 w-full h-full object-cover transition-transform duration-300"
-         {% if is_lcp %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
-         decoding="async">
-
-    <!-- Dark overlay for better play button visibility -->
-    <div class="yt-overlay absolute inset-0 transition-colors duration-300" style="background-color: rgba(0,0,0,0.2);"></div>
-
-    <!-- Play button -->
-    <div class="absolute inset-0 flex items-center justify-center">
-      <div class="yt-play-btn w-16 h-16 sm:w-20 sm:h-20 bg-red-600 rounded-full flex items-center justify-center shadow-xl transition-all duration-300">
-        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M8 5v14l11-7z"/>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Video title overlay -->
-    <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4" style="background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
-      <p class="text-white text-sm sm:text-base font-medium truncate" aria-hidden="true">{{ title }}</p>
-    </div>
+  {# aspect-ratio box reserves space so the lazy iframe causes no layout shift (CLS). #}
+  <div class="relative w-full rounded-xl overflow-hidden shadow-lg bg-gray-900"
+       style="aspect-ratio: {{ aspect_ratio|default:'16/9' }};">
+    <iframe class="absolute inset-0 w-full h-full"
+            src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0"
+            title="{{ title }}"
+            loading="lazy"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
   </div>
-
-  <p class="mt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center">
-    {% trans "Click to play the video tutorial" %}
-  </p>
 </div>
-
-<script nonce="{{ csp_nonce }}">
-  (function() {
-  // Replace broken thumbnails (e.g. video removed from YouTube) with a neutral
-  // placeholder so the LCP element doesn't render as a broken-image icon.
-    document.querySelectorAll('.youtube-facade .yt-thumbnail').forEach(function(img) {
-      img.addEventListener('error', function onErr() {
-        img.removeEventListener('error', onErr);
-        img.removeAttribute('srcset');
-        img.src = 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 480 360%22%3E%3Crect width=%22480%22 height=%22360%22 fill=%22%231f2937%22/%3E%3C/svg%3E';
-      }, { once: true });
-    });
-
-  // Initialize YouTube facade lazy loading
-    function initYouTubeFacade() {
-      const facades = document.querySelectorAll('.youtube-facade:not([data-initialized])');
-
-      facades.forEach(function(facade) {
-        facade.setAttribute('data-initialized', 'true');
-
-        function loadVideo() {
-          const videoId = facade.getAttribute('data-video-id');
-          if (!videoId) return;
-
-          const iframe = document.createElement('iframe');
-          iframe.setAttribute('src', 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1&rel=0');
-          iframe.setAttribute('title', facade.getAttribute('aria-label'));
-          iframe.setAttribute('frameborder', '0');
-          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-          iframe.setAttribute('allowfullscreen', '');
-          iframe.className = 'absolute inset-0 w-full h-full';
-
-        // Clear facade content and add iframe
-          facade.innerHTML = '';
-          facade.appendChild(iframe);
-          facade.classList.remove('cursor-pointer', 'group');
-          facade.removeAttribute('role');
-          facade.removeAttribute('tabindex');
-        }
-
-        facade.addEventListener('click', loadVideo);
-        facade.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            loadVideo();
-          }
-        });
-      });
-    }
-
-  // Run on DOM ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initYouTubeFacade);
-    } else {
-      initYouTubeFacade();
-    }
-  })();
-</script>
