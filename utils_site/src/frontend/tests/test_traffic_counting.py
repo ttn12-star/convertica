@@ -1,5 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.test import RequestFactory, TestCase
+from django.urls import reverse
+from django.utils import timezone
 from src.frontend.middleware import TrafficCountingMiddleware
 from src.users.models import PageViewDaily
 
@@ -65,3 +68,19 @@ class TrafficCountingMiddlewareTest(TestCase):
         self.assertEqual(
             PageViewDaily.objects.get(path="/blog/how-to-merge-pdf/").views, 1
         )
+
+
+class PageViewDailyAdminTest(TestCase):
+    def test_changelist_renders_traffic_summary(self):
+        admin = get_user_model().objects.create_superuser(
+            email="admin@example.com", password="pw"
+        )
+        PageViewDaily.objects.create(
+            date=timezone.now().date(), path="/blog/how-to-merge-pdf/", views=5
+        )
+        self.client.force_login(admin)
+        resp = self.client.get(reverse("admin:users_pageviewdaily_changelist"))
+        self.assertEqual(resp.status_code, 200)
+        # summary block (template renders) + top-pages row present
+        self.assertContains(resp, "Unique visitors")
+        self.assertContains(resp, "/blog/how-to-merge-pdf/")

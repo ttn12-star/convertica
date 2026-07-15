@@ -1,0 +1,42 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="module" style="margin-bottom:20px;">
+    <h2>{% blocktrans %}Traffic — last {{ traffic_days }} days{% endblocktrans %} ({{ traffic_total_views }} {% trans "views" %})</h2>
+    <p class="help">
+      {% trans "Real, bot-filtered human page views, independent of the cookie banner. Unique visitors are an approximate cookieless estimate (Redis HyperLogLog) and show — where Redis is unavailable." %}
+    </p>
+    <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:flex-start;">
+      <div>
+        <h3>{% trans "By day" %}</h3>
+        <table>
+          <thead><tr><th>{% trans "Date" %}</th><th style="text-align:right;">{% trans "Views" %}</th><th style="text-align:right;">{% trans "Unique visitors" %}</th></tr></thead>
+          <tbody>
+            {% for row in traffic_daily %}
+              <tr>
+                <td>{{ row.date|date:"Y-m-d" }}</td>
+                <td style="text-align:right;">{{ row.views }}</td>
+                <td style="text-align:right;">{% if row.uniques == None %}—{% else %}{{ row.uniques }}{% endif %}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>{% trans "Top pages" %}</h3>
+        <table>
+          <thead><tr><th style="text-align:right;">{% trans "Views" %}</th><th>{% trans "Path" %}</th></tr></thead>
+          <tbody>
+            {% for p in traffic_top_pages %}
+              <tr><td style="text-align:right;">{{ p.total }}</td><td>{{ p.path }}</td></tr>
+            {% empty %}
+              <tr><td colspan="2">{% trans "No data yet." %}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {{ block.super }}
+{% endblock %}
