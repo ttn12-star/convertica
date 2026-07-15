@@ -1449,4 +1449,138 @@ IMAGE_TOOLS_CONFIGS = {
             ),
         },
     },
+    "password_protect_image": {
+        "template": "frontend/image_tools/password_protect_image.html",
+        "converter_args": {
+            "page_title": _(
+                "Password Protect Image Online Free - Lock Photo with Password | Convertica"
+            ),
+            "page_description": _(
+                "Password protect a photo online free. Lock your image into an "
+                "AES-256 encrypted PDF: nothing is visible until the password is "
+                "entered. Opens in any PDF reader. No registration, no watermark."
+            ),
+            "page_keywords": (
+                "password protect image, lock photo with password, encrypt image, "
+                "password protect photo online free, lock picture, protect image online, "
+                "hide photo behind password, password protect jpg, password protect png, "
+                "encrypt photo online, secure image, lock image no registration"
+            ),
+            "page_subtitle": _("Lock your photo behind a password"),
+            "header_text": _("Password Protect Image"),
+            "file_input_name": "image_files",
+            "file_accept": ".jpg,.jpeg,.png,.webp,.gif",
+            "api_url_name": "password_protect_image_api",
+            "replace_regex": r"\.(jpe?g|png|webp|gif)$",
+            "replace_to": "_protected.pdf",
+            "button_text": _("Protect Image"),
+            "select_file_message": _("Please select an image file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
+                    "gradient": "from-red-500 to-red-600",
+                    "title": _("AES-256 Encryption"),
+                    "description": _(
+                        "Your photo is locked inside an AES-256 encrypted PDF. "
+                        "Nothing is visible until the correct password is entered."
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Opens Anywhere"),
+                    "description": _(
+                        "The result is a standard PDF. Recipients just open it in "
+                        "any PDF reader and type the password. No app or account."
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Multiple Photos"),
+                    "description": _(
+                        "Lock several photos into one password-protected PDF at once."
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Instant & Free"),
+                    "description": _(
+                        "No registration, no watermark, ready in seconds."
+                    ),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("How do I password protect a photo?"),
+                    "answer": _(
+                        "Upload your image, type a password, and click Protect Image. "
+                        "You get a PDF that shows nothing until the password is entered."
+                    ),
+                },
+                {
+                    "question": _("Why do I get a PDF instead of an image?"),
+                    "answer": _(
+                        "Image formats like JPG and PNG have no built-in password. "
+                        "Wrapping the photo in an encrypted PDF is the universal way to "
+                        "lock it so any device can open it with the password."
+                    ),
+                },
+                {
+                    "question": _("Is the encryption strong?"),
+                    "answer": _(
+                        "Yes. The PDF uses AES-256, the same standard used to protect "
+                        "sensitive documents. Keep your password safe; it cannot be recovered."
+                    ),
+                },
+                {
+                    "question": _("Can I lock more than one photo?"),
+                    "answer": _(
+                        "Yes. Select multiple images and they are combined into one "
+                        "password-protected PDF, one photo per page."
+                    ),
+                },
+                {
+                    "question": _("Will the recipient need an account or app?"),
+                    "answer": _(
+                        "No. The protected file is a standard PDF. Anyone can open it "
+                        "in a normal PDF reader and enter the password to see the photo."
+                    ),
+                },
+            ],
+            "page_tips": [
+                _("Use a strong password with a mix of letters, numbers, and symbols."),
+                _(
+                    "Store your password safely - it cannot be recovered if you forget it."
+                ),
+                _(
+                    "Send the password through a different channel than the file itself."
+                ),
+                _(
+                    "Combine several photos into one protected PDF to share them together."
+                ),
+                _("Open the result once to confirm the password works before sending."),
+            ],
+            "page_content_title": _("Lock a Photo Behind a Password, Online and Free"),
+            "page_content_body": _(
+                "<p>Image formats like JPG and PNG have no built-in password, so there is "
+                "no way to lock a photo on its own. The reliable, universal solution is to "
+                "wrap the image in an encrypted PDF: the file reveals nothing until the "
+                "correct password is entered, and it opens on any device.</p>"
+                "<p>This tool locks your photo into a PDF secured with AES-256, the same "
+                "encryption standard used for sensitive documents. Whether you are sending "
+                "a private picture, an ID scan, or a screenshot you would rather keep "
+                "confidential, only someone with the password can see it.</p>"
+                "<p>No app and no account are needed on either end. You upload the image, "
+                "choose a password, and download a protected PDF. The person you share it "
+                "with simply opens it in a normal PDF reader and types the password.</p>"
+            ),
+        },
+        "extra": {
+            "how_to_time": "PT1M",
+        },
+    },
 }

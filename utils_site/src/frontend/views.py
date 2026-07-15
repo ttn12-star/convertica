@@ -687,6 +687,11 @@ def ico_to_png_page(request):
 
 
 @anonymous_cache_page(60 * 60)
+def password_protect_image_page(request):
+    return _render_tool_page(request, "password_protect_image")
+
+
+@anonymous_cache_page(60 * 60)
 def merge_pdf_page(request):
     """Merge PDF page."""
     return _render_tool_page(request, "merge_pdf")
