@@ -293,6 +293,7 @@ class Article(models.Model):
             "add_page_numbers": "add_page_numbers_page",
             "protect_zip": "protect_zip_page",
             "unlock_zip": "unlock_zip_page",
+            "password_protect_image": "password_protect_image_page",
             "all_tools": "all_tools_page",
         }
 
@@ -329,6 +330,7 @@ class Article(models.Model):
             "add_page_numbers": "Add Page Numbers",
             "protect_zip": "Password Protect ZIP",
             "unlock_zip": "Unlock ZIP",
+            "password_protect_image": "Password Protect Image",
             "all_tools": "All Tools",
         }
 
