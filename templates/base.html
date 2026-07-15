@@ -413,28 +413,20 @@
       }
     </script>
 
-    <!-- Unified Analytics: Yandex.Metrika + GA4 with CookieConsent -->
+    <!-- Analytics: GA4 with CookieConsent -->
     <!-- Deferred loading to improve LCP - analytics loads after page is interactive -->
     <script nonce="{{ csp_nonce }}">
       (function() {
         // Delay analytics loading until after page is interactive
         function loadAnalytics() {
-          (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {
-              if (document.scripts[j].src === r) { return; }
-            }
-            k=e.createElement(t), a=e.getElementsByTagName(t)[0];
-            k.async = 1; k.defer = 1; k.src = r;
-            k.onerror = function() {
-              console.debug('[Analytics] Yandex Metrika blocked - likely by ad blocker');
-            };
-            a.parentNode.insertBefore(k,a);
-          })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+          // Avoid double-injecting the GA script
+          var gaSrc = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
+          for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === gaSrc) { return; }
+          }
 
           var gtagScript = document.createElement('script');
-          gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-65KKH2JRKC";
+          gtagScript.src = gaSrc;
           gtagScript.async = true;
           gtagScript.defer = true;
           gtagScript.onerror = function() {
@@ -450,12 +442,10 @@
 
             function check() {
               attempts++;
-              // Check if Yandex Metrika is loaded (optional, will work without it)
-              var ymReady = typeof window.ym !== 'undefined' || attempts > 10;
               // Check if Google Analytics is loaded
               var gaReady = typeof window.gtag !== 'undefined' || attempts > 10;
 
-              if (ymReady && gaReady) {
+              if (gaReady) {
                 callback();
               } else if (attempts < maxAttempts) {
                 setTimeout(check, 100);
@@ -468,34 +458,6 @@
           }
 
           function initAnalytics() {
-            // Initialize Yandex Metrika
-            // Disable clickmap on mobile - it creates an overlay that blocks touch scroll on some Android devices
-            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            var ymConfig = {
-              clickmap: !isMobile,
-              trackLinks: true,
-              accurateTrackBounce: true,
-              webvisor: false
-            };
-
-            if (typeof window.ym !== 'undefined') {
-              try {
-                ym(105790338, 'init', ymConfig);
-                ym(105790338, 'hit', window.location.href);
-              } catch(e) {
-                console.warn('Yandex Metrika init error:', e);
-              }
-            } else {
-              // Yandex script not loaded yet, try again later
-              setTimeout(function() {
-                if (typeof window.ym !== 'undefined') {
-                  ym(105790338, 'init', ymConfig);
-                  ym(105790338, 'hit', window.location.href);
-                }
-              }, 1000);
-            }
-
-            // Initialize Google Analytics
             window.dataLayer = window.dataLayer || [];
             if (typeof window.gtag === 'undefined') {
               function gtag(){dataLayer.push(arguments);}
@@ -514,18 +476,23 @@
           // Check cookie consent
           function checkAndInitAnalytics() {
             var cookieConsent = localStorage.getItem('cookie_consent');
-            var cookieAnalytics = localStorage.getItem('cookie_analytics');
 
-            // If user has accepted cookies and analytics is enabled
-            if (cookieConsent === 'accepted' && cookieAnalytics === 'true') {
+            // Analytics opted in via either "Accept All" or "Customize" + Save
+            if (localStorage.getItem('cookie_analytics') === 'true') {
               waitForScripts(initAnalytics);
             } else if (!cookieConsent) {
-              // No consent yet - wait for user decision
-              window.addEventListener('cookieConsentAccepted', function() {
-                waitForScripts(initAnalytics);
-              }, { once: true });
+              // No decision yet - init once the user opts in (Accept All or Save with analytics on)
+              function onConsent() {
+                if (localStorage.getItem('cookie_analytics') === 'true') {
+                  window.removeEventListener('cookieConsentAccepted', onConsent);
+                  window.removeEventListener('cookieConsentUpdated', onConsent);
+                  waitForScripts(initAnalytics);
+                }
+              }
+              window.addEventListener('cookieConsentAccepted', onConsent);
+              window.addEventListener('cookieConsentUpdated', onConsent);
             }
-            // If user rejected, don't initialize analytics
+            // Rejected, or custom without analytics: don't initialize
           }
 
           checkAndInitAnalytics();

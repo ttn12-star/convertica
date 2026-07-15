@@ -471,8 +471,6 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://www.google-analytics.com "
             "https://ssl.google-analytics.com "
             "https://tagmanager.google.com "
-            "https://mc.yandex.ru "
-            "https://mc.yandex.com "
             "https://accounts.google.com "
             "https://connect.facebook.net "
             "https://pagead2.googlesyndication.com "
@@ -482,15 +480,13 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             # Fonts: self, Google Fonts
             "font-src 'self' https://fonts.gstatic.com data:",
-            # Images: self, data URIs, blob, common CDNs, Yandex Metrika, YouTube thumbnails
+            # Images: self, data URIs, blob, common CDNs, YouTube thumbnails
             "img-src 'self' data: blob: "
             "https://*.lemonsqueezy.com "
             "https://www.googletagmanager.com "
             "https://www.google-analytics.com "
             "https://*.google.com "
             "https://*.facebook.com "
-            "https://mc.yandex.ru "
-            "https://mc.yandex.com "
             "https://i.ytimg.com "
             "https://img.youtube.com "
             # Backlink directory badges (footer "Featured on" row)
@@ -500,7 +496,7 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://pagead2.googlesyndication.com "
             "https://googleads.g.doubleclick.net "
             "https://tpc.googlesyndication.com",
-            # Connect: self, Lemon Squeezy, Turnstile, WebSocket, analytics, Yandex Metrika
+            # Connect: self, Lemon Squeezy, Turnstile, WebSocket, analytics
             "connect-src 'self' "
             "https://api.lemonsqueezy.com "
             "https://*.lemonsqueezy.com "
@@ -509,12 +505,8 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://*.google-analytics.com "
             "https://www.googletagmanager.com "
             "https://region1.google-analytics.com "
-            "https://mc.yandex.ru "
-            "https://mc.yandex.com "
             "https://accounts.google.com "
             "wss://*.convertica.net "
-            "wss://mc.yandex.ru "
-            "wss://mc.yandex.com "
             "ws://localhost:* "
             "wss://localhost:*",
             # Frames: Lemon Squeezy checkout, Turnstile, OAuth, YouTube, AdSense

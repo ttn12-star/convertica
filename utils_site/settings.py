@@ -416,6 +416,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "src.api.middleware.APIKeyQuotaRefundMiddleware",  # Refund API-key quota on non-2xx
     "src.api.middleware.OperationRunTrackingMiddleware",  # DB analytics for all operations
+    "src.frontend.middleware.TrafficCountingMiddleware",  # Consent-free page-view + unique-visitor counter
     "src.feedback.middleware.FeedbackTokenResponseMiddleware",  # Stamp feedback token on tool downloads
     "allauth.account.middleware.AccountMiddleware",
     "src.users.middleware.EmailDeliveryErrorMiddleware",  # Render 503 instead of 500 on SMTP failures (must wrap allauth views)

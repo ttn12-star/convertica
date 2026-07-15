@@ -17,6 +17,7 @@ from django.utils.text import Truncator
 from .models import (
     APIKey,
     OperationRun,
+    PageViewDaily,
     Payment,
     RuntimeSetting,
     SubscriptionPlan,
@@ -379,35 +380,30 @@ class SocialAccountAdmin(admin.ModelAdmin):
         return super().get_queryset(request).select_related("user")
 
 
-# Custom admin site configuration
-class CustomAdminSite(admin.AdminSite):
-    """Custom admin site with enhanced user management."""
+# Branding + app ordering for the default admin site (the one mounted at
+# ADMIN_URL_PATH in urls.py). This previously lived on a CustomAdminSite that
+# was never wired into the URLconf, so it had no effect; applied to the default
+# admin.site directly instead.
+admin.site.site_header = "Convertica Administration"
+admin.site.site_title = "Convertica Admin"
+admin.site.index_title = "Welcome to Convertica Admin Panel"
 
-    site_header = "Convertica Administration"
-    site_title = "Convertica Admin"
-    index_title = "Welcome to Convertica Admin Panel"
-
-    def get_app_list(self, request, app_label=None):
-        """Reorder apps to put Users first."""
-        app_list = super().get_app_list(request, app_label)
-
-        # Move Users app to the beginning
-        users_app = next((app for app in app_list if app["app_label"] == "users"), None)
-        if users_app:
-            app_list.remove(users_app)
-            app_list.insert(0, users_app)
-
-        return app_list
+_default_get_app_list = admin.site.get_app_list
 
 
-# Create custom admin instance
-custom_admin = CustomAdminSite(name="custom_admin")
+def _get_app_list_users_first(request, app_label=None):
+    """Move the Users app to the top of the admin index."""
+    app_list = _default_get_app_list(request, app_label)
+    users_app = next((a for a in app_list if a["app_label"] == "users"), None)
+    if users_app:
+        app_list.remove(users_app)
+        app_list.insert(0, users_app)
+    return app_list
 
-# Register models with custom admin
-custom_admin.register(User, UserAdmin)
-custom_admin.register(SocialAccount, SocialAccountAdmin)
 
-# Register with default admin (unregister first if needed)
+admin.site.get_app_list = _get_app_list_users_first
+
+# Register User with the default admin (unregister first if needed)
 try:
     admin.site.unregister(User)
 except admin.sites.NotRegistered:
@@ -1076,6 +1072,30 @@ class APIKeyAdmin(admin.ModelAdmin):
         return mark_safe('<span style="color:#51cf66;">Active</span>')
 
     status_display.short_description = "Status"
+
+
+@admin.register(PageViewDaily)
+class PageViewDailyAdmin(admin.ModelAdmin):
+    """Consent-free page-view counts (real humans, bots filtered out).
+
+    One row per path per day. To see a blog article's traffic, search its slug
+    (e.g. ``/blog/``) — each language variant is its own path. Unique-visitor
+    estimates live in Redis; run ``manage.py traffic_stats`` for the daily
+    uniques and the top-pages ranking. This data is written by the traffic
+    middleware and is not editable here.
+    """
+
+    list_display = ("date", "path", "views")
+    list_filter = ("date",)
+    search_fields = ("path",)
+    date_hierarchy = "date"
+    ordering = ("-date", "-views")
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
 
 
 # --- Declutter the admin index --------------------------------------------
