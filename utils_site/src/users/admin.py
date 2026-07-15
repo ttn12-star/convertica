@@ -1085,6 +1085,7 @@ class PageViewDailyAdmin(admin.ModelAdmin):
     middleware and is not editable here.
     """
 
+    change_list_template = "admin/users/pageviewdaily/change_list.html"
     list_display = ("date", "path", "views")
     list_filter = ("date",)
     search_fields = ("path",)
@@ -1096,6 +1097,59 @@ class PageViewDailyAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+    def changelist_view(self, request, extra_context=None):
+        """Prepend a 30-day summary: daily views + approximate unique visitors
+        (from the Redis HyperLogLog) + a top-pages ranking. This is the same
+        data as ``manage.py traffic_stats``, surfaced in the admin so the
+        uniques (which live only in Redis) are visible without a shell."""
+        from datetime import timedelta
+
+        from django.db.models import Sum
+        from django.utils import timezone
+        from src.frontend.middleware import _redis
+
+        days = 30
+        today = timezone.now().date()
+        start = today - timedelta(days=days - 1)
+
+        views_by_day = dict(
+            PageViewDaily.objects.filter(date__gte=start)
+            .values_list("date")
+            .annotate(total=Sum("views"))
+        )
+        conn = _redis()
+        daily, total_views = [], 0
+        for i in range(days):
+            d = start + timedelta(days=i)
+            v = views_by_day.get(d, 0)
+            total_views += v
+            uniques = None
+            if conn is not None:
+                try:
+                    uniques = conn.pfcount(f"uv:{d.isoformat()}")
+                except Exception:
+                    uniques = None
+            daily.append({"date": d, "views": v, "uniques": uniques})
+        daily.reverse()  # newest first
+
+        top_pages = list(
+            PageViewDaily.objects.filter(date__gte=start)
+            .values("path")
+            .annotate(total=Sum("views"))
+            .order_by("-total")[:20]
+        )
+
+        extra_context = extra_context or {}
+        extra_context.update(
+            {
+                "traffic_days": days,
+                "traffic_total_views": total_views,
+                "traffic_daily": daily,
+                "traffic_top_pages": top_pages,
+            }
+        )
+        return super().changelist_view(request, extra_context=extra_context)
 
 
 # --- Declutter the admin index --------------------------------------------
