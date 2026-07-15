@@ -59,3 +59,7 @@ class ProtectImageUtilTests(TestCase):
         bad = SimpleUploadedFile("x.png", b"not an image", content_type="image/png")
         with self.assertRaises(ConversionError):
             protect_image([bad], password="pw")
+
+    def test_rejects_empty_file_list(self):
+        with self.assertRaises(ConversionError):
+            protect_image([], password="pw")
