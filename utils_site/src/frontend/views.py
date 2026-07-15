@@ -1693,7 +1693,7 @@ def sitemap_lang(request, lang: str):
 
         raise Http404("Invalid language")
 
-    cache_key = f"sitemap_{lang}_v3"  # v3: image:image entries added
+    cache_key = f"sitemap_{lang}_v4"  # v4: password-protect-image screenshot added
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")

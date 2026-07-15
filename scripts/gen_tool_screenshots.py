@@ -66,6 +66,7 @@ TOOL_PATHS = [
     "image/svg-to-ico/",
     "image/webp-to-ico/",
     "image/ico-to-png/",
+    "image/password-protect-image/",
     "pdf-organize/merge/",
     "pdf-organize/split/",
     "pdf-organize/remove-pages/",
@@ -106,6 +107,13 @@ DEMO_BY_EXT = {
     ".md": ["README_secret_lore.md"],
     ".epub": ["fellowship_travel_notes.epub"],
     ".zip": ["winter_is_coming_backup.zip"],
+}
+
+# per-slug demo file override: takes priority over the extension pool above,
+# so a tool always gets its bespoke prop regardless of idx rotation when the
+# generator is run for a subset of slugs (as the regen recipe does).
+DEMO_OVERRIDES = {
+    "image-password-protect-image": ["project_nightingale_dossier.jpg"],
 }
 
 # tools that render page previews client-side need extra settle time
@@ -287,6 +295,7 @@ BADGE_OVERRIDES = {
     "image-convert": ("IMG", "ANY"),
     "image-optimize": ("OPTIMIZE",),
     "image-favicon-generator": ("FAVICON",),
+    "image-password-protect-image": ("IMG", "\U0001f512PDF"),
 }
 
 
@@ -327,7 +336,13 @@ def slug_of(path: str) -> str:
     return path.rstrip("/").replace("/", "-")
 
 
-def pick_demo_files(accept: str, multiple: bool, idx: int = 0) -> list[Path]:
+def pick_demo_files(
+    accept: str, multiple: bool, idx: int = 0, slug: str | None = None
+) -> list[Path]:
+    if slug in DEMO_OVERRIDES:
+        override = [DEMO / n for n in DEMO_OVERRIDES[slug] if (DEMO / n).exists()]
+        if override:
+            return override if multiple else override[:1]
     exts = [
         a.strip().lower()
         for a in (accept or "").split(",")
@@ -381,7 +396,7 @@ def capture(page, path: str, idx: int = 0) -> bytes | None:
         inp = inputs.nth(i)
         accept = inp.get_attribute("accept") or ""
         multiple = inp.get_attribute("multiple") is not None
-        files = pick_demo_files(accept, multiple, idx)
+        files = pick_demo_files(accept, multiple, idx, slug)
         try:
             inp.set_input_files([str(f) for f in files])
             staged = True
