@@ -8,12 +8,15 @@ from django.http import FileResponse, HttpRequest
 from django.utils.translation import gettext as _
 from rest_framework import status
 from rest_framework.response import Response
+from src.exceptions import ConversionError
 
 from ...base_views import BaseConversionAPIView
-from ...logging_utils import build_request_context
+from ...logging_utils import build_request_context, get_logger, log_conversion_error
 from .decorators import password_protect_image_docs
 from .serializers import PasswordProtectImageSerializer
 from .utils import protect_image
+
+logger = get_logger(__name__)
 
 
 class PasswordProtectImageAPIView(BaseConversionAPIView):
@@ -94,13 +97,29 @@ class PasswordProtectImageAPIView(BaseConversionAPIView):
         except (TypeError, ValueError):
             quality = 85
 
-        _in, output_path = protect_image(
-            uploaded_files,
-            password=password,
-            user_password=request.data.get("user_password"),
-            owner_password=request.data.get("owner_password"),
-            quality=quality,
-        )
+        try:
+            _in, output_path = protect_image(
+                uploaded_files,
+                password=password,
+                user_password=request.data.get("user_password"),
+                owner_password=request.data.get("owner_password"),
+                quality=quality,
+            )
+        except ConversionError as e:
+            # protect_image creates its own temp dir internally and doesn't
+            # expose the path on failure, so it can't be rmtree'd here; the
+            # periodic tmp-dir sweep reclaims it. What we CAN and must do is
+            # turn this into a clean 4xx instead of an unhandled 500 (this
+            # overridden post() bypasses BaseConversionAPIView's post()/
+            # handle_conversion_error, which never runs for this branch).
+            log_conversion_error(
+                logger,
+                self.CONVERSION_TYPE,
+                build_request_context(request),
+                e,
+                level="warning",
+            )
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         tmp_dir = os.path.dirname(output_path)
         try:
             # fd lifetime owned by FileResponse; rmtree only unlinks the path.
