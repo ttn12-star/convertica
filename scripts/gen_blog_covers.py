@@ -301,6 +301,13 @@ COVERS = {
         "#fdba74",
         "layers",
     ),
+    "how-to-password-protect-a-photo": (
+        "Password-Protect\na Photo",
+        "IMAGE · SECURITY",
+        ("#7c3aed", "#2563eb"),
+        "#c4b5fd",
+        "lock",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()
