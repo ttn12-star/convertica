@@ -990,3 +990,28 @@ class UserSubscription(models.Model):
             "cancel_at_period_end": cancel_at_period_end,
         }
         return cls.objects.update_or_create(user=user, defaults=defaults)
+
+
+class PageViewDaily(models.Model):
+    """Cookieless, consent-free traffic counter.
+
+    Counts real (human, non-bot) HTML page views per path per day, incremented
+    by ``TrafficCountingMiddleware``. Independent of the cookie banner, so it is
+    the ground-truth visit count next to GA4 (which only sees users who opt in)
+    and Search Console. Approximate unique visitors/day live in Redis
+    (HyperLogLog), surfaced by the ``traffic_stats`` command — no raw visitor
+    identifier is ever stored.
+    """
+
+    date = models.DateField()
+    path = models.CharField(max_length=255)
+    views = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        unique_together = [("date", "path")]
+        indexes = [models.Index(fields=["-date"])]
+        verbose_name = "Page view (daily)"
+        verbose_name_plural = "Page views (daily)"
+
+    def __str__(self):
+        return f"{self.date} {self.path} = {self.views}"

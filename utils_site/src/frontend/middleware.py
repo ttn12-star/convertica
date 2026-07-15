@@ -2,7 +2,9 @@
 Custom middleware for frontend.
 """
 
+import hashlib
 import logging
+import re
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
@@ -256,3 +258,114 @@ class CaptchaRequirementMiddleware:
                     pass
 
         return response
+
+
+# --- Consent-free traffic counting -----------------------------------------
+
+# Substrings that mark a request as a bot/crawler/monitor rather than a real
+# visitor. We host heavy crawl traffic (Bing/Google/Ahrefs/…), so without this
+# the "real users" number would be dominated by robots.
+_BOT_UA_RE = re.compile(
+    r"bot|crawl|spider|slurp|bing|google|yandex|baidu|duckduck|ahrefs|semrush|"
+    r"mj12|dotbot|petalbot|facebookexternalhit|embedly|preview|monitor|pingdom|"
+    r"uptime|headless|phantom|python-requests|curl|wget|scrapy|httpx|okhttp",
+    re.IGNORECASE,
+)
+
+# Path prefixes that are never real page views.
+_SKIP_PREFIXES = ("/admin", "/api", "/static", "/media", "/ws", "/.well-known")
+
+# HyperLogLog keys are kept ~400 days so a full year of history is queryable.
+_UV_TTL_SECONDS = 400 * 86400
+
+
+def _redis():
+    """Raw Redis client for HyperLogLog ops, or None if unavailable."""
+    try:
+        from django_redis import get_redis_connection
+
+        return get_redis_connection("default")
+    except Exception:
+        return None
+
+
+def _bump_pageview(date, path):
+    """Atomically increment the per-path/day page-view counter."""
+    from django.db import IntegrityError
+    from django.db.models import F
+    from src.users.models import PageViewDaily
+
+    updated = PageViewDaily.objects.filter(date=date, path=path).update(
+        views=F("views") + 1
+    )
+    if updated:
+        return
+    try:
+        PageViewDaily.objects.create(date=date, path=path, views=1)
+    except IntegrityError:
+        # Another worker created the row between our UPDATE and CREATE.
+        PageViewDaily.objects.filter(date=date, path=path).update(views=F("views") + 1)
+
+
+def _bump_unique(date, request, user_agent):
+    """Add this visitor to the day's HyperLogLog of approximate uniques.
+
+    The member is a salted BLAKE2 hash of IP + User-Agent. The salt rotates
+    daily (the date is part of the hashed input, keyed by SECRET_KEY) and the
+    raw hash is never stored — only HLL's fixed-size sketch — so no persistent
+    or reversible identifier is retained. Aggregate, cookieless, consent-free.
+    """
+    conn = _redis()
+    if conn is None:
+        return
+    from src.api.client_ip import get_client_ip
+
+    ip = get_client_ip(request) or "0.0.0.0"
+    day = date.isoformat()
+    member = hashlib.blake2s(
+        f"{ip}|{user_agent}|{day}".encode(),
+        key=settings.SECRET_KEY.encode()[:32],
+        digest_size=16,
+    ).digest()
+    key = f"uv:{day}"
+    conn.pfadd(key, member)
+    conn.expire(key, _UV_TTL_SECONDS)
+
+
+class TrafficCountingMiddleware:
+    """Count real (human) HTML page views without cookies or consent.
+
+    Increments ``users.PageViewDaily`` (durable, per path/day) and a per-day
+    Redis HyperLogLog of approximate unique visitors. This is the ground-truth
+    visit count that sits next to GA4 (which only sees users who accept the
+    cookie banner) and Search Console. Counting never raises into the response.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        try:
+            self._count(request, response)
+        except Exception:
+            logger.debug("TrafficCountingMiddleware: count failed", exc_info=True)
+        return response
+
+    def _count(self, request, response):
+        if request.method != "GET" or response.status_code != 200:
+            return
+        if "text/html" not in response.get("Content-Type", ""):
+            return
+        path = request.path
+        if path.startswith(_SKIP_PREFIXES):
+            return
+        user_agent = request.META.get("HTTP_USER_AGENT", "")
+        if not user_agent or _BOT_UA_RE.search(user_agent):
+            return
+
+        from django.utils import timezone
+
+        today = timezone.now().date()
+        _bump_pageview(today, path[:255])
+        _bump_unique(today, request, user_agent)
