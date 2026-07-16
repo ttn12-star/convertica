@@ -405,21 +405,32 @@ jobs:
 
       - name: Extract metadata
         id: meta
-        uses: docker/metadata-action@v6
-        with:
-          # context: git reads refs from the local checkout instead of the
-          # GitHub API. The default (workflow) hits the API on every build and
-          # took the whole pipeline down during the 2026-07-16 GitHub 503
-          # storm ("Unicorn!" HTML in place of the events payload).
-          context: git
-          images: ${{ secrets.DOCKER_USERNAME }}/convertica
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=sha,prefix=sha-
-            type=raw,value=latest,enable={{is_default_branch}}
+        # Plain shell instead of docker/metadata-action: the action calls the
+        # GitHub API for repo metadata (OCI labels) even with context:git, so
+        # the 2026-07-16 API outage ("Unicorn!" HTML instead of JSON) failed
+        # three tag deploys in a row (v2.2.161-163). Tag set reproduced:
+        #   branch push:  <branch>, sha-<7>, latest (main only)
+        #   tag vX.Y.Z:   X.Y.Z, X.Y, sha-<7>
+        run: |
+          IMAGE="${{ secrets.DOCKER_USERNAME }}/convertica"
+          SHORT_SHA="$(git rev-parse --short=7 HEAD)"
+          TAGS="$IMAGE:sha-$SHORT_SHA"
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            V="${GITHUB_REF#refs/tags/v}"
+            TAGS="$TAGS"$'\n'"$IMAGE:$V"$'\n'"$IMAGE:${V%.*}"
+          elif [[ "$GITHUB_REF" == refs/heads/* ]]; then
+            BRANCH="${GITHUB_REF#refs/heads/}"
+            TAGS="$TAGS"$'\n'"$IMAGE:${BRANCH//\//-}"
+            if [ "$BRANCH" = "main" ]; then
+              TAGS="$TAGS"$'\n'"$IMAGE:latest"
+            fi
+          fi
+          {
+            echo "tags<<EOF"
+            echo "$TAGS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          echo "Computed tags:"; echo "$TAGS"
 
       - name: Build and push
         uses: docker/build-push-action@v6
@@ -428,7 +439,6 @@ jobs:
           file: ./ci/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha,scope=build
           cache-to: type=gha,mode=max,scope=build
           # Build only for amd64 to speed up (uncomment arm64 if needed)
