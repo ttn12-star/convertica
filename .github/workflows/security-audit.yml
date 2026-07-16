@@ -1,0 +1,30 @@
+# Weekly dependency vulnerability audit.
+#
+# The 2026-07 manual audit found known CVEs in 12 pinned packages — several
+# of them (pillow, pypdf, pyzipper) parse untrusted user uploads. This job
+# keeps that from drifting again: pip-audit runs against the exact pins every
+# Monday and on demand; a finding fails the run so GitHub notifies.
+name: Security Audit
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  pip-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Audit pinned requirements
+        run: |
+          pip install --quiet pip-audit
+          # pip-audit --no-deps requires exact pins; fonttools is a ">=" floor
+          # (transitive via pdf2docx), so pin it to the floor for the scan.
+          sed 's/^fonttools>=/fonttools==/' requirements.txt > /tmp/req-audit.txt
+          pip-audit -r /tmp/req-audit.txt --disable-pip --no-deps
