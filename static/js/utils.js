@@ -914,7 +914,7 @@ async function submitAsyncConversion(options) {
                     cleanupAbandonTracking();
 
                     if (onSuccess) {
-                        onSuccess(blob, filename);
+                        onSuccess(blob, filename, resultResponse);
                     } else {
                         await showDownloadButton(blob, filename, downloadContainerId);
                     }
@@ -1034,6 +1034,14 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
     const { onProgress, onSuccess, onError } = callbacks;
     let attempts = 0;
 
+    // Adaptive back-off: long-running tasks don't need 2.5 s polling — after
+    // ~30 s slow to 4 s, after ~2.5 min to 6 s. Cuts poll traffic on the
+    // 2 sync gunicorn workers roughly in half under queue load.
+    const currentInterval = () =>
+        attempts > 48 ? Math.max(pollInterval, 6000)
+        : attempts > 12 ? Math.max(pollInterval, 4000)
+        : pollInterval;
+
     const poll = async () => {
         attempts++;
 
@@ -1070,28 +1078,28 @@ async function pollTaskStatus(taskId, callbacks, pollInterval = null, maxAttempt
 
                 case 'PROGRESS':
                     onProgress(data.progress || 0, data.current_step || 'Processing...');
-                    setTimeout(poll, pollInterval);
+                    setTimeout(poll, currentInterval());
                     break;
 
                 case 'PENDING':
                     onProgress(0, data.message || 'Waiting in queue...');
-                    setTimeout(poll, pollInterval);
+                    setTimeout(poll, currentInterval());
                     break;
 
                 case 'STARTED':
                     onProgress(5, data.message || 'Processing started...');
-                    setTimeout(poll, pollInterval);
+                    setTimeout(poll, currentInterval());
                     break;
 
                 default:
                     // Unknown status - keep polling
-                    setTimeout(poll, pollInterval);
+                    setTimeout(poll, currentInterval());
             }
 
         } catch (error) {
             // Network error - retry
             if (attempts < maxAttempts) {
-                setTimeout(poll, pollInterval * 2); // Back off on errors
+                setTimeout(poll, currentInterval() * 2); // Back off on errors
             } else {
                 onError('Lost connection to server');
             }
