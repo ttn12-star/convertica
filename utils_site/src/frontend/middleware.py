@@ -388,3 +388,47 @@ class TrafficCountingMiddleware:
         today = timezone.now().date()
         _bump_pageview(today, path[:255])
         _bump_unique(today, request, user_agent)
+
+
+class AnonymousCsrfCookieStripMiddleware:
+    """Drop the csrftoken Set-Cookie from anonymous GETs of cacheable pages.
+
+    Tool pages render ``{% csrf_token %}`` (needed by logged-in users, whose
+    session-authenticated API calls DO get CSRF-checked), which makes Django
+    attach ``Set-Cookie: csrftoken`` to every anonymous page view. Cloudflare
+    never caches responses that set cookies, so the "Cache anonymous HTML"
+    cache rule was a no-op for exactly the crawler/anon traffic it targets
+    (the 2-worker origin melts under parallel crawls — same incident class as
+    the /blog/ rule). Anonymous conversion POSTs hit DRF views that are
+    csrf-exempt for unauthenticated callers, so the cookie is dead weight for
+    them.
+
+    The strip list mirrors the Cloudflare rule's exclusions: pages where an
+    anonymous visitor genuinely submits a Django form (login/signup/contact/
+    admin) keep the cookie.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+        from django.conf import settings
+
+        admin_path = getattr(settings, "ADMIN_URL_PATH", "admin").strip("/")
+        self._keep_markers = (
+            "/accounts/",
+            "/users/",
+            "/contact",
+            "/api/",
+            f"/{admin_path}/",
+        )
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        if (
+            request.method in ("GET", "HEAD")
+            and "csrftoken" in response.cookies
+            and getattr(request, "user", None) is not None
+            and not request.user.is_authenticated
+            and not any(m in request.path for m in self._keep_markers)
+        ):
+            del response.cookies["csrftoken"]
+        return response

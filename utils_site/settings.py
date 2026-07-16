@@ -399,6 +399,7 @@ MIDDLEWARE = [
     "src.api.middleware.FilterProxyRequestsMiddleware",  # Filter invalid hosts/proxy CONNECT - BEFORE SecurityMiddleware!
     "django.middleware.security.SecurityMiddleware",
     "src.users.middleware.RuntimeSettingsMiddleware",  # Apply admin runtime settings overrides
+    "src.frontend.middleware.AnonymousCsrfCookieStripMiddleware",  # Un-set csrftoken for anon cacheable pages (CF cache rule)
     # WhiteNoise for static files (if enabled via USE_WHITENOISE env var)
     # Uncomment or use environment variable to enable
     # "whitenoise.middleware.WhiteNoiseMiddleware",
