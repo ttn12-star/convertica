@@ -189,15 +189,15 @@ class OptimizationManager:
         self, uploaded_file: UploadedFile, **kwargs
     ) -> tuple[str, str]:
         """Adaptive JPG to PDF conversion."""
-        # Skip optimization for Celery tasks to avoid conflicts
+        # Skip optimization for Celery tasks to avoid conflicts.
+        # Call the sequential impl directly: routing back through the public
+        # convert_jpg_to_pdf would re-enter this method with is_celery_task
+        # still in kwargs (TypeError on duplicated suffix / infinite loop).
         if kwargs.get("is_celery_task", False):
-            from .pdf_convert.jpg_to_pdf.utils import (
-                convert_jpg_to_pdf as _convert_jpg_to_pdf_sync,
-            )
+            from .pdf_convert.jpg_to_pdf.utils import _convert_jpg_to_pdf_sequential
 
-            return await _convert_jpg_to_pdf_sync(
-                uploaded_file, suffix=kwargs.get("suffix", "_convertica"), **kwargs
-            )
+            kwargs.pop("is_celery_task", None)
+            return await _convert_jpg_to_pdf_sequential(uploaded_file, **kwargs)
 
         if self.should_optimize("jpg_to_pdf", uploaded_file.size / (1024 * 1024)):
             from .pdf_convert.jpg_to_pdf_optimized import convert_jpg_to_pdf_optimized
