@@ -14728,3 +14728,46 @@ msgstr "किसी भी PDF को ऑनलाइन साइन करे
 
 msgid "Create a free account"
 msgstr "मुफ़्त खाता बनाएं"
+
+msgid "Convert JPG images to .ico favicons"
+msgstr "JPG छवियों को .ico फ़ेविकॉन में बदलें"
+
+msgid "Convert JPG images to .ico favicons."
+msgstr "JPG छवियों को .ico फ़ेविकॉन में बदलें।"
+
+msgid "Convert PNG images to .ico favicons"
+msgstr "PNG छवियों को .ico फ़ेविकॉन में बदलें"
+
+msgid "Convert PNG images to .ico favicons."
+msgstr "PNG छवियों को .ico फ़ेविकॉन में बदलें।"
+
+msgid "Convert SVG vectors to .ico favicons"
+msgstr "SVG वेक्टर को .ico फ़ेविकॉन में बदलें"
+
+msgid "Convert SVG vectors to .ico favicons."
+msgstr "SVG वेक्टर को .ico फ़ेविकॉन में बदलें।"
+
+msgid "Convert WebP images to .ico favicons"
+msgstr "WebP छवियों को .ico फ़ेविकॉन में बदलें"
+
+msgid "Convert WebP images to .ico favicons."
+msgstr "WebP छवियों को .ico फ़ेविकॉन में बदलें।"
+
+msgid "Create a complete favicon package from any image"
+msgstr "किसी भी छवि से पूरा फ़ेविकॉन पैकेज बनाएं"
+
+msgid "Create a complete favicon package from any image."
+msgstr "किसी भी छवि से पूरा फ़ेविकॉन पैकेज बनाएं।"
+
+msgid "Extract a PNG from an .ico file"
+msgstr "किसी .ico फ़ाइल से PNG निकालें"
+
+msgid "Extract a PNG from an .ico file."
+msgstr "किसी .ico फ़ाइल से PNG निकालें।"
+
+#, python-format
+msgid "Image too large (%(file_mb).1f MB). Free limit is %(free_mb).0f MB. Upgrade to Premium for larger images, unlimited daily use, and Word export."
+msgstr "छवि बहुत बड़ी है (%(file_mb).1f MB)। मुफ़्त सीमा %(free_mb).0f MB है। बड़ी छवियों, असीमित दैनिक उपयोग और Word निर्यात के लिए Premium लें।"
+
+msgid "Word (.docx) export is a Premium feature. Upgrade to download your text as a Word document."
+msgstr "Word (.docx) निर्यात एक Premium सुविधा है। अपना टेक्स्ट Word दस्तावेज़ के रूप में डाउनलोड करने के लिए अपग्रेड करें।"
