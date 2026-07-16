@@ -829,9 +829,8 @@ def premium_tools_page(request):
         "higher limits, priority processing, and early access to new formats."
     )
     page_keywords = (
-        "premium pdf tools, advanced pdf converter, epub to pdf premium, "
-        "pdf to epub premium, pdf to markdown premium, compare pdf premium, "
-        "batch conversion premium, ocr premium, "
+        "premium pdf tools, advanced pdf converter, compare pdf premium, "
+        "batch conversion premium, ocr premium, scanned pdf to word, "
         "priority queue pdf conversion, background tasks pdf converter"
     )
 
