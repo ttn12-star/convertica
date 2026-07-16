@@ -1,5 +1,7 @@
 """The site stylesheet is inlined (zero render-blocking CSS requests)."""
 
+import re
+
 from django.test import Client, TestCase
 
 
@@ -10,6 +12,7 @@ class InlineCssTests(TestCase):
         self.assertNotIn('rel="stylesheet" href="/static/css/tailwind', html)
         # …the CSS is inline, with url(../fonts/…) rewritten to /static/fonts/…
         # (relative refs would resolve against the page URL and 404 the fonts).
+        # The url() may be bare (tailwind build) or quoted (manifest post-process).
         self.assertIn("font-family:Inter", html)
-        self.assertIn("url(/static/fonts/inter/", html)
-        self.assertNotIn("url(../", html)
+        self.assertRegex(html, r'url\(["\']?/static/fonts/inter/')
+        self.assertNotRegex(html, r'url\(["\']?\.\./')
