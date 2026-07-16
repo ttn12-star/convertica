@@ -164,7 +164,7 @@ def user_profile(request):
 
     # Daily conversion quota widget (free accounts; premium is unlimited).
     daily_quota_used = daily_quota_limit = daily_quota_pct = None
-    if not request.user.is_premium_active():
+    if not request.user.is_premium_active:
         from src.api.daily_quota import get_quota_state
 
         _key, daily_quota_limit, daily_quota_used = get_quota_state(request)

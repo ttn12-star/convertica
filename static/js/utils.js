@@ -977,17 +977,23 @@ async function submitAsyncConversion(options) {
         } else {
             // Error response
             let errorMsg = 'Conversion failed';
+            let errorPayload = null;
             let captchaRequired = false;
             try {
                 const errorData = await response.json();
                 errorMsg = errorData.error || errorData.detail || errorMsg;
                 captchaRequired = errorData.captcha_required === true;
+                // Preserve CTA fields (register_url/upgrade_url) so showError
+                // can render action buttons on quota/premium responses.
+                if (errorData.register_url || errorData.upgrade_url) {
+                    errorPayload = { ...errorData, error: errorMsg };
+                }
             } catch (e) {
                 // Couldn't parse error JSON
             }
 
             hideLoading(loadingContainerId);
-            showError(errorMsg, errorContainerId);
+            showError(errorPayload || errorMsg, errorContainerId);
             // CAPTCHA can be required mid-session (rate-based) on a page that
             // loaded without a widget. Render one on demand so the "complete the
             // CAPTCHA" message is actionable instead of a dead end.
