@@ -1,8 +1,9 @@
-"""Tests for the premium HEIC → JPG/PNG/PDF converter.
+"""Tests for the HEIC → JPG/PNG/PDF converter.
 
 Covers:
 - utils.convert_heic() format coverage (JPEG, PNG, PDF) — unit-level.
-- ConvertHEICAPIView premium gate: anon 403, free 403, premium 200.
+- ConvertHEICAPIView daily quota: free within limit → 200, over limit → 429,
+  premium → unlimited 200.
 - Output content types and file headers.
 - Frontend landing page renders successfully (200, key copy present).
 """
@@ -11,6 +12,7 @@ from __future__ import annotations
 
 import io
 from datetime import timedelta
+from unittest.mock import patch
 
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -102,10 +104,12 @@ class ConvertHEICUtilsTests(TestCase):
 @override_settings(
     PAYMENTS_ENABLED=True,
     RATELIMIT_ENABLE=False,
+    DAILY_QUOTA_ANON=2,
+    DAILY_QUOTA_REGISTERED=3,
     CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
 )
 class ConvertHEICAPITests(TestCase):
-    """End-to-end premium-gating + happy-path API tests."""
+    """End-to-end daily-quota + happy-path API tests."""
 
     URL = "/api/image/heic-convert/"
 
@@ -135,24 +139,44 @@ class ConvertHEICAPITests(TestCase):
     def _upload(self, name: str = "sample.heic") -> SimpleUploadedFile:
         return SimpleUploadedFile(name, self.heic_bytes, content_type="image/heic")
 
-    def test_anon_blocked_with_premium_error(self):
-        response = self.client.post(
+    def _convert(self):
+        return self.client.post(
             self.URL,
             data={"image_file": self._upload(), "output_format": "JPEG"},
             format="multipart",
         )
-        self.assertEqual(response.status_code, 403)
-        self.assertIn("premium", response.json().get("error", "").lower())
 
-    def test_free_user_blocked_with_premium_error(self):
+    def test_anon_can_convert_within_daily_quota(self):
+        """First anonymous conversion succeeds (no login wall)."""
+        response = self._convert()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "image/jpeg")
+
+    # The 2s-between-requests timing guard is keyed on IP and would reject the
+    # rapid same-IP calls these quota tests need; neutralise just that guard so
+    # we exercise the daily-quota gate in isolation.
+    @patch(
+        "src.api.spam_protection.check_minimum_time_between_requests",
+        return_value=(True, None),
+    )
+    def test_anon_blocked_after_daily_quota(self, _timing):
+        """Anon gets DAILY_QUOTA_ANON (2) free/day, then 429."""
+        for _ in range(2):
+            self.assertEqual(self._convert().status_code, 200)
+        blocked = self._convert()
+        self.assertEqual(blocked.status_code, 429)
+        self.assertIn("limit", blocked.json().get("error", "").lower())
+
+    @patch(
+        "src.api.spam_protection.check_minimum_time_between_requests",
+        return_value=(True, None),
+    )
+    def test_registered_user_gets_higher_quota_then_429(self, _timing):
+        """Registered-free gets DAILY_QUOTA_REGISTERED (3) — more than anon."""
         self.client.force_authenticate(self.free_user)
-        response = self.client.post(
-            self.URL,
-            data={"image_file": self._upload(), "output_format": "JPEG"},
-            format="multipart",
-        )
-        self.assertEqual(response.status_code, 403)
-        self.assertIn("premium", response.json().get("error", "").lower())
+        for _ in range(3):
+            self.assertEqual(self._convert().status_code, 200)
+        self.assertEqual(self._convert().status_code, 429)
 
     def test_premium_user_can_convert_to_jpeg(self):
         self.client.force_authenticate(self.premium_user)
@@ -228,7 +252,8 @@ class HEICFrontendPageTests(TestCase):
         response = self.client.get("/en/image/heic-to-jpg/", follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"HEIC to JPG", response.content)
-        self.assertIn(b"Premium Feature", response.content)
+        # Page now advertises the free tool (with a daily limit), not a paywall.
+        self.assertIn(b"Free", response.content)
 
     def test_heic_page_renders_russian(self):
         response = self.client.get("/ru/image/heic-to-jpg/", follow=True)

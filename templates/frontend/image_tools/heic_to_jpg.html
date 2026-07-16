@@ -2,13 +2,14 @@
 {% load i18n static minified_static %}
 
 {% block edit_options %}
-  <!-- Premium feature banner -->
-  <div class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg">
-    <h3 class="text-sm font-semibold text-amber-800 mb-1">{% trans "Premium Feature" %}</h3>
-    <p class="text-xs text-amber-700">
-      {% trans "HEIC to JPG is a premium feature. Upgrade to Premium to convert iPhone HEIC photos to JPG, PNG, or PDF — single files or batches of up to 10." %}
+  <!-- Free tool note -->
+  <div class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+    <h3 class="text-sm font-semibold text-blue-800 mb-1">{% trans "Free — no sign-up needed" %}</h3>
+    <p class="text-xs text-blue-700">
+      {% trans "Convert one HEIC or HEIF photo at a time to JPG, PNG, or PDF. A daily free limit applies." %}
       {% if PAYMENTS_ENABLED %}
-        <a href="{% url 'frontend:pricing' %}" class="underline font-semibold">{% trans "Upgrade now" %}</a>
+        {% trans "Batch conversion (up to 10 files) and unlimited use are available with" %}
+        <a href="{% url 'frontend:pricing' %}" class="underline font-semibold">{% trans "Premium" %}</a>.
       {% endif %}
     </p>
   </div>

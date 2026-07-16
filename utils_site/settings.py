@@ -761,6 +761,12 @@ ARCHIVE_MAX_TOTAL_UNCOMPRESSED = 500 * 1024 * 1024  # 500 MB total uncompressed
 MAX_BATCH_FILES_FREE = config("MAX_BATCH_FILES_FREE", default=1, cast=int)
 MAX_BATCH_FILES_PREMIUM = config("MAX_BATCH_FILES_PREMIUM", default=10, cast=int)
 
+# Daily conversion quota for tools opened up from premium-only to free
+# (HEIC, PDF->Markdown, EPUB<->PDF). Premium users are unlimited; these caps
+# only apply to anonymous / registered-free callers. See api/daily_quota.py.
+DAILY_QUOTA_ANON = config("DAILY_QUOTA_ANON", default=2, cast=int)
+DAILY_QUOTA_REGISTERED = config("DAILY_QUOTA_REGISTERED", default=5, cast=int)
+
 # Premium operation-specific page limits
 # Override in .env as JSON: PREMIUM_PAGE_LIMITS={"pdf_to_word": 500, ...}
 # These limits are per-operation maximums for premium users

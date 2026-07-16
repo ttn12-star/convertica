@@ -607,19 +607,19 @@ class FrontendViewsTestCase(TestCase):
             "epub-to-pdf/": [
                 "How EPUB to PDF works",
                 "Convert EPUB to PDF with chapter-aware formatting",
-                "Why use EPUB to PDF in Premium?",
+                "Why use our EPUB to PDF converter?",
                 "Tips for Better EPUB to PDF Output",
             ],
             "pdf-to-epub/": [
                 "How PDF to EPUB works",
                 "Convert PDF to EPUB for eReader-ready publishing",
-                "Why use PDF to EPUB in Premium?",
+                "Why use our PDF to EPUB converter?",
                 "Tips for Better PDF to EPUB Output",
             ],
             "pdf-to-markdown/": [
                 "How PDF to Markdown works",
                 "Convert PDF to Markdown with heading and table structure",
-                "Why use PDF to Markdown in Premium?",
+                "Why use our PDF to Markdown converter?",
                 "Tips for Better PDF to Markdown Output",
             ],
             "compare-pdf/": [
@@ -651,13 +651,8 @@ class FrontendViewsTestCase(TestCase):
                 self.assertContains(response, "FAQ", status_code=200)
 
     def test_premium_landing_pages_schema_uses_premium_price(self):
-        """Premium converter pages should expose premium offer price in schema."""
-        premium_paths = (
-            "epub-to-pdf/",
-            "pdf-to-epub/",
-            "pdf-to-markdown/",
-            "compare-pdf/",
-        )
+        """Still-premium converter pages should expose premium offer price in schema."""
+        premium_paths = ("compare-pdf/",)
 
         for path in premium_paths:
             with self.subTest(path=path):
@@ -668,6 +663,22 @@ class FrontendViewsTestCase(TestCase):
                 )
                 self.assertContains(response, '"price": "6"', status_code=200)
                 self.assertNotContains(response, '"price": "0"', status_code=200)
+
+    def test_freed_niche_pages_schema_uses_free_price(self):
+        """HEIC/EPUB/Markdown were opened to free — schema must advertise a free offer."""
+        free_paths = (
+            "image/heic-to-jpg/",
+            "epub-to-pdf/",
+            "pdf-to-epub/",
+            "pdf-to-markdown/",
+        )
+
+        for path in free_paths:
+            with self.subTest(path=path):
+                response = self.client.get(self._get_url_with_lang(path), follow=False)
+                self.assertEqual(response.status_code, 200)
+                self.assertContains(response, '"price": "0"', status_code=200)
+                self.assertNotContains(response, '"price": "6"', status_code=200)
 
     def test_all_tools_header_menu_lists_new_premium_links(self):
         """All Tools dropdown should include premium links, not Convert PDF dropdown."""

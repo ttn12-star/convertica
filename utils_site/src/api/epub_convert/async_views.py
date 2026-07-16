@@ -8,37 +8,29 @@ from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
 
 from ..async_views import AsyncConversionAPIView
-from ..premium_utils import is_premium_active
+from ..daily_quota import try_consume_daily_quota
 from .serializers import EPUBToPDFSerializer, PDFToEPUBSerializer
 
-# Shared response docs for the premium async conversion endpoints. Behaviour was
-# always gated (403) / validated (400/413); this just makes the schema match.
+# Shared response docs for the async conversion endpoints. Free for everyone
+# under a daily quota (429 when exceeded); large files still 413.
 _ASYNC_RESPONSES = {
     202: "Conversion task accepted (poll /api/tasks/<id>/status/).",
     400: "Bad request - invalid file or parameters.",
-    403: "Premium subscription required.",
     413: "File too large.",
+    429: "Daily free limit reached (log in / upgrade for more).",
 }
 
 
-def _premium_access_error(request: HttpRequest) -> Response:
-    """Build premium-required API response."""
-    payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
-    if not request.user.is_authenticated:
-        if payments_enabled:
-            message = "This converter is available for premium users. Please log in and upgrade."
-        else:
-            message = "This converter is currently unavailable."
-    else:
-        if payments_enabled:
-            message = "This converter is available for premium users. Upgrade to Premium to continue."
-        else:
-            message = "This converter is currently unavailable."
-    return Response({"error": message}, status=status.HTTP_403_FORBIDDEN)
+def _quota_error(request: HttpRequest) -> Response | None:
+    """Consume one daily-quota unit; return a 429 Response if over the limit."""
+    allowed, message = try_consume_daily_quota(request)
+    if allowed:
+        return None
+    return Response({"error": message}, status=status.HTTP_429_TOO_MANY_REQUESTS)
 
 
 class EPUBToPDFAsyncAPIView(AsyncConversionAPIView):
-    """Async EPUB to PDF conversion (premium only)."""
+    """Async EPUB to PDF conversion (free, daily-quota limited)."""
 
     MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
     ALLOWED_CONTENT_TYPES = {
@@ -58,18 +50,19 @@ class EPUBToPDFAsyncAPIView(AsyncConversionAPIView):
         return generic_conversion_task
 
     @swagger_auto_schema(
-        operation_summary="EPUB to PDF (async, premium)",
+        operation_summary="EPUB to PDF (async)",
         tags=["PDF Conversion"],
         responses=_ASYNC_RESPONSES,
     )
     def post(self, request: HttpRequest):
-        if not is_premium_active(request.user):
-            return _premium_access_error(request)
+        over_quota = _quota_error(request)
+        if over_quota is not None:
+            return over_quota
         return super().post(request)
 
 
 class PDFToEPUBAsyncAPIView(AsyncConversionAPIView):
-    """Async PDF to EPUB conversion (premium only)."""
+    """Async PDF to EPUB conversion (free, daily-quota limited)."""
 
     MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
     ALLOWED_CONTENT_TYPES = {"application/pdf", "application/octet-stream"}
@@ -85,11 +78,12 @@ class PDFToEPUBAsyncAPIView(AsyncConversionAPIView):
         return generic_conversion_task
 
     @swagger_auto_schema(
-        operation_summary="PDF to EPUB (async, premium)",
+        operation_summary="PDF to EPUB (async)",
         tags=["PDF Conversion"],
         responses=_ASYNC_RESPONSES,
     )
     def post(self, request: HttpRequest):
-        if not is_premium_active(request.user):
-            return _premium_access_error(request)
+        over_quota = _quota_error(request)
+        if over_quota is not None:
+            return over_quota
         return super().post(request)

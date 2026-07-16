@@ -17,28 +17,12 @@ from src.tasks.pdf_conversion import generic_conversion_task
 
 from ..async_views import AsyncConversionAPIView
 from ..conversion_limits import MAX_FILE_SIZE_HEAVY, MAX_PDF_PAGES_HEAVY
-from ..premium_utils import is_premium_active
+from ..daily_quota import try_consume_daily_quota
 from .pdf_to_excel.serializers import PDFToExcelSerializer
 from .pdf_to_jpg.serializers import PDFToJPGSerializer
 from .pdf_to_markdown.serializers import PDFToMarkdownSerializer
 from .pdf_to_word.serializers import PDFToWordSerializer
 from .word_to_pdf.serializers import WordToPDFSerializer
-
-
-def _premium_access_error(request: HttpRequest) -> Response:
-    """Build premium-required API response."""
-    payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
-    if not request.user.is_authenticated:
-        if payments_enabled:
-            message = "This converter is available for premium users. Please log in and upgrade."
-        else:
-            message = "This converter is currently unavailable."
-    else:
-        if payments_enabled:
-            message = "This converter is available for premium users. Upgrade to Premium to continue."
-        else:
-            message = "This converter is currently unavailable."
-    return Response({"error": message}, status=status.HTTP_403_FORBIDDEN)
 
 
 class PDFToWordAsyncAPIView(AsyncConversionAPIView):
@@ -170,16 +154,19 @@ class PDFToMarkdownAsyncAPIView(AsyncConversionAPIView):
         }
 
     @swagger_auto_schema(
-        operation_summary="PDF to Markdown (async, premium)",
+        operation_summary="PDF to Markdown (async)",
         tags=["PDF Conversion"],
         responses={
             202: "Conversion task accepted (poll /api/tasks/<id>/status/).",
             400: "Bad request - invalid file or parameters.",
-            403: "Premium subscription required.",
             413: "File too large.",
+            429: "Daily free limit reached (log in / upgrade for more).",
         },
     )
     def post(self, request: HttpRequest):
-        if not is_premium_active(request.user):
-            return _premium_access_error(request)
+        allowed, quota_error = try_consume_daily_quota(request)
+        if not allowed:
+            return Response(
+                {"error": quota_error}, status=status.HTTP_429_TOO_MANY_REQUESTS
+            )
         return super().post(request)

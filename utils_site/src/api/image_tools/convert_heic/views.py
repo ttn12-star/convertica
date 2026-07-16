@@ -1,4 +1,4 @@
-"""HEIC / HEIF converter API view (premium-gated)."""
+"""HEIC / HEIF converter API view (free single-file, daily-quota limited)."""
 
 import os
 
@@ -9,36 +9,18 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
-from ...premium_utils import is_premium_active
+from ...daily_quota import try_consume_daily_quota
 from .decorators import convert_heic_docs
 from .serializers import ConvertHEICSerializer
 from .utils import convert_heic
 
 
-def _premium_access_error(request: HttpRequest) -> Response:
-    """Build premium-required API response (mirrors PDFToText pattern)."""
-    payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
-    if not request.user.is_authenticated:
-        if payments_enabled:
-            message = (
-                "This converter is available for premium users. "
-                "Please log in and upgrade."
-            )
-        else:
-            message = "This converter is currently unavailable."
-    else:
-        if payments_enabled:
-            message = (
-                "This converter is available for premium users. "
-                "Upgrade to Premium to continue."
-            )
-        else:
-            message = "This converter is currently unavailable."
-    return Response({"error": message}, status=status.HTTP_403_FORBIDDEN)
-
-
 class ConvertHEICAPIView(BaseConversionAPIView):
-    """Convert Apple HEIC / HEIF photos to JPG, PNG, or PDF (premium only)."""
+    """Convert Apple HEIC / HEIF photos to JPG, PNG, or PDF.
+
+    Free for everyone as a single-file conversion, bounded by a daily quota
+    (anonymous < registered < premium=unlimited). Batch mode stays premium.
+    """
 
     MAX_UPLOAD_SIZE = getattr(settings, "MAX_UPLOAD_SIZE", 50 * 1024 * 1024)
     # HEIC files don't always carry a stable MIME — Safari/Edge sometimes send
@@ -70,8 +52,11 @@ class ConvertHEICAPIView(BaseConversionAPIView):
 
     @convert_heic_docs()
     def post(self, request: HttpRequest):
-        if not is_premium_active(request.user):
-            return _premium_access_error(request)
+        allowed, quota_error = try_consume_daily_quota(request)
+        if not allowed:
+            return Response(
+                {"error": quota_error}, status=status.HTTP_429_TOO_MANY_REQUESTS
+            )
         return super().post(request)
 
     def perform_conversion(
