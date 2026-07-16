@@ -33,13 +33,11 @@ Disallow: /*/payments/
 Disallow: /contribute/success/
 Disallow: /*/contribute/success/
 
-# Disallow premium-gated tools that 302-redirect anonymous visitors to login
-# (kept off the public crawl to avoid noisy 302→login chains in audits).
-# /scanned-pdf-to-word/ is intentionally NOT blocked: OCR is a high-CPC
-# keyword we want indexed. The landing page must serve crawlable anonymous
-# content; the actual conversion remains premium-gated at the app layer.
-Disallow: /batch-converter/
-Disallow: /*/batch-converter/
+# Disallow premium-gated feature pages that 302-redirect anonymous visitors
+# to login (kept off the public crawl to avoid noisy 302→login chains).
+# /scanned-pdf-to-word/ and /batch-converter/ are intentionally NOT blocked:
+# both are commercial keywords with public crawlable landings; the actual
+# operations remain premium-gated at the app layer.
 Disallow: /premium/
 Disallow: /*/premium/
 

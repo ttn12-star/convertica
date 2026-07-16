@@ -14771,3 +14771,63 @@ msgstr "छवि बहुत बड़ी है (%(file_mb).1f MB)। मु�
 
 msgid "Word (.docx) export is a Premium feature. Upgrade to download your text as a Word document."
 msgstr "Word (.docx) निर्यात एक Premium सुविधा है। अपना टेक्स्ट Word दस्तावेज़ के रूप में डाउनलोड करने के लिए अपग्रेड करें।"
+
+msgid "Batch PDF Converter - Convert Multiple Files at Once"
+msgstr "Batch PDF Converter — एक साथ कई फ़ाइलें कन्वर्ट करें"
+
+msgid "Convert multiple PDFs, Word documents and images in one run and download everything as a single ZIP. Batch mode handles up to 10 files at once with Premium; single-file conversions are free."
+msgstr "एक ही बार में कई PDF, Word दस्तावेज़ और छवियाँ कन्वर्ट करें और सब कुछ एक ZIP में डाउनलोड करें। Premium के साथ batch mode एक बार में 10 फ़ाइलें तक संभालता है; single-file conversions मुफ़्त हैं।"
+
+msgid "Choose a converter and upload up to 10 files in one go."
+msgstr "कोई converter चुनें और एक बार में 10 फ़ाइलें तक अपलोड करें।"
+
+msgid "Start the batch — every file is processed with the same settings."
+msgstr "Batch शुरू करें — हर फ़ाइल एक जैसी settings के साथ process होती है।"
+
+msgid "Download all results together as a single ZIP archive."
+msgstr "सारे results एक साथ एक ZIP archive के रूप में डाउनलोड करें।"
+
+msgid "How does batch conversion work?"
+msgstr "Batch conversion कैसे काम करता है?"
+
+msgid "Pick a tool, upload several files at once, and start the run. Every file is converted with the same settings, and you download the results together as a single ZIP archive."
+msgstr "कोई tool चुनें, एक साथ कई फ़ाइलें अपलोड करें और process शुरू करें। हर फ़ाइल एक जैसी settings के साथ convert होती है, और results आप एक ZIP archive में एक साथ डाउनलोड करते हैं।"
+
+msgid "How many files can I process at once?"
+msgstr "एक बार में कितनी फ़ाइलें process कर सकता हूँ?"
+
+msgid "Batch mode handles up to 10 files per run. For bigger jobs, run several batches back to back — background mode keeps long runs going while you do something else."
+msgstr "Batch mode हर run में 10 फ़ाइलें तक संभालता है। बड़े कामों के लिए एक के बाद एक कई batch चलाएँ — background mode लंबे काम चालू रखता है, जब आप कुछ और कर रहे होते हैं।"
+
+msgid "Is batch conversion free?"
+msgstr "क्या batch conversion मुफ़्त है?"
+
+msgid "Single-file conversions are free with a daily limit. Processing several files in one run is a Premium feature, together with higher file-size limits, priority processing, and background mode."
+msgstr "Single-file conversions दैनिक सीमा के साथ मुफ़्त हैं। एक run में कई फ़ाइलें process करना Premium सुविधा है — साथ में बड़ी file-size limits, priority processing और background mode भी मिलते हैं।"
+
+msgid "Which tools support batch mode?"
+msgstr "कौन से tools batch mode support करते हैं?"
+
+msgid "PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, Compress PDF and Add Watermark — plus most other converters on the site."
+msgstr "PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, Compress PDF और Add Watermark — साथ ही साइट के ज़्यादातर दूसरे converters भी।"
+
+msgid "What happens to my files?"
+msgstr "मेरी फ़ाइलों का क्या होता है?"
+
+msgid "Files are processed temporarily and deleted automatically shortly after conversion. Nothing is stored or shared."
+msgstr "फ़ाइलें अस्थायी रूप से process होती हैं और conversion के कुछ ही देर बाद अपने आप delete हो जाती हैं। कुछ भी store या share नहीं किया जाता।"
+
+msgid "Batch PDF Converter"
+msgstr "Batch PDF Converter"
+
+msgid "Convert many files in one run instead of one by one: upload up to 10 documents or images, process them with the same settings, and download everything as a single ZIP. Long jobs can keep running in background mode."
+msgstr "फ़ाइलें एक-एक करके नहीं, एक ही run में कन्वर्ट करें: 10 दस्तावेज़ या छवियाँ तक अपलोड करें, एक जैसी settings के साथ process करें और सब कुछ एक ZIP में डाउनलोड करें। लंबे काम background mode में चलते रह सकते हैं।"
+
+msgid "Batch processing is a Premium feature. Single-file conversions are free on every tool — try any converter below, and upgrade when you need to process files in bulk."
+msgstr "Batch processing एक Premium सुविधा है। हर tool में single-file conversion मुफ़्त है — नीचे कोई भी converter आज़माएँ, और जब फ़ाइलें bulk में process करनी हों तो Premium लें।"
+
+msgid "Converters with batch mode"
+msgstr "Batch mode वाले converters"
+
+msgid "Unlock batch processing"
+msgstr "Batch processing अनलॉक करें"
