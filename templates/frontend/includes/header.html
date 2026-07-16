@@ -253,7 +253,6 @@
                           </svg>
                         </div>
                         <span class="font-medium">{% trans "EPUB to PDF" %}</span>
-                        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </li>
                     <li>
@@ -266,7 +265,6 @@
                           </svg>
                         </div>
                         <span class="font-medium">{% trans "PDF to EPUB" %}</span>
-                        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </li>
                     <li>
@@ -279,7 +277,6 @@
                           </svg>
                         </div>
                         <span class="font-medium">{% trans "PDF to Markdown" %}</span>
-                        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </li>
                     <li>
@@ -540,7 +537,6 @@
                         </svg>
                       </div>
                       <span class="font-medium">{% trans "HEIC to JPG" %}</span>
-                      <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                     </a>
                   </li>
                   <li>
@@ -704,45 +700,6 @@
                   </div>
                   <ul class="space-y-1.5 text-sm">
                     <li>
-                      <a href="{% url 'frontend:epub_to_pdf_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "EPUB to PDF" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{% url 'frontend:pdf_to_epub_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "PDF to EPUB" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{% url 'frontend:pdf_to_markdown_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-slate-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "PDF to Markdown" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
-                    </li>
-                    <li>
                       <a href="{% url 'frontend:compare_pdf_page' %}"
                          class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
@@ -829,19 +786,6 @@
                             <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                           </span>
                           <span class="font-medium truncate">{% trans "PDF to Text" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{% url 'frontend:heic_to_jpg_page' %}"
-                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "HEIC to JPG" %}</span>
                         </span>
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
                       </a>
@@ -1323,7 +1267,6 @@
                           </svg>
                         </div>
                         <span class="font-medium">{% trans "HEIC to JPG" %}</span>
-                        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
                       </a>
                     </li>
                     <li>
@@ -1449,39 +1392,6 @@
                     <p class="text-xs text-gray-500 mb-3">{% trans "Advanced and beta converters" %}</p>
 
                     <div class="space-y-1.5 text-sm">
-                      <a href="{% url 'frontend:epub_to_pdf_page' %}"
-                         class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "EPUB to PDF" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
-                      <a href="{% url 'frontend:pdf_to_epub_page' %}"
-                         class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-violet-100 rounded-lg flex items-center justify-center group-hover:bg-violet-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "PDF to EPUB" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
-                      <a href="{% url 'frontend:pdf_to_markdown_page' %}"
-                         class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-slate-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "PDF to Markdown" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
                       <a href="{% url 'frontend:compare_pdf_page' %}"
                          class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
                          role="menuitem">
@@ -1556,17 +1466,6 @@
                             <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                           </span>
                           <span class="font-medium truncate">{% trans "PDF to Text" %}</span>
-                        </span>
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-                      </a>
-                      <a href="{% url 'frontend:heic_to_jpg_page' %}"
-                         class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
-                         role="menuitem">
-                        <span class="flex items-center space-x-2.5 min-w-0">
-                          <span class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center group-hover:bg-pink-200 transition-colors flex-shrink-0">
-                            <svg class="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                          </span>
-                          <span class="font-medium truncate">{% trans "HEIC to JPG" %}</span>
                         </span>
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
                       </a>
@@ -1913,30 +1812,6 @@
           <span>{% trans "Open Catalog" %}</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
-        <a href="{% url 'frontend:epub_to_pdf_page' %}"
-           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
-          <span class="flex items-center min-w-0">
-            <svg class="w-4 h-4 text-indigo-600 me-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            <span class="truncate">{% trans "EPUB to PDF" %}</span>
-          </span>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-        </a>
-        <a href="{% url 'frontend:pdf_to_epub_page' %}"
-           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
-          <span class="flex items-center min-w-0">
-            <svg class="w-4 h-4 text-violet-600 me-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <span class="truncate">{% trans "PDF to EPUB" %}</span>
-          </span>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-        </a>
-        <a href="{% url 'frontend:pdf_to_markdown_page' %}"
-           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
-          <span class="flex items-center min-w-0">
-            <svg class="w-4 h-4 text-slate-600 me-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-            <span class="truncate">{% trans "PDF to Markdown" %}</span>
-          </span>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-        </a>
         <a href="{% url 'frontend:compare_pdf_page' %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
           <span class="flex items-center min-w-0">
@@ -1990,14 +1865,6 @@
           <span class="flex items-center min-w-0">
             <svg class="w-4 h-4 text-rose-600 me-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             <span class="truncate">{% trans "PDF to Text" %}</span>
-          </span>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
-        </a>
-        <a href="{% url 'frontend:heic_to_jpg_page' %}"
-           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
-          <span class="flex items-center min-w-0">
-            <svg class="w-4 h-4 text-pink-600 me-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            <span class="truncate">{% trans "HEIC to JPG" %}</span>
           </span>
           <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
         </a>
@@ -2169,7 +2036,6 @@
             </svg>
             {% trans "EPUB to PDF" %}
           </div>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
         </a>
         <a href="{% url 'frontend:pdf_to_epub_page' %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
@@ -2179,7 +2045,6 @@
             </svg>
             {% trans "PDF to EPUB" %}
           </div>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
         </a>
         <a href="{% url 'frontend:pdf_to_markdown_page' %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
@@ -2189,7 +2054,6 @@
             </svg>
             {% trans "PDF to Markdown" %}
           </div>
-          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
         </a>
         <a href="{% url 'frontend:ocr_pdf_to_word_page' %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">
@@ -2371,7 +2235,6 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
         </svg>
         {% trans "HEIC to JPG" %}
-        <span class="ml-auto inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
       </a>
       <a href="{% url 'frontend:favicon_generator_page' %}"
          class="flex items-center p-2.5 rounded-lg hover:bg-amber-50 text-gray-700 transition-colors">

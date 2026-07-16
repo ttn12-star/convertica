@@ -591,14 +591,15 @@ class FrontendViewsTestCase(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, '"@type": "ItemList"', status_code=200)
-        self.assertContains(
-            response, reverse("frontend:epub_to_pdf_page"), status_code=200
-        )
-        self.assertContains(
-            response, reverse("frontend:pdf_to_markdown_page"), status_code=200
-        )
+        # Still-premium catalog entries (epub/markdown/heic were de-premiumized
+        # in v2.2.149 and dropped from premium_tool_entities; asserting their
+        # absence here is impossible since the page renders the full header nav,
+        # which lists them as free tools).
         self.assertContains(
             response, reverse("frontend:compare_pdf_page"), status_code=200
+        )
+        self.assertContains(
+            response, reverse("frontend:sign_pdf_page"), status_code=200
         )
 
     def test_premium_landing_pages_have_seo_and_help_blocks(self):
@@ -727,10 +728,14 @@ class FrontendViewsTestCase(TestCase):
             'id="more-menu-parent"', 1
         )[0]
         self.assertIn(reverse("frontend:premium_tools_page"), premium_dropdown)
-        self.assertIn(reverse("frontend:epub_to_pdf_page"), premium_dropdown)
-        self.assertIn(reverse("frontend:pdf_to_epub_page"), premium_dropdown)
-        self.assertIn(reverse("frontend:pdf_to_markdown_page"), premium_dropdown)
         self.assertIn(reverse("frontend:compare_pdf_page"), premium_dropdown)
+        self.assertIn(reverse("frontend:sign_pdf_page"), premium_dropdown)
+        # De-premiumized (free with a daily quota, v2.2.149) — these must NOT
+        # appear in the dedicated Premium Tools submenu any more.
+        self.assertNotIn(reverse("frontend:epub_to_pdf_page"), premium_dropdown)
+        self.assertNotIn(reverse("frontend:pdf_to_epub_page"), premium_dropdown)
+        self.assertNotIn(reverse("frontend:pdf_to_markdown_page"), premium_dropdown)
+        self.assertNotIn(reverse("frontend:heic_to_jpg_page"), premium_dropdown)
 
     def test_header_hides_dedicated_premium_tools_submenu_for_non_premium_user(self):
         """Anonymous users should not see the dedicated Premium Tools submenu."""
@@ -940,20 +945,26 @@ class FrontendViewsTestCase(TestCase):
         self.assertNotIn('id="premium-tools-menu-parent"', html)
         self.assertNotIn('id="premium-tools-menu-dropdown"', html)
 
+        # Still premium — hidden when payments are disabled.
         self.assertNotContains(
             response, reverse("frontend:premium_tools_page"), status_code=200
         )
         self.assertNotContains(
+            response, reverse("frontend:compare_pdf_page"), status_code=200
+        )
+        # De-premiumized (free with a daily quota, v2.2.149) — these now live in
+        # their category sections and stay visible regardless of the flag.
+        self.assertContains(
             response, reverse("frontend:epub_to_pdf_page"), status_code=200
         )
-        self.assertNotContains(
+        self.assertContains(
             response, reverse("frontend:pdf_to_epub_page"), status_code=200
         )
-        self.assertNotContains(
+        self.assertContains(
             response, reverse("frontend:pdf_to_markdown_page"), status_code=200
         )
-        self.assertNotContains(
-            response, reverse("frontend:compare_pdf_page"), status_code=200
+        self.assertContains(
+            response, reverse("frontend:heic_to_jpg_page"), status_code=200
         )
 
     def test_pricing_page_uses_monthly_yearly_and_custom_plans(self):
