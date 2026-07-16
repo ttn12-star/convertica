@@ -1545,10 +1545,10 @@ PDF_CONVERT_CONFIGS = {
         "template": "frontend/pdf_convert/pdf_to_text.html",
         "converter_args": {
             "page_title": _(
-                "PDF to Text Converter - Extract Text from PDF | Convertica Premium"
+                "PDF to Text Converter Online Free - Extract Text from PDF | Convertica"
             ),
             "page_description": _(
-                "Extract all text from PDF files as plain .txt. Premium feature: supports page number markers, layout preservation. Free trial available."
+                "Extract all text from PDF files as plain .txt online free. No registration. Optional page-number markers and layout preservation. Unlimited use with Premium."
             ),
             "page_keywords": (
                 "PDF to text, convert PDF to text online free, extract text from PDF, "

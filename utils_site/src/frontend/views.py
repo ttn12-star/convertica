@@ -876,20 +876,6 @@ def premium_tools_page(request):
                     "Track long-running premium tasks and download finished files."
                 ),
             },
-            {
-                "name": _("Sign PDF"),
-                "url": reverse("frontend:sign_pdf_page"),
-                "description": _(
-                    "Add your handwritten signature image to any PDF page. Choose position, size, and opacity. Apply to all pages at once."
-                ),
-            },
-            {
-                "name": _("PDF to Text"),
-                "url": reverse("frontend:pdf_to_text_page"),
-                "description": _(
-                    "Extract all text content from a PDF as a plain .txt file. Supports page numbering and layout preservation."
-                ),
-            },
         ],
     }
     return render(request, "frontend/premium_tools.html", context)
