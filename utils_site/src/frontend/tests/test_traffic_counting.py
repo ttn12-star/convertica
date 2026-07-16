@@ -48,6 +48,11 @@ class TrafficCountingMiddlewareTest(TestCase):
         self._get("/admin/")
         self.assertFalse(PageViewDaily.objects.exists())
 
+    def test_offline_shell_is_not_counted(self):
+        # PWA service-worker fallback, not a visited page.
+        self._get("/offline.html")
+        self.assertFalse(PageViewDaily.objects.exists())
+
     def test_non_html_response_is_not_counted(self):
         mw = TrafficCountingMiddleware(
             lambda r: HttpResponse(b"{}", content_type="application/json")

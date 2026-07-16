@@ -273,7 +273,17 @@ _BOT_UA_RE = re.compile(
 )
 
 # Path prefixes that are never real page views.
-_SKIP_PREFIXES = ("/admin", "/api", "/static", "/media", "/ws", "/.well-known")
+# /offline.html is the PWA service-worker fallback shell, not a visited page —
+# it was showing up as a top "page" and inflating the count.
+_SKIP_PREFIXES = (
+    "/admin",
+    "/api",
+    "/static",
+    "/media",
+    "/ws",
+    "/.well-known",
+    "/offline.html",
+)
 
 # HyperLogLog keys are kept ~400 days so a full year of history is queryable.
 _UV_TTL_SECONDS = 400 * 86400
@@ -339,6 +349,15 @@ class TrafficCountingMiddleware:
     Redis HyperLogLog of approximate unique visitors. This is the ground-truth
     visit count that sits next to GA4 (which only sees users who accept the
     cookie banner) and Search Console. Counting never raises into the response.
+
+    Known systematic UNDERCOUNTS (the numbers are a floor, not the full total):
+      * Cloudflare full-page cache: requests served from the CF edge (e.g. the
+        /blog/ cache rule) never reach Django and so are never counted.
+      * HTTP 304 Not Modified: only 200 responses count, so repeat visitors
+        whose browser cache is still valid are missed.
+      * Redis down: page views still count, but uniques silently read 0.
+    Each localized path (/, /ru/, /en/… ) is its own row by design — there is
+    no cross-locale aggregation.
     """
 
     def __init__(self, get_response):

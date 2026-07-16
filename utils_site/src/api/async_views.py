@@ -39,7 +39,7 @@ from .conversion_limits import (
     validate_pdf_pages,
 )
 from .logging_utils import build_request_context, get_logger, log_file_validation_error
-from .operation_run_middleware_utils import ensure_request_id
+from .operation_run_middleware_utils import ensure_request_id, normalize_conversion_type
 from .premium_utils import is_premium_active, ocr_premium_gate_message
 from .spam_protection import validate_spam_protection
 from .task_tokens import create_task_token, verify_task_token
@@ -363,7 +363,7 @@ class AsyncConversionAPIView(APIView, ABC):
             OperationRun.objects.update_or_create(
                 request_id=str(context.get("request_id") or ""),
                 defaults={
-                    "conversion_type": self.CONVERSION_TYPE,
+                    "conversion_type": normalize_conversion_type(self.CONVERSION_TYPE),
                     "status": "queued",
                     "user": request.user if request.user.is_authenticated else None,
                     "is_premium": bool(is_premium),
@@ -502,7 +502,7 @@ class AsyncConversionAPIView(APIView, ABC):
                     "task_id": task_id,
                     "input_path": input_path,
                     "original_filename": uploaded_file.name,
-                    "conversion_type": self.CONVERSION_TYPE,
+                    "conversion_type": normalize_conversion_type(self.CONVERSION_TYPE),
                     "is_premium": is_premium,
                 }
             )

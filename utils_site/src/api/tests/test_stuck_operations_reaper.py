@@ -44,3 +44,24 @@ class StuckOperationReaperTests(TestCase):
         cleanup_stuck_operations(max_age_minutes=60)
         op.refresh_from_db()
         self.assertEqual(op.status, "success")
+
+    def test_reaps_stuck_queued_op(self):
+        # A task no worker ever picked up must not sit 'queued' forever.
+        op = self._make("queued", created_minutes_ago=90)
+        cleanup_stuck_operations(max_age_minutes=60)
+        op.refresh_from_db()
+        self.assertEqual(op.status, "abandoned")
+
+    def test_resolves_stuck_cancel_requested_to_cancelled(self):
+        # User asked to cancel but confirmation never landed -> cancelled,
+        # NOT abandoned (it was the user's choice, not a system failure).
+        op = self._make("cancel_requested", created_minutes_ago=90)
+        cleanup_stuck_operations(max_age_minutes=60)
+        op.refresh_from_db()
+        self.assertEqual(op.status, "cancelled")
+
+    def test_keeps_recent_queued_op(self):
+        op = self._make("queued", created_minutes_ago=10)
+        cleanup_stuck_operations(max_age_minutes=60)
+        op.refresh_from_db()
+        self.assertEqual(op.status, "queued")
