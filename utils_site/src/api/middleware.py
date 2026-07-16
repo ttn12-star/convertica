@@ -165,32 +165,39 @@ class PerformanceMonitoringMiddleware(MiddlewareMixin):
         return response
 
 
+def is_conversion_request(request) -> bool:
+    """True for POSTs that represent a user conversion/operation.
+
+    Single source of truth shared by OperationRunTrackingMiddleware (analytics)
+    and DailyQuotaMiddleware (free-tier daily cap) so "what counts as an
+    operation" can never drift between the two.
+    """
+    if request.method != "POST":
+        return False
+    if not request.path.startswith("/api/"):
+        return False
+    # Non-user operational webhooks.
+    if request.path.startswith("/api/payments/webhook/"):
+        return False
+    # Internal task-control endpoints.
+    if request.path in (
+        "/api/cancel-task/",
+        "/api/operation-abandon/",
+        "/api/task-background/",
+    ):
+        return False
+    # Non-conversion v1 endpoints (token issuance, feedback). The v1
+    # *conversion* endpoints (…/merge, …/split) are NOT here and stay counted.
+    return request.path not in (
+        "/api/v1/auth/web-token",
+        "/api/v1/feedback/",
+    )
+
+
 class OperationRunTrackingMiddleware(MiddlewareMixin):
     def process_view(self, request, view_func, view_args, view_kwargs):
         try:
-            if request.method != "POST":
-                return None
-            if not request.path.startswith("/api/"):
-                return None
-
-            # Exclude non-user operational webhooks to avoid noisy analytics.
-            if request.path.startswith("/api/payments/webhook/"):
-                return None
-            # Exclude internal task-control endpoints from analytics.
-            if request.path in (
-                "/api/cancel-task/",
-                "/api/operation-abandon/",
-                "/api/task-background/",
-            ):
-                return None
-            # Exclude non-conversion v1 endpoints (token issuance, feedback) so
-            # they don't masquerade as "operations" and dilute success metrics.
-            # The v1 *conversion* endpoints (…/merge, …/split) are NOT here and
-            # stay tracked.
-            if request.path in (
-                "/api/v1/auth/web-token",
-                "/api/v1/feedback/",
-            ):
+            if not is_conversion_request(request):
                 return None
 
             view_class = getattr(view_func, "view_class", None)
@@ -308,6 +315,111 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
             )
 
         return response
+
+
+class DailyQuotaMiddleware(MiddlewareMixin):
+    """Global free-tier daily conversion cap: anon 10 < registered 40 < premium ∞.
+
+    Runs AFTER OperationRunTrackingMiddleware in MIDDLEWARE so a quota 429 is
+    still recorded as a rejected operation in analytics (its process_view has
+    already created the OperationRun row by the time we short-circuit).
+
+    Pre-view: reject with 429 + register/upgrade links when the day's bucket is
+    exhausted. Post-response: count only 2xx outcomes and expose
+    X-Daily-Quota-Limit / X-Daily-Quota-Remaining headers the frontend uses for
+    the "N conversions left today" nudge. Fail-open on any cache error.
+    """
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        from django.conf import settings
+
+        # The shared-IP bucket would make unrelated suite tests 429 each other;
+        # quota tests opt back in via DAILY_QUOTA_ENFORCE_IN_TESTS.
+        if getattr(settings, "TESTING", False) and not getattr(
+            settings, "DAILY_QUOTA_ENFORCE_IN_TESTS", False
+        ):
+            return None
+        try:
+            if not is_conversion_request(request):
+                return None
+
+            from .daily_quota import get_quota_state, quota_limit_message
+            from .premium_utils import is_premium_active
+
+            user = getattr(request, "user", None)
+            if is_premium_active(user):
+                return None
+
+            key, limit, used = get_quota_state(request)
+            if used < limit:
+                # Remember the bucket; process_response counts 2xx outcomes.
+                request._daily_quota_key = key
+                request._daily_quota_limit = limit
+                return None
+
+            is_auth = bool(
+                user is not None and getattr(user, "is_authenticated", False)
+            )
+            body = {
+                "error": quota_limit_message(is_auth, limit),
+                "quota": {"limit": limit, "used": used},
+            }
+            if is_auth:
+                if getattr(settings, "PAYMENTS_ENABLED", True):
+                    body["upgrade_url"] = _reverse_or_none(
+                        "frontend:pricing", "/pricing/"
+                    )
+                    body["upgrade_text"] = _("Upgrade to Premium")
+            else:
+                body["register_url"] = _reverse_or_none(
+                    "users:register", "/users/register/"
+                )
+                body["register_text"] = _("Create a free account")
+                if getattr(settings, "PAYMENTS_ENABLED", True):
+                    body["upgrade_url"] = _reverse_or_none(
+                        "frontend:pricing", "/pricing/"
+                    )
+                    body["upgrade_text"] = _("Upgrade to Premium")
+            response = JsonResponse(body, status=429)
+            response["X-Daily-Quota-Limit"] = str(limit)
+            response["X-Daily-Quota-Remaining"] = "0"
+            return response
+        except Exception as e:
+            op_tracking_logger.warning(
+                "Daily quota check failed for %s: %s: %s",
+                request.path,
+                type(e).__name__,
+                e,
+            )
+            return None  # fail open
+
+    def process_response(self, request, response):
+        key = getattr(request, "_daily_quota_key", None)
+        if not key:
+            return response
+        try:
+            limit = int(getattr(request, "_daily_quota_limit", 0) or 0)
+            status_code = int(getattr(response, "status_code", 500) or 500)
+            if 200 <= status_code < 300:
+                from .daily_quota import consume_quota_unit
+
+                used = consume_quota_unit(key)
+                response["X-Daily-Quota-Limit"] = str(limit)
+                response["X-Daily-Quota-Remaining"] = str(max(0, limit - used))
+        except Exception as e:
+            op_tracking_logger.warning(
+                "Daily quota count failed: %s: %s", type(e).__name__, e
+            )
+        return response
+
+
+def _reverse_or_none(view_name: str, fallback: str) -> str:
+    try:
+        from django.urls import reverse
+
+        return reverse(view_name)
+    except Exception:
+        return fallback
 
 
 class FilterProxyRequestsMiddleware(MiddlewareMixin):

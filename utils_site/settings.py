@@ -416,6 +416,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "src.api.middleware.APIKeyQuotaRefundMiddleware",  # Refund API-key quota on non-2xx
     "src.api.middleware.OperationRunTrackingMiddleware",  # DB analytics for all operations
+    "src.api.middleware.DailyQuotaMiddleware",  # Free-tier daily conversion cap (after tracking so 429s land in analytics)
     "src.frontend.middleware.TrafficCountingMiddleware",  # Consent-free page-view + unique-visitor counter
     "src.feedback.middleware.FeedbackTokenResponseMiddleware",  # Stamp feedback token on tool downloads
     "allauth.account.middleware.AccountMiddleware",
@@ -733,16 +734,12 @@ MAX_FILE_SIZE_HEAVY_PREMIUM = config(
     "MAX_FILE_SIZE_HEAVY_PREMIUM", default=100 * 1024 * 1024, cast=int
 )  # 100 MB
 
-# Image to Text (OCR) free-tier limits. Free users get a small per-image cap
-# (almost every photo/screenshot/scan fits) and a daily extraction count;
-# premium lifts both and unlocks .docx export. Tuned to stay generous for
-# casual/SEO traffic while giving power users a reason to upgrade.
+# Image to Text (OCR) free-tier limit. Free users get a small per-image cap
+# (almost every photo/screenshot/scan fits); premium lifts it and unlocks
+# .docx export. The daily count now comes from the global DAILY_QUOTA_* bucket.
 IMAGE_TO_TEXT_FREE_MAX_BYTES = config(
     "IMAGE_TO_TEXT_FREE_MAX_BYTES", default=3 * 1024 * 1024, cast=int
 )  # 3 MB
-IMAGE_TO_TEXT_FREE_DAILY = config(
-    "IMAGE_TO_TEXT_FREE_DAILY", default=5, cast=int
-)  # extractions per day for free users
 
 # Absolute hard cap for PDF/Word parsing — defence-in-depth so a malformed or
 # malicious file never reaches PyPDF/fitz/zipfile if it slipped past higher
@@ -761,11 +758,11 @@ ARCHIVE_MAX_TOTAL_UNCOMPRESSED = 500 * 1024 * 1024  # 500 MB total uncompressed
 MAX_BATCH_FILES_FREE = config("MAX_BATCH_FILES_FREE", default=1, cast=int)
 MAX_BATCH_FILES_PREMIUM = config("MAX_BATCH_FILES_PREMIUM", default=10, cast=int)
 
-# Daily conversion quota for tools opened up from premium-only to free
-# (HEIC, PDF->Markdown, EPUB<->PDF). Premium users are unlimited; these caps
-# only apply to anonymous / registered-free callers. See api/daily_quota.py.
-DAILY_QUOTA_ANON = config("DAILY_QUOTA_ANON", default=2, cast=int)
-DAILY_QUOTA_REGISTERED = config("DAILY_QUOTA_REGISTERED", default=5, cast=int)
+# Global free-tier daily conversion quota, one shared bucket across ALL tools
+# (enforced by DailyQuotaMiddleware; premium users are unlimited). Calendar-day
+# UTC, counts successful conversions only. See api/daily_quota.py.
+DAILY_QUOTA_ANON = config("DAILY_QUOTA_ANON", default=10, cast=int)
+DAILY_QUOTA_REGISTERED = config("DAILY_QUOTA_REGISTERED", default=40, cast=int)
 
 # Premium operation-specific page limits
 # Override in .env as JSON: PREMIUM_PAGE_LIMITS={"pdf_to_word": 500, ...}

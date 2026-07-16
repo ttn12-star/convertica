@@ -1,15 +1,14 @@
 """Image to Text (OCR) API view.
 
 Free tool with tiered limits:
-- Free: small per-image size cap + a daily extraction count, .txt output.
+- Free: small per-image size cap, .txt output; daily count comes from the
+  global DailyQuotaMiddleware bucket shared by all tools.
 - Premium: large images, unlimited daily use, and .docx (Word) export.
 """
 
 import os
-from datetime import date
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
 from django.utils.translation import gettext as _
@@ -18,7 +17,6 @@ from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
 from ...premium_utils import is_premium_active
-from ...rate_limit_utils import _get_client_ip
 from .decorators import image_to_text_docs
 from .serializers import ImageToTextSerializer
 from .utils import run_image_ocr
@@ -69,14 +67,6 @@ class ImageToTextAPIView(BaseConversionAPIView):
             status=status.HTTP_405_METHOD_NOT_ALLOWED,
         )
 
-    def _daily_key(self, request: HttpRequest) -> str:
-        """Per-day cache key for the free extraction quota (per user, else per IP)."""
-        if request.user.is_authenticated:
-            ident = f"u{request.user.pk}"
-        else:
-            ident = f"ip{_get_client_ip(request)}"
-        return f"img2txt:daily:{ident}:{date.today().isoformat()}"
-
     @image_to_text_docs()
     def post(self, request: HttpRequest):
         premium = is_premium_active(request.user)
@@ -94,7 +84,6 @@ class ImageToTextAPIView(BaseConversionAPIView):
                 status=status.HTTP_403_FORBIDDEN,
             )
 
-        daily_key = None
         if not premium:
             # Free per-image size cap (smaller than the global free limit; almost
             # every photo/screenshot/scan fits, and it makes Premium's larger
@@ -117,31 +106,7 @@ class ImageToTextAPIView(BaseConversionAPIView):
                     status=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
                 )
 
-            # Free daily extraction limit.
-            daily_key = self._daily_key(request)
-            used = cache.get(daily_key, 0)
-            if used >= settings.IMAGE_TO_TEXT_FREE_DAILY:
-                return Response(
-                    {
-                        "error": _(
-                            "Free daily limit reached (%(n)d images per day). "
-                            "Upgrade to Premium for unlimited extractions and Word export."
-                        )
-                        % {"n": settings.IMAGE_TO_TEXT_FREE_DAILY}
-                    },
-                    status=status.HTTP_429_TOO_MANY_REQUESTS,
-                )
-
-        response = super().post(request)
-
-        # Count a successful free extraction against the daily quota.
-        if daily_key is not None and 200 <= getattr(response, "status_code", 500) < 300:
-            try:
-                cache.set(daily_key, cache.get(daily_key, 0) + 1, 60 * 60 * 24)
-            except Exception:
-                pass  # quota is best-effort; never fail a successful conversion
-
-        return response
+        return super().post(request)
 
     def perform_conversion(
         self, uploaded_file: UploadedFile, context: dict, **kwargs
