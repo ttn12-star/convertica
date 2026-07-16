@@ -300,12 +300,10 @@ class OptimizedWordToPDFConverter:
             else:
                 pdf_path = found_pdf_path
 
-            # LibreOffice correctly handles orientation from Word documents
-            # No post-processing needed - trust LibreOffice output
-            # Only log orientation info for debugging if needed
-            await self._verify_pdf_orientation_consistency_async(
-                pdf_path, context, check_cancelled=check_cancelled
-            )
+            # LibreOffice correctly handles orientation from Word documents —
+            # trust its output. (A debug-only pypdf pass that re-read the whole
+            # PDF just to log orientation stats was removed here: on big PDFs
+            # it doubled the output I/O for zero user-visible effect.)
 
             # Log file size for debugging
             file_size = os.path.getsize(pdf_path)
@@ -1195,104 +1193,6 @@ class OptimizedWordToPDFConverter:
 
         loop = asyncio.get_event_loop()
         await loop.run_in_executor(None, _fix_orientation)
-
-    async def _verify_pdf_orientation_consistency_async(
-        self,
-        pdf_path: str,
-        context: dict,
-        check_cancelled: Callable[[], None] | None = None,
-    ):
-        """
-        Verify PDF orientation consistency across all pages.
-
-        This is a fallback when Word orientation cannot be determined.
-        Checks if all pages have consistent orientation. If they're mixed,
-        logs a warning but doesn't change anything (preserves LibreOffice output).
-
-        Args:
-            pdf_path: Path to PDF file
-            context: Logging context
-        """
-        if not PYPDF2_AVAILABLE:
-            logger.debug(
-                "PyPDF2 not available, skipping PDF orientation verification",
-                extra={**context, "event": "orientation_verify_skipped"},
-            )
-            return
-
-        def _verify_consistency():
-            try:
-                reader = PdfReader(pdf_path)
-
-                if not reader.pages:
-                    return
-
-                orientations = []
-                for page_num, page in enumerate(reader.pages):
-                    if callable(check_cancelled):
-                        check_cancelled()
-                    mediabox = page.mediabox
-                    width = float(mediabox.width)
-                    height = float(mediabox.height)
-
-                    # Get rotation
-                    rotation = 0
-                    if "/Rotate" in page:
-                        rotation = int(page["/Rotate"])
-
-                    # Calculate effective dimensions
-                    if rotation in [90, 270]:
-                        effective_width = height
-                        effective_height = width
-                    else:
-                        effective_width = width
-                        effective_height = height
-
-                    orientation = (
-                        "landscape"
-                        if effective_width > effective_height
-                        else "portrait"
-                    )
-                    orientations.append(orientation)
-
-                # Check consistency
-                unique_orientations = set(orientations)
-                landscape_count = orientations.count("landscape")
-                portrait_count = orientations.count("portrait")
-
-                if len(unique_orientations) > 1:
-                    logger.warning(
-                        f"PDF has mixed orientations: {landscape_count} landscape, "
-                        f"{portrait_count} portrait pages. Preserving LibreOffice output.",
-                        extra={
-                            **context,
-                            "event": "mixed_orientation_detected",
-                            "landscape_pages": landscape_count,
-                            "portrait_pages": portrait_count,
-                        },
-                    )
-                else:
-                    dominant_orientation = (
-                        orientations[0] if orientations else "unknown"
-                    )
-                    logger.info(
-                        f"PDF has consistent {dominant_orientation} orientation across all {len(orientations)} pages",
-                        extra={
-                            **context,
-                            "event": "consistent_orientation",
-                            "orientation": dominant_orientation,
-                            "pages": len(orientations),
-                        },
-                    )
-
-            except Exception as e:
-                logger.warning(
-                    f"Failed to verify PDF orientation consistency: {e}",
-                    extra={**context, "event": "orientation_verify_failed"},
-                )
-
-        loop = asyncio.get_event_loop()
-        await loop.run_in_executor(None, _verify_consistency)
 
 
 async def convert_word_to_pdf_optimized(

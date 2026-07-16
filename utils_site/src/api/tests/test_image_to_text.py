@@ -60,8 +60,9 @@ class ExtractTextFromImageTests(TestCase):
 
 class ExtractTextFromPdfRefactorTests(TestCase):
     @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
+    @patch("src.api.ocr_utils.pdfinfo_from_path", return_value={"Pages": 2})
     @patch("src.api.ocr_utils.convert_from_path")
-    def test_pdf_path_calls_per_image_ocr(self, mock_convert, _mock_ocr):
+    def test_pdf_path_calls_per_image_ocr(self, mock_convert, _mock_info, _mock_ocr):
         from src.api.ocr_utils import extract_text_from_pdf
 
         mock_convert.return_value = [Image.new("RGB", (200, 80), (255, 255, 255))]
@@ -71,6 +72,12 @@ class ExtractTextFromPdfRefactorTests(TestCase):
         _path, text = extract_text_from_pdf(uploaded, user_language="en")
         self.assertIn("Invoice 2026", text)
         self.assertIn("Thanks", text)
+        # Rasterization must be page-ranged (one page in RAM at a time),
+        # never a whole-document convert_from_path(pdf_path, dpi=...) call.
+        self.assertEqual(mock_convert.call_count, 2)
+        for call in mock_convert.call_args_list:
+            self.assertIn("first_page", call.kwargs)
+            self.assertEqual(call.kwargs["first_page"], call.kwargs["last_page"])
 
 
 class RunImageOCRTests(TestCase):
