@@ -1,31 +1,26 @@
 {% comment %}
-YouTube tutorial embed — native lazy-loaded iframe.
+YouTube tutorial embed — click-to-play facade (lite-embed pattern).
 
-We use a real <iframe loading="lazy"> (not a click-to-load facade) so the video
-player is present in the rendered HTML: Googlebot finds it without executing JS
-or clicking, which is required for the video to be indexed ("prominent video").
-Native lazy-loading keeps it off the critical path — the iframe only loads as it
-approaches the viewport, and the video sits below the fold, so most users who
-don't scroll down never pay for it.
+The old direct <iframe loading="lazy"> pulled the full YT player (~500 KB JS,
+Roboto font, third-party cookie) into every measured page load: PSI flagged
+permissions-policy console errors + cookie inspector issues on all video pages
+and blew homepage mobile LCP to 8.6 s (simulated). The facade renders only a
+thumbnail + play button and swaps in the real iframe on click. Video indexing
+for Googlebot is preserved by the VideoObject JSON-LD emitted separately
+(frontend/includes/video_jsonld.html) on the same pages.
 
 Usage:
 {% include "frontend/includes/youtube_video.html" with video_id="ID" title="Title" %}
 
 Optional parameters:
 - video_id: YouTube video ID (required)
-- title: Video title for the iframe/heading accessibility (required)
+- title: Video title for accessibility (required)
 - aspect_ratio: "16/9" (default) or "4/3"
 - heading_level: "h2", "h3", "h4" (default: "h4" for proper heading order)
 - hide_heading: True to suppress the built-in heading (page supplies its own)
 {% endcomment %}
 
 {% load i18n %}
-
-{% comment %}
-  Preconnect only on pages that actually embed a YouTube iframe (kept out of
-  base.html so global pages don't hit Lighthouse's >4 preconnect warning).
-{% endcomment %}
-<link rel="preconnect" href="https://www.youtube-nocookie.com" crossorigin>
 
 <div class="youtube-video-wrapper mt-6 sm:mt-8">
   {# Built-in heading; hide it with hide_heading=True when the page supplies its own (e.g. homepage). #}
@@ -51,15 +46,49 @@ Optional parameters:
     {% endif %}
   {% endif %}
 
-  {# aspect-ratio box reserves space so the lazy iframe causes no layout shift (CLS). #}
+  {# aspect-ratio box reserves space so neither facade nor iframe causes layout shift (CLS). #}
   <div class="relative w-full rounded-xl overflow-hidden shadow-lg bg-gray-900"
        style="aspect-ratio: {{ aspect_ratio|default:'16/9' }};">
-    <iframe class="absolute inset-0 w-full h-full"
-            src="https://www.youtube-nocookie.com/embed/{{ video_id }}?rel=0"
-            title="{{ title }}"
-            loading="lazy"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+    <button type="button"
+            class="yt-facade absolute inset-0 w-full h-full block cursor-pointer group"
+            data-video-id="{{ video_id }}"
+            data-title="{{ title }}"
+            aria-label="{% blocktrans %}Play video: {{ title }}{% endblocktrans %}">
+      {# hqdefault is 480x360 (4:3); object-cover crops it to the 16:9 box like YT's own player poster #}
+      <img src="https://i.ytimg.com/vi/{{ video_id }}/hqdefault.jpg"
+           alt=""
+           width="480" height="360"
+           loading="lazy"
+           decoding="async"
+           class="absolute inset-0 w-full h-full object-cover">
+      <span class="absolute inset-0 flex items-center justify-center">
+        <svg class="w-16 h-16 sm:w-20 sm:h-20 drop-shadow-lg opacity-90 group-hover:opacity-100 transition-opacity" viewBox="0 0 68 48" aria-hidden="true">
+          <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/>
+          <path d="M45 24 27 14v20" fill="#fff"/>
+        </svg>
+      </span>
+    </button>
   </div>
 </div>
+
+{% comment %}
+  One global click handler regardless of how many embeds are on the page;
+  guarded so a second include doesn't double-register.
+{% endcomment %}
+<script nonce="{{ csp_nonce }}">
+  if (!window.__ytFacadeInit) {
+    window.__ytFacadeInit = true;
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.yt-facade');
+      if (!btn) return;
+      var iframe = document.createElement('iframe');
+      iframe.className = 'absolute inset-0 w-full h-full';
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.videoId + '?rel=0&autoplay=1';
+      iframe.title = btn.dataset.title || 'YouTube video';
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      btn.replaceWith(iframe);
+    });
+  }
+</script>
