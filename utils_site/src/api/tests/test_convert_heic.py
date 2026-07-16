@@ -106,6 +106,9 @@ class ConvertHEICUtilsTests(TestCase):
     RATELIMIT_ENABLE=False,
     DAILY_QUOTA_ANON=2,
     DAILY_QUOTA_REGISTERED=3,
+    # The global quota middleware is skipped under TESTING by default (the
+    # shared-IP bucket would 429 unrelated suite tests); opt back in here.
+    DAILY_QUOTA_ENFORCE_IN_TESTS=True,
     CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
 )
 class ConvertHEICAPITests(TestCase):
@@ -160,12 +163,20 @@ class ConvertHEICAPITests(TestCase):
         return_value=(True, None),
     )
     def test_anon_blocked_after_daily_quota(self, _timing):
-        """Anon gets DAILY_QUOTA_ANON (2) free/day, then 429."""
-        for _ in range(2):
-            self.assertEqual(self._convert().status_code, 200)
+        """Anon gets DAILY_QUOTA_ANON (2) free/day, then 429 with CTAs."""
+        first = self._convert()
+        self.assertEqual(first.status_code, 200)
+        # Successful free responses expose the remaining-quota headers.
+        self.assertEqual(first["X-Daily-Quota-Limit"], "2")
+        self.assertEqual(first["X-Daily-Quota-Remaining"], "1")
+        self.assertEqual(self._convert().status_code, 200)
         blocked = self._convert()
         self.assertEqual(blocked.status_code, 429)
-        self.assertIn("limit", blocked.json().get("error", "").lower())
+        body = blocked.json()
+        self.assertIn("limit", body.get("error", "").lower())
+        # Anonymous 429 carries both funnel CTAs.
+        self.assertIn("register_url", body)
+        self.assertIn("upgrade_url", body)
 
     @patch(
         "src.api.spam_protection.check_minimum_time_between_requests",
@@ -173,13 +184,13 @@ class ConvertHEICAPITests(TestCase):
     )
     def test_registered_user_gets_higher_quota_then_429(self, _timing):
         """Registered-free gets DAILY_QUOTA_REGISTERED (3) — more than anon."""
-        self.client.force_authenticate(self.free_user)
+        self.client.force_login(self.free_user)
         for _ in range(3):
             self.assertEqual(self._convert().status_code, 200)
         self.assertEqual(self._convert().status_code, 429)
 
     def test_premium_user_can_convert_to_jpeg(self):
-        self.client.force_authenticate(self.premium_user)
+        self.client.force_login(self.premium_user)
         response = self.client.post(
             self.URL,
             data={"image_file": self._upload(), "output_format": "JPEG"},
@@ -192,7 +203,7 @@ class ConvertHEICAPITests(TestCase):
         self.assertEqual(body[:2], b"\xff\xd8")
 
     def test_premium_user_can_convert_to_png(self):
-        self.client.force_authenticate(self.premium_user)
+        self.client.force_login(self.premium_user)
         response = self.client.post(
             self.URL,
             data={"image_file": self._upload(), "output_format": "PNG"},
@@ -204,7 +215,7 @@ class ConvertHEICAPITests(TestCase):
         self.assertEqual(body[:8], b"\x89PNG\r\n\x1a\n")
 
     def test_premium_user_can_convert_to_pdf(self):
-        self.client.force_authenticate(self.premium_user)
+        self.client.force_login(self.premium_user)
         response = self.client.post(
             self.URL,
             data={"image_file": self._upload(), "output_format": "PDF"},
@@ -216,7 +227,7 @@ class ConvertHEICAPITests(TestCase):
         self.assertEqual(body[:5], b"%PDF-")
 
     def test_default_output_format_is_jpeg(self):
-        self.client.force_authenticate(self.premium_user)
+        self.client.force_login(self.premium_user)
         response = self.client.post(
             self.URL,
             data={"image_file": self._upload()},
@@ -226,7 +237,7 @@ class ConvertHEICAPITests(TestCase):
         self.assertEqual(response["Content-Type"], "image/jpeg")
 
     def test_non_heic_extension_rejected(self):
-        self.client.force_authenticate(self.premium_user)
+        self.client.force_login(self.premium_user)
         bad_file = SimpleUploadedFile(
             "sample.png",
             self.heic_bytes,

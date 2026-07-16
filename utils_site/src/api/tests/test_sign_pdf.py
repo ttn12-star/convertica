@@ -4,7 +4,7 @@ Covers:
 * Serializer accepts/rejects the JSON `signatures` payload shape.
 * `sign_pdf()` utility actually embeds the image at the requested
   coordinates and produces a valid PDF.
-* The API view gates non-premium users with a clear error.
+* The API view is free for everyone (global daily quota).
 * The API view processes a real signed request and returns a PDF blob.
 """
 
@@ -223,16 +223,18 @@ class SignPDFViewTests(TestCase):
             format="multipart",
         )
 
-    def test_anonymous_blocked(self):
+    def test_anonymous_can_sign(self):
+        """Sign PDF is free (global daily quota) — no login wall."""
         response = self._post()
-        self.assertEqual(response.status_code, 403)
+        body = b"".join(response.streaming_content)
+        self.assertEqual(response.status_code, 200, body[:300])
+        self.assertEqual(response["Content-Type"], "application/pdf")
 
-    def test_authenticated_free_user_blocked(self):
+    def test_authenticated_free_user_can_sign(self):
         self.client.force_login(self.user)
         response = self._post()
-        self.assertEqual(response.status_code, 403)
-        body = response.json()
-        self.assertIn("premium", body.get("error", "").lower())
+        body = b"".join(response.streaming_content)
+        self.assertEqual(response.status_code, 200, body[:300])
 
     def test_premium_user_signs_successfully(self):
         self.user.is_premium = True
