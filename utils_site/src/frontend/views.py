@@ -842,27 +842,6 @@ def premium_tools_page(request):
         "is_premium_active": _is_premium_active_user(request),
         "premium_tool_entities": [
             {
-                "name": _("EPUB to PDF"),
-                "url": reverse("frontend:epub_to_pdf_page"),
-                "description": _(
-                    "Convert EPUB eBooks to PDF with premium rendering quality."
-                ),
-            },
-            {
-                "name": _("PDF to EPUB"),
-                "url": reverse("frontend:pdf_to_epub_page"),
-                "description": _(
-                    "Convert PDF files into EPUB for eReaders and mobile reading apps."
-                ),
-            },
-            {
-                "name": _("PDF to Markdown"),
-                "url": reverse("frontend:pdf_to_markdown_page"),
-                "description": _(
-                    "Extract structured Markdown from PDF documents, including headings and tables."
-                ),
-            },
-            {
                 "name": _("Compare Two PDFs"),
                 "url": reverse("frontend:compare_pdf_page"),
                 "description": _(
@@ -909,13 +888,6 @@ def premium_tools_page(request):
                 "url": reverse("frontend:pdf_to_text_page"),
                 "description": _(
                     "Extract all text content from a PDF as a plain .txt file. Supports page numbering and layout preservation."
-                ),
-            },
-            {
-                "name": _("HEIC to JPG"),
-                "url": reverse("frontend:heic_to_jpg_page"),
-                "description": _(
-                    "Convert Apple HEIC and HEIF photos from iPhone or iPad to JPG, PNG, or PDF. Batch up to 10 files."
                 ),
             },
         ],
