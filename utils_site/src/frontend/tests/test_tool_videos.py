@@ -43,27 +43,30 @@ class ToolVideoLoaderTests(TestCase):
 
 
 def _embed(vid: str) -> str:
-    """The crawlable player marker: a real iframe pointing at the embed URL.
+    """The crawlable player marker: the click-to-play facade button.
 
-    A server-rendered <iframe> (not a click-to-load facade) is what makes the
-    video indexable — Googlebot must find a player without executing JS.
+    The embed is a facade (thumbnail + play button, iframe injected on click) so
+    the YT player stays off the critical path — PSI flagged it on every video
+    page. Indexability relies on the VideoObject JSON-LD (embedUrl + thumbnail),
+    which is Google's supported path and is asserted alongside this marker.
     """
-    return f'src="https://www.youtube-nocookie.com/embed/{vid}?rel=0"'
+    return f'data-video-id="{vid}"'
 
 
 class ToolVideoRenderTests(TestCase):
-    """The video iframe + VideoObject JSON-LD reach the rendered page."""
+    """The video facade + VideoObject JSON-LD reach the rendered page."""
 
     def setUp(self):
         cache.clear()  # anonymous_cache_page can leak pages across tests
         self.client = Client()
 
-    def test_tool_page_with_video_renders_iframe_and_jsonld(self):
+    def test_tool_page_with_video_renders_facade_and_jsonld(self):
         resp = self.client.get("/word-to-pdf/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
         self.assertIn(_embed("ozMzrlVOTvQ"), html)
-        self.assertIn('loading="lazy"', html)  # off the critical path
+        self.assertIn("i.ytimg.com/vi/ozMzrlVOTvQ/", html)  # facade thumbnail
+        self.assertNotIn("<iframe", html)  # player only injected on click
         obj = _video_jsonld(html)
         self.assertEqual(obj["duration"], "PT1M38S")
         self.assertEqual(
@@ -89,7 +92,7 @@ class ToolVideoRenderTests(TestCase):
         resp = self.client.get("/pdf-edit/sign/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
-        self.assertNotIn("youtube-nocookie.com/embed/", html)
+        self.assertNotIn("yt-facade", html)
         self.assertNotIn("VideoObject", html)
 
     def test_homepage_renders_overview_video(self):

@@ -150,13 +150,15 @@
     <style>{% include "frontend/includes/critical.css" %}</style>
 
     {% comment %}
-      Single render-blocking stylesheet. fonts.css and mobile-optimizations.css
-      are bundled into tailwind.css via @import in input.css (saves 2 RTTs on
-      Slow 4G — Lighthouse flagged "Render blocking requests ~600 ms" caused
-      by 3 sequential CSS requests). dark-mode-helpers is premium-only because
-      the theme toggle is gated, so it ships only to logged-in premium visitors.
+      The whole stylesheet is inlined (fonts.css and mobile-optimizations.css
+      are bundled into tailwind.css via @import in input.css), leaving zero
+      render-blocking requests: PSI mobile attributed ~380 ms of FCP/LCP to the
+      single blocking <link>. Costs ~20 KB gzipped per page view (no cross-page
+      CSS caching), which loses to the saved round trip on every PSI run.
+      dark-mode-helpers is premium-only because the theme toggle is gated, so
+      it ships only to logged-in premium visitors.
     {% endcomment %}
-    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <style>{% inline_static 'css/tailwind.css' %}</style>
     {% comment %}
       Metrics-matched fallback for Inter (Arial, size-adjusted to Inter's
       footprint). Inline + after tailwind.css so it wins the html font stack.
