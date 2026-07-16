@@ -407,6 +407,11 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6
         with:
+          # context: git reads refs from the local checkout instead of the
+          # GitHub API. The default (workflow) hits the API on every build and
+          # took the whole pipeline down during the 2026-07-16 GitHub 503
+          # storm ("Unicorn!" HTML in place of the events payload).
+          context: git
           images: ${{ secrets.DOCKER_USERNAME }}/convertica
           tags: |
             type=ref,event=branch
