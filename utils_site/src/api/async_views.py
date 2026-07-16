@@ -83,8 +83,12 @@ def cleanup_task_files(task_id: str):
 
 
 def _extract_task_token(request: HttpRequest) -> str | None:
-    """Extract task token from query params or request headers."""
-    return request.GET.get("task_token") or request.headers.get("X-Task-Token")
+    """Extract task token from the X-Task-Token header.
+
+    Query-string tokens are deliberately not accepted: URLs leak via
+    Referer headers and access logs. All our clients send the header.
+    """
+    return request.headers.get("X-Task-Token")
 
 
 def _authorize_task_request(
