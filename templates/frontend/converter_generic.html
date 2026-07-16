@@ -126,6 +126,41 @@
     <!-- Download Container -->
     <div id="downloadContainer" class="hidden mt-6"></div>
 
+    <!-- Daily quota nudge — revealed by maybeShowQuotaNudge() (utils.js) when
+         the X-Daily-Quota-Remaining response header drops to the threshold.
+         Premium users never see it (their responses carry no quota headers). -->
+    <div id="quotaNudge" data-threshold="3"
+         class="hidden mt-6 p-4 rounded-xl border border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 animate-fade-in">
+      <div class="flex items-start space-x-3">
+        <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div class="text-sm text-blue-900">
+          <p class="font-semibold">
+            {% trans "Free conversions left today:" %}
+            <span data-quota-remaining></span>&nbsp;/&nbsp;<span data-quota-limit></span>
+          </p>
+          {% if user.is_authenticated %}
+            {% if PAYMENTS_ENABLED %}
+              <p class="mt-1 text-blue-800">
+                {% trans "Need more? Premium removes all daily limits." %}
+                <a href="{% url 'frontend:pricing' %}" class="font-semibold underline">{% trans "Go Premium" %}</a>
+              </p>
+            {% endif %}
+          {% else %}
+            <p class="mt-1 text-blue-800">
+              {% trans "Create a free account to get 4× more daily conversions." %}
+              <a href="{% url 'users:register' %}" class="font-semibold underline">{% trans "Sign up free" %}</a>
+              {% if PAYMENTS_ENABLED %}
+                <span class="mx-1 text-blue-400">·</span>
+                <a href="{% url 'frontend:pricing' %}" class="underline">{% trans "or go unlimited with Premium" %}</a>
+              {% endif %}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
     <!-- Result Message (for errors) -->
     <div id="converterResult"
          class="hidden mt-6">

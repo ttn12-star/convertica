@@ -162,9 +162,23 @@ def user_profile(request):
 
         days_since_registration = (timezone.now() - request.user.date_joined).days
 
+    # Daily conversion quota widget (free accounts; premium is unlimited).
+    daily_quota_used = daily_quota_limit = daily_quota_pct = None
+    if not request.user.is_premium_active():
+        from src.api.daily_quota import get_quota_state
+
+        _key, daily_quota_limit, daily_quota_used = get_quota_state(request)
+        daily_quota_used = min(daily_quota_used, daily_quota_limit)
+        daily_quota_pct = (
+            int(daily_quota_used * 100 / daily_quota_limit) if daily_quota_limit else 0
+        )
+
     context = {
         "user": request.user,
         "email_verified": email_verified,
+        "daily_quota_used": daily_quota_used,
+        "daily_quota_limit": daily_quota_limit,
+        "daily_quota_pct": daily_quota_pct,
         "days_since_registration": days_since_registration,
         "days_until_deletion": (
             max(0, 30 - days_since_registration)

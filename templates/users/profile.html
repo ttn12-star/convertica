@@ -179,6 +179,22 @@
               {% endif %}
             </dd>
           </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-500">{% trans "Conversions today" %}</dt>
+            <dd class="mt-1 text-sm text-gray-900">
+              {% if user.is_premium_active %}
+                <span class="text-yellow-600 font-medium">{% trans "Unlimited" %}</span>
+              {% else %}
+                <span class="font-medium">{{ daily_quota_used }}&nbsp;/&nbsp;{{ daily_quota_limit }}</span>
+                <div class="mt-2 w-40 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" style="width: {{ daily_quota_pct }}%"></div>
+                </div>
+                {% if PAYMENTS_ENABLED %}
+                  <p class="mt-1 text-xs text-gray-500">{% trans "Resets daily. Premium removes all limits." %}</p>
+                {% endif %}
+              {% endif %}
+            </dd>
+          </div>
         </dl>
       </div>
     </div>

@@ -81,6 +81,29 @@ function escapeHtml(text) {
 }
 
 /**
+ * Reveal the "N free conversions left today" nudge when the API reports a low
+ * remaining daily quota via X-Daily-Quota-* headers (free users only; premium
+ * responses carry no quota headers). Server renders the translated markup in
+ * #quotaNudge; we only fill in the numbers and unhide it.
+ */
+function maybeShowQuotaNudge(response) {
+    try {
+        const el = document.getElementById('quotaNudge');
+        if (!el || !response || !response.ok || !response.headers) return;
+        const remaining = parseInt(response.headers.get('X-Daily-Quota-Remaining'), 10);
+        const limit = parseInt(response.headers.get('X-Daily-Quota-Limit'), 10);
+        if (isNaN(remaining) || isNaN(limit)) return;
+        const threshold = parseInt(el.dataset.threshold || '3', 10);
+        if (remaining > threshold) return;
+        el.querySelectorAll('[data-quota-remaining]').forEach((n) => { n.textContent = remaining; });
+        el.querySelectorAll('[data-quota-limit]').forEach((n) => { n.textContent = limit; });
+        el.classList.remove('hidden');
+    } catch (e) {
+        // Nudge is best-effort; never interfere with the conversion flow.
+    }
+}
+
+/**
  * Show error message in appropriate container
  * @param {string|Object} message - Error message to display or error object with upgrade_url/upgrade_text
  * @param {string} containerId - Optional container ID (defaults to finding first available)
@@ -90,11 +113,15 @@ function showError(message, containerId = null) {
     let errorText = message;
     let upgradeUrl = null;
     let upgradeText = null;
+    let registerUrl = null;
+    let registerText = null;
 
     if (typeof message === 'object' && message !== null) {
         errorText = message.error || message.message || 'An error occurred';
         upgradeUrl = message.upgrade_url || null;
         upgradeText = message.upgrade_text || null;
+        registerUrl = message.register_url || null;
+        registerText = message.register_text || null;
     }
 
     // Find error container
@@ -111,12 +138,16 @@ function showError(message, containerId = null) {
         }
     }
 
-    // Build upgrade link HTML if provided
+    // Build action buttons (register for anonymous callers, upgrade for the rest)
     let upgradeLinkHtml = '';
+    if (registerUrl && registerText) {
+        upgradeLinkHtml += `<a href="${escapeHtml(registerUrl)}" class="inline-block mt-3 mr-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200">${escapeHtml(registerText)}</a>`;
+    }
     if (upgradeUrl && upgradeText) {
-        const safeUrl = escapeHtml(upgradeUrl);
-        const safeText = escapeHtml(upgradeText);
-        upgradeLinkHtml = `<a href="${safeUrl}" class="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200">${safeText}</a>`;
+        const upgradeClasses = registerUrl
+            ? 'inline-block mt-3 px-4 py-2 bg-white hover:bg-amber-50 text-amber-700 border border-amber-300 font-medium rounded-lg transition-colors duration-200'
+            : 'inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200';
+        upgradeLinkHtml += `<a href="${escapeHtml(upgradeUrl)}" class="${upgradeClasses}">${escapeHtml(upgradeText)}</a>`;
     }
 
     if (!container) {
@@ -772,6 +803,7 @@ async function submitAsyncConversion(options) {
                 signal: abortController.signal,
               }));
         const response = await fetch(apiUrl, _fetchInit);
+        maybeShowQuotaNudge(response);
 
         // Check if this is an async response (202 Accepted with task_id)
         if (response.status === 202) {
