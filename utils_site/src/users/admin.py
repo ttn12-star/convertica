@@ -700,6 +700,11 @@ class OperationRunAdmin(admin.ModelAdmin):
                 self.admin_site.admin_view(self.user_activity_view),
                 name="users_operationrun_user_activity",
             ),
+            path(
+                "tool-activity/",
+                self.admin_site.admin_view(self.tool_activity_view),
+                name="users_operationrun_tool_activity",
+            ),
         ]
         return custom_urls + urls
 
@@ -975,6 +980,52 @@ class OperationRunAdmin(admin.ModelAdmin):
             "opts": self.model._meta,
         }
         return render(request, "admin/users/operationrun/user_activity.html", context)
+
+    def tool_activity_view(self, request):
+        """Per-tool operation counts, filterable by a minimum operation count.
+
+        Answers "which tools have at least N operations": groups by
+        conversion_type and hides tools below the ?min_ops threshold. Same
+        analytics window as the other reports (~12 months; ?all=1 for full).
+        """
+        from django.db.models import Count, Max, Min, Q
+        from django.shortcuts import render
+
+        min_ops = request.GET.get("min_ops", "")
+        try:
+            min_ops_int = max(1, int(min_ops))
+        except (ValueError, TypeError):
+            min_ops_int = 1
+
+        since = analytics_window_start(request)
+        base = (
+            OperationRun.objects.all()
+            if since is None
+            else OperationRun.objects.filter(created_at__gte=since)
+        )
+        qs = (
+            base.values("conversion_type")
+            .annotate(
+                total=Count("id"),
+                success=Count("id", filter=Q(status="success")),
+                error=Count("id", filter=Q(status="error")),
+                rejected=Count("id", filter=Q(status="rejected")),
+                abandoned=Count("id", filter=Q(status="abandoned")),
+                first_op=Min("created_at"),
+                last_op=Max("created_at"),
+            )
+            .filter(total__gte=min_ops_int)
+            .order_by("-total")
+        )
+
+        context = {
+            **self.admin_site.each_context(request),
+            "title": "Tool Activity",
+            "tools": list(qs),
+            "min_ops": min_ops_int,
+            "opts": self.model._meta,
+        }
+        return render(request, "admin/users/operationrun/tool_activity.html", context)
 
 
 @admin.register(WebhookEvent)
