@@ -452,12 +452,17 @@ def cleanup_stuck_operations(
     """
     Clean up stuck OperationRun records.
 
-    Marks operations stuck in 'running' or 'started' status as 'abandoned'
-    once they are older than ``max_age_minutes``. The conversion hard time
-    limit is 8 minutes, so a row still 'running' after ~1h is definitively
-    stuck (e.g. the worker was OOM-SIGKILLed before its except/finally could
-    update the row). The old 24h window left such rows — and the user's
-    progress bar — hung for a full day.
+    Marks non-terminal rows older than ``max_age_minutes`` as finished:
+      - 'queued' / 'running' / 'started' -> 'abandoned' (system failure: the
+        worker never picked the task up, or was OOM-SIGKILLed before its
+        except/finally could record an outcome). 'queued' was previously NOT
+        reaped, so a task no worker ever ran stayed 'queued' forever and never
+        showed up as a failure in the stats.
+      - 'cancel_requested' -> 'cancelled' (the user asked to cancel but the
+        confirmation never landed; it was the user's choice, not a failure).
+    The conversion hard time limit is 8 minutes, so a row still un-finished
+    after ~1h is definitively stuck. The old 24h window left such rows — and
+    the user's progress bar — hung for a full day.
 
     Args:
         max_age_minutes: Minutes before marking as abandoned (default: 60).
@@ -474,27 +479,39 @@ def cleanup_stuck_operations(
 
         cutoff_time = timezone.now() - timedelta(minutes=max_age_minutes)
 
-        stuck_operations = OperationRun.objects.filter(
-            status__in=["running", "started"], created_at__lt=cutoff_time
-        )
-
-        updated_count = stuck_operations.update(
+        abandoned_count = OperationRun.objects.filter(
+            status__in=["queued", "running", "started"], created_at__lt=cutoff_time
+        ).update(
             status="abandoned",
             finished_at=timezone.now(),
             error_type="TimeoutError",
             error_message="Operation abandoned - exceeded maximum processing time",
         )
 
+        cancelled_count = OperationRun.objects.filter(
+            status="cancel_requested", created_at__lt=cutoff_time
+        ).update(status="cancelled", finished_at=timezone.now())
+
+        updated_count = abandoned_count + cancelled_count
+
         logger.info(
-            f"Cleanup stuck operations completed: {updated_count} operations marked as abandoned",
+            f"Cleanup stuck operations completed: {updated_count} operations "
+            f"finished ({abandoned_count} abandoned, {cancelled_count} cancelled)",
             extra={
                 "event": "cleanup_stuck_operations",
                 "updated_count": updated_count,
+                "abandoned_count": abandoned_count,
+                "cancelled_count": cancelled_count,
                 "max_age_minutes": max_age_minutes,
             },
         )
 
-        return {"status": "success", "updated_count": updated_count}
+        return {
+            "status": "success",
+            "updated_count": updated_count,
+            "abandoned_count": abandoned_count,
+            "cancelled_count": cancelled_count,
+        }
 
     except Exception as exc:
         logger.error(
