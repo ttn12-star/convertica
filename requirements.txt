@@ -1,11 +1,11 @@
 annotated-types==0.7.0
 asgiref==3.11.0
-click==8.3.1
-Django==5.2.12
-daphne==4.2.1
+click==8.3.3
+Django==5.2.16
+daphne==4.2.2
 django-allauth==65.15.1
 tblib==3.2.1
-PyJWT==2.10.1
+PyJWT==2.13.0
 django-tailwind==4.4.1
 djangorestframework==3.17.1
 drf-yasg==1.21.11
@@ -25,7 +25,7 @@ pdf2image==1.17.0
 # on a patched line instead of whatever PyPI resolves at build time.
 fonttools>=4.61.0
 pdfplumber==0.11.4
-pillow==12.2.0
+pillow==12.3.0
 # HEIC/HEIF support for the premium HEIC converter (image_tools.convert_heic).
 # Adds a Pillow plugin that decodes Apple HEIC/HEIF photos so we can re-encode
 # them to JPG/PNG/PDF.
@@ -43,14 +43,14 @@ olefile==0.47
 pydantic==2.12.5
 pydantic_core==2.41.5
 # PDF processing libraries
-pypdf==6.9.2
+pypdf==6.14.2
 PyMuPDF==1.27.2.2
 # Text processing
-nltk==3.9.1
+nltk==3.9.4
 # Async utilities
 aiofiles==24.1.0
 python-dateutil==2.9.0.post0
-python-dotenv==1.2.1
+python-dotenv==1.2.2
 python-decouple==3.8
 pytailwindcss==0.3.0
 # Celery for async task processing
@@ -72,17 +72,17 @@ reportlab==4.2.5
 # never needs chardet, so pin to the last <6 release: satisfies reportlab,
 # silences the warning, no functional change.
 chardet==5.2.0
-setuptools==80.9.0
+setuptools==83.0.0
 sqlparse==0.5.4
 typing-inspection==0.4.2
 typing_extensions==4.15.0
 tzdata==2025.2
-wheel==0.45.1
+wheel==0.46.2
 # Production WSGI server
 gunicorn==25.3.0
 # Static files optimization (alternative to Nginx)
 whitenoise==6.12.0
-requests==2.32.5
+requests==2.33.0
 # System monitoring
 psutil==6.1.1
 sentry-sdk[django]==2.57.0
@@ -96,7 +96,7 @@ pywebpush==1.14.0
 # Playwright - HTML/URL to PDF conversion
 playwright==1.58.0
 # AES-encrypted ZIP support (Protect ZIP / Unlock ZIP tools)
-pyzipper==0.3.6
+pyzipper==0.4.0
 
 # django-anymail - HTTP API email backend (Brevo, formerly Sendinblue).
 # DigitalOcean droplets block outbound SMTP by default, so transactional
