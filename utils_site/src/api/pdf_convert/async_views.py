@@ -17,7 +17,6 @@ from src.tasks.pdf_conversion import generic_conversion_task
 
 from ..async_views import AsyncConversionAPIView
 from ..conversion_limits import MAX_FILE_SIZE_HEAVY, MAX_PDF_PAGES_HEAVY
-from ..daily_quota import try_consume_daily_quota
 from .pdf_to_excel.serializers import PDFToExcelSerializer
 from .pdf_to_jpg.serializers import PDFToJPGSerializer
 from .pdf_to_markdown.serializers import PDFToMarkdownSerializer
@@ -164,9 +163,4 @@ class PDFToMarkdownAsyncAPIView(AsyncConversionAPIView):
         },
     )
     def post(self, request: HttpRequest):
-        allowed, quota_error = try_consume_daily_quota(request)
-        if not allowed:
-            return Response(
-                {"error": quota_error}, status=status.HTTP_429_TOO_MANY_REQUESTS
-            )
         return super().post(request)

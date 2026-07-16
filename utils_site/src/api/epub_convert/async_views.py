@@ -8,7 +8,6 @@ from rest_framework.response import Response
 from src.tasks.pdf_conversion import generic_conversion_task
 
 from ..async_views import AsyncConversionAPIView
-from ..daily_quota import try_consume_daily_quota
 from .serializers import EPUBToPDFSerializer, PDFToEPUBSerializer
 
 # Shared response docs for the async conversion endpoints. Free for everyone
@@ -19,14 +18,6 @@ _ASYNC_RESPONSES = {
     413: "File too large.",
     429: "Daily free limit reached (log in / upgrade for more).",
 }
-
-
-def _quota_error(request: HttpRequest) -> Response | None:
-    """Consume one daily-quota unit; return a 429 Response if over the limit."""
-    allowed, message = try_consume_daily_quota(request)
-    if allowed:
-        return None
-    return Response({"error": message}, status=status.HTTP_429_TOO_MANY_REQUESTS)
 
 
 class EPUBToPDFAsyncAPIView(AsyncConversionAPIView):
@@ -55,9 +46,6 @@ class EPUBToPDFAsyncAPIView(AsyncConversionAPIView):
         responses=_ASYNC_RESPONSES,
     )
     def post(self, request: HttpRequest):
-        over_quota = _quota_error(request)
-        if over_quota is not None:
-            return over_quota
         return super().post(request)
 
 
@@ -83,7 +71,4 @@ class PDFToEPUBAsyncAPIView(AsyncConversionAPIView):
         responses=_ASYNC_RESPONSES,
     )
     def post(self, request: HttpRequest):
-        over_quota = _quota_error(request)
-        if over_quota is not None:
-            return over_quota
         return super().post(request)

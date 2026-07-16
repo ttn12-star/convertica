@@ -1,25 +1,31 @@
-"""Daily conversion quota for tools opened up from premium-only to free.
+"""Global daily conversion quota: anon < registered < premium (unlimited).
 
-HEIC->JPG, PDF->Markdown and EPUB<->PDF used to be premium-only. They are now
-usable by everyone under a modest per-day cap so they can rank in search and
-feed the funnel, while batch mode, large files and OCR stay premium. Premium
-users are unlimited.
+One shared bucket per identity across ALL tools (the funnel lever), enforced
+centrally by ``DailyQuotaMiddleware`` (api/middleware.py) on every conversion
+POST. Anonymous callers get ``DAILY_QUOTA_ANON`` (10) per day, registered
+users ``DAILY_QUOTA_REGISTERED`` (40), premium users are unlimited.
 
-ponytail: single shared daily bucket per identity (authenticated user pk, else
-client IP), backed by the cache with a 24h TTL. Counts attempts, not successes
--- a failed upload still consumes one unit (same philosophy as the existing IP
-spam counter in spam_protection). Split into per-operation buckets if one tool
-ever needs its own budget.
+Semantics (deliberate, keep in sync with the middleware):
+- Calendar-day UTC window — the key embeds the date, so "resets tomorrow" is
+  literally true and easy to communicate, unlike a rolling 24h window.
+- Counts SUCCESSES only (2xx responses) — a rejected/invalid upload does not
+  burn a unit; abuse is bounded by the separate hourly IP limits and
+  spam_protection layers, which do count attempts.
+
+ponytail: identity = authenticated user pk, else client IP. IP-keying means
+incognito does not reset the bucket, but an office NAT shares one; add a
+cookie+IP dual bucket only if NAT collisions show up in support.
 """
 
 from django.conf import settings
 from django.core.cache import cache
+from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from .client_ip import get_client_ip
-from .premium_utils import is_premium_active
 
-_WINDOW_SECONDS = 24 * 60 * 60
+# A day plus slack so a bucket created at 00:01 UTC comfortably outlives its day.
+_TTL_SECONDS = 25 * 60 * 60
 
 
 def _identity_and_limit(request) -> tuple[str, int]:
@@ -30,12 +36,36 @@ def _identity_and_limit(request) -> tuple[str, int]:
     """
     user = getattr(request, "user", None)
     if user is not None and getattr(user, "is_authenticated", False):
-        return f"u:{user.pk}", getattr(settings, "DAILY_QUOTA_REGISTERED", 5)
+        return f"u:{user.pk}", getattr(settings, "DAILY_QUOTA_REGISTERED", 40)
     ip = get_client_ip(request) or "unknown"
-    return f"ip:{ip}", getattr(settings, "DAILY_QUOTA_ANON", 2)
+    return f"ip:{ip}", getattr(settings, "DAILY_QUOTA_ANON", 10)
 
 
-def _limit_message(is_authenticated: bool, limit: int) -> str:
+def _cache_key(identity: str) -> str:
+    return f"daily_quota:{identity}:{timezone.now().date().isoformat()}"
+
+
+def get_quota_state(request) -> tuple[str, int, int]:
+    """Return (cache_key, limit, used_today) for the caller. Cheap: one GET."""
+    identity, limit = _identity_and_limit(request)
+    key = _cache_key(identity)
+    try:
+        used = int(cache.get(key) or 0)
+    except Exception:
+        used = 0  # cache down -> fail open
+    return key, limit, used
+
+
+def consume_quota_unit(key: str) -> int:
+    """Count one successful conversion; return the new used total (best effort)."""
+    try:
+        cache.add(key, 0, _TTL_SECONDS)
+        return cache.incr(key)
+    except Exception:
+        return 0  # never fail a successful conversion over quota bookkeeping
+
+
+def quota_limit_message(is_authenticated: bool, limit: int) -> str:
     payments_enabled = getattr(settings, "PAYMENTS_ENABLED", True)
     if not is_authenticated:
         if payments_enabled:
@@ -53,32 +83,3 @@ def _limit_message(is_authenticated: bool, limit: int) -> str:
             "Upgrade to Premium for unlimited conversions."
         ) % {"limit": limit}
     return _("You've reached your daily limit (%(limit)d/day).") % {"limit": limit}
-
-
-def try_consume_daily_quota(request) -> tuple[bool, str | None]:
-    """Consume one unit of the caller's daily quota.
-
-    Returns (allowed, error_message). Premium users are always allowed and never
-    consume quota. The current request is counted even when it is rejected, which
-    bounds abuse at the cost of a rejected upload still burning one unit.
-    """
-    user = getattr(request, "user", None)
-    if is_premium_active(user):
-        return True, None
-
-    identity, limit = _identity_and_limit(request)
-    key = f"daily_quota:{identity}"
-    # add() writes the key with its TTL only when absent, so the subsequent
-    # incr() keeps the original 24h window instead of resetting it each call.
-    cache.add(key, 0, _WINDOW_SECONDS)
-    try:
-        used = cache.incr(key)
-    except ValueError:
-        # Key expired between add() and incr() -- start a fresh window.
-        cache.set(key, 1, _WINDOW_SECONDS)
-        used = 1
-
-    if used > limit:
-        is_auth = bool(user is not None and getattr(user, "is_authenticated", False))
-        return False, _limit_message(is_auth, limit)
-    return True, None

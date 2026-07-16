@@ -7,18 +7,9 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from ..base_views import BaseConversionAPIView
-from ..daily_quota import try_consume_daily_quota
 from .decorators import epub_to_pdf_docs, pdf_to_epub_docs
 from .serializers import EPUBToPDFSerializer, PDFToEPUBSerializer
 from .utils import convert_epub_to_pdf, convert_pdf_to_epub
-
-
-def _quota_error(request: HttpRequest) -> Response | None:
-    """Consume one daily-quota unit; return a 429 Response if over the limit."""
-    allowed, message = try_consume_daily_quota(request)
-    if allowed:
-        return None
-    return Response({"error": message}, status=status.HTTP_429_TOO_MANY_REQUESTS)
 
 
 class EPUBToPDFAPIView(BaseConversionAPIView):
@@ -47,9 +38,6 @@ class EPUBToPDFAPIView(BaseConversionAPIView):
 
     @epub_to_pdf_docs()
     def post(self, request: HttpRequest):
-        over_quota = _quota_error(request)
-        if over_quota is not None:
-            return over_quota
         return super().post(request)
 
     def perform_conversion(
@@ -80,9 +68,6 @@ class PDFToEPUBAPIView(BaseConversionAPIView):
 
     @pdf_to_epub_docs()
     def post(self, request: HttpRequest):
-        over_quota = _quota_error(request)
-        if over_quota is not None:
-            return over_quota
         return super().post(request)
 
     def perform_conversion(

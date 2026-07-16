@@ -9,7 +9,6 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
-from ...daily_quota import try_consume_daily_quota
 from .decorators import convert_heic_docs
 from .serializers import ConvertHEICSerializer
 from .utils import convert_heic
@@ -52,11 +51,6 @@ class ConvertHEICAPIView(BaseConversionAPIView):
 
     @convert_heic_docs()
     def post(self, request: HttpRequest):
-        allowed, quota_error = try_consume_daily_quota(request)
-        if not allowed:
-            return Response(
-                {"error": quota_error}, status=status.HTTP_429_TOO_MANY_REQUESTS
-            )
         return super().post(request)
 
     def perform_conversion(
