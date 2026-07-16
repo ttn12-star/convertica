@@ -235,6 +235,22 @@
               {% trans "Convert PDF content to HTML for web publishing." %}
             </p>
           </a>
+          <a href="{% url 'frontend:pdf_to_text_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-200 hover:border-blue-500 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-blue-600 transition-colors">
+              {% trans "PDF to Text" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Extract plain text from your PDF in seconds" %}
+            </p>
+          </a>
         </div>
       </div>
     </section>
@@ -785,6 +801,22 @@
             </h3>
             <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
               {% trans "Extract a PNG from an .ico file." %}
+            </p>
+          </a>
+          <a href="{% url 'frontend:password_protect_image_page' %}"
+             class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-indigo-200 hover:border-indigo-500 border-t border-r border-b border-gray-100 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-indigo-600 transition-colors">
+              {% trans "Password Protect Image" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Lock your photo behind a password" %}
             </p>
           </a>
         </div>
