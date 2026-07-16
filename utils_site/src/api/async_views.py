@@ -502,7 +502,12 @@ class AsyncConversionAPIView(APIView, ABC):
                     "task_id": task_id,
                     "input_path": input_path,
                     "original_filename": uploaded_file.name,
-                    "conversion_type": normalize_conversion_type(self.CONVERSION_TYPE),
+                    # Task dispatch needs the lowercase *processing* key (matches
+                    # converter_map / FAST_CONVERSION_TYPES / `== "pdf_to_word"`).
+                    # normalize_conversion_type() is the UPPER analytics label and
+                    # must NOT be used here — see its docstring. The analytics
+                    # OperationRun write above already uses the normalized label.
+                    "conversion_type": self.CONVERSION_TYPE,
                     "is_premium": is_premium,
                 }
             )
