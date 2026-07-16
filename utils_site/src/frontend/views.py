@@ -1086,20 +1086,25 @@ def ocr_pdf_to_word_page(request):
 
 @anonymous_cache_page(60 * 60)
 def batch_converter_page(request):
-    """Premium batch conversion hub page."""
-    if not _is_premium_active_user(request):
-        return _redirect_for_premium_access(request)
+    """Batch conversion landing.
 
+    Public and crawlable (the OCR-landing pattern): "batch pdf converter" is a
+    commercial-intent keyword, so the page serves full SEO content to everyone;
+    the batch operations themselves stay premium-gated at the API layer.
+    """
     context = {
-        "page_title": _("Batch Converter Hub (Premium) - Convertica"),
+        "page_title": _("Batch PDF Converter - Convert Multiple Files at Once"),
         "page_description": _(
-            "Convert multiple files in one run with premium batch conversion "
-            "workflows and background processing support."
+            "Convert multiple PDFs, Word documents and images in one run and "
+            "download everything as a single ZIP. Batch mode handles up to 10 "
+            "files at once with Premium; single-file conversions are free."
         ),
         "page_keywords": (
-            "batch pdf converter premium, convert multiple files to pdf, "
-            "bulk document conversion, premium batch tools"
+            "batch pdf converter, convert multiple pdf files at once, "
+            "bulk pdf conversion, batch document converter, "
+            "convert many files at once, bulk file converter online"
         ),
+        "is_premium_active": _is_premium_active_user(request),
         "batch_tools": [
             {
                 "name": _("PDF to Word"),
@@ -1130,6 +1135,51 @@ def batch_converter_page(request):
                 "name": _("Add Watermark"),
                 "description": _("Apply one watermark preset across multiple PDFs."),
                 "url": reverse("frontend:add_watermark_page"),
+            },
+        ],
+        "how_it_works": [
+            _("Choose a converter and upload up to 10 files in one go."),
+            _("Start the batch — every file is processed with the same settings."),
+            _("Download all results together as a single ZIP archive."),
+        ],
+        "page_faq": [
+            {
+                "question": _("How does batch conversion work?"),
+                "answer": _(
+                    "Pick a tool, upload several files at once, and start the run. "
+                    "Every file is converted with the same settings, and you download "
+                    "the results together as a single ZIP archive."
+                ),
+            },
+            {
+                "question": _("How many files can I process at once?"),
+                "answer": _(
+                    "Batch mode handles up to 10 files per run. For bigger jobs, run "
+                    "several batches back to back — background mode keeps long runs "
+                    "going while you do something else."
+                ),
+            },
+            {
+                "question": _("Is batch conversion free?"),
+                "answer": _(
+                    "Single-file conversions are free with a daily limit. Processing "
+                    "several files in one run is a Premium feature, together with "
+                    "higher file-size limits, priority processing, and background mode."
+                ),
+            },
+            {
+                "question": _("Which tools support batch mode?"),
+                "answer": _(
+                    "PDF to Word, Word to PDF, PDF to JPG, JPG to PDF, Compress PDF "
+                    "and Add Watermark — plus most other converters on the site."
+                ),
+            },
+            {
+                "question": _("What happens to my files?"),
+                "answer": _(
+                    "Files are processed temporarily and deleted automatically shortly "
+                    "after conversion. Nothing is stored or shared."
+                ),
             },
         ],
     }
@@ -1532,6 +1582,7 @@ def _get_sitemap_pages():
         {"url": "contribute/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "all-tools/", "priority": "0.9", "changefreq": "weekly"},
         {"url": "premium-tools/", "priority": "0.7", "changefreq": "weekly"},
+        {"url": "batch-converter/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "api/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "epub-to-pdf/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "pdf-to-epub/", "priority": "0.6", "changefreq": "monthly"},
@@ -1590,7 +1641,8 @@ def _get_sitemap_pages():
         # scanned-pdf-to-word/ now serves a public 200 landing (OCR is a
         # high-CPC keyword); the conversion action stays premium-gated.
         {"url": "scanned-pdf-to-word/", "priority": "0.7", "changefreq": "monthly"},
-        # NOTE: batch-converter/ is still premium-gated and 302-redirects
+        # NOTE: premium/workflows and premium/background-center are still
+        # premium-gated and 302-redirect
         # anonymous crawlers, so it stays out of the sitemap.
     ]
 

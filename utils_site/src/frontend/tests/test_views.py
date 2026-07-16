@@ -31,11 +31,11 @@ class FrontendViewsTestCase(TestCase):
             "pdf-to-epub/",
             "pdf-to-markdown/",
             "compare-pdf/",
-            # Public 200 landing; conversion action is premium-gated at the API.
+            # Public 200 landings; the operation is premium-gated at the API.
             "scanned-pdf-to-word/",
+            "batch-converter/",
         )
         self.premium_only_paths = (
-            "batch-converter/",
             "premium/workflows/",
             "premium/background-center/",
         )
