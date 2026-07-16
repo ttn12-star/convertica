@@ -2,9 +2,13 @@
 """
 Generate robots.txt with dynamic values during deployment.
 
-This script reads the template robots.txt from static/ directory,
-replaces placeholders with environment variables, and writes the result
-to staticfiles/ directory for nginx to serve.
+Reads the template robots.txt from static/, replaces the sitemap host with
+SITE_DOMAIN, and writes the result to staticfiles/ for nginx to serve.
+
+Fails HARD when the template is missing: a hand-rolled fallback here used to
+drift from static/robots.txt and would silently un-block /premium/ and
+/batch-converter/ if it ever shipped. static/robots.txt is the single source
+of truth; a missing template is a build error, not something to paper over.
 """
 
 import os
@@ -16,91 +20,34 @@ def generate_robots_txt():
     """Generate robots.txt with dynamic SITE_DOMAIN."""
     site_domain = os.environ.get("SITE_DOMAIN", "convertica.net")
 
-    # Paths
     base_dir = Path(__file__).resolve().parent.parent
     template_path = base_dir / "static" / "robots.txt"
     output_path = base_dir / "staticfiles" / "robots.txt"
 
-    # Ensure staticfiles directory exists
+    if not template_path.exists():
+        print(f"❌ robots.txt template missing at {template_path}", file=sys.stderr)
+        return 1
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    try:
-        # Read template
-        if not template_path.exists():
-            print(f"Warning: Template not found at {template_path}")
-            # Create fallback robots.txt
-            content = generate_fallback_content(site_domain)
-        else:
-            with open(template_path, encoding="utf-8") as f:
-                content = f.read()
+    with open(template_path, encoding="utf-8") as f:
+        content = f.read()
 
-            content = content.replace(
-                "https://convertica.net/sitemap.xml",
-                f"https://{site_domain}/sitemap.xml",
-            )
-            content = content.replace(
-                "http://convertica.net/sitemap.xml",
-                f"https://{site_domain}/sitemap.xml",
-            )
+    content = content.replace(
+        "https://convertica.net/sitemap.xml",
+        f"https://{site_domain}/sitemap.xml",
+    )
+    content = content.replace(
+        "http://convertica.net/sitemap.xml",
+        f"https://{site_domain}/sitemap.xml",
+    )
 
-        # Write to staticfiles
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(content)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(content)
 
-        print(f"✅ Generated robots.txt at {output_path}")
-        print(f"   Sitemap: https://{site_domain}/sitemap.xml")
-        return 0
-
-    except Exception as e:
-        print(f"❌ Error generating robots.txt: {e}", file=sys.stderr)
-        # Create fallback anyway to ensure robots.txt exists
-        try:
-            content = generate_fallback_content(site_domain)
-            with open(output_path, "w", encoding="utf-8") as f:
-                f.write(content)
-            print(f"⚠️  Created fallback robots.txt at {output_path}")
-        except Exception as fallback_error:
-            print(f"❌ Failed to create fallback: {fallback_error}", file=sys.stderr)
-            return 1
-        return 0
-
-
-def generate_fallback_content(site_domain: str) -> str:
-    """Generate fallback robots.txt content."""
-    return f"""User-agent: *
-Allow: /
-
-# Duplicate URL variants and internal search/filter combinations
-Disallow: /*?lang=*
-Disallow: /*&lang=*
-Disallow: /*?q=*
-Disallow: /*&q=*
-Disallow: /*?category=*
-Disallow: /*&category=*
-
-# Disallow API endpoints and static admin assets
-Disallow: /api/
-Disallow: /static/admin/
-
-# Disallow user authentication and account pages
-Disallow: /users/
-Disallow: /*/users/
-Disallow: /accounts/
-Disallow: /*/accounts/
-
-# Disallow payment and post-conversion success pages
-Disallow: /payments/
-Disallow: /*/payments/
-Disallow: /contribute/success/
-Disallow: /*/contribute/success/
-
-# Allow static files
-Allow: /static/
-Allow: /media/
-
-# Sitemap
-Sitemap: https://{site_domain}/sitemap.xml
-"""
+    print(f"✅ Generated robots.txt at {output_path}")
+    print(f"   Sitemap: https://{site_domain}/sitemap.xml")
+    return 0
 
 
 if __name__ == "__main__":

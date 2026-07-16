@@ -21,6 +21,11 @@ NOINDEX_PATH_PREFIXES = (
     "/users/",
     "/accounts/",
     "/payments/",
+    # Premium feature pages (302→login for anonymous; robots-Disallowed).
+    # The meta layer is defence-in-depth for the logged-in premium render.
+    # NB: "/premium/" does NOT match the crawlable "/premium-tools/" catalog.
+    "/premium/",
+    "/batch-converter/",
 )
 NOINDEX_EXACT_PATHS = {
     "/contribute/success/",

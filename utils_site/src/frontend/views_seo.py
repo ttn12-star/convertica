@@ -47,7 +47,11 @@ def robots_txt_view(request):  # noqa: ARG001
 
 
 def _fallback_robots_content() -> str:
-    """Return a safe fallback robots.txt when the static asset is unavailable."""
+    """Last-resort robots.txt when the static asset is unavailable at runtime.
+
+    Keep in sync with static/robots.txt (the single source of truth) — a
+    drifted fallback silently un-blocks premium/batch paths.
+    """
     return """User-agent: *
 Allow: /
 
@@ -59,7 +63,15 @@ Disallow: /*&q=*
 Disallow: /*?category=*
 Disallow: /*&category=*
 
+# NB: double language-prefix URLs (e.g. /es/ru/...) are intentionally NOT
+# blocked here. DoubleLanguagePrefixMiddleware 301-redirects them to the
+# canonical single-prefix URL, which consolidates them cleanly. A robots
+# block only froze them as stale 404s in Search Console (Google can't recrawl
+# a disallowed URL to see the 301). Let the redirect do the work.
+
 # Disallow API endpoints and static admin assets
+# (real admin is hidden behind an obscured path + IP whitelist;
+# we don't advertise it in robots.txt)
 Disallow: /api/
 Disallow: /static/admin/
 
@@ -75,5 +87,35 @@ Disallow: /*/payments/
 Disallow: /contribute/success/
 Disallow: /*/contribute/success/
 
+# Disallow premium-gated tools that 302-redirect anonymous visitors to login
+# (kept off the public crawl to avoid noisy 302→login chains in audits).
+# /scanned-pdf-to-word/ is intentionally NOT blocked: OCR is a high-CPC
+# keyword we want indexed. The landing page must serve crawlable anonymous
+# content; the actual conversion remains premium-gated at the app layer.
+Disallow: /batch-converter/
+Disallow: /*/batch-converter/
+Disallow: /premium/
+Disallow: /*/premium/
+
+# Explicit Allow guard: the crawlable premium CATALOG page shares the
+# "premium" slug prefix and survives the block above only because of the
+# trailing slash in "Disallow: /premium/". Keep these Allow lines so a future
+# broadening of that block can never silently de-index the catalog.
+Allow: /premium-tools/
+Allow: /*/premium-tools/
+
+# Disallow Cloudflare email-protection endpoint (404 on our plan, surfaces
+# as a broken link from any mailto: in the page)
+Disallow: /cdn-cgi/
+
+# Allow pricing page for SEO
+Allow: /pricing/
+Allow: /*/pricing/
+
+# Allow static files
+Allow: /static/
+Allow: /media/
+
+# Sitemap
 Sitemap: https://convertica.net/sitemap.xml
 """
