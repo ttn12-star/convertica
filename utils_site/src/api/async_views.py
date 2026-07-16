@@ -718,6 +718,15 @@ class TaskResultAPIView(APIView):
             )
             response["Content-Type"] = content_type
 
+            # Async batch results carry per-batch counters so the frontend can
+            # warn about dropped files (same contract as the sync batch path's
+            # X-Convertica-Batch-* headers).
+            if "batch_count" in info:
+                response["X-Convertica-Batch-Count"] = str(info["batch_count"])
+                response["X-Convertica-Batch-Failed-Count"] = str(
+                    info.get("batch_failed_count", 0)
+                )
+
             # Feedback token bound to this operation (resolved via task_id).
             from src.feedback.tokens import create_feedback_token
 

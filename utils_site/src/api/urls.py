@@ -1,10 +1,11 @@
-from django.urls import path
+from django.urls import path, re_path
 
 from .archive_tools.protect_zip.batch_views import ProtectZipBatchAPIView
 from .archive_tools.protect_zip.views import ProtectZipAPIView
 from .archive_tools.unlock_zip.batch_views import UnlockZipBatchAPIView
 from .archive_tools.unlock_zip.views import UnlockZipAPIView
 from .async_views import TaskResultAPIView, TaskStatusAPIView
+from .batch_async_views import BatchAsyncSubmitAPIView
 from .cancel_task_view import (
     cancel_task,
     mark_operation_abandoned,
@@ -377,4 +378,12 @@ urlpatterns = [
         name="generate_favicon_api",
     ),
     path("image/ico-to-png/", ICOToPNGAPIView.as_view(), name="ico_to_png_api"),
+    # Generic async twin for EVERY registered /batch/ endpoint: the view
+    # resolves the matching sync batch view by route and queues the batch
+    # on Celery (see batch_async_views.py).
+    re_path(
+        r"^(?P<batch_route>.+/batch)/async/$",
+        BatchAsyncSubmitAPIView.as_view(),
+        name="batch_async_api",
+    ),
 ]
