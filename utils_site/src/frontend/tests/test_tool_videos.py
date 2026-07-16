@@ -43,30 +43,32 @@ class ToolVideoLoaderTests(TestCase):
 
 
 def _embed(vid: str) -> str:
-    """The crawlable player marker: the click-to-play facade button.
+    """The crawlable player marker: a real iframe pointing at the embed URL.
 
-    The embed is a facade (thumbnail + play button, iframe injected on click) so
-    the YT player stays off the critical path — PSI flagged it on every video
-    page. Indexability relies on the VideoObject JSON-LD (embedUrl + thumbnail),
-    which is Google's supported path and is asserted alongside this marker.
+    On tool pages a server-rendered <iframe> (not a click-to-load facade) is
+    what makes the video indexable — Googlebot must find a player without
+    executing JS (GSC reported "could not determine the prominent video" for
+    the old facade). The homepage alone uses a facade (facade=True): its
+    overview video doesn't compete for rich results and the player chain blew
+    the PSI mobile LCP there.
     """
-    return f'data-video-id="{vid}"'
+    return f'src="https://www.youtube-nocookie.com/embed/{vid}?rel=0"'
 
 
 class ToolVideoRenderTests(TestCase):
-    """The video facade + VideoObject JSON-LD reach the rendered page."""
+    """The video embed + VideoObject JSON-LD reach the rendered page."""
 
     def setUp(self):
         cache.clear()  # anonymous_cache_page can leak pages across tests
         self.client = Client()
 
-    def test_tool_page_with_video_renders_facade_and_jsonld(self):
+    def test_tool_page_with_video_renders_iframe_and_jsonld(self):
         resp = self.client.get("/word-to-pdf/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
         self.assertIn(_embed("ozMzrlVOTvQ"), html)
-        self.assertIn("i.ytimg.com/vi/ozMzrlVOTvQ/", html)  # facade thumbnail
-        self.assertNotIn("<iframe", html)  # player only injected on click
+        self.assertIn('loading="lazy"', html)  # off the critical path
+        self.assertNotIn("yt-facade", html)  # tool pages must stay indexable
         obj = _video_jsonld(html)
         self.assertEqual(obj["duration"], "PT1M38S")
         self.assertEqual(
@@ -95,11 +97,14 @@ class ToolVideoRenderTests(TestCase):
         self.assertNotIn("yt-facade", html)
         self.assertNotIn("VideoObject", html)
 
-    def test_homepage_renders_overview_video(self):
+    def test_homepage_renders_overview_video_as_facade(self):
         resp = self.client.get("/", follow=True)
         self.assertEqual(resp.status_code, 200)
         html = resp.content.decode()
-        self.assertIn(_embed("53XxE5XBP24"), html)
+        # Facade: thumbnail + play button, no player iframe in the HTML.
+        self.assertIn('data-video-id="53XxE5XBP24"', html)
+        self.assertIn("i.ytimg.com/vi/53XxE5XBP24/", html)
+        self.assertNotIn(_embed("53XxE5XBP24"), html)
         self.assertIn("See Convertica in action", html)
         obj = _video_jsonld(html)  # asserts valid JSON + presence
         self.assertEqual(obj["duration"], "PT2M26S")
