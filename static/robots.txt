@@ -43,6 +43,13 @@ Disallow: /*/batch-converter/
 Disallow: /premium/
 Disallow: /*/premium/
 
+# Explicit Allow guard: the crawlable premium CATALOG page shares the
+# "premium" slug prefix and survives the block above only because of the
+# trailing slash in "Disallow: /premium/". Keep these Allow lines so a future
+# broadening of that block can never silently de-index the catalog.
+Allow: /premium-tools/
+Allow: /*/premium-tools/
+
 # Disallow Cloudflare email-protection endpoint (404 on our plan, surfaces
 # as a broken link from any mailto: in the page)
 Disallow: /cdn-cgi/
