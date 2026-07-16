@@ -183,6 +183,15 @@ class OperationRunTrackingMiddleware(MiddlewareMixin):
                 "/api/task-background/",
             ):
                 return None
+            # Exclude non-conversion v1 endpoints (token issuance, feedback) so
+            # they don't masquerade as "operations" and dilute success metrics.
+            # The v1 *conversion* endpoints (…/merge, …/split) are NOT here and
+            # stay tracked.
+            if request.path in (
+                "/api/v1/auth/web-token",
+                "/api/v1/feedback/",
+            ):
+                return None
 
             view_class = getattr(view_func, "view_class", None)
 

@@ -498,6 +498,8 @@ class BaseConversionAPIView(APIView, ABC):
                 from django.utils import timezone
                 from src.users.models import OperationRun
 
+                from .operation_run_middleware_utils import normalize_conversion_type
+
                 op_run_id = str(context.get("request_id") or uuid.uuid4().hex)
                 context["operation_run_id"] = op_run_id
 
@@ -518,7 +520,9 @@ class BaseConversionAPIView(APIView, ABC):
                 OperationRun.objects.update_or_create(
                     request_id=op_run_id,
                     defaults={
-                        "conversion_type": self.CONVERSION_TYPE,
+                        "conversion_type": normalize_conversion_type(
+                            self.CONVERSION_TYPE
+                        ),
                         "status": "running",
                         "user": request.user if request.user.is_authenticated else None,
                         "is_premium": is_premium,

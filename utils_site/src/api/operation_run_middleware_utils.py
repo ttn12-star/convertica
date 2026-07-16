@@ -95,6 +95,25 @@ def ensure_request_id(request) -> str:
     return request_id
 
 
+def normalize_conversion_type(value) -> str:
+    """Canonical analytics label for OperationRun.conversion_type: UPPER, ≤80.
+
+    View classes declare CONVERSION_TYPE inconsistently (``PDF_TO_JPG`` vs the
+    lowercase ``pdf_to_word``), and views without it fall back to the lowercase
+    URL ``view_name`` — so the SAME tool was recorded under two labels
+    (``WORD_TO_PDF`` + ``word_to_pdf``, ``PDF_TO_JPG`` + ``pdf_to_jpg``),
+    fragmenting every per-tool report. Uppercasing at the single analytics-write
+    boundary merges them; the ``…_api`` dev-API endpoints stay distinct
+    (``MERGE_PDF`` vs ``MERGE_PDF_API``).
+
+    NOTE: this is the analytics label ONLY. The separate lowercase *processing*
+    ``conversion_type`` passed to the Celery conversion tasks (which drives the
+    ``ext_map`` / ``FAST_CONVERSION_TYPES`` / ``== "pdf_to_word"`` branches in
+    tasks/pdf_conversion.py) is a different variable and is untouched.
+    """
+    return str(value or "").upper()[:80]
+
+
 def create_operation_run(
     *,
     request,
@@ -113,7 +132,7 @@ def create_operation_run(
             started_at = now
 
         defaults = {
-            "conversion_type": str(conversion_type or "")[:80],
+            "conversion_type": normalize_conversion_type(conversion_type),
             "status": status,
             "user": (
                 request.user
