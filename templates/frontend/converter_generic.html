@@ -87,7 +87,8 @@
       {% block edit_options %}{% endblock %}
 
         <!-- Honeypot field (hidden from users, filled by bots) -->
-      <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+      {# inset-inline-start, NOT left: in RTL left:-9999px grows the scrollable canvas 9999px to the left and headless Chrome (crawler renderers, Lighthouse) paints /ar/ pages as fully BLANK #}
+      <input type="text" name="website" id="website" style="position: absolute; inset-inline-start: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <!-- Cloudflare Turnstile (Anti-spam). The container is always present so
              the client can render a widget on demand when CAPTCHA becomes
