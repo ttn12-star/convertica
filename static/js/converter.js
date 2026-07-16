@@ -201,18 +201,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const isLargeFile = selectedFile.size > 5 * 1024 * 1024; // 5MB
 
         // Use async mode for:
+        // - Batch (multiple files) - always: the conversion loop runs on the
+        //   Celery worker instead of blocking a gunicorn worker for minutes
+        //   and racing the Cloudflare 100s edge timeout
         // - Heavy operations (PDF to Word, Word to PDF, PDF to Excel) - always
         // - Medium operations (PDF to JPG, Compress) - for large files
         // - Any other operation - for very large files (> 10MB)
-        const useAsync = (!isBatchMode) && (
+        const useAsync = isBatchMode ||
                         isHeavyOperation ||
                         (isMediumOperation && isLargeFile) ||
-                        (selectedFile.size > 10 * 1024 * 1024)
-                    );
+                        (selectedFile.size > 10 * 1024 * 1024);
 
         // Use async API endpoint for operations that need it
         let apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
-        const needsAsyncEndpoint = (isHeavyOperation || isMediumOperation) && useAsync;
+        const needsAsyncEndpoint = (isBatchMode || isHeavyOperation || isMediumOperation) && useAsync;
         if (needsAsyncEndpoint && !apiUrl.endsWith('/async/')) {
             // Append /async/ to the URL for async processing
             apiUrl = apiUrl.replace(/\/$/, '') + '/async/';
