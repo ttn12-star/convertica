@@ -233,6 +233,10 @@ def generic_conversion_task(
     Returns:
         dict: Result containing output_path and output_filename
     """
+    # Defensive: the processing dispatch key is lowercase (converter_map,
+    # FAST_CONVERSION_TYPES, `== "pdf_to_word"` branches all use lowercase). A
+    # caller that hands us the UPPER analytics label must not blow up dispatch.
+    conversion_type = str(conversion_type or "").lower()
     task_dir = os.path.dirname(input_path)
     output_path = None
     # Use the task_id parameter (same as self.request.id, but explicit)

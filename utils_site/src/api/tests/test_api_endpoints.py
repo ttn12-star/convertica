@@ -729,6 +729,13 @@ startxref
         self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
         self.assertTrue(response.data.get("task_id"))
         self.assertEqual(response.data.get("status"), "PENDING")
+        # Regression guard: the task must receive the LOWERCASE processing key
+        # (converter_map lookup), not the UPPER analytics label — otherwise the
+        # Celery task raises "Unknown conversion type: PDF_TO_MARKDOWN".
+        self.assertEqual(
+            mock_apply_async.call_args.kwargs["kwargs"]["conversion_type"],
+            "pdf_to_markdown",
+        )
 
     def test_compare_pdf_requires_premium_and_returns_zip_for_premium_user(self):
         """Compare PDF endpoint should enforce premium and return ZIP report."""
