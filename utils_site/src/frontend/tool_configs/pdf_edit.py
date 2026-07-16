@@ -679,11 +679,9 @@ PDF_EDIT_CONFIGS = {
     "sign_pdf": {
         "template": "frontend/pdf_edit/sign_pdf.html",
         "converter_args": {
-            "page_title": _(
-                "Sign PDF - Add Signature to PDF Online | Convertica Premium"
-            ),
+            "page_title": _("Sign PDF Online Free - Add Signature to PDF | Convertica"),
             "page_description": _(
-                "Sign any PDF online: draw with the mouse, type your name in a handwriting font, or upload a signature image. Click on the page to place it, drag to position, resize with handles. Premium feature."
+                "Sign any PDF online: draw with the mouse, type your name in a handwriting font, or upload a signature image. Click on the page to place it, drag to position, resize with handles. Free, no registration."
             ),
             "page_keywords": (
                 "sign PDF online free, add signature to PDF, PDF signature tool, "
