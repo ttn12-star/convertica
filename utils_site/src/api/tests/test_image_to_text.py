@@ -180,7 +180,8 @@ class ImageToTextNavTests(TestCase):
 
 @override_settings(
     RATELIMIT_ENABLE=False,
-    IMAGE_TO_TEXT_FREE_DAILY=2,
+    DAILY_QUOTA_ANON=2,
+    DAILY_QUOTA_ENFORCE_IN_TESTS=True,
     CACHES={"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}},
 )
 class ImageToTextLimitsTests(TestCase):
@@ -221,7 +222,7 @@ class ImageToTextLimitsTests(TestCase):
     def test_free_daily_limit_then_429(self, _ocr, _timing):
         # _timing patch disables the 2s anti-burst cooldown so we can fire the
         # daily quota back-to-back.
-        for _i in range(2):  # IMAGE_TO_TEXT_FREE_DAILY=2
+        for _i in range(2):  # DAILY_QUOTA_ANON=2
             r = self.client.post(self.URL, data={"image_file": self._png()})
             self.assertEqual(r.status_code, 200)
         r = self.client.post(self.URL, data={"image_file": self._png()})
@@ -243,7 +244,7 @@ class ImageToTextLimitsTests(TestCase):
 
     @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
     def test_premium_docx_download(self, _m):
-        self.client.force_authenticate(self._premium_user())
+        self.client.force_login(self._premium_user())
         r = self.client.post(
             self.URL, data={"image_file": self._png(), "output_format": "docx"}
         )
@@ -262,7 +263,7 @@ class ImageToTextLimitsTests(TestCase):
     )
     @patch("src.api.ocr_utils.pytesseract.image_to_data", return_value=FAKE_OCR_DATA)
     def test_premium_has_no_daily_limit(self, _ocr, _timing):
-        self.client.force_authenticate(self._premium_user())
+        self.client.force_login(self._premium_user())
         for _i in range(4):  # well over the free daily cap of 2
             r = self.client.post(self.URL, data={"image_file": self._png()})
             self.assertEqual(r.status_code, 200)

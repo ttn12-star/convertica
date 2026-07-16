@@ -598,9 +598,6 @@ class FrontendViewsTestCase(TestCase):
         self.assertContains(
             response, reverse("frontend:compare_pdf_page"), status_code=200
         )
-        self.assertContains(
-            response, reverse("frontend:sign_pdf_page"), status_code=200
-        )
 
     def test_premium_landing_pages_have_seo_and_help_blocks(self):
         """Premium landing pages should include canonical/meta blocks and help sections."""
@@ -729,13 +726,14 @@ class FrontendViewsTestCase(TestCase):
         )[0]
         self.assertIn(reverse("frontend:premium_tools_page"), premium_dropdown)
         self.assertIn(reverse("frontend:compare_pdf_page"), premium_dropdown)
-        self.assertIn(reverse("frontend:sign_pdf_page"), premium_dropdown)
-        # De-premiumized (free with a daily quota, v2.2.149) — these must NOT
-        # appear in the dedicated Premium Tools submenu any more.
+        # De-premiumized (free with a daily quota, v2.2.149/v2.2.152) — these
+        # must NOT appear in the dedicated Premium Tools submenu any more.
         self.assertNotIn(reverse("frontend:epub_to_pdf_page"), premium_dropdown)
         self.assertNotIn(reverse("frontend:pdf_to_epub_page"), premium_dropdown)
         self.assertNotIn(reverse("frontend:pdf_to_markdown_page"), premium_dropdown)
         self.assertNotIn(reverse("frontend:heic_to_jpg_page"), premium_dropdown)
+        self.assertNotIn(reverse("frontend:sign_pdf_page"), premium_dropdown)
+        self.assertNotIn(reverse("frontend:pdf_to_text_page"), premium_dropdown)
 
     def test_header_hides_dedicated_premium_tools_submenu_for_non_premium_user(self):
         """Anonymous users should not see the dedicated Premium Tools submenu."""
