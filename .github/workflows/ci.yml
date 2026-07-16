@@ -948,6 +948,14 @@ jobs:
 
             echo "✅ Deployment completed!"
 
+            # OS-level backstop for user-file retention: the in-app cleanup
+            # (celery-beat, every 30 min) is the primary mechanism; this cron
+            # survives beat dying so uploaded documents never accumulate
+            # indefinitely (deletion is promised in the privacy copy).
+            echo "🧹 Installing async_temp reaper cron (backstop for celery-beat)..."
+            echo '*/30 * * * * root find /opt/convertica/media/async_temp -mindepth 1 -maxdepth 1 -mmin +180 -exec rm -rf {} + 2>/dev/null' > /etc/cron.d/convertica-async-temp-reaper
+            chmod 644 /etc/cron.d/convertica-async-temp-reaper
+
             # Clean up old Docker images
             echo "🧹 Cleaning up old Docker images..."
             docker image prune -f || true

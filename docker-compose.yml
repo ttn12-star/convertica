@@ -4,15 +4,19 @@ services:
     image: postgres:16-alpine
     container_name: convertica_db
     # Apply tuning via -c flags (env vars POSTGRES_* are NOT recognized by postgres).
-    # shared_buffers: 300MB (was 256MB) – more pages stay in memory.
-    # work_mem: 24MB (was 8MB) – faster sorts/hash joins per query.
-    # effective_cache_size: 768MB – planner hint for index vs. seq-scan.
+    # shared_buffers: 192MB — MUST fit the prod container limit (256M in
+    # ci/docker-compose.prod.yml): the previous 300MB exceeded the cgroup cap,
+    # which is a latent OOM-kill of the database the moment the buffer pool
+    # actually fills. ponytail: raise back towards 25% of RAM together with
+    # the container limit when the droplet gets more memory.
+    # work_mem: 24MB – faster sorts/hash joins per query.
+    # effective_cache_size: 384MB – planner hint, honest for a 2GB-RAM host.
     command: >
       postgres
-      -c shared_buffers=300MB
+      -c shared_buffers=192MB
       -c work_mem=24MB
       -c maintenance_work_mem=64MB
-      -c effective_cache_size=768MB
+      -c effective_cache_size=384MB
       -c checkpoint_completion_target=0.9
       -c random_page_cost=1.1
     environment:
@@ -46,12 +50,14 @@ services:
   redis:
     image: redis:7-alpine
     container_name: convertica_redis
-    # maxmemory increased to 240mb (from 200mb) — stays within 256MB container limit.
+    # maxmemory 320mb — container limit is 384M (prod override), leaving ~64M
+    # for redis overhead/AOF buffers. More room before volatile-lru starts
+    # evicting cache/session keys under crawl or queue load.
     # volatile-lru: evict only keys that have a TTL set (cache hits) rather than
     # evicting Celery task results that have no TTL (broker list entries).
     # NOTE: Celery result_expires=7200 sets a TTL on results, so they can still be
     # evicted under heavy pressure, but at least broker queue entries are protected.
-    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:?REDIS_PASSWORD must be set in .env} --maxmemory 240mb --maxmemory-policy volatile-lru
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:?REDIS_PASSWORD must be set in .env} --maxmemory 320mb --maxmemory-policy volatile-lru
     volumes:
       - redis_data:/data
     expose:
