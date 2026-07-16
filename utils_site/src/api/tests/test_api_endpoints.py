@@ -445,20 +445,20 @@ startxref
             if tmp_dir and os.path.isdir(tmp_dir):
                 shutil.rmtree(tmp_dir, ignore_errors=True)
 
-    def test_epub_to_pdf_requires_premium_and_succeeds_for_premium_user(self):
-        """EPUB to PDF endpoint should enforce premium and convert for active premium users."""
+    def test_epub_to_pdf_free_within_quota_and_premium_convert(self):
+        """EPUB to PDF is free (daily quota) for anon/registered and premium."""
         endpoint = "/api/epub-to-pdf/"
 
-        # Anonymous user
+        # Anonymous user — first conversion is free (within daily quota).
         response = self.client.post(
             endpoint,
             {"epub_file": self._create_test_epub()},
             format="multipart",
             REMOTE_ADDR="127.0.0.1",
         )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        # Authenticated non-premium user
+        # Authenticated non-premium user — also free within quota.
         user_model = get_user_model()
         free_user = user_model.objects.create_user(
             email="epub-free@example.com",
@@ -471,7 +471,7 @@ startxref
             format="multipart",
             REMOTE_ADDR="127.0.0.2",
         )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         # Premium user
         premium_user = user_model.objects.create_user(
@@ -490,20 +490,20 @@ startxref
         self.assertEqual(response["Content-Type"], "application/pdf")
         self.assertIn(".pdf", response.get("Content-Disposition", ""))
 
-    def test_pdf_to_epub_requires_premium_and_succeeds_for_premium_user(self):
-        """PDF to EPUB endpoint should enforce premium and convert for active premium users."""
+    def test_pdf_to_epub_free_within_quota_and_premium_convert(self):
+        """PDF to EPUB is free (daily quota) for anon/registered and premium."""
         endpoint = "/api/pdf-to-epub/"
 
-        # Anonymous user
+        # Anonymous user — first conversion is free (within daily quota).
         response = self.client.post(
             endpoint,
             {"pdf_file": self._create_test_text_pdf()},
             format="multipart",
             REMOTE_ADDR="127.0.0.4",
         )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        # Authenticated non-premium user
+        # Authenticated non-premium user — also free within quota.
         user_model = get_user_model()
         free_user = user_model.objects.create_user(
             email="pdfepub-free@example.com",
@@ -516,7 +516,7 @@ startxref
             format="multipart",
             REMOTE_ADDR="127.0.0.5",
         )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         # Premium user
         premium_user = user_model.objects.create_user(
@@ -535,42 +535,47 @@ startxref
         self.assertIn("application/epub+zip", response["Content-Type"])
         self.assertIn(".epub", response.get("Content-Disposition", ""))
 
-    def test_epub_to_pdf_async_requires_premium_and_starts_task_for_premium_user(self):
-        """Async EPUB to PDF endpoint should enforce premium and return task metadata."""
+    def test_epub_to_pdf_async_free_within_quota_and_premium_start_task(self):
+        """Async EPUB to PDF is free (daily quota) for anon/registered and premium."""
         endpoint = "/api/epub-to-pdf/async/"
-
-        response = self.client.post(
-            endpoint,
-            {"epub_file": self._create_test_epub()},
-            format="multipart",
-            REMOTE_ADDR="127.0.0.7",
-        )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         user_model = get_user_model()
         free_user = user_model.objects.create_user(
             email="epub-async-free@example.com",
             password="pass1234",
         )
-        self.client.force_authenticate(user=free_user)
-        response = self.client.post(
-            endpoint,
-            {"epub_file": self._create_test_epub()},
-            format="multipart",
-            REMOTE_ADDR="127.0.0.8",
-        )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
         premium_user = user_model.objects.create_user(
             email="epub-async-premium@example.com",
             password="pass1234",
             is_premium=True,
         )
-        self.client.force_authenticate(user=premium_user)
+
         with patch(
             "src.api.epub_convert.async_views.generic_conversion_task.apply_async"
         ) as mock_apply_async:
             mock_apply_async.return_value = MagicMock(id="epub-async-task")
+
+            # Anonymous — first async conversion is free (within daily quota).
+            response = self.client.post(
+                endpoint,
+                {"epub_file": self._create_test_epub()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.7",
+            )
+            self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+
+            # Registered-free — also free within quota.
+            self.client.force_authenticate(user=free_user)
+            response = self.client.post(
+                endpoint,
+                {"epub_file": self._create_test_epub()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.8",
+            )
+            self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+
+            # Premium — unlimited.
+            self.client.force_authenticate(user=premium_user)
             response = self.client.post(
                 endpoint,
                 {"epub_file": self._create_test_epub()},
@@ -581,42 +586,47 @@ startxref
         self.assertTrue(response.data.get("task_id"))
         self.assertEqual(response.data.get("status"), "PENDING")
 
-    def test_pdf_to_epub_async_requires_premium_and_starts_task_for_premium_user(self):
-        """Async PDF to EPUB endpoint should enforce premium and return task metadata."""
+    def test_pdf_to_epub_async_free_within_quota_and_premium_start_task(self):
+        """Async PDF to EPUB is free (daily quota) for anon/registered and premium."""
         endpoint = "/api/pdf-to-epub/async/"
-
-        response = self.client.post(
-            endpoint,
-            {"pdf_file": self._create_test_text_pdf()},
-            format="multipart",
-            REMOTE_ADDR="127.0.0.10",
-        )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         user_model = get_user_model()
         free_user = user_model.objects.create_user(
             email="pdfepub-async-free@example.com",
             password="pass1234",
         )
-        self.client.force_authenticate(user=free_user)
-        response = self.client.post(
-            endpoint,
-            {"pdf_file": self._create_test_text_pdf()},
-            format="multipart",
-            REMOTE_ADDR="127.0.0.11",
-        )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
         premium_user = user_model.objects.create_user(
             email="pdfepub-async-premium@example.com",
             password="pass1234",
             is_premium=True,
         )
-        self.client.force_authenticate(user=premium_user)
+
         with patch(
             "src.api.epub_convert.async_views.generic_conversion_task.apply_async"
         ) as mock_apply_async:
             mock_apply_async.return_value = MagicMock(id="pdfepub-async-task")
+
+            # Anonymous — first async conversion is free (within daily quota).
+            response = self.client.post(
+                endpoint,
+                {"pdf_file": self._create_test_text_pdf()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.10",
+            )
+            self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+
+            # Registered-free — also free within quota.
+            self.client.force_authenticate(user=free_user)
+            response = self.client.post(
+                endpoint,
+                {"pdf_file": self._create_test_text_pdf()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.11",
+            )
+            self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+
+            # Premium — unlimited.
+            self.client.force_authenticate(user=premium_user)
             response = self.client.post(
                 endpoint,
                 {"pdf_file": self._create_test_text_pdf()},
@@ -627,8 +637,8 @@ startxref
         self.assertTrue(response.data.get("task_id"))
         self.assertEqual(response.data.get("status"), "PENDING")
 
-    def test_pdf_to_markdown_requires_premium_and_succeeds_for_premium_user(self):
-        """PDF to Markdown endpoint should enforce premium and convert for premium users."""
+    def test_pdf_to_markdown_free_within_quota_and_premium_convert(self):
+        """PDF to Markdown is free (daily quota) for anon/registered and premium."""
         endpoint = "/api/pdf-to-markdown/"
 
         response = self.client.post(
@@ -637,7 +647,7 @@ startxref
             format="multipart",
             REMOTE_ADDR="127.0.0.13",
         )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         user_model = get_user_model()
         free_user = user_model.objects.create_user(
@@ -651,7 +661,7 @@ startxref
             format="multipart",
             REMOTE_ADDR="127.0.0.14",
         )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         premium_user = user_model.objects.create_user(
             email="pdfmd-premium@example.com",
@@ -669,42 +679,47 @@ startxref
         self.assertIn("text/markdown", response["Content-Type"])
         self.assertIn(".md", response.get("Content-Disposition", ""))
 
-    def test_pdf_to_markdown_async_requires_premium_and_starts_task(self):
-        """Async PDF to Markdown endpoint should enforce premium and return task metadata."""
+    def test_pdf_to_markdown_async_free_within_quota_and_premium_start_task(self):
+        """Async PDF to Markdown is free (daily quota) for anon/registered and premium."""
         endpoint = "/api/pdf-to-markdown/async/"
-
-        response = self.client.post(
-            endpoint,
-            {"pdf_file": self._create_test_text_pdf()},
-            format="multipart",
-            REMOTE_ADDR="127.0.0.16",
-        )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
         user_model = get_user_model()
         free_user = user_model.objects.create_user(
             email="pdfmd-async-free@example.com",
             password="pass1234",
         )
-        self.client.force_authenticate(user=free_user)
-        response = self.client.post(
-            endpoint,
-            {"pdf_file": self._create_test_text_pdf()},
-            format="multipart",
-            REMOTE_ADDR="127.0.0.17",
-        )
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-
         premium_user = user_model.objects.create_user(
             email="pdfmd-async-premium@example.com",
             password="pass1234",
             is_premium=True,
         )
-        self.client.force_authenticate(user=premium_user)
+
         with patch(
             "src.api.pdf_convert.async_views.generic_conversion_task.apply_async"
         ) as mock_apply_async:
             mock_apply_async.return_value = MagicMock(id="pdfmd-async-task")
+
+            # Anonymous — first async conversion is free (within daily quota).
+            response = self.client.post(
+                endpoint,
+                {"pdf_file": self._create_test_text_pdf()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.16",
+            )
+            self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+
+            # Registered-free — also free within quota.
+            self.client.force_authenticate(user=free_user)
+            response = self.client.post(
+                endpoint,
+                {"pdf_file": self._create_test_text_pdf()},
+                format="multipart",
+                REMOTE_ADDR="127.0.0.17",
+            )
+            self.assertEqual(response.status_code, status.HTTP_202_ACCEPTED)
+
+            # Premium — unlimited.
+            self.client.force_authenticate(user=premium_user)
             response = self.client.post(
                 endpoint,
                 {"pdf_file": self._create_test_text_pdf()},

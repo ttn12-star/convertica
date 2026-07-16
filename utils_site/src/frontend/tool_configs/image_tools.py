@@ -252,17 +252,17 @@ IMAGE_TOOLS_CONFIGS = {
         "template": "frontend/image_tools/heic_to_jpg.html",
         "converter_args": {
             "page_title": _(
-                "HEIC to JPG Converter - Convert iPhone HEIC Photos to JPG, PNG, PDF | Convertica Premium"
+                "HEIC to JPG Converter Online Free - Convert iPhone HEIC Photos to JPG, PNG, PDF | Convertica"
             ),
             "page_description": _(
-                "Convert Apple HEIC and HEIF photos from your iPhone or iPad to JPG, PNG, or PDF online. "
-                "Premium feature with batch conversion. Keeps original quality. No watermark."
+                "Convert Apple HEIC and HEIF photos from your iPhone or iPad to JPG, PNG, or PDF online free. "
+                "No registration, no watermark, keeps original quality. Batch conversion available with Premium."
             ),
             "page_keywords": (
                 "HEIC to JPG, HEIC to JPEG, HEIC to PNG, HEIC to PDF, HEIF converter, "
-                "convert HEIC online, iPhone photo converter, convert iPhone HEIC to JPG, "
-                "open HEIC on Windows, HEIC to JPG batch, HEIC converter free trial, "
-                "HEIC to JPG no watermark, premium HEIC converter, "
+                "convert HEIC online free, iPhone photo converter, convert iPhone HEIC to JPG, "
+                "open HEIC on Windows, HEIC to JPG batch, HEIC to JPG no registration, "
+                "HEIC to JPG no watermark, free HEIC converter, "
                 "Apple photo format converter, iOS HEIC to JPG online"
             ),
             "page_subtitle": _(
@@ -300,7 +300,7 @@ IMAGE_TOOLS_CONFIGS = {
                     "gradient": "from-amber-500 to-orange-600",
                     "title": _("Batch Conversion"),
                     "description": _(
-                        "Upload up to 10 HEIC photos at once and download them as a single ZIP — premium only"
+                        "Upload up to 10 HEIC photos at once and download them as a single ZIP — with Premium"
                     ),
                 },
                 {
@@ -308,7 +308,7 @@ IMAGE_TOOLS_CONFIGS = {
                     "gradient": "from-green-500 to-green-600",
                     "title": _("Original Quality"),
                     "description": _(
-                        "Premium pipeline preserves every detail — adjustable JPEG quality, fully lossless PNG"
+                        "Preserves every detail — adjustable JPEG quality, fully lossless PNG"
                     ),
                 },
             ],
@@ -333,9 +333,9 @@ IMAGE_TOOLS_CONFIGS = {
                 {
                     "question": _("Is the HEIC converter free?"),
                     "answer": _(
-                        "The HEIC converter is a premium feature. Premium users can convert single files and "
-                        "process up to 10 HEIC photos at once in batch mode. Upgrade to Premium to unlock it "
-                        "alongside our other advanced tools."
+                        "Yes. You can convert single HEIC or HEIF photos for free, with a daily limit and no "
+                        "registration. Batch mode (up to 10 photos at once with a ZIP download) and unlimited "
+                        "conversions are available with Premium."
                     ),
                 },
                 {
@@ -379,10 +379,10 @@ IMAGE_TOOLS_CONFIGS = {
                 "that iPhones and iPads create by default into formats every device can open. "
                 "Apple's HEIC format is excellent for storage but causes friction whenever you need to upload, "
                 "email, or print the photo on non-Apple platforms.</p>"
-                "<p>This premium tool decodes HEIC and HEIF files and re-encodes them to <strong>JPG</strong> "
+                "<p>This tool decodes HEIC and HEIF files and re-encodes them to <strong>JPG</strong> "
                 "(maximum compatibility), <strong>PNG</strong> (lossless quality), or <strong>PDF</strong> "
-                "(printable document). Quality settings, batch processing of up to 10 files at once, and "
-                "ZIP downloads are all included with Premium.</p>"
+                "(printable document). Single-file conversion is free with a daily limit; batch processing of "
+                "up to 10 files at once and ZIP downloads are available with Premium.</p>"
             ),
         },
         "extra": {

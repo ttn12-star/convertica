@@ -925,19 +925,19 @@ def premium_tools_page(request):
 
 @anonymous_cache_page(60 * 60)
 def epub_to_pdf_page(request):
-    """EPUB to PDF conversion landing page (premium-gated API)."""
+    """EPUB to PDF conversion landing page (free, daily-quota API)."""
     return _render_tool_page(request, "epub_to_pdf")
 
 
 @anonymous_cache_page(60 * 60)
 def pdf_to_epub_page(request):
-    """PDF to EPUB conversion landing page (premium-gated API)."""
+    """PDF to EPUB conversion landing page (free, daily-quota API)."""
     return _render_tool_page(request, "pdf_to_epub")
 
 
 @anonymous_cache_page(60 * 60)
 def pdf_to_markdown_page(request):
-    """PDF to Markdown conversion landing page (premium-gated API)."""
+    """PDF to Markdown conversion landing page (free, daily-quota API)."""
     return _render_tool_page(request, "pdf_to_markdown")
 
 

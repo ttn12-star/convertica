@@ -6,15 +6,15 @@ EPUB_AND_OTHER_CONFIGS = {
     "epub_to_pdf": {
         "template": "frontend/premium/epub_to_pdf.html",
         "converter_args": {
-            "page_title": _("EPUB to PDF Converter (Premium) - Convertica"),
+            "page_title": _("EPUB to PDF Converter Online Free - Convertica"),
             "page_description": _(
-                "Convert EPUB eBooks to PDF online with premium quality rendering. "
+                "Convert EPUB eBooks to PDF online free. "
                 "Preserve chapter structure, text flow, and typography for printing and sharing. "
-                "Higher limits for long books."
+                "No registration; larger files and longer books available with Premium."
             ),
             "page_keywords": (
-                "epub to pdf premium, epub converter, ebook to pdf, "
-                "convert epub online, epub book to pdf"
+                "epub to pdf free, epub to pdf online, epub converter, ebook to pdf, "
+                "convert epub online free, epub book to pdf"
             ),
             "page_subtitle": _("Convert EPUB books to printable PDF documents"),
             "header_text": _("EPUB to PDF Converter"),
@@ -40,7 +40,7 @@ EPUB_AND_OTHER_CONFIGS = {
                 {
                     "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
                     "gradient": "from-blue-500 to-indigo-600",
-                    "title": _("Premium rendering quality"),
+                    "title": _("High rendering quality"),
                     "description": _(
                         "Designed for long-form eBooks with stable pagination and clean typography."
                     ),
@@ -54,12 +54,12 @@ EPUB_AND_OTHER_CONFIGS = {
                     ),
                 },
             ],
-            "benefits_title": _("Why use EPUB to PDF in Premium?"),
+            "benefits_title": _("Why use our EPUB to PDF converter?"),
             "page_faq": [
                 {
                     "question": _("Is EPUB to PDF available for free users?"),
                     "answer": _(
-                        "EPUB to PDF conversion is a premium feature. You can open this page and review the workflow, but conversion requires an active premium subscription."
+                        "Yes. You can convert EPUB to PDF for free, with a daily limit and no registration. Larger files, longer books, and unlimited conversions are available with Premium."
                     ),
                 },
                 {
@@ -71,7 +71,7 @@ EPUB_AND_OTHER_CONFIGS = {
                 {
                     "question": _("What file size and page limits apply?"),
                     "answer": _(
-                        "Premium limits allow larger source files and significantly more pages than free tools. Exact limits are shown on the pricing page and enforced during upload."
+                        "Free conversions have a standard file-size limit and a daily cap. Premium raises the file-size limit and removes the daily cap. Exact limits are shown on the pricing page and enforced during upload."
                     ),
                 },
                 {
@@ -110,28 +110,28 @@ EPUB_AND_OTHER_CONFIGS = {
                 "<p><strong>EPUB to PDF</strong> is ideal when you need printable, shareable, "
                 "and archive-friendly versions of eBooks. The converter keeps chapter order and "
                 "core text structure so the output remains comfortable to read offline.</p>"
-                "<p>Premium processing is tuned for larger eBook inputs and longer documents, "
-                "making it suitable for manuals, educational content, and internal documentation.</p>"
+                "<p>Free conversion covers everyday eBooks; Premium is tuned for larger inputs and "
+                "longer documents, making it suitable for manuals, educational content, and internal documentation.</p>"
                 "<p>For best quality, upload EPUB files with clean markup, consistent heading "
                 "levels, and embedded fonts.</p>"
             ),
         },
         "extra": {
-            "offer_price": "6",
+            "offer_price": "0",
             "offer_currency": "USD",
         },
     },
     "pdf_to_epub": {
         "template": "frontend/premium/pdf_to_epub.html",
         "converter_args": {
-            "page_title": _("PDF to EPUB Converter (Premium) - Convertica"),
+            "page_title": _("PDF to EPUB Converter Online Free - Convertica"),
             "page_description": _(
-                "Convert PDF documents to EPUB format for eReaders with premium tools. "
-                "Extract text and build chapter-based EPUB output."
+                "Convert PDF documents to EPUB format for eReaders online free. "
+                "Extract text and build chapter-based EPUB output. No registration required."
             ),
             "page_keywords": (
-                "pdf to epub premium, pdf converter to ebook, "
-                "convert pdf to epub online, pdf to ebook"
+                "pdf to epub free, pdf to epub online, pdf converter to ebook, "
+                "convert pdf to epub online free, pdf to ebook"
             ),
             "page_subtitle": _("Convert PDF files to eReader-friendly EPUB format"),
             "header_text": _("PDF to EPUB Converter"),
@@ -171,7 +171,7 @@ EPUB_AND_OTHER_CONFIGS = {
                     ),
                 },
             ],
-            "benefits_title": _("Why use PDF to EPUB in Premium?"),
+            "benefits_title": _("Why use our PDF to EPUB converter?"),
             "page_faq": [
                 {
                     "question": _("Can scanned PDFs be converted to EPUB?"),
@@ -221,27 +221,27 @@ EPUB_AND_OTHER_CONFIGS = {
                 "<p><strong>PDF to EPUB</strong> helps convert static page layouts into flexible, "
                 "reader-friendly eBook format. The output is easier to consume on phones, tablets, "
                 "and dedicated eReaders.</p>"
-                "<p>Premium conversion focuses on preserving headings and paragraph logic so "
+                "<p>Conversion focuses on preserving headings and paragraph logic so "
                 "navigation remains predictable across reading apps.</p>"
                 "<p>For the cleanest EPUB result, use text-based PDFs or run OCR first on scanned files.</p>"
             ),
         },
         "extra": {
-            "offer_price": "6",
+            "offer_price": "0",
             "offer_currency": "USD",
         },
     },
     "pdf_to_markdown": {
         "template": "frontend/premium/pdf_to_markdown.html",
         "converter_args": {
-            "page_title": _("PDF to Markdown Converter (Premium) - Convertica"),
+            "page_title": _("PDF to Markdown Converter Online Free - Convertica"),
             "page_description": _(
-                "Convert PDF documents to Markdown with preserved heading structure and "
-                "table formatting. Ideal for docs, notes, and knowledge bases."
+                "Convert PDF documents to Markdown online free, with preserved heading structure and "
+                "table formatting. Ideal for docs, notes, knowledge bases, and AI/LLM pipelines."
             ),
             "page_keywords": (
-                "pdf to markdown premium, convert pdf to markdown, pdf markdown converter, "
-                "pdf to md with tables, pdf headings to markdown"
+                "pdf to markdown free, convert pdf to markdown, pdf markdown converter, "
+                "pdf to md with tables, pdf headings to markdown, pdf to markdown online free"
             ),
             "page_subtitle": _(
                 "Extract clean Markdown with heading hierarchy and table blocks"
@@ -283,7 +283,7 @@ EPUB_AND_OTHER_CONFIGS = {
                     ),
                 },
             ],
-            "benefits_title": _("Why use PDF to Markdown in Premium?"),
+            "benefits_title": _("Why use our PDF to Markdown converter?"),
             "page_faq": [
                 {
                     "question": _("Does PDF to Markdown preserve headings?"),
@@ -300,7 +300,7 @@ EPUB_AND_OTHER_CONFIGS = {
                 {
                     "question": _("Who can use PDF to Markdown?"),
                     "answer": _(
-                        "PDF to Markdown is a premium feature. Free users can browse the page, while conversion endpoints require active premium access."
+                        "Everyone. PDF to Markdown is free with a daily limit and no registration. Larger files and unlimited conversions are available with Premium."
                     ),
                 },
                 {
@@ -337,14 +337,15 @@ EPUB_AND_OTHER_CONFIGS = {
                 "<p><strong>PDF to Markdown</strong> is useful when you need editable plain-text "
                 "documentation from PDF sources. It helps transform reports, guides, and manuals "
                 "into version-control friendly files.</p>"
-                "<p>Premium mode improves structure recovery by detecting headings and converting "
-                "supported tables into Markdown format for downstream editing.</p>"
+                "<p>The converter recovers structure by detecting headings and converting "
+                "supported tables into Markdown format for downstream editing; Premium adds higher "
+                "limits for large documents.</p>"
                 "<p>This workflow is especially practical for documentation teams moving content "
                 "from PDFs into internal wikis and repositories.</p>"
             ),
         },
         "extra": {
-            "offer_price": "6",
+            "offer_price": "0",
             "offer_currency": "USD",
         },
     },
