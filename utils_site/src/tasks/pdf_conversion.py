@@ -321,13 +321,21 @@ def generic_conversion_task(
             raise
 
         # Compute SHA-256 once — used for both Sentry context and result cache.
+        # Skip it for large non-cacheable inputs: hashing a heavy file is a
+        # full extra read that buys nothing (the cache only serves FAST types).
         file_sha256: str | None = None
-        try:
-            file_sha256 = _sha256_file(input_path)
-        except Exception as hash_exc:
-            logger.debug(
-                "SHA-256 calculation skipped for %s: %s", original_filename, hash_exc
-            )
+        if (
+            conversion_type in FAST_CONVERSION_TYPES
+            or os.path.getsize(input_path) < 20 * 1024 * 1024
+        ):
+            try:
+                file_sha256 = _sha256_file(input_path)
+            except Exception as hash_exc:
+                logger.debug(
+                    "SHA-256 calculation skipped for %s: %s",
+                    original_filename,
+                    hash_exc,
+                )
 
         # Update Sentry context with file details now that file is open
         try:

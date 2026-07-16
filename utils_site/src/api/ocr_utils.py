@@ -21,7 +21,7 @@ from concurrent.futures import ThreadPoolExecutor
 import numpy as np
 import pytesseract
 from django.core.files.uploadedfile import UploadedFile
-from pdf2image import convert_from_path
+from pdf2image import convert_from_path, pdfinfo_from_path
 from PIL import Image, ImageEnhance, ImageFilter
 from scipy import ndimage
 from src.exceptions import ConversionError, StorageError
@@ -437,21 +437,28 @@ def extract_text_from_pdf(
                 f"Failed to write uploaded file: {e}", context=context
             ) from e
 
-        # Convert PDF to images for OCR
+        # Get the page count without rasterizing anything yet.
         try:
-            images = convert_from_path(pdf_path, dpi=dpi)
-            context["total_pages"] = len(images)
+            total_pages = pdfinfo_from_path(pdf_path)["Pages"]
+            context["total_pages"] = total_pages
         except Exception as e:
             raise ConversionError(
-                f"Failed to convert PDF to images: {e}", context=context
+                f"Failed to read PDF page count: {e}", context=context
             ) from e
 
-        # Extract text from each page, reusing the single-image OCR core.
+        # Extract text page by page, reusing the single-image OCR core.
+        # One page is rasterized at a time: the previous approach decoded the
+        # whole document into uncompressed 300-DPI bitmaps at once, which on
+        # multi-page PDFs blew past the worker's per-child memory budget
+        # (CONVERTICA-59 OOM pattern). Peak RSS is now one page, not N pages.
         extracted_texts = []
-        for i, image in enumerate(images):
+        for i in range(total_pages):
             try:
+                page_images = convert_from_path(
+                    pdf_path, dpi=dpi, first_page=i + 1, last_page=i + 1
+                )
                 page_text = extract_text_from_image(
-                    image,
+                    page_images[0],
                     user_language=user_language,
                     confidence_threshold=confidence_threshold,
                 )
@@ -463,6 +470,8 @@ def extract_text_from_pdf(
                     extra={**context, "page": i + 1, "error": str(e)[:200]},
                 )
                 extracted_texts.append("")  # keep page alignment
+            finally:
+                page_images = None
 
         # Combine all pages
         full_text = "\n\n".join(extracted_texts)
