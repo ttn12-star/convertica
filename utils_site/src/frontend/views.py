@@ -559,6 +559,9 @@ def _render_tool_page(request, tool_key: str) -> HttpResponse:
     """
     config = TOOL_CONFIGS[tool_key]
     context = _get_converter_context(request, **config["converter_args"])
+    # window.CONVERSION_TYPE for background-tasks.js: without it queued tasks
+    # show "Type: -" and "Open Tool" can't find the way back to the converter.
+    context.setdefault("conversion_type", tool_key)
     context.update(config["seo"])
     context["related_tools"] = _get_related_tools(tool_key)
     context["video"] = TOOL_VIDEOS.get(tool_key)
@@ -863,16 +866,60 @@ def premium_tools_page(request):
             },
             {
                 "name": _("Saved Workflows"),
-                "url": reverse("frontend:premium_workflows_page"),
+                "url": reverse("frontend:saved_workflows_page"),
                 "description": _(
-                    "Store reusable conversion presets and relaunch them in one click."
+                    "Store reusable conversion presets and reopen the right tool in one click."
                 ),
             },
             {
-                "name": _("Background Queue Center"),
-                "url": reverse("frontend:background_center_page"),
+                "name": _("Background Conversion"),
+                "url": reverse("frontend:background_tasks_page"),
                 "description": _(
                     "Track long-running premium tasks and download finished files."
+                ),
+            },
+        ],
+        "premium_perks": [
+            {
+                "title": _("No daily limits"),
+                "text": _(
+                    "Free accounts get a daily conversion quota. Premium removes it "
+                    "entirely — convert as much as you need."
+                ),
+            },
+            {
+                "title": _("Files up to 200 MB"),
+                "text": _(
+                    "The free file-size cap is 25 MB. Premium raises it to 200 MB "
+                    "and processes documents up to 200 pages instead of 30."
+                ),
+            },
+            {
+                "title": _("Priority queue"),
+                "text": _(
+                    "Your tasks run on a dedicated high-priority worker and start "
+                    "immediately instead of waiting behind free-tier jobs."
+                ),
+            },
+            {
+                "title": _("Batch processing"),
+                "text": _(
+                    "Convert up to 10 files in one run and download everything "
+                    "as a single ZIP archive."
+                ),
+            },
+            {
+                "title": _("Background mode"),
+                "text": _(
+                    "Send long conversions to the background and keep working — "
+                    "the queue indicator tracks progress on every page."
+                ),
+            },
+            {
+                "title": _("Ad-free + dark theme"),
+                "text": _(
+                    "No ads anywhere on the site, plus a Premium-only dark theme "
+                    "toggle for late-night sessions."
                 ),
             },
         ],
@@ -1187,16 +1234,289 @@ def batch_converter_page(request):
 
 
 @anonymous_cache_page(60 * 60)
+def background_tasks_page(request):
+    """Background conversion landing.
+
+    Public and crawlable (the batch/OCR-landing pattern): explains how
+    background mode works and what Premium adds; the feature itself stays
+    gated in the converter UI ("Continue in background" is premium-only).
+    """
+    context = {
+        "page_title": _("Background PDF Conversion - Convert Files While You Work"),
+        "page_description": _(
+            "Send long PDF conversions to the background and keep browsing: "
+            "the job keeps running on our servers, a queue indicator tracks "
+            "progress, and the finished file is ready to download. A Premium "
+            "feature with a dedicated priority queue."
+        ),
+        "page_keywords": (
+            "background pdf conversion, convert pdf in background, "
+            "async pdf converter, pdf conversion queue, "
+            "convert large pdf without waiting, priority pdf conversion"
+        ),
+        "is_premium_active": _is_premium_active_user(request),
+        "how_it_works": [
+            _(
+                "Start a conversion on any supported tool — big files and "
+                "batch runs are processed on our servers, not in your browser."
+            ),
+            _(
+                "While the job is running, click “Continue in "
+                "background”. The page unlocks instantly and you can "
+                "keep working, open other tools, or leave the site."
+            ),
+            _(
+                "Follow progress from any page: the queue indicator in the "
+                "header shows active, finished and failed tasks, and the "
+                "Background Queue Center lists them in detail."
+            ),
+            _(
+                "Download the result with one click as soon as it is ready — "
+                "you also get an on-site notification when a task finishes."
+            ),
+        ],
+        "benefits": [
+            {
+                "title": _("No babysitting the tab"),
+                "text": _(
+                    "Conversions run server-side, so you don't have to keep "
+                    "the page open or your computer awake while a long job "
+                    "finishes."
+                ),
+            },
+            {
+                "title": _("Priority queue"),
+                "text": _(
+                    "Premium tasks run on a dedicated high-priority worker, "
+                    "so they start immediately instead of waiting behind "
+                    "free-tier jobs."
+                ),
+            },
+            {
+                "title": _("Built for heavy jobs"),
+                "text": _(
+                    "Combine background mode with Premium limits: files up "
+                    "to 200 MB, documents up to 200 pages, and batches of up "
+                    "to 10 files per run."
+                ),
+            },
+            {
+                "title": _("Private by design"),
+                "text": _(
+                    "Your task list is stored only in your browser, results "
+                    "are protected by signed task tokens, and finished files "
+                    "are deleted from our servers within about an hour."
+                ),
+            },
+        ],
+        "supported_tools": [
+            {"name": _("PDF to Word"), "url": reverse("frontend:pdf_to_word_page")},
+            {"name": _("Word to PDF"), "url": reverse("frontend:word_to_pdf_page")},
+            {"name": _("PDF to Excel"), "url": reverse("frontend:pdf_to_excel_page")},
+            {"name": _("PDF to JPG"), "url": reverse("frontend:pdf_to_jpg_page")},
+            {"name": _("JPG to PDF"), "url": reverse("frontend:jpg_to_pdf_page")},
+            {"name": _("Compress PDF"), "url": reverse("frontend:compress_pdf_page")},
+            {"name": _("Merge PDF"), "url": reverse("frontend:merge_pdf_page")},
+            {"name": _("Split PDF"), "url": reverse("frontend:split_pdf_page")},
+            {"name": _("EPUB to PDF"), "url": reverse("frontend:epub_to_pdf_page")},
+            {"name": _("PDF to EPUB"), "url": reverse("frontend:pdf_to_epub_page")},
+            {
+                "name": _("PDF to Markdown"),
+                "url": reverse("frontend:pdf_to_markdown_page"),
+            },
+            {
+                "name": _("Batch Converter Hub"),
+                "url": reverse("frontend:batch_converter_page"),
+            },
+        ],
+        "page_faq": [
+            {
+                "question": _("What happens if I close the tab or the browser?"),
+                "answer": _(
+                    "Nothing bad — the conversion keeps running on our "
+                    "servers. Your task list is saved in the browser you "
+                    "started from, so reopen the site in the same browser "
+                    "and the queue indicator picks the task up again."
+                ),
+            },
+            {
+                "question": _("Do I need to keep my computer on?"),
+                "answer": _(
+                    "No. All processing happens server-side. Just come back "
+                    "within an hour in the same browser to download the "
+                    "result."
+                ),
+            },
+            {
+                "question": _("How long are finished files stored?"),
+                "answer": _(
+                    "About one hour. After that the file is deleted from our "
+                    "servers automatically and the task disappears from your "
+                    "queue. Download results as soon as they are ready."
+                ),
+            },
+            {
+                "question": _("Which tools support background mode?"),
+                "answer": _(
+                    "All server-side converters: PDF to Word, Excel, JPG and "
+                    "back, compress, merge, split, EPUB, Markdown, plus "
+                    "batch runs of up to 10 files."
+                ),
+            },
+            {
+                "question": _("Is background conversion free?"),
+                "answer": _(
+                    "Conversions themselves are free with daily limits. "
+                    "Sending a running task to the background — and the "
+                    "priority queue that comes with it — is part of "
+                    "Convertica Premium."
+                ),
+            },
+        ],
+    }
+    context["header_text"] = _("Background Queue Center")
+    _shots = _tool_screenshot_paths("background_tasks")
+    if _shots:
+        context["tool_screenshot"], context["tool_screenshot_jpg"] = _shots
+        context["og_image_filename"] = _shots[1]
+    return render(request, "frontend/premium/background_tasks.html", context)
+
+
+@anonymous_cache_page(60 * 60)
+def saved_workflows_page(request):
+    """Saved workflows landing.
+
+    Public and crawlable explainer for the premium Saved Workflows
+    dashboard. Copy is deliberately honest: presets are quick-access
+    bookmarks with notes, stored in the user's browser.
+    """
+    context = {
+        "page_title": _("Saved Workflows - Reusable Presets for PDF Tasks"),
+        "page_description": _(
+            "Turn recurring PDF jobs into one-click presets: save the right "
+            "tool with your own notes, reopen it instantly, and keep all "
+            "your routine conversions in one dashboard. Presets are stored "
+            "privately in your browser."
+        ),
+        "page_keywords": (
+            "pdf workflow, saved conversion presets, recurring pdf tasks, "
+            "pdf routine automation, reusable converter settings, "
+            "pdf productivity tools"
+        ),
+        "is_premium_active": _is_premium_active_user(request),
+        "how_it_works": [
+            _(
+                "Open the Saved Workflows dashboard and create a preset: "
+                "give it a name, pick the tool it should open, and add "
+                "notes — target format, quality settings, anything you "
+                "usually forget."
+            ),
+            _(
+                "In a hurry? Start from a one-click template like “eBook "
+                "to Print PDF” or “Bulk Office Export” and "
+                "adjust it to your routine."
+            ),
+            _(
+                "Next time the job comes around, open your preset — it takes "
+                "you straight to the right tool with your notes at hand."
+            ),
+            _(
+                "Edit, reorder or delete presets any time. You can keep up "
+                "to 40 of them."
+            ),
+        ],
+        "benefits": [
+            {
+                "title": _("One home for routine jobs"),
+                "text": _(
+                    "Weekly invoices to PDF, monthly scans to Word, book "
+                    "exports — every recurring task gets a named shortcut in "
+                    "one dashboard instead of a browser bookmark mess."
+                ),
+            },
+            {
+                "title": _("Notes that remember for you"),
+                "text": _(
+                    "Attach the details to the preset: which quality to "
+                    "pick, what to check before upload, where the result "
+                    "goes. No more re-figuring settings every month."
+                ),
+            },
+            {
+                "title": _("Private by design"),
+                "text": _(
+                    "Presets are stored only in your browser's local "
+                    "storage — they never touch our servers, so your "
+                    "routines stay yours."
+                ),
+            },
+            {
+                "title": _("Stronger together with Premium"),
+                "text": _(
+                    "Point presets at premium tools — batch runs, OCR, "
+                    "background mode — and your heaviest routines become "
+                    "one-click launches."
+                ),
+            },
+        ],
+        "page_faq": [
+            {
+                "question": _("What exactly does a saved workflow store?"),
+                "answer": _(
+                    "A name, the tool it opens, and your notes. It is a "
+                    "smart shortcut for a routine you repeat — you always "
+                    "stay in control of the files and the final settings."
+                ),
+            },
+            {
+                "question": _("Does a workflow run conversions automatically?"),
+                "answer": _(
+                    "No. Opening a preset takes you to the right tool with "
+                    "your notes; you choose the files and press convert. "
+                    "For fully automated pipelines, check out our REST API."
+                ),
+            },
+            {
+                "question": _("Where are my workflows stored?"),
+                "answer": _(
+                    "Locally, in your browser. Nothing is uploaded to our "
+                    "servers. The flip side: presets don't sync between "
+                    "devices or browsers."
+                ),
+            },
+            {
+                "question": _("How many workflows can I save?"),
+                "answer": _("Up to 40 presets per browser."),
+            },
+            {
+                "question": _("Is Saved Workflows a Premium feature?"),
+                "answer": _(
+                    "Yes, the dashboard is part of Convertica Premium, "
+                    "together with batch processing, background mode, "
+                    "priority queue and higher file limits."
+                ),
+            },
+        ],
+    }
+    context["header_text"] = _("Saved Workflows")
+    _shots = _tool_screenshot_paths("saved_workflows")
+    if _shots:
+        context["tool_screenshot"], context["tool_screenshot_jpg"] = _shots
+        context["og_image_filename"] = _shots[1]
+    return render(request, "frontend/premium/saved_workflows.html", context)
+
+
+@anonymous_cache_page(60 * 60)
 def premium_workflows_page(request):
-    """Premium saved workflows page."""
+    """Premium saved workflows dashboard."""
     if not _is_premium_active_user(request):
         return _redirect_for_premium_access(request)
 
     context = {
         "page_title": _("Saved Workflows (Premium) - Convertica"),
         "page_description": _(
-            "Create and reuse premium conversion presets with preconfigured "
-            "parameters for frequent tasks."
+            "Create and reuse conversion presets with your own notes "
+            "for frequent tasks."
         ),
         "page_keywords": (
             "premium workflows, conversion presets, saved converter settings, "
@@ -1641,9 +1961,13 @@ def _get_sitemap_pages():
         # scanned-pdf-to-word/ now serves a public 200 landing (OCR is a
         # high-CPC keyword); the conversion action stays premium-gated.
         {"url": "scanned-pdf-to-word/", "priority": "0.7", "changefreq": "monthly"},
+        # Public explainer landings for premium features (batch/OCR pattern).
+        {"url": "background-tasks/", "priority": "0.6", "changefreq": "monthly"},
+        {"url": "saved-workflows/", "priority": "0.6", "changefreq": "monthly"},
         # NOTE: premium/workflows and premium/background-center are still
-        # premium-gated and 302-redirect
-        # anonymous crawlers, so it stays out of the sitemap.
+        # premium-gated dashboards that 302-redirect anonymous crawlers,
+        # so they stay out of the sitemap; their public explainers above
+        # are indexed instead.
     ]
 
 
@@ -1655,7 +1979,7 @@ def _sitemap_static_lastmod() -> str:
     bumped (via the SITEMAP_STATIC_LASTMOD setting) only when tool pages /
     templates change materially. Blog articles keep their real updated_at.
     """
-    return getattr(settings, "SITEMAP_STATIC_LASTMOD", "2026-05-29")
+    return getattr(settings, "SITEMAP_STATIC_LASTMOD", "2026-07-17")
 
 
 def sitemap_index(request):
@@ -1702,7 +2026,7 @@ def sitemap_lang(request, lang: str):
 
         raise Http404("Invalid language")
 
-    cache_key = f"sitemap_{lang}_v4"  # v4: password-protect-image screenshot added
+    cache_key = f"sitemap_{lang}_v5"  # v5: premium landing screenshots added
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")

@@ -203,6 +203,32 @@
                 {% trans "All Tools" %}
               </a>
             </li>
+            {% if PAYMENTS_ENABLED %}
+              <li>
+                <a href="{% url 'frontend:premium_tools_page' %}"
+                   class="text-gray-400 hover:text-green-400 transition-colors">
+                  {% trans "Premium Tools" %}
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'frontend:background_tasks_page' %}"
+                   class="text-gray-400 hover:text-green-400 transition-colors">
+                  {% trans "Background Conversion" %}
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'frontend:saved_workflows_page' %}"
+                   class="text-gray-400 hover:text-green-400 transition-colors">
+                  {% trans "Saved Workflows" %}
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'frontend:pricing' %}"
+                   class="text-gray-400 hover:text-green-400 transition-colors">
+                  {% trans "Pricing" %}
+                </a>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>

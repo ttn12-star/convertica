@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load i18n seo_extras %}
+
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
+{% block keywords %}{{ page_keywords }}{% endblock %}
+{% block og_title %}{{ page_title|seo_title }}{% endblock %}
+{% block og_description %}{{ page_description|seo_meta }}{% endblock %}
+{% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
+{% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
+
+{% block structured_data %}
+  {{ block.super }}
+  {% if page_faq %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-950 text-gray-900 dark:text-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      {% include "frontend/includes/breadcrumbs.html" %}
+
+      <section class="mt-4 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-amber-200 dark:border-amber-800 p-6 sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h1 class="text-2xl sm:text-3xl font-extrabold">{% trans "Background PDF Conversion" %}</h1>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
+            {% trans "Premium Queue" %}
+          </span>
+        </div>
+
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          {% trans "Long conversion? Don't wait staring at a progress bar. Send the task to the background: the job keeps running on our servers while you browse other tools, work in another tab, or step away completely. A queue indicator in the header tracks every task, and the finished file is one click away." %}
+        </p>
+
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+          {% trans "Background mode shines on the jobs that actually take time: 200-page documents, 200 MB scans, batch runs of 10 files. Premium tasks also skip the line — they are processed by a dedicated priority queue, so they start immediately instead of waiting behind free-tier jobs." %}
+        </p>
+
+        {% if not is_premium_active %}
+          <div class="mb-6 p-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
+            <p class="text-sm text-amber-800 dark:text-amber-200">
+              {% trans "Background mode is a Premium feature. Conversions themselves are free on every tool — upgrade when you want to fire off long jobs and get on with your day." %}
+              {% if PAYMENTS_ENABLED %}
+                <a href="{% url 'frontend:pricing' %}" class="font-semibold underline">{% trans "Go Premium" %}</a>
+              {% endif %}
+            </p>
+          </div>
+        {% endif %}
+
+        <h2 class="text-lg font-bold mb-3">{% trans "How it works" %}</h2>
+        <ol class="mb-6 space-y-2">
+          {% for step in how_it_works %}
+            <li class="flex items-start gap-3 text-sm sm:text-base text-gray-700 dark:text-gray-300">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 text-white text-xs font-bold flex items-center justify-center mt-0.5">{{ forloop.counter }}</span>
+              <span>{{ step }}</span>
+            </li>
+          {% endfor %}
+        </ol>
+
+        <div class="mb-6">
+          {% include "frontend/includes/tool_screenshot.html" %}
+        </div>
+
+        <h2 class="text-lg font-bold mb-3">{% trans "Why it's worth it" %}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {% for benefit in benefits %}
+            <div class="rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50/30 dark:bg-amber-900/10 p-4">
+              <h3 class="text-base font-bold text-gray-900 dark:text-gray-100">{{ benefit.title }}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{{ benefit.text }}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        <h2 class="text-lg font-bold mb-3">{% trans "Tools with background mode" %}</h2>
+        <div class="flex flex-wrap gap-2 mb-6">
+          {% for tool in supported_tools %}
+            <a href="{{ tool.url }}"
+               class="inline-flex items-center px-3 py-1.5 rounded-full border border-amber-200 dark:border-amber-800 bg-amber-50/40 dark:bg-amber-900/10 text-sm font-semibold text-gray-800 dark:text-gray-200 hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors">
+              {{ tool.name }}
+            </a>
+          {% endfor %}
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          {% if is_premium_active %}
+            <a href="{% url 'frontend:background_center_page' %}"
+               class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+              {% trans "Open Background Queue Center" %}
+            </a>
+          {% elif PAYMENTS_ENABLED %}
+            <a href="{% url 'frontend:pricing' %}"
+               class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">
+              {% trans "Unlock background mode" %}
+            </a>
+          {% endif %}
+          <a href="{% url 'frontend:batch_converter_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            {% trans "Batch Converter Hub" %}
+          </a>
+          <a href="{% url 'frontend:all_tools_page' %}"
+             class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
+            {% trans "All Tools" %}
+          </a>
+        </div>
+
+        {% include "frontend/includes/seo_faq.html" with faq=page_faq %}
+      </section>
+    </div>
+  </div>
+{% endblock %}
