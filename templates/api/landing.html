@@ -105,6 +105,34 @@ const r = await request("https://convertica.net/api/v1/pdf-to-word/", {
 fs.writeFileSync("output.docx", Buffer.from(await r.body.arrayBuffer()));</code></pre>
     </section>
 
+    <!-- MCP server -->
+    <section class="mb-16">
+      <div class="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-gray-800 dark:to-gray-800 border border-indigo-200 dark:border-gray-700 rounded-2xl p-8">
+        <span class="inline-flex items-center px-3 py-1 mb-3 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-wide">{% trans "New" %}</span>
+        <h2 class="text-2xl font-bold mb-3">{% trans "Use it from Claude, Cursor, or any AI assistant" %}</h2>
+        <p class="text-gray-700 dark:text-gray-200 mb-4 max-w-3xl">
+          {% blocktrans %}Convertica ships an official open-source <strong>MCP server</strong>. Connect it to Claude, Cursor, Windsurf or any Model Context Protocol client and convert files with a sentence — "convert this PDF to Word", "merge these three PDFs and compress the result". It calls the same API with your key.{% endblocktrans %}
+        </p>
+        <p class="text-gray-600 dark:text-gray-300 mb-3 text-sm">{% trans "Add it to Claude Code in one line:" %}</p>
+      <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>claude mcp add convertica -e CONVERTICA_API_KEY=cvk_live_xxxx -- npx -y convertica-mcp</code></pre>
+        <p class="text-gray-600 dark:text-gray-300 mt-3 mb-3 text-sm">{% trans "Or add it to any MCP client's config:" %}</p>
+      <pre class="bg-gray-900 text-gray-100 p-4 rounded overflow-x-auto text-sm"><code>{
+  "mcpServers": {
+    "convertica": {
+      "command": "npx",
+      "args": ["-y", "convertica-mcp"],
+      "env": { "CONVERTICA_API_KEY": "cvk_live_xxxx" }
+    }
+  }
+}</code></pre>
+        <div class="flex flex-wrap gap-3 mt-5">
+          <a href="https://github.com/convertica-net/convertica-mcp" rel="noopener" class="px-5 py-2.5 bg-gray-900 text-white rounded-lg font-semibold text-sm hover:bg-gray-800">{% trans "View on GitHub" %}</a>
+          <a href="https://www.npmjs.com/package/convertica-mcp" rel="noopener" class="px-5 py-2.5 border border-gray-400 text-gray-700 dark:text-gray-200 rounded-lg font-semibold text-sm hover:bg-white/50 dark:hover:bg-gray-700">{% trans "convertica-mcp on npm" %}</a>
+        </div>
+        <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm">{% blocktrans %}Free and open-source (MIT). Needs an active subscription for the API key — the same key powers the web API and the MCP server.{% endblocktrans %}</p>
+      </div>
+    </section>
+
     <!-- Authentication -->
     <section class="mb-16">
       <h2 class="text-2xl font-bold mb-4">{% trans "Authentication" %}</h2>
