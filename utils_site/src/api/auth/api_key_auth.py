@@ -59,8 +59,7 @@ class APIKeyAuthentication(BaseAuthentication):
                 "Subscription required for API access. Visit /pricing/."
             )
 
-        plan = user.subscription_plan
-        quota = plan.api_quota_per_month if plan else 0
+        quota = user.api_quota_per_month
         if quota == 0:
             raise AuthenticationFailed("Plan has no API quota")
         if key.usage_this_month >= quota:

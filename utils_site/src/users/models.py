@@ -198,6 +198,30 @@ class User(AbstractUser):
             return sub.plan
         return None
 
+    # Premium users who bought lifetime, were granted premium in the admin, or
+    # are legacy premium have no UserSubscription row, so subscription_plan is
+    # None for them even though they are fully premium. Guarantee a floor so
+    # the API/MCP funnel is never silently closed to a paying customer.
+    PREMIUM_API_QUOTA_FALLBACK = 1000
+
+    @property
+    def api_quota_per_month(self) -> int:
+        """Monthly /api/v1 call quota this user is entitled to.
+
+        Robust across every path to premium: normal subscriptions (plan via
+        provider_subscription), lifetime orders, and admin-granted/legacy
+        premium (is_premium with no UserSubscription). Any active premium user
+        gets at least PREMIUM_API_QUOTA_FALLBACK. 0 only for non-premium.
+        """
+        if not self.is_subscription_active():
+            return 0
+        plan = self.subscription_plan
+        if plan and plan.api_quota_per_month:
+            return plan.api_quota_per_month
+        # ponytail: flat fallback quota; resolve the lifetime plan's higher
+        # ceiling from the latest Payment if lifetime buyers ever need it.
+        return self.PREMIUM_API_QUOTA_FALLBACK
+
     @property
     def is_premium_active(self) -> bool:
         """True only when the user is premium AND the subscription is currently active."""
