@@ -1432,6 +1432,78 @@ def background_tasks_page(request):
 
 
 @anonymous_cache_page(60 * 60)
+def install_page(request):
+    """Public 'Install the app & your account across devices' hub.
+
+    PWA install is otherwise only a runtime banner shown on mobile, and iOS
+    Safari never fires beforeinstallprompt — iPhone users get no prompt and
+    no instructions. This page is the install answer and the honest summary
+    of what syncs across devices for signed-in Premium users.
+    """
+    context = {
+        "page_title": _("Install the Convertica App - PDF Tools on Every Device"),
+        "page_description": _(
+            "Install Convertica as an app on Android, iPhone, iPad or desktop "
+            "straight from your browser - no App Store needed. Sign in and your "
+            "Premium status, saved presets and history follow you on every device."
+        ),
+        "page_keywords": (
+            "install convertica app, pdf converter app, add to home screen pdf, "
+            "convertica android app, convertica iphone app, pwa pdf tools, "
+            "install pdf converter on phone"
+        ),
+        "is_premium_active": _is_premium_active_user(request),
+        "page_faq": [
+            {
+                "question": _("Is this a real app I install from a store?"),
+                "answer": _(
+                    "No store needed. Convertica installs straight from your "
+                    "browser as a Progressive Web App: you get an icon on your "
+                    "home screen and a full-screen app window, without going "
+                    "through the App Store or Google Play."
+                ),
+            },
+            {
+                "question": _("How do I install it on my iPhone or iPad?"),
+                "answer": _(
+                    "Open convertica.net in Safari, tap the Share button, then "
+                    "choose Add to Home Screen. iOS does not show an automatic "
+                    "install prompt, so this is the one manual step - after it, "
+                    "the icon behaves like any other app."
+                ),
+            },
+            {
+                "question": _("Does the app work offline?"),
+                "answer": _(
+                    "The app shell and your recently used pages are cached, so "
+                    "Convertica opens even with no connection. Conversions "
+                    "themselves still run on our servers, so those need you to "
+                    "be online."
+                ),
+            },
+            {
+                "question": _("Is my work synced across devices?"),
+                "answer": _(
+                    "Your account is. Sign in and your Premium status, saved "
+                    "workflow presets and conversion history are available on "
+                    "every device. Your files are never stored or synced - they "
+                    "are processed and then deleted about an hour later."
+                ),
+            },
+            {
+                "question": _("Is the app free?"),
+                "answer": _(
+                    "Yes. Installing the app and using the converters is free. "
+                    "Cross-device preset sync, history, background mode and "
+                    "priority processing are part of Convertica Premium."
+                ),
+            },
+        ],
+    }
+    return render(request, "frontend/install.html", context)
+
+
+@anonymous_cache_page(60 * 60)
 def saved_workflows_page(request):
     """Saved workflows landing.
 
