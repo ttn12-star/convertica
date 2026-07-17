@@ -557,13 +557,9 @@ def conversion_history(request):
 @login_required
 def api_keys_dashboard(request):
     """List user's API keys + create/revoke entry points."""
-    has_quota = (
-        request.user.is_subscription_active()
-        and request.user.subscription_plan
-        and request.user.subscription_plan.api_quota_per_month > 0
-    )
+    quota = request.user.api_quota_per_month
+    has_quota = quota > 0
     keys = request.user.api_keys.filter(revoked_at__isnull=True).order_by("-created_at")
-    quota = request.user.subscription_plan.api_quota_per_month if has_quota else 0
     return render(
         request,
         "users/api_keys.html",
@@ -582,11 +578,7 @@ def api_keys_dashboard(request):
 @require_POST
 @ratelimit(key="user", rate="10/h", block=True)
 def api_key_create(request):
-    if not (
-        request.user.is_subscription_active()
-        and request.user.subscription_plan
-        and request.user.subscription_plan.api_quota_per_month > 0
-    ):
+    if request.user.api_quota_per_month <= 0:
         messages.error(request, _("Your plan does not include API access."))
         return redirect("users:api_keys")
     name = (request.POST.get("name") or "").strip()[:64]
