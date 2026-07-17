@@ -1379,3 +1379,11 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.AllowAny",
     ],
 }
+
+if not DEBUG:
+    # No browsable HTML API in production: an emailed result link opened in a
+    # logged-out browser used to render the full DRF explorer (with DELETE
+    # button) around a 403 — JSON only outside dev.
+    REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
+        "rest_framework.renderers.JSONRenderer",
+    ]

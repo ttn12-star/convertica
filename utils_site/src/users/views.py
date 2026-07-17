@@ -475,6 +475,55 @@ def download_data(request):
 
 
 @login_required
+def task_download(request, task_id):
+    """Human landing for emailed result links.
+
+    The raw API endpoint returns a bare 403/404 JSON when the browser has no
+    session or the file is gone — this page gives anonymous visitors a login
+    redirect (via @login_required) and everyone else a clear state instead.
+    """
+    import os
+
+    from celery.result import AsyncResult
+    from src.users.models import OperationRun
+
+    # Ownership check mirrors the API fallback; a foreign/unknown task gets
+    # the same "expired" screen so task ids can't be probed for existence.
+    owns = OperationRun.objects.filter(task_id=task_id, user=request.user).exists()
+
+    state = "expired"
+    output_filename = ""
+    if owns:
+        try:
+            result = AsyncResult(task_id)
+            if result.status in ("PENDING", "STARTED", "PROGRESS", "RETRY"):
+                state = "processing"
+            elif result.status == "SUCCESS":
+                info = result.result if isinstance(result.result, dict) else {}
+                output_path = info.get("output_path", "")
+                output_filename = info.get("output_filename", "")
+                if (
+                    info.get("status", "success") == "success"
+                    and output_path
+                    and os.path.exists(output_path)
+                ):
+                    state = "ready"
+        except Exception:  # pragma: no cover - result backend hiccup
+            state = "expired"
+
+    return render(
+        request,
+        "users/task_download.html",
+        {
+            "state": state,
+            "task_id": task_id,
+            "output_filename": output_filename,
+            "download_api_url": f"/api/tasks/{task_id}/result/",
+        },
+    )
+
+
+@login_required
 def conversion_history(request):
     """Premium: the user's recent conversion runs.
 
