@@ -72,16 +72,16 @@
           <!-- Hero Stats -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div class="text-3xl font-bold text-yellow-400 mb-2">10M+</div>
-              <div class="text-gray-300">{% trans "Documents Converted" %}</div>
+              <div class="text-3xl font-bold text-yellow-400 mb-2">&infin;</div>
+              <div class="text-gray-300">{% trans "Daily Conversions" %}</div>
             </div>
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div class="text-3xl font-bold text-blue-400 mb-2">50K+</div>
-              <div class="text-gray-300">{% trans "Happy Heroes" %}</div>
+              <div class="text-3xl font-bold text-blue-400 mb-2">200&nbsp;MB</div>
+              <div class="text-gray-300">{% trans "Max File Size" %}</div>
             </div>
             <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-              <div class="text-3xl font-bold text-purple-400 mb-2">99.9%</div>
-              <div class="text-gray-300">{% trans "Uptime Guaranteed" %}</div>
+              <div class="text-3xl font-bold text-purple-400 mb-2">10</div>
+              <div class="text-gray-300">{% trans "Files per Batch" %}</div>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Monthly Hero" %}</h3>
             <div class="text-4xl font-bold text-yellow-600 mb-4">
-              ${% if monthly_plan %}{{ monthly_plan.price|floatformat:"-2" }}{% else %}6{% endif %}
+              ${% if monthly_plan %}{{ monthly_plan.price|floatformat:"-2" }}{% else %}7.99{% endif %}
               <span class="text-lg text-gray-600">/{% trans "month" %}</span>
             </div>
             <p class="text-gray-700 mb-6">{% trans "Best value for regular heroes" %}</p>
@@ -261,7 +261,7 @@
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-2">{% trans "Yearly Hero" %}</h3>
             <div class="text-4xl font-bold text-purple-600 mb-4">
-              ${% if yearly_plan %}{{ yearly_plan.price|floatformat:"-2" }}{% else %}59{% endif %}
+              ${% if yearly_plan %}{{ yearly_plan.price|floatformat:"-2" }}{% else %}79{% endif %}
               <span class="text-lg text-gray-600">/{% trans "year" %}</span>
             </div>
             <p class="text-gray-700 mb-6">{% trans "Save with annual commitment" %}</p>

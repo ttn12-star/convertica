@@ -16128,3 +16128,68 @@ msgid ""
 "in one dashboard. For Premium accounts, presets sync securely across your "
 "devices."
 msgstr "Ubah pekerjaan PDF berulang menjadi prasetel satu klik: simpan alat yang tepat dengan catatan Anda sendiri, buka kembali secara instan, dan simpan semua konversi rutin Anda dalam satu dasbor. Untuk akun Premium, preset tersinkron dengan aman di semua perangkat Anda."
+
+# --- appended 2026-07-17: truthful-copy fixes (deletion timing, free/premium wording, pricing stats) ---
+
+msgid "Yes, Convertica is free to use — every core tool works at no cost with generous daily limits. Optional Premium unlocks higher limits, batch processing, and extra features."
+msgstr "Ya, Convertica gratis digunakan — semua alat inti berfungsi tanpa biaya dengan batas harian yang longgar. Premium opsional membuka batas lebih tinggi, pemrosesan batch, dan fitur tambahan."
+
+msgid "No registration required. You can use most tools instantly without creating an account. Premium features are available for advanced users."
+msgstr "Tidak perlu registrasi. Anda dapat menggunakan sebagian besar alat secara instan tanpa membuat akun. Fitur premium tersedia untuk pengguna tingkat lanjut."
+
+msgid "Files from instant conversions are deleted right after download; background and batch results are removed within about an hour. We never store your files permanently."
+msgstr "File dari konversi instan dihapus tepat setelah diunduh; hasil tugas latar belakang dan batch dihapus dalam waktu sekitar satu jam. Kami tidak pernah menyimpan file Anda secara permanen."
+
+msgid "Files deleted automatically"
+msgstr "File dihapus otomatis"
+
+msgid "Yes, your data is secure. All files are processed securely and deleted automatically: right after download for instant conversions, and within about an hour for background or batch tasks. We do not store your files permanently, and your privacy is our top priority. You can also protect your PDFs with password encryption."
+msgstr "Ya, data Anda aman. Semua file diproses dengan aman dan dihapus otomatis: tepat setelah diunduh untuk konversi instan, dan dalam waktu sekitar satu jam untuk tugas latar belakang atau batch. Kami tidak menyimpan file Anda secara permanen, dan privasi Anda adalah prioritas utama kami. Anda juga dapat melindungi PDF Anda dengan enkripsi kata sandi."
+
+msgid "No, we do not keep your files. Instant conversions are deleted right after download; background and batch results are removed within about an hour, once the download window closes. We do not keep copies of your documents."
+msgstr "Tidak, kami tidak menyimpan file Anda. Konversi instan dihapus tepat setelah diunduh; hasil latar belakang dan batch dihapus dalam waktu sekitar satu jam, saat jendela unduhan ditutup. Kami tidak menyimpan salinan dokumen Anda."
+
+msgid "Yes! Your files are processed securely and deleted automatically: instantly after download for regular conversions, within about an hour for background and batch tasks. We never store your files permanently."
+msgstr "Ya! File Anda diproses dengan aman dan dihapus otomatis: langsung setelah diunduh untuk konversi biasa, dalam waktu sekitar satu jam untuk tugas latar belakang dan batch. Kami tidak pernah menyimpan file Anda secara permanen."
+
+msgid "When you use our PDF tools, you may upload files for processing. These files are stored on our servers only temporarily. Files from instant conversions are deleted right after the result is downloaded; files from background and batch tasks are deleted automatically within about an hour, so that your download link keeps working."
+msgstr "Saat Anda menggunakan alat PDF kami, Anda dapat mengunggah file untuk diproses. File ini disimpan di server kami hanya untuk sementara. File dari konversi instan dihapus tepat setelah hasilnya diunduh; file dari tugas latar belakang dan batch dihapus otomatis dalam waktu sekitar satu jam, agar tautan unduhan Anda tetap berfungsi."
+
+msgid "Right after download for instant conversions"
+msgstr "Tepat setelah diunduh untuk konversi instan"
+
+msgid "Within about an hour for background, batch, and failed tasks"
+msgstr "Dalam waktu sekitar satu jam untuk tugas latar belakang, batch, dan yang gagal"
+
+msgid "Daily Conversions"
+msgstr "Konversi harian"
+
+msgid "Max File Size"
+msgstr "Ukuran file maksimum"
+
+msgid "Files per Batch"
+msgstr "File per batch"
+
+msgid "No registration, no watermarks. Files deleted automatically after conversion"
+msgstr "Tanpa pendaftaran, tanpa watermark. File dihapus otomatis setelah konversi"
+
+msgid "Your Excel files are processed securely and deleted automatically after conversion. We never store your files permanently. Perfect for confidential business documents."
+msgstr "File Excel Anda diproses dengan aman dan dihapus otomatis setelah konversi. Kami tidak pernah menyimpan file Anda secara permanen. Sempurna untuk dokumen bisnis rahasia."
+
+msgid "Files are transferred over an encrypted connection and deleted automatically after processing"
+msgstr "File ditransfer melalui koneksi terenkripsi dan dihapus otomatis setelah diproses"
+
+msgid "Files deleted automatically after processing. Your documents stay private"
+msgstr "File dihapus otomatis setelah diproses. Dokumen Anda tetap pribadi"
+
+msgid "Files are deleted automatically right after processing — your signature is never stored"
+msgstr "File dihapus otomatis tepat setelah diproses — tanda tangan Anda tidak pernah disimpan"
+
+msgid "Files are processed on the server and deleted automatically after download — we never store your images permanently"
+msgstr "File diproses di server dan dihapus otomatis setelah diunduh — kami tidak pernah menyimpan gambar Anda secara permanen"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a PDF. Draw it with the mouse or finger, type your name in a handwriting-style font, or upload a PNG/JPG of your hand-signed paper. Click on the preview to drop the signature, drag to position, and pull the corner handle to resize.</p><p>Multiple signatures on multiple pages are supported, so a long contract can be signed once at the bottom of every page. The document and the signature image are deleted automatically right after download; neither is ever stored.</p>"
+msgstr "<p><strong>Tanda Tangani PDF</strong> memungkinkan Anda menempatkan tanda tangan pada halaman mana pun dari PDF. Gambar dengan mouse atau jari, ketik nama Anda dalam font bergaya tulisan tangan, atau unggah PNG/JPG tanda tangan manual Anda. Klik pratinjau untuk meletakkan tanda tangan, seret untuk mengatur posisi, dan tarik pegangan sudut untuk mengubah ukuran.</p><p>Beberapa tanda tangan pada banyak halaman didukung, sehingga kontrak panjang dapat ditandatangani di bagian bawah setiap halaman. Dokumen dan gambar tanda tangan dihapus otomatis tepat setelah diunduh; keduanya tidak pernah disimpan.</p>"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted automatically after download.</p>"
+msgstr "<p><strong>Konversi Gambar</strong> mengubah file gambar Anda dari satu format ke format lain secara instan. Baik Anda perlu mengonversi PNG ke WebP untuk pemuatan web yang lebih cepat, BMP ke JPEG untuk mengurangi ukuran file, atau GIF ke PNG untuk kualitas yang lebih baik, alat ini menangani semuanya.</p><p>Tidak diperlukan instalasi perangkat lunak. Semua konversi terjadi di server dan file Anda dihapus otomatis setelah diunduh.</p>"

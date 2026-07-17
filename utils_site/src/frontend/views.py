@@ -60,6 +60,17 @@ def _is_premium_active_user(request) -> bool:
     )
 
 
+def _public_subscription_plans():
+    """Active public plans by slug — single source of truth for displayed prices."""
+    from src.users.models import SubscriptionPlan
+
+    plans = SubscriptionPlan.objects.filter(
+        slug__in=["monthly-hero", "yearly-hero", "lifetime-hero"],
+        is_active=True,
+    ).only("slug", "price", "currency", "duration_days", "is_lifetime")
+    return {p.slug: p for p in plans}
+
+
 def _redirect_for_premium_access(request):
     """Redirect non-premium users to login or pricing for premium-only pages."""
     if getattr(request, "user", None) is not None and request.user.is_authenticated:
@@ -998,7 +1009,9 @@ def compare_pdf_page(request):
     # ponytail: кастомный лендинг — картинка только в og:image/JSON-LD,
     # in-page embed если станет нужен
     _shots = _tool_screenshot_paths("compare_pdf")
+    _monthly = _public_subscription_plans().get("monthly-hero")
     context = {
+        "premium_monthly_price": _monthly.price if _monthly else None,
         **(
             {
                 "og_image_filename": _shots[1],
@@ -2322,7 +2335,7 @@ class PricingPageView(TemplateView):
     template_name = "frontend/pricing.html"
 
     def get_context_data(self, **kwargs):
-        from src.users.models import SubscriptionPlan, User
+        from src.users.models import User
 
         context = super().get_context_data(**kwargs)
 
@@ -2330,16 +2343,7 @@ class PricingPageView(TemplateView):
         context["heroes"] = User.get_heroes()
         context["top_subscribers"] = User.get_top_subscribers(10)
 
-        plans = (
-            SubscriptionPlan.objects.filter(
-                slug__in=["monthly-hero", "yearly-hero", "lifetime-hero"],
-                is_active=True,
-            )
-            .only("slug", "price", "currency", "duration_days", "is_lifetime")
-            .all()
-        )
-        plans_by_slug = {p.slug: p for p in plans}
-
+        plans_by_slug = _public_subscription_plans()
         context["monthly_plan"] = plans_by_slug.get("monthly-hero")
         context["yearly_plan"] = plans_by_slug.get("yearly-hero")
         context["lifetime_plan"] = plans_by_slug.get("lifetime-hero")
@@ -2369,6 +2373,7 @@ class SupportPageView(TemplateView):
 
 def api_landing(request):
     """Public marketing landing for the paid API tier."""
+    plans_by_slug = _public_subscription_plans()
     return render(
         request,
         "api/landing.html",
@@ -2376,5 +2381,8 @@ def api_landing(request):
             "monthly_quota": 1_000,
             "yearly_quota": 10_000,
             "lifetime_quota": 10_000,
+            "monthly_plan": plans_by_slug.get("monthly-hero"),
+            "yearly_plan": plans_by_slug.get("yearly-hero"),
+            "lifetime_plan": plans_by_slug.get("lifetime-hero"),
         },
     )

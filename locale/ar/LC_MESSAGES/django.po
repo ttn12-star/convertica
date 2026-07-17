@@ -15392,3 +15392,68 @@ msgid ""
 "in one dashboard. For Premium accounts, presets sync securely across your "
 "devices."
 msgstr "حوّل مهام PDF المتكررة إلى إعدادات مسبقة بنقرة واحدة: احفظ الأداة المناسبة مع ملاحظاتك الخاصة، وأعد فتحها فورًا، واحتفظ بجميع تحويلاتك الروتينية في لوحة تحكم واحدة. بالنسبة لحسابات Premium، تتم مزامنة الإعدادات المسبقة بأمان بين أجهزتك."
+
+# --- appended 2026-07-17: truthful-copy fixes (deletion timing, free/premium wording, pricing stats) ---
+
+msgid "Yes, Convertica is free to use — every core tool works at no cost with generous daily limits. Optional Premium unlocks higher limits, batch processing, and extra features."
+msgstr "نعم، كونفيرتيكا مجانية الاستخدام — جميع الأدوات الأساسية تعمل دون تكلفة ضمن حدود يومية سخية. يفتح الاشتراك المميز الاختياري حدودًا أعلى ومعالجة دفعات وميزات إضافية."
+
+msgid "No registration required. You can use most tools instantly without creating an account. Premium features are available for advanced users."
+msgstr "لا حاجة للتسجيل. يمكنك استخدام معظم الأدوات على الفور دون إنشاء حساب. تتوفر ميزات مميزة للمستخدمين المتقدمين."
+
+msgid "Files from instant conversions are deleted right after download; background and batch results are removed within about an hour. We never store your files permanently."
+msgstr "تُحذف ملفات التحويلات الفورية مباشرة بعد التنزيل؛ وتُزال نتائج مهام الخلفية والدفعات خلال نحو ساعة. نحن لا نخزن ملفاتك بشكل دائم أبدًا."
+
+msgid "Files deleted automatically"
+msgstr "تحذف الملفات تلقائياً"
+
+msgid "Yes, your data is secure. All files are processed securely and deleted automatically: right after download for instant conversions, and within about an hour for background or batch tasks. We do not store your files permanently, and your privacy is our top priority. You can also protect your PDFs with password encryption."
+msgstr "نعم، بياناتك آمنة. تتم معالجة جميع الملفات بأمان وتُحذف تلقائياً: مباشرة بعد التنزيل للتحويلات الفورية، وخلال نحو ساعة لمهام الخلفية أو الدفعات. نحن لا نخزن ملفاتك بشكل دائم، وخصوصيتك هي أولويتنا القصوى. يمكنك أيضاً حماية ملفات PDF الخاصة بك بتشفير كلمة المرور."
+
+msgid "No, we do not keep your files. Instant conversions are deleted right after download; background and batch results are removed within about an hour, once the download window closes. We do not keep copies of your documents."
+msgstr "لا، نحن لا نحتفظ بملفاتك. تُحذف التحويلات الفورية مباشرة بعد التنزيل؛ وتُزال نتائج الخلفية والدفعات خلال نحو ساعة، عند انتهاء نافذة التنزيل. نحن لا نحتفظ بنسخ من مستنداتك."
+
+msgid "Yes! Your files are processed securely and deleted automatically: instantly after download for regular conversions, within about an hour for background and batch tasks. We never store your files permanently."
+msgstr "نعم! تتم معالجة ملفاتك بأمان وتُحذف تلقائياً: فوراً بعد التنزيل للتحويلات العادية، وخلال نحو ساعة لمهام الخلفية والدفعات. نحن لا نخزن ملفاتك بشكل دائم أبداً."
+
+msgid "When you use our PDF tools, you may upload files for processing. These files are stored on our servers only temporarily. Files from instant conversions are deleted right after the result is downloaded; files from background and batch tasks are deleted automatically within about an hour, so that your download link keeps working."
+msgstr "عند استخدام أدوات PDF الخاصة بنا، قد ترفع ملفات للمعالجة. تُخزن هذه الملفات على خوادمنا مؤقتاً فقط. تُحذف ملفات التحويلات الفورية مباشرة بعد تنزيل النتيجة؛ وتُحذف ملفات مهام الخلفية والدفعات تلقائياً خلال نحو ساعة، حتى يظل رابط التنزيل لديك صالحاً."
+
+msgid "Right after download for instant conversions"
+msgstr "مباشرة بعد التنزيل للتحويلات الفورية"
+
+msgid "Within about an hour for background, batch, and failed tasks"
+msgstr "خلال نحو ساعة لمهام الخلفية والدفعات والمهام الفاشلة"
+
+msgid "Daily Conversions"
+msgstr "تحويلات يومية"
+
+msgid "Max File Size"
+msgstr "الحد الأقصى لحجم الملف"
+
+msgid "Files per Batch"
+msgstr "ملفات لكل دفعة"
+
+msgid "No registration, no watermarks. Files deleted automatically after conversion"
+msgstr "بدون تسجيل، بدون علامات مائية. تُحذف الملفات تلقائيًا بعد التحويل"
+
+msgid "Your Excel files are processed securely and deleted automatically after conversion. We never store your files permanently. Perfect for confidential business documents."
+msgstr "تتم معالجة ملفات Excel الخاصة بك بأمان وتُحذف تلقائيًا بعد التحويل. نحن لا نخزن ملفاتك بشكل دائم أبدًا. مثالي لمستندات العمل السرية."
+
+msgid "Files are transferred over an encrypted connection and deleted automatically after processing"
+msgstr "تُنقل الملفات عبر اتصال مشفّر وتُحذف تلقائيًا بعد المعالجة"
+
+msgid "Files deleted automatically after processing. Your documents stay private"
+msgstr "تُحذف الملفات تلقائيًا بعد المعالجة. تظل مستنداتك خاصة"
+
+msgid "Files are deleted automatically right after processing — your signature is never stored"
+msgstr "تُحذف الملفات تلقائيًا فور المعالجة — لا يُخزَّن توقيعك أبدًا"
+
+msgid "Files are processed on the server and deleted automatically after download — we never store your images permanently"
+msgstr "تتم معالجة الملفات على الخادم وتُحذف تلقائيًا بعد التنزيل — نحن لا نخزن صورك بشكل دائم أبدًا"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a PDF. Draw it with the mouse or finger, type your name in a handwriting-style font, or upload a PNG/JPG of your hand-signed paper. Click on the preview to drop the signature, drag to position, and pull the corner handle to resize.</p><p>Multiple signatures on multiple pages are supported, so a long contract can be signed once at the bottom of every page. The document and the signature image are deleted automatically right after download; neither is ever stored.</p>"
+msgstr "<p><strong>توقيع PDF</strong> يتيح لك وضع توقيع على أي صفحة من ملف PDF. ارسمه بالماوس أو الإصبع، أو اكتب اسمك بخط يشبه خط اليد، أو ارفع PNG/JPG لتوقيعك الورقي. انقر على المعاينة لإسقاط التوقيع، واسحب لضبط الموضع، واسحب مقبض الزاوية لتغيير الحجم.</p><p>يمكن وضع عدة توقيعات على عدة صفحات، فيُوقَّع العقد الطويل أسفل كل صفحة بسهولة. يُحذف المستند وصورة التوقيع تلقائيًا فور التنزيل؛ ولا يُخزَّن أي منهما أبدًا.</p>"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted automatically after download.</p>"
+msgstr "<p><strong>تحويل الصورة</strong> يحوّل ملفات صورك من تنسيق إلى آخر فورًا. سواء كنت بحاجة إلى تحويل PNG إلى WebP لتحميل أسرع على الويب، أو BMP إلى JPEG لتقليل حجم الملف، أو GIF إلى PNG لجودة أفضل، تتعامل هذه الأداة مع كل شيء.</p><p>لا حاجة لتثبيت برامج. تحدث جميع التحويلات على الخادم وتُحذف ملفاتك تلقائيًا بعد التنزيل.</p>"

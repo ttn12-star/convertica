@@ -73,7 +73,7 @@
             <div>
               <h3 class="text-xl font-semibold text-gray-900 mb-3">{% trans "Files You Upload" %}</h3>
               <p class="text-gray-700 leading-relaxed">
-                {% trans "When you use our PDF tools, you may upload files for processing. These files are temporarily stored on our servers only for the duration of the conversion or editing process. Files are automatically deleted immediately after processing is complete, typically within minutes." %}
+                {% trans "When you use our PDF tools, you may upload files for processing. These files are stored on our servers only temporarily. Files from instant conversions are deleted right after the result is downloaded; files from background and batch tasks are deleted automatically within about an hour, so that your download link keeps working." %}
               </p>
             </div>
 
@@ -139,8 +139,8 @@
             {% trans "We retain your uploaded files only for the time necessary to complete the requested operation. Files are automatically deleted:" %}
           </p>
           <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700 ml-4">
-            <li>{% trans "Immediately after successful processing" %}</li>
-            <li>{% trans "Within 1 hour if processing fails" %}</li>
+            <li>{% trans "Right after download for instant conversions" %}</li>
+            <li>{% trans "Within about an hour for background, batch, and failed tasks" %}</li>
             <li>{% trans "We do not store your files permanently" %}</li>
             <li>{% trans "We do not create backups of your uploaded files" %}</li>
           </ul>

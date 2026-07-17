@@ -721,7 +721,7 @@ class FrontendViewsTestCase(TestCase):
                 self.assertContains(
                     response, '"@type": "WebApplication"', status_code=200
                 )
-                self.assertContains(response, '"price": "6"', status_code=200)
+                self.assertContains(response, '"price": "7.99"', status_code=200)
                 self.assertNotContains(response, '"price": "0"', status_code=200)
 
     def test_freed_niche_pages_schema_uses_free_price(self):

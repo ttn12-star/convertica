@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add upgrade link for free users
         const upgradeLink = document.createElement('div');
         upgradeLink.className = 'mt-2';
-        upgradeLink.innerHTML = '<a href="/pricing/" class="text-sm text-amber-600 hover:text-amber-700 font-medium">Upgrade to Premium from $6/month →</a>';
+        upgradeLink.innerHTML = '<a href="/pricing/" class="text-sm text-amber-600 hover:text-amber-700 font-medium">Upgrade to Premium →</a>';
 
         // Insert after the note
         if (freeUserNote && !freeUserNote.querySelector('.mt-2')) {

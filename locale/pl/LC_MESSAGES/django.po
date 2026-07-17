@@ -16364,3 +16364,68 @@ msgid ""
 "in one dashboard. For Premium accounts, presets sync securely across your "
 "devices."
 msgstr "Zmień powtarzające się zadania PDF w ustawienia wstępne jednym kliknięciem: zapisz odpowiednie narzędzie z własnymi notatkami, otwórz je natychmiast i trzymaj wszystkie rutynowe konwersje w jednym panelu. W kontach Premium ustawienia wstępne synchronizują się bezpiecznie między Twoimi urządzeniami."
+
+# --- appended 2026-07-17: truthful-copy fixes (deletion timing, free/premium wording, pricing stats) ---
+
+msgid "Yes, Convertica is free to use — every core tool works at no cost with generous daily limits. Optional Premium unlocks higher limits, batch processing, and extra features."
+msgstr "Tak, Convertica jest darmowa w użyciu — wszystkie podstawowe narzędzia działają bezpłatnie w ramach hojnych dziennych limitów. Opcjonalne Premium odblokowuje wyższe limity, przetwarzanie wsadowe i dodatkowe funkcje."
+
+msgid "No registration required. You can use most tools instantly without creating an account. Premium features are available for advanced users."
+msgstr "Rejestracja nie jest wymagana. Możesz natychmiast korzystać z większości narzędzi bez tworzenia konta. Funkcje premium są dostępne dla zaawansowanych użytkowników."
+
+msgid "Files from instant conversions are deleted right after download; background and batch results are removed within about an hour. We never store your files permanently."
+msgstr "Pliki z konwersji natychmiastowych są usuwane zaraz po pobraniu; wyniki zadań w tle i wsadowych są usuwane w ciągu około godziny. Nigdy nie przechowujemy Twoich plików na stałe."
+
+msgid "Files deleted automatically"
+msgstr "Pliki usuwane automatycznie"
+
+msgid "Yes, your data is secure. All files are processed securely and deleted automatically: right after download for instant conversions, and within about an hour for background or batch tasks. We do not store your files permanently, and your privacy is our top priority. You can also protect your PDFs with password encryption."
+msgstr "Tak, Twoje dane są bezpieczne. Wszystkie pliki są przetwarzane bezpiecznie i usuwane automatycznie: zaraz po pobraniu w przypadku konwersji natychmiastowych oraz w ciągu około godziny w przypadku zadań w tle lub wsadowych. Nie przechowujemy Twoich plików na stałe, a Twoja prywatność jest naszym najwyższym priorytetem. Możesz także chronić swoje PDF za pomocą szyfrowania hasłem."
+
+msgid "No, we do not keep your files. Instant conversions are deleted right after download; background and batch results are removed within about an hour, once the download window closes. We do not keep copies of your documents."
+msgstr "Nie, nie przechowujemy Twoich plików. Konwersje natychmiastowe są usuwane zaraz po pobraniu; wyniki zadań w tle i wsadowych są usuwane po około godzinie, gdy kończy się okno pobierania. Nie przechowujemy kopii Twoich dokumentów."
+
+msgid "Yes! Your files are processed securely and deleted automatically: instantly after download for regular conversions, within about an hour for background and batch tasks. We never store your files permanently."
+msgstr "Tak! Twoje pliki są przetwarzane bezpiecznie i usuwane automatycznie: zaraz po pobraniu w przypadku zwykłych konwersji, w ciągu około godziny w przypadku zadań w tle i wsadowych. Nigdy nie przechowujemy Twoich plików na stałe."
+
+msgid "When you use our PDF tools, you may upload files for processing. These files are stored on our servers only temporarily. Files from instant conversions are deleted right after the result is downloaded; files from background and batch tasks are deleted automatically within about an hour, so that your download link keeps working."
+msgstr "Kiedy korzystasz z naszych narzędzi PDF, możesz przesyłać pliki do przetwarzania. Te pliki są przechowywane na naszych serwerach wyłącznie tymczasowo. Pliki z konwersji natychmiastowych są usuwane zaraz po pobraniu wyniku; pliki z zadań w tle i wsadowych są usuwane automatycznie w ciągu około godziny, aby link do pobrania pozostał aktywny."
+
+msgid "Right after download for instant conversions"
+msgstr "Zaraz po pobraniu — w przypadku konwersji natychmiastowych"
+
+msgid "Within about an hour for background, batch, and failed tasks"
+msgstr "W ciągu około godziny — w przypadku zadań w tle, wsadowych i nieudanych"
+
+msgid "Daily Conversions"
+msgstr "Konwersji dziennie"
+
+msgid "Max File Size"
+msgstr "Maks. rozmiar pliku"
+
+msgid "Files per Batch"
+msgstr "Plików w pakiecie"
+
+msgid "No registration, no watermarks. Files deleted automatically after conversion"
+msgstr "Bez rejestracji, bez znaków wodnych. Pliki usuwane automatycznie po konwersji"
+
+msgid "Your Excel files are processed securely and deleted automatically after conversion. We never store your files permanently. Perfect for confidential business documents."
+msgstr "Twoje pliki Excel są przetwarzane bezpiecznie i usuwane automatycznie po konwersji. Nigdy nie przechowujemy Twoich plików na stałe. Idealne do poufnych dokumentów firmowych."
+
+msgid "Files are transferred over an encrypted connection and deleted automatically after processing"
+msgstr "Pliki są przesyłane przez szyfrowane połączenie i usuwane automatycznie po przetworzeniu"
+
+msgid "Files deleted automatically after processing. Your documents stay private"
+msgstr "Pliki usuwane automatycznie po przetworzeniu. Twoje dokumenty pozostają prywatne"
+
+msgid "Files are deleted automatically right after processing — your signature is never stored"
+msgstr "Pliki są usuwane automatycznie zaraz po przetworzeniu — Twój podpis nigdy nie jest przechowywany"
+
+msgid "Files are processed on the server and deleted automatically after download — we never store your images permanently"
+msgstr "Pliki są przetwarzane na serwerze i usuwane automatycznie po pobraniu — nigdy nie przechowujemy Twoich obrazów na stałe"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a PDF. Draw it with the mouse or finger, type your name in a handwriting-style font, or upload a PNG/JPG of your hand-signed paper. Click on the preview to drop the signature, drag to position, and pull the corner handle to resize.</p><p>Multiple signatures on multiple pages are supported, so a long contract can be signed once at the bottom of every page. The document and the signature image are deleted automatically right after download; neither is ever stored.</p>"
+msgstr "<p><strong>Podpisz PDF</strong> pozwala umieścić podpis na dowolnej stronie dokumentu PDF. Narysuj go myszą lub palcem, wpisz imię i nazwisko czcionką odręczną lub prześlij PNG/JPG własnoręcznego podpisu. Kliknij podgląd, aby umieścić podpis, przeciągnij, aby go ustawić, i pociągnij narożny uchwyt, aby zmienić rozmiar.</p><p>Obsługujemy wiele podpisów na wielu stronach, dzięki czemu długą umowę można podpisać u dołu każdej strony. Dokument i obraz podpisu są usuwane automatycznie zaraz po pobraniu; żadne z nich nie jest nigdy przechowywane.</p>"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted automatically after download.</p>"
+msgstr "<p><strong>Konwertuj obraz</strong> błyskawicznie przekształca pliki obrazów z jednego formatu na inny. Niezależnie od tego, czy chcesz przekonwertować PNG do WebP dla szybszego ładowania stron, BMP do JPEG w celu zmniejszenia rozmiaru pliku, czy GIF do PNG dla lepszej jakości — to narzędzie poradzi sobie ze wszystkim.</p><p>Instalacja oprogramowania nie jest wymagana. Wszystkie konwersje odbywają się na serwerze, a pliki są automatycznie usuwane po pobraniu.</p>"

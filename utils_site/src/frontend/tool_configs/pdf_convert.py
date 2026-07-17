@@ -67,7 +67,7 @@ PDF_CONVERT_CONFIGS = {
                     "gradient": "from-blue-500 to-blue-600",
                     "title": _("Completely Free & Secure"),
                     "description": _(
-                        "No registration, no watermarks. Files deleted immediately after conversion"
+                        "No registration, no watermarks. Files deleted automatically after conversion"
                     ),
                 },
                 {
@@ -848,8 +848,8 @@ PDF_CONVERT_CONFIGS = {
                     "gradient": "from-yellow-500 to-orange-500",
                     "title": _("Secure & Private"),
                     "description": _(
-                        "Your Excel files are processed securely and deleted immediately after conversion. "
-                        "No data is stored on our servers. Perfect for confidential business documents."
+                        "Your Excel files are processed securely and deleted automatically after conversion. "
+                        "We never store your files permanently. Perfect for confidential business documents."
                     ),
                 },
             ],
@@ -1843,7 +1843,7 @@ PDF_CONVERT_CONFIGS = {
             "how_to_time": "PT2M",
             # Premium action → base.html WebApplication schema advertises the
             # premium price (test_premium_landing_pages_schema_uses_premium_price).
-            "offer_price": "6",
+            "offer_price": "7.99",
         },
     },
 }

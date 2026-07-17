@@ -52,18 +52,18 @@
     <section class="grid md:grid-cols-3 gap-6 mb-16">
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
         <h3 class="font-semibold text-lg mb-2">{% trans "Monthly" %}</h3>
-        <p class="text-3xl font-bold">$7<span class="text-base font-normal text-gray-500">/mo</span></p>
+        <p class="text-3xl font-bold">${% if monthly_plan %}{{ monthly_plan.price|floatformat:"-2" }}{% else %}7.99{% endif %}<span class="text-base font-normal text-gray-500">/mo</span></p>
         <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=monthly_quota %}{{ quota }} API call per month{% plural %}{{ quota }} API calls per month{% endblocktrans %}</p>
       </div>
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border border-blue-500">
         <h3 class="font-semibold text-lg mb-2">{% trans "Yearly" %}</h3>
-        <p class="text-3xl font-bold">$79<span class="text-base font-normal text-gray-500">/yr</span></p>
+        <p class="text-3xl font-bold">${% if yearly_plan %}{{ yearly_plan.price|floatformat:"-2" }}{% else %}79{% endif %}<span class="text-base font-normal text-gray-500">/yr</span></p>
         <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=yearly_quota %}{{ quota }} API call per month{% plural %}{{ quota }} API calls per month{% endblocktrans %}</p>
         <p class="text-sm text-blue-600 mt-1">{% trans "Best value" %}</p>
       </div>
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
         <h3 class="font-semibold text-lg mb-2">{% trans "Lifetime" %}</h3>
-        <p class="text-3xl font-bold">$129<span class="text-base font-normal text-gray-500">{% trans "once" %}</span></p>
+        <p class="text-3xl font-bold">${% if lifetime_plan %}{{ lifetime_plan.price|floatformat:"-2" }}{% else %}129{% endif %}<span class="text-base font-normal text-gray-500">{% trans "once" %}</span></p>
         <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=lifetime_quota %}{{ quota }} API call per month forever{% plural %}{{ quota }} API calls per month forever{% endblocktrans %}</p>
       </div>
     </section>

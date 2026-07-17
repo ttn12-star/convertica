@@ -68,7 +68,7 @@ PDF_ORGANIZE_CONFIGS = {
                     "gradient": "from-purple-500 to-purple-600",
                     "title": _("Secure Processing"),
                     "description": _(
-                        "Files are encrypted during processing and deleted immediately after"
+                        "Files are transferred over an encrypted connection and deleted automatically after processing"
                     ),
                 },
                 {
@@ -226,7 +226,7 @@ PDF_ORGANIZE_CONFIGS = {
                     "gradient": "from-amber-500 to-orange-600",
                     "title": _("Secure & Private"),
                     "description": _(
-                        "Files deleted immediately after processing. Your documents stay private"
+                        "Files deleted automatically after processing. Your documents stay private"
                     ),
                 },
             ],
