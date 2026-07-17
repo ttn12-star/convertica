@@ -27,3 +27,9 @@ class InstallPageTests(TestCase):
     def test_faqpage_schema_present(self):
         body = self.client.get(reverse("frontend:install_page")).content.decode()
         self.assertIn('"@type": "FAQPage"', body)
+
+    def test_install_in_sitemap(self):
+        from src.frontend.views import _get_sitemap_pages
+
+        urls = {p["url"] for p in _get_sitemap_pages()}
+        self.assertIn("install/", urls)
