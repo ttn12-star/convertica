@@ -183,6 +183,13 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',
             "gradient": "from-amber-500 to-orange-600",
         },
+        "pdf_to_pdfa": {
+            "name": _("PDF to PDF/A"),
+            "url": "frontend:pdf_to_pdfa_page",
+            "description": _("Convert PDF to archival PDF/A (ISO 19005)"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>',
+            "gradient": "from-amber-500 to-orange-600",
+        },
         # Tools without a previous entry — they exist as views but didn't
         # appear as a related-tool target anywhere, so other pages couldn't
         # link back to them. Adding them here lets the relations map below
@@ -304,6 +311,7 @@ def _get_related_tools(current_tool):
         "pdf_to_epub": ["epub_to_pdf", "pdf_to_word", "pdf_to_text"],
         "pdf_to_markdown": ["pdf_to_word", "pdf_to_html", "pdf_to_text"],
         "compare_pdf": ["pdf_to_markdown", "compress_pdf", "split_pdf"],
+        "pdf_to_pdfa": ["compress_pdf", "protect_pdf", "pdf_to_text"],
         "compress_pdf": ["merge_pdf", "optimize_image", "protect_pdf"],
         "protect_pdf": ["unlock_pdf", "sign_pdf", "flatten_pdf"],
         "unlock_pdf": ["protect_pdf", "compress_pdf", "merge_pdf"],
@@ -861,6 +869,13 @@ def premium_tools_page(request):
         "is_premium_active": _is_premium_active_user(request),
         "premium_tool_entities": [
             {
+                "name": _("PDF to PDF/A"),
+                "url": reverse("frontend:pdf_to_pdfa_page"),
+                "description": _(
+                    "Convert PDFs to archival PDF/A (ISO 19005) for courts, tax and long-term storage."
+                ),
+            },
+            {
                 "name": _("Compare Two PDFs"),
                 "url": reverse("frontend:compare_pdf_page"),
                 "description": _(
@@ -967,6 +982,12 @@ def pdf_to_markdown_page(request):
 def pdf_to_text_page(request):
     """PDF to Text conversion page."""
     return _render_tool_page(request, "pdf_to_text")
+
+
+@anonymous_cache_page(60 * 60)
+def pdf_to_pdfa_page(request):
+    """PDF to PDF/A archival converter landing (public page, premium-gated API)."""
+    return _render_tool_page(request, "pdf_to_pdfa")
 
 
 @anonymous_cache_page(60 * 60)
@@ -1938,6 +1959,7 @@ def _get_sitemap_pages():
         {"url": "pdf-to-epub/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "pdf-to-markdown/", "priority": "0.6", "changefreq": "monthly"},
         {"url": "compare-pdf/", "priority": "0.6", "changefreq": "monthly"},
+        {"url": "pdf-to-pdfa/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "blog/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "pdf-to-word/", "priority": "0.8", "changefreq": "weekly"},
         {"url": "word-to-pdf/", "priority": "0.8", "changefreq": "weekly"},

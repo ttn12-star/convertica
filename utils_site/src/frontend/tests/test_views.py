@@ -701,9 +701,18 @@ class FrontendViewsTestCase(TestCase):
                     self.assertContains(response, marker, status_code=200)
                 self.assertContains(response, "FAQ", status_code=200)
 
+    def test_pdf_to_pdfa_landing_renders(self):
+        """PDF/A landing renders with the conformance select and premium notice."""
+        response = self.client.get(
+            self._get_url_with_lang("pdf-to-pdfa/"), follow=False
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'name="conformance"', status_code=200)
+        self.assertContains(response, "PDF to PDF/A Converter", status_code=200)
+
     def test_premium_landing_pages_schema_uses_premium_price(self):
         """Still-premium converter pages should expose premium offer price in schema."""
-        premium_paths = ("compare-pdf/",)
+        premium_paths = ("compare-pdf/", "pdf-to-pdfa/")
 
         for path in premium_paths:
             with self.subTest(path=path):

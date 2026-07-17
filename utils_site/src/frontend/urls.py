@@ -52,6 +52,7 @@ urlpatterns = [
     ),
     path("pdf-to-text/", views.pdf_to_text_page, name="pdf_to_text_page"),
     path("compare-pdf/", views.compare_pdf_page, name="compare_pdf_page"),
+    path("pdf-to-pdfa/", views.pdf_to_pdfa_page, name="pdf_to_pdfa_page"),
     path("epub-to-pdf/", views.epub_to_pdf_page, name="epub_to_pdf_page"),
     path("pdf-to-epub/", views.pdf_to_epub_page, name="pdf_to_epub_page"),
     path(

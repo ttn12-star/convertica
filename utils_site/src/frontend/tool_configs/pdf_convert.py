@@ -1659,4 +1659,191 @@ PDF_CONVERT_CONFIGS = {
             "how_to_time": "PT1M",
         },
     },
+    "pdf_to_pdfa": {
+        "template": "frontend/pdf_convert/pdf_to_pdfa.html",
+        "converter_args": {
+            "page_title": _(
+                "PDF to PDF/A Converter - ISO 19005 Archival PDF | Convertica"
+            ),
+            "page_description": _(
+                "Convert PDF to PDF/A online for long-term archiving and legal filing. "
+                "PDF/A-1b, PDF/A-2b and PDF/A-3b (ISO 19005) with embedded fonts and "
+                "ICC color. Fast, secure, files deleted after conversion."
+            ),
+            "page_keywords": (
+                # Primary
+                "convert pdf to pdf/a, pdf to pdf/a converter, pdf/a converter online, "
+                "pdf to pdfa, make pdf pdf/a compliant, pdf/a conversion, "
+                # Level-specific
+                "pdf to pdf/a-1b, pdf to pdf/a-2b, pdf to pdf/a-3b, iso 19005 converter, "
+                "pdf/a-1b converter, pdf/a-2b online, convert pdf to pdf/a-2b free, "
+                # Use case
+                "pdf for court filing, pdf for archiving, pdf long term preservation, "
+                "pdf/a for tax records, pdf/a for thesis, pdf/a for tenders, "
+                "convert pdf for legal submission, archival pdf converter, zugferd pdf/a-3, "
+                # Platform / quality
+                "pdf/a converter mac, pdf/a converter windows, pdf/a embed fonts, "
+                "pdf/a compliant pdf, validate pdf/a, pdf/a with icc profile, "
+                # Free / comparison
+                "pdf/a converter no registration, pdf/a converter no watermark, "
+                "adobe acrobat pdf/a alternative, foxit pdf/a alternative, best pdf/a converter 2026"
+            ),
+            "page_subtitle": _(
+                "Turn any PDF into a self-contained PDF/A file for archiving, "
+                "courts, and compliance"
+            ),
+            "header_text": _("PDF to PDF/A Converter"),
+            "file_input_name": "pdf_file",
+            "file_accept": ".pdf",
+            "api_url_name": "pdf_to_pdfa_api",
+            "replace_regex": r"\.pdf$",
+            "replace_to": "_pdfa.pdf",
+            "button_text": _("Convert to PDF/A"),
+            "select_file_message": _("Please select a PDF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Built to Last Decades"),
+                    "description": _(
+                        "Fonts are embedded and colors pinned to an ICC profile, so the "
+                        "file renders the same in 20 years as it does today"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Accepted by Courts & Agencies"),
+                    "description": _(
+                        "Many courts, tax authorities and tenders accept PDF/A only. "
+                        "We validate the output structurally so you submit with confidence"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h10M4 18h10"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Choose Your Level"),
+                    "description": _(
+                        "PDF/A-1b for maximum compatibility, 2b for modern documents "
+                        "(default), or 3b when you must embed source attachments"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>',
+                    "gradient": "from-amber-500 to-orange-600",
+                    "title": _("Private & Secure"),
+                    "description": _(
+                        "Files are processed over an encrypted connection and deleted "
+                        "right after conversion. No registration for the landing page"
+                    ),
+                },
+            ],
+            "benefits_title": _("Why convert to PDF/A with Convertica?"),
+            "page_faq": [
+                {
+                    "question": _("What is PDF/A and why do I need it?"),
+                    "answer": _(
+                        "PDF/A (ISO 19005) is the archival standard for PDF. A PDF/A file is "
+                        "fully self-contained: all fonts are embedded, colors are described by "
+                        "an ICC profile, and features that would break long-term display "
+                        "(JavaScript, encryption, external links, audio/video) are removed. "
+                        "Courts, government agencies, tax authorities and universities often "
+                        "require PDF/A because the file will look the same for decades."
+                    ),
+                },
+                {
+                    "question": _("Which PDF/A level should I choose: 1b, 2b or 3b?"),
+                    "answer": _(
+                        "Choose PDF/A-2b (the default) for most documents - it is modern and "
+                        "supports transparency and layers. Choose PDF/A-1b when an authority "
+                        "specifically requires the oldest, most compatible level (transparency "
+                        "is flattened). Choose PDF/A-3b only when you must embed source files "
+                        "such as the original invoice XML (for example ZUGFeRD e-invoices)."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Is the converted file guaranteed to pass validation?"
+                    ),
+                    "answer": _(
+                        "We verify every output structurally - it must carry a PDF/A "
+                        "OutputIntent and declare the conformance level you selected, or we "
+                        "return an error instead of a non-compliant file. For a legally binding "
+                        "submission we recommend a final check with a full validator such as "
+                        "veraPDF, the open-source industry reference."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Why do some fonts look slightly different afterwards?"
+                    ),
+                    "answer": _(
+                        "PDF/A requires every font to be embedded. If the source PDF references "
+                        "a font that cannot be embedded (for licensing or technical reasons), the "
+                        "converter substitutes the closest free equivalent so the file stays "
+                        "compliant. Text stays sharp and selectable; only the exact glyph shapes "
+                        "may differ slightly."
+                    ),
+                },
+                {
+                    "question": _("Can I convert a password-protected PDF?"),
+                    "answer": _(
+                        "No - PDF/A does not allow encryption, so a protected PDF must be "
+                        "unlocked first. Use our Unlock PDF tool to remove the password, then "
+                        "convert the result to PDF/A."
+                    ),
+                },
+                {
+                    "question": _("Do you keep my documents?"),
+                    "answer": _(
+                        "No. Your file is converted and then deleted automatically. We do not "
+                        "store, share, or index your documents."
+                    ),
+                },
+            ],
+            "faq_title": _("PDF to PDF/A Converter - FAQ"),
+            "page_tips": [
+                _("Pick PDF/A-2b unless an authority explicitly asks for 1b or 3b"),
+                _("Unlock password-protected PDFs first - PDF/A cannot be encrypted"),
+                _(
+                    "Text-based PDFs convert most reliably; scanned pages are archived as images"
+                ),
+                _(
+                    "For legally binding filings, run the result through veraPDF as a final check"
+                ),
+                _(
+                    "Use PDF/A-3b when you need to embed the original source file (e.g. e-invoice XML)"
+                ),
+            ],
+            "tips_title": _("Tips for reliable PDF/A conversion"),
+            "page_content_title": _(
+                "Convert PDF to PDF/A for archiving, courts and compliance"
+            ),
+            "page_content_body": _(
+                "<p>The <strong>PDF to PDF/A converter</strong> turns an ordinary PDF into an "
+                "<strong>ISO 19005</strong> archival file that is guaranteed to display the same "
+                "way for decades. It embeds all fonts, converts colors to an ICC "
+                "<strong>OutputIntent</strong>, and strips features the standard forbids "
+                "(JavaScript, encryption, external media), then verifies the result actually "
+                "declares conformance.</p>"
+                "<p>PDF/A is the format of choice for <strong>court filings, tax records, tenders, "
+                "medical archives and university theses</strong> - anywhere a document must remain "
+                "readable and unchanged for the long term. We support <strong>PDF/A-1b</strong> "
+                "(maximum compatibility), <strong>PDF/A-2b</strong> (the modern default) and "
+                "<strong>PDF/A-3b</strong> (allows embedded attachments such as ZUGFeRD invoice XML).</p>"
+                "<p>Conversion is a Premium action. The output is validated structurally against "
+                "the level you choose; for legally binding submissions we recommend a final pass "
+                "through the open-source <strong>veraPDF</strong> validator - and we say so "
+                "honestly rather than overpromising.</p>"
+            ),
+        },
+        "extra": {
+            "how_to_time": "PT2M",
+            # Premium action → base.html WebApplication schema advertises the
+            # premium price (test_premium_landing_pages_schema_uses_premium_price).
+            "offer_price": "6",
+        },
+    },
 }
