@@ -35,11 +35,11 @@ def excel_to_pdf_docs() -> Callable:
 
     return swagger_auto_schema(
         operation_summary="Convert Excel to PDF",
-        operation_description="Convert Excel (.xls Northern .xlsx) files to PDF format using LibreOffice.",
+        operation_description="Convert Excel (.xls or .xlsx) files to PDF format using LibreOffice.",
         tags=["Excel Conversion"],
         manual_parameters=[
             openapi.Parameter(
-                "excel",
+                "excel_file",
                 openapi.IN_FORM,
                 type=openapi.TYPE_FILE,
                 required=True,
