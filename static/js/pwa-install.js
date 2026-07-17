@@ -137,7 +137,7 @@ class PWAInstaller {
                 </div>
                 <div class="flex-1 min-w-0">
                     <h3 class="text-sm font-semibold mb-1">Install Convertica</h3>
-                    <p class="text-xs opacity-90 mb-3">Add to your home screen for quick access and offline support!</p>
+                    <p class="text-xs opacity-90 mb-3">Add to your home screen for quick access and offline support! <a href="/install/" class="underline font-medium">How to install</a></p>
                     <div class="flex gap-2">
                         <button id="pwa-install-button" class="px-4 py-2 bg-white text-blue-600 rounded-md text-sm font-medium hover:bg-gray-100 transition-colors">
                             Install
