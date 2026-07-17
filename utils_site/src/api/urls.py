@@ -34,6 +34,7 @@ from .pdf_convert.async_views import (
     PDFToExcelAsyncAPIView,
     PDFToJPGAsyncAPIView,
     PDFToMarkdownAsyncAPIView,
+    PDFToPDFAAsyncAPIView,
     PDFToWordAsyncAPIView,
     WordToPDFAsyncAPIView,
 )
@@ -256,6 +257,11 @@ urlpatterns = [
     ),
     path("compare-pdf/", ComparePDFAPIView.as_view(), name="compare_pdf_api"),
     path("pdf-to-pdfa/", PDFToPDFAAPIView.as_view(), name="pdf_to_pdfa_api"),
+    path(
+        "pdf-to-pdfa/async/",
+        PDFToPDFAAsyncAPIView.as_view(),
+        name="pdf_to_pdfa_async_api",
+    ),
     # Async endpoints (for large files / heavy operations - avoids Cloudflare timeout)
     path(
         "pdf-to-word/async/",
