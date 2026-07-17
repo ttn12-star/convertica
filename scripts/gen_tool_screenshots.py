@@ -289,6 +289,9 @@ FMT = {
     "ico": "ICO",
 }
 BADGE_OVERRIDES = {
+    # premium dashboards (shot by gen_premium_dashboard_screenshots.py)
+    "premium-background-center": ("QUEUE",),
+    "premium-workflows": ("PRESETS",),
     "compare-pdf": ("PDF", "PDF"),
     "scanned-pdf-to-word": ("SCAN", "DOCX"),
     "image-to-text": ("IMG", "TXT"),

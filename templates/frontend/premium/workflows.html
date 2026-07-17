@@ -19,12 +19,13 @@
         <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
           <h1 class="text-2xl sm:text-3xl font-extrabold">{% trans "Saved Workflows" %}</h1>
           <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
-            {% trans "Premium Automation" %}
+            {% trans "Premium Presets" %}
           </span>
         </div>
 
         <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
           {% trans "Save your frequent conversion setups as presets and reopen the right premium tool in one click." %}
+          <a href="{% url 'frontend:saved_workflows_page' %}" class="font-semibold text-amber-700 dark:text-amber-300 underline">{% trans "How Saved Workflows work" %}</a>
         </p>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">

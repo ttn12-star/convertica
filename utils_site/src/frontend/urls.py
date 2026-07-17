@@ -61,6 +61,16 @@ urlpatterns = [
     ),
     path("batch-converter/", views.batch_converter_page, name="batch_converter_page"),
     path(
+        "background-tasks/",
+        views.background_tasks_page,
+        name="background_tasks_page",
+    ),
+    path(
+        "saved-workflows/",
+        views.saved_workflows_page,
+        name="saved_workflows_page",
+    ),
+    path(
         "premium/workflows/",
         views.premium_workflows_page,
         name="premium_workflows_page",

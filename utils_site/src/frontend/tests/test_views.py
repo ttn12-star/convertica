@@ -599,6 +599,59 @@ class FrontendViewsTestCase(TestCase):
             response, reverse("frontend:compare_pdf_page"), status_code=200
         )
 
+    def test_premium_feature_explainer_pages_render_for_anonymous(self):
+        """Background-tasks and saved-workflows landings are public and crawlable."""
+        expected_markers = {
+            "background-tasks/": [
+                "Background PDF Conversion",
+                "How it works",
+                "Tools with background mode",
+            ],
+            "saved-workflows/": [
+                "Saved Workflows",
+                "How it works",
+                "stored only in your browser",
+            ],
+        }
+
+        for path, markers in expected_markers.items():
+            with self.subTest(path=path):
+                response = self.client.get(self._get_url_with_lang(path), follow=False)
+                self.assertEqual(response.status_code, 200)
+                self.assertContains(response, '<link rel="canonical"', status_code=200)
+                self.assertContains(response, '"@type": "FAQPage"', status_code=200)
+                for marker in markers:
+                    self.assertContains(response, marker, status_code=200)
+                # Anonymous visitors get the upgrade CTA, not the dashboard link.
+                self.assertContains(
+                    response, reverse("frontend:pricing"), status_code=200
+                )
+
+    def test_premium_feature_explainer_pages_link_dashboards_for_premium(self):
+        """Premium users get direct dashboard links on the explainer pages."""
+        premium_user = get_user_model().objects.create_user(
+            email="explainer-premium@example.com",
+            password="testpass123",
+            is_premium=True,
+        )
+        self.client.force_login(premium_user)
+
+        response = self.client.get(
+            self._get_url_with_lang("background-tasks/"), follow=False
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response, reverse("frontend:background_center_page"), status_code=200
+        )
+
+        response = self.client.get(
+            self._get_url_with_lang("saved-workflows/"), follow=False
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response, reverse("frontend:premium_workflows_page"), status_code=200
+        )
+
     def test_premium_landing_pages_have_seo_and_help_blocks(self):
         """Premium landing pages should include canonical/meta blocks and help sections."""
         expected_markers = {
