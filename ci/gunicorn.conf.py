@@ -17,7 +17,14 @@ bind = "0.0.0.0:8000"
 # Worker processes
 # Using sync workers instead of gthread for better stability
 # gthread can cause issues with DB connection pooling and memory
-workers = int(os.environ.get("GUNICORN_WORKERS", 2))
+#
+# Default 4 (was 2): 2 sync workers = only 2 concurrent request slots, which a
+# parallel crawl (Ahrefs/Bing/Google hitting uncached HTML at once) saturates,
+# surfacing as 502/521 (see incident: origin 5XX under crawl). The droplet is
+# now 2 vCPU / 4 GB (resized from 2 GB) and near-idle (~5% CPU), and the web
+# container limit is 1.8 GB — 4 sync workers (~1.0-1.1 GB) fit with headroom.
+# Still env-overridable: raise GUNICORN_WORKERS further if crawls still queue.
+workers = int(os.environ.get("GUNICORN_WORKERS", 4))
 worker_class = (
     "sync"  # Changed from gthread - more stable, avoids connection pool issues
 )
