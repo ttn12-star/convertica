@@ -13,3 +13,17 @@ class InstallPageTests(TestCase):
         body = resp.content.decode()
         self.assertIn("iPhone", body)  # iOS manual-install section
         self.assertIn("Android", body)
+
+    def test_has_ios_manual_step(self):
+        body = self.client.get(reverse("frontend:install_page")).content.decode()
+        self.assertIn("Add to Home Screen", body)
+
+    def test_cross_device_is_honest_about_files(self):
+        # We must NOT promise file/session sync — the page must state files
+        # are never stored/synced.
+        body = self.client.get(reverse("frontend:install_page")).content.decode()
+        self.assertRegex(body.lower(), r"files? (are|is) never (stored|synced)")
+
+    def test_faqpage_schema_present(self):
+        body = self.client.get(reverse("frontend:install_page")).content.decode()
+        self.assertIn('"@type": "FAQPage"', body)

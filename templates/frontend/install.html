@@ -11,11 +11,145 @@
 {% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
 {% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
 
+{% block structured_data %}
+  {{ block.super }}
+  {% if page_faq %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endblock %}
+
 {% block content %}
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
-    <h1 class="text-2xl font-extrabold">{% trans "Install the Convertica App" %}</h1>
-    <p>{% trans "Add Convertica to your home screen on Android, iPhone or desktop." %}</p>
-    <h2>Android</h2>
-    <h2>iPhone / iPad</h2>
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-slate-950 text-gray-900 dark:text-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14">
+      {% include "frontend/includes/breadcrumbs.html" %}
+
+      {# Hero #}
+      <section class="mt-4 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-blue-100 dark:border-blue-900/40 p-6 sm:p-8">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <span class="flex items-center justify-center w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-lg">
+            <svg class="w-6 h-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold">{% trans "Install the Convertica app" %}</h1>
+        </div>
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+          {% trans "Convertica installs straight from your browser as an app: an icon on your home screen, a full-screen window and offline access. There is nothing to download from the App Store or Google Play." %}
+        </p>
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+          {% trans "Sign in once and your account travels with you: on every device you keep your Premium status, your saved presets and your conversion history." %}
+        </p>
+      </section>
+
+      {# Install by platform #}
+      <h2 class="text-lg sm:text-xl font-bold mt-8 mb-4">{% trans "Install it on your device" %}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {# Android #}
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700 p-5">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-6 h-6 text-green-600 dark:text-green-400" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18a.4.4 0 00-.69-.4l-1.86 3.23a11.4 11.4 0 00-9.78 0L5.25 5.9a.4.4 0 10-.69.4L6.4 9.48A10.8 10.8 0 001 18h22a10.8 10.8 0 00-5.4-8.52zM7 15.25a1 1 0 110-2 1 1 0 010 2zm10 0a1 1 0 110-2 1 1 0 010 2z"/></svg>
+            <h3 class="text-base font-bold">{% trans "Android (Chrome, Edge)" %}</h3>
+          </div>
+          <ol class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-green-500 text-white text-xs font-bold flex items-center justify-center">1</span><span>{% trans "Open convertica.net in Chrome or Edge." %}</span></li>
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-green-500 text-white text-xs font-bold flex items-center justify-center">2</span><span>{% trans "Tap the Install banner, or open the browser menu and choose Install app." %}</span></li>
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-green-500 text-white text-xs font-bold flex items-center justify-center">3</span><span>{% trans "Confirm, and the Convertica icon lands on your home screen." %}</span></li>
+          </ol>
+        </div>
+        {# iOS #}
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-md border border-blue-200 dark:border-blue-800 p-5 ring-1 ring-blue-200 dark:ring-blue-900/40">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-6 h-6 text-gray-900 dark:text-gray-100" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24"><path d="M16.36 12.9c-.02-2.1 1.72-3.11 1.8-3.16-.98-1.44-2.5-1.63-3.05-1.65-1.3-.13-2.53.76-3.19.76-.65 0-1.67-.74-2.75-.72-1.42.02-2.72.82-3.45 2.09-1.47 2.55-.38 6.32 1.06 8.39.7 1.01 1.54 2.15 2.63 2.11 1.05-.04 1.45-.68 2.72-.68 1.27 0 1.63.68 2.75.66 1.13-.02 1.85-1.03 2.55-2.05.8-1.18 1.13-2.32 1.15-2.38-.03-.01-2.2-.85-2.22-3.37zM14.3 6.6c.58-.7.97-1.68.86-2.65-.83.03-1.85.55-2.45 1.25-.53.62-1 1.61-.87 2.56.93.07 1.88-.47 2.46-1.16z"/></svg>
+            <h3 class="text-base font-bold">{% trans "iPhone / iPad (Safari)" %}</h3>
+          </div>
+          <ol class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">1</span><span>{% trans "Open convertica.net in Safari." %}</span></li>
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">2</span><span>{% trans "Tap the Share button, then choose Add to Home Screen." %}</span></li>
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">3</span><span>{% trans "Tap Add. iOS has no automatic prompt, so this manual step is the whole trick." %}</span></li>
+          </ol>
+        </div>
+        {# Desktop #}
+        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700 p-5">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            <h3 class="text-base font-bold">{% trans "Desktop (Chrome, Edge)" %}</h3>
+          </div>
+          <ol class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-purple-500 text-white text-xs font-bold flex items-center justify-center">1</span><span>{% trans "Open convertica.net in Chrome or Edge." %}</span></li>
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-purple-500 text-white text-xs font-bold flex items-center justify-center">2</span><span>{% trans "Click the install icon at the end of the address bar." %}</span></li>
+            <li class="flex gap-2"><span class="flex-shrink-0 w-5 h-5 rounded-full bg-purple-500 text-white text-xs font-bold flex items-center justify-center">3</span><span>{% trans "Convertica opens in its own window, like a desktop app." %}</span></li>
+          </ol>
+        </div>
+      </div>
+
+      {# What you get #}
+      <h2 class="text-lg sm:text-xl font-bold mt-8 mb-4">{% trans "What the app gives you" %}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/60 dark:bg-gray-900/40 p-4">
+          <h3 class="text-base font-bold">{% trans "Home-screen launch" %}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{% trans "One tap to a full-screen Convertica, no address bar, no browser tabs in the way." %}</p>
+        </div>
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/60 dark:bg-gray-900/40 p-4">
+          <h3 class="text-base font-bold">{% trans "Works offline" %}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{% trans "The app opens even with no connection. Conversions run on our servers, so those still need you online." %}</p>
+        </div>
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/60 dark:bg-gray-900/40 p-4">
+          <h3 class="text-base font-bold">{% trans "Share files straight in" %}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{% trans "Use your phone's Share menu to send a PDF or image directly to Convertica." %}</p>
+        </div>
+        <div class="rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/60 dark:bg-gray-900/40 p-4">
+          <h3 class="text-base font-bold">{% trans "Quick-action shortcuts" %}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">{% trans "Jump straight to popular tools from the app icon's shortcut menu." %}</p>
+        </div>
+      </div>
+
+      {# Your account on every device #}
+      <section class="mt-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-amber-200 dark:border-amber-800 p-6 sm:p-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <h2 class="text-lg sm:text-xl font-bold">{% trans "Your account on every device" %}</h2>
+          <span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">{% trans "Premium" %}</span>
+        </div>
+        <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+          {% trans "Convertica does not sync your work sessions or your files between devices - it does not need to. What travels with your account, the moment you sign in anywhere, is this:" %}
+        </p>
+        <ul class="space-y-3 mb-5">
+          <li class="flex items-start gap-3 text-sm sm:text-base text-gray-700 dark:text-gray-300"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center"><svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></span><span>{% trans "Premium status and no daily limits, wherever you log in." %}</span></li>
+          <li class="flex items-start gap-3 text-sm sm:text-base text-gray-700 dark:text-gray-300"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center"><svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></span><span>{% trans "Saved Workflows presets - your named tool-and-settings shortcuts, synced so they show up on your phone and your laptop alike." %}</span></li>
+          <li class="flex items-start gap-3 text-sm sm:text-base text-gray-700 dark:text-gray-300"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center"><svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></span><span>{% trans "Conversion history for the last 12 months, tied to your account." %}</span></li>
+          <li class="flex items-start gap-3 text-sm sm:text-base text-gray-700 dark:text-gray-300"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center"><svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></span><span>{% trans "A push notification on every device when a background task is done, or the finished file by email." %}</span></li>
+        </ul>
+        <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {% trans "Your files are never stored or synced. They are processed and then deleted about an hour later - only your presets and history metadata live on your account." %}
+          </p>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          {% if is_premium_active %}
+            <a href="{% url 'users:history' %}" class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">{% trans "View your history" %}</a>
+            <a href="{% url 'frontend:premium_workflows_page' %}" class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">{% trans "Saved Workflows" %}</a>
+          {% elif PAYMENTS_ENABLED %}
+            <a href="{% url 'frontend:pricing' %}" class="inline-flex items-center px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold text-sm transition-colors">{% trans "See Premium" %}</a>
+          {% endif %}
+          <a href="{% url 'frontend:all_tools_page' %}" class="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 font-semibold text-sm hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">{% trans "All Tools" %}</a>
+        </div>
+      </section>
+
+      {% include "frontend/includes/seo_faq.html" with faq=page_faq %}
+    </div>
   </div>
 {% endblock %}
