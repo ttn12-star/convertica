@@ -19,8 +19,6 @@ def add_watermark_docs() -> Callable:
         return swagger_auto_schema(
             operation_description="Add text or image watermark to PDF pages. "
             "You can customize position, opacity, and font size.",
-            auto_schema=None,  # Completely disable auto schema generation
-            schema=None,  # Prevent auto-detection from serializer
             manual_parameters=[
                 openapi.Parameter(
                     "pdf_file",
@@ -69,7 +67,7 @@ def add_watermark_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="PDF file with watermark.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, invalid parameters, etc.).",
                 413: "File too large.",
