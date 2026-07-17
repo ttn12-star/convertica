@@ -1,0 +1,18 @@
+%!
+% Convertica PDF/A OutputIntent prelude (rendered per request).
+% __ICC_PATH__ and __TITLE__ are substituted at runtime by utils._render_def_ps.
+[ /Title (__TITLE__) /DOCINFO pdfmark
+
+[/_objdef {icc_PDFA} /type /stream /OBJ pdfmark
+[{icc_PDFA} << /N 3 >> /PUT pdfmark
+[{icc_PDFA} (__ICC_PATH__) (r) file /PUT pdfmark
+
+[/_objdef {OutputIntent_PDFA} /type /dict /OBJ pdfmark
+[{OutputIntent_PDFA} <<
+  /Type /OutputIntent
+  /S /GTS_PDFA1
+  /DestOutputProfile {icc_PDFA}
+  /OutputConditionIdentifier (sRGB)
+  /Info (sRGB IEC61966-2.1)
+>> /PUT pdfmark
+[{Catalog} << /OutputIntents [ {OutputIntent_PDFA} ] >> /PUT pdfmark

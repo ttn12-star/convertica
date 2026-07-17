@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install PDF processing dependencies (cached separately)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
+    ghostscript \
     tesseract-ocr \
     tesseract-ocr-eng \
     libmupdf-dev \
@@ -118,6 +119,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
+    ghostscript \
     tesseract-ocr \
     tesseract-ocr-eng \
     libmupdf-dev \
