@@ -29,8 +29,66 @@
         }
     }
 
+    // ─── Server sync (premium) ──────────────────────────────────────────
+    // localStorage stays the working cache; the full set is pushed after
+    // every change and pulled on the dashboard, so presets follow the
+    // account across devices. Last write wins.
+
+    function getCsrfToken() {
+        // CSRF_COOKIE_HTTPONLY is on — the cookie is unreadable from JS, so
+        // take the token from the DOM (same pattern as background-tasks.js).
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        if (meta && meta.content) return meta.content;
+        const input = document.querySelector('[name=csrfmiddlewaretoken]');
+        if (input && input.value) return input.value;
+        const match = document.cookie.match(/(?:^|;\s*)csrftoken=([^;]+)/);
+        return match ? match[1] : '';
+    }
+
+    let pushTimer = null;
+
+    function pushPresets() {
+        clearTimeout(pushTimer);
+        pushTimer = setTimeout(function () {
+            fetch('/api/workflows/', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrfToken(),
+                },
+                body: JSON.stringify({ presets: getPresets() }),
+            }).catch(function () { /* offline/expired session — cache still works */ });
+        }, 400);
+    }
+
+    const SYNC_FLAG = 'convertica_wf_synced';
+
+    function syncFromServer() {
+        fetch('/api/workflows/', { headers: { 'X-CSRFToken': getCsrfToken() } })
+            .then(function (response) {
+                if (!response.ok) throw new Error('sync unavailable');
+                return response.json();
+            })
+            .then(function (data) {
+                const server = Array.isArray(data.presets) ? data.presets : [];
+                // Once this browser has synced, the account copy is
+                // authoritative — including an empty one (Clear All on
+                // another device must not resurrect here).
+                if (server.length || localStorage.getItem(SYNC_FLAG)) {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(server.slice(0, MAX_PRESETS)));
+                    window.dispatchEvent(new CustomEvent('convertica:workflows-synced'));
+                } else if (getPresets().length) {
+                    // First device with local presets seeds the account copy.
+                    pushPresets();
+                }
+                localStorage.setItem(SYNC_FLAG, '1');
+            })
+            .catch(function () { /* non-premium/offline — local-only mode */ });
+    }
+
     function savePresets(presets) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(presets.slice(0, MAX_PRESETS)));
+        pushPresets();
     }
 
     // ─── Serialize current form settings ────────────────────────────────
@@ -135,6 +193,8 @@
         history.replaceState(null, '', window.location.pathname + window.location.search);
     }
 
+    window.pushWorkflowPresets = pushPresets;
+
     window.encodeWorkflowParams = function (params) {
         try {
             return btoa(unescape(encodeURIComponent(JSON.stringify(params))))
@@ -144,13 +204,18 @@
         }
     };
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-            initSaveButton();
-            applyFromHash();
-        });
-    } else {
+    function boot() {
         initSaveButton();
         applyFromHash();
+        // Pull the account copy only where presets are shown/managed.
+        if (document.getElementById('workflowsList')) {
+            syncFromServer();
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
     }
 })();

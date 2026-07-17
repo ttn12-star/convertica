@@ -992,6 +992,24 @@ class UserSubscription(models.Model):
         return cls.objects.update_or_create(user=user, defaults=defaults)
 
 
+class UserWorkflowSet(models.Model):
+    """Premium: cross-device copy of the Saved Workflows presets.
+
+    One row per user holding the whole preset list as JSON — the dashboard
+    replaces the set wholesale (localStorage stays the working cache), so
+    per-preset rows would buy nothing. Shape is validated at the API layer.
+    """
+
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="workflow_set"
+    )
+    presets = models.JSONField(default=list, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"WorkflowSet({self.user_id}, {len(self.presets)} presets)"
+
+
 class PageViewDaily(models.Model):
     """Cookieless, consent-free traffic counter.
 
