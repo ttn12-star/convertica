@@ -2018,6 +2018,7 @@ def _get_sitemap_pages():
     return [
         {"url": "", "priority": "1.0", "changefreq": "daily"},
         {"url": "about/", "priority": "0.8", "changefreq": "monthly"},
+        {"url": "install/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "privacy/", "priority": "0.6", "changefreq": "yearly"},
         {"url": "terms/", "priority": "0.6", "changefreq": "yearly"},
         {"url": "contact/", "priority": "0.7", "changefreq": "monthly"},
