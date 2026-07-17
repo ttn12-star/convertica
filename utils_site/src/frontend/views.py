@@ -1509,15 +1509,16 @@ def saved_workflows_page(request):
 
     Public and crawlable explainer for the premium Saved Workflows
     dashboard. Copy is deliberately honest: presets are quick-access
-    bookmarks with notes, stored in the user's browser.
+    bookmarks with notes; Premium accounts sync them across devices,
+    signed-out use keeps them in the browser.
     """
     context = {
         "page_title": _("Saved Workflows - Reusable Presets for PDF Tasks"),
         "page_description": _(
             "Turn recurring PDF jobs into one-click presets: save the right "
             "tool with your own notes, reopen it instantly, and keep all "
-            "your routine conversions in one dashboard. Presets are stored "
-            "privately in your browser."
+            "your routine conversions in one dashboard. For Premium "
+            "accounts, presets sync securely across your devices."
         ),
         "page_keywords": (
             "pdf workflow, saved conversion presets, recurring pdf tasks, "
