@@ -198,6 +198,7 @@ def breadcrumbs(request):
             "frontend:pdf_to_html_page": _("PDF to HTML"),
             "frontend:pdf_to_markdown_page": _("PDF to Markdown"),
             "frontend:compare_pdf_page": _("Compare Two PDFs"),
+            "frontend:pdf_to_pdfa_page": _("PDF to PDF/A"),
             # PDF Edit
             "frontend:rotate_pdf_page": _("Rotate PDF"),
             "frontend:add_page_numbers_page": _("Add Page Numbers"),

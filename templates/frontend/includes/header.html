@@ -697,6 +697,19 @@
                   </div>
                   <ul class="space-y-1.5 text-sm">
                     <li>
+                      <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
+                         class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                         role="menuitem">
+                        <span class="flex items-center space-x-2.5 min-w-0">
+                          <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
+                          </span>
+                          <span class="font-medium truncate">{% trans "PDF to PDF/A" %}</span>
+                        </span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
+                      </a>
+                    </li>
+                    <li>
                       <a href="{% url 'frontend:compare_pdf_page' %}"
                          class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/20 hover:text-amber-700 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
                          role="menuitem">
@@ -1360,6 +1373,17 @@
                     <p class="text-xs text-gray-500 mb-3">{% trans "Advanced and beta converters" %}</p>
 
                     <div class="space-y-1.5 text-sm">
+                      <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
+                         class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
+                         role="menuitem">
+                        <span class="flex items-center space-x-2.5 min-w-0">
+                          <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
+                          </span>
+                          <span class="font-medium truncate">{% trans "PDF to PDF/A" %}</span>
+                        </span>
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
+                      </a>
                       <a href="{% url 'frontend:compare_pdf_page' %}"
                          class="group flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-100/60 text-gray-700 dark:text-gray-300 hover:text-amber-800 transition-colors"
                          role="menuitem">
@@ -1756,6 +1780,14 @@
           <span>{% trans "Open Catalog" %}</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
         </a>
+        <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
+          <span class="flex items-center min-w-0">
+            <svg class="w-4 h-4 text-blue-600 me-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path></svg>
+            <span class="truncate">{% trans "PDF to PDF/A" %}</span>
+          </span>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold flex-shrink-0">PRO</span>
+        </a>
         <a href="{% url 'frontend:compare_pdf_page' %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-amber-50 dark:hover:bg-amber-900/30 text-gray-700 dark:text-gray-200 transition-colors">
           <span class="flex items-center min-w-0">
@@ -2050,6 +2082,17 @@
         {% trans "Compress PDF" %}
       </a>
       {% if PAYMENTS_ENABLED %}
+        <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
+           class="flex items-center justify-between p-2.5 rounded-lg hover:bg-green-50 text-gray-700 transition-colors">
+          <div class="flex items-center">
+            <svg class="w-4 h-4 text-blue-600 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+            </svg>
+            {% trans "PDF to PDF/A" %}
+          </div>
+          <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">PRO</span>
+        </a>
         <a href="{% url 'frontend:compare_pdf_page' %}"
            class="flex items-center justify-between p-2.5 rounded-lg hover:bg-green-50 text-gray-700 transition-colors">
           <div class="flex items-center">

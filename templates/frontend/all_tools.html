@@ -1012,6 +1012,27 @@
               </p>
             </a>
 
+            <a href="{% url 'frontend:pdf_to_pdfa_page' %}"
+               class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
+              <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
+                PRO
+              </div>
+              <div class="mb-4">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l9-4 9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                {% trans "PDF to PDF/A" %}
+              </h3>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {% trans "Convert PDF to archival PDF/A (ISO 19005) for courts, tax and long-term storage." %}
+              </p>
+            </a>
+
             <a href="{% url 'frontend:compare_pdf_page' %}"
                class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-2 border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
               <div class="absolute top-3 right-3 inline-flex items-center px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-bold">
