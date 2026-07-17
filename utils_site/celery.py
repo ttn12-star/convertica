@@ -38,6 +38,7 @@ try:
     from src.tasks import email  # noqa: F401
     from src.tasks import maintenance  # noqa: F401
     from src.tasks import pdf_conversion  # noqa: F401
+    from src.tasks import push  # noqa: F401
     from src.tasks import user_cleanup  # noqa: F401
 
     # Also autodiscover from our custom tasks package
@@ -65,6 +66,8 @@ try:
             "maintenance.*": {"queue": "maintenance"},
             # Email tasks to default queue
             "email.*": {"queue": "default"},
+            # Web-push tasks to default queue
+            "push.*": {"queue": "default"},
             # Telegram tasks to default queue
             "telegram.*": {"queue": "default"},
         },

@@ -40,6 +40,85 @@
         return task?.taskToken || null;
     }
 
+    // ─── Web-push (premium notification when a background task finishes) ─
+
+    const PUSH_FLAG = 'convertica_push_subscribed';
+
+    function csrfToken() {
+        return document.querySelector('meta[name="csrf-token"]')?.content
+            || document.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
+    }
+
+    function urlBase64ToUint8Array(base64String) {
+        const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+        const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+        const raw = atob(base64);
+        const output = new Uint8Array(raw.length);
+        for (let i = 0; i < raw.length; i += 1) output[i] = raw.charCodeAt(i);
+        return output;
+    }
+
+    async function ensurePushSubscription() {
+        const vapidKey = window.VAPID_PUBLIC_KEY || '';
+        if (!vapidKey || !('serviceWorker' in navigator) || !('PushManager' in window)) return false;
+        if (typeof Notification === 'undefined' || Notification.permission === 'denied') return false;
+
+        try {
+            if (Notification.permission !== 'granted') {
+                const permission = await Notification.requestPermission();
+                if (permission !== 'granted') return false;
+            }
+            const registration = await navigator.serviceWorker.ready;
+            let subscription = await registration.pushManager.getSubscription();
+            if (!subscription) {
+                subscription = await registration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(vapidKey),
+                });
+            }
+            const response = await fetch('/api/push/subscribe/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken() },
+                body: JSON.stringify(subscription.toJSON()),
+            });
+            if (response.ok) {
+                localStorage.setItem(PUSH_FLAG, '1');
+                return true;
+            }
+        } catch (err) {
+            console.warn('[bg-tasks] push subscribe failed:', err);
+        }
+        return false;
+    }
+
+    async function disablePushSubscription() {
+        try {
+            const registration = await navigator.serviceWorker.ready;
+            const subscription = await registration.pushManager.getSubscription();
+            if (subscription) {
+                await fetch('/api/push/subscribe/', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrfToken() },
+                    body: JSON.stringify({ endpoint: subscription.endpoint }),
+                }).catch(() => {});
+                await subscription.unsubscribe();
+            }
+        } catch (err) {
+            console.warn('[bg-tasks] push unsubscribe failed:', err);
+        }
+        localStorage.removeItem(PUSH_FLAG);
+    }
+
+    function isPushEnabled() {
+        return typeof Notification !== 'undefined'
+            && Notification.permission === 'granted'
+            && !!localStorage.getItem(PUSH_FLAG);
+    }
+
+    window.enableBackgroundPush = ensurePushSubscription;
+    window.disableBackgroundPush = disablePushSubscription;
+    window.isBackgroundPushEnabled = isPushEnabled;
+
     // ─── Public API (exposed on window) ─────────────────────────────────
 
     /**
@@ -69,6 +148,11 @@
         if (window.markTaskAsBackground) {
             window.markTaskAsBackground(taskId);
         }
+
+        // Offer a browser notification for when it finishes. The click on
+        // "Continue in background" is the user gesture the permission
+        // prompt needs; declining is remembered by the browser.
+        ensurePushSubscription();
 
         showToast(
             window.BG_TASK_SENT_TEXT || 'Task running in background',

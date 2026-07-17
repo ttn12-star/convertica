@@ -43,6 +43,22 @@
           </div>
         </div>
 
+        <div class="mb-5 p-4 rounded-xl border border-blue-200 dark:border-blue-800 bg-blue-50/40 dark:bg-blue-900/10" id="pushSettingsBox" hidden>
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              <span class="font-semibold">{% trans "Browser notifications" %}</span><br>
+              {% trans "Get a system notification on this device when a background task finishes — even with the tab closed." %}
+            </p>
+            <button type="button"
+                    id="pushToggleBtn"
+                    data-enable-text="{% trans 'Enable notifications' %}"
+                    data-disable-text="{% trans 'Turn off notifications' %}"
+                    class="inline-flex items-center px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-colors">
+              {% trans "Enable notifications" %}
+            </button>
+          </div>
+        </div>
+
         <div class="flex flex-wrap gap-3 mb-5">
           <button type="button"
                   id="queueRefreshBtn"
@@ -398,6 +414,46 @@
           render();
         }
       });
+
+      // Push-notification toggle (background-tasks.js exposes the helpers;
+      // the box stays hidden when web-push is unsupported or keys unset).
+      function initPushToggle() {
+        const box = document.getElementById('pushSettingsBox');
+        const btn = document.getElementById('pushToggleBtn');
+        if (!box || !btn || !window.enableBackgroundPush) {
+          return;
+        }
+        if (!window.VAPID_PUBLIC_KEY || !('PushManager' in window)) {
+          return;
+        }
+        box.hidden = false;
+
+        function refresh() {
+          const on = window.isBackgroundPushEnabled && window.isBackgroundPushEnabled();
+          btn.textContent = on ? btn.dataset.disableText : btn.dataset.enableText;
+          btn.dataset.state = on ? 'on' : 'off';
+        }
+
+        btn.addEventListener('click', async function() {
+          btn.disabled = true;
+          if (btn.dataset.state === 'on') {
+            await window.disableBackgroundPush();
+          } else {
+            await window.enableBackgroundPush();
+          }
+          btn.disabled = false;
+          refresh();
+        });
+
+        refresh();
+      }
+
+      // background-tasks.js is deferred; wait for it before wiring the toggle.
+      if (window.enableBackgroundPush) {
+        initPushToggle();
+      } else {
+        window.addEventListener('load', initPushToggle);
+      }
 
       render();
     })();

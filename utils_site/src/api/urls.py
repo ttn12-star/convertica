@@ -85,6 +85,7 @@ from .pdf_security.protect_pdf.batch_views import ProtectPDFBatchAPIView
 from .pdf_security.protect_pdf.views import ProtectPDFAPIView
 from .pdf_security.unlock_pdf.batch_views import UnlockPDFBatchAPIView
 from .pdf_security.unlock_pdf.views import UnlockPDFAPIView
+from .push_views import PushSubscribeAPIView
 from .user_info_view import UserInfoAPIView
 from .workflow_sync import WorkflowSyncAPIView
 
@@ -104,6 +105,8 @@ urlpatterns = [
     path("task-background/", mark_task_background, name="task_background"),
     # Premium: cross-device Saved Workflows sync (GET/PUT, session auth)
     path("workflows/", WorkflowSyncAPIView.as_view(), name="workflow_sync"),
+    # Premium: web-push subscription for background-task notifications
+    path("push/subscribe/", PushSubscribeAPIView.as_view(), name="push_subscribe"),
     # Sync endpoints (for small files / fast operations)
     path("pdf-to-word/", PDFToWordAPIView.as_view(), name="pdf_to_word_api"),
     path("word-to-pdf/", WordToPDFAPIView.as_view(), name="word_to_pdf_api"),
