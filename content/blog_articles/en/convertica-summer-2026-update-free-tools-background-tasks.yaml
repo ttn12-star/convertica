@@ -1,0 +1,95 @@
+slug: convertica-summer-2026-update-free-tools-background-tasks
+cover_image: blog/images/cover-convertica-summer-2026-update-free-tools-background-tasks.jpg
+status: published
+category_slug: news-updates
+relevant_tool: all_tools
+title_en: 'Convertica Summer 2026 Update: More Free Tools, Background Tasks, Saved Workflows'
+meta_title_en: 'Summer 2026 Update: What''s New | Convertica'
+meta_description_en: 'Five tools moved out of Premium, a shared daily allowance replaced per-tool paywalls, two new converters landed, and Premium can now finish jobs while your tab is closed.'
+meta_keywords_en: convertica update, free pdf tools, heic to jpg free, pdf to markdown free, epub to pdf free, sign pdf online free, pdf to text, pdf to pdf/a converter, password protect photo, background conversion, saved workflows, install pdf app
+excerpt_en: Five tools left Premium, two new converters landed, and Premium learned to keep working after you close the tab. Here is everything that changed this summer.
+ai_metadata:
+  topics:
+  - convertica update
+  - free pdf tools
+  - daily conversion allowance
+  - pdf/a converter
+  - background conversions
+  - saved workflows
+  entities:
+  - Convertica
+  - PDF
+  - PDF/A
+  - HEIC
+  - EPUB
+  - Markdown
+  summary: 'A product news post covering Convertica''s summer 2026 changes: five tools
+    opened to free users under a shared daily allowance, new Protect Image and PDF
+    to PDF/A converters, Premium background conversions with email and push delivery,
+    saved workflows with cross-device sync, app installation, and site-wide speed
+    and privacy improvements.'
+  related_terms:
+  - heic to jpg
+  - pdf to markdown
+  - epub to pdf
+  - sign pdf
+  - pdf to text
+  - aes-256
+  - push notifications
+  - conversion history
+  reading_time_minutes: 3
+  target_audience: Convertica users who want to know what changed recently, both free and Premium.
+content_en: |
+  <p>We have shipped a lot since the last news post. The short version: five tools left Premium, two new converters landed, and Premium learned to keep working after you close the tab. Here is what changed.</p>
+
+  <h2>Five tools are now free</h2>
+  <p>These used to sit behind Premium. Not anymore:</p>
+  <ul>
+    <li><a href="/en/image/heic-to-jpg/">HEIC to JPG</a> (iPhone photos)</li>
+    <li><a href="/en/pdf-to-markdown/">PDF to Markdown</a></li>
+    <li><a href="/en/epub-to-pdf/">EPUB to PDF</a> and <a href="/en/pdf-to-epub/">PDF to EPUB</a></li>
+    <li><a href="/en/pdf-to-text/">PDF to Text</a></li>
+    <li><a href="/en/pdf-edit/sign/">Sign PDF</a></li>
+  </ul>
+  <p>Per-tool paywalls are gone too. In their place there is one simple daily allowance shared by every tool on the site: <strong>10 conversions a day</strong> without an account, <strong>40 a day</strong> with a free account, no limit on Premium. Only successful conversions count, and the counter resets every day. Batch processing, OCR and oversized files stay Premium.</p>
+
+  <h2>New: password-protect a photo</h2>
+  <p>Need to send a passport scan or a document photo? <a href="/en/image/password-protect-image/">Protect Image</a> wraps one or several pictures into a single PDF locked with AES-256 encryption. Whoever receives the file needs the password to open it. Free, like the other image tools.</p>
+
+  <figure><img src="/static/images/tools/image-password-protect-image.jpg" alt="Protect Image tool: turn photos into a password-protected PDF" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>New: PDF to PDF/A for archives</h2>
+  <p>Courts, universities and government portals often accept only PDF/A, the ISO format for long-term archiving. The new <a href="/en/pdf-to-pdfa/">PDF to PDF/A converter</a> outputs PDF/A-1b, 2b or 3b and verifies that the result really declares conformance before handing it to you. Part of Premium.</p>
+
+  <h2>Premium: close the tab, we keep working</h2>
+  <p>Long jobs like OCR on a thick scan used to hold your browser tab hostage. Premium users can now send any long conversion to the background and move on. When it finishes:</p>
+  <ul>
+    <li>the result arrives by email (attached up to 10 MB, otherwise as a download link),</li>
+    <li>the browser shows a push notification, even if you are on another site,</li>
+    <li>the file is waiting in your new conversion history.</li>
+  </ul>
+  <p>The details live on the <a href="/en/background-tasks/">Background Tasks page</a>.</p>
+
+  <figure><img src="/static/images/tools/background-tasks.jpg" alt="Background Tasks queue: conversions keep running after the tab closes" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Premium: saved workflows</h2>
+  <p>Compress invoices with the same settings every Friday? Save the tool together with its settings as a workflow and reopen everything in one click. Workflows live in your browser and sync through your account, so a preset saved at the office shows up on your laptop at home. More on the <a href="/en/saved-workflows/">Saved Workflows page</a>.</p>
+
+  <figure><img src="/static/images/tools/saved-workflows.jpg" alt="Saved Workflows dashboard with tool presets" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Protect PDF: decide what readers may do</h2>
+  <p><a href="/en/pdf-security/protect/">Protect PDF</a> still encrypts files with AES-256 for free. Premium adds permission controls on top: block printing, copying or editing of the protected file.</p>
+
+  <h2>Install Convertica as an app</h2>
+  <p>Convertica now installs on your phone or computer like a regular app: an icon on the home screen, its own window, no browser clutter. No app store involved. The <a href="/en/install/">installation guide</a> covers iPhone, Android, Windows and Mac.</p>
+
+  <h2>Faster, quieter, fixed</h2>
+  <ul>
+    <li>Pages load noticeably faster; most now hit near-perfect PageSpeed scores.</li>
+    <li>We dropped third-party analytics. Visits are counted by our own cookie-free counter.</li>
+    <li>Every tool page now shows a screenshot of the tool in action, and many have short video tutorials.</li>
+    <li>Fixed a bug that rendered converter pages blank for some Arabic-speaking users, plus dozens of smaller converter fixes.</li>
+  </ul>
+
+  <h2>Try it</h2>
+  <p>Everything above is already live. Browse <a href="/en/all-tools/">all tools</a> to see the full lineup, and if something misbehaves, tell us through the <a href="/en/contact/">contact form</a>. Your reports shaped half of this release.</p>

@@ -1,0 +1,60 @@
+slug: convertica-summer-2026-update-free-tools-background-tasks
+title_pl: 'Nowości w Convertica: więcej darmowych narzędzi, zadania w tle i zapisane przepływy'
+meta_title_pl: 'Nowości z lata 2026 | Convertica'
+meta_description_pl: 'Pięć narzędzi wyszło z Premium, jeden wspólny dzienny limit zastąpił blokady płatności, doszły dwa nowe konwertery, a Premium kończy pracę nawet po zamknięciu karty.'
+meta_keywords_pl: 'nowości convertica, darmowe narzędzia pdf, heic na jpg za darmo, pdf na markdown, epub na pdf za darmo, podpisz pdf online, pdf na tekst, konwerter pdf na pdf/a, zdjęcie z hasłem, konwersja w tle, zapisane przepływy pracy'
+excerpt_pl: 'Pięć narzędzi przestało wymagać Premium, doszły dwa nowe konwertery, a Premium pracuje dalej nawet po zamknięciu karty. Oto wszystko, co zmieniło się tego lata.'
+content_pl: |
+  <p>Od ostatniego wpisu z nowościami uzbierało się sporo zmian. W skrócie: pięć narzędzi wyszło z Premium, pojawiły się dwa nowe konwertery, a Premium nauczyło się pracować, gdy Ty robisz coś innego. A teraz po kolei.</p>
+
+  <h2>Pięć narzędzi jest teraz darmowych</h2>
+  <p>Wcześniej wymagały subskrypcji Premium. Już nie:</p>
+  <ul>
+    <li><a href="/pl/image/heic-to-jpg/">HEIC na JPG</a> (zdjęcia z iPhone'a)</li>
+    <li><a href="/pl/pdf-to-markdown/">PDF na Markdown</a></li>
+    <li><a href="/pl/epub-to-pdf/">EPUB na PDF</a> i <a href="/pl/pdf-to-epub/">PDF na EPUB</a></li>
+    <li><a href="/pl/pdf-to-text/">PDF na tekst</a></li>
+    <li><a href="/pl/pdf-edit/sign/">Podpisz PDF</a></li>
+  </ul>
+  <p>Zniknęły też osobne blokady płatności przy narzędziach. Zamiast nich obowiązuje jeden prosty dzienny limit wspólny dla wszystkich narzędzi w serwisie: <strong>10 konwersji dziennie</strong> bez konta, <strong>40 dziennie</strong> z darmowym kontem, bez limitu na Premium. Liczą się tylko udane konwersje, a licznik zeruje się każdego dnia. Przetwarzanie wsadowe, OCR i bardzo duże pliki pozostają w Premium.</p>
+
+  <h2>Nowość: zdjęcie zabezpieczone hasłem</h2>
+  <p>Musisz wysłać skan paszportu albo zdjęcie dokumentu? <a href="/pl/image/password-protect-image/">Chroń obraz</a> pakuje jedno lub kilka zdjęć w jeden PDF zaszyfrowany AES-256. Odbiorca otworzy plik tylko z hasłem. Za darmo, jak pozostałe narzędzia do obrazów.</p>
+
+  <figure><img src="/static/images/tools/image-password-protect-image.jpg" alt="Narzędzie Chroń obraz: zdjęcia zamieniają się w PDF z hasłem" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Nowość: PDF na PDF/A do archiwów</h2>
+  <p>Sądy, uczelnie i portale urzędowe często przyjmują wyłącznie PDF/A, format ISO do długoterminowej archiwizacji. Nowy <a href="/pl/pdf-to-pdfa/">konwerter PDF na PDF/A</a> tworzy pliki PDF/A-1b, 2b lub 3b i przed oddaniem sprawdza, czy wynik faktycznie deklaruje zgodność ze standardem. Część Premium.</p>
+
+  <h2>Premium: zamknij kartę, my dokończymy</h2>
+  <p>Długie zadania, jak OCR grubego skanu, trzymały dotąd kartę przeglądarki jako zakładnika. Teraz użytkownicy Premium mogą wysłać każdą długą konwersję w tło i zająć się swoimi sprawami. Gdy praca się skończy:</p>
+  <ul>
+    <li>wynik przychodzi mailem (załącznik do 10 MB, powyżej jako link do pobrania),</li>
+    <li>przeglądarka pokazuje powiadomienie push, nawet gdy jesteś na innej stronie,</li>
+    <li>plik czeka w nowej historii konwersji.</li>
+  </ul>
+  <p>Szczegóły na stronie <a href="/pl/background-tasks/">zadań w tle</a>.</p>
+
+  <figure><img src="/static/images/tools/background-tasks.jpg" alt="Kolejka zadań w tle: konwersja trwa po zamknięciu karty" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Premium: zapisane przepływy pracy</h2>
+  <p>Co piątek kompresujesz faktury z tymi samymi ustawieniami? Zapisz narzędzie razem z ustawieniami jako przepływ pracy i otwieraj wszystko jednym kliknięciem. Przepływy mieszkają w przeglądarce i synchronizują się przez konto: preset zapisany w biurze pojawi się też na laptopie w domu. Więcej na stronie <a href="/pl/saved-workflows/">zapisanych przepływów</a>.</p>
+
+  <figure><img src="/static/images/tools/saved-workflows.jpg" alt="Panel zapisanych przepływów pracy z presetami narzędzi" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Chroń PDF: Ty decydujesz, co wolno czytelnikowi</h2>
+  <p><a href="/pl/pdf-security/protect/">Chroń PDF</a> nadal za darmo szyfruje pliki AES-256. Premium dodaje do tego kontrolę uprawnień: możesz zablokować drukowanie, kopiowanie lub edycję chronionego pliku.</p>
+
+  <h2>Convertica jako aplikacja</h2>
+  <p>Convertica instaluje się teraz na telefonie lub komputerze jak zwykła aplikacja: ikona na ekranie głównym, własne okno, zero rozpraszaczy przeglądarki. Bez żadnego sklepu z aplikacjami. <a href="/pl/install/">Instrukcja instalacji</a> obejmuje iPhone'a, Androida, Windows i Maca.</p>
+
+  <h2>Szybciej, ciszej, stabilniej</h2>
+  <ul>
+    <li>Strony ładują się wyraźnie szybciej; większość osiąga niemal maksymalny wynik w PageSpeed.</li>
+    <li>Zrezygnowaliśmy z zewnętrznej analityki. Odwiedziny liczy nasz własny licznik bez cookies.</li>
+    <li>Każda strona narzędzia pokazuje teraz zrzut ekranu interfejsu, a wiele ma krótkie samouczki wideo.</li>
+    <li>Naprawiliśmy błąd, przez który część arabskojęzycznych użytkowników widziała puste strony konwerterów, plus dziesiątki drobniejszych poprawek.</li>
+  </ul>
+
+  <h2>Wypróbuj</h2>
+  <p>Wszystko powyżej już działa. Zajrzyj do <a href="/pl/all-tools/">katalogu narzędzi</a>, a jeśli coś zachowuje się dziwnie, napisz przez <a href="/pl/contact/">formularz kontaktowy</a>. Połowa tego wydania wzięła się z Waszych zgłoszeń.</p>
