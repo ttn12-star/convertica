@@ -240,6 +240,8 @@ def breadcrumbs(request):
             "frontend:crop_pdf_page": _("Crop PDF"),
             "frontend:flatten_pdf_page": _("Flatten PDF"),
             "frontend:sign_pdf_page": _("Sign PDF"),
+            "frontend:add_text_pdf_page": _("Add Text to PDF"),
+            "frontend:pdf_editor_page": _("PDF Editor"),
             # PDF Organize
             "frontend:merge_pdf_page": _("Merge PDF"),
             "frontend:split_pdf_page": _("Split PDF"),

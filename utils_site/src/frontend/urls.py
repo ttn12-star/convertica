@@ -95,6 +95,7 @@ urlpatterns = [
     path("pdf-edit/flatten/", views.flatten_pdf_page, name="flatten_pdf_page"),
     path("pdf-edit/sign/", views.sign_pdf_page, name="sign_pdf_page"),
     path("pdf-edit/add-text/", views.add_text_pdf_page, name="add_text_pdf_page"),
+    path("pdf-editor/", views.pdf_editor_page, name="pdf_editor_page"),
     # Image tool pages
     path("image/optimize/", views.optimize_image_page, name="optimize_image_page"),
     path("image/convert/", views.convert_image_page, name="convert_image_page"),

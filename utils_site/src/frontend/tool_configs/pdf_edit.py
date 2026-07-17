@@ -941,4 +941,157 @@ PDF_EDIT_CONFIGS = {
             ),
         },
     },
+    "pdf_editor": {
+        "template": "frontend/pdf_edit/pdf_editor.html",
+        "converter_args": {
+            "page_title": _(
+                "Free Online PDF Editor - Edit PDF Files Online | Convertica"
+            ),
+            "page_description": _(
+                "Edit PDF files online free: add text, images, shapes, freehand "
+                "drawing, and your signature. Whiteout and highlight included. "
+                "No registration, no watermark, no software to install."
+            ),
+            "page_keywords": (
+                "pdf editor, online pdf editor, pdf editor online, "
+                "edit pdf online free, free pdf editor, edit pdf online, "
+                "pdf editor free, edit pdf file online, online pdf editor free, "
+                "pdf editing tool, edit pdf online without installing software"
+            ),
+            "page_subtitle": _(
+                "Add text, images, shapes, freehand drawing, and your signature — click, edit, download"
+            ),
+            "header_text": _("Free Online PDF Editor"),
+            "file_input_name": "pdf_file",
+            "file_accept": ".pdf",
+            "api_url_name": "pdf_editor_api",
+            "replace_regex": r"\.pdf$",
+            "replace_to": "_edited.pdf",
+            "button_text": _("Edit PDF"),
+            "select_file_message": _("Please select a PDF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>',
+                    "gradient": "from-violet-500 to-fuchsia-600",
+                    "title": _("Real, Selectable Text"),
+                    "description": _(
+                        "Typed text is embedded as genuine PDF text with the font included — it stays selectable and copyable, not a picture of text"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Images, Shapes & Freehand Drawing"),
+                    "description": _(
+                        "Drop in images, draw rectangles, ellipses, lines, and arrows, or sketch freehand — all on top of your PDF pages"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>',
+                    "gradient": "from-amber-500 to-orange-600",
+                    "title": _("Sign Without Leaving the Editor"),
+                    "description": _(
+                        "Draw, type, or upload a signature and place it right in the same editing session — no separate tool required"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>',
+                    "gradient": "from-teal-500 to-emerald-600",
+                    "title": _("Any Language"),
+                    "description": _(
+                        "Latin, Cyrillic, Arabic, and Devanagari text all render correctly with embedded Noto fonts — most online editors break on non-Latin scripts"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("No Artificial Limits"),
+                    "description": _(
+                        "Edit as many pages and objects as you need in a single session — free, with no forced sign-up wall many competitors put up front"
+                    ),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("Is this PDF editor really free?"),
+                    "answer": _(
+                        "Yes. Adding text, images, shapes, freehand drawing, and a "
+                        "signature is free with a daily usage limit; no sign-up is "
+                        "required to start editing."
+                    ),
+                },
+                {
+                    "question": _(
+                        "Can I edit existing text that is already in the PDF?"
+                    ),
+                    "answer": _(
+                        "Not yet — this editor adds new content on top of the page "
+                        "(text, images, shapes, drawings, whiteout, highlight); it "
+                        "does not let you click into and rewrite text that already "
+                        "exists in the document. Editing existing text is on the "
+                        "roadmap."
+                    ),
+                },
+                {
+                    "question": _("Does whiteout really remove the covered content?"),
+                    "answer": _(
+                        "No — whiteout paints an opaque rectangle over the content, "
+                        "like correction tape on paper. The original content remains "
+                        "in the file underneath. Do not use it to hide confidential "
+                        "data; that requires true redaction, not whiteout."
+                    ),
+                },
+                {
+                    "question": _("Will my added text stay selectable in the PDF?"),
+                    "answer": _(
+                        "Yes. Typed text is embedded as real PDF text with the font "
+                        "subset included, so it stays sharp at any zoom level and can "
+                        "be selected and copied in any PDF reader — it is not "
+                        "rasterized into an image."
+                    ),
+                },
+                {
+                    "question": _("What can I add to a PDF with this editor?"),
+                    "answer": _(
+                        "Text boxes, images, a signature (drawn, typed, or "
+                        "uploaded), rectangles, ellipses, lines, arrows, freehand "
+                        "ink drawing, whiteout rectangles, highlights, and quick "
+                        "checkmark/cross/bullet/arrow symbols."
+                    ),
+                },
+            ],
+            "faq_title": _("PDF Editor FAQ"),
+            "page_tips": [
+                _(
+                    "Double-click any placed text box to edit it again; drag to move it, pull the corner handle to resize."
+                ),
+                _(
+                    "Draw your signature once and reuse it across every page of a long document."
+                ),
+                _(
+                    "Undo (Ctrl+Z) and redo (Ctrl+Y) work across every tool — text, shapes, ink, and whiteout included."
+                ),
+            ],
+            "tips_title": _("Tips for Editing PDFs Online"),
+            "page_content_title": _(
+                "Edit a PDF online — text, images, shapes, and a signature in one place"
+            ),
+            "page_content_body": _(
+                "<p>This <strong>online PDF editor</strong> puts everything you need "
+                "for a quick edit in one page: click to type text, drop in an image, "
+                "draw a shape or freehand line, and sign — all directly on top of "
+                "your PDF, then download the result. Typed text is written into the "
+                "PDF as real, selectable text with the font embedded, not flattened "
+                "into a picture.</p>"
+                "<p>Whiteout and highlight are included for covering mistakes and "
+                "marking important lines, plus checkmark, cross, bullet, and arrow "
+                "symbols for quick form fill-ins. Files are deleted automatically "
+                "right after download; whiteout is a visual cover-up, not "
+                "redaction, so the original content remains in the file "
+                "underneath.</p>"
+            ),
+        },
+    },
 }

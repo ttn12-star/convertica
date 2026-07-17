@@ -226,6 +226,15 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>',
             "gradient": "from-teal-500 to-emerald-600",
         },
+        "pdf_editor": {
+            "name": _("PDF Editor"),
+            "url": "frontend:pdf_editor_page",
+            "description": _(
+                "Add text, images, shapes, signatures and drawings to PDF"
+            ),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>',
+            "gradient": "from-violet-500 to-fuchsia-600",
+        },
         "pdf_to_text": {
             "name": _("PDF to Text"),
             "url": "frontend:pdf_to_text_page",
@@ -340,7 +349,8 @@ def _get_related_tools(current_tool):
         # link" warnings on these tool/category pairs.
         "flatten_pdf": ["add_watermark", "rotate_pdf", "organize_pdf"],
         "sign_pdf": ["add_text_pdf", "add_watermark", "protect_pdf"],
-        "add_text_pdf": ["sign_pdf", "add_watermark", "flatten_pdf"],
+        "add_text_pdf": ["pdf_editor", "sign_pdf", "add_watermark", "flatten_pdf"],
+        "pdf_editor": ["sign_pdf", "add_text_pdf", "flatten_pdf", "organize_pdf"],
         "pdf_to_text": ["pdf_to_word", "pdf_to_markdown", "split_pdf"],
         "optimize_image": [
             "convert_image",
@@ -684,6 +694,12 @@ def sign_pdf_page(request):
 def add_text_pdf_page(request):
     """Add Text to PDF page."""
     return _render_tool_page(request, "add_text_pdf")
+
+
+@anonymous_cache_page(60 * 60)
+def pdf_editor_page(request):
+    """Free Online PDF Editor page."""
+    return _render_tool_page(request, "pdf_editor")
 
 
 @anonymous_cache_page(60 * 60)
@@ -2101,6 +2117,7 @@ def _get_sitemap_pages():
         {"url": "pdf-edit/flatten/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-edit/sign/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-edit/add-text/", "priority": "0.8", "changefreq": "monthly"},
+        {"url": "pdf-editor/", "priority": "0.9", "changefreq": "weekly"},
         {"url": "image/optimize/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/convert/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/heic-to-jpg/", "priority": "0.7", "changefreq": "monthly"},
@@ -2181,7 +2198,7 @@ def sitemap_lang(request, lang: str):
 
         raise Http404("Invalid language")
 
-    cache_key = f"sitemap_{lang}_v5"  # v5: premium landing screenshots added
+    cache_key = f"sitemap_{lang}_v6"  # v6: /pdf-editor/ page added
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")
