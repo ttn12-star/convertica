@@ -336,6 +336,14 @@ SITE_URL = config("SITE_URL", default="http://localhost:8003")
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = True
 
+# Django defaults COOP to "same-origin", which severs window.opener for the
+# popups the Drive/Dropbox importers open (Google GIS token client, Google
+# Picker, Dropbox Chooser) — the popup can't postMessage its result back, so
+# picking a file silently fails ("Could not communicate with convertica.net").
+# "same-origin-allow-popups" keeps COOP protection for the page while letting
+# popups it opens retain the opener relationship.
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
+
 
 # Application definition
 
