@@ -562,6 +562,7 @@ def _tool_screenshot_paths(tool_key: str) -> tuple[str, str] | None:
 # Tools with a single-file /async/ API route (api/urls.py) — the only ones
 # where "Email me the result" can work (converter.js forces async for them).
 EMAIL_RESULT_ASYNC_TOOLS = {
+    "pdf_to_pdfa",
     "pdf_to_word",
     "word_to_pdf",
     "pdf_to_excel",

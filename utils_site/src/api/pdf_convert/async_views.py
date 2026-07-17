@@ -20,6 +20,8 @@ from ..conversion_limits import MAX_FILE_SIZE_HEAVY, MAX_PDF_PAGES_HEAVY
 from .pdf_to_excel.serializers import PDFToExcelSerializer
 from .pdf_to_jpg.serializers import PDFToJPGSerializer
 from .pdf_to_markdown.serializers import PDFToMarkdownSerializer
+from .pdf_to_pdfa.serializers import PDFToPDFASerializer
+from .pdf_to_pdfa.views import _premium_access_error
 from .pdf_to_word.serializers import PDFToWordSerializer
 from .word_to_pdf.serializers import WordToPDFSerializer
 
@@ -44,6 +46,40 @@ class PDFToWordAsyncAPIView(AsyncConversionAPIView):
 
     def get_celery_task(self):
         return generic_conversion_task
+
+
+class PDFToPDFAAsyncAPIView(AsyncConversionAPIView):
+    """Async PDF to PDF/A conversion (premium).
+
+    Ghostscript can be slow on large scans, so the background path keeps the
+    request from hitting the proxy timeout and lets premium users continue in
+    the background / receive the result by email. Premium-gated like the sync
+    endpoint.
+    """
+
+    MAX_UPLOAD_SIZE = MAX_FILE_SIZE_HEAVY
+    ALLOWED_CONTENT_TYPES = {"application/pdf", "application/octet-stream"}
+    ALLOWED_EXTENSIONS = {".pdf"}
+    CONVERSION_TYPE = "pdf_to_pdfa"
+    FILE_FIELD_NAME = "pdf_file"
+    VALIDATE_PDF_PAGES = True
+    MAX_PDF_PAGES = MAX_PDF_PAGES_HEAVY
+
+    def get_serializer_class(self):
+        return PDFToPDFASerializer
+
+    def get_celery_task(self):
+        return generic_conversion_task
+
+    def get_task_kwargs(self, validated_data: dict) -> dict:
+        return {"conformance": validated_data.get("conformance", "pdfa-2b")}
+
+    def post(self, request: HttpRequest):
+        # PDF/A is a premium action — gate before doing any work (mirrors the
+        # sync PDFToPDFAAPIView so both paths agree).
+        if not self._is_premium_active(request):
+            return _premium_access_error(request)
+        return super().post(request)
 
 
 class PDFToExcelAsyncAPIView(AsyncConversionAPIView):

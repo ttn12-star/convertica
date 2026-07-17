@@ -65,3 +65,17 @@ class PdfToPdfaHeavyTierTest(TestCase):
         self.assertEqual(
             get_max_file_size_for_user(premium, "pdf_to_pdfa"), 100 * 1024 * 1024
         )
+
+
+class PdfToPdfaAsyncGateTest(TestCase):
+    """The async endpoint must be premium-gated too (parity with sync)."""
+
+    def test_async_anonymous_gets_403(self):
+        resp = self.client.post(reverse("pdf_to_pdfa_async_api"), _payload())
+        self.assertEqual(resp.status_code, 403)
+
+    def test_async_non_premium_gets_403(self):
+        User.objects.create_user(email="free3@t.test", password="pw12345!")
+        self.client.login(email="free3@t.test", password="pw12345!")
+        resp = self.client.post(reverse("pdf_to_pdfa_async_api"), _payload())
+        self.assertEqual(resp.status_code, 403)
