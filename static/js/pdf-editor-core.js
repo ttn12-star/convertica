@@ -24,13 +24,31 @@
  *                        // drafts survive this refactor)
  *   }
  *
- * The overlay model supports 8 op types. text/whiteout/highlight are fully
- * wired (click-to-place + submit serialization). image/signature/shape/ink
- * are accepted by the model and submit serializer now (so a future task can
- * add the UI that creates them) but nothing yet creates them:
+ * The overlay model supports 8 op types, all toolset-gated and wired end to
+ * end (create -> undo/redo -> submit serialization): text/whiteout/highlight
+ * (click-to-place), image/signature (file-pick or draw/type/upload modal,
+ * stamped centered on the page), and shape/ink (drag-to-draw on the canvas
+ * with a live SVG preview):
  *   image/signature: {type,page,x,y,width,height,image_data_uri}
  *   shape:           {type,page,x,y,width,height,shape_kind,stroke,stroke_width,fill,fill_opacity}
  *   ink:             {type,page,x,y,width,height,points:[[x,y]...],stroke,stroke_width}
+ * (points are absolute PDF-point page coordinates; the backend draws them
+ * verbatim, independent of the op's x/y/width/height box.)
+ *
+ * DOM contract for the new tool UIs (all optional — a null lookup just
+ * disables that control, matching the existing text-toolbar convention):
+ *   Image:     #imageInsertBtn, #imageFileInput (hidden file input)
+ *   Signature: #signatureInsertBtn, #signatureModal (+ #signatureModalClose/
+ *              Apply/UseSaved), [data-sig-tab] + #sigTabDraw/Type/Upload,
+ *              #signatureDrawCanvas/Clear, #signatureTypeText/Preview,
+ *              #signatureUploadInput/Button/FileName (ported from
+ *              sign-pdf-editor.js; localStorage key 'convertica_signature_v1'
+ *              is shared with it on purpose).
+ *   Shape:     data-edit-mode="shape" toolbar button, [data-shape-kind]
+ *              (rect/ellipse/line/arrow), #shapeStrokeColorInput/WidthInput,
+ *              #shapeFillEnabledCheckbox, #shapeFillColorInput/OpacityInput.
+ *   Ink:       data-edit-mode="ink" toolbar button, #inkStrokeColorInput/
+ *              WidthInput.
  *
  * Reuses window helpers: showLoading, hideLoading, showError,
  * showDownloadButton, CSRF_TOKEN, FILE_INPUT_NAME.
@@ -128,6 +146,39 @@
         const zoomOutBtn = document.getElementById('zoomOutBtn');
         const zoomLabel = document.getElementById('zoomLabel');
 
+        // Image
+        const imageInsertBtn = document.getElementById('imageInsertBtn');
+        const imageFileInput = document.getElementById('imageFileInput');
+        // Signature (modal, ported from sign-pdf-editor.js)
+        const signatureInsertBtn = document.getElementById('signatureInsertBtn');
+        const signatureModal = document.getElementById('signatureModal');
+        const signatureModalClose = document.getElementById('signatureModalClose');
+        const signatureModalApply = document.getElementById('signatureModalApply');
+        const signatureModalUseSaved = document.getElementById('signatureModalUseSaved');
+        const sigTabButtons = document.querySelectorAll('[data-sig-tab]');
+        const sigTabPanels = {
+            draw: document.getElementById('sigTabDraw'),
+            type: document.getElementById('sigTabType'),
+            upload: document.getElementById('sigTabUpload'),
+        };
+        const sigDrawCanvas = document.getElementById('signatureDrawCanvas');
+        const sigDrawClearBtn = document.getElementById('signatureDrawClear');
+        const sigTypeInput = document.getElementById('signatureTypeText');
+        const sigTypePreviewCanvas = document.getElementById('signatureTypePreview');
+        const sigUploadInput = document.getElementById('signatureUploadInput');
+        const sigUploadButton = document.getElementById('signatureUploadButton');
+        const sigUploadFileName = document.getElementById('signatureUploadFileName');
+        // Shape
+        const shapeKindButtons = document.querySelectorAll('[data-shape-kind]');
+        const shapeStrokeColorInput = document.getElementById('shapeStrokeColorInput');
+        const shapeStrokeWidthInput = document.getElementById('shapeStrokeWidthInput');
+        const shapeFillEnabledCheckbox = document.getElementById('shapeFillEnabledCheckbox');
+        const shapeFillColorInput = document.getElementById('shapeFillColorInput');
+        const shapeFillOpacityInput = document.getElementById('shapeFillOpacityInput');
+        // Ink
+        const inkStrokeColorInput = document.getElementById('inkStrokeColorInput');
+        const inkStrokeWidthInput = document.getElementById('inkStrokeWidthInput');
+
         const FONT_STACKS = {
             sans: "'Noto Sans', 'Segoe UI', Arial, sans-serif",
             serif: "'Noto Serif', Georgia, 'Times New Roman', serif",
@@ -135,6 +186,11 @@
         };
         const ARABIC_RE = /[؀-ۿݐ-ݿ]/;
         const HIGHLIGHT_DEFAULT = '#ffee00';
+        const MAX_IMAGE_BYTES = 3 * 1024 * 1024; // matches backend cap (image/signature)
+        const IMAGE_MIME_WHITELIST = ['image/png', 'image/jpeg', 'image/webp'];
+        const SIGNATURE_STORAGE_KEY = 'convertica_signature_v1'; // shared w/ sign-pdf-editor.js
+        const MAX_INK_POINTS = 2000; // matches backend cap
+        const INK_MIN_POINT_DIST = 2; // screen px between recorded points (throttling)
 
         // ---------- State ---------------------------------------------------------
         let pdfDoc = null;
@@ -453,13 +509,15 @@
         if (pdfCanvas) {
             pdfCanvas.addEventListener('click', (ev) => {
                 if (!pdfDoc) return;
+                // Shape/ink are drag-to-draw (separate pointerdown/move/up handlers
+                // below); a plain click while in one of those modes places nothing.
+                if (mode === 'shape' || mode === 'ink') return;
                 const rect = pdfCanvas.getBoundingClientRect();
                 const px = ev.clientX - rect.left;
                 const py = ev.clientY - rect.top;
                 const x = px / scale;
                 const y = py / scale;
 
-                pushHistory();
                 let op;
                 if (mode === 'whiteout' && toolset.whiteout) {
                     op = {
@@ -473,7 +531,7 @@
                         x: x - 80, y: y - 10, w: 160, h: 20,
                         color: HIGHLIGHT_DEFAULT,
                     };
-                } else if (toolset.text) {
+                } else if (mode === 'text' && toolset.text) {
                     const d = toolbarDefaults();
                     op = {
                         id: nextOpId++, type: 'text', page: currentPage,
@@ -483,6 +541,10 @@
                 } else {
                     return;
                 }
+                // pushHistory() only after we know an op will actually be created —
+                // a click that matches no active tool must not push a spurious
+                // empty undo snapshot (papercut from the Task 4 extraction).
+                pushHistory();
                 op.x = Math.max(0, op.x);
                 op.y = Math.max(0, op.y);
                 ops.push(op);
@@ -515,6 +577,628 @@
             }
             btn.addEventListener('click', () => insertSymbol(btn.dataset.symbol));
         });
+
+        // ---------- Shared stamp-style insertion (image/signature) ------------------
+        // Both tools produce a PNG/JPEG/WEBP data-URI and drop it onto the current
+        // page centered, sized from its natural aspect ratio — same "insert then
+        // drag/resize into place" UX as insertSymbol() above, reusing the identical
+        // model -> history -> overlay pipeline.
+        function clampNum(v, lo, hi) {
+            return Math.max(lo, Math.min(hi, v));
+        }
+
+        function readFileAsDataUri(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(String(reader.result || ''));
+                reader.onerror = () => reject(reader.error || new Error('read failed'));
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function dataUriDecodedByteLength(dataUri) {
+            const idx = dataUri.indexOf(',');
+            const b64 = idx >= 0 ? dataUri.slice(idx + 1) : dataUri;
+            const padding = b64.endsWith('==') ? 2 : b64.endsWith('=') ? 1 : 0;
+            return Math.floor((b64.length * 3) / 4) - padding;
+        }
+
+        function loadImageNaturalSize(dataUri) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve({
+                    width: img.naturalWidth || img.width || 200,
+                    height: img.naturalHeight || img.height || 120,
+                });
+                img.onerror = () => reject(new Error('decode failed'));
+                img.src = dataUri;
+            });
+        }
+
+        async function insertStampOp(type, dataUri) {
+            if (!pdfDoc) return;
+            const dims = await loadImageNaturalSize(dataUri).catch(() => ({ width: 200, height: 120 }));
+            const pageW = pdfCanvas.width / scale;
+            const pageH = pdfCanvas.height / scale;
+            const aspect = dims.height / dims.width || 0.6;
+            const w = Math.min(240, pageW * 0.6);
+            const h = w * aspect;
+            pushHistory();
+            const op = {
+                id: nextOpId++, type, page: currentPage,
+                x: Math.max(0, (pageW - w) / 2), y: Math.max(0, (pageH - h) / 2),
+                w, h, imageDataUri: dataUri,
+            };
+            ops.push(op);
+            buildOverlayElement(op);
+            setSelected(op.id);
+            saveDraftSoon();
+        }
+
+        // ---------- Image tool --------------------------------------------------------
+        if (toolset.image) {
+            if (imageInsertBtn) {
+                imageInsertBtn.addEventListener('click', () => {
+                    if (!pdfDoc || !imageFileInput) return;
+                    imageFileInput.click();
+                });
+            }
+            if (imageFileInput) {
+                imageFileInput.addEventListener('change', async () => {
+                    const file = imageFileInput.files && imageFileInput.files[0];
+                    imageFileInput.value = ''; // allow re-picking the same file
+                    if (!file || !pdfDoc) return;
+                    if (IMAGE_MIME_WHITELIST.indexOf(file.type) === -1) {
+                        window.showError && window.showError(
+                            t('IMAGE_TYPE_MESSAGE', 'Please choose a PNG, JPEG, or WEBP image.'), 'editorResult'
+                        );
+                        return;
+                    }
+                    let dataUri;
+                    try {
+                        dataUri = await readFileAsDataUri(file);
+                    } catch (_) {
+                        window.showError && window.showError(
+                            t('FAILED_TO_LOAD_IMAGE_MESSAGE', 'Failed to read the image.'), 'editorResult'
+                        );
+                        return;
+                    }
+                    if (dataUriDecodedByteLength(dataUri) > MAX_IMAGE_BYTES) {
+                        window.showError && window.showError(
+                            t('IMAGE_TOO_LARGE_MESSAGE', 'Image is too large (max 3MB).'), 'editorResult'
+                        );
+                        return;
+                    }
+                    insertStampOp('image', dataUri);
+                });
+            }
+        } else if (imageInsertBtn) {
+            imageInsertBtn.style.display = 'none';
+        }
+
+        // ---------- Signature tool (modal ported from sign-pdf-editor.js) -----------
+        if (toolset.signature && signatureModal) {
+            (function initSignatureModule() {
+                let sigUploadedDataUri = null;
+
+                function setActiveSigTab(name) {
+                    sigTabButtons.forEach((btn) => {
+                        const active = btn.dataset.sigTab === name;
+                        btn.classList.toggle('border-blue-600', active);
+                        btn.classList.toggle('text-blue-600', active);
+                        btn.classList.toggle('border-transparent', !active);
+                        btn.classList.toggle('text-gray-500', !active);
+                    });
+                    Object.entries(sigTabPanels).forEach(([n, panel]) => {
+                        if (panel) panel.classList.toggle('hidden', n !== name);
+                    });
+                }
+                sigTabButtons.forEach((btn) => {
+                    btn.addEventListener('click', () => setActiveSigTab(btn.dataset.sigTab));
+                });
+
+                function activeSigTab() {
+                    for (const btn of sigTabButtons) {
+                        if (btn.classList.contains('text-blue-600')) return btn.dataset.sigTab;
+                    }
+                    return 'draw';
+                }
+
+                // Draw tab: capture pointer strokes on a small transparent canvas.
+                if (sigDrawCanvas) {
+                    const ctx = sigDrawCanvas.getContext('2d');
+                    let drawing = false;
+                    let lastX = 0, lastY = 0;
+                    function paintBackground() {
+                        ctx.clearRect(0, 0, sigDrawCanvas.width, sigDrawCanvas.height);
+                    }
+                    paintBackground();
+                    function pointFromEvent(ev) {
+                        const rect = sigDrawCanvas.getBoundingClientRect();
+                        return {
+                            x: (ev.clientX - rect.left) * (sigDrawCanvas.width / rect.width),
+                            y: (ev.clientY - rect.top) * (sigDrawCanvas.height / rect.height),
+                        };
+                    }
+                    sigDrawCanvas.addEventListener('pointerdown', (ev) => {
+                        ev.preventDefault();
+                        drawing = true;
+                        const p = pointFromEvent(ev);
+                        lastX = p.x; lastY = p.y;
+                    });
+                    sigDrawCanvas.addEventListener('pointermove', (ev) => {
+                        if (!drawing) return;
+                        ev.preventDefault();
+                        const p = pointFromEvent(ev);
+                        ctx.strokeStyle = '#111827';
+                        ctx.lineWidth = 2.5;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        ctx.beginPath();
+                        ctx.moveTo(lastX, lastY);
+                        ctx.lineTo(p.x, p.y);
+                        ctx.stroke();
+                        lastX = p.x; lastY = p.y;
+                    });
+                    ['pointerup', 'pointerleave', 'pointercancel'].forEach((evt) => {
+                        sigDrawCanvas.addEventListener(evt, (ev) => { ev.preventDefault(); drawing = false; });
+                    });
+                    if (sigDrawClearBtn) sigDrawClearBtn.addEventListener('click', paintBackground);
+                }
+
+                // Type tab: render a typed name in a handwriting font.
+                function renderTypedSignature() {
+                    if (!sigTypeInput || !sigTypePreviewCanvas) return;
+                    const text = (sigTypeInput.value || '').trim();
+                    const ctx = sigTypePreviewCanvas.getContext('2d');
+                    ctx.clearRect(0, 0, sigTypePreviewCanvas.width, sigTypePreviewCanvas.height);
+                    if (!text) return;
+                    let fontSize = 64;
+                    ctx.fillStyle = '#111827';
+                    do {
+                        ctx.font = `${fontSize}px "Caveat", "Brush Script MT", cursive`;
+                        if (ctx.measureText(text).width <= sigTypePreviewCanvas.width - 30) break;
+                        fontSize -= 2;
+                    } while (fontSize > 20);
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(text, 15, sigTypePreviewCanvas.height / 2);
+                }
+                if (sigTypeInput) sigTypeInput.addEventListener('input', renderTypedSignature);
+
+                // Upload tab: file -> data URI (same MIME/size gate as the image tool).
+                if (sigUploadButton && sigUploadInput) {
+                    sigUploadButton.addEventListener('click', () => sigUploadInput.click());
+                }
+                if (sigUploadInput) {
+                    sigUploadInput.addEventListener('change', async () => {
+                        const file = sigUploadInput.files && sigUploadInput.files[0];
+                        if (!file) return;
+                        if (IMAGE_MIME_WHITELIST.indexOf(file.type) === -1) {
+                            window.showError && window.showError(
+                                t('IMAGE_TYPE_MESSAGE', 'Please choose a PNG, JPEG, or WEBP image.'), 'editorResult'
+                            );
+                            return;
+                        }
+                        let dataUri;
+                        try {
+                            dataUri = await readFileAsDataUri(file);
+                        } catch (_) { return; }
+                        if (dataUriDecodedByteLength(dataUri) > MAX_IMAGE_BYTES) {
+                            window.showError && window.showError(
+                                t('IMAGE_TOO_LARGE_MESSAGE', 'Image is too large (max 3MB).'), 'editorResult'
+                            );
+                            return;
+                        }
+                        sigUploadedDataUri = dataUri;
+                        if (sigUploadFileName) sigUploadFileName.textContent = file.name;
+                    });
+                }
+
+                function buildSignatureDataUri() {
+                    const tab = activeSigTab();
+                    if (tab === 'draw' && sigDrawCanvas) return sigDrawCanvas.toDataURL('image/png');
+                    if (tab === 'type' && sigTypePreviewCanvas) {
+                        renderTypedSignature();
+                        return sigTypePreviewCanvas.toDataURL('image/png');
+                    }
+                    if (tab === 'upload') return sigUploadedDataUri;
+                    return null;
+                }
+
+                function updateUseSavedVisibility() {
+                    if (!signatureModalUseSaved) return;
+                    let saved = null;
+                    try { saved = localStorage.getItem(SIGNATURE_STORAGE_KEY); } catch (_) { /* ignore */ }
+                    signatureModalUseSaved.classList.toggle('hidden', !saved);
+                }
+                updateUseSavedVisibility();
+
+                function openModal() {
+                    if (!pdfDoc) return;
+                    signatureModal.classList.remove('hidden');
+                    setActiveSigTab('draw');
+                }
+                function closeModal() {
+                    signatureModal.classList.add('hidden');
+                }
+                if (signatureInsertBtn) signatureInsertBtn.addEventListener('click', openModal);
+                if (signatureModalClose) signatureModalClose.addEventListener('click', closeModal);
+                if (signatureModalApply) {
+                    signatureModalApply.addEventListener('click', () => {
+                        const dataUri = buildSignatureDataUri();
+                        if (!dataUri || dataUri.length < 100) {
+                            window.showError && window.showError(
+                                t('SIGNATURE_EMPTY_MESSAGE', 'Please draw, type, or upload a signature first.'), 'editorResult'
+                            );
+                            return;
+                        }
+                        try { localStorage.setItem(SIGNATURE_STORAGE_KEY, dataUri); } catch (_) { /* quota; ignore */ }
+                        updateUseSavedVisibility();
+                        closeModal();
+                        insertStampOp('signature', dataUri);
+                    });
+                }
+                if (signatureModalUseSaved) {
+                    signatureModalUseSaved.addEventListener('click', () => {
+                        let saved = null;
+                        try { saved = localStorage.getItem(SIGNATURE_STORAGE_KEY); } catch (_) { /* ignore */ }
+                        if (!saved) return;
+                        closeModal();
+                        insertStampOp('signature', saved);
+                    });
+                }
+            })();
+        } else if (signatureInsertBtn) {
+            signatureInsertBtn.style.display = 'none';
+        }
+
+        // ---------- Shape SVG rendering (shared by the live preview + real overlay) --
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        function buildShapeSvg(kind, w, h, stroke, strokeWidth, fill, fillOpacity) {
+            w = Math.max(1, w); h = Math.max(1, h);
+            const svg = document.createElementNS(SVG_NS, 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+            svg.setAttribute('preserveAspectRatio', 'none');
+            svg.style.display = 'block';
+            svg.style.overflow = 'visible';
+            svg.style.pointerEvents = 'none';
+            const half = strokeWidth / 2;
+            const fillAttr = fill || 'none';
+            let shapeEl;
+            if (kind === 'ellipse') {
+                shapeEl = document.createElementNS(SVG_NS, 'ellipse');
+                shapeEl.setAttribute('cx', w / 2);
+                shapeEl.setAttribute('cy', h / 2);
+                shapeEl.setAttribute('rx', Math.max(0, w / 2 - half));
+                shapeEl.setAttribute('ry', Math.max(0, h / 2 - half));
+            } else if (kind === 'line' || kind === 'arrow') {
+                shapeEl = document.createElementNS(SVG_NS, 'line');
+                shapeEl.setAttribute('x1', half); shapeEl.setAttribute('y1', half);
+                shapeEl.setAttribute('x2', w - half); shapeEl.setAttribute('y2', h - half);
+            } else {
+                shapeEl = document.createElementNS(SVG_NS, 'rect');
+                shapeEl.setAttribute('x', half); shapeEl.setAttribute('y', half);
+                shapeEl.setAttribute('width', Math.max(0, w - strokeWidth));
+                shapeEl.setAttribute('height', Math.max(0, h - strokeWidth));
+            }
+            shapeEl.setAttribute('stroke', stroke);
+            shapeEl.setAttribute('stroke-width', strokeWidth);
+            shapeEl.setAttribute('fill', kind === 'line' || kind === 'arrow' ? 'none' : fillAttr);
+            if (fill && kind !== 'line' && kind !== 'arrow') shapeEl.setAttribute('fill-opacity', fillOpacity);
+            svg.appendChild(shapeEl);
+            if (kind === 'arrow') {
+                const angle = Math.atan2(h - 2 * half, w - 2 * half);
+                const headLen = Math.max(6, strokeWidth * 3);
+                const tipX = w - half, tipY = h - half;
+                const a1 = angle + (5 * Math.PI) / 6;
+                const a2 = angle - (5 * Math.PI) / 6;
+                const head = document.createElementNS(SVG_NS, 'polygon');
+                head.setAttribute('points', [
+                    `${tipX},${tipY}`,
+                    `${tipX + headLen * Math.cos(a1)},${tipY + headLen * Math.sin(a1)}`,
+                    `${tipX + headLen * Math.cos(a2)},${tipY + headLen * Math.sin(a2)}`,
+                ].join(' '));
+                head.setAttribute('fill', stroke);
+                svg.appendChild(head);
+            }
+            return svg;
+        }
+
+        function buildInkSvg(op) {
+            const w = Math.max(1, op.w), h = Math.max(1, op.h);
+            const svg = document.createElementNS(SVG_NS, 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+            svg.setAttribute('preserveAspectRatio', 'none');
+            svg.style.display = 'block';
+            svg.style.overflow = 'visible';
+            svg.style.pointerEvents = 'none';
+            const pts = (op.points || []).map(([px, py]) => `${px - op.x},${py - op.y}`).join(' ');
+            const path = document.createElementNS(SVG_NS, 'polyline');
+            path.setAttribute('points', pts);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', op.stroke || '#111111');
+            path.setAttribute('stroke-width', op.strokeWidth || 2);
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            svg.appendChild(path);
+            return svg;
+        }
+
+        // ---------- Shape tool (drag-to-draw) ----------------------------------------
+        let currentShapeKind = 'rect';
+        function shapeToolbarDefaults() {
+            return {
+                kind: currentShapeKind,
+                stroke: shapeStrokeColorInput ? shapeStrokeColorInput.value : '#111111',
+                strokeWidth: shapeStrokeWidthInput
+                    ? clampNum(parseFloat(shapeStrokeWidthInput.value) || 2, 0.5, 20) : 2,
+                fill: (shapeFillEnabledCheckbox && shapeFillEnabledCheckbox.checked && shapeFillColorInput)
+                    ? shapeFillColorInput.value : null,
+                fillOpacity: shapeFillOpacityInput
+                    ? clampNum(parseFloat(shapeFillOpacityInput.value), 0, 1) : 1,
+            };
+        }
+        function applyShapeStyleChange(mutator) {
+            const op = selectedOp();
+            if (op && op.type === 'shape') {
+                pushHistory();
+                mutator(op);
+                styleOverlay(op);
+                saveDraftSoon();
+            }
+        }
+        if (toolset.shape) {
+            shapeKindButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    currentShapeKind = btn.dataset.shapeKind;
+                    shapeKindButtons.forEach((b) => b.classList.toggle('ate-toggle-on', b === btn));
+                    applyShapeStyleChange((o) => { o.shapeKind = currentShapeKind; });
+                });
+            });
+            if (shapeStrokeColorInput) {
+                shapeStrokeColorInput.addEventListener('input', () => applyShapeStyleChange((o) => { o.stroke = shapeStrokeColorInput.value; }));
+            }
+            if (shapeStrokeWidthInput) {
+                shapeStrokeWidthInput.addEventListener('change', () => {
+                    const v = clampNum(parseFloat(shapeStrokeWidthInput.value) || 2, 0.5, 20);
+                    shapeStrokeWidthInput.value = String(v);
+                    applyShapeStyleChange((o) => { o.strokeWidth = v; });
+                });
+            }
+            if (shapeFillColorInput) {
+                shapeFillColorInput.addEventListener('input', () => applyShapeStyleChange((o) => {
+                    if (o.fill) o.fill = shapeFillColorInput.value;
+                }));
+            }
+            if (shapeFillEnabledCheckbox) {
+                shapeFillEnabledCheckbox.addEventListener('change', () => applyShapeStyleChange((o) => {
+                    o.fill = shapeFillEnabledCheckbox.checked ? (shapeFillColorInput ? shapeFillColorInput.value : '#ffffff') : null;
+                }));
+            }
+            if (shapeFillOpacityInput) {
+                shapeFillOpacityInput.addEventListener('input', () => applyShapeStyleChange((o) => {
+                    o.fillOpacity = clampNum(parseFloat(shapeFillOpacityInput.value), 0, 1);
+                }));
+            }
+
+            let shapeDraft = null; // { startPx, startPy, previewEl, def }
+            function boxFromDrag(x0, y0, x1, y1) {
+                return {
+                    xPx: Math.min(x0, x1), yPx: Math.min(y0, y1),
+                    wPx: Math.abs(x1 - x0), hPx: Math.abs(y1 - y0),
+                };
+            }
+            function positionPreview(el, box) {
+                el.style.left = box.xPx + 'px';
+                el.style.top = box.yPx + 'px';
+                el.style.width = Math.max(1, box.wPx) + 'px';
+                el.style.height = Math.max(1, box.hPx) + 'px';
+            }
+            function onShapeMove(ev) {
+                if (!shapeDraft) return;
+                ev.preventDefault();
+                const rect = pdfCanvas.getBoundingClientRect();
+                const box = boxFromDrag(shapeDraft.startPx, shapeDraft.startPy, ev.clientX - rect.left, ev.clientY - rect.top);
+                positionPreview(shapeDraft.previewEl, box);
+                const old = shapeDraft.previewEl.querySelector('svg');
+                if (old) old.remove();
+                shapeDraft.previewEl.appendChild(buildShapeSvg(
+                    shapeDraft.def.kind, box.wPx, box.hPx,
+                    shapeDraft.def.stroke, shapeDraft.def.strokeWidth * scale,
+                    shapeDraft.def.fill, shapeDraft.def.fillOpacity
+                ));
+                shapeDraft.lastBox = box;
+            }
+            function onShapeUp() {
+                if (!shapeDraft) return;
+                window.removeEventListener('pointermove', onShapeMove);
+                window.removeEventListener('pointerup', onShapeUp);
+                const box = shapeDraft.lastBox || { xPx: shapeDraft.startPx, yPx: shapeDraft.startPy, wPx: 0, hPx: 0 };
+                const def = shapeDraft.def;
+                shapeDraft.previewEl.remove();
+                shapeDraft = null;
+                if (box.wPx < 4 && box.hPx < 4) return; // accidental click/tap: discard, no history push
+                pushHistory();
+                const op = {
+                    id: nextOpId++, type: 'shape', page: currentPage,
+                    x: box.xPx / scale, y: box.yPx / scale,
+                    w: Math.max(1, box.wPx / scale), h: Math.max(1, box.hPx / scale),
+                    shapeKind: def.kind, stroke: def.stroke, strokeWidth: def.strokeWidth,
+                    fill: def.fill, fillOpacity: def.fillOpacity,
+                };
+                ops.push(op);
+                buildOverlayElement(op);
+                setSelected(op.id);
+                saveDraftSoon();
+            }
+            if (pdfCanvas) {
+                pdfCanvas.addEventListener('pointerdown', (ev) => {
+                    if (mode !== 'shape' || !pdfDoc || ev.target !== pdfCanvas) return;
+                    ev.preventDefault();
+                    const rect = pdfCanvas.getBoundingClientRect();
+                    const startPx = ev.clientX - rect.left, startPy = ev.clientY - rect.top;
+                    const previewEl = document.createElement('div');
+                    previewEl.style.position = 'absolute';
+                    previewEl.style.pointerEvents = 'none';
+                    pdfCanvasContainer.appendChild(previewEl);
+                    shapeDraft = { startPx, startPy, previewEl, def: shapeToolbarDefaults(), lastBox: null };
+                    positionPreview(previewEl, { xPx: startPx, yPx: startPy, wPx: 0, hPx: 0 });
+                    window.addEventListener('pointermove', onShapeMove);
+                    window.addEventListener('pointerup', onShapeUp);
+                });
+            }
+        }
+
+        // ---------- Ink (freehand) tool (drag-to-draw) -------------------------------
+        function inkToolbarDefaults() {
+            return {
+                stroke: inkStrokeColorInput ? inkStrokeColorInput.value : '#111111',
+                strokeWidth: inkStrokeWidthInput
+                    ? clampNum(parseFloat(inkStrokeWidthInput.value) || 2, 0.5, 20) : 2,
+            };
+        }
+        // Keeps a dragged/resized ink stroke's absolute points in sync with the
+        // overlay box that attachDragAndResize moves — otherwise the on-screen
+        // preview would move but the materialized PDF (which draws `points`
+        // verbatim, ignoring x/y/width/height) would not.
+        function inkGeomHook(phase, op, start) {
+            if (phase === 'begin') {
+                op._dragOrigPoints = (op.points || []).map((p) => p.slice());
+                return;
+            }
+            if (phase === 'end') {
+                delete op._dragOrigPoints;
+                return;
+            }
+            const orig = op._dragOrigPoints;
+            if (!orig) return;
+            if (phase === 'drag') {
+                const dx = op.x - start.startX, dy = op.y - start.startY;
+                op.points = orig.map(([px, py]) => [px + dx, py + dy]);
+            } else if (phase === 'resize') {
+                const sx = start.startW ? op.w / start.startW : 1;
+                const sy = start.startH ? op.h / start.startH : 1;
+                op.points = orig.map(([px, py]) => [
+                    start.startX + (px - start.startX) * sx,
+                    start.startY + (py - start.startY) * sy,
+                ]);
+            }
+        }
+        if (toolset.ink) {
+            if (inkStrokeColorInput) {
+                inkStrokeColorInput.addEventListener('input', () => {
+                    const op = selectedOp();
+                    if (op && op.type === 'ink') {
+                        pushHistory();
+                        op.stroke = inkStrokeColorInput.value;
+                        styleOverlay(op);
+                        saveDraftSoon();
+                    }
+                });
+            }
+            if (inkStrokeWidthInput) {
+                inkStrokeWidthInput.addEventListener('change', () => {
+                    const v = clampNum(parseFloat(inkStrokeWidthInput.value) || 2, 0.5, 20);
+                    inkStrokeWidthInput.value = String(v);
+                    const op = selectedOp();
+                    if (op && op.type === 'ink') {
+                        pushHistory();
+                        op.strokeWidth = v;
+                        styleOverlay(op);
+                        saveDraftSoon();
+                    }
+                });
+            }
+
+            let inkDraft = null; // { points (PDF-pt), previewEl, lastScreenPt, def }
+            function inkBBox(points) {
+                let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+                points.forEach(([px, py]) => {
+                    if (px < minX) minX = px;
+                    if (py < minY) minY = py;
+                    if (px > maxX) maxX = px;
+                    if (py > maxY) maxY = py;
+                });
+                return { minX, minY, maxX, maxY };
+            }
+            function renderInkPreview() {
+                const b = inkBBox(inkDraft.points);
+                const box = {
+                    xPx: b.minX * scale, yPx: b.minY * scale,
+                    wPx: (b.maxX - b.minX) * scale, hPx: (b.maxY - b.minY) * scale,
+                };
+                inkDraft.previewEl.style.left = box.xPx + 'px';
+                inkDraft.previewEl.style.top = box.yPx + 'px';
+                inkDraft.previewEl.style.width = Math.max(1, box.wPx) + 'px';
+                inkDraft.previewEl.style.height = Math.max(1, box.hPx) + 'px';
+                const old = inkDraft.previewEl.querySelector('svg');
+                if (old) old.remove();
+                inkDraft.previewEl.appendChild(buildInkSvg({
+                    x: b.minX, y: b.minY,
+                    w: Math.max(1, b.maxX - b.minX), h: Math.max(1, b.maxY - b.minY),
+                    points: inkDraft.points, stroke: inkDraft.def.stroke, strokeWidth: inkDraft.def.strokeWidth,
+                }));
+            }
+            function onInkMove(ev) {
+                if (!inkDraft) return;
+                ev.preventDefault();
+                const rect = pdfCanvas.getBoundingClientRect();
+                const sx = ev.clientX - rect.left, sy = ev.clientY - rect.top;
+                const last = inkDraft.lastScreenPt;
+                const dist = last ? Math.hypot(sx - last[0], sy - last[1]) : Infinity;
+                if (dist < INK_MIN_POINT_DIST || inkDraft.points.length >= MAX_INK_POINTS) return;
+                inkDraft.points.push([sx / scale, sy / scale]);
+                inkDraft.lastScreenPt = [sx, sy];
+                renderInkPreview();
+            }
+            function onInkUp() {
+                if (!inkDraft) return;
+                window.removeEventListener('pointermove', onInkMove);
+                window.removeEventListener('pointerup', onInkUp);
+                const points = inkDraft.points;
+                const def = inkDraft.def;
+                inkDraft.previewEl.remove();
+                inkDraft = null;
+                if (points.length < 2) return; // a tap, not a stroke: discard, no history push
+                const b = inkBBox(points);
+                pushHistory();
+                const op = {
+                    id: nextOpId++, type: 'ink', page: currentPage,
+                    x: b.minX, y: b.minY,
+                    w: Math.max(1, b.maxX - b.minX), h: Math.max(1, b.maxY - b.minY),
+                    points, stroke: def.stroke, strokeWidth: def.strokeWidth,
+                };
+                ops.push(op);
+                buildOverlayElement(op);
+                setSelected(op.id);
+                saveDraftSoon();
+            }
+            if (pdfCanvas) {
+                pdfCanvas.addEventListener('pointerdown', (ev) => {
+                    if (mode !== 'ink' || !pdfDoc || ev.target !== pdfCanvas) return;
+                    ev.preventDefault();
+                    const rect = pdfCanvas.getBoundingClientRect();
+                    const sx = ev.clientX - rect.left, sy = ev.clientY - rect.top;
+                    const previewEl = document.createElement('div');
+                    previewEl.style.position = 'absolute';
+                    previewEl.style.pointerEvents = 'none';
+                    pdfCanvasContainer.appendChild(previewEl);
+                    inkDraft = {
+                        points: [[sx / scale, sy / scale]],
+                        lastScreenPt: [sx, sy],
+                        previewEl,
+                        def: inkToolbarDefaults(),
+                    };
+                    renderInkPreview();
+                    window.addEventListener('pointermove', onInkMove);
+                    window.addEventListener('pointerup', onInkUp);
+                });
+            }
+        }
 
         // ---------- Overlay DOM ------------------------------------------------------
         function rebuildOverlays() {
@@ -552,6 +1236,18 @@
                     inner.style.direction = rtl ? 'rtl' : 'ltr';
                     inner.style.textAlign = rtl && op.align === 'left' ? 'right' : op.align;
                 }
+            } else if (op.type === 'shape') {
+                // viewBox is in PDF points (matches op.w/op.h); the SVG's
+                // width:100%/height:100% auto-scales it to the div's CSS px
+                // size (op.w*scale above), so stroke width scales with zoom
+                // for free — no manual *scale multiplication needed here.
+                const old = el.querySelector('svg');
+                if (old) old.remove();
+                el.appendChild(buildShapeSvg(op.shapeKind, op.w, op.h, op.stroke, op.strokeWidth, op.fill, op.fillOpacity));
+            } else if (op.type === 'ink') {
+                const old = el.querySelector('svg');
+                if (old) old.remove();
+                el.appendChild(buildInkSvg(op));
             }
         }
 
@@ -583,6 +1279,16 @@
                     ev.stopPropagation();
                     focusTextEditing(op);
                 });
+            } else if (op.type === 'image' || op.type === 'signature') {
+                const img = document.createElement('img');
+                img.src = op.imageDataUri;
+                img.alt = '';
+                img.draggable = false;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.display = 'block';
+                img.style.pointerEvents = 'none';
+                el.appendChild(img);
             }
 
             // Delete button
@@ -607,7 +1313,7 @@
             handle.className = 'ate-handle';
             el.appendChild(handle);
 
-            attachDragAndResize(op, el, handle);
+            attachDragAndResize(op, el, handle, op.type === 'ink' ? inkGeomHook : null);
 
             el.addEventListener('pointerdown', () => setSelected(op.id));
 
@@ -662,7 +1368,7 @@
             }
         }
 
-        function attachDragAndResize(op, el, handle) {
+        function attachDragAndResize(op, el, handle, onGeom) {
             let dragMode = null;
             let startClientX = 0, startClientY = 0;
             let startX = 0, startY = 0, startW = 0, startH = 0;
@@ -692,9 +1398,14 @@
                     op.h = startH + dy;
                 }
                 clampToPage();
+                // Let type-specific geometry (e.g. ink's absolute points, which the
+                // backend draws verbatim and independently of x/y/w/h) stay in sync
+                // with the box attachDragAndResize just moved/resized.
+                if (onGeom) onGeom(dragMode, op, { startX, startY, startW, startH });
                 styleOverlay(op);
             }
             function onPointerUp() {
+                if (onGeom) onGeom('end', op, { startX, startY, startW, startH });
                 if (moved && snapshot !== null) {
                     undoStack.push(snapshot);
                     redoStack.length = 0;
@@ -715,6 +1426,7 @@
                 startClientX = ev.clientX;
                 startClientY = ev.clientY;
                 startX = op.x; startY = op.y; startW = op.w; startH = op.h;
+                if (onGeom) onGeom('begin', op, { startX, startY, startW, startH });
                 window.addEventListener('pointermove', onPointerMove);
                 window.addEventListener('pointerup', onPointerUp);
                 window.addEventListener('pointercancel', onPointerUp);
@@ -761,8 +1473,17 @@
             const nudge = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[ev.key];
             if (nudge) {
                 ev.preventDefault();
-                op.x = Math.max(0, op.x + nudge[0]);
-                op.y = Math.max(0, op.y + nudge[1]);
+                const newX = Math.max(0, op.x + nudge[0]);
+                const newY = Math.max(0, op.y + nudge[1]);
+                if (op.type === 'ink' && op.points) {
+                    // Keyboard nudge bypasses attachDragAndResize's onGeom hook —
+                    // shift ink's absolute points by the same clamped delta so the
+                    // materialized stroke doesn't lag behind the moved box.
+                    const dx = newX - op.x, dy = newY - op.y;
+                    op.points = op.points.map(([px, py]) => [px + dx, py + dy]);
+                }
+                op.x = newX;
+                op.y = newY;
                 styleOverlay(op);
                 saveDraftSoon();
             }
