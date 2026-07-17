@@ -13,6 +13,7 @@ Whiteout is a visual cover-up, NOT redaction: the original content stays
 in the file underneath. The landing-page FAQ says so explicitly.
 """
 import html
+import math
 import os
 import re
 
@@ -27,6 +28,9 @@ from src.exceptions import (
 
 from ...logging_utils import get_logger
 from ...pdf_processing import BasePDFProcessor
+
+# Reuse the battle-tested signature image decoder (same data-URI contract).
+from ..sign_pdf.utils import _decode_data_uri
 
 logger = get_logger(__name__)
 
@@ -146,6 +150,32 @@ def _clamp_rect(page: fitz.Page, op: dict) -> fitz.Rect:
     return fitz.Rect(x, y, x + w, y + h)
 
 
+def _ink_points_to_page(page: fitz.Page, op: dict) -> list[fitz.Point]:
+    """Clamp freehand points to the page (points are absolute PDF points)."""
+    w, h = page.rect.width, page.rect.height
+    return [
+        fitz.Point(max(0.0, min(float(px), w)), max(0.0, min(float(py), h)))
+        for px, py in op["points"]
+    ]
+
+
+def _draw_arrow(page, p0, p1, color, width) -> None:
+    """Line from p0 to p1 with a small filled triangular head at p1."""
+    page.draw_line(p0, p1, color=color, width=width, overlay=True)
+    ang = math.atan2(p1.y - p0.y, p1.x - p0.x)
+    head = max(6.0, width * 3)
+    for da in (math.radians(150), math.radians(-150)):
+        page.draw_line(
+            p1,
+            fitz.Point(
+                p1.x + head * math.cos(ang + da), p1.y + head * math.sin(ang + da)
+            ),
+            color=color,
+            width=width,
+            overlay=True,
+        )
+
+
 def add_text_pdf(
     pdf_file: UploadedFile,
     operations: list[dict],
@@ -211,7 +241,61 @@ def add_text_pdf(
                         fill=_hex_to_rgb(op.get("color", "#ffffff")),
                         overlay=True,
                     )
-                else:  # highlight
+                elif op["type"] in ("image", "signature"):
+                    page.insert_image(
+                        rect,
+                        stream=_decode_data_uri(op["image_data_uri"]),
+                        overlay=True,
+                        keep_proportion=True,
+                    )
+                elif op["type"] == "shape":
+                    kind = op.get("shape_kind", "rect")
+                    stroke = _hex_to_rgb(op.get("stroke", "#111111"))
+                    width = float(op.get("stroke_width", 2))
+                    fill = op.get("fill")
+                    fill_rgb = _hex_to_rgb(fill) if fill else None
+                    fopac = float(op.get("fill_opacity", 1.0))
+                    if kind == "rect":
+                        page.draw_rect(
+                            rect,
+                            color=stroke,
+                            width=width,
+                            fill=fill_rgb,
+                            fill_opacity=fopac,
+                            overlay=True,
+                        )
+                    elif kind == "ellipse":
+                        page.draw_oval(
+                            rect,
+                            color=stroke,
+                            width=width,
+                            fill=fill_rgb,
+                            fill_opacity=fopac,
+                            overlay=True,
+                        )
+                    elif kind == "line":
+                        page.draw_line(
+                            rect.top_left,
+                            rect.bottom_right,
+                            color=stroke,
+                            width=width,
+                            overlay=True,
+                        )
+                    else:  # arrow: line + filled triangular head at the end point
+                        _draw_arrow(
+                            page, rect.top_left, rect.bottom_right, stroke, width
+                        )
+                elif op["type"] == "ink":
+                    pts = _ink_points_to_page(page, op)
+                    if len(pts) == 1:
+                        pts = [pts[0], pts[0]]  # a dot: degenerate polyline
+                    page.draw_polyline(
+                        pts,
+                        color=_hex_to_rgb(op.get("stroke", "#111111")),
+                        width=float(op.get("stroke_width", 2)),
+                        overlay=True,
+                    )
+                elif op["type"] == "highlight":
                     page.draw_rect(
                         rect,
                         color=None,

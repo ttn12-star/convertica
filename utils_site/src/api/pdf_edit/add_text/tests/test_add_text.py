@@ -240,6 +240,90 @@ class AddTextMaterializationTests(SimpleTestCase):
         )
         self.assertEqual(len(doc), 1)
 
+    # AddTextSerializerTests._PNG_1PX is base64-valid but a structurally
+    # corrupt PNG (mupdf's decoder rejects it with "premature end of data",
+    # even though PIL and the serializer's base64-only check tolerate it —
+    # the serializer never decodes pixels, only the base64 envelope). Use a
+    # real 1x1 PNG here so materialization actually exercises insert_image.
+    _REAL_PNG_1PX = (
+        "data:image/png;base64,"
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGP4z8DwHwAF"
+        "AAH/iZk9HQAAAABJRU5ErkJggg=="
+    )
+
+    def test_image_is_embedded(self):
+        doc = self._run(
+            [
+                {
+                    "type": "image",
+                    "page": 0,
+                    "x": 20,
+                    "y": 20,
+                    "width": 60,
+                    "height": 60,
+                    "image_data_uri": self._REAL_PNG_1PX,
+                }
+            ]
+        )
+        self.assertTrue(doc[0].get_images(), "image not embedded")
+
+    def test_shape_rect_is_drawn(self):
+        doc = self._run(
+            [
+                {
+                    "type": "shape",
+                    "page": 0,
+                    "x": 30,
+                    "y": 30,
+                    "width": 100,
+                    "height": 50,
+                    "shape_kind": "rect",
+                    "stroke": "#ff0000",
+                    "stroke_width": 2,
+                    "fill": None,
+                    "fill_opacity": 1.0,
+                }
+            ]
+        )
+        self.assertTrue(doc[0].get_drawings(), "shape not drawn")
+
+    def test_ink_is_drawn(self):
+        doc = self._run(
+            [
+                {
+                    "type": "ink",
+                    "page": 0,
+                    "x": 0,
+                    "y": 0,
+                    "width": 200,
+                    "height": 200,
+                    "points": [[10, 10], [40, 60], [90, 20]],
+                    "stroke": "#0000ff",
+                    "stroke_width": 3,
+                }
+            ]
+        )
+        self.assertTrue(doc[0].get_drawings(), "ink not drawn")
+
+    def test_v1_text_still_works(self):  # regression guard
+        doc = self._run(
+            [
+                {
+                    "type": "text",
+                    "page": 0,
+                    "x": 60,
+                    "y": 60,
+                    "width": 300,
+                    "height": 40,
+                    "text": "Still real",
+                    "font_key": "sans",
+                    "font_size": 16,
+                    "color": "#111111",
+                }
+            ]
+        )
+        self.assertIn("Still real", doc[0].get_text())
+
 
 class AddTextI18nTests(SimpleTestCase):
     LOCALES = ("ar", "en", "es", "hi", "id", "pl", "ru")
