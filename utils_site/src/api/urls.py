@@ -69,6 +69,7 @@ from .pdf_edit.crop_pdf.batch_views import CropPDFBatchAPIView
 from .pdf_edit.crop_pdf.views import CropPDFAPIView
 from .pdf_edit.flatten_pdf.batch_views import FlattenPDFBatchAPIView
 from .pdf_edit.flatten_pdf.views import FlattenPDFAPIView
+from .pdf_edit.pdf_editor.views import PdfEditorAPIView
 from .pdf_edit.rotate_pdf.views import RotatePDFAPIView
 from .pdf_edit.sign_pdf.batch_views import SignPDFBatchAPIView
 from .pdf_edit.sign_pdf.views import SignPDFAPIView
@@ -313,6 +314,7 @@ urlpatterns = [
     ),
     path("pdf-edit/crop/", CropPDFAPIView.as_view(), name="crop_pdf_api"),
     path("pdf-edit/add-text/", AddTextPDFAPIView.as_view(), name="add_text_pdf_api"),
+    path("pdf-edit/editor/", PdfEditorAPIView.as_view(), name="pdf_editor_api"),
     path("pdf-edit/sign/", SignPDFAPIView.as_view(), name="sign_pdf_api"),
     path(
         "pdf-edit/sign/batch/", SignPDFBatchAPIView.as_view(), name="sign_pdf_batch_api"
