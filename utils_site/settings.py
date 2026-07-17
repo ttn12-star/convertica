@@ -452,6 +452,7 @@ TEMPLATES = [
                 "src.frontend.context_processors.hreflang_links",
                 "src.frontend.context_processors.site_urls",
                 "src.frontend.context_processors.turnstile_site_key",
+                "src.frontend.context_processors.cloud_import",
                 "src.frontend.context_processors.js_settings",
                 "src.frontend.context_processors.conversion_limits",
                 "src.frontend.context_processors.payments_enabled",
@@ -1255,6 +1256,14 @@ CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 # Cloudflare Turnstile Configuration
 TURNSTILE_SITE_KEY = config("TURNSTILE_SITE_KEY", default="")
 TURNSTILE_SECRET_KEY = config("TURNSTILE_SECRET_KEY", default="")
+
+# Google Drive / Dropbox import (client-side pickers on tool pages).
+# All three are public client-side identifiers; the import buttons are
+# hidden when unset. The Google OAuth client id is read from the allauth
+# SocialApp row (same client users log in with).
+GOOGLE_PICKER_API_KEY = config("GOOGLE_PICKER_API_KEY", default="")
+GOOGLE_PICKER_APP_ID = config("GOOGLE_APP_ID", default="")
+DROPBOX_APP_KEY = config("DROPBOX_APP_KEY", default="")
 
 # Telegram Bot Configuration
 CONTACT_TELEGRAM_ENABLED = config("CONTACT_TELEGRAM_ENABLED", default="True")
