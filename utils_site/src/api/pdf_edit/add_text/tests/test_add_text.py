@@ -14,7 +14,7 @@ from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import SimpleTestCase
 from src.api.pdf_edit.add_text.serializers import AddTextPDFSerializer
-from src.api.pdf_edit.add_text.utils import add_text_pdf
+from src.api.pdf_edit.add_text.utils import _hex_to_rgb, add_text_pdf
 
 
 def _pdf_bytes(width=595, height=842, pages=1):
@@ -158,6 +158,11 @@ class AddTextMaterializationTests(SimpleTestCase):
         _in, out = add_text_pdf(_upload(), operations=operations)
         return fitz.open(out)
 
+    @staticmethod
+    def _op_codes(drawings):
+        """Flatten every drawing's path-item op codes (e.g. 're', 'l', 'c')."""
+        return [item[0] for dr in drawings for item in dr["items"]]
+
     def test_text_is_real_extractable_text(self):
         doc = self._run(
             [
@@ -285,7 +290,81 @@ class AddTextMaterializationTests(SimpleTestCase):
                 }
             ]
         )
-        self.assertTrue(doc[0].get_drawings(), "shape not drawn")
+        ops = self._op_codes(doc[0].get_drawings())
+        # Ground truth from a manual fitz.Page.get_drawings() probe on this
+        # PyMuPDF version: draw_rect emits a single 're' (rectangle) item.
+        self.assertIn("re", ops, "rect must draw a 're' (rectangle) op")
+
+    def test_shape_ellipse_is_drawn(self):
+        doc = self._run(
+            [
+                {
+                    "type": "shape",
+                    "page": 0,
+                    "x": 30,
+                    "y": 30,
+                    "width": 100,
+                    "height": 50,
+                    "shape_kind": "ellipse",
+                    "stroke": "#ff0000",
+                    "stroke_width": 2,
+                    "fill": None,
+                    "fill_opacity": 1.0,
+                }
+            ]
+        )
+        ops = self._op_codes(doc[0].get_drawings())
+        # draw_oval emits 4 bezier-curve ('c') items and no 're' — distinct
+        # from rect, so a broken dispatch (ellipse falling through to rect)
+        # would fail this.
+        self.assertIn("c", ops, "ellipse must draw curve ('c') ops")
+        self.assertNotIn("re", ops, "ellipse must not draw a rectangle op")
+
+    def test_shape_line_is_drawn(self):
+        doc = self._run(
+            [
+                {
+                    "type": "shape",
+                    "page": 0,
+                    "x": 30,
+                    "y": 30,
+                    "width": 100,
+                    "height": 50,
+                    "shape_kind": "line",
+                    "stroke": "#ff0000",
+                    "stroke_width": 2,
+                    "fill": None,
+                    "fill_opacity": 1.0,
+                }
+            ]
+        )
+        ops = self._op_codes(doc[0].get_drawings())
+        self.assertIn("l", ops, "line must draw a 'l' (line) op")
+        self.assertNotIn("re", ops, "plain line must not draw a rectangle op")
+
+    def test_shape_arrow_has_head(self):
+        doc = self._run(
+            [
+                {
+                    "type": "shape",
+                    "page": 0,
+                    "x": 30,
+                    "y": 30,
+                    "width": 100,
+                    "height": 50,
+                    "shape_kind": "arrow",
+                    "stroke": "#ff0000",
+                    "stroke_width": 2,
+                    "fill": None,
+                    "fill_opacity": 1.0,
+                }
+            ]
+        )
+        ops = self._op_codes(doc[0].get_drawings())
+        # _draw_arrow draws shaft + 2 head strokes = 3 'l' items; a plain
+        # "line" op (test above) only ever draws 1 — this distinguishes a
+        # real arrowhead from a dispatch that silently falls back to line.
+        self.assertGreaterEqual(ops.count("l"), 3, "arrow must draw shaft + head lines")
 
     def test_ink_is_drawn(self):
         doc = self._run(
@@ -303,7 +382,18 @@ class AddTextMaterializationTests(SimpleTestCase):
                 }
             ]
         )
-        self.assertTrue(doc[0].get_drawings(), "ink not drawn")
+        drawings = doc[0].get_drawings()
+        self.assertTrue(drawings, "ink not drawn")
+        # 3 points must produce exactly 2 polyline segments — dropping a
+        # point (or drawing a single line instead of a polyline) fails this.
+        segments = [it for dr in drawings for it in dr["items"] if it[0] == "l"]
+        self.assertEqual(
+            len(segments), 2, "3 points must draw exactly 2 polyline segments"
+        )
+        # Stroke color must reflect the requested "#0000ff", not a default.
+        expected = _hex_to_rgb("#0000ff")
+        for actual_c, expected_c in zip(drawings[0]["color"], expected, strict=False):
+            self.assertAlmostEqual(actual_c, expected_c, places=3)
 
     def test_v1_text_still_works(self):  # regression guard
         doc = self._run(
