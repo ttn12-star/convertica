@@ -246,6 +246,7 @@ def breadcrumbs(request):
             "frontend:background_center_page": _("Background Queue Center"),
             "frontend:saved_workflows_page": _("Saved Workflows"),
             "frontend:background_tasks_page": _("Background Conversion"),
+            "frontend:install_page": _("Install the App"),
         }
 
         if view_name in breadcrumb_names:
