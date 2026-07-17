@@ -1,0 +1,18 @@
+{% autoescape off %}Tu archivo está listo — {{ output_filename }}
+
+{% if greeting_name %}Hola {{ greeting_name }}:{% else %}Hola:{% endif %}
+
+La conversión que iniciaste en Convertica ha terminado.
+
+Archivo: {{ output_filename }}
+{% if attached %}Va adjunto a este correo, así que no tienes que hacer nada más. Si lo prefieres, también puedes descargarlo del sitio mientras siga disponible:{% else %}El archivo era demasiado grande para adjuntarlo, así que descárgalo del sitio — un clic y es tuyo:{% endif %}
+{{ download_url }}
+
+Por tu privacidad, el archivo se elimina de nuestros servidores aproximadamente una hora después de la conversión — entonces el enlace deja de funcionar.{% if attached %} El adjunto, por supuesto, es tuyo para siempre.{% endif %}
+
+Gracias por usar Convertica,
+El equipo de Convertica
+{{ site_url }}
+
+Recibes este correo porque marcaste «Enviarme el resultado por correo» al iniciar esta conversión.
+{% endautoescape %}

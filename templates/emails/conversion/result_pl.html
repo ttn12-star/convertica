@@ -1,0 +1,14 @@
+{% extends "emails/conversion/base_result.html" %}
+{% block preheader %}Gotowy plik — w załączniku lub pod linkiem.{% endblock %}
+{% block heading %}Twój plik jest gotowy ✅{% endblock %}
+{% block greeting_named %}Cześć {{ greeting_name }},{% endblock %}
+{% block greeting_neutral %}Cześć,{% endblock %}
+{% block lead %}Konwersja, którą uruchomiłeś(-aś) w Convertica, została zakończona.{% endblock %}
+{% block attached_note %}W załączniku tej wiadomości.{% endblock %}
+{% block body_attached %}Plik jest w załączniku — nic więcej nie musisz robić. Jeśli wolisz, możesz też pobrać go ze strony, dopóki tam jest:{% endblock %}
+{% block body_link %}Plik był zbyt duży na załącznik, więc pobierz go ze strony — wystarczy jedno kliknięcie:{% endblock %}
+{% block cta_label %}Pobierz plik{% endblock %}
+{% block cta_sub %}Jeśli strona zapyta, kim jesteś — zaloguj się na to samo konto.{% endblock %}
+{% block expiry_note %}Dla Twojej prywatności plik jest usuwany z naszych serwerów około godziny po konwersji — wtedy link przestaje działać. Załącznik oczywiście zostaje u Ciebie.{% endblock %}
+{% block sign %}Dziękujemy, że korzystasz z Convertica!<br>Zespół Convertica{% endblock %}
+{% block foot_optin %}Otrzymujesz tę wiadomość, ponieważ przy uruchamianiu konwersji zaznaczono opcję „Wyślij wynik na e-mail”.{% endblock %}

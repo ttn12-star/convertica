@@ -138,14 +138,27 @@ class BatchAsyncSubmitAPIView(APIView):
             logger.warning("OperationRun 'queued' create failed: %s", db_exc)
 
         view_dotted = f"{view_cls.__module__}.{view_cls.__name__}"
+        task_kwargs = {
+            "task_id": task_id,
+            "view_dotted": view_dotted,
+            "input_files": input_files,
+            "params": params,
+            "output_zip_filename": view.OUTPUT_ZIP_FILENAME,
+        }
+        # Opt-in "email me the result" — batch is premium-only, so the only
+        # gate needed is an authenticated user with an email on file.
+        if (
+            request.user.is_authenticated
+            and getattr(request.user, "email", "")
+            and str(request.data.get("email_result", "")).lower() in ("true", "1", "on")
+        ):
+            from django.utils import translation
+
+            task_kwargs["notify_user_id"] = request.user.id
+            task_kwargs["notify_lang"] = translation.get_language() or ""
+
         batch_conversion_task.apply_async(
-            kwargs={
-                "task_id": task_id,
-                "view_dotted": view_dotted,
-                "input_files": input_files,
-                "params": params,
-                "output_zip_filename": view.OUTPUT_ZIP_FILENAME,
-            },
+            kwargs=task_kwargs,
             task_id=task_id,
             # Batch is a premium-only feature; route to the premium queue.
             queue="premium",

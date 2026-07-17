@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Conversion History" %} | Convertica{% endblock %}
+{% block content %}
+  <div class="max-w-5xl mx-auto py-12 px-4">
+    <h1 class="text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">{% trans "Conversion History" %}</h1>
+    <p class="mb-6 text-gray-600 dark:text-gray-400">
+      {% trans "Your recent conversions on this account. Files themselves are never stored — only the run details below." %}
+    </p>
+
+    {% if not is_premium %}
+      <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-300 dark:border-yellow-700 rounded-lg p-6 mb-6">
+        <p class="font-semibold text-gray-900 dark:text-gray-100">{% trans "Conversion history is a Premium feature" %}</p>
+        <p class="text-sm mt-2 text-gray-700 dark:text-gray-300">{% trans "Upgrade to see every conversion you run: tool, result, file sizes and processing time — across all your devices." %}</p>
+        <a href="{% url 'frontend:pricing' %}" class="inline-block mt-4 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded font-semibold">{% trans "Go Premium" %}</a>
+      </div>
+    {% else %}
+      {% if stats.total %}
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+          <div class="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
+            <p class="text-xs uppercase tracking-wide font-semibold text-gray-500 dark:text-gray-400">{% trans "Total conversions" %}</p>
+            <p class="text-2xl font-extrabold text-gray-900 dark:text-gray-100">{{ stats.total }}</p>
+          </div>
+          <div class="rounded-xl border border-green-200 dark:border-green-800 bg-green-50/60 dark:bg-green-900/20 p-4">
+            <p class="text-xs uppercase tracking-wide font-semibold text-green-700 dark:text-green-300">{% trans "Succeeded" %}</p>
+            <p class="text-2xl font-extrabold text-green-800 dark:text-green-200">{{ stats.succeeded }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if page_obj.object_list %}
+        <div class="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-800">
+          <table class="min-w-full text-sm">
+            <thead class="bg-gray-50 dark:bg-gray-900 text-left text-gray-600 dark:text-gray-300">
+              <tr>
+                <th class="px-4 py-3 font-semibold">{% trans "Date" %}</th>
+                <th class="px-4 py-3 font-semibold">{% trans "Tool" %}</th>
+                <th class="px-4 py-3 font-semibold">{% trans "Status" %}</th>
+                <th class="px-4 py-3 font-semibold">{% trans "Input" %}</th>
+                <th class="px-4 py-3 font-semibold">{% trans "Output" %}</th>
+                <th class="px-4 py-3 font-semibold">{% trans "Duration" %}</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 dark:divide-gray-800 bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-200">
+              {% for run in page_obj.object_list %}
+                <tr>
+                  <td class="px-4 py-3 whitespace-nowrap">{{ run.created_at|date:"Y-m-d H:i" }}</td>
+                  <td class="px-4 py-3"><code class="text-xs bg-gray-100 dark:bg-gray-900 px-1.5 py-0.5 rounded">{{ run.conversion_type }}</code></td>
+                  <td class="px-4 py-3">
+                    {% if run.status == "success" %}
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">{% trans "Success" %}</span>
+                    {% elif run.status == "error" %}
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">{% trans "Failed" %}</span>
+                    {% elif run.status == "rejected" %}
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">{% trans "Rejected" %}</span>
+                    {% else %}
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300">{{ run.status }}</span>
+                    {% endif %}
+                  </td>
+                  <td class="px-4 py-3 whitespace-nowrap">{% if run.input_size %}{{ run.input_size|filesizeformat }}{% else %}—{% endif %}</td>
+                  <td class="px-4 py-3 whitespace-nowrap">{% if run.output_size %}{{ run.output_size|filesizeformat }}{% else %}—{% endif %}</td>
+                  <td class="px-4 py-3 whitespace-nowrap">{% if run.duration_ms %}{{ run.duration_ms }} ms{% else %}—{% endif %}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% if page_obj.has_other_pages %}
+          <div class="mt-6 flex items-center gap-3 text-sm">
+            {% if page_obj.has_previous %}
+              <a href="?page={{ page_obj.previous_page_number }}" class="px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800">← {% trans "Newer" %}</a>
+            {% endif %}
+            <span class="text-gray-500 dark:text-gray-400">{% blocktrans with num=page_obj.number total=page_obj.paginator.num_pages %}Page {{ num }} of {{ total }}{% endblocktrans %}</span>
+            {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}" class="px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-700 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800">{% trans "Older" %} →</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="text-sm text-gray-600 dark:text-gray-300 py-10 text-center border border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
+          {% trans "No conversions yet. Run any tool and it will show up here." %}
+        </div>
+      {% endif %}
+
+      <p class="mt-6 text-xs text-gray-500 dark:text-gray-400">
+        {% trans "History is kept for 12 months. Converted files are deleted from our servers within about an hour of processing and never appear here." %}
+      </p>
+    {% endif %}
+  </div>
+{% endblock %}

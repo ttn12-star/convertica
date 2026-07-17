@@ -1,0 +1,14 @@
+{% extends "emails/conversion/base_result.html" %}
+{% block preheader %}Готовый файл — во вложении или по ссылке.{% endblock %}
+{% block heading %}Ваш файл готов ✅{% endblock %}
+{% block greeting_named %}Здравствуйте, {{ greeting_name }}!{% endblock %}
+{% block greeting_neutral %}Здравствуйте!{% endblock %}
+{% block lead %}Конвертация, которую вы запустили на Convertica, завершена.{% endblock %}
+{% block attached_note %}Прикреплён к этому письму.{% endblock %}
+{% block body_attached %}Файл во вложении — больше ничего делать не нужно. Если удобнее, можно скачать его и с сайта, пока он там хранится:{% endblock %}
+{% block body_link %}Файл оказался слишком большим для вложения, поэтому скачайте его с сайта — это один клик:{% endblock %}
+{% block cta_label %}Скачать файл{% endblock %}
+{% block cta_sub %}Если сайт спросит, кто вы — войдите в тот же аккаунт.{% endblock %}
+{% block expiry_note %}Ради вашей приватности файл удаляется с наших серверов примерно через час после конвертации — тогда ссылка перестанет работать. Вложение, разумеется, останется у вас.{% endblock %}
+{% block sign %}Спасибо, что пользуетесь Convertica!<br>Команда Convertica{% endblock %}
+{% block foot_optin %}Вы получили это письмо, потому что отметили «Прислать результат на почту» при запуске конвертации.{% endblock %}

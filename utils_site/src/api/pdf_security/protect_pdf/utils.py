@@ -3,6 +3,7 @@ import os
 import fitz
 from django.core.files.uploadedfile import UploadedFile
 from pypdf import PdfReader, PdfWriter
+from pypdf.constants import UserAccessPermissions
 from src.exceptions import (
     ConversionError,
     EncryptedPDFError,
@@ -16,12 +17,42 @@ from ...pdf_processing import BasePDFProcessor
 logger = get_logger(__name__)
 
 
+def permissions_flag(
+    restrict_printing: bool = False,
+    restrict_copying: bool = False,
+    restrict_modifying: bool = False,
+) -> UserAccessPermissions:
+    """Build the pypdf permissions flag from the three restrict toggles.
+
+    Accessibility extraction (bit 512) stays allowed even when copying is
+    restricted — screen readers must keep working.
+    """
+    perms = UserAccessPermissions.all()
+    if restrict_printing:
+        perms &= ~(
+            UserAccessPermissions.PRINT | UserAccessPermissions.PRINT_TO_REPRESENTATION
+        )
+    if restrict_copying:
+        perms &= ~UserAccessPermissions.EXTRACT
+    if restrict_modifying:
+        perms &= ~(
+            UserAccessPermissions.MODIFY
+            | UserAccessPermissions.ADD_OR_MODIFY
+            | UserAccessPermissions.FILL_FORM_FIELDS
+            | UserAccessPermissions.ASSEMBLE_DOC
+        )
+    return perms
+
+
 def protect_pdf(
     uploaded_file: UploadedFile,
     password: str,
     user_password: str = None,
     owner_password: str = None,
     suffix: str = "_convertica",
+    restrict_printing: bool = False,
+    restrict_copying: bool = False,
+    restrict_modifying: bool = False,
 ) -> tuple[str, str]:
     """Protect PDF with password encryption.
 
@@ -31,6 +62,8 @@ def protect_pdf(
         user_password: User password (optional, uses password if not provided)
         owner_password: Owner password (optional, uses password if not provided)
         suffix: Suffix for output filename
+        restrict_printing/copying/modifying: premium permission toggles
+            (enforced with the owner password by PDF readers)
 
     Returns:
         Tuple of (input_path, output_path)
@@ -117,6 +150,11 @@ def protect_pdf(
                 user_password=user_pwd,
                 owner_password=owner_pwd,
                 algorithm="AES-256",
+                permissions_flag=permissions_flag(
+                    restrict_printing=restrict_printing,
+                    restrict_copying=restrict_copying,
+                    restrict_modifying=restrict_modifying,
+                ),
             )
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)

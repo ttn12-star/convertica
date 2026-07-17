@@ -14689,3 +14689,193 @@ msgid ""
 msgstr ""
 "أنشئ وأعد استخدام الإعدادات المسبقة للتحويل مع ملاحظاتك الخاصة للمهام "
 "المتكررة."
+
+msgid "Email me the result"
+msgstr "أرسل لي النتيجة عبر البريد الإلكتروني"
+
+msgid ""
+"The finished file goes to %(email)s — small files attached, big ones as a "
+"download link. No need to keep the tab open."
+msgstr ""
+"يتم إرسال الملف النهائي إلى %(email)s — الملفات الصغيرة مرفقة، والكبيرة "
+"كرابط تحميل. لا حاجة لإبقاء علامة التبويب مفتوحة."
+
+msgid "Get the finished file straight to your inbox — a Premium feature."
+msgstr ""
+"احصل على الملف النهائي مباشرة إلى صندوق الوارد الخاص بك — ميزة بريميوم."
+
+msgid ""
+"Get the finished file straight to your inbox — sign in and go Premium to "
+"enable."
+msgstr ""
+"احصل على الملف النهائي مباشرة إلى صندوق الوارد الخاص بك — سجل الدخول واشترك "
+"في بريميوم لتفعيل الميزة."
+
+msgid "Name this workflow preset:"
+msgstr "قم بتسمية هذا الإعداد المسبق لسير العمل:"
+
+msgid "Saved"
+msgstr "تم الحفظ"
+
+msgid "Save these settings as a workflow"
+msgstr "احفظ هذه الإعدادات كسير عمل"
+
+msgid "Permission controls"
+msgstr "عناصر التحكم في الأذونات"
+
+msgid ""
+"Limit what someone who opens the PDF can do with it. Applied on top of "
+"AES-256 encryption."
+msgstr ""
+"تقييد ما يمكن لمن يفتح ملف PDF القيام به. يُطبق بالإضافة إلى تشفير AES-256."
+
+msgid ""
+"Limit printing, copying or editing of the protected PDF — a Premium feature."
+msgstr "تقييد الطباعة أو النسخ أو التحرير لملف PDF المحمي — ميزة بريميوم."
+
+msgid "Disallow printing"
+msgstr "منع الطباعة"
+
+msgid "Disallow copying text and images"
+msgstr "منع نسخ النصوص والصور"
+
+msgid "Disallow editing and annotating"
+msgstr "منع التحرير والتعليق"
+
+msgid "Saved settings"
+msgstr "الإعدادات المحفوظة"
+
+msgid "Conversion History"
+msgstr "سجل التحويلات"
+
+msgid ""
+"Your recent conversions on this account. Files themselves are never stored —"
+" only the run details below."
+msgstr ""
+"تحويلاتك الأخيرة على هذا الحساب. لا يتم تخزين الملفات نفسها أبدًا — فقط "
+"تفاصيل التشغيل أدناه."
+
+msgid "Conversion history is a Premium feature"
+msgstr "سجل التحويلات هو ميزة بريميوم"
+
+msgid ""
+"Upgrade to see every conversion you run: tool, result, file sizes and "
+"processing time — across all your devices."
+msgstr ""
+"قم بالترقية لرؤية كل تحويل تقوم به: الأداة، النتيجة، أحجام الملفات ووقت "
+"المعالجة — عبر جميع أجهزتك."
+
+msgid "Total conversions"
+msgstr "إجمالي التحويلات"
+
+msgid "Succeeded"
+msgstr "تم بنجاح"
+
+msgid "Input"
+msgstr "إدخال"
+
+msgid "Output"
+msgstr "إخراج"
+
+msgid "Duration"
+msgstr "المدة"
+
+msgid "Newer"
+msgstr "أحدث"
+
+msgid "Page %(num)s of %(total)s"
+msgstr "الصفحة %(num)s من %(total)s"
+
+msgid "Older"
+msgstr "أقدم"
+
+msgid "No conversions yet. Run any tool and it will show up here."
+msgstr "لا توجد تحويلات بعد. قم بتشغيل أي أداة وسيظهر هنا."
+
+msgid ""
+"History is kept for 12 months. Converted files are deleted from our servers "
+"within about an hour of processing and never appear here."
+msgstr ""
+"يتم الاحتفاظ بالسجل لمدة 12 شهرًا. يتم حذف الملفات المحولة من خوادمنا خلال "
+"ساعة تقريبًا من المعالجة ولا تظهر هنا أبدًا."
+
+msgid "Your recent conversions (Premium)"
+msgstr "تحويلاتك الأخيرة (مميزة)"
+
+msgid ""
+"Permission controls (restrict printing, copying or editing) are a Premium "
+"feature. Untick them to protect with a password only, or upgrade to Premium."
+msgstr ""
+"عناصر التحكم في الأذونات (تقييد الطباعة أو النسخ أو التحرير) هي ميزة مميزة. "
+"قم بإلغاء تحديدها للحماية بكلمة مرور فقط، أو قم بالترقية إلى الإصدار المميز."
+
+msgid ""
+"Send long conversions to the background and keep working — the queue "
+"indicator tracks progress, and the finished file can even be emailed to you."
+msgstr ""
+"أرسل التحويلات الطويلة إلى الخلفية واستمر في العمل — يتتبع مؤشر قائمة "
+"الانتظار التقدم، ويمكن حتى إرسال الملف النهائي إليك عبر البريد الإلكتروني."
+
+msgid ""
+"Conversions run server-side, so you don't have to keep the page open or your"
+" computer awake — you can even have the finished file emailed to you."
+msgstr ""
+"تعمل التحويلات من جانب الخادم، لذا لا يتعين عليك إبقاء الصفحة مفتوحة أو جهاز"
+" الكمبيوتر الخاص بك قيد التشغيل — يمكنك حتى إرسال الملف النهائي إليك عبر "
+"البريد الإلكتروني."
+
+msgid "Can I get the result by email?"
+msgstr "هل يمكنني الحصول على النتيجة عبر البريد الإلكتروني؟"
+
+msgid ""
+"Yes. Tick “Email me the result” before starting a conversion: smaller files "
+"arrive as an attachment, bigger ones as a download link. Perfect for firing "
+"off a long job and walking away."
+msgstr ""
+"نعم. حدد \"أرسل لي النتيجة عبر البريد الإلكتروني\" قبل بدء التحويل: تصل "
+"الملفات الصغيرة كمرفق، والملفات الأكبر كرابط تنزيل. مثالي لبدء مهمة طويلة "
+"والمغادرة."
+
+msgid ""
+"On any converter, set the options the way you like and hit “Save these "
+"settings as a workflow” — the preset remembers the tool and every choice you"
+" made."
+msgstr ""
+"في أي محول، قم بتعيين الخيارات بالطريقة التي تريدها وانقر على \"حفظ هذه "
+"الإعدادات كسير عمل\" — يحفظ الإعداد المسبق الأداة وكل اختيار قمت به."
+
+msgid ""
+"Or build one in the Saved Workflows dashboard: name it, pick the tool, add "
+"notes — target format, quality, anything you usually forget. One-click "
+"templates like “eBook to Print PDF” help you start."
+msgstr ""
+"أو قم ببناء واحد في لوحة تحكم سير العمل المحفوظة: قم بتسميته، واختر الأداة، "
+"وأضف ملاحظات — التنسيق الهدف، الجودة، أي شيء تنساه عادةً. تساعدك القوالب "
+"بنقرة واحدة مثل \"كتاب إلكتروني إلى PDF للطباعة\" على البدء."
+
+msgid ""
+"Next time the job comes around, open your preset — it takes you straight to "
+"the right tool with your saved settings already applied and your notes at "
+"hand."
+msgstr ""
+"في المرة القادمة التي تأتي فيها المهمة، افتح الإعداد المسبق الخاص بك — يأخذك"
+" مباشرة إلى الأداة الصحيحة مع تطبيق إعداداتك المحفوظة بالفعل وملاحظاتك في "
+"متناول اليد."
+
+msgid ""
+"A name, the tool it opens, your notes — and, when you save it from a tool "
+"page, the settings you picked there (OCR language, quality, page options and"
+" so on). Your files are never stored."
+msgstr ""
+"اسم، الأداة التي يفتحها، ملاحظاتك — وعند حفظه من صفحة الأداة، الإعدادات التي"
+" اخترتها هناك (لغة التعرف الضوئي على الحروف، الجودة، خيارات الصفحة وما إلى "
+"ذلك). لا يتم تخزين ملفاتك أبدًا."
+
+msgid ""
+"No. Opening a preset takes you to the right tool with your saved settings "
+"already applied; you choose the files and press convert. For fully automated"
+" pipelines, check out our REST API."
+msgstr ""
+"لا. فتح إعداد مسبق يأخذك إلى الأداة الصحيحة مع تطبيق إعداداتك المحفوظة "
+"بالفعل؛ تختار الملفات وتضغط على تحويل. للحصول على خطوط أنابيب مؤتمتة "
+"بالكامل، تحقق من واجهة برمجة تطبيقات REST الخاصة بنا."

@@ -475,6 +475,29 @@ def download_data(request):
 
 
 @login_required
+def conversion_history(request):
+    """Premium: the user's recent conversion runs.
+
+    Reads the OperationRun analytics rows (user-FK indexed). Deliberately
+    excludes remote_addr / user_agent / error_message — internal detail.
+    Filenames are not stored at all, so the page shows type/status/sizes.
+    """
+    is_premium = bool(getattr(request.user, "is_premium_active", False))
+    context = {"is_premium": is_premium, "page_obj": None, "stats": None}
+    if is_premium:
+        from django.core.paginator import Paginator
+        from django.db.models import Count, Q
+
+        qs = request.user.operation_runs.order_by("-created_at")
+        context["stats"] = qs.aggregate(
+            total=Count("id"),
+            succeeded=Count("id", filter=Q(status="success")),
+        )
+        context["page_obj"] = Paginator(qs, 25).get_page(request.GET.get("page"))
+    return render(request, "users/history.html", context)
+
+
+@login_required
 def api_keys_dashboard(request):
     """List user's API keys + create/revoke entry points."""
     has_quota = (

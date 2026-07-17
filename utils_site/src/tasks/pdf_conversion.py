@@ -707,6 +707,23 @@ def generic_conversion_task(
             except Exception as webhook_exc:
                 logger.warning("webhook delivery raised, ignoring: %s", webhook_exc)
 
+        # Opt-in "email me the result" (premium, set by the view layer).
+        # Enqueue-only here; rendering/attachment happen in the email task.
+        notify_user_id = kwargs.get("notify_user_id")
+        if notify_user_id:
+            try:
+                from src.tasks.email import send_conversion_result
+
+                send_conversion_result.delay(
+                    user_id=notify_user_id,
+                    task_id=task_id,
+                    output_path=final_output_path,
+                    output_filename=output_filename,
+                    lang=kwargs.get("notify_lang", ""),
+                )
+            except Exception as email_exc:
+                logger.warning("result email enqueue failed, ignoring: %s", email_exc)
+
         return {
             "status": "success",
             "output_path": final_output_path,

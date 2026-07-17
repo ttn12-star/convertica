@@ -15273,3 +15273,197 @@ msgid ""
 msgstr ""
 "बार-बार होने वाले कार्यों के लिए अपने स्वयं के नोट्स के साथ रूपांतरण प्रीसेट"
 " बनाएं और पुन: उपयोग करें।"
+
+msgid "Email me the result"
+msgstr "मुझे ईमेल द्वारा परिणाम भेजें"
+
+msgid ""
+"The finished file goes to %(email)s — small files attached, big ones as a "
+"download link. No need to keep the tab open."
+msgstr ""
+"तैयार फ़ाइल %(email)s पर जाती है — छोटी फ़ाइलें अटैच की जाती हैं, बड़ी "
+"फ़ाइलें डाउनलोड लिंक के रूप में। टैब खुला रखने की ज़रूरत नहीं है।"
+
+msgid "Get the finished file straight to your inbox — a Premium feature."
+msgstr "तैयार फ़ाइल सीधे अपने इनबॉक्स में प्राप्त करें — एक प्रीमियम सुविधा।"
+
+msgid ""
+"Get the finished file straight to your inbox — sign in and go Premium to "
+"enable."
+msgstr ""
+"तैयार फ़ाइल सीधे अपने इनबॉक्स में प्राप्त करें — सक्षम करने के लिए साइन इन "
+"करें और प्रीमियम पर जाएं।"
+
+msgid "Name this workflow preset:"
+msgstr "इस वर्कफ़्लो प्रीसेट को नाम दें:"
+
+msgid "Saved"
+msgstr "सहेजा गया"
+
+msgid "Save these settings as a workflow"
+msgstr "इन सेटिंग्स को वर्कफ़्लो के रूप में सहेजें"
+
+msgid "Permission controls"
+msgstr "अनुमति नियंत्रण"
+
+msgid ""
+"Limit what someone who opens the PDF can do with it. Applied on top of "
+"AES-256 encryption."
+msgstr ""
+"PDF खोलने वाले व्यक्ति की क्षमताओं को सीमित करें। AES-256 एन्क्रिप्शन के ऊपर"
+" लागू किया गया।"
+
+msgid ""
+"Limit printing, copying or editing of the protected PDF — a Premium feature."
+msgstr ""
+"सुरक्षित PDF की प्रिंटिंग, कॉपी या संपादन सीमित करें — एक प्रीमियम सुविधा।"
+
+msgid "Disallow printing"
+msgstr "प्रिंटिंग की अनुमति न दें"
+
+msgid "Disallow copying text and images"
+msgstr "टेक्स्ट और इमेज कॉपी करने की अनुमति न दें"
+
+msgid "Disallow editing and annotating"
+msgstr "संपादन और एनोटेशन की अनुमति न दें"
+
+msgid "Saved settings"
+msgstr "सहेजी गई सेटिंग्स"
+
+msgid "Conversion History"
+msgstr "रूपांतरण इतिहास"
+
+msgid ""
+"Your recent conversions on this account. Files themselves are never stored —"
+" only the run details below."
+msgstr ""
+"इस खाते पर आपके हाल के रूपांतरण। फ़ाइलें स्वयं कभी संग्रहीत नहीं की जाती हैं"
+" — केवल नीचे दिए गए रन विवरण।"
+
+msgid "Conversion history is a Premium feature"
+msgstr "रूपांतरण इतिहास एक प्रीमियम सुविधा है"
+
+msgid ""
+"Upgrade to see every conversion you run: tool, result, file sizes and "
+"processing time — across all your devices."
+msgstr ""
+"अपग्रेड करें ताकि आपके द्वारा चलाए जाने वाले प्रत्येक रूपांतरण को देख सकें: "
+"टूल, परिणाम, फ़ाइल आकार और प्रसंस्करण समय — आपके सभी उपकरणों पर।"
+
+msgid "Total conversions"
+msgstr "कुल रूपांतरण"
+
+msgid "Succeeded"
+msgstr "सफल"
+
+msgid "Input"
+msgstr "इनपुट"
+
+msgid "Output"
+msgstr "आउटपुट"
+
+msgid "Duration"
+msgstr "अवधि"
+
+msgid "Newer"
+msgstr "नया"
+
+msgid "Page %(num)s of %(total)s"
+msgstr "पृष्ठ %(num)s का %(total)s"
+
+msgid "Older"
+msgstr "पुराना"
+
+msgid "No conversions yet. Run any tool and it will show up here."
+msgstr "अभी तक कोई रूपांतरण नहीं। कोई भी टूल चलाएं और यह यहां दिखाई देगा।"
+
+msgid ""
+"History is kept for 12 months. Converted files are deleted from our servers "
+"within about an hour of processing and never appear here."
+msgstr ""
+"इतिहास 12 महीनों तक रखा जाता है। रूपांतरित फ़ाइलें प्रसंस्करण के लगभग एक "
+"घंटे के भीतर हमारे सर्वर से हटा दी जाती हैं और यहां कभी दिखाई नहीं देती हैं।"
+
+msgid "Your recent conversions (Premium)"
+msgstr "आपके हाल के रूपांतरण (प्रीमियम)"
+
+msgid ""
+"Permission controls (restrict printing, copying or editing) are a Premium "
+"feature. Untick them to protect with a password only, or upgrade to Premium."
+msgstr ""
+"अनुमति नियंत्रण (प्रिंटिंग, कॉपी या संपादन प्रतिबंधित करना) एक प्रीमियम "
+"सुविधा है। केवल पासवर्ड से सुरक्षित करने के लिए उन्हें अनचेक करें, या "
+"प्रीमियम में अपग्रेड करें।"
+
+msgid ""
+"Send long conversions to the background and keep working — the queue "
+"indicator tracks progress, and the finished file can even be emailed to you."
+msgstr ""
+"लंबे रूपांतरणों को पृष्ठभूमि में भेजें और काम करते रहें — कतार संकेतक प्रगति"
+" को ट्रैक करता है, और तैयार फ़ाइल आपको ईमेल भी की जा सकती है।"
+
+msgid ""
+"Conversions run server-side, so you don't have to keep the page open or your"
+" computer awake — you can even have the finished file emailed to you."
+msgstr ""
+"रूपांतरण सर्वर-साइड चलते हैं, इसलिए आपको पेज खुला रखने या अपने कंप्यूटर को "
+"जगाए रखने की आवश्यकता नहीं है — आप तैयार फ़ाइल को ईमेल द्वारा भी प्राप्त कर "
+"सकते हैं।"
+
+msgid "Can I get the result by email?"
+msgstr "क्या मैं परिणाम ईमेल द्वारा प्राप्त कर सकता हूं?"
+
+msgid ""
+"Yes. Tick “Email me the result” before starting a conversion: smaller files "
+"arrive as an attachment, bigger ones as a download link. Perfect for firing "
+"off a long job and walking away."
+msgstr ""
+"हां। रूपांतरण शुरू करने से पहले “मुझे परिणाम ईमेल करें” चेक करें: छोटी "
+"फ़ाइलें अटैचमेंट के रूप में आती हैं, बड़ी फ़ाइलें डाउनलोड लिंक के रूप में। "
+"लंबे काम को शुरू करने और छोड़ने के लिए एकदम सही।"
+
+msgid ""
+"On any converter, set the options the way you like and hit “Save these "
+"settings as a workflow” — the preset remembers the tool and every choice you"
+" made."
+msgstr ""
+"किसी भी कनवर्टर पर, अपनी पसंद के अनुसार विकल्प सेट करें और “इन सेटिंग्स को "
+"वर्कफ़्लो के रूप में सहेजें” पर क्लिक करें — प्रीसेट टूल और आपके द्वारा किए "
+"गए हर विकल्प को याद रखता है।"
+
+msgid ""
+"Or build one in the Saved Workflows dashboard: name it, pick the tool, add "
+"notes — target format, quality, anything you usually forget. One-click "
+"templates like “eBook to Print PDF” help you start."
+msgstr ""
+"या सहेजे गए वर्कफ़्लो डैशबोर्ड में एक बनाएं: इसे नाम दें, टूल चुनें, नोट्स "
+"जोड़ें — लक्ष्य प्रारूप, गुणवत्ता, वह सब कुछ जो आप आमतौर पर भूल जाते हैं। "
+"“ईबुक को प्रिंट PDF में” जैसे एक-क्लिक टेम्पलेट आपको शुरू करने में मदद करते "
+"हैं।"
+
+msgid ""
+"Next time the job comes around, open your preset — it takes you straight to "
+"the right tool with your saved settings already applied and your notes at "
+"hand."
+msgstr ""
+"अगली बार जब काम आए, तो अपना प्रीसेट खोलें — यह आपको सीधे सही टूल पर ले जाता "
+"है जिसमें आपकी सहेजी गई सेटिंग्स पहले से लागू होती हैं और आपके नोट्स हाथ में"
+" होते हैं।"
+
+msgid ""
+"A name, the tool it opens, your notes — and, when you save it from a tool "
+"page, the settings you picked there (OCR language, quality, page options and"
+" so on). Your files are never stored."
+msgstr ""
+"एक नाम, वह टूल जो यह खोलता है, आपके नोट्स — और, जब आप इसे टूल पेज से सहेजते "
+"हैं, तो वहां चुनी गई सेटिंग्स (OCR भाषा, गुणवत्ता, पृष्ठ विकल्प और इसी तरह)।"
+" आपकी फ़ाइलें कभी संग्रहीत नहीं होती हैं।"
+
+msgid ""
+"No. Opening a preset takes you to the right tool with your saved settings "
+"already applied; you choose the files and press convert. For fully automated"
+" pipelines, check out our REST API."
+msgstr ""
+"नहीं। प्रीसेट खोलने से आप सही टूल पर पहुंच जाते हैं जिसमें आपकी सहेजी गई "
+"सेटिंग्स पहले से लागू होती हैं; आप फ़ाइलें चुनते हैं और कन्वर्ट दबाते हैं। "
+"पूरी तरह से स्वचालित पाइपलाइनों के लिए, हमारा REST API देखें।"

@@ -1,0 +1,18 @@
+{% autoescape off %}File Anda sudah siap — {{ output_filename }}
+
+{% if greeting_name %}Halo {{ greeting_name }},{% else %}Halo,{% endif %}
+
+Konversi yang Anda mulai di Convertica telah selesai.
+
+File: {{ output_filename }}
+{% if attached %}File terlampir di email ini — tidak perlu melakukan apa pun lagi. Jika mau, Anda juga bisa mengunduhnya dari situs selama masih tersedia:{% else %}File terlalu besar untuk dilampirkan, jadi unduh dari situs — cukup satu klik:{% endif %}
+{{ download_url }}
+
+Demi privasi Anda, file dihapus dari server kami sekitar satu jam setelah konversi — setelah itu tautan berhenti berfungsi.{% if attached %} Lampirannya tentu tetap menjadi milik Anda.{% endif %}
+
+Terima kasih telah menggunakan Convertica,
+Tim Convertica
+{{ site_url }}
+
+Anda menerima email ini karena mencentang "Kirim hasil ke email" saat memulai konversi ini.
+{% endautoescape %}

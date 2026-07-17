@@ -1,0 +1,14 @@
+{% extends "emails/conversion/base_result.html" %}
+{% block preheader %}File hasil konversi Anda — terlampir atau lewat tautan.{% endblock %}
+{% block heading %}File Anda sudah siap ✅{% endblock %}
+{% block greeting_named %}Halo {{ greeting_name }},{% endblock %}
+{% block greeting_neutral %}Halo,{% endblock %}
+{% block lead %}Konversi yang Anda mulai di Convertica telah selesai.{% endblock %}
+{% block attached_note %}Terlampir di email ini.{% endblock %}
+{% block body_attached %}File sudah terlampir — tidak perlu melakukan apa pun lagi. Jika mau, Anda juga bisa mengunduhnya dari situs selama masih tersedia:{% endblock %}
+{% block body_link %}File terlalu besar untuk dilampirkan, jadi unduh dari situs — cukup satu klik:{% endblock %}
+{% block cta_label %}Unduh file{% endblock %}
+{% block cta_sub %}Jika situs menanyakan identitas Anda, masuk dengan akun yang sama.{% endblock %}
+{% block expiry_note %}Demi privasi Anda, file dihapus dari server kami sekitar satu jam setelah konversi — setelah itu tautan berhenti berfungsi. Lampirannya tentu tetap menjadi milik Anda.{% endblock %}
+{% block sign %}Terima kasih telah menggunakan Convertica,<br>Tim Convertica{% endblock %}
+{% block foot_optin %}Anda menerima email ini karena mencentang "Kirim hasil ke email" saat memulai konversi ini.{% endblock %}

@@ -5,6 +5,8 @@ These tasks handle asynchronous email sending to avoid blocking
 the main request thread, especially when SMTP is slow or unavailable.
 """
 
+import mimetypes
+import os
 import smtplib
 import socket
 
@@ -87,6 +89,112 @@ def send_account_email(
     logger.info(
         "Account email sent",
         extra={"event": "account_email_sent", "recipients": to},
+    )
+
+
+@shared_task(
+    name="email.send_conversion_result",
+    queue="default",
+    bind=True,
+    max_retries=3,
+    soft_time_limit=60,
+    time_limit=90,
+)
+def send_conversion_result(
+    self,
+    user_id: int,
+    task_id: str,
+    output_path: str,
+    output_filename: str,
+    lang: str = "",
+):
+    """Email a finished conversion to the user who opted in (premium).
+
+    Enqueued by the conversion tasks right after success (webhook pattern).
+    Small results are attached; big ones get the download link only (the
+    result endpoint authorizes a logged-in owner via the OperationRun row,
+    so the emailed link works without a task token). Files expire in ~1h,
+    which is why the attachment path is preferred whenever it fits.
+    """
+    from django.conf import settings
+    from django.template.loader import render_to_string
+    from django.utils import translation
+    from src.users.models import User
+
+    user = User.objects.filter(id=user_id).first()
+    if not user or not user.email:
+        logger.warning("send_conversion_result: no user/email for %s", user_id)
+        return
+
+    supported = {code for code, _label in settings.LANGUAGES}
+    lang = lang if lang in supported else settings.LANGUAGE_CODE
+    site_url = settings.SITE_URL.rstrip("/")
+    download_url = f"{site_url}/api/tasks/{task_id}/result/"
+
+    max_bytes = getattr(settings, "EMAIL_RESULT_MAX_ATTACHMENT_MB", 10) * 1024 * 1024
+    attachment = None
+    try:
+        if output_path and os.path.getsize(output_path) <= max_bytes:
+            with open(output_path, "rb") as fh:
+                attachment = fh.read()
+    except OSError:
+        # File already reaped (e.g. late retry) — fall back to the link.
+        attachment = None
+
+    greeting_name = (getattr(user, "first_name", "") or user.username or "").strip()
+    context = {
+        "greeting_name": greeting_name,
+        "output_filename": output_filename,
+        "download_url": download_url,
+        "attached": attachment is not None,
+        "site_url": site_url,
+        "support_email": getattr(
+            settings, "CONTACT_EMAIL", settings.DEFAULT_FROM_EMAIL
+        ),
+        "email_lang": lang,
+        "rtl": lang == "ar",
+    }
+    with translation.override(lang):
+        text = render_to_string(f"emails/conversion/result_{lang}.txt", context)
+        html_body = render_to_string(f"emails/conversion/result_{lang}.html", context)
+
+    subject, _sep, body = text.partition("\n")
+    msg = EmailMultiAlternatives(
+        subject=subject.strip(),
+        body=body.strip("\n"),
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=[user.email],
+    )
+    msg.attach_alternative(html_body, "text/html")
+    if attachment is not None:
+        mimetype = (
+            mimetypes.guess_type(output_filename)[0] or "application/octet-stream"
+        )
+        msg.attach(output_filename, attachment, mimetype)
+
+    try:
+        msg.send()
+    except _RETRYABLE_EMAIL_EXCEPTIONS as exc:
+        if self.request.is_eager:
+            raise
+        logger.warning(
+            "Result email send failed (attempt %d/%d): %s",
+            self.request.retries + 1,
+            self.max_retries + 1,
+            exc,
+            extra={"event": "result_email_retry", "task_id": task_id},
+        )
+        raise self.retry(
+            exc=exc, countdown=min(600, 60 * 2**self.request.retries)
+        ) from exc
+
+    logger.info(
+        "Conversion result email sent",
+        extra={
+            "event": "result_email_sent",
+            "task_id": task_id,
+            "attached": attachment is not None,
+        },
     )
 
 

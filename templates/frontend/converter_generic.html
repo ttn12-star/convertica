@@ -86,6 +86,33 @@
         <!-- Edit Options Block (for page selection, DPI, etc.) -->
       {% block edit_options %}{% endblock %}
 
+      {% if email_result_enabled and PAYMENTS_ENABLED %}
+        <!-- Premium: email the finished file (async tools only) -->
+        <div class="mt-4 p-4 rounded-xl border border-amber-200 dark:border-amber-800 bg-amber-50/40 dark:bg-amber-900/10"
+             data-premium="{% if user.is_authenticated and user.is_premium_active %}true{% else %}false{% endif %}">
+          <label class="flex items-start gap-3 {% if user.is_authenticated and user.is_premium_active %}cursor-pointer{% else %}cursor-not-allowed opacity-60{% endif %}">
+            <input type="checkbox"
+                   name="email_result"
+                   id="emailResultCheckbox"
+                   value="true"
+                   class="mt-1 w-4 h-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+                   {% if not user.is_authenticated or not user.is_premium_active %}disabled{% endif %}>
+            <span class="text-sm text-gray-700 dark:text-gray-300">
+              <span class="font-semibold">{% trans "Email me the result" %}</span>
+              <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold align-middle ms-1">PRO</span><br>
+              {% if user.is_authenticated and user.is_premium_active %}
+                {% blocktrans with email=user.email %}The finished file goes to {{ email }} — small files attached, big ones as a download link. No need to keep the tab open.{% endblocktrans %}
+              {% elif user.is_authenticated %}
+                {% trans "Get the finished file straight to your inbox — a Premium feature." %}
+                <a href="{% url 'frontend:pricing' %}" class="font-semibold underline text-amber-700 dark:text-amber-300">{% trans "Go Premium" %}</a>
+              {% else %}
+                {% trans "Get the finished file straight to your inbox — sign in and go Premium to enable." %}
+              {% endif %}
+            </span>
+          </label>
+        </div>
+      {% endif %}
+
         <!-- Honeypot field (hidden from users, filled by bots) -->
       {# inset-inline-start, NOT left: in RTL left:-9999px grows the scrollable canvas 9999px to the left and headless Chrome (crawler renderers, Lighthouse) paints /ar/ pages as fully BLANK #}
       <input type="text" name="website" id="website" style="position: absolute; inset-inline-start: -9999px; opacity: 0; pointer-events: none;" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -118,6 +145,17 @@
             <span>{{ button_text }}</span>
           </span>
         </button>
+        {% if user.is_authenticated and user.is_premium_active %}
+          <p class="mt-3">
+            <button type="button"
+                    id="saveWorkflowBtn"
+                    data-prompt-text="{% trans 'Name this workflow preset:' %}"
+                    data-saved-text="{% trans 'Saved' %}"
+                    class="text-sm font-semibold text-amber-700 dark:text-amber-300 underline decoration-dotted hover:decoration-solid">
+              {% trans "Save these settings as a workflow" %}
+            </button>
+          </p>
+        {% endif %}
       </div>
     </form>
 

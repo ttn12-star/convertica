@@ -55,6 +55,45 @@
           {% trans "Optional: Set a different password for owner. If not provided, the main password will be used." %}
         </p>
       </div>
+
+        <!-- Premium: permission controls -->
+      {% if PAYMENTS_ENABLED %}
+        <div class="p-4 rounded-xl border border-amber-200 bg-amber-50/40"
+             data-premium="{% if user.is_authenticated and user.is_premium_active %}true{% else %}false{% endif %}">
+          <p class="text-sm font-semibold text-gray-800 mb-1">
+            {% trans "Permission controls" %}
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold align-middle ms-1">PRO</span>
+          </p>
+          <p class="text-xs text-gray-500 mb-3">
+            {% if user.is_authenticated and user.is_premium_active %}
+              {% trans "Limit what someone who opens the PDF can do with it. Applied on top of AES-256 encryption." %}
+            {% else %}
+              {% trans "Limit printing, copying or editing of the protected PDF — a Premium feature." %}
+              <a href="{% url 'frontend:pricing' %}" class="font-semibold underline text-amber-700">{% trans "Go Premium" %}</a>
+            {% endif %}
+          </p>
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 text-sm text-gray-700 {% if not user.is_authenticated or not user.is_premium_active %}cursor-not-allowed opacity-60{% else %}cursor-pointer{% endif %}">
+              <input type="checkbox" name="restrict_printing" value="true"
+                     class="w-4 h-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+                     {% if not user.is_authenticated or not user.is_premium_active %}disabled{% endif %}>
+              {% trans "Disallow printing" %}
+            </label>
+            <label class="flex items-center gap-2 text-sm text-gray-700 {% if not user.is_authenticated or not user.is_premium_active %}cursor-not-allowed opacity-60{% else %}cursor-pointer{% endif %}">
+              <input type="checkbox" name="restrict_copying" value="true"
+                     class="w-4 h-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+                     {% if not user.is_authenticated or not user.is_premium_active %}disabled{% endif %}>
+              {% trans "Disallow copying text and images" %}
+            </label>
+            <label class="flex items-center gap-2 text-sm text-gray-700 {% if not user.is_authenticated or not user.is_premium_active %}cursor-not-allowed opacity-60{% else %}cursor-pointer{% endif %}">
+              <input type="checkbox" name="restrict_modifying" value="true"
+                     class="w-4 h-4 rounded border-gray-300 text-amber-600 focus:ring-amber-500"
+                     {% if not user.is_authenticated or not user.is_premium_active %}disabled{% endif %}>
+              {% trans "Disallow editing and annotating" %}
+            </label>
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

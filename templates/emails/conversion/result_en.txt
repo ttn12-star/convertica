@@ -1,0 +1,18 @@
+{% autoescape off %}Your file is ready — {{ output_filename }}
+
+{% if greeting_name %}Hi {{ greeting_name }},{% else %}Hi there,{% endif %}
+
+The conversion you started on Convertica has finished.
+
+File: {{ output_filename }}
+{% if attached %}It is attached to this email — you're all set. If you prefer, you can also grab it from the site while it's still there:{% else %}The file was too big to attach, so download it from the site — one click and it's yours:{% endif %}
+{{ download_url }}
+
+For your privacy the file is deleted from our servers about an hour after conversion — the link stops working then.{% if attached %} The attachment, of course, is yours to keep.{% endif %}
+
+Thanks for using Convertica,
+The Convertica Team
+{{ site_url }}
+
+You received this email because you ticked "Email me the result" when starting this conversion.
+{% endautoescape %}

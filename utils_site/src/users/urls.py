@@ -26,6 +26,7 @@ urlpatterns = [
     path("delete-account/", views.delete_account, name="delete_account"),
     path("toggle-hero-display/", views.toggle_hero_display, name="toggle_hero_display"),
     path("download-data/", views.download_data, name="download_data"),
+    path("history/", views.conversion_history, name="history"),
     path("api-keys/", views.api_keys_dashboard, name="api_keys"),
     path("api-keys/create/", views.api_key_create, name="api_key_create"),
     path("api-keys/<int:pk>/revoke/", views.api_key_revoke, name="api_key_revoke"),

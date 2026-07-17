@@ -1,0 +1,14 @@
+{% extends "emails/conversion/base_result.html" %}
+{% block preheader %}आपकी कन्वर्ट की गई फ़ाइल — अटैचमेंट में या लिंक से।{% endblock %}
+{% block heading %}आपकी फ़ाइल तैयार है ✅{% endblock %}
+{% block greeting_named %}नमस्ते {{ greeting_name }},{% endblock %}
+{% block greeting_neutral %}नमस्ते,{% endblock %}
+{% block lead %}Convertica पर आपने जो कन्वर्ज़न शुरू किया था, वह पूरा हो गया है।{% endblock %}
+{% block attached_note %}इस ईमेल के साथ अटैच है।{% endblock %}
+{% block body_attached %}फ़ाइल अटैच है — बस, और कुछ करने की ज़रूरत नहीं। चाहें तो जब तक फ़ाइल साइट पर है, वहाँ से भी डाउनलोड कर सकते हैं:{% endblock %}
+{% block body_link %}फ़ाइल अटैचमेंट के लिए बहुत बड़ी थी, इसलिए इसे साइट से डाउनलोड करें — बस एक क्लिक:{% endblock %}
+{% block cta_label %}फ़ाइल डाउनलोड करें{% endblock %}
+{% block cta_sub %}अगर साइट पूछे कि आप कौन हैं, तो उसी अकाउंट से साइन इन करें।{% endblock %}
+{% block expiry_note %}आपकी प्राइवेसी के लिए फ़ाइल कन्वर्ज़न के लगभग एक घंटे बाद हमारे सर्वर से हटा दी जाती है — उसके बाद लिंक काम नहीं करेगा। अटैचमेंट, ज़ाहिर है, हमेशा आपके पास रहेगा।{% endblock %}
+{% block sign %}Convertica इस्तेमाल करने के लिए धन्यवाद,<br>Convertica टीम{% endblock %}
+{% block foot_optin %}आपको यह ईमेल इसलिए मिला क्योंकि कन्वर्ज़न शुरू करते समय आपने "नतीजा ईमेल पर भेजें" चुना था।{% endblock %}
