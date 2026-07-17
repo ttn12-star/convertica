@@ -87,6 +87,24 @@ class TaskDownloadPageTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "no longer available")
 
+    def test_downloaded_and_forgotten_result_reads_expired_not_processing(self):
+        """After browser download the Celery result is forgotten (PENDING) —
+        the page must show expired, not an eternal 'still processing'."""
+        OperationRun.objects.create(
+            conversion_type="PDF_TO_WORD",
+            status="success",
+            user=self.user,
+            task_id="task-dl-1",
+        )
+        fake = MagicMock()
+        fake.status = "PENDING"
+        fake.result = None
+        self.client.force_login(self.user)
+        with patch("celery.result.AsyncResult", return_value=fake):
+            response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "no longer available")
+
     def test_owner_with_pending_result_sees_processing(self):
         OperationRun.objects.create(
             conversion_type="PDF_TO_WORD",
