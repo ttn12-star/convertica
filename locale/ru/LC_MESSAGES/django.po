@@ -16277,3 +16277,215 @@ msgstr "<p><strong>Подпись PDF</strong> позволяет постави
 
 msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted automatically after download.</p>"
 msgstr "<p><strong>Конвертер изображений</strong> мгновенно преобразует ваши файлы изображений из одного формата в другой. Нужно конвертировать PNG в WebP для более быстрой загрузки веб-страниц, BMP в JPEG для уменьшения размера файла или GIF в PNG для лучшего качества — этот инструмент справится со всем.</p><p>Установка программного обеспечения не требуется. Все конвертации происходят на сервере, а ваши файлы автоматически удаляются после скачивания.</p>"
+
+# --- appended 2026-07-17: Add Text to PDF tool (V1) ---
+
+msgid "<p><strong>Add Text to PDF</strong> puts words exactly where you need them: click anywhere on the page, type, and style the result with font, size, color, bold, italic, underline, and alignment. The text is written into the PDF as real, selectable text with the font embedded — not as a picture.</p><p>Beyond text, the editor includes a whiteout tool that samples the page background to cover mistakes cleanly, a translucent highlighter, and checkmark, cross, bullet, and arrow symbols — everything needed to fill out a form that has no fillable fields. Files are deleted automatically right after download; whiteout is a visual cover-up, not redaction, so the original content remains in the file underneath.</p>"
+msgstr "<p><strong>Добавить текст в PDF (ПДФ)</strong> помещает слова именно туда, где они нужны: кликните в любом месте страницы, введите текст и настройте шрифт, размер, цвет, жирность, курсив, подчёркивание и выравнивание. Текст вписывается в PDF как настоящий выделяемый текст со встроенным шрифтом, а не как картинка.</p><p>Помимо текста в редакторе есть инструмент «белила», который подбирает цвет фона страницы и аккуратно закрывает ошибки, полупрозрачный маркер, а также символы галочки, крестика, маркера списка и стрелки — всё, что нужно, чтобы заполнить форму без интерактивных полей. Файлы удаляются автоматически сразу после скачивания. «Белила» — это визуальное перекрытие, а не редактирование содержимого, поэтому исходный контент остаётся в файле под ними.</p>"
+
+msgid "Add Text to PDF"
+msgstr "Добавить текст в PDF"
+
+msgid "Add Text to PDF FAQ"
+msgstr "Вопросы о добавлении текста в PDF"
+
+msgid "Add Text to PDF Online Free - Type & Write on PDF | Convertica"
+msgstr "Добавить текст в PDF онлайн бесплатно — писать и вставлять текст в ПДФ | Convertica"
+
+msgid "Add checkmarks and symbols to fill out forms without form fields"
+msgstr "Добавляйте галочки и символы, чтобы заполнять формы без интерактивных полей"
+
+msgid "Add text"
+msgstr "Добавить текст"
+
+msgid "Add text to a PDF online — type, whiteout, highlight"
+msgstr "Добавьте текст в PDF онлайн: печать, белила, выделение"
+
+msgid "Add text to any PDF online: click on the page, type, style the font, and download. Whiteout, highlight, and checkmarks included — fill out forms without form fields. Free, no registration."
+msgstr "Добавьте текст в любой PDF (ПДФ) онлайн: кликните по странице, введите текст, настройте шрифт и скачайте. Белила, выделение и галочки в комплекте — заполняйте формы без интерактивных полей. Бесплатно, без регистрации."
+
+msgid "Adding your text..."
+msgstr "Добавляем ваш текст..."
+
+msgid "Align center"
+msgstr "По центру"
+
+msgid "Align left"
+msgstr "По левому краю"
+
+msgid "Align right"
+msgstr "По правому краю"
+
+msgid "Any Language"
+msgstr "Любой язык"
+
+msgid "Bold"
+msgstr "Жирный"
+
+msgid "Can I fill out a form that has no fillable fields?"
+msgstr "Можно ли заполнить форму без интерактивных полей?"
+
+msgid "Can I write in Russian, Arabic, or Hindi?"
+msgstr "Можно ли писать на русском, арабском или хинди?"
+
+msgid "Click anywhere on the page and type your text"
+msgstr "Кликните в любом месте страницы и введите текст"
+
+msgid "Click anywhere on the page to add a text box and start typing. Drag to move, pull the corner handle to resize, double-click to edit again."
+msgstr "Кликните в любом месте страницы, чтобы добавить текстовый блок и начать печатать. Перетаскивайте для перемещения, тяните угловой маркер для изменения размера, дважды кликните для повторного редактирования."
+
+msgid "Click anywhere on the page, type your text, and download the edited PDF. Whiteout and highlight included. A daily free limit applies."
+msgstr "Кликните в любом месте страницы, введите текст и скачайте отредактированный PDF. Белила и выделение включены. Действует дневной бесплатный лимит."
+
+msgid "Click anywhere on the page, type your text, download — the text stays real and selectable"
+msgstr "Кликните по странице, введите текст, скачайте — текст остаётся настоящим и выделяемым"
+
+msgid "Click on the page to add text first."
+msgstr "Сначала кликните по странице, чтобы добавить текст."
+
+msgid "Cover a spot with a background-colored rectangle"
+msgstr "Закрыть участок прямоугольником цвета фона"
+
+msgid "Cover mistakes with a background-matched rectangle and mark important lines with a translucent highlight — no extra tools needed"
+msgstr "Закрывайте ошибки прямоугольником под цвет фона и отмечайте важные строки полупрозрачным выделением — без дополнительных инструментов"
+
+msgid "Delete object"
+msgstr "Удалить объект"
+
+msgid "Does whiteout really remove the covered content?"
+msgstr "Действительно ли белила удаляют закрытое содержимое?"
+
+msgid "Double-click any placed text box to edit it again; drag to move it, pull the corner handle to resize."
+msgstr "Дважды кликните по любому текстовому блоку, чтобы снова его отредактировать; перетаскивайте для перемещения, тяните угловой маркер для изменения размера."
+
+msgid "Download the edited PDF — your text stays real, selectable text"
+msgstr "Скачайте отредактированный PDF — ваш текст остаётся настоящим выделяемым текстом"
+
+msgid "Editing complete!"
+msgstr "Редактирование завершено!"
+
+msgid "Fill Forms Without Fields"
+msgstr "Заполнение форм без полей"
+
+msgid "Font"
+msgstr "Шрифт"
+
+msgid "Font size"
+msgstr "Размер шрифта"
+
+msgid "Highlight"
+msgstr "Выделение"
+
+msgid "Highlight an area"
+msgstr "Выделить область"
+
+msgid "Insert arrow"
+msgstr "Вставить стрелку"
+
+msgid "Insert bullet"
+msgstr "Вставить маркер"
+
+msgid "Insert checkmark"
+msgstr "Вставить галочку"
+
+msgid "Insert cross mark"
+msgstr "Вставить крестик"
+
+msgid "Italic"
+msgstr "Курсив"
+
+msgid "Latin, Cyrillic, Arabic, and Devanagari text all render correctly with embedded Noto fonts — most online editors break on non-Latin scripts"
+msgstr "Латиница, кириллица, арабская вязь и деванагари отображаются корректно со встроенными шрифтами Noto — большинство онлайн-редакторов ломаются на нелатинских письменностях"
+
+msgid "Mono"
+msgstr "Моноширинный"
+
+msgid "No — whiteout paints an opaque rectangle over the content, like correction tape on paper. The original content remains in the file underneath. Do not use it to hide confidential data."
+msgstr "Нет. Белила рисуют непрозрачный прямоугольник поверх содержимого, как корректирующая лента на бумаге. Исходное содержимое остаётся в файле под ними. Не используйте их, чтобы скрыть конфиденциальные данные."
+
+msgid "Real, Selectable Text"
+msgstr "Настоящий выделяемый текст"
+
+msgid "Redo"
+msgstr "Повторить"
+
+msgid "Sans"
+msgstr "Без засечек"
+
+msgid "Serif"
+msgstr "С засечками"
+
+msgid "Style it: font, size, color, bold, italic, underline, alignment"
+msgstr "Настройте стиль: шрифт, размер, цвет, жирность, курсив, подчёркивание, выравнивание"
+
+msgid "Text color"
+msgstr "Цвет текста"
+
+msgid "Tips for Adding Text to PDFs"
+msgstr "Советы по добавлению текста в PDF"
+
+msgid "Type into scanned or flat forms and drop checkmarks and crosses exactly where they belong — no fillable form fields required"
+msgstr "Печатайте на отсканированных или «плоских» формах и ставьте галочки и крестики точно там, где нужно — интерактивные поля не требуются"
+
+msgid "Type text, whiteout, and highlights onto PDF pages"
+msgstr "Печатайте текст, ставьте белила и выделения на страницах PDF"
+
+msgid "Type text, whiteout, and highlights onto any PDF page."
+msgstr "Печатайте текст, ставьте белила и выделения на любой странице PDF."
+
+msgid "Underline"
+msgstr "Подчёркнутый"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Unlimited use is available with"
+msgstr "Безлимитное использование доступно с"
+
+msgid "Use Shift with the arrow keys to nudge the selected object in bigger steps for quick alignment."
+msgstr "Удерживайте Shift со стрелками, чтобы сдвигать выбранный объект большими шагами для быстрого выравнивания."
+
+msgid "Use Whiteout to cover mistakes and Highlight to mark important parts"
+msgstr "Используйте белила, чтобы закрыть ошибки, и выделение, чтобы отметить важное"
+
+msgid "What happens if I accidentally reload the page?"
+msgstr "Что произойдёт, если я случайно перезагружу страницу?"
+
+msgid "Whiteout"
+msgstr "Белила"
+
+msgid "Whiteout & Highlight"
+msgstr "Белила и выделение"
+
+msgid "Whiteout samples the page color under your click, so it blends in even on non-white backgrounds."
+msgstr "Белила берут цвет страницы под курсором, поэтому сливаются с фоном даже на небелых страницах."
+
+msgid "Will the added text stay selectable in the PDF?"
+msgstr "Останется ли добавленный текст выделяемым в PDF?"
+
+msgid "Yes, that is exactly what this tool is for. Click where an answer belongs and type; use the checkmark and cross symbols for boxes. It works on scanned forms too."
+msgstr "Да, именно для этого и нужен инструмент. Кликните туда, где должен быть ответ, и печатайте; для полей-флажков используйте символы галочки и крестика. Работает и с отсканированными формами."
+
+msgid "Yes. Cyrillic, Arabic (with correct right-to-left shaping), and Devanagari are supported out of the box — the matching Noto font is embedded into the PDF automatically."
+msgstr "Да. Кириллица, арабский (с корректным письмом справа налево) и деванагари поддерживаются сразу — соответствующий шрифт Noto встраивается в PDF автоматически."
+
+msgid "Yes. The text is embedded as real PDF text with the font subset included, so it stays sharp at any zoom level and can be selected and copied in any PDF reader. It is not rasterized into an image."
+msgstr "Да. Текст встраивается как настоящий текст PDF с подмножеством шрифта, поэтому остаётся чётким при любом масштабе и его можно выделить и скопировать в любой читалке PDF. Он не растрируется в картинку."
+
+msgid "Your edited PDF is ready to download"
+msgstr "Ваш отредактированный PDF готов к скачиванию"
+
+msgid "Your placed objects are kept in this browser tab, so re-selecting the same file restores your work. Undo and redo (Ctrl+Z / Ctrl+Y) are also supported while you edit."
+msgstr "Размещённые объекты сохраняются в этой вкладке браузера, поэтому при повторном выборе того же файла работа восстанавливается. Во время редактирования также доступны отмена и повтор (Ctrl+Z / Ctrl+Y)."
+
+msgid "Your text is embedded as genuine PDF text with the font included — it stays selectable and copyable, not a blurry picture of text"
+msgstr "Ваш текст встраивается как настоящий текст PDF вместе со шрифтом — он остаётся выделяемым и копируемым, а не размытой картинкой текста"
+
+msgid "Your work is kept in this browser tab, so an accidental reload will not lose your edits. Ctrl+Z undoes, arrow keys nudge the selected object."
+msgstr "Ваша работа сохраняется в этой вкладке браузера, поэтому случайная перезагрузка не сотрёт правки. Ctrl+Z отменяет, стрелки сдвигают выбранный объект."
+
+msgid "Zoom in"
+msgstr "Приблизить"
+
+msgid "Zoom out"
+msgstr "Отдалить"

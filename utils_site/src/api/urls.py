@@ -62,6 +62,7 @@ from .pdf_convert.word_to_pdf.batch_views import WordToPDFBatchAPIView
 from .pdf_convert.word_to_pdf.views import WordToPDFAPIView
 from .pdf_edit.add_page_numbers.batch_views import AddPageNumbersBatchAPIView
 from .pdf_edit.add_page_numbers.views import AddPageNumbersAPIView
+from .pdf_edit.add_text.views import AddTextPDFAPIView
 from .pdf_edit.add_watermark.batch_views import AddWatermarkBatchAPIView
 from .pdf_edit.add_watermark.views import AddWatermarkAPIView
 from .pdf_edit.crop_pdf.batch_views import CropPDFBatchAPIView
@@ -311,6 +312,7 @@ urlpatterns = [
         name="add_watermark_api",
     ),
     path("pdf-edit/crop/", CropPDFAPIView.as_view(), name="crop_pdf_api"),
+    path("pdf-edit/add-text/", AddTextPDFAPIView.as_view(), name="add_text_pdf_api"),
     path("pdf-edit/sign/", SignPDFAPIView.as_view(), name="sign_pdf_api"),
     path(
         "pdf-edit/sign/batch/", SignPDFBatchAPIView.as_view(), name="sign_pdf_batch_api"
