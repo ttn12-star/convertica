@@ -22,6 +22,7 @@ from src.api.pdf_convert.pdf_to_excel.views import PDFToExcelAPIView
 from src.api.pdf_convert.pdf_to_html.views import PDFToHTMLAPIView
 from src.api.pdf_convert.pdf_to_jpg.views import PDFToJPGAPIView
 from src.api.pdf_convert.pdf_to_markdown.views import PDFToMarkdownAPIView
+from src.api.pdf_convert.pdf_to_pdfa.views import PDFToPDFAAPIView
 from src.api.pdf_convert.pdf_to_ppt.views import PDFToPowerPointAPIView
 from src.api.pdf_convert.pdf_to_text.views import PDFToTextAPIView
 from src.api.pdf_convert.pdf_to_word.views import PDFToWordAPIView
@@ -71,6 +72,7 @@ urlpatterns = [
     ),
     path("pdf-to-text/", PDFToTextAPIView.as_view(**_perm), name="v1_pdf_to_text"),
     path("compare-pdf/", ComparePDFAPIView.as_view(**_perm), name="v1_compare_pdf"),
+    path("pdf-to-pdfa/", PDFToPDFAAPIView.as_view(**_perm), name="v1_pdf_to_pdfa"),
     # PDF edit endpoints
     path("pdf-edit/rotate/", RotatePDFAPIView.as_view(**_perm), name="v1_rotate_pdf"),
     path(

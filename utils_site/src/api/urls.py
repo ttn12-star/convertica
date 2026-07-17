@@ -48,6 +48,7 @@ from .pdf_convert.pdf_to_html.views import PDFToHTMLAPIView
 from .pdf_convert.pdf_to_jpg.batch_views import PDFToJPGBatchAPIView
 from .pdf_convert.pdf_to_jpg.views import PDFToJPGAPIView
 from .pdf_convert.pdf_to_markdown.views import PDFToMarkdownAPIView
+from .pdf_convert.pdf_to_pdfa.views import PDFToPDFAAPIView
 from .pdf_convert.pdf_to_ppt.batch_views import PDFToPowerPointBatchAPIView
 from .pdf_convert.pdf_to_ppt.views import PDFToPowerPointAPIView
 from .pdf_convert.pdf_to_text.batch_views import PDFToTextBatchAPIView
@@ -254,6 +255,7 @@ urlpatterns = [
         name="pdf_to_text_batch_api",
     ),
     path("compare-pdf/", ComparePDFAPIView.as_view(), name="compare_pdf_api"),
+    path("pdf-to-pdfa/", PDFToPDFAAPIView.as_view(), name="pdf_to_pdfa_api"),
     # Async endpoints (for large files / heavy operations - avoids Cloudflare timeout)
     path(
         "pdf-to-word/async/",
