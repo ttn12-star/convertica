@@ -173,7 +173,7 @@
   <!-- window.* variables set inline above in edit_options -->
   <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
   <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
-  <!-- Note: file-input-handler.js and pdf-editor.js are NOT loaded for merge page -->
+  <!-- Note: file-input-handler.js and pdf-editor-generic.js are NOT loaded for merge page -->
   <!-- merge-pdf-multi.js handles all file selection logic -->
   <script src="{% minified_static 'js/merge-pdf-multi.js' %}" nonce="{{ csp_nonce }}"></script>
 {% endblock %}
