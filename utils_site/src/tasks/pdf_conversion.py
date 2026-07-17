@@ -195,6 +195,84 @@ class _PeakRSSSampler:
         return int(self._peak_bytes / (1024 * 1024))
 
 
+def _success_notifications(
+    task_id: str, final_output_path: str, output_filename: str, kwargs: dict
+) -> None:
+    """Fire the opt-in success callbacks: API webhook, result email, web-push.
+
+    Called from BOTH the full-conversion and the cache-hit success paths —
+    a cached result is still a finished conversion for the user. Every
+    channel is best-effort: a failure is logged, never raised.
+    """
+    # Opt-in webhook callback for API users (passed in via kwargs from
+    # the view layer when an active API key call sets these).
+    webhook_url = kwargs.get("webhook_url")
+    api_key_user_id = kwargs.get("api_key_user_id")
+    if webhook_url and api_key_user_id:
+        try:
+            from datetime import timedelta
+
+            from django.utils import timezone as _tz
+            from src.api.webhook_delivery import deliver
+            from src.users.models import User
+
+            user = User.objects.get(pk=api_key_user_id)
+            deliver(
+                webhook_url=webhook_url,
+                payload={
+                    "task_id": task_id,
+                    "status": "success",
+                    "download_url": f"https://convertica.net/api/v1/tasks/{task_id}/result/",
+                    "expires_at": (_tz.now() + timedelta(hours=1)).isoformat(),
+                },
+                user=user,
+            )
+        except Exception as webhook_exc:
+            logger.warning("webhook delivery raised, ignoring: %s", webhook_exc)
+
+    # Opt-in "email me the result" (premium, set by the view layer).
+    # Enqueue-only here; rendering/attachment happen in the email task.
+    notify_user_id = kwargs.get("notify_user_id")
+    if notify_user_id:
+        try:
+            from src.tasks.email import send_conversion_result
+
+            send_conversion_result.delay(
+                user_id=notify_user_id,
+                task_id=task_id,
+                output_path=final_output_path,
+                output_filename=output_filename,
+                lang=kwargs.get("notify_lang", ""),
+            )
+        except Exception as email_exc:
+            logger.warning("result email enqueue failed, ignoring: %s", email_exc)
+
+    # Web-push for tasks the user explicitly sent to background: the
+    # cache flag is set by /api/task-background/, the recipient comes
+    # from the OperationRun analytics row.
+    try:
+        from src.api.cancel_task_view import is_task_background
+
+        if is_task_background(task_id):
+            from src.tasks.push import send_conversion_ready
+            from src.users.models import OperationRun
+
+            push_user_id = (
+                OperationRun.objects.filter(task_id=task_id)
+                .values_list("user_id", flat=True)
+                .first()
+            )
+            if push_user_id:
+                send_conversion_ready.delay(
+                    user_id=push_user_id,
+                    task_id=task_id,
+                    output_filename=output_filename,
+                    lang=kwargs.get("notify_lang", ""),
+                )
+    except Exception as push_exc:
+        logger.warning("push enqueue failed, ignoring: %s", push_exc)
+
+
 @shared_task(
     bind=True,
     name="pdf_conversion.generic_conversion",
@@ -420,6 +498,9 @@ def generic_conversion_task(
                 logger.warning(
                     "OperationRun 'success' (cache hit) update failed: %s", db_exc
                 )
+            # A cache hit is still a successful conversion for the user —
+            # webhook/email/push opt-ins must fire exactly like a full run.
+            _success_notifications(task_id, final_output_path, output_filename, kwargs)
             return {
                 "status": "success",
                 "output_path": final_output_path,
@@ -684,74 +765,7 @@ def generic_conversion_task(
         except Exception as db_exc:
             logger.warning("OperationRun 'success' update failed: %s", db_exc)
 
-        # Opt-in webhook callback for API users (passed in via kwargs from
-        # the view layer when an active API key call sets these). Don't
-        # block the task on delivery failure — just log.
-        webhook_url = kwargs.get("webhook_url")
-        api_key_user_id = kwargs.get("api_key_user_id")
-        if webhook_url and api_key_user_id:
-            try:
-                from datetime import timedelta
-
-                from django.utils import timezone as _tz
-                from src.api.webhook_delivery import deliver
-                from src.users.models import User
-
-                user = User.objects.get(pk=api_key_user_id)
-                deliver(
-                    webhook_url=webhook_url,
-                    payload={
-                        "task_id": task_id,
-                        "status": "success",
-                        "download_url": f"https://convertica.net/api/v1/tasks/{task_id}/result/",
-                        "expires_at": (_tz.now() + timedelta(hours=1)).isoformat(),
-                    },
-                    user=user,
-                )
-            except Exception as webhook_exc:
-                logger.warning("webhook delivery raised, ignoring: %s", webhook_exc)
-
-        # Opt-in "email me the result" (premium, set by the view layer).
-        # Enqueue-only here; rendering/attachment happen in the email task.
-        notify_user_id = kwargs.get("notify_user_id")
-        if notify_user_id:
-            try:
-                from src.tasks.email import send_conversion_result
-
-                send_conversion_result.delay(
-                    user_id=notify_user_id,
-                    task_id=task_id,
-                    output_path=final_output_path,
-                    output_filename=output_filename,
-                    lang=kwargs.get("notify_lang", ""),
-                )
-            except Exception as email_exc:
-                logger.warning("result email enqueue failed, ignoring: %s", email_exc)
-
-        # Web-push for tasks the user explicitly sent to background: the
-        # cache flag is set by /api/task-background/, the recipient comes
-        # from the OperationRun analytics row.
-        try:
-            from src.api.cancel_task_view import is_task_background
-
-            if is_task_background(task_id):
-                from src.tasks.push import send_conversion_ready
-                from src.users.models import OperationRun
-
-                push_user_id = (
-                    OperationRun.objects.filter(task_id=task_id)
-                    .values_list("user_id", flat=True)
-                    .first()
-                )
-                if push_user_id:
-                    send_conversion_ready.delay(
-                        user_id=push_user_id,
-                        task_id=task_id,
-                        output_filename=output_filename,
-                        lang=kwargs.get("notify_lang", ""),
-                    )
-        except Exception as push_exc:
-            logger.warning("push enqueue failed, ignoring: %s", push_exc)
+        _success_notifications(task_id, final_output_path, output_filename, kwargs)
 
         return {
             "status": "success",

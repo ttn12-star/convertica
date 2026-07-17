@@ -489,16 +489,24 @@ def task_download(request, task_id):
 
     # Ownership check mirrors the API fallback; a foreign/unknown task gets
     # the same "expired" screen so task ids can't be probed for existence.
-    owns = OperationRun.objects.filter(task_id=task_id, user=request.user).exists()
+    # The OperationRun row is the source of truth for the run state: a
+    # downloaded-and-cleaned task has its Celery result forgotten, which
+    # makes AsyncResult report PENDING — that must read as expired, not
+    # "still processing".
+    run_status = (
+        OperationRun.objects.filter(task_id=task_id, user=request.user)
+        .values_list("status", flat=True)
+        .first()
+    )
 
     state = "expired"
     output_filename = ""
-    if owns:
+    if run_status in ("queued", "running", "started"):
+        state = "processing"
+    elif run_status == "success":
         try:
             result = AsyncResult(task_id)
-            if result.status in ("PENDING", "STARTED", "PROGRESS", "RETRY"):
-                state = "processing"
-            elif result.status == "SUCCESS":
+            if result.status == "SUCCESS":
                 info = result.result if isinstance(result.result, dict) else {}
                 output_path = info.get("output_path", "")
                 output_filename = info.get("output_filename", "")
