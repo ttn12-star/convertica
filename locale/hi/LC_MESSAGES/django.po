@@ -15999,3 +15999,68 @@ msgid ""
 "in one dashboard. For Premium accounts, presets sync securely across your "
 "devices."
 msgstr "आवर्ती PDF कार्यों को एक-क्लिक प्रीसेट में बदलें: सही उपकरण को अपने नोट्स के साथ सहेजें, इसे तुरंत फिर से खोलें, और अपने सभी नियमित रूपांतरणों को एक डैशबोर्ड में रखें। Premium अकाउंट के लिए, प्रीसेट आपके सभी डिवाइस में सुरक्षित रूप से सिंक होते हैं।"
+
+# --- appended 2026-07-17: truthful-copy fixes (deletion timing, free/premium wording, pricing stats) ---
+
+msgid "Yes, Convertica is free to use — every core tool works at no cost with generous daily limits. Optional Premium unlocks higher limits, batch processing, and extra features."
+msgstr "हाँ, Convertica उपयोग के लिए मुफ़्त है — सभी मुख्य टूल उदार दैनिक सीमाओं के साथ निःशुल्क काम करते हैं। वैकल्पिक प्रीमियम उच्च सीमाएँ, बैच प्रोसेसिंग और अतिरिक्त सुविधाएँ अनलॉक करता है।"
+
+msgid "No registration required. You can use most tools instantly without creating an account. Premium features are available for advanced users."
+msgstr "कोई पंजीकरण आवश्यक नहीं। आप बिना खाता बनाए तुरंत अधिकांश टूल का उपयोग कर सकते हैं। उन्नत उपयोगकर्ताओं के लिए प्रीमियम सुविधाएँ उपलब्ध हैं।"
+
+msgid "Files from instant conversions are deleted right after download; background and batch results are removed within about an hour. We never store your files permanently."
+msgstr "तत्काल रूपांतरण की फ़ाइलें डाउनलोड के तुरंत बाद हटा दी जाती हैं; बैकग्राउंड और बैच परिणाम लगभग एक घंटे के भीतर हटा दिए जाते हैं। हम आपकी फ़ाइलें कभी भी स्थायी रूप से संग्रहीत नहीं करते।"
+
+msgid "Files deleted automatically"
+msgstr "फ़ाइलें स्वचालित रूप से हटाई जाती हैं"
+
+msgid "Yes, your data is secure. All files are processed securely and deleted automatically: right after download for instant conversions, and within about an hour for background or batch tasks. We do not store your files permanently, and your privacy is our top priority. You can also protect your PDFs with password encryption."
+msgstr "हाँ, आपका डेटा सुरक्षित है। सभी फ़ाइलें सुरक्षित रूप से संसाधित की जाती हैं और स्वचालित रूप से हटा दी जाती हैं: तत्काल रूपांतरण के लिए डाउनलोड के तुरंत बाद, और बैकग्राउंड या बैच कार्यों के लिए लगभग एक घंटे के भीतर। हम आपकी फ़ाइलें स्थायी रूप से संग्रहीत नहीं करते, और आपकी गोपनीयता हमारी सर्वोच्च प्राथमिकता है। आप अपने PDF को पासवर्ड एन्क्रिप्शन से भी सुरक्षित कर सकते हैं।"
+
+msgid "No, we do not keep your files. Instant conversions are deleted right after download; background and batch results are removed within about an hour, once the download window closes. We do not keep copies of your documents."
+msgstr "नहीं, हम आपकी फ़ाइलें नहीं रखते। तत्काल रूपांतरण डाउनलोड के तुरंत बाद हटा दिए जाते हैं; बैकग्राउंड और बैच परिणाम लगभग एक घंटे में हटा दिए जाते हैं, जब डाउनलोड विंडो बंद हो जाती है। हम आपके दस्तावेज़ों की प्रतियाँ नहीं रखते।"
+
+msgid "Yes! Your files are processed securely and deleted automatically: instantly after download for regular conversions, within about an hour for background and batch tasks. We never store your files permanently."
+msgstr "हाँ! आपकी फ़ाइलें सुरक्षित रूप से संसाधित की जाती हैं और स्वचालित रूप से हटा दी जाती हैं: सामान्य रूपांतरण के लिए डाउनलोड के तुरंत बाद, बैकग्राउंड और बैच कार्यों के लिए लगभग एक घंटे के भीतर। हम कभी भी आपकी फ़ाइलें स्थायी रूप से संग्रहीत नहीं करते।"
+
+msgid "When you use our PDF tools, you may upload files for processing. These files are stored on our servers only temporarily. Files from instant conversions are deleted right after the result is downloaded; files from background and batch tasks are deleted automatically within about an hour, so that your download link keeps working."
+msgstr "जब आप हमारे PDF टूल का उपयोग करते हैं, तो आप प्रसंस्करण के लिए फ़ाइलें अपलोड कर सकते हैं। ये फ़ाइलें हमारे सर्वर पर केवल अस्थायी रूप से संग्रहीत होती हैं। तत्काल रूपांतरण की फ़ाइलें परिणाम डाउनलोड होते ही हटा दी जाती हैं; बैकग्राउंड और बैच कार्यों की फ़ाइलें लगभग एक घंटे के भीतर स्वचालित रूप से हटा दी जाती हैं, ताकि आपका डाउनलोड लिंक काम करता रहे।"
+
+msgid "Right after download for instant conversions"
+msgstr "तत्काल रूपांतरण के लिए — डाउनलोड के तुरंत बाद"
+
+msgid "Within about an hour for background, batch, and failed tasks"
+msgstr "बैकग्राउंड, बैच और विफल कार्यों के लिए — लगभग एक घंटे के भीतर"
+
+msgid "Daily Conversions"
+msgstr "दैनिक रूपांतरण"
+
+msgid "Max File Size"
+msgstr "अधिकतम फ़ाइल आकार"
+
+msgid "Files per Batch"
+msgstr "प्रति बैच फ़ाइलें"
+
+msgid "No registration, no watermarks. Files deleted automatically after conversion"
+msgstr "कोई पंजीकरण नहीं, कोई वॉटरमार्क नहीं। रूपांतरण के बाद फ़ाइलें स्वचालित रूप से हटा दी जाती हैं"
+
+msgid "Your Excel files are processed securely and deleted automatically after conversion. We never store your files permanently. Perfect for confidential business documents."
+msgstr "आपकी एक्सेल फ़ाइलें सुरक्षित रूप से संसाधित की जाती हैं और रूपांतरण के बाद स्वचालित रूप से हटा दी जाती हैं। हम आपकी फ़ाइलें कभी भी स्थायी रूप से संग्रहीत नहीं करते। गोपनीय व्यावसायिक दस्तावेज़ों के लिए आदर्श।"
+
+msgid "Files are transferred over an encrypted connection and deleted automatically after processing"
+msgstr "फ़ाइलें एन्क्रिप्टेड कनेक्शन के माध्यम से स्थानांतरित होती हैं और प्रसंस्करण के बाद स्वचालित रूप से हटा दी जाती हैं"
+
+msgid "Files deleted automatically after processing. Your documents stay private"
+msgstr "प्रसंस्करण के बाद फ़ाइलें स्वचालित रूप से हटा दी जाती हैं। आपके दस्तावेज़ निजी रहते हैं"
+
+msgid "Files are deleted automatically right after processing — your signature is never stored"
+msgstr "प्रसंस्करण के तुरंत बाद फ़ाइलें स्वचालित रूप से हटा दी जाती हैं — आपका हस्ताक्षर कभी संग्रहीत नहीं होता"
+
+msgid "Files are processed on the server and deleted automatically after download — we never store your images permanently"
+msgstr "फ़ाइलें सर्वर पर प्रोसेस की जाती हैं और डाउनलोड के बाद स्वचालित रूप से हटा दी जाती हैं — हम आपकी छवियाँ कभी भी स्थायी रूप से संग्रहीत नहीं करते"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a PDF. Draw it with the mouse or finger, type your name in a handwriting-style font, or upload a PNG/JPG of your hand-signed paper. Click on the preview to drop the signature, drag to position, and pull the corner handle to resize.</p><p>Multiple signatures on multiple pages are supported, so a long contract can be signed once at the bottom of every page. The document and the signature image are deleted automatically right after download; neither is ever stored.</p>"
+msgstr "<p><strong>Sign PDF</strong> आपको PDF दस्तावेज़ के किसी भी पेज पर हस्ताक्षर रखने देता है। माउस या उँगली से बनाएँ, हस्तलेखन-शैली के फॉन्ट में अपना नाम टाइप करें, या हाथ से किए गए हस्ताक्षर का PNG/JPG अपलोड करें। प्रीव्यू पर क्लिक करके हस्ताक्षर रखें, खींचकर स्थिति ठीक करें और कोने के हैंडल से आकार बदलें।</p><p>कई पेजों पर कई हस्ताक्षर समर्थित हैं, इसलिए लंबा अनुबंध हर पेज के नीचे आसानी से हस्ताक्षरित किया जा सकता है। दस्तावेज़ और हस्ताक्षर की छवि डाउनलोड के तुरंत बाद स्वचालित रूप से हटा दी जाती हैं; इनमें से कुछ भी कभी संग्रहीत नहीं होता।</p>"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted automatically after download.</p>"
+msgstr "<p><strong>इमेज कनवर्ट करें</strong> आपकी छवि फ़ाइलों को एक प्रारूप से दूसरे में तुरंत बदलता है। चाहे आपको तेज़ वेब लोडिंग के लिए PNG को WebP में, फ़ाइल आकार कम करने के लिए BMP को JPEG में, या बेहतर गुणवत्ता के लिए GIF को PNG में कनवर्ट करना हो, यह टूल सब कुछ संभालता है।</p><p>कोई सॉफ़्टवेयर इंस्टॉलेशन आवश्यक नहीं। सभी रूपांतरण सर्वर पर होते हैं और आपकी फ़ाइलें डाउनलोड के बाद स्वचालित रूप से हटा दी जाती हैं।</p>"

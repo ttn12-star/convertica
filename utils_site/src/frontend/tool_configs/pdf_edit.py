@@ -726,7 +726,7 @@ PDF_EDIT_CONFIGS = {
                     "gradient": "from-green-500 to-green-600",
                     "title": _("Privacy First"),
                     "description": _(
-                        "Files are processed in-memory and deleted immediately — your signature is never stored"
+                        "Files are deleted automatically right after processing — your signature is never stored"
                     ),
                 },
                 {
@@ -801,8 +801,8 @@ PDF_EDIT_CONFIGS = {
                 "or upload a PNG/JPG of your hand-signed paper. Click on the preview to drop the "
                 "signature, drag to position, and pull the corner handle to resize.</p>"
                 "<p>Multiple signatures on multiple pages are supported, so a long contract can "
-                "be signed once at the bottom of every page. Files are processed in-memory and "
-                "deleted immediately after download; your signature stays local to your browser.</p>"
+                "be signed once at the bottom of every page. The document and the signature image "
+                "are deleted automatically right after download; neither is ever stored.</p>"
             ),
         },
     },

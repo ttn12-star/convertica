@@ -16365,3 +16365,68 @@ msgid ""
 "in one dashboard. For Premium accounts, presets sync securely across your "
 "devices."
 msgstr "Convierte trabajos recurrentes de PDF en ajustes preestablecidos de un solo clic: guarda la herramienta correcta con tus propias notas, ábrela al instante y mantén todas tus conversiones rutinarias en un solo panel. En las cuentas Premium, los ajustes preestablecidos se sincronizan de forma segura entre tus dispositivos."
+
+# --- appended 2026-07-17: truthful-copy fixes (deletion timing, free/premium wording, pricing stats) ---
+
+msgid "Yes, Convertica is free to use — every core tool works at no cost with generous daily limits. Optional Premium unlocks higher limits, batch processing, and extra features."
+msgstr "Sí, Convertica es gratis: todas las herramientas principales funcionan sin costo con generosos límites diarios. El Premium opcional desbloquea límites más altos, procesamiento por lotes y funciones adicionales."
+
+msgid "No registration required. You can use most tools instantly without creating an account. Premium features are available for advanced users."
+msgstr "No se requiere registro. Puedes usar la mayoría de las herramientas al instante sin crear una cuenta. Las funciones premium están disponibles para usuarios avanzados."
+
+msgid "Files from instant conversions are deleted right after download; background and batch results are removed within about an hour. We never store your files permanently."
+msgstr "Los archivos de conversiones instantáneas se eliminan justo después de la descarga; los resultados de tareas en segundo plano y por lotes se eliminan en aproximadamente una hora. Nunca almacenamos tus archivos permanentemente."
+
+msgid "Files deleted automatically"
+msgstr "Archivos eliminados automáticamente"
+
+msgid "Yes, your data is secure. All files are processed securely and deleted automatically: right after download for instant conversions, and within about an hour for background or batch tasks. We do not store your files permanently, and your privacy is our top priority. You can also protect your PDFs with password encryption."
+msgstr "Sí, tus datos están seguros. Todos los archivos se procesan de forma segura y se eliminan automáticamente: justo después de la descarga en las conversiones instantáneas, y en aproximadamente una hora en las tareas en segundo plano o por lotes. No almacenamos tus archivos permanentemente, y tu privacidad es nuestra máxima prioridad. También puedes proteger tus PDF con cifrado de contraseña."
+
+msgid "No, we do not keep your files. Instant conversions are deleted right after download; background and batch results are removed within about an hour, once the download window closes. We do not keep copies of your documents."
+msgstr "No, no conservamos tus archivos. Las conversiones instantáneas se eliminan justo después de la descarga; los resultados en segundo plano y por lotes se eliminan en aproximadamente una hora, cuando se cierra la ventana de descarga. No guardamos copias de tus documentos."
+
+msgid "Yes! Your files are processed securely and deleted automatically: instantly after download for regular conversions, within about an hour for background and batch tasks. We never store your files permanently."
+msgstr "¡Sí! Tus archivos se procesan de forma segura y se eliminan automáticamente: al instante tras la descarga en las conversiones normales, y en aproximadamente una hora en las tareas en segundo plano y por lotes. Nunca almacenamos tus archivos permanentemente."
+
+msgid "When you use our PDF tools, you may upload files for processing. These files are stored on our servers only temporarily. Files from instant conversions are deleted right after the result is downloaded; files from background and batch tasks are deleted automatically within about an hour, so that your download link keeps working."
+msgstr "Cuando usas nuestras herramientas PDF, puedes subir archivos para su procesamiento. Estos archivos se almacenan en nuestros servidores solo temporalmente. Los archivos de conversiones instantáneas se eliminan justo después de descargar el resultado; los archivos de tareas en segundo plano y por lotes se eliminan automáticamente en aproximadamente una hora, para que tu enlace de descarga siga funcionando."
+
+msgid "Right after download for instant conversions"
+msgstr "Justo después de la descarga en las conversiones instantáneas"
+
+msgid "Within about an hour for background, batch, and failed tasks"
+msgstr "En aproximadamente una hora en las tareas en segundo plano, por lotes y fallidas"
+
+msgid "Daily Conversions"
+msgstr "Conversiones diarias"
+
+msgid "Max File Size"
+msgstr "Tamaño máximo de archivo"
+
+msgid "Files per Batch"
+msgstr "Archivos por lote"
+
+msgid "No registration, no watermarks. Files deleted automatically after conversion"
+msgstr "Sin registro, sin marcas de agua. Los archivos se eliminan automáticamente después de la conversión"
+
+msgid "Your Excel files are processed securely and deleted automatically after conversion. We never store your files permanently. Perfect for confidential business documents."
+msgstr "Tus archivos de Excel se procesan de forma segura y se eliminan automáticamente después de la conversión. Nunca almacenamos tus archivos permanentemente. Perfecto para documentos empresariales confidenciales."
+
+msgid "Files are transferred over an encrypted connection and deleted automatically after processing"
+msgstr "Los archivos se transfieren mediante una conexión cifrada y se eliminan automáticamente después del procesamiento"
+
+msgid "Files deleted automatically after processing. Your documents stay private"
+msgstr "Los archivos se eliminan automáticamente después del procesamiento. Tus documentos permanecen privados"
+
+msgid "Files are deleted automatically right after processing — your signature is never stored"
+msgstr "Los archivos se eliminan automáticamente justo después del procesamiento — tu firma nunca se almacena"
+
+msgid "Files are processed on the server and deleted automatically after download — we never store your images permanently"
+msgstr "Los archivos se procesan en el servidor y se eliminan automáticamente después de la descarga: nunca almacenamos tus imágenes permanentemente"
+
+msgid "<p><strong>Sign PDF</strong> lets you place a signature onto any page of a PDF. Draw it with the mouse or finger, type your name in a handwriting-style font, or upload a PNG/JPG of your hand-signed paper. Click on the preview to drop the signature, drag to position, and pull the corner handle to resize.</p><p>Multiple signatures on multiple pages are supported, so a long contract can be signed once at the bottom of every page. The document and the signature image are deleted automatically right after download; neither is ever stored.</p>"
+msgstr "<p><strong>Firmar PDF</strong> te permite colocar una firma en cualquier página de un PDF. Dibújala con el ratón o el dedo, escribe tu nombre en una fuente de estilo manuscrito o sube un PNG/JPG de tu firma en papel. Haz clic en la vista previa para colocar la firma, arrástrala para posicionarla y tira del tirador de la esquina para cambiar el tamaño.</p><p>Se admiten varias firmas en varias páginas, así que un contrato largo puede firmarse al pie de cada página. El documento y la imagen de la firma se eliminan automáticamente justo después de la descarga; ninguno de los dos se almacena nunca.</p>"
+
+msgid "<p><strong>Convert Image</strong> transforms your image files from one format to another instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p><p>No software installation required. All conversions happen on the server and your files are deleted automatically after download.</p>"
+msgstr "<p><strong>Convertir imagen</strong> transforma tus archivos de imagen de un formato a otro al instante. Ya sea que necesites convertir un PNG a WebP para carga web más rápida, un BMP a JPEG para reducir el tamaño del archivo, o un GIF a PNG para mejor calidad, esta herramienta lo gestiona todo.</p><p>No se requiere instalación de software. Todas las conversiones ocurren en el servidor y tus archivos se eliminan automáticamente después de la descarga.</p>"

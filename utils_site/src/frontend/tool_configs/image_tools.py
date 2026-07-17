@@ -244,7 +244,7 @@ IMAGE_TOOLS_CONFIGS = {
                 "instantly. Whether you need to convert a PNG to WebP for faster web loading, a BMP to JPEG "
                 "to reduce file size, or a GIF to PNG for better quality, this tool handles it all.</p>"
                 "<p>No software installation required. All conversions happen on the server and your files "
-                "are deleted immediately after download.</p>"
+                "are deleted automatically after download.</p>"
             ),
         },
     },
@@ -450,8 +450,8 @@ IMAGE_TOOLS_CONFIGS = {
                     "gradient": "from-amber-400 to-orange-500",
                     "title": _("Private & Secure"),
                     "description": _(
-                        "Files are processed on the server and deleted immediately after download — "
-                        "your images never leave our secure environment"
+                        "Files are processed on the server and deleted automatically after download — "
+                        "we never store your images permanently"
                     ),
                 },
             ],
