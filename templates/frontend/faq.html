@@ -111,7 +111,8 @@
                 <span class="faq-icon text-blue-600 text-2xl">+</span>
               </h3>
               <div class="faq-answer hidden mt-3 text-gray-700 leading-relaxed">
-                <p>{% blocktrans %}You can add Convertica to your home screen straight from the browser, no app store needed. See the step-by-step guide for Android, iPhone and desktop on our <a href="/install/" class="text-blue-600 underline">Install the App</a> page.{% endblocktrans %}</p>
+                {% url 'frontend:install_page' as install_url %}
+                <p>{% blocktrans with install_url=install_url %}You can add Convertica to your home screen straight from the browser, no app store needed. See the step-by-step guide for Android, iPhone and desktop on our <a href="{{ install_url }}" class="text-blue-600 underline">Install the App</a> page.{% endblocktrans %}</p>
               </div>
             </div>
 
