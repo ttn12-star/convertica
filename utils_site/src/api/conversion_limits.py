@@ -172,6 +172,10 @@ HEAVY_OPERATIONS = {
     "url_to_pdf",
     "pdf_to_markdown",
     "compare_pdf",
+    # Ghostscript PDF/A is CPU/RAM-heavy and slow on large scans — it belongs in
+    # the heavy tier so premium caps stay at 100 pages / 100 MB (not 200/200) and
+    # it gets the 300s timeout, keeping sync conversions under the proxy ceiling.
+    "pdf_to_pdfa",
 }
 
 
