@@ -463,6 +463,10 @@ def generic_conversion_task(
                 "src.api.pdf_convert.pdf_to_markdown.utils",
                 "convert_pdf_to_markdown",
             ),
+            "pdf_to_pdfa": (
+                "src.api.pdf_convert.pdf_to_pdfa.utils",
+                "convert_pdf_to_pdfa",
+            ),
             "compress_pdf": ("src.api.pdf_organize.compress_pdf.utils", "compress_pdf"),
             "merge_pdf": ("src.api.pdf_organize.merge_pdf.utils", "merge_pdfs"),
             "split_pdf": ("src.api.pdf_organize.split_pdf.utils", "split_pdf"),
