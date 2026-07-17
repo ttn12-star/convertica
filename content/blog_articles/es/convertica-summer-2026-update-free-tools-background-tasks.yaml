@@ -1,0 +1,60 @@
+slug: convertica-summer-2026-update-free-tools-background-tasks
+title_es: 'Novedades en Convertica: más herramientas gratis, tareas en segundo plano y flujos guardados'
+meta_title_es: 'Novedades del verano 2026 | Convertica'
+meta_description_es: 'Cinco herramientas salieron de Premium, un límite diario común sustituyó a los muros de pago, llegaron dos conversores nuevos y Premium ya termina el trabajo con la pestaña cerrada.'
+meta_keywords_es: 'novedades convertica, herramientas pdf gratis, heic a jpg gratis, pdf a markdown, epub a pdf gratis, firmar pdf online, pdf a texto, convertidor pdf a pdf/a, proteger foto con contraseña, conversión en segundo plano, flujos de trabajo guardados'
+excerpt_es: 'Cinco herramientas dejaron de ser Premium, llegaron dos conversores nuevos y Premium ahora sigue trabajando aunque cierres la pestaña. Esto es todo lo que cambió este verano.'
+content_es: |
+  <p>Desde la última entrada de noticias hemos publicado muchos cambios. En resumen: cinco herramientas salieron de Premium, llegaron dos conversores nuevos y Premium aprendió a seguir trabajando cuando cierras la pestaña. Vamos por partes.</p>
+
+  <h2>Cinco herramientas ahora son gratis</h2>
+  <p>Antes pedían suscripción Premium. Ya no:</p>
+  <ul>
+    <li><a href="/es/image/heic-to-jpg/">HEIC a JPG</a> (fotos de iPhone)</li>
+    <li><a href="/es/pdf-to-markdown/">PDF a Markdown</a></li>
+    <li><a href="/es/epub-to-pdf/">EPUB a PDF</a> y <a href="/es/pdf-to-epub/">PDF a EPUB</a></li>
+    <li><a href="/es/pdf-to-text/">PDF a texto</a></li>
+    <li><a href="/es/pdf-edit/sign/">Firmar PDF</a></li>
+  </ul>
+  <p>Los muros de pago por herramienta también desaparecieron. En su lugar hay un único límite diario que comparten todas las herramientas del sitio: <strong>10 conversiones al día</strong> sin cuenta, <strong>40 al día</strong> con una cuenta gratuita y sin límite con Premium. Solo cuentan las conversiones que terminan bien, y el contador se reinicia cada día. El procesamiento por lotes, el OCR y los archivos muy grandes siguen siendo Premium.</p>
+
+  <h2>Nuevo: proteger una foto con contraseña</h2>
+  <p>¿Tienes que enviar el escaneo de un pasaporte o la foto de un documento? <a href="/es/image/password-protect-image/">Proteger imagen</a> empaqueta una o varias imágenes en un único PDF cifrado con AES-256. Quien reciba el archivo necesitará la contraseña para abrirlo. Gratis, como el resto de herramientas de imagen.</p>
+
+  <figure><img src="/static/images/tools/image-password-protect-image.jpg" alt="Herramienta Proteger imagen: convierte fotos en un PDF con contraseña" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Nuevo: PDF a PDF/A para archivos oficiales</h2>
+  <p>Juzgados, universidades y portales públicos suelen aceptar solo PDF/A, el formato ISO de archivo a largo plazo. El nuevo <a href="/es/pdf-to-pdfa/">conversor de PDF a PDF/A</a> genera PDF/A-1b, 2b o 3b y comprueba que el resultado declara la conformidad antes de entregártelo. Forma parte de Premium.</p>
+
+  <h2>Premium: cierra la pestaña, nosotros seguimos</h2>
+  <p>Los trabajos largos, como el OCR de un escaneo grueso, tenían secuestrada tu pestaña del navegador. Ahora los usuarios Premium pueden mandar cualquier conversión larga a segundo plano y seguir con lo suyo. Al terminar:</p>
+  <ul>
+    <li>el resultado llega por correo (adjunto hasta 10 MB; si pesa más, como enlace de descarga),</li>
+    <li>el navegador muestra una notificación push aunque estés en otro sitio,</li>
+    <li>el archivo queda guardado en tu nuevo historial de conversiones.</li>
+  </ul>
+  <p>Los detalles están en la página de <a href="/es/background-tasks/">tareas en segundo plano</a>.</p>
+
+  <figure><img src="/static/images/tools/background-tasks.jpg" alt="Cola de tareas en segundo plano: la conversión continúa con la pestaña cerrada" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Premium: flujos de trabajo guardados</h2>
+  <p>¿Comprimes facturas con los mismos ajustes cada viernes? Guarda la herramienta junto con sus ajustes como un flujo de trabajo y ábrelo todo con un clic. Los flujos viven en tu navegador y se sincronizan a través de tu cuenta: el ajuste que guardaste en la oficina aparece también en el portátil de casa. Más información en la página de <a href="/es/saved-workflows/">flujos guardados</a>.</p>
+
+  <figure><img src="/static/images/tools/saved-workflows.jpg" alt="Panel de flujos de trabajo guardados con ajustes predefinidos" width="1200" height="750" loading="lazy"></figure>
+
+  <h2>Proteger PDF: decide qué puede hacer el lector</h2>
+  <p><a href="/es/pdf-security/protect/">Proteger PDF</a> sigue cifrando archivos con AES-256 gratis. Premium añade control de permisos: puedes bloquear la impresión, la copia o la edición del archivo protegido.</p>
+
+  <h2>Convertica como aplicación</h2>
+  <p>Convertica ya se instala en el móvil o el ordenador como una aplicación normal: icono en la pantalla de inicio, su propia ventana y nada del navegador estorbando. Sin pasar por ninguna tienda de aplicaciones. La <a href="/es/install/">guía de instalación</a> cubre iPhone, Android, Windows y Mac.</p>
+
+  <h2>Más rápido, más discreto, más estable</h2>
+  <ul>
+    <li>Las páginas cargan bastante más rápido; la mayoría roza la puntuación perfecta en PageSpeed.</li>
+    <li>Eliminamos la analítica de terceros. Las visitas las cuenta nuestro propio contador sin cookies.</li>
+    <li>Cada página de herramienta muestra ahora una captura de la interfaz, y muchas tienen tutoriales en vídeo.</li>
+    <li>Corregimos un fallo que dejaba en blanco las páginas de conversión para algunos usuarios de árabe, además de decenas de arreglos menores.</li>
+  </ul>
+
+  <h2>Pruébalo</h2>
+  <p>Todo lo anterior ya está disponible. Echa un vistazo a <a href="/es/all-tools/">todas las herramientas</a> y, si algo no funciona como debería, cuéntanoslo por el <a href="/es/contact/">formulario de contacto</a>. La mitad de esta versión nació de vuestros avisos.</p>

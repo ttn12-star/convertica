@@ -308,6 +308,13 @@ COVERS = {
         "#c4b5fd",
         "lock",
     ),
+    "convertica-summer-2026-update-free-tools-background-tasks": (
+        "Summer Update:\nMore Free Tools",
+        "PRODUCT NEWS",
+        ("#2563eb", "#7c3aed"),
+        "#93c5fd",
+        "rocket",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()
