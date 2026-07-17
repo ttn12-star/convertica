@@ -119,10 +119,11 @@
         let tasks = getTasks();
         let changed = false;
 
-        // Remove stale tasks
+        // Remove stale tasks — completed ones too: the server deletes result
+        // files after ~1h, so a Download button older than MAX_AGE is dead.
         const now = Date.now();
         const before = tasks.length;
-        tasks = tasks.filter(t => now - t.startedAt < MAX_AGE_MS || t.status === 'success');
+        tasks = tasks.filter(t => now - t.startedAt < MAX_AGE_MS);
         if (tasks.length !== before) changed = true;
 
         const processing = tasks.filter(t => t.status === 'processing');
@@ -458,11 +459,19 @@
 
     function init() {
         setupDropdownToggle();
+
+        // Sweep expired tasks on every page load, not only while polling:
+        // a success-only list never triggers pollAll, and its Download
+        // buttons go dead once the server reaps the files (~1h).
+        const now = Date.now();
+        const all = getTasks();
+        const fresh = all.filter(t => now - t.startedAt < MAX_AGE_MS);
+        if (fresh.length !== all.length) saveTasks(fresh);
+
         renderIndicator();
 
         // Start polling if there are active tasks
-        const tasks = getTasks();
-        if (tasks.some(t => t.status === 'processing')) {
+        if (fresh.some(t => t.status === 'processing')) {
             ensurePolling();
         }
     }
