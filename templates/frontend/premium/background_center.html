@@ -112,17 +112,24 @@
         return inputToken ? inputToken.value : '';
       }
 
-      function getTasks() {
-        if (typeof window.getBackgroundTasks === 'function') {
-          return window.getBackgroundTasks() || [];
-        }
+      // Results live ~1h server-side; the client retires tasks earlier so a
+      // Download button never outlives its file (same cap as background-tasks.js).
+      const maxAgeMs = 50 * 60 * 1000;
 
-        try {
-          const parsed = JSON.parse(localStorage.getItem(storageKey));
-          return Array.isArray(parsed) ? parsed : [];
-        } catch (_) {
-          return [];
+      function getTasks() {
+        let tasks;
+        if (typeof window.getBackgroundTasks === 'function') {
+          tasks = window.getBackgroundTasks() || [];
+        } else {
+          try {
+            const parsed = JSON.parse(localStorage.getItem(storageKey));
+            tasks = Array.isArray(parsed) ? parsed : [];
+          } catch (_) {
+            tasks = [];
+          }
         }
+        const now = Date.now();
+        return tasks.filter((t) => now - (t.startedAt || 0) < maxAgeMs);
       }
 
       function saveTasks(tasks) {
@@ -250,11 +257,19 @@
         const name = task.outputFilename || task.originalFilename || '{% trans "Unnamed file" %}';
         const errorText = task.error || '{% trans "Task failed without details." %}';
 
+        const minutesLeft = task.startedAt
+          ? Math.max(1, Math.round((maxAgeMs - (Date.now() - task.startedAt)) / 60000))
+          : null;
+        const expiresText = (task.status === 'success' && minutesLeft !== null)
+          ? '<span><strong>{% filter escapejs %}{% trans "Download available" %}{% endfilter %}:</strong> ~' + minutesLeft + ' {% filter escapejs %}{% trans "min" %}{% endfilter %}</span>'
+          : '';
+
         const details = `
           <div class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex flex-wrap gap-x-4 gap-y-1">
             <span><strong>{% trans "Task ID" %}:</strong> ${task.taskId}</span>
             <span><strong>{% trans "Started" %}:</strong> ${formatDate(task.startedAt)}</span>
             <span><strong>{% trans "Type" %}:</strong> ${task.conversionType || '-'}</span>
+            ${expiresText}
           </div>
         `;
 
