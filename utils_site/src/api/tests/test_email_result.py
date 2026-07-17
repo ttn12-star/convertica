@@ -167,7 +167,7 @@ class SendConversionResultTaskTests(APITestCase):
         self.assertEqual(msg.to, [user.email])
         self.assertEqual(len(msg.attachments), 1)
         self.assertIn(os.path.basename(path), msg.subject)
-        self.assertIn("/api/tasks/task-xyz/result/", msg.body)
+        self.assertIn("/download/task-xyz/", msg.body)
 
     @override_settings(EMAIL_RESULT_MAX_ATTACHMENT_MB=0)
     def test_big_file_falls_back_to_link(self):
@@ -183,7 +183,7 @@ class SendConversionResultTaskTests(APITestCase):
         self.assertEqual(len(mail.outbox), 1)
         msg = mail.outbox[0]
         self.assertEqual(msg.attachments, [])
-        self.assertIn("/api/tasks/task-xyz/result/", msg.body)
+        self.assertIn("/download/task-xyz/", msg.body)
 
     def test_missing_file_still_sends_link_email(self):
         user = self._user()

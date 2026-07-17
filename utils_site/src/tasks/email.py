@@ -126,10 +126,15 @@ def send_conversion_result(
         logger.warning("send_conversion_result: no user/email for %s", user_id)
         return
 
+    from django.urls import reverse
+
     supported = {code for code, _label in settings.LANGUAGES}
     lang = lang if lang in supported else settings.LANGUAGE_CODE
     site_url = settings.SITE_URL.rstrip("/")
-    download_url = f"{site_url}/api/tasks/{task_id}/result/"
+    # Human download page, not the raw API endpoint: it login-redirects
+    # anonymous browsers and explains expiry instead of a bare 403/404 JSON.
+    with translation.override(lang):
+        download_url = site_url + reverse("users:task_download", args=[task_id])
 
     max_bytes = getattr(settings, "EMAIL_RESULT_MAX_ATTACHMENT_MB", 10) * 1024 * 1024
     attachment = None
