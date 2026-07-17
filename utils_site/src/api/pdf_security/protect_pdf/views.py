@@ -3,11 +3,17 @@
 from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.http import HttpRequest
+from django.utils.translation import gettext_lazy as _
+from rest_framework import status
+from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
+from ...premium_utils import is_premium_active
 from .decorators import protect_pdf_docs
 from .serializers import ProtectPDFSerializer
 from .utils import protect_pdf
+
+_RESTRICT_FIELDS = ("restrict_printing", "restrict_copying", "restrict_modifying")
 
 
 class ProtectPDFAPIView(BaseConversionAPIView):
@@ -28,6 +34,31 @@ class ProtectPDFAPIView(BaseConversionAPIView):
     @protect_pdf_docs()
     def post(self, request: HttpRequest):
         """Handle POST request with Swagger documentation."""
+        # Permission toggles are premium-only (client disables the boxes,
+        # but a forged form field must not restrict for free either).
+        wants_restrictions = any(
+            str(request.data.get(field, "")).lower() in ("true", "1", "on")
+            for field in _RESTRICT_FIELDS
+        )
+        if wants_restrictions:
+            user = getattr(request, "user", None)
+            premium = bool(
+                user
+                and getattr(user, "is_authenticated", False)
+                and is_premium_active(user)
+            )
+            if not premium or not getattr(settings, "PAYMENTS_ENABLED", True):
+                return Response(
+                    {
+                        "error": _(
+                            "Permission controls (restrict printing, copying "
+                            "or editing) are a Premium feature. Untick them "
+                            "to protect with a password only, or upgrade "
+                            "to Premium."
+                        )
+                    },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
         return super().post(request)
 
     def perform_conversion(
@@ -43,5 +74,8 @@ class ProtectPDFAPIView(BaseConversionAPIView):
             user_password=user_password,
             owner_password=owner_password,
             suffix="_convertica",
+            restrict_printing=bool(kwargs.get("restrict_printing")),
+            restrict_copying=bool(kwargs.get("restrict_copying")),
+            restrict_modifying=bool(kwargs.get("restrict_modifying")),
         )
         return pdf_path, output_path

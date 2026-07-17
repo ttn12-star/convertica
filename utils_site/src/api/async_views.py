@@ -516,6 +516,21 @@ class AsyncConversionAPIView(APIView, ABC):
                 }
             )
 
+            # Opt-in "email me the result" (premium): thread the recipient
+            # into the task kwargs — the webhook pattern. Silently ignored
+            # for non-premium/anonymous so a forged form field does nothing.
+            if (
+                use_premium_queue
+                and request.user.is_authenticated
+                and getattr(request.user, "email", "")
+                and str(request.data.get("email_result", "")).lower()
+                in ("true", "1", "on")
+            ):
+                from django.utils import translation
+
+                filtered_kwargs["notify_user_id"] = request.user.id
+                filtered_kwargs["notify_lang"] = translation.get_language() or ""
+
             # DEBUG, not INFO (per-request, may contain user values).
             logger.debug("Filtered kwargs before Celery: %s", filtered_kwargs)
 

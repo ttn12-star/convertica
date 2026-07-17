@@ -1,0 +1,14 @@
+{% extends "emails/conversion/base_result.html" %}
+{% block preheader %}Tu archivo convertido — adjunto o mediante enlace.{% endblock %}
+{% block heading %}Tu archivo está listo ✅{% endblock %}
+{% block greeting_named %}Hola {{ greeting_name }}:{% endblock %}
+{% block greeting_neutral %}Hola:{% endblock %}
+{% block lead %}La conversión que iniciaste en Convertica ha terminado.{% endblock %}
+{% block attached_note %}Adjunto a este correo.{% endblock %}
+{% block body_attached %}El archivo va adjunto, así que no tienes que hacer nada más. Si lo prefieres, también puedes descargarlo del sitio mientras siga disponible:{% endblock %}
+{% block body_link %}El archivo era demasiado grande para adjuntarlo, así que descárgalo del sitio — un clic y es tuyo:{% endblock %}
+{% block cta_label %}Descargar el archivo{% endblock %}
+{% block cta_sub %}Si el sitio te pregunta quién eres, inicia sesión con la misma cuenta.{% endblock %}
+{% block expiry_note %}Por tu privacidad, el archivo se elimina de nuestros servidores aproximadamente una hora después de la conversión — entonces el enlace deja de funcionar. El adjunto, por supuesto, es tuyo para siempre.{% endblock %}
+{% block sign %}Gracias por usar Convertica,<br>El equipo de Convertica{% endblock %}
+{% block foot_optin %}Recibes este correo porque marcaste «Enviarme el resultado por correo» al iniciar esta conversión.{% endblock %}

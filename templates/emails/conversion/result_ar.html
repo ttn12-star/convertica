@@ -1,0 +1,14 @@
+{% extends "emails/conversion/base_result.html" %}
+{% block preheader %}ملفك المحوَّل — مرفقًا أو عبر الرابط.{% endblock %}
+{% block heading %}ملفك جاهز ✅{% endblock %}
+{% block greeting_named %}مرحبًا {{ greeting_name }}،{% endblock %}
+{% block greeting_neutral %}مرحبًا،{% endblock %}
+{% block lead %}اكتمل التحويل الذي بدأته على Convertica.{% endblock %}
+{% block attached_note %}مرفق بهذه الرسالة.{% endblock %}
+{% block body_attached %}الملف مرفق — لا حاجة لأي خطوة إضافية. وإن شئت، يمكنك أيضًا تنزيله من الموقع ما دام متاحًا هناك:{% endblock %}
+{% block body_link %}كان الملف أكبر من أن يُرفَق، لذا نزّله من الموقع — نقرة واحدة تكفي:{% endblock %}
+{% block cta_label %}تنزيل الملف{% endblock %}
+{% block cta_sub %}إذا سألك الموقع من أنت، فسجّل الدخول بالحساب نفسه.{% endblock %}
+{% block expiry_note %}حفاظًا على خصوصيتك، يُحذف الملف من خوادمنا بعد نحو ساعة من التحويل — وعندها يتوقف الرابط عن العمل. أما المرفق فيبقى لديك بالطبع.{% endblock %}
+{% block sign %}شكرًا لاستخدامك Convertica،<br>فريق Convertica{% endblock %}
+{% block foot_optin %}وصلتك هذه الرسالة لأنك حدّدت خيار «أرسل النتيجة إلى بريدي» عند بدء هذا التحويل.{% endblock %}

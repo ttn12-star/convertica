@@ -1,0 +1,18 @@
+{% autoescape off %}Twój plik jest gotowy — {{ output_filename }}
+
+{% if greeting_name %}Cześć {{ greeting_name }},{% else %}Cześć,{% endif %}
+
+Konwersja, którą uruchomiłeś(-aś) w Convertica, została zakończona.
+
+Plik: {{ output_filename }}
+{% if attached %}Znajdziesz go w załączniku — nic więcej nie musisz robić. Jeśli wolisz, możesz też pobrać go ze strony, dopóki tam jest:{% else %}Plik był zbyt duży na załącznik, więc pobierz go ze strony — wystarczy jedno kliknięcie:{% endif %}
+{{ download_url }}
+
+Dla Twojej prywatności plik jest usuwany z naszych serwerów około godziny po konwersji — wtedy link przestaje działać.{% if attached %} Załącznik oczywiście zostaje u Ciebie.{% endif %}
+
+Dziękujemy, że korzystasz z Convertica!
+Zespół Convertica
+{{ site_url }}
+
+Otrzymujesz tę wiadomość, ponieważ przy uruchamianiu konwersji zaznaczono opcję „Wyślij wynik na e-mail”.
+{% endautoescape %}

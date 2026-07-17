@@ -551,6 +551,20 @@ def _tool_screenshot_paths(tool_key: str) -> tuple[str, str] | None:
     return result
 
 
+# Tools with a single-file /async/ API route (api/urls.py) — the only ones
+# where "Email me the result" can work (converter.js forces async for them).
+EMAIL_RESULT_ASYNC_TOOLS = {
+    "pdf_to_word",
+    "word_to_pdf",
+    "pdf_to_excel",
+    "pdf_to_jpg",
+    "compress_pdf",
+    "epub_to_pdf",
+    "pdf_to_epub",
+    "pdf_to_markdown",
+}
+
+
 def _render_tool_page(request, tool_key: str) -> HttpResponse:
     """Generic renderer for the 25 standard tool pages.
 
@@ -562,6 +576,9 @@ def _render_tool_page(request, tool_key: str) -> HttpResponse:
     # window.CONVERSION_TYPE for background-tasks.js: without it queued tasks
     # show "Type: -" and "Open Tool" can't find the way back to the converter.
     context.setdefault("conversion_type", tool_key)
+    # "Email me the result" is offered only on tools with an /async/ route
+    # (converter.js forces async mode when the box is ticked).
+    context.setdefault("email_result_enabled", tool_key in EMAIL_RESULT_ASYNC_TOOLS)
     context.update(config["seo"])
     context["related_tools"] = _get_related_tools(tool_key)
     context["video"] = TOOL_VIDEOS.get(tool_key)
@@ -912,7 +929,8 @@ def premium_tools_page(request):
                 "title": _("Background mode"),
                 "text": _(
                     "Send long conversions to the background and keep working — "
-                    "the queue indicator tracks progress on every page."
+                    "the queue indicator tracks progress, and the finished file "
+                    "can even be emailed to you."
                 ),
             },
             {
@@ -1280,8 +1298,8 @@ def background_tasks_page(request):
                 "title": _("No babysitting the tab"),
                 "text": _(
                     "Conversions run server-side, so you don't have to keep "
-                    "the page open or your computer awake while a long job "
-                    "finishes."
+                    "the page open or your computer awake — you can even "
+                    "have the finished file emailed to you."
                 ),
             },
             {
@@ -1364,6 +1382,15 @@ def background_tasks_page(request):
                 ),
             },
             {
+                "question": _("Can I get the result by email?"),
+                "answer": _(
+                    "Yes. Tick “Email me the result” before starting "
+                    "a conversion: smaller files arrive as an attachment, "
+                    "bigger ones as a download link. Perfect for firing off "
+                    "a long job and walking away."
+                ),
+            },
+            {
                 "question": _("Is background conversion free?"),
                 "answer": _(
                     "Conversions themselves are free with daily limits. "
@@ -1406,19 +1433,20 @@ def saved_workflows_page(request):
         "is_premium_active": _is_premium_active_user(request),
         "how_it_works": [
             _(
-                "Open the Saved Workflows dashboard and create a preset: "
-                "give it a name, pick the tool it should open, and add "
-                "notes — target format, quality settings, anything you "
-                "usually forget."
+                "On any converter, set the options the way you like and hit "
+                "“Save these settings as a workflow” — the preset "
+                "remembers the tool and every choice you made."
             ),
             _(
-                "In a hurry? Start from a one-click template like “eBook "
-                "to Print PDF” or “Bulk Office Export” and "
-                "adjust it to your routine."
+                "Or build one in the Saved Workflows dashboard: name it, "
+                "pick the tool, add notes — target format, quality, "
+                "anything you usually forget. One-click templates like "
+                "“eBook to Print PDF” help you start."
             ),
             _(
                 "Next time the job comes around, open your preset — it takes "
-                "you straight to the right tool with your notes at hand."
+                "you straight to the right tool with your saved settings "
+                "already applied and your notes at hand."
             ),
             _(
                 "Edit, reorder or delete presets any time. You can keep up "
@@ -1463,17 +1491,19 @@ def saved_workflows_page(request):
             {
                 "question": _("What exactly does a saved workflow store?"),
                 "answer": _(
-                    "A name, the tool it opens, and your notes. It is a "
-                    "smart shortcut for a routine you repeat — you always "
-                    "stay in control of the files and the final settings."
+                    "A name, the tool it opens, your notes — and, when you "
+                    "save it from a tool page, the settings you picked "
+                    "there (OCR language, quality, page options and so on). "
+                    "Your files are never stored."
                 ),
             },
             {
                 "question": _("Does a workflow run conversions automatically?"),
                 "answer": _(
                     "No. Opening a preset takes you to the right tool with "
-                    "your notes; you choose the files and press convert. "
-                    "For fully automated pipelines, check out our REST API."
+                    "your saved settings already applied; you choose the "
+                    "files and press convert. For fully automated "
+                    "pipelines, check out our REST API."
                 ),
             },
             {

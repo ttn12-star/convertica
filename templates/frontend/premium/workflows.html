@@ -200,6 +200,29 @@
         return option ? option.textContent.trim() : url;
       }
 
+      function encodeParams(params) {
+        if (typeof window.encodeWorkflowParams === 'function') {
+          return window.encodeWorkflowParams(params);
+        }
+        try {
+          return btoa(unescape(encodeURIComponent(JSON.stringify(params))))
+            .replace(/\+/g, '-').replace(/\//g, '_');
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function openWorkflowUrl(workflow) {
+        const params = workflow.params || null;
+        if (params && Object.keys(params).length) {
+          const encoded = encodeParams(params);
+          if (encoded) {
+            return workflow.toolUrl + '#wfp=' + encoded;
+          }
+        }
+        return workflow.toolUrl;
+      }
+
       function resetForm() {
         editIdInput.value = '';
         nameInput.value = '';
@@ -249,7 +272,9 @@
 
           const tool = document.createElement('p');
           tool.className = 'text-xs text-gray-600 dark:text-gray-300 mt-0.5';
-          tool.textContent = toolLabelByUrl(workflow.toolUrl);
+          const paramCount = workflow.params ? Object.keys(workflow.params).length : 0;
+          tool.textContent = (workflow.toolLabel || toolLabelByUrl(workflow.toolUrl))
+            + (paramCount ? ' · {% filter escapejs %}{% trans "Saved settings" %}{% endfilter %}: ' + paramCount : '');
 
           info.appendChild(title);
           info.appendChild(tool);
@@ -269,7 +294,7 @@
           runBtn.className = 'inline-flex items-center px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold transition-colors';
           runBtn.textContent = '{% trans "Open Tool" %}';
           runBtn.addEventListener('click', function() {
-            window.location.href = workflow.toolUrl;
+            window.location.href = openWorkflowUrl(workflow);
           });
 
           const editBtn = document.createElement('button');
@@ -321,12 +346,18 @@
         if (editingId) {
           const updated = workflows.map((item) => {
             if (item.id === editingId) {
-              return {
+              const next = {
                 ...item,
                 name,
                 toolUrl,
                 notes,
               };
+              // Captured settings belong to the tool they were saved on.
+              if (item.toolUrl !== toolUrl) {
+                delete next.params;
+                delete next.toolLabel;
+              }
+              return next;
             }
             return item;
           });

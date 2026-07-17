@@ -200,6 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const isMediumOperation = mediumOperations.includes(conversionType);
         const isLargeFile = selectedFile.size > 5 * 1024 * 1024; // 5MB
 
+        // Premium "email me the result": the flag only works on the async
+        // path (the Celery task sends the email), so ticking it forces async.
+        // The checkbox is rendered only on tools that have an /async/ route.
+        const emailResultEl = document.getElementById('emailResultCheckbox');
+        const emailResult = !!(emailResultEl && emailResultEl.checked && !emailResultEl.disabled);
+
         // Use async mode for:
         // - Batch (multiple files) - always: the conversion loop runs on the
         //   Celery worker instead of blocking a gunicorn worker for minutes
@@ -207,14 +213,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // - Heavy operations (PDF to Word, Word to PDF, PDF to Excel) - always
         // - Medium operations (PDF to JPG, Compress) - for large files
         // - Any other operation - for very large files (> 10MB)
+        // - "Email me the result" ticked - always
         const useAsync = isBatchMode ||
                         isHeavyOperation ||
                         (isMediumOperation && isLargeFile) ||
-                        (selectedFile.size > 10 * 1024 * 1024);
+                        (selectedFile.size > 10 * 1024 * 1024) ||
+                        emailResult;
 
         // Use async API endpoint for operations that need it
         let apiUrl = isBatchMode ? window.BATCH_API_URL : window.API_URL;
-        const needsAsyncEndpoint = (isBatchMode || isHeavyOperation || isMediumOperation) && useAsync;
+        const needsAsyncEndpoint = (isBatchMode || isHeavyOperation || isMediumOperation || emailResult) && useAsync;
         if (needsAsyncEndpoint && !apiUrl.endsWith('/async/')) {
             // Append /async/ to the URL for async processing
             apiUrl = apiUrl.replace(/\/$/, '') + '/async/';

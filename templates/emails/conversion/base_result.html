@@ -1,0 +1,94 @@
+{% load i18n static %}<!DOCTYPE html>
+<html lang="{{ email_lang|default:'en' }}"{% if rtl %} dir="rtl"{% endif %}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <title>Convertica</title>
+    <style>
+      body { margin:0; padding:0; background:#eef1f5; }
+      .wrap { width:100%; background:#eef1f5; padding:28px 12px; }
+      .card { max-width:600px; margin:0 auto; background:#ffffff; border-radius:16px;
+        overflow:hidden; border:1px solid #e6eaf0; }
+      .inner { padding:36px 36px 30px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+        font-size:15.5px; line-height:1.62; color:#334155; }
+      .brand { padding-bottom:20px; margin-bottom:22px; border-bottom:1px solid #eef2f7; }
+      .brand-logo { font-size:19px; font-weight:800; color:#0f172a; letter-spacing:-.02em; }
+      .brand-pill { font-size:11px; font-weight:700; letter-spacing:.08em; color:#b45309;
+        background:#fffbeb; border:1px solid #fde68a; padding:3px 9px; border-radius:999px;
+        text-transform:uppercase; }
+      h2 { margin:0 0 18px; font-size:23px; line-height:1.25; color:#0f172a; letter-spacing:-.02em; }
+      p { margin:0 0 16px; }
+      .lead { color:#1f2937; }
+      strong, b { color:#0f172a; }
+      .file-box { background:#f8fafc; border:1px solid #eef2f7; border-radius:12px;
+        padding:18px 20px; margin:6px 0 24px; }
+      .file-name { font-weight:700; color:#0f172a; word-break:break-all; margin:0; }
+      .file-sub { font-size:13px; color:#64748b; margin:6px 0 0; }
+      .btn { display:inline-block; text-decoration:none; background:#f59e0b; color:#ffffff !important;
+        font-weight:700; font-size:15px; padding:13px 26px; border-radius:9px; }
+      .cta-sub { font-size:13.5px; color:#64748b; margin:12px 0 0; }
+      .note { border-inline-start:3px solid #fde68a; padding:2px 0 2px 14px; margin:0 0 16px;
+        font-size:14px; color:#475569; }
+      .sign { margin:22px 0 0; color:#334155; }
+      .foot { margin-top:26px; padding-top:18px; border-top:1px solid #eef2f7; font-size:12.5px;
+        color:#94a3b8; line-height:1.5; }
+      .foot a { color:#64748b; text-decoration:none; }
+      .preheader { display:none !important; visibility:hidden; opacity:0; height:0; width:0; overflow:hidden; mso-hide:all; }
+      @media (prefers-color-scheme: dark) {
+        body,.wrap { background:#0b1017 !important; }
+        .card { background:#111826 !important; border-color:#1e2836 !important; }
+        .inner { color:#c4ccd8 !important; }
+        .brand { border-color:#1e2836 !important; }
+        .brand-logo, h2, strong, b, .file-name { color:#f1f5f9 !important; }
+        .lead { color:#dbe2ec !important; }
+        .file-box { background:#0f1620 !important; border-color:#1e2836 !important; }
+        .foot { border-color:#1e2836 !important; }
+        .note { color:#aab4c2 !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preheader">{% block preheader %}Your converted file is ready.{% endblock %}</div>
+    <div class="wrap">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+        <div class="card">
+          <div class="inner">
+            <div class="brand"><img src="{{ site_url }}{% static 'images/logo-112.png' %}" width="28" height="28" alt="" style="border-radius:6px; vertical-align:middle; margin-inline-end:9px;"><span class="brand-logo" style="vertical-align:middle;">Convertica</span> <span class="brand-pill" style="vertical-align:middle;">Premium</span></div>
+
+            <h2>{% block heading %}Your file is ready ✅{% endblock %}</h2>
+
+            {% if greeting_name %}<p class="lead">{% block greeting_named %}Hi {{ greeting_name }},{% endblock %}</p>
+            {% else %}<p class="lead">{% block greeting_neutral %}Hi there,{% endblock %}</p>{% endif %}
+
+            <p>{% block lead %}The conversion you started on Convertica has finished.{% endblock %}</p>
+
+            <div class="file-box">
+              <p class="file-name">📄 {{ output_filename }}</p>
+              {% if attached %}<p class="file-sub">{% block attached_note %}Attached to this email.{% endblock %}</p>{% endif %}
+            </div>
+
+            {% if attached %}
+              <p>{% block body_attached %}The file is attached, so you're all set. If you prefer, you can also grab it from the site while it's still there:{% endblock %}</p>
+            {% else %}
+              <p>{% block body_link %}The file was too big to attach, so download it from the site — one click and it's yours:{% endblock %}</p>
+            {% endif %}
+
+            <p style="margin:10px 0 8px; text-align:center;"><a class="btn" href="{{ download_url }}">{% block cta_label %}Download the file{% endblock %}</a></p>
+            <p class="cta-sub" style="text-align:center;">{% block cta_sub %}Sign in with the same account if the site asks who you are.{% endblock %}</p>
+
+            <p class="note">{% block expiry_note %}For your privacy the file is deleted from our servers about an hour after conversion — the download link stops working then. The attachment, of course, is yours to keep.{% endblock %}</p>
+
+            <p class="sign">{% block sign %}Thanks for using Convertica,<br>The Convertica Team{% endblock %}</p>
+
+            <div class="foot">
+              <a href="{{ site_url }}">{{ site_url }}</a> · <a href="mailto:{{ support_email }}">{{ support_email }}</a><br>
+              {% block foot_optin %}You received this email because you ticked "Email me the result" when starting this conversion.{% endblock %}
+            </div>
+          </div>
+        </div>
+      </td></tr></table>
+    </div>
+  </body>
+</html>

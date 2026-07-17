@@ -109,6 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Checkboxes: send only when actually ticked (their .value is
+            // set whether checked or not, which would always read as true).
+            if (element.type === 'checkbox') {
+                if (element.checked && !element.disabled) {
+                    formData.append(element.name, element.value || 'true');
+                }
+                return;
+            }
+
             if (element.value && element.value.trim() !== '') {
                 // Convert number inputs to proper types
                 if (element.type === 'number') {

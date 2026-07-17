@@ -54,6 +54,8 @@ def batch_conversion_task(
     input_files: list[dict],
     params: dict,
     output_zip_filename: str,
+    notify_user_id: int | None = None,
+    notify_lang: str = "",
 ):
     """Convert ``input_files`` via the batch view's convert_single, zip results.
 
@@ -160,6 +162,22 @@ def batch_conversion_task(
             duration_ms=int((time.time() - started_ts) * 1000),
             output_size=os.path.getsize(zip_path),
         )
+
+        # Opt-in "email me the result" (set by the batch view layer).
+        if notify_user_id:
+            try:
+                from src.tasks.email import send_conversion_result
+
+                send_conversion_result.delay(
+                    user_id=notify_user_id,
+                    task_id=task_id,
+                    output_path=zip_path,
+                    output_filename=output_zip_filename,
+                    lang=notify_lang,
+                )
+            except Exception as email_exc:
+                logger.warning("result email enqueue failed, ignoring: %s", email_exc)
+
         return {
             "output_path": zip_path,
             "output_filename": output_zip_filename,
