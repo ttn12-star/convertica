@@ -136,6 +136,7 @@ urlpatterns = [
     path("pricing/", PricingPageView.as_view(), name="pricing"),
     path("contribute/", SupportPageView.as_view(), name="contribute"),
     path("about/", views.about_page, name="about_page"),
+    path("install/", views.install_page, name="install_page"),
     path("privacy/", views.privacy_page, name="privacy_page"),
     path("terms/", views.terms_page, name="terms_page"),
     path("contact/", views.contact_page, name="contact_page"),
