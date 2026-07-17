@@ -193,6 +193,10 @@
 
       function saveWorkflows(workflows) {
         localStorage.setItem(storageKey, JSON.stringify(workflows));
+        // Mirror to the account copy (workflow-presets.js, premium-only).
+        if (typeof window.pushWorkflowPresets === 'function') {
+          window.pushWorkflowPresets();
+        }
       }
 
       function toolLabelByUrl(url) {
@@ -389,10 +393,13 @@
         if (!window.confirm('{% trans "Delete all saved workflows?" %}')) {
           return;
         }
-        localStorage.removeItem(storageKey);
+        saveWorkflows([]);
         resetForm();
         renderWorkflows();
       });
+
+      // Re-render once the account copy lands (pulled by workflow-presets.js).
+      window.addEventListener('convertica:workflows-synced', renderWorkflows);
 
       quickPresetList.addEventListener('click', function(event) {
         const button = event.target.closest('button[data-name][data-tool]');
