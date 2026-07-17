@@ -178,6 +178,29 @@ def batch_conversion_task(
             except Exception as email_exc:
                 logger.warning("result email enqueue failed, ignoring: %s", email_exc)
 
+        # Web-push for batches sent to background (webhook/email pattern).
+        try:
+            from src.api.cancel_task_view import is_task_background
+
+            if is_task_background(task_id):
+                from src.tasks.push import send_conversion_ready
+                from src.users.models import OperationRun
+
+                push_user_id = (
+                    OperationRun.objects.filter(task_id=task_id)
+                    .values_list("user_id", flat=True)
+                    .first()
+                )
+                if push_user_id:
+                    send_conversion_ready.delay(
+                        user_id=push_user_id,
+                        task_id=task_id,
+                        output_filename=output_zip_filename,
+                        lang=notify_lang,
+                    )
+        except Exception as push_exc:
+            logger.warning("push enqueue failed, ignoring: %s", push_exc)
+
         return {
             "output_path": zip_path,
             "output_filename": output_zip_filename,

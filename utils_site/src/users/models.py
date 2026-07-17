@@ -992,6 +992,32 @@ class UserSubscription(models.Model):
         return cls.objects.update_or_create(user=user, defaults=defaults)
 
 
+class PushSubscription(models.Model):
+    """Web-push subscription of a premium user's browser.
+
+    One row per browser/device (endpoint is globally unique per the Push
+    API). Dead endpoints (404/410 from the push service) are pruned by the
+    sender task.
+    """
+
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="push_subscriptions"
+    )
+    endpoint = models.TextField(unique=True)
+    p256dh = models.CharField(max_length=255)
+    auth = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def as_subscription_info(self) -> dict:
+        return {
+            "endpoint": self.endpoint,
+            "keys": {"p256dh": self.p256dh, "auth": self.auth},
+        }
+
+    def __str__(self):
+        return f"PushSubscription({self.user_id}, {self.endpoint[:40]}…)"
+
+
 class UserWorkflowSet(models.Model):
     """Premium: cross-device copy of the Saved Workflows presets.
 

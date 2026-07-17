@@ -724,6 +724,31 @@ def generic_conversion_task(
             except Exception as email_exc:
                 logger.warning("result email enqueue failed, ignoring: %s", email_exc)
 
+        # Web-push for tasks the user explicitly sent to background: the
+        # cache flag is set by /api/task-background/, the recipient comes
+        # from the OperationRun analytics row.
+        try:
+            from src.api.cancel_task_view import is_task_background
+
+            if is_task_background(task_id):
+                from src.tasks.push import send_conversion_ready
+                from src.users.models import OperationRun
+
+                push_user_id = (
+                    OperationRun.objects.filter(task_id=task_id)
+                    .values_list("user_id", flat=True)
+                    .first()
+                )
+                if push_user_id:
+                    send_conversion_ready.delay(
+                        user_id=push_user_id,
+                        task_id=task_id,
+                        output_filename=output_filename,
+                        lang=kwargs.get("notify_lang", ""),
+                    )
+        except Exception as push_exc:
+            logger.warning("push enqueue failed, ignoring: %s", push_exc)
+
         return {
             "status": "success",
             "output_path": final_output_path,

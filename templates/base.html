@@ -393,6 +393,9 @@
 
     <!-- Background Tasks Manager + Workflow Presets (Premium only) -->
     {% if user.is_authenticated and user.is_premium_active %}
+      {% if VAPID_PUBLIC_KEY %}
+        <script nonce="{{ csp_nonce }}">window.VAPID_PUBLIC_KEY = "{{ VAPID_PUBLIC_KEY|escapejs }}";</script>
+      {% endif %}
       <script src="{% minified_static 'js/background-tasks.js' %}" defer nonce="{{ csp_nonce }}"></script>
       <script src="{% minified_static 'js/workflow-presets.js' %}" defer nonce="{{ csp_nonce }}"></script>
     {% endif %}
