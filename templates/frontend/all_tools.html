@@ -420,6 +420,23 @@
             </p>
           </a>
 
+          <a href="{% url 'frontend:add_text_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-teal-200 hover:border-teal-300 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-teal-600 transition-colors">
+              {% trans "Add Text to PDF" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Type text, whiteout, and highlights onto any PDF page." %}
+            </p>
+          </a>
+
           <a href="{% url 'frontend:sign_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-amber-200 hover:border-amber-300 animate-fade-in text-gray-900 cursor-pointer">
             <div class="mb-4">

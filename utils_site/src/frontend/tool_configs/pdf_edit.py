@@ -806,4 +806,139 @@ PDF_EDIT_CONFIGS = {
             ),
         },
     },
+    "add_text_pdf": {
+        "template": "frontend/pdf_edit/add_text.html",
+        "converter_args": {
+            "page_title": _(
+                "Add Text to PDF Online Free - Type & Write on PDF | Convertica"
+            ),
+            "page_description": _(
+                "Add text to any PDF online: click on the page, type, style the font, and download. Whiteout, highlight, and checkmarks included — fill out forms without form fields. Free, no registration."
+            ),
+            "page_keywords": (
+                "add text to PDF, add text to PDF free, write on PDF, "
+                "type on PDF online, insert text into PDF, "
+                "fill out PDF without form fields, write text on PDF free, "
+                "add text box to PDF, put text on PDF, edit PDF add text, "
+                "PDF text editor online free, whiteout PDF, highlight PDF online"
+            ),
+            "page_subtitle": _(
+                "Click anywhere on the page, type your text, download — the text stays real and selectable"
+            ),
+            "header_text": _("Add Text to PDF"),
+            "file_input_name": "pdf_file",
+            "file_accept": ".pdf",
+            "api_url_name": "add_text_pdf_api",
+            "replace_regex": r"\.pdf$",
+            "replace_to": "_edited.pdf",
+            "button_text": _("Add Text to PDF"),
+            "select_file_message": _("Please select a PDF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>',
+                    "gradient": "from-teal-500 to-emerald-600",
+                    "title": _("Real, Selectable Text"),
+                    "description": _(
+                        "Your text is embedded as genuine PDF text with the font included — it stays selectable and copyable, not a blurry picture of text"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Whiteout & Highlight"),
+                    "description": _(
+                        "Cover mistakes with a background-matched rectangle and mark important lines with a translucent highlight — no extra tools needed"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Fill Forms Without Fields"),
+                    "description": _(
+                        "Type into scanned or flat forms and drop checkmarks and crosses exactly where they belong — no fillable form fields required"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>',
+                    "gradient": "from-amber-500 to-orange-500",
+                    "title": _("Any Language"),
+                    "description": _(
+                        "Latin, Cyrillic, Arabic, and Devanagari text all render correctly with embedded Noto fonts — most online editors break on non-Latin scripts"
+                    ),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("Will the added text stay selectable in the PDF?"),
+                    "answer": _(
+                        "Yes. The text is embedded as real PDF text with the font subset "
+                        "included, so it stays sharp at any zoom level and can be selected "
+                        "and copied in any PDF reader. It is not rasterized into an image."
+                    ),
+                },
+                {
+                    "question": _("Can I fill out a form that has no fillable fields?"),
+                    "answer": _(
+                        "Yes, that is exactly what this tool is for. Click where an answer "
+                        "belongs and type; use the checkmark and cross symbols for boxes. "
+                        "It works on scanned forms too."
+                    ),
+                },
+                {
+                    "question": _("Does whiteout really remove the covered content?"),
+                    "answer": _(
+                        "No — whiteout paints an opaque rectangle over the content, like "
+                        "correction tape on paper. The original content remains in the file "
+                        "underneath. Do not use it to hide confidential data."
+                    ),
+                },
+                {
+                    "question": _("Can I write in Russian, Arabic, or Hindi?"),
+                    "answer": _(
+                        "Yes. Cyrillic, Arabic (with correct right-to-left shaping), and "
+                        "Devanagari are supported out of the box — the matching Noto font "
+                        "is embedded into the PDF automatically."
+                    ),
+                },
+                {
+                    "question": _("What happens if I accidentally reload the page?"),
+                    "answer": _(
+                        "Your placed objects are kept in this browser tab, so re-selecting "
+                        "the same file restores your work. Undo and redo (Ctrl+Z / Ctrl+Y) "
+                        "are also supported while you edit."
+                    ),
+                },
+            ],
+            "faq_title": _("Add Text to PDF FAQ"),
+            "page_tips": [
+                _(
+                    "Double-click any placed text box to edit it again; drag to move it, pull the corner handle to resize."
+                ),
+                _(
+                    "Whiteout samples the page color under your click, so it blends in even on non-white backgrounds."
+                ),
+                _(
+                    "Use Shift with the arrow keys to nudge the selected object in bigger steps for quick alignment."
+                ),
+            ],
+            "tips_title": _("Tips for Adding Text to PDFs"),
+            "page_content_title": _(
+                "Add text to a PDF online — type, whiteout, highlight"
+            ),
+            "page_content_body": _(
+                "<p><strong>Add Text to PDF</strong> puts words exactly where you need them: "
+                "click anywhere on the page, type, and style the result with font, size, "
+                "color, bold, italic, underline, and alignment. The text is written into the "
+                "PDF as real, selectable text with the font embedded — not as a picture.</p>"
+                "<p>Beyond text, the editor includes a whiteout tool that samples the page "
+                "background to cover mistakes cleanly, a translucent highlighter, and "
+                "checkmark, cross, bullet, and arrow symbols — everything needed to fill out a "
+                "form that has no fillable fields. Files are deleted automatically right after "
+                "download; whiteout is a visual cover-up, not redaction, so the original "
+                "content remains in the file underneath.</p>"
+            ),
+        },
+    },
 }

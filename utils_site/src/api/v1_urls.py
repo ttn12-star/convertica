@@ -29,6 +29,7 @@ from src.api.pdf_convert.pdf_to_word.views import PDFToWordAPIView
 from src.api.pdf_convert.ppt_to_pdf.views import PowerPointToPDFAPIView
 from src.api.pdf_convert.word_to_pdf.views import WordToPDFAPIView
 from src.api.pdf_edit.add_page_numbers.views import AddPageNumbersAPIView
+from src.api.pdf_edit.add_text.views import AddTextPDFAPIView
 from src.api.pdf_edit.add_watermark.views import AddWatermarkAPIView
 from src.api.pdf_edit.crop_pdf.views import CropPDFAPIView
 from src.api.pdf_edit.flatten_pdf.views import FlattenPDFAPIView
@@ -86,6 +87,11 @@ urlpatterns = [
         name="v1_add_watermark",
     ),
     path("pdf-edit/crop/", CropPDFAPIView.as_view(**_perm), name="v1_crop_pdf"),
+    path(
+        "pdf-edit/add-text/",
+        AddTextPDFAPIView.as_view(**_perm),
+        name="v1_add_text_pdf",
+    ),
     path("pdf-edit/sign/", SignPDFAPIView.as_view(**_perm), name="v1_sign_pdf"),
     path(
         "pdf-edit/flatten/", FlattenPDFAPIView.as_view(**_perm), name="v1_flatten_pdf"

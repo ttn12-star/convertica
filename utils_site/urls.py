@@ -105,6 +105,7 @@ urlpatterns = [
 # referrers is not duplicated.
 _MARKETING_ALIASES = {
     "sign-pdf": "/en/pdf-edit/sign/",
+    "add-text-to-pdf": "/en/pdf-edit/add-text/",
     "merge-pdf": "/en/pdf-organize/merge/",
     "split-pdf": "/en/pdf-organize/split/",
     "compress-pdf": "/en/pdf-organize/compress/",

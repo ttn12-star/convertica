@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+{% load i18n static minified_static seo_extras %}
+
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
+{% block keywords %}{{ page_keywords|default:"add text to PDF, write on PDF" }}{% endblock %}
+{% block og_title %}{{ page_title|seo_title }}{% endblock %}
+{% block og_description %}{{ page_description|seo_meta }}{% endblock %}
+{% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
+{% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="preload"
+        href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"
+        as="script"
+        crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" nonce="{{ csp_nonce }}"></script>
+
+  <style>
+    .ate-overlay {
+      border: 1px dashed rgba(37, 99, 235, 0.55);
+    }
+    .ate-overlay:hover {
+      border-style: solid;
+    }
+    .ate-overlay.ate-selected {
+      border: 2px solid rgba(37, 99, 235, 0.9);
+    }
+    .ate-overlay .ate-del,
+    .ate-overlay .ate-handle {
+      display: none;
+    }
+    .ate-overlay.ate-selected .ate-del,
+    .ate-overlay.ate-selected .ate-handle,
+    .ate-overlay:hover .ate-del,
+    .ate-overlay:hover .ate-handle {
+      display: block;
+    }
+    .ate-del {
+      position: absolute;
+      top: -11px;
+      right: -11px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ef4444;
+      color: #fff;
+      border: 2px solid #fff;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 20;
+    }
+    .ate-handle {
+      position: absolute;
+      right: -9px;
+      bottom: -9px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+      border: 3px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: nwse-resize;
+      touch-action: none;
+      z-index: 15;
+    }
+    .ate-tool-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.25rem;
+      height: 2.25rem;
+      padding: 0 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .ate-toggle-on {
+      background: #dbeafe !important;
+      color: #1d4ed8 !important;
+      border-color: #93c5fd !important;
+    }
+    html.dark .ate-toggle-on {
+      background: #1e3a8a !important;
+      color: #bfdbfe !important;
+      border-color: #1d4ed8 !important;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="max-w-4xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900 dark:text-gray-100" itemscope itemtype="https://schema.org/WebPage">
+    {% include "frontend/includes/breadcrumbs.html" %}
+
+    <div class="text-center mb-8 sm:mb-10 pt-4 sm:pt-0">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-gray-100">
+        {{ header_text }}
+      </h1>
+      {% if page_subtitle %}
+        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">{{ page_subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Free tool note -->
+    <div class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+      <h3 class="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-1">{% trans "Free — no sign-up needed" %}</h3>
+      <p class="text-xs text-blue-700 dark:text-blue-300">
+        {% trans "Click anywhere on the page, type your text, and download the edited PDF. Whiteout and highlight included. A daily free limit applies." %}
+        {% if PAYMENTS_ENABLED %}
+          {% trans "Unlimited use is available with" %}
+          <a href="{% url 'frontend:pricing' %}" class="underline font-semibold">{% trans "Premium" %}</a>.
+        {% endif %}
+      </p>
+    </div>
+
+    <form id="editorForm"
+          method="post"
+          enctype="multipart/form-data"
+          class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 dark:border-gray-700">
+      {% csrf_token %}
+
+      {% include "frontend/includes/upload_area.html" %}
+
+      <!-- PDF Preview + editor (revealed after a file is picked) -->
+      <div id="pdfPreviewSection" class="hidden mb-6">
+        <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
+
+          <!-- Mode + style toolbar -->
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+              <button type="button" class="ate-tool-btn" data-edit-mode="text" title="{% trans 'Add text' %}">
+                {% trans "Text" %}
+              </button>
+              <button type="button" class="ate-tool-btn" data-edit-mode="whiteout" title="{% trans 'Cover a spot with a background-colored rectangle' %}">
+                {% trans "Whiteout" %}
+              </button>
+              <button type="button" class="ate-tool-btn" data-edit-mode="highlight" title="{% trans 'Highlight an area' %}">
+                {% trans "Highlight" %}
+              </button>
+            </div>
+
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+              <button type="button" class="ate-tool-btn" data-symbol="✓" aria-label="{% trans 'Insert checkmark' %}">✓</button>
+              <button type="button" class="ate-tool-btn" data-symbol="✗" aria-label="{% trans 'Insert cross mark' %}">✗</button>
+              <button type="button" class="ate-tool-btn" data-symbol="•" aria-label="{% trans 'Insert bullet' %}">•</button>
+              <button type="button" class="ate-tool-btn" data-symbol="→" aria-label="{% trans 'Insert arrow' %}">→</button>
+            </div>
+
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+              <button type="button" id="undoBtn" class="ate-tool-btn disabled:opacity-40" title="{% trans 'Undo' %} (Ctrl+Z)">↶</button>
+              <button type="button" id="redoBtn" class="ate-tool-btn disabled:opacity-40" title="{% trans 'Redo' %} (Ctrl+Y)">↷</button>
+            </div>
+
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800 ml-auto">
+              <button type="button" id="zoomOutBtn" class="ate-tool-btn" aria-label="{% trans 'Zoom out' %}">−</button>
+              <span id="zoomLabel" class="text-xs font-semibold text-gray-600 dark:text-gray-300 w-11 text-center">100%</span>
+              <button type="button" id="zoomInBtn" class="ate-tool-btn" aria-label="{% trans 'Zoom in' %}">+</button>
+            </div>
+          </div>
+
+          <!-- Text style controls -->
+          <div class="flex flex-wrap items-center gap-2 mb-4">
+            <select id="textFontSelect"
+                    aria-label="{% trans 'Font' %}"
+                    class="px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+              <option value="sans">{% trans "Sans" %}</option>
+              <option value="serif">{% trans "Serif" %}</option>
+              <option value="mono">{% trans "Mono" %}</option>
+            </select>
+            <input type="number" id="textSizeInput" value="14" min="6" max="96" step="1"
+                   aria-label="{% trans 'Font size' %}"
+                   class="w-16 px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+            <input type="color" id="textColorInput" value="#111111"
+                   aria-label="{% trans 'Text color' %}"
+                   class="w-9 h-9 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 cursor-pointer">
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+              <button type="button" id="textBoldBtn" class="ate-tool-btn font-bold" aria-label="{% trans 'Bold' %}">B</button>
+              <button type="button" id="textItalicBtn" class="ate-tool-btn italic" aria-label="{% trans 'Italic' %}">I</button>
+              <button type="button" id="textUnderlineBtn" class="ate-tool-btn underline" aria-label="{% trans 'Underline' %}">U</button>
+            </div>
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+              <button type="button" class="ate-tool-btn ate-toggle-on" data-align="left" aria-label="{% trans 'Align left' %}">⯇</button>
+              <button type="button" class="ate-tool-btn" data-align="center" aria-label="{% trans 'Align center' %}">≡</button>
+              <button type="button" class="ate-tool-btn" data-align="right" aria-label="{% trans 'Align right' %}">⯈</button>
+            </div>
+            <div class="flex items-center gap-2 ml-auto">
+              <label for="pageSelector" class="text-sm font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                {% trans "Page" %}
+              </label>
+              <select id="pageSelector"
+                      class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+              </select>
+            </div>
+          </div>
+
+          <p id="placementHint" class="hidden mb-3 text-sm text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+            {% trans "Click anywhere on the page to add a text box and start typing. Drag to move, pull the corner handle to resize, double-click to edit again." %}
+          </p>
+
+          <div class="relative bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 rounded-lg p-4 overflow-auto flex justify-center" style="max-height: 85vh;">
+            <div id="pdfCanvasContainer" class="relative" style="display: inline-block;">
+              <canvas id="pdfCanvas" class="border border-gray-200 dark:border-gray-700 shadow-lg max-w-full" style="display: block;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% include "frontend/includes/turnstile.html" %}
+
+      <!-- Submit -->
+      <div class="text-center mt-8">
+        <button type="submit"
+                id="editButton"
+                class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 {{ button_class }} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                disabled>
+          <span class="flex items-center justify-center space-x-3">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+            <span>{{ button_text }}</span>
+          </span>
+        </button>
+      </div>
+    </form>
+
+    <div id="loadingContainer" class="hidden mt-6"></div>
+    <div id="downloadContainer" class="hidden mt-6"></div>
+    <div id="editorResult" class="hidden mt-6"></div>
+
+    <!-- How it works -->
+    <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+      <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+        {% trans "How it works" %}
+      </h2>
+      <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+        <li>{% trans "Select your PDF file or drag and drop it" %}</li>
+        <li>{% trans "Click anywhere on the page and type your text" %}</li>
+        <li>{% trans "Style it: font, size, color, bold, italic, underline, alignment" %}</li>
+        <li>{% trans "Use Whiteout to cover mistakes and Highlight to mark important parts" %}</li>
+        <li>{% trans "Add checkmarks and symbols to fill out forms without form fields" %}</li>
+        <li>{% trans "Download the edited PDF — your text stays real, selectable text" %}</li>
+      </ol>
+      <div class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700">
+        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+          <strong>{% trans "Tip:" %}</strong>
+          {% trans "Your work is kept in this browser tab, so an accidental reload will not lose your edits. Ctrl+Z undoes, arrow keys nudge the selected object." %}
+        </p>
+      </div>
+    </div>
+
+    {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+    {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+    {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+    {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+
+    {% include "frontend/includes/tool_screenshot.html" %}
+
+    {% if related_tools %}
+      {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script nonce="{{ csp_nonce }}">
+    window.API_URL = "{{ api_url|escapejs }}";
+    window.CSRF_TOKEN = "{{ csrf_token }}";
+    window.SELECT_FILE_MESSAGE = "{{ select_file_message|escapejs }}";
+    window.FILE_INPUT_NAME = "{{ file_input_name|escapejs }}";
+    window.BATCH_ENABLED = false;
+    window.IS_PREMIUM = "{{ is_premium|yesno:'true,false'|escapejs }}" === "true";
+    window.REPLACE_REGEX = "{{ replace_regex|escapejs }}";
+    window.REPLACE_TO = "{{ replace_to|escapejs }}";
+    window.ERROR_MESSAGE = "{{ error_message|default:'Editing failed. Please try again.'|escapejs }}";
+    window.LOADING_TITLE = "{% filter escapejs %}{% trans 'Adding your text...' %}{% endfilter %}";
+    window.LOADING_MESSAGE = "{% filter escapejs %}{% trans 'Please wait, this may take a few moments' %}{% endfilter %}";
+    window.SUCCESS_TITLE = "{% filter escapejs %}{% trans 'Editing complete!' %}{% endfilter %}";
+    window.SUCCESS_MESSAGE = "{% filter escapejs %}{% trans 'Your edited PDF is ready to download' %}{% endfilter %}";
+    window.DOWNLOAD_BUTTON_TEXT = "{% filter escapejs %}{% trans 'Download File' %}{% endfilter %}";
+    window.EDIT_ANOTHER_TEXT = "{% filter escapejs %}{% trans 'Edit another file' %}{% endfilter %}";
+    window.ERROR_TITLE = "{% filter escapejs %}{% trans 'Error' %}{% endfilter %}";
+    window.PAGE_LABEL = "{% filter escapejs %}{% trans 'Page' %}{% endfilter %}";
+    window.FAILED_TO_LOAD_PDF = "{% filter escapejs %}{% trans 'Failed to load PDF file. Please try again.' %}{% endfilter %}";
+    window.NO_OBJECTS_MESSAGE = "{% filter escapejs %}{% trans 'Click on the page to add text first.' %}{% endfilter %}";
+    window.DELETE_OBJECT_LABEL = "{% filter escapejs %}{% trans 'Delete object' %}{% endfilter %}";
+    window.PATIENCE_TITLE = "{% filter escapejs %}{% trans 'Everything is going well!' %}{% endfilter %}";
+    window.PATIENCE_MESSAGE = "{% filter escapejs %}{% trans 'Large files take a bit longer. Please do not close this page — your file is being processed.' %}{% endfilter %}";
+    window.CANCEL_OPERATION_TEXT = "{% filter escapejs %}{% trans 'Cancel' %}{% endfilter %}";
+  </script>
+  <script src="{% minified_static 'js/utils.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/task-cancellation.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% minified_static 'js/file-input-handler.js' %}" nonce="{{ csp_nonce }}"></script>
+  <script src="{% static 'js/add-text-editor.js' %}" nonce="{{ csp_nonce }}"></script>
+{% endblock %}

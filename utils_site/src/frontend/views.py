@@ -219,6 +219,13 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>',
             "gradient": "from-amber-500 to-orange-600",
         },
+        "add_text_pdf": {
+            "name": _("Add Text to PDF"),
+            "url": "frontend:add_text_pdf_page",
+            "description": _("Type text, whiteout, and highlights onto PDF pages"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>',
+            "gradient": "from-teal-500 to-emerald-600",
+        },
         "pdf_to_text": {
             "name": _("PDF to Text"),
             "url": "frontend:pdf_to_text_page",
@@ -332,7 +339,8 @@ def _get_related_tools(current_tool):
         # internal links — closes the "only one dofollow incoming internal
         # link" warnings on these tool/category pairs.
         "flatten_pdf": ["add_watermark", "rotate_pdf", "organize_pdf"],
-        "sign_pdf": ["add_watermark", "protect_pdf", "flatten_pdf"],
+        "sign_pdf": ["add_text_pdf", "add_watermark", "protect_pdf"],
+        "add_text_pdf": ["sign_pdf", "add_watermark", "flatten_pdf"],
         "pdf_to_text": ["pdf_to_word", "pdf_to_markdown", "split_pdf"],
         "optimize_image": [
             "convert_image",
@@ -670,6 +678,12 @@ def flatten_pdf_page(request):
 def sign_pdf_page(request):
     """Sign PDF page."""
     return _render_tool_page(request, "sign_pdf")
+
+
+@anonymous_cache_page(60 * 60)
+def add_text_pdf_page(request):
+    """Add Text to PDF page."""
+    return _render_tool_page(request, "add_text_pdf")
 
 
 @anonymous_cache_page(60 * 60)
@@ -2086,6 +2100,7 @@ def _get_sitemap_pages():
         {"url": "pdf-to-text/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-edit/flatten/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-edit/sign/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "pdf-edit/add-text/", "priority": "0.8", "changefreq": "monthly"},
         {"url": "image/optimize/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/convert/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/heic-to-jpg/", "priority": "0.7", "changefreq": "monthly"},
