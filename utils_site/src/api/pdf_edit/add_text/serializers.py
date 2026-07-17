@@ -6,6 +6,7 @@ operation is one placed object: a text box, a whiteout rectangle, or a
 highlight rectangle. Symbols (checkmarks etc.) arrive as ordinary text
 operations carrying the symbol character.
 """
+import base64
 import json
 import re
 
@@ -14,7 +15,20 @@ from rest_framework import serializers
 HEX_COLOR_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 
 FONT_KEYS = ("sans", "serif", "mono")
-OPERATION_TYPES = ("text", "whiteout", "highlight")
+OPERATION_TYPES = (
+    "text",
+    "whiteout",
+    "highlight",
+    "image",
+    "signature",
+    "shape",
+    "ink",
+)
+SHAPE_KINDS = ("rect", "ellipse", "line", "arrow")
+IMAGE_MIME_WHITELIST = ("png", "jpeg", "webp")
+MAX_IMAGE_BYTES = 3 * 1024 * 1024
+MAX_INK_POINTS = 2000
+_DATA_URI_RE = re.compile(r"^data:image/(png|jpeg|webp);base64,", re.IGNORECASE)
 
 
 class OperationItemSerializer(serializers.Serializer):
@@ -64,17 +78,93 @@ class OperationItemSerializer(serializers.Serializer):
     align = serializers.ChoiceField(
         choices=("left", "center", "right"), default="left", required=False
     )
+    # image / signature
+    image_data_uri = serializers.CharField(
+        required=False,
+        allow_blank=False,
+        trim_whitespace=False,
+        help_text="data:image/(png|jpeg|webp);base64,... (image/signature only).",
+    )
+    # shape
+    shape_kind = serializers.ChoiceField(
+        choices=SHAPE_KINDS,
+        required=False,
+    )
+    stroke = serializers.CharField(required=False, default="#111111")
+    stroke_width = serializers.FloatField(
+        min_value=0.5,
+        max_value=20,
+        default=2,
+        required=False,
+    )
+    fill = serializers.CharField(required=False, allow_null=True, default=None)
+    fill_opacity = serializers.FloatField(
+        min_value=0.0,
+        max_value=1.0,
+        default=1.0,
+        required=False,
+    )
+    # ink
+    points = serializers.ListField(
+        child=serializers.ListField(
+            child=serializers.FloatField(),
+            min_length=2,
+            max_length=2,
+        ),
+        required=False,
+    )
 
     def validate_color(self, value: str) -> str:
         if not HEX_COLOR_RE.match(value):
             raise serializers.ValidationError("color must be #rrggbb.")
         return value.lower()
 
+    def validate_stroke(self, value):
+        if not HEX_COLOR_RE.match(value):
+            raise serializers.ValidationError("stroke must be #rrggbb.")
+        return value.lower()
+
+    def validate_fill(self, value):
+        if value in (None, ""):
+            return None
+        if not HEX_COLOR_RE.match(value):
+            raise serializers.ValidationError("fill must be #rrggbb or null.")
+        return value.lower()
+
+    def validate_image_data_uri(self, value):
+        if not _DATA_URI_RE.match(value or ""):
+            raise serializers.ValidationError(
+                "image must be a data:image/(png|jpeg|webp);base64 URI."
+            )
+        _, b64 = value.split(";base64,", 1)
+        try:
+            raw = base64.b64decode(b64, validate=True)
+        except (ValueError, TypeError) as exc:
+            raise serializers.ValidationError("image is not valid base64.") from exc
+        if len(raw) > MAX_IMAGE_BYTES:
+            raise serializers.ValidationError("image exceeds 3 MB.")
+        return value
+
     def validate(self, attrs):
-        if attrs["type"] == "text" and not (attrs.get("text") or "").strip():
+        t = attrs["type"]
+        if t == "text" and not (attrs.get("text") or "").strip():
             raise serializers.ValidationError(
                 {"text": "Text operations need non-empty text."}
             )
+        if t in ("image", "signature") and not attrs.get("image_data_uri"):
+            raise serializers.ValidationError(
+                {"image_data_uri": "image/signature operations need an image."}
+            )
+        if t == "shape" and not attrs.get("shape_kind"):
+            raise serializers.ValidationError(
+                {"shape_kind": "shape operations need a shape_kind."}
+            )
+        if t == "ink":
+            pts = attrs.get("points") or []
+            if not (1 <= len(pts) <= MAX_INK_POINTS):
+                raise serializers.ValidationError(
+                    {"points": f"ink needs 1..{MAX_INK_POINTS} points."}
+                )
         return attrs
 
 

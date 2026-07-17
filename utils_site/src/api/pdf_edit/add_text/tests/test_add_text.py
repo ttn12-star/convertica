@@ -79,6 +79,79 @@ class AddTextSerializerTests(SimpleTestCase):
         )
         self.assertTrue(s.is_valid(), s.errors)
 
+    # --- V1.5 op-types ---
+    _PNG_1PX = (  # 1x1 transparent PNG
+        "data:image/png;base64,"
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk"
+        "+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+    )
+
+    def test_image_op_valid(self):
+        s = self._validate(
+            '[{"type":"image","page":0,"x":10,"y":10,"width":80,"height":40,'
+            f'"image_data_uri":"{self._PNG_1PX}"}}]'
+        )
+        self.assertTrue(s.is_valid(), s.errors)
+
+    def test_image_op_rejects_non_data_uri(self):
+        s = self._validate(
+            '[{"type":"image","page":0,"x":10,"y":10,"width":80,"height":40,'
+            '"image_data_uri":"http://evil/x.png"}]'
+        )
+        self.assertFalse(s.is_valid())
+
+    def test_image_op_rejects_bad_mime(self):
+        s = self._validate(
+            '[{"type":"image","page":0,"x":10,"y":10,"width":80,"height":40,'
+            '"image_data_uri":"data:image/svg+xml;base64,PHN2Zz48L3N2Zz4="}]'
+        )
+        self.assertFalse(s.is_valid())
+
+    def test_signature_op_valid(self):
+        s = self._validate(
+            '[{"type":"signature","page":0,"x":10,"y":10,"width":80,"height":40,'
+            f'"image_data_uri":"{self._PNG_1PX}"}}]'
+        )
+        self.assertTrue(s.is_valid(), s.errors)
+
+    def test_shape_rect_valid(self):
+        s = self._validate(
+            '[{"type":"shape","page":0,"x":10,"y":10,"width":80,"height":40,'
+            '"shape_kind":"rect","stroke":"#ff0000","stroke_width":2,'
+            '"fill":"#00ff00","fill_opacity":0.3}]'
+        )
+        self.assertTrue(s.is_valid(), s.errors)
+
+    def test_shape_rejects_bad_kind(self):
+        s = self._validate(
+            '[{"type":"shape","page":0,"x":10,"y":10,"width":80,"height":40,'
+            '"shape_kind":"triangle","stroke":"#ff0000"}]'
+        )
+        self.assertFalse(s.is_valid())
+
+    def test_ink_valid(self):
+        s = self._validate(
+            '[{"type":"ink","page":0,"x":0,"y":0,"width":100,"height":100,'
+            '"points":[[10,10],[20,25],[30,15]],"stroke":"#0000ff",'
+            '"stroke_width":3}]'
+        )
+        self.assertTrue(s.is_valid(), s.errors)
+
+    def test_ink_rejects_too_many_points(self):
+        pts = ",".join("[1,1]" for _ in range(2001))
+        s = self._validate(
+            '[{"type":"ink","page":0,"x":0,"y":0,"width":100,"height":100,'
+            f'"points":[{pts}],"stroke":"#0000ff"}}]'
+        )
+        self.assertFalse(s.is_valid())
+
+    def test_ink_rejects_empty_points(self):
+        s = self._validate(
+            '[{"type":"ink","page":0,"x":0,"y":0,"width":100,"height":100,'
+            '"points":[],"stroke":"#0000ff"}]'
+        )
+        self.assertFalse(s.is_valid())
+
 
 class AddTextMaterializationTests(SimpleTestCase):
     def _run(self, operations):
