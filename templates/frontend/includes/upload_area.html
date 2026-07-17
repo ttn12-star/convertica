@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n minified_static %}
 {% comment %}
 Unified Upload Area — drag-and-drop + browse button in one zone.
 
@@ -56,11 +56,54 @@ JS contract (unchanged from previous design):
         </svg>
         <span>{% trans "Browse files" %}</span>
       </div>
+      {% if google_picker_api_key or dropbox_app_key %}
+        <div id="cloudImport"
+             class="mt-4 flex flex-wrap items-center justify-center gap-2"
+             data-google-api-key="{{ google_picker_api_key }}"
+             data-google-client-id="{{ google_oauth_client_id }}"
+             data-google-app-id="{{ google_picker_app_id }}"
+             data-dropbox-app-key="{{ dropbox_app_key }}"
+             data-error-load="{% trans "Couldn't open the file picker. Please try again." %}"
+             data-error-download="{% trans "Couldn't import the file. Please try again or upload it manually." %}"
+             data-error-gdoc="{% trans "Google Docs, Sheets and Slides can't be imported directly. Download the file from Google Drive first." %}">
+          {% if google_picker_api_key %}
+            <button type="button"
+                    id="googleDriveImport"
+                    class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 text-gray-700 dark:text-gray-200 text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg shadow-sm transition-colors"
+                    aria-label="{% trans 'Import from Google Drive' %}">
+              <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 87.3 78" aria-hidden="true">
+                <path d="M6.6 66.85 10.45 73.5c.8 1.4 1.95 2.5 3.3 3.3L27.5 53H0c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+                <path d="M43.65 25 29.9 1.2c-1.35.8-2.5 1.9-3.3 3.3L1.2 48.5C.4 49.9 0 51.45 0 53h27.5z" fill="#00ac47"/>
+                <path d="M73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75L86.1 57.5c.8-1.4 1.2-2.95 1.2-4.5H59.798l5.852 11.5z" fill="#ea4335"/>
+                <path d="M43.65 25 57.4 1.2C56.05.4 54.5 0 52.9 0H34.4c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+                <path d="M59.8 53H27.5L13.75 76.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+                <path d="M73.4 26.5 60.7 4.5c-.8-1.4-1.95-2.5-3.3-3.3L43.65 25 59.8 53h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+              </svg>
+              <span>Google Drive</span>
+            </button>
+          {% endif %}
+          {% if dropbox_app_key %}
+            <button type="button"
+                    id="dropboxImport"
+                    class="inline-flex items-center gap-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 text-gray-700 dark:text-gray-200 text-xs sm:text-sm font-semibold py-2 px-4 rounded-lg shadow-sm transition-colors"
+                    aria-label="{% trans 'Import from Dropbox' %}">
+              <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="#0061FF" aria-hidden="true">
+                <path d="M6 1.807 0 5.629l6 3.822 6.001-3.822L6 1.807zM18 1.807l-6 3.822 6 3.822 6-3.822-6-3.822zM0 13.274l6 3.822 6.001-3.822L6 9.452l-6 3.822zM18 9.452l-6 3.822 6 3.822 6-3.822-6-3.822zM6.001 18.371l6.002 3.822 6-3.822-6-3.821-6.002 3.821z"/>
+              </svg>
+              <span>Dropbox</span>
+            </button>
+          {% endif %}
+        </div>
+      {% endif %}
       <p class="text-gray-600 dark:text-gray-400 text-xs mt-4" id="fileInfo">
         {{ file_accept|upper }}{% if max_file_size_mb_current %} &middot; {% blocktrans with size=max_file_size_mb_current %}up to {{ size }} MB{% endblocktrans %}{% endif %}{% if batch_enabled %} &middot; {% trans "up to 10 files" %}{% endif %}
       </p>
     </div>
   </div>
+
+  {% if google_picker_api_key or dropbox_app_key %}
+    <script src="{% minified_static 'js/cloud-import.js' %}" nonce="{{ csp_nonce }}" defer></script>
+  {% endif %}
 
   {% if batch_enabled %}
     <button type="button"

@@ -604,7 +604,9 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://connect.facebook.net "
             "https://pagead2.googlesyndication.com "
             "https://partner.googleadservices.com "
-            "https://cdnjs.cloudflare.com",
+            "https://cdnjs.cloudflare.com "
+            # Drive/Dropbox import: gapi loader + Dropbox Chooser SDK
+            "https://apis.google.com " "https://www.dropbox.com",
             # Styles: self, inline (for Tailwind and dynamic styles)
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
             # Fonts: self, Google Fonts
@@ -635,6 +637,10 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://www.googletagmanager.com "
             "https://region1.google-analytics.com "
             "https://accounts.google.com "
+            # Drive/Dropbox import: Drive file download + Dropbox direct links
+            "https://www.googleapis.com "
+            "https://content.googleapis.com "
+            "https://*.dropboxusercontent.com "
             "wss://*.convertica.net "
             "ws://localhost:* "
             "wss://localhost:*",
@@ -648,7 +654,9 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
             "https://www.youtube-nocookie.com "
             "https://www.youtube.com "
             "https://googleads.g.doubleclick.net "
-            "https://tpc.googlesyndication.com",
+            "https://tpc.googlesyndication.com "
+            # Drive/Dropbox import: Picker iframe + Dropbox Chooser popup fallback
+            "https://docs.google.com " "https://www.dropbox.com",
             # Form actions: self only
             "form-action 'self' https://accounts.google.com https://www.facebook.com",
             # Base URI: self only (prevents base tag injection)

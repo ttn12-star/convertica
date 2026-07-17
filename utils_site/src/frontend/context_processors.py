@@ -37,6 +37,40 @@ def turnstile_site_key(request):
     }
 
 
+# Cached per-process: the SocialApp row only changes on redeploy/admin edit.
+_google_oauth_client_id_cache = ""
+
+
+def cloud_import(request):
+    """Public identifiers for the Drive/Dropbox import buttons (upload_area.html).
+
+    Google needs all of: Picker API key, app id (project number) and the OAuth
+    client id from the allauth SocialApp row (the same client users log in
+    with). Dropbox needs only its app key. Missing pieces hide the button.
+    """
+    global _google_oauth_client_id_cache
+
+    api_key = getattr(settings, "GOOGLE_PICKER_API_KEY", "")
+    client_id = ""
+    if api_key:
+        if not _google_oauth_client_id_cache:
+            try:
+                from allauth.socialaccount.models import SocialApp
+
+                app = SocialApp.objects.filter(provider="google").first()
+                _google_oauth_client_id_cache = app.client_id if app else ""
+            except Exception:
+                pass
+        client_id = _google_oauth_client_id_cache
+
+    return {
+        "google_picker_api_key": api_key if client_id else "",
+        "google_picker_app_id": getattr(settings, "GOOGLE_PICKER_APP_ID", ""),
+        "google_oauth_client_id": client_id,
+        "dropbox_app_key": getattr(settings, "DROPBOX_APP_KEY", ""),
+    }
+
+
 def hreflang_links(request):
     """Expose hreflang data calculated from the shared SEO helper."""
     seo = get_request_seo_context(request)
