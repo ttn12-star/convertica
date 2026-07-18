@@ -272,21 +272,20 @@ def validate_spam_protection(request: HttpRequest) -> Response | None:
     """
     context = build_request_context(request)
 
-    # 1. Check honeypot
-    if not check_honeypot(request):
-        return Response(
-            {"error": _("Invalid request")}, status=status.HTTP_400_BAD_REQUEST
-        )
-
     # Premium exemption: paying, authenticated customers are never gated behind
-    # a CAPTCHA. This skips only the CAPTCHA requirement — the honeypot above
-    # and the (generous) IP rate/timing limits below still run as basic server
-    # protection. Once a premium user is let through, the request returns 2xx,
-    # which clears any sticky captcha_required flag the middleware had set
-    # (see CaptchaRequirementMiddleware's reset-on-success path).
+    # a CAPTCHA — and must not be tripped by the honeypot either, which mobile
+    # password managers / browser autofill routinely fill on the hidden
+    # `website` field. Resolve premium first so every gate below can honor it.
+    # The (generous) IP rate/timing limits below still run as basic protection.
     from .premium_utils import is_premium_active
 
     is_premium = is_premium_active(getattr(request, "user", None))
+
+    # 1. Check honeypot (skipped for premium — see above)
+    if not is_premium and not check_honeypot(request):
+        return Response(
+            {"error": _("Invalid request")}, status=status.HTTP_400_BAD_REQUEST
+        )
 
     # Get client IP once for all checks (used multiple times below). Trusted:
     # CF-Connecting-IP / rightmost XFF, never the spoofable leftmost XFF entry.

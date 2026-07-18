@@ -31,6 +31,16 @@ def turnstile_site_key(request):
     if hasattr(request, "session"):
         captcha_required = request.session.get("captcha_required", False)
 
+    # Premium users are exempt from CAPTCHA *verification* (see spam_protection),
+    # so the widget must not render for them either — otherwise a sticky session
+    # flag (mobile Referer stripping, origin gate, honeypot false-positives)
+    # keeps the "prove you're human" widget visible to a paying customer.
+    if captcha_required:
+        from src.api.premium_utils import is_premium_active
+
+        if is_premium_active(getattr(request, "user", None)):
+            captcha_required = False
+
     return {
         "turnstile_site_key": site_key,
         "captcha_required": captcha_required,
