@@ -694,6 +694,41 @@ class CaptchaPremiumExemptionTests(TestCase):
         # None == request allowed through (no CAPTCHA gate for premium).
         self.assertIsNone(resp)
 
+    def _activate_premium(self):
+        now = timezone.now()
+        self.user.activate_premium(
+            plan=self.plan,
+            period_start=now,
+            period_end=now + timedelta(days=30),
+            provider="lemonsqueezy",
+            provider_subscription_id="sub_hp",
+            provider_customer_id="cust_hp",
+        )
+
+    def test_premium_user_with_autofilled_honeypot_is_not_blocked(self):
+        # Mobile password managers / browser autofill routinely fill the hidden
+        # `website` honeypot. That must not 400 a paying user's conversion.
+        from src.api.spam_protection import validate_spam_protection
+
+        self._activate_premium()
+        req = self.rf.post(
+            "/api/archive/protect/", {"website": "autofilled"}, REMOTE_ADDR="8.8.8.8"
+        )
+        req.user = self.user
+        self.assertIsNone(validate_spam_protection(req))
+
+    def test_free_user_with_filled_honeypot_still_blocked(self):
+        # The honeypot remains a real gate for everyone who is not premium.
+        from src.api.spam_protection import validate_spam_protection
+
+        req = self.rf.post(
+            "/api/archive/protect/", {"website": "bot"}, REMOTE_ADDR="8.8.8.8"
+        )
+        req.user = self.user  # free
+        resp = validate_spam_protection(req)
+        self.assertIsNotNone(resp)
+        self.assertEqual(resp.status_code, 400)
+
 
 # ---------------------------------------------------------------------------
 # A4. Priority queue routing
