@@ -15,6 +15,7 @@ from src.exceptions import (
     StorageError,
 )
 
+from ...conversion_limits import ConversionTimeoutError, run_with_timeout
 from ...logging_utils import (
     build_request_context,
     get_logger,
@@ -72,9 +73,17 @@ class SplitPDFAPIView(APIView):
 
             log_conversion_start(logger, "SPLIT_PDF", context)
 
-            # Split PDF
-            tmp_dir, zip_path = split_pdf(
-                pdf_file, split_type=split_type, pages=pages, suffix="_convertica"
+            # Split under the shared conversion timeout so a pathological split
+            # can't pin a sync gunicorn worker to a Cloudflare 524/502 (legacy
+            # view, not a BaseConversionAPIView which applies it automatically).
+            tmp_dir, zip_path = run_with_timeout(
+                split_pdf,
+                args=(pdf_file,),
+                kwargs={
+                    "split_type": split_type,
+                    "pages": pages,
+                    "suffix": "_convertica",
+                },
             )
 
             log_conversion_success(
@@ -106,6 +115,17 @@ class SplitPDFAPIView(APIView):
 
             return response
 
+        except ConversionTimeoutError as e:
+            log_conversion_error(
+                logger, "SPLIT_PDF", context, e, start_time, level="warning"
+            )
+            return Response(
+                {
+                    "error": "Split timed out. Try a smaller PDF.",
+                    "hint": "Try with a smaller file or fewer pages.",
+                },
+                status=status.HTTP_408_REQUEST_TIMEOUT,
+            )
         except (EncryptedPDFError, InvalidPDFError) as e:
             log_conversion_error(
                 logger, "SPLIT_PDF", context, e, start_time, level="warning"

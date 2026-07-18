@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from src.api.conversion_limits import ConversionTimeoutError, run_with_timeout
 from src.api.logging_utils import (
     build_request_context,
     get_logger,
@@ -140,9 +141,14 @@ class MergePDFAPIView(APIView):
 
             log_conversion_start(logger, "MERGE_PDF", context)
 
-            # Merge PDFs
-            tmp_dir, output_path = merge_pdf(
-                pdf_files, order=order, suffix="_convertica"
+            # Merge PDFs under the shared conversion timeout so a pathological
+            # merge can't pin a sync gunicorn worker to a Cloudflare 524/502
+            # (this legacy view isn't a BaseConversionAPIView, which would apply
+            # the timeout automatically).
+            tmp_dir, output_path = run_with_timeout(
+                merge_pdf,
+                args=(pdf_files,),
+                kwargs={"order": order, "suffix": "_convertica"},
             )
 
             log_conversion_success(
@@ -175,6 +181,17 @@ class MergePDFAPIView(APIView):
 
             return response
 
+        except ConversionTimeoutError as e:
+            log_conversion_error(
+                logger, "MERGE_PDF", context, e, start_time, level="warning"
+            )
+            return Response(
+                {
+                    "error": "Merge timed out. Try fewer or smaller PDFs.",
+                    "hint": "Try with fewer or smaller files.",
+                },
+                status=status.HTTP_408_REQUEST_TIMEOUT,
+            )
         except (EncryptedPDFError, InvalidPDFError) as e:
             log_conversion_error(
                 logger, "MERGE_PDF", context, e, start_time, level="warning"

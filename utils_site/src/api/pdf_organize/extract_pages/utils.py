@@ -63,6 +63,16 @@ def extract_pages(
         total_pages = len(reader_probe.pages)
         pages_to_extract = parse_pages(pages, total_pages)
 
+        # parse_pages silently drops out-of-range/garbage tokens; an empty
+        # result means the selection matched nothing valid. That is bad user
+        # input (→400), not an internal fault — without this the writer emits a
+        # 0-page PDF and the failure surfaced as a generic 500.
+        if not pages_to_extract:
+            raise InvalidPDFError(
+                f"No valid pages in the selection for a {total_pages}-page PDF: "
+                f"'{pages}'."
+            )
+
         context["total_pages"] = total_pages
         context["pages_to_extract"] = len(pages_to_extract)
 

@@ -67,10 +67,18 @@ def remove_pages(
         context["total_pages"] = total_pages
         context["pages_to_remove"] = len(pages_to_remove)
 
+        # Empty selection = the input matched no valid page (bad user input,
+        # →400) rather than a silent no-op that returns the file unchanged.
+        if not pages_to_remove:
+            raise InvalidPDFError(
+                f"No valid pages in the selection for a {total_pages}-page PDF: "
+                f"'{pages}'."
+            )
+
         if len(pages_to_remove) >= total_pages:
-            raise ConversionError(
+            # User error (selected every page), not a server fault → 400.
+            raise InvalidPDFError(
                 "Cannot remove all pages from PDF. At least one page must remain.",
-                context=context,
             )
 
         processor.run_pdf_operation_with_repair(
