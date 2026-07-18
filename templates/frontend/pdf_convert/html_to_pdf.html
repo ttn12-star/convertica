@@ -286,6 +286,10 @@
         </button>
       </form>
 
+      {# CAPTCHA mount (shared by both forms). JS reads the token from here and #}
+      {# appends it to the submitted form data via attachCaptchaToken(). #}
+      {% include "frontend/includes/turnstile.html" %}
+
             <!-- Progress -->
       <div id="progressSection" class="hidden mt-8">
         <div class="space-y-4">

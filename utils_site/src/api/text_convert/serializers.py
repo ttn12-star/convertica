@@ -52,30 +52,44 @@ class TextToPDFSerializer(serializers.Serializer):
     )
 
     def validate_text(self, value):
-        """Reject empty text and enforce the per-tier character limit."""
+        """Reject empty text and enforce the per-tier character limit.
+
+        Ladder: anonymous < registered (logged-in) < premium. The tier comes from
+        the request in serializer context — base_views passes it, so this runs
+        with the real user, not always the anonymous floor.
+        """
         if not value.strip():
             raise serializers.ValidationError("Please enter some text to convert.")
 
         request = self.context.get("request")
-        is_premium = bool(
-            request
-            and getattr(request, "user", None)
-            and request.user.is_authenticated
-            and getattr(request.user, "is_premium", False)
-        )
-        max_length = (
-            settings.TEXT_TO_PDF_MAX_CHARS_PREMIUM
-            if is_premium
-            else settings.TEXT_TO_PDF_MAX_CHARS_FREE
-        )
+        user = getattr(request, "user", None) if request else None
+        is_authenticated = bool(user and user.is_authenticated)
+        is_premium = is_authenticated and bool(getattr(user, "is_premium", False))
+
+        if is_premium:
+            max_length = settings.TEXT_TO_PDF_MAX_CHARS_PREMIUM
+        elif is_authenticated:
+            max_length = settings.TEXT_TO_PDF_MAX_CHARS_REGISTERED
+        else:
+            max_length = settings.TEXT_TO_PDF_MAX_CHARS_FREE
+
         if len(value) > max_length:
-            premium_limit = settings.TEXT_TO_PDF_MAX_CHARS_PREMIUM
+            # Point each tier at the next rung up so the message is actionable.
+            if is_premium:
+                upgrade_hint = ""
+            elif is_authenticated:
+                upgrade_hint = (
+                    " Upgrade to Premium for up to "
+                    f"{settings.TEXT_TO_PDF_MAX_CHARS_PREMIUM:,} characters."
+                )
+            else:
+                upgrade_hint = (
+                    " Log in for up to "
+                    f"{settings.TEXT_TO_PDF_MAX_CHARS_REGISTERED:,}, or upgrade to "
+                    f"Premium for {settings.TEXT_TO_PDF_MAX_CHARS_PREMIUM:,} characters."
+                )
             raise serializers.ValidationError(
                 f"Text exceeds the maximum length of {max_length:,} characters."
-                + (
-                    ""
-                    if is_premium
-                    else f" Upgrade to Premium for up to {premium_limit:,} characters."
-                )
+                + upgrade_hint
             )
         return value

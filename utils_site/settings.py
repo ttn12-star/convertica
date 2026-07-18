@@ -722,12 +722,25 @@ HTML_TO_PDF_MAX_CHARS_PREMIUM = config(
     "HTML_TO_PDF_MAX_CHARS_PREMIUM", default=500000, cast=int
 )
 
-# Text to PDF character limits
+# Text to PDF character limits — ladder: anonymous < registered < premium.
 TEXT_TO_PDF_MAX_CHARS_FREE = config(
     "TEXT_TO_PDF_MAX_CHARS_FREE", default=10000, cast=int
 )
+# Logged-in (non-premium) users get a much higher ceiling than anonymous — a full
+# multi-page document fits without paying, while anonymous stays abuse-bounded.
+TEXT_TO_PDF_MAX_CHARS_REGISTERED = config(
+    "TEXT_TO_PDF_MAX_CHARS_REGISTERED", default=100000, cast=int
+)
 TEXT_TO_PDF_MAX_CHARS_PREMIUM = config(
     "TEXT_TO_PDF_MAX_CHARS_PREMIUM", default=500000, cast=int
+)
+
+# CAPTCHA gate: number of abuse-signal responses (429 / spam 400) from one
+# IP/session before a CAPTCHA is demanded. Kept high so ordinary users hitting a
+# few validation errors are never gated; real floods still trip it (rate limits
+# bound throughput regardless). Tunable via .env without a deploy.
+CAPTCHA_AFTER_FAILED_ATTEMPTS = config(
+    "CAPTCHA_AFTER_FAILED_ATTEMPTS", default=10, cast=int
 )
 
 # PDF page limits

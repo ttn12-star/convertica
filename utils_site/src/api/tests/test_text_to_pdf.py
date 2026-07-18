@@ -79,6 +79,24 @@ class TextToPDFSerializerTests(TestCase):
         s = TextToPDFSerializer(data={"text": "x" * 9})
         self.assertTrue(s.is_valid(), s.errors)
 
+    @override_settings(
+        TEXT_TO_PDF_MAX_CHARS_FREE=10,
+        TEXT_TO_PDF_MAX_CHARS_REGISTERED=50,
+        TEXT_TO_PDF_MAX_CHARS_PREMIUM=100,
+    )
+    def test_registered_tier_sits_between_anon_and_premium(self):
+        from types import SimpleNamespace
+
+        reg = SimpleNamespace(
+            user=SimpleNamespace(is_authenticated=True, is_premium=False)
+        )
+        # 30 chars: over the anon floor (10), under the registered ceiling (50).
+        s_reg = TextToPDFSerializer(data={"text": "x" * 30}, context={"request": reg})
+        self.assertTrue(s_reg.is_valid(), s_reg.errors)
+        # The same text anonymously is rejected — the tier really depends on auth.
+        s_anon = TextToPDFSerializer(data={"text": "x" * 30}, context={"request": None})
+        self.assertFalse(s_anon.is_valid())
+
 
 class TextToPDFViewTests(TestCase):
     """Full HTTP path: anonymous request renders a real PDF (free tool)."""

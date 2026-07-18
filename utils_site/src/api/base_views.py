@@ -57,6 +57,32 @@ from .spam_protection import validate_spam_protection
 logger = get_logger(__name__)
 
 
+def _first_error_message(errors: Any, default: str = "Validation failed") -> str:
+    """Flatten DRF serializer.errors into one human-readable line.
+
+    Serializers return {field: [ErrorDetail(...)]}; the raw dict is useless to a
+    user. We surface the first concrete message (e.g. "Text exceeds the maximum
+    length of 10,000 characters. …") so every frontend that shows `error` tells
+    the user what actually went wrong instead of a bare "Validation failed".
+    """
+    try:
+        if isinstance(errors, dict):
+            # Prefer non-field errors, then the first field's first message.
+            ordered = list(errors.get("non_field_errors", []))
+            for key, val in errors.items():
+                if key == "non_field_errors":
+                    continue
+                ordered.extend(val if isinstance(val, list | tuple) else [val])
+            for msg in ordered:
+                if msg:
+                    return str(msg)
+        elif isinstance(errors, list | tuple) and errors:
+            return str(errors[0])
+    except Exception:  # never let error-formatting hide the 400
+        pass
+    return default
+
+
 class BaseConversionAPIView(APIView, ABC):
     """Base class for all file conversion API views.
 
@@ -120,6 +146,21 @@ class BaseConversionAPIView(APIView, ABC):
         DOES call `super().post()`.
         """
         return super().dispatch(request, *args, **kwargs)
+
+    def finalize_response(self, request, response, *args, **kwargs):
+        """Tag client-input 400s so the CAPTCHA gate doesn't treat them as abuse.
+
+        A 400 here means the user's input was wrong (text too long, bad file,
+        too many pages) — not an attack. CaptchaRequirementMiddleware skips
+        counting responses carrying `X-Input-Error`. Spam-protection rejections
+        (honeypot/captcha) carry `X-Abuse-Signal` and stay counted.
+        """
+        response = super().finalize_response(request, response, *args, **kwargs)
+        if getattr(response, "status_code", None) == 400 and not response.has_header(
+            "X-Abuse-Signal"
+        ):
+            response["X-Input-Error"] = "1"
+        return response
 
     def get_serializer_class(self):
         """Get serializer class. Override in subclasses."""
@@ -441,6 +482,9 @@ class BaseConversionAPIView(APIView, ABC):
         # Spam protection check
         spam_check = validate_spam_protection(request)
         if spam_check:
+            # Mark as an abuse signal so finalize_response won't exempt it from
+            # the CAPTCHA counter (unlike ordinary input-validation 400s).
+            spam_check["X-Abuse-Signal"] = "1"
             return spam_check
 
         serializer_class = self.get_serializer_class()
@@ -459,12 +503,19 @@ class BaseConversionAPIView(APIView, ABC):
                     serializer_data[key] = request.FILES[key]
 
         # Validate serializer
-        serializer = serializer_class(data=serializer_data)
+        # Pass request context so serializers can apply per-user rules (e.g. the
+        # text-to-pdf char ladder). Without it every user is validated as anon.
+        serializer = serializer_class(
+            data=serializer_data, context={"request": request}
+        )
         if not serializer.is_valid():
             context = build_request_context(request)
             log_validation_error(logger, serializer.errors, context)
             return Response(
-                {"error": "Validation failed", "details": serializer.errors},
+                {
+                    "error": _first_error_message(serializer.errors),
+                    "details": serializer.errors,
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -681,6 +732,9 @@ class BaseConversionAPIView(APIView, ABC):
         # Spam protection check
         spam_check = validate_spam_protection(request)
         if spam_check:
+            # Mark as an abuse signal so finalize_response won't exempt it from
+            # the CAPTCHA counter (unlike ordinary input-validation 400s).
+            spam_check["X-Abuse-Signal"] = "1"
             return spam_check
 
         serializer_class = self.get_serializer_class()
@@ -724,7 +778,11 @@ class BaseConversionAPIView(APIView, ABC):
         except Exception:
             pass  # Ignore logging errors
 
-        serializer = serializer_class(data=serializer_data)
+        # Pass request context so serializers can apply per-user rules (e.g. the
+        # text-to-pdf char ladder). Without it every user is validated as anon.
+        serializer = serializer_class(
+            data=serializer_data, context={"request": request}
+        )
 
         if not serializer.is_valid():
             context = build_request_context(request)
@@ -744,7 +802,10 @@ class BaseConversionAPIView(APIView, ABC):
             )
             log_validation_error(logger, serializer.errors, context)
             return Response(
-                {"error": "Validation failed", "details": serializer.errors},
+                {
+                    "error": _first_error_message(serializer.errors),
+                    "details": serializer.errors,
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
