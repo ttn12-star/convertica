@@ -423,6 +423,11 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    # Resolve cvk_live_ API-key identity onto request.user BEFORE the tier-aware
+    # layers below (analytics, daily quota) and the dispatch-level rate limiter,
+    # so paying API callers aren't treated as anonymous free-tier. Must sit
+    # after AuthenticationMiddleware (whose session default it overrides).
+    "src.api.middleware.APIKeyIdentityMiddleware",
     "src.api.middleware.APIKeyQuotaRefundMiddleware",  # Refund API-key quota on non-2xx
     "src.api.middleware.OperationRunTrackingMiddleware",  # DB analytics for all operations
     "src.api.middleware.DailyQuotaMiddleware",  # Free-tier daily conversion cap (after tracking so 429s land in analytics)
