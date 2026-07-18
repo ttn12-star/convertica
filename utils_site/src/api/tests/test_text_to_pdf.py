@@ -4,11 +4,15 @@ Covers the two pieces of non-trivial logic:
 * build_html — HTML-escaping (injection guard) + style option mapping.
 * TextToPDFSerializer — empty rejection, per-tier char limit, enum/color validation.
 
-The view test drives the full HTTP path (middleware, serializer, Playwright
-render) once; it needs Chromium and is the true end-to-end check.
+The view test drives the full HTTP path (middleware, serializer, response
+streaming) with the Playwright render mocked out, so it runs in CI where no
+Chromium is installed. The real render is verified separately (convert_text_to_pdf).
 """
 
 from __future__ import annotations
+
+import tempfile
+from unittest import mock
 
 from django.core.cache import cache
 from django.test import Client, TestCase, override_settings
@@ -87,23 +91,42 @@ class TextToPDFViewTests(TestCase):
         # Browser-shaped Referer satisfies the anti-spam captcha gate in tests.
         self.client.defaults["HTTP_REFERER"] = "https://convertica.net/"
 
+    def _fake_render(self, *_args, **_kwargs):
+        """Stand-in for the Playwright render: write a minimal real PDF."""
+        d = tempfile.mkdtemp(prefix="t2p_test_")
+        pdf = f"{d}/document_convertica.pdf"
+        with open(pdf, "wb") as f:
+            f.write(b"%PDF-1.4\n%%EOF\n")
+        return f"{d}/document.html", pdf
+
     def test_anonymous_creates_pdf(self):
-        response = self.client.post(
-            self.URL,
-            data={
-                "text": "Hello world.\nこんにちは\nمرحبا",
-                "font": "serif",
-                "font_size": 16,
-                "color": "#0a0a0a",
-                "align": "center",
-                "page_size": "A4",
-                "margin": "normal",
-            },
-        )
+        # Mock the browser render (no Chromium in CI); still exercises the full
+        # HTTP path: captcha gate, quota middleware, serializer, file streaming.
+        with mock.patch(
+            "src.api.text_convert.views.convert_text_to_pdf",
+            side_effect=self._fake_render,
+        ) as m:
+            response = self.client.post(
+                self.URL,
+                data={
+                    "text": "Hello world.\nこんにちは\nمرحبا",
+                    "font": "serif",
+                    "font_size": 16,
+                    "color": "#0a0a0a",
+                    "align": "center",
+                    "page_size": "A4",
+                    "margin": "normal",
+                },
+            )
         body = b"".join(response.streaming_content)
         self.assertEqual(response.status_code, 200, body[:300])
         self.assertEqual(response["Content-Type"], "application/pdf")
         self.assertTrue(body.startswith(b"%PDF"), body[:20])
+        # The view forwarded the validated style options to the renderer.
+        self.assertTrue(m.called)
+        _, kwargs = m.call_args
+        self.assertEqual(kwargs.get("font"), "serif")
+        self.assertEqual(kwargs.get("align"), "center")
 
     def test_empty_text_rejected_by_view(self):
         response = self.client.post(self.URL, data={"text": "   "})
