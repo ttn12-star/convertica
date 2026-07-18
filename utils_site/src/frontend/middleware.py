@@ -164,8 +164,27 @@ class CaptchaRequirementMiddleware:
             )
             for o in allowed_origins
         )
+        # Skip the origin gate for callers we already know are human:
+        #  - authenticated users (a logged-in session is not a curl script), and
+        #  - sessions that previously completed a conversion successfully
+        #    (origin_gate_cleared, set below on any 2xx).
+        # Without this the gate re-fired on EVERY request for legitimate
+        # no-Referer browsers (Referrer-Policy: no-referrer, privacy browsers,
+        # PWA webviews — disproportionately the RU/AR audience), and because it
+        # set the SESSION flag without incrementing failed_attempts, the
+        # success-path reset below (guarded on failed_attempts>0) never cleared
+        # it — a sticky CAPTCHA on every conversion.
+        user = getattr(request, "user", None)
+        is_authenticated = bool(
+            user is not None and getattr(user, "is_authenticated", False)
+        )
+        origin_gate_cleared = bool(
+            hasattr(request, "session") and request.session.get("origin_gate_cleared")
+        )
         if (
             not has_first_party_referer
+            and not is_authenticated
+            and not origin_gate_cleared
             and not settings.DEBUG
             and not getattr(settings, "TESTING", False)
         ):
@@ -208,11 +227,15 @@ class CaptchaRequirementMiddleware:
                             f"CAPTCHA required for IP {ip} (session-based) after {request.session['failed_attempts']} failed attempts"
                         )
                 else:
-                    # Reset on successful request (2xx or 3xx status codes)
-                    # This allows legitimate users to recover from false positives
-                    if request.session.get("failed_attempts", 0) > 0:
-                        request.session.pop("failed_attempts", None)
-                        request.session.pop("captcha_required", None)
+                    # Reset on successful request (2xx or 3xx status codes).
+                    # Clear regardless of failed_attempts so an origin-gate
+                    # false-positive (which sets captcha_required WITHOUT
+                    # bumping failed_attempts) also recovers. Mark the session
+                    # as a proven human so the origin gate above stops re-firing
+                    # for legitimate no-Referer browsers.
+                    request.session.pop("failed_attempts", None)
+                    request.session.pop("captcha_required", None)
+                    request.session["origin_gate_cleared"] = True
 
         # Also track failed attempts by IP (for cookie-less spam protection)
         # This provides protection even when sessions are disabled or cookies blocked
