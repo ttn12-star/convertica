@@ -16,6 +16,16 @@ class Command(BaseCommand):
             daily.save(update_fields=["is_active"])
             self.stdout.write(self.style.WARNING("Deactivated legacy: Daily Hero"))
 
+        # Retire the Lifetime "Founder's Deal": a one-time payment against
+        # perpetual per-conversion cost is bad economics, and nobody has bought
+        # it yet, so it is pulled from sale cleanly. Any future buyer (were it
+        # ever re-enabled) would be grandfathered — we never revoke a purchase.
+        lifetime = SubscriptionPlan.objects.filter(slug="lifetime-hero").first()
+        if lifetime and lifetime.is_active:
+            lifetime.is_active = False
+            lifetime.save(update_fields=["is_active"])
+            self.stdout.write(self.style.WARNING("Deactivated: Lifetime Hero"))
+
         plans_data = [
             {
                 "name": _("Monthly Hero Access"),
@@ -36,16 +46,6 @@ class Command(BaseCommand):
                 "duration_days": 365,
                 "is_lifetime": False,
                 "ls_variant_id": os.environ.get("LS_VARIANT_YEARLY", ""),
-            },
-            {
-                "name": _("Lifetime Hero Access (Founder's Deal)"),
-                "slug": "lifetime-hero",
-                "description": _("One-time payment. Limited to first 100 customers."),
-                "price": "129.00",
-                "currency": "USD",
-                "duration_days": 0,
-                "is_lifetime": True,
-                "ls_variant_id": os.environ.get("LS_VARIANT_LIFETIME", ""),
             },
         ]
 

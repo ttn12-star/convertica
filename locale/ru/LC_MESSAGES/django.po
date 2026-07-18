@@ -698,6 +698,14 @@ msgstr ""
 "пожизненная — включает доступ к API с квотой, соответствующей тарифу. Веб-"
 "интерфейс и API используют один и тот же пул ключей."
 
+msgid ""
+"No. Any active Convertica subscription — Monthly or Yearly — includes API "
+"access with the per-tier quota. Web UI and API share the same key pool."
+msgstr ""
+"Нет. Любая активная подписка Convertica — ежемесячная или годовая — включает "
+"доступ к API с квотой, соответствующей тарифу. Веб-интерфейс и API используют "
+"один и тот же пул ключей."
+
 msgid "What happens when I hit my monthly quota?"
 msgstr "Что произойдет, когда я исчерпаю месячную квоту?"
 
@@ -5898,6 +5906,13 @@ msgid ""
 msgstr ""
 "API-доступ включен в планы Monthly, Yearly и Lifetime Hero. Посмотрите цены,"
 " чтобы оформить подписку."
+
+msgid ""
+"API access is included with Monthly and Yearly Hero plans. View pricing to "
+"subscribe."
+msgstr ""
+"API-доступ включен в планы Monthly и Yearly Hero. Посмотрите цены, чтобы "
+"оформить подписку."
 
 msgid "View pricing"
 msgstr "Посмотреть цены"
