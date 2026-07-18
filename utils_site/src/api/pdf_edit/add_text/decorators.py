@@ -54,7 +54,7 @@ def add_text_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Edited PDF file.",
-                    content={"application/pdf": _PDF_RESPONSE},
+                    schema=_PDF_RESPONSE,
                 ),
                 400: "Bad request (invalid PDF, malformed operations JSON).",
                 413: "File too large.",

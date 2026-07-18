@@ -37,7 +37,7 @@ def flatten_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Flattened PDF file.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid PDF).",
                 413: "File too large.",

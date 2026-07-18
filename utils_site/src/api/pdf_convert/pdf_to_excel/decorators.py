@@ -41,9 +41,7 @@ def pdf_to_excel_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Excel file (.xlsx) with extracted tables.",
-                    content={
-                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": excel_binary_schema
-                    },
+                    schema=excel_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, no tables found, etc.).",
                 413: "File too large.",

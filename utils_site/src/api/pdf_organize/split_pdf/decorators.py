@@ -51,7 +51,7 @@ def split_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="ZIP file containing split PDF files.",
-                    content={"application/zip": zip_binary_schema},
+                    schema=zip_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, invalid parameters, etc.).",
                 413: "File too large.",

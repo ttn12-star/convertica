@@ -42,7 +42,7 @@ def pdf_to_pdfa_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Converted PDF/A file.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid or encrypted PDF, non-conformant output).",
                 403: "Premium subscription required.",

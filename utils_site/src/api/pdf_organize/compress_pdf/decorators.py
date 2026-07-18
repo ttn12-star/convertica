@@ -41,7 +41,7 @@ def compress_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Compressed PDF file.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, etc.).",
                 413: "File too large.",

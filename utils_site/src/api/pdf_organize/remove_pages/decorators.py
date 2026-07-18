@@ -40,7 +40,7 @@ def remove_pages_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="PDF file with pages removed.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, invalid pages, etc.).",
                 413: "File too large.",

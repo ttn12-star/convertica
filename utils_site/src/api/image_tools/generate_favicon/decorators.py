@@ -36,7 +36,7 @@ def generate_favicon_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="ZIP archive of favicon assets.",
-                    content={"application/zip": zip_binary_schema},
+                    schema=zip_binary_schema,
                 ),
                 400: "Bad request (invalid image, etc.).",
                 413: "File too large.",

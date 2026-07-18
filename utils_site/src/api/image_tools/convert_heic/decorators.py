@@ -55,7 +55,7 @@ def convert_heic_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Converted file (image/jpeg, image/png, or application/pdf).",
-                    content={"application/octet-stream": binary_schema},
+                    schema=binary_schema,
                 ),
                 400: "Bad request (invalid or unsupported file).",
                 403: "Premium subscription required.",

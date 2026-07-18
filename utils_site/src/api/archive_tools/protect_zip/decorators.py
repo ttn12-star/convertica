@@ -37,7 +37,7 @@ def protect_zip_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Password-protected ZIP archive.",
-                    content={"application/zip": zip_binary_schema},
+                    schema=zip_binary_schema,
                 ),
                 400: "Bad request (invalid/encrypted/oversized archive, empty password).",
                 413: "File too large.",

@@ -52,7 +52,7 @@ def pdf_to_jpg_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Converted JPG image file.",
-                    content={"image/jpeg": jpg_binary_schema},
+                    schema=jpg_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, page number out of range, etc.).",
                 413: "File too large.",
