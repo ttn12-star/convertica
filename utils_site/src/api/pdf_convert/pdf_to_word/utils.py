@@ -52,6 +52,13 @@ async def _convert_pdf_to_docx_sequential(
 
     tmp_dir = tempfile.mkdtemp(prefix="pdf2docx_")
     context["tmp_dir"] = tmp_dir
+    # The success path returns docx_path INSIDE tmp_dir for the caller
+    # (base_views) to stream and then clean via its cleanup_dirs. The finally
+    # below must therefore only remove tmp_dir on FAILURE — deleting it on
+    # success left the returned path dangling → FileNotFoundError/500 at
+    # base_views getsize() (the /api/pdf-to-word/ sync path). Other converters
+    # already leave cleanup to the caller on success.
+    conversion_succeeded = False
 
     try:
         # Check disk space
@@ -405,6 +412,7 @@ async def _convert_pdf_to_docx_sequential(
             },
         )
 
+        conversion_succeeded = True
         return pdf_path, docx_path
 
     except (EncryptedPDFError, InvalidPDFError, StorageError, ConversionError):
@@ -417,6 +425,7 @@ async def _convert_pdf_to_docx_sequential(
         raise ConversionError(f"Unexpected error: {e}", context=context)
 
     finally:
-        # Cleanup temporary directory
-        if os.path.exists(tmp_dir):
+        # Only clean on failure; on success the caller streams docx_path from
+        # tmp_dir and cleans it (base_views cleanup_dirs / response.close).
+        if not conversion_succeeded and os.path.exists(tmp_dir):
             shutil.rmtree(tmp_dir, ignore_errors=True)
