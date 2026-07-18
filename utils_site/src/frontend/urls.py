@@ -43,6 +43,7 @@ urlpatterns = [
     path("excel-to-pdf/", views.excel_to_pdf_page, name="excel_to_pdf_page"),
     path("ppt-to-pdf/", views.ppt_to_pdf_page, name="ppt_to_pdf_page"),
     path("html-to-pdf/", views.html_to_pdf_page, name="html_to_pdf_page"),
+    path("text-to-pdf/", views.text_to_pdf_page, name="text_to_pdf_page"),
     path("pdf-to-ppt/", views.pdf_to_ppt_page, name="pdf_to_ppt_page"),
     path("pdf-to-html/", views.pdf_to_html_page, name="pdf_to_html_page"),
     path(

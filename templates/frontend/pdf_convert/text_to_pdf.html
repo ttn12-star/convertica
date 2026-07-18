@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+{% load i18n static seo_extras %}
+
+{% block title %}{{ page_title|seo_title }}{% endblock %}
+{% block meta_title %}{{ page_title|seo_title }}{% endblock %}
+{% block description %}{{ page_description|seo_meta }}{% endblock %}
+{% block keywords %}{{ page_keywords|default:"text to pdf, txt to pdf, paste text to pdf" }}{% endblock %}
+{% block og_title %}{{ page_title|seo_title }}{% endblock %}
+{% block og_description %}{{ page_description|seo_meta }}{% endblock %}
+{% block twitter_title %}{{ page_title|seo_title }}{% endblock %}
+{% block twitter_description %}{{ page_description|seo_meta }}{% endblock %}
+
+{% block structured_data %}
+  {{ block.super }}
+
+  <!-- WebApplication Schema -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "{{ header_text|default:page_title }}",
+      "description": "{{ page_description }}",
+      "url": "{{ site_current_url }}",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "inLanguage": "{{ LANGUAGE_CODE }}",
+      "browserRequirements": "Requires JavaScript. Works on all modern browsers."
+    }
+  </script>
+
+  {% if page_faq %}
+  <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for item in page_faq %}
+            {
+              "@type": "Question",
+              "name": "{{ item.question|escapejs }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ item.answer|striptags|escapejs }}"
+              }
+            }{% if not forloop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="max-w-5xl mx-auto my-6 sm:my-8 lg:my-12 px-4 sm:px-6 text-gray-900" itemscope itemtype="https://schema.org/WebPage">
+    <!-- Breadcrumbs -->
+    {% include "frontend/includes/breadcrumbs.html" %}
+
+    <div class="text-center mb-8 sm:mb-10 pt-4 sm:pt-0">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 text-gray-900" itemprop="headline">{{ header_text }}</h1>
+      {% if page_subtitle %}
+        <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">{{ page_subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 lg:p-10 border border-gray-200 text-gray-900">
+      <form id="textToPdfForm" class="space-y-6">
+        {% csrf_token %}
+
+        <!-- Style controls -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div>
+            <label for="fontFamily" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Font" %}</label>
+            <select id="fontFamily" name="font" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="sans">{% trans "Sans-serif" %}</option>
+              <option value="serif">{% trans "Serif" %}</option>
+              <option value="mono">{% trans "Monospace" %}</option>
+            </select>
+          </div>
+          <div>
+            <label for="fontSize" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Size" %}</label>
+            <input type="number" id="fontSize" name="font_size" value="12" min="8" max="72"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+          </div>
+          <div>
+            <label for="textColor" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Color" %}</label>
+            <input type="color" id="textColor" name="color" value="#111111"
+                   class="w-full h-10 px-1 py-1 border border-gray-300 rounded-lg cursor-pointer">
+          </div>
+          <div>
+            <label for="align" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Alignment" %}</label>
+            <select id="align" name="align" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="left">{% trans "Left" %}</option>
+              <option value="center">{% trans "Center" %}</option>
+              <option value="right">{% trans "Right" %}</option>
+              <option value="justify">{% trans "Justify" %}</option>
+            </select>
+          </div>
+          <div>
+            <label for="pageSize" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Page Size" %}</label>
+            <select id="pageSize" name="page_size" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="A4">A4</option>
+              <option value="Letter">Letter</option>
+            </select>
+          </div>
+          <div>
+            <label for="margin" class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">{% trans "Margins" %}</label>
+            <select id="margin" name="margin" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+              <option value="narrow">{% trans "Narrow" %}</option>
+              <option value="normal" selected>{% trans "Normal" %}</option>
+              <option value="wide">{% trans "Wide" %}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Editor + live preview -->
+        <div class="grid lg:grid-cols-2 gap-6">
+          <div>
+            <label for="textInput" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{% trans "Your text" %}</label>
+            <textarea id="textInput" name="text" rows="16" dir="auto"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent resize-y"
+                      placeholder="{% trans 'Paste or type your text here...' %}" required></textarea>
+            <div id="charCounter" class="text-xs text-gray-500 mt-1"></div>
+          </div>
+          <div>
+            <span class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{% trans "Live preview" %}
+              <span class="font-normal text-gray-400">({% trans "approximate" %})</span>
+            </span>
+            <div class="border border-gray-200 rounded-lg bg-gray-100 dark:bg-gray-800 p-4 h-[26rem] overflow-auto">
+              <div id="previewPage" dir="auto"
+                   class="bg-white text-gray-900 mx-auto shadow-sm min-h-full"
+                   style="max-width:100%;padding:2rem;white-space:pre-wrap;word-wrap:break-word;overflow-wrap:break-word;line-height:1.5;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="filename" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{% trans "Filename" %}</label>
+          <input type="text" id="filename" name="filename" value="document"
+                 class="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+        </div>
+
+        <div class="text-center mt-8">
+          <button type="submit"
+                  class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 bg-green-600 hover:bg-green-700 text-white">
+            <span class="flex items-center justify-center space-x-3">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              <span>{% trans "Create PDF" %}</span>
+            </span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Progress -->
+      <div id="progressSection" class="hidden mt-8">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-medium text-gray-700">{% trans "Creating PDF..." %}</span>
+            <span class="text-sm text-gray-500" id="progressPercent">0%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div id="progressBar" class="bg-green-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <p class="text-sm text-gray-600 text-center" id="progressMessage">{% trans "Please wait while we create your PDF..." %}</p>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div id="resultSection" class="hidden mt-8">
+        <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+          <div class="flex items-center space-x-3">
+            <svg class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <h3 class="text-lg font-semibold text-green-900">{% trans "Your PDF is ready!" %}</h3>
+              <p class="text-sm text-green-700">{% trans "Your text has been converted to PDF successfully." %}</p>
+            </div>
+          </div>
+          <div class="mt-4 space-y-3">
+            <a href="#" id="downloadLink" class="block w-full px-4 py-2 bg-green-600 text-white text-center rounded-lg hover:bg-green-700 transition-colors">{% trans "Download PDF" %}</a>
+            <button type="button" id="convertAnother" class="w-full px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50 transition-colors">{% trans "Create Another" %}</button>
+          </div>
+        </div>
+      </div>
+
+      {% block help_section %}
+        <!-- How it works -->
+        <div class="mt-8 sm:mt-10 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-5 sm:p-7">
+          <h2 class="text-lg sm:text-xl font-bold mb-4 text-gray-900 dark:text-gray-100">{% trans "How it works" %}</h2>
+          <ol class="list-decimal list-inside space-y-2.5 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+            <li>{% trans "Paste or type your text" %}</li>
+            <li>{% trans "Choose font, size, color and page options" %}</li>
+            <li>{% trans "Click Create PDF" %}</li>
+            <li>{% trans "Download your PDF file" %}</li>
+          </ol>
+        </div>
+
+        <!-- SEO Content Block -->
+        {% include "frontend/includes/seo_content.html" with content_title=page_content_title content_body=page_content_body %}
+
+        <!-- SEO Benefits -->
+        {% include "frontend/includes/seo_benefits.html" with benefits=page_benefits benefits_title=benefits_title %}
+
+        <!-- SEO Tips -->
+        {% include "frontend/includes/seo_tips.html" with tips=page_tips tips_title=tips_title %}
+
+        <!-- SEO FAQ -->
+        {% include "frontend/includes/seo_faq.html" with faq=page_faq faq_title=faq_title %}
+      {% endblock %}
+    </div>
+
+    {% include "frontend/includes/tool_screenshot.html" %}
+
+    <!-- Related Tools -->
+    {% if related_tools %}
+      {% include "frontend/includes/related_tools.html" with tools=related_tools %}
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  {# Localized UI strings for text-to-pdf.js (English fallbacks live in the JS). #}
+  <script nonce="{{ csp_nonce }}">
+    window.TEXT2PDF_I18N = {
+      noText: "{% filter escapejs %}{% trans 'Please enter some text to convert' %}{% endfilter %}",
+      creating: "{% filter escapejs %}{% trans 'Creating PDF...' %}{% endfilter %}",
+      processing: "{% filter escapejs %}{% trans 'Processing PDF...' %}{% endfilter %}",
+      done: "{% filter escapejs %}{% trans 'Conversion completed!' %}{% endfilter %}",
+      starting: "{% filter escapejs %}{% trans 'Starting conversion...' %}{% endfilter %}",
+      wait: "{% filter escapejs %}{% trans 'Please wait while we create your PDF...' %}{% endfilter %}",
+      failed: "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}",
+      chars: "{% filter escapejs %}{% trans 'characters' %}{% endfilter %}"
+    };
+    window.TEXT2PDF_LIMITS = { free: {{ text_max_free }}, premium: {{ text_max_premium }} };
+  </script>
+  <script src="{% static 'js/text-to-pdf.js' %}" defer nonce="{{ csp_nonce }}"></script>
+{% endblock %}

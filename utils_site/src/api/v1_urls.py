@@ -44,6 +44,7 @@ from src.api.pdf_organize.remove_pages.views import RemovePagesAPIView
 from src.api.pdf_organize.split_pdf.views import SplitPDFAPIView
 from src.api.pdf_security.protect_pdf.views import ProtectPDFAPIView
 from src.api.pdf_security.unlock_pdf.views import UnlockPDFAPIView
+from src.api.text_convert.views import TextToPDFAPIView
 from src.feedback.views import FeedbackAPIView
 
 # Shorthand to keep each route terse.
@@ -62,6 +63,7 @@ urlpatterns = [
     path("epub-to-pdf/", EPUBToPDFAPIView.as_view(**_perm), name="v1_epub_to_pdf"),
     path("pdf-to-epub/", PDFToEPUBAPIView.as_view(**_perm), name="v1_pdf_to_epub"),
     path("url-to-pdf/", URLToPDFAPIView.as_view(**_perm), name="v1_url_to_pdf"),
+    path("text-to-pdf/", TextToPDFAPIView.as_view(**_perm), name="v1_text_to_pdf"),
     path("jpg-to-pdf/", JPGToPDFAPIView.as_view(**_perm), name="v1_jpg_to_pdf"),
     path("pdf-to-jpg/", PDFToJPGAPIView.as_view(**_perm), name="v1_pdf_to_jpg"),
     path("pdf-to-excel/", PDFToExcelAPIView.as_view(**_perm), name="v1_pdf_to_excel"),

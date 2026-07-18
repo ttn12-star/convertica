@@ -1,5 +1,6 @@
 """PDF conversion tool configurations (PDF↔Word, PDF↔Image, PDF↔Office formats)."""
 
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 PDF_CONVERT_CONFIGS = {
@@ -1223,6 +1224,144 @@ PDF_CONVERT_CONFIGS = {
         },
         "extra": {
             "auto_generate_tool_schema": False,
+        },
+    },
+    "text_to_pdf": {
+        "template": "frontend/pdf_convert/text_to_pdf.html",
+        "converter_args": {
+            "page_title": _(
+                "Text to PDF Converter Online Free - Paste Text, Make PDF | Convertica"
+            ),
+            "page_description": _(
+                "Convert text to PDF online free. Paste any text, pick font, size, "
+                "color, alignment and page size, then download a clean PDF. "
+                "Works in every language. No registration required."
+            ),
+            "page_keywords": (
+                "text to pdf, txt to pdf, paste text to pdf, convert text to pdf online free, "
+                "write text and save as pdf, plain text to pdf, notes to pdf, "
+                "text to pdf converter no sign up, create pdf from text, "
+                "text to pdf with custom font, text to pdf free, make pdf from text online"
+            ),
+            "page_subtitle": _("Paste your text, style it, and download it as a PDF"),
+            "header_text": _("Text to PDF Converter"),
+            "file_input_name": "text",
+            "file_accept": "",
+            "api_url_name": "text_to_pdf_api",
+            "replace_regex": r"",
+            "replace_to": ".pdf",
+            "button_text": _("Create PDF"),
+            "select_file_message": _("Please enter some text."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("Paste and Convert"),
+                    "description": _(
+                        "No file needed. Just paste or type your text, and turn it into "
+                        "a polished PDF in one click. Perfect for notes, letters, and drafts."
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Style Your Document"),
+                    "description": _(
+                        "Choose the font, text size, color, alignment, page size and "
+                        "margins so the PDF looks exactly the way you want."
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Every Language Supported"),
+                    "description": _(
+                        "Arabic, Hindi, Chinese, Cyrillic and Latin scripts all render "
+                        "correctly, including right-to-left text."
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Instant Live Preview"),
+                    "description": _(
+                        "See your styling applied on the page as you tweak it, then "
+                        "download the final PDF when it looks right."
+                    ),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _("How do I convert text to PDF?"),
+                    "answer": _(
+                        "Paste or type your text into the box, adjust the font, size, "
+                        "color, alignment, page size and margins if you like, then click "
+                        "'Create PDF' to download your document."
+                    ),
+                },
+                {
+                    "question": _("Is it free to use?"),
+                    "answer": _(
+                        "Yes. Converting text to PDF is free. As with our other tools, a "
+                        "generous daily conversion limit applies, and signing in raises it."
+                    ),
+                },
+                {
+                    "question": _("Will my formatting be preserved?"),
+                    "answer": _(
+                        "Line breaks, blank lines and spacing from your text are kept "
+                        "exactly. The font, size, color and alignment you pick are applied "
+                        "to the whole document."
+                    ),
+                },
+                {
+                    "question": _("Does it work with non-English text?"),
+                    "answer": _(
+                        "Yes. The converter renders Arabic, Hindi, Chinese, Cyrillic and "
+                        "other scripts correctly, and detects right-to-left text automatically."
+                    ),
+                },
+                {
+                    "question": _("Is my text kept private?"),
+                    "answer": _(
+                        "Your text is used only to generate the PDF and is not stored "
+                        "after the conversion completes."
+                    ),
+                },
+            ],
+            "page_tips": [
+                _(
+                    "Use a larger font size and wide margins for documents you plan to print."
+                ),
+                _("Choose the monospace font for code, tables, or aligned columns."),
+                _("Pick 'justify' alignment for a clean, book-like text block."),
+                _(
+                    "Leave a blank line between paragraphs to keep them visually separated."
+                ),
+            ],
+            "page_content_title": _("Turn Plain Text into a Clean PDF"),
+            "page_content_body": _(
+                "<p>Sometimes you just have some text and you need it as a PDF: a letter, "
+                "a set of notes, a quick handout, or a snippet you want to share in a "
+                "portable format. Instead of opening a word processor, you can paste the "
+                "text here, choose a few style options, and download a tidy PDF in seconds.</p>"
+                "<p>You control the font family, text size, color, alignment, page size, "
+                "and margins, so the result matches what you need, whether that is a "
+                "printable document or a simple share. Line breaks and spacing from your "
+                "original text are preserved exactly.</p>"
+                "<p>The converter renders every language correctly, from Latin and Cyrillic "
+                "to Arabic, Hindi, and Chinese, and it detects right-to-left text so your "
+                "documents always read the right way.</p>"
+            ),
+        },
+        "extra": {
+            "auto_generate_tool_schema": False,
+            # Surfaced to the template's char counter (JS picks free/premium by
+            # the /api/user-info/ is_premium flag). Server enforces the truth.
+            "text_max_free": settings.TEXT_TO_PDF_MAX_CHARS_FREE,
+            "text_max_premium": settings.TEXT_TO_PDF_MAX_CHARS_PREMIUM,
         },
     },
     "pdf_to_ppt": {
