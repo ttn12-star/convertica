@@ -6,6 +6,8 @@ Supports both single file and batch processing for premium users.
 """
 
 from django.http import HttpRequest
+from rest_framework import status
+from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
 from .decorators import ppt_to_pdf_docs
@@ -47,12 +49,19 @@ class PowerPointToPDFAPIView(BaseConversionAPIView):
         ppt_path, output_path = convert_ppt_to_pdf(uploaded_file, suffix="_convertica")
         return ppt_path, output_path
 
-    def validate_file(self, uploaded_file, request) -> tuple[bool, str | None]:
-        """Validate PowerPoint file before conversion."""
-        # First run base validation (size, extension, etc.)
-        is_valid, error = super().validate_file(uploaded_file, request)
-        if not is_valid:
-            return False, error
+    def validate_file_additional(
+        self, uploaded_file, context, validated_data
+    ) -> Response | None:
+        """Verify the PPT/PPTX magic bytes on the single-file (sync) path.
 
-        # Then run PowerPoint-specific validation
-        return validate_ppt_file(uploaded_file)
+        Was a dead `validate_file()` override BaseConversionAPIView never calls,
+        so the magic-byte check ran only on the batch path — see the twin fix in
+        excel_to_pdf/views.py.
+        """
+        is_valid, error = validate_ppt_file(uploaded_file)
+        if not is_valid:
+            return Response(
+                {"error": error or "Invalid PowerPoint file."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        return None

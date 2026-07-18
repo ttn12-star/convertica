@@ -168,8 +168,27 @@ _CONVERTER_TMP_PREFIXES = (
     "favicon_",
     "ico2png_",
     "img2ico_",
-    # pdf edit / organize / compare
+    "protect_image_",
+    # pdf edit (all route through BasePDFProcessor(tmp_prefix=…); the error
+    # path orphans the prepared dir, so every prefix MUST be swept here).
     "flatten_pdf_",
+    "rotate_pdf_",
+    "add_pages_",
+    "watermark_",
+    "crop_pdf_",
+    "sign_pdf_",  # also sign_pdf_batch_
+    "add_text_",
+    # pdf organize
+    "merge_pdf_",
+    "split_pdf_",
+    "remove_pages_",
+    "extract_pages_",
+    "organize_pdf_",
+    "compress_pdf_",
+    # pdf security
+    "protect_pdf_",
+    "unlock_pdf_",
+    # pdf compare
     "compare_pdf_",
     "pdf_compare_validate_",
     # archive

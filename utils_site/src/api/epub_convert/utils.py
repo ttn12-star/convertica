@@ -13,6 +13,7 @@ from xml.etree import ElementTree as ET
 from xml.sax.saxutils import escape
 
 import fitz
+from django.conf import settings
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from reportlab.lib.enums import TA_LEFT, TA_RIGHT
@@ -22,9 +23,27 @@ from reportlab.lib.units import mm
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
 from src.api.font_utils import detect_script, register_font_for_script, shape_rtl
 from src.api.logging_utils import get_logger
-from src.exceptions import ConversionError
+from src.exceptions import ConversionError, InvalidPDFError
 
 logger = get_logger(__name__)
+
+
+def _read_member_capped(epub: zipfile.ZipFile, name: str) -> bytes:
+    """Decompress one EPUB (ZIP) member with a hard uncompressed-size ceiling.
+
+    EPUB is a ZIP container reachable by anonymous free users. Both the declared
+    per-member/total sizes (guarded in _parse_epub_structure) and the ACTUAL
+    decompressed bytes must be bounded: a crafted member can declare a tiny size
+    yet expand to GBs, OOM-killing sibling conversions that share the worker
+    cgroup. Reading cap+1 bytes and rejecting on overflow stops that. Mirrors
+    archive_tools.read_member_capped; reuses the ARCHIVE_MAX_* limits.
+    """
+    cap = getattr(settings, "ARCHIVE_MAX_MEMBER_UNCOMPRESSED", 200 * 1024 * 1024)
+    with epub.open(name) as src:
+        data = src.read(cap + 1)
+    if len(data) > cap:
+        raise InvalidPDFError("An entry inside the EPUB is too large to process.")
+    return data
 
 
 def _normalize_whitespace(value: str) -> str:
@@ -61,12 +80,38 @@ def _safe_fromstring(data: bytes):
     return ET.fromstring(data)
 
 
+def _guard_epub_zip(epub: zipfile.ZipFile) -> None:
+    """Reject EPUBs whose declared member count/uncompressed sizes are bombs.
+
+    First line of defense (declared central-directory sizes); _read_member_capped
+    is the second (actual decompressed bytes). Reuses the shared ARCHIVE_MAX_*.
+    """
+    infos = epub.infolist()
+    max_members = getattr(settings, "ARCHIVE_MAX_MEMBERS", 2000)
+    max_member = getattr(settings, "ARCHIVE_MAX_MEMBER_UNCOMPRESSED", 200 * 1024 * 1024)
+    max_total = getattr(settings, "ARCHIVE_MAX_TOTAL_UNCOMPRESSED", 500 * 1024 * 1024)
+    if len(infos) > max_members:
+        raise InvalidPDFError("EPUB has too many internal files to process.")
+    total = 0
+    for zi in infos:
+        if zi.file_size > max_member:
+            raise InvalidPDFError("An entry inside the EPUB is too large to process.")
+        total += zi.file_size
+    if total > max_total:
+        raise InvalidPDFError("EPUB contents are too large to process.")
+
+
 def _parse_epub_structure(epub_path: str) -> tuple[list[str], str]:
     """Read EPUB and return ordered chapter texts and title."""
-    with zipfile.ZipFile(epub_path, "r") as epub:
+    try:
+        epub = zipfile.ZipFile(epub_path, "r")
+    except zipfile.BadZipFile as exc:
+        raise InvalidPDFError("File is not a valid EPUB (not a ZIP archive).") from exc
+    with epub:
+        _guard_epub_zip(epub)
         opf_path = None
         if "META-INF/container.xml" in epub.namelist():
-            container_xml = epub.read("META-INF/container.xml")
+            container_xml = _read_member_capped(epub, "META-INF/container.xml")
             root = _safe_fromstring(container_xml)
             rootfile = root.find(".//{*}rootfile")
             if rootfile is not None:
@@ -75,10 +120,10 @@ def _parse_epub_structure(epub_path: str) -> tuple[list[str], str]:
         if not opf_path:
             opf_candidates = [name for name in epub.namelist() if name.endswith(".opf")]
             if not opf_candidates:
-                raise ConversionError("Invalid EPUB structure: OPF manifest not found.")
+                raise InvalidPDFError("Invalid EPUB structure: OPF manifest not found.")
             opf_path = opf_candidates[0]
 
-        opf_data = epub.read(opf_path)
+        opf_data = _read_member_capped(epub, opf_path)
         opf_root = _safe_fromstring(opf_data)
         ns = {"opf": opf_root.tag.split("}")[0].strip("{")}
 
@@ -116,14 +161,14 @@ def _parse_epub_structure(epub_path: str) -> tuple[list[str], str]:
             )
             if chapter_path not in epub.namelist():
                 continue
-            chapter_bytes = epub.read(chapter_path)
+            chapter_bytes = _read_member_capped(epub, chapter_path)
             chapter_html = chapter_bytes.decode("utf-8", errors="ignore")
             chapter_text = _strip_html_to_text(chapter_html)
             if chapter_text:
                 chapter_texts.append(chapter_text)
 
         if not chapter_texts:
-            raise ConversionError("EPUB does not contain readable text content.")
+            raise InvalidPDFError("EPUB does not contain readable text content.")
 
         return chapter_texts, book_title
 
@@ -226,6 +271,10 @@ def convert_epub_to_pdf(
             },
         )
         return input_path, output_path
+    except ConversionError:
+        # InvalidPDFError/EncryptedPDFError etc. are user-input faults (→400).
+        # Let them propagate unchanged instead of masking them as a 500.
+        raise
     except Exception as exc:
         logger.exception(
             "EPUB to PDF conversion failed", extra={**context, "error": str(exc)}
@@ -393,7 +442,13 @@ def convert_pdf_to_epub(
             for chunk in uploaded_file.chunks():
                 f.write(chunk)
 
-        doc = fitz.open(input_path)
+        try:
+            doc = fitz.open(input_path)
+        except Exception as exc:
+            # Corrupt / non-PDF renamed .pdf is user input, not a server fault.
+            raise InvalidPDFError(
+                "File is not a valid PDF and cannot be converted."
+            ) from exc
         page_texts: list[str] = []
         for page_index, page in enumerate(doc, start=1):
             text = _normalize_whitespace(page.get_text("text"))
@@ -422,6 +477,9 @@ def convert_pdf_to_epub(
             },
         )
         return input_path, output_path
+    except ConversionError:
+        # InvalidPDFError etc. are user-input faults (→400); don't mask as 500.
+        raise
     except Exception as exc:
         logger.exception(
             "PDF to EPUB conversion failed", extra={**context, "error": str(exc)}

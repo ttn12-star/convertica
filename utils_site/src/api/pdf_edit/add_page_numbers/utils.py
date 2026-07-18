@@ -112,7 +112,12 @@ def add_page_numbers(
                 )
 
                 page_number = start_number + page_num
-                text = format_str.format(page=page_number, total=total_pages)
+                # Explicit replace (not str.format) so an unexpected token can
+                # never trigger format-string injection or a runtime error; the
+                # serializer already whitelists placeholders as a clean 400.
+                text = format_str.replace("{page}", str(page_number)).replace(
+                    "{total}", str(total_pages)
+                )
 
                 # Unicode font so localized formats ("Страница {page}") render
                 # instead of tofu; anchor-aware draw so center/right are correct.
