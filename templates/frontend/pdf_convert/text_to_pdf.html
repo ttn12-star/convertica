@@ -248,5 +248,11 @@
     };
     window.TEXT2PDF_LIMITS = { free: {{ text_max_free }}, premium: {{ text_max_premium }} };
   </script>
-  <script src="{% static 'js/text-to-pdf.js' %}" defer nonce="{{ csp_nonce }}"></script>
+  {# Load via the plain static prefix + a manual ?v cache-key instead of #}
+  {# {% static %}: prod's ManifestStaticFilesStorage manifest (staticfiles.json #}
+  {# in the persistent volume) is frozen and keeps resolving this file to a #}
+  {# stale content hash, so {% static %} would serve an old build of the JS #}
+  {# against this newer DOM. The unhashed file is collected fresh each deploy. #}
+  {# Bump ?v whenever text-to-pdf.js changes. #}
+  <script src="{% get_static_prefix %}js/text-to-pdf.js?v=20260718c" defer nonce="{{ csp_nonce }}"></script>
 {% endblock %}
