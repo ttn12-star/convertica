@@ -6,6 +6,8 @@ Supports both single file and batch processing for premium users.
 """
 
 from django.http import HttpRequest
+from rest_framework import status
+from rest_framework.response import Response
 
 from ...base_views import BaseConversionAPIView
 from .decorators import excel_to_pdf_docs
@@ -49,12 +51,21 @@ class ExcelToPDFAPIView(BaseConversionAPIView):
         )
         return excel_path, output_path
 
-    def validate_file(self, uploaded_file, request) -> tuple[bool, str | None]:
-        """Validate Excel file before conversion."""
-        # First run base validation (size, extension, etc.)
-        is_valid, error = super().validate_file(uploaded_file, request)
-        if not is_valid:
-            return False, error
+    def validate_file_additional(
+        self, uploaded_file, context, validated_data
+    ) -> Response | None:
+        """Verify the XLS/XLSX magic bytes on the single-file (sync) path.
 
-        # Then run Excel-specific validation
-        return validate_excel_file(uploaded_file)
+        This used to live in a `validate_file()` override that BaseConversionAPIView
+        never calls (its `super().validate_file()` would even AttributeError), so
+        the magic-byte check ran ONLY on the batch path — a file with an .xlsx
+        name and octet-stream content reached LibreOffice/unoserver unvalidated,
+        defeating the CVE mitigation validate_excel_file exists for.
+        """
+        is_valid, error = validate_excel_file(uploaded_file)
+        if not is_valid:
+            return Response(
+                {"error": error or "Invalid Excel file."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        return None

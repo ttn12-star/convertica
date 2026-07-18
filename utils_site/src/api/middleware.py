@@ -343,12 +343,20 @@ class DailyQuotaMiddleware(MiddlewareMixin):
             if not is_conversion_request(request):
                 return None
 
-            # API-key callers (Authorization: Bearer cvk_…) authenticate at the
-            # DRF layer AFTER middleware, so request.user is still anonymous
+            # API-key callers (Authorization: Bearer cvk_live_…) authenticate at
+            # the DRF layer AFTER middleware, so request.user is still anonymous
             # here. They are premium-only with their own monthly quota — don't
             # IP-bucket them. (Web tokens are anonymous browser sessions with a
             # different token format and stay quota'd via IP.)
-            if request.META.get("HTTP_AUTHORIZATION", "").startswith("Bearer cvk_"):
+            # Match the EXACT key namespace (cvk_live_), not the broader "cvk_":
+            # a forged "Bearer cvk_x" would otherwise skip the daily quota here
+            # yet fall through DRF auth as anonymous (APIKeyAuthentication only
+            # claims cvk_live_ tokens), granting unlimited un-metered anon runs.
+            # A forged "cvk_live_…" instead fails DRF auth with 401, so nothing
+            # converts. See api/auth/api_key_auth.py:PREFIX_NAMESPACE.
+            if request.META.get("HTTP_AUTHORIZATION", "").startswith(
+                "Bearer cvk_live_"
+            ):
                 return None
 
             from .daily_quota import get_quota_state, quota_limit_message

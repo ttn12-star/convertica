@@ -1,5 +1,4 @@
 # views.py
-import atexit
 import os
 import shutil
 import time
@@ -157,15 +156,22 @@ class MergePDFAPIView(APIView):
             )
             response["Content-Type"] = "application/pdf"
 
-            # Cleanup after response is sent
-            def cleanup():
-                if tmp_dir and os.path.isdir(tmp_dir):
-                    try:
-                        shutil.rmtree(tmp_dir)
-                    except Exception:
-                        pass
+            # Clean the temp dir AFTER the body is streamed, by hooking
+            # response.close (Django calls it when the WSGI server finishes the
+            # response). The old atexit.register(cleanup) fired only at worker
+            # shutdown: every request leaked its tempfile.mkdtemp dir for the
+            # whole worker lifetime AND appended a never-freed closure to the
+            # atexit registry — a slow disk/memory leak on the small prod host.
+            original_close = response.close
 
-            atexit.register(cleanup)
+            def _close_and_cleanup():
+                try:
+                    original_close()
+                finally:
+                    if tmp_dir and os.path.isdir(tmp_dir):
+                        shutil.rmtree(tmp_dir, ignore_errors=True)
+
+            response.close = _close_and_cleanup
 
             return response
 

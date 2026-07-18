@@ -124,6 +124,41 @@ class DailyQuotaMiddlewareTests(TestCase):
         self.assertIn("register_url", body)
         self.assertEqual(response["X-Daily-Quota-Remaining"], "0")
 
+    def test_forged_non_live_bearer_does_not_bypass_quota(self):
+        """Regression: a bogus `Bearer cvk_<x>` (not the real cvk_live_
+        namespace) must NOT skip the daily quota. Before the fix it did, and
+        because APIKeyAuthentication ignores non-cvk_live_ tokens the request
+        then ran as anonymous — unlimited un-metered conversions."""
+        key = f"daily_quota:ip:127.0.0.1:{timezone.now().date().isoformat()}"
+        cache.set(key, 2, 3600)  # DAILY_QUOTA_ANON=2 already used
+        bad = SimpleUploadedFile("x.heic", b"not a heic", content_type="image/heic")
+        response = self.client.post(
+            self.URL,
+            data={"image_file": bad, "output_format": "JPEG"},
+            format="multipart",
+            HTTP_AUTHORIZATION="Bearer cvk_forged_token_value",
+        )
+        self.assertEqual(response.status_code, 429)
+
+    def test_live_namespace_bearer_bypasses_quota_but_bogus_key_401s(self):
+        """The real cvk_live_ namespace is let through the IP quota here
+        (metered separately at the DRF layer); a bogus live key therefore
+        reaches DRF auth and is rejected 401 — never a free conversion."""
+        key = f"daily_quota:ip:127.0.0.1:{timezone.now().date().isoformat()}"
+        cache.set(key, 2, 3600)
+        bad = SimpleUploadedFile("x.heic", b"not a heic", content_type="image/heic")
+        response = self.client.post(
+            self.URL,
+            data={"image_file": bad, "output_format": "JPEG"},
+            format="multipart",
+            HTTP_AUTHORIZATION="Bearer cvk_live_bogusprefix_secretxxxxxxxxxxxx",
+        )
+        # Not 429 (quota was bypassed) and not 2xx/400 (never reached the view):
+        # DRF APIKeyAuthentication rejects the unknown key first. DRF returns
+        # 403 (not 401) because APIKeyAuthentication defines no
+        # authenticate_header(); either way it is a rejection, never a run.
+        self.assertEqual(response.status_code, 403)
+
     def test_premium_user_is_exempt(self):
         from datetime import timedelta
 

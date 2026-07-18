@@ -772,6 +772,21 @@ ARCHIVE_MAX_MEMBERS = 2000  # max number of files inside an uploaded ZIP
 ARCHIVE_MAX_MEMBER_UNCOMPRESSED = 200 * 1024 * 1024  # 200 MB per member
 ARCHIVE_MAX_TOTAL_UNCOMPRESSED = 500 * 1024 * 1024  # 500 MB total uncompressed
 
+# --- Image decompression-bomb ceiling (applies process-wide to every PIL open:
+# convert/optimize/heic/favicon/ico/ocr/jpg2pdf) ---
+# Pillow's default is ~89 MP (warn) / 2x (error). A small, highly-compressed
+# image decoding just under that still expands to hundreds of MB of RGBA and can
+# spike a worker on the 4 GB prod host. A hard 60 MP cap raises
+# DecompressionBombError, which the image converters already handle as bad input.
+# Set here (loaded once at process start, before any request) so it is applied
+# regardless of which module first imports PIL.
+try:
+    from PIL import Image as _PILImage
+
+    _PILImage.MAX_IMAGE_PIXELS = 60_000_000
+except Exception:  # pragma: no cover - Pillow always present; never fail boot
+    pass
+
 # Batch processing limits
 MAX_BATCH_FILES_FREE = config("MAX_BATCH_FILES_FREE", default=1, cast=int)
 MAX_BATCH_FILES_PREMIUM = config("MAX_BATCH_FILES_PREMIUM", default=10, cast=int)
