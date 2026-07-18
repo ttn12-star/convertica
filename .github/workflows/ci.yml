@@ -844,17 +844,6 @@ jobs:
               echo "⚠️ Tailwind CSS build failed, but continuing with collectstatic..."
             fi
 
-            # Step 4.5: Make the staticfiles bind-mount writable BEFORE collectstatic.
-            # ./staticfiles is a host bind mount; a stale root-owned staticfiles.json
-            # left there froze the manifest — collectstatic wrote new hashed files but
-            # could not overwrite the manifest, so {% static %} kept resolving assets
-            # (JS/CSS) to OLD content hashes and served outdated builds. Remove the
-            # stale manifest and fix ownership as root so collectstatic rebuilds it.
-            echo "🔧 Ensuring staticfiles manifest is writable (fixing stale ownership)..."
-            docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T --user root web sh -c "\
-              rm -f /app/staticfiles/staticfiles.json 2>/dev/null || true; \
-              chown -R appuser:appuser /app/staticfiles 2>/dev/null || true" || true
-
             # Step 5: Collect static files (clear old files first, compress, generate manifest)
             echo "📦 Collecting and compressing static files..."
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "\
