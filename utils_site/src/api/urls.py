@@ -90,6 +90,7 @@ from .pdf_security.protect_pdf.views import ProtectPDFAPIView
 from .pdf_security.unlock_pdf.batch_views import UnlockPDFBatchAPIView
 from .pdf_security.unlock_pdf.views import UnlockPDFAPIView
 from .push_views import PushSubscribeAPIView
+from .text_convert.views import TextToPDFAPIView
 from .user_info_view import UserInfoAPIView
 from .workflow_sync import WorkflowSyncAPIView
 
@@ -120,6 +121,7 @@ urlpatterns = [
     path("epub-to-pdf/", EPUBToPDFAPIView.as_view(), name="epub_to_pdf_api"),
     path("pdf-to-epub/", PDFToEPUBAPIView.as_view(), name="pdf_to_epub_api"),
     path("url-to-pdf/", URLToPDFAPIView.as_view(), name="url_to_pdf_api"),
+    path("text-to-pdf/", TextToPDFAPIView.as_view(), name="text_to_pdf_api"),
     # Batch endpoints for premium users
     path(
         "excel-to-pdf/batch/",

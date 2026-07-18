@@ -230,6 +230,18 @@
                     </a>
                   </li>
                   <li>
+                    <a href="{% url 'frontend:text_to_pdf_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "Text to PDF" %}</span>
+                    </a>
+                  </li>
+                  <li>
                     <a href="{% url 'frontend:pdf_to_html_page' %}"
                        class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
                        role="menuitem">
@@ -976,6 +988,17 @@
                         </svg>
                       </div>
                       <span class="font-medium">{% trans "HTML to PDF" %}</span>
+                    </a>
+
+                    <a href="{% url 'frontend:text_to_pdf_page' %}"
+                       class="flex items-center space-x-2.5 p-2.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 text-gray-700 dark:text-gray-300 group"
+                       role="menuitem">
+                      <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors flex-shrink-0">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+                        </svg>
+                      </div>
+                      <span class="font-medium">{% trans "Text to PDF" %}</span>
                     </a>
 
                     {% if PAYMENTS_ENABLED %}
@@ -2039,6 +2062,13 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
         </svg>
         {% trans "HTML to PDF" %}
+      </a>
+      <a href="{% url 'frontend:text_to_pdf_page' %}"
+         class="flex items-center p-2.5 rounded-lg hover:bg-blue-50 text-gray-700 transition-colors">
+        <svg class="w-4 h-4 text-blue-600 me-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+        </svg>
+        {% trans "Text to PDF" %}
       </a>
       <a href="{% url 'frontend:pdf_to_html_page' %}"
          class="flex items-center p-2.5 rounded-lg hover:bg-purple-50 text-gray-700 transition-colors">

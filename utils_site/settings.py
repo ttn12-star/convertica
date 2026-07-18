@@ -722,6 +722,14 @@ HTML_TO_PDF_MAX_CHARS_PREMIUM = config(
     "HTML_TO_PDF_MAX_CHARS_PREMIUM", default=500000, cast=int
 )
 
+# Text to PDF character limits
+TEXT_TO_PDF_MAX_CHARS_FREE = config(
+    "TEXT_TO_PDF_MAX_CHARS_FREE", default=10000, cast=int
+)
+TEXT_TO_PDF_MAX_CHARS_PREMIUM = config(
+    "TEXT_TO_PDF_MAX_CHARS_PREMIUM", default=500000, cast=int
+)
+
 # PDF page limits
 MAX_PDF_PAGES_FREE = config("MAX_PDF_PAGES_FREE", default=30, cast=int)
 MAX_PDF_PAGES_PREMIUM = config("MAX_PDF_PAGES_PREMIUM", default=200, cast=int)

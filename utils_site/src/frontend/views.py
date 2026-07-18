@@ -194,6 +194,13 @@ def _get_related_tools(current_tool):
             "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9H6a2 2 0 00-2 2v7a2 2 0 002 2h4m4-11h4a2 2 0 012 2v7a2 2 0 01-2 2h-4m-4-11v11m0 0l-2-2m2 2l2-2"/>',
             "gradient": "from-amber-500 to-orange-600",
         },
+        "text_to_pdf": {
+            "name": _("Text to PDF"),
+            "url": "frontend:text_to_pdf_page",
+            "description": _("Paste text and turn it into a styled PDF"),
+            "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>',
+            "gradient": "from-blue-500 to-blue-600",
+        },
         "pdf_to_pdfa": {
             "name": _("PDF to PDF/A"),
             "url": "frontend:pdf_to_pdfa_page",
@@ -331,7 +338,8 @@ def _get_related_tools(current_tool):
         "pdf_to_excel": ["pdf_to_word", "merge_pdf", "pdf_to_text"],
         "excel_to_pdf": ["pdf_to_excel", "merge_pdf", "compress_pdf"],
         "ppt_to_pdf": ["merge_pdf", "compress_pdf", "protect_pdf"],
-        "html_to_pdf": ["merge_pdf", "compress_pdf", "pdf_to_text"],
+        "html_to_pdf": ["text_to_pdf", "merge_pdf", "pdf_to_text"],
+        "text_to_pdf": ["html_to_pdf", "pdf_to_text", "add_text_pdf"],
         "pdf_to_ppt": ["merge_pdf", "compress_pdf", "split_pdf"],
         "pdf_to_html": ["pdf_to_word", "pdf_to_text", "split_pdf"],
         "epub_to_pdf": ["pdf_to_epub", "pdf_to_word", "pdf_to_jpg"],
@@ -351,7 +359,7 @@ def _get_related_tools(current_tool):
         "sign_pdf": ["add_text_pdf", "add_watermark", "protect_pdf"],
         "add_text_pdf": ["pdf_editor", "sign_pdf", "add_watermark", "flatten_pdf"],
         "pdf_editor": ["sign_pdf", "add_text_pdf", "flatten_pdf", "organize_pdf"],
-        "pdf_to_text": ["pdf_to_word", "pdf_to_markdown", "split_pdf"],
+        "pdf_to_text": ["text_to_pdf", "pdf_to_word", "pdf_to_markdown"],
         "optimize_image": [
             "convert_image",
             "heic_to_jpg",
@@ -813,6 +821,12 @@ def ppt_to_pdf_page(request):
 def html_to_pdf_page(request):
     """HTML to PDF conversion page."""
     return _render_tool_page(request, "html_to_pdf")
+
+
+@anonymous_cache_page(60 * 60)
+def text_to_pdf_page(request):
+    """Text to PDF conversion page."""
+    return _render_tool_page(request, "text_to_pdf")
 
 
 @anonymous_cache_page(60 * 60)
@@ -2087,6 +2101,7 @@ def _get_sitemap_pages():
         {"url": "excel-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "ppt-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "html-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
+        {"url": "text-to-pdf/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-to-ppt/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-to-html/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "pdf-edit/rotate/", "priority": "0.8", "changefreq": "weekly"},
@@ -2151,7 +2166,7 @@ def _sitemap_static_lastmod() -> str:
     bumped (via the SITEMAP_STATIC_LASTMOD setting) only when tool pages /
     templates change materially. Blog articles keep their real updated_at.
     """
-    return getattr(settings, "SITEMAP_STATIC_LASTMOD", "2026-07-17")
+    return getattr(settings, "SITEMAP_STATIC_LASTMOD", "2026-07-18")
 
 
 def sitemap_index(request):

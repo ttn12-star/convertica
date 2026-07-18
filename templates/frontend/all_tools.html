@@ -141,6 +141,24 @@
             </p>
           </a>
 
+                <!-- Text to PDF -->
+          <a href="{% url 'frontend:text_to_pdf_page' %}"
+             class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-l-4 border-blue-400 hover:border-blue-500 animate-fade-in text-gray-900 dark:text-gray-100 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {% trans "Text to PDF" %}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+              {% trans "Paste text and turn it into a styled PDF." %}
+            </p>
+          </a>
+
                 <!-- PDF to JPG - With top accent bar -->
           <a href="{% url 'frontend:pdf_to_jpg_page' %}"
              class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border-t-4 border-pink-400 hover:border-pink-500 border-r border-b border-l border-gray-100 animate-fade-in text-gray-900 cursor-pointer">

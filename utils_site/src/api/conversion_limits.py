@@ -170,6 +170,7 @@ HEAVY_OPERATIONS = {
     "ppt_to_pdf",
     "html_to_pdf",
     "url_to_pdf",
+    "text_to_pdf",
     "pdf_to_markdown",
     "compare_pdf",
     # Ghostscript PDF/A is CPU/RAM-heavy and slow on large scans — it belongs in
@@ -742,6 +743,7 @@ def estimate_processing_time(file_size: int, page_count: int, operation: str) ->
         "ppt_to_pdf": 5,
         "html_to_pdf": 2,
         "url_to_pdf": 3,
+        "text_to_pdf": 2,
         "pdf_to_markdown": 2.5,
         "compare_pdf": 4,
         "compress": 0.5,
@@ -792,6 +794,7 @@ def get_timeout_for_operation(
         "ppt_to_pdf": "ppt_to_pdf",
         "html_to_pdf": "html_to_pdf",
         "url_to_pdf": "url_to_pdf",
+        "text_to_pdf": "text_to_pdf",
         "pdf_to_markdown": "pdf_to_markdown",
         "compare_pdf": "compare_pdf",
         "jpg_to_pdf": "jpg_to_pdf",
@@ -810,6 +813,7 @@ def get_timeout_for_operation(
         "ppt_to_pdf",
         "html_to_pdf",
         "url_to_pdf",
+        "text_to_pdf",
         "pdf_to_markdown",
         "compare_pdf",
     }
