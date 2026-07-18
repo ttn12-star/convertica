@@ -87,6 +87,15 @@ class RateLimitMiddleware(MiddlewareMixin):
         if "/api/tasks/" in request.path and "/status/" in request.path:
             return None
 
+        # API-key callers (Authorization: Bearer cvk_live_…) carry their own
+        # per-user hourly + monthly limits enforced downstream; the coarse
+        # per-IP flood cap here would (a) cap a paying bulk-API user well below
+        # their plan and (b) — being IP-keyed — let unrelated keys behind one
+        # NAT throttle each other. Mirror DailyQuotaMiddleware's cvk_live_
+        # exemption. A forged cvk_live_ still 401s at DRF auth, so nothing runs.
+        if request.META.get("HTTP_AUTHORIZATION", "").startswith("Bearer cvk_live_"):
+            return None
+
         # Get client IP — prefer CF-Connecting-IP (set by Cloudflare, not spoofable)
         # before falling back to X-Forwarded-For where the leftmost entry is user-controlled.
         ip = (
@@ -127,6 +136,51 @@ class RateLimitMiddleware(MiddlewareMixin):
             # If cache fails, allow request (graceful degradation)
             pass
 
+        return None
+
+
+class APIKeyIdentityMiddleware(MiddlewareMixin):
+    """Establish premium identity for cvk_live_ API-key requests early.
+
+    DRF authenticates the API key only inside the view (dispatch → initial), so
+    the tier-aware layers that run before that — OperationRun analytics,
+    DailyQuota, and BaseConversionAPIView's dispatch-level `combined_rate_limit`
+    — otherwise see AnonymousUser and treat a paying API caller as anonymous
+    free-tier (30/h conversion rate; "Anonymous / free" in analytics). We
+    resolve the key WITHOUT charging quota (DRF still does the real auth +
+    monthly-quota charge in the view) and set request.user so tiering, rate
+    limiting and attribution all see the true user.
+
+    Placed AFTER AuthenticationMiddleware (so its session-user default is what
+    we override) and BEFORE the tracking / quota middlewares. Only touches
+    requests whose key resolves to an active-subscription user; anonymous,
+    web-token, and forged-key requests are left untouched — and because
+    APIKeyAuthentication runs first in DRF, injecting request.user never trips
+    SessionAuthentication's CSRF check for these requests.
+    """
+
+    def process_request(self, request):
+        user = getattr(request, "user", None)
+        if user is not None and getattr(user, "is_authenticated", False):
+            return None
+        if not request.META.get("HTTP_AUTHORIZATION", "").startswith(
+            "Bearer cvk_live_"
+        ):
+            return None
+        try:
+            from .auth.api_key_auth import resolve_api_key_user
+
+            resolved = resolve_api_key_user(request)
+            if resolved is not None:
+                request.user = resolved
+        except Exception as e:  # never break the request over identity resolution
+            import logging
+
+            logging.getLogger(__name__).warning(
+                "APIKeyIdentityMiddleware resolve failed: %s: %s",
+                type(e).__name__,
+                e,
+            )
         return None
 
 
