@@ -18,6 +18,14 @@ class CaptchaOriginGateTest(TestCase):
         self.middleware(request)
         self.assertTrue(request.session.get("captcha_required"))
 
+    def test_authenticated_session_skips_origin_gate(self):
+        # A logged-in session (has _auth_user_id) is not a curl script — the
+        # no-Referer origin gate must not fire for it, even with no Referer.
+        request = self.factory.post("/api/jpg-to-pdf/")
+        request.session = {"_auth_user_id": "42"}
+        self.middleware(request)
+        self.assertFalse(request.session.get("captcha_required"))
+
     def test_api_post_with_convertica_referer_does_not_demand_captcha(self):
         request = self.factory.post(
             "/api/jpg-to-pdf/", HTTP_REFERER="https://convertica.net/en/jpg-to-pdf/"
