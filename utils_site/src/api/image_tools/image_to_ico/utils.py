@@ -4,6 +4,7 @@ import os
 import tempfile
 
 from PIL import Image, ImageOps
+from src.exceptions import ConversionError
 
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
@@ -36,7 +37,14 @@ def image_to_ico(image_file, sizes=DEFAULT_SIZES) -> tuple[str, str]:
 
     raster_path = input_path
     if is_svg(input_path):
-        raster_path = rasterize_svg_to_png(input_path, tmp_dir, target_px=max(sizes))
+        try:
+            raster_path = rasterize_svg_to_png(
+                input_path, tmp_dir, target_px=max(sizes)
+            )
+        except ValueError as exc:
+            # Unparseable SVG or a disallowed external <image> ref is bad user
+            # input, not a server fault → 400 instead of 500.
+            raise ConversionError(str(exc)) from exc
 
     with Image.open(raster_path) as img:
         src = img.convert("RGBA")

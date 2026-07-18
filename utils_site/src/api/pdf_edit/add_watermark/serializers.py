@@ -1,6 +1,11 @@
 # serializers.py
 from rest_framework import serializers
 
+# Watermark image is a second, unvalidated trust boundary (validate_file_basic
+# only checks the primary pdf_file). Cap its size and verify real image magic
+# bytes before it reaches PIL.Image.open in utils.
+_WM_MAX_BYTES = 10 * 1024 * 1024  # 10 MB
+
 
 class AddWatermarkSerializer(serializers.Serializer):
     """Serializer for adding watermark to PDF."""
@@ -16,6 +21,26 @@ class AddWatermarkSerializer(serializers.Serializer):
         required=False,
         help_text="Image file to use as watermark (PNG, JPG). If provided, watermark_text is ignored.",
     )
+
+    def validate_watermark_file(self, value):
+        """Size + magic-byte check on the optional watermark image."""
+        if value is None:
+            return value
+        if value.size > _WM_MAX_BYTES:
+            raise serializers.ValidationError(
+                "Watermark image must be smaller than 10 MB."
+            )
+        head = value.read(12)
+        value.seek(0)
+        is_png = head.startswith(b"\x89PNG\r\n\x1a\n")
+        is_jpeg = head.startswith(b"\xff\xd8\xff")
+        is_webp = head[:4] == b"RIFF" and head[8:12] == b"WEBP"
+        if not (is_png or is_jpeg or is_webp):
+            raise serializers.ValidationError(
+                "Watermark must be a PNG, JPEG or WEBP image."
+            )
+        return value
+
     position = serializers.ChoiceField(
         choices=["center", "diagonal", "custom"],
         required=False,

@@ -20,7 +20,8 @@ def convert_heic_docs() -> Callable:
         return swagger_auto_schema(
             operation_description=(
                 "Convert an Apple HEIC / HEIF photo to JPG, PNG, or PDF. "
-                "Premium feature: gated by active subscription. "
+                "Free for single files (subject to the daily quota); batch "
+                "conversion is Premium. "
                 "Common use: re-encode iPhone photos for compatibility with "
                 "Windows, web, or print workflows."
             ),
