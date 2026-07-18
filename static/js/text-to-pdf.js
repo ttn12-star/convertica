@@ -10,6 +10,22 @@ function t(key, fallback) {
     return (window.TEXT2PDF_I18N && window.TEXT2PDF_I18N[key]) || fallback;
 }
 
+// Pull the most specific error out of an API error body. DRF returns
+// {error: "...", details: {field: ["message"]}}; the field message (e.g. "Text
+// exceeds the maximum length of 10,000 characters. …") is what the user needs,
+// so prefer it over the generic top-level string.
+function firstDetailMessage(result) {
+    if (!result || typeof result !== 'object') return '';
+    const details = result.details;
+    if (details && typeof details === 'object') {
+        for (const val of Object.values(details)) {
+            const msg = Array.isArray(val) ? val[0] : val;
+            if (msg) return String(msg);
+        }
+    }
+    return result.error || result.text || '';
+}
+
 // Preview font stacks mirror the server's FONT_STACKS so the preview matches
 // the generated PDF as closely as the browser allows.
 const PREVIEW_FONTS = {
@@ -47,9 +63,13 @@ class TextToPDFConverter {
             'fontFamily', 'fontSize', 'textColor', 'align', 'pageSize', 'margin',
         ].map((id) => document.getElementById(id));
 
+        // Char-limit ladder: anonymous < registered < premium. The real state
+        // arrives async from /api/user-info/; defaults keep the anon floor.
         this.isPremium = false;
+        this.isAuthenticated = false;
         const limits = window.TEXT2PDF_LIMITS || {};
         this.maxFree = limits.free || 10000;
+        this.maxRegistered = limits.registered || this.maxFree;
         this.maxPremium = limits.premium || 500000;
 
         this.init();
@@ -77,14 +97,17 @@ class TextToPDFConverter {
         fetch('/api/user-info/')
             .then((r) => r.json())
             .then((data) => {
+                this.isAuthenticated = data.is_authenticated || false;
                 this.isPremium = data.is_premium || false;
                 this.updateCharCounter();
             })
-            .catch(() => { /* keep free defaults */ });
+            .catch(() => { /* keep anonymous defaults */ });
     }
 
     currentMax() {
-        return this.isPremium ? this.maxPremium : this.maxFree;
+        if (this.isPremium) return this.maxPremium;
+        if (this.isAuthenticated) return this.maxRegistered;
+        return this.maxFree;
     }
 
     updatePreview() {
@@ -164,8 +187,17 @@ class TextToPDFConverter {
             return;
         }
         if (text.length > this.currentMax()) {
+            // Clear, actionable message (mirrors the server) instead of a bare
+            // "N / MAX" that doesn't say what to do about it.
+            const chars = t('chars', 'characters');
+            const hint = this.isPremium
+                ? ''
+                : this.isAuthenticated
+                    ? ` ${t('upgradeHint', 'Upgrade to Premium for more.')}`
+                    : ` ${t('loginHint', 'Log in or upgrade to Premium for a higher limit.')}`;
             this.showError(
-                `${text.length.toLocaleString()} / ${this.currentMax().toLocaleString()} ${t('chars', 'characters')}`
+                `${t('tooLong', 'Text is too long')}: ` +
+                `${text.length.toLocaleString()} / ${this.currentMax().toLocaleString()} ${chars}.${hint}`
             );
             return;
         }
@@ -187,7 +219,17 @@ class TextToPDFConverter {
 
             if (!response.ok) {
                 const result = await response.json().catch(() => ({}));
-                throw new Error(result.error || result.text || t('failed', 'Conversion failed'));
+                // CAPTCHA can be demanded mid-session (rate-based) on a page that
+                // loaded without a widget. Render one so "complete the CAPTCHA" is
+                // actionable instead of a dead end (the whole reason this tool used
+                // to trap users). The token then rides along on the next submit.
+                if (result.captcha_required === true) {
+                    this.ensureTurnstileWidget();
+                }
+                // Prefer the specific field error (e.g. "Text exceeds the maximum
+                // length…") over the generic top-level string so the user learns
+                // what actually went wrong.
+                throw new Error(firstDetailMessage(result) || t('failed', 'Conversion failed'));
             }
 
             this.updateProgress(50, t('processing', 'Processing PDF...'));
@@ -237,6 +279,62 @@ class TextToPDFConverter {
             window.renderRatingForm(this.resultSection, window._lastFeedbackToken);
         }
         window._lastFeedbackToken = null;
+    }
+
+    // Render a Cloudflare Turnstile widget on demand when the backend signals
+    // captcha_required mid-session. Self-contained (this tool's JS is a single
+    // manifest-bypass file and doesn't load utils.js); mirrors utils.js's
+    // ensureTurnstileWidget. Turnstile injects a cf-turnstile-response hidden
+    // input into #turnstile-container, which lives inside the form, so the token
+    // is submitted automatically on the next attempt.
+    ensureTurnstileWidget() {
+        const siteKey = window.TURNSTILE_SITE_KEY || '';
+        const container = document.getElementById('turnstile-container');
+        if (!siteKey || !container) return;
+
+        // Already rendered — just bring it into view.
+        if (container.querySelector('iframe, .cf-turnstile')) {
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        const doRender = () => {
+            if (!window.turnstile || typeof window.turnstile.render !== 'function') return;
+            try {
+                container.classList.add('my-6');
+                window.turnstile.render(container, {
+                    sitekey: siteKey,
+                    theme: 'light',
+                    size: 'normal',
+                });
+                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } catch (e) {
+                if (typeof console !== 'undefined' && console.error) {
+                    console.error('Turnstile render failed:', e);
+                }
+            }
+        };
+
+        if (window.turnstile && typeof window.turnstile.render === 'function') {
+            doRender();
+            return;
+        }
+
+        // Lazy-load the Turnstile API (explicit render mode) once.
+        let script = document.getElementById('cf-turnstile-script');
+        if (!script) {
+            script = document.createElement('script');
+            script.id = 'cf-turnstile-script';
+            script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+            script.async = true;
+            script.defer = true;
+            const nonced = document.querySelector('script[nonce]');
+            if (nonced && nonced.nonce) script.nonce = nonced.nonce;
+            script.addEventListener('load', doRender, { once: true });
+            document.head.appendChild(script);
+        } else {
+            script.addEventListener('load', doRender, { once: true });
+        }
     }
 
     showError(message) {

@@ -10,6 +10,20 @@ function t(key, fallback) {
     return (window.HTML2PDF_I18N && window.HTML2PDF_I18N[key]) || fallback;
 }
 
+// Pull the most specific message out of an API error body: prefer the DRF
+// field detail (e.g. "Text exceeds…") over the generic top-level string.
+function firstDetailMessage(result) {
+    if (!result || typeof result !== 'object') return '';
+    const details = result.details;
+    if (details && typeof details === 'object') {
+        for (const val of Object.values(details)) {
+            const msg = Array.isArray(val) ? val[0] : val;
+            if (msg) return String(msg);
+        }
+    }
+    return result.error || result.text || '';
+}
+
 class HTMLToPDFConverter {
     constructor() {
         this.htmlContentForm = document.getElementById('htmlContentForm');
@@ -149,6 +163,7 @@ class HTMLToPDFConverter {
         this.showProgress();
 
         const formData = new FormData(this.htmlContentForm);
+        this.attachCaptchaToken(formData);
 
         this.updateProgress(10, t('converting', 'Converting HTML to PDF...'));
 
@@ -167,8 +182,9 @@ class HTMLToPDFConverter {
 
             if (!response.ok) {
                 // Handle error response (JSON)
-                const result = await response.json();
-                throw new Error(result.error || t('failed', 'Conversion failed'));
+                const result = await response.json().catch(() => ({}));
+                if (result.captcha_required === true) this.ensureTurnstileWidget();
+                throw new Error(firstDetailMessage(result) || t('failed', 'Conversion failed'));
             }
 
             // Handle success response (PDF file)
@@ -210,6 +226,7 @@ class HTMLToPDFConverter {
 
         this.showProgress();
         const formData = new FormData(this.urlForm);
+        this.attachCaptchaToken(formData);
 
         this.updateProgress(10, t('fetching', 'Fetching web page...'));
 
@@ -228,8 +245,9 @@ class HTMLToPDFConverter {
 
             if (!response.ok) {
                 // Handle error response (JSON)
-                const result = await response.json();
-                throw new Error(result.error || t('failed', 'Conversion failed'));
+                const result = await response.json().catch(() => ({}));
+                if (result.captcha_required === true) this.ensureTurnstileWidget();
+                throw new Error(firstDetailMessage(result) || t('failed', 'Conversion failed'));
             }
 
             // Handle success response (PDF file)
@@ -349,8 +367,66 @@ class HTMLToPDFConverter {
         }
     }
 
+    // Render a Cloudflare Turnstile widget on demand when the backend signals
+    // captcha_required mid-session, so "complete the CAPTCHA" is actionable
+    // instead of a dead end. Mirrors utils.js/text-to-pdf.js. The token rides on
+    // the next submit via the cf-turnstile-response input Turnstile injects.
+    // Copy the Turnstile response into the request body. The widget lives outside
+    // the two forms (single shared #turnstile-container), so it isn't picked up by
+    // FormData automatically — read it explicitly and append it.
+    attachCaptchaToken(formData) {
+        let token = '';
+        const input = document.querySelector('#turnstile-container [name="cf-turnstile-response"]');
+        if (input && input.value) {
+            token = input.value;
+        } else {
+            try {
+                if (window.turnstile && typeof window.turnstile.getResponse === 'function') {
+                    token = window.turnstile.getResponse() || '';
+                }
+            } catch (e) { /* widget not ready */ }
+        }
+        if (token) formData.set('cf-turnstile-response', token);
+    }
+
+    ensureTurnstileWidget() {
+        const siteKey = window.TURNSTILE_SITE_KEY || '';
+        const container = document.getElementById('turnstile-container');
+        if (!siteKey || !container) return;
+        if (container.querySelector('iframe, .cf-turnstile')) {
+            container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+        const doRender = () => {
+            if (!window.turnstile || typeof window.turnstile.render !== 'function') return;
+            try {
+                container.classList.add('my-6');
+                window.turnstile.render(container, { sitekey: siteKey, theme: 'light', size: 'normal' });
+                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } catch (e) {
+                if (typeof console !== 'undefined' && console.error) console.error('Turnstile render failed:', e);
+            }
+        };
+        if (window.turnstile && typeof window.turnstile.render === 'function') { doRender(); return; }
+        let script = document.getElementById('cf-turnstile-script');
+        if (!script) {
+            script = document.createElement('script');
+            script.id = 'cf-turnstile-script';
+            script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+            script.async = true;
+            script.defer = true;
+            const nonced = document.querySelector('script[nonce]');
+            if (nonced && nonced.nonce) script.nonce = nonced.nonce;
+            script.addEventListener('load', doRender, { once: true });
+            document.head.appendChild(script);
+        } else {
+            script.addEventListener('load', doRender, { once: true });
+        }
+    }
+
     showError(message) {
-        // Create error notification
+        // Create error notification. Text is set via textContent (not innerHTML)
+        // so a server/error string can never inject markup.
         const errorDiv = document.createElement('div');
         errorDiv.className = 'fixed top-4 right-4 bg-red-50 border border-red-200 rounded-lg p-4 shadow-lg z-50';
         errorDiv.innerHTML = `
@@ -360,7 +436,7 @@ class HTMLToPDFConverter {
                 </svg>
                 <div>
                     <h3 class="text-sm font-medium text-red-900">Error</h3>
-                    <p class="text-sm text-red-700">${message}</p>
+                    <p class="text-sm text-red-700"></p>
                 </div>
                 <button type="button" class="text-red-500 hover:text-red-700" onclick="this.parentElement.parentElement.remove()">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -369,6 +445,7 @@ class HTMLToPDFConverter {
                 </button>
             </div>
         `;
+        errorDiv.querySelector('p').textContent = message;
 
         document.body.appendChild(errorDiv);
 

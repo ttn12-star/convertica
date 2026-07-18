@@ -198,20 +198,32 @@ class CaptchaRequirementMiddleware:
         else:
             ip = request.META.get("REMOTE_ADDR", "unknown")
 
+        # A response counts toward the CAPTCHA gate only when it signals abuse:
+        # 429 (rate limit / too-fast) or a spam-protection 400 (honeypot, origin).
+        # Plain input-validation 400s (text too long, bad file) are the USER's
+        # mistake, not an attack — base_views marks those with X-Input-Error so a
+        # normal person retrying a too-long paste isn't shoved behind a CAPTCHA.
+        counts_as_failure = (
+            hasattr(response, "status_code")
+            and response.status_code in (429, 400)
+            and not (
+                response.status_code == 400 and response.has_header("X-Input-Error")
+            )
+        )
+        # Configurable so the threshold can be tuned via .env without a deploy.
+        captcha_after = getattr(settings, "CAPTCHA_AFTER_FAILED_ATTEMPTS", 10)
+
         # Track failed attempts in session (if available)
-        # Note: We track 429 (rate limit) and 400 (spam protection) as failed attempts
-        # because excessive requests or spam behavior should trigger CAPTCHA requirement
         if hasattr(request, "session"):
-            # Check if this was a failed request (429 or 400 from spam protection)
             if hasattr(response, "status_code"):
-                if response.status_code in [429, 400]:
+                if counts_as_failure:
                     # Increment failed attempts in session
                     failed_attempts = request.session.get("failed_attempts", 0) + 1
                     request.session["failed_attempts"] = failed_attempts
 
-                    # Require CAPTCHA after 3 failed attempts (skip in DEBUG mode)
+                    # Require CAPTCHA after N failed attempts (skip in DEBUG mode)
                     if (
-                        failed_attempts >= 3
+                        failed_attempts >= captcha_after
                         and not settings.DEBUG
                         and not getattr(settings, "TESTING", False)
                     ):
@@ -219,9 +231,10 @@ class CaptchaRequirementMiddleware:
                         logger.info(
                             f"CAPTCHA required for IP {ip} (session-based) after {request.session['failed_attempts']} failed attempts"
                         )
-                else:
-                    # Reset on successful request (2xx or 3xx status codes)
-                    # This allows legitimate users to recover from false positives
+                elif response.status_code < 400:
+                    # Reset only on a genuine success (2xx/3xx). Input-validation
+                    # 400s are neutral — they neither punish nor clear the counter
+                    # (clearing on them would let an attacker reset the gate at will).
                     if request.session.get("failed_attempts", 0) > 0:
                         request.session.pop("failed_attempts", None)
                         request.session.pop("captcha_required", None)
@@ -231,7 +244,7 @@ class CaptchaRequirementMiddleware:
         if hasattr(response, "status_code"):
             from django.core.cache import cache
 
-            if response.status_code in [429, 400]:
+            if counts_as_failure:
                 # Increment IP-based failed attempts counter
                 ip_failed_key = f"captcha_failed_attempts_ip:{ip}"
                 ip_captcha_key = f"captcha_required_ip:{ip}"
@@ -239,9 +252,9 @@ class CaptchaRequirementMiddleware:
                     ip_failed_count = cache.get(ip_failed_key, 0) + 1
                     cache.set(ip_failed_key, ip_failed_count, 3600)  # 1 hour TTL
 
-                    # Require CAPTCHA after 3 failed attempts (same as session-based)
+                    # Require CAPTCHA after N failed attempts (same as session-based)
                     if (
-                        ip_failed_count >= 3
+                        ip_failed_count >= captcha_after
                         and not settings.DEBUG
                         and not getattr(settings, "TESTING", False)
                     ):
@@ -254,7 +267,7 @@ class CaptchaRequirementMiddleware:
                         f"Error tracking IP-based failed attempts: {str(e)}",
                         exc_info=True,
                     )
-            else:
+            elif response.status_code < 400:
                 # Reset IP-based failed attempts counter on successful request
                 # Successful request means user is legitimate - allow recovery
                 # Note: We only reset failed_attempts counter, not captcha_required flag.

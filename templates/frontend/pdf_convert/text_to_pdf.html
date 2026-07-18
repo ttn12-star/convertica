@@ -151,6 +151,10 @@
                  class="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
         </div>
 
+        {# CAPTCHA mount. Inside the form so Turnstile's injected #}
+        {# cf-turnstile-response hidden input is submitted automatically. #}
+        {% include "frontend/includes/turnstile.html" %}
+
         <div class="text-center mt-8">
           <button type="submit"
                   class="inline-block px-12 sm:px-16 py-3.5 sm:py-4 font-bold text-lg sm:text-xl rounded-2xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 active:scale-95 bg-green-600 hover:bg-green-700 text-white">
@@ -244,9 +248,12 @@
       wait: "{% filter escapejs %}{% trans 'Please wait while we create your PDF...' %}{% endfilter %}",
       failed: "{% filter escapejs %}{% trans 'Conversion failed' %}{% endfilter %}",
       chars: "{% filter escapejs %}{% trans 'characters' %}{% endfilter %}",
-      pages: "{% filter escapejs %}{% trans 'page(s)' %}{% endfilter %}"
+      pages: "{% filter escapejs %}{% trans 'page(s)' %}{% endfilter %}",
+      tooLong: "{% filter escapejs %}{% trans 'Text is too long' %}{% endfilter %}",
+      upgradeHint: "{% filter escapejs %}{% trans 'Upgrade to Premium for more.' %}{% endfilter %}",
+      loginHint: "{% filter escapejs %}{% trans 'Log in or upgrade to Premium for a higher limit.' %}{% endfilter %}"
     };
-    window.TEXT2PDF_LIMITS = { free: {{ text_max_free }}, premium: {{ text_max_premium }} };
+    window.TEXT2PDF_LIMITS = { free: {{ text_max_free }}, registered: {{ text_max_registered }}, premium: {{ text_max_premium }} };
   </script>
   {# Load via the plain static prefix + a manual ?v cache-key instead of #}
   {# {% static %}: prod's ManifestStaticFilesStorage manifest (staticfiles.json #}
@@ -254,5 +261,5 @@
   {# stale content hash, so {% static %} would serve an old build of the JS #}
   {# against this newer DOM. The unhashed file is collected fresh each deploy. #}
   {# Bump ?v whenever text-to-pdf.js changes. #}
-  <script src="{% get_static_prefix %}js/text-to-pdf.js?v=20260718c" defer nonce="{{ csp_nonce }}"></script>
+  <script src="{% get_static_prefix %}js/text-to-pdf.js?v=20260718d" defer nonce="{{ csp_nonce }}"></script>
 {% endblock %}

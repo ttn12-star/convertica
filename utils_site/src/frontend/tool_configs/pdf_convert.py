@@ -1358,9 +1358,11 @@ PDF_CONVERT_CONFIGS = {
         },
         "extra": {
             "auto_generate_tool_schema": False,
-            # Surfaced to the template's char counter (JS picks free/premium by
-            # the /api/user-info/ is_premium flag). Server enforces the truth.
+            # Surfaced to the template's char counter (JS picks the tier from the
+            # /api/user-info/ is_authenticated/is_premium flags). Server enforces
+            # the truth — these are only for the live counter and pre-submit hint.
             "text_max_free": settings.TEXT_TO_PDF_MAX_CHARS_FREE,
+            "text_max_registered": settings.TEXT_TO_PDF_MAX_CHARS_REGISTERED,
             "text_max_premium": settings.TEXT_TO_PDF_MAX_CHARS_PREMIUM,
         },
     },
