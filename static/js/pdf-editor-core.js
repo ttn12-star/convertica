@@ -280,6 +280,11 @@
         }
 
         // ---------- Mode switching -------------------------------------------------
+        // Contextual property panels: show only the active tool's controls so
+        // the toolbar isn't a wall of every tool's settings at once. A mode with
+        // no panel (whiteout/highlight) simply shows none — the placement hint
+        // covers it. No-ops on the add-text page, which ships no [data-tool-panel].
+        const toolPanels = document.querySelectorAll('[data-tool-panel]');
         function setMode(newMode) {
             if (!toolset[newMode]) return; // guard: never switch into a disabled tool
             mode = newMode;
@@ -291,6 +296,9 @@
                 btn.classList.toggle('dark:bg-gray-700', !active);
                 btn.classList.toggle('text-gray-700', !active);
                 btn.classList.toggle('dark:text-gray-200', !active);
+            });
+            toolPanels.forEach((panel) => {
+                panel.style.display = panel.dataset.toolPanel === newMode ? '' : 'none';
             });
             if (pdfCanvas) pdfCanvas.style.cursor = 'crosshair';
         }
@@ -621,8 +629,10 @@
             const pageW = pdfCanvas.width / scale;
             const pageH = pdfCanvas.height / scale;
             const aspect = dims.height / dims.width || 0.6;
-            const w = Math.min(240, pageW * 0.6);
-            const h = w * aspect;
+            // Floor at 4pt to match the server serializer's min_value=4
+            // (extreme-aspect images could otherwise round below it).
+            const w = Math.max(4, Math.min(240, pageW * 0.6));
+            const h = Math.max(4, w * aspect);
             pushHistory();
             const op = {
                 id: nextOpId++, type, page: currentPage,
@@ -1026,7 +1036,10 @@
                 const op = {
                     id: nextOpId++, type: 'shape', page: currentPage,
                     x: box.xPx / scale, y: box.yPx / scale,
-                    w: Math.max(1, box.wPx / scale), h: Math.max(1, box.hPx / scale),
+                    // Floor at 4pt to match the server serializer's min_value=4;
+                    // a straight horizontal/vertical line/arrow has ~0 on one axis
+                    // and would otherwise 400 the whole save.
+                    w: Math.max(4, box.wPx / scale), h: Math.max(4, box.hPx / scale),
                     shapeKind: def.kind, stroke: def.stroke, strokeWidth: def.strokeWidth,
                     fill: def.fill, fillOpacity: def.fillOpacity,
                 };
@@ -1169,7 +1182,9 @@
                 const op = {
                     id: nextOpId++, type: 'ink', page: currentPage,
                     x: b.minX, y: b.minY,
-                    w: Math.max(1, b.maxX - b.minX), h: Math.max(1, b.maxY - b.minY),
+                    // Floor at 4pt to match the server serializer's min_value=4
+                    // (an axis-aligned freehand stroke is ~0 on one axis).
+                    w: Math.max(4, b.maxX - b.minX), h: Math.max(4, b.maxY - b.minY),
                     points, stroke: def.stroke, strokeWidth: def.strokeWidth,
                 };
                 ops.push(op);

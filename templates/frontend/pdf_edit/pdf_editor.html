@@ -160,9 +160,18 @@
       <div id="pdfPreviewSection" class="hidden mb-6">
         <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
 
-          <!-- Mode + style toolbar -->
-          <div class="flex flex-wrap items-center gap-2 mb-4">
-            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+          {% comment %}
+            Toolbar is two persistent rows (tools + document controls) plus one
+            contextual properties row per active tool. setMode() in
+            pdf-editor-core.js shows only the [data-tool-panel] matching the
+            current mode, so users never see controls for a tool they're not
+            using. Every element id / data-attribute below is part of the core's
+            DOM contract — keep the spellings.
+          {% endcomment %}
+
+          <!-- Row 1: tool picker (persistent) -->
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <div class="flex flex-wrap items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
               <button type="button" class="ate-tool-btn" data-edit-mode="text" title="{% trans 'Add text' %}">
                 {% trans "Text" %}
               </button>
@@ -180,14 +189,7 @@
               </button>
             </div>
 
-            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
-              <button type="button" class="ate-tool-btn" data-symbol="✓" aria-label="{% trans 'Insert checkmark' %}">✓</button>
-              <button type="button" class="ate-tool-btn" data-symbol="✗" aria-label="{% trans 'Insert cross mark' %}">✗</button>
-              <button type="button" class="ate-tool-btn" data-symbol="•" aria-label="{% trans 'Insert bullet' %}">•</button>
-              <button type="button" class="ate-tool-btn" data-symbol="→" aria-label="{% trans 'Insert arrow' %}">→</button>
-            </div>
-
-            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
+            <div class="flex flex-wrap items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
               <button type="button" id="imageInsertBtn" class="ate-tool-btn" title="{% trans 'Insert an image' %}">
                 {% trans "Image" %}
               </button>
@@ -196,21 +198,32 @@
                 {% trans "Signature" %}
               </button>
             </div>
+          </div>
 
+          <!-- Row 2: document controls (persistent) -->
+          <div class="flex flex-wrap items-center gap-2 mb-3">
             <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
               <button type="button" id="undoBtn" class="ate-tool-btn disabled:opacity-40" title="{% trans 'Undo' %} (Ctrl+Z)">↶</button>
               <button type="button" id="redoBtn" class="ate-tool-btn disabled:opacity-40" title="{% trans 'Redo' %} (Ctrl+Y)">↷</button>
             </div>
-
-            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800 ml-auto">
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
               <button type="button" id="zoomOutBtn" class="ate-tool-btn" aria-label="{% trans 'Zoom out' %}">−</button>
               <span id="zoomLabel" class="text-xs font-semibold text-gray-600 dark:text-gray-300 w-11 text-center">100%</span>
               <button type="button" id="zoomInBtn" class="ate-tool-btn" aria-label="{% trans 'Zoom in' %}">+</button>
             </div>
+            <div class="flex items-center gap-2 ml-auto">
+              <label for="pageSelector" class="text-sm font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
+                {% trans "Page" %}
+              </label>
+              <select id="pageSelector"
+                      class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+              </select>
+            </div>
           </div>
 
-          <!-- Text style controls -->
-          <div class="flex flex-wrap items-center gap-2 mb-4">
+          <!-- Row 3: contextual properties — only the active tool's row is shown -->
+          <!-- Text properties -->
+          <div data-tool-panel="text" class="flex flex-wrap items-center gap-2 mb-4 p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800/60">
             <select id="textFontSelect"
                     aria-label="{% trans 'Font' %}"
                     class="px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
@@ -234,31 +247,31 @@
               <button type="button" class="ate-tool-btn" data-align="center" aria-label="{% trans 'Align center' %}">≡</button>
               <button type="button" class="ate-tool-btn" data-align="right" aria-label="{% trans 'Align right' %}">⯈</button>
             </div>
-            <div class="flex items-center gap-2 ml-auto">
-              <label for="pageSelector" class="text-sm font-semibold text-gray-700 dark:text-gray-300 whitespace-nowrap">
-                {% trans "Page" %}
-              </label>
-              <select id="pageSelector"
-                      class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
-              </select>
+            <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800" title="{% trans 'Insert a symbol' %}">
+              <button type="button" class="ate-tool-btn" data-symbol="✓" aria-label="{% trans 'Insert checkmark' %}">✓</button>
+              <button type="button" class="ate-tool-btn" data-symbol="✗" aria-label="{% trans 'Insert cross mark' %}">✗</button>
+              <button type="button" class="ate-tool-btn" data-symbol="•" aria-label="{% trans 'Insert bullet' %}">•</button>
+              <button type="button" class="ate-tool-btn" data-symbol="→" aria-label="{% trans 'Insert arrow' %}">→</button>
             </div>
           </div>
 
-          <!-- Shape style controls -->
-          <div class="flex flex-wrap items-center gap-2 mb-4">
-            <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">{% trans "Shape:" %}</span>
+          <!-- Shape properties -->
+          <div data-tool-panel="shape" class="flex flex-wrap items-center gap-2 mb-4 p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800/60">
             <div class="flex items-center gap-1 rounded-lg border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-gray-800">
               <button type="button" class="ate-tool-btn ate-toggle-on" data-shape-kind="rect" title="{% trans 'Rectangle' %}" aria-label="{% trans 'Rectangle' %}">▭</button>
               <button type="button" class="ate-tool-btn" data-shape-kind="ellipse" title="{% trans 'Ellipse' %}" aria-label="{% trans 'Ellipse' %}">◯</button>
               <button type="button" class="ate-tool-btn" data-shape-kind="line" title="{% trans 'Line' %}" aria-label="{% trans 'Line' %}">╱</button>
               <button type="button" class="ate-tool-btn" data-shape-kind="arrow" title="{% trans 'Arrow' %}" aria-label="{% trans 'Arrow' %}">↗</button>
             </div>
-            <input type="color" id="shapeStrokeColorInput" value="#111111"
-                   aria-label="{% trans 'Shape stroke color' %}"
-                   class="w-9 h-9 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 cursor-pointer">
-            <input type="number" id="shapeStrokeWidthInput" value="2" min="0.5" max="20" step="0.5"
-                   aria-label="{% trans 'Shape stroke width' %}"
-                   class="w-16 px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+            <label class="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300">
+              {% trans "Line" %}
+              <input type="color" id="shapeStrokeColorInput" value="#111111"
+                     aria-label="{% trans 'Shape stroke color' %}"
+                     class="w-9 h-9 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 cursor-pointer">
+              <input type="number" id="shapeStrokeWidthInput" value="2" min="0.5" max="20" step="0.5"
+                     aria-label="{% trans 'Shape stroke width' %}"
+                     class="w-16 px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+            </label>
             <label class="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300">
               <input type="checkbox" id="shapeFillEnabledCheckbox" class="rounded border-gray-300 dark:border-gray-600">
               {% trans "Fill" %}
@@ -271,15 +284,17 @@
                    class="w-24">
           </div>
 
-          <!-- Ink style controls -->
-          <div class="flex flex-wrap items-center gap-2 mb-4">
-            <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase">{% trans "Ink:" %}</span>
-            <input type="color" id="inkStrokeColorInput" value="#111111"
-                   aria-label="{% trans 'Ink color' %}"
-                   class="w-9 h-9 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 cursor-pointer">
-            <input type="number" id="inkStrokeWidthInput" value="2" min="0.5" max="20" step="0.5"
-                   aria-label="{% trans 'Ink stroke width' %}"
-                   class="w-16 px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+          <!-- Ink properties -->
+          <div data-tool-panel="ink" class="flex flex-wrap items-center gap-2 mb-4 p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800/60">
+            <label class="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300">
+              {% trans "Pen" %}
+              <input type="color" id="inkStrokeColorInput" value="#111111"
+                     aria-label="{% trans 'Ink color' %}"
+                     class="w-9 h-9 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 cursor-pointer">
+              <input type="number" id="inkStrokeWidthInput" value="2" min="0.5" max="20" step="0.5"
+                     aria-label="{% trans 'Ink stroke width' %}"
+                     class="w-16 px-2 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm">
+            </label>
           </div>
 
           <p id="placementHint" class="hidden mb-3 text-sm text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
