@@ -18,11 +18,21 @@ const PREVIEW_FONTS = {
     mono: '"Noto Sans Mono", "Courier New", monospace',
 };
 
+// Physical page + margin sizes (mm) so the preview shows real page proportions
+// and a trustworthy page count. Must match the server: page_size A4/Letter and
+// MARGIN_PRESETS narrow/normal/wide (1/2/3 cm).
+const PAGE_MM = { A4: [210, 297], Letter: [215.9, 279.4] };
+const MARGIN_MM = { narrow: 10, normal: 20, wide: 30 };
+const PT_TO_MM = 25.4 / 72; // 1pt = 0.3528mm
+const MAX_PREVIEW_SHEETS = 30; // cap rendered sheets; the label still shows the true total
+
 class TextToPDFConverter {
     constructor() {
         this.form = document.getElementById('textToPdfForm');
         this.textInput = document.getElementById('textInput');
-        this.preview = document.getElementById('previewPage');
+        this.previewPages = document.getElementById('previewPages');
+        this.previewMeasure = document.getElementById('previewMeasure');
+        this.pageCount = document.getElementById('pageCount');
         this.charCounter = document.getElementById('charCounter');
         this.progressSection = document.getElementById('progressSection');
         this.progressBar = document.getElementById('progressBar');
@@ -32,9 +42,10 @@ class TextToPDFConverter {
         this.downloadLink = document.getElementById('downloadLink');
         this.convertAnotherBtn = document.getElementById('convertAnother');
 
-        this.controls = ['fontFamily', 'fontSize', 'textColor', 'align'].map(
-            (id) => document.getElementById(id)
-        );
+        // Every control that changes the rendered layout re-paginates the preview.
+        this.controls = [
+            'fontFamily', 'fontSize', 'textColor', 'align', 'pageSize', 'margin',
+        ].map((id) => document.getElementById(id));
 
         this.isPremium = false;
         const limits = window.TEXT2PDF_LIMITS || {};
@@ -52,8 +63,13 @@ class TextToPDFConverter {
         // Live preview + counter
         this.textInput.addEventListener('input', () => this.updatePreview());
         this.controls.forEach((el) => {
-            if (el) el.addEventListener('input', () => this.updatePreview());
+            if (!el) return;
+            // <select> fires 'change'; number/color inputs fire 'input'.
+            el.addEventListener('input', () => this.updatePreview());
+            el.addEventListener('change', () => this.updatePreview());
         });
+        // Re-fit the page thumbnails when the column width changes.
+        window.addEventListener('resize', () => this.updatePreview());
         this.updatePreview();
     }
 
@@ -73,14 +89,62 @@ class TextToPDFConverter {
 
     updatePreview() {
         const size = parseInt(document.getElementById('fontSize').value, 10) || 12;
-        const font = document.getElementById('fontFamily').value;
-        this.preview.style.fontFamily = PREVIEW_FONTS[font] || PREVIEW_FONTS.sans;
-        this.preview.style.fontSize = `${size}pt`;
-        this.preview.style.color = document.getElementById('textColor').value;
-        this.preview.style.textAlign = document.getElementById('align').value;
+        const fontFamily =
+            PREVIEW_FONTS[document.getElementById('fontFamily').value] || PREVIEW_FONTS.sans;
+        const color = document.getElementById('textColor').value;
+        const align = document.getElementById('align').value;
+        const [pwMM, phMM] = PAGE_MM[document.getElementById('pageSize').value] || PAGE_MM.A4;
+        const marginMM = MARGIN_MM[document.getElementById('margin').value] ?? 20;
+        const text = this.textInput.value;
+
+        // Scale (px per mm) chosen so a full page fits the preview column width;
+        // font and page share the scale, so the page count stays accurate.
+        const avail = (this.previewPages.clientWidth || 340) * 0.98;
+        const pxPerMM = Math.min(avail / pwMM, 2.6);
+        const pageW = pwMM * pxPerMM;
+        const pageH = phMM * pxPerMM;
+        const pad = marginMM * pxPerMM;
+        const usableW = pageW - 2 * pad;
+        const usableH = pageH - 2 * pad;
+        const fontPx = size * PT_TO_MM * pxPerMM;
+
+        // Shared typography for the measurer and every rendered sheet.
+        const typo =
+            `font-family:${fontFamily};font-size:${fontPx}px;color:${color};` +
+            `text-align:${align};line-height:1.5;white-space:pre-wrap;` +
+            `word-wrap:break-word;overflow-wrap:break-word;`;
+
+        // Measure total text height at the page's usable width, then paginate.
+        const meas = this.previewMeasure;
+        meas.style.cssText =
+            `position:absolute;visibility:hidden;inset-inline-start:-9999px;top:0;` +
+            `width:${usableW}px;${typo}`;
         // textContent (not innerHTML) so pasted markup shows as literal text,
         // matching the server-side html.escape().
-        this.preview.textContent = this.textInput.value;
+        meas.textContent = text || ' ';
+        const pages = Math.max(1, Math.ceil(meas.scrollHeight / usableH));
+
+        this.pageCount.textContent = `≈ ${pages} ${t('pages', 'page(s)')}`;
+
+        // Render page-shaped sheets; each shows its slice via a clipped window
+        // with the content translated up by one usable-page height.
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < Math.min(pages, MAX_PREVIEW_SHEETS); i++) {
+            const sheet = document.createElement('div');
+            sheet.className = 'bg-white shadow-sm shrink-0';
+            sheet.style.cssText =
+                `width:${pageW}px;height:${pageH}px;padding:${pad}px;overflow:hidden;`;
+            const win = document.createElement('div');
+            win.style.cssText = `width:${usableW}px;height:${usableH}px;overflow:hidden;`;
+            const content = document.createElement('div');
+            content.setAttribute('dir', 'auto');
+            content.textContent = text;
+            content.style.cssText = `${typo}transform:translateY(${-i * usableH}px);`;
+            win.appendChild(content);
+            sheet.appendChild(win);
+            frag.appendChild(sheet);
+        }
+        this.previewPages.replaceChildren(frag);
         this.updateCharCounter();
     }
 
