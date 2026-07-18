@@ -21,6 +21,7 @@ import base64
 import io
 import os
 import sys
+import time
 from pathlib import Path
 
 from PIL import Image
@@ -30,6 +31,12 @@ ROOT = Path(__file__).resolve().parent.parent
 DEMO = ROOT / "scripts" / "demo_files"
 OUT = ROOT / "static" / "images" / "tools"
 BASE = os.environ.get("SHOT_BASE", "http://127.0.0.1:8056/en/")
+
+# cache-bust: @anonymous_cache_page(60*60) caches tool pages in Redis by full
+# URL (path + querystring); without this, a page loaded once (e.g. before its
+# screenshot/demo-file wiring existed) stays stale in cache for an hour and
+# Playwright captures the old HTML. One value per script run is enough.
+_CACHE_BUST = str(int(time.time()))
 
 # All public tool pages (source of truth: frontend/urls.py; premium pages excluded).
 TOOL_PATHS = [
@@ -56,6 +63,8 @@ TOOL_PATHS = [
     "pdf-edit/crop/",
     "pdf-edit/flatten/",
     "pdf-edit/sign/",
+    "pdf-edit/add-text/",
+    "pdf-editor/",
     "image/optimize/",
     "image/convert/",
     "image/heic-to-jpg/",
@@ -114,6 +123,8 @@ DEMO_BY_EXT = {
 # generator is run for a subset of slugs (as the regen recipe does).
 DEMO_OVERRIDES = {
     "image-password-protect-image": ["project_nightingale_dossier.jpg"],
+    "pdf-editor": ["delorean_rental_agreement.pdf"],
+    "pdf-edit-add-text": ["hogwarts_permission_slip.pdf"],
 }
 
 # tools that render page previews client-side need extra settle time
@@ -125,9 +136,19 @@ PREVIEW_TOOLS = {
     "pdf-organize-extract-pages",
     "pdf-organize-organize",
     "compare-pdf",
+    "pdf-editor",
+    "pdf-edit-add-text",
 }
 
 CLIP = {"x": 216, "y": 96, "width": 848, "height": 560}
+
+# preview-tool anchor offset (crop-window top relative to the staged-file
+# row's y); default suits sign/crop/organize. pdf-editor's toolbar has two
+# extra rows (SHAPE:, INK:) that push its canvas further down, so it needs a
+# smaller (less negative) offset to keep the canvas in frame.
+PREVIEW_ANCHOR_OFFSET = {
+    "pdf-editor": 20,
+}
 
 # gradient palette keyed by tool category (URL prefix) — each category gets
 # its own hue family so the set reads varied-but-systematic; index rotates
@@ -167,9 +188,10 @@ GRADIENTS_BY_CATEGORY = {
 
 
 def gradient_for(path: str, idx: int) -> tuple[str, str]:
-    family = GRADIENTS_BY_CATEGORY.get(
-        path.split("/")[0], GRADIENTS_BY_CATEGORY["convert"]
-    )
+    # pdf-editor/ is a single-segment path but belongs with the pdf-edit/*
+    # family visually (same violet/fuchsia editing hue).
+    category = "pdf-edit" if path.startswith("pdf-editor/") else path.split("/")[0]
+    family = GRADIENTS_BY_CATEGORY.get(category, GRADIENTS_BY_CATEGORY["convert"])
     return family[idx % len(family)]
 
 
@@ -299,6 +321,8 @@ BADGE_OVERRIDES = {
     "image-optimize": ("OPTIMIZE",),
     "image-favicon-generator": ("FAVICON",),
     "image-password-protect-image": ("IMG", "\U0001f512PDF"),
+    "pdf-editor": ("EDIT",),
+    "pdf-edit-add-text": ("ADD TEXT",),
 }
 
 
@@ -371,7 +395,9 @@ def pick_demo_files(
 def capture(page, path: str, idx: int = 0) -> bytes | None:
     slug = slug_of(path)
     try:
-        page.goto(BASE + path, wait_until="networkidle", timeout=60000)
+        page.goto(
+            f"{BASE}{path}?v={_CACHE_BUST}", wait_until="networkidle", timeout=60000
+        )
     except Exception as exc:
         print(f"  ! {slug}: load failed ({exc})", file=sys.stderr)
         return None
@@ -423,7 +449,7 @@ def capture(page, path: str, idx: int = 0) -> bytes | None:
             row = None
     if slug in PREVIEW_TOOLS and row:
         # the staged-file row sits directly above the working panel
-        anchor = row["y"] - 130
+        anchor = row["y"] - PREVIEW_ANCHOR_OFFSET.get(slug, 130)
     else:
         try:
             h1 = page.locator("h1").first.bounding_box()

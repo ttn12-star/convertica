@@ -148,6 +148,96 @@ def pdf_voyager():
     return path
 
 
+def _form_field(c, label: str, y, w):
+    """One labeled fill-in line: small caption above a ruled line."""
+    c.setFont("Helvetica", 10)
+    c.setFillColor(HexColor("#64748b"))
+    c.drawString(56, y + 6, label)
+    c.setStrokeColor(HexColor("#94a3b8"))
+    c.setLineWidth(1)
+    c.line(56, y - 10, w - 56, y - 10)
+
+
+def pdf_delorean_agreement():
+    """pdf-editor easter egg: a mock time-machine rental form, built to be
+    filled in / signed — exactly the pdf-editor use case. Original text,
+    parody names only (Back to the Future nod), no third-party artwork."""
+    path = OUT / "delorean_rental_agreement.pdf"
+    c = canvas.Canvas(str(path), pagesize=A4)
+    w, h = A4
+    _page_frame(c, "DeLorean Time Machine — Rental Agreement", VIOLET)
+    c.setFont("Helvetica", 11)
+    c.setFillColor(HexColor("#334155"))
+    c.drawString(
+        56, h - 130, "Vehicle: DMC-12, flux capacitor fitted, plutonium not included"
+    )
+    y = h - 175
+    for label in [
+        "Renter's full name",
+        "Destination date & time (do not exceed 88 mph en route)",
+        "Return date & time",
+        "Odometer reading (GW)",
+    ]:
+        _form_field(c, label, y, w)
+        y -= 46
+    c.setFont("Helvetica", 11)
+    c.drawString(56, y - 6, "Terms:")
+    c.setFont("Helvetica", 10)
+    y -= 26
+    for line in [
+        "1. Renter assumes all responsibility for altering the timeline.",
+        "2. 1.21 gigawatts security deposit is non-refundable if a lightning",
+        "   strike is involved.",
+        "3. Do not, under any circumstance, meet your past or future self.",
+    ]:
+        c.drawString(56, y, line)
+        y -= 18
+    _form_field(c, "Renter's signature", y - 24, w)
+    c.setFont("Helvetica-Oblique", 10)
+    c.setFillColor(VIOLET)
+    c.drawString(56, y - 46, 'Approved by: Dr. Emmett "Doc" Brown — 1.21 GW')
+    c.showPage()
+    c.save()
+    return path
+
+
+def pdf_hogwarts_permission():
+    """pdf-edit/add-text easter egg: a fill-in permission slip, built for the
+    add-text tool's use case (typing into a form with no fillable fields).
+    Original text, parody names only (Harry Potter nod)."""
+    path = OUT / "hogwarts_permission_slip.pdf"
+    c = canvas.Canvas(str(path), pagesize=A4)
+    w, h = A4
+    _page_frame(c, "Hogsmeade Weekend — Permission Slip", INDIGO)
+    c.setFont("Helvetica", 11)
+    c.setFillColor(HexColor("#334155"))
+    c.drawString(56, h - 130, "Please complete and return to your Head of House.")
+    y = h - 175
+    for label in [
+        "Student's full name",
+        "House",
+        "Guardian's full name",
+        "Guardian's signature",
+        "Date",
+    ]:
+        _form_field(c, label, y, w)
+        y -= 46
+    c.setFont("Helvetica", 10)
+    c.drawString(
+        56, y - 6, "I give permission for the above student to visit Hogsmeade."
+    )
+    c.setFont("Helvetica-Oblique", 9)
+    c.setFillColor(HexColor("#94a3b8"))
+    c.drawString(
+        56,
+        60,
+        "Status of the Whomping Willow this term: this is fine.",
+    )
+    c.showPage()
+    c.save()
+    return path
+
+
 def pdf_principia():
     path = OUT / "principia_notes_draft.pdf"
     c = canvas.Canvas(str(path), pagesize=A4)
@@ -436,6 +526,8 @@ if __name__ == "__main__":
         pdf_chords(),
         pdf_voyager(),
         pdf_principia(),
+        pdf_delorean_agreement(),
+        pdf_hogwarts_permission(),
         docx_rickroll(),
         xlsx_totoro(),
         pptx_daft(),
