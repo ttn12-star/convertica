@@ -164,8 +164,20 @@ class CaptchaRequirementMiddleware:
             )
             for o in allowed_origins
         )
+        # Logged-in users are not curl scripts — skip the origin gate for them
+        # so the sticky no-Referer CAPTCHA doesn't fire on every conversion for
+        # privacy-browser / Referrer-Policy:no-referrer / PWA-webview sessions
+        # (disproportionately the RU/AR audience that actually converts).
+        # This middleware runs BEFORE AuthenticationMiddleware, so request.user
+        # isn't populated yet; read the login marker straight from the session
+        # (SessionMiddleware runs first). Anonymous no-Referer callers still get
+        # the gate (unchanged) — that's the script-defense path.
+        session_authenticated = bool(
+            hasattr(request, "session") and request.session.get("_auth_user_id")
+        )
         if (
             not has_first_party_referer
+            and not session_authenticated
             and not settings.DEBUG
             and not getattr(settings, "TESTING", False)
         ):
