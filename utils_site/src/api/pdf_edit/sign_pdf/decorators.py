@@ -63,7 +63,7 @@ def sign_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Signed PDF file.",
-                    content={"application/pdf": _PDF_RESPONSE},
+                    schema=_PDF_RESPONSE,
                 ),
                 400: "Bad request (invalid PDF, malformed signatures JSON).",
                 403: "Premium required.",
@@ -144,7 +144,7 @@ def sign_pdf_batch_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="ZIP archive of signed PDFs.",
-                    content={"application/zip": _PDF_RESPONSE},
+                    schema=_PDF_RESPONSE,
                 ),
                 400: "Bad request.",
                 403: "Premium required.",

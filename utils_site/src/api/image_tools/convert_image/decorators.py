@@ -57,7 +57,7 @@ def convert_image_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Converted image file.",
-                    content={"image/*": image_binary_schema},
+                    schema=image_binary_schema,
                 ),
                 400: "Bad request (invalid image, unsupported format, etc.).",
                 413: "File too large.",

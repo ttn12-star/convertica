@@ -47,7 +47,7 @@ def rotate_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Rotated PDF file.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, invalid angle, etc.).",
                 413: "File too large.",

@@ -55,7 +55,7 @@ def password_protect_image_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Password-protected PDF.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid image, empty password, too many files).",
                 413: "File too large.",

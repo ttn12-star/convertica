@@ -34,7 +34,7 @@ def word_to_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Converted PDF file.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request.",
                 413: "File too large.",

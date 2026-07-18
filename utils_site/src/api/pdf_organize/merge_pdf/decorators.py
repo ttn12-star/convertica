@@ -44,7 +44,7 @@ def merge_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Merged PDF file.",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid PDFs, too few/many files, etc.).",
                 413: "File too large.",

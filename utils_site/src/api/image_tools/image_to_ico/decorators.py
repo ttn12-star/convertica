@@ -46,7 +46,7 @@ def image_to_ico_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Generated .ico file.",
-                    content={"image/x-icon": ico_binary_schema},
+                    schema=ico_binary_schema,
                 ),
                 400: "Bad request (invalid image, no valid sizes, etc.).",
                 413: "File too large.",

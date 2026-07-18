@@ -40,7 +40,7 @@ def unlock_pdf_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Unlocked PDF file (no password required).",
-                    content={"application/pdf": pdf_binary_schema},
+                    schema=pdf_binary_schema,
                 ),
                 400: "Bad request (invalid PDF, incorrect password, etc.).",
                 413: "File too large.",

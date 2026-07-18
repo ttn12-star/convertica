@@ -36,9 +36,7 @@ def pdf_to_word_docs() -> Callable:
             responses={
                 200: openapi.Response(
                     description="Converted DOCX file.",
-                    content={
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document": docx_binary_schema
-                    },
+                    schema=docx_binary_schema,
                 ),
                 400: "Bad request.",
                 403: "Premium subscription required (OCR mode).",
