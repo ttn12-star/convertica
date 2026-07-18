@@ -65,7 +65,7 @@ def _public_subscription_plans():
     from src.users.models import SubscriptionPlan
 
     plans = SubscriptionPlan.objects.filter(
-        slug__in=["monthly-hero", "yearly-hero", "lifetime-hero"],
+        slug__in=["monthly-hero", "yearly-hero"],
         is_active=True,
     ).only("slug", "price", "currency", "duration_days", "is_lifetime")
     return {p.slug: p for p in plans}
@@ -2393,7 +2393,6 @@ class PricingPageView(TemplateView):
         plans_by_slug = _public_subscription_plans()
         context["monthly_plan"] = plans_by_slug.get("monthly-hero")
         context["yearly_plan"] = plans_by_slug.get("yearly-hero")
-        context["lifetime_plan"] = plans_by_slug.get("lifetime-hero")
 
         return context
 
@@ -2426,10 +2425,8 @@ def api_landing(request):
         "api/landing.html",
         {
             "monthly_quota": 1_000,
-            "yearly_quota": 10_000,
-            "lifetime_quota": 10_000,
+            "yearly_quota": 3_000,
             "monthly_plan": plans_by_slug.get("monthly-hero"),
             "yearly_plan": plans_by_slug.get("yearly-hero"),
-            "lifetime_plan": plans_by_slug.get("lifetime-hero"),
         },
     )

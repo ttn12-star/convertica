@@ -49,7 +49,7 @@
     </section>
 
     <!-- Pricing tiers -->
-    <section class="grid md:grid-cols-3 gap-6 mb-16">
+    <section class="grid md:grid-cols-2 gap-6 mb-16 max-w-3xl mx-auto">
       <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
         <h3 class="font-semibold text-lg mb-2">{% trans "Monthly" %}</h3>
         <p class="text-3xl font-bold">${% if monthly_plan %}{{ monthly_plan.price|floatformat:"-2" }}{% else %}7.99{% endif %}<span class="text-base font-normal text-gray-500">/mo</span></p>
@@ -60,11 +60,6 @@
         <p class="text-3xl font-bold">${% if yearly_plan %}{{ yearly_plan.price|floatformat:"-2" }}{% else %}79{% endif %}<span class="text-base font-normal text-gray-500">/yr</span></p>
         <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=yearly_quota %}{{ quota }} API call per month{% plural %}{{ quota }} API calls per month{% endblocktrans %}</p>
         <p class="text-sm text-blue-600 mt-1">{% trans "Best value" %}</p>
-      </div>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg border">
-        <h3 class="font-semibold text-lg mb-2">{% trans "Lifetime" %}</h3>
-        <p class="text-3xl font-bold">${% if lifetime_plan %}{{ lifetime_plan.price|floatformat:"-2" }}{% else %}129{% endif %}<span class="text-base font-normal text-gray-500">{% trans "once" %}</span></p>
-        <p class="text-gray-600 dark:text-gray-300 mt-2">{% blocktrans count quota=lifetime_quota %}{{ quota }} API call per month forever{% plural %}{{ quota }} API calls per month forever{% endblocktrans %}</p>
       </div>
     </section>
 
@@ -200,7 +195,7 @@ fs.writeFileSync("output.docx", Buffer.from(await r.body.arrayBuffer()));</code>
       <div class="space-y-4">
         <details class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
           <summary class="font-semibold cursor-pointer">{% trans "Do I need a separate subscription for the API?" %}</summary>
-          <p class="mt-2 text-gray-700 dark:text-gray-200 text-sm">{% trans "No. Any active Convertica subscription — Monthly, Yearly, or Lifetime — includes API access with the per-tier quota. Web UI and API share the same key pool." %}</p>
+          <p class="mt-2 text-gray-700 dark:text-gray-200 text-sm">{% trans "No. Any active Convertica subscription — Monthly or Yearly — includes API access with the per-tier quota. Web UI and API share the same key pool." %}</p>
         </details>
         <details class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
           <summary class="font-semibold cursor-pointer">{% trans "What happens when I hit my monthly quota?" %}</summary>

@@ -8,7 +8,7 @@
     {% if not has_quota %}
       <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-300 rounded-lg p-6 mb-6">
         <p class="font-semibold">{% trans "Subscribe to unlock API access" %}</p>
-        <p class="text-sm mt-2">{% blocktrans %}API access is included with Monthly, Yearly, and Lifetime Hero plans. View pricing to subscribe.{% endblocktrans %}</p>
+        <p class="text-sm mt-2">{% blocktrans %}API access is included with Monthly and Yearly Hero plans. View pricing to subscribe.{% endblocktrans %}</p>
         <a href="{% url 'frontend:pricing' %}" class="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded">{% trans "View pricing" %}</a>
       </div>
     {% else %}
