@@ -48,6 +48,7 @@ TOOL_PATHS = [
     "excel-to-pdf/",
     "ppt-to-pdf/",
     "html-to-pdf/",
+    "text-to-pdf/",
     "pdf-to-ppt/",
     "pdf-to-html/",
     "pdf-to-markdown/",
@@ -125,6 +126,23 @@ DEMO_OVERRIDES = {
     "image-password-protect-image": ["project_nightingale_dossier.jpg"],
     "pdf-editor": ["delorean_rental_agreement.pdf"],
     "pdf-edit-add-text": ["hogwarts_permission_slip.pdf"],
+}
+
+# paste-text tools have no file picker: type demo text into their textarea so
+# the live preview fills. Keyed by slug -> (textarea selector, demo text). The
+# demo copy hides a few easter eggs (F1 grid / CR7 / Clarkson's Farm).
+TEXT_DEMOS = {
+    "text-to-pdf": (
+        "#textInput",
+        "Sunday plans — do not lose this one\n\n"
+        "Grand Prix watch party at 3pm, snacks before lights out:\n"
+        "  1. Verstappen vs Leclerc into turn 1, again\n"
+        "  2. Hamilton on the hard tyre, obviously\n"
+        "  3. Norris for the win (this year, surely)\n\n"
+        "Then: CR7 highlights reel. SIUUU. GOAT debate with Dad, round 47.\n\n"
+        "Evening: new episode of Clarkson's Farm — Kaleb vs the tractor.\n"
+        "Diddly Squat shop run Saturday: bring cash, buy the hat.",
+    ),
 }
 
 # tools that render page previews client-side need extra settle time
@@ -323,6 +341,7 @@ BADGE_OVERRIDES = {
     "image-password-protect-image": ("IMG", "\U0001f512PDF"),
     "pdf-editor": ("EDIT",),
     "pdf-edit-add-text": ("ADD TEXT",),
+    "text-to-pdf": ("TEXT", "PDF"),
 }
 
 
@@ -405,9 +424,32 @@ def capture(page, path: str, idx: int = 0) -> bytes | None:
     page.add_style_tag(content="#cookie-banner{display:none !important} body{zoom:.85}")
     page.evaluate("window.scrollTo(0,0)")
 
-    inputs = page.locator('input[type="file"]')
     staged = False
     staged_query = None  # text to find the rendered file row later
+
+    # Paste-text tools (no file picker): type the demo copy so the live preview
+    # fills, then skip the file-staging path entirely.
+    if slug in TEXT_DEMOS:
+        selector, demo_text = TEXT_DEMOS[slug]
+        try:
+            page.fill(selector, demo_text)  # fires input -> live preview updates
+            page.wait_for_timeout(600)
+            staged = True
+        except Exception as exc:
+            print(f"  ~ {slug}: text fill failed ({exc})", file=sys.stderr)
+        page.evaluate("window.scrollTo(0,0)")
+        page.wait_for_timeout(300)
+        clip = dict(CLIP)
+        try:
+            h1 = page.locator("h1").first.bounding_box()
+            if h1:
+                page_h = page.evaluate("document.documentElement.scrollHeight")
+                clip["y"] = max(0, min(h1["y"] - 90, page_h - CLIP["height"] - 8))
+        except Exception:
+            pass
+        return page.screenshot(type="png", clip=clip, full_page=True)
+
+    inputs = page.locator('input[type="file"]')
     # stage one input only: extra inputs are usually "replace file" /
     # signature-image pickers and staging them resets the tool state.
     # Prefer the input carrying `multiple` (merge exposes two dead single
