@@ -19,6 +19,8 @@ from django.http import FileResponse, HttpRequest
 from django.urls import reverse
 from django.utils.text import get_valid_filename
 from django.utils.translation import gettext as _
+from PIL import Image as PILImage
+from PIL import UnidentifiedImageError
 from rest_framework import status
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
@@ -342,6 +344,28 @@ class BaseConversionAPIView(APIView, ABC):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
+        elif isinstance(
+            error, UnidentifiedImageError | PILImage.DecompressionBombError
+        ):
+            # PIL can't identify the file as an image, or it exceeds the
+            # MAX_IMAGE_PIXELS decompression-bomb ceiling — both are bad user
+            # input, not server faults. The FileField-based image tools
+            # (image_to_ico, generate_favicon, ico_to_png, convert_heic,
+            # image_to_text) accept octet-stream, so this is the boundary where
+            # "not an image" is caught. Return 400 instead of a 500 + Sentry noise.
+            log_conversion_error(
+                logger,
+                self.CONVERSION_TYPE,
+                context,
+                error,
+                start_time,
+                level="warning",
+            )
+            return Response(
+                {"error": "File is not a valid image or is too large to process."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
         else:
             # Unexpected error
             log_conversion_error(
@@ -555,6 +579,13 @@ class BaseConversionAPIView(APIView, ABC):
 
             # Validate output
             validate_output_file(output_path, context=context)
+
+            # Transfer temp-dir ownership to response.close() so it is removed
+            # after the body streams. Without this the async single-file path
+            # (e.g. password_protect_image) left tmp_dir=None and cleaned up
+            # nothing on success, leaking the dir until the cron reaper swept
+            # it. Mirrors the sync path (see os.path.dirname(input_path) above).
+            tmp_dir = os.path.dirname(input_path)
 
             # Stream file
             output_filename = os.path.basename(output_path)

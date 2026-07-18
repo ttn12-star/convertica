@@ -6,6 +6,7 @@ import tempfile
 import zipfile
 
 from PIL import Image, ImageOps
+from src.exceptions import ConversionError
 
 from ...file_validation import sanitize_filename
 from ...logging_utils import get_logger
@@ -14,12 +15,18 @@ from ..svg_raster import is_svg, rasterize_svg_to_png
 logger = get_logger(__name__)
 
 ICO_SIZES = (16, 32, 48)
+# Ten PNG sizes (16→512) as advertised on the landing page; apple-touch-icon
+# is the 180 px entry. 64/96/128/256 were previously promised but not emitted.
 PNG_ICONS = {
     "favicon-16x16.png": 16,
     "favicon-32x32.png": 32,
     "favicon-48x48.png": 48,
+    "favicon-64x64.png": 64,
+    "favicon-96x96.png": 96,
+    "favicon-128x128.png": 128,
     "apple-touch-icon.png": 180,
     "android-chrome-192x192.png": 192,
+    "favicon-256x256.png": 256,
     "android-chrome-512x512.png": 512,
 }
 
@@ -59,7 +66,12 @@ def generate_favicon(image_file) -> tuple[str, str]:
 
     raster_path = input_path
     if is_svg(input_path):
-        raster_path = rasterize_svg_to_png(input_path, tmp_dir, target_px=512)
+        try:
+            raster_path = rasterize_svg_to_png(input_path, tmp_dir, target_px=512)
+        except ValueError as exc:
+            # Unparseable SVG or a disallowed external <image> ref is bad user
+            # input, not a server fault → 400 instead of 500.
+            raise ConversionError(str(exc)) from exc
 
     with Image.open(raster_path) as img:
         src = img.convert("RGBA")

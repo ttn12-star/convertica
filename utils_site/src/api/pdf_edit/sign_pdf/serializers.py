@@ -9,9 +9,15 @@ on the *batch* endpoint (see `batch_serializers.py`) because batch is a
 makes no sense.
 """
 
+import base64
 import json
+import re
 
 from rest_framework import serializers
+
+# Match add_text's contract: only png/jpeg/webp, with a decoded-size cap.
+_SIG_DATA_URI_RE = re.compile(r"^data:image/(png|jpeg|webp);base64,", re.IGNORECASE)
+_SIG_MAX_IMAGE_BYTES = 3 * 1024 * 1024
 
 
 class SignatureItemSerializer(serializers.Serializer):
@@ -45,10 +51,20 @@ class SignatureItemSerializer(serializers.Serializer):
     )
 
     def validate_image_data_uri(self, value: str) -> str:
-        if not value.startswith("data:image/"):
-            raise serializers.ValidationError("Must be a data URI for an image.")
-        if ";base64," not in value:
-            raise serializers.ValidationError("Must be a base64 data URI.")
+        # Whitelist the image subtype and cap the decoded size, mirroring
+        # add_text — the old check accepted any data:image/* and never verified
+        # the decoded byte size (only the base64 char count).
+        if not _SIG_DATA_URI_RE.match(value or ""):
+            raise serializers.ValidationError(
+                "Must be a data:image/(png|jpeg|webp);base64 URI."
+            )
+        _, b64 = value.split(";base64,", 1)
+        try:
+            raw = base64.b64decode(b64, validate=True)
+        except (ValueError, TypeError) as exc:
+            raise serializers.ValidationError("Image is not valid base64.") from exc
+        if len(raw) > _SIG_MAX_IMAGE_BYTES:
+            raise serializers.ValidationError("Signature image exceeds 3 MB.")
         return value
 
 

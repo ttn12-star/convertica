@@ -12,9 +12,13 @@ from pathlib import Path
 
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
-from src.api.file_validation import check_disk_space, sanitize_filename
+from src.api.file_validation import (
+    check_disk_space,
+    sanitize_filename,
+    validate_pdf_file,
+)
 from src.api.logging_utils import get_logger
-from src.exceptions import ConversionError, StorageError
+from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 logger = get_logger(__name__)
 
@@ -81,6 +85,13 @@ def convert_pdf_to_ppt(
         with open(input_path, "wb") as f:
             for chunk in uploaded_file.chunks():
                 f.write(chunk)
+
+        # Validate the PDF up front so a corrupt / non-PDF .pdf is a clean 400
+        # instead of a generic 500 out of pdf2image (validate_pdf_pages swallows
+        # parser errors, so without this it slipped through).
+        is_valid, pdf_error = validate_pdf_file(input_path, context)
+        if not is_valid:
+            raise InvalidPDFError(pdf_error or "Invalid or corrupt PDF file.")
 
         logger.debug(
             "Saved PDF file",

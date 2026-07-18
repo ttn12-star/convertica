@@ -13,9 +13,13 @@ from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
 from pdf2image import convert_from_path
 from pypdf import PdfReader
-from src.api.file_validation import check_disk_space, sanitize_filename
+from src.api.file_validation import (
+    check_disk_space,
+    sanitize_filename,
+    validate_pdf_file,
+)
 from src.api.logging_utils import get_logger
-from src.exceptions import ConversionError, StorageError
+from src.exceptions import ConversionError, InvalidPDFError, StorageError
 
 logger = get_logger(__name__)
 
@@ -69,6 +73,12 @@ def convert_pdf_to_html(
         with open(input_path, "wb") as f:
             for chunk in uploaded_file.chunks():
                 f.write(chunk)
+
+        # Validate up front so a corrupt / non-PDF .pdf is a clean 400 instead
+        # of a generic 500 out of PdfReader/pdf2image.
+        is_valid, pdf_error = validate_pdf_file(input_path, context)
+        if not is_valid:
+            raise InvalidPDFError(pdf_error or "Invalid or corrupt PDF file.")
 
         logger.debug("Saved PDF file", extra={**context, "input_path": input_path})
 

@@ -118,6 +118,12 @@ class ArticleAdmin(admin.ModelAdmin):
         (
             _("Basic Information"),
             {
+                "description": _(
+                    "⚠️ Articles are imported from source YAML on every deploy "
+                    "(import_blog_articles): edits made here to content, "
+                    "translations or SEO fields are OVERWRITTEN on the next "
+                    "deploy unless the same change is made in the YAML source."
+                ),
                 "fields": (
                     "title_en",
                     "slug",
@@ -125,7 +131,7 @@ class ArticleAdmin(admin.ModelAdmin):
                     "status",
                     "published_at",
                     "relevant_tool",
-                )
+                ),
             },
         ),
         (_("English Content"), {"fields": ("content_en", "excerpt_en")}),
