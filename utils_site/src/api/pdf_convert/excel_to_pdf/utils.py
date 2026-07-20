@@ -23,6 +23,91 @@ logger = get_logger(__name__)
 XLSX_MAGIC = b"PK\x03\x04"
 XLS_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
 
+# Above this estimated content width (points) a table reads better in landscape
+# than shrunk to portrait width. A4 portrait printable width is ~487pt.
+_LANDSCAPE_WIDTH_THRESHOLD_PT = 500
+# Excel's default column width in characters when none is set explicitly.
+_DEFAULT_COL_WIDTH_CHARS = 8.43
+# Rough characters -> points factor (px = chars*7+5, pt = px*0.75).
+_CHARS_TO_PT = 5.25
+
+
+def _estimate_content_width_pt(ws) -> float:
+    """Approximate the printed width of a sheet's used columns, in points."""
+    from openpyxl.utils import get_column_letter
+
+    total_chars = 0.0
+    for col in range(1, (ws.max_column or 0) + 1):
+        cd = ws.column_dimensions.get(get_column_letter(col))
+        total_chars += cd.width if (cd and cd.width) else _DEFAULT_COL_WIDTH_CHARS
+    return total_chars * _CHARS_TO_PT
+
+
+def _apply_print_fit(
+    excel_path: str,
+    context: dict,
+    orientation: str = "auto",
+    fit_mode: str = "fit_width",
+) -> None:
+    """Set each sheet's print scaling before LibreOffice renders the PDF.
+
+    LibreOffice honors the sheet's print scaling on PDF export. A plain
+    spreadsheet has none, so a table wider than the page spills its extra
+    columns onto separate pages ("the table shifted"). The defaults set
+    fit-to-width, keeping every column on one page-width; a very wide table
+    also flips to landscape so it isn't shrunk to an unreadable size.
+
+    Args:
+        orientation: "auto" (landscape only for wide sheets), "portrait"
+            or "landscape" to force it on every sheet.
+        fit_mode: "fit_width" scales columns onto one page width; "actual"
+            leaves the sheet at its native size (may span pages sideways —
+            an explicit user choice for very wide sheets).
+
+    Best-effort: only .xlsx/.xlsm (openpyxl can't rewrite legacy .xls), and any
+    failure leaves the original file untouched so conversion still proceeds.
+    ponytail: legacy .xls skipped; convert .xls -> .xlsx first if it matters.
+    """
+    if not excel_path.lower().endswith((".xlsx", ".xlsm")):
+        return
+    # Only auto+fit_width is the implicit default; anything else is a
+    # deliberate user choice that should override an author's own print setup.
+    user_chose = orientation != "auto" or fit_mode != "fit_width"
+    try:
+        import openpyxl
+        from openpyxl.worksheet.properties import PageSetupProperties
+
+        wb = openpyxl.load_workbook(excel_path)
+        changed = False
+        for ws in wb.worksheets:
+            ps = ws.sheet_properties.pageSetUpPr
+            if not user_chose and ((ps and ps.fitToPage) or ws.page_setup.scale):
+                # Respect an author who already configured print scaling.
+                continue
+            applied = False
+            if fit_mode == "fit_width":
+                ws.page_setup.fitToWidth = 1
+                ws.page_setup.fitToHeight = 0  # 0 = as many pages tall as needed
+                ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
+                applied = True
+            if orientation in ("portrait", "landscape"):
+                ws.page_setup.orientation = orientation
+                applied = True
+            elif (
+                fit_mode == "fit_width"
+                and not ws.page_setup.orientation
+                and _estimate_content_width_pt(ws) > _LANDSCAPE_WIDTH_THRESHOLD_PT
+            ):
+                ws.page_setup.orientation = "landscape"
+            changed = changed or applied
+        if changed:
+            wb.save(excel_path)
+    except Exception as exc:
+        logger.warning(
+            f"print-fit preprocessing skipped ({exc}); converting original file",
+            extra={**context, "event": "excel_print_fit_skipped"},
+        )
+
 
 class ExcelToPDFConverter:
     """Excel to PDF converter with LibreOffice backend."""
@@ -37,6 +122,8 @@ class ExcelToPDFConverter:
         suffix: str = "_convertica",
         context: dict = None,
         is_celery_task: bool = False,
+        orientation: str = "auto",
+        fit_mode: str = "fit_width",
     ) -> tuple[str, str]:
         """
         Convert Excel to PDF using LibreOffice.
@@ -99,6 +186,14 @@ class ExcelToPDFConverter:
 
             # Save uploaded file
             await self._save_uploaded_file_async(uploaded_file, excel_path, context)
+
+            # Fit wide sheets to the page width before handing to LibreOffice.
+            # Otherwise columns past the page edge spill onto separate pages and
+            # the table looks "shifted" in the PDF (the top user complaint).
+            loop = asyncio.get_event_loop()
+            await loop.run_in_executor(
+                None, _apply_print_fit, excel_path, context, orientation, fit_mode
+            )
 
             # Convert using LibreOffice
             await self._convert_with_libreoffice_async(excel_path, pdf_path, context)
@@ -332,7 +427,10 @@ _excel_converter = ExcelToPDFConverter()
 
 
 def convert_excel_to_pdf(
-    uploaded_file: UploadedFile, suffix: str = "_convertica"
+    uploaded_file: UploadedFile,
+    suffix: str = "_convertica",
+    orientation: str = "auto",
+    fit_mode: str = "fit_width",
 ) -> tuple[str, str]:
     """
     Convert Excel to PDF using LibreOffice.
@@ -340,6 +438,8 @@ def convert_excel_to_pdf(
     Args:
         uploaded_file: Uploaded Excel file
         suffix: Suffix for output filename
+        orientation: "auto" | "portrait" | "landscape" (see _apply_print_fit)
+        fit_mode: "fit_width" | "actual" (see _apply_print_fit)
 
     Returns:
         Tuple of (input_excel_path, output_pdf_path)
@@ -350,7 +450,12 @@ def convert_excel_to_pdf(
     asyncio.set_event_loop(loop)
     try:
         return loop.run_until_complete(
-            _excel_converter.convert_excel_to_pdf(uploaded_file, suffix=suffix)
+            _excel_converter.convert_excel_to_pdf(
+                uploaded_file,
+                suffix=suffix,
+                orientation=orientation,
+                fit_mode=fit_mode,
+            )
         )
     finally:
         loop.close()
