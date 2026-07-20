@@ -1,0 +1,161 @@
+slug: how-to-create-a-favicon
+cover_image: blog/images/cover-how-to-create-a-favicon.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: favicon_generator
+title_pl: "Jak stworzyć favicon poprawnie w 2026 roku"
+meta_title_pl: "Jak stworzyć favicon: rozmiary, formaty i HTML | Convertica"
+meta_description_pl: "Jedna ikona 16x16 to dzisiaj za mało. Zobacz, jak stworzyć favicon, który wygląda ostro w kartach przeglądarki, na ekranie iPhone'a i w aplikacjach PWA, z gotowymi rozmiarami i kodem HTML."
+meta_keywords_pl: "jak stworzyć favicon, generator favicon, rozmiary favicon, favicon, ikona strony, favicon.ico, png na favicon, apple-touch-icon, favicon html"
+excerpt_pl: "Favicon to ta malutka ikona, o której nikt nie myśli, dopóki nie okaże się rozmyta, generyczna albo nie ma jej wcale. Jedna ikona 16x16 przestała wystarczać lata temu. Oto jak stworzyć favicon obsługujący karty przeglądarki, ekran iPhone'a i instalowalne aplikacje, z konkretnymi rozmiarami i gotowym kodem HTML."
+ai_metadata:
+  topics:
+    - tworzenie favicon
+    - rozmiary i formaty favicon
+    - apple-touch-icon i ikony PWA
+    - kod HTML dla favicon
+    - branding strony
+  entities:
+    - favicon
+    - favicon.ico
+    - apple-touch-icon
+    - site.webmanifest
+    - PNG
+    - ICO
+    - SVG
+    - PWA
+    - Convertica
+  summary: "Wyjaśnia, czym jest favicon i dlaczego jedna ikona 16x16 nie pokrywa już współczesnych przeglądarek i urządzeń, wymienia dokładne rozmiary ikon potrzebne w 2026 roku i miejsca, gdzie każdy z nich się pojawia, prowadzi przez wygenerowanie kompletnego pakietu favicon z jednego obrazu, rozkłada kod HTML na czynniki pierwsze, omawia manifest i ikony PWA, podaje dobre praktyki doboru obrazu źródłowego, wskazuje najczęstsze błędy pozostawiające rozmyty lub brakujący favicon i odpowiada na częste pytania o ICO kontra PNG oraz cache."
+  related_terms:
+    - stworzyć favicon z obrazu
+    - poradnik rozmiary favicon
+    - favicon.ico kontra png
+    - rozmiar apple touch icon
+    - ikona w karcie przeglądarki
+    - favicon się nie wyświetla
+    - wygenerować pakiet favicon
+  reading_time_minutes: 8
+  target_audience: "Każdy, kto uruchamia lub prowadzi stronę, bloga, portfolio albo aplikację webową i chce favicon wyglądający ostro wszędzie, od programistów i projektantów po właścicieli małych firm i twórców no-code, którzy nie chcą walczyć z rozmiarami ikon i kodem."
+content_pl: |
+  Favicon to najmniejszy element twojej marki, a zarazem ten, który ludzie widzą najczęściej. Siedzi w karcie przeglądarki, na pasku zakładek, obok nazwy strony w wynikach wyszukiwania i na ekranie telefonu, kiedy ktoś zapisze twoją stronę. Dobrego favicona nikt nie zauważa. Za to brakującego, rozmytego albo tej szarej kuli ziemskiej, którą przeglądarka pokazuje, gdy ikony w ogóle nie dodałeś, nie da się przeoczyć. Stworzenie porządnego favicona zajmuje kilka minut, gdy już wiesz, czego naprawdę oczekują współczesne przeglądarki i urządzenia. Oto pełny obraz i najszybsza droga przez cały proces.
+
+  <h2>Czym właściwie jest favicon</h2>
+
+  <p>Favicon, czyli skrót od "favorite icon" (ulubiona ikona), to mały kwadratowy obrazek reprezentujący stronę. Narodził się pod koniec lat 90. jako pojedynczy plik 16x16 pikseli o nazwie favicon.ico i przez długi czas na tym się kończyło. Już tak nie jest. Dzisiaj to samo małe logo musi wyglądać ostro w karcie przeglądarki na laptopie o wysokiej rozdzielczości, w zakładce, na ekranie iPhone'a w rozmiarze 180 pikseli, na urządzeniu z Androidem, wewnątrz instalowalnej aplikacji webowej, a czasem obok twojego wpisu w wyszukiwarce. Każde z tych miejsc oczekuje innego rozmiaru, a niektóre wymagają konkretnej nazwy pliku.</p>
+
+  <p>Dlatego rada sprzed lat "wystarczy wgrać ikonę 16x16" daje dziś rozmytą papkę. Malutki obrazek rozciągnięty do ikony ekranu głównego o rozmiarze 180 pikseli wygląda miękko i pikselowato. Właściwe podejście to zacząć od jednego dużego, czystego obrazu i wyprodukować z niego niewielki zestaw plików o poprawnych rozmiarach.</p>
+
+  <h2>Dlaczego jeden rozmiar to już za mało</h2>
+
+  <p>Różne miejsca sięgają po różne ikony. Kiedy zrozumiesz, gdzie trafia każda z nich, lista rozmiarów poniżej wyda się logiczna, a nie wzięta z sufitu:</p>
+
+  <ul>
+    <li><strong>Karty przeglądarki i zakładki</strong> korzystają z klasycznego favicona, zwykle w rozmiarze 16x16 albo 32x32, przy czym 32 jest preferowane na nowoczesnych ekranach o wysokim DPI.</li>
+    <li><strong>Ekrany główne iPhone'a i iPada</strong> używają apple-touch-icon o rozmiarze 180x180, gdy ktoś doda twoją stronę do ekranu głównego.</li>
+    <li><strong>Android i instalowalne aplikacje webowe (PWA)</strong> korzystają z ikon 192x192 i 512x512 zdefiniowanych w małym pliku manifestu.</li>
+    <li><strong>Windows i wyświetlacze o wyższej rozdzielczości</strong> zyskują na pośrednich rozmiarach, takich jak 48, 64, 96, 128 i 256, dzięki którym ikona nigdy nie jest skalowana daleko od natywnego rozmiaru.</li>
+    <li><strong>Wyniki wyszukiwania</strong> mogą pokazać twój favicon obok tytułu strony, co po cichu wzmacnia markę przy każdym wpisie.</li>
+  </ul>
+
+  <h2>Rozmiary favicon, których naprawdę potrzebujesz w 2026 roku</h2>
+
+  <p>Nie musisz zgadywać ani generować setek plików. Oto praktyczny zestaw, który obsługuje każdą popularną przeglądarkę i urządzenie, i który dokładnie odpowiada temu, co daje ci dobry generator:</p>
+
+  <table>
+    <thead>
+      <tr><th>Plik</th><th>Rozmiar</th><th>Gdzie się pojawia</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>favicon.ico</td><td>16, 32, 48 (wielorozmiarowy)</td><td>Uniwersalny fallback: karty, pasek adresu, zakładki, starsze przeglądarki</td></tr>
+      <tr><td>favicon-16x16.png</td><td>16x16</td><td>Mała ikona w karcie i zakładce</td></tr>
+      <tr><td>favicon-32x32.png</td><td>32x32</td><td>Standardowa ikona karty w nowoczesnych przeglądarkach desktopowych</td></tr>
+      <tr><td>apple-touch-icon.png</td><td>180x180</td><td>Skrót na ekranie głównym iPhone'a i iPada</td></tr>
+      <tr><td>android-chrome-192x192.png</td><td>192x192</td><td>Ekran główny Androida i instalacja PWA</td></tr>
+      <tr><td>android-chrome-512x512.png</td><td>512x512</td><td>Ekran powitalny Androida i PWA w wysokiej rozdzielczości</td></tr>
+      <tr><td>PNG-i 48, 64, 96, 128, 256 px</td><td>różne</td><td>Ekrany o wysokim DPI i Windows, żeby ikona rzadko musiała się skalować</td></tr>
+    </tbody>
+  </table>
+
+  <p>Razem daje to jedenaście plików: jeden ICO, dziesięć PNG-ów, do tego mały manifest i fragment kodu HTML. Robienie ich wszystkich ręcznie w edytorze graficznym jest żmudne i łatwo o pomyłkę. Zrobienie tego w jednym kroku to właśnie sens kolejnej sekcji.</p>
+
+  <h2>Najszybszy sposób: wygeneruj cały pakiet naraz</h2>
+
+  <figure><img src="/static/images/tools/image-favicon-generator.jpg" alt="Generator favicon Convertica zamieniający jeden obraz w kompletny pakiet favicon" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Zamiast eksportować rozmiary po kolei, zacznij od jednego obrazu wysokiej jakości i pozwól generatorowi zbudować pełny zestaw. Oto przebieg pracy z <a href="/pl/image/favicon-generator/">generatorem favicon</a>:</p>
+
+  <ol>
+    <li>Otwórz <a href="/pl/image/favicon-generator/">generator favicon</a> i wgraj obraz źródłowy. Zadziała PNG, JPG, WebP albo SVG, przy czym SVG lub duży PNG da najostrzejszy efekt.</li>
+    <li>Narzędzie przycina obraz do kwadratu od środka i renderuje za ciebie każdy rozmiar: wielorozdzielczościowy favicon.ico, pełną gamę ikon PNG od 16 aż do 512, apple-touch-icon w rozmiarze 180 pikseli oraz ikony Androida 192 i 512.</li>
+    <li>Pobierz plik ZIP. W środku znajdziesz wszystkie ikony, gotowy site.webmanifest dla obsługi PWA i Androida oraz krótki blok HTML do wklejenia na stronie.</li>
+  </ol>
+
+  <p>Wgrany obraz jest usuwany z serwera po przetworzeniu, więc logo, którego jeszcze nie ogłosiłeś, nigdzie się nie zawieruszy. Efekt to kompletny, zgodny ze standardami zestaw ikon z jednego przesłanego pliku, bez potrzeby sięgania po edytor graficzny.</p>
+
+  <h2>Kod HTML do wklejenia, wyjaśniony linijka po linijce</h2>
+
+  <p>Favicon zadziała tylko wtedy, gdy przeglądarka wie, gdzie go szukać. Generator daje ci fragment podobny do tego, który wklejasz wewnątrz sekcji <code>&lt;head&gt;</code> swoich stron:</p>
+
+  <pre><code>&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;
+  &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+  &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+  &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+  &lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+
+  <p>Linijka po linijce, oto co robi każda z nich:</p>
+
+  <ul>
+    <li>Pierwsza linia wskazuje na <strong>favicon.ico</strong>, uniwersalny fallback zrozumiały dla każdej przeglądarki, także tych starszych.</li>
+    <li>Dwie linie z PNG dają nowoczesnym przeglądarkom ostrzejszą ikonę <strong>32x32</strong> i <strong>16x16</strong> oraz pozwalają im wybrać właściwą dla danego ekranu.</li>
+    <li>Linia <strong>apple-touch-icon</strong> to ta, której iPhone'y i iPady używają, gdy ktoś zapisze twoją stronę na ekranie głównym, dzięki czemu wygląda jak prawdziwa ikona aplikacji, a nie rozmyty zrzut ekranu.</li>
+    <li>Linia <strong>manifest</strong> wskazuje na manifest strony, z którego Android i instalowalne aplikacje webowe odczytują swoje ikony i dane aplikacji.</li>
+  </ul>
+
+  <p>Wgraj pliki ikon i manifest do katalogu głównego strony, żeby powyższe ścieżki się zgadzały, a resztą zajmie się przeglądarka.</p>
+
+  <h2>Do czego służy manifest strony</h2>
+
+  <p>Site.webmanifest to mały plik tekstowy, który opisuje twoją stronę jako instalowalną aplikację. Jego najważniejsze zadanie związane z faviconem to wskazanie ikon 192x192 i 512x512, których Android i Progresywne Aplikacje Webowe używają na ekranie głównym oraz ekranie powitalnym. Jeśli nigdy nie planujesz uczynić strony instalowalną, manifest i tak nie zaszkodzi, a Android będzie zadowolony. A jeśli planujesz, to właśnie tych dwóch ikon potrzebuje, a generator uzupełnia je za ciebie.</p>
+
+  <h2>Dobór i przygotowanie obrazu źródłowego</h2>
+
+  <p>Największy wpływ na jakość ma obraz, od którego zaczynasz. Kilka nawyków sprawia, że każdy wygenerowany rozmiar wygląda lepiej:</p>
+
+  <ul>
+    <li><strong>Zacznij od dużego i kwadratowego.</strong> Obraz 512x512 albo SVG pomniejsza się bez strat. Malutkie źródło zawsze będzie wyglądać jak malutkie źródło.</li>
+    <li><strong>Trzymaj się prostoty.</strong> Favicon często pokazywany jest w rozmiarze 16 pikseli. Drobne detale, cienkie linie i mały tekst po prostu znikają. Jedna wyrazista litera, symbol albo uproszczony znak logo czyta się znacznie lepiej niż pełne logo z hasłem.</li>
+    <li><strong>Postaw na mocny kontrast.</strong> Ikona musi się wybijać zarówno na jasnym, jak i ciemnym motywie przeglądarki. Wysoki kontrast między znakiem a tłem utrzymuje jej czytelność wszędzie.</li>
+    <li><strong>Zadbaj o marginesy.</strong> Zostaw trochę oddechu wokół znaku, żeby nie został przycięty, gdy platforma zaokrągli rogi ikony aplikacji.</li>
+  </ul>
+
+  <p>Jeśli zastanawiasz się, od jakiego formatu zacząć, poradnik <a href="/pl/blog/webp-vs-jpeg-vs-png-best-image-format/">WebP kontra JPEG kontra PNG</a> omawia kompromisy, a jeśli ciekawi cię, co dzieje się z wgranym logo, nasza notka o tym, <a href="/pl/blog/is-convertica-safe-pdf-file-security-privacy-explained/">jak Convertica obchodzi się z twoimi plikami</a>, wyjaśnia kwestię prywatności.</p>
+
+  <h2>Częste błędy, przez które favicon jest zepsuty</h2>
+
+  <ul>
+    <li><strong>Wysłanie samego favicon.ico.</strong> Pokrywa karty, ale nie ekran główny iPhone'a ani instalacje PWA. To apple-touch-icon i ikony z manifestu wypełniają te luki.</li>
+    <li><strong>Błędne ścieżki plików.</strong> Jeśli <code>href</code> w tagach link nie zgadza się z miejscem, gdzie faktycznie wgrałeś pliki, przeglądarka nie pokaże nic. Trzymaj ikony w katalogu głównym strony albo zaktualizuj ścieżki, żeby pasowały.</li>
+    <li><strong>Obwinianie cache przeglądarki.</strong> Favicony są agresywnie cache'owane. Po dodaniu albo zmianie ikony twarde odświeżenie lub wizyta w oknie prywatnym zwykle pokazuje nową ikonę, którą zwykłe przeładowanie wciąż ukrywało.</li>
+    <li><strong>Start od malutkiego obrazu.</strong> Rozciąganie małego logo do 180 albo 512 pikseli daje miękką, pikselowatą ikonę. Zawsze zaczynaj od największej czystej wersji, jaką masz.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Czy nadal potrzebuję favicon.ico, czy PNG wystarczy?</h3>
+  <p>Zostaw oba. Nowoczesne przeglądarki chętnie korzystają z ikon PNG, ale favicon.ico pozostaje bezpiecznym uniwersalnym fallbackiem, a niektóre przeglądarki i narzędzia wciąż szukają go po nazwie w katalogu głównym strony. Kompletny zestaw zawiera oba, dlatego generator tworzy ICO obok PNG-ów.</p>
+
+  <h3>Jaka jest tutaj różnica między ICO a PNG?</h3>
+  <p>ICO to starszy format, który potrafi upakować kilka rozmiarów (16, 32 i 48) w jednym pliku, dlatego tak dobrze sprawdza się jako pojedynczy fallbackowy favicon. PNG mieści jeden rozmiar na plik, ale obsługuje ostre obrazy wysokiej jakości oraz przezroczystość, dlatego większe ikony to PNG-i. Chcesz mieć oba, każdy w roli, w której jest najlepszy.</p>
+
+  <h3>Czy mogę użyć przezroczystego tła?</h3>
+  <p>Tak, PNG to obsługuje. Przezroczyste tło pozwala ikonie naturalnie leżeć na jasnym i ciemnym motywie przeglądarki. Upewnij się tylko, że sam znak ma wystarczający kontrast, żeby pozostać widocznym na obu.</p>
+
+  <h3>Dlaczego mój nowy favicon się nie wyświetla?</h3>
+  <p>Prawie zawsze winny jest cache. Przeglądarki trzymają favicony dłużej niż większość zasobów. Zrób twarde odświeżenie, otwórz stronę w oknie prywatnym albo sprawdź plik ikony bezpośrednio pod jego adresem URL, żeby potwierdzić, że się wgrał. Gdy cache się wyczyści, nowa ikona się pojawi.</p>
+
+  <h3>Czy favicon jest potrzebny do SEO?</h3>
+  <p>To nie jest czynnik rankingowy, ale favicon może pojawić się obok tytułu strony w wynikach wyszukiwania, co wzmacnia markę i potrafi podnieść klikalność. To małe, jednorazowe zadanie z trwałym efektem wizualnym, więc nie ma powodu, żeby je pomijać.</p>
+
+  <h2>Stwórz swój teraz</h2>
+
+  <p>Jeśli twoja strona działa bez favicona albo z rozmytą pozostałością sprzed lat, napraw to w kilka minut. Wgraj logo do <a href="/pl/image/favicon-generator/">generatora favicon</a>, pobierz plik ZIP, wrzuć pliki do katalogu głównego strony i wklej fragment HTML. Jeśli potrzebujesz tylko pojedynczego pliku ikony zamiast pełnego pakietu, konwertery <a href="/pl/image/png-to-ico/">PNG na ICO</a> i <a href="/pl/image/svg-to-ico/">SVG na ICO</a> zrobią to jedno zadanie, a <a href="/pl/image/optimize/">optymalizator obrazów</a> pomoże najpierw przyciąć obraz źródłowy.</p>

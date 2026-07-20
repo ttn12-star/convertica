@@ -1,0 +1,161 @@
+slug: how-to-create-a-favicon
+cover_image: blog/images/cover-how-to-create-a-favicon.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: favicon_generator
+title_es: "Cómo crear un favicon correctamente en 2026"
+meta_title_es: "Cómo crear un favicon: tamaños, formatos y HTML | Convertica"
+meta_description_es: "Un solo icono de 16x16 ya no basta. Aprende a crear un favicon que se vea nítido en las pestañas del navegador, en la pantalla de inicio del iPhone y en las PWA, con los tamaños exactos y el HTML que necesitas."
+meta_keywords_es: "cómo crear un favicon, generador de favicon, favicon, tamaños de favicon, favicon.ico, icono de página web, crear favicon desde imagen, apple-touch-icon, favicon html"
+excerpt_es: "El favicon es esa imagen diminuta en la que nadie repara hasta que se ve borrosa, genérica o falta por completo. Un único icono de 16x16 dejó de bastar hace años. Aquí verás cómo crear un favicon que cubra las pestañas del navegador, la pantalla de inicio del iPhone y las apps instalables, con los tamaños exactos y el HTML que tienes que pegar."
+ai_metadata:
+  topics:
+    - crear un favicon
+    - tamaños y formatos de favicon
+    - apple-touch-icon e iconos PWA
+    - código HTML del favicon
+    - identidad de marca de un sitio web
+  entities:
+    - favicon
+    - favicon.ico
+    - apple-touch-icon
+    - site.webmanifest
+    - PNG
+    - ICO
+    - SVG
+    - PWA
+    - Convertica
+  summary: "Explica qué es un favicon y por qué una sola imagen de 16x16 ya no cubre los navegadores y dispositivos actuales, enumera los tamaños de icono exactos que un sitio necesita en 2026 y dónde aparece cada uno, muestra cómo generar un paquete completo de favicon a partir de una imagen, desglosa las etiquetas HTML línea por línea, cubre el manifiesto web y los iconos de PWA, da buenas prácticas para la imagen de origen, enumera los errores habituales que dejan un favicon borroso o ausente, y responde las dudas frecuentes sobre ICO frente a PNG y la caché."
+  related_terms:
+    - crear favicon desde imagen
+    - guía de tamaños de favicon
+    - favicon.ico vs png
+    - tamaño apple touch icon
+    - icono de pestaña del navegador
+    - el favicon no aparece
+    - generar paquete de favicon
+  reading_time_minutes: 8
+  target_audience: "Cualquiera que lance o mantenga un sitio web, blog, portafolio o aplicación web y quiera un favicon que se vea nítido en todas partes, desde desarrolladores y diseñadores hasta dueños de pequeños negocios y creadores no-code que no quieren pelearse con tamaños de icono ni con el marcado."
+content_es: |
+  El favicon es la pieza más pequeña de tu marca y, a la vez, la que la gente ve con más frecuencia. Está en la pestaña del navegador, en los marcadores, junto a tu nombre en los resultados de búsqueda y en la pantalla de inicio del teléfono cuando alguien guarda tu página. Nadie repara en un buen favicon. En cambio, todos notan cuando falta, cuando se ve borroso o cuando aparece ese globo terráqueo gris y genérico que el navegador muestra si te olvidaste de ponerlo. Crear un favicon en condiciones lleva unos pocos minutos una vez que sabes qué piden de verdad los navegadores y dispositivos modernos. Aquí tienes el panorama completo y el camino más rápido para recorrerlo.
+
+  <h2>Qué es realmente un favicon</h2>
+
+  <p>Un favicon, abreviatura de "favorite icon" (icono favorito), es la pequeña imagen cuadrada que representa a un sitio web. Nació a finales de los años noventa como un único archivo de 16x16 píxeles llamado favicon.ico, y durante mucho tiempo ahí terminaba la historia. Ya no es así. Hoy ese mismo logotipo diminuto tiene que verse nítido en la pestaña de un navegador sobre un portátil de alta resolución, en un marcador, en la pantalla de inicio de un iPhone a 180 píxeles, en un dispositivo Android, dentro de una aplicación web instalable y, a veces, junto a tu resultado en un buscador. Cada uno de esos lugares pide un tamaño distinto, y unos cuantos exigen un nombre de archivo concreto.</p>
+
+  <p>Por eso el consejo de hace años de "sube un 16x16 y listo" hoy produce un resultado difuso: una imagen minúscula ampliada a un icono de 180 píxeles queda blanda y pixelada. El enfoque correcto es partir de una imagen grande y limpia y generar a partir de ella un conjunto reducido de archivos con los tamaños adecuados.</p>
+
+  <h2>Por qué un solo tamaño ya no alcanza</h2>
+
+  <p>Cada superficie toma un icono diferente. Entender dónde va cada uno hace que la lista de tamaños de más abajo parezca lógica en lugar de arbitraria:</p>
+
+  <ul>
+    <li><strong>Pestañas del navegador y marcadores</strong> usan el favicon clásico, normalmente una imagen de 16x16 o 32x32, y en las pantallas modernas de alta densidad se prefiere el de 32.</li>
+    <li><strong>Pantallas de inicio de iPhone y iPad</strong> usan un apple-touch-icon de 180x180 cuando alguien añade tu página a su pantalla de inicio.</li>
+    <li><strong>Android y aplicaciones web instalables (PWA)</strong> usan iconos de 192x192 y 512x512 definidos en un pequeño archivo de manifiesto.</li>
+    <li><strong>Windows y las pantallas de mayor resolución</strong> se benefician de los tamaños intermedios como 48, 64, 96, 128 y 256, de modo que el icono nunca se aleja demasiado de un tamaño nativo al escalarse.</li>
+    <li><strong>Los resultados de búsqueda</strong> pueden mostrar tu favicon junto al título de la página, lo que refuerza tu marca de forma discreta en cada aparición.</li>
+  </ul>
+
+  <h2>Los tamaños que de verdad necesitas en 2026</h2>
+
+  <p>No hace falta adivinar ni generar cientos de archivos. Este es el conjunto práctico que cubre todos los navegadores y dispositivos habituales, y coincide exactamente con lo que te entrega un buen generador:</p>
+
+  <table>
+    <thead>
+      <tr><th>Archivo</th><th>Tamaño</th><th>Dónde aparece</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>favicon.ico</td><td>16, 32, 48 (multitamaño)</td><td>El respaldo universal: pestañas, barra de direcciones, marcadores, navegadores antiguos</td></tr>
+      <tr><td>favicon-16x16.png</td><td>16x16</td><td>Representación pequeña en pestañas y marcadores</td></tr>
+      <tr><td>favicon-32x32.png</td><td>32x32</td><td>Icono de pestaña estándar en navegadores de escritorio modernos</td></tr>
+      <tr><td>apple-touch-icon.png</td><td>180x180</td><td>Acceso directo en la pantalla de inicio de iPhone y iPad</td></tr>
+      <tr><td>android-chrome-192x192.png</td><td>192x192</td><td>Pantalla de inicio de Android e instalación de PWA</td></tr>
+      <tr><td>android-chrome-512x512.png</td><td>512x512</td><td>Pantalla de bienvenida de Android y PWA de alta resolución</td></tr>
+      <tr><td>PNG de 48, 64, 96, 128, 256 px</td><td>varios</td><td>Pantallas de alta densidad y Windows, para que el icono casi nunca se escale</td></tr>
+    </tbody>
+  </table>
+
+  <p>Son once archivos en total: un ICO, diez PNG, más un pequeño manifiesto y un fragmento de HTML. Crearlos a mano en un editor de imágenes es tedioso y fácil de estropear. Hacerlos de una sola vez es justamente el objetivo de la siguiente sección.</p>
+
+  <h2>La vía más rápida: generar el paquete completo de una vez</h2>
+
+  <figure><img src="/static/images/tools/image-favicon-generator.jpg" alt="El generador de favicon de Convertica convierte una imagen en un paquete completo de favicon" width="1280" height="800" loading="lazy"></figure>
+
+  <p>En lugar de exportar los tamaños uno por uno, parte de una sola imagen de buena calidad y deja que un generador construya el conjunto entero. Este es el flujo con el <a href="/es/image/favicon-generator/">generador de favicon</a>:</p>
+
+  <ol>
+    <li>Abre el <a href="/es/image/favicon-generator/">generador de favicon</a> y sube tu imagen de origen. Sirve un PNG, un JPG, un WebP o un SVG, y un SVG o un PNG grande dan el resultado más nítido.</li>
+    <li>La herramienta recorta tu imagen a un cuadrado desde el centro y genera cada tamaño por ti: el favicon.ico multirresolución, la gama completa de iconos PNG desde 16 hasta 512, el apple-touch-icon de 180 píxeles y los iconos de Android de 192 y 512.</li>
+    <li>Descarga el ZIP. Dentro tienes todos los iconos, un site.webmanifest ya preparado para PWA y Android, y un pequeño bloque de HTML para pegar en tu sitio.</li>
+  </ol>
+
+  <p>La imagen que subes se elimina del servidor tras el procesamiento, así que un logotipo que aún no has lanzado no queda dando vueltas en ningún sitio. El resultado es un conjunto de iconos completo y ajustado a los estándares a partir de una sola subida, sin necesidad de editor de imágenes.</p>
+
+  <h2>El HTML que pegas, explicado línea por línea</h2>
+
+  <p>Un favicon solo funciona si el navegador sabe dónde encontrarlo. El generador te entrega un fragmento como este para colocar dentro del <code>&lt;head&gt;</code> de tus páginas:</p>
+
+  <pre><code>&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;
+  &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+  &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+  &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+  &lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+
+  <p>Línea por línea, esto es lo que hace cada una:</p>
+
+  <ul>
+    <li>La primera línea apunta a <strong>favicon.ico</strong>, el respaldo universal que todo navegador entiende, incluidos los más antiguos.</li>
+    <li>Las dos líneas de PNG dan a los navegadores modernos un icono más nítido de <strong>32x32</strong> y <strong>16x16</strong> y les permiten elegir el adecuado para cada pantalla.</li>
+    <li>La línea del <strong>apple-touch-icon</strong> es la que usan los iPhone y iPad cuando alguien guarda tu página en su pantalla de inicio, para que se vea como un icono de app de verdad y no como una captura borrosa.</li>
+    <li>La línea del <strong>manifest</strong> apunta al manifiesto web, que es donde Android y las aplicaciones web instalables leen sus iconos y los datos de la app.</li>
+  </ul>
+
+  <p>Sube los archivos de iconos y el manifiesto a la raíz de tu sitio para que las rutas de arriba resuelvan correctamente, y el navegador se encarga del resto.</p>
+
+  <h2>Para qué sirve el manifiesto web</h2>
+
+  <p>El site.webmanifest es un pequeño archivo de texto que describe tu sitio como una aplicación instalable. Su tarea más importante para los favicons es enumerar los iconos de 192x192 y 512x512 que Android y las Progressive Web Apps usan para la pantalla de inicio y la de bienvenida. Si nunca piensas hacer tu sitio instalable, el manifiesto tampoco estorba y mantiene contento a Android. Y si sí lo haces, esos dos iconos son justo lo que necesita, y el generador los rellena por ti.</p>
+
+  <h2>Cómo elegir y preparar la imagen de origen</h2>
+
+  <p>La mayor palanca de calidad es la imagen de la que partes. Unos pocos hábitos hacen que cada tamaño generado se vea mejor:</p>
+
+  <ul>
+    <li><strong>Empieza grande y cuadrado.</strong> Una imagen de 512x512, o un SVG, se reduce de forma limpia. Una fuente diminuta solo puede verse diminuta.</li>
+    <li><strong>Mantenlo simple.</strong> Un favicon se muestra a menudo a 16 píxeles. El detalle fino, las líneas delgadas y el texto pequeño desaparecen a ese tamaño. Una sola letra marcada, un símbolo o una versión simplificada del logotipo se lee mucho mejor que tu logo completo con eslogan.</li>
+    <li><strong>Usa buen contraste.</strong> El icono tiene que destacar tanto sobre los temas claros como sobre los oscuros del navegador. Un contraste alto entre la marca y su fondo lo mantiene legible en todas partes.</li>
+    <li><strong>Cuida los márgenes.</strong> Deja un poco de aire alrededor de la marca para que no se recorte cuando una plataforma redondea las esquinas de un icono de app.</li>
+  </ul>
+
+  <p>Si estás valorando desde qué formato partir, la guía sobre <a href="/es/blog/webp-vs-jpeg-vs-png-best-image-format/">WebP frente a JPEG y PNG</a> repasa las ventajas y desventajas de cada uno, y si te preguntas qué pasa con el logotipo que subes, nuestra nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo gestiona Convertica tus archivos</a> explica la parte de privacidad.</p>
+
+  <h2>Errores habituales que dejan roto un favicon</h2>
+
+  <ul>
+    <li><strong>Publicar solo favicon.ico.</strong> Cubre las pestañas, pero no las pantallas de inicio de iPhone ni las instalaciones de PWA. El apple-touch-icon y los iconos del manifiesto son los que rellenan esos huecos.</li>
+    <li><strong>Rutas de archivo equivocadas.</strong> Si el <code>href</code> de las etiquetas link no coincide con el lugar donde subiste los archivos, el navegador no muestra nada. Mantén los iconos en la raíz del sitio o actualiza las rutas para que coincidan.</li>
+    <li><strong>Culpar a la caché del navegador.</strong> Los favicons se guardan en caché de forma muy agresiva. Después de añadir o cambiar uno, un refresco forzado o una visita en una ventana privada suele mostrar el icono nuevo que una recarga normal seguía ocultando.</li>
+    <li><strong>Partir de una imagen minúscula.</strong> Ampliar un logo pequeño a 180 o 512 píxeles produce un icono blando y pixelado. Empieza siempre por la versión limpia más grande que tengas.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Sigo necesitando favicon.ico o basta con PNG?</h3>
+  <p>Conserva ambos. Los navegadores modernos usan sin problema los iconos PNG, pero favicon.ico sigue siendo el respaldo universal más seguro, y algunos navegadores y herramientas todavía lo buscan por su nombre en la raíz del sitio. Un conjunto completo incluye los dos, y por eso el generador produce el ICO junto a los PNG.</p>
+
+  <h3>¿Cuál es la diferencia entre ICO y PNG aquí?</h3>
+  <p>ICO es un formato más antiguo que puede empaquetar varios tamaños (16, 32 y 48) dentro de un solo archivo, y por eso funciona tan bien como favicon de respaldo único. PNG guarda un tamaño por archivo, pero admite imágenes nítidas de alta calidad y transparencia, y por eso los iconos más grandes son PNG. Conviene tener ambos, cada uno haciendo aquello en lo que es mejor.</p>
+
+  <h3>¿Puedo usar un fondo transparente?</h3>
+  <p>Sí, y PNG lo admite. Un fondo transparente permite que el icono se apoye con naturalidad sobre los temas claros y oscuros del navegador. Solo asegúrate de que la propia marca tenga suficiente contraste para seguir siendo visible en ambos.</p>
+
+  <h3>¿Por qué no aparece mi favicon nuevo?</h3>
+  <p>Casi siempre es la caché. Los navegadores retienen los favicons más tiempo que la mayoría de los recursos. Haz un refresco forzado, abre el sitio en una ventana privada o comprueba el archivo del icono directamente por su URL para confirmar que se subió. En cuanto se limpia la caché, aparece el icono nuevo.</p>
+
+  <h3>¿Necesito un favicon para el SEO?</h3>
+  <p>No es un factor de posicionamiento, pero un favicon puede aparecer junto al título de tu página en los resultados de búsqueda, lo que refuerza tu marca y puede subir el porcentaje de clics. Es una tarea pequeña que se hace una sola vez y da un retorno visual duradero, así que no hay razón para saltársela.</p>
+
+  <h2>Crea el tuyo ahora</h2>
+
+  <p>Si tu sitio funciona sin favicon, o con un resto borroso de hace años, arréglalo en un par de minutos. Sube tu logotipo al <a href="/es/image/favicon-generator/">generador de favicon</a>, descarga el ZIP, deja los archivos en la raíz de tu sitio y pega el fragmento de HTML. Si solo necesitas un archivo de icono suelto en lugar del paquete completo, los conversores <a href="/es/image/png-to-ico/">PNG a ICO</a> y <a href="/es/image/svg-to-ico/">SVG a ICO</a> hacen esa tarea concreta, y el <a href="/es/image/optimize/">optimizador de imágenes</a> te ayuda a recortar antes tu imagen de origen.</p>

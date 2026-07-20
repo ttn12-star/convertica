@@ -1,0 +1,161 @@
+slug: how-to-create-a-favicon
+cover_image: blog/images/cover-how-to-create-a-favicon.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: favicon_generator
+title_en: "How to Create a Favicon the Right Way in 2026"
+meta_title_en: "How to Create a Favicon: Sizes, Formats and HTML | Convertica"
+meta_description_en: "One 16x16 icon is no longer enough. Here is how to create a favicon that looks sharp in browser tabs, on iPhone home screens and in PWAs, with the exact sizes and HTML you need."
+meta_keywords_en: "how to create a favicon, favicon generator, favicon sizes, png to favicon, favicon.ico, apple-touch-icon, make a favicon, favicon html, website icon"
+excerpt_en: "The favicon is the tiny image nobody thinks about until it is blurry, generic or missing. A single 16x16 icon stopped being enough years ago. Here is how to create a favicon that covers browser tabs, iPhone home screens and installable apps, with the exact sizes and the HTML to drop in."
+ai_metadata:
+  topics:
+    - creating a favicon
+    - favicon sizes and formats
+    - apple-touch-icon and PWA icons
+    - favicon HTML markup
+    - website branding
+  entities:
+    - favicon
+    - favicon.ico
+    - apple-touch-icon
+    - site.webmanifest
+    - PNG
+    - ICO
+    - SVG
+    - PWA
+    - Convertica
+  summary: "Explains what a favicon is and why a single 16x16 image no longer covers modern browsers and devices, lists the exact icon sizes a site needs in 2026 and where each one appears, walks through generating a complete favicon package from one image, breaks down the HTML link tags line by line, covers the web manifest and PWA icons, gives source-image best practices, lists the common mistakes that leave a favicon blurry or missing, and answers frequent questions about ICO versus PNG and caching."
+  related_terms:
+    - create favicon from image
+    - favicon size guide
+    - favicon.ico vs png
+    - apple touch icon size
+    - website tab icon
+    - favicon not showing up
+    - generate favicon package
+  reading_time_minutes: 8
+  target_audience: "Anyone launching or maintaining a website, blog, portfolio or web app who wants a favicon that looks sharp everywhere, from developers and designers to small-business owners and no-code builders who do not want to fight with icon sizes and markup."
+content_en: |
+  The favicon is the smallest piece of your brand and the one people see most often. It sits in the browser tab, in the bookmarks bar, next to your name in search results, and on a phone home screen when someone saves your page. Nobody notices a good favicon. They absolutely notice a missing one, a blurry one, or the generic grey globe a browser shows when you forgot to add one at all. Creating a proper favicon takes a few minutes once you know what modern browsers and devices actually ask for. Here is the whole picture, and the fastest way through it.
+
+  <h2>What a favicon actually is</h2>
+
+  <p>A favicon, short for "favorite icon", is the small square image that represents a website. It started life in the late 1990s as a single 16x16 pixel file called favicon.ico, and for a long time that was the end of the story. It is not anymore. Today the same little logo has to render crisply in a browser tab on a high-resolution laptop, in a bookmark, on an iPhone home screen at 180 pixels, on an Android device, inside an installable web app, and sometimes beside your listing in a search engine. Each of those places wants a different size, and a few of them want a specific filename.</p>
+
+  <p>This is why "just upload a 16x16" advice from years ago now produces a fuzzy mess. A tiny image scaled up to a 180 pixel home-screen icon looks soft and pixelated. The right approach is to start from one large, clean image and produce a small set of correctly sized files from it.</p>
+
+  <h2>Why one size is no longer enough</h2>
+
+  <p>Different surfaces pull different icons. Understanding where each one goes makes the size list below feel logical instead of arbitrary:</p>
+
+  <ul>
+    <li><strong>Browser tabs and bookmarks</strong> use the classic favicon, typically a 16x16 or 32x32 image, with 32 preferred on modern high-DPI screens.</li>
+    <li><strong>iPhone and iPad home screens</strong> use a 180x180 apple-touch-icon when someone adds your page to their home screen.</li>
+    <li><strong>Android and installable web apps (PWAs)</strong> use 192x192 and 512x512 icons defined in a small manifest file.</li>
+    <li><strong>Windows and higher-resolution displays</strong> benefit from the in-between sizes like 48, 64, 96, 128 and 256 so the icon never has to be scaled far from a native size.</li>
+    <li><strong>Search results</strong> can show your favicon next to the page title, which quietly reinforces your brand on every listing.</li>
+  </ul>
+
+  <h2>The sizes you actually need in 2026</h2>
+
+  <p>You do not need to guess or generate hundreds of files. This is the practical set that covers every mainstream browser and device, and it maps exactly to what a good generator hands you:</p>
+
+  <table>
+    <thead>
+      <tr><th>File</th><th>Size</th><th>Where it appears</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>favicon.ico</td><td>16, 32, 48 (multi-size)</td><td>The universal fallback: tabs, address bar, bookmarks, older browsers</td></tr>
+      <tr><td>favicon-16x16.png</td><td>16x16</td><td>Small tab and bookmark rendering</td></tr>
+      <tr><td>favicon-32x32.png</td><td>32x32</td><td>Standard tab icon on modern desktop browsers</td></tr>
+      <tr><td>apple-touch-icon.png</td><td>180x180</td><td>iPhone and iPad home screen shortcut</td></tr>
+      <tr><td>android-chrome-192x192.png</td><td>192x192</td><td>Android home screen and PWA install</td></tr>
+      <tr><td>android-chrome-512x512.png</td><td>512x512</td><td>Android splash screen and high-resolution PWA</td></tr>
+      <tr><td>48, 64, 96, 128, 256 px PNGs</td><td>various</td><td>High-DPI displays and Windows, so the icon rarely scales</td></tr>
+    </tbody>
+  </table>
+
+  <p>That is eleven files in total: one ICO, ten PNGs, plus a small manifest and a snippet of HTML. Making all of them by hand in an image editor is tedious and easy to get wrong. Making them in one step is the whole point of the next section.</p>
+
+  <h2>The fastest way: generate the whole package at once</h2>
+
+  <figure><img src="/static/images/tools/image-favicon-generator.jpg" alt="Convertica favicon generator turning one image into a complete favicon package" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Instead of exporting sizes one at a time, start from a single high-quality image and let a generator build the full set. Here is the flow with the <a href="/en/image/favicon-generator/">favicon generator</a>:</p>
+
+  <ol>
+    <li>Open the <a href="/en/image/favicon-generator/">favicon generator</a> and upload your source image. A PNG, JPG, WebP or an SVG all work, and an SVG or a large PNG gives the crispest results.</li>
+    <li>The tool center-crops your image to a square and renders every size for you: the multi-resolution favicon.ico, the full range of PNG icons from 16 up to 512, the 180 pixel apple-touch-icon, and the 192 and 512 Android icons.</li>
+    <li>Download the ZIP. Inside you get all the icons, a ready-made site.webmanifest for PWA and Android support, and a small block of HTML to paste into your site.</li>
+  </ol>
+
+  <p>Your uploaded image is removed from the server after processing, so a logo you have not launched yet does not linger anywhere. The result is a complete, standards-correct icon set from a single upload, no image editor required.</p>
+
+  <h2>The HTML you paste, explained line by line</h2>
+
+  <p>A favicon only works if the browser knows where to find it. The generator hands you a snippet like this to place inside the <code>&lt;head&gt;</code> of your pages:</p>
+
+  <pre><code>&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;
+  &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+  &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+  &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+  &lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+
+  <p>Line by line, here is what each one does:</p>
+
+  <ul>
+    <li>The first line points to <strong>favicon.ico</strong>, the universal fallback every browser understands, including older ones.</li>
+    <li>The two PNG lines give modern browsers a sharper <strong>32x32</strong> and <strong>16x16</strong> icon and let them pick the right one for the screen.</li>
+    <li>The <strong>apple-touch-icon</strong> line is what iPhones and iPads use when someone saves your page to their home screen, so it looks like a real app icon rather than a blurry screenshot.</li>
+    <li>The <strong>manifest</strong> line points to the web manifest, which is where Android and installable web apps read their icons and app details.</li>
+  </ul>
+
+  <p>Upload the icon files and the manifest to the root of your site so the paths above resolve, and the browser handles the rest.</p>
+
+  <h2>What the web manifest is for</h2>
+
+  <p>The site.webmanifest is a small text file that describes your site as an installable app. Its most important job for favicons is listing the 192x192 and 512x512 icons that Android and Progressive Web Apps use for the home screen and the splash screen. If you never intend to make your site installable, the manifest still does no harm and keeps Android happy. If you do, those two icons are exactly what it needs, and the generator fills them in for you.</p>
+
+  <h2>Choosing and preparing the source image</h2>
+
+  <p>The single biggest quality lever is the image you start from. A few habits make every generated size look better:</p>
+
+  <ul>
+    <li><strong>Start big and square.</strong> A 512x512 image, or an SVG, downsizes cleanly. A tiny source can only ever look tiny.</li>
+    <li><strong>Keep it simple.</strong> A favicon is often shown at 16 pixels. Fine detail, thin lines and small text disappear at that size. A single bold letter, a symbol or a simplified logo mark reads far better than your full logo with a tagline.</li>
+    <li><strong>Use strong contrast.</strong> The icon has to stand out against both light and dark browser themes. High contrast between the mark and its background keeps it legible everywhere.</li>
+    <li><strong>Mind the margins.</strong> Leave a little breathing room around the mark so it is not clipped when a platform rounds the corners of an app icon.</li>
+  </ul>
+
+  <p>If you are weighing which format to start from, the guide on <a href="/en/blog/webp-vs-jpeg-vs-png-best-image-format/">WebP vs JPEG vs PNG</a> covers the trade-offs, and if you are wondering what happens to the logo you upload, our note on <a href="/en/blog/is-convertica-safe-pdf-file-security-privacy-explained/">how Convertica handles your files</a> explains the privacy side.</p>
+
+  <h2>Common mistakes that leave a favicon broken</h2>
+
+  <ul>
+    <li><strong>Shipping only favicon.ico.</strong> It covers tabs but not iPhone home screens or PWA installs. The apple-touch-icon and the manifest icons are what fill those gaps.</li>
+    <li><strong>Wrong file paths.</strong> If the <code>href</code> in the link tags does not match where you actually uploaded the files, the browser shows nothing. Keep the icons at the site root or update the paths to match.</li>
+    <li><strong>Blaming the browser cache.</strong> Favicons are cached aggressively. After you add or change one, a hard refresh or a visit in a private window usually shows the new icon that a normal reload was still hiding.</li>
+    <li><strong>Starting from a tiny image.</strong> Scaling a small logo up to 180 or 512 pixels produces a soft, pixelated icon. Always start from the largest clean version you have.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Do I still need favicon.ico, or is PNG enough?</h3>
+  <p>Keep both. Modern browsers happily use the PNG icons, but favicon.ico remains the safe universal fallback, and some browsers and tools still look for it by name at the site root. A complete set includes both, which is why the generator produces the ICO alongside the PNGs.</p>
+
+  <h3>What is the difference between ICO and PNG here?</h3>
+  <p>ICO is an older format that can bundle several sizes (16, 32 and 48) inside one file, which is why it works so well as the single fallback favicon. PNG holds one size per file but supports crisp, high-quality images and transparency, which is why the larger icons are PNGs. You want both, each doing the job it is best at.</p>
+
+  <h3>Can I use a transparent background?</h3>
+  <p>Yes, and PNG supports it. A transparent background lets the icon sit naturally on light and dark browser themes. Just make sure the mark itself has enough contrast to stay visible on both.</p>
+
+  <h3>Why does my new favicon not show up?</h3>
+  <p>Almost always the cache. Browsers hold on to favicons longer than most assets. Do a hard refresh, open the site in a private window, or check the icon file directly by its URL to confirm it uploaded. Once the cache clears, the new icon appears.</p>
+
+  <h3>Do I need a favicon for SEO?</h3>
+  <p>It is not a ranking factor, but a favicon can appear beside your page title in search results, which strengthens your brand and can lift click-through. It is a small, one-time task with a lasting visual payoff, so there is no reason to skip it.</p>
+
+  <h2>Create yours now</h2>
+
+  <p>If your site is running without a favicon, or with a blurry leftover from years ago, fix it in a couple of minutes. Upload your logo to the <a href="/en/image/favicon-generator/">favicon generator</a>, download the ZIP, drop the files at your site root, and paste in the HTML snippet. If you only need a single icon file rather than the full package, the <a href="/en/image/png-to-ico/">PNG to ICO</a> and <a href="/en/image/svg-to-ico/">SVG to ICO</a> converters do that one job, and <a href="/en/image/optimize/">image optimizer</a> helps trim your source image first.</p>
