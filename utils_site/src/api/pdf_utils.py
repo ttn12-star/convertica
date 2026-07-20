@@ -2,6 +2,7 @@
 import os
 
 import fitz  # PyMuPDF
+from src.exceptions import EncryptedPDFError, InvalidPDFError
 
 from .logging_utils import get_logger
 
@@ -234,6 +235,16 @@ def execute_with_repair_fallback(
             )
 
             return result
+
+        except (EncryptedPDFError, InvalidPDFError):
+            # Client-input problems (wrong password, not password-protected,
+            # invalid page range, unreadable-per-our-validation) are not
+            # server faults and are not fixable by a repair pass — it just
+            # re-runs the same check, fails identically, and logs Sentry noise.
+            # Re-raise immediately so the API layer returns a clean 400.
+            # (Genuine structural corruption surfaces as pypdf's own errors,
+            # which still fall through to the repair retry below.)
+            raise
 
         except Exception as e:
             # If this was first attempt, continue to retry with repair
