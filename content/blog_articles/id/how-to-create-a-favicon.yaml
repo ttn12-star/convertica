@@ -1,0 +1,161 @@
+slug: how-to-create-a-favicon
+cover_image: blog/images/cover-how-to-create-a-favicon.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: favicon_generator
+title_id: "Cara Membuat Favicon yang Benar di 2026"
+meta_title_id: "Cara Membuat Favicon: Ukuran, Format, dan HTML | Convertica"
+meta_description_id: "Satu ikon 16x16 sekarang tidak cukup. Begini cara membuat favicon yang tajam di tab browser, di layar utama iPhone, dan di PWA, lengkap dengan ukuran favicon dan HTML yang Anda butuhkan."
+meta_keywords_id: "cara membuat favicon, favicon generator, ukuran favicon, png ke favicon, favicon.ico, apple-touch-icon, bikin favicon, favicon html, ikon website"
+excerpt_id: "Favicon adalah gambar mungil yang tidak dipikirkan siapa pun sampai ia buram, generik, atau hilang. Satu ikon 16x16 sudah lama berhenti mencukupi. Berikut cara membuat favicon yang menutup kebutuhan tab browser, layar utama iPhone, dan aplikasi yang bisa diinstal, lengkap dengan ukuran pasti dan HTML yang tinggal ditempel."
+ai_metadata:
+  topics:
+    - membuat favicon
+    - ukuran dan format favicon
+    - apple-touch-icon dan ikon PWA
+    - markup HTML favicon
+    - branding website
+  entities:
+    - favicon
+    - favicon.ico
+    - apple-touch-icon
+    - site.webmanifest
+    - PNG
+    - ICO
+    - SVG
+    - PWA
+    - Convertica
+  summary: "Menjelaskan apa itu favicon dan kenapa satu gambar 16x16 tidak lagi menutup kebutuhan browser serta perangkat modern, mendata ukuran ikon pasti yang diperlukan sebuah situs di 2026 beserta lokasi kemunculan masing-masing, memandu cara membuat paket favicon lengkap dari satu gambar, membedah tag HTML baris demi baris, membahas web manifest dan ikon PWA, memberi praktik terbaik untuk gambar sumber, mendata kesalahan umum yang membuat favicon buram atau hilang, dan menjawab pertanyaan yang sering muncul soal ICO versus PNG serta cache."
+  related_terms:
+    - membuat favicon dari gambar
+    - panduan ukuran favicon
+    - favicon.ico vs png
+    - ukuran apple touch icon
+    - ikon tab website
+    - favicon tidak muncul
+    - membuat paket favicon
+  reading_time_minutes: 8
+  target_audience: "Siapa pun yang meluncurkan atau merawat website, blog, portofolio, atau aplikasi web dan ingin favicon yang terlihat tajam di mana saja, mulai dari developer dan desainer sampai pemilik usaha kecil serta pengguna no-code yang malas bergulat dengan ukuran ikon dan markup."
+content_id: |
+  Favicon adalah potongan brand terkecil Anda sekaligus yang paling sering dilihat orang. Ia nangkring di tab browser, di bilah bookmark, di sebelah nama Anda pada hasil pencarian, dan di layar utama ponsel saat seseorang menyimpan halaman Anda. Tidak ada yang menyadari favicon yang bagus. Tapi orang pasti sadar kalau favicon-nya hilang, buram, atau muncul ikon bola dunia abu-abu generik yang ditampilkan browser saat Anda lupa memasangnya. Membuat favicon yang benar cuma butuh beberapa menit begitu Anda paham apa yang sebenarnya diminta browser dan perangkat modern. Berikut gambaran lengkapnya, plus jalan tercepat untuk menyelesaikannya.
+
+  <h2>Apa itu favicon sebenarnya</h2>
+
+  <p>Favicon, singkatan dari "favorite icon", adalah gambar kotak kecil yang mewakili sebuah website. Ia lahir pada akhir 1990-an sebagai satu berkas berukuran 16x16 piksel bernama favicon.ico, dan untuk waktu yang lama cuma itu ceritanya. Sekarang tidak lagi. Logo mungil yang sama kini harus tampil tajam di tab browser pada laptop beresolusi tinggi, di bookmark, di layar utama iPhone pada 180 piksel, di perangkat Android, di dalam aplikasi web yang bisa diinstal, dan kadang di sebelah listing Anda pada mesin pencari. Masing-masing tempat itu meminta ukuran berbeda, dan sebagian di antaranya minta nama berkas yang spesifik.</p>
+
+  <p>Inilah alasan saran "cukup unggah 16x16" dari tahun-tahun lalu sekarang cuma menghasilkan tampilan yang kabur. Gambar mungil yang dibesarkan menjadi ikon layar utama 180 piksel akan tampak lembek dan pecah. Pendekatan yang benar adalah mulai dari satu gambar besar yang bersih, lalu menghasilkan sekumpulan kecil berkas dengan ukuran yang tepat darinya.</p>
+
+  <h2>Kenapa satu ukuran tidak lagi cukup</h2>
+
+  <p>Permukaan yang berbeda menarik ikon yang berbeda. Memahami ke mana masing-masing pergi membuat daftar ukuran di bawah terasa logis, bukan asal-asalan:</p>
+
+  <ul>
+    <li><strong>Tab browser dan bookmark</strong> memakai favicon klasik, biasanya gambar 16x16 atau 32x32, dengan 32 lebih disukai pada layar high-DPI modern.</li>
+    <li><strong>Layar utama iPhone dan iPad</strong> memakai apple-touch-icon 180x180 saat seseorang menambahkan halaman Anda ke layar utama.</li>
+    <li><strong>Android dan aplikasi web yang bisa diinstal (PWA)</strong> memakai ikon 192x192 dan 512x512 yang didefinisikan dalam sebuah berkas manifest kecil.</li>
+    <li><strong>Windows dan layar beresolusi lebih tinggi</strong> terbantu oleh ukuran antara seperti 48, 64, 96, 128, dan 256 supaya ikon tidak pernah diperbesar jauh dari ukuran aslinya.</li>
+    <li><strong>Hasil pencarian</strong> bisa menampilkan favicon Anda di sebelah judul halaman, yang diam-diam memperkuat brand Anda di setiap listing.</li>
+  </ul>
+
+  <h2>Ukuran yang benar-benar Anda butuhkan di 2026</h2>
+
+  <p>Anda tidak perlu menebak atau membuat ratusan berkas. Ini kumpulan praktis yang menutup semua browser dan perangkat arus utama, dan persis cocok dengan apa yang diberikan generator yang baik:</p>
+
+  <table>
+    <thead>
+      <tr><th>Berkas</th><th>Ukuran</th><th>Tempat kemunculan</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>favicon.ico</td><td>16, 32, 48 (multi-ukuran)</td><td>Cadangan universal: tab, bilah alamat, bookmark, browser lama</td></tr>
+      <tr><td>favicon-16x16.png</td><td>16x16</td><td>Tampilan tab dan bookmark kecil</td></tr>
+      <tr><td>favicon-32x32.png</td><td>32x32</td><td>Ikon tab standar pada browser desktop modern</td></tr>
+      <tr><td>apple-touch-icon.png</td><td>180x180</td><td>Pintasan layar utama iPhone dan iPad</td></tr>
+      <tr><td>android-chrome-192x192.png</td><td>192x192</td><td>Layar utama Android dan instalasi PWA</td></tr>
+      <tr><td>android-chrome-512x512.png</td><td>512x512</td><td>Splash screen Android dan PWA beresolusi tinggi</td></tr>
+      <tr><td>PNG 48, 64, 96, 128, 256 px</td><td>beragam</td><td>Layar high-DPI dan Windows, supaya ikon jarang diperbesar</td></tr>
+    </tbody>
+  </table>
+
+  <p>Total ada sebelas berkas: satu ICO, sepuluh PNG, plus manifest kecil dan potongan HTML. Membuat semuanya dengan tangan di editor gambar itu melelahkan dan gampang salah. Membuat semuanya dalam satu langkah adalah inti dari bagian berikutnya.</p>
+
+  <h2>Cara tercepat: buat seluruh paket sekaligus</h2>
+
+  <figure><img src="/static/images/tools/image-favicon-generator.jpg" alt="Favicon generator Convertica mengubah satu gambar menjadi paket favicon lengkap" width="1280" height="800" loading="lazy"></figure>
+
+  <p>Alih-alih mengekspor ukuran satu per satu, mulailah dari satu gambar berkualitas tinggi dan biarkan generator menyusun kumpulan lengkapnya. Begini alurnya dengan <a href="/id/image/favicon-generator/">favicon generator</a>:</p>
+
+  <ol>
+    <li>Buka <a href="/id/image/favicon-generator/">favicon generator</a> lalu unggah gambar sumber Anda. Format PNG, JPG, WebP, atau SVG semuanya bisa, dan SVG atau PNG besar memberi hasil paling tajam.</li>
+    <li>Alat ini memotong gambar Anda ke tengah menjadi kotak dan me-render setiap ukuran untuk Anda: favicon.ico multi-resolusi, seluruh rentang ikon PNG dari 16 sampai 512, apple-touch-icon 180 piksel, serta ikon Android 192 dan 512.</li>
+    <li>Unduh berkas ZIP-nya. Di dalamnya Anda dapat semua ikon, site.webmanifest siap pakai untuk dukungan PWA dan Android, plus blok kecil HTML untuk ditempel ke situs Anda.</li>
+  </ol>
+
+  <p>Gambar yang Anda unggah dihapus dari server setelah diproses, jadi logo yang belum Anda luncurkan tidak tertinggal di mana pun. Hasilnya adalah kumpulan ikon lengkap yang sesuai standar dari satu kali unggah, tanpa perlu editor gambar.</p>
+
+  <h2>HTML yang Anda tempel, dijelaskan baris demi baris</h2>
+
+  <p>Favicon hanya bekerja kalau browser tahu di mana menemukannya. Generator memberi Anda potongan seperti ini untuk ditaruh di dalam <code>&lt;head&gt;</code> halaman Anda:</p>
+
+  <pre><code>&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;
+  &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+  &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+  &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+  &lt;link rel="manifest" href="/site.webmanifest"&gt;</code></pre>
+
+  <p>Baris demi baris, ini yang dikerjakan masing-masing:</p>
+
+  <ul>
+    <li>Baris pertama menunjuk ke <strong>favicon.ico</strong>, cadangan universal yang dipahami setiap browser, termasuk yang lama.</li>
+    <li>Dua baris PNG memberi browser modern ikon <strong>32x32</strong> dan <strong>16x16</strong> yang lebih tajam serta membiarkannya memilih ukuran yang pas untuk layar.</li>
+    <li>Baris <strong>apple-touch-icon</strong> adalah yang dipakai iPhone dan iPad saat seseorang menyimpan halaman Anda ke layar utama, supaya tampak seperti ikon aplikasi sungguhan, bukan tangkapan layar buram.</li>
+    <li>Baris <strong>manifest</strong> menunjuk ke web manifest, tempat Android dan aplikasi web yang bisa diinstal membaca ikon serta detail aplikasinya.</li>
+  </ul>
+
+  <p>Unggah berkas ikon dan manifest ke root situs Anda supaya path di atas ketemu, lalu browser mengurus sisanya.</p>
+
+  <h2>Untuk apa web manifest itu</h2>
+
+  <p>site.webmanifest adalah berkas teks kecil yang mendeskripsikan situs Anda sebagai aplikasi yang bisa diinstal. Tugas terpentingnya untuk favicon adalah mendaftar ikon 192x192 dan 512x512 yang dipakai Android dan Progressive Web App untuk layar utama dan splash screen. Kalau Anda tidak berniat membuat situs bisa diinstal, manifest ini tetap tidak merugikan dan membuat Android senang. Kalau Anda berniat, dua ikon itulah yang tepat dibutuhkannya, dan generator sudah mengisikannya untuk Anda.</p>
+
+  <h2>Memilih dan menyiapkan gambar sumber</h2>
+
+  <p>Pengungkit kualitas terbesar adalah gambar yang Anda pakai sebagai titik awal. Beberapa kebiasaan membuat setiap ukuran hasil generate tampak lebih baik:</p>
+
+  <ul>
+    <li><strong>Mulai besar dan kotak.</strong> Gambar 512x512, atau SVG, menyusut dengan bersih. Sumber yang mungil selamanya cuma bisa tampak mungil.</li>
+    <li><strong>Jaga tetap sederhana.</strong> Favicon sering ditampilkan pada 16 piksel. Detail halus, garis tipis, dan teks kecil hilang di ukuran itu. Satu huruf tebal, sebuah simbol, atau tanda logo yang disederhanakan terbaca jauh lebih jelas ketimbang logo penuh beserta tagline-nya.</li>
+    <li><strong>Pakai kontras yang kuat.</strong> Ikon harus menonjol di atas tema browser terang maupun gelap. Kontras tinggi antara tanda dan latarnya menjaganya tetap terbaca di mana saja.</li>
+    <li><strong>Perhatikan margin.</strong> Sisakan sedikit ruang bernapas di sekeliling tanda supaya tidak terpotong saat sebuah platform membulatkan sudut ikon aplikasi.</li>
+  </ul>
+
+  <p>Kalau Anda sedang menimbang format apa yang dipakai sebagai titik awal, panduan tentang <a href="/id/blog/webp-vs-jpeg-vs-png-best-image-format/">WebP vs JPEG vs PNG</a> membahas untung-ruginya, dan kalau Anda penasaran apa yang terjadi pada logo yang Anda unggah, catatan kami soal <a href="/id/blog/is-convertica-safe-pdf-file-security-privacy-explained/">bagaimana Convertica menangani berkas Anda</a> menjelaskan sisi privasinya.</p>
+
+  <h2>Kesalahan umum yang membuat favicon rusak</h2>
+
+  <ul>
+    <li><strong>Cuma mengirim favicon.ico.</strong> Ia menutup tab tapi bukan layar utama iPhone atau instalasi PWA. Apple-touch-icon dan ikon manifest-lah yang mengisi celah itu.</li>
+    <li><strong>Path berkas salah.</strong> Kalau <code>href</code> pada tag link tidak cocok dengan tempat Anda benar-benar mengunggah berkasnya, browser tidak menampilkan apa-apa. Taruh ikon di root situs atau perbarui path-nya agar cocok.</li>
+    <li><strong>Menyalahkan cache browser.</strong> Favicon disimpan cache secara agresif. Setelah Anda menambah atau mengubahnya, hard refresh atau kunjungan lewat jendela penyamaran biasanya menampilkan ikon baru yang masih disembunyikan oleh reload biasa.</li>
+    <li><strong>Mulai dari gambar mungil.</strong> Memperbesar logo kecil ke 180 atau 512 piksel menghasilkan ikon yang lembek dan pecah. Selalu mulai dari versi bersih terbesar yang Anda punya.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Apakah saya masih perlu favicon.ico, atau PNG saja sudah cukup?</h3>
+  <p>Simpan keduanya. Browser modern dengan senang hati memakai ikon PNG, tapi favicon.ico tetap jadi cadangan universal yang aman, dan sebagian browser serta alat masih mencarinya berdasarkan nama di root situs. Kumpulan lengkap mencakup keduanya, itulah kenapa generator menghasilkan ICO berdampingan dengan PNG.</p>
+
+  <h3>Apa bedanya ICO dan PNG di sini?</h3>
+  <p>ICO adalah format lama yang bisa membungkus beberapa ukuran (16, 32, dan 48) di dalam satu berkas, itulah kenapa ia begitu pas sebagai favicon cadangan tunggal. PNG menyimpan satu ukuran per berkas tapi mendukung gambar tajam berkualitas tinggi serta transparansi, itulah kenapa ikon-ikon besar berupa PNG. Anda mau keduanya, masing-masing mengerjakan tugas yang paling cocok untuknya.</p>
+
+  <h3>Bisakah saya pakai latar transparan?</h3>
+  <p>Bisa, dan PNG mendukungnya. Latar transparan membuat ikon duduk alami di atas tema browser terang maupun gelap. Pastikan saja tandanya sendiri punya kontras yang cukup supaya tetap terlihat di keduanya.</p>
+
+  <h3>Kenapa favicon baru saya tidak muncul?</h3>
+  <p>Hampir selalu karena cache. Browser menahan favicon lebih lama ketimbang kebanyakan aset. Lakukan hard refresh, buka situs lewat jendela penyamaran, atau periksa berkas ikonnya langsung lewat URL-nya untuk memastikan ia sudah terunggah. Begitu cache bersih, ikon baru muncul.</p>
+
+  <h3>Apakah saya perlu favicon untuk SEO?</h3>
+  <p>Ini bukan faktor peringkat, tapi favicon bisa muncul di sebelah judul halaman Anda pada hasil pencarian, yang memperkuat brand dan bisa mengangkat click-through. Ini tugas kecil sekali kerja dengan hasil visual yang bertahan lama, jadi tidak ada alasan melewatkannya.</p>
+
+  <h2>Buat favicon Anda sekarang</h2>
+
+  <p>Kalau situs Anda berjalan tanpa favicon, atau dengan sisa buram dari tahun-tahun lalu, perbaiki dalam beberapa menit. Unggah logo Anda ke <a href="/id/image/favicon-generator/">favicon generator</a>, unduh ZIP-nya, taruh berkasnya di root situs, lalu tempel potongan HTML-nya. Kalau Anda cuma butuh satu berkas ikon ketimbang paket lengkap, konverter <a href="/id/image/png-to-ico/">PNG ke ICO</a> dan <a href="/id/image/svg-to-ico/">SVG ke ICO</a> mengerjakan tugas tunggal itu, dan <a href="/id/image/optimize/">optimizer gambar</a> membantu merapikan gambar sumber Anda lebih dulu.</p>

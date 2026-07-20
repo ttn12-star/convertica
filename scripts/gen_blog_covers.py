@@ -50,6 +50,7 @@ ICONS = {
     "badge": f'<path {P} d="M12 3 4 6v6c0 4.4 3.4 7.6 8 9 4.6-1.4 8-4.6 8-9V6l-8-3Z"/><path {P} d="m9 12 2 2 4-4"/>',
     "rocket": f'<path {P} d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2a3 3 0 0 0-3-3Z"/><path {P} d="M9 11a16 16 0 0 1 8-8c2 0 3 1 3 3a16 16 0 0 1-8 8l-3-3Z"/><circle {P} cx="14.5" cy="9.5" r="1.3"/>',
     "star": f'<path {P} d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.9 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3Z"/>',
+    "favicon": f'<rect {P} x="3" y="5" width="18" height="14" rx="2"/><path {P} d="M3 9h18"/><rect {P} x="5.4" y="6.3" width="2.4" height="2.4" rx=".5"/><path {P} d="M8 13h8M8 16h5"/>',
 }
 
 # --- per-article cover spec: (display title, kicker, gradient stops, accent, icon) ---
@@ -314,6 +315,13 @@ COVERS = {
         ("#2563eb", "#7c3aed"),
         "#93c5fd",
         "rocket",
+    ),
+    "how-to-create-a-favicon": (
+        "How to Create\na Favicon",
+        "IMAGE · FAVICON",
+        ("#4338ca", "#0ea5e9"),
+        "#bae6fd",
+        "favicon",
     ),
 }
 
