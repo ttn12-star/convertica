@@ -47,7 +47,10 @@ class ExcelToPDFAPIView(BaseConversionAPIView):
     def perform_conversion(self, uploaded_file, context, **kwargs) -> tuple[str, str]:
         """Convert Excel to PDF."""
         excel_path, output_path = convert_excel_to_pdf(
-            uploaded_file, suffix="_convertica"
+            uploaded_file,
+            suffix="_convertica",
+            orientation=kwargs.get("orientation", "auto"),
+            fit_mode=kwargs.get("fit_mode", "fit_width"),
         )
         return excel_path, output_path
 
