@@ -463,22 +463,6 @@ class OptimizedWordToPDFConverter:
 
         # --- Slow path: LibreOffice subprocess (original logic below) ---
 
-        def _check_libreoffice():
-            try:
-                result = subprocess.run(
-                    ["libreoffice", "--version"],
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE,
-                    timeout=10,
-                )
-                return result.returncode == 0
-            except (
-                subprocess.TimeoutExpired,
-                FileNotFoundError,
-                subprocess.SubprocessError,
-            ):
-                return False
-
         def _convert():
             # Optimized environment variables for LibreOffice
             env = os.environ.copy()
@@ -903,11 +887,13 @@ class OptimizedWordToPDFConverter:
                             extra={**context, "event": "temp_file_cleanup_failed"},
                         )
 
-        # Check LibreOffice availability
+        # LibreOffice availability: test PATH, not a live `soffice --version`.
+        # That spawn raced the detached soffice.bin profile lock (see
+        # _run_libreoffice) and timed out under load, aborting valid conversions
+        # with a false "not installed". which() answers "is it in PATH" with no
+        # process, lock, or timeout.
         loop = asyncio.get_event_loop()
-        libreoffice_available = await loop.run_in_executor(None, _check_libreoffice)
-
-        if not libreoffice_available:
+        if shutil.which("libreoffice") is None:
             logger.error(
                 "LibreOffice is not available",
                 extra={**context, "event": "libreoffice_not_found"},
