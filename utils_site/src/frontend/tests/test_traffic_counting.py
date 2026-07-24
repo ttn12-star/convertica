@@ -39,6 +39,34 @@ class TrafficCountingMiddlewareTest(TestCase):
         self._get("/en/pdf-to-word/", ua="Googlebot/2.1 (+http://www.google.com/bot)")
         self.assertFalse(PageViewDaily.objects.exists())
 
+    def test_ai_crawlers_and_http_libs_are_not_counted(self):
+        # Agents that slipped the bot/crawl/spider filter and inflated the
+        # counts (views ~= uniques bursts). None are humans.
+        for ua in (
+            "meta-externalagent/1.1 (+https://developers.facebook.com/docs/sharing/webmasters/crawler)",
+            "Mozilla/5.0 (compatible; anthropic-ai/1.0)",
+            "cohere-ai/1.0",
+            "img2dataset",
+            "Go-http-client/2.0",
+            "axios/1.6.0",
+            "Java/17.0.1",
+            "python-httpx/0.27",
+        ):
+            self._get("/en/pdf-to-word/", ua=ua)
+        self.assertFalse(PageViewDaily.objects.exists(), "bot UA leaked a page view")
+
+    def test_in_app_browser_is_still_counted(self):
+        # A real human opening the link inside an app webview must NOT be
+        # filtered — the UA carries "Instagram"/"FBAV" but it is a person.
+        self._get(
+            "/en/pdf-to-word/",
+            ua=(
+                "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
+                "AppleWebKit/605.1.15 Instagram 300.0 (iPhone; iOS 17_0)"
+            ),
+        )
+        self.assertEqual(PageViewDaily.objects.get(path="/en/pdf-to-word/").views, 1)
+
     def test_empty_user_agent_is_not_counted(self):
         self._get("/en/pdf-to-word/", ua="")
         self.assertFalse(PageViewDaily.objects.exists())
