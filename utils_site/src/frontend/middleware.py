@@ -293,7 +293,16 @@ class CaptchaRequirementMiddleware:
 _BOT_UA_RE = re.compile(
     r"bot|crawl|spider|slurp|bing|google|yandex|baidu|duckduck|ahrefs|semrush|"
     r"mj12|dotbot|petalbot|facebookexternalhit|embedly|preview|monitor|pingdom|"
-    r"uptime|headless|phantom|python-requests|curl|wget|scrapy|httpx|okhttp",
+    r"uptime|headless|phantom|python-requests|curl|wget|scrapy|httpx|okhttp|"
+    # AI/data-scraper agents whose UA carries no bot/crawl/spider token, plus
+    # server-side HTTP libraries and internet scanners — none are humans. Added
+    # after a scraper burst (views ~= uniques for a day) slipped the list above.
+    # NB: deliberately no facebook/instagram/whatsapp in-app-browser tokens —
+    # those carry real human page views. facebookexternalhit (the scraper) is
+    # already matched above.
+    r"meta-externalagent|meta-externalfetcher|anthropic-ai|cohere-ai|img2dataset|"
+    r"go-http-client|aiohttp|node-fetch|axios|guzzle|java/|libwww|postmanruntime|"
+    r"zgrab|masscan|censys",
     re.IGNORECASE,
 )
 
