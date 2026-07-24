@@ -7,6 +7,7 @@ Supports batch processing for premium users.
 
 import asyncio
 import os
+import shutil
 import subprocess
 import tempfile
 
@@ -372,23 +373,12 @@ class ExcelToPDFConverter:
                     f"LibreOffice conversion failed: {e}", context=context
                 )
 
-        # Check LibreOffice availability
-        def _check_libreoffice():
-            try:
-                result = subprocess.run(
-                    ["libreoffice", "--version"],
-                    timeout=10,
-                    capture_output=True,
-                    text=True,
-                    check=True,
-                )
-                return result.returncode == 0
-            except Exception:
-                return False
-
-        libreoffice_available = await loop.run_in_executor(None, _check_libreoffice)
-
-        if not libreoffice_available:
+        # LibreOffice availability: test PATH, not a live `soffice --version`.
+        # That spawn raced the detached soffice.bin profile lock (see
+        # word_to_pdf_optimized._run_libreoffice) and timed out under load,
+        # aborting valid conversions with a false "not installed". which()
+        # answers "is it in PATH" with no process, lock, or timeout.
+        if shutil.which("libreoffice") is None:
             logger.error(
                 "LibreOffice is not available",
                 extra={**context, "event": "libreoffice_not_found"},
