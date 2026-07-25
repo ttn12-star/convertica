@@ -323,13 +323,26 @@ COVERS = {
         "#bae6fd",
         "favicon",
     ),
+    "what-is-pdf-a-and-how-to-convert": (
+        "What Is PDF/A?\nArchive-Ready PDFs",
+        "PDF · ARCHIVE",
+        ("#1e3a8a", "#0f766e"),
+        "#99f6e4",
+        "badge",
+        "Premium tool",
+    ),
 }
 
 LOGO_B64 = base64.b64encode(LOGO.read_bytes()).decode()
 
 
 def html_for(
-    title: str, kicker: str, grad: tuple[str, str], accent: str, icon: str
+    title: str,
+    kicker: str,
+    grad: tuple[str, str],
+    accent: str,
+    icon: str,
+    pill: str = "Free · No sign-up",
 ) -> str:
     title_html = title.replace("\n", "<br>")
     c1, c2 = grad
@@ -382,7 +395,7 @@ h1 {{ font-size:72px; line-height:1.05; font-weight:800; letter-spacing:-1.5px;
   </div>
   <div class="foot">
     <span class="url">convertica.net</span>
-    <span class="pill">Free · No sign-up</span>
+    <span class="pill">{pill}</span>
   </div>
 </div></body></html>"""
 
@@ -400,10 +413,7 @@ def main(argv: list[str]) -> int:
             viewport={"width": 1200, "height": 630}, device_scale_factor=2
         )
         for slug in slugs:
-            title, kicker, grad, accent, icon = COVERS[slug]
-            page.set_content(
-                html_for(title, kicker, grad, accent, icon), wait_until="networkidle"
-            )
+            page.set_content(html_for(*COVERS[slug]), wait_until="networkidle")
             out = OUT_DIR / f"cover-{slug}.jpg"
             page.locator(".cover").screenshot(path=str(out), type="jpeg", quality=88)
             print(f"  + {out.relative_to(ROOT)}")

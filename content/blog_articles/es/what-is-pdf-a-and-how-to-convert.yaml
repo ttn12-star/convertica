@@ -1,0 +1,159 @@
+slug: what-is-pdf-a-and-how-to-convert
+title_es: "Qué es PDF/A y cómo convertir un documento al formato de archivo"
+meta_title_es: "Qué es PDF/A y cuándo lo necesitas | Convertica"
+meta_description_es: "Una sede electrónica o una universidad pide PDF/A. Te explicamos qué es de verdad, qué versión elegir y cómo convertir y comprobar el archivo."
+meta_keywords_es: "qué es pdf/a, convertir pdf a pdf/a, conversor pdf/a, pdf/a-1b, pdf/a-2b, iso 19005, pdf de archivo, conservación a largo plazo, validar pdf/a, formato archivístico"
+excerpt_es: "Casi nadie busca qué es PDF/A por curiosidad. Uno se entera cuando un formulario devuelve un PDF perfectamente normal diciendo que solo acepta formato de archivo. No es otro tipo de archivo, es el mismo PDF con reglas más estrictas. Aquí van esas reglas, qué versión elegir y cómo obtener el archivo correcto en unos minutos."
+ai_metadata:
+  topics:
+    - qué es PDF/A y en qué se diferencia de un PDF normal
+    - versiones de PDF/A y niveles de conformidad
+    - cuándo se exige el formato de archivo
+    - convertir un PDF a PDF/A
+    - validar la conformidad PDF/A
+  entities:
+    - PDF/A
+    - ISO 19005
+    - PDF/A-1b
+    - PDF/A-2b
+    - PDF/A-3b
+    - veraPDF
+    - XMP
+    - Esquema Nacional de Interoperabilidad
+    - Convertica
+  summary: "Explica que PDF/A es un perfil restringido del formato PDF definido por la norma ISO 19005 para la conservación a largo plazo, detalla sus requisitos como la incrustación de fuentes, el color independiente del dispositivo y la prohibición de cifrado y referencias externas, compara PDF/A-1, PDF/A-2 y PDF/A-3 junto con los niveles a, b y u, señala qué instituciones lo exigen, describe el proceso de conversión y la elección de nivel, explica cómo verificar el resultado y por qué a veces el documento cambia de aspecto tras la conversión."
+  related_terms:
+    - formato pdf a qué significa
+    - qué versión de pdf/a elegir
+    - diferencia entre pdf y pdf/a
+    - hacer un pdf archivable
+    - la sede electrónica rechaza mi pdf
+    - incrustar fuentes en pdf
+    - preservación digital de documentos
+  reading_time_minutes: 9
+  target_audience: "Cualquiera a quien una administración pública, un juzgado, una universidad o un archivo le haya exigido un PDF/A: personal administrativo, gestorías, doctorandos e investigadores, archiveros y responsables de documentación con plazos largos de conservación."
+content_es: |
+  Casi nadie llega a PDF/A por curiosidad. Uno se topa con él cuando un formulario devuelve el archivo con un mensaje del tipo "solo se admiten documentos en formato de archivo", y de golpe un PDF que llevas años enviando por correo deja de valer. Lo más molesto es que tu PDF no está roto. Se abre, se imprime, nunca dio problemas. Simplemente incumple unas reglas cuya existencia desconocías.
+
+  Vamos con esas reglas, con quién las necesitaba y con el camino más corto entre el archivo que tienes y el archivo que van a aceptar.
+
+  <h2>PDF/A no es otro formato</h2>
+
+  <p>Lo primero que conviene entender: un archivo PDF/A es un archivo PDF. Misma extensión, mismos lectores, mismo doble clic. Lo que lo convierte en PDF/A es que cumple un conjunto de reglas más estricto, publicado en la norma ISO 19005. En España aparece en los catálogos de estándares del Esquema Nacional de Interoperabilidad como formato para documentos que deben conservarse a largo plazo.</p>
+
+  <p>Todas esas reglas persiguen un único objetivo: que el documento se vea exactamente igual dentro de veinte años, en un ordenador que nadie ha diseñado todavía y sin conexión a internet.</p>
+
+  <p>Eso descarta cualquier cosa que dependa del mundo exterior. Un PDF normal puede decir "compón este párrafo en Helvetica" y confiar en que la máquina del lector tenga Helvetica instalada. En 2045 puede que no la tenga, el texto se recompone con otra tipografía y la maquetación se descuadra. Un PDF normal puede traer una imagen desde una URL, ejecutar un script o reproducir un vídeo. Todo eso son dependencias, y las dependencias se pudren.</p>
+
+  <h2>Qué exige la norma exactamente</h2>
+
+  <ul>
+    <li><strong>Todas las fuentes incrustadas.</strong> Los trazos de las letras viajan dentro del documento, así que el texto se dibuja igual esté o no instalada la tipografía.</li>
+    <li><strong>Color independiente del dispositivo.</strong> El archivo lleva un perfil ICC que indica con precisión a cualquier programa futuro qué significa ese tono concreto, en lugar de dejarlo al criterio del monitor.</li>
+    <li><strong>Nada de cifrado.</strong> Un PDF con contraseña no puede ser PDF/A. Un archivo que no se puede abrir sin una contraseña que ya nadie recuerda no es un archivo, es un candado.</li>
+    <li><strong>Nada de JavaScript, audio, vídeo ni ejecución de programas.</strong> Todo lo ejecutable y todo lo que transcurre en el tiempo queda fuera.</li>
+    <li><strong>Nada de referencias externas.</strong> Imágenes, fuentes y contenido viven dentro del archivo y no se descargan al abrirlo.</li>
+    <li><strong>Metadatos normalizados.</strong> El archivo lleva metadatos XMP que declaran a qué parte de la norma y a qué nivel aspira, para que un validador lo juzgue con el reglamento correcto.</li>
+  </ul>
+
+  <p>Fíjate en lo que no está en la lista: el tamaño del archivo, el número de páginas, la calidad de las imágenes o si el texto se puede buscar. PDF/A va de durabilidad, no de ligereza ni de pulcritud.</p>
+
+  <h2>Qué versión necesitas: PDF/A-1, 2 o 3</h2>
+
+  <p>La norma tiene tres partes y se complementan en lugar de competir. Aquí lo más nuevo no es automáticamente lo mejor, porque lo que importa es qué pide la institución que recibe el documento.</p>
+
+  <ul>
+    <li><strong>PDF/A-1</strong> (2005) es la más estricta y la más aceptada. Se basa en el antiguo PDF 1.4 y prohíbe transparencias y capas, de modo que un documento con diseño moderno puede quedar visiblemente aplanado tras la conversión. Cuando un organismo público concreta una versión, suele ser esta.</li>
+    <li><strong>PDF/A-2</strong> (2011) parte de PDF 1.7. Admite transparencias, capas y compresión JPEG 2000, y permite incrustar dentro otros archivos PDF/A. Para la mayoría es la opción sensata por defecto: las garantías de conservación son las mismas y el documento tiene muchas menos papeletas de cambiar de aspecto.</li>
+    <li><strong>PDF/A-3</strong> (2012) es PDF/A-2 con una diferencia importante: dentro se puede incrustar <em>cualquier</em> archivo, no solo PDF/A. En eso se apoyan los estándares de factura electrónica, que meten el XML legible por máquina dentro del documento legible por personas. Si no tienes esa necesidad, no necesitas la tercera parte.</li>
+  </ul>
+
+  <h3>La letra que va después del número</h3>
+
+  <p>Los niveles se escriben como 1b, 2b, 2u, 2a. La letra indica cuánta estructura lleva el archivo:</p>
+
+  <ul>
+    <li><strong>b (basic)</strong> garantiza la reproducción visual. La página se verá bien siempre. Es lo que quiere decir la inmensa mayoría de los requisitos.</li>
+    <li><strong>u (unicode)</strong> añade la garantía de que todo el texto se corresponde con Unicode, de manera que se puede extraer y buscar con fiabilidad.</li>
+    <li><strong>a (accessible)</strong> añade el etiquetado completo: orden de lectura, estructura, texto alternativo de las imágenes. Es lo que pide la normativa de accesibilidad y ningún conversor lo saca de un escaneo plano. El nivel a de verdad nace de un documento de origen bien etiquetado, no de un paso de conversión.</li>
+  </ul>
+
+  <p>Si nadie te ha dicho el nivel, elige <strong>PDF/A-2b</strong>. Cumple el requisito habitual de "tiene que ser PDF/A" alterando lo mínimo el aspecto del documento.</p>
+
+  <h2>Quién lo exige en la práctica</h2>
+
+  <ul>
+    <li><strong>Administración electrónica.</strong> Los catálogos de formatos para conservación a largo plazo incluyen PDF/A. Si presentas algo por sede electrónica, tarde o temprano te lo pedirán.</li>
+    <li><strong>Juzgados y sistemas de presentación de escritos.</strong> Cada vez más portales judiciales, aquí y fuera, fijan el formato de archivo en sus normas de presentación.</li>
+    <li><strong>Universidades y repositorios de investigación.</strong> Los sistemas de depósito de tesis y trabajos de fin de grado o máster suelen exigir PDF/A para que el trabajo siga leyéndose décadas después.</li>
+    <li><strong>Archivo y auditoría.</strong> Donde una política de retención dice "conservar siete años", alguien acaba preguntando cómo se garantiza eso.</li>
+    <li><strong>Factura electrónica.</strong> Ahí entra concretamente PDF/A-3, con los datos estructurados de la factura incrustados en un documento legible.</li>
+  </ul>
+
+  <h2>Cómo convertir un PDF a PDF/A</h2>
+
+  <p>La conversión en sí es rápida. Lo que estás pidiendo, en el fondo, es que el programa incruste todo lo que antes se buscaba fuera, adjunte un perfil de color, elimine lo prohibido y escriba los metadatos que declaran conforme el resultado.</p>
+
+  <ol>
+    <li>Abre el <a href="/es/pdf-to-pdfa/">conversor de PDF a PDF/A</a> y sube tu archivo.</li>
+    <li>Elige el nivel de conformidad. Están disponibles PDF/A-1b, 2b y 3b. Coge 2b salvo que te hayan indicado otra cosa.</li>
+    <li>Convierte y descarga el resultado.</li>
+    <li>Ábrelo y revísalo. La conversión puede cambiar el aspecto, y treinta segundos de atención antes de presentarlo en ningún sitio salen a cuenta.</li>
+  </ol>
+
+  <p>Hay algo que conviene resolver antes: si el PDF tiene contraseña, quítala antes de convertir, porque el cifrado y PDF/A son incompatibles. La guía sobre <a href="/es/blog/unlock-pdf-remove-password/">cómo quitar la contraseña de un PDF tuyo</a> explica el procedimiento, y lo de "tuyo" importa, porque hace falta conocer la contraseña.</p>
+
+  <h2>Cómo comprobar que el archivo es realmente PDF/A</h2>
+
+  <p>Un archivo que solo dice ser PDF/A sirve de poco si el sistema receptor opina lo contrario. Se puede comprobar en tres niveles, y la profundidad debería ir con lo que hay en juego.</p>
+
+  <ul>
+    <li><strong>Ábrelo en cualquier lector de PDF.</strong> La mayoría muestra una barra arriba avisando de que el documento está en modo PDF/A. Sin barra, no hay declaración.</li>
+    <li><strong>Mira las propiedades del documento.</strong> En los metadatos figura la parte de la norma y el nivel que el archivo declara cumplir.</li>
+    <li><strong>Pasa un validador de verdad.</strong> veraPDF es la implementación de referencia, es libre y es gratuita. Para una tesis o un escrito judicial, pásalo una vez. Es un minuto y es exactamente la comprobación que hará el sistema del otro lado.</li>
+  </ul>
+
+  <p>Nuestro conversor revisa el resultado estructuralmente antes de entregártelo: confirma que el perfil de color está presente y que el nivel declarado coincide con el que pediste. Eso detecta una conversión fallida, pero no sustituye a una auditoría completa según ISO 19005. Para documentos con efectos jurídicos, una pasada por veraPDF y a dormir tranquilo.</p>
+
+  <h2>Cuando la conversión cambia tu documento</h2>
+
+  <ul>
+    <li><strong>Se aplanó la transparencia.</strong> Convertir a PDF/A-1b elimina las transparencias, porque PDF 1.4 no las contempla. Sombras suaves, brillos y capas semitransparentes se cuecen en píxeles opacos. Si el documento tiene diseño reciente, usa 2b y el problema desaparece.</li>
+    <li><strong>Se sustituyó una fuente.</strong> Si el PDF de origen invocaba una tipografía sin incrustarla, el conversor tiene que incrustar algo y elige la más parecida que encuentra. El espaciado y los saltos de línea pueden moverse. La solución está aguas arriba: vuelve a exportar el documento original con las fuentes incrustadas.</li>
+    <li><strong>El archivo engordó.</strong> Es lo esperable, no un fallo. Las fuentes incrustadas y el perfil de color ocupan. Si el tamaño molesta, pasa el resultado por el <a href="/es/pdf-organize/compress/">compresor de PDF</a> y vuelve a validar, porque una compresión agresiva puede romper la conformidad.</li>
+    <li><strong>Desaparecieron los elementos interactivos.</strong> Los campos de formulario, los scripts y el multimedia no son contenido archivístico. Si necesitas conservar los valores rellenados, aplana el formulario antes de convertir para que las respuestas pasen a formar parte de la página.</li>
+    <li><strong>La conversión ni siquiera arrancó.</strong> Casi siempre es el cifrado. Quita la contraseña y vuelve a intentarlo.</li>
+  </ul>
+
+  <h2>Lo que PDF/A no hace</h2>
+
+  <ul>
+    <li><strong>No es una firma ni una prueba de autenticidad.</strong> La norma promete que el archivo se verá igual en el futuro. No dice nada sobre quién lo hizo ni sobre si alguien lo ha modificado. Para eso hace falta una <a href="/es/pdf-edit/sign/">firma en el documento</a>.</li>
+    <li><strong>No es seguridad.</strong> Más bien lo contrario: prohíbe el cifrado. Si un documento debe estar archivado y protegido a la vez, son dos copias distintas con dos funciones distintas.</li>
+    <li><strong>No hace que un escaneo sea buscable.</strong> Una página escaneada y convertida a PDF/A-1b es un archivo conforme que contiene una foto de un texto. Si necesitas las palabras, primero reconocimiento. La diferencia la explica el artículo sobre <a href="/es/blog/pdf-to-word-vs-ocr-which-to-use/">cuándo usar OCR y cuándo una conversión directa</a>.</li>
+    <li><strong>No mejora la calidad.</strong> Un escaneo borroso perfectamente archivado es un escaneo borroso para siempre.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Puedo convertir un PDF/A de vuelta a un PDF normal?</h3>
+  <p>No hace falta. Un archivo PDF/A ya es un PDF válido y se abre en cualquier sitio. Si lo editas, lo habitual es que deje de cumplir la norma, y eso está bien siempre que conserves intacta la copia archivada y vuelvas a convertir después de los cambios.</p>
+
+  <h3>¿PDF/A-3 es mejor que PDF/A-2 porque el número es mayor?</h3>
+  <p>No. Para la mayoría la única diferencia relevante es que la tercera parte permite incrustar archivos arbitrarios. Hay archivos que precisamente lo desaconsejan, porque una hoja de cálculo incrustada es una dependencia cuya legibilidad futura nadie garantiza. Elige la versión que te pidan y, si no te piden ninguna, 2b.</p>
+
+  <h3>¿Por qué mi escaneo se convierte pero sigue sin poder buscarse?</h3>
+  <p>Porque un escaneo es una imagen y archivar una imagen conserva la imagen. Pasa primero el <a href="/es/image/to-text/">reconocimiento de texto</a> o una <a href="/es/scanned-pdf-to-word/">conversión de PDF escaneado a Word</a>, y lleva ese resultado al formato de archivo.</p>
+
+  <h3>¿Necesito PDF/A para documentos de empresa corrientes?</h3>
+  <p>Normalmente no. Para una factura que envías y olvidas, basta un PDF normal. El formato de archivo se gana el sueldo cuando el documento tiene que sobrevivir a un plazo de conservación, a un procedimiento legal o a un repositorio institucional, o cuando alguien lo pide expresamente.</p>
+
+  <h3>¿PDF/A impedirá que editen mi archivo?</h3>
+  <p>No. No es de solo lectura ni está bloqueado. Cualquiera con un editor lo modifica igual que cualquier PDF. Lo que garantiza la norma es la fidelidad al mostrarlo con el paso del tiempo, no la inmutabilidad.</p>
+
+  <h3>¿Y si aun así me rechazan el archivo?</h3>
+  <p>Revisa tres cosas por orden: si pedían una parte y un nivel concretos, por ejemplo 1b en vez de 2b; si el archivo sigue llevando contraseña; y qué errores reales señala un validador. En la práctica, lo primero explica casi todos los rechazos.</p>
+
+  <h2>Convierte tu archivo</h2>
+
+  <p>Si tienes un formulario esperando la copia de archivo, el <a href="/es/pdf-to-pdfa/">conversor de PDF a PDF/A</a> admite los niveles 1b, 2b y 3b y comprueba su propio resultado antes de la descarga. Forma parte de Convertica Premium, junto con el resto del <a href="/es/premium-tools/">conjunto de herramientas premium</a>. Preparar el archivo es gratis: <a href="/es/pdf-security/unlock/">quitar la contraseña</a>, <a href="/es/pdf-organize/compress/">comprimir</a> y <a href="/es/pdf-organize/merge/">unir páginas en un solo documento</a>, y el resto está en <a href="/es/all-tools/">la lista completa de herramientas</a>.</p>

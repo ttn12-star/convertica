@@ -188,6 +188,7 @@ class Article(models.Model):
             ("add_page_numbers", "Add Page Numbers"),
             ("protect_zip", "Password Protect ZIP"),
             ("unlock_zip", "Unlock ZIP"),
+            ("pdf_to_pdfa", "PDF to PDF/A"),
             ("all_tools", "All Tools"),
         ],
         blank=True,
@@ -294,6 +295,7 @@ class Article(models.Model):
             "protect_zip": "protect_zip_page",
             "unlock_zip": "unlock_zip_page",
             "password_protect_image": "password_protect_image_page",
+            "pdf_to_pdfa": "pdf_to_pdfa_page",
             "all_tools": "all_tools_page",
         }
 
@@ -331,6 +333,7 @@ class Article(models.Model):
             "protect_zip": "Password Protect ZIP",
             "unlock_zip": "Unlock ZIP",
             "password_protect_image": "Password Protect Image",
+            "pdf_to_pdfa": "PDF to PDF/A",
             "all_tools": "All Tools",
         }
 
