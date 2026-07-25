@@ -1,0 +1,169 @@
+slug: what-is-pdf-a-and-how-to-convert
+cover_image: blog/images/cover-what-is-pdf-a-and-how-to-convert.jpg
+status: published
+category_slug: how-to-guides
+relevant_tool: pdf_to_pdfa
+title_en: "What Is PDF/A, and How to Convert a PDF for Long-Term Archiving"
+meta_title_en: "What Is PDF/A? Archive-Ready PDFs Explained | Convertica"
+meta_description_en: "A court, a university or a records office asked for PDF/A. Here is what it actually is, which version to pick, and how to convert and verify a file."
+meta_keywords_en: "what is pdf/a, convert pdf to pdf/a, pdf/a converter, pdf/a-1b, pdf/a-2b, pdf/a-3b, iso 19005, archival pdf, long term pdf archiving, pdf/a validation"
+excerpt_en: "Most people meet PDF/A the hard way: an upload form rejects a perfectly normal PDF and says it needs PDF/A instead. It is not a different file type, it is a stricter set of rules for the same one. Here is what those rules are, which version to choose, and how to convert a file in a couple of minutes."
+ai_metadata:
+  topics:
+    - what PDF/A is and how it differs from a normal PDF
+    - PDF/A versions and conformance levels
+    - when PDF/A is required
+    - converting a PDF to PDF/A
+    - validating PDF/A output
+  entities:
+    - PDF/A
+    - ISO 19005
+    - PDF/A-1b
+    - PDF/A-2b
+    - PDF/A-3b
+    - veraPDF
+    - XMP metadata
+    - ICC output intent
+    - Convertica
+  summary: "Explains that PDF/A is a restricted profile of PDF defined by ISO 19005 for long-term preservation, describes the rules it enforces such as embedded fonts, device-independent colour and no encryption, compares PDF/A-1, PDF/A-2 and PDF/A-3 along with the a, b and u conformance levels, lists the situations where PDF/A is demanded, walks through converting a file and choosing a level, explains how to verify the result, covers the common reasons a conversion changes a document's appearance or fails outright, and clarifies what PDF/A does not do."
+  related_terms:
+    - pdf a format meaning
+    - which pdf/a version should i use
+    - pdf/a vs pdf difference
+    - make pdf archival
+    - pdf rejected by upload form
+    - embed fonts in pdf
+    - pdf long term preservation
+  reading_time_minutes: 9
+  target_audience: "Anyone told by a court, government portal, university repository or records department that their PDF must be PDF/A, plus archivists, paralegals, researchers and office staff responsible for documents that have to stay readable for years."
+content_en: |
+  Almost nobody looks up PDF/A out of curiosity. You meet it when an upload form spits your file back with a message like "only PDF/A files are accepted," and suddenly a document you have been sending by email for years is not good enough. The frustrating part is that your PDF is not broken. It opens fine. It prints fine. It just breaks rules you did not know existed.
+
+  Here is what those rules are, why anyone cares, and the shortest path from the file you have to the file the form will accept.
+
+  <h2>PDF/A is not a different format</h2>
+
+  <p>This is the single thing worth understanding first: a PDF/A file is a PDF file. Same extension, same viewers, same double-click. What makes it PDF/A is that it obeys a stricter set of rules, published as the ISO 19005 standard, aimed at one goal: the document must still look exactly the same in twenty years, on a computer nobody has designed yet, with no access to the internet.</p>
+
+  <p>That goal rules out anything that depends on the outside world. A normal PDF is allowed to say "render this paragraph in Helvetica" and trust the reader's machine to have Helvetica. In 2045 it may not, and the text reflows into something else. A normal PDF can pull an image from a URL, run a script, or play a video. All of that is a dependency, and dependencies rot.</p>
+
+  <p>So PDF/A takes the same file and demands that it be self-contained.</p>
+
+  <h2>What the rules actually require</h2>
+
+  <ul>
+    <li><strong>Every font must be embedded.</strong> The actual glyph shapes travel inside the file, so the text renders identically whether or not the font is installed.</li>
+    <li><strong>Colour must be device-independent.</strong> The file carries an ICC output intent, a colour profile that tells any future viewer precisely what "this shade of blue" means, instead of leaving it to the monitor.</li>
+    <li><strong>No encryption.</strong> A password-protected PDF cannot be PDF/A. An archive that cannot be opened without a password nobody remembers is not an archive.</li>
+    <li><strong>No JavaScript, no audio, no video, no launch actions.</strong> Anything executable or time-based is out.</li>
+    <li><strong>No external references.</strong> Images, fonts and content all live inside the file. Nothing is fetched at open time.</li>
+    <li><strong>Standardised metadata.</strong> The file carries XMP metadata that declares which PDF/A version and level it claims to meet, so a validator can check it against the right rulebook.</li>
+  </ul>
+
+  <p>Notice what is not on that list: file size, page count, image quality, or whether the text is searchable. PDF/A is about durability, not about being small or tidy.</p>
+
+  <h2>Which version do you need: PDF/A-1, 2 or 3?</h2>
+
+  <p>Three parts of the standard exist, and they are additive rather than competing. Newer is not automatically better here, because what matters is what the receiving institution asks for.</p>
+
+  <ul>
+    <li><strong>PDF/A-1</strong> (2005) is the strictest and the most widely accepted. It is based on the old PDF 1.4 and forbids transparency and layers, which means a modern design-heavy document may be visibly flattened when converted. If a public body names a version at all, it is usually this one.</li>
+    <li><strong>PDF/A-2</strong> (2011) is based on PDF 1.7. It permits transparency, layers and JPEG 2000 compression, and it lets you embed other PDF/A files as attachments. For most people this is the sensible default: the archival guarantees are the same, but your document is far less likely to change appearance during conversion.</li>
+    <li><strong>PDF/A-3</strong> (2012) is PDF/A-2 plus one significant change: you can embed <em>any</em> file inside it, not just PDF/A. This is what electronic invoicing standards use, wrapping the machine-readable XML of an invoice inside the human-readable PDF. Unless you need that, you do not need PDF/A-3.</li>
+  </ul>
+
+  <h3>And the letter after the number</h3>
+
+  <p>You will see levels written as 1b, 2b, 2u, 2a and so on. The letter describes how much structure the file carries:</p>
+
+  <ul>
+    <li><strong>b (basic)</strong> guarantees visual reproduction. The page will look right forever. This is what the overwhelming majority of requirements mean.</li>
+    <li><strong>u (unicode)</strong> adds a guarantee that all text maps to proper Unicode, so it can be reliably extracted and searched.</li>
+    <li><strong>a (accessible)</strong> adds full tagging: reading order, structure, alternative text for images. It is what accessibility legislation asks for, and it cannot be conjured out of a flat scan by any converter. Real PDF/A-a comes from a well-tagged source document, not from a conversion step.</li>
+  </ul>
+
+  <p>If nobody told you which level, choose <strong>PDF/A-2b</strong>. It satisfies the ordinary "must be PDF/A" requirement with the least disruption to how your document looks.</p>
+
+  <h2>Who actually asks for it</h2>
+
+  <p>PDF/A shows up in the same handful of places, and if you have hit it once you will hit it again:</p>
+
+  <ul>
+    <li><strong>Courts and legal filing systems.</strong> Several United States federal courts ask for PDF/A in their electronic filing rules, and European court portals increasingly do the same.</li>
+    <li><strong>Government and public administration.</strong> National interoperability frameworks across the EU list PDF/A as the format for documents that must be retained long term. If you are filing anything with a public body electronically, expect it.</li>
+    <li><strong>Universities and research repositories.</strong> Thesis and dissertation submission portals very commonly require PDF/A so the work stays readable decades after the author has left.</li>
+    <li><strong>Records management and audit.</strong> Anywhere a retention policy says "keep for seven years," someone eventually asks how that is guaranteed, and PDF/A is the answer.</li>
+    <li><strong>Electronic invoicing.</strong> PDF/A-3 specifically, with structured invoice data embedded inside a readable document.</li>
+  </ul>
+
+  <h2>How to convert a PDF to PDF/A</h2>
+
+  <p>The conversion itself is quick. What you are really doing is asking a converter to embed everything that was previously referenced, attach a colour profile, strip anything forbidden, and write the metadata that declares the result compliant.</p>
+
+  <ol>
+    <li>Open the <a href="/en/pdf-to-pdfa/">PDF to PDF/A converter</a> and upload your file.</li>
+    <li>Pick the conformance level. PDF/A-1b, 2b and 3b are all available. Take 2b unless you were told otherwise.</li>
+    <li>Convert, and download the result.</li>
+    <li>Open it and read it. Conversion can change appearance, and that is worth thirty seconds of your attention before you file it anywhere.</li>
+  </ol>
+
+  <p>One thing to sort out first: if your PDF has a password on it, remove that before converting, because encryption and PDF/A are mutually exclusive. The <a href="/en/blog/unlock-pdf-remove-password/">guide to removing a password from a PDF you own</a> covers how, and note the "you own" part, since you need the password to remove it.</p>
+
+  <h2>How to check the result is really PDF/A</h2>
+
+  <p>A file that merely claims to be PDF/A is not much use if the receiving system disagrees. There are three levels of checking, and the effort should match the stakes.</p>
+
+  <ul>
+    <li><strong>Open it in any PDF reader.</strong> Most viewers show a small banner along the top saying the document is in PDF/A mode. Missing banner, missing declaration.</li>
+    <li><strong>Look at the document properties.</strong> The metadata will name the PDF/A part and level the file claims.</li>
+    <li><strong>Run a real validator.</strong> veraPDF is the open-source reference implementation and is free. For a thesis or a court filing, run it once. It takes a minute and it is the same check the institution's system is likely doing.</li>
+  </ul>
+
+  <p>Our converter checks the output structurally before handing it to you, confirming the output intent is present and the declared conformance level matches what you asked for. That catches a failed conversion. It is not a full ISO 19005 audit, so for legally binding documents, validate once with veraPDF and sleep better.</p>
+
+  <h2>When conversion changes your document</h2>
+
+  <p>Sometimes the converted file does not look quite like the original. This is nearly always one of five things.</p>
+
+  <ul>
+    <li><strong>Transparency was flattened.</strong> Converting to PDF/A-1b removes transparency, because PDF 1.4 has none. Soft shadows, glows and semi-transparent overlays get baked into opaque pixels. If your document has any modern design work in it, use 2b instead and the problem disappears.</li>
+    <li><strong>A font was substituted.</strong> If the source PDF referenced a font without embedding it, the converter has to embed something, and it picks the closest available match. Spacing and line breaks may shift. The fix is upstream: export the original document with fonts embedded.</li>
+    <li><strong>The file got bigger.</strong> Expected, and not a bug. Embedding fonts and a colour profile adds real bytes. If the size becomes a problem, run the result through the <a href="/en/pdf-organize/compress/">PDF compressor</a> afterwards, then re-validate, since aggressive compression can undo compliance.</li>
+    <li><strong>Interactive elements vanished.</strong> Form fields, scripts and multimedia are not archival content. If you need the filled-in values preserved, flatten the form before converting so the answers become part of the page.</li>
+    <li><strong>The conversion refused to run.</strong> Almost always encryption. Remove the password and try again.</li>
+  </ul>
+
+  <h2>What PDF/A does not do</h2>
+
+  <p>It is worth being precise, because PDF/A gets credited with properties it does not have.</p>
+
+  <ul>
+    <li><strong>It is not a signature and it is not proof of authenticity.</strong> PDF/A says the file will render the same in future. It says nothing about who made it or whether it has been altered. If you need that, you need a <a href="/en/pdf-edit/sign/">signature</a>.</li>
+    <li><strong>It is not security.</strong> Quite the opposite: it forbids encryption. If a document needs to be both archived and protected, those are two separate copies with two separate jobs.</li>
+    <li><strong>It does not make a scan searchable.</strong> A scanned page converted to PDF/A-1b is a compliant archival file containing a picture of text. If you need the words, you need OCR first. Our note on <a href="/en/blog/pdf-to-word-vs-ocr-which-to-use/">when to use OCR versus a direct conversion</a> explains the difference.</li>
+    <li><strong>It does not improve quality.</strong> A blurry scan archived perfectly is a blurry scan, permanently.</li>
+  </ul>
+
+  <h2>FAQ</h2>
+
+  <h3>Can I convert a PDF/A file back to a normal PDF?</h3>
+  <p>You do not need to. A PDF/A file is a valid PDF and opens everywhere. If you edit it, the result usually stops meeting the PDF/A rules, which is fine as long as you keep the archived copy untouched and convert again after editing.</p>
+
+  <h3>Is PDF/A-3 better than PDF/A-2 because the number is higher?</h3>
+  <p>No. The only meaningful difference for most people is that PDF/A-3 lets you embed arbitrary files. Some archives actively dislike that, because an embedded spreadsheet is a dependency they cannot guarantee will still be readable. Choose the version you were asked for, and 2b if you were not asked.</p>
+
+  <h3>Why does my scanned document convert but stay unsearchable?</h3>
+  <p>Because a scan is an image, and archiving an image preserves the image. Run <a href="/en/image/to-text/">text recognition</a> or a <a href="/en/scanned-pdf-to-word/">scanned PDF to Word conversion</a> first if you need real text, then convert the result.</p>
+
+  <h3>Do I need PDF/A for ordinary business documents?</h3>
+  <p>Usually not. For an invoice you will send and forget, a normal PDF is fine. PDF/A earns its keep when a document has to survive a retention period, a legal process or an institutional repository, or when someone has explicitly asked for it.</p>
+
+  <h3>Will PDF/A stop my file from being edited?</h3>
+  <p>No. It is not read-only and not locked. Anyone with an editor can change it, exactly as with any PDF. What PDF/A guarantees is faithful rendering over time, not immutability.</p>
+
+  <h3>What if the receiving system rejects my PDF/A file anyway?</h3>
+  <p>Check three things in order: whether they wanted a specific part and level such as 1b rather than 2b, whether the file still carries a password, and whether a validator reports a genuine error. In practice the first of those explains most rejections.</p>
+
+  <h2>Convert your file</h2>
+
+  <p>If a form is waiting on an archival copy, the <a href="/en/pdf-to-pdfa/">PDF to PDF/A converter</a> handles PDF/A-1b, 2b and 3b and checks its own output before you download it. It is part of Convertica Premium, alongside the rest of the <a href="/en/premium-tools/">premium toolset</a>. If you need to prepare the file first, <a href="/en/pdf-security/unlock/">removing a password</a>, <a href="/en/pdf-organize/compress/">compressing</a> and <a href="/en/pdf-organize/merge/">merging pages into one document</a> are all free, and <a href="/en/all-tools/">the full tool list</a> covers the rest.</p>

@@ -1,0 +1,159 @@
+slug: what-is-pdf-a-and-how-to-convert
+title_id: "Apa Itu PDF/A dan Cara Mengubah Dokumen ke Format Arsip"
+meta_title_id: "Apa Itu PDF/A dan Kapan Anda Membutuhkannya | Convertica"
+meta_description_id: "Portal kampus atau instansi meminta PDF/A. Ini penjelasan apa itu PDF/A, versi mana yang dipilih, serta cara mengonversi dan memeriksa hasilnya."
+meta_keywords_id: "apa itu pdf/a, konversi pdf ke pdf/a, konverter pdf/a, pdf/a-1b, pdf/a-2b, iso 19005, pdf arsip, pelestarian dokumen jangka panjang, validasi pdf/a, format arsip elektronik"
+excerpt_id: "Hampir tidak ada yang mencari tahu soal PDF/A karena penasaran. Anda berkenalan dengannya saat formulir unggah menolak PDF yang baik-baik saja dan menulis bahwa hanya format arsip yang diterima. Ini bukan jenis berkas lain, melainkan PDF yang sama dengan aturan lebih ketat. Berikut aturannya, versi mana yang dipilih, dan cara cepat mendapatkan berkas yang lolos."
+ai_metadata:
+  topics:
+    - apa itu PDF/A dan bedanya dengan PDF biasa
+    - versi PDF/A dan tingkat konformitas
+    - kapan format arsip diwajibkan
+    - mengonversi PDF ke PDF/A
+    - memvalidasi hasil PDF/A
+  entities:
+    - PDF/A
+    - ISO 19005
+    - PDF/A-1b
+    - PDF/A-2b
+    - PDF/A-3b
+    - veraPDF
+    - XMP
+    - ANRI
+    - Convertica
+  summary: "Menjelaskan bahwa PDF/A adalah profil terbatas dari format PDF yang ditetapkan standar ISO 19005 untuk pelestarian jangka panjang, merinci syaratnya seperti font yang tertanam, warna yang tidak bergantung perangkat, serta larangan enkripsi dan rujukan eksternal, membandingkan PDF/A-1, PDF/A-2 dan PDF/A-3 beserta tingkat a, b dan u, menyebut lembaga yang mewajibkannya, memandu proses konversi dan pemilihan tingkat, menerangkan cara memverifikasi hasil, dan membahas mengapa tampilan dokumen kadang berubah setelah konversi."
+  related_terms:
+    - format pdf a artinya apa
+    - pilih versi pdf/a yang mana
+    - beda pdf dan pdf/a
+    - membuat pdf arsip
+    - unggahan skripsi ditolak
+    - menanamkan font di pdf
+    - pelestarian arsip digital
+  reading_time_minutes: 9
+  target_audience: "Siapa saja yang diminta menyerahkan PDF/A oleh kampus, pengadilan, instansi pemerintah atau unit kearsipan: mahasiswa yang mengunggah skripsi dan tesis, dosen dan peneliti, arsiparis, staf tata usaha, serta pengelola dokumen dengan masa simpan panjang."
+content_id: |
+  Hampir tidak ada orang yang membaca soal PDF/A karena ingin tahu. Anda berkenalan dengannya pada saat yang tidak menyenangkan: formulir unggah memuntahkan berkas Anda dengan pesan bahwa yang diterima hanya dokumen berformat arsip. Yang paling menjengkelkan, PDF Anda sebenarnya tidak rusak. Bisa dibuka, bisa dicetak, bertahun-tahun dikirim lewat email tanpa masalah. Ia hanya melanggar aturan yang keberadaannya tidak pernah Anda ketahui.
+
+  Berikut aturan itu, siapa yang membutuhkannya, dan jalan terpendek dari berkas yang Anda punya ke berkas yang akan diterima.
+
+  <h2>PDF/A bukan format yang berbeda</h2>
+
+  <p>Hal pertama yang perlu dipahami: berkas PDF/A tetaplah berkas PDF. Ekstensi sama, pembaca sama, klik ganda yang sama. Yang membuatnya PDF/A adalah kepatuhan pada seperangkat aturan yang lebih ketat, diterbitkan sebagai standar ISO 19005. Dalam praktik kearsipan elektronik, format inilah yang lazim dipakai untuk dokumen yang harus disimpan puluhan tahun.</p>
+
+  <p>Semua aturan itu punya satu tujuan: dokumen harus tampil persis sama dua puluh tahun lagi, di komputer yang belum dirancang siapa pun, tanpa koneksi internet.</p>
+
+  <p>Artinya, semua yang bergantung pada dunia luar harus disingkirkan. PDF biasa boleh menuliskan perintah "susun paragraf ini dengan huruf Helvetica" dan berharap huruf itu terpasang di komputer pembaca. Pada 2045 huruf itu mungkin tidak ada, teks tersusun ulang dengan huruf lain, dan tata letak berantakan. PDF biasa juga bisa menarik gambar dari sebuah URL, menjalankan skrip, memutar video. Semua itu ketergantungan, dan ketergantungan lama-lama membusuk.</p>
+
+  <h2>Apa saja yang diwajibkan standar</h2>
+
+  <ul>
+    <li><strong>Semua font tertanam di dalam berkas.</strong> Bentuk hurufnya ikut di dalam dokumen, sehingga teks tampil identik entah fontnya terpasang atau tidak.</li>
+    <li><strong>Warna dijelaskan secara independen dari perangkat.</strong> Berkas membawa profil ICC yang memberi tahu program mana pun di masa depan apa arti sebuah rona, alih-alih menyerahkannya pada monitor.</li>
+    <li><strong>Tidak boleh ada enkripsi.</strong> PDF berkata sandi tidak bisa menjadi PDF/A. Arsip yang tidak bisa dibuka tanpa kata sandi yang sudah tidak diingat siapa pun bukanlah arsip.</li>
+    <li><strong>Tidak boleh ada skrip, audio, video, atau perintah menjalankan program.</strong> Semua yang bisa dieksekusi dan semua yang berjalan dalam waktu dilarang.</li>
+    <li><strong>Tidak boleh ada rujukan eksternal.</strong> Gambar, font dan isi berada di dalam berkas dan tidak diunduh saat dibuka.</li>
+    <li><strong>Metadata baku.</strong> Berkas membawa metadata XMP yang menyatakan bagian standar dan tingkat yang diklaimnya, agar validator menilainya dengan aturan yang tepat.</li>
+  </ul>
+
+  <p>Perhatikan apa yang tidak ada di daftar itu: ukuran berkas, jumlah halaman, kualitas gambar, atau apakah teksnya bisa dicari. PDF/A mengurusi ketahanan, bukan keringkasan atau kerapian.</p>
+
+  <h2>Versi mana yang Anda butuhkan: PDF/A-1, 2 atau 3</h2>
+
+  <p>Standar ini punya tiga bagian yang saling melengkapi, bukan bersaing. Di sini yang lebih baru tidak otomatis lebih baik, karena yang menentukan adalah permintaan lembaga penerima.</p>
+
+  <ul>
+    <li><strong>PDF/A-1</strong> (2005) paling ketat dan paling luas diterima. Bertumpu pada PDF 1.4 yang lawas dan melarang transparansi serta lapisan, sehingga dokumen bergaya desain modern bisa terlihat gepeng setelah konversi. Kalau sebuah instansi menyebut versi tertentu, biasanya yang ini.</li>
+    <li><strong>PDF/A-2</strong> (2011) bertumpu pada PDF 1.7. Membolehkan transparansi, lapisan dan kompresi JPEG 2000, serta memungkinkan penanaman berkas PDF/A lain di dalamnya. Untuk kebanyakan kebutuhan inilah pilihan bawaan yang masuk akal: jaminan arsipnya sama, tetapi peluang dokumen berubah tampilan jauh lebih kecil.</li>
+    <li><strong>PDF/A-3</strong> (2012) adalah PDF/A-2 dengan satu perbedaan penting: di dalamnya boleh ditanam berkas <em>apa saja</em>, bukan hanya PDF/A. Standar faktur elektronik memanfaatkan ini, menyelipkan XML yang terbaca mesin ke dalam dokumen yang terbaca manusia. Kalau kebutuhan itu tidak ada, bagian ketiga tidak Anda perlukan.</li>
+  </ul>
+
+  <h3>Huruf setelah angka</h3>
+
+  <p>Tingkatnya ditulis 1b, 2b, 2u, 2a. Hurufnya menunjukkan seberapa banyak struktur yang dibawa berkas:</p>
+
+  <ul>
+    <li><strong>b (basic)</strong> menjamin reproduksi visual. Halaman akan selalu tampil benar. Inilah yang dimaksud oleh sebagian besar persyaratan.</li>
+    <li><strong>u (unicode)</strong> menambahkan jaminan bahwa seluruh teks terpetakan ke Unicode, sehingga bisa diekstrak dan dicari dengan andal.</li>
+    <li><strong>a (accessible)</strong> menambahkan penandaan penuh: urutan baca, struktur, teks alternatif untuk gambar. Ini yang diminta regulasi aksesibilitas, dan tidak ada konverter yang bisa memunculkannya dari hasil pindaian polos. Tingkat a yang sesungguhnya lahir dari dokumen sumber yang tertata rapi, bukan dari langkah konversi.</li>
+  </ul>
+
+  <p>Kalau tidak ada yang menyebut tingkat, pilih <strong>PDF/A-2b</strong>. Ia memenuhi permintaan biasa "harus PDF/A" dengan gangguan paling kecil pada tampilan dokumen.</p>
+
+  <h2>Siapa yang biasanya memintanya</h2>
+
+  <ul>
+    <li><strong>Kampus dan repositori penelitian.</strong> Portal unggah skripsi, tesis dan disertasi sangat sering meminta PDF/A supaya karya itu tetap terbaca puluhan tahun setelah sidang.</li>
+    <li><strong>Instansi pemerintah dan layanan elektronik.</strong> Ketentuan kearsipan elektronik untuk dokumen bermasa simpan panjang mengarah ke format arsip. Kalau Anda menyerahkan berkas secara daring ke instansi, cepat atau lambat akan bertemu.</li>
+    <li><strong>Pengadilan dan sistem pengajuan dokumen.</strong> Portal pengajuan berkas hukum makin banyak mensyaratkan format arsip dalam aturan unggahnya.</li>
+    <li><strong>Unit kearsipan dan audit.</strong> Di mana pun kebijakan retensi berbunyi "simpan tujuh tahun", suatu saat ada yang bertanya bagaimana itu dijamin.</li>
+    <li><strong>Faktur elektronik.</strong> Di sini yang dipakai khusus PDF/A-3, dengan data faktur terstruktur tertanam di dalam dokumen yang terbaca.</li>
+  </ul>
+
+  <h2>Cara mengonversi PDF ke PDF/A</h2>
+
+  <p>Konversinya sendiri cepat. Pada dasarnya Anda meminta program menanamkan semua yang tadinya diambil dari luar, melampirkan profil warna, membuang hal-hal terlarang, dan menuliskan metadata yang menyatakan hasilnya patuh standar.</p>
+
+  <ol>
+    <li>Buka <a href="/id/pdf-to-pdfa/">konverter PDF ke PDF/A</a> lalu unggah berkas Anda.</li>
+    <li>Pilih tingkat konformitas. Tersedia PDF/A-1b, 2b dan 3b. Ambil 2b kecuali Anda diberi tahu lain.</li>
+    <li>Jalankan konversi dan unduh hasilnya.</li>
+    <li>Buka dan periksa. Konversi bisa mengubah tampilan, dan tiga puluh detik memeriksa sebelum menyerahkannya ke mana pun jelas sepadan.</li>
+  </ol>
+
+  <p>Satu hal harus dibereskan lebih dulu: kalau PDF Anda berkata sandi, lepaskan sandinya sebelum konversi, karena enkripsi dan PDF/A saling meniadakan. Caranya dibahas di panduan <a href="/id/blog/unlock-pdf-remove-password/">cara membuka PDF terkunci milik sendiri</a>, dan kata "milik sendiri" itu penting, sebab Anda perlu tahu sandinya.</p>
+
+  <h2>Cara memastikan berkasnya benar-benar PDF/A</h2>
+
+  <p>Berkas yang sekadar mengaku PDF/A tidak banyak gunanya bila sistem penerima berpendapat lain. Pemeriksaan bisa dilakukan pada tiga tingkat, dan kedalamannya sebaiknya sepadan dengan risikonya.</p>
+
+  <ul>
+    <li><strong>Buka di pembaca PDF mana pun.</strong> Sebagian besar menampilkan bilah kecil di atas yang memberitahu bahwa dokumen berada dalam mode PDF/A. Tidak ada bilah, berarti tidak ada pernyataan.</li>
+    <li><strong>Lihat properti dokumen.</strong> Metadatanya menyebut bagian standar dan tingkat yang diklaim berkas tersebut.</li>
+    <li><strong>Jalankan validator sungguhan.</strong> veraPDF adalah implementasi rujukan yang gratis dan sumber terbuka. Untuk tesis atau berkas pengadilan, jalankan sekali. Butuh satu menit, dan itu pemeriksaan yang sama dengan yang kemungkinan dilakukan sistem di seberang.</li>
+  </ul>
+
+  <p>Konverter kami memeriksa hasilnya secara struktural sebelum diserahkan: memastikan profil warna ada dan tingkat yang tertulis sesuai dengan yang Anda minta. Itu menangkap konversi yang gagal, tetapi bukan audit ISO 19005 yang lengkap. Untuk dokumen berkekuatan hukum, sekali lewat veraPDF akan membuat tidur lebih nyenyak.</p>
+
+  <h2>Ketika konversi mengubah dokumen Anda</h2>
+
+  <ul>
+    <li><strong>Transparansi jadi gepeng.</strong> Konversi ke PDF/A-1b menghapus transparansi, sebab PDF 1.4 tidak mengenalnya. Bayangan lembut, cahaya dan lapisan setengah tembus terpanggang jadi piksel pekat. Kalau dokumen Anda punya desain kekinian, pakai 2b dan masalahnya hilang.</li>
+    <li><strong>Font tergantikan.</strong> Kalau PDF sumber merujuk sebuah font tanpa menanamkannya, konverter harus menanamkan sesuatu dan memilih yang paling mirip. Jarak huruf dan pemenggalan baris bisa bergeser. Obatnya ada di hulu: ekspor ulang dokumen aslinya dengan font tertanam.</li>
+    <li><strong>Ukuran berkas membengkak.</strong> Itu wajar, bukan kerusakan. Font tertanam dan profil warna memang memakan tempat. Kalau ukurannya mengganggu, lewatkan hasilnya ke <a href="/id/pdf-organize/compress/">kompresi PDF</a> lalu validasi ulang, sebab kompresi agresif bisa merusak kepatuhan.</li>
+    <li><strong>Elemen interaktif lenyap.</strong> Kolom formulir, skrip dan multimedia bukan isi arsip. Kalau nilai yang sudah diisi harus tersimpan, ratakan formulirnya sebelum konversi agar jawabannya menjadi bagian halaman.</li>
+    <li><strong>Konversinya sama sekali tidak jalan.</strong> Hampir selalu karena enkripsi. Lepaskan kata sandi lalu ulangi.</li>
+  </ul>
+
+  <h2>Yang tidak dilakukan PDF/A</h2>
+
+  <ul>
+    <li><strong>Bukan tanda tangan dan bukan bukti keaslian.</strong> Standar ini menjanjikan tampilan yang sama di masa depan. Ia tidak berkata apa-apa soal siapa pembuatnya atau apakah ada yang mengubahnya. Untuk itu Anda perlu <a href="/id/pdf-edit/sign/">tanda tangan pada dokumen</a>.</li>
+    <li><strong>Bukan pengamanan.</strong> Justru sebaliknya: enkripsi dilarang. Kalau dokumen harus diarsipkan sekaligus dilindungi, itu dua salinan berbeda dengan dua tugas berbeda.</li>
+    <li><strong>Tidak membuat pindaian bisa dicari.</strong> Halaman hasil pindai yang dikonversi ke PDF/A-1b adalah berkas arsip yang sah berisi foto sebuah teks. Kalau Anda butuh katanya, kenali dulu teksnya. Bedanya dibahas di tulisan tentang <a href="/id/blog/pdf-to-word-vs-ocr-which-to-use/">kapan memakai OCR dan kapan konversi langsung</a>.</li>
+    <li><strong>Tidak memperbaiki kualitas.</strong> Pindaian buram yang diarsipkan sempurna akan tetap jadi pindaian buram selamanya.</li>
+  </ul>
+
+  <h2>Pertanyaan yang sering muncul</h2>
+
+  <h3>Bisakah PDF/A dikembalikan menjadi PDF biasa?</h3>
+  <p>Tidak perlu. Berkas PDF/A sudah merupakan PDF yang sah dan terbuka di mana saja. Kalau Anda menyuntingnya, kepatuhannya biasanya hilang, dan itu tidak masalah selama salinan arsipnya Anda simpan utuh dan Anda konversi ulang setelah perubahan.</p>
+
+  <h3>Apakah PDF/A-3 lebih baik daripada PDF/A-2 karena angkanya lebih besar?</h3>
+  <p>Tidak. Bagi kebanyakan orang, satu-satunya perbedaan berarti adalah bagian ketiga membolehkan penanaman berkas sembarang. Sebagian lembaga arsip justru tidak menyukainya, karena lembar kerja yang tertanam adalah ketergantungan yang keterbacaannya di masa depan tak terjamin. Pilih versi yang diminta, dan kalau tidak diminta, 2b.</p>
+
+  <h3>Kenapa pindaian saya berhasil dikonversi tetapi teksnya tetap tidak bisa dicari?</h3>
+  <p>Karena pindaian adalah gambar, dan mengarsipkan gambar berarti menyimpan gambar. Jalankan dulu <a href="/id/image/to-text/">pengenalan teks</a> atau <a href="/id/scanned-pdf-to-word/">konversi PDF hasil pindai ke Word</a>, baru hasilnya diubah ke format arsip.</p>
+
+  <h3>Apakah dokumen kerja sehari-hari perlu PDF/A?</h3>
+  <p>Umumnya tidak. Untuk faktur yang Anda kirim lalu lupakan, PDF biasa sudah cukup. Format arsip baru berguna kalau dokumen harus bertahan melewati masa retensi, proses hukum atau repositori lembaga, atau kalau memang diminta secara tegas.</p>
+
+  <h3>Apakah PDF/A membuat berkas tidak bisa disunting?</h3>
+  <p>Tidak. Ia bukan baca-saja dan tidak dikunci. Siapa pun dengan penyunting bisa mengubahnya sama seperti PDF lain. Yang dijamin standar ini adalah kesetiaan tampilan sepanjang waktu, bukan keutuhan isi.</p>
+
+  <h3>Bagaimana kalau berkasnya tetap ditolak?</h3>
+  <p>Periksa tiga hal berurutan: apakah yang diminta bagian dan tingkat tertentu, misalnya 1b bukan 2b; apakah kata sandinya masih menempel; dan apa kata validator soal kesalahan yang sebenarnya. Dalam praktik, poin pertama menjelaskan sebagian besar penolakan.</p>
+
+  <h2>Konversikan berkas Anda</h2>
+
+  <p>Kalau ada formulir yang menunggu salinan arsip, <a href="/id/pdf-to-pdfa/">konverter PDF ke PDF/A</a> mendukung tingkat 1b, 2b dan 3b serta memeriksa hasilnya sendiri sebelum diunduh. Ia bagian dari Convertica Premium bersama sisa <a href="/id/premium-tools/">perangkat premium</a>. Menyiapkan berkasnya gratis: <a href="/id/pdf-security/unlock/">melepas kata sandi</a>, <a href="/id/pdf-organize/compress/">mengompres</a> dan <a href="/id/pdf-organize/merge/">menggabungkan halaman jadi satu dokumen</a>, dan selebihnya ada di <a href="/id/all-tools/">daftar lengkap alat</a>.</p>
