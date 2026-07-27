@@ -27,15 +27,25 @@ def delete_unverified_accounts():
     cutoff_date = timezone.now() - timezone.timedelta(days=30)
 
     # Find users without verified email addresses
-    unverified_users = User.objects.filter(
-        date_joined__lt=cutoff_date,
-        is_premium=False,  # Don't delete premium users
-        is_staff=False,  # Don't delete staff
-        is_superuser=False,  # Don't delete superusers
-    ).exclude(
-        # Exclude users who have at least one verified email
-        id__in=EmailAddress.objects.filter(verified=True).values_list(
-            "user_id", flat=True
+    unverified_users = (
+        User.objects.filter(
+            date_joined__lt=cutoff_date,
+            is_premium=False,  # Don't delete premium users
+            is_staff=False,  # Don't delete staff
+            is_superuser=False,  # Don't delete superusers
+        )
+        .exclude(
+            # Exclude users who have at least one verified email
+            id__in=EmailAddress.objects.filter(verified=True).values_list(
+                "user_id", flat=True
+            )
+        )
+        .exclude(
+            # Exclude social logins. SOCIALACCOUNT_EMAIL_VERIFICATION="optional", so a
+            # Google user whose provider email came back unverified never gets a
+            # verified EmailAddress row — but they can still log in and use the site,
+            # so deleting them would be silent data loss.
+            socialaccount__isnull=False
         )
     )
 
