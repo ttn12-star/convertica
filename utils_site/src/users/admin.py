@@ -2,11 +2,13 @@
 import csv
 import json
 
+from allauth.account.models import EmailAddress
 from allauth.socialaccount.models import SocialAccount, SocialToken
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
+from django.db.models import Exists, OuterRef
 from django.http import HttpResponse
 from django.urls import path, reverse
 from django.utils import timezone
@@ -42,6 +44,26 @@ def analytics_window_start(request, default_months: int = 12):
     return timezone.now() - timedelta(days=30 * default_months)
 
 
+class EmailVerifiedFilter(admin.SimpleListFilter):
+    """Filter users by whether allauth has a verified email for them.
+
+    Filters on the `_email_verified` annotation from `UserAdmin.get_queryset`
+    (not on `emailaddress__verified`), so accounts with no EmailAddress row at
+    all still show up under "Not verified" instead of dropping out of the join.
+    """
+
+    title = "email verified"
+    parameter_name = "email_verified"
+
+    def lookups(self, request, model_admin):
+        return (("1", "Verified"), ("0", "Not verified"))
+
+    def queryset(self, request, queryset):
+        if self.value() in ("1", "0"):
+            return queryset.filter(_email_verified=self.value() == "1")
+        return queryset
+
+
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     """Custom User admin with social account integration."""
@@ -55,12 +77,14 @@ class UserAdmin(BaseUserAdmin):
         "subscription_rank",
         "consecutive_days",
         "preferred_language",
+        "email_verified",
         "is_active",
         "is_staff",
         "date_joined",
         "social_accounts",
     )
     list_filter = (
+        EmailVerifiedFilter,
         "is_active",
         "is_staff",
         "is_superuser",
@@ -234,6 +258,20 @@ class UserAdmin(BaseUserAdmin):
 
     social_accounts.short_description = "Social Accounts"
 
+    def email_verified(self, obj):
+        """Whether allauth has a verified email address for this user.
+
+        Signup runs with ACCOUNT_EMAIL_VERIFICATION="mandatory", so a red X here
+        means the account has never been able to log in — and the daily
+        `user_cleanup.delete_unverified_accounts` task deletes it 30 days after
+        signup.
+        """
+        return bool(getattr(obj, "_email_verified", False))
+
+    email_verified.boolean = True
+    email_verified.short_description = "Email verified"
+    email_verified.admin_order_field = "_email_verified"
+
     def save_model(self, request, obj, form, change):
         """Override save_model to allow manual admin edits."""
         # Set flag to prevent auto-updating is_premium during admin edits
@@ -262,7 +300,16 @@ class UserAdmin(BaseUserAdmin):
 
     def get_queryset(self, request):
         """Optimize queryset with related objects."""
-        return super().get_queryset(request).prefetch_related("socialaccount_set")
+        return (
+            super()
+            .get_queryset(request)
+            .prefetch_related("socialaccount_set")
+            .annotate(
+                _email_verified=Exists(
+                    EmailAddress.objects.filter(user_id=OuterRef("pk"), verified=True)
+                )
+            )
+        )
 
 
 class SocialAccountInline(admin.TabularInline):
