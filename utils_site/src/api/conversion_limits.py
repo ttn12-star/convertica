@@ -227,6 +227,19 @@ def _shutdown_executor():
 # ============================================================================
 
 
+def get_file_size_limits(operation: str = None) -> tuple[int, int]:
+    """Return the (free, premium) file-size caps for an operation.
+
+    Heavy operations (LibreOffice/Ghostscript) have their own, lower tier, so
+    error messages must quote *these* numbers — not the global light-tier
+    constants — or a user rejected at 15 MB is told the free limit is 25 MB.
+    Read at call time so admin RuntimeSetting overrides are picked up.
+    """
+    if (operation or "").lower() in HEAVY_OPERATIONS:
+        return MAX_FILE_SIZE_HEAVY, MAX_FILE_SIZE_HEAVY_PREMIUM
+    return MAX_FILE_SIZE, MAX_FILE_SIZE_PREMIUM
+
+
 def get_max_file_size_for_user(user, operation: str = None) -> int:
     """Get maximum file size allowed for user based on subscription status.
 

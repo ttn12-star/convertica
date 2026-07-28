@@ -13,6 +13,7 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.vary import vary_on_cookie
 from django.views.generic import TemplateView
+from src.api.conversion_limits import get_file_size_limits
 from src.frontend.tool_configs import BATCH_API_MAP, TOOL_CONFIGS
 from src.frontend.tool_videos import TOOL_VIDEOS
 
@@ -482,6 +483,7 @@ def _get_converter_context(
     button_text: str,
     select_file_message: str,
     button_class: str = "bg-blue-600 text-white hover:bg-blue-700",
+    conversion_type: str = "",
 ) -> dict:
     """Helper function to generate converter page context.
 
@@ -532,8 +534,12 @@ def _get_converter_context(
     # Surface effective file-size limits to the template so the upload widget
     # can show the user "up to NN MB" instead of letting them upload, wait,
     # then fail. Values are in megabytes for direct display.
-    free_mb = int(settings.MAX_FILE_SIZE_FREE / (1024 * 1024))
-    premium_mb = int(settings.MAX_FILE_SIZE_PREMIUM / (1024 * 1024))
+    # Heavy converters (LibreOffice/Ghostscript) have a lower tier, so ask for
+    # the limits of *this* operation — advertising 25 MB on a 15 MB tool lets
+    # the user upload and only then get a 413.
+    free_bytes, premium_bytes = get_file_size_limits(conversion_type)
+    free_mb = int(free_bytes / (1024 * 1024))
+    premium_mb = int(premium_bytes / (1024 * 1024))
 
     return {
         "page_title": page_title,
@@ -618,7 +624,9 @@ def _render_tool_page(request, tool_key: str) -> HttpResponse:
     _get_converter_context(), merges SEO data and optional extras, then renders.
     """
     config = TOOL_CONFIGS[tool_key]
-    context = _get_converter_context(request, **config["converter_args"])
+    context = _get_converter_context(
+        request, conversion_type=tool_key, **config["converter_args"]
+    )
     # window.CONVERSION_TYPE for background-tasks.js: without it queued tasks
     # show "Type: -" and "Open Tool" can't find the way back to the converter.
     context.setdefault("conversion_type", tool_key)
