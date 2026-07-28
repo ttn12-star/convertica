@@ -20,32 +20,10 @@ from django.conf import settings
 logger = logging.getLogger(__name__)
 
 
-def submit_url_to_indexnow(url: str) -> bool:
-    """
-    Submit a single URL to IndexNow API.
-
-    Args:
-        url: Full URL to submit (e.g., https://convertica.net/en/pdf-to-word/)
-
-    Returns:
-        True if submission was successful, False otherwise
-    """
-    return submit_urls_to_indexnow([url])
-
-
-def submit_urls_to_indexnow(urls: list[str]) -> bool:
-    """
-    Submit multiple URLs to IndexNow API.
-
-    Args:
-        urls: List of full URLs to submit
-
-    Returns:
-        True if submission was successful, False otherwise
-    """
+def _indexnow_disabled() -> bool:
+    """True when submissions must be skipped (dev, tests, disabled, no key)."""
     is_test_run = "test" in sys.argv or bool(os.environ.get("PYTEST_CURRENT_TEST"))
 
-    # Check if IndexNow is enabled (skip in DEBUG/test environments)
     if (
         not getattr(settings, "INDEXNOW_ENABLED", False)
         or getattr(settings, "DEBUG", False)
@@ -57,13 +35,72 @@ def submit_urls_to_indexnow(urls: list[str]) -> bool:
             logger.debug("IndexNow submission skipped in DEBUG mode")
         else:
             logger.debug("IndexNow is disabled in settings")
+        return True
+
+    if not getattr(settings, "INDEXNOW_KEY", None):
+        logger.warning("INDEXNOW_KEY not set in settings")
+        return True
+
+    return False
+
+
+def submit_url_to_indexnow(url: str) -> bool:
+    """
+    Submit a single URL to IndexNow via the single-URL GET endpoint.
+
+    Bing Webmaster Tools flags the urlList POST form ("IndexNow is in batch
+    mode") because routine batches read as "everything changed" and delay
+    indexing. Per-URL GET on real change is the mode they ask for; the batch
+    form below is kept for one-shot backfills only.
+
+    Args:
+        url: Full URL to submit (e.g., https://convertica.net/en/pdf-to-word/)
+
+    Returns:
+        True if submission was successful, False otherwise
+    """
+    if _indexnow_disabled():
         return False
 
-    # Get IndexNow key from settings
-    indexnow_key = getattr(settings, "INDEXNOW_KEY", None)
-    if not indexnow_key:
-        logger.warning("INDEXNOW_KEY not set in settings")
+    try:
+        response = requests.get(
+            "https://api.indexnow.org/indexnow",
+            params={"url": url, "key": settings.INDEXNOW_KEY},
+            timeout=10,
+        )
+    except requests.exceptions.Timeout:
+        logger.warning("IndexNow API request timed out")
         return False
+    except requests.exceptions.RequestException as e:
+        logger.error(f"IndexNow API request failed: {e}")
+        return False
+
+    if response.status_code in (200, 202):
+        logger.info(f"Submitted {url} to IndexNow ({response.status_code})")
+        return True
+
+    logger.warning(f"IndexNow returned status {response.status_code} for {url}")
+    return False
+
+
+def submit_urls_to_indexnow(urls: list[str]) -> bool:
+    """
+    Submit multiple URLs to IndexNow API in one batch request.
+
+    Batch mode — use only for one-shot backfills (see the
+    submit_sitemap_indexnow management command). Routine per-change pings must
+    go through submit_url_to_indexnow instead.
+
+    Args:
+        urls: List of full URLs to submit
+
+    Returns:
+        True if submission was successful, False otherwise
+    """
+    if _indexnow_disabled():
+        return False
+
+    indexnow_key = settings.INDEXNOW_KEY
 
     # Get site URL
     site_url = getattr(settings, "SITE_BASE_URL", "https://convertica.net")

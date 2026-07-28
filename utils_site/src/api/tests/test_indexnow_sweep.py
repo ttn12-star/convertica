@@ -1,8 +1,8 @@
-"""Tests for the daily IndexNow sitemap-sweep maintenance task.
+"""Tests for the IndexNow sitemap-sweep maintenance task.
 
-The per-article post_save signal only pings blog articles (one language each),
-so tool pages and non-default language variants were never submitted. The
-daily sweep (maintenance.submit_sitemap_indexnow) covers the whole sitemap.
+Manual/one-shot only — it is deliberately off the beat schedule (a nightly full
+sweep is the "IndexNow is in batch mode" warning in Bing Webmaster Tools).
+Routine per-locale pings happen in src.blog.signals on real article changes.
 """
 
 from __future__ import annotations

@@ -106,6 +106,33 @@ class ImporterBaseLanguageTests(TestCase):
         again = Article.objects.get(slug="demo-article")
         self.assertEqual(again.published_at, first_published_at)
 
+    def test_reimport_without_changes_keeps_updated_at(self):
+        """updated_at is the sitemap's <lastmod> — a no-op deploy must not bump it.
+
+        Saving unconditionally made all articles claim "changed today" after
+        every deploy, which burned Google's crawl budget on refresh instead of
+        the new pages.
+        """
+        _write_yaml(self.source / "en" / "demo.yaml", _base_payload())
+        self._run()
+        before = Article.objects.get(slug="demo-article").updated_at
+
+        output = self._run()
+
+        after = Article.objects.get(slug="demo-article").updated_at
+        self.assertEqual(after, before)
+        self.assertIn("Unchanged (skipped):     1", output)
+
+        # A real content edit must still go through.
+        _write_yaml(
+            self.source / "en" / "demo.yaml",
+            _base_payload(content_en="<p>Edited.</p>"),
+        )
+        self._run()
+        edited = Article.objects.get(slug="demo-article")
+        self.assertEqual(edited.content_en, "<p>Edited.</p>")
+        self.assertGreater(edited.updated_at, before)
+
     def test_status_override(self):
         _write_yaml(
             self.source / "en" / "demo.yaml",
@@ -213,6 +240,30 @@ class ImporterTranslationsTests(TestCase):
         self.assertEqual(ru["excerpt"], "Короткий отрывок.")
         # Empty optional fields must NOT be persisted.
         self.assertNotIn("meta_keywords", ru)
+
+    def test_reimporting_same_translation_keeps_updated_at(self):
+        payload = {
+            "slug": "demo-article",
+            "title_ru": "Заголовок",
+            "content_ru": "<p>Привет.</p>",
+        }
+        _write_yaml(self.source / "ru" / "demo.yaml", payload)
+        call_command(
+            "import_blog_articles",
+            source=str(self.source),
+            lang="ru",
+            stdout=StringIO(),
+        )
+        before = Article.objects.get(slug="demo-article").updated_at
+
+        call_command(
+            "import_blog_articles",
+            source=str(self.source),
+            lang="ru",
+            stdout=StringIO(),
+        )
+
+        self.assertEqual(Article.objects.get(slug="demo-article").updated_at, before)
 
     def test_translation_for_missing_base_article_is_an_error(self):
         _write_yaml(
