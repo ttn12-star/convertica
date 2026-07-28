@@ -47,22 +47,29 @@ def notify_indexnow_on_article_save(
         # Get site base URL
         site_url = getattr(settings, "SITE_BASE_URL", "https://convertica.net")
 
-        # Get absolute URL for the article
-        # Article.get_absolute_url() returns relative URL like "/en/blog/article-slug/"
-        article_relative_url = instance.get_absolute_url()
+        # One ping per locale the article actually exists in. The English base
+        # always counts; others only when present in the translations JSON —
+        # the same set the sitemap emits. Ping the locales, not just /en/:
+        # otherwise the translated URLs are never announced and the only thing
+        # that ever covered them was the daily full-sitemap batch sweep (which
+        # Bing flags as batch-mode abuse).
+        default_language = getattr(settings, "LANGUAGE_CODE", "en")
+        locales = [default_language] + [
+            lang for lang in (instance.translations or {}) if lang != default_language
+        ]
 
-        # Construct full URL
-        full_url = f"{site_url}{article_relative_url}"
+        submitted = 0
+        for lang in locales:
+            if submit_url_to_indexnow(f"{site_url}/{lang}/blog/{instance.slug}/"):
+                submitted += 1
 
-        # Submit to IndexNow (async in background, won't block request)
-        # Note: submit_url_to_indexnow makes HTTP request, but it's fast and non-blocking
-        success = submit_url_to_indexnow(full_url)
-
-        if success:
+        if submitted:
             logger.info(
-                "Article '%s' (slug: %s) submitted to IndexNow successfully",
+                "Article '%s' (slug: %s) submitted to IndexNow for %d/%d locale(s)",
                 instance.title_en,
                 instance.slug,
+                submitted,
+                len(locales),
             )
         else:
             logger.warning(

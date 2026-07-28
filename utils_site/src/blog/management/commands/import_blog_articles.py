@@ -23,7 +23,9 @@ Translation YAML fields (`<lang>` other than `en`):
     slug, title_<lang>, content_<lang>,
     excerpt_<lang>, meta_title_<lang>, meta_description_<lang>, meta_keywords_<lang>.
 
-The command is idempotent — re-running updates existing rows in place.
+The command is idempotent — re-running updates existing rows in place, and rows
+whose imported fields are byte-identical are left untouched so `updated_at`
+(the sitemap's <lastmod>) keeps pointing at the real last edit.
 """
 
 from __future__ import annotations
@@ -135,6 +137,7 @@ class Command(BaseCommand):
             "updated": 0,
             "translation_created": 0,
             "translation_updated": 0,
+            "unchanged": 0,
             "errors": 0,
         }
 
@@ -209,14 +212,35 @@ class Command(BaseCommand):
             Article.objects.create(slug=slug, published_at=published_at, **defaults)
             return "created"
 
-        for key, value in defaults.items():
-            setattr(article, key, value)
         # Set published_at on first transition into "published"; preserve the
         # original publication date on subsequent re-imports.
-        if status == "published" and not article.published_at:
+        needs_publish_stamp = status == "published" and not article.published_at
+
+        # This command runs on every deploy. Saving unconditionally let auto_now
+        # bump updated_at, which is the sitemap's <lastmod> — so all ~40 articles
+        # × 7 locales claimed "changed today" after each deploy. Google answered
+        # by spending 84% of the crawl budget on refresh and never reaching the
+        # new pages (GSC "Discovered, not indexed": 31 → 142 in two weeks).
+        if not needs_publish_stamp and not self._differs(article, defaults):
+            return "unchanged"
+
+        for key, value in defaults.items():
+            setattr(article, key, value)
+        if needs_publish_stamp:
             article.published_at = timezone.now()
         article.save()
         return "updated"
+
+    @staticmethod
+    def _differs(article: Article, defaults: dict) -> bool:
+        """True if any imported field actually changed on the stored row."""
+        for key, value in defaults.items():
+            if key == "category":
+                if article.category_id != (value.pk if value else None):
+                    return True
+            elif getattr(article, key) != value:
+                return True
+        return False
 
     def _import_translation(self, data: dict, slug: str, lang_code: str) -> str:
         try:
@@ -249,6 +273,8 @@ class Command(BaseCommand):
 
         translations = dict(article.translations or {})
         existed = lang_code in translations
+        if translations.get(lang_code) == new_trans:
+            return "unchanged"  # same reason as _import_base: don't touch updated_at
         translations[lang_code] = new_trans
         article.translations = translations
         article.save(update_fields=["translations", "updated_at"])
@@ -280,6 +306,7 @@ class Command(BaseCommand):
             "updated": "~",
             "translation_created": "T+",
             "translation_updated": "T~",
+            "unchanged": "=",
         }.get(result, "?")
 
     def _print_summary(self, totals: dict, dry_run: bool):
@@ -290,6 +317,7 @@ class Command(BaseCommand):
             f"  Articles updated:        {totals['updated']}\n"
             f"  Translations created:    {totals['translation_created']}\n"
             f"  Translations updated:    {totals['translation_updated']}\n"
+            f"  Unchanged (skipped):     {totals['unchanged']}\n"
             f"  Errors:                  {totals['errors']}\n"
         )
         style = self.style.WARNING if totals["errors"] else self.style.SUCCESS

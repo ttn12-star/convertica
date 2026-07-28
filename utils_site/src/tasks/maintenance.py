@@ -707,15 +707,15 @@ def detect_stuck_webhooks():
 
 @shared_task(name="maintenance.submit_sitemap_indexnow", queue="maintenance")
 def submit_sitemap_indexnow():
-    """Bulk-submit every sitemap URL to IndexNow once a day.
+    """Bulk-submit every sitemap URL to IndexNow. Manual / one-shot only.
 
-    The per-article post_save signal only pings blog articles (one language
-    each); tool pages and non-default language variants are never submitted,
-    so Bing Webmaster Tools flags them as "not submitted via IndexNow". This
-    daily sweep covers the whole sitemap (all tools + all 7 languages).
+    Deliberately NOT on the beat schedule: a nightly full sweep is exactly the
+    "IndexNow is in batch mode" warning in Bing Webmaster Tools (excessive load
+    + indexing delays). Blog articles are pinged per locale on real change by
+    src.blog.signals; use this task by hand after publishing a batch of new
+    tool pages that nothing else announces.
 
-    No-op when IndexNow is disabled/unconfigured (e.g. dev), so the beat task
-    never errors there.
+    No-op when IndexNow is disabled/unconfigured (e.g. dev).
     """
     if not getattr(settings, "INDEXNOW_ENABLED", False) or not getattr(
         settings, "INDEXNOW_KEY", ""

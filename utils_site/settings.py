@@ -1237,13 +1237,14 @@ CELERY_BEAT_SCHEDULE = {
         "task": "api_quota.reset_monthly",
         "schedule": crontab(minute=1, hour=0, day_of_month=1),
     },
-    # Submit the full sitemap to IndexNow daily. The per-article signal only
-    # pings blog articles (one language each); this sweep covers tool pages and
-    # all 7 language variants so Bing/IndexNow see every URL.
-    "submit-sitemap-indexnow-daily": {
-        "task": "maintenance.submit_sitemap_indexnow",
-        "schedule": crontab(minute=30, hour=3),  # daily at 03:30 UTC, off-peak
-    },
+    # NB: no scheduled IndexNow sweep. Re-submitting all ~735 sitemap URLs every
+    # night made Bing Webmaster Tools raise "Avoid IndexNow Batch Mode to prevent
+    # excessive server load and potential indexing delays" — the same
+    # "everything changed today" lie the sitemap <lastmod> used to tell. The
+    # per-article signal now pings every locale of an article on real change;
+    # for a one-off backfill (e.g. a batch of new tool pages) run
+    #   docker compose exec web python manage.py submit_sitemap_indexnow
+    # manually.
 }
 
 # Rate Limiting Configuration
