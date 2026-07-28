@@ -35,6 +35,7 @@ from .conversion_limits import (
     HEAVY_OPERATIONS,
     MAX_PDF_PAGES,
     MAX_PDF_PAGES_HEAVY,
+    get_file_size_limits,
     validate_file_for_operation,
     validate_pdf_pages,
 )
@@ -243,6 +244,7 @@ class AsyncConversionAPIView(APIView, ABC):
                 and not self._is_premium_active(request)
                 and payments_enabled
             ):
+                free_limit, premium_limit = get_file_size_limits(self.CONVERSION_TYPE)
                 response_data = {
                     "error": gettext(
                         "File too large (%(file_mb).1f MB). Free users: max %(free_mb).0f MB. "
@@ -251,11 +253,8 @@ class AsyncConversionAPIView(APIView, ABC):
                     )
                     % {
                         "file_mb": file.size / (1024 * 1024),
-                        "free_mb": getattr(
-                            settings, "MAX_FILE_SIZE_FREE", max_file_size
-                        )
-                        / (1024 * 1024),
-                        "premium_mb": max_file_size / (1024 * 1024),
+                        "free_mb": free_limit / (1024 * 1024),
+                        "premium_mb": premium_limit / (1024 * 1024),
                     },
                 }
                 try:

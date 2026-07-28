@@ -35,7 +35,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from src.exceptions import ConversionError, EncryptedPDFError, InvalidPDFError
 
-from .conversion_limits import get_max_file_size_for_user, validate_pdf_pages
+from .conversion_limits import (
+    get_file_size_limits,
+    get_max_file_size_for_user,
+    validate_pdf_pages,
+)
 from .logging_utils import build_request_context, get_logger, log_conversion_start
 from .premium_utils import (
     can_use_batch_processing,
@@ -156,9 +160,8 @@ class BaseBatchAPIView(APIView):
         max_file_size = get_max_file_size_for_user(user, operation)
         if uploaded_file.size > max_file_size:
             is_premium = is_premium_active(user)
-            free_limit = settings.MAX_FILE_SIZE_FREE
-            premium_limit = settings.MAX_FILE_SIZE_PREMIUM
-            if not is_premium and uploaded_file.size > free_limit:
+            free_limit, premium_limit = get_file_size_limits(operation)
+            if not is_premium:
                 error = _(
                     "File too large (%(file_mb).1f MB). Free users: max "
                     "%(free_mb).0f MB. Upgrade to Premium for %(premium_mb).0f MB limit."

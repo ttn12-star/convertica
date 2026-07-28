@@ -36,6 +36,7 @@ from .conversion_limits import (
     CONVERSION_TIMEOUT,
     MAX_PDF_PAGES,
     ConversionTimeoutError,
+    get_file_size_limits,
     get_timeout_for_operation,
     run_with_timeout,
     validate_pdf_pages,
@@ -248,10 +249,9 @@ class BaseConversionAPIView(APIView, ABC):
                 request.user if hasattr(request, "user") else None
             )
 
-            free_limit = settings.MAX_FILE_SIZE_FREE
-            premium_limit = settings.MAX_FILE_SIZE_PREMIUM
+            free_limit, premium_limit = get_file_size_limits(self.CONVERSION_TYPE)
 
-            if not is_premium and file.size > free_limit:
+            if not is_premium:
                 # Free user exceeding limit - offer upgrade
                 return Response(
                     {
