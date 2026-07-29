@@ -2151,6 +2151,11 @@ def _get_sitemap_pages():
         {"url": "image/svg-to-ico/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/webp-to-ico/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "image/ico-to-png/", "priority": "0.7", "changefreq": "monthly"},
+        {
+            "url": "image/password-protect-image/",
+            "priority": "0.7",
+            "changefreq": "monthly",
+        },
         {"url": "archive/protect/", "priority": "0.7", "changefreq": "monthly"},
         {"url": "archive/unlock/", "priority": "0.7", "changefreq": "monthly"},
         # scanned-pdf-to-word/ now serves a public 200 landing (OCR is a
@@ -2221,7 +2226,7 @@ def sitemap_lang(request, lang: str):
 
         raise Http404("Invalid language")
 
-    cache_key = f"sitemap_{lang}_v6"  # v6: /pdf-editor/ page added
+    cache_key = f"sitemap_{lang}_v7"  # v7: image/password-protect-image/ added
     cached = cache.get(cache_key)
     if cached:
         return HttpResponse(cached, content_type="application/xml; charset=utf-8")

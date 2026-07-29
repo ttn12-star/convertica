@@ -2,6 +2,18 @@
 """
 Script to safely clear staticfiles directory, ignoring permission errors.
 This is needed when files were created with different permissions.
+
+MANUAL USE ONLY — do not put this back into the deploy pipeline.
+
+It used to run right before `collectstatic` on every deploy, at a point where
+the new web container is already serving traffic. Wiping the tree therefore
+opened a window (collectstatic + gzip/brotli over ~1k files) in which EVERY
+static asset returned 404 to real users and crawlers. Ahrefs caught it on
+2026-07-29: a blog cover image 404'd during a crawl that overlapped a deploy,
+even though the file itself had not changed since June. `collectstatic`
+overwrites in place, so the wipe bought nothing but orphaned old-hash files —
+which are harmless (and keep pages cached by Cloudflare working). Run this by
+hand if those orphans ever need reclaiming, ideally with the site drained.
 """
 
 import os

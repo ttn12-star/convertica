@@ -844,10 +844,9 @@ jobs:
               echo "⚠️ Tailwind CSS build failed, but continuing with collectstatic..."
             fi
 
-            # Step 5: Collect static files (clear old files first, compress, generate manifest)
+            # Step 5: Collect static files (compress, generate manifest). No wipe first: see ci/clear_staticfiles.py
             echo "📦 Collecting and compressing static files..."
             if ! docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "\
-              python /app/clear_staticfiles.py || true && \
               python manage.py collectstatic --noinput && \
               /app/scripts/compress_static.sh /app/staticfiles || true && \
               python /app/ci/generate_robots_txt.py || true && \

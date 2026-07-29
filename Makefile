@@ -33,7 +33,6 @@ restart-prod: ## Fast restart production (no static rebuild)
 build-static: ## Build static files (collectstatic + compress + manifest)
 	@echo "Building static files..."
 	docker compose exec -T web sh -c "\
-		python /app/clear_staticfiles.py || true && \
 		python manage.py collectstatic --noinput && \
 		/app/scripts/compress_static.sh /app/staticfiles || true && \
 		python /app/create_manifest.py || true && \
@@ -43,7 +42,6 @@ build-static: ## Build static files (collectstatic + compress + manifest)
 build-static-prod: ## Build static files for production (includes robots.txt)
 	@echo "Building static files for production..."
 	docker compose -f docker-compose.yml -f ci/docker-compose.prod.yml exec -T web sh -c "\
-		python /app/clear_staticfiles.py || true && \
 		python manage.py collectstatic --noinput && \
 		/app/scripts/compress_static.sh /app/staticfiles || true && \
 		python /app/ci/generate_robots_txt.py || true && \
