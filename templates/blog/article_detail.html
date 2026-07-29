@@ -437,6 +437,13 @@
       color: #bfdbfe;
     }
 
+    /* dark-mode-helpers.css is not loaded on blog pages, so the light page
+       gradient kept painting behind the dark cards. */
+    html.dark .blog-page {
+      background-image: linear-gradient(to bottom right, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.96));
+      color: #e2e8f0;
+    }
+
     html.dark .article-wave {
       background: linear-gradient(to top, rgba(2, 6, 23, 0.85), transparent);
     }
@@ -465,7 +472,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 min-h-screen text-gray-900">
+  <div class="blog-page bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30 min-h-screen text-gray-900">
 
     <!-- Article Header with Modern Design -->
     <section class="relative py-16 sm:py-20 md:py-24 overflow-hidden">
