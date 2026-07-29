@@ -1,0 +1,202 @@
+slug: convert-pdf-to-markdown
+title_es: "Cómo convertir un PDF a Markdown: títulos, tablas y texto listo para la IA"
+meta_title_es: "PDF a Markdown: cómo convertir sin perder nada | Convertica"
+meta_description_es: "Copiar y pegar desde un PDF deja un muro de texto roto. Así se convierte un PDF a Markdown con títulos y tablas de verdad, y esto es lo que nunca sobrevive."
+meta_keywords_es: "pdf a markdown, convertir pdf a markdown, pdf a md, conversor pdf markdown, extraer markdown de pdf, pdf a markdown con tablas, pdf a obsidian"
+excerpt_es: "Markdown es el formato en el que la documentación, las notas y los datos para modelos de IA se sienten en casa: texto plano con estructura explícita. El PDF funciona al contrario. Te contamos cómo sacar de un PDF títulos y tablas reales en lugar de un muro de líneas copiadas, qué partes del original no sobreviven al viaje y qué repaso de cinco minutos convierte el resultado en un documento presentable."
+ai_metadata:
+  topics:
+    - conversión de PDF a Markdown
+    - conservar títulos y tablas
+    - preparar documentos para IA y LLM
+    - Markdown frente a texto plano y Word
+    - repasar el Markdown obtenido
+  entities:
+    - Markdown
+    - PDF
+    - Obsidian
+    - LLM
+    - RAG
+    - OCR
+    - Convertica
+    - Git
+  summary: "Explica por qué Markdown es mejor destino que copiar y pegar el texto de un PDF, muestra la conversión con detección de títulos y conservación de tablas, incluye un archivo .md real con marcadores de página y tablas de tuberías, enumera con honestidad lo que no sobrevive (imágenes, enlaces, negrita y cursiva, notas al pie, dos columnas, escaneos), explica por qué los escaneos necesitan OCR antes, da una lista de repaso breve, compara Markdown con texto plano, Word y HTML y responde a las dudas más frecuentes."
+  related_terms:
+    - conversor pdf a md
+    - extraer texto de pdf con estructura
+    - pdf a markdown online gratis
+    - markdown para modelos de lenguaje
+    - pdf a notas de obsidian
+    - migrar documentación desde pdf
+  reading_time_minutes: 9
+  target_audience: "Desarrolladores, redactores técnicos, investigadores y cualquiera que tome notas y necesite el texto de un PDF dentro de una documentación, una base de conocimiento, una bóveda de Obsidian o un pipeline de IA, y quiera saber de antemano qué conserva la conversión y qué no."
+content_es: |
+  Hay una frustración muy concreta en necesitar el texto de un PDF en otro sitio. Seleccionas la página, la copias, la pegas en el editor y aparece un muro de líneas con guiones en mitad de las palabras, números de página incrustados entre párrafos, títulos que perdieron cualquier señal de ser títulos y una tabla que llegó como una única columna vertical de cifras. Diez minutos de limpieza después llevas media página.
+
+  Markdown es el formato que de verdad esperan casi todos esos destinos. Los sitios de documentación, los generadores estáticos, los wikis, los archivos README, las bóvedas de Obsidian y Notion y los pipelines de modelos de lenguaje leen Markdown sin adaptadores. Así que el movimiento útil no es copiar y pegar, sino convertir: transformar el PDF en un archivo `.md` que conserve la jerarquía de títulos y las tablas, y dedicar cinco minutos a repasarlo en lugar de una hora a teclearlo de nuevo.
+
+  <h2>Qué te da Markdown que el PDF no puede</h2>
+
+  <p>Un PDF es la descripción de una página impresa. Sabe dónde se apoya cada letra, con qué tipografía y a qué tamaño. Lo que casi no sabe es que una línea era un título, que tres líneas formaban una lista o que una rejilla de cifras era una tabla. Esa información existe solo de forma visual, y por eso copiar de un PDF entrega texto sin estructura.</p>
+
+  <p>Markdown hace el trato inverso. No tiene ni idea de cómo se ve tu página, pero nombra la estructura sin rodeos: <code>#</code> es un título, <code>-</code> un elemento de lista, las barras verticales arman una tabla. Eso lo hace:</p>
+
+  <ul>
+    <li><strong>Portátil.</strong> Un archivo <code>.md</code> se abre en cualquier editor de texto y se pega en casi cualquier herramienta moderna sin arrastrar basura de formato.</li>
+    <li><strong>Legible en el historial.</strong> Guárdalo en Git y cada cambio futuro será un diff línea a línea, algo imposible con un PDF binario.</li>
+    <li><strong>Adaptable a cualquier pantalla.</strong> El mismo texto se lee bien en un móvil, en una terminal o en un sitio de documentación, porque nada está atado a un tamaño de página.</li>
+    <li><strong>Amable con las máquinas.</strong> Las búsquedas, los scripts y los modelos de lenguaje aprovechan la estructura explícita en vez de adivinarla por coordenadas.</li>
+  </ul>
+
+  <h2>Por qué se hace en 2026</h2>
+
+  <p>Los motivos se han desplazado en un par de años. Hoy cuatro cubren casi todo:</p>
+
+  <ul>
+    <li><strong>Darle el documento a un modelo de IA.</strong> Especificaciones, manuales, contratos y artículos llegan en PDF, y la versión en Markdown es la forma más limpia y barata de entregarlos a un modelo o de meterlos en un índice de búsqueda.</li>
+    <li><strong>Migrar documentación antigua.</strong> Una década de manuales en PDF acaba mudándose a un sitio de documentación o a un wiki, y esa mudanza es a Markdown.</li>
+    <li><strong>Notas personales.</strong> Obsidian, Logseq y Joplin son bóvedas de Markdown. Los informes y los papers entran como <code>.md</code> o no entran.</li>
+    <li><strong>Citar y reutilizar.</strong> Sacar una tabla de un informe hacia un ticket, un changelog o un artículo es trivial cuando la tabla ya es Markdown, y penoso cuando es una captura de pantalla.</li>
+  </ul>
+
+  <h2>Cómo convertir un PDF a Markdown en tres pasos</h2>
+
+  <figure><img src="/static/images/tools/pdf-to-markdown.jpg" alt="Conversor de PDF a Markdown de Convertica con un archivo cargado" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Abre el <a href="/es/pdf-to-markdown/">conversor de PDF a Markdown</a> y suelta el archivo. De forma gratuita se aceptan archivos de hasta 15 MB; con Premium el límite sube a 100 MB.</li>
+    <li>Para un documento normal deja activadas la <strong>detección de títulos</strong> y la <strong>conservación de tablas</strong>. La primera traduce los niveles visuales de título a <code>#</code>, <code>##</code> y <code>###</code>; la segunda convierte las rejillas detectadas en tablas de Markdown.</li>
+    <li>Convierte y descarga el archivo <code>.md</code>. Se abre en cualquier editor y ya puedes leer el documento completo como texto.</li>
+  </ol>
+
+  <p>La conversión es textual, así que va rápida y no necesitas cuenta para unos pocos documentos al día: sin registro tienes 10 conversiones diarias, una cuenta gratuita las sube a 40 y Premium quita el límite.</p>
+
+  <h2>Cómo se ve el resultado</h2>
+
+  <p>Toma un informe de una página con título, una línea de introducción, una tabla de tres columnas y una sección de notas. Esto es lo que vuelve, sin retocar nada:</p>
+
+  <pre><code># Informe trimestral
+
+  Ingresos por región, cifras en miles de euros.
+
+  | Región | T1 | T2 |
+  | --- | --- | --- |
+  | Madrid | 120 | 138 |
+  | Andalucía | 95 | 102 |
+
+  ## Notas
+
+  El crecimiento en Andalucía se frenó en el T2 por el calendario de festivos.</code></pre>
+
+  <p>Antes de convertir un archivo largo conviene saber dos cosas:</p>
+
+  <ul>
+    <li><strong>Marcadores de página.</strong> Los documentos de más de una página reciben un título <code>## Page 2</code> y una línea horizontal entre páginas, así que siempre sabes de dónde salió un pasaje. En un texto continuo lo normal es borrar esos marcadores; en un archivo escaneado o en un expediente legal son justo lo que quieres conservar.</li>
+    <li><strong>Las páginas vacías quedan señaladas.</strong> Una página sin texto extraíble se convierte en la línea <code>_No extractable text on this page._</code> en lugar de desaparecer en silencio. Si esa línea se repite, tienes un escaneo y necesitas la vía del OCR que viene después.</li>
+  </ul>
+
+  <h2>Qué sobrevive a la conversión y qué no</h2>
+
+  <p>Aquí es donde la mayoría de las guías se callan. Cualquier conversión de PDF a Markdown es una reconstrucción de la estructura a partir de pistas visuales: hay cosas que hace muy bien y otras que no puede hacer por diseño. Saber cuáles son ahorra revisar las partes equivocadas:</p>
+
+  <table>
+    <thead>
+      <tr><th>Elemento</th><th>Resultado</th><th>Qué esperar</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Texto corrido y orden de lectura</td><td>Fiable</td><td>Los párrafos llegan en el orden en que están colocados en la página</td></tr>
+      <tr><td>Títulos</td><td>Casi siempre bien</td><td>Se detectan por el tamaño de letra, así que un documento con tipografía coherente se asigna limpio a los niveles <code>#</code></td></tr>
+      <tr><td>Tablas con líneas visibles</td><td>Casi siempre bien</td><td>Salen como tablas de Markdown; las celdas combinadas y anidadas se aplanan</td></tr>
+      <tr><td>Listas con viñetas</td><td>A medias</td><td>El texto sobrevive, pero las viñetas llegan como caracteres y no como la sintaxis <code>-</code></td></tr>
+      <tr><td>Negrita y cursiva</td><td>No</td><td>El énfasis dentro de un párrafo no se reconstruye, solo los niveles de título</td></tr>
+      <tr><td>Imágenes y gráficos</td><td>No</td><td>Una exportación de texto no contiene imágenes; hay que sacarlas aparte</td></tr>
+      <tr><td>Hipervínculos</td><td>No</td><td>Las direcciones visibles quedan como texto; los enlaces escondidos tras palabras se pierden</td></tr>
+      <tr><td>Notas al pie y encabezados</td><td>Desordenado</td><td>Para el PDF son texto normal en la página, así que aterrizan donde estaban</td></tr>
+      <tr><td>Maquetación a dos columnas</td><td>Arriesgado</td><td>Los diseños académicos y de periódico pueden entrelazar columnas; revisa la primera página antes de fiarte del resto</td></tr>
+      <tr><td>Páginas escaneadas</td><td>No</td><td>Sin capa de texto no hay nada que extraer. Primero OCR</td></tr>
+    </tbody>
+  </table>
+
+  <p>Regla rápida: si puedes seleccionar el texto en tu lector de PDF, la conversión funcionará. Si al seleccionar no pasa nada, tienes una imagen y necesitas la sección siguiente.</p>
+
+  <h2>Si tu PDF es un escaneo, empieza por el OCR</h2>
+
+  <p>Un documento escaneado o fotografiado no tiene capa de texto, solo píxeles. Convertirlo a Markdown produce la línea <code>_No extractable text_</code> y nada más, y esa es la respuesta honesta, no un fallo. Primero hace falta reconocimiento óptico de caracteres:</p>
+
+  <ul>
+    <li>Para un documento escaneado, pásalo por <a href="/es/scanned-pdf-to-word/">PDF escaneado a Word</a>: aplica OCR y devuelve un archivo editable que puedes guardar como Markdown desde tu editor.</li>
+    <li>Para una sola página, una captura o una foto es más rápido <a href="/es/image/to-text/">extraer el texto de una imagen</a>: devuelve texto plano que reestructuras a mano.</li>
+    <li>¿No sabes qué tienes delante? La guía sobre <a href="/es/blog/pdf-to-word-vs-ocr-which-to-use/">PDF a Word frente a OCR</a> explica cómo distinguirlo en diez segundos, y el artículo sobre <a href="/es/blog/how-to-extract-text-from-an-image/">extraer texto de una imagen</a> trata la precisión.</li>
+  </ul>
+
+  <h2>El repaso de cinco minutos que deja el resultado publicable</h2>
+
+  <p>Ningún conversor entrega un documento terminado, y este tampoco. La buena noticia es que el repaso es mecánico y casi todo se resuelve con buscar y reemplazar:</p>
+
+  <ol>
+    <li><strong>Quita el mobiliario.</strong> Encabezados, pies, números de página y avisos de confidencialidad se repiten en cada página y son lo primero que sobra.</li>
+    <li><strong>Vuelve a unir las líneas partidas.</strong> El texto maquetado para imprenta lleva saltos duros dentro de las frases. Busca un guion seguido de salto de línea para recomponer las palabras cortadas y luego une el resto de líneas de cada párrafo.</li>
+    <li><strong>Ajusta los niveles de título.</strong> La detección por tamaño da niveles sensatos, pero un documento que maqueta igual el título y los encabezados de sección necesitará una pasada para subir o bajar unas cuantas almohadillas.</li>
+    <li><strong>Convierte las viñetas en listas.</strong> Sustituye los caracteres de viñeta iniciales por <code>- </code> para que el renderizador los trate como elementos de lista.</li>
+    <li><strong>Revisa las tablas.</strong> Comprueba que el número de columnas coincide con el original y que ninguna fila perdió una celda. Las tablas anchas son las que más sufren.</li>
+    <li><strong>Decide qué haces con los marcadores de página:</strong> bórralos si buscas un documento continuo, consérvalos si importa la procedencia.</li>
+  </ol>
+
+  <p>Cinco minutos por cada diez páginas es un cambio justo frente a una hora de tecleo, y a diferencia del tecleo no introduce errores nuevos en las cifras.</p>
+
+  <h2>Markdown, texto, Word o HTML: cuál elegir</h2>
+
+  <p>Markdown no siempre es la respuesta. La exportación depende de lo que le pase al texto después:</p>
+
+  <table>
+    <thead>
+      <tr><th>Objetivo</th><th>Formato</th><th>Por qué</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Documentación, notas, Git, contexto para IA</td><td><a href="/es/pdf-to-markdown/">Markdown</a></td><td>La estructura se conserva y sigue siendo legible como texto plano</td></tr>
+      <tr><td>Solo las palabras, sin estructura</td><td><a href="/es/pdf-to-text/">Texto</a></td><td>La salida más simple para buscar, scriptear o hacer un grep rápido</td></tr>
+      <tr><td>Seguir editando con formato</td><td><a href="/es/pdf-to-word/">Word</a></td><td>Mantiene el aspecto y permite control de cambios y comentarios</td></tr>
+      <tr><td>Publicar en la web tal cual</td><td><a href="/es/pdf-to-html/">HTML</a></td><td>Se abre en el navegador sin ningún paso de compilación</td></tr>
+      <tr><td>Cifras que vas a recalcular</td><td><a href="/es/pdf-to-excel/">Excel</a></td><td>Las celdas siguen siendo celdas, así que las fórmulas funcionan</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Cómo dar el Markdown a un modelo de IA sin desperdiciar contexto</h2>
+
+  <p>Si el destino es un modelo de lenguaje o un índice de recuperación, unos pocos hábitos cambian mucho la calidad de las respuestas:</p>
+
+  <ul>
+    <li><strong>Conserva los títulos.</strong> Son la señal de troceado más barata que existe. Partir el documento por los límites <code>##</code> da secciones que tienen sentido por sí solas, y eso gana a cortar cada mil caracteres en mitad de una frase.</li>
+    <li><strong>Quita primero el mobiliario repetido.</strong> Un pie de página en las sesenta páginas son sesenta fragmentos casi idénticos compitiendo con tu contenido real en una búsqueda vectorial, y tokens pagados dentro del prompt.</li>
+    <li><strong>Deja las tablas como tablas.</strong> Una tabla de barras verticales se lee como filas y columnas para el modelo. Las mismas cifras diluidas en un párrafo lo invitan a emparejar el dato equivocado con la etiqueta equivocada.</li>
+    <li><strong>Convierte documento a documento, no el archivo entero.</strong> Un <code>.md</code> por cada PDF mantiene la trazabilidad y te deja señalar de dónde salió cada respuesta.</li>
+    <li><strong>Verifica las cifras que importan.</strong> La conversión es mecánica, pero una celda combinada aplanada puede correr un valor a la columna vecina, y ningún modelo lo va a notar por ti. Contrasta con el PDF original los números sobre los que vas a decidir.</li>
+  </ul>
+
+  <h2>Qué pasa con el archivo que subes</h2>
+
+  <p>La conversión ocurre en el servidor, así que el PDF se sube. Se borra en cuanto termina la conversión y el enlace de descarga es solo tuyo. Nada se indexa, se lee ni se reutiliza para entrenar modelos. Si estás convirtiendo documentación interna o material de un cliente, la nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo trata Convertica tus archivos</a> detalla las reglas de retención; y para documentos con obligaciones estrictas de confidencialidad, una herramienta local sigue siendo el instinto correcto.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Sobrevivirán mis tablas?</h3>
+  <p>Las tablas con líneas de rejilla visibles suelen convertirse en tablas de Markdown completas, fila de encabezado incluida. La precisión baja con celdas combinadas, tablas anidadas y tablas sostenidas por espacios en lugar de líneas, porque no hay líneas que detectar. Revisa primero las tablas anchas: las rejillas simples salen bien casi siempre.</p>
+
+  <h3>¿Por qué mis títulos salieron como párrafos normales?</h3>
+  <p>La detección se basa en la tipografía: el texto claramente más grande que el cuerpo pasa a ser título. Un documento cuyos títulos solo se distinguen por la negrita o el color, al mismo tamaño que el cuerpo, no le da nada que detectar al conversor. Deja la detección activada, convierte y sube a mano los pocos títulos que falten.</p>
+
+  <h3>¿Se conservan la negrita y la cursiva?</h3>
+  <p>No. Solo se reconstruyen los niveles de título y la estructura de las tablas; el énfasis dentro del párrafo, no. Si el énfasis te importa, convierte a <a href="/es/pdf-to-word/">Word</a>, donde el formato de carácter sí viaja.</p>
+
+  <h3>¿Puedo convertir un libro o un manual de 300 páginas?</h3>
+  <p>Sí, dentro del límite de tamaño: 15 MB en el plan gratuito y 100 MB con Premium. Los PDF grandes hechos solo de texto suelen quedar muy por debajo. Si un documento voluminoso tarda, la conversión puede ejecutarse en segundo plano y enviarte el resultado por correo sin que tengas que vigilar la pestaña.</p>
+
+  <h3>¿Markdown es mejor que texto plano para la IA?</h3>
+  <p>Para cualquier cosa más larga que una página, sí. El texto plano le da al modelo palabras sin jerarquía; Markdown le da títulos por donde trocear y tablas que aún se leen como tablas. Esa estructura es lo que permite a un sistema de recuperación devolver una sección coherente en lugar de un trozo arbitrario de caracteres.</p>
+
+  <h3>Toda la página volvió como una única fila de tabla enorme. ¿Qué pasó?</h3>
+  <p>Eso ocurría con los PDF maquetados dentro de un marco a toda página, porque un marco parece una tabla de una sola celda. Ahora el conversor rechaza las tablas de una columna y deja el texto como párrafos, así que no debería repetirse. Si un archivo concreto sigue portándose raro, conviértelo de nuevo con la conservación de tablas desactivada.</p>
+
+  <h2>Pruébalo con tu archivo</h2>
+
+  <p>Coge el documento que llevas tiempo queriendo mover a tus notas o a tu documentación y pásalo por el <a href="/es/pdf-to-markdown/">conversor de PDF a Markdown</a>. Deja activada la detección de títulos, compara la primera página con el original y hazle el repaso de cinco minutos. Si resulta que es un escaneo, empieza por <a href="/es/scanned-pdf-to-word/">PDF escaneado a Word</a>. El resto está en <a href="/es/all-tools/">todas las herramientas</a>.</p>
