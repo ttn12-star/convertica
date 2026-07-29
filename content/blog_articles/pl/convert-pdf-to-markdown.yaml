@@ -1,0 +1,202 @@
+slug: convert-pdf-to-markdown
+title_pl: "Jak zamienić PDF na Markdown: nagłówki, tabele i tekst dla AI"
+meta_title_pl: "PDF na Markdown: jak przekonwertować czysto | Convertica"
+meta_description_pl: "Kopiuj-wklej z PDF daje ścianę połamanego tekstu. Oto jak zamienić PDF na Markdown z prawdziwymi nagłówkami i tabelami i czego nie da się odzyskać."
+meta_keywords_pl: "pdf na markdown, konwersja pdf na markdown, pdf do md, konwerter pdf markdown, wyciągnąć markdown z pdf, pdf na markdown z tabelami, pdf do obsidian"
+excerpt_pl: "Markdown to format, w którym dokumentacja, notatki i dane dla modeli AI czują się najlepiej: zwykły tekst z jawną strukturą. PDF działa dokładnie odwrotnie. Pokazujemy, jak wydobyć z PDF prawdziwe nagłówki i tabele zamiast ściany skopiowanych linii, czego z oryginału nie da się odzyskać i jaka pięciominutowa poprawka zamienia wynik w gotowy dokument."
+ai_metadata:
+  topics:
+    - konwersja PDF na Markdown
+    - zachowanie nagłówków i tabel
+    - przygotowanie dokumentów dla AI i LLM
+    - Markdown a zwykły tekst i Word
+    - poprawianie wygenerowanego Markdown
+  entities:
+    - Markdown
+    - PDF
+    - Obsidian
+    - LLM
+    - RAG
+    - OCR
+    - Convertica
+    - Git
+  summary: "Wyjaśnia, dlaczego Markdown jest lepszym celem niż kopiuj-wklej, pokazuje konwersję z wykrywaniem nagłówków i zachowaniem tabel, przedstawia prawdziwy plik .md wraz ze znacznikami stron i tabelami, uczciwie wymienia, co nie przetrwa konwersji (obrazy, linki, pogrubienie i kursywa, przypisy, dwie kolumny, skany), tłumaczy, dlaczego skany wymagają OCR, podaje krótką listę poprawek, porównuje Markdown z tekstem, Wordem i HTML oraz odpowiada na częste pytania."
+  related_terms:
+    - konwerter pdf na md
+    - wyciągnąć tekst z pdf ze strukturą
+    - pdf na markdown online darmowo
+    - markdown dla modelu językowego
+    - pdf do notatek obsidian
+    - migracja dokumentacji z pdf
+  reading_time_minutes: 9
+  target_audience: "Programiści, autorzy dokumentacji technicznej, badacze i osoby prowadzące notatki, które potrzebują tekstu z PDF w dokumentacji, bazie wiedzy, skarbcu Obsidian albo w pipeline dla AI i chcą wiedzieć z góry, co konwersja zachowa, a czego nie."
+content_pl: |
+  Jest szczególny rodzaj irytacji związany z tym, że tekst z PDF jest potrzebny gdzieś indziej. Zaznaczasz stronę, kopiujesz, wklejasz do edytora i dostajesz ścianę linii z dywizami w środku wyrazów, numerami stron wciśniętymi między akapity, nagłówkami, które przestały być nagłówkami, i tabelą, która przyjechała jako jedna pionowa kolumna liczb. Dziesięć minut porządkowania później masz połowę jednej strony.
+
+  Markdown to format, którego naprawdę oczekuje większość tych miejsc. Strony dokumentacji, generatory stron statycznych, wiki, pliki README, skarbce Obsidian i Notion oraz pipeline dla modeli językowych czytają Markdown bez przejściówek. Sensowny ruch to więc nie kopiuj-wklej, a konwersja: zamienić PDF na plik `.md`, który zachowuje hierarchię nagłówków i tabele, i poświęcić pięć minut na poprawki zamiast godziny na przepisywanie.
+
+  <h2>Co daje Markdown, czego nie potrafi PDF</h2>
+
+  <p>PDF to opis wydrukowanej strony. Wie, gdzie stoi każdy znak, jaką czcionką i w jakim stopniu. Praktycznie nie wie, że dana linia była nagłówkiem, że trzy linie tworzyły listę, a siatka liczb była tabelą. Ta informacja istnieje tylko wizualnie i dlatego kopiowanie z PDF daje tekst bez struktury.</p>
+
+  <p>Markdown to odwrotna umowa. Nie ma pojęcia, jak wygląda twoja strona, ale strukturę nazywa wprost: <code>#</code> to nagłówek, <code>-</code> element listy, pionowe kreski budują tabelę. Dzięki temu jest:</p>
+
+  <ul>
+    <li><strong>Przenośny.</strong> Plik <code>.md</code> otwiera się w każdym edytorze tekstu i wkleja się do niemal każdego współczesnego narzędzia bez śmieciowego formatowania.</li>
+    <li><strong>Czytelny w historii zmian.</strong> Wrzuć go do Gita i każda przyszła zmiana będzie zwykłym diffem linia po linii, co z binarnym PDF jest niemożliwe.</li>
+    <li><strong>Elastyczny w układzie.</strong> Ten sam tekst czyta się wygodnie na telefonie, w terminalu i na stronie dokumentacji, bo nic nie jest przypięte do formatu strony.</li>
+    <li><strong>Przyjazny maszynom.</strong> Wyszukiwanie, skrypty i modele językowe korzystają z jawnej struktury, zamiast odgadywać ją ze współrzędnych.</li>
+  </ul>
+
+  <h2>Po co robi się to w 2026 roku</h2>
+
+  <p>Zastosowania przesunęły się w ostatnich dwóch latach. Dziś niemal wszystko zamykają cztery:</p>
+
+  <ul>
+    <li><strong>Podanie dokumentu modelowi AI.</strong> Specyfikacje, instrukcje, umowy i artykuły przychodzą jako PDF, a wersja w Markdown to najtańszy i najczystszy sposób oddania ich modelowi albo wrzucenia do indeksu wyszukiwania.</li>
+    <li><strong>Migracja starej dokumentacji.</strong> Dekada instrukcji w PDF kiedyś przenosi się na stronę dokumentacji albo do wiki, a to przenosiny do Markdown.</li>
+    <li><strong>Notatki osobiste.</strong> Obsidian, Logseq i Joplin to skarbce Markdown. Raporty i artykuły naukowe wchodzą tam jako <code>.md</code> albo nie wchodzą wcale.</li>
+    <li><strong>Cytowanie i ponowne użycie.</strong> Przeniesienie tabeli z raportu do zgłoszenia, changelogu czy wpisu jest banalne, gdy tabela jest w Markdown, i męczące, gdy jest zrzutem ekranu.</li>
+  </ul>
+
+  <h2>Jak zamienić PDF na Markdown w trzech krokach</h2>
+
+  <figure><img src="/static/images/tools/pdf-to-markdown.jpg" alt="Konwerter Convertica PDF na Markdown z wczytanym plikiem" width="1280" height="800" loading="lazy"></figure>
+
+  <ol>
+    <li>Otwórz <a href="/pl/pdf-to-markdown/">konwerter PDF na Markdown</a> i przeciągnij plik. Bezpłatnie przyjmowane są pliki do 15 MB, Premium podnosi limit do 100 MB.</li>
+    <li>Przy zwykłym dokumencie zostaw włączone <strong>wykrywanie nagłówków</strong> i <strong>zachowanie tabel</strong>. Pierwsze przekłada wizualne poziomy nagłówków na <code>#</code>, <code>##</code> i <code>###</code>, drugie zamienia wykryte siatki w tabele Markdown.</li>
+    <li>Uruchom konwersję i pobierz plik <code>.md</code>. Otworzysz go w dowolnym edytorze i przeczytasz cały dokument jako tekst.</li>
+  </ol>
+
+  <p>Konwersja jest tekstowa, więc szybka, a do kilku dokumentów dziennie konto nie jest potrzebne: bez rejestracji dostępnych jest 10 konwersji na dobę, darmowe konto podnosi limit do 40, Premium zdejmuje go całkiem.</p>
+
+  <h2>Jak wygląda wynik</h2>
+
+  <p>Weźmy jednostronicowy raport z tytułem, wierszem wprowadzenia, tabelą z trzech kolumn i sekcją uwag. Oto co wraca, bez żadnej poprawki:</p>
+
+  <pre><code># Raport kwartalny
+
+  Przychody według regionów, wszystkie kwoty w tysiącach złotych.
+
+  | Region | I kw. | II kw. |
+  | --- | --- | --- |
+  | Mazowsze | 120 | 138 |
+  | Śląsk | 95 | 102 |
+
+  ## Uwagi
+
+  Wzrost na Śląsku zwolnił w drugim kwartale z powodu kalendarza świąt.</code></pre>
+
+  <p>Przy dłuższym pliku warto znać dwie rzeczy:</p>
+
+  <ul>
+    <li><strong>Znaczniki stron.</strong> W dokumencie z więcej niż jedną stroną pojawia się nagłówek <code>## Page 2</code> i pozioma linia między stronami, więc zawsze wiadomo, skąd pochodzi fragment. W ciągłym tekście zwykle się je usuwa, a w archiwum skanów albo w aktach prawnych to właśnie one są najcenniejsze.</li>
+    <li><strong>Puste strony są opisane.</strong> Strona bez tekstu do wydobycia zamienia się w linię <code>_No extractable text on this page._</code>, a nie znika po cichu. Jeśli ta linia się powtarza, masz skan i potrzebujesz drogi przez OCR opisanej niżej.</li>
+  </ul>
+
+  <h2>Co przetrwa konwersję, a co nie</h2>
+
+  <p>Tu większość poradników milknie. Każda konwersja PDF na Markdown to odtwarzanie struktury na podstawie wskazówek wizualnych: w części rzeczy jest bardzo dobra, a części nie potrafi z założenia. Świadomość granic oszczędza sprawdzanie nie tych miejsc:</p>
+
+  <table>
+    <thead>
+      <tr><th>Element</th><th>Wynik</th><th>Czego się spodziewać</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tekst główny i kolejność czytania</td><td>Pewnie</td><td>Akapity wracają w kolejności, w jakiej leżą na stronie</td></tr>
+      <tr><td>Nagłówki</td><td>Zwykle dobrze</td><td>Rozpoznawane po stopniu pisma, więc dokument o spójnej typografii ładnie mapuje się na poziomy <code>#</code></td></tr>
+      <tr><td>Tabele z widocznymi liniami</td><td>Zwykle dobrze</td><td>Eksportowane jako tabele Markdown, komórki scalone i zagnieżdżone zostają spłaszczone</td></tr>
+      <tr><td>Listy wypunktowane</td><td>Częściowo</td><td>Tekst przechodzi, ale punktory przyjeżdżają jako znaki, nie jako składnia <code>-</code></td></tr>
+      <tr><td>Pogrubienie i kursywa</td><td>Nie</td><td>Wyróżnienia w akapicie nie są odtwarzane, tylko poziomy nagłówków</td></tr>
+      <tr><td>Obrazy i wykresy</td><td>Nie</td><td>Eksport tekstowy nie zawiera grafiki, trzeba ją wyciągnąć osobno</td></tr>
+      <tr><td>Hiperlinki</td><td>Nie</td><td>Widoczne adresy zostają tekstem, linki ukryte pod słowami przepadają</td></tr>
+      <tr><td>Przypisy, żywa pagina</td><td>Bałagan</td><td>Dla PDF to zwykły tekst na stronie, więc ląduje tam, gdzie stał</td></tr>
+      <tr><td>Układ dwukolumnowy</td><td>Ryzykownie</td><td>Layouty naukowe i gazetowe mogą przeplatać kolumny, sprawdź pierwszą stronę przed zaufaniem reszcie</td></tr>
+      <tr><td>Skany</td><td>Nie</td><td>Bez warstwy tekstowej nie ma czego wydobywać, najpierw OCR</td></tr>
+    </tbody>
+  </table>
+
+  <p>Prosta zasada: jeśli tekst w PDF da się zaznaczyć myszką, konwersja się uda. Jeśli zaznaczanie nic nie daje, masz obraz i potrzebujesz kolejnej sekcji.</p>
+
+  <h2>Jeśli masz skan, zacznij od rozpoznawania</h2>
+
+  <p>Zeskanowany albo sfotografowany dokument nie ma warstwy tekstowej, ma tylko piksele. Konwersja takiego pliku zwróci linię <code>_No extractable text_</code> i nic więcej, i to jest uczciwa odpowiedź, a nie awaria. Najpierw potrzebne jest rozpoznawanie znaków:</p>
+
+  <ul>
+    <li>Dla zeskanowanego dokumentu użyj <a href="/pl/scanned-pdf-to-word/">skanu PDF na Word</a>: stosuje OCR i oddaje edytowalny plik, który zapiszesz jako Markdown wprost z edytora.</li>
+    <li>Dla jednej strony, zrzutu ekranu albo zdjęcia szybsze będzie <a href="/pl/image/to-text/">rozpoznawanie tekstu z obrazu</a>: wraca zwykły tekst, którego strukturę ułożysz ręcznie.</li>
+    <li>Nie wiesz, co trzymasz w ręku? Materiał <a href="/pl/blog/pdf-to-word-vs-ocr-which-to-use/">PDF na Word czy OCR</a> pokazuje, jak rozpoznać to w dziesięć sekund, a wpis o <a href="/pl/blog/how-to-extract-text-from-an-image/">wyciąganiu tekstu z obrazu</a> omawia dokładność.</li>
+  </ul>
+
+  <h2>Pięciominutowa poprawka, po której wynik można publikować</h2>
+
+  <p>Gotowego dokumentu nie oddaje żaden konwerter, ten też nie. Dobra wiadomość jest taka, że poprawki są mechaniczne i prawie w całości robi je szukaj i zamień:</p>
+
+  <ol>
+    <li><strong>Usuń oprawę.</strong> Żywa pagina, stopki, numery stron i klauzule poufności powtarzają się na każdej stronie i wylatują pierwsze.</li>
+    <li><strong>Poskładaj rozerwane linie.</strong> Skład pod druk ma twarde łamania w środku zdań. Poszukaj dywizu przed znakiem końca linii, żeby scalić przecięte wyrazy, a potem złącz pozostałe linie w akapitach.</li>
+    <li><strong>Popraw poziomy nagłówków.</strong> Rozpoznawanie po stopniu pisma daje rozsądne poziomy, ale dokument, w którym tytuł i nagłówki sekcji wyglądają identycznie, wymaga jednego przejścia, żeby podnieść lub obniżyć kilka kratek.</li>
+    <li><strong>Zamień znaki na listy.</strong> Podmień wiodące punktory na <code>- </code>, żeby renderer traktował linie jako elementy listy.</li>
+    <li><strong>Sprawdź tabele.</strong> Upewnij się, że liczba kolumn zgadza się z oryginałem i żaden wiersz nie stracił komórki. Szerokie tabele cierpią najczęściej.</li>
+    <li><strong>Zdecyduj o znacznikach stron:</strong> usuń je przy tekście ciągłym, zostaw, gdy liczy się źródło fragmentu.</li>
+  </ol>
+
+  <p>Pięć minut na dziesięć stron to uczciwa zamiana za godzinę przepisywania, a w odróżnieniu od przepisywania nie wprowadza nowych literówek w liczbach.</p>
+
+  <h2>Markdown, tekst, Word czy HTML: co wybrać</h2>
+
+  <p>Markdown nie jest odpowiedzią na wszystko. Format zależy od tego, co stanie się z tekstem dalej:</p>
+
+  <table>
+    <thead>
+      <tr><th>Cel</th><th>Format</th><th>Dlaczego</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Dokumentacja, notatki, Git, kontekst dla AI</td><td><a href="/pl/pdf-to-markdown/">Markdown</a></td><td>Struktura zostaje zachowana i wciąż czyta się jako zwykły tekst</td></tr>
+      <tr><td>Same słowa, bez struktury</td><td><a href="/pl/pdf-to-text/">Tekst</a></td><td>Najprostsze wyjście dla wyszukiwania, skryptów i szybkiego grepa</td></tr>
+      <tr><td>Dalsza edycja z formatowaniem</td><td><a href="/pl/pdf-to-word/">Word</a></td><td>Zachowuje wygląd, pozwala śledzić zmiany i komentować</td></tr>
+      <tr><td>Publikacja w sieci od razu</td><td><a href="/pl/pdf-to-html/">HTML</a></td><td>Otwiera się w przeglądarce bez budowania strony</td></tr>
+      <tr><td>Liczby do przeliczenia</td><td><a href="/pl/pdf-to-excel/">Excel</a></td><td>Komórki zostają komórkami, więc formuły działają</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Jak oddać Markdown modelowi AI i nie przepalić kontekstu</h2>
+
+  <p>Jeśli tekst jedzie do modelu językowego albo do indeksu wyszukiwania, kilka nawyków wyraźnie poprawia jakość odpowiedzi:</p>
+
+  <ul>
+    <li><strong>Zachowaj nagłówki.</strong> To najtańszy możliwy sygnał do dzielenia na fragmenty. Cięcie na granicach <code>##</code> daje sekcje, z których każda ma sens osobno, i bije cięcie co tysiąc znaków w środku zdania.</li>
+    <li><strong>Najpierw usuń powtarzalną oprawę.</strong> Stopka na wszystkich sześćdziesięciu stronach to sześćdziesiąt niemal identycznych fragmentów konkurujących z treścią w wyszukiwaniu wektorowym i opłacone tokeny w promptcie.</li>
+    <li><strong>Zostaw tabele tabelami.</strong> Tabela na pionowych kreskach czyta się dla modelu jako wiersze i kolumny. Te same liczby rozmazane w akapicie zachęcają go, by sparować złą wartość ze złą etykietą.</li>
+    <li><strong>Konwertuj dokument po dokumencie.</strong> Jeden plik <code>.md</code> na jeden PDF utrzymuje możliwość cytowania, więc widać, skąd wzięła się odpowiedź.</li>
+    <li><strong>Sprawdź istotne liczby.</strong> Konwersja jest mechaniczna, ale spłaszczona scalona komórka potrafi przesunąć wartość do sąsiedniej kolumny, a model tego za ciebie nie zauważy. Liczby, na których opierasz decyzje, porównaj z oryginałem.</li>
+  </ul>
+
+  <h2>Co dzieje się z wysłanym plikiem</h2>
+
+  <p>Konwersja działa na serwerze, więc PDF jest wysyłany. Zostaje usunięty od razu po zakończeniu konwersji, a link do pobrania należy tylko do ciebie. Nic nie jest indeksowane, czytane ani używane do trenowania modeli. Jeśli przetwarzasz dokumentację wewnętrzną albo materiały klienta, zasady przechowywania opisuje wpis o tym, <a href="/pl/blog/is-convertica-safe-pdf-file-security-privacy-explained/">jak Convertica obchodzi się z plikami</a>, a przy dokumentach objętych ścisłą poufnością narzędzie lokalne pozostaje właściwym odruchem.</p>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Czy tabele przetrwają konwersję?</h3>
+  <p>Tabele z widocznymi liniami siatki zwykle zamieniają się w pełnoprawne tabele Markdown razem z wierszem nagłówka. Dokładność spada na komórkach scalonych, tabelach zagnieżdżonych i takich, które trzymają się na spacjach zamiast linii, bo nie ma czego wykryć. Szerokie tabele sprawdzaj pierwsze, proste siatki są niemal zawsze poprawne.</p>
+
+  <h3>Dlaczego nagłówki wyszły jako zwykłe akapity?</h3>
+  <p>Rozpoznawanie działa po typografii: tekst zauważalnie większy od tekstu głównego staje się nagłówkiem. Dokument, w którym nagłówki różnią się tylko pogrubieniem albo kolorem przy tym samym stopniu pisma, nie daje konwerterowi nic do wykrycia. Zostaw wykrywanie włączone, przekonwertuj i podnieś kilka nagłówków ręcznie.</p>
+
+  <h3>Czy pogrubienie i kursywa są zachowywane?</h3>
+  <p>Nie. Odtwarzane są tylko poziomy nagłówków i struktura tabel, wyróżnienia w akapicie nie. Jeśli wyróżnienia są ważne, konwertuj do <a href="/pl/pdf-to-word/">Worda</a>, gdzie formatowanie znaków przechodzi.</p>
+
+  <h3>Czy da się przekonwertować książkę albo instrukcję na 300 stron?</h3>
+  <p>Tak, w granicach rozmiaru pliku: 15 MB bezpłatnie i 100 MB z Premium. Duże PDF-y złożone z samego tekstu zwykle są znacznie lżejsze. Jeśli obszerny dokument przetwarza się dłużej, konwersję można wysłać w tło i dostać wynik mailem, bez pilnowania karty przeglądarki.</p>
+
+  <h3>Czy Markdown jest dla AI lepszy niż zwykły tekst?</h3>
+  <p>Przy czymkolwiek dłuższym niż strona tak. Zwykły tekst daje modelowi słowa bez hierarchii, Markdown daje nagłówki do cięcia i tabele, które nadal czytają się jak tabele. To właśnie struktura pozwala systemowi wyszukiwania zwrócić spójną sekcję zamiast przypadkowego wycinka znaków.</p>
+
+  <h3>Cała strona wróciła jako jeden wielki wiersz tabeli. Co się stało?</h3>
+  <p>Tak zachowywały się kiedyś PDF-y złożone w ramce na całą stronę, bo ramka wygląda jak tabela z jedną komórką. Konwerter odrzuca teraz tabele jednokolumnowe i zostawia tekst w akapitach, więc to nie powinno się powtarzać. Jeśli konkretny plik nadal się dziwnie zachowuje, przekonwertuj go ponownie z wyłączonym zachowaniem tabel.</p>
+
+  <h2>Sprawdź na własnym pliku</h2>
+
+  <p>Weź dokument, który od dawna chciałeś przenieść do notatek albo dokumentacji, i przepuść go przez <a href="/pl/pdf-to-markdown/">konwerter PDF na Markdown</a>. Zostaw włączone wykrywanie nagłówków, porównaj pierwszą stronę z oryginałem i zrób pięciominutową poprawkę. Jeśli okaże się, że to skan, zacznij od <a href="/pl/scanned-pdf-to-word/">skanu PDF na Word</a>. Reszta czeka w <a href="/pl/all-tools/">wszystkich narzędziach</a>.</p>
