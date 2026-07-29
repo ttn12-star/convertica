@@ -57,11 +57,17 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     }
 
+    /* The prose-* utilities below are no-ops (no @tailwindcss/typography in the
+       build), so headings inherited body size and read as plain paragraphs.
+       Size them here instead of pulling in the plugin. */
     .article-content h2 {
       position: relative;
       padding-left: 1.5rem;
       margin-top: 3rem;
       margin-bottom: 1.5rem;
+      font-size: 1.75rem;
+      line-height: 1.25;
+      font-weight: 800;
     }
 
     .article-content h2::before {
@@ -79,6 +85,9 @@
       margin-top: 2.5rem;
       margin-bottom: 1rem;
       position: relative;
+      font-size: 1.3rem;
+      line-height: 1.35;
+      font-weight: 700;
     }
 
     .article-content p {
@@ -153,6 +162,28 @@
     .article-content code {
       background: linear-gradient(to right, #eff6ff, #f0f9ff);
       border: 1px solid #bfdbfe;
+    }
+
+    /* Multi-line samples: preflight leaves <pre> unstyled, so each line was
+       drawn as an inline code pill with the indentation collapsed. */
+    .article-content pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.25rem;
+      margin: 1.75rem 0;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .article-content pre code {
+      background: none;
+      border: 0;
+      padding: 0;
+      color: inherit;
+      white-space: pre;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
     .article-content a {

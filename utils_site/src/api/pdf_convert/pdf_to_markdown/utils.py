@@ -45,6 +45,12 @@ def _render_markdown_table(rows: list[list[str | None]]) -> str:
         return ""
 
     max_cols = max(len(row) for row in normalized_rows)
+    # A one-column "table" carries no tabular information, and pdfplumber reports
+    # one for any bordered box — a framed page or a callout swallowed the whole
+    # text into a single cell, losing headings and paragraph breaks. Decline it so
+    # the caller keeps the lines as prose.
+    if max_cols < 2:
+        return ""
     padded_rows = [row + [""] * (max_cols - len(row)) for row in normalized_rows]
 
     header = padded_rows[0]
