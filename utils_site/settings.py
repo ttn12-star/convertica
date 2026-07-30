@@ -567,6 +567,10 @@ ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = (
     "/users/login/"  # Redirect after email confirmation (anonymous users)
 )
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True  # Auto-login after email confirmation
+# Without this allauth prefixes every subject with "[{Site.name}] " — and the
+# prod Site row has no name, so subjects arrived as "[] Please Confirm ...".
+# Our subject templates already say what the email is about.
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
 
 # Brute-force / abuse limits for allauth endpoints (v65 syntax).
 # Without these, allauth ships no rate limit and our CAPTCHA middleware
@@ -1301,6 +1305,10 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 # Irrelevant when SendGrid HTTP API backend is active.
 EMAIL_TIMEOUT = config("EMAIL_TIMEOUT", default=20, cast=int)
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="noreply@convertica.net")
+# Inboxes show the display name, not the address: wrap a bare address from .env
+# so account mail arrives from "Convertica", not "noreply@convertica.net".
+if "<" not in DEFAULT_FROM_EMAIL:
+    DEFAULT_FROM_EMAIL = f"Convertica <{DEFAULT_FROM_EMAIL}>"
 CONTACT_EMAIL = config("CONTACT_EMAIL", default="info@convertica.net")
 
 # Cloudflare Turnstile Configuration

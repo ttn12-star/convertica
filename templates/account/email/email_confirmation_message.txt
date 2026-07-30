@@ -1,0 +1,9 @@
+{% extends "account/email/base_message.txt" %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% translate "Your Convertica account is almost ready. Confirm this email address and every tool on the site is yours to use." %}
+
+{% translate "Open this link to confirm your email address:" %}
+{{ activate_url }}
+
+{% translate "Did not sign up for Convertica? Then someone mistyped their address. Ignore this email and nothing will happen." %}{% endautoescape %}{% endblock content %}

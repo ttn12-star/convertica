@@ -1,0 +1,9 @@
+{% extends "account/email/base_message.html" %}
+{% load i18n %}
+
+{% block preheader %}{% translate "One click and your account is ready." %}{% endblock %}
+{% block heading %}{% translate "Confirm your email address" %}{% endblock %}
+{% block lead %}{% translate "Your Convertica account is almost ready. Confirm this email address and every tool on the site is yours to use." %}{% endblock %}
+{% block cta_label %}{% translate "Confirm my email" %}{% endblock %}
+{% block note %}{% translate "Did not sign up for Convertica? Then someone mistyped their address. Ignore this email and nothing will happen." %}{% endblock %}
+{% block footer %}{% translate "You are receiving this email because this address was used to create an account on convertica.net." %}{% endblock %}

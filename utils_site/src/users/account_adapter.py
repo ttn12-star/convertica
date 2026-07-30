@@ -60,6 +60,36 @@ class CustomAccountAdapter(DefaultAccountAdapter):
             return reverse("users:profile")
         return reverse("users:login")
 
+    @staticmethod
+    def _brand_context(context):
+        """Extra context the branded email templates need.
+
+        allauth's own context only carries ``current_site`` (whose name/domain
+        are empty on prod, which is how "Hello from !" shipped) plus the
+        flow-specific URL. The templates want a real site URL, a greeting name,
+        and one link name for the shared HTML shell's button.
+        """
+        user = context.get("user")
+        name = ""
+        if user is not None:
+            name = (
+                getattr(user, "first_name", "") or getattr(user, "username", "") or ""
+            ).strip()
+        # Usernames are email addresses for social signups — "Hi bob@x.com,"
+        # reads worse than a neutral greeting.
+        if "@" in name:
+            name = ""
+        return {
+            "greeting_name": name,
+            "site_url": settings.SITE_URL.rstrip("/"),
+            "support_email": getattr(
+                settings, "CONTACT_EMAIL", settings.DEFAULT_FROM_EMAIL
+            ),
+            "action_url": context.get("activate_url")
+            or context.get("password_reset_url")
+            or "",
+        }
+
     def send_mail(self, template_prefix, email, context):
         """Render in-request, deliver via Celery, 503 on infra failure.
 
@@ -77,7 +107,9 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         See CONVERTICA-50/51 (May 2026) — SMTP host briefly unreachable from
         prod containers; every email-sending request 500'd for live users.
         """
-        msg = self.render_mail(template_prefix, email, context)
+        msg = self.render_mail(
+            template_prefix, email, {**context, **self._brand_context(context)}
+        )
         html_body = None
         for alternative in getattr(msg, "alternatives", None) or ():
             if alternative[1] == "text/html":
