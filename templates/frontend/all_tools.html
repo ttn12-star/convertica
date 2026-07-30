@@ -420,6 +420,24 @@
             </p>
           </a>
 
+                <!-- Change PDF Page Size -->
+          <a href="{% url 'frontend:resize_pdf_page' %}"
+             class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-sky-200 hover:border-sky-300 animate-fade-in text-gray-900 cursor-pointer">
+            <div class="mb-4">
+              <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 group-hover:text-sky-600 transition-colors">
+              {% trans "Change PDF Page Size" %}
+            </h3>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              {% trans "Move your pages to A4, US Letter or Legal without cropping them." %}
+            </p>
+          </a>
+
                 <!-- Flatten PDF -->
           <a href="{% url 'frontend:flatten_pdf_page' %}"
              class="group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 transform hover:-translate-y-2 border border-indigo-200 hover:border-indigo-300 animate-fade-in text-gray-900 cursor-pointer">

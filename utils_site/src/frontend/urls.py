@@ -94,6 +94,7 @@ urlpatterns = [
     ),
     path("pdf-edit/crop/", views.crop_pdf_page, name="crop_pdf_page"),
     path("pdf-edit/flatten/", views.flatten_pdf_page, name="flatten_pdf_page"),
+    path("pdf-edit/page-size/", views.resize_pdf_page, name="resize_pdf_page"),
     path("pdf-edit/sign/", views.sign_pdf_page, name="sign_pdf_page"),
     path("pdf-edit/add-text/", views.add_text_pdf_page, name="add_text_pdf_page"),
     path("pdf-editor/", views.pdf_editor_page, name="pdf_editor_page"),

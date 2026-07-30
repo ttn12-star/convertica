@@ -547,6 +547,143 @@ PDF_EDIT_CONFIGS = {
             "auto_generate_tool_schema": False,
         },
     },
+    "resize_pdf": {
+        "template": "frontend/pdf_edit/resize_pdf.html",
+        "converter_args": {
+            "page_title": _(
+                "Change PDF Page Size Online Free - A4 to Letter | Convertica"
+            ),
+            "page_description": _(
+                "Change PDF page size online free: convert A4 to US Letter, Letter to A4 "
+                "or Legal. Content is never cropped and stays vector-sharp for printing. "
+                "No registration required."
+            ),
+            "page_keywords": (
+                # Primary keywords
+                "change PDF page size, resize PDF, PDF page size converter, "
+                "convert A4 to Letter, A4 to US Letter PDF, Letter to A4 PDF, "
+                # Feature keywords
+                "resize PDF without cropping, change PDF paper size, "
+                "PDF to legal size, resize pdf keep quality, "
+                # Use case keywords
+                "resize PDF for printing, printable PDF A4 and Letter, "
+                "PDF page size for Etsy printables, "
+                # Free keywords
+                "change PDF page size free, resize PDF no registration"
+            ),
+            "page_subtitle": _("Put your PDF on a different paper size"),
+            "header_text": _("Change PDF Page Size"),
+            "file_input_name": "pdf_file",
+            "file_accept": ".pdf",
+            "api_url_name": "resize_pdf_api",
+            "replace_regex": r"\.pdf$",
+            "replace_to": ".pdf",
+            "button_text": _("Change Page Size"),
+            "select_file_message": _("Please select a PDF file."),
+        },
+        "seo": {
+            "page_benefits": [
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"/>',
+                    "gradient": "from-blue-500 to-blue-600",
+                    "title": _("A4, Letter and Legal"),
+                    "description": _(
+                        "Ship the same document on the paper standard your reader actually has"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>',
+                    "gradient": "from-green-500 to-green-600",
+                    "title": _("Nothing Gets Cropped"),
+                    "description": _(
+                        "We measure where your content actually sits and only shrink it if it would not fit"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>',
+                    "gradient": "from-purple-500 to-purple-600",
+                    "title": _("Print Quality Kept"),
+                    "description": _(
+                        "Text and vector graphics are re-placed, not rasterised, so they stay sharp on paper"
+                    ),
+                },
+                {
+                    "icon": '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+                    "gradient": "from-yellow-500 to-orange-500",
+                    "title": _("Consistent Across Pages"),
+                    "description": _(
+                        "Every page gets the same scale, so a multi-page set still lines up"
+                    ),
+                },
+            ],
+            "page_faq": [
+                {
+                    "question": _(
+                        "Can I convert A4 to US Letter without losing content?"
+                    ),
+                    "answer": _(
+                        "Yes, and that is the default. A4 and Letter are different shapes: Letter is about 6 mm wider and 18 mm shorter, so simply centring an A4 page on Letter would cut roughly 9 mm off the top and the bottom. This tool measures where the content on your pages actually sits. If it fits the new sheet, nothing is scaled at all. If it does not, the pages are shrunk by the smallest amount that keeps everything."
+                    ),
+                },
+                {
+                    "question": _("Will my document be scaled down?"),
+                    "answer": _(
+                        "Only if it has to be. A document with a normal margin of 10 mm or more usually moves from A4 to Letter at 100%, so printed sizes stay exact. A design that runs to the edge of the page has no spare room, so it is scaled to fit rather than clipped."
+                    ),
+                },
+                {
+                    "question": _("Does this reflow or redesign my pages?"),
+                    "answer": _(
+                        "No, and no tool can. A PDF describes finished pages, so the content can be placed on a different sheet or scaled, but paragraphs will not re-wrap and layouts will not be rearranged. If you need a genuine redesign for another paper size, go back to the file you designed in."
+                    ),
+                },
+                {
+                    "question": _("Is the quality reduced?"),
+                    "answer": _(
+                        "No. Pages are re-placed as vector content, so text, lines and vector illustration stay resolution-independent and print as sharply as your printer allows. Images keep their original resolution; if pages are scaled down, images effectively gain pixel density rather than losing it."
+                    ),
+                },
+                {
+                    "question": _("Which size should I use for printables I sell?"),
+                    "answer": _(
+                        "Offer both A4 and US Letter if you can. A4 is standard almost everywhere, US Letter in the United States and Canada, and buyers holding the other standard are a common source of refund requests. Keeping at least 10 to 12 mm of margin in your design is what lets one file convert cleanly to the other."
+                    ),
+                },
+            ],
+            "faq_title": _("Change PDF Page Size FAQ"),
+            "page_tips": [
+                _(
+                    "Leave 10 to 12 mm of margin in your design and A4 converts to Letter at full size."
+                ),
+                _(
+                    "Selling printables? Offer A4 and US Letter so buyers on either paper standard can print."
+                ),
+                _(
+                    "Print one page and check all four edges before you trust the result."
+                ),
+            ],
+            "tips_title": _("Tips for Changing Page Size"),
+            "page_content_title": _("Change a PDF page size without cropping it"),
+            "page_content_body": _(
+                "<p><strong>Change PDF page size</strong> places every page of your document on a "
+                "different paper standard: A4, US Letter or Legal. This matters because A4 and "
+                "Letter are not the same shape. Letter is roughly 6 mm wider and 18 mm shorter, "
+                "so there is no scale factor that turns one into the other, and centring an A4 "
+                "page on Letter at full size quietly removes about 9 mm from the top and the "
+                "bottom of the sheet.</p>"
+                "<p>The default <em>auto</em> mode avoids that. It looks at where the ink on your "
+                "pages actually is, keeps the document at full size when the content fits the new "
+                "sheet, and otherwise scales it down by the smallest amount that loses nothing. "
+                "One scale is applied to the whole document, so a planner or workbook still "
+                "lines up from sheet to sheet. Choose <em>fit</em> instead when you want the "
+                "predictable behaviour of scaling every page to the sheet.</p>"
+                "<p>Pages are re-placed as vector content rather than rasterised, so text and "
+                "line art stay sharp when printed. What no PDF tool can do is reflow the design: "
+                "paragraphs will not re-wrap and elements will not be rearranged for the new "
+                "proportions. For that, return to the source file you designed in.</p>"
+            ),
+        },
+    },
     "flatten_pdf": {
         "template": "frontend/pdf_edit/flatten_pdf.html",
         "converter_args": {

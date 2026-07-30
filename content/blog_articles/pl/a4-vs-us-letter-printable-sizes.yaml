@@ -1,0 +1,157 @@
+slug: a4-vs-us-letter-printable-sizes
+title_pl: "A4 czy US Letter? Format plików do druku dla odbiorców z całego świata"
+meta_title_pl: "A4 czy US Letter do plików do druku | Convertica"
+meta_description_pl: "Letter jest o 6 mm szerszy i 18 mm krótszy niż A4, więc żadna skala nie zamieni jednego w drugi. Jak wydać oba z jednego projektu i co się psuje, gdy tego nie zrobisz."
+meta_keywords_pl: "a4 czy us letter, format pliku do druku, rozmiar us letter w mm, zamienić a4 na letter, formaty papieru do druku, różnica a4 letter, pdf do druku za granicę"
+excerpt_pl: "A4 i US Letter to nie dwa rozmiary tego samego kształtu. Letter jest szerszy i krótszy, więc nie istnieje procent, przy którym jeden wydrukuje się jako drugi. Ten jeden fakt geometryczny decyduje, jak projektujesz plik do druku, jak go pakujesz i która połowa świata będzie mogła z niego skorzystać. Oto arytmetyka i sposób pracy, który daje oba formaty bez projektowania dwa razy."
+ai_metadata:
+  topics:
+    - różnica między A4 i US Letter
+    - jeden projekt na dwa standardy papieru
+    - bezpieczny margines, który przeżyje zmianę formatu
+    - które kraje używają którego formatu
+    - zmiana formatu gotowego pliku PDF
+  entities:
+    - A4
+    - US Letter
+    - Legal
+    - ISO 216
+    - ANSI
+    - Etsy
+    - Convertica
+  summary: "Wyjaśnia, dlaczego A4 i US Letter nie da się przeliczyć skalowaniem: A4 to 210 na 297 mm, Letter 215,9 na 279,4 mm, czyli Letter jest szerszy o 5,9 mm i krótszy o 17,6 mm, a proporcje są różne. Co się dzieje, gdy kupujący drukuje obcy standard z dopasowaniem do strony, które regiony używają jakiego papieru, dlaczego bezpieczny margines 10–12 mm pozwala jednemu projektowi przeżyć oba formaty, jak wyeksportować oba z programu graficznego, jak przenieść gotowy PDF, gdy nie ma już pliku źródłowego, oraz jak nazwać i spakować dwa pliki."
+  related_terms:
+    - różnica a4 i letter w mm
+    - plik do druku w dwóch formatach
+    - które kraje używają letter
+    - zmienić rozmiar strony pdf bez obcinania
+    - bezpieczny margines w projekcie
+    - zestaw a4 i letter
+  reading_time_minutes: 9
+  target_audience: "Projektanci i sprzedawcy cyfrowych produktów do druku oraz każdy, kto przygotowuje dokument do druku w więcej niż jednym kraju, kto musi wybrać między A4 i US Letter i chce wydać oba bez przeprojektowywania i obcinania."
+content_pl: |
+  Za zaskakująco dużą liczbą jednogwiazdkowych opinii przy plikach do druku stoi prosta arytmetyka. A4 ma 210 na 297 mm. US Letter ma 215,9 na 279,4 mm. Letter jest o około 6 mm szerszy i o około 18 mm krótszy. To nie dwa rozmiary jednego kształtu: same proporcje są różne, 1:1,41 wobec 1:1,29.
+
+  Konsekwencję właśnie się pomija. Nie istnieje procent, przy którym jeden wydrukuje się jako drugi. Przeskaluj projekt A4 do szerokości Letter i nadal będzie za wysoki. Przeskaluj do wysokości i przestanie wypełniać szerokość. Każda rada „wydrukuj z dopasowaniem do strony” to wybór, który z tych dwóch kompromisów dostanie kupujący, podjęty po cichu przez jego sterownik drukarki.
+
+  <h2>Kto czego używa</h2>
+
+  <p>Podział jest geograficzny i niemal całkowity:</p>
+
+  <ul>
+    <li><strong>US Letter</strong> w Stanach Zjednoczonych, Kanadzie, często w Meksyku, na Filipinach, w Chile i części Ameryki Środkowej i Południowej.</li>
+    <li><strong>A4</strong> w praktyce wszędzie indziej, w całej Europie, większości Azji, Afryce, Australii i pozostałej części Ameryki Południowej. To standard ISO 216.</li>
+    <li><strong>Istnieją lokalne dodatki.</strong> F4, sprzedawany też jako folio, 215 na 330 mm, wciąż jest popularny w Indonezji i części Azji Południowo-Wschodniej, a Legal, 215,9 na 355,6 mm, pojawia się w biurach Ameryki Północnej przy umowach.</li>
+  </ul>
+
+  <p>Dla sprzedawcy produktów cyfrowych oznacza to, że sklep tylko z A4 cicho traci konwersje z Ameryki Północnej, a sklep tylko z Letter traci większość świata. Żadna z tych strat nie trafia do analityki jako zwrot: kupujący po prostu nie kupuje albo kupuje raz i zostawia opinię o marginesach.</p>
+
+  <h2>Co naprawdę się dzieje, gdy kupujący drukuje nie ten format</h2>
+
+  <p>Prawie każdy czytnik PDF domyślnie wybiera coś w rodzaju „dopasuj do obszaru drukowania”. Daj kupującemu z papierem Letter plik w A4 i to ustawienie zrobi jedyne, co może: zmniejszy stronę do około 94 procent, żeby zmieściła się wysokość, i wyśrodkuje ją. Widoczne skutki:</p>
+
+  <table>
+    <thead>
+      <tr><th>Co zaprojektowałeś</th><th>Co dostał kupujący</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Siatkę planera pod A4</td><td>Tę samą siatkę w 94 procentach i nierówne białe pasy po bokach</td></tr>
+      <tr><td>Plakat pod konkretną ramkę</td><td>Coś o kilka milimetrów mniejszego od każdego standardowego rozmiaru ramki</td></tr>
+      <tr><td>Linie cięcia do naklejek lub kart</td><td>Linie, które już nie pasują do maty do cięcia ani do wykrojnika</td></tr>
+      <tr><td>Stronę planera pod dziurkowanie</td><td>Dziurki obok kółek, bo margines się przesunął</td></tr>
+      <tr><td>Tekst główny 11 pt</td><td>Tekst około 10,3 pt, który czyta się jako „tani”, i nikt nie wie dlaczego</td></tr>
+    </tbody>
+  </table>
+
+  <p>Przy karcie pracy z samym tekstem nie ma to większego znaczenia. Przy czymkolwiek, co kupujący mierzy, wycina, oprawia albo zszywa, to jest cały produkt.</p>
+
+  <h2>Margines zamienia jeden projekt w dwa</h2>
+
+  <p>Oto pożyteczny wniosek z liczb. Przechodząc z A4 na Letter tracisz 17,6 mm wysokości, czyli po 8,8 mm z góry i z dołu, jeśli treść zostaje wyśrodkowana. Przechodząc z Letter na A4 tracisz 5,9 mm szerokości, czyli około 3 mm z każdej strony.</p>
+
+  <p>Zatem projekt, w którym wszystko ważne jest odsunięte co najmniej 10–12 mm od krawędzi, przeżywa przejście w obie strony w pełnym rozmiarze. Projekt z ramką 4 mm od krawędzi nie przeżywa w żadną. Ta jedna decyzja, podjęta na początku, to różnica między jednym plikiem na dwa rynki i dwoma plikami, które trzeba utrzymywać na zawsze.</p>
+
+  <p>Przy okazji to ten sam margines, którego i tak potrzebuje domowa drukarka: sprzęt konsumencki nie umie położyć tuszu na kilku milimetrach przy krawędzi kartki. Nasz przewodnik o tym, <a href="/pl/blog/sell-printable-pdf-on-etsy/">jak przygotować PDF do druku na sprzedaż</a>, opisuje tę niezadrukowywalną krawędź i pozostałe kontrole przed wysłaniem.</p>
+
+  <h2>Sposób pracy: projektuj raz, eksportuj dwa razy</h2>
+
+  <p>Jeśli wciąż masz plik, w którym projektowałeś, to jest właściwa droga i nic jej nie przebije:</p>
+
+  <ol>
+    <li><strong>Projektuj w A4</strong> z bezpiecznym marginesem 12 mm. Zaczynanie od wyższego i węższego kształtu jest łatwiejsze: dodatkową szerokość, którą zyskasz na Letter, łatwo wchłonąć, a tracona wysokość jest już w twoim marginesie.</li>
+    <li><strong>Zduplikuj obszar roboczy w Letter</strong> i pozwól układowi wyśrodkować się na nowo. Sprawdzaj tylko pion: nagłówek i stopka mają o 8,8 mm mniej miejsca.</li>
+    <li><strong>Wyeksportuj oba</strong> z osadzonymi czcionkami i nazwij tak, żeby były jednoznaczne poza kontekstem: <code>weekly-planner-A4.pdf</code> i <code>weekly-planner-US-Letter.pdf</code>.</li>
+  </ol>
+
+  <p>Naprawdę złamać układ na nowo pod inne proporcje umie tylko prawdziwy program graficzny, dlatego ta droga bije każdą konwersję. Akapity mogą się przelać, siatka może zyskać wiersz, stopka może się przenieść.</p>
+
+  <h2>Gdy nie ma już pliku źródłowego</h2>
+
+  <p>Częsty niewygodny przypadek: kupiłeś szablon z licencją komercyjną, plik przejąłeś po kimś albo oryginał odszedł ze starym laptopem. Masz tylko gotowy PDF, a gotowy PDF opisuje gotowe strony. Nic go nie przełamie na nowo.</p>
+
+  <p>Można go natomiast przenieść na inny arkusz, i to jest druga najlepsza rzecz. <a href="/pl/pdf-edit/page-size/">Zmiana rozmiaru strony PDF</a> umieszcza istniejące strony na drugim standardzie papieru. Dwa szczegóły czynią to użytecznym, a nie groźnym:</p>
+
+  <ul>
+    <li><strong>Mierzy, gdzie treść naprawdę jest.</strong> Skoro A4 na Letter kosztuje 8,8 mm z góry i z dołu, plik z marginesem 12 mm ma zapas i zostaje dokładnie w 100 procentach. Rozmiary wydruku pozostają prawdziwe, a o to właśnie chodzi przy wszystkim, co się mierzy.</li>
+    <li><strong>Gdy musi, zmniejsza zamiast obcinać.</strong> Projekt dochodzący do krawędzi nie ma zapasu, więc jest zmniejszany dokładnie tyle, żeby wszystko zachować, a nie tracić 9 mm twojej ramki. Jedna skala obowiązuje w całym dokumencie, więc zestaw wielostronicowy nadal się zgadza.</li>
+  </ul>
+
+  <p>Nie próbuj robić tego kadrowaniem. <a href="/pl/pdf-edit/crop/">Kadrowanie</a> przycina stronę do mniejszego prostokąta, więc nałożenie ramki w proporcjach Letter na projekt A4 daje okno Letter, w którym brakuje dołu strony. Kadrowanie służy do usuwania niechcianych marginesów, a nie do zmiany standardu papieru.</p>
+
+  <h2>Co powiedzieć kupującemu</h2>
+
+  <p>Większość pozostałych tarć siedzi w pakowaniu. Kilka nawyków usuwa prawie wszystkie:</p>
+
+  <ul>
+    <li><strong>Włóż oba formaty do pobrania</strong> i napisz o tym w opisie oferty, nie tylko na zdjęciach. Kupujący filtrują po opisie.</li>
+    <li><strong>Nazywaj pliki, nie foldery.</strong> Ludzie rozpakowują archiwum i natychmiast tracą strukturę folderów.</li>
+    <li><strong>Dodaj jedno zdanie instrukcji:</strong> drukuj w 100 procentach, rozmiar rzeczywisty, skalowanie wyłączone. To jedno zdanie zapobiega największej liczbie wiadomości do obsługi, bo powstrzymuje czytnik przed cichym zmniejszeniem poprawnego pliku.</li>
+    <li><strong>Powiedz, który format był pierwszy</strong>, jeśli oba różnią się czymś, co kupujący może zauważyć. Uczciwość tu nic nie kosztuje i uprzedza opinię.</li>
+  </ul>
+
+  <p>Jeśli zestaw rośnie powyżej kilku plików, jedno archiwum utrzymuje porządek i trzyma cię w limicie liczby plików na platformie; nasza notka o <a href="/pl/blog/pdf-naming-conventions-best-practices/">nazewnictwie plików</a> jest napisana o dokumentach, ale zasady przenoszą się jeden do jednego.</p>
+
+  <h2>Szybka ściągawka</h2>
+
+  <table>
+    <thead>
+      <tr><th>Format</th><th>Milimetry</th><th>Cale</th><th>Proporcja</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A4</td><td>210 × 297</td><td>8,27 × 11,69</td><td>1:1,414</td></tr>
+      <tr><td>US Letter</td><td>215,9 × 279,4</td><td>8,5 × 11</td><td>1:1,294</td></tr>
+      <tr><td>Legal</td><td>215,9 × 355,6</td><td>8,5 × 14</td><td>1:1,647</td></tr>
+      <tr><td>A5</td><td>148 × 210</td><td>5,83 × 8,27</td><td>1:1,414</td></tr>
+      <tr><td>F4 / folio</td><td>215 × 330</td><td>8,46 × 12,99</td><td>1:1,535</td></tr>
+    </tbody>
+  </table>
+
+  <p>Na kolumnę z proporcją warto spojrzeć drugi raz. A4 i A5 mają ją wspólną, dlatego arkusz A4 złożony na pół daje idealne A5 i dlatego dokumenty serii A skalują się między sobą czysto. Letter nie dzieli proporcji z niczym, i właśnie dlatego nie da się go przeskalować do rozmiaru serii A.</p>
+
+  <h2>Co dzieje się z plikiem, który wysyłasz</h2>
+
+  <p>Nasze narzędzia działają na serwerze, więc plik jest wysyłany. Zostaje usunięty zaraz po zakończeniu zadania, a link do pobrania należy tylko do ciebie. Nic nie jest indeksowane, przechowywane ani używane do trenowania. Nasza notka o tym, <a href="/pl/blog/is-convertica-safe-pdf-file-security-privacy-explained/">jak Convertica obchodzi się z plikami</a>, opisuje zasady przechowywania, jeśli pracujesz nad czymś niewydanym.</p>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Czy mogę po prostu wydrukować A4 na papierze Letter?</h3>
+  <p>Możesz, i przy zwykłym dokumencie tekstowym jest w porządku. Okno druku zmniejszy stronę do około 94 procent i wyśrodkuje ją, co kosztuje trochę stopnia pisma i daje nierówne białe marginesy. Przy czymkolwiek, co się mierzy, wycina, oprawia albo dziurkuje, to nie jest akceptowalne, a przy produkcie na sprzedaż to opinia, która tylko czeka na swoją kolej.</p>
+
+  <h3>W jakim formacie projektować pierwszy?</h3>
+  <p>W większości przypadków w A4. To standard dla większej części świata i łagodniejszy punkt startu: przejście na Letter dodaje szerokość, co jest łatwe, i odbiera wysokość, którą twój bezpieczny margines już pokrywa. Zaczynaj od Letter tylko wtedy, gdy twoi odbiorcy są konkretnie z Ameryki Północnej.</p>
+
+  <h3>Czy konwersja A4 na Letter jest bezstratna?</h3>
+  <p>Treść strony tak. Przeniesienie umieszcza istniejącą treść wektorową na nowym arkuszu, więc tekst i grafika liniowa pozostają wektorem i drukują się tak samo ostro. Nie zachowuje się zamysł układu: nic się nie przelewa ani nie przestawia pod nowe proporcje, a jeśli treść nie ma zapasu marginesu, musi zostać zmniejszona, żeby nie została obcięta.</p>
+
+  <h3>A co z A5, Legal albo F4?</h3>
+  <p>A5 to dokładnie połowa A4 i dzieli z nim proporcje, więc konwersje w serii A są czyste. Legal jest znacznie wyższy od A4 i Letter, więc treść przeniesiona na niego siedzi na środku z hojnymi marginesami, a nie jest obcinana. F4 wysokością mieści się między A4 i Legal, i warto go oferować tylko wtedy, gdy sprzedajesz na rynki, gdzie jest popularny.</p>
+
+  <h3>Czy potrzebuję osobnych zdjęć oferty dla każdego formatu?</h3>
+  <p>Nie, i zwykle tylko zaśmieca to ofertę. Jeden zestaw makiet plus wyraźne zdanie w opisie, że w środku jest i A4, i US Letter, działa lepiej. Co naprawdę pomaga, to mała notka na ostatnim zdjęciu podglądu z listą tego, co jest w pobraniu.</p>
+
+  <h3>Mój projekt ma tło na spad. Co teraz?</h3>
+  <p>Przyjąć, że w pełnym rozmiarze się nie przeniesie, bo nigdzie nie ma zapasu marginesu. Albo zmniejszaj przy przenoszeniu, co doda cienkie białe marginesy, które domowa drukarka dodałaby i tak, albo utrzymuj naprawdę osobne pliki dla dwóch standardów. Spad i druk domowy nigdy nie były wygodną parą.</p>
+
+  <h2>Wybierz formaty</h2>
+
+  <p>Zdecyduj, które dwa standardy obsługujesz, przed pierwszą kreską, i trzymaj margines 12 mm, żeby decyzja została tania. Jeśli masz gotowy PDF i żadnego pliku źródłowego, przepuść go przez <a href="/pl/pdf-edit/page-size/">zmianę rozmiaru strony PDF</a>, wydrukuj jedną stronę w 100 procentach i sprawdź wszystkie cztery krawędzie, zanim ją wyślesz. Reszta jest we <a href="/pl/all-tools/">wszystkich narzędziach</a>.</p>

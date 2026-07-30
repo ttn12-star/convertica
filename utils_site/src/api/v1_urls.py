@@ -34,6 +34,7 @@ from src.api.pdf_edit.add_watermark.views import AddWatermarkAPIView
 from src.api.pdf_edit.crop_pdf.views import CropPDFAPIView
 from src.api.pdf_edit.flatten_pdf.views import FlattenPDFAPIView
 from src.api.pdf_edit.pdf_editor.views import PdfEditorAPIView
+from src.api.pdf_edit.resize_pdf.views import ResizePDFAPIView
 from src.api.pdf_edit.rotate_pdf.views import RotatePDFAPIView
 from src.api.pdf_edit.sign_pdf.views import SignPDFAPIView
 from src.api.pdf_organize.compress_pdf.views import CompressPDFAPIView
@@ -103,6 +104,11 @@ urlpatterns = [
     path("pdf-edit/sign/", SignPDFAPIView.as_view(**_perm), name="v1_sign_pdf"),
     path(
         "pdf-edit/flatten/", FlattenPDFAPIView.as_view(**_perm), name="v1_flatten_pdf"
+    ),
+    path(
+        "pdf-edit/page-size/",
+        ResizePDFAPIView.as_view(**_perm),
+        name="v1_resize_pdf",
     ),
     # PDF organize endpoints
     path("pdf-organize/merge/", MergePDFAPIView.as_view(**_perm), name="v1_merge_pdf"),

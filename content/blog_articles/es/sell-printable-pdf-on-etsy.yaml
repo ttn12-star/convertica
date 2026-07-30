@@ -1,0 +1,175 @@
+slug: sell-printable-pdf-on-etsy
+title_es: "Cómo preparar un PDF imprimible para vender en Etsy"
+meta_title_es: "Preparar un PDF imprimible para vender en Etsy | Convertica"
+meta_description_es: "El diseño ya está listo y las devoluciones llegan por el archivo. Tamaño de página, 300 ppp, márgenes seguros, tipografías y el límite de 20 MB de Etsy."
+meta_keywords_es: "pdf imprimible para etsy, vender imprimibles en etsy, preparar pdf para venta, límite de archivo etsy, planificador pdf imprimible, 300 ppp impresión, a4 y carta, producto digital pdf"
+excerpt_es: "Casi nada de lo que falla en un imprimible es un problema de diseño. Falla el tamaño de página, la resolución de las imágenes, los márgenes a los que una impresora doméstica no llega, las tipografías que nunca se incrustaron y el peso del archivo que Etsy no acepta. Este es el orden en que se rompen y cómo comprobar cada punto antes de subirlo, no después de la primera devolución."
+ai_metadata:
+  topics:
+    - preparar un PDF imprimible para la venta
+    - tamaño de página y resolución de impresión
+    - márgenes seguros y borde no imprimible
+    - incrustar tipografías y aplanar un PDF
+    - límites de tamaño de archivo en Etsy
+  entities:
+    - Etsy
+    - PDF
+    - A4
+    - Carta
+    - PPP
+    - Canva
+    - ZIP
+    - Convertica
+  summary: "Guía previa a la publicación para quien vende PDF imprimibles: qué hace realmente el comprador con el archivo, por qué el tamaño de página y los 300 ppp deciden si un diseño sobrevive al papel, de dónde sale el borde no imprimible de una impresora doméstica y qué margen de seguridad impone, por qué una tipografía sin incrustar se sustituye en el ordenador del comprador, cuándo aplanar el PDF y de qué no protege aplanarlo, cómo caber en el límite de Etsy de 20 MB por archivo y cinco archivos por anuncio sin arruinar la calidad de impresión, y una comprobación de ocho puntos antes de publicar."
+  related_terms:
+    - requisitos de archivos digitales etsy
+    - peso de archivo producto digital
+    - lista de comprobación calidad de impresión
+    - aplanar pdf antes de vender
+    - agrupar imprimibles en zip
+    - pdf para imprimir sin recortes
+  reading_time_minutes: 10
+  target_audience: "Personas que venden productos digitales imprimibles (planificadores, fichas, láminas, trackers, cuadernos de trabajo), que ya terminaron el diseño y ahora necesitan que el PDF sobreviva a la impresora desconocida del comprador, sin devoluciones ni reseñas de una estrella causadas por el archivo y no por el diseño."
+content_es: |
+  Un imprimible que acaba en devolución casi nunca es un imprimible feo. En pantalla el diseño estaba bien. Lo que pasó es otra cosa: el comprador lo abrió en un portátil con Windows y la tipografía elegante se convirtió en Times New Roman. O lo imprimió y el marco quedó cortado por dos lados. O la ilustración que en el navegador se veía nítida salió blanda y pixelada de la inyección de tinta. O Etsy simplemente rechazó la subida porque el archivo pesaba 34 MB.
+
+  Así que el trabajo que de verdad protege tu valoración empieza cuando el diseño ya está terminado. Es un trabajo poco lucido: tamaño de página, resolución, márgenes, tipografías, peso. Cada cosa falla de una manera concreta y cada una se comprueba en un par de minutos. Este es el orden en que suelen romperse.
+
+  <h2>Qué hace realmente el comprador con tu archivo</h2>
+
+  <p>Todos los requisitos de abajo salen del mismo sitio, así que conviene imaginar en concreto a la persona del otro lado. Tu comprador no es una imprenta. Es alguien que:</p>
+
+  <ul>
+    <li><strong>Imprime en casa</strong>, con una impresora de tinta o una láser barata que físicamente no puede imprimir hasta el borde del papel.</li>
+    <li><strong>Usa el papel que se vende en su país.</strong> A4 en casi todo el mundo, Carta en Estados Unidos, Canadá y buena parte de México. Son proporciones distintas, no solo tamaños distintos.</li>
+    <li><strong>Abre el archivo con lo que tiene a mano</strong>, y cada vez más eso es un móvil o una tableta y un lector de PDF que no es Acrobat.</li>
+    <li><strong>No te va a escribir para contarte el problema.</strong> Pedirá la devolución o dejará una reseña, y las dos cosas cuestan más que la venta.</li>
+  </ul>
+
+  <p>El PDF es el formato correcto para todo eso porque lleva su propia maquetación dentro. Ahí está también la trampa: lleva exactamente la maquetación que le diste, incluidas las partes que solo funcionaban en tu ordenador.</p>
+
+  <h2>Tamaño de página: la proporción se elige antes que nada</h2>
+
+  <p>A4 son 210 por 297 mm. Carta son 216 por 279 mm. Carta es más ancha y más corta. No hay factor de escala que convierta una en otra, y por eso el consejo de «imprímelo ajustado a la hoja» produce un planificador con franjas blancas desiguales y una lámina con los bordes recortados.</p>
+
+  <p>Las dos opciones honestas son elegir un tamaño y decirlo con claridad en el anuncio, o entregar los dos. La mayoría de las tiendas consolidadas entregan los dos, porque una tienda que solo vende A4 pierde en silencio su tráfico estadounidense y una que solo vende Carta pierde a todos los demás.</p>
+
+  <p>Entregar los dos significa exportar dos archivos desde tu herramienta de diseño. No intentes fabricar el segundo tamaño recortando o escalando un PDF ya terminado: recortar reduce la página a un rectángulo menor, así que obtienes una ventana con proporción Carta sobre un diseño A4, con contenido que falta abajo. Nuestro <a href="/es/pdf-edit/crop/">recorte de PDF</a> sirve para quitar márgenes sobrantes de un documento, no para convertir un estándar de papel en otro. Exportar dos veces desde tu herramienta de diseño sigue siendo la mejor opción, porque solo el archivo original puede recomponerse de verdad para las otras proporciones. Cuando ya no tienes ese archivo, o compraste una plantilla, <a href="/es/pdf-edit/page-size/">cambiar el tamaño de página del PDF</a> hace lo siguiente mejor: pasa las páginas a la otra hoja y, como A4 pierde 8,8 mm por arriba y por abajo en Carta, las mantiene a tamaño completo cuando tus márgenes dan margen y las reduce lo justo cuando no. Nunca recorta. Esa es además la razón práctica para dejar el margen de 10 a 12 mm que se describe más abajo.</p>
+
+  <h2>300 ppp, y por qué la pantalla te engaña</h2>
+
+  <p>Una pantalla ronda los 100 píxeles por pulgada. El papel resuelve detalle unas tres veces más fino. Por eso una imagen que a máximo zoom en el navegador parece perfectamente nítida puede imprimirse visiblemente blanda, y no hay forma de detectarlo en un monitor.</p>
+
+  <p>La regla es 300 ppp al tamaño final de impresión. En la práctica:</p>
+
+  <ul>
+    <li><strong>Una lámina de 20 por 25 cm</strong> necesita un original de unos 2400 por 3000 píxeles. Si tu original mide 1000 píxeles de ancho, ningún ajuste de exportación lo va a rescatar.</li>
+    <li><strong>El texto y las formas no cuentan.</strong> La tipografía, las líneas y la ilustración vectorial en un PDF son independientes de la resolución y se imprimen tan bien como pueda la impresora. Un planificador hecho solo de texto y líneas siempre saldrá nítido.</li>
+    <li><strong>Solo el mapa de bits corre riesgo.</strong> Fotografías, texturas, elementos de acuarela, letras escaneadas y todo lo que hayas encontrado como JPG o PNG.</li>
+  </ul>
+
+  <p>Si maquetas en una herramienta de navegador, exporta en la máxima calidad que ofrezca y no en la opción por defecto: la de por defecto suele estar pensada para compartir en pantalla.</p>
+
+  <h2>El borde no imprimible y el margen que impone</h2>
+
+  <p>Una impresora doméstica sujeta el papel con rodillos para moverlo, así que no puede depositar tinta en los últimos milímetros del borde. Según el modelo esa zona muerta es de unos 3 a 6 mm por lado, y mayor en el borde de salida.</p>
+
+  <p>Esto tiene dos consecuencias con las que se topa casi todo el que empieza a vender:</p>
+
+  <ul>
+    <li><strong>Los fondos a sangre no funcionan en casa.</strong> Un diseño con color hasta el borde de la página se imprime con finos márgenes blancos, y normalmente desiguales. Si el diseño no tiene sentido sin color de borde a borde, di en el anuncio que el archivo está pensado para imprenta.</li>
+    <li><strong>Todo lo importante tiene que entrar hacia dentro.</strong> Mantén el texto, los números de página, las casillas y las líneas de corte a 10 o 12 mm del borde como mínimo. Todo lo que esté más cerca es una moneda al aire en una impresora desconocida.</li>
+  </ul>
+
+  <p>La otra mitad de este problema vive en el diálogo de impresión del comprador. La mayoría de los lectores eligen por defecto «ajustar al área imprimible», que reduce la página unos puntos porcentuales en silencio y la centra. En un planificador no se nota. En cualquier cosa que el comprador vaya a recortar o encuadernar, es un problema real, así que añade una línea a tus instrucciones: imprimir al 100 por cien, tamaño real, escalado desactivado.</p>
+
+  <h2>Tipografías: incrústalas o conviértelas en trazados</h2>
+
+  <p>El fallo de archivo más habitual es una tipografía que nunca entró en el PDF. En tu equipo está instalada, así que el archivo se ve correcto. En el equipo del comprador el lector no la encuentra y sustituye por otra, lo que recompone cada línea y destruye la maquetación en la que invertiste un fin de semana.</p>
+
+  <p>Dos formas de estar a salvo, por orden de preferencia:</p>
+
+  <ul>
+    <li><strong>Incrustar las tipografías al exportar.</strong> Cualquier herramienta de diseño seria tiene esa opción y las de navegador lo hacen solas. Se comprueba fácil: abre el PDF y mira las propiedades del documento, hay una pestaña de tipografías y en cada una debería decir «Incrustada» o «Subconjunto incrustado».</li>
+    <li><strong>Convertir el texto a trazados</strong> antes de exportar. Las letras pasan a ser formas vectoriales, así que no hace falta ninguna tipografía. Es a prueba de balas e irreversible, así que guarda aparte un archivo maestro editable.</li>
+  </ul>
+
+  <p>Pruébalo en una máquina que no tenga tus tipografías instaladas, o pide a alguien que abra el archivo. Abrirlo en tu propio ordenador no demuestra nada: tu ordenador es el único sitio donde está garantizado que funcione.</p>
+
+  <h2>Aplana el archivo, y sé honesto sobre lo que eso te da</h2>
+
+  <p>Las capas, los campos de formulario, las anotaciones y los objetos de texto editables son cosas que un comprador puede mover sin querer, y cosas que hacen el archivo más pesado de lo necesario. <a href="/es/pdf-edit/flatten/">Aplanar un PDF</a> funde todo eso en una página estática. El resultado abre más rápido, imprime de forma más predecible en lectores raros y no se descoloca con un clic despistado.</p>
+
+  <p>Lo que aplanar no hace es impedir que alguien revenda tu trabajo. Una contraseña tampoco. Quien puede imprimir una página puede fotografiarla, y un PDF que el comprador puede abrir es un PDF del que puede hacer captura. Aplanar es higiene del archivo, no defensa de derechos de autor. Lo que sí evita de verdad es el accidente cotidiano: el comprador arrastra un cuadro de texto y luego te pregunta por qué tu archivo está roto.</p>
+
+  <p>Si además quieres frenar la edición casual, los <a href="/es/pdf-security/protect/">permisos de PDF</a> pueden restringir edición y copia dejando el archivo abierto para leer e imprimir. Trátalo como un badén. Nuestra guía sobre <a href="/es/blog/password-protect-pdf-before-emailing/">qué protege realmente una contraseña de PDF</a> explica la diferencia entre los dos tipos de contraseña, y conviene conocerla antes de confiar en cualquiera de los dos.</p>
+
+  <h2>Peso del archivo: la restricción real son los 20 MB de Etsy</h2>
+
+  <p>En el momento de escribir esto, Etsy acepta archivos digitales de hasta 20 MB cada uno, con un máximo de cinco archivos por anuncio. Ese número, y no tu diseño, es lo que decide cómo empaquetas un lote. Tres consecuencias prácticas:</p>
+
+  <ul>
+    <li><strong>Un lote con varios tamaños pasa de cinco archivos enseguida.</strong> Cuatro tamaños por tres variantes de color son doce archivos. La respuesta estándar es un ZIP: el archivo comprimido ocupa uno de tus cinco huecos y los compradores lo descomprimen en cualquier plataforma.</li>
+    <li><strong>Un planificador grande es grande por las imágenes.</strong> Un PDF de solo texto pesa nada. Si un planificador de 40 páginas ocupa 30 MB, hay un fondo a página completa o una textura haciéndolo.</li>
+    <li><strong>Comprime al final y comprueba el resultado en papel.</strong> Nuestro <a href="/es/pdf-organize/compress/">compresor de PDF</a> mantiene texto y vectores a plena calidad y recomprime las imágenes, que es exactamente el intercambio correcto para un planificador con mucho texto y exactamente el equivocado para una lámina fotográfica. Con ilustración, imprime una página antes y después y mírala. Si no consigues bajar del límite sin pérdida visible, divide el anuncio.</li>
+  </ul>
+
+  <p>Si vas por la vía del archivo comprimido y quieres cerrar la propia descarga, puedes <a href="/es/archive/protect/">proteger un ZIP con contraseña</a>, aunque en una descarga de pago eso suele generar más mensajes de soporte de los que evita.</p>
+
+  <h2>Los productos de varias páginas necesitan numeración</h2>
+
+  <p>Cualquier producto que el comprador imprima como conjunto, es decir planificadores, cuadernos, packs de fichas, necesita números de página. Sin ellos, quien imprime 40 páginas y tira el montón al suelo no tiene forma de recomponerlo, y eso pasa a ser tu problema.</p>
+
+  <p>Añádelos al final, cuando el orden de páginas ya es definitivo, con <a href="/es/pdf-edit/add-page-numbers/">añadir números de página</a>. Mantenlos dentro de la zona segura descrita arriba, porque un número a 5 mm del borde es lo primero que se come la impresora. El <a href="/es/blog/add-page-numbers-to-pdf/">recorrido completo de la numeración</a> cubre posición y desplazamiento inicial si necesitas saltarte una portada.</p>
+
+  <h2>Vistas previas para el anuncio, no el producto</h2>
+
+  <p>Las imágenes de tu anuncio deben mostrar el producto sin ser el producto. Exporta una página como imagen con <a href="/es/pdf-to-jpg/">PDF a JPG</a> para un mockup limpio y, si quieres mostrar páginas interiores de un cuaderno de pago, pásalas primero por <a href="/es/pdf-edit/add-watermark/">añadir marca de agua</a>. Nuestra nota sobre <a href="/es/blog/watermark-pdf-confidential-draft/">marcas de agua en PDF</a> trata posición y opacidad: para una vista previa la quieres legible, pero no tan densa que el comprador no pueda juzgar el diseño.</p>
+
+  <h2>La comprobación de ocho puntos antes de subir</h2>
+
+  <table>
+    <thead>
+      <tr><th>Qué comprobar</th><th>Cómo verificarlo</th><th>Qué evita</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Un solo tamaño de página en todas</td><td>Abrir el PDF y confirmar que las dimensiones coinciden</td><td>Una página suelta con otro tamaño, que se imprime escalada</td></tr>
+      <tr><td>Tipografías incrustadas</td><td>Propiedades del documento, pestaña de tipografías, todas «Incrustada»</td><td>Sustitución de tipografía y maquetación recompuesta</td></tr>
+      <tr><td>Imágenes a 300 ppp al tamaño final</td><td>Imprimir una página y mirarla con buena luz</td><td>Ilustración blanda y pixelada</td></tr>
+      <tr><td>Contenido dentro de un margen de 10 a 12 mm</td><td>Imprimir al 100 por cien y revisar los cuatro bordes</td><td>Marcos cortados y números de página perdidos</td></tr>
+      <tr><td>Archivo aplanado</td><td>Al hacer clic en la página nada se selecciona ni se arrastra</td><td>Que el comprador mueva elementos sin querer</td></tr>
+      <tr><td>Peso dentro del límite de la plataforma</td><td>Mirar el tamaño por archivo, no del lote</td><td>Subidas rechazadas en el peor momento</td></tr>
+      <tr><td>Numeración en conjuntos de varias páginas</td><td>Hojear el archivo exportado</td><td>Que el comprador no pueda recomponer el montón</td></tr>
+      <tr><td>Que abra en un dispositivo que no es el tuyo</td><td>Un móvil, o el portátil de alguien</td><td>Todos los problemas de tipografías y lectores a la vez</td></tr>
+    </tbody>
+  </table>
+
+  <p>Hacer esto una vez lleva diez minutos. Hacerlo después de una solicitud de devolución lleva diez minutos más una reseña que ya no puedes borrar.</p>
+
+  <h2>Qué pasa con el archivo que subes</h2>
+
+  <p>Nuestras herramientas funcionan en el servidor, así que el archivo se sube. Se elimina en cuanto termina el trabajo y el enlace de descarga es solo tuyo. Nada se indexa, se guarda ni se reutiliza para entrenar. Con productos aún sin publicar hay quien sigue sin estar cómodo, y es razonable: nuestra nota sobre <a href="/es/blog/is-convertica-safe-pdf-file-security-privacy-explained/">cómo trata Convertica tus archivos</a> detalla las reglas de retención para que decidas tú.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <h3>¿Vendo en A4 o en Carta?</h3>
+  <p>Entrega los dos si puedes, y etiquétalos con claridad dentro de la descarga. Si tienes que elegir uno, elige según de dónde viene tu tráfico: A4 para la mayor parte del mundo, Carta para una tienda orientada a Estados Unidos, Canadá y México. Lo que no puedes hacer es entregar uno y no decirlo, porque eso acaba en solicitud de devolución de la mitad del mundo que tiene el otro papel en la mano.</p>
+
+  <h3>¿Necesito sangrado en un imprimible?</h3>
+  <p>Para un producto impreso en casa no, y añadirlo suele empeorar las cosas: un diseño con sangrado espera que se recorte después de imprimir, y tu comprador no tiene guillotina. Diseña al tamaño de página con un margen seguro. El sangrado solo importa si además vendes una versión para imprenta, y en ese caso debería ser un archivo aparte.</p>
+
+  <h3>¿Puedo impedir que los compradores revendan mi PDF?</h3>
+  <p>Técnicamente no. Cualquier archivo que un comprador pueda abrir e imprimir se puede copiar. Los permisos y las contraseñas frenan la edición casual y nada más. Lo que sí funciona es la combinación aburrida: una página de licencia dentro del archivo indicando qué puede y qué no puede hacer el comprador, y el proceso de denuncia de tu plataforma cuando encuentres una copia.</p>
+
+  <h3>Mi planificador pesa 45 MB. ¿Qué recorto primero?</h3>
+  <p>Busca las imágenes. Un fondo a página completa, una textura de papel o una portada fotográfica explican casi siempre todo el peso, y cambiar una textura por un color plano o un patrón vectorial sobrio puede reducir el archivo un orden de magnitud. Comprime solo después de eso, y comprueba una página impresa.</p>
+
+  <h3>¿Entrego un PDF o un ZIP?</h3>
+  <p>Un PDF si el producto es una sola cosa en un solo tamaño, porque cada paso extra pierde compradores que abren la descarga desde el móvil. Un ZIP en cuanto tengas varios tamaños o variantes de color, ya que te mantiene dentro del límite de cinco archivos y ordena los nombres. Si empaquetas, nombra los archivos de forma que se entiendan fuera de contexto: nuestra nota sobre <a href="/es/blog/pdf-naming-conventions-best-practices/">nomenclatura de archivos</a> está escrita para documentos, pero se aplica igual.</p>
+
+  <h3>¿Aplanar reduce la calidad de impresión?</h3>
+  <p>No. Aplanar funde capas y elementos interactivos en contenido estático de página; no remuestrea imágenes ni cambia la resolución. La compresión es el paso que puede costar calidad, y esa es una decisión distinta.</p>
+
+  <h2>Deja el archivo listo</h2>
+
+  <p>Coge el producto que tengas más cerca de publicar y pásale la comprobación de ocho puntos ahora, antes de escribir la descripción. La mayoría de los archivos necesitan dos arreglos: <a href="/es/pdf-edit/flatten/">aplanar</a> y, en conjuntos de varias páginas, <a href="/es/pdf-edit/add-page-numbers/">números de página</a>. Comprime solo si la plataforma te obliga, con el <a href="/es/pdf-organize/compress/">compresor de PDF</a>, y con una página impresa delante antes de fiarte del resultado. Todo lo demás está en <a href="/es/all-tools/">todas las herramientas</a>.</p>

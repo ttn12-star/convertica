@@ -97,7 +97,7 @@ class OptimizedJPGToPDFConverter:
         self,
         image_paths: list[str],
         output_path: str,
-        page_size: str = "letter",
+        page_size: str = "a4",
         margin: int = 72,  # 1 inch margin
         context: dict = None,
     ) -> str:
@@ -293,7 +293,7 @@ class OptimizedJPGToPDFConverter:
 
 async def convert_jpg_to_pdf_optimized(
     uploaded_file: UploadedFile,
-    page_size: str = "letter",
+    page_size: str = "a4",
     margin: int = 72,
     quality: int = 85,
     suffix: str = "_convertica",

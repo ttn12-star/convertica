@@ -249,6 +249,7 @@ def breadcrumbs(request):
             "frontend:add_watermark_page": _("Add Watermark"),
             "frontend:crop_pdf_page": _("Crop PDF"),
             "frontend:flatten_pdf_page": _("Flatten PDF"),
+            "frontend:resize_pdf_page": _("Change PDF Page Size"),
             "frontend:sign_pdf_page": _("Sign PDF"),
             "frontend:add_text_pdf_page": _("Add Text to PDF"),
             "frontend:pdf_editor_page": _("PDF Editor"),

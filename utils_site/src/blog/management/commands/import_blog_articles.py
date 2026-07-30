@@ -11,12 +11,20 @@ Layout expected on disk:
 
 Base YAML fields (`en`):
 
-    slug, status, category_slug, relevant_tool, cover_image,
+    slug, status, publish_on, category_slug, relevant_tool, cover_image,
     title_en, meta_title_en, meta_description_en, meta_keywords_en,
     excerpt_en, ai_metadata (dict), content_en (HTML).
 
 `cover_image` is a static-relative path (e.g. "blog/images/cover-foo.jpg")
 served from /static/; it is preferred over the /media/-backed featured_image.
+
+`publish_on` (ISO date) schedules a finished article: while the date is still
+in the future the row is held at status="draft", so it stays out of the blog
+list, search, the article page and the sitemap — all of which filter on
+status="published". maintenance.publish_scheduled_articles re-runs this command
+daily, so the flip to published happens on the date without a deploy, stamps
+the real published_at, and lets the post_save signal ping IndexNow per locale.
+An explicit --status overrides the gate.
 
 Translation YAML fields (`<lang>` other than `en`):
 
@@ -30,6 +38,7 @@ whose imported fields are byte-identical are left untouched so `updated_at`
 
 from __future__ import annotations
 
+from datetime import date, datetime
 from pathlib import Path
 
 import yaml
@@ -83,6 +92,24 @@ MAX_TITLE = 200
 MAX_META_DESCRIPTION = 500
 MAX_EXCERPT = 500
 MAX_META_KEYWORDS = 500
+
+
+def resolve_publish_date(value) -> date:
+    """Normalise a YAML `publish_on` value to a date.
+
+    Raises on anything unparseable: a typo'd date must fail the import loudly
+    rather than silently publish today or never.
+    """
+    if isinstance(value, datetime):  # PyYAML parses `2026-08-06 09:00` to datetime
+        return value.date()
+    if isinstance(value, date):
+        return value
+    try:
+        return date.fromisoformat(str(value).strip())
+    except ValueError as exc:
+        raise ValueError(
+            f"publish_on must be an ISO date (YYYY-MM-DD), got {value!r}"
+        ) from exc
 
 
 class Command(BaseCommand):
@@ -140,6 +167,7 @@ class Command(BaseCommand):
             "unchanged": 0,
             "errors": 0,
         }
+        self.held_back: list[tuple[str, date]] = []
 
         for lang_dir in lang_dirs:
             lang_code = lang_dir.name
@@ -187,6 +215,15 @@ class Command(BaseCommand):
         category = self._ensure_category(data.get("category_slug"))
         status = status_override or data.get("status") or "draft"
         relevant_tool = data.get("relevant_tool") or None
+
+        # Scheduled publishing: hold a finished article as a draft until its
+        # publish_on date. See the module docstring for why status alone is a
+        # sufficient switch. An explicit --status is a manual override and wins.
+        if not status_override and status == "published" and data.get("publish_on"):
+            publish_on = resolve_publish_date(data["publish_on"])
+            if publish_on > timezone.localdate():
+                status = "draft"
+                self.held_back.append((slug, publish_on))
 
         defaults = {
             "title_en": title,
@@ -320,5 +357,9 @@ class Command(BaseCommand):
             f"  Unchanged (skipped):     {totals['unchanged']}\n"
             f"  Errors:                  {totals['errors']}\n"
         )
+        if self.held_back:
+            msg += f"  Scheduled (held draft):  {len(self.held_back)}\n"
+            for slug, publish_on in sorted(self.held_back, key=lambda x: x[1]):
+                msg += f"    {publish_on:%Y-%m-%d}  {slug}\n"
         style = self.style.WARNING if totals["errors"] else self.style.SUCCESS
         self.stdout.write(style(msg))

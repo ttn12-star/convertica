@@ -1,0 +1,180 @@
+slug: sell-printable-pdf-on-etsy
+cover_image: blog/images/cover-sell-printable-pdf-on-etsy.jpg
+status: published
+publish_on: 2026-08-04
+category_slug: how-to-guides
+relevant_tool: all_tools
+title_en: "How to Prepare a Printable PDF to Sell on Etsy"
+meta_title_en: "Prepare a Printable PDF to Sell on Etsy | Convertica"
+meta_description_en: "Your design is finished, the file is what gets refunded. Page size, 300 DPI, safe margins, embedded fonts and Etsy's 20 MB cap, in the order they break."
+meta_keywords_en: "printable pdf for etsy, sell printables on etsy, prepare pdf for digital download, etsy digital download file size, printable planner pdf, 300 dpi printable, a4 and us letter printable, etsy 20mb file limit"
+excerpt_en: "Almost nothing that goes wrong with a printable is a design problem. It is page size, resolution, margins the home printer refuses to reach, fonts that were never embedded, and a file too big for Etsy to accept. Here is the order those things break, and how to check each one before you upload rather than after the first refund request."
+ai_metadata:
+  topics:
+    - preparing a printable PDF for sale
+    - page size and print resolution for printables
+    - safe margins and unprintable edges on home printers
+    - embedding fonts and flattening a PDF before delivery
+    - Etsy digital download file size limits
+  entities:
+    - Etsy
+    - PDF
+    - A4
+    - US Letter
+    - DPI
+    - Canva
+    - ZIP
+    - Convertica
+  summary: "A pre-upload guide for sellers of printable PDFs: explains what buyers actually do with the file (home printers, mixed paper standards, phones), why page size and 300 DPI decide whether a design survives paper, how the unprintable edge of a consumer printer forces a safe margin, why unembedded fonts substitute themselves on the buyer's machine, when to flatten a PDF and what flattening does not protect against, how to stay inside Etsy's 20 MB per file and five files per listing limits without destroying print quality, and an eight-point check to run before the listing goes live."
+  related_terms:
+    - etsy printable file requirements
+    - digital download pdf setup
+    - printable planner file size
+    - pdf print quality checklist
+    - flatten pdf before selling
+    - bundle printables in a zip
+  reading_time_minutes: 10
+  target_audience: "Sellers of printable digital products (planners, worksheets, wall art, trackers, workbooks) who have finished designing and now need the PDF itself to survive an unknown buyer's printer, and who want to avoid refunds and one-star reviews caused by the file rather than the design."
+content_en: |
+  A printable that gets refunded is almost never an ugly printable. The design was fine on screen. What happened is that the buyer opened it on a Windows laptop and the elegant font had turned into Times New Roman, or they printed it and the border was sliced off on two sides, or the artwork that looked crisp in the browser came out of the inkjet soft and pixelated, or Etsy simply refused the upload because the file was 34 MB.
+
+  So the work that actually protects your rating happens after the design is done. It is unglamorous: page size, resolution, margins, fonts, file size. Each one fails in a specific way, and each one takes a couple of minutes to check. This is the order they tend to break in.
+
+  <h2>What the buyer actually does with your file</h2>
+
+  <p>Every requirement below comes from the same place, so it is worth being concrete about the person on the other end. Your buyer is not a print shop. They are:</p>
+
+  <ul>
+    <li><strong>Printing at home</strong>, on an inkjet or a cheap laser printer that physically cannot print to the edge of the paper.</li>
+    <li><strong>Using whatever paper their country sells.</strong> A4 nearly everywhere, US Letter in the United States and Canada. Those are different shapes, not just different sizes.</li>
+    <li><strong>Opening the file in whatever they have</strong>, which increasingly means a phone or a tablet, and a PDF reader that is not Acrobat.</li>
+    <li><strong>Not going to email you about a problem.</strong> They will either request a refund or leave a review, and both cost you more than the sale.</li>
+  </ul>
+
+  <p>A PDF is the right format for all of that, because it carries its own layout. That is also the trap: it carries the layout you gave it, including the parts that only worked on your machine.</p>
+
+  <h2>Page size: pick the shape before anything else</h2>
+
+  <p>A4 is 210 by 297 mm. US Letter is 216 by 279 mm. Letter is wider and shorter. There is no scale factor that turns one into the other, which is why "just print it scaled to fit" produces a planner with uneven white bands and a wall print with cropped edges.</p>
+
+  <p>The two honest options are to pick one size and say so clearly in the listing, or to ship both. Most established printable shops ship both, because a shop that only sells A4 quietly loses its American traffic and a shop that only sells Letter loses everyone else.</p>
+
+  <p>Shipping both means exporting both from your design tool. Do not try to manufacture the second size by cropping or scaling a finished PDF: cropping trims the page down to a smaller box, so you get a Letter-shaped window onto an A4 design with content missing at the bottom. Our <a href="/en/pdf-edit/crop/">crop tool</a> is for removing unwanted margins from a document, not for converting between paper standards. Exporting twice from your design tool stays the best option, because only the original file can genuinely re-lay-out for the other proportions. When you no longer have that file, or you bought a template, <a href="/en/pdf-edit/page-size/">change PDF page size</a> does the next best thing: it moves the pages onto the other sheet and, because A4 loses 8.8 mm top and bottom on Letter, it keeps them at full size when your margins leave room and shrinks them just enough when they do not. It never crops. That is also the practical reason to keep the 10 to 12 mm margin described below.</p>
+
+  <h2>300 DPI, and why the screen lies to you</h2>
+
+  <p>Screens are around 100 pixels per inch. Paper resolves detail at roughly three times that. So an image that looks perfectly sharp at full zoom in your browser can print visibly soft, and there is no way to notice this on a monitor.</p>
+
+  <p>The rule is 300 DPI at final print size. In practice:</p>
+
+  <ul>
+    <li><strong>An 8 by 10 inch wall print</strong> needs the source image to be about 2400 by 3000 pixels. If your original is 1000 pixels wide, no export setting will rescue it.</li>
+    <li><strong>Text and shapes are exempt.</strong> Type, lines and vector illustration are resolution independent in a PDF; they print at whatever the printer can do. A planner made entirely of text and rules will always look sharp.</li>
+    <li><strong>Only raster content is at risk.</strong> Photographs, textures, watercolour elements, scanned lettering and anything you found as a JPG or PNG.</li>
+  </ul>
+
+  <p>If you build in a browser tool, export at the highest quality option it offers rather than the default. The default is usually tuned for sharing on screen.</p>
+
+  <h2>The unprintable edge, and the margin it forces</h2>
+
+  <p>Consumer printers grip the paper to move it, so they cannot lay ink on the outer few millimetres. Depending on the model that dead zone is roughly 3 to 6 mm on each side, and larger at the trailing edge.</p>
+
+  <p>This has two consequences that catch out almost every first-time seller:</p>
+
+  <ul>
+    <li><strong>Full-bleed backgrounds do not work at home.</strong> A design with colour running to the edge of the page prints with thin white borders, and they are usually uneven. If the design needs edge-to-edge colour, say in the listing that it is intended for a print shop.</li>
+    <li><strong>Anything important needs a safe zone.</strong> Keep text, page numbers, checkboxes and cut lines at least 10 to 12 mm inside the trim edge. Content closer than that is a coin flip on an unknown printer.</li>
+  </ul>
+
+  <p>The other half of this problem is the buyer's print dialogue. Most readers default to "fit to printable area", which silently shrinks your page by a few per cent and centres it. For a planner that is invisible. For anything the buyer will cut out or bind, it is a real problem, so add one line to your instructions: print at 100 per cent, actual size, scaling off.</p>
+
+  <h2>Fonts: embed them or turn them into shapes</h2>
+
+  <p>The single most common file failure is a font that never made it into the PDF. On your machine the font is installed, so the file looks correct. On the buyer's machine the reader cannot find it and substitutes something else, which reflows every line and destroys the layout you spent a weekend on.</p>
+
+  <p>Two ways to be safe, in order of preference:</p>
+
+  <ul>
+    <li><strong>Embed the fonts on export.</strong> Every serious design tool has this option, and browser-based tools do it automatically. Check by opening the PDF and looking at the document properties: there is a Fonts tab, and every font listed should say "Embedded" or "Embedded Subset".</li>
+    <li><strong>Convert text to outlines</strong> before export. The letters become vector shapes, so no font is needed at all. This is bulletproof and irreversible, so keep an editable master file.</li>
+  </ul>
+
+  <p>Test it on a machine that does not have your fonts installed, or ask someone to open it. Opening the file on your own computer proves nothing, because your computer is the one place it is guaranteed to work.</p>
+
+  <h2>Flatten the file, and be honest about what that buys you</h2>
+
+  <p>Layers, form fields, annotations and editable text objects are all things a buyer can accidentally move, and things that make your file heavier than it needs to be. <a href="/en/pdf-edit/flatten/">Flattening a PDF</a> merges all of that into a single static page. The result opens faster, prints more predictably in odd readers, and cannot be nudged out of place by a stray click.</p>
+
+  <p>What flattening does not do is stop anyone reselling your work. Neither does a password. A person who can print a page can photograph it, and a PDF that a buyer can open is a PDF they can screenshot. Flattening is file hygiene, not copyright enforcement. What it genuinely prevents is the ordinary accident: a buyer dragging a text box, then asking you why the file is broken.</p>
+
+  <p>If you also want to stop casual editing, <a href="/en/pdf-security/protect/">PDF permissions</a> can restrict editing and copying while leaving the file open to read and print. Treat that as a speed bump. Our guide on <a href="/en/blog/password-protect-pdf-before-emailing/">what PDF passwords actually protect</a> spells out the difference between the two kinds of PDF password, which is worth knowing before you rely on either.</p>
+
+  <h2>File size: Etsy's 20 MB is the real constraint</h2>
+
+  <p>At the time of writing Etsy accepts digital files up to 20 MB each, with up to five files per listing. That number, not your design, is what decides how you package a bundle. Three practical consequences:</p>
+
+  <ul>
+    <li><strong>A multi-size bundle blows past five files fast.</strong> Four page sizes times three colourways is twelve files. The standard answer is a ZIP: one archive counts as one of your five slots, and buyers unzip it on any platform.</li>
+    <li><strong>A big planner is usually big because of images.</strong> Text-only PDFs are tiny. If a 40-page planner is 30 MB, there is a full-page background or a texture doing it.</li>
+    <li><strong>Compress last, and check the result on paper.</strong> Our <a href="/en/pdf-organize/compress/">PDF compressor</a> keeps text and vector graphics at full quality and recompresses images, which is exactly the right trade for a text-heavy planner and exactly the wrong one for a photographic wall print. For artwork, print a page before and after and look at it. If you cannot get under the limit without visible loss, split the listing instead.</li>
+  </ul>
+
+  <p>If you go the archive route and want the download itself locked, you can <a href="/en/archive/protect/">password-protect a ZIP</a>, though for a paid download it usually creates more support messages than it prevents.</p>
+
+  <h2>Multi-page products need page numbers</h2>
+
+  <p>Any product a buyer prints as a set, so planners, workbooks, worksheet packs, needs page numbers. Without them, a buyer who prints 40 pages and drops the stack has no way to reassemble it, and that becomes your problem.</p>
+
+  <p>Add them at the end, after the page order is final, with <a href="/en/pdf-edit/add-page-numbers/">add page numbers</a>. Keep them inside the safe zone described above, because a page number 5 mm from the edge is the first thing a printer eats. The <a href="/en/blog/add-page-numbers-to-pdf/">full walkthrough on page numbering</a> covers position and starting offsets if you need to skip a cover page.</p>
+
+  <h2>Listing previews, not the product</h2>
+
+  <p>Your listing images should show the product without being the product. Export a page as an image with <a href="/en/pdf-to-jpg/">PDF to JPG</a> for a clean mockup, and if you want to show interior pages of a paid workbook, run them through <a href="/en/pdf-edit/add-watermark/">add watermark</a> first. Our note on <a href="/en/blog/watermark-pdf-confidential-draft/">watermarking a PDF</a> covers placement and opacity; for a preview you want it legible but not so heavy that the buyer cannot judge the design.</p>
+
+  <h2>The eight-point check before you upload</h2>
+
+  <table>
+    <thead>
+      <tr><th>Check</th><th>How to verify</th><th>What it prevents</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Correct page size, consistently</td><td>Open the PDF and confirm every page reports the same dimensions</td><td>One stray page at a different size, which prints scaled</td></tr>
+      <tr><td>Fonts embedded</td><td>Document properties, Fonts tab, all "Embedded"</td><td>Substituted fonts and a reflowed layout</td></tr>
+      <tr><td>Images at 300 DPI at final size</td><td>Print one page and look at it under good light</td><td>Soft, pixelated artwork</td></tr>
+      <tr><td>Content inside a 10 to 12 mm safe zone</td><td>Print at 100 per cent and check all four edges</td><td>Clipped borders, lost page numbers</td></tr>
+      <tr><td>Flattened</td><td>Nothing selects or drags when you click on the page</td><td>Buyers accidentally moving elements</td></tr>
+      <tr><td>Under the platform file limit</td><td>Check the file size, per file, not per bundle</td><td>Rejected uploads at the worst moment</td></tr>
+      <tr><td>Page numbers on multi-page sets</td><td>Flip through the exported file</td><td>Buyers unable to reassemble a printed stack</td></tr>
+      <tr><td>Opens on a device that is not yours</td><td>A phone, or a friend's laptop</td><td>Every font and reader problem at once</td></tr>
+    </tbody>
+  </table>
+
+  <p>Run this once and it takes ten minutes. Run it after a refund request and it takes ten minutes plus a review you cannot delete.</p>
+
+  <h2>What happens to the file you upload</h2>
+
+  <p>Our tools run on the server, so the file is uploaded. It is deleted as soon as the job finishes and the download link is yours alone. Nothing is indexed, kept or reused for training. For unreleased products that still feels uncomfortable to some sellers, which is fair: our note on <a href="/en/blog/is-convertica-safe-pdf-file-security-privacy-explained/">how Convertica handles your files</a> sets out the retention rules so you can decide.</p>
+
+  <h2>FAQ</h2>
+
+  <h3>Should I sell A4 or US Letter?</h3>
+  <p>Ship both if you can, and label them clearly inside the download. If you have to choose one, choose based on where your traffic comes from: A4 for most of the world, US Letter for a shop aimed at the United States and Canada. What you must not do is ship one and stay silent about it, because that turns into a refund request from the half of the world holding the other paper.</p>
+
+  <h3>Do I need bleed on a printable?</h3>
+  <p>Not for a home-printed product, and adding it usually makes things worse: a design with bleed expects to be trimmed after printing, and your buyer has no trimmer. Design to the page with a safe margin instead. Bleed matters only if you also sell a print-shop version, in which case that should be a separate file.</p>
+
+  <h3>Can I stop buyers from reselling my PDF?</h3>
+  <p>Not technically. Any file a buyer can open and print can be copied. Permissions and passwords stop casual editing and nothing more. What actually works is the boring combination: a licence page inside the file stating what the buyer may and may not do, and your platform's reporting process when you find a copy.</p>
+
+  <h3>My planner is 45 MB. What do I cut first?</h3>
+  <p>Find the images. A full-page background, a paper texture or a photographic cover is almost always the whole story, and replacing a texture with a flat colour or a subtle vector pattern can cut the file by an order of magnitude. Compress only after that, and check a printed page.</p>
+
+  <h3>Should I deliver one PDF or a ZIP?</h3>
+  <p>One PDF if the product is one thing in one size, because every extra step loses buyers who are opening the download on a phone. A ZIP as soon as you have multiple sizes or colourways, since it keeps you inside the five-file limit and keeps the naming tidy. If you do bundle, name the files so they make sense out of context: our note on <a href="/en/blog/pdf-naming-conventions-best-practices/">file naming</a> is written for documents but applies exactly.</p>
+
+  <h3>Does flattening reduce print quality?</h3>
+  <p>No. Flattening merges layers and interactive elements into static page content; it does not resample images or change resolution. Compression is the step that can cost quality, and that is a separate decision.</p>
+
+  <h2>Get the file ready</h2>
+
+  <p>Take the product you are closest to listing and run the eight-point check on it now, before you write the description. Most files need two fixes: <a href="/en/pdf-edit/flatten/">flatten</a> and, on multi-page sets, <a href="/en/pdf-edit/add-page-numbers/">page numbers</a>. Compress only if the platform makes you, using the <a href="/en/pdf-organize/compress/">PDF compressor</a>, and print one page before you trust the result. Everything else is in <a href="/en/all-tools/">all tools</a>.</p>

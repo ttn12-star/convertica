@@ -1,0 +1,175 @@
+slug: sell-printable-pdf-on-etsy
+title_pl: "Jak przygotować PDF do druku na sprzedaż na Etsy"
+meta_title_pl: "Przygotuj PDF do druku na sprzedaż na Etsy | Convertica"
+meta_description_pl: "Projekt gotowy, a zwroty przychodzą z powodu pliku. Format strony, 300 dpi, bezpieczne marginesy, czcionki i limit 20 MB na Etsy, w kolejności, w jakiej się psują."
+meta_keywords_pl: "pdf do druku na etsy, sprzedaż plików do druku, przygotowanie pdf do sprzedaży, limit pliku etsy, planer pdf do druku, 300 dpi do druku, a4 i us letter, produkt cyfrowy pdf"
+excerpt_pl: "Prawie nic, co psuje się w pliku do druku, nie jest problemem projektu. Psuje się format strony, rozdzielczość grafik, marginesy, do których domowa drukarka fizycznie nie dosięga, czcionki, które nigdy nie zostały osadzone, i waga pliku, której Etsy nie przyjmie. Oto kolejność, w jakiej te rzeczy zawodzą, i jak sprawdzić każdą z nich przed wysłaniem, a nie po pierwszej prośbie o zwrot."
+ai_metadata:
+  topics:
+    - przygotowanie pliku PDF do druku na sprzedaż
+    - format strony i rozdzielczość druku
+    - bezpieczne marginesy i niezadrukowywalna krawędź
+    - osadzanie czcionek i spłaszczanie PDF
+    - limity rozmiaru plików cyfrowych na Etsy
+  entities:
+    - Etsy
+    - PDF
+    - A4
+    - US Letter
+    - DPI
+    - Canva
+    - ZIP
+    - Convertica
+  summary: "Przewodnik dla sprzedawców produktów do druku: co kupujący naprawdę robi z plikiem, dlaczego format strony i 300 dpi decydują o tym, czy projekt przetrwa papier, skąd bierze się niezadrukowywalna krawędź domowej drukarki i jaki margines bezpieczeństwa wymusza, dlaczego nieosadzona czcionka podmienia się na komputerze kupującego, kiedy spłaszczyć plik i przed czym spłaszczanie nie chroni, jak zmieścić się w limicie Etsy 20 MB na plik i pięć plików na ofertę bez utraty jakości druku, oraz ośmiopunktowa kontrola przed publikacją."
+  related_terms:
+    - wymagania etsy dla plików cyfrowych
+    - waga pliku produktu cyfrowego
+    - lista kontrolna jakości druku pdf
+    - spłaszczyć pdf przed sprzedażą
+    - spakować pliki do zip
+    - pdf do druku bez obcięcia
+  reading_time_minutes: 10
+  target_audience: "Sprzedawcy cyfrowych produktów do druku (planery, karty pracy, plakaty, trackery, zeszyty ćwiczeń), którzy skończyli projektowanie i teraz potrzebują, żeby sam plik PDF przetrwał na nieznanej drukarce kupującego, bez zwrotów i jednogwiazdkowych opinii wynikających z pliku, a nie z projektu."
+content_pl: |
+  Plik do druku, za który ktoś żąda zwrotu, prawie nigdy nie jest brzydki. Na ekranie projekt był w porządku. Stało się coś innego: kupujący otworzył go na laptopie z Windowsem i elegancka czcionka zamieniła się w Times New Roman. Albo wydrukował i ramka została ścięta z dwóch stron. Albo grafika, która w przeglądarce wyglądała ostro, wyszła z atramentówki miękka i rozpikselowana. Albo Etsy po prostu odmówiło przyjęcia pliku, bo miał 34 MB.
+
+  Wynika z tego, że praca, która naprawdę chroni ocenę sklepu, zaczyna się po skończeniu projektu. Jest nudna: format strony, rozdzielczość, marginesy, czcionki, waga. Każda z tych rzeczy zawodzi w konkretny sposób i każdą sprawdza się w dwie minuty. Poniżej idą w kolejności, w jakiej zwykle się psują.
+
+  <h2>Co kupujący naprawdę robi z twoim plikiem</h2>
+
+  <p>Wszystkie wymagania poniżej wynikają z tego samego, więc warto wyobrazić sobie konkretnie osobę po drugiej stronie. Twój kupujący nie jest drukarnią. On:</p>
+
+  <ul>
+    <li><strong>Drukuje w domu</strong>, na atramentówce albo taniej laserówce, która fizycznie nie umie zadrukować krawędzi kartki.</li>
+    <li><strong>Bierze papier, który sprzedaje się w jego kraju.</strong> A4 prawie wszędzie, US Letter w Stanach i Kanadzie. To inne proporcje, nie tylko inny rozmiar.</li>
+    <li><strong>Otwiera plik w tym, co ma pod ręką</strong>, a to coraz częściej telefon albo tablet i czytnik PDF, który nie jest Acrobatem.</li>
+    <li><strong>Nie napisze do ciebie o problemie.</strong> Poprosi o zwrot albo wystawi opinię, a jedno i drugie kosztuje więcej niż sama sprzedaż.</li>
+  </ul>
+
+  <p>PDF jest do tego wszystkiego właściwym formatem, bo nosi swój układ w sobie. To jest jednocześnie pułapka: nosi dokładnie ten układ, który mu dałeś, razem z fragmentami, które działały tylko na twojej maszynie.</p>
+
+  <h2>Format strony: proporcje wybiera się przed wszystkim innym</h2>
+
+  <p>A4 to 210 na 297 mm. US Letter to 216 na 279 mm. Letter jest szerszy i krótszy. Żaden współczynnik skali nie zamieni jednego w drugi, dlatego rada „wydrukuj z dopasowaniem do kartki” daje planer z nierównymi białymi pasami i plakat z obciętymi krawędziami.</p>
+
+  <p>Uczciwe opcje są dwie: wybrać jeden format i wyraźnie o tym napisać w ofercie, albo wysyłać oba. Większość działających sklepów wysyła oba, bo sklep tylko z A4 cicho traci amerykański ruch, a sklep tylko z Letter traci wszystkich pozostałych.</p>
+
+  <p>Wysyłanie obu oznacza wyeksportowanie dwóch plików z programu graficznego. Nie próbuj wyprodukować drugiego formatu przez kadrowanie albo skalowanie gotowego PDF: kadrowanie przycina stronę do mniejszego prostokąta, więc dostaniesz okno w proporcjach Letter na projekt A4, w którym brakuje treści u dołu. Nasze <a href="/pl/pdf-edit/crop/">kadrowanie PDF</a> służy do usuwania zbędnych marginesów w dokumencie, a nie do przeliczania jednego standardu papieru na drugi. Wyeksportowanie dwóch plików z programu graficznego pozostaje najlepszą opcją, bo tylko plik źródłowy potrafi naprawdę złamać się na nowo pod inne proporcje. Kiedy nie masz już tego pliku albo kupiłeś gotowy szablon, <a href="/pl/pdf-edit/page-size/">zmiana rozmiaru strony PDF</a> robi rzecz drugą co do jakości: przenosi strony na inny arkusz i, ponieważ A4 traci na Letter 8,8 mm z góry i z dołu, zachowuje pełny rozmiar, gdy twoje marginesy na to pozwalają, a zmniejsza dokładnie tyle, gdy nie pozwalają. Nigdy nie obcina. To też praktyczny powód, żeby trzymać opisany niżej margines 10–12 mm.</p>
+
+  <h2>300 dpi, czyli dlaczego ekran cię oszukuje</h2>
+
+  <p>Ekran ma około 100 pikseli na cal. Papier rozdziela szczegół około trzy razy drobniejszy. Dlatego grafika, która przy pełnym powiększeniu w przeglądarce wygląda idealnie ostro, na papierze może wyjść wyraźnie miękka, i nie ma sposobu, żeby zauważyć to na monitorze.</p>
+
+  <p>Zasada brzmi: 300 dpi w docelowym rozmiarze druku. W praktyce:</p>
+
+  <ul>
+    <li><strong>Plakat 20 na 25 cm</strong> potrzebuje źródła około 2400 na 3000 pikseli. Jeśli oryginał ma 1000 pikseli szerokości, żadne ustawienie eksportu go nie uratuje.</li>
+    <li><strong>Tekst i kształty się nie liczą.</strong> Krój pisma, linie i ilustracja wektorowa w PDF są niezależne od rozdzielczości i drukują się tak dobrze, jak umie drukarka. Planer zbudowany wyłącznie z tekstu i linii zawsze wyjdzie ostry.</li>
+    <li><strong>Ryzykuje tylko raster.</strong> Zdjęcia, tekstury, elementy akwarelowe, zeskanowane napisy i wszystko, co znalazłeś jako JPG albo PNG.</li>
+  </ul>
+
+  <p>Jeśli składasz projekt w edytorze przeglądarkowym, eksportuj w najwyższej dostępnej jakości, a nie w domyślnej: domyślna jest zwykle ustawiona pod udostępnianie na ekranie.</p>
+
+  <h2>Niezadrukowywalna krawędź i margines, który wymusza</h2>
+
+  <p>Domowa drukarka trzyma kartkę rolkami, żeby ją przesuwać, więc nie może położyć tuszu na kilku ostatnich milimetrach przy krawędzi. Zależnie od modelu ta martwa strefa to około 3–6 mm z każdej strony i więcej przy krawędzi wyjściowej.</p>
+
+  <p>Wynikają z tego dwie rzeczy, na których potyka się prawie każdy początkujący sprzedawca:</p>
+
+  <ul>
+    <li><strong>Tło na spad w domu nie działa.</strong> Projekt, w którym kolor dochodzi do krawędzi kartki, drukuje się z cienkimi białymi marginesami, i zwykle nierównymi. Jeśli projekt bez zalania do krawędzi nie ma sensu, napisz w ofercie, że plik jest przeznaczony do drukarni.</li>
+    <li><strong>Wszystko ważne trzeba odsunąć do środka.</strong> Tekst, numery stron, pola do zaznaczania i linie cięcia trzymaj co najmniej 10–12 mm od krawędzi. Wszystko bliżej to na nieznanej drukarce już loteria.</li>
+  </ul>
+
+  <p>Druga połowa tego problemu siedzi w okienku druku u kupującego. Większość czytników domyślnie wybiera „dopasuj do obszaru drukowania”, co po cichu zmniejsza stronę o kilka procent i centruje ją. Przy planerze niewidoczne. Przy czymkolwiek, co kupujący będzie wycinał albo zszywał, to realny problem, więc dodaj do instrukcji jedno zdanie: drukuj w 100 procentach, rozmiar rzeczywisty, skalowanie wyłączone.</p>
+
+  <h2>Czcionki: osadź je albo zamień na krzywe</h2>
+
+  <p>Najczęstsza awaria pliku to czcionka, która nie weszła do PDF. Na twojej maszynie jest zainstalowana, więc plik wygląda poprawnie. Na komputerze kupującego czytnik jej nie znajduje i podstawia inną, co przelewa każdą linię od nowa i niszczy układ, nad którym siedziałeś weekend.</p>
+
+  <p>Dwa sposoby, żeby być bezpiecznym, w kolejności preferencji:</p>
+
+  <ul>
+    <li><strong>Osadź czcionki przy eksporcie.</strong> Taka opcja jest w każdym poważnym programie, a narzędzia przeglądarkowe robią to same. Sprawdzenie jest proste: otwórz PDF i zajrzyj we właściwości dokumentu, jest tam zakładka z czcionkami, i przy każdej powinno stać „Osadzona” albo „Osadzony podzbiór”.</li>
+    <li><strong>Zamień tekst na krzywe</strong> przed eksportem. Litery stają się kształtami wektorowymi, więc żadna czcionka nie jest potrzebna. Sposób jest pewny i nieodwracalny, więc trzymaj osobno plik źródłowy, który da się jeszcze edytować.</li>
+  </ul>
+
+  <p>Sprawdzaj na maszynie, na której nie ma twoich czcionek, albo poproś kogoś o otwarcie pliku. Otwarcie go na swoim komputerze nie dowodzi niczego: twój komputer to jedyne miejsce, gdzie zadziała na pewno.</p>
+
+  <h2>Spłaszcz plik, ale nie łudź się, co to daje</h2>
+
+  <p>Warstwy, pola formularzy, komentarze i edytowalne obiekty tekstowe to wszystko rzeczy, które kupujący może przypadkiem przesunąć, i rzeczy, które robią plik cięższym niż musi być. <a href="/pl/pdf-edit/flatten/">Spłaszczenie PDF</a> zbiera to wszystko w jedną statyczną stronę. Wynik szybciej się otwiera, przewidywalniej drukuje w dziwnych czytnikach i nie zjeżdża od przypadkowego kliknięcia.</p>
+
+  <p>Czego spłaszczanie nie robi, to nie powstrzymuje nikogo od odsprzedaży twojej pracy. Hasło też nie. Kto może wydrukować stronę, może ją sfotografować, a PDF, który kupujący otwiera, może też zrzucić z ekranu. Spłaszczanie to higiena pliku, nie ochrona praw autorskich. Naprawdę zapobiega natomiast zwykłemu wypadkowi: kupujący przeciąga pole tekstowe, a potem pyta, dlaczego masz zepsuty plik.</p>
+
+  <p>Jeśli chcesz dodatkowo odciąć przypadkowe zmiany, <a href="/pl/pdf-security/protect/">uprawnienia w PDF</a> umieją zabronić edycji i kopiowania, zostawiając plik otwarty do czytania i druku. Traktuj to jak próg zwalniający. W naszym omówieniu tego, <a href="/pl/blog/password-protect-pdf-before-emailing/">co naprawdę chroni hasło do PDF</a>, różnica między dwoma rodzajami hasła jest rozłożona dokładnie, a warto ją znać przed poleganiem na którymkolwiek.</p>
+
+  <h2>Waga pliku: prawdziwym ograniczeniem jest 20 MB na Etsy</h2>
+
+  <p>W momencie pisania Etsy przyjmuje pliki cyfrowe do 20 MB każdy, maksymalnie pięć plików na ofertę. To ta liczba, a nie twój projekt, decyduje o tym, jak składasz zestaw. Trzy praktyczne konsekwencje:</p>
+
+  <ul>
+    <li><strong>Zestaw na kilka formatów przekracza pięć plików natychmiast.</strong> Cztery formaty razy trzy wersje kolorystyczne to dwanaście plików. Standardowa odpowiedź to ZIP: archiwum zajmuje jedno miejsce z pięciu, a rozpakować je umie każdy system.</li>
+    <li><strong>Ciężki planer jest ciężki z powodu grafik.</strong> PDF z samego tekstu waży tyle co nic. Jeśli planer na 40 stron ma 30 MB, robi to podkładka na całą stronę albo tekstura.</li>
+    <li><strong>Kompresuj na końcu i sprawdzaj wynik na papierze.</strong> Nasz <a href="/pl/pdf-organize/compress/">kompresor PDF</a> zostawia tekst i wektory w pełnej jakości i przelicza grafiki, co jest dokładnie właściwym kompromisem dla planera tekstowego i dokładnie niewłaściwym dla plakatu fotograficznego. Przy grafice wydrukuj stronę przed i po, i popatrz. Jeśli nie da się zmieścić bez widocznej straty, lepiej podziel ofertę.</li>
+  </ul>
+
+  <p>Jeśli poszedłeś drogą archiwum i chcesz zamknąć samo pobranie, można <a href="/pl/archive/protect/">zabezpieczyć ZIP hasłem</a>, choć przy płatnym produkcie to zwykle generuje więcej wiadomości do obsługi niż zapobiega.</p>
+
+  <h2>Produkty wielostronicowe potrzebują numerów stron</h2>
+
+  <p>Każdy produkt, który kupujący drukuje jako zestaw, czyli planery, zeszyty ćwiczeń, paczki kart pracy, potrzebuje numeracji. Bez niej osoba, która wydrukowała 40 stron i rozsypała stos, nie ma jak go złożyć, a to staje się twoim problemem.</p>
+
+  <p>Dodaj numery na samym końcu, kiedy kolejność stron jest już ostateczna, przez <a href="/pl/pdf-edit/add-page-numbers/">dodawanie numerów stron</a>. Trzymaj je w strefie bezpiecznej z sekcji powyżej, bo numer 5 mm od krawędzi drukarka zjada pierwszy. W <a href="/pl/blog/add-page-numbers-to-pdf/">pełnym omówieniu numeracji</a> jest o pozycji i przesunięciu początkowym, jeśli trzeba pominąć okładkę.</p>
+
+  <h2>Podglądy do oferty, a nie sam produkt</h2>
+
+  <p>Zdjęcia w ofercie powinny pokazywać produkt, nie będąc produktem. Wyeksportuj stronę jako obraz przez <a href="/pl/pdf-to-jpg/">PDF na JPG</a> do czystej makiety, a jeśli chcesz pokazać wewnętrzne strony płatnego zeszytu, przepuść je najpierw przez <a href="/pl/pdf-edit/add-watermark/">znak wodny</a>. Nasza notka o <a href="/pl/blog/watermark-pdf-confidential-draft/">znakach wodnych na PDF</a> omawia położenie i przezroczystość: do podglądu znak ma być czytelny, ale nie tak gęsty, żeby kupujący nie mógł ocenić projektu.</p>
+
+  <h2>Ośmiopunktowa kontrola przed wysłaniem</h2>
+
+  <table>
+    <thead>
+      <tr><th>Co sprawdzamy</th><th>Jak</th><th>Przed czym chroni</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Jeden format strony na wszystkich stronach</td><td>Otworzyć PDF i upewnić się, że wymiary są wszędzie takie same</td><td>Jedna wypadkowa strona w innym formacie, która drukuje się ze skalą</td></tr>
+      <tr><td>Czcionki osadzone</td><td>Właściwości dokumentu, zakładka czcionek, wszędzie „Osadzona”</td><td>Podmiana kroju i rozjechany układ</td></tr>
+      <tr><td>Grafiki 300 dpi w docelowym rozmiarze</td><td>Wydrukować jedną stronę i popatrzeć przy dobrym świetle</td><td>Miękka, rozpikselowana grafika</td></tr>
+      <tr><td>Treść w marginesie 10–12 mm</td><td>Druk w 100 procentach, sprawdzić wszystkie cztery krawędzie</td><td>Ścięte ramki i zgubione numery stron</td></tr>
+      <tr><td>Plik spłaszczony</td><td>Klik na stronie nic nie zaznacza i nie przeciąga</td><td>Kupujący przypadkiem przesuwa elementy</td></tr>
+      <tr><td>Waga w granicach limitu platformy</td><td>Patrzeć na rozmiar każdego pliku, nie zestawu</td><td>Odmowa wysłania w najmniej wygodnym momencie</td></tr>
+      <tr><td>Numeracja w zestawach wielostronicowych</td><td>Przewinąć wyeksportowany plik</td><td>Kupujący nie potrafi złożyć wydrukowanego stosu</td></tr>
+      <tr><td>Otwiera się nie na twoim urządzeniu</td><td>Telefon albo laptop znajomego</td><td>Wszystkie problemy z czcionkami i czytnikami naraz</td></tr>
+    </tbody>
+  </table>
+
+  <p>Jedno przejście zajmuje dziesięć minut. To samo przejście po prośbie o zwrot zajmuje dziesięć minut plus opinię, której już nie usuniesz.</p>
+
+  <h2>Co dzieje się z plikiem, który wysyłasz</h2>
+
+  <p>Nasze narzędzia działają na serwerze, więc plik jest wysyłany. Zostaje usunięty zaraz po zakończeniu zadania, a link do pobrania należy tylko do ciebie. Nic nie jest indeksowane, przechowywane ani używane do trenowania. Przy niewydanych jeszcze produktach części sprzedawców to i tak nie uspokaja, i to zrozumiałe: nasza notka o tym, <a href="/pl/blog/is-convertica-safe-pdf-file-security-privacy-explained/">jak Convertica obchodzi się z plikami</a>, opisuje zasady przechowywania, żeby można było zdecydować samemu.</p>
+
+  <h2>Częste pytania</h2>
+
+  <h3>Sprzedawać w A4 czy w US Letter?</h3>
+  <p>Jeśli możesz, wysyłaj oba i wyraźnie je podpisz wewnątrz pobrania. Jeśli musisz wybrać, kieruj się źródłem ruchu: A4 dla większości świata, US Letter dla sklepu nastawionego na Stany i Kanadę. Czego nie wolno, to wysłać jeden format i o tym zamilczeć, bo to zamienia się w prośbę o zwrot od tej połowy świata, która trzyma w ręku drugi papier.</p>
+
+  <h3>Czy plik do druku potrzebuje spadów?</h3>
+  <p>Do druku domowego nie, a dodanie spadów zwykle pogarsza sprawę: projekt ze spadami zakłada obcięcie po druku, a kupujący nie ma gilotyny. Zamiast tego projektuj do formatu z bezpiecznym marginesem. Spady mają sens tylko wtedy, gdy sprzedajesz osobno wersję do drukarni, i wtedy to osobny plik.</p>
+
+  <h3>Czy mogę zablokować odsprzedaż mojego PDF?</h3>
+  <p>Technicznie nie. Każdy plik, który kupujący może otworzyć i wydrukować, da się skopiować. Uprawnienia i hasła zatrzymują tylko przypadkową edycję. Działa nudne połączenie: strona z licencją w środku pliku, mówiąca co kupującemu wolno i czego nie, plus proces zgłaszania naruszeń platformy, kiedy znajdziesz kopię.</p>
+
+  <h3>Planer ma 45 MB. Co ciąć pierwsze?</h3>
+  <p>Szukać grafik. Podkładka na całą stronę, tekstura papieru albo fotograficzna okładka prawie zawsze wyjaśniają całą wagę, a zamiana tekstury na płaski kolor albo delikatny wzór wektorowy potrafi zmniejszyć plik o rząd wielkości. Kompresja dopiero potem, i ze sprawdzeniem wydrukowanej strony.</p>
+
+  <h3>Wysyłać jeden PDF czy ZIP?</h3>
+  <p>Jeden PDF, jeśli produkt to jedna rzecz w jednym formacie: każdy dodatkowy krok gubi kupujących, którzy otwierają pobranie na telefonie. ZIP, jak tylko pojawia się kilka formatów albo wersji kolorystycznych, bo trzyma cię w limicie pięciu plików i porządkuje nazwy. Jeśli składasz zestaw, nazwij pliki tak, żeby były zrozumiałe bez kontekstu: nasza notka o <a href="/pl/blog/pdf-naming-conventions-best-practices/">nazewnictwie plików</a> jest napisana o dokumentach, ale pasuje jeden do jednego.</p>
+
+  <h3>Czy spłaszczanie obniża jakość druku?</h3>
+  <p>Nie. Spłaszczanie scala warstwy i elementy interaktywne w statyczną treść strony; nie przelicza grafik i nie zmienia rozdzielczości. Jakość może kosztować kompresja, ale to osobna decyzja.</p>
+
+  <h2>Przygotuj plik</h2>
+
+  <p>Weź produkt, który jest najbliżej publikacji, i przejdź po ośmiu punktach teraz, przed pisaniem opisu. Większość plików potrzebuje dwóch poprawek: <a href="/pl/pdf-edit/flatten/">spłaszczyć</a> i, przy zestawach wielostronicowych, <a href="/pl/pdf-edit/add-page-numbers/">dodać numery stron</a>. Kompresuj tylko wtedy, gdy platforma cię zmusza, przez <a href="/pl/pdf-organize/compress/">kompresję PDF</a>, i z wydrukowaną stroną przed oczami. Reszta jest we <a href="/pl/all-tools/">wszystkich narzędziach</a>.</p>
