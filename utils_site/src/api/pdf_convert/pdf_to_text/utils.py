@@ -9,6 +9,7 @@ from pathlib import Path
 import fitz
 from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import get_valid_filename
+from django.utils.translation import gettext as _
 from src.api.file_validation import (
     check_disk_space,
     sanitize_filename,
@@ -102,6 +103,19 @@ def convert_pdf_to_text(
             raise ConversionError(
                 f"Failed to extract text from PDF: {e}", context=error_context
             ) from e
+
+        # A scanned/image-only PDF has no text layer, so extraction yields "".
+        # Writing that produces a 0-byte file, which validate_output_file rejects
+        # as a generic ConversionError -> 500 + Sentry error (CONVERTICA-5J).
+        # It's bad input, not a server fault: 400 with a pointer to the OCR tool.
+        if not full_text.strip():
+            raise InvalidPDFError(
+                _(
+                    "no text layer found. This looks like a scanned PDF, "
+                    "so use the Scanned PDF to Word tool to run OCR on it."
+                ),
+                context=context,
+            )
 
         base_name = Path(safe_filename).stem
         output_filename = f"{base_name}{suffix}.txt"
